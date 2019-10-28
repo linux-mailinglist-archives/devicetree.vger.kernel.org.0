@@ -2,101 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA31E6DB9
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 09:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EE25E6E46
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 09:32:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733138AbfJ1IAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 04:00:49 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:40448 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731303AbfJ1IAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 04:00:49 -0400
-Received: by mail-pg1-f196.google.com with SMTP id 15so6366744pgt.7
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 01:00:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Teb+nHfVj7QdEHZ6F94pdipxxAtosBBL8l+HZTtIm4A=;
-        b=buaiJ3wCZ4lN8R+UyQC0KOVQoxUBt6E4y93SYARVuR1cEQmv/6DKg4GcFkpHRoxyuZ
-         owizS5k3E6U2+4tNLCi2VzzTujDhbLZADv9SNpK6h5Mz6od8pwnNy7juEGYAPj9frn3F
-         yMPdfWr/m297s++31zAjbgfMq5FEv0rtrzsAX4Y2BOTh+VgZTwFpHrM5maha5RYfJ28s
-         i8vTW8T+L+PZ6mcbUUiC2fx9aHpoqrolWGKjjfqnrPFR5V91EuX3/bL3FfVDEPg26AcG
-         iWZwa4z03A1Bx0nETUvG+uyojlpdadDnzPWailVA/qhmAwdUW2H8KxKlfpRvCsiEm6Iu
-         D7KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Teb+nHfVj7QdEHZ6F94pdipxxAtosBBL8l+HZTtIm4A=;
-        b=uctq3ODEyXMr3mdpEEi7PVbq0A7kJa/ySlP0w8CTQYM2vfaHuZfN2btHqE56ApE1Ws
-         QOi+j+ZlGUU6mwCuFX7xlV/VnqpGixUWZ1Ij8GRAQMi/8q8AfYkLoeVT5BD2Vj+IWA9P
-         wkhXZBNy3mRmhxorv5EO9900HpGb9pOOrkEDHZ1aLbNAzP273ImXKdCVhFhtCeVkA25c
-         APTLFjx6+QL3LUw+7mmoE9BJnM98fK3p4FE3u9HUStKuurGJhhe5uVdu25t0rCabzlMl
-         F4omq9VGBKi4UnWPVvtPAyk/emoPNLGP2eB03sR/UjvCUj+c4+7uHJUxnZV6S+96K864
-         XoEA==
-X-Gm-Message-State: APjAAAWsrdNSeEB1GDX1q2qPKwaLWiI77pTys7oOc+aGzhBGgtDJ+7fc
-        0m/TKKQ+MIIQ+79acFGoyDPDAg==
-X-Google-Smtp-Source: APXvYqw5o9OQqVfoQBgItzsJbWV2pBxZDfEZpu9OM5nA5X7iLkchHyEIoGZfQuSvRNFLCJ9raZ6acA==
-X-Received: by 2002:a62:77c2:: with SMTP id s185mr3990854pfc.129.1572249648961;
-        Mon, 28 Oct 2019 01:00:48 -0700 (PDT)
-Received: from localhost.localdomain (111-241-170-106.dynamic-ip.hinet.net. [111.241.170.106])
-        by smtp.gmail.com with ESMTPSA id y36sm9504752pgk.66.2019.10.28.01.00.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2019 01:00:48 -0700 (PDT)
-From:   Green Wan <green.wan@sifive.com>
-Cc:     Green Wan <green.wan@sifive.com>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Bin Meng <bmeng.cn@gmail.com>,
-        Yash Shah <yash.shah@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/4] MAINTAINERS: Add Green as SiFive PDMA driver maintainer
-Date:   Mon, 28 Oct 2019 15:56:23 +0800
-Message-Id: <20191028075658.12143-5-green.wan@sifive.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191028075658.12143-1-green.wan@sifive.com>
-References: <20191028075658.12143-1-green.wan@sifive.com>
-To:     unlisted-recipients:; (no To-header on input)
+        id S1730322AbfJ1IcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 04:32:23 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:40890 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728941AbfJ1IcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 04:32:23 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9S8WJwE087003;
+        Mon, 28 Oct 2019 03:32:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1572251540;
+        bh=cb8t7x1Wna5/A3kIdSJHuz07Zq6Z8d9QRprTibbQH/A=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=xf+EPQRE/Ena49IcnlQZUSJ8d8p/R/q9CCHyoJCQn6Epmjw+ux4wrycN5aTtXHBQX
+         1U8WI+NBrxo+aQf9ymhBaTiK/4ShGHAw0Q5kNx9SU5GHvqlyBvn8mX8eV4/lM19rlt
+         /WKddutMSXZEovdcsa9DlrohABePQcY8RFls7iI0=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9S8WJVw104270
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 28 Oct 2019 03:32:19 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 28
+ Oct 2019 03:32:07 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 28 Oct 2019 03:32:19 -0500
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9S8WHVD088990;
+        Mon, 28 Oct 2019 03:32:17 -0500
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: ti,phy-j721e-wiz: Add Type-C dir
+ GPIO
+To:     Rob Herring <robh@kernel.org>
+CC:     <kishon@ti.com>, <aniljoy@cadence.com>, <adouglas@cadence.com>,
+        <nsekhar@ti.com>, <jsarha@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20191024114042.30237-1-rogerq@ti.com>
+ <20191024114042.30237-3-rogerq@ti.com> <20191025200603.GA10839@bogus>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <a01a51a5-2249-b26a-1df2-8034f333eb02@ti.com>
+Date:   Mon, 28 Oct 2019 10:32:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <20191025200603.GA10839@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update MAINTAINERS for SiFive PDMA driver.
+Hi Rob,
 
-Signed-off-by: Green Wan <green.wan@sifive.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+On 25/10/2019 23:06, Rob Herring wrote:
+> On Thu, Oct 24, 2019 at 02:40:41PM +0300, Roger Quadros wrote:
+>> This is an optional GPIO, if specified will be used to
+>> swap lane 0 and lane 1 based on GPIO status. This is required
+>> to achieve plug flip support for USB Type-C.
+>>
+>> Type-C companions typically need some time after the cable is
+>> plugged before and before they reflect the correct status of
+>> Type-C plug orientation on the DIR line.
+>>
+>> Type-C Spec specifies CC attachment debounce time (tCCDebounce)
+>> of 100 ms (min) to 200 ms (max).
+>>
+>> Allow the DT node to specify the time (in ms) that we need
+>> to wait before sampling the DIR line.
+>>
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Cc: Rob Herring <robh@kernel.org>
+>> ---
+>>   .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml | 15 +++++++++++++++
+>>   1 file changed, 15 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+>> index 8a1eccee6c1d..5dab0010bcdf 100644
+>> --- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+>> @@ -53,6 +53,21 @@ properties:
+>>     assigned-clock-parents:
+>>       maxItems: 2
+>>   
+>> +  typec-dir-gpios:
+> 
+> TI specific or could be generic?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c6c34d04ce95..330fbd050059 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14782,6 +14782,12 @@ F:	drivers/media/usb/siano/
- F:	drivers/media/usb/siano/
- F:	drivers/media/mmc/siano/
- 
-+SIFIVE PDMA DRIVER
-+M:	Green Wan <green.wan@sifive.com>
-+S:	Maintained
-+F:	drivers/dma/sf-pdma/
-+F:	Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-+
- SIFIVE DRIVERS
- M:	Palmer Dabbelt <palmer@sifive.com>
- M:	Paul Walmsley <paul.walmsley@sifive.com>
--- 
-2.17.1
+This driver is TI only.
 
+> 
+>> +    maxItems: 1
+>> +    description:
+>> +      GPIO to signal Type-C cable orientation for lane swap.
+>> +      If GPIO is active, lane 0 and lane 1 of SERDES will be swapped to
+>> +      achieve the funtionality of an exernal type-C plug flip mux.
+> 
+> s/exernal/external/
+> 
+>> +
+>> +  typec-dir-debounce:
+> 
+> Needs '-ms' suffix.
+> 
+>> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> 
+> then you can drop this because standard units have type already.
+> 
+>> +    description:
+>> +      Number of milliseconds to wait before sampling
+>> +      typec-dir-gpio. If not specified, the GPIO will be sampled ASAP.
+>> +      Type-C spec states minimum CC pin debounce of 100 ms and maximum
+>> +      of 200 ms.
+> 
+> Express this as constraints:
+> 
+> minimum: 100
+> maximum: 200
+> default: ???
+> 
+> If the spec minimum is 100ms, then doesn't sampling ASAP violate the
+> spec?
+
+Good point. I'll change the default to 100.
+
+Some board solutions seem to take even longer than 200. I can set
+1000 ms as maximum.
+
+> 
+>> +
+>>   patternProperties:
+>>     "^pll[0|1]_refclk$":
+>>       type: object
+>> -- 
+>> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+>> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>>
+
+--
+cheers,
+-roger
+  
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
