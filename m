@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D112E7BF5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 22:59:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD43FE7BFD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 23:00:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390472AbfJ1V7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 17:59:35 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:44524 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390446AbfJ1V7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 17:59:35 -0400
-Received: by mail-pf1-f193.google.com with SMTP id q26so4252547pfn.11
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 14:59:34 -0700 (PDT)
+        id S2389971AbfJ1V71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 17:59:27 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:45805 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389904AbfJ1V70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 17:59:26 -0400
+Received: by mail-pg1-f193.google.com with SMTP id r1so7880015pgj.12
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 14:59:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=9P5p/4dcNs8ql4OyOSsDmP/Eo0cfZOKgwuYqI45wfJg=;
-        b=ks8Q41j1ZqA/QKFHT472CH12EK/nGPhBNjUH0WKFQdpFsYiFWCGlWyyocdHfUnLMFa
-         ilBT83QeApQCioM8MCcBVzcBTr7L16ZzSYSrlsZ3svQz3Qbmu5mSay4FCb/9m1XsUVU2
-         c1YR0FZ10+gBGjO9pUj9XMLVRV8DYgv7q+bju8Xop7n6vZQ9f1jfJDxhERBpjloaB6fy
-         zHrBQ6YHV8IMq095CL+xzpfQDJxCaC6+b2Lj4lm6/v2LPLFB/3kHTtdPCO9b075ZTy59
-         KdY31qCinVxER1+Qe5BFmn6E1SYTIZ5dzMigy+dADU7kWpKK4lDLBXZWyamHz7NfObM5
-         BpUA==
+        bh=+L6QotxBXClg8Fe4NEIvH2M7vhWfz5AENh5gfCd6GV4=;
+        b=uaUmY97oSQxJQiygHKDaQ20ZTGg8dHh2CBe6oCjliV/RN29TrGpIx4ib9OqXas8o3L
+         VGfHqIuml3QwWjby0s2prmA2YMmiKWQVFFb1lAwmvGl498yOYU5Uls0CSQZ34KDFix43
+         G6JAmKHK8ywTaqFjTUQP00S7zXpDubMfH1Tir+VrVpTGeF7pp/x/zIimRziEyXRoQMht
+         x7W2cxF8KEa5n6o6m8KFmj7LejeivOjoMf2XtSHXLftGcJYpn6KXhdcqvG0pZZJ4idlx
+         kQxDcknr/f6WferMNpA/Vd7V+YIZo/bspA5ekOGZIugueMatX0phDtpfNMw5J5ckn8sF
+         6leg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=9P5p/4dcNs8ql4OyOSsDmP/Eo0cfZOKgwuYqI45wfJg=;
-        b=ZMqLr5kmOS/WoXWQUxuCu5nEHzKsF4lNtk1bgmpqkTZD3PMDO8bcBEW0FpDx6o/gTz
-         BztEKJsmqK7ODH5ANxU73+lr6ksac9eKMV4DgnQgy9IeaPiMV/SVXdoXaYcL1bkDdsT9
-         9L5ycQ0VNC9sfl2UuGEsdcWGSy4VSUprxGDaDG0P5zNnF1Er1cI5DEa3xOfiQbBIDaH1
-         Ri1Wkmpuc/RIv5QzRwd0DmlQzP9oQCW0vBd2TmQo5464+vEqoBrp82E1ioY7/Xk/RzUn
-         ZPtuGQ+amqgDlHVg7ccUUNlyLzFQ43+euqKxpFfF4GyZKtgdAWbZzoqsm2iJP8vit5Zt
-         +5HQ==
-X-Gm-Message-State: APjAAAW6qXj/K5rqqZoGz7eAuYN6Ku78Jc1TBjsnapdV+msd0Qyne9vS
-        S4gM+CCjNmrfeDCbAhy14Jja7g==
-X-Google-Smtp-Source: APXvYqyzWZOig+RfCXgpnHo7l5IBFBeACyeBjNjdSXrji1GSa9dz+HugwTGG5QUBsQUIQSVHRSs/1A==
-X-Received: by 2002:a17:90a:1050:: with SMTP id y16mr1902116pjd.59.1572299974196;
-        Mon, 28 Oct 2019 14:59:34 -0700 (PDT)
+        bh=+L6QotxBXClg8Fe4NEIvH2M7vhWfz5AENh5gfCd6GV4=;
+        b=KbUmRxs2p7KD5geey5/Zk6Cv6PuqRN5KlOGHNAD+OX4COd9azPvbKEaPWIyZUmXRoU
+         2nVRv9MYasHLS2Otzti2rlWWG1TcL8i4T++0zJ5cdFPaT10sMrlEx5V9ZFWL1KF9oxMl
+         P+1qFhDY7gPvPmNjdxVjmNKg9NsMCrvl1dtilOEAyuVY87a8hTuRAxDzK1rzCyw5uaqV
+         LR99DVKGQ8jI9qbtdTb4yNVdGIgCLCHrJme1sZtlFoQovAv7vjw8SeoHFcRD+AX+G0cX
+         Fq19dZ6z9GSV47NjV00bGZ3IpcHs8uuCraB9zAOajCPjcwWFE71j6gqOlydRjUZhYCMs
+         l2Dg==
+X-Gm-Message-State: APjAAAX2jv+ZWpMKawoRnyhFsN3gFvoPqQzTm6tM+YANyBK25qB0NM9L
+        lSufnclROPI9BIPfyu8eK5LklA==
+X-Google-Smtp-Source: APXvYqwoT7ayq2aO4CF8CK+7fEOHyKKj3eXU3Enm6OGIp8+0wievgg8RmOqjN0WXhlj2nCmqsIIU7g==
+X-Received: by 2002:a63:f923:: with SMTP id h35mr23802494pgi.323.1572299965657;
+        Mon, 28 Oct 2019 14:59:25 -0700 (PDT)
 Received: from localhost.localdomain (c-67-170-172-113.hsd1.or.comcast.net. [67.170.172.113])
-        by smtp.gmail.com with ESMTPSA id f12sm10880612pfn.152.2019.10.28.14.59.32
+        by smtp.gmail.com with ESMTPSA id f12sm10880612pfn.152.2019.10.28.14.59.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Oct 2019 14:59:33 -0700 (PDT)
+        Mon, 28 Oct 2019 14:59:25 -0700 (PDT)
 From:   John Stultz <john.stultz@linaro.org>
 To:     lkml <linux-kernel@vger.kernel.org>
-Cc:     John Stultz <john.stultz@linaro.org>,
+Cc:     Yu Chen <chenyu56@huawei.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -53,16 +53,16 @@ Cc:     John Stultz <john.stultz@linaro.org>,
         Heikki Krogerus <heikki.krogerus@linux.intel.com>,
         Suzuki K Poulose <suzuki.poulose@arm.com>,
         Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Yu Chen <chenyu56@huawei.com>, Felipe Balbi <balbi@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
         Hans de Goede <hdegoede@redhat.com>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
         Jun Li <lijun.kernel@gmail.com>,
         Valentin Schneider <valentin.schneider@arm.com>,
         Jack Pham <jackp@codeaurora.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 9/9] usb: dwc3: Add host-mode as default support
-Date:   Mon, 28 Oct 2019 21:59:19 +0000
-Message-Id: <20191028215919.83697-10-john.stultz@linaro.org>
+        devicetree@vger.kernel.org, John Stultz <john.stultz@linaro.org>
+Subject: [PATCH v4 2/9] usb: dwc3: Execute GCTL Core Soft Reset while switch modes
+Date:   Mon, 28 Oct 2019 21:59:12 +0000
+Message-Id: <20191028215919.83697-3-john.stultz@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191028215919.83697-1-john.stultz@linaro.org>
 References: <20191028215919.83697-1-john.stultz@linaro.org>
@@ -71,11 +71,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support configuring the default role the controller assumes as
-host mode when the usb role is USB_ROLE_NONE
+From: Yu Chen <chenyu56@huawei.com>
 
-This patch was split out from a larger patch originally by
-Yu Chen <chenyu56@huawei.com>
+On the HiKey960, we need to do a GCTL soft reset when
+switching modes.
+
+Jack Pham also noted that in the Synopsys databook it
+mentions performing a GCTL CoreSoftReset when changing the
+PrtCapDir between device & host modes.
+
+So this patch always does a GCTL Core Soft Reset when
+changing the mode.
 
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Rob Herring <robh+dt@kernel.org>
@@ -93,81 +99,51 @@ Cc: Valentin Schneider <valentin.schneider@arm.com>
 Cc: Jack Pham <jackp@codeaurora.org>
 Cc: linux-usb@vger.kernel.org
 Cc: devicetree@vger.kernel.org
+Signed-off-by: Yu Chen <chenyu56@huawei.com>
 Signed-off-by: John Stultz <john.stultz@linaro.org>
 ---
-v3: Split this patch out from addition of usb-role-switch
-    handling
+v3: Remove quirk conditional, as Jack Pham noted the
+    Synopsis databook states this should be done generally.
+    Also, at Jacks' suggestion, make the reset call before
+    changing the prtcap direction.
 ---
- drivers/usb/dwc3/core.h |  3 +++
- drivers/usb/dwc3/drd.c  | 20 ++++++++++++++++----
- 2 files changed, 19 insertions(+), 4 deletions(-)
+ drivers/usb/dwc3/core.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 6f19e9891767..3c879c9ab1aa 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -953,6 +953,8 @@ struct dwc3_scratchpad_array {
-  *		- USBPHY_INTERFACE_MODE_UTMI
-  *		- USBPHY_INTERFACE_MODE_UTMIW
-  * @role_sw: usb_role_switch handle
-+ * @role_switch_default_mode: default operation mode of controller while
-+ *			usb role is USB_ROLE_NONE.
-  * @usb2_phy: pointer to USB2 PHY
-  * @usb3_phy: pointer to USB3 PHY
-  * @usb2_generic_phy: pointer to USB2 PHY
-@@ -1087,6 +1089,7 @@ struct dwc3 {
- 	struct notifier_block	edev_nb;
- 	enum usb_phy_interface	hsphy_mode;
- 	struct usb_role_switch	*role_sw;
-+	enum usb_dr_mode	role_switch_default_mode;
+diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+index 999ce5e84d3c..a039e35ec7ad 100644
+--- a/drivers/usb/dwc3/core.c
++++ b/drivers/usb/dwc3/core.c
+@@ -112,6 +112,19 @@ void dwc3_set_prtcap(struct dwc3 *dwc, u32 mode)
+ 	dwc->current_dr_role = mode;
+ }
  
- 	u32			fladj;
- 	u32			irq_gadget;
-diff --git a/drivers/usb/dwc3/drd.c b/drivers/usb/dwc3/drd.c
-index 61d4fd8aead4..0e3466fe5ac4 100644
---- a/drivers/usb/dwc3/drd.c
-+++ b/drivers/usb/dwc3/drd.c
-@@ -489,7 +489,10 @@ static int dwc3_usb_role_switch_set(struct device *dev, enum usb_role role)
- 		mode = DWC3_GCTL_PRTCAP_DEVICE;
- 		break;
- 	default:
--		mode = DWC3_GCTL_PRTCAP_DEVICE;
-+		if (dwc->role_switch_default_mode == USB_DR_MODE_HOST)
-+			mode = DWC3_GCTL_PRTCAP_HOST;
-+		else
-+			mode = DWC3_GCTL_PRTCAP_DEVICE;
- 		break;
- 	}
++static void dwc3_gctl_core_soft_reset(struct dwc3 *dwc)
++{
++	u32 reg;
++
++	reg = dwc3_readl(dwc->regs, DWC3_GCTL);
++	reg |= DWC3_GCTL_CORESOFTRESET;
++	dwc3_writel(dwc->regs, DWC3_GCTL, reg);
++
++	reg = dwc3_readl(dwc->regs, DWC3_GCTL);
++	reg &= ~DWC3_GCTL_CORESOFTRESET;
++	dwc3_writel(dwc->regs, DWC3_GCTL, reg);
++}
++
+ static void __dwc3_set_mode(struct work_struct *work)
+ {
+ 	struct dwc3 *dwc = work_to_dwc(work);
+@@ -154,6 +167,9 @@ static void __dwc3_set_mode(struct work_struct *work)
  
-@@ -515,7 +518,10 @@ static enum usb_role dwc3_usb_role_switch_get(struct device *dev)
- 		role = dwc->current_otg_role;
- 		break;
- 	default:
--		role = USB_ROLE_DEVICE;
-+		if (dwc->role_switch_default_mode == USB_DR_MODE_HOST)
-+			role = USB_ROLE_HOST;
-+		else
-+			role = USB_ROLE_DEVICE;
- 		break;
- 	}
+ 	spin_lock_irqsave(&dwc->lock, flags);
+ 
++	/* Execute a GCTL Core Soft Reset when switch mode */
++	dwc3_gctl_core_soft_reset(dwc);
++
+ 	dwc3_set_prtcap(dwc, dwc->desired_dr_role);
+ 
  	spin_unlock_irqrestore(&dwc->lock, flags);
-@@ -534,8 +540,14 @@ int dwc3_drd_init(struct dwc3 *dwc)
- 		struct usb_role_switch_desc dwc3_role_switch = {NULL};
- 		u32 mode;
- 
--		mode = DWC3_GCTL_PRTCAP_DEVICE;
--
-+		if (device_property_read_bool(dwc->dev,
-+					      "role-switch-default-host")) {
-+			dwc->role_switch_default_mode = USB_DR_MODE_HOST;
-+			mode = DWC3_GCTL_PRTCAP_HOST;
-+		} else {
-+			dwc->role_switch_default_mode = USB_DR_MODE_PERIPHERAL;
-+			mode = DWC3_GCTL_PRTCAP_DEVICE;
-+		}
- 		dwc3_role_switch.fwnode = dev_fwnode(dwc->dev);
- 		dwc3_role_switch.set = dwc3_usb_role_switch_set;
- 		dwc3_role_switch.get = dwc3_usb_role_switch_get;
 -- 
 2.17.1
 
