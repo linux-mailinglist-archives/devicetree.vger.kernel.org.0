@@ -2,58 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4912BE6B82
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 04:48:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F8AE6C26
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 07:07:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729589AbfJ1Dsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Oct 2019 23:48:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55844 "EHLO mail.kernel.org"
+        id S1730448AbfJ1GHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 02:07:17 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:53374 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729328AbfJ1Dsk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Oct 2019 23:48:40 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E804D20659;
-        Mon, 28 Oct 2019 03:48:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572234520;
-        bh=+v2nHJWW8uJ0j5XhT13GaUAs7RJX1oty9dbstfaFroY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DWNEMqZgdJ6nfhjBNdTsSyu/VD4Zw1lpdgN/lHi9MvTZda6XGDqU5UId2BpVK3Isk
-         CvwL8Q3MILQKgln5TSP3fl1FImUIBAuTb+JSdf6pazOxZTWNEaJBteFaNbEjCEfju7
-         /+hqwlgtO+ckln+BoXYEYMrmX/gRC9vuCKMAvqq0=
-Date:   Mon, 28 Oct 2019 11:48:20 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com,
-        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
-        aisheng.dong@nxp.com, sebastien.szymanski@armadeus.com,
-        leoyang.li@nxp.com, pramod.kumar_1@nxp.com, l.stach@pengutronix.de,
-        ping.bai@nxp.com, bhaskar.upadhaya@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Linux-imx@nxp.com
-Subject: Re: [PATCH 1/3] arm64: dts: imx8mn: Create EVK dtsi file for common
- use
-Message-ID: <20191028034819.GJ16985@dragon>
-References: <1571281984-7125-1-git-send-email-Anson.Huang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1571281984-7125-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+        id S1727182AbfJ1GHR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Oct 2019 02:07:17 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 59A6A20070D;
+        Mon, 28 Oct 2019 07:07:15 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3EBAA200161;
+        Mon, 28 Oct 2019 07:07:01 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C0A60402F0;
+        Mon, 28 Oct 2019 14:06:47 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, amit.kucheria@verdurent.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, leonard.crestez@nxp.com,
+        abel.vesa@nxp.com, ping.bai@nxp.com, daniel.baluta@nxp.com,
+        jun.li@nxp.com, bjorn.andersson@linaro.org, olof@lixom.net,
+        mripard@kernel.org, vkoul@kernel.org, jagan@amarulasolutions.com,
+        dinguyen@kernel.org, marcin.juszkiewicz@linaro.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH RESEND 1/4] dt-bindings: thermal: imx8mm-thermal: Add binding doc for i.MX8MM
+Date:   Mon, 28 Oct 2019 14:03:35 +0800
+Message-Id: <1572242618-18806-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 17, 2019 at 11:13:02AM +0800, Anson Huang wrote:
-> i.MX8MN has different EVK boards to support different DDR types,
-> the ONLY differences are DDR chips and PMIC, so most of the devices
-> can be shared between these EVK boards, create a EVK dtsi file for
-> common use.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Add thermal binding doc for Freescale's i.MX8MM Thermal Monitoring Unit.
 
-Applied all, thanks.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/thermal/imx8mm-thermal.txt        | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt
+
+diff --git a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt
+new file mode 100644
+index 0000000..d09ae82
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt
+@@ -0,0 +1,15 @@
++* Thermal Monitoring Unit (TMU) on Freescale i.MX8MM SoC
++
++Required properties:
++- compatible : Must be "fsl,imx8mm-tmu".
++- reg : Address range of TMU registers.
++- clocks : TMU's clock source.
++- #thermal-sensor-cells : Should be 0. See ./thermal.txt for a description.
++
++Example:
++tmu: tmu@30260000 {
++	compatible = "fsl,imx8mm-tmu";
++	reg = <0x30260000 0x10000>;
++	clocks = <&clk IMX8MM_CLK_TMU_ROOT>;
++	#thermal-sensor-cells = <0>;
++};
+-- 
+2.7.4
+
