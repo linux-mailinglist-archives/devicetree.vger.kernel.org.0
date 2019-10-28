@@ -2,90 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A228BE6D3D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 08:29:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1156BE6DA2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 08:57:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732926AbfJ1H3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 03:29:25 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:28197 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730235AbfJ1H3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 03:29:25 -0400
-X-UUID: 9a0ae1fdd78b4f489b6a9f0e21b44ff3-20191028
-X-UUID: 9a0ae1fdd78b4f489b6a9f0e21b44ff3-20191028
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <eason.yen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 817277668; Mon, 28 Oct 2019 15:29:21 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 28 Oct 2019 15:29:13 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 28 Oct 2019 15:29:14 +0800
-From:   Eason Yen <eason.yen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, Eason Yen <eason.yen@mediatek.com>
-Subject: [PATCH v1 1/1] soc: mediatek: add SMC fid table for SIP interface
-Date:   Mon, 28 Oct 2019 15:29:09 +0800
-Message-ID: <1572247749-4276-2-git-send-email-eason.yen@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1572247749-4276-1-git-send-email-eason.yen@mediatek.com>
-References: <1572247749-4276-1-git-send-email-eason.yen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S1733101AbfJ1H5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 03:57:41 -0400
+Received: from mail-pg1-f174.google.com ([209.85.215.174]:42210 "EHLO
+        mail-pg1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731140AbfJ1H5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 03:57:41 -0400
+Received: by mail-pg1-f174.google.com with SMTP id f14so6354249pgi.9
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 00:57:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=0tOD6xTgafBMzD/bQT7mA2BK+hDrqf70u3fKrnf/Mq8=;
+        b=VRinFB+OJkAI+0T8PjMCYoRQof4sh3mxSQmc2bhFFpv5fQnmTVGIpuPnVScat+4NDl
+         ZfRqSL4DtLJ9PjAZwFTE/XRKr4Bk1fpmj9A9em4QCzb4LfkN5SdZoXeOGc3DLup8wy/H
+         IF7JO+Bh9BZmkQ5Pm0SqNPbOxgL3IJGtRmuPB/z3oWOEJp0ycpzuH64hWYIPpWd+spaC
+         x7+S+69A4ONXZxmM5bQnJFxLEtv+K8ExMnoogG3mcYRaEsRDXB4hYOE53bNQCmiZHvVn
+         9ladJtnMbBlAT+rQYn/+3maNCNUOUCEMApRmhSl/25xXFr+LpUW3gmtshzX79xsMhb3Y
+         b0xQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=0tOD6xTgafBMzD/bQT7mA2BK+hDrqf70u3fKrnf/Mq8=;
+        b=TagDAzbJJqI/ApC4HaHJIHbnRKWQ6qvsv3StRzi0+Ey0KDZubDTwGA3zZ5HbB6DVdL
+         1G8tFiZU3BW+V316PngDSYnKmXCjf1CRBiUS38dvw+41yhk7jr4UFYkEfbhTCVawiuK4
+         WXJzXRE0FY6/g/F9d6nli/yxC7AxUlNAsZR0BLNzogusczVcr93v15omszVjkLzwJMzD
+         IrQJMcPA7mCleenCJ7iMKQ0DLxJzOJWD+r3hqF9rqzRUb3SB3IPqlfq+OTAo/ZLVqRrU
+         UAKAf0JsI9Up2hHKogznT+PvN7El46xCy7+nmZnccaEU0HRK94d09Ok2zyXbFsPjE2Zo
+         mzvA==
+X-Gm-Message-State: APjAAAVOQA38t2W6xzP9IDsY1pj0XiiisfXtbrtU9tGY1p/NYn+bT4CP
+        cRhgN2TPaX+LWn5pA4nB3GnQXQ==
+X-Google-Smtp-Source: APXvYqz+AAFzlNhGkv597kxEls8SCGWc37dH13XlmSzuhKJPPkYP/vWnh+D92sxsTEH0WNQUaCTWjA==
+X-Received: by 2002:a63:4b54:: with SMTP id k20mr19750139pgl.70.1572249459319;
+        Mon, 28 Oct 2019 00:57:39 -0700 (PDT)
+Received: from localhost.localdomain (111-241-170-106.dynamic-ip.hinet.net. [111.241.170.106])
+        by smtp.gmail.com with ESMTPSA id y36sm9504752pgk.66.2019.10.28.00.57.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Oct 2019 00:57:38 -0700 (PDT)
+From:   Green Wan <green.wan@sifive.com>
+Cc:     Green Wan <green.wan@sifive.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        Bin Meng <bmeng.cn@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] dmaengine: sf-pdma: Add platform dma driver
+Date:   Mon, 28 Oct 2019 15:56:19 +0800
+Message-Id: <20191028075658.12143-1-green.wan@sifive.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1. Add a header file to provide SIP interface to ATF
-2. Add AUDIO SMC fid
+Add PDMA driver support for SiFive HiFive Unleashed RevA00 board. Mainly follows
+DMAengine controller doc[1] to implement and take other DMA drivers as reference.
+Such as
 
-Change-Id: I218e9f571cea079268a5414725a81e9b35702e33
-Signed-off-by: Eason Yen <eason.yen@mediatek.com>
----
- include/linux/soc/mediatek/mtk_sip_svc.h |   28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
- create mode 100644 include/linux/soc/mediatek/mtk_sip_svc.h
+  - drivers/dma/fsl-edma.c
+  - drivers/dma/dw-edma/
+  - drivers/dma/pxa-dma.c
 
-diff --git a/include/linux/soc/mediatek/mtk_sip_svc.h b/include/linux/soc/mediatek/mtk_sip_svc.h
-new file mode 100644
-index 0000000..00ee0f4
---- /dev/null
-+++ b/include/linux/soc/mediatek/mtk_sip_svc.h
-@@ -0,0 +1,28 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2019 MediaTek Inc.
-+ */
-+
-+#ifndef __MTK_SIP_SVC_H__
-+#define __MTK_SIP_SVC_H__
-+
-+#include <linux/kernel.h>
-+
-+/* Error Code */
-+#define SIP_SVC_E_SUCCESS               0
-+#define SIP_SVC_E_NOT_SUPPORTED         -1
-+#define SIP_SVC_E_INVALID_PARAMS        -2
-+#define SIP_SVC_E_INVALID_Range         -3
-+#define SIP_SVC_E_PERMISSION_DENY       -4
-+
-+#ifdef CONFIG_ARM64
-+#define MTK_SIP_SMC_AARCH_BIT			0x40000000
-+#else
-+#define MTK_SIP_SMC_AARCH_BIT			0x00000000
-+#endif
-+
-+/* AUDIO related SMC call */
-+#define MTK_SIP_AUDIO_CONTROL \
-+	(0x82000517 | MTK_SIP_SMC_AARCH_BIT)
-+#endif
-+/* __MTK_SIP_SVC_H__ */
+Using DMA test client[2] to test. Detailed datasheet is doc[3]. Driver supports:
+
+ - 4 physical DMA channels, share same DONE and error interrupt handler. 
+ - Support MEM_TO_MEM
+ - Tested by DMA test client
+ - patches include DT Bindgins document and dts for fu450-c000 SoC. Separate dts
+   patch for easier review and apply to different branch or SoC platform.
+ - retry 1 time if DMA error occurs.
+
+[Reference Doc]
+ [1] ./Documentation/driver-api/dmaengine/provider.rst
+ [2] ./Documentation/driver-api/dmaengine/dmatest.rst
+ [3] https://static.dev.sifive.com/FU540-C000-v1.0.pdf 
+
+[Simple steps to test of DMA Test client]
+ $ echo 1 > /sys/module/dmatest/parameters/iterations
+ $ echo dma0chan0 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan1 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan2 > /sys/module/dmatest/parameters/channel
+ $ echo dma0chan3 > /sys/module/dmatest/parameters/channel
+ $ echo 1 > /sys/module/dmatest/parameters/run
+
+[Expected test result]
+[  267.563323] dmatest: dma0chan0-copy0: summary 45629 tests, 0 failures 38769.01 iops 309661 KB/s (0)
+[  267.572427] dmatest: dma0chan1-copy0: summary 45863 tests, 0 failures 40286.85 iops 321643 KB/s (0)
+[  267.581392] dmatest: dma0chan2-copy0: summary 45975 tests, 0 failures 41178.48 iops 328740 KB/s (0)
+[  267.590542] dmatest: dma0chan3-copy0: summary 44768 tests, 0 failures 38560.29 iops 307726 KB/s (0)
+
+Green Wan (4):
+  dt-bindings: dmaengine: sf-pdma: add bindins for SiFive PDMA
+  riscv: dts: add support for PDMA device of HiFive Unleashed Rev A00
+  dmaengine: sf-pdma: add platform DMA support for HiFive Unleashed A00
+  MAINTAINERS: Add Green as SiFive PDMA driver maintainer
+
+ .../bindings/dma/sifive,fu540-c000-pdma.yaml  |  55 ++
+ MAINTAINERS                                   |   6 +
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |   7 +
+ drivers/dma/Kconfig                           |   2 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/sf-pdma/Kconfig                   |   6 +
+ drivers/dma/sf-pdma/Makefile                  |   1 +
+ drivers/dma/sf-pdma/sf-pdma.c                 | 602 ++++++++++++++++++
+ drivers/dma/sf-pdma/sf-pdma.h                 | 123 ++++
+ 9 files changed, 803 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
+ create mode 100644 drivers/dma/sf-pdma/Kconfig
+ create mode 100644 drivers/dma/sf-pdma/Makefile
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.c
+ create mode 100644 drivers/dma/sf-pdma/sf-pdma.h
+
+
+base-commit: d6d5df1db6e9d7f8f76d2911707f7d5877251b02
 -- 
-1.7.9.5
+2.17.1
 
