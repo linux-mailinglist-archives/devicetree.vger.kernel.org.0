@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77149E7C17
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 23:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30E4BE7C63
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 23:34:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727715AbfJ1WAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 18:00:50 -0400
-Received: from mail-pf1-f202.google.com ([209.85.210.202]:49071 "EHLO
-        mail-pf1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390632AbfJ1WAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 18:00:47 -0400
-Received: by mail-pf1-f202.google.com with SMTP id g186so6208321pfb.15
-        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 15:00:47 -0700 (PDT)
+        id S1729119AbfJ1WeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 18:34:13 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:46705 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729099AbfJ1WeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 18:34:13 -0400
+Received: by mail-il1-f196.google.com with SMTP id m16so9598090iln.13
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 15:34:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ukpi3nf6Ccj0NPps1DEia34Fh1Y1K6ULN6sRoVS7jm8=;
-        b=bb0GM5MSoyGi8NIAFn3/DHCH0XRkiFMVmCUChuT7/6zrAVzgyDGF1auYVOJfhs7H/u
-         S3HfpZziQ/hoFGtHmgHyvXzazBa9Cc5N56+oTe5Lscdb0DLcHLMFCCiaePTsB+44MMB6
-         v6zrjCnxUzbwrqUWvmF2m+N7pAFfATDmAzkkU4lqZLEg+cQTgkkKC4fel6CXRZxiEbz3
-         KssYpg4ZtqO2QAYwMeSPe4WIjHIBaUJXkGfrxA78Ij4kOUAYeVvue/tWc8UKceu+u4S+
-         +TKgVT9pbpEA+kPuvaDXktiGBu2cLNAKUXwS+RCQt8TWnlJw2hA9OLRDI5H1h///ekhR
-         cgwQ==
+        bh=c2XX2oa9okl2tfpust4RUifahZHp7tb1+MoPm2u47Wc=;
+        b=n4p86JogluIaUwX8lpVfKCl315ggHShPT/3PG9nmdvv6A+WmkcxoXlJ1p500UHclpZ
+         V7orIaazLLn5Miq8ZaNeWiihu1+79cg9oAg+i/LcaIdcqZQ5iG4T4aVCMjo26c+Cdn97
+         r3IOx7w0Y6kNlL3cRfnacuWuUmSw1xh6YKtgE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=ukpi3nf6Ccj0NPps1DEia34Fh1Y1K6ULN6sRoVS7jm8=;
-        b=kb9twWkPCHNGuJ6agTafRmhEQgnRBOJMNsI31sN2CwPuu/DJZj2uW33QQYQ+nfR2IV
-         /dhmV2pY8rug2dq96IDbS/vCP6vmUCaZIwTV1dcI8GOaTyOD6jlrFYZaQ1CcNSIf6cS4
-         qeQVVC+M9BrxgJSPtrziuxkGrASpcO/BdZcO2wP/932+444NQel+6jZ+xhZBtQpzrUmM
-         SuHZ99MBlBkAx7CSME8q+SRhPAwgUbstF8M7WyOmgOM0Gc4APWm+jZKAD/zl6i90Xufy
-         kZ0LxyL/pkZu3Js8jmtFiQzaCW4+6+f2RLCJZKa4r34qGk43qCgnqgGS7IcwXVE64zzL
-         UqTA==
-X-Gm-Message-State: APjAAAUVxaTdVCOEiMSafJd5uGpIzxZEpkH1ahBxyt7+VWcmAhH9cAbt
-        TpZ6oOV7+hm0nnOTYrE4s2JwPXfZCQvuia0=
-X-Google-Smtp-Source: APXvYqwSzFW+0pdVmCL1Iwg9wofXL1u2TvqvPQ2942w6raECJ/0R34lyrQI5HBJOGEpOyS+HE2reeybrz/Jjv1k=
-X-Received: by 2002:a65:6092:: with SMTP id t18mr23294242pgu.418.1572300046743;
- Mon, 28 Oct 2019 15:00:46 -0700 (PDT)
-Date:   Mon, 28 Oct 2019 15:00:26 -0700
-In-Reply-To: <20191028220027.251605-1-saravanak@google.com>
-Message-Id: <20191028220027.251605-6-saravanak@google.com>
-Mime-Version: 1.0
-References: <20191028220027.251605-1-saravanak@google.com>
-X-Mailer: git-send-email 2.24.0.rc0.303.g954a862665-goog
-Subject: [PATCH v1 5/5] of: property: Skip adding device links to suppliers
- that aren't devices
-From:   Saravana Kannan <saravanak@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c2XX2oa9okl2tfpust4RUifahZHp7tb1+MoPm2u47Wc=;
+        b=Dxai3oAQ6W9nzgVeYnCzq8rId/xeez8QDmLRGm7V0BaOryyFvZjY1fTkRBMIJbMBwp
+         CNV6X132YMIuqgfiO/RHxy4kz8ic/ZhABpiiOmU1HQaE970MFTdDDxsHreXBR6984pne
+         IisKQrgOiThwLTsKmPFyu6c7UIQl8e3OaHs9g5Wy2gH5Q+7aiEkJUqOj5SIZ7dkFB1Mz
+         9Sa7ZfLvDSin7hisLO4WFKL8fJe8hsxQC0pEdpeuKFpxpiq/AA0zeWU+48Lhl0pESK1L
+         OLiLAzqv/+MjSXPRwbmsKUKDbIblVaD+E0T9Wl45+rl4Y4ndIecTOB6c90lzeZVpLPxO
+         5C5w==
+X-Gm-Message-State: APjAAAWJ9jEXuPLg62lUvErrP5P9k5XKFJfYP0BuggyXpPUEYR3QDqBO
+        bfFMGe4tPKBlAYqx0EwqeNquk0JeLINri1aVhFehdQ==
+X-Google-Smtp-Source: APXvYqyCGJQl+HAm+sa8mYYJp4Wxr/m+y+g/6ntOZCrMubS4XyZUczCAk4EdzfbP8O6fyXYOHmttxwz3zGzyvqk0tc0=
+X-Received: by 2002:a92:99ca:: with SMTP id t71mr8413794ilk.61.1572302047950;
+ Mon, 28 Oct 2019 15:34:07 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191025175625.8011-1-jagan@amarulasolutions.com>
+ <20191025175625.8011-5-jagan@amarulasolutions.com> <20191028153427.pc3tnoz2d23filhx@hendrix>
+In-Reply-To: <20191028153427.pc3tnoz2d23filhx@hendrix>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Tue, 29 Oct 2019 04:03:56 +0530
+Message-ID: <CAMty3ZCisTrFGjzHyqSofqFAsKSLV1n2xP5Li3Lonhdi0WUZVA@mail.gmail.com>
+Subject: Re: [PATCH v11 4/7] drm/sun4i: dsi: Handle bus clock explicitly 
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some devices need to be initialized really early and can't wait for
-driver core or drivers to be functional.  These devices are typically
-initialized without creating a struct device for their device nodes.
+Hi Maxime,
 
-If a supplier ends up being one of these devices, skip trying to add
-device links to them.
+On Mon, Oct 28, 2019 at 9:06 PM Maxime Ripard <mripard@kernel.org> wrote:
+>
+> On Fri, Oct 25, 2019 at 11:26:22PM +0530, Jagan Teki wrote:
+> > Usage of clocks are varies between different Allwinner
+> > DSI controllers. Clocking in A33 would need bus and
+> > mod clocks where as A64 would need only bus clock.
+> >
+> > To support this kind of clocking structure variants
+> > in the same dsi driver,
+>
+> There's no variance in the clock structure as far as the bus clock is
+> concerned.
+>
+> > explicit handling of common clock would require since the A64
+> > doesn't need to mention the clock-names explicitly in dts since it
+> > support only one bus clock.
+> >
+> > Also pass clk_id NULL instead "bus" to regmap clock init function
+> > since the single clock variants no need to mention clock-names
+> > explicitly.
+>
+> You don't need explicit clock handling. Passing NULL as the argument
+> in regmap_init_mmio_clk will make it use the first clock, which is the
+> bus clock.
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/property.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index f16f85597ccc..21c9d251318a 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1038,6 +1038,7 @@ static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
- 	struct device *sup_dev;
- 	int ret = 0;
- 	struct device_node *tmp_np = sup_np;
-+	int is_populated;
- 
- 	of_node_get(sup_np);
- 	/*
-@@ -1062,9 +1063,10 @@ static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
- 		return -EINVAL;
- 	}
- 	sup_dev = get_dev_from_fwnode(&sup_np->fwnode);
-+	is_populated = of_node_check_flag(sup_np, OF_POPULATED);
- 	of_node_put(sup_np);
- 	if (!sup_dev)
--		return -EAGAIN;
-+		return is_populated ? 0 : -EAGAIN;
- 	if (!device_link_add(dev, sup_dev, dl_flags))
- 		ret = -EAGAIN;
- 	put_device(sup_dev);
--- 
-2.24.0.rc0.303.g954a862665-goog
-
+Indeed I tried that, since NULL clk_id wouldn't enable the bus clock
+during regmap_mmio_gen_context code, passing NULL triggering vblank
+timeout.
