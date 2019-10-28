@@ -2,146 +2,494 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1417DE75D3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 17:12:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8D2E762D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 17:31:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730787AbfJ1QM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 12:12:26 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:44731 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730436AbfJ1QMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Oct 2019 12:12:25 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9SFu2aq023368;
-        Mon, 28 Oct 2019 17:11:57 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=CM9gDRKKxbqasjyuOfTE0X/UG/yfSLvoQfkO2xJSMkU=;
- b=eipmSO+CXc1j0cU38m0HAn+OGIpV1ILX9Fy2IvNLSEBTrYS/gV0WHkrWkm/LIFr1fG1Z
- M8bU2jkArGGi4gcvN97WQyirUUmS90WM2lHtAU62eRCzZxajl0JKf3CBXGUe9mkaaLQi
- 1bb9ZREKkAcY0ptcyuj8vGAVvY7WlvjbUz0AQmK2jvrD1UiIE7KTrPVSdl6GUJd299Vj
- sCQ87vZ+YjvZYV+j6JG4vexoM+Ys4TC8nwgTIUF4kR8iQNzfa3RhB89axWhgXvY0U53S
- GS0Z4k1A1XsN/KTsSUK6UAjzaAaqfLevykid0cJaRATAoH4//DIF9AmFyXUg2GDUN7xP 8g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2vvbww33yj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 28 Oct 2019 17:11:57 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1F3D3100034;
-        Mon, 28 Oct 2019 17:11:57 +0100 (CET)
-Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0EE9F2B1E73;
-        Mon, 28 Oct 2019 17:11:57 +0100 (CET)
-Received: from SAFEX1HUBCAS22.st.com (10.75.90.93) by Safex1hubcas24.st.com
- (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 28 Oct
- 2019 17:11:56 +0100
-Received: from localhost (10.48.0.192) by Webmail-ga.st.com (10.75.90.48) with
- Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 28 Oct 2019 17:11:56 +0100
-From:   Fabrice Gasnier <fabrice.gasnier@st.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>
-CC:     <alexandre.torgue@st.com>, <mark.rutland@arm.com>,
-        <mcoquelin.stm32@gmail.com>, <lars@metafoo.de>, <knaack.h@gmx.de>,
-        <pmeerw@pmeerw.net>, <fabrice.gasnier@st.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] iio: adc: stm32: allow to tune analog clock
-Date:   Mon, 28 Oct 2019 17:11:48 +0100
-Message-ID: <1572279108-25916-3-git-send-email-fabrice.gasnier@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572279108-25916-1-git-send-email-fabrice.gasnier@st.com>
-References: <1572279108-25916-1-git-send-email-fabrice.gasnier@st.com>
+        id S1732157AbfJ1Qbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 12:31:53 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:54284 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730494AbfJ1Qbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 12:31:53 -0400
+Received: by mail-wm1-f67.google.com with SMTP id g7so10179872wmk.4
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 09:31:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:subject:to:cc:references:openpgp:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=3EUT7PP5qqZmZTjs0ipEZXofbcucmccYTE6iMtHx86s=;
+        b=S8VA+WcPeIVqBNFR4RmsfunT0YUw3KM/VJzt9QycO9lf5rzB+5L5RWNc9HjFEn348g
+         1BgEoNJiGnAfvtZBtW4eZWv2yksOh0RIF5DUavdZqOrVuhcfFdxB9YyRoc+oeQU3T3nl
+         2lSgUZNxv8fZCxAOFofYq0Y0JVRCNrD5SV8NsxGiVp2PRMa3RSGAnShmwWuzdv1pICzX
+         i94AqzKdZSdJ8rdtA88XlVyxRjpyJtH5d35Iv0oRyWYayViIednM5U540zi4wqd7Y7mg
+         5gdRusOyXSgoK5Dfp4hFdipgqznHql5+Tt6WrIyidd5gGaByDz4Il2MB2WDkkSKzwNmr
+         Cm2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:cc:references:openpgp:message-id
+         :date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3EUT7PP5qqZmZTjs0ipEZXofbcucmccYTE6iMtHx86s=;
+        b=fILNGqB1Q3JZn+e4677805sAPLajYvzJnu83aSdaKHsl3XIbFn47oQ9PQXDv3cglgO
+         8IWGWhN0cYhs3K7o7eiM3DbideD+OhH+ljTjDJlbTRGNcR78q/ieurjC6R2NYuKrtiB6
+         H1CMQ9uOZKkQCwJA8Dwkmb4N+8A2yEWfrx8h5QY1nlJAPEZc52FwJxTJ0C7D0ZNQliJn
+         FnMGz+8a+qZmodouJZDHzYoTufecabIsBG3i0Upl1hddTLVVodgnL+O80CVMdKwemjoQ
+         tEjeA1tBa8yvgFDPNWBJoPQrCfaHr0Nm6kVuSokPxzbPl1S1vYX3lwrKCbRlS3u4sOZv
+         Ikiw==
+X-Gm-Message-State: APjAAAVmf0WQkie7WHHzhAAGyE+RQqTzCuq0WMj7h0prlNnhBjQTDLUt
+        PHkNytRd4qCxx9784tVZ8nDiNg==
+X-Google-Smtp-Source: APXvYqxoUE5sn3SDoX/WlbijYtIa9bDmeLPn1oIHxv9evPbaas03gKvZ81RFQK9DDuNaiWKu5mJLMA==
+X-Received: by 2002:a05:600c:23cd:: with SMTP id p13mr95923wmb.169.1572280309772;
+        Mon, 28 Oct 2019 09:31:49 -0700 (PDT)
+Received: from [192.168.27.135] ([37.157.136.206])
+        by smtp.googlemail.com with ESMTPSA id z4sm95139wmi.19.2019.10.28.09.31.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 28 Oct 2019 09:31:48 -0700 (PDT)
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [RFC PATCH 3/4] interconnect: qcom: Refactor icc rpmh support
+To:     David Dai <daidavid1@codeaurora.org>, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org
+Cc:     evgreen@google.com, sboyd@kernel.org, ilina@codeaurora.org,
+        seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+References: <1571278852-8023-1-git-send-email-daidavid1@codeaurora.org>
+ <1571278852-8023-4-git-send-email-daidavid1@codeaurora.org>
+Openpgp: preference=signencrypt
+Message-ID: <307e8a19-9e37-8cf2-56db-67a2642c2f0a@linaro.org>
+Date:   Mon, 28 Oct 2019 18:31:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.192]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-28_06:2019-10-28,2019-10-28 signatures=0
+In-Reply-To: <1571278852-8023-4-git-send-email-daidavid1@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new optional dt property to tune analog clock prescaler.
-Driver looks for optional "st,max-clk-rate-hz", then computes
-best approximation below that rate, using ADC internal prescaler.
+Hi David,
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
----
- drivers/iio/adc/stm32-adc-core.c | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+On 17.10.19 г. 5:20 ч., David Dai wrote:
+> Add bcm voter driver and add support for RPMh specific interconnect
+> providers so that they may be re-used for icc-next RPMh based provider
+> drivers.
 
-diff --git a/drivers/iio/adc/stm32-adc-core.c b/drivers/iio/adc/stm32-adc-core.c
-index 20c626c..6537f4f 100644
---- a/drivers/iio/adc/stm32-adc-core.c
-+++ b/drivers/iio/adc/stm32-adc-core.c
-@@ -79,6 +79,7 @@ struct stm32_adc_priv_cfg {
-  * @domain:		irq domain reference
-  * @aclk:		clock reference for the analog circuitry
-  * @bclk:		bus clock common for all ADCs, depends on part used
-+ * @max_clk_rate:	desired maximum clock rate
-  * @booster:		booster supply reference
-  * @vdd:		vdd supply reference
-  * @vdda:		vdda analog supply reference
-@@ -95,6 +96,7 @@ struct stm32_adc_priv {
- 	struct irq_domain		*domain;
- 	struct clk			*aclk;
- 	struct clk			*bclk;
-+	u32				max_clk_rate;
- 	struct regulator		*booster;
- 	struct regulator		*vdd;
- 	struct regulator		*vdda;
-@@ -141,7 +143,7 @@ static int stm32f4_adc_clk_sel(struct platform_device *pdev,
- 	}
- 
- 	for (i = 0; i < ARRAY_SIZE(stm32f4_pclk_div); i++) {
--		if ((rate / stm32f4_pclk_div[i]) <= priv->cfg->max_clk_rate_hz)
-+		if ((rate / stm32f4_pclk_div[i]) <= priv->max_clk_rate)
- 			break;
- 	}
- 	if (i >= ARRAY_SIZE(stm32f4_pclk_div)) {
-@@ -230,7 +232,7 @@ static int stm32h7_adc_clk_sel(struct platform_device *pdev,
- 			if (ckmode)
- 				continue;
- 
--			if ((rate / div) <= priv->cfg->max_clk_rate_hz)
-+			if ((rate / div) <= priv->max_clk_rate)
- 				goto out;
- 		}
- 	}
-@@ -250,7 +252,7 @@ static int stm32h7_adc_clk_sel(struct platform_device *pdev,
- 		if (!ckmode)
- 			continue;
- 
--		if ((rate / div) <= priv->cfg->max_clk_rate_hz)
-+		if ((rate / div) <= priv->max_clk_rate)
- 			goto out;
- 	}
- 
-@@ -655,6 +657,7 @@ static int stm32_adc_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct device_node *np = pdev->dev.of_node;
- 	struct resource *res;
-+	u32 max_rate;
- 	int ret;
- 
- 	if (!pdev->dev.of_node)
-@@ -731,6 +734,13 @@ static int stm32_adc_probe(struct platform_device *pdev)
- 	priv->common.vref_mv = ret / 1000;
- 	dev_dbg(&pdev->dev, "vref+=%dmV\n", priv->common.vref_mv);
- 
-+	ret = of_property_read_u32(pdev->dev.of_node, "st,max-clk-rate-hz",
-+				   &max_rate);
-+	if (!ret)
-+		priv->max_clk_rate = min(max_rate, priv->cfg->max_clk_rate_hz);
-+	else
-+		priv->max_clk_rate = priv->cfg->max_clk_rate_hz;
-+
- 	ret = priv->cfg->clk_sel(pdev, priv);
- 	if (ret < 0)
- 		goto err_hw_stop;
--- 
-2.7.4
+For icc-next? You mean to be re-used for other RPMh based drivers?
 
+> 
+> Signed-off-by: David Dai <daidavid1@codeaurora.org>
+> ---
+>  drivers/interconnect/qcom/Kconfig     |   8 +
+>  drivers/interconnect/qcom/Makefile    |   4 +
+>  drivers/interconnect/qcom/bcm-voter.c | 355 ++++++++++++++++++++++++++++++++++
+>  drivers/interconnect/qcom/bcm-voter.h |  28 +++
+>  drivers/interconnect/qcom/icc-rpmh.c  | 154 +++++++++++++++
+>  drivers/interconnect/qcom/icc-rpmh.h  | 150 ++++++++++++++
+>  6 files changed, 699 insertions(+)
+>  create mode 100644 drivers/interconnect/qcom/bcm-voter.c
+>  create mode 100644 drivers/interconnect/qcom/bcm-voter.h
+>  create mode 100644 drivers/interconnect/qcom/icc-rpmh.c
+>  create mode 100644 drivers/interconnect/qcom/icc-rpmh.h
+> 
+> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+> index 6ab4012..8ff255d 100644
+> --- a/drivers/interconnect/qcom/Kconfig
+> +++ b/drivers/interconnect/qcom/Kconfig
+> @@ -18,9 +18,17 @@ config INTERCONNECT_QCOM_SDM845
+>  	tristate "Qualcomm SDM845 interconnect driver"
+>  	depends on INTERCONNECT_QCOM
+>  	depends on (QCOM_RPMH && QCOM_COMMAND_DB && OF) || COMPILE_TEST
+> +	select INTERCONNECT_QCOM_RPMH
+> +	select INTERCONNECT_QCOM_BCM_VOTER
+>  	help
+>  	  This is a driver for the Qualcomm Network-on-Chip on sdm845-based
+>  	  platforms.
+>  
+> +config INTERCONNECT_QCOM_BCM_VOTER
+> +	tristate
+> +
+> +config INTERCONNECT_QCOM_RPMH
+> +	tristate
+> +>  config INTERCONNECT_QCOM_SMD_RPM
+>  	tristate
+> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+> index 67dafb7..0f5e88d 100644
+> --- a/drivers/interconnect/qcom/Makefile
+> +++ b/drivers/interconnect/qcom/Makefile
+> @@ -3,7 +3,11 @@
+>  qnoc-qcs404-objs			:= qcs404.o
+>  qnoc-sdm845-objs			:= sdm845.o
+>  icc-smd-rpm-objs			:= smd-rpm.o
+> +bcm-voter-objs				:= bcm-voter.o
+
+Maybe icc-bcm-voter-objs. Does the BCM vote for stuff other than bandwidth?
+
+> +icc-rpmh-obj				:= icc-rpmh.o
+>  
+>  obj-$(CONFIG_INTERCONNECT_QCOM_QCS404) += qnoc-qcs404.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) += qnoc-sdm845.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
+> +obj-$(CONFIG_INTERCONNECT_QCOM_BCM_VOTER) += bcm-voter.o
+> +obj-$(CONFIG_INTERCONNECT_QCOM_RPMH) += icc-rpmh.o
+> diff --git a/drivers/interconnect/qcom/bcm-voter.c b/drivers/interconnect/qcom/bcm-voter.c
+> new file mode 100644
+> index 0000000..f74ae5f
+> --- /dev/null
+> +++ b/drivers/interconnect/qcom/bcm-voter.c
+[..]
+> +/**
+> + * of_bcm_voter_get - gets a bcm voter handle from DT node
+> + * @dev: device pointer for the consumer device
+> + * @name: name for the bcm voter device
+> + *
+> + * This function will match a device_node pointer for the phandle
+> + * specified in the device DT and return a bcm_voter handle on success.
+> + *
+> + * Returns bcm_voter pointer or ERR_PTR() on error. EPROBE_DEFER is returned
+> + * when matching bcm voter is yet to be found.
+> + */
+> +struct bcm_voter *of_bcm_voter_get(struct device *dev, const char *name)
+> +{
+> +	struct bcm_voter *voter = ERR_PTR(-EPROBE_DEFER);
+> +	struct bcm_voter *temp;
+> +	struct device_node *np, *node;
+> +	int idx = 0;
+> +
+> +	if (!dev || !dev->of_node)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	np = dev->of_node;
+> +
+> +	if (name) {
+> +		idx = of_property_match_string(np, "qcom,bcm-voter-names", name);
+> +		if (idx < 0)
+> +			return ERR_PTR(idx);
+> +	}
+> +
+> +	node = of_parse_phandle(np, "qcom,bcm-voters", idx);
+> +
+> +	list_for_each_entry(temp, &bcm_voters, voter_node) {
+> +		if (temp->np == node)
+> +			voter = temp;
+> +			break;
+
+Missing curly braces!
+
+> +	}
+> +
+> +	return voter;
+> +}
+> +EXPORT_SYMBOL_GPL(of_bcm_voter_get);
+> +
+[..]
+> +++ b/drivers/interconnect/qcom/bcm-voter.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+> + *
+> + */
+> +
+> +#ifndef __DRIVERS_INTERCONNECT_QCOM_ICC_BCM_VOTER_H__
+> +#define __DRIVERS_INTERCONNECT_QCOM_ICC_BCM_VOTER_H__
+
+Doesn't match the path - icc-bcm-voter.h vs bcm-voter.h?
+
+> +
+> +#include <soc/qcom/cmd-db.h>
+> +#include <soc/qcom/rpmh.h>
+> +#include <soc/qcom/tcs.h>
+> +
+> +#include "icc-rpmh.h"
+> +
+> +#define DEFINE_QBCM(_name, _bcmname, _keepalive, _numnodes, ...)	\
+> +		static struct qcom_icc_bcm _name = {			\
+> +		.name = _bcmname,					\
+> +		.keepalive = _keepalive,				\
+> +		.num_nodes = _numnodes,					\
+> +		.nodes = { __VA_ARGS__ },				\
+> +	}
+> +
+> +struct bcm_voter *of_bcm_voter_get(struct device *dev, const char *name);
+> +void qcom_icc_bcm_voter_add(struct bcm_voter *voter, struct qcom_icc_bcm *bcm);
+> +int qcom_icc_bcm_voter_commit(struct bcm_voter *voter);
+> +
+> +#endif
+> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
+> new file mode 100644
+> index 0000000..abe9f1e
+> --- /dev/null
+> +++ b/drivers/interconnect/qcom/icc-rpmh.c
+> @@ -0,0 +1,154 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+> + *
+> + */
+> +
+> +#include <asm/div64.h>
+> +#include <dt-bindings/interconnect/qcom,sdm845.h>
+> +#include <linux/interconnect.h>
+> +#include <linux/interconnect-provider.h>
+> +
+> +#include "icc-rpmh.h"
+> +#include "bcm-voter.h"
+> +
+> +/**
+> + * qcom_icc_pre_aggregate - cleans up stale values from prior icc_set
+> + * @node: icc node to operate on
+> + */
+> +void qcom_icc_pre_aggregate(struct icc_node *node)
+> +{
+> +	size_t i;
+> +	struct qcom_icc_node *qn;
+> +
+> +	qn = node->data;
+> +
+> +	for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
+> +		qn->sum_avg[i] = 0;
+> +		qn->max_peak[i] = 0;
+> +	}
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_icc_pre_aggregate);
+> +
+> +/**
+> + * qcom_icc_aggregate - aggregate bw for buckets indicated by tag
+> + * @node: node to aggregate
+> + * @tag: tag to indicate which buckets to aggregate
+> + * @avg_bw: new bw to sum aggregate
+> + * @peak_bw: new bw to max aggregate
+> + * @agg_avg: existing aggregate avg bw val
+> + * @agg_peak: existing aggregate peak bw val
+> + */
+> +int qcom_icc_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
+> +		       u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
+
+Nit: Please match the open parenthesis.
+
+> +{
+> +	size_t i;
+> +	struct qcom_icc_node *qn;
+> +	struct qcom_icc_provider *qp;
+> +
+> +	qn = node->data;
+> +	qp = to_qcom_provider(node->provider);
+> +
+> +	if (!tag)
+> +		tag = QCOM_ICC_TAG_ALWAYS;
+> +
+> +	for (i = 0; i < QCOM_ICC_NUM_BUCKETS; i++) {
+> +		if (tag & BIT(i)) {
+> +			qn->sum_avg[i] += avg_bw;
+> +			qn->max_peak[i] = max_t(u32, qn->max_peak[i], peak_bw);
+> +		}
+> +	}
+> +
+> +	*agg_avg += avg_bw;
+> +	*agg_peak = max_t(u32, *agg_peak, peak_bw);
+> +
+> +	for (i = 0; i < qn->num_bcms; i++)
+> +		qcom_icc_bcm_voter_add(qp->voter, qn->bcms[i]);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_icc_aggregate);
+> +
+> +/**
+> + * qcom_icc_set - set the constraints based on path
+> + * @src: source node for the path to set constraints on
+> + * @dst: destination node for the path to set constraints on
+> + *
+> + * Return: 0 on success, or an error code otherwise
+> + */
+> +int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
+> +{
+> +	struct qcom_icc_provider *qp;
+> +	struct icc_node *node;
+> +	int ret = 0;
+> +
+> +	if (!src)
+> +		pr_err("src(%d)\n", 0);
+> +	else
+> +		pr_err("src(%d)\n", src->id);
+
+pr_err?
+
+> +
+> +	if (!src)
+> +		node = dst;
+> +	else
+> +		node = src;
+> +
+> +	qp = to_qcom_provider(node->provider);
+> +
+> +	qcom_icc_bcm_voter_commit(qp->voter);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_icc_set);
+[..]
+> +++ b/drivers/interconnect/qcom/icc-rpmh.h
+> @@ -0,0 +1,150 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+> + *
+> + */
+> +
+> +#ifndef __DRIVERS_INTERCONNECT_QCOM_ICC_RPMH_H__
+> +#define __DRIVERS_INTERCONNECT_QCOM_ICC_RPMH_H__
+> +
+> +#define to_qcom_provider(_provider) \
+> +	container_of(_provider, struct qcom_icc_provider, provider)
+> +
+> +/**
+> + * struct qcom_icc_provider - Qualcomm specific interconnect provider
+> + * @dev: reference to the NoC device
+> + * @bcms: list of bcms that maps to the provider
+> + * @num_bcms: number of @bcms
+> + * @voter: bcm voter targeted by this provider
+> + */
+> +struct qcom_icc_provider {
+> +	struct icc_provider provider;
+> +	struct device *dev;
+> +	struct qcom_icc_bcm **bcms;
+> +	size_t num_bcms;
+> +	struct bcm_voter *voter;
+> +};
+> +
+> +/**
+> + * struct bcm_db - Auxiliary data pertaining to each Bus Clock Manager (BCM)
+> + * @unit: divisor used to convert bytes/sec bw value to an RPMh msg
+> + * @width: multiplier used to convert bytes/sec bw value to an RPMh msg
+> + * @vcd: virtual clock domain that this bcm belongs to
+> + * @reserved: reserved field
+> + */
+> +struct bcm_db {
+> +	__le32 unit;
+> +	__le16 width;
+> +	u8 vcd;
+> +	u8 reserved;
+> +};
+
+The same also exists in clk-rpmh.c. Should we move it to some common place?
+
+> +
+> +#define MAX_LINKS		128
+> +#define MAX_BCMS		64
+> +#define MAX_BCM_PER_NODE	3
+> +#define MAX_VCD			10
+> +
+> +/*
+> + * The AMC bucket denotes constraints that are applied to hardware when
+> + * icc_set_bw() completes, whereas the WAKE and SLEEP constraints are applied
+> + * when the execution environment transitions between active and low power mode.
+> + */
+> +#define QCOM_ICC_BUCKET_AMC		0
+> +#define QCOM_ICC_BUCKET_WAKE		1
+> +#define QCOM_ICC_BUCKET_SLEEP		2
+> +#define QCOM_ICC_NUM_BUCKETS		3
+> +#define QCOM_ICC_TAG_AMC		BIT(QCOM_ICC_BUCKET_AMC)
+> +#define QCOM_ICC_TAG_WAKE		BIT(QCOM_ICC_BUCKET_WAKE)
+> +#define QCOM_ICC_TAG_SLEEP		BIT(QCOM_ICC_BUCKET_SLEEP)
+> +#define QCOM_ICC_TAG_ACTIVE_ONLY	(QCOM_ICC_TAG_AMC | QCOM_ICC_TAG_WAKE)
+> +#define QCOM_ICC_TAG_ALWAYS		(QCOM_ICC_TAG_AMC | QCOM_ICC_TAG_WAKE |\
+> +					 QCOM_ICC_TAG_SLEEP)
+> +
+> +/**
+> + * struct qcom_icc_node - Qualcomm specific interconnect nodes
+> + * @name: the node name used in debugfs
+> + * @links: an array of nodes where we can go next while traversing
+> + * @id: a unique node identifier
+> + * @num_links: the total number of @links
+> + * @channels: num of channels at this node
+> + * @buswidth: width of the interconnect between a node and the bus
+> + * @sum_avg: current sum aggregate value of all avg bw requests
+> + * @max_peak: current max aggregate value of all peak bw requests
+> + * @bcms: list of bcms associated with this logical node
+> + * @num_bcms: num of @bcms
+> + */
+> +struct qcom_icc_node {
+> +	const char *name;
+> +	u16 links[MAX_LINKS];
+> +	u16 id;
+> +	u16 num_links;
+> +	u16 channels;
+> +	u16 buswidth;
+> +	u64 sum_avg[QCOM_ICC_NUM_BUCKETS];
+> +	u64 max_peak[QCOM_ICC_NUM_BUCKETS];
+> +	struct qcom_icc_bcm *bcms[MAX_BCM_PER_NODE];
+> +	size_t num_bcms;
+> +};
+> +
+> +/**
+> + * struct qcom_icc_bcm - Qualcomm specific hardware accelerator nodes
+> + * known as Bus Clock Manager (BCM)
+> + * @name: the bcm node name used to fetch BCM data from command db
+> + * @type: latency or bandwidth bcm
+> + * @addr: address offsets used when voting to RPMH
+> + * @vote_x: aggregated threshold values, represents sum_bw when @type is bw bcm
+> + * @vote_y: aggregated threshold values, represents peak_bw when @type is bw bcm
+> + * @dirty: flag used to indicate whether the bcm needs to be committed
+> + * @keepalive: flag used to indicate whether a keepalive is required
+> + * @aux_data: auxiliary data used when calculating threshold values and
+> + * communicating with RPMh
+> + * @list: used to link to other bcms when compiling lists for commit
+> + * @ws_list: used to keep track of bcms that may transition between wake/sleep
+> + * @num_nodes: total number of @num_nodes
+> + * @nodes: list of qcom_icc_nodes that this BCM encapsulates
+> + */
+> +struct qcom_icc_bcm {
+> +	const char *name;
+> +	u32 type;
+> +	u32 addr;
+> +	u64 vote_x[QCOM_ICC_NUM_BUCKETS];
+> +	u64 vote_y[QCOM_ICC_NUM_BUCKETS];
+> +	bool dirty;
+> +	bool keepalive;
+> +	struct bcm_db aux_data;
+> +	struct list_head list;
+> +	struct list_head ws_list;
+> +	size_t num_nodes;
+> +	struct qcom_icc_node *nodes[];
+> +};
+> +
+> +struct qcom_icc_fabric {
+> +	struct qcom_icc_node **nodes;
+> +	size_t num_nodes;
+> +};
+
+Is this used?
+
+> +
+> +struct qcom_icc_desc {
+> +	struct qcom_icc_node **nodes;
+> +	size_t num_nodes;
+> +	struct qcom_icc_bcm **bcms;
+> +	size_t num_bcms;
+> +};
+> +
+> +#define DEFINE_QNODE(_name, _id, _channels, _buswidth,			\
+> +			_numlinks, ...)					\
+> +		static struct qcom_icc_node _name = {			\
+> +		.id = _id,						\
+> +		.name = #_name,						\
+> +		.channels = _channels,					\
+> +		.buswidth = _buswidth,					\
+> +		.num_links = _numlinks,					\
+> +		.links = { __VA_ARGS__ },				\
+> +	}
+> +
+> +int qcom_icc_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
+> +			      u32 peak_bw, u32 *agg_avg, u32 *agg_peak);
+> +int qcom_icc_set(struct icc_node *src, struct icc_node *dst);
+> +int qcom_icc_bcm_init(struct qcom_icc_bcm *bcm, struct device *dev);
+> +void qcom_icc_pre_aggregate(struct icc_node *node);
+> +
+> +#endif
+
+Thanks for working on this!
+
+BR,
+Georgi
