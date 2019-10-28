@@ -2,287 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D56E71B6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 13:43:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23618E7207
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 13:46:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389263AbfJ1MnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 08:43:02 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37216 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389230AbfJ1MnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 08:43:00 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9SCgve8033729;
-        Mon, 28 Oct 2019 07:42:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1572266577;
-        bh=h8UvdH0jq2ykZeJxZMyA9dhTsaxsmByi2M9+PwbJ+NA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ahGGJEEPd4QYWqpW1+ezBFwO9hp44lnQRmv/SowVwTpEXb8mCSCCga2C1c8X50rN+
-         CftNP+UcVb9vVWntbLO0hx+71B8w+mSxpH2vfZD3w3ISDZYU/oOySHCI3VHaAVOXE1
-         4dQy7yLsEDx9gg1F6ELxfr4tmIx6K10H3/7r42ak=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9SCgvY4039404
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 28 Oct 2019 07:42:57 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 28
- Oct 2019 07:42:43 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 28 Oct 2019 07:42:43 -0500
-Received: from sokoban.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9SCgogr063574;
-        Mon, 28 Oct 2019 07:42:53 -0500
-From:   Tero Kristo <t-kristo@ti.com>
-To:     <bjorn.andersson@linaro.org>, <ohad@wizery.com>,
-        <linux-remoteproc@vger.kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <s-anna@ti.com>, Rob Herring <robh@kernel.org>,
-        <devicetree@vger.kernel.org>, Tero Kristo <t-kristo@ti.com>
-Subject: [PATCH 01/17] dt-bindings: remoteproc: Add OMAP remoteproc bindings
-Date:   Mon, 28 Oct 2019 14:42:22 +0200
-Message-ID: <20191028124238.19224-2-t-kristo@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191028124238.19224-1-t-kristo@ti.com>
-References: <20191028124238.19224-1-t-kristo@ti.com>
+        id S1727190AbfJ1Mps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 08:45:48 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36342 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727316AbfJ1Mpp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 08:45:45 -0400
+Received: by mail-wr1-f68.google.com with SMTP id w18so9754022wrt.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 05:45:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EjO3nRtZRcHpq4gF9qTCncUdsLaN7JBougyYjcKY6iQ=;
+        b=ZoLU5m9GxdnwffSu0EW6y0pGEJD2St4BW1Or90pLKllhPiB4f1Di9B3e3e2mqGJjsq
+         jsFx8WAxwcc9s/0IgrizLkXgBV5lcpT33SA8sFf2vGjv3kjC/qpC305pVj/XYl/YtpcI
+         D6nlH9i0hwED/+2q7/04OYEVNE5pBpqM8rAZrlokoBQb1PeN69+gkewQ756V439YAp8r
+         u37qbi4DkpziBHivr9HsgQ1VD9bcuK/oBIqFaia7N/bgibq5DGJDdqU/Tai48T7XcTVr
+         OG7fyw4BHSSwOa1jfqymyccf2xA1Vq8/e+ECfuMMcK5s9tDdJjwk3JnJqopKM5cFSC4E
+         VltQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EjO3nRtZRcHpq4gF9qTCncUdsLaN7JBougyYjcKY6iQ=;
+        b=GKYFX9uFVixRt55gfbDRBQK5jx4nOCT60cRY7AV0jOlc/0K0mLgAO7hn/8s9zsIhte
+         qH67YL+id1aO6J/h4cwMPE+ibZ8oQ5Z9iCEwBEoUzBp9WYI/x0llK7tF1PuBTH5sa+YQ
+         Ncl+SQzxgzayZ57u5QUhReDckvHazP7Bzg+a6djWjJEU9zGnb5Ee3Bl7pSXW6jrUkUuA
+         iavTQcT5s0r9nex3B8teL7cZvMTbQhHaY/OqGUqFKgC8sOfqyW6nbPBC9qbFt5dM6F5L
+         3+mYCvYcNoJgLBiqbdJob/AHaBfMT9nSH7Ss7erV4hd2Xzwqwjp9jSJgLBpV3u9aHQY4
+         sRaA==
+X-Gm-Message-State: APjAAAXAkseJUV/VvlWz7lb5gPUHnIx0DK606TpVxsRcEnp44rA8GVJK
+        G3HDiOTiI06PWXcms2K9v24oBA==
+X-Google-Smtp-Source: APXvYqx5GBghFKmvy0FXn9fEAyKJ8U0QQT5f2YmoThu0wU+QHGSds58+7CTsU7u+9MwQhikla46hCQ==
+X-Received: by 2002:adf:8011:: with SMTP id 17mr15418613wrk.367.1572266743355;
+        Mon, 28 Oct 2019 05:45:43 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id d2sm16183996wmd.2.2019.10.28.05.45.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 28 Oct 2019 05:45:42 -0700 (PDT)
+Subject: Re: [PATCH v2 01/11] ASoC: dt-bindings: add dt bindings for
+ WCD9340/WCD9341 audio codec
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     broonie@kernel.org, linus.walleij@linaro.org, lee.jones@linaro.org,
+        vinod.koul@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        spapothi@codeaurora.org, bgoswami@codeaurora.org,
+        linux-gpio@vger.kernel.org
+References: <20191018001849.27205-1-srinivas.kandagatla@linaro.org>
+ <20191018001849.27205-2-srinivas.kandagatla@linaro.org>
+ <20191025204338.GA25892@bogus>
+ <90b2d83b-f2b2-3a5d-4deb-589f4b48b208@linaro.org>
+Message-ID: <371955d9-ad2d-5ddc-31b4-710729feae42@linaro.org>
+Date:   Mon, 28 Oct 2019 12:45:41 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <90b2d83b-f2b2-3a5d-4deb-589f4b48b208@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suman Anna <s-anna@ti.com>
 
-Add the device tree bindings document for the IPU and DSP
-remote processor devices on OMAP4+ SoCs.
 
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
----
- .../remoteproc/ti,omap-remoteproc.txt         | 205 ++++++++++++++++++
- 1 file changed, 205 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.txt
+On 28/10/2019 12:40, Srinivas Kandagatla wrote:
+> Its Phandle.
+> 
+> something like this is okay?
+> 
+> slim-ifc-dev:
+>    $ref: '/schemas/types.yaml#/definitions/phandle-array'
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.txt b/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.txt
-new file mode 100644
-index 000000000000..e2bcfcab21c1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.txt
-@@ -0,0 +1,205 @@
-+OMAP4+ Remoteproc Devices
-+=========================
-+
-+The OMAP family of SoCs usually have one or more slave processor sub-systems
-+that are used to offload some of the processor-intensive tasks, or to manage
-+other hardware accelerators, for achieving various system level goals.
-+
-+The processor cores in the sub-system are usually behind an IOMMU, and may
-+contain additional sub-modules like Internal RAM and/or ROMs, L1 and/or L2
-+caches, an Interrupt Controller, a Cache Controller etc.
-+
-+The OMAP SoCs usually have a DSP processor sub-system and/or an IPU processor
-+sub-system. The DSP processor sub-system can contain any of the TI's C64x,
-+C66x or C67x family of DSP cores as the main execution unit. The IPU processor
-+sub-system usually contains either a Dual-Core Cortex-M3 or Dual-Core Cortex-M4
-+processors.
-+
-+Remote Processor Node:
-+======================
-+Each remote processor sub-system is represented as a single DT node. Each node
-+has a number of required or optional properties that enable the OS running on
-+the host processor (MPU) to perform the device management of the remote
-+processor and to communicate with the remote processor. The various properties
-+can be classified as constant or variable. The constant properties are dictated
-+by the SoC and does not change from one board to another having the same SoC.
-+Examples of constant properties include 'iommus', 'reg'. The variable properties
-+are dictated by the system integration aspects such as memory on the board, or
-+configuration used within the corresponding firmware image. Examples of variable
-+properties include 'mboxes', 'memory-region', 'timers', 'watchdog-timers' etc.
-+
-+Required properties:
-+--------------------
-+The following are the mandatory properties:
-+
-+- compatible:	Should be one of the following,
-+		    "ti,omap4-dsp" for DSPs on OMAP4 SoCs
-+		    "ti,omap5-dsp" for DSPs on OMAP5 SoCs
-+		    "ti,dra7-dsp" for DSPs on DRA7xx/AM57xx SoCs
-+		    "ti,omap4-ipu" for IPUs on OMAP4 SoCs
-+		    "ti,omap5-ipu" for IPUs on OMAP5 SoCs
-+		    "ti,dra7-ipu" for IPUs on DRA7xx/AM57xx SoCs
-+
-+- iommus:	phandles to OMAP IOMMU nodes, that need to be programmed
-+		for this remote processor to access any external RAM memory or
-+		other peripheral device address spaces. This property usually
-+		has only a single phandle. Multiple phandles are used only in
-+		cases where the sub-system has different ports for different
-+		sub-modules within the processor sub-system (eg: DRA7 DSPs),
-+		and need the same programming in both the MMUs.
-+
-+- mboxes:	OMAP Mailbox specifier denoting the sub-mailbox, to be used for
-+		communication with the remote processor. The specifier format is
-+		as per the bindings,
-+		Documentation/devicetree/bindings/mailbox/omap-mailbox.txt
-+		This property should match with the sub-mailbox node used in
-+		the firmware image.
-+
-+Optional properties:
-+--------------------
-+Some of these properties are mandatory on some SoCs, and some are optional
-+depending on the configuration of the firmware image to be executed on the
-+remote processor. The conditions are mentioned for each property.
-+
-+The following are the optional properties:
-+- reg:			Address space for any remoteproc memories present on
-+			the SoC. Should contain an entry for each value in
-+			'reg-names'. These are mandatory for all DSP and IPU
-+			processors that have them (OMAP4/OMAP5 DSPs do not have
-+			any RAMs)
-+
-+- reg-names:		Required names for each of the address spaces defined in
-+			the 'reg' property. Should contain a string from among
-+			the following names, each representing the corresponding
-+			internal RAM memory region,
-+			   "l2ram" for L2 RAM,
-+			   "l1pram" for L1 Program RAM Memory/Cache,
-+			   "l1dram" for L1 Data RAM Memory/Cache,
-+
-+			All devices may not have all the above memories.
-+
-+- syscon-bootreg:	Should be a pair of the phandle to the System Control
-+			Configuration region that contains the boot address
-+			register, and the register offset of the boot address
-+			register within the System Control module. This property
-+			is required for all the DSP instances on OMAP4, OMAP5
-+			and DRA7xx SoCs.
-+
-+- memory-region:	phandle to the reserved memory node to be associated
-+			with the remoteproc device. The reserved memory node
-+			can be a CMA memory node, and should be defined as
-+			per the bindings,
-+			Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-+
-+- mbox-names:		Optional names for the OMAP mailbox specifiers mentioned
-+			in the 'mboxes' property, one per specifier value
-+
-+- timers:		One or more phandles to OMAP DMTimer nodes, that serve
-+			as System/Tick timers for the OS running on the remote
-+			processors. This will usually be a single timer if the
-+			processor sub-system is running in SMP mode, or one per
-+			core in the processor sub-system. This can also be used
-+			to reserve specific timers to be dedicated to the
-+			remote processors.
-+
-+			This property is mandatory on remote processors requiring
-+			external tick wakeup, and to support Power Management
-+			features. The timers to be used should match with the
-+			timers used in the firmware image.
-+
-+- watchdog-timers:	One or more phandles to OMAP DMTimer nodes, used to
-+			serve as Watchdog timers for the processor cores. This
-+			will usually be one per executing processor core, even
-+			if the processor sub-system is running a SMP OS.
-+
-+			The timers to be used should match with the watchdog
-+			timers used in the firmware image.
-+
-+Example:
-+--------
-+
-+1. OMAP4 DSP
-+	/* DSP Reserved Memory node */
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		dsp_memory_region: dsp-memory@98000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x98000000 0x800000>;
-+			reusable;
-+		};
-+	};
-+
-+	/* DSP node */
-+	ocp {
-+		dsp: dsp {
-+			compatible = "ti,omap4-dsp";
-+			syscon-bootreg = <&scm_conf 0x304>;
-+			iommus = <&mmu_dsp>;
-+			mboxes = <&mailbox &mbox_dsp>;
-+			memory-region = <&dsp_memory_region>;
-+			timers = <&timer5>;
-+			watchdog-timers = <&timer6>;
-+		};
-+	};
-+
-+2. OMAP5 IPU
-+	/* IPU Reserved Memory node */
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ipu_memory_region: ipu-memory@95800000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x95800000 0 0x3800000>;
-+			reusable;
-+		};
-+	};
-+
-+	/* IPU node */
-+	ocp {
-+		ipu: ipu@55020000 {
-+			compatible = "ti,omap5-ipu";
-+			reg = <0x55020000 0x10000>;
-+			reg-names = "l2ram";
-+			iommus = <&mmu_ipu>;
-+			mboxes = <&mailbox &mbox_ipu>;
-+			memory-region = <&ipu_memory_region>;
-+			timers = <&timer3>, <&timer4>;
-+			watchdog-timers = <&timer9>, <&timer11>;
-+		};
-+	};
-+
-+3. DRA7xx/AM57xx DSP
-+	/* DSP1 Reserved Memory node */
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		dsp1_memory_region: dsp1-memory@99000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x99000000 0x0 0x4000000>;
-+			reusable;
-+		};
-+	};
-+
-+	/* DSP1 node */
-+	ocp {
-+		dsp1: dsp@40800000 {
-+			compatible = "ti,dra7-dsp";
-+			reg = <0x40800000 0x48000>,
-+			      <0x40e00000 0x8000>,
-+			      <0x40f00000 0x8000>;
-+			reg-names = "l2ram", "l1pram", "l1dram";
-+			syscon-bootreg = <&scm_conf 0x55c>;
-+			iommus = <&mmu0_dsp1>, <&mmu1_dsp1>;
-+			mboxes = <&mailbox5 &mbox_dsp1_ipc3x>;
-+			memory-region = <&dsp1_memory_region>;
-+			timers = <&timer5>;
-+			watchdog-timers = <&timer10>;
-+		};
-+	};
--- 
-2.17.1
+Sorry this should not be an array, so something like this:
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+   slim-ifc-dev:
+     description: SLIMBus Interface device phandle
+     $ref: '/schemas/types.yaml#/definitions/phandle'
+
+
+>    description: SLIMBus Interface device phandle
