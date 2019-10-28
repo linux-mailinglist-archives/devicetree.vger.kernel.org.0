@@ -2,345 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED0E9E6F25
-	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 10:33:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 503C1E6F2D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Oct 2019 10:34:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733111AbfJ1JdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Oct 2019 05:33:15 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:52078 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732292AbfJ1JdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 05:33:13 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9S9X3nK079357;
-        Mon, 28 Oct 2019 04:33:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1572255183;
-        bh=EMyKDuLlCdlXJV9eRocz4puFXbDcya92n9TwJHHKA8g=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QFMV9N7N9NYj+6EEU8Brmb5NCUmT5bbY4Xuuh+2cPdzScntmmO9UhOpWMUJrX9WfV
-         b3ST2PwlK4xskWvzgd4CjX119Y7K7Lyu38l6HUO4/nvA85OetzRTPySd+Bcbdvhaxb
-         +e+wLjleZpGUub2GjhNkzwqX1JmLsXnqkTJtJbmA=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9S9X2cG066135
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 28 Oct 2019 04:33:02 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 28
- Oct 2019 04:32:50 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 28 Oct 2019 04:32:50 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9S9WrLU072531;
-        Mon, 28 Oct 2019 04:32:59 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <felipe.balbi@linux.intel.com>, <gregkh@linuxfoundation.org>
-CC:     <pawell@cadence.com>, <peter.chen@nxp.com>, <nsekhar@ti.com>,
-        <kurahul@cadence.com>, <chunfeng.yun@mediatek.com>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Roger Quadros <rogerq@ti.com>
-Subject: [PATCH v4 2/2] usb: cdns3: Add TI specific wrapper driver
-Date:   Mon, 28 Oct 2019 11:32:49 +0200
-Message-ID: <20191028093249.22822-3-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191028093249.22822-1-rogerq@ti.com>
-References: <20191028093249.22822-1-rogerq@ti.com>
+        id S2387521AbfJ1Je0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Oct 2019 05:34:26 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:39993 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730412AbfJ1Je0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Oct 2019 05:34:26 -0400
+Received: by mail-wr1-f68.google.com with SMTP id o28so9048206wro.7
+        for <devicetree@vger.kernel.org>; Mon, 28 Oct 2019 02:34:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=j9dBMIEb0UPk6VlZW2lNDinH+A1XD4ef7kLTzrk00Q8=;
+        b=fOdQ3ppavAj6NTycgW7L+9Bl4pnNPX6kKjTbgqcbQ8RxIy9o82vEI1osP4R4rK14Vz
+         Z0rLClLxcSn5Ev3p+nFnjvbF44H0oY5XUXpy83lyCg1Vq+R3fIy0akUehEWH/DfSlJZJ
+         bTRKLQioPDmQbQm+zU0gLi9tixhjQfr83RU/FKFu2X4Z/y3rXQ6d0vBCinLWwKuBQZE4
+         t1nrkdYckVwhXmpMD0m3RSdiceCNwCmbPpeoBpSNRkJr6j3BtLFTeckwiEF6Q/3vAQWi
+         yieBifLDdGCXbduZq05xf/aaOUQTttPn3TUdslRnowVrco8hHhuvs0m34dgWhGo8uTKa
+         pivw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=j9dBMIEb0UPk6VlZW2lNDinH+A1XD4ef7kLTzrk00Q8=;
+        b=WA5ks1J9MtQUN3SMlIsvqtNPtcgq3Jo6VPppBgi2291McEolxkuQ/18dVb3TImHcBf
+         EBQMpgiJWq3ofAFjuqw0DXD17yMEgtfBmtvMhsqlUTd1i6cQalhKfsaNGcdMEJSjb7fI
+         icOHXMaLXR77fdELxGold6Za9+h13lGEpIA0IxqC8vfC7WPXa+CpQMPRJV6B7g6Xmz6+
+         qaCLa1iSJqFqsAgTGy2zzfOwgQOWMpHejZBDk1o3uAHWdJ2UqlrAspot4yoQpUbCDyYW
+         0N83zYuXdBZPMPBy+C8AI8YIS3QucB2HmS+e6StAWPDwHKBoMZZUSrTBDIhGyzLE8d+a
+         /86g==
+X-Gm-Message-State: APjAAAXlZz3dqcJX8KRf81OaS3zWRzF4vHQKqYbyVESOIkw1df/uWzUr
+        xiWQWhxdZIGlMg0ilcNplk/hgQ==
+X-Google-Smtp-Source: APXvYqyLWqjvefTEGZTqWuJrInCxReXkxThIyJUXhFD6Y0PgPYUk6U0lchvKyIytGY6ijefq0mlQbQ==
+X-Received: by 2002:adf:e585:: with SMTP id l5mr13926075wrm.156.1572255262431;
+        Mon, 28 Oct 2019 02:34:22 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:4cbe:8b0:a455:812e? ([2a01:e34:ed2f:f020:4cbe:8b0:a455:812e])
+        by smtp.googlemail.com with ESMTPSA id t16sm11591805wrq.52.2019.10.28.02.34.21
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 28 Oct 2019 02:34:21 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] dt-bindings: mediatek: update bindings for MT8183
+ systimer
+To:     Dehui Sun <dehui.sun@mediatek.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        erin.lo@mediatek.com, weiyi.lu@mediatek.com
+References: <1572242984-30460-1-git-send-email-dehui.sun@mediatek.com>
+ <1572242984-30460-2-git-send-email-dehui.sun@mediatek.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <e28e1419-a259-45d9-fd23-32ccc9aa8021@linaro.org>
+Date:   Mon, 28 Oct 2019 10:34:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <1572242984-30460-2-git-send-email-dehui.sun@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The J721e platform comes with 2 Cadence USB3 controller
-instances. This driver supports the TI specific wrapper
-on this platform.
+On 28/10/2019 07:09, Dehui Sun wrote:
+> This commit adds mt8183 compatible node in mtk-timer binding document.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dehui Sun <dehui.sun@mediatek.com>
 
-Signed-off-by: Roger Quadros <rogerq@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
-Reviewed-by: Pawel Laszczak <pawell@cadence.com>
----
- drivers/usb/cdns3/Kconfig    |  10 ++
- drivers/usb/cdns3/Makefile   |   1 +
- drivers/usb/cdns3/cdns3-ti.c | 236 +++++++++++++++++++++++++++++++++++
- 3 files changed, 247 insertions(+)
- create mode 100644 drivers/usb/cdns3/cdns3-ti.c
+Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-diff --git a/drivers/usb/cdns3/Kconfig b/drivers/usb/cdns3/Kconfig
-index d0331613a355..2a1e89d12ed9 100644
---- a/drivers/usb/cdns3/Kconfig
-+++ b/drivers/usb/cdns3/Kconfig
-@@ -43,4 +43,14 @@ config USB_CDNS3_PCI_WRAP
- 	  If you choose to build this driver as module it will
- 	  be dynamically linked and module will be called cdns3-pci.ko
- 
-+config USB_CDNS3_TI
-+	tristate "Cadence USB3 support on TI platforms"
-+	depends on ARCH_K3 || COMPILE_TEST
-+	default USB_CDNS3
-+	help
-+	  Say 'Y' or 'M' here if you are building for Texas Instruments
-+	  platforms that contain Cadence USB3 controller core.
-+
-+	  e.g. J721e.
-+
- endif
-diff --git a/drivers/usb/cdns3/Makefile b/drivers/usb/cdns3/Makefile
-index a703547350bb..948e6b88d1a9 100644
---- a/drivers/usb/cdns3/Makefile
-+++ b/drivers/usb/cdns3/Makefile
-@@ -14,3 +14,4 @@ endif
- cdns3-$(CONFIG_USB_CDNS3_HOST)		+= host.o
- 
- obj-$(CONFIG_USB_CDNS3_PCI_WRAP)	+= cdns3-pci-wrap.o
-+obj-$(CONFIG_USB_CDNS3_TI)		+= cdns3-ti.o
-diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
-new file mode 100644
-index 000000000000..c6a79ca15858
---- /dev/null
-+++ b/drivers/usb/cdns3/cdns3-ti.c
-@@ -0,0 +1,236 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/**
-+ * cdns3-ti.c - TI specific Glue layer for Cadence USB Controller
-+ *
-+ * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <linux/kernel.h>
-+#include <linux/interrupt.h>
-+#include <linux/platform_device.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/io.h>
-+#include <linux/of_platform.h>
-+#include <linux/pm_runtime.h>
-+
-+/* USB Wrapper register offsets */
-+#define USBSS_PID		0x0
-+#define	USBSS_W1		0x4
-+#define USBSS_STATIC_CONFIG	0x8
-+#define USBSS_PHY_TEST		0xc
-+#define	USBSS_DEBUG_CTRL	0x10
-+#define	USBSS_DEBUG_INFO	0x14
-+#define	USBSS_DEBUG_LINK_STATE	0x18
-+#define	USBSS_DEVICE_CTRL	0x1c
-+
-+/* Wrapper 1 register bits */
-+#define USBSS_W1_PWRUP_RST		BIT(0)
-+#define USBSS_W1_OVERCURRENT_SEL	BIT(8)
-+#define USBSS_W1_MODESTRAP_SEL		BIT(9)
-+#define USBSS_W1_OVERCURRENT		BIT(16)
-+#define USBSS_W1_MODESTRAP_MASK		GENMASK(18, 17)
-+#define USBSS_W1_MODESTRAP_SHIFT	17
-+#define USBSS_W1_USB2_ONLY		BIT(19)
-+
-+/* Static config register bits */
-+#define USBSS1_STATIC_PLL_REF_SEL_MASK	GENMASK(8, 5)
-+#define USBSS1_STATIC_PLL_REF_SEL_SHIFT	5
-+#define USBSS1_STATIC_LOOPBACK_MODE_MASK	GENMASK(4, 3)
-+#define USBSS1_STATIC_LOOPBACK_MODE_SHIFT	3
-+#define USBSS1_STATIC_VBUS_SEL_MASK	GENMASK(2, 1)
-+#define USBSS1_STATIC_VBUS_SEL_SHIFT	1
-+#define USBSS1_STATIC_LANE_REVERSE	BIT(0)
-+
-+/* Modestrap modes */
-+enum modestrap_mode { USBSS_MODESTRAP_MODE_NONE,
-+		      USBSS_MODESTRAP_MODE_HOST,
-+		      USBSS_MODESTRAP_MODE_PERIPHERAL};
-+
-+struct cdns_ti {
-+	struct device *dev;
-+	void __iomem *usbss;
-+	int usb2_only:1;
-+	int vbus_divider:1;
-+	struct clk *usb2_refclk;
-+	struct clk *lpm_clk;
-+};
-+
-+static const int cdns_ti_rate_table[] = {	/* in KHZ */
-+	9600,
-+	10000,
-+	12000,
-+	19200,
-+	20000,
-+	24000,
-+	25000,
-+	26000,
-+	38400,
-+	40000,
-+	58000,
-+	50000,
-+	52000,
-+};
-+
-+static inline u32 cdns_ti_readl(struct cdns_ti *data, u32 offset)
-+{
-+	return readl(data->usbss + offset);
-+}
-+
-+static inline void cdns_ti_writel(struct cdns_ti *data, u32 offset, u32 value)
-+{
-+	writel(value, data->usbss + offset);
-+}
-+
-+static int cdns_ti_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = pdev->dev.of_node;
-+	struct cdns_ti *data;
-+	int error;
-+	u32 reg;
-+	int rate_code, i;
-+	unsigned long rate;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	data->dev = dev;
-+
-+	data->usbss = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(data->usbss)) {
-+		dev_err(dev, "can't map IOMEM resource\n");
-+		return PTR_ERR(data->usbss);
-+	}
-+
-+	data->usb2_refclk = devm_clk_get(dev, "ref");
-+	if (IS_ERR(data->usb2_refclk)) {
-+		dev_err(dev, "can't get usb2_refclk\n");
-+		return PTR_ERR(data->usb2_refclk);
-+	}
-+
-+	data->lpm_clk = devm_clk_get(dev, "lpm");
-+	if (IS_ERR(data->lpm_clk)) {
-+		dev_err(dev, "can't get lpm_clk\n");
-+		return PTR_ERR(data->lpm_clk);
-+	}
-+
-+	rate = clk_get_rate(data->usb2_refclk);
-+	rate /= 1000;	/* To KHz */
-+	for (i = 0; i < ARRAY_SIZE(cdns_ti_rate_table); i++) {
-+		if (cdns_ti_rate_table[i] == rate)
-+			break;
-+	}
-+
-+	if (i == ARRAY_SIZE(cdns_ti_rate_table)) {
-+		dev_err(dev, "unsupported usb2_refclk rate: %lu KHz\n", rate);
-+		return -EINVAL;
-+	}
-+
-+	rate_code = i;
-+
-+	pm_runtime_enable(dev);
-+	error = pm_runtime_get_sync(dev);
-+	if (error < 0) {
-+		dev_err(dev, "pm_runtime_get_sync failed: %d\n", error);
-+		goto err_get;
-+	}
-+
-+	/* assert RESET */
-+	reg = cdns_ti_readl(data, USBSS_W1);
-+	reg &= ~USBSS_W1_PWRUP_RST;
-+	cdns_ti_writel(data, USBSS_W1, reg);
-+
-+	/* set static config */
-+	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
-+	reg &= ~USBSS1_STATIC_PLL_REF_SEL_MASK;
-+	reg |= rate_code << USBSS1_STATIC_PLL_REF_SEL_SHIFT;
-+
-+	reg &= ~USBSS1_STATIC_VBUS_SEL_MASK;
-+	data->vbus_divider = device_property_read_bool(dev, "ti,vbus-divider");
-+	if (data->vbus_divider)
-+		reg |= 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
-+
-+	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
-+	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
-+
-+	/* set USB2_ONLY mode if requested */
-+	reg = cdns_ti_readl(data, USBSS_W1);
-+	data->usb2_only = device_property_read_bool(dev, "ti,usb2-only");
-+	if (data->usb2_only)
-+		reg |= USBSS_W1_USB2_ONLY;
-+
-+	/* set default modestrap */
-+	reg |= USBSS_W1_MODESTRAP_SEL;
-+	reg &= ~USBSS_W1_MODESTRAP_MASK;
-+	reg |= USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
-+	cdns_ti_writel(data, USBSS_W1, reg);
-+
-+	/* de-assert RESET */
-+	reg |= USBSS_W1_PWRUP_RST;
-+	cdns_ti_writel(data, USBSS_W1, reg);
-+
-+	error = of_platform_populate(node, NULL, NULL, dev);
-+	if (error) {
-+		dev_err(dev, "failed to create children: %d\n", error);
-+		goto err;
-+	}
-+
-+	return 0;
-+
-+err:
-+	pm_runtime_put_sync(data->dev);
-+err_get:
-+	pm_runtime_disable(data->dev);
-+
-+	return error;
-+}
-+
-+static int cdns_ti_remove_core(struct device *dev, void *c)
-+{
-+	struct platform_device *pdev = to_platform_device(dev);
-+
-+	platform_device_unregister(pdev);
-+
-+	return 0;
-+}
-+
-+static int cdns_ti_remove(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+
-+	device_for_each_child(dev, NULL, cdns_ti_remove_core);
-+	pm_runtime_put_sync(dev);
-+	pm_runtime_disable(dev);
-+
-+	platform_set_drvdata(pdev, NULL);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id cdns_ti_of_match[] = {
-+	{ .compatible = "ti,j721e-usb", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, cdns_ti_of_match);
-+
-+static struct platform_driver cdns_ti_driver = {
-+	.probe		= cdns_ti_probe,
-+	.remove		= cdns_ti_remove,
-+	.driver		= {
-+		.name	= "cdns3-ti",
-+		.of_match_table	= cdns_ti_of_match,
-+	},
-+};
-+
-+module_platform_driver(cdns_ti_driver);
-+
-+MODULE_ALIAS("platform:cdns3-ti");
-+MODULE_AUTHOR("Roger Quadros <rogerq@ti.com>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("Cadence USB3 TI Glue Layer");
+> ---
+>  Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> index 74c3ead..0d25648 100644
+> --- a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> +++ b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> @@ -21,6 +21,7 @@ Required properties:
+>  	* "mediatek,mt6577-timer" for MT6577 and all above compatible timers (GPT)
+>  
+>  	For those SoCs that use SYST
+> +	* "mediatek,mt8183-timer" for MT8183 compatible timers (SYST)
+>  	* "mediatek,mt7629-timer" for MT7629 compatible timers (SYST)
+>  	* "mediatek,mt6765-timer" for MT6765 and all above compatible timers (SYST)
+>  
+> 
+
+
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
