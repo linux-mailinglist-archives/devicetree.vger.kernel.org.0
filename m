@@ -2,94 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B7BE8855
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 13:39:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA164E8892
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 13:46:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729184AbfJ2MjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 08:39:01 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:39420 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729134AbfJ2MjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 08:39:01 -0400
-Received: by mail-oi1-f196.google.com with SMTP id v138so8765307oif.6;
-        Tue, 29 Oct 2019 05:39:00 -0700 (PDT)
+        id S1728235AbfJ2Mqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 08:46:31 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:37023 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726048AbfJ2Mqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 08:46:31 -0400
+Received: by mail-lj1-f196.google.com with SMTP id v2so855045lji.4;
+        Tue, 29 Oct 2019 05:46:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=P0pAlxPefnZPIRefBhrT3Sgrq5uaOunz9Aa6ST/gasM=;
-        b=a9GMEaVy6BI23jdRobm7TRmkyUXXe7W0Fijpt3f6MBnFaEa50XUXGjv+HjHtTk89Rq
-         7GoPuaVez8Tg6NoctCtE9GZY76eEV6WXh7hk3A9Yo02OcUM6/+GgUKW3U0kGwVBD9OSk
-         Lk2YKCH4IV8sQhdn49eJ2IT6nUSiHOlhBjUukOBTn+s6uA7D0bz0LI6HfLmIx8Hy2kc7
-         o53mV9WubZ0mEdA0a7G+I3pFvGYX5Msh4pjyPNzHnZ/AvPtR2sac0DazgaYhlXhp08iV
-         aBunKKxy7tlnmW2YDJtCipcRQB+bl4PPKO242guzwo/ET9zJlOcoEXI0TObLUBDLmVky
-         Qb+A==
-X-Gm-Message-State: APjAAAWwAfUFMLCxl+my3cJKfDFjk02+mvWmcR3q1ZfafaBTrrZaCLam
-        eTtxkm7elZ7HjWCWZ52+lA==
-X-Google-Smtp-Source: APXvYqxt+//5ED9g7iyU7AWAtvtc4k6r5HOC14j46hy0je9ALb9EwgOj5H8dxKh8G41DIjRra9VFYg==
-X-Received: by 2002:a54:4885:: with SMTP id r5mr3723686oic.3.1572352740007;
-        Tue, 29 Oct 2019 05:39:00 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t10sm3873234oib.49.2019.10.29.05.38.59
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=SmXBqMQnjI4Fb5pWVH79fOjCH7aXT9QQnr1eIyZGvcI=;
+        b=kPxmtU27XbTFQ7uutYG2u2XGr3StpvZt+PuJr1Dybqisjhs8IhRuoJrDGX9OpRJ1Ih
+         Zh0s0mw+8J5zVuc7yQN/1+mddx+SNjmP0Bs0Qc/hnuU47FHqnzpMbDd1TAkGxOl7IYpt
+         KyXAV4BrCYO2bi3JBGOPMoDqQkbUJYISuusZFtzBr2mD+wR5Ie2Il1E1so/NmSJKIqPC
+         tvxL9wpYv8Qmt1vzvp8A38BavkrlByksRy2QAxCkPjKnL7hYvRjZVP/Bqd2xv1uQH7/t
+         FhnADoccjucxEMt4dhZbKijUPi8l40shVSloIeQYh52YpN/Q8xRI42xv0DGtpBtzUF/I
+         guog==
+X-Gm-Message-State: APjAAAVAVv/DI9qYkGiAk6DKIDZUcBwZ1zcSR1ULBFuSFJ8evLbHzB2e
+        5iyLwuz2h19JNW3LC0O0GyA=
+X-Google-Smtp-Source: APXvYqxkVCm41zzITF3FOQIAQ/XackjtVW6az/7Nr0u8MJdACHufwvUnYj0VlJFrRh9QckkFGTGyZA==
+X-Received: by 2002:a05:651c:1023:: with SMTP id w3mr2506858ljm.79.1572353188859;
+        Tue, 29 Oct 2019 05:46:28 -0700 (PDT)
+Received: from localhost.localdomain ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id z26sm2237139lfg.94.2019.10.29.05.46.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2019 05:38:59 -0700 (PDT)
-Date:   Tue, 29 Oct 2019 07:38:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Kamel Bouhara <kamel.bouhara@bootlin.com>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: at91: Document SmartKiz board
- binding
-Message-ID: <20191029123858.GA24145@bogus>
-References: <20191018140658.31703-1-kamel.bouhara@bootlin.com>
- <20191018140658.31703-2-kamel.bouhara@bootlin.com>
+        Tue, 29 Oct 2019 05:46:28 -0700 (PDT)
+Date:   Tue, 29 Oct 2019 14:46:20 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     mazziesaccount@gmail.com, matti.vaittinen@fi.rohmeurope.com
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 0/5] leds: Add DT node finding and parsing to core
+Message-ID: <cover.1572351774.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191018140658.31703-2-kamel.bouhara@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 18, 2019 at 04:06:57PM +0200, Kamel Bouhara wrote:
-> Document devicetree's bindings for the SAM9G25 SmartKiz board of
-> Overkiz SAS.
-> 
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> index 666462988179..f8053268cfa5 100644
-> --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> @@ -49,8 +49,16 @@ properties:
->            - const: atmel,at91sam9x5
->            - const: atmel,at91sam9
->  
-> +      - description: Overkiz SmartKiz Board
-> +        items:
-> +          - const: overkiz,smartkiz
-> +          - const: atmel,at91sam9g25
-> +          - const: atmel,at91sam9x5
-> +          - const: atmel,at91sam9
-> +
->        - items:
->            - enum:
-> +              - atmel,at91sam9g25
->                - atmel,at91sam9g15
->                - atmel,at91sam9g25
+RFC series improving common LED binding parsing support
 
-Duplicated... You did check this with 'make dt_binding_check', right?
+Qucik grep for 'for_each' or 'linux,default-trigger' says it all.
 
->                - atmel,at91sam9g35
-> -- 
-> 2.23.0
-> 
+Multiple LED controller drivers implement the very similar looping
+through the child DT nodes in order to locate the LED nodes and read
+and support the common LED dt bindings. Implementing this same
+stuff for all LED controllers gets old pretty fast.
+
+This RFC contains 3 suggestions:
+
+Simplest is adding support for parsing the linux,default-trigger,
+and default-state DT properties in led-core.
+
+More interesting part is adding correct LED DT node lookup in
+LED core. This RFC uses LED DT node names as a 'key' in a same
+way regulator framework does for regulators. The thing is that
+this approach requires the LED controller binding to dictate allowed
+LED node names - which may or may not be doable. I need your help to
+evaluate this and suggest better options :) If we still look at the
+regulators, the regulator core did originally use "regulator-core"
+property to do driver data/DT node pairing - but has since then
+changed the approach to using the DT node names.
+
+Last and least clear point is isolating the led_classdev to be owned
+by the LED core. Controller drivers should pretty much never touch
+it after the initialization. So one approach would be that drivers
+only provided initialization data and operations to the core.
+
+The patch series contains the led-core and led-class changes which
+introduce (yet another) APIs for registering led class device to
+core. Adding new interface is probably not the best option - one
+might consider changing the (devm_)led_classdev_register_ext to do
+what this new RFC API is doing.
+
+In addition to core changes this series converted two (randomly
+selected) existing drivers to use the new API. This can give an
+overview how offloading the DT parsing to core could simplify many
+of the LED controlled drivers.
+
+Patches HAVE NOT BEEN TESTED other than for compiling. They are
+only intended to be a starting point for discussion - and if the
+ideas are seen worthy - then the patches should be further worked
+and properly tested before being applied.
+
+Matti Vaittinen (5):
+  leds: Add common LED binding parsing support to LED class/core
+  dt-bindings: an30259a: example for using fixed LED node names.
+  leds: an30259a: Offload DT node locating and parsing to core
+  dt-bindings: lm3692x: example for using fixed LED node names.
+  leds: lm3692x: Offload DT node locating and parsing to core
+
+ .../bindings/leds/leds-an30259a.txt           |   9 +-
+ .../devicetree/bindings/leds/leds-lm3692x.txt |   4 +-
+ drivers/leds/led-class.c                      | 247 +++++++++++++++++-
+ drivers/leds/led-core.c                       | 111 +++++---
+ drivers/leds/leds-an30259a.c                  | 181 ++++++-------
+ drivers/leds/leds-lm3692x.c                   |  75 +++---
+ include/linux/leds.h                          | 144 +++++++++-
+ 7 files changed, 586 insertions(+), 185 deletions(-)
+
+-- 
+2.21.0
+
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
