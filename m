@@ -2,176 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45FB6E88D4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 13:57:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E88BE88FF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 14:02:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387925AbfJ2M5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 08:57:20 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:56868 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729253AbfJ2M5U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 08:57:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=gocwTVPyr9YGkRj8qgx6LZT7QM+fVAHw/mMPk9/2Rwc=; b=Y96UaNxA2UCU
-        9sO6W8Ov9V4FnBx+/WSu3KJDQQRGOfbGW7nOkiL0MFX35wrDiR+W0JMclAu6Sp6IkUP2WIF2v5Ldu
-        fULf5zb3/tfdR3y9YRGwvmNOovJG/vx9KTD5axFXjzOsN+XjkcxhURE+RfI4sBESxtzVtzT42Gi0F
-        oOIM8=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1iPR3T-0002DH-QF; Tue, 29 Oct 2019 12:56:59 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 1BD202742157; Tue, 29 Oct 2019 12:56:59 +0000 (GMT)
-From:   Mark Brown <broonie@kernel.org>
-To:     Cheng-Yi Chiang <cychiang@chromium.org>
-Cc:     alsa-devel@alsa-project.org, Andrzej Hajda <a.hajda@samsung.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        dgreid@chromium.org, dianders@chromium.org,
-        dri-devel@lists.freedesktop.org, Hans Verkuil <hverkuil@xs4all.nl>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Takashi Iwai <tiwai@suse.com>, tzungbi@chromium.org
-Subject: Applied "ASoC: rockchip_max98090: Add HDMI jack support" to the asoc tree
-In-Reply-To: <20191028071930.145899-5-cychiang@chromium.org>
-X-Patchwork-Hint: ignore
-Message-Id: <20191029125659.1BD202742157@ypsilon.sirena.org.uk>
-Date:   Tue, 29 Oct 2019 12:56:59 +0000 (GMT)
+        id S2388118AbfJ2NC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 09:02:28 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:50206 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728735AbfJ2NC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 09:02:28 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 11so2508394wmk.0;
+        Tue, 29 Oct 2019 06:02:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=LSZ29qPy9/FInL47JLj2nFrRE+ZbLKgI3ciLkri+AgU=;
+        b=n9ChqQ+peMYMIs1zHPamOQMIEEGUE2OYBnNREJKqLmJbBwpVVt74QagiVoQEf+LhT4
+         yEx5epph6xu/DntWAI7QxyfiRlmv2uehBxKdYvXbres5RuX+pAEP77jJt0qCu1XvYZ/a
+         OJPUcYCEBib4Ayc7MTgGQWs/89F4OSdD8+UoU05dNz8YDzd3TLfppfLVSxinfukOgnot
+         0x4F6Wvwj9TF5mrJ2G9YGjcdiG3wHl5XYGrZtBGBHwtXcrl0dOPosMD/wCETdCB+4M07
+         +oQgRG19V52o41pbm9spoUJKzThvSvWIBsjPnN13cmHCl9UnlGXkY/9nu1FH5dY6lyXG
+         oDUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=LSZ29qPy9/FInL47JLj2nFrRE+ZbLKgI3ciLkri+AgU=;
+        b=TtckWOUI72ob0IvV6HdBAz4p9T329vcUuugc1etLmCd5Gq9MTsBJm7PDmecH0gm9GQ
+         wkmS4FyP1sXfByvbl5q0sGWoULZUfTZ+zAYszxf2R2rPAoCvR0klowWBjX9xVicqBwWN
+         FppZV6s6vlO2dZ9y0mHzac8hzhX/PIqaRo+Q06EWfBT1023tbu9ULlhR8+5A4YXU7Kfu
+         WjyNGKzG+vvEe6An+oOKL3L1AeS2CupPBhxzJ9YhYuvAjbkdMMwvGea23ZvJm7baQkpD
+         MyP46L5IP9OqfH+FeNgnJhSHR8hzC34EX7w6wfx4BWMG/zRgCjAOGTt1Am/BIWltutYm
+         Mz2g==
+X-Gm-Message-State: APjAAAU/MmQu3lZ2mnhoeB856DFTWjIx+fqUAyRhb5/e5v9/wuI8ecyP
+        u1WnIyHDoN+jbDQVZkl7hyAQNMh7
+X-Google-Smtp-Source: APXvYqy8XyQuID1iVThumXHAcfcDfb8IpLnVVC4oC9y9sgQjSAOLWr4VFYd+cQY1Ox/Cda8CTWcgSQ==
+X-Received: by 2002:a7b:cc06:: with SMTP id f6mr3940805wmh.158.1572354145536;
+        Tue, 29 Oct 2019 06:02:25 -0700 (PDT)
+Received: from localhost (p2E5BE2CE.dip0.t-ipconnect.de. [46.91.226.206])
+        by smtp.gmail.com with ESMTPSA id u1sm20356221wru.90.2019.10.29.06.02.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2019 06:02:24 -0700 (PDT)
+Date:   Tue, 29 Oct 2019 14:02:22 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] Support regulators coupling on NVIDIA Tegra20/30
+Message-ID: <20191029130222.GA508460@ulmo>
+References: <20190725151832.9802-1-digetx@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="1yeeQ81UyVL57Vl7"
+Content-Disposition: inline
+In-Reply-To: <20190725151832.9802-1-digetx@gmail.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
 
-   ASoC: rockchip_max98090: Add HDMI jack support
+--1yeeQ81UyVL57Vl7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-has been applied to the asoc tree at
+On Thu, Jul 25, 2019 at 06:18:29PM +0300, Dmitry Osipenko wrote:
+> Hello,
+>=20
+> The voltage regulators need to be coupled on NVIDIA Tegra20 and Tegra30
+> SoCs in order to provide voltage scaling functionality in a generic way.
+> All necessary regulator-core patches that added support for the regulators
+> coupling are already have been merge into mainline kernel. This series
+> adds customized voltage couplers for Tegra20/30 SoCs, paving the way for
+> a refined CPUFreq driver that will utilize voltage scaling and other neat
+> features. This is a resend of a leftover patches from a previous series
+> [1] that was partially applied by Mark Brown. Please review, thanks in
+> advance!
+>=20
+> [1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=3D115626
+>=20
+> Changelog:
+>=20
+> v2: - Some days ago OPP framework got a change that makes CPU regulator
+>       to be enabled at the time of CPUFreq's driver initializing OPPs.
+>       In a result the CPU's voltage is dropped to a minimum value on
+>       CPUFreq's setting up because there are no consumers at the time
+>       of regulator's enabling, thus CPU is getting into a big trouble.
+>       This problem is now resolved in the couplers code by assuming
+>       that min_uV=3Dcurrent_uV for CPU's regulator if it doesn't have
+>       any active consumers.
+>=20
+> Dmitry Osipenko (3):
+>   dt-bindings: regulator: Document regulators coupling of NVIDIA
+>     Tegra20/30 SoCs
+>   soc/tegra: regulators: Add regulators coupler for Tegra20
+>   soc/tegra: regulators: Add regulators coupler for Tegra30
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.5
+All three patches applied, thanks.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+Thierry
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+--1yeeQ81UyVL57Vl7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+-----BEGIN PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl24OFwACgkQ3SOs138+
+s6EL6hAAmsRFT55RAhQ6AhkSpGk/FCoDTu+zuHf3m3lS91LuGmYCkvxyKiCgkTBf
+ZzEgbaqOlM7FdaW++Au+vGooywMUwgsDyBw6rzSPTiz54Vt3YxEcs1HukLf9almB
+IvmO9AoRf6ifH6wZLNbYLrzsdpOxjgKJMxmOn2XZh6hyPS03Olp/T+m3DhXNUAz6
+B7LUK2DheI14aQ1OPs9RP6SnN+g/tXdO9k5tGuqqI/OXkUdTqNN1l/uIWcKhYoYK
+0Wi3wdp50qsuAOxAWuqX7miWV/eewLO2XM+uB7Xe0ooqspCbK5iiQC+pp+EF08u0
+7IuF5kb7arW5yeAbnMfvCiOWFY5bqk5VrRgeUWjOGfkh6ZcqzOT3PLaC/jlCMCvB
+u47/l/XN2YQFjHooZT8GngezSDwBkTHBSbJr2xz8gxGnMWnIaKo2sVR+Xps0TT1W
+UXFQLorJd608gPu4+5unZDJKf9EhgSDr4umndO6YgNQd2WH5A+I+OQPHdDbpYdML
+baZC33pLnN/rjm9alKzOird/NUlLJ6boFc4p2nscQs4barX9geQqOol2i02PfETv
+NxQvf+simgk5WazA7aogM9oKFckaYlXIQ8VRS2a7YyL0lW7bdAZEbD4Bdz982gDb
+nGtTq+SYRfsFhZFxN504UGy8lbYcU+szGcys81vBHXpDYgDcYf8=
+=F8yu
+-----END PGP SIGNATURE-----
 
-Thanks,
-Mark
-
-From bf2f64ea6594066081b0d30b128fa4947e83e737 Mon Sep 17 00:00:00 2001
-From: Cheng-Yi Chiang <cychiang@chromium.org>
-Date: Mon, 28 Oct 2019 15:19:28 +0800
-Subject: [PATCH] ASoC: rockchip_max98090: Add HDMI jack support
-
-In machine driver, create a jack and let hdmi-codec report jack status.
-
-Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
-Link: https://lore.kernel.org/r/20191028071930.145899-5-cychiang@chromium.org
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/rockchip/Kconfig             |  3 ++-
- sound/soc/rockchip/rockchip_max98090.c | 22 ++++++++++++++++++++++
- 2 files changed, 24 insertions(+), 1 deletion(-)
-
-diff --git a/sound/soc/rockchip/Kconfig b/sound/soc/rockchip/Kconfig
-index b43657e6e655..d610b553ea3b 100644
---- a/sound/soc/rockchip/Kconfig
-+++ b/sound/soc/rockchip/Kconfig
-@@ -40,9 +40,10 @@ config SND_SOC_ROCKCHIP_MAX98090
- 	select SND_SOC_ROCKCHIP_I2S
- 	select SND_SOC_MAX98090
- 	select SND_SOC_TS3A227E
-+	select SND_SOC_HDMI_CODEC
- 	help
- 	  Say Y or M here if you want to add support for SoC audio on Rockchip
--	  boards using the MAX98090 codec, such as Veyron.
-+	  boards using the MAX98090 codec and HDMI codec, such as Veyron.
- 
- config SND_SOC_ROCKCHIP_RT5645
- 	tristate "ASoC support for Rockchip boards using a RT5645/RT5650 codec"
-diff --git a/sound/soc/rockchip/rockchip_max98090.c b/sound/soc/rockchip/rockchip_max98090.c
-index 50ef9b8e7ce4..5c2504a465f4 100644
---- a/sound/soc/rockchip/rockchip_max98090.c
-+++ b/sound/soc/rockchip/rockchip_max98090.c
-@@ -12,6 +12,7 @@
- #include <linux/gpio.h>
- #include <linux/of_gpio.h>
- #include <sound/core.h>
-+#include <sound/hdmi-codec.h>
- #include <sound/jack.h>
- #include <sound/pcm.h>
- #include <sound/pcm_params.h>
-@@ -218,6 +219,25 @@ enum {
- 	DAILINK_HDMI,
- };
- 
-+static struct snd_soc_jack rk_hdmi_jack;
-+
-+static int rk_hdmi_init(struct snd_soc_pcm_runtime *runtime)
-+{
-+	struct snd_soc_card *card = runtime->card;
-+	struct snd_soc_component *component = runtime->codec_dai->component;
-+	int ret;
-+
-+	/* enable jack detection */
-+	ret = snd_soc_card_jack_new(card, "HDMI Jack", SND_JACK_LINEOUT,
-+				    &rk_hdmi_jack, NULL, 0);
-+	if (ret) {
-+		dev_err(card->dev, "Can't new HDMI Jack %d\n", ret);
-+		return ret;
-+	}
-+
-+	return hdmi_codec_set_jack_detect(component, &rk_hdmi_jack);
-+}
-+
- /* max98090 dai_link */
- static struct snd_soc_dai_link rk_max98090_dailinks[] = {
- 	{
-@@ -237,6 +257,7 @@ static struct snd_soc_dai_link rk_hdmi_dailinks[] = {
- 	{
- 		.name = "HDMI",
- 		.stream_name = "HDMI",
-+		.init = rk_hdmi_init,
- 		.ops = &rk_aif1_ops,
- 		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF |
- 			SND_SOC_DAIFMT_CBS_CFS,
-@@ -259,6 +280,7 @@ static struct snd_soc_dai_link rk_max98090_hdmi_dailinks[] = {
- 	[DAILINK_HDMI] = {
- 		.name = "HDMI",
- 		.stream_name = "HDMI",
-+		.init = rk_hdmi_init,
- 		.ops = &rk_aif1_ops,
- 		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF |
- 			SND_SOC_DAIFMT_CBS_CFS,
--- 
-2.20.1
-
+--1yeeQ81UyVL57Vl7--
