@@ -2,170 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2501E86A8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 12:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D3CE86EF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 12:29:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725927AbfJ2LVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 07:21:31 -0400
-Received: from vps.xff.cz ([195.181.215.36]:60158 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725776AbfJ2LVb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Oct 2019 07:21:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1572348089; bh=JdWur1bMeHO2JpWgp6+b0/Rbt6VKQR73yvBxM9IXugU=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=YIEuUbSu/F8VLiKeFAf+61/x2w+CZ5vxxDg2CttU/zfL7pXo+3O12XZ3X9Tz3i2kg
-         /hXkZX1Uv0KQdTpXOupmwGgb0NY7eOffbcVQpIGC66CKbP9HkkCuLKz1tO1szrxT05
-         K7yH53Jtn2cLiVfZPp52mklDpWOlo+NwNQp4DiUk=
-Date:   Tue, 29 Oct 2019 12:21:29 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?utf-8?Q?Myl=C3=A8ne?= Josserand <mylene.josserand@bootlin.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] input: edt-ft5x06: Add support for regulator
-Message-ID: <20191029112129.t4mxqyybltjbuyhj@core.my.home>
-Mail-Followup-To: Marco Felsch <m.felsch@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?utf-8?Q?Myl=C3=A8ne?= Josserand <mylene.josserand@bootlin.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20191029005806.3577376-1-megous@megous.com>
- <20191029005806.3577376-2-megous@megous.com>
- <20191029041233.GD57214@dtor-ws>
- <20191029085545.cw5c24gi76gbfdhy@pengutronix.de>
+        id S1731789AbfJ2L2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 07:28:53 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:38011 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729070AbfJ2L2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 07:28:53 -0400
+Received: by mail-wr1-f68.google.com with SMTP id v9so13221389wrq.5
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2019 04:28:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8IfX0jQOtqDn2pCZaOvwF7GcoFk09fED5oporBC3z5U=;
+        b=hgqZKdfCfJnFj64xw3rXV3VPEK6d30/74W69Yz65m7g+kcAqJDHvB87K3T3uaOzxdG
+         gDZMXPaHvF023TiCfdStdHxb59TDTlRirgQZCPVLF7e4Sq24i/aoB6trORieuPmale8m
+         4H5agAOoNs10bZaFM+1LWvTScfQOQdVGEeHSKlbz1XFHUB42UXM10+8WtH1MCpJ4zajW
+         z14D1/7i8aPEvwd8jvt6XlVu9U14gCyk/J8s0iS6GmyyTFJX96AQ5reclNp10Ie3hrsb
+         g6sje56OCtVCgIX1MfM/wLcb/p9eZincHg4Nxes1s2mDThkK8LhqjuM2aoG+QAuaS/C3
+         CrLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8IfX0jQOtqDn2pCZaOvwF7GcoFk09fED5oporBC3z5U=;
+        b=U8G/at0g19oEke1XnamcGNE7l0o5jiGaHKO913C1kVyMXDzpLlu8ZJkTrpXPvpPYSQ
+         hMyoKjqlLbTMBPmR/1syybqBXJ1FhLW5pA2LSnBlLD3BlXVIP8BZ2/LAdxw+ELjQa6Ry
+         XOSE7Q2oWVQiZRPyaqfHVnlK7JXaQKdEhFiLaPRG9A7mwDlSNJDHHNBccmhHNepHqdTr
+         H/KlyGapgANpbir/hvCNDQtbi5P71+tl1qIN3ZUAuFNs9mWApr/ewcb/DXLMYWjxoj8l
+         W1Kfh1RbzEVyEqwoe2OqylT1koQcwf2C9nvLEz5hsSnAQgOmJy4q6EvAUWq2FxcZeVJw
+         Vj7Q==
+X-Gm-Message-State: APjAAAUo7Gr+UkJvXi/IamLbCJyVCO3EdrsVNAh9vAYSfUTem5wZItwz
+        //Zn8e6IFc7L8JmpqNs5KjGKbw==
+X-Google-Smtp-Source: APXvYqxX7UvGklw4BukJiiU81RExjsPkGX9S1gah8yPCTcdMvKCN/bvu59A8jbhXzGu0JHLxw6LDnQ==
+X-Received: by 2002:adf:ea50:: with SMTP id j16mr18810399wrn.295.1572348530671;
+        Tue, 29 Oct 2019 04:28:50 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id f20sm2373247wmb.6.2019.10.29.04.28.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2019 04:28:49 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     robh@kernel.org, broonie@kernel.org, lee.jones@linaro.org,
+        linus.walleij@linaro.org
+Cc:     vinod.koul@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        spapothi@codeaurora.org, bgoswami@codeaurora.org,
+        linux-gpio@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 00/11] ASoC: Add support to WCD9340/WCD9341 codec
+Date:   Tue, 29 Oct 2019 11:26:49 +0000
+Message-Id: <20191029112700.14548-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191029085545.cw5c24gi76gbfdhy@pengutronix.de>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+This patchset adds support to Qualcomm WCD9340/WCD9341 Codec which
+is a standalone Hi-Fi audio codec IC.
+This codec supports both I2S/I2C and SLIMbus audio interfaces.
+On slimbus interface it supports two data lanes; 16 Tx ports
+and 8 Rx ports. It has Five DACs and seven dedicated interpolators,
+Multibutton headset control (MBHC), Active noise cancellation,
+Sidetone paths, MAD (mic activity detection) and codec processing engine.
+It supports Class-H differential earpiece out and stereo single
+ended headphones out.
 
-On Tue, Oct 29, 2019 at 09:55:45AM +0100, Marco Felsch wrote:
-> Hi Dmitry,
-> 
-> On 19-10-28 21:12, Dmitry Torokhov wrote:
-> > On Tue, Oct 29, 2019 at 01:58:04AM +0100, Ondrej Jirman wrote:
-> > > From: Mylène Josserand <mylene.josserand@bootlin.com>
-> > > 
-> > > Add the support for enabling optional regulator that may be used as VCC
-> > > source.
-> > > 
-> > > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > > Signed-off-by: Mylène Josserand <mylene.josserand@bootlin.com>
-> > 
-> > Applied, thank you.
-> 
-> What happens with my vdd patches?
+This codec also has integrated SoundWire controller.
+Patchset for this is already sent for review at
+https://patchwork.kernel.org/cover/11185769/
+    
+This patchset has been tested on SDM845 based DragonBoard DB845c and
+Lenovo Yoga C630 laptop with WSA881x smart speaker amplifiers via
+soundwire and 4 DMICs.
 
-Sorry for not noticing your patches, I was only aware of Mylène's older series.
-It looks like you can just skip regulator enable support from your series, and
-re-send the deep-sleep mechanism and wakeup source patches only.
+Pin Controller patch does not have any link dependency, it can go by its own.
 
-I'll test it with my board, and give you a tested-by.
+Most of the code in this driver is rework of Qualcomm downstream drivers
+used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
 
-thank you and regards,
-	o.
+If anyone is interested to try, here are working set of patches on top of rc3.
+https://git.linaro.org/people/srinivas.kandagatla/linux.git/log/?h=audio/v5.4-rc5-YOGA-C630
+alsa ucm files:
+https://git.linaro.org/people/srinivas.kandagatla/alsa-lib.git/log/?h=DB845c
 
-> Regards,
->   Marco
-> 
-> > 
-> > > ---
-> > >  drivers/input/touchscreen/edt-ft5x06.c | 30 ++++++++++++++++++++++++++
-> > >  1 file changed, 30 insertions(+)
-> > > 
-> > > diff --git a/drivers/input/touchscreen/edt-ft5x06.c b/drivers/input/touchscreen/edt-ft5x06.c
-> > > index 5525f1fb1526..d61731c0037d 100644
-> > > --- a/drivers/input/touchscreen/edt-ft5x06.c
-> > > +++ b/drivers/input/touchscreen/edt-ft5x06.c
-> > > @@ -28,6 +28,7 @@
-> > >  #include <linux/input/mt.h>
-> > >  #include <linux/input/touchscreen.h>
-> > >  #include <asm/unaligned.h>
-> > > +#include <linux/regulator/consumer.h>
-> > >  
-> > >  #define WORK_REGISTER_THRESHOLD		0x00
-> > >  #define WORK_REGISTER_REPORT_RATE	0x08
-> > > @@ -88,6 +89,7 @@ struct edt_ft5x06_ts_data {
-> > >  	struct touchscreen_properties prop;
-> > >  	u16 num_x;
-> > >  	u16 num_y;
-> > > +	struct regulator *vcc;
-> > >  
-> > >  	struct gpio_desc *reset_gpio;
-> > >  	struct gpio_desc *wake_gpio;
-> > > @@ -1036,6 +1038,13 @@ edt_ft5x06_ts_set_regs(struct edt_ft5x06_ts_data *tsdata)
-> > >  	}
-> > >  }
-> > >  
-> > > +static void edt_ft5x06_disable_regulator(void *arg)
-> > > +{
-> > > +	struct edt_ft5x06_ts_data *data = arg;
-> > > +
-> > > +	regulator_disable(data->vcc);
-> > > +}
-> > > +
-> > >  static int edt_ft5x06_ts_probe(struct i2c_client *client,
-> > >  					 const struct i2c_device_id *id)
-> > >  {
-> > > @@ -1064,6 +1073,27 @@ static int edt_ft5x06_ts_probe(struct i2c_client *client,
-> > >  
-> > >  	tsdata->max_support_points = chip_data->max_support_points;
-> > >  
-> > > +	tsdata->vcc = devm_regulator_get(&client->dev, "vcc");
-> > > +	if (IS_ERR(tsdata->vcc)) {
-> > > +		error = PTR_ERR(tsdata->vcc);
-> > > +		if (error != -EPROBE_DEFER)
-> > > +			dev_err(&client->dev,
-> > > +				"failed to request regulator: %d\n", error);
-> > > +		return error;
-> > > +	}
-> > > +
-> > > +	error = regulator_enable(tsdata->vcc);
-> > > +	if (error < 0) {
-> > > +		dev_err(&client->dev, "failed to enable vcc: %d\n", error);
-> > > +		return error;
-> > > +	}
-> > > +
-> > > +	error = devm_add_action_or_reset(&client->dev,
-> > > +					 edt_ft5x06_disable_regulator,
-> > > +					 tsdata);
-> > > +	if (error)
-> > > +		return error;
-> > > +
-> > >  	tsdata->reset_gpio = devm_gpiod_get_optional(&client->dev,
-> > >  						     "reset", GPIOD_OUT_HIGH);
-> > >  	if (IS_ERR(tsdata->reset_gpio)) {
-> > > -- 
-> > > 2.23.0
-> > > 
-> > 
-> > -- 
-> > Dmitry
-> > 
-> 
-> -- 
-> Pengutronix e.K.                           |                             |
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thanks,
+srini
+
+Changes since v2:
+- Updated mfd driver as suggested by Lee.
+- Updated bindings as suggested by Rob.
+- Addressed various comments by Cezary Rojewski
+- Cleaned up code a bit.
+
+Srinivas Kandagatla (10):
+  ASoC: dt-bindings: add dt bindings for WCD9340/WCD9341 audio codec
+  mfd: wcd934x: add support to wcd9340/wcd9341 codec
+  ASoC: wcd934x: add support to wcd9340/wcd9341 codec
+  ASoC: wcd934x: add basic controls
+  ASoC: wcd934x: add playback dapm widgets
+  ASoC: wcd934x: add capture dapm widgets
+  ASoC: wcd934x: add audio routings
+  dt-bindings: pinctrl: qcom-wcd934x: Add bindings for gpio
+  ASoC: qcom: dt-bindings: Add compatible for DB845c and Lenovo Yoga
+  ASoC: qcom: sdm845: add support to DB845c and Lenovo Yoga
+
+Yeleswarapu Nagaradhesh (1):
+  pinctrl: qcom-wcd934x: Add support to wcd934x pinctrl driver.
+
+ .../pinctrl/qcom,wcd934x-pinctrl.yaml         |   52 +
+ .../devicetree/bindings/sound/qcom,sdm845.txt |    5 +-
+ .../bindings/sound/qcom,wcd934x.yaml          |  162 +
+ drivers/mfd/Kconfig                           |   12 +
+ drivers/mfd/Makefile                          |    1 +
+ drivers/mfd/wcd934x.c                         |  306 +
+ drivers/pinctrl/qcom/Kconfig                  |    7 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-wcd934x-gpio.c   |  365 ++
+ include/linux/mfd/wcd934x/registers.h         |  529 ++
+ include/linux/mfd/wcd934x/wcd934x.h           |   31 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wcd934x.c                    | 5084 +++++++++++++++++
+ sound/soc/qcom/sdm845.c                       |   86 +-
+ 15 files changed, 6651 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,wcd934x-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+ create mode 100644 drivers/mfd/wcd934x.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-wcd934x-gpio.c
+ create mode 100644 include/linux/mfd/wcd934x/registers.h
+ create mode 100644 include/linux/mfd/wcd934x/wcd934x.h
+ create mode 100644 sound/soc/codecs/wcd934x.c
+
+-- 
+2.21.0
+
