@@ -2,82 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F20E82CC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 08:53:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42900E8357
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 09:40:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726481AbfJ2Hxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 03:53:32 -0400
-Received: from mga04.intel.com ([192.55.52.120]:23959 "EHLO mga04.intel.com"
+        id S1729254AbfJ2IkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 04:40:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40568 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726233AbfJ2Hxc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Oct 2019 03:53:32 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 Oct 2019 00:53:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,243,1569308400"; 
-   d="scan'208";a="350904323"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga004.jf.intel.com with ESMTP; 29 Oct 2019 00:53:29 -0700
-Received: from [10.226.39.46] (ekotax-MOBL.gar.corp.intel.com [10.226.39.46])
-        by linux.intel.com (Postfix) with ESMTP id 372E8580372;
-        Tue, 29 Oct 2019 00:53:24 -0700 (PDT)
-Subject: Re: [PATCH v4 1/3] dt-bindings: PCI: intel: Add YAML schemas for the
- PCIe RC controller
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lorenzo.pieralisi@arm.com, andrew.murray@arm.com, robh@kernel.org,
-        linux-pci@vger.kernel.org, hch@infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com
-References: <cover.1571638827.git.eswara.kota@linux.intel.com>
- <710257e49c4b3d07fa98b3e5a829b807f74b54d7.1571638827.git.eswara.kota@linux.intel.com>
- <CAFBinCCSX_kVB=W3O-WXDMD2_2_Rnv+kiehf37xDkjL8+QoyHQ@mail.gmail.com>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <42016b72-da39-7234-c3d3-f007636ff573@linux.intel.com>
-Date:   Tue, 29 Oct 2019 15:53:22 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727036AbfJ2IkY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Oct 2019 04:40:24 -0400
+Received: from localhost (unknown [91.217.168.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 292D52067D;
+        Tue, 29 Oct 2019 08:40:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572338423;
+        bh=mgWIhjckqxqZSyRbf9Ero4ZNiEz9TMOyb3Twc/C42Qw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VX+bTrWJaxeA2GZo6IMS5PC8kXNJvpeD5Q4wP4xSZ7Dr2B5qn68G1qj1p3C1WtNj9
+         tgZPaKROjJoIbCD9PNoQMMTZg1tQrDhBnNx/3TihzsuYA5c+v07maBq+iDHzyr44sg
+         RebUP5pDHloE7kPCl3rCVrWGqXWjBrgT+dUVSSzY=
+Date:   Tue, 29 Oct 2019 09:30:12 +0100
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Ondrej Jirman <megous@megous.com>
+Cc:     linux-sunxi@googlegroups.com,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?utf-8?Q?Myl=C3=A8ne?= Josserand <mylene.josserand@bootlin.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] arm: dts: sun8i: a83t: a711: Add touchscreen node
+Message-ID: <20191029083012.62wgvonpxkgmznpn@hendrix>
+References: <20191029005806.3577376-1-megous@megous.com>
+ <20191029005806.3577376-4-megous@megous.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCSX_kVB=W3O-WXDMD2_2_Rnv+kiehf37xDkjL8+QoyHQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="vjc7bik6lfh4bmzh"
+Content-Disposition: inline
+In-Reply-To: <20191029005806.3577376-4-megous@megous.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
 
-On 10/25/2019 4:31 AM, Martin Blumenstingl wrote:
-> Hi Dilip,
->
-> thank you for the update
-> two nit-picks below, apart from those it looks good to me
-Thanks for reviewing it.
->
-> On Mon, Oct 21, 2019 at 8:39 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
-> [...]
->> +examples:
->> +  - |
->> +    pcie10:pcie@d0e00000 {
-> why no space between pcie10 and pcie@d0e00000?
-Agree, will fix it in the next patch version.
->
-> [...]
->> +      status = "okay";
-> examples should not use the status property, see commit 4da722ca19f30f
-> ("dt-bindings: Remove "status" from examples")
+--vjc7bik6lfh4bmzh
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Agree, will fix it in the next patch version.
-(sorry for the late reply, i am back today from sick leave).
-
-Regards,
-Dilip
-
+On Tue, Oct 29, 2019 at 01:58:06AM +0100, Ondrej Jirman wrote:
+> From: Myl=E8ne Josserand <mylene.josserand@bootlin.com>
 >
+> Enable a FocalTech EDT-FT5x06 Polytouch touchscreen.
 >
-> Martin
+> Signed-off-by: Ondrej Jirman <megous@megous.com>
+> Signed-off-by: Myl=E8ne Josserand <mylene.josserand@bootlin.com>
+
+Applied, thanks
+
+--vjc7bik6lfh4bmzh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXbf4lAAKCRDj7w1vZxhR
+xVbSAQDT1XY746DPYfIud8pyJ8oPJujpzqL4+l8r1CyT6njIYQD/UIVWkNxtxcoq
+K3j4wdKkaXwfIZ5fyFVqDB6uE9PToAc=
+=wvMX
+-----END PGP SIGNATURE-----
+
+--vjc7bik6lfh4bmzh--
