@@ -2,80 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 24051E8FC3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 20:17:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33FBDE8FD5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 20:18:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbfJ2TRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 15:17:03 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:37742 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725840AbfJ2TRD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 15:17:03 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 53so10783985otv.4;
-        Tue, 29 Oct 2019 12:17:02 -0700 (PDT)
+        id S1731113AbfJ2TSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 15:18:08 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:47096 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727994AbfJ2TR5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 15:17:57 -0400
+Received: by mail-wr1-f65.google.com with SMTP id n15so14876056wrw.13
+        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2019 12:17:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=b2dn1SeqtrpMCE6ny/3qCkKIFN0yrPzK+VM5xpNw4d8=;
+        b=Zyk5gtjpdLviBk9jsvEc7RR3u0srQtn1vTw21Hbym/7TKEtqDQ10J94GFRTW56KZon
+         iegTxSsVi958hn92pams/H1a6pv0byz0R+RVVdIg9VlFqQP4TdVF2m/W3mbTTQJoExTj
+         ff7oFJ9mjcyC4V1fNllS5vPG1g0vd+DhmJOD23iGdrzH9taOtdwZwx7LSZH4Br1IT3wx
+         H2wWaXQ4Q+JelxMhRDW52Q4a+XvUAJ10bBfu3KPm7ieV5y/nh58Lkh7jrcvG/05CsW2w
+         ExzFZU8zX+9phkTM6Ys7RBmB5tL3I1eQ8RbgUWuMHI9sn6liP8aK6Y0s6C+FtxlLII9S
+         rhrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XpBCgi1acvYl0k5WNhVR7nXqVxi3RiMKOtGaD33sKEc=;
-        b=rjuNEvLfPFPOAbd9TvVxJj4iyxyvZAe9m1g4Wz3NN33XFl7ZURx+Ik8u0I4+7CIUhj
-         bt6ItQEczVipbMXqaK9jGTF0oVICf8yc5RkTO6vDgQXHv0CGqnqZcrR2YxJmXABIGjPD
-         2xL+X4FLi6BXneeZ9H59sNKbRa3d+nInLIKKtnQd7+Nai9CbQdt43uVxHAPlCKmptEl4
-         izCalgKkGwOWQ7kNU2HE0yv7u23JalnpcRUf7KB5xmwP+yL2EQnTU9+LGJgXz+DXTq+l
-         54xRpyPB1IrXEzT2amHgBHLAw8FI+TD97nshBDFWxFn2ZbkP2+IPhS0Rswh1RAvRUnKc
-         UFig==
-X-Gm-Message-State: APjAAAXIqMk1LDcuS0xFrSJP/irzEcJ8nOj0IUxUKJA7xnQJCKPsbBKX
-        fUePItiseIJXezNf4RMZYQ==
-X-Google-Smtp-Source: APXvYqx/H3E5BHR/NyYmMy7qY+w/1yrITBdBvLYN/pDzX4Yrcd2QcMYM0p1KpSR9OqGRKzKomab6ZQ==
-X-Received: by 2002:a9d:6e91:: with SMTP id a17mr5163289otr.31.1572376622117;
-        Tue, 29 Oct 2019 12:17:02 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 38sm498129otr.7.2019.10.29.12.16.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2019 12:16:59 -0700 (PDT)
-Date:   Tue, 29 Oct 2019 14:16:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     kishon@ti.com, mark.rutland@arm.com, bivvy.bi@rock-chips.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        christoph.muellner@theobroma-systems.com
-Subject: Re: [PATCH 2/3] dt-bindings: phy: add yaml binding for
- rockchip,px30-dsi-dphy
-Message-ID: <20191029191658.GA9628@bogus>
-References: <20191023223851.3030-1-heiko@sntech.de>
- <20191023223851.3030-2-heiko@sntech.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191023223851.3030-2-heiko@sntech.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=b2dn1SeqtrpMCE6ny/3qCkKIFN0yrPzK+VM5xpNw4d8=;
+        b=Fa2BNWLcj8RUQHzXpQ09rfNLT0mnXRlNQ16BNVsSbHIkogrEWk66wVd53OkpBVw5cC
+         lvlyDleqytBW8ilgqfQW5308Bg+mCkhKzJRNqzbBxueLeoPqyCqeoWOGVpZj0WfSU8Zz
+         HTqw+newLfniWhJzjSz7RD2q7o+n7bZQ5fWIgRuNKhcebBgweDEzt7L0/AbZJCvkwYjf
+         KxRKmv2/4SKsOwm9FEb2aOQbqXvKVjyaBpebDkn/0Rs+nLEiHlFX/o67fgsLmIsj+PJY
+         tQvKFoJAmRiTR4iZFaQlD6OMAcitqJFOnrWz90BEvCH2eUY2rAbh+jORmlT47uJAJJw5
+         JysQ==
+X-Gm-Message-State: APjAAAXy7mEL+l8uiSVW4JTqi4ZRSy4jcGpaN4PhilgVxwItUhZc/2Ie
+        XQ54utqHEQtQz9Wp/3A33ep0Pw==
+X-Google-Smtp-Source: APXvYqyM2go1b1G/RM2lrR+mSRZw44cAY0wBRI/Rk71pe1bwQfHZOxviW2/DPPw2w8+V6inqVnkBvw==
+X-Received: by 2002:adf:de91:: with SMTP id w17mr13462824wrl.322.1572376674466;
+        Tue, 29 Oct 2019 12:17:54 -0700 (PDT)
+Received: from localhost.localdomain ([51.15.160.169])
+        by smtp.googlemail.com with ESMTPSA id v128sm5493043wmb.14.2019.10.29.12.17.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 29 Oct 2019 12:17:53 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     mark.rutland@arm.com, maxime.ripard@bootlin.com,
+        robh+dt@kernel.org, wens@csie.org, jernej.skrabec@siol.net
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2 0/2] ARM64: dts: allwinner: Add devicetree for pine H64 modelA evaluation board
+Date:   Tue, 29 Oct 2019 19:17:41 +0000
+Message-Id: <1572376663-22023-1-git-send-email-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 24, 2019 at 12:38:50AM +0200, Heiko Stuebner wrote:
-> This adds a yaml binding for the external dsi phy found on Rockchip
-> socs of the px30, rk3128 and rk3368 variants.
-> 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  .../bindings/phy/rockchip,px30-dsi-dphy.yaml  | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
-> new file mode 100644
-> index 000000000000..c2e1a998a766
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: GPL-2.0
+Hello
 
-(GPL-2.0-only OR BSD-2-Clause) for new bindings.
+Pineh64 have two existing model (A and B) with some hardware difference and
+so need two different DT file.
+But the current situation has only one file for both.
+This serie fix this situation by being more clear on which DT file is
+needed for both model.
 
-Otherwise,
+Regards
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Changes since v1:
+- Added the first patch for stating which model support the
+  sun50i-h6-pine-h64.dts
+
+Corentin Labbe (2):
+  ARM64: dts: sun50i-h6-pine-h64: state that the DT supports the modelB
+  ARM64: dts: allwinner: add pineh64 model A
+
+ .../devicetree/bindings/arm/sunxi.yaml        |  9 +++++--
+ arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+ .../allwinner/sun50i-h6-pine-h64-modelA.dts   | 26 +++++++++++++++++++
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  4 +--
+ 4 files changed, 36 insertions(+), 4 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA.dts
+
+-- 
+2.21.0
+
