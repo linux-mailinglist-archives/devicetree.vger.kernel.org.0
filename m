@@ -2,146 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 553EEE85AD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 11:31:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B7B4E85EF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 11:43:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730554AbfJ2Kb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 06:31:28 -0400
-Received: from mail-eopbgr760089.outbound.protection.outlook.com ([40.107.76.89]:42818
-        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730960AbfJ2Kb1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Oct 2019 06:31:27 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bl/FGw/t7WuiAuQpBQAKINDSIfg+eVcRLCs0SDPlKi1UKKQYtnWtt/b8QPuR50giHJnGDGuNPkGI8HHLb58IxO2kT3TIXDmduygAFTJo4uF5QDiI46IAherng+e1LqFoeiWQeYxUqrSwQfIpUXvkpjbtLgcn6+kU6VbMAr6dNKhJtNPv5FRA6KUseMDV/9rHY7V6onQQKTeBu5KaO0bocQ3mjeSz0ZMmYE//W25Mbt6CX7DimZnoIuShV76ZxVm+ZLv5oQcKvahamFQ4kcistHfs6U9oQWCq/Axjl19FJO07aQ0dIoqbxb2yENVYEiLTCFea6iclpxmgSf/e9YWjzQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8wSs8ysPVsmFKbPmDqQlTIs45+Cp/7XXqOFdW7LxfiU=;
- b=goQ2ErZKa7OaOniUASGJaLH9wXp1YfQ463Z4MerOi715OTcsLTFtIas6SsacKRd8C0OuJfkjUK1pPIAL2kNySLI7nFKVj4M0zNL1uJ/QEfMqAso8+Iesuygpv3P2znaUECTZigxqHabgTY+twNBaME9JQNEd7gfpg2Xw9oDixX1qO0YZ66oUU0r/opv5Tj5IFFMr4hNHLKut6macWg6AgelmMaFJTdIa5K/KaCKMzcACNsOSuwgKwj/bmw4SMWC5vqN6lZ+ArlDzocZVJ+fFMaPv5UXFcnC90FjOZLiUG8QpGhDJJvUl4eXuwjWrkP66Ir1UxYjNsqHpa/yQ3eVf0A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=arm.com smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8wSs8ysPVsmFKbPmDqQlTIs45+Cp/7XXqOFdW7LxfiU=;
- b=J7/IPHqAGswLJ4PrfW8uXS2GzN+WksvyEgR7I8BdV8wqB70gfzDlDE9d2g2DNMbxevWwuF6Piu6htf2HpJY4OSCKnHNEsJzzZL/HsnPl4jd6cGqHPsxgfzToeplfpCnTbnaejypUFw261yh30DYqHXw+cRBiIagTW6p/0XKq57o=
-Received: from MN2PR02CA0033.namprd02.prod.outlook.com (2603:10b6:208:fc::46)
- by CY4PR0201MB3492.namprd02.prod.outlook.com (2603:10b6:910:95::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2408.17; Tue, 29 Oct
- 2019 10:31:23 +0000
-Received: from SN1NAM02FT057.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::207) by MN2PR02CA0033.outlook.office365.com
- (2603:10b6:208:fc::46) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2387.22 via Frontend
- Transport; Tue, 29 Oct 2019 10:31:22 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; arm.com; dkim=none (message not signed)
- header.d=none;arm.com; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- SN1NAM02FT057.mail.protection.outlook.com (10.152.73.105) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2387.20
- via Frontend Transport; Tue, 29 Oct 2019 10:31:22 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1iPOmY-0002ul-47; Tue, 29 Oct 2019 03:31:22 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1iPOmS-000667-VR; Tue, 29 Oct 2019 03:31:17 -0700
-Received: from [172.23.64.106] (helo=xhdvnc125.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <mnarani@xilinx.com>)
-        id 1iPOmN-00062u-AV; Tue, 29 Oct 2019 03:31:11 -0700
-Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
-        id 988A6121744; Tue, 29 Oct 2019 16:01:10 +0530 (IST)
-From:   Manish Narani <manish.narani@xilinx.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        adrian.hunter@intel.com, michal.simek@xilinx.com,
-        jolly.shah@xilinx.com, nava.manne@xilinx.com,
-        rajan.vaja@xilinx.com, manish.narani@xilinx.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        git@xilinx.com
-Subject: [PATCH v4 0/8] Arasan SDHCI enhancements and ZynqMP Tap Delays Handling
-Date:   Tue, 29 Oct 2019 16:01:06 +0530
-Message-Id: <1572345066-101293-1-git-send-email-manish.narani@xilinx.com>
-X-Mailer: git-send-email 2.1.1
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(136003)(376002)(346002)(396003)(39860400002)(189003)(199004)(26005)(51416003)(478600001)(8676002)(16586007)(81156014)(81166006)(42186006)(106002)(8936002)(50226002)(316002)(36386004)(103686004)(48376002)(36756003)(47776003)(50466002)(2906002)(107886003)(356004)(6666004)(14444005)(4326008)(336012)(6266002)(70586007)(70206006)(44832011)(486006)(2616005)(186003)(126002)(5660300002)(476003)(426003)(305945005);DIR:OUT;SFP:1101;SCL:1;SRVR:CY4PR0201MB3492;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+        id S1727285AbfJ2KnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 06:43:05 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:39711 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726689AbfJ2KnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 06:43:05 -0400
+Received: by mail-oi1-f194.google.com with SMTP id v138so8507207oif.6;
+        Tue, 29 Oct 2019 03:43:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WSjPNv90mxoa4Qm6nfEtDVRJH8OLwkZxWcgMkuqr8yo=;
+        b=bGxNvv0I7soLyaU5RO3amJ8UY4P89c8UoLbIQFC8q965tXolSK1ftj4zirr/CGRlA1
+         5MS6HF+1hByzBdb/Y3u99ivirCq+WerZVFPSbV7YX0YFzXVbAyGIhUbTuJvzX8vD2pJn
+         Q68h8y6hLKU2TLp9tDbc++GyNOS9xbtxsjqSswA/bKYLjm1HNgPvZqHJbqD0ye1fRV45
+         MWViArvUau9meYlU+AUAWlbHQeVT8xLGvE3D7FuMLDXpCmIpotcta3l0Vm3u0ZWi00k3
+         ihq3gc0uys5yl+gckypOnvF26QKTuqL6rnYWqroJNNKkBL88jXtqwa25nexyecyGuq3W
+         Kgbg==
+X-Gm-Message-State: APjAAAVBV/xCMJ738VF2TNJ75iauPibhbPUHLJ5/0zqI4VezmGHJJoMt
+        fsSiMfmsiZ1wR/rvhLbcw674JhKZdtAdC1f9DDg=
+X-Google-Smtp-Source: APXvYqzEI7Zev2Tj6Q3I2HWITMkXefnJLlyQjGXMoQC961y0B0n88iefi/CLfKVtZiYMOV/Mt2ZrHOzKRLY7NZFaPAw=
+X-Received: by 2002:aca:d4c6:: with SMTP id l189mr3312579oig.68.1572345784471;
+ Tue, 29 Oct 2019 03:43:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 748214f6-5d6e-4ba8-3ca5-08d75c5b24d8
-X-MS-TrafficTypeDiagnostic: CY4PR0201MB3492:
-X-Microsoft-Antispam-PRVS: <CY4PR0201MB34924E65C7740127FDBC4A19C1610@CY4PR0201MB3492.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
-X-Forefront-PRVS: 0205EDCD76
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HgjdF34bPhbpvbQcqyg/SGc+5FJSVDZwX3R9zzLT/0lmCrujWpcMEhybvE9934GnDXPrz5cbesDB26p+/YgvFPzcZwPQLpMRBExyR4QkNf21mw037gMhywik7V4gv9Sptl0sCL7PefcbVS2Q3T+ETgnNj/H+6Ryam+yqEqXm+7JdFcPZFpLVOTyVjAfU3MHm9pd4DHRsn4jVhGgPZtPrbyuiuwG8bfQxsVhFyAr4O7KQVhYfGfeVesR2Cdq3lrwKsRGXcxHQMFSeGyOqzyKdb3d2UZ2Lw73mctmXqhNMSeUqRn3+DcvJwVZUiEBQGNuDdCF0HsLK8s3joEOXF9sK4w9ftqvyMFSTnhVUTshyyr2ZeINiS0sSUfOJxRKFf9qXKK6ZnLujxUBFq3kq9cU6C0K+mjvZSupFWpKrXh0EsVFYMwj+o+Iuyxmule+se8La
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2019 10:31:22.5014
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 748214f6-5d6e-4ba8-3ca5-08d75c5b24d8
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR0201MB3492
+References: <187a1a7d-80bd-a0e9-a0d9-7fc53bff8907@linux.intel.com> <20191022125950.GA133170@google.com>
+In-Reply-To: <20191022125950.GA133170@google.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Tue, 29 Oct 2019 11:42:53 +0100
+Message-ID: <CAJZ5v0jdxR4roEUC_Hs3puCzGY4ThdLsi_XcxfBUUxqruP4z7A@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] pci: intel: Add sysfs attributes to configure pcie link
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Dilip Kota <eswara.kota@linux.intel.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        gustavo.pimentel@synopsys.com,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        martin.blumenstingl@googlemail.com,
+        Linux PCI <linux-pci@vger.kernel.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Shevchenko, Andriy" <andriy.shevchenko@intel.com>,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series does the following:
- - Reorganize the Clock Handling in Arasan SD driver
- - Adds new sampling clock in Arasan SD driver
- - Adds support to set Clock Delays in SD Arasan Driver
- - Add SDIO Tap Delay handling in ZynqMP firmware driver
- - Add support for ZynqMP Tap Delays setting in Arasan SD driver
+On Tue, Oct 22, 2019 at 2:59 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> [+cc Rafael, linux-pm, beginning of discussion at
+> https://lore.kernel.org/r/d8574605f8e70f41ce1e88ccfb56b63c8f85e4df.1571638827.git.eswara.kota@linux.intel.com]
+>
+> On Tue, Oct 22, 2019 at 05:27:38PM +0800, Dilip Kota wrote:
+> > On 10/22/2019 1:18 AM, Bjorn Helgaas wrote:
+> > > On Mon, Oct 21, 2019 at 02:38:50PM +0100, Andrew Murray wrote:
+> > > > On Mon, Oct 21, 2019 at 02:39:20PM +0800, Dilip Kota wrote:
+> > > > > PCIe RC driver on Intel Gateway SoCs have a requirement
+> > > > > of changing link width and speed on the fly.
+> > > Please add more details about why this is needed.  Since you're adding
+> > > sysfs files, it sounds like it's not actually the *driver* that needs
+> > > this; it's something in userspace?
+>
+> > We have use cases to change the link speed and width on the fly.
+> > One is EMI check and other is power saving.  Some battery backed
+> > applications have to switch PCIe link from higher GEN to GEN1 and
+> > width to x1. During the cases like external power supply got
+> > disconnected or broken. Once external power supply is connected then
+> > switch PCIe link to higher GEN and width.
+>
+> That sounds plausible, but of course nothing there is specific to the
+> Intel Gateway, so we should implement this generically so it would
+> work on all hardware.
+>
+> I'm not sure what the interface should look like -- should it be a
+> low-level interface as you propose where userspace would have to
+> identify each link of interest, or is there some system-wide
+> power/performance knob that could tune all links?  Cc'd Rafael and
+> linux-pm in case they have ideas.
 
-Changes in v2:
-	- Replaced the deprecated calls to clock framework APIs
-	- Added support for dev_clk_get() call to work for SD card clock
-	- Separated the clock data struct
-	- Fragmented the patch series in smaller patches to make it more
-	  readable
+Frankly, I need some time to think about this and, in case you are
+wondering about whether or not it has been discussed with me already,
+it hasn't.
 
-Changes in v3:
-	- Reverted "Replaced the deprecated calls to clock framework APIs"
-	- Removed devm_clk_get() call which was added in v2
+At this point I can only say that since we have an ASPM interface,
+which IMO is not fantastic, it may be good to come up with a common
+link management interface.
 
-Changes in v4:
-	- Made the Phase Delay properties Arasan specific
-
-Manish Narani (8):
-  mmc: sdhci-of-arasan: Separate out clk related data to another
-    structure
-  dt-bindings: mmc: arasan: Update Documentation for the input clock
-  mmc: sdhci-of-arasan: Add sampling clock for a phy to use
-  dt-bindings: mmc: arasan: Add optional properties for Arasan SDHCI
-  mmc: sdhci-of-arasan: Add support to set clock phase delays for SD
-  firmware: xilinx: Add SDIO Tap Delay nodes
-  dt-bindings: mmc: arasan: Document 'xlnx,zynqmp-8.9a' controller
-  mmc: sdhci-of-arasan: Add support for ZynqMP Platform Tap Delays Setup
-
- .../devicetree/bindings/mmc/arasan,sdhci.txt  |  41 +-
- drivers/mmc/host/sdhci-of-arasan.c            | 477 +++++++++++++++++-
- include/linux/firmware/xlnx-zynqmp.h          |  13 +-
- 3 files changed, 499 insertions(+), 32 deletions(-)
-
--- 
-2.17.1
-
+Cheers!
