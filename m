@@ -2,135 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35EA4E8FD3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 20:18:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF467E8FEC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 20:27:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730457AbfJ2TSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 15:18:07 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:40132 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730777AbfJ2TR5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 15:17:57 -0400
-Received: by mail-wr1-f66.google.com with SMTP id o28so14912249wro.7
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2019 12:17:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=AAulUeuPoNsDEk+GpMMDiBhDeKpmWFc9M5uJieeLJLI=;
-        b=1ODh14rvo5xWA3XTcbFwAcohrgWPKKEIhrJ9qXpXyFKPUP/jEVNjCwAOeI7MlUkAvV
-         EuD5nrIYCP/1CP0Wo+DFTzlFeGybPS8ZrsGxWrj0vL63zWrGlyFIl1edd+XvQO0YPlUD
-         IY8MaOK/6FgscbFlbfFYxCsEe+UCnMvcIxIfgWGuFof6Pys2eCZN9rBtbHnn/vjcnsvt
-         pYAnp4BII3w06r9PGjgjUIkcF+YdxrBtOa0PNyqei5tYIKpUOew1zVfzPqwE5LIHkEBC
-         prkyxNSOYh3/yKufLSIEWKAjIkw+IYEeNJrI8N5tLH8sEPAEZ20hDlGu6uu53vs5rv+H
-         G/LQ==
+        id S1727170AbfJ2T1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 15:27:07 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:43809 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725880AbfJ2T1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 15:27:06 -0400
+Received: by mail-ot1-f66.google.com with SMTP id b19so8452484otq.10;
+        Tue, 29 Oct 2019 12:27:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=AAulUeuPoNsDEk+GpMMDiBhDeKpmWFc9M5uJieeLJLI=;
-        b=cRiJ9wguVU2SHtU2vjsJ2Z5X8EaE2i6gsM3N2E4HtZ133oSlyiNxpqyj1yrB2B9vCx
-         neUWywiQyLr7CvIS8qGN4zsQQHzkztWZrkUzf/85RqCkQZeOJjHU+jQrlL3x/4AXZl1W
-         uBtNP6JaB99bXKMd7Ty5TCy5e+6f3YCs/biEfE/QQNps7k08ecY4VIaIPdr5Z0YyBzd+
-         KctVkHLv9RClGlmoiE3+bW7qIXc4yfhrOaZnefAw8I/7LRzSp6fjUrkYsh7dKBmE+AKR
-         t6Gqa81Nfl1MVMnhbMpSse84iDctkcnF0+n6sALBtCV12ke0qCV/907K2RzWuD9pQz1r
-         wBYQ==
-X-Gm-Message-State: APjAAAX7KynrmOWMN3hxLH6fXqccGE5X5zrCf0rWP05U4mVNairqpLlP
-        1CxLf7HAKkcWaPN33aPwwnnQmQ==
-X-Google-Smtp-Source: APXvYqxXvT4pPfgw5H95OQqjEpql/EvCng+c+MiGqCGq2JPf0FQULJFHd6h+PrmYIwknwF8Jqd2e+w==
-X-Received: by 2002:adf:da4a:: with SMTP id r10mr22236971wrl.356.1572376676357;
-        Tue, 29 Oct 2019 12:17:56 -0700 (PDT)
-Received: from localhost.localdomain ([51.15.160.169])
-        by smtp.googlemail.com with ESMTPSA id v128sm5493043wmb.14.2019.10.29.12.17.55
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 29 Oct 2019 12:17:55 -0700 (PDT)
-From:   Corentin Labbe <clabbe@baylibre.com>
-To:     mark.rutland@arm.com, maxime.ripard@bootlin.com,
-        robh+dt@kernel.org, wens@csie.org, jernej.skrabec@siol.net
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v2 2/2] ARM64: dts: allwinner: add pineh64 model A
-Date:   Tue, 29 Oct 2019 19:17:43 +0000
-Message-Id: <1572376663-22023-3-git-send-email-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572376663-22023-1-git-send-email-clabbe@baylibre.com>
-References: <1572376663-22023-1-git-send-email-clabbe@baylibre.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wIe3a78xxOiZpmSWcABZA1DuxeudDH5yZ7C5sebUB98=;
+        b=H5BYzx843sQoOm9ejNJvIwZ86Sr3SiyGJ7EAj0A0RTNdQOAijKFbms90G3tl224sFg
+         2Ld89OpBXPIWCeFNPmK0taWbBgo8W8yRgNOlObkKItNZEDruNurU+ICm/fg2z44813Kk
+         0C2V6tVCE+eHN701cnfcMnyq1wu8YcJwDCaTTvRH/IMzvNm4I4mJkPqWRpWeAwUriicG
+         pKw+ZPP/W8YdArOjcMOVx5MovYadFSPZF/Z3b26jqBDEcs37N78upCJhZtYpb/KTO42S
+         AkK1rGApLMxU5AN9X7lbdouiPnH5n5+tBQpRD1ghaKIuJpaCr/TFAxYXdvBFvDyp60EI
+         +5mg==
+X-Gm-Message-State: APjAAAUD9UX3W9bMm2nzIzssM/5F+ok3aDfYadkW408T80pILuRrLII/
+        B17DVFxz0OL7IkrEx4n+7GXZ3cQ=
+X-Google-Smtp-Source: APXvYqzds4JPWsZE/QgA7kTo06go3N6teX/SzoqJvwPkpm5FAgxusldC7Fz7DV/nTeC04pkisPA/lQ==
+X-Received: by 2002:a05:6830:11d2:: with SMTP id v18mr3351848otq.116.1572377225861;
+        Tue, 29 Oct 2019 12:27:05 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z25sm4915181otp.1.2019.10.29.12.27.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2019 12:27:05 -0700 (PDT)
+Date:   Tue, 29 Oct 2019 14:27:04 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        Sekhar Nori <nsekhar@ti.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] dt-bindings: net: davinci-mdio: convert bindings to
+ json-schema
+Message-ID: <20191029192704.GA24097@bogus>
+References: <20191024104730.17708-1-grygorii.strashko@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191024104730.17708-1-grygorii.strashko@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the model A of the PineH64.
-The model A has the same size of the pine64 and has a PCIE slot.
+On Thu, Oct 24, 2019 at 01:47:30PM +0300, Grygorii Strashko wrote:
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for the TI SoC Davinci/OMAP/Keystone2 MDIO Controllerr over to a
+> YAML schemas.
+> 
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> ---
+> This my first attempt to work with YAML schemas, hence RFC.
 
-The only devicetree difference with the pineH64 model B, is the PHY
-regulator.
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
----
- .../devicetree/bindings/arm/sunxi.yaml        |  5 ++++
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../allwinner/sun50i-h6-pine-h64-modelA.dts   | 26 +++++++++++++++++++
- 3 files changed, 32 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA.dts
+No problems validating this schema, but the example in mdio.yaml isn't 
+happy:
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index 9a1e4992b9e9..0059925a3395 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -594,6 +594,11 @@ properties:
-           - const: pine64,pine64-plus
-           - const: allwinner,sun50i-a64
- 
-+      - description: Pine64 PineH64 model A
-+        items:
-+          - const: pine64,pine-h64-modelA
-+          - const: allwinner,sun50i-h6
-+
-       - description: Pine64 PineH64 model B
-         items:
-           - const: pine64,pine-h64-modelB
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index d2418021768b..6bda5d9961c8 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -26,4 +26,5 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-modelA.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA.dts
-new file mode 100644
-index 000000000000..fef47687c85e
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/*
-+ * Copyright (C) 2019 Corentin LABBE <clabbe@baylibre.com>
-+ */
-+
-+#include "sun50i-h6-pine-h64.dts"
-+
-+/ {
-+	model = "Pine H64 model A";
-+	compatible = "pine64,pine-h64-modelA", "allwinner,sun50i-h6";
-+
-+	reg_gmac_3v3: gmac-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-gmac-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		startup-delay-us = <100000>;
-+		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+};
-+
-+&emac {
-+	phy-supply = <&reg_gmac_3v3>;
-+};
--- 
-2.21.0
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/mdio.example.dt.yaml: 
+mdio@5c030000: 'bus_freq' is a required property
 
+> 
+>  .../bindings/net/ti,davinci-mdio.yaml         | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
+
+Convert implies deleting the old binding...
+
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml b/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
+> new file mode 100644
+> index 000000000000..e51054d2e0fa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/ti,davinci-mdio.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/ti,davinci-mdio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI SoC Davinci/Keystone2 MDIO Controller
+> +
+> +maintainers:
+> +  - Grygorii Strashko <grygorii.strashko@ti.com>
+> +
+> +description:
+> +  TI SoC Davinci/Keystone2 MDIO Controller Device Tree Bindings
+> +
+> +allOf:
+> +  - $ref: "mdio.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +       - const: ti,davinci_mdio
+> +       - items:
+> +         - const: ti,keystone_mdio
+> +         - const: ti,davinci_mdio
+> +       - items:
+> +         - const: ti,cpsw-mdio
+> +         - const: ti,davinci_mdio
+> +       - items:
+> +         - const: ti,am4372-mdio
+> +         - const: ti,cpsw-mdio
+> +         - const: ti,davinci_mdio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  bus_freq:
+> +      maximum: 2500000
+> +      description:
+> +        Mdio Bus frequency
+> +
+> +  ti,hwmods:
+> +    description: TI hwmod name
+> +    deprecated: true
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/string-array
+> +      - items:
+> +          const: davinci_mdio
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - bus_freq
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +examples:
+> +  - |
+> +    davinci_mdio: mdio@4a101000 {
+> +         compatible = "ti,davinci_mdio";
+> +         #address-cells = <1>;
+> +         #size-cells = <0>;
+> +         reg = <0x4A101000 0x1000>;
+
+Lowercase hex please.
+
+> +         bus_freq = <1000000>;
+> +    };
+> -- 
+> 2.17.1
+> 
