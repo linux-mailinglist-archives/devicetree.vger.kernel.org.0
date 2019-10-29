@@ -2,70 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07436E8BC5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 16:28:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F701E8BF5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 16:40:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390033AbfJ2P2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 11:28:13 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:35216 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390027AbfJ2P2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 11:28:12 -0400
-Received: by mail-oi1-f194.google.com with SMTP id n16so6997764oig.2;
-        Tue, 29 Oct 2019 08:28:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7+lSX9rGuethOBMhP54PVdLPKRXbrDChQjUhpYAoRrk=;
-        b=L0EGE7gwIjOpYoxNx/Aj3yfOZ0CmJTg3gyV3iuIZyyn+7YoshioniyygeNg4abvINs
-         +bGnzU9NjCRamn7LagnmNOn2HdQiHfbX+zq5uMmdGPoCR9W7i4j8ooKoeZ5+MWfkJud2
-         Kbwu/sr8nO9rc2wOJ312SGYGB3kHds/drs0ao+/hrt8zGxEbxHdBIsLIB693GZqt/5gI
-         sje7LpcNBcA+42BB148MWVBIyKnNOJMPraO30gGPSBJ0WOSGk79bWrqLKxJolh4x6tMk
-         oJUXsjwxobTv618QjoCbsaG8aQ1pfvJt/D7gECBmLdkj0K6UWIDvrqv/SIGBp+Yq8+Hd
-         UJ6g==
-X-Gm-Message-State: APjAAAX04k5CWkxmquvkk4ZYkrGymeeXmTsWFn5Eq9gfGY/iyj58hfIY
-        nPjgOtMsR8J3iVRmBJ3l2w==
-X-Google-Smtp-Source: APXvYqz4gVrjCheiBZWYt4V73gfeXWOkVCTqZRS9xkcWi5yng+jnjQx6eiARsy0dT3T32JZ//wuxgg==
-X-Received: by 2002:aca:4f4f:: with SMTP id d76mr4638649oib.167.1572362891837;
-        Tue, 29 Oct 2019 08:28:11 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z1sm3037006oih.14.2019.10.29.08.28.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2019 08:28:10 -0700 (PDT)
-Date:   Tue, 29 Oct 2019 10:28:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     kholk11@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        ccross@android.com, mark.rutland@arm.com, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org, marijns95@gmail.com,
-        kholk11@gmail.com
-Subject: Re: [PATCH 1/5] dt-bindings: iio: spmi-vadc: Add definitions for USB
- DP/DM VADCs
-Message-ID: <20191029152809.GA17307@bogus>
-References: <20191020150746.64114-1-kholk11@gmail.com>
- <20191020150746.64114-2-kholk11@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191020150746.64114-2-kholk11@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S2390197AbfJ2Pj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 11:39:56 -0400
+Received: from verein.lst.de ([213.95.11.211]:40749 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390173AbfJ2Pj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Oct 2019 11:39:56 -0400
+Received: by verein.lst.de (Postfix, from userid 2005)
+        id 8EE9B68D04; Tue, 29 Oct 2019 16:39:53 +0100 (CET)
+In-Reply-To: <20191029153815.C631668C4E@verein.lst.de>
+References: <20191029153815.C631668C4E@verein.lst.de>
+From:   Torsten Duwe <duwe@lst.de>
+Date:   Tue, 29 Oct 2019 13:16:57 +0100
+Subject: [PATCH v4 6/7] dt-bindings: Add ANX6345 DP/eDP transmitter binding
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Harald Geyer <harald@ccbib.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Message-Id: <20191029153953.8EE9B68D04@verein.lst.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Oct 2019 17:07:42 +0200, kholk11@gmail.com wrote:
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> 
-> Some PMICs, like PMI8950, feature two ADCs, at 0x43 and 0x44,
-> respectively used for USB D+ and USB D- (DP/DM): add the definition
-> for them as VADC_USB_DP and VADC_USB_DM.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> ---
->  include/dt-bindings/iio/qcom,spmi-vadc.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
+The anx6345 is an ultra-low power DisplayPort/eDP transmitter designed
+for portable devices.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Add a binding document for it.
+
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Torsten Duwe <duwe@suse.de>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+ .../bindings/display/bridge/anx6345.yaml           | 92 ++++++++++++++++++++++
+ 1 file changed, 92 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/anx6345.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/anx6345.yaml b/Documentation/devicetree/bindings/display/bridge/anx6345.yaml
+new file mode 100644
+index 000000000000..094e8e8a5faa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/anx6345.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/anx6345.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analogix ANX6345 eDP Transmitter Device Tree Bindings
++
++maintainers:
++  - Torsten Duwe <duwe@lst.de>
++
++description: |
++  The ANX6345 is an ultra-low power Full-HD eDP transmitter designed for
++  portable devices.
++
++properties:
++  compatible:
++    const: analogix,anx6345
++
++  reg:
++    maxItems: 1
++    description: base I2C address of the device
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to active low reset
++
++  dvdd12-supply:
++    maxItems: 1
++    description: Regulator for 1.2V digital core power.
++
++  dvdd25-supply:
++    maxItems: 1
++    description: Regulator for 2.5V digital core power.
++
++  ports:
++    anyOf:
++      - port@0:
++        description: Video port for LVTTL input
++      - port@1:
++        description: Video port for eDP output (panel or connector).
++                     May be omitted if EDID works reliably.
++    required:
++      - port@0
++
++required:
++  - compatible
++  - reg
++  - reset-gpios
++  - dvdd12-supply
++  - dvdd25-supply
++  - ports
++
++examples:
++  - |
++    i2c0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      anx6345: anx6345@38 {
++        compatible = "analogix,anx6345";
++        reg = <0x38>;
++        reset-gpios = <&pio42 1 /* GPIO_ACTIVE_LOW */>;
++        dvdd25-supply = <&reg_dldo2>;
++        dvdd12-supply = <&reg_fldo1>;
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          anx6345_in: port@0 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <0>;
++            anx6345_in_tcon0: endpoint@0 {
++              reg = <0>;
++              remote-endpoint = <&tcon0_out_anx6345>;
++            };
++          };
++
++          anx6345_out: port@1 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            reg = <1>;
++            anx6345_out_panel: endpoint@0 {
++              reg = <0>;
++              remote-endpoint = <&panel_in_edp>;
++            };
++          };
++        };
++      };
++    };
+-- 
+2.16.4
+
