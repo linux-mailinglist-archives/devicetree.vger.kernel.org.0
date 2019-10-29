@@ -2,207 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F3B0E88B0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 13:48:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45B26E88DD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 13:57:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388021AbfJ2Msw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 08:48:52 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:42816 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729126AbfJ2Msv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 08:48:51 -0400
-Received: by mail-lj1-f196.google.com with SMTP id a21so15105804ljh.9;
-        Tue, 29 Oct 2019 05:48:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xBVZsEwVtK814JHViicc5SAg5rQLuwblDReqpeiyxfs=;
-        b=B2PmQggIVtkAFdYjftHoHQdw9coBaA6wdTtStdaa7pS56m6mdMptPHBk7QtlX0rnR9
-         Bdrm0CGr8J5uRJjR1kw57vxQ9fLAc4kvd69gIudgYdhF7cR9YuB6GLs6bIxazJx2GfTy
-         TKiSIDV0Tjw9NzYGa3o5hfvREdozR6+asaOn6f7aFnWdmjEbJmALx37uiFryM6I2Papo
-         imFH51lutcrs24Ud5aKIVE7yS54E7K6OExM+Hhd/7ZbNwoVu9KWOUmqLtH2BH6Epg38W
-         dDcMqytDX3vandhC7eJnJFLO71nFTTd3Eiiv0q1FMHyqfI/QjClvusFzur8je5pppOWN
-         mkmQ==
-X-Gm-Message-State: APjAAAXWOapjk5Tx8FZiC7Swow/v7hsHRO2UWIiT90xeBysjv1DG19HA
-        aN2E1fF0ulMOuiCJul89/FU=
-X-Google-Smtp-Source: APXvYqxChfIwjj7Wc/TmT1HL5bfeXc+1lnmhRvhgbjX2jyrjgKWXLOryfSfpaWPWWzgrUD7+wtYY9Q==
-X-Received: by 2002:a2e:91c7:: with SMTP id u7mr2504548ljg.178.1572353328687;
-        Tue, 29 Oct 2019 05:48:48 -0700 (PDT)
-Received: from localhost.localdomain ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id 12sm11264224lje.92.2019.10.29.05.48.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2019 05:48:48 -0700 (PDT)
-Date:   Tue, 29 Oct 2019 14:48:36 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     mazziesaccount@gmail.com, matti.vaittinen@fi.rohmeurope.com
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S2388119AbfJ2M52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 08:57:28 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57084 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729253AbfJ2M51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 08:57:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=UVHMIFb85JIHvAPZmwfb8Jx9ya9sTe0Tgnzxjy0WJlc=; b=LPxarDj51he3
+        9cgJDYwV+2dkTT+ZlscXHdCtuW/cJvN4b5yFJbTU8pQnLE3vbBV+UxDQlAEE+fBJSvzAz0Iq/SBgS
+        apmM0DO6RzOSMW1iFgmFXQEITrTXPHCioRbFll8GskOZ5vjGB9jmvDPGue3VPSoUTJzAF5t1jOpGU
+        jvMnQ=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1iPR3U-0002DM-Bt; Tue, 29 Oct 2019 12:57:00 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id DE0F92742998; Tue, 29 Oct 2019 12:56:59 +0000 (GMT)
+From:   Mark Brown <broonie@kernel.org>
+To:     Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     alsa-devel@alsa-project.org, Andrzej Hajda <a.hajda@samsung.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        dgreid@chromium.org, dianders@chromium.org,
+        dri-devel@lists.freedesktop.org, Hans Verkuil <hverkuil@xs4all.nl>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 5/5] leds: lm3692x: Offload DT node locating and parsing
- to core
-Message-ID: <f6420ede481afc4e0a360d937049555400f4417e.1572351774.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1572351774.git.matti.vaittinen@fi.rohmeurope.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1572351774.git.matti.vaittinen@fi.rohmeurope.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Takashi Iwai <tiwai@suse.com>, tzungbi@chromium.org
+Subject: Applied "drm: bridge: dw-hdmi: Report connector status using callback" to the asoc tree
+In-Reply-To: <20191028071930.145899-2-cychiang@chromium.org>
+X-Patchwork-Hint: ignore
+Message-Id: <20191029125659.DE0F92742998@ypsilon.sirena.org.uk>
+Date:   Tue, 29 Oct 2019 12:56:59 +0000 (GMT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This comment serves as an example how led controller drivers
-could be simplified if led-class/led-core would handle DT node
-locating and parsing. leds-lm3692x was randomly selected from
-drivers using 'devm_led_classdev_register_ext' API. No further
-study was done :)
+The patch
 
-This commit HAS NOT BEEN TESTED at all. Only compile tested.
-This is only RFC - Eg, request for comments. If people see some
-of the ideas as useful then properly tested patch should be
-provided.
+   drm: bridge: dw-hdmi: Report connector status using callback
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.5
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From a9c82d63ca4819d3d03964dbf4aa427b36c5a67f Mon Sep 17 00:00:00 2001
+From: Cheng-Yi Chiang <cychiang@chromium.org>
+Date: Mon, 28 Oct 2019 15:19:25 +0800
+Subject: [PATCH] drm: bridge: dw-hdmi: Report connector status using callback
+
+Allow codec driver register callback function for plug event.
+
+The callback registration flow:
+dw-hdmi <--- hw-hdmi-i2s-audio <--- hdmi-codec
+
+dw-hdmi-i2s-audio implements hook_plugged_cb op
+so codec driver can register the callback.
+
+dw-hdmi exports a function dw_hdmi_set_plugged_cb so platform device
+can register the callback.
+
+When connector plug/unplug event happens, report this event using the
+callback.
+
+Make sure that audio and drm are using the single source of truth for
+connector status.
+
+Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+Link: https://lore.kernel.org/r/20191028071930.145899-2-cychiang@chromium.org
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/leds/leds-lm3692x.c | 75 ++++++++++++++++++++-----------------
- 1 file changed, 41 insertions(+), 34 deletions(-)
+ .../drm/bridge/synopsys/dw-hdmi-i2s-audio.c   | 11 +++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     | 41 ++++++++++++++++++-
+ include/drm/bridge/dw_hdmi.h                  |  4 ++
+ 3 files changed, 55 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/leds/leds-lm3692x.c b/drivers/leds/leds-lm3692x.c
-index 3d381f2f73d0..abe2b1113049 100644
---- a/drivers/leds/leds-lm3692x.c
-+++ b/drivers/leds/leds-lm3692x.c
-@@ -108,7 +108,7 @@
- struct lm3692x_led {
- 	struct mutex lock;
- 	struct i2c_client *client;
--	struct led_classdev led_dev;
-+	struct led_init_data init_data;
- 	struct regmap *regmap;
- 	struct gpio_desc *enable_gpio;
- 	struct regulator *regulator;
-@@ -166,7 +166,8 @@ static int lm3692x_brightness_set(struct led_classdev *led_cdev,
- 				enum led_brightness brt_val)
- {
- 	struct lm3692x_led *led =
--			container_of(led_cdev, struct lm3692x_led, led_dev);
-+			container_of(led_cdev->init_data, struct lm3692x_led,
-+				     init_data);
- 	int ret;
- 	int led_brightness_lsb = (brt_val >> 5);
- 
-@@ -319,49 +320,56 @@ static int lm3692x_init(struct lm3692x_led *led)
- 
- 	return ret;
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
+index 1d15cf9b6821..6c2c44d0bdee 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
+@@ -151,11 +151,22 @@ static int dw_hdmi_i2s_get_dai_id(struct snd_soc_component *component,
+ 	return -EINVAL;
  }
--static int lm3692x_probe_dt(struct lm3692x_led *led)
+ 
++static int dw_hdmi_i2s_hook_plugged_cb(struct device *dev, void *data,
++				       hdmi_codec_plugged_cb fn,
++				       struct device *codec_dev)
++{
++	struct dw_hdmi_i2s_audio_data *audio = data;
++	struct dw_hdmi *hdmi = audio->hdmi;
 +
-+static int lm3692x_of_parse_cb(struct led_classdev *ld, struct fwnode_handle *fw,
-+			       struct led_properties *props)
- {
--	struct fwnode_handle *child = NULL;
--	struct led_init_data init_data = {};
- 	int ret;
-+	struct lm3692x_led *led = container_of(ld->init_data,
-+					       struct lm3692x_led, init_data);
-+
-+	ret = fwnode_property_read_u32(fw, "reg", &led->led_enable);
-+	if (ret)
-+		dev_err(&led->client->dev, "reg DT property missing\n");
-+
-+	return ret;
++	return dw_hdmi_set_plugged_cb(hdmi, fn, codec_dev);
 +}
 +
-+static const struct led_ops lm3692x_ops = {
-+	.brightness_set_blocking = lm3692x_brightness_set,
-+};
+ static struct hdmi_codec_ops dw_hdmi_i2s_ops = {
+ 	.hw_params	= dw_hdmi_i2s_hw_params,
+ 	.audio_shutdown	= dw_hdmi_i2s_audio_shutdown,
+ 	.get_eld	= dw_hdmi_i2s_get_eld,
+ 	.get_dai_id	= dw_hdmi_i2s_get_dai_id,
++	.hook_plugged_cb = dw_hdmi_i2s_hook_plugged_cb,
+ };
+ 
+ static int snd_dw_hdmi_probe(struct platform_device *pdev)
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index 521d689413c8..2102872bf43c 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -191,6 +191,10 @@ struct dw_hdmi {
+ 
+ 	struct mutex cec_notifier_mutex;
+ 	struct cec_notifier *cec_notifier;
 +
-+static int lm3692x_probe_dt(struct lm3692x_led *led)
++	hdmi_codec_plugged_cb plugged_cb;
++	struct device *codec_dev;
++	enum drm_connector_status last_connector_result;
+ };
+ 
+ #define HDMI_IH_PHY_STAT0_RX_SENSE \
+@@ -215,6 +219,28 @@ static inline u8 hdmi_readb(struct dw_hdmi *hdmi, int offset)
+ 	return val;
+ }
+ 
++static void handle_plugged_change(struct dw_hdmi *hdmi, bool plugged)
 +{
-+	void *ret;
- 
- 	led->enable_gpio = devm_gpiod_get_optional(&led->client->dev,
- 						   "enable", GPIOD_OUT_LOW);
- 	if (IS_ERR(led->enable_gpio)) {
--		ret = PTR_ERR(led->enable_gpio);
--		dev_err(&led->client->dev, "Failed to get enable gpio: %d\n",
--			ret);
--		return ret;
-+		dev_err(&led->client->dev, "Failed to get enable gpio: %ld\n",
-+			PTR_ERR(led->enable_gpio));
-+		return PTR_ERR(led->enable_gpio);
- 	}
- 
- 	led->regulator = devm_regulator_get(&led->client->dev, "vled");
- 	if (IS_ERR(led->regulator))
- 		led->regulator = NULL;
- 
--	child = device_get_next_child_node(&led->client->dev, child);
--	if (!child) {
--		dev_err(&led->client->dev, "No LED Child node\n");
--		return -ENODEV;
--	}
--
--	fwnode_property_read_string(child, "linux,default-trigger",
--				    &led->led_dev.default_trigger);
--
--	ret = fwnode_property_read_u32(child, "reg", &led->led_enable);
--	if (ret) {
--		dev_err(&led->client->dev, "reg DT property missing\n");
--		return ret;
--	}
--
--	init_data.fwnode = child;
--	init_data.devicename = led->client->name;
--	init_data.default_label = ":";
--
--	ret = devm_led_classdev_register_ext(&led->client->dev, &led->led_dev,
--					     &init_data);
--	if (ret) {
--		dev_err(&led->client->dev, "led register err: %d\n", ret);
--		return ret;
-+	/*
-+	 * RFC_NOTE: Do we have fixed node name here or do we need another way to
-+	 * do 'match'?
-+	 */
-+	led->init_data.of_match = of_match_ptr("led_node_name_here");
-+	led->init_data.of_parse_cb = lm3692x_of_parse_cb;
-+	led->init_data.devicename = led->client->name;
-+	led->init_data.default_label = ":";
++	if (hdmi->plugged_cb && hdmi->codec_dev)
++		hdmi->plugged_cb(hdmi->codec_dev, plugged);
++}
 +
-+	ret = devm_led_classdev_register_dt(&led->client->dev, &lm3692x_ops,
-+					    &led->init_data);
-+	if (IS_ERR(ret)) {
-+		dev_err(&led->client->dev, "led register err: %ld\n",
-+			PTR_ERR(ret));
-+		return PTR_ERR(ret);
- 	}
++int dw_hdmi_set_plugged_cb(struct dw_hdmi *hdmi, hdmi_codec_plugged_cb fn,
++			   struct device *codec_dev)
++{
++	bool plugged;
++
++	mutex_lock(&hdmi->mutex);
++	hdmi->plugged_cb = fn;
++	hdmi->codec_dev = codec_dev;
++	plugged = hdmi->last_connector_result == connector_status_connected;
++	handle_plugged_change(hdmi, plugged);
++	mutex_unlock(&hdmi->mutex);
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(dw_hdmi_set_plugged_cb);
++
+ static void hdmi_modb(struct dw_hdmi *hdmi, u8 data, u8 mask, unsigned reg)
+ {
+ 	regmap_update_bits(hdmi->regm, reg << hdmi->reg_shift, mask, data);
+@@ -2161,6 +2187,7 @@ dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ {
+ 	struct dw_hdmi *hdmi = container_of(connector, struct dw_hdmi,
+ 					     connector);
++	enum drm_connector_status result;
  
- 	return 0;
-@@ -379,7 +387,6 @@ static int lm3692x_probe(struct i2c_client *client,
+ 	mutex_lock(&hdmi->mutex);
+ 	hdmi->force = DRM_FORCE_UNSPECIFIED;
+@@ -2168,7 +2195,18 @@ dw_hdmi_connector_detect(struct drm_connector *connector, bool force)
+ 	dw_hdmi_update_phy_mask(hdmi);
+ 	mutex_unlock(&hdmi->mutex);
  
- 	mutex_init(&led->lock);
- 	led->client = client;
--	led->led_dev.brightness_set_blocking = lm3692x_brightness_set;
- 	led->model_id = id->driver_data;
- 	i2c_set_clientdata(client, led);
+-	return hdmi->phy.ops->read_hpd(hdmi, hdmi->phy.data);
++	result = hdmi->phy.ops->read_hpd(hdmi, hdmi->phy.data);
++
++	mutex_lock(&hdmi->mutex);
++	if (result != hdmi->last_connector_result) {
++		dev_dbg(hdmi->dev, "read_hpd result: %d", result);
++		handle_plugged_change(hdmi,
++				      result == connector_status_connected);
++		hdmi->last_connector_result = result;
++	}
++	mutex_unlock(&hdmi->mutex);
++
++	return result;
+ }
  
+ static int dw_hdmi_connector_get_modes(struct drm_connector *connector)
+@@ -2619,6 +2657,7 @@ __dw_hdmi_probe(struct platform_device *pdev,
+ 	hdmi->rxsense = true;
+ 	hdmi->phy_mask = (u8)~(HDMI_PHY_HPD | HDMI_PHY_RX_SENSE);
+ 	hdmi->mc_clkdis = 0x7f;
++	hdmi->last_connector_result = connector_status_disconnected;
+ 
+ 	mutex_init(&hdmi->mutex);
+ 	mutex_init(&hdmi->audio_mutex);
+diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+index cf528c289857..9a0c8381a069 100644
+--- a/include/drm/bridge/dw_hdmi.h
++++ b/include/drm/bridge/dw_hdmi.h
+@@ -6,6 +6,8 @@
+ #ifndef __DW_HDMI__
+ #define __DW_HDMI__
+ 
++#include <sound/hdmi-codec.h>
++
+ struct drm_connector;
+ struct drm_display_mode;
+ struct drm_encoder;
+@@ -154,6 +156,8 @@ void dw_hdmi_resume(struct dw_hdmi *hdmi);
+ 
+ void dw_hdmi_setup_rx_sense(struct dw_hdmi *hdmi, bool hpd, bool rx_sense);
+ 
++int dw_hdmi_set_plugged_cb(struct dw_hdmi *hdmi, hdmi_codec_plugged_cb fn,
++			   struct device *codec_dev);
+ void dw_hdmi_set_sample_rate(struct dw_hdmi *hdmi, unsigned int rate);
+ void dw_hdmi_set_channel_count(struct dw_hdmi *hdmi, unsigned int cnt);
+ void dw_hdmi_set_channel_allocation(struct dw_hdmi *hdmi, unsigned int ca);
 -- 
-2.21.0
+2.20.1
 
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
