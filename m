@@ -2,74 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0EEFE8F90
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 19:52:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A584CE8F92
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 19:52:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729475AbfJ2SwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 14:52:21 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:36161 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728934AbfJ2SwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 14:52:20 -0400
-Received: by mail-ot1-f68.google.com with SMTP id c7so10720657otm.3;
-        Tue, 29 Oct 2019 11:52:20 -0700 (PDT)
+        id S1732072AbfJ2Swr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 14:52:47 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36195 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727933AbfJ2Swr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 14:52:47 -0400
+Received: by mail-ot1-f67.google.com with SMTP id c7so10721876otm.3;
+        Tue, 29 Oct 2019 11:52:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4jlz/kL2P1DJTOhPG8FEPuOrBDl84lxyvnWrHLEJJyA=;
-        b=pdBpsmNU/c9ahJttJp3Fgs/IQ3UnjmudJXd4/8eQ/aM/47LW24NACJ+dHKFlwa68ge
-         lpTCww4cQs7iqUbNDDbRoLl6ArzjDuijxRldzPJ3GrGDPXP00JEjgSiCicWUHB3ih8Yd
-         8tyoyilmrbZFfCTOhQSLHJj76Px8HKDa6uxyi96b7XZXccaZXrb1g6Di5iRRJOCan3yT
-         1r8d61pFI1lL2oST+rxDX2HnKFu5n8WFFqPq4h1EgN6HEJjY6LNzRj6HK77/NIerUCxC
-         CdqpA2aAX4msnO0lgnxVrIOwkxisbwJkL4r8Oih6FNdodJBSkgM3vG8oIAE9rM1UF/b5
-         x1Yw==
-X-Gm-Message-State: APjAAAVQKB+29f27y2AGVB37syAEsYNDTRD6jcju2550Q4bTSablklbI
-        9o8qDyxbUDD1q+vKEIN7qw==
-X-Google-Smtp-Source: APXvYqy2ZH7KJ1dKJ59ixaELGPG82nNz0xixf9qaXzvb8Egunou3KEQXbwvR28QVZHsCASJKK5swMQ==
-X-Received: by 2002:a05:6830:2001:: with SMTP id e1mr19040031otp.69.1572375139861;
-        Tue, 29 Oct 2019 11:52:19 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=CQrNe1j7QkcNJRw1v8RbGpAi+Oc2Ejh/QH9GQXsq6oE=;
+        b=nwk3nJnRVsH3hrA8f5X73Niaob6y1A4euCXVXg1vw0rOVO/9MiWfl8L5niIu1kgAAz
+         f933sIpPnnC6DJkWQY26/yBY017OXoZL1Gzxojm5ku0+d66KAME6A58888KJWWvJTqZn
+         A3uZzKBAwy6/vC3K4x9OhrOtNz0Eq7B8jX1VoHFBAIlkWcAG/BE9eN9KO/btPjZn53ob
+         kk7ob0P7DsnGFKIqkyu8aXRoFrOjLtTusNI1Iekx9bdAOW50A5OQ6828iCsjc/ObO/u+
+         IPUlGKfZsopoe/rpx+uUbS01qhmFUgOu34Tj5gICPlkQX4OA2I759ubNuh7tH4KFK1of
+         WDJQ==
+X-Gm-Message-State: APjAAAXI5rPr+dg/l0EVgVB4oO/TzRC9IzIQQyrx5iOlGVFZ+q3yX3kd
+        ndamkSzO9+q2y7bqQpe2lw==
+X-Google-Smtp-Source: APXvYqw2kFzbLbVafeXhlE4NavVPQIDmG2KwYF/yp23GAL7D1cuRf7KkyV/9gOqHgMmgdku+p8YIsQ==
+X-Received: by 2002:a9d:870:: with SMTP id 103mr19095433oty.67.1572375166556;
+        Tue, 29 Oct 2019 11:52:46 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v19sm4040283oic.6.2019.10.29.11.52.19
+        by smtp.gmail.com with ESMTPSA id x9sm866628otg.45.2019.10.29.11.52.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2019 11:52:19 -0700 (PDT)
-Date:   Tue, 29 Oct 2019 13:52:18 -0500
+        Tue, 29 Oct 2019 11:52:46 -0700 (PDT)
+Date:   Tue, 29 Oct 2019 13:52:45 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND 2] dt-bindings: max77693: fix missing curly brace
-Message-ID: <20191029185218.GA18469@bogus>
-References: <20191023093437.GA30570@localhost.localdomain>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Richard Leitner <richard.leitner@skidata.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Carsten Stelling <carsten.stelling@goerlitz.com>
+Subject: Re: [PATCH 2/3] usb: usb251xb: Document chip variant usb2422
+Message-ID: <20191029185245.GA19185@bogus>
+References: <20191023105250.16537-1-u.kleine-koenig@pengutronix.de>
+ <20191023105250.16537-2-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20191023093437.GA30570@localhost.localdomain>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191023105250.16537-2-u.kleine-koenig@pengutronix.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Oct 2019 12:34:37 +0300, Matti Vaittinen wrote:
-> Add missing curly brace to charger node example.
+On Wed, 23 Oct 2019 12:52:49 +0200, =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= wrote:
+> The next patch introduces support for the USB2422. Add it to the list of
+> devices supported by the binding.
 > 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 > ---
-> 
-> Resending once more.  Sorry again guys. This time I added also the DT folks
-> and used correct email for Bartlomiej.
-> 
->  Documentation/devicetree/bindings/mfd/max77693.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/usb/usb251xb.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
