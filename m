@@ -2,95 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B35E892C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 14:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D9BE893F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 14:18:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388280AbfJ2NQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 09:16:05 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:34737 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732534AbfJ2NQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 09:16:04 -0400
-Received: by mail-pf1-f194.google.com with SMTP id b128so9584953pfa.1;
-        Tue, 29 Oct 2019 06:16:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=rDAR1qdS022RvDkmF/JnXqxkZXLKSYyvZ7xcekyeQEQ=;
-        b=eFGkqYc9CHYLgbmA3fBDUR1b/S/CZSuonfyOXIMsqiMhbvkZHuIooxlXyn0gs9U7VL
-         R+F0FX1Onv2Lp04JJ+tfAH4Oe1iwhW2HIyHFzIQTjhfK+Ual3E5OKVEwDpIN4ZllRZT4
-         valJ+V1d+e3oYEm+Le38OCeDKuPzD5w3j01+dfPvRltNESEOodVpZz9GJ/ouQjOEzrJ7
-         fqzkKjZgN6849koIqlr5cODaGYOa2NUipVjGP1B6mx2i64HP9bjAx63zUTjDTsaFlFWb
-         p637UTy1OKl9fFRCOvHOYrB/x9N23wr/ZMNH42opv72gVaBXqwlYpfYBVeyVIyE5+1dY
-         8GRA==
+        id S2388244AbfJ2NS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 09:18:58 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:33441 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388166AbfJ2NS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 09:18:58 -0400
+Received: by mail-ot1-f66.google.com with SMTP id u13so9724582ote.0;
+        Tue, 29 Oct 2019 06:18:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rDAR1qdS022RvDkmF/JnXqxkZXLKSYyvZ7xcekyeQEQ=;
-        b=BSWAuYofDcGW5ittNNrVmjS3uldIou/25RNswg1t5Yr62cK6W1qQxhL5bXzvRrWBg4
-         Eoo2qOgpy3jkv3+oiDMmmI6YDY0VV/bzANfBIoPmkFyOUT+w0TJbUQz3Qg2rjogmhFQd
-         KE41DKjpqTfz5SuxSV6AONwLyTt1+L3ZYehohZdJZlV2A/ErxTMDkckziGHYRyR4Tfe6
-         wgVAPutFO/vErDiymRmNAD4fU/jm+mHNIeZdNsNwvlqMca1Ux7Nv42ta2c9OJWY+b+nU
-         lqBwFuFtDtdAYg5boERpn2r/dBWeGHGtEYMmlfX1bXAGdg0n6nayJbLqwx2P5Z0ptVgB
-         dGEA==
-X-Gm-Message-State: APjAAAUcCQMx87le8uZfefbyF+8BKIaql0Ja590HLR1NPB9pdD4POkMR
-        qkzZzjnuJNdzycIuJyekxruv+WqU
-X-Google-Smtp-Source: APXvYqwk+TvBib/ARH05rzylFT0CcwN0b5rW/UeVrjgST/fD4Hn45Ia/UxXDOz4CLpn9Rqlnwb2VZA==
-X-Received: by 2002:a63:234c:: with SMTP id u12mr10783800pgm.384.1572354964074;
-        Tue, 29 Oct 2019 06:16:04 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 16sm10728832pfc.21.2019.10.29.06.16.03
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 29 Oct 2019 06:16:03 -0700 (PDT)
-Date:   Tue, 29 Oct 2019 06:16:02 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eugen.Hristev@microchip.com
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: sama5d4_wdt: add
- microchip,sam9x60-wdt compatible
-Message-ID: <20191029131602.GA8372@roeck-us.net>
-References: <1571648890-15140-1-git-send-email-eugen.hristev@microchip.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=KgGwGRvW59wo170wBmWQwSOb4wH65WjoenOVt8nMGdo=;
+        b=qDyMuWMVJXXXIrgz0KnXFwOhttSXH6mvk75FrzSuq9ENp63Vn8Uuhx102QsHJdS6Kq
+         in/6dGYELHrqk/EEVQPmGtHhBV0SthfDAaSIshta+QWjvBLdf4t7nkIEAwuJVIXAoZHN
+         C4v6tQueeUO7/zeW3srIykSXjfca95PDlcQabE0NQvb8QVOcVKV6YOf4dU52TJ7MyPq9
+         kzVjjmpVUNbp3YkKnEZpHSBveT6rbivwBIPM/F5ohPdQWoBmy+sK/CmoSDHXcz7tWdTJ
+         F1H9baveOZj72ncuc+fjetZSVFi0fZtx+ZRwM1x7vunXomIgIJ5X0x04tjb4+Mg47WP6
+         gRjg==
+X-Gm-Message-State: APjAAAU54JfKJ1m9knrVIlmakjsYR/N2pmHHF8wJ78QEaUEr1kJc0y4M
+        sD/g4Bfc056WYyIaGCrfjg==
+X-Google-Smtp-Source: APXvYqw4wN7kGouxDpyefGMQr86JcQUC3wwIXeuWO1EbgTtORg18+oSv2PhgVLjeG4DUS4g/gwDAjw==
+X-Received: by 2002:a05:6830:ca:: with SMTP id x10mr17158606oto.221.1572355137088;
+        Tue, 29 Oct 2019 06:18:57 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 88sm4797322otb.63.2019.10.29.06.18.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Oct 2019 06:18:56 -0700 (PDT)
+Date:   Tue, 29 Oct 2019 08:18:55 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [Patch 03/19] media: ti-vpe: cal: Add per platform data support
+Message-ID: <20191029131855.GA27597@bogus>
+References: <20191018153437.20614-1-bparrot@ti.com>
+ <20191018153437.20614-4-bparrot@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1571648890-15140-1-git-send-email-eugen.hristev@microchip.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20191018153437.20614-4-bparrot@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 21, 2019 at 09:14:05AM +0000, Eugen.Hristev@microchip.com wrote:
-> From: Eugen Hristev <eugen.hristev@microchip.com>
+On Fri, Oct 18, 2019 at 10:34:21AM -0500, Benoit Parrot wrote:
+> First this patch adds a method to access the CTRL_CORE_CAMERRX_CONTROL
+> register to use the syscon mechanism. For backward compatibility we also
+> handle using the existing camerrx_control "reg" entry if a syscon node
+> is not found.
 > 
-> The Atmel sama5d4_wdt needs to be compatible with microchip,sam9x60-wdt
-> The sama5d4_wdt driver is updated to work with both hardware blocks
-> (sama5d4/sama5d2 and sam9x60 based blocks)
+> In addition the register bit layout for the CTRL_CORE_CAMERRX_CONTROL
+> changes depending on the device. In order to support this we need to use
+> a register access scheme based on data configuration instead of using
+> static macro.
 > 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
+> In this case we make use of the regmap facility and create data set
+> based on the various device and phy available.
+> 
+> Signed-off-by: Benoit Parrot <bparrot@ti.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt b/Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt
-> index 4fec1e3..44727fc 100644
-> --- a/Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt
-> +++ b/Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt
-> @@ -1,7 +1,7 @@
->  * Atmel SAMA5D4 Watchdog Timer (WDT) Controller
+>  drivers/media/platform/ti-vpe/cal.c | 281 +++++++++++++++++++++-------
+>  1 file changed, 212 insertions(+), 69 deletions(-)
+
+
+> @@ -1816,6 +1911,18 @@ static int cal_probe(struct platform_device *pdev)
+>  	if (!dev)
+>  		return -ENOMEM;
 >  
->  Required properties:
-> -- compatible: "atmel,sama5d4-wdt"
-> +- compatible: "atmel,sama5d4-wdt" or "microchip,sam9x60-wdt"
->  - reg: base physical address and length of memory mapped region.
+> +	match = of_match_device(of_match_ptr(cal_of_match), &pdev->dev);
+
+Use of_device_get_match_data() instead.
+
+> +	if (!match)
+> +		return -ENODEV;
+> +
+> +	if (match->data) {
+> +		dev->data = (struct cal_data *)match->data;
+> +		dev->flags = dev->data->flags;
+> +	} else {
+> +		dev_err(&pdev->dev, "Could not get feature data based on compatible version\n");
+> +		return -ENODEV;
+> +	}
+> +
+>  	/* set pseudo v4l2 device name so we can use v4l2_printk */
+>  	strscpy(dev->v4l2_dev.name, CAL_MODULE_NAME,
+>  		sizeof(dev->v4l2_dev.name));
+> @@ -1823,6 +1930,43 @@ static int cal_probe(struct platform_device *pdev)
+>  	/* save pdev pointer */
+>  	dev->pdev = pdev;
 >  
->  Optional properties:
+> +	if (parent && of_property_read_bool(parent, "syscon-camerrx")) {
+> +		syscon_camerrx =
+> +			syscon_regmap_lookup_by_phandle(parent,
+> +							"syscon-camerrx");
+> +		if (IS_ERR(syscon_camerrx)) {
+> +			dev_err(&pdev->dev, "failed to get syscon-camerrx regmap\n");
+> +			return PTR_ERR(syscon_camerrx);
+> +		}
+> +
+> +		if (of_property_read_u32_index(parent, "syscon-camerrx", 1,
+> +					       &syscon_camerrx_offset)) {
+
+Kind of odd to read the property twice and using functions that don't 
+match the type. We have functions to retrieve phandle and args.
+
+> +			dev_err(&pdev->dev, "failed to get syscon-camerrx offset\n");
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		/*
+> +		 * Backward DTS compatibility.
+> +		 * If syscon entry is not present then check if the
+> +		 * camerrx_control resource is present.
+> +		 */
+> +		syscon_camerrx = cal_get_camerarx_regmap(dev);
+> +		if (IS_ERR(syscon_camerrx)) {
+> +			dev_err(&pdev->dev, "failed to get camerrx_control regmap\n");
+> +			return PTR_ERR(syscon_camerrx);
+> +		}
+> +		/* In this case the base already point to the direct
+> +		 * CM register so no need for an offset
+> +		 */
+> +		syscon_camerrx_offset = 0;
+> +	}
+> +
+> +	dev->syscon_camerrx = syscon_camerrx;
+> +	dev->syscon_camerrx_offset = syscon_camerrx_offset;
+> +	ret = cal_camerarx_regmap_init(dev);
+> +	if (ret)
+> +		return ret;
+> +
+>  	dev->res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>  						"cal_top");
+>  	dev->base = devm_ioremap_resource(&pdev->dev, dev->res);
+
