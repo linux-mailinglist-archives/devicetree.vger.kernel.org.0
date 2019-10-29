@@ -2,128 +2,393 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1CA8E8BF8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 16:40:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16071E8BDE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 16:35:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390173AbfJ2Pj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 11:39:59 -0400
-Received: from verein.lst.de ([213.95.11.211]:40768 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390217AbfJ2Pj6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Oct 2019 11:39:58 -0400
-Received: by verein.lst.de (Postfix, from userid 2005)
-        id CD4CE68D0D; Tue, 29 Oct 2019 16:39:56 +0100 (CET)
-In-Reply-To: <20191029153815.C631668C4E@verein.lst.de>
-References: <20191029153815.C631668C4E@verein.lst.de>
-From:   Torsten Duwe <duwe@lst.de>
-Date:   Tue, 29 Oct 2019 13:16:57 +0100
-Subject: [PATCH v4 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge on
- Teres-I
-To:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Message-Id: <20191029153956.CD4CE68D0D@verein.lst.de>
+        id S2390084AbfJ2PfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 11:35:06 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:34709 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390082AbfJ2PfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 11:35:05 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1iPTWL-0001qa-LN; Tue, 29 Oct 2019 16:34:57 +0100
+Message-ID: <f9ccc316d0974d162bee421baaa2c872632cdc5b.camel@pengutronix.de>
+Subject: Re: [PATCH v2 3/3] reset: npcm: add NPCM reset controller driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Tomer Maimon <tmaimon77@gmail.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, yuenn@google.com, venture@google.com,
+        benjaminfair@google.com, avifishman70@gmail.com, joel@jms.id.au
+Cc:     openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Date:   Tue, 29 Oct 2019 16:34:56 +0100
+In-Reply-To: <20191028155403.134126-4-tmaimon77@gmail.com>
+References: <20191028155403.134126-1-tmaimon77@gmail.com>
+         <20191028155403.134126-4-tmaimon77@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Teres-I has an anx6345 bridge connected to the RGB666 LCD output, and
-the I2C controlling signals are connected to I2C0 bus.
+On Mon, 2019-10-28 at 17:54 +0200, Tomer Maimon wrote:
+> Add Nuvoton NPCM BMC reset controller driver.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  drivers/reset/Kconfig      |   7 +
+>  drivers/reset/Makefile     |   1 +
+>  drivers/reset/reset-npcm.c | 275 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 283 insertions(+)
+>  create mode 100644 drivers/reset/reset-npcm.c
+> 
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 7b07281aa0ae..5dbfdf6d717a 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -89,6 +89,13 @@ config RESET_MESON_AUDIO_ARB
+>  	  This enables the reset driver for Audio Memory Arbiter of
+>  	  Amlogic's A113 based SoCs
+>  
+> +config RESET_NPCM
+> +	bool "NPCM BMC Reset Driver"
+> +	depends on ARCH_NPCM || COMPILE_TEST
+> +	help
+> +	  This enables the reset controller driver for Nuvoton NPCM 
+> +	  BMC SoCs.
+> +
 
-Enable it in the device tree, and enable the display engine, video mixer
-and tcon0 as well.
+Is there any reason to ever disable this driver when building ARCH_NPCM?
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-Signed-off-by: Torsten Duwe <duwe@suse.de>
----
- .../boot/dts/allwinner/sun50i-a64-teres-i.dts      | 45 ++++++++++++++++++++--
- 1 file changed, 41 insertions(+), 4 deletions(-)
+>  config RESET_OXNAS
+>  	bool
+>  
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index cf60ce526064..00767c03f5f2 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -14,6 +14,7 @@ obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
+>  obj-$(CONFIG_RESET_LPC18XX) += reset-lpc18xx.o
+>  obj-$(CONFIG_RESET_MESON) += reset-meson.o
+>  obj-$(CONFIG_RESET_MESON_AUDIO_ARB) += reset-meson-audio-arb.o
+> +obj-$(CONFIG_RESET_NPCM) += reset-npcm.o
+>  obj-$(CONFIG_RESET_OXNAS) += reset-oxnas.o
+>  obj-$(CONFIG_RESET_PISTACHIO) += reset-pistachio.o
+>  obj-$(CONFIG_RESET_QCOM_AOSS) += reset-qcom-aoss.o
+> diff --git a/drivers/reset/reset-npcm.c b/drivers/reset/reset-npcm.c
+> new file mode 100644
+> index 000000000000..ebb3071767e1
+> --- /dev/null
+> +++ b/drivers/reset/reset-npcm.c
+> @@ -0,0 +1,275 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2019 Nuvoton Technology corporation.
+> +
+> +#include <linux/clk.h>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-index 1069e7012c9c..970415106dcf 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-@@ -100,18 +100,41 @@
- 	status = "okay";
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
- &ehci1 {
- 	status = "okay";
- };
- 
- 
--/* The ANX6345 eDP-bridge is on i2c0. There is no linux (mainline)
-- * driver for this chip at the moment, the bootloader initializes it.
-- * However it can be accessed with the i2c-dev driver from user space.
-- */
- &i2c0 {
- 	clock-frequency = <100000>;
- 	status = "okay";
-+
-+	anx6345: anx6345@38 {
-+		compatible = "analogix,anx6345";
-+		reg = <0x38>;
-+		reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
-+		dvdd25-supply = <&reg_dldo2>;
-+		dvdd12-supply = <&reg_dldo3>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				anx6345_in: endpoint {
-+					remote-endpoint = <&tcon0_out_anx6345>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&mixer0 {
-+	status = "okay";
- };
- 
- &mmc0 {
-@@ -319,6 +342,20 @@
- 	status = "okay";
- };
- 
-+&tcon0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&lcd_rgb666_pins>;
-+
-+	status = "okay";
-+};
-+
-+&tcon0_out {
-+	tcon0_out_anx6345: endpoint@0 {
-+		reg = <0>;
-+		remote-endpoint = <&anx6345_in>;
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pb_pins>;
--- 
-2.16.4
+Please remove unused header includes.
+
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/init.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reboot.h>
+> +#include <linux/reset-controller.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+> +#include <linux/of_address.h>
+> +
+> +/* NPCM7xx GCR registers */
+> +#define NPCM_MDLR_OFFSET	0x7C
+> +#define NPCM_MDLR_USBD0		BIT(9)
+> +#define NPCM_MDLR_USBD1		BIT(8)
+> +#define NPCM_MDLR_USBD2_4	BIT(21)
+> +#define NPCM_MDLR_USBD5_9	BIT(22)
+> +
+> +#define NPCM_USB1PHYCTL_OFFSET	0x140
+> +#define NPCM_USB2PHYCTL_OFFSET	0x144
+> +#define NPCM_USBXPHYCTL_RS	BIT(28)
+> +
+> +/* NPCM7xx Reset registers */
+> +#define NPCM_SWRSTR		0x14
+> +#define NPCM_SWRST		BIT(2)
+> +
+> +#define NPCM_IPSRST1		0x20
+> +#define NPCM_IPSRST1_USBD1	BIT(5)
+> +#define NPCM_IPSRST1_USBD2	BIT(8)
+> +#define NPCM_IPSRST1_USBD3	BIT(25)
+> +#define NPCM_IPSRST1_USBD4	BIT(22)
+> +#define NPCM_IPSRST1_USBD5	BIT(23)
+> +#define NPCM_IPSRST1_USBD6	BIT(24)
+> +
+> +#define NPCM_IPSRST2		0x24
+> +#define NPCM_IPSRST2_USB_HOST	BIT(26)
+> +
+> +#define NPCM_IPSRST3		0x34
+> +#define NPCM_IPSRST3_USBD0	BIT(4)
+> +#define NPCM_IPSRST3_USBD7	BIT(5)
+> +#define NPCM_IPSRST3_USBD8	BIT(6)
+> +#define NPCM_IPSRST3_USBD9	BIT(7)
+> +#define NPCM_IPSRST3_USBPHY1	BIT(24)
+> +#define NPCM_IPSRST3_USBPHY2	BIT(25)
+> +
+> +#define NPCM_RC_RESETS_PER_REG	32
+> +
+> +struct npcm_rc_data {
+> +	struct reset_controller_dev rcdev;
+> +	struct notifier_block restart_nb;
+> +	u32 sw_reset_number;
+> +	void __iomem *base;
+> +	spinlock_t lock;
+> +};
+> +
+> +#define to_rc_data(p) container_of(p, struct npcm_rc_data, rcdev)
+> +
+> +static int npcm_rc_restart(struct notifier_block *nb, unsigned long mode,
+> +			   void *cmd)
+> +{
+> +	struct npcm_rc_data *rc = container_of(nb, struct npcm_rc_data,
+> +					       restart_nb);
+> +
+> +	writel(NPCM_SWRST << rc->sw_reset_number, rc->base + NPCM_SWRSTR);
+> +	mdelay(1000);
+> +
+> +	pr_emerg("%s: unable to restart system\n", __func__);
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static int npcm_rc_setclear_reset(struct reset_controller_dev *rcdev,
+> +				  unsigned long id, bool set)
+> +{
+> +	struct npcm_rc_data *rc = to_rc_data(rcdev);
+> +	u32 ctrl_offset = NPCM_IPSRST1;
+> +	unsigned long flags;
+> +	u32 stat, rst_bit;
+> +
+> +	ctrl_offset += (id / NPCM_RC_RESETS_PER_REG) * sizeof(u32);
+> +	rst_bit = 1 << (id % NPCM_RC_RESETS_PER_REG);
+> +
+> +	spin_lock_irqsave(&rc->lock, flags);
+> +	stat = readl(rc->base + ctrl_offset);
+> +	if (set)
+> +		writel(stat | rst_bit, rc->base + ctrl_offset);
+> +	else
+> +		writel(stat & ~rst_bit, rc->base + ctrl_offset);
+> +	spin_unlock_irqrestore(&rc->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_rc_assert(struct reset_controller_dev *rcdev, unsigned long id)
+> +{
+> +	return npcm_rc_setclear_reset(rcdev, id, true);
+> +}
+> +
+> +static int npcm_rc_deassert(struct reset_controller_dev *rcdev,
+> +			    unsigned long id)
+> +{
+> +	return npcm_rc_setclear_reset(rcdev, id, false);
+> +}
+> +
+> +static int npcm_rc_status(struct reset_controller_dev *rcdev,
+> +			  unsigned long id)
+> +{
+> +	struct npcm_rc_data *rc = to_rc_data(rcdev);
+> +	u32 bit, ctrl_offset = NPCM_IPSRST1;
+> +
+> +	ctrl_offset += (id / NPCM_RC_RESETS_PER_REG) * sizeof(u32);
+> +	bit = 1 << (id % NPCM_RC_RESETS_PER_REG);
+> +
+> +	return (readl(rc->base + ctrl_offset) & bit);
+> +}
+> +
+> +/*
+> + *  The following procedure should be observed in USB PHY, USB device and
+> + *  USB host initialization at BMC boot
+> + */
+> +static int npcm_usb_reset(struct platform_device *pdev, struct npcm_rc_data *rc)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	u32 mdlr, iprst1, iprst2, iprst3;
+> +	struct regmap *gcr_regmap;
+> +	u32 ipsrst1_bits = 0;
+> +	u32 ipsrst2_bits = NPCM_IPSRST2_USB_HOST;
+> +	u32 ipsrst3_bits = 0;
+> +
+> +	if (of_device_is_compatible(np, "nuvoton,npcm750-reset")) {
+> +		gcr_regmap = syscon_regmap_lookup_by_compatible("nuvoton,npcm750-gcr");
+> +		if (IS_ERR(gcr_regmap)) {
+> +			dev_err(&pdev->dev, "Failed to find nuvoton,npcm750-gcr\n");
+> +			return PTR_ERR(gcr_regmap);
+> +		}
+> +	}
+> +	if (!gcr_regmap)
+> +		return -ENXIO;
+> +
+> +	/* checking which USB device is enabled */
+> +	regmap_read(gcr_regmap, NPCM_MDLR_OFFSET, &mdlr);
+> +	if (!(mdlr & NPCM_MDLR_USBD0))
+> +		ipsrst3_bits |= NPCM_IPSRST3_USBD0;
+> +	if (!(mdlr & NPCM_MDLR_USBD1))
+> +		ipsrst1_bits |= NPCM_IPSRST1_USBD1;
+> +	if (!(mdlr & NPCM_MDLR_USBD2_4))
+> +		ipsrst1_bits |= (NPCM_IPSRST1_USBD2 |
+> +				 NPCM_IPSRST1_USBD3 |
+> +				 NPCM_IPSRST1_USBD4);
+> +	if (!(mdlr & NPCM_MDLR_USBD0)) {
+> +		ipsrst1_bits |= (NPCM_IPSRST1_USBD5 |
+> +				 NPCM_IPSRST1_USBD6);
+> +		ipsrst3_bits |= (NPCM_IPSRST3_USBD7 |
+> +				 NPCM_IPSRST3_USBD8 |
+> +				 NPCM_IPSRST3_USBD9);
+> +	}
+> +
+> +	/* assert reset USB PHY and USB devices */
+> +	iprst1 = readl(rc->base + NPCM_IPSRST1);
+> +	iprst2 = readl(rc->base + NPCM_IPSRST2);
+> +	iprst3 = readl(rc->base + NPCM_IPSRST3);
+> +
+> +	iprst1 |= ipsrst1_bits;
+> +	iprst2 |= ipsrst2_bits;
+> +	iprst3 |= (ipsrst3_bits | NPCM_IPSRST3_USBPHY1 |
+> +		   NPCM_IPSRST3_USBPHY2);
+> +
+> +	writel(iprst1, rc->base + NPCM_IPSRST1);
+> +	writel(iprst2, rc->base + NPCM_IPSRST2);
+> +	writel(iprst3, rc->base + NPCM_IPSRST3);
+> +
+> +	/* clear USB PHY RS bit */
+> +	regmap_update_bits(gcr_regmap, NPCM_USB1PHYCTL_OFFSET,
+> +			   NPCM_USBXPHYCTL_RS, 0);
+> +	regmap_update_bits(gcr_regmap, NPCM_USB2PHYCTL_OFFSET,
+> +			   NPCM_USBXPHYCTL_RS, 0);
+> +
+> +	/* deassert reset USB PHY */
+> +	iprst3 &= ~(NPCM_IPSRST3_USBPHY1 | NPCM_IPSRST3_USBPHY2);
+> +	writel(iprst3, rc->base + NPCM_IPSRST3);
+> +
+> +	udelay(50);
+> +
+> +	/* set USB PHY RS bit */
+> +	regmap_update_bits(gcr_regmap, NPCM_USB1PHYCTL_OFFSET,
+> +			   NPCM_USBXPHYCTL_RS, NPCM_USBXPHYCTL_RS);
+> +	regmap_update_bits(gcr_regmap, NPCM_USB2PHYCTL_OFFSET,
+> +			   NPCM_USBXPHYCTL_RS, NPCM_USBXPHYCTL_RS);
+> +
+> +	/* deassert reset USB devices*/
+> +	iprst1 &= ~ipsrst1_bits;
+> +	iprst2 &= ~ipsrst2_bits;
+> +	iprst3 &= ~ipsrst3_bits;
+> +
+> +	writel(iprst1, rc->base + NPCM_IPSRST1);
+> +	writel(iprst2, rc->base + NPCM_IPSRST2);
+> +	writel(iprst3, rc->base + NPCM_IPSRST3);
+> +
+> +	return 0;
+> +}
+
+Is there no better place for this, such as USB glue code?
+
+> +static const struct reset_control_ops npcm_rc_ops = {
+> +	.assert		= npcm_rc_assert,
+> +	.deassert	= npcm_rc_deassert,
+> +	.status		= npcm_rc_status,
+> +};
+> +
+> +static int npcm_rc_probe(struct platform_device *pdev)
+> +{
+> +	struct npcm_rc_data *rc;
+> +	struct resource res;
+> +	int ret;
+> +
+> +	rc = devm_kzalloc(&pdev->dev, sizeof(*rc), GFP_KERNEL);
+> +	if (!rc)
+> +		return -ENOMEM;
+> +
+> +	of_address_to_resource(pdev->dev.of_node, 0, &res);
+> +	rc->base = devm_ioremap_resource(&pdev->dev, &res);
+
+Can't you just use
+
+	rc->base = devm_platform_ioremap_resource(pdev, 0);
+
+here?
+
+> +	if (IS_ERR(rc->base))
+> +		return PTR_ERR(rc->base);
+> +
+> +	spin_lock_init(&rc->lock);
+> +
+> +	rc->rcdev.owner = THIS_MODULE;
+> +	rc->rcdev.nr_resets = resource_size(&res) / 4 * BITS_PER_LONG;
+
+That doesn't seem right. With the ctrl_offset = NPCM_IPSRST1 in
+npcm_rc_setclear_reset that would allow access beyond the configured
+register range.
+
+> +	rc->rcdev.ops = &npcm_rc_ops;
+> +	rc->rcdev.of_node = pdev->dev.of_node;
+> +
+> +	platform_set_drvdata(pdev, rc);
+> +
+> +	ret = reset_controller_register(&rc->rcdev);
+
+	ret = devm_reset_controller_register(&pdev->dev, &rc->rcdev);
+
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "unable to register device\n");
+> +		return ret;
+> +	}
+> +
+> +	if (npcm_usb_reset(pdev, rc))
+> +		dev_warn(&pdev->dev, "NPCM USB reset failed, can cause issues with UDC and USB host\n");
+> +
+> +	if (!of_property_read_u32(pdev->dev.of_node, "nuvoton,sw-reset-number",
+> +				  &rc->sw_reset_number)) {
+> +		if (rc->sw_reset_number && rc->sw_reset_number < 5) {
+> +			rc->restart_nb.priority = 192,
+> +			rc->restart_nb.notifier_call = npcm_rc_restart,
+> +			ret = register_restart_handler(&rc->restart_nb);
+> +			if (ret)
+> +				dev_warn(&pdev->dev, "failed to register restart handler\n");
+> +		}
+> +	}
+> +
+> +	pr_info("NPCM RESET driver probed\n");
+
+It think this is a bit verbose.
+
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id npcm_rc_match[] = {
+> +	{ .compatible = "nuvoton,npcm750-reset" },
+> +	{ }
+> +};
+> +
+> +static struct platform_driver npcm_rc_driver = {
+> +	.probe	= npcm_rc_probe,
+> +	.driver	= {
+> +		.name			= "npcm-reset",
+> +		.of_match_table		= npcm_rc_match,
+> +		.suppress_bind_attrs	= true,
+> +	},
+> +};
+> +builtin_platform_driver(npcm_rc_driver);
+
+regards
+Philipp
 
