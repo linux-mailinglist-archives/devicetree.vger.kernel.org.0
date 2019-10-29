@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8C1E8DD3
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 18:14:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 155AFE8DDC
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 18:16:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390632AbfJ2ROj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 13:14:39 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:34022 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727692AbfJ2ROj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 13:14:39 -0400
-Received: by mail-oi1-f195.google.com with SMTP id l202so1597814oig.1;
-        Tue, 29 Oct 2019 10:14:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7JUjuo8MKJ48oDKK5LQl0/BNKkMnIjG176UmZKTITU4=;
-        b=D1aGMnn8uwAKMWQ4ek6gD5GsR328gnWmakOfXugM6nDc4QOSrzskWON5TnQkWkVceq
-         GPQsFvqMuOx/KmAv8jXK56Hz0nRlPXJD9jK/v/9j/Ko1+qga/q3XTZ1CGkDDSQv+Jxwu
-         PwkfDDcQoawXnwiqRtpFuqfFDa5D2wDDvtkdcEquW4Gu/ORA1gzMzylCnCdG59sl25tM
-         PGSyQFS+KqXledh95YPt2HANcd9eqn+00ldqL4KIVI63wapF9k8lmd6ulmlywmVeUZA4
-         5TJLwrvBDPRoNXE0DbIcRaEXPYsC4kNE95o009X/cJALgEEL3vOnTXoJ5/o47HgoBuII
-         u2GQ==
-X-Gm-Message-State: APjAAAW/ODKkDcSgyim126szd7/pDtR1G6gy0J9cw3h4EwSDh3J0DhQc
-        KPifmUUAxrU8bEG/HRguLA==
-X-Google-Smtp-Source: APXvYqyTyoSyehPOMTSVm7bg+g9+/Xdo3u7RCq/ZLt+3NQ0dc4Rd03BcbXmARRlX/bknzPz1daJ00w==
-X-Received: by 2002:a54:460f:: with SMTP id p15mr4665498oip.160.1572369277979;
-        Tue, 29 Oct 2019 10:14:37 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f5sm1408688otf.23.2019.10.29.10.14.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2019 10:14:36 -0700 (PDT)
-Date:   Tue, 29 Oct 2019 12:14:35 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Cc:     vkoul@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        dan.j.williams@intel.com, michal.simek@xilinx.com,
-        anirudha.sarangi@xilinx.com, nick.graumann@gmail.com,
-        andrea.merello@gmail.com, appana.durga.rao@xilinx.com,
-        mcgrof@kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Subject: Re: [PATCH -next 3/6] dt-bindings: dmaengine: xilinx_dma: Add
- binding for Xilinx MCDMA IP
-Message-ID: <20191029171435.GA1797@bogus>
-References: <1571763622-29281-1-git-send-email-radhey.shyam.pandey@xilinx.com>
- <1571763622-29281-4-git-send-email-radhey.shyam.pandey@xilinx.com>
+        id S2390793AbfJ2RPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 13:15:47 -0400
+Received: from smtprelay0126.hostedemail.com ([216.40.44.126]:39463 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727692AbfJ2RPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Oct 2019 13:15:46 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay06.hostedemail.com (Postfix) with ESMTP id D0DAC18224D66;
+        Tue, 29 Oct 2019 17:15:44 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:800:968:973:988:989:1260:1277:1311:1313:1314:1345:1359:1381:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2393:2559:2562:2828:2904:3138:3139:3140:3141:3142:3352:3622:3865:3867:3871:3872:3873:3874:4250:4321:5007:6678:6737:7875:7903:10004:10400:11232:11658:11914:12043:12048:12297:12438:12740:12760:12895:13019:13069:13311:13357:13439:14181:14659:14721:21080:21365:21451:21627:30045:30054:30091,0,RBL:47.151.135.224:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:27,LUA_SUMMARY:none
+X-HE-Tag: sheet91_31cdff6a4690a
+X-Filterd-Recvd-Size: 2120
+Received: from XPS-9350.home (unknown [47.151.135.224])
+        (Authenticated sender: joe@perches.com)
+        by omf10.hostedemail.com (Postfix) with ESMTPA;
+        Tue, 29 Oct 2019 17:15:42 +0000 (UTC)
+Message-ID: <f668de19e156bd7a1bf599d9ce1f9d4f4fca4095.camel@perches.com>
+Subject: Re: [PATCH 2/4] thermal: stm32: fix IRQ flood on low threshold
+From:   Joe Perches <joe@perches.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Pascal Paillet <p.paillet@st.com>, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@st.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        rui.zhang@intel.com, edubezval@gmail.com,
+        amit.kucheria@verdurent.com, david.hernandezsanchez@st.com,
+        wsa+renesas@sang-engineering.com,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Andy Whitcroft <apw@canonical.com>
+Date:   Tue, 29 Oct 2019 10:15:35 -0700
+In-Reply-To: <8952e975-3bad-4b7d-49ff-b74af942008c@linaro.org>
+References: <20191029164537.1561-1-p.paillet@st.com>
+         <20191029164537.1561-3-p.paillet@st.com>
+         <8952e975-3bad-4b7d-49ff-b74af942008c@linaro.org>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1571763622-29281-4-git-send-email-radhey.shyam.pandey@xilinx.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Oct 2019 22:30:19 +0530, Radhey Shyam Pandey wrote:
-> Add devicetree binding for Xilinx AXI Multichannel Direct Memory Access
-> (AXI MCDMA) IP. The AXI MCDMA provides high-bandwidth direct memory
-> access between memory and AXI4-Stream target peripherals. The AXI MCDMA
-> core provides a scatter-gather interface with multiple channel support
-> with independent configuration.
+On Tue, 2019-10-29 at 18:11 +0100, Daniel Lezcano wrote:
+> On 29/10/2019 17:45, Pascal Paillet wrote:
+> > Fix IRQ flood on low threshold by too ways:
 > 
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-> ---
-> Keep compatible string one per line. Suggested by Rob.
-> Reuse the existing xlnx,axi-dma-* channel names. Suggested by Rob.
-> ---
->  .../devicetree/bindings/dma/xilinx/xilinx_dma.txt         | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
+> Can you state the issue first ?
 > 
+> > - improve temperature reading resolution,
+> > - add an hysteresis to the low threshold: on low threshold interrupt,
+> > it is not possible to get the temperature value that has fired the
+> > interrupt. The time to acquire a new value is enough for the CPU to
+> > become hotter than the current low threshold.
+[]
+> > Signed-off-by: Pascal Paillet <p.paillet@st.com>
+> > Change-Id: I3b63b8aab38fd651a165c4e69a2d090b3c6f5db3
+> 
+> Please remove the Change-Id tag.
+> 
+> Joe, Andy? checkpatch does not see the Change-Id, is it the expected
+> behavior?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yes.  It's after a sign-off so checkpatch doesn't care.
+
+
+
