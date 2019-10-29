@@ -2,88 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD850E8CEF
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 17:42:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1E4CE8D2A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 17:46:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390365AbfJ2Qmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 12:42:51 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:42320 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390347AbfJ2Qmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 12:42:51 -0400
-Received: by mail-pl1-f196.google.com with SMTP id c16so7903138plz.9
-        for <devicetree@vger.kernel.org>; Tue, 29 Oct 2019 09:42:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:from:subject:to:cc:user-agent:date;
-        bh=p5JENRi61p6FfIKLToCEWBnTnw72ln8j+S6FSdAy8fk=;
-        b=J0+nxacpl6SmKgNn1IsGF0PdMApgkS2BdZFpnIiAWq+gfqIYAi47n/cZ6GR8EpgYrF
-         XvJ+I7JP/c0xMTnlUh7c5nkFvpSXkhL+ovXsR8WngY8PHrofQWRe46lItk/fbSGL/uqP
-         tZHoA83mEwyXauv+RY7762k20LhlasI9t4yow=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:from:subject:to:cc
-         :user-agent:date;
-        bh=p5JENRi61p6FfIKLToCEWBnTnw72ln8j+S6FSdAy8fk=;
-        b=Q0SLXbfhJrFStlyKhG7RwIl/ytpG9oag0h7ENvzB9X+kFDFAgIUwDbPV314eyr83n7
-         WtK8IoONY4b+lJeFIbUTezyUe0kWAUx+ZUc6C5JmtQewTnEEEKIcUEOXi2KA+1sSqsuF
-         FhTK3nsBANiMVrydTa+A6NbutbpQp5pi5n5/ksJhW115Lg8WAeaWmdBh79RrZdxWhuEq
-         0FRv6tBlCay5pXlWIkP/YEOWse1+goAlsvBoAH64e7meQJYaZza6Y82LpRrfmJ0/OjxY
-         YDODiIbMD2M3PgYv1MEwJWZjPURXCuebn5YhLAjdMiyhtmP+MwqKSOrI+2gK/p3ZoH2R
-         kf6Q==
-X-Gm-Message-State: APjAAAVnpOJdvE+y4WKomPtnL3I8+pjTYPEGPovWbbai2MhsolrDXyA+
-        lYeUw2nl3660zr/A1swJvja0WnH+hMh9YkFj
-X-Google-Smtp-Source: APXvYqzkCLD5iZZUvrSjFxekz3qpSbYQw3UVBjzRar26W9EodRAAr/ewVcoqj20yXUk1E9l1xrS2lA==
-X-Received: by 2002:a17:902:8ec7:: with SMTP id x7mr5295755plo.88.1572367370834;
-        Tue, 29 Oct 2019 09:42:50 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id 65sm13037391pfv.50.2019.10.29.09.42.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Oct 2019 09:42:49 -0700 (PDT)
-Message-ID: <5db86c09.1c69fb81.3981b.b748@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        id S2390556AbfJ2QqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 12:46:09 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:50512 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727763AbfJ2QqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Oct 2019 12:46:08 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9TGguol026450;
+        Tue, 29 Oct 2019 17:45:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=BgTIc7CMxAbrqUUG2tERc+pTVwcpfz1nuVzhlxORpJk=;
+ b=j2JMjVGL5xSftDsXy0cxeHOnlpIfK5me+nfi5ql/seksyPlQaMJ2pVyEobkoakyg3JQK
+ cdGUlaSMkN+yaDQZhN8uGmy3GxRRc3OD/bjzXlf/r49DmyBObNgUD7siP0E2gKGGGm/m
+ OYdXwBDxIpXqUSKRx4hLOZlWDc2SDVwSFmmrJR588bohyZBcfInVNZPSrDLv5iGABpLX
+ hjNzdTS4DbNxt36Rot1E92vqdjkQCinacG9EefGGeetFlEGr+ebHEM5c2ZNY0gfW+/Jg
+ ZCp8cm39FzH8HOx6AGAMYXRsH1Jy6xaH1F5526jB9vusx21AyNTErtedXE31g1EX4ARZ ZA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2vvbm0gwd3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Oct 2019 17:45:44 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4192110002A;
+        Tue, 29 Oct 2019 17:45:43 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 227462A748A;
+        Tue, 29 Oct 2019 17:45:43 +0100 (CET)
+Received: from localhost (10.75.127.49) by SFHDAG6NODE2.st.com (10.75.127.17)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 29 Oct 2019 17:45:42
+ +0100
+From:   Pascal Paillet <p.paillet@st.com>
+To:     <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <rui.zhang@intel.com>, <edubezval@gmail.com>,
+        <daniel.lezcano@linaro.org>, <amit.kucheria@verdurent.com>,
+        <david.hernandezsanchez@st.com>,
+        <wsa+renesas@sang-engineering.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC:     <p.paillet@st.com>
+Subject: [PATCH 0/4] thermal: stm32: driver improvements
+Date:   Tue, 29 Oct 2019 17:45:33 +0100
+Message-ID: <20191029164537.1561-1-p.paillet@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20191023090219.15603-4-rnayak@codeaurora.org>
-References: <20191023090219.15603-1-rnayak@codeaurora.org> <20191023090219.15603-4-rnayak@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [PATCH v3 03/11] dt-bindings: arm-smmu: update binding for qcom sc7180 SoC
-To:     Rajendra Nayak <rnayak@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Mark Rutland <mark.rutland@arm.com>
-User-Agent: alot/0.8.1
-Date:   Tue, 29 Oct 2019 09:42:49 -0700
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG7NODE2.st.com (10.75.127.20) To SFHDAG6NODE2.st.com
+ (10.75.127.17)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-29_05:2019-10-28,2019-10-29 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rajendra Nayak (2019-10-23 02:02:11)
-> Add the soc specific compatible for sc7180 smmu-500
->=20
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.txt | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.txt b/Docum=
-entation/devicetree/bindings/iommu/arm,smmu.txt
-> index 3133f3ba7567..347869807cf2 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-> @@ -30,6 +30,7 @@ conditions.
->                    Qcom SoCs implementing "arm,mmu-500" must also include,
->                    as below, SoC-specific compatibles:
->                    "qcom,sdm845-smmu-500", "arm,mmu-500"
-> +                  "qcom,sc7180-smmu-500", "arm,mmu-500"
+The goal of this patchset is to improve stm32 thermal driver:
+* add support for multiple trip points. Currently the driver supports only
+2 trip points.
+* rework interrupt management to avoid receiving hundreds of
+interrupts when the temperature is close to a low threshold.
+* fix a mistake regarding the role of an engineering value.
+* suppress passive trip point on stm32mp157c because it is useless.
 
-Please sort.
+Pascal Paillet (4):
+  thermal: stm32: implement set_trips callback
+  thermal: stm32: fix IRQ flood on low threshold
+  thermal: stm32: fix engineering calibration value
+  ARM: dts: stm32: remove thermal passive trip point on stm32mp157c
+
+ arch/arm/boot/dts/stm32mp157c.dtsi |   6 -
+ drivers/thermal/st/stm_thermal.c   | 441 +++++++++--------------------
+ 2 files changed, 138 insertions(+), 309 deletions(-)
+
+-- 
+2.17.1
 
