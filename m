@@ -2,276 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35724E8346
-	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 09:34:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4346AE8380
+	for <lists+devicetree@lfdr.de>; Tue, 29 Oct 2019 09:53:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729255AbfJ2IeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Oct 2019 04:34:10 -0400
-Received: from mga03.intel.com ([134.134.136.65]:35656 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728892AbfJ2IeK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Oct 2019 04:34:10 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 Oct 2019 01:34:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,243,1569308400"; 
-   d="scan'208";a="202775353"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga003.jf.intel.com with ESMTP; 29 Oct 2019 01:34:09 -0700
-Received: from [10.226.39.46] (ekotax-MOBL.gar.corp.intel.com [10.226.39.46])
-        by linux.intel.com (Postfix) with ESMTP id 4518A58049B;
-        Tue, 29 Oct 2019 01:34:04 -0700 (PDT)
-Subject: Re: [PATCH v4 1/3] dt-bindings: PCI: intel: Add YAML schemas for the
- PCIe RC controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lorenzo.pieralisi@arm.com, andrew.murray@arm.com,
-        martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
-        hch@infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
-References: <cover.1571638827.git.eswara.kota@linux.intel.com>
- <710257e49c4b3d07fa98b3e5a829b807f74b54d7.1571638827.git.eswara.kota@linux.intel.com>
- <20191025165352.GA30602@bogus>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <72d46086-0918-a5af-d798-7488b55a8e07@linux.intel.com>
-Date:   Tue, 29 Oct 2019 16:34:03 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727967AbfJ2Ixg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Oct 2019 04:53:36 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59186 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726377AbfJ2Ixf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Oct 2019 04:53:35 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9T8rMdP075590;
+        Tue, 29 Oct 2019 03:53:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1572339202;
+        bh=GENQOkaFvVatZv1GMFR3zbGCbH5x94AbSDwlQyYRy4k=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ryNYsmDLJEX96Q+mU0OivEDViSqNSb3nMrcJpZ1CwikrLprdf3c1ZFwFLFEGyr7Z4
+         bjY4DGY2VwoPy0uOWRd4JCMwAgwubYxlHYWPTXUntK8Ky3GoXdkre/Nmar9eZ/SrHJ
+         sZVM/v/z2jsQ1peboThHmeA9SGFCGu6tzGoGz8ds=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9T8rMG2086926
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 29 Oct 2019 03:53:22 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 29
+ Oct 2019 03:53:10 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 29 Oct 2019 03:53:10 -0500
+Received: from [172.24.190.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9T8rIvA090581;
+        Tue, 29 Oct 2019 03:53:18 -0500
+Subject: Re: [PATCH v3 02/14] soc: ti: k3: add navss ringacc driver
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, <vkoul@kernel.org>,
+        <robh+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>
+CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <grygorii.strashko@ti.com>, <t-kristo@ti.com>, <tony@atomide.com>,
+        <j-keerthy@ti.com>
+References: <20191001061704.2399-1-peter.ujfalusi@ti.com>
+ <20191001061704.2399-3-peter.ujfalusi@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <b5f47303-b6d2-190b-d38c-d3557a93b111@ti.com>
+Date:   Tue, 29 Oct 2019 14:22:14 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20191025165352.GA30602@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20191001061704.2399-3-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Grygorii,
 
-On 10/26/2019 12:53 AM, Rob Herring wrote:
-> On Mon, Oct 21, 2019 at 02:39:18PM +0800, Dilip Kota wrote:
->> Add YAML shcemas for PCIe RC controller on Intel Gateway SoCs
->> which is Synopsys DesignWare based PCIe core.
->>
->> changes on v4:
->> 	Add "snps,dw-pcie" compatible.
->> 	Rename phy-names property value to pcie.
->> 	And maximum and minimum values to num-lanes.
->> 	Add ref for reset-assert-ms entry and update the
->> 	 description for easy understanding.
->> 	Remove pcie core interrupt entry.
->>
->> changes on v3:
->>          Add the appropriate License-Identifier
->>          Rename intel,rst-interval to 'reset-assert-us'
->>          Add additionalProperties: false
->>          Rename phy-names to 'pciephy'
->>          Remove the dtsi node split of SoC and board in the example
->>          Add #interrupt-cells = <1>; or else interrupt parsing will fail
->>          Name yaml file with compatible name
->>
->> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
->> ---
->>   .../devicetree/bindings/pci/intel-gw-pcie.yaml     | 135 +++++++++++++++++++++
->>   1 file changed, 135 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
-> Fails to validate:
->
-> Error: Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dts:38.27-28 syntax error
-> FATAL ERROR: Unable to parse input tree
-> scripts/Makefile.lib:321: recipe for target 'Documentation/devicetree/bindings/pci/intel-gw-pcie.example.dt.yaml' failed
->
-> Please run 'make -k dt_binding_check' (-k because there are some
-> unrelated failures).
->
->> diff --git a/Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml b/Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
->> new file mode 100644
->> index 000000000000..49dd87ec1e3d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
->> @@ -0,0 +1,135 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pci/intel-gw-pcie.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: PCIe RC controller on Intel Gateway SoCs
->> +
->> +maintainers:
->> +  - Dilip Kota <eswara.kota@linux.intel.com>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: intel,lgm-pcie
->> +      - const: snps,dw-pcie
->> +
->> +  device_type:
->> +    const: pci
->> +
->> +  "#address-cells":
->> +    const: 3
->> +
->> +  "#size-cells":
->> +    const: 2
->> +
->> +  reg:
->> +    items:
->> +      - description: Controller control and status registers.
->> +      - description: PCIe configuration registers.
->> +      - description: Controller application registers.
->> +
->> +  reg-names:
->> +    items:
->> +      - const: dbi
->> +      - const: config
->> +      - const: app
->> +
->> +  ranges:
->> +    description: Ranges for the PCI memory and I/O regions.
-> How many entries do you expect? Add a 'maxItems' to define.
-Agree will add it.
->
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    description: PCIe registers interface clock.
-> How many clocks?
-One. I will mention maxItems: 1
->
->> +
->> +  phys:
->> +    maxItems: 1
->> +
->> +  phy-names:
->> +    const: pcie
->> +
->> +  reset-gpios:
->> +    maxItems: 1
->> +
->> +  num-lanes:
->> +    minimum: 1
->> +    maximum: 2
->> +    description: Number of lanes to use for this port.
->> +
->> +  linux,pci-domain:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: PCI domain ID.
-> Just a value of 'true' is fine here.
-Ok.
->
->> +
->> +  '#interrupt-cells':
->> +    const: 1
->> +
->> +  interrupt-map-mask:
->> +    description: Standard PCI IRQ mapping properties.
->> +
->> +  interrupt-map:
->> +    description: Standard PCI IRQ mapping properties.
->> +
->> +  max-link-speed:
->> +    description: Specify PCI Gen for link capability.
-> Allowed values? Default?
-Sure, will add it.
->
->> +
->> +  bus-range:
->> +    description: Range of bus numbers associated with this controller.
->> +
->> +  reset-assert-ms:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
-> Don't need a type for standard units.
-Ok.
->
->> +    description: |
->> +      Delay after asserting reset to the PCIe device.
->> +      Some devices need an interval upto 500ms. By default it is 100ms.
-> Express as a schema:
->
-> maximum: 500
-> default: 100
-Sure i will update it.
->
->> +
->> +required:
->> +  - compatible
->> +  - device_type
->> +  - reg
->> +  - reg-names
->> +  - ranges
->> +  - resets
->> +  - clocks
->> +  - phys
->> +  - phy-names
->> +  - reset-gpios
->> +  - num-lanes
-> Shouldn't be required. It should have a default.
-Agree, will fix it.
->
->> +  - linux,pci-domain
-> Is this really required? AIUI, domains are optional and only used if
-> you have more than one host.
-Yes, not required. I will update,
->
->> +  - interrupt-map
->> +  - interrupt-map-mask
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    pcie10:pcie@d0e00000 {
-> space         ^
-Agree, i will fix it.
->
->> +      compatible = "intel,lgm-pcie", "snps,dw-pcie";
->> +      device_type = "pci";
->> +      #address-cells = <3>;
->> +      #size-cells = <2>;
->> +      reg = <0xd0e00000 0x1000>,
->> +            <0xd2000000 0x800000>,
->> +            <0xd0a41000 0x1000>;
->> +      reg-names = "dbi", "config", "app";
->> +      linux,pci-domain = <0>;
->> +      max-link-speed = <4>;
->> +      bus-range = <0x00 0x08>;
->> +      interrupt-parent = <&ioapic1>;
->> +      #interrupt-cells = <1>;
->> +      interrupt-map-mask = <0 0 0 0x7>;
->> +      interrupt-map = <0 0 0 1 &ioapic1 27 1>,
->> +                      <0 0 0 2 &ioapic1 28 1>,
->> +                      <0 0 0 3 &ioapic1 29 1>,
->> +                      <0 0 0 4 &ioapic1 30 1>;
->> +      ranges = <0x02000000 0 0xd4000000 0xd4000000 0 0x04000000>;
->> +      resets = <&rcu0 0x50 0>;
->> +      clocks = <&cgu0 LGM_GCLK_PCIE10>;
-> You need to include any defines you use. That's why the example fails to
-> build.
-Yes, i will add it.
->
->> +      phys = <&cb0phy0>;
->> +      phy-names = "pcie";
->> +      status = "okay";
-> Don't show status in examples.
-OK, will fix it.
+[...snip..]
 
-Thanks for reviewing it.
+> +
+> +static int k3_ringacc_ring_access_io(struct k3_ring *ring, void *elem,
+> +				     enum k3_ringacc_access_mode access_mode)
+> +{
+> +	void __iomem *ptr;
+> +
+> +	switch (access_mode) {
+> +	case K3_RINGACC_ACCESS_MODE_PUSH_HEAD:
+> +	case K3_RINGACC_ACCESS_MODE_POP_HEAD:
+> +		ptr = (void __iomem *)&ring->fifos->head_data;
+> +		break;
+> +	case K3_RINGACC_ACCESS_MODE_PUSH_TAIL:
+> +	case K3_RINGACC_ACCESS_MODE_POP_TAIL:
+> +		ptr = (void __iomem *)&ring->fifos->tail_data;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	ptr += k3_ringacc_ring_get_fifo_pos(ring);
+> +
+> +	switch (access_mode) {
+> +	case K3_RINGACC_ACCESS_MODE_POP_HEAD:
+> +	case K3_RINGACC_ACCESS_MODE_POP_TAIL:
+> +		dev_dbg(ring->parent->dev,
+> +			"memcpy_fromio(x): --> ptr(%p), mode:%d\n", ptr,
+> +			access_mode);
+> +		memcpy_fromio(elem, ptr, (4 << ring->elm_size));
 
-Regards,
-Dilip
->
->> +      reset-assert-ms = <500>;
->> +      reset-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
->> +      num-lanes = <2>;
->> +    };
->> -- 
->> 2.11.0
->>
+Does this work for any elem_size < 64 or any element size not aligned with 64?
+
+IIUC, in message mode, ring element should be inserted in a single burst write
+and there is no doorbell facility. If the above conditions are not met, we are
+supposed to use proxy.
+
+In this driver, I don't see any restrictions on the ring element size for
+message mode and directly written to io. Am I missing something?
+
+Thanks and regards,
+Lokesh
+
+> +		ring->occ--;
+> +		break;
+> +	case K3_RINGACC_ACCESS_MODE_PUSH_TAIL:
+> +	case K3_RINGACC_ACCESS_MODE_PUSH_HEAD:
+> +		dev_dbg(ring->parent->dev,
+> +			"memcpy_toio(x): --> ptr(%p), mode:%d\n", ptr,
+> +			access_mode);
+> +		memcpy_toio(ptr, elem, (4 << ring->elm_size));
+> +		ring->free--;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_dbg(ring->parent->dev, "free%d index%d occ%d index%d\n", ring->free,
+> +		ring->windex, ring->occ, ring->rindex);
+> +	return 0;
+> +}
+> +
+> +static int k3_ringacc_ring_push_head_io(struct k3_ring *ring, void *elem)
+> +{
+> +	return k3_ringacc_ring_access_io(ring, elem,
+> +					 K3_RINGACC_ACCESS_MODE_PUSH_HEAD);
+> +}
+> +
+> +static int k3_ringacc_ring_push_io(struct k3_ring *ring, void *elem)
+> +{
+> +	return k3_ringacc_ring_access_io(ring, elem,
+> +					 K3_RINGACC_ACCESS_MODE_PUSH_TAIL);
+> +}
+> +
+> +static int k3_ringacc_ring_pop_io(struct k3_ring *ring, void *elem)
+> +{
+> +	return k3_ringacc_ring_access_io(ring, elem,
+> +					 K3_RINGACC_ACCESS_MODE_POP_HEAD);
+> +}
+> +
+> +static int k3_ringacc_ring_pop_tail_io(struct k3_ring *ring, void *elem)
+> +{
+> +	return k3_ringacc_ring_access_io(ring, elem,
+> +					 K3_RINGACC_ACCESS_MODE_POP_HEAD);
+> +}
+> +
