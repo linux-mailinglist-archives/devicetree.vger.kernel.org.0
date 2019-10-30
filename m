@@ -2,118 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9395E9CAA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 14:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 996A8E9CD6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 14:59:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726589AbfJ3Nvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 09:51:48 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38577 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726246AbfJ3Nvr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 09:51:47 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1iPoNs-00020h-Nw; Wed, 30 Oct 2019 14:51:36 +0100
-Message-ID: <116e2d1eb1333c322450f20a5f591b7038586865.camel@pengutronix.de>
-Subject: Re: [RFC v2 0/2] gpio: Support for shared GPIO lines on boards
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Mark Brown <broonie@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org
-Date:   Wed, 30 Oct 2019 14:51:35 +0100
-In-Reply-To: <5bca4eb6-6379-394f-c95e-5bbbba5308f1@ti.com>
-References: <20191030120440.3699-1-peter.ujfalusi@ti.com>
-         <CAL_JsqK-eqoyU7RWiVXMpPZ8BfT8a0WB47756s8AUtyOqbkPXA@mail.gmail.com>
-         <5bca4eb6-6379-394f-c95e-5bbbba5308f1@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S1726284AbfJ3N7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 09:59:19 -0400
+Received: from forward106o.mail.yandex.net ([37.140.190.187]:38583 "EHLO
+        forward106o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726261AbfJ3N7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Oct 2019 09:59:18 -0400
+X-Greylist: delayed 311 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Oct 2019 09:59:17 EDT
+Received: from mxback18j.mail.yandex.net (mxback18j.mail.yandex.net [IPv6:2a02:6b8:0:1619::94])
+        by forward106o.mail.yandex.net (Yandex) with ESMTP id 732BA5061E4B;
+        Wed, 30 Oct 2019 16:54:05 +0300 (MSK)
+Received: from iva8-e1a842234f87.qloud-c.yandex.net (iva8-e1a842234f87.qloud-c.yandex.net [2a02:6b8:c0c:77a0:0:640:e1a8:4223])
+        by mxback18j.mail.yandex.net (nwsmtp/Yandex) with ESMTP id CFdertCcbH-s48WxDui;
+        Wed, 30 Oct 2019 16:54:05 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1572443645;
+        bh=t8CWijRjkAweyoXbreWHhbH0+9CHrOHDm7ZbXb78yac=;
+        h=Subject:To:From:Cc:Date:Message-Id;
+        b=wdKZRr15NMKbrsvCr6ZdlBvZey66zQhfJoMBfQM0F55hm/O9IWOVOQV/+2dt+o0kO
+         787YlV8naTJ5DD3CkxpMPS19rJ6tPARDbRGttxxgqbZJyBQhZ6l2vYXJMy5XY5KmEM
+         iUz/EzYtbSekXmNbv50iYbIRFxFmtuny/J66pZOo=
+Authentication-Results: mxback18j.mail.yandex.net; dkim=pass header.i=@flygoat.com
+Received: by iva8-e1a842234f87.qloud-c.yandex.net (nwsmtp/Yandex) with ESMTPSA id iQ85YfuBaZ-ruUupR4a;
+        Wed, 30 Oct 2019 16:54:02 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        axboe@kernel.dk, peppe.cavallaro@st.com, alexandre.torgue@st.com,
+        joabreu@synopsys.com, bhelgaas@google.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-pci@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH 0/5] PCI Devices for Loongson PCH
+Date:   Wed, 30 Oct 2019 21:53:42 +0800
+Message-Id: <20191030135347.3636-1-jiaxun.yang@flygoat.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-10-30 at 15:32 +0200, Peter Ujfalusi wrote:
-> 
-> On 30/10/2019 15.12, Rob Herring wrote:
-> > On Wed, Oct 30, 2019 at 7:03 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
-> > > Hi,
-> > > 
-> > > The shared GPIO line for external components tends to be a common issue and
-> > > there is no 'clean' way of handling it.
-> > > 
-> > > I'm aware of the GPIOD_FLAGS_BIT_NONEXCLUSIVE flag, which must be provided when
-> > > a driver tries to request a GPIO which is already in use.
-> > > However the driver must know that the component is going to be used in such a
-> > > way, which can be said to any external components with GPIO line, so in theory
-> > > all drivers must set this flag when requesting the GPIO...
-> > > 
-> > > But with the GPIOD_FLAGS_BIT_NONEXCLUSIVE all clients have full control of the
-> > > GPIO line. For example any device using the same GPIO as reset/enable line can
-> > > reset/enable other devices, which is not something the other device might like
-> > > or can handle.
-> > > For example a device needs to be configured after it is enabled, but some other
-> > > driver would reset it while handling the same GPIO -> the device is not
-> > > operational anymmore as it lost it's configuration.
-> > > 
-> > > With the gpio-shared gpiochip we can overcome this by giving the gpio-shared
-> > > the role of making sure that the GPIO line only changes state when it will not
-> > > disturb any of the clients sharing the same GPIO line.
-> > 
-> > Why can't we just add a shared flag like we have for interrupts?
-> > Effectively, we have that for resets too, it's just hardcoded in the
-> > the drivers.
-> 
-> This would be kind of the same thing what the
-> GPIOD_FLAGS_BIT_NONEXCLUSIVE does, which was a quick workaround for
-> fixed-regulators afaik.
-> 
-> But let's say that a board design will pick two components (C1 and C2)
-> and use the same GPIO line to enable them. We already have the drivers
-> for them and they are used in boards already.
-> 
-> Both needs the GPIO line to be high for normal operation.
-> One or both of them needs register writes after they are enabled.
-> 
-> During boot both requests the GPIO (OUTPUT_LOW) and sets it high, then
-> run the register setup.
-> 
-> C1 request GPIO (LOW)
-> C1 gpio_set(1)
-> C1 register writes
-> C2 requests GPIO (LOW)
->  C1 placed to reset and looses the configuration
-> C2 gpio_set(1)
->  C1 also enabled
-> C2 register writes
-> 
-> At this point C2 is operational, C1 is not.
-> 
-> In shared GPIO case the GPIO should be handled like a regulator with a
-> twist that the 'sticky' state of the GPIO might be low or high depending
-> on the needs of the components it is connected to.
-> 
-> The shared GPIO line is a board design quirk and basically any device
-> which have reset/enable GPIO must be able to work in a situation when
-> they are sharing that line with other components and the driver should
-> not know much about this small detail.
+Hi,
 
-What about components that require a register write right after being
-enabled, for example to put the device into a low power state, to
-silence it on a bus, or to mask some initially enabled interrupts?
+This series is adding quirks & configs for Loongson PCH Devices.
 
-regards
-Philipp
+
+Jiaxun Yang (5):
+  PCI: pci_ids: Add Loongson IDs
+  net: stmmac: Split devicetree parse
+  net: stmmac: pci: Add Loongson GMAC
+  dt-bindings: net: document loongson.pci-gmac
+  libata/ahci: Apply non-standard BAR fix for Loongson
+
+ .../net/wireless/loongson,pci-gmac.yaml       | 71 +++++++++++++++++++
+ drivers/ata/ahci.c                            |  7 ++
+ .../net/ethernet/stmicro/stmmac/stmmac_pci.c  | 52 +++++++++++++-
+ .../ethernet/stmicro/stmmac/stmmac_platform.c | 63 +++++++++++-----
+ .../ethernet/stmicro/stmmac/stmmac_platform.h |  3 +
+ include/linux/pci_ids.h                       |  4 ++
+ 6 files changed, 181 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/loongson,pci-gmac.yaml
+
+-- 
+2.23.0
 
