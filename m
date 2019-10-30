@@ -2,175 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC2A2E9CD3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 14:57:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA6DE9CE6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 15:00:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726584AbfJ3N5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 09:57:24 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:5378 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726316AbfJ3N5W (ORCPT
+        id S1726423AbfJ3OAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 10:00:50 -0400
+Received: from forward104o.mail.yandex.net ([37.140.190.179]:44833 "EHLO
+        forward104o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726322AbfJ3OAt (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Oct 2019 09:57:22 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9UDq1Di024880;
-        Wed, 30 Oct 2019 14:57:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=TkMBAGGVxB8LtRc6WSOm83VyZX2JZbGYxIZL7Q3esw0=;
- b=a9sYAwZBms03qim9df1B9fuuU/44h1OHpPyenbVv5szNGJh18XoIEfneQ3YYRtjJyMni
- jgrw29yNs+ohPGyWlmJjBr5FCUyTc4VWpmg3WRmnGFTMh3CkWSGVtrApc9JKgBKPamSg
- 0Yq6Jk+70UhxtD2nGTMsEGaMA5hvpkEbajkLE7QrfRSDz1BbjcFBP1JLx4uKY2Wq9zrf
- wFGNv1n/G265tn3sFtHePNDhsap57H8uKw2kGCbSNjryty3JQe0qvDryKGIkdoM+oqBN
- PfI61BGRhR7LYC3yABLiV5ITwPu16AWNNGfxwtcMpoMCQJzJ9GCzix4TCtAaNa5VxJMB Fg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2vxwhe41w7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 30 Oct 2019 14:57:09 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 53874100034;
-        Wed, 30 Oct 2019 14:57:08 +0100 (CET)
-Received: from Webmail-eu.st.com (Safex1hubcas21.st.com [10.75.90.44])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 477472C07FB;
-        Wed, 30 Oct 2019 14:57:08 +0100 (CET)
-Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by SAFEX1HUBCAS21.st.com
- (10.75.90.44) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 30 Oct
- 2019 14:57:08 +0100
-Received: from localhost (10.201.23.25) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 30 Oct 2019 14:57:07
- +0100
-From:   Fabien Dessenne <fabien.dessenne@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-CC:     Fabien Dessenne <fabien.dessenne@st.com>
-Subject: [PATCH v2 2/2] mailbox: stm32-ipcc: Update wakeup management
-Date:   Wed, 30 Oct 2019 14:57:01 +0100
-Message-ID: <1572443821-28112-3-git-send-email-fabien.dessenne@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572443821-28112-1-git-send-email-fabien.dessenne@st.com>
-References: <1572443821-28112-1-git-send-email-fabien.dessenne@st.com>
+        Wed, 30 Oct 2019 10:00:49 -0400
+Received: from mxback17j.mail.yandex.net (mxback17j.mail.yandex.net [IPv6:2a02:6b8:0:1619::93])
+        by forward104o.mail.yandex.net (Yandex) with ESMTP id 610D59411F7;
+        Wed, 30 Oct 2019 16:54:14 +0300 (MSK)
+Received: from iva8-e1a842234f87.qloud-c.yandex.net (iva8-e1a842234f87.qloud-c.yandex.net [2a02:6b8:c0c:77a0:0:640:e1a8:4223])
+        by mxback17j.mail.yandex.net (nwsmtp/Yandex) with ESMTP id bs174B8v8y-sDv0nwPT;
+        Wed, 30 Oct 2019 16:54:14 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1572443654;
+        bh=LZfCzRmnU5GvSwNDTZRMxa1XSUXSuYUhaw6ApIP4riQ=;
+        h=In-Reply-To:Subject:To:From:Cc:References:Date:Message-Id;
+        b=wJKmPGOanSsEV3K2e5hMdIEowzXiw1PWxSyTsNtDsr4nD8frEBBMnSq10gVgRZ6gy
+         b7rxmrO+px7aZFw0iuONaHAvy/SJJviVqjFrlPz5gGnBQotilCPv/kVng8S4LpbZZR
+         za2bNj+TMDDRlyYOYtr6GAqcjI0t6rlebs+abm+Y=
+Authentication-Results: mxback17j.mail.yandex.net; dkim=pass header.i=@flygoat.com
+Received: by iva8-e1a842234f87.qloud-c.yandex.net (nwsmtp/Yandex) with ESMTPSA id iQ85YfuBaZ-s6UuMBEg;
+        Wed, 30 Oct 2019 16:54:12 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        axboe@kernel.dk, peppe.cavallaro@st.com, alexandre.torgue@st.com,
+        joabreu@synopsys.com, bhelgaas@google.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-pci@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH 1/5] PCI: pci_ids: Add Loongson IDs
+Date:   Wed, 30 Oct 2019 21:53:43 +0800
+Message-Id: <20191030135347.3636-2-jiaxun.yang@flygoat.com>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191030135347.3636-1-jiaxun.yang@flygoat.com>
+References: <20191030135347.3636-1-jiaxun.yang@flygoat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.23.25]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
- definitions=2019-10-30_06:2019-10-30,2019-10-30 signatures=0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The wakeup specific IRQ management is no more needed to wake up the
-stm32 platform. A relationship has been established between the EXTI and
-the RX IRQ, just need to declare the EXTI interrupt instead of the
-IPCC RX IRQ.
+Add Loongson device IDs that will be used by drivers later.
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
-Signed-off-by: Fabien Dessenne <fabien.dessenne@st.com>
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 ---
- drivers/mailbox/stm32-ipcc.c | 36 +++++++-----------------------------
- 1 file changed, 7 insertions(+), 29 deletions(-)
+ include/linux/pci_ids.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/mailbox/stm32-ipcc.c b/drivers/mailbox/stm32-ipcc.c
-index 5c2d1e1..ef96688 100644
---- a/drivers/mailbox/stm32-ipcc.c
-+++ b/drivers/mailbox/stm32-ipcc.c
-@@ -52,7 +52,6 @@ struct stm32_ipcc {
- 	struct clk *clk;
- 	spinlock_t lock; /* protect access to IPCC registers */
- 	int irqs[IPCC_IRQ_NUM];
--	int wkp;
- 	u32 proc_id;
- 	u32 n_chans;
- 	u32 xcr;
-@@ -282,16 +281,9 @@ static int stm32_ipcc_probe(struct platform_device *pdev)
+diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+index 21a572469a4e..75f3336116eb 100644
+--- a/include/linux/pci_ids.h
++++ b/include/linux/pci_ids.h
+@@ -148,6 +148,10 @@
  
- 	/* wakeup */
- 	if (of_property_read_bool(np, "wakeup-source")) {
--		ipcc->wkp = platform_get_irq_byname(pdev, "wakeup");
--		if (ipcc->wkp < 0) {
--			if (ipcc->wkp != -EPROBE_DEFER)
--				dev_err(dev, "could not get wakeup IRQ\n");
--			ret = ipcc->wkp;
--			goto err_clk;
--		}
--
- 		device_set_wakeup_capable(dev, true);
--		ret = dev_pm_set_dedicated_wake_irq(dev, ipcc->wkp);
+ /* Vendors and devices.  Sort key: vendor first, device next. */
+ 
++#define PCI_VENDOR_ID_LOONGSON		0x0014
++#define PCI_DEVICE_ID_LOONGSON_GMAC	0x7a03
++#define PCI_DEVICE_ID_LOONGSON_AHCI	0x7a08
 +
-+		ret = dev_pm_set_wake_irq(dev, ipcc->irqs[IPCC_IRQ_RX]);
- 		if (ret) {
- 			dev_err(dev, "Failed to set wake up irq\n");
- 			goto err_init_wkp;
-@@ -334,10 +326,10 @@ static int stm32_ipcc_probe(struct platform_device *pdev)
- 	return 0;
- 
- err_irq_wkp:
--	if (ipcc->wkp)
-+	if (of_property_read_bool(np, "wakeup-source"))
- 		dev_pm_clear_wake_irq(dev);
- err_init_wkp:
--	device_init_wakeup(dev, false);
-+	device_set_wakeup_capable(dev, false);
- err_clk:
- 	clk_disable_unprepare(ipcc->clk);
- 	return ret;
-@@ -345,27 +337,17 @@ static int stm32_ipcc_probe(struct platform_device *pdev)
- 
- static int stm32_ipcc_remove(struct platform_device *pdev)
- {
--	struct stm32_ipcc *ipcc = platform_get_drvdata(pdev);
-+	struct device *dev = &pdev->dev;
- 
--	if (ipcc->wkp)
-+	if (of_property_read_bool(dev->of_node, "wakeup-source"))
- 		dev_pm_clear_wake_irq(&pdev->dev);
- 
--	device_init_wakeup(&pdev->dev, false);
-+	device_set_wakeup_capable(dev, false);
- 
- 	return 0;
- }
- 
- #ifdef CONFIG_PM_SLEEP
--static void stm32_ipcc_set_irq_wake(struct device *dev, bool enable)
--{
--	struct stm32_ipcc *ipcc = dev_get_drvdata(dev);
--	unsigned int i;
--
--	if (device_may_wakeup(dev))
--		for (i = 0; i < IPCC_IRQ_NUM; i++)
--			irq_set_irq_wake(ipcc->irqs[i], enable);
--}
--
- static int stm32_ipcc_suspend(struct device *dev)
- {
- 	struct stm32_ipcc *ipcc = dev_get_drvdata(dev);
-@@ -373,8 +355,6 @@ static int stm32_ipcc_suspend(struct device *dev)
- 	ipcc->xmr = readl_relaxed(ipcc->reg_proc + IPCC_XMR);
- 	ipcc->xcr = readl_relaxed(ipcc->reg_proc + IPCC_XCR);
- 
--	stm32_ipcc_set_irq_wake(dev, true);
--
- 	return 0;
- }
- 
-@@ -382,8 +362,6 @@ static int stm32_ipcc_resume(struct device *dev)
- {
- 	struct stm32_ipcc *ipcc = dev_get_drvdata(dev);
- 
--	stm32_ipcc_set_irq_wake(dev, false);
--
- 	writel_relaxed(ipcc->xmr, ipcc->reg_proc + IPCC_XMR);
- 	writel_relaxed(ipcc->xcr, ipcc->reg_proc + IPCC_XCR);
+ #define PCI_VENDOR_ID_TTTECH		0x0357
+ #define PCI_DEVICE_ID_TTTECH_MC322	0x000a
  
 -- 
-2.7.4
+2.23.0
 
