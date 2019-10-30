@@ -2,214 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B48B0E9CDC
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 14:59:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38997E9CB8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 14:54:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726268AbfJ3N7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 09:59:53 -0400
-Received: from forward101p.mail.yandex.net ([77.88.28.101]:54553 "EHLO
-        forward101p.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726171AbfJ3N7x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Oct 2019 09:59:53 -0400
-X-Greylist: delayed 326 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Oct 2019 09:59:51 EDT
-Received: from mxback13g.mail.yandex.net (mxback13g.mail.yandex.net [IPv6:2a02:6b8:0:1472:2741:0:8b7:92])
-        by forward101p.mail.yandex.net (Yandex) with ESMTP id 0EE433281C63;
-        Wed, 30 Oct 2019 16:54:24 +0300 (MSK)
-Received: from iva8-e1a842234f87.qloud-c.yandex.net (iva8-e1a842234f87.qloud-c.yandex.net [2a02:6b8:c0c:77a0:0:640:e1a8:4223])
-        by mxback13g.mail.yandex.net (nwsmtp/Yandex) with ESMTP id XdRHidBpFf-sMPCvR3M;
-        Wed, 30 Oct 2019 16:54:24 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1572443664;
-        bh=03l/30FMS82CFhGnplZOj90sCc7C0ySutIdyr15O1OE=;
-        h=In-Reply-To:Subject:To:From:Cc:References:Date:Message-Id;
-        b=AiTD+CrQA0BlduaOCrVqhA51GYC7+pFYVZNzPahTffxwT2yp/f1jxAO0OsCptER57
-         i0XDdjHGO1m1UGOdrOA+aT5TQCDzCznmBa7/A6QHJRBGOhWDUPcxMmmJQzfFxdHnO5
-         4jkYAfD/nmUhDNB+8SN5oESPThou7KTsLtjFoSVs=
-Authentication-Results: mxback13g.mail.yandex.net; dkim=pass header.i=@flygoat.com
-Received: by iva8-e1a842234f87.qloud-c.yandex.net (nwsmtp/Yandex) with ESMTPSA id iQ85YfuBaZ-sEUurF50;
-        Wed, 30 Oct 2019 16:54:20 +0300
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client certificate not present)
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     linux-mips@vger.kernel.org
-Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        axboe@kernel.dk, peppe.cavallaro@st.com, alexandre.torgue@st.com,
-        joabreu@synopsys.com, bhelgaas@google.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-pci@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: [PATCH 2/5] net: stmmac: Split devicetree parse
-Date:   Wed, 30 Oct 2019 21:53:44 +0800
-Message-Id: <20191030135347.3636-3-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191030135347.3636-1-jiaxun.yang@flygoat.com>
-References: <20191030135347.3636-1-jiaxun.yang@flygoat.com>
+        id S1726322AbfJ3Nyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 09:54:35 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58994 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726261AbfJ3Nyf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 09:54:35 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9UDsXKi110222;
+        Wed, 30 Oct 2019 08:54:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1572443673;
+        bh=8ykTgyJX9j+6OmR41gVi2ndS+WzwXLAbtw0EOg4AupA=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=qqwMFUHwFIG+QXcF3k6AQxuwRnf65GrzV+n+ozoWzZs7cIRe933bWMlB5tw7XyNML
+         bv8y+me1PpLeDx/p1hgFmb39jRMC75UXaa8j4ftditXYLqoz1VGQn3L3yJhTQj7U9U
+         ji5vDhRQNcLMDcukufCffatnH7uOR9gvIhEdUOlo=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9UDsXqx028268
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Oct 2019 08:54:33 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 30
+ Oct 2019 08:54:32 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 30 Oct 2019 08:54:20 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with SMTP id x9UDsWoa094969;
+        Wed, 30 Oct 2019 08:54:32 -0500
+Date:   Wed, 30 Oct 2019 08:54:32 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Hans Verkuil <hverkuil@xs4all.nl>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [Patch 19/19] dt-bindings: media: cal: convert binding to yaml
+Message-ID: <20191030135432.6dd6e7hnj77krj67@ti.com>
+References: <20191018153437.20614-1-bparrot@ti.com>
+ <20191018153437.20614-20-bparrot@ti.com>
+ <20191029142253.GA7612@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20191029142253.GA7612@bogus>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PCI based devices can share devicetree info parse with platform
-device based devices after split dt parse frpm dt probe.
+Rob Herring <robh@kernel.org> wrote on Tue [2019-Oct-29 09:22:53 -0500]:
+> On Fri, Oct 18, 2019 at 10:34:37AM -0500, Benoit Parrot wrote:
+> > Convert ti-cal.txt to ti,cal.yaml.
+> > 
+> > Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> > ---
+> >  .../devicetree/bindings/media/ti,cal.yaml     | 186 ++++++++++++++++++
+> >  .../devicetree/bindings/media/ti-cal.txt      |  82 --------
+> >  2 files changed, 186 insertions(+), 82 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/media/ti,cal.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/media/ti-cal.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/ti,cal.yaml b/Documentation/devicetree/bindings/media/ti,cal.yaml
+> > new file mode 100644
+> > index 000000000000..c3fbb22b4571
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/ti,cal.yaml
+> > @@ -0,0 +1,186 @@
+> > +# SPDX-License-Identifier: (GPL-2.0)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/ti,cal.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Texas Instruments DRA72x CAMERA ADAPTATION LAYER (CAL) Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Benoit Parrot <bparrot@ti.com>
+> > +
+> > +description: |-
+> > +  The Camera Adaptation Layer (CAL) is a key component for image capture
+> > +  applications. The capture module provides the system interface and the
+> > +  processing capability to connect CSI2 image-sensor modules to the
+> > +  DRA72x device.
+> > +
+> > +  CAL supports 2 camera port nodes on MIPI bus. Each CSI2 camera port nodes
+> > +  should contain a 'port' child node with child 'endpoint' node. Please
+> > +  refer to the bindings defined in
+> > +  Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > +
+> > +  compatible should be
+> > +     "ti,dra72-cal", for DRA72 controllers
+> > +     "ti,dra72-pre-es2-cal", for DRA72 controllers pre ES2.0
+> > +     "ti,dra76-cal", for DRA76 controllers
+> > +     "ti,am654-cal", for AM654 controllers
+> 
+> Drop these or add as comments to the schema below.
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- .../ethernet/stmicro/stmmac/stmmac_platform.c | 63 ++++++++++++++-----
- .../ethernet/stmicro/stmmac/stmmac_platform.h |  3 +
- 2 files changed, 49 insertions(+), 17 deletions(-)
+Ok.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-index 170c3a052b14..7e29bc76b7c3 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-@@ -385,25 +385,19 @@ static int stmmac_of_get_mac_mode(struct device_node *np)
- }
- 
- /**
-- * stmmac_probe_config_dt - parse device-tree driver parameters
-- * @pdev: platform_device structure
-- * @mac: MAC address to use
-+ * stmmac_parse_config_dt - parse device-tree driver parameters
-+ * @np: device_mode structure
-+ * @plat: plat_stmmacenet_data structure
-  * Description:
-  * this function is to read the driver parameters from device-tree and
-  * set some private fields that will be used by the main at runtime.
-  */
--struct plat_stmmacenet_data *
--stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
-+int stmmac_parse_config_dt(struct device_node *np,
-+				struct plat_stmmacenet_data *plat)
- {
--	struct device_node *np = pdev->dev.of_node;
--	struct plat_stmmacenet_data *plat;
- 	struct stmmac_dma_cfg *dma_cfg;
- 	int rc;
- 
--	plat = devm_kzalloc(&pdev->dev, sizeof(*plat), GFP_KERNEL);
--	if (!plat)
--		return ERR_PTR(-ENOMEM);
--
- 	*mac = of_get_mac_address(np);
- 	if (IS_ERR(*mac)) {
- 		if (PTR_ERR(*mac) == -EPROBE_DEFER)
-@@ -414,7 +408,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- 
- 	plat->phy_interface = of_get_phy_mode(np);
- 	if (plat->phy_interface < 0)
--		return ERR_PTR(plat->phy_interface);
-+		return plat->phy_interface;
- 
- 	plat->interface = stmmac_of_get_mac_mode(np);
- 	if (plat->interface < 0)
-@@ -453,7 +447,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- 	/* To Configure PHY by using all device-tree supported properties */
- 	rc = stmmac_dt_phy(plat, np, &pdev->dev);
- 	if (rc)
--		return ERR_PTR(rc);
-+		return rc;
- 
- 	of_property_read_u32(np, "tx-fifo-depth", &plat->tx_fifo_size);
- 
-@@ -531,7 +525,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- 			       GFP_KERNEL);
- 	if (!dma_cfg) {
- 		stmmac_remove_config_dt(pdev, plat);
--		return ERR_PTR(-ENOMEM);
-+		return -ENOMEM;
- 	}
- 	plat->dma_cfg = dma_cfg;
- 
-@@ -560,7 +554,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- 	rc = stmmac_mtl_setup(pdev, plat);
- 	if (rc) {
- 		stmmac_remove_config_dt(pdev, plat);
--		return ERR_PTR(rc);
-+		return rc;
- 	}
- 
- 	/* clock setup */
-@@ -604,14 +598,43 @@ stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- 		plat->stmmac_rst = NULL;
- 	}
- 
--	return plat;
-+	return 0;
- 
- error_hw_init:
- 	clk_disable_unprepare(plat->pclk);
- error_pclk_get:
- 	clk_disable_unprepare(plat->stmmac_clk);
- 
--	return ERR_PTR(-EPROBE_DEFER);
-+	return -EPROBE_DEFER;
-+}
-+
-+/**
-+ * stmmac_probe_config_dt - probe and setup stmmac platform data by devicetree
-+ * @pdev: platform_device structure
-+ * @mac: MAC address to use
-+ * Description:
-+ * this function is to set up plat_stmmacenet_data  private structure
-+ * for platform drivers.
-+ */
-+struct plat_stmmacenet_data *
-+stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct plat_stmmacenet_data *plat;
-+	int rc;
-+
-+	plat = devm_kzalloc(&pdev->dev, sizeof(*plat), GFP_KERNEL);
-+	if (!plat)
-+		return ERR_PTR(-ENOMEM);
-+
-+	rc = stmmac_parse_config_dt(np, plat);
-+
-+	if (rc) {
-+		free(plat);
-+		return ERR_PTR(rc);
-+	}
-+
-+	return plat;
- }
- 
- /**
-@@ -628,6 +651,11 @@ void stmmac_remove_config_dt(struct platform_device *pdev,
- 	of_node_put(plat->mdio_node);
- }
- #else
-+int stmmac_parse_config_dt(struct device_node *np,
-+				struct plat_stmmacenet_data *plat)
-+{
-+	return -EINVAL;
-+}
- struct plat_stmmacenet_data *
- stmmac_probe_config_dt(struct platform_device *pdev, const char **mac)
- {
-@@ -639,6 +667,7 @@ void stmmac_remove_config_dt(struct platform_device *pdev,
- {
- }
- #endif /* CONFIG_OF */
-+EXPORT_SYMBOL_GPL(stmmac_parse_config_dt);
- EXPORT_SYMBOL_GPL(stmmac_probe_config_dt);
- EXPORT_SYMBOL_GPL(stmmac_remove_config_dt);
- 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.h b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.h
-index 3a4663b7b460..0e4aec1f502a 100644
---- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.h
-+++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.h
-@@ -11,6 +11,9 @@
- 
- #include "stmmac.h"
- 
-+int stmmac_parse_config_dt(struct device_node *np,
-+				struct plat_stmmacenet_data *plat);
-+
- struct plat_stmmacenet_data *
- stmmac_probe_config_dt(struct platform_device *pdev, const char **mac);
- void stmmac_remove_config_dt(struct platform_device *pdev,
--- 
-2.23.0
+> 
+> > +
+> > +properties:
+> > +  compatible:
+> > +      items:
+> 
+> You can drop 'items' here since there is only 1.
 
+Ok so just enum then?
+
+> 
+> > +        - enum:
+> > +            - ti,dra72-cal
+> > +            - ti,dra72-pre-es2-cal
+> > +            - ti,dra76-cal
+> > +            - ti,am654-cal
+> > +
+> > +  reg:
+> > +    minItems: 2
+> > +    items:
+> > +      - description: The CAL main register region
+> > +      - description: The RX Core0 (DPHY0) register region
+> > +      - description: The RX Core1 (DPHY1) register region
+> > +
+> > +  reg-names:
+> > +    minItems: 2
+> > +    items:
+> > +      - const: cal_top
+> > +      - const: cal_rx_core0
+> > +      - const: cal_rx_core1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  syscon-camerrx:
+> 
+> Needs a type definition.
+
+Hmm, is there a phandle generic type?
+
+> 
+> > +    maxItems: 1
+> > +    items:
+> > +      - description:
+> > +           phandle to the device control module and offset to the
+> > +           control_camerarx_core register
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: functional clock
+> 
+> You can drop the description.
+
+Ok.
+
+> 
+> > +
+> > +  clock-names:
+> > +    items:
+> 
+> Drop items.
+
+Ok.
+
+> 
+> > +      - const: fck
+> > +
+> > +  power-domains:
+> > +    description:
+> > +      List of phandle and PM domain specifier as documented in
+> > +      Documentation/devicetree/bindings/power/power_domain.txt
+> > +    maxItems: 1
+> > +
+> > +  # See ./video-interfaces.txt for details
+> > +  ports:
+> > +    maxItems: 1
+> 
+> But ports is not an array...
+
+So remove maxItems? Not sure what you mean here?
+
+> 
+> > +    type: object
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      "#address-cells":
+> > +        const: 1
+> > +
+> > +      "#size-cells":
+> > +        const: 0
+> > +
+> > +    patternProperties:
+> > +      '^port@[0-9a-fA-F]+$':
+> 
+> In a device binding, you need to specify 'port@0' and 'port@1' (assuming 
+> 0 and 1) and say what they are.
+
+Well depending on the 'variant' the device might have 1 or 2 physical csi2
+ports so how would you represent that then?
+
+> 
+> > +        minItems: 1
+> > +        maxItems: 2
+> 
+> Not valid for an object (aka node).
+
+Again not sure how else to represent this.
+
+> 
+> > +        type: object
+> > +        additionalProperties: false
+> > +
+> > +        properties:
+> > +          reg:
+> > +            minItems: 1
+> > +            items:
+> > +              - description: The port id
+> > +
+> > +        patternProperties:
+> > +          '^endpoint@[0-9a-fA-F]+$':
+> 
+> Just 'endpoint' is valid too.
+
+Ok I'll change that.
+
+> 
+> > +            minItems: 1
+> > +            type: object
+> > +            additionalProperties: false
+> > +
+> > +            properties:
+> > +              clock-lanes:
+> > +                maxItems: 1
+> > +
+> > +              data-lanes:
+> > +                minItems: 1
+> > +                maxItems: 4
+> > +
+> > +              remote-endpoint: true
+> > +
+> > +            required:
+> > +              - remote-endpoint
+> > +
+> > +        required:
+> > +          - reg
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - syscon-camerrx
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    cal: cal@4845b000 {
+> > +        compatible = "ti,dra72-cal";
+> > +        reg = <0x4845B000 0x400>,
+> > +              <0x4845B800 0x40>,
+> > +              <0x4845B900 0x40>;
+> > +        reg-names = "cal_top",
+> > +                    "cal_rx_core0",
+> > +                    "cal_rx_core1";
+> > +        interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
+> > +        syscon-camerrx = <&scm_conf 0xE94>;
+> > +
+> > +        ports {
+> > +              #address-cells = <1>;
+> > +              #size-cells = <0>;
+> > +
+> > +              csi2_0: port@0 {
+> > +                    reg = <0>;
+> > +                    csi2_phy0: endpoint@0 {
+> > +                           remote-endpoint = <&csi2_cam0>;
+> > +                           clock-lanes = <0>;
+> > +                           data-lanes = <1 2>;
+> > +                    };
+> > +              };
+> > +        };
+> > +    };
+> > +
+> > +    i2c5: i2c@4807c000 {
+> > +        status = "okay";
+> > +        clock-frequency = <400000>;
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        ov5640@3c {
+> > +               compatible = "ovti,ov5640";
+> > +               reg = <0x3c>;
+> > +
+> > +               clocks = <&clk_ov5640_fixed>;
+> > +               clock-names = "xclk";
+> > +
+> > +               port {
+> > +                    csi2_cam0: endpoint@0 {
+> > +                            remote-endpoint = <&csi2_phy0>;
+> > +                            clock-lanes = <0>;
+> > +                            data-lanes = <1 2>;
+> > +                    };
+> > +               };
+> > +        };
+> > +    };
+> > +
+> > +...
