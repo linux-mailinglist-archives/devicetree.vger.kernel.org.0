@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E66EFEA094
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 16:58:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A4D8EA0B7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 17:09:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729149AbfJ3P5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 11:57:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59390 "EHLO mail.kernel.org"
+        id S1727740AbfJ3PvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 11:51:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52104 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728346AbfJ3P5l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Oct 2019 11:57:41 -0400
+        id S1727725AbfJ3PvW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Oct 2019 11:51:22 -0400
 Received: from sasha-vm.mshome.net (100.50.158.77.rev.sfr.net [77.158.50.100])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C489A2067D;
-        Wed, 30 Oct 2019 15:57:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EABA1208E3;
+        Wed, 30 Oct 2019 15:51:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572451061;
-        bh=D4v9sx3RRX0dU7Q3sH3IEQS/k618r0wxMght8d1CSyU=;
+        s=default; t=1572450681;
+        bh=j0dq07s5gcJmAjlTqbRFwDv0S35OH9GkUrQKdW+7wE0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=caTG0sC9/JU1v7dds63E7em7CgT0zqNApwRnkB2aul6ZjrDIuBc8osovv/AEuUeDn
-         IVBIo0u7DGypvSCv+dsucjv/hJMwDwqi7TA+seyOi2mBadnkVrSGmC2u+hJ0HgD6XT
-         e0a1Znl5Z7V7e9FJSlFfEN79F8WryMP2KEu5YPaI=
+        b=MTvuGCLd5CaTAxK3/sPmdL461wXtFo2GqwAwBjK4cqrdgPoQNpB+X+aRJWNGRMGyS
+         DhBXQngevvRpJrM+GuY4sLIKRnuboNWetptSGKi21MZwRq7NOfuRDUlqp2mM9Qujcd
+         bUqCIfq9tVZ8eIU3tsmFEwmERyjUmT1xxRJu8DsE=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Navid Emamdoost <navid.emamdoost@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 16/18] of: unittest: fix memory leak in unittest_data_add
-Date:   Wed, 30 Oct 2019 11:56:58 -0400
-Message-Id: <20191030155700.10748-16-sashal@kernel.org>
+Cc:     Hugh Cole-Baker <sigmaris@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.3 23/81] arm64: dts: rockchip: fix Rockpro64 RK808 interrupt line
+Date:   Wed, 30 Oct 2019 11:48:29 -0400
+Message-Id: <20191030154928.9432-23-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191030155700.10748-1-sashal@kernel.org>
-References: <20191030155700.10748-1-sashal@kernel.org>
+In-Reply-To: <20191030154928.9432-1-sashal@kernel.org>
+References: <20191030154928.9432-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,35 +44,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Navid Emamdoost <navid.emamdoost@gmail.com>
+From: Hugh Cole-Baker <sigmaris@gmail.com>
 
-[ Upstream commit e13de8fe0d6a51341671bbe384826d527afe8d44 ]
+[ Upstream commit deea9f5fc32040fd6f6132f2260ba410fb5cf98c ]
 
-In unittest_data_add, a copy buffer is created via kmemdup. This buffer
-is leaked if of_fdt_unflatten_tree fails. The release for the
-unittest_data buffer is added.
+Fix the pinctrl and interrupt specifier for RK808 to use GPIO3_B2. On the
+Rockpro64 schematic [1] page 16, it shows GPIO3_B2 used for the interrupt
+line PMIC_INT_L from the RK808, and there's a note which translates as:
+"PMU termination GPIO1_C5 changed to this".
 
-Fixes: b951f9dc7f25 ("Enabling OF selftest to run without machine's devicetree")
-Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
-Reviewed-by: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
+Tested by setting an RTC wakealarm and checking /proc/interrupts counters.
+Without this patch, neither the rockchip_gpio_irq counter for the RK808,
+nor the RTC alarm counter increment when the alarm time is reached.
+With this patch, both interrupt counters increment by 1 as expected.
+
+[1] http://files.pine64.org/doc/rockpro64/rockpro64_v21-SCH.pdf
+
+Fixes: e4f3fb490967 ("arm64: dts: rockchip: add initial dts support for Rockpro64")
+Signed-off-by: Hugh Cole-Baker <sigmaris@gmail.com>
+Link: https://lore.kernel.org/r/20190921131457.36258-1-sigmaris@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/of/unittest.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 0a1ebbbd3f163..92530525e3556 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -933,6 +933,7 @@ static int __init unittest_data_add(void)
- 	of_fdt_unflatten_tree(unittest_data, NULL, &unittest_data_node);
- 	if (!unittest_data_node) {
- 		pr_warn("%s: No tree to attach; not running tests\n", __func__);
-+		kfree(unittest_data);
- 		return -ENODATA;
- 	}
- 	of_node_set_flag(unittest_data_node, OF_DETACHED);
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
+index eb55940620060..5818b85255123 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
+@@ -240,8 +240,8 @@
+ 	rk808: pmic@1b {
+ 		compatible = "rockchip,rk808";
+ 		reg = <0x1b>;
+-		interrupt-parent = <&gpio1>;
+-		interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-parent = <&gpio3>;
++		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
+ 		#clock-cells = <1>;
+ 		clock-output-names = "xin32k", "rk808-clkout2";
+ 		pinctrl-names = "default";
+@@ -567,7 +567,7 @@
+ 
+ 	pmic {
+ 		pmic_int_l: pmic-int-l {
+-			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
++			rockchip,pins = <3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
+ 		};
+ 
+ 		vsel1_gpio: vsel1-gpio {
 -- 
 2.20.1
 
