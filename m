@@ -2,250 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE08DE9DB9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 15:39:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C23FAE9DBC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 15:40:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726206AbfJ3OjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 10:39:11 -0400
-Received: from mga14.intel.com ([192.55.52.115]:20780 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726175AbfJ3OjL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Oct 2019 10:39:11 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Oct 2019 07:39:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,247,1569308400"; 
-   d="scan'208";a="401526582"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga006.fm.intel.com with ESMTP; 30 Oct 2019 07:39:07 -0700
-Received: from andy by smile with local (Exim 4.92.2)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1iPp7r-0007Cs-79; Wed, 30 Oct 2019 16:39:07 +0200
-Date:   Wed, 30 Oct 2019 16:39:07 +0200
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, qi-ming.wu@intel.com,
-        yixin.zhu@linux.intel.com, cheol.yong.kim@intel.com
-Subject: Re: [PATCH v2 1/2] pinctrl: Add pinmux & GPIO controller driver for
- a new SoC
-Message-ID: <20191030143907.GY32742@smile.fi.intel.com>
-References: <cover.1572409172.git.rahul.tanwar@linux.intel.com>
- <4bb885fe692d29f2635772dcd04839390f1f5671.1572409172.git.rahul.tanwar@linux.intel.com>
+        id S1726650AbfJ3Ojw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 10:39:52 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34885 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726175AbfJ3Ojw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 10:39:52 -0400
+Received: by mail-ot1-f68.google.com with SMTP id z6so2325576otb.2;
+        Wed, 30 Oct 2019 07:39:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3tYP49i1zwXEbSPDyhdlkLTVBZpALwlhuoKF7K04zmM=;
+        b=rI8rFSa/fHfQV3CPvQYGfsbVBmKeccWRryU8ql88sbcbCjrn3sn9URXE0m5IDQG/g8
+         RrNu5PZOBYMO1XC+F7fuPCSbopaXhkCV5ymv+dnSQGrEGd+IAEQ3YAmuEd/+rzXXZ1tZ
+         4Jrht+raTSARtTvfCM4zDVbwlDK9AGRIBWtZmgp+8FmQorQn8BVRDbxwXNyBP5o+A8Ih
+         9BHyZ5tlQqpdLTJ2gCOjK+sLzcmK2ACQjPhiHCdpjAspdSkCbacDSVwzBbEyy8ziBe5c
+         qIpDB2t+KP3QXuAoicUlluhgruWAL+yo861+hLZLRqKiNbZ1373HV39APp+Mg/Zu+eku
+         z76A==
+X-Gm-Message-State: APjAAAVmqspVWvJna2eKhhpZ0/UJdqJ6TMm/bkDczLgA4Hz75/4yIFA5
+        aByNFEmlSN/k8mS9ruRZrg==
+X-Google-Smtp-Source: APXvYqyNsH82RV3UbML1PF4VWeA2jBFaZexE24zwlDWMjQt2A/bTlIeRgNWRhZ/DeTtqixeBNY4KAA==
+X-Received: by 2002:a05:6830:1e4a:: with SMTP id e10mr149190otj.345.1572446391375;
+        Wed, 30 Oct 2019 07:39:51 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s71sm60743oie.27.2019.10.30.07.39.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Oct 2019 07:39:50 -0700 (PDT)
+Date:   Wed, 30 Oct 2019 09:39:49 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     sre@kernel.org, mark.rutland@arm.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        yuanjiang.yu@unisoc.com, baolin.wang7@gmail.com,
+        zhang.lyra@gmail.com, orsonzhai@gmail.com
+Subject: Re: [PATCH 4/5] dt-bindings: power: sc27xx: Add a new property to
+ describe the real resistance of coulomb counter chip
+Message-ID: <20191030143949.GA18637@bogus>
+References: <cover.1572245011.git.baolin.wang@linaro.org>
+ <00202f739348258555dcc40982c330542ac61863.1572245011.git.baolin.wang@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4bb885fe692d29f2635772dcd04839390f1f5671.1572409172.git.rahul.tanwar@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <00202f739348258555dcc40982c330542ac61863.1572245011.git.baolin.wang@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 30, 2019 at 12:23:59PM +0800, Rahul Tanwar wrote:
-> Intel Lightning Mountain SoC has a pinmux controller & GPIO controller IP which
-> controls pin multiplexing & configuration including GPIO functions selection &
-> GPIO attributes configuration.
+On Mon, Oct 28, 2019 at 03:19:00PM +0800, Baolin Wang wrote:
+> Add a new property to describe the real resistance of coulomb counter chip,
+> which is used to calibrate the accuracy of the coulomb counter chip.
 > 
-> This IP is not based on & does not have anything in common with Chassis
-> specification. The pinctrl drivers under pinctrl/intel/* are all based upon
-> Chassis spec compliant pinctrl IPs. So this driver doesn't fit & can not use
-> pinctrl framework under pinctrl/intel/* and it requires a separate new driver.
+> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+> ---
+>  .../devicetree/bindings/power/supply/sc27xx-fg.txt |    2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Add a new GPIO & pin control framework based driver for this IP.
+> diff --git a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.txt b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.txt
+> index 0a5705b..fc042d0 100644
+> --- a/Documentation/devicetree/bindings/power/supply/sc27xx-fg.txt
+> +++ b/Documentation/devicetree/bindings/power/supply/sc27xx-fg.txt
+> @@ -13,6 +13,7 @@ Required properties:
+>  - io-channel-names: Should be "bat-temp" or "charge-vol".
+>  - nvmem-cells: A phandle to the calibration cells provided by eFuse device.
+>  - nvmem-cell-names: Should be "fgu_calib".
+> +- sprd,calib-resistance: Specify the real resistance of coulomb counter chip in micro Ohms.
+>  - monitored-battery: Phandle of battery characteristics devicetree node.
+>    See Documentation/devicetree/bindings/power/supply/battery.txt
 
-Thanks for an update, my comments below.
+Needs a standard unit suffix.
 
-> +#define PIN_NAME_FMT	"io-%d"
-> +#define PIN_NAME_LEN	10
-
-> +static inline void eqbr_set_val(void __iomem *addr, u32 offset,
-> +				u32 mask, u32 set, raw_spinlock_t *lock)
-
-
-Why is it marked with inline?
-
-> +{
-> +	u32 val;
-> +	unsigned long flags;
-> +
-> +	raw_spin_lock_irqsave(lock, flags);
-> +	val = readl(addr);
-
-> +	val = (val & ~(mask << offset)) | ((set & mask) << offset);
-
-This is unusual, why offset can't be applied once to the mask?
-
-> +	writel(val, addr);
-> +	raw_spin_unlock_irqrestore(lock, flags);
-
-Hmm... Don't you have more complicated workflow that requires few
-reads/writes/updates to be called atomically?
-
-> +}
-
-> +static void eqbr_gpio_disable_irq(struct irq_data *d)
-> +{
-> +	unsigned int offset = irqd_to_hwirq(d);
-> +	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
-> +	struct eqbr_gpio_desc *desc = gpiochip_get_data(gc);
-
-> +	writel(BIT(offset), desc->membase + GPIO_IRNENCLR);
-
-Is it okay to be without spin lock?
-Same Q to the rest similar places.
-
-> +}
-
-> +static inline void eqbr_cfg_bit(void __iomem *addr,
-> +				unsigned int offset, unsigned int set)
-> +{
-> +	if (!set)
-
-Why not to use positive condition?
-
-> +		writel(readl(addr) & ~BIT(offset), addr);
-> +	else
-> +		writel(readl(addr) | BIT(offset), addr);
-> +}
-
-> +	struct gpio_irq_type it;
-
-Not sure if this is used properly. Linus may clarify this.
-
-> +static void eqbr_irq_handler(struct irq_desc *desc)
-> +{
-> +	struct gpio_chip *gc = irq_desc_get_handler_data(desc);
-> +	struct eqbr_gpio_desc *gpio_desc = gpiochip_get_data(gc);
-> +	struct irq_chip *ic = irq_desc_get_chip(desc);
-> +	u32 pins, offset;
-> +
-> +	chained_irq_enter(ic, desc);
-> +	pins = readl(gpio_desc->membase + GPIO_IRNCR);
-> +
-
-> +	for_each_set_bit(offset, (unsigned long *)&pins, gc->ngpio)
-
-This casting is no go.
-
-> +		generic_handle_irq(irq_find_mapping(gc->irq.domain, offset));
-> +
-> +	chained_irq_exit(ic, desc);
-> +}
-
-> +static int gpiochip_setup(struct device *dev, struct eqbr_gpio_desc *desc)
-> +{
-> +	struct gpio_irq_chip *girq;
-> +	struct gpio_chip *gc;
-> +
-> +	gc = &desc->chip;
-
-> +	gc->owner = THIS_MODULE;
-
-Do we still need this in the drivers?
-
-> +	gc->label = desc->name;
-> +	gc->of_node = desc->node;
-> +
-
-> +	if (!of_property_read_bool(desc->node, "interrupt-controller")) {
-
-Why is it fatal?
-
-> +		dev_info(dev, "gc %s: doesn't act as interrupt controller!\n",
-> +			 desc->name);
-> +		return 0;
-> +	}
-
-> +	girq->parents = devm_kcalloc(dev, 1, sizeof(*girq->parents),
-> +				     GFP_KERNEL);
-
-I believe it's fine to have it on one line.
-
-> +	if (!girq->parents)
-> +		return -ENOMEM;
-> +
-> +	girq->default_type = IRQ_TYPE_NONE;
-
-> +	girq->handler = handle_level_irq;
-
-Not bad IRQ handler?
-
-> +	girq->parents[0] = desc->virq;
-> +
-> +	return 0;
-> +}
-
-> +static int gpiolib_reg(struct eqbr_pinctrl_drv_data *drvdata)
-> +{
-> +	struct device_node *np;
-> +	struct eqbr_gpio_desc *desc;
-> +	struct device *dev;
-> +	int i, ret;
-> +	struct resource res;
-> +
-> +	dev = drvdata->dev;
-> +	for (i = 0; i < drvdata->nr_gpio_descs; i++) {
-> +		desc = drvdata->gpio_desc + i;
-> +		np = desc->node;
-> +
-> +		desc->name = devm_kasprintf(dev, GFP_KERNEL, "gpiochip%d", i);
-> +		if (!desc->name)
-> +			return -ENOMEM;
-> +
-
-> +		if (of_address_to_resource(np, 0, &res)) {
-> +			dev_err(dev, "Failed to get GPIO register address\n");
-> +			return -ENXIO;
-> +		}
-> +
-> +		desc->membase = devm_ioremap_resource(dev, &res);
-> +		if (IS_ERR(desc->membase)) {
-
-> +			dev_err(dev, "ioremap fail\n");
-
-Redundant.
-
-> +			return PTR_ERR(desc->membase);
-> +	}
-
-Is it per descriptor?!
-
-> +
-> +		desc->virq = irq_of_parse_and_map(np, 0);
-> +		if (!desc->virq) {
-> +			dev_err(dev, "%s: failed to parse and map irq\n",
-> +				desc->name);
-> +			return -ENXIO;
-> +		}
-> +		raw_spin_lock_init(&desc->lock);
-
-> +	}
-> +
-> +	return 0;
-> +}
-
-> +static const struct pinmux_ops eqbr_pinmux_ops = {
-> +	.get_functions_count	= pinmux_generic_get_function_count,
-> +	.get_function_name 	= pinmux_generic_get_function_name,
-> +	.get_function_groups 	= pinmux_generic_get_function_groups,
-> +	.set_mux		= eqbr_pinmux_set_mux,
-> +	.gpio_request_enable	= eqbr_pinmux_gpio_request,
-> +	.strict			= true,
-> +};
-
-TABs/spaces mix.
-
-> +	return 0;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>  
+> @@ -52,5 +53,6 @@ Example:
+>  			nvmem-cells = <&fgu_calib>;
+>  			nvmem-cell-names = "fgu_calib";
+>  			monitored-battery = <&bat>;
+> +			sprd,calib-resistance = <21500>;
+>  		};
+>  	};
+> -- 
+> 1.7.9.5
+> 
