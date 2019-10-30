@@ -2,82 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42B91E9C8F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 14:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA570E9CA6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 14:50:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726269AbfJ3NoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 09:44:00 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:28024 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726222AbfJ3NoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Oct 2019 09:44:00 -0400
-X-IronPort-AV: E=Sophos;i="5.68,247,1569250800"; 
-   d="scan'208";a="30421365"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 30 Oct 2019 22:43:59 +0900
-Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4EDBE400CA10;
-        Wed, 30 Oct 2019 22:43:55 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrzej Hajda <a.hajda@samsung.com>
-Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Peter Rosin <peda@axentia.se>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: [PATCH 4/4] ARM: shmobile_defconfig: Enable support for panels from EDT
-Date:   Wed, 30 Oct 2019 13:43:34 +0000
-Message-Id: <1572443014-17335-5-git-send-email-fabrizio.castro@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572443014-17335-1-git-send-email-fabrizio.castro@bp.renesas.com>
-References: <1572443014-17335-1-git-send-email-fabrizio.castro@bp.renesas.com>
+        id S1726584AbfJ3Nue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 09:50:34 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:43570 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726246AbfJ3Nue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 09:50:34 -0400
+Received: by mail-lf1-f67.google.com with SMTP id j5so1604495lfh.10
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2019 06:50:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hKvVM+Lts2ZimWoF8BpQfrXJptOfWTU/76y+dUo91Xg=;
+        b=ise6gsWZjYd+YEvdWj6TeziR+YM/ap5c2m+tbfumbVKlsLneIoCe1NeOSUBSPfrMUZ
+         N/N8xE70oDjDMUbzzc0L5qpmNhiyAWw/JA+P4HFtj0Yr1Om2yid5undvOgXSxfYVhNeU
+         6d2nOtKI2nVBYIf8hP0DRLolprxmuJQ6E7DtPesVX0HRtIMOseA0JVNyGKxf9qieuu1w
+         LMJ/sQGOmwm8f3x7mAK2e0YXXiOlL3MGOD5h4JioInkefqcKu9qSntkzQaaa/JxpJTfC
+         Rdo6wFTs2A4+zIncrx88AwRkKrfFu+5h5Bq2ib9NalYH5URFOK3upX4tlIXDZGlKM2jj
+         YPPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hKvVM+Lts2ZimWoF8BpQfrXJptOfWTU/76y+dUo91Xg=;
+        b=cW2URhXHWzicWpgoIjr0BnevM3siudS5UK0L82fa18kZxCgMievP1bFPE5t+tt+LL6
+         2fq6LtJIuABOwSSVGTqU60I4KGbUJNcAgwc6j1SqVQDqp7i4KtvNQ45Bev8mWkCuW8OE
+         OqWr1QLPavm6wKn4a/CpXz4RERkkRl081pUFS1/olqEHhMvnCISPTtQeZwhxD0NDKwI4
+         sQo4zFmsyoR/UoFH/e0cYqGU/lKpCMoYNdVUDmHdMfhbYl4swfYU1x5QBQIz4zXl7x2b
+         aHjJb6ew+WzO7GUCNYVBkNJ9ZftSdSXSDZhLubKL0r95YMjJiXkDw744zTmOcaKMlLt8
+         rwpg==
+X-Gm-Message-State: APjAAAUtbAlzJMSaxhiaqgceRFO/kyIpXCLqI1Pp10yC4Vv78IBMQHDV
+        eddT1luvA2t3Y8c6uEk51sCVH64uoKXd5FUWA6sZGA==
+X-Google-Smtp-Source: APXvYqy0c7Qf7SbNHkI8EEMumWKBAHA3H3uCgrvSX/PLtGNFb6KJ6a8grwgYyBfTZ+//S8rbMyS5lBXpJRawaWya4YY=
+X-Received: by 2002:ac2:4a8f:: with SMTP id l15mr517648lfp.5.1572443432053;
+ Wed, 30 Oct 2019 06:50:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191024114305.15581-1-linus.walleij@linaro.org> <20191025192054.GA7415@bogus>
+In-Reply-To: <20191025192054.GA7415@bogus>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 30 Oct 2019 14:50:20 +0100
+Message-ID: <CACRpkdZ67mC9m6inJSfbS0NqeThfJ0tUJQTP5stX3Kzw+zhEyQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3 v4] drm/panel: Add generic DSI panel YAML bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The iwg20d comes with an LCD panel from Emerging Display
-Technologies Corporation (EDT), therefore enable what's
-required to support it.
+On Fri, Oct 25, 2019 at 9:20 PM Rob Herring <robh@kernel.org> wrote:
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
----
- arch/arm/configs/shmobile_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+> [Me]
+> > +    dsi-controller@55aa55aa {
+> > +      compatible = "acme,foo";
+>
+> Eventually, I want to start reporting if compatible strings aren't
+> documented (i.e. matched to a schema). This will break then...
 
-diff --git a/arch/arm/configs/shmobile_defconfig b/arch/arm/configs/shmobile_defconfig
-index c6c7035..ab416a5 100644
---- a/arch/arm/configs/shmobile_defconfig
-+++ b/arch/arm/configs/shmobile_defconfig
-@@ -66,6 +66,7 @@ CONFIG_INPUT_EVDEV=y
- CONFIG_KEYBOARD_GPIO=y
- # CONFIG_INPUT_MOUSE is not set
- CONFIG_INPUT_TOUCHSCREEN=y
-+CONFIG_TOUCHSCREEN_EDT_FT5X06=y
- CONFIG_TOUCHSCREEN_ST1232=y
- CONFIG_INPUT_MISC=y
- CONFIG_INPUT_ADXL34X=y
-@@ -125,7 +126,9 @@ CONFIG_VIDEO_ADV7604=y
- CONFIG_VIDEO_ML86V7667=y
- CONFIG_DRM=y
- CONFIG_DRM_RCAR_DU=y
-+CONFIG_DRM_PANEL_SIMPLE=y
- CONFIG_DRM_DUMB_VGA_DAC=y
-+CONFIG_DRM_LVDS_CODEC=y
- CONFIG_DRM_SII902X=y
- CONFIG_DRM_I2C_ADV7511=y
- CONFIG_DRM_I2C_ADV7511_AUDIO=y
--- 
-2.7.4
+OK I drop this.
 
+> > +      reg = <0x55aa55aa>;
+>
+> This will fail because a size cell is expected.
+
+Do you mean it will fail the day we actually check reg properties to
+be properly formed under the circumstances?
+
+Because:
+  HOSTLD  scripts/dtc/dtc
+  CHKDT   Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
+  CHKDT   Documentation/devicetree/bindings/display/dsi-controller.yaml
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+(...)
+
+It passes just fine.
+
+I get a bit nervous since the schema is all about being strict about
+stuff so I get the feeling that "should have failed".
+
+Yours,
+Linus Walleij
