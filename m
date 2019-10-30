@@ -2,86 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECDF6E9701
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 08:07:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A509E971F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 08:27:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726551AbfJ3HHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 03:07:23 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:43926 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726070AbfJ3HHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 03:07:23 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 25FA660BE6; Wed, 30 Oct 2019 07:07:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1572419242;
-        bh=PWRjE6RA4CMfH450ZAFjtGOqrhjym1PHjOFH8oC6DQg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=PhpZDYkG+8qO+iK+2i+DV9TE+rW2MN6UbXI6OvhZneMpHxv/SsflZNOHyq+UfknFK
-         FxNo2Pseytgm82ZmBEcABec6pwIFBw0q3+zABlUSBnoeEcCXWV4t5rQk60NICc1yF+
-         Bl57Zw/1tXQq7bWAv8b86q+vwTVYMRRjVvvmymRA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mkshah-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkshah@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 603D360F7E;
-        Wed, 30 Oct 2019 07:07:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1572419241;
-        bh=PWRjE6RA4CMfH450ZAFjtGOqrhjym1PHjOFH8oC6DQg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oceSxv5T/D6sd2Fwmh2qJvYKqlA1RKBsQx/UH/7iHufWtkNRk9NP0x8MvIMVELwYt
-         TdVZdbvpZle3ovEq/6DD4ALLFoExxohCAEEkZqoLH8MXKJwvoC1z0+/C00ivEpdyHc
-         Zp6Jl09R0UZ8lvtih7b2fH98q0LihczEk1zxUhz4=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 603D360F7E
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
-From:   Maulik Shah <mkshah@codeaurora.org>
-To:     agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        linus.walleij@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, rnayak@codeaurora.org,
-        ilina@codeaurora.org, lsrao@codeaurora.org, mka@chromium.org,
-        swboyd@chromium.org, evgreen@chromium.org, dianders@chromium.org,
-        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sc7180: Add wakeup parent for TLMM
-Date:   Wed, 30 Oct 2019 12:36:18 +0530
-Message-Id: <1572419178-5750-3-git-send-email-mkshah@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572419178-5750-1-git-send-email-mkshah@codeaurora.org>
-References: <1572419178-5750-1-git-send-email-mkshah@codeaurora.org>
+        id S1726177AbfJ3H1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 03:27:10 -0400
+Received: from lucky1.263xmail.com ([211.157.147.133]:46708 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725855AbfJ3H1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 03:27:10 -0400
+Received: from localhost (unknown [192.168.167.69])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 27AE7782E3;
+        Wed, 30 Oct 2019 15:26:55 +0800 (CST)
+X-MAIL-GRAY: 1
+X-MAIL-DELIVERY: 0
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P24329T139764409022208S1572420409020177_;
+        Wed, 30 Oct 2019 15:26:54 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <aa4f6e373c65ec03269a1d2ffc15d6c0>
+X-RL-SENDER: andy.yan@rock-chips.com
+X-SENDER: yxj@rock-chips.com
+X-LOGIN-NAME: andy.yan@rock-chips.com
+X-FST-TO: heiko@sntech.de
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+From:   Andy Yan <andy.yan@rock-chips.com>
+To:     heiko@sntech.de, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Andy Yan <andy.yan@rock-chips.com>
+Subject: [PATCH 1/2] dt-bindings: Add doc for Firefly ROC-RK3308-CC board
+Date:   Wed, 30 Oct 2019 15:26:48 +0800
+Message-Id: <20191030072648.29738-1-andy.yan@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specify wakeup parent irqchip for sc7180 TLMM.
+Add compatible for Firefly ROC-RK3308-CC board.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 69d5e2c..9040eee 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -321,6 +321,7 @@
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 			gpio-ranges = <&tlmm 0 0 120>;
-+			wakeup-parent = <&pdc>;
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index bf86e8237363..6b6c9d5611ce 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -77,6 +77,11 @@ properties:
+           - const: firefly,firefly-rk3288-reload
+           - const: rockchip,rk3288
  
- 			qup_uart2_default: qup-uart2-default {
- 				pinmux {
++      - description: Firefly ROC-RK3308-CC
++        items:
++          - const: firefly, roc-rk3308-cc
++          - const: rockchip,rk3308
++
+       - description: Firefly Firefly-RK3399
+         items:
+           - const: firefly,firefly-rk3399
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.17.1
+
+
 
