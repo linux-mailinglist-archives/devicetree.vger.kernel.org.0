@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6B4FEA033
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 16:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 594C5EA053
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 16:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727837AbfJ3PyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 11:54:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55798 "EHLO mail.kernel.org"
+        id S1728600AbfJ3Pz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 11:55:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57070 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728326AbfJ3PyV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Oct 2019 11:54:21 -0400
+        id S1728594AbfJ3Pz3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Oct 2019 11:55:29 -0400
 Received: from sasha-vm.mshome.net (100.50.158.77.rev.sfr.net [77.158.50.100])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7D91720656;
-        Wed, 30 Oct 2019 15:54:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D5C5F217F9;
+        Wed, 30 Oct 2019 15:55:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572450861;
-        bh=Yryrw8btORmLzFL2hJEnT0zESURDGptQcMl5Pp9dUxc=;
+        s=default; t=1572450928;
+        bh=yhwW3OSD4OMkVwZMox1fzcqQYREfFWwiXMt1NWhoEQA=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TBGQeVDt9SqZwv3BrJ2A+NtHGMLo9KKESxPt7fgqnp1sEEvOBSSLZ3GXcZ3qTjtW8
-         7m//bwQfBLTbzxNylkN8ikWmTpCPWwpcGZKLRiIrTgE5C9RMOHZvMs9Lteb1iiue63
-         rTUZ3r3iVJ5+VfQEEFtTOcyYxAQf07yUCqYBRFj0=
+        b=mh/V0NRfb6Nh5dDPdwJJsBnHIlSToFjD+//sjmsyvZ0drTdxul8OQijswPf2w+6D6
+         0tclY2eHR2i8l0Y/P5yZg9nk9aHsgGdKCA5g2ngj6/6+AokZ/aULzzRDHCvVOS2Sbr
+         n7TJoDDZvIbDk0+JtAEP3tDNkCbtHw8nh8zuE1wk=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Ray Jui <ray.jui@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 05/38] arm64: dts: Fix gpio to pinmux mapping
-Date:   Wed, 30 Oct 2019 11:53:33 -0400
-Message-Id: <20191030155406.10109-5-sashal@kernel.org>
+Cc:     Navid Emamdoost <navid.emamdoost@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 29/38] of: unittest: fix memory leak in unittest_data_add
+Date:   Wed, 30 Oct 2019 11:53:57 -0400
+Message-Id: <20191030155406.10109-29-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191030155406.10109-1-sashal@kernel.org>
 References: <20191030155406.10109-1-sashal@kernel.org>
@@ -44,59 +44,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
+From: Navid Emamdoost <navid.emamdoost@gmail.com>
 
-[ Upstream commit 965f6603e3335a953f4f876792074cb36bf65f7f ]
+[ Upstream commit e13de8fe0d6a51341671bbe384826d527afe8d44 ]
 
-There are total of 151 non-secure gpio (0-150) and four
-pins of pinmux (91, 92, 93 and 94) are not mapped to any
-gpio pin, hence update same in DT.
+In unittest_data_add, a copy buffer is created via kmemdup. This buffer
+is leaked if of_fdt_unflatten_tree fails. The release for the
+unittest_data buffer is added.
 
-Fixes: 8aa428cc1e2e ("arm64: dts: Add pinctrl DT nodes for Stingray SOC")
-Signed-off-by: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
-Reviewed-by: Ray Jui <ray.jui@broadcom.com>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Fixes: b951f9dc7f25 ("Enabling OF selftest to run without machine's devicetree")
+Signed-off-by: Navid Emamdoost <navid.emamdoost@gmail.com>
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi | 5 +++--
- arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi         | 3 +--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/of/unittest.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-index 8a3a770e8f2ce..56789ccf94545 100644
---- a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-@@ -42,13 +42,14 @@
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 7f42314da6ae3..bac4b4bbc33de 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1159,6 +1159,7 @@ static int __init unittest_data_add(void)
+ 	of_fdt_unflatten_tree(unittest_data, NULL, &unittest_data_node);
+ 	if (!unittest_data_node) {
+ 		pr_warn("%s: No tree to attach; not running tests\n", __func__);
++		kfree(unittest_data);
+ 		return -ENODATA;
+ 	}
  
- 		pinmux: pinmux@14029c {
- 			compatible = "pinctrl-single";
--			reg = <0x0014029c 0x250>;
-+			reg = <0x0014029c 0x26c>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			pinctrl-single,register-width = <32>;
- 			pinctrl-single,function-mask = <0xf>;
- 			pinctrl-single,gpio-range = <
--				&range 0 154 MODE_GPIO
-+				&range 0  91 MODE_GPIO
-+				&range 95 60 MODE_GPIO
- 				>;
- 			range: gpio-range {
- 				#pinctrl-single,gpio-range-cells = <3>;
-diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-index e283480bfc7e5..84101ea1fd2cb 100644
---- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-@@ -463,8 +463,7 @@
- 					<&pinmux 108 16 27>,
- 					<&pinmux 135 77 6>,
- 					<&pinmux 141 67 4>,
--					<&pinmux 145 149 6>,
--					<&pinmux 151 91 4>;
-+					<&pinmux 145 149 6>;
- 		};
- 
- 		i2c1: i2c@e0000 {
 -- 
 2.20.1
 
