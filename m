@@ -2,124 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7E39E9F42
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 16:39:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABDFDE9F89
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 16:51:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726858AbfJ3PjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Oct 2019 11:39:18 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:54762 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726876AbfJ3PjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 11:39:11 -0400
-Received: by mail-wm1-f65.google.com with SMTP id g7so2594413wmk.4
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2019 08:39:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KGJ4iUy7kzRHuML9MmU0ln8pdc2taAuOq/9kSKFneEA=;
-        b=fCwevB+VkurnCVATJqQYDg571ypYrm5tfC8LTzNVt8K4Rap9YZgMFHMyRcKV4Wvk5B
-         sW4i5XwdaCg0JuxCd0wtzVvY/rl0ui7MMWw1p86eopvigSmoiOMZ2v+HRDvZzEo/QnEW
-         TI7oLN1ngc81NtWojTxW2pW4wdxySxId+JNilfjeR4oqUCb7Jt41svRT5mOeHkWIWgZE
-         nzjGPLfb0gVJReaWN+WknD+KUJ0OetrK/ZqGDwcug/VYhmCYo1lTyM4e6OYlcs1UkNYT
-         +Se9MvxzduySUosSf9l/J/25eI3WaOAYIhh5oJ+YT/QKDorwk0TGmq6uFUYIg9tO9oOn
-         lVdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KGJ4iUy7kzRHuML9MmU0ln8pdc2taAuOq/9kSKFneEA=;
-        b=ErRaaqwc4IHmh6wtMGHli93C2KOQZFueeUILk22KHc0rW59ObmfWQmgTZCAGUQWsFj
-         meGI1zZ9vqWI3ig9yfKFKmxx59WfecC77DeFt0WJDSXVZlfSDdJl4o+HlMqwcIKB5eaN
-         8+Zq56yfzTCGAKDKBjSKfJMJTdcI8Rgq6Jj7JDxN/t53is51d5HWGFvO0Iibx3uhw2HK
-         PKgLZPCcF8eLR4K8YVsokLwCLvxz39SpzTNHS2uyK7czejdbWPZdDy5JvP0wKD2OjnJO
-         /Uex2E9TljbA9/SGxUTVZdNvf3ofmT2Nnz16/ZGuJeLS7BGhrbtjmsyQ1etPjojVWkRw
-         N2WA==
-X-Gm-Message-State: APjAAAWM36eLrBGmPluzcdgMtNJwLmgEHKidu2iuEb3d9Vsf/af3t2v2
-        UxUk16fGI/1CQTsbJbZs4o6eCw==
-X-Google-Smtp-Source: APXvYqz3Q6drLzEP7gjN8O8ha1iX2qF2icjYdi/IoHDlaqpgwwBgOkavnqDBFUPDp9mrqP9hEeWI+Q==
-X-Received: by 2002:a1c:ed0e:: with SMTP id l14mr93608wmh.102.1572449949424;
-        Wed, 30 Oct 2019 08:39:09 -0700 (PDT)
-Received: from localhost.localdomain ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id o25sm725524wro.21.2019.10.30.08.39.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 30 Oct 2019 08:39:08 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     robh+dt@kernel.org, linux-pm@vger.kernel.org
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        evgreen@chromium.org, daidavid1@codeaurora.org,
-        vincent.guittot@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        georgi.djakov@linaro.org
-Subject: [PATCH v10 3/3] arm64: dts: msm8916: Add interconnect provider DT nodes
-Date:   Wed, 30 Oct 2019 17:39:04 +0200
-Message-Id: <20191030153904.8715-4-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191030153904.8715-1-georgi.djakov@linaro.org>
-References: <20191030153904.8715-1-georgi.djakov@linaro.org>
+        id S1727403AbfJ3Ptm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Oct 2019 11:49:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50168 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727397AbfJ3Ptm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Oct 2019 11:49:42 -0400
+Received: from sasha-vm.mshome.net (100.50.158.77.rev.sfr.net [77.158.50.100])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 240E221924;
+        Wed, 30 Oct 2019 15:49:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572450581;
+        bh=A8OJ0gmDn66ao2MoOx6aQnaAj57Lc5OKhEELCpvSyIg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=kVOsCBVqZM5jKmwcgK6phzaFWQUh60CiC5PrXPjjPtkSVSurdKQHiEI1TGDFUo8uW
+         pwzPv3AZpIlMuxvsJhlV7zI7jMVfz6jK6Z0hCe3raZABVmCPr9DjrusOpWCh0sz9Ub
+         KkiboXVeF5PbBJHSvv/Fja1POTIFnt2ILHDhB3SU=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
+        Ondrej Jirman <megous@megous.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.3 06/81] arm64: dts: allwinner: a64: pine64-plus: Add PHY regulator delay
+Date:   Wed, 30 Oct 2019 11:48:12 -0400
+Message-Id: <20191030154928.9432-6-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191030154928.9432-1-sashal@kernel.org>
+References: <20191030154928.9432-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the network-on-chip interconnect buses present on
-MSM8916-based platforms.
+From: Jernej Skrabec <jernej.skrabec@siol.net>
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+[ Upstream commit 2511366797fa6ab4a404b4b000ef7cd262aaafe8 ]
+
+Depending on kernel and bootloader configuration, it's possible that
+Realtek ethernet PHY isn't powered on properly. According to the
+datasheet, it needs 30ms to power up and then some more time before it
+can be used.
+
+Fix that by adding 100ms ramp delay to regulator responsible for
+powering PHY.
+
+Fixes: 94dcfdc77fc5 ("arm64: allwinner: pine64-plus: Enable dwmac-sun8i")
+Suggested-by: Ondrej Jirman <megous@megous.com>
+Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 28 +++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 5ea9fb8f2f87..9c4d89319e7c 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -4,6 +4,7 @@
-  */
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interconnect/qcom,msm8916.h>
- #include <dt-bindings/clock/qcom,gcc-msm8916.h>
- #include <dt-bindings/reset/qcom,gcc-msm8916.h>
- #include <dt-bindings/clock/qcom,rpmcc.h>
-@@ -364,11 +365,38 @@
- 		ranges = <0 0 0 0xffffffff>;
- 		compatible = "simple-bus";
- 
-+		bimc: interconnect@400000 {
-+			compatible = "qcom,msm8916-bimc";
-+			reg = <0x00400000 0x62000>;
-+			#interconnect-cells = <1>;
-+			clock-names = "bus", "bus_a";
-+			clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-+				 <&rpmcc RPM_SMD_BIMC_A_CLK>;
-+		};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts
+index 24f1aac366d64..d5b6e8159a335 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pine64-plus.dts
+@@ -63,3 +63,12 @@
+ 		reg = <1>;
+ 	};
+ };
 +
- 		restart@4ab000 {
- 			compatible = "qcom,pshold";
- 			reg = <0x4ab000 0x4>;
- 		};
- 
-+		pcnoc: interconnect@500000 {
-+			compatible = "qcom,msm8916-pcnoc";
-+			reg = <0x00500000 0x11000>;
-+			#interconnect-cells = <1>;
-+			clock-names = "bus", "bus_a";
-+			clocks = <&rpmcc RPM_SMD_PCNOC_CLK>,
-+				 <&rpmcc RPM_SMD_PCNOC_A_CLK>;
-+		};
-+
-+		snoc: interconnect@580000 {
-+			compatible = "qcom,msm8916-snoc";
-+			reg = <0x00580000 0x14000>;
-+			#interconnect-cells = <1>;
-+			clock-names = "bus", "bus_a";
-+			clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-+				 <&rpmcc RPM_SMD_SNOC_A_CLK>;
-+		};
-+
- 		msmgpio: pinctrl@1000000 {
- 			compatible = "qcom,msm8916-pinctrl";
- 			reg = <0x1000000 0x300000>;
++&reg_dc1sw {
++	/*
++	 * Ethernet PHY needs 30ms to properly power up and some more
++	 * to initialize. 100ms should be plenty of time to finish
++	 * whole process.
++	 */
++	regulator-enable-ramp-delay = <100000>;
++};
+-- 
+2.20.1
+
