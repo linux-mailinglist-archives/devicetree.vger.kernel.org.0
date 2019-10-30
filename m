@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BBDFE9B79
-	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 13:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2EA8E9B77
+	for <lists+devicetree@lfdr.de>; Wed, 30 Oct 2019 13:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726836AbfJ3MYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726846AbfJ3MYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 30 Oct 2019 08:24:36 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:43126 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726119AbfJ3MYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 08:24:35 -0400
-Received: by mail-wr1-f68.google.com with SMTP id n1so2054619wra.10
-        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2019 05:24:33 -0700 (PDT)
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:37276 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726242AbfJ3MYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Oct 2019 08:24:36 -0400
+Received: by mail-wr1-f66.google.com with SMTP id e11so2080659wrv.4
+        for <devicetree@vger.kernel.org>; Wed, 30 Oct 2019 05:24:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=MKCua1iUyxONn+bsOWnRZuMnXqiDfqvw9FIMx0dZRF8=;
-        b=JeM5H6a2s+6CWd9XEIxYAUqb70ZFjnB/1nhiQCi/ckl5nLth712zbo3IvCI/EbsOLT
-         MNm9i6RSPi8qZuw3Fx29Wrvnw6dItVeND28wsGa6nVBFppFShvdau60mMt27hcRSsxx3
-         TPPUuFWN2fsM0QwdasBVpdXmw28Jt72mUY7pjeMqijG7P6S4mwnhR6wApD8+UnNQERPd
-         19uy3WIVQJEKLb/e4h5d7/kZ5z/PBDN507ElNHDwBVdO5DvGT5hVFVtxlgObftxX2ZTW
-         s9gUsc334wSJF47aiFdPg/Hj0ezaiJ4SlPjA4Yi4CM5YLW+8DZSOe3BV4itybE7pp0Nk
-         Kb7Q==
+        bh=bHjRV+yplRefJlnocFGPLm9WDOa+jJqsx2Sr2LtJ1vY=;
+        b=wC+E7pndDd0Nu4Djtb8R4PV7qUVnvwzShce4FxVWXcyhub4y8UOBGEIaIYZUoGDfTp
+         3HtWrIbS2bh+ywtcbeiFJ1clDBXQVmTO2tCkOUDp34PnjyvMp8IKSxQO8wvPyJaaUGT+
+         X83hE1GgIwSnuKLMxwwlPS3wyg3R4faPTiI8PzsAdY2UzsgjmeHmiL8W+3IWAMQ6oVpQ
+         ozAo7ni/foW14HXTUgqep6j4qO3SuorOTch/cY1NwfwAxB4fPrhXXJemHPAAWkuMNfma
+         ldEob//Ldv1X0tODn5lAyQV75vwYKjaTu8wzUAzEgKdhYgyx+GV2xX0OSr4BY9crHC+k
+         +aRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=MKCua1iUyxONn+bsOWnRZuMnXqiDfqvw9FIMx0dZRF8=;
-        b=O/VYE3XiiOph5DyDMlu1pKMneOoulky+ew0QmMfnBjvb4TYt/WQRsGsHif4EwnV7U9
-         qYVLj+85rbiC4zdP2B9xPHsTZqdLCGdNLTz1ruriHS9TDWYYFr7BlxZz9J3Cf3e4caiB
-         WQYSB6VAQL0kZBGFyC2hvTQ+wLS9LTAxVPS2fxDie+JYdRX/Orc6cfWMh852lrYdLTNp
-         eXm1HIi0WCvkXAJ84OUrTWZ+zeBkUP/RfRB9IFcEd/hxWzqaV6RXx7QJoSJ9zlcCrnm4
-         eI9VCzYqjQwskgyK0DnUGtduc7aiEUq0YBV2Zh9+TBLMxaDM2zzkYQIDHAEQyVMDJdDM
-         eKbg==
-X-Gm-Message-State: APjAAAVOjZcqLnW9zTAjM/20QQm5wUw6AAo62LBNnYv86uVkwEvdCLUN
-        cHvND5aOfj9+z4kM8/IJcfyqag==
-X-Google-Smtp-Source: APXvYqzeJed9goyylmqlOBs3LxL7op1lRQ9/rFSPpVdMhG8ysk+IWFKHtQYfDtxb9UaVHLJiJm/kFQ==
-X-Received: by 2002:adf:fe81:: with SMTP id l1mr2930329wrr.165.1572438273075;
+        bh=bHjRV+yplRefJlnocFGPLm9WDOa+jJqsx2Sr2LtJ1vY=;
+        b=HUQCms4754wiIHUrW+HWFs1DYJQYn9FFd5E56jyr9UYnFJw8+43iAh1tzG7MtmiK/P
+         RqwPiP4b3geWbI/bMjfIhfkzi/gf7K1Lz3MQb8axsSPDWP6bNOBcN3BcaHU2hkWrgoyn
+         rXJrOwMA9lHIgqjUabKunmeAJ3/NQvbXgP+g9CggPVRM8Qvgji++x6R5T/xawgZqxQzy
+         p23TJGw2rV1hr6TELETR6Ox8knfiII6ZYBA25HjFemT/sCQMTi1qavWSMwdIj4H1kLJk
+         B5PNfwfjyzsUQ4Pp0GZnsgN8X9dJ2k6lUkgQfuxSVP6KxsXXKq3IQA7+dDusPw64HRc5
+         2Ubg==
+X-Gm-Message-State: APjAAAW7JmIf7e10yiQ04K9EYr8FDfOrRtbtL6gYJVZFlTxgkNdZko/7
+        p4ljGuvBSZLqhOUDk6M/Raeo4Q==
+X-Google-Smtp-Source: APXvYqwnK2n5AsuwOMfvbkBWHzsINKxEYn88SMq95kpBPr5ZaZT7aBWqOr49OuFqhi8NohL7D07+BA==
+X-Received: by 2002:a05:6000:4c:: with SMTP id k12mr26069063wrx.100.1572438273908;
         Wed, 30 Oct 2019 05:24:33 -0700 (PDT)
 Received: from localhost.localdomain ([51.15.160.169])
-        by smtp.googlemail.com with ESMTPSA id p13sm2075919wma.41.2019.10.30.05.24.32
+        by smtp.googlemail.com with ESMTPSA id p13sm2075919wma.41.2019.10.30.05.24.33
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 30 Oct 2019 05:24:32 -0700 (PDT)
+        Wed, 30 Oct 2019 05:24:33 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
         wens@csie.org, jernej.skrabec@siol.net
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
         Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH v3 1/3] ARM64: dts: sun50i-h6-pine-h64: state that the DT supports the modelB
-Date:   Wed, 30 Oct 2019 12:24:13 +0000
-Message-Id: <1572438255-26107-2-git-send-email-clabbe@baylibre.com>
+Subject: [PATCH v3 2/3] ARM64: dts: sun50i-h6-pine-h64: add the hdmi_connector label
+Date:   Wed, 30 Oct 2019 12:24:14 +0000
+Message-Id: <1572438255-26107-3-git-send-email-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1572438255-26107-1-git-send-email-clabbe@baylibre.com>
 References: <1572438255-26107-1-git-send-email-clabbe@baylibre.com>
@@ -60,57 +60,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current sun50i-h6-pine-h64 DT does not specify which model (A or B)
-it supports.
-When this file was created, only modelA was existing, but now both model
-exists and with the time, this DT drifted to support the model B since it is
-the most common one.
-Furtheremore, some part of the model A does not work with it like ethernet and
-HDMI connector (as confirmed by Jernej on IRC).
-
-So it is time to settle the issue, and the easiest way is to state that
-this DT is for model B.
-Easiest since only a small name changes is required.
-Doing the opposite (stating this file is for model A) will add changes (for
-ethernet and HDMI) and so, will break too many setup.
+For sun50i-h6-pine-h64 model A we will need to modify the connector
+node, so let's add a label on it.
 
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- Documentation/devicetree/bindings/arm/sunxi.yaml     | 4 ++--
- arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index 972b1e9ee804..9a1e4992b9e9 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -594,9 +594,9 @@ properties:
-           - const: pine64,pine64-plus
-           - const: allwinner,sun50i-a64
- 
--      - description: Pine64 PineH64
-+      - description: Pine64 PineH64 model B
-         items:
--          - const: pine64,pine-h64
-+          - const: pine64,pine-h64-modelB
-           - const: allwinner,sun50i-h6
- 
-       - description: Pine64 LTS
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-index 30102daf83cc..f9070d9e6c43 100644
+index f9070d9e6c43..448ccbecf82b 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
-@@ -10,8 +10,8 @@
- #include <dt-bindings/gpio/gpio.h>
+@@ -22,7 +22,7 @@
+ 		stdout-path = "serial0:115200n8";
+ 	};
  
- / {
--	model = "Pine H64";
--	compatible = "pine64,pine-h64", "allwinner,sun50i-h6";
-+	model = "Pine H64 model B";
-+	compatible = "pine64,pine-h64-modelB", "allwinner,sun50i-h6";
+-	connector {
++	hdmi_connector: connector {
+ 		compatible = "hdmi-connector";
+ 		type = "a";
  
- 	aliases {
- 		ethernet0 = &emac;
 -- 
 2.23.0
 
