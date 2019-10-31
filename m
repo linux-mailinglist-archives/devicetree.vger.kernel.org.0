@@ -2,111 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3580AEB7BB
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 20:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C096CEB7C9
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 20:10:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729315AbfJaTFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Oct 2019 15:05:22 -0400
-Received: from gateway20.websitewelcome.com ([192.185.44.20]:47971 "EHLO
-        gateway20.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729347AbfJaTFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 31 Oct 2019 15:05:18 -0400
-Received: from cm12.websitewelcome.com (cm12.websitewelcome.com [100.42.49.8])
-        by gateway20.websitewelcome.com (Postfix) with ESMTP id 31FE8400D0A82
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2019 12:33:39 -0500 (CDT)
-Received: from br164.hostgator.com.br ([192.185.176.180])
-        by cmsmtp with SMTP
-        id QFOOiVzMoW4frQFOPi0HIC; Thu, 31 Oct 2019 13:41:57 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=PfbvhlnkuY2KQkorE0kvU3NX0iEBIbAm1o1NOoLQQyM=; b=VMSqA8K8m8UcrvytKxMHZVUW5j
-        MNYRpP2mWTZOhmgxHfhWkfESd0GoLpznRr48ivf42UFrVMzNIe13I+Wb88VP8MVPBsKvgPCnb4FUu
-        STX8pgLHfrtENtkmbHrkoVw+C4CuH3l1hJQfSPCEajVy3UVk1ZvtxmJ0eTBoDWuNsRjkUaVu8Rcts
-        y/EPQyqrcMeoVkbBwuW4IYtdYWZC8hVFy8UWAmUWRiMWCEvh0HaylZjVXO1m6JactE25Seo/pXlXH
-        DwLrfTMJTrqqo9J4JGzRtO7bS/lB2F1drnfsE49j0dT8nwp5OD8vriFp5iFpZAp5GEDOT+M199bdd
-        CT1t7l8Q==;
-Received: from [191.31.195.127] (port=35710 helo=castello.bz.toradex.local)
-        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <matheus@castello.eng.br>)
-        id 1iQFON-0035gz-Di; Thu, 31 Oct 2019 15:41:56 -0300
-From:   Matheus Castello <matheus@castello.eng.br>
-To:     sre@kernel.org, krzk@kernel.org, robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, cw00.choi@samsung.com,
-        b.zolnierkie@samsung.com, lee.jones@linaro.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Matheus Castello <matheus@castello.eng.br>
-Subject: [PATCH v4 4/4] power: supply: max17040: Send uevent in SOC and status change
-Date:   Thu, 31 Oct 2019 15:41:34 -0300
-Message-Id: <20191031184134.30621-5-matheus@castello.eng.br>
-X-Mailer: git-send-email 2.24.0.rc2
-In-Reply-To: <20191031184134.30621-1-matheus@castello.eng.br>
-References: <CAJKOXPdCtbsPaAgYp5iVBhkAsjXzOYWwttQBptgiUgzhbKi09w@mail.gmail.com>
- <20191031184134.30621-1-matheus@castello.eng.br>
+        id S1729315AbfJaTKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Oct 2019 15:10:31 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:53366 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729296AbfJaTKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Oct 2019 15:10:31 -0400
+Received: by mail-wm1-f65.google.com with SMTP id n7so7117129wmc.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2019 12:10:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Jmn2P1ld/NeoSnxg7DOmQ98R2sPr7Eaq2YhqfnjLpSs=;
+        b=CH4+kRM7vdK1gdk6cFx9eWuWLEa5CnW1s/j51KQGHPAntwlwEXDzPQAaHQzhVhtT3b
+         SnoQuscBwdZxOHLdTLp+VvZvGQI/nwKGRdb9tBUfc02zP4vWmS1Nn9SVrzdzs96hDP7r
+         UXWe5pN0ERUBiFgUL5KU/JGcauynTOKyb3JLxwFuylDyq/mfxQLHsdoZ/BMK2yuaESij
+         E1x4gYrPcmtwu8TTPFDu7FkaXXu7jAuFqSmXOswa3a8p04UX8YO0toA8AAumCVDK8Tql
+         UAZKSbZ7WDBoEwyaD80rA5/KoMAF6MHq2eyEyK6xT4acDJf1P/zvlDjRLvm6EWB6qXpn
+         P1qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Jmn2P1ld/NeoSnxg7DOmQ98R2sPr7Eaq2YhqfnjLpSs=;
+        b=DQGhBFv9aplNXkcgYSOrf0d3S0udBrQUM75fMRqhTo1AUhF0nis14Jje27S9fAxAkG
+         oxEmU32yvy2q4z2rff1AjlTVHgvkcNZ8m0GhTNbKvPA/Gt98tIrY0p6z612a52JnLRJh
+         0a4JaIMZx/ODYf1QG11RSeAuh8H98mZE7q5T5QGK6TfTD4z8pHil75LDQHXguEYvlHF0
+         +VBMvhKpGZRkAvAlyBIUmT3UwgzUhgYjRlmERTu+DiSUN+TGpIyJy9Ku53DfSPHl2FqL
+         hQTCzF3axIoOVdgn3VcMs+PUUgX/hab/2sqqkW/kl9XkSyAwXH+qr8goDZOHisuTwFsJ
+         VwOw==
+X-Gm-Message-State: APjAAAUSNaqeITj0tJMsALpRWZZmBZyCKAAKmI7MPIuxc48VV7Z95CNT
+        8ZbPNiPrvKN1iKrytfUut68Rksyh9qruQkD0zPc=
+X-Google-Smtp-Source: APXvYqzD6tyzrMQtB5mYa7a1zAvNnZlKCvaIwiMX0TlT5De5CqiNFj8/i0WW76jPnlanpmKm1dLU9j4TzA2JBtH6+5c=
+X-Received: by 2002:a1c:a512:: with SMTP id o18mr6335335wme.4.1572549027764;
+ Thu, 31 Oct 2019 12:10:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - castello.eng.br
-X-BWhitelist: no
-X-Source-IP: 191.31.195.127
-X-Source-L: No
-X-Exim-ID: 1iQFON-0035gz-Di
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: (castello.bz.toradex.local) [191.31.195.127]:35710
-X-Source-Auth: matheus@castello.eng.br
-X-Email-Count: 46
-X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
-X-Local-Domain: yes
+References: <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
+ <20190807115614.phm7sbyae6yajkug@flea> <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
+ <20190808162628.pthvy3tgf3naj76s@flea> <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+ <20190812080420.saelmqb36vkelxn4@flea> <CA+E=qVchsqOF_hVD-qBuKwi7PTMYtUR-LE2dD_mpptFJcWE_yw@mail.gmail.com>
+ <20190813053905.hu2hyi7fah2vujzz@flea> <CA+E=qVegU8M09tmbxGUaBSoueGU6PRsAtr9XWrc8V8HnCPjULg@mail.gmail.com>
+ <CA+E=qVeArUV0u_17ty=HgaU35TwcBfQjSOJf0A5yM6L6+W-0Og@mail.gmail.com> <20190925110844.qfm5ris7xeze44th@gilmour>
+In-Reply-To: <20190925110844.qfm5ris7xeze44th@gilmour>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Thu, 31 Oct 2019 20:10:16 +0100
+Message-ID: <CAJiuCcfcmkb_BgDcDJziUwoZXAgLN4Bh0GGZKR3NVNRpnFhBEQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Jared D . McNeill" <jmcneill@netbsd.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Harald Geyer <harald@ccbib.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Notify core through power_supply_changed() in case of changes in state
-of charge and power supply status. This is useful for user-space to
-efficiently update current battery level.
+Hi,
 
-Signed-off-by: Matheus Castello <matheus@castello.eng.br>
----
- drivers/power/supply/max17040_battery.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Just a remark here but the interrupt are from 152 to 155 SPI.
+But there is an offset of 32 no (remove SGI/PPI)?
+This should be from 120 to 123
 
-diff --git a/drivers/power/supply/max17040_battery.c b/drivers/power/supply/max17040_battery.c
-index 802575342c72..0ed3d856e4f5 100644
---- a/drivers/power/supply/max17040_battery.c
-+++ b/drivers/power/supply/max17040_battery.c
-@@ -210,10 +210,19 @@ static void max17040_check_changes(struct i2c_client *client)
- static void max17040_work(struct work_struct *work)
- {
- 	struct max17040_chip *chip;
-+	int last_soc, last_status;
+Regards,
+Cl=C3=A9ment
 
- 	chip = container_of(work, struct max17040_chip, work.work);
-+
-+	/* store SOC and status to check changes */
-+	last_soc = chip->soc;
-+	last_status = chip->status;
- 	max17040_check_changes(chip->client);
-
-+	/* check changes and send uevent */
-+	if (last_soc != chip->soc || last_status != chip->status)
-+		power_supply_changed(chip->battery);
-+
- 	queue_delayed_work(system_power_efficient_wq, &chip->work,
- 			   MAX17040_DELAY);
- }
---
-2.24.0.rc2
-
+On Wed, 25 Sep 2019 at 13:09, Maxime Ripard <mripard@kernel.org> wrote:
+>
+> On Mon, Sep 23, 2019 at 04:55:59PM -0700, Vasily Khoruzhick wrote:
+> > On Mon, Sep 23, 2019 at 4:51 PM Vasily Khoruzhick <anarsoul@gmail.com> =
+wrote:
+> > >
+> > > On Mon, Aug 12, 2019 at 10:39 PM Maxime Ripard
+> > > <maxime.ripard@bootlin.com> wrote:
+> > > >
+> > > > On Mon, Aug 12, 2019 at 11:01:51AM -0700, Vasily Khoruzhick wrote:
+> > > > > On Mon, Aug 12, 2019 at 1:04 AM Maxime Ripard <maxime.ripard@boot=
+lin.com> wrote:
+> > > > > >
+> > > > > > On Thu, Aug 08, 2019 at 12:59:07PM -0700, Vasily Khoruzhick wro=
+te:
+> > > > > > > On Thu, Aug 8, 2019 at 9:26 AM Maxime Ripard <maxime.ripard@b=
+ootlin.com> wrote:
+> > > > > > > >
+> > > > > > > > On Wed, Aug 07, 2019 at 10:36:08AM -0700, Vasily Khoruzhick=
+ wrote:
+> > > > > > > > > On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripa=
+rd@bootlin.com> wrote:
+> > > > > > > > > >
+> > > > > > > > > > On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruz=
+hick wrote:
+> > > > > > > > > > > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.mu=
+rphy@arm.com> wrote:
+> > > > > > > > > > > >
+> > > > > > > > > > > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
+> > > > > > > > > > > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <hara=
+ld@ccbib.org> wrote:
+> > > > > > > > > > > > >>
+> > > > > > > > > > > > >> Vasily Khoruzhick writes:
+> > > > > > > > > > > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <ro=
+bin.murphy@arm.com> wrote:
+> > > > > > > > > > > > >>>>
+> > > > > > > > > > > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
+> > > > > > > > > > > > >>>>> Looks like PMU in A64 is broken, it generates=
+ no interrupts at all and
+> > > > > > > > > > > > >>>>> as result 'perf top' shows no events.
+> > > > > > > > > > > > >>>>
+> > > > > > > > > > > > >>>> Does something like 'perf stat sleep 1' at lea=
+st count cycles correctly?
+> > > > > > > > > > > > >>>> It could well just be that the interrupt numbe=
+rs are wrong...
+> > > > > > > > > > > > >>>
+> > > > > > > > > > > > >>> Looks like it does, at least result looks plaus=
+ible:
+> > > > > > > > > > > > >>
+> > > > > > > > > > > > >> I'm using perf stat regularly (cache benchmarks)=
+ and it works fine.
+> > > > > > > > > > > > >>
+> > > > > > > > > > > > >> Unfortunately I wasn't aware that perf stat is a=
+ poor test for
+> > > > > > > > > > > > >> the interrupts part of the node, when I added it=
+. So I'm not too
+> > > > > > > > > > > > >> surprised I got it wrong.
+> > > > > > > > > > > > >>
+> > > > > > > > > > > > >> However, it would be unfortunate if the node got=
+ removed completely,
+> > > > > > > > > > > > >> because perf stat would not work anymore. Maybe =
+we can only remove
+> > > > > > > > > > > > >> the interrupts or just fix them even if the HW d=
+oesn't work?
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > I'm not familiar with PMU driver. Is it possible =
+to get it working
+> > > > > > > > > > > > > without interrupts?
+> > > > > > > > > > > >
+> > > > > > > > > > > > Yup - you get a grumpy message from the driver, it =
+will refuse sampling
+> > > > > > > > > > > > events (the ones which weren't working anyway), and=
+ if you measure
+> > > > > > > > > > > > anything for long enough that a counter overflows y=
+ou'll get wonky
+> > > > > > > > > > > > results. But for counting hardware events over rela=
+tively short periods
+> > > > > > > > > > > > it'll still do the job.
+> > > > > > > > > > >
+> > > > > > > > > > > I tried to drop interrupts completely from the node b=
+ut 'perf top' is
+> > > > > > > > > > > still broken. Though now in different way: it complai=
+ns "cycles: PMU
+> > > > > > > > > > > Hardware doesn't support sampling/overflow-interrupts=
+. Try 'perf
+> > > > > > > > > > > stat'"
+> > > > > > > > > >
+> > > > > > > > > > I have no idea if that's the culprit, but what is the s=
+tate of the
+> > > > > > > > > > 0x09010000 register?
+> > > > > > > > >
+> > > > > > > > > What register is that and how do I check it?
+> > > > > > > >
+> > > > > > > > It's in the CPUX Configuration block, and the bits are labe=
+lled as CPU
+> > > > > > > > Debug Reset.
+> > > > > > > >
+> > > > > > > > And if you have busybox, you can use devmem.
+> > > > > > >
+> > > > > > > CPUX configuration block is at 0x01700000 according to A64 us=
+er
+> > > > > > > manual, and particular register you're interested in is at 0x=
+01700080,
+> > > > > > > its value is 0x1110110F.
+> > > > > > >
+> > > > > > > Bits 16-19 are not defined in user manual and are not set.
+> > > > > >
+> > > > > > Sorry, I somehow thought this was for the H6...
+> > > > > >
+> > > > > > I don't have any idea then :/
+> > > > >
+> > > > > OK, so what should we do? 'perf top'/'perf record' work fine if P=
+MU
+> > > > > node is dropped, but they don't work if PMU node is present (even=
+ with
+> > > > > interrupts dropped). I'd prefer to have 'perf top' and 'perf reco=
+rd'
+> > > > > working instead of 'perf stat'
+> > > >
+> > > > Well, it doesn't work so we should just remove the node, and if
+> > > > someone wants it back, they should figure it out.
+> > >
+> > > Hey Maxime,
+> > >
+> > > So can you merge this patch?
+> >
+> > Added new Maxime's email to CC
+>
+> Queued as a fix for 5.4, thanks!
+> Maxime
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
