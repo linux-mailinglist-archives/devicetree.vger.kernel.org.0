@@ -2,133 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 875D7EB032
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 13:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C01FEB041
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 13:31:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727440AbfJaMX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Oct 2019 08:23:58 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:39258 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727438AbfJaMX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Oct 2019 08:23:57 -0400
-Received: by mail-pg1-f196.google.com with SMTP id p12so3957915pgn.6
-        for <devicetree@vger.kernel.org>; Thu, 31 Oct 2019 05:23:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=3oVOdq8I07h/GCMR1jINzKAZkqhi2YtbfA6UhRaG+n8=;
-        b=a0/sfJRTsmfaNdczbP/UocpLZeZWofQtNcy/OCkKLyPFEzM62I2i+2UIUeRohI2Pzh
-         dJuAqpawZBwB5gf8KbLZvqBtZ66tXwq2oxP+j3mLWZj9WIvAfeeHLVRlv5iZRzYdIGY/
-         +BJkEgbFY56XdIUiDecypECQx/gY0Cw/rRF3Zk1aB6ci+f3XVrTAqSJbI/9gvnmt/0TW
-         Y9N42pwj+OY+n4tYx/ZGe85ChkV3wNss7JpiczK4K3v54hwlYdHYduIzEo/qO/rURc8w
-         tj1UPWzFILDZuc0MMFy/cm6aLQw95ceusZWQGBscvGtkPJgt+FVEIxblgYJ12ZkCJfQP
-         vwtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=3oVOdq8I07h/GCMR1jINzKAZkqhi2YtbfA6UhRaG+n8=;
-        b=UaF1VLtfITtVhdhjiMv/nKP1D0wt4SGVCVZDIk0veAI1VIbyFr28CnyBmpCxFxIF6o
-         WFATbqRxKYWRlT2v8qLAEDdbpqtdfHY7lhaMqOG/2/sUlIU1FvuDqEYYEZS/gegC0XBu
-         I6UTdIszRto0FkdTE4NdiUMRzz3IcoIrrCi0AoFoq3NliWg0YDK8DTt7hweiTBzk+e/W
-         HbMQErv84PJ5TqKtmWRXaLZOjOks9+11Qz47/m2Jb1Gj4b3wb2KWRfZHI7T+YCXo+Y4p
-         fUybD+KAc5cf7Jh7RQINwNJbJXt4GftJ8WxYRoe4yJvmaWMcGqjPbnBX3jTOxhobqi63
-         IlNg==
-X-Gm-Message-State: APjAAAX+tH678IVHXYG+T+JMp9DCt7IY+DJwW8YkagMbpz2ctlwxa+0B
-        FZavoGbTyN8beUNzIQvMBVK5ng==
-X-Google-Smtp-Source: APXvYqwRsBatPyRPC6H5u3bNXQ3d9fpGbW7bwKpnEtOkZpwtidHIsC1wSk8dAdf1LqVvm7kugUi34w==
-X-Received: by 2002:a63:6d8b:: with SMTP id i133mr6165132pgc.241.1572524636826;
-        Thu, 31 Oct 2019 05:23:56 -0700 (PDT)
-Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id j25sm2983077pfi.113.2019.10.31.05.23.52
-        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 31 Oct 2019 05:23:55 -0700 (PDT)
-From:   Baolin Wang <baolin.wang@linaro.org>
-To:     sre@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, yuanjiang.yu@unisoc.com,
-        baolin.wang@linaro.org, baolin.wang7@gmail.com,
-        zhang.lyra@gmail.com, orsonzhai@gmail.com
-Subject: [PATCH v2 5/5] power: supply: sc27xx: Calibrate the resistance of coulomb counter
-Date:   Thu, 31 Oct 2019 20:22:44 +0800
-Message-Id: <d32db383ed63c4775b92c30a129cb5f6b0929007.1572523415.git.baolin.wang@linaro.org>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1572523415.git.baolin.wang@linaro.org>
-References: <cover.1572523415.git.baolin.wang@linaro.org>
-In-Reply-To: <cover.1572523415.git.baolin.wang@linaro.org>
-References: <cover.1572523415.git.baolin.wang@linaro.org>
+        id S1726887AbfJaMbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Oct 2019 08:31:18 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:13350 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726552AbfJaMbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 31 Oct 2019 08:31:17 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x9VCQaIl028820;
+        Thu, 31 Oct 2019 13:30:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=L36yhhdynvYVY+TShwfA0Bhl1r4mffURb+EBrQF9gKk=;
+ b=hZwNCeV0xEvhrGeulpsouJPO18vN4wZjzkNBh2T0NPOiJrfZJSXxflA/SpZVj8QjZTrp
+ 6ll8NBUTTZtsi6cCL2RFUN4M/tMFU9hBxf8Sg76ZsvbB/cf5QJHnTZ84EJD/1reV24Au
+ kToKzeMtDgAfdV5iMrvyV/hXCmx8kTfkOA1G6trbZ75TeLNtTXTBTenqIk0oPuNC1GXb
+ SkZTjuSDvD9vCFuc0zoXr4SnxiyAi3Vvz9jIbMLOvOfJw6A+9hepDA7tTKxnkBxrLOi4
+ X0zTv7LHQk8uWTPL3x/1nRlRVI4FnGG6DIhJ+En2Ba9BD4opWcvdFQ6c0DgjIaTEgdcw wg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2vxwhusser-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Oct 2019 13:30:50 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7F52D10002A;
+        Thu, 31 Oct 2019 13:30:49 +0100 (CET)
+Received: from Webmail-eu.st.com (Safex1hubcas23.st.com [10.75.90.46])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5EFBD2B7837;
+        Thu, 31 Oct 2019 13:30:49 +0100 (CET)
+Received: from SAFEX1HUBCAS22.st.com (10.75.90.93) by SAFEX1HUBCAS23.st.com
+ (10.75.90.46) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 31 Oct
+ 2019 13:30:49 +0100
+Received: from localhost (10.201.20.122) by Webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 31 Oct 2019 13:30:48
+ +0100
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <alexandre.torgue@st.com>, <fabrice.gasnier@st.com>,
+        <jic23@kernel.org>, <knaack.h@gmx.de>, <lars@metafoo.de>,
+        <pmeerw@pmeerw.net>, <lee.jones@linaro.org>,
+        <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
+        <benjamin.gaignard@st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+Subject: [PATCH 0/4] Convert STM32 Timer mdf bindings to yaml
+Date:   Thu, 31 Oct 2019 13:30:36 +0100
+Message-ID: <20191031123040.26316-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.122]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-10-31_05:2019-10-30,2019-10-31 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are some deviations between the real resistance and the ideal
-resistance of coulomb counter, which will affect the accuracy of
-the coulomb counter, thus calibrate the real resistance of coulomb
-counter to improve the accuracy.
+This series converts STM32 Timer mfd bindings to json-schema.
+The original binding split between all the subnode remains the same
+that why subnode bindings are converted first and then included in
+the mfd binding.
 
-Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
----
- drivers/power/supply/sc27xx_fuel_gauge.c |   17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+Benjamin Gaignard (4):
+  dt-bindings: counter: Convert stm32 counter bindings to json-schema
+  dt-bindings: iio: timer: Convert stm32 IIO trigger bindings to
+    json-schema
+  dt-bindings: pwm: Convert stm32 pwm bindings to json-schema
+  dt-bindings: mfd: Convert stm32 timers bindings to json-schema
 
-diff --git a/drivers/power/supply/sc27xx_fuel_gauge.c b/drivers/power/supply/sc27xx_fuel_gauge.c
-index 221b6fb..951d5d1 100644
---- a/drivers/power/supply/sc27xx_fuel_gauge.c
-+++ b/drivers/power/supply/sc27xx_fuel_gauge.c
-@@ -62,6 +62,8 @@
- 
- #define SC27XX_FGU_CUR_BASIC_ADC	8192
- #define SC27XX_FGU_SAMPLE_HZ		2
-+/* micro Ohms */
-+#define SC27XX_FGU_IDEAL_RESISTANCE	20000
- 
- /*
-  * struct sc27xx_fgu_data: describe the FGU device
-@@ -84,6 +86,7 @@
-  * @resist_table_len: the resistance table length
-  * @cur_1000ma_adc: ADC value corresponding to 1000 mA
-  * @vol_1000mv_adc: ADC value corresponding to 1000 mV
-+ * @calib_resist: the real resistance of coulomb counter chip in mOhm
-  * @cap_table: capacity table with corresponding ocv
-  * @resist_table: resistance percent table with corresponding temperature
-  */
-@@ -108,6 +111,7 @@ struct sc27xx_fgu_data {
- 	int resist_table_len;
- 	int cur_1000ma_adc;
- 	int vol_1000mv_adc;
-+	int calib_resist;
- 	struct power_supply_battery_ocv_table *cap_table;
- 	struct power_supply_resistance_temp_table *resist_table;
- };
-@@ -900,7 +904,9 @@ static int sc27xx_fgu_calibration(struct sc27xx_fgu_data *data)
- 	 */
- 	cal_4200mv = (calib_data & 0x1ff) + 6963 - 4096 - 256;
- 	data->vol_1000mv_adc = DIV_ROUND_CLOSEST(cal_4200mv * 10, 42);
--	data->cur_1000ma_adc = data->vol_1000mv_adc * 4;
-+	data->cur_1000ma_adc =
-+		DIV_ROUND_CLOSEST(data->vol_1000mv_adc * 4 * data->calib_resist,
-+				  SC27XX_FGU_IDEAL_RESISTANCE);
- 
- 	kfree(buf);
- 	return 0;
-@@ -1079,6 +1085,15 @@ static int sc27xx_fgu_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	ret = device_property_read_u32(&pdev->dev,
-+				       "sprd,calib-resistance-micro-ohms",
-+				       &data->calib_resist);
-+	if (ret) {
-+		dev_err(&pdev->dev,
-+			"failed to get fgu calibration resistance\n");
-+		return ret;
-+	}
-+
- 	data->channel = devm_iio_channel_get(dev, "bat-temp");
- 	if (IS_ERR(data->channel)) {
- 		dev_err(dev, "failed to get IIO channel\n");
+ .../bindings/counter/st,stm32-timer-cnt.yaml       | 38 +++++++++
+ .../bindings/counter/stm32-timer-cnt.txt           | 31 --------
+ .../bindings/iio/timer/st,stm32-timer-trigger.yaml | 44 +++++++++++
+ .../bindings/iio/timer/stm32-timer-trigger.txt     | 25 ------
+ .../devicetree/bindings/mfd/st,stm32-timers.yaml   | 91 ++++++++++++++++++++++
+ .../devicetree/bindings/mfd/stm32-timers.txt       | 73 -----------------
+ .../devicetree/bindings/pwm/pwm-stm32.txt          | 38 ---------
+ .../devicetree/bindings/pwm/st,stm32-pwm.yaml      | 51 ++++++++++++
+ 8 files changed, 224 insertions(+), 167 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/counter/st,stm32-timer-cnt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/counter/stm32-timer-cnt.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/timer/st,stm32-timer-trigger.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/timer/stm32-timer-trigger.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/stm32-timers.txt
+ delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-stm32.txt
+ create mode 100644 Documentation/devicetree/bindings/pwm/st,stm32-pwm.yaml
+
 -- 
-1.7.9.5
+2.15.0
 
