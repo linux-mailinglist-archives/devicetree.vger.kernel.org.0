@@ -2,82 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05869EB057
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 13:31:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEDFEB08D
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 13:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726940AbfJaMbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Oct 2019 08:31:47 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:36470 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726540AbfJaMbq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Oct 2019 08:31:46 -0400
-Received: by mail-ed1-f68.google.com with SMTP id f7so1524380edq.3;
-        Thu, 31 Oct 2019 05:31:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vls7ZE/ReY4sJGi7uI5GGsGPMcKXRM5Mo/neO76jsVQ=;
-        b=M9yJ+S1BxObJQHLnBu5f+lru0srve7kRgdcdJ2vxqjSzJezaRKp9oROYWOEQ8IXHV/
-         LalHTP3uzA8G1vRzR2Afy7akgHzTfODf7fB9otnBnBYn/BlYufvoH4IdgRECbtFurc1y
-         httZioRoq6vp3vXD7q9F+UVO+Ra+ty9Hxq3oti84WzRa2Qul4gu8a4DL4hihFDQM8q+n
-         IB4APNdioDKfBqHVydKQZfYA+ZqLGW4ZKZigPginRfN/uSnUn02lktWEWUo29NVChRn9
-         sviuhzWtFmfZ3ZfoByBVZRuPGU6UsIdxeHCTNRkrjKTxD98xNfZWxSB0F2ohuCuGdifj
-         i6tg==
-X-Gm-Message-State: APjAAAXAj7mhJD6Lkg+U7wVprbGF3MYeuPxs127RXFUTm6gxvwZBRocc
-        DxrEgPkhx1tpTDyV5llfmAc=
-X-Google-Smtp-Source: APXvYqxv+iB25I5NrbvVPiR7XWHGPnqcPx2J39IflRtWXVi/n7ge7s91adZiNxuKFrKu9WoulT7Cdw==
-X-Received: by 2002:a05:6402:110c:: with SMTP id u12mr5701239edv.127.1572525104909;
-        Thu, 31 Oct 2019 05:31:44 -0700 (PDT)
-Received: from pi3 ([194.230.155.180])
-        by smtp.googlemail.com with ESMTPSA id s16sm57296edd.39.2019.10.31.05.31.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Oct 2019 05:31:44 -0700 (PDT)
-Date:   Thu, 31 Oct 2019 13:31:42 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Schrempf Frieder <frieder.schrempf@kontron.de>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 01/11] ARM: dts: imx6ul-kontron-n6310: Move common SoM
- nodes to a separate file
-Message-ID: <20191031123142.GA27967@pi3>
-References: <20191029112655.15058-1-frieder.schrempf@kontron.de>
- <20191029112655.15058-2-frieder.schrempf@kontron.de>
+        id S1726642AbfJaMpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Oct 2019 08:45:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56926 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726540AbfJaMpC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 31 Oct 2019 08:45:02 -0400
+Received: from localhost (lns-bzn-32-82-254-4-138.adsl.proxad.net [82.254.4.138])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CAAF02067D;
+        Thu, 31 Oct 2019 12:45:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572525901;
+        bh=0DNBeenyH7rB/8g2YXDHf6rJYEKF+j4UGX0CUbblXaA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mZ2EFnFaQxMFoSOwRwqwyd2Y9KZ+YtRrSiC6EbdzRR+rfKo31dkjxb3WqL6WD2PLV
+         CXi8nj0pOAqaL5Jz40Ey/pB2Q/l9RqFR3ZJ7RxF6l/Ildoo5XduUSMQXz18Y2y0tzL
+         GzoBlIYLheWU7SCpbNIdcCe9B1hw0oYK3jgmmIdY=
+Date:   Thu, 31 Oct 2019 13:35:43 +0100
+From:   Maxime Ripard <mripard@kernel.org>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/2] Allwinner H6 Mali GPU support
+Message-ID: <20191031123543.lllmoat4zv5f47pd@hendrix>
+References: <20191030150742.3573-1-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nd6i5yai3phkhdlv"
 Content-Disposition: inline
-In-Reply-To: <20191029112655.15058-2-frieder.schrempf@kontron.de>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+In-Reply-To: <20191030150742.3573-1-peron.clem@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 29, 2019 at 11:27:44AM +0000, Schrempf Frieder wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> 
-> The Kontron N6311 and N6411 SoMs are very similar to N6310. In
-> preparation to add support for them, we move the common nodes to a
-> separate file imx6ul-kontron-n6x1x-som-common.dtsi.
-> 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  .../boot/dts/imx6ul-kontron-n6310-som.dtsi    |  95 +---------------
->  .../dts/imx6ul-kontron-n6x1x-som-common.dtsi  | 103 ++++++++++++++++++
->  2 files changed, 104 insertions(+), 94 deletions(-)
->  create mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6x1x-som-common.dtsi
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+--nd6i5yai3phkhdlv
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Wed, Oct 30, 2019 at 04:07:40PM +0100, Cl=E9ment P=E9ron wrote:
+> Hi,
+>
+> Proper iommu patches has been merged[0].
+>
+> There is still work to do to make it works with panfrost
+> but all modules can be probed and removed smoothly.
+>
+> These bindings could be used also for out-of-tree modules.
 
+Applied both, thanks
+
+Maxime
+
+--nd6i5yai3phkhdlv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXbrVHwAKCRDj7w1vZxhR
+xWqMAQClAAyrxFvMUcdFqsOw4AphcLAVcXIVqpAF1731LJ7ZBgEAn8EdQHaxfj6V
+RLMcF7zHur0tsbHuhAtC/gJY0sHFFQM=
+=pJeb
+-----END PGP SIGNATURE-----
+
+--nd6i5yai3phkhdlv--
