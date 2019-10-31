@@ -2,306 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F22C5EB95C
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 22:50:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00740EB9E8
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 23:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729136AbfJaVuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Oct 2019 17:50:40 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:42456 "EHLO inva020.nxp.com"
+        id S1727511AbfJaWwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Oct 2019 18:52:21 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51476 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728829AbfJaVuk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 31 Oct 2019 17:50:40 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D11281A059C;
-        Thu, 31 Oct 2019 22:50:38 +0100 (CET)
+        id S1726735AbfJaWwV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 31 Oct 2019 18:52:21 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 078442002ED;
+        Thu, 31 Oct 2019 23:52:18 +0100 (CET)
 Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B98B81A0214;
-        Thu, 31 Oct 2019 22:50:38 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EBF892000BB;
+        Thu, 31 Oct 2019 23:52:17 +0100 (CET)
 Received: from fsr-ub1864-112.ea.freescale.net (fsr-ub1864-112.ea.freescale.net [10.171.82.98])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id AB5102062B;
-        Thu, 31 Oct 2019 22:50:37 +0100 (CET)
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id E39D0205E9;
+        Thu, 31 Oct 2019 23:52:16 +0100 (CET)
 From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Stephen Boyd <sboyd@kernel.org>,
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         MyungJoo Ham <myungjoo.ham@samsung.com>,
         Kyungmin Park <kyungmin.park@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>,
         Saravana Kannan <saravanak@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
         Angus Ainslie <angus@akkea.ca>,
         Martin Kepplinger <martink@posteo.de>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 6/6] arm64: dts: imx8m: Add ddr controller nodes
-Date:   Thu, 31 Oct 2019 23:50:27 +0200
-Message-Id: <44dcab5a136f5b046092e6ed456d8e206413059f.1572558427.git.leonard.crestez@nxp.com>
+        linux-pm@vger.kernel.org, kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH RFC v5 00/10] interconnect: Add imx support via devfreq
+Date:   Fri,  1 Nov 2019 00:51:59 +0200
+Message-Id: <cover.1572562150.git.leonard.crestez@nxp.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1572558427.git.leonard.crestez@nxp.com>
-References: <cover.1572558427.git.leonard.crestez@nxp.com>
-In-Reply-To: <cover.1572558427.git.leonard.crestez@nxp.com>
-References: <cover.1572558427.git.leonard.crestez@nxp.com>
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is used by the imx-ddrc devfreq driver to implement dynamic
-frequency scaling of DRAM.
+This series adds upstream DRAM and interconnect scaling support for imx8m
+series chips. It uses a per-SOC interconnect provider layered on top of
+multiple instances of devfreq for scalable nodes along the interconnect.
 
-Add a devfreq-event link to the dram PMU in order to support on-demand
-scaling of ddrc based on measured dram bandwidth usage.
+Existing qcom interconnect providers mostly translate bandwidth requests into
+firmware calls but equivalent firmware on imx8m is much thinner. Scaling
+support for individual nodes (NIC/NOC and DDRC) is implemented through
+devfreq.
 
-Support for proactive scaling via interconnect will come later. The
-high-performance bus masters which need that (display, vpu, gpu) are not
-yet enabled in upstream anyway.
+The imx interconnect provider doesn't communicate with devfreq instance
+directly but rather computes "minimum frequencies" for nodes along the path
+and creates dev_pm_qos requests.
 
-Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-evk.dts  | 18 ++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 17 ++++++++++++-
- .../boot/dts/freescale/imx8mn-ddr4-evk.dts    | 18 ++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mn.dtsi     | 16 ++++++++++++-
- arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 24 +++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 16 ++++++++++++-
- 6 files changed, 106 insertions(+), 3 deletions(-)
+This needs core changes for dev_pm_qos frequency support for devfreq:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-index 4f5e408d6e6a..be9abd8e4478 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-@@ -69,16 +69,34 @@
- 		simple-audio-card,codec {
- 			sound-dai = <&wm8524>;
- 			clocks = <&clk IMX8MM_CLK_SAI3_ROOT>;
- 		};
- 	};
-+
-+	ddrc_opp_table: ddrc-opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+		opp-750M {
-+			opp-hz = /bits/ 64 <750000000>;
-+		};
-+	};
- };
- 
- &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+};
-+
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 6edbdfe2d0d7..5404870d80d5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -856,11 +856,26 @@
- 			#interrupt-cells = <3>;
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		ddr-pmu@3d800000 {
-+		ddrc: dram-controller@3d400000 {
-+			compatible = "fsl,imx8mm-ddrc", "fsl,imx8m-ddrc";
-+			reg = <0x3d400000 0x400000>;
-+			clock-names = "dram_core",
-+				      "dram_pll",
-+				      "dram_alt",
-+				      "dram_apb";
-+			clocks = <&clk IMX8MM_CLK_DRAM_CORE>,
-+				 <&clk IMX8MM_DRAM_PLL>,
-+				 <&clk IMX8MM_CLK_DRAM_ALT>,
-+				 <&clk IMX8MM_CLK_DRAM_APB>;
-+			devfreq-events = <&ddr_pmu>;
-+			operating-points-v2 = <&ddrc_opp_table>;
-+		};
-+
-+		ddr_pmu: ddr-pmu@3d800000 {
- 			compatible = "fsl,imx8mm-ddr-pmu", "fsl,imx8m-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-index 071949412caf..ab2060667671 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-@@ -9,16 +9,34 @@
- #include "imx8mn-evk.dtsi"
- 
- / {
- 	model = "NXP i.MX8MNano DDR4 EVK board";
- 	compatible = "fsl,imx8mn-ddr4-evk", "fsl,imx8mn";
-+
-+	ddrc_opp_table: ddrc-opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+		opp-600M {
-+			opp-hz = /bits/ 64 <600000000>;
-+		};
-+	};
- };
- 
- &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+};
-+
- &i2c1 {
- 	pmic@4b {
- 		compatible = "rohm,bd71847";
- 		reg = <0x4b>;
- 		pinctrl-0 = <&pinctrl_pmic>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index e91625063f8e..344dd777635f 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -757,11 +757,25 @@
- 			#interrupt-cells = <3>;
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		ddr-pmu@3d800000 {
-+		ddrc: dram-controller@3d400000 {
-+			compatible = "fsl,imx8mn-ddrc", "fsl,imx8m-ddrc";
-+			reg = <0x3d400000 0x400000>;
-+			clock-names = "dram_core",
-+				      "dram_pll",
-+				      "dram_alt",
-+				      "dram_apb";
-+			clocks = <&clk IMX8MN_CLK_DRAM_CORE>,
-+				 <&clk IMX8MN_DRAM_PLL>,
-+				 <&clk IMX8MN_CLK_DRAM_ALT>,
-+				 <&clk IMX8MN_CLK_DRAM_APB>;
-+			devfreq-events = <&ddr_pmu>;
-+		};
-+
-+		ddr_pmu: ddr-pmu@3d800000 {
- 			compatible = "fsl,imx8mn-ddr-pmu", "fsl,imx8m-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-index c36685916683..fc4c12ab8991 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-@@ -85,10 +85,30 @@
- 		link_codec: simple-audio-card,codec {
- 			sound-dai = <&wm8524>;
- 			clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
- 		};
- 	};
-+
-+	ddrc_opp_table: ddrc-opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+		/*
-+		 * On imx8mq B0 PLL can't be bypassed so low bus is 166M
-+		 */
-+		opp-166M {
-+			opp-hz = /bits/ 64 <166935483>;
-+		};
-+		opp-800M {
-+			opp-hz = /bits/ 64 <800000000>;
-+		};
-+	};
- };
- 
- &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
-@@ -103,10 +123,14 @@
- 
- &A53_3 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+};
-+
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 7f9319452b58..6ef1af41ef68 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1111,11 +1111,25 @@
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
- 		};
- 
--		ddr-pmu@3d800000 {
-+		ddrc: dram-controller@3d400000 {
-+			compatible = "fsl,imx8mq-ddrc", "fsl,imx8m-ddrc";
-+			reg = <0x3d400000 0x400000>;
-+			clock-names = "dram_core",
-+				      "dram_pll",
-+				      "dram_alt",
-+				      "dram_apb";
-+			clocks = <&clk IMX8MQ_CLK_DRAM_CORE>,
-+				 <&clk IMX8MQ_DRAM_PLL_OUT>,
-+				 <&clk IMX8MQ_CLK_DRAM_ALT>,
-+				 <&clk IMX8MQ_CLK_DRAM_APB>;
-+			devfreq-events = <&ddr_pmu>;
-+		};
-+
-+		ddr_pmu: ddr-pmu@3d800000 {
- 			compatible = "fsl,imx8mq-ddr-pmu", "fsl,imx8m-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 		};
+	https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=196443
+
+Since imx interconnect only needs to interact with imx devfreq it would also be
+possible to tie them together directly, but it would be a little sad.
+
+Since there is no single devicetree node that can represent the
+"interconnect" the main NOC is picked as the "interconnect provider" and
+will probe the interconnect platform device if #interconnect-cells is
+present. This is a bit odd.
+
+On i.MX there are multiple instances of a few interconnect IPs, this
+patch identifies them by enumerating the entire devicetree scanning for
+the "interconnect-node-id" property. As far as I see current providers
+do this based entirely on compatible string of the interconnect instance
+and this seems very odd to me. Do you think we could move this
+"interconnect-node-id" approach to core interconnect bindings?
+
+The same interconnect-node-id property is used to identify the DDRC and
+this is arguably a hack.
+
+Also as a github branch (with few other changes):
+    https://github.com/cdleonard/linux/tree/next_imx_busfreq
+
+This is layered upon imx-ddrc scaling support:
+* https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=196459
+The DDRC only really interacts by receiving dev_pm_qos requests.
+
+Changes since RFCv4:
+* Drop icc proxy nonsense
+* Make devfreq driver for NOC probe the ICC driver if
+#interconnect-cells is present.
+* Move NOC support to interconnect series and rename the node in DT
+* Add support for all chips at once, differences are not intereseting
+and there is more community interest for 8mq than 8mm.
+Link: https://patchwork.kernel.org/cover/11111865/
+
+Changes since RFCv3:
+* Remove the virtual "icc" node and add devfreq nodes as proxy providers
+* Fix build on 32-bit arm (reported by kbuilt test robot)
+* Remove ARCH_MXC_ARM64 (never existed in upstream)
+* Remove _numlinks, calculate instead
+* Replace __BUSFREQ_H header guard
+* Improve commit message and comment spelling
+* Fix checkpatch issues
+Link to RFCv3: https://patchwork.kernel.org/cover/11078671/
+
+Changes since RFCv2 and initial work by Alexandre Bailon:
+* Relying on devfreq and dev_pm_qos instead of CLK
+* No more "platform opp" stuff
+* No more special suspend handling: use suspend-opp on devfreq instead.
+* Replace all mentions of "busfreq" with "interconnect"
+Link to v2: https://patchwork.kernel.org/patch/11056789/
+
+Leonard Crestez (10):
+  dt-bindings: devfreq: Add bindings for generic imx buses
+  PM / devfreq: Add generic imx bus driver
+  PM / devfreq: imx: Register interconnect device
+  PM / devfreq: Add devfreq_get_devfreq_by_node
+  interconnect: Add imx core driver
+  interconnect: imx: Add platform driver for imx8mm
+  interconnect: imx: Add platform driver for imx8mq
+  interconnect: imx: Add platform driver for imx8mn
+  arm64: dts: imx8m: Add NOC nodes
+  arm64: dts: imx8m: Add interconnect provider properties
+
+ .../devicetree/bindings/devfreq/imx.yaml      |  83 ++++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  26 ++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  26 ++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  26 ++
+ drivers/devfreq/Kconfig                       |  12 +
+ drivers/devfreq/Makefile                      |   1 +
+ drivers/devfreq/devfreq.c                     |  42 ++-
+ drivers/devfreq/imx-devfreq.c                 | 185 ++++++++++++
+ drivers/interconnect/Kconfig                  |   1 +
+ drivers/interconnect/Makefile                 |   1 +
+ drivers/interconnect/imx/Kconfig              |  17 ++
+ drivers/interconnect/imx/Makefile             |   4 +
+ drivers/interconnect/imx/imx.c                | 273 ++++++++++++++++++
+ drivers/interconnect/imx/imx.h                |  60 ++++
+ drivers/interconnect/imx/imx8mm.c             | 105 +++++++
+ drivers/interconnect/imx/imx8mn.c             |  94 ++++++
+ drivers/interconnect/imx/imx8mq.c             | 103 +++++++
+ include/dt-bindings/interconnect/imx8mm.h     |  49 ++++
+ include/dt-bindings/interconnect/imx8mn.h     |  41 +++
+ include/dt-bindings/interconnect/imx8mq.h     |  48 +++
+ include/linux/devfreq.h                       |   1 +
+ 21 files changed, 1187 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/devfreq/imx.yaml
+ create mode 100644 drivers/devfreq/imx-devfreq.c
+ create mode 100644 drivers/interconnect/imx/Kconfig
+ create mode 100644 drivers/interconnect/imx/Makefile
+ create mode 100644 drivers/interconnect/imx/imx.c
+ create mode 100644 drivers/interconnect/imx/imx.h
+ create mode 100644 drivers/interconnect/imx/imx8mm.c
+ create mode 100644 drivers/interconnect/imx/imx8mn.c
+ create mode 100644 drivers/interconnect/imx/imx8mq.c
+ create mode 100644 include/dt-bindings/interconnect/imx8mm.h
+ create mode 100644 include/dt-bindings/interconnect/imx8mn.h
+ create mode 100644 include/dt-bindings/interconnect/imx8mq.h
+
 -- 
 2.17.1
 
