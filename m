@@ -2,104 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13E82EB281
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 15:25:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A218EB284
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 15:25:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728129AbfJaOYj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 31 Oct 2019 10:24:39 -0400
-Received: from skedge03.snt-world.com ([91.208.41.68]:42650 "EHLO
-        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727807AbfJaOYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Oct 2019 10:24:39 -0400
-Received: from sntmail12r.snt-is.com (unknown [10.203.32.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by skedge03.snt-world.com (Postfix) with ESMTPS id BFA3F60CB06;
-        Thu, 31 Oct 2019 15:24:34 +0100 (CET)
-Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail12r.snt-is.com
- (10.203.32.182) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 31 Oct
- 2019 15:24:34 +0100
-Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
- sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
- 15.01.1713.004; Thu, 31 Oct 2019 15:24:34 +0100
-From:   Schrempf Frieder <frieder.schrempf@kontron.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        id S1728172AbfJaOZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Oct 2019 10:25:06 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:38372 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728153AbfJaOZG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 31 Oct 2019 10:25:06 -0400
+Received: from dhcp-64-28.ens-lyon.fr ([140.77.64.28] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iQBNk-0005pO-8a; Thu, 31 Oct 2019 15:25:00 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Markus Reichl <m.reichl@fivetechno.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Pengutronix Kernel Team" <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Sascha Hauer" <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 11/11] MAINTAINERS: Add an entry for Kontron Electronics
- ARM board support
-Thread-Topic: [PATCH v3 11/11] MAINTAINERS: Add an entry for Kontron
- Electronics ARM board support
-Thread-Index: AQHVj/bq00l6FB82qEKQsJ90JRSWJQ==
-Date:   Thu, 31 Oct 2019 14:24:34 +0000
-Message-ID: <20191031142112.12431-12-frieder.schrempf@kontron.de>
-References: <20191031142112.12431-1-frieder.schrempf@kontron.de>
-In-Reply-To: <20191031142112.12431-1-frieder.schrempf@kontron.de>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [172.25.9.193]
-x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: 8BIT
+        Jagan Teki <jagan@amarulasolutions.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Rework voltage supplies for regulators on rk3399-roc-pc
+Date:   Thu, 31 Oct 2019 15:24:59 +0100
+Message-ID: <2490751.hSll4LLrj9@phil>
+In-Reply-To: <22b56700-3c9e-0f60-cd74-7ff24d4f1a23@fivetechno.de>
+References: <22b56700-3c9e-0f60-cd74-7ff24d4f1a23@fivetechno.de>
 MIME-Version: 1.0
-X-SnT-MailScanner-Information: Please contact the ISP for more information
-X-SnT-MailScanner-ID: BFA3F60CB06.A0AF1
-X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
-X-SnT-MailScanner-SpamCheck: 
-X-SnT-MailScanner-From: frieder.schrempf@kontron.de
-X-SnT-MailScanner-To: devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-X-Spam-Status: No
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+Am Donnerstag, 31. Oktober 2019, 14:30:06 CET schrieb Markus Reichl:
+> Correct the voltage supplies according to the board schematics
+> ROC-3399-PC-V10-A-20180804.
+> 
+> Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+> ---
+>  .../arm64/boot/dts/rockchip/rk3399-roc-pc.dts | 30 ++++++++++---------
+>  1 file changed, 16 insertions(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> index e06e4163605b..def8bca7d158 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> @@ -142,7 +142,7 @@
+>  		regulator-boot-on;
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+> -		vin-supply = <&vcc_sys>;
+> +		vin-supply = <&dc_12v>;
+>  	};
+>  
+>  	/* Actually 3 regulators (host0, 1, 2) controlled by the same gpio */
+> @@ -190,7 +190,7 @@
+>  		regulator-boot-on;
+>  		regulator-min-microvolt = <800000>;
+>  		regulator-max-microvolt = <1400000>;
+> -		vin-supply = <&vcc_sys>;
+> +		vin-supply = <&vcc3v3_sys>;
+>  	};
+>  
+>  	/* on roc-rk3399-mezzanine board */
 
-Kontron Electronics GmbH produces several ARM boards, that are
-planned to be upstreamed eventually. For now we have some
-i.MX6UL/ULL based SoMs and boards, that are already available
-in the kernel.
+This seems to be some change from somewhere else.
+In any case I adapted that to the current dts and applied
+the patch for 5.5. Please double-check though.
 
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+Thanks
+Heiko
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 296de2b51c83..a461d31ee98d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9103,6 +9103,12 @@ F:	include/linux/kmod.h
- F:	lib/test_kmod.c
- F:	tools/testing/selftests/kmod/
- 
-+KONTRON ELECTRONICS ARM BOARDS SUPPORT
-+M:	Frieder Schrempf <frieder.schrempf@kontron.de>
-+S:	Maintained
-+F:	arch/arm/boot/dts/imx6ul-kontron-*
-+F:	arch/arm/boot/dts/imx6ull-kontron-*
-+
- KPROBES
- M:	Naveen N. Rao <naveen.n.rao@linux.ibm.com>
- M:	Anil S Keshavamurthy <anil.s.keshavamurthy@intel.com>
--- 
-2.17.1
+
+
