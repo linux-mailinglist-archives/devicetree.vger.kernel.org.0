@@ -2,89 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6D82EAEF6
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 12:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BA3BEAFCB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 13:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726691AbfJaL37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Oct 2019 07:29:59 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:33217 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726462AbfJaL37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Oct 2019 07:29:59 -0400
-Received: by mail-wr1-f68.google.com with SMTP id s1so5865788wro.0;
-        Thu, 31 Oct 2019 04:29:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ro53YB+MKod/Y42OOMgHzLxbEZJXl+SagwYe7xZuvMo=;
-        b=pa0y0BDfbi5Zscq0yZu1N18Y2EDGD7Rdpm3U4pMstfiv1MDH5GTX5wJqGhBhptglo+
-         RwGkGc/nyMbfXU8PrCTtk8cHyJLnXSR285Zs2OXpINcS2GKZCGIjRothWjPN+zSeM3fW
-         seo1T1QIrlhKNBb/3efE8JoR3ejrV/F2UNM4lPblBOGSxHUTDANmKJUwI7lgrKGQ4IGE
-         HvZ62cKFB3uC46QM3zWxMWBMnxL9UuGcVRTk+f7XTEliXGZsjh8uTT+v5XKhYi+CcM3A
-         BBvniP0QkINKaJkuvGhIAMIBLaWOpR4L4BnnlV6JaQZCXoKZG2/nr+8V6hrVRSgVhv3h
-         J8xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ro53YB+MKod/Y42OOMgHzLxbEZJXl+SagwYe7xZuvMo=;
-        b=GooJebXmOU4W3Q169h0UAIkuZhBqzv2cs5QBTq0iaiEJGEbgjEjwvEvw//j3cGZyKO
-         sSwHqT1yqDn15zTiLA743Zl7mbCEcdDmp26N9r1/bZd1Ri4ZUeykMYy6zx60rMMqr7RA
-         7UJhJ2N8kUqOUQzhe/y6Zioa20te07IQZVNjz+ESNGdRUP+Zc2b9HBZLqpwyOfn79elA
-         ohTrIq1b4NgBLBb4joC7ATR24HxlemdBNu0iqaXhx+WxnqsAyzPaOFzQwyuAAymABO1b
-         GdDddZME6/fjbw4VKPX1ra3E71y4gF5836Vs0vm3Gn9px9nOHWsjxK1RAaoBzfJmAmDU
-         30Jw==
-X-Gm-Message-State: APjAAAUbKbINu1BRhbWW2xEXL8Cofm4XMdL2hBYFqMQ54meX3FsfeaSh
-        LFRXz1mW7LvpJ1mWXSlfz6sB5MJ3Cj4=
-X-Google-Smtp-Source: APXvYqw8evn6JduYCXCmfwMv/bQgxouPphyHjCR7CCpd1qVlYHDdoH2YSXDpXVl6Dk8JYcug3q1Jiw==
-X-Received: by 2002:adf:9481:: with SMTP id 1mr5095177wrr.77.1572521396878;
-        Thu, 31 Oct 2019 04:29:56 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu ([93.51.16.173])
-        by smtp.gmail.com with ESMTPSA id r13sm4563586wra.74.2019.10.31.04.29.56
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 31 Oct 2019 04:29:56 -0700 (PDT)
-From:   kholk11@gmail.com
-To:     linux-arm-msm@vger.kernel.org
-Cc:     kholk11@gmail.com, marijns95@gmail.com, agross@kernel.org,
-        mturquette@baylibre.com, bjorn.andersson@linaro.org,
-        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: clock: rpmcc: Document msm8976 compatible
-Date:   Thu, 31 Oct 2019 12:29:51 +0100
-Message-Id: <20191031112951.35850-3-kholk11@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191031112951.35850-1-kholk11@gmail.com>
-References: <20191031112951.35850-1-kholk11@gmail.com>
+        id S1726524AbfJaMIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Oct 2019 08:08:53 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:36192 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726462AbfJaMIx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 31 Oct 2019 08:08:53 -0400
+Received: from dhcp-159-84-61-180.univ-lyon2.fr ([159.84.61.180] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iQ9Fx-00050d-VD; Thu, 31 Oct 2019 13:08:50 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     kishon@ti.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-rockchip@lists.infradead.org,
+        christoph.muellner@theobroma-systems.com
+Subject: Re: [PATCH] phy: phy-rockchip-inno-usb2: add phy description for px30
+Date:   Thu, 31 Oct 2019 13:08:48 +0100
+Message-ID: <1974613.gpRaQal8Ma@phil>
+In-Reply-To: <20190917082532.25479-1-heiko@sntech.de>
+References: <20190917082532.25479-1-heiko@sntech.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+Hi Kishon,
 
-Support for MSM8976 was added to the clk-smd-rpm driver: let's
-document here the newly added compatible string.
+Am Dienstag, 17. September 2019, 10:25:32 CET schrieb Heiko Stuebner:
+> The px30 soc from Rockchip shares the same register description as
+> the rk3328, so can re-use its definitions.
+> 
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
----
- Documentation/devicetree/bindings/clock/qcom,rpmcc.txt | 1 +
- 1 file changed, 1 insertion(+)
+could you pick this up as well please?
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt b/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
-index 944719bd586f..356cabcd844d 100644
---- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
-+++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.txt
-@@ -14,6 +14,7 @@ Required properties :
- 			"qcom,rpmcc-apq8060", "qcom,rpmcc"
- 			"qcom,rpmcc-msm8916", "qcom,rpmcc"
- 			"qcom,rpmcc-msm8974", "qcom,rpmcc"
-+			"qcom,rpmcc-msm8976", "qcom,rpmcc"
- 			"qcom,rpmcc-apq8064", "qcom,rpmcc"
- 			"qcom,rpmcc-msm8996", "qcom,rpmcc"
- 			"qcom,rpmcc-msm8998", "qcom,rpmcc"
--- 
-2.21.0
+Thanks
+Heiko
+
+> ---
+>  Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt | 1 +
+>  drivers/phy/rockchip/phy-rockchip-inno-usb2.c                    | 1 +
+>  2 files changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt
+> index 00639baae74a..541f5298827c 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt
+> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-usb2.txt
+> @@ -2,6 +2,7 @@ ROCKCHIP USB2.0 PHY WITH INNO IP BLOCK
+>  
+>  Required properties (phy (parent) node):
+>   - compatible : should be one of the listed compatibles:
+> +	* "rockchip,px30-usb2phy"
+>  	* "rockchip,rk3228-usb2phy"
+>  	* "rockchip,rk3328-usb2phy"
+>  	* "rockchip,rk3366-usb2phy"
+> diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> index eae865ff312c..680cc0c8825c 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> @@ -1423,6 +1423,7 @@ static const struct rockchip_usb2phy_cfg rv1108_phy_cfgs[] = {
+>  };
+>  
+>  static const struct of_device_id rockchip_usb2phy_dt_match[] = {
+> +	{ .compatible = "rockchip,px30-usb2phy", .data = &rk3328_phy_cfgs },
+>  	{ .compatible = "rockchip,rk3228-usb2phy", .data = &rk3228_phy_cfgs },
+>  	{ .compatible = "rockchip,rk3328-usb2phy", .data = &rk3328_phy_cfgs },
+>  	{ .compatible = "rockchip,rk3366-usb2phy", .data = &rk3366_phy_cfgs },
+> 
+
+
+
 
