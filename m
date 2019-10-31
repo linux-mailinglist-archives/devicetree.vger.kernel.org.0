@@ -2,148 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72415EB222
-	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 15:07:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A9CCEB239
+	for <lists+devicetree@lfdr.de>; Thu, 31 Oct 2019 15:11:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727804AbfJaOHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Oct 2019 10:07:06 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:35734 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726642AbfJaOHG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Oct 2019 10:07:06 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9VE721j018372;
-        Thu, 31 Oct 2019 09:07:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1572530822;
-        bh=gXlDD/veFRApipmYmd4pB/kMLt9HDcd6FQb3Up3HhD8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Lqpd/6vevC3PHl2R41apuC5tes6oO9pb6lTXLMH/IQI8Rmxhi17UYVsXTEzv8JZuh
-         OuTph8htEQ0X1glpsRb8c5l2aYwl5xwqE8xt6r7B4klGqnQb3qFo+nzsL5S9LAVOq6
-         dMsCtCkRotsrhtWfDyOyHyzhzTi59HI1ablT/o24=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9VE71ZG034519
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 31 Oct 2019 09:07:02 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 31
- Oct 2019 09:06:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 31 Oct 2019 09:06:49 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9VE6x5I089523;
-        Thu, 31 Oct 2019 09:07:00 -0500
-Subject: Re: [Patch 1/3] ARM: dts: am43xx: add support for clkout1 clock
-To:     Benoit Parrot <bparrot@ti.com>, Tony Lindgren <tony@atomide.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-omap@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20191016184954.14048-1-bparrot@ti.com>
- <20191016184954.14048-2-bparrot@ti.com> <20191022154816.GO5610@atomide.com>
- <20191022162134.fpawonjdjvd5kxza@ti.com>
- <586dcabb-0400-50d6-5488-16bddc059286@ti.com>
- <20191022165516.GE5610@atomide.com> <20191023155657.GL5610@atomide.com>
- <20191030195946.ouexmis632nb7lqj@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <39b79438-ad82-0840-b2a5-36856d0ac520@ti.com>
-Date:   Thu, 31 Oct 2019 16:06:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727595AbfJaOLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Oct 2019 10:11:51 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:52010 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726735AbfJaOLv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Oct 2019 10:11:51 -0400
+Received: from pendragon.ideasonboard.com (lmontsouris-658-1-103-151.w92-154.abo.wanadoo.fr [92.154.14.151])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3FDD8320;
+        Thu, 31 Oct 2019 15:11:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1572531109;
+        bh=Wy1EJIyM5Xko+hpHgTbTOnoLXdTpLGZwkf8MB9pi6y4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bn0e7Jt1ZiznZxnPGnBJzZ2+cXr03+oWvdis9p/f90urUTazPe38o6v5mzrbqBSb0
+         WcTmNliMtfVr9LDYesFGpoqBC6j9jV9aF8VGLygJUsL49YAXU06s9vyy/+IHm0kSw1
+         UXZQW+zLG6xa7VaTJvkv31IbBPZnZZg/9RY5nuUg=
+Date:   Thu, 31 Oct 2019 16:11:41 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, sakari.ailus@iki.fi,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        c.barrett@framos.com, a.brela@framos.com, peter.griffin@linaro.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: i2c: Add IMX296 CMOS sensor
+ binding
+Message-ID: <20191031141141.GD5018@pendragon.ideasonboard.com>
+References: <20191030094902.32582-1-manivannan.sadhasivam@linaro.org>
+ <20191030094902.32582-2-manivannan.sadhasivam@linaro.org>
+ <20191031131538.GA9170@pendragon.ideasonboard.com>
+ <20191031134512.GB24273@mani>
 MIME-Version: 1.0
-In-Reply-To: <20191030195946.ouexmis632nb7lqj@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191031134512.GB24273@mani>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/10/2019 21:59, Benoit Parrot wrote:
-> Tony Lindgren <tony@atomide.com> wrote on Wed [2019-Oct-23 08:56:57 -0700]:
->> * Tony Lindgren <tony@atomide.com> [191022 16:56]:
->>> * Tero Kristo <t-kristo@ti.com> [191022 16:48]:
->>>> On 22/10/2019 19:21, Benoit Parrot wrote:
->>>>> Tony Lindgren <tony@atomide.com> wrote on Tue [2019-Oct-22 08:48:16 -0700]:
->>>>>> * Benoit Parrot <bparrot@ti.com> [191016 18:47]:
->>>>>>> --- a/arch/arm/boot/dts/am43xx-clocks.dtsi
->>>>>>> +++ b/arch/arm/boot/dts/am43xx-clocks.dtsi
->>>>>>> @@ -704,6 +704,60 @@
->>>>>>>    		ti,bit-shift = <8>;
->>>>>>>    		reg = <0x2a48>;
->>>>>>>    	};
->>>>>>> +
->>>>>>> +	clkout1_osc_div_ck: clkout1_osc_div_ck {
->>>>>>> +		#clock-cells = <0>;
->>>>>>> +		compatible = "ti,divider-clock";
->>>>>>> +		clocks = <&sys_clkin_ck>;
->>>>>>> +		ti,bit-shift = <20>;
->>>>>>> +		ti,max-div = <4>;
->>>>>>> +		reg = <0x4100>;
->>>>>>> +	};
->>>>>>
->>>>>> Here too please describe why the clock names are not generic.
->>>>>
->>>>> Tero originally had this patch in the kernel so this is somewhat of a
->>>>> revert. Since these "clock" were removed. If the name syntax is no longer
->>>>> valid for some reason, then I will need a little more informations to
->>>>> proceed.
->>>>>
->>>>> Tero, can you assist here?
->>>>
->>>> This one is just following the naming convention of the rest of the clocks
->>>> atm.
->>>>
->>>> If we need to fix all the underscore name clocks, that requires pretty much
->>>> complete revamp of both the dts data + clock data under the clock driver,
->>>> and it is not backwards compatible either. How should we tackle that one?
->>>>
->>>> We could maybe add support code in kernel to do s/-/_/g for the "new" clocks
->>>> so that their parent-child relationships would be retained, and then convert
->>>> the clocks in phases.
->>>
->>> Well some of them can be fixed by configuring things based
->>> on the compatible value and then the node name can be just
->>> clock like it should be.
->>>
->>> Here too one option would be to add custom compatibles like:
->>>
->>> compatible = "ti,clkout1-osc-div", "ti,divider-clock";
->>>
->>> And then have match data configure the rest.
->>>
->>> The other option would be to have lookup tables in the clock
->>> driver based on the SoC and reg address.
->>>
->>> This is a hidden mine though.. We've hit it already several times,
->>> and any dts clean-up effort has a chance of breaking things.
->>
->> Hmm maybe in this case just doing this is enough:
->>
->> clkout1_osc_div_ck: clock@4100 {
->> 	...
->> }
-> 
-> But then we would end up with 6 clock node with the same name "clock@4100",
-> doesn't pose a problem somewhere?
+Hi Mani,
 
-Yeah, clk core would not know which one to use then.
-
+On Thu, Oct 31, 2019 at 07:15:12PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Oct 31, 2019 at 03:15:38PM +0200, Laurent Pinchart wrote:
+> > On Wed, Oct 30, 2019 at 03:19:01PM +0530, Manivannan Sadhasivam wrote:
+> >> Add YAML devicetree binding for IMX296 CMOS image sensor. Let's also
+> >> add MAINTAINERS entry for the binding and driver.
+> >> 
+> >> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >> ---
+> >>  .../devicetree/bindings/media/i2c/imx296.yaml | 94 +++++++++++++++++++
+> >>  MAINTAINERS                                   |  8 ++
+> >>  2 files changed, 102 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx296.yaml
+> >> 
+> >> diff --git a/Documentation/devicetree/bindings/media/i2c/imx296.yaml b/Documentation/devicetree/bindings/media/i2c/imx296.yaml
+> >> new file mode 100644
+> >> index 000000000000..c04ec2203268
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/media/i2c/imx296.yaml
+> >> @@ -0,0 +1,94 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/media/i2c/imx296.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Sony IMX296 1/2.8-Inch CMOS Image Sensor
+> >> +
+> >> +maintainers:
+> >> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >> +
+> >> +description: |-
+> >> +  The Sony IMX296 is a 1/2.9-Inch active pixel type CMOS Solid-state image
+> >> +  sensor with square pixel array and 1.58 M effective pixels. This chip
+> >> +  features a global shutter with variable charge-integration time. It is
+> >> +  programmable through I2C and 4-wire interfaces. The sensor output is
+> >> +  available via CSI-2 serial data output (1 Lane).
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: sony,imx296
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  clocks:
+> >> +    maxItems: 1
+> >> +
+> >> +  clock-names:
+> >> +    description:
+> >> +      Input clock for the sensor.
+> >> +    items:
+> >> +      - const: mclk
+> > 
+> > The pin is named INCK, let's name the clock accordingly.
 > 
-> Tero?
+> Okay, I thought generic names are preferred here!
+>  
+> >> +  clock-frequency:
+> >> +    description:
+> >> +      Frequency of the mclk clock in Hertz.
+> > 
+> > This shouldn't be needed, you can retrieve the clock frequency at
+> > runtime from the clock source.
 > 
-> Benoit
+> Unless the clock source is a fixed one! What if the clock source comes from
+> SoC? We need to set the rate, right?
+
+In that case, if you want to hardcode the clock in DT, the preferred way
+is to use the assigned-clock-rates property. Otherwise, if the driver
+requires a specific clock frequency, it's better to hardcode it in the
+driver itself. In this specific case, I think assigned-clock-rates is
+best as the device can support three different clock frequencies.
+
+> >> +  vddo-supply:
+> >> +    description:
+> >> +      Definition of the regulator used as interface power supply.
+> >> +
+> >> +  vdda-supply:
+> >> +    description:
+> >> +      Definition of the regulator used as analog power supply.
+> >> +
+> >> +  vddd-supply:
+> >> +    description:
+> >> +      Definition of the regulator used as digital power supply.
+> > 
+> > Do we really need three regulators ? I agree that the sensor has three
+> > power rails, but aren't they usually powered by regulators that are
+> > tied together, without individual control ? The IMX926 specifications
+> > require the three power supplies to raise within 200ms, which we should
+> > be able to ensure in software. What does your board use, does it have
+> > multiple GPIOs to control each power supply ? If not I wonder if we
+> > could just define vddd-supply now, and add vdda-supply and vddo-supply
+> > later if we need to support systems that can control the supplies
+> > individually.
 > 
->>
->> Or do all the TI clocks we have have a dependency to the
->> node naming?
+> The whole power supply model is a bit rotten. In my case, there are 3 different
+> regulators used with no software control. So, I can't control the rise time
+> (I assume that they are handled by the external power regulator itself).
+> 
+> So to be sane, I just documented with the assumption of fixed-regulators.
 
-This is a feature of clock core. Clock parents need to have distinct 
-names, otherwise it won't work.
+Should we then go for one supply, and add the other two when (and if)
+needed ?
 
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> >> +  reset-gpios:
+> >> +    description:
+> >> +      The phandle and specifier for the GPIO that controls sensor reset.
+> >> +    maxItems: 1
+> >> +
+> >> +  port: true
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - clocks
+> >> +  - clock-names
+> >> +  - clock-frequency
+> >> +  - vddo-supply
+> >> +  - vdda-supply
+> >> +  - vddd-supply
+> >> +
+> >> +additionalProperties: false
+> >> +
+> >> +examples:
+> >> +  - |
+> >> +    #include <dt-bindings/gpio/gpio.h>
+> >> +
+> >> +    imx296: camera-sensor@1a {
+> >> +        compatible = "sony,imx296";
+> >> +        reg = <0x1a>;
+> >> +        reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
+> >> +        pinctrl-names = "default";
+> >> +        pinctrl-0 = <&camera_rear_default>;
+> >> +        clocks = <&gcc 90>;
+> >> +        clock-names = "mclk";
+> >> +        clock-frequency = <37125000>;
+> >> +        vddo-supply = <&camera_vddo_1v8>;
+> >> +        vdda-supply = <&camera_vdda_3v3>;
+> >> +        vddd-supply = <&camera_vddd_1v2>;
+> >> +
+> >> +        port {
+> >> +            imx296_ep: endpoint {
+> >> +                remote-endpoint = <&csiphy0_ep>;
+> >> +            };
+> >> +        };
+> >> +    };
+> >> +
+> >> +...
+> >> diff --git a/MAINTAINERS b/MAINTAINERS
+> >> index 55199ef7fa74..51194bb2c392 100644
+> >> --- a/MAINTAINERS
+> >> +++ b/MAINTAINERS
+> >> @@ -15140,6 +15140,14 @@ S:	Maintained
+> >>  F:	drivers/media/i2c/imx274.c
+> >>  F:	Documentation/devicetree/bindings/media/i2c/imx274.txt
+> >>  
+> >> +SONY IMX296 SENSOR DRIVER
+> >> +M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >> +L:	linux-media@vger.kernel.org
+> >> +T:	git git://linuxtv.org/media_tree.git
+> >> +S:	Maintained
+> >> +F:	drivers/media/i2c/imx296.c
+> >> +F:	Documentation/devicetree/bindings/media/i2c/imx296.yaml
+> >> +
+> >>  SONY IMX319 SENSOR DRIVER
+> >>  M:	Bingbu Cao <bingbu.cao@intel.com>
+> >>  L:	linux-media@vger.kernel.org
+
+-- 
+Regards,
+
+Laurent Pinchart
