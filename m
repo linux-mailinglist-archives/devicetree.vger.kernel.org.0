@@ -2,86 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E1DAEC0C4
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 10:49:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F263DEC108
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 11:08:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726663AbfKAJtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 05:49:18 -0400
-Received: from forward100j.mail.yandex.net ([5.45.198.240]:51843 "EHLO
-        forward100j.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725904AbfKAJtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 05:49:18 -0400
-Received: from mxback1j.mail.yandex.net (mxback1j.mail.yandex.net [IPv6:2a02:6b8:0:1619::10a])
-        by forward100j.mail.yandex.net (Yandex) with ESMTP id 8504E50E1839;
-        Fri,  1 Nov 2019 12:43:45 +0300 (MSK)
-Received: from sas8-93a22d3a76f4.qloud-c.yandex.net (sas8-93a22d3a76f4.qloud-c.yandex.net [2a02:6b8:c1b:2988:0:640:93a2:2d3a])
-        by mxback1j.mail.yandex.net (nwsmtp/Yandex) with ESMTP id ueOKE66uVU-hiH0HCV1;
-        Fri, 01 Nov 2019 12:43:45 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emlid.com; s=mail; t=1572601425;
-        bh=6STKUVn3hs66m/B2u/OEo0OqpFI5/3aIr59jZz5/T2E=;
-        h=Subject:To:From:Cc:Date:Message-Id;
-        b=WdGBQFDof5hH+PCdpBaEYo7mLVeAis2GxYnJgnc1WVRRKoKkm3mGgLaHLGZjnmslp
-         s/BglP7lcYRpqnFIPOahraENV8kw+bgRePHmb920IQ4SreCpDMwt6z+S1oYn3ppfbR
-         VnoruJLEnHy9EXPSuu6vFGxX2iNsiWvJwWj6pseM=
-Authentication-Results: mxback1j.mail.yandex.net; dkim=pass header.i=@emlid.com
-Received: by sas8-93a22d3a76f4.qloud-c.yandex.net (nwsmtp/Yandex) with ESMTPSA id 8sDgF13QBw-hhUu6OCQ;
-        Fri, 01 Nov 2019 12:43:44 +0300
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (Client certificate not present)
-From:   Georgii Staroselskii <georgii.staroselskii@emlid.com>
-To:     mripard@kernel.org, robh+dt@kernel.org, wens@csie.org
-Cc:     linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Georgii Staroselskii <georgii.staroselskii@emlid.com>
-Subject: [PATCH v2] arm64: dts: allwinner: bluetooth for Emlid Neutis N5
-Date:   Fri,  1 Nov 2019 12:43:33 +0300
-Message-Id: <1572601413-10353-1-git-send-email-georgii.staroselskii@emlid.com>
-X-Mailer: git-send-email 2.7.4
+        id S1729475AbfKAKIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 06:08:20 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:34410 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729181AbfKAKIU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 06:08:20 -0400
+Received: by mail-oi1-f193.google.com with SMTP id l202so7740132oig.1;
+        Fri, 01 Nov 2019 03:08:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+I3xQl9ln+lrGFb5a1qNX1dE+zwF+Br3GKgAcoIpVg0=;
+        b=E86Ut/9mOUJMvaqA5+eSoAUsqlTb0yuor9HT/pOHVQ0e/P60l6QqFmSQSwqJepTqwz
+         6vHFsDiAMAT4dxeniEOgv4V6oWtMGzYfvUPFAgZ3km+XuoqthlMWLOdxtZAvjxHjlB80
+         YCFKezgLzXYX9si5v4uRCGxO3FRtA18gqDdLpPc2IMTAhVwYXnSdSJZLL2zmxj4XGC/y
+         22tgHgKtfT7X3rh4wTR3WxWF/O/gBIwuhGkmWbMtDSoEum2xaMOa6YH0rCdfk8eCMPJz
+         2teCcFwMP8o2c5L+uaEktlxxj7z0F067R+kZ7TwRIpnEf9WEBpUC/xfRE8uDj6iw05TD
+         uSbQ==
+X-Gm-Message-State: APjAAAX6YY+SgGYZwfB8GMiwbFOKQyunaKGT6ZD0CFEpQjCYMTXDlJwz
+        l1bmMH/clREXZLeDbtkWwe8+bKgTtiA1yrTIwGo=
+X-Google-Smtp-Source: APXvYqyFWgpB6XEGfMCjZsYPk2WDJOLqiGcZrURCT7LaEN/S0hFYXldPAmBySb2Ylqn/7Yv1GVxJdkW9M3x45yHrDHI=
+X-Received: by 2002:aca:4ac5:: with SMTP id x188mr3592931oia.148.1572602898727;
+ Fri, 01 Nov 2019 03:08:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191021161351.20789-1-krzk@kernel.org> <20191021161351.20789-4-krzk@kernel.org>
+In-Reply-To: <20191021161351.20789-4-krzk@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 1 Nov 2019 11:08:07 +0100
+Message-ID: <CAMuHMdXr7_HP5NUQ_0D76N-eBuootQqyPusqmf6nyDnLN__ORA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/7] dt-bindings: sram: Merge Renesas SRAM bindings
+ into generic
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Heiko Stuebner <heiko@sntech.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Emlid Neutis N5 board has AP6212 BT+WiFi chip. This patch is in
-line with 8558c6e21ceb ("ARM: dts: sun8i: h3: bluetooth for Banana Pi
-M2 Zero board") and other commits that add Bluetooth support for
-similar boards.
+Hi Krzysztof,
 
-Signed-off-by: Georgii Staroselskii <georgii.staroselskii@emlid.com>
----
- .../arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+On Mon, Oct 21, 2019 at 6:15 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> The Renesas SRAM bindings list only compatible so integrate them into
+> generic SRAM bindings schema.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi
-index 82f4b44..5bec574 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi
-@@ -23,6 +23,8 @@
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&pio 2 7 GPIO_ACTIVE_LOW>; /* PC7 */
- 		post-power-on-delay-ms = <200>;
-+		clocks = <&rtc 1>;
-+		clock-names = "ext_clock";
- 	};
- };
- 
-@@ -56,5 +58,16 @@
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	uart-has-rtscts;
- 	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		clocks = <&rtc 1>;
-+		clock-names = "lpo";
-+		vbat-supply = <&reg_vcc3v3>;
-+		vddio-supply = <&reg_vcc3v3>;
-+		shutdown-gpios = <&pio 2 4 GPIO_ACTIVE_HIGH>; /* PC4 */
-+		device-wakeup-gpios = <&r_pio 0 7 GPIO_ACTIVE_HIGH>; /* PL7 */
-+	};
- };
+Thanks for your patch, whcih is now commit 0759b09eadd0d9a1 ("dt-bindings:
+sram: Merge Renesas SRAM bindings into generic") in Rob's for-next branch.
+
+> --- a/Documentation/devicetree/bindings/sram/renesas,smp-sram.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -* Renesas SMP SRAM
+> -
+> -Renesas R-Car Gen2 and RZ/G1 SoCs need a small piece of SRAM for the jump stub
+> -for secondary CPU bringup and CPU hotplug.
+> -This memory is reserved by adding a child node to a "mmio-sram" node, cfr.
+> -Documentation/devicetree/bindings/sram/sram.txt.
+> -
+> -Required child node properties:
+> -  - compatible: Must be "renesas,smp-sram",
+> -  - reg: Address and length of the reserved SRAM.
+> -    The full physical (bus) address must be aligned to a 256 KiB boundary.
+> -
+> -
+> -Example:
+> -
+> -       icram1: sram@e63c0000 {
+> -               compatible = "mmio-sram";
+> -               reg = <0 0xe63c0000 0 0x1000>;
+> -               #address-cells = <1>;
+> -               #size-cells = <1>;
+> -               ranges = <0 0 0xe63c0000 0x1000>;
+> -
+> -               smp-sram@0 {
+> -                       compatible = "renesas,smp-sram";
+> -                       reg = <0 0x10>;
+> -               };
+
+> --- a/Documentation/devicetree/bindings/sram/sram.yaml
+> +++ b/Documentation/devicetree/bindings/sram/sram.yaml
+
+> @@ -186,3 +187,17 @@ examples:
+>              reg = <0x1ff80 0x8>;
+>          };
+>      };
+> +
+> +  - |
+> +    sram@e63c0000 {
+> +        compatible = "mmio-sram";
+> +        reg = <0xe63c0000 0x1000>;
+
+Is there any specific reason you converted the example from 64-bit to
+32-bit addressing?
+All Renesas SoCs using this have #address-cells and #size-cells = <2>.
+
+Thanks!
+
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0 0xe63c0000 0x1000>;
+> +
+> +        smp-sram@0 {
+> +            compatible = "renesas,smp-sram";
+> +            reg = <0 0x10>;
+> +        };
+> +    };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.7.4
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
