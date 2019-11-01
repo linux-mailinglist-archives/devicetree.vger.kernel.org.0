@@ -2,136 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D17DEC52F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 15:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 457ABEC547
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 16:05:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727365AbfKAO6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 10:58:19 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:34807 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727334AbfKAO6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 10:58:18 -0400
-Received: by mail-pg1-f194.google.com with SMTP id e4so6670813pgs.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2019 07:58:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=o3PotZZzGd3n0vtfT41UhnCQaaRUmL4E0PRscYzEIDo=;
-        b=I1/WHsVyWQVAH+7YIQ9FJxjw/3+UZ4eJ1j/SDFWtIEofNsreSoGawixnCPLXHfjS4I
-         xlDwa3u66eEwoOJUAPlHK0dUeT0aet3AJF7Hh7vmKlsgkC0XBk6UfewUnoYtCFXoeX5g
-         7fSank49zBRoLLYkoib3osby1hKIjugYLT3XialA5XwBx2NicKvLZ0AL8HaA0MYN2gGJ
-         6I7li89dPySlSyjub59Y1gl2eGkUAndynwIHLXQ4f01kEq7g1XzQ0k9tdlQaGRx6v+Xw
-         shsJV6s6wDw/l6GpKrmsUj23FJcOIaobHKjzfOKXCDKJMXhdUTkbzBcGYz4z5yGtH0e+
-         thcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=o3PotZZzGd3n0vtfT41UhnCQaaRUmL4E0PRscYzEIDo=;
-        b=DHNA0mTbAz/chgtAG6nMRwxOkZydBqftx7REjM2PJaJ4d79ExhIrRIM2xEM9e06C5u
-         IMUfzgjBNSuR2s+A81Jat25KbGOmTNgwWQMYjaRPONvOJ1G1bjjj+80PMnb0v3l6Q0fQ
-         atTr3TiXHgmkJgr7ufy+EGRQJgsIx64DpVbG+8wf60ZnkTmGd9KqYhjXK3oxSNmUfpRZ
-         wOGfeg/LS5JE/hkOX0ngMgiq3/U1ztl5kxeTeUNzv3RCr6z9xlFAMudZYDKJoRBnxTIE
-         4g06s2vYFMY7KsKTQOlV9Se2Cua3qn6pW4L4ui8ki8Vf55DqaDOkF02MuYAcTvVUGR1S
-         pmpw==
-X-Gm-Message-State: APjAAAVx7fVXEHW5a6ON9fSVRDfdoD7jEdb9bfpEjtsoL9ydNixpU8EO
-        3cU0+N6YhTDIDTlFPAySx8V8
-X-Google-Smtp-Source: APXvYqyyHMBHWz8vbhnckMVAipVVWfbs6zJpy+GNzFBfp8NvRJbt08PIocOSMFo+vTjHOv8EaNNmig==
-X-Received: by 2002:a05:6a00:51:: with SMTP id i17mr14214665pfk.8.1572620297826;
-        Fri, 01 Nov 2019 07:58:17 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:6413:fc8c:9538:d2ea:eab:d2c0])
-        by smtp.gmail.com with ESMTPSA id z21sm6644869pfa.119.2019.11.01.07.58.09
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 01 Nov 2019 07:58:17 -0700 (PDT)
-Date:   Fri, 1 Nov 2019 20:28:06 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Tudor.Ambarus@microchip.com
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, robh+dt@kernel.org,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        darshak.patel@einfochips.com, prajose.john@einfochips.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, marek.vasut@gmail.com,
-        dwmw2@infradead.org, computersforpeace@gmail.com,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] mtd: spi-nor: Add support for w25q256jw
-Message-ID: <20191101145806.GB13101@Mani-XPS-13-9360>
-References: <20191030090124.24900-1-manivannan.sadhasivam@linaro.org>
- <20191030090124.24900-5-manivannan.sadhasivam@linaro.org>
- <87e0b459-8dbf-26cc-611f-1b1b5266aa55@microchip.com>
+        id S1727812AbfKAPFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 11:05:14 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:40319 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727555AbfKAPFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 11:05:14 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 07BEA6A85;
+        Fri,  1 Nov 2019 11:05:13 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 01 Nov 2019 11:05:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=YDxjSNOMKcpTouvXVfD+yOz3Ma
+        AE9Piluf+18PUN7Fg=; b=gi3lySwP/nMqMuJ9sxDDFp1fYzrQYaqL5TH0BI/hkO
+        XYBNkC3+VB8yNzua5usfVTz1hoEz/zpidPtWiGVsR+J7ltBnnDzwjGTxoBf68gNp
+        fTy50pQ2oN5zeRCzJcqTlQpQrDQIhQ758TskQMRb3iB86EI3Diy4JSlt4vidSyL8
+        xiF680w/NEamIw2xoy7/8kO2Tm7BOhhOu1Jx+lA/Ew5umpFEFYjzjzQ+Z1IQpNHI
+        TIE3aMcrcMx6wD5OWTvgn1/X3zlXzC26axjF6VG5bjAIyqJwcuEtDqZf1xyY/ZB8
+        naKELbtFBWQUO8KTVzXXc44QXtj5GbU0DhlFigsT4FLw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=YDxjSNOMKcpTouvXV
+        fD+yOz3MaAE9Piluf+18PUN7Fg=; b=vSEijQZmhtlv9Ijiqys3BtDurrWipYFpd
+        p9lByMnBqW+quQUNeG6jMIBMYKSy/8hiUJYLyjHP47tOpwvWyua+svr7lrHY+C07
+        mf1YHwq3yCRze6LtPKHH80By5fGj1B33kQFD28jLpsZoQSPvqidEEQ0xT8MaOv5s
+        uuqz01+bctjX0h5D1TAnAl/jHBque6gBQ2LCfATJdJKwJK2779TwC4mUEAPF10m0
+        WhNnr0fpLMSvjMlCRx/vpBB2JkSFjPeqf/H4CqQs6KXte6ClOWCzui+Tk3ezxfl0
+        7WKmJoDseXn6TOuwVv2kCKm8xN9lZ5w+zoQLwoAxCXAYLK7O9LaCA==
+X-ME-Sender: <xms:pUm8XbUZRDYF5EFmNMhPMrpRKhS5zd9RocnQGDqULORClBQDuRs-jA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedruddtjedgjeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    govehorghsthgrlhdqhfeguddvqddtvdculdduhedtmdenucfjughrpefhvffufffkofgg
+    gfestdekredtredttdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigih
+    hmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinhepuggvvhhitggvthhrvggvrdho
+    rhhgnecukfhppeeltddrkeelrdeikedrjeeinecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghhnecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:pUm8XbCHxaQS7o7SQpOikZhl4r_MQ_CMeIzqaHxipzc53LNUIbBbHg>
+    <xmx:pUm8XUzuwIpLE0J33La4OK6Bga86jPSiUDlIkJNI6KkqLkQqOMzYww>
+    <xmx:pUm8XQBCGOk7_07zrVNWIQyspRAFGVjRAKBsgKCQTfclcQBMhmY6PQ>
+    <xmx:p0m8XWCf5n64vM_c5giyeqYgT6HpMM1MyJeD0gsX8bHO3aQ07pyQUA>
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 3569080061;
+        Fri,  1 Nov 2019 11:05:09 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     gregkh@linuxfoundation.org, Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH v2] dt-bindings: usb: Convert Allwinner A10 mUSB controller to a schema
+Date:   Fri,  1 Nov 2019 15:32:16 +0100
+Message-Id: <20191101143216.260890-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87e0b459-8dbf-26cc-611f-1b1b5266aa55@microchip.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tudor,
+The Allwinner SoCs have an mUSB controller that is supported in Linux, with
+a matching Device Tree binding.
 
-On Fri, Nov 01, 2019 at 01:48:17PM +0000, Tudor.Ambarus@microchip.com wrote:
-> 
-> 
-> On 10/30/2019 11:01 AM, Manivannan Sadhasivam wrote:
-> > External E-Mail
-> > 
-> > 
-> > Add MTD support for w25q256jw SPI NOR chip from Winbond. This chip
-> > supports dual/quad I/O mode with 512 blocks of memory organized in
-> > 64KB sectors. In addition to this, there is also small 4KB sectors
-> > available for flexibility. The device has been validated using Thor96
-> > board.
-> > 
-> > Cc: Marek Vasut <marek.vasut@gmail.com>
-> > Cc: Tudor Ambarus <tudor.ambarus@microchip.com>
-> > Cc: David Woodhouse <dwmw2@infradead.org>
-> > Cc: Brian Norris <computersforpeace@gmail.com>
-> > Cc: Miquel Raynal <miquel.raynal@bootlin.com>
-> > Cc: Richard Weinberger <richard@nod.at>
-> > Cc: Vignesh Raghavendra <vigneshr@ti.com>
-> > Cc: linux-mtd@lists.infradead.org
-> > Signed-off-by: Darshak Patel <darshak.patel@einfochips.com>
-> > [Mani: cleaned up for upstream]
-> 
-> Can we keep Darshak's authorship? We usually change the author if we feel that
-> we made a significant change to what was originally published.
-> 
-> If it's just about cosmetics, cleaning or rebase, you can specify what you did
-> after the author's S-o-b tag and then add your S-o-b, as you did above.
-> 
+Now that we have the DT validation in place, let's convert the device tree
+bindings for that controller over to a YAML schemas.
 
-I'd suggest to keep Darshak's authorship since he did the actual change in
-the bsp. I have to clean it up before submitting upstream and I mentioned
-the same above.
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-> The patch looks good.
-> 
+---
 
-Thanks,
-Mani
+Changes from v1:
+  - Merged compatible entries together
+---
+ .../bindings/usb/allwinner,sun4i-a10-musb.txt |  28 -----
+ .../usb/allwinner,sun4i-a10-musb.yaml         | 100 ++++++++++++++++++
+ 2 files changed, 100 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.yaml
 
-> Cheers,
-> ta
-> 
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  drivers/mtd/spi-nor/spi-nor.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/drivers/mtd/spi-nor/spi-nor.c b/drivers/mtd/spi-nor/spi-nor.c
-> > index 1d8621d43160..2c25b371d9f0 100644
-> > --- a/drivers/mtd/spi-nor/spi-nor.c
-> > +++ b/drivers/mtd/spi-nor/spi-nor.c
-> > @@ -2482,6 +2482,8 @@ static const struct flash_info spi_nor_ids[] = {
-> >  	{ "w25q256", INFO(0xef4019, 0, 64 * 1024, 512, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
-> >  	{ "w25q256jvm", INFO(0xef7019, 0, 64 * 1024, 512,
-> >  			     SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
-> > +	{ "w25q256jw", INFO(0xef6019, 0, 64 * 1024, 512,
-> > +			     SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
-> >  	{ "w25m512jv", INFO(0xef7119, 0, 64 * 1024, 1024,
-> >  			SECT_4K | SPI_NOR_QUAD_READ | SPI_NOR_DUAL_READ) },
-> >  
-> > 
+diff --git a/Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.txt b/Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.txt
+deleted file mode 100644
+index 50abb20fe319..000000000000
+--- a/Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-Allwinner sun4i A10 musb DRC/OTG controller
+--------------------------------------------
+-
+-Required properties:
+- - compatible      : "allwinner,sun4i-a10-musb", "allwinner,sun6i-a31-musb",
+-                     "allwinner,sun8i-a33-musb" or "allwinner,sun8i-h3-musb"
+- - reg             : mmio address range of the musb controller
+- - clocks          : clock specifier for the musb controller ahb gate clock
+- - reset           : reset specifier for the ahb reset (A31 and newer only)
+- - interrupts      : interrupt to which the musb controller is connected
+- - interrupt-names : must be "mc"
+- - phys            : phy specifier for the otg phy
+- - phy-names       : must be "usb"
+- - dr_mode         : Dual-Role mode must be "host" or "otg"
+- - extcon          : extcon specifier for the otg phy
+-
+-Example:
+-
+-	usb_otg: usb@1c13000 {
+-		compatible = "allwinner,sun4i-a10-musb";
+-		reg = <0x01c13000 0x0400>;
+-		clocks = <&ahb_gates 0>;
+-		interrupts = <38>;
+-		interrupt-names = "mc";
+-		phys = <&usbphy 0>;
+-		phy-names = "usb";
+-		extcon = <&usbphy 0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.yaml b/Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.yaml
+new file mode 100644
+index 000000000000..0af70fc8de5a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/allwinner,sun4i-a10-musb.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/allwinner,sun4i-a10-musb.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner A10 mUSB OTG Controller Device Tree Bindings
++
++maintainers:
++  - Chen-Yu Tsai <wens@csie.org>
++  - Maxime Ripard <maxime.ripard@bootlin.com>
++
++properties:
++  compatible:
++    oneOf:
++      - const: allwinner,sun4i-a10-musb
++      - const: allwinner,sun6i-a31-musb
++      - const: allwinner,sun8i-a33-musb
++      - const: allwinner,sun8i-h3-musb
++      - items:
++          - enum:
++              - allwinner,sun8i-a83t-musb
++              - allwinner,sun50i-h6-musb
++          - const: allwinner,sun8i-a33-musb
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    const: mc
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  phys:
++    description: PHY specifier for the OTG PHY
++
++  phy-names:
++    const: usb
++
++  extcon:
++    description: Extcon specifier for the OTG PHY
++
++  dr_mode:
++    enum:
++      - host
++      - otg
++      - peripheral
++
++  allwinner,sram:
++    description: Phandle to the device SRAM
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++  - phys
++  - phy-names
++  - dr_mode
++  - extcon
++
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - allwinner,sun6i-a31-musb
++          - allwinner,sun8i-a33-musb
++          - allwinner,sun8i-h3-musb
++
++then:
++  required:
++    - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    usb_otg: usb@1c13000 {
++      compatible = "allwinner,sun4i-a10-musb";
++      reg = <0x01c13000 0x0400>;
++      clocks = <&ahb_gates 0>;
++      interrupts = <38>;
++      interrupt-names = "mc";
++      phys = <&usbphy 0>;
++      phy-names = "usb";
++      extcon = <&usbphy 0>;
++      dr_mode = "peripheral";
++    };
++
++...
+-- 
+2.23.0
+
