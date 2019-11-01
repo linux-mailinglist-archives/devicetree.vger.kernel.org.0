@@ -2,111 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6C02EC3E2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 14:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD9FEC3FD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 14:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727290AbfKANn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 09:43:29 -0400
-Received: from mout.gmx.net ([212.227.17.21]:38803 "EHLO mout.gmx.net"
+        id S1727451AbfKANqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 09:46:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35358 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726710AbfKANn3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Nov 2019 09:43:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1572615792;
-        bh=fOvzyTqdzRPJH9OPOKinIdqeCZlBTTjHLrFlxGo7twE=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=X9MZO549TJZ3vLpsTN53oZPmrRiVr6QEhE+a8tJ0Vozj/4p8GngNCsMNBWi/HHAQF
-         d0u4qpBcTg6lLFDQuuzcz3tdFsHTD1R8t2vxGKcKvBRsDYlZ+m7v6+yHlqt8F60ZMk
-         SdZduKccraRWC8etr/ne1T5gzHczUiJDg70n+HXM=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from localhost.localdomain ([37.4.249.112]) by mail.gmx.com
- (mrgmx104 [212.227.17.168]) with ESMTPSA (Nemesis) id
- 1MtfNf-1i6fdQ4C7D-00v7fj; Fri, 01 Nov 2019 14:43:12 +0100
-From:   Stefan Wahren <wahrenst@gmx.net>
-To:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eric Anholt <eric@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Markus Mayer <mmayer@broadcom.com>
-Cc:     Chen-Yu Tsai <wens@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 4/4] ARM: configs: Build BCM2711 thermal as module
-Date:   Fri,  1 Nov 2019 14:42:29 +0100
-Message-Id: <1572615749-9524-5-git-send-email-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572615749-9524-1-git-send-email-wahrenst@gmx.net>
-References: <1572615749-9524-1-git-send-email-wahrenst@gmx.net>
-X-Provags-ID: V03:K1:TbKDFSyoLz5kGUMLh2sdMchsMi8B7ywabIQ029/PvKMAKErCJPq
- LaV4eY+9A6wMG6XJAq+AzVhHdeDbWKCIQ2SdpxaHQVJDnPz05KWwr/zYmz4qRItRUAmMueQ
- 52bZwE1KDdhZw19Aa3Vn6hRMebJFvpX727zxqEUbD6e5Il680xV+/xuwUvFKrOLUtnTXGr9
- eM4jtb+KLzwTZf5GlyVCA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:MkaZ/3lmt58=:nz5UCjGMivPj91VNzCwyFe
- 6eTbZupEK6tkHD/UlTaZguPibR6Acl9YFic3AY75LQk2NoG51Ex7boMYU+seMx6ZfqRW6CoKr
- 82zvdUtskysVkSwIFg01uXDzcuS75oaF7e2SOArQNIU6sMCgbB1T7UI3M21LqHQw/XikjB5bg
- Q7FLOawvCLmPPc0vGqhtvxOtC/HWrmfORZqcmpVNyU94muqiEX7XutEIIq8LlxBSXUs2Ith+5
- q5YzU1OWw7G/gzg/iSw4hlhWoLvkmkjNAXbTf7GuB8u3EaPtjKTaQWacZ0FoqMVJpQuCy83bR
- tHeOzjRMGwYaGjJ/7NlW6yLsxr+GPypkXEivylBTPBJDKdl9Sl+mDIDYjvt0cG2yBqFJqG44s
- 2CbRHr6clzj7fYcOSZgS7AlymGiKuFKVNlFYteTaksqTMoZ+ikGoBared5E/tGt06dxRzHmcG
- J6yAg53kzjL7gwq5087VkC95YdYT1ukWME6yqugRfaOOtZUANg6uIeWGq57ufCRCciYjncoF5
- HR3Ah4IBy/h5HZSx55vtBkX5m6kKrJAzUgcE/UOmMNQZ6qwXZETpwB1G3ghmauLKVsLsMz+OS
- vigD293HSdqK0UJ/QpbAUoVlKTETu616J4lWurFMBaUcrRED3YQCniCMIsPI61yvICXrHP188
- 2LnqqwvqvJ+mTxARSP3h7/YAPes5o13PDlG+gUA+2U6AgQfBhoxALznXemfcWAuRxcD0YHMoB
- Z/4cce5K/gaKIBXapRxP41P10j9ZX3TmUhrs93PMlDGGFv60tBJpb3TCnL3/Kfo+0fjnboGkJ
- o9NQ3J6gVe2/05QpLi3BQEvuhyQbE8KHXTrJnKqH7OG8XnePT8LbHza1HkX1ZRRA5XsMo9BiF
- S2eeWhpw35peMp9UiyI7N5jFDyeBOgYtqoO3+uv64HPL9I8qKqTlLlsk3ReNsQGP85331SXAZ
- 87IojnVd41AxiBEGU5Qjz4rGCqnJqbQo8S9ox50/0VDxDl2TwF5kaNERTIcL5kRod62nvTSSm
- nP0j/C3mLORpdWUnWkE53uyjSXcpFP7q5gKDPBn3GlIu7409OCcBi4mqPWwGuGqejVGegoR/0
- /aUTIpuslWS/e0MRk2Ilba/FqKbra8O6GpLnyw3V1LaNy54d5X04ge+lWrFGRCt//R9QOCnWt
- fBwFYpy2gNB+0M41/3elbVdwJ6u6roVi12SysrxoTFP+P4PFWPZSGN2ZVaGAJq2k3Pl6eeMQr
- G4ozsyV4gPkFnB+7uOCXTVn7bktCAG7C+pHQRlA==
+        id S1727296AbfKANqV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Nov 2019 09:46:21 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C43E6217D9;
+        Fri,  1 Nov 2019 13:46:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572615979;
+        bh=lswMlSOEv3IVKL2o6g/0/MZB83V2bKNcQKcLhOteMKY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2VkCgmkJqOKWH5d+9KDukIcRTAHgjVukLo7+WnDE3TtykYaRb7rHNveONlNIa8z7C
+         Wvf1s2hGqg8xK0DzjTHvWERd5B6QiJWEpQb02QETpjyRKih31rBLTX7nsrqGZryAfR
+         nhqGnY7r7catGAEwdtg/1KASZ0QhIN/rBtzM7asA=
+Received: by mail-qt1-f182.google.com with SMTP id g50so13011584qtb.4;
+        Fri, 01 Nov 2019 06:46:19 -0700 (PDT)
+X-Gm-Message-State: APjAAAWegAhA0MSmZ56hns4n8acGINgkS5bridDXXvlZhRaj0c6Ie/jc
+        HWSteslGUTa/Kp8rUhF6fL4v6jMTPkJM0eM0PA==
+X-Google-Smtp-Source: APXvYqzSxs3/lKPGNsJo7QmVk87af0sBuK78lFCb7LPwSTyRxmDlUk2yWUVGBizpA0SlPdiVCwhtvME32ugnV3l7tjA=
+X-Received: by 2002:ac8:458c:: with SMTP id l12mr84256qtn.300.1572615978901;
+ Fri, 01 Nov 2019 06:46:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191030120440.3699-1-peter.ujfalusi@ti.com> <CAL_JsqK-eqoyU7RWiVXMpPZ8BfT8a0WB47756s8AUtyOqbkPXA@mail.gmail.com>
+ <5bca4eb6-6379-394f-c95e-5bbbba5308f1@ti.com> <20191030141736.GN4568@sirena.org.uk>
+ <f9c181d1-5e0c-5e82-a740-f4e97822604f@ti.com> <CAL_JsqJ4WdaRvmZcjQG-jVyOOeKZX9fn1WcQZGWfUPqwunQCFw@mail.gmail.com>
+ <1258a5bf-a829-d47a-902f-bf2c3db07513@ti.com>
+In-Reply-To: <1258a5bf-a829-d47a-902f-bf2c3db07513@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 1 Nov 2019 08:46:06 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+V0oAdVCaW+S12CUa4grCJhZD8OGDeu=0ohcGgxOkPVg@mail.gmail.com>
+Message-ID: <CAL_Jsq+V0oAdVCaW+S12CUa4grCJhZD8OGDeu=0ohcGgxOkPVg@mail.gmail.com>
+Subject: Re: [RFC v2 0/2] gpio: Support for shared GPIO lines on boards
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This builds the BCM2711 thermal driver as module for the Raspberry Pi 4.
+On Thu, Oct 31, 2019 at 3:00 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrot=
+e:
+>
+>
+>
+> On 30/10/2019 20.49, Rob Herring wrote:
+> > On Wed, Oct 30, 2019 at 9:30 AM Peter Ujfalusi <peter.ujfalusi@ti.com> =
+wrote:
+> >>
+> >>
+> >>
+> >> On 30/10/2019 16.17, Mark Brown wrote:
+> >>> On Wed, Oct 30, 2019 at 03:32:09PM +0200, Peter Ujfalusi wrote:
+> >>>> On 30/10/2019 15.12, Rob Herring wrote:
+> >>>
+> >>>>> Why can't we just add a shared flag like we have for interrupts?
+> >>>>> Effectively, we have that for resets too, it's just hardcoded in th=
+e
+> >>>>> the drivers.
+> >>>
+> >>>> This would be kind of the same thing what the
+> >>>> GPIOD_FLAGS_BIT_NONEXCLUSIVE does, which was a quick workaround for
+> >>>> fixed-regulators afaik.
+> >>>
+> >>> The theory with that was that any usage of this would need the
+> >>> higher level code using the GPIO to cooperate so they didn't step
+> >>> on each other's toes so the GPIO code should just punt to it.
+> >>
+> >> But from the client driver point of view a GPIO is still GPIO and if t=
+he
+> >> components are unrelated then it is hard to patch things together from
+> >> the top.
+> >
+> > You can't escape a driver being aware. If a driver depends on that
+> > GPIO to actually be set to states the driver says, then it can't be
+> > guaranteed to work. For example, maybe the driver assumes the device
+> > is in reset state after toggling reset and doesn't work if not in
+> > reset state. The driver has to be aware no matter what you do in DT.
+>
+> That's true for some device, but it is also true that some can not
+> tolerate being reset without them knowing it.
 
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-=2D--
- arch/arm/configs/multi_v7_defconfig | 1 +
- arch/arm64/configs/defconfig        | 1 +
- 2 files changed, 2 insertions(+)
+You mean a reset when the driver is not loaded would not work? How
+could that ever work? I don't think you can have any reset control in
+the drivers in that case.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_=
-v7_defconfig
-index 13ba532..441b795 100644
-=2D-- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -487,6 +487,7 @@ CONFIG_IMX_THERMAL=3Dy
- CONFIG_ROCKCHIP_THERMAL=3Dy
- CONFIG_RCAR_THERMAL=3Dy
- CONFIG_ARMADA_THERMAL=3Dy
-+CONFIG_BCM2711_THERMAL=3Dm
- CONFIG_BCM2835_THERMAL=3Dm
- CONFIG_BRCMSTB_THERMAL=3Dm
- CONFIG_ST_THERMAL_MEMMAP=3Dy
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8e05c39..0a52987 100644
-=2D-- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -444,6 +444,7 @@ CONFIG_ROCKCHIP_THERMAL=3Dm
- CONFIG_RCAR_THERMAL=3Dy
- CONFIG_RCAR_GEN3_THERMAL=3Dy
- CONFIG_ARMADA_THERMAL=3Dy
-+CONFIG_BCM2711_THERMAL=3Dm
- CONFIG_BCM2835_THERMAL=3Dm
- CONFIG_BRCMSTB_THERMAL=3Dm
- CONFIG_EXYNOS_THERMAL=3Dy
-=2D-
-2.7.4
+> If all users of the shared GPIO have full control over it then they can
+> just toggle it whatever way they want. How would a regulator, codec,
+> amplifier would negotiate on what to do with the shared GPIO?
+>
+> Another not uncommon setup is when the two components needs different lev=
+el:
+> C1: ENABLE is high active
+> C2: RESET is high active
+>
+> To enable C1, the GPIO should be high. To enable C2 the GPIO must be low.
+> In the board one of the branch of the shared GPIO needs (and have) a
+> logic inverter.
+>
+> If they both control the same GPIO then they must have requested it with
+> different GPIO_ACTIVE_ since the drivers are written according to chip
+> spec, so C1 sets the GPIO to 1, C2 sets it to 0, the inversion for one
+> of them must happen in gpio core, right?
 
+No, drivers are written to set the state to active/inactive. The DT
+GPIO_ACTIVE_ flags can depend on an inverter being present (BTW, there
+was a recent attempt to do an inverter binding).
+
+
+> It should be possible to add pass-through mode for gpio-shared so that
+> all requests would propagate to the root GPIO if that's what needed for
+> some setups.
+>
+> That way the gpio-shared would nicely handle the GPIO inversions, would
+> be able to handle cases to avoid unwanted reset/enable of components or
+> allow components to be ninja-reset.
+
+What does ninja-reset mean?
+
+> I think it would be possible to add gpiod_is_shared(struct gpio_desc
+> *desc) so users can check if the GPIO is shared - it would only return
+> true if the gpio-shared is not in pass-through mode so they can know
+> that the state they see on their gpio desc is not necessary matching
+> with reality.
+> Probably another gpiod_shared_get_root_value() to fetch the root's state?
+>
+> I intentionally not returning that in the driver as clients might skip a
+> gpio_set_value() seeing that the GPIO line is already in a state they
+> would want it, but that would not register their needs for the level.
+>
+> - P=C3=A9ter
+>
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
