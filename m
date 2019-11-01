@@ -2,83 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E115EBE11
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 07:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15C54EBE38
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 07:59:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728606AbfKAGnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 02:43:39 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:17102 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725936AbfKAGni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 02:43:38 -0400
-X-UUID: 0f9441c2669e49168ec0823ec4accc05-20191101
-X-UUID: 0f9441c2669e49168ec0823ec4accc05-20191101
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <chun-hung.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1675806062; Fri, 01 Nov 2019 14:43:33 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 1 Nov 2019 14:43:26 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 1 Nov 2019 14:43:26 +0800
-From:   Chun-Hung Wu <chun-hung.wu@mediatek.com>
-To:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        id S1726132AbfKAG7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 02:59:25 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:32832 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725869AbfKAG7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 02:59:24 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 3F34160D4C; Fri,  1 Nov 2019 06:59:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1572591563;
+        bh=SfMS6ugI/rbxN40RZqNQuk+KKQDvTM9lmtZxl8kl5+A=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fouVRXN9i+GIe+yNFqu7GLWeB+vNlPCkh/VxSs9kWtfnPAsDvQqVoOGWIc3l+3u+e
+         rGoT2OJ/honfGmZurv24PifUyNVwHXvn196gZRXo0IxZ4tWmBpY0TWSm+SHPrLwrL7
+         MSheDSY9otv9EnbhUwX5fdmpH+ZGf36Iur8Ezd0g=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from kgunda-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0403360BF4;
+        Fri,  1 Nov 2019 06:59:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1572591559;
+        bh=SfMS6ugI/rbxN40RZqNQuk+KKQDvTM9lmtZxl8kl5+A=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NCChyQLcN0/uqr0XwNlkbiPhqcQXduvY1sPUW1EqChXbIn11T7O9GQajpBD48TxdF
+         KiWtIX0jh8NTe892E9BLe+hpL47tzsca7iAZEIWZ0jGg0LfMQKc1dR9Gu+8yPUu3bM
+         B+xNMdHU8L3O6+N72dKiV63pVb1ndFBcQSu4ycRU=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0403360BF4
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     bjorn.andersson@linaro.org, swboyd@chromium.org,
+        rnayak@codeaurora.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Pan Bian <bianpan2016@163.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Kuohong Wang <kuohong.wang@mediatek.com>
-CC:     <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Chun-Hung Wu <chun-hung.wu@mediatek.com>
-Subject: [PATCH 3/3] [3/3] dt-bindings: mmc: mediatek: Add document for mt6779
-Date:   Fri, 1 Nov 2019 14:43:02 +0800
-Message-ID: <1572590582-11056-3-git-send-email-chun-hung.wu@mediatek.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V1] mfd: qcom-spmi-pmic: Add support for pm6150 and pm6150l
+Date:   Fri,  1 Nov 2019 12:29:03 +0530
+Message-Id: <1572591543-15501-1-git-send-email-kgunda@codeaurora.org>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1572590582-11056-1-git-send-email-chun-hung.wu@mediatek.com>
-References: <1572590582-11056-1-git-send-email-chun-hung.wu@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible node for mt6779 mmc
+Add the compatibles and PMIC ids for pm6150 and pm6150l PMICs
+found on SC7180 based platforms.
 
-Change-Id: Id36a136a75e892c9360ec95c7f52db06f5b308a4
-CR-Id:
-Feature:
-Signed-off-by: Chun-Hung Wu <chun-hung.wu@mediatek.com>
+Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
 ---
- Documentation/devicetree/bindings/mmc/mtk-sd.txt | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt | 2 ++
+ drivers/mfd/qcom-spmi-pmic.c                             | 4 ++++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.txt b/Documentation/devicetree/bindings/mmc/mtk-sd.txt
-index 8a532f4..0c9cf6a 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.txt
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.txt
-@@ -12,6 +12,7 @@ Required properties:
- 	"mediatek,mt8173-mmc": for mmc host ip compatible with mt8173
- 	"mediatek,mt8183-mmc": for mmc host ip compatible with mt8183
- 	"mediatek,mt8516-mmc": for mmc host ip compatible with mt8516
-+	"mediatek,mt6779-mmc": for mmc host ip compatible with mt6779
- 	"mediatek,mt2701-mmc": for mmc host ip compatible with mt2701
- 	"mediatek,mt2712-mmc": for mmc host ip compatible with mt2712
- 	"mediatek,mt7622-mmc": for MT7622 SoC
+diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+index 1437062..b5fc64e 100644
+--- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
++++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+@@ -32,6 +32,8 @@ Required properties:
+                    "qcom,pm8998",
+                    "qcom,pmi8998",
+                    "qcom,pm8005",
++		   "qcom,pm6150",
++		   "qcom,pm6150l",
+                    or generalized "qcom,spmi-pmic".
+ - reg:             Specifies the SPMI USID slave address for this device.
+                    For more information see:
+diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
+index e8fe705..d916aa8 100644
+--- a/drivers/mfd/qcom-spmi-pmic.c
++++ b/drivers/mfd/qcom-spmi-pmic.c
+@@ -34,6 +34,8 @@
+ #define PM8998_SUBTYPE		0x14
+ #define PMI8998_SUBTYPE		0x15
+ #define PM8005_SUBTYPE		0x18
++#define PM6150L_SUBTYPE		0x27
++#define PM6150_SUBTYPE		0x28
+ 
+ static const struct of_device_id pmic_spmi_id_table[] = {
+ 	{ .compatible = "qcom,spmi-pmic", .data = (void *)COMMON_SUBTYPE },
+@@ -53,6 +55,8 @@
+ 	{ .compatible = "qcom,pm8998",    .data = (void *)PM8998_SUBTYPE },
+ 	{ .compatible = "qcom,pmi8998",   .data = (void *)PMI8998_SUBTYPE },
+ 	{ .compatible = "qcom,pm8005",    .data = (void *)PM8005_SUBTYPE },
++	{ .compatible = "qcom,pm6150l",   .data = (void *)PM6150L_SUBTYPE },
++	{ .compatible = "qcom,pm6150",    .data = (void *)PM6150_SUBTYPE },
+ 	{ }
+ };
+ 
 -- 
-1.9.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
 
