@@ -2,128 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA6B9EC06F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 10:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CD85EC085
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 10:34:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728371AbfKAJUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 05:20:37 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:6553 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728271AbfKAJUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 05:20:37 -0400
-Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
-  Codrin.Ciubotariu@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Codrin.Ciubotariu@microchip.com";
-  x-sender="Codrin.Ciubotariu@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa5.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Codrin.Ciubotariu@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa5.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Codrin.Ciubotariu@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: 4EucVUhtbVEvbbmY/hUuxzdLY3HCA1DJyUwm5BdYJsMKc+vK+Hl1Tad9RkaHzU00ItPmJTt4fx
- D3rUN1GvKpNhF7r+p2hYpM3hG7ghEPYimBdDHMChdk8lG+BbpTDHb1JLoR/94JaHgvdSJO6Mgr
- bNFSJKPlVmTVQBRnsyMJjC0kqtVRxOF7cIQE0uvUvzuvQSt82Jky/x2MURFc+bF8sPhSNYbR8A
- jaeN388kkBxt45fbOkIOLPHRyjLrcROGbACLj3vccRiVjc0R0bE9GLWfXvCZV83xITufjKic9p
- 5vQ=
-X-IronPort-AV: E=Sophos;i="5.68,254,1569308400"; 
-   d="scan'208";a="53750120"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Nov 2019 02:20:37 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 1 Nov 2019 02:20:35 -0700
-Received: from rob-ult-m19940.corp.atmel.com (10.10.85.251) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Fri, 1 Nov 2019 02:20:33 -0700
-From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <ludovic.desroches@microchip.com>, <linus.walleij@linaro.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <claudiu.beznea@microchip.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-Subject: [PATCH v2] pinctrl: at91: Enable slewrate by default on SAM9X60
-Date:   Fri, 1 Nov 2019 11:20:31 +0200
-Message-ID: <20191101092031.24896-1-codrin.ciubotariu@microchip.com>
-X-Mailer: git-send-email 2.20.1
+        id S1728639AbfKAJeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 05:34:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39242 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727302AbfKAJeJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Nov 2019 05:34:09 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EF46321734;
+        Fri,  1 Nov 2019 09:34:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572600848;
+        bh=0jCij/Fv8ugOCVAh4PqFfAXdu/PxgN5AcduaY+7TskQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r20eSui4efPABmYo7hpS0vYVKlcPj8rC24asoji9XM5GANsx40FkR/8T+L4QEfS+c
+         ySou75re54nj88ZPjkzC5BKc0ECclHEmHcEdLWXOPQDeTNeNHdWNgC86bZmua5pwxJ
+         tCGk8Y9PWOTFmXYWYqjI017VLS81unr9CPgr6FHs=
+Date:   Fri, 1 Nov 2019 09:58:57 +0100
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Herbert Xu <herbert@gondor.apana.org.au>
+Cc:     Corentin Labbe <clabbe.montjoie@gmail.com>, davem@davemloft.net,
+        mark.rutland@arm.com, p.zabel@pengutronix.de, robh+dt@kernel.org,
+        wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v3 0/4] crypto: add sun8i-ss driver for Allwinner
+ Security System
+Message-ID: <20191101085857.bukatiog3zxugjng@hendrix>
+References: <20191025185128.24068-1-clabbe.montjoie@gmail.com>
+ <20191101061154.abwwbcqzm6lg7uvi@gondor.apana.org.au>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="phjdavwqd433by7q"
+Content-Disposition: inline
+In-Reply-To: <20191101061154.abwwbcqzm6lg7uvi@gondor.apana.org.au>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SAM9X60, slewrate should be enabled on pins with a switching frequency
-below 50Mhz. Since most of our pins do not exceed this value, we enable
-slewrate by default. Pins with a switching value that exceeds 50Mhz will
-have to explicitly disable slewrate.
 
-This patch changes the ABI. However, the slewrate macros are only used
-by SAM9X60 and, at this moment, there are no device-tree files available
-for this platform.
+--phjdavwqd433by7q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Suggested-by: Ludovic Desroches <ludovic.desroches@microchip.com>
-Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
----
+On Fri, Nov 01, 2019 at 02:11:54PM +0800, Herbert Xu wrote:
+> On Fri, Oct 25, 2019 at 08:51:24PM +0200, Corentin Labbe wrote:
+> > Hello
+> >
+> > This patch serie adds support for the second version of Allwinner Security System.
+> > The first generation of the Security System is already handled by the sun4i-ss driver.
+> > Due to major change, the first driver cannot handle the second one.
+> > This new Security System is present on A80 and A83T SoCs.
+> >
+> > For the moment, the driver support only DES3/AES in ECB/CBC mode.
+> > Patchs for CTR/CTS, RSA and RNGs will came later.
+> >
+> > This serie is tested with CRYPTO_MANAGER_EXTRA_TESTS
+> > and tested on:
+> > sun8i-a83t-bananapi-m3
+> > sun9i-a80-cubieboard4
+> >
+> > This serie is based on top of the "crypto: add sun8i-ce driver for
+> > Allwinner crypto engine" serie.
+> >
+> > Regards
+> >
+> > Changes since v2:
+> > - Made the reset mandatory
+> > - Removed reset-names
+> >
+> > Changes since v1:
+> > - fixed uninitialized err in sun8i_ss_allocate_chanlist
+> > - Added missing commit description on DT Documentation patch
+> >
+> > Corentin Labbe (4):
+> >   crypto: Add Allwinner sun8i-ss cryptographic offloader
+> >   dt-bindings: crypto: Add DT bindings documentation for sun8i-ss
+> >     Security System
+> >   ARM: dts: sun8i: a83t: Add Security System node
+> >   ARM: dts: sun9i: a80: Add Security System node
+> >
+> >  .../bindings/crypto/allwinner,sun8i-ss.yaml   |  61 ++
+> >  arch/arm/boot/dts/sun8i-a83t.dtsi             |   9 +
+> >  arch/arm/boot/dts/sun9i-a80.dtsi              |   9 +
+> >  drivers/crypto/allwinner/Kconfig              |  28 +
+> >  drivers/crypto/allwinner/Makefile             |   1 +
+> >  drivers/crypto/allwinner/sun8i-ss/Makefile    |   2 +
+> >  .../allwinner/sun8i-ss/sun8i-ss-cipher.c      | 438 ++++++++++++
+> >  .../crypto/allwinner/sun8i-ss/sun8i-ss-core.c | 642 ++++++++++++++++++
+> >  drivers/crypto/allwinner/sun8i-ss/sun8i-ss.h  | 218 ++++++
+> >  9 files changed, 1408 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun8i-ss.yaml
+> >  create mode 100644 drivers/crypto/allwinner/sun8i-ss/Makefile
+> >  create mode 100644 drivers/crypto/allwinner/sun8i-ss/sun8i-ss-cipher.c
+> >  create mode 100644 drivers/crypto/allwinner/sun8i-ss/sun8i-ss-core.c
+> >  create mode 100644 drivers/crypto/allwinner/sun8i-ss/sun8i-ss.h
+>
+> Patches 1,2 applied.  Thanks.
 
-Changes in v2:
- - updated commit message to reflect the ABI change
+Applied 3 and 4, thanks!
+Maxime
 
- drivers/pinctrl/pinctrl-at91.c     | 4 ++--
- include/dt-bindings/pinctrl/at91.h | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+--phjdavwqd433by7q
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/drivers/pinctrl/pinctrl-at91.c b/drivers/pinctrl/pinctrl-at91.c
-index 117075b5798f..c135149e84e9 100644
---- a/drivers/pinctrl/pinctrl-at91.c
-+++ b/drivers/pinctrl/pinctrl-at91.c
-@@ -85,8 +85,8 @@ enum drive_strength_bit {
- 					 DRIVE_STRENGTH_SHIFT)
- 
- enum slewrate_bit {
--	SLEWRATE_BIT_DIS,
- 	SLEWRATE_BIT_ENA,
-+	SLEWRATE_BIT_DIS,
- };
- 
- #define SLEWRATE_BIT_MSK(name)		(SLEWRATE_BIT_##name << SLEWRATE_SHIFT)
-@@ -669,7 +669,7 @@ static void at91_mux_sam9x60_set_slewrate(void __iomem *pio, unsigned pin,
- {
- 	unsigned int tmp;
- 
--	if (setting < SLEWRATE_BIT_DIS || setting > SLEWRATE_BIT_ENA)
-+	if (setting < SLEWRATE_BIT_ENA || setting > SLEWRATE_BIT_DIS)
- 		return;
- 
- 	tmp = readl_relaxed(pio + SAM9X60_PIO_SLEWR);
-diff --git a/include/dt-bindings/pinctrl/at91.h b/include/dt-bindings/pinctrl/at91.h
-index 3831f91fb3ba..e8e117306b1b 100644
---- a/include/dt-bindings/pinctrl/at91.h
-+++ b/include/dt-bindings/pinctrl/at91.h
-@@ -27,8 +27,8 @@
- #define AT91_PINCTRL_DRIVE_STRENGTH_MED			(0x2 << 5)
- #define AT91_PINCTRL_DRIVE_STRENGTH_HI			(0x3 << 5)
- 
--#define AT91_PINCTRL_SLEWRATE_DIS	(0x0 << 9)
--#define AT91_PINCTRL_SLEWRATE_ENA	(0x1 << 9)
-+#define AT91_PINCTRL_SLEWRATE_ENA	(0x0 << 9)
-+#define AT91_PINCTRL_SLEWRATE_DIS	(0x1 << 9)
- 
- #define AT91_PIOA	0
- #define AT91_PIOB	1
--- 
-2.20.1
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXbvz0QAKCRDj7w1vZxhR
+xVjTAQCdeiXvBM+rscw9plENTZiXAjVbmkADgjas85s2VUzpVQEA04vUS0idMiY/
+RxN28qg8bHvQsTZGYtLIbTxPsSpgCQI=
+=vYi/
+-----END PGP SIGNATURE-----
+
+--phjdavwqd433by7q--
