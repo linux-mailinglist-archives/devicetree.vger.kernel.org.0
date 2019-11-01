@@ -2,98 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E312AEBF30
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 09:27:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 744FCEBEDA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 09:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730034AbfKAI1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 04:27:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45468 "EHLO mail.kernel.org"
+        id S1729881AbfKAIGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 04:06:42 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:44466 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729975AbfKAI1h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Nov 2019 04:27:37 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 93E34208CB;
-        Fri,  1 Nov 2019 08:27:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572596856;
-        bh=UGrR3iRTKwrbEPN+BHW52XhDbxZkXvMXHC6V2nHaiuU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bmNAWnJ4mnMMumb5K9Z5TPfbVMVSG14pUOCb3DPJ2XA3W3x2H1DIt1TB7ofMdQf/9
-         xPDRzfPxGa0pirP3JilU8xsrw6ZA13MRWl7fwDeFP0EsYSKwGnLb8Rpw92376oeBOC
-         5oB8tSHl21zhhbFjvyD42aR6cbPogZi4FsIaQY2k=
-Date:   Fri, 1 Nov 2019 09:02:56 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>
-Cc:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
+        id S1729852AbfKAIGm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Nov 2019 04:06:42 -0400
+Received: from [46.218.74.72] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iQRx7-0001Qk-C2; Fri, 01 Nov 2019 09:06:37 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Markus Reichl <m.reichl@fivetechno.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: bluetooth: add DT binding for
- Realtek controllers
-Message-ID: <20191101080256.gjc4tacltehro3iw@hendrix>
-References: <20191030224333.70241-1-bonstra@bonstra.fr.eu.org>
- <20191030224333.70241-2-bonstra@bonstra.fr.eu.org>
+        Jagan Teki <jagan@amarulasolutions.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add PCIe node on rk3399-roc-pc
+Date:   Fri, 01 Nov 2019 09:06:36 +0100
+Message-ID: <2490852.kIovObk3uj@phil>
+In-Reply-To: <f66fe5c3-6760-20b0-54cc-8f0c1a754bab@fivetechno.de>
+References: <09300c2d-4298-1b01-ac41-d1b2610589d4@fivetechno.de> <1719506.vT9a8mQdzu@phil> <f66fe5c3-6760-20b0-54cc-8f0c1a754bab@fivetechno.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191030224333.70241-2-bonstra@bonstra.fr.eu.org>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hugo,
+Hi Markus,
 
-On Wed, Oct 30, 2019 at 11:43:31PM +0100, Hugo Grostabussiat wrote:
-> The rtl_bt driver already supports some Realtek controllers on ACPI
-> platforms.
-> This commit adds bindings for DT-only platforms.
->
-> Signed-off-by: Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>
-> ---
->  .../bindings/net/realtek-bluetooth.txt        | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/realtek-bluetooth.txt
+Am Donnerstag, 31. Oktober 2019, 19:12:10 CET schrieb Markus Reichl:
+> Am 31.10.19 um 17:57 schrieb Heiko Stuebner:
+> > Am Montag, 28. Oktober 2019, 15:47:27 CET schrieb Markus Reichl:
+> >> rk3399-roc-pc has a PCIe interface. Enable it for use with
+> >> the M.2 NGFF M_KEY slot on roc-rk3399-mezzanine board.
+> >> Tested with Samsung 970 evo plus SSD.
+> >> 
+> >> Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+> >> ---
+> >>  .../arm64/boot/dts/rockchip/rk3399-roc-pc.dts | 38 +++++++++++++++++++
+> >>  1 file changed, 38 insertions(+)
+> >> 
+> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> >> index 9313251765c7..2d637d54994b 100644
+> >> --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> >> +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
+> >> @@ -158,6 +158,21 @@
+> >>  		regulator-max-microvolt = <1400000>;
+> >>  		vin-supply = <&vcc_sys>;
+> >>  	};
+> >> +
+> >> +	/* on roc-rk3399-mezzanine board */
+> > 
+> > I'm undecided on this. From what I've seen that mezzanine board is some
+> > sort of addon, like a raspberry pi hat. Therefore it's not always present,
+> > so probably should not be part of the base board dts.
+> > 
+> > I'm thinking a dt-overlay that can then be activated might be the solution
+> > of choice, but I've reached out to arm-soc poeple on irc to determine the
+> > correct course.
+> > 
+> I have seen some board.dtsi with board_only.dts respective board_extension.dts
+> in the arch/arm64/boot/dts/rockchip directory. Would that be ok?
 
-You should write that binding using a YAML description. Free-form
-device tree bindings are more or less deprecated now.
+The answer is twofold I guess ;-)
 
-> diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.txt b/Documentation/devicetree/bindings/net/realtek-bluetooth.txt
-> new file mode 100644
-> index 000000000000..01d4ed146705
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.txt
-> @@ -0,0 +1,25 @@
-> +Realtek Bluetooth controllers
-> +=============================
-> +
-> +This documents the binding structure and properties for the serial
-> +attached Bluetooth controllers from Realtek.
-> +
-> +Required properties:
-> +- compatible: currently, only "realtek,rt8723bs-bt" is supported
-> +
-> +Optional properties:
-> +- enable-gpio: gpio line controlling the power down (BT_DIS#) signal
-> +- device-wake: gpio line controlling the device wakeup (BT_WAKE) signal
-> +- config-name: postfix added to the name of the firmware file
-> +  containing the chip configuration
-> +
-> +Example:
-> +
-> +&uart1 {
-> +	bluetooth {
-> +		compatible = "realtek,rtl8723bs-bt";
-> +		enable-gpio = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
-> +		device-wake-gpio = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-> +		config-name = "teres_a64_i";
+(1) The 100% correct way would probably be to use a devicetree overlay
+together with capemgr [0] to load the overlay from userspace, but
 
-IIRC, that has been discussed before and the standard "model" property
-was to be preferred.
+(2a) The distinction between system-on-module + baseboard and
+board+cape is somewhat foggy I think and it really doesn't look like there
+will be a big plethora of capes for the roc-rk3399-pc
 
-Maxime
+(2b) People may actually want to boot of that nvme pcie drive attached
+to the mezzanine, so it will be somewhat permanent connection anyway
+and also the system then cannot wait for userspace to come up first, if
+the userspace is sitting on that drive ;-) .
+
+So I think, going the dts+dts-extension is the best way to go.
+
+Heiko
+
+
+[0] https://elinux.org/Capemgr
+
+
+
+> >> +	vcc3v3_pcie: vcc3v3-pcie {
+> >> +		compatible = "regulator-fixed";
+> >> +		regulator-name = "vcc3v3_pcie";
+> >> +		enable-active-high;
+> >> +		gpio = <&gpio1 RK_PC1 GPIO_ACTIVE_HIGH>;
+> >> +		pinctrl-names = "default";
+> >> +		pinctrl-0 = <&vcc3v3_pcie_en>;
+> >> +		regulator-always-on;
+> >> +		regulator-boot-on;
+> >> +		regulator-min-microvolt = <3300000>;
+> >> +		regulator-max-microvolt = <3300000>;
+> >> +		vin-supply = <&dc_12v>;
+> >> +	};
+> >>  };
+> >>  
+> >>  &cpu_l0 {
+> >> @@ -514,6 +529,19 @@
+> >>  	status = "okay";
+> >>  };
+> >>  
+> >> +&pcie_phy {
+> >> +	status = "okay";
+> >> +};
+> >> +
+> >> +&pcie0 {
+> >> +	ep-gpios = <&gpio4 RK_PD1 GPIO_ACTIVE_HIGH>;
+> >> +	num-lanes = <4>;
+> >> +	pinctrl-names = "default";
+> >> +	pinctrl-0 = <&pcie_perst>;
+> >> +	vpcie3v3-supply = <&vcc3v3_pcie>;
+> >> +	status = "okay";
+> >> +};
+> >> +
+> >>  &pinctrl {
+> >>  	lcd-panel {
+> >>  		lcd_panel_reset: lcd-panel-reset {
+> >> @@ -535,6 +563,16 @@
+> >>  		};
+> >>  	};
+> >>  
+> >> +	pcie {
+> >> +		vcc3v3_pcie_en: vcc3v3-pcie-en {
+> >> +			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
+> >> +		};
+> >> +
+> >> +		pcie_perst: pcie-perst {
+> >> +			rockchip,pins = <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
+> >> +		};
+> >> +	};
+> >> +
+> >>  	pmic {
+> >>  		vsel1_gpio: vsel1-gpio {
+> >>  			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_down>;
+> >> 
+> > 
+> > 
+> > 
+> > 
+> > 
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> > 
+> 
+
+
+
+
