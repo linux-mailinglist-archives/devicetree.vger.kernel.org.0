@@ -2,75 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2543EC6CD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 17:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08D93EC6EE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 17:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727562AbfKAQbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 12:31:38 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:35341 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726701AbfKAQbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 12:31:37 -0400
-Received: by mail-ed1-f68.google.com with SMTP id w3so5649445edt.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2019 09:31:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=latS+LOZUfL1yiiuFRKw1aKCiSm5Bt/9vWdEAhPRwuM=;
-        b=QhV2skXhxRQTHu3K7BGATa7S/eBd2R29m8d87/BzlCSmWk1bsymeqzkrSxzWTosfAe
-         3YIVId3V9lgUNLaUU0Xqkejju7nIwHNfiBCZcW+oX10gJRolVrUoI2K9scee+Wv02fHl
-         UEJicxBgVAvWAtFO7/5Iz9+myiGLlbKs8xxEMTyfm7rj0BVTPZshdtyw92azm/5VfgJp
-         tH64KGtJS4p60xCkBo9Xu85eOLcnd9ubVOC7NCjlzcwdqAdPJAhKOfvP9O+DXn7yD/H5
-         1JVM+vk3PuBVH0QF1qU44pdoB2zMQ/cjGBCk1qOhGSw+NlWrEMXGIgpKpUDKmTDiBpdd
-         kgZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=latS+LOZUfL1yiiuFRKw1aKCiSm5Bt/9vWdEAhPRwuM=;
-        b=NDIsR6lMMw6dSQvxIniWUha+834eq0F6Kev6ywxWs+owe8EXjBwliUitXs6Kx2mhov
-         JBwswS/jvRR7ZARRWo05YKSG8cRa5nPsy8QbbZ6hvxzRd4AnI6jwxVNkwNsBNuHA+Hp3
-         45Vjnch72Rn0XE8325HjDIaKE1jPKHsUY0NSeByh2DzCqlyWFzdgikFloJcFD4orlh6e
-         RXlzN0Mvp1L+NWvSahPC5LU5tz4yW+N1w5CdddP1Mrj/5Kb7yai7jbDnXFeNTtvcVYpw
-         Aj4aeLyE4HOtit953nwtiNzRDAiBc/ldexnfVbzJaS3NYQHQWhEEOMhWTEzTQPYtpdaT
-         75iQ==
-X-Gm-Message-State: APjAAAVztrrnFQmwidLQiM+pvkgVqK7x0YlAjOV6MvsoNXof7mJh34Lg
-        VYoaQYcIVlc4nSxAKey7PpT5ND0UA+2+5M/d8BY=
-X-Google-Smtp-Source: APXvYqwGWuMH94vfqKzrw+H3XXGqKga+v5QwYYKiMsAyR3hj26eiMeo7mmTXKMU5Qpi0wGXjotaEwKxR4EyNvZaNjOY=
-X-Received: by 2002:a17:906:f2d4:: with SMTP id gz20mr10695917ejb.215.1572625896197;
- Fri, 01 Nov 2019 09:31:36 -0700 (PDT)
+        id S1727600AbfKAQjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 12:39:41 -0400
+Received: from mga02.intel.com ([134.134.136.20]:32461 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727426AbfKAQjk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 1 Nov 2019 12:39:40 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 01 Nov 2019 09:39:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,256,1569308400"; 
+   d="scan'208";a="199860587"
+Received: from ggarreto-mobl1.amr.corp.intel.com (HELO [10.255.92.243]) ([10.255.92.243])
+  by fmsmga007.fm.intel.com with ESMTP; 01 Nov 2019 09:39:38 -0700
+Subject: Re: [alsa-devel] [PATCH v4 2/2] soundwire: qcom: add support for
+ SoundWire controller
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        robh@kernel.org, vkoul@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
+        spapothi@codeaurora.org, lgirdwood@gmail.com, broonie@kernel.org
+References: <20191030153150.18303-1-srinivas.kandagatla@linaro.org>
+ <20191030153150.18303-3-srinivas.kandagatla@linaro.org>
+ <af29ec6e-d89e-7fa4-a8cd-29ab944ecd5c@linux.intel.com>
+ <926bd15f-e230-8f5e-378d-355bfeeecf27@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <3d17a2a2-3033-e740-a466-e6cf7919adb2@linux.intel.com>
+Date:   Fri, 1 Nov 2019 11:39:38 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.2
 MIME-Version: 1.0
-Received: by 2002:a05:6402:1118:0:0:0:0 with HTTP; Fri, 1 Nov 2019 09:31:35
- -0700 (PDT)
-Reply-To: moneygram.1820@outlook.fr
-From:   "Mary Coster, I.M.F director-Benin" <eco.bank1204@gmail.com>
-Date:   Fri, 1 Nov 2019 17:31:35 +0100
-Message-ID: <CAOE+jADviugiqpraL3AHycDGuFR8=vm0xYL9JoO9iz4W0SutLg@mail.gmail.com>
-Subject: Contact Money Gram international service-Benin to receive your
- payment funds US$2.500,000 Million
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <926bd15f-e230-8f5e-378d-355bfeeecf27@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Attn Dear,Funds Beneficiary.
-Contact Money Gram international service-Benin to receive your payment
-funds US$2.500,000 Million approved this morning through the UN
-payment settlement organization.
-Contact Person, Mr. John Dave.
-Official Director.Money Gram-Benin
-Email: moneygram.1820@outlook.fr
-Telephone +229 62619517
-Once you get intouch with Mr. John Dave, Money Gram Director, send to
-him your address including your phone numbers. He will be sending the
-transfer to you  $5000.00 USD daily until you received your complete
-payment $2.5m
-from the office.
-Note,I have paid the whole service fees for you but only small money
-you been required to send to this office is $23.00 only via Money Gram
-transfer.
-God bless
-Mary Coster, I.M.F director-Benin
-m.coster@aol.com
+
+>>> +static int qcom_swrm_prepare(struct snd_pcm_substream *substream,
+>>> +                 struct snd_soc_dai *dai)
+>>> +{
+>>> +    struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dai->dev);
+>>> +
+>>> +    if (!ctrl->sruntime[dai->id])
+>>> +        return -EINVAL;
+>>> +
+>>> +    return sdw_enable_stream(ctrl->sruntime[dai->id]);
+>>
+>> So in hw_params you call sdw_prepare_stream() and in _prepare you call 
+>> sdw_enable_stream()?
+>>
+>> Shouldn't this be handled in a .trigger operation as per the 
+>> documentation "From ASoC DPCM framework, this stream state is linked to
+>> .trigger() start operation."
+> 
+> If I move sdw_enable/disable_stream() to trigger I get a big click noise 
+> on my speakers at start and end of every playback. Tried different 
+> things but nothing helped so far!. Enabling Speaker DACs only after 
+> SoundWire ports are enabled is working for me!
+> There is nothing complicated on WSA881x codec side all the DACs are 
+> enabled/disabled as part of DAPM.
+
+that looks like a work-around to me? If you do a bank switch without 
+anything triggered, you are most likely sending a bunch of zeroes to 
+your amplifier and enabling click/pop removals somehow.
+
+It'd be worth looking into this, maybe there's a missing digital 
+mute/unmute that's not done in the right order?
+
+> 
+>>
+>> It's also my understanding that .prepare will be called multiples times, 
+> 
+> I agree, need to add some extra checks in the prepare to deal with this!
+> 
+>> including for underflows and resume if you don't support INFO_RESUME.
+> 
+>>
+>> the sdw_disable_stream() is in .hw_free, which is not necessarily 
+>> called by the core, so you may have a risk of not being able to recover?
+> 
+> Hmm, I thought hw_free is always called to release resources allocated 
+> in hw_params.
+> 
+> In what cases does the core not call this?
+
+yes, but prepare can be called without hw_free called first. that's why 
+we updated the state machine to allow for DISABLED|DEPREPARED -> 
+PREPARED transitions.
+
+>>> +static const struct dev_pm_ops qcom_swrm_dev_pm_ops = {
+>>> +    SET_RUNTIME_PM_OPS(qcom_swrm_runtime_suspend,
+>>> +               qcom_swrm_runtime_resume,
+>>> +               NULL
+>>> +    )
+>>> +};
+>>
+>> Maybe define pm_runtime at a later time then? We've had a lot of race 
+>> conditions to deal with, and it's odd that you don't support plain 
+>> vanilla suspend first?
+>>
+> Trying to keep things simple for the first patchset! added this dummies 
+> to keep the soundwire core happy!
+
+If you are referring to the errors when pm_runtime is not enabled, we 
+fixed this is the series that's been out for review for 10 days now...
+
+see '[PATCH 03/18] soundwire: bus: add PM/no-PM versions of read/write 
+functions', that should remove the need for dummy functions.
+
