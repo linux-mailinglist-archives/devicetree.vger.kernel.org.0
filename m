@@ -2,103 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0676AEC4C0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 15:31:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D17DEC52F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 15:58:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727060AbfKAObq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 10:31:46 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:38556 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726658AbfKAObq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 10:31:46 -0400
-Received: by mail-pg1-f195.google.com with SMTP id j30so3121068pgn.5;
-        Fri, 01 Nov 2019 07:31:45 -0700 (PDT)
+        id S1727365AbfKAO6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 10:58:19 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:34807 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727334AbfKAO6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 10:58:18 -0400
+Received: by mail-pg1-f194.google.com with SMTP id e4so6670813pgs.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2019 07:58:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2FrXDkN5ZNQ5+RGqx6Mrb8PAqmL7u63EHey24e7/ywQ=;
-        b=oKlSmGu0l/QNsOmfcHoqvh5d2HYh7/VJfA3eELWS00z9HspCj6ziNT3qNtmtXxVKhG
-         /vCFVTNxv+a7lZm6fQD+5HMGXDtNWu4ixskrHf/fxeAKHOos596BB/JiRvJ755+4vnGM
-         nMb+cz/eWsPvmTC/FtInM60g+zC92ick5Q0KU5+4pkYcDA80pFrVBk31mqtWezAyU+7v
-         O8oyQgfEzBDPa0Rv1Cd0SfY/do5hILcfNRMFbg+3UNg5pNTe191UC7s7l9QZjWRWFv3V
-         rGKWYvmp9uaT0wQq/UmCj+HxrZRHN46GnjnLKx7uNHJbzXRjRQj1wvn7QSodQnbJhdNT
-         lsLA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=o3PotZZzGd3n0vtfT41UhnCQaaRUmL4E0PRscYzEIDo=;
+        b=I1/WHsVyWQVAH+7YIQ9FJxjw/3+UZ4eJ1j/SDFWtIEofNsreSoGawixnCPLXHfjS4I
+         xlDwa3u66eEwoOJUAPlHK0dUeT0aet3AJF7Hh7vmKlsgkC0XBk6UfewUnoYtCFXoeX5g
+         7fSank49zBRoLLYkoib3osby1hKIjugYLT3XialA5XwBx2NicKvLZ0AL8HaA0MYN2gGJ
+         6I7li89dPySlSyjub59Y1gl2eGkUAndynwIHLXQ4f01kEq7g1XzQ0k9tdlQaGRx6v+Xw
+         shsJV6s6wDw/l6GpKrmsUj23FJcOIaobHKjzfOKXCDKJMXhdUTkbzBcGYz4z5yGtH0e+
+         thcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2FrXDkN5ZNQ5+RGqx6Mrb8PAqmL7u63EHey24e7/ywQ=;
-        b=JjXz426KuICcptjk1iIrF5q53usHBZFl5twsdqISZcUitlY41qCFiJ3wfBtQBdepIZ
-         xzhFh3SWL5k0Q3x4tovasogxE+SacFMBWm9nls3JOpR5CFcbKPfx4vG7Q/pxhj/chv/2
-         7brFywGM4RVep+/pCg2KKviCepqLcPyh4HChAgfC4IP8sBCSG6cf7PIO7iqLxxxrW27e
-         wVXg0nQrGJ7Z9BTC7iztTIF6iQCMzL5ng2t921S+Za5wTtK3RMQxEzlRKCZlyQCvqqaf
-         gWftpehqpFPBWjC3irUJQfbs+A8KGVMVKB6Qxz2uX4vcJfNkt3fYhCKNrACdasSsH1SK
-         B8Hg==
-X-Gm-Message-State: APjAAAV4vnaKnJC1eiyPJ2+zvZunuw3KO4Qzjpybx8B3YkvG3YgENMNc
-        TOMfPYu6/v4hMgdBfH+HWA8=
-X-Google-Smtp-Source: APXvYqwMma5R3MDVUeyvdrFzn/WU1yusLdcF5o5dfhV+xy+nI2ygjZLpe9NmzO0LZq+qPjbUw3w8YA==
-X-Received: by 2002:a63:1c06:: with SMTP id c6mr13721047pgc.417.1572618705268;
-        Fri, 01 Nov 2019 07:31:45 -0700 (PDT)
-Received: from localhost.localdomain ([45.114.62.165])
-        by smtp.gmail.com with ESMTPSA id x9sm9273061pje.27.2019.11.01.07.31.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Nov 2019 07:31:44 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [RFC-next 1/1] arm64: dts: meson: odroid-c2: Enable SCPI DVFS for cpu
-Date:   Fri,  1 Nov 2019 14:31:26 +0000
-Message-Id: <20191101143126.2549-2-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191101143126.2549-1-linux.amoon@gmail.com>
-References: <20191101143126.2549-1-linux.amoon@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=o3PotZZzGd3n0vtfT41UhnCQaaRUmL4E0PRscYzEIDo=;
+        b=DHNA0mTbAz/chgtAG6nMRwxOkZydBqftx7REjM2PJaJ4d79ExhIrRIM2xEM9e06C5u
+         IMUfzgjBNSuR2s+A81Jat25KbGOmTNgwWQMYjaRPONvOJ1G1bjjj+80PMnb0v3l6Q0fQ
+         atTr3TiXHgmkJgr7ufy+EGRQJgsIx64DpVbG+8wf60ZnkTmGd9KqYhjXK3oxSNmUfpRZ
+         wOGfeg/LS5JE/hkOX0ngMgiq3/U1ztl5kxeTeUNzv3RCr6z9xlFAMudZYDKJoRBnxTIE
+         4g06s2vYFMY7KsKTQOlV9Se2Cua3qn6pW4L4ui8ki8Vf55DqaDOkF02MuYAcTvVUGR1S
+         pmpw==
+X-Gm-Message-State: APjAAAVx7fVXEHW5a6ON9fSVRDfdoD7jEdb9bfpEjtsoL9ydNixpU8EO
+        3cU0+N6YhTDIDTlFPAySx8V8
+X-Google-Smtp-Source: APXvYqyyHMBHWz8vbhnckMVAipVVWfbs6zJpy+GNzFBfp8NvRJbt08PIocOSMFo+vTjHOv8EaNNmig==
+X-Received: by 2002:a05:6a00:51:: with SMTP id i17mr14214665pfk.8.1572620297826;
+        Fri, 01 Nov 2019 07:58:17 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:6413:fc8c:9538:d2ea:eab:d2c0])
+        by smtp.gmail.com with ESMTPSA id z21sm6644869pfa.119.2019.11.01.07.58.09
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 01 Nov 2019 07:58:17 -0700 (PDT)
+Date:   Fri, 1 Nov 2019 20:28:06 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Tudor.Ambarus@microchip.com
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, robh+dt@kernel.org,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        darshak.patel@einfochips.com, prajose.john@einfochips.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, marek.vasut@gmail.com,
+        dwmw2@infradead.org, computersforpeace@gmail.com,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] mtd: spi-nor: Add support for w25q256jw
+Message-ID: <20191101145806.GB13101@Mani-XPS-13-9360>
+References: <20191030090124.24900-1-manivannan.sadhasivam@linaro.org>
+ <20191030090124.24900-5-manivannan.sadhasivam@linaro.org>
+ <87e0b459-8dbf-26cc-611f-1b1b5266aa55@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87e0b459-8dbf-26cc-611f-1b1b5266aa55@microchip.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable System Control and Power Interface, DVFS for cpu
-with setting 1.54 GHz as max freq in the initial SCPI tables
-loaded by the BL2, i.e. packed with U-Boot.
+Hi Tudor,
 
-Fixes: f7bcd4b6f698 (ARM64: dts: meson-gxbb-odroidc2: Disable SCPI DVFS)
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-In discuss on other mailing list thread below.
-[0] https://lkml.org/lkml/2019/8/30/186
+On Fri, Nov 01, 2019 at 01:48:17PM +0000, Tudor.Ambarus@microchip.com wrote:
+> 
+> 
+> On 10/30/2019 11:01 AM, Manivannan Sadhasivam wrote:
+> > External E-Mail
+> > 
+> > 
+> > Add MTD support for w25q256jw SPI NOR chip from Winbond. This chip
+> > supports dual/quad I/O mode with 512 blocks of memory organized in
+> > 64KB sectors. In addition to this, there is also small 4KB sectors
+> > available for flexibility. The device has been validated using Thor96
+> > board.
+> > 
+> > Cc: Marek Vasut <marek.vasut@gmail.com>
+> > Cc: Tudor Ambarus <tudor.ambarus@microchip.com>
+> > Cc: David Woodhouse <dwmw2@infradead.org>
+> > Cc: Brian Norris <computersforpeace@gmail.com>
+> > Cc: Miquel Raynal <miquel.raynal@bootlin.com>
+> > Cc: Richard Weinberger <richard@nod.at>
+> > Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> > Cc: linux-mtd@lists.infradead.org
+> > Signed-off-by: Darshak Patel <darshak.patel@einfochips.com>
+> > [Mani: cleaned up for upstream]
+> 
+> Can we keep Darshak's authorship? We usually change the author if we feel that
+> we made a significant change to what was originally published.
+> 
+> If it's just about cosmetics, cleaning or rebase, you can specify what you did
+> after the author's S-o-b tag and then add your S-o-b, as you did above.
+> 
 
-Tested on mainline U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
-on archlinux distro.
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I'd suggest to keep Darshak's authorship since he did the actual change in
+the bsp. I have to clean it up before submitting upstream and I mentioned
+the same above.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 6ded279c40c8..9678784aa1a9 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -307,7 +307,7 @@
- };
- 
- &scpi_clocks {
--	status = "disabled";
-+	status = "okay";
- };
- 
- /* SD */
--- 
-2.23.0
+> The patch looks good.
+> 
 
+Thanks,
+Mani
+
+> Cheers,
+> ta
+> 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  drivers/mtd/spi-nor/spi-nor.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/drivers/mtd/spi-nor/spi-nor.c b/drivers/mtd/spi-nor/spi-nor.c
+> > index 1d8621d43160..2c25b371d9f0 100644
+> > --- a/drivers/mtd/spi-nor/spi-nor.c
+> > +++ b/drivers/mtd/spi-nor/spi-nor.c
+> > @@ -2482,6 +2482,8 @@ static const struct flash_info spi_nor_ids[] = {
+> >  	{ "w25q256", INFO(0xef4019, 0, 64 * 1024, 512, SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
+> >  	{ "w25q256jvm", INFO(0xef7019, 0, 64 * 1024, 512,
+> >  			     SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
+> > +	{ "w25q256jw", INFO(0xef6019, 0, 64 * 1024, 512,
+> > +			     SECT_4K | SPI_NOR_DUAL_READ | SPI_NOR_QUAD_READ) },
+> >  	{ "w25m512jv", INFO(0xef7119, 0, 64 * 1024, 1024,
+> >  			SECT_4K | SPI_NOR_QUAD_READ | SPI_NOR_DUAL_READ) },
+> >  
+> > 
