@@ -2,70 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AEED2EC0C6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 10:49:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D746BEC0B9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Nov 2019 10:44:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727550AbfKAJtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 05:49:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46948 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726957AbfKAJtq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 1 Nov 2019 05:49:46 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0C21E21734;
-        Fri,  1 Nov 2019 09:49:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572601785;
-        bh=aiGS91Hq8+Tec6OiEGfp5Qwq1/HH+r0uYEeMYIfR75k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i3qeQrfZSl3zPj3zgJ30NfU7CFQF6wiw1wKgjJT2us5LYriK7mZUp7vPfkzIQq6DE
-         c2bYz9vhIqMCQCzs/YkdCyepzJSh5lmKiCesD810nITnWA0su/BJ3EnXAFlwUV5zAA
-         vziUQOMwyTUiIzbjW9o3TXvNm0jL9qWrEMZxW1i8=
-Date:   Fri, 1 Nov 2019 10:12:53 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Georgii Staroselskii <georgii.staroselskii@emlid.com>
-Cc:     robh+dt@kernel.org, wens@csie.org, linux-sunxi@googlegroups.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: allwinner: bluetooth for Emlid Neutis N5
-Message-ID: <20191101091253.oxopdmq7igtyfpjz@hendrix>
-References: <1572601413-10353-1-git-send-email-georgii.staroselskii@emlid.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mzwb6azrgqwhad27"
-Content-Disposition: inline
-In-Reply-To: <1572601413-10353-1-git-send-email-georgii.staroselskii@emlid.com>
+        id S1727059AbfKAJov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 05:44:51 -0400
+Received: from forward105j.mail.yandex.net ([5.45.198.248]:37317 "EHLO
+        forward105j.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725904AbfKAJov (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 05:44:51 -0400
+X-Greylist: delayed 318 seconds by postgrey-1.27 at vger.kernel.org; Fri, 01 Nov 2019 05:44:49 EDT
+Received: from mxback13g.mail.yandex.net (mxback13g.mail.yandex.net [IPv6:2a02:6b8:0:1472:2741:0:8b7:92])
+        by forward105j.mail.yandex.net (Yandex) with ESMTP id BF710B210D9;
+        Fri,  1 Nov 2019 12:39:29 +0300 (MSK)
+Received: from sas2-69645cccb3fe.qloud-c.yandex.net (sas2-69645cccb3fe.qloud-c.yandex.net [2a02:6b8:c08:bd8e:0:640:6964:5ccc])
+        by mxback13g.mail.yandex.net (nwsmtp/Yandex) with ESMTP id p9I8LAmAUH-dS1Wu3Z2;
+        Fri, 01 Nov 2019 12:39:29 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emlid.com; s=mail; t=1572601169;
+        bh=UN0pzwk3CX7uZAugr6Kv7p1iduaIAzWnVboku1O5ZF4=;
+        h=Subject:To:From:Cc:Date:Message-Id;
+        b=k6bzO1lyWLSVVsUY+8GFVW7iekwvDCw+JtIDKEKPIroNpVmEZKqTauxHw7lXsTMTZ
+         pvioJxOuiE2xGQM/ZcaiNBYH34R04HdRUtp4MNCBSb7H7pJ2JQ5zaJFP3quaiK9KKn
+         WoNr/xypPmVR8nmEex9jANgmSVReVyAHv4ke2l2c=
+Authentication-Results: mxback13g.mail.yandex.net; dkim=pass header.i=@emlid.com
+Received: by sas2-69645cccb3fe.qloud-c.yandex.net (nwsmtp/Yandex) with ESMTPSA id GY8u6ZZUqg-dRV0rq7b;
+        Fri, 01 Nov 2019 12:39:28 +0300
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (Client certificate not present)
+From:   Georgii Staroselskii <georgii.staroselskii@emlid.com>
+To:     mripard@kernel.org, robh+dt@kernel.org, wens@csie.org
+Cc:     linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Georgii Staroselskii <georgii.staroselskii@emlid.com>
+Subject: [PATCH] arm64: dts: allwinner: bluetooth for Emlid Neutis N5
+Date:   Fri,  1 Nov 2019 12:39:20 +0300
+Message-Id: <1572601160-8200-1-git-send-email-georgii.staroselskii@emlid.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The Emlid Neutis N5 board has AP6212 BT+WiFi chip. This patch is in
+line with 8558c6e2 and other commits that add Bluetooth support for
+similar boards.
 
---mzwb6azrgqwhad27
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Georgii Staroselskii <georgii.staroselskii@emlid.com>
+---
+ .../arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-On Fri, Nov 01, 2019 at 12:43:33PM +0300, Georgii Staroselskii wrote:
-> The Emlid Neutis N5 board has AP6212 BT+WiFi chip. This patch is in
-> line with 8558c6e21ceb ("ARM: dts: sun8i: h3: bluetooth for Banana Pi
-> M2 Zero board") and other commits that add Bluetooth support for
-> similar boards.
->
-> Signed-off-by: Georgii Staroselskii <georgii.staroselskii@emlid.com>
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi
+index 82f4b44..5bec574 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-emlid-neutis-n5.dtsi
+@@ -23,6 +23,8 @@
+ 		compatible = "mmc-pwrseq-simple";
+ 		reset-gpios = <&pio 2 7 GPIO_ACTIVE_LOW>; /* PC7 */
+ 		post-power-on-delay-ms = <200>;
++		clocks = <&rtc 1>;
++		clock-names = "ext_clock";
+ 	};
+ };
+ 
+@@ -56,5 +58,16 @@
+ &uart1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
++	uart-has-rtscts;
+ 	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		clocks = <&rtc 1>;
++		clock-names = "lpo";
++		vbat-supply = <&reg_vcc3v3>;
++		vddio-supply = <&reg_vcc3v3>;
++		shutdown-gpios = <&pio 2 4 GPIO_ACTIVE_HIGH>; /* PC4 */
++		device-wakeup-gpios = <&r_pio 0 7 GPIO_ACTIVE_HIGH>; /* PL7 */
++	};
+ };
+-- 
+2.7.4
 
-Applied, thanks!
-Maxime
-
---mzwb6azrgqwhad27
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXbv3FQAKCRDj7w1vZxhR
-xfUgAQCuRYFEN+ejqrBG+YTreOb8P10E18Xoz+gEr6dNf53YUwEApuYBkd0OBB8p
-ZnbSNQFsqFeh7t/NBMUCdjJEEIO3fg4=
-=1eoJ
------END PGP SIGNATURE-----
-
---mzwb6azrgqwhad27--
