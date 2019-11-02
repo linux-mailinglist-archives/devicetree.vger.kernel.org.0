@@ -2,190 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FD2DECC73
-	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2019 01:32:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80C93ECCB5
+	for <lists+devicetree@lfdr.de>; Sat,  2 Nov 2019 02:15:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728313AbfKBAcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Nov 2019 20:32:00 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:43096 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728342AbfKBAb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 20:31:57 -0400
-Received: by mail-pf1-f194.google.com with SMTP id 3so8096469pfb.10
-        for <devicetree@vger.kernel.org>; Fri, 01 Nov 2019 17:31:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IzNtFT+Ywg6fAANt4Dbe5JETPNXOEpHrB/MK+SSdmpc=;
-        b=trPLlTjmU0FOKvC+IFGbJIX6Xg3RtTJc6kQWsSfAflR2mK+AOUsDDE+k9iVRLEIVjg
-         nqSWWL17ieUWYq6S4NmnIPOfNZPCVo3nF1/jTaDgNDXgGoeki1QEflduK941OcBgvnXC
-         F6LwbHizOMV4TXEs8EYBiKGixJaJqZ1y2capBCXogKe4RmlVA+h6XN7KA6U+2xMwOZCI
-         PDwbcu+WSAXSRz5Iy+A61/8cY/wKKE4nOl3sRUKKvvujpzwCdFfTp5C6bYgAgsAxvvjJ
-         Pewv6Dh/Sp5MPGtttGIQ/d9dJLWAXWCLl/N2WsUl3ZNHofgZRJ9GmnMzMbk6+nqjji7K
-         HexA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IzNtFT+Ywg6fAANt4Dbe5JETPNXOEpHrB/MK+SSdmpc=;
-        b=uHjn9mDdyvA6F01dTXpLOgZzbndJnJmMP/4+uev1cPYxzw0z0xdRA0KEFGF/YbqDee
-         vFsZSKJF4l4PP/dcpyJonxr3YM/8MWSg33O+0j9vr26tC2kYNkUatMubgAOBdW24Xbp4
-         pCrbr4oqVriG4FKVEFCVOL1ycr24lxnZSB9vs86nZCLBGojQ7LtpYTxxCnqmcfD9PIao
-         uBmCiFpcVXImhoSAXRoK1u5OyGMb/v93VuZi+HmnBWuccodbMDd/o1RldUXQkzrIS72j
-         i8r5Ebn2TNyf9aAU/S57WYrhGzIbaUj446098j4S8nxlQxIVJT0REWl0E6QS0qf01So1
-         lVqA==
-X-Gm-Message-State: APjAAAUEdKB+jUzzU79WR7W0g+sBVapFPnTiwpwOnX6OhHBELllpDGwY
-        +F98oUEHuKGM7NqEwYVQ+GIRAA==
-X-Google-Smtp-Source: APXvYqytbiz95EC/cgJxnFlwqHQtaYez+AuORPX6vKWHXecRxc/A0TOfu4PpQ3ilxIqO+VriFYELqw==
-X-Received: by 2002:a63:e055:: with SMTP id n21mr16303184pgj.411.1572654715530;
-        Fri, 01 Nov 2019 17:31:55 -0700 (PDT)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id v2sm7957522pfm.13.2019.11.01.17.31.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Nov 2019 17:31:54 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1727820AbfKBBOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Nov 2019 21:14:39 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:48721 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727814AbfKBBOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Nov 2019 21:14:15 -0400
+Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id CD348224C1;
+        Sat,  2 Nov 2019 02:14:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc;
+        s=mail2016061301; t=1572657253;
+        bh=coap/IZFRQ4M2syEqYhwbUnfZttYrUZ66xrrwe3nm60=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Be22zF5FD1O9jgvo3ulntDV80CWrh0L3745rj+Rsng7D/bvXHUYwn71K8UNqpSAer
+         /9itjG7lg1wG/05NpqcaR4fhTBiA5vK9JJU7a94cbyl/OhNKrxLhMv1MRvGxYBOK44
+         7T+yIpb+Sl4kwuI96Sfc5qr2mRnJK+wTLxnjicEs=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Cc:     Michael Walle <michael@walle.cc>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: db845c: Enable PCIe controllers
-Date:   Fri,  1 Nov 2019 17:31:48 -0700
-Message-Id: <20191102003148.4091335-4-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191102003148.4091335-1-bjorn.andersson@linaro.org>
-References: <20191102003148.4091335-1-bjorn.andersson@linaro.org>
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Simon Horman <simon.horman@netronome.com>
+Subject: [PATCH 0/5] net: phy: at803x device tree binding
+Date:   Sat,  2 Nov 2019 02:13:46 +0100
+Message-Id: <20191102011351.6467-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.101.4 at web
+X-Virus-Status: Clean
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the two PCIe controllers found on the Dragonboard845c.
+Adds a device tree binding to configure the clock and the RGMII voltage.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 91 ++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
+Changes since the RFC:
+ - renamed the Kconfig entry to "Qualcomm Atheros.." and reordered the
+   item
+ - renamed the prefix from atheros to qca
+ - use the correct name AR803x (instead of AT803x) in new files and
+   dt-bindings.
+ - listed the PHY maintainers in the new schema. Hopefully, thats ok.
+ - fixed a typo in the bindings schema
+ - run dtb_checks and dt_binding_check and fixed the schema
+ - dropped the rgmii-io-1v8 property; instead provide two regulators vddh
+   and vddio, add one consumer vddio-supply
+ - fix the clock settings for the AR8030/AR8035
+ - only the AR8031 supports chaning the LDO and the PLL mode in software.
+   Check if we have the correct PHY.
+ - new patch to mention the AR8033 which is the same as the AR8031 just
+   without PTP support
+ - new patch which corrects any displayed PHY names and comments. Be
+   consistent.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index f5a85caff1a3..c314b5d55796 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -340,6 +340,39 @@
- 			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
- };
- 
-+&pcie0 {
-+	status = "okay";
-+	perst-gpio = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+	enable-gpio = <&tlmm 134 GPIO_ACTIVE_HIGH>;
-+
-+	vddpe-3v3-supply = <&pcie0_3p3v_dual>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie0_default_state>;
-+};
-+
-+&pcie0_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l26a_1p2>;
-+};
-+
-+&pcie1 {
-+	status = "okay";
-+	perst-gpio = <&tlmm 102 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_default_state>;
-+};
-+
-+&pcie1_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l26a_1p2>;
-+};
-+
- &pm8998_gpio {
- 	vol_up_pin_a: vol-up-active {
- 		pins = "gpio6";
-@@ -382,6 +415,31 @@
- };
- 
- &tlmm {
-+	pcie0_default_state: pcie0-default {
-+		clkreq {
-+			pins = "gpio36";
-+			function = "pci_e0";
-+			bias-pull-up;
-+		};
-+
-+		reset-n {
-+			pins = "gpio35";
-+			function = "gpio";
-+
-+			drive-strength = <2>;
-+			output-low;
-+			bias-pull-down;
-+		};
-+
-+		wake-n {
-+			pins = "gpio37";
-+			function = "gpio";
-+
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	pcie0_pwren_state: pcie0-pwren {
- 		pins = "gpio90";
- 		function = "gpio";
-@@ -390,6 +448,39 @@
- 		bias-disable;
- 	};
- 
-+	pcie1_default_state: pcie1-default {
-+		perst-n {
-+			pins = "gpio102";
-+			function = "gpio";
-+
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		clkreq {
-+			pins = "gpio103";
-+			function = "pci_e1";
-+			bias-pull-up;
-+		};
-+
-+		wake-n {
-+			pins = "gpio11";
-+			function = "gpio";
-+
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		reset-n {
-+			pins = "gpio75";
-+			function = "gpio";
-+
-+			drive-strength = <16>;
-+			bias-pull-up;
-+			output-high;
-+		};
-+	};
-+
- 	sdc2_default_state: sdc2-default {
- 		clk {
- 			pins = "sdc2_clk";
+Michael Walle (5):
+  net: phy: at803x: fix Kconfig description
+  dt-bindings: net: phy: Add support for AT803X
+  net: phy: at803x: add device tree binding
+  net: phy: at803x: mention AR8033 as same as AR8031
+  net: phy: at803x: fix the PHY names
+
+ .../devicetree/bindings/net/qca,ar803x.yaml   | 111 +++++++
+ MAINTAINERS                                   |   2 +
+ drivers/net/phy/Kconfig                       |  10 +-
+ drivers/net/phy/at803x.c                      | 301 +++++++++++++++++-
+ include/dt-bindings/net/qca-ar803x.h          |  13 +
+ 5 files changed, 422 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/qca,ar803x.yaml
+ create mode 100644 include/dt-bindings/net/qca-ar803x.h
+
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Simon Horman <simon.horman@netronome.com>
 -- 
-2.23.0
+2.20.1
 
