@@ -2,60 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E32B3ED15C
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2019 02:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F02ED27C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2019 09:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727503AbfKCBhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Nov 2019 21:37:00 -0400
-Received: from mx2.suse.de ([195.135.220.15]:59468 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727523AbfKCBg6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 2 Nov 2019 21:36:58 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 31BCFB30D;
-        Sun,  3 Nov 2019 01:36:57 +0000 (UTC)
-From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
-To:     linux-realtek-soc@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [RFC 11/11] arm64: dts: realtek: rtd129x: Extend chip-info reg with efuse
-Date:   Sun,  3 Nov 2019 02:36:45 +0100
-Message-Id: <20191103013645.9856-12-afaerber@suse.de>
-X-Mailer: git-send-email 2.16.4
-In-Reply-To: <20191103013645.9856-1-afaerber@suse.de>
-References: <20191103013645.9856-1-afaerber@suse.de>
+        id S1727377AbfKCINT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Nov 2019 03:13:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44980 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727156AbfKCINT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Nov 2019 03:13:19 -0500
+Received: from localhost (unknown [106.206.31.209])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0BB6D2084D;
+        Sun,  3 Nov 2019 08:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572768798;
+        bh=O6Sl/WudcHVmvZ80SOwx1ethvyuH+iLA+GM2fSi1sgs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lF3rTgqQIDJOKT6EJtQc5fSgYoCY9pcDJe4Yvnr+FYdtchoUmabp904LiWUE7zHPN
+         wZP6mmlwNsnSLUf6xUCyjs8iNqFk62PLkieN84qmkYYs6x6oo3cJBEGFr3WpvUSQ/T
+         apkjijqjwn05w9gKPLjKYiGhXC7iqE91WYVxNAm0=
+Date:   Sun, 3 Nov 2019 13:43:11 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/11] arm64: dts: qcom: msm8996: Introduce IFC6640
+Message-ID: <20191103081311.GM2695@vkoul-mobl.Dlink>
+References: <20191021051322.297560-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191021051322.297560-1-bjorn.andersson@linaro.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This register is needed to detect RTD1294.
+On 20-10-19, 22:13, Bjorn Andersson wrote:
+> Refactor msm8996 and db820c in order to make it follow the structure of newer
+> platforms, move db820c specific things to db820c.dtsi and then introduce the
+> Informace 6640 Single Board Computer.
 
-Signed-off-by: Andreas Färber <afaerber@suse.de>
----
- arch/arm64/boot/dts/realtek/rtd129x.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+This has patch 9/11 missing. But rest look good to me.
 
-diff --git a/arch/arm64/boot/dts/realtek/rtd129x.dtsi b/arch/arm64/boot/dts/realtek/rtd129x.dtsi
-index fea7c1ed7d08..670efa86f661 100644
---- a/arch/arm64/boot/dts/realtek/rtd129x.dtsi
-+++ b/arch/arm64/boot/dts/realtek/rtd129x.dtsi
-@@ -87,7 +87,8 @@
- 		chip-info@9801a200 {
- 			compatible = "realtek,rtd1195-chip";
- 			reg = <0x9801a200 0x8>,
--			      <0x98007028 0x4>;
-+			      <0x98007028 0x4>,
-+			      <0x980171d8 0x4>;
- 		};
- 
- 		uart1: serial@9801b200 {
+Acked-by: Vinod Koul <vkoul@kernel.org>
+
 -- 
-2.16.4
-
+~Vinod
