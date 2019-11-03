@@ -2,57 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD436ED3C8
-	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2019 17:01:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74BD4ED403
+	for <lists+devicetree@lfdr.de>; Sun,  3 Nov 2019 18:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727743AbfKCQBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Nov 2019 11:01:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39186 "EHLO mail.kernel.org"
+        id S1727505AbfKCRcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Nov 2019 12:32:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56842 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727523AbfKCQBS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Nov 2019 11:01:18 -0500
+        id S1727488AbfKCRcb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Nov 2019 12:32:31 -0500
 Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 04CCD2084D;
-        Sun,  3 Nov 2019 16:01:16 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E6A782080F;
+        Sun,  3 Nov 2019 17:32:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572796877;
-        bh=Lpq9fn2fii7gBSLXJ89Ao8eK1QO7fC9NIhZkf0eEtYA=;
+        s=default; t=1572802350;
+        bh=UzLLL1Ca+sjdIQykVRqTI78sHlr2eCUpPuADKt3IhL0=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OCwDFQkWKusxtKXsxi91PdS4FMndv/PZ40OLVWxDDGqjae8h/Dw/eR2w/CFWnlCiF
-         05LMTf6JN+eJiF+Asn1yAmFM6COsnzFFyJfRcI32IyI//GopKIp2PAbknEArZTo53t
-         8EvQSINAYXMGp654yYfuaWc8jOv6b5LkCNJF2Nxs=
-Date:   Sun, 3 Nov 2019 17:01:14 +0100
+        b=A1fyaYe43+mDax1rBL8Mn178Q81As7bkN3B8ZbBrGbLDS82jKqipE6imQiPJYGnlz
+         M+9e1IPNj3aLpjH6GHNqG9sApJmYWFEOAuYOM6PybzHSwjH+lDSQ+ENzyJ1mXiZ7us
+         nslC1hLxRXdLoLVYm6Ma8hr3egT4FlCHajlZSJHU=
+Date:   Sun, 3 Nov 2019 18:32:27 +0100
 From:   Maxime Ripard <mripard@kernel.org>
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
         David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 6/7] dt-bindings: Add ANX6345 DP/eDP transmitter
- binding
-Message-ID: <20191103160114.GD7001@gilmour>
-References: <20191029153815.C631668C4E@verein.lst.de>
- <20191029153953.8EE9B68D04@verein.lst.de>
- <20191031125100.qprbdaaysg3tmhif@hendrix>
- <20191031145224.GA5973@lst.de>
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH v11 4/7] drm/sun4i: dsi: Handle bus clock explicitly
+Message-ID: <20191103173227.GF7001@gilmour>
+References: <20191025175625.8011-1-jagan@amarulasolutions.com>
+ <20191025175625.8011-5-jagan@amarulasolutions.com>
+ <20191028153427.pc3tnoz2d23filhx@hendrix>
+ <CAMty3ZCisTrFGjzHyqSofqFAsKSLV1n2xP5Li3Lonhdi0WUZVA@mail.gmail.com>
+ <20191029085401.gvqpwmmpyml75vis@hendrix>
+ <CAMty3ZAWPZSHtAZDf_0Dpx588YGGv3pJX1cXMfkZus3+WF94cA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="O3RTKUHj+75w1tg5"
+        protocol="application/pgp-signature"; boundary="dFWYt1i2NyOo1oI9"
 Content-Disposition: inline
-In-Reply-To: <20191031145224.GA5973@lst.de>
+In-Reply-To: <CAMty3ZAWPZSHtAZDf_0Dpx588YGGv3pJX1cXMfkZus3+WF94cA@mail.gmail.com>
 User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -60,112 +57,90 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---O3RTKUHj+75w1tg5
+--dFWYt1i2NyOo1oI9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Thu, Oct 31, 2019 at 03:52:24PM +0100, Torsten Duwe wrote:
-> On Thu, Oct 31, 2019 at 01:51:00PM +0100, Maxime Ripard wrote:
-> > On Tue, Oct 29, 2019 at 01:16:57PM +0100, Torsten Duwe wrote:
-> > > +
-> > > +  ports:
-> > > +    anyOf:
-> > > +      - port@0:
-> > > +        description: Video port for LVTTL input
-> > > +      - port@1:
-> > > +        description: Video port for eDP output (panel or connector).
-> > > +                     May be omitted if EDID works reliably.
-> > > +    required:
-> > > +      - port@0
-> >
-> > Have you tried to validate those two ports in a DT?
+On Fri, Nov 01, 2019 at 07:42:55PM +0530, Jagan Teki wrote:
+> Hi Maxime,
 >
-> Yes, it validates as expected, like I wrote. Various sources told me that
-> json-schema is not always straightforward so I assumed anyOf was OK.
+> On Tue, Oct 29, 2019 at 2:24 PM Maxime Ripard <mripard@kernel.org> wrote:
+> >
+> > On Tue, Oct 29, 2019 at 04:03:56AM +0530, Jagan Teki wrote:
+> > > > > explicit handling of common clock would require since the A64
+> > > > > doesn't need to mention the clock-names explicitly in dts since it
+> > > > > support only one bus clock.
+> > > > >
+> > > > > Also pass clk_id NULL instead "bus" to regmap clock init function
+> > > > > since the single clock variants no need to mention clock-names
+> > > > > explicitly.
+> > > >
+> > > > You don't need explicit clock handling. Passing NULL as the argument
+> > > > in regmap_init_mmio_clk will make it use the first clock, which is the
+> > > > bus clock.
+> > >
+> > > Indeed I tried that, since NULL clk_id wouldn't enable the bus clock
+> > > during regmap_mmio_gen_context code, passing NULL triggering vblank
+> > > timeout.
+> >
+> > There's a bunch of users of NULL in tree, so finding out why NULL
+> > doesn't work is the way forward.
 >
-> > I'm not quite sure what you wanted to express with that anyOf, but if
-> > it was something like port@0 is mandatory, and port@1 is optional, it
-> > should be something like this:
-> >
-> > properties:
-> >
-> >   ...
-> >
-> >   ports:
-> >     type: object
-> >
-> >     properties:
-> >       port@0:
-> >         type: object
-> >         description: |
-> > 	  Video port for LVTTL input
-> >
-> >       port@1:
-> >         type: object
-> >         description: |
-> > 	  Video port for eDP output (..)
-> >
-> >     required:
-> >       - port@0
-> >
-> > This way, you express that both port@0 and port@1 must by nodes, under
-> > a node called ports, and port@0 is mandatory.
+> I'd have looked the some of the users before checking the code as
+> well. As I said passing NULL clk_id to devm_regmap_init_mmio_clk =>
+> __devm_regmap_init_mmio_clk would return before processing the clock.
 >
-> That validates, too. Looks better, admittedly. I don't have a strong
-> opinion here. It's just that Rob wrote in
-> <CAL_JsqKAU3WG3L=KP8A8u4vW=q_BQWPN-m_c+ADOwTioJ2-cmg@mail.gmail.com>:
+> Here is the code snippet on the tree just to make sure I'm on the same
+> page or not.
 >
-> | For this case specifically, we do need to define a common graph
-> | schema, but haven't yet. You can assume we do and only really need to
-> | capture what Maxime said above.
-> (your points back then were port@N descriptions and neccessity for port@0)
+> static struct regmap_mmio_context *regmap_mmio_gen_context(struct device *dev,
+>                                         const char *clk_id,
+>                                         void __iomem *regs,
+>                                         const struct regmap_config *config)
+> {
+>         -----------------------
+>         --------------
+>         if (clk_id == NULL)
+>                 return ctx;
 >
-> Are you sure that "object" is specific enough?
+>         ctx->clk = clk_get(dev, clk_id);
+>         if (IS_ERR(ctx->clk)) {
+>                 ret = PTR_ERR(ctx->clk);
+>                 goto err_free;
+>         }
+>
+>         ret = clk_prepare(ctx->clk);
+>         if (ret < 0) {
+>                 clk_put(ctx->clk);
+>                 goto err_free;
+>         }
+>         -------------
+>         ---------------
+> }
+>
+> Yes, I did check on the driver in the tree before committing explicit
+> clock handle, which make similar requirements like us in [1]. this
+> imx2 wdt driver is handling the explicit clock as well. I'm sure this
+> driver is updated as I have seen few changes related to this driver in
+> ML.
 
-Possibly not, but at least it checks that there's indeed something
-called port@0 (and port@1), and that they are both nodes (and not
-properties).
+I guess we have two ways to go at this then.
 
-We can probably refine this further, but this is good enough at the
-moment.
+Either we remove the return, but it might have a few side-effects, or
+we call clk_get with NULL or bus depending on the case, and then call
+regmap_mmio_attach_clk.
 
-> > You should even push this a bit further by adding
-> > additionalProperties: false to prevent a DT from having undocumented
-> > properties and children for the main node and ports node.
->
-> You mean like
->
-> | jsonschema.exceptions.SchemaError: Additional properties are not allowed ('unevaluatedProperties' was unexpected)
-> [...]
-> | On schema:
-> |    {'$id': 'http://devicetree.org/schemas/watchdog/allwinner,sun4i-a10-wdt.yaml#',
-> [...]
-> |      'unevaluatedProperties': False}
->
-> ? ;-)
-
-That would be on the meta-schema, but yes, we want to trigger warnings
-on something that isn't described.
-
->
-> But yes, this patch series passes even with additionalProperties: false.
->
-> In which form would you like to receive the update?
-
-Please send a new version.
-
-Thanks!
 Maxime
 
---O3RTKUHj+75w1tg5
+--dFWYt1i2NyOo1oI9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXb75ygAKCRDj7w1vZxhR
-xQ7rAQCZLQcuukaEIuQQut4PC1tgBMKrdJ+kUMMrTujJsMh0KAD/XxEP4qvCHVOh
-pyNiY1VTEuJDPf//SnH0gq+kzuonjQ8=
-=cdL1
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXb8PKwAKCRDj7w1vZxhR
+xRo6AQC7cJgPCdmPtwa3+DvnOiO0l+RhF95zulrMO4b+JAewRgEA74E3tqth973g
+U2/28LW5VnoPT0M0gUDV7UgvhyVeGQA=
+=PgiZ
 -----END PGP SIGNATURE-----
 
---O3RTKUHj+75w1tg5--
+--dFWYt1i2NyOo1oI9--
