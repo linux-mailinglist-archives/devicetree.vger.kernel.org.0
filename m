@@ -2,76 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 322E9ED75D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 02:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12590ED7FA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 04:11:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728775AbfKDB5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Nov 2019 20:57:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45810 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728432AbfKDB5t (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Nov 2019 20:57:49 -0500
-Received: from dragon (li1038-30.members.linode.com [45.33.96.30])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5FBEA217F5;
-        Mon,  4 Nov 2019 01:57:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572832668;
-        bh=mtTHSbd7Hygdqlh64EyjBn0IsDGy91z2yQc/KOzX5WU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uFGqMMQUSdY8FeF1cxANXcYO0epjGC61gmKn4S+OW0/Fx4k3PD3xtBqv9JPI9642X
-         2xPvSnF+uXUEXdrhuT8Rc/n6L6aPR3hypcKwH97mHpRtARM1mtV+sByJLA/hhyV9ja
-         rum3NU0wfmTs9wtJTTYMYKB9FtlsaQmB+oo7kX38=
-Date:   Mon, 4 Nov 2019 09:57:23 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
-Subject: Re: [PATCH V2] ARM: dts: imx7ulp-evk: Use APLL_PFD1 as usdhc's clock
- source
-Message-ID: <20191104015722.GM24620@dragon>
-References: <1572482622-22070-1-git-send-email-Anson.Huang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1572482622-22070-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+        id S1729187AbfKDDLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Nov 2019 22:11:33 -0500
+Received: from shards.monkeyblade.net ([23.128.96.9]:41090 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728781AbfKDDLd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Nov 2019 22:11:33 -0500
+Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 4BADB1503943D;
+        Sun,  3 Nov 2019 19:11:32 -0800 (PST)
+Date:   Sun, 03 Nov 2019 19:11:31 -0800 (PST)
+Message-Id: <20191103.191131.1356892695062232524.davem@davemloft.net>
+To:     grygorii.strashko@ti.com
+Cc:     netdev@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, nsekhar@ti.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: davinci-mdio: convert bindings to
+ json-schema
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20191101164502.19089-1-grygorii.strashko@ti.com>
+References: <20191101164502.19089-1-grygorii.strashko@ti.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Sun, 03 Nov 2019 19:11:32 -0800 (PST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 31, 2019 at 08:43:42AM +0800, Anson Huang wrote:
-> i.MX7ULP does NOT support runtime switching clock source for PCC,
-> APLL_PFD1 by default is usdhc's clock source, so just use it
-> in kernel to avoid below kernel dump during kernel boot up and
-> make sure kernel can boot up with SD root file-system.
-> 
-> [    3.035892] Loading compiled-in X.509 certificates
-> [    3.136301] sdhci-esdhc-imx 40370000.mmc: Got CD GPIO
-> [    3.242886] mmc0: Reset 0x1 never completed.
-> [    3.247190] mmc0: sdhci: ============ SDHCI REGISTER DUMP ===========
-> [    3.253751] mmc0: sdhci: Sys addr:  0x00000000 | Version:  0x00000002
-> [    3.260218] mmc0: sdhci: Blk size:  0x00000200 | Blk cnt:  0x00000001
-> [    3.266775] mmc0: sdhci: Argument:  0x00009a64 | Trn mode: 0x00000000
-> [    3.273333] mmc0: sdhci: Present:   0x00088088 | Host ctl: 0x00000002
-> [    3.279794] mmc0: sdhci: Power:     0x00000000 | Blk gap:  0x00000080
-> [    3.286350] mmc0: sdhci: Wake-up:   0x00000008 | Clock:    0x0000007f
-> [    3.292901] mmc0: sdhci: Timeout:   0x0000008c | Int stat: 0x00000000
-> [    3.299364] mmc0: sdhci: Int enab:  0x007f010b | Sig enab: 0x00000000
-> [    3.305918] mmc0: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00008402
-> [    3.312471] mmc0: sdhci: Caps:      0x07eb0000 | Caps_1:   0x0000b400
-> [    3.318934] mmc0: sdhci: Cmd:       0x0000113a | Max curr: 0x00ffffff
-> [    3.325488] mmc0: sdhci: Resp[0]:   0x00000900 | Resp[1]:  0x0039b37f
-> [    3.332040] mmc0: sdhci: Resp[2]:   0x325b5900 | Resp[3]:  0x00400e00
-> [    3.338501] mmc0: sdhci: Host ctl2: 0x00000000
-> [    3.343051] mmc0: sdhci: ============================================
-> 
-> Fixes: 20434dc92c05 ("ARM: dts: imx: add common imx7ulp dtsi support")
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Tested-by: Fabio Estevam <festevam@gmail.com>
+From: Grygorii Strashko <grygorii.strashko@ti.com>
+Date: Fri, 1 Nov 2019 18:45:02 +0200
 
-Applied, thanks.
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for the TI SoC Davinci/OMAP/Keystone2 MDIO Controllerr over to a
+> YAML schemas.
+> 
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> ---
+> changes since rfc:
+>  - removed old bindings
+>  - bus_freq defined as "required" for davinci_mdio
+> rfc: https://lkml.org/lkml/2019/10/24/300
+
+I am assume the devicetree folks will pick this up.
