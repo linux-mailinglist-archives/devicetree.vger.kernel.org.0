@@ -2,73 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCE5DEE306
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 16:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DCF9EE337
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 16:10:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728336AbfKDPC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 10:02:26 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38082 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727788AbfKDPC0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 10:02:26 -0500
-Received: by mail-oi1-f196.google.com with SMTP id v186so14348639oie.5;
-        Mon, 04 Nov 2019 07:02:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5RrqU3JQJ7EH0ayzHoxuh4DISnrwTOJKl1dsTebWduQ=;
-        b=lKTFrIcy/1HTFrstz3zAoFi2+g7leOOu6+i7khOprRn9dttMp9/O5FH0mq2YxGwdCE
-         gQqvZx3R1Obzz3pnnTyR/u30Np32EDzgHptQGTPujtuBf95nHqvBHPiDiJEL2M8L+1t9
-         4KS/h7YLlCWaG0osOfJLJo9igAcjzU/H4vPSTdme19w81MDm0Kj1jKAuzSoAM29sVJFY
-         KBieLFKSlP+1sGpf1Z1lJEzMaf1pZ6/aeqEaMJQ24pv/2Anzlj1BonykAWt4CXJDKpG2
-         3Kb/Fkk0vzeztSWKNzmrG52UHnBh0h9ixQBpB0y1epcjEKSUlNeS1ZZH4mIzQBQJ9ADO
-         XMXQ==
-X-Gm-Message-State: APjAAAUyqaZ/90PNFOyPEhZOvrpZjXzAmBjMsJPk1dS+86c95uqrmmIS
-        5hNQ0/LtATc229CDye5Oi06Xxiw=
-X-Google-Smtp-Source: APXvYqzQtWMe2X/SUN0+hS7AhBAmFxrRHdL30Cn0tqCXW3EudOyHKvVB9BcuhrYl0hpVj9L123E7nw==
-X-Received: by 2002:a05:6808:18b:: with SMTP id w11mr4493466oic.25.1572879744445;
-        Mon, 04 Nov 2019 07:02:24 -0800 (PST)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 34sm5058938otf.55.2019.11.04.07.02.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2019 07:02:23 -0800 (PST)
-Date:   Mon, 4 Nov 2019 09:02:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] scripts/dtc: dtx_diff - add color output support
-Message-ID: <20191104150222.GA17784@bogus>
-References: <20191025092215.23887-1-geert+renesas@glider.be>
+        id S1728507AbfKDPKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 10:10:42 -0500
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:5403 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728955AbfKDPKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 10:10:41 -0500
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="Claudiu.Beznea@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: D2HUH/WJuuYjGhJihYzCYYxMHpzl5Liz525GSPPeLttmySP6QiZgo92lYn0CvjufvtuuzSorTS
+ 3V7pEW+GilL97puxXRQzMOGcWg4e93ZCLmQarOqJ78O/u2rYPrx+URt6b1cO9AE9KgQGIqcPrc
+ gJyxRQYe8xJEMT9usajxPeuxyle4K+tj3VKEkgrT3vPL0Nfa1/JhnP0IZFL2KFkpstgagvWkrs
+ 9BEBMg2181B2wQFNBIwrFobSasOXnVjfhxPoF3XFdfx7/aWpk1BCGpby5hMHGyXwuq3UBucmv8
+ Opc=
+X-IronPort-AV: E=Sophos;i="5.68,267,1569308400"; 
+   d="scan'208";a="55584277"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2019 08:10:20 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 4 Nov 2019 08:10:21 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.85.251) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Mon, 4 Nov 2019 08:10:18 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <daniel.lezcano@linaro.org>,
+        <tglx@linutronix.de>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v2 0/2] add Microchip PIT64B timer
+Date:   Mon, 4 Nov 2019 17:10:02 +0200
+Message-ID: <1572880204-4514-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191025092215.23887-1-geert+renesas@glider.be>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 25, 2019 at 11:22:15AM +0200, Geert Uytterhoeven wrote:
-> Add new -c/--color options, to enhance the diff output with color, and
-> improve the user's experience.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Frank Rowand <frank.rowand@sony.com>
-> Tested-by: Frank Rowand <frank.rowand@sony.com>
-> ---
-> v3:
->   - Add Reviewed-by, Tested-by,
-> 
-> v2:
->   - Document that -c/--color requires a diff command with color support,
->   - Ignore -c/--color if diff command lacks color support.
-> ---
->  scripts/dtc/dtx_diff | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+Hi,
 
-Applied, thanks.
+This series adds driver for Microchip PIT64B timer.
+Timer could be used in continuous or oneshot mode. It has 2x32 bit registers
+to emulate a 64 bit timer. The timer's period could be configured via LSB_PR
+and MSB_PR registers. The current timer's value could be checked via TLSB and
+TMSB registers. When (TMSB << 32) | TLSB value reach the (MSB_PR << 32) | LSB_PR
+interrupt is raised. If in contiuous mode the TLSB and TMSB resets and restart
+counting.
 
-Rob
+This drivers uses PIT64B capabilities for clocksource and clockevent.
+The first requested PIT64B timer is used for clockevent. The second one is used
+for clocksource. Individual PIT64B hardware resources were used for clocksource
+and clockevent to be able to support high resolution timers with this PIT64B
+implementation.
+
+Thank you,
+Claudiu Beznea
+
+Changes in v2:
+- remove clock-frequency DT binding and hardcoded it in the driver
+- initialize best_pres variable in mchp_pit64b_pres_prepare()
+- remove MCHP_PIT64B_DEF_FREQ 
+- get rid of patches 3-5 from v1 [1] since there is no entry in MAINTAINERS file
+  for this entry. It was removed in commit
+  44015a8181a5 ("MAINTAINERS: at91: remove the TC entry")
+
+[1] https://lore.kernel.org/lkml/1552580772-8499-1-git-send-email-claudiu.beznea@microchip.com/
+
+Claudiu Beznea (2):
+  dt-bindings: arm: atmel: add bindings for PIT64B
+  clocksource/drivers/timer-microchip-pit64b: add Microchip PIT64B
+    support
+
+ .../devicetree/bindings/arm/atmel-sysregs.txt      |   6 +
+ drivers/clocksource/Kconfig                        |   6 +
+ drivers/clocksource/Makefile                       |   1 +
+ drivers/clocksource/timer-microchip-pit64b.c       | 462 +++++++++++++++++++++
+ 4 files changed, 475 insertions(+)
+ create mode 100644 drivers/clocksource/timer-microchip-pit64b.c
+
+-- 
+2.7.4
+
