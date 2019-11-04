@@ -2,219 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96567EEB00
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 22:22:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95BB6EEB13
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 22:28:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729216AbfKDVWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 16:22:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57742 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728377AbfKDVWz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Nov 2019 16:22:55 -0500
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A663820869;
-        Mon,  4 Nov 2019 21:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572902573;
-        bh=7dJ/ia471WvDDaGPQasHlMYmYRTeVpG5ZWFxZcTDhuw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gaKeA5uH4v0NTUmXh+E4hrCfplOv5KZkizuGa3/Le13zxfd4iJo/ui3dO9phf73UJ
-         LCYZVAsIyb3QUOW2Wd0AR8ceSHSJIFKaGMoTGHbWBx9JNBjGHKalMjWiVp0JSpUWWl
-         PRuG4oU7EPgfcOrHhr5WfVFf6B49vSqK8hj+YFk4=
-Received: by mail-qk1-f176.google.com with SMTP id e2so19130432qkn.5;
-        Mon, 04 Nov 2019 13:22:53 -0800 (PST)
-X-Gm-Message-State: APjAAAUxFVsKqUSeopLuGxlUxGlD4OoMqp3Sx9d6eF4bzQgrJa+J2qZG
-        8XgV0clNvPSoDRIx90C2jKMjwGf26n/WyQni0A==
-X-Google-Smtp-Source: APXvYqzsut7cy1jUm00XrKnirDZrqUqKmAVvL42F+Fbd8gvhRe+yRJinCpAGbWA4yeLCmepGvwNesz0t/I1xKS4MtIQ=
-X-Received: by 2002:a05:620a:205d:: with SMTP id d29mr1462515qka.152.1572902572759;
- Mon, 04 Nov 2019 13:22:52 -0800 (PST)
+        id S1728559AbfKDV2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 16:28:46 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:44596 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728409AbfKDV2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 16:28:46 -0500
+Received: by mail-oi1-f193.google.com with SMTP id s71so15518710oih.11;
+        Mon, 04 Nov 2019 13:28:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=9acXWsdEFrkPA1Lgl9MMn5B4FiSOAYHswfR+JTN/Dic=;
+        b=i+azHwooPjktf+h/FiC2NVQc2v1Hs24+bXIDCnWUq7id+0x5nLpBfN+w8Vhdsmv+e4
+         j55vIaISx7xIgn4carqCzHwRZFfmZG5HiG5mxpxInx5wiU2VM8r3ftMbZOW34vr1YKbP
+         cN3LonrrI7sHDRDgz8PyejufT64qUfb9PsRnKWgDSujXUh7FYKjAXU+plb90BvL5I3Gg
+         rkPnHmCC1j3ECus+5NRXKb/6EbXQKiRQsbPuxH8qEbGKBC5H0+YgOaNm3XkNo4pcXenj
+         PmJ+nzo9+SOWNPfhnHV29VciUvm8WTpRZBa8fi1ve9G9oXbE/nf1OX0noqxPGAnLLAoj
+         EgwA==
+X-Gm-Message-State: APjAAAVRkUtDqCoAEznegmZpsa/aVEgJHqZ/hIFsZm0TJI2KaJEOzbHo
+        8WkpHxoo/oIplo8JrLYF6A==
+X-Google-Smtp-Source: APXvYqyaTn81E9AP4eQnyMQSgJxivr7c/dErrETeT11+u2IPdaQ5TAf8rw4iL5Ra03TJ+aegp2oFoQ==
+X-Received: by 2002:aca:578e:: with SMTP id l136mr1009252oib.132.1572902925405;
+        Mon, 04 Nov 2019 13:28:45 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m14sm5112256otl.26.2019.11.04.13.28.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Nov 2019 13:28:44 -0800 (PST)
+Date:   Mon, 4 Nov 2019 15:28:44 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     robh+dt@kernel.org, linux-pm@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        daidavid1@codeaurora.org, vincent.guittot@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, georgi.djakov@linaro.org
+Subject: Re: [PATCH v10 1/3] dt-bindings: interconnect: Add Qualcomm MSM8916
+ DT bindings
+Message-ID: <20191104212844.GA6884@bogus>
+References: <20191030153904.8715-1-georgi.djakov@linaro.org>
+ <20191030153904.8715-2-georgi.djakov@linaro.org>
 MIME-Version: 1.0
-References: <1572886683-4919-1-git-send-email-fabrizio.castro@bp.renesas.com> <1572886683-4919-3-git-send-email-fabrizio.castro@bp.renesas.com>
-In-Reply-To: <1572886683-4919-3-git-send-email-fabrizio.castro@bp.renesas.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 4 Nov 2019 15:22:39 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ+xus0GDWb0Px6HKDBzOt1yjwCCkQrfMspubwG+LZOdQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ+xus0GDWb0Px6HKDBzOt1yjwCCkQrfMspubwG+LZOdQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: display: bridge: Repurpose lvds-encoder
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Peter Rosin <peda@axentia.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191030153904.8715-2-georgi.djakov@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 4, 2019 at 10:58 AM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
->
-> In an effort to repurpose lvds-encoder.c to also serve the
-> function of LVDS decoders, we ended up defining a new "generic"
-> compatible string, therefore adapt the dt-bindings to fit the
-> new purpose. Also, convert the dt-bindings from .txt to .yaml
-> while at it.
-
-"Also, ... while at it." is a sign for split into 2 patches.
-
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
->
+On Wed, 30 Oct 2019 17:39:02 +0200, Georgi Djakov wrote:
+> The Qualcomm MSM8916 platform has several bus fabrics that could be
+> controlled and tuned dynamically according to the bandwidth demand.
+> 
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
 > ---
-> v1->v2:
-> * Converted to dt-schema as per Neil's comment
-> ---
->  .../bindings/display/bridge/lvds-codec.yaml        | 117 +++++++++++++++++++++
->  .../bindings/display/bridge/lvds-transmitter.txt   |  66 ------------
->  2 files changed, 117 insertions(+), 66 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/bridge/lvds-transmitter.txt
->
-> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> new file mode 100644
-> index 0000000..ff79bc2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/lvds-codec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Trasnparent LVDS encoders and LVDS decoders
+>  .../bindings/interconnect/qcom,msm8916.yaml   |  77 ++++++++++++++
+>  .../dt-bindings/interconnect/qcom,msm8916.h   | 100 ++++++++++++++++++
+>  2 files changed, 177 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,msm8916.yaml
+>  create mode 100644 include/dt-bindings/interconnect/qcom,msm8916.h
+> 
 
-Typo
-
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> +
-> +description: |
-> +  This binding supports transparent LVDS encoders and LVDS decoders that don't
-> +  require any configuration.
-> +
-> +  LVDS is a physical layer specification defined in ANSI/TIA/EIA-644-A. Multiple
-> +  incompatible data link layers have been used over time to transmit image data
-> +  to LVDS panels. This binding targets devices compatible with the following
-> +  specifications only.
-> +
-> +  [JEIDA] "Digital Interface Standards for Monitor", JEIDA-59-1999, February
-> +  1999 (Version 1.0), Japan Electronic Industry Development Association (JEIDA)
-> +  [LDI] "Open LVDS Display Interface", May 1999 (Version 0.95), National
-> +  Semiconductor
-> +  [VESA] "VESA Notebook Panel Standard", October 2007 (Version 1.0), Video
-> +  Electronics Standards Association (VESA)
-> +
-> +  Those devices have been marketed under the FPD-Link and FlatLink brand names
-> +  among others.
-> +
-> +properties:
-> +  compatible:
-> +    description: |
-> +      Any encoder or decoder compatible with this generic binding, but with
-> +      additional properties not listed here, must define its own binding and
-> +      list a device specific compatible first followed by the generic compatible
-> +    items:
-> +      - enum:
-
-You can drop 'items' when there's only 1.
-
-> +        - lvds-encoder # for LVDS encoders
-> +        - lvds-decoder # for LVDS decoders
-> +
-> +  ports:
-> +    type: object
-> +    description: |
-> +      This device has two video ports. Their connections are modeled using the
-> +      OF graph bindings specified in Documentation/devicetree/bindings/graph.txt
-> +    properties:
-> +      port@0:
-> +        type: object
-> +        description: |
-> +          With LVDS encoders port 0 is for parallel input
-> +          With LVDS decoders port 0 is for LVDS input
-> +
-> +      port@1:
-> +        type: object
-> +        description: |
-> +          With LVDS encoders port 1 is for LVDS output
-> +          With LVDS decoders port 1 is for parallel output
-
-port@* are required, right?
-
-> +
-> +required:
-> +  - compatible
-> +  - ports
-> +
-> +examples:
-> +  - |
-> +    lvds-encoder {
-> +      compatible = "lvds-encoder";
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +
-> +          lvds_enc_in: endpoint {
-> +            remote-endpoint = <&display_out_rgb>;
-> +          };
-> +        };
-> +
-> +        port@1 {
-> +          reg = <1>;
-> +
-> +          lvds_enc_out: endpoint {
-> +            remote-endpoint = <&lvds_panel_in>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +  - |
-> +    lvds-decoder {
-> +      compatible = "lvds-decoder";
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          reg = <0>;
-> +
-> +          lvds_dec_in: endpoint {
-> +            remote-endpoint = <&display_out_lvds>;
-> +          };
-> +        };
-> +
-> +        port@1 {
-> +          reg = <1>;
-> +
-> +          lvds_dec_out: endpoint {
-> +            remote-endpoint = <&rgb_panel_in>;
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +...
+Reviewed-by: Rob Herring <robh@kernel.org>
