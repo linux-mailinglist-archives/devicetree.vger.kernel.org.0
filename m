@@ -2,31 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C511EE05A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 13:46:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68251EE0CA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 14:14:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727322AbfKDMqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 07:46:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55266 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727236AbfKDMqY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Nov 2019 07:46:24 -0500
-Received: from dragon (li1038-30.members.linode.com [45.33.96.30])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        id S1727430AbfKDNON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 08:14:13 -0500
+Received: from skedge03.snt-world.com ([91.208.41.68]:46230 "EHLO
+        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727444AbfKDNON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 08:14:13 -0500
+Received: from sntmail12r.snt-is.com (unknown [10.203.32.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 11BD8218BA;
-        Mon,  4 Nov 2019 12:46:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572871583;
-        bh=uu6hMcwvil/xb9dqy8jjyGW+1kTfPIrio1g2NerX6OE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Dxf2qdCcOkPEg/SW5EDL+yx9RaRwjiVhtnRit11I3Y0pAfi0DJ5GvvIuch+W02iXF
-         1c/lS5US48HKzpmbDWvTmti++TWT0jI3XG/Vlkf6AM5BYboyPPtELDCYqzZRZKfO3O
-         kbzIXvY/7wzA+S6xm9qMwBXQAHY3NXdT7iNrG4iI=
-Date:   Mon, 4 Nov 2019 20:45:55 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Schrempf Frieder <frieder.schrempf@kontron.de>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        by skedge03.snt-world.com (Postfix) with ESMTPS id 267E560C23B;
+        Mon,  4 Nov 2019 14:14:09 +0100 (CET)
+Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail12r.snt-is.com
+ (10.203.32.182) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 4 Nov 2019
+ 14:14:08 +0100
+Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
+ sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
+ 15.01.1713.004; Mon, 4 Nov 2019 14:14:08 +0100
+From:   Schrempf Frieder <frieder.schrempf@kontron.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     Krzysztof Kozlowski <krzk@kernel.org>,
         Fabio Estevam <festevam@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
         NXP Linux Team <linux-imx@nxp.com>,
@@ -39,88 +38,127 @@ Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Subject: Re: [PATCH v3 09/11] ARM: dts: imx6ul-kontron-n6x1x-s: Disable the
  snvs-poweroff driver
-Message-ID: <20191104124553.GY24620@dragon>
+Thread-Topic: [PATCH v3 09/11] ARM: dts: imx6ul-kontron-n6x1x-s: Disable the
+ snvs-poweroff driver
+Thread-Index: AQHVj/bnGF5WcKYgcUiKBHtcAgBib6d6ln2AgAAGP4CAADWxgIAAGHqAgAAH4YA=
+Date:   Mon, 4 Nov 2019 13:14:08 +0000
+Message-ID: <54e7efb9-bf18-f513-569b-817ff2e403f6@kontron.de>
 References: <20191031142112.12431-1-frieder.schrempf@kontron.de>
  <20191031142112.12431-10-frieder.schrempf@kontron.de>
  <20191104074346.GT24620@dragon>
  <626ad87a-eb1d-4dca-7cd3-8c5f38025aec@kontron.de>
  <7da30a17-d16c-3cde-12a8-430ff3eec692@kontron.de>
+ <20191104124553.GY24620@dragon>
+In-Reply-To: <20191104124553.GY24620@dragon>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.9.193]
+x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AB1A34C6DAD8AA4C91F7F040A25CE28B@snt-world.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7da30a17-d16c-3cde-12a8-430ff3eec692@kontron.de>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+X-SnT-MailScanner-Information: Please contact the ISP for more information
+X-SnT-MailScanner-ID: 267E560C23B.AF403
+X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
+X-SnT-MailScanner-SpamCheck: 
+X-SnT-MailScanner-From: frieder.schrempf@kontron.de
+X-SnT-MailScanner-To: devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+X-Spam-Status: No
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 04, 2019 at 11:18:19AM +0000, Schrempf Frieder wrote:
-> On 04.11.19 09:06, Frieder Schrempf wrote:
-> > Hi Shawn,
-> > 
-> > On 04.11.19 08:43, Shawn Guo wrote:
-> >> On Thu, Oct 31, 2019 at 02:24:27PM +0000, Schrempf Frieder wrote:
-> >>> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> >>>
-> >>> The snvs-poweroff driver can power off the system by pulling the
-> >>> PMIC_ON_REQ signal low, to let the PMIC disable the power.
-> >>> The Kontron SoMs do not have this signal connected, so let's remove
-> >>> the node.
-> >>>
-> >>> This seems to fix a real issue when the signal is asserted at
-> >>> poweroff, but not actually causing the power to turn off. It was
-> >>> observed, that in this case the system would not shut down properly.
-> >>
-> >> I do not quite follow on this.  How does disabling snvs_poweroff fix the
-> >> issue?  The root cause of system not shut down properly seems to be that
-> >> PMIC doesn't shut down power.  This looks like a clean-up rather than
-> >> bug fix.
-> > 
-> > I don't know the exact reasons, but we had issues on these boards when 
-> > doing a "poweroff". The kernel would print something like the log below.
-> > Disabling the snvs-poweroff solved this.
-> > 
-> > But note that this has last been reproduced on v4.14. So I'm not sure if 
-> > this is still a problem with the current kernel.
-> > 
-> > #######
-> > reboot: Power down
-> > Unable to poweroff system
-> > 
-> > ====================================
-> > WARNING: halt/675 still has locks held!
-> > 4.14.104-exceet #1 Not tainted
-> > ------------------------------------
-> > 1 lock held by halt/675:
-> >   #0:  (reboot_mutex){+.+.}, at: [<c0145a98>] SyS_reboot+0x14c/0x1dc
-> > #######
-> > 
-> >>
-> >>>
-> >>> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> >>> Fixes: 1ea4b76cdfde ("ARM: dts: imx6ul-kontron-n6310: Add Kontron 
-> >>> i.MX6UL N6310 SoM and boards")
-> >>
-> >> If you think this is really a bug fix, it should be applied to the file
-> >> before renaming rather than the one after renaming.
-> > 
-> > I will try to reproduce the issue with the current kernel and depending 
-> > on the results either drop the Fixes tag or move the patch before the 
-> > renaming.
-> 
-> I just tried this with 5.4-rc5 and the issue persists. When 
-> snvs-poweroff is enabled without the hardware actually being able to 
-> power down via PMIC I get a locking WARNING from the kernel. Probably 
-> because the system is still running, when it's already supposed to be 
-> shut down by the PMIC.
-
-I still do not get it.  Are you saying that with snvs-poweroff being
-disabled, your system is now able to be shut down properly by PMIC?
-
-Shawn
-
-> 
-> So this fixes a real problem and therefore I will keep the Fixes tag and 
-> move the patch to the proper place in this series.
+T24gMDQuMTEuMTkgMTM6NDUsIFNoYXduIEd1byB3cm90ZToNCj4gT24gTW9uLCBOb3YgMDQsIDIw
+MTkgYXQgMTE6MTg6MTlBTSArMDAwMCwgU2NocmVtcGYgRnJpZWRlciB3cm90ZToNCj4+IE9uIDA0
+LjExLjE5IDA5OjA2LCBGcmllZGVyIFNjaHJlbXBmIHdyb3RlOg0KPj4+IEhpIFNoYXduLA0KPj4+
+DQo+Pj4gT24gMDQuMTEuMTkgMDg6NDMsIFNoYXduIEd1byB3cm90ZToNCj4+Pj4gT24gVGh1LCBP
+Y3QgMzEsIDIwMTkgYXQgMDI6MjQ6MjdQTSArMDAwMCwgU2NocmVtcGYgRnJpZWRlciB3cm90ZToN
+Cj4+Pj4+IEZyb206IEZyaWVkZXIgU2NocmVtcGYgPGZyaWVkZXIuc2NocmVtcGZAa29udHJvbi5k
+ZT4NCj4+Pj4+DQo+Pj4+PiBUaGUgc252cy1wb3dlcm9mZiBkcml2ZXIgY2FuIHBvd2VyIG9mZiB0
+aGUgc3lzdGVtIGJ5IHB1bGxpbmcgdGhlDQo+Pj4+PiBQTUlDX09OX1JFUSBzaWduYWwgbG93LCB0
+byBsZXQgdGhlIFBNSUMgZGlzYWJsZSB0aGUgcG93ZXIuDQo+Pj4+PiBUaGUgS29udHJvbiBTb01z
+IGRvIG5vdCBoYXZlIHRoaXMgc2lnbmFsIGNvbm5lY3RlZCwgc28gbGV0J3MgcmVtb3ZlDQo+Pj4+
+PiB0aGUgbm9kZS4NCj4+Pj4+DQo+Pj4+PiBUaGlzIHNlZW1zIHRvIGZpeCBhIHJlYWwgaXNzdWUg
+d2hlbiB0aGUgc2lnbmFsIGlzIGFzc2VydGVkIGF0DQo+Pj4+PiBwb3dlcm9mZiwgYnV0IG5vdCBh
+Y3R1YWxseSBjYXVzaW5nIHRoZSBwb3dlciB0byB0dXJuIG9mZi4gSXQgd2FzDQo+Pj4+PiBvYnNl
+cnZlZCwgdGhhdCBpbiB0aGlzIGNhc2UgdGhlIHN5c3RlbSB3b3VsZCBub3Qgc2h1dCBkb3duIHBy
+b3Blcmx5Lg0KPj4+Pg0KPj4+PiBJIGRvIG5vdCBxdWl0ZSBmb2xsb3cgb24gdGhpcy7CoCBIb3cg
+ZG9lcyBkaXNhYmxpbmcgc252c19wb3dlcm9mZiBmaXggdGhlDQo+Pj4+IGlzc3VlP8KgIFRoZSBy
+b290IGNhdXNlIG9mIHN5c3RlbSBub3Qgc2h1dCBkb3duIHByb3Blcmx5IHNlZW1zIHRvIGJlIHRo
+YXQNCj4+Pj4gUE1JQyBkb2Vzbid0IHNodXQgZG93biBwb3dlci7CoCBUaGlzIGxvb2tzIGxpa2Ug
+YSBjbGVhbi11cCByYXRoZXIgdGhhbg0KPj4+PiBidWcgZml4Lg0KPj4+DQo+Pj4gSSBkb24ndCBr
+bm93IHRoZSBleGFjdCByZWFzb25zLCBidXQgd2UgaGFkIGlzc3VlcyBvbiB0aGVzZSBib2FyZHMg
+d2hlbg0KPj4+IGRvaW5nIGEgInBvd2Vyb2ZmIi4gVGhlIGtlcm5lbCB3b3VsZCBwcmludCBzb21l
+dGhpbmcgbGlrZSB0aGUgbG9nIGJlbG93Lg0KPj4+IERpc2FibGluZyB0aGUgc252cy1wb3dlcm9m
+ZiBzb2x2ZWQgdGhpcy4NCj4+Pg0KPj4+IEJ1dCBub3RlIHRoYXQgdGhpcyBoYXMgbGFzdCBiZWVu
+IHJlcHJvZHVjZWQgb24gdjQuMTQuIFNvIEknbSBub3Qgc3VyZSBpZg0KPj4+IHRoaXMgaXMgc3Rp
+bGwgYSBwcm9ibGVtIHdpdGggdGhlIGN1cnJlbnQga2VybmVsLg0KPj4+DQo+Pj4gIyMjIyMjIw0K
+Pj4+IHJlYm9vdDogUG93ZXIgZG93bg0KPj4+IFVuYWJsZSB0byBwb3dlcm9mZiBzeXN0ZW0NCj4+
+Pg0KPj4+ID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPj4+IFdBUk5JTkc6
+IGhhbHQvNjc1IHN0aWxsIGhhcyBsb2NrcyBoZWxkIQ0KPj4+IDQuMTQuMTA0LWV4Y2VldCAjMSBO
+b3QgdGFpbnRlZA0KPj4+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4+
+IDEgbG9jayBoZWxkIGJ5IGhhbHQvNjc1Og0KPj4+ICAgwqAjMDrCoCAocmVib290X211dGV4KXsr
+LisufSwgYXQ6IFs8YzAxNDVhOTg+XSBTeVNfcmVib290KzB4MTRjLzB4MWRjDQo+Pj4gIyMjIyMj
+Iw0KPj4+DQo+Pj4+DQo+Pj4+Pg0KPj4+Pj4gU2lnbmVkLW9mZi1ieTogRnJpZWRlciBTY2hyZW1w
+ZiA8ZnJpZWRlci5zY2hyZW1wZkBrb250cm9uLmRlPg0KPj4+Pj4gRml4ZXM6IDFlYTRiNzZjZGZk
+ZSAoIkFSTTogZHRzOiBpbXg2dWwta29udHJvbi1uNjMxMDogQWRkIEtvbnRyb24NCj4+Pj4+IGku
+TVg2VUwgTjYzMTAgU29NIGFuZCBib2FyZHMiKQ0KPj4+Pg0KPj4+PiBJZiB5b3UgdGhpbmsgdGhp
+cyBpcyByZWFsbHkgYSBidWcgZml4LCBpdCBzaG91bGQgYmUgYXBwbGllZCB0byB0aGUgZmlsZQ0K
+Pj4+PiBiZWZvcmUgcmVuYW1pbmcgcmF0aGVyIHRoYW4gdGhlIG9uZSBhZnRlciByZW5hbWluZy4N
+Cj4+Pg0KPj4+IEkgd2lsbCB0cnkgdG8gcmVwcm9kdWNlIHRoZSBpc3N1ZSB3aXRoIHRoZSBjdXJy
+ZW50IGtlcm5lbCBhbmQgZGVwZW5kaW5nDQo+Pj4gb24gdGhlIHJlc3VsdHMgZWl0aGVyIGRyb3Ag
+dGhlIEZpeGVzIHRhZyBvciBtb3ZlIHRoZSBwYXRjaCBiZWZvcmUgdGhlDQo+Pj4gcmVuYW1pbmcu
+DQo+Pg0KPj4gSSBqdXN0IHRyaWVkIHRoaXMgd2l0aCA1LjQtcmM1IGFuZCB0aGUgaXNzdWUgcGVy
+c2lzdHMuIFdoZW4NCj4+IHNudnMtcG93ZXJvZmYgaXMgZW5hYmxlZCB3aXRob3V0IHRoZSBoYXJk
+d2FyZSBhY3R1YWxseSBiZWluZyBhYmxlIHRvDQo+PiBwb3dlciBkb3duIHZpYSBQTUlDIEkgZ2V0
+IGEgbG9ja2luZyBXQVJOSU5HIGZyb20gdGhlIGtlcm5lbC4gUHJvYmFibHkNCj4+IGJlY2F1c2Ug
+dGhlIHN5c3RlbSBpcyBzdGlsbCBydW5uaW5nLCB3aGVuIGl0J3MgYWxyZWFkeSBzdXBwb3NlZCB0
+byBiZQ0KPj4gc2h1dCBkb3duIGJ5IHRoZSBQTUlDLg0KPiANCj4gSSBzdGlsbCBkbyBub3QgZ2V0
+IGl0LiAgQXJlIHlvdSBzYXlpbmcgdGhhdCB3aXRoIHNudnMtcG93ZXJvZmYgYmVpbmcNCj4gZGlz
+YWJsZWQsIHlvdXIgc3lzdGVtIGlzIG5vdyBhYmxlIHRvIGJlIHNodXQgZG93biBwcm9wZXJseSBi
+eSBQTUlDPw0KDQpTb3JyeSBmb3IgdGhlIGNvbmZ1c2lvbi4gVGhlIGJvYXJkIGRvZXMgbm90IGhh
+dmUgYSBQTUlDIGFuZCB0aGUgDQpQTUlDX09OX1JFUSBzaWduYWwgaXMgbm90IGNvbm5lY3RlZC4g
+U28gdGhlIHNudnMtcG93ZXJvZmYgZHJpdmVyIHNob3VsZCANCmRlZmluaXRlbHkgYmUgZGlzYWJs
+ZWQgYmVjYXVzZSB0aGVyZSBpcyBubyByZWFzb24gZm9yIGl0IHRvIGJlIGVuYWJsZWQuDQoNCkJ1
+dCBpbmRlZWQsIHdpdGggc252cy1wb3dlcm9mZiBkaXNhYmxlZCB0aGUgYm9hcmQgZG9lcyBub3cg
+YXQgbGVhc3QgaGFsdCANCmNvcnJlY3RseSAoaXQgaXMgc3RpbGwgcG93ZXJlZCBvZiBjb3Vyc2Up
+Lg0KDQpGb3Igc29tZSByZWFzb24sIHByb2JhYmx5IGJ5IHNvbWUgY29weSBhbmQgcGFzdGUgbWlz
+dGFrZSwgdGhlIA0Kc252cy1wb3dlcm9mZiBkcml2ZXIgaXMgZW5hYmxlZCBpbiB0aGUgZHRzIHdo
+aWNoIGNhdXNlcyB0aGUgaXNzdWUgDQpkZXNjcmliZWQgYWJvdmUgd2hlbiB0cnlpbmcgdG8gaGFs
+dC9zaHV0ZG93biB0aGUgc3lzdGVtLiBQbGVhc2UgYWxzbyBzZWUgDQp0aGUgbG9ncyBiZWxvdyBm
+b3IgY29tcGFyaXNvbiBvZiBib3RoIGNhc2VzLg0KDQpXaXRoIHNudnMtcG93ZXJvZmYgZW5hYmxl
+ZDoNCg0KIyMjIyMjIyMjIyMjDQp+IyBwb3dlcm9mZg0KVGhlIHN5c3RlbSBpcyBnb2luZyBkb3du
+IGZvciBzeXN0ZW0gaGFsdCBOT1cheW14YzMpIChUaHUgT2N0IDMxIDE4OjU3OjU1IA0KMjAxOQ0K
+Wy4uLl0NCnJlYm9vdDogUG93ZXIgZG93bg0KVW5hYmxlIHRvIHBvd2Vyb2ZmIHN5c3RlbQ0KDQo9
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCldBUk5JTkc6IGhhbHQvODY5IHN0
+aWxsIGhhcyBsb2NrcyBoZWxkIQ0KNS40LjAtcmM1LWt0biAjMSBOb3QgdGFpbnRlZA0KLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoxIGxvY2sgaGVsZCBieSBoYWx0Lzg2OToN
+CiAgIzA6IGMxMTEzOGY4IChzeXN0ZW1fdHJhbnNpdGlvbl9tdXRleCl7Ky4rLn0sIGF0OiANCl9f
+ZG9fc3lzX3JlYm9vdCsweDE3NC8weDIwYw0KDQpzdGFjayBiYWNrdHJhY2U6DQpDUFU6IDAgUElE
+OiA4NjkgQ29tbTogaGFsdCBOb3QgdGFpbnRlZCA1LjQuMC1yYzUta3RuICMxDQpIYXJkd2FyZSBu
+YW1lOiBGcmVlc2NhbGUgaS5NWDYgVWx0cmFsaXRlIChEZXZpY2UgVHJlZSkNCls8YzAxMTJiYjg+
+XSAodW53aW5kX2JhY2t0cmFjZSkgZnJvbSBbPGMwMTBjZTE0Pl0gKHNob3dfc3RhY2srMHgxMC8w
+eDE0KQ0KWzxjMDEwY2UxND5dIChzaG93X3N0YWNrKSBmcm9tIFs8YzBhZTE4ZGM+XSAoZHVtcF9z
+dGFjaysweGQ4LzB4MTEwKQ0KWzxjMGFlMThkYz5dIChkdW1wX3N0YWNrKSBmcm9tIFs8YzAxMmE1
+YzA+XSAoZG9fZXhpdCsweDdhNC8weGI5NCkNCls8YzAxMmE1YzA+XSAoZG9fZXhpdCkgZnJvbSBb
+PGMwMTRmZTY0Pl0gKF9fZG9fc3lzX3JlYm9vdCsweDE4MC8weDIwYykNCls8YzAxNGZlNjQ+XSAo
+X19kb19zeXNfcmVib290KSBmcm9tIFs8YzAxMDEwMDA+XSAocmV0X2Zhc3Rfc3lzY2FsbCsweDAv
+MHgyOCkNCkV4Y2VwdGlvbiBzdGFjaygweGQ5ZTE1ZmE4IHRvIDB4ZDllMTVmZjApDQo1ZmEwOiAg
+ICAgICAgICAgICAgICAgICBiZWQ1M2UxNCAwMDAwMDAwNSBmZWUxZGVhZCAyODEyMTk2OSA0MzIx
+ZmVkYyANCmZmZmZmZmY2DQo1ZmMwOiBiZWQ1M2UxNCAwMDAwMDAwNSAwMDQwY2YwNCAwMDAwMDA1
+OCAwMDQxZGVmOCAwMDAwMDAwMCAwMDAwMDAwMSANCjAwMDAwMDAwDQo1ZmUwOiAwMDAwMDA1OCBi
+ZWQ1M2M3NCBiNmYwM2FkNSBiNmU4OWM0Ng0KIyMjIyMjIyMjIyMjDQoNCldpdGggc252cy1wb3dl
+cm9mZiBkaXNhYmxlZDoNCg0KIyMjIyMjIyMjIyMjDQpUaGUgc3lzdGVtIGlzIGdvaW5nIGRvd24g
+Zm9yIHN5c3RlbSBoYWx0IE5PVyF5bXhjMykgKFRodSBPY3QgMzEgMTg6NTY6MzMgDQoyMDE5DQpb
+Li4uXQ0KcmVib290OiBTeXN0ZW0gaGFsdGVkDQojIyMjIyMjIyMjIyMNCg0KPiANCj4gU2hhd24N
+Cj4gDQo+Pg0KPj4gU28gdGhpcyBmaXhlcyBhIHJlYWwgcHJvYmxlbSBhbmQgdGhlcmVmb3JlIEkg
+d2lsbCBrZWVwIHRoZSBGaXhlcyB0YWcgYW5kDQo+PiBtb3ZlIHRoZSBwYXRjaCB0byB0aGUgcHJv
+cGVyIHBsYWNlIGluIHRoaXMgc2VyaWVzLg==
