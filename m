@@ -2,138 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5317FEEFF5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 23:24:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B43DCEEF32
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 23:19:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388385AbfKDWYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 17:24:42 -0500
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:46709 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730757AbfKDVw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 16:52:28 -0500
-Received: by mail-pg1-f196.google.com with SMTP id f19so12375268pgn.13
-        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2019 13:52:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:cc:subject:from:to:user-agent:date;
-        bh=hvwhMbbMLTQmT4EnklRO7+XD7jrkfU1DyKxKbEv59BY=;
-        b=GTmwlmHKJv6m7lEmrRHiRuVkt40QU5VjQPL4wMUQL0SBKD/ZrlEjjVXq4VXLgx23E+
-         EyXEiYvKjGx1laBVzg8BHGGKL27se9kCACNYF2RbpI5aRco5j8y9o+jwoycQnytomns3
-         L0LDU8wO0FgNABop05O80JS25z5KUrLambYaI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:cc:subject:from:to
-         :user-agent:date;
-        bh=hvwhMbbMLTQmT4EnklRO7+XD7jrkfU1DyKxKbEv59BY=;
-        b=JkOu7cyaj+RYWdmfmH/Wqr92RM35EMPUQwWqwtUDtSw7d0/94hInJqzGlizlYKpGvo
-         KhvjFZ/wbNOusyFG6nnIbzOUMwcTqucMW7tuzyGGyNdvaDb3LJvK7nDh7etMqdAPHbIm
-         y3ix6BpUanE4Q89TUrX8FNzhcQEyTpxXW1NgkWAcMhbTRbmTUarIULchI8LNNdIeSHmb
-         VYP7CNE1q42u2OMTcIT8gjqji7us2s8qwja2TkBVAA6Hm5dUqm8MHH4qFCCPEOfavAEE
-         ZDhV9XyNQCcQGwjIA5v0k1eARWeRQkGoQRaIaNffOkHb/pTTdkk3PwXK1DepOoFMR0Kb
-         gaWg==
-X-Gm-Message-State: APjAAAUJFYapTFtNVVA3Pr0sgg5Kv+uKxIZi3zI+OxM/J7v3wmYKM7n1
-        ZVmbrT9EoP/r303qV4uQSu+fjw==
-X-Google-Smtp-Source: APXvYqywPolweWSirYq4v0ZXeuALaU+gxL0P81Ry7qLEzGhQMK89OGMyA3ylB28pLWbnFC72zPaSMg==
-X-Received: by 2002:a62:e214:: with SMTP id a20mr18256270pfi.193.1572904347834;
-        Mon, 04 Nov 2019 13:52:27 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id p9sm18239202pfq.40.2019.11.04.13.52.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2019 13:52:27 -0800 (PST)
-Message-ID: <5dc09d9b.1c69fb81.3bb21.4dfc@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        id S2388891AbfKDWAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 17:00:37 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:34678 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388870AbfKDWAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 17:00:36 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3D50E2D1;
+        Mon,  4 Nov 2019 23:00:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1572904834;
+        bh=U7dc9nsQPKj1QZiCGWXXVJuwGqsni7BqpYcYhcA6cnw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L3k5oPOcoS11AhVjBWhfs8etQATrw9dPiF6/5nWFBKt3H7eCsMUsTArKLZOXRrtwZ
+         VSOv/+m32oxlN/GXdp6h3c+rKhSzXcqMBbH9CGZwRyBqF9jV0e/PUVZQou9lsvEoBk
+         DhptT89wPTL1FqF4XOpyUlJe6x48Jn/gQR02g8YU=
+Date:   Tue, 5 Nov 2019 00:00:26 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        mchehab@kernel.org, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        c.barrett@framos.com, a.brela@framos.com, peter.griffin@linaro.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: media: i2c: Add IMX296 CMOS sensor
+ binding
+Message-ID: <20191104220026.GG4913@pendragon.ideasonboard.com>
+References: <20191030094902.32582-1-manivannan.sadhasivam@linaro.org>
+ <20191030094902.32582-2-manivannan.sadhasivam@linaro.org>
+ <20191031131538.GA9170@pendragon.ideasonboard.com>
+ <20191031134512.GB24273@mani>
+ <20191031141141.GD5018@pendragon.ideasonboard.com>
+ <20191031142817.GK6253@valkosipuli.retiisi.org.uk>
+ <20191031165444.GE5018@pendragon.ideasonboard.com>
+ <20191031170837.GN6253@valkosipuli.retiisi.org.uk>
+ <20191104190201.GF4913@pendragon.ideasonboard.com>
+ <20191104213032.GT6253@valkosipuli.retiisi.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1572418544-11593-3-git-send-email-sanm@codeaurora.org>
-References: <1572418544-11593-1-git-send-email-sanm@codeaurora.org> <1572418544-11593-3-git-send-email-sanm@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-Subject: Re: [PATCH 2/2] dt-bindings: phy-qcom-qmp: Add SC7180 QMP phy support
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-User-Agent: alot/0.8.1
-Date:   Mon, 04 Nov 2019 13:52:26 -0800
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191104213032.GT6253@valkosipuli.retiisi.org.uk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sandeep Maheswaram (2019-10-29 23:55:44)
-> Add QMP phy entries for SC7180 in device tree bindings.
->=20
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
->=20
+Hi Sakari,
 
-Can you convert this binding to YAML? Would make it easier to see what
-is applicable to certain compatibles.
+On Mon, Nov 04, 2019 at 11:30:32PM +0200, Sakari Ailus wrote:
+> On Mon, Nov 04, 2019 at 09:02:01PM +0200, Laurent Pinchart wrote:
+> > On Thu, Oct 31, 2019 at 07:08:37PM +0200, Sakari Ailus wrote:
+> >> On Thu, Oct 31, 2019 at 06:54:44PM +0200, Laurent Pinchart wrote:
+> >>> On Thu, Oct 31, 2019 at 04:28:17PM +0200, Sakari Ailus wrote:
+> >>>> On Thu, Oct 31, 2019 at 04:11:41PM +0200, Laurent Pinchart wrote:
+> >>>>> On Thu, Oct 31, 2019 at 07:15:12PM +0530, Manivannan Sadhasivam wrote:
+> >>>>>> On Thu, Oct 31, 2019 at 03:15:38PM +0200, Laurent Pinchart wrote:
+> >>>>>>> On Wed, Oct 30, 2019 at 03:19:01PM +0530, Manivannan Sadhasivam wrote:
+> >>>>>>>> Add YAML devicetree binding for IMX296 CMOS image sensor. Let's also
+> >>>>>>>> add MAINTAINERS entry for the binding and driver.
+> >>>>>>>> 
+> >>>>>>>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >>>>>>>> ---
+> >>>>>>>>  .../devicetree/bindings/media/i2c/imx296.yaml | 94 +++++++++++++++++++
+> >>>>>>>>  MAINTAINERS                                   |  8 ++
+> >>>>>>>>  2 files changed, 102 insertions(+)
+> >>>>>>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx296.yaml
+> >>>>>>>> 
+> >>>>>>>> diff --git a/Documentation/devicetree/bindings/media/i2c/imx296.yaml b/Documentation/devicetree/bindings/media/i2c/imx296.yaml
+> >>>>>>>> new file mode 100644
+> >>>>>>>> index 000000000000..c04ec2203268
+> >>>>>>>> --- /dev/null
+> >>>>>>>> +++ b/Documentation/devicetree/bindings/media/i2c/imx296.yaml
+> >>>>>>>> @@ -0,0 +1,94 @@
+> >>>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>>>>>>> +%YAML 1.2
+> >>>>>>>> +---
+> >>>>>>>> +$id: http://devicetree.org/schemas/media/i2c/imx296.yaml#
+> >>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>>>>> +
+> >>>>>>>> +title: Sony IMX296 1/2.8-Inch CMOS Image Sensor
+> >>>>>>>> +
+> >>>>>>>> +maintainers:
+> >>>>>>>> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> >>>>>>>> +
+> >>>>>>>> +description: |-
+> >>>>>>>> +  The Sony IMX296 is a 1/2.9-Inch active pixel type CMOS Solid-state image
+> >>>>>>>> +  sensor with square pixel array and 1.58 M effective pixels. This chip
+> >>>>>>>> +  features a global shutter with variable charge-integration time. It is
+> >>>>>>>> +  programmable through I2C and 4-wire interfaces. The sensor output is
+> >>>>>>>> +  available via CSI-2 serial data output (1 Lane).
+> >>>>>>>> +
+> >>>>>>>> +properties:
+> >>>>>>>> +  compatible:
+> >>>>>>>> +    const: sony,imx296
+> >>>>>>>> +
+> >>>>>>>> +  reg:
+> >>>>>>>> +    maxItems: 1
+> >>>>>>>> +
+> >>>>>>>> +  clocks:
+> >>>>>>>> +    maxItems: 1
+> >>>>>>>> +
+> >>>>>>>> +  clock-names:
+> >>>>>>>> +    description:
+> >>>>>>>> +      Input clock for the sensor.
+> >>>>>>>> +    items:
+> >>>>>>>> +      - const: mclk
+> >>>>>>> 
+> >>>>>>> The pin is named INCK, let's name the clock accordingly.
+> >>>>>> 
+> >>>>>> Okay, I thought generic names are preferred here!
+> >>>>>>  
+> >>>>>>>> +  clock-frequency:
+> >>>>>>>> +    description:
+> >>>>>>>> +      Frequency of the mclk clock in Hertz.
+> >>>>>>> 
+> >>>>>>> This shouldn't be needed, you can retrieve the clock frequency at
+> >>>>>>> runtime from the clock source.
+> >>>>>> 
+> >>>>>> Unless the clock source is a fixed one! What if the clock source comes from
+> >>>>>> SoC? We need to set the rate, right?
+> >>>>> 
+> >>>>> In that case, if you want to hardcode the clock in DT, the preferred way
+> >>>>> is to use the assigned-clock-rates property. Otherwise, if the driver
+> >>>>> requires a specific clock frequency, it's better to hardcode it in the
+> >>>>> driver itself. In this specific case, I think assigned-clock-rates is
+> >>>>> best as the device can support three different clock frequencies.
+> >>>> 
+> >>>> Just note that if ACPI support is added to the sensor driver, you'll need
+> >>>> the clock-frequency property again, for that's the only way how the driver
+> >>>> will get the clock frequency.
+> >>> 
+> >>> Why is so ? Why can't we implement of assigned-clock-rates for ACPI ?
+> >> 
+> >> ACPI doesn't deal with clocks as such. So there's also no ACPI defined way
+> >> to access clocks specifically, including the frequency --- instead the
+> >> clock is controlled by an AML methods which implement power on and off
+> >> sequences for the device.
+> > 
+> > It's a shortcoming of ACPI, which should be addressed at the ACPI level.
+> > We shouldn't polute the DT bindings with a clock-frequency property for
+> > this reason.
+> 
+> It's really not a shortcoming but a design decision: what belongs to the
+> scope of the firmware? And in this case system and device power management
+> implementation is included. I do not believe this will be revisited in any
+> foreseeable future, i.e. there will be no clock control interface for ACPI.
 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt b/Doc=
-umentation/devicetree/bindings/phy/qcom-qmp-phy.txt
-> index eac9ad3..369f5b7 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt
-> +++ b/Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt
-> @@ -15,17 +15,20 @@ Required properties:
->                "qcom,sdm845-qmp-usb3-phy" for USB3 QMP V3 phy on sdm845,
->                "qcom,sdm845-qmp-usb3-uni-phy" for USB3 QMP V3 UNI phy on =
-sdm845,
->                "qcom,sdm845-qmp-ufs-phy" for UFS QMP phy on sdm845,
-> -              "qcom,sm8150-qmp-ufs-phy" for UFS QMP phy on sm8150.
-> +              "qcom,sm8150-qmp-ufs-phy" for UFS QMP phy on sm8150,
+I'm not saying there's a need to control clocks, but if the driver of
+the camera sensor needs to know the frequency of an externally supplied
+clock, the firmware should give a way for the operating system to
+retrieve the clock frequency. Doing so with a clock-frequency in the
+sensor node is a hack to work around a limitation of ACPI, as the Linux
+model to retrieve clock frequencies it to interogate the clock provider.
 
-Should remove the comma at the end of these lines so they don't have to
-change.
+> Explicitly stating the frequency also has an added benefit: the driver
+> can be certain that the given frequency is intended to be used on the
+> board. Otherwise the frequency could have been changed by e.g. another
+> driver. This does matter, as the frequency determines which link
+> frequencies can be achieved, and as the two effectively have to be
+> compliant, an unintended external clock frequency also means there will be
+> no match between possible link frequencies and configured link frequencies.
 
-> +              "qcom,sc7180-qmp-usb3-phy" for USB3 QMP V3 phy on sc7180.
-> =20
->  - reg:
->    - index 0: address and length of register set for PHY's common
->               serdes block.
->    - index 1: address and length of the DP_COM control block (for
-> -             "qcom,sdm845-qmp-usb3-phy" only).
-> +             "qcom,sdm845-qmp-usb3-phy" and "qcom,sc7180-qmp-usb3-phy" o=
-nly).
-> =20
->  - reg-names:
->    - For "qcom,sdm845-qmp-usb3-phy":
->      - Should be: "reg-base", "dp_com"
-> +  - For "qcom,sc7180-qmp-usb3-phy":
-> +    - Should be: "reg-base", "dp_com"
->    - For all others:
->      - The reg-names property shouldn't be defined.
+This doesn't solve anything, quite the contrary. With
+assigned-clock-rates the frequency is set once in the firmware, the
+operating system configures the clock provider to set the frequency, and
+the sensor driver then queries the provider. There's a single source of
+clock frequency information. With clock-frequency, you have two sources
+of information, the value of the property and the value set when
+programming the clock provider in the firmware (either in the BIOS/UEFI,
+or in the ACPI DSDT AML). That's a chance to get it wrong, and we both
+know how reliable firmware is.
 
-Why is this so complicated? Would be better to just know that index 1 is
-dp_com and index 0 is "normal" register base.
+Furthermore, the clock-frequency property requires drivers to be
+informed of firmware details. On DT-based systems they should use
+clk_get_rate(), while on ACPI-based systems they should read the
+clock-frequency property. If you want to support ACPI, this should be
+hidden by the firmware, with retrieval of clock frequency from the
+firmware handled in core code.
 
-> =20
-> @@ -60,6 +63,8 @@ Required properties:
->                         "ref", "ref_aux".
->                 For "qcom,sm8150-qmp-ufs-phy" must contain:
->                         "ref", "ref_aux".
-> +               For "qcom,sc7180-qmp-usb3-phy" must contain:
-> +                       "aux", "cfg_ahb", "ref", "com_aux".
-> =20
->   - resets: a list of phandles and reset controller specifier pairs,
->            one for each entry in reset-names.
-> @@ -88,6 +93,8 @@ Required properties:
->                         "ufsphy".
->                 For "qcom,sm8150-qmp-ufs-phy": must contain:
->                         "ufsphy".
-> +               For "qcom,sc7180-qmp-usb3-phy" must contain:
-> +                       "phy", "common".
+One option would be to create fixed clocks automatically for ACPI
+devices that report clock frequency through an ACPI-specific (as in
+defined outside of the ACPI standard, through DSD for instance) mean.
+Drivers would then be able to call clk_get() and clk_get_rate().
 
-Please sort these lists based on compatible string.
+> I.e. no images to capture either.
+> 
+> That said, I don't know if this has been a practical issue in the past.
 
-> =20
->   - vdda-phy-supply: Phandle to a regulator supply to PHY core block.
->   - vdda-pll-supply: Phandle to 1.8V regulator supply to PHY refclk pll b=
-lock.
+-- 
+Regards,
+
+Laurent Pinchart
