@@ -2,114 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B6C9EE7B9
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 19:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29FE9EE7D7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 20:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728965AbfKDSxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 13:53:45 -0500
-Received: from mx2.suse.de ([195.135.220.15]:34674 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728502AbfKDSxp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 4 Nov 2019 13:53:45 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 300D5B26B;
-        Mon,  4 Nov 2019 18:53:43 +0000 (UTC)
-Message-ID: <95359117f4f14f296db1cabc6fa68fbfcf78b2f5.camel@suse.de>
-Subject: Re: [PATCH 1/2] ARM: dts: bcm2711: force CMA into first GB of memory
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>, catalin.marinas@arm.com,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eric Anholt <eric@anholt.net>
-Cc:     linux-kernel@vger.kernel.org
-Date:   Mon, 04 Nov 2019 19:53:39 +0100
-In-Reply-To: <05f00d57-6151-45df-67ee-b49a18a611c7@gmail.com>
-References: <20191104135412.32118-1-nsaenzjulienne@suse.de>
-         <20191104135412.32118-2-nsaenzjulienne@suse.de>
-         <588d05b4-e66c-4aa0-436e-12d244a6efd8@gmx.net>
-         <05f00d57-6151-45df-67ee-b49a18a611c7@gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-e3thndAXgfBLu9QjwnR4"
-User-Agent: Evolution 3.34.1 
+        id S1728974AbfKDTCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 14:02:21 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:38830 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727998AbfKDTCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 14:02:21 -0500
+Received: by mail-oi1-f193.google.com with SMTP id v186so15126883oie.5
+        for <devicetree@vger.kernel.org>; Mon, 04 Nov 2019 11:02:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VHvMybYCPvLOcRHqCBZyxUzdSqz4vFyRg5UuR2Ahyew=;
+        b=Yp07K186DuxwZHZLbvAqheApB9VC785SKUV264EeioFCjyGfcjLdY6R/3zrMgomkf6
+         iAZvA//p0ACWZZZ3ru+YoQPAaSdy/Xlgq54DG1DBJstqJwrKEytiSDPVksn0ov45SfdD
+         BCFimiCInTI1x7cgvt5ZjyaN1j8gS0PElAUlt0ZdXktta6B1w1k9aWa0G//JRs4OPz/w
+         uFfV+z0dtmAsPluS3BtHOHYUih5RlVD/Iye9TuroC7Idm1Sf9+t+oXEiqGh9H42x39OC
+         Yn/yxRPTZP0PZnBKSsF3rABozZBCYGOdtbSQvyphlHyFlPtmDv33p5yAYOiS4SBY7HAV
+         1vAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VHvMybYCPvLOcRHqCBZyxUzdSqz4vFyRg5UuR2Ahyew=;
+        b=aA3QiLitfAQS0Hx3RiuqnUGNAKvGhTAuI9H3A02YUey7gf/JD5pwH1ICBj6yGUW9Tx
+         cMR/1FOzFCQiupFl3jO46nwX5aCXQx1FO1op6dWiR9LDpt5GkbxXvrIdvWdTotYGPGar
+         6hn0uZvJfhIG4C7KVexHAzZzs6ymI9gl/nwbqM/fneUY8DvWpZheEeVdpRD1t5ImiDJo
+         rmuJjhtX+yrdm1FV6I22Ru4U/7Pqg1Uu+ogZ5M6XeYYlJwys45gBOr/E26+UGoS7xMhj
+         SFHdffqN9fsDB3ZLiRZ8YQl3stotr6lAN+KaAg6QhiE/BShaputJ3ihLNUpvgPXg8vkV
+         BbTw==
+X-Gm-Message-State: APjAAAWyGwvUlBK+YahapAXArJbn/E090UMf8iVvqaPmRZJtF4FIkMlW
+        VLIeksZMYjcSUo4MadVzRVYtz7ELpPbLEIwB9vl0JA==
+X-Google-Smtp-Source: APXvYqxvMsCRsWBIDZ0SqDKRbA2a2jcPrtgP2JA+jl0La2OLtVPkdITmiBc0BO/x8fRSa547Hk9FSYYdLVC57gQLkRs=
+X-Received: by 2002:aca:f408:: with SMTP id s8mr482330oih.69.1572894140243;
+ Mon, 04 Nov 2019 11:02:20 -0800 (PST)
 MIME-Version: 1.0
+References: <20191028220027.251605-1-saravanak@google.com> <20191028220027.251605-6-saravanak@google.com>
+ <CAL_Jsq+obCEeaNjpvJ6VvO6b2F6A5oHcRD8PYAifUvBQHbQ_Og@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+obCEeaNjpvJ6VvO6b2F6A5oHcRD8PYAifUvBQHbQ_Og@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 4 Nov 2019 11:01:44 -0800
+Message-ID: <CAGETcx_CL9P3svctyDuGpavG4Ykd+o2G-rxDAE5OUvxL+sj6xA@mail.gmail.com>
+Subject: Re: [PATCH v1 5/5] of: property: Skip adding device links to
+ suppliers that aren't devices
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 4, 2019 at 7:18 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, Oct 28, 2019 at 5:00 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > Some devices need to be initialized really early and can't wait for
+> > driver core or drivers to be functional.  These devices are typically
+> > initialized without creating a struct device for their device nodes.
+> >
+> > If a supplier ends up being one of these devices, skip trying to add
+> > device links to them.
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> >  drivers/of/property.c | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index f16f85597ccc..21c9d251318a 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1038,6 +1038,7 @@ static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
+> >         struct device *sup_dev;
+> >         int ret = 0;
+> >         struct device_node *tmp_np = sup_np;
+> > +       int is_populated;
+> >
+> >         of_node_get(sup_np);
+> >         /*
+> > @@ -1062,9 +1063,10 @@ static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
+> >                 return -EINVAL;
+> >         }
+> >         sup_dev = get_dev_from_fwnode(&sup_np->fwnode);
+> > +       is_populated = of_node_check_flag(sup_np, OF_POPULATED);
+> >         of_node_put(sup_np);
+> >         if (!sup_dev)
+> > -               return -EAGAIN;
+> > +               return is_populated ? 0 : -EAGAIN;
+>
+> You're only using the flag in one spot and a comment would be good
+> here, so I'd just do:
+>
+> if (of_node_check_flag(sup_np, OF_POPULATED))
+>         return 0; /* Early device without a struct device */
 
---=-e3thndAXgfBLu9QjwnR4
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Rob,
 
-On Mon, 2019-11-04 at 09:51 -0800, Florian Fainelli wrote:
-> On 11/4/19 9:09 AM, Stefan Wahren wrote:
->=20
-> [snip]
->=20
-> > > +	reserved-memory {
-> > > +		#address-cells =3D <2>;
-> > > +		#size-cells =3D <1>;
-> > > +		ranges;
-> > > +
-> > > +		/*
-> > > +		 * arm64 reserves the CMA by default somewhere in ZONE_DMA32,
-> > > +		 * that's not good enough for the Raspberry Pi 4 as some
-> > > +		 * devices can only address the lower 1G of memory (ZONE_DMA).
-> > > +		 */
-> > > +		linux,cma {
-> > > +			compatible =3D "shared-dma-pool";
-> > > +			size =3D <0x2000000>; /* 32MB */
-> > > +			alloc-ranges =3D <0x0 0x00000000 0x40000000>;
-> > > +			reusable;
-> > > +			linux,cma-default;
-> > > +		};
-> > > +	};
-> > > +
-> >=20
-> > i think this is a SoC-specific issue not a board specifc one. Please
-> > move this to bcm2711.dtsi
->=20
-> This sounds like a possibly fragile solution if someone changes
-> CONFIG_CMA_SIZE_MBYTES to a value greater than 32MB no?
+Thanks for the review.
 
-I agree it's not the most flexible solution in the world. It also bypasses =
-the
-command line interface. But I can't see any alternatives as of today.
+I'm using the flag to keep the error handling code simple/cleaner. I
+can't do the check like that after I do a put on the sup_np.
 
-Overall, I suggest that we set CMA's size to whatever is needed for a sensi=
-ble
-desktop use. And let odd users with custom HW modify it trough overlays (wh=
-ich
-they will most likely be forced to do anyway).
+Yeah, I was actually planning to add a dev_dbg() message when this
+happens and returning a -EINVAL (that'll be ignored by the caller)
+instead of -EAGAIN (that's NOT ignored by the caller).
 
-That said I'm open to suggestions.
+Looks like these changes go pulled into driver-core-next. So I'll send
+a delta patch to add the dbg message and also address you nit on the
+other patch.
 
-Regards,
-Nicolas
-
-
---=-e3thndAXgfBLu9QjwnR4
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl3Ac7QACgkQlfZmHno8
-x/7dgQf+KKHvYx6jBZi1K73PiGBWn2BOWGIQhxgKf2zuOoGEIPWIdft+iR+7QqfT
-AteKjVlETbdYvyjxZm+k0YI7ngTvy1vC/xoHmz4tyxIKoxM89PjLeEudUI7UtBxT
-O5EOdCfEbJ4hFBrHk9u141lq2i+D2BJXKfK9m/jM6SbgGQGlznafVowiEw1A/n9i
-V3QPFNEiibV/wUQxsPMZ44KbCb0P+L48N76fmyBmH5uAgQnenTgStw31HCdXxYrN
-V7QQa/3QKU2msgZZXT3beRih+dM4mnSdwokKH3RSr11/2/8KGOeVJ022+pMl+Swe
-Nan0j4uEsyir/r4g0b0pKXrONC8HAg==
-=iJ8o
------END PGP SIGNATURE-----
-
---=-e3thndAXgfBLu9QjwnR4--
-
+Thanks,
+Saravana
