@@ -2,128 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C930CEEA5C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 21:50:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96567EEB00
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 22:22:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729835AbfKDUtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 15:49:31 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57236 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729792AbfKDUta (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 15:49:30 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xA4KnO2Y026188;
-        Mon, 4 Nov 2019 14:49:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1572900564;
-        bh=JbeuG6x+HZ6/ASKy0zgpiATKRBUjPk9l7qqUTTj/NzQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ANrWDakW3EinmgutU4vXfESX1R4ERJZXALwhTVKsD4P2ppZViwOIqr1/C/F9FvwTa
-         np38tH5Qek3Ovzq5/GhlDOxAAgXn1+wBESiCxzMOT/HeR5UWRGX+bjARCHFcrnJitQ
-         48C26x9z5wbeInpKgeey+O3j7rb5ve9Epv1pP1Ag=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA4KnNQB005344;
-        Mon, 4 Nov 2019 14:49:24 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 4 Nov
- 2019 14:49:09 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 4 Nov 2019 14:49:09 -0600
-Received: from ula0869644.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA4Kmv06038360;
-        Mon, 4 Nov 2019 14:49:23 -0600
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-omap@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v2 10/10] arm64: dts: k3-am654-base-board: Add CSI2 OV5640 camera
-Date:   Mon, 4 Nov 2019 14:48:53 -0600
-Message-ID: <20191104204853.4355-11-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191104204853.4355-1-bparrot@ti.com>
-References: <20191104204853.4355-1-bparrot@ti.com>
+        id S1729216AbfKDVWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 16:22:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57742 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728377AbfKDVWz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Nov 2019 16:22:55 -0500
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A663820869;
+        Mon,  4 Nov 2019 21:22:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1572902573;
+        bh=7dJ/ia471WvDDaGPQasHlMYmYRTeVpG5ZWFxZcTDhuw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gaKeA5uH4v0NTUmXh+E4hrCfplOv5KZkizuGa3/Le13zxfd4iJo/ui3dO9phf73UJ
+         LCYZVAsIyb3QUOW2Wd0AR8ceSHSJIFKaGMoTGHbWBx9JNBjGHKalMjWiVp0JSpUWWl
+         PRuG4oU7EPgfcOrHhr5WfVFf6B49vSqK8hj+YFk4=
+Received: by mail-qk1-f176.google.com with SMTP id e2so19130432qkn.5;
+        Mon, 04 Nov 2019 13:22:53 -0800 (PST)
+X-Gm-Message-State: APjAAAUxFVsKqUSeopLuGxlUxGlD4OoMqp3Sx9d6eF4bzQgrJa+J2qZG
+        8XgV0clNvPSoDRIx90C2jKMjwGf26n/WyQni0A==
+X-Google-Smtp-Source: APXvYqzsut7cy1jUm00XrKnirDZrqUqKmAVvL42F+Fbd8gvhRe+yRJinCpAGbWA4yeLCmepGvwNesz0t/I1xKS4MtIQ=
+X-Received: by 2002:a05:620a:205d:: with SMTP id d29mr1462515qka.152.1572902572759;
+ Mon, 04 Nov 2019 13:22:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1572886683-4919-1-git-send-email-fabrizio.castro@bp.renesas.com> <1572886683-4919-3-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1572886683-4919-3-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 4 Nov 2019 15:22:39 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ+xus0GDWb0Px6HKDBzOt1yjwCCkQrfMspubwG+LZOdQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ+xus0GDWb0Px6HKDBzOt1yjwCCkQrfMspubwG+LZOdQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: display: bridge: Repurpose lvds-encoder
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Peter Rosin <peda@axentia.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the OV5640 CSI camera:
-- add the OV5640 nodes
-- add the CAL node linkage
-- enable CAL node
+On Mon, Nov 4, 2019 at 10:58 AM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+>
+> In an effort to repurpose lvds-encoder.c to also serve the
+> function of LVDS decoders, we ended up defining a new "generic"
+> compatible string, therefore adapt the dt-bindings to fit the
+> new purpose. Also, convert the dt-bindings from .txt to .yaml
+> while at it.
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+"Also, ... while at it." is a sign for split into 2 patches.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 1102b84f853d..73290c646334 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -53,6 +53,12 @@
- 			gpios = <&wkup_gpio0 27 GPIO_ACTIVE_LOW>;
- 		};
- 	};
-+
-+	clk_ov5640_fixed: clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
- };
- 
- &wkup_pmx0 {
-@@ -184,6 +190,23 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_i2c1_pins_default>;
- 	clock-frequency = <400000>;
-+
-+	ov5640@3c {
-+		compatible = "ovti,ov5640";
-+		reg = <0x3c>;
-+
-+		clocks = <&clk_ov5640_fixed>;
-+		clock-names = "xclk";
-+
-+		port {
-+			csi2_cam0: endpoint {
-+				remote-endpoint = <&csi2_phy0>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+			};
-+		};
-+	};
-+
- };
- 
- &main_i2c2 {
-@@ -280,3 +303,16 @@
- &pcie1_ep {
- 	status = "disabled";
- };
-+
-+&cal {
-+	status = "okay";
-+};
-+
-+&csi2_0 {
-+	csi2_phy0: endpoint@0 {
-+		remote-endpoint = <&csi2_cam0>;
-+		clock-lanes = <0>;
-+		data-lanes = <1 2>;
-+	};
-+};
-+
--- 
-2.17.1
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+>
+> ---
+> v1->v2:
+> * Converted to dt-schema as per Neil's comment
+> ---
+>  .../bindings/display/bridge/lvds-codec.yaml        | 117 +++++++++++++++++++++
+>  .../bindings/display/bridge/lvds-transmitter.txt   |  66 ------------
+>  2 files changed, 117 insertions(+), 66 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/bridge/lvds-transmitter.txt
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> new file mode 100644
+> index 0000000..ff79bc2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> @@ -0,0 +1,117 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/lvds-codec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Trasnparent LVDS encoders and LVDS decoders
 
+Typo
+
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> +
+> +description: |
+> +  This binding supports transparent LVDS encoders and LVDS decoders that don't
+> +  require any configuration.
+> +
+> +  LVDS is a physical layer specification defined in ANSI/TIA/EIA-644-A. Multiple
+> +  incompatible data link layers have been used over time to transmit image data
+> +  to LVDS panels. This binding targets devices compatible with the following
+> +  specifications only.
+> +
+> +  [JEIDA] "Digital Interface Standards for Monitor", JEIDA-59-1999, February
+> +  1999 (Version 1.0), Japan Electronic Industry Development Association (JEIDA)
+> +  [LDI] "Open LVDS Display Interface", May 1999 (Version 0.95), National
+> +  Semiconductor
+> +  [VESA] "VESA Notebook Panel Standard", October 2007 (Version 1.0), Video
+> +  Electronics Standards Association (VESA)
+> +
+> +  Those devices have been marketed under the FPD-Link and FlatLink brand names
+> +  among others.
+> +
+> +properties:
+> +  compatible:
+> +    description: |
+> +      Any encoder or decoder compatible with this generic binding, but with
+> +      additional properties not listed here, must define its own binding and
+> +      list a device specific compatible first followed by the generic compatible
+> +    items:
+> +      - enum:
+
+You can drop 'items' when there's only 1.
+
+> +        - lvds-encoder # for LVDS encoders
+> +        - lvds-decoder # for LVDS decoders
+> +
+> +  ports:
+> +    type: object
+> +    description: |
+> +      This device has two video ports. Their connections are modeled using the
+> +      OF graph bindings specified in Documentation/devicetree/bindings/graph.txt
+> +    properties:
+> +      port@0:
+> +        type: object
+> +        description: |
+> +          With LVDS encoders port 0 is for parallel input
+> +          With LVDS decoders port 0 is for LVDS input
+> +
+> +      port@1:
+> +        type: object
+> +        description: |
+> +          With LVDS encoders port 1 is for LVDS output
+> +          With LVDS decoders port 1 is for parallel output
+
+port@* are required, right?
+
+> +
+> +required:
+> +  - compatible
+> +  - ports
+> +
+> +examples:
+> +  - |
+> +    lvds-encoder {
+> +      compatible = "lvds-encoder";
+> +
+> +      ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@0 {
+> +          reg = <0>;
+> +
+> +          lvds_enc_in: endpoint {
+> +            remote-endpoint = <&display_out_rgb>;
+> +          };
+> +        };
+> +
+> +        port@1 {
+> +          reg = <1>;
+> +
+> +          lvds_enc_out: endpoint {
+> +            remote-endpoint = <&lvds_panel_in>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +  - |
+> +    lvds-decoder {
+> +      compatible = "lvds-decoder";
+> +
+> +      ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@0 {
+> +          reg = <0>;
+> +
+> +          lvds_dec_in: endpoint {
+> +            remote-endpoint = <&display_out_lvds>;
+> +          };
+> +        };
+> +
+> +        port@1 {
+> +          reg = <1>;
+> +
+> +          lvds_dec_out: endpoint {
+> +            remote-endpoint = <&rgb_panel_in>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +...
