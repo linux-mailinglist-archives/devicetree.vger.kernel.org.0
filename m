@@ -2,264 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A98CEDD5C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 12:05:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24AD5EDD88
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 12:14:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728449AbfKDLFD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Nov 2019 06:05:03 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:45085 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728064AbfKDLFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 06:05:02 -0500
-Received: by mail-ed1-f67.google.com with SMTP id b5so1938024eds.12;
-        Mon, 04 Nov 2019 03:05:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=82Y+8lvkmODTXZfIxvOLUD6KLkdYBYM4N45xnXT7cGM=;
-        b=cnfZOjLhGxkogFnx6z24sA/R4WPzBkpW7+jaIJDyPmjuGuews94elHo6+LYw4JFPIZ
-         7VWGDHcsaDOSzbC6XQujcpv1v6s4/3v7Sr+VLuzu+3rSFEjX54vDonVo74ZLUgd3HhiH
-         uVWgEg298mSfq8f1WKfPAp/ELtRipQak7ZDzTLn8dNK7tXk7vCOOvZsEp0Xu+IffSDuk
-         Abu0b2m30sUJ0RSRsfZgW5sX/PXhjaWzKHjMDl3kL0BXIPmUmTebNncYSmDuV2XeA4EP
-         AGId447DL3McLGnnjEDKIj4yox92g4SqqHE+hvVTk58W2+W6t7qC7Oh7UtzwzQGqyOdC
-         HbJg==
-X-Gm-Message-State: APjAAAWanRhGS68tsT8wETx0orLtkGeQR3jgAKc/giihz64zfr9EQRVz
-        oAGj6zBX3Z9RUdqorzWflDo=
-X-Google-Smtp-Source: APXvYqzRu3QjLIaQW+1GGHUm1InQweyS031HWvyusQQe0eog2OzqeXH/r8xEukjNzVGEbdWu6V6T9Q==
-X-Received: by 2002:aa7:d40b:: with SMTP id z11mr594423edq.142.1572865499955;
-        Mon, 04 Nov 2019 03:04:59 -0800 (PST)
-Received: from pi3 ([194.230.155.180])
-        by smtp.googlemail.com with ESMTPSA id a102sm869102edf.46.2019.11.04.03.04.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Nov 2019 03:04:59 -0800 (PST)
-Date:   Mon, 4 Nov 2019 12:04:57 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Matheus Castello <matheus@castello.eng.br>
-Cc:     sre@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        cw00.choi@samsung.com, b.zolnierkie@samsung.com,
-        lee.jones@linaro.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] power: supply: max17040: Config alert SOC low
- level threshold from FDT
-Message-ID: <20191104110457.GB30857@pi3>
-References: <CAJKOXPdCtbsPaAgYp5iVBhkAsjXzOYWwttQBptgiUgzhbKi09w@mail.gmail.com>
- <20191031184134.30621-1-matheus@castello.eng.br>
- <20191031184134.30621-4-matheus@castello.eng.br>
- <20191101152755.GC28931@pi3>
- <c18ab487-6242-4ac2-b2c2-ef78c899521a@castello.eng.br>
- <4acd4bcf-4488-01f2-cacc-0170c33e20c2@castello.eng.br>
+        id S1726364AbfKDLOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 06:14:15 -0500
+Received: from mx2.suse.de ([195.135.220.15]:54684 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726071AbfKDLOP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 4 Nov 2019 06:14:15 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 3F045ABD0;
+        Mon,  4 Nov 2019 11:14:12 +0000 (UTC)
+Subject: Re: [PATCH v5 03/12] clk: mediatek: mt8173: switch mmsys to platform
+ device probing
+To:     Hsin-Yi Wang <hsinyi@chromium.org>, matthias.bgg@kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>, mturquette@baylibre.com,
+        sboyd@codeaurora.org, ulrich.hecht+renesas@gmail.com,
+        laurent.pinchart@ideasonboard.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        rdunlap@infradead.org, sean.wang@mediatek.com,
+        lkml <linux-kernel@vger.kernel.org>,
+        dri-devel@lists.freedesktop.org, sean.wang@kernel.org,
+        wens@csie.org, linux-mediatek@lists.infradead.org,
+        linux-clk@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20181116125449.23581-1-matthias.bgg@kernel.org>
+ <20181116125449.23581-4-matthias.bgg@kernel.org>
+ <CAJMQK-jHHAsBoL6Zcv8ZW1nRAD9NRjEbH1hnf9q418zGka8Vxg@mail.gmail.com>
+From:   Matthias Brugger <mbrugger@suse.com>
+Autocrypt: addr=mbrugger@suse.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <35f31784-6703-435a-2675-95bea33adf35@suse.com>
+Date:   Mon, 4 Nov 2019 12:14:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
 MIME-Version: 1.0
+In-Reply-To: <CAJMQK-jHHAsBoL6Zcv8ZW1nRAD9NRjEbH1hnf9q418zGka8Vxg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <4acd4bcf-4488-01f2-cacc-0170c33e20c2@castello.eng.br>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 02, 2019 at 03:12:44PM -0300, Matheus Castello wrote:
+
+
+On 31/10/2019 05:17, Hsin-Yi Wang wrote:
+> On Fri, Nov 16, 2018 at 12:54 PM <matthias.bgg@kernel.org> wrote:
+>>
+>> From: Matthias Brugger <mbrugger@suse.com>
+>>
+>> Switch probing for the MMSYS to support invocation to a
+>> plain paltform device. The driver will be probed by the DRM subsystem.
+>>
+>> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+>> ---
 > 
+>> +
+>> +static struct platform_driver clk_mt8173_mm_drv = {
+>> +       .probe = mtk_mmsys_probe,
+>> +       .probe = mtk_mmsys_remove,
+> Should be .remove?
 > 
-> Em 11/1/19 1:52 PM, Matheus Castello escreveu:
-> > 
-> > 
-> > Em 11/1/19 12:27 PM, Krzysztof Kozlowski escreveu:
-> > > On Thu, Oct 31, 2019 at 03:41:33PM -0300, Matheus Castello wrote:
-> > > > For configuration of fuel gauge alert for a low level state of charge
-> > > > interrupt we add a function to config level threshold and a device tree
-> > > > binding property to set it in flatned device tree node.
-> > > > 
-> > > > Now we can use "maxim,alert-low-soc-level" property with the values from
-> > > > 1% up to 32% to configure alert interrupt threshold.
-> > > > 
-> > > > Signed-off-by: Matheus Castello <matheus@castello.eng.br>
-> > > > ---
-> > > >   drivers/power/supply/max17040_battery.c | 88 +++++++++++++++++++++----
-> > > >   1 file changed, 74 insertions(+), 14 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/power/supply/max17040_battery.c
-> > > > b/drivers/power/supply/max17040_battery.c
-> > > > index 75459f76d02c..802575342c72 100644
-> > > > --- a/drivers/power/supply/max17040_battery.c
-> > > > +++ b/drivers/power/supply/max17040_battery.c
-> > > > @@ -29,6 +29,9 @@
-> > > >   #define MAX17040_DELAY        1000
-> > > >   #define MAX17040_BATTERY_FULL    95
-> > > > 
-> > > > +#define MAX17040_ATHD_MASK        0xFFC0
-> > > > +#define MAX17040_ATHD_DEFAULT_POWER_UP    4
-> > > > +
-> > > >   struct max17040_chip {
-> > > >       struct i2c_client        *client;
-> > > >       struct delayed_work        work;
-> > > > @@ -43,6 +46,8 @@ struct max17040_chip {
-> > > >       int soc;
-> > > >       /* State Of Charge */
-> > > >       int status;
-> > > > +    /* Low alert threshold from 32% to 1% of the State of Charge */
-> > > > +    u32 low_soc_alert_threshold;
-> > > >   };
-> > > > 
-> > > >   static int max17040_get_property(struct power_supply *psy,
-> > > > @@ -99,6 +104,22 @@ static void max17040_reset(struct i2c_client
-> > > > *client)
-> > > >       max17040_write_reg(client, MAX17040_CMD, 0x0054);
-> > > >   }
-> > > > 
-> > > > +static int max17040_set_low_soc_threshold_alert(struct
-> > > > i2c_client *client,
-> > > > +    u32 level)
-> > > > +{
-> > > > +    int ret;
-> > > > +    u16 data;
-> > > > +
-> > > > +    level = 32 - level;
-> > > > +    data = max17040_read_reg(client, MAX17040_RCOMP);
-> > > > +    /* clear the alrt bit and set LSb 5 bits */
-> > > > +    data &= MAX17040_ATHD_MASK;
-> > > > +    data |= level;
-> > > > +    ret = max17040_write_reg(client, MAX17040_RCOMP, data);
-> > > > +
-> > > > +    return ret;
-> > > > +}
-> > > > +
-> > > >   static void max17040_get_vcell(struct i2c_client *client)
-> > > >   {
-> > > >       struct max17040_chip *chip = i2c_get_clientdata(client);
-> > > > @@ -115,7 +136,6 @@ static void max17040_get_soc(struct
-> > > > i2c_client *client)
-> > > >       u16 soc;
-> > > > 
-> > > >       soc = max17040_read_reg(client, MAX17040_SOC);
-> > > > -
-> > > >       chip->soc = (soc >> 8);
-> > > >   }
-> > > > 
-> > > > @@ -161,6 +181,24 @@ static void max17040_get_status(struct
-> > > > i2c_client *client)
-> > > >           chip->status = POWER_SUPPLY_STATUS_FULL;
-> > > >   }
-> > > > 
-> > > > +static int max17040_get_of_data(struct max17040_chip *chip)
-> > > > +{
-> > > > +    struct device *dev = &chip->client->dev;
-> > > > +    struct device_node *np = dev->of_node;
-> > > > +    int ret = 0;
-> > > > +
-> > > > +    if (of_property_read_u32(np, "maxim,alert-low-soc-level",
-> > > > +            &chip->low_soc_alert_threshold)) {
-> > > 
-> > > Please align the line break with line above. checkpatch --strict might
-> > > give you hints about this.
-> > > >> +        chip->low_soc_alert_threshold =
-> > > MAX17040_ATHD_DEFAULT_POWER_UP;
-> > > > +    /* check if low_soc_alert_threshold is between 1% and 32% */
-> > > 
-> > > The comment looks misleading here, like it belongs to previous block.
-> > > Maybe put it inside else if {} block?
-> > > 
-> > > > +    } else if (chip->low_soc_alert_threshold <= 0 ||
-> > > > +            chip->low_soc_alert_threshold >= 33){
-> > > 
-> > > Missing space before {.
-> > > 
-> > > > +        ret = -EINVAL;
-> > > > +    }
-> > > > +
-> > > > +    return ret;
-> > > > +}
-> > > > +
-> > > >   static void max17040_check_changes(struct i2c_client *client)
-> > > >   {
-> > > >       max17040_get_vcell(client);
-> > > > @@ -192,6 +230,10 @@ static irqreturn_t
-> > > > max17040_thread_handler(int id, void *dev)
-> > > >       /* send uevent */
-> > > >       power_supply_changed(chip->battery);
-> > > > 
-> > > > +    /* reset alert bit */
-> > > > +    max17040_set_low_soc_threshold_alert(client,
-> > > > +        chip->low_soc_alert_threshold);
-> > > 
-> > > Unless the continuation exceeds 80 character limit, please align it with
-> > > previous line.
-> > > 
-> > > > +
-> > > >       return IRQ_HANDLED;
-> > > >   }
-> > > > 
-> > > > @@ -216,6 +258,7 @@ static int max17040_probe(struct i2c_client *client,
-> > > >       struct i2c_adapter *adapter = client->adapter;
-> > > >       struct power_supply_config psy_cfg = {};
-> > > >       struct max17040_chip *chip;
-> > > > +    int ret;
-> > > > 
-> > > >       if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE))
-> > > >           return -EIO;
-> > > > @@ -226,6 +269,12 @@ static int max17040_probe(struct i2c_client
-> > > > *client,
-> > > > 
-> > > >       chip->client = client;
-> > > >       chip->pdata = client->dev.platform_data;
-> > > > +    ret = max17040_get_of_data(chip);
-> > > > +    if (ret) {
-> > > > +        dev_err(&client->dev,
-> > > > +            "failed: low SOC alert OF data out of bounds\n");
-> > > > +        return ret;
-> > > > +    }
-> > > > 
-> > > >       i2c_set_clientdata(client, chip);
-> > > >       psy_cfg.drv_data = chip;
-> > > > @@ -242,20 +291,31 @@ static int max17040_probe(struct
-> > > > i2c_client *client,
-> > > > 
-> > > >       /* check interrupt */
-> > > >       if (client->irq) {
-> > > > -        int ret;
-> > > > -        unsigned int flags;
-> > > > -
-> > > > -        dev_info(&client->dev, "IRQ: enabled\n");
-> > > > -        flags = IRQF_TRIGGER_FALLING | IRQF_ONESHOT;
-> > > > -        ret = devm_request_threaded_irq(&client->dev,
-> > > > client->irq, NULL,
-> > > > -                        max17040_thread_handler, flags,
-> > > > -                        chip->battery->desc->name,
-> > > > -                        chip);
-> > > > -
-> > > > -        if (ret) {
-> > > > -            client->irq = 0;
-> > > > +        if (of_device_is_compatible(client->dev.of_node,
-> > > > +            "maxim,max77836-battery")) {
-> > > 
-> > > Alignment.
-> > > 
-> > > > +            ret = max17040_set_low_soc_threshold_alert(client,
-> > > > +                chip->low_soc_alert_threshold);
-> > > 
-> > > Ditto.
-> > > 
-> 
-> I am working to fix the alignments issues using the checkpath strict and I
-> have a doubt. Here for example if I fix the check "Alignment should match
-> open parenthesis" it will pass the 80 characters limit and will show me a
-> warning.
 
-Indeed which is a hint that the code readabiltiy is affected by long
-function name + two indentations + long variable name. You can split it
-to different function (covering the IRQ case) which will reduce one
-indentation.
+Yes, definitely.
 
-Alternatively do not align it but add few more tabs before chip->:
-		ret = max17040_set_low_soc_threshold_alert(client,
-						chip->low_soc_alert_threshold);
-Renaming low_soc_alert_threshold to something shorter can help as well
-(soc_alert seems enough descriptive).
-
-
-Best regards,
-Krzysztof
-
+>> +       .driver = {
+>> +               .name = "clk-mt8173-mm",
+>> +       },
+>> +};
+>> +module_platform_driver(clk_mt8173_mm_drv);
+>>
+>>  static void __init mtk_vdecsys_init(struct device_node *node)
+>>  {
