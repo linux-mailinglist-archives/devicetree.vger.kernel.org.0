@@ -2,78 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D355EE886
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 20:32:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A218EE8AD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 20:34:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387413AbfKDTcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 14:32:36 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47670 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387420AbfKDTcb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 14:32:31 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xA4JWU83000954;
-        Mon, 4 Nov 2019 13:32:30 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1572895950;
-        bh=McaddMrB7i3FpMcjLLfEBDVoAK/8NrLPN+r8JmCdhq8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=yNI81/opVzEDaouLYMga7odkxF+cIsvP1t2+IIfmMwP5VMVS4bw7eFuTIiHhfumPs
-         4DNo5Nem4X0Z76gbSA4Uj+WU1HE26Ruzz312qrqwXSyYDOgOp9t2iX8N6pQbsA6IfX
-         HGNxWIsUKhLsvIip9McOlHivkIv/eDRFkqqgx4dg=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xA4JWUub022147
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 4 Nov 2019 13:32:30 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 4 Nov
- 2019 13:32:15 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 4 Nov 2019 13:32:15 -0600
-Received: from ula0869644.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA4JVmdJ096934;
-        Mon, 4 Nov 2019 13:32:29 -0600
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-CC:     <linux-media@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benoit Parrot <bparrot@ti.com>
-Subject: [Patch v2 20/20] MAINTAINERS: Add ti,cal.yaml
-Date:   Mon, 4 Nov 2019 13:31:40 -0600
-Message-ID: <20191104193140.31145-21-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191104193140.31145-1-bparrot@ti.com>
-References: <20191104193140.31145-1-bparrot@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1728758AbfKDTdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 14:33:46 -0500
+Received: from shards.monkeyblade.net ([23.128.96.9]:50586 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728322AbfKDTdq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 14:33:46 -0500
+Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 592F6151D7249;
+        Mon,  4 Nov 2019 11:33:45 -0800 (PST)
+Date:   Mon, 04 Nov 2019 11:33:44 -0800 (PST)
+Message-Id: <20191104.113344.1336648901043158957.davem@davemloft.net>
+To:     christophe.roullier@st.com
+Cc:     robh@kernel.org, joabreu@synopsys.com, mark.rutland@arm.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
+        peppe.cavallaro@st.com, linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        andrew@lunn.ch
+Subject: Re: [PATCH net-next 1/4] net: ethernet: stmmac: Add support for
+ syscfg clock
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20191104132533.5153-2-christophe.roullier@st.com>
+References: <20191104132533.5153-1-christophe.roullier@st.com>
+        <20191104132533.5153-2-christophe.roullier@st.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 04 Nov 2019 11:33:45 -0800 (PST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ti,cal.yaml to the MAINTAINERS file.
+From: Christophe Roullier <christophe.roullier@st.com>
+Date: Mon, 4 Nov 2019 14:25:30 +0100
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+> +				if (dwmac->syscfg_clk)
+> +					goto unprepare_syscfg;
+>  				return ret;
+ ...
+> +unprepare_syscfg:
+> +	clk_disable_unprepare(dwmac->syscfg_clk);
+> +
+> +	return ret;
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8077b453f2e9..d360df48f9f2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16315,6 +16315,7 @@ W:	http://linuxtv.org/
- Q:	http://patchwork.linuxtv.org/project/linux-media/list/
- S:	Maintained
- F:	drivers/media/platform/ti-vpe/
-+F:	Documentation/devicetree/bindings/media/ti,cal.yaml
- 
- TI WILINK WIRELESS DRIVERS
- L:	linux-wireless@vger.kernel.org
--- 
-2.17.1
+This is so amazingly silly.  You're doing a goto instead of the
+clk_disable_unprepare() call itself.
 
+Please don't do this.
