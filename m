@@ -2,126 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0B1EDF43
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 12:54:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32686EE07A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 13:56:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728896AbfKDLyc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Nov 2019 06:54:32 -0500
-Received: from skedge03.snt-world.com ([91.208.41.68]:47428 "EHLO
-        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729197AbfKDLyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 06:54:32 -0500
-Received: from sntmail10s.snt-is.com (unknown [10.203.32.183])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by skedge03.snt-world.com (Postfix) with ESMTPS id 4C15D60CAF4;
-        Mon,  4 Nov 2019 12:54:22 +0100 (CET)
-Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail10s.snt-is.com
- (10.203.32.183) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Mon, 4 Nov 2019
- 12:54:21 +0100
-Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
- sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
- 15.01.1713.004; Mon, 4 Nov 2019 12:54:21 +0100
-From:   Schrempf Frieder <frieder.schrempf@kontron.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-CC:     Schrempf Frieder <frieder.schrempf@kontron.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1727430AbfKDM4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 07:56:12 -0500
+Received: from esa1.microchip.iphmx.com ([68.232.147.91]:62902 "EHLO
+        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727236AbfKDM4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 07:56:12 -0500
+Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
+  Codrin.Ciubotariu@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
+  envelope-from="Codrin.Ciubotariu@microchip.com";
+  x-sender="Codrin.Ciubotariu@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa1.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
+  envelope-from="Codrin.Ciubotariu@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa1.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Codrin.Ciubotariu@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: Cx8jqRkQ5JRUGczCabc5Cy/BRBSb8Uq4WJB6eYbrLof3PBI+Jxu9MocMtJ4NAPFsmVRtRcpAzy
+ vzdaAL+Wfw0X+pomuOWmFoYluVN36VFfXl8PJ7wtv6NksBdiyAGl5XlnYR8NY/pGMoxS7jgRni
+ KWO5TYLKI4p9vAHuz/0TWLc1Pq5dZigOKpExLxy2K6hdzELhO+HGZ24O1HKTCKYaYcQXDO2BRy
+ RYaiUwVOyddp9Kjdul0HcvI8KSHRU+ALqYSqab3HqZ3/NJpihOMtEczoVYckZCJlmAbdMRAawG
+ KiM=
+X-IronPort-AV: E=Sophos;i="5.68,267,1569308400"; 
+   d="scan'208";a="56900562"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2019 05:56:11 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 4 Nov 2019 05:56:11 -0700
+Received: from rob-ult-m19940.corp.atmel.com (10.10.85.251) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Mon, 4 Nov 2019 05:56:08 -0700
+From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+To:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 9/9] dt-bindings: arm: fsl: Add more Kontron i.MX6UL/ULL
- compatibles
-Thread-Topic: [PATCH v4 9/9] dt-bindings: arm: fsl: Add more Kontron
- i.MX6UL/ULL compatibles
-Thread-Index: AQHVkwaYg75r6A6FrUeqhGcs8p11Cw==
-Date:   Mon, 4 Nov 2019 11:54:21 +0000
-Message-ID: <20191104115352.8728-10-frieder.schrempf@kontron.de>
-References: <20191104115352.8728-1-frieder.schrempf@kontron.de>
-In-Reply-To: <20191104115352.8728-1-frieder.schrempf@kontron.de>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [172.25.9.193]
-x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: 8BIT
+        <linux-kernel@vger.kernel.org>
+CC:     <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <arnd@arndb.de>,
+        <Tudor.Ambarus@microchip.com>, <Claudiu.Beznea@microchip.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: rng: atmel-trng: add new compatible
+Date:   Mon, 4 Nov 2019 13:54:56 +0200
+Message-ID: <20191104115457.2681-1-codrin.ciubotariu@microchip.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-SnT-MailScanner-Information: Please contact the ISP for more information
-X-SnT-MailScanner-ID: 4C15D60CAF4.A0237
-X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
-X-SnT-MailScanner-SpamCheck: 
-X-SnT-MailScanner-From: frieder.schrempf@kontron.de
-X-SnT-MailScanner-To: devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-X-Spam-Status: No
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+Add compatible for new IP found on sam9x60 SoC.
 
-Add the compatibles for Kontron i.MX6UL N6311 SoM and boards and
-the compatibles for Kontron i.MX6ULL N6411 SoM and boards.
-
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 1b4b4e6573b5..6d718272725d 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -162,6 +162,7 @@ properties:
-           - enum:
-               - fsl,imx6ul-14x14-evk      # i.MX6 UltraLite 14x14 EVK Board
-               - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
-+              - kontron,imx6ul-n6311-som  # Kontron N6311 SOM
-           - const: fsl,imx6ul
+Changes in v2:
+ - added 'Acked-by' from Rob;
+
+ Documentation/devicetree/bindings/rng/atmel-trng.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/rng/atmel-trng.txt b/Documentation/devicetree/bindings/rng/atmel-trng.txt
+index 4ac5aaa2d024..3900ee4f3532 100644
+--- a/Documentation/devicetree/bindings/rng/atmel-trng.txt
++++ b/Documentation/devicetree/bindings/rng/atmel-trng.txt
+@@ -1,7 +1,7 @@
+ Atmel TRNG (True Random Number Generator) block
  
-       - description: Kontron N6310 S Board
-@@ -170,6 +171,12 @@ properties:
-           - const: kontron,imx6ul-n6310-som
-           - const: fsl,imx6ul
- 
-+      - description: Kontron N6311 S Board
-+        items:
-+          - const: kontron,imx6ul-n6311-s
-+          - const: kontron,imx6ul-n6311-som
-+          - const: fsl,imx6ul
-+
-       - description: Kontron N6310 S 43 Board
-         items:
-           - const: kontron,imx6ul-n6310-s-43
-@@ -181,6 +188,13 @@ properties:
-         items:
-           - enum:
-               - fsl,imx6ull-14x14-evk     # i.MX6 UltraLiteLite 14x14 EVK Board
-+              - kontron,imx6ull-n6411-som # Kontron N6411 SOM
-+          - const: fsl,imx6ull
-+
-+      - description: Kontron N6411 S Board
-+        items:
-+          - const: kontron,imx6ull-n6411-s
-+          - const: kontron,imx6ull-n6411-som
-           - const: fsl,imx6ull
- 
-       - description: i.MX6ULZ based Boards
+ Required properties:
+-- compatible : Should be "atmel,at91sam9g45-trng"
++- compatible : Should be "atmel,at91sam9g45-trng" or "microchip,sam9x60-trng"
+ - reg : Offset and length of the register set of this block
+ - interrupts : the interrupt number for the TRNG block
+ - clocks: should contain the TRNG clk source
 -- 
-2.17.1
+2.20.1
+
