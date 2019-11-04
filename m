@@ -2,609 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D4CEE333
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 16:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A23DEE34B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 16:14:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728607AbfKDPKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 10:10:35 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:34760 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727861AbfKDPKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 10:10:35 -0500
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
-  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Claudiu.Beznea@microchip.com";
-  x-sender="Claudiu.Beznea@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Claudiu.Beznea@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: 89aPr0yE+NYPyS5uO+8Cysh/V60hzipQ3APpa8nTk48dczNlBydUjw1U+S4/iZCeGXVKTGfI5X
- tdiZ4QdSDMeVGJEzY3knvoLSRQiXP9pfkety86oS069kTp4iqrciJh+DUUBYbPN3Ls4gKsx+m/
- gm4wC2JGnnpxcpLrLJOauFrgBnqHjns6CZyHi66TrJusedvinO6pU15GhTC04Y2K8dukDkuWjA
- bm7UL6UZdtTpnCAWx1h9f0ts1D7tGTrUVD++8gub3TLPxOpub7OiwDrH4PInDmmE3+DazVsPge
- wco=
-X-IronPort-AV: E=Sophos;i="5.68,267,1569308400"; 
-   d="scan'208";a="52785132"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2019 08:10:34 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 4 Nov 2019 08:10:27 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.85.251) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Mon, 4 Nov 2019 08:10:24 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <daniel.lezcano@linaro.org>,
-        <tglx@linutronix.de>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v2 2/2] clocksource/drivers/timer-microchip-pit64b: add Microchip PIT64B support
-Date:   Mon, 4 Nov 2019 17:10:04 +0200
-Message-ID: <1572880204-4514-3-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572880204-4514-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1572880204-4514-1-git-send-email-claudiu.beznea@microchip.com>
+        id S1728188AbfKDPOy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 10:14:54 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:40602 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727796AbfKDPOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 10:14:54 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xA4FEWtW082531;
+        Mon, 4 Nov 2019 09:14:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1572880472;
+        bh=h0Sfsp9psoHlAH0L5ZhvIbodfIi+1/unXj3Z6iImMNY=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=kejZajiSHQD5G0Eg97zB9t5UnX8SCrVoZvk1wQN+X5yYInIQEFa6yPNBY2rZ+H6Vt
+         ausOZCdQKnRmJPRCTg7kZJxyXq9RnSARE9VBM/fKnkR0Pui6bz+wWNwrmyxskw7z0v
+         6FjLNNohfuiv8DOSnvKyBUQ1Sny87axJ/iLIG8e8=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xA4FEWLk101598
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 4 Nov 2019 09:14:32 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 4 Nov
+ 2019 09:14:17 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 4 Nov 2019 09:14:17 -0600
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA4FESFC069153;
+        Mon, 4 Nov 2019 09:14:29 -0600
+Subject: Re: [PATCH v4 2/2] usb: cdns3: Add TI specific wrapper driver
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        <felipe.balbi@linux.intel.com>
+CC:     <pawell@cadence.com>, <peter.chen@nxp.com>, <nsekhar@ti.com>,
+        <kurahul@cadence.com>, <chunfeng.yun@mediatek.com>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20191028093249.22822-1-rogerq@ti.com>
+ <20191028093249.22822-3-rogerq@ti.com> <20191104144752.GB2183570@kroah.com>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <2bd9cf7a-d48c-3975-ec46-b663d11359f6@ti.com>
+Date:   Mon, 4 Nov 2019 17:14:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20191104144752.GB2183570@kroah.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for Microchip PIT64B timer. Timer could be used in continuous
-mode or oneshot mode. The hardware has 2x32 bit registers for period
-emulating a 64 bit timer. The LSB_PR and MSB_PR registers are used to
-set the period value (compare value). TLSB and TMSB keeps the current value
-of the counter. After a compare the TLSB and TMSB register resets. Apart
-from this the hardware has SMOD bit in mode register that allow to
-reconfigure the timer without reset and start commands (start command
-while timer is active is ignored).
-The driver uses PIT64B timer as clocksource or clockevent. First requested
-timer would be registered as clockevent, second one would be registered as
-clocksource. Individual PIT64B hardware resources were used for clocksource
-and clockevent to be able to support high resolution timers with this
-hardware implementation.
 
-Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
 
-Hi Nicolas,
+On 04/11/2019 16:47, Greg KH wrote:
+> On Mon, Oct 28, 2019 at 11:32:49AM +0200, Roger Quadros wrote:
+>> The J721e platform comes with 2 Cadence USB3 controller
+>> instances. This driver supports the TI specific wrapper
+>> on this platform.
+>>
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+>> Reviewed-by: Pawel Laszczak <pawell@cadence.com>
+>> ---
+>>   drivers/usb/cdns3/Kconfig    |  10 ++
+>>   drivers/usb/cdns3/Makefile   |   1 +
+>>   drivers/usb/cdns3/cdns3-ti.c | 236 +++++++++++++++++++++++++++++++++++
+>>   3 files changed, 247 insertions(+)
+>>   create mode 100644 drivers/usb/cdns3/cdns3-ti.c
+>>
+>> diff --git a/drivers/usb/cdns3/Kconfig b/drivers/usb/cdns3/Kconfig
+>> index d0331613a355..2a1e89d12ed9 100644
+>> --- a/drivers/usb/cdns3/Kconfig
+>> +++ b/drivers/usb/cdns3/Kconfig
+>> @@ -43,4 +43,14 @@ config USB_CDNS3_PCI_WRAP
+>>   	  If you choose to build this driver as module it will
+>>   	  be dynamically linked and module will be called cdns3-pci.ko
+>>   
+>> +config USB_CDNS3_TI
+>> +	tristate "Cadence USB3 support on TI platforms"
+>> +	depends on ARCH_K3 || COMPILE_TEST
+>> +	default USB_CDNS3
+>> +	help
+>> +	  Say 'Y' or 'M' here if you are building for Texas Instruments
+>> +	  platforms that contain Cadence USB3 controller core.
+>> +
+>> +	  e.g. J721e.
+>> +
+>>   endif
+>> diff --git a/drivers/usb/cdns3/Makefile b/drivers/usb/cdns3/Makefile
+>> index a703547350bb..948e6b88d1a9 100644
+>> --- a/drivers/usb/cdns3/Makefile
+>> +++ b/drivers/usb/cdns3/Makefile
+>> @@ -14,3 +14,4 @@ endif
+>>   cdns3-$(CONFIG_USB_CDNS3_HOST)		+= host.o
+>>   
+>>   obj-$(CONFIG_USB_CDNS3_PCI_WRAP)	+= cdns3-pci-wrap.o
+>> +obj-$(CONFIG_USB_CDNS3_TI)		+= cdns3-ti.o
+>> diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
+>> new file mode 100644
+>> index 000000000000..c6a79ca15858
+>> --- /dev/null
+>> +++ b/drivers/usb/cdns3/cdns3-ti.c
+>> @@ -0,0 +1,236 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/**
+>> + * cdns3-ti.c - TI specific Glue layer for Cadence USB Controller
+>> + *
+>> + * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com
+>> + */
+>> +
+>> +#include <linux/bits.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/module.h>
+>> +#include <linux/kernel.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/dma-mapping.h>
+>> +#include <linux/io.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/pm_runtime.h>
+>> +
+>> +/* USB Wrapper register offsets */
+>> +#define USBSS_PID		0x0
+>> +#define	USBSS_W1		0x4
+>> +#define USBSS_STATIC_CONFIG	0x8
+>> +#define USBSS_PHY_TEST		0xc
+>> +#define	USBSS_DEBUG_CTRL	0x10
+>> +#define	USBSS_DEBUG_INFO	0x14
+>> +#define	USBSS_DEBUG_LINK_STATE	0x18
+>> +#define	USBSS_DEVICE_CTRL	0x1c
+>> +
+>> +/* Wrapper 1 register bits */
+>> +#define USBSS_W1_PWRUP_RST		BIT(0)
+>> +#define USBSS_W1_OVERCURRENT_SEL	BIT(8)
+>> +#define USBSS_W1_MODESTRAP_SEL		BIT(9)
+>> +#define USBSS_W1_OVERCURRENT		BIT(16)
+>> +#define USBSS_W1_MODESTRAP_MASK		GENMASK(18, 17)
+>> +#define USBSS_W1_MODESTRAP_SHIFT	17
+>> +#define USBSS_W1_USB2_ONLY		BIT(19)
+>> +
+>> +/* Static config register bits */
+>> +#define USBSS1_STATIC_PLL_REF_SEL_MASK	GENMASK(8, 5)
+>> +#define USBSS1_STATIC_PLL_REF_SEL_SHIFT	5
+>> +#define USBSS1_STATIC_LOOPBACK_MODE_MASK	GENMASK(4, 3)
+>> +#define USBSS1_STATIC_LOOPBACK_MODE_SHIFT	3
+>> +#define USBSS1_STATIC_VBUS_SEL_MASK	GENMASK(2, 1)
+>> +#define USBSS1_STATIC_VBUS_SEL_SHIFT	1
+>> +#define USBSS1_STATIC_LANE_REVERSE	BIT(0)
+>> +
+>> +/* Modestrap modes */
+>> +enum modestrap_mode { USBSS_MODESTRAP_MODE_NONE,
+>> +		      USBSS_MODESTRAP_MODE_HOST,
+>> +		      USBSS_MODESTRAP_MODE_PERIPHERAL};
+>> +
+>> +struct cdns_ti {
+>> +	struct device *dev;
+>> +	void __iomem *usbss;
+>> +	int usb2_only:1;
+>> +	int vbus_divider:1;
+> 
+> 'bool' instead of bitfields?  Makes it more obvious, right?
+> 
 
-You Acked-by on v1 [1] of this patch but I didn't collect it in this version
-because I removed the the DT bindings for clock-frequency and intead hardcoded
-it in the driver: 32KHz for clockevent, 5MHz for clocksource.
+right.
 
-Thank you,
-Claudiu Beznea
+>> +	struct clk *usb2_refclk;
+>> +	struct clk *lpm_clk;
+>> +};
+>> +
+>> +static const int cdns_ti_rate_table[] = {	/* in KHZ */
+>> +	9600,
+>> +	10000,
+>> +	12000,
+>> +	19200,
+>> +	20000,
+>> +	24000,
+>> +	25000,
+>> +	26000,
+>> +	38400,
+>> +	40000,
+>> +	58000,
+>> +	50000,
+>> +	52000,
+>> +};
+>> +
+>> +static inline u32 cdns_ti_readl(struct cdns_ti *data, u32 offset)
+>> +{
+>> +	return readl(data->usbss + offset);
+>> +}
+> 
+> Does sparse like this function?
+> 
 
-Changes in v2:
-- do not select timer's frequency via DT binding but instead hardcoded it
-- initialize best_pres variable in mchp_pit64b_pres_prepare()
-- remove MCHP_PIT64B_DEF_FREQ 
+It doesn't complain.
 
-[1] https://lore.kernel.org/lkml/1552580772-8499-1-git-send-email-claudiu.beznea@microchip.com/
+>> +
+>> +static inline void cdns_ti_writel(struct cdns_ti *data, u32 offset, u32 value)
+>> +{
+>> +	writel(value, data->usbss + offset);
+> 
+> Same here, have you run sparse on this code?
 
- drivers/clocksource/Kconfig                  |   6 +
- drivers/clocksource/Makefile                 |   1 +
- drivers/clocksource/timer-microchip-pit64b.c | 462 +++++++++++++++++++++++++++
- 3 files changed, 469 insertions(+)
- create mode 100644 drivers/clocksource/timer-microchip-pit64b.c
+I hadn't but now that I run i only see these errors.
 
-diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index f35a53ce8988..e423610cd627 100644
---- a/drivers/clocksource/Kconfig
-+++ b/drivers/clocksource/Kconfig
-@@ -472,6 +472,12 @@ config OXNAS_RPS_TIMER
- config SYS_SUPPORTS_SH_CMT
-         bool
- 
-+config MICROCHIP_PIT64B
-+	bool "Microchip PIT64B support"
-+	depends on OF || COMPILE_TEST
-+	help
-+	  This option enables Microchip PIT64B timer.
-+
- config MTK_TIMER
- 	bool "Mediatek timer driver" if COMPILE_TEST
- 	depends on HAS_IOMEM
-diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-index 4dfe4225ece7..a41dcfffb87d 100644
---- a/drivers/clocksource/Makefile
-+++ b/drivers/clocksource/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_U300_TIMER)	+= timer-u300.o
- obj-$(CONFIG_SUN4I_TIMER)	+= timer-sun4i.o
- obj-$(CONFIG_SUN5I_HSTIMER)	+= timer-sun5i.o
- obj-$(CONFIG_MESON6_TIMER)	+= timer-meson6.o
-+obj-$(CONFIG_MICROCHIP_PIT64B)	+= timer-microchip-pit64b.o
- obj-$(CONFIG_TEGRA_TIMER)	+= timer-tegra.o
- obj-$(CONFIG_VT8500_TIMER)	+= timer-vt8500.o
- obj-$(CONFIG_NSPIRE_TIMER)	+= timer-zevio.o
-diff --git a/drivers/clocksource/timer-microchip-pit64b.c b/drivers/clocksource/timer-microchip-pit64b.c
-new file mode 100644
-index 000000000000..3fa65c7b4470
---- /dev/null
-+++ b/drivers/clocksource/timer-microchip-pit64b.c
-@@ -0,0 +1,462 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2019 Microchip Technology Inc.
-+// Copyright (C) 2019 Claudiu Beznea (claudiu.beznea@microchip.com)
-+
-+#include <linux/clk.h>
-+#include <linux/clockchips.h>
-+#include <linux/interrupt.h>
-+#include <linux/of_address.h>
-+#include <linux/of_irq.h>
-+#include <linux/sched_clock.h>
-+#include <linux/slab.h>
-+
-+#define MCHP_PIT64B_CR		0x00	/* Control Register */
-+#define MCHP_PIT64B_CR_START	BIT(0)
-+#define MCHP_PIT64B_CR_SWRST	BIT(8)
-+
-+#define MCHP_PIT64B_MR		0x04	/* Mode Register */
-+#define MCHP_PIT64B_MR_CONT	BIT(0)
-+#define MCHP_PIT64B_MR_SGCLK	BIT(3)
-+#define MCHP_PIT64B_MR_SMOD	BIT(4)
-+#define MCHP_PIT64B_MR_PRES	GENMASK(11, 8)
-+
-+#define MCHP_PIT64B_LSB_PR	0x08	/* LSB Period Register */
-+
-+#define MCHP_PIT64B_MSB_PR	0x0C	/* MSB Period Register */
-+
-+#define MCHP_PIT64B_IER		0x10	/* Interrupt Enable Register */
-+#define MCHP_PIT64B_IER_PERIOD	BIT(0)
-+
-+#define MCHP_PIT64B_ISR		0x1C	/* Interrupt Status Register */
-+#define MCHP_PIT64B_ISR_PERIOD	BIT(0)
-+
-+#define MCHP_PIT64B_TLSBR	0x20	/* Timer LSB Register */
-+
-+#define MCHP_PIT64B_TMSBR	0x24	/* Timer MSB Register */
-+
-+#define MCHP_PIT64B_PRES_MAX	0x10
-+#define MCHP_PIT64B_LSBMASK	GENMASK_ULL(31, 0)
-+#define MCHP_PIT64B_PRESCALER(p)	(MCHP_PIT64B_MR_PRES & ((p) << 8))
-+#define MCHP_PIT64B_DEF_CS_FREQ		5000000UL	/* 5 MHz */
-+#define MCHP_PIT64B_DEF_CE_FREQ		32768		/* 32 KHz */
-+
-+#define MCHP_PIT64B_NAME	"pit64b"
-+
-+struct mchp_pit64b_common_data {
-+	void __iomem *base;
-+	struct clk *pclk;
-+	struct clk *gclk;
-+	u64 cycles;
-+	u8 pres;
-+};
-+
-+struct mchp_pit64b_clksrc_data {
-+	struct clocksource *clksrc;
-+	struct mchp_pit64b_common_data *cd;
-+};
-+
-+struct mchp_pit64b_clkevt_data {
-+	struct clock_event_device *clkevt;
-+	struct mchp_pit64b_common_data *cd;
-+};
-+
-+static struct mchp_pit64b_data {
-+	struct mchp_pit64b_clksrc_data *csd;
-+	struct mchp_pit64b_clkevt_data *ced;
-+} data;
-+
-+static inline u32 mchp_pit64b_read(void __iomem *base, u32 offset)
-+{
-+	return readl_relaxed(base + offset);
-+}
-+
-+static inline void mchp_pit64b_write(void __iomem *base, u32 offset, u32 val)
-+{
-+	writel_relaxed(val, base + offset);
-+}
-+
-+static inline u64 mchp_pit64b_get_period(void __iomem *base)
-+{
-+	u32 lsb, msb;
-+
-+	/* LSB must be read first to guarantee an atomic read of the 64 bit
-+	 * timer.
-+	 */
-+	lsb = mchp_pit64b_read(base, MCHP_PIT64B_TLSBR);
-+	msb = mchp_pit64b_read(base, MCHP_PIT64B_TMSBR);
-+
-+	return (((u64)msb << 32) | lsb);
-+}
-+
-+static inline void mchp_pit64b_set_period(void __iomem *base, u64 cycles)
-+{
-+	u32 lsb, msb;
-+
-+	lsb = cycles & MCHP_PIT64B_LSBMASK;
-+	msb = cycles >> 32;
-+
-+	/* LSB must be write last to guarantee an atomic update of the timer
-+	 * even when SMOD=1.
-+	 */
-+	mchp_pit64b_write(base, MCHP_PIT64B_MSB_PR, msb);
-+	mchp_pit64b_write(base, MCHP_PIT64B_LSB_PR, lsb);
-+}
-+
-+static inline void mchp_pit64b_reset(struct mchp_pit64b_common_data *data,
-+				     u32 mode, bool irq_ena)
-+{
-+	mode |= MCHP_PIT64B_PRESCALER(data->pres);
-+	if (data->gclk)
-+		mode |= MCHP_PIT64B_MR_SGCLK;
-+
-+	mchp_pit64b_write(data->base, MCHP_PIT64B_CR, MCHP_PIT64B_CR_SWRST);
-+	mchp_pit64b_write(data->base, MCHP_PIT64B_MR, mode);
-+	mchp_pit64b_set_period(data->base, data->cycles);
-+	if (irq_ena)
-+		mchp_pit64b_write(data->base, MCHP_PIT64B_IER,
-+				  MCHP_PIT64B_IER_PERIOD);
-+	mchp_pit64b_write(data->base, MCHP_PIT64B_CR, MCHP_PIT64B_CR_START);
-+}
-+
-+static u64 mchp_pit64b_read_clk(struct clocksource *cs)
-+{
-+	return mchp_pit64b_get_period(data.csd->cd->base);
-+}
-+
-+static u64 mchp_sched_read_clk(void)
-+{
-+	return mchp_pit64b_get_period(data.csd->cd->base);
-+}
-+
-+static struct clocksource mchp_pit64b_clksrc = {
-+	.name = MCHP_PIT64B_NAME,
-+	.mask = CLOCKSOURCE_MASK(64),
-+	.flags = CLOCK_SOURCE_IS_CONTINUOUS,
-+	.rating = 210,
-+	.read = mchp_pit64b_read_clk,
-+};
-+
-+static int mchp_pit64b_clkevt_shutdown(struct clock_event_device *cedev)
-+{
-+	mchp_pit64b_write(data.ced->cd->base, MCHP_PIT64B_CR,
-+			  MCHP_PIT64B_CR_SWRST);
-+
-+	return 0;
-+}
-+
-+static int mchp_pit64b_clkevt_set_periodic(struct clock_event_device *cedev)
-+{
-+	mchp_pit64b_reset(data.ced->cd, MCHP_PIT64B_MR_CONT, true);
-+
-+	return 0;
-+}
-+
-+static int mchp_pit64b_clkevt_set_oneshot(struct clock_event_device *cedev)
-+{
-+	mchp_pit64b_reset(data.ced->cd, MCHP_PIT64B_MR_SMOD, true);
-+
-+	return 0;
-+}
-+
-+static int mchp_pit64b_clkevt_set_next_event(unsigned long evt,
-+					     struct clock_event_device *cedev)
-+{
-+	mchp_pit64b_set_period(data.ced->cd->base, evt);
-+	mchp_pit64b_write(data.ced->cd->base, MCHP_PIT64B_CR,
-+			  MCHP_PIT64B_CR_START);
-+
-+	return 0;
-+}
-+
-+static void mchp_pit64b_clkevt_suspend(struct clock_event_device *cedev)
-+{
-+	mchp_pit64b_write(data.ced->cd->base, MCHP_PIT64B_CR,
-+			  MCHP_PIT64B_CR_SWRST);
-+	if (data.ced->cd->gclk)
-+		clk_disable_unprepare(data.ced->cd->gclk);
-+	clk_disable_unprepare(data.ced->cd->pclk);
-+}
-+
-+static void mchp_pit64b_clkevt_resume(struct clock_event_device *cedev)
-+{
-+	u32 mode = MCHP_PIT64B_MR_SMOD;
-+
-+	clk_prepare_enable(data.ced->cd->pclk);
-+	if (data.ced->cd->gclk)
-+		clk_prepare_enable(data.ced->cd->gclk);
-+
-+	if (clockevent_state_periodic(data.ced->clkevt))
-+		mode = MCHP_PIT64B_MR_CONT;
-+
-+	mchp_pit64b_reset(data.ced->cd, mode, true);
-+}
-+
-+static struct clock_event_device mchp_pit64b_clkevt = {
-+	.name = MCHP_PIT64B_NAME,
-+	.features = CLOCK_EVT_FEAT_ONESHOT | CLOCK_EVT_FEAT_PERIODIC,
-+	.rating = 150,
-+	.set_state_shutdown = mchp_pit64b_clkevt_shutdown,
-+	.set_state_periodic = mchp_pit64b_clkevt_set_periodic,
-+	.set_state_oneshot = mchp_pit64b_clkevt_set_oneshot,
-+	.set_next_event = mchp_pit64b_clkevt_set_next_event,
-+	.suspend = mchp_pit64b_clkevt_suspend,
-+	.resume = mchp_pit64b_clkevt_resume,
-+};
-+
-+static irqreturn_t mchp_pit64b_interrupt(int irq, void *dev_id)
-+{
-+	struct mchp_pit64b_clkevt_data *irq_data = dev_id;
-+
-+	if (data.ced != irq_data)
-+		return IRQ_NONE;
-+
-+	if (mchp_pit64b_read(irq_data->cd->base, MCHP_PIT64B_ISR) &
-+	    MCHP_PIT64B_ISR_PERIOD) {
-+		irq_data->clkevt->event_handler(irq_data->clkevt);
-+		return IRQ_HANDLED;
-+	}
-+
-+	return IRQ_NONE;
-+}
-+
-+static int __init mchp_pit64b_pres_compute(u32 *pres, u32 clk_rate,
-+					   u32 max_rate)
-+{
-+	u32 tmp;
-+
-+	for (*pres = 0; *pres < MCHP_PIT64B_PRES_MAX; (*pres)++) {
-+		tmp = clk_rate / (*pres + 1);
-+		if (tmp <= max_rate)
-+			break;
-+	}
-+
-+	if (*pres == MCHP_PIT64B_PRES_MAX)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int __init mchp_pit64b_pres_prepare(struct mchp_pit64b_common_data *cd,
-+					   unsigned long max_rate)
-+{
-+	unsigned long pclk_rate, diff = 0, best_diff = ULONG_MAX;
-+	long gclk_round = 0;
-+	u32 pres, best_pres = 0;
-+	int ret = 0;
-+
-+	pclk_rate = clk_get_rate(cd->pclk);
-+	if (!pclk_rate)
-+		return -EINVAL;
-+
-+	if (cd->gclk) {
-+		gclk_round = clk_round_rate(cd->gclk, max_rate);
-+		if (gclk_round < 0)
-+			goto pclk;
-+
-+		if (pclk_rate / gclk_round < 3)
-+			goto pclk;
-+
-+		ret = mchp_pit64b_pres_compute(&pres, gclk_round, max_rate);
-+		if (ret)
-+			best_diff = abs(gclk_round - max_rate);
-+		else
-+			best_diff = abs(gclk_round / (pres + 1) - max_rate);
-+		best_pres = pres;
-+	}
-+
-+pclk:
-+	/* Check if requested rate could be obtained using PCLK. */
-+	ret = mchp_pit64b_pres_compute(&pres, pclk_rate, max_rate);
-+	if (ret)
-+		diff = abs(pclk_rate - max_rate);
-+	else
-+		diff = abs(pclk_rate / (pres + 1) - max_rate);
-+
-+	if (best_diff > diff) {
-+		/* Use PCLK. */
-+		cd->gclk = NULL;
-+		best_pres = pres;
-+	} else {
-+		clk_set_rate(cd->gclk, gclk_round);
-+	}
-+
-+	cd->pres = best_pres;
-+
-+	pr_info("PIT64B: using clk=%s with prescaler %u, freq=%lu [Hz]\n",
-+		cd->gclk ? "gclk" : "pclk", cd->pres,
-+		cd->gclk ? gclk_round / (cd->pres + 1)
-+			 : pclk_rate / (cd->pres + 1));
-+
-+	return 0;
-+}
-+
-+static int __init mchp_pit64b_dt_init_clksrc(struct mchp_pit64b_common_data *cd)
-+{
-+	struct mchp_pit64b_clksrc_data *csd;
-+	unsigned long clk_rate;
-+	int ret;
-+
-+	csd = kzalloc(sizeof(*csd), GFP_KERNEL);
-+	if (!csd)
-+		return -ENOMEM;
-+
-+	csd->cd = cd;
-+
-+	if (csd->cd->gclk)
-+		clk_rate = clk_get_rate(csd->cd->gclk);
-+	else
-+		clk_rate = clk_get_rate(csd->cd->pclk);
-+
-+	clk_rate = clk_rate / (cd->pres + 1);
-+	csd->cd->cycles = ULLONG_MAX;
-+	mchp_pit64b_reset(csd->cd, MCHP_PIT64B_MR_CONT, false);
-+
-+	data.csd = csd;
-+
-+	csd->clksrc = &mchp_pit64b_clksrc;
-+
-+	ret = clocksource_register_hz(csd->clksrc, clk_rate);
-+	if (ret) {
-+		pr_debug("clksrc: Failed to register PIT64B clocksource!\n");
-+		goto free;
-+	}
-+
-+	sched_clock_register(mchp_sched_read_clk, 64, clk_rate);
-+
-+	return 0;
-+
-+free:
-+	kfree(csd);
-+	data.csd = NULL;
-+
-+	return ret;
-+}
-+
-+static int __init mchp_pit64b_dt_init_clkevt(struct mchp_pit64b_common_data *cd,
-+					     u32 irq)
-+{
-+	struct mchp_pit64b_clkevt_data *ced;
-+	unsigned long clk_rate;
-+	int ret;
-+
-+	ced = kzalloc(sizeof(*ced), GFP_KERNEL);
-+	if (!ced)
-+		return -ENOMEM;
-+
-+	ced->cd = cd;
-+
-+	if (ced->cd->gclk)
-+		clk_rate = clk_get_rate(ced->cd->gclk);
-+	else
-+		clk_rate = clk_get_rate(ced->cd->pclk);
-+
-+	clk_rate = clk_rate / (ced->cd->pres + 1);
-+	ced->cd->cycles = DIV_ROUND_CLOSEST(clk_rate, HZ);
-+
-+	ret = request_irq(irq, mchp_pit64b_interrupt, IRQF_TIMER, "pit64b_tick",
-+			  ced);
-+	if (ret) {
-+		pr_debug("clkevt: Failed to setup PIT64B IRQ\n");
-+		goto free;
-+	}
-+
-+	data.ced = ced;
-+
-+	/* Set up and register clockevents. */
-+	ced->clkevt = &mchp_pit64b_clkevt;
-+	ced->clkevt->cpumask = cpumask_of(0);
-+	ced->clkevt->irq = irq;
-+	clockevents_config_and_register(ced->clkevt, clk_rate, 1, ULONG_MAX);
-+
-+	return 0;
-+
-+free:
-+	kfree(ced);
-+	data.ced = NULL;
-+
-+	return ret;
-+}
-+
-+static int __init mchp_pit64b_dt_init(struct device_node *node)
-+{
-+	struct mchp_pit64b_common_data *cd;
-+	u32 irq;
-+	int ret;
-+
-+	if (data.csd && data.ced)
-+		return -EBUSY;
-+
-+	cd = kzalloc(sizeof(*cd), GFP_KERNEL);
-+	if (!cd)
-+		return -ENOMEM;
-+
-+	cd->pclk = of_clk_get_by_name(node, "pclk");
-+	if (IS_ERR(cd->pclk)) {
-+		ret = PTR_ERR(cd->pclk);
-+		goto free;
-+	}
-+
-+	cd->gclk = of_clk_get_by_name(node, "gclk");
-+	if (IS_ERR(cd->gclk))
-+		cd->gclk = NULL;
-+
-+	ret = mchp_pit64b_pres_prepare(cd, data.ced ? MCHP_PIT64B_DEF_CS_FREQ :
-+						      MCHP_PIT64B_DEF_CE_FREQ);
-+	if (ret)
-+		goto free;
-+
-+	cd->base = of_iomap(node, 0);
-+	if (!cd->base) {
-+		pr_debug("%s: Could not map PIT64B address!\n",
-+			 MCHP_PIT64B_NAME);
-+		ret = -ENXIO;
-+		goto free;
-+	}
-+
-+	ret = clk_prepare_enable(cd->pclk);
-+	if (ret)
-+		goto unmap;
-+
-+	if (cd->gclk) {
-+		ret = clk_prepare_enable(cd->gclk);
-+		if (ret)
-+			goto pclk_unprepare;
-+	}
-+
-+	if (!data.ced) {
-+		irq = irq_of_parse_and_map(node, 0);
-+		if (!irq) {
-+			pr_debug("%s: Failed to get PIT64B clockevent IRQ!\n",
-+				 MCHP_PIT64B_NAME);
-+			ret = -ENODEV;
-+			goto gclk_unprepare;
-+		}
-+		ret = mchp_pit64b_dt_init_clkevt(cd, irq);
-+		if (ret)
-+			goto irq_unmap;
-+	} else {
-+		ret = mchp_pit64b_dt_init_clksrc(cd);
-+		if (ret)
-+			goto gclk_unprepare;
-+	}
-+
-+	return 0;
-+
-+irq_unmap:
-+	irq_dispose_mapping(irq);
-+gclk_unprepare:
-+	if (cd->gclk)
-+		clk_disable_unprepare(cd->gclk);
-+pclk_unprepare:
-+	clk_disable_unprepare(cd->pclk);
-+unmap:
-+	iounmap(cd->base);
-+free:
-+	kfree(cd);
-+
-+	return ret;
-+}
-+
-+TIMER_OF_DECLARE(mchp_pit64b_clksrc, "microchip,sam9x60-pit64b",
-+		 mchp_pit64b_dt_init);
+   CHECK   drivers/usb/cdns3/cdns3-ti.c
+drivers/usb/cdns3/cdns3-ti.c:55:24: error: dubious one-bit signed bitfield
+drivers/usb/cdns3/cdns3-ti.c:56:27: error: dubious one-bit signed bitfield
+
+> 
+>> +}
+>> +
+>> +static int cdns_ti_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct device_node *node = pdev->dev.of_node;
+>> +	struct cdns_ti *data;
+>> +	int error;
+>> +	u32 reg;
+>> +	int rate_code, i;
+>> +	unsigned long rate;
+>> +
+>> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>> +	if (!data)
+>> +		return -ENOMEM;
+>> +
+>> +	platform_set_drvdata(pdev, data);
+>> +
+>> +	data->dev = dev;
+>> +
+>> +	data->usbss = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(data->usbss)) {
+>> +		dev_err(dev, "can't map IOMEM resource\n");
+> 
+> Doesn't the function print an error?
+
+It does.
+> 
+>> +		return PTR_ERR(data->usbss);
+>> +	}
+>> +
+>> +	data->usb2_refclk = devm_clk_get(dev, "ref");
+>> +	if (IS_ERR(data->usb2_refclk)) {
+>> +		dev_err(dev, "can't get usb2_refclk\n");
+> 
+> Again, doesn't the function print an error?
+
+No.
+
+> 
+>> +		return PTR_ERR(data->usb2_refclk);
+>> +	}
+>> +
+>> +	data->lpm_clk = devm_clk_get(dev, "lpm");
+>> +	if (IS_ERR(data->lpm_clk)) {
+>> +		dev_err(dev, "can't get lpm_clk\n");
+> 
+> Same?
+> 
+>> +		return PTR_ERR(data->lpm_clk);
+>> +	}
+>> +
+>> +	rate = clk_get_rate(data->usb2_refclk);
+>> +	rate /= 1000;	/* To KHz */
+>> +	for (i = 0; i < ARRAY_SIZE(cdns_ti_rate_table); i++) {
+>> +		if (cdns_ti_rate_table[i] == rate)
+>> +			break;
+>> +	}
+>> +
+>> +	if (i == ARRAY_SIZE(cdns_ti_rate_table)) {
+>> +		dev_err(dev, "unsupported usb2_refclk rate: %lu KHz\n", rate);
+> 
+> What can userspace do about this?
+
+Nothing, but it would help us identify the issue on customer boards.
+
+> 
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	rate_code = i;
+>> +
+>> +	pm_runtime_enable(dev);
+>> +	error = pm_runtime_get_sync(dev);
+>> +	if (error < 0) {
+>> +		dev_err(dev, "pm_runtime_get_sync failed: %d\n", error);
+> 
+> Again, the call should print the error, right?
+
+It doesn't.
+> 
+>> +		goto err_get;
+>> +	}
+>> +
+>> +	/* assert RESET */
+>> +	reg = cdns_ti_readl(data, USBSS_W1);
+>> +	reg &= ~USBSS_W1_PWRUP_RST;
+>> +	cdns_ti_writel(data, USBSS_W1, reg);
+>> +
+>> +	/* set static config */
+>> +	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+>> +	reg &= ~USBSS1_STATIC_PLL_REF_SEL_MASK;
+>> +	reg |= rate_code << USBSS1_STATIC_PLL_REF_SEL_SHIFT;
+>> +
+>> +	reg &= ~USBSS1_STATIC_VBUS_SEL_MASK;
+>> +	data->vbus_divider = device_property_read_bool(dev, "ti,vbus-divider");
+>> +	if (data->vbus_divider)
+>> +		reg |= 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
+>> +
+>> +	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
+>> +	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+>> +
+>> +	/* set USB2_ONLY mode if requested */
+>> +	reg = cdns_ti_readl(data, USBSS_W1);
+>> +	data->usb2_only = device_property_read_bool(dev, "ti,usb2-only");
+>> +	if (data->usb2_only)
+>> +		reg |= USBSS_W1_USB2_ONLY;
+>> +
+>> +	/* set default modestrap */
+>> +	reg |= USBSS_W1_MODESTRAP_SEL;
+>> +	reg &= ~USBSS_W1_MODESTRAP_MASK;
+>> +	reg |= USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
+>> +	cdns_ti_writel(data, USBSS_W1, reg);
+>> +
+>> +	/* de-assert RESET */
+>> +	reg |= USBSS_W1_PWRUP_RST;
+>> +	cdns_ti_writel(data, USBSS_W1, reg);
+>> +
+>> +	error = of_platform_populate(node, NULL, NULL, dev);
+>> +	if (error) {
+>> +		dev_err(dev, "failed to create children: %d\n", error);
+> 
+> Again, error in the caller?
+
+doesn't seem like so.
+
+
+Felipe,
+
+Do you want me to send a diff with the changes or a revised patch?
+
 -- 
-2.7.4
+cheers,
+-roger
 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
