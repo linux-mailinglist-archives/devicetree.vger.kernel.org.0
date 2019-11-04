@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7343FED707
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 02:40:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CC06ED746
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 02:49:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728872AbfKDBka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Nov 2019 20:40:30 -0500
-Received: from mx2.suse.de ([195.135.220.15]:55834 "EHLO mx1.suse.de"
+        id S1728352AbfKDBtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Nov 2019 20:49:08 -0500
+Received: from mx2.suse.de ([195.135.220.15]:57488 "EHLO mx1.suse.de"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728753AbfKDBk3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 3 Nov 2019 20:40:29 -0500
+        id S1728288AbfKDBtI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 3 Nov 2019 20:49:08 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 399ACB456;
-        Mon,  4 Nov 2019 01:40:28 +0000 (UTC)
-From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+        by mx1.suse.de (Postfix) with ESMTP id A61E1AC81;
+        Mon,  4 Nov 2019 01:49:06 +0000 (UTC)
+Subject: Re: [PATCH 7/7] dt-bindings: gpu: arm-bifrost: Add Realtek RTD1619
 To:     linux-realtek-soc@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        David Airlie <airlied@linux.ie>,
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: [PATCH 7/7] dt-bindings: gpu: arm-bifrost: Add Realtek RTD1619
-Date:   Mon,  4 Nov 2019 02:39:32 +0100
-Message-Id: <20191104013932.22505-8-afaerber@suse.de>
-X-Mailer: git-send-email 2.16.4
-In-Reply-To: <20191104013932.22505-1-afaerber@suse.de>
+        linux-arm-kernel@lists.infradead.org
 References: <20191104013932.22505-1-afaerber@suse.de>
+ <20191104013932.22505-8-afaerber@suse.de>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <02f64196-fabc-00b2-396a-3926ca5011f4@suse.de>
+Date:   Mon, 4 Nov 2019 02:49:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20191104013932.22505-8-afaerber@suse.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define a compatible string for Realtek RTD1619 SoC family.
+$subject: "mali-bifrost" obviously. Fixed on my branch.
 
-Signed-off-by: Andreas Färber <afaerber@suse.de>
----
- Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Am 04.11.19 um 02:39 schrieb Andreas Färber:
+> Define a compatible string for Realtek RTD1619 SoC family.
+> 
+> Signed-off-by: Andreas Färber <afaerber@suse.de>
+> ---
+>  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+[snip]
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-index e50a0cc78fff..0c426e371e71 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-@@ -17,6 +17,7 @@ properties:
-     items:
-       - enum:
-           - amlogic,meson-g12a-mali
-+          - realtek,rtd1619-mali
-       - const: arm,mali-bifrost # Mali Bifrost GPU model/revision is fully discoverable
- 
-   reg:
+Regards,
+Andreas
+
 -- 
-2.16.4
-
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
