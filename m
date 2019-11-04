@@ -2,61 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F60EDC0F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 11:04:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56978EDCB4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Nov 2019 11:39:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727993AbfKDKEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Nov 2019 05:04:11 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:36313 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726633AbfKDKEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 05:04:11 -0500
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1iRZDS-0003t8-MM; Mon, 04 Nov 2019 11:04:06 +0100
-Message-ID: <b357f9fc50ea9e13fc06e0a07db2bbf1f14b8ef5.camel@pengutronix.de>
-Subject: Re: [PATCH v5 09/10] media: hantro: add initial i.MX8MQ support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Date:   Mon, 04 Nov 2019 11:04:05 +0100
-In-Reply-To: <ec9812f1-7592-b5e5-aa9c-8c37c3e8f630@xs4all.nl>
-References: <20190612093915.18973-1-p.zabel@pengutronix.de>
-         <20190612093915.18973-10-p.zabel@pengutronix.de>
-         <ec9812f1-7592-b5e5-aa9c-8c37c3e8f630@xs4all.nl>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S1727322AbfKDKj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Nov 2019 05:39:58 -0500
+Received: from www381.your-server.de ([78.46.137.84]:46236 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726633AbfKDKj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Nov 2019 05:39:58 -0500
+X-Greylist: delayed 913 seconds by postgrey-1.27 at vger.kernel.org; Mon, 04 Nov 2019 05:39:57 EST
+Received: from sslproxy01.your-server.de ([88.198.220.130])
+        by www381.your-server.de with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89_1)
+        (envelope-from <lars@metafoo.de>)
+        id 1iRZXK-0008L4-R2; Mon, 04 Nov 2019 11:24:38 +0100
+Received: from [93.104.100.36] (helo=[192.168.178.20])
+        by sslproxy01.your-server.de with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89)
+        (envelope-from <lars@metafoo.de>)
+        id 1iRZXK-00059k-6a; Mon, 04 Nov 2019 11:24:38 +0100
+Subject: Re: [alsa-devel] [PATCH] dt-bindings: sound: adau7118: Fix example
+ warning
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, broonie@kernel.org,
+        lgirdwood@gmail.com
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        =?UTF-8?Q?Nuno_S=c3=a1?= <nuno.sa@analog.com>
+References: <20191031134713.241157-1-maxime@cerno.tech>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <14c37030-2da6-5fb1-8eea-02c3bb94257a@metafoo.de>
+Date:   Mon, 4 Nov 2019 11:24:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20191031134713.241157-1-maxime@cerno.tech>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.101.4/25622/Sun Nov  3 10:13:19 2019)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
-
-On Fri, 2019-10-25 at 10:01 +0200, Hans Verkuil wrote:
-> Hi Philipp,
+On 10/31/19 2:47 PM, Maxime Ripard wrote:
+> The ADAU7118 has an example where the codec has an i2c address of 14, and
+> the unit address set to 14 as well>
+> However, while the address is expressed in decimal, the unit-address is
+> supposed to be in hexadecimal, which ends up with two different addresses
+> that trigger a DTC warning. Fix this by setting the unit address to (0x)e.
 > 
-> I'm marking this patch and the next 10/10 patch as 'Changes Requested' in
-> patchwork. Please repost once you are ready to add i.MX8 support for this.
+
+The mistake is in the I2C address, should be 0x14.
+
+> Cc: Nuno Sá <nuno.sa@analog.com>
+> Fixes: 969d49b2cdc8 ("dt-bindings: asoc: Add ADAU7118 documentation")
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  Documentation/devicetree/bindings/sound/adi,adau7118.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> To be honest, I can't remember why the i.MX8MQ support hasn't been added yet.
-
-I still have to get the i.MX8MM board to run this. Since i.MX8MM has the
-Hantro cores in separate power domains, I expect the DT bindings have to
-be changed.
-
-regards
-Philipp
+> diff --git a/Documentation/devicetree/bindings/sound/adi,adau7118.yaml b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
+> index c3f10afbdd6f..65f6844a0c6d 100644
+> --- a/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
+> +++ b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
+> @@ -65,7 +65,7 @@ examples:
+>          /* example with i2c support */
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> -        adau7118_codec: audio-codec@14 {
+> +        adau7118_codec: audio-codec@e {
+>                  compatible = "adi,adau7118";
+>                  reg = <14>;
+>                  #sound-dai-cells = <0>;
+> 
 
