@@ -2,266 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91E1CEF6FE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 09:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 813E7EF74F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 09:32:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388048AbfKEIMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Nov 2019 03:12:06 -0500
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:41959 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387950AbfKEIMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 03:12:06 -0500
-Received: by mail-lf1-f68.google.com with SMTP id j14so14371916lfb.8;
-        Tue, 05 Nov 2019 00:12:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=I97oI86lnkyHn0k2SlVpiWM20+aIPOoBHQv5XpJrU54=;
-        b=b6LXscyMhr/dhGiIH34IvVoc2yhNm5O44wXcBgBZGieMxfSHG08/cobvcdTvdj+df8
-         fvWV//48u/UrQYaxyD3sukPRhMeyyjgsj8Uc+baKZOqe44C+TOuGp0SXjlukms/mHjVl
-         NzzXhZNUOK55TLwcqqx0zPn/hS+WU8A0XO/H1GFskjG9ManNqaBAEXaqDBnYy0WHW1hm
-         Ev77AB0REbCmYFHCfgEnCW1T33GKy5XPXokxwSsYSVVphidWkFa66a7N7Kf1SQqdLMI1
-         G1dU905ITEJovgwPmGl02Ek0uPNwAGM9l+AMrAhkay8kXxcsPQQ3Kz0nZLaZrkyPI09P
-         SkUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=I97oI86lnkyHn0k2SlVpiWM20+aIPOoBHQv5XpJrU54=;
-        b=l/y9k1BPYTWF2BwfDQjTSKfhUyjoOoWGopbfBMyaWBFbA1DuY59yLmbKYVAQ/0l7Hi
-         lQtoOM4GyO7dCMo5BV7fGBJGUvmc1IerH94klZSQ3ni3IBCVxYoGjIFgr9W5JG2ikbEe
-         Nmf4sq+cm7a3XNSITuvMvao5QYmBivs787zAeeFyNdhVrItfYFNPQxDyXfMpUAYosaK4
-         s/+y4h40HrTh4jTnoscKSASHM//ddM39UOdoi2EhhXDWkJyf5c2ZIKBhijfWj3I2Nm+b
-         7DVVAWKB8HxcfFYCkQ3JMvV/GqGdWLWE0daZk/Kq5pdDQCyv9m9Mqdme0Xv5jyo0zQMJ
-         cB7w==
-X-Gm-Message-State: APjAAAVehM+KSHAk3SaEgYTOm056Ekl5eKrwgaFeBlV0dipL71d9n+/V
-        9echaQ62mSC4YyW2hTEj6yU=
-X-Google-Smtp-Source: APXvYqwJGyDgq31CoYd7HCgMz84XKy3YL46i9DshXvLeT/SBFby9VSv2+7GkezDP01qi8hjIYbIPqQ==
-X-Received: by 2002:ac2:5bca:: with SMTP id u10mr19879208lfn.134.1572941522707;
-        Tue, 05 Nov 2019 00:12:02 -0800 (PST)
-Received: from gmail.com (c-2ec20990-74736162.cust.telenor.se. [46.194.9.144])
-        by smtp.gmail.com with ESMTPSA id 27sm9094503ljv.82.2019.11.05.00.12.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Nov 2019 00:12:01 -0800 (PST)
-Date:   Tue, 5 Nov 2019 09:14:41 +0100
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-Cc:     "kent@minoris.se" <kent@minoris.se>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mchehab+samsung@kernel.org" <mchehab+samsung@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: iio: dac: Migrate LTC1660 documentation to
- yaml
-Message-ID: <20191105081441.GA16130@gmail.com>
-References: <20191104174036.3535-1-marcus.folkesson@gmail.com>
- <00785b238251ad5b2eb3268693bae357a0a94c1b.camel@analog.com>
+        id S2387784AbfKEIc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Nov 2019 03:32:27 -0500
+Received: from smtp1.de.adit-jv.com ([93.241.18.167]:51946 "EHLO
+        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387686AbfKEIc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 03:32:27 -0500
+Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
+        by smtp1.de.adit-jv.com (Postfix) with ESMTP id E602C3C0588;
+        Tue,  5 Nov 2019 09:32:23 +0100 (CET)
+Received: from smtp1.de.adit-jv.com ([127.0.0.1])
+        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id yQUalbo20ufv; Tue,  5 Nov 2019 09:32:18 +0100 (CET)
+Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 74DD23C0585;
+        Tue,  5 Nov 2019 09:32:18 +0100 (CET)
+Received: from vmlxhi-102.adit-jv.com (10.72.93.184) by HI2EXCH01.adit-jv.com
+ (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.468.0; Tue, 5 Nov 2019
+ 09:32:17 +0100
+Date:   Tue, 5 Nov 2019 09:32:13 +0100
+From:   Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     Wolfram Sang <wsa@the-dreams.de>
+CC:     Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        <linux-mmc@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mathieu Malaterre <malat@debian.org>,
+        Pavel Machek <pavel@ucw.cz>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: Add
+ 'fixed-emmc-driver-type-hs{200,400}'
+Message-ID: <20191105083213.GA24603@vmlxhi-102.adit-jv.com>
+References: <20191105055015.23656-1-erosca@de.adit-jv.com>
+ <20191105062223.GB1048@kunai>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gKMricLos+KVdGMg"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <00785b238251ad5b2eb3268693bae357a0a94c1b.camel@analog.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20191105062223.GB1048@kunai>
+User-Agent: Mutt/1.12.1+40 (7f8642d4ee82) (2019-06-28)
+X-Originating-IP: [10.72.93.184]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Wolfram,
 
---gKMricLos+KVdGMg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Nov 05, 2019 at 07:22:23AM +0100, Wolfram Sang wrote:
+> Hi Eugeniu,
+> 
+> thanks for this work!
 
-Hi Alexandru,
+Thanks for the prompt response. Very much appreciated.
 
-See comments below.
+> 
+> > A certain eMMC manufacturer provided below requirement:
+> >  ---snip---
+> >  Use "drive strength" value of 4 or 1 for HS400 or 0 for HS200.
+> >  ---snip---
+> 
+> I see.
+> 
+> > The existing "fixed-emmc-driver-type" property [1] is the closest one
+> > to implement the above, but it falls short due to being unable to define
+> > two values to differentiate between HS200 and HS400 (both modes may be
+> > supported by the same non-removable MMC device).
+> > 
+> > To allow users to set a preferred HS200/HS400 "drive strength", provide
+> > two more bindings inspired from [1]:
+> >  - fixed-emmc-driver-type-hs200
+> >  - fixed-emmc-driver-type-hs400
+> 
+> Main question before looking at the code: Can't we just extend the
+> existing binding with an optional second parameter?
 
-On Tue, Nov 05, 2019 at 06:42:06AM +0000, Ardelean, Alexandru wrote:
-> On Mon, 2019-11-04 at 18:40 +0100, Marcus Folkesson wrote:
-> > [External]
-> >=20
-> > Rewrite bindings to use json-schema vocabulary.
->=20
-> Hey,
->=20
-> Overall looks good.
->=20
-> A few comments inline.
-> Rob may add more.
+That's a great question/proposal, but before pushing the v2 right away,
+I would like to first share some thoughts.
 
-Thank you for looking into this!
->=20
-> >=20
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > ---
-> >  .../bindings/iio/dac/lltc,ltc1660.yaml        | 54 +++++++++++++++++++
-> >  .../devicetree/bindings/iio/dac/ltc1660.txt   | 21 --------
-> >  MAINTAINERS                                   |  2 +-
-> >  3 files changed, 55 insertions(+), 22 deletions(-)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/dac/ltc1660.t=
-xt
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
-> > b/Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
-> > new file mode 100644
-> > index 000000000000..1f3136bfffcd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
-> > @@ -0,0 +1,54 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +# Copyright 2019 Marcus Folkesson <marcus.folkesson@gmail.com>
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/bindings/iio/dac/lltc,ltc1660.yaml=
-#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Linear Technology Micropower octal 8-Bit and 10-Bit DACs
-> > +
-> > +maintainers:
-> > +  - Marcus Folkesson <marcus.folkesson@gmail.com>
-> > +
-> > +description: |
-> > +  Bindings for the Linear Technology Micropower octal 8-Bit and 10-Bit
-> > DAC.
-> > +  Datasheet can be found here:=20
-> > https://www.analog.com/media/en/technical-documentation/data-sheets/166=
-560fa.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - lltc,ltc1660
-> > +      - lltc,ltc1665
-> > +
-> > +  reg:
-> > +    description: SPI chip select number for the device
->=20
-> You can remove description.
-> It's a standard property.
->=20
+>         minItems: 1
+>         maxItems: 2
+> 
+> I tend to favour this approach...
 
-Ok, I will remove it.
+The first question which pops up in my mind is related to the meaning
+of each item. The option which I envision based on your proposal is:
 
-> > +    maxItems: 1
-> > +
-> > +  spi-max-frequency:
-> > +    description: |
-> > +      Definition as per Documentation/devicetree/bindings/spi/spi-
-> > bus.txt.
-> > +    maximum: 5000000
-> > +    maxItems: 1
->=20
-> I think you can probably remove `spi-max-frequency` from here.
-> It's documented in the base SPI schema.
->=20
+  * minItems: 1
+  * maxItems: 2
+  * Item[0]: Presumably equivalent to the current
+    "fixed-emmc-driver-type", i.e. the strength value applied in both
+    HS200 and HS400 modes.
+  * Item[1] (optional): Presumably equivalent to
+    "fixed-emmc-driver-type-hs400" proposed in this series. If this
+    element is provided, the first one should likely change its role
+    and become an equivalent of "fixed-emmc-driver-type-hs200" from
+    this series.
+  + Pro: Full backward compatibility. No need to touch the existing
+    users of "fixed-emmc-driver-type".
+  - Con: Not sure we have such DT bindings which dynamically change
+    their semantics based on the usage pattern.
+  - Con: Can't easily achieve the same flexibility as accomplished in
+    this series. For example, current implementation allows users to
+    define each of the three parameters (i.e. HSx00-agnostic drive
+    strength, HS200 and HS400 specific drive strengths) individually,
+    as well as in all possible combinations. This might be needed if,
+    in certain HSx00 mode, users still need to rely on the
+    RAW/unmodified drive strength. I am unsure if/how this can be
+    achieved with an array OF property with a constant or variable
+    number of elements (I try to sketch one solution below).
 
-Yes it is, and I was not really sure if I should include that property, but
-I wanted to somehow document the maximum frequency that the chip can handle=
- as it could be useful information.
+One option to achieve a similar degree of flexibility by using an array
+OF property (instead of several u32 properties) would be to agree on a
+convention based on magic values, i.e. below DT one-liner could be an
+example of providing solely the "fixed-emmc-driver-type-hs200" value
+(based on the agreement that 0xFF values are discarded by the driver):
 
-> > +
-> > +  vref-supply:
-> > +    description: Phandle to the external reference voltage supply.
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - vref-supply
-> > +
-> > +examples:
-> > +  - |
-> > +    spi {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > + =20
-> > +      dac@0 {
-> > +        compatible =3D "lltc,ltc1660";
-> > +        reg =3D <0>;
-> > +        spi-max-frequency =3D <5000000>;
-> > +        vref-supply =3D <&vref_reg>;
-> > +      };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/ltc1660.txt
-> > b/Documentation/devicetree/bindings/iio/dac/ltc1660.txt
-> > deleted file mode 100644
-> > index c5b5f22d6c64..000000000000
-> > --- a/Documentation/devicetree/bindings/iio/dac/ltc1660.txt
-> > +++ /dev/null
-> > @@ -1,21 +0,0 @@
-> > -* Linear Technology Micropower octal 8-Bit and 10-Bit DACs
-> > -
-> > -Required properties:
-> > - - compatible: Must be one of the following:
-> > -		"lltc,ltc1660"
-> > -		"lltc,ltc1665"
-> > - - reg: SPI chip select number for the device
-> > - - vref-supply: Phandle to the voltage reference supply
-> > -
-> > -Recommended properties:
-> > - - spi-max-frequency: Definition as per
-> > -	 Documentation/devicetree/bindings/spi/spi-bus.txt.
-> > -	 Max frequency for this chip is 5 MHz.
-> > -
-> > -Example:
-> > -dac@0 {
-> > -	compatible =3D "lltc,ltc1660";
-> > -	reg =3D <0>;
-> > -	spi-max-frequency =3D <5000000>;
-> > -	vref-supply =3D <&vref_reg>;
-> > -};
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index fbccc9d450ff..23497d713298 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -9619,7 +9619,7 @@ LTC1660 DAC DRIVER
-> >  M:	Marcus Folkesson <marcus.folkesson@gmail.com>
-> >  L:	linux-iio@vger.kernel.org
-> >  S:	Maintained
-> > -F:	Documentation/devicetree/bindings/iio/dac/ltc1660.txt
-> > +F:	Documentation/devicetree/bindings/iio/dac/lltc,ltc1660.yaml
-> >  F:	drivers/iio/dac/ltc1660.c
-> > =20
-> >  LTC4261 HARDWARE MONITOR DRIVER
+    fixed-emmc-driver-type = <0xFF 0x1 0xFF>;
 
-I guess I wait for Robs review until I post a v2.
+> 
+> > For more details about eMMC I/O driver strength types, see Jedec spec.
+> > Keep "fixed-emmc-driver-type" in place for backward compatibility.
+> 
+> If we decide for the path proposed here, should the old binding be
+> deprecated then?
 
-Thanks,
-Marcus Folkesson
+I can either zap "fixed-emmc-driver-type" or extend its type and
+meaning, depending on the feedback from the reviewers.
+Looking forward to any comments and suggestions.
 
+> 
+> Happy hacking,
+> 
+>    Wolfram
 
---gKMricLos+KVdGMg
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAl3BL2oACgkQiIBOb1ld
-UjJS4Q/+PCrmp2ItraO5ELiTwcQhN4/sfTai01iLTh8OEgq7kwMsMDZlOVbNfITE
-Ug4xFQnwQlf7OzSsTVk2VbBDi3QJ1f49Z5N3C0zp0ZwSZSnvWgv8/JMCr+euxpEz
-YMZWhwJG21SdY68xYw9g7hk2v2sS93F9g47dE5ONKhW6MB6A2XtYgEI0Bz9hf3iB
-dxh6opCAhNamD1XfWlrlocIL5IulKUYBedKoUxw/0hIgJDuyFtwtCXT52y0jLR04
-VspjQoTIdIi3bNlUdHaOo2X43xH3+I7cGix3PZMiylhNqg8kqN+bd0g+QHVqo9XG
-fgLxEq0QueYXFb8NO/bQ7aAGZrIaU98Qt2j5ZwqgjmPfKrPUjtoSarHaPkVdzxZm
-b54Igguy0dc3VKH4vrAWml1noTLAZPGpDFF/Ne0d/5quXArSi7hJF7rvknx/LUYS
-P9I8FTkVRA6Mrc57cpADmfd+/Za7YN/ErFR0pf3Nl27FiqI/7ej3y1xe1hwbZ2S+
-vFSGnats1C6+qd1WQG65YBKROD7W1BtNtVTJxEI7rp3dMQAKfQmtyIRWS5wo3Fjw
-i50r7a5rTtLEM8evy7rPuEXuJoXKaYqEz6C0Z0Zm43/xX4cB/anEt5KPlt61vWQZ
-5Q4nLDF2DBWP+9wcBnULQsVcSoVFR8//SysNErYKjGiwu5CK9EU=
-=tTdR
------END PGP SIGNATURE-----
-
---gKMricLos+KVdGMg--
+-- 
+Best Regards,
+Eugeniu
