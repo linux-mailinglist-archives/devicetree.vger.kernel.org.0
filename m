@@ -2,87 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44907F06F8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 21:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1447F0740
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 21:50:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729110AbfKEUe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Nov 2019 15:34:57 -0500
-Received: from foss.arm.com ([217.140.110.172]:60244 "EHLO foss.arm.com"
+        id S1729614AbfKEUuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Nov 2019 15:50:08 -0500
+Received: from foss.arm.com ([217.140.110.172]:32816 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726640AbfKEUe5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Nov 2019 15:34:57 -0500
+        id S1729760AbfKEUt5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Nov 2019 15:49:57 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E9EF7B9;
-        Tue,  5 Nov 2019 12:34:56 -0800 (PST)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.44])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A3453FF11;
-        Tue,  5 Nov 2019 03:07:01 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Harald Geyer <harald@ccbib.org>,
-        "Jared D . McNeill" <jmcneill@NetBSD.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Emmanuel Vadot <manu@FreeBSD.org>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH] arm64: dts: allwinner: a64: Re-add PMU node
-Date:   Tue,  5 Nov 2019 11:06:51 +0000
-Message-Id: <20191105110651.217513-1-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.17.1
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DF31412FC;
+        Tue,  5 Nov 2019 12:49:56 -0800 (PST)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 96B3340139;
+        Tue,  5 Nov 2019 04:32:50 -0800 (PST)
+Date:   Tue, 5 Nov 2019 12:32:40 +0000
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        leoyang.li@nxp.com, minghuan.Lian@nxp.com, mingkai.hu@nxp.com,
+        roy.zang@nxp.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, bhelgaas@google.com,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: Re: [PATCH v6 3/3] PCI: layerscape: Add LS1028a support
+Message-ID: <20191105123233.GA26960@e121166-lin.cambridge.arm.com>
+References: <20190902034319.14026-1-xiaowei.bao@nxp.com>
+ <20190902034319.14026-3-xiaowei.bao@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190902034319.14026-3-xiaowei.bao@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As it was found recently, the Performance Monitoring Unit (PMU) on the
-Allwinner A64 SoC was not generating (the right) interrupts. With the
-SPI numbers from the manual the kernel did not receive any overflow
-interrupts, so perf was not happy at all.
-It turns out that the numbers were just off by 4, so the PMU interrupts
-are from 148 to 151, not from 152 to 155 as the manual describes.
+On Mon, Sep 02, 2019 at 11:43:19AM +0800, Xiaowei Bao wrote:
+> Add support for the LS1028a PCIe controller.
+> 
+> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> ---
+> v2:
+>  - No change.
+> v3:
+>  - Reuse the ls2088 driver data structurt.
+> v4:
+>  - No change.
+> v5:
+>  - No change.
+> v6:
+>  - No change.
+> 
+>  drivers/pci/controller/dwc/pci-layerscape.c | 1 +
+>  1 file changed, 1 insertion(+)
 
-This was found by playing around with U-Boot, which typically does not
-use interrupts, so the GIC is fully available for experimentation:
-With *every* PPI and SPI enabled, an overflowing PMU cycle counter was
-found to set a bit in one of the GICD_ISPENDR registers, with careful
-counting this was determined to be number 148.
+I have not seen any comment on any layerscape driver patches
+coming from the maintainers as listed in the MAINTAINERS
+file (and CCed in this series).
 
-Tested with perf record and perf top on a Pine64-LTS. Also tested with
-tasksetting to every core to confirm the assignment between IRQs and
-cores.
+I request maintainers ACK on these patches and I expect them
+to start reviewing your code if they want to be still considered
+maintainers for this driver.
 
-This somewhat "revert-fixes" commit ed3e9406bcbc ("arm64: dts: allwinner:
-a64: Drop PMU node").
+The changes look OK minus Shawn's remark on compatible string
+that was ignored.
 
-Fixes: 34a97fcc71c2 ("arm64: dts: allwinner: a64: Add PMU node")
-Fixes: ed3e9406bcbc ("arm64: dts: allwinner: a64: Drop PMU node")
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Thanks,
+Lorenzo
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 70f4cce6be43..ba41c1b85887 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -142,6 +142,15 @@
- 		clock-output-names = "ext-osc32k";
- 	};
- 
-+	pmu {
-+		compatible = "arm,cortex-a53-pmu";
-+		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+
- 	psci {
- 		compatible = "arm,psci-0.2";
- 		method = "smc";
--- 
-2.17.1
-
+> diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
+> index 3a5fa26..f24f79a 100644
+> --- a/drivers/pci/controller/dwc/pci-layerscape.c
+> +++ b/drivers/pci/controller/dwc/pci-layerscape.c
+> @@ -263,6 +263,7 @@ static const struct ls_pcie_drvdata ls2088_drvdata = {
+>  static const struct of_device_id ls_pcie_of_match[] = {
+>  	{ .compatible = "fsl,ls1012a-pcie", .data = &ls1046_drvdata },
+>  	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021_drvdata },
+> +	{ .compatible = "fsl,ls1028a-pcie", .data = &ls2088_drvdata },
+>  	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1043_drvdata },
+>  	{ .compatible = "fsl,ls1046a-pcie", .data = &ls1046_drvdata },
+>  	{ .compatible = "fsl,ls2080a-pcie", .data = &ls2080_drvdata },
+> -- 
+> 2.9.5
+> 
