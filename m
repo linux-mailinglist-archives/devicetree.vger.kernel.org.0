@@ -2,100 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA143EFBE8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 11:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DFC7EFC05
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 12:06:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730633AbfKEK6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Nov 2019 05:58:13 -0500
-Received: from verein.lst.de ([213.95.11.211]:44725 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726867AbfKEK6M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Nov 2019 05:58:12 -0500
-Received: by verein.lst.de (Postfix, from userid 2005)
-        id 820FA68B05; Tue,  5 Nov 2019 11:58:08 +0100 (CET)
-Date:   Tue, 5 Nov 2019 11:58:08 +0100
-From:   Torsten Duwe <duwe@lst.de>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 6/7] dt-bindings: Add ANX6345 DP/eDP transmitter
- binding
-Message-ID: <20191105105808.GA27999@lst.de>
-References: <20191104110400.F319F68BE1@verein.lst.de> <20191104110613.C3BA468C4E@verein.lst.de> <20191105104342.GD3876@gilmour.lan>
+        id S1730757AbfKELGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Nov 2019 06:06:18 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:46295 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726867AbfKELGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 06:06:18 -0500
+X-Greylist: delayed 596 seconds by postgrey-1.27 at vger.kernel.org; Tue, 05 Nov 2019 06:06:17 EST
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 2BA575BEF;
+        Tue,  5 Nov 2019 05:56:21 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Tue, 05 Nov 2019 05:56:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version:content-type
+        :content-transfer-encoding; s=fm1; bh=A2GLNiSRYncUQfGy/8eawJsIIf
+        W4xhhoTSPQkJ+iyzE=; b=WCHdBe6zwXnJe0lTS3koQfY0aAlGhoLLntHtZtSRsS
+        iElCeWtsEz42MYDq9Yru3AcLHZ+5hLe78L+adZ5r/EP8SBwW8x189t85Ju6glo+X
+        eegMvZ7FX9B8pe+a6UdlgUE71h37KuVzb0KVHxUZpQhkhBgqQvw082aSXdHcFOgn
+        exZWkFGWKEkmyNKp4brmbYVlKGQe5enAykq9xYZVGmXCqnOFhn12DrbZBj3b0w4V
+        RhAAI/FaozN0VclV5qaIGssCfAFgEE18lQf0Q8I7T06TNOID2+I0U13G9h3Hu4jZ
+        lpGdjOxsOZOMV9qWJFIRfVqzxAKVpwRm7+QR/r6MYK3Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=A2GLNi
+        SRYncUQfGy/8eawJsIIfW4xhhoTSPQkJ+iyzE=; b=irV41/zB37Bip0m3fqgFgQ
+        KRAYmTInfFMCx/9mvqY8QrLS3nK5ABtpCuKRXI78riwUY5HQdoYoie8Q1FeJ1wjP
+        fayBoL3uUV2Q20tIxgjpcsPmxW9HefOoifnvjin8YzXMVPbKEclTvYXhpfOQg+pC
+        p8q+Ab/dQHGIFM11eoIGjqWZCqS6sbShbC8MsKktkmPzdzlhIwCRH+4UciEOUeci
+        p/rnwwWkL5NlLPW4ZfS1oAB+oDbXG/yUaXRiehUoYUGPF90/bJxEzo/w5A19Q+Fv
+        4yqe7M/W2eeZztz0tpcmwASta4be5PhwSVUS4VmcL5UKfy72Ev1bwrPvU3iD9Y7g
+        ==
+X-ME-Sender: <xms:UlXBXV65nUTPq27rm1Xw0xxZMhUjU59MguRABLP9jAx_gkI7X2LCYA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudduhedgvddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffogggtgfesthekredtredtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
+    ekledrieekrdejieenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghr
+    nhhordhtvggthhenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:UlXBXfVWULtq82rtCNHPZrgHyQTF5A8I7Dhq10PenpQF4L5lDp4jWA>
+    <xmx:UlXBXYc4dO51Az-M2kGlMx3pSVMGU46q9LJmFh7AyxJt31zzWvUEbw>
+    <xmx:UlXBXfkGQhMDSMcMEEJP49xjZcipdKR_bXcxXgQonpiUoVfsCpQTBQ>
+    <xmx:VFXBXdZABKSfbe-nN3slar21t22v8PVAQHzMda4WZOSE91Brq5GJzw>
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9890F306005B;
+        Tue,  5 Nov 2019 05:56:18 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     lgirdwood@gmail.com, broonie@kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Maxime Ripard <maxime@cerno.tech>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: [PATCH v2] dt-bindings: sound: adau7118: Fix example warning
+Date:   Tue,  5 Nov 2019 11:56:15 +0100
+Message-Id: <20191105105615.21391-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191105104342.GD3876@gilmour.lan>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 05, 2019 at 11:43:42AM +0100, Maxime Ripard wrote:
-> 
-> On Tue, Oct 29, 2019 at 01:16:57PM +0100, Torsten Duwe wrote:
-> > The anx6345 is an ultra-low power DisplayPort/eDP transmitter designed
-> > for portable devices.
-> >
-> > Add a binding document for it.
-> >
-> > Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-> > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Torsten Duwe <duwe@suse.de>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-> Applied, thanks
+The ADAU7118 has an example where the codec has an i2c address of 14, and
+the unit address set to 14 as well.
 
-Re-thanks!
+However, while the address is expressed in decimal, the unit-address is
+supposed to be in hexadecimal, which ends up with two different addresses
+that trigger a DTC warning. Fix this by setting the address to 0x14.
 
-> (still, there's one comment below that can be addressed in a
-> subsequent patch).
-> 
-> > +
-> > +  ports:
-> > +    type: object
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        type: object
-> > +        description: |
-> > +          Video port for LVTTL input
-> > +
-> > +      port@1:
-> > +        type: object
-> > +        description: |
-> > +          Video port for eDP output (panel or connector).
-> > +          May be omitted if EDID works reliably.
-> > +
-> > +    required:
-> > +      - port@0
-> 
-> You should have something like:
-> 
-> ports:
->   type: object
->   additionalProperties: false
-> 
-> as well...
+Cc: Nuno Sá <nuno.sa@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Fixes: 969d49b2cdc8 ("dt-bindings: asoc: Add ADAU7118 documentation")
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-Yes, and it also struck me that I forgot at least about the hotplug-gpio.
-It's unused on the Teres and the Pinebook, but in theory it's a valid
-property, which can't be added any more now.
+---
 
-	Torsten
+Changes from v1:
+  - Fix the address instead of the unit-address.
+---
+ Documentation/devicetree/bindings/sound/adi,adau7118.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/adi,adau7118.yaml b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
+index c3f10afbdd6f..75e0cbe6be70 100644
+--- a/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
++++ b/Documentation/devicetree/bindings/sound/adi,adau7118.yaml
+@@ -67,7 +67,7 @@ examples:
+         #size-cells = <0>;
+         adau7118_codec: audio-codec@14 {
+                 compatible = "adi,adau7118";
+-                reg = <14>;
++                reg = <0x14>;
+                 #sound-dai-cells = <0>;
+                 iovdd-supply = <&supply>;
+                 dvdd-supply = <&supply>;
+-- 
+2.23.0
 
