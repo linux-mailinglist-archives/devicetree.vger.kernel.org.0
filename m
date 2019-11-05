@@ -2,141 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AF6EF06C3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 21:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FA3CF0703
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 21:35:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727132AbfKEUTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Nov 2019 15:19:36 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:43531 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726368AbfKEUTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 15:19:36 -0500
-Received: by mail-oi1-f195.google.com with SMTP id l20so6701223oie.10;
-        Tue, 05 Nov 2019 12:19:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Nx7kJTn3OdCopAIR7Uif4GRlSRK0moBADISBNdcfrTs=;
-        b=CfErN2/fXneyoKLva9QaXEWV9InFtjqfbLUF4t/NjrhOI69gK5iCHtRaHP31DywgYl
-         VL5lrVQYAkIejBB36NkBTJ0fm3YrGyBjB0bH0Okjw+Wkxaa4vah32sKoanlNABehmpQv
-         ol+xK9XIHDTwMR8Wo7CSYCr81LRgQCKpyFCwbQgInUrlRCiij3USuzKX7TWqbkqMMU54
-         UIObKILHW/NKnsE1Ct2MD7FFkBJHbsIemKEjm6kWPfs15WovkDAqFK5GwZXVJASNm/1c
-         9awtmKjWCYWcp8YDU2eYE6Ep99eR7OnuY0ZzJTYGYcD2jBK9Y7QKXGP0Obs5KYUYndYy
-         C/7g==
-X-Gm-Message-State: APjAAAVBypSyKfNEr4Ap9aCecBk5ayKrFI4sPJtf64GqAbBb+10mwZ/R
-        pXrVjvm+9DmMAhZhWhoLTg==
-X-Google-Smtp-Source: APXvYqzcwQTTuh/ucjVOm77Dw2qQBBOp4x78YLgbH+mDcvDa5vMIG9/s7Mrn5jjgeZmF/Hy7tj1Clw==
-X-Received: by 2002:aca:dd0a:: with SMTP id u10mr766731oig.130.1572985173589;
-        Tue, 05 Nov 2019 12:19:33 -0800 (PST)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v26sm2778262oic.5.2019.11.05.12.19.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Nov 2019 12:19:32 -0800 (PST)
-Date:   Tue, 5 Nov 2019 14:19:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rodrigo Carvalho <rodrigorsdc@gmail.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-iio@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel-usp@googlegroups.com
-Subject: Re: [PATCH v3] dt-bindings: iio: accel: add binding documentation
- for ADIS16240
-Message-ID: <20191105201932.GA24515@bogus>
-References: <20191101000301.12901-1-rodrigorsdc@gmail.com>
+        id S1727401AbfKEUe5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Nov 2019 15:34:57 -0500
+Received: from foss.arm.com ([217.140.110.172]:60282 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726608AbfKEUe5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Nov 2019 15:34:57 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A6EBC28;
+        Tue,  5 Nov 2019 12:34:56 -0800 (PST)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 768253FEEB;
+        Tue,  5 Nov 2019 03:04:59 -0800 (PST)
+Date:   Tue, 5 Nov 2019 11:04:57 +0000
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        leoyang.li@nxp.com, minghuan.Lian@nxp.com, mingkai.hu@nxp.com,
+        roy.zang@nxp.com, lorenzo.pieralisi@arm.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, bhelgaas@google.com,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: Re: [PATCH v6 3/3] PCI: layerscape: Add LS1028a support
+Message-ID: <20191105110456.GL9723@e119886-lin.cambridge.arm.com>
+References: <20190902034319.14026-1-xiaowei.bao@nxp.com>
+ <20190902034319.14026-3-xiaowei.bao@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191101000301.12901-1-rodrigorsdc@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190902034319.14026-3-xiaowei.bao@nxp.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 31, 2019 at 09:03:01PM -0300, Rodrigo Carvalho wrote:
-> This patch add device tree binding documentation for ADIS16240.
+On Mon, Sep 02, 2019 at 11:43:19AM +0800, Xiaowei Bao wrote:
+> Add support for the LS1028a PCIe controller.
 > 
-> Signed-off-by: Rodrigo Ribeiro Carvalho <rodrigorsdc@gmail.com>
+> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 > ---
-> V3:
->    - Remove spi-cpol and spi-cpha field. They don't seem necessary
-
-Not necessary to document or use? The latter requires the former.
-
-If your device only supports one timing mode, then you don't need them 
-because it should be implied and the driver can just tell the SPI 
-subsystem what mode it requires. If the device can support multiple 
-timing modes, then you should document that you are using the 
-properties.
-
->  .../bindings/iio/accel/adi,adis16240.yaml     | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
+> v2:
+>  - No change.
+> v3:
+>  - Reuse the ls2088 driver data structurt.
+> v4:
+>  - No change.
+> v5:
+>  - No change.
+> v6:
+>  - No change.
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
-> new file mode 100644
-> index 000000000000..9a4cd12c4818
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adis16240.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/adi,adis16240.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ADIS16240 Programmable Impact Sensor and Recorder driver
-> +
-> +maintainers:
-> +  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-> +
-> +description: |
-> +  ADIS16240 Programmable Impact Sensor and Recorder driver that supports
-> +  SPI interface.
-> +    https://www.analog.com/en/products/adis16240.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adis16240
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* Example for a SPI device node */
-> +        accelerometer@0 {
-> +            compatible = "adi,adis16240";
-> +            reg = <0>;
-> +            spi-max-frequency = <2500000>;
-> +            spi-cpol;
-> +            spi-cpha;
-> +            interrupt-parent = <&gpio0>;
-> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +        };
-> +    };
+>  drivers/pci/controller/dwc/pci-layerscape.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
+> index 3a5fa26..f24f79a 100644
+> --- a/drivers/pci/controller/dwc/pci-layerscape.c
+> +++ b/drivers/pci/controller/dwc/pci-layerscape.c
+> @@ -263,6 +263,7 @@ static const struct ls_pcie_drvdata ls2088_drvdata = {
+>  static const struct of_device_id ls_pcie_of_match[] = {
+>  	{ .compatible = "fsl,ls1012a-pcie", .data = &ls1046_drvdata },
+>  	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021_drvdata },
+> +	{ .compatible = "fsl,ls1028a-pcie", .data = &ls2088_drvdata },
+>  	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1043_drvdata },
+>  	{ .compatible = "fsl,ls1046a-pcie", .data = &ls1046_drvdata },
+>  	{ .compatible = "fsl,ls2080a-pcie", .data = &ls2080_drvdata },
+
+Reviewed-by: Andrew Murray <Andrew.Murray@arm.com>
+
 > -- 
-> 2.23.0
+> 2.9.5
 > 
