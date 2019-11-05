@@ -2,104 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D69EF54A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 07:02:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E93EF579
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 07:22:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730521AbfKEGCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Nov 2019 01:02:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44170 "EHLO mail.kernel.org"
+        id S1726988AbfKEGW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Nov 2019 01:22:27 -0500
+Received: from sauhun.de ([88.99.104.3]:33816 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730520AbfKEGCz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 5 Nov 2019 01:02:55 -0500
-Received: from localhost (unknown [106.201.60.252])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6400120818;
-        Tue,  5 Nov 2019 06:02:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1572933774;
-        bh=Adr963WRlh5HjK13+m1iekOv9cCt3ddxETiP+Guxcp0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=umHTxwaFvOaVM+nKqOg3CVVW9K7zsMx7qvTi1pIVZPGZ1WpX75tmC5cMnW7wAePnU
-         j7RNOfS9eYGa+9nDFB4Zgfdun3F+v4xUJbRdaNLQzhEwdsNrl5xbt0dwNMBG0rXXAf
-         jV/3LxzOxwwUDZtvayjhoCO+AWYRTIkqd1gzLBIU=
-Date:   Tue, 5 Nov 2019 11:32:49 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy-qcom-qmp: Add sm8150 UFS phy
- compatible string
-Message-ID: <20191105060249.GX2695@vkoul-mobl.Dlink>
-References: <20191024074802.26526-1-vkoul@kernel.org>
- <20191024074802.26526-3-vkoul@kernel.org>
+        id S1725806AbfKEGW1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 5 Nov 2019 01:22:27 -0500
+Received: from localhost (p54B339C1.dip0.t-ipconnect.de [84.179.57.193])
+        by pokefinder.org (Postfix) with ESMTPSA id 199742C04C4;
+        Tue,  5 Nov 2019 07:22:24 +0100 (CET)
+Date:   Tue, 5 Nov 2019 07:22:23 +0100
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-mmc@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mathieu Malaterre <malat@debian.org>,
+        Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: Add
+ 'fixed-emmc-driver-type-hs{200,400}'
+Message-ID: <20191105062223.GB1048@kunai>
+References: <20191105055015.23656-1-erosca@de.adit-jv.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3lcZGd9BuhuYXNfi"
 Content-Disposition: inline
-In-Reply-To: <20191024074802.26526-3-vkoul@kernel.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20191105055015.23656-1-erosca@de.adit-jv.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-10-19, 13:18, Vinod Koul wrote:
-> Document "qcom,sdm845-qmp-ufs-phy" compatible string for QMP UFS PHY
-> found on SM8150.
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Kishon,
+--3lcZGd9BuhuYXNfi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Can you pick this and 3rd patch please
+Hi Eugeniu,
 
-> ---
->  Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt b/Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt
-> index 085fbd676cfc..eac9ad3cbbc8 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt
-> +++ b/Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt
-> @@ -14,7 +14,8 @@ Required properties:
->  	       "qcom,msm8998-qmp-pcie-phy" for PCIe QMP phy on msm8998,
->  	       "qcom,sdm845-qmp-usb3-phy" for USB3 QMP V3 phy on sdm845,
->  	       "qcom,sdm845-qmp-usb3-uni-phy" for USB3 QMP V3 UNI phy on sdm845,
-> -	       "qcom,sdm845-qmp-ufs-phy" for UFS QMP phy on sdm845.
-> +	       "qcom,sdm845-qmp-ufs-phy" for UFS QMP phy on sdm845,
-> +	       "qcom,sm8150-qmp-ufs-phy" for UFS QMP phy on sm8150.
->  
->  - reg:
->    - index 0: address and length of register set for PHY's common
-> @@ -57,6 +58,8 @@ Required properties:
->  			"aux", "cfg_ahb", "ref", "com_aux".
->  		For "qcom,sdm845-qmp-ufs-phy" must contain:
->  			"ref", "ref_aux".
-> +		For "qcom,sm8150-qmp-ufs-phy" must contain:
-> +			"ref", "ref_aux".
->  
->   - resets: a list of phandles and reset controller specifier pairs,
->  	   one for each entry in reset-names.
-> @@ -83,6 +86,8 @@ Required properties:
->  			"phy", "common".
->  		For "qcom,sdm845-qmp-ufs-phy": must contain:
->  			"ufsphy".
-> +		For "qcom,sm8150-qmp-ufs-phy": must contain:
-> +			"ufsphy".
->  
->   - vdda-phy-supply: Phandle to a regulator supply to PHY core block.
->   - vdda-pll-supply: Phandle to 1.8V regulator supply to PHY refclk pll block.
-> -- 
-> 2.20.1
+thanks for this work!
 
--- 
-~Vinod
+> A certain eMMC manufacturer provided below requirement:
+>  ---snip---
+>  Use "drive strength" value of 4 or 1 for HS400 or 0 for HS200.
+>  ---snip---
+
+I see.
+
+> The existing "fixed-emmc-driver-type" property [1] is the closest one
+> to implement the above, but it falls short due to being unable to define
+> two values to differentiate between HS200 and HS400 (both modes may be
+> supported by the same non-removable MMC device).
+>=20
+> To allow users to set a preferred HS200/HS400 "drive strength", provide
+> two more bindings inspired from [1]:
+>  - fixed-emmc-driver-type-hs200
+>  - fixed-emmc-driver-type-hs400
+
+Main question before looking at the code: Can't we just extend the
+existing binding with an optional second parameter?
+
+        minItems: 1
+        maxItems: 2
+
+I tend to favour this approach...
+
+> For more details about eMMC I/O driver strength types, see Jedec spec.
+> Keep "fixed-emmc-driver-type" in place for backward compatibility.
+
+If we decide for the path proposed here, should the old binding be
+deprecated then?
+
+Happy hacking,
+
+   Wolfram
+
+
+--3lcZGd9BuhuYXNfi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl3BFR8ACgkQFA3kzBSg
+KbY0cA//YZ6N9IHHaKq423ABXNnBXaT4hOB/WYncPHRaK6cijvTKtR+eE10CRPpa
+ebYVYr6UatR/vR+Pq4QZixmmF5bn1mT2HbzC7nw1QIJm8OKNghOewSSWAoT3HrYn
+aBlen9t61+u/wC+Wnv8JZh/3A7XWG4gqkocWUTEihWrJv0uJ/f0rIR78mIV3ADAi
+ho5B7QBmmt2Bwsls4SEnpPvwgXwaKay0HoGOyITKE6eIk8Xokbx65KwYa50WTslR
+/q2bIZNeIrYx3Tk0zC2Qkof1brwfg9UxhCHPD7+6cbZCRvnI7nHFPQa1FCxqwTtm
+XOvB7Afzf5rowAEUnQ7Kofxp7l+zbPGo0BvuBxAQsUYsJjG/AXpso/owQKzM7ob7
++NnKgpkqHtg5wnxtTjOmLJZwfOLLmAEp7z9ibPalFpX2s4WT9kEdqNpkSanwnXSx
+bF69QHSM4nPsSCrhPLyowditB/FjtkAHceAiiBHIDcN4v+ytXVTsJbjiESudaQdZ
+co0K/mYz3VfdcJ3wDhYUUOx/Lg1ejxhYDV+V9iHxYTeWoYHS9NNny8lnP6U9Bz1v
+/E4VBIhDm+LvNE9DH1b9yMxzrD5TnISC8XBtgqkjW9m1DVu1wmtCE/WTeG+0NdNl
+zlox2HdI0G4JEJIdLrbNtVfpNMRwurT4UMLKFFPcvpSvIAaIaNw=
+=bGHK
+-----END PGP SIGNATURE-----
+
+--3lcZGd9BuhuYXNfi--
