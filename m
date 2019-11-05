@@ -2,204 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56654EFD2F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 13:34:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79590EFD89
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 13:45:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387833AbfKEMev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Nov 2019 07:34:51 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:54262 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387744AbfKEMev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 07:34:51 -0500
-Received: by mail-wm1-f68.google.com with SMTP id x4so9556905wmi.3;
-        Tue, 05 Nov 2019 04:34:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=uXDWMsp5qvVlHIVMxPVb2fsrIl1aloFJ+doxLS5hVLU=;
-        b=XWLAY/tT9UADwTl92xmE3tOUHaT4sD3761TLXhMGIk74SGtCX8Hy6pfaiZiCsNnSfM
-         kyecKhsvFggXdcfzTFcq8MnDlzOwDZ6u2WFeKaSD9kexaCcYEPayqcvkgEsxZtd+DGZ+
-         dSc67hY54a5/yjv8WFht9F6gO/9gj8WbJ62dcM9TByXAPxPDsS3ymi92JOXtl1+rjBvj
-         Ep/DAnTg53X4oJXJKuvvWG/+DZcInFCfHhZtfaUnlMpFifqeoEi9m+r+4yew5jUxWOXW
-         Vcv98KvzLv5Y0NqX19D5zaEUtajaNW5G+GgLLJKbfNflvbHaiBaKKUUQTKVy9ATYrDWN
-         UfEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=uXDWMsp5qvVlHIVMxPVb2fsrIl1aloFJ+doxLS5hVLU=;
-        b=g+1oyk/Vb7lsr9hu5sYAMBu8w1vwr9AIzES6Cop3fBfvuAtgVT+BDL9X88hNvObT3G
-         PMuTN1hjPJm9R4IZj/JUT1s4wqQzRl4rgt8+0EE2TrPK8sdT+B6ogzEmxKBIpAkbtMPa
-         emcymNizMBIxNq5M/8UKd3QKQUROKba4q1sGjLKd7kaHud8AOBOAYifP9bI25hKzi5PD
-         fnxOtsGMLLpqY4u3rCIZPJh7eWf1CXNFuuUr2I0w64K160AV8/j+n56Tw9sRXBOp3ROy
-         Bie4Dhn2oKDPlFrFKliNGTyvbvk8fz1yin0rIySIqBi/1l9/cDTWoTaXPZPsrVVKLNvm
-         HNJA==
-X-Gm-Message-State: APjAAAWtTi814NZRuAFyoMyHuj/EbmjgC+vmk1O9V9AemBOb0ItsN7kg
-        y33cyWBNbPEXA8Qri+pYFUTgA1SdqhgC/5py9H4=
-X-Google-Smtp-Source: APXvYqx2VTjX7SpCQ9bFbyLIvq0HI/5gSO9syMahnkO6f1EAMR8g0VgtqPCSwcYkRvXnLfPvgMsRFdEEsyBOBDbtRhQ=
-X-Received: by 2002:a05:600c:228e:: with SMTP id 14mr3817629wmf.119.1572957288363;
- Tue, 05 Nov 2019 04:34:48 -0800 (PST)
+        id S2388659AbfKEMpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Nov 2019 07:45:40 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:45656 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2388789AbfKEMp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 07:45:29 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xA5ChmrF023569;
+        Tue, 5 Nov 2019 13:45:09 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=sXCMWOxnkEW+1vUrP3Lq9Dd4y+mfUnnBxv45mlaWJ+Y=;
+ b=C1uCkmLseaAZJlx82MhOhoz6K3QuVCKLNO3igaOI5G2Z56M/km6M+MFU8ho7Mg0CiBYp
+ GSL2Fi5k4nN7E7atp5EhlZfb3VdO40Vs3lhqocdNZ4pduIC5T78rwcjaBADMWUH/1Jgy
+ CgZS+gv9+Un4nQvgGjYw5g8QoNLLNXVdxkC93qUj34mSavlcX6YWTUbAWFbIjFw4VDJx
+ ccxPHTPf8gVW0MNw61QzXjWHYHluXFsG7yPcQQNjSeBcNDgG6QUqhxX4U5W+tEAbh3//
+ mE5sPSHf+bJsLcijhAL3sji9qGKraDgVAGbIhi8qcjxfMwfqwGwtCqrCpVBtOAr4UsG2 oQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2w11jn7j8b-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 05 Nov 2019 13:45:09 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 228E7100034;
+        Tue,  5 Nov 2019 13:45:08 +0100 (CET)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0A25F2B97D9;
+        Tue,  5 Nov 2019 13:45:08 +0100 (CET)
+Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 5 Nov 2019
+ 13:45:07 +0100
+Received: from localhost (10.201.22.222) by Webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 5 Nov 2019 13:45:07
+ +0100
+From:   Christophe Roullier <christophe.roullier@st.com>
+To:     <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
+        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@st.com>, <peppe.cavallaro@st.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <christophe.roullier@st.com>, <andrew@lunn.ch>
+Subject: [PATCH V2 net-next 0/4] net: ethernet: stmmac: cleanup clock and optimization
+Date:   Tue, 5 Nov 2019 13:45:01 +0100
+Message-ID: <20191105124505.4738-1-christophe.roullier@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20191103203334.10539-1-peron.clem@gmail.com> <20191103203334.10539-2-peron.clem@gmail.com>
- <20191104080359.6kjugbt3yi63ywhb@pengutronix.de> <20191105111134.GG3876@gilmour.lan>
-In-Reply-To: <20191105111134.GG3876@gilmour.lan>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Tue, 5 Nov 2019 13:34:37 +0100
-Message-ID: <CAJiuCcc7sQvuPX+FTErXS+_RzUDvbDrB3Z5EX9wE_2EZaex0qw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: pwm: allwinner: Add H6 PWM description
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-pwm@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.201.22.222]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+ definitions=2019-11-05_04:2019-11-05,2019-11-05 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Some improvements: 
+ - manage syscfg as optional clock, 
+ - update slew rate of ETH_MDIO pin, 
+ - Enable gating of the MAC TX clock during TX low-power mode
 
-On Tue, 5 Nov 2019 at 12:11, Maxime Ripard <mripard@kernel.org> wrote:
->
-> Hi Clement, Uwe,
->
-> On Mon, Nov 04, 2019 at 09:03:59AM +0100, Uwe Kleine-K=C3=B6nig wrote:
-> > On Sun, Nov 03, 2019 at 09:33:28PM +0100, Cl=C3=A9ment P=C3=A9ron wrote=
-:
-> > > From: Jernej Skrabec <jernej.skrabec@siol.net>
-> > >
-> > > H6 PWM block is basically the same as A20 PWM, except that it also ha=
-s
-> > > bus clock and reset line which needs to be handled accordingly.
-> > >
-> > > Expand Allwinner PWM binding with H6 PWM specifics.
-> > >
-> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > > ---
-> > >  .../bindings/pwm/allwinner,sun4i-a10-pwm.yaml | 45 +++++++++++++++++=
-+-
-> > >  1 file changed, 44 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a1=
-0-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.=
-yaml
-> > > index 0ac52f83a58c..bf36ea509f31 100644
-> > > --- a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.y=
-aml
-> > > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.y=
-aml
-> > > @@ -30,13 +30,46 @@ properties:
-> > >        - items:
-> > >            - const: allwinner,sun50i-h5-pwm
-> > >            - const: allwinner,sun5i-a13-pwm
-> > > +      - const: allwinner,sun50i-h6-pwm
-> > >
-> > >    reg:
-> > >      maxItems: 1
-> > >
-> > > -  clocks:
-> > > +  # Even though it only applies to subschemas under the conditionals=
-,
-> > > +  # not listing them here will trigger a warning because of the
-> > > +  # additionalsProperties set to false.
-> > > +  clocks: true
-> > > +  clock-names: true
-> > > +  resets:
-> > >      maxItems: 1
-> > >
-> > > +  if:
-> > > +    properties:
-> > > +      compatible:
-> > > +        contains:
-> > > +          const: allwinner,sun50i-h6-pwm
-> > > +
-> > > +  then:
-> > > +    properties:
-> > > +      clocks:
-> > > +        items:
-> > > +          - description: Module Clock
-> > > +          - description: Bus Clock
-> > > +
-> > > +      clock-names:
-> > > +        items:
-> > > +          - const: mod
-> > > +          - const: bus
-> > > +
-> > > +    required:
-> > > +      - clock-names
-> > > +      - resets
-> > > +
-> > > +  else:
-> > > +    properties:
-> > > +      clocks:
-> > > +        maxItems: 1
-> > > +
-> >
-> > I guess this hunk says "If this is a allwinner,sun50i-h6-pwm, a mod and
-> > bus clock is required.", right?
-> >
-> > I wonder if it is sensible to require a clock-names property in the els=
-e
-> > branch, too. This would make it obvious if the clock there corresponds
-> > to the "mod" or the "bus" clock on H6. (I guess it's "mod".)
->
-> This can be done a bit differently and could address your concerns
->
-> Something like
->
-> properties:
->   ...
->
->   clocks:
->     minItems: 1
->     maxItems: 2
->     items:
->       - description: Bus Clock
->       - description: Module Clock
->
-> required:
->   - clocks
->
-> if:
->   ...
->
-> then:
->   properties:
->     clocks:
->       maxItems: 2
+V2: Update with D.Miller remark
 
-Here we should set minItems to 2 right ?
-so Max =3D Min =3D 2
+Christophe Roullier (4):
+  net: ethernet: stmmac: Add support for syscfg clock
+  ARM: dts: stm32: remove syscfg clock on stm32mp157c ethernet
+  ARM: dts: stm32: adjust slew rate for Ethernet
+  ARM: dts: stm32: Enable gating of the MAC TX clock during TX low-power
+    mode on stm32mp157c
 
-Regards,
-Cl=C3=A9ment
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi     |  9 ++++--
+ arch/arm/boot/dts/stm32mp157c.dtsi            |  7 ++--
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 32 ++++++++++++-------
+ 3 files changed, 31 insertions(+), 17 deletions(-)
 
->
->     clocks-names:
->       items:
->         - const: mod
->         - const: bus
->
->     required:
->       - clock-names
->
-> else:
->   properties:
->     clocks:
->       maxItems: 1
->
-> That way, the definition of the order and which clock is which is
-> pretty obvious in both cases, and we don't get any weird warnings.
->
-> Maxime
+-- 
+2.17.1
+
