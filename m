@@ -2,192 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 123B5EF526
-	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 06:51:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60A5CEF54C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Nov 2019 07:03:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730502AbfKEFvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Nov 2019 00:51:46 -0500
-Received: from smtp1.de.adit-jv.com ([93.241.18.167]:50763 "EHLO
-        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727113AbfKEFvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 00:51:46 -0500
-Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
-        by smtp1.de.adit-jv.com (Postfix) with ESMTP id EC4323C0594;
-        Tue,  5 Nov 2019 06:51:42 +0100 (CET)
-Received: from smtp1.de.adit-jv.com ([127.0.0.1])
-        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id NIvBb3uK3IUk; Tue,  5 Nov 2019 06:51:37 +0100 (CET)
-Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 807E13C0585;
-        Tue,  5 Nov 2019 06:51:37 +0100 (CET)
-Received: from vmlxhi-102.adit-jv.com (10.72.93.184) by HI2EXCH01.adit-jv.com
- (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.468.0; Tue, 5 Nov 2019
- 06:51:36 +0100
-From:   Eugeniu Rosca <erosca@de.adit-jv.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        <linux-mmc@vger.kernel.org>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Mathieu Malaterre <malat@debian.org>,
-        Pavel Machek <pavel@ucw.cz>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>
-Subject: [PATCH 3/3] mmc: core: Add 'fixed-emmc-driver-type-hs{200,400}'
-Date:   Tue, 5 Nov 2019 06:50:15 +0100
-Message-ID: <20191105055015.23656-3-erosca@de.adit-jv.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191105055015.23656-1-erosca@de.adit-jv.com>
-References: <20191105055015.23656-1-erosca@de.adit-jv.com>
+        id S1730520AbfKEGDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Nov 2019 01:03:01 -0500
+Received: from gateway33.websitewelcome.com ([192.185.145.87]:21594 "EHLO
+        gateway33.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726697AbfKEGDB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Nov 2019 01:03:01 -0500
+X-Greylist: delayed 1235 seconds by postgrey-1.27 at vger.kernel.org; Tue, 05 Nov 2019 01:03:00 EST
+Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
+        by gateway33.websitewelcome.com (Postfix) with ESMTP id AF7A21036D
+        for <devicetree@vger.kernel.org>; Mon,  4 Nov 2019 23:42:24 -0600 (CST)
+Received: from br164.hostgator.com.br ([192.185.176.180])
+        by cmsmtp with SMTP
+        id Rrbki7lkCVUVYRrbkihrat; Mon, 04 Nov 2019 23:42:24 -0600
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:MIME-Version:
+        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
+        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=XzVcb7tGAONUw/MGZuqDTvZTFYKEVcjqC7bTyT+W++E=; b=J6ALkRzpiRDm5X9ZdaST4cneod
+        BrjezjeL/IrdYUoMKUVlYMNuP3yDUwfkH3lhXZd97t8danEYqui1HSN1GYwqIko52jLrgTO04i4bM
+        +9y7CDKzppKukf24XpImCOswMRdNNbktbD4545x5v5sjfwLTtZi5hJtyil9TcvpqJRMFZtcTIi5gF
+        eWCEpKoQSOK2yIjECxrDdmROxabYDX2Rh93c483uyH0dS899jDOkoTqzF1oDWBLYee7HpDGAhaeuC
+        NCTwFdELZMbVXIVB+vAq2Gr8KokAQXwdHSee5nIB4Upey+dziCWUjua07gtNgV83YIvL9v6NuEWAD
+        qUmpIZgQ==;
+Received: from [191.31.196.28] (port=37450 helo=castello.castello)
+        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <matheus@castello.eng.br>)
+        id 1iRrbj-002sjK-SJ; Tue, 05 Nov 2019 02:42:24 -0300
+From:   Matheus Castello <matheus@castello.eng.br>
+To:     sre@kernel.org, krzk@kernel.org, robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, cw00.choi@samsung.com,
+        b.zolnierkie@samsung.com, lee.jones@linaro.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Matheus Castello <matheus@castello.eng.br>
+Subject: [PATCH v5 0/5] power: supply: MAX17040: Add IRQ for low level and alert SOC changes
+Date:   Tue,  5 Nov 2019 02:42:13 -0300
+Message-Id: <20191105054218.29826-1-matheus@castello.eng.br>
+X-Mailer: git-send-email 2.24.0.rc2
+In-Reply-To: <20191105015827.GA332@bogus>
+References: <20191105015827.GA332@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.72.93.184]
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - castello.eng.br
+X-BWhitelist: no
+X-Source-IP: 191.31.196.28
+X-Source-L: No
+X-Exim-ID: 1iRrbj-002sjK-SJ
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (castello.castello) [191.31.196.28]:37450
+X-Source-Auth: matheus@castello.eng.br
+X-Email-Count: 17
+X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for two more DT bindings, which stem from the need to
-implement below real-life requirement shared by eMMC vendor:
+This series add IRQ handler for low level SOC alert, define a devicetree
+binding attribute to configure the alert level threshold and check for
+changes in SOC and power supply status for send uevents.
 
- ---snip---
- Use "drive strength" value of 4 or 1 for HS400 or 0 for HS200.
- ---snip---
+Max17043/17044 have a pin for alert host about low level state of charge and
+this alert can be configured in a threshold from 1% up to 32% of SOC.
 
-Inspire from [Y] and [Z] during implementation and testing (H3ULCB-KF).
-Below decision matrix is intended as function of user's input:
+Tested on Toradex Colibri iMX7D, with a SparkFun Lipo Fuel Gauge module
+based on MAXIM MAX17043.
 
-      [0]        [2]        [4]
-[0]  hs200:[0]  hs200:[2]  hs200:[0]
-     hs400:[0]  hs400:[0]  hs400:[4]
-[2]  hs200:[2]  hs200:[2]  hs200:[2]
-     hs400:[0]  hs400:[R]  hs400:[4]
-[4]  hs200:[0]  hs200:[2]  hs200:[R]
-     hs400:[4]  hs400:[4]  hs400:[4]
+Thanks Krzysztof for your time reviewing it. Let me know what you think about
+the fixes.
 
-[0] "fixed-emmc-driver-type"
-[2] "fixed-emmc-driver-type-hs200"
-[4] "fixed-emmc-driver-type-hs400"
-[R] RAW/ECSD drive strength as implemented in
-    commit cc4f414c885cd0 ("mmc: mmc: Add driver strength selection")
-[Y] commit 6186d06c519e21 ("mmc: parse new binding for eMMC fixed driver type")
-[Z] https://www.elinux.org/Tests:eMMC-fixed-drive-strength
+Changes since v4:
+(Suggested by Krzysztof Kozlowski)
+- Fix code style and alignment issues
+- Keep IRQF_TRIGGER_FALLING | IRQF_ONESHOT instead client->flags
 
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Signed-off-by: Eugeniu Rosca <erosca@de.adit-jv.com>
----
- drivers/mmc/core/host.c  |  4 ++++
- drivers/mmc/core/mmc.c   | 19 ++++++++++++++++---
- include/linux/mmc/host.h |  2 ++
- 3 files changed, 22 insertions(+), 3 deletions(-)
+(Suggested by Rob Herring)
+- Add reference to the MFD description
+- Fix the dt-bindings commit description
 
-diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-index 54abfdfc69ba..2a3d3b542e0d 100644
---- a/drivers/mmc/core/host.c
-+++ b/drivers/mmc/core/host.c
-@@ -336,6 +336,8 @@ int mmc_of_parse(struct mmc_host *host)
- 
- 	/* Must be after "non-removable" check */
- 	mmc_of_read_drv_type(host, "fixed-emmc-driver-type", &host->fixed_drv_type);
-+	mmc_of_read_drv_type(host, "fixed-emmc-driver-type-hs200", &host->fixed_drv_type_hs200);
-+	mmc_of_read_drv_type(host, "fixed-emmc-driver-type-hs400", &host->fixed_drv_type_hs400);
- 
- 	host->dsr_req = !device_property_read_u32(dev, "dsr", &host->dsr);
- 	if (host->dsr_req && (host->dsr & ~0xffff)) {
-@@ -455,6 +457,8 @@ struct mmc_host *mmc_alloc_host(int extra, struct device *dev)
- 	host->max_blk_count = PAGE_SIZE / 512;
- 
- 	host->fixed_drv_type = -EINVAL;
-+	host->fixed_drv_type_hs200 = -EINVAL;
-+	host->fixed_drv_type_hs400 = -EINVAL;
- 	host->ios.power_delay_ms = 10;
- 
- 	return host;
-diff --git a/drivers/mmc/core/mmc.c b/drivers/mmc/core/mmc.c
-index c8804895595f..89e6fb9aedeb 100644
---- a/drivers/mmc/core/mmc.c
-+++ b/drivers/mmc/core/mmc.c
-@@ -62,6 +62,8 @@ static const unsigned int taac_mant[] = {
- 		__res & __mask;						\
- 	})
- 
-+static void mmc_select_driver_type(struct mmc_card *card, int timing);
-+
- /*
-  * Given the decoded CSD structure, decode the raw CID to our CID structure.
-  */
-@@ -1192,6 +1194,8 @@ static int mmc_select_hs400(struct mmc_card *card)
- 		return err;
- 	}
- 
-+	mmc_select_driver_type(card, EXT_CSD_TIMING_HS400);
-+
- 	/* Switch card to HS400 */
- 	val = EXT_CSD_TIMING_HS400 |
- 	      card->drive_strength << EXT_CSD_DRV_STR_SHIFT;
-@@ -1270,6 +1274,8 @@ int mmc_hs400_to_hs200(struct mmc_card *card)
- 	if (err)
- 		goto out_err;
- 
-+	mmc_select_driver_type(card, EXT_CSD_TIMING_HS200);
-+
- 	/* Switch HS to HS200 */
- 	val = EXT_CSD_TIMING_HS200 |
- 	      card->drive_strength << EXT_CSD_DRV_STR_SHIFT;
-@@ -1304,10 +1310,17 @@ int mmc_hs400_to_hs200(struct mmc_card *card)
- 	return err;
- }
- 
--static void mmc_select_driver_type(struct mmc_card *card)
-+static void mmc_select_driver_type(struct mmc_card *card, int timing)
- {
- 	int card_drv_type, drive_strength, drv_type = 0;
- 	int fixed_drv_type = card->host->fixed_drv_type;
-+	int fixed_drv_type_hs200 = card->host->fixed_drv_type_hs200;
-+	int fixed_drv_type_hs400 = card->host->fixed_drv_type_hs400;
-+
-+	if (fixed_drv_type_hs200 >= 0 && timing == EXT_CSD_TIMING_HS200)
-+		fixed_drv_type = fixed_drv_type_hs200;
-+	else if (fixed_drv_type_hs400 >= 0 && timing == EXT_CSD_TIMING_HS400)
-+		fixed_drv_type = fixed_drv_type_hs400;
- 
- 	card_drv_type = card->ext_csd.raw_driver_strength |
- 			mmc_driver_type_mask(0);
-@@ -1385,7 +1398,7 @@ static int mmc_select_hs400es(struct mmc_card *card)
- 		goto out_err;
- 	}
- 
--	mmc_select_driver_type(card);
-+	mmc_select_driver_type(card, EXT_CSD_TIMING_HS400);
- 
- 	/* Switch card to HS400 */
- 	val = EXT_CSD_TIMING_HS400 |
-@@ -1445,7 +1458,7 @@ static int mmc_select_hs200(struct mmc_card *card)
- 	if (err)
- 		return err;
- 
--	mmc_select_driver_type(card);
-+	mmc_select_driver_type(card, EXT_CSD_TIMING_HS200);
- 
- 	/*
- 	 * Set the bus width(4 or 8) with host's support and
-diff --git a/include/linux/mmc/host.h b/include/linux/mmc/host.h
-index ba703384bea0..6960ba98810a 100644
---- a/include/linux/mmc/host.h
-+++ b/include/linux/mmc/host.h
-@@ -371,6 +371,8 @@ struct mmc_host {
- #define MMC_CAP2_MERGE_CAPABLE	(1 << 26)	/* Host can merge a segment over the segment size */
- 
- 	int			fixed_drv_type;	/* fixed driver type for non-removable media */
-+	int			fixed_drv_type_hs200;	/* HS200-specific fixed_drv_type */
-+	int			fixed_drv_type_hs400;	/* HS400-specific fixed_drv_type */
- 
- 	mmc_pm_flag_t		pm_caps;	/* supported pm features */
- 
--- 
-2.23.0
+Matheus Castello (5):
+  power: supply: max17040: Add IRQ handler for low SOC alert
+  dt-bindings: power: supply: Max17040: Add DT bindings for max17040
+    fuel gauge
+  devicetree: mfd: max14577: Add reference to max14040_battery.txt
+    descriptions
+  power: supply: max17040: Config alert SOC low level threshold from FDT
+  power: supply: max17040: Send uevent in SOC and status change
+
+ .../devicetree/bindings/mfd/max14577.txt      |   2 +
+ .../power/supply/max17040_battery.txt         |  33 ++++
+ drivers/power/supply/max17040_battery.c       | 142 +++++++++++++++++-
+ 3 files changed, 172 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/max17040_battery.txt
+
+--
+2.24.0.rc2
 
