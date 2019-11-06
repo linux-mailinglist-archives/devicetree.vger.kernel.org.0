@@ -2,86 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9BD6F1391
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 11:13:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C3C5F13CD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 11:24:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731731AbfKFKMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Nov 2019 05:12:54 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:41012 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727961AbfKFKMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Nov 2019 05:12:45 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xA6ABprr015190;
-        Wed, 6 Nov 2019 11:12:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=PasrWJUoa3UFwSs+GtbCxK+KUm1QgPk+g2vbUrQXP80=;
- b=XYdP0nkqZ+gppFSHdkYeziiQ7RQ4O3DKJrPMDtuLywGiPWkUlyw5pOYU87/RrdEyWHKS
- 4bLtizwvBgpT2fLYdF7CGIxAz7N35LVnMW5864l67vxUWr4mMXCeCRK3pl1GYHFnllKz
- FRg4LoqDtSiM7EYQ8WPODsCkCqhxLQhvbw4/mQbVy4eDxnvvQEbr+1GQDnb0J7jLk7rj
- 3RoRBwfa6z7lglh6zdBSyOUPVYSCSqWWbrUtIrH/q4DW92wSqnhbIGk8nQ+zGfaxWRqO
- tW9neikD62u2cSAyCg2IvLDB4ZrjExP8uwfsPm6563t5+uFrsIJaPSMWH0rTlLN9FNOo yQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2w11jnd2w7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 06 Nov 2019 11:12:31 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B753D100046;
-        Wed,  6 Nov 2019 11:12:27 +0100 (CET)
-Received: from Webmail-eu.st.com (Safex1hubcas23.st.com [10.75.90.46])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A84882AD343;
-        Wed,  6 Nov 2019 11:12:27 +0100 (CET)
-Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by SAFEX1HUBCAS23.st.com
- (10.75.90.46) with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 6 Nov 2019
- 11:12:27 +0100
-Received: from localhost (10.201.22.222) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Wed, 6 Nov 2019 11:12:26
- +0100
-From:   Christophe Roullier <christophe.roullier@st.com>
-To:     <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
-        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <peppe.cavallaro@st.com>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <christophe.roullier@st.com>, <andrew@lunn.ch>
-Subject: [PATCH V3 net-next 4/4] ARM: dts: stm32: Enable gating of the MAC TX clock during TX low-power mode on stm32mp157c
-Date:   Wed, 6 Nov 2019 11:12:20 +0100
-Message-ID: <20191106101220.12693-5-christophe.roullier@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191106101220.12693-1-christophe.roullier@st.com>
-References: <20191106101220.12693-1-christophe.roullier@st.com>
+        id S1728523AbfKFKYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Nov 2019 05:24:34 -0500
+Received: from mga06.intel.com ([134.134.136.31]:26912 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727239AbfKFKYe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Nov 2019 05:24:34 -0500
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Nov 2019 02:24:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,274,1569308400"; 
+   d="scan'208";a="201068007"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga007.fm.intel.com with ESMTP; 06 Nov 2019 02:24:29 -0800
+Received: from [10.226.38.65] (rtanwar-mobl.gar.corp.intel.com [10.226.38.65])
+        by linux.intel.com (Postfix) with ESMTP id 6A8875802B9;
+        Wed,  6 Nov 2019 02:24:26 -0800 (PST)
+Subject: Re: [PATCH v3 2/2] dt-bindings: pinctrl: intel: Add for new SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     linus.walleij@linaro.org, mark.rutland@arm.com,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        qi-ming.wu@intel.com, yixin.zhu@linux.intel.com,
+        cheol.yong.kim@intel.com
+References: <cover.1572926608.git.rahul.tanwar@linux.intel.com>
+ <f91001d8c5f0cb2860fda720d0cb6298a4856dd3.1572926608.git.rahul.tanwar@linux.intel.com>
+ <20191105212941.GA8677@bogus>
+From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Message-ID: <e7d1d72e-54d7-63ae-0eae-685a207d36ef@linux.intel.com>
+Date:   Wed, 6 Nov 2019 18:24:25 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.22.222]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-06_02:2019-11-06,2019-11-06 signatures=0
+In-Reply-To: <20191105212941.GA8677@bogus>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When there is no activity on ethernet phy link, the ETH_GTX_CLK is cut
 
-Signed-off-by: Christophe Roullier <christophe.roullier@st.com>
----
- arch/arm/boot/dts/stm32mp157c.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Hi Rob,
 
-diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
-index f13c2348d130..8df2986dd452 100644
---- a/arch/arm/boot/dts/stm32mp157c.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-@@ -1334,6 +1334,7 @@
- 			st,syscon = <&syscfg 0x4>;
- 			snps,mixed-burst;
- 			snps,pbl = <2>;
-+			snps,en-tx-lpi-clockgating;
- 			snps,axi-config = <&stmmac_axi_config_0>;
- 			snps,tso;
- 			status = "disabled";
--- 
-2.17.1
+Thanks for the feedback.
 
+On 6/11/2019 5:29 AM, Rob Herring wrote:
+>> +      bias-pull-up:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Specifies pull-up configuration.
+> Isn't this boolean?
+>
+>> +
+>> +      bias-pull-down:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Specifies pull-down configuration.
+> And this?
+>
+> Though looks like sometimes it has a value? Pull strength I guess.
+>
+>> +
+>> +      drive-strength:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Enables driver-current.
+>> +
+>> +      slew-rate:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Enables slew-rate.
+>> +
+>> +      drive-open-drain:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Specifies open-drain configuration.
+> boolean?
+>
+>> +
+>> +      output-enable:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Specifies if the pin is to be configured as output.
+> boolean?
+>
+> But really, all of these should have a common schema defining the types 
+> and only put any additional constraints here.
+
+Yes, you are right. These are all boolean types.
+All these are standard properties & we are using them with no
+additional constraintsi.e conforming to how they are already
+documented in pinctrl-bindings.txt. Shall ijust omit documenting
+these properties here in driver bindings ?
+
+>> +
+>> +examples:
+>> +  # Pinmux controller node
+>> +  - |
+>> +    pinctrl: pinctrl@e2880000 {
+>> +          compatible = "intel,lgm-pinctrl";
+>> +          reg = <0xe2880000 0x100000>;
+>> +
+>> +          # Client device subnode
+>> +          uart0:uart0 {
+> space              ^
+
+Just to be sure, you mean space misalignment at below
+line <65>; /* UART_TX0 */ ?Or is it something else ?
+
+>> +                pins = <64>, /* UART_RX0 */
+>> +                             <65>; /* UART_TX0 */
+>> +                function = "CONSOLE_UART0";
+>> +                pinmux = <1>,
+>> +                         <1>;
+>> +                groups = "CONSOLE_UART0";
+>> +          };
+>> +    };
+>> +
+>> +...
+>> -- 
+>> 2.11.0
+>>
+Regards,
+Rahul
