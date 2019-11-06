@@ -2,82 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 191DCF12B2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 10:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D10F12F1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 10:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731637AbfKFJtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Nov 2019 04:49:07 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:43148 "EHLO inva020.nxp.com"
+        id S1731608AbfKFJxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Nov 2019 04:53:45 -0500
+Received: from foss.arm.com ([217.140.110.172]:36852 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731535AbfKFJtG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Nov 2019 04:49:06 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id ACD1F1A05F8;
-        Wed,  6 Nov 2019 10:49:04 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 30E5B1A011D;
-        Wed,  6 Nov 2019 10:49:00 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 4987E402FC;
-        Wed,  6 Nov 2019 17:48:54 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] ARM: dts: imx6sll: Add Rev A board support
-Date:   Wed,  6 Nov 2019 17:47:30 +0800
-Message-Id: <1573033650-11848-3-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1573033650-11848-1-git-send-email-Anson.Huang@nxp.com>
-References: <1573033650-11848-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1731554AbfKFJxp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 6 Nov 2019 04:53:45 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 700D9328;
+        Wed,  6 Nov 2019 01:53:44 -0800 (PST)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA2DE3F6C4;
+        Wed,  6 Nov 2019 01:53:43 -0800 (PST)
+Date:   Wed, 6 Nov 2019 09:53:41 +0000
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Anvesh Salveru <anvesh.s@samsung.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhelgaas@google.com, gustavo.pimentel@synopsys.com,
+        jingoohan1@gmail.com, pankaj.dubey@samsung.com,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: designware: Add binding for
+ ZRX-DC PHY property
+Message-ID: <20191106095340.GO9723@e119886-lin.cambridge.arm.com>
+References: <1572264988-17455-1-git-send-email-anvesh.s@samsung.com>
+ <CGME20191028121748epcas5p3054c9583c14a2edde9f725d005895a04@epcas5p3.samsung.com>
+ <1572264988-17455-2-git-send-email-anvesh.s@samsung.com>
+ <20191105215332.GA19296@bogus>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191105215332.GA19296@bogus>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX6SLL EVK Rev A board is same with latest i.MX6SLL EVK board except
-eMMC can ONLY run at HS200 mode, add support for this board.
+On Tue, Nov 05, 2019 at 03:53:32PM -0600, Rob Herring wrote:
+> On Mon, Oct 28, 2019 at 05:46:27PM +0530, Anvesh Salveru wrote:
+> > Add support for ZRX-DC compliant PHYs. If PHY is not compliant to ZRX-DC
+> > specification, then after every 100ms link should transition to recovery
+> > state during the low power states which increases power consumption.
+> > 
+> > Platforms with ZRX-DC compliant PHY can use "snps,phy-zrxdc-compliant"
+> > property in DesignWare controller DT node.
+> > 
+> > CC: Rob Herring <robh+dt@kernel.org>
+> > CC: Mark Rutland <mark.rutland@arm.com>
+> > Signed-off-by: Anvesh Salveru <anvesh.s@samsung.com>
+> > Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
+> > Reviewed-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> > ---
+> > Change in v2: None
+> > 
+> >  Documentation/devicetree/bindings/pci/designware-pcie.txt | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/designware-pcie.txt b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> > index 78494c4050f7..9507ac38ac89 100644
+> > --- a/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> > +++ b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> > @@ -38,6 +38,8 @@ Optional properties:
+> >     for data corruption. CDM registers include standard PCIe configuration
+> >     space registers, Port Logic registers, DMA and iATU (internal Address
+> >     Translation Unit) registers.
+> > +- snps,phy-zrxdc-compliant: This property is needed if phy complies with the
+> > +  ZRX-DC specification.
+> 
+> If this is a property of the phy, then it belongs in the phy node or 
+> should just be implied by the phy's compatible. 
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm/boot/dts/Makefile             |  1 +
- arch/arm/boot/dts/imx6sll-evk-reva.dts | 12 ++++++++++++
- 2 files changed, 13 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6sll-evk-reva.dts
+As suggested in the previous revision of this series [1], this is absolutely a
+property of the phy.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 71f08e7..3845bbf 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -557,6 +557,7 @@ dtb-$(CONFIG_SOC_IMX6SL) += \
- 	imx6sl-warp.dtb
- dtb-$(CONFIG_SOC_IMX6SLL) += \
- 	imx6sll-evk.dtb \
-+	imx6sll-evk-reva.dtb \
- 	imx6sll-kobo-clarahd.dtb
- dtb-$(CONFIG_SOC_IMX6SX) += \
- 	imx6sx-nitrogen6sx.dtb \
-diff --git a/arch/arm/boot/dts/imx6sll-evk-reva.dts b/arch/arm/boot/dts/imx6sll-evk-reva.dts
-new file mode 100644
-index 0000000..7ca2563
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6sll-evk-reva.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2016 Freescale Semiconductor, Inc.
-+ * Copyright 2017-2019 NXP.
-+ *
-+ */
-+
-+#include "imx6sll-evk.dts"
-+
-+&usdhc2 {
-+	compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
-+};
--- 
-2.7.4
+> IOW, you should be able 
+> to support this or not without changing DTs.
+> 
+> Is this spec Synopys specific? (About the only thing Google turns up are 
+> your patches.) If not, then probably shouldn't have a 'snps' prefix.
 
+This was also unfamiliar to me, however my current understanding is that
+Zrx-dc describes the 'Receiver DC single ended impedance' limits, this is
+specified in the PCI specification (table 'Common Receiver Parameters'),
+with a different limit for each speed.
+
+I believe the purpose of this series is to to satisfy the following
+implementation note in the spec "Ports that meet the Zrx-dc specification
+for 2.5 GT/s while in the L1.Idle state are therefore not required to
+implement the 100 ms timeout and transition to Recovery should avoid
+implementing it, since it will reduce the power savings expected from the
+L1 state".
+
+In other words, if it is known that the phy is compliant then an
+unnecessary transition to a higher energy state can be avoided. Though it's
+the PCI controller (in this case) that must action this and must find out
+about the phy it is connected to.
+
+So in my view 'phy-zrxdc-compliant' should be a property of a phy (without
+snps prefix), and if a controller wants to determine if it is compliant then
+there must be a phandle to the phy so the controller can find out.
+
+[1] https://patchwork.kernel.org/patch/11202121/
+
+Thanks,
+
+Andrew Murray
+
+> 
+> >  RC mode:
+> >  - num-viewport: number of view ports configured in hardware. If a platform
+> >    does not specify it, the driver assumes 2.
+> > -- 
+> > 2.17.1
+> > 
