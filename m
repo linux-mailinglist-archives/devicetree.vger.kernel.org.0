@@ -2,120 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76D10F12F1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 10:53:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12223F1314
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 10:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731608AbfKFJxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Nov 2019 04:53:45 -0500
-Received: from foss.arm.com ([217.140.110.172]:36852 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731554AbfKFJxp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Nov 2019 04:53:45 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 700D9328;
-        Wed,  6 Nov 2019 01:53:44 -0800 (PST)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CA2DE3F6C4;
-        Wed,  6 Nov 2019 01:53:43 -0800 (PST)
-Date:   Wed, 6 Nov 2019 09:53:41 +0000
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Anvesh Salveru <anvesh.s@samsung.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhelgaas@google.com, gustavo.pimentel@synopsys.com,
-        jingoohan1@gmail.com, pankaj.dubey@samsung.com,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: designware: Add binding for
- ZRX-DC PHY property
-Message-ID: <20191106095340.GO9723@e119886-lin.cambridge.arm.com>
-References: <1572264988-17455-1-git-send-email-anvesh.s@samsung.com>
- <CGME20191028121748epcas5p3054c9583c14a2edde9f725d005895a04@epcas5p3.samsung.com>
- <1572264988-17455-2-git-send-email-anvesh.s@samsung.com>
- <20191105215332.GA19296@bogus>
+        id S1727239AbfKFJ7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Nov 2019 04:59:23 -0500
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:43996 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727628AbfKFJ7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Nov 2019 04:59:22 -0500
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id xA69wXsP021265;
+        Wed, 6 Nov 2019 11:58:34 +0200
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id C3B4E60275; Wed,  6 Nov 2019 11:58:33 +0200 (IST)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        yuenn@google.com, venture@google.com, benjaminfair@google.com,
+        avifishman70@gmail.com, joel@jms.id.au
+Cc:     openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v4 0/3] reset: npcm: add NPCM reset driver support
+Date:   Wed,  6 Nov 2019 11:58:29 +0200
+Message-Id: <20191106095832.236766-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191105215332.GA19296@bogus>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 05, 2019 at 03:53:32PM -0600, Rob Herring wrote:
-> On Mon, Oct 28, 2019 at 05:46:27PM +0530, Anvesh Salveru wrote:
-> > Add support for ZRX-DC compliant PHYs. If PHY is not compliant to ZRX-DC
-> > specification, then after every 100ms link should transition to recovery
-> > state during the low power states which increases power consumption.
-> > 
-> > Platforms with ZRX-DC compliant PHY can use "snps,phy-zrxdc-compliant"
-> > property in DesignWare controller DT node.
-> > 
-> > CC: Rob Herring <robh+dt@kernel.org>
-> > CC: Mark Rutland <mark.rutland@arm.com>
-> > Signed-off-by: Anvesh Salveru <anvesh.s@samsung.com>
-> > Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> > Reviewed-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> > ---
-> > Change in v2: None
-> > 
-> >  Documentation/devicetree/bindings/pci/designware-pcie.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/designware-pcie.txt b/Documentation/devicetree/bindings/pci/designware-pcie.txt
-> > index 78494c4050f7..9507ac38ac89 100644
-> > --- a/Documentation/devicetree/bindings/pci/designware-pcie.txt
-> > +++ b/Documentation/devicetree/bindings/pci/designware-pcie.txt
-> > @@ -38,6 +38,8 @@ Optional properties:
-> >     for data corruption. CDM registers include standard PCIe configuration
-> >     space registers, Port Logic registers, DMA and iATU (internal Address
-> >     Translation Unit) registers.
-> > +- snps,phy-zrxdc-compliant: This property is needed if phy complies with the
-> > +  ZRX-DC specification.
-> 
-> If this is a property of the phy, then it belongs in the phy node or 
-> should just be implied by the phy's compatible. 
+This patch set adds reset controller support 
+for the Nuvoton NPCM Baseboard Management Controller (BMC).
 
-As suggested in the previous revision of this series [1], this is absolutely a
-property of the phy.
+Apart of controlling all NPCM BMC reset module lines the NPCM reset driver
+support NPCM BMC software reset to restarting the NPCM BMC.
 
-> IOW, you should be able 
-> to support this or not without changing DTs.
-> 
-> Is this spec Synopys specific? (About the only thing Google turns up are 
-> your patches.) If not, then probably shouldn't have a 'snps' prefix.
+Supporting NPCM USB-PHY reset as follow:
 
-This was also unfamiliar to me, however my current understanding is that
-Zrx-dc describes the 'Receiver DC single ended impedance' limits, this is
-specified in the PCI specification (table 'Common Receiver Parameters'),
-with a different limit for each speed.
+NPCM BMC USB-PHY connected to two modules USB device (UDC) and USB host.
 
-I believe the purpose of this series is to to satisfy the following
-implementation note in the spec "Ports that meet the Zrx-dc specification
-for 2.5 GT/s while in the L1.Idle state are therefore not required to
-implement the 100 ms timeout and transition to Recovery should avoid
-implementing it, since it will reduce the power savings expected from the
-L1 state".
+If we will restart the USB-PHY at the UDC probe and later the 
+USB host probe will restart USB-PHY again it will disable the UDC
+and vice versa.
 
-In other words, if it is known that the phy is compliant then an
-unnecessary transition to a higher energy state can be avoided. Though it's
-the PCI controller (in this case) that must action this and must find out
-about the phy it is connected to.
+The solution is to reset the USB-PHY at the reset probe stage before 
+the UDC and the USB host are initializing.
 
-So in my view 'phy-zrxdc-compliant' should be a property of a phy (without
-snps prefix), and if a controller wants to determine if it is compliant then
-there must be a phandle to the phy so the controller can find out.
+NPCM reset driver tested on NPCM750 evaluation board.
 
-[1] https://patchwork.kernel.org/patch/11202121/
+Addressed comments from:.
+ - Rob Herring : https://lkml.org/lkml/2019/11/5/918
 
-Thanks,
+Changes since version 3:
+ - Modify to dt-bindings in the commit subject.
+ - Remove footer from all the sent patches.
+ 
+Changes since version 2:
+ - Remove unnecessary details in the dt-binding documentation.
+ - Modify device tree binding constants.
+ - initialize gcr_regmap parameter to NULL.
+ - Add of_xlate support.
+ - Enable NPCM reset driver by default.
+ - Remove unused header include.
+ - Using devm_platform_ioremap_resource instead of_address_to_resource 
+	and devm_ioremap_resource.
+ - Modify number of resets.
+ - Using devm_reset_controller_register instead reset_controller_register.
+ - Remove unnecessary probe print.
+  
+Changes since version 1:
+ - Check if gcr_regmap parameter initialized before using it.
 
-Andrew Murray
+Tomer Maimon (3):
+  dt-bindings: reset: add NPCM reset controller documentation
+  dt-bindings: reset: Add binding constants for NPCM7xx reset controller
+  reset: npcm: add NPCM reset controller driver
 
-> 
-> >  RC mode:
-> >  - num-viewport: number of view ports configured in hardware. If a platform
-> >    does not specify it, the driver assumes 2.
-> > -- 
-> > 2.17.1
-> > 
+ .../bindings/reset/nuvoton,npcm-reset.txt     |  32 ++
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-npcm.c                    | 281 ++++++++++++++++++
+ .../dt-bindings/reset/nuvoton,npcm7xx-reset.h |  91 ++++++
+ 5 files changed, 412 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/nuvoton,npcm-reset.txt
+ create mode 100644 drivers/reset/reset-npcm.c
+ create mode 100644 include/dt-bindings/reset/nuvoton,npcm7xx-reset.h
+
+-- 
+2.22.0
+
