@@ -2,83 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 303F0F1167
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 09:47:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BAFAF118A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 09:56:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731521AbfKFIrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Nov 2019 03:47:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51092 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730178AbfKFIrV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 6 Nov 2019 03:47:21 -0500
-Received: from localhost.localdomain (unknown [223.226.46.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1731470AbfKFI4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Nov 2019 03:56:20 -0500
+Received: from retiisi.org.uk ([95.216.213.190]:55938 "EHLO
+        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727068AbfKFI4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Nov 2019 03:56:20 -0500
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DCAD1217F4;
-        Wed,  6 Nov 2019 08:47:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573030040;
-        bh=uf5TG+Wknq5QFhY1vd52nLhyqhyPLL2HLPrmiOwNrQU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fyrHYJxMwZjz/plAbEBGPqQwt2xxQmSMkNqoYXbuQDqvMGdqXk6nUcjXelIvql9iQ
-         DY0CQS1wqCxiP64X2mQDLqMTniFa9WknjsAguHXl5KkaGMftEQn7jPx+v7nVOoMwt8
-         9k20EoHnCZERZ3XarYwKxw67a7geiRfUAZGaJoU4=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8150-mtp:  Enable UFS nodes
-Date:   Wed,  6 Nov 2019 14:16:56 +0530
-Message-Id: <20191106084656.1749954-2-vkoul@kernel.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191106084656.1749954-1-vkoul@kernel.org>
-References: <20191106084656.1749954-1-vkoul@kernel.org>
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 0D78C634C87;
+        Wed,  6 Nov 2019 10:55:03 +0200 (EET)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1iSH5i-0002VM-1T; Wed, 06 Nov 2019 10:55:02 +0200
+Date:   Wed, 6 Nov 2019 10:55:02 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jyri Sarha <jsarha@ti.com>
+Subject: Re: [Patch v2 07/20] media: ti-vpe: cal: add CSI2 PHY LDO errata
+ support
+Message-ID: <20191106085501.GA6253@valkosipuli.retiisi.org.uk>
+References: <20191104193140.31145-1-bparrot@ti.com>
+ <20191104193140.31145-8-bparrot@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191104193140.31145-8-bparrot@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the UFS HC and phy nodes and add regulators used by these.
+Hi Benoit,
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+On Mon, Nov 04, 2019 at 01:31:27PM -0600, Benoit Parrot wrote:
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index d4c240a56d2e..1eb93a768a85 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -385,3 +385,23 @@
- &uart2 {
- 	status = "okay";
- };
-+
-+&ufs_mem_hc {
-+	status = "okay";
-+
-+	vcc-supply = <&vreg_l10a_2p5>;
-+	vcc-max-microamp = <750000>;
-+	vccq-supply = <&vreg_l9a_1p2>;
-+	vccq-max-microamp = <700000>;
-+	vccq2-supply = <&vreg_s4a_1p8>;
-+	vccq2-max-microamp = <750000>;
-+};
-+
-+&ufs_mem_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_ufs_2ln_core_1>;
-+	vdda-max-microamp = <90200>;
-+	vdda-pll-supply = <&vreg_l3c_1p2>;
-+	vdda-pll-max-microamp = <19000>;
-+};
+...
+
+> @@ -458,6 +483,8 @@
+>  #define CAL_CSI2_PHY_REG1_CLOCK_MISS_DETECTOR_STATUS_SUCCESS		0
+>  #define CAL_CSI2_PHY_REG1_RESET_DONE_STATUS_MASK		GENMASK(29, 28)
+>  
+> +#define CAL_CSI2_PHY_REG10_I933_LDO_DISABLE_MASK		BIT_MASK(6)
+
+BIT(6) ?
+
+BIT_MASK() is intended for a different purpose.
+
 -- 
-2.23.0
+Regards,
 
+Sakari Ailus
