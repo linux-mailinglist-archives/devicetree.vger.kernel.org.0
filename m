@@ -2,164 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA1D1F17FF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 15:09:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B6F7F17EE
+	for <lists+devicetree@lfdr.de>; Wed,  6 Nov 2019 15:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726976AbfKFOJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Nov 2019 09:09:56 -0500
-Received: from forward104o.mail.yandex.net ([37.140.190.179]:53760 "EHLO
-        forward104o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727958AbfKFOJz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Nov 2019 09:09:55 -0500
-X-Greylist: delayed 375 seconds by postgrey-1.27 at vger.kernel.org; Wed, 06 Nov 2019 09:09:53 EST
-Received: from forward103q.mail.yandex.net (forward103q.mail.yandex.net [IPv6:2a02:6b8:c0e:50:0:640:b21c:d009])
-        by forward104o.mail.yandex.net (Yandex) with ESMTP id 2EF16940E5E;
-        Wed,  6 Nov 2019 17:03:37 +0300 (MSK)
-Received: from mxback1q.mail.yandex.net (mxback1q.mail.yandex.net [IPv6:2a02:6b8:c0e:39:0:640:25b3:aea5])
-        by forward103q.mail.yandex.net (Yandex) with ESMTP id 2987B61E0015;
-        Wed,  6 Nov 2019 17:03:37 +0300 (MSK)
-Received: from vla5-9cb0c276d29e.qloud-c.yandex.net (vla5-9cb0c276d29e.qloud-c.yandex.net [2a02:6b8:c18:3588:0:640:9cb0:c276])
-        by mxback1q.mail.yandex.net (mxback/Yandex) with ESMTP id A4fqlvflAd-3b9GUHV2;
-        Wed, 06 Nov 2019 17:03:37 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emlid.com; s=mail; t=1573049017;
-        bh=ScFPaG9UQrYGGId0CvVB3OieD16A0ZI82rTOVQODVyQ=;
-        h=In-Reply-To:Subject:To:From:Cc:References:Date:Message-Id;
-        b=DC45EuzOlPIlokiiMZn/+dHC1b+mNEFTBDYZidgPiezS0MKNzcapsL7LXUmPYb1Bh
-         Bb5CXRKKntwIfRjeC113J8Okw8m95+fdwLV17fjhlBeyN4Xrf1qBVrmWH4xGfxgzhL
-         QooPnJDD8MtBUuxqvgJ4mvnGbReZHqmxudONg9xU=
-Authentication-Results: mxback1q.mail.yandex.net; dkim=pass header.i=@emlid.com
-Received: by vla5-9cb0c276d29e.qloud-c.yandex.net (nwsmtp/Yandex) with ESMTPSA id S6vUK4L7IT-3a1uKwYa;
-        Wed, 06 Nov 2019 17:03:36 +0300
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (Client certificate not present)
-From:   Georgii Staroselskii <georgii.staroselskii@emlid.com>
-To:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Georgii Staroselskii <georgii.staroselskii@emlid.com>
-Subject: [PATCH 2/2] arm: dts: sunxi: Add Neutis N5H3 support
-Date:   Wed,  6 Nov 2019 17:03:18 +0300
-Message-Id: <1573048998-8913-3-git-send-email-georgii.staroselskii@emlid.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1573048998-8913-1-git-send-email-georgii.staroselskii@emlid.com>
-References: <1573048998-8913-1-git-send-email-georgii.staroselskii@emlid.com>
+        id S1726976AbfKFOIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Nov 2019 09:08:32 -0500
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:46901 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726926AbfKFOIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Nov 2019 09:08:32 -0500
+Received: by mail-pg1-f196.google.com with SMTP id r18so1506044pgu.13;
+        Wed, 06 Nov 2019 06:08:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xh0YLDess6L96nvkYhuVlivBqcsNSJ5iJO7vqQb2cA8=;
+        b=MB1WGmx7LCN3svj1Z32NEMJi+359bYzJH064LJ6eHLnQ5EGZz73rdHSTAmS8xQ/f7k
+         hHXH0vlm9SGNPrsvszHnY5l9DNVOqCNOCYD/2BmSijIBSDEsPvO1kwDOOzCflCUtE+C3
+         5uWCFCDsGeJ+btYZbhuxZEZGz66MRbWP9PD463v41i9Y1Oi+XQ1otayKg60K6uZh5Gnc
+         4DnZXRz5ohRbcR80EUKrbJhjL/yZPXX9+guRIg4XibxuO27z0vcOTmVyl6Kr/4HGMSSS
+         /Wpq0gI97R1uFldSR/4Pmm/H3wRa0HUKiXPV/wUp+1WqruYcT72pfSlLfi8NUFXF9/2d
+         +GvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xh0YLDess6L96nvkYhuVlivBqcsNSJ5iJO7vqQb2cA8=;
+        b=LRjnhGEgahrv5euh/a9edodoYAI7+LPT3dxFYmQkDIZNZjB6n2aAwMyM3f9C0F1J85
+         d0+Crq20lEdRjupd8Nv6m4XvwKO2FMGuNo92Vb+od+swra5oGbnyF+QMx1HfC0WvCovP
+         +Bz19lTbS1wWpq9UAk1fuD4hOQS/HpxB5XM4nFBwPPnoLBrsLVsQAiDuN21fhs2K07e+
+         mz9XN1TOe/1ZlMpxkWDBZUUUU+bnk21uXmGNSRbGVCLjWtn5sW+1svuc34j1rpvWB2Lj
+         x0l74wjFgr769b5dZRwVdpPIE96QEMVpAyDl9o87/u46kkq2egW1epeNhnwdhn0rJao0
+         vv6w==
+X-Gm-Message-State: APjAAAWK0/PI3crWjMTn088o/3K3C/nfN0bTQLdb+zFZftNChROYBiWI
+        CLi4VX9s0S8ql0pk4aZWgGs=
+X-Google-Smtp-Source: APXvYqygIEZIViXKClHYSYmolDRBmW+9kj6CnM/P3+aITpIuH+/hhzB9v23qpqr0AtWRs2EX6QzoUw==
+X-Received: by 2002:a17:90a:9201:: with SMTP id m1mr4135941pjo.74.1573049311958;
+        Wed, 06 Nov 2019 06:08:31 -0800 (PST)
+Received: from localhost.localdomain ([2001:19f0:7001:2668:5400:1ff:fe62:2bbd])
+        by smtp.gmail.com with ESMTPSA id a16sm4707345pfc.56.2019.11.06.06.08.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Nov 2019 06:08:26 -0800 (PST)
+From:   Chuanhong Guo <gch981213@gmail.com>
+To:     linux-mtd@lists.infradead.org
+Cc:     David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Chuanhong Guo <gch981213@gmail.com>
+Subject: [PATCH 0/2] mtd: mtk-quadspi: add support for memory-mapped flash reading
+Date:   Wed,  6 Nov 2019 22:07:46 +0800
+Message-Id: <20191106140748.13100-1-gch981213@gmail.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emlid Neutis N5H3 is a version of Emlid Neutis SoM with H3 instead of H5
-inside.
+This patchset adds support for optional memory-mapped flash reading.
 
-6eeb4180d4b9 ("ARM: dts: sunxi: h3-h5: Add Bananapi M2+ v1.2 device")
-was used as reference.
+BTW: This controller is a ridiculous one which only supports very limited
+spi-nor instructions. I can't rework the driver into a spi-mem one because
+MTK didn't provide register description in their datasheet and even if they
+do provide the documentation, the resulted driver will still be ridiculous
+because it'll need to check every supported instructions in support_op and
+do execution in one-by-one case in exec_op.
 
-Signed-off-by: Georgii Staroselskii <georgii.staroselskii@emlid.com>
----
- arch/arm/boot/dts/Makefile                         |  1 +
- .../dts/sun8i-h3-emlid-neutis-n5h3-devboard.dts    | 61 ++++++++++++++++++++++
- arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3.dtsi  | 11 ++++
- 3 files changed, 73 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3-devboard.dts
- create mode 100644 arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3.dtsi
+Chuanhong Guo (2):
+  mtd: mtk-quadspi: add support for memory-mapped flash reading
+  dt-bindings: mtd: mtk-quadspi: update bindings for mmap flash read
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 3f13b88..c997b0c 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1119,6 +1119,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-h3-orangepi-plus2e.dtb \
- 	sun8i-h3-orangepi-zero-plus2.dtb \
- 	sun8i-h3-rervision-dvk.dtb \
-+	sun8i-h3-emlid-neutis-n5h3-devboard.dtb \
- 	sun8i-r16-bananapi-m2m.dtb \
- 	sun8i-r16-nintendo-nes-classic.dtb \
- 	sun8i-r16-nintendo-super-nes-classic.dtb \
-diff --git a/arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3-devboard.dts b/arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3-devboard.dts
-new file mode 100644
-index 00000000..3b68750
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3-devboard.dts
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * DTS for Emlid Neutis N5 Dev board.
-+ *
-+ * Copyright (C) 2019 Georgii Staroselskii <georgiii.staroselskii@emlid.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun8i-h3-emlid-neutis-n5h3.dtsi"
-+
-+/ {
-+	model = "Emlid Neutis N5H3 Developer board";
-+	compatible = "emlid,neutis-n5h3-devboard",
-+		     "emlid,neutis-n5h3",
-+		     "allwinner,sun8i-h3";
-+
-+	vdd_cpux: gpio-regulator {
-+		compatible = "regulator-gpio";
-+		regulator-name = "vdd-cpux";
-+		regulator-type = "voltage";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1300000>;
-+		regulator-ramp-delay = <50>; /* 4ms */
-+		gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+		gpios-states = <0x1>;
-+		states = <1100000 0x0
-+			  1300000 0x1>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_cpux>;
-+};
-+
-+&codec {
-+	status = "okay";
-+};
-+
-+&emac {
-+	phy-handle = <&int_mii_phy>;
-+	phy-mode = "mii";
-+	allwinner,leds-active-low;
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3.dtsi b/arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3.dtsi
-new file mode 100644
-index 00000000..eedd5da
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-h3-emlid-neutis-n5h3.dtsi
-@@ -0,0 +1,11 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * DTSI for Emlid Neutis N5 SoM.
-+ *
-+ * Copyright (C) 2019 Georgii Staroselskii <georgii.staroselskii@emlid.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun8i-h3.dtsi"
-+#include <arm/sunxi-h3-h5-emlid-neutis.dtsi>
+ .../devicetree/bindings/mtd/mtk-quadspi.txt   | 21 ++++++++++++++++++-
+ drivers/mtd/spi-nor/mtk-quadspi.c             | 11 ++++++++++
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+
 -- 
-2.7.4
+2.21.0
 
