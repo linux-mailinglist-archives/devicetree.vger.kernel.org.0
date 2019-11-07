@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F265DF2316
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 01:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B9F8F2314
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 01:09:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732075AbfKGAJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Nov 2019 19:09:24 -0500
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:41420 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729591AbfKGAJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Nov 2019 19:09:24 -0500
-Received: by mail-pg1-f193.google.com with SMTP id h4so344079pgv.8
-        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2019 16:09:23 -0800 (PST)
+        id S1732589AbfKGAJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Nov 2019 19:09:25 -0500
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:37998 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732571AbfKGAJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Nov 2019 19:09:25 -0500
+Received: by mail-pf1-f195.google.com with SMTP id c13so582070pfp.5
+        for <devicetree@vger.kernel.org>; Wed, 06 Nov 2019 16:09:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=I4KKU3lnlQMUNYRTg4PG0tZkLk5GCpHdCevi44aaMqI=;
-        b=BSmq2BLgOR2hAg+twaNBN+Lj06RNuWYteaIO9NyMxnlT2bzZibvLzHW0s8ALhlnOmx
-         +ca0rhqfcYfyqeQ4dJJ8PDsPW2BNwJ4EJECnai5F9h/zDdn0cNA0JzHZxWo9cR00oYUM
-         T68KXHA5q8BGJXdrLyXd990555c3Ysgg48PLrEAEakcMzsK3ru07Vm8GvYGQnEP3edO/
-         WQ2BiGbhZ+W/IUUH7PwIdxUE4+9CvGy9P8xipawoJRpbr5gTC8Wyo3GUibMG+XFQnSOD
-         xiaPU+tTleHyfOi2hemCu4pLCvo15tM4b08Ld12kmfC/LUUBGVIOGBG9KtLguHNcRWMw
-         91ig==
+        bh=nkwrhUtOyjx0z9ia/8F33+h4qaYoxLjegmC7kxYQ68c=;
+        b=G+nW4KyYZbSmZV1PjkTQItWl/2ynM7MjIg4xQoN3etiESrao5WSn8DqJrhbsEDXx7z
+         VRSfFtgZrlUqjK/Am4eN6BvO9OeLveWVg2v7MGpYtHwP+zJQ6G/7leP8ahpXUESoxn5Q
+         XLl/3rOmXsYBbPkbhJt8xebs2f8+J0E5sif/yBvUK99IXEoh7dCB4v8YN+7Q/xNqA3y5
+         Djg07z3+oZAxmuKIvyi8XQWEMsksPV4l6ekG6ORvL3vUUpsazEJbyC851Mk5mWVlgdmk
+         op1GB6r68yrrb7k1aMnDqtJPXMRrrjkZKLE5D9cXZMYTb/WW5ujfVQnRSOwJ3zWMjD4Y
+         dDlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=I4KKU3lnlQMUNYRTg4PG0tZkLk5GCpHdCevi44aaMqI=;
-        b=UvwtaTBkcCDA0wRAD71PQxOfoOqXw/xUzXewwulSyY703xkDU/bBUmDDfxShdEJZzh
-         ceixtbdmgvvecPSjGpJXzytv623J2wWdeamGdYiTe/tPlJW1oV9DEYTfnJRoCWzSQFt0
-         +7T+6tZW7k2PZCu8hS0HqR9gfQ4NI0HnOdv5f/A4hz27SXl8xQrwOVh1+4ORZEPbq5yc
-         QEGfR8Iz11hLCa8XVyiNTt91J8/I74gawCcChMlfHwq9SGHnukZPNr9xOJCDOrv7+6D0
-         n2qsI1sHiNoFLBEDykArX3E33A8JzvHmeGNMzXYLNnQgIM+EuUzmucrAtfNcRlKzYV1a
-         gZyQ==
-X-Gm-Message-State: APjAAAXDQ+XrWeaV9fWjOXSNyAvEwX2kXFUDEOK61F0uy8Z5h56zm26J
-        FlCsMifH14HQ1FlRXaNQUMhWqw==
-X-Google-Smtp-Source: APXvYqx4fX8Gn+t3Rh3bmDBrB/ZOu/6lTbIy0+fAFGSErMBTtjm4GnANtgUhaKocS8/SeNeX1xNL4g==
-X-Received: by 2002:a63:a747:: with SMTP id w7mr772076pgo.310.1573085363153;
-        Wed, 06 Nov 2019 16:09:23 -0800 (PST)
+        bh=nkwrhUtOyjx0z9ia/8F33+h4qaYoxLjegmC7kxYQ68c=;
+        b=XtAMAKtyW5bPFubQtExPbk1sPkWI9cxOMPP5LwIdkEtNtqbY+ZF7rbf2rJVqCED8tV
+         OqwLv8kqOINSzr+O8wZhPlkzsnhPVYM9478lRmUIZ2wal4s0eIPoEFo4IALA/2rjwor8
+         Hgio6fXAvPzgDClR9hjg+wqeiPUWnyWWAMr5s9TedWonwbbulGLa4pfez/cN1uCISZW5
+         O/juF4K0ptNnCfXVGW53cPzELGZrcFg/LnLPoWyE1Pr80YU7HfbFMhSz+HMTW+HhChmB
+         /7e/eRoB72RAocunw8OlVr1ZAZxYOPykqHYVVp8fwvp5yLm3IZcTxxnN0FCC5Dmk7VdN
+         2jAw==
+X-Gm-Message-State: APjAAAUujwGvBnpIDK4JvLCQ4N9J64ecpzO14h4aaQxnjJbFFAmdtXc5
+        UUP/QJSbg6de3iKXL4PmTS8Xgg==
+X-Google-Smtp-Source: APXvYqzL7Xf8VVGGGBOYn8T1eJwl32JXDaBaAGfga67YrGPm3bMWanjaIDD5Bj8hcuNZkpL4diF6pQ==
+X-Received: by 2002:aa7:930c:: with SMTP id 12mr90008pfj.33.1573085364599;
+        Wed, 06 Nov 2019 16:09:24 -0800 (PST)
 Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id z23sm216549pgj.43.2019.11.06.16.09.22
+        by smtp.gmail.com with ESMTPSA id z23sm216549pgj.43.2019.11.06.16.09.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Nov 2019 16:09:22 -0800 (PST)
+        Wed, 06 Nov 2019 16:09:23 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Kishon Vijay Abraham I <kishon@ti.com>
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v3 2/5] phy: qcom-qmp: Increase PHY ready timeout
-Date:   Wed,  6 Nov 2019 16:09:14 -0800
-Message-Id: <20191107000917.1092409-3-bjorn.andersson@linaro.org>
+Subject: [PATCH v3 3/5] phy: qcom: qmp: Use power_on/off ops for PCIe
+Date:   Wed,  6 Nov 2019 16:09:15 -0800
+Message-Id: <20191107000917.1092409-4-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191107000917.1092409-1-bjorn.andersson@linaro.org>
 References: <20191107000917.1092409-1-bjorn.andersson@linaro.org>
@@ -61,9 +61,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It's typical for the QHP PHY to take slightly above 1ms to initialize,
-so increase the timeout of the PHY ready check to 10ms - as already done
-in the downstream PCIe driver.
+The PCIe PHY initialization requires the attached device to be present,
+which is primarily achieved by the PCI controller driver.  So move the
+logic from init/exit to power_on/power_off.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
@@ -71,22 +71,33 @@ Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Changes since v2:
 - None
 
- drivers/phy/qualcomm/phy-qcom-qmp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/phy/qualcomm/phy-qcom-qmp.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index 091e20303a14..66f91726b8b2 100644
+index 66f91726b8b2..b9f849d86795 100644
 --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
 +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -66,7 +66,7 @@
- /* QPHY_V3_PCS_MISC_CLAMP_ENABLE register bits */
- #define CLAMP_EN				BIT(0) /* enables i/o clamp_n */
+@@ -1968,7 +1968,7 @@ static const struct phy_ops qcom_qmp_phy_gen_ops = {
+ 	.owner		= THIS_MODULE,
+ };
  
--#define PHY_INIT_COMPLETE_TIMEOUT		1000
-+#define PHY_INIT_COMPLETE_TIMEOUT		10000
- #define POWER_DOWN_DELAY_US_MIN			10
- #define POWER_DOWN_DELAY_US_MAX			11
+-static const struct phy_ops qcom_qmp_ufs_ops = {
++static const struct phy_ops qcom_qmp_pcie_ufs_ops = {
+ 	.power_on	= qcom_qmp_phy_enable,
+ 	.power_off	= qcom_qmp_phy_disable,
+ 	.set_mode	= qcom_qmp_phy_set_mode,
+@@ -2068,8 +2068,8 @@ int qcom_qmp_phy_create(struct device *dev, struct device_node *np, int id)
+ 		}
+ 	}
  
+-	if (qmp->cfg->type == PHY_TYPE_UFS)
+-		ops = &qcom_qmp_ufs_ops;
++	if (qmp->cfg->type == PHY_TYPE_UFS || qmp->cfg->type == PHY_TYPE_PCIE)
++		ops = &qcom_qmp_pcie_ufs_ops;
+ 
+ 	generic_phy = devm_phy_create(dev, np, ops);
+ 	if (IS_ERR(generic_phy)) {
 -- 
 2.23.0
 
