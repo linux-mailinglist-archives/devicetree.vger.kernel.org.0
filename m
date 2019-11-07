@@ -2,92 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A084BF3386
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 16:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A42CF3392
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 16:40:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388887AbfKGPib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Nov 2019 10:38:31 -0500
-Received: from smtp.codeaurora.org ([198.145.29.96]:52270 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388716AbfKGPia (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 10:38:30 -0500
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 6649860ACF; Thu,  7 Nov 2019 15:38:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1573141109;
-        bh=4I2NsGsi2oLEPVDxuh2TaPp7vZrikmhwsP5lTE2NoZ0=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=Sd8VY9GQE1aXB0QmpgPNYeJAGEOs9wz1n7kFwUS8vas0uOvFOYG9yuUTMWjzqzWSG
-         i4oQoIok7wV9SsLo05dWg03D6oxhPw3B1UE3nOQswYrPxtVG0LlSeCb9sz6ExDJa/d
-         r/67ErcXUcfIXOvXsln3OrzBnfL+IRVbvoI3MvH4=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9FF4460996;
-        Thu,  7 Nov 2019 15:38:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1573141108;
-        bh=4I2NsGsi2oLEPVDxuh2TaPp7vZrikmhwsP5lTE2NoZ0=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=Fe2kXm63JaVUTHWLtRRpOW0jE0pmLIl3dkPKq4zqiuTCl7JAFgJsxtBvrkSiYkhkJ
-         ODrL2h9g269L0v1ixsF5y35ogMtXPbvCkhZBqEZW0KFFYYYjr2ly16NxaJidSnvhcd
-         d442HvDa1La7EkC89l4rEMr9voOoyM/4OLmRnTnI=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9FF4460996
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Subject: Re: [PATCH v2 01/49] dt: bindings: net: add qcom,ath11k.yaml
-References: <1571565847-10338-1-git-send-email-kvalo@codeaurora.org>
-        <1571565847-10338-2-git-send-email-kvalo@codeaurora.org>
-        <20191025213028.GA5117@bogus>
-Date:   Thu, 07 Nov 2019 17:38:23 +0200
-In-Reply-To: <20191025213028.GA5117@bogus> (Rob Herring's message of "Fri, 25
-        Oct 2019 16:30:28 -0500")
-Message-ID: <87k18by9w0.fsf@kamboji.qca.qualcomm.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S1731032AbfKGPkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Nov 2019 10:40:35 -0500
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:46981 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730114AbfKGPkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 10:40:35 -0500
+Received: by mail-lf1-f66.google.com with SMTP id 19so1920245lft.13;
+        Thu, 07 Nov 2019 07:40:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3wfpECuF12H+DE1PZtlOEqiGcYmjEL0HWEfgaBT4lbM=;
+        b=bJbjU2MfoF4N8Ri1rVIdHg4m03cNn8SW9jOhXXeQO0kuaNF5bTOtxzBq2S8NFzKBqP
+         IcO351Le3xMLgl1iFeBBatrsr5reYoa+jHbcwtbD58rr0qAIr8fEtMilenNIwJnyrQV8
+         sd+ikiYu0r4wz/yBI65aSBNf3EmWzm1wL7ybh3ynGl88ftf3CmwDglI+jO2IJTJmxIO9
+         gOfvPtpEDb9BwNg7Ws3/69WrgaKiPX9ti0q3PTbSK/Lw5sTu+iXWHJdE9yUEOLnWU3Wd
+         iigsas+K15fxkvfyafGu1jxtNiEDVX2mnkDNwrVSPLhxRYu2FRpbLtJwKiZxC9HcRmmX
+         hx3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3wfpECuF12H+DE1PZtlOEqiGcYmjEL0HWEfgaBT4lbM=;
+        b=KXwJREQWQSpbSKirq5ke0Lmqafocc6dwSimYQo7KXtpFCp1Snn641OFMrTgxkGmqML
+         D5yfcMm8oKvoiRB0NPHmOu5pVcy3BhmH1kRWF9Sp1tBJDRRgjV/JN3u+M3AxDRDPSdpX
+         21oB4bn83NVtf1UfNGUFs/9SWZokd4kTMT+TNhEPhbxlTgLl9afhAsA3SDCscTQhQVV3
+         UataU8xae1CSdVDvT5cZ0U8h+YewXupmzgn4bKcm80TUB3+g23gSwUBoNCgFzJ02YSRY
+         l/SyE+kuYHzjCYVqAnFWtGQnULbUWnEkdmn3E+kB2DgzWE8RkBGokYcgyb0+yzLRU4YX
+         hFMQ==
+X-Gm-Message-State: APjAAAXYVCMcJHmsc+2+V4WSmm5qfu01nn5GX6uHJu0mjQjfw1RbiKzU
+        O5aiAFxIv5mawjrewDwFQxEtZbGwiEjACiAKTK8=
+X-Google-Smtp-Source: APXvYqy28CEsAIgaxf8ySUF97vlGB/pLswajdJxXB007SZ9AZuUinPdeAUK7kjTrQQ6CfPiZrS5vS5B4dWjHsnv6E7A=
+X-Received: by 2002:ac2:4a8a:: with SMTP id l10mr2816632lfp.185.1573141233381;
+ Thu, 07 Nov 2019 07:40:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <1573092393-26885-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1573092393-26885-1-git-send-email-Anson.Huang@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 7 Nov 2019 12:40:24 -0300
+Message-ID: <CAOMZO5CiR7-YmAUggdt9rdZpNYKzQTFY5zGGGQ2k06Qc7pkg_Q@mail.gmail.com>
+Subject: Re: [PATCH V2 1/4] ARM: dts: imx6sll: Update usdhc fallback
+ compatible to support HS400 mode
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> writes:
+Hi Anson,
 
-> On Sun, Oct 20, 2019 at 01:03:19PM +0300, Kalle Valo wrote:
->> ath11k is a driver for Qualcomm IEEE 802.11ax devices. Add a
->> bindings document for the driver, first documenting IPQ8074 which is the
->> only device ath11k currently supports.
->> 
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-
-[...]
-
->> +  interrupts:
->> +    minItems: 53
->> +    maxItems: 53
+On Wed, Nov 6, 2019 at 11:08 PM Anson Huang <Anson.Huang@nxp.com> wrote:
 >
-> Assuming the list below has 53 entries min/maxItems is implied.
+> The latest i.MX6SLL EVK board supports HS400 mode, update usdhc's
 
-There's actually 52 entries in the items list below this, I need to
-check if we are missing an entry or is this just a miscalculation.
+Since this is a dtsi patch, it is better not to mention a specific
+board here in the commit log.
 
->> +  interrupt-names:
->> +    minItems: 53
->> +    maxItems: 53
+It would be better to say that unlike i.MX6SL, the i.MX6SLL SoC can
+support HS400 mode, hence fsl,imx7d-usdhc should be used as compatible
+string.
 
-And I assume I can remove minItems and maxItems here as well.
+Regards,
 
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Fabio Estevam
+> fallback compatible to support HS400 mode by default.
+>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+> No changes.
+> ---
+>  arch/arm/boot/dts/imx6sll.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
+> index 85aa8bb..1c8101f 100644
+> --- a/arch/arm/boot/dts/imx6sll.dtsi
+> +++ b/arch/arm/boot/dts/imx6sll.dtsi
+> @@ -698,7 +698,7 @@
+>                         };
+>
+>                         usdhc1: mmc@2190000 {
+> -                               compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
+> +                               compatible = "fsl,imx6sll-usdhc", "fsl,imx7d-usdhc";
+>                                 reg = <0x02190000 0x4000>;
+>                                 interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+>                                 clocks = <&clks IMX6SLL_CLK_USDHC1>,
+> @@ -712,7 +712,7 @@
+>                         };
+>
+>                         usdhc2: mmc@2194000 {
+> -                               compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
+> +                               compatible = "fsl,imx6sll-usdhc", "fsl,imx7d-usdhc";
+>                                 reg = <0x02194000 0x4000>;
+>                                 interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+>                                 clocks = <&clks IMX6SLL_CLK_USDHC2>,
+> @@ -726,7 +726,7 @@
+>                         };
+>
+>                         usdhc3: mmc@2198000 {
+> -                               compatible = "fsl,imx6sll-usdhc", "fsl,imx6sx-usdhc";
+> +                               compatible = "fsl,imx6sll-usdhc", "fsl,imx7d-usdhc";
+>                                 reg = <0x02198000 0x4000>;
+>                                 interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+>                                 clocks = <&clks IMX6SLL_CLK_USDHC3>,
+> --
+> 2.7.4
+>
