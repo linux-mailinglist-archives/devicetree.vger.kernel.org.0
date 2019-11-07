@@ -2,148 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F083F298A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 09:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBBDCF29B1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 09:49:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727362AbfKGIop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Nov 2019 03:44:45 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:43333 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727120AbfKGIoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 03:44:44 -0500
-Received: by mail-ot1-f67.google.com with SMTP id l14so1307207oti.10;
-        Thu, 07 Nov 2019 00:44:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=41NEiPopACB8w8/wi96XPwORusZtZyFOe+6fXdB5oWI=;
-        b=NI65yWNHYzw3WUfYaSgg+0OwZsjJvaeLUXBcd1dVigp1vSRsHHiLLEihivro1QXy4j
-         R9h0q5sfZFZniTzaTnfjF8lsPd52y7jPSA9jytSWou1mnDJVqCnpu77gb8zNI+qhomC1
-         PZNVy8tOjSImByW2DAIHV+xCLFHeAyi2cg+D4/uV4QOhY8SwPsh+JWzqlX7z1HTj/ttF
-         HNpmoV8geq5XlcmR5SZCNgGrhp0rPvlXvkJBfnaFYMJ/i1EEDx0dyT/bDrCC7BeUBp3U
-         Oc2Os/EPiYAk+3VmFFkHKT8YzJPGzWRbwbeHVLzxH22NmRgFRaIcR4mMBnO6nLVprC1W
-         p4hg==
-X-Gm-Message-State: APjAAAWjy/fyBi5YNXpt8OmswGXfVzBFwssrW8MLuc9JavkMuPqKW4n/
-        cFOukMWg49eHwIGwnZtlh1PnewQq8s+CfIQiTHk=
-X-Google-Smtp-Source: APXvYqyLd+e060V3vapvpupJ//7p928pbjWfrqP8a74RfAwxyKf0nla2NjyjPYziuD+6o8scdy87CzLXM7S3IlcXjQw=
-X-Received: by 2002:a05:6830:2363:: with SMTP id r3mr2078530oth.39.1573116282410;
- Thu, 07 Nov 2019 00:44:42 -0800 (PST)
+        id S1733243AbfKGIsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Nov 2019 03:48:43 -0500
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:40483 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1733204AbfKGIsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 03:48:42 -0500
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xA78l9gt010906;
+        Thu, 7 Nov 2019 09:48:23 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=rtKW3l2rzJlicglZujNA3kuhYJNSKzKPNkK0J/trcXQ=;
+ b=ptRC1w6yXp9Kh+uB4pCdTkpwgtoCSz05d6BQyVzV3Gy/1Or25bGveqrNHfqVu0mxGw3s
+ fbbHm2//txc87JhlKYpPTKNFqkl7NWycpce7JR29mo6Vat1WI48vpQPbuHvtSPi25b+C
+ Uti1c83gQ4SDbLJbnfZGqvrgWE5tQZRaj2Rdp4q8uXl0JLFaKfEbQ1lomBeH1Q68qLt0
+ a/vipIrJcGOwB/OaEzPsWnWM85ACY235ekANrTcNopRWNGbsqYczHTnVnvhiARRSd9ef
+ KsedtbbYQ13VF6o5CfyrSI5JjPfECTWTpFf2S2gbhTqoHnvmNd4NBm5JaqWhoYscpEHw JQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2w41vduy7w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 07 Nov 2019 09:48:23 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id B08ED100068;
+        Thu,  7 Nov 2019 09:48:02 +0100 (CET)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7D0632AB105;
+        Thu,  7 Nov 2019 09:48:02 +0100 (CET)
+Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 7 Nov 2019
+ 09:48:02 +0100
+Received: from localhost (10.201.22.222) by Webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 7 Nov 2019 09:48:01
+ +0100
+From:   Christophe Roullier <christophe.roullier@st.com>
+To:     <robh@kernel.org>, <davem@davemloft.net>, <joabreu@synopsys.com>,
+        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <alexandre.torgue@st.com>, <peppe.cavallaro@st.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <christophe.roullier@st.com>, <andrew@lunn.ch>
+Subject: [PATCH V4 net-next 0/4] net: ethernet: stmmac: cleanup clock and optimization
+Date:   Thu, 7 Nov 2019 09:47:53 +0100
+Message-ID: <20191107084757.17910-1-christophe.roullier@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20191106193609.19645-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20191106193609.19645-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20191106193609.19645-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 7 Nov 2019 09:44:31 +0100
-Message-ID: <CAMuHMdVZwgVnq2kwjNJQHfvUH0sk6M7Hz-AJR82jMOsCNfW9wQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] PCI: rcar: Add R-Car PCIe endpoint device tree bindings
-To:     Lad Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrew Murray <andrew.murray@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.201.22.222]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-11-07_02:2019-11-07,2019-11-07 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Some improvements: 
+ - manage syscfg as optional clock, 
+ - update slew rate of ETH_MDIO pin, 
+ - Enable gating of the MAC TX clock during TX low-power mode
 
-On Wed, Nov 6, 2019 at 8:36 PM Lad Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> This patch adds the bindings for the R-Car PCIe endpoint driver.
->
-> Signed-off-by: Lad, Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+V4: Update with Andrew Lunn remark
 
-Thanks for your patch!
+Christophe Roullier (4):
+  net: ethernet: stmmac: Add support for syscfg clock
+  ARM: dts: stm32: remove syscfg clock on stm32mp157c ethernet
+  ARM: dts: stm32: adjust slew rate for Ethernet
+  ARM: dts: stm32: Enable gating of the MAC TX clock during TX low-power
+    mode on stm32mp157c
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/rcar-pci-ep.txt
-> @@ -0,0 +1,43 @@
-> +* Renesas R-Car PCIe Endpoint Controller DT description
-> +
-> +Required properties:
-> +           "renesas,pcie-ep-r8a774c0" for the R8A774C0 SoC;
-> +           "renesas,pcie-ep-rcar-gen3" for a generic R-Car Gen3 or
-> +                                    RZ/G2 compatible device.
-
-Unless I'm missing something, this is for the exact same hardware block as
-Documentation/devicetree/bindings/pci/rcar-pci.txt?
-So shouldn't you amend those bindings, instead of adding new compatible
-values?
-Please remember that DT describes hardware, not software policy.
-So IMHO choosing between host and endpoint is purely a configuration
-issue, and could be indicated by the presence or lack of some DT properties.
-E.g. host mode requires both "bus-range" and "device_type" properties,
-so their absence could indicate endpoint mode.
-
-> +- reg: Five register ranges as listed in the reg-names property
-> +- reg-names: Must include the following names
-> +       - "apb-base"
-> +       - "memory0"
-> +       - "memory1"
-> +       - "memory2"
-> +       - "memory3"
-
-What is the purpose of the last 4 regions?
-Can they be chosen by the driver, at runtime?
-
-> +- resets: Must contain phandles to PCIe-related reset lines exposed by IP block
-> +- clocks: from common clock binding: clock specifiers for the PCIe controller
-> +        clock.
-> +- clock-names: from common clock binding: should be "pcie".
-> +
-> +Optional Property:
-> +- max-functions: Maximum number of functions that can be configured (default 1).
-> +
-> +Example:
-> +
-> +SoC-specific DT Entry:
-> +
-> +       pcie_ep: pcie_ep@fe000000 {
-> +               compatible = "renesas,pcie-r8a7791", "renesas,pcie-rcar-gen2";
-
-These compatible values do not match with the ones above
-(but they match with what I'd like to see ;-)
-
-> +               reg = <0 0xfe000000 0 0x80000>,
-> +                       <0x0 0xfe100000 0 0x100000>,
-> +                       <0x0 0xfe200000 0 0x200000>,
-> +                       <0x0 0x30000000 0 0x8000000>,
-> +                       <0x0 0x38000000 0 0x8000000>;
-> +               reg-names = "apb-base", "memory0", "memory1", "memory2", "memory3";
-> +               clocks = <&cpg CPG_MOD 319>;
-> +               clock-names = "pcie";
-> +               power-domains = <&sysc R8A774C0_PD_ALWAYS_ON>;
-> +               resets = <&cpg 319>;
-> +       };
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi     |  9 ++++++--
+ arch/arm/boot/dts/stm32mp157c.dtsi            |  7 +++---
+ .../net/ethernet/stmicro/stmmac/dwmac-stm32.c | 23 +++++++------------
+ 3 files changed, 18 insertions(+), 21 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
