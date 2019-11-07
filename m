@@ -2,140 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3A33F3B5C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 23:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E7BF3B6A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 23:32:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727813AbfKGWXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Nov 2019 17:23:34 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:40655 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725870AbfKGWXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 17:23:34 -0500
-Received: by mail-oi1-f194.google.com with SMTP id 22so3492065oip.7
-        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2019 14:23:32 -0800 (PST)
+        id S1726292AbfKGWcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Nov 2019 17:32:04 -0500
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:37588 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725946AbfKGWcE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 17:32:04 -0500
+Received: by mail-pf1-f195.google.com with SMTP id p24so3439481pfn.4
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2019 14:32:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nZOXu8T4pF3RPpBQKh0YAfX9FS2U6WtIcpqxi844o2o=;
-        b=lc05jcYGrXd77mjvFh2st+MfjgbDAvcXo0am0zOpmLekG0wMNHS6UQKK5Fv7ICh9QW
-         lS8XQhqwhCipkOkSk6zhfV7iW657Ug2ftK3XaPoQ4y07t7r41kwJt2CjB2coTxyUhXNY
-         3T3MDaMPazQIU1CnQXWf2dCvm2vgdzcqfNojMrXHKPV6mnx8ABDe5H/ABYSDepRtGCkw
-         ePk2jg9N6xr+45Jm1fJDgZvg8XrE0tgusPHB8gJ/V8zqb/Ye05WNE0Cibz8rDDKQ6Ojt
-         2dERKMfhMPDH2/QPqET3sVJJ3WGHAVVwlR6HHrmWR6SWM9bmAQVY41eMP9sH8j0dO3kp
-         MZtQ==
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=ZDZxE3X2u0Q7iWpkFaFMXlQVwx+tT1FJavF2B89FPtQ=;
+        b=QtH1+NFXJ0zzfuKxuEMoDpcPK9ve7QSvHogyfZ1LD7WbXf1vDvHk1gduDooLeS3gSa
+         OQ3Iuy0iZC41baX078kKCIeaia9GMa3KjZi9B/3VjKahrxuaPICa6MWCXjekHjmiy0Y1
+         SY2EiKmne3GXAJRmsBQsy2QSW4VDhhxYelSb5nKn8Oq0uZBjnmvBdve2KYmQ3tg6cpX9
+         iDI5aqWNyVmHm4b5vPv1Fe+BH9/fNlR+2jpvh52/fjAPY4wfFFLhpwl5wwhwcMvyUiEg
+         CT/ddVBror3UdtXZOJDJMDyl93GUbm3Cn/qDOnh6C7iuStCKkoIv03sv3cKV9P+MavEw
+         Rc/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nZOXu8T4pF3RPpBQKh0YAfX9FS2U6WtIcpqxi844o2o=;
-        b=s37gf2CGELFfGPHWaagTW8JWoCo6xrnuG4MgW3Gp79XBhSLlM2AIFWPaTQmhdl/gq4
-         /44PgMyxvpLCTdHje/JjKrHzSWKzJLCn7qwJN/aWAkfl+i1uU9AvJhd7a5xpYQf6cI47
-         X42kPurhOUxk/imYgIOi8KyaAOR/A01BVUhYn7k3vcFW4fVAF5t5KGvMV82W7oCoAHMQ
-         Uk0jvz319AtvszcF0WjoJXuwheqs+aEdXkjoIhmOgtvzZGdm4Bdf7pZWgyK4E2a4NVOf
-         D9R7uavalmi/DjPa70WtUwb+Vq7Q28ftzwDkMw0vLAoHgB6Jb6DFunYMnFsWMfRVzZT+
-         8s0g==
-X-Gm-Message-State: APjAAAWm79AbpDc0JQ5+g1299slytxp/nLTWieZkSFfk92Kq1/3Rx/au
-        Q9tINCWZuS3/ee2BOz1GjP4MIPyo7wDsIbmw2C8HyA==
-X-Google-Smtp-Source: APXvYqyY6gqmhyUhh3I+7EzLkfqF4UECKiJdfaiTy6lvDg2Gv4yTuY9xtDeOsBizV8dGg8RKtFASWwMYJe6DdFIxXQQ=
-X-Received: by 2002:a05:6808:9bc:: with SMTP id e28mr425347oig.169.1573165411701;
- Thu, 07 Nov 2019 14:23:31 -0800 (PST)
-MIME-Version: 1.0
-References: <20191028215919.83697-1-john.stultz@linaro.org>
- <20191028215919.83697-10-john.stultz@linaro.org> <878sp3j42w.fsf@gmail.com>
-In-Reply-To: <878sp3j42w.fsf@gmail.com>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Thu, 7 Nov 2019 14:23:20 -0800
-Message-ID: <CALAqxLWZTevNPxBKBOGm2yMtevDkGXXninDGdZYj2qitFohvPw@mail.gmail.com>
-Subject: Re: [PATCH v4 9/9] usb: dwc3: Add host-mode as default support
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=ZDZxE3X2u0Q7iWpkFaFMXlQVwx+tT1FJavF2B89FPtQ=;
+        b=aXXMAKefIkGQKpwKSpztXP2G090u6b/DJFScgjLhVnIZE/KUz4Hj8WZFoPqu3kBAHs
+         FruFrouoLHXhoJzZ4ugCAnQ0coGeIdsSK2mt5ikjaY7sA2sjYolb87XHWbzrM3dDRe8O
+         BiNP/PrIYuUNIi+gR4OGU4LojCwqHe5zJ9uN3bnxMQNA3Linyg6mvNyhGnExuy3Sad2M
+         0ozYrRjfoWojQeHVL9T0vlB2wADJ6wJs2sh27Fe1jhvB8aLs2cbx/LMNh2J7rkMla+W8
+         Ej9uPAJ1UkOJNLsyivzcySFHVqecOzOpun8ZBzgVpFSDkx5uue/qp199pu7QyOB1MuhX
+         xtyA==
+X-Gm-Message-State: APjAAAV1SooYw6XH37B3N2FhHwgq1So55SxTxJhcl1uaQrbKUjEIamza
+        LeoGqqDlvmsaJfBEd50QHWHCbA==
+X-Google-Smtp-Source: APXvYqwls8ddOTQNH1en07qze09B+ck+PA1CQw6LiSffpWOEx3b9mIFdJ4cJ6t90/fOVdQWQ78m/kg==
+X-Received: by 2002:a63:8f5e:: with SMTP id r30mr7741111pgn.146.1573165923226;
+        Thu, 07 Nov 2019 14:32:03 -0800 (PST)
+Received: from localhost ([12.206.222.5])
+        by smtp.gmail.com with ESMTPSA id w15sm3662519pfn.13.2019.11.07.14.32.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Nov 2019 14:32:02 -0800 (PST)
+Date:   Thu, 7 Nov 2019 14:32:01 -0800 (PST)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Christoph Hellwig <hch@lst.de>
+cc:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        ShuFan Lee <shufan_lee@richtek.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Yu Chen <chenyu56@huawei.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Jack Pham <jackp@codeaurora.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Palmer Dabbelt <palmer@dabbelt.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        peter.maydell@linaro.org
+Subject: Re: [PATCH 1/2] dt-bindings: power: reset: document the QEMU RISC-V
+ virt machine poweroff device
+In-Reply-To: <20191107212408.11857-2-hch@lst.de>
+Message-ID: <alpine.DEB.2.21.9999.1911071431390.8918@viisi.sifive.com>
+References: <20191107212408.11857-1-hch@lst.de> <20191107212408.11857-2-hch@lst.de>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 29, 2019 at 2:25 AM Felipe Balbi <balbi@kernel.org> wrote:
-> John Stultz <john.stultz@linaro.org> writes:
-> > diff --git a/drivers/usb/dwc3/drd.c b/drivers/usb/dwc3/drd.c
-> > index 61d4fd8aead4..0e3466fe5ac4 100644
-> > --- a/drivers/usb/dwc3/drd.c
-> > +++ b/drivers/usb/dwc3/drd.c
-> > @@ -489,7 +489,10 @@ static int dwc3_usb_role_switch_set(struct device *dev, enum usb_role role)
-> >               mode = DWC3_GCTL_PRTCAP_DEVICE;
-> >               break;
-> >       default:
-> > -             mode = DWC3_GCTL_PRTCAP_DEVICE;
-> > +             if (dwc->role_switch_default_mode == USB_DR_MODE_HOST)
-> > +                     mode = DWC3_GCTL_PRTCAP_HOST;
-> > +             else
-> > +                     mode = DWC3_GCTL_PRTCAP_DEVICE;
-> >               break;
-> >       }
-> >
-> > @@ -515,7 +518,10 @@ static enum usb_role dwc3_usb_role_switch_get(struct device *dev)
-> >               role = dwc->current_otg_role;
-> >               break;
-> >       default:
-> > -             role = USB_ROLE_DEVICE;
-> > +             if (dwc->role_switch_default_mode == USB_DR_MODE_HOST)
-> > +                     role = USB_ROLE_HOST;
->
-> look at this, we now have 3 different encodings for role which DWC3
-> needs to understand. One is its own PRTCAP_DIR, then there USB_DR_MODE_*
-> and now USB_ROLE_*, can we make it so that we only have one private
-> encoding and one generic encoding?
+On Thu, 7 Nov 2019, Christoph Hellwig wrote:
 
-And you left out the DWC3_OTG_ROLE_* set too!
+> Add the binding for the trivial Qemu RISC-V poweroff mechanism, which is
 
-So I agree it can be easy to muddle up.  The enums are *almost* equivalent:
+There's nothing RISC-V specific here.  This IP isn't defined in the RISC-V 
+specifications, or anything like that.  
 
-include/linux/usb/role.h:
-enum usb_role {
-        USB_ROLE_NONE,
-        USB_ROLE_HOST,
-        USB_ROLE_DEVICE,
-};
+Apparently it's a SiFive IP block which now has a virtual IP 
+implementation in QEMU in hw/riscv/sifive_test.c.  But since there's 
+nothing RISC-V specific about this IP block, any QEMU system, with any CPU 
+implementation, should be able to use this virtual IP, and this Linux 
+driver.
 
-include/linux/usb/otg.h:
-enum usb_dr_mode {
-        USB_DR_MODE_UNKNOWN,
-        USB_DR_MODE_HOST,
-        USB_DR_MODE_PERIPHERAL,
-        USB_DR_MODE_OTG,
-};
+For these reasons, it's better if "RISC-V" is just removed from everywhere 
+in this driver.  If something needs to go in its place, "SiFive" may be 
+better.
 
-But both are widely used:
-$ git grep USB_ROLE_ | wc -l
-123
-$ git grep USB_DR_MODE_ | wc -l
-190
 
-So I'm not sure how easy it will be to condense down, since the usage
-is coming from different usb subsystems (otg and role switching)  and
-I worry assuming them equivalent in just one driver may run into
-trouble eventually if the values diverge (ie someone adds
-USB_ROLE_BRICK or something).
+- Paul
 
-Heikki/Greg: Any thoughts on this? Does it make sense to try to drop
-the usb_role enum and users and replace it with usb_dr_mode?
 
-thanks
--john
+> just a single MMIO register exposed through the DT.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  .../power/reset/qemu-riscv-virt-poweroff.txt     | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/qemu-riscv-virt-poweroff.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/power/reset/qemu-riscv-virt-poweroff.txt b/Documentation/devicetree/bindings/power/reset/qemu-riscv-virt-poweroff.txt
+> new file mode 100644
+> index 000000000000..80ff6fd4e3b7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/reset/qemu-riscv-virt-poweroff.txt
+> @@ -0,0 +1,16 @@
+> +QEMU RISC-V virt machine poweroff device
+> +
+> +This is a device in Qemu that can signal successful or error exit
+> +by writing two magic numbers to a trivial mmio register.
+> +A Linux poweroff is implemented as successful exit.
+> +
+> +Required Properties:
+> +-compatible: "sifive,test0"
+> +-reg: Specifies the physical address of the register
+> +
+> +Example:
+> +
+> +	test@100000 {
+> +		compatible = "sifive,test0";
+> +		reg = <0x100000 0x1000>;
+> +	};
+> -- 
+> 2.20.1
+> 
+> 
+
+
+- Paul
