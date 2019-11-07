@@ -2,90 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42A14F2AFE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 10:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B77F2AF1
+	for <lists+devicetree@lfdr.de>; Thu,  7 Nov 2019 10:42:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387687AbfKGJm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Nov 2019 04:42:59 -0500
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:39167 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387839AbfKGJm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 04:42:57 -0500
-Received: by mail-pf1-f194.google.com with SMTP id x28so2253370pfo.6;
-        Thu, 07 Nov 2019 01:42:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=itXp/vDqhHYMcsOhBE4Lb6epcLCaR4BGpG1zslxBhRk=;
-        b=Cc5v9DBGGv59y4S5c7w3BAKGlgux8FvfqN7hYf4ErrnQ/We+woYIxx5te3ucWu4ZoF
-         8q185rdwW1WrKPUnqYS5uY1Et35kDRkfXWNvHJ3KV1+PCM4Wnb09IuDnqiS7ejLJ4JoV
-         2vFvRKGcV8wbe2AIehLT/qKg8b+ezul2JWl+eJNAOI3x1U9MsZPaM/rBFysw3h7SoSMg
-         Sw+hLVcPw9jkCSN6F85LL/ZgZi4EeuNoHU3iOav8gK3XC66q7dHi1+On1UJe3jokRkuL
-         Oed+oKFyi/ftKSfooSXTn870ExZNskTVnaRveBNVX8TKF7uWVbP9+utF2oabuUGl5d8P
-         939w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=itXp/vDqhHYMcsOhBE4Lb6epcLCaR4BGpG1zslxBhRk=;
-        b=IhIQsgclnR8SE/SmuoXiILwKQfZRdJAtW/IIgiAOWYdyK/92A3ujJrPKRpo7U2N7gl
-         3uO1+aU5fCuZ5M4OhYJVcBwm36Z1Y8JU8Vpcw7VDOe101zM8DuSoA3YdPCdj+zkVbM+R
-         jWaodWiKu1oxGPBOYDIKmXx695kWA07WKhLvO03RizvPlpxqv1CGCRg5hZt1POjHlkcW
-         9VnKZV6+EAr7sPIah6IpyvSjzQZzYZK+ttXlD1ZqgmdSeeVblGBgjoUWu1/kZeLTLC4h
-         whwc0r6eY9amU251Tr20uYNhE4imv/BBOz8lyBw7Un2bEttIzQ+qJ15JV8qhVp5eAEUT
-         9Aqw==
-X-Gm-Message-State: APjAAAXmkM7xp+xMPCZ9T8rBeZjZAXErRAAaX6KQMlFlkgV8BMHQSPji
-        Eg24gP7Kk+66gAdHVAqKWrE=
-X-Google-Smtp-Source: APXvYqx6i+XNW3wKSy1uugKeO5GmapHvlicFFeX4CGHx0TkPuZzVaw0mPNKdNljETG8kv/65+vgNfA==
-X-Received: by 2002:a63:2506:: with SMTP id l6mr3355808pgl.131.1573119776554;
-        Thu, 07 Nov 2019 01:42:56 -0800 (PST)
-Received: from voyager.lan ([45.124.203.14])
-        by smtp.gmail.com with ESMTPSA id 12sm1958195pfp.79.2019.11.07.01.42.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Nov 2019 01:42:55 -0800 (PST)
-From:   Joel Stanley <joel@jms.id.au>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 4/4] dt-bindings: fttmr010: Add ast2600 compatible
-Date:   Thu,  7 Nov 2019 20:12:18 +1030
-Message-Id: <20191107094218.13210-5-joel@jms.id.au>
-X-Mailer: git-send-email 2.24.0.rc1
-In-Reply-To: <20191107094218.13210-1-joel@jms.id.au>
-References: <20191107094218.13210-1-joel@jms.id.au>
+        id S1733204AbfKGJme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Nov 2019 04:42:34 -0500
+Received: from mx2.suse.de ([195.135.220.15]:36004 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726734AbfKGJme (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Nov 2019 04:42:34 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 71C67B1B8;
+        Thu,  7 Nov 2019 09:42:32 +0000 (UTC)
+Message-ID: <b63a382c72bec9e52ea10f9d41aa45c6b1147eba.camel@suse.de>
+Subject: Re: [PATCH v2 1/2] ARM: dts: bcm2711: force CMA into first GB of
+ memory
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Stefan Wahren <wahrenst@gmx.net>, catalin.marinas@arm.com,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Eric Anholt <eric@anholt.net>
+Cc:     devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Thu, 07 Nov 2019 10:42:30 +0100
+In-Reply-To: <09138a9d-40a5-4c5f-0cf4-1cb73579c600@gmx.net>
+References: <20191106095945.22933-1-nsaenzjulienne@suse.de>
+         <20191106095945.22933-2-nsaenzjulienne@suse.de>
+         <09138a9d-40a5-4c5f-0cf4-1cb73579c600@gmx.net>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-kpHq0CYDmXDh0eqViyTB"
+User-Agent: Evolution 3.34.1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ast2600 contains a fttmr010 derivative.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
- Documentation/devicetree/bindings/timer/faraday,fttmr010.txt | 1 +
- 1 file changed, 1 insertion(+)
+--=-kpHq0CYDmXDh0eqViyTB
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-index 195792270414..3cb2f4c98d64 100644
---- a/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-+++ b/Documentation/devicetree/bindings/timer/faraday,fttmr010.txt
-@@ -11,6 +11,7 @@ Required properties:
-   "moxa,moxart-timer", "faraday,fttmr010"
-   "aspeed,ast2400-timer"
-   "aspeed,ast2500-timer"
-+  "aspeed,ast2600-timer"
- 
- - reg : Should contain registers location and length
- - interrupts : Should contain the three timer interrupts usually with
--- 
-2.24.0.rc1
+On Thu, 2019-11-07 at 07:23 +0100, Stefan Wahren wrote:
+> Hi Nicolas,
+>=20
+> Am 06.11.19 um 10:59 schrieb Nicolas Saenz Julienne:
+> > arm64 places the CMA in ZONE_DMA32, which is not good enough for the
+> > Raspberry Pi 4 since it contains peripherals that can only address the
+> > first GB of memory. Explicitly place the CMA into that area.
+> >=20
+> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> >=20
+> > ---
+> >=20
+> > Changes since v1:
+> >   - Move into bcm2711.dtsi
+> >=20
+> >  arch/arm/boot/dts/bcm2711.dtsi | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >=20
+> > diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711=
+.dtsi
+> > index 1f3acd3363ea..6000a01652fa 100644
+> > --- a/arch/arm/boot/dts/bcm2711.dtsi
+> > +++ b/arch/arm/boot/dts/bcm2711.dtsi
+> > @@ -12,6 +12,26 @@
+> >=20
+> >  	interrupt-parent =3D <&gicv2>;
+> >=20
+> > +	reserved-memory {
+> > +		#address-cells =3D <2>;
+> > +		#size-cells =3D <1>;
+> > +		ranges;
+> > +
+> > +		/*
+> > +		 * arm64 reserves the CMA by default somewhere in ZONE_DMA32,
+> > +		 * that's not good enough for the Raspberry Pi 4 as some
+>=20
+> sorry for the nitpicking but i hope the Raspberry Pi 4 B wont be the
+> only user of BCM2711.
+
+No worries :)
+
+It's better that way anyway.
+
+>=20
+> So please s/Raspberry Pi 4/BCM2711/
+>=20
+> Beside that:
+>=20
+> Acked-by: Stefan Wahren <wahrenst@gmx.net>
+
+Thanks!
+
+>=20
+> > +		 * devices can only address the lower 1G of memory (ZONE_DMA).
+> > +		 */
+> > +		linux,cma {
+> > +			compatible =3D "shared-dma-pool";
+> > +			size =3D <0x2000000>; /* 32MB */
+> > +			alloc-ranges =3D <0x0 0x00000000 0x40000000>;
+> > +			reusable;
+> > +			linux,cma-default;
+> > +		};
+> > +	};
+> > +
+> > +
+> >  	soc {
+> >  		/*
+> >  		 * Defined ranges:
+>=20
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+
+--=-kpHq0CYDmXDh0eqViyTB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl3D5wYACgkQlfZmHno8
+x/6Z9wf+Ix7scgFz+3M7rFkw5LPO3vRxZIa27azCPt/YhruRqYjIFxhJRtvND+Bj
+aA7Lv1P9AayPq9Wzf+9SXpe8kV9075JIwkePxHpSxYRKQO2OxY9PyK79qgi/lEZG
+uFX3nwYBQL28v2DF+Sg12VLrtKuZI+azxLxiv936jZKV58RO+gfCHWulheO+MSiL
+8chl+ZRp0dUehw2squNSbwtcZnr/IcFLx5vDW+EaJdYwNqq+N07LlSeTqxNsPK9a
+RUkOOpOqjv6V8va7RVy4I07aAlRBHrCX34+hvTcZPJkXk3ev5XCGzPZBUPjlklYW
+V4IwN6QZQWEaEO0X/W+lryiJzePQ+w==
+=1rN1
+-----END PGP SIGNATURE-----
+
+--=-kpHq0CYDmXDh0eqViyTB--
 
