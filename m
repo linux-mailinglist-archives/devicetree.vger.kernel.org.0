@@ -2,86 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF28F53DB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 19:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 981A7F563D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 21:03:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727615AbfKHSvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 13:51:41 -0500
-Received: from sender4-pp-o98.zoho.com ([136.143.188.98]:25894 "EHLO
-        sender4-pp-o98.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726394AbfKHSvl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Nov 2019 13:51:41 -0500
-ARC-Seal: i=1; a=rsa-sha256; t=1573239085; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=jOPLF+E8aLQ2cGDr2I8xarrs5hWYbyz1Ht0fLRLZ3VmtCFzhEAN20q8MEb5S5M7qIXKSkBEfPk+eoxDoeGD8LzzITJjX3R8D5tYXtiDzXzmCwyaYdVDlOGtl3WPIW9DU2x9pqdDhReU7hjDoT5QuM1bivR5/GXJWJ7TC3SQTb1k=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1573239085; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=5cyruCeaBNmdqRxDvTFo4TZqRrFp+acIqpIM6/1ElnQ=; 
-        b=MYI24kr7NyrDnB0OtDIq/vg9B0UjSEpB5U7rHGUJa/OlBSTco0vYxeEzWxDGO4PPwPFvwvrGA1LnUsNSaCyHQO2D6gbLR3VsU/9Oa4ux71wYS9UsLAZ6Av0778M8nHaXv8xxNVk7pEdCiZgyzJEtFUHps6FiRVwwCG60ZMcq9jY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=zoho.com;
-        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
-        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
-  s=zapps768; d=zoho.com; 
-  h=subject:to:references:cc:from:message-id:date:user-agent:mime-version:in-reply-to:content-type; 
-  b=V2661Eqp3OM9xq/9mjNHpvwVFe4LW7OQs0M5YtTouTdsn9w4emwV+8tTZCQpAJfIdPqGJ3B0Ty45
-    w4Z744ZY29LKVGbPdErtpuylsMSEALNa7TdGUwbqcGY+0+9TqvBY  
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1573239085;
-        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
-        h=Subject:To:References:Cc:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-        l=680; bh=5cyruCeaBNmdqRxDvTFo4TZqRrFp+acIqpIM6/1ElnQ=;
-        b=ZJ6lnqpmAgIUUFrtziBzGZ4zCjvp7qSJ0qCCQwcljGr3je/uig/I07m3GEDypVOB
-        z6Q8E+/VYBJrNAtx720ygSKhDnJncdaS2wrV40SWjJQUTKnFKH3TIV57DFI0oq0ZBu4
-        U+XP7cbQK6znd5sYYGvrOCDXMAdTP62YodAbNKHY=
-Received: from [192.168.10.218] (171.221.112.68 [171.221.112.68]) by mx.zohomail.com
-        with SMTPS id 157323908329694.68268716331704; Fri, 8 Nov 2019 10:51:23 -0800 (PST)
-Subject: Re: dmaengine: JZ4780: Add support for the X1000 v2
-To:     Vinod Koul <vkoul@kernel.org>
-References: <1571799903-44561-1-git-send-email-zhouyanjie@zoho.com>
- <1571937670-30828-1-git-send-email-zhouyanjie@zoho.com>
- <20191106171156.GK952516@vkoul-mobl>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, paul.burton@mips.com, paul@crapouillou.net,
-        mark.rutland@arm.com, Zubair.Kakakhel@imgtec.com,
-        dan.j.williams@intel.com
-From:   Zhou Yanjie <zhouyanjie@zoho.com>
-Message-ID: <5DC5B923.2020204@zoho.com>
-Date:   Sat, 9 Nov 2019 02:51:15 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
- Thunderbird/38.8.0
+        id S2390935AbfKHTHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 14:07:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38260 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391459AbfKHTHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 14:07:33 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CA364206A3;
+        Fri,  8 Nov 2019 19:07:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1573240052;
+        bh=FRfSfBQVULDXdAO520uMvwwd2i4lO+PEwK/kcFWv+wc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=mC2WNHRA19d3FDINKq6tq7iitlyJET7UcTStlJF5vbgcv9ZrwO9he97MmC38egpt0
+         wEfu/2So4tOvOJZfhhupuJOsVchJFtGEOa2bLsFVa8rWPilnF1fFwAZHYSAVTH+pX0
+         LjMNJmnVd459r/IRsrEv8s4gK00kZY2vGCnCixRk=
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        stable@vger.kernel.org, Andrey Smirnov <andrew.smirnov@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Graeme Smecher <gsmecher@threespeedlogic.com>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 5.3 030/140] ARM: dts: am3874-iceboard: Fix i2c-mux-idle-disconnect usage
+Date:   Fri,  8 Nov 2019 19:49:18 +0100
+Message-Id: <20191108174905.818458961@linuxfoundation.org>
+X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191108174900.189064908@linuxfoundation.org>
+References: <20191108174900.189064908@linuxfoundation.org>
+User-Agent: quilt/0.66
 MIME-Version: 1.0
-In-Reply-To: <20191106171156.GK952516@vkoul-mobl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+From: Andrey Smirnov <andrew.smirnov@gmail.com>
 
-On 2019=E5=B9=B411=E6=9C=8807=E6=97=A5 01:11, Vinod Koul wrote:
-> On 25-10-19, 01:21, Zhou Yanjie wrote:
->> v1->v2:remove flag JZ_SOC_DATA_ALLOW_LEGACY_DT.
->>
-> Hmm this cover letter is devoid of any details for the series. One would
-> expect a description of the series attempting to address.
->
-> Neverthless I have applied, but in future please take care to write a
-> *decent* cover letter and also document changes as you done in the only
-> line.
->
-> Also auto generate the letter using --cover-letter option, it shows up
-> nice diff stat which helps while applying
->
-> Thanks
->
+[ Upstream commit 647c8977e111c0a62c93a489ebc4b045c833fdb4 ]
 
-Thanks, I will pay more attention in the future.
+According to
+Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt,
+i2c-mux-idle-disconnect is a property of a parent node since it
+pertains to the mux/switch as a whole, so move it there and drop all
+of the concurrences in child nodes.
 
-Best regards!
+Fixes: d031773169df ("ARM: dts: Adds device tree file for McGill's IceBoard, based on TI AM3874")
+Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
+Cc: Benoît Cousson <bcousson@baylibre.com>
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Graeme Smecher <gsmecher@threespeedlogic.com>
+Cc: linux-omap@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Tested-by: Graeme Smecher <gsmecher@threespeedlogic.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/am3874-iceboard.dts | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+diff --git a/arch/arm/boot/dts/am3874-iceboard.dts b/arch/arm/boot/dts/am3874-iceboard.dts
+index 883fb85135d46..1b4b2b0500e4c 100644
+--- a/arch/arm/boot/dts/am3874-iceboard.dts
++++ b/arch/arm/boot/dts/am3874-iceboard.dts
+@@ -111,13 +111,13 @@
+ 		reg = <0x70>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
++		i2c-mux-idle-disconnect;
+ 
+ 		i2c@0 {
+ 			/* FMC A */
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <0>;
+-			i2c-mux-idle-disconnect;
+ 		};
+ 
+ 		i2c@1 {
+@@ -125,7 +125,6 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <1>;
+-			i2c-mux-idle-disconnect;
+ 		};
+ 
+ 		i2c@2 {
+@@ -133,7 +132,6 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <2>;
+-			i2c-mux-idle-disconnect;
+ 		};
+ 
+ 		i2c@3 {
+@@ -141,7 +139,6 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <3>;
+-			i2c-mux-idle-disconnect;
+ 		};
+ 
+ 		i2c@4 {
+@@ -149,14 +146,12 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <4>;
+-			i2c-mux-idle-disconnect;
+ 		};
+ 
+ 		i2c@5 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <5>;
+-			i2c-mux-idle-disconnect;
+ 
+ 			ina230@40 { compatible = "ti,ina230"; reg = <0x40>; shunt-resistor = <5000>; };
+ 			ina230@41 { compatible = "ti,ina230"; reg = <0x41>; shunt-resistor = <5000>; };
+@@ -182,14 +177,12 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <6>;
+-			i2c-mux-idle-disconnect;
+ 		};
+ 
+ 		i2c@7 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <7>;
+-			i2c-mux-idle-disconnect;
+ 
+ 			u41: pca9575@20 {
+ 				compatible = "nxp,pca9575";
+-- 
+2.20.1
+
 
 
