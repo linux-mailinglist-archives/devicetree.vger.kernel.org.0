@@ -2,112 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3769F4652
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:41:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB0D2F469D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:43:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732907AbfKHLlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:41:44 -0500
-Received: from vps.xff.cz ([195.181.215.36]:46878 "EHLO vps.xff.cz"
+        id S1732926AbfKHLnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:43:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58220 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732905AbfKHLll (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:41:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1573213299; bh=DTFELkY0GJEkB2dfExMBAyshl9VFk13qMOSBa5R8u4o=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=L1r9uYB1CgSwNl9LXzNO62rthSHIe/gMXCu/3zCOzUnXu9jtABcZOiGkCRdIBBXQ3
-         p709SVqoWgeWqfqkUYRVnP79lTFH0l2ONEfdVLhK+M8gou89gfL0kLVV3sQKXwyxBN
-         Qr52LP/xxXm00qR9AW+tn/NHI5FtWtHt88AMDIDw=
-Date:   Fri, 8 Nov 2019 12:41:38 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Rikard Falkeborn <rikard.falkeborn@gmail.com>, arnd@arndb.de,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        mark.rutland@arm.com, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, robh+dt@kernel.org,
-        tglx@linutronix.de, wens@csie.org
-Subject: Re: [PATCH] phy: allwinner: Fix GENMASK misuse
-Message-ID: <20191108114138.snghk5n7kwuw7zz3@core.my.home>
-Mail-Followup-To: Icenowy Zheng <icenowy@aosc.io>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>, arnd@arndb.de,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        mark.rutland@arm.com, mripard@kernel.org,
-        paul.kocialkowski@bootlin.com, robh+dt@kernel.org,
-        tglx@linutronix.de, wens@csie.org
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20191020134229.1216351-3-megous@megous.com>
- <20191107204645.13739-1-rikard.falkeborn@gmail.com>
- <20191107214514.kcz42mcehyrrif4o@core.my.home>
- <F563E52E-72BF-4297-A14F-DDE2B490DADB@aosc.io>
+        id S2390511AbfKHLnj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:43:39 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2F1E52245A;
+        Fri,  8 Nov 2019 11:43:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1573213418;
+        bh=aluBxgyG66rH0miEhxbojvxTsEkxqtA5iSpzk78LF4M=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=LuPdXr45g54fiqLUYt3XHc0R85+PTwesfGhXcA9ujPyz+2VisGuACp9RlwpwC6yEb
+         ISrn15QOURcctIYeLxul47RZ/BJNXX7e0m0v6L/gbavqbUw1sAqXhJb9Kq/2GGbncF
+         wn++LykZbrfSsImALla9ONFaC8WJICTU6Wv+fVY0=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 021/103] ARM: dts: exynos: Fix sound in Snow-rev5 Chromebook
+Date:   Fri,  8 Nov 2019 06:41:46 -0500
+Message-Id: <20191108114310.14363-21-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191108114310.14363-1-sashal@kernel.org>
+References: <20191108114310.14363-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <F563E52E-72BF-4297-A14F-DDE2B490DADB@aosc.io>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 08, 2019 at 07:29:21PM +0800, Icenowy Zheng wrote:
-> 
-> 
-> 于 2019年11月8日 GMT+08:00 上午5:45:14, "Ondřej Jirman" <megous@megous.com> 写到:
-> >Hello Rikard,
-> >
-> >On Thu, Nov 07, 2019 at 09:46:45PM +0100, Rikard Falkeborn wrote:
-> >> Arguments are supposed to be ordered high then low.
-> >> 
-> >> Signed-off-by: Rikard Falkeborn <rikard.falkeborn@gmail.com>
-> >> ---
-> >> Spotted while trying to add compile time checks of GENMASK arguments.
-> >> Patch has only been compile tested.
-> >
-> >thank you!
-> >
-> >Tested-by: Ondrej Jirman <megous@megous.com>
-> 
-> Does it affect or fix the performance?
+From: Marek Szyprowski <m.szyprowski@samsung.com>
 
-See here: https://forum.armbian.com/topic/10131-orange-pi-lite2-usb3-now-working/?do=findComment&comment=88904
+[ Upstream commit 64858773d78e820003a94e5a7179d368213655d6 ]
 
-Quote:
+This patch adds missing properties to the CODEC and sound nodes, so the
+audio will work also on Snow rev5 Chromebook. This patch is an extension
+to the commit e9eefc3f8ce0 ("ARM: dts: exynos: Add missing clock and
+DAI properties to the max98095 node in Snow Chromebook")
+and commit 6ab569936d60 ("ARM: dts: exynos: Enable HDMI audio on Snow
+Chromebook").  It has been reported that such changes work fine on the
+rev5 board too.
 
-> It may or may not help. On Opi3 I see no change, probably because HUB is
-> really close to the SoC, but on boards without a HUB, SoC's USB3 phy will
-> have to drive the signal over the longer cable and this patch might benefit
-> those boards. 
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+[krzk: Fixed typo in phandle to &max98090]
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/exynos5250-snow-rev5.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Maybe someone with boards without PHY will test it more.
+diff --git a/arch/arm/boot/dts/exynos5250-snow-rev5.dts b/arch/arm/boot/dts/exynos5250-snow-rev5.dts
+index 90560c316f644..cb986175b69b4 100644
+--- a/arch/arm/boot/dts/exynos5250-snow-rev5.dts
++++ b/arch/arm/boot/dts/exynos5250-snow-rev5.dts
+@@ -23,6 +23,14 @@
+ 
+ 		samsung,model = "Snow-I2S-MAX98090";
+ 		samsung,audio-codec = <&max98090>;
++
++		cpu {
++			sound-dai = <&i2s0 0>;
++		};
++
++		codec {
++			sound-dai = <&max98090 0>, <&hdmi>;
++		};
+ 	};
+ };
+ 
+@@ -34,6 +42,9 @@
+ 		interrupt-parent = <&gpx0>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&max98090_irq>;
++		clocks = <&pmu_system_controller 0>;
++		clock-names = "mclk";
++		#sound-dai-cells = <1>;
+ 	};
+ };
+ 
+-- 
+2.20.1
 
-regards,
-	o.
-
-> >
-> >regards,
-> >	o.
-> >
-> >>  drivers/phy/allwinner/phy-sun50i-usb3.c | 2 +-
-> >>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >> 
-> >> diff --git a/drivers/phy/allwinner/phy-sun50i-usb3.c
-> >b/drivers/phy/allwinner/phy-sun50i-usb3.c
-> >> index 1169f3e83a6f..b1c04f71a31d 100644
-> >> --- a/drivers/phy/allwinner/phy-sun50i-usb3.c
-> >> +++ b/drivers/phy/allwinner/phy-sun50i-usb3.c
-> >> @@ -49,7 +49,7 @@
-> >>  #define SUNXI_LOS_BIAS(n)		((n) << 3)
-> >>  #define SUNXI_LOS_BIAS_MASK		GENMASK(5, 3)
-> >>  #define SUNXI_TXVBOOSTLVL(n)		((n) << 0)
-> >> -#define SUNXI_TXVBOOSTLVL_MASK		GENMASK(0, 2)
-> >> +#define SUNXI_TXVBOOSTLVL_MASK		GENMASK(2, 0)
-> >>  
-> >>  struct sun50i_usb3_phy {
-> >>  	struct phy *phy;
-> >> -- 
-> >> 2.24.0
-> >> 
