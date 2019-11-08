@@ -2,37 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 399C4F49A5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:04:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E3C1F498F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:04:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389900AbfKHMEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 07:04:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56062 "EHLO mail.kernel.org"
+        id S2389950AbfKHLmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:42:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56294 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730614AbfKHLmQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:42:16 -0500
+        id S1732711AbfKHLmY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:42:24 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E480521D82;
-        Fri,  8 Nov 2019 11:42:14 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D472E21D82;
+        Fri,  8 Nov 2019 11:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213335;
-        bh=qpvMGZ3IB0+wiopYrxiriRauFzfeubkGQ+P4ZAm2Ydc=;
+        s=default; t=1573213342;
+        bh=HFUeGsGjfvMfFSXB/QZfG3OacwRa96X7DnJEKW59VN4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=sj3M5RR+41T4TrcmAGjMmSE8c1qcNRicsd5UuWUIp/VbIflmTJ8oK54G7o+wnugpO
-         DbDnshM7atjK+rr/9NJQRzmewXmJ2AzP+CtroCcGp7pJHMwDFEqLX3VlKVCyTDCFOV
-         +rv58CFCYWCoR0l+BjWBvXrMN3SMZJzNfJ658ecQ=
+        b=QrXJykdZMygu3KrpiTK8opWY8pp2ohTzoXzaZYTaltsFv1GD/GbVzPl8Gj32lQFlH
+         Ooqo7xvDEcnBM+wsmkn7sZljf+bKBmI7bGpgWlcn2L/YiOakxqLW1RABMgqOL5Gwfw
+         CHBm1VT9cZd0ttNOZNxj1H2l1fbab9z/hHOOceog=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Christian Lamparter <chunkeey@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 173/205] ARM: dts: qcom: ipq4019: fix cpu0's qcom,saw2 reg value
-Date:   Fri,  8 Nov 2019 06:37:20 -0500
-Message-Id: <20191108113752.12502-173-sashal@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Jon Mason <jonmason@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 179/205] arm64: dts: broadcom: Fix I2C and SPI bus warnings
+Date:   Fri,  8 Nov 2019 06:37:26 -0500
+Message-Id: <20191108113752.12502-179-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -45,42 +46,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Lamparter <chunkeey@gmail.com>
+From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit bd73a3dd257fb838bd456a18eeee0ef0224b7a40 ]
+[ Upstream commit 7cdbe45da1a189e744e6801aebb462ee47235580 ]
 
-while compiling an ipq4019 target, dtc will complain:
-regulator@b089000 unit address format error, expected "2089000"
+dtc has new checks for I2C and SPI buses. Fix the warnings in node names
+and unit-addresses.
 
-The saw0 regulator reg value seems to be
-copied and pasted from qcom-ipq8064.dtsi.
+arch/arm64/boot/dts/broadcom/stingray/bcm958742k.dtb: Warning (i2c_bus_reg): /hsls/i2c@e0000/pcf8574@20: I2C bus unit address format error, expected "27"
+arch/arm64/boot/dts/broadcom/stingray/bcm958742t.dtb: Warning (i2c_bus_reg): /hsls/i2c@e0000/pcf8574@20: I2C bus unit address format error, expected "27"
+arch/arm64/boot/dts/broadcom/stingray/bcm958742k.dtb: Warning (spi_bus_bridge): /hsls/ssp@180000: node name for SPI buses should be 'spi'
+arch/arm64/boot/dts/broadcom/stingray/bcm958742k.dtb: Warning (spi_bus_bridge): /hsls/ssp@190000: node name for SPI buses should be 'spi'
 
-This patch fixes the reg value to match that of the
-unit address which in turn silences the warning.
-(There is no driver for qcom,saw2 right now.
-So this went unnoticed)
-
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Andy Gross <andy.gross@linaro.org>
+Cc: Ray Jui <rjui@broadcom.com>
+Cc: Scott Branden <sbranden@broadcom.com>
+Cc: Jon Mason <jonmason@broadcom.com>
+Cc: bcm-kernel-feedback-list@broadcom.com
+Signed-off-by: Rob Herring <robh@kernel.org>
+Acked-by: Scott Branden <sbranden@broadcom.com>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi          | 4 ++--
+ arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi | 2 +-
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi       | 4 ++--
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index 54d056b01bb51..8328ad589e2ba 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -313,7 +313,7 @@
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+index 1a406a76c86a2..ea854f689fda8 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+@@ -639,7 +639,7 @@
+ 			status = "disabled";
+ 		};
  
-                 saw0: regulator@b089000 {
-                         compatible = "qcom,saw2";
--                        reg = <0x02089000 0x1000>, <0x0b009000 0x1000>;
-+			reg = <0x0b089000 0x1000>, <0x0b009000 0x1000>;
-                         regulator;
-                 };
+-		ssp0: ssp@66180000 {
++		ssp0: spi@66180000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x66180000 0x1000>;
+ 			interrupts = <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>;
+@@ -650,7 +650,7 @@
+ 			status = "disabled";
+ 		};
  
+-		ssp1: ssp@66190000 {
++		ssp1: spi@66190000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x66190000 0x1000>;
+ 			interrupts = <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi b/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi
+index bc299c3d90683..a9b92e52d50e8 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/bcm958742-base.dtsi
+@@ -138,7 +138,7 @@
+ &i2c1 {
+ 	status = "okay";
+ 
+-	pcf8574: pcf8574@20 {
++	pcf8574: pcf8574@27 {
+ 		compatible = "nxp,pcf8574a";
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+index e283480bfc7e5..cfeaa855bd05a 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+@@ -521,7 +521,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		ssp0: ssp@180000 {
++		ssp0: spi@180000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x00180000 0x1000>;
+ 			interrupts = <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>;
+@@ -533,7 +533,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		ssp1: ssp@190000 {
++		ssp1: spi@190000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x00190000 0x1000>;
+ 			interrupts = <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.20.1
 
