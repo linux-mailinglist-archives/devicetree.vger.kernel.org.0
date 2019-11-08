@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B26F7F4995
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:04:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CC4EF49AF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:04:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732673AbfKHLmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:42:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55588 "EHLO mail.kernel.org"
+        id S2389693AbfKHMEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 07:04:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55602 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389727AbfKHLmA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:42:00 -0500
+        id S1733104AbfKHLmB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:42:01 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BB9BD222C5;
-        Fri,  8 Nov 2019 11:41:58 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EF7BB21D82;
+        Fri,  8 Nov 2019 11:41:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213319;
-        bh=ypa3wOs131kORiY+6JAWO3HBW3gIyp6YubYc/0p5glQ=;
+        s=default; t=1573213320;
+        bh=O+hpQNM8vSWD7A1+s0aJwWD0EvD+GBBQijCDJuTiYxc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=jgQFdD6FIjxxD50NenAKo5J9DY47ASepMhQkAWC29TCB48waRVy4O1GxHoDm83t3A
-         qDSy7tIkSfIDbHW6gEy4UD1G/F8neMWHd0foiUhX/tc/YBoke5KWd67TLVXKLmZBuS
-         DE9SZVLvMJhuogv5XgpHyTL6L5uSh3T5l3a0uR5k=
+        b=uRx+gVqzzuoazu4GYljMpM/ortNfG/NbCefMYhm33XWKUWyLZrq0R+fSv/9e7XqAa
+         jAA84ymRkoiBt3heJJQGGOxihzJgQh+g1WxgfZ2ufM8JcUm7ljKPrLpHFSb4v2dQCw
+         xgRANwWWIOHk+SYja8LITBLE+sBeRPUKZmMPK288=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, Da Xue <da@lessconfused.com>,
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         Kevin Hilman <khilman@baylibre.com>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 163/205] arm64: dts: meson: libretech: update board model
-Date:   Fri,  8 Nov 2019 06:37:10 -0500
-Message-Id: <20191108113752.12502-163-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 164/205] arm64: dts: meson-axg: use the proper compatible for ethmac
+Date:   Fri,  8 Nov 2019 06:37:11 -0500
+Message-Id: <20191108113752.12502-164-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -44,35 +45,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
 
-[ Upstream commit b7eb0e26cc4a212fde09144cd49d4103170d2b9e ]
+[ Upstream commit eaf8f57c0bf5451132932616ab62f9481adefb55 ]
 
-There is actually several different libretech board with the CC suffix
-so the model name is not appropriate here. Update to something more
-specific
+Use the correct compatible for the AXG ethernet mac node.
 
-Reported-by: Da Xue <da@lessconfused.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index f63bceb88caaf..90a56af967a7f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -13,7 +13,7 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index c518130e5ce73..3c34f14fa5086 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -458,7 +458,7 @@
+ 		};
  
- / {
- 	compatible = "libretech,cc", "amlogic,s905x", "amlogic,meson-gxl";
--	model = "Libre Technology CC";
-+	model = "Libre Computer Board AML-S905X-CC";
- 
- 	aliases {
- 		serial0 = &uart_AO;
+ 		ethmac: ethernet@ff3f0000 {
+-			compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
++			compatible = "amlogic,meson-axg-dwmac", "snps,dwmac";
+ 			reg = <0x0 0xff3f0000 0x0 0x10000
+ 				0x0 0xff634540 0x0 0x8>;
+ 			interrupts = <GIC_SPI 8 IRQ_TYPE_EDGE_RISING>;
 -- 
 2.20.1
 
