@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EEC4F4980
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:03:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F2C6F4972
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732734AbfKHMDk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 07:03:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56632 "EHLO mail.kernel.org"
+        id S2390151AbfKHMDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 07:03:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56910 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390057AbfKHLmg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:42:36 -0500
+        id S2390141AbfKHLmp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:42:45 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1E18E222C4;
-        Fri,  8 Nov 2019 11:42:35 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E2864222CF;
+        Fri,  8 Nov 2019 11:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213355;
-        bh=ITiLQa7PhFYebKtxc6Fl3GvTzg0Y6H8CyAE5H5v51fg=;
+        s=default; t=1573213364;
+        bh=J8Af5rd+geu2PFA2CWpOAT2ClSBICxyzyklJSlfvkZs=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Lwm2Rqkn5RfLXYUu7Zv9+THrcc6xfEhiSaobpBIVyW3aw0MFnB7rv3j9hPqmwdGAc
-         vL9vpSJhkaQmo3pS+IUdID6XljiHFLEleFdaaL0G2ii3cvUCp86k/xuvIeMxhRGxHl
-         bnzDisgbYqjJ/kw3WZpHp+8Ynqk+rrrcyMTo8KsI=
+        b=GQSBPKQPEEioI0jnKOOvHfu3j6T88Sdt+2xkQkc2v6qE/vtdV1CAFQtDdzGVoAWRf
+         wniNULcPVJxluGZA5+Rn/XpyLXLEsr0qBHBfFaJQ/mKAMvbZocWd7yRdeqt4RwcMuf
+         aWMtt78t2PQJ7bdvIHE0kAy1MXJ6UkEaYVOvusbM=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Sasha Levin <sashal@kernel.org>,
+Cc:     Rob Herring <robh@kernel.org>, Carlo Caione <carlo@caione.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org, Sasha Levin <sashal@kernel.org>,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 186/205] ARM: dts: sun9i: Fix I2C bus warnings
-Date:   Fri,  8 Nov 2019 06:37:33 -0500
-Message-Id: <20191108113752.12502-186-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 192/205] arm64: dts: meson: Fix erroneous SPI bus warnings
+Date:   Fri,  8 Nov 2019 06:37:39 -0500
+Message-Id: <20191108113752.12502-192-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -46,39 +46,51 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit 57a83c5222c1b5e7b3acc72c6e60fce00a38991a ]
+[ Upstream commit 68ecb5c1920c5b98b1e717fd2349fba2ee5d4031 ]
 
-dtc has new checks for I2C buses. The sun9i-a80 dts file has a node named
-'i2c' which causes a false positive warning. As the node is a RSB bus,
-correct the node name to be 'rsb' to fix the warnings.
+dtc has new checks for SPI buses. The meson dts files have a node named
+spi' which causes false positive warnings. As the node is a pinctrl child
+node, change the node name to be 'spi-pins' to fix the warnings.
 
-arch/arm/boot/dts/sun9i-a80-cubieboard4.dtb: Warning (i2c_bus_reg): /soc/i2c@8003400/codec@e89:reg: I2C address must be less than 10-bits, got "0xe89"
-arch/arm/boot/dts/sun9i-a80-cubieboard4.dtb: Warning (i2c_bus_reg): /soc/i2c@8003400/pmic@745:reg: I2C address must be less than 10-bits, got "0x745"
-arch/arm/boot/dts/sun9i-a80-optimus.dtb: Warning (i2c_bus_reg): /soc/i2c@8003400/codec@e89:reg: I2C address must be less than 10-bits, got "0xe89"
-arch/arm/boot/dts/sun9i-a80-optimus.dtb: Warning (i2c_bus_reg): /soc/i2c@8003400/pmic@745:reg: I2C address must be less than 10-bits, got "0x745"
+arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: Warning (spi_bus_bridge): /soc/periphs@c8834000/pinctrl@4b0/spi: incorrect #address-cells for SPI bus
 
-Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-Cc: Chen-Yu Tsai <wens@csie.org>
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org
 Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/sun9i-a80.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun9i-a80.dtsi b/arch/arm/boot/dts/sun9i-a80.dtsi
-index 25591d6883ef2..d9532fb1ef650 100644
---- a/arch/arm/boot/dts/sun9i-a80.dtsi
-+++ b/arch/arm/boot/dts/sun9i-a80.dtsi
-@@ -1196,7 +1196,7 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index 98cbba6809caa..1ade7e486828c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -390,7 +390,7 @@
  			};
  		};
  
--		r_rsb: i2c@8003400 {
-+		r_rsb: rsb@8003400 {
- 			compatible = "allwinner,sun8i-a23-rsb";
- 			reg = <0x08003400 0x400>;
- 			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+-		spi_pins: spi {
++		spi_pins: spi-pins {
+ 			mux {
+ 				groups = "spi_miso",
+ 					"spi_mosi",
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index c87a80e9bcc6a..8f0bb3c44bd6d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -337,7 +337,7 @@
+ 			};
+ 		};
+ 
+-		spi_pins: spi {
++		spi_pins: spi-pins {
+ 			mux {
+ 				groups = "spi_miso",
+ 					"spi_mosi",
 -- 
 2.20.1
 
