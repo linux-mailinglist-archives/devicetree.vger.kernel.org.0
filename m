@@ -2,36 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E69C2F476B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:50:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB66CF474D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:49:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732671AbfKHLuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:50:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36616 "EHLO mail.kernel.org"
+        id S2387805AbfKHLt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:49:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37334 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391676AbfKHLrv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:47:51 -0500
+        id S2391729AbfKHLsU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:48:20 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4502A222C5;
-        Fri,  8 Nov 2019 11:47:50 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4639C222D1;
+        Fri,  8 Nov 2019 11:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213671;
-        bh=4NXxofZg6m5oA+hNS+P7ZDwTsh2sBcyDS545n4/vvoQ=;
+        s=default; t=1573213699;
+        bh=Utzkaksfpu3Lct4rFLnmEDm/He7L40Lde6OkD4hNLUQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YJOL75LPfZfsa+TwHQXmvFA/nYcOZ9a4PWbsVRl3dNNEeA54hJlqCA2aReZed16rp
-         PyVcq45gFKwk5+8UYhtMrUX6f4e9a4V6U6NWFq0nWY3sBtUvcUiqk1uLPcMD2IVNSZ
-         v0y13nhVlt9XvIXrUFSMblsz7/h2E5sOB1JYMbbU=
+        b=y2WuO5tkvrHLcGzWE5jXrhKenGLtB9by1iCZdIEZbahelKKdtShbYz1JeIRICJB0F
+         uQWXp/MG124gLYkuPYRWqR6vK3IRwOcefj5TKjGwEpcMbv1+Hq6qeIYeUOEEG+6vc5
+         4myO5fJki78dLPI/7zjgPYBVESvSKWzgqpv3pSbY=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 23/44] ARM: dts: omap3-gta04: keep vpll2 always on
-Date:   Fri,  8 Nov 2019 06:46:59 -0500
-Message-Id: <20191108114721.15944-23-sashal@kernel.org>
+Cc:     Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.4 39/44] ARM: dts: socfpga: Fix I2C bus unit-address error
+Date:   Fri,  8 Nov 2019 06:47:15 -0500
+Message-Id: <20191108114721.15944-39-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108114721.15944-1-sashal@kernel.org>
 References: <20191108114721.15944-1-sashal@kernel.org>
@@ -44,37 +42,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
+From: Dinh Nguyen <dinguyen@kernel.org>
 
-[ Upstream commit 1ae00833e30c9b4af5cbfda65d75b1de12f74013 ]
+[ Upstream commit cbbc488ed85061a765cf370c3e41f383c1e0add6 ]
 
-This is needed to make the display and venc work properly.
-Compare to omap3-beagle.dts.
+dtc has new checks for I2C buses. Fix the warnings in unit-addresses.
 
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb: Warning (i2c_bus_reg): /soc/i2c@ffc04000/adxl345@0: I2C bus unit address format error, expected "53"
+
+Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/omap3-gta04.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index 0ea793e365e45..acd0a9deb116b 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -460,6 +460,12 @@
- 	regulator-max-microvolt = <3150000>;
- };
+diff --git a/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts b/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts
+index 555e9caf21e16..7b8e1c4215b51 100644
+--- a/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts
++++ b/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts
+@@ -88,7 +88,7 @@
+ 	status = "okay";
+ 	speed-mode = <0>;
  
-+/* Needed to power the DPI pins */
-+
-+&vpll2 {
-+	regulator-always-on;
-+};
-+
- &dss {
- 	pinctrl-names = "default";
- 	pinctrl-0 = < &dss_dpi_pins >;
+-	adxl345: adxl345@0 {
++	adxl345: adxl345@53 {
+ 		compatible = "adi,adxl345";
+ 		reg = <0x53>;
+ 
 -- 
 2.20.1
 
