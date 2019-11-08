@@ -2,39 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 981A7F563D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 21:03:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADC53F56F5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 21:05:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390935AbfKHTHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 14:07:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38260 "EHLO mail.kernel.org"
+        id S2390595AbfKHTOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 14:14:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36574 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391459AbfKHTHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 14:07:33 -0500
+        id S1733251AbfKHTGO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 14:06:14 -0500
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CA364206A3;
-        Fri,  8 Nov 2019 19:07:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CA0F3215EA;
+        Fri,  8 Nov 2019 19:06:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573240052;
-        bh=FRfSfBQVULDXdAO520uMvwwd2i4lO+PEwK/kcFWv+wc=;
+        s=default; t=1573239973;
+        bh=gvchYWgY+bPpWKuR3Es1o61Fq4TsZ/yX9t1jjgL5Mnw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mC2WNHRA19d3FDINKq6tq7iitlyJET7UcTStlJF5vbgcv9ZrwO9he97MmC38egpt0
-         wEfu/2So4tOvOJZfhhupuJOsVchJFtGEOa2bLsFVa8rWPilnF1fFwAZHYSAVTH+pX0
-         LjMNJmnVd459r/IRsrEv8s4gK00kZY2vGCnCixRk=
+        b=rYBMmFP5r2cnQOMFb6MwiT36XcXk0EmS/P+KX/cD8wv8MAbRzZ7sBk/otn0w6BxHv
+         n5qTJhvN6EtrjV+/FI9Em40iypIUUH7StO9OHrlAbgEed9URTEFg9QCup5bvC1yCbw
+         Ggl7ipFY7sTnJVSkJcmWjaNXP0VGxQdEUQTLa4/8=
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     linux-kernel@vger.kernel.org
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         stable@vger.kernel.org, Andrey Smirnov <andrew.smirnov@gmail.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Graeme Smecher <gsmecher@threespeedlogic.com>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Chris Healy <cphealy@gmail.com>,
+        Cory Tusar <cory.tusar@zii.aero>,
+        Jeff White <jeff.white@zii.aero>,
+        Rick Ramstetter <rick@anteaterllc.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 5.3 030/140] ARM: dts: am3874-iceboard: Fix i2c-mux-idle-disconnect usage
-Date:   Fri,  8 Nov 2019 19:49:18 +0100
-Message-Id: <20191108174905.818458961@linuxfoundation.org>
+Subject: [PATCH 5.3 045/140] ARM: dts: vf610-zii-scu4-aib: Specify i2c-mux-idle-disconnect
+Date:   Fri,  8 Nov 2019 19:49:33 +0100
+Message-Id: <20191108174908.274573711@linuxfoundation.org>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191108174900.189064908@linuxfoundation.org>
 References: <20191108174900.189064908@linuxfoundation.org>
@@ -49,102 +53,51 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Andrey Smirnov <andrew.smirnov@gmail.com>
 
-[ Upstream commit 647c8977e111c0a62c93a489ebc4b045c833fdb4 ]
+[ Upstream commit 71936a6d18c33c63b4e9e0359fb987306cbe9fae ]
 
-According to
-Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.txt,
-i2c-mux-idle-disconnect is a property of a parent node since it
-pertains to the mux/switch as a whole, so move it there and drop all
-of the concurrences in child nodes.
+Specify 'i2c-mux-idle-disconnect' for both I2C switches present on the
+board, since both are connected to the same parent bus and all of
+their children have the same I2C address.
 
-Fixes: d031773169df ("ARM: dts: Adds device tree file for McGill's IceBoard, based on TI AM3874")
+Fixes: ca4b4d373fcc ("ARM: dts: vf610: Add ZII SCU4 AIB board")
 Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
-Cc: Benoît Cousson <bcousson@baylibre.com>
-Cc: Tony Lindgren <tony@atomide.com>
-Cc: Graeme Smecher <gsmecher@threespeedlogic.com>
-Cc: linux-omap@vger.kernel.org
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Chris Healy <cphealy@gmail.com>
+Cc: Cory Tusar <cory.tusar@zii.aero>
+Cc: Jeff White <jeff.white@zii.aero>
+Cc: Rick Ramstetter <rick@anteaterllc.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org
 Cc: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
-Tested-by: Graeme Smecher <gsmecher@threespeedlogic.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Tested-by: Chris Healy <cphealy@gmail.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/am3874-iceboard.dts | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ arch/arm/boot/dts/vf610-zii-scu4-aib.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/am3874-iceboard.dts b/arch/arm/boot/dts/am3874-iceboard.dts
-index 883fb85135d46..1b4b2b0500e4c 100644
---- a/arch/arm/boot/dts/am3874-iceboard.dts
-+++ b/arch/arm/boot/dts/am3874-iceboard.dts
-@@ -111,13 +111,13 @@
+diff --git a/arch/arm/boot/dts/vf610-zii-scu4-aib.dts b/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
+index d7019e89f5887..8136e0ca10d54 100644
+--- a/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
++++ b/arch/arm/boot/dts/vf610-zii-scu4-aib.dts
+@@ -600,6 +600,7 @@
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
  		reg = <0x70>;
++		i2c-mux-idle-disconnect;
+ 
+ 		sff0_i2c: i2c@1 {
+ 			#address-cells = <1>;
+@@ -638,6 +639,7 @@
+ 		reg = <0x71>;
  		#address-cells = <1>;
  		#size-cells = <0>;
 +		i2c-mux-idle-disconnect;
  
- 		i2c@0 {
- 			/* FMC A */
+ 		sff5_i2c: i2c@1 {
  			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <0>;
--			i2c-mux-idle-disconnect;
- 		};
- 
- 		i2c@1 {
-@@ -125,7 +125,6 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <1>;
--			i2c-mux-idle-disconnect;
- 		};
- 
- 		i2c@2 {
-@@ -133,7 +132,6 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <2>;
--			i2c-mux-idle-disconnect;
- 		};
- 
- 		i2c@3 {
-@@ -141,7 +139,6 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <3>;
--			i2c-mux-idle-disconnect;
- 		};
- 
- 		i2c@4 {
-@@ -149,14 +146,12 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <4>;
--			i2c-mux-idle-disconnect;
- 		};
- 
- 		i2c@5 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <5>;
--			i2c-mux-idle-disconnect;
- 
- 			ina230@40 { compatible = "ti,ina230"; reg = <0x40>; shunt-resistor = <5000>; };
- 			ina230@41 { compatible = "ti,ina230"; reg = <0x41>; shunt-resistor = <5000>; };
-@@ -182,14 +177,12 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <6>;
--			i2c-mux-idle-disconnect;
- 		};
- 
- 		i2c@7 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <7>;
--			i2c-mux-idle-disconnect;
- 
- 			u41: pca9575@20 {
- 				compatible = "nxp,pca9575";
 -- 
 2.20.1
 
