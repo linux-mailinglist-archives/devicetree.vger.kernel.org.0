@@ -2,396 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 130F6F4415
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 10:59:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF5DF43E6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 10:51:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731245AbfKHJ7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 04:59:32 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:57292 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730719AbfKHJ7b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 04:59:31 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3F280200379;
-        Fri,  8 Nov 2019 10:59:29 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8411220038F;
-        Fri,  8 Nov 2019 10:59:24 +0100 (CET)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 861FB402C9;
-        Fri,  8 Nov 2019 17:59:18 +0800 (SGT)
-From:   Wen He <wen.he_1@nxp.com>
-To:     linux-devel@linux.nxdi.nxp.com,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S1730948AbfKHJvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 04:51:48 -0500
+Received: from mail-eopbgr1410120.outbound.protection.outlook.com ([40.107.141.120]:46400
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728513AbfKHJvr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 04:51:47 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PwLr2+JwLR42noPA+uGyiLp/bhn54FBfQG2nCU3h4vfThkMSvdeQ/TrnQ0AyqKTNLIVFA9mmJrAnw4y5EvvahifxhtL6+Ja5DyZKA/VwL9gy+ogilaizS+J6ClCRbr3kf8jCaTETgIi5VFi0JXl86fy22gyv9IFzt7X0/EideK5t/lWRRw2Nvb6uApQnBsO2Dr7WbUjpYqo5niG0gVPo8UB0df+OEOYl0C8gyUgOdVHYiH/7AssZdwAV49Yl6EZw9pLHEq8Zeb8JH+0TplAyFwk9Tg6+r7lMxfJuML9rMJU5vR5S8DKg5rA+mQNENBZ7Z98hXtfdc5P9vLkJ8H4zmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c5lcJowE77Zfkg1hSRTr8Azgu3SWMlwBAvgA/JeOMOs=;
+ b=ZquXWFl5OgA6c57aHctmCTJCvGSHTkVwQY8y5n8ufZVV1tKU3Rdqn5bULKc0QbzhKWlk+HHMfQXmu6smiQuZw2ksEk7I1IQmaKtUm4A/nsgqxrhjZvjF2V0QEQxa9/lBQMlqOMySVCzGFMQyTQjMHLXRIE+uvm03Veo5ZSkFPbJvcBYyA94GU3rNIrntQJ+JmMUmqFDJxtltEI7YsNAx42JOyE+UAeffoFAtRH/7C0XZTGXUnumUxLud4BzZZ0erQeSrmpNJS7lzivpINWjt451VrAt3qt8ZoKqeFgwHqYhspI8byHsrsQV/sXCCaHqakbNYBMvNtjGhGCxKpdg58Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c5lcJowE77Zfkg1hSRTr8Azgu3SWMlwBAvgA/JeOMOs=;
+ b=LSKyo+wdfxc6Q0TuzMkpATbLXjmemK6FDeTiVzNpXEC0bAanIyRv1KIXzNhjBlEHpPbZxtlqyjT/ocJQM3AZSO1vRSdJN7og3S+7MhKkXtl92j4fgGaTj2BUeUgs2eIZdeQgwCjnLpDSbOQWVk0us8WlPzDJuDOxl5Csvc4xqEI=
+Received: from TYXPR01MB1775.jpnprd01.prod.outlook.com (52.133.167.146) by
+ TYXPR01MB1615.jpnprd01.prod.outlook.com (52.133.167.14) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2408.24; Fri, 8 Nov 2019 09:51:04 +0000
+Received: from TYXPR01MB1775.jpnprd01.prod.outlook.com
+ ([fe80::91c8:fb22:e4a6:8518]) by TYXPR01MB1775.jpnprd01.prod.outlook.com
+ ([fe80::91c8:fb22:e4a6:8518%7]) with mapi id 15.20.2430.023; Fri, 8 Nov 2019
+ 09:51:04 +0000
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Wen He <wen.he_1@nxp.com>
-Subject: [v7 2/2] clk: ls1028a: Add clock driver for Display output interface
-Date:   Fri,  8 Nov 2019 17:47:35 +0800
-Message-Id: <20191108094735.8174-2-wen.he_1@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20191108094735.8174-1-wen.he_1@nxp.com>
-References: <20191108094735.8174-1-wen.he_1@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Peter Rosin <peda@axentia.se>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: RE: [PATCH v3 5/7] drm/panel: panel-simple: Add connector type for
+ etm0700g0dh6
+Thread-Topic: [PATCH v3 5/7] drm/panel: panel-simple: Add connector type for
+ etm0700g0dh6
+Thread-Index: AQHVlaePEm3wvUZb7Em2Dr1/KfbHL6eALjAAgADVjjA=
+Date:   Fri, 8 Nov 2019 09:51:04 +0000
+Message-ID: <TYXPR01MB1775B15EDC05B551A778B7A1C07B0@TYXPR01MB1775.jpnprd01.prod.outlook.com>
+References: <1573157463-14070-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1573157463-14070-6-git-send-email-fabrizio.castro@bp.renesas.com>
+ <20191107204846.GQ24983@pendragon.ideasonboard.com>
+In-Reply-To: <20191107204846.GQ24983@pendragon.ideasonboard.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: ab39c3b7-2256-470b-ddfe-08d764312b94
+x-ms-traffictypediagnostic: TYXPR01MB1615:|TYXPR01MB1615:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <TYXPR01MB16151EA373305BC96866875CC07B0@TYXPR01MB1615.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0215D7173F
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(39850400004)(136003)(346002)(366004)(376002)(396003)(199004)(189003)(26005)(71190400001)(14454004)(186003)(9686003)(76176011)(4326008)(6246003)(256004)(66066001)(229853002)(44832011)(478600001)(7696005)(86362001)(102836004)(52536014)(66476007)(8676002)(8936002)(3846002)(7736002)(74316002)(81156014)(66556008)(6506007)(53546011)(71200400001)(316002)(5660300002)(66946007)(66446008)(6916009)(6116002)(25786009)(76116006)(7416002)(55016002)(11346002)(486006)(33656002)(99286004)(305945005)(81166006)(476003)(54906003)(446003)(2906002)(6436002)(64756008)(138113003)(98903001);DIR:OUT;SFP:1102;SCL:1;SRVR:TYXPR01MB1615;H:TYXPR01MB1775.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: X8nmQyFw1Oyo4QF29CDRWLXpxjD33sX+oVyHATXp9VxMvSH0qTXLdcpYA/Ih9+gIjETOdAPdLTCRY3eqMsiv3wenZtYJHjJlxvo4aHkSh4Rg/SsmhlPskujVOlwnrldmDKigm1+TkPc6Y9jIkEEFC6ksEwzmrAgeC9zbofFUCkpFrxZxlJ65wY8y6FS28AQqJ37Sd+P4JXla/qN0NbBJsGU4bt99FjcOl2lyo2uKjRgTlyhZgqGa64j/OEphqYtqvU2EkLuPC3wczOrhv1FZmsfZIeRjR0eX7g3PkTK73xL4tW9Ggm+of/l5ODfG4cAJvDcuH2VnIC2Www86O2DqZS12oVDABZrZOlAba4mUXYbyH7Gq3dbGz2xB4b4i5O8fPqOYGOe95w45paPGR6N0OIHPVPJZSmxxx8zdscO+ZTfghya80s1E6D5UoMMfWcyb
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ab39c3b7-2256-470b-ddfe-08d764312b94
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2019 09:51:04.1507
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aeEsG8c17c6b8rXjAOy7qNQqZFVcYooapulCz/crtN/QHJKlHta4HsYR6OUvC1e5Fajg/BLrWfTuRJ6aASgHEOSC0/NnkXl+USPHobz6Xug=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYXPR01MB1615
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock driver for QorIQ LS1028A Display output interfaces(LCD, DPHY),
-as implemented in TSMC CLN28HPM PLL, this PLL supports the programmable
-integer division and range of the display output pixel clock's 27-594MHz.
-
-Signed-off-by: Wen He <wen.he_1@nxp.com>
----
-change in v7:
-        - keep the option of Makefile sorted lexicographically by the
-        path name.
-
- drivers/clk/Kconfig      |  10 ++
- drivers/clk/Makefile     |   1 +
- drivers/clk/clk-plldig.c | 296 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 307 insertions(+)
- create mode 100644 drivers/clk/clk-plldig.c
-
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 0530bebfc25a..9f6b0196c604 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -218,6 +218,16 @@ config CLK_QORIQ
- 	  This adds the clock driver support for Freescale QorIQ platforms
- 	  using common clock framework.
- 
-+config CLK_LS1028A_PLLDIG
-+        tristate "Clock driver for LS1028A Display output"
-+        depends on ARCH_LAYERSCAPE || COMPILE_TEST
-+        default ARCH_LAYERSCAPE
-+        help
-+          This driver support the Display output interfaces(LCD, DPHY) pixel clocks
-+          of the QorIQ Layerscape LS1028A, as implemented TSMC CLN28HPM PLL. Not all
-+          features of the PLL are currently supported by the driver. By default,
-+          configured bypass mode with this PLL.
-+
- config COMMON_CLK_XGENE
- 	bool "Clock driver for APM XGene SoC"
- 	default ARCH_XGENE
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 0138fb14e6f8..6782396ae3aa 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -44,6 +44,7 @@ obj-$(CONFIG_ARCH_NSPIRE)		+= clk-nspire.o
- obj-$(CONFIG_COMMON_CLK_OXNAS)		+= clk-oxnas.o
- obj-$(CONFIG_COMMON_CLK_PALMAS)		+= clk-palmas.o
- obj-$(CONFIG_COMMON_CLK_PWM)		+= clk-pwm.o
-+obj-$(CONFIG_CLK_LS1028A_PLLDIG)	+= clk-plldig.o
- obj-$(CONFIG_CLK_QORIQ)			+= clk-qoriq.o
- obj-$(CONFIG_COMMON_CLK_RK808)		+= clk-rk808.o
- obj-$(CONFIG_COMMON_CLK_HI655X)		+= clk-hi655x.o
-diff --git a/drivers/clk/clk-plldig.c b/drivers/clk/clk-plldig.c
-new file mode 100644
-index 000000000000..83bf60bab240
---- /dev/null
-+++ b/drivers/clk/clk-plldig.c
-@@ -0,0 +1,296 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2019 NXP
-+ *
-+ * Clock driver for LS1028A Display output interfaces(LCD, DPHY).
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/bitfield.h>
-+
-+/* PLLDIG register offsets and bit masks */
-+#define PLLDIG_REG_PLLSR            0x24
-+#define PLLDIG_REG_PLLDV            0x28
-+#define PLLDIG_REG_PLLFM            0x2c
-+#define PLLDIG_REG_PLLFD            0x30
-+#define PLLDIG_REG_PLLCAL1          0x38
-+#define PLLDIG_REG_PLLCAL2          0x3c
-+#define PLLDIG_LOCK_MASK            BIT(2)
-+#define PLLDIG_REG_FIELD_SSCGBYP    BIT(30)
-+#define PLLDIG_REG_FIELD_FDEN       BIT(30)
-+#define PLLDIG_REG_FIELD_DTHDIS     GENMASK(17, 16)
-+#define PLLDIG_REG_FIELD_MULT       GENMASK(7, 0)
-+#define PLLDIG_REG_FIELD_RFDPHI1    GENMASK(30, 25)
-+
-+/* Minimum output clock frequency, in Hz */
-+#define PHI1_MIN_FREQ 27000000
-+
-+/* Maximum output clock frequency, in Hz */
-+#define PHI1_MAX_FREQ 600000000
-+
-+/* Maximum of the divider */
-+#define MAX_RFDPHI1          63
-+
-+/*
-+ * Clock configuration relationship between the PHI1 frequency(fpll_phi) and
-+ * the output frequency of the PLL is determined by the PLLDV, according to
-+ * the following equation:
-+ * fpll_phi = (pll_ref * mfd) / div_rfdphi1
-+ */
-+struct plldig_phi1_param {
-+	unsigned long rate;
-+	unsigned int rfdphi1;
-+	unsigned int mfd;
-+};
-+
-+static const struct clk_parent_data parent_data[] = {
-+	{.index = 0},
-+};
-+
-+struct clk_plldig {
-+	struct clk_hw hw;
-+	void __iomem *regs;
-+	unsigned int mfd;
-+};
-+
-+#define to_clk_plldig(_hw)	container_of(_hw, struct clk_plldig, hw)
-+
-+static int plldig_enable(struct clk_hw *hw)
-+{
-+	struct clk_plldig *data = to_clk_plldig(hw);
-+	u32 val;
-+
-+	val = readl(data->regs + PLLDIG_REG_PLLFM);
-+	/*
-+	 * Use Bypass mode with PLL off by default, the frequency overshoot
-+	 * detector output was disable. SSCG Bypass mode should be enable.
-+	 */
-+	val |= PLLDIG_REG_FIELD_SSCGBYP;
-+	writel(val, data->regs + PLLDIG_REG_PLLFM);
-+
-+	val = readl(data->regs + PLLDIG_REG_PLLFD);
-+	/* Disable dither and Sigma delta modulation in bypass mode */
-+	val |= FIELD_PREP(PLLDIG_REG_FIELD_FDEN, 0x1) |
-+	       FIELD_PREP(PLLDIG_REG_FIELD_DTHDIS, 0x3);
-+
-+	writel(val, data->regs + PLLDIG_REG_PLLFD);
-+
-+	return 0;
-+}
-+
-+static void plldig_disable(struct clk_hw *hw)
-+{
-+	struct clk_plldig *data = to_clk_plldig(hw);
-+	u32 val;
-+
-+	val = readl(data->regs + PLLDIG_REG_PLLFM);
-+
-+	val &= ~PLLDIG_REG_FIELD_SSCGBYP;
-+	val |= FIELD_PREP(PLLDIG_REG_FIELD_SSCGBYP, 0x0);
-+
-+	writel(val, data->regs + PLLDIG_REG_PLLFM);
-+}
-+
-+static int plldig_is_enabled(struct clk_hw *hw)
-+{
-+	struct clk_plldig *data = to_clk_plldig(hw);
-+
-+	return (readl(data->regs + PLLDIG_REG_PLLFM) &
-+			      PLLDIG_REG_FIELD_SSCGBYP);
-+}
-+
-+static unsigned long plldig_recalc_rate(struct clk_hw *hw,
-+		unsigned long parent_rate)
-+{
-+	struct clk_plldig *data = to_clk_plldig(hw);
-+	u32 mult, div, val;
-+
-+	val = readl(data->regs + PLLDIG_REG_PLLDV);
-+
-+	/* Check if PLL is bypassed */
-+	if (val & PLLDIG_REG_FIELD_SSCGBYP)
-+		return parent_rate;
-+
-+	/* Checkout multiplication factor divider value */
-+	mult = FIELD_GET(PLLDIG_REG_FIELD_MULT, val);
-+
-+	/* Checkout divider value of the output frequency */
-+	div = FIELD_GET(PLLDIG_REG_FIELD_RFDPHI1, val);
-+
-+	return (parent_rate * mult) / div;
-+}
-+
-+static int plldig_calc_target_rate(unsigned long target_rate,
-+				   unsigned long parent_rate,
-+				   struct plldig_phi1_param *phi1)
-+{
-+	unsigned int div, ret;
-+	unsigned long round_rate;
-+
-+	/* Range limitation of the request target rate */
-+	if (target_rate > PHI1_MAX_FREQ)
-+		target_rate = PHI1_MAX_FREQ;
-+	else if (target_rate < PHI1_MIN_FREQ)
-+		target_rate = PHI1_MIN_FREQ;
-+
-+	/*
-+	 * Firstly, check the request target rate whether is divisible
-+	 * by the best VCO frequency.
-+	 */
-+	round_rate = parent_rate * phi1->mfd;
-+	div = round_rate / target_rate;
-+	if (!div || div > MAX_RFDPHI1)
-+		return -EINVAL;
-+
-+	ret = round_rate % target_rate;
-+	if (ret) {
-+		/*
-+		 * Rounded down the request target rate, VESA specifies
-+		 * 0.5% pixel clock tolerance, therefore this algorithm
-+		 * can able to compatible a lot of request rates within
-+		 * range of the tolerance.
-+		 */
-+		round_rate += (target_rate / 2);
-+		div = round_rate / target_rate;
-+		if (!div || div > MAX_RFDPHI1)
-+			return -EINVAL;
-+	}
-+
-+	phi1->rfdphi1 = div;
-+	phi1->rate = target_rate;
-+
-+	return 0;
-+}
-+
-+static int plldig_determine_rate(struct clk_hw *hw,
-+				 struct clk_rate_request *req)
-+{
-+	int ret;
-+	unsigned long parent_rate;
-+	struct clk_hw *parent;
-+	struct plldig_phi1_param phi1_param;
-+	struct clk_plldig *data = to_clk_plldig(hw);
-+
-+	if (!req->rate)
-+		return -ERANGE;
-+
-+	phi1_param.mfd = data->mfd;
-+	parent = clk_hw_get_parent(hw);
-+	parent_rate = clk_hw_get_rate(parent);
-+
-+	ret = plldig_calc_target_rate(req->rate, parent_rate, &phi1_param);
-+	if (ret)
-+		return ret;
-+
-+	req->rate = phi1_param.rate;
-+
-+	return 0;
-+}
-+
-+static int plldig_set_rate(struct clk_hw *hw, unsigned long rate,
-+		unsigned long parent_rate)
-+{
-+	struct clk_plldig *data = to_clk_plldig(hw);
-+	struct plldig_phi1_param phi1_param;
-+	unsigned int val, cond;
-+	int ret;
-+
-+	ret = plldig_calc_target_rate(rate, parent_rate, &phi1_param);
-+	if (ret)
-+		return ret;
-+
-+	val = readl(data->regs + PLLDIG_REG_PLLDV);
-+	val = FIELD_PREP(PLLDIG_REG_FIELD_MULT, data->mfd) |
-+	      FIELD_PREP(PLLDIG_REG_FIELD_RFDPHI1, phi1_param.rfdphi1);
-+
-+	writel(val, data->regs + PLLDIG_REG_PLLDV);
-+
-+	/* delay 200us make sure that old lock state is cleared */
-+	udelay(200);
-+
-+	/* Wait until PLL is locked or timeout (maximum 1000 usecs) */
-+	return readl_poll_timeout_atomic(data->regs + PLLDIG_REG_PLLSR, cond,
-+					 cond & PLLDIG_LOCK_MASK, 0,
-+					 USEC_PER_MSEC);
-+}
-+
-+static const struct clk_ops plldig_clk_ops = {
-+	.enable = plldig_enable,
-+	.disable = plldig_disable,
-+	.is_enabled = plldig_is_enabled,
-+	.recalc_rate = plldig_recalc_rate,
-+	.determine_rate = plldig_determine_rate,
-+	.set_rate = plldig_set_rate,
-+};
-+
-+static int plldig_clk_probe(struct platform_device *pdev)
-+{
-+	struct clk_plldig *data;
-+	struct resource *mem;
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	data->regs = devm_ioremap_resource(dev, mem);
-+	if (IS_ERR(data->regs))
-+		return PTR_ERR(data->regs);
-+
-+	 /*
-+	  * Support to get the best loop multiplication divider value
-+	  * from DTS file, since this PLL can't changed this value on
-+	  * the fly, write the fixed value.
-+	  */
-+	ret = of_property_read_u32(dev->of_node, "best-mfd", &data->mfd);
-+	if (ret)
-+		data->mfd = 0x2c;
-+
-+	writel(data->mfd, data->regs + PLLDIG_REG_PLLDV);
-+
-+	data->hw.init = CLK_HW_INIT_PARENTS_DATA("dpclk",
-+						 parent_data,
-+						 &plldig_clk_ops,
-+						 0);
-+
-+	ret = devm_clk_hw_register(dev, &data->hw);
-+	if (ret) {
-+		dev_err(dev, "failed to register %s clock\n",
-+						dev->of_node->name);
-+		return ret;
-+	}
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-+					   &data->hw);
-+}
-+
-+static const struct of_device_id plldig_clk_id[] = {
-+	{ .compatible = "fsl,ls1028a-plldig"},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, plldig_clk_id);
-+
-+static struct platform_driver plldig_clk_driver = {
-+	.driver = {
-+		.name = "plldig-clock",
-+		.of_match_table = plldig_clk_id,
-+	},
-+	.probe = plldig_clk_probe,
-+};
-+module_platform_driver(plldig_clk_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Wen He <wen.he_1@nxp.com>");
-+MODULE_DESCRIPTION("LS1028A Display output interface pixel clock driver");
--- 
-2.17.1
-
+SGkgTGF1cmVudCwNCg0KDQpUaGFuayB5b3UgZm9yIHlvdXIgZmVlZGJhY2shDQoNCj4gRnJvbTog
+bGludXgtcmVuZXNhcy1zb2Mtb3duZXJAdmdlci5rZXJuZWwub3JnIDxsaW51eC1yZW5lc2FzLXNv
+Yy1vd25lckB2Z2VyLmtlcm5lbC5vcmc+IE9uIEJlaGFsZiBPZiBMYXVyZW50IFBpbmNoYXJ0DQo+
+IFNlbnQ6IDA3IE5vdmVtYmVyIDIwMTkgMjA6NDkNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MyA1
+LzddIGRybS9wYW5lbDogcGFuZWwtc2ltcGxlOiBBZGQgY29ubmVjdG9yIHR5cGUgZm9yIGV0bTA3
+MDBnMGRoNg0KPiANCj4gSGkgRmFicml6aW8sDQo+IA0KPiBUaGFuayB5b3UgZm9yIHRoZSBwYXRj
+aC4NCj4gDQo+IE9uIFRodSwgTm92IDA3LCAyMDE5IGF0IDA4OjExOjAxUE0gKzAwMDAsIEZhYnJp
+emlvIENhc3RybyB3cm90ZToNCj4gPiBBZGQgY29ubmVjdG9yIHR5cGUgZm9yIHRoZSBldG0wNzAw
+ZzBkaDYgZnJvbSBFbWVyZ2luZyBEaXNwbGF5DQo+ID4gVGVjaG5vbG9naWVzIChFRFQpLg0KPiA+
+DQo+ID4gU2lnbmVkLW9mZi1ieTogRmFicml6aW8gQ2FzdHJvIDxmYWJyaXppby5jYXN0cm9AYnAu
+cmVuZXNhcy5jb20+DQo+ID4NCj4gPiAtLS0NCj4gPiB2Mi0+djM6DQo+ID4gKiBOZXcgcGF0Y2gN
+Cj4gPiAtLS0NCj4gPiAgZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLXNpbXBsZS5jIHwgMSAr
+DQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+DQo+ID4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC1zaW1wbGUuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9wYW5lbC9wYW5lbC1zaW1wbGUuYw0KPiA+IGluZGV4IDVkNDg3NjguLjgyMDY1ZmYgMTAwNjQ0
+DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLXNpbXBsZS5jDQo+ID4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLXNpbXBsZS5jDQo+ID4gQEAgLTEzNDIsNiAr
+MTM0Miw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcGFuZWxfZGVzYyBlZHRfZXRtMDcwMGcwZGg2
+ID0gew0KPiA+ICAJfSwNCj4gPiAgCS5idXNfZm9ybWF0ID0gTUVESUFfQlVTX0ZNVF9SR0I2NjZf
+MVgxOCwNCj4gPiAgCS5idXNfZmxhZ3MgPSBEUk1fQlVTX0ZMQUdfREVfSElHSCB8IERSTV9CVVNf
+RkxBR19QSVhEQVRBX0RSSVZFX05FR0VER0UsDQo+ID4gKwkuY29ubmVjdG9yX3R5cGUgPSBEUk1f
+TU9ERV9DT05ORUNUT1JfUEFSQUxMRUwsDQo+IA0KPiBJIHN0aWxsIHRoaW5rIHdlIHNob3VsZCBo
+YXZlIGEgRFJNX01PREVfQ09OTkVDVE9SX1BBTkVMLCBidXQgcmVnYXJkbGVzcywNCj4gdGhpcyBw
+YW5lbCBzZWVtcyB0byBtYXRjaCBEUk1fTU9ERV9DT05ORUNUT1JfRFBJLg0KDQpUaGFuayB5b3Uh
+IEkgd2Fzbid0IHJlYWxseSBzdXJlIGFib3V0IHdoaWNoIGRlZmluaXRpb24gdG8gcGljaywgRFJN
+X01PREVfQ09OTkVDVE9SX0RQSQ0Kd2lsbCBzdXJlbHkgd29yayBqdXN0IGZpbmUuDQoNClRoYW5r
+cywNCkZhYg0KDQo+IA0KPiA+ICB9Ow0KPiA+DQo+ID4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcGFu
+ZWxfZGVzYyBlZHRfZXRtMDcwMGcwYmRoNiA9IHsNCj4gDQo+IC0tDQo+IFJlZ2FyZHMsDQo+IA0K
+PiBMYXVyZW50IFBpbmNoYXJ0DQo=
