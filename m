@@ -2,35 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7698F48E5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:59:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E737F48D4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:59:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389726AbfKHL7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:59:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58924 "EHLO mail.kernel.org"
+        id S2390736AbfKHLoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:44:23 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59266 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390676AbfKHLoI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:44:08 -0500
+        id S2389139AbfKHLoW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:44:22 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2DA75222CE;
-        Fri,  8 Nov 2019 11:44:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BA39E22459;
+        Fri,  8 Nov 2019 11:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213447;
-        bh=HTtoqZyvVxPeVVf9GFCb236etSkJ8xztU8o8/+LFI4M=;
+        s=default; t=1573213462;
+        bh=J3QJJyB1MLGclnznM8gAQWis/pWXjNNKzkTmxtMWMpU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Xuek+e3YKn6xcLLrVBnWgUv4r1zWoZrsvmsUD4k7koB53dl67PN4uEMIfDxqT3dBz
-         nf8aMUx8iCdkpglQXhCpsmtwFZiqdPKD63AAlA9g5PtlpppExfmNB2fYELr5fKuYMx
-         XLN8OI7ax7Oi6l5/QGDtiJqL0HO8yceMUyxfQUXc=
+        b=JwSmUZs9WVpwUuKSYlMRk6pB+0dVHY2N1BBXaXzBCj92wDdlaV7DH58BFpJHBeOkA
+         acEfvdQWYJBHd57QNFFx6O5num1O/4ysgJj6dS3ZQHx1fu724iLev+GZON+3hJd5Ji
+         guUiqEJItSxZiLMAwPpF6nqOrwqqGDGwS/YRj2pU=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 041/103] ARM: dts: exynos: Disable pull control for S5M8767 PMIC
-Date:   Fri,  8 Nov 2019 06:42:06 -0500
-Message-Id: <20191108114310.14363-41-sashal@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 048/103] of: make PowerMac cache node search conditional on CONFIG_PPC_PMAC
+Date:   Fri,  8 Nov 2019 06:42:13 -0500
+Message-Id: <20191108114310.14363-48-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108114310.14363-1-sashal@kernel.org>
 References: <20191108114310.14363-1-sashal@kernel.org>
@@ -43,49 +42,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Szyprowski <m.szyprowski@samsung.com>
+From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit ef2ecab9af5feae97c47b7f61cdd96f7f49b2c23 ]
+[ Upstream commit f6707fd6241e483f6fea2caae82d876e422bb11a ]
 
-S5M8767 PMIC interrupt line on Exynos5250-based Arndale board has
-external pull-up resistors, so disable any pull control for it in
-in controller node. This fixes support for S5M8767 interrupts and
-enables operation of wakeup from S5M8767 RTC alarm.
+Cache nodes under the cpu node(s) is PowerMac specific according to the
+comment above, so make the code enforce that.
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/exynos5250-arndale.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/of/base.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
-index 18a7f396ac5f7..abd1705635f9b 100644
---- a/arch/arm/boot/dts/exynos5250-arndale.dts
-+++ b/arch/arm/boot/dts/exynos5250-arndale.dts
-@@ -169,6 +169,8 @@
- 		reg = <0x66>;
- 		interrupt-parent = <&gpx3>;
- 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&s5m8767_irq>;
- 
- 		vinb1-supply = <&main_dc_reg>;
- 		vinb2-supply = <&main_dc_reg>;
-@@ -544,6 +546,13 @@
- 	cap-sd-highspeed;
- };
- 
-+&pinctrl_0 {
-+	s5m8767_irq: s5m8767-irq {
-+		samsung,pins = "gpx3-2";
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
-+};
-+
- &rtc {
- 	status = "okay";
- };
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index ce8a6e0c9b6a9..41b254be02954 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -1837,7 +1837,7 @@ struct device_node *of_find_next_cache_node(const struct device_node *np)
+ 	/* OF on pmac has nodes instead of properties named "l2-cache"
+ 	 * beneath CPU nodes.
+ 	 */
+-	if (!strcmp(np->type, "cpu"))
++	if (IS_ENABLED(CONFIG_PPC_PMAC) && !strcmp(np->type, "cpu"))
+ 		for_each_child_of_node(np, child)
+ 			if (!strcmp(child->type, "cache"))
+ 				return child;
 -- 
 2.20.1
 
