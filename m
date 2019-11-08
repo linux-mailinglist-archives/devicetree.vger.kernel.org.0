@@ -2,38 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BE69F4845
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A911EF46EB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:48:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391163AbfKHLpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:45:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:32948 "EHLO mail.kernel.org"
+        id S2389994AbfKHLpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:45:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33306 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388716AbfKHLpj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:45:39 -0500
+        id S2391194AbfKHLpy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:45:54 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EAB4E222CB;
-        Fri,  8 Nov 2019 11:45:37 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0E08F21D82;
+        Fri,  8 Nov 2019 11:45:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213538;
-        bh=F0f1DFQic3UsgOCXhcyyXPEfDgitzNZkVWAjT/PbzZY=;
+        s=default; t=1573213553;
+        bh=dAPt4graksuksjvv/o+AlSO91d3Zkvj/R95vatbllrI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=xUWNqVkZLyvbq9UUMBsY6fM9DSzhUnJBa1MW75U/jQnVSknWW42PX9Ur6M90bzT2A
-         J81+BBdF4edQENgeELqxUdj3QEP4fScl4eUBuafnWvADYfleEZjJVNmNqmkysNjowQ
-         WzfDYxkBj4FSGSLWNUdzLSyk6okn0XLjkC9NXkxE=
+        b=J2PmvlrzDX72vytK3tWYKWs0y6fyyXLLmGRRXy7/fbS363jwpaxQsQOzfDQZtj8i+
+         y/M17nMUzAAOnBwGFiD4/PKo4QInAedfqWEtozx8O6+g2k9w71PUNh80jzrJZt6AGz
+         +ovEowcsVPwUHFjSynOHK3Yb6v/ksMqOUGo3iTmo=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 101/103] ARM: dts: rockchip: Fix erroneous SPI bus dtc warnings on rk3036
-Date:   Fri,  8 Nov 2019 06:43:06 -0500
-Message-Id: <20191108114310.14363-101-sashal@kernel.org>
+Cc:     Aapo Vienamo <avienamo@nvidia.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.9 04/64] arm64: dts: tegra210-p2180: Correct sdmmc4 vqmmc-supply
+Date:   Fri,  8 Nov 2019 06:44:45 -0500
+Message-Id: <20191108114545.15351-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191108114310.14363-1-sashal@kernel.org>
-References: <20191108114310.14363-1-sashal@kernel.org>
+In-Reply-To: <20191108114545.15351-1-sashal@kernel.org>
+References: <20191108114545.15351-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -43,41 +45,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+From: Aapo Vienamo <avienamo@nvidia.com>
 
-[ Upstream commit 131c3eb428ccd5f0c784b9edb4f72ec296a045d2 ]
+[ Upstream commit 6ff7705da8806de45ca1490194f0b4eb07725804 ]
 
-dtc has new checks for SPI buses. The rk3036 dts file has a node named
-spi' which causes false positive warnings. As the node is a pinctrl child
-node, change the node name to be 'spi-pins' to fix the warnings.
+On p2180 sdmmc4 is powered from a fixed 1.8 V regulator.
 
-arch/arm/boot/dts/rk3036-evb.dtb: Warning (spi_bus_bridge): /pinctrl/spi: incorrect #address-cells for SPI bus
-arch/arm/boot/dts/rk3036-kylin.dtb: Warning (spi_bus_bridge): /pinctrl/spi: incorrect #address-cells for SPI bus
-arch/arm/boot/dts/rk3036-evb.dtb: Warning (spi_bus_bridge): /pinctrl/spi: incorrect #size-cells for SPI bus
-arch/arm/boot/dts/rk3036-kylin.dtb: Warning (spi_bus_bridge): /pinctrl/spi: incorrect #size-cells for SPI bus
-
-Cc: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Aapo Vienamo <avienamo@nvidia.com>
+Reviewed-by: Mikko Perttunen <mperttunen@nvidia.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/rk3036.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index 5c0a76493d22a..03cf0c84ac0aa 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -750,7 +750,7 @@
- 			/* no rts / cts for uart2 */
- 		};
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+index 6a51d282ec636..d1e687b4911f5 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi
+@@ -281,6 +281,7 @@
+ 		status = "okay";
+ 		bus-width = <8>;
+ 		non-removable;
++		vqmmc-supply = <&vdd_1v8>;
+ 	};
  
--		spi {
-+		spi-pins {
- 			spi_txd:spi-txd {
- 				rockchip,pins = <1 29 RK_FUNC_3 &pcfg_pull_default>;
- 			};
+ 	clocks {
 -- 
 2.20.1
 
