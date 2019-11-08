@@ -2,73 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0237FF4901
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2DA3F4944
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:02:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733011AbfKHMAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 07:00:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58516 "EHLO mail.kernel.org"
+        id S1732757AbfKHLnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:43:04 -0500
+Received: from vps.xff.cz ([195.181.215.36]:46966 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390600AbfKHLnx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:43:53 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5B3862245A;
-        Fri,  8 Nov 2019 11:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213433;
-        bh=pJS58U8mwZIYJHL/49hU2S6Sd3AeaEcSOOkKJJyeS8U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=zoS8PnDIyQkDQSChD4uqKBRuLCizD7v8DZX7+Vq9otK8YfycL7risRhtRBiKTQUL4
-         i1GoFFGeQHCgHkbBm+H01nzpTSBJaubYfofDCPavsiPwBOgoWECm2X3GhuarOH4CkB
-         V6OAIo4GL/dY7ACuiafsgAyiiO3NGaZ0GYTWnpSY=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marcel Ziswiler <marcel@ziswiler.com>,
-        Robert Jarzmik <robert.jarzmik@free.fr>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 031/103] ARM: dts: pxa: fix power i2c base address
-Date:   Fri,  8 Nov 2019 06:41:56 -0500
-Message-Id: <20191108114310.14363-31-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191108114310.14363-1-sashal@kernel.org>
-References: <20191108114310.14363-1-sashal@kernel.org>
+        id S2390303AbfKHLnC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:43:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1573213381; bh=lE0IEyhRZdzSCV11eufQ/7MoeNiErKeSnathaLA1lNU=;
+        h=Date:From:To:Subject:X-My-GPG-KeyId:References:From;
+        b=N02473gjGfoh4FNolyioo32WH6IieZfnLJyQNsMA0nPAvDQkTSDPisLlvb3n3SXHO
+         7AVe8qFjWddBloPUZwFm5DUw3VMc4Aqy730ScMHIW1+8dTjaChczSKoMoNEdUB//M4
+         Lb5+/V0MW/FyCAzq0khvPJrtjxUGzimQera7k3vI=
+Date:   Fri, 8 Nov 2019 12:43:01 +0100
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Icenowy Zheng <icenowy@aosc.io>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>, arnd@arndb.de,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        mark.rutland@arm.com, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, robh+dt@kernel.org,
+        tglx@linutronix.de, wens@csie.org
+Subject: Re: [PATCH] phy: allwinner: Fix GENMASK misuse
+Message-ID: <20191108114301.v3663hs5ftjsoec3@core.my.home>
+Mail-Followup-To: Icenowy Zheng <icenowy@aosc.io>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>, arnd@arndb.de,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        mark.rutland@arm.com, mripard@kernel.org,
+        paul.kocialkowski@bootlin.com, robh+dt@kernel.org,
+        tglx@linutronix.de, wens@csie.org
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20191020134229.1216351-3-megous@megous.com>
+ <20191107204645.13739-1-rikard.falkeborn@gmail.com>
+ <20191107214514.kcz42mcehyrrif4o@core.my.home>
+ <F563E52E-72BF-4297-A14F-DDE2B490DADB@aosc.io>
+ <20191108114138.snghk5n7kwuw7zz3@core.my.home>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191108114138.snghk5n7kwuw7zz3@core.my.home>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel@ziswiler.com>
+On Fri, Nov 08, 2019 at 12:41:39PM +0100, megous hlavni wrote:
+> On Fri, Nov 08, 2019 at 07:29:21PM +0800, Icenowy Zheng wrote:
+> > 
+> > 
+> > 于 2019年11月8日 GMT+08:00 上午5:45:14, "Ondřej Jirman" <megous@megous.com> 写到:
+> > >Hello Rikard,
+> > >
+> > >On Thu, Nov 07, 2019 at 09:46:45PM +0100, Rikard Falkeborn wrote:
+> > >> Arguments are supposed to be ordered high then low.
+> > >> 
+> > >> Signed-off-by: Rikard Falkeborn <rikard.falkeborn@gmail.com>
+> > >> ---
+> > >> Spotted while trying to add compile time checks of GENMASK arguments.
+> > >> Patch has only been compile tested.
+> > >
+> > >thank you!
+> > >
+> > >Tested-by: Ondrej Jirman <megous@megous.com>
+> > 
+> > Does it affect or fix the performance?
+> 
+> See here: https://forum.armbian.com/topic/10131-orange-pi-lite2-usb3-now-working/?do=findComment&comment=88904
+> 
+> Quote:
+> 
+> > It may or may not help. On Opi3 I see no change, probably because HUB is
+> > really close to the SoC, but on boards without a HUB, SoC's USB3 phy will
+> > have to drive the signal over the longer cable and this patch might benefit
+> > those boards. 
+> 
+> Maybe someone with boards without PHY will test it more.
 
-[ Upstream commit 8a1ecc01a473b75ab97be9b36f623e4551a6e9ae ]
+Eh, on boards without a USB3 HUB.
 
-There is one too many zeroes in the Power I2C base address. Fix this.
-
-Signed-off-by: Marcel Ziswiler <marcel@ziswiler.com>
-Signed-off-by: Robert Jarzmik <robert.jarzmik@free.fr>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/pxa27x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/pxa27x.dtsi b/arch/arm/boot/dts/pxa27x.dtsi
-index 2ab6986433c82..3228ad5fb725f 100644
---- a/arch/arm/boot/dts/pxa27x.dtsi
-+++ b/arch/arm/boot/dts/pxa27x.dtsi
-@@ -71,7 +71,7 @@
- 			clocks = <&clks CLK_PWM1>;
- 		};
- 
--		pwri2c: i2c@40f000180 {
-+		pwri2c: i2c@40f00180 {
- 			compatible = "mrvl,pxa-i2c";
- 			reg = <0x40f00180 0x24>;
- 			interrupts = <6>;
--- 
-2.20.1
-
+> regards,
+> 	o.
+> 
+> > >
+> > >regards,
+> > >	o.
+> > >
+> > >>  drivers/phy/allwinner/phy-sun50i-usb3.c | 2 +-
+> > >>  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >> 
+> > >> diff --git a/drivers/phy/allwinner/phy-sun50i-usb3.c
+> > >b/drivers/phy/allwinner/phy-sun50i-usb3.c
+> > >> index 1169f3e83a6f..b1c04f71a31d 100644
+> > >> --- a/drivers/phy/allwinner/phy-sun50i-usb3.c
+> > >> +++ b/drivers/phy/allwinner/phy-sun50i-usb3.c
+> > >> @@ -49,7 +49,7 @@
+> > >>  #define SUNXI_LOS_BIAS(n)		((n) << 3)
+> > >>  #define SUNXI_LOS_BIAS_MASK		GENMASK(5, 3)
+> > >>  #define SUNXI_TXVBOOSTLVL(n)		((n) << 0)
+> > >> -#define SUNXI_TXVBOOSTLVL_MASK		GENMASK(0, 2)
+> > >> +#define SUNXI_TXVBOOSTLVL_MASK		GENMASK(2, 0)
+> > >>  
+> > >>  struct sun50i_usb3_phy {
+> > >>  	struct phy *phy;
+> > >> -- 
+> > >> 2.24.0
+> > >> 
