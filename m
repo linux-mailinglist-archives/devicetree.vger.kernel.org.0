@@ -2,72 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05BF4F3D94
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 02:46:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A29CFF3DDE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 03:06:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725940AbfKHBqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Nov 2019 20:46:32 -0500
-Received: from smtprelay0057.hostedemail.com ([216.40.44.57]:43964 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725928AbfKHBqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 20:46:31 -0500
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay01.hostedemail.com (Postfix) with ESMTP id 564B2100E7B44;
-        Fri,  8 Nov 2019 01:46:30 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:800:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2198:2199:2393:2553:2559:2562:2692:2731:2828:3138:3139:3140:3141:3142:3353:3622:3865:3866:3867:3868:3870:3871:3872:3874:4250:4321:5007:6691:6742:7514:10004:10400:11232:11658:11914:12297:12663:12740:12760:12895:13069:13311:13357:13439:14096:14097:14181:14659:14721:21080:21324:21451:21627:30054:30090:30091,0,RBL:47.151.135.224:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:25,LUA_SUMMARY:none
-X-HE-Tag: cough96_558de86610607
-X-Filterd-Recvd-Size: 2341
-Received: from XPS-9350.home (unknown [47.151.135.224])
-        (Authenticated sender: joe@perches.com)
-        by omf16.hostedemail.com (Postfix) with ESMTPA;
-        Fri,  8 Nov 2019 01:46:27 +0000 (UTC)
-Message-ID: <2367894118ccee058ed451927412d7c1a33864bd.camel@perches.com>
-Subject: Re: [PATCH] phy: allwinner: Fix GENMASK misuse
-From:   Joe Perches <joe@perches.com>
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>
-Cc:     megous@megous.com, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, arnd@arndb.de,
-        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        mripard@kernel.org, kishon@ti.com, paul.kocialkowski@bootlin.com,
-        linux-sunxi@googlegroups.com, robh+dt@kernel.org,
-        tglx@linutronix.de, wens@csie.org,
-        linux-arm-kernel@lists.infradead.org, icenowy@aosc.io
-Date:   Thu, 07 Nov 2019 17:46:14 -0800
-In-Reply-To: <20191107233914.GW25745@shell.armlinux.org.uk>
-References: <20191020134229.1216351-3-megous@megous.com>
-         <20191107204645.13739-1-rikard.falkeborn@gmail.com>
-         <20191107233914.GW25745@shell.armlinux.org.uk>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.34.1-2 
+        id S1728820AbfKHCGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Nov 2019 21:06:32 -0500
+Received: from mail-io1-f66.google.com ([209.85.166.66]:38715 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728621AbfKHCGa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 21:06:30 -0500
+Received: by mail-io1-f66.google.com with SMTP id i13so3271475ioj.5
+        for <devicetree@vger.kernel.org>; Thu, 07 Nov 2019 18:06:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aSgW3A7RWyhsJj378/fhZw4bo/3lSZywb10x/TiQ6js=;
+        b=AobIyWBWp8Z6LpdtKuyma3ufS/KNGQ+bmCTeW6cvoDC7nZ3SHSDceDgHKbyNh1AIwM
+         CxX6yLM6gyuEKDxu8eYrOCBPuL58TvXko5kWxjv1YVWCJzzqo9G0qLEny5lAwy2u80JN
+         +uoc4wzs5+DZjg+oVIZUomGzqkbJXUsZoz2/I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aSgW3A7RWyhsJj378/fhZw4bo/3lSZywb10x/TiQ6js=;
+        b=ivaeR07vb1xjUIeseMgPVqSh4sgONSjFbKPvlmyYm9vWUTy3FecVSsOfn/xYOjKFbE
+         S+TeZw4X0+aHy/hfs7Xxplby14img33yp1eBtq7mUXsqKYXauRw37Fzoi0bpxgczUPGo
+         yK50BWpqOsckd5VQQACdFJLQ4acRMOzssDYviHQ0B2JKF8NEGxU31myM+sb5RKLGIvdl
+         Gk2wudOIYs6xjt3F+RZITeamRNtOZ7+YJkLcauVQu9WFCoj5jF0JzJ8XS9ewsgg+ncM1
+         i3VaynU3IFznE/wgJswwxhF0fFchj9ayKRxvD2hbAxy8yLBr/0jipQBa625MSJWCISuW
+         JVlw==
+X-Gm-Message-State: APjAAAVVr3ML3VkPT44SXYBmeTMsiEVE9OPN4h//xs7sttpZYgCHN3tX
+        XXCmbtZYlftLMGNH0MrmrQ9wFxB9ly++UtvwdzBT9Q==
+X-Google-Smtp-Source: APXvYqyn0DsKqg8rSWqcfoMm6d8Fl2Z6dgUSaiBlmZgGR04MFVjbMr+p8KLgwaxrK5kbeIdRnkzz/m2YgeK0W6B0DHA=
+X-Received: by 2002:a02:58c8:: with SMTP id f191mr7652985jab.94.1573178789631;
+ Thu, 07 Nov 2019 18:06:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <20191014102308.27441-1-tdas@codeaurora.org> <20191014102308.27441-6-tdas@codeaurora.org>
+ <20191029175941.GA27773@google.com> <fa17b97d-bfc4-4e9c-78b5-c225e5b38946@codeaurora.org>
+ <20191031174149.GD27773@google.com> <20191107210606.E536F21D79@mail.kernel.org>
+In-Reply-To: <20191107210606.E536F21D79@mail.kernel.org>
+From:   Rob Clark <robdclark@chromium.org>
+Date:   Thu, 7 Nov 2019 18:06:19 -0800
+Message-ID: <CAJs_Fx60uEdGFjJXAjvVy5LLBXXmergRi8diWxhgGqde1wiXXQ@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] clk: qcom: Add Global Clock controller (GCC)
+ driver for SC7180
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Jeykumar Sankaran <jsanka@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-11-07 at 23:39 +0000, Russell King - ARM Linux admin wrote:
-> On Thu, Nov 07, 2019 at 09:46:45PM +0100, Rikard Falkeborn wrote:
-> > Arguments are supposed to be ordered high then low.
-> > 
-> > Signed-off-by: Rikard Falkeborn <rikard.falkeborn@gmail.com>
-> > ---
-> > Spotted while trying to add compile time checks of GENMASK arguments.
-> > Patch has only been compile tested.
-> 
-> My feeling, personally, is that GENMASK() really isn't worth the pain
-> it causes.  Can we instead get rid of this thing and just use easier
-> to understand and less error-prone hex masks please?
-> 
-> I don't care what anyone else says, personally I'm going to stick with
-> using hex masks as I find them way easier to get right first time than
-> a problematical opaque macro - and I really don't want the effort of
-> finding out that I've got the arguments wrong when I build it.  It's
-> just _way_ easier and less error prone to use a hex mask straight off.
+On Thu, Nov 7, 2019 at 1:06 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Matthias Kaehlcke (2019-10-31 10:41:49)
+> > Hi Taniya,
+> >
+> > On Thu, Oct 31, 2019 at 04:59:26PM +0530, Taniya Das wrote:
+> > > Hi Matthias,
+> > >
+> > > Thanks for your comments.
+> > >
+> > > On 10/29/2019 11:29 PM, Matthias Kaehlcke wrote:
+> > > > Hi Taniya,
+> > > >
+> > > > On Mon, Oct 14, 2019 at 03:53:08PM +0530, Taniya Das wrote:
+> > > > > Add support for the global clock controller found on SC7180
+> > > > > based devices. This should allow most non-multimedia device
+> > > > > drivers to probe and control their clocks.
+> > > > >
+> > > > > Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> > >
+> > > >
+> > > > v3 also had
+> > > >
+> > > > +   [GCC_DISP_AHB_CLK] = &gcc_disp_ahb_clk.clkr,
+> > > >
+> > > > Removing it makes the dpu_mdss driver unhappy:
+> > > >
+> > > > [    2.999855] dpu_mdss_enable+0x2c/0x58->msm_dss_enable_clk: 'iface' is not available
+> > > >
+> > > > because:
+> > > >
+> > > >          mdss: mdss@ae00000 {
+> > > >                     ...
+> > > >
+> > > >   =>             clocks = <&gcc GCC_DISP_AHB_CLK>,
+> > > >                           <&gcc GCC_DISP_HF_AXI_CLK>,
+> > > >                           <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> > > >                  clock-names = "iface", "gcc_bus", "core";
+> > > >     };
+> > > >
+> > >
+> > > The basic idea as you mentioned below was to move the CRITICAL clocks to
+> > > probe. The clock provider to return NULL in case the clocks are not
+> > > registered.
+> > > This was discussed with Stephen on v3. Thus I submitted the below patch.
+> > > clk: qcom: common: Return NULL from clk_hw OF provider.
+> >
+> > I see. My assumption was that the entire clock hierarchy should be registered,
+> > but Stephen almost certainly knows better :)
+> >
+> > > Yes it would throw these warnings, but no functional issue is observed from
+> > > display. I have tested it on the cheza board.
+> >
+> > The driver considers it an error (uses DEV_ERR to log the message) and doesn't
+> > handle other clocks when one is found missing. I'm not really famililar with
+> > the dpu_mdss driver, but I imagine this can have some side effects. Added some
+> > of the authors/contributors to cc.
+>
+> NULL is a valid clk pointer returned by clk_get(). What is the display
+> driver doing that makes it consider NULL an error?
+>
 
-I agree, but there are already more than 8000 uses of this rather
-silly (and perhaps backwards argument order) macro in the kernel.
+do we not have an iface clk?  I think the driver assumes we should
+have one, rather than it being an optional thing.. we could ofc change
+that
 
-
+BR,
+-R
