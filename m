@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51A16F48BF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A1CDF48B8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:59:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389742AbfKHL6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:58:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59446 "EHLO mail.kernel.org"
+        id S2390806AbfKHLof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:44:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59534 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389271AbfKHLo3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:44:29 -0500
+        id S2390801AbfKHLoe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:44:34 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4A38021D82;
-        Fri,  8 Nov 2019 11:44:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D40B221D82;
+        Fri,  8 Nov 2019 11:44:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213469;
-        bh=OXFMKaga2SWM1GNAklGIzPQ+cm87nnb7spC0IVErYDI=;
+        s=default; t=1573213473;
+        bh=HdPHDp3BlBc7LAHKrrfU2bGbLW19OD8QFTgc6uk6uuQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SnfxK0S6mi8tb/bV8k9TJAWMD/+lgA+JFE9zBahgChqwHlM8Y7JhysLtnay7FlSuV
-         3bnnH2hzD4dhC5ZGxGKkIxVP32NnXjXNqlc8EAJLOMGL4BD6VxWC1mc3xbpxjfnZwI
-         rkDrB+AiP12mAc31yZEFq465b+bjEoFCAor69Y8M=
+        b=x8w/eX+6Fsu9a4UThHjjnT5DN5F5kjJq9GykO3C1rbjmwMKcu8emauQ/xA6pWV7Hu
+         OwcAyIw0GsXnn+cN4xvkJaOO/TcEUj38l1kGMg8t9A2LWQ69FGXFFdtcXPlFi0njG8
+         3G7aWV6yqB9a2bTlvHOML4hAtpvd3eNquldKQ9sw=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 054/103] ARM: dts: omap3-gta04: keep vpll2 always on
-Date:   Fri,  8 Nov 2019 06:42:19 -0500
-Message-Id: <20191108114310.14363-54-sashal@kernel.org>
+Cc:     Vicente Bergas <vicencb@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.14 056/103] arm64: dts: rockchip: Fix VCC5V0_HOST_EN on rk3399-sapphire
+Date:   Fri,  8 Nov 2019 06:42:21 -0500
+Message-Id: <20191108114310.14363-56-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108114310.14363-1-sashal@kernel.org>
 References: <20191108114310.14363-1-sashal@kernel.org>
@@ -44,37 +44,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
+From: Vicente Bergas <vicencb@gmail.com>
 
-[ Upstream commit 1ae00833e30c9b4af5cbfda65d75b1de12f74013 ]
+[ Upstream commit bcdb578a5f5b4aea79441606ab7f0a2e076b4474 ]
 
-This is needed to make the display and venc work properly.
-Compare to omap3-beagle.dts.
+The pin is GPIO4-D1 not GPIO1-D1, see schematic, page 15 for reference.
 
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Vicente Bergas <vicencb@gmail.com>
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/omap3-gta04.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index 7992489b953e8..e83d0619b3b7c 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -537,6 +537,12 @@
- 	regulator-max-microvolt = <3150000>;
- };
- 
-+/* Needed to power the DPI pins */
-+
-+&vpll2 {
-+	regulator-always-on;
-+};
-+
- &dss {
- 	pinctrl-names = "default";
- 	pinctrl-0 = < &dss_dpi_pins >;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
+index ce592a4c0c4cd..82576011b959b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
+@@ -136,7 +136,7 @@
+ 	vcc5v0_host: vcc5v0-host-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+-		gpio = <&gpio1 RK_PD1 GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio4 RK_PD1 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vcc5v0_host_en>;
+ 		regulator-name = "vcc5v0_host";
 -- 
 2.20.1
 
