@@ -2,37 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 90018F4ABF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:13:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6DC1F4A68
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:09:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389403AbfKHMJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 07:09:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52704 "EHLO mail.kernel.org"
+        id S1732262AbfKHLkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:40:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53216 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388062AbfKHLjt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:39:49 -0500
+        id S2388528AbfKHLkN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:40:13 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 845D2222C6;
-        Fri,  8 Nov 2019 11:39:48 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0D6FC20869;
+        Fri,  8 Nov 2019 11:40:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213189;
-        bh=1lS/UyAtBNQsiqwWb7YJnxOKYosA1o14gN2Xh6864as=;
+        s=default; t=1573213212;
+        bh=Ne3xpqHDEVTaOIwtvgtj6SoGrIn4XBahTRxtBYOMvZ0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=rlySRmJ7dFJE/53CUFKqx0ccIP1X07TKmgThaZpmrG3/O50F4BS3/eXDBQvduMqRv
-         7g+64joarbD6QSeIcXwkeTgaI0Qn9nsbjx+Idk1dc/NUQOH5Bzm7FYMbKFdCyO3C60
-         UKebh9z8vQWZE7ngnVvRseslsWpflILdShNELSkY=
+        b=P8j4RTqw9jELV558r0fjuJwDIA3GRzvSYI0MD34OFyB4PyUmxeZgtUk4izG79iZHE
+         DBChrRjSHqkkn1FVhvwL2SAcgNL6s81WWzwGx1hxWHZp7fOshzIzSW8CW5wmWrII7U
+         iruLA+kpsBu4N7Xg+BNme/cX9OMKa97MkQ+IVAc0=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 079/205] ARM: dts: meson8b: fix the clock controller register size
-Date:   Fri,  8 Nov 2019 06:35:46 -0500
-Message-Id: <20191108113752.12502-79-sashal@kernel.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 093/205] ARM: dts: exynos: Disable pull control for S5M8767 PMIC
+Date:   Fri,  8 Nov 2019 06:36:00 -0500
+Message-Id: <20191108113752.12502-93-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -45,42 +43,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+From: Marek Szyprowski <m.szyprowski@samsung.com>
 
-[ Upstream commit f31094fe8c16fbd2ca47921acf93b744b045aace ]
+[ Upstream commit ef2ecab9af5feae97c47b7f61cdd96f7f49b2c23 ]
 
-The clock controller registers are not 0x460 wide because the reset
-controller starts at CBUS 0x4404. This currently overlaps with the
-clock controller (which is at CBUS 0x4000).
+S5M8767 PMIC interrupt line on Exynos5250-based Arndale board has
+external pull-up resistors, so disable any pull control for it in
+in controller node. This fixes support for S5M8767 interrupts and
+enables operation of wakeup from S5M8767 RTC alarm.
 
-There is no public documentation available on the actual size of the
-clock controller's register area (also called "HHI"). However, in
-Amlogic's GPL kernel sources the last "HHI" register is
-HHI_HDMI_PHY_CNTL2 at CBUS + 0x43a8. 0x400 was chosen because that size
-doesn't seem unlikely.
-
-Fixes: 4a69fcd3a10803 ("ARM: meson: Add DTS for Odroid-C1 and Tronfy MXQ boards")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/exynos5250-arndale.dts | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 5b3e5c50c72f7..4293047a4b76b 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -163,7 +163,7 @@
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
- 		compatible = "amlogic,meson8b-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x460>;
-+		reg = <0x8000 0x4>, <0x4000 0x400>;
- 	};
+diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
+index 9c8ab4b7fb2cf..4ab1f1c66c27f 100644
+--- a/arch/arm/boot/dts/exynos5250-arndale.dts
++++ b/arch/arm/boot/dts/exynos5250-arndale.dts
+@@ -170,6 +170,8 @@
+ 		reg = <0x66>;
+ 		interrupt-parent = <&gpx3>;
+ 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&s5m8767_irq>;
  
- 	reset: reset-controller@4404 {
+ 		vinb1-supply = <&main_dc_reg>;
+ 		vinb2-supply = <&main_dc_reg>;
+@@ -530,6 +532,13 @@
+ 	cap-sd-highspeed;
+ };
+ 
++&pinctrl_0 {
++	s5m8767_irq: s5m8767-irq {
++		samsung,pins = "gpx3-2";
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++	};
++};
++
+ &rtc {
+ 	status = "okay";
+ };
 -- 
 2.20.1
 
