@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0997F4B32
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:15:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7041F4AF3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:13:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732293AbfKHLiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:38:13 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51076 "EHLO mail.kernel.org"
+        id S2390884AbfKHMMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 07:12:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51640 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732259AbfKHLiM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:38:12 -0500
+        id S1732771AbfKHLil (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:38:41 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AFEBC2245A;
-        Fri,  8 Nov 2019 11:38:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 655E421D6C;
+        Fri,  8 Nov 2019 11:38:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213091;
-        bh=0ELM6zDJ08rmARJey1y7Zf1Nztqs6EAE8lZ79+tiF/U=;
+        s=default; t=1573213121;
+        bh=Q4mGNBQr66Q94q9GgnenfCd+MuSvKRlgye09kJ8YuMQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kh9T7ePP7rcN/MTHyaO2VplcaJW5wP18wAy80ikG+jCga6NEI1c3uX0Pmz13QJIev
-         FKeUFtCfBc++EjsFgOcuYLYueYMOdCZQWXmryKV/e0cgYKms98hLPD4LLKdDYS6Ss5
-         A9K8Sog9C0IBOA42TsHJ3ORMUywQ3bP315aqlyjU=
+        b=IlPVRw/hJOxJNi5OclxYXM1GMNU30Y7f6Oq3eXWL8UmxrUv8k4Dbjp9l1KJdO67sW
+         jRb++jGVc0wbBx446EMctI3Ea9ktvcMDPYi99Ju5O6rPUO4lpwE7REIWsB3eYKh6Ln
+         qiBXi0dCDyL3V3Nqjev+k7V9htNh+3ZWYDrBcTqo=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jay Foster <jayfoster@ieee.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 016/205] ARM: dts: at91/trivial: Fix USART1 definition for at91sam9g45
-Date:   Fri,  8 Nov 2019 06:34:43 -0500
-Message-Id: <20191108113752.12502-16-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 040/205] ARM: dts: exynos: Use i2c-gpio for HDMI-DDC on Arndale
+Date:   Fri,  8 Nov 2019 06:35:07 -0500
+Message-Id: <20191108113752.12502-40-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -44,33 +43,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jay Foster <jayfoster@ieee.org>
+From: Andrzej Hajda <a.hajda@samsung.com>
 
-[ Upstream commit 10af10db8c76fa5b9bf1f52a895c1cb2c0ac24da ]
+[ Upstream commit 620375c8fdf2f9f5110ed48d6c407cc4b7554f86 ]
 
-Fix a typo. No functional change made by this patch.
+HDMI-DDC for unknown reasons doesn't work with Exynos I2C controllers.
+Fortunately i2c-gpio comes to the rescue.
 
-Signed-off-by: Jay Foster <jayfoster@ieee.org>
-Signed-off-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Signed-off-by: Andrzej Hajda <a.hajda@samsung.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/at91sam9g45.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/exynos5250-arndale.dts  | 28 ++++++++++++++++-------
+ arch/arm/boot/dts/exynos5250-pinctrl.dtsi |  6 +++++
+ 2 files changed, 26 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm/boot/dts/at91sam9g45.dtsi b/arch/arm/boot/dts/at91sam9g45.dtsi
-index 1ee25a475be87..d16db1fa7e15c 100644
---- a/arch/arm/boot/dts/at91sam9g45.dtsi
-+++ b/arch/arm/boot/dts/at91sam9g45.dtsi
-@@ -570,7 +570,7 @@
- 					};
- 				};
+diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
+index 7a8a5c55701a8..bb3fcd652b5d7 100644
+--- a/arch/arm/boot/dts/exynos5250-arndale.dts
++++ b/arch/arm/boot/dts/exynos5250-arndale.dts
+@@ -150,7 +150,7 @@
  
--				uart1 {
-+				usart1 {
- 					pinctrl_usart1: usart1-0 {
- 						atmel,pins =
- 							<AT91_PIOB 4 AT91_PERIPH_A AT91_PINCTRL_NONE
+ &hdmi {
+ 	status = "okay";
+-	ddc = <&i2c_2>;
++	ddc = <&i2c_ddc>;
+ 	hpd-gpios = <&gpx3 7 GPIO_ACTIVE_LOW>;
+ 	vdd_osc-supply = <&ldo10_reg>;
+ 	vdd_pll-supply = <&ldo8_reg>;
+@@ -452,13 +452,6 @@
+ 	};
+ };
+ 
+-&i2c_2 {
+-	status = "okay";
+-	/* used by HDMI DDC */
+-	samsung,i2c-sda-delay = <100>;
+-	samsung,i2c-max-bus-freq = <66000>;
+-};
+-
+ &i2c_3 {
+ 	status = "okay";
+ 
+@@ -547,3 +540,22 @@
+ 	status = "okay";
+ 	samsung,exynos-sataphy-i2c-phandle = <&sata_phy_i2c>;
+ };
++
++&soc {
++	/*
++	 * For unknown reasons HDMI-DDC does not work with Exynos I2C
++	 * controllers. Lets use software I2C over GPIO pins as a workaround.
++	 */
++	i2c_ddc: i2c-gpio {
++		pinctrl-names = "default";
++		pinctrl-0 = <&i2c2_gpio_bus>;
++		status = "okay";
++		compatible = "i2c-gpio";
++		gpios = <&gpa0 6 0 /* sda */
++			 &gpa0 7 0 /* scl */
++			>;
++		i2c-gpio,delay-us = <2>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++	};
++};
+diff --git a/arch/arm/boot/dts/exynos5250-pinctrl.dtsi b/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
+index 6ff6dea29d449..b25d520393b8b 100644
+--- a/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
++++ b/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
+@@ -225,6 +225,12 @@
+ 		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
+ 	};
+ 
++	i2c2_gpio_bus: i2c2-gpio-bus {
++		samsung,pins = "gpa0-6", "gpa0-7";
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
++	};
++
+ 	uart2_data: uart2-data {
+ 		samsung,pins = "gpa1-0", "gpa1-1";
+ 		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
 -- 
 2.20.1
 
