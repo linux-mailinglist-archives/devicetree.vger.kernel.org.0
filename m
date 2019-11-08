@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C454FF46CA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:45:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAFFAF46CD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:45:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389565AbfKHLpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:45:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60320 "EHLO mail.kernel.org"
+        id S2391092AbfKHLpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:45:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60594 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391036AbfKHLpJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:45:09 -0500
+        id S2391087AbfKHLpU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:45:20 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C027822459;
-        Fri,  8 Nov 2019 11:45:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4211C222C5;
+        Fri,  8 Nov 2019 11:45:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213508;
-        bh=dkRw0NLgbZfCKxHUgfLgac8iE4OQLyV4NXNb7ARPpdg=;
+        s=default; t=1573213519;
+        bh=UJIkCko1T/uvwuZdVtUds6NrBGotpYuWsGiGTTT/KO8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KDvqE5xyLWGylC4bxHy1qSRHksMQVuZAoV5xjHE03ur+0UoquFJb6eLk7XBv72j2L
-         22gQGdmtBTk5uWLWIV6opCtfJsyiXFS5c4ecfmYCOy7sgTLPsTOa6vji8YqFfKk7Xw
-         JR9vBVKKiD0uouklvmUUyDJirafsAt0yVil7btnQ=
+        b=fwVN+FXGr7rTZeoHO7PtocShsTlWj5tgijID86FXsjZmVhbJ6w33P7AI2QxIG+zoA
+         K2SOSofT0YF3GpwpPP6YcadGUmhvaS31ahnTh0GbXnMqcE8KL2UkgT1ewNvixv4Va4
+         /Kancl42HDg4mcM1jarLJLzppPozGgauxim+MCRo=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, Da Xue <da@lessconfused.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.14 082/103] arm64: dts: meson: libretech: update board model
-Date:   Fri,  8 Nov 2019 06:42:47 -0500
-Message-Id: <20191108114310.14363-82-sashal@kernel.org>
+Cc:     Christian Lamparter <chunkeey@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 087/103] ARM: dts: qcom: ipq4019: fix cpu0's qcom,saw2 reg value
+Date:   Fri,  8 Nov 2019 06:42:52 -0500
+Message-Id: <20191108114310.14363-87-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108114310.14363-1-sashal@kernel.org>
 References: <20191108114310.14363-1-sashal@kernel.org>
@@ -44,35 +45,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+From: Christian Lamparter <chunkeey@gmail.com>
 
-[ Upstream commit b7eb0e26cc4a212fde09144cd49d4103170d2b9e ]
+[ Upstream commit bd73a3dd257fb838bd456a18eeee0ef0224b7a40 ]
 
-There is actually several different libretech board with the CC suffix
-so the model name is not appropriate here. Update to something more
-specific
+while compiling an ipq4019 target, dtc will complain:
+regulator@b089000 unit address format error, expected "2089000"
 
-Reported-by: Da Xue <da@lessconfused.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+The saw0 regulator reg value seems to be
+copied and pasted from qcom-ipq8064.dtsi.
+
+This patch fixes the reg value to match that of the
+unit address which in turn silences the warning.
+(There is no driver for qcom,saw2 right now.
+So this went unnoticed)
+
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Andy Gross <andy.gross@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 2 +-
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index d71cbf596d1f7..0814b6b29b86a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -14,7 +14,7 @@
+diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+index 10d112a4078ec..19156cbb60034 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+@@ -234,7 +234,7 @@
  
- / {
- 	compatible = "libretech,cc", "amlogic,s905x", "amlogic,meson-gxl";
--	model = "Libre Technology CC";
-+	model = "Libre Computer Board AML-S905X-CC";
+                 saw0: regulator@b089000 {
+                         compatible = "qcom,saw2";
+-                        reg = <0x02089000 0x1000>, <0x0b009000 0x1000>;
++			reg = <0x0b089000 0x1000>, <0x0b009000 0x1000>;
+                         regulator;
+                 };
  
- 	aliases {
- 		serial0 = &uart_AO;
 -- 
 2.20.1
 
