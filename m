@@ -2,83 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0873FF43B4
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 10:42:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E2DF43C8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 10:46:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731610AbfKHJmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 04:42:55 -0500
-Received: from inca-roads.misterjones.org ([213.251.177.50]:33239 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731373AbfKHJmz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Nov 2019 04:42:55 -0500
-Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1iT0n5-00043G-RF; Fri, 08 Nov 2019 10:42:51 +0100
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Subject: Re: [PATCH v5 06/13] drivers: irqchip: qcom-pdc: Move to an SoC  independent compatible
-X-PHP-Originating-Script: 0:main.inc
+        id S1730069AbfKHJqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 04:46:11 -0500
+Received: from mx2.suse.de ([195.135.220.15]:45818 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730645AbfKHJqL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 04:46:11 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 052B8AB92;
+        Fri,  8 Nov 2019 09:46:09 +0000 (UTC)
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: realtek: Document RTD1619 and
+ Realtek Mjolnir EVB
+To:     James Tai <james.tai@realtek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        'DTML' <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>
+References: <43B123F21A8CFE44A9641C099E4196FFCF91F9DF@RTITMBSVM04.realtek.com.tw>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <7ce21666-79a0-11ed-9984-d9fb3f67218c@suse.de>
+Date:   Fri, 8 Nov 2019 10:46:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 08 Nov 2019 10:52:12 +0109
-From:   Marc Zyngier <maz@kernel.org>
-Cc:     <agross@kernel.org>, <robh+dt@kernel.org>,
-        <bjorn.andersson@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mka@chromium.org>, <swboyd@chromium.org>,
-        Lina Iyer <ilina@codeaurora.org>
-In-Reply-To: <0d5090fc9def3b9fa03a733d4adc2ae0@www.loen.fr>
-References: <20191108092824.9773-1-rnayak@codeaurora.org>
- <20191108092824.9773-7-rnayak@codeaurora.org>
- <0d5090fc9def3b9fa03a733d4adc2ae0@www.loen.fr>
-Message-ID: <08b53aa7c448aad4fce71709b0385d4c@www.loen.fr>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/0.7.2
-X-SA-Exim-Connect-IP: <locally generated>
-X-SA-Exim-Rcpt-To: rnayak@codeaurora.org, agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mka@chromium.org, swboyd@chromium.org, ilina@codeaurora.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+In-Reply-To: <43B123F21A8CFE44A9641C099E4196FFCF91F9DF@RTITMBSVM04.realtek.com.tw>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-11-08 10:50, Marc Zyngier wrote:
-> On 2019-11-08 10:37, Rajendra Nayak wrote:
->> Remove the sdm845 SoC specific compatible to make the driver
->> easily reusable across other SoC's with the same IP block.
->> This will reduce further churn adding any SoC specific
->> compatibles unless really needed.
->>
->> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->> Reviewed-by: Lina Iyer <ilina@codeaurora.org>
->> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
->> Cc: Marc Zyngier <maz@kernel.org>
->> ---
->>  drivers/irqchip/qcom-pdc.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/irqchip/qcom-pdc.c b/drivers/irqchip/qcom-pdc.c
->> index faa7d61b9d6c..c175333bb646 100644
->> --- a/drivers/irqchip/qcom-pdc.c
->> +++ b/drivers/irqchip/qcom-pdc.c
->> @@ -309,4 +309,4 @@ static int qcom_pdc_init(struct device_node
->> *node, struct device_node *parent)
->>  	return ret;
->>  }
->>
->> -IRQCHIP_DECLARE(pdc_sdm845, "qcom,sdm845-pdc", qcom_pdc_init);
->> +IRQCHIP_DECLARE(qcom_pdc, "qcom,pdc", qcom_pdc_init);
->
-> Acked-by: Marc Zyngier <marc.zyngier@arm.com>
+Am 08.11.19 um 10:42 schrieb James Tai:
+> Define compatible strings for Realtek RTD1619 SoC and Realtek Mjolnir EVB.
+> 
+> Signed-off-by: James Tai <james.tai@realtek.com>
+> ---
+>  Documentation/devicetree/bindings/arm/realtek.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-I need to have my hands fixed. The real tag is:
+Reviewed-by: Andreas Färber <afaerber@suse.de>
 
-Acked-by: Marc Zyngier <maz@kernel.org>
+Thanks,
+Andreas
 
-One day, I'll manage that...
-
-         M.
 -- 
-Jazz is not dead. It just smells funny...
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
