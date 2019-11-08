@@ -2,174 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21488F4766
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:50:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5ED4F4B28
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:15:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390827AbfKHLuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:50:09 -0500
-Received: from mail-eopbgr00080.outbound.protection.outlook.com ([40.107.0.80]:57742
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388183AbfKHLuI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:50:08 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CmXtum3KL9TtYMBGPjMXQ8vki1/K6GKQyfHttHzFp9jT2SZLU2EhQjieM+8pbiy9DkI8Ps4iwihUAut0TAKQ5nmxPsLnBHBXahmTYZ7nrgMetBcmwL+4rj5xBS51nYlvAr3eLla76VQ7vwBarw8mf4eDjYPlXtcJiYcV9xAX6tmE13FzK55ZJjTfOWi2qnEthpKbrQq6GMKdtubSyZeUqEWZrTtZLnZ5fZbjhDEMZ13l097Qce8a8Vt3cpq20Kf/g1rb3OC4xfbXMAdrNyoao4Gte99w+K6uPZokO+PzBXtpbejc8ElATaAdhpdV8wydMsn3ZcAFcQk/uY1lmdxP7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AL85FRq6GUEqIb1S3M+p28VVKiAEQXD2TKbjWZ/rrpU=;
- b=DRmuZ8Cxk+ymtvAEcYWky0crGWj7d5UO3J982WyBpJwf8U9DpMk7qON+6qQMU/zbDVRmmq62SdZ+1bg+OFeWqGaKtwP4Hzt+TfF9pEQhoAzNH/OqEOlUGUoSfYVF1L6JSCdv4jHluQnwS6HcVjUcooDeS8z0gmhfpeWxI3vY7ng+vxDJF2AC99pcYXMdkvw1yacTsME25n6T7qYiPjXx0l2FagYn3RoZnHb2sEGlIBMWFaid1Ah3U4H3UGsfpZ5pK3h9f+8Z0DqiqQrofaft91qCmGZd+L7yTqB5MkbJHSQHXVAHF5e2qyk/H/HdeCqj5jeXbK3PiaQrZRAJFmALzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AL85FRq6GUEqIb1S3M+p28VVKiAEQXD2TKbjWZ/rrpU=;
- b=OIN1MnEa/03XoYLOVhMXk9g6J9pZaU/GiIyEgIMgp+U6ER/nRWxpABUGMssc2n0GZwHL0gcE0ZRDGW9YWmerfF3QSFm/y/AH0VZVbZDBN94NOaauT6EeWFSW6ETPSzYCwhR0OfFneP3ngljQGHZiOAovMBZzlQ/NOXhK5vb0X4g=
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com (20.178.202.151) by
- AM0PR04MB4241.eurprd04.prod.outlook.com (52.134.95.152) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2430.22; Fri, 8 Nov 2019 11:50:04 +0000
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::fd44:1b14:587c:9fde]) by AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::fd44:1b14:587c:9fde%7]) with mapi id 15.20.2430.023; Fri, 8 Nov 2019
- 11:50:04 +0000
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Martin Kepplinger <martink@posteo.de>
-CC:     Leonard Crestez <leonard.crestez@nxp.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Carlo Caione <ccaione@baylibre.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC 0/2] Add workaround for core wake-up on IPI for i.MX8MQ
-Thread-Topic: [RFC 0/2] Add workaround for core wake-up on IPI for i.MX8MQ
-Thread-Index: AQHVH4Y/3naZJOmQTkOgrNdQmlNuA6eCDj6AgAAIBAA=
-Date:   Fri, 8 Nov 2019 11:50:03 +0000
-Message-ID: <20191108115002.cqzvpxydzwos64vp@fsr-ub1664-175>
-References: <20190610121346.15779-1-abel.vesa@nxp.com>
- <d217a9d2-fc60-e057-6775-116542e39e8d@posteo.de>
- <7d3a868a-768c-3cb1-c6d8-bf5fcd1ddd1c@posteo.de>
- <20191030080727.7pcvhd4466dproy4@fsr-ub1664-175>
- <523f92bd-7e89-b48a-afd0-0a9a8bca8344@posteo.de>
- <20191104103525.qjkxh2zhhgaaectk@fsr-ub1664-175>
- <433f3f03-f780-c327-f1e8-fbf046a8374c@posteo.de>
- <VI1PR04MB70231EA80BB20C9A84B1B799EE790@VI1PR04MB7023.eurprd04.prod.outlook.com>
- <c3519156-9769-980b-d9e7-af372ced8797@posteo.de>
-In-Reply-To: <c3519156-9769-980b-d9e7-af372ced8797@posteo.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM0PR0102CA0048.eurprd01.prod.exchangelabs.com
- (2603:10a6:208::25) To AM0PR04MB5779.eurprd04.prod.outlook.com
- (2603:10a6:208:131::23)
-x-originating-ip: [89.37.124.34]
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=abel.vesa@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 233d9d2a-fc1d-4147-444d-08d76441cb07
-x-ms-traffictypediagnostic: AM0PR04MB4241:|AM0PR04MB4241:
-x-ms-exchange-purlcount: 4
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB4241C258BB0E250555960967F67B0@AM0PR04MB4241.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0215D7173F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(7916004)(366004)(39860400002)(346002)(376002)(396003)(136003)(189003)(199004)(44832011)(6512007)(14454004)(966005)(33716001)(4326008)(7416002)(5660300002)(1076003)(6916009)(99286004)(6486002)(66476007)(229853002)(256004)(71200400001)(71190400001)(66946007)(66556008)(64756008)(66446008)(476003)(316002)(6506007)(102836004)(486006)(3846002)(53546011)(6116002)(11346002)(186003)(446003)(66066001)(386003)(2906002)(86362001)(6436002)(7736002)(81156014)(81166006)(8676002)(305945005)(8936002)(76176011)(9686003)(26005)(54906003)(52116002)(6246003)(478600001)(45080400002)(6306002)(25786009);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4241;H:AM0PR04MB5779.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: YR6sLKvCr30/CW7DNPmTD6zABJHd3AIfojk0c2u/aqyVRBI3qHZDy+iP1JB1jJ+AgcmujVz3uGgYsGAMPb2fHJSeiiWd95IXzCKGnlInVjShGJNIAeLQT1WH+b8bZOSwsTgv/ZSzRknxPyhhtvFmawsVIxTI2BEc/GPMwpY3Lz9aZg8A35vj7tqt7Zm0Ve9aUH0br0dZd9k34wasHAQBdBBXTMctiR3oYjyJiSoMWPNBCopc/MwR4QA79EIBAhXoians6tXWoqWXelTQ2Zcx/NhEWnYQCIZhrNOch+UK2030svczBkEI7jg4qiwXjja7BM4q8tRKsnoBd5MM4gEdPtnXdDNKgWrMoLlyM5IE8yiPCqj6M3dLHwaefQfA2/3KUP8/DIL77LjH0g94EXstWOQuQm9vX/lz1XWwZ7SrEklcr71+jx7QuS/qDGRm7S+P4isIb/lxYmj4GblKGr8YjlcCt4h8wyKoMuYkksfVKY8=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <AB93741E731CC44CB7CD708840BD8F8C@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1732161AbfKHLiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:38:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50840 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732127AbfKHLiD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:38:03 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5043D222C4;
+        Fri,  8 Nov 2019 11:38:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1573213082;
+        bh=CqirFA+y3Yz1r/QLQgaj2aGsvThhGc28+10qfsOM2X8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ZZPQAQizyCqZDDib7yXUxOK3htTllDpTUIHaQoj8cpkJLYyC1EXItvai/2EgbZXvm
+         8jHgsXBwP7mK/y2YT1jLVdZkZa2D6WpPltG8s9vBEr7q0WEDAuv+zGbrcrlkGOdy9C
+         V1FaHDhVI77OvvKiik/sqyzldG0SqE4apT10fZbw=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 008/205] arm64: dts: allwinner: a64: Orange Pi Win: Fix SD card node
+Date:   Fri,  8 Nov 2019 06:34:35 -0500
+Message-Id: <20191108113752.12502-8-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
+References: <20191108113752.12502-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 233d9d2a-fc1d-4147-444d-08d76441cb07
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2019 11:50:04.0336
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HMu6batiaO0ACAfzt3sKe4gyVKis40ODSw0tNEjJARWHDgRPNLdU5rNUjdJ18YAakLZ7iVpGogXqP1VyGq5eWg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4241
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-11-08 12:21:21, Martin Kepplinger wrote:
+From: Samuel Holland <samuel@sholland.org>
 
-> Hi Leonard, hi Abel,
->=20
-> Thanks for having a look! To sum up this problem and not to get confused:
->=20
-> We have the workaround that changes irq-imx-gpcv2 from this very email
-> thread, to be used with mainline ATF. when applying Abel's recent diff,
-> Linux 5.4 boots but I still don't have a cpuidle driver.
->=20
-> When I enable CONFIG_ARM_PSCI_CPUIDLE, the kernel hangs during boot
-> (after probing mmc, but that doesn't tell much)
->=20
-> What do I miss?
->=20
+[ Upstream commit 09b964afca14d0594b2b2f265df3d987e2f43867 ]
 
-OK, please fetch the branches called "imx8mq-err11171" from both following =
-github repos and give it a try:
+The Orange Pi Win has a microSD card slot which is connected via all
+four SD data lines. As the DT was not mentioning this fact, we got the
+default single bit transfers, losing out on performance.
+Also, as microSD does not have a write protect switch, we disable this
+feature in the DT node.
 
-https://github.com/abelvesa/linux.git
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
+Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-and
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
+index 1221764f5719c..667016815cf32 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
+@@ -67,7 +67,9 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mmc0_pins>;
+ 	vmmc-supply = <&reg_dcdc1>;
+-	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
++	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
++	disable-wp;
++	bus-width = <4>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.20.1
 
-https://github.com/abelvesa/arm-trusted-firmware.git
-
-I just tested it. Works with defconfig.
-
->=20
-> Then (in parallel) we have NXP's ATF:
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fsourc=
-e.codeaurora.org%2Fexternal%2Fimx%2Fimx-atf%2Flog%2F%3Fh%3Dimx_4.19.35_1.0.=
-0&amp;data=3D02%7C01%7Cabel.vesa%40nxp.com%7C0a5a09f616c84932e06d08d7643dcc=
-af%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637088088896134121&amp;sdat=
-a=3Dtq0aUGawG%2FhRRXZB9jdIi2xSNGHINhbWM1ZpDKPFrqU%3D&amp;reserved=3D0
-> that I test in parallel (and will actually want to have cpuidle right
-> now too). The workaround in Linux in that case looks like so:
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fsourc=
-e.codeaurora.org%2Fexternal%2Fimx%2Flinux-imx%2Fcommit%2F%3Fh%3Dimx_4.19.35=
-_1.0.0%26id%3D26a59057f88997dfe48ab7f81898ddd6b6d3903e&amp;data=3D02%7C01%7=
-Cabel.vesa%40nxp.com%7C0a5a09f616c84932e06d08d7643dccaf%7C686ea1d3bc2b4c6fa=
-92cd99c5c301635%7C0%7C0%7C637088088896134121&amp;sdata=3DGqmtzpS8fB4bxmOXxT=
-NQZrWNCV18lNu7XpX5dmcAEaY%3D&amp;reserved=3D0
-> which changes irq-gic-v3 only.
->=20
-
-Forget about the NXP arm-trusted-firmware for now. It will never work with =
-mainline + the workaround patches.
-
-> Since 5.4, also no cpu-sleep state anymore. What would need to change in
-> that "NXP" case, for 5.4 to have cpuidle again?
->=20
-> When I enable ARM_PSCI_CPUIDLE here, right now Linux hangs during boot
-> (during probing sdhci but again that seems random).
->=20
-> I'm still happy for hints :)
->=20
-> Thanks,
->=20
->                               martin
->=20
