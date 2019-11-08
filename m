@@ -2,59 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D59F3C50
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 00:49:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E565FF3C69
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 01:03:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726094AbfKGXtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Nov 2019 18:49:24 -0500
-Received: from shards.monkeyblade.net ([23.128.96.9]:50170 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725930AbfKGXtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Nov 2019 18:49:23 -0500
-Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::d71])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 8EF571537E161;
-        Thu,  7 Nov 2019 15:49:22 -0800 (PST)
-Date:   Thu, 07 Nov 2019 15:49:22 -0800 (PST)
-Message-Id: <20191107.154922.1123372183066604716.davem@davemloft.net>
-To:     Mark-MC.Lee@mediatek.com
-Cc:     sean.wang@mediatek.com, john@phrozen.org, matthias.bgg@gmail.com,
-        andrew@lunn.ch, robh+dt@kernel.org, mark.rutland@arm.com,
-        opensource@vdorst.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jakub.kicinski@netronome.com
-Subject: Re: [PATCH net] net: ethernet: mediatek: rework GDM setup flow
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <20191107105135.1403-1-Mark-MC.Lee@mediatek.com>
-References: <20191107105135.1403-1-Mark-MC.Lee@mediatek.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Thu, 07 Nov 2019 15:49:23 -0800 (PST)
+        id S1727740AbfKHADR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Nov 2019 19:03:17 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:49646 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725930AbfKHADR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 7 Nov 2019 19:03:17 -0500
+Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.fritz.box)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <heiko.stuebner@theobroma-systems.com>)
+        id 1iSrjz-00065H-Jt; Fri, 08 Nov 2019 01:03:03 +0100
+From:   Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+To:     dri-devel@lists.freedesktop.org, a.hajda@samsung.com
+Cc:     hjc@rock-chips.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        narmstrong@baylibre.com, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@siol.net, philippe.cornu@st.com,
+        yannick.fertre@st.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        heiko@sntech.de, christoph.muellner@theobroma-systems.com,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Subject: [PATCH v2 0/5] dw-mipi-dsi support for Rockchip px30
+Date:   Fri,  8 Nov 2019 01:02:48 +0100
+Message-Id: <20191108000253.8560-1-heiko.stuebner@theobroma-systems.com>
+X-Mailer: git-send-email 2.23.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: MarkLee <Mark-MC.Lee@mediatek.com>
-Date: Thu, 7 Nov 2019 18:51:35 +0800
+This series adds support for the dsi controller on the px30.
+The main difference to previous incarnations is the use of an
+external dphy for the output.
 
-> +	for (i = 0; i < 2; i++) {
+changes in v2:
+- drop handling the dphy-pll manually, instead use the regular
+  phy configuration operations, thanks Laurent for the suggestion
+- add missing px30 compatible to the binding and make
+  binding changes separate patches
 
-This is a regression, because in the existing code...
 
-> -	for (i = 0; i < MTK_MAC_COUNT; i++) {
+Heiko Stuebner (5):
+  drm/bridge/synopsys: dsi: move phy_ops callbacks around panel
+    enablement
+  dt-bindings: display: rockchip-dsi: document external phys
+  drm/rockchip: add ability to handle external dphys in mipi-dsi
+  dt-bindings: display: rockchip-dsi: add px30 compatible
+  drm/rockchip: dsi: add px30 support
 
-the proper macro is used instead of a magic constant.
+ .../display/rockchip/dw_mipi_dsi_rockchip.txt | 13 ++-
+ drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 13 ++-
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 95 ++++++++++++++++++-
+ 3 files changed, 106 insertions(+), 15 deletions(-)
 
-You're doing so many things in one change, it's hard to review
-and audit.
+-- 
+2.23.0
 
-If you're going to consolidate code, do that only in one change.
-
-Then make other functional changes such as putting the chip into
-GDMA_DROP_ALL mode during the stop operation etc.
