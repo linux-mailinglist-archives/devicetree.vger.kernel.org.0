@@ -2,34 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DEB87F4860
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:57:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87FDBF4863
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 12:57:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391104AbfKHLp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:45:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60800 "EHLO mail.kernel.org"
+        id S2391114AbfKHLpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:45:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60908 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391102AbfKHLp1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:45:27 -0500
+        id S2391125AbfKHLpb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:45:31 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F30CF222C4;
-        Fri,  8 Nov 2019 11:45:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 46C7D222C2;
+        Fri,  8 Nov 2019 11:45:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213526;
-        bh=nrwlX0+o3IBQvyjj/20EPhRXPTRgqzdCYKUR/stkalw=;
+        s=default; t=1573213531;
+        bh=ZeDtjHcS4F7h4sPEOoNT2gxFQHsLvg4xtMYXjgeG0y0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=wG3p3ZECYfbX2DjUgpkRAPwgyZDa9MzkUxW/0DNs35mLuySLp5Qghm0KSnDZWhoSY
-         y7o7TRpd96UrRYORwhxec1IJ4kDToVwS0TkwEN+kUcdPmw1rFLAOfrIOT9J+bJlJzz
-         /uNeXhHnjkqB2uNz+B2mR8M0NzWWjhlDaVesq8+o=
+        b=MZKCfnES2s4CYPqII3Fizsg27YmflcYy1KaTDpCOxFyNDGpNbIBqa6gTBNvbl1hnj
+         ugxGzKECGot2KyC1iX0ORGrfEA1i8CrqZNaPWfuPqCavHocLyiS8sVJpTTKBhpZhz1
+         GSGeN/+D36kdCvTGGTGY54ty55T/q8hAyu+dYo58=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 090/103] ARM: dts: socfpga: Fix I2C bus unit-address error
-Date:   Fri,  8 Nov 2019 06:42:55 -0500
-Message-Id: <20191108114310.14363-90-sashal@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Carlo Caione <carlo@caione.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 094/103] arm64: dts: meson: Fix erroneous SPI bus warnings
+Date:   Fri,  8 Nov 2019 06:42:59 -0500
+Message-Id: <20191108114310.14363-94-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108114310.14363-1-sashal@kernel.org>
 References: <20191108114310.14363-1-sashal@kernel.org>
@@ -42,34 +44,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dinh Nguyen <dinguyen@kernel.org>
+From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit cbbc488ed85061a765cf370c3e41f383c1e0add6 ]
+[ Upstream commit 68ecb5c1920c5b98b1e717fd2349fba2ee5d4031 ]
 
-dtc has new checks for I2C buses. Fix the warnings in unit-addresses.
+dtc has new checks for SPI buses. The meson dts files have a node named
+spi' which causes false positive warnings. As the node is a pinctrl child
+node, change the node name to be 'spi-pins' to fix the warnings.
 
-arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb: Warning (i2c_bus_reg): /soc/i2c@ffc04000/adxl345@0: I2C bus unit address format error, expected "53"
+arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: Warning (spi_bus_bridge): /soc/periphs@c8834000/pinctrl@4b0/spi: incorrect #address-cells for SPI bus
 
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org
 Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts b/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts
-index b280e64941938..31b01a998b2ed 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dts
-@@ -88,7 +88,7 @@
- 	status = "okay";
- 	clock-frequency = <100000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+index af834cdbba791..250b5c11c0e25 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+@@ -413,7 +413,7 @@
+ 			};
+ 		};
  
--	adxl345: adxl345@0 {
-+	adxl345: adxl345@53 {
- 		compatible = "adi,adxl345";
- 		reg = <0x53>;
+-		spi_pins: spi {
++		spi_pins: spi-pins {
+ 			mux {
+ 				groups = "spi_miso",
+ 					"spi_mosi",
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index fb8d76a17bc5d..3c30579449608 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -310,7 +310,7 @@
+ 			};
+ 		};
  
+-		spi_pins: spi {
++		spi_pins: spi-pins {
+ 			mux {
+ 				groups = "spi_miso",
+ 					"spi_mosi",
 -- 
 2.20.1
 
