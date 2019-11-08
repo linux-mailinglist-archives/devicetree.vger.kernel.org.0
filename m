@@ -2,134 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6216AF586E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 21:42:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5447F58E5
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 21:58:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727903AbfKHUUO convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 8 Nov 2019 15:20:14 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42201 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727700AbfKHUUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Nov 2019 15:20:14 -0500
-Received: by mail-oi1-f194.google.com with SMTP id i185so6367925oif.9;
-        Fri, 08 Nov 2019 12:20:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TTr4MjjfOlkLTqlNf4kUTvL6kdP50wKBKc/067BKT2E=;
-        b=rXSu/4MO4L0DAhXV1eOyzj76OqlRIoaH2tBt4edRexuXwFOJNC7Yq86PhQXMQO+O0E
-         CBkuy3u8POuSPfE0s4tg8MOuEogOZ+znASobIjPe0Qo+JKp1qt1GFohUFG8csNRKmG+9
-         5/1Ef4vydzEm3qmvnnVQh8Q4EXw75zm9miGhetyPy036EQnR75nb5PJQi2Sm47yhT7g9
-         VzFM3ILY1aawSMNjQt3rAae68WNq5lWMTYWtJbGeRUIjR3wG2nZ9lwckZ7ME+QCQ4ZvA
-         q/+UaBXFZqlh3KJpHy8jP9mg26XnFS9BPtYgwGVrv9Q565lgAD7ZSj+OYPv1KioMZDMW
-         0gcQ==
-X-Gm-Message-State: APjAAAUvXem8oeTCXwybMC6hiLyD42hlmqLAHhwQLlCDLtFroCwmWxcn
-        kbo7oyKaeQIhcNyTvzclWHHFDxBH
-X-Google-Smtp-Source: APXvYqx4OzTlh++e0Tu9KcZWFHG/OBQ7xbY38kxMiZmsZvXuN4szra7xwHPL+8xcG4S9DShOOnf0KQ==
-X-Received: by 2002:a54:4481:: with SMTP id v1mr11029392oiv.152.1573244412628;
-        Fri, 08 Nov 2019 12:20:12 -0800 (PST)
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com. [209.85.167.176])
-        by smtp.gmail.com with ESMTPSA id m205sm2178604oif.10.2019.11.08.12.20.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Nov 2019 12:20:12 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id y194so6398652oie.4;
-        Fri, 08 Nov 2019 12:20:12 -0800 (PST)
-X-Received: by 2002:aca:913:: with SMTP id 19mr9921384oij.51.1573244411904;
- Fri, 08 Nov 2019 12:20:11 -0800 (PST)
-MIME-Version: 1.0
-References: <20191105090221.45381-1-wen.he_1@nxp.com> <20191105090221.45381-2-wen.he_1@nxp.com>
- <VE1PR04MB66879681CE5231F5C80F85148F7E0@VE1PR04MB6687.eurprd04.prod.outlook.com>
- <DB7PR04MB51956205E7FE92C9EB00A882E2780@DB7PR04MB5195.eurprd04.prod.outlook.com>
- <20191107225745.1A01C2178F@mail.kernel.org> <DB7PR04MB51959C3CF461F68AE99FA728E27B0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-In-Reply-To: <DB7PR04MB51959C3CF461F68AE99FA728E27B0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Fri, 8 Nov 2019 14:20:00 -0600
-X-Gmail-Original-Message-ID: <CADRPPNQ8zf_+205OK=g1FvKpjghFwuyBVW3Wy4zC8VMN2bLdhQ@mail.gmail.com>
-Message-ID: <CADRPPNQ8zf_+205OK=g1FvKpjghFwuyBVW3Wy4zC8VMN2bLdhQ@mail.gmail.com>
-Subject: Re: [EXT] RE: [v6 2/2] clk: ls1028a: Add clock driver for Display
- output interface
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
+        id S1728265AbfKHUvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 15:51:43 -0500
+Received: from muru.com ([72.249.23.125]:41202 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726670AbfKHUvn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 15:51:43 -0500
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 4755C80D4;
+        Fri,  8 Nov 2019 20:52:18 +0000 (UTC)
+Date:   Fri, 8 Nov 2019 12:51:39 -0800
+From:   Tony Lindgren <tony@atomide.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Adam Ford <adam.ford@logicpd.com>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/2] configs: ARM: omap2plus: Enable OMAP3_THERMAL
+Message-ID: <20191108205139.GP5610@atomide.com>
+References: <20191007220540.30690-1-aford173@gmail.com>
+ <20191022162223.GU5610@atomide.com>
+ <CAHCN7xLy975mxX+cm56PMx-TKODEZjYPfMHb=byspKxYXXq7OA@mail.gmail.com>
+ <20191022221919.GF5610@atomide.com>
+ <1CE62E4E-1A38-448C-9197-8FA16747F942@goldelico.com>
+ <20191023143646.GG5610@atomide.com>
+ <CAHCN7xKi4oSoVbRM=-D1s2GnMig8xs6iYNwUWj2Ohfj+1okx=Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xKi4oSoVbRM=-D1s2GnMig8xs6iYNwUWj2Ohfj+1okx=Q@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 7, 2019 at 8:21 PM Wen He <wen.he_1@nxp.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Stephen Boyd <sboyd@kernel.org>
-> > Sent: 2019年11月8日 6:58
-> > To: Leo Li <leoyang.li@nxp.com>; Mark Rutland <mark.rutland@arm.com>;
-> > Michael Turquette <mturquette@baylibre.com>; Rob Herring
-> > <robh+dt@kernel.org>; Wen He <wen.he_1@nxp.com>;
-> > devicetree@vger.kernel.org; linux-clk@vger.kernel.org;
-> > linux-devel@linux.nxdi.nxp.com; linux-kernel@vger.kernel.org
-> > Subject: [EXT] RE: [v6 2/2] clk: ls1028a: Add clock driver for Display output
-> > interface
+* Adam Ford <aford173@gmail.com> [191108 20:03]:
+> On Wed, Oct 23, 2019 at 9:36 AM Tony Lindgren <tony@atomide.com> wrote:
+> > My guess is we need to call clk_disable() and call
+> > ti_bandgap_save_ctxt() on CPU_CLUSTER_PM_ENTER similar to
+> > what ti_bandgap_suspend does. And then restore it on
+> > CPU_CLUSTER_PM_EXIT.
 > >
-> > Caution: EXT Email
-> >
-> > Quoting Wen He (2019-11-06 19:13:48)
-> > >
-> > > > > diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile index
-> > > > > 0138fb14e6f8..d23b7464aba8 100644
-> > > > > --- a/drivers/clk/Makefile
-> > > > > +++ b/drivers/clk/Makefile
-> > > > > @@ -45,6 +45,7 @@ obj-$(CONFIG_COMMON_CLK_OXNAS)
-> > +=
-> > > > > clk-oxnas.o
-> > > > >  obj-$(CONFIG_COMMON_CLK_PALMAS)            += clk-palmas.o
-> > > > >  obj-$(CONFIG_COMMON_CLK_PWM)               += clk-pwm.o
-> > > > >  obj-$(CONFIG_CLK_QORIQ)                    += clk-qoriq.o
-> > > > > +obj-$(CONFIG_CLK_LS1028A_PLLDIG)   += clk-plldig.o
-> > > >
-> > > > Wrong ordering.  This section of Makefile requires ordering by
-> > > > driver file
-> > > > name:
-> > > >
-> > > > # hardware specific clock types
-> > > > # please keep this section sorted lexicographically by file path
-> > > > name
-> > > >
-> > >
-> > > Hi Leo,
-> > >
-> > > Stephen once suggest the Kconfig variable name should be given a more
-> > > specific name like CLK_LS1028A_PLLDIG, so I have to changed it.
-> > >
-> > > Hi Stephen,
-> > >
-> > > How do you think?
-> > >
-> >
-> >
-> > Config name looks fine to me, but you haven't sorted this based on the file
-> > name, i.e. clk-plldig.o, so please insert this in the right place in this file.
->
-> Wow, Understand now..
->
-> Should be sort this file like below, right?
-> obj-$(CONFIG_COMMON_CLK_PWM)   += clk-pwm.o
-> obj-$(CONFIG_CLK_LS1028A_PLLDIG)   += clk-plldig.o
-> obj-$(CONFIG_CLK_QORIQ)           += clk-qoriq.o
+> > There's a similar example already in gpio_omap_cpu_notifier().
+> > Not sure if there is some related errata to deal with too,
+> > probably the old Nokia n900 or n9 would provide some hints
+> > on what exactly needs to be done.
+> 
+> I 'think' I have a patch ready that does what you're asking, but I
+> will fully admit that I don't completely grasp what's going on.
+> 
+> I'll submit it as an RFC, but I am not even sure I understand what to
+> put into the description, so if you're OK with reviewing the RFC, feel
+> free to mark up the actual commit message as well.
+> 
+> From what I can see, the changes haven't negatively impact stuff. I
+> didn't see the power consumption go up before, so I am not sure I can
+> replicate your findings.
+> 
+> It'll be posted shortly.
 
-No.  The correct order should be:
-clk-plldig.o
-clk-pwm.o
-clk-qoriq.o
+Yeah seems to do the job, thanks for fixing this issue.
 
-Regards,
-Leo
+Tony
