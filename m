@@ -2,163 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59D54F43AC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 10:42:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D0BF43B7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 10:43:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731440AbfKHJmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 04:42:38 -0500
-Received: from mga05.intel.com ([192.55.52.43]:10456 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731411AbfKHJmi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 04:42:38 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Nov 2019 01:42:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,281,1569308400"; 
-   d="scan'208";a="354053281"
-Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
-  by orsmga004.jf.intel.com with ESMTP; 08 Nov 2019 01:42:35 -0800
-From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
-        yixin.zhu@linux.intel.com, cheol.yong.kim@intel.com,
-        Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Subject: [PATCH v5 2/2] dt-bindings: pinctrl: intel: Add for new SoC
-Date:   Fri,  8 Nov 2019 17:42:23 +0800
-Message-Id: <5e0396e0e95e042b968b70b8c1f66d6432981ce4.1573196057.git.rahul.tanwar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1573196057.git.rahul.tanwar@linux.intel.com>
-References: <cover.1573196057.git.rahul.tanwar@linux.intel.com>
-In-Reply-To: <cover.1573196057.git.rahul.tanwar@linux.intel.com>
-References: <cover.1573196057.git.rahul.tanwar@linux.intel.com>
+        id S1731753AbfKHJn0 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 8 Nov 2019 04:43:26 -0500
+Received: from rtits2.realtek.com ([211.75.126.72]:56621 "EHLO
+        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730005AbfKHJn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Nov 2019 04:43:26 -0500
+Authenticated-By: 
+X-SpamFilter-By: BOX Solutions SpamTrap 5.62 with qID xA89guVu009625, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (RTITCASV01.realtek.com.tw[172.21.6.18])
+        by rtits2.realtek.com.tw (8.15.2/2.57/5.78) with ESMTPS id xA89guVu009625
+        (version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 8 Nov 2019 17:42:56 +0800
+Received: from RTITMBSVM04.realtek.com.tw ([fe80::e404:880:2ef1:1aa1]) by
+ RTITCASV01.realtek.com.tw ([::1]) with mapi id 14.03.0468.000; Fri, 8 Nov
+ 2019 17:42:56 +0800
+From:   James Tai <james.tai@realtek.com>
+To:     =?iso-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "'DTML'" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>
+Subject: [PATCH v2 0/2] Initial RTD1619 SoC and Realtek Mjolnir EVB support
+Thread-Topic: [PATCH v2 0/2] Initial RTD1619 SoC and Realtek Mjolnir EVB
+ support
+Thread-Index: AdWWGJhW6hHY3ZYJQ8qKkqaxghH5QQ==
+Date:   Fri, 8 Nov 2019 09:42:55 +0000
+Message-ID: <43B123F21A8CFE44A9641C099E4196FFCF91F9CB@RTITMBSVM04.realtek.com.tw>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.187]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8BIT
+MIME-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt bindings document for pinmux & GPIO controller driver of
-Intel Lightning Mountain SoC.
+Hi Andreas,
 
-Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
----
- .../bindings/pinctrl/intel,lgm-pinctrl.yaml        | 104 +++++++++++++++++++++
- 1 file changed, 104 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
+This series adds Device Trees for the Realtek RTD1619 SoC and Realtek's
+Mjolnir EVB.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
-new file mode 100644
-index 000000000000..64edd3115131
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bindings/pinctrl/intel,lgm-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel Lightning Mountain SoC pinmux & GPIO controller binding
-+
-+maintainers:
-+  - Rahul Tanwar <rahul.tanwar@linux.intel.com>
-+
-+description: |
-+  Pinmux & GPIO controller controls pin multiplexing & configuration including
-+  GPIO function selection & GPIO attributes configuration.
-+
-+  Please refer to [1] for details of the common pinctrl bindings used by the
-+  client devices.
-+
-+  [1] Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-+
-+properties:
-+  compatible:
-+    const: intel,lgm-pinctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+# Client device subnode's properties
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    description:
-+      Pinctrl node's client devices use subnodes for desired pin configuration.
-+      Client device subnodes use below standard properties.
-+
-+    properties:
-+      function:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description:
-+          A string containing the name of the function to mux to the group.
-+
-+      groups:
-+        $ref: /schemas/types.yaml#/definitions/string-array
-+        description:
-+          An array of strings identifying the list of groups.
-+
-+      pins:
-+        $ref: /schemas/types.yaml#/definitions/uint32-array
-+        description:
-+          List of pins to select with this function.
-+
-+      pinmux:
-+        description: The applicable mux group.
-+        allOf:
-+          - $ref: "/schemas/types.yaml#/definitions/uint32-array"
-+          - enum:
-+              - 0 #PINMUX_GPIO
-+              - 1
-+              - 2
-+              - 3
-+              - 4
-+
-+      bias-pull-up:
-+        type: boolean
-+      bias-pull-down:
-+        type: boolean
-+      drive-strength:
-+        type: boolean
-+      slew-rate:
-+        type: boolean
-+      drive-open-drain:
-+        type: boolean
-+      output-enable:
-+        type: boolean
-+
-+    required:
-+      - function
-+      - groups
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  # Pinmux controller node
-+  - |
-+    pinctrl: pinctrl@e2880000 {
-+          compatible = "intel,lgm-pinctrl";
-+          reg = <0xe2880000 0x100000>;
-+
-+          # Client device subnode
-+          uart0-pins: uart0 {
-+                pins = <64>, /* UART_RX0 */
-+                       <65>; /* UART_TX0 */
-+                function = "CONSOLE_UART0";
-+                pinmux = <1>,
-+                         <1>;
-+                groups = "CONSOLE_UART0";
-+          };
-+    };
-+
-+...
--- 
-2.11.0
+v1 -> v2:
+* Define compatible strings for Realtek RTD1619 SoC and Realtek Mjolnir
+* Add uart1 and uart2 device node into rtd16xx.dtsi
+* move cpus node and the interrupt-affinity into rtd16xx.dtsi
+* Specify the r-bus ranges
+
+James Tai (2):
+  dt-bindings: arm: realtek: Document RTD1619 and Realtek Mjolnir EVB
+  arm64: dts: Initial RTD1619 SoC and Realtek Mjolnir EVB support
+
+ .../devicetree/bindings/arm/realtek.yaml      |   6 +
+ arch/arm64/boot/dts/realtek/Makefile          |   2 +
+ .../boot/dts/realtek/rtd1619-mjolnir.dts      |  40 +++++
+ arch/arm64/boot/dts/realtek/rtd1619.dtsi      |  12 ++
+ arch/arm64/boot/dts/realtek/rtd16xx.dtsi      | 154 ++++++++++++++++++
+ 5 files changed, 214 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1619-mjolnir.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1619.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd16xx.dtsi
+
+--
+2.17.1
 
