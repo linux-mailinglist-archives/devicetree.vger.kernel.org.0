@@ -2,35 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0142CF4A8A
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:12:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1CA9F4AEB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:13:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732799AbfKHLin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:38:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51674 "EHLO mail.kernel.org"
+        id S1732878AbfKHMM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 07:12:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51784 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732788AbfKHLim (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:38:42 -0500
+        id S1732852AbfKHLir (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:38:47 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7900E21D7E;
-        Fri,  8 Nov 2019 11:38:41 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C63EE20869;
+        Fri,  8 Nov 2019 11:38:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213122;
-        bh=V4E15JTP8Ncram5dpMtDGj4oBuQLPirvzgjhs8k4/tk=;
+        s=default; t=1573213126;
+        bh=XkpVBslqKuTdE5Rwg3WUgngD4asXjVjBos72JgaNb94=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kYn2jH9n1jsJaZJgFFeOTHlmbMWxmfPVlEHeB3k8kJOF5O+lhmcgjSqKPdqm+I8B7
-         xF41ZqYsTQrxHIgARqnq68drn45rtpsEzwlYPW+Qq4l5IfKEWbkAwm0HasMcHJCJkh
-         tmAye8b+990TjcUNGLJBvBhIWkIhgwUo7swvCRtU=
+        b=pbPmAcHfQcljEhJlvQ1b8S1WtiWTHAsUvyfmAUGLE6UR5BRMatMzGWDfRSAaMvjoE
+         X1eDEfeH/57UY2tX7S9nc1LtU6/QiWgYA3iyjdzoa/09KBTWjPH1RjuKxoK4V7k9nR
+         xhGi0Bnnuc2ESrEcPZQaY20WDbJQTN2+7/Ym2op4=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tfiga@chromium.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 041/205] ARM: dts: exynos: Fix HDMI-HPD line handling on Arndale
-Date:   Fri,  8 Nov 2019 06:35:08 -0500
-Message-Id: <20191108113752.12502-41-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 045/205] ARM: dts: exynos: Fix regulators configuration on Peach Pi/Pit Chromebooks
+Date:   Fri,  8 Nov 2019 06:35:12 -0500
+Message-Id: <20191108113752.12502-45-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -43,55 +44,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrzej Hajda <a.hajda@samsung.com>
+From: Marek Szyprowski <m.szyprowski@samsung.com>
 
-[ Upstream commit 21cb5a27483a3cfdbcb7508a06a30c0a485e1211 ]
+[ Upstream commit f8f3b7fc21b1cb59385b780acd9b9a26d04cb7b2 ]
 
-HDMI-HPD was set active low, moreover by default pincontrol chip sets
-pull-down on the pin. As a result HDMI driver assumes TV is always
-connected regardless of actual state.  The patch fixes it.
+Regulators, which are marked as 'on-in-suspend' seems to be critical for
+board operation, thus they must not be disabled anytime. This can be
+only assured by marking them as 'always-on', because otherwise some
+actions of their clients might result in turning them off. This patch
+restores suspend/resume operation on Peach-Pit Chromebook board. It
+partially reverts 'always-on' property removal done by the commit
+mentioned in the Fixes tag.
 
-Signed-off-by: Andrzej Hajda <a.hajda@samsung.com>
+Fixes: 665c441eea3d ("ARM: dts: exynos: Remove unneded always-on for regulators on Peach boards")
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+Tested-by: Tomasz Figa <tfiga@chromium.org>
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/exynos5250-arndale.dts  | 4 +++-
- arch/arm/boot/dts/exynos5250-pinctrl.dtsi | 5 +++++
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/exynos5420-peach-pit.dts | 3 +++
+ arch/arm/boot/dts/exynos5800-peach-pi.dts  | 3 +++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/arch/arm/boot/dts/exynos5250-arndale.dts b/arch/arm/boot/dts/exynos5250-arndale.dts
-index bb3fcd652b5d7..9c8ab4b7fb2cf 100644
---- a/arch/arm/boot/dts/exynos5250-arndale.dts
-+++ b/arch/arm/boot/dts/exynos5250-arndale.dts
-@@ -149,9 +149,11 @@
- };
- 
- &hdmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hdmi_hpd>;
- 	status = "okay";
- 	ddc = <&i2c_ddc>;
--	hpd-gpios = <&gpx3 7 GPIO_ACTIVE_LOW>;
-+	hpd-gpios = <&gpx3 7 GPIO_ACTIVE_HIGH>;
- 	vdd_osc-supply = <&ldo10_reg>;
- 	vdd_pll-supply = <&ldo8_reg>;
- 	vdd-supply = <&ldo8_reg>;
-diff --git a/arch/arm/boot/dts/exynos5250-pinctrl.dtsi b/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
-index b25d520393b8b..d31a68672bfac 100644
---- a/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/exynos5250-pinctrl.dtsi
-@@ -599,6 +599,11 @@
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
- 		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
- 	};
-+
-+	hdmi_hpd: hdmi-hpd {
-+		samsung,pins = "gpx3-7";
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
- };
- 
- &pinctrl_1 {
+diff --git a/arch/arm/boot/dts/exynos5420-peach-pit.dts b/arch/arm/boot/dts/exynos5420-peach-pit.dts
+index 25bdc9d97a4df..769d60d6c9006 100644
+--- a/arch/arm/boot/dts/exynos5420-peach-pit.dts
++++ b/arch/arm/boot/dts/exynos5420-peach-pit.dts
+@@ -312,6 +312,7 @@
+ 				regulator-name = "vdd_1v35";
+ 				regulator-min-microvolt = <1350000>;
+ 				regulator-max-microvolt = <1350000>;
++				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
+@@ -333,6 +334,7 @@
+ 				regulator-name = "vdd_2v";
+ 				regulator-min-microvolt = <2000000>;
+ 				regulator-max-microvolt = <2000000>;
++				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
+@@ -343,6 +345,7 @@
+ 				regulator-name = "vdd_1v8";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
+diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
+index 7989631b39ccf..492e2cd2e559e 100644
+--- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
++++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
+@@ -312,6 +312,7 @@
+ 				regulator-name = "vdd_1v35";
+ 				regulator-min-microvolt = <1350000>;
+ 				regulator-max-microvolt = <1350000>;
++				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
+@@ -333,6 +334,7 @@
+ 				regulator-name = "vdd_2v";
+ 				regulator-min-microvolt = <2000000>;
+ 				regulator-max-microvolt = <2000000>;
++				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
+@@ -343,6 +345,7 @@
+ 				regulator-name = "vdd_1v8";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
++				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-state-mem {
+ 					regulator-on-in-suspend;
 -- 
 2.20.1
 
