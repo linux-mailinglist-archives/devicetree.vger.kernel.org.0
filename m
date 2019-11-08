@@ -2,35 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDF90F4A25
-	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A7B5F49CD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Nov 2019 13:06:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389058AbfKHLkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Nov 2019 06:40:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53954 "EHLO mail.kernel.org"
+        id S2389681AbfKHLlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Nov 2019 06:41:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55422 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389045AbfKHLky (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 8 Nov 2019 06:40:54 -0500
+        id S2389673AbfKHLlw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 8 Nov 2019 06:41:52 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 55D97222C2;
-        Fri,  8 Nov 2019 11:40:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BBFD621D7B;
+        Fri,  8 Nov 2019 11:41:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573213254;
-        bh=m5SAiEhmgoM419e11DWoaWJ3r5SwTf19vYa1RbB7u0k=;
+        s=default; t=1573213311;
+        bh=hVTmL0FORV+KWz1VpzuweX8Ats/8839pboW72CRooBI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hunAVwixqEkhUuRx8cnWEXRtsvvXezyXw8s2tdPwxwk58S6pVouQN3xUijEqbsXzk
-         m0J8LbZiQyH9O2RuKaNPbdhbnT1LBVDybj7WLCjYwqWMkmgyS3xUPdn5nzu2F0td0M
-         4i2/ZYCshFWsOxsTsMACKf4glRWUjg3DGNkFG4u8=
+        b=SCT51chryrurGhdtaopz153rkWZEITV7g1WAdPJ5oKby6uyyErRAFr9am/df+6XpA
+         GdNvl8qkbQCYL+1yd77NMucZjekEahILR/dO0SEnahrQee6bN8OMAkaPRRWZbOIa3x
+         c8O/YsBOwvu9CcgIjzAbDhFV93Z05gUNw7JeIQWw=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 119/205] ARM: dts: exynos: Disable pull control for PMIC IRQ line on Artik5 board
-Date:   Fri,  8 Nov 2019 06:36:26 -0500
-Message-Id: <20191108113752.12502-119-sashal@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 158/205] media: dt-bindings: adv748x: Fix decimal unit addresses
+Date:   Fri,  8 Nov 2019 06:37:05 -0500
+Message-Id: <20191108113752.12502-158-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -43,47 +46,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Szyprowski <m.szyprowski@samsung.com>
+From: Geert Uytterhoeven <geert+renesas@glider.be>
 
-[ Upstream commit 62623718fd31d08b26ebea6c8b40f24924153ab7 ]
+[ Upstream commit 27582f0ea97fe3e4a38beb98ab36cce4b6f029d5 ]
 
-S2MPS14 PMIC interrupt line on Exynos3250-based Artik5 evaluation board
-has external pull-up resistors, so disable any pull control for it in
-controller node. This fixes support for S2MPS14 PMIC interrupts and
-enables operation of wakeup from S2MPS14 RTC alarm.
+With recent dtc and W=1:
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+    Warning (graph_port): video-receiver@70/port@10: graph node unit address error, expected "a"
+    Warning (graph_port): video-receiver@70/port@11: graph node unit address error, expected "b"
+
+Unit addresses are always hexadecimal (without prefix), while the bases
+of reg property values depend on their prefixes.
+
+Fixes: e69595170b1cad85 ("media: adv748x: Add adv7481, adv7482 bindings")
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/exynos3250-artik5.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ Documentation/devicetree/bindings/media/i2c/adv748x.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos3250-artik5.dtsi b/arch/arm/boot/dts/exynos3250-artik5.dtsi
-index 620b50c19ead9..7c22cbf6f3d41 100644
---- a/arch/arm/boot/dts/exynos3250-artik5.dtsi
-+++ b/arch/arm/boot/dts/exynos3250-artik5.dtsi
-@@ -69,6 +69,8 @@
- 		compatible = "samsung,s2mps14-pmic";
- 		interrupt-parent = <&gpx3>;
- 		interrupts = <5 IRQ_TYPE_NONE>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&s2mps14_irq>;
- 		reg = <0x66>;
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.txt b/Documentation/devicetree/bindings/media/i2c/adv748x.txt
+index 21ffb5ed81830..54d1d3bc18694 100644
+--- a/Documentation/devicetree/bindings/media/i2c/adv748x.txt
++++ b/Documentation/devicetree/bindings/media/i2c/adv748x.txt
+@@ -73,7 +73,7 @@ Example:
+ 			};
+ 		};
  
- 		s2mps14_osc: clocks {
-@@ -350,6 +352,11 @@
- 		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV3>;
- 		samsung,pin-val = <1>;
- 	};
-+
-+	s2mps14_irq: s2mps14-irq {
-+		samsung,pins = "gpx3-5";
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
- };
+-		port@10 {
++		port@a {
+ 			reg = <10>;
  
- &rtc {
+ 			adv7482_txa: endpoint {
+@@ -83,7 +83,7 @@ Example:
+ 			};
+ 		};
+ 
+-		port@11 {
++		port@b {
+ 			reg = <11>;
+ 
+ 			adv7482_txb: endpoint {
 -- 
 2.20.1
 
