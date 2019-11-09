@@ -2,96 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B6B7F5FC8
-	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2019 16:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4A10F6001
+	for <lists+devicetree@lfdr.de>; Sat,  9 Nov 2019 16:22:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726758AbfKIPQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 10:16:01 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:39480 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726372AbfKIPPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Nov 2019 10:15:54 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xA9FFj9w067009;
-        Sat, 9 Nov 2019 09:15:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1573312545;
-        bh=q54WWdOI9rdwUEth2Kb8Y2jtiHd96DerLSZQMBvr0mw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=N6uE/FDsYmPVkQCW3YW4pahPNsaAlK2OLy85H0HC9Jr2Nx9Vt/oW7jNR0Y6wtKcLr
-         LZht9DdUPsEqxQ8dC9j2v6/gsYKVrVQucIotruUNWLm4PVVb3DqL/xTWGum4NKGavX
-         ZbdKHyxCciRTs2Fol1hFLSA2lmeTZUxVj0AsJ90k=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xA9FFjUT087338
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 9 Nov 2019 09:15:45 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Sat, 9 Nov
- 2019 09:15:45 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Sat, 9 Nov 2019 09:15:45 -0600
-Received: from [10.250.98.116] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA9FFe6i024185;
-        Sat, 9 Nov 2019 09:15:41 -0600
-Subject: Re: [PATCH v5 net-next 00/12] net: ethernet: ti: introduce new cpsw
- switchdev based driver
-To:     Tony Lindgren <tony@atomide.com>, Sekhar Nori <nsekhar@ti.com>
-CC:     <netdev@vger.kernel.org>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Ivan Khoronzhuk <ivan.khoronzhuk@linaro.org>,
-        Jiri Pirko <jiri@resnulli.us>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Ivan Vecera <ivecera@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-References: <20191024100914.16840-1-grygorii.strashko@ti.com>
- <20191024160549.GY5610@atomide.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <dc621a9d-eb92-5df9-81d7-ad2b037ac3c7@ti.com>
-Date:   Sat, 9 Nov 2019 17:15:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726399AbfKIPVz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Nov 2019 10:21:55 -0500
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:34504 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726349AbfKIPVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Nov 2019 10:21:55 -0500
+Received: by mail-ed1-f66.google.com with SMTP id b72so8472469edf.1;
+        Sat, 09 Nov 2019 07:21:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc;
+        bh=7B3KT7m27I86KEF7GR0Y9+xEe3Sei4avLWRZmXEU+Jk=;
+        b=sEGkHO5Nw1u6YcsssOPb+qWLT0+J4O2g+quMEbopIoR6AUc5cls51K6fTJeGB4Suoq
+         o1vH2h12opauX6KqHDFayhjEdKbrE2K9fckiFR3/hgHJaLsorO3YQWMo+8s5e6vSoWq6
+         oOEiBc2ewlQZpvHryuICklYX/lWxwkH6ZsmdYNNZhKuje91eIzG2RyZsAyOpjjQXO1Yu
+         MKUgHshy0nAs+3KHhQEZG7V4S608gU5RtcBjbDzz+TJuoho8xN/PMw96ShwFV3ixY082
+         SegwMBa1VZYHYPa9eYkXap7eVhgyyGzbLU+8EvO+NCkrvvf7XDURyzFhiZMtNt71w9YJ
+         J9Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc;
+        bh=7B3KT7m27I86KEF7GR0Y9+xEe3Sei4avLWRZmXEU+Jk=;
+        b=PM2YIIgKGh8BaRhvVo9MCMpQfrgLwVlaDkq8Mmyxf8KAtQvbeS//Syojj0EcQdMgsc
+         iOokksgmA/JBg13U5Xk/pHEbKq/OQHtvMxTI5tNmQPsh2BN+yI3zsFRVc7Y6xmdB60D/
+         W0sYH3Uo849+Cj77Ezyo7qENjHNSZZ7z2zQBQyu6EdAnwLo097RYO4L0s9JmX0n5uZZX
+         6SomeDI/05YljQ9PGjp20huCrom9+MHinNDnPZz0D2wknb8fY0x5YZ6ezzc/hx8yUwwe
+         JDtidADyxyDSOddAF0yjVi5vGXQDTu2gQAE3YFGHazweOuxLty7rpTDa77rAjmc6Bxrq
+         GB0w==
+X-Gm-Message-State: APjAAAXkm3vZ2TlTRGNmbmaWaaPu4HDmKah1L/zvg0Yx3DCf+KVm544c
+        54vRQ/fiU2bNdg4VC6D1KOYw/j8EstvG/s9XSnY=
+X-Google-Smtp-Source: APXvYqw2xy+TORlK9D3NsUd6J7Zs/SmAvifrskcUq5ND66YP9APND+9oBSZCimLdnMzy1MQF2p48oh0a34pC8u3dbWo=
+X-Received: by 2002:a50:b63b:: with SMTP id b56mr16737146ede.165.1573312912091;
+ Sat, 09 Nov 2019 07:21:52 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20191024160549.GY5610@atomide.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Received: by 2002:a17:906:12cf:0:0:0:0 with HTTP; Sat, 9 Nov 2019 07:21:51
+ -0800 (PST)
+In-Reply-To: <20191109150953.GJ22978@lunn.ch>
+References: <20191109105642.30700-1-olteanv@gmail.com> <20191109150953.GJ22978@lunn.ch>
+From:   Vladimir Oltean <olteanv@gmail.com>
+Date:   Sat, 9 Nov 2019 17:21:51 +0200
+Message-ID: <CA+h21hoqkE2D03BHrFeU+STbK8pStRRFu+x7+9j2nwFf+EHJNg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: ls1021a-tsn: Use interrupts for the SGMII PHYs
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     shawnguo@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony,
+On 09/11/2019, Andrew Lunn <andrew@lunn.ch> wrote:
+> On Sat, Nov 09, 2019 at 12:56:42PM +0200, Vladimir Oltean wrote:
+>> On the LS1021A-TSN board, the 2 Atheros AR8031 PHYs for eth0 and eth1
+>> have interrupt lines connected to the shared IRQ2_B LS1021A pin.
+>>
+>> The interrupts are active low, but the GICv2 controller does not support
+>> active-low and falling-edge interrupts, so the only mode it can be
+>> configured in is rising-edge.
+>
+> Hi Vladimir
+>
+> So how does this work? The rising edge would occur after the interrupt
+> handler has completed? What triggers the interrupt handler?
+>
+> 	Andrew
+>
 
-On 24/10/2019 19:05, Tony Lindgren wrote:
-> Hi,
-> 
-> * Grygorii Strashko <grygorii.strashko@ti.com> [191024 10:10]:
->> This the RFC v5 which introduces new CPSW switchdev based driver which is
->> operating in dual-emac mode by default, thus working as 2 individual
->> network interfaces. The Switch mode can be enabled by configuring devlink driver
->> parameter "switch_mode" to 1/true:
->> 	devlink dev param set platform/48484000.ethernet_switch \
->> 	name switch_mode value 1 cmode runtime
-> 
-> Just wondering about the migration plan.. Is this a replacement
-> driver or used in addition to the old driver?
-> 
+Hi Andrew,
 
-Sry, I've missed you mail.
+I hope I am not terribly confused about this. I thought I am telling
+the interrupt controller to raise an IRQ as a result of the
+low-to-high transition of the electrical signal. Experimentation sure
+seems to agree with me. So the IRQ is generated immediately _after_
+the PHY has left the line in open drain and it got pulled up to Vdd.
 
-As it's pretty big change the idea is to keep both drivers at least for sometime.
-Step 1: add new driver and enable it on one platform. Do announcement.
-Step 2: switch all one-port and dual mac drivers to the new driver
-Step 3: switch all other platform to cpsw switchdev and deprecate old driver.
+Thanks,
+-Vladimir
 
--- 
-Best regards,
-grygorii
+[Sorry for the repost, for some reason Gmail decided to send this
+email as html earlier]
