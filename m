@@ -2,36 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95DFFF6371
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 03:52:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87524F6360
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 03:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727084AbfKJCwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 21:52:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36476 "EHLO mail.kernel.org"
+        id S1728699AbfKJCvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Nov 2019 21:51:45 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36704 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726902AbfKJCvh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Nov 2019 21:51:37 -0500
+        id S1729968AbfKJCvo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Nov 2019 21:51:44 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 49EE622595;
-        Sun, 10 Nov 2019 02:51:36 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E77CF22573;
+        Sun, 10 Nov 2019 02:51:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573354297;
-        bh=DAgjWYRQf/Pepdfl7HaxtWpkqKg1eDbMhQhEiRzh5oQ=;
+        s=default; t=1573354303;
+        bh=sqb++TXGGyVWzTbjaKuwOI/0PkCaHEm9xxhq7qwYYes=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nkpWHzYr4WzWrHULoP1LkVPX6tIfVvsG9PICuVjodCm2mvO7AFpujPee2EJYflRXe
-         q4gjkn5WzuSULJV4bj6oI4TSZc/gwzUXk2VA6z7ALH/HgPZjc8Z2FO1pQIBgZlH3oe
-         XFlW+ueVfS7vSaIisYFv7MUwUrcjUP00vJavRw3E=
+        b=ISG9ciZ2QsuXHeuTy/d5qh5T7OWkVIFlq9jn1xS7ueLK8wr05u+pmS6xB9bjQKoi/
+         oCIPgOrA3/K6XuO5qX/EolkjSFWHBv3VAMqVleZBiG/Ij5CmPqTRuXNEXhAhuQewFx
+         oGRm05ISNpF9cF/zxr/0cPa2NhyzBow3ykA5akjk=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 35/40] ARM: tegra: apalis_t30: fix mmc1 cmd pull-up
-Date:   Sat,  9 Nov 2019 21:50:27 -0500
-Message-Id: <20191110025032.827-35-sashal@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Brijesh Singh <brijeshkumar.singh@amd.com>,
+        Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.4 39/40] arm64: dts: amd: Fix SPI bus warnings
+Date:   Sat,  9 Nov 2019 21:50:31 -0500
+Message-Id: <20191110025032.827-39-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191110025032.827-1-sashal@kernel.org>
 References: <20191110025032.827-1-sashal@kernel.org>
@@ -44,42 +46,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit 1c997fe4becdc6fcbc06e23982ceb65621e6572a ]
+[ Upstream commit e9f0878c4b2004ac19581274c1ae4c61ae3ca70e ]
 
-Fix MMC1 cmd pin pull-up causing issues on carrier boards without
-external pull-up.
+dtc has new checks for SPI buses. Fix the warnings in node names.
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+arch/arm64/boot/dts/amd/amd-overdrive.dtb: Warning (spi_bus_bridge): /smb/ssp@e1030000: node name for SPI buses should be 'spi'
+arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dtb: Warning (spi_bus_bridge): /smb/ssp@e1030000: node name for SPI buses should be 'spi'
+arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dtb: Warning (spi_bus_bridge): /smb/ssp@e1030000: node name for SPI buses should be 'spi'
+
+Cc: Brijesh Singh <brijeshkumar.singh@amd.com>
+Cc: Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>
+Cc: Tom Lendacky <thomas.lendacky@amd.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/tegra30-apalis.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/tegra30-apalis.dtsi b/arch/arm/boot/dts/tegra30-apalis.dtsi
-index bf361277fe105..9a8c20cd06885 100644
---- a/arch/arm/boot/dts/tegra30-apalis.dtsi
-+++ b/arch/arm/boot/dts/tegra30-apalis.dtsi
-@@ -147,14 +147,14 @@
+diff --git a/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi b/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi
+index 2874d92881fda..a3030c868be5f 100644
+--- a/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi
++++ b/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi
+@@ -84,7 +84,7 @@
+ 			clock-names = "uartclk", "apb_pclk";
+ 		};
  
- 			/* Apalis MMC1 */
- 			sdmmc3_clk_pa6 {
--				nvidia,pins = "sdmmc3_clk_pa6",
--					      "sdmmc3_cmd_pa7";
-+				nvidia,pins = "sdmmc3_clk_pa6";
- 				nvidia,function = "sdmmc3";
- 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
- 				nvidia,tristate = <TEGRA_PIN_DISABLE>;
- 			};
- 			sdmmc3_dat0_pb7 {
--				nvidia,pins = "sdmmc3_dat0_pb7",
-+				nvidia,pins = "sdmmc3_cmd_pa7",
-+					      "sdmmc3_dat0_pb7",
- 					      "sdmmc3_dat1_pb6",
- 					      "sdmmc3_dat2_pb5",
- 					      "sdmmc3_dat3_pb4",
+-		spi0: ssp@e1020000 {
++		spi0: spi@e1020000 {
+ 			status = "disabled";
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			#gpio-cells = <2>;
+@@ -95,7 +95,7 @@
+ 			clock-names = "apb_pclk";
+ 		};
+ 
+-		spi1: ssp@e1030000 {
++		spi1: spi@e1030000 {
+ 			status = "disabled";
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			#gpio-cells = <2>;
 -- 
 2.20.1
 
