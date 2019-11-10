@@ -2,35 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD7BF6393
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 03:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A749F636D
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 03:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728837AbfKJCxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 21:53:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35478 "EHLO mail.kernel.org"
+        id S1730017AbfKJCvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Nov 2019 21:51:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36446 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729907AbfKJCvK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Nov 2019 21:51:10 -0500
+        id S1728581AbfKJCvg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Nov 2019 21:51:36 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0DFA3227C3;
-        Sun, 10 Nov 2019 02:51:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2AC6122581;
+        Sun, 10 Nov 2019 02:51:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573354269;
-        bh=MtK3rPQd3SaaIQnnxCs2zvWntZfSe1hn9rDCp09C3wc=;
+        s=default; t=1573354295;
+        bh=p1cyHIedRQqK6U9Lz5uiDfkPk+kHGylhTLzoBO+cBgs=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Zrg56i6OiGsra6YE8bIflLiVzGc6Tv1OSpOBSWcOTtJooNjMP85b5wHTpWHVAWG2m
-         YO0Lwm7XBA7Rfuj6+UZJ+g1FxpT8QbzFIa62vCGA73B3u2I2rG1XihyBxKmMEqWyKM
-         RQx+fiy6woJ6AA6yyExHVGUUNxA5lYP3SW+rSHmA=
+        b=Bn/K96davCmdA1uDWMI3kpBaOUWWAAXbepsZzItBNcQMX3CWyecOG7iU9NKLdid0M
+         JJsaTN2YMN2Y8SXxd7ooM2ke5AY639PCWwUQeffRaCUsnaq9vYJ0sTna8o6uw3qe/D
+         5IGw3hyLAvLeDkvkfLmKDfSNFH7KEtX0deZ08tpw=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 18/40] ARM: dts: ste: Fix SPI controller node names
-Date:   Sat,  9 Nov 2019 21:50:10 -0500
-Message-Id: <20191110025032.827-18-sashal@kernel.org>
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.4 34/40] ARM: dts: tegra30: fix xcvr-setup-use-fuses
+Date:   Sat,  9 Nov 2019 21:50:26 -0500
+Message-Id: <20191110025032.827-34-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191110025032.827-1-sashal@kernel.org>
 References: <20191110025032.827-1-sashal@kernel.org>
@@ -43,84 +44,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-[ Upstream commit 2f967f9e9fa076affb711da1a8389b5d33814fc6 ]
+[ Upstream commit 564706f65cda3de52b09e51feb423a43940fe661 ]
 
-SPI controller nodes should be named 'spi' rather than 'ssp'. Fixing the
-name enables dtc SPI bus checks.
+There was a dot instead of a comma. Fix this.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/ste-dbx5x0.dtsi     | 4 ++--
- arch/arm/boot/dts/ste-hrefprev60.dtsi | 2 +-
- arch/arm/boot/dts/ste-snowball.dts    | 2 +-
- arch/arm/boot/dts/ste-u300.dts        | 2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/tegra30.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ste-dbx5x0.dtsi b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-index 86bd320057a38..b2b23ceb6d557 100644
---- a/arch/arm/boot/dts/ste-dbx5x0.dtsi
-+++ b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-@@ -894,7 +894,7 @@
- 			power-domains = <&pm_domains DOMAIN_VAPE>;
- 		};
- 
--		ssp@80002000 {
-+		spi@80002000 {
- 			compatible = "arm,pl022", "arm,primecell";
- 			reg = <0x80002000 0x1000>;
- 			interrupts = <0 14 IRQ_TYPE_LEVEL_HIGH>;
-@@ -908,7 +908,7 @@
- 			power-domains = <&pm_domains DOMAIN_VAPE>;
- 		};
- 
--		ssp@80003000 {
-+		spi@80003000 {
- 			compatible = "arm,pl022", "arm,primecell";
- 			reg = <0x80003000 0x1000>;
- 			interrupts = <0 52 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm/boot/dts/ste-hrefprev60.dtsi b/arch/arm/boot/dts/ste-hrefprev60.dtsi
-index b0278f4c486ce..55a6a1ac03370 100644
---- a/arch/arm/boot/dts/ste-hrefprev60.dtsi
-+++ b/arch/arm/boot/dts/ste-hrefprev60.dtsi
-@@ -57,7 +57,7 @@
- 			};
- 		};
- 
--		ssp@80002000 {
-+		spi@80002000 {
- 			/*
- 			 * On the first generation boards, this SSP/SPI port was connected
- 			 * to the AB8500.
-diff --git a/arch/arm/boot/dts/ste-snowball.dts b/arch/arm/boot/dts/ste-snowball.dts
-index e80e421638836..bb1b64d6ab5e8 100644
---- a/arch/arm/boot/dts/ste-snowball.dts
-+++ b/arch/arm/boot/dts/ste-snowball.dts
-@@ -311,7 +311,7 @@
- 			pinctrl-1 = <&i2c3_sleep_mode>;
- 		};
- 
--		ssp@80002000 {
-+		spi@80002000 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&ssp0_snowball_mode>;
- 		};
-diff --git a/arch/arm/boot/dts/ste-u300.dts b/arch/arm/boot/dts/ste-u300.dts
-index 82a661677e97e..fb6ca7f864176 100644
---- a/arch/arm/boot/dts/ste-u300.dts
-+++ b/arch/arm/boot/dts/ste-u300.dts
-@@ -451,7 +451,7 @@
- 			dma-names = "rx";
- 		};
- 
--		spi: ssp@c0006000 {
-+		spi: spi@c0006000 {
- 			compatible = "arm,pl022", "arm,primecell";
- 			reg = <0xc0006000 0x1000>;
- 			interrupt-parent = <&vica>;
+diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
+index 313e260529a31..e8f5a55c4b954 100644
+--- a/arch/arm/boot/dts/tegra30.dtsi
++++ b/arch/arm/boot/dts/tegra30.dtsi
+@@ -823,7 +823,7 @@
+ 		nvidia,elastic-limit = <16>;
+ 		nvidia,term-range-adj = <6>;
+ 		nvidia,xcvr-setup = <51>;
+-		nvidia.xcvr-setup-use-fuses;
++		nvidia,xcvr-setup-use-fuses;
+ 		nvidia,xcvr-lsfslew = <1>;
+ 		nvidia,xcvr-lsrslew = <1>;
+ 		nvidia,xcvr-hsslew = <32>;
+@@ -860,7 +860,7 @@
+ 		nvidia,elastic-limit = <16>;
+ 		nvidia,term-range-adj = <6>;
+ 		nvidia,xcvr-setup = <51>;
+-		nvidia.xcvr-setup-use-fuses;
++		nvidia,xcvr-setup-use-fuses;
+ 		nvidia,xcvr-lsfslew = <2>;
+ 		nvidia,xcvr-lsrslew = <2>;
+ 		nvidia,xcvr-hsslew = <32>;
+@@ -896,7 +896,7 @@
+ 		nvidia,elastic-limit = <16>;
+ 		nvidia,term-range-adj = <6>;
+ 		nvidia,xcvr-setup = <51>;
+-		nvidia.xcvr-setup-use-fuses;
++		nvidia,xcvr-setup-use-fuses;
+ 		nvidia,xcvr-lsfslew = <2>;
+ 		nvidia,xcvr-lsrslew = <2>;
+ 		nvidia,xcvr-hsslew = <32>;
 -- 
 2.20.1
 
