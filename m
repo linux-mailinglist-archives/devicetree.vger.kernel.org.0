@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57A38F6666
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31D9AF6654
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:13:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726857AbfKJDNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 22:13:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39296 "EHLO mail.kernel.org"
+        id S1726756AbfKJDNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Nov 2019 22:13:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39772 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727991AbfKJCmq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Nov 2019 21:42:46 -0500
+        id S1728057AbfKJCmy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Nov 2019 21:42:54 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AD6FF21655;
-        Sun, 10 Nov 2019 02:42:44 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E059F21848;
+        Sun, 10 Nov 2019 02:42:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573353765;
-        bh=kYX34TqtCC3SM/hdhNIA6q1CTQZWCDNDaa35a4w3VJk=;
+        s=default; t=1573353773;
+        bh=X1BSDj7yVpDkdHnzecGboQR5aPjvRN2RmNz7kfu0+NE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oCPKLjnO/jzuDQ6spo0qC/MfkajzkKzqWn494OJaDC/+hwLXzwFl3maQKwE0+BUi0
-         wlfyWSkbP9ZxJLlxfJsgygl2WYF7Lk0aJhQDjd+2ZEW+3fihzfeKy4AiziFMHhhD4D
-         EHqh4qUo8PLQD0gxvKDQ+Pj8m2diG55HXhb+LLmY=
+        b=ozOcBeCBYSnlxKg0DFFakfwm9rtQGE/ZE+bqF1xGEcEBsooqXKM4RwY2tbgCcrYw4
+         lfCeec8RD0bDsmx9lmfBx4KKv9V9IZOv+6B6cDvRmCrM9QW/k+aGmNHmLoe7EEpYJL
+         N4s0uJFU203ty6hzM2eAQiRnYJSs86M8ADLc+wLQ=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 077/191] ARM: dts: stm32: Fix SPI controller node names
-Date:   Sat,  9 Nov 2019 21:38:19 -0500
-Message-Id: <20191110024013.29782-77-sashal@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 083/191] net: phy: mdio-bcm-unimac: Allow configuring MDIO clock divider
+Date:   Sat,  9 Nov 2019 21:38:25 -0500
+Message-Id: <20191110024013.29782-83-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191110024013.29782-1-sashal@kernel.org>
 References: <20191110024013.29782-1-sashal@kernel.org>
@@ -44,35 +44,178 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-[ Upstream commit 1ba23b1df0bb6eec430408614c3a11280941e112 ]
+[ Upstream commit b78ac6ecd1b6b46f8767cbafa95a7b0b51b87ad8 ]
 
-SPI controller nodes should be named 'spi' rather than 'qspi'. Fixing the
-name enables dtc SPI bus checks.
+Allow the configuration of the MDIO clock divider when the Device Tree
+contains 'clock-frequency' property (similar to I2C and SPI buses).
+Because the hardware may have lost its state during suspend/resume,
+re-apply the MDIO clock divider upon resumption.
 
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: David S. Miller <davem@davemloft.net>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/stm32mp157c.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/net/brcm,unimac-mdio.txt         |  3 +
+ drivers/net/phy/mdio-bcm-unimac.c             | 83 ++++++++++++++++++-
+ 2 files changed, 84 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
-index 185541a5b69fb..c50c36baba758 100644
---- a/arch/arm/boot/dts/stm32mp157c.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-@@ -947,7 +947,7 @@
- 			dma-requests = <48>;
- 		};
+diff --git a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
+index 4648948f7c3b8..e15589f477876 100644
+--- a/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
++++ b/Documentation/devicetree/bindings/net/brcm,unimac-mdio.txt
+@@ -19,6 +19,9 @@ Optional properties:
+ - interrupt-names: must be "mdio_done_error" when there is a share interrupt fed
+   to this hardware block, or must be "mdio_done" for the first interrupt and
+   "mdio_error" for the second when there are separate interrupts
++- clocks: A reference to the clock supplying the MDIO bus controller
++- clock-frequency: the MDIO bus clock that must be output by the MDIO bus
++  hardware, if absent, the default hardware values are used
  
--		qspi: qspi@58003000 {
-+		qspi: spi@58003000 {
- 			compatible = "st,stm32f469-qspi";
- 			reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
- 			reg-names = "qspi", "qspi_mm";
+ Child nodes of this MDIO bus controller node are standard Ethernet PHY device
+ nodes as described in Documentation/devicetree/bindings/net/phy.txt
+diff --git a/drivers/net/phy/mdio-bcm-unimac.c b/drivers/net/phy/mdio-bcm-unimac.c
+index 8d370667fa1b3..80b9583eaa952 100644
+--- a/drivers/net/phy/mdio-bcm-unimac.c
++++ b/drivers/net/phy/mdio-bcm-unimac.c
+@@ -16,6 +16,7 @@
+ #include <linux/module.h>
+ #include <linux/io.h>
+ #include <linux/delay.h>
++#include <linux/clk.h>
+ 
+ #include <linux/of.h>
+ #include <linux/of_platform.h>
+@@ -45,6 +46,8 @@ struct unimac_mdio_priv {
+ 	void __iomem		*base;
+ 	int (*wait_func)	(void *wait_func_data);
+ 	void			*wait_func_data;
++	struct clk		*clk;
++	u32			clk_freq;
+ };
+ 
+ static inline u32 unimac_mdio_readl(struct unimac_mdio_priv *priv, u32 offset)
+@@ -189,6 +192,35 @@ static int unimac_mdio_reset(struct mii_bus *bus)
+ 	return 0;
+ }
+ 
++static void unimac_mdio_clk_set(struct unimac_mdio_priv *priv)
++{
++	unsigned long rate;
++	u32 reg, div;
++
++	/* Keep the hardware default values */
++	if (!priv->clk_freq)
++		return;
++
++	if (!priv->clk)
++		rate = 250000000;
++	else
++		rate = clk_get_rate(priv->clk);
++
++	div = (rate / (2 * priv->clk_freq)) - 1;
++	if (div & ~MDIO_CLK_DIV_MASK) {
++		pr_warn("Incorrect MDIO clock frequency, ignoring\n");
++		return;
++	}
++
++	/* The MDIO clock is the reference clock (typicaly 250Mhz) divided by
++	 * 2 x (MDIO_CLK_DIV + 1)
++	 */
++	reg = unimac_mdio_readl(priv, MDIO_CFG);
++	reg &= ~(MDIO_CLK_DIV_MASK << MDIO_CLK_DIV_SHIFT);
++	reg |= div << MDIO_CLK_DIV_SHIFT;
++	unimac_mdio_writel(priv, reg, MDIO_CFG);
++}
++
+ static int unimac_mdio_probe(struct platform_device *pdev)
+ {
+ 	struct unimac_mdio_pdata *pdata = pdev->dev.platform_data;
+@@ -217,9 +249,26 @@ static int unimac_mdio_probe(struct platform_device *pdev)
+ 		return -ENOMEM;
+ 	}
+ 
++	priv->clk = devm_clk_get(&pdev->dev, NULL);
++	if (PTR_ERR(priv->clk) == -EPROBE_DEFER)
++		return PTR_ERR(priv->clk);
++	else
++		priv->clk = NULL;
++
++	ret = clk_prepare_enable(priv->clk);
++	if (ret)
++		return ret;
++
++	if (of_property_read_u32(np, "clock-frequency", &priv->clk_freq))
++		priv->clk_freq = 0;
++
++	unimac_mdio_clk_set(priv);
++
+ 	priv->mii_bus = mdiobus_alloc();
+-	if (!priv->mii_bus)
+-		return -ENOMEM;
++	if (!priv->mii_bus) {
++		ret = -ENOMEM;
++		goto out_clk_disable;
++	}
+ 
+ 	bus = priv->mii_bus;
+ 	bus->priv = priv;
+@@ -253,6 +302,8 @@ static int unimac_mdio_probe(struct platform_device *pdev)
+ 
+ out_mdio_free:
+ 	mdiobus_free(bus);
++out_clk_disable:
++	clk_disable_unprepare(priv->clk);
+ 	return ret;
+ }
+ 
+@@ -262,10 +313,37 @@ static int unimac_mdio_remove(struct platform_device *pdev)
+ 
+ 	mdiobus_unregister(priv->mii_bus);
+ 	mdiobus_free(priv->mii_bus);
++	clk_disable_unprepare(priv->clk);
++
++	return 0;
++}
++
++static int unimac_mdio_suspend(struct device *d)
++{
++	struct unimac_mdio_priv *priv = dev_get_drvdata(d);
++
++	clk_disable_unprepare(priv->clk);
++
++	return 0;
++}
++
++static int unimac_mdio_resume(struct device *d)
++{
++	struct unimac_mdio_priv *priv = dev_get_drvdata(d);
++	int ret;
++
++	ret = clk_prepare_enable(priv->clk);
++	if (ret)
++		return ret;
++
++	unimac_mdio_clk_set(priv);
+ 
+ 	return 0;
+ }
+ 
++static SIMPLE_DEV_PM_OPS(unimac_mdio_pm_ops,
++			 unimac_mdio_suspend, unimac_mdio_resume);
++
+ static const struct of_device_id unimac_mdio_ids[] = {
+ 	{ .compatible = "brcm,genet-mdio-v5", },
+ 	{ .compatible = "brcm,genet-mdio-v4", },
+@@ -281,6 +359,7 @@ static struct platform_driver unimac_mdio_driver = {
+ 	.driver = {
+ 		.name = UNIMAC_MDIO_DRV_NAME,
+ 		.of_match_table = unimac_mdio_ids,
++		.pm = &unimac_mdio_pm_ops,
+ 	},
+ 	.probe	= unimac_mdio_probe,
+ 	.remove	= unimac_mdio_remove,
 -- 
 2.20.1
 
