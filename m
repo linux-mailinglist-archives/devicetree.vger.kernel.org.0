@@ -2,67 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C10FAF6B61
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 21:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FB2BF6B6B
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 21:51:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726896AbfKJUkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Nov 2019 15:40:08 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:50304 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726778AbfKJUkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Nov 2019 15:40:08 -0500
-Received: by mail-wm1-f65.google.com with SMTP id l17so10425274wmh.0;
-        Sun, 10 Nov 2019 12:40:05 -0800 (PST)
+        id S1726983AbfKJUvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Nov 2019 15:51:15 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44344 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726800AbfKJUvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Nov 2019 15:51:15 -0500
+Received: by mail-wr1-f67.google.com with SMTP id f2so12413346wrs.11;
+        Sun, 10 Nov 2019 12:51:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=XMGjzy2jF9shV8Yzd4U9oGsfbDGpjYHmAOfvcyTPLCo=;
-        b=lh1EVpJRe1SuK4iFM2jNT3ZtAVZVYZ0QxRLSOPoeHdagsOZrNdPvCR9aJUVF3DNmP4
-         mkv2ykZwziySq+exrqhyYhxKdxPgExP16qSap1qerEoxVOR26WjGwdM4lB49aFwPD1sR
-         PjVIgEJKAVhil0ASu1CBRWBiGemTtGkF38ISUTS5077Zn5btGsU24tq0NAiUjPjptOAt
-         4HNhPAWDzixS6X/qiHuZ0tqX32KBMkQ3D5rHYXW5lzSwqKHC62YwgHo7RS6RxdrLLRBS
-         fYfiqF4aYFtou4577vMCmZw0C2LRuZHZ2XCn8j/iAzL8NCSHZwsSJQmpRMLtwPm6XSs0
-         ffSA==
+        bh=Ho3Z9+dyLzWgXFFV/oKnRZdWGk0Oq6P4ftGFLTY36fk=;
+        b=vbk73AhZrRABAzA0KdgOWo7U4zGNAJ7O1qUM82AkSTtwOpBdEaLMYK5l3pkfvWoN0C
+         O8EgHb9inEsyNlZwgbC3exesFDpKicwh4XmSfdh6R/Guc9FM4ajnGwW78rUUd2Yv/d4I
+         RXfQEMfZwwavPOrIqYhacQpy6DX/JRM0EndgiLWIyl1TpsPEecVCKUMJ1gNnTNKwsnU/
+         yjxASCwosmvTUvImjKgNFc6xe5cVHPNWSlGmgV5GZiB7TgiUp84XxHkGy9X3NlhRl9DG
+         jpdahDzMk+whrrNYs6eOI8OukmBhiNdru3rJV1Cqdy9h3oMwMVjVY9ngHiyhIk4OBaWx
+         JT1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=XMGjzy2jF9shV8Yzd4U9oGsfbDGpjYHmAOfvcyTPLCo=;
-        b=GEuMFiexebfhbeCkoOqqivxCbivCbViwE6LKUTMB4Ym4Bjj8mooKFCmL3jRpdQNpv3
-         a8al8Qf8FbWTCAAwDtsl7c8OWIdbPvxpjC4sYBCUED8Y5F8ydjXCf3gXwdFrvcI9vnWU
-         4RAsJT4obrQcq7snv7mAYU+HEmELe+SnLft5iaagwCBhop/3a2WLVXqV/P9AzL04gt36
-         OYLw3mHDt6oJYC0oajVA8bh5XHYrStXXRBD8/SCftvojN6uMYkJs2rB0bSe7VddYORaV
-         mS6Bbpl4eFFcHdKdtIr0WODTj8WLd+GYZHXnEVWLoQ+hdLqF7vo8vXjHWL3I6y9bhboZ
-         Tcjg==
-X-Gm-Message-State: APjAAAVEQKt73q3WY3fkkDGu4PzyBSrSTVVUHnYD4aiDD8q5o3zSBBPP
-        tmk9+9Ywksj9NVRiIpwRf8M=
-X-Google-Smtp-Source: APXvYqw0s8mnjDQpwIMBVZOnKPrZx1Meodk4QGORIt8NlSefy9oFaHDi5v7mWebwPJsLIIvCZ1ioJQ==
-X-Received: by 2002:a1c:5459:: with SMTP id p25mr16624077wmi.109.1573418404390;
-        Sun, 10 Nov 2019 12:40:04 -0800 (PST)
+        bh=Ho3Z9+dyLzWgXFFV/oKnRZdWGk0Oq6P4ftGFLTY36fk=;
+        b=dCMs6Nrv1/XeCyRETjn0s+m1+slSW5F0480J2F/+n9MogdwacEHLZOp3CUwt3glpme
+         uDxq9JF7dT3UraH6hgjyFOqbwFEQaXPaCGSoExWX/f6RF3zKdFG5xbyCycInUY7xPvTH
+         MrrL5K2o1djsFQ1SyAH75yOfSjAnGMqscOvh7U3Md0YbVXnVYnTtysxGpX4pzGM0sdLu
+         2nsRh0OOFyrCe5IYpZh7POo57HNzug7yTrEu7SNyCKF0l30Jcd2xM5nFjT5mx1HHGSaE
+         jm3GqulmGvyS973gS+m7gO/Tf/qX4Ox/k8gyYMwT8QCJz7KdOXexbHd0Obguu90oFsvA
+         U7ng==
+X-Gm-Message-State: APjAAAU8BaEjemagiAfnuCH5dV2umM1t6Lff3xIHIopezNr6ESWzpoCn
+        r69TY298BlRvMw/YVpNxw3M=
+X-Google-Smtp-Source: APXvYqw3rMvT05YoHWr8om5lqboqsyooLcA1Hi/VhjdXakI/E46jsX1SaKXwv/0Pd07CMPe02/xwxA==
+X-Received: by 2002:adf:9ec7:: with SMTP id b7mr18162618wrf.221.1573419071748;
+        Sun, 10 Nov 2019 12:51:11 -0800 (PST)
 Received: from ziggy.stardust ([95.169.226.39])
-        by smtp.gmail.com with ESMTPSA id b66sm16440605wmh.39.2019.11.10.12.40.02
+        by smtp.gmail.com with ESMTPSA id g5sm13851536wma.43.2019.11.10.12.51.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Nov 2019 12:40:03 -0800 (PST)
-Subject: Re: [PATCH v7 7/7] arm: dts: mt6323: add keys, power-controller, rtc
- and codec
-To:     Frank Wunderlich <frank-w@public-files.de>,
-        linux-mediatek@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Josef Friedl <josef.friedl@speed.at>,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Tianping Fang <tianping.fang@mediatek.com>
-References: <20190910070446.639-1-frank-w@public-files.de>
- <20190910070446.639-8-frank-w@public-files.de>
+        Sun, 10 Nov 2019 12:51:10 -0800 (PST)
+Subject: Re: [RESEND, PATCH 1/1] arm: dts: mediatek: add mt7629 pwm support
+To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <1571751001-28588-1-git-send-email-sam.shih@mediatek.com>
+ <1571751001-28588-2-git-send-email-sam.shih@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
  mQINBFP1zgUBEAC21D6hk7//0kOmsUrE3eZ55kjc9DmFPKIz6l4NggqwQjBNRHIMh04BbCMY
@@ -137,12 +127,12 @@ Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
  Y1aFdU79pac005PuhxCWkKTJz3gCmznnoat4GCnL5gy/m0Qk45l4PFqwWXVLo9AQg2Kp3mlI
  FZ6fsEKIAN5hxlbNvNb9V2Zo5bFZjPWPFTxOteM0omUAS+QopwU0yPLLGJVf2iCmItHcUXI+
  r2JwH1CJjrHWeQEI2ucSKsNa8FllDmG/fQ==
-Message-ID: <4ae8d72c-3c28-0bec-bf6f-4bb26dcda578@gmail.com>
-Date:   Sun, 10 Nov 2019 21:40:01 +0100
+Message-ID: <31fddc2b-65c7-02e8-dca2-b5d6dc050f87@gmail.com>
+Date:   Sun, 10 Nov 2019 21:51:09 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.1.1
 MIME-Version: 1.0
-In-Reply-To: <20190910070446.639-8-frank-w@public-files.de>
+In-Reply-To: <1571751001-28588-2-git-send-email-sam.shih@mediatek.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -153,62 +143,46 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10/09/2019 09:04, Frank Wunderlich wrote:
-> From: Josef Friedl <josef.friedl@speed.at>
+On 22/10/2019 15:30, Sam Shih wrote:
+> This adds pwm support for MT7629.
+> Used:
+> https://patchwork.kernel.org/patch/11160851/
 > 
-> support poweroff and power-related keys on bpi-r2
-> 
-> Suggested-by: Frank Wunderlich <frank-w@public-files.de>
-> Signed-off-by: Josef Friedl <josef.friedl@speed.at>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-
-Applied thanks!
-
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
 > ---
-> changes since v6: none
-> changes since v5: none
-> changes since v4: none
-> changes since v3: none
-> changes since v2: none (=v2 part 7)
-> ---
->  arch/arm/boot/dts/mt6323.dtsi | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+>  arch/arm/boot/dts/mt7629.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/mt6323.dtsi b/arch/arm/boot/dts/mt6323.dtsi
-> index ba397407c1dd..7fda40ab5fe8 100644
-> --- a/arch/arm/boot/dts/mt6323.dtsi
-> +++ b/arch/arm/boot/dts/mt6323.dtsi
-> @@ -238,5 +238,32 @@
->  				regulator-enable-ramp-delay = <216>;
->  			};
+> diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
+> index 9608bc2ccb3f..24375fc5f936 100644
+> --- a/arch/arm/boot/dts/mt7629.dtsi
+> +++ b/arch/arm/boot/dts/mt7629.dtsi
+> @@ -241,6 +241,21 @@
+>  			status = "disabled";
 >  		};
-> +
-> +		mt6323keys: mt6323keys {
-> +			compatible = "mediatek,mt6323-keys";
-> +			mediatek,long-press-mode = <1>;
-> +			power-off-time-sec = <0>;
-> +
-> +			power {
-> +				linux,keycodes = <116>;
-> +				wakeup-source;
-> +			};
-> +
-> +			home {
-> +				linux,keycodes = <114>;
-> +			};
+>  
+> +		pwm: pwm@11006000 {
+> +			compatible = "mediatek,mt7629-pwm";
+> +			reg = <0x11006000 0x1000>;
+> +			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_PWM_SEL>,
+> +				 <&pericfg CLK_PERI_PWM_PD>,
+> +				 <&pericfg CLK_PERI_PWM1_PD>;
+> +			clock-names = "top", "main", "pwm1";
+> +			assigned-clocks = <&topckgen CLK_TOP_PWM_SEL>;
+> +			assigned-clock-parents =
+> +					<&topckgen CLK_TOP_UNIVPLL2_D4>;
+> +			num-pwms = <1>;
+
+num-pwms is not defined. Did you mean pwm-cells?
+
+Regards,
+Matthias
+
+> +			status = "disabled";
 > +		};
 > +
-> +		codec: mt6397codec {
-> +			compatible = "mediatek,mt6397-codec";
-> +		};
-> +
-> +		power-controller {
-> +			compatible = "mediatek,mt6323-pwrc";
-> +		};
-> +
-> +		rtc {
-> +			compatible = "mediatek,mt6323-rtc";
-> +		};
->  	};
->  };
+>  		i2c: i2c@11007000 {
+>  			compatible = "mediatek,mt7629-i2c",
+>  				     "mediatek,mt2712-i2c";
 > 
