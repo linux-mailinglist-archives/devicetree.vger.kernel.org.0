@@ -2,138 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC90F64BF
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF8D9F6831
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 10:29:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729472AbfKJDCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 22:02:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58932 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729457AbfKJCtb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Nov 2019 21:49:31 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3DF7322583;
-        Sun, 10 Nov 2019 02:49:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573354170;
-        bh=DvC0D0QxehONCjbsilXKY7Bm0ptoTdza56kz4LCrfTo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iMatkWaEJxsWIteDS4JKfnoQ9S5mTOGyNPJL4QQl9Y2wjA7hOJk2mRwos4NK54YQJ
-         wPbnCgxhNKEgDw+tgHINXHUFOcoNIeOBB0yAHzud3Pr6C4Nt3H/Sw/CJGrppnheazO
-         NrV1XxAL6arqPIWgZzZQAlqTHH7c63de29GvDbaA=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 25/66] ARM: dts: marvell: Fix SPI and I2C bus warnings
-Date:   Sat,  9 Nov 2019 21:48:04 -0500
-Message-Id: <20191110024846.32598-25-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191110024846.32598-1-sashal@kernel.org>
-References: <20191110024846.32598-1-sashal@kernel.org>
-MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+        id S1726681AbfKJJ3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Nov 2019 04:29:54 -0500
+Received: from sender4-pp-o98.zoho.com ([136.143.188.98]:25851 "EHLO
+        sender4-pp-o98.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726641AbfKJJ3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Nov 2019 04:29:54 -0500
+ARC-Seal: i=1; a=rsa-sha256; t=1573378178; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=gHV3k9hZcXvSfznkfz/qV1dyxDoQqfCXleCenSeNucbDY4rBWrb0R54D+3+a4PVSsMUKsGC3TFZ3efccYB4ao8LYwIKdVi2Ipik9R38Ivs+7T2WBBu3/886iyZDqtITuqnxvNVXj9Li9hhCHqXvfxA2v3BBoB63UKFmq9G9lSwg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1573378178; h=Cc:Date:From:In-Reply-To:Message-ID:References:Subject:To; 
+        bh=RwiJDZMBHlfZojS1baXbRX4kFLS7JIIBhzbGeIpNw3o=; 
+        b=FBfDDAQwV14qZARH1+kXZ46SBJpWKvRJpplrpAixanW9adggOpoNcxBywA3oCbjpDn1g1/FVLYTHREraAxZF/bBNeWR94PuvLf6faBdaIgrknnj763DTqSe5wm9MPNrO1bPeYwl53Q+xzhQvjqKD4JHT8SkRCJ6reEzbMpbHa78=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=zoho.com;
+        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
+        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
+  s=zapps768; d=zoho.com; 
+  h=from:to:cc:subject:date:message-id:in-reply-to:references; 
+  b=FA0Fso/iUEpmhuQqzFFQGcgPrEGA8RZq4BBdlAnK/+gF/1kIdcn+xO3kEVgd8pXV2RrzcgboOUeC
+    gzMyveoIY0IwkBEFZWOA1LxxVgV2jPEAFlSSF+iAAmJ6XUg+yAWR  
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1573378178;
+        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; l=383;
+        bh=RwiJDZMBHlfZojS1baXbRX4kFLS7JIIBhzbGeIpNw3o=;
+        b=Z1oJxFTx4puNX/mBC1fKo55Lzk5vMhjTnb42XqsM4+UivXFIkK1J8NyyqTz7fBO4
+        dWN407e5bGzFcACI6YkMNoc3giCiiD08zXZHBIBeFPpRNmWpd+Tp6QKiZSKn2v93ITY
+        hDXuED1cSPyYytDKX7eJLnAKsJ0HWjNvIe5rMYVE=
+Received: from localhost.localdomain (171.221.113.200 [171.221.113.200]) by mx.zohomail.com
+        with SMTPS id 157337817689296.20366141280374; Sun, 10 Nov 2019 01:29:36 -0800 (PST)
+From:   Zhou Yanjie <zhouyanjie@zoho.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, mturquette@baylibre.com,
+        paul.burton@mips.com, sboyd@kernel.org, robh+dt@kernel.org,
+        syq@debian.org, mark.rutland@arm.com, paul@crapouillou.net
+Subject: clk: X1000: Add support for the X1000 v3
+Date:   Sun, 10 Nov 2019 17:28:20 +0800
+Message-Id: <1573378102-72380-1-git-send-email-zhouyanjie@zoho.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1571421006-12771-1-git-send-email-zhouyanjie@zoho.com>
+References: <1571421006-12771-1-git-send-email-zhouyanjie@zoho.com>
+X-ZohoMailClient: External
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+v1:
+1.Add the clock bindings for X1000 from Ingenic.
+2.Add support for the clocks provided by the CGU in the
+  Ingenic X1000 SoC.
 
-[ Upstream commit cf680cc5251487b9a39919c3cda31a108af19cf8 ]
+v1->v2:
+use BIT() macro instead left shift, add a call of
+"ingenic_cgu_register_syscore_ops()", replace "CLK_OF_DECLARE"
+with a "CLK_OF_DECLARE_DRIVER".
 
-dtc has new checks for I2C and SPI buses. Fix the warnings in node names
-and unit-addresses.
+v2->v3:
+1.Modify the wrong register in "X1000_CLK_MAC".
+2.Add the clock of I2C0~I2C2.
 
-arch/arm/boot/dts/dove-cubox.dtb: Warning (i2c_bus_reg): /i2c-mux/i2c@0/clock-generator: I2C bus unit address format error, expected "60"
-arch/arm/boot/dts/dove-cubox-es.dtb: Warning (i2c_bus_reg): /i2c-mux/i2c@0/clock-generator: I2C bus unit address format error, expected "60"
-arch/arm/boot/dts/dove-cubox.dtb: Warning (spi_bus_bridge): /mbus/internal-regs/spi-ctrl@10600: node name for SPI buses should be 'spi'
-arch/arm/boot/dts/dove-cubox-es.dtb: Warning (spi_bus_bridge): /mbus/internal-regs/spi-ctrl@10600: node name for SPI buses should be 'spi'
-arch/arm/boot/dts/dove-dove-db.dtb: Warning (spi_bus_bridge): /mbus/internal-regs/spi-ctrl@10600: node name for SPI buses should be 'spi'
-arch/arm/boot/dts/dove-sbc-a510.dtb: Warning (spi_bus_bridge): /mbus/internal-regs/spi-ctrl@10600: node name for SPI buses should be 'spi'
-arch/arm/boot/dts/dove-sbc-a510.dtb: Warning (spi_bus_bridge): /mbus/internal-regs/spi-ctrl@14600: node name for SPI buses should be 'spi'
-arch/arm/boot/dts/orion5x-kuroboxpro.dtb: Warning (i2c_bus_reg): /soc/internal-regs/i2c@11000/rtc: I2C bus unit address format error, expected "32"
-arch/arm/boot/dts/orion5x-linkstation-lschl.dtb: Warning (i2c_bus_reg): /soc/internal-regs/i2c@11000/rtc: I2C bus unit address format error, expected "32"
-arch/arm/boot/dts/orion5x-linkstation-lsgl.dtb: Warning (i2c_bus_reg): /soc/internal-regs/i2c@11000/rtc: I2C bus unit address format error, expected "32"
-arch/arm/boot/dts/orion5x-linkstation-lswtgl.dtb: Warning (i2c_bus_reg): /soc/internal-regs/i2c@11000/rtc: I2C bus unit address format error, expected "32"
-
-Cc: Jason Cooper <jason@lakedaemon.net>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Cc: Gregory Clement <gregory.clement@bootlin.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/dove-cubox.dts           | 2 +-
- arch/arm/boot/dts/dove.dtsi                | 6 +++---
- arch/arm/boot/dts/orion5x-linkstation.dtsi | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm/boot/dts/dove-cubox.dts b/arch/arm/boot/dts/dove-cubox.dts
-index af3cb633135fc..ee32315e3d3af 100644
---- a/arch/arm/boot/dts/dove-cubox.dts
-+++ b/arch/arm/boot/dts/dove-cubox.dts
-@@ -86,7 +86,7 @@
- 	status = "okay";
- 	clock-frequency = <100000>;
- 
--	si5351: clock-generator {
-+	si5351: clock-generator@60 {
- 		compatible = "silabs,si5351a-msop";
- 		reg = <0x60>;
- 		#address-cells = <1>;
-diff --git a/arch/arm/boot/dts/dove.dtsi b/arch/arm/boot/dts/dove.dtsi
-index 698d58cea20d2..11342aeccb73a 100644
---- a/arch/arm/boot/dts/dove.dtsi
-+++ b/arch/arm/boot/dts/dove.dtsi
-@@ -152,7 +152,7 @@
- 				  0xffffe000 MBUS_ID(0x03, 0x01) 0 0x0000800   /* CESA SRAM  2k */
- 				  0xfffff000 MBUS_ID(0x0d, 0x00) 0 0x0000800>; /* PMU  SRAM  2k */
- 
--			spi0: spi-ctrl@10600 {
-+			spi0: spi@10600 {
- 				compatible = "marvell,orion-spi";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-@@ -165,7 +165,7 @@
- 				status = "disabled";
- 			};
- 
--			i2c: i2c-ctrl@11000 {
-+			i2c: i2c@11000 {
- 				compatible = "marvell,mv64xxx-i2c";
- 				reg = <0x11000 0x20>;
- 				#address-cells = <1>;
-@@ -215,7 +215,7 @@
- 				status = "disabled";
- 			};
- 
--			spi1: spi-ctrl@14600 {
-+			spi1: spi@14600 {
- 				compatible = "marvell,orion-spi";
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-diff --git a/arch/arm/boot/dts/orion5x-linkstation.dtsi b/arch/arm/boot/dts/orion5x-linkstation.dtsi
-index ed456ab35fd84..c1bc8376d4eb0 100644
---- a/arch/arm/boot/dts/orion5x-linkstation.dtsi
-+++ b/arch/arm/boot/dts/orion5x-linkstation.dtsi
-@@ -156,7 +156,7 @@
- &i2c {
- 	status = "okay";
- 
--	rtc {
-+	rtc@32 {
- 		compatible = "ricoh,rs5c372a";
- 		reg = <0x32>;
- 	};
--- 
-2.20.1
 
