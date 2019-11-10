@@ -2,37 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F228BF64AF
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23290F64C2
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728610AbfKJDBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 22:01:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47162 "EHLO mail.kernel.org"
+        id S1729423AbfKJCtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Nov 2019 21:49:23 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58392 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728892AbfKJC4p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Nov 2019 21:56:45 -0500
+        id S1727162AbfKJCtW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Nov 2019 21:49:22 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 280F622517;
-        Sun, 10 Nov 2019 02:48:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9D53B22583;
+        Sun, 10 Nov 2019 02:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573354114;
-        bh=53PUyJaNZYK0oeRLvc+fYR/x3wIhJ/IcdmR/TmGCqtk=;
+        s=default; t=1573354161;
+        bh=ikEzlp6skgbt7ucgJUk6QMGS3qo27ru8EhTypd6fYVY=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=S8axQSLdugOWb+FVBhaFWD0sjR5imbWWnNVQdnnOMaaS+PEkGK/D9JedjLEwX6LzF
-         JisJa8+oNjkho36lOTf+z21y94/vhJzydfshXoF2snWXokBmDf+pqTOvgydZC/1x2Q
-         16iuijR/65D+srW+nm6S5d0GKtn+Rqhmhfo9siTw=
+        b=EWKofGFqq42s/otkwJyzehSIYgqPdl4FQx4gjvr2fDthFLn0UzzbOTCVpIbuc9RbF
+         MsgI+RRdZy5bhn1W27i23BzXa8XRAPilPCkBcID/PXnlJvBv7bntdhSygM8h89R8o3
+         9r0sZrNDhJbyNrpUE0gtp0wyQUrK39+K+j1LIQF8=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Heiko Stuebner <heiko@sntech.de>, Sasha Levin <sashal@kernel.org>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.14 103/109] arm64: dts: rockchip: enable display nodes on rk3328-rock64
-Date:   Sat,  9 Nov 2019 21:45:35 -0500
-Message-Id: <20191110024541.31567-103-sashal@kernel.org>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.9 18/66] ARM: dts: am335x-evm: fix number of cpsw
+Date:   Sat,  9 Nov 2019 21:47:57 -0500
+Message-Id: <20191110024846.32598-18-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191110024541.31567-1-sashal@kernel.org>
-References: <20191110024541.31567-1-sashal@kernel.org>
+In-Reply-To: <20191110024846.32598-1-sashal@kernel.org>
+References: <20191110024846.32598-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -42,49 +44,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko@sntech.de>
+From: Grygorii Strashko <grygorii.strashko@ti.com>
 
-[ Upstream commit e78d53c7b2873e0724eb765a88ccde42560b0e05 ]
+[ Upstream commit dcbf6b18d81bcdc51390ca1b258c17e2e13b7d0c ]
 
-Enable necessary nodes to get output on the hdmi port of the board.
+am335x-evm has only one CPSW external port physically wired, but DT defines
+2 ext. ports. As result, PHY connection failure reported for the second
+ext. port.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Update DT to reflect am335x-evm board HW configuration, and, while here,
+switch to use phy-handle instead of phy_id.
+
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/arm/boot/dts/am335x-evm.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index 3f8f528099a80..19c086f1bf6db 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-@@ -146,6 +146,14 @@
+diff --git a/arch/arm/boot/dts/am335x-evm.dts b/arch/arm/boot/dts/am335x-evm.dts
+index e82432c79f85f..3f3ad09c7cd5f 100644
+--- a/arch/arm/boot/dts/am335x-evm.dts
++++ b/arch/arm/boot/dts/am335x-evm.dts
+@@ -701,6 +701,7 @@
+ 	pinctrl-0 = <&cpsw_default>;
+ 	pinctrl-1 = <&cpsw_sleep>;
  	status = "okay";
++	slaves = <1>;
  };
  
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmiphy {
-+	status = "okay";
-+};
-+
- &i2c1 {
+ &davinci_mdio {
+@@ -708,15 +709,14 @@
+ 	pinctrl-0 = <&davinci_mdio_default>;
+ 	pinctrl-1 = <&davinci_mdio_sleep>;
  	status = "okay";
+-};
  
-@@ -333,3 +341,11 @@
- &usb_host0_ohci {
- 	status = "okay";
+-&cpsw_emac0 {
+-	phy_id = <&davinci_mdio>, <0>;
+-	phy-mode = "rgmii-txid";
++	ethphy0: ethernet-phy@0 {
++		reg = <0>;
++	};
  };
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
+ 
+-&cpsw_emac1 {
+-	phy_id = <&davinci_mdio>, <1>;
++&cpsw_emac0 {
++	phy-handle = <&ethphy0>;
+ 	phy-mode = "rgmii-txid";
+ };
+ 
 -- 
 2.20.1
 
