@@ -2,41 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87524F6360
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 03:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2268DF66F6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728699AbfKJCvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 21:51:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36704 "EHLO mail.kernel.org"
+        id S1727977AbfKJDRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Nov 2019 22:17:09 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33334 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729968AbfKJCvo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Nov 2019 21:51:44 -0500
+        id S1726835AbfKJCkZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Nov 2019 21:40:25 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E77CF22573;
-        Sun, 10 Nov 2019 02:51:42 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2CAA221655;
+        Sun, 10 Nov 2019 02:40:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573354303;
-        bh=sqb++TXGGyVWzTbjaKuwOI/0PkCaHEm9xxhq7qwYYes=;
+        s=default; t=1573353624;
+        bh=RHlaMWsk/Gruwmgw+Oi5SSkGWnNFBDQD7HA7XGA8KwY=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ISG9ciZ2QsuXHeuTy/d5qh5T7OWkVIFlq9jn1xS7ueLK8wr05u+pmS6xB9bjQKoi/
-         oCIPgOrA3/K6XuO5qX/EolkjSFWHBv3VAMqVleZBiG/Ij5CmPqTRuXNEXhAhuQewFx
-         oGRm05ISNpF9cF/zxr/0cPa2NhyzBow3ykA5akjk=
+        b=xQ2hDwrdwVo4j6ZS8AuvA5cPnANK5tZ+9IFp3sIS3wCfs4dg5f4a9nPU7Yi4CnFk0
+         HTYkxPnDizXnhuWbyzvJkPC+xdOEJI/7XF753aQ28kx/LXkxd7EXDiJ2n2B9ivfLc7
+         CJXCsLx7F2teC8GTQuAWFoDm0zdApg6jpK7+L5Xs=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Rob Herring <robh@kernel.org>,
-        Brijesh Singh <brijeshkumar.singh@amd.com>,
-        Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-        Tom Lendacky <thomas.lendacky@amd.com>,
-        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 39/40] arm64: dts: amd: Fix SPI bus warnings
-Date:   Sat,  9 Nov 2019 21:50:31 -0500
-Message-Id: <20191110025032.827-39-sashal@kernel.org>
+        Michal Simek <michal.simek@xilinx.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 009/191] ARM: dts: xilinx: Fix I2C and SPI bus warnings
+Date:   Sat,  9 Nov 2019 21:37:11 -0500
+Message-Id: <20191110024013.29782-9-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191110025032.827-1-sashal@kernel.org>
-References: <20191110025032.827-1-sashal@kernel.org>
+In-Reply-To: <20191110024013.29782-1-sashal@kernel.org>
+References: <20191110024013.29782-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -48,46 +45,81 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit e9f0878c4b2004ac19581274c1ae4c61ae3ca70e ]
+[ Upstream commit f5054ceed420b1f38d37920a4c65446fcc5d6b90 ]
 
-dtc has new checks for SPI buses. Fix the warnings in node names.
+dtc has new checks for I2C and SPI buses. Fix the warnings in node names
+and unit-addresses.
 
-arch/arm64/boot/dts/amd/amd-overdrive.dtb: Warning (spi_bus_bridge): /smb/ssp@e1030000: node name for SPI buses should be 'spi'
-arch/arm64/boot/dts/amd/amd-overdrive-rev-b0.dtb: Warning (spi_bus_bridge): /smb/ssp@e1030000: node name for SPI buses should be 'spi'
-arch/arm64/boot/dts/amd/amd-overdrive-rev-b1.dtb: Warning (spi_bus_bridge): /smb/ssp@e1030000: node name for SPI buses should be 'spi'
+arch/arm/boot/dts/zynq-zc702.dtb: Warning (i2c_bus_reg): /amba/i2c@e0004000/i2c-mux@74/i2c@7/hwmon@52: I2C bus unit address format error, expected "34"
+arch/arm/boot/dts/zynq-zc702.dtb: Warning (i2c_bus_reg): /amba/i2c@e0004000/i2c-mux@74/i2c@7/hwmon@53: I2C bus unit address format error, expected "35"
+arch/arm/boot/dts/zynq-zc702.dtb: Warning (i2c_bus_reg): /amba/i2c@e0004000/i2c-mux@74/i2c@7/hwmon@54: I2C bus unit address format error, expected "36"
+arch/arm/boot/dts/zynq-zc770-xm013.dtb: Warning (spi_bus_reg): /amba/spi@e0006000/eeprom@0: SPI bus unit address format error, expected "2"
+arch/arm/boot/dts/zynq-zc770-xm010.dtb: Warning (spi_bus_reg): /amba/spi@e0007000/flash@0: SPI bus unit address format error, expected "1"
 
-Cc: Brijesh Singh <brijeshkumar.singh@amd.com>
-Cc: Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>
-Cc: Tom Lendacky <thomas.lendacky@amd.com>
+Cc: Michal Simek <michal.simek@xilinx.com>
 Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/zynq-zc702.dts       | 12 ++++++------
+ arch/arm/boot/dts/zynq-zc770-xm010.dts |  2 +-
+ arch/arm/boot/dts/zynq-zc770-xm013.dts |  2 +-
+ 3 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi b/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi
-index 2874d92881fda..a3030c868be5f 100644
---- a/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi
-+++ b/arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi
-@@ -84,7 +84,7 @@
- 			clock-names = "uartclk", "apb_pclk";
+diff --git a/arch/arm/boot/dts/zynq-zc702.dts b/arch/arm/boot/dts/zynq-zc702.dts
+index cc5a3dc2b4a08..27cd6cb52f1ba 100644
+--- a/arch/arm/boot/dts/zynq-zc702.dts
++++ b/arch/arm/boot/dts/zynq-zc702.dts
+@@ -174,17 +174,17 @@
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <7>;
+-			hwmon@52 {
++			hwmon@34 {
+ 				compatible = "ti,ucd9248";
+-				reg = <52>;
++				reg = <0x34>;
+ 			};
+-			hwmon@53 {
++			hwmon@35 {
+ 				compatible = "ti,ucd9248";
+-				reg = <53>;
++				reg = <0x35>;
+ 			};
+-			hwmon@54 {
++			hwmon@36 {
+ 				compatible = "ti,ucd9248";
+-				reg = <54>;
++				reg = <0x36>;
+ 			};
  		};
- 
--		spi0: ssp@e1020000 {
-+		spi0: spi@e1020000 {
- 			status = "disabled";
- 			compatible = "arm,pl022", "arm,primecell";
- 			#gpio-cells = <2>;
-@@ -95,7 +95,7 @@
- 			clock-names = "apb_pclk";
- 		};
- 
--		spi1: ssp@e1030000 {
-+		spi1: spi@e1030000 {
- 			status = "disabled";
- 			compatible = "arm,pl022", "arm,primecell";
- 			#gpio-cells = <2>;
+ 	};
+diff --git a/arch/arm/boot/dts/zynq-zc770-xm010.dts b/arch/arm/boot/dts/zynq-zc770-xm010.dts
+index 0e1bfdd3421ff..0dd352289a45e 100644
+--- a/arch/arm/boot/dts/zynq-zc770-xm010.dts
++++ b/arch/arm/boot/dts/zynq-zc770-xm010.dts
+@@ -68,7 +68,7 @@
+ 	status = "okay";
+ 	num-cs = <4>;
+ 	is-decoded-cs = <0>;
+-	flash@0 {
++	flash@1 {
+ 		compatible = "sst25wf080", "jedec,spi-nor";
+ 		reg = <1>;
+ 		spi-max-frequency = <1000000>;
+diff --git a/arch/arm/boot/dts/zynq-zc770-xm013.dts b/arch/arm/boot/dts/zynq-zc770-xm013.dts
+index 651913f1afa2a..4ae2c85df3a00 100644
+--- a/arch/arm/boot/dts/zynq-zc770-xm013.dts
++++ b/arch/arm/boot/dts/zynq-zc770-xm013.dts
+@@ -62,7 +62,7 @@
+ 	status = "okay";
+ 	num-cs = <4>;
+ 	is-decoded-cs = <0>;
+-	eeprom: eeprom@0 {
++	eeprom: eeprom@2 {
+ 		at25,byte-len = <8192>;
+ 		at25,addr-mode = <2>;
+ 		at25,page-size = <32>;
 -- 
 2.20.1
 
