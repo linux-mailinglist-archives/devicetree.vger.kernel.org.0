@@ -2,34 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7743DF64ED
-	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D012F6497
+	for <lists+devicetree@lfdr.de>; Sun, 10 Nov 2019 04:01:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728463AbfKJCst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Nov 2019 21:48:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52882 "EHLO mail.kernel.org"
+        id S1729231AbfKJC4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Nov 2019 21:56:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47170 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727385AbfKJCrV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 9 Nov 2019 21:47:21 -0500
+        id S1728947AbfKJC4p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 9 Nov 2019 21:56:45 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 47B7821D7E;
-        Sun, 10 Nov 2019 02:47:20 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 03F5322558;
+        Sun, 10 Nov 2019 02:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573354040;
-        bh=5DLZxx+XkJtsu61XyqZjuPUSFXnrVTk7JiK1SjKEoNE=;
+        s=default; t=1573354111;
+        bh=s+qDWJiCsCOtUONRrtoz3ETIwaa58Xm2dheg+889mKw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QEcro/+jEpVRvMGeSbMO5+fC5CsxfW6YLIBJK142in2IKg1GkOnAzwAzChOvpnAtO
-         5Pl4bSlHybrlna6s8KFERQ8l22BjIU4NOUxEfH40qHyO1RXsx+PmNH/rF8n0G4OWyC
-         SihJh0jNFQo7mPgzGJprPaF6Q0DoWLNZ0ilBvkL0=
+        b=aqQwFawfZL06YkQKZsmjK0mgiyelE6EcDW7P3G+SIUyufTCYdy3BDZlvZSe4q/Vx1
+         oHjD3F9K5DjWz7u21T32nVtQlQATuWQuJVWzLfNbg224kcu3JIBnwJjQ2GlPXBhQ5y
+         KBrEPjY4eb6CiuxubNbmsSL7S/MCR9PAu3bb55h8=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Heiko Stuebner <heiko@sntech.de>, Sasha Levin <sashal@kernel.org>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 053/109] ARM: dts: rockchip: explicitly set vcc_sd0 pin to gpio on rk3188-radxarock
-Date:   Sat,  9 Nov 2019 21:44:45 -0500
-Message-Id: <20191110024541.31567-53-sashal@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Chanho Min <chanho.min@lge.com>,
+        Arnd Bergmann <arnd@arndb.de>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 101/109] arm64: dts: lg: Fix SPI controller node names
+Date:   Sat,  9 Nov 2019 21:45:33 -0500
+Message-Id: <20191110024541.31567-101-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191110024541.31567-1-sashal@kernel.org>
 References: <20191110024541.31567-1-sashal@kernel.org>
@@ -42,54 +43,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko@sntech.de>
+From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit a2df0984e73fd9e1dad5fc3f1c307ec3de395e30 ]
+[ Upstream commit 09bae3b64cb580c95329bd8d16f08f0a5cb81ec9 ]
 
-It is good practice to make the setting of gpio-pinctrls explicitly in the
-devicetree, and in this case even necessary.
-Rockchip boards start with iomux settings set to gpio for most pins and
-while the linux pinctrl driver also implicitly sets the gpio function if
-a pin is requested as gpio that is not necessarily true for other drivers.
+SPI controller nodes should be named 'spi' rather than 'ssp'. Fixing the
+name enables dtc SPI bus checks.
 
-The issue in question stems from uboot, where the sdmmc_pwr pin is set
-to function 1 (sdmmc-power) by the bootrom when reading the 1st-stage
-loader. The regulator controlled by the pin is active-low though, so
-when the dwmmc hw-block sets its enabled bit, it actually disables the
-regulator. By changing the pin back to gpio we fix that behaviour.
-
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Cc: Chanho Min <chanho.min@lge.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/rk3188-radxarock.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/lg/lg1312.dtsi | 4 ++--
+ arch/arm64/boot/dts/lg/lg1313.dtsi | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/rk3188-radxarock.dts b/arch/arm/boot/dts/rk3188-radxarock.dts
-index 53d6fc2fdbce8..541a798d3d202 100644
---- a/arch/arm/boot/dts/rk3188-radxarock.dts
-+++ b/arch/arm/boot/dts/rk3188-radxarock.dts
-@@ -130,6 +130,8 @@
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 		gpio = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sdmmc_pwr>;
- 		startup-delay-us = <100000>;
- 		vin-supply = <&vcc_io>;
- 	};
-@@ -348,6 +350,12 @@
+diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi b/arch/arm64/boot/dts/lg/lg1312.dtsi
+index 860c8fb107950..4bde7b6f2b113 100644
+--- a/arch/arm64/boot/dts/lg/lg1312.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
+@@ -168,14 +168,14 @@
+ 			clock-names = "apb_pclk";
+ 			status="disabled";
  		};
- 	};
- 
-+	sd0 {
-+		sdmmc_pwr: sdmmc-pwr {
-+			rockchip,pins = <RK_GPIO3 1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	usb {
- 		host_vbus_drv: host-vbus-drv {
- 			rockchip,pins = <0 3 RK_FUNC_GPIO &pcfg_pull_none>;
+-		spi0: ssp@fe800000 {
++		spi0: spi@fe800000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x0 0xfe800000 0x1000>;
+ 			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+ 		};
+-		spi1: ssp@fe900000 {
++		spi1: spi@fe900000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x0 0xfe900000 0x1000>;
+ 			interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/lg1313.dtsi
+index 1887af654a7db..16ced1ff1ad36 100644
+--- a/arch/arm64/boot/dts/lg/lg1313.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
+@@ -168,14 +168,14 @@
+ 			clock-names = "apb_pclk";
+ 			status="disabled";
+ 		};
+-		spi0: ssp@fe800000 {
++		spi0: spi@fe800000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x0 0xfe800000 0x1000>;
+ 			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&clk_bus>;
+ 			clock-names = "apb_pclk";
+ 		};
+-		spi1: ssp@fe900000 {
++		spi1: spi@fe900000 {
+ 			compatible = "arm,pl022", "arm,primecell";
+ 			reg = <0x0 0xfe900000 0x1000>;
+ 			interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.20.1
 
