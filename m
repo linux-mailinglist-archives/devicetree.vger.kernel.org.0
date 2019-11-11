@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B5FF7010
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 10:03:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5886F7014
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 10:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727053AbfKKJDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Nov 2019 04:03:54 -0500
-Received: from mx1.unisoc.com ([222.66.158.135]:40282 "EHLO
+        id S1727103AbfKKJD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Nov 2019 04:03:56 -0500
+Received: from mx1.unisoc.com ([222.66.158.135]:40291 "EHLO
         SHSQR01.spreadtrum.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726768AbfKKJDx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 04:03:53 -0500
+        with ESMTP id S1727078AbfKKJD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 04:03:56 -0500
 Received: from ig2.spreadtrum.com (bjmbx01.spreadtrum.com [10.0.64.7])
-        by SHSQR01.spreadtrum.com with ESMTPS id xAB93Bri060970
+        by SHSQR01.spreadtrum.com with ESMTPS id xAB93EMn061091
         (version=TLSv1 cipher=AES256-SHA bits=256 verify=NO);
-        Mon, 11 Nov 2019 17:03:12 +0800 (CST)
+        Mon, 11 Nov 2019 17:03:14 +0800 (CST)
         (envelope-from Chunyan.Zhang@unisoc.com)
 Received: from localhost (10.0.74.88) by BJMBX01.spreadtrum.com (10.0.64.7)
- with Microsoft SMTP Server (TLS) id 15.0.847.32; Mon, 11 Nov 2019 17:03:30
+ with Microsoft SMTP Server (TLS) id 15.0.847.32; Mon, 11 Nov 2019 17:03:32
  +0800
 From:   Chunyan Zhang <chunyan.zhang@unisoc.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -27,9 +27,9 @@ CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         Baolin Wang <baolin.wang7@gmail.com>,
         Chunyan Zhang <zhang.lyra@gmail.com>,
         Chunyan Zhang <chunyan.zhang@unisoc.com>
-Subject: [PATCH v2 3/5] dt-bindings: arm: Add bindings for Unisoc SC9863A
-Date:   Mon, 11 Nov 2019 17:02:28 +0800
-Message-ID: <20191111090230.3402-4-chunyan.zhang@unisoc.com>
+Subject: [PATCH v2 4/5] dt-bindings: serial: Add a new compatible string for SC9863A
+Date:   Mon, 11 Nov 2019 17:02:29 +0800
+Message-ID: <20191111090230.3402-5-chunyan.zhang@unisoc.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191111090230.3402-1-chunyan.zhang@unisoc.com>
 References: <20191111090230.3402-1-chunyan.zhang@unisoc.com>
@@ -39,34 +39,32 @@ Content-Type:   text/plain; charset=US-ASCII
 X-Originating-IP: [10.0.74.88]
 X-ClientProxiedBy: shcas04.spreadtrum.com (10.29.35.89) To
  BJMBX01.spreadtrum.com (10.0.64.7)
-X-MAIL: SHSQR01.spreadtrum.com xAB93Bri060970
+X-MAIL: SHSQR01.spreadtrum.com xAB93EMn061091
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Added bindings for Unisoc SC9863A board and SC9863A SoC.
+SC9863A use the same serial device which SC9836 uses.
 
 Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 ---
- Documentation/devicetree/bindings/arm/sprd.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/serial/sprd-uart.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/sprd.yaml b/Documentation/devicetree/bindings/arm/sprd.yaml
-index 8540758188d8..4e31389fb027 100644
---- a/Documentation/devicetree/bindings/arm/sprd.yaml
-+++ b/Documentation/devicetree/bindings/arm/sprd.yaml
-@@ -25,5 +25,9 @@ properties:
+diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+index 0cc4668a9b9c..a6cce10c8b9d 100644
+--- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+@@ -18,6 +18,7 @@ properties:
+       - items:
            - enum:
-               - sprd,sp9860g-1h10
-           - const: sprd,sc9860
-+      - items:
-+          - enum:
-+              - sprd,sp9863a-1h10
-+          - const: sprd,sc9863a
+               - sprd,sc9860-uart
++              - sprd,sc9863a-uart
+           - const: sprd,sc9836-uart
+       - const: sprd,sc9836-uart
  
- ...
 -- 
 2.20.1
 
