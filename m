@@ -2,65 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D3AA1F6C4A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 02:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16E03F6C59
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 02:38:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726793AbfKKBas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Nov 2019 20:30:48 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:54844 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726871AbfKKBar (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 10 Nov 2019 20:30:47 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6F7261A05A5;
-        Mon, 11 Nov 2019 02:30:45 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 61D021A05A0;
-        Mon, 11 Nov 2019 02:30:39 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 9D6C7402FB;
-        Mon, 11 Nov 2019 09:30:31 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        andrew.smirnov@gmail.com, manivannan.sadhasivam@linaro.org,
-        marcel.ziswiler@toradex.com, sebastien.szymanski@armadeus.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2 4/4] dt-bindings: arm: imx: Add the i.MX6SLL-EVK Rev-A board
-Date:   Mon, 11 Nov 2019 09:28:52 +0800
-Message-Id: <1573435732-30361-4-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1573435732-30361-1-git-send-email-Anson.Huang@nxp.com>
-References: <1573435732-30361-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726734AbfKKBiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Nov 2019 20:38:24 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:40387 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726733AbfKKBiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Nov 2019 20:38:24 -0500
+X-UUID: 7174e2fad0424b07b0c239fba7514fad-20191111
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Z1wjq7BHhl5SV+QLzicEwl3bPZzqKzQNsT/nQQRovnA=;
+        b=H2kOYdgmddEgEmhVK8OJuYxmkhntvDqO33X07Yr090JIKxhVJLq5ydkP8QIAOQrgPY6BiGQ4rZEClKjqC3PUBKwzTpyFnCZaJh0aLAQ8hLelT7eprkSEQQV3A9xmAz5ZFoeagPLTVYgDpCtuDEawvYRok8/YXmJHpyANal3q4+E=;
+X-UUID: 7174e2fad0424b07b0c239fba7514fad-20191111
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <eason.yen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 732595513; Mon, 11 Nov 2019 09:38:16 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 11 Nov 2019 09:38:13 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 11 Nov 2019 09:38:13 +0800
+Message-ID: <1573436294.12075.14.camel@mtkswgap22>
+Subject: Re: [PATCH v1 1/1] soc: mediatek: add SMC fid table for SIP
+ interface
+From:   Eason Yen <eason.yen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <Eason.Yen@mediatek.com>
+Date:   Mon, 11 Nov 2019 09:38:14 +0800
+In-Reply-To: <44bddcd1-457d-bde6-791f-def248f787b3@gmail.com>
+References: <1572247749-4276-1-git-send-email-eason.yen@mediatek.com>
+         <1572247749-4276-2-git-send-email-eason.yen@mediatek.com>
+         <44bddcd1-457d-bde6-791f-def248f787b3@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 5EC5FA932747D3C8A9D88655AFE52152DB7FEFFFF18BD072339340E490D9EE922000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add board binding for i.MX6SLL-EVK Rev-A board.
-
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No changes.
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 5dfea27..70ceeac 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -164,6 +164,7 @@ properties:
-         items:
-           - enum:
-               - fsl,imx6sll-evk
-+              - fsl,imx6sll-evk-reva
-               - kobo,clarahd
-           - const: fsl,imx6sll
- 
--- 
-2.7.4
+RGVhciBNYXR0aGlhcywNCg0KICAgIFRoaXMgaGVhZGVyIGZpbGVzIGlzIHVzZWQgZm9yIG10ayBw
+cm9wcmlldGFyeSBkcml2ZXJzLiAgICANCiAgICBNVEsgU0lQIGNhbGwgY2xpZW50cyBzaG91bGQg
+ZGVmaW5lIE1US19TSVBfWFhYIHdpdGggc3BlY2lmaWMgY29udHJvbA0KSUQgb24gdGhpcyBoZWFk
+ZXIgZmlsZS4NCiAgIA0KICAgIG10ayBzaXAgY2FsbCBleGFtcGxlIChzb3VuZCBjYXJkIGRyaXZl
+cik6DQogICAgYXJtX3NtY2NjX3NtYyhNVEtfU0lQX0FVRElPX0NPTlRST0wsICAvKiBzcGVjaWZp
+YyBNVEtfU0lQX1hYWCBpZCAqLw0KICAgICAgICAgICAgICAgICAgTVRLX0FVRElPX1NNQ19PUF9E
+UkFNX1JFUVVFU1QsDQogICAgICAgICAgICAgICAgICAwLCAwLCAwLCAwLCAwLCAwLCAmcmVzKTsN
+Cg0KICAgIEJlY2F1c2Ugc291bmQgY2FyZCBkcml2ZXIobXQ2Nzc5KSBpcyBzdGlsbCByZXZpZXdp
+bmcgaW50ZXJuYWxseSwNCiAgICBJIGp1c3QgdXBzdHJlYW0gdGhpcyBoZWFkZXIgZmlsZSBmaXJz
+dC4NCg0KICAgIEkgd2lsbCByZW1vdmUgY2hhbmdlLWlkIGVudHJ5IGFuZCB1cHN0cmVhbSBhZ2Fp
+biBzb29uLg0KICAgIFRoYW5rcyBmb3IgeW91ciByZXZpZXdpbmcuDQoNCg0KUmVnYXJkcywNCkVh
+c29uDQoNCg0KT24gU3VuLCAyMDE5LTExLTEwIGF0IDIxOjE4ICswMTAwLCBNYXR0aGlhcyBCcnVn
+Z2VyIHdyb3RlOg0KPiANCj4gT24gMjgvMTAvMjAxOSAwODoyOSwgRWFzb24gWWVuIHdyb3RlOg0K
+PiA+IDEuIEFkZCBhIGhlYWRlciBmaWxlIHRvIHByb3ZpZGUgU0lQIGludGVyZmFjZSB0byBBVEYN
+Cj4gPiAyLiBBZGQgQVVESU8gU01DIGZpZA0KPiA+IA0KPiA+IENoYW5nZS1JZDogSTIxOGU5ZjU3
+MWNlYTA3OTI2OGE1NDE0NzI1YTgxZTliMzU3MDJlMzMNCj4gDQo+IFBsZWFzZSBkZWxldGUgQ2hh
+bmdlLUlkIGVudHJ5Lg0KPiBBcGFydCBmcm9tIHRoYXQsIEkgZG9uJ3QgcmVhbGx5IGdldCB0aGUg
+cmVhc29uIGZvciB0aGlzIHBhdGNoLiBXaGljaCBkcml2ZXIgaXMNCj4gc3VwcG9zZWQgdG8gdXNl
+IHRoaXMgaGVhZGVyIGZpbGU/DQo+IA0KPiBQbGVhc2UgcHJvdmlkZSBtb3JlIGJhY2tncm91bmQg
+aW5mb3JtYXRpb24uDQo+IA0KPiBSZWdhcmRzLA0KPiBNYXR0aGlhcw0KPiANCj4gPiBTaWduZWQt
+b2ZmLWJ5OiBFYXNvbiBZZW4gPGVhc29uLnllbkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4g
+IGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210a19zaXBfc3ZjLmggfCAgIDI4ICsrKysrKysr
+KysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDI4IGluc2VydGlvbnMo
+KykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210
+a19zaXBfc3ZjLmgNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9zb2MvbWVk
+aWF0ZWsvbXRrX3NpcF9zdmMuaCBiL2luY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210a19zaXBf
+c3ZjLmgNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAuLjAwZWUw
+ZjQNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0
+ZWsvbXRrX3NpcF9zdmMuaA0KPiA+IEBAIC0wLDAgKzEsMjggQEANCj4gPiArLyogU1BEWC1MaWNl
+bnNlLUlkZW50aWZpZXI6IEdQTC0yLjAgKi8NCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0IChj
+KSAyMDE5IE1lZGlhVGVrIEluYy4NCj4gPiArICovDQo+ID4gKw0KPiA+ICsjaWZuZGVmIF9fTVRL
+X1NJUF9TVkNfSF9fDQo+ID4gKyNkZWZpbmUgX19NVEtfU0lQX1NWQ19IX18NCj4gPiArDQo+ID4g
+KyNpbmNsdWRlIDxsaW51eC9rZXJuZWwuaD4NCj4gPiArDQo+ID4gKy8qIEVycm9yIENvZGUgKi8N
+Cj4gPiArI2RlZmluZSBTSVBfU1ZDX0VfU1VDQ0VTUyAgICAgICAgICAgICAgIDANCj4gPiArI2Rl
+ZmluZSBTSVBfU1ZDX0VfTk9UX1NVUFBPUlRFRCAgICAgICAgIC0xDQo+ID4gKyNkZWZpbmUgU0lQ
+X1NWQ19FX0lOVkFMSURfUEFSQU1TICAgICAgICAtMg0KPiA+ICsjZGVmaW5lIFNJUF9TVkNfRV9J
+TlZBTElEX1JhbmdlICAgICAgICAgLTMNCj4gPiArI2RlZmluZSBTSVBfU1ZDX0VfUEVSTUlTU0lP
+Tl9ERU5ZICAgICAgIC00DQo+ID4gKw0KPiA+ICsjaWZkZWYgQ09ORklHX0FSTTY0DQo+ID4gKyNk
+ZWZpbmUgTVRLX1NJUF9TTUNfQUFSQ0hfQklUCQkJMHg0MDAwMDAwMA0KPiA+ICsjZWxzZQ0KPiA+
+ICsjZGVmaW5lIE1US19TSVBfU01DX0FBUkNIX0JJVAkJCTB4MDAwMDAwMDANCj4gPiArI2VuZGlm
+DQo+ID4gKw0KPiA+ICsvKiBBVURJTyByZWxhdGVkIFNNQyBjYWxsICovDQo+ID4gKyNkZWZpbmUg
+TVRLX1NJUF9BVURJT19DT05UUk9MIFwNCj4gPiArCSgweDgyMDAwNTE3IHwgTVRLX1NJUF9TTUNf
+QUFSQ0hfQklUKQ0KPiA+ICsjZW5kaWYNCj4gPiArLyogX19NVEtfU0lQX1NWQ19IX18gKi8NCj4g
+PiANCg0K
 
