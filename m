@@ -2,81 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A188F7301
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 12:22:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11B19F7313
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 12:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726811AbfKKLVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Nov 2019 06:21:54 -0500
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:46790 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726810AbfKKLVx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 06:21:53 -0500
-Received: by mail-lf1-f68.google.com with SMTP id o65so5857231lff.13;
-        Mon, 11 Nov 2019 03:21:52 -0800 (PST)
+        id S1726829AbfKKL27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Nov 2019 06:28:59 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:46710 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726810AbfKKL27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 06:28:59 -0500
+Received: by mail-wr1-f65.google.com with SMTP id b3so14172099wrs.13
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2019 03:28:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8D7FBZWNeYQoIdRr1oY1OfdugIxxf8OTSU99lGfG9qQ=;
-        b=ugA74A81U6n8SMIfSZr7aZqtzweH40047f8NhMqylHmOvtbnQ6zBRuto0AFvq+2hqV
-         fNiKl+Z8TmgIAs5e01YW5+dVYQCiZVL2gjG5tyOsTUp6Dr6Duw9z9djzZvX6YXILUoZj
-         Oipl/zxgQ/PfXRbni4LxMcT0k9AUoPE0U8Di0iUuwpbWbZRzqKvT32pKNmtTMhm4aVA8
-         79lpF1a495r9WPjRHlXT4zPewP0/ZiDBkToH5kStc804V+wThWDJ9ZtoT98IEYCug6gQ
-         lA/C3M52KjeX2OFHK1mE/IgK/n1wr8/T9sbZyS9k2BfN1uDyQF/4PUJDI0OPzb6hG6mb
-         1/Ag==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=VCIU/ruaYoPrO6tp9vJ9FadSx4Mgkcrp/rqcgWyosK4=;
+        b=rt0hKZf8KBrscbpSv+fqIleKs28btBwXk5Dvhzd7aPfW6psShTE5FTBv1mwp08YNYb
+         H2EP6L7Ke9t/OMWMjHoWD6oMoigiNhUXGrlLtM2n7322seTdWsDcige5HkKumIyNsU5P
+         yaNTiNmVXGLnBzGQ/k6vo2L2dZpu//WA+wKkXwmzku0FQnpZeH9+ETc62vZr9AHrt66y
+         L71y5gKugg1Ke73hs3iEryZY78WMuTUaVME8ncaUff5J7L3DwK3z06AYUgnrVgGghSqW
+         EFp+dAIecAK/rVPgpzHoz5sTHSD7CAe/Dti1JlRuUMpR0WyiWGwtIHi2sVOp/uHPZqSD
+         dOgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8D7FBZWNeYQoIdRr1oY1OfdugIxxf8OTSU99lGfG9qQ=;
-        b=HyaWsyPHhM6arxFrOWU3Kg7NQJRce7mnk/P6R9Nno3RGJrsqGpVisruGsFmzHCUErj
-         g+bJP7pPPe2+ho25859+28px5UCg58wtpCker9eufAoNRWJLPJvIroNWabp6aHsYq/e0
-         eJK8BDNdaWm4fyxhS7yBv/WENkbMU97EFT2VGoYZ6yd8VoPvIwyTQnAHQrzV21UHVip6
-         jz66SsP3WVIRyVf+p9QfjE+FIDeZXLFiP4wzaDtJkDkifVzUhWxJF0onssCCjolrVWcx
-         cbEaNCvZJu5rQx0j6VMBDqdOik7n/7od4PZpODvjznOgMK33n1O5oXkZigRXNhmyZpgQ
-         TxJA==
-X-Gm-Message-State: APjAAAXEvgqX2OhqMBV+EFL9XkpJVgqgSAZNpbv2T1fQ884cpEXaZ3Q4
-        vcFFefiivV/uu0eT4cguRDA+28K9Ae99QCSAotA=
-X-Google-Smtp-Source: APXvYqzdYoiEJjshCXOPVIThPM0dEfQ7V560bnYDQA4R2ViUh18tXK3rrzo8/na4YLv0MOp0RVHKUNeJF/uN0xTJHUk=
-X-Received: by 2002:a19:2358:: with SMTP id j85mr10685518lfj.20.1573471311279;
- Mon, 11 Nov 2019 03:21:51 -0800 (PST)
-MIME-Version: 1.0
-References: <1573435732-30361-1-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1573435732-30361-1-git-send-email-Anson.Huang@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 11 Nov 2019 08:21:46 -0300
-Message-ID: <CAOMZO5By4Tvk=KFxEC+8BC+FZ498pCzOpskvWst1=gWsDnb=Gg@mail.gmail.com>
-Subject: Re: [PATCH V2 1/4] ARM: dts: imx6sll: Update usdhc fallback
- compatible to support HS400 mode
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=VCIU/ruaYoPrO6tp9vJ9FadSx4Mgkcrp/rqcgWyosK4=;
+        b=gvHZChXqnC83ovb6i/MUIQb0eROmHovsi6uleONq1ebI/i+xb/bF3XdcjgDjV2x2NT
+         1kmiJfk40d1d9XVZHcuOYg6gcmx3W0Ct8llVxHOF7w0OmsNg9nbhWiCekMzDc4mtS5LY
+         7lXkHTUE1h8dDHsUw+Svg9oOJ+IYmrqoLNOr17PIXSoR/IEOm12KvgFCYxyPLWnmsYRO
+         /swppyH4+OH6f5Qeadhud6up+OHEaO0qeGiWF8GnJMSWWiTv7+yEsbPek0pg4UhTLgdI
+         QX+PfeMY3H76FjgAitx4znZpPGznLIVo3Jz+CeqwWy1KI8fDHCPARPaSMNEFZaSrZq0M
+         xXbg==
+X-Gm-Message-State: APjAAAUQuCdvHDXsiWcSfyV935XL0GDobozSeGNdkQDv+O1WrcLao/wd
+        6XHyG/1HtIktnrOG0oy4v78knw==
+X-Google-Smtp-Source: APXvYqyMJgtgV0bLvBkQaySmSbtMQNWN+rcf6xUT/gS+40mNdpwznf/9DJgGBm2Sw5a5ebr8gKkBww==
+X-Received: by 2002:a05:6000:343:: with SMTP id e3mr21544323wre.20.1573471735373;
+        Mon, 11 Nov 2019 03:28:55 -0800 (PST)
+Received: from dell ([95.147.198.88])
+        by smtp.gmail.com with ESMTPSA id m3sm17705312wrb.67.2019.11.11.03.28.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2019 03:28:54 -0800 (PST)
+Date:   Mon, 11 Nov 2019 11:28:42 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Kiran Gunda <kgunda@codeaurora.org>
+Cc:     swboyd@chromium.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, rnayak@codeaurora.org
+Subject: Re: [PATCH V2] mfd: qcom-spmi-pmic: Add support for pm6150 and
+ pm6150l
+Message-ID: <20191111112842.GK3218@dell>
+References: <1572931309-16250-1-git-send-email-kgunda@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1572931309-16250-1-git-send-email-kgunda@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 10, 2019 at 10:30 PM Anson Huang <Anson.Huang@nxp.com> wrote:
->
-> The i.MX6SLL SoC can support HS400 mode, hence "fsl,imx7d-usdhc"
-> should be used as compatible string to support HS400 mode by
-> default.
->
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+On Tue, 05 Nov 2019, Kiran Gunda wrote:
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Add the compatibles and PMIC ids for pm6150 and pm6150l PMICs
+> found on SC7180 based platforms.
+> 
+> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+> ---
+>  - Changes from V1:
+>    Sorted the macros and compatibles.
+> 
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt | 2 ++
+>  drivers/mfd/qcom-spmi-pmic.c                             | 4 ++++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+> index 1437062..b5fc64e 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+> @@ -32,6 +32,8 @@ Required properties:
+>                     "qcom,pm8998",
+>                     "qcom,pmi8998",
+>                     "qcom,pm8005",
+> +		   "qcom,pm6150",
+> +		   "qcom,pm6150l",
+
+Tabbing looks off.
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
