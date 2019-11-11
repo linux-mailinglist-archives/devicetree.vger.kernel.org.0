@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C832F797E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 18:08:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3689DF79E3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 18:27:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726950AbfKKRIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Nov 2019 12:08:43 -0500
-Received: from muru.com ([72.249.23.125]:41552 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726871AbfKKRIn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Nov 2019 12:08:43 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 678BE8047;
-        Mon, 11 Nov 2019 17:09:11 +0000 (UTC)
-Date:   Mon, 11 Nov 2019 09:08:26 -0800
-From:   Tony Lindgren <tony@atomide.com>
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Sekhar Nori <nsekhar@ti.com>, netdev@vger.kernel.org,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Ivan Khoronzhuk <ivan.khoronzhuk@linaro.org>,
-        Jiri Pirko <jiri@resnulli.us>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Ivan Vecera <ivecera@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 net-next 00/12] net: ethernet: ti: introduce new cpsw
- switchdev based driver
-Message-ID: <20191111170826.GT5610@atomide.com>
-References: <20191024100914.16840-1-grygorii.strashko@ti.com>
- <20191024160549.GY5610@atomide.com>
- <dc621a9d-eb92-5df9-81d7-ad2b037ac3c7@ti.com>
+        id S1727015AbfKKR1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Nov 2019 12:27:22 -0500
+Received: from utopia.booyaka.com ([74.50.51.50]:39272 "EHLO
+        utopia.booyaka.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727001AbfKKR1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 12:27:22 -0500
+Received: (qmail 588 invoked by uid 1019); 11 Nov 2019 17:20:41 -0000
+Received: from localhost (sendmail-bs@127.0.0.1)
+  by localhost with SMTP; 11 Nov 2019 17:20:41 -0000
+Date:   Mon, 11 Nov 2019 17:20:41 +0000 (UTC)
+From:   Paul Walmsley <paul@pwsan.com>
+To:     Christoph Hellwig <hch@lst.de>
+cc:     Anup Patel <anup@brainfault.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Subject: Re: QEMU RISC-V virt machine poweroff driver
+In-Reply-To: <20191111161217.GA19157@lst.de>
+Message-ID: <alpine.DEB.2.21.999.1911111717320.32333@utopia.booyaka.com>
+References: <20191107212408.11857-1-hch@lst.de> <CAAhSdy3SGAkOFMhx320KJdPDh6c=qcKqCZ=qrXNKBGtejpZwSA@mail.gmail.com> <20191111161217.GA19157@lst.de>
+User-Agent: Alpine 2.21.999 (DEB 260 2018-02-26)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dc621a9d-eb92-5df9-81d7-ad2b037ac3c7@ti.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Grygorii Strashko <grygorii.strashko@ti.com> [191109 15:16]:
-> Hi Tony,
-> 
-> On 24/10/2019 19:05, Tony Lindgren wrote:
-> > Hi,
+On Mon, 11 Nov 2019, Christoph Hellwig wrote:
+
+> On Mon, Nov 11, 2019 at 05:06:24PM +0530, Anup Patel wrote:
+> > We really don't need this driver. Instead, we can simply re-use
+> > following drivers:
+> > mfd/syscon
+> > power/reset/syscon-reboot
+> > power/reset/syscon-poweroff
 > > 
-> > * Grygorii Strashko <grygorii.strashko@ti.com> [191024 10:10]:
-> > > This the RFC v5 which introduces new CPSW switchdev based driver which is
-> > > operating in dual-emac mode by default, thus working as 2 individual
-> > > network interfaces. The Switch mode can be enabled by configuring devlink driver
-> > > parameter "switch_mode" to 1/true:
-> > > 	devlink dev param set platform/48484000.ethernet_switch \
-> > > 	name switch_mode value 1 cmode runtime
+> > Just enable following to your defconfig:
+> > CONFIG_POWER_RESET=y
+> > CONFIG_POWER_RESET_SYSCON=y
+> > CONFIG_POWER_RESET_SYSCON_POWEROFF=y
+> > CONFIG_SYSCON_REBOOT_MODE=y
 > > 
-> > Just wondering about the migration plan.. Is this a replacement
-> > driver or used in addition to the old driver?
 > > 
+> > Once above drivers are enabled in your defconfig, make sure
+> > test device DT nodes are described in the following way for virt machine:
 > 
-> Sry, I've missed you mail.
-> 
-> As it's pretty big change the idea is to keep both drivers at least for sometime.
-> Step 1: add new driver and enable it on one platform. Do announcement.
-> Step 2: switch all one-port and dual mac drivers to the new driver
-> Step 3: switch all other platform to cpsw switchdev and deprecate old driver.
+> Oh well, that is a lot more churn than a just works driver, and
+> will also pull it dependencies like regmap which quite blow up the
+> kernel size.  But I guess that is where modern Linux drivers are
+> heading, so I'm not going to complain too loud..
 
-OK sounds good to me. So for the dts changes, we keep the old binding
-and just add a new module there?
+The core issue is that putting random register writes in DT doesn't match 
+the hardware.  And the doctrine with DT has always been that it's supposed 
+to represent the actual hardware.  On FPGA bitstreams or ASICs that have 
+the teststatus/testfinisher IP block, there really is an IP block out 
+there - it's not just a bare register.
 
-Or do you also have to disable some parts of the old dts?
+If you update your driver to note that this is a SiFive IP block rather 
+than a "RISC-V" IP block, I'll ack it.
 
-Regards,
 
-Tony
+- Paul
