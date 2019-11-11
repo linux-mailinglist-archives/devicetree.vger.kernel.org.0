@@ -2,113 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E47B4F99F9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 20:43:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F19BCF9A57
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 21:12:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726936AbfKLTnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 14:43:55 -0500
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:41743 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727145AbfKLTnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 14:43:55 -0500
-Received: by mail-pf1-f196.google.com with SMTP id p26so14064153pfq.8
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2019 11:43:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=HPem8TIIszZ7FemqTmbnyMN0h8Slh11f2S1uwgjMiNs=;
-        b=vCbC4L4b7VLJUVxMLdfu7tTiF+7v9bVwa2ILlKu9Fn4M2fXbwAWOJQgS8FoCOPusVZ
-         xVC8bQFTXjujcVkJ9se5vr3widjEEvQwNYG8F2b2EBg5AIUw5+fOPgQG++A4VYLRozqo
-         I0TRQVo5VgAsRL9UbLXgDoqWci22cl/Fm+fUjNAZ9g9Y6OdwiN6UPJc9iIpL2aV2P87j
-         T0tnEhvI9d35ls+XXBtg5NXJFPTbZJwuODyzDhudMtEvx88qzrv6yg3uZzXtJSK5iX6w
-         cPzhimTCv0pRwbAC7M+ErI0dUXGxv2qaOkloyNOT2SnYtiU/o5XmDPQkyfepeLZrvV/G
-         ESpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=HPem8TIIszZ7FemqTmbnyMN0h8Slh11f2S1uwgjMiNs=;
-        b=TtORAw663m0gReRQltKtz+7w+vhWJAfO2XWqifWbxRlciG7H9OQHvPs3AhMk2mHHYX
-         91B0b5frDdwDbgC2HZjwJDcdCeGrNw85wMUxyYoYdgFBpRo8JtjVHEvcEyQrc8wcyxix
-         +zZq43VbDwAj1C++DMTwd+2NFHAsRWNO4kgZsfCzmFX9cg8FNHvniaOgbJ1+85jbWwLn
-         v/o4QhVsD5YcAqxLHfkVRELfonn2CG7TPSQLnwBkf75cGyAQiZFu13o3mhywC/H9kDGI
-         /J20Sfg3V2HTM6Yrj/0nx+JxR78hre6MvaZv4JI66T9zKN017jFssR6LYIYuDSit7Zmf
-         THAw==
-X-Gm-Message-State: APjAAAWMo8x/w9/JwsjxCDPfGwbYjhAZtsVT9NRD//ttxC7l3+PD+6Cg
-        HT0DnyZyXg1UNlioxU7cqYRgRA==
-X-Google-Smtp-Source: APXvYqwvp01l6+NWe5Q3aOH506LuFAZx7SlH82bO5pfIp1D3hOIxDJgrjOioGwThFhLK0fe655HllA==
-X-Received: by 2002:aa7:96bd:: with SMTP id g29mr39160759pfk.28.1573587834096;
-        Tue, 12 Nov 2019 11:43:54 -0800 (PST)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id z18sm19047098pgv.90.2019.11.12.11.43.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Nov 2019 11:43:53 -0800 (PST)
-Date:   Tue, 12 Nov 2019 11:43:51 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        edubezval@gmail.com, swboyd@chromium.org, sivaa@codeaurora.org,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: sdm845: thermal: Add critical interrupt
- support
-Message-ID: <20191112194351.GD3140946@builder>
-References: <cover.1573499020.git.amit.kucheria@linaro.org>
- <c536e9cdb448bbad3441f6580fa57f1f921fb580.1573499020.git.amit.kucheria@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c536e9cdb448bbad3441f6580fa57f1f921fb580.1573499020.git.amit.kucheria@linaro.org>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+        id S1726977AbfKLUMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 15:12:08 -0500
+Received: from shards.monkeyblade.net ([23.128.96.9]:48918 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726388AbfKLUMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 15:12:08 -0500
+Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 27653154D23BD;
+        Tue, 12 Nov 2019 12:12:07 -0800 (PST)
+Date:   Mon, 11 Nov 2019 14:38:30 -0800 (PST)
+Message-Id: <20191111.143830.839461521636004353.davem@davemloft.net>
+To:     grygorii.strashko@ti.com
+Cc:     f.fainelli@gmail.com, netdev@vger.kernel.org,
+        ilias.apalodimas@linaro.org, andrew@lunn.ch,
+        ivan.khoronzhuk@linaro.org, jiri@resnulli.us, nsekhar@ti.com,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        m-karicheri2@ti.com, ivecera@redhat.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 net-next 02/13] net: ethernet: ti: cpsw: allow
+ untagged traffic on host port
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20191109151525.18651-3-grygorii.strashko@ti.com>
+References: <20191109151525.18651-1-grygorii.strashko@ti.com>
+        <20191109151525.18651-3-grygorii.strashko@ti.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Tue, 12 Nov 2019 12:12:07 -0800 (PST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 11 Nov 11:21 PST 2019, Amit Kucheria wrote:
+From: Grygorii Strashko <grygorii.strashko@ti.com>
+Date: Sat, 9 Nov 2019 17:15:14 +0200
 
-> Register critical interrupts for each of the two tsens controllers
-> 
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> Message-Id: <3686bd40c99692feb955e936b608b080e2cb1826.1568624011.git.amit.kucheria@linaro.org>
+> +	ale->p0_untag_vid_mask =
+> +		devm_kmalloc_array(params->dev, BITS_TO_LONGS(VLAN_N_VID),
+> +				   sizeof(unsigned long),
+> +				   GFP_KERNEL);
+> +
 
-Picked up for v5.6.
-
-Regards,
-Bjorn
-
-> ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 0990d5761860..3b643b04ab5a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2950,8 +2950,9 @@
->  			reg = <0 0x0c263000 0 0x1ff>, /* TM */
->  			      <0 0x0c222000 0 0x1ff>; /* SROT */
->  			#qcom,sensors = <13>;
-> -			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "uplow";
-> +			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "uplow", "critical";
->  			#thermal-sensor-cells = <1>;
->  		};
->  
-> @@ -2960,8 +2961,9 @@
->  			reg = <0 0x0c265000 0 0x1ff>, /* TM */
->  			      <0 0x0c223000 0 0x1ff>; /* SROT */
->  			#qcom,sensors = <8>;
-> -			interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>;
-> -			interrupt-names = "uplow";
-> +			interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "uplow", "critical";
->  			#thermal-sensor-cells = <1>;
->  		};
->  
-> -- 
-> 2.17.1
-> 
+devm_kmalloc_array() can fail and you must check the return value and
+cleanup with -ENOMEM if necessary.
