@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C3CF6E85
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 07:24:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 572D7F6EB3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 07:52:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726765AbfKKGYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Nov 2019 01:24:42 -0500
-Received: from mga09.intel.com ([134.134.136.24]:39697 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726205AbfKKGYm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 11 Nov 2019 01:24:42 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Nov 2019 22:24:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,291,1569308400"; 
-   d="scan'208";a="207035519"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga006.jf.intel.com with ESMTP; 10 Nov 2019 22:24:40 -0800
-Received: from [10.226.39.46] (ekotax-mobl.gar.corp.intel.com [10.226.39.46])
-        by linux.intel.com (Postfix) with ESMTP id 8462B5801E3;
-        Sun, 10 Nov 2019 22:24:33 -0800 (PST)
-Subject: Re: [PATCH v5 3/3] PCI: artpec6: Configure FTS with dwc helper
- function
-To:     Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        "helgaas@kernel.org" <helgaas@kernel.org>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "martin.blumenstingl@googlemail.com" 
-        <martin.blumenstingl@googlemail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>,
-        "cheol.yong.kim@intel.com" <cheol.yong.kim@intel.com>,
-        "chuanhua.lei@linux.intel.com" <chuanhua.lei@linux.intel.com>,
-        "qi-ming.wu@intel.com" <qi-ming.wu@intel.com>
-References: <cover.1572950559.git.eswara.kota@linux.intel.com>
- <90a64d72a32dbc75c03a58a1813f50e547170ff4.1572950559.git.eswara.kota@linux.intel.com>
- <DM6PR12MB4010413DC722963F00461666DA790@DM6PR12MB4010.namprd12.prod.outlook.com>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <2ff60b67-c18f-2bcc-f10c-38b9fdec29fe@linux.intel.com>
-Date:   Mon, 11 Nov 2019 14:24:32 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726878AbfKKGvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Nov 2019 01:51:42 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:48916 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726785AbfKKGvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 01:51:41 -0500
+X-UUID: 80a7be139c414cc08cfec1efc5c1d8c2-20191111
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=1NPMi5s0B7PLycleggl/Ct6ul55hyyE2HzaKv33AkXA=;
+        b=J9nHo+XK+ak6jlO69eM+HHcJwe15+MNuWYckGI0u1iPzmQS1DQjhRu3jSU7RlprLxnn1oU6TiKAQCZTkdnmafk3CaQIFDeFRYEAn9vCaPX7e0dp4QdRI2MfjrTT4lGomFEPbNaz3vnpLWzWD0NGMLLyICmymfYKDDEyOMirb5gc=;
+X-UUID: 80a7be139c414cc08cfec1efc5c1d8c2-20191111
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <mark-mc.lee@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 44719251; Mon, 11 Nov 2019 14:51:31 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 11 Nov 2019 14:51:28 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 11 Nov 2019 14:51:28 +0800
+From:   MarkLee <Mark-MC.Lee@mediatek.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Sean Wang <sean.wang@mediatek.com>,
+        John Crispin <john@phrozen.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rene van Dorst <opensource@vdorst.com>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jakub Kicinski <jakub.kicinski@netronome.com>,
+        MarkLee <Mark-MC.Lee@mediatek.com>
+Subject: [PATCH net,v2 0/3]  Rework mt762x GDM setup flow
+Date:   Mon, 11 Nov 2019 14:51:26 +0800
+Message-ID: <20191111065129.30078-1-Mark-MC.Lee@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <DM6PR12MB4010413DC722963F00461666DA790@DM6PR12MB4010.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 11/6/2019 5:43 PM, Gustavo Pimentel wrote:
-> On Wed, Nov 6, 2019 at 3:44:3, Dilip Kota <eswara.kota@linux.intel.com>
-> wrote:
->
->> Utilize DesugnWare helper functions to configure Fast Training
->> Sequence. Drop the respective code in the driver.
-> Please fix
-> s/DesugnWare/DesignWare
-Typo error. I will correct it in the next patch version.
-
-Thanks for reviewing it.
-Regards,
-Dilip
-
+VGhlIG10NzYyeCBHRE0gYmxvY2sgaXMgbWFpbmx5IHVzZWQgdG8gc2V0dXAgdGhlIEhXIGludGVy
+bmFsDQpyeCBwYXRoIGZyb20gR01BQyB0byBSWCBETUEgZW5naW5lKFBETUEpIGFuZCB0aGUgcGFj
+a2V0DQpzd2l0Y2hpbmcgZW5naW5lKFBTRSkgaXMgcmVzcG9uc2VkIHRvIGRvIHRoZSBkYXRhIGZv
+cndhcmQNCmZvbGxvd2luZyB0aGUgR0RNIGNvbmZpZ3VyYXRpb24uDQoNClRoaXMgcGF0Y2ggc2V0
+IGhhdmUgdGhyZWUgZ29hbHMgOg0KDQoxLiBJbnRlZ3JhdGUgR0RNL1BTRSBzZXR1cCBvcGVyYXRp
+b25zIGludG8gc2luZ2xlIGZ1bmN0aW9uICJtdGtfZ2RtX2NvbmZpZyINCg0KMi4gUmVmaW5lIHRo
+ZSB0aW1pbmcgb2YgR0RNL1BTRSBzZXR1cCwgbW92ZSBpdCBmcm9tIG10a19od19pbml0IA0KICAg
+dG8gbXRrX29wZW4NCg0KMy4gRW5hYmxlIEdETSBHRE1BX0RST1BfQUxMIG1vZGUgdG8gZHJvcCBh
+bGwgcGFja2V0IGR1cmluZyB0aGUgDQogICBzdG9wIG9wZXJhdGlvbg0KDQpNYXJrTGVlICgzKToN
+CiAgbmV0OiBldGhlcm5ldDogbWVkaWF0ZWs6IEludGVncmF0ZSBHRE0vUFNFIHNldHVwIG9wZXJh
+dGlvbnMNCiAgbmV0OiBldGhlcm5ldDogbWVkaWF0ZWs6IFJlZmluZSB0aGUgdGltaW5nIG9mIEdE
+TS9QU0Ugc2V0dXANCiAgbmV0OiBldGhlcm5ldDogbWVkaWF0ZWs6IEVuYWJsZSBHRE0gR0RNQV9E
+Uk9QX0FMTCBtb2RlDQoNCiBkcml2ZXJzL25ldC9ldGhlcm5ldC9tZWRpYXRlay9tdGtfZXRoX3Nv
+Yy5jIHwgNDQgKysrKysrKysrKysrKystLS0tLS0tDQogZHJpdmVycy9uZXQvZXRoZXJuZXQvbWVk
+aWF0ZWsvbXRrX2V0aF9zb2MuaCB8ICAyICsNCiAyIGZpbGVzIGNoYW5nZWQsIDMxIGluc2VydGlv
+bnMoKyksIDE1IGRlbGV0aW9ucygtKQ0KDQotLSANCjIuMTcuMQ0K
 
