@@ -2,73 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3689DF79E3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 18:27:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E2FFF79BF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 18:21:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727015AbfKKR1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Nov 2019 12:27:22 -0500
-Received: from utopia.booyaka.com ([74.50.51.50]:39272 "EHLO
-        utopia.booyaka.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727001AbfKKR1W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 12:27:22 -0500
-Received: (qmail 588 invoked by uid 1019); 11 Nov 2019 17:20:41 -0000
-Received: from localhost (sendmail-bs@127.0.0.1)
-  by localhost with SMTP; 11 Nov 2019 17:20:41 -0000
-Date:   Mon, 11 Nov 2019 17:20:41 +0000 (UTC)
-From:   Paul Walmsley <paul@pwsan.com>
-To:     Christoph Hellwig <hch@lst.de>
-cc:     Anup Patel <anup@brainfault.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Subject: Re: QEMU RISC-V virt machine poweroff driver
-In-Reply-To: <20191111161217.GA19157@lst.de>
-Message-ID: <alpine.DEB.2.21.999.1911111717320.32333@utopia.booyaka.com>
-References: <20191107212408.11857-1-hch@lst.de> <CAAhSdy3SGAkOFMhx320KJdPDh6c=qcKqCZ=qrXNKBGtejpZwSA@mail.gmail.com> <20191111161217.GA19157@lst.de>
-User-Agent: Alpine 2.21.999 (DEB 260 2018-02-26)
+        id S1727141AbfKKRVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Nov 2019 12:21:46 -0500
+Received: from Galois.linutronix.de ([193.142.43.55]:58614 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727083AbfKKRVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 12:21:44 -0500
+Received: from bigeasy by Galois.linutronix.de with local (Exim 4.80)
+        (envelope-from <bigeasy@linutronix.de>)
+        id 1iUDNm-0003Gu-81; Mon, 11 Nov 2019 18:21:42 +0100
+Date:   Mon, 11 Nov 2019 18:21:42 +0100
+From:   Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: [PATCH] of: allocate / free phandle cache outside of the devtree_lock
+Message-ID: <20191111172142.ozczh7j2gmzi7o5k@linutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Nov 2019, Christoph Hellwig wrote:
+The phandle cache code allocates memory while holding devtree_lock which
+is a raw_spinlock_t. Memory allocation (and free()) is not possible on
+RT while a raw_spinlock_t is held.
+Invoke the kfree() and kcalloc() while the lock is dropped.
 
-> On Mon, Nov 11, 2019 at 05:06:24PM +0530, Anup Patel wrote:
-> > We really don't need this driver. Instead, we can simply re-use
-> > following drivers:
-> > mfd/syscon
-> > power/reset/syscon-reboot
-> > power/reset/syscon-poweroff
-> > 
-> > Just enable following to your defconfig:
-> > CONFIG_POWER_RESET=y
-> > CONFIG_POWER_RESET_SYSCON=y
-> > CONFIG_POWER_RESET_SYSCON_POWEROFF=y
-> > CONFIG_SYSCON_REBOOT_MODE=y
-> > 
-> > 
-> > Once above drivers are enabled in your defconfig, make sure
-> > test device DT nodes are described in the following way for virt machine:
-> 
-> Oh well, that is a lot more churn than a just works driver, and
-> will also pull it dependencies like regmap which quite blow up the
-> kernel size.  But I guess that is where modern Linux drivers are
-> heading, so I'm not going to complain too loud..
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+---
 
-The core issue is that putting random register writes in DT doesn't match 
-the hardware.  And the doctrine with DT has always been that it's supposed 
-to represent the actual hardware.  On FPGA bitstreams or ASICs that have 
-the teststatus/testfinisher IP block, there really is an IP block out 
-there - it's not just a bare register.
+This is a repost of:
+	https://lore.kernel.org/linux-devicetree/20180910154227.xsbbqvw3cayro4gg@linutronix.de/
 
-If you update your driver to note that this is a SiFive IP block rather 
-than a "RISC-V" IP block, I'll ack it.
+I mentioned this patch (briefly) to Frank, let me summarize:
 
+of_populate_phandle_cache() triggers a warning during boot on arm64 with
+RT enabled. By moving memory allocation/free outside of the locked
+section (which really disables interrupts on -RT) everything is fine
+again.
 
-- Paul
+The lock has been made a raw_spinlock_t in RT as part pSeries bring up.
+It then made its way upstream as:
+   28d0e36bf9686 ("OF: Fixup resursive locking code paths")
+   d6d3c4e656513 ("OF: convert devtree lock from rw_lock to raw spinlock")
+
+I've been looking into making devtree_lock a spinlock_t which would
+avoid this patch. I haven't seen an issue during boot on arm64 even
+with hotplug.
+However Power64/pSeries complained during boot:
+
+| smp: Bringing up secondary CPUs ...
+| BUG: sleeping function called from invalid context at kernel/locking/rtmutex.c:973
+| in_atomic(): 1, irqs_disabled(): 1, non_block: 0, pid: 0, name: swapper/1
+| 1 lock held by swapper/1/0:
+|  #0: c000000000def6e0 (devtree_lock){+.+.}, at: of_find_node_opts_by_path+0x1f4/0x230
+| Preemption disabled at:
+| [<c0000000000557a0>] start_secondary+0xd0/0x6a0
+|
+| Call Trace:
+| [c0000001f9667d10] [c000000000158e30] ___might_sleep+0x250/0x270
+| [c0000001f9667da0] [c000000000984f40] rt_spin_lock+0x70/0x90
+| [c0000001f9667de0] [c0000000007e3634] of_find_node_opts_by_path+0x1f4/0x230
+| [c0000001f9667e30] [c0000000007e3844] of_get_next_cpu_node+0x144/0x180
+| [c0000001f9667e70] [c0000000007e38d8] of_get_cpu_node+0x58/0x90
+| [c0000001f9667eb0] [c00000000002eb00] cpu_to_chip_id+0x20/0x70
+| [c0000001f9667ee0] [c000000000055858] start_secondary+0x188/0x6a0
+| [c0000001f9667f90] [c00000000000b554] start_secondary_prolog+0x10/0x14
+
+because cpu_to_chip_id() acquires devtree_lock() early in the CPU-bring
+up path.
+
+ drivers/of/base.c |   19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
+
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -138,31 +138,34 @@ static u32 phandle_cache_mask;
+ /*
+  * Caller must hold devtree_lock.
+  */
+-static void __of_free_phandle_cache(void)
++static struct device_node** __of_free_phandle_cache(void)
+ {
+ 	u32 cache_entries = phandle_cache_mask + 1;
+ 	u32 k;
++	struct device_node **shadow;
+ 
+ 	if (!phandle_cache)
+-		return;
++		return NULL;
+ 
+ 	for (k = 0; k < cache_entries; k++)
+ 		of_node_put(phandle_cache[k]);
+ 
+-	kfree(phandle_cache);
++	shadow = phandle_cache;
+ 	phandle_cache = NULL;
++	return shadow;
+ }
+ 
+ int of_free_phandle_cache(void)
+ {
+ 	unsigned long flags;
++	struct device_node **shadow;
+ 
+ 	raw_spin_lock_irqsave(&devtree_lock, flags);
+ 
+-	__of_free_phandle_cache();
++	shadow = __of_free_phandle_cache();
+ 
+ 	raw_spin_unlock_irqrestore(&devtree_lock, flags);
+-
++	kfree(shadow);
+ 	return 0;
+ }
+ #if !defined(CONFIG_MODULES)
+@@ -197,10 +200,11 @@ void of_populate_phandle_cache(void)
+ 	u32 cache_entries;
+ 	struct device_node *np;
+ 	u32 phandles = 0;
++	struct device_node **shadow;
+ 
+ 	raw_spin_lock_irqsave(&devtree_lock, flags);
+ 
+-	__of_free_phandle_cache();
++	shadow = __of_free_phandle_cache();
+ 
+ 	for_each_of_allnodes(np)
+ 		if (np->phandle && np->phandle != OF_PHANDLE_ILLEGAL)
+@@ -208,12 +212,14 @@ void of_populate_phandle_cache(void)
+ 
+ 	if (!phandles)
+ 		goto out;
++	raw_spin_unlock_irqrestore(&devtree_lock, flags);
+ 
+ 	cache_entries = roundup_pow_of_two(phandles);
+ 	phandle_cache_mask = cache_entries - 1;
+ 
+ 	phandle_cache = kcalloc(cache_entries, sizeof(*phandle_cache),
+ 				GFP_ATOMIC);
++	raw_spin_lock_irqsave(&devtree_lock, flags);
+ 	if (!phandle_cache)
+ 		goto out;
+ 
+@@ -225,6 +231,7 @@ void of_populate_phandle_cache(void)
+ 
+ out:
+ 	raw_spin_unlock_irqrestore(&devtree_lock, flags);
++	kfree(shadow);
+ }
+ 
+ void __init of_core_init(void)
