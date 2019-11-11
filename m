@@ -2,137 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A955F7B99
-	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 19:38:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCBFBF7F81
+	for <lists+devicetree@lfdr.de>; Mon, 11 Nov 2019 20:14:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728901AbfKKShs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Nov 2019 13:37:48 -0500
-Received: from smtp.codeaurora.org ([198.145.29.96]:49524 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728893AbfKKShp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 13:37:45 -0500
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id E7F7D60F40; Mon, 11 Nov 2019 18:37:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1573497463;
-        bh=XUkpMv4++eaCLngkRhw1OHredjSZzbrBaEaI/2OxE7Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Kti4XqbdrQfRjqyR/k/Xny8Sb0xtKtDh1D3IZqqkBWb5xWvg+wQqdIJqZHwXihIhc
-         PP/E99tj4XKhLGPKvShQANy20h4r2YeA4de5RLgEzbdHe1GbxE6mAjUHe/A+LCs8td
-         mU/GHTayXswE5ngA9/blI9wj0zEDC+iSQbDuMgAY=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from localhost (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: ilina@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7B643602EE;
-        Mon, 11 Nov 2019 18:37:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1573497460;
-        bh=XUkpMv4++eaCLngkRhw1OHredjSZzbrBaEaI/2OxE7Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CCIKVj49JlSCWHldgpmCB4IXhwNUaHHiNm5k6jIRWgDZVugsSUC8R1s7h2Mz1ZCsf
-         5lnoABiZDh9Qs36KSbNKgzk5Nte+p3XnHPr5lDmSPuekBBSB+t7v0kAfyUTaFl+OjP
-         EWvdgpv61XulzSMrBvfQ+X5+gMoYvPKOCMmok6p4=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7B643602EE
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
-Date:   Mon, 11 Nov 2019 11:37:38 -0700
-From:   Lina Iyer <ilina@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     evgreen@chromium.org, linus.walleij@linaro.org, maz@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC v2 06/14] dt-bindings/interrupt-controller: pdc: add
- SPI config register
-Message-ID: <20191111183738.GJ16900@codeaurora.org>
-References: <1568411962-1022-1-git-send-email-ilina@codeaurora.org>
- <1568411962-1022-7-git-send-email-ilina@codeaurora.org>
- <5d92829e.1c69fb81.d860a.9096@mx.google.com>
- <5da6b849.1c69fb81.a9b04.1b9f@mx.google.com>
- <20191105205832.GE16900@codeaurora.org>
- <5dc219a0.1c69fb81.f5014.42d2@mx.google.com>
+        id S1726957AbfKKTLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Nov 2019 14:11:36 -0500
+Received: from mail-io1-f65.google.com ([209.85.166.65]:33941 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727140AbfKKTLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 14:11:36 -0500
+Received: by mail-io1-f65.google.com with SMTP id q83so15818557iod.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Nov 2019 11:11:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2HgDUfvYTFbpP69aWKc0kGJILBYPdrw3d304UudQR6Y=;
+        b=eTbtsuOY1bdhKdbXYiPZJ/aG2Qace47DkAJbL4Op2wp42tGwtELx5aJ26CvJ9Jb3qT
+         vlhJLgZkDCviw9bLoBdRKzAEYECphGMJH3AnxorVg1SBo/rDG5z1xL1PRUcddapYELJc
+         JlDIgnKwPtZybDPnZO/Vil39jXyaJ3tn4cWD3olZQTk/Xys15Qnjc5WHDiyzLrr1dhpI
+         gUDI74hAWak5E6pqdOxyvLhSsu+bf3+IfPyWmb5suN58S2X3MoWTIFC9SW4Y0R3aIW+5
+         ErM2InmMnwLQIG+6QpsYESxWHX25EqnFNz7/WEo+Dks7zTq3u5LsV9tqWiolA629rCzm
+         iHFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2HgDUfvYTFbpP69aWKc0kGJILBYPdrw3d304UudQR6Y=;
+        b=JPg0Dxqehji5iGPpoWJ11pGZguG3JMqH3/jBAd6VYFBQxFD/4rr9a26m8+pnpNF2p2
+         7+ScrxO7MLjPNuxGGcqlyaFXPl2KG0VDbPW4dvuWEfjgIQUW7dRCx6A98dGVa1NaAEbR
+         PWAgVOaiObD0mX0+gjCAo9YKUamWykTaka+ELGT18l5JFQkFWl5NEz7dosfCM5LNcv/F
+         hocFf8VDG+nGmacGuvJ72sLoYAEEjP36jkf1X2C8eTC/bw+WgCy4seI9jR67mlhuxXuT
+         IsoxCe5r6Dfv1cyRQROp7HEDei9qDnNTCKd3SMbcwBKvBwtCBbofLEQH+IrJnDjMBzS8
+         D3fA==
+X-Gm-Message-State: APjAAAUA3cFKZxAL/3l+CaXPWlxyTyG7epKUbSsVWN1WvVWRYTxu7gxG
+        DZBoYkXhsuLYY2BhLP6jtwWp58tHYnXtWZgZgzXE8w==
+X-Google-Smtp-Source: APXvYqy1znbPoGeXemeR0vFArovOl/+lq8cNdMivbT38ZF3jpW8pGC7IQIdwYmdC0F0dJSIodB17Xximee0fFWz8NMY=
+X-Received: by 2002:a02:c54b:: with SMTP id g11mr2199988jaj.136.1573499493869;
+ Mon, 11 Nov 2019 11:11:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <5dc219a0.1c69fb81.f5014.42d2@mx.google.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+References: <20191021124428.2541-1-brgl@bgdev.pl> <20191021124428.2541-6-brgl@bgdev.pl>
+ <20191111080837.GF18902@dell>
+In-Reply-To: <20191111080837.GF18902@dell>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 11 Nov 2019 20:11:23 +0100
+Message-ID: <CAMRc=Me_b5c_e+qZ1s=TgTh7k_bQqrqthC8VTb7ak8+3AOEugg@mail.gmail.com>
+Subject: Re: [PATCH v4 5/6] dt-bindings: mfd: max77650: convert the binding
+ document to yaml
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 05 2019 at 17:53 -0700, Stephen Boyd wrote:
->Quoting Lina Iyer (2019-11-05 12:58:32)
->> On Tue, Oct 15 2019 at 00:27 -0600, Stephen Boyd wrote:
->> >
->> >I had another idea the other day. Maybe a better approach would be to
->> >make the mailbox or SCM code an interrupt controller with the
->> >appropriate functions to poke the bits necessary to make the interrupts
->> >work. Then we can make it a chip in the hierarchy between the GIC and
->> >PDC and make the interrupts call through from PDC to GIC. The locking
->> >could be handled in each respective driver if necessary, and otherwise
->> >we don't have to use a regmap or remap the same registers (except we may
->> >need to describe if the parent is the mailbox node or the scm fimware
->> >node).
->> >
->> Wouldn't that be a stretch to image the SCM register write  or a random
->> register write as an interrupt controller? But I agree that it solves
->> the issue of determining whether we want to use SCM or regmap.
+pon., 11 lis 2019 o 09:08 Lee Jones <lee.jones@linaro.org> napisa=C5=82(a):
 >
->As far as I can tell it's similar to PDC which is basically a gate on
->the line from a dedicated chip pad or a GPIO pad that lets the interrupt
->flow through to the GIC or not. Isn't this yet another hardware block on
->those paths that control the edge type or something?
+> On Mon, 21 Oct 2019, Bartosz Golaszewski wrote:
 >
->>
->> But, we would still need to add syscon to the mailbox and then regmap
->> the registers for the interrupt contoller.
+> > From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> >
+> > Convert the binding document for MAX77650 core MFD module to YAML.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> > ---
+> >  .../devicetree/bindings/mfd/max77650.txt      |  46 ------
+> >  .../devicetree/bindings/mfd/max77650.yaml     | 149 ++++++++++++++++++
+> >  2 files changed, 149 insertions(+), 46 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/mfd/max77650.txt
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/max77650.yaml
 >
->I'm saying that we can make the mailbox driver an interrupt controller
->driver too. Or if that doesn't work, we can map the region twice in each
->driver with ioremap and cross fingers that they don't touch the same
->register at the same time. It sounds like that is the case. We won't be
->able to fancily reserve the register region and map it in one function
->call, but maybe that can be fixed by limiting the size or offset that is
->reserved for each driver manually based on the same register property
->that's described in DT. Basically, one node in DT
+> Applied, thanks.
 >
-> mailbox@f00 {
->   reg = <0xf00 0x1000>;
-> };
->
->And then each driver will ioremap() the whole register region that's
->parsed from DT but each driver will mark sub-regions as reserved for the
->respective driver. That way we don't have to worry about using a regmap
->here and we'll still know what drivers are using what regions of IO in
->/proc/iomem.
 
-Marc: What do you think of Stephen's idea? Summarizing my understanding
-below -
+Hi Lee,
 
-We need to set an addition register for GPIOs that are routed to PDC and
-the register may need to be written using a SCM call (SDM845) or written
-from Linux (SDM855). The idea proposed here is -
-Create multiple irqchips, one for each type of register access and then
-put them in hierarchy based on the target.
+FYI this series is already in next through Rob's DT tree.
 
-SDM845:
-TLMM  --> PDC  --> PDC-SCM-IF  --> GIC
+Bart
 
-SDM855:
-TLMM  --> PDC  --> PDC-LNX-IF  --> GIC
-
-The hierarchy would be explicit from the DT. So we would not have to
-worry about figuring out using a property in DT or resource name. (May
-be we can use a compatible instead?). The use of reserved_resource(),
-suggested by Stephen, would help avoid other drivers writing to this
-register which is part of a generic dump area for one-off registers.
-
---Lina
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Linaro Services Technical Lead
+> Linaro.org =E2=94=82 Open source software for ARM SoCs
+> Follow Linaro: Facebook | Twitter | Blog
