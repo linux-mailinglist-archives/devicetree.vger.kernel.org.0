@@ -2,157 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32D35F91A4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 15:12:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B4C4F924D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 15:27:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbfKLOMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 09:12:16 -0500
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:37814 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726497AbfKLOMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 09:12:16 -0500
-Received: by mail-ed1-f68.google.com with SMTP id k14so15012153eds.4;
-        Tue, 12 Nov 2019 06:12:14 -0800 (PST)
+        id S1727634AbfKLO0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 09:26:44 -0500
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:33253 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727795AbfKLO0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 09:26:43 -0500
+Received: by mail-wm1-f66.google.com with SMTP id a17so2477569wmb.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2019 06:26:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KxSPlrqtEzHjDjmMoesMoA1oYmvT3buCd5ykJgz1zH4=;
-        b=azxIbnR14SLX1EEBSNv3knBGIxYmKTsERV55xjemZBeEqgKPTy37mAxU7sFe2Rj/tf
-         OY1Jisto9ME9u6C31XRuv2Sh6WwETVDHCBCGdGvfUpUafPdNZRrn7hg8Fcc6kJVqsL+N
-         LDHra+Z0UDv49RtAlISWxn5bNJ65EXgriDHyOUw/jwOjySmNy/jmAbtwONICQJBTaP6I
-         QF5kBz2CAuZ6yfB3/QV7SzKo9ofZBaV/TfsijKaGB0av6B+9x7LaikNc5YYLvTJKHzeK
-         XZd39b7WwXlmuRPFEF/Xj4h87odt64jwzcjSVZx+vuArqAIJ+o1WeDZS/hjln6zSd+zW
-         aGog==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=HwAdfhIitfcvpFjEunj/32j/tCIUn5eee0pERZjRVjE=;
+        b=uipUgxqyeE0KHXL6ubhaAYxNl7gHKal9kFDPZKyC/mOcCSq/qqD4JI0HWLZCCL1D9L
+         UoWifxltVooIF807CohBVKrrB4e8teUC8z4m5DcySXJPPcUV7Ioel38sWe2pBgqh8Sha
+         w3eQSePVSSeLBhsFdb3L80gqQNgPUsxBZ3VS9Qn83lDTTQqu77datEQYFnGmdRg4Sm9J
+         k3OgtpKUSu47ZFS+9l79UXYMEKpdDHNlb/nTlYUJEj/J5Ys8y8T4FztsP4l+5j3O3SSS
+         P1AYwPTr5GZw/ZnYGnqhIqKXYvyYq5jThwVLL5tvv91hKaUS4s3gL9lZhyDk2map/Ho0
+         RWHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KxSPlrqtEzHjDjmMoesMoA1oYmvT3buCd5ykJgz1zH4=;
-        b=uikXJrOJcwFWX59IwiiCZ/vKU4fMAZzvaHquO2WpR58DYmsONxR1wCFpE16pPf3g/y
-         24Q2so7MUppoTvspnGfTBORnXsobAmVMfiLopY2OYRxJYpH0K2Ph8Ix94RwXiO+aNP3y
-         +OIRWA706xG4yPxgIum5pLHs8+vnbqUhBzQkYBzKvcQNTS0ncN5VVAVGfcOyUOljBr6T
-         LeaxkIW65RTI/Ic+vI6ZXf+aUV9IHL+6jf/ekCQ2ZgawrS1cMU34GGkSefes7WwI39t4
-         et4LE/xm00OdfZS0QrStoJgs20jtWIBVNjbZPxucvwJ63TjCjI9+6X4AEhblcRXmbeTe
-         5reQ==
-X-Gm-Message-State: APjAAAUtaA/Z73efshZ4MGuhkbl8s+ZNIV1Ij2oa0LPRhpOnE8/mvawk
-        nNlcV/668Rrs9d5wslDSUL2VS83L96edbj0jnUw=
-X-Google-Smtp-Source: APXvYqx6gy2SiezBYVxCNFX0y4S7P2z/l2MUZWIDu9IBINqX69LmFc046Aug3tBhXJobpzrUhTTqryc2NmW89CYErdw=
-X-Received: by 2002:a50:91c4:: with SMTP id h4mr33376125eda.36.1573567933749;
- Tue, 12 Nov 2019 06:12:13 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=HwAdfhIitfcvpFjEunj/32j/tCIUn5eee0pERZjRVjE=;
+        b=RPw5akZcyf7hAH97SF9y34W7Yd7lMe9zstYKKrZAnP4Gu7Uj9apt2V1fdqJ2l0NPzM
+         gsowFYu9+2PGmfpHnqz8QPs5oaYmcM2r6bPcT5UAWtmpm76gsFVnCWV/XdzW1BUOTMB6
+         G60XprvLqFU60nIa7NI9DQOTBnjKW+EezHOkVmAiPovBcM6a7V1MxtgkImjZDzv7hkBm
+         64oEidCmHPVU2YUuVnoeKn57Wh51q9PJmEODM7d4+bjCAarsvgGDIi0u++QwtFyJh8LK
+         csK/elZ2LW00KBWyNQ3JHAkuzYOfr6IxCoean6SC80erBS9xLMRUVlZcPSzbEiYkYTRY
+         Oveg==
+X-Gm-Message-State: APjAAAWuz+xxsX3lpzUWfJge3rbsXgVn3ckoWFTkjPbQbgQ+Ym81AreJ
+        NG8CKuqH8ASocQVxY7UGauxKYw==
+X-Google-Smtp-Source: APXvYqxckmcNBpy72Qpot+ikOCMpk6nDsafZH9hp9iZSZmb+C4cx7cr8Lnq9JsDuf1l4mrUm/lUcjw==
+X-Received: by 2002:a7b:c08f:: with SMTP id r15mr4093427wmh.45.1573568800830;
+        Tue, 12 Nov 2019 06:26:40 -0800 (PST)
+Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id j63sm4525489wmj.46.2019.11.12.06.26.39
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 12 Nov 2019 06:26:40 -0800 (PST)
+Subject: Re: [PATCH v2 1/5] drm/bridge/synopsys: dsi: move phy_ops callbacks
+ around panel enablement
+To:     Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        dri-devel@lists.freedesktop.org, a.hajda@samsung.com
+Cc:     hjc@rock-chips.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, philippe.cornu@st.com,
+        yannick.fertre@st.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        heiko@sntech.de, christoph.muellner@theobroma-systems.com
+References: <20191108000253.8560-1-heiko.stuebner@theobroma-systems.com>
+ <20191108000253.8560-2-heiko.stuebner@theobroma-systems.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <4b311fe6-2105-c96c-f7d4-ac3535616690@baylibre.com>
+Date:   Tue, 12 Nov 2019 15:26:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20191112132010.18274-1-linux@rasmusvillemoes.dk>
- <20191112132010.18274-3-linux@rasmusvillemoes.dk> <CA+h21hqw16o0TqOV1WWYYcOs3YWJe=xq_K0=miU+BFTA31OTmQ@mail.gmail.com>
- <6d4292fcb0cf290837306388bdfe9b0f@www.loen.fr> <CA+h21hpE-Nu_Sh1fRizUoEs082ev=9nzuumSXDrk-QTXdnEbzg@mail.gmail.com>
- <aee81d64979bb72b63a8889fb7193c3f@www.loen.fr>
-In-Reply-To: <aee81d64979bb72b63a8889fb7193c3f@www.loen.fr>
-From:   Vladimir Oltean <olteanv@gmail.com>
-Date:   Tue, 12 Nov 2019 16:12:02 +0200
-Message-ID: <CA+h21hqxpy-n6HBkyGSKFEm_CujG5x3Y3Wj-frj0OSwbVWgCng@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: ls1021a-tsn: Use interrupts for the SGMII PHYs
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20191108000253.8560-2-heiko.stuebner@theobroma-systems.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Nov 2019 at 16:04, Marc Zyngier <maz@kernel.org> wrote:
->
-> On 2019-11-12 15:03, Vladimir Oltean wrote:
-> > On Tue, 12 Nov 2019 at 15:49, Marc Zyngier <maz@kernel.org> wrote:
-> >>
-> >> On 2019-11-12 14:53, Vladimir Oltean wrote:
-> >> > On Tue, 12 Nov 2019 at 15:20, Rasmus Villemoes
-> >> > <linux@rasmusvillemoes.dk> wrote:
-> >> >>
-> >> >> From: Vladimir Oltean <olteanv@gmail.com>
-> >> >>
-> >> >> On the LS1021A-TSN board, the 2 Atheros AR8031 PHYs for eth0 and
-> >> >> eth1
-> >> >> have interrupt lines connected to the shared IRQ2_B LS1021A pin.
-> >> >>
-> >> >> Switching to interrupts offloads the PHY library from the task of
-> >> >> polling the MDIO status and AN registers (1, 4, 5) every second.
-> >> >>
-> >> >> Unfortunately, the BCM5464R quad PHY connected to the switch does
-> >> >> not
-> >> >> appear to have an interrupt line routed to the SoC.
-> >> >>
-> >> >> Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
-> >> >> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-> >> >> ---
-> >> >>  arch/arm/boot/dts/ls1021a-tsn.dts | 4 ++++
-> >> >>  1 file changed, 4 insertions(+)
-> >> >>
-> >> >> diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts
-> >> >> b/arch/arm/boot/dts/ls1021a-tsn.dts
-> >> >> index 5b7689094b70..135d36461af4 100644
-> >> >> --- a/arch/arm/boot/dts/ls1021a-tsn.dts
-> >> >> +++ b/arch/arm/boot/dts/ls1021a-tsn.dts
-> >> >> @@ -203,11 +203,15 @@
-> >> >>         /* AR8031 */
-> >> >>         sgmii_phy1: ethernet-phy@1 {
-> >> >>                 reg = <0x1>;
-> >> >> +               /* SGMII1_PHY_INT_B: connected to IRQ2, active
-> >> low
-> >> >> */
-> >> >> +               interrupts-extended = <&extirq 2
-> >> >> IRQ_TYPE_EDGE_FALLING>;
-> >> >>         };
-> >> >>
-> >> >>         /* AR8031 */
-> >> >>         sgmii_phy2: ethernet-phy@2 {
-> >> >>                 reg = <0x2>;
-> >> >> +               /* SGMII2_PHY_INT_B: connected to IRQ2, active
-> >> low
-> >> >> */
-> >> >> +               interrupts-extended = <&extirq 2
-> >> >> IRQ_TYPE_EDGE_FALLING>;
-> >> >>         };
-> >> >>
-> >> >>         /* BCM5464 quad PHY */
-> >> >> --
-> >> >> 2.23.0
-> >> >>
-> >> >
-> >> > +netdev and Andrew for this patch, since the interrupt polarity
-> >> > caught
-> >> > his attention in v1.
-> >>
-> >> Certainly, the comments and the interrupt specifier do not match.
-> >> Which one is true?
-> >>
-> >>          M.
-> >> --
-> >> Jazz is not dead. It just smells funny...
-> >
-> > The interrupt specifier certainly works. So that points to an issue
-> > with the description. What do you mean, exactly? Does "active low"
-> > mean "level-triggered"? How would you have described this?
->
-> Active Low definitely implies level triggered. And if that's how it
-> is described in the TRM, than the interrupt specifier is wrong, and
-> just *seem to work* because the level goes back to high between two
-> interrupts.
->
-> Also, shared *edge* interrupts do not work, full stop. So I'm pretty
-> convinced that what you have here is just wrong.
->
->          M.
-> --
-> Jazz is not dead. It just smells funny...
+On 08/11/2019 01:02, Heiko Stuebner wrote:
+> If implementation-specific phy_ops need to be defined they probably
+> should be enabled before trying to talk to the panel and disabled only
+> after the panel was disabled.
+> 
+> Right now they are enabled last and disabled first, so might make it
+> impossible to talk to some panels - example for this being the px30
+> with an external Innosilicon dphy that needs the phy to be enabled
+> to transfer commands to the panel.
+> 
+> So move the calls appropriately.
+> 
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> index 675442bfc1bd..49f5600a1dea 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> @@ -797,9 +797,6 @@ static void dw_mipi_dsi_bridge_post_disable(struct drm_bridge *bridge)
+>  	struct dw_mipi_dsi *dsi = bridge_to_dsi(bridge);
+>  	const struct dw_mipi_dsi_phy_ops *phy_ops = dsi->plat_data->phy_ops;
+>  
+> -	if (phy_ops->power_off)
+> -		phy_ops->power_off(dsi->plat_data->priv_data);
+> -
+>  	/*
+>  	 * Switch to command mode before panel-bridge post_disable &
+>  	 * panel unprepare.
+> @@ -816,6 +813,9 @@ static void dw_mipi_dsi_bridge_post_disable(struct drm_bridge *bridge)
+>  	 */
+>  	dsi->panel_bridge->funcs->post_disable(dsi->panel_bridge);
+>  
+> +	if (phy_ops->power_off)
+> +		phy_ops->power_off(dsi->plat_data->priv_data);
+> +
+>  	if (dsi->slave) {
+>  		dw_mipi_dsi_disable(dsi->slave);
+>  		clk_disable_unprepare(dsi->slave->pclk);
+> @@ -882,6 +882,9 @@ static void dw_mipi_dsi_mode_set(struct dw_mipi_dsi *dsi,
+>  
+>  	/* Switch to cmd mode for panel-bridge pre_enable & panel prepare */
+>  	dw_mipi_dsi_set_mode(dsi, 0);
+> +
+> +	if (phy_ops->power_on)
+> +		phy_ops->power_on(dsi->plat_data->priv_data);
+>  }
+>  
+>  static void dw_mipi_dsi_bridge_mode_set(struct drm_bridge *bridge,
+> @@ -898,15 +901,11 @@ static void dw_mipi_dsi_bridge_mode_set(struct drm_bridge *bridge,
+>  static void dw_mipi_dsi_bridge_enable(struct drm_bridge *bridge)
+>  {
+>  	struct dw_mipi_dsi *dsi = bridge_to_dsi(bridge);
+> -	const struct dw_mipi_dsi_phy_ops *phy_ops = dsi->plat_data->phy_ops;
+>  
+>  	/* Switch to video mode for panel-bridge enable & panel enable */
+>  	dw_mipi_dsi_set_mode(dsi, MIPI_DSI_MODE_VIDEO);
+>  	if (dsi->slave)
+>  		dw_mipi_dsi_set_mode(dsi->slave, MIPI_DSI_MODE_VIDEO);
+> -
+> -	if (phy_ops->power_on)
+> -		phy_ops->power_on(dsi->plat_data->priv_data);
+>  }
+>  
+>  static enum drm_mode_status
+> 
 
-Ok, I've tested both interrupts with IRQ_TYPE_LEVEL_LOW and they still
-work. I'll let Rasmus re-send if there is no trouble with the dtsi
-patch. Sorry for the trouble and thanks for teaching me something new.
-
-Cheers,
--Vladimir
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
