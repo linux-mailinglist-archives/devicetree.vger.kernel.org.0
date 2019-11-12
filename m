@@ -2,379 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6FDEF931C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 15:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F22A9F9390
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 16:03:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727420AbfKLOvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 09:51:09 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:52550 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727394AbfKLOvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 09:51:09 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xACEp6vW098117;
-        Tue, 12 Nov 2019 08:51:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1573570266;
-        bh=NExSdKCWUJTypoMVmnkZw64WAdAPw9ouL0SwGsRb2fk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=tWQORNC5vFu9V1zrJN9+0+VwLYCDsaAIdRkhsNtzcHsWWFGKf6TP9AgZfwcXxPN+W
-         ZW/vf2NcBvclKFTXIHm6ODvKaRPryTv6keEMRIo5Qfln+Rxv58Z9iczPs3JTFllOSs
-         S/Ewou1EhHw3wUOCgoT2vAO9HOG+H4Py98qYRQgM=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xACEp514024388
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 12 Nov 2019 08:51:05 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 12
- Nov 2019 08:51:05 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 12 Nov 2019 08:50:48 -0600
-Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xACEokf6068428;
-        Tue, 12 Nov 2019 08:51:05 -0600
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Benoit Parrot <bparrot@ti.com>
-Subject: [RESEND Patch v3 20/20] dt-bindings: media: cal: convert binding to yaml
-Date:   Tue, 12 Nov 2019 08:53:47 -0600
-Message-ID: <20191112145347.23519-21-bparrot@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191112145347.23519-1-bparrot@ti.com>
-References: <20191112145347.23519-1-bparrot@ti.com>
+        id S1727063AbfKLPDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 10:03:09 -0500
+Received: from mx0a-002ab301.pphosted.com ([148.163.150.161]:49146 "EHLO
+        mx0a-002ab301.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726981AbfKLPDJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Nov 2019 10:03:09 -0500
+Received: from pps.filterd (m0118790.ppops.net [127.0.0.1])
+        by mx0a-002ab301.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xACEjSKI019901;
+        Tue, 12 Nov 2019 10:01:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=distech-controls.com; h=from : to :
+ cc : subject : date : message-id : references : in-reply-to : content-type
+ : content-transfer-encoding : mime-version; s=pps-02182019;
+ bh=MpmYh0mghqTbnm0vF83qL1K1KYBDcXpHQwM0k+CBEAY=;
+ b=RO+ORDMQYTn2sUQJZauD3n1iB38ok3VyCGyvfmdn6n7kJT4YEdqkTAWnL5/EsVnxWjLo
+ +SZ4+Rbek0jgpKQ+60exKKs5jZzC3LmElGi0k5FeDf57CwagaxErQg7A2oyO+ns01H93
+ UygFr9DrrmFMs0NhPRZJdN79HWKZXx+NVHPAgD5iZFuyu/sacpgjGByA+ZLvz16a7sNK
+ lYfvPeFXRsi2jOUPXL00G9rNwISevgyG3s7yHvFKVyeUm3pOm6DisIs73l1lIWDc+PgA
+ 49YHlPJ7hOMnLfx4UtJ0ddKhHTAuMMHFgwc/yY51DZUCSrEgLxlxkGfuitqnR6uemFK9 uA== 
+Received: from nam05-co1-obe.outbound.protection.outlook.com (mail-co1nam05lp2050.outbound.protection.outlook.com [104.47.48.50])
+        by mx0a-002ab301.pphosted.com with ESMTP id 2w7cv49052-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 12 Nov 2019 10:01:14 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G6LdZDFVy3Ttbr6OYWX88Cn8dqoGLsxdqvmyeod5G5k/lJt5ZcC4J0Et7MYFo1M3RxMm1RCpyY+lCcVaxtE/bhF9WFbPI8iVxpsCXpRthE2uMbsSPvx+Yi2ldzATgHZel6hONXR38lfetzXyzWaAbhld9efn5zf8Itpvl68sQE8g2QzDomAMX1hkz5SbSpcvzC27mOYh7Z8UF417ZWeW5vKHAv7ayu4OKxPqTg1gOtrsuQhy/hwQw3NJOZOQFn+0T0wZuDPHxSJlrrVCR0F1IUyV6/Jn/QhjyUJmCCfvQguoIjW+r0ixSgeW9jWJ1pKZAm21z+l/c6cXoj1EOu8sAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MpmYh0mghqTbnm0vF83qL1K1KYBDcXpHQwM0k+CBEAY=;
+ b=ak+zwrWRmVvYGhUUV4p11ItwKkt4SGir1+ywM41BZ6BP3UOEzwgVqb7stTsFgm4LakuQZEYp9fzzkczV7HMtM7pXBFsgv3UCcVe0TpAH4ZGEZ1e6OphrTFeCQpWmd188Pjuge5lwgS2nPWP3hKWgKRr4FD+3xlj5a5EJBGNxycRheKMTNBYOt4ZFNicsQsS3ilYtK+ItI3kcrTiPjSkyVDY7TvGje8QIOFe0i3DwIar9oEqq6lOPtxWIIKTaS64QsoMNSSpz3cq5UajZpwTNyiwHB8D75ZPczM8o5VQ32aMEYCgq1Spm/Uk/nbpQkyAZa20s3BFJJdGL4x/vPeBMuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=distech-controls.com; dmarc=pass action=none
+ header.from=distech-controls.com; dkim=pass header.d=distech-controls.com;
+ arc=none
+Received: from BL0PR01MB4835.prod.exchangelabs.com (20.177.147.211) by
+ BL0PR01MB4083.prod.exchangelabs.com (10.167.179.86) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2430.20; Tue, 12 Nov 2019 15:01:11 +0000
+Received: from BL0PR01MB4835.prod.exchangelabs.com
+ ([fe80::b00e:eb7:d585:5086]) by BL0PR01MB4835.prod.exchangelabs.com
+ ([fe80::b00e:eb7:d585:5086%6]) with mapi id 15.20.2430.027; Tue, 12 Nov 2019
+ 15:01:11 +0000
+From:   "Tremblay, Eric" <etremblay@distech-controls.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "corbet@lwn.net" <corbet@lwn.net>
+Subject: RE: [PATCH v7 1/2] dt-bindings: hwmon: Add TMP512/513
+Thread-Topic: [PATCH v7 1/2] dt-bindings: hwmon: Add TMP512/513
+Thread-Index: AQHVmM+QVZuvH6alYkaCtrsGmFXw6KeGuHGAgADoaYA=
+Date:   Tue, 12 Nov 2019 15:01:11 +0000
+Message-ID: <BL0PR01MB4835CDB5E9693A06F10012EF95770@BL0PR01MB4835.prod.exchangelabs.com>
+References: <20191111203445.27130-1-etremblay@distech-controls.com>
+ <20191111203445.27130-2-etremblay@distech-controls.com>
+ <20191112010345.GA19664@bogus>
+In-Reply-To: <20191112010345.GA19664@bogus>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mib-plugin: true
+x-originating-ip: [207.253.3.19]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 5aa6a1c0-cfa5-44ef-a296-08d7678127d7
+x-ms-traffictypediagnostic: BL0PR01MB4083:
+x-ms-exchange-purlcount: 3
+x-microsoft-antispam-prvs: <BL0PR01MB408350B45BD85641135F991095770@BL0PR01MB4083.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1388;
+x-forefront-prvs: 021975AE46
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(396003)(39860400002)(366004)(376002)(346002)(199004)(189003)(4326008)(6436002)(54906003)(9686003)(186003)(6916009)(53546011)(6246003)(102836004)(6506007)(478600001)(99286004)(446003)(7736002)(966005)(229853002)(26005)(11346002)(476003)(486006)(305945005)(74316002)(316002)(76176011)(55016002)(25786009)(86362001)(6306002)(14454004)(66946007)(256004)(33656002)(52536014)(7696005)(8936002)(76116006)(2906002)(66556008)(6116002)(5660300002)(14444005)(66066001)(3846002)(71190400001)(71200400001)(8676002)(81166006)(81156014)(66446008)(64756008)(66476007);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR01MB4083;H:BL0PR01MB4835.prod.exchangelabs.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:3;
+received-spf: None (protection.outlook.com: distech-controls.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 07nLd2y2+9CPi6wi5AO7PYkrc+UI2/P1qorBRZDZ+XxxQ/Wpo7y1SfJCuw80J/Fo63ONoJlnGg/nBK/+ZhJrX/xol0cfpfv+OYXgSA54PL4wjmw4IOl+vzAUFtrjbcBPEkN/7OnzEWio2w0akEZLeLgP10GAYVbenqd0CR27Ai7Rp7b1LQ5mGJl/CmMmzN6BCMoxXdR+tOx3KOIruWDfmD8eJBMdwA30nRwA+uxi8l7a8FEhqpwNsoIRp5f9QSRwykTQHwo9pEV5fxOBOz9HwvEYjH4mpWZqYXnceZ5N44ty4avIKtv9Oz+7UQiFfxPWxKrscg0rt75U5UJ/GFu4yzSDqaHiBZdJcymwcb9NdJKtfKolSNKYQfJFY9I+hD5J+iraTEzD+2Hf70Zwr986RXKV6JpNKEShcIUVMN1tnwxxYdRPH8col4eHRRSndQmE1ZeNYqRg9HezIix4Brpf6KK4zy7NLJO4SJ79BlgpPXk=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-OriginatorOrg: distech-controls.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5aa6a1c0-cfa5-44ef-a296-08d7678127d7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2019 15:01:11.1860
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: caadbe96-024e-4f67-82ec-fb28ff53d16d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FRJAabqyUd8WeUYgkx4HAeqLEwy5Vt35AYSTTmPv/moWKYPwSxJg4qOmKbBd/CCFgSef4JW2qza2ht+SFRBiNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR01MB4083
+X-Proofpoint-Processed: True
+X-Proofpoint-Spam-Details: rule=outbound_spam_notspam policy=outbound_spam score=0 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 mlxscore=0 adultscore=0 phishscore=0
+ impostorscore=0 clxscore=1011 lowpriorityscore=0 bulkscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-1911120132
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert ti-cal.txt to ti,cal.yaml.
-Add ti,cal.yaml to the MAINTAINERS file.
+> From: Rob Herring <robh@kernel.org>
+> Sent: Monday, November 11, 2019 8:04 PM
+> To: Tremblay, Eric <etremblay@distech-controls.com>
+> Cc: linux@roeck-us.net; linux-hwmon@vger.kernel.org; devicetree@vger.kern=
+el.org; linux-doc@vger.kernel.org;
+> jdelvare@suse.com; mark.rutland@arm.com; corbet@lwn.net
+> Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: Add TMP512/513
+>=20
+> On Mon, Nov 11, 2019 at 03:34:44PM -0500, etremblay@distech-controls.com =
+wrote:
+> > From: Eric Tremblay <etremblay@distech-controls.com>
+> >
+> > Document the TMP513/512 device devicetree bindings
+> >
+> > Signed-off-by: Eric Tremblay <etremblay@distech-controls.com>
+> > ---
+> >  .../devicetree/bindings/hwmon/ti,tmp513.yaml  | 89
+> > +++++++++++++++++++
+> >  1 file changed, 89 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
+> > b/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
+> > new file mode 100644
+> > index 000000000000..de4ed3645e0f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
+> > @@ -0,0 +1,89 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +
+> > +$id:
+> > +https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__devicetree.org_s=
+c
+> > +hemas_hwmon_ti-2Ctmp513.yaml-23&d=3DDwIBAg&c=3DtvvHx3uC0XdtgG-ImPDjfM0=
+Qna
+> > +kIsmmGcwejQDVxD-g&r=3Dy34zLl9_AvBy5NSrvskG6SFbiKoCzI99WW2xhKlsVV4&m=3D=
+sqT
+> > +mLsfhqAI5ubkZyE2FvNS0zZ42lJ4Xsiyf12MKPbI&s=3Dcqxgi-ff4mlqg1dH-w0rmoWT9=
+T
+> > +G9UEzI4jP4boAzSTQ&e=3D
+> > +$schema:
+> > +https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__devicetree.org_m=
+e
+> > +ta-2Dschemas_core.yaml-23&d=3DDwIBAg&c=3DtvvHx3uC0XdtgG-ImPDjfM0QnakIs=
+mmG
+> > +cwejQDVxD-g&r=3Dy34zLl9_AvBy5NSrvskG6SFbiKoCzI99WW2xhKlsVV4&m=3DsqTmLs=
+fhq
+> > +AI5ubkZyE2FvNS0zZ42lJ4Xsiyf12MKPbI&s=3DMFdE05g19en41dOAGudb8oQzrSKdBS_=
+5
+> > +uhKXoz3xbfM&e=3D
+> > +
+> > +title: TMP513/512 system monitor sensor
+> > +
+> > +maintainers:
+> > +  - Eric Tremblay <etremblay@distech-controls.com>
+> > +
+> > +description: |
+> > +  This driver implements support for Texas Instruments TMP512, and TMP=
+513.
+> > +  The TMP512 (dual-channel) and TMP513 (triple-channel) are system
+> > +monitors
+> > +  that include remote sensors, a local temperature sensor, and a
+> > +high-side
+> > +  current shunt monitor. These system monitors have the capability of
+> > +measuring
+> > +  remote temperatures, on-chip temperatures, and system
+> > +voltage/power/current
+> > +  consumption.
+> > +
+> > +  Datasheets:
+> > +
+> > + https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__www.ti.com_lit_=
+g
+> > + pn_tmp513&d=3DDwIBAg&c=3DtvvHx3uC0XdtgG-ImPDjfM0QnakIsmmGcwejQDVxD-g&=
+r=3Dy
+> > + 34zLl9_AvBy5NSrvskG6SFbiKoCzI99WW2xhKlsVV4&m=3DsqTmLsfhqAI5ubkZyE2FvN=
+S
+> > + 0zZ42lJ4Xsiyf12MKPbI&s=3DaRuMhzI-UQfQORXhmK3OaA7UZ_6segIbgQ4k5SoKF0E&=
+e
+> > + =3D
+> > + https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__www.ti.com_lit_=
+g
+> > + pn_tmp512&d=3DDwIBAg&c=3DtvvHx3uC0XdtgG-ImPDjfM0QnakIsmmGcwejQDVxD-g&=
+r=3Dy
+> > + 34zLl9_AvBy5NSrvskG6SFbiKoCzI99WW2xhKlsVV4&m=3DsqTmLsfhqAI5ubkZyE2FvN=
+S
+> > + 0zZ42lJ4Xsiyf12MKPbI&s=3DmMNKG3dkkscHl5e73jC-ESFBdu05NhcCuJ-Pfpwls7E&=
+e
+> > + =3D
+> > +
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,tmp512
+> > +      - ti,tmp513
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  shunt-resistor-micro-ohms:
+> > +    description: |
+> > +      If 0, the calibration process will be skiped and the current and=
+ power
+> > +      measurement engine will not work. Temperature and voltage measur=
+ement
+> > +      will continue to work. The shunt value also need to respect:
+> > +      rshunt <=3D pga-gain * 40 * 1000 * 1000.
+> > +      If not, it's not possible to compute a valid calibration value.
+> > +    default: 1000
+> > +
+> > +  ti,pga-gain:
+> > +    description: |
+> > +      The gain value for the PGA function. This is 8, 4, 2 or 1.
+> > +      The PGA gain affect the shunt voltage range.
+> > +      The range will be equal to: pga-gain * 40mV
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [1, 2, 4, 8]
+> > +    default: 8
+> > +
+> > +  ti,bus-range-microvolt:
+> > +    description: |
+> > +      This is the operating range of the bus voltage in microvolt
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [16000000, 32000000]
+> > +    default: 32000000
+> > +
+> > +  ti,nfactor:
+> > +    description: |
+> > +      Array of three(TMP513) or two(TMP512) n-Factor value for each re=
+mote
+> > +      temperature channel.
+> > +      See datasheet Table 11 for n-Factor range list and value interpr=
+etation.
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#definitions/uint8-array
+> > +      - minItems: 2
+> > +        maxItems: 3
+> > +        items:
+> > +          default: 0
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+>=20
+> 'make dt_binding_check' fails. You need #address-cells and #size-cells in=
+ here:
+>=20
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dts:20.17-30: W=
+arning (reg_format): /example-
+> 0/i2c/tmp513@5c:reg: property has invalid length (4 bytes) (#address-cell=
+s =3D=3D 2, #size-cells =3D=3D 1)
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dt.yaml: Warnin=
+g (pci_device_bus_num): Failed prerequisite
+> 'reg_format'
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dts:17.5-26.11:=
+ Warning (i2c_bus_bridge): /example-0/i2c: incorrect
+> #address-cells for I2C bus
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dts:17.5-26.11:=
+ Warning (i2c_bus_bridge): /example-0/i2c: incorrect
+> #size-cells for I2C bus
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dt.yaml: Warnin=
+g (i2c_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dt.yaml: Warnin=
+g (i2c_bus_reg): Failed prerequisite 'i2c_bus_bridge'
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dt.yaml: Warnin=
+g (spi_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dts:18.23-25.15=
+:
+> Warning (avoid_default_addr_size): /example-0/i2c/tmp513@5c: Relying on d=
+efault #address-cells value
+> Documentation/devicetree/bindings/hwmon/ti,tmp513.example.dts:18.23-25.15=
+: Warning (avoid_default_addr_size): /example-
+> 0/i2c/tmp513@5c: Relying on default #size-cells value
 
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
----
- .../devicetree/bindings/media/ti,cal.yaml     | 202 ++++++++++++++++++
- .../devicetree/bindings/media/ti-cal.txt      |  81 -------
- MAINTAINERS                                   |   1 +
- 3 files changed, 203 insertions(+), 81 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/ti,cal.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/ti-cal.txt
+Sorry I was confused a little by the documentation. I did not saw that I co=
+uld run `make dt_binding_check' on a single file.
 
-diff --git a/Documentation/devicetree/bindings/media/ti,cal.yaml b/Documentation/devicetree/bindings/media/ti,cal.yaml
-new file mode 100644
-index 000000000000..1ea784179536
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/ti,cal.yaml
-@@ -0,0 +1,202 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/ti,cal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments DRA72x CAMERA ADAPTATION LAYER (CAL) Device Tree Bindings
-+
-+maintainers:
-+  - Benoit Parrot <bparrot@ti.com>
-+
-+description: |-
-+  The Camera Adaptation Layer (CAL) is a key component for image capture
-+  applications. The capture module provides the system interface and the
-+  processing capability to connect CSI2 image-sensor modules to the
-+  DRA72x device.
-+
-+  CAL supports 2 camera port nodes on MIPI bus. Each CSI2 camera port nodes
-+  should contain a 'port' child node with child 'endpoint' node. Please
-+  refer to the bindings defined in
-+  Documentation/devicetree/bindings/media/video-interfaces.txt.
-+
-+properties:
-+  compatible:
-+    enum:
-+      # for DRA72 controllers
-+      - ti,dra72-cal
-+      # for DRA72 controllers pre ES2.0
-+      - ti,dra72-pre-es2-cal
-+      # for DRA76 controllers
-+      - ti,dra76-cal
-+      # for AM654 controllers
-+      - ti,am654-cal
-+
-+  reg:
-+    minItems: 2
-+    items:
-+      - description: The CAL main register region
-+      - description: The RX Core0 (DPHY0) register region
-+      - description: The RX Core1 (DPHY1) register region
-+
-+  reg-names:
-+    minItems: 2
-+    items:
-+      - const: cal_top
-+      - const: cal_rx_core0
-+      - const: cal_rx_core1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,camerrx-control:
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    description:
-+      phandle to the device control module and offset to the
-+      control_camerarx_core register
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: fck
-+
-+  power-domains:
-+    description:
-+      List of phandle and PM domain specifier as documented in
-+      Documentation/devicetree/bindings/power/power_domain.txt
-+    maxItems: 1
-+
-+  # See ./video-interfaces.txt for details
-+  ports:
-+    type: object
-+    additionalProperties: false
-+
-+    properties:
-+      "#address-cells":
-+        const: 1
-+
-+      "#size-cells":
-+        const: 0
-+
-+      port@0:
-+        type: object
-+        additionalProperties: false
-+
-+        properties:
-+          reg:
-+            const: 0
-+            description: CSI2 Port #0
-+
-+        patternProperties:
-+          endpoint:
-+            type: object
-+            additionalProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+              remote-endpoint: true
-+
-+        required:
-+          - reg
-+
-+      port@1:
-+        type: object
-+        additionalProperties: false
-+
-+        properties:
-+          reg:
-+            const: 1
-+            description: CSI2 Port #1
-+
-+        patternProperties:
-+          endpoint:
-+            type: object
-+            additionalProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+              remote-endpoint: true
-+
-+        required:
-+          - reg
-+
-+    required:
-+      - "#address-cells"
-+      - "#size-cells"
-+      - port@0
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - ti,camerrx-control
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    cal: cal@4845b000 {
-+        compatible = "ti,dra72-cal";
-+        reg = <0x4845B000 0x400>,
-+              <0x4845B800 0x40>,
-+              <0x4845B900 0x40>;
-+        reg-names = "cal_top",
-+                    "cal_rx_core0",
-+                    "cal_rx_core1";
-+        interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+        ti,camerrx-control = <&scm_conf 0xE94>;
-+
-+        ports {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+
-+              csi2_0: port@0 {
-+                    reg = <0>;
-+                    csi2_phy0: endpoint {
-+                           remote-endpoint = <&csi2_cam0>;
-+                           clock-lanes = <0>;
-+                           data-lanes = <1 2>;
-+                    };
-+              };
-+        };
-+    };
-+
-+    i2c5: i2c@4807c000 {
-+        clock-frequency = <400000>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        camera-sensor@3c {
-+               compatible = "ovti,ov5640";
-+               reg = <0x3c>;
-+
-+               clocks = <&clk_ov5640_fixed>;
-+               clock-names = "xclk";
-+
-+               port {
-+                    csi2_cam0: endpoint {
-+                            remote-endpoint = <&csi2_phy0>;
-+                            clock-lanes = <0>;
-+                            data-lanes = <1 2>;
-+                    };
-+               };
-+        };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/media/ti-cal.txt b/Documentation/devicetree/bindings/media/ti-cal.txt
-deleted file mode 100644
-index 2deb256e7032..000000000000
---- a/Documentation/devicetree/bindings/media/ti-cal.txt
-+++ /dev/null
-@@ -1,81 +0,0 @@
--Texas Instruments DRA72x CAMERA ADAPTATION LAYER (CAL)
--------------------------------------------------------
--
--The Camera Adaptation Layer (CAL) is a key component for image capture
--applications. The capture module provides the system interface and the
--processing capability to connect CSI2 image-sensor modules to the
--DRA72x device.
--
--Required properties:
--- compatible:
-- Should be "ti,dra72-cal", for DRA72 controllers
-- Should be "ti,dra72-pre-es2-cal", for DRA72 controllers pre ES2.0
-- Should be "ti,dra76-cal", for DRA76 controllers
-- Should be "ti,am654-cal", for AM654 controllers
--- reg:	CAL Top level, Receiver Core #0, Receiver Core #1 and Camera RX
--	control address space
--- reg-names: cal_top, cal_rx_core0, cal_rx_core1 and camerrx_control
--	     registers
--- interrupts: should contain IRQ line for the CAL;
--- ti,camerrx-control: phandle to the device control module and offset to
--		      the control_camerarx_core register.
--		      This node is meant to replace the "camerrx_control"
--		      reg entry above but "camerrx_control" is still
--		      handled for backward compatibility.
--
--CAL supports 2 camera port nodes on MIPI bus. Each CSI2 camera port nodes
--should contain a 'port' child node with child 'endpoint' node. Please
--refer to the bindings defined in
--Documentation/devicetree/bindings/media/video-interfaces.txt.
--
--Example:
--	cal: cal@4845b000 {
--		compatible = "ti,dra72-cal";
--		reg = <0x4845B000 0x400>,
--		      <0x4845B800 0x40>,
--		      <0x4845B900 0x40>;
--		reg-names = "cal_top",
--			    "cal_rx_core0",
--			    "cal_rx_core1";
--		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
--		ti,camerrx-control = <&scm_conf 0xE94>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			csi2_0: port@0 {
--				reg = <0>;
--				csi2_phy0: endpoint {
--					remote-endpoint = <&csi2_cam0>;
--					clock-lanes = <0>;
--					data-lanes = <1 2>;
--				};
--			};
--			csi2_1: port@1 {
--				reg = <1>;
--			};
--		};
--	};
--
--	i2c5: i2c@4807c000 {
--		clock-frequency = <400000>;
--
--		camera-sensor@3c {
--			compatible = "ovti,ov5640";
--			reg = <0x3c>;
--
--			clocks = <&clk_fixed>;
--			clock-names = "xclk";
--
--			port {
--				csi2_cam0: endpoint {
--					remote-endpoint = <&csi2_phy0>;
--					clock-lanes = <0>;
--					data-lanes = <1 2>;
--				};
--			};
--		};
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 37a977cbac6f..909961cff0fd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16324,6 +16324,7 @@ Q:	http://patchwork.linuxtv.org/project/linux-media/list/
- S:	Maintained
- F:	drivers/media/platform/ti-vpe/
- F:	Documentation/devicetree/bindings/media/ti,vpe.yaml
-+	Documentation/devicetree/bindings/media/ti,cal.yaml
- 
- TI WILINK WIRELESS DRIVERS
- L:	linux-wireless@vger.kernel.org
--- 
-2.17.1
+I ran it on my tree and it gives me a warning on another file. I wrongly as=
+sume that it ran all over the tree.
 
+I`ll fix those issue.
+
+Thanks
+>=20
+> > +        tmp513@5c {
+> > +            compatible =3D "ti,tmp513";
+> > +            reg =3D <0x5C>;
+> > +            shunt-resistor-micro-ohms =3D <330000>;
+> > +            ti,bus-range-microvolt =3D <32000000>;
+> > +            ti,pga-gain =3D <8>;
+> > +            ti,nfactor =3D [01 F3 00];
+> > +        };
+> > +    };
+> > --
+> > 2.17.1
+> >
