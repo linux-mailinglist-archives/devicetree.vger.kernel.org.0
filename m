@@ -2,115 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2283FF8C66
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 11:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E93FF8CA0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 11:18:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725954AbfKLKDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 05:03:06 -0500
-Received: from regular1.263xmail.com ([211.150.70.195]:33194 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725834AbfKLKDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 05:03:06 -0500
-Received: from localhost (unknown [192.168.167.235])
-        by regular1.263xmail.com (Postfix) with ESMTP id 070C5BCF;
-        Tue, 12 Nov 2019 18:02:55 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [192.168.60.65] (unknown [103.29.142.67])
-        by smtp.263.net (postfix) whith ESMTP id P3849T140143446607616S1573552957842936_;
-        Tue, 12 Nov 2019 18:02:54 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <3042783e90e705440e20c31947d337db>
-X-RL-SENDER: kever.yang@rock-chips.com
-X-SENDER: yk@rock-chips.com
-X-LOGIN-NAME: kever.yang@rock-chips.com
-X-FST-TO: akash@openedev.com
-X-SENDER-IP: 103.29.142.67
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-Subject: Re: [PATCH 3/3] arm64: dts: rk3399: Add init voltage for vdd_log
-To:     Markus Reichl <m.reichl@fivetechno.de>, Soeren Moch <smoch@web.de>,
-        heiko@sntech.de
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Andrius_=c5=a0tikonas?= <andrius@stikonas.eu>,
-        linux-kernel@vger.kernel.org, Alexis Ballier <aballier@gentoo.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Andy Yan <andyshrk@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vicente Bergas <vicencb@gmail.com>,
-        Oskari Lemmela <oskari@lemmela.net>,
-        linux-rockchip@lists.infradead.org,
+        id S1725874AbfKLKSR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 05:18:17 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:39116 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725834AbfKLKSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 05:18:17 -0500
+Received: by mail-lj1-f194.google.com with SMTP id p18so17140249ljc.6
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2019 02:18:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rasmusvillemoes.dk; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7Xgtqaq5OYEXrCsRgCNIoFMf/+WJUCVEYKYpGpS7YU8=;
+        b=QQBueBwfI/a7fkqzDqYfGKTiu/1xAnqYnlus26HLvfFunwYj6bVpWCIUI8G9tbxOZi
+         53A+CrzFDXdVTfm2YM+t4ZgqfN4vN62YPnOckvmvKqDqSY2Uq6Pr7JABpzrQG0N5BQmz
+         CAXucylRYS/kztC3mymlfEvuOJeGfdHbfQeG8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7Xgtqaq5OYEXrCsRgCNIoFMf/+WJUCVEYKYpGpS7YU8=;
+        b=ExqwCbB5rf+K+9ZE23s9t8beCUc5ZZdvpER+oynMyr0tkpYgtNPs8XG3lJbjuDSqJn
+         ns9pkX4BZ/b2klW7XDInumCkvPIpKVNFeMKw8TjE9uWhrDH/0bidb+f2BuCkNNmvr4Hr
+         mUjUrSt0+jPa7c2ppS9w6eclz1mEQN2S5+9SROvKm+aBBlEf1ARBULPPzPMCh5tWknyM
+         UZE/vGqWNDdgCOIyR9p3KXE3sj1WoYqQXNCDLlsEBn+nFxMuyfdVHUdMQ6bfwFBIFv25
+         /j54m+PnOIFNCJA/e5+j3hcDrc5VC0Fd/jVRygFykAbT0ERpNxuYNRH9VfjMDzDZ/Jaf
+         jb+A==
+X-Gm-Message-State: APjAAAUuTKK58YbPV3R9ZUYI9/VaualxBMTqfnohRwd3LQZlhhIyWjHC
+        d7sj6Fw1M2zqEjR/gY0uKB4sXQ==
+X-Google-Smtp-Source: APXvYqxpqr5aC5YVuq0isONYu2VTTVwq6M2eWXZo2QouyL+jPA+MxTDE/jtPVwzrkEaBAVG9irXCjA==
+X-Received: by 2002:a2e:9b4b:: with SMTP id o11mr19808666ljj.252.1573553894776;
+        Tue, 12 Nov 2019 02:18:14 -0800 (PST)
+Received: from [172.16.11.28] ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id a18sm8340189ljp.33.2019.11.12.02.18.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 12 Nov 2019 02:18:14 -0800 (PST)
+Subject: Re: [PATCH v7 0/2] Add support for Layerscape external interrupt
+ lines
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Pragnesh Patel <Pragnesh_Patel@mentor.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Nick Xie <nick@khadas.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Akash Gajjar <akash@openedev.com>
-References: <20191111005158.25070-1-kever.yang@rock-chips.com>
- <20191111005158.25070-3-kever.yang@rock-chips.com>
- <ef8830f3-10d1-7b71-0e18-232f2eaeef2d@web.de>
- <1eaef5d5-c923-da56-b9c4-48d517b3c969@rock-chips.com>
- <acbab893-9e9a-cfe1-67bf-a9e2b2e50114@fivetechno.de>
-From:   Kever Yang <kever.yang@rock-chips.com>
-Message-ID: <17e14b30-02ee-2379-8891-088677924479@rock-chips.com>
-Date:   Tue, 12 Nov 2019 18:02:37 +0800
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Vladimir Oltean <olteanv@gmail.com>
+References: <20191107122115.6244-1-linux@rasmusvillemoes.dk>
+ <ea802f081d1f1d4c5359707ff4553004@www.loen.fr>
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Message-ID: <184b684a-7712-a280-fdc2-83d7abd3cbd4@rasmusvillemoes.dk>
+Date:   Tue, 12 Nov 2019 11:18:12 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <acbab893-9e9a-cfe1-67bf-a9e2b2e50114@fivetechno.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <ea802f081d1f1d4c5359707ff4553004@www.loen.fr>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Markus,
+On 11/11/2019 11.24, Marc Zyngier wrote:
+> On 2019-11-07 13:30, Rasmus Villemoes wrote:
 
+>> Rasmus Villemoes (2):
+>>   dt/bindings: Add bindings for Layerscape external irqs
+>>   irqchip: add support for Layerscape external interrupt lines
+>>
+>>  .../interrupt-controller/fsl,ls-extirq.txt    |  49 +++++
+>>  drivers/irqchip/Kconfig                       |   4 +
+>>  drivers/irqchip/Makefile                      |   1 +
+>>  drivers/irqchip/irq-ls-extirq.c               | 197 ++++++++++++++++++
+>>  4 files changed, 251 insertions(+)
+>>  create mode 100644
+>>
+>> Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.txt
+>>  create mode 100644 drivers/irqchip/irq-ls-extirq.c
+> 
+> Applied to irqchip-next.
 
-On 2019/11/12 下午4:16, Markus Reichl wrote:
-> Hi Kever,
->
-> have a rk3399-roc-pc running mainline U-Boot and kernel and vdd_log is
-> showing 1118 mV.
+Thanks! Can I assume that branch doesn't get rebased so 87cd38dfd9e6 is
+a stable SHA1? I want to send a patch adding the node to ls1021a.dtsi,
+and I hope not to have to wait another release cycle.
 
-The rk3399-roc-pc have the same vdd_log circuit in schematic, so it 
-should like the patch 1/3 of
-
-this patch set.
-
-I don't understand who is setting this value, maybe the default value 
-without pwm regulator enabled?
-
-> Is this a danger for the board?
-> How to fix it?
-
-The best way is to set correct min/max microvolt of the 
-regulator(measure with PWM output low and high),
-
-(note that if  no driver touch the regulator, the PWM is default input, 
-not output;)
-
-and set a init-microvolt for U-Boot driver, and I think no kernel driver 
-touch this regulator now.
-
-
-Thanks,
-
-- Kever
-
-> Btw. vin-supply for this pwm-regulator is ignored and I could not find it
-> in bindings doc.
->
-> Gruß,
-
-
+Rasmus
