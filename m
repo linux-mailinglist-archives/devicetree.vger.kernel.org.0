@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9456F94D6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 16:56:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6194F94F6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 17:00:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726896AbfKLP4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 10:56:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51814 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726659AbfKLP4I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Nov 2019 10:56:08 -0500
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 40B05214E0
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2019 15:56:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573574167;
-        bh=8F20L3QJFTsavDdGfHLvf78nXRQXyUPKzvqP5z0wscM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ir7JfamXGWDwLcVwZaOeQl+axECHrhKvs3+rqFimfuBJmPmA/EMvy7fIzy28YVq8o
-         yA8E8jQxqqqE5VSvoXI8NhteN7yWgTkPpq2nLu98wHhVoFk8WA6FQdAvWQH0gIeVgh
-         nMjH3AqVzN5vd+9KCYaYillS42qoaBy3XKQGjbNI=
-Received: by mail-qk1-f170.google.com with SMTP id q70so14831759qke.12
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2019 07:56:07 -0800 (PST)
-X-Gm-Message-State: APjAAAX89BiF0zAiwgaiazGgE5oVhTrd9H/Z+lZMOWjujYAkS/WzGzxC
-        E+ZJXBUm4Sju6xKoPpv1NCJB+IpA51Gd67ClHg==
-X-Google-Smtp-Source: APXvYqzGPcXQTYDIwyrSGjxgXO8rgauszeUH/CJr2fC6c0UiXAiS67QLfaU4dKl5UZQ3hQyytHW1whhELOX88nJCzps=
-X-Received: by 2002:a05:620a:226:: with SMTP id u6mr6231925qkm.393.1573574166389;
- Tue, 12 Nov 2019 07:56:06 -0800 (PST)
+        id S1726738AbfKLP7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 10:59:40 -0500
+Received: from mx2.suse.de ([195.135.220.15]:56904 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725954AbfKLP7k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Nov 2019 10:59:40 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id E801CB3BC;
+        Tue, 12 Nov 2019 15:59:37 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     andrew.murray@arm.com, maz@kernel.org, linux-kernel@vger.kernel.org
+Cc:     james.quinlan@broadcom.com, mbrugger@suse.com,
+        f.fainelli@gmail.com, phil@raspberrypi.org, wahrenst@gmx.net,
+        jeremy.linton@arm.com,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-rdma@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        iommu@lists.linux-foundation.org
+Subject: [PATCH v2 0/6] Raspberry Pi 4 PCIe support
+Date:   Tue, 12 Nov 2019 16:59:19 +0100
+Message-Id: <20191112155926.16476-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-References: <20191111172142.ozczh7j2gmzi7o5k@linutronix.de>
- <CAL_JsqLecYPGGP8grE7sUgD1ZBYeVhuqX_sOT_9Rw1LM1yhSmw@mail.gmail.com> <20191112091032.aa23wd24j4b324kw@linutronix.de>
-In-Reply-To: <20191112091032.aa23wd24j4b324kw@linutronix.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 12 Nov 2019 09:55:55 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+Rfguea+KO0kLKom=8t_oCnesT8cb833Y0fhsbu_a1Cg@mail.gmail.com>
-Message-ID: <CAL_Jsq+Rfguea+KO0kLKom=8t_oCnesT8cb833Y0fhsbu_a1Cg@mail.gmail.com>
-Subject: Re: [PATCH] of: allocate / free phandle cache outside of the devtree_lock
-To:     Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 12, 2019 at 3:10 AM Sebastian Andrzej Siewior
-<bigeasy@linutronix.de> wrote:
->
-> On 2019-11-11 21:35:35 [-0600], Rob Herring wrote:
-> > >    28d0e36bf9686 ("OF: Fixup resursive locking code paths")
-> > >    d6d3c4e656513 ("OF: convert devtree lock from rw_lock to raw spinlock")
-> >
-> > So to summarize, we changed mainline to fix RT which then broke RT. :)
->
-> correct, but we were good until v4.17-rc1 :)
->
-> > > I've been looking into making devtree_lock a spinlock_t which would
-> > > avoid this patch. I haven't seen an issue during boot on arm64 even
-> > > with hotplug.
-> >
-> > Did you look into using RCU reader locks any more?
->
-> A little bit. The writers, which modify the node, would need to replace
-> the whole node. So this is where things got a little complicated.
+This series aims at providing support for Raspberry Pi 4's PCIe
+controller, which is also shared with the Broadcom STB family of
+devices.
 
-Why is that exactly? That's pretty much how node and property updates
-work anyways though maybe not strictly enforced. The other updates are
-atomic flags and ref counts which I assume are fine. The spinlock
-protects traversing the tree of nodes and list of properties.
-Traversing and updates would need to follow similar semantics as
-rculist, right? BTW, there's been some thoughts to move node and
-property lists to list_head. We may want to do that rather than trying
-to roll our own RCU code.
+There was a previous attempt to upstream this some years ago[1] but was
+blocked as most STB PCIe integrations have a sparse DMA mapping[2] which
+is something currently not supported by the kernel.  Luckily this is not
+the case for the Raspberry Pi 4.
 
-> Frank wasn't a big fan of it back then and he still wasn't a few weeks
-> back.
+Note that the driver code is to be based on top of Rob Herring's series
+simplifying inbound and outbound range parsing.
 
-I guess you spoke at ELCE. RCU seems like the right locking to me as
-we're almost entirely reads and I haven't seen another proposal.
+[1] https://patchwork.kernel.org/cover/10605933/
+[2] https://patchwork.kernel.org/patch/10605957/
 
-> If you two agree to prefer RCU over this patch then I would look more
-> into adding RCU into the lookup path. The argument was that this isn't
-> time critical. I'm just trying to avoid to replace the locking for
-> nothing.
-> So, should I come up with a RCU patch?
+---
 
-Lets see what Frank says first.
+Changes since v1:
+  - add generic rounddown/roundup_pow_two64() patch
+  - Add MAINTAINERS patch
+  - Fix Kconfig
+  - Cleanup probe, use up to date APIs, exit on MSI failure
+  - Get rid of linux,pci-domain and other unused constructs
+  - Use edge triggered setup for MSI
+  - Cleanup MSI implementation
+  - Fix multiple cosmetic issues
+  - Remove supend/resume code
 
-While this patch is a bit of a band-aid, I don't think it complicates
-the situation at all to prevent coming up with a better solution. The
-other option is get rid of the memory allocation altogether. My
-preference for the cache was a simpler solution that was truly a cache
-(i.e. a fixed size that could miss). The performance wasn't quite as
-good though.
+Jim Quinlan (3):
+  dt-bindings: PCI: Add bindings for brcmstb's PCIe device
+  PCI: brcmstb: add Broadcom STB PCIe host controller driver
+  PCI: brcmstb: add MSI capability
 
-Rob
+Nicolas Saenz Julienne (3):
+  linux/log2.h: Add roundup/rounddown_pow_two64() family of functions
+  ARM: dts: bcm2711: Enable PCIe controller
+  MAINTAINERS: Add brcmstb PCIe controller
+
+ .../bindings/pci/brcm,stb-pcie.yaml           |  110 ++
+ MAINTAINERS                                   |    4 +
+ arch/arm/boot/dts/bcm2711.dtsi                |   46 +
+ drivers/net/ethernet/mellanox/mlx4/en_clock.c |    3 +-
+ drivers/pci/controller/Kconfig                |    9 +
+ drivers/pci/controller/Makefile               |    1 +
+ drivers/pci/controller/pcie-brcmstb.c         | 1179 +++++++++++++++++
+ drivers/pci/controller/pcie-cadence-ep.c      |    7 +-
+ drivers/pci/controller/pcie-cadence.c         |    7 +-
+ drivers/pci/controller/pcie-rockchip-ep.c     |    9 +-
+ include/linux/log2.h                          |   52 +
+ kernel/dma/direct.c                           |    3 +-
+ 12 files changed, 1412 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+ create mode 100644 drivers/pci/controller/pcie-brcmstb.c
+
+-- 
+2.24.0
+
