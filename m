@@ -2,89 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89565F9A37
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 21:05:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C76F9A81
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 21:23:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726923AbfKLUFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 15:05:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55876 "EHLO mail.kernel.org"
+        id S1726973AbfKLUXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 15:23:00 -0500
+Received: from mga12.intel.com ([192.55.52.136]:23533 "EHLO mga12.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726008AbfKLUFd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Nov 2019 15:05:33 -0500
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 261A421872;
-        Tue, 12 Nov 2019 20:05:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573589132;
-        bh=Snz++UdcsaVDqtyqzKDLVJnVYN3dmVpXMHJ3jUKP5IY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vYvIjyxkX5Zo8smdNu3bWGbERygoEFwwa6KXjuXfQq+TRCeAWsmEJn1F8txa55XNl
-         dcJm4I7iUpp3pdW1mO1EXGRS1dC5mvoij3dl3829qiouhIb/BOWR7tZJJ0XfhQKzdh
-         RpvjGbVD5r2n9ALYNjdqHeXzOjS8r6oIv9wTYj5U=
-Date:   Tue, 12 Nov 2019 21:05:29 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Torsten Duwe <duwe@lst.de>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/bridge: fix anx6345 compilation for v5.5
-Message-ID: <20191112200529.GD4345@gilmour.lan>
-References: <20191112175940.GA13539@lst.de>
+        id S1726958AbfKLUXA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Nov 2019 15:23:00 -0500
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 12 Nov 2019 12:22:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,297,1569308400"; 
+   d="scan'208";a="194443228"
+Received: from joshbuck-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.20.68])
+  by orsmga007.jf.intel.com with ESMTP; 12 Nov 2019 12:22:49 -0800
+Date:   Tue, 12 Nov 2019 22:22:47 +0200
+From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+To:     amirmizi6@gmail.com
+Cc:     Eyal.Cohen@nuvoton.com, oshrialkoby85@gmail.com,
+        alexander.steffen@infineon.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        ayna@linux.vnet.ibm.com, Dan.Morav@nuvoton.com,
+        oren.tanami@nuvoton.com, shmulik.hagar@nuvoton.com,
+        amir.mizinski@nuvoton.com
+Subject: Re: [PATCH v1 2/5] char: tpm: Add check_data handle to
+ tpm_tis_phy_ops in order to check data integrity
+Message-ID: <20191112202247.GA12877@linux.intel.com>
+References: <20191110162137.230913-1-amirmizi6@gmail.com>
+ <20191110162137.230913-3-amirmizi6@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="K3iCROrs1P5jLO0B"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191112175940.GA13539@lst.de>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20191110162137.230913-3-amirmizi6@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Nov 10, 2019 at 06:21:34PM +0200, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
+> 
+> The current principles:
+> - When sending command:
+> 1. Host writes TPM_STS.commandReady
+> 2. Host writes command
+> 3. Host checks TPM received data correctly
+> 4. if not go to step 1
 
---K3iCROrs1P5jLO0B
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+You are probably talking about steps, right?
 
-On Tue, Nov 12, 2019 at 06:59:40PM +0100, Torsten Duwe wrote:
->
-> The anx6345 driver originally was copied from anx78xx.c, which has meanwhile
-> seen a few changes. In particular, the removal of drm_dp_link helpers and the
-> discontinuation to include drm_bridge.h from drm_crtc.h breaks compilation
-> in linux-5.5. Apply equivalents of these changes to anx6345.c.
->
-> Signed-off-by: Torsten Duwe <duwe@suse.de>
->
-> ---
+Please check the grammar and punctation e.g. "The current steps are
+roughly done when sending a command".
 
-I've pushed that fix, but it still doesn't compile on x86. I'm
-guessing you're missing a depends on OF in the Kconfig option.
+> - When receiving data:
+> 1. Host check TPM_STS.dataAvail is set
+> 2. Host get data
+> 3. Host check received data are correct.
+> 4. if not Host write TPM_STS.responseRetry and go to step 1.
+> 
+> this commit is based on previous work by Christophe Richard
 
-Maxime
+Sentences in English start with a capital letter and end with a full
+stop.
 
---K3iCROrs1P5jLO0B
-Content-Type: application/pgp-signature; name="signature.asc"
+This is completely lacking the description what the commit does.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXcsQiQAKCRDj7w1vZxhR
-xfxeAQCbVisRTcE1Ce3PVDIcGzEUIJUMob4fd21aFdLYVx1lNQD+JpvMUuRpM4sh
-Juw/GRayY3iQ60DmSudqv+xFhRjsMAk=
-=+el9
------END PGP SIGNATURE-----
-
---K3iCROrs1P5jLO0B--
+/Jarkko
