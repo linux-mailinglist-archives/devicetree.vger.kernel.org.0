@@ -2,18 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BBB7F8A34
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 09:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD09F8A27
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 09:10:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725811AbfKLIM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 03:12:28 -0500
-Received: from regular1.263xmail.com ([211.150.70.205]:53274 "EHLO
+        id S1725775AbfKLIKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 03:10:39 -0500
+Received: from regular1.263xmail.com ([211.150.70.205]:51744 "EHLO
         regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725775AbfKLIM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 03:12:28 -0500
+        with ESMTP id S1725283AbfKLIKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 03:10:39 -0500
+X-Greylist: delayed 313 seconds by postgrey-1.27 at vger.kernel.org; Tue, 12 Nov 2019 03:10:34 EST
 Received: from localhost (unknown [192.168.165.103])
-        by regular1.263xmail.com (Postfix) with ESMTP id 4ACCB3F3;
-        Tue, 12 Nov 2019 16:05:07 +0800 (CST)
+        by regular1.263xmail.com (Postfix) with ESMTP id 19ABB3F8;
+        Tue, 12 Nov 2019 16:10:32 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
@@ -21,10 +22,10 @@ X-ANTISPAM-LEVEL: 2
 X-SKE-CHECKED: 1
 X-ABS-CHECKED: 1
 Received: from [192.168.60.65] (unknown [103.29.142.67])
-        by smtp.263.net (postfix) whith ESMTP id P28956T140214521083648S1573545889847809_;
-        Tue, 12 Nov 2019 16:05:05 +0800 (CST)
+        by smtp.263.net (postfix) whith ESMTP id P28956T140214120982272S1573546217072329_;
+        Tue, 12 Nov 2019 16:10:25 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <a1e7a1b6f9fa5cb3f53851fe515b3e1c>
+X-UNIQUE-TAG: <2dae6d66972adefe869be260d0fd7220>
 X-RL-SENDER: kever.yang@rock-chips.com
 X-SENDER: yk@rock-chips.com
 X-LOGIN-NAME: kever.yang@rock-chips.com
@@ -32,38 +33,25 @@ X-FST-TO: linux-kernel@vger.kernel.org
 X-SENDER-IP: 103.29.142.67
 X-ATTACHMENT-NUM: 0
 X-DNS-TYPE: 0
-Subject: Re: [PATCH 3/3] arm64: dts: rk3399: Add init voltage for vdd_log
-To:     Soeren Moch <smoch@web.de>, heiko@sntech.de
-Cc:     linux-rockchip@lists.infradead.org,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
+Subject: Re: [PATCH 2/3] arm64: dts: rk3399-rock960: add vdd_log
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     heiko@sntech.de, linux-rockchip@lists.infradead.org,
         Akash Gajjar <akash@openedev.com>,
-        Alexis Ballier <aballier@gentoo.org>,
-        =?UTF-8?Q?Andrius_=c5=a0tikonas?= <andrius@stikonas.eu>,
-        Andy Yan <andyshrk@gmail.com>,
         Ezequiel Garcia <ezequiel@collabora.com>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        Jagan Teki <jagan@amarulasolutions.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Nick Xie <nick@khadas.com>,
-        Oskari Lemmela <oskari@lemmela.net>,
-        Pragnesh Patel <Pragnesh_Patel@mentor.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vicente Bergas <vicencb@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20191111005158.25070-1-kever.yang@rock-chips.com>
- <20191111005158.25070-3-kever.yang@rock-chips.com>
- <ef8830f3-10d1-7b71-0e18-232f2eaeef2d@web.de>
+ <20191111005158.25070-2-kever.yang@rock-chips.com>
+ <20191111052232.GA2842@Mani-XPS-13-9360>
 From:   Kever Yang <kever.yang@rock-chips.com>
-Message-ID: <1eaef5d5-c923-da56-b9c4-48d517b3c969@rock-chips.com>
-Date:   Tue, 12 Nov 2019 16:04:49 +0800
+Message-ID: <3d129826-7705-819e-e68b-cc9080eb6c95@rock-chips.com>
+Date:   Tue, 12 Nov 2019 16:10:17 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <ef8830f3-10d1-7b71-0e18-232f2eaeef2d@web.de>
+In-Reply-To: <20191111052232.GA2842@Mani-XPS-13-9360>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
@@ -73,28 +61,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2019/11/11 下午4:42, Soeren Moch wrote:
-> On 11.11.19 01:51, Kever Yang wrote:
->> Since there is no devfreq used for vdd_log, so the vdd_log(pwm regulator)
->> will be 'enable' with the dts node at a default PWM state with high or low
->> output. Both too high or too low for vdd_log is not good for the board,
->> add init voltage for driver to make the regulator get into a know output.
+On 2019/11/11 下午1:22, Manivannan Sadhasivam wrote:
+> Hi Kever,
+>
+> On Mon, Nov 11, 2019 at 08:51:57AM +0800, Kever Yang wrote:
+>> Add vdd_log node according to rock960 schematic V13.
 >>
->> Note that this will be used by U-Boot for init voltage output, and this
->> is very important for it may get system hang somewhere during system
->> boot up with regulator enable and without this init value.
-> I think it's a good idea to include this setting in the main dts for the
-> boards (not in u-boot specific additions as is done now). But there is
-> (for some reason?) no documented binding for regulator-init-microvolt in
-> linux.
+>> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+>> ---
+>>
+>>   arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+>> index c7d48d41e184..73afee257115 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+>> @@ -76,6 +76,18 @@
+>>   		regulator-always-on;
+>>   		vin-supply = <&vcc5v0_sys>;
+>>   	};
+>> +
+>> +	vdd_log: vdd-log {
+>> +		compatible = "pwm-regulator";
+>> +		pwms = <&pwm2 0 25000 1>;
+>> +		regulator-name = "vdd_log";
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		regulator-min-microvolt = <800000>;
+>> +		regulator-max-microvolt = <1400000>;
+>> +		regulator-init-microvolt = <950000>;
+> The default value seems to be 0.9v as per both Rock960 and Ficus schematics.
 
 
-Ohh, I forgot the kernel driver does not support this property.
+The default value is 0.9V when pwm-regulator is not enabled, and this 
+'init-microvolt' suppose to set the
 
-@Heiko, can we add this 'regulator-init-microvolt' without driver 
-support but adding document for
+init value when pwm-regulator is enabled. I set this to 950mV because 
+Peter report that he experience
 
-it at dt-binding?
+the system hang during Fedora boot  up, and update the vdd_log to 950mV 
+can fix the issue due to
+
+engineer measure on another rk3399 board puma-Q7.
 
 
 Thanks,
@@ -102,131 +111,19 @@ Thanks,
 - Kever
 
 >
-> Regards,
-> Soeren
->> CC: Elaine Zhang <zhangqing@rock-chips.com>
->> CC: Peter Robinson <pbrobinson@gmail.com>
->> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->> ---
+> Other than that,
+> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>
+> Thanks,
+> Mani
+>
+>> +		vin-supply = <&vcc_sys>;
+>> +	};
+>>   };
+>>   
+>>   &cpu_l0 {
+>> -- 
+>> 2.17.1
 >>
->>   arch/arm64/boot/dts/rockchip/rk3399-evb.dts          | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts   | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts    | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts       | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts    | 1 +
->>   arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi    | 1 +
->>   9 files changed, 9 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb.dts b/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
->> index 77008dca45bc..fa241aeb11b0 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
->> @@ -65,6 +65,7 @@
->>   		regulator-name = "vdd_center";
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		regulator-always-on;
->>   		regulator-boot-on;
->>   		status = "okay";
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
->> index 92de83dd4dbc..4e45269fcdff 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
->> @@ -208,6 +208,7 @@
->>   		regulator-boot-on;
->>   		regulator-min-microvolt = <430000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		vin-supply = <&vcc_sys>;
->>   	};
->>   };
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
->> index c133e8d64b2a..692f3154edc3 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
->> @@ -100,6 +100,7 @@
->>   		regulator-name = "vdd_log";
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		regulator-always-on;
->>   		regulator-boot-on;
->>   	};
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
->> index 4944d78a0a1c..c2ac80d99301 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
->> @@ -79,6 +79,7 @@
->>   		regulator-boot-on;
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		vin-supply = <&vsys_3v3>;
->>   	};
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
->> index 73be38a53796..c32abcc4ddc1 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
->> @@ -101,6 +101,7 @@
->>   		regulator-boot-on;
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		vin-supply = <&vcc5v0_sys>;
->>   	};
->>   };
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
->> index 0541dfce924d..9d674c51f025 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
->> @@ -164,6 +164,7 @@
->>   		regulator-boot-on;
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		vin-supply = <&vcc_sys>;
->>   	};
->>   };
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
->> index 19f7732d728c..7d856ce1d156 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
->> @@ -129,6 +129,7 @@
->>   		regulator-boot-on;
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		vin-supply = <&vcc3v3_sys>;
->>   	};
->>   };
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
->> index e544deb61d28..8fbccbc8bf47 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
->> @@ -174,6 +174,7 @@
->>   		regulator-boot-on;
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1700000>;
->> +		regulator-init-microvolt = <950000>;
->>   		vin-supply = <&vcc5v0_sys>;
->>   	};
->>   };
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
->> index 1bc1579674e5..f8e2cb8c0624 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
->> @@ -133,6 +133,7 @@
->>   		regulator-boot-on;
->>   		regulator-min-microvolt = <800000>;
->>   		regulator-max-microvolt = <1400000>;
->> +		regulator-init-microvolt = <950000>;
->>   		vin-supply = <&vcc_sys>;
->>   	};
->>   };
 
 
