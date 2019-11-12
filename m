@@ -2,78 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 215E0F876A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 05:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74385F8808
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 06:34:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727054AbfKLE3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Nov 2019 23:29:25 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:12690 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726910AbfKLE3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Nov 2019 23:29:25 -0500
-Received: from droid13.amlogic.com (116.236.93.172) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Tue, 12 Nov 2019
- 12:29:40 +0800
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-To:     Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>
-CC:     Jianxin Pan <jianxin.pan@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Subject: [PATCH v5 4/4] arm64: dts: meson: a1: add secure power domain controller
-Date:   Tue, 12 Nov 2019 12:28:50 +0800
-Message-ID: <1573532930-39505-5-git-send-email-jianxin.pan@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1573532930-39505-1-git-send-email-jianxin.pan@amlogic.com>
-References: <1573532930-39505-1-git-send-email-jianxin.pan@amlogic.com>
+        id S1725783AbfKLFes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 00:34:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60958 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725775AbfKLFes (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Nov 2019 00:34:48 -0500
+Received: from localhost (unknown [122.167.70.123])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 80D8D2084F;
+        Tue, 12 Nov 2019 05:34:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1573536887;
+        bh=Jb7dYixP6yIjsrokC6NTgrZ/74+6EVtRM48rK5FZNvY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=swnFRxTopGg49WadsvYOwM4ZljN75NOKNOp1Z9e5BW0FyYQHYvejgIuS/T6ZaeS+f
+         gxIT4lF0hqOk50dDZyDJJSafiZ3bZ8R9mleb8cOsMrZAepP86BKYPsfg0wzquvM826
+         YuIVlpKmlK7CHZSlLwZbDQfxBtffsMv1FmSgU/Ak=
+Date:   Tue, 12 Nov 2019 11:04:40 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     robh+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
+        dan.j.williams@intel.com, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
+        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com,
+        j-keerthy@ti.com
+Subject: Re: [PATCH v4 10/15] dmaengine: ti: New driver for K3 UDMA -
+ split#2: probe/remove, xlate and filter_fn
+Message-ID: <20191112053440.GV952516@vkoul-mobl>
+References: <20191101084135.14811-1-peter.ujfalusi@ti.com>
+ <20191101084135.14811-11-peter.ujfalusi@ti.com>
+ <20191111053301.GO952516@vkoul-mobl>
+ <9b0f8bec-4964-8136-4173-7b45e479c0c5@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [116.236.93.172]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9b0f8bec-4964-8136-4173-7b45e479c0c5@ti.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable power domain controller for Meson A1 SoC.
+On 11-11-19, 11:16, Peter Ujfalusi wrote:
+> 
+> 
+> On 11/11/2019 7.33, Vinod Koul wrote:
+> > On 01-11-19, 10:41, Peter Ujfalusi wrote:
+> > 
+> >> +static bool udma_dma_filter_fn(struct dma_chan *chan, void *param)
+> >> +{
+> >> +	struct psil_endpoint_config *ep_config;
+> >> +	struct udma_chan *uc;
+> >> +	struct udma_dev *ud;
+> >> +	u32 *args;
+> >> +
+> >> +	if (chan->device->dev->driver != &udma_driver.driver)
+> >> +		return false;
+> >> +
+> >> +	uc = to_udma_chan(chan);
+> >> +	ud = uc->ud;
+> >> +	args = param;
+> >> +	uc->remote_thread_id = args[0];
+> >> +
+> >> +	if (uc->remote_thread_id & K3_PSIL_DST_THREAD_ID_OFFSET)
+> >> +		uc->dir = DMA_MEM_TO_DEV;
+> >> +	else
+> >> +		uc->dir = DMA_DEV_TO_MEM;
+> > 
+> > Can you explain this a bit?
+> 
+> The UDMAP in K3 works between two PSI-L endpoint. The source and
+> destination needs to be paired to allow data flow.
+> Source thread IDs are in range of 0x0000 - 0x7fff, while destination
+> thread IDs are 0x8000 - 0xffff.
+> 
+> If the remote thread ID have the bit 31 set (0x8000) then the transfer
+> is MEM_TO_DEV and I need to pick one unused tchan for it. If the remote
+> is the source then it can be handled by rchan.
+> 
+> dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
+> dma-names = "tx", "rx";
+> 
+> 0xc400 is a destination thread ID, so it is MEM_TO_DEV
+> 0x4400 is a source thread ID, so it is DEV_TO_MEM
+> 
+> Even in MEM_TO_MEM case I need to pair two UDMAP channels:
+> UDMAP source threads are starting at offset 0x1000, UDMAP destination
+> threads are 0x9000+
 
-Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Okay so a channel is set for a direction until teardown. Also this and
+other patch comments are quite useful, can we add them here?
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 7210ad0..6fdc0dd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/power/meson-a1-power.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -93,6 +94,12 @@
- 				clock-names = "xtal", "pclk", "baud";
- 				status = "disabled";
- 			};
-+
-+			pwrc: power-controller {
-+				compatible = "amlogic,meson-a1-pwrc";
-+				#power-domain-cells = <1>;
-+				status = "okay";
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff901000 {
+> Changing direction runtime is hardly possible as it would involve
+> tearing down the channel, removing interrupts, destroying rings,
+> removing the PSI-L pairing and redoing everything.
+
+okay I would expect the prep_ to check for direction and reject the call
+if direction is different.
+
 -- 
-2.7.4
-
+~Vinod
