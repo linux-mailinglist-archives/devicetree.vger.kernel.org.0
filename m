@@ -2,277 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 084E7F8A57
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 09:17:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E470F8A5E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 09:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727220AbfKLIQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 03:16:50 -0500
-Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:45906 "EHLO
-        wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725821AbfKLIQt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Nov 2019 03:16:49 -0500
-Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
-        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1iURLr-0006wE-BB; Tue, 12 Nov 2019 09:16:39 +0100
-X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
-        linuxbbg.five-lan.de
-Received: from [192.168.34.101] (p5098d998.dip0.t-ipconnect.de [80.152.217.152])
-        (authenticated bits=0)
-        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id xAC8GcHU011669
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-        Tue, 12 Nov 2019 09:16:38 +0100
-Subject: Re: [PATCH 3/3] arm64: dts: rk3399: Add init voltage for vdd_log
-To:     Kever Yang <kever.yang@rock-chips.com>, Soeren Moch <smoch@web.de>,
-        heiko@sntech.de
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Andrius_=c5=a0tikonas?= <andrius@stikonas.eu>,
-        linux-kernel@vger.kernel.org, Alexis Ballier <aballier@gentoo.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Andy Yan <andyshrk@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vicente Bergas <vicencb@gmail.com>,
-        Oskari Lemmela <oskari@lemmela.net>,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Pragnesh Patel <Pragnesh_Patel@mentor.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Nick Xie <nick@khadas.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Akash Gajjar <akash@openedev.com>
-References: <20191111005158.25070-1-kever.yang@rock-chips.com>
- <20191111005158.25070-3-kever.yang@rock-chips.com>
- <ef8830f3-10d1-7b71-0e18-232f2eaeef2d@web.de>
- <1eaef5d5-c923-da56-b9c4-48d517b3c969@rock-chips.com>
-From:   Markus Reichl <m.reichl@fivetechno.de>
-Autocrypt: addr=m.reichl@fivetechno.de; prefer-encrypt=mutual; keydata=
- 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
- eD/Xv4SsK2JTO4nkQYw8
-Organization: five technologies GmbH
-Message-ID: <acbab893-9e9a-cfe1-67bf-a9e2b2e50114@fivetechno.de>
-Date:   Tue, 12 Nov 2019 09:16:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1725825AbfKLIRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 03:17:43 -0500
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:44363 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725821AbfKLIRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 03:17:43 -0500
+Received: by mail-lf1-f65.google.com with SMTP id z188so4868687lfa.11;
+        Tue, 12 Nov 2019 00:17:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=eL10nrIAWoedwqBLA4/hoY9p88x8qlk9u4/3BdzAMXQ=;
+        b=V0+Lbibv09k6PKhM2IBhO+mU5M6TVTELjO+BD/YrbZm5cOK8ya00ZfbMBqZ67Dx/ZD
+         dpiAl2e31HV2HDjOy37y1qus8dET++CHAFVJGGF9N3awFAz/em0Ka+CDpjq872Ey6gUj
+         bQ86CiD7Y1SXUM38N9RnfriAPg4ct28Xzw2RNojfUPF6sF1aBOMnnJTcnu+YM6lEeYqd
+         57d/jZ7mpEe1s+R0dAHkPIq8p9ELAUgSFJXv3tuvfrO9J5s3QwaEidNtuQ690vutziRw
+         Bc0ZU0UMaR+yYpLjN5PLujB56+y6wBQavbT7/fX1ugAof507v3EndQxvORFnBQduAYpj
+         PmNQ==
+X-Gm-Message-State: APjAAAUofyicWh1YlnsXukuV/HN4ipUkCqJLTeoO+iSI+EIqOXyBBxw3
+        6Nk1z4K6s4sf6tVfZi+s28M=
+X-Google-Smtp-Source: APXvYqy++dNA7rn1i/h/1y2eqNpsTch151++qveuGk99u1XQqZB1AoJ0pcKsASlT+VV8066WMMPZrA==
+X-Received: by 2002:ac2:4d10:: with SMTP id r16mr850227lfi.70.1573546659468;
+        Tue, 12 Nov 2019 00:17:39 -0800 (PST)
+Received: from localhost.localdomain ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 28sm9104412lfy.38.2019.11.12.00.17.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Nov 2019 00:17:38 -0800 (PST)
+Date:   Tue, 12 Nov 2019 10:17:26 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] of: property: Fix documentation for out values
+Message-ID: <20191112081726.GA8291@localhost.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <1eaef5d5-c923-da56-b9c4-48d517b3c969@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1573546608;a847d6c2;
-X-HE-SMSGID: 1iURLr-0006wE-BB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kever,
+Property fetching functions which return number of successfully fetched
+properties should not state that out-values are only modified if 0 is
+returned. Fix this.
 
-have a rk3399-roc-pc running mainline U-Boot and kernel and vdd_log is 
-showing 1118 mV.
-Is this a danger for the board?
-How to fix it?
-Btw. vin-supply for this pwm-regulator is ignored and I could not find it 
-in bindings doc. 
+Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+---
+ drivers/of/property.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-Gruß,
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index d7fa75e31f22..4aae93cdc1ce 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -164,7 +164,8 @@ EXPORT_SYMBOL_GPL(of_property_read_u64_index);
+  *
+  * @np:		device node from which the property value is to be read.
+  * @propname:	name of the property to be searched.
+- * @out_values:	pointer to return value, modified only if return value is 0.
++ * @out_values:	pointer to return value, modified only if return value is
++ *		greater than 0.
+  * @sz_min:	minimum number of array elements to read
+  * @sz_max:	maximum number of array elements to read, if zero there is no
+  *		upper limit on the number of elements in the dts entry but only
+@@ -212,7 +213,8 @@ EXPORT_SYMBOL_GPL(of_property_read_variable_u8_array);
+  *
+  * @np:		device node from which the property value is to be read.
+  * @propname:	name of the property to be searched.
+- * @out_values:	pointer to return value, modified only if return value is 0.
++ * @out_values:	pointer to return value, modified only if return value is
++ *		greater than 0.
+  * @sz_min:	minimum number of array elements to read
+  * @sz_max:	maximum number of array elements to read, if zero there is no
+  *		upper limit on the number of elements in the dts entry but only
+@@ -260,7 +262,8 @@ EXPORT_SYMBOL_GPL(of_property_read_variable_u16_array);
+  *
+  * @np:		device node from which the property value is to be read.
+  * @propname:	name of the property to be searched.
+- * @out_values:	pointer to return value, modified only if return value is 0.
++ * @out_values:	pointer to return value, modified only if return value is
++ *		greater than 0.
+  * @sz_min:	minimum number of array elements to read
+  * @sz_max:	maximum number of array elements to read, if zero there is no
+  *		upper limit on the number of elements in the dts entry but only
+@@ -334,7 +337,8 @@ EXPORT_SYMBOL_GPL(of_property_read_u64);
+  *
+  * @np:		device node from which the property value is to be read.
+  * @propname:	name of the property to be searched.
+- * @out_values:	pointer to return value, modified only if return value is 0.
++ * @out_values:	pointer to return value, modified only if return value is
++ *		greater than 0.
+  * @sz_min:	minimum number of array elements to read
+  * @sz_max:	maximum number of array elements to read, if zero there is no
+  *		upper limit on the number of elements in the dts entry but only
 -- 
-Markus Reichl
+2.21.0
 
 
-Am 12.11.19 um 09:04 schrieb Kever Yang:
-> 
-> On 2019/11/11 下午4:42, Soeren Moch wrote:
->> On 11.11.19 01:51, Kever Yang wrote:
->>> Since there is no devfreq used for vdd_log, so the vdd_log(pwm regulator)
->>> will be 'enable' with the dts node at a default PWM state with high or low
->>> output. Both too high or too low for vdd_log is not good for the board,
->>> add init voltage for driver to make the regulator get into a know output.
->>>
->>> Note that this will be used by U-Boot for init voltage output, and this
->>> is very important for it may get system hang somewhere during system
->>> boot up with regulator enable and without this init value.
->> I think it's a good idea to include this setting in the main dts for the
->> boards (not in u-boot specific additions as is done now). But there is
->> (for some reason?) no documented binding for regulator-init-microvolt in
->> linux.
-> 
-> 
-> Ohh, I forgot the kernel driver does not support this property.
-> 
-> @Heiko, can we add this 'regulator-init-microvolt' without driver support but adding document for
-> 
-> it at dt-binding?
-> 
-> 
-> Thanks,
-> 
-> - Kever
-> 
->>
->> Regards,
->> Soeren
->>> CC: Elaine Zhang <zhangqing@rock-chips.com>
->>> CC: Peter Robinson <pbrobinson@gmail.com>
->>> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->>> ---
->>>
->>>   arch/arm64/boot/dts/rockchip/rk3399-evb.dts          | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts   | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts    | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts       | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts    | 1 +
->>>   arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi    | 1 +
->>>   9 files changed, 9 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb.dts b/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
->>> index 77008dca45bc..fa241aeb11b0 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
->>> @@ -65,6 +65,7 @@
->>>           regulator-name = "vdd_center";
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           regulator-always-on;
->>>           regulator-boot-on;
->>>           status = "okay";
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
->>> index 92de83dd4dbc..4e45269fcdff 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
->>> @@ -208,6 +208,7 @@
->>>           regulator-boot-on;
->>>           regulator-min-microvolt = <430000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           vin-supply = <&vcc_sys>;
->>>       };
->>>   };
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
->>> index c133e8d64b2a..692f3154edc3 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
->>> @@ -100,6 +100,7 @@
->>>           regulator-name = "vdd_log";
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           regulator-always-on;
->>>           regulator-boot-on;
->>>       };
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
->>> index 4944d78a0a1c..c2ac80d99301 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
->>> @@ -79,6 +79,7 @@
->>>           regulator-boot-on;
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           vin-supply = <&vsys_3v3>;
->>>       };
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
->>> index 73be38a53796..c32abcc4ddc1 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
->>> @@ -101,6 +101,7 @@
->>>           regulator-boot-on;
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           vin-supply = <&vcc5v0_sys>;
->>>       };
->>>   };
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
->>> index 0541dfce924d..9d674c51f025 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
->>> @@ -164,6 +164,7 @@
->>>           regulator-boot-on;
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           vin-supply = <&vcc_sys>;
->>>       };
->>>   };
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
->>> index 19f7732d728c..7d856ce1d156 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
->>> @@ -129,6 +129,7 @@
->>>           regulator-boot-on;
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           vin-supply = <&vcc3v3_sys>;
->>>       };
->>>   };
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
->>> index e544deb61d28..8fbccbc8bf47 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts
->>> @@ -174,6 +174,7 @@
->>>           regulator-boot-on;
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1700000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           vin-supply = <&vcc5v0_sys>;
->>>       };
->>>   };
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
->>> index 1bc1579674e5..f8e2cb8c0624 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
->>> @@ -133,6 +133,7 @@
->>>           regulator-boot-on;
->>>           regulator-min-microvolt = <800000>;
->>>           regulator-max-microvolt = <1400000>;
->>> +        regulator-init-microvolt = <950000>;
->>>           vin-supply = <&vcc_sys>;
->>>       };
->>>   };
-> 
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
