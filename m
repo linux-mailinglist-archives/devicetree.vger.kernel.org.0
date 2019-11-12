@@ -2,169 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A7CF8D91
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 12:06:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE85F8E68
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 12:21:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725944AbfKLLGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 06:06:53 -0500
-Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:45386 "EHLO
-        wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725957AbfKLLGx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Nov 2019 06:06:53 -0500
-Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
-        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1iUU0Q-0007lz-FV; Tue, 12 Nov 2019 12:06:42 +0100
-X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
-        linuxbbg.five-lan.de
-Received: from [192.168.34.101] (p5098d998.dip0.t-ipconnect.de [80.152.217.152])
-        (authenticated bits=0)
-        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id xACB6ahL019198
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-        Tue, 12 Nov 2019 12:06:37 +0100
-Subject: Re: [PATCH 3/3] arm64: dts: rk3399: Add init voltage for vdd_log
-To:     Soeren Moch <smoch@web.de>, Kever Yang <kever.yang@rock-chips.com>,
-        heiko@sntech.de
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Andrius_=c5=a0tikonas?= <andrius@stikonas.eu>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Alexis Ballier <aballier@gentoo.org>,
-        devicetree@vger.kernel.org,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        linux-kernel@vger.kernel.org, Vicente Bergas <vicencb@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        linux-rockchip@lists.infradead.org,
+        id S1727628AbfKLLV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 06:21:56 -0500
+Received: from mail-eopbgr20087.outbound.protection.outlook.com ([40.107.2.87]:64066
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727281AbfKLLSK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Nov 2019 06:18:10 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=beY1kPs0ItmyEC9ara0M/79wNC3BYsu7lskAXzhE2V2lbSORlCn106vXdSspAk1M7wc8nibubK8IsBUMIlaPMtNyvzXhxChj7rtpqECV8AqLcI+qSzR0AJGQaOtq3+U7Q+kIqHW7cHXnLO53uE7aJGXxJ89KwOYImXndPR0/2bCJyvuZ+8YVa7ZmSFjaDk6Mt70JSSIOk79odwWyWAu/34KTIFPlsmDOxL4FFTT1WLLIAj7KgU8YGHMvlZiXjfQmskL3LUsdw2ilI80uyMbZPhHaDv23XaN0LY8LF8wOmeeWA1tE92g5q0Is/nrEjksdmfiJAUbD9p7swVzqSawRIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L6gVKOTRJEEcvDhtPX8de3LGPo8grudqnmZUlbE1h5g=;
+ b=FQp/LKuiGKwoCs1NVmrAvEFFzgpq1jhEE2x2m5ul2mZDQbJ0oITC8vNl27dzGkZbxHwY6lP4nP2kjA2DNaP+ASW8afFMXmOHgz2lRtEbMYPnIefr7YSWksD70idpaPJfawNY4Dbv0j/uYiLaqtZn/O83a7YyM3LJTQRvNMoAZUmsp2wjLx/QigAJAG1p1gHF9kZIDbRZNXmggA4LUeSJydoqxCH1yl0APyBZEfG2cGAj/YJ95cWPDyWDiwSq3uzY0BWU2w2kQlwq1BHci4cHq7eM99LrZy1VSj2Vsh+sGbC85RfeJcCZyxizwenUBrTuk6IEpBffN2ai/lW6GfXibA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L6gVKOTRJEEcvDhtPX8de3LGPo8grudqnmZUlbE1h5g=;
+ b=nV3+sqX8Ow3LajG1lF8D5tnigXE657i0fBMZZstXB44D2aSUoojjuHyTX9ICnruKUYBwjVmyQAu3rIF80Wi+px0r0hk0ZEgvoVNBbJqvtI0kNuzEvSq2eRXq4qY+hSFFIYKnGB6c1tjQqq0kw6pm/JWtPn6e5zLRqmmmCJbj45Y=
+Received: from AM0PR04MB5779.eurprd04.prod.outlook.com (20.178.202.151) by
+ AM0PR04MB6113.eurprd04.prod.outlook.com (20.179.33.148) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2430.22; Tue, 12 Nov 2019 11:18:04 +0000
+Received: from AM0PR04MB5779.eurprd04.prod.outlook.com
+ ([fe80::fd44:1b14:587c:9fde]) by AM0PR04MB5779.eurprd04.prod.outlook.com
+ ([fe80::fd44:1b14:587c:9fde%7]) with mapi id 15.20.2430.027; Tue, 12 Nov 2019
+ 11:18:04 +0000
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Leonard Crestez <leonard.crestez@nxp.com>
+CC:     Stephen Boyd <sboyd@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Pragnesh Patel <Pragnesh_Patel@mentor.com>,
-        Oskari Lemmela <oskari@lemmela.net>,
-        Akash Gajjar <akash@openedev.com>, Nick Xie <nick@khadas.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, Andy Yan <andyshrk@gmail.com>
-References: <20191111005158.25070-1-kever.yang@rock-chips.com>
- <20191111005158.25070-3-kever.yang@rock-chips.com>
- <ef8830f3-10d1-7b71-0e18-232f2eaeef2d@web.de>
- <1eaef5d5-c923-da56-b9c4-48d517b3c969@rock-chips.com>
- <acbab893-9e9a-cfe1-67bf-a9e2b2e50114@fivetechno.de>
- <17e14b30-02ee-2379-8891-088677924479@rock-chips.com>
- <fd9ee2bc-9dfb-1aa2-f00f-add9b3069876@web.de>
-From:   Markus Reichl <m.reichl@fivetechno.de>
-Autocrypt: addr=m.reichl@fivetechno.de; prefer-encrypt=mutual; keydata=
- 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
- eD/Xv4SsK2JTO4nkQYw8
-Organization: five technologies GmbH
-Message-ID: <f2c34d85-4d71-d9ff-99ea-044e6354fc87@fivetechno.de>
-Date:   Tue, 12 Nov 2019 12:06:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        =?iso-8859-2?Q?Artur_=A6wigo=F1?= <a.swigon@partner.samsung.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Angus Ainslie <angus@akkea.ca>,
+        Martin Kepplinger <martink@posteo.de>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 1/6] clk: imx8m: Set CLK_GET_RATE_NOCACHE on dram
+ clocks
+Thread-Topic: [PATCH v4 1/6] clk: imx8m: Set CLK_GET_RATE_NOCACHE on dram
+ clocks
+Thread-Index: AQHVloV7VZOJz0hWAkeO+G3807P1dqeHaKeA
+Date:   Tue, 12 Nov 2019 11:18:04 +0000
+Message-ID: <20191112111803.c5624in2masqipqf@fsr-ub1664-175>
+References: <cover.1573252696.git.leonard.crestez@nxp.com>
+ <0e0eeeee546a3bb664935184d66866f1c66458ce.1573252696.git.leonard.crestez@nxp.com>
+In-Reply-To: <0e0eeeee546a3bb664935184d66866f1c66458ce.1573252696.git.leonard.crestez@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: AM0PR0202CA0035.eurprd02.prod.outlook.com
+ (2603:10a6:208:1::48) To AM0PR04MB5779.eurprd04.prod.outlook.com
+ (2603:10a6:208:131::23)
+x-originating-ip: [89.37.124.34]
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=abel.vesa@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7ac35b0d-7eec-436f-9fa9-08d76761fcb4
+x-ms-traffictypediagnostic: AM0PR04MB6113:|AM0PR04MB6113:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM0PR04MB6113D9C5381B288DE3617C3FF6770@AM0PR04MB6113.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:843;
+x-forefront-prvs: 021975AE46
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(7916004)(376002)(39860400002)(366004)(346002)(136003)(396003)(189003)(199004)(86362001)(3846002)(33716001)(4326008)(6116002)(66066001)(6486002)(5660300002)(64756008)(66946007)(66446008)(66476007)(66556008)(6246003)(1076003)(478600001)(7736002)(316002)(44832011)(305945005)(7416002)(25786009)(6862004)(52116002)(99286004)(102836004)(76176011)(2906002)(6636002)(486006)(26005)(53546011)(6506007)(6512007)(71200400001)(9686003)(386003)(14454004)(6436002)(14444005)(186003)(8676002)(81156014)(229853002)(256004)(446003)(8936002)(54906003)(476003)(11346002)(71190400001)(81166006)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6113;H:AM0PR04MB5779.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: QLOnpDQ50oy4YYD3vso7LoVB1Q9PRHPgxPlAPXF8Q9K4+EXYQ1X/tMiHq4+tm+rqxvEtBinIDaO6qc6/w7XWVFOsCWuwCfpu+2/a0zKw1hqhEn4vxKpOrsvQdageglqMYn6rpyzq6yF+PRk4ZXMr2Mt1O000EWN0z8Is557gNEI+vIUzcFqAKByKJUgPm2/zO99QZSaXSlBs2lWYSzAhdR5DudNJw/+gJ89LT3YN74OvVkjl70rLBBDtVLALIGny68USCZWIkcpWMLjZ4aczMKvEjQBYkwTfBYv11nU89iscR1x4/U9FTP6LS2yg7y8bf02Rv2RdIL2qsiq0Y0de3vAvYCGmXkQdCRJ7QRuwKn/0A02H1Ec8Bh1ZBzunqhIjBtADBFt8snaNqku0d/8tjEXxgBta1LbB0bA2lJzwZPnLT/rLTnThAsTr7Orwire2
+Content-Type: text/plain; charset="iso-8859-2"
+Content-ID: <38B37E1CA4CBAC4B94040C69C2ECE4D2@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <fd9ee2bc-9dfb-1aa2-f00f-add9b3069876@web.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1573556811;c921f886;
-X-HE-SMSGID: 1iUU0Q-0007lz-FV
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ac35b0d-7eec-436f-9fa9-08d76761fcb4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2019 11:18:04.7257
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: C3AMSYKqQxkBy2umZK8AeBdBt2u8oQRYgtqCj+neXpEPrHz99WgVeppWFlyu0Rv9wzqPoZmZUhoW+5+gMGKZ1Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6113
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Sore, Kever,
+On 19-11-09 00:39:51, Leonard Crestez wrote:
+> These clocks are only modified as part of DRAM frequency switches during
+> which DRAM itself is briefly inaccessible. The switch is performed with
+> a SMC call to by TF-A which runs from a SRAM area; upon returning to
+> linux several clocks bits are modified and we need to update them.
+>=20
+> For rate bits an easy solution is to just mark with
+> CLK_GET_RATE_NOCACHE so that new rates are always read back from
+> registers.
+>=20
+> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+> ---
+>  drivers/clk/imx/clk-imx8mm.c | 11 +++++++++--
+>  drivers/clk/imx/clk-imx8mn.c | 12 ++++++++++--
+>  drivers/clk/imx/clk-imx8mq.c | 15 +++++++++++----
+>  3 files changed, 30 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/drivers/clk/imx/clk-imx8mm.c b/drivers/clk/imx/clk-imx8mm.c
+> index 030b15d7c0ce..c58f988191a5 100644
+> --- a/drivers/clk/imx/clk-imx8mm.c
+> +++ b/drivers/clk/imx/clk-imx8mm.c
+> @@ -440,13 +440,20 @@ static int imx8mm_clocks_probe(struct platform_devi=
+ce *pdev)
+> =20
+>  	/* IPG */
+>  	clks[IMX8MM_CLK_IPG_ROOT] =3D imx_clk_divider2("ipg_root", "ahb", base =
++ 0x9080, 0, 1);
+>  	clks[IMX8MM_CLK_IPG_AUDIO_ROOT] =3D imx_clk_divider2("ipg_audio_root", =
+"audio_ahb", base + 0x9180, 0, 1);
+> =20
+> +	/*
+> +	 * DRAM clocks are manipulated from TF-A outside clock framework.
+> +	 * Mark with GET_RATE_NOCACHE to always read div value from hardware
+> +	 */
+> +	clks[IMX8MM_CLK_DRAM_ALT] =3D __imx8m_clk_composite("dram_alt", imx8mm_=
+dram_alt_sels, base + 0xa000,
+> +			CLK_GET_RATE_NOCACHE);
+> +	clks[IMX8MM_CLK_DRAM_APB] =3D __imx8m_clk_composite("dram_apb", imx8mm_=
+dram_apb_sels, base + 0xa080,
+> +			CLK_IS_CRITICAL | CLK_GET_RATE_NOCACHE);
+> +
+>  	/* IP */
+> -	clks[IMX8MM_CLK_DRAM_ALT] =3D imx8m_clk_composite("dram_alt", imx8mm_dr=
+am_alt_sels, base + 0xa000);
+> -	clks[IMX8MM_CLK_DRAM_APB] =3D imx8m_clk_composite_critical("dram_apb", =
+imx8mm_dram_apb_sels, base + 0xa080);
+>  	clks[IMX8MM_CLK_VPU_G1] =3D imx8m_clk_composite("vpu_g1", imx8mm_vpu_g1=
+_sels, base + 0xa100);
+>  	clks[IMX8MM_CLK_VPU_G2] =3D imx8m_clk_composite("vpu_g2", imx8mm_vpu_g2=
+_sels, base + 0xa180);
+>  	clks[IMX8MM_CLK_DISP_DTRC] =3D imx8m_clk_composite("disp_dtrc", imx8mm_=
+disp_dtrc_sels, base + 0xa200);
+>  	clks[IMX8MM_CLK_DISP_DC8000] =3D imx8m_clk_composite("disp_dc8000", imx=
+8mm_disp_dc8000_sels, base + 0xa280);
+>  	clks[IMX8MM_CLK_PCIE1_CTRL] =3D imx8m_clk_composite("pcie1_ctrl", imx8m=
+m_pcie1_ctrl_sels, base + 0xa300);
+> diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
+> index 9f5a5a56b45e..ca78cb1249a7 100644
+> --- a/drivers/clk/imx/clk-imx8mn.c
+> +++ b/drivers/clk/imx/clk-imx8mn.c
+> @@ -428,12 +428,20 @@ static int imx8mn_clocks_probe(struct platform_devi=
+ce *pdev)
+>  	clks[IMX8MN_CLK_AHB] =3D imx8m_clk_composite_critical("ahb", imx8mn_ahb=
+_sels, base + 0x9000);
+>  	clks[IMX8MN_CLK_AUDIO_AHB] =3D imx8m_clk_composite("audio_ahb", imx8mn_=
+audio_ahb_sels, base + 0x9100);
+>  	clks[IMX8MN_CLK_IPG_ROOT] =3D imx_clk_divider2("ipg_root", "ahb", base =
++ 0x9080, 0, 1);
+>  	clks[IMX8MN_CLK_IPG_AUDIO_ROOT] =3D imx_clk_divider2("ipg_audio_root", =
+"audio_ahb", base + 0x9180, 0, 1);
+>  	clks[IMX8MN_CLK_DRAM_CORE] =3D imx_clk_mux2_flags("dram_core_clk", base=
+ + 0x9800, 24, 1, imx8mn_dram_core_sels, ARRAY_SIZE(imx8mn_dram_core_sels),=
+ CLK_IS_CRITICAL);
+> -	clks[IMX8MN_CLK_DRAM_ALT] =3D imx8m_clk_composite("dram_alt", imx8mn_dr=
+am_alt_sels, base + 0xa000);
+> -	clks[IMX8MN_CLK_DRAM_APB] =3D imx8m_clk_composite_critical("dram_apb", =
+imx8mn_dram_apb_sels, base + 0xa080);
+> +
+> +	/*
+> +	 * DRAM clocks are manipulated from TF-A outside clock framework.
+> +	 * Mark with GET_RATE_NOCACHE to always read div value from hardware
+> +	 */
+> +	clks[IMX8MN_CLK_DRAM_ALT] =3D __imx8m_clk_composite("dram_alt", imx8mn_=
+dram_alt_sels, base + 0xa000,
+> +			CLK_GET_RATE_NOCACHE);
+> +	clks[IMX8MN_CLK_DRAM_APB] =3D __imx8m_clk_composite("dram_apb", imx8mn_=
+dram_apb_sels, base + 0xa080,
+> +			CLK_IS_CRITICAL | CLK_GET_RATE_NOCACHE);
 
-Am 12.11.19 um 11:19 schrieb Soeren Moch:
-> 
-> 
-> On 12.11.19 11:02, Kever Yang wrote:
->> Markus,
->>
->>
->> On 2019/11/12 下午4:16, Markus Reichl wrote:
->>> Hi Kever,
->>>
->>> have a rk3399-roc-pc running mainline U-Boot and kernel and vdd_log is
->>> showing 1118 mV.
->>
->> The rk3399-roc-pc have the same vdd_log circuit in schematic, so it
->> should like the patch 1/3 of
->>
->> this patch set.
->>
->> I don't understand who is setting this value, maybe the default value
->> without pwm regulator enabled?
->>
->>> Is this a danger for the board?
->>> How to fix it?
->>
->> The best way is to set correct min/max microvolt of the
->> regulator(measure with PWM output low and high),
-> I didn't look into the schematic of this board, but if it is similar to
-> RockPro64, setting the pwm regulator to the max voltage of 1.7V will
-> probably kill the rk3399 immediately. So I recommend not to do this...
-> 
-It has to be set to 450mV - 1400mV to give 953mV.
-I will come out with a patch that fixes this.
+nitpick: I think it looks better if we stick to one line each clock.=20
+I know it's against the 80 chars rule, but at least is consistent.
 
-> Regards,
-> Soeren
->>
->> (note that if  no driver touch the regulator, the PWM is default
->> input, not output;)
->> to
->> and set a init-microvolt for U-Boot driver, and I think no kernel
->> driver touch this regulator now.
->>
->>
->> Thanks,
->>
->> - Kever
->>
->>> Btw. vin-supply for this pwm-regulator is ignored and I could not
->>> find it
->>> in bindings doc.
->>>
->>> Gruß,
->>
->>
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
-
-Gruß,
--- 
-Markus Reichl
+> +
+>  	clks[IMX8MN_CLK_DISP_PIXEL] =3D imx8m_clk_composite("disp_pixel", imx8m=
+n_disp_pixel_sels, base + 0xa500);
+>  	clks[IMX8MN_CLK_SAI2] =3D imx8m_clk_composite("sai2", imx8mn_sai2_sels,=
+ base + 0xa600);
+>  	clks[IMX8MN_CLK_SAI3] =3D imx8m_clk_composite("sai3", imx8mn_sai3_sels,=
+ base + 0xa680);
+>  	clks[IMX8MN_CLK_SAI5] =3D imx8m_clk_composite("sai5", imx8mn_sai5_sels,=
+ base + 0xa780);
+>  	clks[IMX8MN_CLK_SAI6] =3D imx8m_clk_composite("sai6", imx8mn_sai6_sels,=
+ base + 0xa800);
+> diff --git a/drivers/clk/imx/clk-imx8mq.c b/drivers/clk/imx/clk-imx8mq.c
+> index 5f10a606d836..3e2ccc17dc66 100644
+> --- a/drivers/clk/imx/clk-imx8mq.c
+> +++ b/drivers/clk/imx/clk-imx8mq.c
+> @@ -341,11 +341,12 @@ static int imx8mq_clocks_probe(struct platform_devi=
+ce *pdev)
+>  	clks[IMX8MQ_VIDEO_PLL1_OUT] =3D imx_clk_gate("video_pll1_out", "video_p=
+ll1_bypass", base + 0x10, 21);
+> =20
+>  	clks[IMX8MQ_SYS1_PLL_OUT] =3D imx_clk_fixed("sys1_pll_out", 800000000);
+>  	clks[IMX8MQ_SYS2_PLL_OUT] =3D imx_clk_fixed("sys2_pll_out", 1000000000)=
+;
+>  	clks[IMX8MQ_SYS3_PLL_OUT] =3D imx_clk_sccg_pll("sys3_pll_out", sys3_pll=
+_out_sels, ARRAY_SIZE(sys3_pll_out_sels), 0, 0, 0, base + 0x48, CLK_IS_CRIT=
+ICAL);
+> -	clks[IMX8MQ_DRAM_PLL_OUT] =3D imx_clk_sccg_pll("dram_pll_out", dram_pll=
+_out_sels, ARRAY_SIZE(dram_pll_out_sels), 0, 0, 0, base + 0x60, CLK_IS_CRIT=
+ICAL);
+> +	clks[IMX8MQ_DRAM_PLL_OUT] =3D imx_clk_sccg_pll("dram_pll_out", dram_pll=
+_out_sels, ARRAY_SIZE(dram_pll_out_sels), 0, 0, 0, base + 0x60,
+> +			CLK_IS_CRITICAL | CLK_GET_RATE_NOCACHE);
+>  	clks[IMX8MQ_VIDEO2_PLL_OUT] =3D imx_clk_sccg_pll("video2_pll_out", vide=
+o2_pll_out_sels, ARRAY_SIZE(video2_pll_out_sels), 0, 0, 0, base + 0x54, 0);
+> =20
+>  	/* SYS PLL1 fixed output */
+>  	clks[IMX8MQ_SYS1_PLL_40M_CG] =3D imx_clk_gate("sys1_pll_40m_cg", "sys1_=
+pll_out", base + 0x30, 9);
+>  	clks[IMX8MQ_SYS1_PLL_80M_CG] =3D imx_clk_gate("sys1_pll_80m_cg", "sys1_=
+pll_out", base + 0x30, 11);
+> @@ -433,15 +434,21 @@ static int imx8mq_clocks_probe(struct platform_devi=
+ce *pdev)
+> =20
+>  	/* IPG */
+>  	clks[IMX8MQ_CLK_IPG_ROOT] =3D imx_clk_divider2("ipg_root", "ahb", base =
++ 0x9080, 0, 1);
+>  	clks[IMX8MQ_CLK_IPG_AUDIO_ROOT] =3D imx_clk_divider2("ipg_audio_root", =
+"audio_ahb", base + 0x9180, 0, 1);
+> =20
+> -	/* IP */
+> +	/*
+> +	 * DRAM clocks are manipulated from TF-A outside clock framework.
+> +	 * Mark with GET_RATE_NOCACHE to always read div value from hardware
+> +	 */
+>  	clks[IMX8MQ_CLK_DRAM_CORE] =3D imx_clk_mux2_flags("dram_core_clk", base=
+ + 0x9800, 24, 1, imx8mq_dram_core_sels, ARRAY_SIZE(imx8mq_dram_core_sels),=
+ CLK_IS_CRITICAL);
+> +	clks[IMX8MQ_CLK_DRAM_ALT] =3D __imx8m_clk_composite("dram_alt", imx8mq_=
+dram_alt_sels, base + 0xa000,
+> +			CLK_GET_RATE_NOCACHE);
+> +	clks[IMX8MQ_CLK_DRAM_APB] =3D __imx8m_clk_composite("dram_apb", imx8mq_=
+dram_apb_sels, base + 0xa080,
+> +			CLK_IS_CRITICAL | CLK_GET_RATE_NOCACHE);
+> =20
+> -	clks[IMX8MQ_CLK_DRAM_ALT] =3D imx8m_clk_composite("dram_alt", imx8mq_dr=
+am_alt_sels, base + 0xa000);
+> -	clks[IMX8MQ_CLK_DRAM_APB] =3D imx8m_clk_composite_critical("dram_apb", =
+imx8mq_dram_apb_sels, base + 0xa080);
+> +	/* IP */
+>  	clks[IMX8MQ_CLK_VPU_G1] =3D imx8m_clk_composite("vpu_g1", imx8mq_vpu_g1=
+_sels, base + 0xa100);
+>  	clks[IMX8MQ_CLK_VPU_G2] =3D imx8m_clk_composite("vpu_g2", imx8mq_vpu_g2=
+_sels, base + 0xa180);
+>  	clks[IMX8MQ_CLK_DISP_DTRC] =3D imx8m_clk_composite("disp_dtrc", imx8mq_=
+disp_dtrc_sels, base + 0xa200);
+>  	clks[IMX8MQ_CLK_DISP_DC8000] =3D imx8m_clk_composite("disp_dc8000", imx=
+8mq_disp_dc8000_sels, base + 0xa280);
+>  	clks[IMX8MQ_CLK_PCIE1_CTRL] =3D imx8m_clk_composite("pcie1_ctrl", imx8m=
+q_pcie1_ctrl_sels, base + 0xa300);
+> --=20
+> 2.17.1
+>=20
