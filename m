@@ -2,84 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A88E2F9595
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 17:25:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A4DDF96E3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 18:17:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727415AbfKLQZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 11:25:57 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:34871 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726936AbfKLQZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 11:25:57 -0500
-Received: by mail-ed1-f67.google.com with SMTP id r16so15435438edq.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2019 08:25:56 -0800 (PST)
+        id S1727171AbfKLRRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 12:17:42 -0500
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:37815 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726388AbfKLRRl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 12:17:41 -0500
+Received: by mail-pf1-f193.google.com with SMTP id p24so13834728pfn.4
+        for <devicetree@vger.kernel.org>; Tue, 12 Nov 2019 09:17:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=qNdulMghwGPBvmgJ8scwCvXDFRwh4jWCkPxL6qrSIjQ=;
-        b=s0OtgEyBzfQDX6l8iBQ656aK39QT9cYJrK6j6UoM8p49K2fPKW+lTxH2miOW+ifKyj
-         EgnDTf2vYoyvMousqCqSfvE48FZ3pllh3Rl8BSfrN6LrYDdLlaYxolDctk1GAV1Dc5Ha
-         rjBNRq3QMDUEjQN6llJceHRYeZCIpbjOgVUOu5ltYM5HPsYUtrtS1xpUtchKOBWMyXlF
-         fI/xOEvBVdgh4UgxpuIcK/uKoHa2ydxQAth1DQZonHDQR53zY6EyvOIV8NnE+3duVFJ5
-         9Fg5pah82j+3sEATgT+JUt6VVyeRs6ZQqyq7iFVH/iLTxqhrZpQwNaf2jdk9KH50OtNp
-         8DMA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=GAxdQVxMEKhKhuZoX/VBOrcEuUfwMEWl5fY0HVG6jDE=;
+        b=vWoXjYFmjOttZKwONjxJ81J/VCuN2XQRhnCSkqlhdQq9oK5QFka4Kd5xp3DT3VV3oY
+         zYlVuUuTw6pNdbRM0U88rhr9+IvK8p7V3byHtvvE2T222Ja6mvVJ1M3uPdl0vDtIMEJR
+         VuiojmGjxZGBlcczfLdrEsLa9LNOLsBJ8PcjE04J1euiQzsaVxJUrFmR1vGuJ1bLEFPV
+         5cf1Z7HXzlfFMFXqM6cJ049jXvSmW6Ze1gIk+LZ/9T80z3mMw9EGqPDudOtNhZrpx8Pf
+         CIE4bl5kz22UTrI9bVe5BSve8TehRyoQGGzTsDlNJkWMlMzjGPgqClFTZFgMOMRJhXR/
+         6hkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=qNdulMghwGPBvmgJ8scwCvXDFRwh4jWCkPxL6qrSIjQ=;
-        b=S+MxVRGOfL6YIZl5QQcr/BrP21kxYU+kcnShyMKUU3zx5H66EUnavlo+LZrVOfaUOb
-         CJfursh2QR9Z+ef10A/MGoZW+h0TO45pvX6DD/T/qb6sxhCC8dQbKX5urz5vgH242hfP
-         DvZ/oCCsFCPRe3HtGfZFH0sekf34JymhXkqPqzUwwlU1Rp5ahSr8k8TI9OTARIhaXM5l
-         29dovLfxRZKhZmCHn9xWxiMTfXNyT9V9qTTljazbszShnFyZ5F4UOOt2c1MsAb7SPwjz
-         bQgQpaaaaT/DKvz37xnXzlOJ1YGfeuQ/z8uEVX2SPe5w00My/S9MmvLeHExM8PVisUUz
-         PvIg==
-X-Gm-Message-State: APjAAAX4aYdpJBu1O2oFU6UuOICFMF5vvNY9DI3nJlq6NtYWjVTSyAeA
-        bXBzxUJll2Yxt275LkRqU0L0sRkIT5djJGN8Zt8=
-X-Google-Smtp-Source: APXvYqwhqdRow05DXBj589Vp0KphTrjQ6ciBUn4XUPHVWtpvXM4UmtBTg9o5ymv8pW+npmlqSU6LWMvGS55XZEcH0aU=
-X-Received: by 2002:a17:906:2552:: with SMTP id j18mr29694003ejb.244.1573575955519;
- Tue, 12 Nov 2019 08:25:55 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=GAxdQVxMEKhKhuZoX/VBOrcEuUfwMEWl5fY0HVG6jDE=;
+        b=ZyCa2BTL2eR/RSBuyUJhlG9Zdm9LyJCH3qEOKC0g0MTKc3Q7DmF3KStlUjhq1zk9zI
+         t4W2KRhKUWjT7hLx9PIETf08hX1QPQQPo/9fy2sGoq/M1airzZ7vVsCDFuxhqfsGUGFh
+         fVKKFF4geom1K8YheaYTbJQSgkHwWyf1QXj9V8ssUE6agKzeZ5c3gj8bUgVNhcpIoUwz
+         ws5TDupo2BT1Rs+h4S7Z/uEsxXSVu/PfqY7RGnZUVv8N9NB6xLB/kUnFryA8LiLNZdKh
+         RguFiSBI7fB5lpCDzpODG+iqhJ7K7Tfst3mCvunwVH1dpnxm7dIK5YB2EfBicxR/hci5
+         YmIw==
+X-Gm-Message-State: APjAAAVE3NbGxgOARNs5nUhw5DDjnnrbKyu3AHW8Loz11B20V+je92HS
+        3HJXqLnrL4zHkgy4tkvrCJVu
+X-Google-Smtp-Source: APXvYqwtTdqQJZNRF2wCGHv2Dne2JxqgG/WDm44w3rTdj757M0nHUk5Wv2dL7mF3wT7UkK72qdkqSg==
+X-Received: by 2002:a17:90a:b394:: with SMTP id e20mr2437267pjr.130.1573579058856;
+        Tue, 12 Nov 2019 09:17:38 -0800 (PST)
+Received: from Mani-XPS-13-9360 ([2409:4072:6488:b1d2:4134:76b9:cbea:403])
+        by smtp.gmail.com with ESMTPSA id p16sm20720040pfn.171.2019.11.12.09.17.32
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 12 Nov 2019 09:17:37 -0800 (PST)
+Date:   Tue, 12 Nov 2019 22:47:29 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Kever Yang <kever.yang@rock-chips.com>
+Cc:     heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        Akash Gajjar <akash@openedev.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        daniel.lezcano@linaro.org
+Subject: Re: [PATCH 2/3] arm64: dts: rk3399-rock960: add vdd_log
+Message-ID: <20191112171726.GA18622@Mani-XPS-13-9360>
+References: <20191111005158.25070-1-kever.yang@rock-chips.com>
+ <20191111005158.25070-2-kever.yang@rock-chips.com>
+ <20191111052232.GA2842@Mani-XPS-13-9360>
+ <3d129826-7705-819e-e68b-cc9080eb6c95@rock-chips.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6402:1118:0:0:0:0 with HTTP; Tue, 12 Nov 2019 08:25:55
- -0800 (PST)
-Reply-To: walmart.b100263@gmail.com
-From:   "MS. MARYANNA B. THOMASON" <eco.bank1204@gmail.com>
-Date:   Tue, 12 Nov 2019 17:25:55 +0100
-Message-ID: <CAOE+jACK6QHRhhASVJWjC0bme2moy8jH40ErzPVPxpbcmo8RNQ@mail.gmail.com>
-Subject: CONTACT WALMART TRANSFER To pick up $5000 sent to you this morning
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3d129826-7705-819e-e68b-cc9080eb6c95@rock-chips.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- CONTACT WALMART TRANSFER To pick up $5000 sent to you this morning
+On Tue, Nov 12, 2019 at 04:10:17PM +0800, Kever Yang wrote:
+> 
+> On 2019/11/11 下午1:22, Manivannan Sadhasivam wrote:
+> > Hi Kever,
+> > 
+> > On Mon, Nov 11, 2019 at 08:51:57AM +0800, Kever Yang wrote:
+> > > Add vdd_log node according to rock960 schematic V13.
+> > > 
+> > > Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> > > ---
+> > > 
+> > >   arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi | 12 ++++++++++++
+> > >   1 file changed, 12 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+> > > index c7d48d41e184..73afee257115 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
+> > > @@ -76,6 +76,18 @@
+> > >   		regulator-always-on;
+> > >   		vin-supply = <&vcc5v0_sys>;
+> > >   	};
+> > > +
+> > > +	vdd_log: vdd-log {
+> > > +		compatible = "pwm-regulator";
+> > > +		pwms = <&pwm2 0 25000 1>;
+> > > +		regulator-name = "vdd_log";
+> > > +		regulator-always-on;
+> > > +		regulator-boot-on;
+> > > +		regulator-min-microvolt = <800000>;
+> > > +		regulator-max-microvolt = <1400000>;
+> > > +		regulator-init-microvolt = <950000>;
+> > The default value seems to be 0.9v as per both Rock960 and Ficus schematics.
+> 
+> 
+> The default value is 0.9V when pwm-regulator is not enabled, and this
+> 'init-microvolt' suppose to set the
+> 
+> init value when pwm-regulator is enabled. I set this to 950mV because Peter
+> report that he experience
+> 
+> the system hang during Fedora boot  up, and update the vdd_log to 950mV can
+> fix the issue due to
+> 
+> engineer measure on another rk3399 board puma-Q7.
+> 
 
-Attn Dear Beneficiary.
-Happy to inform you,I have deposited your payment funds
-$10.500,000MillionUS DollarsWith Walmart international money
-transfers.
-Receive the Money with Walmart | MoneyGram service.
-Walmart partners with MoneyGram to allow customers
-easily receive money transfers abroad,
-Contact Walmart international money transfers office -Benin
-Receive your approval payment funds $10.500,000MillionUS Dollars
-HERE IS WALMART CONTACT INFORMATIONS.
-Contact person. Mrs. Mary Anderson,Dir. Walmart transfers-Benin
-Email: walmart.b100263@gmail.com
-Telephone. +229 68823234
-Text Her on this international phone line. (256) 284-4886
-Ask Mrs. Mary Anderson,Dir. Walmart transfers-Benin to send the transfer
-as i instructed.
-we agreed to keep sending the transfer to you $5000.00 daily.
-Until you received your total payment $10.500,000 from the office
-Once again,
-make sure you contact Mrs. Mary Anderson,Dir. Walmart transfers-Benin
-today including your infos.
-(1) Your  Full Name==============
-(2) house address=============
-(3) Your Phone Numbers=============
-Urgent to receive your transfer now without any further delay.
-Thanks
-MS. MARYANNA B. THOMASON
+okay. Previously we had post-boot hang issue on Rock960 Model A boards when the
+performance governor was set as default. So the vdd_log node was removed from
+the devicetree. Have you tested that case also?
+
+Here is the commit:
+13682e524167 ("arm64: dts: rockchip: remove vdd_log from rock960 to fix a stability issues")
+
+thanks,
+Mani
+> 
+> Thanks,
+> 
+> - Kever
+> 
+> > 
+> > Other than that,
+> > Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > 
+> > Thanks,
+> > Mani
+> > 
+> > > +		vin-supply = <&vcc_sys>;
+> > > +	};
+> > >   };
+> > >   &cpu_l0 {
+> > > -- 
+> > > 2.17.1
+> > > 
+> 
+> 
