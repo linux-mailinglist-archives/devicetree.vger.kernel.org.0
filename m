@@ -2,113 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CBCFF94F3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 17:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA23FF951F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Nov 2019 17:07:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727316AbfKLQAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 11:00:05 -0500
-Received: from mx2.suse.de ([195.135.220.15]:57018 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726994AbfKLP7n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Nov 2019 10:59:43 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id C7FB6B3BB;
-        Tue, 12 Nov 2019 15:59:41 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     andrew.murray@arm.com, maz@kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>
-Cc:     james.quinlan@broadcom.com, mbrugger@suse.com,
-        f.fainelli@gmail.com, phil@raspberrypi.org, jeremy.linton@arm.com,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 3/6] ARM: dts: bcm2711: Enable PCIe controller
-Date:   Tue, 12 Nov 2019 16:59:22 +0100
-Message-Id: <20191112155926.16476-4-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191112155926.16476-1-nsaenzjulienne@suse.de>
-References: <20191112155926.16476-1-nsaenzjulienne@suse.de>
+        id S1726982AbfKLQHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 11:07:19 -0500
+Received: from smtp.codeaurora.org ([198.145.29.96]:52512 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726979AbfKLQHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 11:07:19 -0500
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 9198060D5A; Tue, 12 Nov 2019 16:07:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1573574838;
+        bh=LtdKcCfVo09bqodGRKYu7E6Q5R2Ji4qgLnYieGU7L6A=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=UEP+wHeyrWuVdLonKfdbdzmWmJ9yCEDkzMYyakEYGPVh5hRNkUn3l0CDilTj2Pj19
+         wjt07eyuavu6cbXlaC0aEv5pqIm9u5OtOCmrNkqvfEzfdV7Ud+kb93pKFNzXtuunQI
+         m5mAgKl/Ubt9TmPZons5Iq1fDehmae40iDVjVUSk=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.226.58.28] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jhugo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E653C601A3;
+        Tue, 12 Nov 2019 16:07:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1573574837;
+        bh=LtdKcCfVo09bqodGRKYu7E6Q5R2Ji4qgLnYieGU7L6A=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Ki3rrQA/x0Par42iQQdjt9YYMo8co5xQwgIJ4DTs8HEVdYt7TnRUCc1QKP2PE9yI2
+         YjpK6y1ONdpJTu3k1mYW3bMLiBe5BNYskHsgT2PCcWN6oXUFCfHc1+HQ89wWyljFoB
+         p5oGDbyx/JChLIRrkMJepWfTkppEoXaWeyC7UR48=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E653C601A3
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
+Subject: Re: [PATCH v8 3/4] dt-bindings: clock: Add support for the MSM8998
+ mmcc
+To:     Rob Herring <robh@kernel.org>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, marc.w.gonzalez@free.fr,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <1573254987-10241-1-git-send-email-jhugo@codeaurora.org>
+ <1573255068-10400-1-git-send-email-jhugo@codeaurora.org>
+ <20191112005527.GA7038@bogus>
+From:   Jeffrey Hugo <jhugo@codeaurora.org>
+Message-ID: <b759445d-211e-b002-f193-a0dfcaaca449@codeaurora.org>
+Date:   Tue, 12 Nov 2019 09:07:15 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191112005527.GA7038@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables bcm2711's PCIe bus, which is hardwired to a VIA
-Technologies XHCI USB 3.0 controller.
+On 11/11/2019 5:55 PM, Rob Herring wrote:
+> On Fri,  8 Nov 2019 16:17:48 -0700, Jeffrey Hugo wrote:
+>> Document the multimedia clock controller found on MSM8998.
+>>
+>> Signed-off-by: Jeffrey Hugo <jhugo@codeaurora.org>
+>> ---
+>>   .../devicetree/bindings/clock/qcom,mmcc.yaml       |  36 ++++
+>>   include/dt-bindings/clock/qcom,mmcc-msm8998.h      | 210 +++++++++++++++++++++
+>>   2 files changed, 246 insertions(+)
+>>   create mode 100644 include/dt-bindings/clock/qcom,mmcc-msm8998.h
+>>
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> 
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Ya know, normally you are right about this, as I did something stupid, 
+but in this case I did mention in the cover letter that tags were 
+dropped because the bindings were re-written in yaml (ie no one had 
+reviewed the new code).
 
----
-
-Changes since v1:
-  - remove linux,pci-domain
----
- arch/arm/boot/dts/bcm2711.dtsi | 46 ++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
-
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 667658497898..664fefb2011e 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -288,6 +288,52 @@ IRQ_TYPE_LEVEL_LOW)>,
- 		arm,cpu-registers-not-fw-configured;
- 	};
- 
-+	scb {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+
-+		ranges = <0x0 0x7c000000  0x0 0xfc000000  0x03800000>,
-+			 <0x6 0x00000000  0x6 0x00000000  0x40000000>;
-+
-+		pcie_0: pcie@7d500000 {
-+			compatible = "brcm,bcm2711-pcie";
-+			reg = <0x0 0x7d500000 0x9310>;
-+			msi-controller;
-+			msi-parent = <&pcie_0>;
-+			#address-cells = <3>;
-+			#interrupt-cells = <1>;
-+			#size-cells = <2>;
-+			brcm,enable-ssc;
-+			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pcie", "msi";
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0 0 0 1 &gicv2 GIC_SPI 143
-+							IRQ_TYPE_LEVEL_HIGH
-+					 0 0 0 2 &gicv2 GIC_SPI 144
-+							IRQ_TYPE_LEVEL_HIGH
-+					 0 0 0 3 &gicv2 GIC_SPI 145
-+							IRQ_TYPE_LEVEL_HIGH
-+					 0 0 0 4 &gicv2 GIC_SPI 146
-+							IRQ_TYPE_LEVEL_HIGH>;
-+
-+			ranges = <0x02000000 0x0 0xf8000000 0x6 0x00000000
-+				  0x0 0x04000000>;
-+			/*
-+			 * The wrapper around the PCIe block has a bug
-+			 * preventing it from accessing beyond the first 3GB of
-+			 * memory. As the bus DMA mask is rounded up to the
-+			 * closest power of two of the dma-range size, we're
-+			 * forced to set the limit at 2GB. This can be
-+			 * harmlessly changed in the future once the DMA code
-+			 * handles non power of two DMA limits.
-+			 */
-+			dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000
-+				      0x0 0x80000000>;
-+		};
-+	};
-+
- 	cpus: cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
 -- 
-2.24.0
-
+Jeffrey Hugo
+Qualcomm Technologies, Inc. is a member of the
+Code Aurora Forum, a Linux Foundation Collaborative Project.
