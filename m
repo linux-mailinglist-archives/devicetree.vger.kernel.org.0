@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9B0CFA64B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 03:28:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41A44FA5D4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 03:25:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727432AbfKMBuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 20:50:39 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37350 "EHLO mail.kernel.org"
+        id S1728001AbfKMBvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 20:51:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39942 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727417AbfKMBug (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Nov 2019 20:50:36 -0500
+        id S1727994AbfKMBvr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Nov 2019 20:51:47 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A8E4722466;
-        Wed, 13 Nov 2019 01:50:35 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 61BBE222D3;
+        Wed, 13 Nov 2019 01:51:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573609836;
-        bh=IeNKQvy9juCc7xi7oxqa/oqAhGZngI0NECDQy/pOYzg=;
+        s=default; t=1573609907;
+        bh=uoV+vE689AiaK2/D+SicCSmXb2xPyJ1VTO5cJn4q3Pg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=md8gjvMxJkusqgQa9IwF3QRATn36g4MEy7Lqg1kwuKK9nSI4hrAc/e+fl3fZnKwAq
-         M5VlI6021jFumqk08+hhICsXLDikiJFNWBBoj2/KwOebogHB3TSvjf+qQvb5eW3iJ2
-         9ZM6zN26CoDwr5gt2WZHac1ETBX9sy7UUF1LG9+o=
+        b=UNEc9sc1GhXdCumg2SRpiQY/lAZLcNj0T5cbtFo2ZJKYZLtv0uiWrxUVtH7NQHOst
+         pHlfpIDkU4SJNi8nv7irxupum+ChqhVwND+1R7lA8SCX+IT/GILu6Ngr15v/nKEf/s
+         rSXu4hJMoTRQEGy37jqNDD+loil5wrW4ax3gjMdo=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
+Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 009/209] ARM: dts: sun8i: h3: bpi-m2-plus: Fix address for external RGMII Ethernet PHY
-Date:   Tue, 12 Nov 2019 20:47:05 -0500
-Message-Id: <20191113015025.9685-9-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 058/209] ARM: dts: at91: sama5d4_xplained: fix addressable nand flash size
+Date:   Tue, 12 Nov 2019 20:47:54 -0500
+Message-Id: <20191113015025.9685-58-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191113015025.9685-1-sashal@kernel.org>
 References: <20191113015025.9685-1-sashal@kernel.org>
@@ -43,36 +43,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+From: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-[ Upstream commit db9fd9d13e30fc67737ac9893a82e6b095e85a64 ]
+[ Upstream commit df90fc64367ffdb6f1b5c0f0c4940d44832b0174 ]
 
-The external RTL8211E RGMII Ethernet PHY is configured via external
-resistors to use the address 0x1. The 0x0 address is a broadcast address
-for this family of PHYs, and should not be used explicitly.
+sama5d4_xplained comes with a 4Gb NAND flash. Increase the rootfs
+size to match this limit.
 
-Fixes: 8c7ba536e709 ("ARM: sun8i: bananapi-m2-plus: Enable dwmac-sun8i")
-Fixes: 4904337fe34f ("ARM: dts: sunxi: Restore EMAC changes (boards)")
-Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/sun8i-h3-bananapi-m2-plus.dts | 2 +-
+ arch/arm/boot/dts/at91-sama5d4_xplained.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/sun8i-h3-bananapi-m2-plus.dts b/arch/arm/boot/dts/sun8i-h3-bananapi-m2-plus.dts
-index 30540dc8e0c5f..bdda0d99128e5 100644
---- a/arch/arm/boot/dts/sun8i-h3-bananapi-m2-plus.dts
-+++ b/arch/arm/boot/dts/sun8i-h3-bananapi-m2-plus.dts
-@@ -140,7 +140,7 @@
- &external_mdio {
- 	ext_rgmii_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
--		reg = <0>;
-+		reg = <1>;
- 	};
- };
+diff --git a/arch/arm/boot/dts/at91-sama5d4_xplained.dts b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+index 4b7c762d5f223..7d554b9ab27fd 100644
+--- a/arch/arm/boot/dts/at91-sama5d4_xplained.dts
++++ b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+@@ -252,7 +252,7 @@
  
+ 						rootfs@800000 {
+ 							label = "rootfs";
+-							reg = <0x800000 0x0f800000>;
++							reg = <0x800000 0x1f800000>;
+ 						};
+ 					};
+ 				};
 -- 
 2.20.1
 
