@@ -2,38 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C3D3FC068
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 08:00:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0792BFA6FF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 04:02:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726210AbfKNHAP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Nov 2019 02:00:15 -0500
-Received: from mail.rlan.eu ([149.154.80.78]:43417 "EHLO gateway0.rlan.eu"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725601AbfKNHAP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 02:00:15 -0500
-Received: from [192.168.1.103] ([175.100.60.75])
-        (authenticated bits=0)
-        by gateway0.rlan.eu (8.15.2/8.14.1) with ESMTPSA id xA5LhMu7000787
-        (version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-        Tue, 5 Nov 2019 22:46:25 +0100
-Message-Id: <201911052146.xA5LhMu7000787@gateway0.rlan.eu>
+        id S1727354AbfKMDCU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 12 Nov 2019 22:02:20 -0500
+Received: from rtits2.realtek.com ([211.75.126.72]:49829 "EHLO
+        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726977AbfKMDCU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 22:02:20 -0500
+Authenticated-By: 
+X-SpamFilter-By: BOX Solutions SpamTrap 5.62 with qID xAD323qX017518, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (RTITCASV02.realtek.com.tw[172.21.6.19])
+        by rtits2.realtek.com.tw (8.15.2/2.57/5.78) with ESMTPS id xAD323qX017518
+        (version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Wed, 13 Nov 2019 11:02:03 +0800
+Received: from RTEXMB04.realtek.com.tw (172.21.6.97) by
+ RTITCASV02.realtek.com.tw (172.21.6.19) with Microsoft SMTP Server (TLS) id
+ 14.3.468.0; Wed, 13 Nov 2019 11:02:03 +0800
+Received: from RTEXMB03.realtek.com.tw (172.21.6.96) by
+ RTEXMB04.realtek.com.tw (172.21.6.97) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Wed, 13 Nov 2019 11:02:02 +0800
+Received: from RTEXMB03.realtek.com.tw ([::1]) by RTEXMB03.realtek.com.tw
+ ([fe80::3d7d:f7db:e1fb:307b%12]) with mapi id 15.01.1779.005; Wed, 13 Nov
+ 2019 11:02:02 +0800
+From:   James Tai <james.tai@realtek.com>
+To:     James Tai <james.tai@realtek.com>,
+        =?iso-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 3/7] arm64: dts: realtek: rtd129x: Introduce r-bus
+Thread-Topic: [PATCH 3/7] arm64: dts: realtek: rtd129x: Introduce r-bus
+Thread-Index: AQHVmD0LJFqIXtM2kU2Y99tlfWut1aeIZHwwgAAHQPA=
+Date:   Wed, 13 Nov 2019 03:02:02 +0000
+Message-ID: <a4d9c42767ac4f3a9eacab72be224f3c@realtek.com>
+References: <20191111030434.29977-1-afaerber@suse.de>
+ <20191111030434.29977-4-afaerber@suse.de>
+ <f70d00d8b1f8446fb138b36c61d952f4@realtek.com>
+In-Reply-To: <f70d00d8b1f8446fb138b36c61d952f4@realtek.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.187]
 Content-Type: text/plain; charset="iso-8859-1"
-MIME-Version: 1.0
 Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Greetings
-To:     Recipients <ticketing@rlan.eu>
-From:   "Maggie M. Wang" <ticketing@rlan.eu>
-Date:   Wed, 06 Nov 2019 04:46:19 +0700
-Reply-To: maggiem888wang@yandex.com
+MIME-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+> Hi Andreas,
+> 
+> > +		rbus: r-bus@98000000 {
+> > +			compatible = "simple-bus";
+> > +			reg = <0x98000000 0x100000>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <1>;
+> > +			ranges = <0x0 0x98000000 0x100000>;
+> > +
+> 
+> The r-bus size of RTD1395 is 0x200000.
+> 
 
-I have a business proposal to share with you. Contact me back for more details.
+Sorry for the typo. The r-bus size of RTD1295 is 0x200000.
 
-Thanks.
-Maggie M. Wang
+
+Regards,
+James
+
+
