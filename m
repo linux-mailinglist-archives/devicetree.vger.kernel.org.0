@@ -2,56 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD629FA754
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 04:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87314FA75D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 04:39:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727097AbfKMDf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 22:35:59 -0500
-Received: from shards.monkeyblade.net ([23.128.96.9]:54288 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726994AbfKMDf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 22:35:59 -0500
-Received: from localhost (unknown [IPv6:2601:601:9f00:1e2::3d5])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 543AE154FF68E;
-        Tue, 12 Nov 2019 19:35:58 -0800 (PST)
-Date:   Tue, 12 Nov 2019 19:35:57 -0800 (PST)
-Message-Id: <20191112.193557.2087258530355949302.davem@davemloft.net>
-To:     wahrenst@gmx.net
-Cc:     matthias.bgg@kernel.org, mbrugger@suse.com, robh+dt@kernel.org,
-        f.fainelli@gmail.com, eric@anholt.net, nsaenzjulienne@suse.de,
-        opendmb@gmail.com, netdev@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH V5 net-next 0/7] ARM: Enable GENET support for RPi 4
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <1573501766-21154-1-git-send-email-wahrenst@gmx.net>
-References: <1573501766-21154-1-git-send-email-wahrenst@gmx.net>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Tue, 12 Nov 2019 19:35:59 -0800 (PST)
+        id S1727319AbfKMDjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 22:39:33 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:35055 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726994AbfKMDjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 22:39:32 -0500
+X-UUID: b676502951aa4aa3bc418226a313c88d-20191113
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=l+3HLJlr9FU1jj0l+q4WqZWs0HC9AL455Rau+3GvDuw=;
+        b=HBILv9heeeUS1LBs8Dcev111DYoy0ti8qll/+M5WgD9H6M+JuxwlbRJjLJ2PWLoTvz79SeEWoAW5e7SP+BedGj+nqADpQ7WNvddgmHCkypXnAzwe3gTUtiqQwvspclspVxRQ24Qo9mf9dRCIJw0Bz1Jlo7zPHD/y9tFQ7mkmIK0=;
+X-UUID: b676502951aa4aa3bc418226a313c88d-20191113
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <ming-fan.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 611289577; Wed, 13 Nov 2019 11:39:26 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 13 Nov 2019 11:39:24 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 13 Nov 2019 11:39:23 +0800
+From:   Ming-Fan Chen <ming-fan.chen@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Evan Green <evgreen@chromium.org>, Joerg Roedel <jroedel@suse.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>
+Subject: [PATCH v1] memory: mtk-smi: Add bandwidth initial setting for MT6779
+Date:   Wed, 13 Nov 2019 11:39:20 +0800
+Message-ID: <1573616362-2557-1-git-send-email-ming-fan.chen@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stefan Wahren <wahrenst@gmx.net>
-Date: Mon, 11 Nov 2019 20:49:19 +0100
+VGhpcyBwYXRjaCBhZGQgZGVzY3JpcHRpb24gYW5kIGJhbmR3aWR0aCBpbml0aWFsIGdvbGRlbiBz
+ZXR0aW5nIGZvciBNVDY3NzkgU01JLg0KVGhlIHNldHRpbmcgbWFrZSBiZXR0ZXIgcGVyZm9ybWFu
+Y2Ugb2YgbWVtb3J5IGNvbnRyb2wgZm9yIG11bHRpbWVkaWEgbW9kdWxlcy4NCg0KDQpNaW5nLUZh
+biBDaGVuICgyKToNCiAgZHQtYmluZGluZ3M6IG1lZGlhdGVrOiBBZGQgYmluZGluZyBmb3IgTVQ2
+Nzc5IFNNSQ0KICBtZW1vcnk6IG10ay1zbWk6IEFkZCBiYW5kd2lkdGggaW5pdGlhbCBnb2xkZW4g
+c2V0dGluZyBmb3IgTVQ2Nzc5DQoNCiAuLi4vbWVtb3J5LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNt
+aS1jb21tb24udHh0ICAgICB8ICAgIDMgKy0NCiAuLi4vbWVtb3J5LWNvbnRyb2xsZXJzL21lZGlh
+dGVrLHNtaS1sYXJiLnR4dCAgICAgICB8ICAgIDMgKy0NCiBkcml2ZXJzL21lbW9yeS9tdGstc21p
+LmMgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAxNDEgKysrKysrKysrKysrKysrKysrKy0N
+CiAzIGZpbGVzIGNoYW5nZWQsIDE0MyBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0K
 
-> Raspberry Pi 4 uses the broadcom genet chip in version five.
-> This chip has a dma controller integrated. Up to now the maximal
-> burst size was hard-coded to 0x10. But it turns out that Raspberry Pi 4
-> does only work with the smaller maximal burst size of 0x8.
-> 
-> Additionally the patch series has some IRQ retrieval improvements and
-> adds support for a missing PHY mode.
-> 
-> This series based on Matthias Brugger's V1 series [1].
-> 
-> [1] - https://patchwork.kernel.org/cover/11186193/
-
-What tree should this be applied to?  Patch #7 does not apply to net-next.
