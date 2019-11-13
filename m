@@ -2,88 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EAFCFA437
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 03:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD31FFA4E2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 03:20:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729747AbfKMCPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 21:15:06 -0500
-Received: from userp2130.oracle.com ([156.151.31.86]:54550 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727840AbfKMCO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 21:14:59 -0500
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id xAD2EG8f062341;
-        Wed, 13 Nov 2019 02:14:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=to : cc : subject :
- from : references : date : in-reply-to : message-id : mime-version :
- content-type; s=corp-2019-08-05;
- bh=5+sd2HaueY26dn+rgJI+YCERp7oCIRvfIJ/MF+t4KsY=;
- b=LjpMbbhyF3ErFyyXfQctAaayPzt+DwBn8DGBpTj8ZGUvS6now9Eq89ZL3lbUqOMNYrJD
- p6xqnATUhdW86bUQV35HaAc8s+AaHV3HgDnxXk8rqcNTLh++dEDIRv/ULGmCSU5qQf7M
- mckgf/cIjGISRyf33iZrd5CyT+ixZlu/Y0mz0O1CkZ4g/cxmEgYCeAIHDEuPLj9uNDLJ
- XIssxhOMxV2K4BHGM+3Pbn5HCRMPWPLSKB4Tr7EW6T3xHw4kQUT9e/RY181x/nA/+Tg6
- v/8Y1WjN6JYrynqJs0jPHOLCn5fcpF6tKHWwWSnrlrGExYA+MgDHUdEAuu3IBRhHiNXU zg== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-        by userp2130.oracle.com with ESMTP id 2w5mvtrypx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 13 Nov 2019 02:14:42 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-        by userp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id xAD2EPIb176522;
-        Wed, 13 Nov 2019 02:14:42 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by userp3030.oracle.com with ESMTP id 2w7khmesb7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 13 Nov 2019 02:14:42 +0000
-Received: from abhmp0005.oracle.com (abhmp0005.oracle.com [141.146.116.11])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id xAD2EQcd029499;
-        Wed, 13 Nov 2019 02:14:27 GMT
-Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Tue, 12 Nov 2019 18:14:26 -0800
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        id S1729775AbfKMCTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 21:19:32 -0500
+Received: from rtits2.realtek.com ([211.75.126.72]:40616 "EHLO
+        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729027AbfKMCTb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Nov 2019 21:19:31 -0500
+Authenticated-By: 
+X-SpamFilter-By: BOX Solutions SpamTrap 5.62 with qID xAD2J7lm030129, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (RTITCAS11.realtek.com.tw[172.21.6.12])
+        by rtits2.realtek.com.tw (8.15.2/2.57/5.78) with ESMTPS id xAD2J7lm030129
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 13 Nov 2019 10:19:07 +0800
+Received: from RTEXMB02.realtek.com.tw (172.21.6.95) by
+ RTITCAS11.realtek.com.tw (172.21.6.12) with Microsoft SMTP Server (TLS) id
+ 14.3.468.0; Wed, 13 Nov 2019 10:19:07 +0800
+Received: from RTEXMB03.realtek.com.tw (172.21.6.96) by
+ RTEXMB02.realtek.com.tw (172.21.6.95) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Wed, 13 Nov 2019 10:19:07 +0800
+Received: from RTEXMB03.realtek.com.tw ([::1]) by RTEXMB03.realtek.com.tw
+ ([fe80::3d7d:f7db:e1fb:307b%12]) with mapi id 15.01.1779.005; Wed, 13 Nov
+ 2019 10:19:06 +0800
+From:   James Tai <james.tai@realtek.com>
+To:     =?utf-8?B?QW5kcmVhcyBGw6RyYmVy?= <afaerber@suse.de>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        "'DTML'" <devicetree@vger.kernel.org>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        Janek Kotas <jank@cadence.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-scsi@vger.kernel.org>
-Subject: Re: [PATCH v3 0/2] scsi: ufs: Add driver for TI wrapper for Cadence UFS IP
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
-References: <20191108164857.11466-1-vigneshr@ti.com>
-Date:   Tue, 12 Nov 2019 21:14:22 -0500
-In-Reply-To: <20191108164857.11466-1-vigneshr@ti.com> (Vignesh Raghavendra's
-        message of "Fri, 8 Nov 2019 22:18:55 +0530")
-Message-ID: <yq1o8xgr08x.fsf@oracle.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1.92 (gnu/linux)
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v2 0/2] Initial RTD1619 SoC and Realtek Mjolnir EVB support
+Thread-Topic: [PATCH v2 0/2] Initial RTD1619 SoC and Realtek Mjolnir EVB
+ support
+Thread-Index: AdWWGJhW6hHY3ZYJQ8qKkqaxghH5QQB63IcAAHDoKfA=
+Date:   Wed, 13 Nov 2019 02:19:06 +0000
+Message-ID: <569a8645d951428cbc1ce4bab3f42f3b@realtek.com>
+References: <43B123F21A8CFE44A9641C099E4196FFCF91F9CB@RTITMBSVM04.realtek.com.tw>
+ <f2ce8745-e056-06a5-3d55-b00ab4d82414@suse.de>
+In-Reply-To: <f2ce8745-e056-06a5-3d55-b00ab4d82414@suse.de>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.187]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9439 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=783
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1910280000 definitions=main-1911130016
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9439 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=855 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1910280000
- definitions=main-1911130016
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Vignesh,
-
-> This series add DT bindings and driver for TI wrapper for Cadence UFS
-> IP that is present on TI's J721e SoC
-
-Applied to 5.5/scsi-queue, thanks!
-
--- 
-Martin K. Petersen	Oracle Linux Engineering
+SGkgQW5kcmVhcywNCiANCj4gMSkgVGhlIHBhdGNoZXMgMS8yIGFuZCAyLzIgYXJlIGV4cGVjdGVk
+IHRvIGJlIHRocmVhZGVkIHRvIDAvMiAoYnV0IG5vdA0KPiAyLzIgdG8gMS8yKS4gUGxlYXNlIGNo
+ZWNrIHlvdXIgZ2l0IFtzZW5kZW1haWxdIGNvbmZpZyBvciB1c2UgLS10aHJlYWQNCj4gLS1uby1j
+aGFpbi1yZXBseS10by4gVGhhdCBoZWxwcyBrZWVwIHRoZSBzZXJpZXMgdG9nZXRoZXIgd2hlbiBw
+ZW9wbGUgc3RhcnQNCj4gcmVwbHlpbmcgdG8gaW5kaXZpZHVhbCBwYXRjaGVzLiBJZiB5b3VyIEdp
+dCBjb25maWcgc2VlbXMgY29ycmVjdCwgaXQgbWlnaHQgYWxzbyBiZQ0KPiBhbiBpc3N1ZSB3aXRo
+IHlvdXIgU01UUCBzZXJ2ZXIuDQoNClRoZSBnaXQgY29uZmlnIGlzIGNvcnJlY3QuIEknbGwgY2hl
+Y2sgbXkgU01UUCBzZXJ2ZXIuDQoNClJlZ2FyZHMsDQpKYW1lcw0KDQoNCg==
