@@ -2,118 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FBCBFB5F8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 18:09:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 963D2FB5EB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 18:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726350AbfKMRJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Nov 2019 12:09:39 -0500
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:38962 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726298AbfKMRJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Nov 2019 12:09:39 -0500
-Received: by mail-pf1-f196.google.com with SMTP id x28so2070205pfo.6
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2019 09:09:39 -0800 (PST)
+        id S1727348AbfKMRGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Nov 2019 12:06:39 -0500
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:37551 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727542AbfKMRGi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Nov 2019 12:06:38 -0500
+Received: by mail-lf1-f66.google.com with SMTP id b20so2585458lfp.4
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2019 09:06:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bBWxzsZRUXKbQzzivFjemLaJtwPKdmL9lKnNHf/rwAM=;
-        b=N89l11BmZ7KDAZGxB47EC1AYg6Yxy1wBxilJdrAUL+wf60hooxylxjDXwTs3ZVa8fV
-         IOzY9jFb4SoA5B5B7Qk2dV9Etb0EBG2TyXo3kUXsOy96E/uTaBK4m8IcyQUhs07AZbRX
-         J5TON/jLYKd7nEgPCtKqNRlZagzwmWje7FBDE=
+        bh=YUGF3lpYgO9cloOjHxsuyc+u/ViuA1RPV0SW81a51p8=;
+        b=IJIqQghhZIc7LcLbEwUqf+yG40VtSG/n49YzgeYHcf7KyekEWWFTOKEzfYKUOJc2jD
+         R7uC2QjEtNMsARz9qly8kXRt/ZZiKRZFB09TEfOFHt9IlEoDrn52FFpP6VBbDbG9D4a2
+         LHO+SENLr3b6C5+rQHvAChig7eek+mhi5Fuems3u5+qAA9QYHjXC7WS4epoVrrna/Bji
+         ub9W1mOHkfoJRHXEXleUZSJ5esJCOc553K2wOH6JCmTNsuXdMZsTUuGRkmR++BotgCiZ
+         mJVuZY4wwnl2YPBV/LCzRTxSgHTWzoVPnmN126pvhdlBgRGYTDbpG4QZfMuBl4rQYPod
+         T/Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bBWxzsZRUXKbQzzivFjemLaJtwPKdmL9lKnNHf/rwAM=;
-        b=MUXvo1FwtyTHmiye6hx+A1MP+KDeGD8gnURRGdHT6JV8CIobR5Qcb6kQ+PKpyls7eg
-         Jb93sVGEFHSulvlISoDgvtjRt7LcryYm9CTGl+gP6J8Bm46ZqghAMl11oaxM3W+Jf0sC
-         zwuMBaN/AdpX61whtJfSGUJhAnTGNTBGtwvAbc0pIhDi1NLxWkyvxr797F+qflPNt8VI
-         VgEFjW8hd5vGvbi1V33BlTAnikGMBMo47OEcLrwQIQzAE8+gL9xHKnPA/VRRwvh8zTOD
-         nChU7/ZsetMrxlB97dic0Jgye7UcjCQkNipeKT2OVrp/idl+h12bK8BdpUWyy9o88JYI
-         vIjw==
-X-Gm-Message-State: APjAAAXn42JsH7e98oTG+oLkWY/YyPEz3NR+5YNIZaRRUBfU9LNskh/q
-        WEsy2G66PnNQm7W7xMWwp4wvc6KhNryCig==
-X-Google-Smtp-Source: APXvYqzIhqzWlTzBSA0oKa9Kpuw37g9LkjvWYIl+/3UVYBgWtUozAPGEBDKUFIpwRp4tD0szK3goLw==
-X-Received: by 2002:a62:1c8:: with SMTP id 191mr5761500pfb.152.1573664978761;
-        Wed, 13 Nov 2019 09:09:38 -0800 (PST)
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com. [209.85.215.175])
-        by smtp.gmail.com with ESMTPSA id q26sm3058705pff.143.2019.11.13.09.09.38
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Nov 2019 09:09:38 -0800 (PST)
-Received: by mail-pg1-f175.google.com with SMTP id 29so1756637pgm.6
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2019 09:09:38 -0800 (PST)
-X-Received: by 2002:a5d:8953:: with SMTP id b19mr4637156iot.168.1573664490254;
- Wed, 13 Nov 2019 09:01:30 -0800 (PST)
+        bh=YUGF3lpYgO9cloOjHxsuyc+u/ViuA1RPV0SW81a51p8=;
+        b=WMHgTzurQYfgaOMYxqI+PZVpTyNjlAAo/JHtFRd8Mra+vfmXvstw0MNecoE/yQclHY
+         HkjMTPyaotl93fRpinYKnD9L4snWLeR0wLMElbtS+J6pQNiUXrzRH4HBNewgyhDbpYSf
+         PZmmyo4dEko31Be3Ps024ZYG69Q6oPuYuECJZ8wwtc5rwqB45jNTgA8Jk43ESFYFAHY6
+         mO+GHH9h3owezHsmbk7DygXu6kY5dITVITKeC0Irlv72NDdXPRl87/UvPukdG35BPB2M
+         IGIQwokxycDb50iv/DqqED+bDKarikGKnm7+yZ6zBqeb3LozTxeSVqVLz7JCcww3bOz7
+         4XdQ==
+X-Gm-Message-State: APjAAAUUSlSJFgTaXFPgpnIgt4CArL4raeDmcmJY9YNYY54JJF5oI+eA
+        0OUWU5LbqZAi14qgMtzAnLdo6vcQF+9QlLRpR7r3oQ==
+X-Google-Smtp-Source: APXvYqzC+Vh388YW3kxl3FCM93yogKwNCSplmHzAV1zL26+ogaBhxbpWxYMKbiKJu8VyczKRX/qX4SBexvsxIKmXtP4=
+X-Received: by 2002:ac2:5a07:: with SMTP id q7mr3268410lfn.86.1573664796067;
+ Wed, 13 Nov 2019 09:06:36 -0800 (PST)
 MIME-Version: 1.0
-References: <20191111005158.25070-1-kever.yang@rock-chips.com> <20191111005158.25070-3-kever.yang@rock-chips.com>
-In-Reply-To: <20191111005158.25070-3-kever.yang@rock-chips.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 13 Nov 2019 09:01:16 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UjbPALRU2r0s27F4RxjsbDyQ+horUBezVQejk1pT=vqA@mail.gmail.com>
-Message-ID: <CAD=FV=UjbPALRU2r0s27F4RxjsbDyQ+horUBezVQejk1pT=vqA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: rk3399: Add init voltage for vdd_log
-To:     Kever Yang <kever.yang@rock-chips.com>
-Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Peter Robinson <pbrobinson@gmail.com>,
-        Akash Gajjar <akash@openedev.com>,
-        Alexis Ballier <aballier@gentoo.org>,
-        =?UTF-8?Q?Andrius_=C5=A0tikonas?= <andrius@stikonas.eu>,
-        Andy Yan <andyshrk@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nick Xie <nick@khadas.com>,
-        Oskari Lemmela <oskari@lemmela.net>,
-        Pragnesh Patel <Pragnesh_Patel@mentor.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Soeren Moch <smoch@web.de>, Vicente Bergas <vicencb@gmail.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
+References: <20191030114530.872-1-peter.ujfalusi@ti.com> <CACRpkdbw9MVrQMSgVMenSqAOiti1pAy4d2LvWY-ssx9dhzWEcw@mail.gmail.com>
+ <8bd0f286-dc54-72a6-0aaf-2dc7b9972883@ti.com>
+In-Reply-To: <8bd0f286-dc54-72a6-0aaf-2dc7b9972883@ti.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 13 Nov 2019 18:06:23 +0100
+Message-ID: <CACRpkdZ-qf3OKAxsoj+36V_N6Y_gFte1LHM+66OqekXBAWxsVA@mail.gmail.com>
+Subject: Re: [RFC 0/2] gpio: Support for shared GPIO lines on boards
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Grant Likely <glikely@secretlab.ca>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Mark Brown <broonie@kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Nov 8, 2019 at 12:20 PM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
 
-On Sun, Nov 10, 2019 at 4:52 PM Kever Yang <kever.yang@rock-chips.com> wrote:
+> To start with I would let GPIO core to allow requesting the same GPIO
+> line by multiple consumers all the time.
+
+It already allows that with GPIOD_FLAGS_BIT_NONEXCLUSIVE.
+
+> If the flags for the gpio_request does not contain
+> GPIOD_FLAGS_BIT_NONEXCLUSIVE (probably we can have another define for
+> BIT(4) as GPIOD_FLAGS_BIT_MIGHT_BE_SHARED?) then print with dev_warn()
+> to get the attention of the developer that all users of the shared GPIO
+> line must be checked and change the current dev_info() to dev_dbg() when
+> the flag is provided.
+
+We already have that. Unless all users request it with the same
+GPIOD_FLAGS_BIT_NONEXCLUSIVE they will simply fail,
+it is an excellent warning since it creates a strict semantic
+requirement for all participating consumer to explicitly specify
+if they want to share a line.
+
+Adding a GPIOD_FLAGS_BIT_MIGHT_BE_SHARED with some
+soft semantics sort of allowing deviant nonstrict behavior seems
+like a real bad idea to me, it will likely create all kind of ambiguities
+we cannot foresee.
+
+> When the consumer drivers are checked (and modified if needed) that they
+> behave OK in this situation we can snap the
+> GPIOD_FLAGS_BIT_MIGHT_BE_SHARED to silence the warning.
+
+I have burnt myself a bit on "let's poke in this transitional
+thing that I promise to remove later" and that later never
+happens so I'd say don't do that.
+
+> gpiod_deassert() would be equivalent to Philipp's
+> gpiod_politely_suggest_value()
+
+I don't intuitively understand the semantics of these calls.
+Consider Rusty Russells API design manifesto:
+http://sweng.the-davies.net/Home/rustys-api-design-manifesto
+
+> Not sure how the core would refcount things, but to align with what Rob
+> was saying about the misleading API naming:
+> gpiod_set_value(priv->en_gpio, 1/0) against the DT's
+> GPIO_ACTIVE_HIGH/LOW of the line's active state we might want to have:
+> gpiod_assert(priv->en_gpio);
+> gpiod_deassert(priv->en_gpio);
+
+This is what gpiod_set_value() already does today in a way
+just name
+gpiod_set_value() -> gpio_set_asserted() and change
+the second argument to a bool named "asserted".
+
+It seems like a totally different and entirely syntactic problem
+separate from the reset business you're trying to solve?
+
+We had this discussion before this week and yeah, if we
+historically named the logical levels on the line "asserted"
+and "deasserted" everywhere it would be great.
+
+It is up to someone driving the change and changing it
+everywhere in that case. Preferably with a semantic
+coccinelle patch or sed script since it is purely
+syntactic, then plan where and when to
+run that. Then do that first, wait a kernel cycle and scoop up
+any fallout and leftovers and then start the next thing.
+
+> Basically assert would set the level to the active state defined by the
+> DT.
+
+Or ACPI. Or machine descriptor tables. I suppose.
+Doing APIs becomes generic, the suggestion I had
+above was more like doing something like detecting
+a shared line *specifically* for device tree and nothing
+else and handle it in gpiolib-of.c but maybe that is not
+possible.
+
+> Gradually drivers can be moved to this API pair from gpiod_set_value()
+> when it makes sense.
+
+The problem I have right now as subsystem maintainer is people
+starting things like that and never finishing them.
+
+If you wanna do this I suggest a fix it everywhere in one swift stroke
+approach with broad buy-in from everyone-approach or fail totally.
+We have too many in-transit API changes.
+
+> The current gpiod_set_* would operate like as it is right now by not
+> asking politely a level, whatever it is.
 >
-> Since there is no devfreq used for vdd_log, so the vdd_log(pwm regulator)
-> will be 'enable' with the dts node at a default PWM state with high or low
-> output. Both too high or too low for vdd_log is not good for the board,
-> add init voltage for driver to make the regulator get into a know output.
+> Hrm, probably both gpiod_assert() and gpiod_deassert() should be polite
+> when asking for level change?
+
+These APIs really need names that can be understood right off
+and they should be compile-time optional (a Kconfig option) so
+that drivers that really need them can select to have them
+explicitly.
+
+> If all consumers of the shared line is using gpiod_assert/deassert, then
+> the core should 'protect' the raw level of the gpiod_assert() calls.
 >
-> Note that this will be used by U-Boot for init voltage output, and this
-> is very important for it may get system hang somewhere during system
-> boot up with regulator enable and without this init value.
+> At the end we will see drivers converted to assert/deassert API when a
+> developer faces issues that they use shared GPIO line on a board.
 
-I'm a tad bit confused here.  When U-Boot boots the kernel, how is the
-PWM configured?
+> Another thing is that currently gpio core does not have refcounting and
+> most of the client drivers treat it like that.
 
-I remember folks going through a lot of work to make sure that we
-could actually _read_ the PWM state that the bootloader gave us and
-report it as the initial voltage.  If the kernel ends up needing to
-configure the PWM regulator's period for some reason, I remember it
-would actually pick something close.  Is that not working for you?
+Notably all the drivers specifying GPIOD_FLAGS_BIT_NONEXCLUSIVE
+does not treat it like that and that is why they specify that
+flag. All regulators, I think.
 
-For instance, on rk3288-veyron when I boot up mainline (no devfreq on
-rk3288-veyron on mainline) the vdd_logic reports 1.2 volts because it
-read what the bootloader left it as.
+> It is perfectly fine to
+> gpiod_get(priv->en_gpio,1);
+> gpiod_get(priv->en_gpio,1);
+> gpiod_get(priv->en_gpio,1);
+> gpiod_get(priv->en_gpio,0);
 
-...are you saying that U-Boot doesn't configure the PWM and you're
-trying to fix it up in the kernel?
+I guess you mean gpiod_set()
 
--Doug
+> at the last call the GPIO value is going to be set to 0 no matter if it
+> was set to 1 three times prior, but I guess this can be worked out when
+> the driver(s) are converted to assert/deassert.
 
+I don't understand why that would not be allowed?
 
--Doug
+Again I guess not really related to the original problem,
+so if you want to work on that it can be done in isolation.
+
+To the overall question of a refcounting GPIO API:
+
+OK to add a new API like that I would say first convert the
+regulators to use them so we have a strong buy-in from a
+subsystem that already does this. That way we can get rid of
+the existing GPIOD_FLAGS_BIT_NONEXCLUSIVE and pull
+the handling of shared GPIO lines into gpiolib using these
+new APIs.
+
+I'm all for this.
+
+But the general usability needs to be proven.
+It is not a very huge task:
+ git grep BIT_NONEXCLUSIVE |wc -l
+24
+
+24 occurrences in the whole kernel.
+
+If the suggested API doesn't fit regulators as well it is dead
+in the water. Then the usecase is likely specific to resets,
+and what you would need to do is rather improve the
+available semantics in the reset subsystem.
+
+So begin with creating a way to pull the shared handling of
+regulators into gpiolib with these clearly cut semantics
+delete the NONEXCLUSIVE thing and then when you are
+done with that exploit the same
+infrastructure for GPIO reset.
+
+Yours,
+Linus Walleij
