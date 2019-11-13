@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5E31FA45F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 03:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A216FA428
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 03:16:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729493AbfKMCQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Nov 2019 21:16:37 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48732 "EHLO mail.kernel.org"
+        id S1728101AbfKMCO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Nov 2019 21:14:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50242 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727725AbfKMB41 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Nov 2019 20:56:27 -0500
+        id S1728681AbfKMB5O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Nov 2019 20:57:14 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 362E52245C;
-        Wed, 13 Nov 2019 01:56:26 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E19B52246A;
+        Wed, 13 Nov 2019 01:57:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573610187;
-        bh=t0LGKsLAIPhyIH2YHKRCrKEsmfB6YyBV3i4SCbgDs0E=;
+        s=default; t=1573610233;
+        bh=Ws/++C/6yz3D2eqU9vCnRueTeOtZH2HVRq3VtWoVuao=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JfeUayxg1T72Nxabgp03UhBlY2d6feFqhJfVay7ycnCQHKt45qeImd0Sp0sj8nFe6
-         ECVnT85OmyDHv+Tw6eGosEiU1G91zWMWo0FgDgZFmo+Pa6cEuJfP+KGqDuk1rX+35Z
-         mrPS01GryQvwcYLNBcYUdWvvUxtAPpNmOmsAdmA4=
+        b=EjmjxWS9FHiepmxVxJXyumXaSCzgU0irvvC6CCtgsk8bgETNP5bsNBn1k4lhMbkrg
+         cHsJS+EBGMIx8eWAP8Ea9rjtIG0gE41DE+ogwchnPvflyq+pcvCbqP5nBxexdoD/RY
+         h9YLOy6eQNOEHCvv+UxHHo+AeTb655Iq400MWRCo=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vignesh R <vigneshr@ti.com>, Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 003/115] ARM: dts: dra7: Enable workaround for errata i870 in PCIe host mode
-Date:   Tue, 12 Nov 2019 20:54:30 -0500
-Message-Id: <20191113015622.11592-3-sashal@kernel.org>
+Cc:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 034/115] ARM: dts: at91: sama5d4_xplained: fix addressable nand flash size
+Date:   Tue, 12 Nov 2019 20:55:01 -0500
+Message-Id: <20191113015622.11592-34-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191113015622.11592-1-sashal@kernel.org>
 References: <20191113015622.11592-1-sashal@kernel.org>
@@ -43,41 +43,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vignesh R <vigneshr@ti.com>
+From: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-[ Upstream commit b830526f304764753fcb8b4a563a94080e982a6c ]
+[ Upstream commit df90fc64367ffdb6f1b5c0f0c4940d44832b0174 ]
 
-Add ti,syscon-unaligned-access property to PCIe RC nodes to set
-appropriate bits in CTRL_CORE_SMA_SW_7 register to enable workaround for
-errata i870.
+sama5d4_xplained comes with a 4Gb NAND flash. Increase the rootfs
+size to match this limit.
 
-Signed-off-by: Vignesh R <vigneshr@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/dra7.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/at91-sama5d4_xplained.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/dra7.dtsi b/arch/arm/boot/dts/dra7.dtsi
-index 0bf354024ef55..3af1aa7a3213d 100644
---- a/arch/arm/boot/dts/dra7.dtsi
-+++ b/arch/arm/boot/dts/dra7.dtsi
-@@ -314,6 +314,7 @@
- 						<0 0 0 2 &pcie1_intc 2>,
- 						<0 0 0 3 &pcie1_intc 3>,
- 						<0 0 0 4 &pcie1_intc 4>;
-+				ti,syscon-unaligned-access = <&scm_conf1 0x14 1>;
- 				status = "disabled";
- 				pcie1_intc: interrupt-controller {
- 					interrupt-controller;
-@@ -367,6 +368,7 @@
- 						<0 0 0 2 &pcie2_intc 2>,
- 						<0 0 0 3 &pcie2_intc 3>,
- 						<0 0 0 4 &pcie2_intc 4>;
-+				ti,syscon-unaligned-access = <&scm_conf1 0x14 2>;
- 				pcie2_intc: interrupt-controller {
- 					interrupt-controller;
- 					#address-cells = <0>;
+diff --git a/arch/arm/boot/dts/at91-sama5d4_xplained.dts b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+index cf712444b2c2c..10f2fb9e0ea61 100644
+--- a/arch/arm/boot/dts/at91-sama5d4_xplained.dts
++++ b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+@@ -240,7 +240,7 @@
+ 
+ 						rootfs@800000 {
+ 							label = "rootfs";
+-							reg = <0x800000 0x0f800000>;
++							reg = <0x800000 0x1f800000>;
+ 						};
+ 					};
+ 				};
 -- 
 2.20.1
 
