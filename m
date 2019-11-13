@@ -2,253 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5144FB614
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 18:15:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14313FB664
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2019 18:25:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728367AbfKMRPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Nov 2019 12:15:25 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:49593 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728294AbfKMRPU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Nov 2019 12:15:20 -0500
-X-Originating-IP: 91.224.148.103
-Received: from localhost.localdomain (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id B183EE000A;
-        Wed, 13 Nov 2019 17:15:16 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>
-Cc:     <linux-mtd@lists.infradead.org>, Mark Brown <broonie@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Bernhard Frauendienst <kernel@nospam.obeliks.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v4 4/4] mtd: Add driver for concatenating devices
-Date:   Wed, 13 Nov 2019 18:15:05 +0100
-Message-Id: <20191113171505.26128-5-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191113171505.26128-1-miquel.raynal@bootlin.com>
-References: <20191113171505.26128-1-miquel.raynal@bootlin.com>
+        id S1726115AbfKMRZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Nov 2019 12:25:44 -0500
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1780 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726120AbfKMRZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Nov 2019 12:25:44 -0500
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xADHMA1i002755;
+        Wed, 13 Nov 2019 18:25:29 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=8jtImWavCrw85wxjiK84rn3kDNWNi5jgBLEtUg33Spo=;
+ b=XHQBKkOM82F7cd0cUFcxuRXBJxe+owe/lgMT1KfYbk40byD1Xl9Bm0qZadrWGqwOgDQS
+ 7TQ4GGkDrSYy8+i/G8Y89p10QQpznyl3pOIEEAN/tdZK0Wi85+5wen3kHRJLzcGoso5N
+ zMXTS4+oRUMxdo7Tq14aGPlD0161SdB7rA96dSpflsiL/2OVbViOYkRY9Y2ASucsjbeT
+ sDLx3rh4EAzI7W9UnulU5vSeHeSre0V5WXwiovLORWc6ct116U3jmFDt6+pHcvFVS/Yr
+ nbClOJFbIgF+w7CqLMTO+2llSeZEnGjbsacGAO9Y3iHA3sSEnfnt1zOApjPtXbjkZWXV 2A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2w7psb9g09-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 13 Nov 2019 18:25:29 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7393910002A;
+        Wed, 13 Nov 2019 18:25:28 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 613B12BA7D0;
+        Wed, 13 Nov 2019 18:25:28 +0100 (CET)
+Received: from lmecxl0923.lme.st.com (10.75.127.47) by SFHDAG6NODE1.st.com
+ (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 13 Nov
+ 2019 18:25:27 +0100
+From:   Ludovic Barre <ludovic.Barre@st.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Ludovic Barre <ludovic.barre@st.com>
+Subject: [PATCH 1/1] mmc: mmci: add threaded irq to abort DPSM of non-functional state
+Date:   Wed, 13 Nov 2019 18:25:14 +0100
+Message-ID: <20191113172514.19052-1-ludovic.Barre@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To SFHDAG6NODE1.st.com
+ (10.75.127.16)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-11-13_04:2019-11-13,2019-11-13 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bernhard Frauendienst <kernel@nospam.obeliks.de>
+From: Ludovic Barre <ludovic.barre@st.com>
 
-Some MTD drivers like physmap variants have support for concatenating
-multiple MTD devices, but there is no generic way to define such a
-concatenated device from within the device tree.
+If datatimeout occurs on R1B request, the Data Path State Machine stays
+in busy and is non-functional. Only a reset aborts the DPSM.
 
-This is useful for boards where memory range has been extended with
-the use of multiple flash chips as memory banks of a single MTD
-device, with partitions spanning chip borders.
+Like a reset must be outside of critical section, this patch adds
+threaded irq function to release state machine. In this case,
+the mmc_request_done is called at the end of threaded irq and
+skipped into irq handler.
 
-Add a driver for creating virtual mtd-concat devices. They must have
-the "mtd-concat" compatible, and define a list of 'devices' to
-concatenate, ie:
-
-        flash {
-                compatible = "mtd-concat";
-                devices = <&flash0 &flash1>;
-
-                partitions {
-                        ...
-                };
-        };
-
-Signed-off-by: Bernhard Frauendienst <kernel@nospam.obeliks.de>
-[<miquel.raynal@bootlin.com>:
-Reword commit message a bit.
-Use the word 'virtual' instead of 'composite'.
-Do not probe the virtual device last: SPI is after MTD anyway.
-Change the driver's location.
-Update the driver logic and coding style.]
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
 ---
- drivers/mtd/Kconfig           |   8 +++
- drivers/mtd/Makefile          |   1 +
- drivers/mtd/mtd_virt_concat.c | 132 ++++++++++++++++++++++++++++++++++
- 3 files changed, 141 insertions(+)
- create mode 100644 drivers/mtd/mtd_virt_concat.c
+ drivers/mmc/host/mmci.c | 44 ++++++++++++++++++++++++++++++++++++-----
+ drivers/mmc/host/mmci.h |  1 +
+ 2 files changed, 40 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/mtd/Kconfig b/drivers/mtd/Kconfig
-index 79a8ff542883..3e1e55e7158f 100644
---- a/drivers/mtd/Kconfig
-+++ b/drivers/mtd/Kconfig
-@@ -276,6 +276,14 @@ config MTD_PARTITIONED_MASTER
- 	  the parent of the partition device be the master device, rather than
- 	  what lies behind the master.
- 
-+config MTD_VIRT_CONCAT
-+	tristate "Virtual concatenated MTD devices"
-+	help
-+	  This driver allows creation of a virtual MTD device, which
-+	  concatenates multiple physical MTD devices into a single one.
-+	  This is useful to create partitions bigger than the underlying
-+	  physical chips by allowing cross-chip boundaries.
+diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
+index 40e72c30ea84..ec6e249c87ca 100644
+--- a/drivers/mmc/host/mmci.c
++++ b/drivers/mmc/host/mmci.c
+@@ -556,6 +556,9 @@ static void mmci_dma_error(struct mmci_host *host)
+ static void
+ mmci_request_end(struct mmci_host *host, struct mmc_request *mrq)
+ {
++	if (host->irq_action == IRQ_WAKE_THREAD)
++		return;
 +
- source "drivers/mtd/chips/Kconfig"
+ 	writel(0, host->base + MMCICOMMAND);
  
- source "drivers/mtd/maps/Kconfig"
-diff --git a/drivers/mtd/Makefile b/drivers/mtd/Makefile
-index 58fc327a5276..c7ee13368a66 100644
---- a/drivers/mtd/Makefile
-+++ b/drivers/mtd/Makefile
-@@ -27,6 +27,7 @@ obj-$(CONFIG_SSFDC)		+= ssfdc.o
- obj-$(CONFIG_SM_FTL)		+= sm_ftl.o
- obj-$(CONFIG_MTD_OOPS)		+= mtdoops.o
- obj-$(CONFIG_MTD_SWAP)		+= mtdswap.o
-+obj-$(CONFIG_MTD_VIRT_CONCAT)	+= mtd_virt_concat.o
+ 	BUG_ON(host->data);
+@@ -1321,6 +1324,7 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
+ 	} else if (host->variant->busy_timeout && busy_resp &&
+ 		   status & MCI_DATATIMEOUT) {
+ 		cmd->error = -ETIMEDOUT;
++		host->irq_action = IRQ_WAKE_THREAD;
+ 	} else {
+ 		cmd->resp[0] = readl(base + MMCIRESPONSE0);
+ 		cmd->resp[1] = readl(base + MMCIRESPONSE1);
+@@ -1532,9 +1536,9 @@ static irqreturn_t mmci_irq(int irq, void *dev_id)
+ {
+ 	struct mmci_host *host = dev_id;
+ 	u32 status;
+-	int ret = 0;
  
- nftl-objs		:= nftlcore.o nftlmount.o
- inftl-objs		:= inftlcore.o inftlmount.o
-diff --git a/drivers/mtd/mtd_virt_concat.c b/drivers/mtd/mtd_virt_concat.c
-new file mode 100644
-index 000000000000..d184c58f7e09
---- /dev/null
-+++ b/drivers/mtd/mtd_virt_concat.c
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: GPL-2.0+
+ 	spin_lock(&host->lock);
++	host->irq_action = IRQ_HANDLED;
+ 
+ 	do {
+ 		status = readl(host->base + MMCISTATUS);
+@@ -1574,12 +1578,41 @@ static irqreturn_t mmci_irq(int irq, void *dev_id)
+ 		if (host->variant->busy_detect_flag)
+ 			status &= ~host->variant->busy_detect_flag;
+ 
+-		ret = 1;
+ 	} while (status);
+ 
+ 	spin_unlock(&host->lock);
+ 
+-	return IRQ_RETVAL(ret);
++	return host->irq_action;
++}
++
 +/*
-+ * Virtual concat MTD device driver
-+ *
-+ * Copyright (C) 2018 Bernhard Frauendienst
-+ * Author: Bernhard Frauendienst <kernel@nospam.obeliks.de>
++ * mmci_irq_threaded is call if the mmci host need to release state machines
++ * before to terminate the request.
++ * If datatimeout occurs on R1B request, the Data Path State Machine stays
++ * in busy and is non-functional. Only a reset can to abort the DPSM.
 + */
-+
-+#include <linux/module.h>
-+#include <linux/device.h>
-+#include <linux/mtd/concat.h>
-+#include <linux/mtd/mtd.h>
-+#include <linux/mtd/partitions.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/slab.h>
-+
-+/**
-+ * struct mtd_virt_concat - platform device driver data.
-+ * @vmtd: Virtual mtd_concat device
-+ * @count: Number of physical underlaying devices in @devices
-+ * @devices: Array of the physical devices used
-+ */
-+struct mtd_virt_concat {
-+	struct mtd_info	*vmtd;
-+	unsigned int count;
-+	struct mtd_info	**devices;
-+};
-+
-+static void mtd_virt_concat_put_devices(struct mtd_virt_concat *concat)
++static irqreturn_t mmci_irq_threaded(int irq, void *dev_id)
 +{
-+	int i;
++	struct mmci_host *host = dev_id;
++	unsigned long flags;
 +
-+	for (i = 0; i < concat->count; i++)
-+		put_mtd_device(concat->devices[i]);
-+}
-+
-+static int mtd_virt_concat_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
-+	struct mtd_virt_concat *concat;
-+	struct of_phandle_iterator it;
-+	struct mtd_info *mtd;
-+	int ret, count;
-+
-+	count = of_count_phandle_with_args(node, "devices", NULL);
-+	if (count < 2) {
-+		dev_err(dev, "minimum 2 devices, given: %d\n", count);
-+		return -EINVAL;
++	if (host->rst) {
++		reset_control_assert(host->rst);
++		udelay(2);
++		reset_control_deassert(host->rst);
 +	}
 +
-+	concat = devm_kzalloc(dev, sizeof(*concat), GFP_KERNEL);
-+	if (!concat)
-+		return -ENOMEM;
++	spin_lock_irqsave(&host->lock, flags);
++	writel(host->clk_reg, host->base + MMCICLOCK);
++	writel(host->pwr_reg, host->base + MMCIPOWER);
++	writel(MCI_IRQENABLE | host->variant->start_err,
++	       host->base + MMCIMASK0);
 +
-+	platform_set_drvdata(pdev, concat);
++	host->irq_action = IRQ_HANDLED;
++	mmci_request_end(host, host->mrq);
++	spin_unlock_irqrestore(&host->lock, flags);
 +
-+	concat->devices = devm_kcalloc(dev, count, sizeof(*concat->devices),
-+				       GFP_KERNEL);
-+	if (!concat->devices)
-+		return -ENOMEM;
-+
-+	/* Aggregate the physical devices */
-+	of_for_each_phandle(&it, ret, node, "devices", NULL, 0) {
-+		mtd = get_mtd_device_by_node(it.node);
-+		if (IS_ERR(mtd)) {
-+			ret = -EPROBE_DEFER;
-+			goto put_mtd_devices;
-+		}
-+
-+		concat->devices[concat->count++] = mtd;
-+	}
-+
-+	/* Create the virtual device */
-+	concat->vmtd = mtd_concat_create(concat->devices, concat->count,
-+					 dev_name(dev));
-+	if (!concat->vmtd) {
-+		ret = -ENXIO;
-+		goto put_mtd_devices;
-+	}
-+
-+	concat->vmtd->dev.parent = dev;
-+	mtd_set_of_node(concat->vmtd, node);
-+
-+	/* Register the platform device */
-+	ret = mtd_device_register(concat->vmtd, NULL, 0);
-+	if (ret)
-+		goto destroy_concat;
-+
-+	return 0;
-+
-+destroy_concat:
-+	mtd_concat_destroy(concat->vmtd);
-+put_mtd_devices:
-+	mtd_virt_concat_put_devices(concat);
-+
-+	return ret;
-+}
-+
-+static int mtd_virt_concat_remove(struct platform_device *pdev)
-+{
-+	struct mtd_virt_concat *concat = platform_get_drvdata(pdev);
-+
-+	mtd_device_unregister(concat->vmtd);
-+	mtd_concat_destroy(concat->vmtd);
-+	mtd_virt_concat_put_devices(concat);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id mtd_virt_concat_of_match[] = {
-+	{
-+		.compatible = "mtd-concat",
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mtd_virt_concat_of_match);
-+
-+static struct platform_driver mtd_virt_concat_driver = {
-+	.probe = mtd_virt_concat_probe,
-+	.remove = mtd_virt_concat_remove,
-+	.driver	 = {
-+		.name   = "mtd-virt-concat",
-+		.of_match_table = mtd_virt_concat_of_match,
-+	},
-+};
-+module_platform_driver(mtd_virt_concat_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Bernhard Frauendienst <kernel@nospam.obeliks.de>");
-+MODULE_DESCRIPTION("Virtual concat MTD device driver");
++	return host->irq_action;
+ }
+ 
+ static void mmci_request(struct mmc_host *mmc, struct mmc_request *mrq)
+@@ -2071,8 +2104,9 @@ static int mmci_probe(struct amba_device *dev,
+ 			goto clk_disable;
+ 	}
+ 
+-	ret = devm_request_irq(&dev->dev, dev->irq[0], mmci_irq, IRQF_SHARED,
+-			DRIVER_NAME " (cmd)", host);
++	ret = devm_request_threaded_irq(&dev->dev, dev->irq[0], mmci_irq,
++					mmci_irq_threaded, IRQF_SHARED,
++					DRIVER_NAME " (cmd)", host);
+ 	if (ret)
+ 		goto clk_disable;
+ 
+diff --git a/drivers/mmc/host/mmci.h b/drivers/mmc/host/mmci.h
+index 158e1231aa23..5e63c0596364 100644
+--- a/drivers/mmc/host/mmci.h
++++ b/drivers/mmc/host/mmci.h
+@@ -412,6 +412,7 @@ struct mmci_host {
+ 
+ 	struct timer_list	timer;
+ 	unsigned int		oldstat;
++	u32			irq_action;
+ 
+ 	/* pio stuff */
+ 	struct sg_mapping_iter	sg_miter;
 -- 
-2.20.1
+2.17.1
 
