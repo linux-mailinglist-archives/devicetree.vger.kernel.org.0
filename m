@@ -2,262 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5E33FCDAE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 19:33:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78801FCDDE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 19:36:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726994AbfKNSdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 13:33:38 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:53180 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726592AbfKNSdh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 13:33:37 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EAD8020007B;
-        Thu, 14 Nov 2019 19:33:34 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CDD7F20005A;
-        Thu, 14 Nov 2019 19:33:34 +0100 (CET)
-Received: from fsr-ub1864-112.ea.freescale.net (fsr-ub1864-112.ea.freescale.net [10.171.82.98])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 8D607205D5;
-        Thu, 14 Nov 2019 19:33:33 +0100 (CET)
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Angus Ainslie <angus@akkea.ca>,
-        Martin Kepplinger <martink@posteo.de>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Silvano di Ninno <silvano.dininno@nxp.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 5/5] arm64: dts: imx8m: Add ddr controller nodes
-Date:   Thu, 14 Nov 2019 20:33:22 +0200
-Message-Id: <8dc6436a9dfdf1c1fac37c4de1533c68ccd7015e.1573756360.git.leonard.crestez@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1573756360.git.leonard.crestez@nxp.com>
-References: <cover.1573756360.git.leonard.crestez@nxp.com>
-In-Reply-To: <cover.1573756360.git.leonard.crestez@nxp.com>
-References: <cover.1573756360.git.leonard.crestez@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727359AbfKNSgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 13:36:21 -0500
+Received: from smtp.codeaurora.org ([198.145.29.96]:55896 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726852AbfKNSfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 13:35:45 -0500
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 38259613D1; Thu, 14 Nov 2019 18:35:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1573756544;
+        bh=Xe3y4lO0o+G7wd7o5uty7IuBxQRp8lK4R1EoiDy8RUA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=QDjReYuJxUcuaCQCjE1xNnytaQLOBJGOqPXkzLDtjL9tGrsYgAQ5+abJ9/3D8Sa2m
+         wJ1237n5gxw+Qy2L4j1yCOrVhFlawfQOpDQppoAHVMPDm/+lF70h0/6NC3yBWXV4BB
+         52Eoo5yUWJc0HKO6InpExZnBoTKfnrS2rWDXgOyA=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from codeaurora.org (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: ilina@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5CF31613E4;
+        Thu, 14 Nov 2019 18:35:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1573756541;
+        bh=Xe3y4lO0o+G7wd7o5uty7IuBxQRp8lK4R1EoiDy8RUA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=K6G0pOnU+LLlzlxbBo5KXbLCH/r/X7tbVbNBniOYwp3+xJAexZIlv8B6ldEy/uX3b
+         T8ykRXPWFW5KrX4vuKF+vK8yppAp9HUBB4jAehxgFX5QFODGDciaujW6fo0pQF8xM9
+         XOHVDibsttYHxxMQcaOTRlkA9l/iJhUeiPeLjCGY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5CF31613E4
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
+From:   Lina Iyer <ilina@codeaurora.org>
+To:     swboyd@chromium.org, maz@kernel.org, linus.walleij@linaro.org,
+        bjorn.andersson@linaro.org
+Cc:     evgreen@chromium.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, mkshah@codeaurora.org,
+        linux-gpio@vger.kernel.org, agross@kernel.org,
+        dianders@chromium.org, Lina Iyer <ilina@codeaurora.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 05/12] of: irq: document properties for wakeup interrupt parent
+Date:   Thu, 14 Nov 2019 11:35:14 -0700
+Message-Id: <1573756521-27373-6-git-send-email-ilina@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1573756521-27373-1-git-send-email-ilina@codeaurora.org>
+References: <1573756521-27373-1-git-send-email-ilina@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is used by the imx-ddrc devfreq driver to implement dynamic
-frequency scaling of DRAM.
+Some interrupt controllers in a SoC, are always powered on and have a
+select interrupts routed to them, so that they can wakeup the SoC from
+suspend. Add wakeup-parent DT property to refer to these interrupt
+controllers.
 
-Support for proactive scaling via interconnect will come later. The
-high-performance bus masters which need that (display, vpu, gpu) are
-mostly not yet enabled in upstream anyway.
-
-Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mm-evk.dts  | 18 ++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 10 ++++++++
- .../boot/dts/freescale/imx8mn-ddr4-evk.dts    | 18 ++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mn.dtsi     | 10 ++++++++
- arch/arm64/boot/dts/freescale/imx8mq-evk.dts  | 24 +++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 10 ++++++++
- 6 files changed, 90 insertions(+)
+Changes in v1:
+	- Remove whitespace at end of patch
+---
+ .../devicetree/bindings/interrupt-controller/interrupts.txt  | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-index 28ab17a277bb..ecf0d385c164 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-@@ -75,10 +75,28 @@
- 
- &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+
-+	ddrc_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+		opp-750M {
-+			opp-hz = /bits/ 64 <750000000>;
-+		};
-+	};
-+};
-+
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 6edbdfe2d0d7..3d4802375715 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -856,10 +856,20 @@
- 			#interrupt-cells = <3>;
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+index 4a3ee25..4ebfa00 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+@@ -108,3 +108,15 @@ commonly used:
+ 			sensitivity = <7>;
  		};
- 
-+		ddrc: memory-controller@3d400000 {
-+			compatible = "fsl,imx8mm-ddrc", "fsl,imx8m-ddrc";
-+			reg = <0x3d400000 0x400000>;
-+			clock-names = "core", "pll", "alt", "apb";
-+			clocks = <&clk IMX8MM_CLK_DRAM_CORE>,
-+				 <&clk IMX8MM_DRAM_PLL>,
-+				 <&clk IMX8MM_CLK_DRAM_ALT>,
-+				 <&clk IMX8MM_CLK_DRAM_APB>;
-+		};
+ 	};
 +
- 		ddr-pmu@3d800000 {
- 			compatible = "fsl,imx8mm-ddr-pmu", "fsl,imx8m-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-index 071949412caf..b051c927c11e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-@@ -15,10 +15,28 @@
- 
- &A53_0 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
++3) Interrupt wakeup parent
++--------------------------
 +
-+	ddrc_opp_table: opp-table {
-+		compatible = "operating-points-v2";
++Some interrupt controllers in a SoC, are always powered on and have a select
++interrupts routed to them, so that they can wakeup the SoC from suspend. These
++interrupt controllers do not fall into the category of a parent interrupt
++controller and can be specified by the "wakeup-parent" property and contain a
++single phandle referring to the wakeup capable interrupt controller.
 +
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+		opp-600M {
-+			opp-hz = /bits/ 64 <600000000>;
-+		};
-+	};
-+};
-+
- &i2c1 {
- 	pmic@4b {
- 		compatible = "rohm,bd71847";
- 		reg = <0x4b>;
- 		pinctrl-0 = <&pinctrl_pmic>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index e91625063f8e..3a79fdddc72b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -757,10 +757,20 @@
- 			#interrupt-cells = <3>;
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		ddrc: memory-controller@3d400000 {
-+			compatible = "fsl,imx8mn-ddrc", "fsl,imx8m-ddrc";
-+			reg = <0x3d400000 0x400000>;
-+			clock-names = "core", "pll", "alt", "apb";
-+			clocks = <&clk IMX8MN_CLK_DRAM_CORE>,
-+				 <&clk IMX8MN_DRAM_PLL>,
-+				 <&clk IMX8MN_CLK_DRAM_ALT>,
-+				 <&clk IMX8MN_CLK_DRAM_APB>;
-+		};
-+
- 		ddr-pmu@3d800000 {
- 			compatible = "fsl,imx8mn-ddr-pmu", "fsl,imx8m-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-index c36685916683..ee6dc5f07622 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
-@@ -103,10 +103,34 @@
- 
- &A53_3 {
- 	cpu-supply = <&buck2_reg>;
- };
- 
-+&ddrc {
-+	operating-points-v2 = <&ddrc_opp_table>;
-+
-+	ddrc_opp_table: opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+		/*
-+		 * On imx8mq B0 PLL can't be bypassed so low bus is 166M
-+		 */
-+		opp-166M {
-+			opp-hz = /bits/ 64 <166935483>;
-+		};
-+		opp-800M {
-+			opp-hz = /bits/ 64 <800000000>;
-+		};
-+	};
-+};
-+
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_fec1>;
- 	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 7f9319452b58..d1fcf9887f8b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1111,10 +1111,20 @@
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
- 		};
- 
-+		ddrc: memory-controller@3d400000 {
-+			compatible = "fsl,imx8mq-ddrc", "fsl,imx8m-ddrc";
-+			reg = <0x3d400000 0x400000>;
-+			clock-names = "core", "pll", "alt", "apb";
-+			clocks = <&clk IMX8MQ_CLK_DRAM_CORE>,
-+				 <&clk IMX8MQ_DRAM_PLL_OUT>,
-+				 <&clk IMX8MQ_CLK_DRAM_ALT>,
-+				 <&clk IMX8MQ_CLK_DRAM_APB>;
-+		};
-+
- 		ddr-pmu@3d800000 {
- 			compatible = "fsl,imx8mq-ddr-pmu", "fsl,imx8m-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++   Example:
++	wakeup-parent = <&pdc_intc>;
 -- 
-2.17.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
