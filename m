@@ -2,123 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87811FCBAE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABEE9FCBDA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:29:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726995AbfKNRTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 12:19:42 -0500
-Received: from mta-02.yadro.com ([89.207.88.252]:42072 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726410AbfKNRTm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 12:19:42 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 21B3A42E7D;
-        Thu, 14 Nov 2019 17:19:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-transfer-encoding:mime-version:user-agent:content-type
-        :content-type:organization:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received:received; s=
-        mta-01; t=1573751977; x=1575566378; bh=P3FU1d3ro99r7uRl5lGjcNRn5
-        WqlYzCAmN7MBkdbr3Y=; b=LqdTURpIXk1RD39o6BfgxURK8wwxrfauvNYFNb6YL
-        7tPSe2Xiua69ovHuZqN0lAj4Nq/33qjR3XOOvOVhCAfY3lw4FZRcTKhQqUvsObMt
-        itpqEASW82dQU5Vjy44qmb/ffpzTwtOHoS8AW26CUAM6t8P0aAESBbrur6WVnb73
-        tM=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id k52oKM3PmY_C; Thu, 14 Nov 2019 20:19:37 +0300 (MSK)
-Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id D050A411D9;
-        Thu, 14 Nov 2019 20:19:35 +0300 (MSK)
-Received: from localhost.localdomain (172.17.15.69) by
- T-EXCH-02.corp.yadro.com (172.17.10.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.669.32; Thu, 14 Nov 2019 20:19:35 +0300
-Message-ID: <b443738f5e2a3c7ba96b329a8347374f7f934483.camel@yadro.com>
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-of-aspeed: add inversion
- sighttps://elixir.bootlin.com/linux/v4.6/ident/sdhci_opsnal presence
-From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
-To:     Adrian Hunter <adrian.hunter@intel.com>
-CC:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <openbmc@lists.ozlabs.org>
-Date:   Thu, 14 Nov 2019 20:19:31 +0300
-In-Reply-To: <fcb5f8b5-40b9-6497-b24d-0b73e2525949@intel.com>
-References: <20191114125435.27756-1-i.mikhaylov@yadro.com>
-         <20191114125435.27756-3-i.mikhaylov@yadro.com>
-         <fcb5f8b5-40b9-6497-b24d-0b73e2525949@intel.com>
-Organization: YADRO
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        id S1726958AbfKNR3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 12:29:47 -0500
+Received: from mail-io1-f68.google.com ([209.85.166.68]:41289 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726912AbfKNR3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 12:29:46 -0500
+Received: by mail-io1-f68.google.com with SMTP id r144so7681306iod.8
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 09:29:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RftPJC/z3aKe9Z2EQoJhnzZgJpMcylstQtfS6pNT5zM=;
+        b=iMlPJ+NJiZRBpDqEg1HSfcU3t5/w56CFqZq6rf17WXZtLre8hZjCjdf2fMoa0PRE9R
+         /RbNAy4ORogOiWqA8tDWCzhZo1WcPdQi5GyBEhjRPBqylco9vrfdCSM0R0mvB4WpUKZQ
+         EK8xlGCBJpsP+VtQqf6/0uzWYpwacWeZji/VM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RftPJC/z3aKe9Z2EQoJhnzZgJpMcylstQtfS6pNT5zM=;
+        b=cmfPCEJhGaQkJ2BlTHV6p15/lC1jqRwXL+qA6w4jEUPXutY/2Zb94+W612ncGX9qTQ
+         GNDrziK2S5uh4lj/w35Qv2QXTUzA6x1og4zuWfd4RELFVDOaw7kpgju1TwvXz5rZ3JYD
+         bJvK2hMWwd4IdkoBAUSXOJFjiI8UJqMm2DML4ocqOhLY0G5n6HNb3xEPmB0/NfGVRTwo
+         i2EI2ubUfgCnE/okwA++m84OZj6/jc3BrnITy0+C3eHFL+hQNGkwei27ZKKVHs3itrmZ
+         5+y8vjXea/Z3khGd95gnyiAE2+uDIUaqDuifB7eikRnZ1DVbdO8jBAC48HYAlPNLSFwd
+         rU2A==
+X-Gm-Message-State: APjAAAV7AsPEyKmbF8KQU5YEKAARHkeODUOaeQf4iN0naIl6qIqPlRRX
+        QwjbWuITBBUbtyMso+bPljcJDS+BLhM=
+X-Google-Smtp-Source: APXvYqxBpJxPFL5pQj692sFJa04URc5ZhnGAtKo6llyy9gDtRdKkYgcdb+XDzZ8Ozq6a/IqvdSiimQ==
+X-Received: by 2002:a6b:9343:: with SMTP id v64mr8881206iod.247.1573752585556;
+        Thu, 14 Nov 2019 09:29:45 -0800 (PST)
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com. [209.85.166.44])
+        by smtp.gmail.com with ESMTPSA id p8sm294671ilp.24.2019.11.14.09.29.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Nov 2019 09:29:44 -0800 (PST)
+Received: by mail-io1-f44.google.com with SMTP id p6so7697378iod.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 09:29:44 -0800 (PST)
+X-Received: by 2002:a02:a813:: with SMTP id f19mr8324725jaj.12.1573752583817;
+ Thu, 14 Nov 2019 09:29:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.17.15.69]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-02.corp.yadro.com (172.17.10.102)
+References: <20191112230944.48716-1-abhishekpandit@chromium.org> <20191112230944.48716-5-abhishekpandit@chromium.org>
+In-Reply-To: <20191112230944.48716-5-abhishekpandit@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 14 Nov 2019 09:29:29 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UfGDAtePrDmsEsdCNsHQZwDkU8z6E=qzSu=opht7evpQ@mail.gmail.com>
+Message-ID: <CAD=FV=UfGDAtePrDmsEsdCNsHQZwDkU8z6E=qzSu=opht7evpQ@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] dt-bindings: net: broadcom-bluetooth: Add pcm config
+To:     Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+Cc:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-bluetooth@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Ondrej Jirman <megous@megous.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-11-14 at 15:10 +0200, Adrian Hunter wrote:
-> On 14/11/19 2:54 PM, Ivan Mikhaylov wrote:
-> > Change the default .get_cd callback. Add inverted signal card detection
-> > check.
-> > 
-> > Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
-> > 
-> > diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-
-> > aspeed.c
-> > index 8962f6664381..186559ee8fcc 100644
-> > --- a/drivers/mmc/host/sdhci-of-aspeed.c
-> > +++ b/drivers/mmc/host/sdhci-of-aspeed.c
-> > @@ -143,6 +143,19 @@ static inline int aspeed_sdhci_calculate_slot(struct
-> > aspeed_sdhci *dev,
-> >  	return (delta / 0x100) - 1;
-> >  }
-> >  
-> > +static int aspeed_get_cd(struct mmc_host *mmc)
-> > +{
-> > +	struct sdhci_host *host = mmc_priv(mmc);
-> > +
-> > +	int present = !!(sdhci_readl(host, SDHCI_PRESENT_STATE)
-> > +			 & SDHCI_CARD_PRESENT);
-> > +
-> > +	if (mmc->caps2 & MMC_CAP2_CD_ACTIVE_HIGH)
-> > +		present = !present;
-> 
-> Perhaps safer to flip the bit using CONFIG_MMC_SDHCI_IO_ACCESSORS and
-> ->readl() callback
-> 
+Hi,
 
-Sorry, don't quite understand what you're saying. You want to instantiate
-'.read_l' callback instead of '.get_cd' in sdhci_ops and substitute the real
-value?
+On Tue, Nov 12, 2019 at 3:10 PM Abhishek Pandit-Subedi
+<abhishekpandit@chromium.org> wrote:
+>
+> Add documentation for pcm parameters.
+>
+> Signed-off-by: Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+>
+> ---
+>
+> Changes in v4:
+> - Fix incorrect function name in hci_bcm
+>
+> Changes in v3:
+> - Change disallow baudrate setting to return -EBUSY if called before
+>   ready. bcm_proto is no longer modified and is back to being const.
+> - Changed btbcm_set_pcm_params to btbcm_set_pcm_int_params
+> - Changed brcm,sco-routing to brcm,bt-sco-routing
+>
+> Changes in v2:
+> - Use match data to disallow baudrate setting
+> - Parse pcm parameters by name instead of as a byte string
+> - Fix prefix for dt-bindings commit
+>
+>  .../devicetree/bindings/net/broadcom-bluetooth.txt    | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+> index c749dc297624..42fb2fa8143d 100644
+> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+> @@ -29,6 +29,11 @@ Optional properties:
+>     - "lpo": external low power 32.768 kHz clock
+>   - vbat-supply: phandle to regulator supply for VBAT
+>   - vddio-supply: phandle to regulator supply for VDDIO
+> + - brcm,bt-sco-routing: 0-3 (PCM, Transport, Codec, I2S)
+> + - brcm,pcm-interface-rate: 0-4 (128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps)
+> + - brcm,pcm-frame-type: 0-1 (short, long)
+> + - brcm,pcm-sync-mode: 0-1 (slave, master)
+> + - brcm,pcm-clock-mode: 0-1 (slave, master)
 
-res = readl(base, reg);
-if (reg == SDHCI_PRESENT_STATE)
-	if (mmc->caps2 & MMC_CAP2_CD_ACTIVE_HIGH)
-		return !res;
-return res;
+Since these are optional your patch should describe what happens if
+they are not present.  I think in patch #3 of the series you guys are
+discussing it, but whatever you end up with should be documented here.
 
-Something like this?
+That actually made me realize that this is patch #4 in the series.  To
+be pedantic, bindings are supposed to be _earlier_ in the series than
+the code that implements them.
 
->  
-> > +	host->mmc_host_ops.get_cd = aspeed_get_cd;
-> > +	if (of_property_read_bool(pdev->dev.of_node, "cd-inverted"))
-> > +		dev_info(&pdev->dev, "aspeed: sdhci: presence signal inversion
-> > enabled\n");
-> 
-> Is this print really needed?
-> 
-I can remove it if you think it's redundant.
 
-Thanks.
+>  Example:
+> @@ -40,5 +45,11 @@ Example:
+>         bluetooth {
+>                 compatible = "brcm,bcm43438-bt";
+>                 max-speed = <921600>;
+> +
+> +               brcm,bt-sco-routing = [01];
+> +               brcm,pcm-interface-rate = [02];
+> +               brcm,pcm-frame-type = [00];
+> +               brcm,pcm-sync-mode = [01];
+> +               brcm,pcm-clock-mode = [01];
 
+I'm at least marginally curious why your example has a leading 0 for
+all numbers.  It makes me think you intend them to be represented in
+octal, though I don't know offhand if dtc uses that format for octal.
+I guess it doesn't matter since all your numbers are between 0 and 5,
+but it does seem strange.
+
+-Doug
