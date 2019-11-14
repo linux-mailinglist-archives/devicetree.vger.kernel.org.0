@@ -2,132 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 48FECFCC4D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:58:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66FE6FCC4F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:58:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726828AbfKNR6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 12:58:39 -0500
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:34204 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726505AbfKNR6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 12:58:39 -0500
-Received: by mail-pl1-f196.google.com with SMTP id h13so2971468plr.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 09:58:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=xtjRZ4N/dj5TnunKPr1ub8m5J6PxcC016TNe/Bh9Z1k=;
-        b=EZv+Wg45gytZ+SSGZ2MxGiIv9faCbFgA5DBq38RREWXPPOYxT+1YkOhGIBThM1zv2s
-         TR/ceK4mmS3CtlaSEFdD51xZIXTwPfo9bq+cgqr+TzMCuaniV2rwiM15zbih8G8djOBO
-         1qkqwFzqGT11ywk/B3nSxFkc47m8FodSOHUBw=
+        id S1726613AbfKNR6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 12:58:55 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:36413 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726444AbfKNR6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 12:58:55 -0500
+Received: by mail-ot1-f65.google.com with SMTP id f10so5645707oto.3;
+        Thu, 14 Nov 2019 09:58:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xtjRZ4N/dj5TnunKPr1ub8m5J6PxcC016TNe/Bh9Z1k=;
-        b=oaosgeBDXLZjZhS+eKVzLfiRHjyI3K0AA78Ti0iLGz1RwEc6Zvv3oXYqhIlabhl/h0
-         3rd6z4AN8tgWPiI0ceD0rOxDMimEySyNRJe6HYvIqmdn5ibDvX0PwQhrNua8QdE3krVX
-         MV0vBUSetY1KptqFbqSq5F9vS1mTCtyREsxKwranaqB8JeIT4WoLsLONRUa8TeNmHgin
-         S6dWtusnu6NUP42KrBEBxKs92R0eGMrmfQPyZwk35oZ75HXy8vWu9gQFGGegb/pnyyxJ
-         PT6+iM2oIAnqVZgvqQBReou81CBu/hjcitSQIcKJFAfLelWW3WKaQ0goohiy84EY4cYe
-         gRZQ==
-X-Gm-Message-State: APjAAAWmaXbCi0Z/JMFbgRcFqlDXuENbiO0ZKhDqhi9uJn/wyg/UuDMR
-        RecF3RmFaKTCGALWNaJKqFDCjg==
-X-Google-Smtp-Source: APXvYqzLuxA1NXzpc+PtqUC7hvdD8QB6bq/rvafa9MU7QspCSAYdGw0pn8iQHHA0/Bk6SqzTzc8SsQ==
-X-Received: by 2002:a17:902:d917:: with SMTP id c23mr10706341plz.199.1573754318761;
-        Thu, 14 Nov 2019 09:58:38 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id 13sm6901904pgu.53.2019.11.14.09.58.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Nov 2019 09:58:37 -0800 (PST)
-Date:   Thu, 14 Nov 2019 09:58:36 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Marcel Holtmann <marcel@holtmann.org>
-Cc:     Abhishek Pandit-Subedi <abhishekpandit@chromium.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-bluetooth@vger.kernel.org, dianders@chromium.org,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ondrej Jirman <megous@megous.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Subject: Re: [PATCH v4 4/4] dt-bindings: net: broadcom-bluetooth: Add pcm
- config
-Message-ID: <20191114175836.GI27773@google.com>
-References: <20191112230944.48716-1-abhishekpandit@chromium.org>
- <20191112230944.48716-5-abhishekpandit@chromium.org>
- <0642BE4E-D3C7-48B3-9893-11828EAFA7EF@holtmann.org>
+        bh=RfR6bpd+7RNBJaz7pO9oQTzcRrr4AZRdzRBMq8/RSDk=;
+        b=qSxEWNXYC5VU43b26rQ1mstkGbF148SIk2hy9l7opcjctrypDp/j0hiiNi3F34jC0a
+         SAH7bDD9MWQNDnjycaGyNmt78SG+ojwZIWBG77oJJ6vXrH9uI1+RYTH6xBP4IgM/JGFr
+         yt4WIv1wnYKGf4g+PMMPANrKHqbsmEVTVBqiwVpqFxR4MReXqMNrsPYpsG2/ZDShDS03
+         fE19Q2GuvDQjll1QD/vMCtGk4O3zmg45AQpHsgojFlskkxxqrrOKQMr54VXhDrLbdNo3
+         2WcIkk/qAXRbyeFI1nK1EEP3a01uhOdHG/MGQNM37VV/rJ3c3UH1tfesOC5f+qwiHaFN
+         OLGw==
+X-Gm-Message-State: APjAAAXxF0VW5ut8vSDdKSvfgJUTz3ws5p+nACR8/9td6d9MOLHpv+0v
+        96lSd4qL5XhSM32CzekP6g==
+X-Google-Smtp-Source: APXvYqxJpMpphl8ic0lq5+iIIiAn1l1PwDcZCMzifYBDwOG3S/JdkFma5EBVUFSSLbo5Dm1Wgp3QqQ==
+X-Received: by 2002:a05:6830:200c:: with SMTP id e12mr8862386otp.127.1573754332574;
+        Thu, 14 Nov 2019 09:58:52 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o4sm2042587ota.57.2019.11.14.09.58.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Nov 2019 09:58:52 -0800 (PST)
+Date:   Thu, 14 Nov 2019 11:58:51 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jeffrey Hugo <jhugo@codeaurora.org>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, mark.rutland@arm.com,
+        agross@kernel.org, bjorn.andersson@linaro.org,
+        marc.w.gonzalez@free.fr, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 1/4] dt-bindings: clock: Document external clocks for
+ MSM8998 gcc
+Message-ID: <20191114175851.GA11664@bogus>
+References: <1573591382-14225-1-git-send-email-jhugo@codeaurora.org>
+ <1573591466-14296-1-git-send-email-jhugo@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0642BE4E-D3C7-48B3-9893-11828EAFA7EF@holtmann.org>
+In-Reply-To: <1573591466-14296-1-git-send-email-jhugo@codeaurora.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 13, 2019 at 01:21:06AM +0100, Marcel Holtmann wrote:
-> Hi Abhishek,
+On Tue, Nov 12, 2019 at 01:44:26PM -0700, Jeffrey Hugo wrote:
+> The global clock controller on MSM8998 can consume a number of external
+> clocks.  Document them.
 > 
-> > Add documentation for pcm parameters.
-> > 
-> > Signed-off-by: Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
-> > 
-> > ---
-> > 
-> > Changes in v4:
-> > - Fix incorrect function name in hci_bcm
-> > 
-> > Changes in v3:
-> > - Change disallow baudrate setting to return -EBUSY if called before
-> >  ready. bcm_proto is no longer modified and is back to being const.
-> > - Changed btbcm_set_pcm_params to btbcm_set_pcm_int_params
-> > - Changed brcm,sco-routing to brcm,bt-sco-routing
-> > 
-> > Changes in v2:
-> > - Use match data to disallow baudrate setting
-> > - Parse pcm parameters by name instead of as a byte string
-> > - Fix prefix for dt-bindings commit
-> > 
-> > .../devicetree/bindings/net/broadcom-bluetooth.txt    | 11 +++++++++++
-> > 1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> > index c749dc297624..42fb2fa8143d 100644
-> > --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> > +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> > @@ -29,6 +29,11 @@ Optional properties:
-> >    - "lpo": external low power 32.768 kHz clock
-> >  - vbat-supply: phandle to regulator supply for VBAT
-> >  - vddio-supply: phandle to regulator supply for VDDIO
-> > + - brcm,bt-sco-routing: 0-3 (PCM, Transport, Codec, I2S)
-> > + - brcm,pcm-interface-rate: 0-4 (128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps)
-> > + - brcm,pcm-frame-type: 0-1 (short, long)
-> > + - brcm,pcm-sync-mode: 0-1 (slave, master)
-> > + - brcm,pcm-clock-mode: 0-1 (slave, master)
+> For 7180 and 8150, the hardware always exists, so no clocks are truly
+> optional.  Therefore, simplify the binding by removing the min/max
+> qualifiers to clocks.  Also, fixup an example so that dt_binding_check
+> passes.
 > 
-> I think that all of them need to start with brcm,bt- prefix since it is rather Bluetooth specific.
-> 
-> > 
-> > 
-> > Example:
-> > @@ -40,5 +45,11 @@ Example:
-> >        bluetooth {
-> >                compatible = "brcm,bcm43438-bt";
-> >                max-speed = <921600>;
-> > +
-> > +               brcm,bt-sco-routing = [01];
-> > +               brcm,pcm-interface-rate = [02];
-> > +               brcm,pcm-frame-type = [00];
-> > +               brcm,pcm-sync-mode = [01];
-> > +               brcm,pcm-clock-mode = [01];
-> >        };
-> 
-> My personal taste would be to add a comment after each entry that gives the human readable setting.
+> Signed-off-by: Jeffrey Hugo <jhugo@codeaurora.org>
+> ---
+>  .../devicetree/bindings/clock/qcom,gcc.yaml        | 47 +++++++++++++++-------
+>  1 file changed, 33 insertions(+), 14 deletions(-)
 
-I'd suggest to define constants in include/dt-bindings/bluetooth/brcm.h
-and use them instead of literals, with this we wouldn't rely on (optional)
-comments to make the configuration human readable.
+Reviewed-by: Rob Herring <robh@kernel.org>
