@@ -2,217 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CEBDFC5F2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 13:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ACF3FC69B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 13:54:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726179AbfKNMNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 07:13:18 -0500
-Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:44603 "EHLO
-        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726115AbfKNMNS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 07:13:18 -0500
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 14 Nov 2019 17:43:14 +0530
-IronPort-SDR: rufJA+6/4w14hAQHvkrW8SljzKUbvTSYQ5WR10INuI8+tLxupJF44G1lhuojb250Sax6RT+Ajy
- 5Sxf8koh+5JOlUglM0ZpayKJhpizGyE/pCV+Ovj7t1mvpsE5PhFcHJvhr9QTnGjLV0/wSUb87i
- 7T5SkhAaBTgB0t2lmjKbPp70cmhsSq2v06c0Mnoizl51bEbfFtSpaFfLurmRVk6eZCBEtz/QvI
- Ga6V78b385HvsI9HsGKGDoa7TkqnxslgB6SmpOJ6esxJpeYSOMlRbrVHkBu7CR/K9CAgoqnQcs
- ecaYVzKzyw7hXCkRXytnXqDa
-Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 14 Nov 2019 17:43:04 +0530
-Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
-        id CC0E1189A; Thu, 14 Nov 2019 17:43:02 +0530 (IST)
-From:   Sandeep Maheswaram <sanm@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     =linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-Subject: [PATCH v2 1/1] arm64: dts: qcom: sc7180: Add USB related nodes
-Date:   Thu, 14 Nov 2019 17:42:49 +0530
-Message-Id: <1573733569-25940-2-git-send-email-sanm@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1573733569-25940-1-git-send-email-sanm@codeaurora.org>
-References: <1573733569-25940-1-git-send-email-sanm@codeaurora.org>
+        id S1726270AbfKNMyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 07:54:04 -0500
+Received: from mail-vk1-f195.google.com ([209.85.221.195]:39375 "EHLO
+        mail-vk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbfKNMyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 07:54:01 -0500
+Received: by mail-vk1-f195.google.com with SMTP id j84so1434019vkj.6
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 04:54:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=j7kaYv+E/e8ORn2Gy+9BvMNe/wGdZZ8Ltu87P0bR2PM=;
+        b=jmdHDXBhhLyio2z3d9cvr0uOQLVHLSVGA2z0qYJ0zIbiAo2MFl8MKHWVLkO6Q1QBjI
+         nEgVba6NRuH2arLCk89WtqyD60ns5PQ/ABDOj29hb9Ldw3HqqjxABeeBov79x0lCy3A3
+         1dKSzwQ+rrK15q38Y4AZJkv1wJeEQQE/wyh055dPZMKFzbRoQEQqjSOOXd4jR6kS1ZVb
+         WrwOQFRQDHK1xcO6unINH3oMoi8ffSUFg4rvPzydLnGNliXQw3cUglJv22pXKzItg+hp
+         KhRV8uCAZVvYZNpVo6wgwcLJ8QMOvFZ967e8VrI1A7x3UCYcCbA9hboWp+nvxDWRF4UR
+         FnKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j7kaYv+E/e8ORn2Gy+9BvMNe/wGdZZ8Ltu87P0bR2PM=;
+        b=JamDY6BmwFmwu1PtIXbpglq579y5lmmpy6kFqUX2d4/Z/lx9edm5DDpaWxJ+24bC8W
+         H9Nrf4UEh5G/wCu2lWhADZE7PYdO8xGok0ANUczb+LPNkXUbUBnPRtek8d6DEGfckzBv
+         I6DyOM9m8iU5rFytgd/UsJkwX8va82dE2iZkuBL3Uc33/BigRfLiXOX3LlvLlLLJzF0n
+         NAC2K8Hdd0+LYWJV3+bWRqJT5LK47lr63hFnzCy9qtprHKO0Hyke5jOvKWXSCoyYdHur
+         TYRAGlDN/r/d9VMd3pT1L0R39IwvRsaVHemmo9c+YzonBBUUbxCtdKujGCQX1bFPqtwT
+         Vksg==
+X-Gm-Message-State: APjAAAUFC5SxpzrIJcEKsZRPhL9UkwHBqOyt6PbS2hSG6KBbrkMudyCo
+        oyetIkKP1VcvEmM8c9xPeMvjdNYEM8XhW0w9cAWdxA==
+X-Google-Smtp-Source: APXvYqyqmcQFAkEm9m1Jnd6vFouVrLC+OhhaXGWaFFzu1LdB9oTyBPhsXXff0IBdvNsBO1U1ZdQHtW10o/YdvuxHcPw=
+X-Received: by 2002:a1f:ee0f:: with SMTP id m15mr5092437vkh.43.1573736039900;
+ Thu, 14 Nov 2019 04:53:59 -0800 (PST)
+MIME-Version: 1.0
+References: <1572949321-8193-1-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <1572949321-8193-1-git-send-email-peng.fan@nxp.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 14 Nov 2019 13:53:23 +0100
+Message-ID: <CAPDyKFoL7oJ+2hvi77N9=1hBKFgCXRUppcte1u=eF4z+Fz8TQw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: add imx8m compatible string
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for DWC3 USB controller, QMP and QUSB PHYs.
+On Tue, 5 Nov 2019 at 11:23, Peng Fan <peng.fan@nxp.com> wrote:
+>
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> Add imx8mq/m/n compatible string
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180-idp.dts |  25 ++++++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 105 ++++++++++++++++++++++++++++++++
- 2 files changed, 130 insertions(+)
+Applied for next, thanks!
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 189254f..282d33e 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -400,3 +400,28 @@
- 			bias-pull-up;
- 		};
- };
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+	vdd-supply = <&vreg_l4a_0p8>;
-+	vdda-pll-supply = <&vreg_l11a_1p8>;
-+	vdda-phy-dpdm-supply = <&vreg_l17a_3p0>;
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+	vdda-phy-supply = <&vreg_l3c_1p2>;
-+	vdda-pll-supply = <&vreg_l4a_0p8>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 666e9b9..82f0b3a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/qcom,gcc-sc7180.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/phy/phy-qcom-qusb2.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- 
- / {
-@@ -182,6 +183,18 @@
- 			#power-domain-cells = <1>;
- 		};
- 
-+		qfprom@784000 {
-+			compatible = "qcom,qfprom";
-+			reg = <0 0x00784000 0 0x8ff>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			qusb2p_hstx_trim: hstx-trim-primary@25b {
-+				reg = <0x25b 0x1>;
-+				bits = <1 3>;
-+			};
-+		};
-+
- 		qupv3_id_0: geniqup@8c0000 {
- 			compatible = "qcom,geni-se-qup";
- 			reg = <0 0x008c0000 0 0x6000>;
-@@ -911,6 +924,98 @@
- 			status = "disabled";
- 		};
- 
-+		usb_1_hsphy: phy@88e3000 {
-+			compatible = "qcom,sc7180-qusb2-phy";
-+			reg = <0 0x088e3000 0 0x400>;
-+			status = "disabled";
-+			#phy-cells = <0>;
-+			clocks = <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "cfg_ahb","ref";
-+			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
-+
-+			nvmem-cells = <&qusb2p_hstx_trim>;
-+		};
-+
-+		usb_1_qmpphy: phy@88e9000 {
-+			compatible = "qcom,sc7180-qmp-usb3-phy";
-+			reg = <0 0x088e9000 0 0x18c>,
-+			      <0 0x088e8000 0 0x38>;
-+			reg-names = "reg-base", "dp_com";
-+			status = "disabled";
-+			#clock-cells = <1>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-+				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
-+				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
-+				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
-+			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
-+
-+			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
-+				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
-+			reset-names = "phy", "common";
-+
-+			usb_1_ssphy: lanes@88e9200 {
-+				reg = <0 0x088e9200 0 0x128>,
-+				      <0 0x088e9400 0 0x200>,
-+				      <0 0x088e9c00 0 0x218>,
-+				      <0 0x088e9600 0 0x128>,
-+				      <0 0x088e9800 0 0x200>,
-+				      <0 0x088e9a00 0 0x18>;
-+				#phy-cells = <0>;
-+				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-+				clock-names = "pipe0";
-+				clock-output-names = "usb3_phy_pipe_clk_src";
-+			};
-+		};
-+
-+		usb_1: usb@a6f8800 {
-+			compatible = "qcom,sc7180-dwc3", "qcom,dwc3";
-+			reg = <0 0x0a6f8800 0 0x400>;
-+			status = "disabled";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+			dma-ranges;
-+
-+			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-+				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-+				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-+				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-+				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>;
-+			clock-names = "cfg_noc", "core", "iface", "mock_utmi",
-+				      "sleep";
-+
-+			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-+					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-+			assigned-clock-rates = <19200000>, <150000000>;
-+
-+			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "hs_phy_irq", "ss_phy_irq",
-+					  "dm_hs_phy_irq", "dp_hs_phy_irq";
-+
-+			power-domains = <&gcc USB30_PRIM_GDSC>;
-+
-+			resets = <&gcc GCC_USB30_PRIM_BCR>;
-+
-+			usb_1_dwc3: dwc3@a600000 {
-+				compatible = "snps,dwc3";
-+				reg = <0 0x0a600000 0 0xe000>;
-+				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-+				iommus = <&apps_smmu 0x540 0>;
-+				snps,dis_u2_susphy_quirk;
-+				snps,dis_enblslpm_quirk;
-+				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-+				phy-names = "usb2-phy", "usb3-phy";
-+			};
-+		};
-+
- 		spmi_bus: spmi@c440000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0 0x0c440000 0 0x1100>,
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Kind regards
+Uffe
 
+
+> ---
+>
+> V1:
+>  imx8mq/m/n.dtsi already use this compatible string,
+>  but not listed in binding doc, so add it.
+>
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+> index f707b8bee304..2fb466ca2a9d 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+> @@ -18,6 +18,9 @@ Required properties:
+>                "fsl,imx6ull-usdhc"
+>                "fsl,imx7d-usdhc"
+>                "fsl,imx7ulp-usdhc"
+> +              "fsl,imx8mq-usdhc"
+> +              "fsl,imx8mm-usdhc"
+> +              "fsl,imx8mn-usdhc"
+>                "fsl,imx8qxp-usdhc"
+>
+>  Optional properties:
+> --
+> 2.16.4
+>
