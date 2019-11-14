@@ -2,172 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B143FC928
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 15:48:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FEEAFC93D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 15:50:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726992AbfKNOsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 09:48:38 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:55346 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726852AbfKNOsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 09:48:37 -0500
-Received: by mail-wm1-f65.google.com with SMTP id b11so5954810wmb.5;
-        Thu, 14 Nov 2019 06:48:35 -0800 (PST)
+        id S1727050AbfKNOuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 09:50:02 -0500
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:45158 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726452AbfKNOuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 09:50:01 -0500
+Received: by mail-vs1-f68.google.com with SMTP id n9so4003391vsa.12
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 06:49:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=osQPobpkOPnRC9LXPzS0ICaLsSaTgnPD7uH0HuL7bsg=;
-        b=gFm9i5+Q4erupPrQYD6hQx0NKLe5zgJP0SlHfMTD5BEfvWIDz3mr2NfUsaFysX/mnR
-         Oc4VITBDZYrIqiwZ34l3GoJ/SqxuSi+xhAK8kgFJmXlsxxGL3QiVtJhpK45COXk1LvRm
-         2KyIpi8iT9VNeB0r6mhX9TLucAi1QK5L0nS2KlhrhL6b8xNI59NenZqwa07IsRxULGW/
-         x7PSuPd6cU3YImqIKoFRnSEw9S9DsPhMdM5VhNqkw+GATxDqeY5X9fYIwCS+uFBWA1ir
-         W7eJGT/xmmMTWz/j3hv0t/Hs8b3/UWpk2/K29up+DWHC2flGpj+wXH/UNnWQ8csAAm6q
-         jnKQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=O7wapv4EE4G+0Gc1i2jjis8KTbTPULbvSuyjxNMdOtM=;
+        b=AVxDQJqsoylkSQmx08lzQrUBZCxelJXskce1tNwhtJqrv1m/adiDXhfzeb/LLtfBmP
+         9J1MdAGXQYOU9lve3TdlhlSPCWYIik4z3gbcbniH/2ZP/ZXc2kJetKj4I6hyBbDXALnt
+         iKgDNTMw7gO1UcDjUwYeFQTYgymS3hwkbr6BYeprE9le1g2rtD7363gMpJaobyJD2GCh
+         gPfFepXZyZOTSZe8PbbwFXolc3mrqQPUCjmh109X07tuR9ew5b1b8Jf0XUoKppFBALdL
+         lykqOOtEIukCrxxKeAwPCpErBEAHgDQIf7n8jAKX4QF8oNgh1YmEKac+5Hot/3WZQEHA
+         V5uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=osQPobpkOPnRC9LXPzS0ICaLsSaTgnPD7uH0HuL7bsg=;
-        b=nXhGpzfppKAs31As9HgYo8GThiUdvamGQmp9ZaklR7vh7ZrE19HxY+XjAnjJhJanEb
-         n4T9Quql8UaY70Xkdj82QeOSvkco/BGDdbkk72Q0z2ZcZFRKeuymvpurX+xsEZcyCFAh
-         q0npBWO9+fgR1aWELkC75bN/6nn2T9Vw4fwOp679smX9Hibfm8y0QSUzMY3ji8Qoy0fP
-         BAb0wV8SrVU3pAUJ0/5CKNl1cvm9NcnO7hUOFWf2KO9nf6RhQVu8uah/7ECkW9flLRnv
-         Bnzz0Ca9tiQ4XJcnkKx/9OpaT6ntgxA05K0VSAVyWvq01YUt3A7zco90aSjp8m3PYhC6
-         imfA==
-X-Gm-Message-State: APjAAAWH0YqRZKVzxYG+LyFoTv8Az96Mwp4X5A/Cqosy3CotTGIsKjFZ
-        xp1UVgqyr12LsKYACdbJJyQ=
-X-Google-Smtp-Source: APXvYqy6S2n65N2oW3nP74LsGjZD7yPbedKs0jyxo0652I/j5zyvyuAQz5KODGEsdg2mDL2R1jlh+Q==
-X-Received: by 2002:a7b:ce08:: with SMTP id m8mr8188339wmc.68.1573742914630;
-        Thu, 14 Nov 2019 06:48:34 -0800 (PST)
-Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id v9sm7153223wrs.95.2019.11.14.06.48.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2019 06:48:34 -0800 (PST)
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
-        wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        Corentin Labbe <clabbe.montjoie@gmail.com>
-Subject: [PATCH 3/3] crypto: sun4i-ss: add the A33 variant of SecuritySystem
-Date:   Thu, 14 Nov 2019 15:48:12 +0100
-Message-Id: <20191114144812.22747-4-clabbe.montjoie@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191114144812.22747-1-clabbe.montjoie@gmail.com>
-References: <20191114144812.22747-1-clabbe.montjoie@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=O7wapv4EE4G+0Gc1i2jjis8KTbTPULbvSuyjxNMdOtM=;
+        b=S1bHPRtjuF0APAtIlU4gwpTzAwO4kdO4TrDQPmiC47iQpv4EylWNt4zmpIdFqxZ2Hy
+         SbpVCrMyQeQw31gpMxSLoMaFiXejx+z6XyOUOrIW+hUgr2LHDfguPdQ7gH1G1BIbTpDf
+         412hP1kxLz/R6nyar8TCqV0J4WrQj3nUKuBSDbBRdtDzoiDtiei0CG3QVE2Km+wNWdET
+         X+1YKTtb6js8N89HmgfH0InOFBRA4VQbj757rae3HDH7mzrtmL2strNnYHWdGUq484uS
+         GS3Evu+d/bII7r5ycc3SmeTMtZauqGU9mzHvhDahghLYmrvI3BTsf8cKrFvxPfTO8k/H
+         ooIw==
+X-Gm-Message-State: APjAAAVuI/RbMzl4kElMrZ/8gfAA11d9TKKFckl+XmpXMtEjquvgl9Iy
+        UlsCgmBvYG9OkaOHluYtn1v0K1rNG/EkbdIRKvUyLA==
+X-Google-Smtp-Source: APXvYqzcyR0y7F+ha4XEbI+5EzDrdrJyK1AZpIJppA2pHa1tvpOnu8Gvhe0K17/wE+Byt8XJXfmdlVGMNecJ5wVu/x0=
+X-Received: by 2002:a05:6102:36d:: with SMTP id f13mr6134394vsa.34.1573742998082;
+ Thu, 14 Nov 2019 06:49:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191011131502.29579-1-ludovic.Barre@st.com> <20191011131502.29579-2-ludovic.Barre@st.com>
+ <CAPDyKFqE09nqdev_qewwNzjjUuhm0UUC03tgvY=ZukYY4az7wg@mail.gmail.com> <d8d82f39-319b-c8f8-255a-a02a81980671@st.com>
+In-Reply-To: <d8d82f39-319b-c8f8-255a-a02a81980671@st.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 14 Nov 2019 15:49:21 +0100
+Message-ID: <CAPDyKFpvOdwnwNa94ppF_Gum26ML52oeXDSeR1qKtSaH_wQU+g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] mmc: add unstuck function if host is in deadlock state
+To:     Ludovic BARRE <ludovic.barre@st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The A33 SecuritySystem has a difference with all other SS, it give SHA1 digest
-directly in BE.
-So this patch adds variant support in sun4i-ss.
+On Wed, 13 Nov 2019 at 17:54, Ludovic BARRE <ludovic.barre@st.com> wrote:
+>
+>
+>
+> Le 10/21/19 =C3=A0 3:35 PM, Ulf Hansson a =C3=A9crit :
+> > On Fri, 11 Oct 2019 at 15:15, Ludovic Barre <ludovic.Barre@st.com> wrot=
+e:
+> >>
+> >> From: Ludovic Barre <ludovic.barre@st.com>
+> >>
+> >> After a request a host may be in deadlock state, and wait
+> >> a specific action to unstuck the hardware block before
+> >> re-sending a new command.
+> >
+> > Rather than talking about "unstuck" and "deadlock", how about instead
+> > describing that an MMC controller, may end up in an non-functional
+> > state hanging on something. Then to allow it to serve new requests it
+> > needs to be reset.
+> >
+>
+> Ok, deadlock naming is perhaps too stronght and scary.
+>
+> >>
+> >> This patch adds an optional callback mmc_hw_unstuck which
+> >> allows the host to unstuck the controller. In order to avoid
+> >> a critical context, this callback must be called when the
+> >> request is completed. Depending the mmc request, the completion
+> >> function is defined by mrq->done and could be in block.c or core.c.
+> >
+> > I think it's important to state exactly what is expected from the core
+> > perspective, by the mmc host driver when it calls this new host ops.
+> > We need to clarify that.
+> >
+> >>
+> >> mmc_hw_unstuck is called if the host returns an cmd/sbc/stop/data
+> >> DEADLK error.
+> >
+> > To me, this approach seems a bit upside-down. Although, I have to
+> > admit that I haven't thought through this completely yet.
+> >
+> > The thing is, to make this useful for host drivers in general, I
+> > instead think we need to add timeout to each request that the core
+> > sends to the host driver. In other words, rather than waiting forever
+> > in the core for the completion variable to be set, via calling
+> > wait_for_completion() we could call wait_for_completion_timeout(). The
+> > tricky part is to figure out what timeout to use for each request.
+> > Perhaps that is even why you picked the approach as implemented in
+> > @subject patch instead?
+>
+> On STM32 SDMMC variant, If datatimeout occurs on R1B request the Data
+> Path State Machine stays in busy and only the DPSM is non-functional.
+> The hardware block waits a software action to abort the DPSM.
+>
+> Like the CPSM stay alive, the framework can sent some requests
+> (without data, example cmd13:status) before to had this
+> timeout issue.
+>
+> POV framework I understand the possibility to have a completion_timeout,
+> for more safety. But for this specific sdmmc case, I'm not fan, because
+> the completion timeout error will occur several requests after the real
+> issue (which put the DPSM non-functional). when the completion timeout
+> occurs we can't know if it's due to R1B timeout or an other issue.
 
-Fixes: 6298e948215f ("crypto: sunxi-ss - Add Allwinner Security System crypto accelerator")
-Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
----
- .../crypto/allwinner/sun4i-ss/sun4i-ss-core.c | 22 ++++++++++++++++++-
- .../crypto/allwinner/sun4i-ss/sun4i-ss-hash.c |  5 ++++-
- drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h  |  9 ++++++++
- 3 files changed, 34 insertions(+), 2 deletions(-)
+Right, I see what you are saying. So let's drop the approach suggested
+in $subject series.
 
-diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-index 814cd12149a9..d35a05843c22 100644
---- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-+++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-@@ -13,6 +13,7 @@
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <crypto/scatterwalk.h>
- #include <linux/scatterlist.h>
-@@ -22,6 +23,14 @@
- 
- #include "sun4i-ss.h"
- 
-+static const struct ss_variant ss_a10_variant = {
-+	.sha1_in_be = false,
-+};
-+
-+static const struct ss_variant ss_a33_variant = {
-+	.sha1_in_be = true,
-+};
-+
- static struct sun4i_ss_alg_template ss_algs[] = {
- {       .type = CRYPTO_ALG_TYPE_AHASH,
- 	.mode = SS_OP_MD5,
-@@ -323,6 +332,12 @@ static int sun4i_ss_probe(struct platform_device *pdev)
- 		return PTR_ERR(ss->base);
- 	}
- 
-+	ss->variant = of_device_get_match_data(&pdev->dev);
-+	if (!ss->variant) {
-+		dev_err(&pdev->dev, "Missing Security System variant\n");
-+		return -EINVAL;
-+	}
-+
- 	ss->ssclk = devm_clk_get(&pdev->dev, "mod");
- 	if (IS_ERR(ss->ssclk)) {
- 		err = PTR_ERR(ss->ssclk);
-@@ -484,7 +499,12 @@ static int sun4i_ss_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id a20ss_crypto_of_match_table[] = {
--	{ .compatible = "allwinner,sun4i-a10-crypto" },
-+	{ .compatible = "allwinner,sun4i-a10-crypto",
-+	  .data = &ss_a10_variant
-+	},
-+	{ .compatible = "allwinner,sun8i-a33-crypto",
-+	  .data = &ss_a33_variant
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, a20ss_crypto_of_match_table);
-diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-index 91cf58db3845..c791d6935c65 100644
---- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-+++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-@@ -478,7 +478,10 @@ static int sun4i_hash(struct ahash_request *areq)
- 	/* Get the hash from the device */
- 	if (op->mode == SS_OP_SHA1) {
- 		for (i = 0; i < 5; i++) {
--			v = cpu_to_be32(readl(ss->base + SS_MD0 + i * 4));
-+			if (ss->variant->sha1_in_be)
-+				v = cpu_to_le32(readl(ss->base + SS_MD0 + i * 4));
-+			else
-+				v = cpu_to_be32(readl(ss->base + SS_MD0 + i * 4));
- 			memcpy(areq->result + i * 4, &v, 4);
- 		}
- 	} else {
-diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
-index 60425ac75d90..2b4c6333eb67 100644
---- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
-+++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
-@@ -131,7 +131,16 @@
- #define SS_SEED_LEN 192
- #define SS_DATA_LEN 160
- 
-+/*
-+ * struct ss_variant - Describe SS hardware variant
-+ * @sha1_in_be:		The SHA1 digest is given by SS in BE, and so need to be inverted.
-+ */
-+struct ss_variant {
-+	bool sha1_in_be;
-+};
-+
- struct sun4i_ss_ctx {
-+	const struct ss_variant *variant;
- 	void __iomem *base;
- 	int irq;
- 	struct clk *busclk;
--- 
-2.23.0
+>
+> To resolve the SDMMC's specificity, I can proposed you to add a threaded
+> irq in mmci drivers to abort the DPSM and terminate the request.
 
+Okay, so the threaded IRQ handler is needed, because the reset
+operation may sleep (can't be executed in atomic context). Right?
+
+That should work, but... let's move the discussion to that patch instead.
+
+>
+> >
+> > Anyway, the typical scenario I see, is that the host driver is
+> > hanging, likely waiting for an IRQ that never get raised. So, unless
+> > it implements it own variant of a "request timeout" mechanism, it
+> > simple isn't able to call mmc_request_done() to inform the core about
+> > that the request has failed.
+> >
+> > For comments to the code, I defer that to the next step, when we have
+> > agreed on the way forward.
+> >
+> > Kind regards
+> > Uffe
+> >
+
+Kind regards
+Uffe
