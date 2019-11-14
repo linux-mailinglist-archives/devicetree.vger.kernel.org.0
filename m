@@ -2,124 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EEA1FC411
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 11:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88F6AFC497
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 11:47:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726202AbfKNK0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 05:26:01 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37277 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbfKNK0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 05:26:01 -0500
-Received: by mail-wm1-f68.google.com with SMTP id b17so5263939wmj.2;
-        Thu, 14 Nov 2019 02:25:58 -0800 (PST)
+        id S1726185AbfKNKrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 05:47:03 -0500
+Received: from mail-ua1-f67.google.com ([209.85.222.67]:42489 "EHLO
+        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726142AbfKNKrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 05:47:03 -0500
+Received: by mail-ua1-f67.google.com with SMTP id 31so1700648uas.9
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 02:47:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5QQkiyfzZO2O0Kn6D38HEznmusWSb/9VZvRrhnG4JLA=;
-        b=co1B+/+ltAMnsmoBwd4JgvR/KtXsDV8+5+UxJFQOW8QNurGkzGwXyx1U9DUuvVXqa4
-         zrU4kxD10p3llVczeauQFnatEE1dcTYITHp8eQkRGHlVjo6plnlPbRFEKeXsJno4bRWt
-         frrJYScCJY2qe5U2mMAgiA3p9e/lcKlaSYtbY7G3f2LQOUqqb20mZJbyLvvY87/2EojP
-         oB5clBhqIIreSQq/0IlPm3oBBvlinEK60Q+YAYIux7W65UQBYrfMvwe1nvrLSqyg3CXz
-         qDAlyphz0sonJrZCDBSmYyne0HIbak400tgHqAnE6NSmjNdymIw9XgueA4PULyLMkFFg
-         BLkQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+Z7zzjF1yR5HW1GmAitGOf39HmOM3mJTrajNy5woG3s=;
+        b=QmKQUDdoeOMyx6GoduNvAB+A6ByZBHDCd+m44cbjKkLycBOCHODSVbwGUtmtZnFncI
+         jBSatmf+RWZClV7+/BbAdYlKRMyyAijZM/mTIM/4AIh3nL2mbNlizGws7XFqqjSyznmX
+         Dn0gEK8v15SByp0mIgAuXm4ACcaG+8wlLEZZIjr9uDr4PeVGEzM043Uj4wVOg+qktF6d
+         PE94zBhSofxflwJqnIoljIpQNv0gzelfMX/0QBMZNpLbhBsuR9WUPo8TdZDTUPrI9b4H
+         HFDaB0Obzgblcc6SmVLw2/kbduFDbXerQRneC2C3GZMrJz5OvaV7L/qCpremwSvgrsIl
+         +o0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5QQkiyfzZO2O0Kn6D38HEznmusWSb/9VZvRrhnG4JLA=;
-        b=OTFwmBCzvnxHlDS03Uo/Q2tF+Ww0zT5+j8dLGDzpoS3+YUX2fiA8RfJ3+Us6xNdvwj
-         3f534zPhc4T+ztNjKmr+krNnbMbJQsv7Cf4A43ItYLXNYDj2uCbyQgAxu60XtzK6DFs4
-         miS0BitePjFaPQDVGh7hR6eCMj4XzwO7hlmDJxDOD/W/xzCpgpsYVNyRZuKDdO6fUtjI
-         fMvSAws69Y2nD6Lqh5QsNjrlgfa4Gelg2qy1A8NU+yD1ujnt3kWeBT11kCFZbB8gkgmT
-         dZVjbuHfNK7PRjah3xpyDSbmqqTj8F8NIWCosejJ3JQ/ld8h+SHdlcOMjfXt9mhIzcpJ
-         Y99g==
-X-Gm-Message-State: APjAAAWxgJnrumaKNlw+Ui2cCgaHO6ccyHIvLgFzj+xTazp+T49JMDOV
-        z0i0WhogVtslArDViJ+2uwc=
-X-Google-Smtp-Source: APXvYqwGumQBol47N7qad3Jy0q4/6MzSwtzAuP1DUrwstDzDwNUQ7a3eb1WO2niC+5ixCUFNyNVauw==
-X-Received: by 2002:a7b:cbc4:: with SMTP id n4mr6848002wmi.118.1573727157443;
-        Thu, 14 Nov 2019 02:25:57 -0800 (PST)
-Received: from clement-Latitude-7490.outsight.local (lputeaux-656-1-11-33.w82-127.abo.wanadoo.fr. [82.127.142.33])
-        by smtp.gmail.com with ESMTPSA id r2sm2964832wma.44.2019.11.14.02.25.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2019 02:25:56 -0800 (PST)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH] arm64: dts: allwinner: h6: Enable USB 3.0 host for Beelink GS1 and Tanix TX6
-Date:   Thu, 14 Nov 2019 11:25:41 +0100
-Message-Id: <20191114102541.27361-1-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+Z7zzjF1yR5HW1GmAitGOf39HmOM3mJTrajNy5woG3s=;
+        b=RNiEQ33Hv8tpaJEOxGJlSA5J2oB3Es7XWEzCUXNrEOCA/ZEKKj4mBX6SXzKP/vqplc
+         IaAYjiyAfyZYWl5x/SIrZzotYh1iGQRSCNoWCY9iTQajs6ydrj+XabTSDx0V16ZcjzXR
+         FcknTNVY/DiDH9o1jt2dmvDwAqNRd/Ps0NypYC0WtuJ0vCPsBKmDK7X1pensPzrXWW3Q
+         nu6qZK3vLqGRjWJzDWqnAH8XDuieHmi6m8S05ZSPFXeHxlmC128MoaPsieVhMKEqzSQb
+         eeHzPCqfoh3+wt7J1yMY1ZYju2x7VAc/hDuvBblDm1lo+QNLr1EzdJPzodNAKavCrkj3
+         kvtQ==
+X-Gm-Message-State: APjAAAX7VaPU8020d+YbhLmGktF6bhSdGIBvIGh+exocdc/7ta0LEyuF
+        KK1WCCNRXlaLdQbNDqn3F7PCzfg7+iwhm2KE9hyooA==
+X-Google-Smtp-Source: APXvYqzs2hzCHGhzo4MLkvjZ4GdlPj6hUM6/5I/OJ+TEn23Lr7XxbNQB98pkh3DLyHV1zrutRRH8jaIY8J3D/SKfoY0=
+X-Received: by 2002:ab0:2042:: with SMTP id g2mr4940760ual.19.1573728422241;
+ Thu, 14 Nov 2019 02:47:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20191105055015.23656-1-erosca@de.adit-jv.com> <20191105062223.GB1048@kunai>
+ <20191105083213.GA24603@vmlxhi-102.adit-jv.com> <20191107003907.GA22634@bogus>
+ <20191112211950.GB3402@kunai>
+In-Reply-To: <20191112211950.GB3402@kunai>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 14 Nov 2019 11:46:26 +0100
+Message-ID: <CAPDyKFoXT-UtO05xbHRVJTJAg+yYJK9AM7KjK18QcaGM0Bqn9g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: Add 'fixed-emmc-driver-type-hs{200,400}'
+To:     Wolfram Sang <wsa@the-dreams.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mathieu Malaterre <malat@debian.org>,
+        Pavel Machek <pavel@ucw.cz>, DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB 3.0 phy and host controller.
+[...]
 
-VBUS is directly connected to DCIN 5V and doesn't
-require to be switched on.
+> > >
+> > > One option to achieve a similar degree of flexibility by using an array
+> > > OF property (instead of several u32 properties) would be to agree on a
+> > > convention based on magic values, i.e. below DT one-liner could be an
+> > > example of providing solely the "fixed-emmc-driver-type-hs200" value
+> > > (based on the agreement that 0xFF values are discarded by the driver):
+> > >
+> > >     fixed-emmc-driver-type = <0xFF 0x1 0xFF>;
+> >
+> > I don't understand why you have 3 values instead of 2.
+>
+> Because he sketches maximum flexibility here. Have a non-HS (default)
+> value, one for HS200, and one for HS400:
+>
+>         fixed-emmc-driver-type = <[default] [HS200] [HS400]>;
+>
+> > I would just use -1 if you want to ignore an entry. If that's the common
+>
+> '-1' sounds good to me, too.
+>
+> > case, then I'd stick with what you originally proposed. If rare, then I
+> > think an array is the better route.
+>
+> What I have seen so far: setting drive strength alone is more on the
+> rare side. Setting specific values for default and HS200/400 seems even
+> more rare to me. With this patchset, it is the first time I hear about
+> it.
+>
+> Yet, my experience might be a bit limited, maybe others (Hi Ulf! ;)) can add
+> their views, too?
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 8 ++++++++
- arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts   | 8 ++++++++
- 2 files changed, 16 insertions(+)
+My experience in this field is quite limited. No input from me, sorry.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index e5ed1d4bfef8..dbf353cd26c1 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -76,6 +76,10 @@
- 	status = "okay";
- };
- 
-+&dwc3 {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -291,3 +295,7 @@
- 	usb0_vbus-supply = <&reg_vcc5v>;
- 	status = "okay";
- };
-+
-+&usb3phy {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-index bccfe1e65b6a..0b6361a5c172 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-@@ -45,6 +45,10 @@
- 	status = "okay";
- };
- 
-+&dwc3 {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -102,3 +106,7 @@
- &usb2phy {
- 	status = "okay";
- };
-+
-+&usb3phy {
-+	status = "okay";
-+};
--- 
-2.20.1
-
+Kind regards
+Uffe
