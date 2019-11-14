@@ -2,173 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44605FCC2D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B73B3FCC43
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726956AbfKNRxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 12:53:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55184 "EHLO mail.kernel.org"
+        id S1727112AbfKNR4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 12:56:53 -0500
+Received: from mail.z3ntu.xyz ([128.199.32.197]:53100 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726444AbfKNRxz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 12:53:55 -0500
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 87F1820727;
-        Thu, 14 Nov 2019 17:53:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573754033;
-        bh=FoOAY9hvViKgsLTmMcUUrky6j/lBk2/WL9cdhbynSys=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pPnZ1tFP/zb5Uf2eZitrrBr8+RHnAG6QVR8CxikW4VkVO1PQH5mYV+oXMOM6ld38T
-         YIVr5/twVsXxuIgPVQCnP0xAutIdwUNJZ2xec42lOyGSrfE7vgFvjAMsNYqtZZ/0aF
-         hEvOg0fKelyt6wpN22J/RyxKzwUpHKEPbh2L1f0w=
-Received: by mail-qv1-f42.google.com with SMTP id x14so2720318qvu.0;
-        Thu, 14 Nov 2019 09:53:53 -0800 (PST)
-X-Gm-Message-State: APjAAAXWXTRVBQM6CWboTRV//sk+7waxIBKaYOqyVMaJ5uTNnqg+nGU7
-        tbH7daUoZxTYADmYuypB5CqkkFA7zNZfyCs45A==
-X-Google-Smtp-Source: APXvYqxn0/HOay449gy4df/pZe6Fvu/CaSWw8Nv4yCJSz4K/ab7BUtNCox5hzRHIyowoAHUW18uT482SqJVnK3bZG+o=
-X-Received: by 2002:ad4:42b4:: with SMTP id e20mr9393130qvr.85.1573754032554;
- Thu, 14 Nov 2019 09:53:52 -0800 (PST)
+        id S1726210AbfKNR4x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Nov 2019 12:56:53 -0500
+Received: from localhost.localdomain (unknown [10.0.11.2])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 327F2C9911;
+        Thu, 14 Nov 2019 17:56:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1573754210; bh=xKF5IEKM8Xl2wXlayf1TOim4t3nqonKziZ/IAPjsGm0=;
+        h=From:To:Cc:Subject:Date;
+        b=LdCERzXgaDHPeTxRkGC4jw4zaAzmgdzHbziWvmoPyTY9Ya1JKDpdhrqxnuo3ww68K
+         bqNviie877BsUOwILNjwHBkmgAMYEFvPCd8sitnkgWm9w91XgwwJeKQKOzqrkE9e4H
+         NwlU9heD2/bhoDEKaPxIFc6AO04sOVxmo/C6rEsQ=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Luca Weiss <luca@z3ntu.xyz>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: msm8974: Add modem remoteproc node
+Date:   Thu, 14 Nov 2019 18:53:48 +0100
+Message-Id: <20191114175348.288976-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-References: <20191101084135.14811-1-peter.ujfalusi@ti.com> <20191101084135.14811-9-peter.ujfalusi@ti.com>
- <20191105021900.GA17829@bogus> <fc1ea525-54f1-ff1a-7e1c-61b54f5be862@ti.com>
-In-Reply-To: <fc1ea525-54f1-ff1a-7e1c-61b54f5be862@ti.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 14 Nov 2019 11:53:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJbV7Zd40admW-x2SSveMqMkG0tM6RFTwjCJyYxX4Cxtw@mail.gmail.com>
-Message-ID: <CAL_JsqJbV7Zd40admW-x2SSveMqMkG0tM6RFTwjCJyYxX4Cxtw@mail.gmail.com>
-Subject: Re: [PATCH v4 08/15] dt-bindings: dma: ti: Add document for K3 UDMA
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     Vinod <vkoul@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Tony Lindgren <tony@atomide.com>, Keerthy <j-keerthy@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 5, 2019 at 4:07 AM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote=
-:
->
->
->
-> On 05/11/2019 4.19, Rob Herring wrote:
-> > On Fri, Nov 01, 2019 at 10:41:28AM +0200, Peter Ujfalusi wrote:
-> >> New binding document for
-> >> Texas Instruments K3 NAVSS Unified DMA =E2=80=93 Peripheral Root Compl=
-ex (UDMA-P).
-> >>
-> >> UDMA-P is introduced as part of the K3 architecture and can be found i=
-n
-> >> AM654 and j721e.
-> >>
-> >> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> >> ---
-> >> Rob,
-> >>
-> >> can you give me some hint on how to fix these two warnings from dt_bin=
-ding_check:
-> >>
-> >>   DTC     Documentation/devicetree/bindings/dma/ti/k3-udma.example.dt.=
-yaml
-> >> Documentation/devicetree/bindings/dma/ti/k3-udma.example.dts:23.13-72:=
- Warning (ranges_format): /example-0/interconnect@30800000:ranges: "ranges"=
- property has invalid length (24 bytes) (parent #address-cells =3D=3D 1, ch=
-ild #address-cells =3D=3D 2, #size-cells =3D=3D 2)
-> >>   CHECK   Documentation/devicetree/bindings/dma/ti/k3-udma.example.dt.=
-yaml
-> >
-> > The default #address-cells is 1 for examples. So you need to
-> > either override it or change ranges parent address size.
->
-> wrapping the cbass_main_navss inside:
-> cbass_main {
->     #address-cells =3D <2>;
->     #size-cells =3D <2>;
->     ...
-> };
->
-> fixes it.
->
-> >>
-> >> Documentation/devicetree/bindings/dma/ti/k3-udma.example.dt.yaml: inte=
-rconnect@30800000: $nodename:0: 'interconnect@30800000' does not match '^(b=
-us|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-> >
-> > Use 'bus' for the node name of 'simple-bus'.
->
-> I took the navss node from the upstream dts (I'm going to fix it there
-> as well).
-> It has simple-bus for the navss, which is not quite right as NAVSS is
-> not a bus, but a big subsystem with multiple components (UDMAP, ringacc,
-> INTA, INTR, timers, etc).
->
-> What about to change the binding doc to simple-mfd like this
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-That's really for things not memory-mapped (I'm sure you can probably
-find an example to contradict me), so better to keep simple-bus if all
-the child nodes have addresses.
+Add the remoteproc node for the modem on msm8974.
 
-Do you need the node name to be 'navss' for some reason? If so, then
-better have a compatible string in there to identify it. If not, just
-use 'bus' and be done with it.
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+[luca@z3ntu.xyz: cleanups, add label to smd-edge node]
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Note: This patch needs "remoteproc: qcom_q6v5_mss: Validate each segment
+during loading" from the mailing list to be functional.
 
-> cbass_main_navss: navss@30800000 {
->     compatible =3D "simple-mfd";
->     #address-cells =3D <2>;
->     #size-cells =3D <2>;
->     ...
-> };
->
-> and fix up the DT when I got to the point when I can send the patches to
-> enable DMA for am654 and j721e?
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 63 ++++++++++++++++++++++++-----
+ 1 file changed, 54 insertions(+), 9 deletions(-)
 
-There's no requirement yet for DTS files to not have warnings.
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 6f24dc9a7924..b357cb51c0fb 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -21,12 +21,12 @@ reserved-memory {
+ 		#size-cells = <1>;
+ 		ranges;
+ 
+-		mpss@8000000 {
++		mpss_region: mpss@8000000 {
+ 			reg = <0x08000000 0x5100000>;
+ 			no-map;
+ 		};
+ 
+-		mba@d100000 {
++		mba_region: mba@d100000 {
+ 			reg = <0x0d100000 0x100000>;
+ 			no-map;
+ 		};
+@@ -62,8 +62,11 @@ rfsa@fd60000 {
+ 		};
+ 
+ 		rmtfs@fd80000 {
++			compatible = "qcom,rmtfs-mem";
+ 			reg = <0x0fd80000 0x180000>;
+ 			no-map;
++
++			qcom,client-id = <1>;
+ 		};
+ 	};
+ 
+@@ -807,6 +810,55 @@ rng@f9bff000 {
+ 			clock-names = "core";
+ 		};
+ 
++		remoteproc@fc880000 {
++			compatible = "qcom,msm8974-mss-pil";
++			reg = <0xfc880000 0x100>, <0xfc820000 0x020>;
++			reg-names = "qdsp6", "rmb";
++
++			interrupts-extended = <&intc GIC_SPI 24 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
++					      <&modem_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "wdog", "fatal", "ready", "handover", "stop-ack";
++
++			clocks = <&gcc GCC_MSS_Q6_BIMC_AXI_CLK>,
++				 <&gcc GCC_MSS_CFG_AHB_CLK>,
++				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
++				 <&xo_board>;
++			clock-names = "iface", "bus", "mem", "xo";
++
++			resets = <&gcc GCC_MSS_RESTART>;
++			reset-names = "mss_restart";
++
++			cx-supply = <&pm8841_s2>;
++			mss-supply = <&pm8841_s3>;
++			mx-supply = <&pm8841_s1>;
++			pll-supply = <&pm8941_l12>;
++
++			qcom,halt-regs = <&tcsr_mutex_block 0x1180 0x1200 0x1280>;
++
++			qcom,smem-states = <&modem_smp2p_out 0>;
++			qcom,smem-state-names = "stop";
++
++			mba {
++				memory-region = <&mba_region>;
++			};
++
++			mpss {
++				memory-region = <&mpss_region>;
++			};
++
++			smd-edge {
++				interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
++
++				qcom,ipc = <&apcs 8 12>;
++				qcom,smd-edge = <0>;
++
++				label = "modem";
++			};
++		};
++
+ 		pronto: remoteproc@fb21b000 {
+ 			compatible = "qcom,pronto-v2-pil", "qcom,pronto";
+ 			reg = <0xfb204000 0x2000>, <0xfb202000 0x1000>, <0xfb21b000 0x3000>;
+@@ -1524,13 +1576,6 @@ adsp {
+ 			qcom,smd-edge = <1>;
+ 		};
+ 
+-		modem {
+-			interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+-
+-			qcom,ipc = <&apcs 8 12>;
+-			qcom,smd-edge = <0>;
+-		};
+-
+ 		rpm {
+ 			interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+ 			qcom,ipc = <&apcs 8 0>;
+-- 
+2.24.0
 
-> >> +  compatible:
-> >> +    oneOf:
-> >> +      - const: ti,am654-navss-main-udmap
-> >> +      - const: ti,am654-navss-mcu-udmap
-> >> +      - const: ti,j721e-navss-main-udmap
-> >> +      - const: ti,j721e-navss-mcu-udmap
-> >
-> > enum works better than oneOf+const. Better error messages.
->
-> Like this:
->   compatible:
->     oneOf:
->       - description: for AM654
->         items:
->           - enum:
->               - ti,am654-navss-main-udmap
->               - ti,am654-navss-mcu-udmap
->
->       - description: for J721E
->         items:
->           - enum:
->               - ti,j721e-navss-main-udmap
->               - ti,j721e-navss-mcu-udmap
-
-If the 'description' was useful, but it's not. Just:
-
-compatible:
-  enum:
-    - ti,am654-navss-main-udmap
-    - ti,am654-navss-mcu-udmap
-    - ti,j721e-navss-main-udmap
-    - ti,j721e-navss-mcu-udmap
-
-
-Rob
