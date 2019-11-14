@@ -2,39 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D512DFC2C4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 10:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B301AFC2C5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 10:40:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726010AbfKNJkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 04:40:07 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55084 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726106AbfKNJkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 04:40:07 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAE9e0YZ019154;
-        Thu, 14 Nov 2019 03:40:00 -0600
+        id S1726251AbfKNJkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 04:40:09 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:44442 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726106AbfKNJkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 04:40:09 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAE9e3dj060084;
+        Thu, 14 Nov 2019 03:40:03 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1573724400;
-        bh=ffkeX6mdwxyykH72z4GaUtOqVyjQZnW9Elst+Vfo44Y=;
+        s=ti-com-17Q1; t=1573724403;
+        bh=J6WQnf08jE29+k+Z+wJAETstTtd+Nns4dCt3g2mlorQ=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=R1p6Opm4zug9n/3wz0nSRwgJG5YjF0A4Jm7n3sxBAyqUm/gZKDi+CzCQ5QZAW5uEs
-         yLHf80Qzf4LChtFc2dQ+GgQmBpwa3F3LV0eZqzc5iJZ+jlsQRLAMTcodR+3VmNS34L
-         JHlAdScicpKykLk55Aeir/NCN7DTuxnq5oMImxjo=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAE9e0jm123194;
-        Thu, 14 Nov 2019 03:40:00 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+        b=ZgDFJ/1FAIgtMzS2ZkkBB7p7Jgt3v9Zi7UxXT1n8awaNOoR4mVwQyGsGxu1A7NOPR
+         T10TvQrJNXQiOtUuCRLCN78Drs/2GLyePdmlKZuau89wEN8ZNwTvRn0O/zy53RQ0mT
+         FkFFuaH0WB1M4raYRUDgrFDxSqPMqW1XgUbCGl8I=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAE9e2XD035592
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 14 Nov 2019 03:40:03 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 14
- Nov 2019 03:40:00 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2019 03:40:02 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Thu, 14 Nov 2019 03:40:00 -0600
+ Frontend Transport; Thu, 14 Nov 2019 03:40:02 -0600
 Received: from deskari.lan (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAE9dtjo085959;
-        Thu, 14 Nov 2019 03:39:58 -0600
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAE9dtjp085959;
+        Thu, 14 Nov 2019 03:40:00 -0600
 From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
 To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
@@ -42,9 +43,9 @@ To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 CC:     Jyri Sarha <jsarha@ti.com>, Peter Ujfalusi <peter.ujfalusi@ti.com>,
         Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: [PATCH 1/3] ARM: dts: am437x-gp/epos-evm: fix panel compatible
-Date:   Thu, 14 Nov 2019 11:39:48 +0200
-Message-ID: <20191114093950.4101-2-tomi.valkeinen@ti.com>
+Subject: [PATCH 2/3] ARM: dts: am437x-gp/epos-evm: drop unused panel timings
+Date:   Thu, 14 Nov 2019 11:39:49 +0200
+Message-ID: <20191114093950.4101-3-tomi.valkeinen@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191114093950.4101-1-tomi.valkeinen@ti.com>
 References: <20191114093950.4101-1-tomi.valkeinen@ti.com>
@@ -56,45 +57,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LCD panel on AM4 GP EVMs and ePOS boards seems to be
-osd070t1718-19ts. The current dts files say osd057T0559-34ts. Possibly
-the panel has changed since the early EVMs, or there has been a mistake
-with the panel type.
-
-Update the DT files accordingly.
+panel-simple now handled panel osd070t1718-19ts, and we no longer need
+the panel timings in the DT file. So remove them.
 
 Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 ---
- arch/arm/boot/dts/am437x-gp-evm.dts  | 2 +-
- arch/arm/boot/dts/am43x-epos-evm.dts | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/am437x-gp-evm.dts  | 16 ----------------
+ arch/arm/boot/dts/am43x-epos-evm.dts | 16 ----------------
+ 2 files changed, 32 deletions(-)
 
 diff --git a/arch/arm/boot/dts/am437x-gp-evm.dts b/arch/arm/boot/dts/am437x-gp-evm.dts
-index cae4500194fe..811c8cae315b 100644
+index 811c8cae315b..040403049cea 100644
 --- a/arch/arm/boot/dts/am437x-gp-evm.dts
 +++ b/arch/arm/boot/dts/am437x-gp-evm.dts
-@@ -86,7 +86,7 @@
- 		};
- 
- 	lcd0: display {
--		compatible = "osddisplays,osd057T0559-34ts", "panel-dpi";
-+		compatible = "osddisplays,osd070t1718-19ts", "panel-dpi";
- 		label = "lcd";
+@@ -91,22 +91,6 @@
  
  		backlight = <&lcd_bl>;
+ 
+-		panel-timing {
+-			clock-frequency = <33000000>;
+-			hactive = <800>;
+-			vactive = <480>;
+-			hfront-porch = <210>;
+-			hback-porch = <16>;
+-			hsync-len = <30>;
+-			vback-porch = <10>;
+-			vfront-porch = <22>;
+-			vsync-len = <13>;
+-			hsync-active = <0>;
+-			vsync-active = <0>;
+-			de-active = <1>;
+-			pixelclk-active = <1>;
+-		};
+-
+ 		port {
+ 			lcd_in: endpoint {
+ 				remote-endpoint = <&dpi_out>;
 diff --git a/arch/arm/boot/dts/am43x-epos-evm.dts b/arch/arm/boot/dts/am43x-epos-evm.dts
-index 95314121d111..078cb473fa7d 100644
+index 078cb473fa7d..330fce060e8b 100644
 --- a/arch/arm/boot/dts/am43x-epos-evm.dts
 +++ b/arch/arm/boot/dts/am43x-epos-evm.dts
-@@ -42,7 +42,7 @@
- 	};
- 
- 	lcd0: display {
--		compatible = "osddisplays,osd057T0559-34ts", "panel-dpi";
-+		compatible = "osddisplays,osd070t1718-19ts", "panel-dpi";
- 		label = "lcd";
+@@ -47,22 +47,6 @@
  
  		backlight = <&lcd_bl>;
+ 
+-		panel-timing {
+-			clock-frequency = <33000000>;
+-			hactive = <800>;
+-			vactive = <480>;
+-			hfront-porch = <210>;
+-			hback-porch = <16>;
+-			hsync-len = <30>;
+-			vback-porch = <10>;
+-			vfront-porch = <22>;
+-			vsync-len = <13>;
+-			hsync-active = <0>;
+-			vsync-active = <0>;
+-			de-active = <1>;
+-			pixelclk-active = <1>;
+-		};
+-
+ 		port {
+ 			lcd_in: endpoint {
+ 				remote-endpoint = <&dpi_out>;
 -- 
 Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
 Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
