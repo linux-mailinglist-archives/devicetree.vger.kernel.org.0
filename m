@@ -2,109 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74005FCBD6
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 530B0FCBE4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:31:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726599AbfKNR3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 12:29:44 -0500
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:36592 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726210AbfKNR3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 12:29:44 -0500
-Received: by mail-pg1-f195.google.com with SMTP id k13so4204365pgh.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 09:29:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:cc:from:subject:to:user-agent:date;
-        bh=CcYQV1LmmMin4KfNUQWfqXUn7x+pyW1iTl5f3vQ+Lhw=;
-        b=NxMGYSTtBK4i5RPqbguGXItXdVNjv2nYm1/iGpCOqRIVhhVH6vf7946u7XMPm25GJA
-         q7nWJkt3+Xf/XDjNbHKHgXjXTbJHCI69Wm000ian3oAhz2GlGBNz1DTe9WXQgjh7aurH
-         DMoXuOTRdgV6nuAZHMYwbqnm9praYO+bqeVas=
+        id S1726214AbfKNRbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 12:31:33 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:36929 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725976AbfKNRbc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 12:31:32 -0500
+Received: by mail-oi1-f195.google.com with SMTP id y194so6031925oie.4;
+        Thu, 14 Nov 2019 09:31:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:cc:from:subject:to
-         :user-agent:date;
-        bh=CcYQV1LmmMin4KfNUQWfqXUn7x+pyW1iTl5f3vQ+Lhw=;
-        b=gGmFcbtFbMKV6sN16StpQBzwCxNjGWGmJkN525KTdbcBvmRmTCO1aKr+rcJEzSz/DM
-         gsagwYr0DOygplB0KbFUilPfgDrAsmDgmHg0x3eEvE9WY2lL5Q1RZ0cXfhBY/fbXS2bJ
-         X6nN//l0p9gZqYolWIIFO36Ryux28oFsTXnu0fCiJL4KcJR8RroKvWpZsfHb6UiRQXnf
-         6LUQx5K6o3hrfji/uJ4CJGqtTAiqAXd2Zzl0Iy3jcX7BBLjSXFA9kB3DWa0htpnyeJre
-         u7X6ZcBRjwBy6b3NWdIJ20fuUr1OgLWAiJ5K/Ca+kamr1IcvpjvZ1c0n8y4v27AiYft0
-         ARTw==
-X-Gm-Message-State: APjAAAXhtvuDNsVBzTBsvNxPbQtbg3aLeWr8CqIUtZgypGaLmDwxTbtA
-        A/kCI9oc8WihbhCnIvm5jPSXDw==
-X-Google-Smtp-Source: APXvYqzty8fGyHYZm9ySVIF8pi9T97dNqEd99tGhmW7ag+BB8smmNExV5fwEnlcaxmxVHJRlf+vtew==
-X-Received: by 2002:aa7:8256:: with SMTP id e22mr12167282pfn.247.1573752582247;
-        Thu, 14 Nov 2019 09:29:42 -0800 (PST)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id i71sm6900213pfe.103.2019.11.14.09.29.41
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3G1UrTKYq6h7EeCf3xtk9ByNRfqNtMiSs5YT8e3r4Hw=;
+        b=eS5yEwbnuVBbDQBYjzVfMgJAK3auLxE/WxBGyCZbdA5LrVZl36NA+i4ZuddlAidTTy
+         LoG5nRmyEtMDELckh++qOgYYkZZhJ2XOp1FojntwMSMLLSziOmtFmzKQm/6lI9SdUwLD
+         L0VH+WaVgHPzYmY2BJ/dEbYXXiMr66m9fGPBOg13Jq5rKlDVFc5XpqLzl+4A4g10Dhc4
+         e3xpIVWg9mnW3vhM+Bid1ULCAqpYQHaxVSbomtAC3cxWQP2I1YIZ73tZFI2j8pvmzunG
+         fNDDxsMElqGxvPw77oXQnAqY3eD0lQRYXKe1ZGI/FMcTozoWmqxrYVID8/PJ1HNwJq10
+         vUQA==
+X-Gm-Message-State: APjAAAWshox70p1VUW4hGicSuI+i7WADQ+67/eRWZPe71VpuXjdRxDv7
+        +BdJyQGwx/xcPo2JG2E4GQ==
+X-Google-Smtp-Source: APXvYqwyclOEvGyBTY6vREWnjvU+4uvkYPxZcorcMlSKeYf3ZPoZJUiEVybWjLsGdKUcmAP2Hril7Q==
+X-Received: by 2002:aca:5e04:: with SMTP id s4mr4533315oib.159.1573752690884;
+        Thu, 14 Nov 2019 09:31:30 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id o4sm2019336ota.57.2019.11.14.09.31.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2019 09:29:41 -0800 (PST)
-Message-ID: <5dcd8f05.1c69fb81.bdd4.2b0a@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        Thu, 14 Nov 2019 09:31:30 -0800 (PST)
+Date:   Thu, 14 Nov 2019 11:31:29 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, alexandre.torgue@st.com,
+        fabrice.gasnier@st.com, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, lee.jones@linaro.org,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        benjamin.gaignard@st.com, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: mfd: Convert stm32 timers bindings to
+ json-schema
+Message-ID: <20191114173129.GA25237@bogus>
+References: <20191114101823.23144-1-benjamin.gaignard@st.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1573710976-27551-1-git-send-email-dhar@codeaurora.org>
-References: <1573710976-27551-1-git-send-email-dhar@codeaurora.org>
-Cc:     Shubhashree Dhar <dhar@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, jsanka@codeaurora.org,
-        chandanu@codeaurora.org, nganji@codeaurora.org
-From:   Stephen Boyd <swboyd@chromium.org>
-Subject: Re: [v2] msm: disp: dpu1: add support to access hw irqs regs depending on revision
-To:     Shubhashree Dhar <dhar@codeaurora.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org
-User-Agent: alot/0.8.1
-Date:   Thu, 14 Nov 2019 09:29:40 -0800
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191114101823.23144-1-benjamin.gaignard@st.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Shubhashree Dhar (2019-11-13 21:56:16)
-> Current code assumes that all the irqs registers offsets can be
-> accessed in all the hw revisions; this is not the case for some
-> targets that should not access some of the irq registers.
-
-What happens if we read the irq registers that we "should not access"?
-Does the system reset? It would be easier to make those registers return
-0 when read indicating no interrupt and ignore writes so that everything
-keeps working without having to skip registers.
-
-> This change adds the support to selectively remove the irqs that
-> are not supported in some of the hw revisions.
->=20
-> Change-Id: I6052b8237b703a1a9edd53893e04f7bd72223da1
-
-Please remove these before sending upstream.
-
-> Signed-off-by: Shubhashree Dhar <dhar@codeaurora.org>
+On Thu, 14 Nov 2019 11:18:23 +0100, Benjamin Gaignard wrote:
+> Convert the STM32 timers binding to DT schema format using json-schema
+> 
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
 > ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |  1 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  3 +++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c | 22 +++++++++++++++++=
------
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.h |  1 +
->  4 files changed, 22 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu=
-/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index ec76b868..def8a3f 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -646,6 +646,7 @@ struct dpu_perf_cfg {
->   * @dma_formats        Supported formats for dma pipe
->   * @cursor_formats     Supported formats for cursor pipe
->   * @vig_formats        Supported formats for vig pipe
-> + * @mdss_irqs          Bitmap with the irqs supported by the target
+> version 3:
+> - correctly use enum for dma-names and remove additionalItems: true
+> - provide a range of values for reg property
+> 
+> version 2:
+> - merge all (mfd, iio, pwm, counter) bindings in one file
+> - fix typo and trailing spaces
+> - rework dmas and dma-names properties to allow schemas like:
+>   ch1 , ch2, ch4
+>   ch2, up, com
+> - use patternProperties to describe timer subnode
+> - improve st,breakinput property definition to be able to check the values
+>   inside de tuple
+> 
+>  .../bindings/counter/stm32-timer-cnt.txt           |  31 ----
+>  .../bindings/iio/timer/stm32-timer-trigger.txt     |  25 ----
+>  .../devicetree/bindings/mfd/st,stm32-timers.yaml   | 159 +++++++++++++++++++++
+>  .../devicetree/bindings/mfd/stm32-timers.txt       |  73 ----------
+>  .../devicetree/bindings/pwm/pwm-stm32.txt          |  38 -----
+>  5 files changed, 159 insertions(+), 167 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/counter/stm32-timer-cnt.txt
+>  delete mode 100644 Documentation/devicetree/bindings/iio/timer/stm32-timer-trigger.txt
+>  create mode 100644 Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/stm32-timers.txt
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-stm32.txt
+> 
 
-Hmm pretty sure there needs to be a colon so that kernel-doc can match
-this but maybe I'm wrong.
+Applied, thanks.
 
->   */
->  struct dpu_mdss_cfg {
->         u32 hwversion;
+Rob
