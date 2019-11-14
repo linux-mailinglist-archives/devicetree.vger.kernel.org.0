@@ -2,93 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F773FCBFB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4061FCC1E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 18:47:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbfKNRjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 12:39:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52764 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725976AbfKNRjx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 12:39:53 -0500
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 34B0120718;
-        Thu, 14 Nov 2019 17:39:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573753192;
-        bh=VzKteWn1F/CosCCsd6C4IKUCGWE4H5oQV8jGARZ48tc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qN2v5wV095fAUbYtR5P6fE7B5vGnb+vx313xCT936CPIndi5UGPzUwBJ4RrLRuJ3x
-         doWz3mevftGogNgXftWdpHE1RIm0Y5J6GvK5tLIDIKNpwQIF4FFify2At4paexUm3K
-         4SIxI+snb5+OFz1v88ytyKBaUGmq/kZP83rqrNBI=
-Received: by mail-qv1-f48.google.com with SMTP id s18so2698307qvr.4;
-        Thu, 14 Nov 2019 09:39:52 -0800 (PST)
-X-Gm-Message-State: APjAAAWU3N45mXI3Ud44Pp4vYPoEZm/VZN9MOpL5LaaVCp0AL7a7LjP+
-        ZR2aMon3mU4pSQ46aeWgIpGYozdnZqVv/a9nCw==
-X-Google-Smtp-Source: APXvYqxjXzdKzRE0EK2pcCqMsxPiZ4eYz6WenDnilDBfvtuJZs9Eo9skkMhiHprH/vEA4CI6gl4l72fI4G+D1tx4Ce4=
-X-Received: by 2002:a0c:d2b4:: with SMTP id q49mr8873666qvh.135.1573753191385;
- Thu, 14 Nov 2019 09:39:51 -0800 (PST)
+        id S1727063AbfKNRrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 12:47:18 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:37792 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725976AbfKNRrS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 12:47:18 -0500
+Received: by mail-ed1-f65.google.com with SMTP id k14so5801601eds.4;
+        Thu, 14 Nov 2019 09:47:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uIo531B/cUq75IiN6qR4DNybSGADhsaWaGA4/dANrUU=;
+        b=rw6xzVmS7zdh8IO41zKmyH1EwS5ub484ZDfPzqMFnsZ8/bNOCwpsqUJT3eapWamnoa
+         hRE3otsinYDkEiNefw82XE+uOulf3MvWrhYEfNyY7RFgYcmWNcyS/yvHKJpQpenMAgLM
+         OD4hNu5S8VQ6WRXzgydzo0hjCt3n4IYDjIc9OYPRlSLy0Q5wGmBEhYZ1KLElSAnxuk4d
+         LWiULGeDyeTj3t8PP+E9iAPFSqc5jjeaUG9F3W0rEzd8rIu5HXHvb6X0nfY0Cz3eSSEj
+         t7aWD0smLhxLrybsj8804sTrjcFhPRFAbZdOCdNXQIwjN0lZiRGqA2mKWsppRsa4E9aE
+         UdAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uIo531B/cUq75IiN6qR4DNybSGADhsaWaGA4/dANrUU=;
+        b=CEGQHxgwxcUm88TPR9QdaeO4ywvm0tPnU2CqdMF6iVjAYj/+/NEiLEUkkZ6wtiXNU+
+         L0JW3dDmFcveydUyedpuyUwhGhGr+27rI2YMHbwnripDyqlJoWkeTqBpQxbyuzg+qWBM
+         /C16Nm+Vr9/SYOKtR9TnEOBD5iYcjaSDZh/HnEDmuw2yHdn5/cTVgXpCyXmlbmExkMDv
+         jnfOYsEtUXJSzDbsf9/wQeHjB+BO6qE+pxx2vcsTyJmZhnHvRolNpVHFzU4n8HvT6c5D
+         c7QuOwolxmE2TS0HcEqbCP1V5YeSd58e/0AqD5JismS+s/Pq+vDp8Ii2z5c6G54RluP2
+         KvkA==
+X-Gm-Message-State: APjAAAUx7hzG9rFIoJzGuZQxfGRv3Hrj/K4+OYfChTqWwIvOA3ol111F
+        ByxNyb2Z5vxxddtMoiCKRMXgF5ayvvom7urm8z4=
+X-Google-Smtp-Source: APXvYqw3CejNmaVz5GldVr/MDvSo09GNjIMxV6cGEH5VCjX8kpYok2NSUnjdMbIQdf5qOmCQs3bB2RJx5SRQqmEzN2w=
+X-Received: by 2002:a17:906:f209:: with SMTP id gt9mr9586553ejb.241.1573753634099;
+ Thu, 14 Nov 2019 09:47:14 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1573455324.git.rahul.tanwar@linux.intel.com>
- <96537f8702501a45501d5a59ca029f92e36a9e4a.1573455324.git.rahul.tanwar@linux.intel.com>
- <CACRpkdYhy1KLyZd4MNSODpy0Q59_SAcc+wkofrZr4b4N+rYDxw@mail.gmail.com> <1d3be294-5f12-462c-855c-e53ecb9190b7@linux.intel.com>
-In-Reply-To: <1d3be294-5f12-462c-855c-e53ecb9190b7@linux.intel.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 14 Nov 2019 11:39:40 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+okgZgqdbosrOHhL1m0BW4E718Kb4tmyuexEfPwAZLmg@mail.gmail.com>
-Message-ID: <CAL_Jsq+okgZgqdbosrOHhL1m0BW4E718Kb4tmyuexEfPwAZLmg@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] dt-bindings: pinctrl: intel: Add for new SoC
-To:     "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+References: <1573726588-18897-1-git-send-email-harigovi@codeaurora.org> <1573726588-18897-3-git-send-email-harigovi@codeaurora.org>
+In-Reply-To: <1573726588-18897-3-git-send-email-harigovi@codeaurora.org>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Thu, 14 Nov 2019 09:47:02 -0800
+Message-ID: <CAF6AEGurmTxwhBeWf1Q2U7_jSwmofBq49G5dsZN0qRmAFfvDNQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] drm/msm: add DSI config changes to support DSI version
+To:     Harigovindan P <harigovi@codeaurora.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Andriy Shevchenko <andriy.shevchenko@intel.com>,
-        qi-ming.wu@intel.com, yixin zhu <yixin.zhu@linux.intel.com>,
-        cheol.yong.kim@intel.com
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Jeykumar Sankaran <jsanka@codeaurora.org>,
+        Chandan Uddaraju <chandanu@codeaurora.org>,
+        nganji@codeaurora.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 13, 2019 at 9:27 PM Tanwar, Rahul
-<rahul.tanwar@linux.intel.com> wrote:
+On Thu, Nov 14, 2019 at 2:16 AM Harigovindan P <harigovi@codeaurora.org> wrote:
 >
+> Add DSI config changes to support DSI version.
 >
-> Hi Linus,
->
-> On 13/11/2019 10:46 PM, Linus Walleij wrote:
-> > On Mon, Nov 11, 2019 at 11:11 AM Rahul Tanwar
-> > <rahul.tanwar@linux.intel.com> wrote:
-> >
-> >> Add dt bindings document for pinmux & GPIO controller driver of
-> >> Intel Lightning Mountain SoC.
-> >>
-> >> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
-> > (...)
-> >
-> >> +properties:
-> >> +  compatible:
-> >> +    const: intel,lgm-pinctrl
-> > Just noted from another review where Rob noted that this name should
-> > match the internal name in the datasheet for this hardware block. Is it
-> > really called "lgm-pinctrl" inside Intel?
-> >
-> > intel,lightning-mountain-io and similar are perfectly fine if that is the
-> > name it has in your documentation.
->
-> Our documentation does not have any specific names for these hardware
-> blocks. It names it in a very generic/standard manner like GPIO, pinmux..
->
-> To make the name explicit & self explanatory, i should probably change
-> the name as you suggested i.e. intel,lightning-mountain-io.
+> Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
 
-You should also be consistent with 'lgm' vs. 'lightning-mountain' use
-across bindings some of which I think have already been accepted.
+Reviewed-by: Rob Clark <robdclark@gmail.com>
 
-Rob
+For patch 1/2 with the panel driver, probably best to split that out
+into a different patch(set), since panel drivers are merged into
+drm-next via a different tree
+
+BR,
+-R
+
+> ---
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.c | 21 +++++++++++++++++++++
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.h |  1 +
+>  2 files changed, 22 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> index b7b7c1a..d2c4592 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
+> @@ -133,6 +133,10 @@ static const char * const dsi_sdm845_bus_clk_names[] = {
+>         "iface", "bus",
+>  };
+>
+> +static const char * const dsi_sc7180_bus_clk_names[] = {
+> +        "iface", "bus",
+> +};
+> +
+>  static const struct msm_dsi_config sdm845_dsi_cfg = {
+>         .io_offset = DSI_6G_REG_SHIFT,
+>         .reg_cfg = {
+> @@ -147,6 +151,20 @@ static const struct msm_dsi_config sdm845_dsi_cfg = {
+>         .num_dsi = 2,
+>  };
+>
+> +static const struct msm_dsi_config sc7180_dsi_cfg = {
+> +       .io_offset = DSI_6G_REG_SHIFT,
+> +       .reg_cfg = {
+> +               .num = 1,
+> +               .regs = {
+> +                       {"vdda", 21800, 4 },    /* 1.2 V */
+> +               },
+> +       },
+> +       .bus_clk_names = dsi_sc7180_bus_clk_names,
+> +       .num_bus_clks = ARRAY_SIZE(dsi_sc7180_bus_clk_names),
+> +       .io_start = { 0xae94000 },
+> +       .num_dsi = 1,
+> +};
+> +
+>  const static struct msm_dsi_host_cfg_ops msm_dsi_v2_host_ops = {
+>         .link_clk_enable = dsi_link_clk_enable_v2,
+>         .link_clk_disable = dsi_link_clk_disable_v2,
+> @@ -201,6 +219,9 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
+>                 &msm8998_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+>         {MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_2_1,
+>                 &sdm845_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+> +       {MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_4_1,
+> +               &sc7180_dsi_cfg, &msm_dsi_6g_v2_host_ops},
+> +
+>  };
+>
+>  const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
+> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> index e2b7a7d..9919536 100644
+> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
+> @@ -19,6 +19,7 @@
+>  #define MSM_DSI_6G_VER_MINOR_V1_4_1    0x10040001
+>  #define MSM_DSI_6G_VER_MINOR_V2_2_0    0x20000000
+>  #define MSM_DSI_6G_VER_MINOR_V2_2_1    0x20020001
+> +#define MSM_DSI_6G_VER_MINOR_V2_4_1    0x20040001
+>
+>  #define MSM_DSI_V2_VER_MINOR_8064      0x0
+>
+> --
+> 2.7.4
+>
