@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 351AAFC4FD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 12:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A66DFC4F6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 12:03:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726986AbfKNLDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726977AbfKNLDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 14 Nov 2019 06:03:00 -0500
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:38670 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726270AbfKNLDA (ORCPT
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:34168 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbfKNLDA (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 06:03:00 -0500
-Received: by mail-lf1-f65.google.com with SMTP id q28so4692961lfa.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 03:02:57 -0800 (PST)
+Received: by mail-lf1-f66.google.com with SMTP id y186so4707670lfa.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 03:02:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rasmusvillemoes.dk; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vDUvIPPyRNx4rgOl/6jUmNuj/P2ZCCnD4pYUmkyMZ1k=;
-        b=R5x9uzjscvPLquHJeOkh0tku1Ct5Uszt9lT+ldmBnhaup737IDiCn6xBY4f+17YT/D
-         NHJZI85eLG2Vg7nH1JxNhI60rbgz5XgR2JyOKzIL07H2QJ1EEir75BttnwCggKIfm20Q
-         HuuUVZf0ypsiSLkGOb3rF25Cz6EtuX8aPMfOA=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=U/A2f9kHIFOCYbqEWyI5d4hToF+Uq4/YnGy8bo4uWSk=;
+        b=SAME1HQB5rY5pUNyNZsdPmdctskGsxNP86PGXuOQvqwHZitiEqwgM65CFboMlUfOo7
+         Gze5msi1z8T9q8JRe5/BrQDm8YBynytpYR6QM5e8fYB/UknphcTyNeBUHn54xd8JiffI
+         yHJWSOWGah1xzsTPJCxnZENQecaEXAsjxr/pk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vDUvIPPyRNx4rgOl/6jUmNuj/P2ZCCnD4pYUmkyMZ1k=;
-        b=gkLboWMPCkmDdetjMjGgP3bq78hB9j5jb+dmgB8e+Sd7qCGJfnz1YLbE3aEzt1CgQ0
-         SXPQwhnbPH9MRlJGjeZ440utk9jd+KAW4608QOlY00/3BtBEePqJbc4pauZUi0AioyZZ
-         bPa9PV37XDLwNBV4PTLxL9FuD3qMP+l5T5s6xNy1efBYGs2X9Z370a936d2a1hFXIFYv
-         KK7+gesi+EG+IcGFMKqMmOxLA3aJPjsJ1SYj0IpvEfTQ44kNvGjJmxGWhMMEs8FGFgGc
-         AzA4uX3hQoXWNihPm3iTZ7nToAyg/ljh0ButozFRFPa82DYq5emk82RZ7m7Xuw3ogRG8
-         FUMw==
-X-Gm-Message-State: APjAAAVsZKzWY0b7qILVhBqLD0OiYWgJvSmSLfWeJpdv9d8ubHx2mMCj
-        dhjLfyvHWf43t2aFULho42PjFQ==
-X-Google-Smtp-Source: APXvYqx+dcqdEMfunFaJ5aoDcBHQugDvO/1iPG/YCzjkmgCH3CM0yjGR8tExVmakG+Y6L4JFcIYfTw==
-X-Received: by 2002:ac2:57cb:: with SMTP id k11mr6295630lfo.87.1573729376716;
-        Thu, 14 Nov 2019 03:02:56 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=U/A2f9kHIFOCYbqEWyI5d4hToF+Uq4/YnGy8bo4uWSk=;
+        b=PJPyzdWDQnlbZ1biLKWiCKs1Oo0j1AbF4ZH0N8H/Lc1bG42y0/+p0iT0OlAByeX6sc
+         ZMZ9LAMdgHOx+c6qsI56kz1ircucP0yT02UV3A4otjyAqM5ZLJQSdMgSJ+xEM3bgWOM0
+         +Z9OoJzRj7YTnd0g6II+f0flrg2P3NKSVGFT+CqGqO3daoIM4qjkUIC8zwHOYiZuttwM
+         HRqiYzqRQFJE70XY+QEDa9oxaHTSxYdMbW0wfoBm8vAUenMSt6AW1w99YKbWHk3ww7y3
+         FOW568Xlrm1TgmwKcngyVAK1VtQgC6tqFrilSteBd+TymWkSqHFL0zjWIjKR/pxLU4EE
+         xYtA==
+X-Gm-Message-State: APjAAAVNPjNrgfKKpo0phvcPIwSCrJCCE3OY361jecgT3U1M8fjqQ+Tq
+        HQFED4NAwW4ddXW59wYAZ+TEzg==
+X-Google-Smtp-Source: APXvYqzB4yFz8S9GHrqN6tQYSP0UPmZB/NTgSy3LzN9JkcH/Eac/vwCv+RlwvWV4nerw2f/zHfGdvA==
+X-Received: by 2002:a19:ee17:: with SMTP id g23mr6353744lfb.121.1573729378062;
+        Thu, 14 Nov 2019 03:02:58 -0800 (PST)
 Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id x5sm2498795lfg.71.2019.11.14.03.02.55
+        by smtp.gmail.com with ESMTPSA id x5sm2498795lfg.71.2019.11.14.03.02.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2019 03:02:56 -0800 (PST)
+        Thu, 14 Nov 2019 03:02:57 -0800 (PST)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Mark Rutland <mark.rutland@arm.com>
 Cc:     Vladimir Oltean <olteanv@gmail.com>, Marc Zyngier <maz@kernel.org>,
         netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: [PATCH v2 0/2] ARM: dts: ls1021a: define and use external interrupt lines
-Date:   Thu, 14 Nov 2019 12:02:51 +0100
-Message-Id: <20191114110254.32171-1-linux@rasmusvillemoes.dk>
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] ARM: dts: ls1021a: add node describing external interrupt lines
+Date:   Thu, 14 Nov 2019 12:02:52 +0100
+Message-Id: <20191114110254.32171-2-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191114110254.32171-1-linux@rasmusvillemoes.dk>
+References: <20191114110254.32171-1-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -61,32 +63,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A device tree binding documentation as well as a driver implementing
-support for the external interrupt lines on the ls1021a has been
-merged into irqchip-next, so will very likely appear in v5.5. See
+This adds a node describing the six external interrupt lines IRQ0-IRQ5
+with configurable polarity.
 
-87cd38dfd9e6 dt/bindings: Add bindings for Layerscape external irqs
-0dcd9f872769 irqchip: Add support for Layerscape external interrupt lines
+Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+---
+ arch/arm/boot/dts/ls1021a.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-present in next-20191114.
-
-These patches simply add the extirq node to the ls1021a.dtsi and make
-use of it on the LS1021A-TSN board. I hope these can be picked up so
-they also land in v5.5, so we don't have to wait a full extra release
-cycle.
-
-v2: fix interrupt type in 2/2 (s/IRQ_TYPE_EDGE_FALLING/IRQ_TYPE_LEVEL_LOW/).
-
-Rasmus Villemoes (1):
-  ARM: dts: ls1021a: add node describing external interrupt lines
-
-Vladimir Oltean (1):
-  ARM: dts: ls1021a-tsn: Use interrupts for the SGMII PHYs
-
- arch/arm/boot/dts/ls1021a-tsn.dts |  4 ++++
- arch/arm/boot/dts/ls1021a.dtsi    | 19 +++++++++++++++++++
- 2 files changed, 23 insertions(+)
-
+diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
+index 2f6977ada447..0855b1fe98e0 100644
+--- a/arch/arm/boot/dts/ls1021a.dtsi
++++ b/arch/arm/boot/dts/ls1021a.dtsi
+@@ -216,6 +216,25 @@
+ 			compatible = "fsl,ls1021a-scfg", "syscon";
+ 			reg = <0x0 0x1570000 0x0 0x10000>;
+ 			big-endian;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0x0 0x1570000 0x10000>;
++
++			extirq: interrupt-controller@1ac {
++				compatible = "fsl,ls1021a-extirq";
++				#interrupt-cells = <2>;
++				#address-cells = <0>;
++				interrupt-controller;
++				reg = <0x1ac 4>;
++				interrupt-map =
++					<0 0 &gic GIC_SPI 163 IRQ_TYPE_LEVEL_HIGH>,
++					<1 0 &gic GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
++					<2 0 &gic GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
++					<3 0 &gic GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
++					<4 0 &gic GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
++					<5 0 &gic GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-map-mask = <0xffffffff 0x0>;
++			};
+ 		};
+ 
+ 		crypto: crypto@1700000 {
 -- 
 2.23.0
 
