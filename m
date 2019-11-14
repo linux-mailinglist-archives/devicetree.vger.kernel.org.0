@@ -2,112 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8BAFC403
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 11:23:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A59FC3D0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 11:17:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726533AbfKNKXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 05:23:10 -0500
-Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:64096 "EHLO
-        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726115AbfKNKXJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 05:23:09 -0500
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 14 Nov 2019 15:46:57 +0530
-IronPort-SDR: lkhLyskng5J0klG/9RWVxN2nL6fyRmJw97v05Gn7Mvg5rotW1gGDf6vfUsRrU2EfFh47YXFMQp
- LGZdt8IUHa1PNQGY/sWDmj4X9soz9gZvB2jUHg/VyEgUG/DCPZH3ZrNSvrkORbycjQ515yY6Y9
- wG7vHS4qplpgxHiB0JYy4bjonIT8WdXqwq627BdQFPhyIG6tvG54qDNTtUpZAyyfOPrHkFaq8d
- DBfwo7otXOKB6O87w188qq3yLCxFC1VzA2Y4ecef2NosgBal4GQ/+zOcwmNydg6GVpXEVe/spe
- t/1Yd/+i1U5+dRyqYUOmDPa3
-Received: from harigovi-linux.qualcomm.com ([10.204.66.147])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 14 Nov 2019 15:46:39 +0530
-Received: by harigovi-linux.qualcomm.com (Postfix, from userid 2332695)
-        id 026CF2704; Thu, 14 Nov 2019 15:46:37 +0530 (IST)
-From:   Harigovindan P <harigovi@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Harigovindan P <harigovi@codeaurora.org>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, jsanka@codeaurora.org,
-        chandanu@codeaurora.org, nganji@codeaurora.org
-Subject: [PATCH v1 2/2] drm/msm: add DSI config changes to support DSI version
-Date:   Thu, 14 Nov 2019 15:46:28 +0530
-Message-Id: <1573726588-18897-3-git-send-email-harigovi@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1573726588-18897-1-git-send-email-harigovi@codeaurora.org>
-References: <1573726588-18897-1-git-send-email-harigovi@codeaurora.org>
+        id S1726106AbfKNKRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 05:17:08 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:49850 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725977AbfKNKRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 05:17:08 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAEAH53q072937;
+        Thu, 14 Nov 2019 04:17:05 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1573726625;
+        bh=HedHmovqwkx7XL1pCgXazCvoJ3PZTV/ZjyzHwJfLFFs=;
+        h=From:To:CC:Subject:Date;
+        b=C0IQY/oEy9eiBRhmiuLe6N3WW5FGNfxSPSk/X+bqzZ3StAjIzgGiOu3ImDn/326hh
+         FAHhIo0w+jHOPPL8tSHCco047Cd3+1s5t0n+XjSv7aom2CRmyLmkPAdIOPM+659obs
+         eDps0ZgLAywVgRAohSiFfPqA3M9EZEQQOfNgmano=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAEAH4Nd053996;
+        Thu, 14 Nov 2019 04:17:04 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 14
+ Nov 2019 04:17:04 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 14 Nov 2019 04:17:04 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAEAH195020127;
+        Thu, 14 Nov 2019 04:17:01 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <t-kristo@ti.com>, <mturquette@baylibre.com>, <robh+dt@kernel.org>
+CC:     <sboyd@kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tony@atomide.com>, <devicetree@vger.kernel.org>
+Subject: [PATCH] dt-bindings: clock: Move ti-dra7-atl.h to dt-bindigs/clock
+Date:   Thu, 14 Nov 2019 12:18:17 +0200
+Message-ID: <20191114101817.20831-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.24.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DSI config changes to support DSI version.
+Most of the clock related dt-binding header files are located in
+dt-bindings/clock folder. It would be good to keep all the similar
+header files at a single location.
 
-Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
+Suggested-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 ---
- drivers/gpu/drm/msm/dsi/dsi_cfg.c | 21 +++++++++++++++++++++
- drivers/gpu/drm/msm/dsi/dsi_cfg.h |  1 +
- 2 files changed, 22 insertions(+)
+ Documentation/devicetree/bindings/clock/ti/dra7-atl.txt | 4 ++--
+ arch/arm/boot/dts/dra7-evm-common.dtsi                  | 2 +-
+ arch/arm/boot/dts/dra72-evm-common.dtsi                 | 2 +-
+ include/dt-bindings/{clk => clock}/ti-dra7-atl.h        | 0
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+ rename include/dt-bindings/{clk => clock}/ti-dra7-atl.h (100%)
 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-index b7b7c1a..d2c4592 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-@@ -133,6 +133,10 @@ static const char * const dsi_sdm845_bus_clk_names[] = {
- 	"iface", "bus",
+diff --git a/Documentation/devicetree/bindings/clock/ti/dra7-atl.txt b/Documentation/devicetree/bindings/clock/ti/dra7-atl.txt
+index 10f7047755f3..21c002d28b9b 100644
+--- a/Documentation/devicetree/bindings/clock/ti/dra7-atl.txt
++++ b/Documentation/devicetree/bindings/clock/ti/dra7-atl.txt
+@@ -43,7 +43,7 @@ Configuration of ATL instances:
+ 	- aws : Audio word select signal selection
  };
  
-+static const char * const dsi_sc7180_bus_clk_names[] = {
-+        "iface", "bus",
-+};
-+
- static const struct msm_dsi_config sdm845_dsi_cfg = {
- 	.io_offset = DSI_6G_REG_SHIFT,
- 	.reg_cfg = {
-@@ -147,6 +151,20 @@ static const struct msm_dsi_config sdm845_dsi_cfg = {
- 	.num_dsi = 2,
+-For valid word select signals, see the dt-bindings/clk/ti-dra7-atl.h include
++For valid word select signals, see the dt-bindings/clock/ti-dra7-atl.h include
+ file.
+ 
+ Examples:
+@@ -83,7 +83,7 @@ atl: atl@4843c000 {
+ 	clock-names = "fck";
  };
  
-+static const struct msm_dsi_config sc7180_dsi_cfg = {
-+	.io_offset = DSI_6G_REG_SHIFT,
-+	.reg_cfg = {
-+		.num = 1,
-+		.regs = {
-+			{"vdda", 21800, 4 },	/* 1.2 V */
-+		},
-+	},
-+	.bus_clk_names = dsi_sc7180_bus_clk_names,
-+	.num_bus_clks = ARRAY_SIZE(dsi_sc7180_bus_clk_names),
-+	.io_start = { 0xae94000 },
-+	.num_dsi = 1,
-+};
-+
- const static struct msm_dsi_host_cfg_ops msm_dsi_v2_host_ops = {
- 	.link_clk_enable = dsi_link_clk_enable_v2,
- 	.link_clk_disable = dsi_link_clk_disable_v2,
-@@ -201,6 +219,9 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
- 		&msm8998_dsi_cfg, &msm_dsi_6g_v2_host_ops},
- 	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_2_1,
- 		&sdm845_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-+	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_4_1,
-+		&sc7180_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-+
- };
+-#include <dt-bindings/clk/ti-dra7-atl.h>
++#include <dt-bindings/clock/ti-dra7-atl.h>
  
- const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-index e2b7a7d..9919536 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-+++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-@@ -19,6 +19,7 @@
- #define MSM_DSI_6G_VER_MINOR_V1_4_1	0x10040001
- #define MSM_DSI_6G_VER_MINOR_V2_2_0	0x20000000
- #define MSM_DSI_6G_VER_MINOR_V2_2_1	0x20020001
-+#define MSM_DSI_6G_VER_MINOR_V2_4_1	0x20040001
+ &atl {
  
- #define MSM_DSI_V2_VER_MINOR_8064	0x0
+diff --git a/arch/arm/boot/dts/dra7-evm-common.dtsi b/arch/arm/boot/dts/dra7-evm-common.dtsi
+index 82eeba8faef1..23244b5a9942 100644
+--- a/arch/arm/boot/dts/dra7-evm-common.dtsi
++++ b/arch/arm/boot/dts/dra7-evm-common.dtsi
+@@ -4,7 +4,7 @@
+  */
  
+ #include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/clk/ti-dra7-atl.h>
++#include <dt-bindings/clock/ti-dra7-atl.h>
+ #include <dt-bindings/input/input.h>
+ 
+ / {
+diff --git a/arch/arm/boot/dts/dra72-evm-common.dtsi b/arch/arm/boot/dts/dra72-evm-common.dtsi
+index 8641a3d7d8ad..9eabfd1502da 100644
+--- a/arch/arm/boot/dts/dra72-evm-common.dtsi
++++ b/arch/arm/boot/dts/dra72-evm-common.dtsi
+@@ -6,7 +6,7 @@
+ 
+ #include "dra72x.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/clk/ti-dra7-atl.h>
++#include <dt-bindings/clock/ti-dra7-atl.h>
+ 
+ / {
+ 	compatible = "ti,dra72-evm", "ti,dra722", "ti,dra72", "ti,dra7";
+diff --git a/include/dt-bindings/clk/ti-dra7-atl.h b/include/dt-bindings/clock/ti-dra7-atl.h
+similarity index 100%
+rename from include/dt-bindings/clk/ti-dra7-atl.h
+rename to include/dt-bindings/clock/ti-dra7-atl.h
 -- 
-2.7.4
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
