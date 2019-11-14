@@ -2,102 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78801FCDDE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 19:36:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3D81FCE68
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 20:00:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727359AbfKNSgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 13:36:21 -0500
-Received: from smtp.codeaurora.org ([198.145.29.96]:55896 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726852AbfKNSfp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 13:35:45 -0500
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 38259613D1; Thu, 14 Nov 2019 18:35:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1573756544;
-        bh=Xe3y4lO0o+G7wd7o5uty7IuBxQRp8lK4R1EoiDy8RUA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QDjReYuJxUcuaCQCjE1xNnytaQLOBJGOqPXkzLDtjL9tGrsYgAQ5+abJ9/3D8Sa2m
-         wJ1237n5gxw+Qy2L4j1yCOrVhFlawfQOpDQppoAHVMPDm/+lF70h0/6NC3yBWXV4BB
-         52Eoo5yUWJc0HKO6InpExZnBoTKfnrS2rWDXgOyA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from codeaurora.org (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: ilina@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5CF31613E4;
-        Thu, 14 Nov 2019 18:35:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1573756541;
-        bh=Xe3y4lO0o+G7wd7o5uty7IuBxQRp8lK4R1EoiDy8RUA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=K6G0pOnU+LLlzlxbBo5KXbLCH/r/X7tbVbNBniOYwp3+xJAexZIlv8B6ldEy/uX3b
-         T8ykRXPWFW5KrX4vuKF+vK8yppAp9HUBB4jAehxgFX5QFODGDciaujW6fo0pQF8xM9
-         XOHVDibsttYHxxMQcaOTRlkA9l/iJhUeiPeLjCGY=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5CF31613E4
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
-From:   Lina Iyer <ilina@codeaurora.org>
-To:     swboyd@chromium.org, maz@kernel.org, linus.walleij@linaro.org,
-        bjorn.andersson@linaro.org
-Cc:     evgreen@chromium.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, mkshah@codeaurora.org,
-        linux-gpio@vger.kernel.org, agross@kernel.org,
-        dianders@chromium.org, Lina Iyer <ilina@codeaurora.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 05/12] of: irq: document properties for wakeup interrupt parent
-Date:   Thu, 14 Nov 2019 11:35:14 -0700
-Message-Id: <1573756521-27373-6-git-send-email-ilina@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1573756521-27373-1-git-send-email-ilina@codeaurora.org>
-References: <1573756521-27373-1-git-send-email-ilina@codeaurora.org>
+        id S1726444AbfKNTAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 14:00:19 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:39288 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726491AbfKNTAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 14:00:19 -0500
+Received: by mail-ot1-f65.google.com with SMTP id w24so5330901otk.6;
+        Thu, 14 Nov 2019 11:00:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=q9MEfWUdUUfPCm5vU9LQzOSz48lJcPwE7Kg/TlNRovs=;
+        b=L+vHFCSrfZ030f00L36ImvW5pu38OjPHH7XXqSeE/QbNxfT+5B3JrI7G7JOlKFK79y
+         rXrYq1mbz1jtUOgQfP8iPafaynGoaxi+HY7qupbosA4vuCt2fx24Sqs7wBK7NY7Bu/jx
+         1s3UQW6Zt+1esmInsps3OV60ofOs2G0JDcI8FqlcyFrTTt//HWjimdeVvVxz33JY+IHe
+         5d/L6GA9ukkIohWuZSwG4VrFMrqsbZ1X8ggnIzbCj5cqMK7CHJt/XtxMSIJwTIj1j86k
+         Y/SDrwQDuPwsDmVQc76kVVeFQAZSuu7TOWLcXyKtptlrbAMzeJGsxEyaWNn5M0Wkg1dg
+         UWwQ==
+X-Gm-Message-State: APjAAAX9mm/bBfBRGd9ILWhp80bTQep9Oo8giO1PpqidZX0gVrj2qAi8
+        fIiJYn2N4uVzgcit5h6Nng==
+X-Google-Smtp-Source: APXvYqwPs253ExVsUnKRmxwdF9HEpywcpmZqBHjmrgZnsSGc7MA4Jg0vyaU85b3EyxC6OBT0AAoT0Q==
+X-Received: by 2002:a9d:bf0:: with SMTP id 103mr7950999oth.372.1573758018393;
+        Thu, 14 Nov 2019 11:00:18 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m14sm2054476otl.26.2019.11.14.11.00.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Nov 2019 11:00:17 -0800 (PST)
+Date:   Thu, 14 Nov 2019 13:00:17 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        andrew@aj.id.au, joel@jms.id.au, maz@kernel.org,
+        jason@lakedaemon.net, tglx@linutronix.de, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH 05/12] dt-bindings: soc: Add Aspeed XDMA Engine
+Message-ID: <20191114190017.GA17283@bogus>
+References: <1573244313-9190-1-git-send-email-eajames@linux.ibm.com>
+ <1573244313-9190-6-git-send-email-eajames@linux.ibm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1573244313-9190-6-git-send-email-eajames@linux.ibm.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some interrupt controllers in a SoC, are always powered on and have a
-select interrupts routed to them, so that they can wakeup the SoC from
-suspend. Add wakeup-parent DT property to refer to these interrupt
-controllers.
+On Fri,  8 Nov 2019 14:18:26 -0600, Eddie James wrote:
+> Document the bindings for the Aspeed AST25XX and AST26XX XDMA engine.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> ---
+>  .../devicetree/bindings/soc/aspeed/xdma.txt        | 24 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  6 ++++++
+>  2 files changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+> 
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Lina Iyer <ilina@codeaurora.org>
 Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
-Changes in v1:
-	- Remove whitespace at end of patch
----
- .../devicetree/bindings/interrupt-controller/interrupts.txt  | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-index 4a3ee25..4ebfa00 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-@@ -108,3 +108,15 @@ commonly used:
- 			sensitivity = <7>;
- 		};
- 	};
-+
-+3) Interrupt wakeup parent
-+--------------------------
-+
-+Some interrupt controllers in a SoC, are always powered on and have a select
-+interrupts routed to them, so that they can wakeup the SoC from suspend. These
-+interrupt controllers do not fall into the category of a parent interrupt
-+controller and can be specified by the "wakeup-parent" property and contain a
-+single phandle referring to the wakeup capable interrupt controller.
-+
-+   Example:
-+	wakeup-parent = <&pdc_intc>;
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
