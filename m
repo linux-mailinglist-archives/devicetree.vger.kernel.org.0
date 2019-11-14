@@ -2,104 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 436CFFC4FB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 12:03:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0AFBFC51D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 12:13:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727104AbfKNLDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 06:03:09 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:42309 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726969AbfKNLDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 06:03:01 -0500
-Received: by mail-lj1-f195.google.com with SMTP id n5so6175748ljc.9
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 03:03:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jb+MOMLuIdaHgEwx11sXFvRMBqWhHSyGkvnIDPsupdw=;
-        b=WOUcLW3G2Iayeuu5sPm24T439/72x+v6kvdOeZ3yyOFnInpWwaMAAiMlvEh+zz1v99
-         KB41QGiNZmpNupPI2zSDjYAUMw+jOuNTtO6FDm4F9YE1ldnhegAL+Omp0xYCregSGy+S
-         Zq9g75zHJ0vatkL7Y7LxTzPd5/s0ZaJslKRZ8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jb+MOMLuIdaHgEwx11sXFvRMBqWhHSyGkvnIDPsupdw=;
-        b=M9/3806EYoVW4JlAKb+59bEfdTYLiLfgSbBc0oCH1SsRBw8jigk6AIEMbjCAsGllTA
-         tD1iqG9J6V987lPuVoFGdO9IvDfecrK4TKtUBCA66iPZFcC2StkPTA0+mD8lql2fVzhS
-         skI/7ZzuEhl8GsoLJuU66dcSKco5c5Yw5cnEn5SujNjdpuTem45+7wZjneWnwLXur2G4
-         8dukqAatuERpvj3oPADNQFtFJRA/Vm05VGA2hBMj8mUQoWp6fp6DQzc0ytAKO2EUTf5t
-         Z6Cgk6thfGOIblCBbqBseq+ACzeJBZuqOky2mgQI6lomKtWSL/1Y9z5fCs2ia5n6sQLh
-         XipQ==
-X-Gm-Message-State: APjAAAX2J426lgvIWlTBTOdvgddwrHOCF12SHa2JKmeKwJWfe/vrgIkF
-        LpnSi/oxPAiys5pQkNhoDEDKuA==
-X-Google-Smtp-Source: APXvYqyjNPi9tG3t/0IsBhpN6J0yN3A7dgHIGn4FZvEHTpjYDUeeXcxIhq+h6bgnCPrbA2iTYR8Fgw==
-X-Received: by 2002:a2e:7307:: with SMTP id o7mr6253561ljc.10.1573729379406;
-        Thu, 14 Nov 2019 03:02:59 -0800 (PST)
-Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id x5sm2498795lfg.71.2019.11.14.03.02.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2019 03:02:59 -0800 (PST)
-From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>, Marc Zyngier <maz@kernel.org>,
-        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] ARM: dts: ls1021a-tsn: Use interrupts for the SGMII PHYs
-Date:   Thu, 14 Nov 2019 12:02:53 +0100
-Message-Id: <20191114110254.32171-3-linux@rasmusvillemoes.dk>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191114110254.32171-1-linux@rasmusvillemoes.dk>
-References: <20191114110254.32171-1-linux@rasmusvillemoes.dk>
+        id S1726165AbfKNLNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 06:13:24 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:33032 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726057AbfKNLNY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Nov 2019 06:13:24 -0500
+Received: from wf0530.dip.tu-dresden.de ([141.76.182.18] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iVD3u-0001yy-Nm; Thu, 14 Nov 2019 12:13:18 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Markus Reichl <m.reichl@fivetechno.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable HDMI Sound on rk3399-roc-pc
+Date:   Thu, 14 Nov 2019 12:13:17 +0100
+Message-ID: <35001517.YkhzgzjICv@phil>
+In-Reply-To: <c9db5599-743b-bb90-999e-5989be6556ac@fivetechno.de>
+References: <c9db5599-743b-bb90-999e-5989be6556ac@fivetechno.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <olteanv@gmail.com>
+Am Montag, 11. November 2019, 15:37:41 CET schrieb Markus Reichl:
+> HDMI-Sound is the only available sound card on rk3399-roc-pc, enable it.
+> 
+> Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
 
-On the LS1021A-TSN board, the 2 Atheros AR8031 PHYs for eth0 and eth1
-have interrupt lines connected to the shared IRQ2_B LS1021A pin.
+applied for 5.6 (probably)
 
-Switching to interrupts offloads the PHY library from the task of
-polling the MDIO status and AN registers (1, 4, 5) every second.
+Thanks
+Heiko
 
-Unfortunately, the BCM5464R quad PHY connected to the switch does not
-appear to have an interrupt line routed to the SoC.
-
-Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
-Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
----
- arch/arm/boot/dts/ls1021a-tsn.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm/boot/dts/ls1021a-tsn.dts b/arch/arm/boot/dts/ls1021a-tsn.dts
-index 5b7689094b70..9d8f0c2a8aba 100644
---- a/arch/arm/boot/dts/ls1021a-tsn.dts
-+++ b/arch/arm/boot/dts/ls1021a-tsn.dts
-@@ -203,11 +203,15 @@
- 	/* AR8031 */
- 	sgmii_phy1: ethernet-phy@1 {
- 		reg = <0x1>;
-+		/* SGMII1_PHY_INT_B: connected to IRQ2, active low */
-+		interrupts-extended = <&extirq 2 IRQ_TYPE_LEVEL_LOW>;
- 	};
- 
- 	/* AR8031 */
- 	sgmii_phy2: ethernet-phy@2 {
- 		reg = <0x2>;
-+		/* SGMII2_PHY_INT_B: connected to IRQ2, active low */
-+		interrupts-extended = <&extirq 2 IRQ_TYPE_LEVEL_LOW>;
- 	};
- 
- 	/* BCM5464 quad PHY */
--- 
-2.23.0
 
