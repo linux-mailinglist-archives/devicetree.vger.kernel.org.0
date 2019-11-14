@@ -2,170 +2,400 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CDCEFFBD5D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 02:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08448FBD6F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2019 02:28:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbfKNBRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Nov 2019 20:17:32 -0500
-Received: from mailout1.samsung.com ([203.254.224.24]:41986 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726409AbfKNBRc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Nov 2019 20:17:32 -0500
-Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20191114011730epoutp017004e5ff5bde5cce880cf9ad79cb1b86~W4pUv4wsV1106011060epoutp01r
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2019 01:17:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20191114011730epoutp017004e5ff5bde5cce880cf9ad79cb1b86~W4pUv4wsV1106011060epoutp01r
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1573694250;
-        bh=FXBWpKlesXfLLw3BqLNBcPCoTpNabhJYTRJ9xcKy+2s=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=mkMgCkh7haAsJsDxoNUTG5lTAJamuYbXWULXUnWZZjPNh11n8rhY3hokj+wWkMuZS
-         /eEWnaji/JfhVh7YymU8CddAeRYucpSfyb9wKaTK97tyytyLE/qStZ8RTPwbOE0B0r
-         goh2BSuU4nXo2PPEEbu7JtMg3Kb0G7clJ27u7UXI=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
-        20191114011729epcas1p4b78b1369c535049f005d7e52a60c58b9~W4pTyfXwJ2168921689epcas1p4L;
-        Thu, 14 Nov 2019 01:17:29 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.40.153]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 47D3Vt6J7zzMqYkm; Thu, 14 Nov
-        2019 01:17:26 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        57.2B.04144.22BACCD5; Thu, 14 Nov 2019 10:17:22 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20191114011722epcas1p21cf9970859318b0dec0e9ab652f4e29a~W4pNo2ez71298012980epcas1p2v;
-        Thu, 14 Nov 2019 01:17:22 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20191114011722epsmtrp2bcd573bbe8670ed4a7673f4a58ea9ed3~W4pNm8Fey1353513535epsmtrp2V;
-        Thu, 14 Nov 2019 01:17:22 +0000 (GMT)
-X-AuditID: b6c32a35-2c7ff70000001030-67-5dccab22a2d5
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        6B.6D.24756.22BACCD5; Thu, 14 Nov 2019 10:17:22 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20191114011721epsmtip21e0a9e40911214b7cbef6ffecba0a490~W4pNEKs0R2018120181epsmtip2P;
-        Thu, 14 Nov 2019 01:17:21 +0000 (GMT)
-Subject: Re: [RFC PATCH] PM / devfreq: clk_get_parent_by_index() can be
- static
-To:     kbuild test robot <lkp@intel.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>
-Cc:     kbuild-all@lists.01.org, Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Angus Ainslie <angus@akkea.ca>,
-        Martin Kepplinger <martink@posteo.de>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <71305a8a-9bb0-1317-3618-0ad18295ea92@samsung.com>
-Date:   Thu, 14 Nov 2019 10:23:07 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.9.0
+        id S1726335AbfKNB2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Nov 2019 20:28:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41708 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726120AbfKNB2d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Nov 2019 20:28:33 -0500
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 30A40206F9;
+        Thu, 14 Nov 2019 01:28:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1573694912;
+        bh=laN7azJMeyy9u9NpTBbz1Cqfp3G08wlQWrCHDFx3JNI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OjUU9rC4Hix3po/3Dp4nJx+100woGCT0l2AubIs545R+j6+9lTCY9gXTMAk8RKBUW
+         VX9Wj+FUqM+CUUNSxQt0Thno9c1mxmZHUftBCCtFJdcV/dobpmJDs9LOZnYSvVLVML
+         h821TRjpCXDPzy6mFmv0YhYGehM/Ggd/4AP4kzTA=
+Received: by mail-qt1-f181.google.com with SMTP id t20so4928148qtn.9;
+        Wed, 13 Nov 2019 17:28:31 -0800 (PST)
+X-Gm-Message-State: APjAAAXKPiIgL5v4ZVqmGEtqjNEQdoGsQybT5GB1aUMPqRxlMWC8najs
+        139dPI5h3ew/rzNHDsIzyN3PKsTl5CYV9mQYqw==
+X-Google-Smtp-Source: APXvYqyKuhsmN5mZRC+roDm+9C8dNHrEMDHUz9VbD0ceM8StwEkwH3BYStWPhPm7fVTn9Y3x5P2JTxmIEV5EO0cj7JM=
+X-Received: by 2002:ac8:3094:: with SMTP id v20mr6031239qta.110.1573694910934;
+ Wed, 13 Nov 2019 17:28:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20191113140710.jynosjegdq7t6igk@4978f4969bb8>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te0xbVRzHc3ofvZBVL2WsR6JZubiEYQq9sOLZHPgYLjdxiWTLDDEheAM3
-        hdBXeimyzWSgYTxFQdAMNmAZSGFMoBSBWYYwdBmvDQyVx3CLkAUXLE7oNMCIfbDIf9/f73y+
-        5/c4ORQmH5eGUpmGbMFs4HUMGYh/f+ugSsVcG0tRd9XFoaGfu6XIPToC0LdTPwG0Xn0DQ4sP
-        5gHquZiG6ocnCNTZNY+jb/ptJBovdQLUWt2Ho7t3O6Ro/NMVKbIuPCGQbdFJoCdlvxGoZKMF
-        Q2ufDwP0+LPfSdT066QEOa0VBFrrWARocuRdNJ9vJdG1iUESjY1OEaigf1iKSoaekWjb2Ymj
-        ZbsCdbq5t/Zz1SVWwLXVtQFudaZAytXmTeJcg83CXXX8IeFsrcUkd9/pILnS2m2c62o8z3W6
-        eiXcoMsh4b54puY2boVw9ulCnCu3t4KkoA+zjmYIfLpgVgqGNGN6pkEbz7x3KvVYqiZOzarY
-        w+h1Rmng9UI8k3giSXU8U+dZF6PM4XUWTyqJF0UmOuGo2WjJFpQZRjE7nhFM6TrTYVOUyOtF
-        i0EblWbUH2HV6hiNB/woK2PqhzLc5CZzZ5sugTwwQpSAAArSh+D09W5QAgIpOd0L4Ib1IeYP
-        /gawfP2mxEvJ6acAdjTve+4oz9/YgfoBzOvYkvqDVQBbKgeBlwqmk6B7rt6n99InYZur0efA
-        6HYKVl14hHsPSDoSDizPkF79Ih0Gp/9d9BlkdALcWi/2aZw+ABtbVj08RYXQyXDUzfuRIHjn
-        4pLvmgD6DdhU4fZ1itEKOLdUv6P3w54/L/nqQvoeBZcfDO8MnQjttaU7Ohg+vm2X+nUoXHP1
-        k359DrbcGSb95iIA7QP3dgyxcKDpK4m3IYw+CNtvRPvTYbBv8zLwF34ButxlhBeBtAwWXZD7
-        kXD4y8MFiV+/BK8WFpNfAqZm1zg1u0ao2TVCzf/FGgDeCvYJJlGvFUTWxO5+bRvwfaVITS+o
-        mjgxBGgKMHtkP4aMpcgJPkc8ox8CkMKYvbIIgyclS+fPnBXMxlSzRSeIQ0DjWXYFFhqSZvR8
-        TEN2KquJiY2NRYfYOA3LMgrZ281NKXJay2cLWYJgEszPfRIqIDQPOFbC/4pY/O5lsqWunZW/
-        3zW40DxnyG04WXk/eVunXZk8FlWovLKVq12KII6rCz62KAKKj0RGKSJ7VLng9OaVd/KDz59z
-        zJzFXot95XbRzcrqpxU53QFfzyfvOR2T+Ci4QD/5T8KBKmtZkdkWHRY0q+x5c2xzhQifDUr9
-        4JP6wK5X+xhczODZSMws8v8BERQ1KGAEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRzGeXcuO0qr01R8M0EcRCVoCn54oRIhqrcvFSViQdloxwu6KTtq
-        KVJaSjhvCU3xklo60XnJTc075pyCOhUnniwrQ7uKl6RWISq5aeC3H8//+T2f/gwh7aA8mGhV
-        AqdWyWNltDP5ckDm5Surt9zw15g8kGmoTYxsoyMA1VgHAfql7SLQwtwsQO3Ft1GFeZxChpZZ
-        EhX1Gmk0li0ApNd2kmhiolmMxh4siVHt+zUKGRcECq3lfKCQZr2OQD9zzQAtPpynke71pAgJ
-        tQUU+tm8ANDkyFk0m15Lo/rxfhpZRq0Uyuw1i5HGtEmjLcFAom+t7shgw8FeWKupBbihvAHg
-        1ZlMMS5NmyRxpTERV/V8F2GjPovG74QeGmeXbpG4pfo+Nqx0iHD/So8I52/64/UBN9w6/YjE
-        ea16cPngdedTCi42OolTnwi65Rxl7c4h42303Te6MpAGRigNcGIgGwjz0tcJDXBmpGw3gLlF
-        ZcTO4RAsnBzcZmabXeDAAG+PpewygObue3Z2YS/C73ObjrorewWaBQtt3yHYNgYKNWX0zuj8
-        ttAl0PYWzfrAvm8zDj7AesPpvwvAzhI2CG78ynIwyR6B1XWrpJ3d2DD4tX1mt3MQDhd/cuRO
-        7EmoK7CJ7EywR+FGuZXYYXf49lPFbu4F25fLiMfApWSPXrJHKdmjlOxRKgGpB4e4eF4ZqeQD
-        4gNU3B0/Xq7kE1WRfrfjlEbg+Cef4x1gqjrcBFgGyPZJXrlZbkgpeRKfrDQByBAyV8kx1XYk
-        UciTUzh1XLg6MZbjTeAwQ8rcJZ9VQ9ekbKQ8gYvhuHhO/f8qYpw80kDi2rlnfT9WUjxdLyR3
-        6E1LOWMvwvMaFU2rChBzvvOmJFUnSm0t9Kg3f/wdGagAvSjqz/M2/XSjQet9df/wTMYXr9RL
-        nslb7rbyyogmXWiQIThGPRIx1Z4Rtlr5JJgPyV8sJXvHqk5Piay+oSHygubhp2yotnBIwZzh
-        soT1fBnJR8kDfAg1L/8HdvbQcUsDAAA=
-X-CMS-MailID: 20191114011722epcas1p21cf9970859318b0dec0e9ab652f4e29a
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20191113140815epcas1p194a07ca0cf4b2776d32a25ee71f804c4
-References: <d33acdcc043ce12713a9279636e32d039da5ee54.1573595319.git.leonard.crestez@nxp.com>
-        <CGME20191113140815epcas1p194a07ca0cf4b2776d32a25ee71f804c4@epcas1p1.samsung.com>
-        <20191113140710.jynosjegdq7t6igk@4978f4969bb8>
+References: <20191108130946.14740-1-songqiang1304521@gmail.com>
+In-Reply-To: <20191108130946.14740-1-songqiang1304521@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 13 Nov 2019 19:28:19 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLZL3Tzzv7MQ4i_KeXgM2yu8LJ+B62aOVvKyAswswD25w@mail.gmail.com>
+Message-ID: <CAL_JsqLZL3Tzzv7MQ4i_KeXgM2yu8LJ+B62aOVvKyAswswD25w@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: adc: add support for AD5940
+To:     Song Qiang <songqiang1304521@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Leonard,
-
-Please apply this to next version.
-
-On 11/13/19 11:07 PM, kbuild test robot wrote:
-> 
-> Fixes: f01e004107f3 ("PM / devfreq: Add dynamic scaling for imx8m ddr controller")
-> Signed-off-by: kbuild test robot <lkp@intel.com>
+On Fri, Nov 8, 2019 at 7:09 AM Song Qiang <songqiang1304521@gmail.com> wrote:
+>
+> Add yaml devicetree description file and a header file for
+> helping configure positive and negtive input of AD5940.
+>
+> Signed-off-by: Song Qiang <songqiang1304521@gmail.com>
 > ---
->  imx8m-ddrc.c |    2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/devfreq/imx8m-ddrc.c b/drivers/devfreq/imx8m-ddrc.c
-> index 62abb9b79d8a0..228561de94425 100644
-> --- a/drivers/devfreq/imx8m-ddrc.c
-> +++ b/drivers/devfreq/imx8m-ddrc.c
-> @@ -122,7 +122,7 @@ static void imx8m_ddrc_smc_set_freq(int target_freq)
->  	local_irq_enable();
->  }
->  
-> -struct clk *clk_get_parent_by_index(struct clk *clk, int index)
-> +static struct clk *clk_get_parent_by_index(struct clk *clk, int index)
->  {
->  	struct clk_hw *hw;
->  
-> 
-> 
+>  .../bindings/iio/adc/adi,ad5940.yaml          | 240 ++++++++++++++++++
+>  include/dt-bindings/iio/adc/adi,ad5940.h      |  52 ++++
+>  2 files changed, 292 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad5940.yaml
+>  create mode 100644 include/dt-bindings/iio/adc/adi,ad5940.h
+>
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad5940.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad5940.yaml
+> new file mode 100644
+> index 000000000000..f7f034fdd8ec
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad5940.yaml
+> @@ -0,0 +1,240 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +# Copyright 2019 Analog Devices Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bindings/iio/adc/adi,ad5940.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD5940 Device Tree Bindings
+> +
+> +maintainers:
+> +  - Song Qiang <songqiang1304521@gmail.com>
+> +
+> +description: |
+> +  Analog Devices AD5940 High Precision, Impedance, and Electrochemical Front End.
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/AD5940.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad5940
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vref-supply:
+> +    description:
+> +      The regulator to be used to supply the reference voltage.
+> +    maxItems: 1
+> +
+> +  adi,interrupt-io:
+> +    description:
+> +      Output GPIO index of interrupt controller of AD5940.
+> +    maxItems: 1
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [0, 3, 6, 7]
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - adi,interrupt-io
+> +
+> +patternProperties:
+> +  # 'channel@0-255'
+> +  "^channel@([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$":
+> +    type: object
+> +    description: |
+> +      Represents the external channels which are connected to the ADC.
+> +      See Documentation/devicetree/bindings/iio/adc/adc.txt.
+> +    properties:
+> +      reg:
+> +        description:
+> +          Index of this channel, must be starting from 0.
+> +        maxItems: 1
 
+Drop maxItems and do:
 
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+items:
+  - minimum: 0
+    maximum: 255
+
+> +
+> +      diff-channels:
+> +        description:
+> +          Positive input and negtive input of the ADC buffer of this channel.
+> +          Input candidates are defined in include/dt-bindings/iio/adc/adi,ad5940.h.
+> +        minItems: 2
+> +        maxItems: 2
+> +        items:
+> +          - description: Positive input channel
+> +          - enum:
+> +            - AD5940_ADC_INPUTP_EXCITATION
+
+You can't have defines in the schema. minimum/maximum might work better here.
+
+> +            - AD5940_ADC_INPUTP_FLOATING
+> +            - AD5940_ADC_INPUTP_HSTIA
+> +            - AD5940_ADC_INPUTP_LPTIA_LP
+> +            - AD5940_ADC_INPUTP_AIN0
+> +            - AD5940_ADC_INPUTP_AIN1
+> +            - AD5940_ADC_INPUTP_AIN2
+> +            - AD5940_ADC_INPUTP_AIN3
+> +            - AD5940_ADC_INPUTP_AVDD_2
+> +            - AD5940_ADC_INPUTP_DVDD_2
+> +            - AD5940_ADC_INPUTP_AVDD_REG_2
+> +            - AD5940_ADC_INPUTP_TEMP
+> +            - AD5940_ADC_INPUTP_VBIAS_CAP
+> +            - AD5940_ADC_INPUTP_DE0
+> +            - AD5940_ADC_INPUTP_SE0
+> +            - AD5940_ADC_INPUTP_VREF_2V5_2
+> +            - AD5940_ADC_INPUTP_VREF_1V82
+> +            - AD5940_ADC_INPUTP_P_TEMP_N
+> +            - AD5940_ADC_INPUTP_AIN4
+> +            - AD5940_ADC_INPUTP_AIN6
+> +            - AD5940_ADC_INPUTP_VZERO
+> +            - AD5940_ADC_INPUTP_VBIAS0
+> +            - AD5940_ADC_INPUTP_VCE0
+> +            - AD5940_ADC_INPUTP_VRE0
+> +            - AD5940_ADC_INPUTP_VCE0_2
+> +            - AD5940_ADC_INPUTP_LPTIA
+> +            - AD5940_ADC_INPUTP_AGND_REF
+> +
+> +          - description: Negtive input channel
+> +          - enum:
+> +              # Negtive input candidates
+> +              - AD5940_ADC_INPUTN_FLOATING
+> +              - AD5940_ADC_INPUTN_HSTIA
+> +              - AD5940_ADC_INPUTN_LPTIA
+> +              - AD5940_ADC_INPUTN_AIN0
+> +              - AD5940_ADC_INPUTN_AIN1
+> +              - AD5940_ADC_INPUTN_AIN2
+> +              - AD5940_ADC_INPUTN_AIN3
+> +              - AD5940_ADC_INPUTN_VBIAS_CA8
+> +              - AD5940_ADC_INPUTN_TEMP_N
+> +              - AD5940_ADC_INPUTN_AIN4
+> +              - AD5940_ADC_INPUTN_AIN6
+> +              - AD5940_ADC_INPUTN_VZERO
+> +              - AD5940_ADC_INPUTN_VBIAS0
+> +              - AD5940_ADC_INPUTN_EXCITATION
+
+You've defined that diff-channels is 4 items. I don't think that's
+what you want. Each enum and description should be under a single '-'.
+
+> +
+> +      channel-name:
+
+Perhaps standard property 'label' should be used here. Seems like a
+common thing.
+
+> +        description:
+> +          Any string format name you would like to assign to this channel.
+> +        maxItems: 1
+> +
+> +    required:
+> +      - reg
+> +      - diff-channels
+> +      - channel-name
+> +
+> +examples:
+> +  - |
+> +    ad5940: ad5940@0 {
+> +      compatible = "adi,ad5940";
+> +      reg = <0>;
+> +      spi-max-frequency = <16000000>;
+> +      vref-supply = <&adc_vref>;
+> +      interrupt-parent = <&gpio>;
+> +      interrupts = <24 2>;
+> +
+> +      adi,interrupt-io = <0>;
+> +
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      channel@0 {
+> +        reg = <0>;
+> +        diff-channels = <AD5940_ADC_INPUTP_VCE0
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+
+You'll need the header included for this to build. Run 'make
+dt_binding_check' on this.
+
+> +        channel-name = "Vce-Vbias";
+> +      };
+> +
+> +      channel@1 {
+> +        reg = <1>;
+> +        diff-channels = <AD5940_ADC_INPUTP_VRE0
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "Vre-Vbias";
+> +      };
+> +
+> +      channel@2 {
+> +        reg = <2>;
+> +        diff-channels = <AD5940_ADC_INPUTP_SE0
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "Vse-Vbias";
+> +      };
+> +
+> +      channel@3 {
+> +        reg = <3>;
+> +        diff-channels = <AD5940_ADC_INPUTP_DE0
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "Vde-Vbias";
+> +      };
+> +
+> +      channel@4 {
+> +        reg = <4>;
+> +        diff-channels = <AD5940_ADC_INPUTP_AIN0
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "ain0-Vbias";
+> +      };
+> +
+> +      channel@5 {
+> +        reg = <5>;
+> +        diff-channels = <AD5940_ADC_INPUTP_AIN1
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "ain1-Vbias";
+> +      };
+> +
+> +      channel@6 {
+> +        reg = <6>;
+> +        diff-channels = <AD5940_ADC_INPUTP_AIN2
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "ain2-Vbias";
+> +      };
+> +
+> +      channel@7 {
+> +        reg = <7>;
+> +        diff-channels = <AD5940_ADC_INPUTP_AIN3
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "ain3-Vbias";
+> +      };
+> +
+> +      channel@8 {
+> +        reg = <8>;
+> +        diff-channels = <AD5940_ADC_INPUTP_AIN4
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "ain4-Vbias";
+> +      };
+> +
+> +      channel@9 {
+> +        reg = <9>;
+> +        diff-channels = <AD5940_ADC_INPUTP_AIN6
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "ain6-Vbias";
+> +      };
+> +
+> +      channel@10 {
+> +        reg = <10>;
+> +        diff-channels = <AD5940_ADC_INPUTP_LPTIA_LP
+> +                         AD5940_ADC_INPUTN_LPTIA>;
+> +        channel-name = "Low power TIA DC";
+> +      };
+> +
+> +      channel@11 {
+> +        reg = <11>;
+> +        diff-channels = <AD5940_ADC_INPUTP_LPTIA
+> +                         AD5940_ADC_INPUTN_LPTIA>;
+> +        channel-name = "Low power TIA AC";
+> +      };
+> +
+> +      channel@12 {
+> +        reg = <12>;
+> +        diff-channels = <AD5940_ADC_INPUTP_HSTIA
+> +                         AD5940_ADC_INPUTN_HSTIA>;
+> +        channel-name = "High Speed TIA";
+> +      };
+> +
+> +      channel@13 {
+> +        reg = <13>;
+> +        diff-channels = <AD5940_ADC_INPUTP_TEMP
+> +                         AD5940_ADC_INPUTN_VBIAS0>;
+> +        channel-name = "Temperature";
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/iio/adc/adi,ad5940.h b/include/dt-bindings/iio/adc/adi,ad5940.h
+> new file mode 100644
+> index 000000000000..c17826f2f654
+> --- /dev/null
+> +++ b/include/dt-bindings/iio/adc/adi,ad5940.h
+> @@ -0,0 +1,52 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * This header provides constants for configuring the AD5940 AFE
+> + */
+> +
+> +#ifndef _DT_BINDINGS_IIO_ADC_AD5940_H
+> +#define _DT_BINDINGS_IIO_ADC_AD5940_H
+> +
+> +#define AD5940_ADC_INPUTN_FLOATING     0
+> +#define AD5940_ADC_INPUTN_HSTIA                1
+> +#define AD5940_ADC_INPUTN_LPTIA                2
+> +#define AD5940_ADC_INPUTN_AIN0         4
+> +#define AD5940_ADC_INPUTN_AIN1         5
+> +#define AD5940_ADC_INPUTN_AIN2         6
+> +#define AD5940_ADC_INPUTN_AIN3         7
+> +#define AD5940_ADC_INPUTN_VBIAS_CA8    10
+> +#define AD5940_ADC_INPUTN_TEMP_N       11
+> +#define AD5940_ADC_INPUTN_AIN4         12
+> +#define AD5940_ADC_INPUTN_AIN6         14
+> +#define AD5940_ADC_INPUTN_VZERO                16
+> +#define AD5940_ADC_INPUTN_VBIAS0       17
+> +#define AD5940_ADC_INPUTN_EXCITATION   20
+> +
+> +#define AD5940_ADC_INPUTP_FLOATING     0
+> +#define AD5940_ADC_INPUTP_HSTIA                1
+> +#define AD5940_ADC_INPUTP_LPTIA_LP     2
+> +#define AD5940_ADC_INPUTP_AIN0         4
+> +#define AD5940_ADC_INPUTP_AIN1         5
+> +#define AD5940_ADC_INPUTP_AIN2         6
+> +#define AD5940_ADC_INPUTP_AIN3         7
+> +#define AD5940_ADC_INPUTP_AVDD_2       8
+> +#define AD5940_ADC_INPUTP_DVDD_2       9
+> +#define AD5940_ADC_INPUTP_AVDD_REG_2   10
+> +#define AD5940_ADC_INPUTP_TEMP         11
+> +#define AD5940_ADC_INPUTP_VBIAS_CAP    12
+> +#define AD5940_ADC_INPUTP_DE0          13
+> +#define AD5940_ADC_INPUTP_SE0          14
+> +#define AD5940_ADC_INPUTP_VREF_2V5_2   16
+> +#define AD5940_ADC_INPUTP_VREF_1V82    18
+> +#define AD5940_ADC_INPUTP_P_TEMP_N     19
+> +#define AD5940_ADC_INPUTP_AIN4         20
+> +#define AD5940_ADC_INPUTP_AIN6         22
+> +#define AD5940_ADC_INPUTP_VZERO                23
+> +#define AD5940_ADC_INPUTP_VBIAS0       24
+> +#define AD5940_ADC_INPUTP_VCE0         25
+> +#define AD5940_ADC_INPUTP_VRE0         26
+> +#define AD5940_ADC_INPUTP_VCE0_2       31
+> +#define AD5940_ADC_INPUTP_LPTIA                33
+> +#define AD5940_ADC_INPUTP_AGND_REF     35
+> +#define AD5940_ADC_INPUTP_EXCITATION   36
+> +
+> +#endif /* _DT_BINDINGS_IIO_ADC_AD5940 */
+> --
+> 2.17.1
+>
