@@ -2,85 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F03FDE96
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 14:10:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0E33FDEBD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 14:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727359AbfKONKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 08:10:34 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:51151 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727223AbfKONKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Nov 2019 08:10:33 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAFD2Pcu022731;
-        Fri, 15 Nov 2019 14:10:20 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=9rmwto7fOBN39SiXRHKuxkPMdmv3HZGhG7BMLDLWBXs=;
- b=it38MDpuYDLhG6jamaFeoXmLhqluiQEOXdJsj4ujecEVyW1onH6GHGQ0bekhkvwenlC4
- 07uZCgXKkx0GLS3DG1SG02fFxmzQtNHs9MuK4Pz5TXoWmcKAbNlOHN2BCJldDEnqfjYb
- uXeHsmFKaavG/nAr+2Y49GmfOCN/KXhigkGF+vFFfxlKV30IEGZpMmkEORjZgaCbBnBK
- 7T+hNMNL/xLdxrYWhIiwegLkhRGLrADw5ZA0YRiMyk6vGHQCXaMwJpJbndNQoM4uRsik
- CGA/8J750EcqctHJBrNmWyQdDKL1skR0tht2fjjbDjpTADlGZIlPuTmLczGgdHAu7GfY 3g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2w7psbm8hg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 15 Nov 2019 14:10:20 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id ED50910002A;
-        Fri, 15 Nov 2019 14:10:19 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D6A6F2BC106;
-        Fri, 15 Nov 2019 14:10:19 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 15 Nov
- 2019 14:10:19 +0100
-Subject: Re: [PATCH 0/2] Add support for ADC on stm32mp157c-ed1
-To:     Fabrice Gasnier <fabrice.gasnier@st.com>
-CC:     <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
-        <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1573231059-395-1-git-send-email-fabrice.gasnier@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <54a1b172-df71-0fec-cd40-e974dc70af34@st.com>
-Date:   Fri, 15 Nov 2019 14:10:18 +0100
+        id S1727450AbfKONSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 08:18:14 -0500
+Received: from mga05.intel.com ([192.55.52.43]:55089 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727249AbfKONSO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Nov 2019 08:18:14 -0500
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Nov 2019 05:18:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,308,1569308400"; 
+   d="scan'208";a="203584337"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.197]) ([10.237.72.197])
+  by fmsmga007.fm.intel.com with ESMTP; 15 Nov 2019 05:18:11 -0800
+Subject: Re: [PATCH v2 2/2] mmc: sdhci-of-aspeed: add inversion signal
+ presence
+To:     Ivan Mikhaylov <i.mikhaylov@yadro.com>
+Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+References: <20191114125435.27756-1-i.mikhaylov@yadro.com>
+ <20191114125435.27756-3-i.mikhaylov@yadro.com>
+ <fcb5f8b5-40b9-6497-b24d-0b73e2525949@intel.com>
+ <b443738f5e2a3c7ba96b329a8347374f7f934483.camel@yadro.com>
+ <d177ef37-643e-442d-d536-750e0bb5e86d@intel.com>
+ <221381ebad0236625775bda5655fcd7c78455e6f.camel@yadro.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <5bd753c3-102b-d78c-c390-4f88ebb0e229@intel.com>
+Date:   Fri, 15 Nov 2019 15:17:14 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <1573231059-395-1-git-send-email-fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <221381ebad0236625775bda5655fcd7c78455e6f.camel@yadro.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-15_03:2019-11-15,2019-11-15 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
+On 15/11/19 2:56 PM, Ivan Mikhaylov wrote:
+> On Fri, 2019-11-15 at 09:20 +0200, Adrian Hunter wrote:
+>> On 14/11/19 7:19 PM, Ivan Mikhaylov wrote:
+>>> On Thu, 2019-11-14 at 15:10 +0200, Adrian Hunter wrote:
+>>> On 14/11/19 2:54 PM, Ivan Mikhaylov wrote:
+>>>>> Change the default .get_cd callback. Add inverted signal card detection
+>>>>> check.
+>>>>>
+>>>>> Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
+>>>>>
+>>>>> diff --git a/drivers/mmc/host/sdhci-of-aspeed.c
+>>>>> b/drivers/mmc/host/sdhci-of-
+>>>>> aspeed.c
+>>>>> index 8962f6664381..186559ee8fcc 100644
+>>>>> --- a/drivers/mmc/host/sdhci-of-aspeed.c
+>>>>> +++ b/drivers/mmc/host/sdhci-of-aspeed.c
+>>>>> @@ -143,6 +143,19 @@ static inline int
+>>>>> aspeed_sdhci_calculate_slot(struct
+>>>>> aspeed_sdhci *dev,
+>>>>>  	return (delta / 0x100) - 1;
+>>>>>  }
+>>>>>  
+>>>>> +static int aspeed_get_cd(struct mmc_host *mmc)
+>>>>> +{
+>>>>> +	struct sdhci_host *host = mmc_priv(mmc);
+>>>>> +
+>>>>> +	int present = !!(sdhci_readl(host, SDHCI_PRESENT_STATE)
+>>>>> +			 & SDHCI_CARD_PRESENT);
+>>>>> +
+>>>>> +	if (mmc->caps2 & MMC_CAP2_CD_ACTIVE_HIGH)
+>>>>> +		present = !present;
+>>>>
+>>>> Perhaps safer to flip the bit using CONFIG_MMC_SDHCI_IO_ACCESSORS and
+>>>> ->readl() callback
+>>
+>>
+>>> Sorry, don't quite understand what you're saying. You want to instantiate
+>>> '.read_l' callback instead of '.get_cd' in sdhci_ops and substitute the real
+>>> value?
+>>>
+>>> res = readl(base, reg);
+>>> if (reg == SDHCI_PRESENT_STATE)
+>>> 	if (mmc->caps2 & MMC_CAP2_CD_ACTIVE_HIGH)
+>>> 		return !res;
+>>
+>> Presumably just flip the SDHCI_CARD_PRESENT bit i.e.
+>>
+>> 		return res ^ SDHCI_CARD_PRESENT;
+>>
+>>> return res;
+>>>
+>>> Something like this?
+>>
+>> Yes
+>>
+> 
+> Don't you think it will bring a little overhead on any sdhci_readl plus
 
-On 11/8/19 5:37 PM, Fabrice Gasnier wrote:
-> This series adds support for digital-to-analog converter on
-> stm32mp157c-ed1 board:
-> - define pins that can be used for ADC
-> - configure ADC channels to use these
-> 
-> Fabrice Gasnier (2):
->    ARM: dts: stm32: add ADC pins used for stm32mp157c-ed1
->    ARM: dts: stm32: add ADC support to stm32mp157c-ed1
-> 
->   arch/arm/boot/dts/stm32mp157-pinctrl.dtsi |  6 ++++++
->   arch/arm/boot/dts/stm32mp157c-ed1.dts     | 16 ++++++++++++++++
->   2 files changed, 22 insertions(+)
-> 
-Series applied on stm32-next.
+Register accesses are usually slow (~1us) compared with logic.  Of course,
+I/O requests are even slower >100ms so it is unlikely that the overhead is
+significant.
 
-Regards
-Alex
+> sdhci_readl will not get the real value in case of inverted signal which seems
+> is not right from communication fairness between hw and sw? I took that approach
+
+One of the purposes of the accessors is to smooth over the difference
+between the SDHCI standard and actual hardware.  Given that
+SDHCI_PRESENT_STATE is also used in sdhci_set_card_detection() and
+sdhci_irq(), it is surprising that changing only ->get_cd() works correctly.
+
+> with .get_cd from variety of drivers in host/mmc but if you think it will be
+> better and safer with .read_l - I'll do that way. 
+> 
+> Sorry for the link in subject, didn't notice that I put it in previous message
+> somehow.
+> 
+> Thanks.
+> 
+> 
+
