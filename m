@@ -2,93 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C201FE4C6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 19:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70100FE50A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 19:43:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726308AbfKOSRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 13:17:55 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:4958 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726182AbfKOSRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Nov 2019 13:17:55 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAFI7o6r005156;
-        Fri, 15 Nov 2019 19:17:46 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=R0AG0K+FiTWH1VDAdSpoZmFq3tYATmR+PjAfYmovt68=;
- b=sdrq5T4a9WOf6MFyAas2MYoe3fnYWaZgrxVxFxJ5KqzpDfYchemixCcxUlh7Zz5tSRvj
- RbOPu21YJRFbI4Q3+XL4hSufxAnYEzTgPNUjHsxhS0yQlvzEPaiMDYyE55OFQuPzjuGo
- obZrA/vd8A2ekPxA0Nsal7TE9QEAbLnslc3RP/6f3Dzmf7R/l4Pye59h4aKFLAto9ZWg
- HsD9rEuP6q82yfuL2fOYw6lpslXv7tmMiFL7SZsJjQ9AmrROLcj2V4NYY46b7eBZf1NC
- gcLIq1Wm+zxAW9ZrsVJuYG+xCxNZywb1/dda6fQSUzyU2vipuArQ7RCTZVr5nmvfmm1R xg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2w7psfntuq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 15 Nov 2019 19:17:46 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A840510002A;
-        Fri, 15 Nov 2019 19:17:45 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 96E0D2129DA;
-        Fri, 15 Nov 2019 19:17:45 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 15 Nov
- 2019 19:17:44 +0100
-Subject: Re: [PATCH] ARM: dts: stm32: remove unused rng interrupt
-To:     Benjamin Gaignard <benjamin.gaignard@st.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <lionel.debieve@st.com>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20191115100651.17754-1-benjamin.gaignard@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <b3759a65-99e1-d846-b60b-576dfa9c9f6e@st.com>
-Date:   Fri, 15 Nov 2019 19:17:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20191115100651.17754-1-benjamin.gaignard@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG8NODE3.st.com (10.75.127.24) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-15_05:2019-11-15,2019-11-15 signatures=0
+        id S1726323AbfKOSnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 13:43:33 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:37760 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726075AbfKOSnd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 13:43:33 -0500
+Received: by mail-wr1-f66.google.com with SMTP id t1so12058635wrv.4;
+        Fri, 15 Nov 2019 10:43:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=agn5/+Ff+txwdkMYcl4dOnRhb7wogId0OeGIrqnhFKE=;
+        b=qghhLRcUIuP5ShnvL5clvj3Ew+W2ALCsWLbLPM5QqviPGCT6qn4NScW27VVUpaWPBk
+         oRX4p3UTPSZyh7vPQiuQ1wf/uuMAaSy/g22p8175W0zkubhz2MyZjvTCHzgj6jix46DC
+         bsSZj457R7IXZ5QzFQt2gdQG/XYQPgwMUdMOW/bLoTjvagllAaG4FWlUBcyf3svP2Uos
+         zhucpOF6ai8fgq8revALwXVvlcgwOrDZhSHakMbY5qClrkRHY3ZQ22jTwkqBtahuWNA4
+         c6A7xwWeg3hkZc4EeObtUrt1h/lff185xMTq6j/LVzK43QgO87l8qh5NkIeM2Af7kbr4
+         EzNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=agn5/+Ff+txwdkMYcl4dOnRhb7wogId0OeGIrqnhFKE=;
+        b=jjYDmJDKV1zrA9g2xAyKis/LqkqK1YZDj2Ip4RlisN2LQfIiGEbZoiVmIsAzwG0IKS
+         /R661KZFPgA+YfDJvo7aeKI8dr/MckiiwM2+a0OJpUUISbRqbCUdQhcBwKV/LUn0kK3s
+         c6OB6WJ/OituuIDgAQ30g57pzg4B1rR1RAFXmtESJOxQFdw0Nx8U3H+VahwAq0vR1e3k
+         7pzxt6ibsYEIdotHCXfcILkC7UifggAITVxnOodUTcMNFG2KSAW2Wq9yH5XW8UgJkhDJ
+         QAjkuZvchTepCvlAw3LTjelT0DDOaDQbj5lHGkboTJNzARayE/pGcyhJytNeh0S5jM0k
+         OCmw==
+X-Gm-Message-State: APjAAAUbCiT7fRexzM62iHWizqcSEUkh0kh3AYkMXZIPAQvOKAq9tDoj
+        zQBopFfM8IQ7K6N5stgAjvnvStYx
+X-Google-Smtp-Source: APXvYqy8rxlKN7DI2hT1o5s1rEAFlbHl7k3byVewAXowFyTRy4yq+mLGaWY+rDbAndFm3NdD3POjTg==
+X-Received: by 2002:adf:e386:: with SMTP id e6mr16077536wrm.397.1573843410941;
+        Fri, 15 Nov 2019 10:43:30 -0800 (PST)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id g138sm2620989wmg.11.2019.11.15.10.43.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Nov 2019 10:43:30 -0800 (PST)
+From:   Al Cooper <alcooperx@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinath Mannam <srinath.mannam@broadcom.com>
+Subject: [PATCH v2 00/13] phy: usb: Updates to Broadcom STB USB PHY driver
+Date:   Fri, 15 Nov 2019 13:42:10 -0500
+Message-Id: <20191115184223.41504-1-alcooperx@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+This patchset contains various updates to the Broadcom STB USB Driver.
+The updates include:
+- Add support for 7216 and 7211 Broadcom SoCs which use the new
+  Synopsis USB Controller.
+- Add support for USB Wake
+- Add various bug fixes.
 
-On 11/15/19 11:06 AM, Benjamin Gaignard wrote:
-> Interrupt has never be used in rng driver so remove it from DT.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> ---
->   arch/arm/boot/dts/stm32f429.dtsi | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32f429.dtsi b/arch/arm/boot/dts/stm32f429.dtsi
-> index 5c8a826b3195..196817da0c1d 100644
-> --- a/arch/arm/boot/dts/stm32f429.dtsi
-> +++ b/arch/arm/boot/dts/stm32f429.dtsi
-> @@ -789,7 +789,6 @@
->   		rng: rng@50060800 {
->   			compatible = "st,stm32-rng";
->   			reg = <0x50060800 0x400>;
-> -			interrupts = <80>;
->   			clocks = <&rcc 0 STM32F4_AHB2_CLOCK(RNG)>;
->   
->   		};
-> 
+v2 - Changes based on review feedback
+- Add vendor prefix to DT property "syscon-piarbctl"
+- Use standard "wakeup" instead of "wake" for DT "interrupt-names"
 
-Applied on stm32-next. Next time, please indicate (at least in the 
-commit title) for which SOC the patch is targeted.
 
-Alex
+Al Cooper (13):
+  phy: usb: EHCI DMA may lose a burst of DMA data for 7255xA0 family
+  phy: usb: Get all drivers that use USB clks using correct
+    enable/disable
+  phy: usb: Put USB phys into IDDQ on suspend to save power in S2 mode
+  phy: usb: Add "wake on" functionality
+  phy: usb: Restructure in preparation for adding 7216 USB support
+  dt-bindings: Add Broadcom STB USB PHY binding document
+  phy: usb: Add support for new Synopsis USB controller on the 7216
+  phy: usb: Add support for new Synopsis USB controller on the 7211b0
+  phy: usb: fix driver to defer on clk_get defer
+  phy: usb: PHY's MDIO registers not accessible without device installed
+  phy: usb: bdc: Fix occasional failure with BDC on 7211
+  phy: usb: USB driver is crashing during S3 resume on 7216
+  phy: usb: Add support for wake and USB low power mode for 7211 S2/S5
+
+ .../bindings/phy/brcm,brcmstb-usb-phy.txt     |  69 ++-
+ drivers/phy/broadcom/Makefile                 |   2 +-
+ .../phy/broadcom/phy-brcm-usb-init-synopsis.c | 414 ++++++++++++++++++
+ drivers/phy/broadcom/phy-brcm-usb-init.c      | 226 +++++-----
+ drivers/phy/broadcom/phy-brcm-usb-init.h      | 148 ++++++-
+ drivers/phy/broadcom/phy-brcm-usb.c           | 269 ++++++++++--
+ 6 files changed, 943 insertions(+), 185 deletions(-)
+ create mode 100644 drivers/phy/broadcom/phy-brcm-usb-init-synopsis.c
+
+-- 
+2.17.1
+
