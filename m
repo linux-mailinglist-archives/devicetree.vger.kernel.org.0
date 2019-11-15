@@ -2,143 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92EE8FDDE5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 13:31:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B791FDDF3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 13:34:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727343AbfKOMbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 07:31:10 -0500
-Received: from mail-eopbgr800077.outbound.protection.outlook.com ([40.107.80.77]:45259
-        "EHLO NAM03-DM3-obe.outbound.protection.outlook.com"
+        id S1727196AbfKOMe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 07:34:58 -0500
+Received: from mail-eopbgr30077.outbound.protection.outlook.com ([40.107.3.77]:32401
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727200AbfKOMbK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Nov 2019 07:31:10 -0500
-Received: from DM6PR02CA0037.namprd02.prod.outlook.com (2603:10b6:5:177::14)
- by DM6PR02MB4699.namprd02.prod.outlook.com (2603:10b6:5:fa::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2451.26; Fri, 15 Nov
- 2019 12:31:07 +0000
-Received: from CY1NAM02FT043.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e45::207) by DM6PR02CA0037.outlook.office365.com
- (2603:10b6:5:177::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2451.22 via Frontend
- Transport; Fri, 15 Nov 2019 12:31:07 +0000
-Authentication-Results: spf=softfail (sender IP is 149.199.60.83)
- smtp.mailfrom=gmail.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=fail action=none header.from=gmail.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- gmail.com discourages use of 149.199.60.83 as permitted sender)
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- CY1NAM02FT043.mail.protection.outlook.com (10.152.74.182) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2451.23
- via Frontend Transport; Fri, 15 Nov 2019 12:31:07 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1iVacf-0000ly-BX; Fri, 15 Nov 2019 04:22:45 -0800
-Received: from [127.0.0.1] (helo=xsj-smtp-dlp2.xlnx.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1iVaca-00086u-6r; Fri, 15 Nov 2019 04:22:40 -0800
-Received: from xsj-pvapsmtp01 (smtp.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id xAFCMdu6020507;
-        Fri, 15 Nov 2019 04:22:39 -0800
-Received: from [10.140.6.59] (helo=xhdshubhraj40.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1iVacY-00086f-RP; Fri, 15 Nov 2019 04:22:39 -0800
-From:   shubhrajyoti.datta@gmail.com
-To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, shubhrajyoti.datta@gmail.com,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Subject: [PATCHv2 2/2] dt-bindings: add documentation of xilinx clocking wizard
-Date:   Fri, 15 Nov 2019 17:52:32 +0530
-Message-Id: <1573820552-21164-2-git-send-email-shubhrajyoti.datta@gmail.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1573820552-21164-1-git-send-email-shubhrajyoti.datta@gmail.com>
-References: <1573820552-21164-1-git-send-email-shubhrajyoti.datta@gmail.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-Result: No--9.223-7.0-31-1
-X-imss-scan-details: No--9.223-7.0-31-1;No--9.223-5.0-31-1
-X-TM-AS-User-Approved-Sender: No;No
-X-TM-AS-Result-Xfilter: Match text exemption rules:No
-X-EOPAttributedMessage: 0
-X-Matching-Connectors: 132182946675093049;(f9e945fa-a09a-4caa-7158-08d2eb1d8c44);()
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(39860400002)(346002)(376002)(396003)(199004)(189003)(16586007)(86362001)(316002)(498600001)(55446002)(50226002)(8676002)(81156014)(81166006)(8936002)(51416003)(76176011)(9786002)(26005)(36756003)(50466002)(48376002)(2906002)(126002)(9686003)(6666004)(6306002)(73392003)(356004)(47776003)(82202003)(336012)(486006)(61266001)(426003)(5660300002)(305945005)(4326008)(450100002)(2616005)(70586007)(76482006)(70206006)(446003)(11346002)(476003)(107886003);DIR:OUT;SFP:1101;SCL:1;SRVR:DM6PR02MB4699;H:xsj-pvapsmtpgw01;FPR:;SPF:SoftFail;LANG:en;PTR:unknown-60-83.xilinx.com;A:1;MX:1;
+        id S1727272AbfKOMe6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Nov 2019 07:34:58 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kgHDV4dniX3PRtyIeLCnUEe5K7jktosDE976qxILeAMSTuekGDLRZaFxTLuGF6jKd8O20Q01V/FNp0NxcuPrkuKMFfBh24ijvWKvZkJNkZf6qidQA1zMfQ9fdoKVyWRiT/6fC61RGm1S2EutH72nPYQA87QYtk3D2vOzxhf75HsOcG/rfuDs5wbi9a/t0coKce0vyu53NTp1Jqi6koRoNirCfkhkJ0ofB+XljuVcGenBQRL6G8/7dU0Okg1gKmRQwEOZ9aK7FULsxgR51/ObFpAZ2ZUQlEIWkV/LRh/+exzooLrzwAixxV6Va/D/NJr3dNhOLr+kUXlzgfpTB9yLJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JCsSqeTpHKGP67eGQZbd04WlSyZe7K7KWXcwiNaSVrY=;
+ b=GvlCdvOnOzqKNgaFwnwfHC+3DVN0gjKwt5za5uEk/WfAMKqgskvh7rZ6zd+XlUWHRae4EkDXPNOx4c4i8NvqJ1FtFecPAA2OjNPqREly6VBr6/Ox3REWFvDsLOx+OpbLgUgfUZ4p4uhIGnFWP1RFAUS9cGnn0G9lre/lf7KVPIhR0Jr2hzkrz+QPVnRpGh++6d7823WvZ9NUCyKUx/D5mUztBKKqv5hcrIiMKnyAmHiA2C6f7BnS81uXKFMPwialfW0NWVdSJ1CBsMyZCIbrWzhx4D49cj/UmsWHGcjEI+ZWByDQ5/mBIHw0X7xET3dgCL0wsK2M/WE25WqwxvZK0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JCsSqeTpHKGP67eGQZbd04WlSyZe7K7KWXcwiNaSVrY=;
+ b=fKK3Wr37Sel1btqTpW//rTpWTsEdzs/9OKbBxMK3QTc9BpOGPAJE5Yp35N9162XCB3IqbW/rYChtdB1PS55J4sUUxofim21trG90ZY9ID94UBLXqOZnBwVlqY2HnHr4MsBT6feSOKRtGWyKHZBTbkUlP68sulE4Y1xFoLRjAgVc=
+Received: from VI1PR0402MB3918.eurprd04.prod.outlook.com (52.134.16.148) by
+ VI1PR0402MB2830.eurprd04.prod.outlook.com (10.175.21.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2451.23; Fri, 15 Nov 2019 12:34:13 +0000
+Received: from VI1PR0402MB3918.eurprd04.prod.outlook.com
+ ([fe80::1d41:f7cc:ffa2:270c]) by VI1PR0402MB3918.eurprd04.prod.outlook.com
+ ([fe80::1d41:f7cc:ffa2:270c%6]) with mapi id 15.20.2451.027; Fri, 15 Nov 2019
+ 12:34:13 +0000
+From:   Mirela Rabulea <mirela.rabulea@nxp.com>
+To:     "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "nicolas@ndufresne.ca" <nicolas@ndufresne.ca>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "niklas.soderlund+renesas@ragnatech.se" 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: Re: [EXT] Re: [PATCH 0/5] Add V4L2 driver for i.MX8 JPEG
+ Encoder/Decoder
+Thread-Topic: [EXT] Re: [PATCH 0/5] Add V4L2 driver for i.MX8 JPEG
+ Encoder/Decoder
+Thread-Index: AQHVlLXLzR/BR8Qmu0iHDS94ZPyJ2qd+RrWAgAATH4CAAAH2AIAC7eQAgAAIUICACuaOAA==
+Date:   Fri, 15 Nov 2019 12:34:13 +0000
+Message-ID: <1573821252.16477.56.camel@nxp.com>
+References: <1573053633-21437-1-git-send-email-mirela.rabulea@nxp.com>
+         <87d80882-b032-f332-0808-d669600f844f@xs4all.nl>
+         <1573058741.16477.18.camel@nxp.com>
+         <2ad1718b-2556-ea7c-27e0-9e60445a5b71@xs4all.nl>
+         <1573220200.16477.32.camel@nxp.com>
+         <ffbc7501-bb56-b5f2-cd43-209f099be594@xs4all.nl>
+In-Reply-To: <ffbc7501-bb56-b5f2-cd43-209f099be594@xs4all.nl>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=mirela.rabulea@nxp.com; 
+x-originating-ip: [92.121.36.198]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: d047e3ac-e15f-4c91-7d33-08d769c81f67
+x-ms-traffictypediagnostic: VI1PR0402MB2830:|VI1PR0402MB2830:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0402MB2830D0FE990C2E5745BD1E228F700@VI1PR0402MB2830.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 02229A4115
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(346002)(39860400002)(366004)(136003)(376002)(54094003)(189003)(199004)(2501003)(66476007)(64756008)(229853002)(44832011)(25786009)(478600001)(8676002)(7416002)(14454004)(966005)(99286004)(186003)(7736002)(11346002)(446003)(305945005)(4326008)(86362001)(91956017)(76116006)(6436002)(81166006)(2906002)(81156014)(316002)(486006)(476003)(54906003)(110136005)(26005)(6486002)(102836004)(36756003)(2616005)(6246003)(50226002)(76176011)(8936002)(6306002)(6512007)(71200400001)(71190400001)(5660300002)(256004)(6116002)(3846002)(103116003)(66446008)(66556008)(66946007)(6506007)(66066001)(99106002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB2830;H:VI1PR0402MB3918.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Wpe2Rwgqcdx97TffiheBL+tpere7t4wS9zNn+Ahp7rTOHGLmNh4IAgcHhygJCCEIanSq09r0Rz6m81ACXseiKSjkhkhivXjoHYwuM6Tba4CLNx//I/lCJp6/44d0/PFm7SfyPwZ36VycTa0NA+K+Bb2Ul2JGJIIEptnqVkC6dfUKd8PTgVrWbAxgzvZZtozmwSqgDQYZbuEbCAKrYbg4dts0VThYCUtSC1PlPjZHzERdFmT80dDMw/UKozrgkkljT50y4tGj0SH8IGUehKvTPndkEjmBKi+scbKH2xNIP3qVFR18f9lr6PYj4ir4hikCfTZnZq/UJegjJSR37KLNHNQDLcMlMN5iu4kzS2l5dNdrChNjyN6OQbwxII4WDEEb3l3VbZ8RgB3y9MOyE/MY2VqbnXOKB9WnFQ9SIPaspzts+TUI2GzP8SD5si8ie4WK
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <22084845BD3D9C439E03B5667CCDF4CE@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 17226a15-63cb-457a-95f9-08d769c7b060
-X-MS-TrafficTypeDiagnostic: DM6PR02MB4699:
-X-MS-Exchange-PUrlCount: 1
-X-Microsoft-Antispam-PRVS: <DM6PR02MB46994D580F0523470797D80787700@DM6PR02MB4699.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-Forefront-PRVS: 02229A4115
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: aTekPEpOxvNZr9/QqfPbPZhDjVFW/c586kQZOFSIIsUAhkQvW0v7+d8bLqX6FFMxBM1sSmB+KxJ+e6+8c2k/XS35RSh2tppffoeRlMuYMfUDc0lQbCO9vrycvjJD1eYU/VEIYYh1UtY7WLQ7ZhcJF8EEOJm1Z9BxXrSdBJGfao50IOCrOSpwkxQajwcKtpk2QM6ATM6WMZpUkFqFSijerqI2YCBpmxucVr7zZLJL9+LAR+pTHwr+Egoohfza/93g76F8oJ5+51MFYfhHCoUdVnTLGSczTdpszzRf/b2vVv7lCcEGM7SX4i3uXANEsLMzrePbWU/ulHODsznTB0UR++mXsduMHLTMOmxH63X83r1QZy1XamBOUBKmqWYUQ+n3Tb6fAax1gNAL7tQYdjJq4AqA0uepDXIAvFN3v5j/BF/NVdZzUHu/BO7II4dg5q022Z5AhmDRTtFyCDWYUFGtHC3iU7zro+/6xu5eujIjoOU=
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2019 12:31:07.3461
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d047e3ac-e15f-4c91-7d33-08d769c81f67
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2019 12:34:13.5247
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17226a15-63cb-457a-95f9-08d769c7b060
-X-MS-Exchange-CrossTenant-Id: 5afe0b00-7697-4969-b663-5eab37d5f47e
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=5afe0b00-7697-4969-b663-5eab37d5f47e;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB4699
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OJIHgTkm4DN9Yj7dJVC8lTs1w2S8pIhN7aW4XQ3A/rFPZ3mSRtGVu0gFbg1DNPV/UmIOq6ALGcLxNZwXJFIfPQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2830
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-
-Add the devicetree binding for the xilinx clocking wizard.
-
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
----
-moving from drivers/staging/clocking-wizard/dt-binding.txt
-
- .../bindings/clock/xlnx,clocking-wizard.txt        | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt
-
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt
-new file mode 100644
-index 0000000..aedac84
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt
-@@ -0,0 +1,32 @@
-+Binding for Xilinx Clocking Wizard IP Core
-+
-+This binding uses the common clock binding[1]. Details about the devices can be
-+found in the product guide[2].
-+
-+[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-+[2] Clocking Wizard Product Guide
-+http://www.xilinx.com/support/documentation/ip_documentation/clk_wiz/v5_1/pg065-clk-wiz.pdf
-+
-+Required properties:
-+ - compatible: Must be 'xlnx,clocking-wizard'
-+ - #clock-cells: Number of cells in a clock specifier. Should be 1
-+ - reg: Base and size of the cores register space
-+ - clocks: Handle to input clock
-+ - clock-names: Tuple containing 'clk_in1' and 's_axi_aclk'
-+ - clock-output-names: Names for the output clocks
-+
-+Optional properties:
-+ - speed-grade: Speed grade of the device (valid values are 1..3)
-+
-+Example:
-+	clock-generator@40040000 {
-+		#clock-cells = <1>;
-+		reg = <0x40040000 0x1000>;
-+		compatible = "xlnx,clocking-wizard";
-+		speed-grade = <1>;
-+		clock-names = "clk_in1", "s_axi_aclk";
-+		clocks = <&clkc 15>, <&clkc 15>;
-+		clock-output-names = "clk_out0", "clk_out1", "clk_out2",
-+				     "clk_out3", "clk_out4", "clk_out5",
-+				     "clk_out6", "clk_out7";
-+	};
--- 
-2.1.1
-
+SGkgSGFucywNCg0KT24gVmksIDIwMTktMTEtMDggYXQgMTU6MDYgKzAxMDAsIEhhbnMgVmVya3Vp
+bCB3cm90ZToNCj4gPiBJcyB0aGVyZSBhICJnb29kIGV4YW1wbGUiIG9mIGEgdjRsIG0ybSBkcml2
+ZXIgdGhhdCBwYXNzZXMgdGhlc2UNCj4gdmltMm0uIEFsc28gZHJpdmVycy9tZWRpYS9wbGF0Zm9y
+bS9tdGstanBlZy8gKGFsdGhvdWdoIEknbSBub3Qgc3VyZQ0KPiB3aGVuDQo+IGl0IHdhcyBsYXN0
+IHRlc3RlZCB3aXRoIHY0bDItY29tcGxpYW5jZSwgc28gaXQgbWlnaHQgYmUgYSBiaXQgb3V0IG9m
+DQo+IGRhdGUpLg0KPiANCj4gPiANCj4gPiBzdHJlYW1pbmcgdGVzdHM/IFRoYXQgd291bGQgc2F2
+ZSBzb21lIHRpbWUgb24gbXkgc2lkZS4NCg0KVGhhbmtzIGEgbG90IGZvciB0aGUgZXhhbXBsZXMu
+DQpJJ20gc2VuZGluZyBfdjIgb2YgdGhlIHBhdGNoLCB3aXRoIGZpeGVzIGZvciBzdHJlYW1pbmcg
+dGVzdHMuDQpPbmUgbWVudGlvbiBoZXJlLCBJIGRyb3BwZWQgdGhlIHN1cHBvcnQgZm9yIFVTRVJQ
+VFIgYnVmZmVycywgYmFzZWQgb24NCnRoaXM6DQpodHRwczovL2x3bi5uZXQvQXJ0aWNsZXMvNDQ3
+NDM1Lw0KIlZCMl9VU0VSUFRSOiBidWZmZXJzIGFsbG9jYXRlZCBpbiB1c2VyIHNwYWNlLiBOb3Jt
+YWxseSwgb25seSBkZXZpY2VzDQp3aGljaCBjYW4gZG8gc2NhdHRlci9nYXRoZXIgSS9PIGNhbiBk
+ZWFsIHdpdGggdXNlci1zcGFjZSBidWZmZXJzLg0KSW50ZXJlc3RpbmdseSwgdmlkZW9idWYyIHN1
+cHBvcnRzIGNvbnRpZ3VvdXMgYnVmZmVycyBhbGxvY2F0ZWQgYnkgdXNlcg0Kc3BhY2U7IHRoZSBv
+bmx5IHdheSB0byBnZXQgdGhvc2UsIHRob3VnaCwgaXMgdG8gdXNlIHNvbWUgc29ydCBvZg0Kc3Bl
+Y2lhbCBtZWNoYW5pc20gbGlrZSB0aGUgb3V0LW9mLXRyZWUgQW5kcm9pZCAicG1lbSIgZHJpdmVy
+Lg0KQ29udGlndW91cyBJL08gdG8gaHVnZSBwYWdlcyBpcyBub3Qgc3VwcG9ydGVkLiINCg0KSSB3
+b25kZXIgaWYgVkIyX1VTRVJQVFIgbWFrZSBzZW5zZSB0b2dldGhlcg0Kd2l0aMKgJnZiMl9kbWFf
+Y29udGlnX21lbW9wcz8gSSBzZWUgYXQgbGVhc3QgMSBkcml2ZXIgd2l0aCB0aGlzDQpjb21iaW5h
+dGlvbiAoczVwLWpwZWcpLCBJIHdvdWxkIGJlIHN1cnByaXNlZCBpZiB0aGF0IHBhc3NlcyB0aGUN
+CnN0cmVhbWluZyB0ZXN0cy4NCg0KUmVnYXJkcywNCk1pcmVsYQ==
