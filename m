@@ -2,143 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86FA9FDD19
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 13:11:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D195FDD2D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 13:17:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727254AbfKOMLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 07:11:17 -0500
-Received: from mail-eopbgr730086.outbound.protection.outlook.com ([40.107.73.86]:56352
-        "EHLO NAM05-DM3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727210AbfKOMLR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Nov 2019 07:11:17 -0500
-Received: from CY4PR02CA0009.namprd02.prod.outlook.com (2603:10b6:903:18::19)
- by BY5PR02MB6611.namprd02.prod.outlook.com (2603:10b6:a03:205::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2451.23; Fri, 15 Nov
- 2019 12:11:15 +0000
-Received: from BL2NAM02FT032.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::209) by CY4PR02CA0009.outlook.office365.com
- (2603:10b6:903:18::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2451.23 via Frontend
- Transport; Fri, 15 Nov 2019 12:11:14 +0000
-Authentication-Results: spf=softfail (sender IP is 149.199.60.83)
- smtp.mailfrom=gmail.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=fail action=none header.from=gmail.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- gmail.com discourages use of 149.199.60.83 as permitted sender)
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- BL2NAM02FT032.mail.protection.outlook.com (10.152.77.169) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2451.23
- via Frontend Transport; Fri, 15 Nov 2019 12:11:14 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1iVaQK-0000L4-6g; Fri, 15 Nov 2019 04:10:00 -0800
-Received: from [127.0.0.1] (helo=xsj-smtp-dlp2.xlnx.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1iVaQF-0005Ws-24; Fri, 15 Nov 2019 04:09:55 -0800
-Received: from xsj-pvapsmtp01 (smtp2.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id xAFC9srV016656;
-        Fri, 15 Nov 2019 04:09:54 -0800
-Received: from [10.140.6.59] (helo=xhdshubhraj40.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1iVaQD-0005WA-Pm; Fri, 15 Nov 2019 04:09:54 -0800
-From:   shubhrajyoti.datta@gmail.com
-To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Subject: [PATCH 2/2] dt-bindings: add documentation of xilinx clocking wizard
-Date:   Fri, 15 Nov 2019 17:39:45 +0530
-Message-Id: <1573819785-6762-2-git-send-email-shubhrajyoti.datta@gmail.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1573819785-6762-1-git-send-email-shubhrajyoti.datta@gmail.com>
-References: <1573819785-6762-1-git-send-email-shubhrajyoti.datta@gmail.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-Result: No--9.223-7.0-31-1
-X-imss-scan-details: No--9.223-7.0-31-1;No--9.223-5.0-31-1
-X-TM-AS-User-Approved-Sender: No;No
-X-TM-AS-Result-Xfilter: Match text exemption rules:No
-X-EOPAttributedMessage: 0
-X-Matching-Connectors: 132182934747511531;(f9e945fa-a09a-4caa-7158-08d2eb1d8c44);()
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(346002)(376002)(39860400002)(396003)(136003)(189003)(199004)(16586007)(76176011)(9786002)(316002)(50226002)(26005)(4326008)(446003)(2906002)(107886003)(11346002)(486006)(2616005)(476003)(126002)(426003)(73392003)(305945005)(498600001)(336012)(76482006)(55446002)(6306002)(5660300002)(450100002)(82202003)(61266001)(47776003)(86362001)(8676002)(70586007)(50466002)(81166006)(81156014)(48376002)(8936002)(51416003)(36756003)(70206006)(356004)(9686003)(6666004);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR02MB6611;H:xsj-pvapsmtpgw01;FPR:;SPF:SoftFail;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+        id S1726983AbfKOMRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 07:17:40 -0500
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:39726 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727200AbfKOMRk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 07:17:40 -0500
+Received: by mail-lf1-f66.google.com with SMTP id j14so7866829lfk.6
+        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2019 04:17:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zwPMwB2RiSUmNRM4skEo53AFmHsnpLdRklqrJ7M1CGM=;
+        b=R/IeUVq5jtooBozJfg6+vEOzIjVyKvh8ynV9jDhQlqMMrafkBHAo9kMd1uOsX/2V8p
+         Pkr8FRF4tISl0WyhLaYSn0aMjMS5mYul2MGQtCK/kcZ5lqD8IvaNBjBJG9SRCrZ8Pgku
+         DQOAvCi0qK8sMpttXEY21rDRg4GLYIKzZnHPRmSd9z4t7pWzNtH/TeGA/+ixM/T/dwhU
+         H44oJZBrBFx7nLUxam9Oj3M+pTkxSS6Gs+YvEMKh4kdjMWl278P8ROhCU/r7c7FpR13d
+         iycN9Ma2jf0rlvPDGTQgfJGrEW+2O/jInKuYeVVGZDTUmN2lCXbcvZj6UIMoCGb00M0s
+         66pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zwPMwB2RiSUmNRM4skEo53AFmHsnpLdRklqrJ7M1CGM=;
+        b=OG2QGzXy2Gj9USxMkS35tut6EitJVabIsOrGdUxEdx5MpG1C8rHJBSlIp4kWaOS/UO
+         x7XL3x/f75rIduVaB8Fwpz8fXMqPoh1NTQegeGhMXhAcun6fWm6fqvdV0h3StptHhYeZ
+         UqBy7J9rnglzPPDp24n73aVnAaGbrYkXetMMwHV2ZtFqOCDfgJDw6VRYVtEf24hFe19f
+         iMl2F5CYXARlabwCSuL/rZHOF/TVw09tvIkbAkrSmRrp+4B0VGe9UnGYoFEGXbh6RBba
+         Bsr/KkDhRreXwhUZniAZrm6PLUrD9y5fNefbgh1FVifMoTLyekpj7zVtX9+Ua9vW8XRG
+         EKlQ==
+X-Gm-Message-State: APjAAAXZWopBkp4Q9S6txT0Yq16mag5In4oYg5U9QrLTMJD6mZmoA0hB
+        UnmB5qxW528tRHbIy7t1/dbluQ==
+X-Google-Smtp-Source: APXvYqzdc5fuKqfou46ifmV2Mw6UXjuQyNPexWnBdQPEUi4aFQIDIPm0q0tNU5Y3xbZP1CVo6yViyg==
+X-Received: by 2002:a19:c514:: with SMTP id w20mr11215839lfe.143.1573820258087;
+        Fri, 15 Nov 2019 04:17:38 -0800 (PST)
+Received: from centauri.lan (ua-84-217-220-205.bbcust.telenor.se. [84.217.220.205])
+        by smtp.gmail.com with ESMTPSA id y18sm4107961lja.12.2019.11.15.04.17.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Nov 2019 04:17:37 -0800 (PST)
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     amit.kucheria@linaro.org, sboyd@kernel.org, vireshk@kernel.org,
+        bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 0/5] Add support for QCOM Core Power Reduction
+Date:   Fri, 15 Nov 2019 13:15:37 +0100
+Message-Id: <20191115121544.2339036-1-niklas.cassel@linaro.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: aaac3cd5-3034-45b1-4730-08d769c4e967
-X-MS-TrafficTypeDiagnostic: BY5PR02MB6611:
-X-MS-Exchange-PUrlCount: 1
-X-Microsoft-Antispam-PRVS: <BY5PR02MB6611D01FE8C80F564602062C87700@BY5PR02MB6611.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-Forefront-PRVS: 02229A4115
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HkxB2z4FfWG52SIzxzRgwP4t3LxOGV9qkL11SPD5rPzNkUlSaLdFqjWe2V3Da8AdBmTl7krb5GuXEpy/XuBqSzHaCBQmq6Kvc6LfHgfM0VhjAsDU5OBllQbooPoyhle9tUwY1ZUTxksAQIxxQ9QFtlTZQVYFvqKh3eKkj2KzpBrAWW8TklVkarW4l4vP8N7FfPVDXp5Ks0QXE5MwyF4k/zDZ3MGcK4T4LehvQGFJy7yPqhwN7oZ3D8wq/695ndKQviIMMlj3Rw3b/oX3sGI1TQLPBG5HXeXtW7Z86MoCw983S4KsbSb+5l3rSNtOT7EZJkEnDqWb9sj+GsyQoYzA39iza6iRoHypUDTXETe4mRrmogOrtzjf+RDnxRDGn9kHFBuwHMTj92/8BjT/DslxsxRHlttkU85hXXQXT/hDsulKViGJrhTvOZ4NRPEqSftTjYSX9eseB1M6bvsJ3w/c2MW9uENLoNRyg7Yy8w6LJOo=
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2019 12:11:14.4849
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: aaac3cd5-3034-45b1-4730-08d769c4e967
-X-MS-Exchange-CrossTenant-Id: 5afe0b00-7697-4969-b663-5eab37d5f47e
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=5afe0b00-7697-4969-b663-5eab37d5f47e;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6611
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+This series adds support for Core Power Reduction (CPR), a form of
+Adaptive Voltage Scaling (AVS), found on certain Qualcomm SoCs.
 
-Add the devicetree binding for the xilinx clocking wizard.
+This series is based on top of the qcs404 cpufreq patch series that
+hasn't landed yet:
+https://patchwork.kernel.org/project/linux-arm-msm/list/?series=173423
+as well as that series' matching device tree changes:
+https://patchwork.kernel.org/project/linux-arm-msm/list/?series=165457
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
----
-moving from drivers/staging/clocking-wizard/dt-binding.txt
+CPR is a technology that reduces core power on a CPU or on other device.
+It reads voltage settings from efuses (that have been written in
+production), it uses these voltage settings as initial values, for each
+OPP.
 
- .../bindings/clock/xlnx,clocking-wizard.txt        | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt
+After moving to a certain OPP, CPR monitors dynamic factors such as
+temperature, etc. and adjusts the voltage for that frequency accordingly
+to save power and meet silicon characteristic requirements.
 
-diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt
-new file mode 100644
-index 0000000..aedac84
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.txt
-@@ -0,0 +1,32 @@
-+Binding for Xilinx Clocking Wizard IP Core
-+
-+This binding uses the common clock binding[1]. Details about the devices can be
-+found in the product guide[2].
-+
-+[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
-+[2] Clocking Wizard Product Guide
-+http://www.xilinx.com/support/documentation/ip_documentation/clk_wiz/v5_1/pg065-clk-wiz.pdf
-+
-+Required properties:
-+ - compatible: Must be 'xlnx,clocking-wizard'
-+ - #clock-cells: Number of cells in a clock specifier. Should be 1
-+ - reg: Base and size of the cores register space
-+ - clocks: Handle to input clock
-+ - clock-names: Tuple containing 'clk_in1' and 's_axi_aclk'
-+ - clock-output-names: Names for the output clocks
-+
-+Optional properties:
-+ - speed-grade: Speed grade of the device (valid values are 1..3)
-+
-+Example:
-+	clock-generator@40040000 {
-+		#clock-cells = <1>;
-+		reg = <0x40040000 0x1000>;
-+		compatible = "xlnx,clocking-wizard";
-+		speed-grade = <1>;
-+		clock-names = "clk_in1", "s_axi_aclk";
-+		clocks = <&clkc 15>, <&clkc 15>;
-+		clock-output-names = "clk_out0", "clk_out1", "clk_out2",
-+				     "clk_out3", "clk_out4", "clk_out5",
-+				     "clk_out6", "clk_out7";
-+	};
+This driver has been developed together with Jorge Ramirez-Ortiz, and
+is based on an RFC by Stephen Boyd[1], which in turn is based on work
+by others on codeaurora.org[2].
+
+[1] https://lkml.org/lkml/2015/9/18/833
+[2] https://www.codeaurora.org/cgit/quic/la/kernel/msm-3.10/tree/drivers/regulator/cpr-regulator.c?h=msm-3.10
+
+Changes since V4:
+Implemented review comments from Stephen Boyd.
+Removed suspend()/resume(), since they did the same things as ->power_on()/
+->power_off() genpd callbacks.
+
+Niklas Cassel (5):
+  dt-bindings: power: avs: Add support for CPR (Core Power Reduction)
+  power: avs: Add support for CPR (Core Power Reduction)
+  arm64: dts: qcom: qcs404: Add CPR and populate OPP table
+  arm64: defconfig: enable CONFIG_QCOM_CPR
+  arm64: defconfig: enable CONFIG_ARM_QCOM_CPUFREQ_NVMEM
+
+ .../bindings/power/avs/qcom,cpr.txt           |  130 ++
+ MAINTAINERS                                   |    8 +
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  132 +-
+ arch/arm64/configs/defconfig                  |    2 +
+ drivers/power/avs/Kconfig                     |   15 +
+ drivers/power/avs/Makefile                    |    1 +
+ drivers/power/avs/qcom-cpr.c                  | 1755 +++++++++++++++++
+ 7 files changed, 2035 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/avs/qcom,cpr.txt
+ create mode 100644 drivers/power/avs/qcom-cpr.c
+
 -- 
-2.1.1
+2.23.0
 
