@@ -2,59 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A507FD5B0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 07:05:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFD83FD69F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 07:57:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726985AbfKOGFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 01:05:49 -0500
-Received: from helcar.hmeau.com ([216.24.177.18]:57800 "EHLO deadmen.hmeau.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726182AbfKOGFs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Nov 2019 01:05:48 -0500
-Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
-        by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
-        id 1iVUjr-0004fW-D5; Fri, 15 Nov 2019 14:05:47 +0800
-Received: from herbert by gondobar with local (Exim 4.89)
-        (envelope-from <herbert@gondor.apana.org.au>)
-        id 1iVUjj-000650-GH; Fri, 15 Nov 2019 14:05:39 +0800
-Date:   Fri, 15 Nov 2019 14:05:39 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mpm@selenic.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com, arnd@arndb.de,
-        Tudor.Ambarus@microchip.com, Claudiu.Beznea@microchip.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: rng: atmel-trng: add new compatible
-Message-ID: <20191115060539.u6wamay56otcqcnm@gondor.apana.org.au>
-References: <20191104115457.2681-1-codrin.ciubotariu@microchip.com>
+        id S1725848AbfKOG5c convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 15 Nov 2019 01:57:32 -0500
+Received: from azteca-comunicaciones.com ([191.102.66.70]:64907 "EHLO semo.net"
+        rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726182AbfKOG5c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Nov 2019 01:57:32 -0500
+X-Greylist: delayed 21433 seconds by postgrey-1.27 at vger.kernel.org; Fri, 15 Nov 2019 01:57:32 EST
+Reply-To: yuval@free2312.com
+From:   "Yuval" <tstewart@semo.net>
+To:     devicetree@vger.kernel.org
+Subject: Business Proposal - Please Reply
+Date:   15 Nov 2019 01:57:31 -0500
+Message-ID: <20191115015731.580154DCBFBF17AF@semo.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191104115457.2681-1-codrin.ciubotariu@microchip.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 04, 2019 at 01:54:56PM +0200, Codrin Ciubotariu wrote:
-> Add compatible for new IP found on sam9x60 SoC.
-> 
-> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
-> 
-> Changes in v2:
->  - added 'Acked-by' from Rob;
-> 
->  Documentation/devicetree/bindings/rng/atmel-trng.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hello
 
-All applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+My name is Yuval Rose, a Client Relations officer at CoinMatic, A 
+crypto currency exchange company based in Canada and one of 
+Canada’s foremost Crypto-currency exchange platforms. I have an 
+urgent lucrative business opportunity for you. I got your details 
+on the internet when I was searching for a reliable person that 
+can handle this deal and I believe you can handle it because you 
+bears the same Last-Name with the dead investor of the business 
+am about to introduce to you. This is a private and confidential 
+message from me to you and I request that it be treated as such.
+
+I am contacting you with respect to an urgent issue regarding a 
+Bitcoin account belonging to a deceased account holder, I got 
+your contact in my quest for a Partner to stand in as a Next of 
+Kin to the deceased account holder, this was from the last 
+details she sent in to the company regarding liquidation of her 
+BTC account, since you might be aware that BTC transactions are 
+mostly anonymous. I contacted you so that you can apply to my 
+company as a relative of the deceased in order to claim the fund. 
+This is as easy as ABC since my company already took a decision 
+that the entire fund would be credited to any relative that comes 
+up for claim before the end of December this year.
+
+The Bitcoin was sold and converted to cash at the request of the 
+late account holder for onward deposit to an account to be 
+advised by her. Upon liquidation, we waited for months for info 
+on the bank account for the deposit but never got a feedback. 
+Upon inquiry, it was confirmed that she passed away (died) after 
+a cancer related ailment.
+
+At a meeting held 2 weeks ago by my Company’s Management on the 
+matter, it was resolved that unless a Next of Kin or any relative 
+of the late account Holder comes forward for claim of the funds 
+on or before 30th of December 2019 (which is practically 
+impossible) the whole funds would be converted back to Bitcoin 
+and becomes part of the Company's portfolio.
+
+With the above in mind, I decided to quickly reach out to you so 
+that you can apply to my company for claim of this fund in the 
+capacity of a Next-of-Kin/Relative. Rest assured that this is a 
+straight forward process with no risks involved whatsoever. Start 
+to finish of the process with fund deposited in your nominated 
+bank account can be achieved within a space of 10 banking days or 
+less. All that I require from you is full cooperation and 
+sincerity.
+
+I am suggestion a sharing ratio of 50/50 split after fund is 
+credited to your account. We shall have to draft up an agreement 
+to that effect if agreed. If this is OK with you and wish to 
+continue with the claim process, I will draft a letter which you 
+would email to my Company as a formal request for claim of this 
+funds.
+
+I await your reply, please provide your private phone number in 
+your reply.
+
+
+Send reply to: yuval@free2312.com
+
+
+Best Regards
+Yuval
+
+
+Toronto-Canada
