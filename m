@@ -2,351 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9EAFE13B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 16:29:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 379F1FE1AE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 16:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727546AbfKOP3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 10:29:39 -0500
-Received: from mx2.suse.de ([195.135.220.15]:60956 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727412AbfKOP3j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Nov 2019 10:29:39 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id EF00DB9E5;
-        Fri, 15 Nov 2019 15:29:35 +0000 (UTC)
-Subject: Re: [PATCH v3 2/2] arm64: dts: realtek: Add RTD1619 SoC and Realtek
- Mjolnir EVB
-To:     James Tai <james.tai@realtek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        'DTML' <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-realtek-soc@lists.infradead.org" 
-        <linux-realtek-soc@lists.infradead.org>
-References: <73fb8106ec1a4665b59a2d187a576b71@realtek.com>
- <9cadb78c-99af-8948-e76f-c26f263693b3@suse.de>
- <fbc4dee61c2547458fa0791f38abaed2@realtek.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Message-ID: <610ad23f-d133-8fd9-1741-80eb47157929@suse.de>
-Date:   Fri, 15 Nov 2019 16:29:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1727576AbfKOPnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 10:43:12 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:33592 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727526AbfKOPnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 10:43:12 -0500
+Received: by mail-ed1-f65.google.com with SMTP id a24so7691256edt.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2019 07:43:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=X5NAAOrJ3bS32ihsXavVCESX6DNfXdWEE7aVqtLVIHM=;
+        b=AmbB1eONrmXI5/hZ5Hjy96u68bV/mCom3g61QJB1XAxehhXjujRINpCx2V8BgukVbc
+         DWgMKuDuRHgy7kylRa3LSfbQ1kTCuugIAfqcPOUlZ18/b/jpR7JaTWNyXFFbFFC/6z99
+         mJkeG7X1wdz8J+KLs+PJSaB9DsP89MZy5zMo92G8jiyZlELMSokQJ5ofAHda8eT7xTak
+         eEvMWA8w44gRYq4h/wKc8QAKs5Q3VGvH+s5qtkw7FvkgAK10fPfCVvpLzxhKxvesfNZb
+         ofyMxQM8/t5Kun0bKeXwEsm2/EVKJJnzJk6MYJ9T//DCj4IC4fdoB2ghWeVm2rLXiLXl
+         islg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=X5NAAOrJ3bS32ihsXavVCESX6DNfXdWEE7aVqtLVIHM=;
+        b=K7y6lDkO+LF8bfDl20ubQlq9JMI7k1m+XcpdMxeO07RDT90Ifsloh09hdXy3Ql3bn6
+         u63WAgYoPn1GqB0GHH2IG5FFS6SaVagZWV8OUMKdoXxHlS5lKAnG5dgAG0oiQs2TtEat
+         Th0WzF7fkqXHneC4GdXxvuYUFjRh221W7I9HWeLHp/q1hzA0Rq66ozSedUoZYbq3JjRN
+         d2y1WGvqiFiQhTDzfmD27Ju2oltw0ps5mwE43L5Yp+W8fqpRCN1rE+YYvBeL9vS3Fhl4
+         XUh1QVv1TYW0LT19hgtn06TT18LXpP6ERhQkv/JCGNbAmWab2TaRIPNtsvLCIr2RP4m4
+         9urw==
+X-Gm-Message-State: APjAAAWAEby6r7mXH6USPW9zNdk/AS4fsZN6iVoI5f84/3EYdIOEdf1q
+        lc8ZTcoxEkUAo+4VhiG6Ad3hDndCVPmtiMVY3mc=
+X-Google-Smtp-Source: APXvYqyNlaDRJaaDMoCQnwA5TbddH3pqVv62wz+YJETBxF77pbCS7IXAlI1AOW+sH8SdBt6/KdLudMshEMHtFBClWUY=
+X-Received: by 2002:a17:906:d143:: with SMTP id br3mr1706241ejb.215.1573832590411;
+ Fri, 15 Nov 2019 07:43:10 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <fbc4dee61c2547458fa0791f38abaed2@realtek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:6402:1118:0:0:0:0 with HTTP; Fri, 15 Nov 2019 07:43:09
+ -0800 (PST)
+Reply-To: moneygram.1820@outlook.fr
+From:   "Ms.Mary Coster" <eco.bank1204@gmail.com>
+Date:   Fri, 15 Nov 2019 16:43:09 +0100
+Message-ID: <CAOE+jABNsP+zdYMUsG63n6BJZZo6cAHZ5MhK6uTLJ4hNtvQZnw@mail.gmail.com>
+Subject: Contact Mr. John Dave Director, Money Gram to pick up your first
+ Money Gram payment $5000.00 today.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 15.11.19 um 15:52 schrieb James Tai:
->>> Add Device Trees for Realtek RTD1619 SoC family, RTD1619 SoC and
->>> Realtek Mjolnir EVB.
->>>
->>> Signed-off-by: James Tai <james.tai@realtek.com>
->>> ---
->>
->> Lacking the requested changelog.
->>
->>>  arch/arm64/boot/dts/realtek/Makefile          |   2 +
->>>  .../boot/dts/realtek/rtd1619-mjolnir.dts      |  40 +++++
->>>  arch/arm64/boot/dts/realtek/rtd1619.dtsi      |  12 ++
->>>  arch/arm64/boot/dts/realtek/rtd16xx.dtsi      | 163
->> ++++++++++++++++++
->>>  4 files changed, 217 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1619-mjolnir.dts
->>>  create mode 100644 arch/arm64/boot/dts/realtek/rtd1619.dtsi
->>>  create mode 100644 arch/arm64/boot/dts/realtek/rtd16xx.dtsi
->>
->> Somehow the last hunk (rtd16xx.dtsi) didn't apply with git-am or patch -p1, not
->> sure why. I have manually copied the file into place and fixed up some more
->> nits below:
->>
->>>
->>> diff --git a/arch/arm64/boot/dts/realtek/Makefile
->>> b/arch/arm64/boot/dts/realtek/Makefile
->>> index 555638ada721..fb5f05978ecc 100644
->>> --- a/arch/arm64/boot/dts/realtek/Makefile
->>> +++ b/arch/arm64/boot/dts/realtek/Makefile
->>> @@ -7,3 +7,5 @@ dtb-$(CONFIG_ARCH_REALTEK) +=
->> rtd1295-probox2-ava.dtb
->>>  dtb-$(CONFIG_ARCH_REALTEK) += rtd1295-zidoo-x9s.dtb
->>>
->>>  dtb-$(CONFIG_ARCH_REALTEK) += rtd1296-ds418.dtb
->>> +
->>> +dtb-$(CONFIG_ARCH_REALTEK) += rtd1619-mjolnir.dtb
->>> diff --git a/arch/arm64/boot/dts/realtek/rtd1619-mjolnir.dts
->>> b/arch/arm64/boot/dts/realtek/rtd1619-mjolnir.dts
->>> new file mode 100644
->>> index 000000000000..6ab791af3896
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/realtek/rtd1619-mjolnir.dts
->>> @@ -0,0 +1,40 @@
->>> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
->>> +/*
->>> + * Copyright (c) 2019 Realtek Semiconductor Corp.
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "rtd1619.dtsi"
->>> +
->>> +/ {
->>> +	compatible = "realtek,rtd1619", "realtek,mjolnir";
->>
->> Order not fixed from v2. This is a schema violation and logically wrong.
->>
->>> +	model= "Realtek Mjolnir EVB";
->>
->> Space missing before =. Missed that in v2.
->>
->>> +
->>> +	memory@0 {
->>> +		device_type = "memory";
->>> +		reg = <0x0 0x80000000>;
->>> +	};
->>> +
->>> +	chosen {
->>> +		stdout-path = "serial0:115200n8";
->>> +	};
->>> +
->>> +	aliases {
->>> +		serial0 = &uart0; /* The UART0 is debug console */
->>> +		serial1 = &uart1; /* The UART1 is on M.2 slot */
->>> +		serial2 = &uart2; /* The UART2 is on GPIO connector */
->>> +	};
->>> +};
->>> +
->>> +&uart0 {
->>> +	status = "okay";
->>> +};
->>> +
->>> +&uart1 {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&uart2 {
->>> +	status = "disabled";
->>> +};
->>
->> The comments were intended to go above each node, not after the aliases.
->> I've taken the liberty to annotate them further with their PCB label.
->>
->>> diff --git a/arch/arm64/boot/dts/realtek/rtd1619.dtsi
->>> b/arch/arm64/boot/dts/realtek/rtd1619.dtsi
->>> new file mode 100644
->>> index 000000000000..e52bf708b04e
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/realtek/rtd1619.dtsi
->>> @@ -0,0 +1,12 @@
->>> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
->>> +/*
->>> + * Realtek RTD1619 SoC
->>> + *
->>> + * Copyright (c) 2019 Realtek Semiconductor Corp.
->>> + */
->>> +
->>> +#include "rtd16xx.dtsi"
->>> +
->>> +/ {
->>> +	compatible = "realtek,rtd1619";
->>> +};
->>> diff --git a/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
->>> b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
->>> new file mode 100644
->>> index 000000000000..d9b572a870f5
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/realtek/rtd16xx.dtsi
->>> @@ -0,0 +1,163 @@
->>> +// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
->>> +/*
->>> + * Realtek RTD16xx SoC family
->>> + *
->>> + * Copyright (c) 2019 Realtek Semiconductor Corp.
->>> + */
->>> +
->>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->>> +#include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +/{
->>
->> Space missing. Missed that in v2.
->>
->>> +	interrupt-parent = <&gic>;
->>> +	#address-cells = <1>;
->>> +	#size-cells = <1>;
->>> +
->>> +	cpus {
->>> +		#address-cells = <1>;
->>> +		#size-cells = <0>;
->>> +
->>> +		cpu0: cpu@0 {
->>> +			device_type = "cpu";
->>> +			compatible = "arm,cortex-a55";
->>> +			reg = <0x0>;
->>> +			enable-method = "psci";
->>> +			next-level-cache = <&l2>;
->>> +		};
->>> +
->>> +		cpu1: cpu@100 {
->>> +			device_type = "cpu";
->>> +			compatible = "arm,cortex-a55";
->>> +			reg = <0x100>;
->>> +			enable-method = "psci";
->>> +			next-level-cache = <&l3>;
->>> +		};
->>> +
->>> +		cpu2: cpu@200 {
->>> +			device_type = "cpu";
->>> +			compatible = "arm,cortex-a55";
->>> +			reg = <0x200>;
->>> +			enable-method = "psci";
->>> +			next-level-cache = <&l3>;
->>> +		};
->>> +
->>> +		cpu3: cpu@300 {
->>> +			device_type = "cpu";
->>> +			compatible = "arm,cortex-a55";
->>> +			reg = <0x300>;
->>> +			enable-method = "psci";
->>> +			next-level-cache = <&l3>;
->>> +		};
->>> +
->>> +		cpu4: cpu@400 {
->>> +			device_type = "cpu";
->>> +			compatible = "arm,cortex-a55";
->>> +			reg = <0x400>;
->>> +			enable-method = "psci";
->>> +			next-level-cache = <&l3>;
->>> +		};
->>> +
->>> +		cpu5: cpu@500 {
->>> +			device_type = "cpu";
->>> +			compatible = "arm,cortex-a55";
->>> +			reg = <0x500>;
->>> +			enable-method = "psci";
->>> +			next-level-cache = <&l3>;
->>> +		};
->>> +
->>> +		l2: l2-cache {
->>> +			compatible = "cache";
->>> +			next-level-cache = <&l3>;
->>> +
->>> +		};
->>> +
->>> +		l3: l3-cache {
->>> +			compatible = "cache";
->>> +		};
->>> +	};
->>> +
->>> +	timer {
->>> +		compatible = "arm,armv8-timer";
->>> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
->>> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
->>> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
->>> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
->>> +	};
->>> +
->>> +	arm_pmu: pmu {
->>> +		compatible = "arm,armv8-pmuv3";
->>> +		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
->>> +	};
->>> +
->>> +	psci {
->>> +		compatible = "arm,psci-1.0";
->>> +		method = "smc";
->>> +	};
->>> +
->>> +	osc27M: osc {
->>> +		compatible = "fixed-clock";
->>> +		clock-frequency = <27000000>;
->>> +		clock-output-names = "osc27M";
->>> +		#clock-cells = <0>;
->>> +	};
->>> +
->>> +	soc@98000000 {
->>
->> If the node has a unit address, it also needs a reg property with that value. So
->> let's drop the unit address.
->>
->>> +		compatible = "simple-bus";
->>> +		#address-cells = <1>;
->>> +		#size-cells = <1>;
->>> +		ranges = <0x98000000 0x98000000 0x68000000>;
->>> +
->>> +		rbus: r-bus@98000000 {
->>> +			compatible = "simple-bus";
->>> +			reg = <0x98000000 0x200000>;
->>> +			#address-cells = <1>;
->>> +			#size-cells = <1>;
->>> +			ranges = <0x0 0x98000000 0x200000>;
->>> +
->>> +			uart0: serial0@7800 {
->>> +				compatible = "snps,dw-apb-uart";
->>> +				reg = <0x7800 0x400>;
->>> +				reg-shift = <2>;
->>> +				reg-io-width = <4>;
->>> +				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
->>> +				clock-frequency = <27000000>;
->>> +				status = "disabled";
->>> +			};
->>> +
->>> +			uart1: serial1@1b200 {
->>> +				compatible = "snps,dw-apb-uart";
->>> +				reg = <0x1b200 0x400>;
->>> +				reg-shift = <2>;
->>> +				reg-io-width = <4>;
->>> +				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
->>> +				clock-frequency = <432000000>;
->>> +				status = "disabled";
->>> +			};
->>> +
->>> +			uart2: serial2@1b400 {
->>> +				compatible = "snps,dw-apb-uart";
->>> +				reg = <0x1b400 0x400>;
->>> +				reg-shift = <2>;
->>> +				reg-io-width = <4>;
->>> +				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
->>> +				clock-frequency = <432000000>;
->>> +				status = "disabled";
->>> +			};
->>> +		};
->>> +
->>> +		gic: interrupt-controller@ff100000 {
->>> +			compatible = "arm,gic-v3";
->>> +			reg = <0xff100000 0x10000>,
->>> +			      <0xff140000 0xc0000>;
->>> +			interrupt-controller;
->>> +			#interrupt-cells = <3>;
->>> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->>> +		};
->>> +	};
->>> +};
->>> +
->>> +&arm_pmu {
->>> +	interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>,
->>> +		<&cpu3>, <&cpu4>, <&cpu5>;
->>> +};
->>
->> Now that they're in the same file, this can just go into the node.
->>
-> 
-> I'll correct these mistakes in next version.
-> 
-
-No need for a v4, I already have it queued.
-
-Regards,
-Andreas
-
--- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
+Attn, Dear
+Goodnews, I have deposited your transfer total amount US$4.8million
+Dollars with Money Gram this morning. we agreed you will be receiving
+it $5000.00 daily.
+Contact Mr. John Dave Director, Money Gram to pick up your first Money
+Gram payment $5000.00 today.
+Contact Person; Mr. John Dave Director, Money Gram,International
+Remittance-Benin
+Email; moneygram.1820@outlook.fr
+Telephone; +229 62619517
+Please re-confirm your address to him once again such as listed below.
+1.Your Full Name..............................
+2.Address.........................
+3.Country....................
+4.Sex.........................................
+5.Your telephone numbers..........................
+6. Copy of your ID...........................
+This is to avoid sending your funds to wrong person, He is waiting to
+hear from you urgent today.
+Let me know once you pick up your transfer $5000.00 today.
+Finally, Note I have paid for the service fees, but only money will
+send to him is $90.00 transfer fee before you can pick up the transfer
+today.
+Ask, Mr. John Dave Director, Money Gram to give you direction where to
+send your transfer fee $90.00 only to Him Immediately so that you can
+pick up $5000.00 us dollars today.
+Thanks for undrstanding.
+Mary Coster
+m.coster@aol.com
