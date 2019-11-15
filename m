@@ -2,121 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C79FCFE24D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 17:08:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73028FE262
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 17:12:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727505AbfKOQIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 11:08:31 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:34571 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727564AbfKOQIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 11:08:31 -0500
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id S1727566AbfKOQMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 11:12:18 -0500
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:47824 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727543AbfKOQMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 11:12:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=a6s56JhDtI/Y8dfJlPMurASdhnGwtfFYnXMKce5BDck=; b=Ut9of72IPWl8JG6PSw0cbyGcq
+        V5VGrWD0LG8ozMn4a0iykI3QVN+VCBw0Qbb9jf/0RTWjOh3y4fDurcGw4Dyjx9kC/2qOaIQ2NjlT9
+        lTGDgrAVBkhvMZJGoN++ErkymbDqCh6LYWydTPR6QzcgUlKEUDodKBuTu7FSrb57dykag=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iVe90-0002S7-MC; Fri, 15 Nov 2019 17:08:22 +0100
-Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iVe8y-00047J-7C; Fri, 15 Nov 2019 17:08:20 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     robh+dt@kernel.org, KCHSU0@nuvoton.com, broonie@kernel.org,
-        thomas.fehrenbacher@siedle.de
-Cc:     kernel@pengutronix.de, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 3/3] ASoC: nau8810: add aux input control, available on NAU8812
-Date:   Fri, 15 Nov 2019 17:08:19 +0100
-Message-Id: <20191115160819.15557-4-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191115160819.15557-1-m.felsch@pengutronix.de>
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1iVeCh-0000fv-CY; Fri, 15 Nov 2019 16:12:11 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 6529A27429D2; Fri, 15 Nov 2019 16:12:10 +0000 (GMT)
+Date:   Fri, 15 Nov 2019 16:12:10 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, KCHSU0@nuvoton.com,
+        thomas.fehrenbacher@siedle.de, kernel@pengutronix.de,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/3] ASoC: nau8810: add aux input control, available on
+ NAU8812
+Message-ID: <20191115161210.GB4210@sirena.co.uk>
 References: <20191115160819.15557-1-m.felsch@pengutronix.de>
+ <20191115160819.15557-4-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mojUlQ0s9EVzWg2t"
+Content-Disposition: inline
+In-Reply-To: <20191115160819.15557-4-m.felsch@pengutronix.de>
+X-Cookie: Tell me what to think!!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thomas Fehrenbacher <thomas.fehrenbacher@siedle.de>
 
-This commit adds the support to control the aux-port on the nau8812
-devices. We don't need to differentiate the aux-port registers since
-those bitfields are set to '0' on the nau8810 devices [1,2].
+--mojUlQ0s9EVzWg2t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[1] http://www.nuvoton.com/resource-files/NAU8810_Datasheet_Rev_2.8.pdf
-[2] http://www.nuvoton.com/resource-files/NAU8812DatasheetRev2.7.pdf
+On Fri, Nov 15, 2019 at 05:08:19PM +0100, Marco Felsch wrote:
 
-Signed-off-by: Thomas Fehrenbacher <thomas.fehrenbacher@siedle.de>
-[m.felsch@pengutronix.de: add commit message]
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- sound/soc/codecs/nau8810.c | 7 +++++++
- sound/soc/codecs/nau8810.h | 2 ++
- 2 files changed, 9 insertions(+)
+> This commit adds the support to control the aux-port on the nau8812
+> devices. We don't need to differentiate the aux-port registers since
+> those bitfields are set to '0' on the nau8810 devices [1,2].
 
-diff --git a/sound/soc/codecs/nau8810.c b/sound/soc/codecs/nau8810.c
-index a32a4a8d5f50..b1024d24d413 100644
---- a/sound/soc/codecs/nau8810.c
-+++ b/sound/soc/codecs/nau8810.c
-@@ -351,6 +351,9 @@ static const struct snd_kcontrol_new nau8810_snd_controls[] = {
- 		NAU8810_DACOS_SFT, 1, 0),
- 	SOC_SINGLE("ADC Oversampling Rate(128x) Switch", NAU8810_REG_ADC,
- 		NAU8810_ADCOS_SFT, 1, 0),
-+
-+	SOC_SINGLE("AUX Input Enable Switch", NAU8810_REG_POWER1,
-+		NAU8810_AUX_EN_SFT, 1, 0),
- };
- 
- /* Speaker Output Mixer */
-@@ -383,6 +386,8 @@ static const struct snd_kcontrol_new nau8810_inpga[] = {
- 		NAU8810_NMICPGA_SFT, 1, 0),
- 	SOC_DAPM_SINGLE("MicP Switch", NAU8810_REG_INPUT_SIGNAL,
- 		NAU8810_PMICPGA_SFT, 1, 0),
-+	SOC_DAPM_SINGLE("AUX Switch", NAU8810_REG_INPUT_SIGNAL,
-+		NAU8810_AUXPGA_SFT, 1, 0),
- };
- 
- /* Loopback Switch */
-@@ -436,6 +441,7 @@ static const struct snd_soc_dapm_widget nau8810_dapm_widgets[] = {
- 
- 	SND_SOC_DAPM_INPUT("MICN"),
- 	SND_SOC_DAPM_INPUT("MICP"),
-+	SND_SOC_DAPM_INPUT("AUX"),
- 	SND_SOC_DAPM_OUTPUT("MONOOUT"),
- 	SND_SOC_DAPM_OUTPUT("SPKOUTP"),
- 	SND_SOC_DAPM_OUTPUT("SPKOUTN"),
-@@ -470,6 +476,7 @@ static const struct snd_soc_dapm_route nau8810_dapm_routes[] = {
- 	{"Input PGA", NULL, "Mic Bias"},
- 	{"Input PGA", "MicN Switch", "MICN"},
- 	{"Input PGA", "MicP Switch", "MICP"},
-+	{"Input PGA", "AUX Switch", "AUX"},
- 
- 	/* Digital Looptack */
- 	{"Digital Loopback", "Switch", "ADC"},
-diff --git a/sound/soc/codecs/nau8810.h b/sound/soc/codecs/nau8810.h
-index 1ada31883dc6..7b5ecad173d3 100644
---- a/sound/soc/codecs/nau8810.h
-+++ b/sound/soc/codecs/nau8810.h
-@@ -69,6 +69,7 @@
- 
- /* NAU8810_REG_POWER1 (0x1) */
- #define NAU8810_DCBUF_EN		(0x1 << 8)
-+#define NAU8810_AUX_EN_SFT		6
- #define NAU8810_PLL_EN_SFT		5
- #define NAU8810_MICBIAS_EN_SFT	4
- #define NAU8810_ABIAS_EN		(0x1 << 3)
-@@ -229,6 +230,7 @@
- /* NAU8810_REG_INPUT_SIGNAL (0x2C) */
- #define NAU8810_PMICPGA_SFT		0
- #define NAU8810_NMICPGA_SFT		1
-+#define NAU8810_AUXPGA_SFT		2
- 
- /* NAU8810_REG_PGAGAIN (0x2D) */
- #define NAU8810_PGAGAIN_SFT		0
--- 
-2.20.1
+It'd still be better to only register these controls if the device isn't
+a nau8812 so that userspace doesn't see them.
 
+--mojUlQ0s9EVzWg2t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl3OzlkACgkQJNaLcl1U
+h9CzJAf/bweQhNi628v9qYg/EgvL3C6EqcxHS3yI139L2K4AVDVNomczL+iq/fRY
+vDW1oFgcRDy98yNCgFL27Vjn+ocGIE0/7dirr5sjVKriS7HKlVpaMDdgKBqKN/TF
+qcJtJ9fCYPL1IYyIT3LR8isCPQFxgzc6m5AIGAbKwFuTNlH0hK7fGuR2ZcNP9J/j
+lF22G2iRZicU24GZTdDE27xAtvyKl9hLwkxrH3Ren1T2xuP6ouc78jN0fs9bzLxO
+MapAv1vEoZPinvILQW8elIgkWn4jjCjszjDqYTMg7qoQTvw8c/UkYDi8Xky+oA1u
+sO/YhdTe6+7pTnW5+Ngvl8TLVjyXPw==
+=xfur
+-----END PGP SIGNATURE-----
+
+--mojUlQ0s9EVzWg2t--
