@@ -2,102 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2D03FDAE5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 11:15:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 181D9FDA5F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 11:04:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727032AbfKOKPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 05:15:00 -0500
-Received: from 60-251-196-230.HINET-IP.hinet.net ([60.251.196.230]:63579 "EHLO
-        ironport.ite.com.tw" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725829AbfKOKPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 05:15:00 -0500
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 15 Nov 2019 18:05:14 +0800
-Received: from csbcas.internal.ite.com.tw (csbcas1.internal.ite.com.tw [192.168.65.46])
-        by mse.ite.com.tw with ESMTP id xAFA57CE032119;
-        Fri, 15 Nov 2019 18:05:07 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from allen-VirtualBox.internal.ite.com.tw (192.168.70.14) by
- csbcas1.internal.ite.com.tw (192.168.65.45) with Microsoft SMTP Server (TLS)
- id 14.3.352.0; Fri, 15 Nov 2019 18:05:08 +0800
-From:   allen <allen.chen@ite.com.tw>
-CC:     Allen Chen <allen.chen@ite.com.tw>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Subject: [PATCH v4 3/4] dt-bindings: Add binding for IT6505.
-Date:   Fri, 15 Nov 2019 17:52:19 +0800
-Message-ID: <1573811564-320-4-git-send-email-allen.chen@ite.com.tw>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1573811564-320-1-git-send-email-allen.chen@ite.com.tw>
-References: <1573811564-320-1-git-send-email-allen.chen@ite.com.tw>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.70.14]
-X-MAIL: mse.ite.com.tw xAFA57CE032119
-To:     unlisted-recipients:; (no To-header on input)
+        id S1727372AbfKOKEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 05:04:20 -0500
+Received: from smtp.codeaurora.org ([198.145.29.96]:33840 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727365AbfKOKEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 05:04:20 -0500
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 3635B61187; Fri, 15 Nov 2019 10:04:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1573812259;
+        bh=VaQ+M/cW4KikmTdqZ7Lp5Io5EF9nqMDanu2nvq5JxhM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=GTWXCCOnq5XtWiQ4ZxV8/n7it/OX0dwNRMOAruCpQMTeg7kBmOwQa+n3ZiVsxJUpJ
+         WT5D9/tbk2qk+zi7j+Sv3pXrsQm52NfNTB+cA9vwgPZ5rGETJnKMstV3I/OGIn+A/B
+         2nnIuw/CPTwpCVrWq8JHQKml9W7CDAe/1QUghQvs=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 54E82610DC;
+        Fri, 15 Nov 2019 10:04:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1573812256;
+        bh=VaQ+M/cW4KikmTdqZ7Lp5Io5EF9nqMDanu2nvq5JxhM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cWprBifPUUATJDsFJkKauI4x/6I7C8D7Qt4zTLmcTAQafcqAJUT2NHKemjD/WHTFL
+         JIjERMPvZTfXtabobfS4Bg1vQ0460zcF6vQBBh9KH0WFTmjUsKt442VVvHPyrhgbKE
+         6a2DoZ5moYVN//CbLTs9YU3VoLho6zHACVPeNJ1A=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 54E82610DC
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v1 0/3] Add display clock controller driver for SC7180
+Date:   Fri, 15 Nov 2019 15:34:02 +0530
+Message-Id: <1573812245-23827-1-git-send-email-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Allen Chen <allen.chen@ite.com.tw>
+Add support for the display clock controller found on SC7180
+based devices. This would allow display drivers to probe and
+control their clocks.
 
-Add a DT binding documentation for IT6505.
+This driver depends on the display port clock ops support
+https://patchwork.kernel.org/patch/11069087/
 
-Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
-Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
----
- .../bindings/display/bridge/ite,it6505.txt         | 28 ++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+Taniya Das (3):
+  dt-bindings: clock: Add YAML schemas for the QCOM DISPCC clock
+    bindings
+  dt-bindings: clock: Introduce QCOM Display clock bindings
+  clk: qcom: Add display clock controller driver for SC7180
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-new file mode 100644
-index 00000000..72da0c4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-@@ -0,0 +1,28 @@
-+iTE it6505 DP bridge bindings
-+
-+Required properties:
-+        - compatible: "ite,it6505"
-+        - reg: i2c address of the bridge
-+        - ovdd-supply: I/O voltage
-+        - pwr18-supply: Core voltage
-+        - interrupts: interrupt specifier of INT pin
-+        - reset-gpios: gpio specifier of RESET pin
-+	- hpd-gpios:
-+		Hotplug detect GPIO.
-+		Indicates which GPIO should be used for hotplug detection
-+	- port@[x]: SoC specific port nodes with endpoint definitions as defined
-+		in Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.txt
-+
-+Example:
-+	dp-bridge@5c {
-+                compatible = "ite,it6505";
-+                interrupts = <152 IRQ_TYPE_EDGE_RISING 152 0>;
-+                reg = <0x5c>;
-+                pinctrl-names = "default";
-+                pinctrl-0 = <&it6505_pins>;
-+                ovdd-supply = <&mt6358_vsim1_reg>;
-+                pwr18-supply = <&it6505_pp18_reg>;
-+                reset-gpios = <&pio 179 1>;
-+                hpd-gpios = <&pio 9 0>;
-+                extcon = <&usbc_extcon>;
-+        };
--- 
-1.9.1
+ .../devicetree/bindings/clock/qcom,dispcc.txt      |  19 -
+ .../devicetree/bindings/clock/qcom,dispcc.yaml     |  67 ++
+ drivers/clk/qcom/Kconfig                           |   9 +
+ drivers/clk/qcom/Makefile                          |   1 +
+ drivers/clk/qcom/dispcc-sc7180.c                   | 776 +++++++++++++++++++++
+ include/dt-bindings/clock/qcom,dispcc-sc7180.h     |  46 ++
+ 6 files changed, 899 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
+ create mode 100644 drivers/clk/qcom/dispcc-sc7180.c
+ create mode 100644 include/dt-bindings/clock/qcom,dispcc-sc7180.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
 
