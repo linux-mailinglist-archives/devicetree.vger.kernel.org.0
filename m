@@ -2,76 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 404C5FD276
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 02:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D26DFD27E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 02:35:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727224AbfKOBdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Nov 2019 20:33:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41894 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727223AbfKOBdY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Nov 2019 20:33:24 -0500
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8DB2820725;
-        Fri, 15 Nov 2019 01:33:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573781603;
-        bh=TjfPdNVPIeEvReyGDHdp+l0oWyIBAlhdiKCkIA2SxF4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=wXwmH1o9Ntc1eiYydifMeSePrvyPdp843OoG1MKhziCfF0WKkKntoLojZuqNXZSWQ
-         XRPqSbpgzjleJDHBFSQd90rNYLV0/lkKPUaCvcZZ2Z0Ui6dKVLAOLqry7gLks5DZG/
-         hGCABoAeV60FY/M7dMTGMagtjKD8VKuUcn7yU7PA=
-Received: by mail-qk1-f173.google.com with SMTP id z23so6812489qkj.10;
-        Thu, 14 Nov 2019 17:33:23 -0800 (PST)
-X-Gm-Message-State: APjAAAVwUWy/o344JbZIiInJo+26DxxbwJYFjWlu1+hTAkWstT44Yg/b
-        L5Jv2Vzf889RDvtHaP2TcVaZdAd5eCcx7aJWAQ==
-X-Google-Smtp-Source: APXvYqyrKS5cVeQ3i3w1IPqL0wZve42ikZtItrJjuSQMwNf9oO+9PoexTpjhpJX3Vg+HensaTGHh5ytaFFs4FY1vmfw=
-X-Received: by 2002:a05:620a:205d:: with SMTP id d29mr10453959qka.152.1573781602693;
- Thu, 14 Nov 2019 17:33:22 -0800 (PST)
+        id S1727233AbfKOBfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Nov 2019 20:35:17 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:38001 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727022AbfKOBfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Nov 2019 20:35:17 -0500
+Received: by mail-wr1-f67.google.com with SMTP id i12so9156015wro.5;
+        Thu, 14 Nov 2019 17:35:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=B2XNQuUR8Wh6kRLjMqlhXvwKQ8d9fAfymRV8s7wKrPI=;
+        b=oS+L4APaOZrpJXEc1LLhVdt8mkJ12CUna5vRiYhGh4GfIXHelKvs9BXZXdDQkJISzl
+         pFx9HsScYfYTw51MURxTbA7Z5Vku8km4XuZs5prR0VxkFNEMBO7j/Tdd3ufqo4S3ehas
+         0RjA21mxGrsYWpjnvT2vYkCh1NKOtz21qBr1KQACAZajhdd2VGjaI9ny1cJU6mJyHXWR
+         FOZzXQJts1qA0FZ8f6hEo52ulY+VGodgXRQVLsg0RGudlRovFOXdEoCi7Cs/zfVlmEwN
+         K9W/eA0EwgkQyNZXVpfb/BJXdjyft2a8KV/5H0a81JANtQwsdHMXKze+WIsz3Za5GNTW
+         tmpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=B2XNQuUR8Wh6kRLjMqlhXvwKQ8d9fAfymRV8s7wKrPI=;
+        b=U4gwJL1VOlE5//2feZsggLKkGtGhZAkNSfLfO1K37lIHYcM9qPTxrH7NF6k8MjCKgW
+         hjqlkyS7/rnz4J1UW0h+Zm3L8xtgo8G6Mfs8I1/sIKg2/PohBpr+GUGnzc9VduEw4Sex
+         osMOLG6s5+iDCjTzcdazxRLKCqmqEWWSCKEqdFL7agsxz7rnLdJnVYJAzdtgmXRFD8HD
+         ot7rWLi0Jf4LpcbQ/A/HAojSFNxorMO5BoM91tNYIuvr93jr63fio4VoCuyziQDBEULn
+         xn9TLtqCql6g7JaTcFFg3ezXBfmwrRs9IA+vl28eedxpqPo0GVFQiYmMEKuFkh7o3Aih
+         zsNA==
+X-Gm-Message-State: APjAAAU36KlbreJ38/HMBI2TQAidANrJu5Fp7fxXF70yWXSQZ3uZE7Kj
+        FUh5/1MSUCQ3pg/yWiqk4/zBmUcwQbEQ8dsj/jg=
+X-Google-Smtp-Source: APXvYqwRXz+nyq3UvXDsIXwlYqr0wfbLRVw8mbwknO68m+ZoU3fcqdhkspiN8I/+JjRfETY84SFGP6yFGTBxFQ9aeik=
+X-Received: by 2002:adf:9786:: with SMTP id s6mr12669139wrb.188.1573781714445;
+ Thu, 14 Nov 2019 17:35:14 -0800 (PST)
 MIME-Version: 1.0
-References: <20191031165308.14102-1-afaerber@suse.de> <20191031165308.14102-4-afaerber@suse.de>
-In-Reply-To: <20191031165308.14102-4-afaerber@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 14 Nov 2019 19:33:11 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKON3rp61e=_7D7zD6k7XFJxbwEziZxWeKB7+i+bnTGPA@mail.gmail.com>
-Message-ID: <CAL_JsqKON3rp61e=_7D7zD6k7XFJxbwEziZxWeKB7+i+bnTGPA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/4] ARM: dts: Prepare Realtek RTD1195 and MeLE X1000
-To:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
-Cc:     linux-realtek-soc@lists.infradead.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+References: <20191111090230.3402-1-chunyan.zhang@unisoc.com>
+ <20191111090230.3402-3-chunyan.zhang@unisoc.com> <20191114205235.GA16668@bogus>
+In-Reply-To: <20191114205235.GA16668@bogus>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Fri, 15 Nov 2019 09:34:38 +0800
+Message-ID: <CAAfSe-s==xzeK_Y0rVezunR0T86b7ZcASo4HcW6g74qH7v-vbg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: serial: Convert sprd-uart to json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 31, 2019 at 11:53 AM Andreas F=C3=A4rber <afaerber@suse.de> wro=
-te:
+On Fri, 15 Nov 2019 at 04:52, Rob Herring <robh@kernel.org> wrote:
 >
-> Add Device Trees for Realtek RTD1195 SoC and MeLE X1000 TV box.
+> On Mon, Nov 11, 2019 at 05:02:27PM +0800, Chunyan Zhang wrote:
+> >
+> > Convert the sprd-uart binding to DT schema using json-schema.
+> >
+> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > ---
+> >  .../devicetree/bindings/serial/sprd-uart.txt  | 32 ---------
+> >  .../devicetree/bindings/serial/sprd-uart.yaml | 69 +++++++++++++++++++
+> >  2 files changed, 69 insertions(+), 32 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/serial/sprd-uart.txt
+> >  create mode 100644 Documentation/devicetree/bindings/serial/sprd-uart.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.txt b/Documentation/devicetree/bindings/serial/sprd-uart.txt
+> > deleted file mode 100644
+> > index 9607dc616205..000000000000
+> > --- a/Documentation/devicetree/bindings/serial/sprd-uart.txt
+> > +++ /dev/null
+> > @@ -1,32 +0,0 @@
+> > -* Spreadtrum serial UART
+> > -
+> > -Required properties:
+> > -- compatible: must be one of:
+> > -  * "sprd,sc9836-uart"
+> > -  * "sprd,sc9860-uart", "sprd,sc9836-uart"
+> > -
+> > -- reg: offset and length of the register set for the device
+> > -- interrupts: exactly one interrupt specifier
+> > -- clock-names: Should contain following entries:
+> > -  "enable" for UART module enable clock,
+> > -  "uart" for UART clock,
+> > -  "source" for UART source (parent) clock.
+> > -- clocks: Should contain a clock specifier for each entry in clock-names.
+> > -  UART clock and source clock are optional properties, but enable clock
+> > -  is required.
+> > -
+> > -Optional properties:
+> > -- dma-names: Should contain "rx" for receive and "tx" for transmit channels.
+> > -- dmas: A list of dma specifiers, one for each entry in dma-names.
+> > -
+> > -Example:
+> > -     uart0: serial@0 {
+> > -             compatible = "sprd,sc9860-uart",
+> > -                          "sprd,sc9836-uart";
+> > -             reg = <0x0 0x100>;
+> > -             interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> > -             dma-names = "rx", "tx";
+> > -             dmas = <&ap_dma 19>, <&ap_dma 20>;
+> > -             clock-names = "enable", "uart", "source";
+> > -             clocks = <&clk_ap_apb_gates 9>, <&clk_uart0>, <&ext_26m>;
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+> > new file mode 100644
+> > index 000000000000..0cc4668a9b9c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: GPL-2.0
 >
-> Reuse the existing RTD1295 watchdog compatible for now.
->
-> Signed-off-by: Andreas F=C3=A4rber <afaerber@suse.de>
-> ---
->  v1 -> v2:
->  * Dropped /memreserve/ and reserved-memory nodes for peripherals and NOR=
- (Rob)
->  * Carved them out from memory reg instead (Rob)
->  * Converted some /memreserve/s to reserved-memory nodes
->
->  arch/arm/boot/dts/Makefile               |   2 +
->  arch/arm/boot/dts/rtd1195-mele-x1000.dts |  31 ++++++++
->  arch/arm/boot/dts/rtd1195.dtsi           | 127 +++++++++++++++++++++++++=
-++++++
->  3 files changed, 160 insertions(+)
->  create mode 100644 arch/arm/boot/dts/rtd1195-mele-x1000.dts
->  create mode 100644 arch/arm/boot/dts/rtd1195.dtsi
+> Dual license please. If you are okay with that on both patches, I can
+> fix them and apply patches 1-4.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Sure, thanks for your help.
+
+Chunyan
+
+>
+> Rob
