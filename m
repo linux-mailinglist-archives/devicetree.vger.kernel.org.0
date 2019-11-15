@@ -2,215 +2,1227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2457AFD918
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 10:30:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F2A1FD961
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 10:33:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727324AbfKOJaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 04:30:25 -0500
-Received: from mail-ua1-f68.google.com ([209.85.222.68]:39773 "EHLO
-        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727323AbfKOJaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 04:30:24 -0500
-Received: by mail-ua1-f68.google.com with SMTP id r13so2809928uan.6
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2019 01:30:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U0K8GRiXqSgIpN48tBNHcV+jI/oiDgvDhl7ShZIVOhE=;
-        b=dms2AT6yjYIujdBp5vLXzT3QSWBUJdp+Ja/bHoPGCKS84bKo37q9DYAWmQ+OhvnX47
-         wQESQqhFjyBsKxLBW14sJM6Kkxy/Yvicy1Vttr/bmnfFi1qkmbGWwvZC6/I2T2hc0dc4
-         E6e4jsZ8R7HPGQj7VhbAeZXMKd4W+mV9z0NBs1wYV93Cw7drye59WzshJHguKEkNXCPt
-         fHF0ouNrAUlgmAVwGBwpW7V1N92+w5PRrvnambZTbfMnbWUBMJIPHZCBuMz5iDZ3km48
-         QxwxVl+99j/KVNaPgNldx2y1f+snHTdbPP0IYzr0FUgyc31xgzkXkCrLt9Puderh1g1W
-         O9fQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U0K8GRiXqSgIpN48tBNHcV+jI/oiDgvDhl7ShZIVOhE=;
-        b=qtUOmuhRBFvo8t0DYBcU3R0w5PuwRZJeyVk5a1pZe324FDqYq6Eo7jc+8SzxZIfRgP
-         5PSDoLUNCZA1nnAc/trwGPvhfwDhrnE3oXVRbg9wcg6tO8IP0G7+MVZFYzydGoFn1LtL
-         YpZPQ1o99nRPbS2V2W4XkIZQcbChMHF2V1jDDfJ59qicFsflGaGGHlbFj72VvhBGMhbM
-         QBOsb3irOdu95C0q/H3U5yTMhLV119OuRN94qbtxcz+4RmKhHFQxeQxZWX/b97qV5Oou
-         CWwLnCiwqdLo4liWvos5zofsyJ371DTXjgmTbVRKR+pDk8m0sJJ4UErZYcYptDXQt87q
-         69kg==
-X-Gm-Message-State: APjAAAX6EQ/YgVtRNbeXt5G6jqJO4nb09XBFZI77iqI5z3UlgBpMFj7E
-        DG9Vv9nS9tdmjLJzGm1nRlJCRQHb7MJA/9vRjfipJQ==
-X-Google-Smtp-Source: APXvYqzU6WJnGjb2iLphku/+v8QsaQ8unugsql39hfm0KRqoySp6l08BYKltD9R0v8e99ePYA9xvGwkzshWggfN0FEM=
-X-Received: by 2002:ab0:74cd:: with SMTP id f13mr8348393uaq.104.1573810223324;
- Fri, 15 Nov 2019 01:30:23 -0800 (PST)
+        id S1726960AbfKOJdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 04:33:35 -0500
+Received: from mga12.intel.com ([192.55.52.136]:11426 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726930AbfKOJdf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Nov 2019 04:33:35 -0500
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Nov 2019 01:33:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,307,1569308400"; 
+   d="scan'208";a="405279004"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga005.fm.intel.com with ESMTP; 15 Nov 2019 01:33:22 -0800
+Received: from andy by smile with local (Exim 4.93-RC1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1iVXyj-0002bL-2L; Fri, 15 Nov 2019 11:33:21 +0200
+Date:   Fri, 15 Nov 2019 11:33:21 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, qi-ming.wu@intel.com,
+        yixin.zhu@linux.intel.com, cheol.yong.kim@intel.com
+Subject: Re: [PATCH v7 1/2] pinctrl: Add pinmux & GPIO controller driver for
+ a new SoC
+Message-ID: <20191115093321.GL32742@smile.fi.intel.com>
+References: <cover.1573712059.git.rahul.tanwar@linux.intel.com>
+ <998fe83c191ab31f36111e76c810b6b414fbb01f.1573712060.git.rahul.tanwar@linux.intel.com>
 MIME-Version: 1.0
-References: <cover.1573122644.git.hns@goldelico.com> <CAPDyKFrntf2Kd9Zf7uxRCUk_OrKD8B3xOKmvPaf04X21L5HwWA@mail.gmail.com>
- <5F5A5FC0-8F91-4D5B-9EF6-AF36FE38B588@goldelico.com>
-In-Reply-To: <5F5A5FC0-8F91-4D5B-9EF6-AF36FE38B588@goldelico.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 15 Nov 2019 10:29:46 +0100
-Message-ID: <CAPDyKFr=Uk1i0c=3WvuOYCQ__Skpr-9mjVM2Yqst-hd8zY6OeQ@mail.gmail.com>
-Subject: Re: [PATCH v3 00/12] OpenPandora: make wl1251 connected to mmc3 sdio
- port of OpenPandora work again
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Petr Mladek <pmladek@suse.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        kernel@pyra-handheld.com,
-        Alexios Zavras <alexios.zavras@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        David Sterba <dsterba@suse.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Allison Randal <allison@lohutok.net>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        netdev <netdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <998fe83c191ab31f36111e76c810b6b414fbb01f.1573712060.git.rahul.tanwar@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Nov 2019 at 16:16, H. Nikolaus Schaller <hns@goldelico.com> wrote:
->
-> Hi Ulf,
->
-> > Am 14.11.2019 um 15:18 schrieb Ulf Hansson <ulf.hansson@linaro.org>:
-> >
-> > On Thu, 7 Nov 2019 at 11:31, H. Nikolaus Schaller <hns@goldelico.com> wrote:
-> >>
-> >>
-> >> * add a revisit note for special wl1251 handling code because it should
-> >>  be solved more generic in mmc core - suggested by Ulf Hansson <ulf.hansson@linaro.org>
-> >> * remove init_card callback from platform_data/hsmmc-omap.h - suggested by Ulf Hansson <ulf.hansson@linaro.org>
-> >> * remove obstructive always-on for vwlan regulator - suggested by Ulf Hansson <ulf.hansson@linaro.org>
-> >> * rename DT node - suggested by Rob Herring <robh@kernel.org>
-> >> * fix ARM: dts: subject prefix - suggested by Tony Lindgren <tony@atomide.com>
-> >> * also remove omap2_hsmmc_info and obc-y line in Makefile - suggested by Tony Lindgren <tony@atomide.com>
-> >
-> > No further comments from my side. Let's just agree on how to deal with
-> > the ti,power-gpio, then I can apply this.
->
-> I'd say it can be a separate patch since it does not fix the Pandora
-> issues, but is a new and independent optimization.
->
-> And in case someone complains and uses it for some out-of tree purpose
-> it can be discussed or even be reverted easier if it is a separate patch.
->
-> I can do it in the next days.
+On Thu, Nov 14, 2019 at 02:29:06PM +0800, Rahul Tanwar wrote:
+> Intel Lightning Mountain SoC has a pinmux controller & GPIO controller IP which
+> controls pin multiplexing & configuration including GPIO functions selection &
+> GPIO attributes configuration.
+> 
+> This IP is not based on & does not have anything in common with Chassis
+> specification. The pinctrl drivers under pinctrl/intel/* are all based upon
+> Chassis spec compliant pinctrl IPs. So this driver doesn't fit & can not use
+> pinctrl framework under pinctrl/intel/* and it requires a separate new driver.
+> 
+> Add a new GPIO & pin control framework based driver for this IP.
 
-Okay, that sounds reasonable.
+Linus, I have no means to test this nor time to read any (internally?)
+available datasheet. At least my concerns against code were satisfied, except
+I'm not sure about locking model. If you consider it is okay, I'm fine with
+this version, although I believe there may be improvements made in the future.
 
-In the meantime, I have queued up the series on my next branch (for v5.5).
+FWIW,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-I fixed up a couple of complaints from checkpatch, and also added
-stable tags for the first two patches in the series, as that what
-missing.
+> 
+> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> ---
+>  drivers/pinctrl/Kconfig               |  18 +
+>  drivers/pinctrl/Makefile              |   1 +
+>  drivers/pinctrl/pinctrl-equilibrium.c | 944 ++++++++++++++++++++++++++++++++++
+>  drivers/pinctrl/pinctrl-equilibrium.h | 144 ++++++
+>  4 files changed, 1107 insertions(+)
+>  create mode 100644 drivers/pinctrl/pinctrl-equilibrium.c
+>  create mode 100644 drivers/pinctrl/pinctrl-equilibrium.h
+> 
+> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+> index b372419d61f2..7809e33c7762 100644
+> --- a/drivers/pinctrl/Kconfig
+> +++ b/drivers/pinctrl/Kconfig
+> @@ -420,4 +420,22 @@ config PINCTRL_TB10X
+>  	depends on OF && ARC_PLAT_TB10X
+>  	select GPIOLIB
+>  
+> +config PINCTRL_EQUILIBRIUM
+> +	tristate "Generic pinctrl and GPIO driver for Intel Lightning Mountain SoC"
+> +	select PINMUX
+> +	select PINCONF
+> +	select GPIOLIB
+> +	select GPIO_GENERIC
+> +	select GPIOLIB_IRQCHIP
+> +	select GENERIC_PINCONF
+> +	select GENERIC_PINCTRL_GROUPS
+> +	select GENERIC_PINMUX_FUNCTIONS
+> +
+> +	help
+> +	  Equilibrium pinctrl driver is a pinctrl & GPIO driver for Intel Lightning
+> +	  Mountain network processor SoC that supports both the linux GPIO and pin
+> +	  control frameworks. It provides interfaces to setup pinmux, assign desired
+> +	  pin functions, configure GPIO attributes for LGM SoC pins. Pinmux and
+> +	  pinconf settings are retrieved from device tree.
+> +
+>  endif
+> diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
+> index ac537fdbc998..879f312bfb75 100644
+> --- a/drivers/pinctrl/Makefile
+> +++ b/drivers/pinctrl/Makefile
+> @@ -46,6 +46,7 @@ obj-$(CONFIG_PINCTRL_ZYNQ)	+= pinctrl-zynq.o
+>  obj-$(CONFIG_PINCTRL_INGENIC)	+= pinctrl-ingenic.o
+>  obj-$(CONFIG_PINCTRL_RK805)	+= pinctrl-rk805.o
+>  obj-$(CONFIG_PINCTRL_OCELOT)	+= pinctrl-ocelot.o
+> +obj-$(CONFIG_PINCTRL_EQUILIBRIUM)   += pinctrl-equilibrium.o
+>  
+>  obj-y				+= actions/
+>  obj-$(CONFIG_ARCH_ASPEED)	+= aspeed/
+> diff --git a/drivers/pinctrl/pinctrl-equilibrium.c b/drivers/pinctrl/pinctrl-equilibrium.c
+> new file mode 100644
+> index 000000000000..db497fbc669a
+> --- /dev/null
+> +++ b/drivers/pinctrl/pinctrl-equilibrium.c
+> @@ -0,0 +1,944 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (C) 2019 Intel Corporation */
+> +
+> +#include <linux/gpio/driver.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +#include <linux/pinctrl/pinconf.h>
+> +#include <linux/pinctrl/pinconf-generic.h>
+> +#include <linux/pinctrl/pinmux.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "core.h"
+> +#include "pinconf.h"
+> +#include "pinmux.h"
+> +#include "pinctrl-equilibrium.h"
+> +
+> +#define PIN_NAME_FMT	"io-%d"
+> +#define PIN_NAME_LEN	10
+> +#define PAD_REG_OFF	0x100
+> +
+> +static void eqbr_gpio_disable_irq(struct irq_data *d)
+> +{
+> +	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
+> +	struct eqbr_gpio_ctrl *gctrl = gpiochip_get_data(gc);
+> +	unsigned int offset = irqd_to_hwirq(d);
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&gctrl->lock, flags);
+> +	writel(BIT(offset), gctrl->membase + GPIO_IRNENCLR);
+> +	raw_spin_unlock_irqrestore(&gctrl->lock, flags);
+> +}
+> +
+> +static void eqbr_gpio_enable_irq(struct irq_data *d)
+> +{
+> +	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
+> +	struct eqbr_gpio_ctrl *gctrl = gpiochip_get_data(gc);
+> +	unsigned int offset = irqd_to_hwirq(d);
+> +	unsigned long flags;
+> +
+> +	gc->direction_input(gc, offset);
+> +	raw_spin_lock_irqsave(&gctrl->lock, flags);
+> +	writel(BIT(offset), gctrl->membase + GPIO_IRNRNSET);
+> +	raw_spin_unlock_irqrestore(&gctrl->lock, flags);
+> +}
+> +
+> +static void eqbr_gpio_ack_irq(struct irq_data *d)
+> +{
+> +	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
+> +	struct eqbr_gpio_ctrl *gctrl = gpiochip_get_data(gc);
+> +	unsigned int offset = irqd_to_hwirq(d);
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&gctrl->lock, flags);
+> +	writel(BIT(offset), gctrl->membase + GPIO_IRNCR);
+> +	raw_spin_unlock_irqrestore(&gctrl->lock, flags);
+> +}
+> +
+> +static void eqbr_gpio_mask_ack_irq(struct irq_data *d)
+> +{
+> +	eqbr_gpio_disable_irq(d);
+> +	eqbr_gpio_ack_irq(d);
+> +}
+> +
+> +static inline void eqbr_cfg_bit(void __iomem *addr,
+> +				unsigned int offset, unsigned int set)
+> +{
+> +	if (set)
+> +		writel(readl(addr) | BIT(offset), addr);
+> +	else
+> +		writel(readl(addr) & ~BIT(offset), addr);
+> +}
+> +
+> +static int eqbr_irq_type_cfg(struct gpio_irq_type *type,
+> +			     struct eqbr_gpio_ctrl *gctrl,
+> +			     unsigned int offset)
+> +{
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&gctrl->lock, flags);
+> +	eqbr_cfg_bit(gctrl->membase + GPIO_IRNCFG, offset, type->trig_type);
+> +	eqbr_cfg_bit(gctrl->membase + GPIO_EXINTCR1, offset, type->trig_type);
+> +	eqbr_cfg_bit(gctrl->membase + GPIO_EXINTCR0, offset, type->logic_type);
+> +	raw_spin_unlock_irqrestore(&gctrl->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int eqbr_gpio_set_irq_type(struct irq_data *d, unsigned int type)
+> +{
+> +	struct gpio_chip *gc = irq_data_get_irq_chip_data(d);
+> +	struct eqbr_gpio_ctrl *gctrl = gpiochip_get_data(gc);
+> +	unsigned int offset = irqd_to_hwirq(d);
+> +	struct gpio_irq_type it;
+> +
+> +	memset(&it, 0, sizeof(it));
+> +
+> +	if ((type & IRQ_TYPE_SENSE_MASK) == IRQ_TYPE_NONE)
+> +		return 0;
+> +
+> +	switch (type) {
+> +	case IRQ_TYPE_EDGE_RISING:
+> +		it.trig_type = GPIO_EDGE_TRIG;
+> +		it.edge_type = GPIO_SINGLE_EDGE;
+> +		it.logic_type = GPIO_POSITIVE_TRIG;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +		it.trig_type = GPIO_EDGE_TRIG;
+> +		it.edge_type = GPIO_SINGLE_EDGE;
+> +		it.logic_type = GPIO_NEGATIVE_TRIG;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_BOTH:
+> +		it.trig_type = GPIO_EDGE_TRIG;
+> +		it.edge_type = GPIO_BOTH_EDGE;
+> +		it.logic_type = GPIO_POSITIVE_TRIG;
+> +		break;
+> +
+> +	case IRQ_TYPE_LEVEL_HIGH:
+> +		it.trig_type = GPIO_LEVEL_TRIG;
+> +		it.edge_type = GPIO_SINGLE_EDGE;
+> +		it.logic_type = GPIO_POSITIVE_TRIG;
+> +		break;
+> +
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		it.trig_type = GPIO_LEVEL_TRIG;
+> +		it.edge_type = GPIO_SINGLE_EDGE;
+> +		it.logic_type = GPIO_NEGATIVE_TRIG;
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	eqbr_irq_type_cfg(&it, gctrl, offset);
+> +	if (it.trig_type == GPIO_EDGE_TRIG)
+> +		irq_set_handler_locked(d, handle_edge_irq);
+> +	else
+> +		irq_set_handler_locked(d, handle_level_irq);
+> +
+> +	return 0;
+> +}
+> +
+> +static void eqbr_irq_handler(struct irq_desc *desc)
+> +{
+> +	struct gpio_chip *gc = irq_desc_get_handler_data(desc);
+> +	struct eqbr_gpio_ctrl *gctrl = gpiochip_get_data(gc);
+> +	struct irq_chip *ic = irq_desc_get_chip(desc);
+> +	unsigned long pins, offset;
+> +
+> +	chained_irq_enter(ic, desc);
+> +	pins = readl(gctrl->membase + GPIO_IRNCR);
+> +
+> +	for_each_set_bit(offset, &pins, gc->ngpio)
+> +		generic_handle_irq(irq_find_mapping(gc->irq.domain, offset));
+> +
+> +	chained_irq_exit(ic, desc);
+> +}
+> +
+> +static int gpiochip_setup(struct device *dev, struct eqbr_gpio_ctrl *gctrl)
+> +{
+> +	struct gpio_irq_chip *girq;
+> +	struct gpio_chip *gc;
+> +
+> +	gc = &gctrl->chip;
+> +	gc->label = gctrl->name;
+> +#if defined(CONFIG_OF_GPIO)
+> +	gc->of_node = gctrl->node;
+> +#endif
+> +
+> +	if (!of_property_read_bool(gctrl->node, "interrupt-controller")) {
+> +		dev_dbg(dev, "gc %s: doesn't act as interrupt controller!\n",
+> +			gctrl->name);
+> +		return 0;
+> +	}
+> +
+> +	gctrl->ic.name = "gpio_irq";
+> +	gctrl->ic.irq_mask = eqbr_gpio_disable_irq;
+> +	gctrl->ic.irq_unmask = eqbr_gpio_enable_irq;
+> +	gctrl->ic.irq_ack = eqbr_gpio_ack_irq;
+> +	gctrl->ic.irq_mask_ack = eqbr_gpio_mask_ack_irq;
+> +	gctrl->ic.irq_set_type = eqbr_gpio_set_irq_type;
+> +
+> +	girq = &gctrl->chip.irq;
+> +	girq->chip = &gctrl->ic;
+> +	girq->parent_handler = eqbr_irq_handler;
+> +	girq->num_parents = 1;
+> +	girq->parents = devm_kcalloc(dev, 1, sizeof(*girq->parents), GFP_KERNEL);
+> +	if (!girq->parents)
+> +		return -ENOMEM;
+> +
+> +	girq->default_type = IRQ_TYPE_NONE;
+> +	girq->handler = handle_bad_irq;
+> +	girq->parents[0] = gctrl->virq;
+> +
+> +	return 0;
+> +}
+> +
+> +static int gpiolib_reg(struct eqbr_pinctrl_drv_data *drvdata)
+> +{
+> +	struct device *dev = drvdata->dev;
+> +	struct eqbr_gpio_ctrl *gctrl;
+> +	struct device_node *np;
+> +	struct resource res;
+> +	int i, ret;
+> +
+> +	for (i = 0; i < drvdata->nr_gpio_ctrls; i++) {
+> +		gctrl = drvdata->gpio_ctrls + i;
+> +		np = gctrl->node;
+> +
+> +		gctrl->name = devm_kasprintf(dev, GFP_KERNEL, "gpiochip%d", i);
+> +		if (!gctrl->name)
+> +			return -ENOMEM;
+> +
+> +		if (of_address_to_resource(np, 0, &res)) {
+> +			dev_err(dev, "Failed to get GPIO register address\n");
+> +			return -ENXIO;
+> +		}
+> +
+> +		gctrl->membase = devm_ioremap_resource(dev, &res);
+> +		if (IS_ERR(gctrl->membase))
+> +			return PTR_ERR(gctrl->membase);
+> +
+> +		gctrl->virq = irq_of_parse_and_map(np, 0);
+> +		if (!gctrl->virq) {
+> +			dev_err(dev, "%s: failed to parse and map irq\n",
+> +				gctrl->name);
+> +			return -ENXIO;
+> +		}
+> +		raw_spin_lock_init(&gctrl->lock);
+> +
+> +		ret = bgpio_init(&gctrl->chip, dev, gctrl->bank->nr_pins / 8,
+> +				 gctrl->membase + GPIO_IN,
+> +				 gctrl->membase + GPIO_OUTSET,
+> +				 gctrl->membase + GPIO_OUTCLR,
+> +				 gctrl->membase + GPIO_DIR,
+> +				 NULL, 0);
+> +		if (ret) {
+> +			dev_err(dev, "unable to init generic GPIO\n");
+> +			return ret;
+> +		}
+> +
+> +		ret = gpiochip_setup(dev, gctrl);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = devm_gpiochip_add_data(dev, &gctrl->chip, gctrl);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static inline struct eqbr_pin_bank
+> +*find_pinbank_via_pin(struct eqbr_pinctrl_drv_data *pctl, unsigned int pin)
+> +{
+> +	struct eqbr_pin_bank *bank;
+> +	int i;
+> +
+> +	for (i = 0; i < pctl->nr_banks; i++) {
+> +		bank = &pctl->pin_banks[i];
+> +		if (pin >= bank->pin_base &&
+> +		    (pin - bank->pin_base) < bank->nr_pins)
+> +			return bank;
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+> +static const struct pinctrl_ops eqbr_pctl_ops = {
+> +	.get_groups_count	= pinctrl_generic_get_group_count,
+> +	.get_group_name		= pinctrl_generic_get_group_name,
+> +	.get_group_pins		= pinctrl_generic_get_group_pins,
+> +	.dt_node_to_map		= pinconf_generic_dt_node_to_map_all,
+> +	.dt_free_map		= pinconf_generic_dt_free_map,
+> +};
+> +
+> +static int eqbr_set_pin_mux(struct eqbr_pinctrl_drv_data *pctl,
+> +			    unsigned int pmx, unsigned int pin)
+> +{
+> +	struct eqbr_pin_bank *bank;
+> +	unsigned long flags;
+> +	unsigned int offset;
+> +	void __iomem *mem;
+> +
+> +	bank = find_pinbank_via_pin(pctl, pin);
+> +	if (!bank) {
+> +		dev_err(pctl->dev, "Couldn't find pin bank for pin %u\n", pin);
+> +		return -ENODEV;
+> +	}
+> +	mem = bank->membase;
+> +	offset = pin - bank->pin_base;
+> +
+> +	if (!(bank->aval_pinmap & BIT(offset))) {
+> +		dev_err(pctl->dev,
+> +			"PIN: %u is not valid, pinbase: %u, bitmap: %u\n",
+> +			pin, bank->pin_base, bank->aval_pinmap);
+> +		return -ENODEV;
+> +	}
+> +
+> +	raw_spin_lock_irqsave(&pctl->lock, flags);
+> +	writel(pmx, mem + (offset * 4));
+> +	raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> +	return 0;
+> +}
+> +
+> +static int eqbr_pinmux_set_mux(struct pinctrl_dev *pctldev,
+> +			       unsigned int selector, unsigned int group)
+> +{
+> +	struct eqbr_pinctrl_drv_data *pctl = pinctrl_dev_get_drvdata(pctldev);
+> +	struct function_desc *func;
+> +	struct group_desc *grp;
+> +	unsigned int *pinmux;
+> +	int i;
+> +
+> +	func = pinmux_generic_get_function(pctldev, selector);
+> +	if (!func)
+> +		return -EINVAL;
+> +
+> +	grp = pinctrl_generic_get_group(pctldev, group);
+> +	if (!grp)
+> +		return -EINVAL;
+> +
+> +	pinmux = grp->data;
+> +	for (i = 0; i < grp->num_pins; i++)
+> +		eqbr_set_pin_mux(pctl, pinmux[i], grp->pins[i]);
+> +
+> +	return 0;
+> +}
+> +
+> +static int eqbr_pinmux_gpio_request(struct pinctrl_dev *pctldev,
+> +				    struct pinctrl_gpio_range *range,
+> +				    unsigned int pin)
+> +{
+> +	struct eqbr_pinctrl_drv_data *pctl = pinctrl_dev_get_drvdata(pctldev);
+> +
+> +	return eqbr_set_pin_mux(pctl, EQBR_GPIO_MODE, pin);
+> +}
+> +
+> +static const struct pinmux_ops eqbr_pinmux_ops = {
+> +	.get_functions_count	= pinmux_generic_get_function_count,
+> +	.get_function_name	= pinmux_generic_get_function_name,
+> +	.get_function_groups	= pinmux_generic_get_function_groups,
+> +	.set_mux		= eqbr_pinmux_set_mux,
+> +	.gpio_request_enable	= eqbr_pinmux_gpio_request,
+> +	.strict			= true,
+> +};
+> +
+> +static int get_drv_cur(void __iomem *mem, unsigned int offset)
+> +{
+> +	unsigned int idx = offset / DRV_CUR_PINS; /* 0-15, 16-31 per register*/
+> +	unsigned int pin_offset = offset % DRV_CUR_PINS;
+> +
+> +	return PARSE_DRV_CURRENT(readl(mem + REG_DRCC(idx)), pin_offset);
+> +}
+> +
+> +static struct eqbr_gpio_ctrl
+> +*get_gpio_ctrls_via_bank(struct eqbr_pinctrl_drv_data *pctl,
+> +			struct eqbr_pin_bank *bank)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < pctl->nr_gpio_ctrls; i++) {
+> +		if (pctl->gpio_ctrls[i].bank == bank)
+> +			return &pctl->gpio_ctrls[i];
+> +	}
+> +
+> +	return NULL;
+> +}
+> +
+> +static int eqbr_pinconf_get(struct pinctrl_dev *pctldev, unsigned int pin,
+> +			    unsigned long *config)
+> +{
+> +	struct eqbr_pinctrl_drv_data *pctl = pinctrl_dev_get_drvdata(pctldev);
+> +	enum pin_config_param param = pinconf_to_config_param(*config);
+> +	struct eqbr_gpio_ctrl *gctrl;
+> +	struct eqbr_pin_bank *bank;
+> +	unsigned long flags;
+> +	unsigned int offset;
+> +	void __iomem *mem;
+> +	u32 val;
+> +
+> +	bank = find_pinbank_via_pin(pctl, pin);
+> +	if (!bank) {
+> +		dev_err(pctl->dev, "Couldn't find pin bank for pin %u\n", pin);
+> +		return -ENODEV;
+> +	}
+> +	mem = bank->membase;
+> +	offset = pin - bank->pin_base;
+> +
+> +	if (!(bank->aval_pinmap & BIT(offset))) {
+> +		dev_err(pctl->dev,
+> +			"PIN: %u is not valid, pinbase: %u, bitmap: %u\n",
+> +			pin, bank->pin_base, bank->aval_pinmap);
+> +		return -ENODEV;
+> +	}
+> +
+> +	raw_spin_lock_irqsave(&pctl->lock, flags);
+> +	switch (param) {
+> +	case PIN_CONFIG_BIAS_PULL_UP:
+> +		val = !!(readl(mem + REG_PUEN) & BIT(offset));
+> +		break;
+> +	case PIN_CONFIG_BIAS_PULL_DOWN:
+> +		val = !!(readl(mem + REG_PDEN) & BIT(offset));
+> +		break;
+> +	case PIN_CONFIG_DRIVE_OPEN_DRAIN:
+> +		val = !!(readl(mem + REG_OD) & BIT(offset));
+> +		break;
+> +	case PIN_CONFIG_DRIVE_STRENGTH:
+> +		val = get_drv_cur(mem, offset);
+> +		break;
+> +	case PIN_CONFIG_SLEW_RATE:
+> +		val = !!(readl(mem + REG_SRC) & BIT(offset));
+> +		break;
+> +	case PIN_CONFIG_OUTPUT_ENABLE:
+> +		gctrl = get_gpio_ctrls_via_bank(pctl, bank);
+> +		if (!gctrl) {
+> +			dev_err(pctl->dev, "Failed to find gpio via bank pinbase: %u, pin: %u\n",
+> +				bank->pin_base, pin);
+> +			raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> +			return -ENODEV;
+> +		}
+> +		val = !!(readl(gctrl->membase + GPIO_DIR) & BIT(offset));
+> +		break;
+> +	default:
+> +		raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> +		return -ENOTSUPP;
+> +	}
+> +	raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> +	*config = pinconf_to_config_packed(param, val);
+> +;
+> +	return 0;
+> +}
+> +
+> +static int eqbr_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
+> +			    unsigned long *configs, unsigned int num_configs)
+> +{
+> +	struct eqbr_pinctrl_drv_data *pctl = pinctrl_dev_get_drvdata(pctldev);
+> +	struct eqbr_gpio_ctrl *gctrl;
+> +	enum pin_config_param param;
+> +	struct eqbr_pin_bank *bank;
+> +	unsigned int val, offset;
+> +	struct gpio_chip *gc;
+> +	unsigned long flags;
+> +	void __iomem *mem;
+> +	u32 regval, mask;
+> +	int i;
+> +
+> +	for (i = 0; i < num_configs; i++) {
+> +		param = pinconf_to_config_param(configs[i]);
+> +		val = pinconf_to_config_argument(configs[i]);
+> +
+> +		bank = find_pinbank_via_pin(pctl, pin);
+> +		if (!bank) {
+> +			dev_err(pctl->dev,
+> +				"Couldn't find pin bank for pin %u\n", pin);
+> +			return -ENODEV;
+> +		}
+> +		mem = bank->membase;
+> +		offset = pin - bank->pin_base;
+> +
+> +		switch (param) {
+> +		case PIN_CONFIG_BIAS_PULL_UP:
+> +			mem += REG_PUEN;
+> +			mask = BIT(offset);
+> +			break;
+> +		case PIN_CONFIG_BIAS_PULL_DOWN:
+> +			mem += REG_PDEN;
+> +			mask = BIT(offset);
+> +			break;
+> +		case PIN_CONFIG_DRIVE_OPEN_DRAIN:
+> +			mem += REG_OD;
+> +			mask = BIT(offset);
+> +			break;
+> +		case PIN_CONFIG_DRIVE_STRENGTH:
+> +			mem += REG_DRCC(offset / DRV_CUR_PINS);
+> +			offset = (offset % DRV_CUR_PINS) * 2;
+> +			mask = GENMASK(1, 0) << offset;
+> +			break;
+> +		case PIN_CONFIG_SLEW_RATE:
+> +			mem += REG_SRC;
+> +			mask = BIT(offset);
+> +			break;
+> +		case PIN_CONFIG_OUTPUT_ENABLE:
+> +			gctrl = get_gpio_ctrls_via_bank(pctl, bank);
+> +			if (!gctrl) {
+> +				dev_err(pctl->dev, "Failed to find gpio via bank pinbase: %u, pin: %u\n",
+> +					bank->pin_base, pin);
+> +				return -ENODEV;
+> +			}
+> +			gc = &gctrl->chip;
+> +			gc->direction_output(gc, offset, 0);
+> +			continue;
+> +		default:
+> +			return -ENOTSUPP;
+> +		}
+> +
+> +		raw_spin_lock_irqsave(&pctl->lock, flags);
+> +		regval = readl(mem);
+> +		regval = (regval & ~mask) | ((val << offset) & mask);
+> +		writel(regval, mem);
+> +		raw_spin_unlock_irqrestore(&pctl->lock, flags);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int eqbr_pinconf_group_get(struct pinctrl_dev *pctldev,
+> +				  unsigned int group, unsigned long *config)
+> +{
+> +	unsigned int i, npins, old = 0;
+> +	const unsigned int *pins;
+> +	int ret;
+> +
+> +	ret = pinctrl_generic_get_group_pins(pctldev, group, &pins, &npins);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < npins; i++) {
+> +		if (eqbr_pinconf_get(pctldev, pins[i], config))
+> +			return -ENOTSUPP;
+> +
+> +		if (i && old != *config)
+> +			return -ENOTSUPP;
+> +
+> +		old = *config;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int eqbr_pinconf_group_set(struct pinctrl_dev *pctldev,
+> +				  unsigned int group, unsigned long *configs,
+> +				  unsigned int num_configs)
+> +{
+> +	const unsigned int *pins;
+> +	unsigned int i, npins;
+> +	int ret;
+> +
+> +	ret = pinctrl_generic_get_group_pins(pctldev, group, &pins, &npins);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < npins; i++) {
+> +		ret = eqbr_pinconf_set(pctldev, pins[i], configs, num_configs);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static const struct pinconf_ops eqbr_pinconf_ops = {
+> +	.is_generic			= true,
+> +	.pin_config_get			= eqbr_pinconf_get,
+> +	.pin_config_set			= eqbr_pinconf_set,
+> +	.pin_config_group_get		= eqbr_pinconf_group_get,
+> +	.pin_config_group_set		= eqbr_pinconf_group_set,
+> +	.pin_config_config_dbg_show	= pinconf_generic_dump_config,
+> +};
+> +
+> +static bool is_func_exist(struct eqbr_pmx_func *funcs, const char *name,
+> +			 unsigned int nr_funcs, unsigned int *idx)
+> +{
+> +	int i;
+> +
+> +	if (!funcs)
+> +		return false;
+> +
+> +	for (i = 0; i < nr_funcs; i++) {
+> +		if (funcs[i].name && !strcmp(funcs[i].name, name)) {
+> +			*idx = i;
+> +			return true;
+> +		}
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static int funcs_utils(struct device *dev, struct eqbr_pmx_func *funcs,
+> +		       unsigned int *nr_funcs, funcs_util_ops op)
+> +{
+> +	struct device_node *node = dev->of_node;
+> +	struct device_node *np;
+> +	struct property *prop;
+> +	const char *fn_name;
+> +	unsigned int fid;
+> +	int i, j;
+> +
+> +	i = 0;
+> +	for_each_child_of_node(node, np) {
+> +		prop = of_find_property(np, "groups", NULL);
+> +		if (!prop)
+> +			continue;
+> +
+> +		if (of_property_read_string(np, "function", &fn_name)) {
+> +			/* some groups may not have function, it's OK */
+> +			dev_dbg(dev, "Group %s: not function binded!\n",
+> +				(char *)prop->value);
+> +			continue;
+> +		}
+> +
+> +		switch (op) {
+> +		case OP_COUNT_NR_FUNCS:
+> +			if (!is_func_exist(funcs, fn_name, *nr_funcs, &fid))
+> +				*nr_funcs = *nr_funcs + 1;
+> +			break;
+> +
+> +		case OP_ADD_FUNCS:
+> +			if (!is_func_exist(funcs, fn_name, *nr_funcs, &fid))
+> +				funcs[i].name = fn_name;
+> +			break;
+> +
+> +		case OP_COUNT_NR_FUNC_GRPS:
+> +			if (is_func_exist(funcs, fn_name, *nr_funcs, &fid))
+> +				funcs[fid].nr_groups++;
+> +			break;
+> +
+> +		case OP_ADD_FUNC_GRPS:
+> +			if (is_func_exist(funcs, fn_name, *nr_funcs, &fid)) {
+> +				for (j = 0; j < funcs[fid].nr_groups; j++)
+> +					if (!funcs[fid].groups[j])
+> +						break;
+> +				funcs[fid].groups[j] = prop->value;
+> +			}
+> +			break;
+> +
+> +		default:
+> +				return -EINVAL;
+> +		}
+> +		i++;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int eqbr_build_functions(struct eqbr_pinctrl_drv_data *drvdata)
+> +{
+> +	struct device *dev = drvdata->dev;
+> +	struct eqbr_pmx_func *funcs = NULL;
+> +	unsigned int nr_funcs = 0;
+> +	int i, ret;
+> +
+> +	ret = funcs_utils(dev, funcs, &nr_funcs, OP_COUNT_NR_FUNCS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	funcs = devm_kcalloc(dev, nr_funcs, sizeof(*funcs), GFP_KERNEL);
+> +	if (!funcs)
+> +		return -ENOMEM;
+> +
+> +	ret = funcs_utils(dev, funcs, &nr_funcs, OP_ADD_FUNCS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = funcs_utils(dev, funcs, &nr_funcs, OP_COUNT_NR_FUNC_GRPS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < nr_funcs; i++) {
+> +		if (!funcs[i].nr_groups)
+> +			continue;
+> +		funcs[i].groups = devm_kcalloc(dev, funcs[i].nr_groups,
+> +					       sizeof(*(funcs[i].groups)),
+> +					       GFP_KERNEL);
+> +		if (!funcs[i].groups)
+> +			return -ENOMEM;
+> +	}
+> +
+> +	ret = funcs_utils(dev, funcs, &nr_funcs, OP_ADD_FUNC_GRPS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < nr_funcs; i++) {
+> +		ret = pinmux_generic_add_function(drvdata->pctl_dev,
+> +						  funcs[i].name,
+> +						  funcs[i].groups,
+> +						  funcs[i].nr_groups,
+> +						  drvdata);
+> +		if (ret < 0) {
+> +			dev_err(dev, "Failed to register function %s\n",
+> +				funcs[i].name);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int eqbr_build_groups(struct eqbr_pinctrl_drv_data *drvdata)
+> +{
+> +	struct device *dev = drvdata->dev;
+> +	struct device_node *node = dev->of_node;
+> +	unsigned int *pinmux, pin_id, pinmux_id;
+> +	struct group_desc group;
+> +	struct device_node *np;
+> +	struct property *prop;
+> +	int j, err;
+> +
+> +	for_each_child_of_node(node, np) {
+> +		prop = of_find_property(np, "groups", NULL);
+> +		if (!prop)
+> +			continue;
+> +
+> +		group.num_pins = of_property_count_u32_elems(np, "pins");
+> +		if (group.num_pins < 0) {
+> +			dev_err(dev, "No pins in the group: %s\n", prop->name);
+> +			return -EINVAL;
+> +		}
+> +		group.name = prop->value;
+> +		group.pins = devm_kcalloc(dev, group.num_pins,
+> +					  sizeof(*(group.pins)), GFP_KERNEL);
+> +		if (!group.pins)
+> +			return -ENOMEM;
+> +
+> +		pinmux = devm_kcalloc(dev, group.num_pins, sizeof(*pinmux),
+> +				      GFP_KERNEL);
+> +		if (!pinmux)
+> +			return -ENOMEM;
+> +
+> +		for (j = 0; j < group.num_pins; j++) {
+> +			if (of_property_read_u32_index(np, "pins", j, &pin_id)) {
+> +				dev_err(dev, "Group %s: Read intel pins id failed\n",
+> +					group.name);
+> +				return -EINVAL;
+> +			}
+> +			if (pin_id >= drvdata->pctl_desc.npins) {
+> +				dev_err(dev, "Group %s: Invalid pin ID, idx: %d, pin %u\n",
+> +					group.name, j, pin_id);
+> +				return -EINVAL;
+> +			}
+> +			group.pins[j] = pin_id;
+> +			if (of_property_read_u32_index(np, "pinmux", j, &pinmux_id)) {
+> +				dev_err(dev, "Group %s: Read intel pinmux id failed\n",
+> +					group.name);
+> +				return -EINVAL;
+> +			}
+> +			pinmux[j] = pinmux_id;
+> +		}
+> +
+> +		err = pinctrl_generic_add_group(drvdata->pctl_dev, group.name,
+> +						group.pins, group.num_pins,
+> +						pinmux);
+> +		if (err < 0) {
+> +			dev_err(dev, "Failed to register group %s\n", group.name);
+> +			return err;
+> +		}
+> +		memset(&group, 0, sizeof(group));
+> +		pinmux = NULL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int pinctrl_reg(struct eqbr_pinctrl_drv_data *drvdata)
+> +{
+> +	struct pinctrl_desc *pctl_desc;
+> +	struct pinctrl_pin_desc *pdesc;
+> +	struct device *dev;
+> +	unsigned int nr_pins;
+> +	char *pin_names;
+> +	int i, ret;
+> +
+> +	dev = drvdata->dev;
+> +	pctl_desc = &drvdata->pctl_desc;
+> +	pctl_desc->name = "eqbr-pinctrl";
+> +	pctl_desc->owner = THIS_MODULE;
+> +	pctl_desc->pctlops = &eqbr_pctl_ops;
+> +	pctl_desc->pmxops = &eqbr_pinmux_ops;
+> +	pctl_desc->confops = &eqbr_pinconf_ops;
+> +	raw_spin_lock_init(&drvdata->lock);
+> +
+> +	for (i = 0, nr_pins = 0; i < drvdata->nr_banks; i++)
+> +		nr_pins += drvdata->pin_banks[i].nr_pins;
+> +
+> +	pdesc = devm_kcalloc(dev, nr_pins, sizeof(*pdesc), GFP_KERNEL);
+> +	if (!pdesc)
+> +		return -ENOMEM;
+> +	pin_names = devm_kcalloc(dev, nr_pins, PIN_NAME_LEN, GFP_KERNEL);
+> +	if (!pin_names)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < nr_pins; i++) {
+> +		sprintf(pin_names, PIN_NAME_FMT, i);
+> +		pdesc[i].number = i;
+> +		pdesc[i].name = pin_names;
+> +		pin_names += PIN_NAME_LEN;
+> +	}
+> +	pctl_desc->pins = pdesc;
+> +	pctl_desc->npins = nr_pins;
+> +	dev_dbg(dev, "pinctrl total pin number: %u\n", nr_pins);
+> +
+> +	ret = devm_pinctrl_register_and_init(dev, pctl_desc, drvdata,
+> +					     &drvdata->pctl_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = eqbr_build_groups(drvdata);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to build groups\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = eqbr_build_functions(drvdata);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to build groups\n");
+> +		return ret;
+> +	}
+> +
+> +	return pinctrl_enable(drvdata->pctl_dev);
+> +}
+> +
+> +static int pinbank_init(struct device_node *np,
+> +			struct eqbr_pinctrl_drv_data *drvdata,
+> +			struct eqbr_pin_bank *bank, unsigned int id)
+> +{
+> +	struct device *dev = drvdata->dev;
+> +	struct of_phandle_args spec;
+> +	int ret;
+> +
+> +	bank->membase = drvdata->membase + id * PAD_REG_OFF;
+> +
+> +	ret = of_parse_phandle_with_fixed_args(np, "gpio-ranges", 3, 0, &spec);
+> +	if (ret) {
+> +		dev_err(dev, "gpio-range not available!\n");
+> +		return ret;
+> +	}
+> +
+> +	bank->pin_base = spec.args[1];
+> +	bank->nr_pins = spec.args[2];
+> +
+> +	bank->aval_pinmap = readl(bank->membase + REG_AVAIL);
+> +	bank->id = id;
+> +
+> +	dev_dbg(dev, "pinbank id: %d, reg: %px, pinbase: %u, pin number: %u, pinmap: 0x%x\n",
+> +		id, bank->membase, bank->pin_base,
+> +		bank->nr_pins, bank->aval_pinmap);
+> +
+> +	return ret;
+> +}
+> +
+> +static int pinbank_probe(struct eqbr_pinctrl_drv_data *drvdata)
+> +{
+> +	struct device *dev = drvdata->dev;
+> +	struct device_node *np_gpio;
+> +	struct eqbr_gpio_ctrl *gctrls;
+> +	struct eqbr_pin_bank *banks;
+> +	int i, nr_gpio;
+> +
+> +	/* Count gpio bank number */
+> +	nr_gpio = 0;
+> +	for_each_node_by_name(np_gpio, "gpio") {
+> +		if (of_device_is_available(np_gpio))
+> +			nr_gpio++;
+> +	}
+> +
+> +	if (!nr_gpio) {
+> +		dev_err(dev, "NO pin bank available!\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Count pin bank number and gpio controller number */
+> +	banks = devm_kcalloc(dev, nr_gpio, sizeof(*banks), GFP_KERNEL);
+> +	if (!banks)
+> +		return -ENOMEM;
+> +
+> +	gctrls = devm_kcalloc(dev, nr_gpio, sizeof(*gctrls), GFP_KERNEL);
+> +	if (!gctrls)
+> +		return -ENOMEM;
+> +
+> +	dev_dbg(dev, "found %d gpio controller!\n", nr_gpio);
+> +
+> +	/* Initialize Pin bank */
+> +	i = 0;
+> +	for_each_node_by_name(np_gpio, "gpio") {
+> +		if (!of_device_is_available(np_gpio))
+> +			continue;
+> +
+> +		pinbank_init(np_gpio, drvdata, banks + i, i);
+> +
+> +		gctrls[i].node = np_gpio;
+> +		gctrls[i].bank = banks + i;
+> +		i++;
+> +	}
+> +
+> +	drvdata->pin_banks = banks;
+> +	drvdata->nr_banks = nr_gpio;
+> +	drvdata->gpio_ctrls = gctrls;
+> +	drvdata->nr_gpio_ctrls = nr_gpio;
+> +
+> +	return 0;
+> +}
+> +
+> +static int eqbr_pinctrl_probe(struct platform_device *pdev)
+> +{
+> +	struct eqbr_pinctrl_drv_data *drvdata;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> +	if (!drvdata)
+> +		return -ENOMEM;
+> +
+> +	drvdata->dev = dev;
+> +
+> +	drvdata->membase = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(drvdata->membase))
+> +		return PTR_ERR(drvdata->membase);
+> +
+> +	ret = pinbank_probe(drvdata);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pinctrl_reg(drvdata);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = gpiolib_reg(drvdata);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, drvdata);
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id eqbr_pinctrl_dt_match[] = {
+> +	{ .compatible = "intel,lightning-mountain-io" },
+> +	{}
+> +};
+> +
+> +static struct platform_driver eqbr_pinctrl_driver = {
+> +	.probe	= eqbr_pinctrl_probe,
+> +	.driver = {
+> +		.name = "eqbr-pinctrl",
+> +		.of_match_table = eqbr_pinctrl_dt_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(eqbr_pinctrl_driver);
+> +
+> +MODULE_AUTHOR("Zhu Yixin <yixin.zhu@intel.com>, Rahul Tanwar <rahul.tanwar@intel.com>");
+> +MODULE_DESCRIPTION("Pinctrl Driver for LGM SoC (Equilibrium)");
+> diff --git a/drivers/pinctrl/pinctrl-equilibrium.h b/drivers/pinctrl/pinctrl-equilibrium.h
+> new file mode 100644
+> index 000000000000..83cb7dafc657
+> --- /dev/null
+> +++ b/drivers/pinctrl/pinctrl-equilibrium.h
+> @@ -0,0 +1,144 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + *  Copyright(c) 2019 Intel Corporation.
+> + */
+> +
+> +#ifndef __PINCTRL_EQUILIBRIUM_H
+> +#define __PINCTRL_EQUILIBRIUM_H
+> +
+> +/* PINPAD register offset */
+> +#define REG_PMX_BASE	0x0	/* Port Multiplexer Control Register */
+> +#define REG_PUEN	0x80	/* PULL UP Enable Register */
+> +#define REG_PDEN	0x84	/* PULL DOWN Enable Register */
+> +#define REG_SRC		0x88	/* Slew Rate Control Register */
+> +#define REG_DCC0	0x8C	/* Drive Current Control Register 0 */
+> +#define REG_DCC1	0x90	/* Drive Current Control Register 1 */
+> +#define REG_OD		0x94	/* Open Drain Enable Register */
+> +#define REG_AVAIL	0x98	/* Pad Control Availability Register */
+> +#define DRV_CUR_PINS	16	/* Drive Current pin number per register */
+> +#define REG_DRCC(x)	(REG_DCC0 + (x) * 4) /* Driver current macro */
+> +
+> +/* GPIO register offset */
+> +#define GPIO_OUT	0x0	/* Data Output Register */
+> +#define GPIO_IN		0x4	/* Data Input Register */
+> +#define GPIO_DIR	0x8	/* Direction Register */
+> +#define GPIO_EXINTCR0	0x18	/* External Interrupt Control Register 0 */
+> +#define GPIO_EXINTCR1	0x1C	/* External Interrupt Control Register 1 */
+> +#define GPIO_IRNCR	0x20	/* IRN Capture Register */
+> +#define GPIO_IRNICR	0x24	/* IRN Interrupt Control Register */
+> +#define GPIO_IRNEN	0x28	/* IRN Interrupt Enable Register */
+> +#define GPIO_IRNCFG	0x2C	/* IRN Interrupt Configuration Register */
+> +#define GPIO_IRNRNSET	0x30	/* IRN Interrupt Enable Set Register */
+> +#define GPIO_IRNENCLR	0x34	/* IRN Interrupt Enable Clear Register */
+> +#define GPIO_OUTSET	0x40	/* Output Set Register */
+> +#define GPIO_OUTCLR	0x44	/* Output Clear Register */
+> +#define GPIO_DIRSET	0x48	/* Direction Set Register */
+> +#define GPIO_DIRCLR	0x4C	/* Direction Clear Register */
+> +
+> +/* parse given pin's driver current value */
+> +#define PARSE_DRV_CURRENT(val, pin) (((val) >> ((pin) * 2)) & 0x3)
+> +
+> +#define GPIO_EDGE_TRIG		0
+> +#define GPIO_LEVEL_TRIG		1
+> +#define GPIO_SINGLE_EDGE	0
+> +#define GPIO_BOTH_EDGE		1
+> +#define GPIO_POSITIVE_TRIG	0
+> +#define GPIO_NEGATIVE_TRIG	1
+> +
+> +#define EQBR_GPIO_MODE		0
+> +
+> +typedef enum {
+> +	OP_COUNT_NR_FUNCS,
+> +	OP_ADD_FUNCS,
+> +	OP_COUNT_NR_FUNC_GRPS,
+> +	OP_ADD_FUNC_GRPS,
+> +	OP_NONE,
+> +} funcs_util_ops;
+> +
+> +/**
+> + * struct gpio_irq_type: gpio irq configuration
+> + * @trig_type: level trigger or edge trigger
+> + * @edge_type: sigle edge or both edge
+> + * @logic_type: positive trigger or negative trigger
+> + */
+> +struct gpio_irq_type {
+> +	unsigned int trig_type;
+> +	unsigned int edge_type;
+> +	unsigned int logic_type;
+> +};
+> +
+> +/**
+> + * struct eqbr_pmx_func: represent a pin function.
+> + * @name: name of the pin function, used to lookup the function.
+> + * @groups: one or more names of pin groups that provide this function.
+> + * @nr_groups: number of groups included in @groups.
+> + */
+> +struct eqbr_pmx_func {
+> +	const char		*name;
+> +	const char		**groups;
+> +	unsigned int		nr_groups;
+> +};
+> +
+> +/**
+> + * struct eqbr_pin_bank: represent a pin bank.
+> + * @membase: base address of the pin bank register.
+> + * @id: bank id, to idenify the unique bank.
+> + * @pin_base: starting pin number of the pin bank.
+> + * @nr_pins: number of the pins of the pin bank.
+> + * @aval_pinmap: available pin bitmap of the pin bank.
+> + */
+> +struct eqbr_pin_bank {
+> +	void __iomem		*membase;
+> +	unsigned int		id;
+> +	unsigned int		pin_base;
+> +	unsigned int		nr_pins;
+> +	u32			aval_pinmap;
+> +};
+> +
+> +/**
+> + * struct eqbr_gpio_ctrl: represent a gpio controller.
+> + * @node: device node of gpio controller.
+> + * @bank: pointer to corresponding pin bank.
+> + * @membase: base address of the gpio controller.
+> + * @chip: gpio chip.
+> + * @ic:   irq chip.
+> + * @name: gpio chip name.
+> + * @virq: irq number of the gpio chip to parent's irq domain.
+> + * @lock: spin lock to protect gpio register write.
+> + */
+> +struct eqbr_gpio_ctrl {
+> +	struct device_node	*node;
+> +	struct eqbr_pin_bank	*bank;
+> +	void __iomem		*membase;
+> +	struct gpio_chip	chip;
+> +	struct irq_chip		ic;
+> +	const char		*name;
+> +	unsigned int		virq;
+> +	raw_spinlock_t		lock; /* protect gpio register */
+> +};
+> +
+> +/**
+> + * struct eqbr_pinctrl_drv_data:
+> + * @dev: device instance representing the controller.
+> + * @pctl_desc: pin controller descriptor.
+> + * @pctl_dev: pin control class device
+> + * @membase: base address of pin controller
+> + * @pin_banks: list of pin banks of the driver.
+> + * @nr_banks: number of pin banks.
+> + * @gpio_ctrls: list of gpio controllers.
+> + * @nr_gpio_ctrls: number of gpio controllers.
+> + * @lock: protect pinctrl register write
+> + */
+> +struct eqbr_pinctrl_drv_data {
+> +	struct device			*dev;
+> +	struct pinctrl_desc		pctl_desc;
+> +	struct pinctrl_dev		*pctl_dev;
+> +	void __iomem			*membase;
+> +	struct eqbr_pin_bank		*pin_banks;
+> +	unsigned int			nr_banks;
+> +	struct eqbr_gpio_ctrl		*gpio_ctrls;
+> +	unsigned int			nr_gpio_ctrls;
+> +	raw_spinlock_t			lock; /* protect pinpad register */
+> +};
+> +
+> +#endif /* __PINCTRL_EQUILIBRIUM_H */
+> -- 
+> 2.11.0
+> 
 
-Kind regards
-Uffe
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
->
-> > Thanks a lot for fixing all this mess!
->
-> I hope the users also appreciate our work.
->
-> Best regards,
-> Nikolaus
->
-> >
-> > Kind regards
-> > Uffe
-> >
-> >>
-> >> PATCH V2 2019-10-19 20:41:47:
-> >> * added acked-by for wl1251 patches - Kalle Valo <kvalo@codeaurora.org>
-> >> * really removed old pdata-quirks code (not through #if 0)
-> >> * splited out a partial revert of
-> >>        efdfeb079cc3b ("regulator: fixed: Convert to use GPIO descriptor only")
-> >>  because that was introduced after v4.19 and stops the removal of
-> >>  the pdata-quirks patch from cleanly applying to v4.9, v4.14, v4.19
-> >>  - reported by Sasha Levin <sashal@kernel.org>
-> >> * added a new patch to remove old omap hsmmc since pdata quirks
-> >>  were last user - suggested by Tony Lindgren <tony@atomide.com>
-> >>
-> >> PATCH V1 2019-10-18 22:25:39:
-> >> Here we have a set of scattered patches to make the OpenPandora WiFi work again.
-> >>
-> >> v4.7 did break the pdata-quirks which made the mmc3 interface
-> >> fail completely, because some code now assumes device tree
-> >> based instantiation.
-> >>
-> >> Fixes: 81eef6ca9201 ("mmc: omap_hsmmc: Use dma_request_chan() for requesting DMA channel")
-> >>
-> >> v4.11 did break the sdio qirks for wl1251 which made the driver no longer
-> >> load, although the device was found as an sdio client.
-> >>
-> >> Fixes: 884f38607897 ("mmc: core: move some sdio IDs out of quirks file")
-> >>
-> >> To solve these issues:
-> >> * we convert mmc3 and wl1251 initialization from pdata-quirks
-> >>  to device tree
-> >> * we make the wl1251 driver read properties from device tree
-> >> * we fix the mmc core vendor ids and quirks
-> >> * we fix the wl1251 (and wl1271) driver to use only vendor ids
-> >>  from header file instead of (potentially conflicting) local
-> >>  definitions
-> >>
-> >>
-> >> H. Nikolaus Schaller (12):
-> >>  Documentation: dt: wireless: update wl1251 for sdio
-> >>  net: wireless: ti: wl1251 add device tree support
-> >>  ARM: dts: pandora-common: define wl1251 as child node of mmc3
-> >>  mmc: host: omap_hsmmc: add code for special init of wl1251 to get rid
-> >>    of pandora_wl1251_init_card
-> >>  omap: pdata-quirks: revert pandora specific gpiod additions
-> >>  omap: pdata-quirks: remove openpandora quirks for mmc3 and wl1251
-> >>  omap: remove omap2_hsmmc_info in old hsmmc.[ch] and update Makefile
-> >>  mmc: host: omap-hsmmc: remove init_card pdata callback from pdata
-> >>  mmc: sdio: fix wl1251 vendor id
-> >>  mmc: core: fix wl1251 sdio quirks
-> >>  net: wireless: ti: wl1251 use new SDIO_VENDOR_ID_TI_WL1251 definition
-> >>  net: wireless: ti: remove local VENDOR_ID and DEVICE_ID definitions
-> >>
-> >> .../bindings/net/wireless/ti,wl1251.txt       |  26 +++
-> >> arch/arm/boot/dts/omap3-pandora-common.dtsi   |  36 +++-
-> >> arch/arm/mach-omap2/Makefile                  |   3 -
-> >> arch/arm/mach-omap2/common.h                  |   1 -
-> >> arch/arm/mach-omap2/hsmmc.c                   | 171 ------------------
-> >> arch/arm/mach-omap2/hsmmc.h                   |  32 ----
-> >> arch/arm/mach-omap2/pdata-quirks.c            | 105 -----------
-> >> drivers/mmc/core/quirks.h                     |   7 +
-> >> drivers/mmc/host/omap_hsmmc.c                 |  30 ++-
-> >> drivers/net/wireless/ti/wl1251/sdio.c         |  23 ++-
-> >> drivers/net/wireless/ti/wlcore/sdio.c         |   8 -
-> >> include/linux/mmc/sdio_ids.h                  |   2 +
-> >> include/linux/platform_data/hsmmc-omap.h      |   3 -
-> >> 13 files changed, 111 insertions(+), 336 deletions(-)
-> >> delete mode 100644 arch/arm/mach-omap2/hsmmc.c
-> >> delete mode 100644 arch/arm/mach-omap2/hsmmc.h
-> >>
-> >> --
-> >> 2.23.0
-> >>
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
