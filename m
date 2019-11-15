@@ -2,143 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCB39FDF7F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 14:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0C5FDFF8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2019 15:23:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727682AbfKON5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 08:57:32 -0500
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:33776 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727508AbfKON5b (ORCPT
+        id S1727466AbfKOOXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 09:23:33 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:21076 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727380AbfKOOXd (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Nov 2019 08:57:31 -0500
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAFDm2Ap000883;
-        Fri, 15 Nov 2019 08:57:05 -0500
-Received: from nam02-sn1-obe.outbound.protection.outlook.com (mail-sn1nam02lp2054.outbound.protection.outlook.com [104.47.36.54])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2w7prg200r-1
+        Fri, 15 Nov 2019 09:23:33 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAFEHMxo008650;
+        Fri, 15 Nov 2019 15:23:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=T9/nzrbSzNCSSlIAj0mf6EvFLY/5Hd6RIjHy97kGKZM=;
+ b=kd1P0HB6DnaONOLWJlRhCm9vzD9lGiDZBguHaM1gRDGLAd3nuzS25QA+iKR2WcEu9xRw
+ AZXBRUyw/t/AkAGb2AchogBvd/NZ1NzTi+yzDEKkNeb50x6Hs3m0toFpkD5jqlmD+lbG
+ ID7emAPLHY2JlbrCLVNJR92uGvaGTeIC01sPD2lFdUPuQXbmkzHiK/tytl+kPE+/zaZH
+ HDuguw88w31NzzdNN/jy2KxzFq7GWX1m13F7NbONEL0tNmxKKU42Y4XACaX5IT+rWSNn
+ flBWHsobQfn2KPH78RDpD9DTeNzPAYRrZS40OdfNokfZaOI7axTNmwIyhCj6ETv6kdi6 hQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2w7psfmrn4-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 15 Nov 2019 08:57:04 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h/0KGkJ0DjGIhRj5Q2VUqgLhUR8PRj2WWI8pZUvFrECUFHwHl7sTNWUYmc5FY02rPpoCsisYG4vlLwyYAHurbpCkFg8bu3bqn6tzrnD7A6/7Ed36M5Eqp7g3v28r9L4shdXOKXfrLw1DAPWzRHhfn3TNxg6giIvEkUnXIHXo3+cJxplHADxzWVcrsFs5iOI4apnJIFQpeWaSMvO/NvXmFNK+6PzUM/bTzqJ4HKvaUhGA7bXtz1VzIK/G38RftDTTwLFT6TTVnmBFesn8pOe6iHCjmng9k52WkO4Umcljl51NX0dJyy/7Gx1uzQ1H9XYx9PcSwg+gM/d87zJ1imN6+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k0vzK/qgF7I7l4GXj3CMMNUnGg2gI5RHY1JdLyJDCaw=;
- b=lmbpt6eu3Kckv+eLraoq6VWHk3umytzcY3ybP0Uhq/1eVy7RbkXg1UjX+DHn1sf2rkR8iBdPwY4JQDImuGILKCkZE2Gl7ykdPaemDZTMAohavVy1BIJtWNxCzWAqtfq6ePR6+SK6Wr66PDEZww3HztUM4t2TYarDxirt5FnquusbZRa2XSgt9gsuSOXbXhhOtCGLzcmE2oO8lZNAffW7lx3et/j8G+1Nd+s0Mmv+fljRblDjhWasYIEBMT+dGIRh8jfrBY7y0wtCKV3VkVWzgh+kv4bdMta8NMmx9oDyIB1npUIY2N7sl8T+DU4vs4FQhYu4uUgasL5Ux8eXcsoLtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 137.71.25.57) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=analog.com;
- dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k0vzK/qgF7I7l4GXj3CMMNUnGg2gI5RHY1JdLyJDCaw=;
- b=ckM6OXTiTsHrA5NTdywxGZtgZkKSP/0w7iZPbad3+XLKFnQ7Lue317O/nn4ToN4v0dpfVI/81fCvtyk8zQ2sIo+tkPi4bx9HYxyN0B/Qj7ZJmF8dYcWcJdhcgQYJkz+yohs8IsWsIyhPGHpBBUHX9JeyMCszghupj7zXRQMdOTU=
-Received: from BN3PR03CA0057.namprd03.prod.outlook.com
- (2a01:111:e400:7a4d::17) by BN6PR03MB2740.namprd03.prod.outlook.com
- (2603:10b6:404:5b::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2451.28; Fri, 15 Nov
- 2019 13:57:03 +0000
-Received: from BL2NAM02FT017.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::204) by BN3PR03CA0057.outlook.office365.com
- (2a01:111:e400:7a4d::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2451.23 via Frontend
- Transport; Fri, 15 Nov 2019 13:57:03 +0000
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
-Received: from nwd2mta2.analog.com (137.71.25.57) by
- BL2NAM02FT017.mail.protection.outlook.com (10.152.77.174) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2451.23
- via Frontend Transport; Fri, 15 Nov 2019 13:57:03 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id xAFDuslW003086
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Fri, 15 Nov 2019 05:56:54 -0800
-Received: from ben-Latitude-E6540.ad.analog.com (10.48.65.231) by
- NWD2HUBCAS7.ad.analog.com (10.64.69.107) with Microsoft SMTP Server id
- 14.3.408.0; Fri, 15 Nov 2019 08:57:02 -0500
-From:   Beniamin Bia <beniamin.bia@analog.com>
-To:     <jic23@kernel.org>
-CC:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <pmeerw@pmeerw.net>, <gregkh@linuxfoundation.org>,
-        <linux-iio@vger.kernel.org>, <devel@driverdev.osuosl.org>,
-        <linux-kernel@vger.kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <biabeniamin@outlook.com>,
-        <knaack.h@gmx.de>, <robh+dt@kernel.org>,
-        Beniamin Bia <beniamin.bia@analog.com>
-Subject: [PATCH v5 4/4] MAINTAINERS: add entry for AD7091R5 driver
-Date:   Fri, 15 Nov 2019 15:57:23 +0200
-Message-ID: <20191115135723.12219-4-beniamin.bia@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191115135723.12219-1-beniamin.bia@analog.com>
-References: <20191115135723.12219-1-beniamin.bia@analog.com>
+        Fri, 15 Nov 2019 15:23:21 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C3EBC10002A;
+        Fri, 15 Nov 2019 15:23:20 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AB8182BEC75;
+        Fri, 15 Nov 2019 15:23:20 +0100 (CET)
+Received: from localhost (10.75.127.46) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 15 Nov 2019 15:23:19
+ +0100
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <alexandre.torgue@st.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH] dt-bindings: crypto: Convert stm32 QSPI bindings to json-schema
+Date:   Fri, 15 Nov 2019 15:23:18 +0100
+Message-ID: <20191115142318.2909-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
 Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(376002)(39860400002)(346002)(136003)(396003)(199004)(189003)(486006)(106002)(107886003)(48376002)(7416002)(126002)(44832011)(16586007)(47776003)(5660300002)(8676002)(50226002)(8936002)(336012)(316002)(356004)(6666004)(246002)(7636002)(305945005)(26005)(186003)(6916009)(6306002)(478600001)(70586007)(36756003)(54906003)(70206006)(966005)(2351001)(76176011)(426003)(446003)(1076003)(50466002)(7696005)(4744005)(2906002)(4326008)(11346002)(476003)(51416003)(86362001)(2616005);DIR:OUT;SFP:1101;SCL:1;SRVR:BN6PR03MB2740;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f394538d-e087-4a7a-9ddc-08d769d3b175
-X-MS-TrafficTypeDiagnostic: BN6PR03MB2740:
-X-MS-Exchange-PUrlCount: 1
-X-Microsoft-Antispam-PRVS: <BN6PR03MB274046FF416A469EC37E7F1AF0700@BN6PR03MB2740.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1303;
-X-Forefront-PRVS: 02229A4115
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8BhPCSYCS70yMvfqHFw9CABCbnBqu38Yx3OlVZN0LeHvzbwLp4KEYaRJbxSZSjk07eR0bkIGPOi/ei8TeO0zG0spgfgSabOz8pgpOOREtHg5uKjBULPiDXr6lnEq1EJa7vZqk/qab8fhKso4r9abiFxa6N9MIDJZc3/BPBoq/RbkKO7LcZwCv4fp6i7upL6MplCNiieemwn8VkYyIMgcgeBHAbtsoB9AIF+90FHVvHJOg3MioJ3yvney5r9JkYawaPrMhVz4XETH+OOy9+mp2+c+nG+VUWrX35Ut4hJpkH9gupi/fbVlICTsogbaOrcgE0PlY1C+ZE5J6HwGBHKxWdMTtz8501dml+rQIfDbfiBIYNok4y+9fHF1Lb449sFsBpGu19N67dPYb7zyNKaFWf2pOwS7uaIwd0dq0S9yxx5RirTjp6wh1WWEhQEzBviXe46dwlPqnomvNKsziCU2EqIOOV316R5OAec1aDZV0Lg=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2019 13:57:03.1905
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f394538d-e087-4a7a-9ddc-08d769d3b175
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR03MB2740
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
  definitions=2019-11-15_04:2019-11-15,2019-11-15 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=1
- mlxlogscore=999 bulkscore=0 clxscore=1015 adultscore=0 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 spamscore=0 mlxscore=0 phishscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1910280000 definitions=main-1911150126
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Beniamin Bia as a maintainer for AD7091R5 ADC.
+Convert the STM32 QSPI binding to DT schema format using json-schema
 
-Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
 ---
-Changes in v5:
--nothing changed
+ .../devicetree/bindings/spi/spi-stm32-qspi.txt     | 47 -----------
+ .../devicetree/bindings/spi/st,stm32-qspi.yaml     | 91 ++++++++++++++++++++++
+ 2 files changed, 91 insertions(+), 47 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
 
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2e01d0f0b0e5..7f1e4b88688f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -893,6 +893,14 @@ S:	Supported
- F:	drivers/iio/dac/ad5758.c
- F:	Documentation/devicetree/bindings/iio/dac/ad5758.txt
- 
-+ANALOG DEVICES INC AD7091R5 DRIVER
-+M:	Beniamin Bia <beniamin.bia@analog.com>
-+L:	linux-iio@vger.kernel.org
-+W:	http://ez.analog.com/community/linux-device-drivers
-+S:	Supported
-+F:	drivers/iio/adc/ad7091r5.c
-+F:	Documentation/devicetree/bindings/iio/adc/adi,ad7091r5.yaml
+diff --git a/Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt b/Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt
+deleted file mode 100644
+index bfc038b9478d..000000000000
+--- a/Documentation/devicetree/bindings/spi/spi-stm32-qspi.txt
++++ /dev/null
+@@ -1,47 +0,0 @@
+-* STMicroelectronics Quad Serial Peripheral Interface(QSPI)
+-
+-Required properties:
+-- compatible: should be "st,stm32f469-qspi"
+-- reg: the first contains the register location and length.
+-       the second contains the memory mapping address and length
+-- reg-names: should contain the reg names "qspi" "qspi_mm"
+-- interrupts: should contain the interrupt for the device
+-- clocks: the phandle of the clock needed by the QSPI controller
+-- A pinctrl must be defined to set pins in mode of operation for QSPI transfer
+-
+-Optional properties:
+-- resets: must contain the phandle to the reset controller.
+-
+-A spi flash (NOR/NAND) must be a child of spi node and could have some
+-properties. Also see jedec,spi-nor.txt.
+-
+-Required properties:
+-- reg: chip-Select number (QSPI controller may connect 2 flashes)
+-- spi-max-frequency: max frequency of spi bus
+-
+-Optional properties:
+-- spi-rx-bus-width: see ./spi-bus.txt for the description
+-- dmas: DMA specifiers for tx and rx dma. See the DMA client binding,
+-Documentation/devicetree/bindings/dma/dma.txt.
+-- dma-names: DMA request names should include "tx" and "rx" if present.
+-
+-Example:
+-
+-qspi: spi@a0001000 {
+-	compatible = "st,stm32f469-qspi";
+-	reg = <0xa0001000 0x1000>, <0x90000000 0x10000000>;
+-	reg-names = "qspi", "qspi_mm";
+-	interrupts = <91>;
+-	resets = <&rcc STM32F4_AHB3_RESET(QSPI)>;
+-	clocks = <&rcc 0 STM32F4_AHB3_CLOCK(QSPI)>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_qspi0>;
+-
+-	flash@0 {
+-		compatible = "jedec,spi-nor";
+-		reg = <0>;
+-		spi-rx-bus-width = <4>;
+-		spi-max-frequency = <108000000>;
+-		...
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+new file mode 100644
+index 000000000000..955405d39966
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+@@ -0,0 +1,91 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/st,stm32-qspi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- ANALOG DEVICES INC AD7124 DRIVER
- M:	Stefan Popa <stefan.popa@analog.com>
- L:	linux-iio@vger.kernel.org
++title: STMicroelectronics STM32 Quad Serial Peripheral Interface (QSPI) bindings
++
++maintainers:
++  - Christophe Kerello <christophe.kerello@st.com>
++  - Patrice Chotard <patrice.chotard@st.com>
++
++allOf:
++  - $ref: "spi-controller.yaml#"
++
++properties:
++  compatible:
++    const: st,stm32f469-qspi
++
++  reg:
++    items:
++      - description: registers
++      - description: memory mapping
++    minItems: 2
++    maxItems: 2
++
++  reg-names:
++    items:
++     - const: qspi
++     - const: qspi_mm
++    minItems: 2
++    maxItems: 2
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  dmas:
++    items:
++      - description: tx DMA channel
++      - description: rx DMA channel
++    minItems: 2
++    maxItems: 2
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++    minItems: 2
++    maxItems: 2
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - interrupts
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/stm32mp1-clks.h>
++    #include <dt-bindings/reset/stm32mp1-resets.h>
++    spi@58003000 {
++      compatible = "st,stm32f469-qspi";
++      reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
++      reg-names = "qspi", "qspi_mm";
++      interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
++      dmas = <&mdma1 22 0x10 0x100002 0x0 0x0>,
++             <&mdma1 22 0x10 0x100008 0x0 0x0>;
++      dma-names = "tx", "rx";
++      clocks = <&rcc QSPI_K>;
++      resets = <&rcc QSPI_R>;
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      flash@0 {
++        compatible = "jedec,spi-nor";
++        reg = <0>;
++        spi-rx-bus-width = <4>;
++        spi-max-frequency = <108000000>;
++      };
++    };
++
++...
 -- 
-2.17.1
+2.15.0
 
