@@ -2,518 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78238FE9F2
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2019 01:52:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA5A6FEA23
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2019 02:43:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727364AbfKPAwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Nov 2019 19:52:45 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:38395 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727361AbfKPAwp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Nov 2019 19:52:45 -0500
-Received: by mail-ot1-f65.google.com with SMTP id z25so9601200oti.5;
-        Fri, 15 Nov 2019 16:52:44 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QiZWV9+TKcIvaa+QbP2SeO8UjexKrCZpIntBA+lfA0E=;
-        b=sDLhbsa55udlhY656H66v1ZJy07DkbwIk/PgIWi490+IRiUfR0PC4qcUT5TO+TQy4F
-         5S0RjPV/O0WKwFwllkEpwbzfJ3akvt49YIlnE4JNyxSMRiRjkqLogSo+nCq8DmxiGgmy
-         kPmcI3nwZAbnf/MJnJq481yMHqOdHb2B6DQ/1F/oZxENmDqM7jkaX4tiJSNhE6A4pEmt
-         YCdGHPVIFQfK/dEVaRY8pK6REg2zxvDrhd27EWrfbCnJKhbYO8orgo0NCkEfQKm30JH5
-         /ocVvXuwgCH/pLhex7uL8uQpVUTKKh/kVBm7OllCJmDTTR8OI0PfOgOhxLb497s8h7Og
-         A75w==
-X-Gm-Message-State: APjAAAX5WVjPR9CL4dKXPIFibTs+Iz8ji9hWrcx07O/a+1Y97hZpQYsI
-        Rvc4/OChxo7kLNGCH2URAVm2h48=
-X-Google-Smtp-Source: APXvYqxw5BsBMu3h7fAuw5plahHWVntkiS+sPpbeUOhyxemqnl9wrXQmNx7BNWol13upwftpoBICvw==
-X-Received: by 2002:a9d:1b01:: with SMTP id l1mr2862145otl.141.1573865563474;
-        Fri, 15 Nov 2019 16:52:43 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id g18sm3525680otg.50.2019.11.15.16.52.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Nov 2019 16:52:42 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Zhou Wang <wangzhou1@hisilicon.com>,
-        Will Deacon <will@kernel.org>,
-        David Daney <david.daney@cavium.com>
-Subject: [PATCH 3/3] dt-bindings: PCI: Convert generic host binding to DT schema
-Date:   Fri, 15 Nov 2019 18:52:40 -0600
-Message-Id: <20191116005240.15722-3-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191116005240.15722-1-robh@kernel.org>
-References: <20191116005240.15722-1-robh@kernel.org>
+        id S1727159AbfKPBnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Nov 2019 20:43:18 -0500
+Received: from mail-eopbgr1310051.outbound.protection.outlook.com ([40.107.131.51]:41657
+        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727089AbfKPBnS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Nov 2019 20:43:18 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IjvQiqjUTgZvMUmC1hAlCmFqakHUkDqgy7NaNXTbudpSYCAQ6FlfES033d5o2EyfY/0VTJqLdaQ/pYgWMA9Sh2v7U+BrePZYkc2IRlMIHH9d+U58s3YZeVVhdSwS7ZEXU1CHyb350O1g3ztZS31jynz7oc8t+z+gxiTXFLeQ/fjl5QWh/hwkUeCswTgNmthKo9P++6vl/DrjaxH8g9/Q1o9viwZOm8bsuTTvC4CjuPd1YzDO1Nw3NB5xqMmolKW0VYzRS9E/E1+mTEOHFExbuL9ndprjTZkL7JKi0oEtZI2/pQvR2Dw5amiJiNgTfCGDmil0/OIR4kBK5n3D0dsdtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sJLYbIRNCFM+HbD56IXmGnZQP/81gFQiRQjdf2iXkFk=;
+ b=hu4/DAK4z9U68OXnQ/jz26hPBt+hjM/fC9SRJRz7AFmWph+SiMCDQZaFfeo//snymN1AycBXJgrUARr3nve9c5ZSeWHWUfw28BxeWPUpY83Plmn48MmFjMZI3Qlj/A59R2Pqja9ydlbmBgJPfeY5mPNqjFOWvKwO/t1WNFVO6FvOJxincD4fgD1GYbsmDNf1MbRwiCf9n829ZB/V4DGWHh16yx8q40lPw2Rniv85qqWv2a/R06Zpe9KuY/C+oLJVkoQpkHAeupo+yzhDKJQkm91CW6jjPtuHp58QY21scG4UXroyUfoxXXyMAHmCTHcVtwH30JoBfR3mB0iHNyhLOQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nuvoton.com; dmarc=pass action=none header.from=nuvoton.com;
+ dkim=pass header.d=nuvoton.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sJLYbIRNCFM+HbD56IXmGnZQP/81gFQiRQjdf2iXkFk=;
+ b=jKIbZw7OZstl/Qag5TqH6wp30ByveB+IX7vXzgZ5Km5eqRKGa7XS9nbfI9FJ0oMetQPM8YfyGYBsQyr6a4kcpgMaQGpq4adhMCnT/r9lFdEClNgkFRv1t4E6RX5s1sMq2fvhCWlBZ2grUPx3miY6yB+2rU/r/iaD9yHiNSx/Cqo=
+Received: from SG2PR03MB5134.apcprd03.prod.outlook.com (52.132.234.202) by
+ SG2PR03MB2749.apcprd03.prod.outlook.com (52.133.138.22) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2474.9; Sat, 16 Nov 2019 01:43:09 +0000
+Received: from SG2PR03MB5134.apcprd03.prod.outlook.com
+ ([fe80::21ca:39a4:25e9:c398]) by SG2PR03MB5134.apcprd03.prod.outlook.com
+ ([fe80::21ca:39a4:25e9:c398%5]) with mapi id 15.20.2474.012; Sat, 16 Nov 2019
+ 01:43:08 +0000
+From:   AS50 KCHsu0 <KCHSU0@nuvoton.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "thomas.fehrenbacher@siedle.de" <thomas.fehrenbacher@siedle.de>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        AS50 CTLin0 <CTLIN0@nuvoton.com>, AS50 WTLi <WTLI@nuvoton.com>
+Subject: Re: [PATCH 3/3] ASoC: nau8810: add aux input control, available on
+ NAU8812
+Thread-Topic: [PATCH 3/3] ASoC: nau8810: add aux input control, available on
+ NAU8812
+Thread-Index: AQHVm88ulvBeSF4QAU2lHN0X+78biqeNBrAA
+Date:   Sat, 16 Nov 2019 01:43:08 +0000
+Message-ID: <55560429-3504-d2f3-2ce5-c8644fbeb333@nuvoton.com>
+References: <20191115160819.15557-1-m.felsch@pengutronix.de>
+ <20191115160819.15557-4-m.felsch@pengutronix.de>
+In-Reply-To: <20191115160819.15557-4-m.felsch@pengutronix.de>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [114.43.73.81]
+user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+x-clientproxiedby: HK2PR02CA0151.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::11) To SG2PR03MB5134.apcprd03.prod.outlook.com
+ (2603:1096:4:da::10)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=KCHSU0@nuvoton.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b707a5c1-d842-459a-0efc-08d76a36552b
+x-ms-traffictypediagnostic: SG2PR03MB2749:|SG2PR03MB2749:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SG2PR03MB27492CAFD12EDF5E72A046C694730@SG2PR03MB2749.apcprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:248;
+x-forefront-prvs: 02234DBFF6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(366004)(39850400004)(396003)(136003)(199004)(189003)(58126008)(316002)(6246003)(6306002)(66066001)(65956001)(54906003)(65806001)(76176011)(110136005)(107886003)(71200400001)(86362001)(256004)(66556008)(8936002)(66446008)(64756008)(66476007)(81156014)(81166006)(71190400001)(229853002)(14444005)(5660300002)(6512007)(4326008)(99286004)(6486002)(6436002)(8676002)(2906002)(26005)(6116002)(2501003)(3846002)(186003)(478600001)(476003)(2616005)(486006)(446003)(14454004)(31696002)(11346002)(7736002)(102836004)(66946007)(52116002)(36756003)(31686004)(305945005)(6506007)(386003)(25786009)(966005)(11716003);DIR:OUT;SFP:1101;SCL:1;SRVR:SG2PR03MB2749;H:SG2PR03MB5134.apcprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nuvoton.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 1PlufYNxUiK3ua6HP9VR9oiCrcaZm4rTyGU+2+7muSgDEQnHmzNr6LN+l9SeEC+2ZeIwu7H9hb4Nh3dfOj/GNOcVP56l08OPjSW/8ATTxCqLtWMyn4z13UTJ/IwDqnJpSwrbRj7FT0j9Qu9/gpBar6p9BAOCSRC86AAuJpBi0A/AxF4eq1mN2xWRyidKh4J5Blt70XmEbQqeuiNEumxyx1vPCsmtWSVacBP7FLG/yLSpWC3AGDg8EK6A8ijQSh4Ao/pcsQzNc0i/1XBJXCiHP5/dRSgGiqNNyw24Kju21hhPmWADEPddnoAKwDLrp7ZR1hZyl5z+Zp9R5ArsRoPts3bO6jl0Mq+2iMDuK6k8kpdh2Bmuvqi7qOmPyZU6DLn/REBdzYjyZRQQZvZwYgV63wZJB6roqa3/pSRqRixSyueh4U37RXOEH3PHw8vNXCwG
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1D9B030CF1EE864CABD06A5CFD97CCEE@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b707a5c1-d842-459a-0efc-08d76a36552b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2019 01:43:08.7796
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: I1XuhpGaVermpEVNjjaucz98MTqXb2RIKjiYw0zEubTb0i1ia8XNCtUf/LdlNZqF+mDGYZBS6H5+/QpybiAQsg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB2749
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the generic PCI host binding to DT schema. The derivative Juno,
-PLDA XpressRICH3-AXI, and Designware ECAM bindings all just vary in
-their compatible strings. The simplest way to convert those to
-schema is just add them into the common generic PCI host schema.
-
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc: Andrew Murray <andrew.murray@arm.com>
-Cc: Zhou Wang <wangzhou1@hisilicon.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: David Daney <david.daney@cavium.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/pci/arm,juno-r1-pcie.txt         |  10 --
- .../bindings/pci/designware-pcie-ecam.txt     |  42 -----
- .../bindings/pci/hisilicon-pcie.txt           |   4 +-
- .../bindings/pci/host-generic-pci.txt         | 101 ------------
- .../bindings/pci/host-generic-pci.yaml        | 150 ++++++++++++++++++
- .../bindings/pci/pci-thunder-ecam.txt         |  30 ----
- .../bindings/pci/pci-thunder-pem.txt          |   7 +-
- .../bindings/pci/plda,xpressrich3-axi.txt     |  12 --
- MAINTAINERS                                   |   2 +-
- 9 files changed, 155 insertions(+), 203 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/arm,juno-r1-pcie.txt
- delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie-ecam.txt
- delete mode 100644 Documentation/devicetree/bindings/pci/host-generic-pci.txt
- create mode 100644 Documentation/devicetree/bindings/pci/host-generic-pci.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/pci-thunder-ecam.txt
- delete mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi.txt
-
-diff --git a/Documentation/devicetree/bindings/pci/arm,juno-r1-pcie.txt b/Documentation/devicetree/bindings/pci/arm,juno-r1-pcie.txt
-deleted file mode 100644
-index f7514c170a32..000000000000
---- a/Documentation/devicetree/bindings/pci/arm,juno-r1-pcie.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--* ARM Juno R1 PCIe interface
--
--This PCIe host controller is based on PLDA XpressRICH3-AXI IP
--and thus inherits all the common properties defined in plda,xpressrich3-axi.txt
--as well as the base properties defined in host-generic-pci.txt.
--
--Required properties:
-- - compatible: "arm,juno-r1-pcie"
-- - dma-coherent: The host controller bridges the AXI transactions into PCIe bus
--   in a manner that makes the DMA operations to appear coherent to the CPUs.
-diff --git a/Documentation/devicetree/bindings/pci/designware-pcie-ecam.txt b/Documentation/devicetree/bindings/pci/designware-pcie-ecam.txt
-deleted file mode 100644
-index 515b2f9542e5..000000000000
---- a/Documentation/devicetree/bindings/pci/designware-pcie-ecam.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--* Synopsys DesignWare PCIe root complex in ECAM shift mode
--
--In some cases, firmware may already have configured the Synopsys DesignWare
--PCIe controller in RC mode with static ATU window mappings that cover all
--config, MMIO and I/O spaces in a [mostly] ECAM compatible fashion.
--In this case, there is no need for the OS to perform any low level setup
--of clocks, PHYs or device registers, nor is there any reason for the driver
--to reconfigure ATU windows for config and/or IO space accesses at runtime.
--
--In cases where the IP was synthesized with a minimum ATU window size of
--64 KB, it cannot be supported by the generic ECAM driver, because it
--requires special config space accessors that filter accesses to device #1
--and beyond on the first bus.
--
--Required properties:
--- compatible: "marvell,armada8k-pcie-ecam" or
--              "socionext,synquacer-pcie-ecam" or
--              "snps,dw-pcie-ecam" (must be preceded by a more specific match)
--
--Please refer to the binding document of "pci-host-ecam-generic" in the
--file host-generic-pci.txt for a description of the remaining required
--and optional properties.
--
--Example:
--
--    pcie1: pcie@7f000000 {
--        compatible = "socionext,synquacer-pcie-ecam", "snps,dw-pcie-ecam";
--        device_type = "pci";
--        reg = <0x0 0x7f000000 0x0 0xf00000>;
--        bus-range = <0x0 0xe>;
--        #address-cells = <3>;
--        #size-cells = <2>;
--        ranges = <0x1000000 0x00 0x00010000 0x00 0x7ff00000 0x0 0x00010000>,
--                 <0x2000000 0x00 0x70000000 0x00 0x70000000 0x0 0x0f000000>,
--                 <0x3000000 0x3f 0x00000000 0x3f 0x00000000 0x1 0x00000000>;
--
--        #interrupt-cells = <0x1>;
--        interrupt-map-mask = <0x0 0x0 0x0 0x0>;
--        interrupt-map = <0x0 0x0 0x0 0x0 &gic 0x0 0x0 0x0 182 0x4>;
--        msi-map = <0x0 &its 0x0 0x10000>;
--        dma-coherent;
--    };
-diff --git a/Documentation/devicetree/bindings/pci/hisilicon-pcie.txt b/Documentation/devicetree/bindings/pci/hisilicon-pcie.txt
-index 0dcb87d6554f..adf66a26b70b 100644
---- a/Documentation/devicetree/bindings/pci/hisilicon-pcie.txt
-+++ b/Documentation/devicetree/bindings/pci/hisilicon-pcie.txt
-@@ -49,10 +49,10 @@ compliant for all devices other than the root complex. In such cases,
- the host controller should be described as below.
- 
- The properties and their meanings are identical to those described in
--host-generic-pci.txt except as listed below.
-+host-generic-pci.yaml except as listed below.
- 
- Properties of the host controller node that differ from
--host-generic-pci.txt:
-+host-generic-pci.yaml:
- 
- - compatible     : Must be "hisilicon,hip06-pcie-ecam", or
- 		   "hisilicon,hip07-pcie-ecam"
-diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.txt b/Documentation/devicetree/bindings/pci/host-generic-pci.txt
-deleted file mode 100644
-index 614b594f4e72..000000000000
---- a/Documentation/devicetree/bindings/pci/host-generic-pci.txt
-+++ /dev/null
-@@ -1,101 +0,0 @@
--* Generic PCI host controller
--
--Firmware-initialised PCI host controllers and PCI emulations, such as the
--virtio-pci implementations found in kvmtool and other para-virtualised
--systems, do not require driver support for complexities such as regulator
--and clock management. In fact, the controller may not even require the
--configuration of a control interface by the operating system, instead
--presenting a set of fixed windows describing a subset of IO, Memory and
--Configuration Spaces.
--
--Such a controller can be described purely in terms of the standardized device
--tree bindings communicated in pci.txt:
--
--
--Properties of the host controller node:
--
--- compatible     : Must be "pci-host-cam-generic" or "pci-host-ecam-generic"
--                   depending on the layout of configuration space (CAM vs
--                   ECAM respectively).
--
--- device_type    : Must be "pci".
--
--- ranges         : As described in IEEE Std 1275-1994, but must provide
--                   at least a definition of non-prefetchable memory. One
--                   or both of prefetchable Memory and IO Space may also
--                   be provided.
--
--- bus-range      : Optional property (also described in IEEE Std 1275-1994)
--                   to indicate the range of bus numbers for this controller.
--                   If absent, defaults to <0 255> (i.e. all buses).
--
--- #address-cells : Must be 3.
--
--- #size-cells    : Must be 2.
--
--- reg            : The Configuration Space base address and size, as accessed
--                   from the parent bus.  The base address corresponds to
--                   the first bus in the "bus-range" property.  If no
--                   "bus-range" is specified, this will be bus 0 (the default).
--
--Properties of the /chosen node:
--
--- linux,pci-probe-only
--                 : Optional property which takes a single-cell argument.
--                   If '0', then Linux will assign devices in its usual manner,
--                   otherwise it will not try to assign devices and instead use
--                   them as they are configured already.
--
--Configuration Space is assumed to be memory-mapped (as opposed to being
--accessed via an ioport) and laid out with a direct correspondence to the
--geography of a PCI bus address by concatenating the various components to
--form an offset.
--
--For CAM, this 24-bit offset is:
--
--        cfg_offset(bus, device, function, register) =
--                   bus << 16 | device << 11 | function << 8 | register
--
--While ECAM extends this by 4 bits to accommodate 4k of function space:
--
--        cfg_offset(bus, device, function, register) =
--                   bus << 20 | device << 15 | function << 12 | register
--
--Interrupt mapping is exactly as described in `Open Firmware Recommended
--Practice: Interrupt Mapping' and requires the following properties:
--
--- #interrupt-cells   : Must be 1
--
--- interrupt-map      : <see aforementioned specification>
--
--- interrupt-map-mask : <see aforementioned specification>
--
--
--Example:
--
--pci {
--    compatible = "pci-host-cam-generic"
--    device_type = "pci";
--    #address-cells = <3>;
--    #size-cells = <2>;
--    bus-range = <0x0 0x1>;
--
--    // CPU_PHYSICAL(2)  SIZE(2)
--    reg = <0x0 0x40000000  0x0 0x1000000>;
--
--    // BUS_ADDRESS(3)  CPU_PHYSICAL(2)  SIZE(2)
--    ranges = <0x01000000 0x0 0x01000000  0x0 0x01000000  0x0 0x00010000>,
--             <0x02000000 0x0 0x41000000  0x0 0x41000000  0x0 0x3f000000>;
--
--
--    #interrupt-cells = <0x1>;
--
--    // PCI_DEVICE(3)  INT#(1)  CONTROLLER(PHANDLE)  CONTROLLER_DATA(3)
--    interrupt-map = <  0x0 0x0 0x0  0x1  &gic  0x0 0x4 0x1
--                     0x800 0x0 0x0  0x1  &gic  0x0 0x5 0x1
--                    0x1000 0x0 0x0  0x1  &gic  0x0 0x6 0x1
--                    0x1800 0x0 0x0  0x1  &gic  0x0 0x7 0x1>;
--
--    // PCI_DEVICE(3)  INT#(1)
--    interrupt-map-mask = <0xf800 0x0 0x0  0x7>;
--}
-diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-new file mode 100644
-index 000000000000..7c3f3b2bdd57
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-@@ -0,0 +1,150 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/host-generic-pci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic PCI host controller
-+
-+maintainers:
-+  - Will Deacon <will@kernel.org>
-+
-+description: |
-+  Firmware-initialised PCI host controllers and PCI emulations, such as the
-+  virtio-pci implementations found in kvmtool and other para-virtualised
-+  systems, do not require driver support for complexities such as regulator
-+  and clock management. In fact, the controller may not even require the
-+  configuration of a control interface by the operating system, instead
-+  presenting a set of fixed windows describing a subset of IO, Memory and
-+  Configuration Spaces.
-+
-+  Configuration Space is assumed to be memory-mapped (as opposed to being
-+  accessed via an ioport) and laid out with a direct correspondence to the
-+  geography of a PCI bus address by concatenating the various components to
-+  form an offset.
-+
-+  For CAM, this 24-bit offset is:
-+
-+          cfg_offset(bus, device, function, register) =
-+                     bus << 16 | device << 11 | function << 8 | register
-+
-+  While ECAM extends this by 4 bits to accommodate 4k of function space:
-+
-+          cfg_offset(bus, device, function, register) =
-+                     bus << 20 | device << 15 | function << 12 | register
-+
-+  Interrupt mapping is exactly as described in `Open Firmware Recommended
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+
-+properties:
-+  compatible:
-+    description: Depends on the layout of configuration space (CAM vs ECAM
-+      respectively). May also have more specific compatibles.
-+    anyOf:
-+      - description:
-+          PCIe host controller in Arm Juno based on PLDA XpressRICH3-AXI IP
-+        items:
-+          - const: arm,juno-r1-pcie
-+          - const: plda,xpressrich3-axi
-+          - const: pci-host-ecam-generic
-+      - description: |
-+          ThunderX PCI host controller for pass-1.x silicon
-+
-+          Firmware-initialized PCI host controller to on-chip devices found on
-+          some Cavium ThunderX processors.  These devices have ECAM-based config
-+          access, but the BARs are all at fixed addresses.  We handle the fixed
-+          addresses by synthesizing Enhanced Allocation (EA) capabilities for
-+          these devices.
-+        const: cavium,pci-host-thunder-ecam
-+      - description: |
-+          In some cases, firmware may already have configured the Synopsys
-+          DesignWare PCIe controller in RC mode with static ATU window mappings
-+          that cover all config, MMIO and I/O spaces in a [mostly] ECAM
-+          compatible fashion. In this case, there is no need for the OS to
-+          perform any low level setup of clocks, PHYs or device registers, nor
-+          is there any reason for the driver to reconfigure ATU windows for
-+          config and/or IO space accesses at runtime.
-+
-+          In cases where the IP was synthesized with a minimum ATU window size
-+          of 64 KB, it cannot be supported by the generic ECAM driver, because
-+          it requires special config space accessors that filter accesses to
-+          device #1 and beyond on the first bus.
-+        items:
-+          - enum:
-+              - marvell,armada8k-pcie-ecam
-+              - socionext,synquacer-pcie-ecam
-+          - const: snps,dw-pcie-ecam
-+      - contains:
-+          enum:
-+            - pci-host-cam-generic
-+            - pci-host-ecam-generic
-+
-+  reg:
-+    description:
-+      The Configuration Space base address and size, as accessed from the parent
-+      bus. The base address corresponds to the first bus in the "bus-range"
-+      property. If no "bus-range" is specified, this will be bus 0 (the
-+      default).
-+    maxItems: 1
-+
-+  ranges:
-+    description:
-+      As described in IEEE Std 1275-1994, but must provide at least a
-+      definition of non-prefetchable memory. One or both of prefetchable Memory
-+      and IO Space may also be provided.
-+    minItems: 1
-+    maxItems: 3
-+
-+  dma-coherent:
-+    description: The host controller bridges the AXI transactions into PCIe bus
-+      in a manner that makes the DMA operations to appear coherent to the CPUs.
-+
-+required:
-+  - compatible
-+  - reg
-+  - ranges
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: arm,juno-r1-pcie
-+then:
-+  required:
-+    - dma-coherent
-+
-+examples:
-+  - |
-+
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        pcie@40000000 {
-+            compatible = "pci-host-cam-generic";
-+            device_type = "pci";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            bus-range = <0x0 0x1>;
-+
-+            // CPU_PHYSICAL(2)  SIZE(2)
-+            reg = <0x0 0x40000000  0x0 0x1000000>;
-+
-+            // BUS_ADDRESS(3)  CPU_PHYSICAL(2)  SIZE(2)
-+            ranges = <0x01000000 0x0 0x01000000  0x0 0x01000000  0x0 0x00010000>,
-+                     <0x02000000 0x0 0x41000000  0x0 0x41000000  0x0 0x3f000000>;
-+
-+            #interrupt-cells = <0x1>;
-+
-+            // PCI_DEVICE(3)  INT#(1)  CONTROLLER(PHANDLE)  CONTROLLER_DATA(3)
-+            interrupt-map = <   0x0 0x0 0x0  0x1  &gic  0x0 0x4 0x1>,
-+                            < 0x800 0x0 0x0  0x1  &gic  0x0 0x5 0x1>,
-+                            <0x1000 0x0 0x0  0x1  &gic  0x0 0x6 0x1>,
-+                            <0x1800 0x0 0x0  0x1  &gic  0x0 0x7 0x1>;
-+
-+            // PCI_DEVICE(3)  INT#(1)
-+            interrupt-map-mask = <0xf800 0x0 0x0  0x7>;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/pci/pci-thunder-ecam.txt b/Documentation/devicetree/bindings/pci/pci-thunder-ecam.txt
-deleted file mode 100644
-index f478874b79ce..000000000000
---- a/Documentation/devicetree/bindings/pci/pci-thunder-ecam.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--* ThunderX PCI host controller for pass-1.x silicon
--
--Firmware-initialized PCI host controller to on-chip devices found on
--some Cavium ThunderX processors.  These devices have ECAM-based config
--access, but the BARs are all at fixed addresses.  We handle the fixed
--addresses by synthesizing Enhanced Allocation (EA) capabilities for
--these devices.
--
--The properties and their meanings are identical to those described in
--host-generic-pci.txt except as listed below.
--
--Properties of the host controller node that differ from
--host-generic-pci.txt:
--
--- compatible     : Must be "cavium,pci-host-thunder-ecam"
--
--Example:
--
--	pcie@84b000000000 {
--		compatible = "cavium,pci-host-thunder-ecam";
--		device_type = "pci";
--		msi-parent = <&its>;
--		msi-map = <0 &its 0x30000 0x10000>;
--		bus-range = <0 31>;
--		#size-cells = <2>;
--		#address-cells = <3>;
--		#stream-id-cells = <1>;
--		reg = <0x84b0 0x00000000 0 0x02000000>;  /* Configuration space */
--		ranges = <0x03000000 0x8180 0x00000000 0x8180 0x00000000 0x80 0x00000000>; /* mem ranges */
--	};
-diff --git a/Documentation/devicetree/bindings/pci/pci-thunder-pem.txt b/Documentation/devicetree/bindings/pci/pci-thunder-pem.txt
-index f131faea3b7c..f3c87d55753b 100644
---- a/Documentation/devicetree/bindings/pci/pci-thunder-pem.txt
-+++ b/Documentation/devicetree/bindings/pci/pci-thunder-pem.txt
-@@ -3,11 +3,8 @@
- Firmware-initialized PCI host controller found on some Cavium
- ThunderX processors.
- 
--The properties and their meanings are identical to those described in
--host-generic-pci.txt except as listed below.
--
--Properties of the host controller node that differ from
--host-generic-pci.txt:
-+In addition to standard PCI host bridge properties, the following properties
-+are required:
- 
- - compatible     : Must be "cavium,pci-host-thunder-pem"
- 
-diff --git a/Documentation/devicetree/bindings/pci/plda,xpressrich3-axi.txt b/Documentation/devicetree/bindings/pci/plda,xpressrich3-axi.txt
-deleted file mode 100644
-index f3f75bfb42bc..000000000000
---- a/Documentation/devicetree/bindings/pci/plda,xpressrich3-axi.txt
-+++ /dev/null
-@@ -1,12 +0,0 @@
--* PLDA XpressRICH3-AXI host controller
--
--The PLDA XpressRICH3-AXI host controller can be configured in a manner that
--makes it compliant with the SBSA[1] standard published by ARM Ltd. For those
--scenarios, the host-generic-pci.txt bindings apply with the following additions
--to the compatible property:
--
--Required properties:
-- - compatible: should contain "plda,xpressrich3-axi" to identify the IP used.
--
--
--[1] http://infocenter.arm.com/help/topic/com.arm.doc.den0029a/
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 21f3393c36e3..3a5ddc0d530c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12434,7 +12434,7 @@ M:	Will Deacon <will@kernel.org>
- L:	linux-pci@vger.kernel.org
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
--F:	Documentation/devicetree/bindings/pci/host-generic-pci.txt
-+F:	Documentation/devicetree/bindings/pci/host-generic-pci.yaml
- F:	drivers/pci/controller/pci-host-common.c
- F:	drivers/pci/controller/pci-host-generic.c
- 
--- 
-2.20.1
-
+DQpNYXJjbyBGZWxzY2gg5pa8IDIwMTkvMTEvMTYg5LiK5Y2IIDEyOjA4IOWvq+mBkzoNCj4gRnJv
+bTogVGhvbWFzIEZlaHJlbmJhY2hlciA8dGhvbWFzLmZlaHJlbmJhY2hlckBzaWVkbGUuZGU+DQo+
+DQo+IFRoaXMgY29tbWl0IGFkZHMgdGhlIHN1cHBvcnQgdG8gY29udHJvbCB0aGUgYXV4LXBvcnQg
+b24gdGhlIG5hdTg4MTINCj4gZGV2aWNlcy4gV2UgZG9uJ3QgbmVlZCB0byBkaWZmZXJlbnRpYXRl
+IHRoZSBhdXgtcG9ydCByZWdpc3RlcnMgc2luY2UNCj4gdGhvc2UgYml0ZmllbGRzIGFyZSBzZXQg
+dG8gJzAnIG9uIHRoZSBuYXU4ODEwIGRldmljZXMgWzEsMl0uDQo+DQo+IFsxXSBodHRwOi8vd3d3
+Lm51dm90b24uY29tL3Jlc291cmNlLWZpbGVzL05BVTg4MTBfRGF0YXNoZWV0X1Jldl8yLjgucGRm
+DQo+IFsyXSBodHRwOi8vd3d3Lm51dm90b24uY29tL3Jlc291cmNlLWZpbGVzL05BVTg4MTJEYXRh
+c2hlZXRSZXYyLjcucGRmDQo+DQo+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBGZWhyZW5iYWNoZXIg
+PHRob21hcy5mZWhyZW5iYWNoZXJAc2llZGxlLmRlPg0KPiBbbS5mZWxzY2hAcGVuZ3V0cm9uaXgu
+ZGU6IGFkZCBjb21taXQgbWVzc2FnZV0NCj4gU2lnbmVkLW9mZi1ieTogTWFyY28gRmVsc2NoIDxt
+LmZlbHNjaEBwZW5ndXRyb25peC5kZT4NCj4gLS0tDQo+ICAgc291bmQvc29jL2NvZGVjcy9uYXU4
+ODEwLmMgfCA3ICsrKysrKysNCj4gICBzb3VuZC9zb2MvY29kZWNzL25hdTg4MTAuaCB8IDIgKysN
+Cj4gICAyIGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQ0KPg0KPiBkaWZmIC0tZ2l0IGEv
+c291bmQvc29jL2NvZGVjcy9uYXU4ODEwLmMgYi9zb3VuZC9zb2MvY29kZWNzL25hdTg4MTAuYw0K
+PiBpbmRleCBhMzJhNGE4ZDVmNTAuLmIxMDI0ZDI0ZDQxMyAxMDA2NDQNCj4gLS0tIGEvc291bmQv
+c29jL2NvZGVjcy9uYXU4ODEwLmMNCj4gKysrIGIvc291bmQvc29jL2NvZGVjcy9uYXU4ODEwLmMN
+Cj4gQEAgLTM1MSw2ICszNTEsOSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHNuZF9rY29udHJvbF9u
+ZXcgbmF1ODgxMF9zbmRfY29udHJvbHNbXSA9IHsNCj4gICBOQVU4ODEwX0RBQ09TX1NGVCwgMSwg
+MCksDQo+ICAgU09DX1NJTkdMRSgiQURDIE92ZXJzYW1wbGluZyBSYXRlKDEyOHgpIFN3aXRjaCIs
+IE5BVTg4MTBfUkVHX0FEQywNCj4gICBOQVU4ODEwX0FEQ09TX1NGVCwgMSwgMCksDQo+ICsNCj4g
+K1NPQ19TSU5HTEUoIkFVWCBJbnB1dCBFbmFibGUgU3dpdGNoIiwgTkFVODgxMF9SRUdfUE9XRVIx
+LA0KPiArTkFVODgxMF9BVVhfRU5fU0ZULCAxLCAwKSwNCj4gICB9Ow0KPg0KDQoNClRoZSBwb3dl
+ciBjb250cm9sIGhhcyB0byBtb3ZlIHRvIHRoZSBuYXU4ODEwX2RhcG1fd2lkZ2V0cy4NCg0KVGhl
+IERBUE0gY2FuIGp1c3QgY29udHJvbCB0aGUgcG93ZXIgc3dpdGNoIG9mIEFVWEkgZHluYW1pY2Fs
+bHkuDQoNCg0KPiAgIC8qIFNwZWFrZXIgT3V0cHV0IE1peGVyICovDQo+IEBAIC0zODMsNiArMzg2
+LDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBzbmRfa2NvbnRyb2xfbmV3IG5hdTg4MTBfaW5wZ2Fb
+XSA9IHsNCj4gICBOQVU4ODEwX05NSUNQR0FfU0ZULCAxLCAwKSwNCj4gICBTT0NfREFQTV9TSU5H
+TEUoIk1pY1AgU3dpdGNoIiwgTkFVODgxMF9SRUdfSU5QVVRfU0lHTkFMLA0KPiAgIE5BVTg4MTBf
+UE1JQ1BHQV9TRlQsIDEsIDApLA0KPiArU09DX0RBUE1fU0lOR0xFKCJBVVggU3dpdGNoIiwgTkFV
+ODgxMF9SRUdfSU5QVVRfU0lHTkFMLA0KPiArTkFVODgxMF9BVVhQR0FfU0ZULCAxLCAwKSwNCj4g
+ICB9Ow0KPg0KPiAgIC8qIExvb3BiYWNrIFN3aXRjaCAqLw0KPiBAQCAtNDM2LDYgKzQ0MSw3IEBA
+IHN0YXRpYyBjb25zdCBzdHJ1Y3Qgc25kX3NvY19kYXBtX3dpZGdldCBuYXU4ODEwX2RhcG1fd2lk
+Z2V0c1tdID0gew0KPg0KPiAgIFNORF9TT0NfREFQTV9JTlBVVCgiTUlDTiIpLA0KPiAgIFNORF9T
+T0NfREFQTV9JTlBVVCgiTUlDUCIpLA0KPiArU05EX1NPQ19EQVBNX0lOUFVUKCJBVVgiKSwNCj4g
+ICBTTkRfU09DX0RBUE1fT1VUUFVUKCJNT05PT1VUIiksDQo+ICAgU05EX1NPQ19EQVBNX09VVFBV
+VCgiU1BLT1VUUCIpLA0KPiAgIFNORF9TT0NfREFQTV9PVVRQVVQoIlNQS09VVE4iKSwNCj4gQEAg
+LTQ3MCw2ICs0NzYsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHNuZF9zb2NfZGFwbV9yb3V0ZSBu
+YXU4ODEwX2RhcG1fcm91dGVzW10gPSB7DQo+ICAgeyJJbnB1dCBQR0EiLCBOVUxMLCAiTWljIEJp
+YXMifSwNCj4gICB7IklucHV0IFBHQSIsICJNaWNOIFN3aXRjaCIsICJNSUNOIn0sDQo+ICAgeyJJ
+bnB1dCBQR0EiLCAiTWljUCBTd2l0Y2giLCAiTUlDUCJ9LA0KPiAreyJJbnB1dCBQR0EiLCAiQVVY
+IFN3aXRjaCIsICJBVVgifSwNCj4NCj4gICAvKiBEaWdpdGFsIExvb3B0YWNrICovDQo+ICAgeyJE
+aWdpdGFsIExvb3BiYWNrIiwgIlN3aXRjaCIsICJBREMifSwNCj4gZGlmZiAtLWdpdCBhL3NvdW5k
+L3NvYy9jb2RlY3MvbmF1ODgxMC5oIGIvc291bmQvc29jL2NvZGVjcy9uYXU4ODEwLmgNCj4gaW5k
+ZXggMWFkYTMxODgzZGM2Li43YjVlY2FkMTczZDMgMTAwNjQ0DQo+IC0tLSBhL3NvdW5kL3NvYy9j
+b2RlY3MvbmF1ODgxMC5oDQo+ICsrKyBiL3NvdW5kL3NvYy9jb2RlY3MvbmF1ODgxMC5oDQo+IEBA
+IC02OSw2ICs2OSw3IEBADQo+DQo+ICAgLyogTkFVODgxMF9SRUdfUE9XRVIxICgweDEpICovDQo+
+ICAgI2RlZmluZSBOQVU4ODEwX0RDQlVGX0VOKDB4MSA8PCA4KQ0KPiArI2RlZmluZSBOQVU4ODEw
+X0FVWF9FTl9TRlQ2DQo+ICAgI2RlZmluZSBOQVU4ODEwX1BMTF9FTl9TRlQ1DQo+ICAgI2RlZmlu
+ZSBOQVU4ODEwX01JQ0JJQVNfRU5fU0ZUNA0KPiAgICNkZWZpbmUgTkFVODgxMF9BQklBU19FTigw
+eDEgPDwgMykNCj4gQEAgLTIyOSw2ICsyMzAsNyBAQA0KPiAgIC8qIE5BVTg4MTBfUkVHX0lOUFVU
+X1NJR05BTCAoMHgyQykgKi8NCj4gICAjZGVmaW5lIE5BVTg4MTBfUE1JQ1BHQV9TRlQwDQo+ICAg
+I2RlZmluZSBOQVU4ODEwX05NSUNQR0FfU0ZUMQ0KPiArI2RlZmluZSBOQVU4ODEwX0FVWFBHQV9T
+RlQyDQo+DQo+ICAgLyogTkFVODgxMF9SRUdfUEdBR0FJTiAoMHgyRCkgKi8NCj4gICAjZGVmaW5l
+IE5BVTg4MTBfUEdBR0FJTl9TRlQwDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCiBUaGUgcHJpdmlsZWdlZCBjb25maWRl
+bnRpYWwgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgZW1haWwgaXMgaW50ZW5kZWQgZm9y
+IHVzZSBvbmx5IGJ5IHRoZSBhZGRyZXNzZWVzIGFzIGluZGljYXRlZCBieSB0aGUgb3JpZ2luYWwg
+c2VuZGVyIG9mIHRoaXMgZW1haWwuIElmIHlvdSBhcmUgbm90IHRoZSBhZGRyZXNzZWUgaW5kaWNh
+dGVkIGluIHRoaXMgZW1haWwgb3IgYXJlIG5vdCByZXNwb25zaWJsZSBmb3IgZGVsaXZlcnkgb2Yg
+dGhlIGVtYWlsIHRvIHN1Y2ggYSBwZXJzb24sIHBsZWFzZSBraW5kbHkgcmVwbHkgdG8gdGhlIHNl
+bmRlciBpbmRpY2F0aW5nIHRoaXMgZmFjdCBhbmQgZGVsZXRlIGFsbCBjb3BpZXMgb2YgaXQgZnJv
+bSB5b3VyIGNvbXB1dGVyIGFuZCBuZXR3b3JrIHNlcnZlciBpbW1lZGlhdGVseS4gWW91ciBjb29w
+ZXJhdGlvbiBpcyBoaWdobHkgYXBwcmVjaWF0ZWQuIEl0IGlzIGFkdmlzZWQgdGhhdCBhbnkgdW5h
+dXRob3JpemVkIHVzZSBvZiBjb25maWRlbnRpYWwgaW5mb3JtYXRpb24gb2YgTnV2b3RvbiBpcyBz
+dHJpY3RseSBwcm9oaWJpdGVkOyBhbmQgYW55IGluZm9ybWF0aW9uIGluIHRoaXMgZW1haWwgaXJy
+ZWxldmFudCB0byB0aGUgb2ZmaWNpYWwgYnVzaW5lc3Mgb2YgTnV2b3RvbiBzaGFsbCBiZSBkZWVt
+ZWQgYXMgbmVpdGhlciBnaXZlbiBub3IgZW5kb3JzZWQgYnkgTnV2b3Rvbi4NCg==
