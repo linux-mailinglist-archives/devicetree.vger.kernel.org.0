@@ -2,130 +2,470 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4140FF2B5
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2019 17:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13867FF3EC
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2019 17:34:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731917AbfKPQU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Nov 2019 11:20:56 -0500
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:33654 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729652AbfKPQUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Nov 2019 11:20:53 -0500
-Received: by mail-pg1-f194.google.com with SMTP id h27so7430030pgn.0;
-        Sat, 16 Nov 2019 08:20:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3ThCOn+QwgspJ3kxAATKe5mgdC4dFBHT7/R2+FrM5uE=;
-        b=Ydq+ryFHXyCcCndRf0G9/AN0hFrn0rS9hynpb848hB82abgjXFz2z4BqEgRkNB9xXP
-         Ob7eqFO/Xq8K6kEL6fRe6Hc1dPEmOsQRmAby1ZRPGsNckUFgRusxiNKgizyKLm02Yxjq
-         iQwbo5HmHuT/iIlj/nGvHRgATRwG8PzwQpp0yT0WfqBlMhOiEclEC/gpEKQr52HlAJZ3
-         +Hq9I4na89H0lpGnirkHvAUIEole4l1UnFUE12jNCVFWEulvMT1wPRyjvOOacmaPnuwd
-         DXyYCwz/a9FToDYFTJJODt3VvIsxakpbROqhhyc3I4RJph+XpkV7wfGv1JhfTbzdFX/j
-         GidA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3ThCOn+QwgspJ3kxAATKe5mgdC4dFBHT7/R2+FrM5uE=;
-        b=fZDHWvAmusrKa6WejNPXltzVdQ0uhgWrTvtjOIdT3wZWGYtH94SyiAu91vS/IqGtxa
-         bHymMpu2ou12vp1dGhL3Zeu3mj4IyoPom8WybMNH/O4pjZ6Xwk9t1kduCa1O22sk7Mi8
-         P2fsmclwThL3Fcb3Lz7cUSst+nvYuUwccmFc4k7WKpkUCURSC2xsylVMPaD6NhemEbTU
-         fa70C3+CmVk1vXIUB4B+b81UDJQ4IcPHVG3S3W+f8u9CiV8yJJqCG2v9aNPwv56ANqar
-         mDuw3k+Pl5luirfgtRnUnGbliOcGVG+tza4ZuNFoQaxeplSP7W68GRG8/QHAucTV6s57
-         NiGw==
-X-Gm-Message-State: APjAAAVy5qQn63u/k+a7qU/yz3VCdfgeyi8PyOTeooGlplbIgukbGWvz
-        BxenY1BTgdqu+p7QsQe54HZmwer3
-X-Google-Smtp-Source: APXvYqw8+YtA13X+2DcbFCm2WNiq/03l8qtmNPUJkbuUIVpNhKs1oVxFoW7yPNZWmSTRPhkaZHB4YA==
-X-Received: by 2002:a63:e70f:: with SMTP id b15mr22797805pgi.116.1573921252799;
-        Sat, 16 Nov 2019 08:20:52 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id em16sm12577766pjb.21.2019.11.16.08.20.51
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 16 Nov 2019 08:20:52 -0800 (PST)
-Date:   Sat, 16 Nov 2019 08:20:51 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eugen.Hristev@microchip.com
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org,
-        alexandre.belloni@bootlin.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nicolas.Ferre@microchip.com, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] watchdog: sama5d4_wdt: addition of sam9x60
- compatible watchdog
-Message-ID: <20191116162051.GA23056@roeck-us.net>
-References: <1573806579-7981-1-git-send-email-eugen.hristev@microchip.com>
- <1573806579-7981-3-git-send-email-eugen.hristev@microchip.com>
+        id S1727772AbfKPQez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Nov 2019 11:34:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727551AbfKPQez (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 16 Nov 2019 11:34:55 -0500
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 090C6208CE;
+        Sat, 16 Nov 2019 16:34:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1573922093;
+        bh=co6SuDq4SFAodze5+h0Iqwqe9x7tlfeuRzGnwWdvJno=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=G1FBdx7qSNEZVsEFctdkM3CKnolTBLhXoRdEfgG92N7sHrDejFm+Udd4Hy4mTGoKS
+         ymSMUdAecocwTdq7QzFzyGUvVBXXAsxwAwyhGWigUcG+AMryX9J9EY9GVpRIecaOxe
+         QEbyPV4tnF+uWoZxYQPV27LpR8CMA6vOJzS0f2Ng=
+Date:   Sat, 16 Nov 2019 16:34:41 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andreas Klinger <ak@it-klinger.de>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, mripard@kernel.org,
+        shawnguo@kernel.org, heiko@sntech.de, icenowy@aosc.io,
+        laurent.pinchart@ideasonboard.com, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, gregkh@linuxfoundation.org,
+        christophe.jaillet@wanadoo.fr, tglx@linutronix.de,
+        mchehab+samsung@kernel.org, davem@davemloft.net,
+        paulmck@linux.ibm.com, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] iio: ping: add parallax ping sensors
+Message-ID: <20191116163441.3ab19a67@archlinux>
+In-Reply-To: <20191115074456.vvjvw4you4i5mcja@arbad>
+References: <20191115074456.vvjvw4you4i5mcja@arbad>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1573806579-7981-3-git-send-email-eugen.hristev@microchip.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 15, 2019 at 08:30:18AM +0000, Eugen.Hristev@microchip.com wrote:
-> From: Eugen Hristev <eugen.hristev@microchip.com>
-> 
-> Add support for SAM9X60 WDT into sama5d4_wdt.
-> This means that this driver gets a flag inside the data struct
-> that represents the sam9x60 support.
-> This flag differentiates between the two hardware blocks, and is set
-> according to the compatible of the driver instantiation.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+On Fri, 15 Nov 2019 08:44:57 +0100
+Andreas Klinger <ak@it-klinger.de> wrote:
+
+> Add support for parallax ping and laser ping sensors with just one pin
+> for trigger and echo signal.
+>=20
+> This driver is based on srf04. In contrast to it it's necessary to
+> change direction of the pin and to request the irq just for the period
+> when the echo is rising and falling. Because this adds a lot of cases
+> there is this individual driver for handling this type of sensors.
+>=20
+> Add a new configuration variable CONFIG_PING to Kconfig and Makefile.
+>=20
+> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
+I just noticed something very odd with managed and unmanaged interfaces
+for the irq request being mixed.  I somewhat surprised that doesn't cause
+things to blow up on driver remove.  Also leaking memory ever time
+that IRQ is requested.
+
+Jonathan
+
 > ---
-> Changes in v4:
-> - check compatible with different of_ function
-> - call irq parse and map only if need_irq
-> - changed tabbing in struct defintion
-> 
-> Changes in v3:
-> - changed need_irq to bool, instead of a single bit variable.
-> - the platform data config struct is gone now, changed to a pointer to a bool
-> to have the sam9x60_support as 'true', pointing to a static bool with true value.
-> Can have a better solution than this ?
-> - the specific sam9x60_support flag is assigned at probe time, corresponding
-> to the flag value in .data
-> 
->  drivers/watchdog/at91sam9_wdt.h |  14 ++++++
->  drivers/watchdog/sama5d4_wdt.c  | 109 +++++++++++++++++++++++++++++++---------
->  2 files changed, 98 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/watchdog/at91sam9_wdt.h b/drivers/watchdog/at91sam9_wdt.h
-> index abfe34d..4b3bd1d 100644
-> --- a/drivers/watchdog/at91sam9_wdt.h
-> +++ b/drivers/watchdog/at91sam9_wdt.h
-> @@ -24,7 +24,10 @@
->  #define AT91_WDT_MR		0x04			/* Watchdog Mode Register */
->  #define  AT91_WDT_WDV		(0xfffUL << 0)		/* Counter Value */
->  #define  AT91_WDT_SET_WDV(x)	((x) & AT91_WDT_WDV)
-> +#define  AT91_SAM9X60_PERIODRST	BIT(4)		/* Period Reset */
-> +#define  AT91_SAM9X60_RPTHRST	BIT(5)		/* Minimum Restart Period */
->  #define  AT91_WDT_WDFIEN	BIT(12)		/* Fault Interrupt Enable */
-> +#define  AT91_SAM9X60_WDDIS	BIT(12)		/* Watchdog Disable */
->  #define  AT91_WDT_WDRSTEN	BIT(13)		/* Reset Processor */
->  #define  AT91_WDT_WDRPROC	BIT(14)		/* Timer Restart */
->  #define  AT91_WDT_WDDIS		BIT(15)		/* Watchdog Disable */
-> @@ -37,4 +40,15 @@
->  #define  AT91_WDT_WDUNF		BIT(0)		/* Watchdog Underflow */
->  #define  AT91_WDT_WDERR		BIT(1)		/* Watchdog Error */
->  
-> +#define AT91_SAM9X60_VR		0x08			/* Watchdog Timer Value Register */
+>  drivers/iio/proximity/Kconfig  |  15 ++
+>  drivers/iio/proximity/Makefile |   1 +
+>  drivers/iio/proximity/ping.c   | 333 +++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 349 insertions(+)
+>  create mode 100644 drivers/iio/proximity/ping.c
+>=20
+> diff --git a/drivers/iio/proximity/Kconfig b/drivers/iio/proximity/Kconfig
+> index d53601447da4..37606d400805 100644
+> --- a/drivers/iio/proximity/Kconfig
+> +++ b/drivers/iio/proximity/Kconfig
+> @@ -58,6 +58,21 @@ config MB1232
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called mb1232.
+> =20
+> +config PING
+> +	tristate "Parallax GPIO bitbanged ranger sensors"
+> +	depends on GPIOLIB
+> +	help
+> +	  Say Y here to build a driver for GPIO bitbanged ranger sensors
+> +	  with just one GPIO for the trigger and echo. This driver can be
+> +	  used to measure the distance of objects.
 > +
-> +#define AT91_SAM9X60_WLR		0x0c
-> +#define  AT91_SAM9X60_COUNTER	(0xfffUL << 0)		/* Watchdog Period Value */
-> +#define  AT91_SAM9X60_SET_COUNTER(x)	((x) & AT91_SAM9X60_COUNTER)
+> +	  Actually supported are:
+> +	  - Parallax PING))) (ultrasonic)
+> +	  - Parallax LaserPING (time-of-flight)
 > +
-> +#define AT91_SAM9X60_IER		0x14		/* Interrupt Enable Register */
-> +#define  AT91_SAM9X60_PERINT		BIT(0)		/* Period Interrupt Enable */
-> +#define AT91_SAM9X60_IDR		0x18		/* Interrupt Disable Register */
-> +#define AT91_SAM9X60_ISR		0x1c		/* Interrupt Status Register */
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called ping.
 > +
+>  config RFD77402
+>  	tristate "RFD77402 ToF sensor"
+>  	depends on I2C
+> diff --git a/drivers/iio/proximity/Makefile b/drivers/iio/proximity/Makef=
+ile
+> index 0bb5f9de13d6..c591b019304e 100644
+> --- a/drivers/iio/proximity/Makefile
+> +++ b/drivers/iio/proximity/Makefile
+> @@ -8,6 +8,7 @@ obj-$(CONFIG_AS3935)		+=3D as3935.o
+>  obj-$(CONFIG_ISL29501)		+=3D isl29501.o
+>  obj-$(CONFIG_LIDAR_LITE_V2)	+=3D pulsedlight-lidar-lite-v2.o
+>  obj-$(CONFIG_MB1232)		+=3D mb1232.o
+> +obj-$(CONFIG_PING)		+=3D ping.o
+>  obj-$(CONFIG_RFD77402)		+=3D rfd77402.o
+>  obj-$(CONFIG_SRF04)		+=3D srf04.o
+>  obj-$(CONFIG_SRF08)		+=3D srf08.o
+> diff --git a/drivers/iio/proximity/ping.c b/drivers/iio/proximity/ping.c
+> new file mode 100644
+> index 000000000000..cc4a3b546374
+> --- /dev/null
+> +++ b/drivers/iio/proximity/ping.c
+> @@ -0,0 +1,333 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * PING: ultrasonic sensor for distance measuring by using only one GPIOs
+> + *
+> + * Copyright (c) 2019 Andreas Klinger <ak@it-klinger.de>
+> + *
+> + * For details about the devices see:
+> + * http://parallax.com/sites/default/files/downloads/28041-LaserPING-2m-=
+Rangefinder-Guide.pdf
+> + * http://parallax.com/sites/default/files/downloads/28015-PING-Document=
+ation-v1.6.pdf
+> + *
+> + * the measurement cycle as timing diagram looks like:
+> + *
+> + * GPIO      ___              ________________________
+> + * ping:  __/   \____________/                        \________________
+> + *          ^   ^            ^                        ^
+> + *          |<->|            interrupt                interrupt
+> + *         udelay(5)         (ts_rising)              (ts_falling)
+> + *                           |<---------------------->|
+> + *                           .  pulse time measured   .
+> + *                           .  --> one round trip of ultra sonic waves
+> + * ultra                     .                        .
+> + * sonic            _   _   _.                        .
+> + * burst: _________/ \_/ \_/ \_________________________________________
+> + *                                                    .
+> + * ultra                                              .
+> + * sonic                                     _   _   _.
+> + * echo:  __________________________________/ \_/ \_/ \________________
+> + */
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/sched.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/delay.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +
+> +struct ping_cfg {
+> +	unsigned long	trigger_pulse_us;	/* length of trigger pulse */
+> +	int		laserping_error;	/* support error code in */
+> +						/*   pulse width of laser */
+> +						/*   ping sensors */
+> +	s64		timeout_ns;		/* timeout in ns */
+> +};
+> +
+> +struct ping_data {
+> +	struct device		*dev;
+> +	struct gpio_desc	*gpiod_ping;
+> +	struct mutex		lock;
+> +	int			irqnr;
+> +	ktime_t			ts_rising;
+> +	ktime_t			ts_falling;
+> +	struct completion	rising;
+> +	struct completion	falling;
+> +	const struct ping_cfg	*cfg;
+> +};
+> +
+> +static const struct ping_cfg pa_ping_cfg =3D {
+> +	.trigger_pulse_us	=3D 5,
+> +	.laserping_error	=3D 0,
+> +	.timeout_ns		=3D 18500000,	/* 3 meters */
+> +};
+> +
+> +static const struct ping_cfg pa_laser_ping_cfg =3D {
+> +	.trigger_pulse_us	=3D 5,
+> +	.laserping_error	=3D 1,
+> +	.timeout_ns		=3D 15500000,	/* 2 meters plus error codes */
+> +};
+> +
+> +static irqreturn_t ping_handle_irq(int irq, void *dev_id)
+> +{
+> +	struct iio_dev *indio_dev =3D dev_id;
+> +	struct ping_data *data =3D iio_priv(indio_dev);
+> +	ktime_t now =3D ktime_get();
+> +
+> +	if (gpiod_get_value(data->gpiod_ping)) {
+> +		data->ts_rising =3D now;
+> +		complete(&data->rising);
+> +	} else {
+> +		data->ts_falling =3D now;
+> +		complete(&data->falling);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int ping_read(struct ping_data *data)
+> +{
+> +	int ret;
+> +	ktime_t ktime_dt;
+> +	s64 dt_ns;
+> +	u32 time_ns, distance_mm;
+> +	struct platform_device *pdev =3D to_platform_device(data->dev);
+> +	struct iio_dev *indio_dev =3D iio_priv_to_dev(data);
+> +
+> +	/*
+> +	 * just one read-echo-cycle can take place at a time
+> +	 * =3D=3D> lock against concurrent reading calls
+> +	 */
+> +	mutex_lock(&data->lock);
+> +
+> +	reinit_completion(&data->rising);
+> +	reinit_completion(&data->falling);
+> +
+> +	gpiod_set_value(data->gpiod_ping, 1);
+> +	udelay(data->cfg->trigger_pulse_us);
+> +	gpiod_set_value(data->gpiod_ping, 0);
+> +
+> +	ret =3D gpiod_direction_input(data->gpiod_ping);
+> +	if (ret < 0) {
+> +		mutex_unlock(&data->lock);
+> +		return ret;
+> +	}
+> +
+> +	data->irqnr =3D gpiod_to_irq(data->gpiod_ping);
+> +	if (data->irqnr < 0) {
+> +		dev_err(data->dev, "gpiod_to_irq: %d\n", data->irqnr);
+> +		return data->irqnr;
+> +	}
+> +
+> +	ret =3D devm_request_irq(data->dev, data->irqnr, ping_handle_irq,
+> +				IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING,
+> +							pdev->name, indio_dev);
 
-Lots of line-too-long checkpatch warnings. Please avoid.
+See below. Probably just want request_irq
 
-Thanks,
-Guenter
+> +	if (ret < 0) {
+> +		dev_err(data->dev, "request_irq: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* it should not take more than 20 ms until echo is rising */
+> +	ret =3D wait_for_completion_killable_timeout(&data->rising, HZ/50);
+> +	if (ret < 0)
+> +		goto err_reset_direction;
+> +	else if (ret =3D=3D 0) {
+> +		ret =3D -ETIMEDOUT;
+> +		goto err_reset_direction;
+> +	}
+> +
+> +	/* it cannot take more than 50 ms until echo is falling */
+> +	ret =3D wait_for_completion_killable_timeout(&data->falling, HZ/20);
+> +	if (ret < 0)
+> +		goto err_reset_direction;
+> +	else if (ret =3D=3D 0) {
+> +		ret =3D -ETIMEDOUT;
+> +		goto err_reset_direction;
+> +	}
+> +
+> +	ktime_dt =3D ktime_sub(data->ts_falling, data->ts_rising);
+> +
+> +	free_irq(data->irqnr, indio_dev);
+
+As below...=20
+
+> +
+> +	ret =3D gpiod_direction_output(data->gpiod_ping, GPIOD_OUT_LOW);
+> +	if (ret < 0) {
+> +		mutex_unlock(&data->lock);
+> +		return ret;
+> +	}
+> +
+> +	mutex_unlock(&data->lock);
+> +
+> +	dt_ns =3D ktime_to_ns(ktime_dt);
+> +	if (dt_ns > data->cfg->timeout_ns) {
+> +		dev_dbg(data->dev, "distance out of range: dt=3D%lldns\n",
+> +								dt_ns);
+> +		return -EIO;
+> +	}
+> +
+> +	time_ns =3D dt_ns;
+> +
+> +	/*
+> +	 * read error code of laser ping sensor and give users chance to
+> +	 * figure out error by using dynamic debuggging
+> +	 */
+> +	if (data->cfg->laserping_error) {
+> +		if ((time_ns > 12500000) && (time_ns <=3D 13500000)) {
+> +			dev_dbg(data->dev, "target too close or to far\n");
+> +			return -EIO;
+> +		}
+> +		if ((time_ns > 13500000) && (time_ns <=3D 14500000)) {
+> +			dev_dbg(data->dev, "internal sensor error\n");
+> +			return -EIO;
+> +		}
+> +		if ((time_ns > 14500000) && (time_ns <=3D 15500000)) {
+> +			dev_dbg(data->dev, "internal sensor timeout\n");
+> +			return -EIO;
+> +		}
+> +	}
+> +
+> +	/*
+> +	 * the speed as function of the temperature is approximately:
+> +	 *
+> +	 * speed =3D 331,5 + 0,6 * Temp
+> +	 *   with Temp in =C2=B0C
+> +	 *   and speed in m/s
+> +	 *
+> +	 * use 343,5 m/s as ultrasonic speed at 20 =C2=B0C here in absence of t=
+he
+> +	 * temperature
+> +	 *
+> +	 * therefore:
+> +	 *             time     343,5     time * 232
+> +	 * distance =3D ------ * ------- =3D ------------
+> +	 *             10^6         2        1350800
+> +	 *   with time in ns
+> +	 *   and distance in mm (one way)
+> +	 *
+> +	 * because we limit to 3 meters the multiplication with 232 just
+> +	 * fits into 32 bit
+> +	 */
+> +	distance_mm =3D time_ns * 232 / 1350800;
+> +
+> +	return distance_mm;
+> +
+> +err_reset_direction:
+> +	mutex_unlock(&data->lock);
+> +	free_irq(data->irqnr, indio_dev);
+
+You use devm_request_irq and free_irq.  Probably going to get a double free
+when the managed framework comes along later and tries to free this.
+
+> +
+> +	if (gpiod_direction_output(data->gpiod_ping, GPIOD_OUT_LOW))
+> +		dev_dbg(data->dev, "error in gpiod_direction_output\n");
+> +	return ret;
+> +}
+> +
+> +static int ping_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *channel, int *val,
+> +			    int *val2, long info)
+> +{
+> +	struct ping_data *data =3D iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (channel->type !=3D IIO_DISTANCE)
+> +		return -EINVAL;
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret =3D ping_read(data);
+> +		if (ret < 0)
+> +			return ret;
+> +		*val =3D ret;
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		/*
+> +		 * maximum resolution in datasheet is 1 mm
+> +		 * 1 LSB is 1 mm
+> +		 */
+> +		*val =3D 0;
+> +		*val2 =3D 1000;
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct iio_info ping_iio_info =3D {
+> +	.read_raw		=3D ping_read_raw,
+> +};
+> +
+> +static const struct iio_chan_spec ping_chan_spec[] =3D {
+> +	{
+> +		.type =3D IIO_DISTANCE,
+> +		.info_mask_separate =3D
+> +				BIT(IIO_CHAN_INFO_RAW) |
+> +				BIT(IIO_CHAN_INFO_SCALE),
+> +	},
+> +};
+> +
+> +static const struct of_device_id of_ping_match[] =3D {
+> +	{ .compatible =3D "parallax,ping", .data =3D &pa_ping_cfg},
+> +	{ .compatible =3D "parallax,laserping", .data =3D &pa_ping_cfg},
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, of_ping_match);
+> +
+> +static int ping_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct ping_data *data;
+> +	struct iio_dev *indio_dev;
+> +
+> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(struct ping_data));
+> +	if (!indio_dev) {
+> +		dev_err(dev, "failed to allocate IIO device\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	data =3D iio_priv(indio_dev);
+> +	data->dev =3D dev;
+> +	data->cfg =3D of_device_get_match_data(dev);
+> +
+> +	mutex_init(&data->lock);
+> +	init_completion(&data->rising);
+> +	init_completion(&data->falling);
+> +
+> +	data->gpiod_ping =3D devm_gpiod_get(dev, "ping", GPIOD_OUT_LOW);
+> +	if (IS_ERR(data->gpiod_ping)) {
+> +		dev_err(dev, "failed to get ping-gpios: err=3D%ld\n",
+> +						PTR_ERR(data->gpiod_ping));
+> +		return PTR_ERR(data->gpiod_ping);
+> +	}
+> +
+> +	if (gpiod_cansleep(data->gpiod_ping)) {
+> +		dev_err(data->dev, "cansleep-GPIOs not supported\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, indio_dev);
+> +
+> +	indio_dev->name =3D "ping";
+> +	indio_dev->dev.parent =3D &pdev->dev;
+> +	indio_dev->info =3D &ping_iio_info;
+> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +	indio_dev->channels =3D ping_chan_spec;
+> +	indio_dev->num_channels =3D ARRAY_SIZE(ping_chan_spec);
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+> +static struct platform_driver ping_driver =3D {
+> +	.probe		=3D ping_probe,
+> +	.driver		=3D {
+> +		.name		=3D "ping-gpio",
+> +		.of_match_table	=3D of_ping_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(ping_driver);
+> +
+> +MODULE_AUTHOR("Andreas Klinger <ak@it-klinger.de>");
+> +MODULE_DESCRIPTION("PING sensors for distance measuring using one GPIOs"=
+);
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:ping");
+
