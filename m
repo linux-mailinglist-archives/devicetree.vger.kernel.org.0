@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C1BFF2CF
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2019 17:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D495FF273
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2019 17:19:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728777AbfKPQV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Nov 2019 11:21:28 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47500 "EHLO mail.kernel.org"
+        id S1729349AbfKPPqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Nov 2019 10:46:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52646 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728738AbfKPPnb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 16 Nov 2019 10:43:31 -0500
+        id S1729337AbfKPPqS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 16 Nov 2019 10:46:18 -0500
 Received: from sasha-vm.mshome.net (unknown [50.234.116.4])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E157320815;
-        Sat, 16 Nov 2019 15:43:30 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0C8E12083B;
+        Sat, 16 Nov 2019 15:46:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1573919011;
-        bh=v07zbc7vShP28g0iL9bjsCC4WxDrC1Mp4bhpHU4L4qA=;
+        s=default; t=1573919178;
+        bh=+Tu81s/jZSdhO5WGgtrMGG8ucgrcGU+ah1WI414OjVc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iEK037BfSHhBFty++qGjzYyEQu/KxU+dCxUTFzIYt712bIc5dfalT6V9NYgThTMP0
-         dV/sfWPggheOVOCP4EQ++7Zq4tOT0hZ6Qba6WGY2rM0scwqFoxA4wLVF0sJkMok/Ge
-         IrfsKevIYM8keufkBpo+6o0wJbfM6ys7oAJC5xjU=
+        b=2tTi3lM4+ifw8TrAvx+imKniBJf8q5JjPHEBH3Mn2JFslXmo7HpYbUdH2348N0hdK
+         oCW0rH1QNVE7J3OSiellNwXyiAVTIpoUncjB8hDFeNkDt2j4tge3U8C0XMzVXcKRn+
+         4zc0fXE8ZnLS/tNzLKmPQ7UIe8QDIXyYWZWxan/o=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Keiji Hayashibara <hayashibara.keiji@socionext.com>,
-        Mark Brown <broonie@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 115/237] spi: uniphier: fix incorrect property items
-Date:   Sat, 16 Nov 2019 10:39:10 -0500
-Message-Id: <20191116154113.7417-115-sashal@kernel.org>
+Cc:     Leonard Crestez <leonard.crestez@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 187/237] ARM: dts: imx6sx-sdb: Fix enet phy regulator
+Date:   Sat, 16 Nov 2019 10:40:22 -0500
+Message-Id: <20191116154113.7417-187-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191116154113.7417-1-sashal@kernel.org>
 References: <20191116154113.7417-1-sashal@kernel.org>
@@ -44,54 +43,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Keiji Hayashibara <hayashibara.keiji@socionext.com>
+From: Leonard Crestez <leonard.crestez@nxp.com>
 
-[ Upstream commit 3511ba7d4ca6f39e2d060bb94e42a41ad1fee7bf ]
+[ Upstream commit 1ad9fb750a104f51851c092edd7b3553f0218428 ]
 
-This commit fixes incorrect property because it was different
-from the actual.
-The parameters of '#address-cells' and '#size-cells' were removed,
-and 'interrupts', 'pinctrl-names' and 'pinctrl-0' were added.
+Bindings for "fixed-regulator" only explicitly support "gpio" property,
+not "gpios". Fix by correcting the property name.
 
-Fixes: 4dcd5c2781f3 ("spi: add DT bindings for UniPhier SPI controller")
-Signed-off-by: Keiji Hayashibara <hayashibara.keiji@socionext.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
+The enet PHYs on imx6sx-sdb needs to be explicitly reset after a power
+cycle, this can be handled by the phy-reset-gpios property. Sadly this
+is not handled on suspend: the fec driver turns phy-supply off but
+doesn't assert phy-reset-gpios again on resume.
+
+Since additional phy-level work is required to support powering off the
+phy in suspend fix the problem by just marking the regulator as
+"boot-on" "always-on" so that it's never turned off. This behavior is
+equivalent to older releases.
+
+Keep the phy-reset-gpios property on fec anyway because it is a correct
+description of board design.
+
+This issue was exposed by commit efdfeb079cc3 ("regulator: fixed:
+Convert to use GPIO descriptor only") which causes the "gpios" property
+to also be parsed. Before that commit the "gpios" property had no
+effect, PHY reset was only handled in the the bootloader.
+
+This fixes linux-next boot failures previously reported here:
+ https://lore.kernel.org/patchwork/patch/982437/#1177900
+ https://lore.kernel.org/patchwork/patch/994091/#1178304
+
+Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../devicetree/bindings/spi/spi-uniphier.txt       | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/imx6sx-sdb.dtsi | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-uniphier.txt b/Documentation/devicetree/bindings/spi/spi-uniphier.txt
-index 504a4ecfc7b16..b04e66a52de5d 100644
---- a/Documentation/devicetree/bindings/spi/spi-uniphier.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-uniphier.txt
-@@ -5,18 +5,20 @@ UniPhier SoCs have SCSSI which supports SPI single channel.
- Required properties:
-  - compatible: should be "socionext,uniphier-scssi"
-  - reg: address and length of the spi master registers
-- - #address-cells: must be <1>, see spi-bus.txt
-- - #size-cells: must be <0>, see spi-bus.txt
-- - clocks: A phandle to the clock for the device.
-- - resets: A phandle to the reset control for the device.
-+ - interrupts: a single interrupt specifier
-+ - pinctrl-names: should be "default"
-+ - pinctrl-0: pin control state for the default mode
-+ - clocks: a phandle to the clock for the device
-+ - resets: a phandle to the reset control for the device
+diff --git a/arch/arm/boot/dts/imx6sx-sdb.dtsi b/arch/arm/boot/dts/imx6sx-sdb.dtsi
+index f8f31872fa144..d6d517e4922ff 100644
+--- a/arch/arm/boot/dts/imx6sx-sdb.dtsi
++++ b/arch/arm/boot/dts/imx6sx-sdb.dtsi
+@@ -115,7 +115,9 @@
+ 		regulator-name = "enet_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+-		gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
++		gpio = <&gpio2 6 GPIO_ACTIVE_LOW>;
++		regulator-boot-on;
++		regulator-always-on;
+ 	};
  
- Example:
+ 	reg_pcie_gpio: regulator-pcie-gpio {
+@@ -178,6 +180,7 @@
+ 	phy-supply = <&reg_enet_3v3>;
+ 	phy-mode = "rgmii";
+ 	phy-handle = <&ethphy1>;
++	phy-reset-gpios = <&gpio2 7 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
  
- spi0: spi@54006000 {
- 	compatible = "socionext,uniphier-scssi";
- 	reg = <0x54006000 0x100>;
--	#address-cells = <1>;
--	#size-cells = <0>;
-+	interrupts = <0 39 4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi0>;
- 	clocks = <&peri_clk 11>;
- 	resets = <&peri_rst 11>;
- };
+ 	mdio {
+@@ -371,6 +374,8 @@
+ 				MX6SX_PAD_RGMII1_RD3__ENET1_RX_DATA_3	0x3081
+ 				MX6SX_PAD_RGMII1_RX_CTL__ENET1_RX_EN	0x3081
+ 				MX6SX_PAD_ENET2_RX_CLK__ENET2_REF_CLK_25M	0x91
++				/* phy reset */
++				MX6SX_PAD_ENET2_CRS__GPIO2_IO_7		0x10b0
+ 			>;
+ 		};
+ 
 -- 
 2.20.1
 
