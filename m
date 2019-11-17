@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2164FFADE
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 18:25:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D74EFFB01
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 18:56:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726127AbfKQRZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Nov 2019 12:25:07 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:37794 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726028AbfKQRZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Nov 2019 12:25:07 -0500
-Received: by mail-wm1-f66.google.com with SMTP id b17so16173264wmj.2
-        for <devicetree@vger.kernel.org>; Sun, 17 Nov 2019 09:25:05 -0800 (PST)
+        id S1726062AbfKQR4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Nov 2019 12:56:18 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35603 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726047AbfKQR4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Nov 2019 12:56:18 -0500
+Received: by mail-wr1-f68.google.com with SMTP id s5so16798772wrw.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Nov 2019 09:56:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
         bh=KQN6gwOKGkmVRkt+hwPxqq6Jnl9Fa2wsCKH+gEVtNFk=;
-        b=ND/M9mscgT+cliFMhwYfjCX+qBTbahBDoHQeILn1cjB0/pU78TBH5y6RZVYnQ2Xuiz
-         WJzf19xR9AMpeWjTCa2e68F5epzypApCSPZmT99rz+UvtR66cNNssQg6GgZGvGa2ZWLR
-         PWosJRqhGCYg8bFY/obsKXwlYTFfdQDp5GEvq3SXinkuLwjLHtNqnYUggvTGoEsYxK3d
-         B3M9CllZuODcRy9v24jH/aCVDlYCDtpalpbjRk6pJkTEK+q95o0kZ1Npx7nsZuVQh2Rf
-         NdOaEQbcGaoYPdYjId97ICUm9lqzIv3slYS/1vx4gyDkDSQ0u0ldmneym9yIn9E2eIsj
-         PwQw==
+        b=eSeJy5g3gv+YTAl+bQkUerbEkkqew528sHN1YJqT7ZXDps4MWSlYhAv55GIVXDYpfj
+         sYh9VIv36Yato1zA7vjZzWQkRZmbkx2YeL/kfH45zVSNfJ6TmnlLI0nxxnepr2o2Cona
+         NplR5KK6X+hGLuGFtjeZ2u65+RTRg6PY/TXcAso3OfSPFbjRFxwp+7y019CeekaoMd0g
+         vQS0RQjAHvuTZvyQGu0Z8sXyzebdQCvDpIN81njD+k8gIKWYT2pq4ZZuzw0Mt0QUhGlG
+         iHf0sOPhRGjluG3a31Yb4jzRZ8msA8BQCwj5ot6T0nbZJPpa6UYUQ32ZmhZlfMozDwye
+         k97A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
         bh=KQN6gwOKGkmVRkt+hwPxqq6Jnl9Fa2wsCKH+gEVtNFk=;
-        b=WnxQNyqXTC8WmtooVnDcRPwBgeaank7Lyqvj6nXj6ZKunCk/gKnPp/hHzKHUAkdHf8
-         JWu4xvq64xzgIXcd5TAisXMfypvIDsOa+hJrfd172OZoPjR8FHJw2ERtnKk5rLPB/BcJ
-         3ogSrG7XlV36p2I1ldUMcqZMCYt8eS4DFNWav0gplNdaKYsFpNr5SNfS7Pg5jIFmfdrZ
-         6rTMxHQoaKtwMadnzi49akbwLaEXxAechB/uf5wHmqeanrdO8LcpXQ2KP965mkOST1fe
-         WVYadYmElki1BkxhUqR5eEH4Q8z7Po2Isv0TCdJ7fkBz05aFqhnWLhxYEUnk8/Z7IUc7
-         0NuQ==
-X-Gm-Message-State: APjAAAUv0ihnDDDmUzS3g9kCGONk5g3h7GLmf/Dp9oTvOtvtSeWsJEBN
-        Dv6RteURIwIS0Lx3xPM87fs=
-X-Google-Smtp-Source: APXvYqwYCkxH8WT5tnyVMQL8Y+OCQt9QGi+31SfNr+dAqz7TOYBP2GOBP00uQ6UxnDeC5KkdMUdbdg==
-X-Received: by 2002:a1c:c917:: with SMTP id f23mr26008436wmb.95.1574011505146;
-        Sun, 17 Nov 2019 09:25:05 -0800 (PST)
+        b=KYliymJHkMuJigbt/GxiTbdy7P3nNGozrnaJOJKaKK9MzrqRkOkaXOwNNLOzH3Rmga
+         roQPEYzDREyrKBfgxGyel5Kx3/8GHC0UqJOpwNWVoJkFd2vzfX61MrQVfFJhhjUu831Q
+         I9aGMNjnSly+WBk7tTkpEJTlLEjRQHNvaI4aU2xY0lPbVx8HXv4JpQDHyqGAaOwPBV5f
+         EPIMWRnwgtuMgaWd7VGyMdtJQRKT9jxn+9C6fbdd8jh+Vf9Mdz58POchbsiBiRkXilkP
+         lMdBorIu1g3l5KF5nMjVQhABQNJ9m5MhOoM5MGhpJs0x3OZsMmxy5bDps3fVNixMue7a
+         qkiA==
+X-Gm-Message-State: APjAAAVw9+pkGnLNwG+GWzNpU8MyFTBLGcWBJxnGFgiFbsx45st+X1tC
+        k/FGT5fG++slGDn5boS0a4g=
+X-Google-Smtp-Source: APXvYqwy9tcGuT7hTcbnXIMNvbu3T1d3rU2SQ4YzmMMVn7sXKSP5lJ4lS7dr/LvPdANiaeZuUsfRYA==
+X-Received: by 2002:a5d:522e:: with SMTP id i14mr10330423wra.27.1574013376288;
+        Sun, 17 Nov 2019 09:56:16 -0800 (PST)
 Received: from localhost ([37.238.189.25])
-        by smtp.gmail.com with ESMTPSA id m9sm19379328wro.66.2019.11.17.09.25.03
+        by smtp.gmail.com with ESMTPSA id j11sm19574118wrq.26.2019.11.17.09.56.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Nov 2019 09:25:04 -0800 (PST)
+        Sun, 17 Nov 2019 09:56:15 -0800 (PST)
 From:   Mohammad Rasim <mohammad.rasim96@gmail.com>
 To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
@@ -53,9 +53,11 @@ Cc:     Mohammad Rasim <mohammad.rasim96@gmail.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Subject: [RFC PATCH 1/4] dt-bindings: Add vendor prefix for Videostrong Technology Co., Ltd.
-Date:   Sun, 17 Nov 2019 20:24:59 +0300
-Message-Id: <20191117172459.12688-1-mohammad.rasim96@gmail.com>
+Date:   Sun, 17 Nov 2019 20:56:03 +0300
+Message-Id: <20191117175606.5050-2-mohammad.rasim96@gmail.com>
 X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191117175606.5050-1-mohammad.rasim96@gmail.com>
+References: <20191117175606.5050-1-mohammad.rasim96@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
