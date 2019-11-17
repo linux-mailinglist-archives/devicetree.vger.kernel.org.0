@@ -2,65 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29362FF9B5
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 13:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B41FF9BF
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 14:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726046AbfKQMxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Nov 2019 07:53:02 -0500
-Received: from mailoutvs20.siol.net ([185.57.226.211]:41108 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726037AbfKQMxC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Nov 2019 07:53:02 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id EEA88522B56;
-        Sun, 17 Nov 2019 13:52:58 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id Cc8JBiWqQWmV; Sun, 17 Nov 2019 13:52:58 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id AE514522A5A;
-        Sun, 17 Nov 2019 13:52:58 +0100 (CET)
-Received: from localhost.localdomain (cpe-86-58-102-7.static.triera.net [86.58.102.7])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id C6E5F522B5D;
-        Sun, 17 Nov 2019 13:52:55 +0100 (CET)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: sun8i: h3: Add rc map for Beelink X2
-Date:   Sun, 17 Nov 2019 13:52:50 +0100
-Message-Id: <20191117125250.1339829-1-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.24.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        id S1726177AbfKQNBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Nov 2019 08:01:09 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:40084 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726127AbfKQNBJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Nov 2019 08:01:09 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2516F1A0113;
+        Sun, 17 Nov 2019 14:01:08 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 463EB1A0123;
+        Sun, 17 Nov 2019 14:01:04 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 296254029F;
+        Sun, 17 Nov 2019 21:00:59 +0800 (SGT)
+From:   Dong Aisheng <aisheng.dong@nxp.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, dongas86@gmail.com,
+        kernel@pengutronix.de, shawnguo@kernel.org, robh+dt@kernel.org,
+        linux-imx@nxp.com, Dong Aisheng <aisheng.dong@nxp.com>
+Subject: [PATCH 1/3] dt-bindings: mmc: fsl-imx-esdhc: add imx8qm compatible string
+Date:   Sun, 17 Nov 2019 20:58:48 +0800
+Message-Id: <1573995530-14573-1-git-send-email-aisheng.dong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Beelink X2 box comes with a remote. Add a mapping for it.
+Add imx8qm compatible string.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 ---
- arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 1 +
+ Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dt=
-s/sun8i-h3-beelink-x2.dts
-index ac9e26b1d906..45a24441ff18 100644
---- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-+++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-@@ -143,6 +143,7 @@ hdmi_out_con: endpoint {
- };
-=20
- &ir {
-+	linux,rc-map-name =3D "rc-tanix-tx3mini";
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&r_ir_rx_pin>;
- 	status =3D "okay";
---=20
-2.24.0
+diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+index f707b8bee304..b8a4622d0718 100644
+--- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
++++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+@@ -18,6 +18,7 @@ Required properties:
+ 	       "fsl,imx6ull-usdhc"
+ 	       "fsl,imx7d-usdhc"
+ 	       "fsl,imx7ulp-usdhc"
++	       "fsl,imx8qm-usdhc"
+ 	       "fsl,imx8qxp-usdhc"
+ 
+ Optional properties:
+-- 
+2.23.0
 
