@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C44B4FF994
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 13:46:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8770AFF99A
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 13:46:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726084AbfKQMqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Nov 2019 07:46:11 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:41488 "EHLO inva021.nxp.com"
+        id S1726046AbfKQMqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Nov 2019 07:46:14 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:41550 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726076AbfKQMqL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Nov 2019 07:46:11 -0500
+        id S1726059AbfKQMqO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Nov 2019 07:46:14 -0500
 Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 91EA42000D2;
-        Sun, 17 Nov 2019 13:46:09 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 04A28200712;
+        Sun, 17 Nov 2019 13:46:13 +0100 (CET)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E24242007DA;
-        Sun, 17 Nov 2019 13:46:03 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 860BA20012E;
+        Sun, 17 Nov 2019 13:46:07 +0100 (CET)
 Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 53D0E402D0;
-        Sun, 17 Nov 2019 20:45:57 +0800 (SGT)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 89FD44029F;
+        Sun, 17 Nov 2019 20:46:00 +0800 (SGT)
 From:   Dong Aisheng <aisheng.dong@nxp.com>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     linux-clk@vger.kernel.org, sboyd@kernel.org,
@@ -28,9 +28,9 @@ Cc:     linux-clk@vger.kernel.org, sboyd@kernel.org,
         Dong Aisheng <aisheng.dong@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH RESEND v3 06/15] arm64: dts: imx8: add adma lpcg clocks
-Date:   Sun, 17 Nov 2019 20:43:46 +0800
-Message-Id: <1573994635-14479-7-git-send-email-aisheng.dong@nxp.com>
+Subject: [PATCH RESEND v3 09/15] arm64: dts: imx8qm: add lsio ss support
+Date:   Sun, 17 Nov 2019 20:43:49 +0800
+Message-Id: <1573994635-14479-10-git-send-email-aisheng.dong@nxp.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1573994635-14479-1-git-send-email-aisheng.dong@nxp.com>
 References: <1573994635-14479-1-git-send-email-aisheng.dong@nxp.com>
@@ -40,7 +40,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add adma lpcg clocks
+The LSIO SS of MX8QM is exactly the same as MX8QXP. So we can fully
+reuse the exist LSIO SS dtsi. Add <soc>-ss-lsio.dtsi with compatible
+string updated according to imx8-ss-lsio.dtsi.
 
 Cc: Rob Herring <robh+dt@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>
@@ -51,174 +53,82 @@ Cc: Fabio Estevam <fabio.estevam@nxp.com>
 Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 ---
 ChangeLog:
-v3->v4:
- * add missing lpcg headfile
 v2->v3:
- * update to use clock-indices property instead of bit-offset property
+ * no changes
 v1->v2:
- * Use old SCU clock binding temporarily to avoid build warning due to SCU
-   clock cell will be changed to 2.
- * add power domain property
+ * change to the new two cell scu clk binding
 ---
- .../boot/dts/freescale/imx8-ss-adma.dtsi      | 122 ++++++++++++++++++
- 1 file changed, 122 insertions(+)
+ .../boot/dts/freescale/imx8qm-ss-lsio.dtsi    | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi b/arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi
-index 28b8fc9a81d4..6bd194a98c36 100644
---- a/arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi
-@@ -4,17 +4,51 @@
-  *	Dong Aisheng <aisheng.dong@nxp.com>
-  */
- 
-+#include <dt-bindings/clock/imx8-lpcg.h>
-+#include <dt-bindings/firmware/imx/rsrc.h>
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
+new file mode 100644
+index 000000000000..6fe390641010
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
+@@ -0,0 +1,61 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright 2019 NXP
++ *	Dong Aisheng <aisheng.dong@nxp.com>
++ */
 +
- adma_subsys: bus@59000000 {
- 	compatible = "simple-bus";
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 	ranges = <0x59000000 0x0 0x59000000 0x2000000>;
- 
-+	dma_ipg_clk: clock-dma-ipg {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <120000000>;
-+		clock-output-names = "dma_ipg_clk";
-+	};
++&lsio_gpio0 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
-+	/* LPCG clocks */
- 	adma_lpcg: clock-controller@59000000 {
- 		reg = <0x59000000 0x2000000>;
- 		#clock-cells = <1>;
- 	};
- 
-+	dsp_lpcg: clock-controller@59580000 {
-+		reg = <0x59580000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&dma_ipg_clk>,
-+			 <&dma_ipg_clk>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_4>, <IMX_LPCG_CLK_5>,
-+				<IMX_LPCG_CLK_7>;
-+		clock-output-names = "dsp_lpcg_adb_clk",
-+				     "dsp_lpcg_ipg_clk",
-+				     "dsp_lpcg_core_clk";
-+		power-domains = <&pd IMX_SC_R_DSP>;
-+	};
++&lsio_gpio1 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
-+	dsp_ram_lpcg: clock-controller@59590000 {
-+		reg = <0x59590000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_4>;
-+		clock-output-names = "dsp_ram_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_DSP_RAM>;
-+	};
++&lsio_gpio2 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
- 	adma_dsp: dsp@596e8000 {
- 		compatible = "fsl,imx8qxp-dsp";
- 		reg = <0x596e8000 0x88000>;
-@@ -80,6 +114,50 @@ adma_subsys: bus@59000000 {
- 		status = "disabled";
- 	};
- 
-+	uart0_lpcg: clock-controller@5a460000 {
-+		reg = <0x5a460000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_UART0_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "uart0_lpcg_baud_clk",
-+				     "uart0_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_UART_0>;
-+	};
++&lsio_gpio3 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
-+	uart1_lpcg: clock-controller@5a470000 {
-+		reg = <0x5a470000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_UART1_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "uart1_lpcg_baud_clk",
-+				     "uart1_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_UART_1>;
-+	};
++&lsio_gpio4 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
-+	uart2_lpcg: clock-controller@5a480000 {
-+		reg = <0x5a480000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_UART2_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "uart2_lpcg_baud_clk",
-+				     "uart2_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_UART_2>;
-+	};
++&lsio_gpio5 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
-+	uart3_lpcg: clock-controller@5a490000 {
-+		reg = <0x5a490000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_UART3_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "uart3_lpcg_baud_clk",
-+				     "uart3_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_UART_3>;
-+	};
++&lsio_gpio6 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
- 	adma_i2c0: i2c@5a800000 {
- 		reg = <0x5a800000 0x4000>;
- 		interrupts = <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>;
-@@ -127,4 +205,48 @@ adma_subsys: bus@59000000 {
- 		power-domains = <&pd IMX_SC_R_I2C_3>;
- 		status = "disabled";
- 	};
++&lsio_gpio7 {
++	compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
++};
 +
-+	i2c0_lpcg: clock-controller@5ac00000 {
-+		reg = <0x5ac00000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_I2C0_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "i2c0_lpcg_clk",
-+				     "i2c0_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_I2C_0>;
-+	};
++&lsio_mu0 {
++	compatible = "fsl,imx8qm-mu", "fsl,imx6sx-mu";
++};
 +
-+	i2c1_lpcg: clock-controller@5ac10000 {
-+		reg = <0x5ac10000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_I2C1_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "i2c1_lpcg_clk",
-+				     "i2c1_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_I2C_1>;
-+	};
++&lsio_mu1 {
++	compatible = "fsl,imx8qm-mu", "fsl,imx6sx-mu";
++};
 +
-+	i2c2_lpcg: clock-controller@5ac20000 {
-+		reg = <0x5ac20000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_I2C2_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "i2c2_lpcg_clk",
-+				     "i2c2_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_I2C_2>;
-+	};
++&lsio_mu2 {
++	compatible = "fsl,imx8qm-mu", "fsl,imx6sx-mu";
++};
 +
-+	i2c3_lpcg: clock-controller@5ac30000 {
-+		reg = <0x5ac30000 0x10000>;
-+		#clock-cells = <1>;
-+		clocks = <&clk IMX_ADMA_I2C3_CLK>,
-+			 <&dma_ipg_clk>;
-+		clock-indices = <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-+		clock-output-names = "i2c3_lpcg_clk",
-+				     "i2c3_lpcg_ipg_clk";
-+		power-domains = <&pd IMX_SC_R_I2C_3>;
-+	};
- };
++&lsio_mu3 {
++	compatible = "fsl,imx8qm-mu", "fsl,imx6sx-mu";
++};
++
++&lsio_mu4 {
++	compatible = "fsl,imx8qm-mu", "fsl,imx6sx-mu";
++};
++
++&lsio_mu13 {
++	compatible = "fsl,imx8qm-mu", "fsl,imx6sx-mu";
++};
 -- 
 2.23.0
 
