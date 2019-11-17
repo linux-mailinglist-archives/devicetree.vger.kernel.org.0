@@ -2,77 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EDB2FF852
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 08:21:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B690FF8BB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 11:16:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726063AbfKQHVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Nov 2019 02:21:30 -0500
-Received: from mx2.suse.de ([195.135.220.15]:40812 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725909AbfKQHVX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Nov 2019 02:21:23 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 41726B315;
-        Sun, 17 Nov 2019 07:21:22 +0000 (UTC)
-From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
-To:     linux-realtek-soc@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v3 7/8] ARM: dts: rtd1195: Add UART resets
-Date:   Sun, 17 Nov 2019 08:21:08 +0100
-Message-Id: <20191117072109.20402-8-afaerber@suse.de>
+        id S1725974AbfKQKQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Nov 2019 05:16:56 -0500
+Received: from lnfm1.sai.msu.ru ([93.180.26.255]:44716 "EHLO lnfm1.sai.msu.ru"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726007AbfKQKQ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Nov 2019 05:16:56 -0500
+Received: from dragon.sai.msu.ru (dragon.sai.msu.ru [93.180.26.172])
+        by lnfm1.sai.msu.ru (8.14.1/8.12.8) with ESMTP id xAHAFqoA011611;
+        Sun, 17 Nov 2019 13:15:57 +0300
+Received: from oak.local (unknown [92.243.181.209])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by dragon.sai.msu.ru (Postfix) with ESMTPSA id 335C137923;
+        Sun, 17 Nov 2019 13:15:53 +0300 (MSK)
+From:   "Matwey V. Kornilov" <matwey@sai.msu.ru>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Akash Gajjar <akash@openedev.com>,
+        "Matwey V. Kornilov" <matwey@sai.msu.ru>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
+        support),
+        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support),
+        linux-kernel@vger.kernel.org (open list)
+Cc:     matwey.kornilov@gmail.com,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
+        support),
+        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support),
+        linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2] arm64: dts: rockchip: Enable PCIe for Radxa Rock Pi 4 board
+Date:   Sun, 17 Nov 2019 13:15:37 +0300
+Message-Id: <20191117101545.6406-1-matwey@sai.msu.ru>
 X-Mailer: git-send-email 2.16.4
-In-Reply-To: <20191117072109.20402-1-afaerber@suse.de>
-References: <20191117072109.20402-1-afaerber@suse.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Associate the UART nodes with the corresponding reset controller bits.
+Radxa Rock Pi 4 is equipped with M.2 PCIe slot,
+so enable PCIe for the board.
 
-Signed-off-by: Andreas Färber <afaerber@suse.de>
+The changes has been tested with Intel SSD 660p series device.
+
+    01:00.0 Class 0108: Device 8086:f1a8 (rev 03)
+
+Signed-off-by: Matwey V. Kornilov <matwey@sai.msu.ru>
 ---
- v3: from RTD1295 reset v2
- * Rebased onto r-bus
- 
- arch/arm/boot/dts/rtd1195.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rtd1195.dtsi b/arch/arm/boot/dts/rtd1195.dtsi
-index e0f133a1354f..4eec45244132 100644
---- a/arch/arm/boot/dts/rtd1195.dtsi
-+++ b/arch/arm/boot/dts/rtd1195.dtsi
-@@ -8,6 +8,7 @@
- /memreserve/ 0x17fff000 0x00001000;
+Changes since v1:
+ - add vpcie3v3-supply
+
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+index 1ae1ebd4efdd..01f8effd8206 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dts
+@@ -463,6 +463,21 @@
+ 	pmu1830-supply = <&vcc_3v0>;
+ };
  
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/reset/realtek,rtd1195.h>
- 
- / {
- 	compatible = "realtek,rtd1195";
-@@ -134,6 +135,7 @@
- 				reg = <0x7800 0x400>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-+				resets = <&iso_reset RTD1195_ISO_RSTN_UR0>;
- 				clock-frequency = <27000000>;
- 				status = "disabled";
- 			};
-@@ -143,6 +145,7 @@
- 				reg = <0x1b200 0x100>;
- 				reg-shift = <2>;
- 				reg-io-width = <4>;
-+				resets = <&reset2 RTD1195_RSTN_UR1>;
- 				clock-frequency = <27000000>;
- 				status = "disabled";
- 			};
++&pcie_phy {
++	status = "okay";
++};
++
++&pcie0 {
++	status = "okay";
++
++	ep-gpios = <&gpio4 RK_PD3 GPIO_ACTIVE_HIGH>;
++	max-link-speed = <2>;
++	num-lanes = <4>;
++	pinctrl-0 = <&pcie_clkreqnb_cpm>;
++	pinctrl-names = "default";
++	vpcie3v3-supply = <&vcc3v3_pcie>;
++};
++
+ &pinctrl {
+ 	bt {
+ 		bt_enable_h: bt-enable-h {
 -- 
 2.16.4
 
