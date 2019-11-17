@@ -2,76 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A8CFF942
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 12:48:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2BAFF96C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 13:27:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726027AbfKQLso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Nov 2019 06:48:44 -0500
-Received: from onstation.org ([52.200.56.107]:38758 "EHLO onstation.org"
+        id S1726134AbfKQM13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Nov 2019 07:27:29 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:60240 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726325AbfKQLsm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Nov 2019 06:48:42 -0500
-Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id DAA034FE4B;
-        Sun, 17 Nov 2019 11:48:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1573991321;
-        bh=rl6/6/Eu9skt4+IcmxvISu1bBxwQsQboq/5RVDZniic=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=le+c7mmslEwZqMNGy37bnORfMaWTTpxN3JKvaDGIwpg++SdQqlGzGx3oBKuw7DZz+
-         U9wXQ6h///rjUt9SzUsCQKrvmoPemstl+qpSVk3E+51jYjuzN75M4CqfAkfVpH/rSc
-         kk3vlXgixVujTB906XcAlQFL4QAVtsoCcOZzTJVU=
-From:   Brian Masney <masneyb@onstation.org>
-To:     robdclark@gmail.com, sean@poorly.run, robh+dt@kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, jcrouse@codeaurora.org,
-        dianders@chromium.org, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH 4/4] drm/msm/a4xx: set interconnect bandwidth vote
-Date:   Sun, 17 Nov 2019 06:48:25 -0500
-Message-Id: <20191117114825.13541-5-masneyb@onstation.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191117114825.13541-1-masneyb@onstation.org>
-References: <20191117114825.13541-1-masneyb@onstation.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726127AbfKQM13 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Nov 2019 07:27:29 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CB42B2000BD;
+        Sun, 17 Nov 2019 13:27:27 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E7B2420000A;
+        Sun, 17 Nov 2019 13:27:22 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DE9EB402A7;
+        Sun, 17 Nov 2019 20:27:16 +0800 (SGT)
+From:   Dong Aisheng <aisheng.dong@nxp.com>
+To:     linux-clk@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, sboyd@kernel.org,
+        mturquette@baylibre.com, shawnguo@kernel.org,
+        fabio.estevam@nxp.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org
+Subject: [PATCH RESEND v5 01/11] dt-bindings: firmware: imx-scu: new binding to parse clocks from device tree
+Date:   Sun, 17 Nov 2019 20:25:09 +0800
+Message-Id: <1573993519-14308-2-git-send-email-aisheng.dong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1573993519-14308-1-git-send-email-aisheng.dong@nxp.com>
+References: <1573993519-14308-1-git-send-email-aisheng.dong@nxp.com>
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set the two interconnect paths for the GPU to maximum speed for now to
-work towards getting the GPU working upstream. We can revisit a later
-time to optimize this for battery life.
+There's a few limitations on the original one cell clock binding
+(#clock-cells = <1>) that we have to define some SW clock IDs for device
+tree to reference. This may cause troubles if we want to use common
+clock IDs for multi platforms support when the clock of those platforms
+are mostly the same.
+e.g. Current clock IDs name are defined with SS prefix.
 
-Signed-off-by: Brian Masney <masneyb@onstation.org>
+However the device may reside in different SS across CPUs, that means the
+SS prefix may not valid anymore for a new SoC. Furthermore, the device
+availability of those clocks may also vary a bit.
+
+For such situation, we want to eliminate the using of SW Clock IDs and
+change to use a more close to HW one instead.
+For SCU clocks usage, only two params required: Resource id + Clock Type.
+Both parameters are platform independent. So we could use two cells binding
+to pass those parameters,
+
+Cc: Sascha Hauer <kernel@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: devicetree@vger.kernel.org
+Acked-by: Shawn Guo <shawnguo@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 ---
- drivers/gpu/drm/msm/adreno/a4xx_gpu.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ChangeLog:
+v4->v5:
+ * no changes
+v3->v4:
+ * add some comments for various clock types
+v2->v3:
+ * Changed to two cells binding and register all clocks in driver
+   instead of parse from device tree.
+v1->v2:
+ * changed to one cell binding inspired by arm,scpi.txt
+   Documentation/devicetree/bindings/arm/arm,scpi.txt
+   Resource ID is encoded in 'reg' property.
+   Clock type is encoded in generic clock-indices property.
+   Then we don't have to search all the DT nodes to fetch
+   those two value to construct clocks which is relatively
+   low efficiency.
+ * Add required power-domain property as well.
+---
+ .../bindings/arm/freescale/fsl,scu.txt        | 12 ++++++----
+ include/dt-bindings/firmware/imx/rsrc.h       | 23 +++++++++++++++++++
+ 2 files changed, 30 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-index b01388a9e89e..c631d1df7751 100644
---- a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-@@ -591,6 +591,14 @@ struct msm_gpu *a4xx_gpu_init(struct drm_device *dev)
- 		goto fail;
- 	}
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index c149fadc6f47..be0a8fe134c7 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -89,7 +89,10 @@ Required properties:
+ 			  "fsl,imx8qm-clock"
+ 			  "fsl,imx8qxp-clock"
+ 			followed by "fsl,scu-clk"
+-- #clock-cells:		Should be 1. Contains the Clock ID value.
++- #clock-cells:		Should be either
++			2: Contains the Resource and Clock ID value.
++			or
++			1: Contains the Clock ID value. (DEPRECATED)
+ - clocks:		List of clock specifiers, must contain an entry for
+ 			each required entry in clock-names
+ - clock-names:		Should include entries "xtal_32KHz", "xtal_24MHz"
+@@ -186,7 +189,7 @@ firmware {
  
-+	/*
-+	 * Set the ICC path to maximum speed for now by multiplying the fastest
-+	 * frequency by the bus width (8). We'll want to scale this later on to
-+	 * improve battery life.
-+	 */
-+	icc_set_bw(gpu->gfx_mem_icc_path, 0, Bps_to_icc(gpu->fast_rate) * 8);
-+	icc_set_bw(gpu->ocmem_icc_path, 0, Bps_to_icc(gpu->fast_rate) * 8);
+ 		clk: clk {
+ 			compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
+-			#clock-cells = <1>;
++			#clock-cells = <2>;
+ 		};
+ 
+ 		iomuxc {
+@@ -231,8 +234,7 @@ serial@5a060000 {
+ 	...
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_lpuart0>;
+-	clocks = <&clk IMX8QXP_UART0_CLK>,
+-		 <&clk IMX8QXP_UART0_IPG_CLK>;
+-	clock-names = "per", "ipg";
++	clocks = <&uart0_clk IMX_SC_R_UART_0 IMX_SC_PM_CLK_PER>;
++	clock-names = "ipg";
+ 	power-domains = <&pd IMX_SC_R_UART_0>;
+ };
+diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
+index 4e61f6485097..24c153dfaa72 100644
+--- a/include/dt-bindings/firmware/imx/rsrc.h
++++ b/include/dt-bindings/firmware/imx/rsrc.h
+@@ -547,4 +547,27 @@
+ #define IMX_SC_R_ATTESTATION		545
+ #define IMX_SC_R_LAST			546
+ 
++/*
++ * Defines for SC PM CLK
++ */
 +
- 	return gpu;
- 
- fail:
++/* Normal device resource clock */
++#define IMX_SC_PM_CLK_SLV_BUS		0	/* Slave bus clock */
++#define IMX_SC_PM_CLK_MST_BUS		1	/* Master bus clock */
++#define IMX_SC_PM_CLK_PER		2	/* Peripheral clock */
++#define IMX_SC_PM_CLK_PHY		3	/* Phy clock */
++#define IMX_SC_PM_CLK_MISC		4	/* Misc clock */
++
++/* Special clock types which do not belong to above normal clock types */
++#define IMX_SC_PM_CLK_MISC0		0	/* Misc 0 clock */
++#define IMX_SC_PM_CLK_MISC1		1	/* Misc 1 clock */
++#define IMX_SC_PM_CLK_MISC2		2	/* Misc 2 clock */
++#define IMX_SC_PM_CLK_MISC3		3	/* Misc 3 clock */
++#define IMX_SC_PM_CLK_MISC4		4	/* Misc 4 clock */
++
++/* Special clock types for CPU/PLL/BYPASS only */
++#define IMX_SC_PM_CLK_CPU		2	/* CPU clock */
++#define IMX_SC_PM_CLK_PLL		4	/* PLL */
++#define IMX_SC_PM_CLK_BYPASS		4	/* Bypass clock */
++
+ #endif /* __DT_BINDINGS_RSCRC_IMX_H */
 -- 
-2.21.0
+2.23.0
 
