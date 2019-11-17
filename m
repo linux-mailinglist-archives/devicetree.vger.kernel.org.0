@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88EA9FF856
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 08:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EDB2FF852
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2019 08:21:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725909AbfKQHVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Nov 2019 02:21:38 -0500
-Received: from mx2.suse.de ([195.135.220.15]:40800 "EHLO mx1.suse.de"
+        id S1726063AbfKQHVa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Nov 2019 02:21:30 -0500
+Received: from mx2.suse.de ([195.135.220.15]:40812 "EHLO mx1.suse.de"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726082AbfKQHVX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1725909AbfKQHVX (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Sun, 17 Nov 2019 02:21:23 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id CC3B2B313;
-        Sun, 17 Nov 2019 07:21:21 +0000 (UTC)
+        by mx1.suse.de (Postfix) with ESMTP id 41726B315;
+        Sun, 17 Nov 2019 07:21:22 +0000 (UTC)
 From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
 To:     linux-realtek-soc@lists.infradead.org
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v3 6/8] ARM: dts: rtd1195: Add reset nodes
-Date:   Sun, 17 Nov 2019 08:21:07 +0100
-Message-Id: <20191117072109.20402-7-afaerber@suse.de>
+Subject: [PATCH v3 7/8] ARM: dts: rtd1195: Add UART resets
+Date:   Sun, 17 Nov 2019 08:21:08 +0100
+Message-Id: <20191117072109.20402-8-afaerber@suse.de>
 X-Mailer: git-send-email 2.16.4
 In-Reply-To: <20191117072109.20402-1-afaerber@suse.de>
 References: <20191117072109.20402-1-afaerber@suse.de>
@@ -35,51 +35,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reset controller nodes for Realtek RTD1195 SoC.
+Associate the UART nodes with the corresponding reset controller bits.
 
 Signed-off-by: Andreas Färber <afaerber@suse.de>
 ---
  v3: from RTD1295 reset v2
- * Rebased onto r-bus - reg, unit address, indentation
+ * Rebased onto r-bus
  
- arch/arm/boot/dts/rtd1195.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ arch/arm/boot/dts/rtd1195.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm/boot/dts/rtd1195.dtsi b/arch/arm/boot/dts/rtd1195.dtsi
-index f5174f828a28..e0f133a1354f 100644
+index e0f133a1354f..4eec45244132 100644
 --- a/arch/arm/boot/dts/rtd1195.dtsi
 +++ b/arch/arm/boot/dts/rtd1195.dtsi
-@@ -99,6 +99,30 @@
- 			#size-cells = <1>;
- 			ranges = <0x0 0x18000000 0x70000>;
+@@ -8,6 +8,7 @@
+ /memreserve/ 0x17fff000 0x00001000;
  
-+			reset1: reset-controller@0 {
-+				compatible = "snps,dw-low-reset";
-+				reg = <0x0 0x4>;
-+				#reset-cells = <1>;
-+			};
-+
-+			reset2: reset-controller@4 {
-+				compatible = "snps,dw-low-reset";
-+				reg = <0x4 0x4>;
-+				#reset-cells = <1>;
-+			};
-+
-+			reset3: reset-controller@8 {
-+				compatible = "snps,dw-low-reset";
-+				reg = <0x8 0x4>;
-+				#reset-cells = <1>;
-+			};
-+
-+			iso_reset: reset-controller@7088 {
-+				compatible = "snps,dw-low-reset";
-+				reg = <0x7088 0x4>;
-+				#reset-cells = <1>;
-+			};
-+
- 			wdt: watchdog@7680 {
- 				compatible = "realtek,rtd1295-watchdog";
- 				reg = <0x7680 0x100>;
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/reset/realtek,rtd1195.h>
+ 
+ / {
+ 	compatible = "realtek,rtd1195";
+@@ -134,6 +135,7 @@
+ 				reg = <0x7800 0x400>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
++				resets = <&iso_reset RTD1195_ISO_RSTN_UR0>;
+ 				clock-frequency = <27000000>;
+ 				status = "disabled";
+ 			};
+@@ -143,6 +145,7 @@
+ 				reg = <0x1b200 0x100>;
+ 				reg-shift = <2>;
+ 				reg-io-width = <4>;
++				resets = <&reset2 RTD1195_RSTN_UR1>;
+ 				clock-frequency = <27000000>;
+ 				status = "disabled";
+ 			};
 -- 
 2.16.4
 
