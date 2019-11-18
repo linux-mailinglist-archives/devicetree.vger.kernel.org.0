@@ -2,98 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B054100C9D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2019 21:06:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 883A8100D32
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2019 21:34:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727478AbfKRUGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Nov 2019 15:06:16 -0500
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:40476 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727407AbfKRUGC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Nov 2019 15:06:02 -0500
-Received: by mail-lj1-f196.google.com with SMTP id q2so20471342ljg.7;
-        Mon, 18 Nov 2019 12:06:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pTMYCgIgvCNm1q2JaoM7zr2eJ5iQIuvTMHSD1CcRgH4=;
-        b=Pmcz5aQvG4kdoLoEesuweo15xnoulLsuqWT1ryquWf4xC5WKJlk7sQdtOvmwi/NpWC
-         gTAyERPFtJNkUzqd4x4Y9rBPZWSbynQmALOKWutfXwNS4xK3fO7jjK2GDLacc/aQ4LcP
-         +q4GSBo7nTObUfUYvEZA+5mjAci1NekYCRzqfnTxFjX2jCG1NoMyuG0ndkiuNDkNIZw6
-         YUmu0ciM2Q5HNUftUJWbOm6oRtbezUhpkApFq69Za9Q7EyPkCVilwY6lLCRBUpkcV6Ls
-         ScgNRa7PKIQ7q4LUjwPPhiQtna7RDkugFnxfY8NTockXYQp6rNkhVgPmUdt6uv+EVWEa
-         hi+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pTMYCgIgvCNm1q2JaoM7zr2eJ5iQIuvTMHSD1CcRgH4=;
-        b=ZY6eSaY8e7uW164498hB66KPXWcD61EwSJe/YCZ8sD7i9YXOlj0UPSWVQmTkum22Ts
-         LgSrFVu0WY6b4uvNg+zwTfG7OCT1eRfbGLYYwi36zL3/Y7HXKAt3PQiNkaJl/o0jl9HW
-         KEHFHrdl4JJVNzqlPGJqM/nAHyD6dTC+kE6Sgc05gSMhX75myrymE63zoR+KHcFqibZi
-         A3NUCHwGBKAskUiOFEXalk8CfG/6pN79sJ7ng+dM9oF41K5j8P/jkoL6fsRgZnl2SU2w
-         Vpk/Zlrqfwf099PiULzd386t4j7kZba3JgcsqcrN6M/iKcKdX8865QxtoUcOEuY79X06
-         E4WA==
-X-Gm-Message-State: APjAAAWncHhgvV4y31e4aMSMHJ34I0L9SOSoUpYOi1d+XNs31zGkM7xr
-        Aw6OcM0++OcCCglDm5QaeEE=
-X-Google-Smtp-Source: APXvYqyHgybcG5MMZcJRPRCQEbkIktBAw9M79vtA0GyQaow6feMEG7kPjNrNfppBRmcsYR1tJhTMlA==
-X-Received: by 2002:a2e:9841:: with SMTP id e1mr922343ljj.19.1574107559605;
-        Mon, 18 Nov 2019 12:05:59 -0800 (PST)
-Received: from localhost.localdomain (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.gmail.com with ESMTPSA id j23sm9166942lji.41.2019.11.18.12.05.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2019 12:05:59 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1 29/29] MAINTAINERS: Add maintainers for NVIDIA Tegra interconnect drivers
-Date:   Mon, 18 Nov 2019 23:02:47 +0300
-Message-Id: <20191118200247.3567-30-digetx@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191118200247.3567-1-digetx@gmail.com>
-References: <20191118200247.3567-1-digetx@gmail.com>
+        id S1726865AbfKRUeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Nov 2019 15:34:09 -0500
+Received: from foss.arm.com ([217.140.110.172]:39798 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726536AbfKRUeJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Nov 2019 15:34:09 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C5AE0328;
+        Mon, 18 Nov 2019 12:34:08 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 253EF3F6C4;
+        Mon, 18 Nov 2019 12:34:07 -0800 (PST)
+Date:   Mon, 18 Nov 2019 20:34:06 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Sven Van Asbroeck <thesven73@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Grigoryev Denis <grigoryev@fastwel.ru>,
+        Axel Lin <axel.lin@ingics.com>, Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-leds@vger.kernel.org
+Subject: Re: [PATCH v1 1/4] tps6105x: add optional devicetree support
+Message-ID: <20191118203406.GE43585@sirena.org.uk>
+References: <20191118165400.21985-1-TheSven73@gmail.com>
+ <20191118165400.21985-2-TheSven73@gmail.com>
+ <20191118170111.GL9761@sirena.org.uk>
+ <CAGngYiW+8m4fBAY5Ya_4YmEmCTQeiiNP6=aH2mUX6d2wY1442w@mail.gmail.com>
+ <20191118174550.GA43585@sirena.org.uk>
+ <CAGngYiXLx8rkkKPyALYyCHFyst2Ft8bCkP4uqmzXAHHqXhUvkQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wTWi5aaYRw9ix9vO"
+Content-Disposition: inline
+In-Reply-To: <CAGngYiXLx8rkkKPyALYyCHFyst2Ft8bCkP4uqmzXAHHqXhUvkQ@mail.gmail.com>
+X-Cookie: Are we live or on tape?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dmitry and Thierry will maintain NVIDIA Tegra interconnect drivers.
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+--wTWi5aaYRw9ix9vO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 51bf69f520e8..fd82089edad6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8614,6 +8614,15 @@ F:	include/dt-bindings/interconnect/
- F:	include/linux/interconnect-provider.h
- F:	include/linux/interconnect.h
- 
-+INTERCONNECT DRIVERS FOR NVIDIA TEGRA
-+R:	Dmitry Osipenko <digetx@gmail.com>
-+S:	Thierry Reding <thierry.reding@gmail.com>
-+L:	linux-pm@vger.kernel.org
-+L:	linux-tegra@vger.kernel.org
-+S:	Supported
-+F:	drivers/interconnect/tegra/
-+F:	include/dt-bindings/interconnect/tegra-icc.h
-+
- INVENSENSE MPU-3050 GYROSCOPE DRIVER
- M:	Linus Walleij <linus.walleij@linaro.org>
- L:	linux-iio@vger.kernel.org
--- 
-2.23.0
+On Mon, Nov 18, 2019 at 01:13:24PM -0500, Sven Van Asbroeck wrote:
 
+> This mfd chip can be wired up as one of the following:
+> - gpio only
+> - gpio + regulator
+> - gpio + led
+> - gpio + flash
+
+Is the regulator bit of this perhaps a voltage regulator and a current
+regulator packaged together mainly for use powering LEDs?  That's a
+hardware design I've seen before...
+
+> in this case, there is no elegant way to specify the regulator properties in
+> the devicetree. Except by grabbing a reference to a subnode perhaps. And then
+> I'd have to somehow make sure that the sub driver's device->of_node points
+> at this subnode, which the mfd core doesn't do automatically.
+
+Just point the regulator framework at the MFD's DT node - the children
+of the MFD can look at the parent device happily, there's several
+existing MFDs do this.
+
+--wTWi5aaYRw9ix9vO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl3TAD0ACgkQJNaLcl1U
+h9Bqlgf8Dib7KYvT7366jnJriGkt0NV9PQ/TYCN+prAOuGPFTXGKFfvvoDwmk+Tc
+1iVLFjL50q8VMfkPpi2AbDZM0MjA7eir/yIOyg9hxutkWz+ttnnELQEUORVSdGhp
+WF+GwkGMYn3kuFysi9uhPs+yX2gLPFia6TcxxiLkR8I/nOIWT36Lc3mEpu401yUN
+MP24CU830l7Su2ip1HgyoNuuI5vfJWvnpQKSo0Kz9iBFVgVlpDhNnPGXar9d3PQO
+c3LxleG+Y+SPXdmXpPE86ENAuAmVoxHU3W03m+rs4QhouK3EX/hjwVI9mASUZxoW
+YrENReY3z5W6007+5oh7wzABjwVxZQ==
+=7W1d
+-----END PGP SIGNATURE-----
+
+--wTWi5aaYRw9ix9vO--
