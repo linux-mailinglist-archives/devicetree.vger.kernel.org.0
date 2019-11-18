@@ -2,140 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11E93100BF7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2019 20:05:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7A03100C17
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2019 20:21:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726563AbfKRTFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Nov 2019 14:05:21 -0500
-Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:42632 "EHLO
-        wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726423AbfKRTFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Nov 2019 14:05:21 -0500
-Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
-        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1iWmKl-000530-T0; Mon, 18 Nov 2019 20:05:12 +0100
-X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
-        linuxbbg.five-lan.de
-Received: from dell2.five-lan.de (p508F31A5.dip0.t-ipconnect.de [80.143.49.165])
-        (authenticated bits=0)
-        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id xAIJ59Ku008128
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-        Mon, 18 Nov 2019 20:05:10 +0100
-Subject: Re: arm64: dts: rockchip: Disable HS400 for mmc on rk3399-roc-pc
-To:     Doug Anderson <dianders@chromium.org>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Tony Xie <tony.xie@rock-chips.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Vicente Bergas <vicencb@gmail.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Klaus Goger <klaus.goger@theobroma-systems.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Philipp Tomsich <philipp.tomsich@theobroma-systems.com>,
-        Randy Li <ayaka@soulik.info>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>
-References: <20190301153348.29870-1-christoph.muellner@theobroma-systems.com>
- <2766673.iMURPl8gB5@phil>
- <69472c06-8b21-c3d8-acad-1a0a292c0fa2@fivetechno.de>
- <3460135.SDF8zhHPq4@diego>
- <CAD=FV=VnjyQJpRcW6P1f4+ZrSOzAe2Cnoej=it4aCz+F_ozukw@mail.gmail.com>
-From:   Markus Reichl <m.reichl@fivetechno.de>
-Message-ID: <2db7a63f-a091-db8d-3414-cac289011878@fivetechno.de>
-Date:   Mon, 18 Nov 2019 20:05:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1726765AbfKRTVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Nov 2019 14:21:34 -0500
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:34836 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726747AbfKRTVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Nov 2019 14:21:34 -0500
+Received: by mail-pg1-f194.google.com with SMTP id k32so4376714pgl.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2019 11:21:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d5PWZi/zKiryoyNeQKLfBbB+ek5n6FC2NtouBDWVRQs=;
+        b=XtQspD0uMRIVjaZ4j+RdCKdeQxaQCqQPp0dFHeqONKAZ35AY4eVCQPCYYleRmtsva6
+         jiBaP6dXV6CIhPTqL5k3YcxCbhisRrR03J2vLkV72aCm+pVNX6rvuTWONb3vLXyxlYRs
+         v5O5i+t3G1W2pCt3l+6JsFgLJWtzfK3LsM/dQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d5PWZi/zKiryoyNeQKLfBbB+ek5n6FC2NtouBDWVRQs=;
+        b=Gp9D7MXn4dalKbvrQjueUEt8Q4AKc8x2IItyQ2SiraxHunMbLyxG+o3kJUIY6OAlxX
+         C6860JJsJSAvAeJzMAZ4SAS89X+WrpTnNmojRLojak5WKwvTCfknOTFRNAjPNywSKfNC
+         HkT48187LfbrOeP854eQ2KPN/6NbZKhqVJ9ej+PUZGPXme/ghwGqTHT0NkrlUy8BGYyG
+         T8uyr3vYbW42+TkMYRsUiW3QUBsXpaB6nu8vpcv2OpUGTM1MK0gWxX5OwzTD+ggOUCSD
+         20e0t3/fIJyY48RF+pnhBRMHhFDsHI1F+JlxyOXQzmb47/NnwI2xSlfnvCmyhLDT9rmN
+         sWzQ==
+X-Gm-Message-State: APjAAAVKbCCnjNXH+JDtFwUKRcj4hvOkRSccI/CgRzkU3WvhhIE1rtCn
+        Bdv9J9kfnTWKygYJo3gwWJJKEw==
+X-Google-Smtp-Source: APXvYqzs+mH7xTW54MFqTm5HE4eK5l6cG37wnugAw2nvX7u/bTQwIc633vnnHFTMf9ZOXDJoQw1YLg==
+X-Received: by 2002:a63:af1a:: with SMTP id w26mr960203pge.251.1574104893199;
+        Mon, 18 Nov 2019 11:21:33 -0800 (PST)
+Received: from apsdesk.mtv.corp.google.com ([2620:15c:202:1:e09a:8d06:a338:aafb])
+        by smtp.gmail.com with ESMTPSA id p123sm22772633pfg.30.2019.11.18.11.21.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2019 11:21:31 -0800 (PST)
+From:   Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-bluetooth@vger.kernel.org, dianders@chromium.org,
+        Abhishek Pandit-Subedi <abhishekpandit@chromium.org>,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ondrej Jirman <megous@megous.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Subject: [PATCH v6 0/4] Bluetooth: hci_bcm: Additional changes for BCM4354 support
+Date:   Mon, 18 Nov 2019 11:21:19 -0800
+Message-Id: <20191118192123.82430-1-abhishekpandit@chromium.org>
+X-Mailer: git-send-email 2.24.0.432.g9d3f5f5b63-goog
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=VnjyQJpRcW6P1f4+ZrSOzAe2Cnoej=it4aCz+F_ozukw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1574103921;6de465a7;
-X-HE-SMSGID: 1iWmKl-000530-T0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
 
-Am 18.11.19 um 17:08 schrieb Doug Anderson:
-> Hi,
-> 
-> 
-> On Fri, Nov 15, 2019 at 3:19 AM Heiko Stübner <heiko@sntech.de> wrote:
->>
->> Hi Markus,
->>
->> Am Freitag, 15. November 2019, 11:37:58 CET schrieb Markus Reichl:
->> > Am 14.11.19 um 14:10 schrieb Heiko Stuebner:
->> > > $subject is missing the [PATCH] prefix
->> > will fix.
->>
->> no need to resend just for this ... just to keep in mind for future patches ;-)
->>
->>
->> > > Am Montag, 11. November 2019, 10:51:04 CET schrieb Markus Reichl:
->> > >> Working with rootfs on two 128GB mmcs on rk3399-roc-pc.
->> > >>
->> > >> One (mmc name 128G72, one screw hole) works fine in HS400 mode.
->> > >> Other (mmc name DJNB4R, firefly on pcb, two screw holes) gets lots of
->> > >> mmc1: "running CQE recovery", even hangs with damaged fs,
->> > >> when running under heavy load, e.g. compiling kernel.
->> > >> Both run fine with HS200.
->> > >>
->> > >> Disabling CQ with patch mmc: core: Add MMC Command Queue Support kernel parameter [0] did not help.
->> > >> [0] https://gitlab.com/ayufan-repos/rock64/linux-mainline-kernel/commit/54e264154b87dfe32a8359b2726e2d5611adbaf3
->> > >
->> > > I'm hoping for some input from other people in Cc but your mail headers
->> > > also referenced the drive-impendance series from Christoph [0], which
->> > > it seems we need to poke the phy maintainer again.
->> > >
->> > > Did you check if changing the impedance helped (like the signal dampening
->> > > Philipp described in one of the replies there).
->> >
->> > checked with
->> >
->> > &emmc_phy {
->> > +       drive-impedance-ohm = <33>;
->> >
->> > gives no improvement:
->>
->> That is sad ... I guess we really should disable hs400 then ...
->> that may give others more incentive to dive deeper ;-)
-> 
-> Just out of curiosity, is the problem with the strobe line, or with
-> hs400?  Have you tried using the solution from "rk3399-gru.dtsi"?
-> Namely:
-> 
->         /*
->          * Signal integrity isn't great at 200 MHz and 150 MHz (DDR) gives the
->          * same (or nearly the same) performance for all eMMC that are intended
->          * to be used.
->          */
->         assigned-clock-rates = <150000000>;
-> 
-> IIRC hs400 on rk3399 was a bit iffy but running at 150 MHz made it
-> much more reliable and still gave you 300 MB/s transfer rate (so much
-> better than hs200).  In reality many eMMC chips can't do > 300 MB/s
-> anyway.
-> 
-I tried 150000000 and 100000000, but it did not help.
+While adding support for the BCM4354, I discovered a few more things
+that weren't working as they should have.
 
-Gruß,
---
-Markus
+First, we disallow serdev from setting the baudrate on BCM4354. Serdev
+sets the oper_speed first before calling hu->setup() in
+hci_uart_setup(). On the BCM4354, this results in bcm_setup() failing
+when the hci reset times out.
 
-> -Doug
-> 
+Next, we add support for setting the PCM parameters, which consists of
+a pair of vendor specific opcodes to set the pcm parameters. The
+documentation for these params are available in the brcm_patchram_plus
+package (i.e. https://github.com/balena-os/brcm_patchram_plus). This is
+necessary for PCM to work properly.
+
+All changes were tested with rk3288-veyron-minnie.dts.
+
+
+Changes in v6:
+- Added btbcm_read_pcm_int_params and change pcm params to first read
+  the pcm params before setting it
+
+Changes in v5:
+- Rename parameters to bt-* and read as integer instead of bytestring
+- Update documentation with defaults and put values in header
+- Changed patch order
+
+Changes in v4:
+- Fix incorrect function name in hci_bcm
+
+Changes in v3:
+- Change disallow baudrate setting to return -EBUSY if called before
+  ready. bcm_proto is no longer modified and is back to being const.
+- Changed btbcm_set_pcm_params to btbcm_set_pcm_int_params
+- Changed brcm,sco-routing to brcm,bt-sco-routing
+
+Changes in v2:
+- Use match data to disallow baudrate setting
+- Parse pcm parameters by name instead of as a byte string
+- Fix prefix for dt-bindings commit
+
+Abhishek Pandit-Subedi (4):
+  Bluetooth: hci_bcm: Disallow set_baudrate for BCM4354
+  Bluetooth: btbcm: Support pcm configuration
+  dt-bindings: net: broadcom-bluetooth: Add pcm config
+  Bluetooth: hci_bcm: Support pcm params in dts
+
+ .../bindings/net/broadcom-bluetooth.txt       | 16 ++++
+ drivers/bluetooth/btbcm.c                     | 47 ++++++++++
+ drivers/bluetooth/btbcm.h                     | 16 ++++
+ drivers/bluetooth/hci_bcm.c                   | 88 ++++++++++++++++++-
+ include/dt-bindings/bluetooth/brcm.h          | 32 +++++++
+ 5 files changed, 197 insertions(+), 2 deletions(-)
+ create mode 100644 include/dt-bindings/bluetooth/brcm.h
+
+-- 
+2.24.0.432.g9d3f5f5b63-goog
+
