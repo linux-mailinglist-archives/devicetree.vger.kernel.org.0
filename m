@@ -2,140 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF7EFFFE5
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2019 08:58:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1587100025
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2019 09:14:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726328AbfKRH67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Nov 2019 02:58:59 -0500
-Received: from mga09.intel.com ([134.134.136.24]:49378 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726283AbfKRH67 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Nov 2019 02:58:59 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Nov 2019 23:58:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,319,1569308400"; 
-   d="scan'208";a="356706254"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga004.jf.intel.com with ESMTP; 17 Nov 2019 23:58:58 -0800
-Received: from [10.226.38.242] (unknown [10.226.38.242])
-        by linux.intel.com (Postfix) with ESMTP id 095EC5804A0;
-        Sun, 17 Nov 2019 23:58:54 -0800 (PST)
-Subject: Re: [PATCH v7 2/3] dwc: PCI: intel: PCIe RC controller driver
-To:     Jingoo Han <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        "helgaas@kernel.org" <helgaas@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "martin.blumenstingl@googlemail.com" 
-        <martin.blumenstingl@googlemail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "cheol.yong.kim@intel.com" <cheol.yong.kim@intel.com>,
-        "chuanhua.lei@linux.intel.com" <chuanhua.lei@linux.intel.com>,
-        "qi-ming.wu@intel.com" <qi-ming.wu@intel.com>
-References: <cover.1573784557.git.eswara.kota@linux.intel.com>
- <99a29f5a4ce18df26bd300ac6728433ec025631b.1573784557.git.eswara.kota@linux.intel.com>
- <SL2P216MB01056231B6036941BEF71738AA700@SL2P216MB0105.KORP216.PROD.OUTLOOK.COM>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <50dabbc6-eae5-5ae5-95a0-f195c1ef7362@linux.intel.com>
-Date:   Mon, 18 Nov 2019 15:58:53 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726460AbfKRIOB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Nov 2019 03:14:01 -0500
+Received: from sender4-of-o58.zoho.com ([136.143.188.58]:21838 "EHLO
+        sender4-of-o58.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726420AbfKRIOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Nov 2019 03:14:00 -0500
+X-Greylist: delayed 904 seconds by postgrey-1.27 at vger.kernel.org; Mon, 18 Nov 2019 03:14:00 EST
+ARC-Seal: i=1; a=rsa-sha256; t=1574063907; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=n6ZjxkhAaCYdVbmonyMT0gX8EtdaPseXqA8EVlamRr14hEIO4ZIPQuN3Th/p0tFNLHSlK0iQPaeUNip2/ohWm6MW33vHSoZ8IApAVOQIUs/MnLyAmyCGwuy+TxYLLPjaae5BLQKRdxtJDCJH2s7X/k8ykW64Ep8D6sw3BosQ7Vo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1574063907; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=QaA7BDbSdX9jfQDBkM/kSQl2g+5tNndLUXgFesI8JtU=; 
+        b=jmPe8liHwyhc+lisp/S0bh1t+B/fnJYcuQwzN8exNKgyt763W7UA2QDkcB0YIXqYdZP724iOHuTAWbTEgokonhFpAR8+R3CJ3hbz++aoUvpH+k/CEUtL90JKiK/zQeSqkPFDIR1eT0g2D+pDGxtrrOLKMVv6uafy8nWU5fnaKXM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=brennan.io;
+        spf=pass  smtp.mailfrom=stephen@brennan.io;
+        dmarc=pass header.from=<stephen@brennan.io> header.from=<stephen@brennan.io>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1574063907;
+        s=selector01; d=brennan.io; i=stephen@brennan.io;
+        h=From:To:Cc:Message-ID:Subject:Date:MIME-Version:Content-Transfer-Encoding:Content-Type;
+        l=864; bh=QaA7BDbSdX9jfQDBkM/kSQl2g+5tNndLUXgFesI8JtU=;
+        b=gGcgYyBnfcHlRSvkWvOyaMKlDuqnVHD02oQQ6lKwfw9HdpqJzHZ64areSk9yJro2
+        nRfGp4wk4iw8ICXEKmystIxgKJ/3oXMM4LdHyCDYkiJc4VeNVGxcZTnm6KBK6RT5grj
+        kNawSeC6tTY81TexVMAwtRyTvFukohJOqFzW4xmU=
+Received: from localhost (195.173.24.136.in-addr.arpa [136.24.173.195]) by mx.zohomail.com
+        with SMTPS id 1574063905483664.0921926369589; Sun, 17 Nov 2019 23:58:25 -0800 (PST)
+From:   Stephen Brennan <stephen@brennan.io>
+To:     stephen@brennan.io
+Cc:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Eric Anholt <eric@anholt.net>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org
+Message-ID: <20191118075807.165126-1-stephen@brennan.io>
+Subject: [PATCH 0/3] Raspberry Pi 4 HWRNG Support
+Date:   Sun, 17 Nov 2019 23:58:04 -0800
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <SL2P216MB01056231B6036941BEF71738AA700@SL2P216MB0105.KORP216.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series enables support for the HWRNG included on the Raspberry
+Pi 4.  It is simply a rebase of Stefan's branch [1]. I went ahead and
+tested this out on a Pi 4.  Prior to this patch series, attempting to use
+the hwrng gives:
 
-On 11/16/2019 4:40 AM, Jingoo Han wrote:
-> On 11/14/19, 9:31 PM, Dilip Kota wrote:
->
->> Add support to PCIe RC controller on Intel Gateway SoCs.
->> PCIe controller is based of Synopsys DesignWare PCIe core.
->>
->> Intel PCIe driver requires Upconfigure support, Fast Training
->> Sequence and link speed configurations. So adding the respective
->> helper functions in the PCIe DesignWare framework.
->> It also programs hardware autonomous speed during speed
->> configuration so defining it in pci_regs.h.
->>
->> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
->> Reviewed-by: Andrew Murray <andrew.murray@arm.com>
->> Acked-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
->> ---
-> [.....]
->
->>   drivers/pci/controller/dwc/Kconfig           |  10 +
->>   drivers/pci/controller/dwc/Makefile          |   1 +
->>   drivers/pci/controller/dwc/pcie-designware.c |  57 +++
->>   drivers/pci/controller/dwc/pcie-designware.h |  12 +
->>   drivers/pci/controller/dwc/pcie-intel-gw.c   | 542 +++++++++++++++++++++++++++
->>   include/uapi/linux/pci_regs.h                |   1 +
->>   6 files changed, 623 insertions(+)
->>   create mode 100644 drivers/pci/controller/dwc/pcie-intel-gw.c
->>
->> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
->> index 0ba988b5b5bc..fb6d474477df 100644
->> --- a/drivers/pci/controller/dwc/Kconfig
->> +++ b/drivers/pci/controller/dwc/Kconfig
->> @@ -82,6 +82,16 @@ config PCIE_DW_PLAT_EP
->>   	  order to enable device-specific features PCI_DW_PLAT_EP must be
->>   	  selected.
->>   
->> +config PCIE_INTEL_GW
->> +	bool "Intel Gateway PCIe host controller support"
->> +	depends on OF && (X86 || COMPILE_TEST)
->> +	select PCIE_DW_HOST
->> +	help
->> +	  Say 'Y' here to enable PCIe Host controller support on Intel
->> +	  Gateway SoCs.
->> +	  The PCIe controller uses the DesignWare core plus Intel-specific
->> +	  hardware wrappers.
->> +
-> Please add this config alphabetical order!
-> So, this config should be after 'config PCI_IMX6'.
-> There is no reason to put this config at the first place.
->
->>   config PCI_EXYNOS
->>   	bool "Samsung Exynos PCIe controller"
->>   	depends on SOC_EXYNOS5440 || COMPILE_TEST
->> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
->> index b30336181d46..99db83cd2f35 100644
->> --- a/drivers/pci/controller/dwc/Makefile
->> +++ b/drivers/pci/controller/dwc/Makefile
->> @@ -3,6 +3,7 @@ obj-$(CONFIG_PCIE_DW) += pcie-designware.o
->>   obj-$(CONFIG_PCIE_DW_HOST) += pcie-designware-host.o
->>   obj-$(CONFIG_PCIE_DW_EP) += pcie-designware-ep.o
->>   obj-$(CONFIG_PCIE_DW_PLAT) += pcie-designware-plat.o
->> +obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
-> Ditto.
-PCIE_INTEL_GW wouldnt come after PCI_IMX6, the complete Makefile and 
-Kconfig are not in order,( PCI_* and PCIE_* are not in any order). So i 
-just followed PCIE_DW and placed PCIE_INTEL_GW after PCIE_DW as I is 
-after D (and i see PCI_* immediately after the PCIE_DW*, so i placed 
-PCIE_INTEL_GW after PCIE_DW* and before PCI_*).
+    $ head -c 2 /dev/hwrng
+    head: /dev/hwrng: Input/output error
 
-Regards,
-Dilip
+After this patch, the same command gives two random bytes.
 
->
-> Best regards,
-> Jingoo Han
->
->>   obj-$(CONFIG_PCI_DRA7XX) += pci-dra7xx.o
->>   obj-$(CONFIG_PCI_EXYNOS) += pci-exynos.o
->>   obj-$(CONFIG_PCI_IMX6) += pci-imx6.o
->> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
->> index 820488dfeaed..479e250695a0 100644
-> [.....]
+[1]: https://github.com/lategoodbye/rpi-zero/tree/bcm2711-hwrng
+
+---
+
+Stefan Wahren (3):
+  dt-bindings: rng: add BCM2711 RNG compatible
+  hwrng: iproc-rng200: Add support for BCM2711
+  ARM: dts: bcm2711: Enable HWRNG support
+
+ Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt | 1 +
+ arch/arm/boot/dts/bcm2711.dtsi                              | 5 ++---
+ drivers/char/hw_random/Kconfig                              | 2 +-
+ drivers/char/hw_random/iproc-rng200.c                       | 1 +
+ 4 files changed, 5 insertions(+), 4 deletions(-)
+
+--=20
+2.24.0
+
+
+
