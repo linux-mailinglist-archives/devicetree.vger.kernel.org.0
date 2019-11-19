@@ -2,77 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21737102B8B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 19:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24322102BA4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 19:21:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727059AbfKSSO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Nov 2019 13:14:29 -0500
-Received: from foss.arm.com ([217.140.110.172]:56498 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726510AbfKSSO3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Nov 2019 13:14:29 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B2BD1FB;
-        Tue, 19 Nov 2019 10:14:28 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CFDFA3F703;
-        Tue, 19 Nov 2019 10:14:27 -0800 (PST)
-Date:   Tue, 19 Nov 2019 18:14:26 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Sven Van Asbroeck <thesven73@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Grigoryev Denis <grigoryev@fastwel.ru>,
-        Axel Lin <axel.lin@ingics.com>, Dan Murphy <dmurphy@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] regulator: tps6105x: add optional devicetree
- support
-Message-ID: <20191119181426.GE3634@sirena.org.uk>
-References: <20191119154611.29625-1-TheSven73@gmail.com>
- <20191119154611.29625-3-TheSven73@gmail.com>
+        id S1727004AbfKSSVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Nov 2019 13:21:21 -0500
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:34168 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726510AbfKSSVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 13:21:21 -0500
+Received: by mail-lf1-f66.google.com with SMTP id l28so8405609lfj.1;
+        Tue, 19 Nov 2019 10:21:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0dUXKYCswQ0fk3ChDtCHMcNLvLahQKNVxckNHbLK62U=;
+        b=e5lESrFN8MyoYepnYPws1P7yf4C1dXiYfMOkmezNqIXAiZCpH6SxlKI9ix3SlSORNf
+         /5JsXZyp1E+IjqGqwMhUYHulRiSh9QJkMf1GIFQllRE77579xVcB4EDXytX2AWhcMFvQ
+         1ksK6LpTugAMceaAYTPHCvwtSWDKN7rqeIueDTbWQtIHR4HQydG5oXkfTtYGFdaIoyjU
+         CylOl88XU0mV6aCUOh7u/8Q+Yga6rgxzX3jS4Uzen0MivFUrqkq6uYhpdWXn0ASFSQew
+         25whUzIeI6GQW/U3sk+CCl9AnoSAUrolJLK0fI3TEVzTWkTXjIjQqrrTPxWQjG7LKd5E
+         juzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0dUXKYCswQ0fk3ChDtCHMcNLvLahQKNVxckNHbLK62U=;
+        b=hFKk88AGKEQsXUJsQecvDfOHklYS+Mjvwe5VP0vgkVKiGMAUR+uuUXmifzMYyKuZGT
+         6xpaGktrvldf96Ph0gnyCPFM2uurQOlwczHQD3XoxaJtlFI5qwL71kfYqdxh3+0yXBMQ
+         EdU0UEK2fqTfyvO6Jj0fEgoBsRtoJAygewp7YnlxqEpCD+FpLEZ68Kz3wc4FW2hRV1Gw
+         4WzKy4qCYyomJ0x3OKTMpbOQTbJBdpuOnrvVvqwcyGMU941nZVm3Pwmjqozdml+QtM/s
+         HuAzObTURvwyfKZPOBKnUjMHGjxmaxrPh1nQrtMZJy2IUvZw74OLYqNQjpJct6KQGtDD
+         aDqQ==
+X-Gm-Message-State: APjAAAU3RGINO3AC5giwceh/QPBW0ZBvkK24IebAedRSNYFJIPEl0c/8
+        35o9sFfF/+3bxRxsvFBIYDciFkbXteULQv273OeJ0GNw
+X-Google-Smtp-Source: APXvYqzVzn1n+QdLBDwkgCKvCRCAJA5gUf/1Cpb09fd0k1gg5uwHXZcpoFJbgiH7FOKqOuf17TVa1Ixb5NlB5WAK620=
+X-Received: by 2002:a19:4318:: with SMTP id q24mr5172404lfa.12.1574187679050;
+ Tue, 19 Nov 2019 10:21:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Uwl7UQhJk99r8jnw"
-Content-Disposition: inline
-In-Reply-To: <20191119154611.29625-3-TheSven73@gmail.com>
-X-Cookie: Beam me up, Scotty!  It ate my phaser!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20191118152518.3374263-1-adrian.ratiu@collabora.com> <20191118152518.3374263-4-adrian.ratiu@collabora.com>
+In-Reply-To: <20191118152518.3374263-4-adrian.ratiu@collabora.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 19 Nov 2019 15:21:14 -0300
+Message-ID: <CAOMZO5C5gpW6KF9d-79wd=-7ZGAbXQLAXw3kLi+_5DBW_DYrTw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] drm: imx: Add i.MX 6 MIPI DSI host driver
+To:     Adrian Ratiu <adrian.ratiu@collabora.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-rockchip@lists.infradead.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Sjoerd Simons <sjoerd.simons@collabora.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        NXP Linux Team <linux-imx@nxp.com>, kernel@collabora.com,
+        Emil Velikov <emil.velikov@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Adrian,
 
---Uwl7UQhJk99r8jnw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Mon, Nov 18, 2019 at 12:25 PM Adrian Ratiu
+<adrian.ratiu@collabora.com> wrote:
 
-On Tue, Nov 19, 2019 at 10:46:09AM -0500, Sven Van Asbroeck wrote:
-> Tell the regulator framework to retrieve regulator init
-> data from the 'regulator' subnode, or from the parent mfd
-> device's platform data.
+Some nitpicks:
 
-This and the binding look good.  I think there's no interdependency with
-the other patches and I can just apply them?
+> +
+> +config DRM_IMX_MIPI_DSI
+> +       tristate "Freescale i.MX DRM MIPI DSI"
 
---Uwl7UQhJk99r8jnw
-Content-Type: application/pgp-signature; name="signature.asc"
+This text seems too generic as there are i.MX SoCs that use different
+MIPI DSI IP.
 
------BEGIN PGP SIGNATURE-----
+Maybe "Freescale i.MX6 DRM MIPI DSI" instead?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl3UMQEACgkQJNaLcl1U
-h9Apugf/UYWHwasok+ymaJanhsZFyGXd/oMmnbzICBVxLOLXRiVnTDjcj3JZIza8
-NWxt7fORjI2E6ViFwGrQzcbA4xEM/s0zYagxKFDEVc1UQ9xj5DoPh9BPwjd1t8cS
-ARymt9obh2EWLJjC1S1pZiPR1mrsK8ARUjPZI0RUY6JGFnMBHWIQ+dLC53UYtoQw
-tFx1MJkOI4o5oFjgdhlyvj1sCTIpP9td1u66GFZp2C0kqXqtoquQ7croQMT5Awd0
-i+d8eBN4/huo8uOFYBAndXJzfdhelc0vqU8Fly8+fj6DBWrA2bWygm1DrymN5RHC
-XMOm9lEQKq0rgRXNzxAfPHLKzE0SLw==
-=q6i4
------END PGP SIGNATURE-----
+> +module_platform_driver(imx_mipi_dsi_driver);
+> +
+> +MODULE_DESCRIPTION("i.MX MIPI DSI host controller driver");
 
---Uwl7UQhJk99r8jnw--
+i.MX6 MIPI DSI, please.
