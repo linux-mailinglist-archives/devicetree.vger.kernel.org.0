@@ -2,92 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B8E1019B5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 07:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A63E61019D4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 07:53:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727935AbfKSGvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Nov 2019 01:51:21 -0500
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:14361 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727926AbfKSGvV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 01:51:21 -0500
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5dd390e50000>; Mon, 18 Nov 2019 22:51:17 -0800
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 18 Nov 2019 22:51:20 -0800
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 18 Nov 2019 22:51:20 -0800
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 19 Nov
- 2019 06:51:19 +0000
-Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Tue, 19 Nov 2019 06:51:19 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.175.254]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5dd390e60000>; Mon, 18 Nov 2019 22:51:19 -0800
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <digetx@gmail.com>,
-        <mperttunen@nvidia.com>, <gregkh@linuxfoundation.org>,
-        <sboyd@kernel.org>, <tglx@linutronix.de>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>
-CC:     <allison@lohutok.net>, <pdeschrijver@nvidia.com>,
-        <pgaikwad@nvidia.com>, <mturquette@baylibre.com>,
-        <horms+renesas@verge.net.au>, <Jisheng.Zhang@synaptics.com>,
-        <krzk@kernel.org>, <arnd@arndb.de>, <spujar@nvidia.com>,
-        <josephl@nvidia.com>, <vidyas@nvidia.com>,
-        <daniel.lezcano@linaro.org>, <mmaddireddy@nvidia.com>,
-        <markz@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 17/17] ASoC: nau8825: change Tegra clk_out_2 provider from tegra_car to pmc
-Date:   Mon, 18 Nov 2019 22:50:34 -0800
-Message-ID: <1574146234-3871-18-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1574146234-3871-1-git-send-email-skomatineni@nvidia.com>
-References: <1574146234-3871-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1727191AbfKSGx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Nov 2019 01:53:29 -0500
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:35910 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725536AbfKSGx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 01:53:29 -0500
+Received: by mail-pl1-f193.google.com with SMTP id d7so11236478pls.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2019 22:53:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=NVHXbZOZBXxiZKX3GBeHJYFk4c/WxyAtG65m0ugrmM0=;
+        b=GdJtIXil0bjIVxjoqklp3hhWfkZgjD1rVeNy17TQZy5SkISD/Z1g+IsPLZGLFGGzT0
+         j784s0fi0Chiw/MHPjGB6hFvcyu5/iOMEiLyHu5OcBeI4D6fIFnxbYV9lhiTZJpEfFRV
+         goLDEN+cRhbdRvivs649Cd05kT9pBhkr9ChwtMf1OAD0cV0ccrvJhhDAoZ3WFohLMtpu
+         VABFXugT0yLKPFPN7LLVKQp3lCNux8ddhKpcHjPBjNbPSgMZoLzNsHmozlqGJOu/sbKy
+         avMvkr99s46Obi68WjllyjZiXZBbDTiEvxrDbyeIne6MaizCHeIDpKaDcHIviEIgrd8Q
+         30dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=NVHXbZOZBXxiZKX3GBeHJYFk4c/WxyAtG65m0ugrmM0=;
+        b=pEN6FqoWCvmYPMjz9KA0yBob5fICHx1KAbEnvM7eYaBm+Crk3NlUg239vn3heag1E1
+         fUeoX6FS5RY3MczoOlaUjOqMSC+cHUYq3UgbzDUq5AyUCi9BP4QrJxLsnQpI6czSzVBp
+         u7IiLEg448l8zt9GoLPku1QXKhAe/dO3EDmbleZXCrulx5CliHMORfd+dJxMdUKM10Ng
+         7FZLhlyNbuewrqGcv1L3PlmTcodQOJN5/Az7l+sBSG036ggXGADgcoVdamAhdVZk3yyw
+         JICyxz6c+64/DlIOdqM8+Z9qpfwInmJ9BLNuk9I1efw58azmNX3oHPi4vCbAinKy4yxW
+         SyVA==
+X-Gm-Message-State: APjAAAWueyeLFr1GSHAsyKPsHhB9ae0+d+b+nSoRSluLdal3YN2xlas6
+        J3BMLzlVcLTwTbxfv5o4VW+T6g==
+X-Google-Smtp-Source: APXvYqyo2oK2hAMFq1/V2OO+nv/wG1IJdRPM9KNkUwYbcn2xpLbU4OZVqkHErgLpjOcExdimgLJR2g==
+X-Received: by 2002:a17:90a:b385:: with SMTP id e5mr4285353pjr.115.1574146408233;
+        Mon, 18 Nov 2019 22:53:28 -0800 (PST)
+Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id y1sm25484599pfq.138.2019.11.18.22.53.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2019 22:53:27 -0800 (PST)
+Date:   Mon, 18 Nov 2019 22:53:25 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        tsoni@codeaurora.org, agross@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        rnayak@codeaurora.org
+Subject: Re: [PATCH 3/3] soc: qcom: apr: Add avs/audio tracking functionality
+Message-ID: <20191119065325.GF18024@yoga>
+References: <20191118142728.30187-1-sibis@codeaurora.org>
+ <0101016e7ee9d8b5-9759d0ba-4acf-4fc4-a863-fac9c738397f-000000@us-west-2.amazonses.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1574146277; bh=qTvAji4nlSTfeFg4MTzoqwXKbO75ceIOy1l+c/njykQ=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=XSLyLdvjW2mBOG+rtLmBReEZEyHFu74qYEfUx/86ZVr4Z7mxoCqah+0ytTnGOHT9P
-         NzK4wssJlVWpWFB7z6OZx+jnhNc4J7OBdvSU3j8txYXtlGlBCb0K8AuQoI2Ty9PgZp
-         hfT2aWqNJDCkdXahGVafypYOyy9g4Ds9f3fJyaFxSICM0zIplcL3At6N0wIbY03EsR
-         I5+y/AmWggulqlU6Qv0LAdKI4df/0mzAOrPtjNDNYAas8zekqMIpYRrjhApo9/XtCa
-         6En1WflKGJ6cDuoCx0oKL7GM/r+QndchWXoLuhBLOR1r5JWlb+LYS/cLb+2E1YlsgS
-         PwSQOI5XhhiBw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0101016e7ee9d8b5-9759d0ba-4acf-4fc4-a863-fac9c738397f-000000@us-west-2.amazonses.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tegra clk_out_1, clk_out_2, and clk_out_3 are part of PMC block and pmc is
-the provider for these clocks.
+On Mon 18 Nov 06:28 PST 2019, Sibi Sankar wrote:
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+[..]
+> +static void of_register_apr_devices(struct device *dev, const char *svc_path)
+>  {
+>  	struct apr *apr = dev_get_drvdata(dev);
+>  	struct device_node *node;
+> +	const char *service_path;
+> +	int ret;
+>  
+>  	for_each_child_of_node(dev->of_node, node) {
+>  		struct apr_device_id id = { {0} };
+>  
+> +		ret = of_property_read_string_index(node, "qcom,protection-domain",
+> +						    1, &service_path);
+> +		if (svc_path) {
+> +			/* skip APR services that are PD independent */
+> +			if (ret)
+> +				continue;
+> +
+> +			/* skip APR services whose PD paths don't match */
+> +			if (strcmp(service_path, svc_path))
+> +				continue;
+> +		} else {
+> +			/* skip APR services whose PD lookups are registered*/
 
-Update bindings document to use pmc as clock provider for clk_out_2 and
-change id to pmc clock id.
+Missing space before */
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- Documentation/devicetree/bindings/sound/nau8825.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> +			if (ret == 0)
+> +				continue;
+> +		}
+> +
+>  		if (of_property_read_u32(node, "reg", &id.svc_id))
+>  			continue;
+>  
+> @@ -318,6 +365,37 @@ static void of_register_apr_devices(struct device *dev)
+>  	}
+>  }
+>  
+> +static int apr_remove_device(struct device *dev, void *svc_path)
+> +{
+> +	struct apr_device *adev = to_apr_device(dev);
+> +
+> +	if (svc_path) {
+> +		if (!strcmp(adev->service_path, (char *)svc_path))
+> +			device_unregister(&adev->dev);
+> +	} else {
+> +		device_unregister(&adev->dev);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int apr_pd_status(struct pdr_handle *pdr, struct pdr_service *pds)
 
-diff --git a/Documentation/devicetree/bindings/sound/nau8825.txt b/Documentation/devicetree/bindings/sound/nau8825.txt
-index d16d96839bcb..487eb9574ee2 100644
---- a/Documentation/devicetree/bindings/sound/nau8825.txt
-+++ b/Documentation/devicetree/bindings/sound/nau8825.txt
-@@ -101,5 +101,5 @@ Example:
-       nuvoton,crosstalk-enable;
- 
-       clock-names = "mclk";
--      clocks = <&tegra_car TEGRA210_CLK_CLK_OUT_2>;
-+      clocks = <&pmc TEGRA_PMC_CLK_OUT_2>;
-   };
--- 
-2.7.4
+Why is the pdr status function returning an int?
 
+> +{
+> +	struct apr *apr = container_of(pdr, struct apr, pdr);
+> +
+> +	switch (pds->state) {
+> +	case SERVREG_SERVICE_STATE_UP:
+> +		of_register_apr_devices(apr->dev, pds->service_path);
+> +		break;
+> +	case SERVREG_SERVICE_STATE_DOWN:
+> +		device_for_each_child(apr->dev, pds->service_path,
+> +				      apr_remove_device);
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+[..]
+> @@ -343,20 +421,19 @@ static int apr_probe(struct rpmsg_device *rpdev)
+>  		return -ENOMEM;
+>  	}
+>  	INIT_WORK(&apr->rx_work, apr_rxwq);
+> +
+> +	ret = pdr_handle_init(&apr->pdr, apr_pd_status);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to init PDR handle\n");
+
+You need to destroy apr->rxwq here as well.
+
+> +		return ret;
+> +	}
+> +
+>  	INIT_LIST_HEAD(&apr->rx_list);
+>  	spin_lock_init(&apr->rx_lock);
+>  	spin_lock_init(&apr->svcs_lock);
+>  	idr_init(&apr->svcs_idr);
+> -	of_register_apr_devices(dev);
+> -
+> -	return 0;
+> -}
+
+Regards,
+Bjorn
