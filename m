@@ -2,107 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D08E71014FA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 06:39:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E022C10173B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 07:00:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730262AbfKSFjT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 19 Nov 2019 00:39:19 -0500
-Received: from coyote.holtmann.net ([212.227.132.17]:35537 "EHLO
-        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730261AbfKSFjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 00:39:18 -0500
-Received: from marcel-macbook.holtmann.net (p4FF9F0D1.dip0.t-ipconnect.de [79.249.240.209])
-        by mail.holtmann.org (Postfix) with ESMTPSA id 3950ACECED;
-        Tue, 19 Nov 2019 06:48:23 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 13.0 \(3601.0.10\))
-Subject: Re: [PATCH v6 3/4] dt-bindings: net: broadcom-bluetooth: Add pcm
- config
-From:   Marcel Holtmann <marcel@holtmann.org>
-In-Reply-To: <20191118110335.v6.3.I18b06235e381accea1c73aa2f9db358645d9f201@changeid>
-Date:   Tue, 19 Nov 2019 06:39:16 +0100
-Cc:     Johan Hedberg <johan.hedberg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-bluetooth@vger.kernel.org, dianders@chromium.org,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ondrej Jirman <megous@megous.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Content-Transfer-Encoding: 8BIT
-Message-Id: <079C85BE-FBC5-4A2B-9EBF-0CEDB6F30C18@holtmann.org>
-References: <20191118192123.82430-1-abhishekpandit@chromium.org>
- <20191118110335.v6.3.I18b06235e381accea1c73aa2f9db358645d9f201@changeid>
-To:     Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
-X-Mailer: Apple Mail (2.3601.0.10)
+        id S1729824AbfKSF6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Nov 2019 00:58:38 -0500
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:46885 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731164AbfKSFtF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 00:49:05 -0500
+Received: by mail-pg1-f193.google.com with SMTP id r18so10769194pgu.13
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2019 21:49:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=7OLkh5H/ucrzGh1Q5+S7PwZCVoMIrIc0kVwMB4oywiY=;
+        b=T79AY6oCrcY9WkARAR7g/vMcApkFufxFzSkYgKFVG58CkLC1gyMOK9RpUVuHOzLN9V
+         UuUQbtcRVeh0oZbSGc/N2TZubqVgmPQbg+73q//z1IclKQSvUgmkmJTT+uTLSgst3OxE
+         BKJEMKrHvTJW6p993n/SDnzcBFpFe+aZz0UoEos+Qu+kZNlJa+hJWqX3BDbI01vGZ/F4
+         ll1047nAJQBf7Q9/pk/72wMVV3EfsekmiW1t0VKX0UFmNNdmobNqXFY0WRC9YKvMrxfy
+         JG6PL0/QGnWypkuEXvbzHZ1YJxUtdLgPM8KcxuTgWKh8bPlRDh/ulakfOvfz11v0Re/9
+         OK1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7OLkh5H/ucrzGh1Q5+S7PwZCVoMIrIc0kVwMB4oywiY=;
+        b=grVoctezNIiXHtWXhRtcn1korhNhYOwNgoWVQYv8PiWOzkworZ46s/KtTYKSAbN/rv
+         B1CyE9iHvvce/79e0uJiXNKvTn3YkIuz4XuUn1zQVSM14cCK6FdPUdY7yCCKvKY2tJvK
+         LFB+diEiWl3ACxHRFoEYGMEGLJO901lrse1WbJHF0MVyO2x1HYkP3rgn1F6YqvgZOOqw
+         BWg8ZyDHZ+ymfzUx0bUjV4INhDV/zopAMEedE6uy8N1OFhewLUs6LmgYEHu0h+fXxb5a
+         8pMz0wgR559aUn9Bd6oHe/8d8qRRN5WYQqVsbtBAwDvK67fThmta1ymQAiBt2iOpEeEc
+         zzLg==
+X-Gm-Message-State: APjAAAWCcpDTp0hHcigRiTwS8rWmYiCwv1FpbGylqwPTzv4us15J5yeq
+        flMm6pXNV9diu5Bjz6u+ETdsVA==
+X-Google-Smtp-Source: APXvYqzSv72HWYX9/l0aZSvtiLQMSrYlS422iAg/YV7tQl3rYW8UQlPAgnqgdjjuFBx37ipGmPSzbw==
+X-Received: by 2002:a63:4961:: with SMTP id y33mr3649995pgk.264.1574142544341;
+        Mon, 18 Nov 2019 21:49:04 -0800 (PST)
+Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id x21sm22210789pfi.122.2019.11.18.21.49.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2019 21:49:03 -0800 (PST)
+Date:   Mon, 18 Nov 2019 21:49:00 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        tsoni@codeaurora.org, agross@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        rnayak@codeaurora.org
+Subject: Re: [PATCH 2/3] dt-bindings: soc: qcom: apr: Add protection domain
+ bindings
+Message-ID: <20191119054900.GD18024@yoga>
+References: <20191118142728.30187-1-sibis@codeaurora.org>
+ <0101016e7ee9c786-fcf80f4e-9b57-4d6b-8806-9ca408e21b55-000000@us-west-2.amazonses.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0101016e7ee9c786-fcf80f4e-9b57-4d6b-8806-9ca408e21b55-000000@us-west-2.amazonses.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Abhishek,
+On Mon 18 Nov 06:28 PST 2019, Sibi Sankar wrote:
 
-> Add documentation for pcm parameters.
+> Add optional "qcom,protection-domain" bindings for APR services. This
+> helps to capture the dependencies between APR services and the PD on
+> which each apr service run.
 > 
-> Signed-off-by: Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 > ---
+>  .../devicetree/bindings/soc/qcom/qcom,apr.txt | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
 > 
-> Changes in v6: None
-> Changes in v5: None
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2: None
-> 
-> .../bindings/net/broadcom-bluetooth.txt       | 16 ++++++++++
-> include/dt-bindings/bluetooth/brcm.h          | 32 +++++++++++++++++++
-> 2 files changed, 48 insertions(+)
-> create mode 100644 include/dt-bindings/bluetooth/brcm.h
-> 
-> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> index c749dc297624..8561e4684378 100644
-> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> @@ -29,10 +29,20 @@ Optional properties:
->    - "lpo": external low power 32.768 kHz clock
->  - vbat-supply: phandle to regulator supply for VBAT
->  - vddio-supply: phandle to regulator supply for VDDIO
-> + - brcm,bt-sco-routing: PCM, Transport, Codec, I2S
-> + - brcm,bt-pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
-> + - brcm,bt-pcm-frame-type: short, long
-> + - brcm,bt-pcm-sync-mode: slave, master
-> + - brcm,bt-pcm-clock-mode: slave, master
-> 
-> +See include/dt-bindings/bluetooth/brcm.h for SCO/PCM parameters. The default
-> +value for all these values are 0 (except for brcm,bt-sco-routing which requires
-> +a value) if you choose to leave it out.
-> 
-> Example:
-> 
-> +#include <dt-bindings/bluetooth/brcm.h>
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+> index db501269f47b8..f87c0b2a48de4 100644
+> --- a/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,apr.txt
+> @@ -45,6 +45,12 @@ by the individual bindings for the specific service
+>  			12 - Ultrasound stream manager.
+>  			13 - Listen stream manager.
+>  
+> +- qcom,protection-domain
+> +	Usage: optional
+> +	Value type: <stringlist>
+> +	Definition: Must list the protection domain service name and path
+> +		    that the particular apr service has a dependency on.
 > +
-> &uart2 {
->        pinctrl-names = "default";
->        pinctrl-0 = <&uart2_pins>;
-> @@ -40,5 +50,11 @@ Example:
->        bluetooth {
->                compatible = "brcm,bcm43438-bt";
->                max-speed = <921600>;
+>  = EXAMPLE
+>  The following example represents a QDSP based sound card on a MSM8996 device
+>  which uses apr as communication between Apps and QDSP.
+> @@ -82,3 +88,56 @@ which uses apr as communication between Apps and QDSP.
+>  			...
+>  		};
+>  	};
 > +
-> +               brcm,bt-sco-routing        = <BRCM_SCO_ROUTING_TRANSPORT>;
-
-in case you use transport which means HCI, you would not have values below. It is rather PCM here in the example.
-
-> +               brcm,bt-pcm-interface-rate = <BRCM_PCM_IF_RATE_512KBPS>;
-> +               brcm,bt-pcm-frame-type     = <BRCM_PCM_FRAME_TYPE_SHORT>;
-> +               brcm,bt-pcm-sync-mode      = <BRCM_PCM_SYNC_MODE_MASTER>;
-> +               brcm,bt-pcm-clock-mode     = <BRCM_PCM_CLOCK_MODE_MASTER>;
->        };
-> };
-
-And I am asking this again. Is this adding any value to use an extra include file? Inside the driver we are not really needing these values since they are handed to the hardware.
-
-Regards
-
-Marcel
-
+> += EXAMPLE 2
+> +The following example represents a QDSP based sound card on SDM845 device.
+> +Here the apr services are dependent on "avs/audio" service running on AUDIO
+> +Protection Domain hosted on ADSP remote processor.
+> +
+> +	apr {
+> +		compatible = "qcom,apr-v2";
+> +		qcom,glink-channels = "apr_audio_svc";
+> +		qcom,apr-domain = <APR_DOMAIN_ADSP>;
+> +
+> +		q6core {
+> +			compatible = "qcom,q6core";
+> +			reg = <APR_SVC_ADSP_CORE>;
+> +			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+> +		};
+> +
+> +		q6afe: q6afe {
+> +			compatible = "qcom,q6afe";
+> +			reg = <APR_SVC_AFE>;
+> +			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+> +			q6afedai: dais {
+> +				compatible = "qcom,q6afe-dais";
+> +				#sound-dai-cells = <1>;
+> +
+> +				qi2s@22 {
+> +					reg = <22>;
+> +					qcom,sd-lines = <3>;
+> +				};
+> +			};
+> +		};
+> +
+> +		q6asm: q6asm {
+> +			compatible = "qcom,q6asm";
+> +			reg = <APR_SVC_ASM>;
+> +			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+> +			q6asmdai: dais {
+> +				compatible = "qcom,q6asm-dais";
+> +				#sound-dai-cells = <1>;
+> +				iommus = <&apps_smmu 0x1821 0x0>;
+> +			};
+> +		};
+> +
+> +		q6adm: q6adm {
+> +			compatible = "qcom,q6adm";
+> +			reg = <APR_SVC_ADM>;
+> +			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
+> +			q6routing: routing {
+> +				compatible = "qcom,q6adm-routing";
+> +				#sound-dai-cells = <0>;
+> +			};
+> +		};
+> +	};
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
