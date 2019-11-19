@@ -2,87 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1447102D76
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 21:22:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA868102D8D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 21:29:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727031AbfKSUWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Nov 2019 15:22:39 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:37667 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726722AbfKSUWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 15:22:39 -0500
-Received: by mail-oi1-f193.google.com with SMTP id y194so20281093oie.4;
-        Tue, 19 Nov 2019 12:22:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EaTTkxHDmEcbt3U07gxobyJb6+sGwOBuoJv50bL/JxA=;
-        b=RNYBUFvVJbWTpntO45DEDvG9rS5TKy6ZiEJVDCOo9tUG3s9Hz7h0Ve3T76zsFtyBNb
-         1Hi5fdwg9mlhLGNCYbvu//6ptLxjVt5/cZSw/aaA7jZALCUCXnNiYE7AVny+LpCVy9k8
-         LZB4SAQra2BE09vc5/a2VyQ6dTlLaEfZHBVBNKLXSD7P2BtY+bKNeJwK94GhSC9eEkla
-         8ej+cQXGIjG8Owe9M1Tq2EPKbO45KhhMQsy8KLl78dm/8NvkediEjAxSePPJ4p8WFAU6
-         iAX3bI0IF87KXPnV4tTHcP0OkN0Fb/iu1ZPGXGZfgEF6mJE/HnZtcdmnF3EhDoxc6Suy
-         GlAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EaTTkxHDmEcbt3U07gxobyJb6+sGwOBuoJv50bL/JxA=;
-        b=suTtKMO+Z9m0BEMQYrCKjYiNriQ6fI0CckoJPifVpOMtUPUIKXiJpez92q07r1m3kE
-         B6ZoRel6GH3Ag+npTz2/3Pm60Yp8O2D7pFuBl1mgKkZ6JgKQRy6XcAUwOaFfEQ1acH3z
-         LFzHqXnsD/GyfdsOHLxDiShBDDkyAEmLFwk0Zbcj6pBDDL+RJfV6a82bufoQX4ApD3Vq
-         rF7a8STXMN4proWDwbqw7jDV5hY9xcdBUbmErWSBbmbkLYTL7iFsQoq/2wfgMlfoEjPi
-         3PlFRhsrxtL5RfAiJ0i7UlvtsZNV2C7qLXFr6ApYmwzwWZNV6TiGVWk1dLgtvbqe7AUK
-         QFjA==
-X-Gm-Message-State: APjAAAUS1h9Sqc1W9UvlNKzb/GLFNsG8NEFazHGh06V2BFsEun/BZMno
-        m5P2NFShYWuj6hbV2NoNRmjc8LaO/ei3OpCJgvc=
-X-Google-Smtp-Source: APXvYqw9UESCyKM+zUzYQlWNuuB5qfg03HMHFwEnI6OGKoFwxweBxCdAijIYWCJnQxNu51CFhAfe+j5UnT4j/aOpx1Q=
-X-Received: by 2002:aca:4c57:: with SMTP id z84mr5651946oia.92.1574194956618;
- Tue, 19 Nov 2019 12:22:36 -0800 (PST)
-MIME-Version: 1.0
-References: <20191119154611.29625-1-TheSven73@gmail.com> <20191119154611.29625-5-TheSven73@gmail.com>
- <a37d098e-12ea-af2e-22cd-cb5ec2856b6d@ti.com> <CAGngYiU_8Obd6jKO9-fukK4K6hYYhFYVSjzxqVxVwwKeCmUkaw@mail.gmail.com>
- <b2ea6130-cfce-4d41-0b35-ba076f599402@gmail.com>
-In-Reply-To: <b2ea6130-cfce-4d41-0b35-ba076f599402@gmail.com>
-From:   Sven Van Asbroeck <thesven73@gmail.com>
-Date:   Tue, 19 Nov 2019 15:22:25 -0500
-Message-ID: <CAGngYiUDPc+xMO6zzr+bN=i7-QFTUaNE0P5iP+QELjRHnfqUsw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] dt-bindings: mfd: update TI tps6105x chip bindings
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Dan Murphy <dmurphy@ti.com>, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        id S1726939AbfKSU3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Nov 2019 15:29:15 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:42874 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726711AbfKSU3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 15:29:15 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAJKT7Ew020910;
+        Tue, 19 Nov 2019 14:29:07 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1574195348;
+        bh=CjwwUdGt0dRh3Te6U6VKQJO2QS6CEUoZSVJL8W1lV3g=;
+        h=From:To:CC:Subject:Date;
+        b=M8jfla/FZsSXiIU2My0tHZ1Tm97Nug46bKvdG3J5VAmffl0zO0inIViCwajhisPKX
+         XUUy263P7U/P2vavlGo3vWUihz36sJdsNFnayA+g/rXUK/SVdr8ATeiAY2AbFkfZYW
+         Voar/VHPNhKPgM5791oubl5r2oMt14Bj2zvZ3NHE=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAJKT7xh060506
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Nov 2019 14:29:07 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 19
+ Nov 2019 14:29:06 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 19 Nov 2019 14:29:06 -0600
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAJKT6aQ057112;
+        Tue, 19 Nov 2019 14:29:06 -0600
+Received: from localhost (ulb0232989.dhcp.ti.com [128.247.59.95])
+        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id xAJKT4u25856;
+        Tue, 19 Nov 2019 14:29:04 -0600 (CST)
+From:   Caleb Robey <c-robey@ti.com>
+To:     <linux-omap@vger.kernel.org>
+CC:     Jason Kridner <jkridner@gmail.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>, Jason Kridner <jdk@ti.com>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Andreas Dannenberg <dannenberg@ti.com>,
+        Jean-Jacques Hiblot <jjhiblot@ti.com>,
+        Caleb Robey <c-robey@ti.com>,
+        Praneeth Bajjuri <praneeth@ti.com>,
+        "Andrew F . Davis" <afd@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Tom Rini <trini@konsulko.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Grigoryev Denis <grigoryev@fastwel.ru>,
-        Axel Lin <axel.lin@ingics.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/1] ARM: dts: am5729: beaglebone-ai: enable board
+Date:   Tue, 19 Nov 2019 14:28:48 -0600
+Message-ID: <20191119202850.18149-1-c-robey@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 19, 2019 at 2:38 PM Jacek Anaszewski
-<jacek.anaszewski@gmail.com> wrote:
->
-> label DT property was recently deprecated. We now encourage using
-> 'function' and/or 'color'. Please refer to
-> Documentation/devicetree/bindings/leds/common.txt.
+The following patch adds the device tree file for BeagleBone AI
+ 
+Caleb Robey (1):
+  ARM: dts: am5729: beaglebone-ai: adding device tree
 
-Ah, I see.
+ arch/arm/boot/dts/Makefile                |   1 +
+ arch/arm/boot/dts/am5729-beagleboneai.dts | 782 ++++++++++++++++++++++
+ 2 files changed, 783 insertions(+)
+ create mode 100644 arch/arm/boot/dts/am5729-beagleboneai.dts
 
-I'm actually back-porting this from a 4.19 vendor kernel, which I believe
-does not have function/color support. If I introduce it here, I wouldn't
-be able to test it easily, and I'd have to forward/back-port.
+-- 
+2.17.1
 
-All I need is a single led in the system. So I'll just remove the 'label'
-code/description, and hard-code the led name to 'tps6105x'. If
-anyone wants to use this driver and wants named leds, they can
-always add it themselves.
-
-Jacek and Dan, does that satisfy your concerns?
