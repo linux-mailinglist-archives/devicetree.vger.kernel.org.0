@@ -2,93 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94AC5102C28
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 19:58:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8185D102C32
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 19:59:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727072AbfKSS6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Nov 2019 13:58:40 -0500
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:40252 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727374AbfKSS6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 13:58:36 -0500
-Received: by mail-pl1-f193.google.com with SMTP id e3so12255299plt.7
-        for <devicetree@vger.kernel.org>; Tue, 19 Nov 2019 10:58:35 -0800 (PST)
+        id S1727451AbfKSS7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Nov 2019 13:59:19 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:37766 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727234AbfKSS7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Nov 2019 13:59:19 -0500
+Received: by mail-oi1-f194.google.com with SMTP id y194so20016745oie.4;
+        Tue, 19 Nov 2019 10:59:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tCrU7kMtOhnJwNIZxfz0SZJ0AKq1g5JZVrjQTxHcuS4=;
-        b=hwh9vxCU2MJkwDgYPUI84hzOt7qhmc+CdovSRIV3pSu7WrmNbWx60wYUeYsB1Kaw5j
-         Vkozznd7ocVPn2yiTH/c/09in9bcd1n2P6s/+xRlNGog+zIVuJ4ZcHFh+FU9ML+L00RO
-         7trPFH1QWPt3v2pZhWacMpyA2S+kLOvMSczd8=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AAhDbZ6Zz0yul7MskfO2m0vwcTbPZ1IfTgcrN95xsWA=;
+        b=DIoAmoO6a/8GNgtSyrGZxE4xsfk7q6jmDXBCVv9KVpOc5DOSQJuLRcd5uuhdduWjPN
+         qVp8Z4ziaFwYOo/4+UMP/FgqMLstBBV+MMe734lP9C3GWC0ZTlTfkxCvt8/4QkVw/gKb
+         Otq9h70uuyI8UUaZjhGKCjw2CgI4IdtQFxoBp+/SETpsURXXU0fpL43Ls3EX2ud1zgCx
+         jfo3wXo1Dg7aXE8Ey1fxEKhr+DhOqw74zYKaamsvLmxjPOsljJDqkNGQD8mFLLh7b/W1
+         YCgENQwq2zWaVfwFvHu3DoH+VH12epIU7eMXWi4qKg0aW15kQ6AgWdVYcEA5XaKPy9WD
+         Y8KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tCrU7kMtOhnJwNIZxfz0SZJ0AKq1g5JZVrjQTxHcuS4=;
-        b=MkpyV87LWdK1p9QgoYwRaBfU134jBXrKz46XUp7Q1UhrhFmlqlLuDb+atohZQVzLON
-         zanngYP+xodhVDhH/cxgPfAQ+mpU2qMpdXFWjUlJ3xvhjBmtZaDWSnXct6UGiPqbqTce
-         qdGylJbM2W4y/iFNNWXlDuJhrUSJfbdskWkt2+IHNpVRY5eEsd0Sqxlcs7b8gwBVi8hr
-         LUFYqNb+ESefl3I5j0skaqIP7K8O1XGh51ugoVDUepV+wU8dYPFJ65eiXOVFOalqoDCb
-         udF4DMRUTpmsIXCf3/VfUhUsaL2R3J/xsnmi1y9FpIyZ+QCZwMS6DfA8sYkac+9/9k+9
-         1cFw==
-X-Gm-Message-State: APjAAAWLMsun7cJqzgiYgd6shy+P7jG8yMOodAA+jZqeUAzPeY3sAWMZ
-        L5hp85PGfKX7V88OKcvuPI+mGg==
-X-Google-Smtp-Source: APXvYqw3ksX3/scZkZrClNcQI4wINkcNVOzF9sTBjirib0yItcf3MYqd2S8L7QGc6k8nAcGm7H1WcA==
-X-Received: by 2002:a17:90a:8995:: with SMTP id v21mr8517928pjn.109.1574189914762;
-        Tue, 19 Nov 2019 10:58:34 -0800 (PST)
-Received: from localhost.localdomain ([115.97.180.31])
-        by smtp.gmail.com with ESMTPSA id y24sm28017581pfr.116.2019.11.19.10.58.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Nov 2019 10:58:34 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Levin Du <djw@t-chip.com.cn>,
-        Akash Gajjar <akash@openedev.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Da Xue <da@lessconfused.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: Add libretech compatible for ROC-PC
-Date:   Wed, 20 Nov 2019 00:28:17 +0530
-Message-Id: <20191119185817.11216-2-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
-In-Reply-To: <20191119185817.11216-1-jagan@amarulasolutions.com>
-References: <20191119185817.11216-1-jagan@amarulasolutions.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AAhDbZ6Zz0yul7MskfO2m0vwcTbPZ1IfTgcrN95xsWA=;
+        b=hMv7wq2EstLlczanBDBPayOqInj+CqXi2Wo518ImBI31I+Ws218HOHsehmyi3QJ7b2
+         1gjcZBS2taL/mEiJzec3RnyOYM9veY+ySt9FXrHBg+BGWzI5XzKJGJuQ5qujRAr8y5ss
+         0mYsY+UGQFf6gw2+n4uFzrkqM0/uvQ4fBD74eIG3jKzF/DSKASoiZ9QGKKBnsvv26Wng
+         uRyRDgADRLjkqoYYJPU3mRHLKXkqWxUTKzIeTFCdU8Wge3dMGxZV6sdDwapalQkH9/FA
+         g/OF95/km2ylTv4O5Yp1cZme0RDxFdZxwd4CM4O0joEziXa8qDmD0lrH6ZudsmXf6jqM
+         ib3A==
+X-Gm-Message-State: APjAAAVDvOcwkPk1qO4AsQdMOZ1TpPZaCFEMyaXHuBgm+N3SojQnGbZf
+        5FxYVafrci1U0QEGVEqovFu4MYmkF5htb5ryeL7TKgQK
+X-Google-Smtp-Source: APXvYqyQk5ZspxULq8wEjAvp5StBQQc8yqAiLsdSNBQSvUPNK0wlff+EMcmiS2CFEkD7ZUjXHDwA3PJdTUUjXkE91+U=
+X-Received: by 2002:a05:6808:3a1:: with SMTP id n1mr5328316oie.86.1574189958033;
+ Tue, 19 Nov 2019 10:59:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191119154611.29625-1-TheSven73@gmail.com> <20191119154611.29625-4-TheSven73@gmail.com>
+ <23217b5b-90f4-748a-c008-9ae7ef82c6dd@ti.com>
+In-Reply-To: <23217b5b-90f4-748a-c008-9ae7ef82c6dd@ti.com>
+From:   Sven Van Asbroeck <thesven73@gmail.com>
+Date:   Tue, 19 Nov 2019 13:59:06 -0500
+Message-ID: <CAGngYiW6PMUwQnOMqFFdZ_9KZRE_K1Ue4q8LVGCLkawHUDjACg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/4] leds: tps6105x: add driver for mfd chip led mode
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Grigoryev Denis <grigoryev@fastwel.ru>,
+        Axel Lin <axel.lin@ingics.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Though the ROC-PC is manufactured by firefly, it is co-designed
-by libretch like other Libretech computer boards from allwinner,
-amlogic does.
+On Tue, Nov 19, 2019 at 1:33 PM Dan Murphy <dmurphy@ti.com> wrote:
+>
+> How many LEDs does this device support?
 
-So, it is always meaningful to keep maintain those vendors who
-are part of design participation so append the compatible
-"libretech,roc-rk3399-pc" to existing roc-pc dts file.
+Just a single LED.
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> > +     struct device_node *led =
+> > +             of_get_child_by_name(dev->parent->of_node, "led");
+> Prefer device_* calls as opposed to of_* calls.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
-index cd4195425309..6a909e4eefd2 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dts
-@@ -8,5 +8,6 @@
- 
- / {
- 	model = "Firefly ROC-RK3399-PC Board";
--	compatible = "firefly,roc-rk3399-pc", "rockchip,rk3399";
-+	compatible = "libretech,roc-rk3399-pc", "firefly,roc-rk3399-pc",
-+		     "rockchip,rk3399";
- };
--- 
-2.18.0.321.gffc6fa0e3
+So do I. But because of Mark Brown's suggestions, the mfd children
+now have to grab a named sub-node from their parent.
+In this case, we grab the parent subnode named 'led' and fetch
+the label from it.
+(https://lkml.org/lkml/2019/11/18/802)
+Perhaps there is a way to accomplish this this with device_*
+calls?
 
+> > +     label = pdata->led_label ?: label_from_dt(&pdev->dev);
+>
+> Since this is a new driver do we really have to continue to use the
+> pdata for the init
+>
+> data?  Can't we just get the label from the DT node now like other drivers?
+
+Yes we can, but pdata users would not be able to specify the label name.
+Until this patch set, pdata was the only way to use the driver.
+Of course, no-one is requesting or requiring this. So I guess
+it can be dropped.
