@@ -2,31 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FAE6101139
+	by mail.lfdr.de (Postfix) with ESMTP id 06FB1101138
 	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2019 03:19:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727404AbfKSCTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726983AbfKSCTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 18 Nov 2019 21:19:34 -0500
-Received: from mx2.suse.de ([195.135.220.15]:58050 "EHLO mx1.suse.de"
+Received: from mx2.suse.de ([195.135.220.15]:58068 "EHLO mx1.suse.de"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727298AbfKSCT0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Nov 2019 21:19:26 -0500
+        id S1727336AbfKSCT1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Nov 2019 21:19:27 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id A7D12B331;
-        Tue, 19 Nov 2019 02:19:24 +0000 (UTC)
+        by mx1.suse.de (Postfix) with ESMTP id 7B32AB336;
+        Tue, 19 Nov 2019 02:19:25 +0000 (UTC)
 From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
 To:     linux-realtek-soc@lists.infradead.org
 Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v4 6/8] dt-bindings: interrupt-controller: rtd1195-mux: Add RTD1395
-Date:   Tue, 19 Nov 2019 03:19:15 +0100
-Message-Id: <20191119021917.15917-7-afaerber@suse.de>
+Subject: [PATCH v4 8/8] arm64: dts: realtek: rtd139x: Add irq muxes and UART interrupts
+Date:   Tue, 19 Nov 2019 03:19:17 +0100
+Message-Id: <20191119021917.15917-9-afaerber@suse.de>
 X-Mailer: git-send-email 2.16.4
 In-Reply-To: <20191119021917.15917-1-afaerber@suse.de>
 References: <20191119021917.15917-1-afaerber@suse.de>
@@ -38,28 +35,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible strings for Realtek RTD1395 SoC.
+Add iso and misc IRQ mux DT nodes for Realtek RTD1395 SoC.
+
+Update the UART DT nodes with interrupts from these muxes,
+so that UART0 can be used without earlycon.
 
 Signed-off-by: Andreas Färber <afaerber@suse.de>
 ---
  v4: New
  
- .../devicetree/bindings/interrupt-controller/realtek,rtd1195-mux.yaml   | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/realtek/rtd139x.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1195-mux.yaml b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1195-mux.yaml
-index 5cf3a28cedba..7c2a31548d46 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1195-mux.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/realtek,rtd1195-mux.yaml
-@@ -19,6 +19,8 @@ properties:
-       - realtek,rtd1195-iso-irq-mux
-       - realtek,rtd1295-misc-irq-mux
-       - realtek,rtd1295-iso-irq-mux
-+      - realtek,rtd1395-misc-irq-mux
-+      - realtek,rtd1395-iso-irq-mux
+diff --git a/arch/arm64/boot/dts/realtek/rtd139x.dtsi b/arch/arm64/boot/dts/realtek/rtd139x.dtsi
+index 706da12f9ea3..f53cb8a5083b 100644
+--- a/arch/arm64/boot/dts/realtek/rtd139x.dtsi
++++ b/arch/arm64/boot/dts/realtek/rtd139x.dtsi
+@@ -84,6 +84,14 @@
+ 				#reset-cells = <1>;
+ 			};
  
-   reg:
-     maxItems: 1
++			iso_irq_mux: interrupt-controller@7000 {
++				compatible = "realtek,rtd1395-iso-irq-mux";
++				reg = <0x7000 0x100>;
++				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-controller;
++				#interrupt-cells = <1>;
++			};
++
+ 			iso_reset: reset-controller@7088 {
+ 				compatible = "snps,dw-low-reset";
+ 				reg = <0x7088 0x4>;
+@@ -103,6 +111,8 @@
+ 				reg-io-width = <4>;
+ 				clock-frequency = <27000000>;
+ 				resets = <&iso_reset RTD1295_ISO_RSTN_UR0>;
++				interrupt-parent = <&iso_irq_mux>;
++				interrupts = <2>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -111,6 +121,14 @@
+ 				reg = <0x1a200 0x8>;
+ 			};
+ 
++			misc_irq_mux: interrupt-controller@1b000 {
++				compatible = "realtek,rtd1395-misc-irq-mux";
++				reg = <0x1b000 0x100>;
++				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-controller;
++				#interrupt-cells = <1>;
++			};
++
+ 			uart1: serial@1b200 {
+ 				compatible = "snps,dw-apb-uart";
+ 				reg = <0x1b200 0x100>;
+@@ -118,6 +136,8 @@
+ 				reg-io-width = <4>;
+ 				clock-frequency = <432000000>;
+ 				resets = <&reset2 RTD1295_RSTN_UR1>;
++				interrupt-parent = <&misc_irq_mux>;
++				interrupts = <3>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -128,6 +148,8 @@
+ 				reg-io-width = <4>;
+ 				clock-frequency = <432000000>;
+ 				resets = <&reset2 RTD1295_RSTN_UR2>;
++				interrupt-parent = <&misc_irq_mux>;
++				interrupts = <8>;
+ 				status = "disabled";
+ 			};
+ 		};
 -- 
 2.16.4
 
