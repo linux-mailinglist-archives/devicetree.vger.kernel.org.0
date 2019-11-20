@@ -2,85 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BDF0103D80
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 15:41:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F88103D98
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 15:44:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731722AbfKTOl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 09:41:27 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:32518 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731654AbfKTOl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Nov 2019 09:41:27 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAKEbPMC001583;
-        Wed, 20 Nov 2019 15:41:16 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=VqAI239ALKGV4JtmpiCusQwTH8O3Dos80WNn+DdJpcE=;
- b=n7epHa12nedQ+JjRX+vF//17ztLmJrYOtnm4xL9Jfbosi2+FGZC9KTHM2p5UYIFDv3LY
- 8YrzP9PWwv0WNlRJ6tGYkCijFHbd9AjqeIVbKxnJsvU+lzL10e8L3BFtEWKf2Di6tqae
- 9vnuszdXG/SFRarBjw77LS9yTaMVmHzaWz+3sMINq+CIjkXjlMjxnrHgHn9mQ6Aa/a/b
- TkCDEXTX+sGTpOYOmCoEaM1MGOmPJmE4E/1sEugVuxSXGiCCTVPHHCHmone4HZaCL0JA
- OGdy2tdWvs4Z0tgaW6xaIJjq97tpbWp8u34/JQJ5T8NdtF0BCxGKR71ffey8Xe9A+IfO RA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2wa9uj67kj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 20 Nov 2019 15:41:16 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AE30F10002A;
-        Wed, 20 Nov 2019 15:41:15 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9FBBD2BE22E;
-        Wed, 20 Nov 2019 15:41:15 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 20 Nov 2019 15:41:14
- +0100
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>, <arnd@arndb.de>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 6/6] ARM: dts: stm32: Adapt STM32MP157C ED1 board to STM32 DT diversity
-Date:   Wed, 20 Nov 2019 15:41:09 +0100
-Message-ID: <20191120144109.25321-7-alexandre.torgue@st.com>
+        id S1731753AbfKTOoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 09:44:09 -0500
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:39032 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731732AbfKTOoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 09:44:09 -0500
+Received: by mail-qk1-f195.google.com with SMTP id o17so1418477qko.6;
+        Wed, 20 Nov 2019 06:44:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=iD5VdmpBbS5ofXM1bEbJ4CdwRf9cLtYwc6n6MEZikZ8=;
+        b=fcBBVHwd8stIuuRz12zTYinYh9Ekei8cksJtUXbByJEMTwCjd6eRT/nRQBZIJKooyT
+         jXiMqzBD4G6kHSuBgXth5rLIYb5TcaKYbOpsnbQWUPj6u6pOGsUNJPPXMhJzaDgKAOx2
+         hbI7IQWFrYvBkbxg1IkKVYyWZSAcXKFJFITpMlAg27bf564HcJtH65tuZx3V9mbuipr/
+         Ylt4/bganmEimAFR19T+oKWbSvD5Xliwqsbr1Fbq2uUeoAcGXuwQD1R1F2xF4++syD0J
+         +nDJsA43jFffW2fGx6yJoPS1kDb4DrOy3RCAVIjoxpUcsyvI21U24KispoP0PShm2K3U
+         AVGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=iD5VdmpBbS5ofXM1bEbJ4CdwRf9cLtYwc6n6MEZikZ8=;
+        b=YylKUOvYVGDL+7OZS1dLn9ZBp4uh00YJhwJt9k+uHchVNRxi1HzaFY02CiVHauqTp5
+         I//1NXJ5qRlLRKAVceg+0u02+GJtuv4RRDww79Wk9yVCThbZIL4hwhLug8I6tlvXoFxu
+         2MyRlc8kxC8nJZAq6TmzIEo9L5S9qo7Z2L/I609HsJdFLh6XDBAGXAwFrFu0ekU7xuke
+         M2p8cMONgTXl3wLuQEyMLRC5r1ILPgB3uKtJ5zn+RwI1pLfnjiVrREVvQm4TblMMGXeO
+         SWVzDzYA+aeypjwmDnS1tSiMRzhZM6mL3iDbRQuZzK/XBy6aS+K0ffjaRkN+iJNxRipu
+         em2Q==
+X-Gm-Message-State: APjAAAUUUhZAvPCbSZ+CH8uf7e/0b9AVz2VuU8upu1JceQD/caJm9S0j
+        kkGGWUna6Dp2KZGfi0Y6EDM=
+X-Google-Smtp-Source: APXvYqwOmADMwxL92rcPRniRH1Cz/Y9781sRftexfktLdGllzm5r9/vJO6BjLckNrzfIxUjCXFOtFA==
+X-Received: by 2002:a37:610f:: with SMTP id v15mr2566068qkb.98.1574261046446;
+        Wed, 20 Nov 2019 06:44:06 -0800 (PST)
+Received: from localhost.localdomain ([72.53.229.209])
+        by smtp.gmail.com with ESMTPSA id 62sm953069qkk.102.2019.11.20.06.44.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Nov 2019 06:44:05 -0800 (PST)
+From:   Sven Van Asbroeck <thesven73@gmail.com>
+X-Google-Original-From: Sven Van Asbroeck <TheSven73@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Grigoryev Denis <grigoryev@fastwel.ru>,
+        Axel Lin <axel.lin@ingics.com>, Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org
+Subject: [PATCH v3 0/3] tps6105x add devicetree and leds support
+Date:   Wed, 20 Nov 2019 09:43:58 -0500
+Message-Id: <20191120144401.30452-1-TheSven73@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191120144109.25321-1-alexandre.torgue@st.com>
-References: <20191120144109.25321-1-alexandre.torgue@st.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-20_04:2019-11-15,2019-11-20 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds security (cryp1) IP to stm32mp157c ED1 board by including
-stm32mp15xc.dtsi file.
+v2 -> v3:
+	Removed tps6105x regulator patch - it was accepted (Mark Brown).
+	
+	Removed devicetree/platdata bindings for tps6105x led naming.
+	I can test only with a 4.19 vendor kernel, which does not have the
+	latest led naming infrastructure (function/color). Drop devicetree/
+	fwnode/pdata led naming in favour of hard-coding to "tps6105x::torch",
+	so the patch can be tested by me, yet remains acceptable to upstream.
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+v1 -> v2:
+	Select chip operational mode by looking at subnode name, _not_ its
+	compatible property. Suggested by Mark Brown.
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-ed1.dts b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-index 975f69ea4eed..1fc43251d697 100644
---- a/arch/arm/boot/dts/stm32mp157c-ed1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
- #include "stm32mp15-pinctrl.dtsi"
- #include "stm32mp15xxaa-pinctrl.dtsi"
- #include <dt-bindings/gpio/gpio.h>
+I needed led operation for this mfd chip, so I added a very simple
+driver for this.
+
+My platform (arm imx6q) is devicetree-based, so I added optional
+devicetree support for this chip and its sub-drivers.
+
+Sven Van Asbroeck (3):
+  tps6105x: add optional devicetree support
+  leds: tps6105x: add driver for mfd chip led mode
+  dt-bindings: mfd: update TI tps6105x chip bindings
+
+ .../devicetree/bindings/mfd/tps6105x.txt      | 39 ++++++++++-
+ drivers/leds/Kconfig                          | 10 +++
+ drivers/leds/Makefile                         |  1 +
+ drivers/leds/leds-tps6105x.c                  | 67 +++++++++++++++++++
+ drivers/mfd/tps6105x.c                        | 34 +++++++++-
+ 5 files changed, 147 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/leds/leds-tps6105x.c
+
 -- 
 2.17.1
 
