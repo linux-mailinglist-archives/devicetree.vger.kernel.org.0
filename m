@@ -2,411 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA9810347C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 07:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73AAE103497
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 07:50:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727535AbfKTGr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 01:47:56 -0500
-Received: from mail-eopbgr690057.outbound.protection.outlook.com ([40.107.69.57]:41054
-        "EHLO NAM04-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727197AbfKTGry (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Nov 2019 01:47:54 -0500
+        id S1726343AbfKTGui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 01:50:38 -0500
+Received: from mx0b-00082601.pphosted.com ([67.231.153.30]:36354 "EHLO
+        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725263AbfKTGui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Nov 2019 01:50:38 -0500
+Received: from pps.filterd (m0001303.ppops.net [127.0.0.1])
+        by m0001303.ppops.net (8.16.0.42/8.16.0.42) with SMTP id xAK6llK4002377;
+        Tue, 19 Nov 2019 22:50:18 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=facebook;
+ bh=4eEP+vVBxjNweX65dgr7w/z1y6wUB8SL7/ktZzhI3Fs=;
+ b=Uf0Pmto+juYDK2YBZ3i1AYFh4XpHvUZ/b+dp6RzuHTN+wsaXBTfqZ52cNwjPfoYo5jSQ
+ M79UIOpEZxmXQYKjCdJ3rmdPQpD4OuwKgH0PzziKHWasCwA06pms15h2hYbMPd2XUu8W
+ yK+V/afZ6DrbUueS51ZIv7hHCWWiB8k7kc8= 
+Received: from mail.thefacebook.com (mailout.thefacebook.com [199.201.64.23])
+        by m0001303.ppops.net with ESMTP id 2wchf74jf7-11
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Tue, 19 Nov 2019 22:50:17 -0800
+Received: from prn-mbx07.TheFacebook.com (2620:10d:c081:6::21) by
+ prn-hub01.TheFacebook.com (2620:10d:c081:35::125) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.1.1713.5; Tue, 19 Nov 2019 22:50:17 -0800
+Received: from prn-hub05.TheFacebook.com (2620:10d:c081:35::129) by
+ prn-mbx07.TheFacebook.com (2620:10d:c081:6::21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.1.1713.5; Tue, 19 Nov 2019 22:50:16 -0800
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com (192.168.54.28)
+ by o365-in.thefacebook.com (192.168.16.29) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.1.1713.5
+ via Frontend Transport; Tue, 19 Nov 2019 22:50:16 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i+AHyAF+ATlFqtREe7BE4TZgdt/9ZydD6AfZUgE75OIIDlblI60VWrMBmTpAkaL5o/KpRuGjOQ2IrI7a/neqA6wpusflAewW449twQXLj7Wm9bcwt+P4C8Eqdc67kNrIAnLefwRB8HQDI5B7nvl6+VjsL6hJ0bOvpr2cL/yhnyR3c+lSX+m7l3yxuN608vtbjYus64LGkT1wzAR8zZ1hfdpGV6x+DVaIbFCU26fOBQUo7Z79t7S9K1OVCJJLWHrK8OvvbTYOaIHKFb+1vWXqAT2erVNWqbCkWNCUItWESkG7+ulLrsgeKl+dnSativh84U6yHa8Nn61Hi19j6yuK3Q==
+ b=EJX5zHA5TtaopnbN9NYMwvx9Kuq/cw38rLwhvYUNku3ylOd+uT++BNUouHtq4wBrCzZzVHfvDJoe+vgQUJR6pnOaEmTngVu126RoP8f41GJNdwOM8IbQbfCuGpS1aZooNzZkI51HhYBcuatF75y3L0qmD4QdHbLlDNGzNl1Pqor0YtJdBSAikdH21SPwfnRuwLHB+HcB9aVoywK16NxS3ut+wbrgMoFDOM6mRCjb/0Lv7m5nLx2/C5hUcoG3Uw1v17qfgsZ9+Kyx51qmY1NhgSPDrAslTC3en4GVGSid9YbhTluCOD6PZijdCU8PNKkk9jj0GfnKLtKo9IVQNjQW1A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QyNuoP16Z/YOfgx2/n//zWRR2NSkAP2xIdiXXSSl73g=;
- b=UK8Her28SLPqdHukYAOOc7T/G1GefFuclmlTiaG3Gaff8552Jaq+Jpt0O8DbSeU0lsl+ch7t3bsxklAEto1cV3wg+GVoZqXw/iBpTOjzpF3zYI3Qmlba49DoMzj7Koa5EheYjrH2mvjaqDUZ50hyFBFGSE6c95ZOCwIXybBMBGZKlejZHFG2LaJA++CGyKy+HEOmRUGQVyJfWRX4g3JC4OFZ7z0287LXJVeMF0m6yWV2Zwni0ig5DzQrNDBIyy8oNStFqUkdjOW1NrWv68Ag92rmdvU83XR6ElW/SmkxyBbpU55iY7NtxO3WetoVtoiqEiXGn36Tgv2rLWX+Psdn8w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ bh=4eEP+vVBxjNweX65dgr7w/z1y6wUB8SL7/ktZzhI3Fs=;
+ b=SulToKCgx6Jmlft1K7/XxJZsO2EQXrHD1TFJL39q/MX9BELv0Z3R4+rVMsHK7fyycA3qamWgagOdwUgpuAMP8AcpO81pG42rNQuwx23PYTP4JJl5UfN5gzFD79z2lAkJUL/jiaopRn4J1SxM91SmLaBHoOffOMLS2++kaqNOYX6bJZkC9RTSn/tEHDuotwXskjM8VlfRvWfYE0ox/B4y55K13KTx8U3Ge47yD5G/jox7MMX8bF5tZJFjxuOkcBwjIrBJvvMk/7BuLPmP/vx2H+qL8cl6YlJM/y60piB/F7TokYPYIX70toshVGblFKPpzc/fmIUpt7a8g/06OBvn2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fb.com; dmarc=pass action=none header.from=fb.com; dkim=pass
+ header.d=fb.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.onmicrosoft.com;
+ s=selector2-fb-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QyNuoP16Z/YOfgx2/n//zWRR2NSkAP2xIdiXXSSl73g=;
- b=mfqXkWFUWrYjPwGxHvSXM3J1xJALNJWd63dug2Gy0Zqwo1/BzFpPphke2JIu9AXh8AmbsXP59wPTpSz63bd294NpkF8RAFmjAjg/CPgyLuInpS3HxNmI7FQKULmCAmYsfBOWFalWDmGUrc4PPhvNdsy4J/ycfmD8pTA4IIg4+18=
-Received: from MWHPR02CA0020.namprd02.prod.outlook.com (2603:10b6:300:4b::30)
- by SN1PR02MB3728.namprd02.prod.outlook.com (2603:10b6:802:31::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2474.17; Wed, 20 Nov
- 2019 06:47:49 +0000
-Received: from BL2NAM02FT023.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::206) by MWHPR02CA0020.outlook.office365.com
- (2603:10b6:300:4b::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2474.16 via Frontend
- Transport; Wed, 20 Nov 2019 06:47:48 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- BL2NAM02FT023.mail.protection.outlook.com (10.152.77.72) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2474.17
- via Frontend Transport; Wed, 20 Nov 2019 06:47:48 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1iXJmF-000617-Gl; Tue, 19 Nov 2019 22:47:47 -0800
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <manish.narani@xilinx.com>)
-        id 1iXJmA-00049o-Cz; Tue, 19 Nov 2019 22:47:42 -0800
-Received: from xsj-pvapsmtp01 (smtp2.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id xAK6lcI3027301;
-        Tue, 19 Nov 2019 22:47:38 -0800
-Received: from [172.23.64.106] (helo=xhdvnc125.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <mnarani@xilinx.com>)
-        id 1iXJm5-00049H-Ms; Tue, 19 Nov 2019 22:47:38 -0800
-Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
-        id 07A871213B9; Wed, 20 Nov 2019 12:17:36 +0530 (IST)
-From:   Manish Narani <manish.narani@xilinx.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        adrian.hunter@intel.com, michal.simek@xilinx.com,
-        jolly.shah@xilinx.com, rajan.vaja@xilinx.com,
-        nava.manne@xilinx.com, mdf@kernel.org, manish.narani@xilinx.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        git@xilinx.com
-Subject: [PATCH v6 8/8] mmc: sdhci-of-arasan: Add support for ZynqMP Platform Tap Delays Setup
-Date:   Wed, 20 Nov 2019 12:17:29 +0530
-Message-Id: <1574232449-13570-9-git-send-email-manish.narani@xilinx.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1574232449-13570-1-git-send-email-manish.narani@xilinx.com>
-References: <1574232449-13570-1-git-send-email-manish.narani@xilinx.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(396003)(136003)(376002)(39860400002)(346002)(189003)(199004)(4326008)(305945005)(47776003)(186003)(2906002)(16586007)(50466002)(356004)(6666004)(103686004)(36756003)(107886003)(26005)(76176011)(106002)(36386004)(51416003)(478600001)(5660300002)(6266002)(2616005)(70586007)(44832011)(316002)(8936002)(48376002)(126002)(8676002)(426003)(336012)(81166006)(81156014)(476003)(446003)(14444005)(50226002)(42186006)(70206006)(11346002)(486006)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:SN1PR02MB3728;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+ bh=4eEP+vVBxjNweX65dgr7w/z1y6wUB8SL7/ktZzhI3Fs=;
+ b=AIhNVifYrZBZWlYPf7lOcXZiaQup8LvGmu/NaKGBimlSl3WuAljuCnqhniFghJnPsr6NYR+VM09v8OdK9dt+DxV6P7AQ9i4YSKVX4XHuLL4VQ3AA342YFA93KgsEdppTbSM3Nt2fiNwfnLDVP4PE4mSAQyuhvve8OSf0WKdk1xM=
+Received: from BY5PR15MB3636.namprd15.prod.outlook.com (52.133.252.91) by
+ BY5PR15MB3652.namprd15.prod.outlook.com (52.133.253.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2451.23; Wed, 20 Nov 2019 06:50:15 +0000
+Received: from BY5PR15MB3636.namprd15.prod.outlook.com
+ ([fe80::71db:9d2a:500c:d92b]) by BY5PR15MB3636.namprd15.prod.outlook.com
+ ([fe80::71db:9d2a:500c:d92b%4]) with mapi id 15.20.2474.015; Wed, 20 Nov 2019
+ 06:50:15 +0000
+From:   Vijay Khemka <vijaykhemka@fb.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        manikandan-e <manikandan.hcl.ers.epl@gmail.com>,
+        Joel Stanley <joel@jms.id.au>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "manikandan.e@hcl.com" <manikandan.e@hcl.com>
+Subject: Re: [PATCH] ARM: dts: aspeed: Adding Facebook Yosemite V2 BMC
+Thread-Topic: [PATCH] ARM: dts: aspeed: Adding Facebook Yosemite V2 BMC
+Thread-Index: AQHVn2c0WXXLabyj70aXMmxos/evbqeTGJoA
+Date:   Wed, 20 Nov 2019 06:50:15 +0000
+Message-ID: <D34D3A2F-9CD5-4924-8407-F6EB0A4C66B5@fb.com>
+References: <20191118123707.GA5560@cnn>
+ <b2f503f0-0f13-46bc-a1be-c82a42b85797@www.fastmail.com>
+In-Reply-To: <b2f503f0-0f13-46bc-a1be-c82a42b85797@www.fastmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2601:647:4b00:fd70:18e2:66b5:5e3d:3d1a]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5e53f1a6-bcb1-4a04-d871-08d76d85e5fa
+x-ms-traffictypediagnostic: BY5PR15MB3652:
+x-microsoft-antispam-prvs: <BY5PR15MB3652525D87CD6309AF8283E2DD4F0@BY5PR15MB3652.namprd15.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 02272225C5
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(366004)(39860400002)(136003)(346002)(376002)(47680400002)(199004)(189003)(71190400001)(316002)(71200400001)(6486002)(76176011)(110136005)(8936002)(6436002)(25786009)(6512007)(46003)(2616005)(66946007)(66446008)(64756008)(66556008)(66476007)(7736002)(14454004)(76116006)(6506007)(102836004)(6246003)(476003)(99286004)(186003)(86362001)(33656002)(2906002)(478600001)(446003)(5660300002)(11346002)(305945005)(54906003)(81156014)(81166006)(6116002)(8676002)(4326008)(256004)(14444005)(36756003)(486006)(229853002);DIR:OUT;SFP:1102;SCL:1;SRVR:BY5PR15MB3652;H:BY5PR15MB3636.namprd15.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: fb.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Q6vFgSc4+hGNa4wSMPU8VYyowGqfjdPImRFOcF7/3JxDj/Dp+BrPSukuyyEWphkY4PjLkMmPPSH9aDzzNNc4NeD/w4aKjse1WX2PagDDVLEd1t263iXLuFslvYXFVcJQ8N/ZchMxqU5U6A06zmRfg5qL5i+ZZz3bQCN+d24LamqVJ4I3XU/YAUlYqb6hF+1Q7ZgL3KYMqnDmoPAARTqICjzVnFbtCIL3BMA1ikyNKiRgwZyeClPEAtXQnmEIjuBf3Jr8tYxEMES1bychQkgKsJ8rRTd3xQR9seAV1yCbUV93p8WTfD6E4Q+nNan/TK6pjhenRnR2U8y2ioNJqfo/fFr8tTsBIK++CrIzgi4irnCGUmKdP4fzYG1Wq2f4+Hf2z60mYko1ZqaKmz62waUPWDL2yfn6uQCx6kNjWslxV3d4kW5OiYKVIEmyYF4JPp7F
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AA46A076608AC64F9AA4E00A07A061A0@namprd15.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 579d7846-83f9-408b-7736-08d76d858e6e
-X-MS-TrafficTypeDiagnostic: SN1PR02MB3728:
-X-Microsoft-Antispam-PRVS: <SN1PR02MB3728B389CE14642CFDD17F7CC14F0@SN1PR02MB3728.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:3513;
-X-Forefront-PRVS: 02272225C5
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: otfsrFK/BabQFj8Ne5TqOB0hedgWzJGmSirxquQPqMLg78gQ5bG4yxzeSiTKeVrT5mndPgCoUsz/RmaB5g7jGj23sXqZ3OJZ8DuigD8Ea/ropW7mB+pKlRXOIfElaCfYkVD32Yu/WLrvIhlDEwqgQrQ4YpVT10QjozpoqDXRkprpJ65JXAvY2IXfqb9j7oq4ans+7zWeUylrzLtZUbyFzVujBOoTtZFCNorAS6jHHyA4z9xEkUrQNndLj1Ty8fkmjt29/le+aXnLrQSTs+UqfahOvpuiPiLSqAkY4lZ6CElmgFtNe0Xp8FcAoD/Xkjr8U/rSRmaTN/ot3fIMA0I77YLvj7/T58Onpqz88gykSvgyFwExUVldpAyGRYdZ6otmfHkq/MRt/WOIqWhHh2u5UWabMA7a9G102nJhvXT0mxh5DfOJZA2aLvBuVkewKCMZ
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2019 06:47:48.0794
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e53f1a6-bcb1-4a04-d871-08d76d85e5fa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2019 06:50:15.0625
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 579d7846-83f9-408b-7736-08d76d858e6e
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR02MB3728
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cdr9CBYBheAtxmBHJTzh8Xl7510MIR4Wxv2LJmMHPU8C11MHhOhOcWEK9a+/M/rj0ou0TG8Usm5JHpxtEaySaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR15MB3652
+X-OriginatorOrg: fb.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-11-20_01:2019-11-15,2019-11-20 signatures=0
+X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 spamscore=0 mlxscore=0 bulkscore=0
+ adultscore=0 malwarescore=0 clxscore=1011 mlxlogscore=999 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-1911200060
+X-FB-Internal: deliver
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apart from taps set by auto tuning, ZynqMP platform has feature to set
-the tap values manually. Add support to set tap delay values in HW via
-ZynqMP SoC framework.
-
-Signed-off-by: Manish Narani <manish.narani@xilinx.com>
----
- drivers/mmc/host/sdhci-of-arasan.c | 206 ++++++++++++++++++++++++++++-
- 1 file changed, 204 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
-index 9452ae01f6fa..228dbeef74a8 100644
---- a/drivers/mmc/host/sdhci-of-arasan.c
-+++ b/drivers/mmc/host/sdhci-of-arasan.c
-@@ -22,6 +22,7 @@
- #include <linux/phy/phy.h>
- #include <linux/regmap.h>
- #include <linux/of.h>
-+#include <linux/firmware/xlnx-zynqmp.h>
- 
- #include "cqhci.h"
- #include "sdhci-pltfm.h"
-@@ -32,6 +33,10 @@
- 
- #define PHY_CLK_TOO_SLOW_HZ		400000
- 
-+/* Default settings for ZynqMP Clock Phases */
-+#define ZYNQMP_ICLK_PHASE {0, 63, 63, 0, 63,  0,   0, 183, 54,  0, 0}
-+#define ZYNQMP_OCLK_PHASE {0, 72, 60, 0, 60, 72, 135, 48, 72, 135, 0}
-+
- /*
-  * On some SoCs the syscon area has a feature where the upper 16-bits of
-  * each 32-bit register act as a write mask for the lower 16-bits.  This allows
-@@ -80,6 +85,7 @@ struct sdhci_arasan_soc_ctl_map {
-  * @clk_phase_in:	Array of Input Clock Phase Delays for all speed modes
-  * @clk_phase_out:	Array of Output Clock Phase Delays for all speed modes
-  * @set_clk_delays:	Function pointer for setting Clock Delays
-+ * @clk_of_data:	Platform specific runtime clock data storage pointer
-  */
- struct sdhci_arasan_clk_data {
- 	struct clk_hw	sdcardclk_hw;
-@@ -89,6 +95,11 @@ struct sdhci_arasan_clk_data {
- 	int		clk_phase_in[MMC_TIMING_MMC_HS400 + 1];
- 	int		clk_phase_out[MMC_TIMING_MMC_HS400 + 1];
- 	void		(*set_clk_delays)(struct sdhci_host *host);
-+	void		*clk_of_data;
-+};
-+
-+struct sdhci_arasan_zynqmp_clk_data {
-+	const struct zynqmp_eemi_ops *eemi_ops;
- };
- 
- /**
-@@ -525,6 +536,10 @@ static const struct of_device_id sdhci_arasan_of_match[] = {
- 		.compatible = "arasan,sdhci-4.9a",
- 		.data = &sdhci_arasan_data,
- 	},
-+	{
-+		.compatible = "xlnx,zynqmp-8.9a",
-+		.data = &sdhci_arasan_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, sdhci_arasan_of_match);
-@@ -583,6 +598,150 @@ static const struct clk_ops arasan_sampleclk_ops = {
- 	.recalc_rate = sdhci_arasan_sampleclk_recalc_rate,
- };
- 
-+/**
-+ * sdhci_zynqmp_sdcardclk_set_phase - Set the SD Output Clock Tap Delays
-+ *
-+ * Set the SD Output Clock Tap Delays for Output path
-+ *
-+ * @hw:			Pointer to the hardware clock structure.
-+ * @degrees		The clock phase shift between 0 - 359.
-+ * Return: 0 on success and error value on error
-+ */
-+static int sdhci_zynqmp_sdcardclk_set_phase(struct clk_hw *hw, int degrees)
-+
-+{
-+	struct sdhci_arasan_clk_data *clk_data =
-+		container_of(hw, struct sdhci_arasan_clk_data, sdcardclk_hw);
-+	struct sdhci_arasan_data *sdhci_arasan =
-+		container_of(clk_data, struct sdhci_arasan_data, clk_data);
-+	struct sdhci_host *host = sdhci_arasan->host;
-+	struct sdhci_arasan_zynqmp_clk_data *zynqmp_clk_data =
-+		clk_data->clk_of_data;
-+	const struct zynqmp_eemi_ops *eemi_ops = zynqmp_clk_data->eemi_ops;
-+	const char *clk_name = clk_hw_get_name(hw);
-+	u32 node_id = !strcmp(clk_name, "clk_out_sd0") ? NODE_SD_0 : NODE_SD_1;
-+	u8 tap_delay, tap_max = 0;
-+	int ret;
-+
-+	/*
-+	 * This is applicable for SDHCI_SPEC_300 and above
-+	 * ZynqMP does not set phase for <=25MHz clock.
-+	 * If degrees is zero, no need to do anything.
-+	 */
-+	if (host->version < SDHCI_SPEC_300 ||
-+	    host->timing == MMC_TIMING_LEGACY ||
-+	    host->timing == MMC_TIMING_UHS_SDR12 || !degrees)
-+		return 0;
-+
-+	switch (host->timing) {
-+	case MMC_TIMING_MMC_HS:
-+	case MMC_TIMING_SD_HS:
-+	case MMC_TIMING_UHS_SDR25:
-+	case MMC_TIMING_UHS_DDR50:
-+	case MMC_TIMING_MMC_DDR52:
-+		/* For 50MHz clock, 30 Taps are available */
-+		tap_max = 30;
-+		break;
-+	case MMC_TIMING_UHS_SDR50:
-+		/* For 100MHz clock, 15 Taps are available */
-+		tap_max = 15;
-+		break;
-+	case MMC_TIMING_UHS_SDR104:
-+	case MMC_TIMING_MMC_HS200:
-+		/* For 200MHz clock, 8 Taps are available */
-+		tap_max = 8;
-+	default:
-+		break;
-+	}
-+
-+	tap_delay = (degrees * tap_max) / 360;
-+
-+	/* Set the Clock Phase */
-+	ret = eemi_ops->ioctl(node_id, IOCTL_SET_SD_TAPDELAY,
-+			      PM_TAPDELAY_OUTPUT, tap_delay, NULL);
-+	if (ret)
-+		pr_err("Error setting Output Tap Delay\n");
-+
-+	return ret;
-+}
-+
-+static const struct clk_ops zynqmp_sdcardclk_ops = {
-+	.recalc_rate = sdhci_arasan_sdcardclk_recalc_rate,
-+	.set_phase = sdhci_zynqmp_sdcardclk_set_phase,
-+};
-+
-+/**
-+ * sdhci_zynqmp_sampleclk_set_phase - Set the SD Input Clock Tap Delays
-+ *
-+ * Set the SD Input Clock Tap Delays for Input path
-+ *
-+ * @hw:			Pointer to the hardware clock structure.
-+ * @degrees		The clock phase shift between 0 - 359.
-+ * Return: 0 on success and error value on error
-+ */
-+static int sdhci_zynqmp_sampleclk_set_phase(struct clk_hw *hw, int degrees)
-+
-+{
-+	struct sdhci_arasan_clk_data *clk_data =
-+		container_of(hw, struct sdhci_arasan_clk_data, sampleclk_hw);
-+	struct sdhci_arasan_data *sdhci_arasan =
-+		container_of(clk_data, struct sdhci_arasan_data, clk_data);
-+	struct sdhci_host *host = sdhci_arasan->host;
-+	struct sdhci_arasan_zynqmp_clk_data *zynqmp_clk_data =
-+		clk_data->clk_of_data;
-+	const struct zynqmp_eemi_ops *eemi_ops = zynqmp_clk_data->eemi_ops;
-+	const char *clk_name = clk_hw_get_name(hw);
-+	u32 node_id = !strcmp(clk_name, "clk_in_sd0") ? NODE_SD_0 : NODE_SD_1;
-+	u8 tap_delay, tap_max = 0;
-+	int ret;
-+
-+	/*
-+	 * This is applicable for SDHCI_SPEC_300 and above
-+	 * ZynqMP does not set phase for <=25MHz clock.
-+	 * If degrees is zero, no need to do anything.
-+	 */
-+	if (host->version < SDHCI_SPEC_300 ||
-+	    host->timing == MMC_TIMING_LEGACY ||
-+	    host->timing == MMC_TIMING_UHS_SDR12 || !degrees)
-+		return 0;
-+
-+	switch (host->timing) {
-+	case MMC_TIMING_MMC_HS:
-+	case MMC_TIMING_SD_HS:
-+	case MMC_TIMING_UHS_SDR25:
-+	case MMC_TIMING_UHS_DDR50:
-+	case MMC_TIMING_MMC_DDR52:
-+		/* For 50MHz clock, 120 Taps are available */
-+		tap_max = 120;
-+		break;
-+	case MMC_TIMING_UHS_SDR50:
-+		/* For 100MHz clock, 60 Taps are available */
-+		tap_max = 60;
-+		break;
-+	case MMC_TIMING_UHS_SDR104:
-+	case MMC_TIMING_MMC_HS200:
-+		/* For 200MHz clock, 30 Taps are available */
-+		tap_max = 30;
-+	default:
-+		break;
-+	}
-+
-+	tap_delay = (degrees * tap_max) / 360;
-+
-+	/* Set the Clock Phase */
-+	ret = eemi_ops->ioctl(node_id, IOCTL_SET_SD_TAPDELAY,
-+			      PM_TAPDELAY_INPUT, tap_delay, NULL);
-+	if (ret)
-+		pr_err("Error setting Input Tap Delay\n");
-+
-+	return ret;
-+}
-+
-+static const struct clk_ops zynqmp_sampleclk_ops = {
-+	.recalc_rate = sdhci_arasan_sampleclk_recalc_rate,
-+	.set_phase = sdhci_zynqmp_sampleclk_set_phase,
-+};
-+
- /**
-  * sdhci_arasan_update_clockmultiplier - Set corecfg_clockmultiplier
-  *
-@@ -709,6 +868,10 @@ static void arasan_dt_read_clk_phase(struct device *dev,
- static void arasan_dt_parse_clk_phases(struct device *dev,
- 				       struct sdhci_arasan_clk_data *clk_data)
- {
-+	int *iclk_phase, *oclk_phase;
-+	u32 mio_bank = 0;
-+	int i;
-+
- 	/*
- 	 * This has been kept as a pointer and is assigned a function here.
- 	 * So that different controller variants can assign their own handling
-@@ -716,6 +879,22 @@ static void arasan_dt_parse_clk_phases(struct device *dev,
- 	 */
- 	clk_data->set_clk_delays = sdhci_arasan_set_clk_delays;
- 
-+	if (of_device_is_compatible(dev->of_node, "xlnx,zynqmp-8.9a")) {
-+		iclk_phase = (int [MMC_TIMING_MMC_HS400 + 1]) ZYNQMP_ICLK_PHASE;
-+		oclk_phase = (int [MMC_TIMING_MMC_HS400 + 1]) ZYNQMP_OCLK_PHASE;
-+
-+		of_property_read_u32(dev->of_node, "xlnx,mio-bank", &mio_bank);
-+		if (mio_bank == 2) {
-+			oclk_phase[MMC_TIMING_UHS_SDR104] = 90;
-+			oclk_phase[MMC_TIMING_MMC_HS200] = 90;
-+		}
-+
-+		for (i = 0; i <= MMC_TIMING_MMC_HS400; i++) {
-+			clk_data->clk_phase_in[i] = iclk_phase[i];
-+			clk_data->clk_phase_out[i] = oclk_phase[i];
-+		}
-+	}
-+
- 	arasan_dt_read_clk_phase(dev, clk_data, MMC_TIMING_LEGACY,
- 				 "clk-phase-legacy");
- 	arasan_dt_read_clk_phase(dev, clk_data, MMC_TIMING_MMC_HS,
-@@ -774,7 +953,10 @@ sdhci_arasan_register_sdcardclk(struct sdhci_arasan_data *sdhci_arasan,
- 	sdcardclk_init.parent_names = &parent_clk_name;
- 	sdcardclk_init.num_parents = 1;
- 	sdcardclk_init.flags = CLK_GET_RATE_NOCACHE;
--	sdcardclk_init.ops = &arasan_sdcardclk_ops;
-+	if (of_device_is_compatible(np, "xlnx,zynqmp-8.9a"))
-+		sdcardclk_init.ops = &zynqmp_sdcardclk_ops;
-+	else
-+		sdcardclk_init.ops = &arasan_sdcardclk_ops;
- 
- 	clk_data->sdcardclk_hw.init = &sdcardclk_init;
- 	clk_data->sdcardclk =
-@@ -823,7 +1005,10 @@ sdhci_arasan_register_sampleclk(struct sdhci_arasan_data *sdhci_arasan,
- 	sampleclk_init.parent_names = &parent_clk_name;
- 	sampleclk_init.num_parents = 1;
- 	sampleclk_init.flags = CLK_GET_RATE_NOCACHE;
--	sampleclk_init.ops = &arasan_sampleclk_ops;
-+	if (of_device_is_compatible(np, "xlnx,zynqmp-8.9a"))
-+		sampleclk_init.ops = &zynqmp_sampleclk_ops;
-+	else
-+		sampleclk_init.ops = &arasan_sampleclk_ops;
- 
- 	clk_data->sampleclk_hw.init = &sampleclk_init;
- 	clk_data->sampleclk =
-@@ -1032,6 +1217,23 @@ static int sdhci_arasan_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto clk_disable_all;
- 
-+	if (of_device_is_compatible(np, "xlnx,zynqmp-8.9a")) {
-+		struct sdhci_arasan_zynqmp_clk_data *zynqmp_clk_data;
-+		const struct zynqmp_eemi_ops *eemi_ops;
-+
-+		zynqmp_clk_data = devm_kzalloc(&pdev->dev,
-+					       sizeof(*zynqmp_clk_data),
-+					       GFP_KERNEL);
-+		eemi_ops = zynqmp_pm_get_eemi_ops();
-+		if (IS_ERR(eemi_ops)) {
-+			ret = PTR_ERR(eemi_ops);
-+			goto unreg_clk;
-+		}
-+
-+		zynqmp_clk_data->eemi_ops = eemi_ops;
-+		sdhci_arasan->clk_data.clk_of_data = zynqmp_clk_data;
-+	}
-+
- 	arasan_dt_parse_clk_phases(&pdev->dev, &sdhci_arasan->clk_data);
- 
- 	ret = mmc_of_parse(host->mmc);
--- 
-2.17.1
-
+DQoNCu+7v09uIDExLzE5LzE5LCA5OjU2IFBNLCAiTGludXgtYXNwZWVkIG9uIGJlaGFsZiBvZiBB
+bmRyZXcgSmVmZmVyeSIgPGxpbnV4LWFzcGVlZC1ib3VuY2VzK3ZpamF5a2hlbWthPWZiLmNvbUBs
+aXN0cy5vemxhYnMub3JnIG9uIGJlaGFsZiBvZiBhbmRyZXdAYWouaWQuYXU+IHdyb3RlOg0KDQog
+ICAgDQogICAgDQogICAgT24gTW9uLCAxOCBOb3YgMjAxOSwgYXQgMjM6MDcsIG1hbmlrYW5kYW4t
+ZSB3cm90ZToNCiAgICA+IFRoZSBZb3NlbWl0ZSBWMiBpcyBhIGZhY2Vib29rIG11bHRpLW5vZGUg
+c2VydmVyDQogICAgPiBwbGF0Zm9ybSB0aGF0IGhvc3QgZm91ciBPQ1Agc2VydmVyLiBUaGUgQk1D
+DQogICAgPiBpbiB0aGUgWW9zZW1pdGUgVjIgcGxhdG9ybSBiYXNlZCBvbiBBU1QyNTAwIFNvQy4N
+CiAgICA+IA0KICAgID4gVGhpcyBwYXRjaCBhZGRzIGxpbnV4IGRldmljZSB0cmVlIGVudHJ5IHJl
+bGF0ZWQgdG8NCiAgICA+IFlvc2VtaXRlIFYyIHNwZWNpZmljIGRldmljZXMgY29ubmVjdGVkIHRv
+IEJNQyBTb0MuDQogICAgPiANCiAgICA+IFNpZ25lZC1vZmYtYnk6IG1hbmlrYW5kYW4tZSA8bWFu
+aWthbmRhbi5oY2wuZXJzLmVwbEBnbWFpbC5jb20+DQogICAgPiAtLS0NCiAgICA+ICAuLi4vYm9v
+dC9kdHMvYXNwZWVkLWJtYy1mYWNlYm9vay15b3NlbWl0ZXYyLmR0cyAgICB8IDE3MCArKysrKysr
+KysrKysrKysrKysrKysNCiAgICA+ICAxIGZpbGUgY2hhbmdlZCwgMTcwIGluc2VydGlvbnMoKykN
+CiAgICA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkLWJtYy1m
+YWNlYm9vay15b3NlbWl0ZXYyLmR0cw0KICAgID4gDQogICAgPiBkaWZmIC0tZ2l0IGEvYXJjaC9h
+cm0vYm9vdC9kdHMvYXNwZWVkLWJtYy1mYWNlYm9vay15b3NlbWl0ZXYyLmR0cyANCiAgICA+IGIv
+YXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkLWJtYy1mYWNlYm9vay15b3NlbWl0ZXYyLmR0cw0KICAg
+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCiAgICA+IGluZGV4IDAwMDAwMDAuLjQ2YTI4NWENCiAg
+ICA+IC0tLSAvZGV2L251bGwNCiAgICA+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC1i
+bWMtZmFjZWJvb2steW9zZW1pdGV2Mi5kdHMNCiAgICA+IEBAIC0wLDAgKzEsMTcwIEBADQogICAg
+PiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjArDQogICAgPiArLy8gQ29weXJp
+Z2h0IChjKSAyMDE4IEZhY2Vib29rIEluYy4NCiAgICA+ICsvLyBBdXRob3I6DQogICAgPiArL2R0
+cy12MS87DQogICAgPiArDQogICAgPiArI2luY2x1ZGUgImFzcGVlZC1nNS5kdHNpIg0KICAgID4g
+KyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9ncGlvL2FzcGVlZC1ncGlvLmg+DQogICAgPiArDQogICAg
+PiArLyB7DQogICAgPiArCW1vZGVsID0gIkZhY2Vib29rIFlvc2VtaXRldjIgQk1DIjsNCiAgICA+
+ICsJY29tcGF0aWJsZSA9ICJmYWNlYm9vayx5b3NlbWl0ZXYyLWJtYyIsICJhc3BlZWQsYXN0MjUw
+MCI7DQogICAgPiArCWFsaWFzZXMgew0KICAgID4gKwkJc2VyaWFsMCA9ICZ1YXJ0MTsNCiAgICA+
+ICsJCXNlcmlhbDQgPSAmdWFydDU7DQogICAgPiArCX07DQogICAgPiArCWNob3NlbiB7DQogICAg
+PiArCQlzdGRvdXQtcGF0aCA9ICZ1YXJ0NTsNCiAgICA+ICsJCWJvb3RhcmdzID0gImNvbnNvbGU9
+dHR5UzQsMTE1MjAwIGVhcmx5cHJpbnRrIjsNCiAgICA+ICsJfTsNCiAgICA+ICsNCiAgICA+ICsJ
+bWVtb3J5QDgwMDAwMDAwIHsNCiAgICA+ICsJCXJlZyA9IDwweDgwMDAwMDAwIDB4MjAwMDAwMDA+
+Ow0KICAgID4gKwl9Ow0KICAgID4gKw0KICAgID4gKwlpaW8taHdtb24gew0KICAgID4gKwkJLy8g
+Vk9MQVRBR0UgU0VOU09SDQogICAgPiArCQljb21wYXRpYmxlID0gImlpby1od21vbiI7DQogICAg
+PiArCQlpby1jaGFubmVscyA9IDwmYWRjIDA+ICwgPCZhZGMgMT4gLCA8JmFkYyAyPiAsICA8JmFk
+YyAzPiAsDQogICAgPiArCQk8JmFkYyA0PiAsIDwmYWRjIDU+ICwgPCZhZGMgNj4gLCAgPCZhZGMg
+Nz4gLA0KICAgID4gKwkJPCZhZGMgOD4gLCA8JmFkYyA5PiAsIDwmYWRjIDEwPiwgPCZhZGMgMTE+
+ICwNCiAgICA+ICsJCTwmYWRjIDEyPiAsIDwmYWRjIDEzPiAsIDwmYWRjIDE0PiAsIDwmYWRjIDE1
+PiA7DQogICAgPiArCX07DQogICAgPiArfTsNCiAgICA+ICsNCiAgICA+ICsmZm1jIHsNCiAgICA+
+ICsJc3RhdHVzID0gIm9rYXkiOw0KICAgID4gKwlmbGFzaEAwIHsNCiAgICA+ICsJCXN0YXR1cyA9
+ICJva2F5IjsNCiAgICA+ICsJCW0yNXAsZmFzdC1yZWFkOw0KICAgID4gKyNpbmNsdWRlICJvcGVu
+Ym1jLWZsYXNoLWxheW91dC5kdHNpIg0KICAgID4gKwl9Ow0KICAgID4gK307DQogICAgPiArDQog
+ICAgPiArJnNwaTEgew0KICAgID4gKwlzdGF0dXMgPSAib2theSI7DQogICAgPiArCXBpbmN0cmwt
+bmFtZXMgPSAiZGVmYXVsdCI7DQogICAgPiArCXBpbmN0cmwtMCA9IDwmcGluY3RybF9zcGkxX2Rl
+ZmF1bHQ+Ow0KICAgID4gKwlmbGFzaEAwIHsNCiAgICA+ICsJCXN0YXR1cyA9ICJva2F5IjsNCiAg
+ICA+ICsJCW0yNXAsZmFzdC1yZWFkOw0KICAgID4gKwkJbGFiZWwgPSAicG5vciI7DQogICAgPiAr
+CX07DQogICAgPiArfTsNCiAgICA+ICsNCiAgICA+ICsmbHBjX3Nub29wIHsNCiAgICA+ICsJc3Rh
+dHVzID0gIm9rYXkiOw0KICAgID4gKwlzbm9vcC1wb3J0cyA9IDwweDgwPjsNCiAgICA+ICt9Ow0K
+Tm8gbHBjIGluIFlvc2VtaXRlIHNvIHBsZWFzZSByZW1vdmUuDQoNCiAgICA+ICsNCiAgICA+ICsm
+bHBjX2N0cmwgew0KICAgID4gKwkvLyBFbmFibGUgbHBjIGNsb2NrDQogICAgPiArCXN0YXR1cyA9
+ICJva2F5IjsNClNhbWUgaGVyZSByZW1vdmUuDQogICAgDQogICAgU29tZXRoaW5nIEknbSBpbnRl
+bmRpbmcgdG8gZml4IGluIHRoZSBkZXZpY2V0cmVlcyB1c2luZyBMUEMgaXMgdG8gaG9nDQogICAg
+dGhlIHBpbnMgaW4gdGhlIHBpbmN0cmwgbm9kZS4gWW91IHNob3VsZCBjb25zaWRlciBkb2luZyB0
+aGUgc2FtZSBoZXJlLg0KICAgIA0KICAgID4gK307DQogICAgPiArDQogICAgPiArJnZ1YXJ0IHsN
+CiAgICA+ICsJLy8gVlVBUlQgSG9zdCBDb25zb2xlDQogICAgPiArCXN0YXR1cyA9ICJva2F5IjsN
+CiAgICA+ICt9Ow0KTm8gVnVhcnQuDQoNCiAgICA+ICsNCiAgICA+ICsmdWFydDEgew0KICAgID4g
+KwkvLyBIb3N0IENvbnNvbGUNCiAgICA+ICsJc3RhdHVzID0gIm9rYXkiOw0KICAgID4gKwlwaW5j
+dHJsLW5hbWVzID0gImRlZmF1bHQiOw0KICAgID4gKwlwaW5jdHJsLTAgPSA8JnBpbmN0cmxfdHhk
+MV9kZWZhdWx0DQogICAgPiArCQkgICAgICZwaW5jdHJsX3J4ZDFfZGVmYXVsdD47DQogICAgPiAr
+fTsNCiAgICA+ICsNCiAgICA+ICsmdWFydDIgew0KICAgID4gKwkvLyBTb0wgSG9zdCBDb25zb2xl
+DQogICAgPiArCXN0YXR1cyA9ICJva2F5IjsNCg0KdWFydDEtNCBhcmUgYWxsIGFzc2lnbmVkIGZv
+ciA0IG11bHRpcGxlIGhvc3RzIHNvIGRlZmluZSBhY2NvcmRpbmdseS4gIA0KICAgIA0KICAgIEFs
+c28gbmVlZHMgcGluY3RybCBjb25maWd1cmF0aW9uLg0KICAgIA0KICAgID4gK307DQogICAgPiAr
+DQogICAgPiArJnVhcnQzIHsNCiAgICA+ICsJLy8gU29MIEJNQyBDb25zb2xlDQogICAgPiArCXN0
+YXR1cyA9ICJva2F5IjsNCiAgICANCiAgICBBZ2FpbiBuZWVkcyBwaW5jdHJsLg0KICAgIA0KICAg
+ID4gK307DQogICAgPiArDQogICAgPiArJnVhcnQ1IHsNCiAgICA+ICsJLy8gQk1DIENvbnNvbGUN
+CiAgICA+ICsJc3RhdHVzID0gIm9rYXkiOw0KICAgID4gK307DQogICAgPiArDQogICAgPiArJm1h
+YzAgew0KICAgID4gKwlzdGF0dXMgPSAib2theSI7DQogICAgPiArDQogICAgPiArCXBpbmN0cmwt
+bmFtZXMgPSAiZGVmYXVsdCI7DQogICAgPiArCXBpbmN0cmwtMCA9IDwmcGluY3RybF9ybWlpMV9k
+ZWZhdWx0PjsNCiAgICA+ICsJdXNlLW5jc2k7DQogICAgPiArfTsNCiAgICA+ICsNCiAgICA+ICsm
+YWRjIHsNCiAgICA+ICsJc3RhdHVzID0gIm9rYXkiOw0KICAgIA0KICAgIFN0cm9uZ2x5IHN1Z2dl
+c3QgYWRkaW5nIHRoZSBwaW5jdHJsIHByb3BlcnRpZXMgaGVyZSB0byBlbnN1cmUNCiAgICBleGNs
+dXNpdmUgYWNjZXNzIGZvciB0aGUgQURDIHBpbnMuDQogICAgDQogICAgT3RoZXJ3aXNlIGl0IGxv
+b2tzIHJlYXNvbmFibGUuDQogICAgDQogICAgQW5kcmV3DQogICAgDQoNCg==
