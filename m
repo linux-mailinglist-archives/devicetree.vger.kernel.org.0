@@ -2,101 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E03381041C6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 18:10:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B620A1041E3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 18:18:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730403AbfKTRKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 12:10:52 -0500
-Received: from outils.crapouillou.net ([89.234.176.41]:54866 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727644AbfKTRKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 12:10:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1574269837; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Q7XM9VKEul3WoIle4adCI8wIKzVFhhXtSEViQ1Z4XrQ=;
-        b=TdN7U5ylrFeveewEL9FpwmfbR1Pp9uHzNKPAoE4pE6mNPqn6fvXCceCHOCCVe+Ms3wNTKZ
-        2PuV+gO+0cZ/CmM5M2b7m+fn/DPmp3qmqer1HSe6uc24+Rp9lUSgVSCOiKrrbb4UErusdG
-        mscwdhuIDkoTz/ytUkAJbxseUOfBpRs=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     od@zcrc.me, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Paul Cercueil <paul@crapouillou.net>
-Subject: [PATCH 3/3] drm/panel: simple: Add support for the Frida FRD350H54004 panel
-Date:   Wed, 20 Nov 2019 18:10:27 +0100
-Message-Id: <20191120171027.1102250-3-paul@crapouillou.net>
-In-Reply-To: <20191120171027.1102250-1-paul@crapouillou.net>
-References: <20191120171027.1102250-1-paul@crapouillou.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1730198AbfKTRSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 12:18:07 -0500
+Received: from foss.arm.com ([217.140.110.172]:43292 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730001AbfKTRSH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Nov 2019 12:18:07 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BF7781045;
+        Wed, 20 Nov 2019 09:18:06 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 199333F703;
+        Wed, 20 Nov 2019 09:18:05 -0800 (PST)
+Date:   Wed, 20 Nov 2019 17:18:03 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, kuninori.morimoto.gx@renesas.com,
+        lgirdwood@gmail.com, linus.walleij@linaro.org,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        robh+dt@kernel.org
+Subject: Applied "ASoC: pcm3168a: Update the RST gpio handling to align with documentation" to the asoc tree
+In-Reply-To: <20191120131753.6831-3-peter.ujfalusi@ti.com>
+Message-Id: <applied-20191120131753.6831-3-peter.ujfalusi@ti.com>
+X-Patchwork-Hint: ignore
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The FRD350H54004 is a simple 3.5" 320x240 24-bit TFT panel, found for
-instance inside the Anbernic RG-350 handheld gaming console.
+The patch
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+   ASoC: pcm3168a: Update the RST gpio handling to align with documentation
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.5
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 4ec48e7cbe6e70352c802b5cb172b00ebd8af8e0 Mon Sep 17 00:00:00 2001
+From: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Date: Wed, 20 Nov 2019 15:17:53 +0200
+Subject: [PATCH] ASoC: pcm3168a: Update the RST gpio handling to align with
+ documentation
+
+The RST (reset-gpios) is low active so the driver must handle it
+accordingly.
+
+Add comments to explain clearly how the line is used.
+
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Link: https://lore.kernel.org/r/20191120131753.6831-3-peter.ujfalusi@ti.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ sound/soc/codecs/pcm3168a.c | 20 +++++++++++++++-----
+ 1 file changed, 15 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 28fa6ba7b767..8c03f7fe461c 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1378,6 +1378,32 @@ static const struct panel_desc evervision_vgg804821 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_NEGEDGE,
- };
+diff --git a/sound/soc/codecs/pcm3168a.c b/sound/soc/codecs/pcm3168a.c
+index f3475134b519..9711fab296eb 100644
+--- a/sound/soc/codecs/pcm3168a.c
++++ b/sound/soc/codecs/pcm3168a.c
+@@ -707,11 +707,15 @@ int pcm3168a_probe(struct device *dev, struct regmap *regmap)
+ 	dev_set_drvdata(dev, pcm3168a);
  
-+static const struct drm_display_mode frida_frd350h54004_mode = {
-+	.clock = 6777,
-+	.hdisplay = 320,
-+	.hsync_start = 320 + 70,
-+	.hsync_end = 320 + 70 + 50,
-+	.htotal = 320 + 70 + 50 + 10,
-+	.vdisplay = 240,
-+	.vsync_start = 240 + 5,
-+	.vsync_end = 240 + 5 + 1,
-+	.vtotal = 240 + 5 + 1 + 5,
-+	.vrefresh = 60,
-+	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-+};
-+
-+static const struct panel_desc frida_frd350h54004 = {
-+	.modes = &frida_frd350h54004_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 77,
-+		.height = 64,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_POSEDGE,
-+};
-+
- static const struct drm_display_mode foxlink_fl500wvr00_a0t_mode = {
- 	.clock = 32260,
- 	.hdisplay = 800,
-@@ -3186,6 +3212,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "evervision,vgg804821",
- 		.data = &evervision_vgg804821,
-+	}, {
-+		.compatible = "frida,frd350h54004",
-+		.data = &frida_frd350h54004,
- 	}, {
- 		.compatible = "foxlink,fl500wvr00-a0t",
- 		.data = &foxlink_fl500wvr00_a0t,
+ 	/*
+-	 * Request the RST gpio line as non exclusive as the same reset line
+-	 * might be connected to multiple pcm3168a codec
++	 * Request the reset (connected to RST pin) gpio line as non exclusive
++	 * as the same reset line might be connected to multiple pcm3168a codec
++	 *
++	 * The RST is low active, we want the GPIO line to be high initially, so
++	 * request the initial level to LOW which in practice means DEASSERTED:
++	 * The deasserted level of GPIO_ACTIVE_LOW is HIGH.
+ 	 */
+-	pcm3168a->gpio_rst = devm_gpiod_get_optional(dev, "rst",
+-						GPIOD_OUT_HIGH |
++	pcm3168a->gpio_rst = devm_gpiod_get_optional(dev, "reset",
++						GPIOD_OUT_LOW |
+ 						GPIOD_FLAGS_BIT_NONEXCLUSIVE);
+ 	if (IS_ERR(pcm3168a->gpio_rst)) {
+ 		ret = PTR_ERR(pcm3168a->gpio_rst);
+@@ -814,7 +818,13 @@ void pcm3168a_remove(struct device *dev)
+ {
+ 	struct pcm3168a_priv *pcm3168a = dev_get_drvdata(dev);
+ 
+-	gpiod_set_value_cansleep(pcm3168a->gpio_rst, 0);
++	/*
++	 * The RST is low active, we want the GPIO line to be low when the
++	 * driver is removed, so set level to 1 which in practice means
++	 * ASSERTED:
++	 * The asserted level of GPIO_ACTIVE_LOW is LOW.
++	 */
++	gpiod_set_value_cansleep(pcm3168a->gpio_rst, 1);
+ 	pm_runtime_disable(dev);
+ #ifndef CONFIG_PM
+ 	pcm3168a_disable(dev);
 -- 
-2.24.0
+2.20.1
 
