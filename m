@@ -2,432 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF42103B98
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 14:34:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04FFB103C70
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 14:44:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730760AbfKTNe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 08:34:28 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60762 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729591AbfKTNe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 08:34:27 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAKDYJRs084129;
-        Wed, 20 Nov 2019 07:34:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1574256859;
-        bh=93jDsIoC/lLn4wCLLrHfnQA7IVj/2lmIBXl4qP8C3bY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=uLDStWxrDF0qEfXCjWAPzAUG86mj4c1WqPkLfBjUBECXgBVMvYM/1d8QN02YaBnj6
-         xE4KIPVh3jRmMVeU94TOovf6UVY3r0ms1ZSnXhegypf/sSjIxF/RKSnrgvETGezDK/
-         kpesFJFDfjXZ3VtjaiUSnIPBIpkyCL5BwyfTK2qU=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAKDYJVY070590
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 20 Nov 2019 07:34:19 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 20
- Nov 2019 07:34:19 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 20 Nov 2019 07:34:19 -0600
-Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAKDY9Ek096098;
-        Wed, 20 Nov 2019 07:34:16 -0600
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <m.szyprowski@samsung.com>, <broonie@kernel.org>,
-        <mripard@kernel.org>, <p.zabel@pengutronix.de>,
-        <devicetree@vger.kernel.org>
-Subject: [RFC 2/2] gpiolib: Support for (output only) shared GPIO line
-Date:   Wed, 20 Nov 2019 15:34:09 +0200
-Message-ID: <20191120133409.9217-3-peter.ujfalusi@ti.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191120133409.9217-1-peter.ujfalusi@ti.com>
-References: <20191120133409.9217-1-peter.ujfalusi@ti.com>
+        id S1729120AbfKTNn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 08:43:59 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:3018 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729779AbfKTNn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Nov 2019 08:43:59 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAKDbVIB031076;
+        Wed, 20 Nov 2019 14:43:45 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=l2oEHQGrIM4V5LvnrIZMo4o2Hgyea9ZVNyLN4gpA8XM=;
+ b=mk1X5g3m47C67kcYK+k5ht2NtO+hcFisgT36JNuOBoTfnYsKEVMy9i6ytErtcfMZCl57
+ qnsyZ6Zy0TBAPBtdK7EkSwEkkyWZIxt2+8jYkTbV6vXGxtqmSIwsGmXQ9Dv2puqvaZxL
+ m6UREJMCpn0DOVqaD88+GtzSmTBFhPhoE8jQXIIWD00e5aqW7oBqpFF2vbBh+N9jXdos
+ 0o/N5rbqK8evm1FxFUyL9JSjei56ZC4HUDuK5R8b/10PWAWCnwTO8uZOoVEEQWuskF20
+ fdLlmZBAfC5XcMlYgYwU/FhSdrC6WCdLNmUfh82fzAZ1Z7tQYjmm+6yzNnXmkOZggyWF Hg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2wa9up69qa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Nov 2019 14:43:45 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4AA4010002A;
+        Wed, 20 Nov 2019 14:43:44 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 175782BAB68;
+        Wed, 20 Nov 2019 14:43:44 +0100 (CET)
+Received: from localhost (10.75.127.50) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 20 Nov 2019 14:43:43
+ +0100
+From:   Alain Volmat <alain.volmat@st.com>
+To:     <wsa@the-dreams.de>, <robh+dt@kernel.org>
+CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@st.com>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@st.com>
+Subject: [PATCH] dt-bindings: i2c: stm32: Migrate i2c-stm32 documentation to yaml
+Date:   Wed, 20 Nov 2019 14:43:43 +0100
+Message-ID: <1574257423-26754-1-git-send-email-alain.volmat@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-11-20_04:2019-11-15,2019-11-20 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds basic support for handling shared GPIO lines in the core.
-The line must be configured with a child node in DT.
-Based on the configuration the core will use different strategy to manage
-the shared line:
-refcounted low: Keep the line low as long as there is at least one low
-		request is registered
-refcounted high: Keep the line high as long as there is at least one high
-		request is registered
-pass through: all requests are allowed to go through without refcounting.
+The document was migrated to Yaml format and renamed st,stm32-i2c.yaml
 
-The pass through mode is equivalent to how currently the
-GPIOD_FLAGS_BIT_NONEXCLUSIVE is handled.
-
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Signed-off-by: Alain Volmat <alain.volmat@st.com>
 ---
- drivers/gpio/gpiolib-of.c |  28 ++++++--
- drivers/gpio/gpiolib.c    | 132 +++++++++++++++++++++++++++++++++++---
- drivers/gpio/gpiolib.h    |  10 +++
- 3 files changed, 157 insertions(+), 13 deletions(-)
+ .../devicetree/bindings/i2c/i2c-stm32.txt          |  65 ---------
+ .../devicetree/bindings/i2c/st,stm32-i2c.yaml      | 157 +++++++++++++++++++++
+ 2 files changed, 157 insertions(+), 65 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-stm32.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
 
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index bd06743a5d7c..fbb628e6d8bc 100644
---- a/drivers/gpio/gpiolib-of.c
-+++ b/drivers/gpio/gpiolib-of.c
-@@ -531,6 +531,7 @@ struct gpio_desc *of_find_gpio(struct device *dev, const char *con_id,
-  * @lflags:	bitmask of gpio_lookup_flags GPIO_* values - returned from
-  *		of_find_gpio() or of_parse_own_gpio()
-  * @dflags:	gpiod_flags - optional GPIO initialization flags
-+ * @sflags:	Extra flags for the shared GPIO usage
-  *
-  * Returns GPIO descriptor to use with Linux GPIO API, or one of the errno
-  * value on the error condition.
-@@ -539,7 +540,8 @@ static struct gpio_desc *of_parse_own_gpio(struct device_node *np,
- 					   struct gpio_chip *chip,
- 					   unsigned int idx, const char **name,
- 					   unsigned long *lflags,
--					   enum gpiod_flags *dflags)
-+					   enum gpiod_flags *dflags,
-+					   unsigned long *sflags)
- {
- 	struct device_node *chip_np;
- 	enum of_gpio_flags xlate_flags;
-@@ -592,6 +594,15 @@ static struct gpio_desc *of_parse_own_gpio(struct device_node *np,
- 		return ERR_PTR(-EINVAL);
- 	}
- 
-+	if (sflags) {
-+		*sflags = 0;
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-stm32.txt b/Documentation/devicetree/bindings/i2c/i2c-stm32.txt
+deleted file mode 100644
+index ce3df2fff6c8..000000000000
+--- a/Documentation/devicetree/bindings/i2c/i2c-stm32.txt
++++ /dev/null
+@@ -1,65 +0,0 @@
+-* I2C controller embedded in STMicroelectronics STM32 I2C platform
+-
+-Required properties:
+-- compatible: Must be one of the following
+-  - "st,stm32f4-i2c"
+-  - "st,stm32f7-i2c"
+-- reg: Offset and length of the register set for the device
+-- interrupts: Must contain the interrupt id for I2C event and then the
+-  interrupt id for I2C error.
+-- resets: Must contain the phandle to the reset controller.
+-- clocks: Must contain the input clock of the I2C instance.
+-- A pinctrl state named "default" must be defined to set pins in mode of
+-  operation for I2C transfer
+-- #address-cells = <1>;
+-- #size-cells = <0>;
+-
+-Optional properties:
+-- clock-frequency: Desired I2C bus clock frequency in Hz. If not specified,
+-  the default 100 kHz frequency will be used.
+-  For STM32F4 SoC Standard-mode and Fast-mode are supported, possible values are
+-  100000 and 400000.
+-  For STM32F7, STM32H7 and STM32MP1 SoCs, Standard-mode, Fast-mode and Fast-mode
+-  Plus are supported, possible values are 100000, 400000 and 1000000.
+-- dmas: List of phandles to rx and tx DMA channels. Refer to stm32-dma.txt.
+-- dma-names: List of dma names. Valid names are: "rx" and "tx".
+-- i2c-scl-rising-time-ns: I2C SCL Rising time for the board (default: 25)
+-  For STM32F7, STM32H7 and STM32MP1 only.
+-- i2c-scl-falling-time-ns: I2C SCL Falling time for the board (default: 10)
+-  For STM32F7, STM32H7 and STM32MP1 only.
+-  I2C Timings are derived from these 2 values
+-- st,syscfg-fmp: Use to set Fast Mode Plus bit within SYSCFG when Fast Mode
+-  Plus speed is selected by slave.
+-	1st cell: phandle to syscfg
+-	2nd cell: register offset within SYSCFG
+-	3rd cell: register bitmask for FMP bit
+-  For STM32F7, STM32H7 and STM32MP1 only.
+-
+-Example:
+-
+-	i2c@40005400 {
+-		compatible = "st,stm32f4-i2c";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x40005400 0x400>;
+-		interrupts = <31>,
+-			     <32>;
+-		resets = <&rcc 277>;
+-		clocks = <&rcc 0 149>;
+-		pinctrl-0 = <&i2c1_sda_pin>, <&i2c1_scl_pin>;
+-		pinctrl-names = "default";
+-	};
+-
+-	i2c@40005400 {
+-		compatible = "st,stm32f7-i2c";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x40005400 0x400>;
+-		interrupts = <31>,
+-			     <32>;
+-		resets = <&rcc STM32F7_APB1_RESET(I2C1)>;
+-		clocks = <&rcc 1 CLK_I2C1>;
+-		pinctrl-0 = <&i2c1_sda_pin>, <&i2c1_scl_pin>;
+-		pinctrl-names = "default";
+-		st,syscfg-fmp = <&syscfg 0x4 0x1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+new file mode 100644
+index 000000000000..0f51a6ed0e9b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml
+@@ -0,0 +1,157 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i2c/st,stm32-i2c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		if (of_property_read_bool(np, "refcounted-low"))
-+			set_bit(FLAG_REFCOUNT_LOW, sflags);
-+		else if (of_property_read_bool(np, "refcounted-high"))
-+			set_bit(FLAG_REFCOUNT_HIGH, sflags);
-+	}
++title: I2C controller embedded in STMicroelectronics STM32 I2C platform
 +
- 	if (name && of_property_read_string(np, "line-name", name))
- 		*name = np->name;
- 
-@@ -611,22 +622,29 @@ static int of_gpiochip_scan_gpios(struct gpio_chip *chip)
- 	struct gpio_desc *desc = NULL;
- 	struct device_node *np;
- 	const char *name;
--	unsigned long lflags;
-+	unsigned long lflags, sflags;
- 	enum gpiod_flags dflags;
- 	unsigned int i;
- 	int ret;
- 
- 	for_each_available_child_of_node(chip->of_node, np) {
--		if (!of_property_read_bool(np, "gpio-hog"))
-+		bool is_hog = of_property_read_bool(np, "gpio-hog");
-+		bool is_shared = of_property_read_bool(np, "gpio-shared");
-+		if (!is_hog && !is_shared)
- 			continue;
- 
- 		for (i = 0;; i++) {
- 			desc = of_parse_own_gpio(np, chip, i, &name, &lflags,
--						 &dflags);
-+						&dflags,
-+						is_shared ? &sflags : NULL);
- 			if (IS_ERR(desc))
- 				break;
- 
--			ret = gpiod_hog(desc, name, lflags, dflags);
-+			if (is_hog)
-+				ret = gpiod_hog(desc, name, lflags, dflags);
-+			if (is_shared)
-+				ret = gpiod_share(desc, name, lflags, dflags,
-+						  sflags);
- 			if (ret < 0) {
- 				of_node_put(np);
- 				return ret;
-diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-index dba5f08f308c..b01836cd9e58 100644
---- a/drivers/gpio/gpiolib.c
-+++ b/drivers/gpio/gpiolib.c
-@@ -81,7 +81,7 @@ LIST_HEAD(gpio_devices);
- static DEFINE_MUTEX(gpio_machine_hogs_mutex);
- static LIST_HEAD(gpio_machine_hogs);
- 
--static void gpiochip_free_hogs(struct gpio_chip *chip);
-+static void gpiochip_free_owns(struct gpio_chip *chip);
- static int gpiochip_add_irqchip(struct gpio_chip *gpiochip,
- 				struct lock_class_key *lock_key,
- 				struct lock_class_key *request_key);
-@@ -1558,7 +1558,7 @@ int gpiochip_add_data_with_key(struct gpio_chip *chip, void *data,
- err_remove_acpi_chip:
- 	acpi_gpiochip_remove(chip);
- err_remove_of_chip:
--	gpiochip_free_hogs(chip);
-+	gpiochip_free_owns(chip);
- 	of_gpiochip_remove(chip);
- err_free_gpiochip_mask:
- 	gpiochip_remove_pin_ranges(chip);
-@@ -1612,7 +1612,7 @@ void gpiochip_remove(struct gpio_chip *chip)
- 
- 	/* FIXME: should the legacy sysfs handling be moved to gpio_device? */
- 	gpiochip_sysfs_unregister(gdev);
--	gpiochip_free_hogs(chip);
-+	gpiochip_free_owns(chip);
- 	/* Numb the device, cancelling all outstanding operations */
- 	gdev->chip = NULL;
- 	gpiochip_irqchip_remove(chip);
-@@ -2788,6 +2788,13 @@ static int gpiod_request_commit(struct gpio_desc *desc, const char *label)
- 	if (test_and_set_bit(FLAG_REQUESTED, &desc->flags) == 0) {
- 		desc_set_label(desc, label ? : "?");
- 		ret = 0;
-+	} else 	if (test_bit(FLAG_IS_SHARED, &desc->flags)) {
-+		desc->shared_users++;
-+		pr_info("New user for shared GPIO line %d\n",
-+			desc_to_gpio(desc));
-+		kfree_const(label);
-+		ret = 0;
-+		goto done;
- 	} else {
- 		kfree_const(label);
- 		ret = -EBUSY;
-@@ -2894,6 +2901,15 @@ static bool gpiod_free_commit(struct gpio_desc *desc)
- 
- 	spin_lock_irqsave(&gpio_lock, flags);
- 
-+	if (test_bit(FLAG_IS_SHARED, &desc->flags) && desc->shared_users) {
-+		if (--desc->shared_users) {
-+			spin_unlock_irqrestore(&gpio_lock, flags);
-+			pr_info("User dropped for shared GPIO line %d\n",
-+				desc_to_gpio(desc));
-+			return true;
-+		}
-+	}
++maintainers:
++  - Pierre-Yves MORDRET <pierre-yves.mordret@st.com>
 +
- 	chip = desc->gdev->chip;
- 	if (chip && test_bit(FLAG_REQUESTED, &desc->flags)) {
- 		if (chip->free) {
-@@ -3126,10 +3142,44 @@ int gpiod_direction_input(struct gpio_desc *desc)
- }
- EXPORT_SYMBOL_GPL(gpiod_direction_input);
- 
-+static int gpiod_get_refcounted_value(struct gpio_desc *desc, int value)
-+{
-+	value = !!value;
++allOf:
++  - $ref: /schemas/i2c/i2c-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - st,stm32f7-i2c
++    then:
++      properties:
++        i2c-scl-rising-time-ns:
++          description: I2C SCL Rising time for the board
++          $ref: /schemas/types.yaml#/definitions/uint32
++          default: 25
 +
-+	if (!test_bit(FLAG_IS_SHARED, &desc->flags))
-+		return value;
++        i2c-scl-falling-time-ns:
++          description: I2C SCL Falling time for the board
++          $ref: /schemas/types.yaml#/definitions/uint32
++          default: 10
 +
-+	if (test_bit(FLAG_REFCOUNT_LOW, &desc->flags)) {
-+		if (!value)
-+			desc->level_refcount++;
-+		else if (desc->level_refcount)
-+			desc->level_refcount--;
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - st,stm32f4-i2c
++    then:
++      properties:
++        clock-frequency:
++          description: Desired I2C bus clock frequency in Hz. If not specified,
++                       the default 100 kHz frequency will be used.
++                       For STM32F4 SoC Standard-mode and Fast-mode are
++                       supported, possible values are 100000 and 400000.
++          default: 100000
++          enum: [100000, 400000]
++    else:
++      properties:
++        clock-frequency:
++          description: Desired I2C bus clock frequency in Hz. If not specified,
++                       the default 100 kHz frequency will be used.
++                       For STM32F7, STM32H7 and STM32MP1 SoCs, Standard-mode,
++                       Fast-mode and Fast-mode Plus are supported, possible
++                       values are 100000, 400000 and 1000000.
++          default: 100000
++          enum: [100000, 400000, 1000000]
 +
-+		if (desc->level_refcount)
-+			value = 0;
-+	} else if (test_bit(FLAG_REFCOUNT_HIGH, &desc->flags)) {
-+		if (value)
-+			desc->level_refcount++;
-+		else if (desc->level_refcount)
-+			desc->level_refcount--;
++        st,syscfg-fmp:
++          $ref: "/schemas/types.yaml#/definitions/phandle-array"
++          description: Use to set Fast Mode Plus bit within SYSCFG when
++                       Fast Mode Plus speed is selected by slave. Should be
++                       phandle/offset/mask
++          items:
++            - description: phandle to syscfg
++            - description: register offset within syscfg
++            - description: register bitmask for FMP bit
 +
-+		if (desc->level_refcount)
-+			value = 1;
-+	}
++properties:
++  compatible:
++    enum:
++      - st,stm32f4-i2c
++      - st,stm32f7-i2c
 +
-+	pr_debug("Shared %s GPIO line %d: counter: %d: value: %d\n",
-+		test_bit(FLAG_REFCOUNT_LOW, &desc->flags) ? "refcounted low" :
-+		test_bit(FLAG_REFCOUNT_HIGH, &desc->flags) ? "refcounted high" :
-+		"pass through", desc_to_gpio(desc), desc->level_refcount,
-+		 value);
++  reg:
++    maxItems: 1
 +
-+	return value;
-+}
++  interrupts:
++    maxItems: 2
++    items:
++      - description: interrupt ID for I2C event
++      - description: interrupt ID for I2C error
 +
- static int gpiod_direction_output_raw_commit(struct gpio_desc *desc, int value)
- {
- 	struct gpio_chip *gc = desc->gdev->chip;
--	int val = !!value;
-+	int val;
- 	int ret = 0;
- 
- 	/*
-@@ -3144,6 +3194,8 @@ static int gpiod_direction_output_raw_commit(struct gpio_desc *desc, int value)
- 		return -EIO;
- 	}
- 
-+	val = gpiod_get_refcounted_value(desc, value);
++  resets:
++    maxItems: 1
 +
- 	if (gc->direction_output) {
- 		ret = gc->direction_output(gc, gpio_chip_hwgpio(desc), val);
- 	} else {
-@@ -3665,6 +3717,7 @@ static void gpiod_set_raw_value_commit(struct gpio_desc *desc, bool value)
- 	struct gpio_chip	*chip;
- 
- 	chip = desc->gdev->chip;
-+	value = gpiod_get_refcounted_value(desc, value);
- 	trace_gpio_value(desc_to_gpio(desc), 0, value);
- 	chip->set(chip, gpio_chip_hwgpio(desc), value);
- }
-@@ -4618,6 +4671,9 @@ int gpiod_configure_flags(struct gpio_desc *desc, const char *con_id,
- {
- 	int ret;
- 
-+	if (test_bit(FLAG_IS_SHARED, &desc->flags))
-+		goto out;
++  clocks:
++    maxItems: 1
 +
- 	if (lflags & GPIO_ACTIVE_LOW)
- 		set_bit(FLAG_ACTIVE_LOW, &desc->flags);
- 
-@@ -4659,6 +4715,7 @@ int gpiod_configure_flags(struct gpio_desc *desc, const char *con_id,
- 		return 0;
- 	}
- 
-+out:
- 	/* Process flags */
- 	if (dflags & GPIOD_FLAGS_BIT_DIR_OUT)
- 		ret = gpiod_direction_output(desc,
-@@ -4890,16 +4947,72 @@ int gpiod_hog(struct gpio_desc *desc, const char *name,
- }
- 
- /**
-- * gpiochip_free_hogs - Scan gpio-controller chip and release GPIO hog
-+ * gpiod_share - Share the specified GPIO desc given the provided flags
-+ * @desc:	gpio whose value will be assigned
-+ * @name:	gpio line name
-+ * @lflags:	bitmask of gpio_lookup_flags GPIO_* values - returned from
-+ *		of_find_gpio() or of_get_gpio_hog()
-+ * @dflags:	gpiod_flags - optional GPIO initialization flags
-+ * @sflags:	Extra flags for the shared GPIO usage
-+ */
-+int gpiod_share(struct gpio_desc *desc, const char *name,
-+		unsigned long lflags, enum gpiod_flags dflags,
-+		unsigned long sflags)
-+{
-+	struct gpio_chip *chip;
-+	struct gpio_desc *local_desc;
-+	int hwnum;
-+	int ret;
++  dmas:
++    items:
++      - description: RX DMA Channel phandle
++      - description: TX DMA Channel phandle
++    minItems: 2
++    maxItems: 2
 +
-+	chip = gpiod_to_chip(desc);
-+	hwnum = gpio_chip_hwgpio(desc);
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++    minItems: 2
++    maxItems: 2
 +
-+	if (!(dflags & GPIOD_FLAGS_BIT_DIR_OUT)) {
-+		pr_err("shared GPIO %s (chip %s, offset %d) must be output\n",
-+		       name, chip->label, hwnum);
-+		return -EINVAL;
-+	}
++required:
++  - compatible
++  - '#address-cells'
++  - '#size-cells'
++  - reg
++  - interrupts
++  - resets
++  - clocks
 +
-+	local_desc = gpiochip_request_own_desc(chip, hwnum, name,
-+					       lflags, dflags);
-+	if (IS_ERR(local_desc)) {
-+		ret = PTR_ERR(local_desc);
-+		pr_err("requesting shared GPIO %s (chip %s, offset %d) failed, %d\n",
-+		       name, chip->label, hwnum, ret);
-+		return ret;
-+	}
++examples:
++  - |
++    #include <dt-bindings/mfd/stm32f7-rcc.h>
++    #include <dt-bindings/clock/stm32fx-clock.h>
++    //Example 1 (with st,stm32f4-i2c compatible)
++      i2c@40005400 {
++          compatible = "st,stm32f4-i2c";
++          #address-cells = <1>;
++          #size-cells = <0>;
++          reg = <0x40005400 0x400>;
++          interrupts = <31>,
++                       <32>;
++          resets = <&rcc 277>;
++          clocks = <&rcc 0 149>;
++      };
 +
-+	/* Mark GPIO as shared and set refcounting level if not pass through */
-+	set_bit(FLAG_IS_SHARED, &desc->flags);
-+	if (test_bit(FLAG_REFCOUNT_LOW, &sflags))
-+		set_bit(FLAG_REFCOUNT_LOW, &desc->flags);
-+	else if (test_bit(FLAG_REFCOUNT_HIGH, &sflags))
-+		set_bit(FLAG_REFCOUNT_HIGH, &desc->flags);
++    //Example 2 (with st,stm32f7-i2c compatible)
++      i2c@40005800 {
++          compatible = "st,stm32f7-i2c";
++          #address-cells = <1>;
++          #size-cells = <0>;
++          reg = <0x40005800 0x400>;
++          interrupts = <31>,
++                       <32>;
++          resets = <&rcc STM32F7_APB1_RESET(I2C1)>;
++          clocks = <&rcc 1 CLK_I2C1>;
++      };
 +
-+	pr_info("GPIO line %d (%s) shared as %s\n",
-+		desc_to_gpio(desc), name,
-+		test_bit(FLAG_REFCOUNT_LOW, &desc->flags) ? "refcounted low"  :
-+		test_bit(FLAG_REFCOUNT_HIGH, &desc->flags) ? "refcounted high" :
-+		"pass through");
-+
-+	return 0;
-+}
-+
-+/**
-+ * gpiochip_free_owns - Scan gpio-controller chip and release hogged or shared
-+ *			GPIOs
-  * @chip:	gpio chip to act on
-  */
--static void gpiochip_free_hogs(struct gpio_chip *chip)
-+static void gpiochip_free_owns(struct gpio_chip *chip)
- {
- 	int id;
- 
- 	for (id = 0; id < chip->ngpio; id++) {
- 		if (test_bit(FLAG_IS_HOGGED, &chip->gpiodev->descs[id].flags))
- 			gpiochip_free_own_desc(&chip->gpiodev->descs[id]);
-+
-+		if (test_bit(FLAG_IS_SHARED, &chip->gpiodev->descs[id].flags))
-+			gpiochip_free_own_desc(&chip->gpiodev->descs[id]);
- 	}
- }
- 
-@@ -5115,6 +5228,7 @@ static void gpiolib_dbg_show(struct seq_file *s, struct gpio_device *gdev)
- 	bool			is_out;
- 	bool			is_irq;
- 	bool			active_low;
-+	bool			shared;
- 
- 	for (i = 0; i < gdev->ngpio; i++, gpio++, gdesc++) {
- 		if (!test_bit(FLAG_REQUESTED, &gdesc->flags)) {
-@@ -5129,12 +5243,14 @@ static void gpiolib_dbg_show(struct seq_file *s, struct gpio_device *gdev)
- 		is_out = test_bit(FLAG_IS_OUT, &gdesc->flags);
- 		is_irq = test_bit(FLAG_USED_AS_IRQ, &gdesc->flags);
- 		active_low = test_bit(FLAG_ACTIVE_LOW, &gdesc->flags);
--		seq_printf(s, " gpio-%-3d (%-20.20s|%-20.20s) %s %s %s%s",
-+		shared = test_bit(FLAG_IS_SHARED, &gdesc->flags);
-+		seq_printf(s, " gpio-%-3d (%-20.20s|%-20.20s) %s %s %s%s%s",
- 			gpio, gdesc->name ? gdesc->name : "", gdesc->label,
- 			is_out ? "out" : "in ",
- 			chip->get ? (chip->get(chip, i) ? "hi" : "lo") : "?  ",
- 			is_irq ? "IRQ " : "",
--			active_low ? "ACTIVE LOW" : "");
-+			active_low ? "ACTIVE LOW " : "",
-+			shared ? "SHARED" : "");
- 		seq_printf(s, "\n");
- 	}
- }
-diff --git a/drivers/gpio/gpiolib.h b/drivers/gpio/gpiolib.h
-index ca9bc1e4803c..0eec0857e3a8 100644
---- a/drivers/gpio/gpiolib.h
-+++ b/drivers/gpio/gpiolib.h
-@@ -111,11 +111,18 @@ struct gpio_desc {
- #define FLAG_PULL_UP    13	/* GPIO has pull up enabled */
- #define FLAG_PULL_DOWN  14	/* GPIO has pull down enabled */
- #define FLAG_BIAS_DISABLE    15	/* GPIO has pull disabled */
-+#define FLAG_IS_SHARED 16	/* GPIO is shared */
-+#define FLAG_REFCOUNT_LOW 17	/* Shared GPIO is refcounted for raw low */
-+#define FLAG_REFCOUNT_HIGH 18	/* Shared GPIO is refcounted for raw high */
- 
- 	/* Connection label */
- 	const char		*label;
- 	/* Name of the GPIO */
- 	const char		*name;
-+	/* Number of users of a shared GPIO */
-+	int			shared_users;
-+	/* Reference counter for shared GPIO (low or high level) */
-+	int			level_refcount;
- };
- 
- int gpiod_request(struct gpio_desc *desc, const char *label);
-@@ -124,6 +131,9 @@ int gpiod_configure_flags(struct gpio_desc *desc, const char *con_id,
- 		unsigned long lflags, enum gpiod_flags dflags);
- int gpiod_hog(struct gpio_desc *desc, const char *name,
- 		unsigned long lflags, enum gpiod_flags dflags);
-+int gpiod_share(struct gpio_desc *desc, const char *name,
-+		unsigned long lflags, enum gpiod_flags dflags,
-+		unsigned long sflags);
- 
- /*
-  * Return the GPIO number of the passed descriptor relative to its chip
++    //Example 3 (with st,stm32f7-i2c compatible on stm32mp)
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/stm32mp1-clks.h>
++    #include <dt-bindings/reset/stm32mp1-resets.h>
++      i2c@40013000 {
++          compatible = "st,stm32f7-i2c";
++          #address-cells = <1>;
++          #size-cells = <0>;
++          reg = <0x40013000 0x400>;
++          interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
++                       <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
++          clocks = <&rcc I2C2_K>;
++          resets = <&rcc I2C2_R>;
++          i2c-scl-rising-time-ns = <185>;
++          i2c-scl-falling-time-ns = <20>;
++          st,syscfg-fmp = <&syscfg 0x4 0x2>;
++      };
++...
 -- 
-Peter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.7.4
 
