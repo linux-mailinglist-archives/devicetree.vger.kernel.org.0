@@ -2,115 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F203F10432A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 19:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 675B4104335
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 19:22:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727468AbfKTST6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 13:19:58 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:34397 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728026AbfKTSTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 13:19:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1574273989;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=ZFJOLQgrYuXEnDzJokI9lmcvSfRFsuCL6OMci60fMdM=;
-        b=BEF7YVZZ5FalZTibbB/c7+Jn9bfqi+oU0RQRtSKfpYma6dV1HxGdNd+QW1VXg5uOxY
-        7IAKAwR3KwcvV1lk1FIzGNiSWRV2JOanLCv5zhcG4BecB3zCZjOeDbyFJKmdCfFpMaD+
-        6PH0wgLGutzjj0R0jy0KpELaDFBWBrZ/42zayqyVDQs8idE5DrVQGR9I+p6jxDcfwqMG
-        lgVAIuSJkWXQWIkIsZZsNoRwSG/KHwTm6dnNLwjo363zc/bSH7x8R9mCULnzaRVHSM18
-        19i5+1K981fxYusnVMgY5l9ryBb4MW80HbZvDpsFwg5l9xKsNN5WLfDnF0yz/I5BDfSK
-        sSrA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQrEOHTIXs8Lvtn4="
-X-RZG-CLASS-ID: mo00
-Received: from localhost.localdomain
-        by smtp.strato.de (RZmta 44.29.0 AUTH)
-        with ESMTPSA id e07688vAKIJmvAb
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Wed, 20 Nov 2019 19:19:48 +0100 (CET)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v2 4/4] dt-bindings: arm: Document compatibles for Ux500 boards
-Date:   Wed, 20 Nov 2019 19:18:57 +0100
-Message-Id: <20191120181857.97174-4-stephan@gerhold.net>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191120181857.97174-1-stephan@gerhold.net>
-References: <20191120181857.97174-1-stephan@gerhold.net>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727783AbfKTSWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 13:22:10 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:42131 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727671AbfKTSWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 13:22:10 -0500
+Received: by mail-wr1-f65.google.com with SMTP id a15so1017226wrf.9;
+        Wed, 20 Nov 2019 10:22:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=eeX2JNGz9HgVPRGIoEvaZTiS7IkFyrAlD7or7JXr8vc=;
+        b=SkynIjmxsxkmxh/wPmUK8pd7PNaphXdyhEUIdnq3SblLrQkpRfaBQ95P7IllqxCE1Q
+         bYtNWuLYhAsujPXtTVtvu+Ec8gqz8k4KrLrcrzwzqBFTVDRLl5FCL5SSqpu9xJY/FUmO
+         OiQJyBw1pzVcqb+GeRYMTMEp5MwcYYc0qO2it/cLFXLExE3BkxBXB7NpxJ4s7eksSI4I
+         4ndtiez1cia0Mt6vB/KRO9T8K2+T6vk2/4YgN4pAGbK0oXClH+jWdvLsLmFMPWeymO01
+         f4Wo29TPkN1Jm5DVID+ZcebefoVYBCUR/jwfe5B+HxqIWB5Rx+iQSsK4V5nk5Df05eNi
+         klPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=eeX2JNGz9HgVPRGIoEvaZTiS7IkFyrAlD7or7JXr8vc=;
+        b=oOCa3ABozCLoGxg56+g0wlpcTGWcT3LfyupDW42pQGjh9JjbFlNtd3T/Fl/nKjfL7B
+         +VVwuo/r+YKCErM/jsvQgqQcnSCs6lVq5Tty6tQAROnT7gITsM/MM0ZFwZx++Qo4rsRi
+         qpHqglQexRjp9fR7Ihkpy0XGgnLPGgr/nwq7C/Doka8SgaugAqsd7Scnxj1eXjML/O52
+         bWHxHsIOc6ufNLV7RNk/LXxU+cjoneY0lSab4gwit0tnHFtjSldiIgZxeuPSOQIM0ijU
+         xWwqYWyYJIZTIAlRKumkGdmvXfmC+irDWiRkWNvFyJnMQZkLq1CdM3n+I2chrHvFUEdC
+         OjBw==
+X-Gm-Message-State: APjAAAVJTRNFSThDx3ZpluGVI5J3gU7MuzGYY1Bkfc/pLmYJwmWCJGRV
+        tU72L8mWxwigAoNrVrCg+ZY=
+X-Google-Smtp-Source: APXvYqydFnhbveIbTOtqqNnEIOn1jk8I2Y9/1K8cL2fZdPqDactkdjK8DhnZY+GtVUCkWTFR9vhWuw==
+X-Received: by 2002:a5d:6746:: with SMTP id l6mr846246wrw.349.1574274127481;
+        Wed, 20 Nov 2019 10:22:07 -0800 (PST)
+Received: from mail.broadcom.com ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id x205sm151153wmb.5.2019.11.20.10.22.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Nov 2019 10:22:06 -0800 (PST)
+From:   Kamal Dasu <kdasu.kdev@gmail.com>
+To:     linux-mtd@lists.infradead.org
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org, Kamal Dasu <kdasu.kdev@gmail.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: [PATCH 1/3] dt: bindings: brcmnand: Add support for flash-edu
+Date:   Wed, 20 Nov 2019 13:20:57 -0500
+Message-Id: <20191120182153.29732-1-kdasu.kdev@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The device-specific compatible values used by the Ux500 boards
-were not documented so far. Add a new simple schema to document them.
+Adding support for EBI DMA unit (EDU).
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
 ---
-Changes in v2: none
-v1: https://lore.kernel.org/linux-devicetree/20191120121720.72845-3-stephan@gerhold.net/
----
- .../devicetree/bindings/arm/ux500.yaml        | 31 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 32 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/ux500.yaml
+ .../devicetree/bindings/mtd/brcm,brcmnand.txt          | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/ux500.yaml b/Documentation/devicetree/bindings/arm/ux500.yaml
-new file mode 100644
-index 000000000000..006cb4a5f331
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/ux500.yaml
-@@ -0,0 +1,31 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/ux500.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ux500 platforms device tree bindings
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+
-+      - description: ST-Ericsson HREF (pre-v60)
-+        items:
-+          - const: st-ericsson,mop500
-+          - const: st-ericsson,u8500
-+
-+      - description: ST-Ericsson HREF (v60+)
-+        items:
-+          - const: st-ericsson,hrefv60+
-+          - const: st-ericsson,u8500
-+
-+      - description: Calao Systems Snowball
-+        items:
-+          - const: calaosystems,snowball-a9500
-+          - const: st-ericsson,u9500
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e4f170d8bc29..a2fcbfca90de 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2020,6 +2020,7 @@ F:	drivers/rtc/rtc-pl031.c
- F:	drivers/watchdog/coh901327_wdt.c
- F:	Documentation/devicetree/bindings/arm/ste-*
- F:	Documentation/devicetree/bindings/arm/ux500/
-+F:	Documentation/devicetree/bindings/arm/ux500.yaml
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git
- 
- ARM/NUVOTON NPCM ARCHITECTURE
+diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
+index 82156dc8f304..05651a654c66 100644
+--- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
++++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.txt
+@@ -35,11 +35,11 @@ Required properties:
+                      (optional) NAND flash cache range (if at non-standard offset)
+ - reg-names        : a list of the names corresponding to the previous register
+                      ranges. Should contain "nand" and (optionally)
+-                     "flash-dma" and/or "nand-cache".
+-- interrupts       : The NAND CTLRDY interrupt and (if Flash DMA is available)
+-                     FLASH_DMA_DONE
+-- interrupt-names  : May be "nand_ctlrdy" or "flash_dma_done", if broken out as
+-                     individual interrupts.
++                     "flash-dma" or "flash-edu" and/or "nand-cache".
++- interrupts       : The NAND CTLRDY interrupt, (if Flash DMA is available)
++                     FLASH_DMA_DONE and if EDU is avaialble and used FLASH_EDU_DONE
++- interrupt-names  : May be "nand_ctlrdy" or "flash_dma_done" or "flash_edu_done",
++                     if broken out as individual interrupts.
+                      May be "nand", if the SoC has the individual NAND
+                      interrupts multiplexed behind another custom piece of
+                      hardware
 -- 
-2.24.0
+2.17.1
 
