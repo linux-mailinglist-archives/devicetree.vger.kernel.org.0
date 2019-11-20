@@ -2,69 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E57D1041C8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 18:11:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F40A21041C2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 18:10:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730650AbfKTRLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 12:11:00 -0500
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:42592 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727644AbfKTRLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Nov 2019 12:11:00 -0500
-X-Greylist: delayed 3036 seconds by postgrey-1.27 at vger.kernel.org; Wed, 20 Nov 2019 12:10:59 EST
-Received: from [109.168.11.45] (port=50232 helo=[192.168.101.73])
-        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1iXSiJ-004wwI-Vv; Wed, 20 Nov 2019 17:20:20 +0100
-Subject: Re: [PATCH v2 1/5] i2c: mux: pca9541: use the BIT macro
-To:     Peter Rosin <peda@axentia.se>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Ken Chen <chen.kenyy@inventec.com>,
-        Pradeep Srinivasan <pradeeps@cumulusnetworks.com>
-References: <20190306231521.29367-1-peda@axentia.se>
- <20190306231521.29367-2-peda@axentia.se>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <915a1f60-e97a-17d3-d2e0-127a46ca4ba5@lucaceresoli.net>
-Date:   Wed, 20 Nov 2019 17:20:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1728160AbfKTRKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 12:10:39 -0500
+Received: from outils.crapouillou.net ([89.234.176.41]:54468 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727644AbfKTRKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 12:10:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1574269834; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:references; bh=/xS8wWdZbwsK04N14PWTSsZY6F81o/i8NADVFiFMWpY=;
+        b=GgCoreU47Z1orXM9eQjTD5auYk05YUsF9vw01cpJ7dCo7QC7n+QMwhWCS0ZNIcvw1u5d++
+        MpxFhVZNclAXgo9az569U5nY0Xb1VTd5jIC0SYSEuWMYuIoXhOm9ySo68XpDKawiKQR/wF
+        TDoHsdlcfuWCAXmg01jUCpXIdBL3OTY=
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     od@zcrc.me, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Paul Cercueil <paul@crapouillou.net>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Shenzhen Frida LCD Co., Ltd.
+Date:   Wed, 20 Nov 2019 18:10:25 +0100
+Message-Id: <20191120171027.1102250-1-paul@crapouillou.net>
 MIME-Version: 1.0
-In-Reply-To: <20190306231521.29367-2-peda@axentia.se>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add an entry for Shenzhen Frida LCD Co., Ltd.
 
-On 07/03/19 00:15, Peter Rosin wrote:
-> Because it looks nice!
-> 
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
-> Signed-off-by: Peter Rosin <peda@axentia.se>
+Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 967e78c5ec0a..9c6e1b42435b 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -337,6 +337,8 @@ patternProperties:
+     description: Firefly
+   "^focaltech,.*":
+     description: FocalTech Systems Co.,Ltd
++  "^frida,.*":
++    description: Shenzhen Frida LCD Co., Ltd.
+   "^friendlyarm,.*":
+     description: Guangzhou FriendlyARM Computer Tech Co., Ltd
+   "^fsl,.*":
 -- 
-Luca
+2.24.0
+
