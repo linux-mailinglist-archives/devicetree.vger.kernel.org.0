@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B538103A7F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 13:57:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E44F5103A87
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 13:59:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730028AbfKTM5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 07:57:05 -0500
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:42361 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730020AbfKTM5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 07:57:04 -0500
-Received: by mail-qt1-f195.google.com with SMTP id t20so28777367qtn.9
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2019 04:57:03 -0800 (PST)
+        id S1728173AbfKTM7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 07:59:32 -0500
+Received: from mail-ua1-f65.google.com ([209.85.222.65]:45628 "EHLO
+        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727674AbfKTM7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 07:59:32 -0500
+Received: by mail-ua1-f65.google.com with SMTP id w10so5265542uar.12
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2019 04:59:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=gtYgZsKdjWgKCLPuHgoMJ2eNbNG78NE68Q155qN82Ug=;
-        b=jGdbKr2TED35aioqiqlsFcPudOG7cyQVE8+ZKhJapv6KOePem9zkOJoCl1+xmbSFZd
-         3Q1WLQAYXerCakAyxDej/i6/C0jfkafUUU9MZzFDq8WYmMQxnZZFjjEzGqnSc+kFxk/r
-         Hq04BqVbcW9zp26Jbq1Dr2q9wFOWSlOWbEABb/tNcGOJzbygqL3sWIHAGyYYOwQ+Xi8h
-         I/8SL4SnBPPb1Tq7d0A3X4E8ztaLuSp9DHAkEiMWHpT875qrb8xYGi1dGi19gF5T7RwS
-         kOo4DPafrI4uFo/yxuFDuq1UvxqfascRNd0eGuLjPW+HU632Nql7sXT+nOq0v/wIQmgu
-         UyHA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nuqJ0vbClL23gGoYcppi0FrFy7e9Hz/yNcjMSMNBxqE=;
+        b=dYP/0q1UJs+hkupL0Ks33xZa/oPu9OOQ/1POhchabco+MYLW/OVqUGMujUfpI5uX/Z
+         guc95gIHgm0ENwks6ezoHMtNBDv5NpD4kZOt3rckVtc2TNrFfHdbtpCHIzg2WdJrYaXH
+         /xSfomvFi7E/T0tCpoUNe3K5d8eLKhwMpXTlLq8hD5ihVf1MmjEnX8Zrc+Q4dl9OF8vp
+         voHqwV0OwDc47bzLAoCx81iHGZpBIJjGrkq9aPtBI615OOd+WVm9zHE2PC2D1k+vGxR4
+         4PUF1/lLiew7UxLBcxzFkhUWuY57TX2Ka8I2YZ+NgeOlXACnlaJC6D7tFhA87pTU3x45
+         HmRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=gtYgZsKdjWgKCLPuHgoMJ2eNbNG78NE68Q155qN82Ug=;
-        b=QFVklQAAFNuGe3IH2XKp/05DBMubSsQ5cyshSQVm/xIHYoCHEowB9uNxEL5Ppb40+E
-         ITDAt2RH4AfI22gMX55l85rpuF7/Om7LjUnGY+5ulz2BfEjTY7wHpGn1GlE8jGB6eC1+
-         0otOjDqW0bGavxLGbD0TOKp8TympfVSdL66VC1j8FMhjBt7QO984uhR3k0Jh0lArSdZK
-         re0s6oCPh/TmOYXcjTVH6Mzf1cxSKKo6N3c+ImilIHNY1YnwAg6Ywso/c9GWkvygzzvD
-         K9OtFA1L7pwLJSWsVEgM9eUr5EHQe86A6FIGdSxQgVzOXUQ3ApkUjJQRfzKAnRjpBkK5
-         3cGg==
-X-Gm-Message-State: APjAAAXneoSaIOb/olLR0NyIiCaBGm7IOPjKtIamJU5jFCOvVeeGcIHv
-        XISDKCJvKpXKjTr2YK197OMpPA==
-X-Google-Smtp-Source: APXvYqyrW8nUtaIuzKEjvmVZtBqF9yXQRwNnUnQSVpoxtCSbI9LpsbmrAPc1ye5t5YVnlTR8qlWrMw==
-X-Received: by 2002:aed:33c2:: with SMTP id v60mr2423209qtd.168.1574254623419;
-        Wed, 20 Nov 2019 04:57:03 -0800 (PST)
-Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
-        by smtp.googlemail.com with ESMTPSA id r2sm14109637qtc.28.2019.11.20.04.57.00
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 20 Nov 2019 04:57:01 -0800 (PST)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     edubezval@gmail.com, rui.zhang@intel.com, ulf.hansson@linaro.org,
-        daniel.lezcano@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org
-Cc:     amit.kucheria@verdurent.com, mark.rutland@arm.com,
-        rjw@rjwysocki.net, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [Patch v4 7/7] arm64: dts: qcom: Indicate rpmhpd hosts a power domain that can be used as a warming device.
-Date:   Wed, 20 Nov 2019 07:56:33 -0500
-Message-Id: <1574254593-16078-8-git-send-email-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1574254593-16078-1-git-send-email-thara.gopinath@linaro.org>
-References: <1574254593-16078-1-git-send-email-thara.gopinath@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nuqJ0vbClL23gGoYcppi0FrFy7e9Hz/yNcjMSMNBxqE=;
+        b=bVra8Hth6bKa6InV6rugx0ZnBVOt4DxdbunxRrBQ/NN7OQLm/eDoAN5NQT/Lg8yRSh
+         zHf1VUw4C7I33z2wj5ye1fye5p0mJ8QKT3YKaqHljZa9KasRlDlnBOQAm0M9koR/Jo9I
+         VFnoL4xvVg/NnpCcxmGy7ZqABasz1XKtd0tR8BBZs3cumUZDjksj5Lo0oCzfhC7Liv5h
+         P4/YSaeFPqcxl/Br3bOLBu0CCUSoO12wsET9C/lGOjnIRcPt1Mo/xKnEdwhv04zqoiYX
+         WR9UAehaDMhAOw3IBdRPyQLkFfGn4QTmYKAn9pl1uGAxDrWfGz5lyxM6TJ/PCxTf46U9
+         ihbw==
+X-Gm-Message-State: APjAAAX30DURPErJJlDl0olPF6Cb1ONE55+0E7TSOHI/YUVFtMxrONIj
+        5/wJwMb5eKl9m/PCiwvI42CsAQWjXS1/DzYL9nlpvw==
+X-Google-Smtp-Source: APXvYqzczwcqmzJh3GjUqnWFQGP/+Gp7RUJwV58YrFcSe+bfPCganPSc0GYA3NZbmUkPuarP338JjoXHT98NVoW0E1U=
+X-Received: by 2002:ab0:2042:: with SMTP id g2mr1511287ual.19.1574254771069;
+ Wed, 20 Nov 2019 04:59:31 -0800 (PST)
+MIME-Version: 1.0
+References: <20191118104646.3838-1-i.mikhaylov@yadro.com> <20191118104646.3838-3-i.mikhaylov@yadro.com>
+In-Reply-To: <20191118104646.3838-3-i.mikhaylov@yadro.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 20 Nov 2019 13:58:55 +0100
+Message-ID: <CAPDyKFoz3ipYBGR-6ubfqhtQVG9h16axoHNdSoo+OyNgKRs2Tw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] mmc: sdhci-of-aspeed: enable CONFIG_MMC_SDHCI_IO_ACCESSORS
+To:     Ivan Mikhaylov <i.mikhaylov@yadro.com>
+Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RPMh hosts mx power domain that can be used to warm up the SoC.  Indicate
-this by using #cooling-cells property.
+On Mon, 18 Nov 2019 at 11:47, Ivan Mikhaylov <i.mikhaylov@yadro.com> wrote:
+>
+> Enable CONFIG_MMC_SDHCI_IO_ACCESSORS on the aspeed board. The read_l
+> callback is used for inverted card detection.
+>
+> Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
 
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
-v3->v4:
-	- Removed subnode to indicate that mx power domain is a warming
-	  device. Instead #cooling-cells is used as a power domain
-	  provider property to indicate if the provider hosts a power
-	  domain that can be used as a warming device.
+Applied for next, updating the changelog according to Andrew's comments, thanks!
 
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Kind regards
+Uffe
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 23260a0..71d6f91 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3118,6 +3118,7 @@
- 			rpmhpd: power-controller {
- 				compatible = "qcom,sdm845-rpmhpd";
- 				#power-domain-cells = <1>;
-+				#cooling-cells = <2>;
- 				operating-points-v2 = <&rpmhpd_opp_table>;
- 
- 				rpmhpd_opp_table: opp-table {
--- 
-2.1.4
 
+>
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index 49ea02c467bf..c9c1bb722368 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -159,6 +159,7 @@ config MMC_SDHCI_OF_ASPEED
+>         tristate "SDHCI OF support for the ASPEED SDHCI controller"
+>         depends on MMC_SDHCI_PLTFM
+>         depends on OF && OF_ADDRESS
+> +       select MMC_SDHCI_IO_ACCESSORS
+>         help
+>           This selects the ASPEED Secure Digital Host Controller Interface.
+>
+> --
+> 2.20.1
+>
