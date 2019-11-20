@@ -2,172 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88AF3103E6C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 16:29:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE45103E95
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 16:29:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728933AbfKTP2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 10:28:43 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:32834 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731187AbfKTP2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 10:28:43 -0500
-Received: by mail-wr1-f67.google.com with SMTP id w9so330952wrr.0;
-        Wed, 20 Nov 2019 07:28:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VocVwERuj9CPUxI4LlG88AIMpkiR3wTIlIVCNMEfFWI=;
-        b=XGKqvA+ftxeRIcTzRVR4iuKmoi0AoZftMzZznXbgI5lelIgfWtxFTXOkD40mmkJ0Yf
-         3F22LKumE86iAiZTdZP9sXgCKJowSPQEsszkhBRjtK2jKvfNZs3OcEhztgLYz9fCFYp7
-         FnRHXFhQTryMUWMHjF0jTxnuAMZ2bstdrHVNWQ3W5lOFj9A9vvJaoqPze3uXdJv0ZmY2
-         mVwxXHdA1kLLCy3FUnm+bNMrbOJ1Y8j0zdYzuYaQfcsoEF6V9j30lKqT3qf7x386q9pE
-         uxwFmMwjNZKgba0UBhp6ZUEYCnk6EbEO2y9/cY8a//79YUOfCNXm2QqjQ3wj+jqWzPZt
-         Q58g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VocVwERuj9CPUxI4LlG88AIMpkiR3wTIlIVCNMEfFWI=;
-        b=lVU6/Gh4mAzBdN5p24+cARWJIpUG0mv25m7hwt6z86dKiTDhD7YvRSdQxPZeKn+Hae
-         TSoxf6NI0elbnh/Q/CiyVRyySnidjFGVrooqn8qwRL7b8OdQuYUhgNtjHbZpyjUNugoF
-         +V/5X3j891RlWoRBSydWAUQ8fOjtCJ6Nc7CFJ6DSnYv46EsyIZVNAVh3n3bcetWtJPTJ
-         5QGUpg+id9SHlv0Dglz0vKYpyIansPHqadO6se67dJzJPz0MWcUnoZEr3cqzN6LWm4yZ
-         NTf9Vvmx9H27GCcSHLxGaE8GIadjQldqL6wZRiDbbgV5cO74gVded2uHgbnlQglNoGFD
-         AcEQ==
-X-Gm-Message-State: APjAAAW8yVTTQhs7Fsb7BdFRVquXNtPWlJlkkieC6omI9NfruJfzBIX6
-        hPaHHjOP6Ub18/wpYoGKvnM5FTft
-X-Google-Smtp-Source: APXvYqyySvjdRhchHXN5/IN4KTYqciseN5uBnZ6+Gn1VQiy/uYXcvn0MKoLOS06DLlVVycRu9E0ZYw==
-X-Received: by 2002:a5d:4b82:: with SMTP id b2mr4032387wrt.335.1574263721112;
-        Wed, 20 Nov 2019 07:28:41 -0800 (PST)
-Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id w4sm31797881wrs.1.2019.11.20.07.28.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2019 07:28:40 -0800 (PST)
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
-        wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        Corentin Labbe <clabbe.montjoie@gmail.com>
-Subject: [PATCH v2 3/3] crypto: sun4i-ss: add the A33 variant of SS
-Date:   Wed, 20 Nov 2019 16:28:33 +0100
-Message-Id: <20191120152833.20443-4-clabbe.montjoie@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191120152833.20443-1-clabbe.montjoie@gmail.com>
-References: <20191120152833.20443-1-clabbe.montjoie@gmail.com>
+        id S1731543AbfKTP3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 10:29:34 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:49581 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730256AbfKTP3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 10:29:34 -0500
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iXRv4-0008PX-2m; Wed, 20 Nov 2019 16:29:26 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iXRv0-0002km-Ac; Wed, 20 Nov 2019 16:29:22 +0100
+Date:   Wed, 20 Nov 2019 16:29:22 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Leonard Crestez <leonard.crestez@nxp.com>
+Cc:     Angus Ainslie <angus@akkea.ca>, Jacky Bai <ping.bai@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Artur =?utf-8?B?xZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Kepplinger <martink@posteo.de>,
+        Silvano Di Ninno <silvano.dininno@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>
+Subject: Re: [PATCH RFC v6 2/9] PM / devfreq: Add generic imx bus scaling
+ driver
+Message-ID: <20191120152922.vaisxxyizqgjsnld@pengutronix.de>
+References: <cover.1573761527.git.leonard.crestez@nxp.com>
+ <f329e715898a6b9fd0cee707a93fb1e144e31bd4.1573761527.git.leonard.crestez@nxp.com>
+ <e311a376e6aec0c380686a7e307d2c07@akkea.ca>
+ <VI1PR04MB70233920AC838AD88E1ECC26EE4F0@VI1PR04MB7023.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <VI1PR04MB70233920AC838AD88E1ECC26EE4F0@VI1PR04MB7023.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 16:27:46 up 5 days,  6:46, 21 users,  load average: 0.02, 0.04, 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The A33 SS has a difference with all other SS, it give SHA1 digest
-directly in BE.
-So this patch adds variant support in sun4i-ss.
+Hi Leonard,
 
-Fixes: 6298e948215f ("crypto: sunxi-ss - Add Allwinner Security System crypto accelerator")
-Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
----
- .../crypto/allwinner/sun4i-ss/sun4i-ss-core.c | 22 ++++++++++++++++++-
- .../crypto/allwinner/sun4i-ss/sun4i-ss-hash.c |  5 ++++-
- drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h  |  9 ++++++++
- 3 files changed, 34 insertions(+), 2 deletions(-)
+On 19-11-20 15:04, Leonard Crestez wrote:
+> On 20.11.2019 16:08, Angus Ainslie wrote:
+> > Hi Leonard,
+> > 
+> > On 2019-11-14 12:09, Leonard Crestez wrote:
+> >> Add initial support for dynamic frequency switching on pieces of the
+> >> imx
+> >> interconnect fabric.
+> >>
+> >> All this driver does is set a clk rate based on an opp table, it does
+> >> not map register areas.
+> >>
+> > 
+> > Is this working with mainline ATF or does it still need to be used with
+> > your modified ATF code ?
+> 
+> This series doesn't perform SMC calls, that's done by the imx8m-ddrc 
+> driver: https://patchwork.kernel.org/cover/11244283/
+> 
+> This particular patch allows switching NOC frequency but that's just 
+> clk_set_rate.
+> 
+> DDRC frequency switching requires the imx branch of ATF (v2.0 + ~200 
+> patches) otherwise you will get probe failures. Source for imx atf is 
+> published here: https://source.codeaurora.org/external/imx/imx-atf/
+> 
+> For your particular 8mq B0 case slightly different setpoints are used 
+> and the fix is not in any public release yet so you need this:
+> 
+> https://github.com/cdleonard/arm-trusted-firmware/commits/imx_2.0.y_busfreq
+> 
+> Is "mainline ATF" an important criteria for Purism?
 
-diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-index 814cd12149a9..d35a05843c22 100644
---- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-+++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-core.c
-@@ -13,6 +13,7 @@
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <crypto/scatterwalk.h>
- #include <linux/scatterlist.h>
-@@ -22,6 +23,14 @@
- 
- #include "sun4i-ss.h"
- 
-+static const struct ss_variant ss_a10_variant = {
-+	.sha1_in_be = false,
-+};
-+
-+static const struct ss_variant ss_a33_variant = {
-+	.sha1_in_be = true,
-+};
-+
- static struct sun4i_ss_alg_template ss_algs[] = {
- {       .type = CRYPTO_ALG_TYPE_AHASH,
- 	.mode = SS_OP_MD5,
-@@ -323,6 +332,12 @@ static int sun4i_ss_probe(struct platform_device *pdev)
- 		return PTR_ERR(ss->base);
- 	}
- 
-+	ss->variant = of_device_get_match_data(&pdev->dev);
-+	if (!ss->variant) {
-+		dev_err(&pdev->dev, "Missing Security System variant\n");
-+		return -EINVAL;
-+	}
-+
- 	ss->ssclk = devm_clk_get(&pdev->dev, "mod");
- 	if (IS_ERR(ss->ssclk)) {
- 		err = PTR_ERR(ss->ssclk);
-@@ -484,7 +499,12 @@ static int sun4i_ss_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id a20ss_crypto_of_match_table[] = {
--	{ .compatible = "allwinner,sun4i-a10-crypto" },
-+	{ .compatible = "allwinner,sun4i-a10-crypto",
-+	  .data = &ss_a10_variant
-+	},
-+	{ .compatible = "allwinner,sun8i-a33-crypto",
-+	  .data = &ss_a33_variant
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, a20ss_crypto_of_match_table);
-diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-index 91cf58db3845..c791d6935c65 100644
---- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-+++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss-hash.c
-@@ -478,7 +478,10 @@ static int sun4i_hash(struct ahash_request *areq)
- 	/* Get the hash from the device */
- 	if (op->mode == SS_OP_SHA1) {
- 		for (i = 0; i < 5; i++) {
--			v = cpu_to_be32(readl(ss->base + SS_MD0 + i * 4));
-+			if (ss->variant->sha1_in_be)
-+				v = cpu_to_le32(readl(ss->base + SS_MD0 + i * 4));
-+			else
-+				v = cpu_to_be32(readl(ss->base + SS_MD0 + i * 4));
- 			memcpy(areq->result + i * 4, &v, 4);
- 		}
- 	} else {
-diff --git a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
-index 60425ac75d90..2b4c6333eb67 100644
---- a/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
-+++ b/drivers/crypto/allwinner/sun4i-ss/sun4i-ss.h
-@@ -131,7 +131,16 @@
- #define SS_SEED_LEN 192
- #define SS_DATA_LEN 160
- 
-+/*
-+ * struct ss_variant - Describe SS hardware variant
-+ * @sha1_in_be:		The SHA1 digest is given by SS in BE, and so need to be inverted.
-+ */
-+struct ss_variant {
-+	bool sha1_in_be;
-+};
-+
- struct sun4i_ss_ctx {
-+	const struct ss_variant *variant;
- 	void __iomem *base;
- 	int irq;
- 	struct clk *busclk;
+Sorry for jumping in here. Just asking myself if the nxp-atf is required
+for a mainline kernel for the imx8mq devices?
+
+Thanks,
+Marco
+
+> --
+> Regards,
+> Leonard
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+
 -- 
-2.23.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
