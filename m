@@ -2,134 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C136C104147
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 17:49:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E57D1041C8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 18:11:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728773AbfKTQt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 11:49:29 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:53292 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729344AbfKTQt3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 11:49:29 -0500
-Received: by mail-wm1-f67.google.com with SMTP id u18so320799wmc.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2019 08:49:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vmSi8EVrgfkOwDbdlBJAaLzmI4f0gNbA0ZY/mXAh7Y0=;
-        b=iZ0tvPHt+6sLoiKx5i9QaG23U+NP0Z8FlKj8secF60emaLvyEdt7mHazIOi9yiEdxO
-         5PLpwpThoWbBhN6K8dSUiicm/t1pMoaQ8s1lNdRCH8L7Q7SWq/hrxjXXJ3o0yAzBbg63
-         7NG8dJvw8AHsDsbklaEFA4efQR3PzCj/jhmA5ujvrk6dC2MLk2K9r+0GSLsr/q2YiuOn
-         UFzqeNCBjzLTUGUS+AbZaEEtA73zMAWGbtc/QtVfeCZxcbXnf95b8koiYNq2lIBzrpWo
-         boND2XPDZXKZ59bEFaRIRXM2n/XfUere3zVvwuPG12C97UFNKS7JvVvnYlbyJV1CurjM
-         B9KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vmSi8EVrgfkOwDbdlBJAaLzmI4f0gNbA0ZY/mXAh7Y0=;
-        b=F2dduJgBtzlcIrEtrBgSM8vuehjP2x6OyC13KdKGET6M7TWurCNc6sBkDbJTGeRFY9
-         j9E9emur9o3Ehozw78XMf+AM/PolEx1vjoaTgLLuQJgSHAUBPrFGwFpPMwKlqPwvv2zQ
-         qPzDCgRpDro2h8eXguH39qrSnt2zppwJ4Ce5RhRBtfSNnluOJ2vTGIqW+/xbTzqes3hL
-         bKn18ZG3ou/xLHxHgb6NeshWe0tZcLABYHQnJnN2IuyiZwFA9i7bq4MQZF5U3oC3kN6f
-         RX/uIhRhZDjyhL7zeOQgOqTy21WcKg8hE9W0TcLtY5vEUirepU3o088C1ZgQRQYBmC8L
-         yr5A==
-X-Gm-Message-State: APjAAAX5Xz84nueWn9lVEFph59jwqLa4oCy8/ITV9QiHt9BMoMsikcOq
-        TQa58gZ/HuyUNsO/MYnB5iA=
-X-Google-Smtp-Source: APXvYqxhZ8lbeO9GoFwdNyav9xP6d7aReSI2RiAJWQN6bakutR1VLRCdWpMDrWQ9q5bSTazIjuvOlQ==
-X-Received: by 2002:a05:600c:3cd:: with SMTP id z13mr4377825wmd.105.1574268565764;
-        Wed, 20 Nov 2019 08:49:25 -0800 (PST)
-Received: from localhost ([37.238.189.2])
-        by smtp.gmail.com with ESMTPSA id b66sm7466599wmh.39.2019.11.20.08.49.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2019 08:49:25 -0800 (PST)
-From:   Mohammad Rasim <mohammad.rasim96@gmail.com>
-To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Mohammad Rasim <mohammad.rasim96@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 2/2] arm64: dts: meson-gxbb: add support for Videostrong KII Pro
-Date:   Wed, 20 Nov 2019 19:49:16 +0300
-Message-Id: <20191120164916.31698-3-mohammad.rasim96@gmail.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191120164916.31698-1-mohammad.rasim96@gmail.com>
-References: <20191120164916.31698-1-mohammad.rasim96@gmail.com>
+        id S1730650AbfKTRLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 12:11:00 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:42592 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727644AbfKTRLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Nov 2019 12:11:00 -0500
+X-Greylist: delayed 3036 seconds by postgrey-1.27 at vger.kernel.org; Wed, 20 Nov 2019 12:10:59 EST
+Received: from [109.168.11.45] (port=50232 helo=[192.168.101.73])
+        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1iXSiJ-004wwI-Vv; Wed, 20 Nov 2019 17:20:20 +0100
+Subject: Re: [PATCH v2 1/5] i2c: mux: pca9541: use the BIT macro
+To:     Peter Rosin <peda@axentia.se>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Ken Chen <chen.kenyy@inventec.com>,
+        Pradeep Srinivasan <pradeeps@cumulusnetworks.com>
+References: <20190306231521.29367-1-peda@axentia.se>
+ <20190306231521.29367-2-peda@axentia.se>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <915a1f60-e97a-17d3-d2e0-127a46ca4ba5@lucaceresoli.net>
+Date:   Wed, 20 Nov 2019 17:20:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190306231521.29367-2-peda@axentia.se>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the Videostrong KII Pro tv box which is
-based on the gxbb-p201 reference design
+Hi,
 
-The device tree includes a new compatible for bluetooth "brcm,bcm4335a0"
-which was sent as a patch and under review
+On 07/03/19 00:15, Peter Rosin wrote:
+> Because it looks nice!
+> 
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Reviewed-by: Vladimir Zapolskiy <vz@mleia.com>
+> Signed-off-by: Peter Rosin <peda@axentia.se>
 
-Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 34 +++++++++++++++++++
- 2 files changed, 35 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 84afecba9ec0..a795a170dcab 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-kii-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-new file mode 100644
-index 000000000000..2aa0b01aeb6c
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-@@ -0,0 +1,34 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Mohammad Rasim <mohammad.rasim96@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxbb-p20x.dtsi"
-+
-+/ {
-+	compatible = "videostrong,kii-pro", "amlogic,p201", "amlogic,s905", "amlogic,meson-gxbb";
-+	model = "Videostrong KII Pro";
-+};
-+
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4335a0";
-+	};
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	pinctrl-0 = <&eth_rmii_pins>;
-+	pinctrl-names = "default";
-+	phy-mode = "rmii";
-+	snps,reset-gpio = <&gpio GPIOZ_14 0>;
-+	snps,reset-delays-us = <0>, <10000>, <1000000>;
-+	snps,reset-active-low;
-+};
 -- 
-2.24.0
-
+Luca
