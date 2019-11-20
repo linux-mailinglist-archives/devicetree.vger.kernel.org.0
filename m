@@ -2,75 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4870E10366C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 10:14:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6F3410368B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 10:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727850AbfKTJOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 04:14:04 -0500
-Received: from mx2.suse.de ([195.135.220.15]:36086 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727816AbfKTJOE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Nov 2019 04:14:04 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id E22AEAEC2;
-        Wed, 20 Nov 2019 09:14:01 +0000 (UTC)
-From:   Andreas Schwab <schwab@suse.de>
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     "linus.walleij\@linaro.org" <linus.walleij@linaro.org>,
-        "bgolaszewski\@baylibre.com" <bgolaszewski@baylibre.com>,
-        "robh+dt\@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland\@arm.com" <mark.rutland@arm.com>,
-        "palmer\@dabbelt.com" <palmer@dabbelt.com>,
-        "Paul Walmsley \( Sifive\)" <paul.walmsley@sifive.com>,
-        "devicetree\@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "aou\@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "jason\@lakedaemon.net" <jason@lakedaemon.net>,
-        "linux-gpio\@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "maz\@kernel.org" <maz@kernel.org>,
-        "linux-kernel\@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "atish.patra\@wdc.com" <atish.patra@wdc.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        "tglx\@linutronix.de" <tglx@linutronix.de>,
-        "bmeng.cn\@gmail.com" <bmeng.cn@gmail.com>,
-        "linux-riscv\@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Sachin Ghadi <sachin.ghadi@sifive.com>
-Subject: Re: [PATCH v2 5/5] riscv: dts: Add DT support for SiFive FU540 GPIO driver
-References: <1574233128-28114-1-git-send-email-yash.shah@sifive.com>
-        <1574233128-28114-6-git-send-email-yash.shah@sifive.com>
-X-Yow:  It's NO USE..  I've gone to ``CLUB MED''!!
-Date:   Wed, 20 Nov 2019 10:14:00 +0100
-In-Reply-To: <1574233128-28114-6-git-send-email-yash.shah@sifive.com> (Yash
-        Shah's message of "Wed, 20 Nov 2019 06:59:54 +0000")
-Message-ID: <mvmlfsaoqp3.fsf@suse.de>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+        id S1728199AbfKTJXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 04:23:08 -0500
+Received: from rtits2.realtek.com ([211.75.126.72]:60704 "EHLO
+        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726762AbfKTJXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 04:23:08 -0500
+Authenticated-By: 
+X-SpamFilter-By: BOX Solutions SpamTrap 5.62 with qID xAK9KEv0032545, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (RTITCAS12.realtek.com.tw[172.21.6.16])
+        by rtits2.realtek.com.tw (8.15.2/2.57/5.78) with ESMTPS id xAK9KEv0032545
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Nov 2019 17:20:14 +0800
+Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
+ RTITCAS12.realtek.com.tw (172.21.6.16) with Microsoft SMTP Server (TLS) id
+ 14.3.468.0; Wed, 20 Nov 2019 17:20:14 +0800
+Received: from RTEXMB03.realtek.com.tw (172.21.6.96) by
+ RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Wed, 20 Nov 2019 17:20:13 +0800
+Received: from RTEXMB03.realtek.com.tw ([fe80::a4bf:5be3:6e60:69f9]) by
+ RTEXMB03.realtek.com.tw ([fe80::a4bf:5be3:6e60:69f9%8]) with mapi id
+ 15.01.1779.005; Wed, 20 Nov 2019 17:20:13 +0800
+From:   James Tai <james.tai@realtek.com>
+To:     =?utf-8?B?QW5kcmVhcyBGw6RyYmVy?= <afaerber@suse.de>
+CC:     "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 5/7] ARM: dts: rtd1195: Introduce r-bus
+Thread-Topic: [PATCH 5/7] ARM: dts: rtd1195: Introduce r-bus
+Thread-Index: AQHVmD0XE9qksqLMuUeBNyO+ccQCh6eIaL1AgAJ0nQCABXPOcIABjY0AgAHm7YA=
+Date:   Wed, 20 Nov 2019 09:20:13 +0000
+Message-ID: <734600434d7d4cce871353b33ef22a6f@realtek.com>
+References: <20191111030434.29977-1-afaerber@suse.de>
+ <20191111030434.29977-6-afaerber@suse.de>
+ <a43d184d74c34e269714858b2635c35e@realtek.com>
+ <960a80b9-b1bf-3709-bbb7-fc2a3c3ae1da@suse.de>
+ <753c18eee3fb4e9ea25d42798542b3dd@realtek.com>
+ <ed66e712-4ceb-374c-dd36-476d79706251@suse.de>
+In-Reply-To: <ed66e712-4ceb-374c-dd36-476d79706251@suse.de>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.187]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Nov 20 2019, Yash Shah wrote:
-
-> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> index 88cfcb9..609198c 100644
-> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> @@ -94,3 +94,7 @@
->  &pwm1 {
->  	status = "okay";
->  };
-> +
-> +&gpio {
-> +	status = "okay";
-> +};
-
-How about adding a gpio-restart?
-
-Andreas.
-
--- 
-Andreas Schwab, SUSE Labs, schwab@suse.de
-GPG Key fingerprint = 0196 BAD8 1CE9 1970 F4BE  1748 E4D4 88E3 0EEA B9D7
-"And now for something completely different."
+SGkgQW5kcmVhcywNCg0KPiBQbGVhc2Ugc2VlIFsxXSAtIEkgaGFkIGFscmVhZHkgdXBkYXRlZCB0
+aGUgc2Vjb25kIHJlc2VydmF0aW9uIHRvIHN0YXJ0IGF0DQo+IDB4YTgwMCBhbmQgZXh0ZW5kZWQg
+aXQgdG8gMHgxMDAwMDAgYmVmb3JlIHlvdXIgcmVzcG9uc2UgaGVyZS4NCg0KVGhhbmsgeW91Lg0K
+DQo+IFRoZSBwcmV2aW91cyAiYm9vdGNvZGUiIHNpemUgb2YgMHhjMDAwIGNhbiBiZSBmb3VuZCBo
+ZXJlOg0KPiBodHRwczovL2dpdGh1Yi5jb20vQlBJLVNJTk9WT0lQL0JQSS1NNC1ic3AvYmxvYi9t
+YXN0ZXIvbGludXgtcnRrL2FyY2gvYXJtDQo+IC9tYWNoLXJ0ZDExOXgvaW5jbHVkZS9tYWNoL21l
+bW9yeS5oDQo+IGh0dHBzOi8vZ2l0aHViLmNvbS9CUEktU0lOT1ZPSVAvQlBJLU00LWJzcC9ibG9i
+L21hc3Rlci9saW51eC1ydGsvYXJjaC9hcm0NCj4gL2Jvb3QvZHRzL3JlYWx0ZWsvcnRkMTE5eC9y
+dGQtMTE5eC1ob3JzZXJhZGlzaC5kdHMNCj4gDQo+IEFzIHlvdSBjYW4gc2VlIHRoZSAweGMwMDAg
+YW5kIDB4ZjQwMDAgd2VyZSBoYXJkY29kZWQgYW5kIGRpZCBub3QgZGVwZW5kIG9uDQo+IFNZU19C
+T09UQ09ERV9NRU1TSVpFLi4uDQo+IEZvciBsYXRlciBTb0NzIEkgc2F3IHNvbWUgRklYTUUoPykg
+Y29tbWVudCB0aGF0IGFyZWEgdXAgdG8gMHgxMDAwMDAgd2FzDQo+IHJlc2VydmVkIGR1ZSB0byBz
+b21lIEppcmEgdGlja2V0IGFuZCBzaG91bGQgZ2V0IGZpeGVkPyBBbnkgaW5zaWdodHMgb24gd2hh
+dCBpcw0KPiBpbiB0aGF0IG1lbW9yeSByYW5nZSBjYXVzaW5nIHByb2JsZW1zPw0KPiANClRoZSBw
+cm9ibGVtIGlzIHNvbHZlZC4gKG1lbW9yeSBvdmVyd3JpdGUgYnkgRlcpDQoNClJlZ2FyZHMsDQpK
+YW1lcw0KDQoNCg==
