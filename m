@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD148103A7B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 13:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5817E103A72
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2019 13:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730000AbfKTM47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 07:56:59 -0500
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:40718 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729995AbfKTM46 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 07:56:58 -0500
-Received: by mail-qt1-f193.google.com with SMTP id o49so28801043qta.7
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2019 04:56:57 -0800 (PST)
+        id S1730011AbfKTM5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 07:57:02 -0500
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:37081 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730010AbfKTM5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 07:57:01 -0500
+Received: by mail-qk1-f194.google.com with SMTP id e187so21117269qkf.4
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2019 04:57:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=cANs+XnpVTcynqaWpfsqlgLUi206zYOAK/dPpz604Tg=;
-        b=MJg7O/TJk2K7ImDXGKhqrX6U/5p9NJhHcTR2lgYkod0HwVASuMcrBcy1ud268D1N0k
-         b2DS/xpDFR5YAuK9gax0enejq1T5tamnZ8BlkYMGQiTKk1hoZ2cWWFGKLnyO7XRNqAk3
-         X2eT+CKejP1VK0TLb9TgYC7hkvgabZXMkU58QZv2au1anvF4cKaueiWBiPbypQ1qPC9d
-         n+5Dzl0MxwU4kNB+nZ7TBGH6r2EAin5d3mKUjddUcOYF/pi772AziGhySCkrF2rr36eF
-         YVeJpqt5QSlqI87Ri1KT7vhgJURoS0RxUES9B8fQ4qdrvuJxqP8HZqWaJHhNOuUpMJUd
-         pwbg==
+        bh=z4ssK7JBCpbD6bi+mRUWzSmv0ifU6DEy28XSn5k5sZs=;
+        b=hNV6ICs5UGYvgFnOyufx/4UHKvv5yVwhD9gYoCz8z+Y9+JIGFkmp+2BQLpVz6GSbZO
+         wI1uN9CrEXJ9q+bYeF0657TDzwMRsgQ0ig6oE5fyDIelnNuNvI3kBKpppEsSW44ZaTyr
+         AQesMDm9xX/9Hdgz3xn/TvEqHQ25xPu4WqHTBTtDSix50d1nClk5FqjKfYQaorn54zNj
+         vWv47tvOelxdJxhPeB176mvNbCjFGZged8aZK1mghaaV3qZ+IxtzEigBK5yfkDz7fWz9
+         diaqXjNjfCvsGJ6pIfO8mZPqYDEThb20/l5O3+bMe44zeLXeiqPfT+TmafIezKOVejtl
+         QnTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=cANs+XnpVTcynqaWpfsqlgLUi206zYOAK/dPpz604Tg=;
-        b=NxuXB7zL+/fcgow0nyP4dN1TbIi/T76TpmwcLoIH44WALxQ0b6DU3GgvdMtItg/iPJ
-         kglK7/YNaYtxV8C7p3sOdgb9FyxpmDHs0lSfzWbbtBUbdLIxH0qm6N0aUn57ClazTcSy
-         rRftcNNPdPa3yVobe+rxRqHnUSdwBG7vOrX601Lcx7q6z8ju4Z1xM1i2Yx/ifKdTJiS1
-         p024Lh0KYqrIjK57LPPrK7hRfj/hJha7YeJAnwXD4zv5UdFiCeaGe20+SuOGZziT1xd8
-         5e7Z+er4BRjIWduNgKFbzx+Kr383f5AJ94oX5xqvfxxm5u77QHR8hERCRozS5jwFheQw
-         SD1w==
-X-Gm-Message-State: APjAAAUc6z88K8DBWAEHGd12f5gDo5vmWhGO/CTFD/1wxVFrSbr99Kog
-        bR5MTT8NSDoJcyPZkJFYrJuagQ==
-X-Google-Smtp-Source: APXvYqySn/aIs6hMGIqMIcxxfm7tqJHVK7kXXyzjWECMU9RJJqSgIfBzONFBB7sckH/Ezcbxla3Keg==
-X-Received: by 2002:ac8:542:: with SMTP id c2mr2363165qth.56.1574254617325;
-        Wed, 20 Nov 2019 04:56:57 -0800 (PST)
+        bh=z4ssK7JBCpbD6bi+mRUWzSmv0ifU6DEy28XSn5k5sZs=;
+        b=KPwMkdqbK/CuXl5HhLl8MyxYBprLbTuCBEt5sZlSL+uPBKyJUspBxLMnFwtx5uMd6K
+         +uIdgbOIbHsR071AlRYf4MmBOmNyb9B2TE3HAmIYQB0O9cs1MNyMwb2/bLR5f4FET7Zq
+         /jeLG3PSo3MswLD65Xudyz9GVn1Nbc4VRdFqtE0/ctHlmirg4dR/8SoNnvKG76VRrJrv
+         rfXtqqdNGhwGGz1JBdbCt8GFOcZQa50+3oWBnNHvVN4PSumCZWW1arDivanoTNibA5Mb
+         /nK5C9Sb6a2f/d94TClNpaorMSdqXGnwum9pXTMje3Bnwmak2P3J7S9q8mbX4BIOBmIo
+         jqkQ==
+X-Gm-Message-State: APjAAAUBrq8yArwtssVFFsNV8DgfMo7YcLQdHggJQwdcVYwDYnibbPu+
+        LxyAmvj72TKsrlip3bSTgDSkKA==
+X-Google-Smtp-Source: APXvYqx/E5etm3hWvVlli7RF8886y86fqgHfkP0XBa0wut8QU/VTWJx86gXNc8XIyaSYy4rLEq1uXg==
+X-Received: by 2002:ae9:ef0b:: with SMTP id d11mr2206623qkg.68.1574254620425;
+        Wed, 20 Nov 2019 04:57:00 -0800 (PST)
 Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
-        by smtp.googlemail.com with ESMTPSA id r2sm14109637qtc.28.2019.11.20.04.56.53
+        by smtp.googlemail.com with ESMTPSA id r2sm14109637qtc.28.2019.11.20.04.56.57
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 20 Nov 2019 04:56:55 -0800 (PST)
+        Wed, 20 Nov 2019 04:56:58 -0800 (PST)
 From:   Thara Gopinath <thara.gopinath@linaro.org>
 To:     edubezval@gmail.com, rui.zhang@intel.com, ulf.hansson@linaro.org,
         daniel.lezcano@linaro.org, bjorn.andersson@linaro.org,
@@ -51,9 +51,9 @@ Cc:     amit.kucheria@verdurent.com, mark.rutland@arm.com,
         rjw@rjwysocki.net, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [Patch v4 5/7] soc: qcom: Extend RPMh power controller driver to register warming devices.
-Date:   Wed, 20 Nov 2019 07:56:31 -0500
-Message-Id: <1574254593-16078-6-git-send-email-thara.gopinath@linaro.org>
+Subject: [Patch v4 6/7] dt-bindings: soc: qcom: Extend RPMh power controller binding to describe thermal warming device
+Date:   Wed, 20 Nov 2019 07:56:32 -0500
+Message-Id: <1574254593-16078-7-git-send-email-thara.gopinath@linaro.org>
 X-Mailer: git-send-email 2.1.4
 In-Reply-To: <1574254593-16078-1-git-send-email-thara.gopinath@linaro.org>
 References: <1574254593-16078-1-git-send-email-thara.gopinath@linaro.org>
@@ -62,106 +62,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RPMh power control hosts power domains that can be used as
-thermal warming devices. Register these power domains
-with the generic power domain warming device thermal framework.
+RPMh power controller hosts mx domain that can be used as thermal warming
+device. Add #cooling-cells property to the power domain provider node to
+indicate this.
 
 Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 ---
 v3->v4:
-	- Introduce a boolean value is_warming_dev in rpmhpd structure to
-	  indicate if a generic power domain can be used as a warming
-	  device or not.With this change, device tree no longer has to
-	  specify which power domain inside the rpmh power domain provider
-	  is a warming device.
-	- Move registering of warming devices into a late initcall to
-	  ensure that warming devices are registerd after thermal
-	  framework is initialized.
- 
- drivers/soc/qcom/rpmhpd.c | 38 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 37 insertions(+), 1 deletion(-)
+	- Removed subnode to indicate that mx power domain is a warming
+	  device. Instead #cooling-cells is used as a power domain
+	  provider property to indicate if the provider hosts a power
+	  domain that can be used as a warming device.
 
-diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-index 9d37534..5666d1f 100644
---- a/drivers/soc/qcom/rpmhpd.c
-+++ b/drivers/soc/qcom/rpmhpd.c
-@@ -11,6 +11,7 @@
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/pm_opp.h>
-+#include <linux/pwr_domain_warming.h>
- #include <soc/qcom/cmd-db.h>
- #include <soc/qcom/rpmh.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-@@ -48,6 +49,7 @@ struct rpmhpd {
- 	bool		enabled;
- 	const char	*res_name;
- 	u32		addr;
-+	bool		is_warming_dev;
- };
+ Documentation/devicetree/bindings/power/qcom,rpmpd.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+index bc75bf4..a193d33 100644
+--- a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
++++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+@@ -19,6 +19,11 @@ Required Properties:
+ Refer to <dt-bindings/power/qcom-rpmpd.h> for the level values for
+ various OPPs for different platforms as well as Power domain indexes
  
- struct rpmhpd_desc {
-@@ -55,6 +57,8 @@ struct rpmhpd_desc {
- 	size_t num_pds;
- };
++Optional Properties
++ - #cooling-cells: must be 2
++	RPMh also hosts power domains that can behave as thermal warming
++	device. If so, indicate this by specifying #cooling-cells.
++
+ Example: rpmh power domain controller and OPP table
  
-+const struct rpmhpd_desc *global_desc;
-+
- static DEFINE_MUTEX(rpmhpd_lock);
- 
- /* SDM845 RPMH powerdomains */
-@@ -89,6 +93,7 @@ static struct rpmhpd sdm845_mx = {
- 	.pd = { .name = "mx", },
- 	.peer = &sdm845_mx_ao,
- 	.res_name = "mx.lvl",
-+	.is_warming_dev = true,
- };
- 
- static struct rpmhpd sdm845_mx_ao = {
-@@ -396,7 +401,14 @@ static int rpmhpd_probe(struct platform_device *pdev)
- 					       &rpmhpds[i]->pd);
- 	}
- 
--	return of_genpd_add_provider_onecell(pdev->dev.of_node, data);
-+	ret = of_genpd_add_provider_onecell(pdev->dev.of_node, data);
-+
-+	if (ret)
-+		return ret;
-+
-+	global_desc = desc;
-+
-+	return 0;
- }
- 
- static struct platform_driver rpmhpd_driver = {
-@@ -413,3 +425,27 @@ static int __init rpmhpd_init(void)
- 	return platform_driver_register(&rpmhpd_driver);
- }
- core_initcall(rpmhpd_init);
-+
-+static int __init rpmhpd_init_warming_device(void)
-+{
-+	size_t num_pds;
-+	struct rpmhpd **rpmhpds;
-+	int i;
-+
-+	if (!global_desc)
-+		return -EINVAL;
-+
-+	rpmhpds = global_desc->rpmhpds;
-+	num_pds = global_desc->num_pds;
-+
-+	if (!of_find_property(rpmhpds[0]->dev->of_node, "#cooling-cells", NULL))
-+		return 0;
-+
-+	for (i = 0; i < num_pds; i++)
-+		if (rpmhpds[i]->is_warming_dev)
-+			pwr_domain_warming_register(rpmhpds[i]->dev,
-+						    rpmhpds[i]->res_name, i);
-+
-+	return 0;
-+}
-+late_initcall(rpmhpd_init_warming_device);
+ #include <dt-bindings/power/qcom-rpmhpd.h>
 -- 
 2.1.4
 
