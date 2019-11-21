@@ -2,96 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59A05105025
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 11:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 241C9105072
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 11:24:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbfKUKOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Nov 2019 05:14:34 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:39524 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726573AbfKUKOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Nov 2019 05:14:33 -0500
-Received: by mail-wm1-f67.google.com with SMTP id t26so2991604wmi.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2019 02:14:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FduBAwwMEHW84QfHh6b1tdX58pVww+y/7cRWB+UMkbY=;
-        b=gYhCPNg9B4NLAQ6K7VLo0nzzDQaInJM7Hf864FAuXqZfI2Jc1yLh9PMQiTaLmNB+mV
-         EqT7xwT8uNA1ntizSXNTpAnY/17baf4nfFyRH1jHSYu4nNpsy0nZ/rWyrX4HbdwvXqLM
-         sH6VOkZNct+q1ZT2V5TDE1zLeVuuGlrzP3CCifoDSNgCrhVNyHOgs4w9VaL6jdFATevZ
-         BkYePMw7gyVJ62maxFfsNFBQiRdxH5VZGKPaAqU527vISy8VTa1HYfES4DwNdbGutEe1
-         /QMpVdOXWkV0U48snGckdcUmiuUye7GRqbqyM+Nq4K1NBdj2P9nb6OBH46AZ3hvYi4PR
-         en9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FduBAwwMEHW84QfHh6b1tdX58pVww+y/7cRWB+UMkbY=;
-        b=UYeYEKCOxukNDVeCC85iIQMzrJ0toeGR73GOMMS2wsw5tQQOCN893Xsr3SEEdH1KWK
-         mGQCc2ywdoglslzCsZ9ogsS5Ry7tqnQ9yfGN0A9n25+7FFTc5pQFRV5iXhSkfBdJJTTn
-         3C3/6pcTw3bBRC36wR11ODc8yvkWlUOUWpKpNyabsr25ovFLSdKRSyuO7mqjVzBtn8sz
-         pHxO0y4kfwmV3ZReo85qy1nXwxk6NRjdJiUBAG22yiKHINXIRZfUkmzQhPc6m9RLTxTn
-         d5+OwvM2ithsZBq/g8CpRxnpZxOMjr66CHK8QQGi8PsXfIJZMj8gYwim458UUKBK0NxO
-         i8xg==
-X-Gm-Message-State: APjAAAXpjmzDwgmb/JUHedDzoa8idmJnzX9wKDJs8WziHZlpwy8AI8qT
-        nuQKUjCjnBDkGZOW6+2ygiu0yywYTLJ+jA==
-X-Google-Smtp-Source: APXvYqzdsV8tU3MpgnNLOKLPCEPdCdfdteZK2zsom+LUvNxzOUhXlYOv4B+zASrT6qXl8f+2fDeuiA==
-X-Received: by 2002:a05:600c:296:: with SMTP id 22mr8886475wmk.155.1574331272221;
-        Thu, 21 Nov 2019 02:14:32 -0800 (PST)
-Received: from bender.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id o21sm1289932wmc.17.2019.11.21.02.14.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2019 02:14:31 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     mjourdan@baylibre.com, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: media: amlogic,gx-vdec: add bindings for SM1 family
-Date:   Thu, 21 Nov 2019 11:14:27 +0100
-Message-Id: <20191121101429.23831-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20191121101429.23831-1-narmstrong@baylibre.com>
-References: <20191121101429.23831-1-narmstrong@baylibre.com>
+        id S1726546AbfKUKY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Nov 2019 05:24:26 -0500
+Received: from conssluserg-03.nifty.com ([210.131.2.82]:59519 "EHLO
+        conssluserg-03.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726014AbfKUKYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Nov 2019 05:24:25 -0500
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51]) (authenticated)
+        by conssluserg-03.nifty.com with ESMTP id xALAOLBX022410;
+        Thu, 21 Nov 2019 19:24:21 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com xALAOLBX022410
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1574331862;
+        bh=JcLX7D3CXanPLZcBh2rx5qAiol6xBUPrVbHtsQ/A0Tk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=PymkjOAxeTHo2+buFpmnrbgesnJiHpveqGfdKDc2R/6EzRtyt3pWEDuYwJ3m2FDWG
+         CKehgoOjfhu3EMvVuhkdp7k35ifDWeyDDKoaVRp+9H1UMG30bI4aLnXT/26/q/4CqO
+         W5EMZOZN0V7y1pOURIqb5iyItvQ1aWiQap5PtRpycoY/1vsl1kF7YY/LFbgc/RMDTn
+         z/k0vELRQszRvuJjjOeokgw0Oq8QbJmxCv6d8mygYLUAJBsUMXm3wPLbYKPSdYfhmL
+         +4cA6qx01sfyk4VFNJcc2CKFyfPrpr3w+Rao7+8HYEzXBmnM4nQPITfttS1yBP/SSO
+         LVwboQeHliJMw==
+X-Nifty-SrcIP: [209.85.222.51]
+Received: by mail-ua1-f51.google.com with SMTP id r22so792027uam.11;
+        Thu, 21 Nov 2019 02:24:21 -0800 (PST)
+X-Gm-Message-State: APjAAAWgep34Y+yigXEyOdQfHsJ6T4wxa8wIrTeNcPVOyiWbHdemmbOE
+        8sXCYkXCn8xNf7EFvkFWRGm13vxhOSu8ZUgbeEA=
+X-Google-Smtp-Source: APXvYqw/aVCgnKJDvq6ztT3UGVD4j248axKaGhITiWpkbXumzL5wr9NirEnlL4DX5NPtupeCYN1H/uGWaksNJyDqGXY=
+X-Received: by 2002:ab0:3395:: with SMTP id y21mr5081794uap.25.1574331860583;
+ Thu, 21 Nov 2019 02:24:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190808173028.1930-1-yamada.masahiro@socionext.com> <CAEbi=3cZ29rmO55DcZSi8PmELay08HByabPETu_UOgXKZPk0cw@mail.gmail.com>
+In-Reply-To: <CAEbi=3cZ29rmO55DcZSi8PmELay08HByabPETu_UOgXKZPk0cw@mail.gmail.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Thu, 21 Nov 2019 19:23:44 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATw0V8yzh=62QefN+hHvUfaHNW1ZtSmLhtVJHJDqvbXMA@mail.gmail.com>
+Message-ID: <CAK7LNATw0V8yzh=62QefN+hHvUfaHNW1ZtSmLhtVJHJDqvbXMA@mail.gmail.com>
+Subject: Re: [PATCH] nds32: remove unneeded clean-files for DTB
+To:     Greentime Hu <green.hu@gmail.com>
+Cc:     Nickhu <nickhu@andestech.com>, Vincent Chen <deanbo422@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings to support the Amlogic Video Decoder on the Amlogic SM1 family.
+On Thu, Nov 21, 2019 at 6:46 PM Greentime Hu <green.hu@gmail.com> wrote:
+>
+> Masahiro Yamada <yamada.masahiro@socionext.com> =E6=96=BC 2019=E5=B9=B48=
+=E6=9C=889=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=881:31=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> >
+> > These patterns are cleaned-up by the top-level Makefile
+> >
+> > Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> > ---
+> >
+> >  arch/nds32/boot/dts/Makefile | 2 --
+> >  1 file changed, 2 deletions(-)
+> >
+> > diff --git a/arch/nds32/boot/dts/Makefile b/arch/nds32/boot/dts/Makefil=
+e
+> > index fff8ade7a84f..f84bd529b6fd 100644
+> > --- a/arch/nds32/boot/dts/Makefile
+> > +++ b/arch/nds32/boot/dts/Makefile
+> > @@ -5,5 +5,3 @@ else
+> >  BUILTIN_DTB :=3D
+> >  endif
+> >  obj-$(CONFIG_OF) +=3D $(BUILTIN_DTB)
+> > -
+> > -clean-files :=3D *.dtb *.dtb.S
+>
+> Thanks, Masahiro.
+> Acked-by: Greentime Hu <green.hu@gmail.com>
 
-SM1 has a slightly different power management handling, thus needing a
-separate compatible.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Would you apply this to the nds32 tree?
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-index 8ea979bb97e6..a7ef69d02336 100644
---- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-+++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-@@ -36,6 +36,7 @@ properties:
-         - const: amlogic,gx-vdec
-       - enum:
-         - amlogic,g12a-vdec # G12A (S905X2, S905D2)
-+        - amlogic,sm1-vdec # SM1 (S905X3, S905D3)
- 
-   interrupts:
-     minItems: 2
-@@ -100,6 +101,7 @@ allOf:
-           contains:
-             enum:
-               - amlogic,g12a-vdec
-+              - amlogic,sm1-vdec
- 
-     then:
-       properties:
--- 
-2.22.0
 
+
+--=20
+Best Regards
+Masahiro Yamada
