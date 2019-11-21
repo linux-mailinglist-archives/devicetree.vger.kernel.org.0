@@ -2,140 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6106C104C8A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 08:29:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 687D4104C9F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 08:32:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726165AbfKUH3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Nov 2019 02:29:16 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:32814 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725842AbfKUH3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Nov 2019 02:29:16 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: aratiu)
-        with ESMTPSA id DD3A028DB43
-From:   Adrian Ratiu <adrian.ratiu@collabora.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Adrian Ratiu <adrian.ratiu@collabora.com>,
+        id S1726408AbfKUHcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Nov 2019 02:32:00 -0500
+Received: from verein.lst.de ([213.95.11.211]:44458 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726230AbfKUHb7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Nov 2019 02:31:59 -0500
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 0FAB768B05; Thu, 21 Nov 2019 08:31:53 +0100 (CET)
+Date:   Thu, 21 Nov 2019 08:31:52 +0100
+From:   Christoph Hellwig <hch@lst.de>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        Andy Lutomirski <luto@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Hanjun Guo <guohanjun@huawei.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Jens Axboe <axboe@kernel.dk>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-ide@vger.kernel.org, Paul Mackerras <paulus@samba.org>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>, x86@kernel.org,
+        phil@raspberrypi.org, linux-acpi@vger.kernel.org,
+        Ingo Molnar <mingo@redhat.com>,
+        James Hogan <jhogan@kernel.org>, Len Brown <lenb@kernel.org>,
+        devicetree@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
         linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Martyn Welch <martyn.welch@collabora.com>,
-        Sjoerd Simons <sjoerd.simons@collabora.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-imx@nxp.com, kernel@collabora.com
-Subject: Re: [PATCH v3 4/4] dt-bindings: display: add IMX MIPI DSI host
- controller doc
-In-Reply-To: <e19aca1f-842d-a5b4-6fc1-02f7f6dd136d@baylibre.com>
-References: <20191118152518.3374263-1-adrian.ratiu@collabora.com>
- <20191118152518.3374263-5-adrian.ratiu@collabora.com>
- <e19aca1f-842d-a5b4-6fc1-02f7f6dd136d@baylibre.com>
-Date:   Thu, 21 Nov 2019 09:29:39 +0200
-Message-ID: <87a78p7km4.fsf@iwork.i-did-not-set--mail-host-address--so-tickle-me>
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        linux-mips@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
+        iommu@lists.linux-foundation.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH] dma-mapping: treat dev->bus_dma_mask as a DMA limit
+Message-ID: <20191121073152.GB24024@lst.de>
+References: <20191113161340.27228-1-nsaenzjulienne@suse.de> <dd074ef5c23ba56598e92be19e8e25ae31b75f93.camel@suse.de> <20191119170006.GA19569@lst.de> <7609007d-52f5-bb10-e8d5-96fadbfab46d@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7609007d-52f5-bb10-e8d5-96fadbfab46d@arm.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Nov 2019, Neil Armstrong <narmstrong@baylibre.com> 
-wrote:
-> Hi, 
-> 
-> On 18/11/2019 16:25, Adrian Ratiu wrote: 
-> 
-> A small commit log would be welcome here. 
-> 
->> Signed-off-by: Sjoerd Simons <sjoerd.simons@collabora.com> 
->> Signed-off-by: Martyn Welch <martyn.welch@collabora.com> 
->> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com> --- 
->>  .../bindings/display/imx/mipi-dsi.txt         | 56 
->>  +++++++++++++++++++ 1 file changed, 56 insertions(+) create 
->>  mode 100644 
->>  Documentation/devicetree/bindings/display/imx/mipi-dsi.txt 
->>  diff --git 
->> a/Documentation/devicetree/bindings/display/imx/mipi-dsi.txt 
->> b/Documentation/devicetree/bindings/display/imx/mipi-dsi.txt 
->> new file mode 100644 index 000000000000..3f05c32ef963 --- 
->> /dev/null +++ 
->> b/Documentation/devicetree/bindings/display/imx/mipi-dsi.txt 
-> 
-> New bindings should use the yaml dt-schema format, could you 
-> convert it ?
+On Tue, Nov 19, 2019 at 05:17:03PM +0000, Robin Murphy wrote:
+> TBH I can't see it being a massive problem even if the DMA patch, driver 
+> and DTS patch went entirely separately via the respective DMA, PCI, and 
+> arm-soc trees in the same cycle. Bisecting over a merge window is a big 
+> enough pain in the bum as it is, and if the worst case is that someone 
+> trying to do that on a Pi4 has a wonky PCI controller appear for a couple 
+> of commits, they may as well just disable that driver for their bisection, 
+> because it wasn't there at the start so can't possibly be the thing they're 
+> looking for regressions in ;)
 
-Yes, I will convert to yaml and add a commit log in the next 
-version.
+Agreed.
 
-Will leave the current patches a little more on review to give 
-others a chance to see them.
-
-Thank you!
-
->
-> Neil
->
->> @@ -0,0 +1,56 @@
->> +Freescale i.MX6 DW MIPI DSI Host Controller
->> +===========================================
->> +
->> +The DSI host controller is a Synopsys DesignWare MIPI DSI v1.01 IP
->> +with a companion PHY IP.
->> +
->> +These DT bindings follow the Synopsys DW MIPI DSI bindings defined in
->> +Documentation/devicetree/bindings/display/bridge/dw_mipi_dsi.txt with
->> +the following device-specific properties.
->> +
->> +Required properties:
->> +
->> +- #address-cells: Should be <1>.
->> +- #size-cells: Should be <0>.
->> +- compatible: "fsl,imx6q-mipi-dsi", "snps,dw-mipi-dsi".
->> +- reg: See dw_mipi_dsi.txt.
->> +- interrupts: The controller's CPU interrupt.
->> +- clocks, clock-names: Phandles to the controller's pll reference
->> +  clock(ref) and APB clock(pclk), as described in [1].
->> +- ports: a port node with endpoint definitions as defined in [2].
->> +- gpr: Should be <&gpr>.
->> +       Phandle to the iomuxc-gpr region containing the multiplexer
->> +       control register.
->> +
->> +[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
->> +[2] Documentation/devicetree/bindings/media/video-interfaces.txt
->> +
->> +Example:
->> +
->> +	mipi_dsi: mipi@21e0000 {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +		compatible = "fsl,imx6q-mipi-dsi", "snps,dw-mipi-dsi";
->> +		reg = <0x021e0000 0x4000>;
->> +		interrupts = <0 102 IRQ_TYPE_LEVEL_HIGH>;
->> +		gpr = <&gpr>;
->> +		clocks = <&clks IMX6QDL_CLK_MIPI_CORE_CFG>,
->> +			 <&clks IMX6QDL_CLK_MIPI_IPG>;
->> +		clock-names = "ref", "pclk";
->> +		status = "okay";
->> +
->> +		ports {
->> +			port@0 {
->> +				reg = <0>;
->> +				mipi_mux_0: endpoint {
->> +					remote-endpoint = <&ipu1_di0_mipi>;
->> +				};
->> +			};
->> +			port@1 {
->> +				reg = <1>;
->> +				mipi_mux_1: endpoint {
->> +					remote-endpoint = <&ipu1_di1_mipi>;
->> +				};
->> +			};
->> +		};
->> +        };
->> 
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Nicolas, can you send a respin?  That way I can still queue it up
+for 5.5.
