@@ -2,212 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8802B104EB6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 10:06:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C38A104EEF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 10:15:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726784AbfKUJGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Nov 2019 04:06:17 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:45573 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726014AbfKUJGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Nov 2019 04:06:16 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAL92o3F028033;
-        Thu, 21 Nov 2019 10:05:54 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=X4UEF/oAolwYF/YR+6kYxpWAn7eU7vcEn3UoypO+JG0=;
- b=isFqjCoPRp7uBat+j6CYR/dWa1UNCWVfschlhEJZgZ0w9Vt0rqNlP0QrIW/Tu3aoBI8E
- Q5ofZpBXzNfR4sT0bvgGqO0gmciVFZ5SiDz5JrZ54Pw38+HBZJLgAmhcVpQyJjvhzAJQ
- M9aXvvKexcVW7ZUEHKczpCa/lXdb5tAtPKuOzyJEbTirnFNNz3ycIcUVGImHWacOhyh9
- 23OEk3DTYXASh0HRTNm4taYBqOzxzfdznqneolE5S3wk4BxSrVShcznsAFUjnW6kpnMm
- /ZYJk17zbrqi+eu0pLO+UAm9Aa02mAV4x5tgQt2+qKrCG7RjxuXivOXV6feAhmtqui9z ww== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2wa9usj9ef-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 21 Nov 2019 10:05:54 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 465C8100034;
-        Thu, 21 Nov 2019 10:05:53 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 318C52B2376;
-        Thu, 21 Nov 2019 10:05:53 +0100 (CET)
-Received: from lmecxl0889.lme.st.com (10.75.127.48) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 21 Nov
- 2019 10:05:52 +0100
-Subject: Re: [PATCH v2] dt-bindings: mailbox: convert stm32-ipcc to
- json-schema
-To:     Rob Herring <robh@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Fabien Dessenne <fabien.dessenne@st.com>
-References: <20191118101420.23610-1-arnaud.pouliquen@st.com>
- <CAL_Jsq+42wx1AJO=jXXBhmaKMkBq-RtoF+kxVjS2z9fSwhcaEQ@mail.gmail.com>
-From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
-Message-ID: <9d3a1e61-4c75-fd5c-7142-111f08117530@st.com>
-Date:   Thu, 21 Nov 2019 10:05:52 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727239AbfKUJOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Nov 2019 04:14:20 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:12471 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726568AbfKUJNd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Nov 2019 04:13:33 -0500
+X-UUID: 3cb19b2a19e747d4ab0722a249cfb574-20191121
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=bFJxZH0AXm81N1vk9AvWXrEq/g3qKxp104WObxKx0SM=;
+        b=Kz4ZqHVDnNxE0d6MXDwos+tlqrmmRLxqau6UmGS9DLXxbckvROlu1Rkq9jpbcHrKSxdvsGN83yU+wFp6IIMKg+YdbaZbIRMoA0VLcc/RtrP6TNOJCVKQ2qH/JpJUOb0fiqwkoMPzmipJi8jgSytHu10XTT0XElJHcLosbeYZU10=;
+X-UUID: 3cb19b2a19e747d4ab0722a249cfb574-20191121
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <dennis-yc.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 498235357; Thu, 21 Nov 2019 17:13:25 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 21 Nov 2019 17:13:21 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 21 Nov 2019 17:13:28 +0800
+From:   Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: support gce on mt6779 platform
+Date:   Thu, 21 Nov 2019 17:12:20 +0800
+Message-ID: <1574327552-11806-1-git-send-email-dennis-yc.hsieh@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+42wx1AJO=jXXBhmaKMkBq-RtoF+kxVjS2z9fSwhcaEQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG4NODE3.st.com (10.75.127.12) To SFHDAG3NODE1.st.com
- (10.75.127.7)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-21_01:2019-11-20,2019-11-21 signatures=0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+U3VwcG9ydCBnY2UgZnVuY3Rpb24gb24gbXQ2Nzc5IHBsYXRmb3JtLg0KCWR0LWJpbmRpbmc6IGdj
+ZTogYWRkIGdjZSBoZWFkZXIgZmlsZSBmb3IgbXQ2Nzc5DQoJbWFpbGJveDogY21kcTogdmFyaWFi
+bGl6ZSBhZGRyZXNzIHNoaWZ0IGluIHBsYXRmb3JtDQoJbWFpbGJveDogY21kcTogc3VwcG9ydCBt
+dDY3NzkgZ2NlIHBsYXRmb3JtDQoJYXJtNjQ6IGR0czogYWRkIGdjZSBub2RlIGZvciBtdDY3NzkN
+Cg0KUmVmaW5lIGRyaXZlciB0byBzdXBwb3J0IHN0b3AgaGFyZHdhcmUgd2l0aCBzYWZlIGNhbGxi
+YWNrLg0KCW1haWxib3g6IG1lZGlhdGVrOiBjbWRxOiBjbGVhciB0YXNrIGluIGNoYW5uZWwNCg0K
+SW5vcmRlciB0byBzdXBwb3J0IG10Njc3OSBjbGllbnQgcmVxdWlyZW1lbnQsIGFkZCBuZXcgaGVs
+cGVyIGZ1bmN0aW9ucyB0bw0KZW5hYmxlIG1vcmUgaGFyZHdhcmUgY2FwYWJpbGl0eS4NCglzb2M6
+IG1lZGlhdGVrOiBjbWRxOiBhZGQgYXNzaWduIGZ1bmN0aW9uDQoJc29jOiBtZWRpYXRlazogY21k
+cTogYWRkIHdyaXRlX3MgZnVuY3Rpb24NCglzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgcmVhZF9z
+IGZ1bmN0aW9uDQoJc29jOiBtZWRpYXRlazogY21kcTogYWRkIG1lbSBtb3ZlIGZ1bmN0aW9uDQoJ
+c29jOiBtZWRpYXRlazogY21kcTogYWRkIGxvb3AgZnVuY3Rpb24NCglzb2M6IG1lZGlhdGVrOiBj
+bWRxOiBhZGQgd2FpdCBubyBjbGVhciBldmVudA0KCXNvYzogbWVkaWF0ZWs6IGNtZHE6IGFkZCBz
+ZXQgZXZlbnQgZnVuY3Rpb24NCg0KDQoNCkRlbm5pcyBZQyBIc2llaCAoMTIpOg0KICBkdC1iaW5k
+aW5nOiBnY2U6IGFkZCBnY2UgaGVhZGVyIGZpbGUgZm9yIG10Njc3OQ0KICBtYWlsYm94OiBjbWRx
+OiB2YXJpYWJsaXplIGFkZHJlc3Mgc2hpZnQgaW4gcGxhdGZvcm0NCiAgbWFpbGJveDogY21kcTog
+c3VwcG9ydCBtdDY3NzkgZ2NlIHBsYXRmb3JtIGRlZmluaXRpb24NCiAgbWFpbGJveDogbWVkaWF0
+ZWs6IGNtZHE6IGNsZWFyIHRhc2sgaW4gY2hhbm5lbCBiZWZvcmUgc2h1dGRvd24NCiAgYXJtNjQ6
+IGR0czogYWRkIGdjZSBub2RlIGZvciBtdDY3NzkNCiAgc29jOiBtZWRpYXRlazogY21kcTogYWRk
+IGFzc2lnbiBmdW5jdGlvbg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgd3JpdGVfcyBmdW5j
+dGlvbg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgcmVhZF9zIGZ1bmN0aW9uDQogIHNvYzog
+bWVkaWF0ZWs6IGNtZHE6IGFkZCBtZW0gbW92ZSBmdW5jdGlvbg0KICBzb2M6IG1lZGlhdGVrOiBj
+bWRxOiBhZGQgbG9vcCBmdW5jdGlvbg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgd2FpdCBu
+byBjbGVhciBldmVudCBmdW5jdGlvbg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgc2V0IGV2
+ZW50IGZ1bmN0aW9uDQoNCiAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9tYWlsYm94L210ay1nY2Uu
+dHh0ICAgfCAgIDggKy0NCiBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS5kdHNp
+ICAgICAgfCAgMTAgKw0KIGRyaXZlcnMvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmMgICAgICAg
+ICAgICB8ICA4NSArKysrKystDQogZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVy
+LmMgICAgICAgIHwgMTgyICsrKysrKysrKysrKystDQogaW5jbHVkZS9kdC1iaW5kaW5ncy9nY2Uv
+bXQ2Nzc5LWdjZS5oICAgICAgICAgIHwgMjIyICsrKysrKysrKysrKysrKysrKw0KIGluY2x1ZGUv
+bGludXgvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmggICAgICB8ICAgNyArDQogaW5jbHVkZS9s
+aW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaCAgICAgICAgIHwgIDc3ICsrKysrKw0KIDcgZmls
+ZXMgY2hhbmdlZCwgNTczIGluc2VydGlvbnMoKyksIDE4IGRlbGV0aW9ucygtKQ0KIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL2djZS9tdDY3NzktZ2NlLmgNCg==
 
-
-On 11/20/19 9:26 PM, Rob Herring wrote:
-> On Mon, Nov 18, 2019 at 4:15 AM Arnaud Pouliquen
-> <arnaud.pouliquen@st.com> wrote:
->>
->> Convert the STM32 IPCC bindings to DT schema format using
->> json-schema
->>
->> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
->> ---
->>  .../bindings/mailbox/st,stm32-ipcc.yaml       | 91 +++++++++++++++++++
->>  .../bindings/mailbox/stm32-ipcc.txt           | 47 ----------
->>  2 files changed, 91 insertions(+), 47 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/mailbox/stm32-ipcc.txt
-> 
-> Thanks for helping me find 2 meta-schema errors. :) Please update
-> dt-schema and re-run 'make dt_binding_check'.
-> 
-it a privilege to help you to improve the scripts ;-)
-
-Thanks for the reviews, based on it i will also update the following patch
-dt-bindings: remoteproc: convert stm32-rproc to json-schema
-
-Regards
-Arnaud
-
->> diff --git a/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
->> new file mode 100644
->> index 000000000000..90157d4deac1
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mailbox/st,stm32-ipcc.yaml
->> @@ -0,0 +1,91 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/mailbox/st,stm32-ipcc.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: STMicroelectronics STM32 IPC controller bindings
->> +
->> +description:
->> +  The IPCC block provides a non blocking signaling mechanism to post and
->> +  retrieve messages in an atomic way between two processors.
->> +  It provides the signaling for N bidirectionnal channels. The number of
->> +  channels (N) can be read from a dedicated register.
->> +
->> +maintainers:
->> +  - Fabien Dessenne <fabien.dessenne@st.com>
->> +  - Arnaud Pouliquen <arnaud.pouliquen@st.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: st,stm32mp1-ipcc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +     maxItems: 1
->> +
->> +  interrupts:
->> +    items:
->> +      - description: rx channel occupied
->> +      - description: tx channel free
->> +      - description: wakeup source
->> +    minItems: 2
->> +    maxItems: 3
->> +
->> +  interrupt-names:
->> +    items:
->> +      enums: [ rx, tx, wakeup ]
-> 
-> 'enums' is not a valid keyword. 'enum' is valid, but his should be in
-> a defined order (so a list of items).
-> 
->> +    minItems: 2
->> +    maxItems: 3
->> +
->> +  wakeup-source:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Enables wake up of host system on wakeup IRQ assertion.
-> 
-> Just 'true' is enough here. Assume we have a common definition.
-> 
->> +
->> +  "#mbox-cells":
->> +    const: 1
->> +
->> +  st,proc-id:
->> +    description: Processor id using the mailbox (0 or 1)
->> +    allOf:
->> +      - minimum: 0
->> +      - maximum: 1
-> 
-> 'enum: [ 0, 1 ]' is more concise.
-> 
-> Also, needs a $ref to the type.
-> 
->> +      - default: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - st,proc-id
->> +  - clocks
->> +  - interrupt-names
->> +  - "#mbox-cells"
->> +
->> +oneOf:
->> +  - required:
->> +      - interrupts
->> +  - required:
->> +      - interrupts-extended
-> 
-> The tooling takes care of this for you. Just list 'interrupts' as required.
-> 
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/clock/stm32mp1-clks.h>
->> +    ipcc: mailbox@4c001000 {
->> +      compatible = "st,stm32mp1-ipcc";
->> +      #mbox-cells = <1>;
->> +      reg = <0x4c001000 0x400>;
->> +      st,proc-id = <0>;
->> +      interrupts-extended = <&intc GIC_SPI 100 IRQ_TYPE_NONE>,
->> +                     <&intc GIC_SPI 101 IRQ_TYPE_NONE>,
->> +                     <&aiec 62 1>;
->> +      interrupt-names = "rx", "tx", "wakeup";
->> +      clocks = <&rcc_clk IPCC>;
->> +      wakeup-source;
->> +    };
->> +
->> +...
