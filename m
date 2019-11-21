@@ -2,97 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A60F71047ED
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 02:18:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B078F104846
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 02:54:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726573AbfKUBSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 20:18:50 -0500
-Received: from foss.arm.com ([217.140.110.172]:48472 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726346AbfKUBSu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Nov 2019 20:18:50 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A2B6C1063;
-        Wed, 20 Nov 2019 17:18:49 -0800 (PST)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7A82A3F6C4;
-        Wed, 20 Nov 2019 17:18:48 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH 3/3] arm: dts: allwinner: H3: Add PMU node
-Date:   Thu, 21 Nov 2019 01:18:35 +0000
-Message-Id: <20191121011835.8467-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20191121011835.8467-1-andre.przywara@arm.com>
-References: <20191121011835.8467-1-andre.przywara@arm.com>
+        id S1726765AbfKUBy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 20:54:29 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:23328 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726333AbfKUByX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 20:54:23 -0500
+X-UUID: 93c338ae4cec4cc39812cddf99fe3f32-20191121
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=eNc1q+Jm+ke51V5X9loIt4L2ckyzxIUn7oSSInk3fLI=;
+        b=ctaH3Z5Vs7F7wKL3GCd+LW7C4GRIcJOuOdUxlKnd6hxHs6vav44yD6tWIFKjS1yPwZiB0RqzFlGwRvucTAccVkexi9ANuGX94jv9FFlMJeDH3qIL0thcyj38f/pOmOJXQu22gOUJO2tqh2GCXE2vYa47PyiyWWE6/Z+8inZT/bo=;
+X-UUID: 93c338ae4cec4cc39812cddf99fe3f32-20191121
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 285830125; Thu, 21 Nov 2019 09:54:13 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 21 Nov 2019 09:54:07 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 21 Nov 2019 09:54:16 +0800
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>
+Subject: [PATCH v17 0/6] support gce on mt8183 platform
+Date:   Thu, 21 Nov 2019 09:54:04 +0800
+Message-ID: <20191121015410.18852-1-bibby.hsieh@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Performance Monitoring Unit (PMU) device tree node to the H3
-.dtsi, which tells DT users which interrupts are triggered by PMU
-overflow events on each core. The numbers come from the manual and have
-been checked in U-Boot and with perf in Linux.
-
-Tested with perf record and taskset on an OrangePi Zero.
-
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm/boot/dts/sun8i-h3.dtsi | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
-index fe773c72a69b..b4f1673df9ee 100644
---- a/arch/arm/boot/dts/sun8i-h3.dtsi
-+++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -80,7 +80,7 @@
- 			#cooling-cells = <2>;
- 		};
- 
--		cpu@1 {
-+		cpu1: cpu@1 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <1>;
-@@ -90,7 +90,7 @@
- 			#cooling-cells = <2>;
- 		};
- 
--		cpu@2 {
-+		cpu2: cpu@2 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <2>;
-@@ -100,7 +100,7 @@
- 			#cooling-cells = <2>;
- 		};
- 
--		cpu@3 {
-+		cpu3: cpu@3 {
- 			compatible = "arm,cortex-a7";
- 			device_type = "cpu";
- 			reg = <3>;
-@@ -111,6 +111,15 @@
- 		};
- 	};
- 
-+	pmu {
-+		compatible = "arm,cortex-a7-pmu";
-+		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+
- 	timer {
- 		compatible = "arm,armv7-timer";
- 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--- 
-2.14.5
+Q2hhbmdlcyBzaW5jZSB2MTY6DQogLSBuYW1pbmcgdGhlIHBvbGwgbWFzayBlbmFibGUgYml0DQog
+LSBhZGQgYSBwYXRjaCB0byBmaXVwIHRoZSBpbnB1dCBvcmRlciBvZiB3cml0ZSBhcGkNCg0KQ2hh
+bmdlcyBzaW5jZSB2MTU6DQogLSByZWJhc2Ugb250byA1LjQtcmMxDQogLSByb2xsYmFjayB0aGUg
+djE0IGNoYW5nZQ0KIC0gYWRkIGEgcGF0Y2ggdG8gZml4dXAgdGhlIGNvbWJpbmF0aW9uIG9mIHJl
+dHVybiB2YWx1ZQ0KDQpDaGFuZ2VzIHNpbmNlIHYxNDoNCiAtIGNoYW5nZSBpbnB1dCBhcmd1bWVu
+dCBhcyBwb2ludGVyIGluIGFwcGVuZF9jb21tZW5kKCkNCg0KQ2hhbmdlcyBzaW5jZSB2MTM6DQog
+LSBzZXBhcmF0ZSBwb2xsIGZ1bmN0aW9uIGFzIHBvbGwgdy8gJiB3L28gbWFzayBmdW5jdGlvbg0K
+IC0gZGlyZWN0bHkgcGFzcyBpbnN0IGludG8gYXBwZW5kX2NvbW1hbmQgZnVuY3Rpb24gaW5zdGVh
+ZA0KICAgb2YgcmV0dXJucyBhIHBvaW50ZXINCiAtIGZpeHVwIGNvZGluZyBzdHlsZQ0KIC0gcmVi
+YXNlIG9udG8gNS4zLXJjMQ0KDQpbLi4uIHNuaXAgLi4uXQ0KDQpCaWJieSBIc2llaCAoNik6DQog
+IHNvYzogbWVkaWF0ZWs6IGNtZHE6IGZpeHVwIHdyb25nIGlucHV0IG9yZGVyIG9mIHdyaXRlIGFw
+aQ0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiByZW1vdmUgT1Igb3BlcnRhaW9uIGZyb20gZXJyIHJl
+dHVybg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBkZWZpbmUgdGhlIGluc3RydWN0aW9uIHN0cnVj
+dA0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgcG9sbGluZyBmdW5jdGlvbg0KICBzb2M6IG1l
+ZGlhdGVrOiBjbWRxOiBhZGQgY21kcV9kZXZfZ2V0X2NsaWVudF9yZWcgZnVuY3Rpb24NCiAgYXJt
+NjQ6IGR0czogYWRkIGdjZSBub2RlIGZvciBtdDgxODMNCg0KIGFyY2gvYXJtNjQvYm9vdC9kdHMv
+bWVkaWF0ZWsvbXQ4MTgzLmR0c2kgfCAgMTAgKysNCiBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGst
+Y21kcS1oZWxwZXIuYyAgIHwgMTQ3ICsrKysrKysrKysrKysrKysrKystLS0tDQogaW5jbHVkZS9s
+aW51eC9tYWlsYm94L210ay1jbWRxLW1haWxib3guaCB8ICAxMSArKw0KIGluY2x1ZGUvbGludXgv
+c29jL21lZGlhdGVrL210ay1jbWRxLmggICAgfCAgNTMgKysrKysrKysNCiA0IGZpbGVzIGNoYW5n
+ZWQsIDE5NSBpbnNlcnRpb25zKCspLCAyNiBkZWxldGlvbnMoLSkNCg0KLS0gDQoyLjE4LjANCg==
 
