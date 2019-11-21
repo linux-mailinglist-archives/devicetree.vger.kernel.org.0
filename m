@@ -2,73 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35E9A10483F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 02:54:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD2A71048A2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 03:42:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725956AbfKUByT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Nov 2019 20:54:19 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53041 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725819AbfKUByT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Nov 2019 20:54:19 -0500
-X-UUID: c79dc9a874874a53beb0dfba4b59e64b-20191121
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Wu5rr5U2mAIPhNRV+bhj5GJhAm/WdnBsgnKTUZtLDxQ=;
-        b=Wq935/nKG4KBO0sq6SffejsESSwSYFANftAzmL0M+SPTC76gCfSgS4JwIGlUCVUIP9xTi0AeN9k1L/kWvWKnWYcNF6SOwxl82TxmKoBdIruEDxUODVPrm8aO0xvJZKsBeXlZJ3F5gsRUdb3AmtYH+JWLsIoQLPKBpBx6pYcGTao=;
-X-UUID: c79dc9a874874a53beb0dfba4b59e64b-20191121
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 519577978; Thu, 21 Nov 2019 09:54:13 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 21 Nov 2019 09:54:06 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 21 Nov 2019 09:54:17 +0800
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>
-Subject: [PATCH v17 6/6] arm64: dts: add gce node for mt8183
-Date:   Thu, 21 Nov 2019 09:54:10 +0800
-Message-ID: <20191121015410.18852-7-bibby.hsieh@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20191121015410.18852-1-bibby.hsieh@mediatek.com>
-References: <20191121015410.18852-1-bibby.hsieh@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1726165AbfKUCmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Nov 2019 21:42:32 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:51156 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725842AbfKUCmc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Nov 2019 21:42:32 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 88DC0200575;
+        Thu, 21 Nov 2019 03:42:29 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 24D7A20007A;
+        Thu, 21 Nov 2019 03:42:24 +0100 (CET)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 46CA040286;
+        Thu, 21 Nov 2019 10:42:17 +0800 (SGT)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Peter Chen <peter.chen@nxp.com>, Jun Li <jun.li@nxp.com>,
+        Leo Li <leoyang.li@nxp.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH v3 1/2] usb: dwc3: Add chip-specific compatible string
+Date:   Thu, 21 Nov 2019 10:42:05 +0800
+Message-Id: <20191121024206.32933-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-YWRkIGdjZSBkZXZpY2Ugbm9kZSBmb3IgbXQ4MTgzDQoNClNpZ25lZC1vZmYtYnk6IEJpYmJ5IEhz
-aWVoIDxiaWJieS5oc2llaEBtZWRpYXRlay5jb20+DQotLS0NCiBhcmNoL2FybTY0L2Jvb3QvZHRz
-L21lZGlhdGVrL210ODE4My5kdHNpIHwgMTAgKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCAx
-MCBpbnNlcnRpb25zKCspDQoNCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlh
-dGVrL210ODE4My5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRz
-aQ0KaW5kZXggNmNiYmQ3NzI2ZDM2Li45NTRiY2Q3NjZjOTcgMTAwNjQ0DQotLS0gYS9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE4My5kdHNpDQorKysgYi9hcmNoL2FybTY0L2Jvb3Qv
-ZHRzL21lZGlhdGVrL210ODE4My5kdHNpDQpAQCAtOSw2ICs5LDcgQEANCiAjaW5jbHVkZSA8ZHQt
-YmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5oPg0KICNpbmNsdWRlIDxkdC1i
-aW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9pcnEuaD4NCiAjaW5jbHVkZSA8ZHQtYmluZGlu
-Z3MvcG93ZXIvbXQ4MTgzLXBvd2VyLmg+DQorI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2djZS9tdDgx
-ODMtZ2NlLmg+DQogI2luY2x1ZGUgIm10ODE4My1waW5mdW5jLmgiDQogDQogLyB7DQpAQCAtMzM2
-LDYgKzMzNywxNSBAQA0KIAkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQogCQl9Ow0KIA0KKwkJZ2Nl
-OiBtYWlsYm94QDEwMjM4MDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE4My1n
-Y2UiOw0KKwkJCXJlZyA9IDwwIDB4MTAyMzgwMDAgMCAweDQwMDA+Ow0KKwkJCWludGVycnVwdHMg
-PSA8R0lDX1NQSSAxNjIgSVJRX1RZUEVfTEVWRUxfTE9XPjsNCisJCQkjbWJveC1jZWxscyA9IDwz
-PjsNCisJCQljbG9ja3MgPSA8JmluZnJhY2ZnIENMS19JTkZSQV9HQ0U+Ow0KKwkJCWNsb2NrLW5h
-bWVzID0gImdjZSI7DQorCQl9Ow0KKw0KIAkJdWFydDA6IHNlcmlhbEAxMTAwMjAwMCB7DQogCQkJ
-Y29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtdWFydCIsDQogCQkJCSAgICAgIm1lZGlhdGVr
-LG10NjU3Ny11YXJ0IjsNCi0tIA0KMi4xOC4wDQo=
+Some Layerscape paltforms (such as LS1088A, LS2088A, etc) require update HW
+default cache type configuration to fix DWC3 init failure when applying
+property dma-coherent.
+
+Note that the cache type configuration is actually native feature of DWC3,
+not additional desgin coming from SoC, so add this support here.
+
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+---
+Change in v3:
+	- Update commit subject according to content change, originanl one is
+	  'usb: dwc3: Add node to update cache type setting'
+	- Replace sub-node definition with chip-specifc compatible string.
+
+Change in v2:
+	- New file.
+
+ Documentation/devicetree/bindings/usb/dwc3.txt | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+index 66780a4..043c312e 100644
+--- a/Documentation/devicetree/bindings/usb/dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+@@ -4,7 +4,21 @@ DWC3- USB3 CONTROLLER. Complies to the generic USB binding properties
+       as described in 'usb/generic.txt'
+ 
+ Required properties:
+- - compatible: must be "snps,dwc3"
++ - compatible: must be "snps,dwc3" and (if applicable) may contain a
++	chip-specific compatible string in front of it to allow dwc3 driver be
++	able to update cache type configuration accordingly, otherwise
++	Layerscape SoC will encounter USB init failure when adding property
++	dma-coherent on device tree.
++	Example:
++	* "fsl,ls1012a-dwc3", "snps,dwc3"
++	* "fsl,ls1021a-dwc3", "snps,dwc3"
++	* "fsl,ls1028a-dwc3", "snps,dwc3"
++	* "fsl,ls1043a-dwc3", "snps,dwc3"
++	* "fsl,ls1046a-dwc3", "snps,dwc3"
++	* "fsl,ls1088a-dwc3", "snps,dwc3"
++	* "fsl,ls2088a-dwc3", "snps,dwc3"
++	* "fsl,lx2160a-dwc3", "snps,dwc3"
++
+  - reg : Address and length of the register set for the device
+  - interrupts: Interrupts used by the dwc3 controller.
+  - clock-names: should contain "ref", "bus_early", "suspend"
+-- 
+2.7.4
 
