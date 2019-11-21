@@ -2,140 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 53FD010545D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 15:27:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64FEB105473
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2019 15:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726358AbfKUO1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Nov 2019 09:27:40 -0500
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:36684 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726689AbfKUO1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Nov 2019 09:27:36 -0500
-Received: by mail-qk1-f195.google.com with SMTP id d13so3196766qko.3;
-        Thu, 21 Nov 2019 06:27:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=3gwfygBNjto+s4EabazzGNb2PsGRdds8Ie+HhfI+rQM=;
-        b=VENeXGxAEt6U0bdDDFs3mDRxKrgnI2TOgZ2r4MYZOPJWcc/jD4zFtTws1kWBDdVknD
-         8vNk8OqAzTzepfWORFJVMBZaRfTOKCSylS2lKuzEIuIuneLpoFPy2+RqQ/sI0yO530DU
-         8hM4rUh9cQk+uLrbor8QpYavYidnYXx/OVmR6Q/oYBYRpTxf/dHoiPi2JR0NfarkIU5p
-         NwjbIVfg2Kd0T38vNZ5EVC5d8z+5tHGrDeWeN0g542DoYpogfjvHKAsZtG93E5BjZ5x6
-         rHe9XablMW+0KN3f4TceQcHJkN4mDPu6e05Glr97dULx6iP5rTCdKW56MCVhPTggX+Js
-         V40w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=3gwfygBNjto+s4EabazzGNb2PsGRdds8Ie+HhfI+rQM=;
-        b=dsshYGKiL7O6tLotkNESmdAxdN8K9TIUGpQEP9N4YQaQYbWiAWCnKCLG+nTCOBPqXC
-         tcgW7w+55/v/YKxI/2e5YMy3Wqr6lFibTqleafx54XNJYILWixougKZsm3sad8a4nBvI
-         SrGtDb+kt/MHg1pcSZjCkuTeN7QuMRGriOE6HVdEAmCPCVmuWvhbIEzmbpNbJG7anB+Y
-         fI4o4ITPb3T3TGBMdcyj6m0xfJVe/DkQU30KhbOA6gaf90jb7Kjm2RFEkr5PdqdCbPfB
-         v4yLM/5bKDSgnwU1A7HBQXgqTvFc9/6CAwsghxVBtn5ZIc1DDSE7j5hm1JDlYlpMiiU8
-         zArQ==
-X-Gm-Message-State: APjAAAXqlIAK8RiLWOnJz8eySv4PTuCJ6/mwVULrl6/9fbWDGCQ3qQGt
-        eXr420OHUEbhMcs19vY7hww=
-X-Google-Smtp-Source: APXvYqzhsS4C6Nlwm46pupvpnhHdtO1KwhJgy7xUQZ+UqEpyTHx9KZ9N2fJbGYvfkAwDsjMYTPWcXg==
-X-Received: by 2002:a05:620a:1090:: with SMTP id g16mr7290769qkk.41.1574346454702;
-        Thu, 21 Nov 2019 06:27:34 -0800 (PST)
-Received: from localhost.localdomain ([72.53.229.209])
-        by smtp.gmail.com with ESMTPSA id l198sm1442931qke.70.2019.11.21.06.27.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2019 06:27:34 -0800 (PST)
-From:   Sven Van Asbroeck <thesven73@gmail.com>
-X-Google-Original-From: Sven Van Asbroeck <TheSven73@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Grigoryev Denis <grigoryev@fastwel.ru>,
-        Axel Lin <axel.lin@ingics.com>, Dan Murphy <dmurphy@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1726747AbfKUObm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Nov 2019 09:31:42 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:50771 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726546AbfKUObm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Nov 2019 09:31:42 -0500
+Received: from litschi.hi.pengutronix.de ([2001:67c:670:100:feaa:14ff:fe6a:8db5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <m.tretter@pengutronix.de>)
+        id 1iXnUL-0002mS-FN; Thu, 21 Nov 2019 15:31:17 +0100
+Date:   Thu, 21 Nov 2019 15:31:15 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     Rajan Vaja <rajan.vaja@xilinx.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, michal.simek@xilinx.com,
+        jolly.shah@xilinx.com, dan.carpenter@oracle.com,
+        gustavo@embeddedor.com, nava.manne@xilinx.com,
+        ravi.patel@xilinx.com, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org
-Subject: [PATCH v4 2/2] dt-bindings: mfd: update TI tps6105x chip bindings
-Date:   Thu, 21 Nov 2019 09:27:26 -0500
-Message-Id: <20191121142726.22856-3-TheSven73@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191121142726.22856-1-TheSven73@gmail.com>
-References: <20191121142726.22856-1-TheSven73@gmail.com>
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        m.tretter@pengutronix.de
+Subject: Re: [PATCH 3/7] clk: zynqmp: Warn user if clock user are more than
+ allowed
+Message-ID: <20191121153115.50340e47@litschi.hi.pengutronix.de>
+In-Reply-To: <1573564580-9006-4-git-send-email-rajan.vaja@xilinx.com>
+References: <1573564580-9006-1-git-send-email-rajan.vaja@xilinx.com>
+        <1573564580-9006-4-git-send-email-rajan.vaja@xilinx.com>
+Organization: Pengutronix
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:feaa:14ff:fe6a:8db5
+X-SA-Exim-Mail-From: m.tretter@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver has been extended to optionally get its operational
-mode, regulator init data and led naming from the devicetree.
+On Tue, 12 Nov 2019 05:16:16 -0800, Rajan Vaja wrote:
+> Warn user if clock is used by more than allowed devices.
+> This check is done by firmware and returns respective
+> error code. Upon receiving error code for excessive user,
+> warn user for the same.
+> 
+> This change is done to restrict VPLL use count. It is
+> assumed that VPLL is used by one user only.
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Rajan Vaja <rajan.vaja@xilinx.com>
+> ---
+>  drivers/clk/zynqmp/pll.c             | 9 ++++++---
+>  drivers/firmware/xilinx/zynqmp.c     | 2 ++
+>  include/linux/firmware/xlnx-zynqmp.h | 1 +
+>  3 files changed, 9 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/clk/zynqmp/pll.c b/drivers/clk/zynqmp/pll.c
+> index a541397..2f4ccaa 100644
+> --- a/drivers/clk/zynqmp/pll.c
+> +++ b/drivers/clk/zynqmp/pll.c
+> @@ -188,9 +188,12 @@ static int zynqmp_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>  		frac = (parent_rate * f) / FRAC_DIV;
+>  
+>  		ret = eemi_ops->clock_setdivider(clk_id, m);
+> -		if (ret)
+> -			pr_warn_once("%s() set divider failed for %s, ret = %d\n",
+> -				     __func__, clk_name, ret);
+> +		if (ret) {
+> +			if (ret == -EUSERS)
+> +				WARN(1, "More than allowed devices are using the %s, which is forbidden\n", clk_name);
+> +			pr_err("%s() set divider failed for %s, ret = %d\n",
+> +			       __func__, clk_name, ret);
+> +		}
 
-Tree: next-20191118
-Signed-off-by: Sven Van Asbroeck <TheSven73@gmail.com>
----
- .../devicetree/bindings/mfd/tps6105x.txt      | 47 ++++++++++++++++++-
- 1 file changed, 46 insertions(+), 1 deletion(-)
+In case of -EUSERS this prints the warning and the error. This seems a
+bit excessive to me. Isn't it enough to leave the existing
+pr_warn_once() for the new error code? If not, then add a new warning
+for the -EUSERS error, but leave the existing warning as it is.
 
-diff --git a/Documentation/devicetree/bindings/mfd/tps6105x.txt b/Documentation/devicetree/bindings/mfd/tps6105x.txt
-index 93602c7a19c8..1fc9aa3ed882 100644
---- a/Documentation/devicetree/bindings/mfd/tps6105x.txt
-+++ b/Documentation/devicetree/bindings/mfd/tps6105x.txt
-@@ -7,11 +7,56 @@ Required properties:
- - compatible:		"ti,tps61050" or "ti,tps61052"
- - reg:			Specifies the I2C slave address
- 
--Example:
-+Optional sub-node:
-+
-+This subnode selects the chip's operational mode.
-+There can be at most one single available subnode.
-+
-+- regulator: presence of this sub-node puts the chip in regulator mode.
-+	see Documentation/devicetree/bindings/regulator/regulator.txt
-+
-+- led: presence of this sub-node puts the chip in led mode.
-+	Optional properties:
-+	- function : see Documentation/devicetree/bindings/leds/common.txt
-+	- color : see Documentation/devicetree/bindings/leds/common.txt
-+	- label : see Documentation/devicetree/bindings/leds/common.txt
-+			(deprecated)
-+
-+Example (GPIO operation only):
-+
-+i2c0 {
-+	tps61052@33 {
-+		compatible = "ti,tps61052";
-+		reg = <0x33>;
-+	};
-+};
-+
-+Example (GPIO + regulator operation):
- 
- i2c0 {
- 	tps61052@33 {
- 		compatible = "ti,tps61052";
- 		reg = <0x33>;
-+
-+		regulator {
-+			regulator-min-microvolt = <5000000>;
-+			regulator-max-microvolt = <5000000>;
-+			regulator-always-on;
-+		};
-+	};
-+};
-+
-+Example (GPIO + led operation):
-+
-+#include <dt-bindings/leds/common.h>
-+
-+i2c0 {
-+	tps61052@33 {
-+		compatible = "ti,tps61052";
-+		reg = <0x33>;
-+
-+		led {
-+			color = <LED_COLOR_ID_WHITE>;
-+		};
- 	};
- };
--- 
-2.17.1
+Michael
 
+>  
+>  		eemi_ops->ioctl(0, IOCTL_SET_PLL_FRAC_DATA, clk_id, f, NULL);
+>  
+> diff --git a/drivers/firmware/xilinx/zynqmp.c b/drivers/firmware/xilinx/zynqmp.c
+> index 0137bf3..ecc339d 100644
+> --- a/drivers/firmware/xilinx/zynqmp.c
+> +++ b/drivers/firmware/xilinx/zynqmp.c
+> @@ -53,6 +53,8 @@ static int zynqmp_pm_ret_code(u32 ret_status)
+>  		return -EACCES;
+>  	case XST_PM_ABORT_SUSPEND:
+>  		return -ECANCELED;
+> +	case XST_PM_MULT_USER:
+> +		return -EUSERS;
+>  	case XST_PM_INTERNAL:
+>  	case XST_PM_CONFLICT:
+>  	case XST_PM_INVALID_NODE:
+> diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+> index 25bedd2..f019d1c 100644
+> --- a/include/linux/firmware/xlnx-zynqmp.h
+> +++ b/include/linux/firmware/xlnx-zynqmp.h
+> @@ -96,6 +96,7 @@ enum pm_ret_status {
+>  	XST_PM_INVALID_NODE,
+>  	XST_PM_DOUBLE_REQ,
+>  	XST_PM_ABORT_SUSPEND,
+> +	XST_PM_MULT_USER = 2008,
+>  };
+>  
+>  enum pm_ioctl_id {
