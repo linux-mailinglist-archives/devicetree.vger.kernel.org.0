@@ -2,65 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A54D01064A7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:19:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11216106633
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:31:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729718AbfKVGTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 01:19:01 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:57604 "EHLO inva021.nxp.com"
+        id S1726774AbfKVFtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 00:49:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53222 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729691AbfKVGTA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 01:19:00 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6BD8D2006C5;
-        Fri, 22 Nov 2019 07:18:58 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3B0FF200AEA;
-        Fri, 22 Nov 2019 07:18:53 +0100 (CET)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id ECA14402B3;
-        Fri, 22 Nov 2019 14:18:46 +0800 (SGT)
-From:   Hui Song <hui.song_1@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Song Hui <hui.song_1@nxp.com>
-Subject: [PATCH v1] gpio : mpc8xxx :  ls1088a/ls1028a edge detection mode bug fixs.
-Date:   Fri, 22 Nov 2019 14:18:39 +0800
-Message-Id: <20191122061839.24904-1-hui.song_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726760AbfKVFtS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Nov 2019 00:49:18 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A96552068F;
+        Fri, 22 Nov 2019 05:49:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1574401757;
+        bh=J41T5dDACX6mMdDwcHJ66tJM39TIQDMBCyI3Q1j6VLM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=S6VKzuh92DaiKDQtcRkJu2X2FbGEkX6pjGyjfcmTCB6QtkG1W60JkRhbvEclNGPF+
+         B1uvZmtRML+Lu6V2Xirv2POMkhx6Wt45s69DTh116+13AFvdU8IfcWLpbzvEs5C5yL
+         S+TSoHAWVHpv9x5iqHsMKmrdGUB5ChPlbq3uCM1Y=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.19 011/219] ARM: dts: imx35: Fix memory node duplication
+Date:   Fri, 22 Nov 2019 00:45:43 -0500
+Message-Id: <20191122054911.1750-4-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191122054911.1750-1-sashal@kernel.org>
+References: <20191122054911.1750-1-sashal@kernel.org>
+MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Song Hui <hui.song_1@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
 
-On these boards, the irq_set_type must point one valid function pointer
-that can correctly set both edge and falling edge.
+[ Upstream commit 8721610a6c2b8c42fc57819d8c3bfbb9166f95a3 ]
 
-Signed-off-by: Song Hui <hui.song_1@nxp.com>
+Boards based on imx35 have duplicate memory nodes:
+
+- One coming from the board dts file: memory@
+
+- One coming from the imx35.dtsi file.
+
+Fix the duplication by removing the memory node from the dtsi file
+and by adding 'device_type = "memory";' in the board dts.
+
+Reported-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpio/gpio-mpc8xxx.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi | 1 +
+ arch/arm/boot/dts/imx35-pdk.dts              | 1 +
+ arch/arm/boot/dts/imx35.dtsi                 | 2 --
+ 3 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
-index 81f0f31..8ddb23b 100644
---- a/drivers/gpio/gpio-mpc8xxx.c
-+++ b/drivers/gpio/gpio-mpc8xxx.c
-@@ -296,6 +296,7 @@ static const struct mpc8xxx_gpio_devtype mpc512x_gpio_devtype = {
+diff --git a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
+index ba39d938f2891..5f8a47a9fcd40 100644
+--- a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
++++ b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
+@@ -18,6 +18,7 @@
+ 	compatible = "eukrea,cpuimx35", "fsl,imx35";
  
- static const struct mpc8xxx_gpio_devtype ls1028a_gpio_devtype = {
- 	.gpio_dir_in_init = ls1028a_gpio_dir_in_init,
-+	.irq_set_type = mpc8xxx_irq_set_type,
+ 	memory@80000000 {
++		device_type = "memory";
+ 		reg = <0x80000000 0x8000000>; /* 128M */
+ 	};
  };
+diff --git a/arch/arm/boot/dts/imx35-pdk.dts b/arch/arm/boot/dts/imx35-pdk.dts
+index df613e88fd2c1..ddce0a844758b 100644
+--- a/arch/arm/boot/dts/imx35-pdk.dts
++++ b/arch/arm/boot/dts/imx35-pdk.dts
+@@ -11,6 +11,7 @@
+ 	compatible = "fsl,imx35-pdk", "fsl,imx35";
  
- static const struct mpc8xxx_gpio_devtype mpc5125_gpio_devtype = {
+ 	memory@80000000 {
++		device_type = "memory";
+ 		reg = <0x80000000 0x8000000>,
+ 		      <0x90000000 0x8000000>;
+ 	};
+diff --git a/arch/arm/boot/dts/imx35.dtsi b/arch/arm/boot/dts/imx35.dtsi
+index 1c50b785cad47..b36b97b655dda 100644
+--- a/arch/arm/boot/dts/imx35.dtsi
++++ b/arch/arm/boot/dts/imx35.dtsi
+@@ -13,10 +13,8 @@
+ 	 * The decompressor and also some bootloaders rely on a
+ 	 * pre-existing /chosen node to be available to insert the
+ 	 * command line and merge other ATAGS info.
+-	 * Also for U-Boot there must be a pre-existing /memory node.
+ 	 */
+ 	chosen {};
+-	memory { device_type = "memory"; };
+ 
+ 	aliases {
+ 		ethernet0 = &fec;
 -- 
-2.9.5
+2.20.1
 
