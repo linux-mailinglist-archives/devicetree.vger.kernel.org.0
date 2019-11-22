@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01D2B105F7F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 06:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35888105F8B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 06:20:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726939AbfKVFTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 00:19:13 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41126 "EHLO mail.kernel.org"
+        id S1727091AbfKVFUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 00:20:30 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42530 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726909AbfKVFTM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 00:19:12 -0500
+        id S1726391AbfKVFU0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Nov 2019 00:20:26 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4566F20708;
-        Fri, 22 Nov 2019 05:19:11 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 658552070B;
+        Fri, 22 Nov 2019 05:20:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574399952;
-        bh=qxxjYPnh4PQsTATEX/9F4QwWxNBeIk0vs4XPtZpHA2E=;
+        s=default; t=1574400026;
+        bh=JpUGC9nWCZCTQes37a4qys2DDjrsol2d6dZ4/1Ex844=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OdaBuIzkSPmGxwz1BpnXssafeyUB+vGMDb7Cy6AtY57qh1BnEawui/5VWVAjjYne+
-         Mfw+RlpAm/F6AOhy8kZKubaZ0N7++O9cSolFTvfx7OU6sgZUeyYPQAAbolhgPqRbgS
-         i5hhgkNaSXSh5rXBQIOFgvJVStvt+Y3UbLkNmm7k=
+        b=oUOMAxeS8tx10N4MT8XMlqnIAmo78PHTr7KUR2I5QrK5t1967Qe9NUhzzK7tka+Pc
+         jPk8+WEPfEhEP4RnhtNAApszml02SYLtYcabGj/1XCYOHkDtTkNewCIOz8PFen3+0H
+         f0/RKHpNgJ1JQc6GF2r63eQokdEqnt0yeWosdQD4=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 005/219] ARM: dts: Fix up SQ201 flash access
-Date:   Fri, 22 Nov 2019 00:15:29 -0500
-Message-Id: <20191122051903.31749-5-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 003/127] ARM: dts: Fix up SQ201 flash access
+Date:   Fri, 22 Nov 2019 00:18:17 -0500
+Message-Id: <20191122052021.32062-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191122051903.31749-1-sashal@kernel.org>
-References: <20191122051903.31749-1-sashal@kernel.org>
+In-Reply-To: <20191122052021.32062-1-sashal@kernel.org>
+References: <20191122052021.32062-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -58,7 +58,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 5 insertions(+), 32 deletions(-)
 
 diff --git a/arch/arm/boot/dts/gemini-sq201.dts b/arch/arm/boot/dts/gemini-sq201.dts
-index 3787cf3763c41..e9e4a8a02600b 100644
+index 63c02ca9513c4..e9e2f6ff0c583 100644
 --- a/arch/arm/boot/dts/gemini-sq201.dts
 +++ b/arch/arm/boot/dts/gemini-sq201.dts
 @@ -20,7 +20,7 @@
@@ -70,7 +70,7 @@ index 3787cf3763c41..e9e4a8a02600b 100644
  		stdout-path = &uart0;
  	};
  
-@@ -138,37 +138,10 @@
+@@ -71,37 +71,10 @@
  			/* 16MB of flash */
  			reg = <0x30000000 0x01000000>;
  
