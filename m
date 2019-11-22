@@ -2,94 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44F49105EBA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 03:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EA15105EF8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 04:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbfKVCxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Nov 2019 21:53:16 -0500
-Received: from mga07.intel.com ([134.134.136.100]:64450 "EHLO mga07.intel.com"
+        id S1726343AbfKVDYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Nov 2019 22:24:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34476 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726270AbfKVCxQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Nov 2019 21:53:16 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 Nov 2019 18:53:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,228,1571727600"; 
-   d="scan'208";a="358006930"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga004.jf.intel.com with ESMTP; 21 Nov 2019 18:53:15 -0800
-Received: from [10.226.38.71] (unknown [10.226.38.71])
-        by linux.intel.com (Postfix) with ESMTP id 332DA5802E4;
-        Thu, 21 Nov 2019 18:53:12 -0800 (PST)
-Subject: Re: [PATCH v8 2/2] dt-bindings: pinctrl: intel: Add for new SoC
-From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Andriy Shevchenko <andriy.shevchenko@intel.com>,
-        qi-ming.wu@intel.com, yixin.zhu@linux.intel.com,
-        cheol.yong.kim@intel.com
-References: <cover.1573797249.git.rahul.tanwar@linux.intel.com>
- <b59afc497e41404fea06aa48d633cba183ee944d.1573797249.git.rahul.tanwar@linux.intel.com>
- <CACRpkdYZi-0LRjih8+2cgWZ6u-eFN5+3sW1eV2ujYRd0UBoEKQ@mail.gmail.com>
- <bf8396af-3ace-7463-0fef-890b2f5cc487@linux.intel.com>
-Message-ID: <8804e672-423e-a754-a68e-4b4a0d2d0881@linux.intel.com>
-Date:   Fri, 22 Nov 2019 10:53:12 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726335AbfKVDYY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Nov 2019 22:24:24 -0500
+Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4F08E2067D;
+        Fri, 22 Nov 2019 03:24:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1574393063;
+        bh=iE3p1SKLOct5dnrnmKl/6ltpI6ePV5jd0Jn24rApQo4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J0QsnJoRDUmg0O+Hq5suKVJNR0x7BaZjihZz2MgesejyZHnAiKNjICKnPQj1uxdcK
+         iqB9QNXZn802hSg58ech4sMOptU/83arMJjRqAYGNdr/XBQXxT5qzouZVZ4Gp4GhG9
+         0waNU23Nm/zB3BSjFprpl67wN8HmcfEf1gZBT0O0=
+Date:   Thu, 21 Nov 2019 22:24:22 -0500
+From:   Sasha Levin <sashal@kernel.org>
+To:     David Lechner <david@lechnology.com>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Sekhar Nori <nsekhar@ti.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH AUTOSEL 4.19 087/209] ARM: dts: da850-lego-ev3: slow down
+ A/DC as much as possible
+Message-ID: <20191122032422.GK16867@sasha-vm>
+References: <20191113015025.9685-1-sashal@kernel.org>
+ <20191113015025.9685-87-sashal@kernel.org>
+ <96753746-79ae-3db2-c6d8-e4d5615c0354@lechnology.com>
 MIME-Version: 1.0
-In-Reply-To: <bf8396af-3ace-7463-0fef-890b2f5cc487@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <96753746-79ae-3db2-c6d8-e4d5615c0354@lechnology.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22/11/2019 10:24 AM, Tanwar, Rahul wrote:
-> Hi Linus,
+On Wed, Nov 13, 2019 at 10:10:30AM -0600, David Lechner wrote:
+>On 11/12/19 7:48 PM, Sasha Levin wrote:
+>>From: David Lechner <david@lechnology.com>
+>>
+>>[ Upstream commit aea4762fb46e048c059ff49565ee33da07c8aeb3 ]
+>>
+>>Due to the electrical design of the A/DC circuits on LEGO MINDSTORMS EV3,
+>>if we are reading analog values as fast as possible (i.e. using DMA to
+>>service the SPI) the A/DC chip will read incorrect values - as much as
+>>0.1V off when the SPI is running at 10MHz. (This has to do with the
+>>capacitor charge time when channels are muxed in the A/DC.)
+>>
+>>This patch slows down the SPI as much as possible (if CPU is at 456MHz,
+>>SPI runs at 1/2 of that, so 228MHz and has a max prescalar of 256, so
+>>we could get ~891kHz, but we're just rounding it to 1MHz). We also use
+>>the max allowable value for WDELAY to slow things down even more.
+>>
+>>These changes reduce the error of the analog values to about 5mV, which
+>>is tolerable.
+>>
+>>Commits a3762b13a596 ("spi: spi-davinci: Add support for SPI_CS_WORD")
+>>and e2540da86ef8 ("iio: adc: ti-ads7950: use SPI_CS_WORD to reduce
+>>CPU usage") introduce changes that allow DMA transfers to be used, so
+>>this slow down is needed now.
+>>
 >
-> On 21/11/2019 9:53 PM, Linus Walleij wrote:
->> On Fri, Nov 15, 2019 at 10:25 AM Rahul Tanwar
->> <rahul.tanwar@linux.intel.com> wrote:
->>
->>> Add dt bindings document for pinmux & GPIO controller driver of
->>> Intel Lightning Mountain SoC.
->>>
->>> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
->> Patch applied, you worked hard to get these bindings done in the
->> right YAML format and all.
->>
->> I have some generic bindings from Rob merged simultaneously
->> so it'd be great if you could investigate whether it is possible
->> to follow up with a patch to switch over from some of the local
->> grammar and toward including pinmux-node.yaml and
->> pincfg-node.yaml into these bindings.
->>
->> The method for inclusion of external generic files can be seen
->> in e.g. the display panel bindings, like how
->> panel-common.yaml is included into other bindings under
->> display/panel/*.yaml.
->>
->> Tell us if you have any problems with this!
-> Thanks. Yes, i have gone through Rob's generic pinctrl bindings patch
-> series and i was double minded if *i should still proceed with this
-> patch or wait for generic bindings patch to get merged.
->
-> I will take it up to revise this patch to include external generic
-> files from Rob as soon as kernel 5.5 is released.
+>I doubt that the commits above would be backported, so it does not
+>make sense to backport this patch.
 
-*Fix typo above.
+I've dropped it, thanks!
 
-> Regards,
-> Rahul
-
+-- 
+Thanks,
+Sasha
