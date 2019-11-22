@@ -2,164 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 315E81068D9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 10:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EBDE106909
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 10:45:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726500AbfKVJaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 04:30:07 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:49454 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726417AbfKVJaH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Nov 2019 04:30:07 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAM9TvN4113974;
-        Fri, 22 Nov 2019 03:29:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1574414997;
-        bh=xX8liYsX0VdU7UbDFFdmYxW/QRc0esFBTcTeyfAaf/Q=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=P3F2cemZy8prOUSQ+UocifYvHE6rFXxrk1FsUUVIHva+YoMvD1ZSLT3roJzOG9qOY
-         78HBTfVCsfqEehMiIXAV6jPrs1OM/5HHNdZSdkP3fXMutMbL9HDBN9dus404g3wT8C
-         DWjZj7iRA31pUYaiuC1s4htNtmQ6l7Pc+eBECvt8=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAM9TvZu119213;
-        Fri, 22 Nov 2019 03:29:57 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 22
- Nov 2019 03:29:57 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Fri, 22 Nov 2019 03:29:57 -0600
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAM9TqqM096217;
-        Fri, 22 Nov 2019 03:29:53 -0600
-Subject: Re: [PATCH 1/1] ARM: dts: am5729: beaglebone-ai: adding device tree
-To:     "Robey, Caleb" <c-robey@ti.com>,
-        "linux-omap@vger.kernel.org" <linux-omap@vger.kernel.org>
-CC:     Jason Kridner <jkridner@gmail.com>,
-        "Vutla, Lokesh" <lokeshvutla@ti.com>,
-        "Kridner, Jason" <jdk@ti.com>,
-        "Rizvi, Mohammad Faiz Abbas" <faiz_abbas@ti.com>,
-        "Dannenberg, Andreas" <dannenberg@ti.com>,
-        "Hiblot, Jean-Jacques" <jjhiblot@ti.com>,
-        "Bajjuri, Praneeth" <praneeth@ti.com>,
-        "Davis, Andrew" <afd@ti.com>, Tom Rini <trini@konsulko.com>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20191119202850.18149-1-c-robey@ti.com>
- <20191119202850.18149-2-c-robey@ti.com>
- <8465b8c3-db4b-31fd-a299-3d5251ec99cf@ti.com>
- <12acbc1a96754fe68d7447b6ee99efd3@ti.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <a02ff0ca-f061-4d9e-977b-f41b52bbf18a@ti.com>
-Date:   Fri, 22 Nov 2019 11:29:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727104AbfKVJpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 04:45:49 -0500
+Received: from mail-eopbgr820044.outbound.protection.outlook.com ([40.107.82.44]:57703
+        "EHLO NAM01-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727096AbfKVJpt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Nov 2019 04:45:49 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Lqk13rmbQ3Ed5b8G1IhcayDtyB7PptUjucLzksEqcKtouXcTYc7gqjSaXXOtTLquPrzS533m1Woyq9uSYr/jH0yD+pbLPD1cgIlXRzNK3gPHsRL4+03bUvisYrTqbIQT+LmRoGaLiTaKmvUS62LaKlWazlv+H0fb1J8HnT9rbDSIAvi8ieQXJDKkysCkXumPJ4d6vfbCfnTMS6ssy7wzQNtlixRgAdiHFuGF7L/fuCca7bHAbiyPEDzzA42ESg4mw++UfghX/GTXzuQ+2LZyX/UnIpt44FSdH5Yc0uxYhQANOjLFNHENZ1KNNTBxTqBgYwOBINps/quUssAyaysPuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5hjL7FUO2D73EHBOW35TqeOgZrf/JF28iZk56yrENfU=;
+ b=IiZ45kPULyyp/gF3XkrdJb18CfZp/9L9H61CxBYFijMjjlD/Fu/uua1MHxhii0vV8VUKzBezVfajWbq8oKPNtcf+C5RiifF2Y5RQScGjLHXk30t8pnzHqJFOoMQEF4Vqu0YyPlF62kb/VhFKgZkq50uWLGpg40qm6bgTmg/wLjoDT4+Q5pZik90qiVm+dCAXkBUs4GT8UvL5PmPijVtlHhkgGTdyCM4Y0Bna7HOR0TzFLppKdywNJOwjZi37CMo96vLiEGYRwXvQrn4SCwMdz3w5qWKdlDSJJR+SsesOSK5oaQHhYi1b6UYRyMzZ0ZQjcSpQgZIyDm33othfLHmvfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5hjL7FUO2D73EHBOW35TqeOgZrf/JF28iZk56yrENfU=;
+ b=OM5SOJsf16gu31SIDGSvuP9Fs7p+UTae3pZ6Y8+tY7W4B2kh4YggHsUIGlIdWj/baWE288ptA6M0FSILpiLOU2GHfXGFBHN6t1F7gxMldgi5mI+WxKpk4Sd1+CSu1Wuyevhzk++BIV+AUc5BWXGH9YIO1lBkwFtTuBaIWKY+Q0g=
+Received: from MWHPR02CA0024.namprd02.prod.outlook.com (2603:10b6:300:4b::34)
+ by CY4PR0201MB3411.namprd02.prod.outlook.com (2603:10b6:910:93::34) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2451.23; Fri, 22 Nov
+ 2019 09:45:35 +0000
+Received: from BL2NAM02FT057.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::201) by MWHPR02CA0024.outlook.office365.com
+ (2603:10b6:300:4b::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2474.18 via Frontend
+ Transport; Fri, 22 Nov 2019 09:45:35 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ BL2NAM02FT057.mail.protection.outlook.com (10.152.77.36) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2474.17
+ via Frontend Transport; Fri, 22 Nov 2019 09:45:34 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <rajan.vaja@xilinx.com>)
+        id 1iY5VO-0008SJ-An; Fri, 22 Nov 2019 01:45:34 -0800
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <rajan.vaja@xilinx.com>)
+        id 1iY5VJ-0002pC-8j; Fri, 22 Nov 2019 01:45:29 -0800
+Received: from xsj-pvapsmtp01 (xsj-pvapsmtp01.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id xAM9jLqS003465;
+        Fri, 22 Nov 2019 01:45:21 -0800
+Received: from [172.19.2.91] (helo=xsjjollys50.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <rajan.vaja@xilinx.com>)
+        id 1iY5VB-0002ob-DO; Fri, 22 Nov 2019 01:45:21 -0800
+From:   Rajan Vaja <rajan.vaja@xilinx.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, michal.simek@xilinx.com,
+        jolly.shah@xilinx.com, m.tretter@pengutronix.de,
+        gustavo@embeddedor.com, dan.carpenter@oracle.com,
+        tejas.patel@xilinx.com, nava.manne@xilinx.com, mdf@kernel.org
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rajan Vaja <rajan.vaja@xilinx.com>
+Subject: [PATCH v2 0/6] clk: zynqmp: Extend and fix zynqmp clock driver
+Date:   Fri, 22 Nov 2019 01:43:28 -0800
+Message-Id: <1574415814-19797-1-git-send-email-rajan.vaja@xilinx.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1573564580-9006-1-git-send-email-rajan.vaja@xilinx.com>
+References: <1573564580-9006-1-git-send-email-rajan.vaja@xilinx.com>
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(39860400002)(136003)(396003)(376002)(199004)(189003)(8936002)(47776003)(50226002)(81166006)(81156014)(8676002)(36386004)(106002)(26005)(48376002)(50466002)(70586007)(16586007)(9786002)(70206006)(356004)(7416002)(316002)(186003)(76176011)(2616005)(305945005)(36756003)(44832011)(426003)(336012)(446003)(11346002)(51416003)(5660300002)(2906002)(7696005)(107886003)(4326008)(478600001)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:CY4PR0201MB3411;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;A:1;MX:1;
 MIME-Version: 1.0
-In-Reply-To: <12acbc1a96754fe68d7447b6ee99efd3@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: aafb8ff4-1971-4cfb-8739-08d76f30b919
+X-MS-TrafficTypeDiagnostic: CY4PR0201MB3411:
+X-Microsoft-Antispam-PRVS: <CY4PR0201MB341125DB4F938857C600A300B7490@CY4PR0201MB3411.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-Forefront-PRVS: 02296943FF
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Sg/HSNpYpBZqDAw1kV1/zpGZBUVSnr6I7bv/N7Vv7hF24sFyXELHMZUBJKfbcH7VzvQtQII3cLcarVKih4KPt+FHUDR410G6HoUh+OSUVzbNy1qo+H8Phd4476/naS4Dqicp+mN24OpIVlsBfb3o2KzRVJp1QSbQYfNUffQhRhqYrNPbGiBTB8jCpNCJmuNYJZ5nK+96/ix44Z6DXTa/kenW2IzpHLuxVr6P1j1dbyYyy97EpYOCNNki2UepW8A7Ni1rVw0gx2dqJuIzM62UGeFfnGFeU82wYKq74X75pm4ZJDZbXao1np4KOFDLegDVhxYJOmbQsgmpXQ4t7SPJHdrlDN4NQFzRXeQeu1m1hg/xlCrgrKj5HCUlvWDTn8Jx9XjRM9JNa/6Y/AKe9UCXmljFxqz6sAGAJ7a4Jq9PzBOddW51xul5mAZnGtoS0VmA
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2019 09:45:34.9044
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: aafb8ff4-1971-4cfb-8739-08d76f30b919
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR0201MB3411
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ZynqMP clock driver can be used for Versal platform also. Add support
+for Versal platform in ZynqMP clock driver.
 
+Also this patch series fixes divider calculation and adds support for get
+maximum divider, clock with CLK_DIVIDER_POWER_OF_TWO flag and warn user if
+clock users are more than allowed.
 
-On 21/11/2019 16:41, Robey, Caleb wrote:
-> 
-> 
->> -----Original Message-----
->> From: Strashko, Grygorii
->> Sent: Thursday, November 21, 2019 5:05 AM
->> To: Robey, Caleb; linux-omap@vger.kernel.org
->> Cc: Jason Kridner; Vutla, Lokesh; Kridner, Jason; Rizvi, Mohammad Faiz
->> Abbas; Dannenberg, Andreas; Hiblot, Jean-Jacques; Bajjuri, Praneeth; Davis,
->> Andrew; Tom Rini; Robert Nelson; Rob Herring; Mark Rutland; Benoît
->> Cousson; Tony Lindgren; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org
->> Subject: Re: [PATCH 1/1] ARM: dts: am5729: beaglebone-ai: adding device
->> tree
->>
->>
->>
->> On 19/11/2019 22:28, Caleb Robey wrote:
->>> From: Jason Kridner <jdk@ti.com>
->>>
->>> BeagleBoard.org BeagleBone AI is an open source hardware single
->>> board computer based on the Texas Instruments AM5729 SoC featuring
->>> dual-core 1.5GHz Arm Cortex-A15 processor, dual-core C66 digital
->>> signal processor (DSP), quad-core embedded vision engine (EVE),
->>> Arm Cortex-M4 processors, dual programmable realtime unit
->>> industrial control subsystems and more. The board features 1GB
->>> DDR3L, USB3.0 Type-C, USB HS Type-A, microHDMI, 16GB eMMC flash,
->>> 1G Ethernet, 802.11ac 2/5GHz, Bluetooth, and BeagleBone expansion
->>> headers.
->>>
->>> For more information, refer to:
->>> https://beaglebone.ai
->>
->>
->>>
->>> This patch introduces the BeagleBone AI device tree.
->>>
->>> Note that the device use the "ti,tpd12s016" component which is
->>> software compatible with "ti,tpd12s015". Thus we only use the
->>> latter driver.
->>>
->>> Signed-off-by: Jason Kridner <jdk@ti.com>
->>> Signed-off-by: Caleb Robey <c-robey@ti.com>
->>> Cc: Robert Nelson <robertcnelson@gmail.com>
->>>
->>> ---
->>>    arch/arm/boot/dts/Makefile                |   1 +
->>>    arch/arm/boot/dts/am5729-beagleboneai.dts | 782
->> ++++++++++++++++++++++
->>>    2 files changed, 783 insertions(+)
->>>    create mode 100644 arch/arm/boot/dts/am5729-beagleboneai.dts
->>>
->>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->>> index b21b3a64641a..b1154dbda73c 100644
->>> --- a/arch/arm/boot/dts/Makefile
->>> +++ b/arch/arm/boot/dts/Makefile
->>
->> [..]
->>
->>> +
->>> +&uart1 {
->>> +	status = "okay";
->>> +};
->>> +
->>> +&davinci_mdio {
->>> +	reset-gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
->>> +	reset-delay-us = <2>;
->>> +
->>> +	phy0: ethernet-phy@1 {
->>> +		reg = <4>;
->>> +		compatible = "ethernet-phy-id004d.d072",
->>> +			"ethernet-phy-ieee802.3-c22";
->>
->> Pls, do not ignore my comments.
->>
->> Above compatible should not be required.
-> 
-> Grygori, I am so sorry about this - I had deleted this,
-> but must have made a mistake in the resubmission. I
-> will fix it immediately.
-> 
+Rajan Vaja (5):
+  dt-bindings: clock: Add bindings for versal clock driver
+  clk: zynqmp: Extend driver for versal
+  clk: zynqmp: Warn user if clock user are more than allowed
+  clk: zynqmp: Add support for get max divider
+  clk: zynqmp: Fix divider calculation
 
-Yep. thanks and sorry.
-I saw you fixed it in next version.
+Tejas Patel (1):
+  clk: zynqmp: Add support for clock with CLK_DIVIDER_POWER_OF_TWO flag
+
+ .../devicetree/bindings/clock/xlnx,versal-clk.yaml |  64 +++++++++++
+ drivers/clk/zynqmp/clkc.c                          |   3 +-
+ drivers/clk/zynqmp/divider.c                       | 118 +++++++++++++++++++-
+ drivers/clk/zynqmp/pll.c                           |   6 +-
+ drivers/firmware/xilinx/zynqmp.c                   |   2 +
+ include/dt-bindings/clock/xlnx-versal-clk.h        | 123 +++++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h               |   2 +
+ 7 files changed, 310 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+ create mode 100644 include/dt-bindings/clock/xlnx-versal-clk.h
 
 -- 
-Best regards,
-grygorii
+Changes in v2:
+ - [PATCH 7/7]: Removed patch #7 to fix clock frac to handle backward
+		compatibility. Will send this patch separately with
+		proper backward compatibility handling.
+ - Rest of the changes are mentioned in individual patches.
+-- 
+2.7.4
+
