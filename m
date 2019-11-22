@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A8AF10607A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 06:49:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEAFA106083
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 06:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726018AbfKVFt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 00:49:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53456 "EHLO mail.kernel.org"
+        id S1727117AbfKVFtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 00:49:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53708 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726937AbfKVFtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 00:49:25 -0500
+        id S1727112AbfKVFtf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Nov 2019 00:49:35 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D6EA42070B;
-        Fri, 22 Nov 2019 05:49:23 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EB1CF2070E;
+        Fri, 22 Nov 2019 05:49:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574401764;
-        bh=32RnjBQhpMMpcnJsfK6ZgNHLIRuZH059M6OSVlzGlZk=;
+        s=default; t=1574401774;
+        bh=S/UYcjtquDy0CcPqAHpXYiJOsV3eqyYvXDEKlXM21iE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Jfbo4vuLqcBOeNpy488Q6UNO4jtp5efo1z1DKL5f3i23HvZdjFU0KCW5b22l0Ctiv
-         vZHb55Ja2flbXGeOccpt9tbIQXpV+4OnfjatnjcxTrmrh5HB/4iIuH/osQribx/xHE
-         0bgs4VJk3I/TnSbCQqL/T7GbubHRvMXaiN+7jvTE=
+        b=dQv7R4a3mZ406EO6pURFQa76WFYgyVbt2fVavv3rgT1EnT417IuWLDLaoKHs0w5GV
+         NfaCm2tNhagPlsPr8XTjsi30XrTZwi86VmxxzNtjfqkatJacDmI8Hp+JtjDJgqugSi
+         0YHK/6IiJ0E8+J78GqA6kHGS0Yj5+WhaOSdMLXmU=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 016/219] ARM: dts: imx50: Fix memory node duplication
-Date:   Fri, 22 Nov 2019 00:45:48 -0500
-Message-Id: <20191122054911.1750-9-sashal@kernel.org>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 024/219] ARM: dts: Fix hsi gdd range for omap4
+Date:   Fri, 22 Nov 2019 00:45:56 -0500
+Message-Id: <20191122054911.1750-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191122054911.1750-1-sashal@kernel.org>
 References: <20191122054911.1750-1-sashal@kernel.org>
@@ -44,55 +44,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@gmail.com>
+From: Tony Lindgren <tony@atomide.com>
 
-[ Upstream commit aab5e3ea95b958cf22a24e756a84e635bdb081c1 ]
+[ Upstream commit e9e685480b74aef3f3d0967dadb52eea3ff625d2 ]
 
-imx50-evk has duplicate memory nodes:
+While reviewing the missing mcasp ranges I noticed omap4 hsi range
+for gdd is wrong so let's fix it.
 
-- One coming from the board dts file: memory@
+I'm not aware of any omap4 devices in mainline kernel though that use
+hsi though.
 
-- One coming from the imx50.dtsi file.
-
-Fix the duplication by removing the memory node from the dtsi file
-and by adding 'device_type = "memory";' in the board dts.
-
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Fixes: 84badc5ec5fc ("ARM: dts: omap4: Move l4 child devices to probe
+them with ti-sysc")
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx50-evk.dts | 1 +
- arch/arm/boot/dts/imx50.dtsi    | 2 --
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ arch/arm/boot/dts/omap4-l4.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx50-evk.dts b/arch/arm/boot/dts/imx50-evk.dts
-index 682a99783ee69..a25da415cb02e 100644
---- a/arch/arm/boot/dts/imx50-evk.dts
-+++ b/arch/arm/boot/dts/imx50-evk.dts
-@@ -12,6 +12,7 @@
- 	compatible = "fsl,imx50-evk", "fsl,imx50";
+diff --git a/arch/arm/boot/dts/omap4-l4.dtsi b/arch/arm/boot/dts/omap4-l4.dtsi
+index 6eb26b837446c..5059ecac44787 100644
+--- a/arch/arm/boot/dts/omap4-l4.dtsi
++++ b/arch/arm/boot/dts/omap4-l4.dtsi
+@@ -196,12 +196,12 @@
+ 			clock-names = "fck";
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+-			ranges = <0x0 0x58000 0x4000>;
++			ranges = <0x0 0x58000 0x5000>;
  
- 	memory@70000000 {
-+		device_type = "memory";
- 		reg = <0x70000000 0x80000000>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/imx50.dtsi b/arch/arm/boot/dts/imx50.dtsi
-index ab522c2da6df6..9e9e92acceb27 100644
---- a/arch/arm/boot/dts/imx50.dtsi
-+++ b/arch/arm/boot/dts/imx50.dtsi
-@@ -22,10 +22,8 @@
- 	 * The decompressor and also some bootloaders rely on a
- 	 * pre-existing /chosen node to be available to insert the
- 	 * command line and merge other ATAGS info.
--	 * Also for U-Boot there must be a pre-existing /memory node.
- 	 */
- 	chosen {};
--	memory { device_type = "memory"; };
+ 			hsi: hsi@0 {
+ 				compatible = "ti,omap4-hsi";
+ 				reg = <0x0 0x4000>,
+-				      <0x4a05c000 0x1000>;
++				      <0x5000 0x1000>;
+ 				reg-names = "sys", "gdd";
  
- 	aliases {
- 		ethernet0 = &fec;
+ 				clocks = <&l3_init_clkctrl OMAP4_HSI_CLKCTRL 0>;
 -- 
 2.20.1
 
