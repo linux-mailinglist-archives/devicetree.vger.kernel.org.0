@@ -2,116 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25714105FEC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 06:29:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AA82105FCA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 06:27:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727080AbfKVF2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 00:28:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46736 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727047AbfKVF2p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 00:28:45 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A3C4F20708;
-        Fri, 22 Nov 2019 05:28:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574400524;
-        bh=qxxjYPnh4PQsTATEX/9F4QwWxNBeIk0vs4XPtZpHA2E=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=t8aP2o5bJsdUeIXEVzVdc4B5r4Ohm29UKuCZwaxSLZuLPHLx6Dn3/u+L8NYOHifRH
-         A3boHOQmUO2G7CI3Jmvmdjb2YoN1g5fUm1OhXElxwf3q0qsWuAN3AnNidU9mShOGPQ
-         4cfktGVbDNG0SsL9H7qRJQi8NrEVNfQxHinrqH/c=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 005/219] ARM: dts: Fix up SQ201 flash access
-Date:   Fri, 22 Nov 2019 00:25:03 -0500
-Message-Id: <20191122052837.357-5-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191122052837.357-1-sashal@kernel.org>
-References: <20191122052837.357-1-sashal@kernel.org>
+        id S1726248AbfKVF1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 00:27:09 -0500
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:41051 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726018AbfKVF1J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Nov 2019 00:27:09 -0500
+Received: by mail-pf1-f194.google.com with SMTP id p26so2914049pfq.8;
+        Thu, 21 Nov 2019 21:27:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Ng+pSGgG5AZ0E7r71mRkN5pqcWAjBVIoAMBtQbN/oL8=;
+        b=CwM92wfC8hXbxxv9lcz1TKyE9gkr6pv4XjBGwR4KL9ZBbY+F1GC1rRvKRS2K4Bbq+d
+         R7aaugL4yXJlDk5t8HdsYOLQq6VJUEGCJmbrs0K+wmiLvQsxJITjBsTnfqnXJZ09lqZ/
+         AQEHFtesLSRi25upU+0g2CC2MjEEH7M7InI6nPvO2ef+9JgVtIULS3ouplUjkQzAw8Yl
+         GY8wluNCcGdQJLq1LqnbaIcC0z6b2emChATPhlv1k/Y8i/Wceigp90x9f291M7YBgCYi
+         162i2dZsD5d2kWBqXAnwaCeCBjfWMxfPvPB3qW4OQH5DNXV1aO5nOFDR+fNTBZSLYUqy
+         yGqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Ng+pSGgG5AZ0E7r71mRkN5pqcWAjBVIoAMBtQbN/oL8=;
+        b=Y+TSa1pnf9WuTPhS8rAL7fdMmP6i29yGGLNgENTaJurzwqadIBXbUIVgZ/M5Aafral
+         8vPNl/TxAMDXxzjV5x0o7C/UAeo0012EOdlHldncaOb47am+LLshhbROpbb0q8wyP256
+         pvibA5zjVZDIEOnQRjObhA5r2kzfhbKz5nsDuhB4ijf5LLCKAJkRaY72gvwlyOnMsKkW
+         RO2ibeQKGhYcfbBqpZ87qQ/YL0UGian4ALYcdnjtgA1dnou6GaFYvPAQfk7zpx3OX20u
+         /6ES9NVDtvk0LarP7k40njEKmLgzGadBdMRPMzh5hfSo1f2ulML9XKzw0U25bI72i/11
+         0ClQ==
+X-Gm-Message-State: APjAAAXvFscIaIMMm2RUwpDeQHFqwiPF3NhGoZsXr34VYu7a8rsxu0rk
+        vPorQPT1/d68/lvriF5HS3I=
+X-Google-Smtp-Source: APXvYqzbtB+r9K+tg7COyI/QtTZhEKrOxYCf0LkwRQrGZraf6mOSos3H2LZghXeg6d71jowhCPnULA==
+X-Received: by 2002:aa7:9f86:: with SMTP id z6mr15590299pfr.102.1574400428774;
+        Thu, 21 Nov 2019 21:27:08 -0800 (PST)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id v14sm5421346pfe.94.2019.11.21.21.27.07
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 21 Nov 2019 21:27:07 -0800 (PST)
+Date:   Thu, 21 Nov 2019 21:27:06 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Eric Tremblay <etremblay@distech-controls.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, jdelvare@suse.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, corbet@lwn.net
+Subject: Re: [PATCH v8 1/2] dt-bindings: hwmon: Add TMP512/513
+Message-ID: <20191122052706.GA21663@roeck-us.net>
+References: <20191112223001.20844-1-etremblay@distech-controls.com>
+ <20191112223001.20844-2-etremblay@distech-controls.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191112223001.20844-2-etremblay@distech-controls.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Linus Walleij <linus.walleij@linaro.org>
+On Tue, Nov 12, 2019 at 05:30:00PM -0500, Eric Tremblay wrote:
+> Document the TMP513/512 device devicetree bindings
+> 
+> Signed-off-by: Eric Tremblay <etremblay@distech-controls.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-[ Upstream commit d88b11ef91b15d0af9c0676cbf4f441a0dff0c56 ]
+Applied.
 
-This sets the partition information on the SQ201 to be read
-out from the RedBoot partition table, removes the static
-partition table and sets our boot options to mount root from
-/dev/mtdblock2 where the squashfs+JFFS2 resides.
+Thanks,
+Guenter
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/gemini-sq201.dts | 37 ++++--------------------------
- 1 file changed, 5 insertions(+), 32 deletions(-)
-
-diff --git a/arch/arm/boot/dts/gemini-sq201.dts b/arch/arm/boot/dts/gemini-sq201.dts
-index 3787cf3763c41..e9e4a8a02600b 100644
---- a/arch/arm/boot/dts/gemini-sq201.dts
-+++ b/arch/arm/boot/dts/gemini-sq201.dts
-@@ -20,7 +20,7 @@
- 	};
- 
- 	chosen {
--		bootargs = "console=ttyS0,115200n8";
-+		bootargs = "console=ttyS0,115200n8 root=/dev/mtdblock2 rw rootfstype=squashfs,jffs2 rootwait";
- 		stdout-path = &uart0;
- 	};
- 
-@@ -138,37 +138,10 @@
- 			/* 16MB of flash */
- 			reg = <0x30000000 0x01000000>;
- 
--			partition@0 {
--				label = "RedBoot";
--				reg = <0x00000000 0x00120000>;
--				read-only;
--			};
--			partition@120000 {
--				label = "Kernel";
--				reg = <0x00120000 0x00200000>;
--			};
--			partition@320000 {
--				label = "Ramdisk";
--				reg = <0x00320000 0x00600000>;
--			};
--			partition@920000 {
--				label = "Application";
--				reg = <0x00920000 0x00600000>;
--			};
--			partition@f20000 {
--				label = "VCTL";
--				reg = <0x00f20000 0x00020000>;
--				read-only;
--			};
--			partition@f40000 {
--				label = "CurConf";
--				reg = <0x00f40000 0x000a0000>;
--				read-only;
--			};
--			partition@fe0000 {
--				label = "FIS directory";
--				reg = <0x00fe0000 0x00020000>;
--				read-only;
-+			partitions {
-+				compatible = "redboot-fis";
-+				/* Eraseblock at 0xfe0000 */
-+				fis-index-block = <0x1fc>;
- 			};
- 		};
- 
--- 
-2.20.1
-
+> ---
+>  .../devicetree/bindings/hwmon/ti,tmp513.yaml  | 93 +++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
+> new file mode 100644
+> index 000000000000..168235ad5d81
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp513.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/ti,tmp513.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TMP513/512 system monitor sensor
+> +
+> +maintainers:
+> +  - Eric Tremblay <etremblay@distech-controls.com>
+> +
+> +description: |
+> +  The TMP512 (dual-channel) and TMP513 (triple-channel) are system monitors
+> +  that include remote sensors, a local temperature sensor, and a high-side
+> +  current shunt monitor. These system monitors have the capability of measuring
+> +  remote temperatures, on-chip temperatures, and system voltage/power/current
+> +  consumption.
+> +
+> +  Datasheets:
+> +  http://www.ti.com/lit/gpn/tmp513
+> +  http://www.ti.com/lit/gpn/tmp512
+> +
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tmp512
+> +      - ti,tmp513
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  shunt-resistor-micro-ohms:
+> +    description: |
+> +      If 0, the calibration process will be skiped and the current and power
+> +      measurement engine will not work. Temperature and voltage measurement
+> +      will continue to work. The shunt value also need to respect:
+> +      rshunt <= pga-gain * 40 * 1000 * 1000.
+> +      If not, it's not possible to compute a valid calibration value.
+> +    default: 1000
+> +
+> +  ti,pga-gain:
+> +    description: |
+> +      The gain value for the PGA function. This is 8, 4, 2 or 1.
+> +      The PGA gain affect the shunt voltage range.
+> +      The range will be equal to: pga-gain * 40mV
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4, 8]
+> +    default: 8
+> +
+> +  ti,bus-range-microvolt:
+> +    description: |
+> +      This is the operating range of the bus voltage in microvolt
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [16000000, 32000000]
+> +    default: 32000000
+> +
+> +  ti,nfactor:
+> +    description: |
+> +      Array of three(TMP513) or two(TMP512) n-Factor value for each remote
+> +      temperature channel.
+> +      See datasheet Table 11 for n-Factor range list and value interpretation.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#definitions/uint32-array
+> +      - minItems: 2
+> +        maxItems: 3
+> +        items:
+> +          default: 0x00
+> +          minimum: 0x00
+> +          maximum: 0xFF
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          tmp513@5c {
+> +              compatible = "ti,tmp513";
+> +              reg = <0x5C>;
+> +              shunt-resistor-micro-ohms = <330000>;
+> +              ti,bus-range-microvolt = <32000000>;
+> +              ti,pga-gain = <8>;
+> +              ti,nfactor = <0x1 0xF3 0x00>;
+> +          };
+> +    };
