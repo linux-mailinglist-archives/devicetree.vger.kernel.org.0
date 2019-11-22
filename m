@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1C2106638
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:31:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36CA4106678
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:31:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726961AbfKVFt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 00:49:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53384 "EHLO mail.kernel.org"
+        id S1727769AbfKVGay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 01:30:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53478 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726895AbfKVFtX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 00:49:23 -0500
+        id S1726948AbfKVFt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Nov 2019 00:49:27 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 38E2320708;
-        Fri, 22 Nov 2019 05:49:21 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 43DC82070A;
+        Fri, 22 Nov 2019 05:49:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574401762;
-        bh=PdKlgkUbmjtGXd4lr35779+IJqQhfvMEQr7fvNa42pU=;
+        s=default; t=1574401766;
+        bh=HwrdliP4e2KnHoiiMFsQZ6eO7u3d7tT5XWKqlt9m2F4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iGwU6KzEBtIfh4UPPgMShh7qa4TgU1xvdBs0iCpBfyqxauU/CEx1lajFlxlolVEW4
-         q6HBN004Quy7nOf+jakLFGczyurchpZo4ieOeG8Iznsl8DDi0xQF9HU1Ygo8hmdZR3
-         ZbPX/z4JgvzqOkhvvPzyWu8ueq6urD/Ye04JY114=
+        b=x9NgTKehk3TpbcX32KKf/Ip69oGyp6Jvz9Cy8BfHM0+Ok8qDnRMCRg2ZS+M54agVz
+         GjBO+fXY0jcJ2aWkEXGaEAnW5+0isCbj8fg8I+F+d4U5l69NQNiuzMpkr3yMoimTk0
+         7tva1vutYeYKX2vdP6sFNpxH19BjkqtwWSXpjkuE=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 014/219] ARM: dts: imx6sx: Fix memory node duplication
-Date:   Fri, 22 Nov 2019 00:45:46 -0500
-Message-Id: <20191122054911.1750-7-sashal@kernel.org>
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH AUTOSEL 4.19 017/219] ARM: dts: imx23: Fix memory node duplication
+Date:   Fri, 22 Nov 2019 00:45:49 -0500
+Message-Id: <20191122054911.1750-10-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191122054911.1750-1-sashal@kernel.org>
 References: <20191122054911.1750-1-sashal@kernel.org>
@@ -46,13 +47,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Fabio Estevam <festevam@gmail.com>
 
-[ Upstream commit 216f35fedd8688c8b654ebfbad18c6e64713fad7 ]
+[ Upstream commit b629e83520fafe6f4c2f3e8c88c78a496fc4987c ]
 
-Boards based on imx6sx have duplicate memory nodes:
+Boards based on imx23 have duplicate memory nodes:
 
 - One coming from the board dts file: memory@
 
-- One coming from the imx6sx.dtsi file.
+- One coming from the imx23.dtsi file.
 
 Fix the duplication by removing the memory node from the dtsi file
 and by adding 'device_type = "memory";' in the board dts.
@@ -62,105 +63,79 @@ Signed-off-by: Fabio Estevam <festevam@gmail.com>
 Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6sx-nitrogen6sx.dts         | 1 +
- arch/arm/boot/dts/imx6sx-sabreauto.dts           | 1 +
- arch/arm/boot/dts/imx6sx-sdb.dtsi                | 1 +
- arch/arm/boot/dts/imx6sx-softing-vining-2000.dts | 1 +
- arch/arm/boot/dts/imx6sx-udoo-neo-basic.dts      | 1 +
- arch/arm/boot/dts/imx6sx-udoo-neo-extended.dts   | 1 +
- arch/arm/boot/dts/imx6sx-udoo-neo-full.dts       | 1 +
- arch/arm/boot/dts/imx6sx.dtsi                    | 2 --
- 8 files changed, 7 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/imx23-evk.dts           | 1 +
+ arch/arm/boot/dts/imx23-olinuxino.dts     | 1 +
+ arch/arm/boot/dts/imx23-sansa.dts         | 1 +
+ arch/arm/boot/dts/imx23-stmp378x_devb.dts | 1 +
+ arch/arm/boot/dts/imx23-xfi3.dts          | 1 +
+ arch/arm/boot/dts/imx23.dtsi              | 2 --
+ 6 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6sx-nitrogen6sx.dts b/arch/arm/boot/dts/imx6sx-nitrogen6sx.dts
-index adb5cc7d8ce2f..832b5c5d7441a 100644
---- a/arch/arm/boot/dts/imx6sx-nitrogen6sx.dts
-+++ b/arch/arm/boot/dts/imx6sx-nitrogen6sx.dts
-@@ -12,6 +12,7 @@
- 	compatible = "boundary,imx6sx-nitrogen6sx", "fsl,imx6sx";
+diff --git a/arch/arm/boot/dts/imx23-evk.dts b/arch/arm/boot/dts/imx23-evk.dts
+index ad2ae25b7b4db..aca27aa2d44bd 100644
+--- a/arch/arm/boot/dts/imx23-evk.dts
++++ b/arch/arm/boot/dts/imx23-evk.dts
+@@ -10,6 +10,7 @@
+ 	compatible = "fsl,imx23-evk", "fsl,imx23";
  
- 	memory@80000000 {
+ 	memory@40000000 {
 +		device_type = "memory";
- 		reg = <0x80000000 0x40000000>;
+ 		reg = <0x40000000 0x08000000>;
  	};
  
-diff --git a/arch/arm/boot/dts/imx6sx-sabreauto.dts b/arch/arm/boot/dts/imx6sx-sabreauto.dts
-index 841a27f3198ff..48aede543612b 100644
---- a/arch/arm/boot/dts/imx6sx-sabreauto.dts
-+++ b/arch/arm/boot/dts/imx6sx-sabreauto.dts
-@@ -11,6 +11,7 @@
- 	compatible = "fsl,imx6sx-sabreauto", "fsl,imx6sx";
+diff --git a/arch/arm/boot/dts/imx23-olinuxino.dts b/arch/arm/boot/dts/imx23-olinuxino.dts
+index e9351774c6199..109f51603d45e 100644
+--- a/arch/arm/boot/dts/imx23-olinuxino.dts
++++ b/arch/arm/boot/dts/imx23-olinuxino.dts
+@@ -20,6 +20,7 @@
+ 	compatible = "olimex,imx23-olinuxino", "fsl,imx23";
  
- 	memory@80000000 {
+ 	memory@40000000 {
 +		device_type = "memory";
- 		reg = <0x80000000 0x80000000>;
+ 		reg = <0x40000000 0x04000000>;
  	};
  
-diff --git a/arch/arm/boot/dts/imx6sx-sdb.dtsi b/arch/arm/boot/dts/imx6sx-sdb.dtsi
-index f8f31872fa144..7f5ede5ca4c30 100644
---- a/arch/arm/boot/dts/imx6sx-sdb.dtsi
-+++ b/arch/arm/boot/dts/imx6sx-sdb.dtsi
-@@ -21,6 +21,7 @@
- 	};
+diff --git a/arch/arm/boot/dts/imx23-sansa.dts b/arch/arm/boot/dts/imx23-sansa.dts
+index 67de7863ad795..fa22fd9b24129 100644
+--- a/arch/arm/boot/dts/imx23-sansa.dts
++++ b/arch/arm/boot/dts/imx23-sansa.dts
+@@ -50,6 +50,7 @@
+ 	compatible = "sandisk,sansa_fuze_plus", "fsl,imx23";
  
- 	memory@80000000 {
+ 	memory@40000000 {
 +		device_type = "memory";
- 		reg = <0x80000000 0x40000000>;
+ 		reg = <0x40000000 0x04000000>;
  	};
  
-diff --git a/arch/arm/boot/dts/imx6sx-softing-vining-2000.dts b/arch/arm/boot/dts/imx6sx-softing-vining-2000.dts
-index 252175b592475..2bc51623a8060 100644
---- a/arch/arm/boot/dts/imx6sx-softing-vining-2000.dts
-+++ b/arch/arm/boot/dts/imx6sx-softing-vining-2000.dts
-@@ -21,6 +21,7 @@
- 	};
+diff --git a/arch/arm/boot/dts/imx23-stmp378x_devb.dts b/arch/arm/boot/dts/imx23-stmp378x_devb.dts
+index 95c7b918f6d60..aab029349420d 100644
+--- a/arch/arm/boot/dts/imx23-stmp378x_devb.dts
++++ b/arch/arm/boot/dts/imx23-stmp378x_devb.dts
+@@ -17,6 +17,7 @@
+ 	compatible = "fsl,stmp378x-devb", "fsl,imx23";
  
- 	memory@80000000 {
+ 	memory@40000000 {
 +		device_type = "memory";
- 		reg = <0x80000000 0x40000000>;
+ 		reg = <0x40000000 0x04000000>;
  	};
  
-diff --git a/arch/arm/boot/dts/imx6sx-udoo-neo-basic.dts b/arch/arm/boot/dts/imx6sx-udoo-neo-basic.dts
-index 40ccdf43dffc5..db0feb9b9f5d7 100644
---- a/arch/arm/boot/dts/imx6sx-udoo-neo-basic.dts
-+++ b/arch/arm/boot/dts/imx6sx-udoo-neo-basic.dts
+diff --git a/arch/arm/boot/dts/imx23-xfi3.dts b/arch/arm/boot/dts/imx23-xfi3.dts
+index 9616e500b9961..2b5df8dfd3ff3 100644
+--- a/arch/arm/boot/dts/imx23-xfi3.dts
++++ b/arch/arm/boot/dts/imx23-xfi3.dts
 @@ -49,6 +49,7 @@
- 	compatible = "udoo,neobasic", "fsl,imx6sx";
+ 	compatible = "creative,x-fi3", "fsl,imx23";
  
- 	memory@80000000 {
+ 	memory@40000000 {
 +		device_type = "memory";
- 		reg = <0x80000000 0x20000000>;
+ 		reg = <0x40000000 0x04000000>;
  	};
- };
-diff --git a/arch/arm/boot/dts/imx6sx-udoo-neo-extended.dts b/arch/arm/boot/dts/imx6sx-udoo-neo-extended.dts
-index 42bfc8f8f7f6b..5c7a2bb9141cb 100644
---- a/arch/arm/boot/dts/imx6sx-udoo-neo-extended.dts
-+++ b/arch/arm/boot/dts/imx6sx-udoo-neo-extended.dts
-@@ -49,6 +49,7 @@
- 	compatible = "udoo,neoextended", "fsl,imx6sx";
  
- 	memory@80000000 {
-+		device_type = "memory";
- 		reg = <0x80000000 0x40000000>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/imx6sx-udoo-neo-full.dts b/arch/arm/boot/dts/imx6sx-udoo-neo-full.dts
-index c84c877f09d49..13dfe2afaba56 100644
---- a/arch/arm/boot/dts/imx6sx-udoo-neo-full.dts
-+++ b/arch/arm/boot/dts/imx6sx-udoo-neo-full.dts
-@@ -49,6 +49,7 @@
- 	compatible = "udoo,neofull", "fsl,imx6sx";
- 
- 	memory@80000000 {
-+		device_type = "memory";
- 		reg = <0x80000000 0x40000000>;
- 	};
- };
-diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
-index 7b62e6fb47ebe..ae0728df542e9 100644
---- a/arch/arm/boot/dts/imx6sx.dtsi
-+++ b/arch/arm/boot/dts/imx6sx.dtsi
-@@ -15,10 +15,8 @@
+diff --git a/arch/arm/boot/dts/imx23.dtsi b/arch/arm/boot/dts/imx23.dtsi
+index 71bfd2b15609a..aaaa987d8eff9 100644
+--- a/arch/arm/boot/dts/imx23.dtsi
++++ b/arch/arm/boot/dts/imx23.dtsi
+@@ -13,10 +13,8 @@
  	 * The decompressor and also some bootloaders rely on a
  	 * pre-existing /chosen node to be available to insert the
  	 * command line and merge other ATAGS info.
@@ -170,7 +145,7 @@ index 7b62e6fb47ebe..ae0728df542e9 100644
 -	memory { device_type = "memory"; };
  
  	aliases {
- 		can0 = &flexcan1;
+ 		gpio0 = &gpio0;
 -- 
 2.20.1
 
