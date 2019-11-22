@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FCB5106332
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:09:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5EA1062B3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:06:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727627AbfKVGJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 01:09:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39796 "EHLO mail.kernel.org"
+        id S1729390AbfKVGCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 01:02:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40968 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727484AbfKVGBc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 01:01:32 -0500
+        id S1729703AbfKVGCX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Nov 2019 01:02:23 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 809B620715;
-        Fri, 22 Nov 2019 06:01:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E5C582068F;
+        Fri, 22 Nov 2019 06:02:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574402492;
-        bh=TOV0UK0piw0Hanyoyx8YpCbQcv2tT6LiX7Adeaopczg=;
+        s=default; t=1574402542;
+        bh=ZhJ+AoQEj/5MiznVVd92YNDSv6J7kOWoIuf5m+J3hN0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=VxNPQO5vzGBBTfNrEbOsQF9rp7I+8+w9MYkI/dXCN63P8/J787K3dI2yo96/0P/WC
-         +ksu/OESVU+Nqnean7ADkZVhxH7xi9VItYgkiLS70N/1ATQk7dQOHzzBrRAyh9LMFX
-         dEBZp6O+1SlpnpN0MZjqJjqPkS2jc1vvzdQVmQ08=
+        b=UWI1jAbpNly2raH29oPqNAjyXPIutIKhM60O/XzKZjwZMD7vw/qWcqWa4Vo0jG0tb
+         GwQ4NFfL/1coTVqGvfx/f5PGFebyF3bkBR79sObp4H/DWiMsMbLjd0WIasZyVGyQJp
+         8nY0uIqI0e5l//h9yc7vTaOPHXMBkgdTZh3VUPO8=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Marco Franchi <marco.franchi@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+Cc:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.9 03/91] ARM: dts: imx53-voipac-dmm-668: Fix memory node duplication
-Date:   Fri, 22 Nov 2019 01:00:01 -0500
-Message-Id: <20191122060129.4239-2-sashal@kernel.org>
+        linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH AUTOSEL 4.9 49/91] powerpc/44x/bamboo: Fix PCI range
+Date:   Fri, 22 Nov 2019 01:00:47 -0500
+Message-Id: <20191122060129.4239-48-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191122060129.4239-1-sashal@kernel.org>
 References: <20191122060129.4239-1-sashal@kernel.org>
@@ -45,42 +44,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@gmail.com>
+From: Benjamin Herrenschmidt <benh@kernel.crashing.org>
 
-[ Upstream commit 998a84c27a7f3f9133d32af64e19c05cec161a1a ]
+[ Upstream commit 3cfb9ebe906b51f2942b1e251009bb251efd2ba6 ]
 
-imx53-voipac-dmm-668 has two memory nodes, but the correct representation
-would be to use a single one with two reg entries - one for each RAM chip
-select, so fix it accordingly.
+The bamboo dts has a bug: it uses a non-naturally aligned range
+for PCI memory space. This isnt' supported by the code, thus
+causing PCI to break on this system.
 
-Reported-by: Marco Franchi <marco.franchi@nxp.com>
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Marco Franchi <marco.franchi@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+This is due to the fact that while the chip memory map has 1G
+reserved for PCI memory, it's only 512M aligned. The code doesn't
+know how to split that into 2 different PMMs and fails, so limit
+the region to 512M.
+
+Signed-off-by: Benjamin Herrenschmidt <benh@kernel.crashing.org>
+Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ arch/powerpc/boot/dts/bamboo.dts | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi b/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi
-index ba689fbd0e413..301cf8d45947f 100644
---- a/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi
-+++ b/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi
-@@ -17,12 +17,8 @@
+diff --git a/arch/powerpc/boot/dts/bamboo.dts b/arch/powerpc/boot/dts/bamboo.dts
+index aa68911f6560a..084b82ba74933 100644
+--- a/arch/powerpc/boot/dts/bamboo.dts
++++ b/arch/powerpc/boot/dts/bamboo.dts
+@@ -268,8 +268,10 @@
+ 			/* Outbound ranges, one memory and one IO,
+ 			 * later cannot be changed. Chip supports a second
+ 			 * IO range but we don't use it for now
++			 * The chip also supports a larger memory range but
++			 * it's not naturally aligned, so our code will break
+ 			 */
+-			ranges = <0x02000000 0x00000000 0xa0000000 0x00000000 0xa0000000 0x00000000 0x40000000
++			ranges = <0x02000000 0x00000000 0xa0000000 0x00000000 0xa0000000 0x00000000 0x20000000
+ 				  0x02000000 0x00000000 0x00000000 0x00000000 0xe0000000 0x00000000 0x00100000
+ 				  0x01000000 0x00000000 0x00000000 0x00000000 0xe8000000 0x00000000 0x00010000>;
  
- 	memory@70000000 {
- 		device_type = "memory";
--		reg = <0x70000000 0x20000000>;
--	};
--
--	memory@b0000000 {
--		device_type = "memory";
--		reg = <0xb0000000 0x20000000>;
-+		reg = <0x70000000 0x20000000>,
-+		      <0xb0000000 0x20000000>;
- 	};
- 
- 	regulators {
 -- 
 2.20.1
 
