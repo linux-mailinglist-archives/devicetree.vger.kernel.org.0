@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8385610663D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:31:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A33410665A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 07:31:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727088AbfKVFtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 00:49:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53652 "EHLO mail.kernel.org"
+        id S1726855AbfKVG3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 01:29:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54302 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727071AbfKVFtb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 00:49:31 -0500
+        id S1727387AbfKVFt5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Nov 2019 00:49:57 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9E8082068F;
-        Fri, 22 Nov 2019 05:49:30 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 893E82070B;
+        Fri, 22 Nov 2019 05:49:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574401771;
-        bh=zfH7E1dQ0QMkwOWmVhltnebB7TPcOcSQTtCRkRBoYr0=;
+        s=default; t=1574401796;
+        bh=hRQeDkByL8QEKVXoXktXKnPJwQx473J1hBcnIlZEy3k=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mtmvHCf5DPy5iMwKue2/+woJ2/VJOEVw2wuMYMQFPVOXfKeLpcE8hXEpjF46NN+cB
-         xKyvvnirPUx5XaUwk8sb3+aCRGzL16RTOlhK9VABu2zeMZq/iRbi8DQYgI7baADJRd
-         kwNedyIXQwVGLcgQ65jKAjkZpEPofIHi1vELPyp8=
+        b=l5567OOMi2HSqclILq58Q5cIb6CZeh3LJv9ABLD3KHsja1Mm2JyIZjc/PC9uhVPJM
+         ZCMA8leDHLzoV8QCpyFAXfi/b8wammknZ12Ofzbt4hPzLQGt+k0AxT5OX6nQ1yLoSj
+         su6zgTVsJBLyt9MMx/70piwmQ4j5PlPI6nDLEosY=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Marco Franchi <marco.franchi@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 021/219] ARM: dts: imx53-voipac-dmm-668: Fix memory node duplication
-Date:   Fri, 22 Nov 2019 00:45:53 -0500
-Message-Id: <20191122054911.1750-14-sashal@kernel.org>
+Cc:     Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 043/219] arm64: dts: renesas: draak: Fix CVBS input
+Date:   Fri, 22 Nov 2019 00:46:15 -0500
+Message-Id: <20191122054911.1750-36-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191122054911.1750-1-sashal@kernel.org>
 References: <20191122054911.1750-1-sashal@kernel.org>
@@ -45,42 +45,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@gmail.com>
+From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-[ Upstream commit 998a84c27a7f3f9133d32af64e19c05cec161a1a ]
+[ Upstream commit 6f61a2c8f1f6163c7e08c77c5f71df0427e4d2f6 ]
 
-imx53-voipac-dmm-668 has two memory nodes, but the correct representation
-would be to use a single one with two reg entries - one for each RAM chip
-select, so fix it accordingly.
+A typo in the adv7180 DT node prevents successful probing of the VIN.
+Fix it.
 
-Reported-by: Marco Franchi <marco.franchi@nxp.com>
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Marco Franchi <marco.franchi@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Fixes: 6a0942c20f5c ("arm64: dts: renesas: draak: Describe CVBS input")
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Acked-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/renesas/r8a77995-draak.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi b/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi
-index f83a8c62ea531..d595034f3f1bf 100644
---- a/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi
-+++ b/arch/arm/boot/dts/imx53-voipac-dmm-668.dtsi
-@@ -17,12 +17,8 @@
+diff --git a/arch/arm64/boot/dts/renesas/r8a77995-draak.dts b/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
+index a8e8f2669d4c5..1b8f19ee257f0 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
+@@ -188,7 +188,7 @@
+ 		compatible = "adi,adv7180cp";
+ 		reg = <0x20>;
  
- 	memory@70000000 {
- 		device_type = "memory";
--		reg = <0x70000000 0x20000000>;
--	};
--
--	memory@b0000000 {
--		device_type = "memory";
--		reg = <0xb0000000 0x20000000>;
-+		reg = <0x70000000 0x20000000>,
-+		      <0xb0000000 0x20000000>;
- 	};
+-		port {
++		ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
  
- 	regulators {
 -- 
 2.20.1
 
