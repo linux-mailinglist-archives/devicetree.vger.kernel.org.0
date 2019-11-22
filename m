@@ -2,218 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D6F1106913
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 10:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63B7110691D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2019 10:46:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727141AbfKVJqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 04:46:05 -0500
-Received: from mail-eopbgr800079.outbound.protection.outlook.com ([40.107.80.79]:32288
-        "EHLO NAM03-DM3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726802AbfKVJpj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Nov 2019 04:45:39 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QREfbtL1r4ZC19dYer52NhlmgszAeYKHFOv6s263rsUPZ61hbXCGOC/3v0SFCWp8Y1NTCswEUOpBefPr3l4ZVubxx3Dc3pPIwmeqKTB9iEWEhzFgWd0LlpmaKPwmEcxzzt3lMJBSdab+2wuQPRLj+pt9UeliFXokuoyNXl+eepZ31WX/RK6+ewBbRAMz6Sh00CivB3ekLB+h0/OeqGDHZnadPM765WF4CA+mRKL31DNwYLFkFzH9/0rrSjk2+eet2JcQxuSSzrGG5MkFEDHR3/7WeMLIsWN9d/mNRejRN3rSce9umukiOZjQyGJBNr5RUAxKG0QdMVfDza9cJ8ODtw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=My5GEXzjq+YdSFxcfZdDk/JzMNz28rCI+oq70GAKch8=;
- b=QWMe2iJFTxiZy+yAlRggIpsqJFgLgBlbulDp4yWwPdWfF1HLqqdrpAl+rcF++ihbc2Ct3RrMqdt+XP2hl2igIJAYEFWwZIlot3R1nZB3ZTW8KYKJgbalBPo3A2KiF1qGgLrxu1so3Wt0HPjqduXFSBDZR5i+TwVG4xQeqE3+Omh3gGVFXSxRvSHkPeUlo57nh5CnBzEQasruiAHjoxDQnTDaaoL4epK8PYeSj4DvN8h3fHWzvdTCpPyLVHuZ96btj0UxUMAolazZMadF4fyZ/Rc3qeFfs3TSWurGL/SxMYJ7d2krVE97lmWKhdKeKwCQpTh+HTZOVSwvvm+b8kybfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=My5GEXzjq+YdSFxcfZdDk/JzMNz28rCI+oq70GAKch8=;
- b=ENayHrXVe+CUDC+FARwK+8OEc4iJ8+4H6B01ym+IFAbS8O6VQVdQby4mRpspu3rfqPT4tLrLG23F27rU14SCKLVgZ6bkJlA83KbGGi5HhuZx9bSS6WBPQ7HYQ+mMc+EqZyI1YQweUC3fX701i8QnjhMDUP5BRL81Srt+2ayKGus=
-Received: from MN2PR02CA0031.namprd02.prod.outlook.com (2603:10b6:208:fc::44)
- by DM5PR0201MB3413.namprd02.prod.outlook.com (2603:10b6:4:7d::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2474.16; Fri, 22 Nov
- 2019 09:45:35 +0000
-Received: from SN1NAM02FT049.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::202) by MN2PR02CA0031.outlook.office365.com
- (2603:10b6:208:fc::44) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2474.18 via Frontend
- Transport; Fri, 22 Nov 2019 09:45:35 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- SN1NAM02FT049.mail.protection.outlook.com (10.152.72.166) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2474.17
- via Frontend Transport; Fri, 22 Nov 2019 09:45:34 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <rajan.vaja@xilinx.com>)
-        id 1iY5VO-0008SL-Dq; Fri, 22 Nov 2019 01:45:34 -0800
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <rajan.vaja@xilinx.com>)
-        id 1iY5VJ-0002pC-Bt; Fri, 22 Nov 2019 01:45:29 -0800
-Received: from xsj-pvapsmtp01 (xsj-smtp1.xilinx.com [149.199.38.66])
-        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id xAM9jLiW003475;
-        Fri, 22 Nov 2019 01:45:22 -0800
-Received: from [172.19.2.91] (helo=xsjjollys50.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <rajan.vaja@xilinx.com>)
-        id 1iY5VB-0002ob-PK; Fri, 22 Nov 2019 01:45:21 -0800
-From:   Rajan Vaja <rajan.vaja@xilinx.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, michal.simek@xilinx.com,
-        jolly.shah@xilinx.com, m.tretter@pengutronix.de,
-        gustavo@embeddedor.com, dan.carpenter@oracle.com,
-        tejas.patel@xilinx.com, nava.manne@xilinx.com, mdf@kernel.org
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>
-Subject: [PATCH v2 6/6] clk: zynqmp: Add support for clock with CLK_DIVIDER_POWER_OF_TWO flag
-Date:   Fri, 22 Nov 2019 01:43:34 -0800
-Message-Id: <1574415814-19797-7-git-send-email-rajan.vaja@xilinx.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1574415814-19797-1-git-send-email-rajan.vaja@xilinx.com>
-References: <1573564580-9006-1-git-send-email-rajan.vaja@xilinx.com>
- <1574415814-19797-1-git-send-email-rajan.vaja@xilinx.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(39860400002)(136003)(376002)(189003)(199004)(26005)(6666004)(356004)(478600001)(54906003)(36756003)(2906002)(44832011)(47776003)(11346002)(446003)(70206006)(48376002)(70586007)(2616005)(8676002)(8936002)(81166006)(50226002)(336012)(9786002)(81156014)(426003)(50466002)(4326008)(76176011)(7416002)(106002)(305945005)(36386004)(5660300002)(107886003)(16586007)(186003)(7696005)(316002)(51416003)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR0201MB3413;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+        id S1727215AbfKVJqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 04:46:17 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:24318 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727118AbfKVJqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Nov 2019 04:46:04 -0500
+X-UUID: b67fe2021e644565b7f2fb626ad3a460-20191122
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=2ejSPwYplNKFDxLWJEW8hsrMYzKNBiloV5tEi9RI1Ag=;
+        b=QUPYlak4FGynWG7yjOJa/3hANi8HiwO8bQdZa7VDoXtygZWieT4qbxvzcSl4CV+L6sIuiFoSs7qnE0aWQeWTSIzfei1VCY6Bna+SqXBfE6BC0W5MfTRec76oYphJkrzHfybHXtWoGKor9QqA54EIG8G8efh79h+q/HbTxUTLpkY=;
+X-UUID: b67fe2021e644565b7f2fb626ad3a460-20191122
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 516072111; Fri, 22 Nov 2019 17:46:01 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 22 Nov 2019 17:45:53 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 22 Nov 2019 17:45:51 +0800
+Message-ID: <1574415960.19450.23.camel@mtksdaap41>
+Subject: Re: [PATCH v1 10/12] soc: mediatek: cmdq: add loop function
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 22 Nov 2019 17:46:00 +0800
+In-Reply-To: <1574327552-11806-11-git-send-email-dennis-yc.hsieh@mediatek.com>
+References: <1574327552-11806-1-git-send-email-dennis-yc.hsieh@mediatek.com>
+         <1574327552-11806-11-git-send-email-dennis-yc.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: b7e8aea9-e3fc-4a8f-fc66-08d76f30b90b
-X-MS-TrafficTypeDiagnostic: DM5PR0201MB3413:
-X-Microsoft-Antispam-PRVS: <DM5PR0201MB3413B5D9B9F88BD1CF3D0832B7490@DM5PR0201MB3413.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:1186;
-X-Forefront-PRVS: 02296943FF
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: wJiay6tkmJr1pNWMFXn85jWOt6mdL+ZLAnBydbVQk21YkTp0hmA7XU3zo+7MF0BV1ogZWHy1fDNpbbp6wPBcWCBcM/oDBgYLui4R9s5GZ2KGq0qMPK6JsvQC+SQiLoC6xyOZ6n8i+E44iixhSpr4AJYhvLHry4Daznw0aAe9B0Jjx8jGl+YkzsXU3SLQyLT3W01UN4pGCnfTWhzRAqlJk1eE5xp7tgalsOeZQrXrIBf/nn7VoMbm2y+wdTyHKC77z/ZugnCwJ0WoB5Iv3cQBbwpEL4/Z7XZMRDoRkYLRAlVG08eFmN5hnRD2ztAgCeP/UY9XrYUsxekaA7lfM3Cilb5i0BlVl7O48b21OSIo+Tb/WOYLm59XlfLV0O5v4j9d6sIyVdaaWESoRIH3E1mNJBGQvgQ6VKXtL/tsVL3t1CyhFjneRNSjL1q1B/IufI4o
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2019 09:45:34.8427
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7e8aea9-e3fc-4a8f-fc66-08d76f30b90b
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR0201MB3413
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tejas Patel <tejas.patel@xilinx.com>
-
-Existing clock divider functions is not checking for
-base of divider. So, if any clock divider is power of 2
-then clock rate calculation will be wrong.
-
-Add support to calculate divider value for the clocks
-with CLK_DIVIDER_POWER_OF_TWO flag.
-
-Signed-off-by: Tejas Patel <tejas.patel@xilinx.com>
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Signed-off-by: Rajan Vaja <rajan.vaja@xilinx.com>
----
- drivers/clk/zynqmp/divider.c | 36 +++++++++++++++++++++++++++++++-----
- 1 file changed, 31 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/clk/zynqmp/divider.c b/drivers/clk/zynqmp/divider.c
-index e0d49cc..1d5a416 100644
---- a/drivers/clk/zynqmp/divider.c
-+++ b/drivers/clk/zynqmp/divider.c
-@@ -2,7 +2,7 @@
- /*
-  * Zynq UltraScale+ MPSoC Divider support
-  *
-- *  Copyright (C) 2016-2018 Xilinx
-+ *  Copyright (C) 2016-2019 Xilinx
-  *
-  * Adjustable divider clock implementation
-  */
-@@ -45,9 +45,26 @@ struct zynqmp_clk_divider {
- };
- 
- static inline int zynqmp_divider_get_val(unsigned long parent_rate,
--					 unsigned long rate)
-+					 unsigned long rate, u16 flags)
- {
--	return DIV_ROUND_CLOSEST(parent_rate, rate);
-+	int up, down;
-+	unsigned long up_rate, down_rate;
-+
-+	if (flags & CLK_DIVIDER_POWER_OF_TWO) {
-+		up = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
-+		down = DIV_ROUND_DOWN_ULL((u64)parent_rate, rate);
-+
-+		up = __roundup_pow_of_two(up);
-+		down = __rounddown_pow_of_two(down);
-+
-+		up_rate = DIV_ROUND_UP_ULL((u64)parent_rate, up);
-+		down_rate = DIV_ROUND_UP_ULL((u64)parent_rate, down);
-+
-+		return (rate - up_rate) <= (down_rate - rate) ? up : down;
-+
-+	} else {
-+		return DIV_ROUND_CLOSEST(parent_rate, rate);
-+	}
- }
- 
- /**
-@@ -79,6 +96,9 @@ static unsigned long zynqmp_clk_divider_recalc_rate(struct clk_hw *hw,
- 	else
- 		value = div >> 16;
- 
-+	if (divider->flags & CLK_DIVIDER_POWER_OF_TWO)
-+		value = 1 << value;
-+
- 	if (!value) {
- 		WARN(!(divider->flags & CLK_DIVIDER_ALLOW_ZERO),
- 		     "%s: Zero divisor and CLK_DIVIDER_ALLOW_ZERO not set\n",
-@@ -157,10 +177,13 @@ static long zynqmp_clk_divider_round_rate(struct clk_hw *hw,
- 		else
- 			bestdiv  = bestdiv >> 16;
- 
-+		if (divider->flags & CLK_DIVIDER_POWER_OF_TWO)
-+			bestdiv = 1 << bestdiv;
-+
- 		return DIV_ROUND_UP_ULL((u64)*prate, bestdiv);
- 	}
- 
--	bestdiv = zynqmp_divider_get_val(*prate, rate);
-+	bestdiv = zynqmp_divider_get_val(*prate, rate, divider->flags);
- 
- 	/*
- 	 * In case of two divisors, compute best divider values and return
-@@ -198,7 +221,7 @@ static int zynqmp_clk_divider_set_rate(struct clk_hw *hw, unsigned long rate,
- 	int ret;
- 	const struct zynqmp_eemi_ops *eemi_ops = zynqmp_pm_get_eemi_ops();
- 
--	value = zynqmp_divider_get_val(parent_rate, rate);
-+	value = zynqmp_divider_get_val(parent_rate, rate, divider->flags);
- 	if (div_type == TYPE_DIV1) {
- 		div = value & 0xFFFF;
- 		div |= 0xffff << 16;
-@@ -207,6 +230,9 @@ static int zynqmp_clk_divider_set_rate(struct clk_hw *hw, unsigned long rate,
- 		div |= value << 16;
- 	}
- 
-+	if (divider->flags & CLK_DIVIDER_POWER_OF_TWO)
-+		div = __ffs(div);
-+
- 	ret = eemi_ops->clock_setdivider(clk_id, div);
- 
- 	if (ret)
--- 
-2.7.4
+SGksIERlbm5pczoNCg0KT24gVGh1LCAyMDE5LTExLTIxIGF0IDE3OjEyICswODAwLCBEZW5uaXMg
+WUMgSHNpZWggd3JvdGU6DQo+IEFkZCBmaW5hbGl6ZSBsb29wIGZ1bmN0aW9uIGluIGNtZHEgaGVs
+cGVyIGZ1bmN0aW9ucyB3aGljaCBsb29wIHdob2xlIHBrdA0KPiBpbiBnY2UgaGFyZHdhcmUgdGhy
+ZWFkIHdpdGhvdXQgY3B1IG9wZXJhdGlvbi4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IERlbm5pcyBZ
+QyBIc2llaCA8ZGVubmlzLXljLmhzaWVoQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJz
+L3NvYy9tZWRpYXRlay9tdGstY21kcS1oZWxwZXIuYyB8ICAgNDEgKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysNCj4gIGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmgg
+IHwgICAgOCArKysrKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDQ5IGluc2VydGlvbnMoKykNCj4g
+DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstY21kcS1oZWxwZXIuYyBi
+L2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jDQo+IGluZGV4IDQyMzVjZjgu
+LjNiMTAyNDEgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhl
+bHBlci5jDQo+ICsrKyBiL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jDQo+
+IEBAIC0zODUsMTIgKzM4NSwyNyBAQCBpbnQgY21kcV9wa3RfYXNzaWduKHN0cnVjdCBjbWRxX3Br
+dCAqcGt0LCB1MTYgcmVnX2lkeCwgdTMyIHZhbHVlKQ0KPiAgfQ0KPiAgRVhQT1JUX1NZTUJPTChj
+bWRxX3BrdF9hc3NpZ24pOw0KPiAgDQo+ICtzdGF0aWMgYm9vbCBjbWRxX3BrdF9maW5hbGl6ZWQo
+c3RydWN0IGNtZHFfcGt0ICpwa3QpDQo+ICt7DQo+ICsJc3RydWN0IGNtZHFfaW5zdHJ1Y3Rpb24g
+Kmluc3Q7DQo+ICsNCj4gKwlpZiAocGt0LT5jbWRfYnVmX3NpemUgPCAyICogQ01EUV9JTlNUX1NJ
+WkUpDQo+ICsJCXJldHVybiBmYWxzZTsNCj4gKw0KPiArCWluc3QgPSBwa3QtPnZhX2Jhc2UgKyBw
+a3QtPmNtZF9idWZfc2l6ZSAtIDIgKiBDTURRX0lOU1RfU0laRTsNCj4gKwlyZXR1cm4gaW5zdC0+
+b3AgPT0gQ01EUV9DT0RFX0VPQzsNCj4gK30NCj4gKw0KPiAgc3RhdGljIGludCBjbWRxX3BrdF9m
+aW5hbGl6ZShzdHJ1Y3QgY21kcV9wa3QgKnBrdCkNCj4gIHsNCj4gIAlzdHJ1Y3QgY21kcV9jbGll
+bnQgKmNsID0gcGt0LT5jbDsNCj4gIAlzdHJ1Y3QgY21kcV9pbnN0cnVjdGlvbiBpbnN0ID0geyB7
+MH0gfTsNCj4gIAlpbnQgZXJyOw0KPiAgDQo+ICsJLyogZG8gbm90IGZpbmFsaXplIHR3aWNlICov
+DQo+ICsJaWYgKGNtZHFfcGt0X2ZpbmFsaXplZChwa3QpKQ0KPiArCQlyZXR1cm4gMDsNCj4gKw0K
+PiAgCS8qIGluc2VydCBFT0MgYW5kIGdlbmVyYXRlIElSUSBmb3IgZWFjaCBjb21tYW5kIGl0ZXJh
+dGlvbiAqLw0KPiAgCWluc3Qub3AgPSBDTURRX0NPREVfRU9DOw0KPiAgCWluc3QudmFsdWUgPSBD
+TURRX0VPQ19JUlFfRU47DQo+IEBAIC00MDYsNiArNDIxLDMyIEBAIHN0YXRpYyBpbnQgY21kcV9w
+a3RfZmluYWxpemUoc3RydWN0IGNtZHFfcGt0ICpwa3QpDQo+ICAJcmV0dXJuIGVycjsNCj4gIH0N
+Cj4gIA0KPiAraW50IGNtZHFfcGt0X2ZpbmFsaXplX2xvb3Aoc3RydWN0IGNtZHFfcGt0ICpwa3Qp
+DQo+ICt7DQo+ICsJc3RydWN0IGNtZHFfY2xpZW50ICpjbCA9IHBrdC0+Y2w7DQo+ICsJc3RydWN0
+IGNtZHFfaW5zdHJ1Y3Rpb24gaW5zdCA9IHsgezB9IH07DQo+ICsJaW50IGVycjsNCj4gKw0KPiAr
+CS8qIGRvIG5vdCBmaW5hbGl6ZSB0d2ljZSAqLw0KPiArCWlmIChjbWRxX3BrdF9maW5hbGl6ZWQo
+cGt0KSkNCj4gKwkJcmV0dXJuIDA7DQoNCldoeSBub3QganVzdCBleHBvcnQgY21kcV9wa3RfZmlu
+YWxpemUoKSBmb3IgdXNlciBhbmQgZG8gbm90IGNhbGwNCmNtZHFfcGt0X2ZpbmFsaXplKCkgaW4g
+Y21kcV9wa3RfZmx1c2hfYXN5bmMoKSwgc28geW91IGRvbid0IG5lZWQgdG8NCmNoZWNrIHRoaXMu
+DQoNCkkgd291bGQgYmUgbW9yZSBsaWtlIHRvIGV4cG9ydCBBUEkgc3VjaCBhcyBjbWRxX3BrdF9l
+b2MoKSwNCmNtZHFfcGt0X2p1bXAoKSwgdGhpcyB3b3VsZCBwcm92aWRlIG1vcmUgZmxleGliaWxp
+dHkgZm9yIHVzZXIgdG8NCmFzc2VtYmxlIHRoZSBjb21tYW5kIGl0IHdhbnQuDQoNClJlZ2FyZHMs
+DQpDSw0KDQo+ICsNCj4gKwkvKiBpbnNlcnQgRU9DIGFuZCBnZW5lcmF0ZSBJUlEgZm9yIGVhY2gg
+Y29tbWFuZCBpdGVyYXRpb24gKi8NCj4gKwlpbnN0Lm9wID0gQ01EUV9DT0RFX0VPQzsNCj4gKwll
+cnIgPSBjbWRxX3BrdF9hcHBlbmRfY29tbWFuZChwa3QsIGluc3QpOw0KPiArCWlmIChlcnIgPCAw
+KQ0KPiArCQlyZXR1cm4gZXJyOw0KPiArDQo+ICsJLyogSlVNUCBhYmFvbHV0ZSB0byBiZWdpbiAq
+Lw0KPiArCWluc3Qub3AgPSBDTURRX0NPREVfSlVNUDsNCj4gKwlpbnN0Lm9mZnNldCA9IDE7DQo+
+ICsJaW5zdC52YWx1ZSA9IHBrdC0+cGFfYmFzZSA+PiBjbWRxX21ib3hfc2hpZnQoY2wtPmNoYW4p
+Ow0KPiArCWVyciA9IGNtZHFfcGt0X2FwcGVuZF9jb21tYW5kKHBrdCwgaW5zdCk7DQo+ICsNCj4g
+KwlyZXR1cm4gZXJyOw0KPiArfQ0KPiArRVhQT1JUX1NZTUJPTChjbWRxX3BrdF9maW5hbGl6ZV9s
+b29wKTsNCj4gKw0KPiAgc3RhdGljIHZvaWQgY21kcV9wa3RfZmx1c2hfYXN5bmNfY2Ioc3RydWN0
+IGNtZHFfY2JfZGF0YSBkYXRhKQ0KPiAgew0KPiAgCXN0cnVjdCBjbWRxX3BrdCAqcGt0ID0gKHN0
+cnVjdCBjbWRxX3BrdCAqKWRhdGEuZGF0YTsNCj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgv
+c29jL21lZGlhdGVrL210ay1jbWRxLmggYi9pbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9tdGst
+Y21kcS5oDQo+IGluZGV4IGIzNDc0ZjIuLjc3ZTg5NDQgMTAwNjQ0DQo+IC0tLSBhL2luY2x1ZGUv
+bGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmgNCj4gKysrIGIvaW5jbHVkZS9saW51eC9zb2Mv
+bWVkaWF0ZWsvbXRrLWNtZHEuaA0KPiBAQCAtMjAzLDYgKzIwMywxNCBAQCBpbnQgY21kcV9wa3Rf
+cG9sbF9tYXNrKHN0cnVjdCBjbWRxX3BrdCAqcGt0LCB1OCBzdWJzeXMsDQo+ICBpbnQgY21kcV9w
+a3RfYXNzaWduKHN0cnVjdCBjbWRxX3BrdCAqcGt0LCB1MTYgcmVnX2lkeCwgdTMyIHZhbHVlKTsN
+Cj4gIA0KPiAgLyoqDQo+ICsgKiBjbWRxX3BrdF9maW5hbGl6ZV9sb29wKCkgLSBBcHBlbmQgRU9D
+IGFuZCBqdW1wIGNvbW1hbmQgdG8gbG9vcCBwa3QuDQo+ICsgKiBAcGt0Ogl0aGUgQ01EUSBwYWNr
+ZXQNCj4gKyAqDQo+ICsgKiBSZXR1cm46IDAgZm9yIHN1Y2Nlc3M7IGVsc2UgdGhlIGVycm9yIGNv
+ZGUgaXMgcmV0dXJuZWQNCj4gKyAqLw0KPiAraW50IGNtZHFfcGt0X2ZpbmFsaXplX2xvb3Aoc3Ry
+dWN0IGNtZHFfcGt0ICpwa3QpOw0KPiArDQo+ICsvKioNCj4gICAqIGNtZHFfcGt0X2ZsdXNoX2Fz
+eW5jKCkgLSB0cmlnZ2VyIENNRFEgdG8gYXN5bmNocm9ub3VzbHkgZXhlY3V0ZSB0aGUgQ01EUQ0K
+PiAgICogICAgICAgICAgICAgICAgICAgICAgICAgIHBhY2tldCBhbmQgY2FsbCBiYWNrIGF0IHRo
+ZSBlbmQgb2YgZG9uZSBwYWNrZXQNCj4gICAqIEBwa3Q6CXRoZSBDTURRIHBhY2tldA0KDQo=
 
