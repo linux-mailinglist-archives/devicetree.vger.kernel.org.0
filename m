@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF56107EE1
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2019 15:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B078107F0D
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2019 16:34:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726524AbfKWOhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Nov 2019 09:37:13 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49586 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726487AbfKWOhM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Nov 2019 09:37:12 -0500
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        id S1726774AbfKWPdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Nov 2019 10:33:54 -0500
+Received: from asavdk3.altibox.net ([109.247.116.14]:55052 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726487AbfKWPdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Nov 2019 10:33:54 -0500
+Received: from ravnborg.org (unknown [158.248.194.18])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8F7342068F;
-        Sat, 23 Nov 2019 14:37:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574519832;
-        bh=be73bIOVQc3o0JQzcStBmsglN4xPwR3eSFsxrHjP6M4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=2s3P//BADv9VVa0T+21SdNeqZzDLKkqpB0ku7lHsqxmI24TRCCPiTDnIh+NUmYwIX
-         wm07P2dX1jEcqlXuZmFLo9/CU9aLHAp7BB9+aH0si2EeIWagDdIrNhvcqLl3tYYzI6
-         yFzGg+3omUaOVhMM0ASNn4p/vCfCtcdvwoyQ/Amw=
-Date:   Sat, 23 Nov 2019 14:37:05 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andreas Klinger <ak@it-klinger.de>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, mripard@kernel.org,
-        shawnguo@kernel.org, heiko@sntech.de, icenowy@aosc.io,
-        laurent.pinchart@ideasonboard.com, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, gregkh@linuxfoundation.org,
-        christophe.jaillet@wanadoo.fr, tglx@linutronix.de,
-        mchehab+samsung@kernel.org, davem@davemloft.net,
-        paulmck@linux.ibm.com, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] MAINTAINERS: add maintainer for ping iio sensors
-Message-ID: <20191123143705.6e0e2868@archlinux>
-In-Reply-To: <20191118073648.tk4otab6alsiuzt7@arbad>
-References: <20191118073648.tk4otab6alsiuzt7@arbad>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id E99EB2008A;
+        Sat, 23 Nov 2019 16:27:39 +0100 (CET)
+Date:   Sat, 23 Nov 2019 16:27:38 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, od@zcrc.me,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Shenzhen Frida LCD
+ Co., Ltd.
+Message-ID: <20191123152738.GA27045@ravnborg.org>
+References: <20191120171027.1102250-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191120171027.1102250-1-paul@crapouillou.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=ER_8r6IbAAAA:8
+        a=7gkXJVJtAAAA:8 a=qIjRjsPfdrvINvMtCKIA:9 a=CjuIK1q_8ugA:10
+        a=9LHmKk7ezEChjTCyhBa9:22 a=E9Po1WZjFZOl8hwRPBS3:22
+        a=Z5ABNNGmrOfJ6cZ5bIyy:22 a=bWyr8ysk75zN3GCy5bjg:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Nov 2019 08:36:50 +0100
-Andreas Klinger <ak@it-klinger.de> wrote:
+Hi Paul.
 
-> Add a maintainer for the new parallax PING))) and LaserPING IIO sensors
+On Wed, Nov 20, 2019 at 06:10:25PM +0100, Paul Cercueil wrote:
+> Add an entry for Shenzhen Frida LCD Co., Ltd.
 > 
-> Signed-off-by: Andreas Klinger <ak@it-klinger.de>
-Applied,
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 
-Thanks,
-
-Jonathan
-
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 > ---
->  MAINTAINERS | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index c6c34d04ce95..ad469adffb99 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12264,6 +12264,13 @@ L:	platform-driver-x86@vger.kernel.org
->  S:	Maintained
->  F:	drivers/platform/x86/panasonic-laptop.c
->  
-> +PARALLAX PING IIO SENSOR DRIVER
-> +M:	Andreas Klinger <ak@it-klinger.de>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/proximity/parallax-ping.yaml
-> +F:	drivers/iio/proximity/ping.c
-> +
->  PARALLEL LCD/KEYPAD PANEL DRIVER
->  M:	Willy Tarreau <willy@haproxy.com>
->  M:	Ksenija Stanojevic <ksenija.stanojevic@gmail.com>
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 967e78c5ec0a..9c6e1b42435b 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -337,6 +337,8 @@ patternProperties:
+>      description: Firefly
+>    "^focaltech,.*":
+>      description: FocalTech Systems Co.,Ltd
+> +  "^frida,.*":
+> +    description: Shenzhen Frida LCD Co., Ltd.
+Random note:
+Some descriptions end with a '.,', others not.
+So both works.
 
+
+>    "^friendlyarm,.*":
+>      description: Guangzhou FriendlyARM Computer Tech Co., Ltd
+>    "^fsl,.*":
+> -- 
+> 2.24.0
