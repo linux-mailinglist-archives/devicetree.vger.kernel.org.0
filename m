@@ -2,76 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7323107C10
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2019 01:39:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0E83107C17
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2019 01:42:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726494AbfKWAjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Nov 2019 19:39:52 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:37214 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726089AbfKWAjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Nov 2019 19:39:52 -0500
-Received: by mail-ot1-f66.google.com with SMTP id d5so7797925otp.4;
-        Fri, 22 Nov 2019 16:39:50 -0800 (PST)
+        id S1726638AbfKWAmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Nov 2019 19:42:25 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:46462 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726089AbfKWAmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Nov 2019 19:42:24 -0500
+Received: by mail-oi1-f194.google.com with SMTP id n14so8114672oie.13;
+        Fri, 22 Nov 2019 16:42:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tEgHxCiyiX1vvVmymHFYVTUbODIbpTwPwyJWeOdOzsw=;
-        b=qb5tY8LSdp1kdAtsevy+g4bauZLPdinL756/2GiLNpXLZETJYA83hlhms2DY1froNX
-         5OlnvVVKn+hli0yPq52cWpGdv/Dm+x7WTB58g5qYHW3L3UNMPWDMpE4/IJMmADNeNBli
-         cbbiIWiYGcnWPf2iwFMViWvP2UTgYg5YTxM7J2h5fPxMx6Z90hfz15nSnHT7lHZ49SFm
-         gATydOT5isq0f7mYsW22zUacoUjPF8pMZYv+bY9HNpnMPiqxaMpvGu3RJmP/kbUsqk0A
-         XzNePINk0pibQxidy1jt7cr9aWD5l/2hou70Q4qshFcbgM3XiLfdA+JECDBveuvAaawa
-         8sig==
-X-Gm-Message-State: APjAAAUCJfOieUHOWltiNgo0tUpL7AqH35lN5S+TmUPvgAhrcXfpV2CA
-        swAEf6kfrrP/C5olUdC79g==
-X-Google-Smtp-Source: APXvYqxyABAixVX6UI5qvZ5b6JowXXc/TuRvG5WegziVxYCjLu6SH7n/ghlJ1SoD2w77Id8T2Mgupg==
-X-Received: by 2002:a05:6830:2006:: with SMTP id e6mr13247748otp.260.1574469590171;
-        Fri, 22 Nov 2019 16:39:50 -0800 (PST)
+        bh=oGJX/reKzsvlPl7LrdXxSVKM8Xki6sNrSQDjk1YDSBs=;
+        b=GIW8BobwHWOhxHKQsPEQjyvePXeSZFihli0kC0qMGsSpl1aRuv16zq16Pslw5G4nuV
+         TjglMlKOUWKHjzXxuiNOFYvScaqk4+zYgRkBzrUuGsuv2fiyqrmtibAsy//RoriE4/xO
+         pOCyr3lefupvmZxMrXArGo8gVqJTbrcI5SsvSqXTnYjzTGFx7t7I2enS1akQCVB6NG8M
+         +uiPYUmq3C32t0FT0h21XFI5IiB1lNsgyWndDn7Ebkw6z+QkyoOKPVlzTRSPv3qNSy1Y
+         o0k0PaNYqCo1uXGSKBtcR0E3zvMNe9zDGD0eS2zFUCX6k/fTsW0F7Ubd2fiivK0WSP+t
+         iyYw==
+X-Gm-Message-State: APjAAAVMXo977D1sAFziD/A8Rkr6zXZ0B6LRzAd+EvTe6QVFNFU1syPz
+        TLlVYy0wJ+aJCw6+Pq2RyA==
+X-Google-Smtp-Source: APXvYqwsDotINaxgsn12/e8mFrQqRvrmOeyi4LbNLqU4REDWhKaPg5JyF5PmaeAU9FvzfzRLop8wig==
+X-Received: by 2002:aca:5413:: with SMTP id i19mr14976577oib.121.1574469742474;
+        Fri, 22 Nov 2019 16:42:22 -0800 (PST)
 Received: from localhost (ip-70-5-93-147.ftwttx.spcsdns.net. [70.5.93.147])
-        by smtp.gmail.com with ESMTPSA id u143sm2632482oia.14.2019.11.22.16.39.48
+        by smtp.gmail.com with ESMTPSA id 94sm2792513otx.3.2019.11.22.16.42.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2019 16:39:49 -0800 (PST)
-Date:   Fri, 22 Nov 2019 18:39:48 -0600
+        Fri, 22 Nov 2019 16:42:21 -0800 (PST)
+Date:   Fri, 22 Nov 2019 18:42:19 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stephen Brennan <stephen@brennan.io>
-Cc:     stephen@brennan.io, Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Scott Branden <sbranden@broadcom.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
-        linux-kernel@vger.kernel.org, Eric Anholt <eric@anholt.net>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Matt Mackall <mpm@selenic.com>, Arnd Bergmann <arnd@arndb.de>,
-        linux-crypto@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: rng: add BCM2711 RNG compatible
-Message-ID: <20191123003948.GA13973@bogus>
-References: <20191120031622.88949-1-stephen@brennan.io>
- <20191120031622.88949-2-stephen@brennan.io>
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     p.zabel@pengutronix.de, martin.blumenstingl@googlemail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: reset: Add YAML schemas for the
+ Intel Reset controller
+Message-ID: <20191123004219.GA14198@bogus>
+References: <0c53fd1100e357f6793f792c1de218f7de013393.1574153939.git.eswara.kota@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191120031622.88949-2-stephen@brennan.io>
+In-Reply-To: <0c53fd1100e357f6793f792c1de218f7de013393.1574153939.git.eswara.kota@linux.intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Nov 2019 19:16:19 -0800, Stephen Brennan wrote:
-> From: Stefan Wahren <wahrenst@gmx.net>
+On Wed, Nov 20, 2019 at 02:10:23PM +0800, Dilip Kota wrote:
+> Add YAML schemas for the reset controller on Intel
+> Gateway SoC.
 > 
-> The BCM2711 has a RNG200 block, so document its compatible string.
-> 
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> Signed-off-by: Stephen Brennan <stephen@brennan.io>
+> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
 > ---
->  Documentation/devicetree/bindings/rng/brcm,iproc-rng200.txt | 1 +
->  1 file changed, 1 insertion(+)
+> Changes on v3:
+> 	Fix DTC warnings
+> 	Add support to legacy xrx200 SoC
+> 	Change file name to intel,rcu-gw.yaml
 > 
+>  .../devicetree/bindings/reset/intel,rcu-gw.yaml    | 59 ++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml b/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
+> new file mode 100644
+> index 000000000000..743be2c49fb8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/intel,rcu-gw.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/intel,rcu-gw.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: System Reset Controller on Intel Gateway SoCs
+> +
+> +maintainers:
+> +  - Dilip Kota <eswara.kota@linux.intel.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
 
-Acked-by: Rob Herring <robh@kernel.org>
+You can drop oneOf and items here.
+
+> +          - enum:
+> +              - intel,rcu-lgm
+> +              - intel,rcu-xrx200
+> +
+> +  reg:
+> +    description: Reset controller registers.
+
+maxItems: 1
+
+> +
+> +  intel,global-reset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: Global reset register offset and bit offset.
+
+maxItems: 2
+
+> +
+> +  "#reset-cells":
+> +    minimum: 2
+> +    maximum: 3
+> +    description: |
+> +      First cell is reset request register offset.
+> +      Second cell is bit offset in reset request register.
+> +      Third cell is bit offset in reset status register.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - intel,global-reset
+> +  - "#reset-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    rcu0: reset-controller@e0000000 {
+> +        compatible = "intel,rcu-lgm";
+> +        reg = <0xe0000000 0x20000>;
+> +        intel,global-reset = <0x10 30>;
+> +        #reset-cells = <2>;
+> +    };
+> +
+> +    pwm: pwm@e0d00000 {
+> +        status = "disabled";
+> +        compatible = "intel,lgm-pwm";
+> +        reg = <0xe0d00000 0x30>;
+> +        clocks = <&cgu0 1>;
+> +        #pwm-cells = <2>;
+> +        resets = <&rcu0 0x30 21>;
+> +    };
+> -- 
+> 2.11.0
+> 
