@@ -2,201 +2,1156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74412108D9F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2019 13:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FC1D108DC7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2019 13:26:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726926AbfKYMNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Nov 2019 07:13:01 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:10808 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725862AbfKYMNB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Nov 2019 07:13:01 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAPC70Pg009034;
-        Mon, 25 Nov 2019 13:12:48 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=sWG896Au3NOdFn4sqwKmFJD5XhVt5rs6AeaV5Mi4ANQ=;
- b=uzqYsfKcxiIa/sNurkG81LI/OQUQra6RKJCN6+a/SkAVDkF7NfDDeCpWcR8AOmts3ER9
- rZQ+dZPU5WQeOesidV/nzQQrMuZcSnmHsvZoBdzthX8sm2nKyyW5ymXtTyZHrXMZEaBm
- CZ1Me0/6r+spIPx+fGzIDIsMnqbnxSDU724p6XMuMNQubftwUFyOjLQ4Nvovb3cWCchN
- acgcPlQcQuulz0obIBqv6Wy8jChVW4UG9X6qY3AD8EeXrYQg4mCzNbDmqjUZCU56++Jk
- vhUp5pgXQD+sbeF6JVNl4D4NiAE+61huD9c2ElW8ns+DhebiI8wRuuaH4M1boTFca6oc hA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2wets9h0r3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 25 Nov 2019 13:12:48 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CC984100034;
-        Mon, 25 Nov 2019 13:12:47 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BED6F2BE238;
-        Mon, 25 Nov 2019 13:12:47 +0100 (CET)
-Received: from localhost (10.75.127.48) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 25 Nov 2019 13:12:47
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <alexandre.torgue@st.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH] ARM: dts: stm32: remove "@" from stm32f4 pinmux groups
-Date:   Mon, 25 Nov 2019 13:12:44 +0100
-Message-ID: <20191125121244.19591-2-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20191125121244.19591-1-benjamin.gaignard@st.com>
-References: <20191125121244.19591-1-benjamin.gaignard@st.com>
+        id S1727310AbfKYM0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Nov 2019 07:26:48 -0500
+Received: from mo4-p00-ob.smtp.rzone.de ([81.169.146.161]:13633 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725868AbfKYM0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Nov 2019 07:26:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1574684802;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=niuhOuM+JdZl+szJXAmMZWQPgbpfEj8VKERS/Uxxhks=;
+        b=iXU51xUFDHavqM+PiSUkmbyhqKdhKK4WjCdo/qYwr/WxE6YmUHqFhiHZNcTRUmEso5
+        VO2ygNBQSCTO8uR65HkSs0ttu6Bq/h2ZUIXtzjGrRStXJUB+OQTpnI7pYvPegJJ/mO/d
+        sdqDTBgU89wLdWvGfjghs5amg0sy3JwpFUn3oRD+QMbjr2KfhJkhrUribtEewaULqLiB
+        vd/U1cVt/dLfJJjJOuo5zelsC0PbLIjjygLF4WP8Ab4lY+JtGbezV82YG6bVqfaFSy6V
+        DL0WAM2rRiAYq6tGYZNDaBqO1prsC+6iKl/o8yOwDQ33ZPiWG90QSFS7HOkijrece+v4
+        7EhA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQr4OGUPX+1NmWArOmLo="
+X-RZG-CLASS-ID: mo00
+Received: from localhost.localdomain
+        by smtp.strato.de (RZmta 45.0.2 DYNA|AUTH)
+        with ESMTPSA id 304194vAPCQf0FN
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Mon, 25 Nov 2019 13:26:41 +0100 (CET)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 1/5] ARM: dts: ux500: Move generic pin configs out of ste-href-family-pinctrl.dtsi
+Date:   Mon, 25 Nov 2019 13:22:52 +0100
+Message-Id: <20191125122256.53482-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-25_03:2019-11-21,2019-11-25 signatures=0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace all "@" by "_" in pinmux groups for stm32f4 family.
-This avoid errors when using yaml to check the bindings.
+All existing Ux500 boards make use of ste-href-family-pinctrl.dtsi,
+which contains shared pin configurations for UART, I2C and SDI.
+Most of these can be also used for devices not based on HREF.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+Move the generic pin configs into a new device tree include
+"ste-dbx5x0-pinctrl.dtsi". There is no functional change (yet),
+as a next step we will rename the pin configs to use more generic
+names.
+
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
- arch/arm/boot/dts/stm32f4-pinctrl.dtsi | 28 ++++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+ arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi     | 529 +++++++++++++++++
+ .../arm/boot/dts/ste-href-family-pinctrl.dtsi | 532 +-----------------
+ 2 files changed, 530 insertions(+), 531 deletions(-)
+ create mode 100644 arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi
 
-diff --git a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-index 35202896c093..722598cdf3b7 100644
---- a/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32f4-pinctrl.dtsi
-@@ -163,7 +163,7 @@
- 				st,bank-name = "GPIOK";
- 			};
+diff --git a/arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi b/arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi
+new file mode 100644
+index 000000000000..fbc41cacf690
+--- /dev/null
++++ b/arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi
+@@ -0,0 +1,529 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Copyright 2013 Linaro Ltd.
++ */
++
++#include "ste-nomadik-pinctrl.dtsi"
++
++&pinctrl {
++	/* Settings for all UART default and sleep states */
++	uart0 {
++		uart0_default_mode: uart0_default {
++			default_mux {
++				function = "u0";
++				groups = "u0_a_1";
++			};
++			default_cfg1 {
++				pins = "GPIO0_AJ5", "GPIO2_AH4"; /* CTS+RXD */
++				ste,config = <&in_pu>;
++			};
++			default_cfg2 {
++				pins = "GPIO1_AJ3", "GPIO3_AH3"; /* RTS+TXD */
++				ste,config = <&out_hi>;
++			};
++		};
++
++		uart0_sleep_mode: uart0_sleep {
++			sleep_cfg1 {
++				pins = "GPIO0_AJ5", "GPIO2_AH4"; /* CTS+RXD */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++			sleep_cfg2 {
++				pins = "GPIO1_AJ3"; /* RTS */
++				ste,config = <&slpm_out_hi_wkup_pdis>;
++			};
++			sleep_cfg3 {
++				pins = "GPIO3_AH3"; /* TXD */
++				ste,config = <&slpm_out_wkup_pdis>;
++			};
++		};
++	};
++
++	uart1 {
++		uart1_default_mode: uart1_default {
++			default_mux {
++				function = "u1";
++				groups = "u1rxtx_a_1";
++			};
++			default_cfg1 {
++				pins = "GPIO4_AH6"; /* RXD */
++				ste,config = <&in_pu>;
++			};
++			default_cfg2 {
++				pins = "GPIO5_AG6"; /* TXD */
++				ste,config = <&out_hi>;
++			};
++		};
++
++		uart1_sleep_mode: uart1_sleep {
++			sleep_cfg1 {
++				pins = "GPIO4_AH6"; /* RXD */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++			sleep_cfg2 {
++				pins = "GPIO5_AG6"; /* TXD */
++				ste,config = <&slpm_out_wkup_pdis>;
++			};
++		};
++	};
++
++	uart2 {
++		uart2_default_mode: uart2_default {
++			default_mux {
++				function = "u2";
++				groups = "u2rxtx_c_1";
++			};
++			default_cfg1 {
++				pins = "GPIO29_W2"; /* RXD */
++				ste,config = <&in_pu>;
++			};
++			default_cfg2 {
++				pins = "GPIO30_W3"; /* TXD */
++				ste,config = <&out_hi>;
++			};
++		};
++
++		uart2_sleep_mode: uart2_sleep {
++			sleep_cfg1 {
++				pins = "GPIO29_W2"; /* RXD */
++				ste,config = <&in_wkup_pdis>;
++			};
++			sleep_cfg2 {
++				pins = "GPIO30_W3"; /* TXD */
++				ste,config = <&out_wkup_pdis>;
++			};
++		};
++	};
++
++	/* Settings for all I2C default and sleep states */
++	i2c0 {
++		i2c0_default_mode: i2c_default {
++			default_mux {
++				function = "i2c0";
++				groups = "i2c0_a_1";
++			};
++			default_cfg1 {
++				pins = "GPIO147_C15", "GPIO148_B16"; /* SDA/SCL */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		i2c0_sleep_mode: i2c_sleep {
++			sleep_cfg1 {
++				pins = "GPIO147_C15", "GPIO148_B16"; /* SDA/SCL */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++		};
++	};
++
++	i2c1 {
++		i2c1_default_mode: i2c_default {
++			default_mux {
++				function = "i2c1";
++				groups = "i2c1_b_2";
++			};
++			default_cfg1 {
++				pins = "GPIO16_AD3", "GPIO17_AD4"; /* SDA/SCL */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		i2c1_sleep_mode: i2c_sleep {
++			sleep_cfg1 {
++				pins = "GPIO16_AD3", "GPIO17_AD4"; /* SDA/SCL */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++		};
++	};
++
++	i2c2 {
++		i2c2_default_mode: i2c_default {
++			default_mux {
++				function = "i2c2";
++				groups = "i2c2_b_2";
++			};
++			default_cfg1 {
++				pins = "GPIO10_AF5", "GPIO11_AG4"; /* SDA/SCL */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		i2c2_sleep_mode: i2c_sleep {
++			sleep_cfg1 {
++				pins = "GPIO10_AF5", "GPIO11_AG4"; /* SDA/SCL */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++		};
++	};
++
++	i2c3 {
++		i2c3_default_mode: i2c_default {
++			default_mux {
++				function = "i2c3";
++				groups = "i2c3_c_2";
++			};
++			default_cfg1 {
++				pins = "GPIO229_AG7", "GPIO230_AF7"; /* SDA/SCL */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		i2c3_sleep_mode: i2c_sleep {
++			sleep_cfg1 {
++				pins = "GPIO229_AG7", "GPIO230_AF7"; /* SDA/SCL */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++		};
++	};
++
++	/*
++	 * Activating I2C4 will conflict with UART1 about the same pins so do not
++	 * enable I2C4 and UART1 at the same time.
++	 */
++	i2c4 {
++		i2c4_default_mode: i2c_default {
++			default_mux {
++				function = "i2c4";
++				groups = "i2c4_b_1";
++			};
++			default_cfg1 {
++				pins = "GPIO4_AH6", "GPIO5_AG6"; /* SDA/SCL */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		i2c4_sleep_mode: i2c_sleep {
++			sleep_cfg1 {
++				pins = "GPIO4_AH6", "GPIO5_AG6"; /* SDA/SCL */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++		};
++	};
++
++	/* Settings for all MMC/SD/SDIO default and sleep states */
++	sdi0 {
++		/* This is the external SD card slot, 4 bits wide */
++		sdi0_default_mode: sdi0_default {
++			default_mux {
++				function = "mc0";
++				groups = "mc0_a_1";
++			};
++			default_cfg1 {
++				pins =
++				"GPIO18_AC2", /* CMDDIR */
++				"GPIO19_AC1", /* DAT0DIR */
++				"GPIO20_AB4"; /* DAT2DIR */
++				ste,config = <&out_hi>;
++			};
++			default_cfg2 {
++				pins = "GPIO22_AA3"; /* FBCLK */
++				ste,config = <&in_nopull>;
++			};
++			default_cfg3 {
++				pins = "GPIO23_AA4"; /* CLK */
++				ste,config = <&out_lo>;
++			};
++			default_cfg4 {
++				pins =
++				"GPIO24_AB2", /* CMD */
++				"GPIO25_Y4", /* DAT0 */
++				"GPIO26_Y2", /* DAT1 */
++				"GPIO27_AA2", /* DAT2 */
++				"GPIO28_AA1"; /* DAT3 */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		sdi0_sleep_mode: sdi0_sleep {
++			sleep_cfg1 {
++				pins =
++				"GPIO18_AC2", /* CMDDIR */
++				"GPIO19_AC1", /* DAT0DIR */
++				"GPIO20_AB4"; /* DAT2DIR */
++				ste,config = <&slpm_out_hi_wkup_pdis>;
++			};
++			sleep_cfg2 {
++				pins =
++				"GPIO22_AA3", /* FBCLK */
++				"GPIO24_AB2", /* CMD */
++				"GPIO25_Y4", /* DAT0 */
++				"GPIO26_Y2", /* DAT1 */
++				"GPIO27_AA2", /* DAT2 */
++				"GPIO28_AA1"; /* DAT3 */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++			sleep_cfg3 {
++				pins = "GPIO23_AA4"; /* CLK */
++				ste,config = <&slpm_out_lo_wkup_pdis>;
++			};
++		};
++	};
++
++	sdi1 {
++		/* This is the WLAN SDIO 4 bits wide */
++		sdi1_default_mode: sdi1_default {
++			default_mux {
++				function = "mc1";
++				groups = "mc1_a_1";
++			};
++			default_cfg1 {
++				pins = "GPIO208_AH16"; /* CLK */
++				ste,config = <&out_lo>;
++			};
++			default_cfg2 {
++				pins = "GPIO209_AG15"; /* FBCLK */
++				ste,config = <&in_nopull>;
++			};
++			default_cfg3 {
++				pins =
++				"GPIO210_AJ15", /* CMD */
++				"GPIO211_AG14", /* DAT0 */
++				"GPIO212_AF13", /* DAT1 */
++				"GPIO213_AG13", /* DAT2 */
++				"GPIO214_AH15"; /* DAT3 */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		sdi1_sleep_mode: sdi1_sleep {
++			sleep_cfg1 {
++				pins = "GPIO208_AH16"; /* CLK */
++				ste,config = <&slpm_out_lo_wkup_pdis>;
++			};
++			sleep_cfg2 {
++				pins =
++				"GPIO209_AG15", /* FBCLK */
++				"GPIO210_AJ15", /* CMD */
++				"GPIO211_AG14", /* DAT0 */
++				"GPIO212_AF13", /* DAT1 */
++				"GPIO213_AG13", /* DAT2 */
++				"GPIO214_AH15"; /* DAT3 */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++		};
++	};
++
++	sdi2 {
++		/* This is the eMMC 8 bits wide, usually PoP eMMC */
++		sdi2_default_mode: sdi2_default {
++			default_mux {
++				function = "mc2";
++				groups = "mc2_a_1";
++			};
++			default_cfg1 {
++				pins = "GPIO128_A5"; /* CLK */
++				ste,config = <&out_lo>;
++			};
++			default_cfg2 {
++				pins = "GPIO130_C8"; /* FBCLK */
++				ste,config = <&in_nopull>;
++			};
++			default_cfg3 {
++				pins =
++				"GPIO129_B4", /* CMD */
++				"GPIO131_A12", /* DAT0 */
++				"GPIO132_C10", /* DAT1 */
++				"GPIO133_B10", /* DAT2 */
++				"GPIO134_B9", /* DAT3 */
++				"GPIO135_A9", /* DAT4 */
++				"GPIO136_C7", /* DAT5 */
++				"GPIO137_A7", /* DAT6 */
++				"GPIO138_C5"; /* DAT7 */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		sdi2_sleep_mode: sdi2_sleep {
++			sleep_cfg1 {
++				pins = "GPIO128_A5"; /* CLK */
++				ste,config = <&out_lo_wkup_pdis>;
++			};
++			sleep_cfg2 {
++				pins =
++				"GPIO130_C8", /* FBCLK */
++				"GPIO129_B4"; /* CMD */
++				ste,config = <&in_wkup_pdis_en>;
++			};
++			sleep_cfg3 {
++				pins =
++				"GPIO131_A12", /* DAT0 */
++				"GPIO132_C10", /* DAT1 */
++				"GPIO133_B10", /* DAT2 */
++				"GPIO134_B9", /* DAT3 */
++				"GPIO135_A9", /* DAT4 */
++				"GPIO136_C7", /* DAT5 */
++				"GPIO137_A7", /* DAT6 */
++				"GPIO138_C5"; /* DAT7 */
++				ste,config = <&in_wkup_pdis>;
++			};
++		};
++	};
++
++	sdi4 {
++		/* This is the eMMC 8 bits wide, usually PCB-mounted eMMC */
++		sdi4_default_mode: sdi4_default {
++			default_mux {
++				function = "mc4";
++				groups = "mc4_a_1";
++			};
++			default_cfg1 {
++				pins = "GPIO203_AE23"; /* CLK */
++				ste,config = <&out_lo>;
++			};
++			default_cfg2 {
++				pins = "GPIO202_AF25"; /* FBCLK */
++				ste,config = <&in_nopull>;
++			};
++			default_cfg3 {
++				pins =
++				"GPIO201_AF24", /* CMD */
++				"GPIO200_AH26", /* DAT0 */
++				"GPIO199_AH23", /* DAT1 */
++				"GPIO198_AG25", /* DAT2 */
++				"GPIO197_AH24", /* DAT3 */
++				"GPIO207_AJ23", /* DAT4 */
++				"GPIO206_AG24", /* DAT5 */
++				"GPIO205_AG23", /* DAT6 */
++				"GPIO204_AF23"; /* DAT7 */
++				ste,config = <&in_pu>;
++			};
++		};
++
++		sdi4_sleep_mode: sdi4_sleep {
++			sleep_cfg1 {
++				pins = "GPIO203_AE23"; /* CLK */
++				ste,config = <&out_lo_wkup_pdis>;
++			};
++			sleep_cfg2 {
++				pins =
++				"GPIO202_AF25", /* FBCLK */
++				"GPIO201_AF24", /* CMD */
++				"GPIO200_AH26", /* DAT0 */
++				"GPIO199_AH23", /* DAT1 */
++				"GPIO198_AG25", /* DAT2 */
++				"GPIO197_AH24", /* DAT3 */
++				"GPIO207_AJ23", /* DAT4 */
++				"GPIO206_AG24", /* DAT5 */
++				"GPIO205_AG23", /* DAT6 */
++				"GPIO204_AF23"; /* DAT7 */
++				ste,config = <&slpm_in_wkup_pdis>;
++			};
++		};
++	};
++
++	/*
++	 * Multi-rate serial ports (MSPs) - MSP3 output is internal and
++	 * cannot be muxed onto any pins.
++	 */
++	msp0 {
++		msp0_default_mode: msp0_default {
++			default_msp0_mux {
++				function = "msp0";
++				groups = "msp0txrx_a_1", "msp0tfstck_a_1";
++			};
++			default_msp0_cfg {
++				pins =
++				"GPIO12_AC4", /* TXD */
++				"GPIO15_AC3", /* RXD */
++				"GPIO13_AF3", /* TFS */
++				"GPIO14_AE3"; /* TCK */
++				ste,config = <&in_nopull>;
++			};
++		};
++	};
++
++	msp1 {
++		msp1_default_mode: msp1_default {
++			default_mux {
++				function = "msp1";
++				groups = "msp1txrx_a_1", "msp1_a_1";
++			};
++			default_cfg1 {
++				pins = "GPIO33_AF2";
++				ste,config = <&out_lo>;
++			};
++			default_cfg2 {
++				pins =
++				"GPIO34_AE1",
++				"GPIO35_AE2",
++				"GPIO36_AG2";
++				ste,config = <&in_nopull>;
++			};
++		};
++	};
++
++	msp2 {
++		msp2_default_mode: msp2_default {
++			/* MSP2 usually used for HDMI audio */
++			default_mux {
++				function = "msp2";
++				groups = "msp2_a_1";
++			};
++			default_cfg1 {
++				pins =
++				"GPIO193_AH27", /* TXD */
++				"GPIO194_AF27", /* TCK */
++				"GPIO195_AG28"; /* TFS */
++				ste,config = <&in_pd>;
++			};
++			default_cfg2 {
++				pins = "GPIO196_AG26"; /* RXD */
++				ste,config = <&out_lo>;
++			};
++		};
++	};
++
++	musb {
++		musb_default_mode: musb_default {
++			default_mux {
++				function = "usb";
++				groups = "usb_a_1";
++			};
++			default_cfg1 {
++				pins =
++				"GPIO256_AF28", /* NXT */
++				"GPIO258_AD29", /* XCLK */
++				"GPIO259_AC29", /* DIR */
++				"GPIO260_AD28", /* DAT7 */
++				"GPIO261_AD26", /* DAT6 */
++				"GPIO262_AE26", /* DAT5 */
++				"GPIO263_AG29", /* DAT4 */
++				"GPIO264_AE27", /* DAT3 */
++				"GPIO265_AD27", /* DAT2 */
++				"GPIO266_AC28", /* DAT1 */
++				"GPIO267_AC27"; /* DAT0 */
++				ste,config = <&in_nopull>;
++			};
++			default_cfg2 {
++				pins = "GPIO257_AE29"; /* STP */
++				ste,config = <&out_hi>;
++			};
++		};
++
++		musb_sleep_mode: musb_sleep {
++			sleep_cfg1 {
++				pins =
++				"GPIO256_AF28", /* NXT */
++				"GPIO258_AD29", /* XCLK */
++				"GPIO259_AC29"; /* DIR */
++				ste,config = <&slpm_wkup_pdis_en>;
++			};
++			sleep_cfg2 {
++				pins = "GPIO257_AE29"; /* STP */
++				ste,config = <&slpm_out_hi_wkup_pdis>;
++			};
++			sleep_cfg3 {
++				pins =
++				"GPIO260_AD28", /* DAT7 */
++				"GPIO261_AD26", /* DAT6 */
++				"GPIO262_AE26", /* DAT5 */
++				"GPIO263_AG29", /* DAT4 */
++				"GPIO264_AE27", /* DAT3 */
++				"GPIO265_AD27", /* DAT2 */
++				"GPIO266_AC28", /* DAT1 */
++				"GPIO267_AC27"; /* DAT0 */
++				ste,config = <&slpm_in_wkup_pdis_en>;
++			};
++		};
++	};
++};
+diff --git a/arch/arm/boot/dts/ste-href-family-pinctrl.dtsi b/arch/arm/boot/dts/ste-href-family-pinctrl.dtsi
+index 2c382d274ff6..434fa6baf71f 100644
+--- a/arch/arm/boot/dts/ste-href-family-pinctrl.dtsi
++++ b/arch/arm/boot/dts/ste-href-family-pinctrl.dtsi
+@@ -3,212 +3,11 @@
+  * Copyright 2013 Linaro Ltd.
+  */
  
--			usart1_pins_a: usart1@0 {
-+			usart1_pins_a: usart1_0 {
- 				pins1 {
- 					pinmux = <STM32_PINMUX('A', 9, AF7)>; /* USART1_TX */
- 					bias-disable;
-@@ -176,7 +176,7 @@
+-#include "ste-nomadik-pinctrl.dtsi"
++#include "ste-dbx5x0-pinctrl.dtsi"
+ 
+ / {
+ 	soc {
+ 		pinctrl {
+-			/* Settings for all UART default and sleep states */
+-			uart0 {
+-				uart0_default_mode: uart0_default {
+-					default_mux {
+-						function = "u0";
+-						groups = "u0_a_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO0_AJ5", "GPIO2_AH4"; /* CTS+RXD */
+-						ste,config = <&in_pu>;
+-					};
+-
+-					default_cfg2 {
+-						pins = "GPIO1_AJ3", "GPIO3_AH3"; /* RTS+TXD */
+-						ste,config = <&out_hi>;
+-					};
+-				};
+-
+-				uart0_sleep_mode: uart0_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO0_AJ5", "GPIO2_AH4"; /* CTS+RXD */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-
+-					sleep_cfg2 {
+-						pins = "GPIO1_AJ3"; /* RTS */
+-						ste,config = <&slpm_out_hi_wkup_pdis>;
+-					};
+-
+-					sleep_cfg3 {
+-						pins = "GPIO3_AH3"; /* TXD */
+-						ste,config = <&slpm_out_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			uart1 {
+-				uart1_default_mode: uart1_default {
+-					default_mux {
+-						function = "u1";
+-						groups = "u1rxtx_a_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO4_AH6"; /* RXD */
+-						ste,config = <&in_pu>;
+-					};
+-
+-					default_cfg2 {
+-						pins = "GPIO5_AG6"; /* TXD */
+-						ste,config = <&out_hi>;
+-					};
+-				};
+-
+-				uart1_sleep_mode: uart1_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO4_AH6"; /* RXD */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-
+-					sleep_cfg2 {
+-						pins = "GPIO5_AG6"; /* TXD */
+-						ste,config = <&slpm_out_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			uart2 {
+-				uart2_default_mode: uart2_default {
+-					default_mux {
+-						function = "u2";
+-						groups = "u2rxtx_c_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO29_W2"; /* RXD */
+-						ste,config = <&in_pu>;
+-					};
+-
+-					default_cfg2 {
+-						pins = "GPIO30_W3"; /* TXD */
+-						ste,config = <&out_hi>;
+-					};
+-				};
+-
+-				uart2_sleep_mode: uart2_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO29_W2"; /* RXD */
+-						ste,config = <&in_wkup_pdis>;
+-					};
+-
+-					sleep_cfg2 {
+-						pins = "GPIO30_W3"; /* TXD */
+-						ste,config = <&out_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			/* Settings for all I2C default and sleep states */
+-			i2c0 {
+-				i2c0_default_mode: i2c_default {
+-					default_mux {
+-						function = "i2c0";
+-						groups = "i2c0_a_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO147_C15", "GPIO148_B16"; /* SDA/SCL */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				i2c0_sleep_mode: i2c_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO147_C15", "GPIO148_B16"; /* SDA/SCL */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			i2c1 {
+-				i2c1_default_mode: i2c_default {
+-					default_mux {
+-						function = "i2c1";
+-						groups = "i2c1_b_2";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO16_AD3", "GPIO17_AD4"; /* SDA/SCL */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				i2c1_sleep_mode: i2c_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO16_AD3", "GPIO17_AD4"; /* SDA/SCL */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			i2c2 {
+-				i2c2_default_mode: i2c_default {
+-					default_mux {
+-						function = "i2c2";
+-						groups = "i2c2_b_2";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO10_AF5", "GPIO11_AG4"; /* SDA/SCL */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				i2c2_sleep_mode: i2c_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO10_AF5", "GPIO11_AG4"; /* SDA/SCL */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			i2c3 {
+-				i2c3_default_mode: i2c_default {
+-					default_mux {
+-						function = "i2c3";
+-						groups = "i2c3_c_2";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO229_AG7", "GPIO230_AF7"; /* SDA/SCL */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				i2c3_sleep_mode: i2c_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO229_AG7", "GPIO230_AF7"; /* SDA/SCL */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			/*
+-			 * Activating I2C4 will conflict with UART1 about the same pins so do not
+-			 * enable I2C4 and UART1 at the same time.
+-			 */
+-			i2c4 {
+-				i2c4_default_mode: i2c_default {
+-					default_mux {
+-						function = "i2c4";
+-						groups = "i2c4_b_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO4_AH6", "GPIO5_AG6"; /* SDA/SCL */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				i2c4_sleep_mode: i2c_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO4_AH6", "GPIO5_AG6"; /* SDA/SCL */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+ 			/* Settings for all SPI default and sleep states */
+ 			spi2 {
+ 				spi2_default_mode: spi_default {
+@@ -270,335 +69,6 @@
  				};
  			};
  
--			usart3_pins_a: usart3@0 {
-+			usart3_pins_a: usart3_0 {
- 				pins1 {
- 					pinmux = <STM32_PINMUX('B', 10, AF7)>; /* USART3_TX */
- 					bias-disable;
-@@ -189,7 +189,7 @@
- 				};
- 			};
- 
--			usbotg_fs_pins_a: usbotg_fs@0 {
-+			usbotg_fs_pins_a: usbotg_fs_0 {
- 				pins {
- 					pinmux = <STM32_PINMUX('A', 10, AF10)>, /* OTG_FS_ID */
- 						 <STM32_PINMUX('A', 11, AF10)>, /* OTG_FS_DM */
-@@ -200,7 +200,7 @@
- 				};
- 			};
- 
--			usbotg_fs_pins_b: usbotg_fs@1 {
-+			usbotg_fs_pins_b: usbotg_fs_1 {
- 				pins {
- 					pinmux = <STM32_PINMUX('B', 12, AF12)>, /* OTG_HS_ID */
- 						 <STM32_PINMUX('B', 14, AF12)>, /* OTG_HS_DM */
-@@ -211,7 +211,7 @@
- 				};
- 			};
- 
--			usbotg_hs_pins_a: usbotg_hs@0 {
-+			usbotg_hs_pins_a: usbotg_hs_0 {
- 				pins {
- 					pinmux = <STM32_PINMUX('H', 4, AF10)>, /* OTG_HS_ULPI_NXT*/
- 						 <STM32_PINMUX('I', 11, AF10)>, /* OTG_HS_ULPI_DIR */
-@@ -231,7 +231,7 @@
- 				};
- 			};
- 
--			ethernet_mii: mii@0 {
-+			ethernet_mii: mii_0 {
- 				pins {
- 					pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH_MII_TXD0_ETH_RMII_TXD0 */
- 						 <STM32_PINMUX('G', 14, AF11)>, /* ETH_MII_TXD1_ETH_RMII_TXD1 */
-@@ -251,13 +251,13 @@
- 				};
- 			};
- 
--			adc3_in8_pin: adc@200 {
-+			adc3_in8_pin: adc_200 {
- 				pins {
- 					pinmux = <STM32_PINMUX('F', 10, ANALOG)>;
- 				};
- 			};
- 
--			pwm1_pins: pwm@1 {
-+			pwm1_pins: pwm_1 {
- 				pins {
- 					pinmux = <STM32_PINMUX('A', 8, AF1)>, /* TIM1_CH1 */
- 						 <STM32_PINMUX('B', 13, AF1)>, /* TIM1_CH1N */
-@@ -265,14 +265,14 @@
- 				};
- 			};
- 
--			pwm3_pins: pwm@3 {
-+			pwm3_pins: pwm_3 {
- 				pins {
- 					pinmux = <STM32_PINMUX('B', 4, AF2)>, /* TIM3_CH1 */
- 						 <STM32_PINMUX('B', 5, AF2)>; /* TIM3_CH2 */
- 				};
- 			};
- 
--			i2c1_pins: i2c1@0 {
-+			i2c1_pins: i2c1_0 {
- 				pins {
- 					pinmux = <STM32_PINMUX('B', 9, AF4)>, /* I2C1_SDA */
- 						 <STM32_PINMUX('B', 6, AF4)>; /* I2C1_SCL */
-@@ -282,7 +282,7 @@
- 				};
- 			};
- 
--			ltdc_pins: ltdc@0 {
-+			ltdc_pins: ltdc_0 {
- 				pins {
- 					pinmux = <STM32_PINMUX('I', 12, AF14)>, /* LCD_HSYNC */
- 						 <STM32_PINMUX('I', 13, AF14)>, /* LCD_VSYNC */
-@@ -316,7 +316,7 @@
- 				};
- 			};
- 
--			dcmi_pins: dcmi@0 {
-+			dcmi_pins: dcmi_0 {
- 				pins {
- 					pinmux = <STM32_PINMUX('A', 4, AF13)>, /* DCMI_HSYNC */
- 						 <STM32_PINMUX('B', 7, AF13)>, /* DCMI_VSYNC */
-@@ -339,7 +339,7 @@
- 				};
- 			};
- 
--			sdio_pins: sdio_pins@0 {
-+			sdio_pins: sdio_pins_0 {
- 				pins {
- 					pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDIO_D0 */
- 						 <STM32_PINMUX('C', 9, AF12)>, /* SDIO_D1 */
-@@ -352,7 +352,7 @@
- 				};
- 			};
- 
--			sdio_pins_od: sdio_pins_od@0 {
-+			sdio_pins_od: sdio_pins_od_0 {
- 				pins1 {
- 					pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDIO_D0 */
- 						 <STM32_PINMUX('C', 9, AF12)>, /* SDIO_D1 */
+-			/* Settings for all MMC/SD/SDIO default and sleep states */
+-			sdi0 {
+-				/* This is the external SD card slot, 4 bits wide */
+-				sdi0_default_mode: sdi0_default {
+-					default_mux {
+-						function = "mc0";
+-						groups = "mc0_a_1";
+-					};
+-					default_cfg1 {
+-						pins =
+-						"GPIO18_AC2", /* CMDDIR */
+-						"GPIO19_AC1", /* DAT0DIR */
+-						"GPIO20_AB4"; /* DAT2DIR */
+-						ste,config = <&out_hi>;
+-					};
+-					default_cfg2 {
+-						pins = "GPIO22_AA3"; /* FBCLK */
+-						ste,config = <&in_nopull>;
+-					};
+-					default_cfg3 {
+-						pins = "GPIO23_AA4"; /* CLK */
+-						ste,config = <&out_lo>;
+-					};
+-					default_cfg4 {
+-						pins =
+-						"GPIO24_AB2", /* CMD */
+-						"GPIO25_Y4", /* DAT0 */
+-						"GPIO26_Y2", /* DAT1 */
+-						"GPIO27_AA2", /* DAT2 */
+-						"GPIO28_AA1"; /* DAT3 */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				sdi0_sleep_mode: sdi0_sleep {
+-					sleep_cfg1 {
+-						pins =
+-						"GPIO18_AC2", /* CMDDIR */
+-						"GPIO19_AC1", /* DAT0DIR */
+-						"GPIO20_AB4"; /* DAT2DIR */
+-						ste,config = <&slpm_out_hi_wkup_pdis>;
+-					};
+-					sleep_cfg2 {
+-						pins =
+-						"GPIO22_AA3", /* FBCLK */
+-						"GPIO24_AB2", /* CMD */
+-						"GPIO25_Y4", /* DAT0 */
+-						"GPIO26_Y2", /* DAT1 */
+-						"GPIO27_AA2", /* DAT2 */
+-						"GPIO28_AA1"; /* DAT3 */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-					sleep_cfg3 {
+-						pins = "GPIO23_AA4"; /* CLK */
+-						ste,config = <&slpm_out_lo_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			sdi1 {
+-				/* This is the WLAN SDIO 4 bits wide */
+-				sdi1_default_mode: sdi1_default {
+-					default_mux {
+-						function = "mc1";
+-						groups = "mc1_a_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO208_AH16"; /* CLK */
+-						ste,config = <&out_lo>;
+-					};
+-					default_cfg2 {
+-						pins = "GPIO209_AG15"; /* FBCLK */
+-						ste,config = <&in_nopull>;
+-					};
+-					default_cfg3 {
+-						pins =
+-						"GPIO210_AJ15", /* CMD */
+-						"GPIO211_AG14", /* DAT0 */
+-						"GPIO212_AF13", /* DAT1 */
+-						"GPIO213_AG13", /* DAT2 */
+-						"GPIO214_AH15"; /* DAT3 */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				sdi1_sleep_mode: sdi1_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO208_AH16"; /* CLK */
+-						ste,config = <&slpm_out_lo_wkup_pdis>;
+-					};
+-					sleep_cfg2 {
+-						pins =
+-						"GPIO209_AG15", /* FBCLK */
+-						"GPIO210_AJ15", /* CMD */
+-						"GPIO211_AG14", /* DAT0 */
+-						"GPIO212_AF13", /* DAT1 */
+-						"GPIO213_AG13", /* DAT2 */
+-						"GPIO214_AH15"; /* DAT3 */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			sdi2 {
+-				/* This is the eMMC 8 bits wide, usually PoP eMMC */
+-				sdi2_default_mode: sdi2_default {
+-					default_mux {
+-						function = "mc2";
+-						groups = "mc2_a_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO128_A5"; /* CLK */
+-						ste,config = <&out_lo>;
+-					};
+-					default_cfg2 {
+-						pins = "GPIO130_C8"; /* FBCLK */
+-						ste,config = <&in_nopull>;
+-					};
+-					default_cfg3 {
+-						pins =
+-						"GPIO129_B4", /* CMD */
+-						"GPIO131_A12", /* DAT0 */
+-						"GPIO132_C10", /* DAT1 */
+-						"GPIO133_B10", /* DAT2 */
+-						"GPIO134_B9", /* DAT3 */
+-						"GPIO135_A9", /* DAT4 */
+-						"GPIO136_C7", /* DAT5 */
+-						"GPIO137_A7", /* DAT6 */
+-						"GPIO138_C5"; /* DAT7 */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				sdi2_sleep_mode: sdi2_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO128_A5"; /* CLK */
+-						ste,config = <&out_lo_wkup_pdis>;
+-					};
+-					sleep_cfg2 {
+-						pins =
+-						"GPIO130_C8", /* FBCLK */
+-						"GPIO129_B4"; /* CMD */
+-						ste,config = <&in_wkup_pdis_en>;
+-					};
+-					sleep_cfg3 {
+-						pins =
+-						"GPIO131_A12", /* DAT0 */
+-						"GPIO132_C10", /* DAT1 */
+-						"GPIO133_B10", /* DAT2 */
+-						"GPIO134_B9", /* DAT3 */
+-						"GPIO135_A9", /* DAT4 */
+-						"GPIO136_C7", /* DAT5 */
+-						"GPIO137_A7", /* DAT6 */
+-						"GPIO138_C5"; /* DAT7 */
+-						ste,config = <&in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			sdi4 {
+-				/* This is the eMMC 8 bits wide, usually PCB-mounted eMMC */
+-				sdi4_default_mode: sdi4_default {
+-					default_mux {
+-						function = "mc4";
+-						groups = "mc4_a_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO203_AE23"; /* CLK */
+-						ste,config = <&out_lo>;
+-					};
+-					default_cfg2 {
+-						pins = "GPIO202_AF25"; /* FBCLK */
+-						ste,config = <&in_nopull>;
+-					};
+-					default_cfg3 {
+-						pins =
+-						"GPIO201_AF24", /* CMD */
+-						"GPIO200_AH26", /* DAT0 */
+-						"GPIO199_AH23", /* DAT1 */
+-						"GPIO198_AG25", /* DAT2 */
+-						"GPIO197_AH24", /* DAT3 */
+-						"GPIO207_AJ23", /* DAT4 */
+-						"GPIO206_AG24", /* DAT5 */
+-						"GPIO205_AG23", /* DAT6 */
+-						"GPIO204_AF23"; /* DAT7 */
+-						ste,config = <&in_pu>;
+-					};
+-				};
+-
+-				sdi4_sleep_mode: sdi4_sleep {
+-					sleep_cfg1 {
+-						pins = "GPIO203_AE23"; /* CLK */
+-						ste,config = <&out_lo_wkup_pdis>;
+-					};
+-					sleep_cfg2 {
+-						pins =
+-						"GPIO202_AF25", /* FBCLK */
+-						"GPIO201_AF24", /* CMD */
+-						"GPIO200_AH26", /* DAT0 */
+-						"GPIO199_AH23", /* DAT1 */
+-						"GPIO198_AG25", /* DAT2 */
+-						"GPIO197_AH24", /* DAT3 */
+-						"GPIO207_AJ23", /* DAT4 */
+-						"GPIO206_AG24", /* DAT5 */
+-						"GPIO205_AG23", /* DAT6 */
+-						"GPIO204_AF23"; /* DAT7 */
+-						ste,config = <&slpm_in_wkup_pdis>;
+-					};
+-				};
+-			};
+-
+-			/*
+-			 * Multi-rate serial ports (MSPs) - MSP3 output is internal and
+-			 * cannot be muxed onto any pins.
+-			 */
+-			msp0 {
+-				msp0_default_mode: msp0_default {
+-					default_msp0_mux {
+-						function = "msp0";
+-						groups = "msp0txrx_a_1", "msp0tfstck_a_1";
+-					};
+-					default_msp0_cfg {
+-						pins =
+-						"GPIO12_AC4", /* TXD */
+-						"GPIO15_AC3", /* RXD */
+-						"GPIO13_AF3", /* TFS */
+-						"GPIO14_AE3"; /* TCK */
+-						ste,config = <&in_nopull>;
+-					};
+-				};
+-			};
+-
+-			msp1 {
+-				msp1_default_mode: msp1_default {
+-					default_mux {
+-						function = "msp1";
+-						groups = "msp1txrx_a_1", "msp1_a_1";
+-					};
+-					default_cfg1 {
+-						pins = "GPIO33_AF2";
+-						ste,config = <&out_lo>;
+-					};
+-					default_cfg2 {
+-						pins =
+-						"GPIO34_AE1",
+-						"GPIO35_AE2",
+-						"GPIO36_AG2";
+-						ste,config = <&in_nopull>;
+-					};
+-
+-				};
+-			};
+-
+-			msp2 {
+-				msp2_default_mode: msp2_default {
+-					/* MSP2 usually used for HDMI audio */
+-					default_mux {
+-						function = "msp2";
+-						groups = "msp2_a_1";
+-					};
+-					default_cfg1 {
+-						pins =
+-						"GPIO193_AH27", /* TXD */
+-						"GPIO194_AF27", /* TCK */
+-						"GPIO195_AG28"; /* TFS */
+-						ste,config = <&in_pd>;
+-					};
+-					default_cfg2 {
+-						pins = "GPIO196_AG26"; /* RXD */
+-						ste,config = <&out_lo>;
+-					};
+-				};
+-			};
+-
+-
+-			musb {
+-				musb_default_mode: musb_default {
+-					default_mux {
+-						function = "usb";
+-						groups = "usb_a_1";
+-					};
+-					default_cfg1 {
+-						pins =
+-						"GPIO256_AF28", /* NXT */
+-						"GPIO258_AD29", /* XCLK */
+-						"GPIO259_AC29", /* DIR */
+-						"GPIO260_AD28", /* DAT7 */
+-						"GPIO261_AD26", /* DAT6 */
+-						"GPIO262_AE26", /* DAT5 */
+-						"GPIO263_AG29", /* DAT4 */
+-						"GPIO264_AE27", /* DAT3 */
+-						"GPIO265_AD27", /* DAT2 */
+-						"GPIO266_AC28", /* DAT1 */
+-						"GPIO267_AC27"; /* DAT0 */
+-						ste,config = <&in_nopull>;
+-					};
+-					default_cfg2 {
+-						pins = "GPIO257_AE29"; /* STP */
+-						ste,config = <&out_hi>;
+-					};
+-				};
+-
+-				musb_sleep_mode: musb_sleep {
+-					sleep_cfg1 {
+-						pins =
+-						"GPIO256_AF28", /* NXT */
+-						"GPIO258_AD29", /* XCLK */
+-						"GPIO259_AC29"; /* DIR */
+-						ste,config = <&slpm_wkup_pdis_en>;
+-					};
+-					sleep_cfg2 {
+-						pins = "GPIO257_AE29"; /* STP */
+-						ste,config = <&slpm_out_hi_wkup_pdis>;
+-					};
+-					sleep_cfg3 {
+-						pins =
+-						"GPIO260_AD28", /* DAT7 */
+-						"GPIO261_AD26", /* DAT6 */
+-						"GPIO262_AE26", /* DAT5 */
+-						"GPIO263_AG29", /* DAT4 */
+-						"GPIO264_AE27", /* DAT3 */
+-						"GPIO265_AD27", /* DAT2 */
+-						"GPIO266_AC28", /* DAT1 */
+-						"GPIO267_AC27"; /* DAT0 */
+-						ste,config = <&slpm_in_wkup_pdis_en>;
+-					};
+-				};
+-			};
+-
+ 			mcde {
+ 				lcd_default_mode: lcd_default {
+ 					default_mux1 {
 -- 
-2.15.0
+2.24.0
 
