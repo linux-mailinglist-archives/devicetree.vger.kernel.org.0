@@ -2,111 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3799108FB8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2019 15:17:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C9D7108FD1
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2019 15:25:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728004AbfKYORw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Nov 2019 09:17:52 -0500
-Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.22]:15530 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727770AbfKYORw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Nov 2019 09:17:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1574691470;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=r/C4z8eqmf4EqK6PYy8WsArzStWXQ+mb5cSxKvoTl4Q=;
-        b=AP9CdUHyBSFSe2UT87PwY1eREKGTGKaYgZ+bVxcnXUYGb/y3AVx+JK5CGbNYu1hv7l
-        Q4SJ1fqChqo2xzZuWmCDvY8upa+XNb+fSYmcLmt1u5jGHGsNFxwRVqSy+6xd4AtZGKpV
-        eyZ1E5fr8Py+pGnnq8LWq8g/h4++RrqjEVJ/9x4STZcU29BowrZBASFtzlIbunHZZMbG
-        SDLcFVyLR5O4uSV/SeQXUVRtwl88wOeTW5JFUgKn12AQoWW4pfRO+CWZuR21IKz0sRLy
-        wGmyvMBM6z+0ro003JarnwHU6bLjdB8w5argiQJMvB7vSMBP61/a0fL22bJOGro2jt/U
-        STQA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u266HpF+ORJDYrryYBhveg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 45.0.2 DYNA|AUTH)
-        with ESMTPSA id 304194vAPEHn0tU
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Mon, 25 Nov 2019 15:17:49 +0100 (CET)
-Date:   Mon, 25 Nov 2019 15:17:40 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] ARM: dts: ux500: Add pin configs for UART1 CTS/RTS
- pins
-Message-ID: <20191125141740.GA55734@gerhold.net>
-References: <20191125122256.53482-1-stephan@gerhold.net>
- <20191125122256.53482-4-stephan@gerhold.net>
+        id S1728041AbfKYOZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Nov 2019 09:25:16 -0500
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:41076 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728035AbfKYOZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Nov 2019 09:25:16 -0500
+Received: by mail-lf1-f68.google.com with SMTP id m30so9324266lfp.8
+        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2019 06:25:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jJGjqIUVepPLRHV22oqqOHDreGtDqVWxcWdZC6G8yok=;
+        b=l1SwZIBz0kpCh6mjQ1tTCN3YgKucw0MFxLyXXFgDJ9e9/VWs5egA1uNyn+s63YFdf5
+         QD3+utHSpmupD0wvVrPU5Mxb/eQvgtRJwW5DW8Psi9RQSuluXnGY/K4C7UF0KxLHK+iI
+         aHDstMocXx3EpwBIIv1jpBZQFtRKwAl8TYNRjNwfvoNv12MHpJKTmm7HiANy59nH7djp
+         dhefBQRn2TrK3wyRhBlEjT3onEybhzYbJZbOtZl/IhXXDteAxFI5Ubb1dYlAB7Y6LemU
+         Q33T3L+gsT4MdepvwuPEDR1d7p5Yfn0UxRkeMj2wUcYL2rWsC2AanuZFBTT1a5Nso8Ym
+         dlAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jJGjqIUVepPLRHV22oqqOHDreGtDqVWxcWdZC6G8yok=;
+        b=kT+5n6hRQTE7SXhCf5nYo25wlp3izCH4eSM1a2FGBCmyYlNSytivW6Q6mUdR4q1p2+
+         8aQde5jwZ1kF9QMiChwAD6gSf6JXHeUIjJCDQAiBukH4kmAX6ToIHow5kc/TOa8IxFGJ
+         m0kngfXgi29haHkoihaMEyEdBNuAdqIpX++Gvk+1d7BINyef+N/UcoF9QBNKDrl6aMra
+         lBM2XzfGKlPZedQDQT+NRPqeKmwiEBbQkz5ca9rYM8iw26qGcKjYYI1aktwQ5kR+PKd1
+         VtnpdISZbxbNsGvhGogkOt8CRowvs/rTFPsChoYXTFeZN4xYkctOsDdhMFnySABFpAkY
+         5+zw==
+X-Gm-Message-State: APjAAAXGy7svbLFI3i+e3C2iZZ5okPzRI0cI/0OY64gd6V9jTlrqfi90
+        6wQV7LwsTzHzrps3EQUf9hxfLQ==
+X-Google-Smtp-Source: APXvYqzP9+NUfhIW+ld6KbXz6vRF5nWC4KK2171kbO1EU3AOvuqRZSjCLzfJbm9JvAixkFVrpwwVcQ==
+X-Received: by 2002:a19:22c4:: with SMTP id i187mr19509055lfi.152.1574691912976;
+        Mon, 25 Nov 2019 06:25:12 -0800 (PST)
+Received: from centauri.lan (ua-84-217-220-205.bbcust.telenor.se. [84.217.220.205])
+        by smtp.gmail.com with ESMTPSA id b28sm4595260ljp.9.2019.11.25.06.25.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Nov 2019 06:25:12 -0800 (PST)
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     amit.kucheria@linaro.org, bjorn.andersson@linaro.org,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/5] DTS changes to support cpufreq on QCS404
+Date:   Mon, 25 Nov 2019 15:25:05 +0100
+Message-Id: <20191125142511.681149-1-niklas.cassel@linaro.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191125122256.53482-4-stephan@gerhold.net>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 25, 2019 at 01:22:55PM +0100, Stephan Gerhold wrote:
-> UART1 an be optionally used with additional CTS/RTS pins.
+The following DTS changes are required to enable cpufreq support on
+the QCS404.
 
-s/an/can, duh.
-I will fix this if a v2 is needed for some reason; otherwise,
-can you fix this when applying the patch?
+Changes since v1:
+-Added a cover-letter.
+-Swapped order of "pll" and "aux" clocks, in order to not break DT
+backwards compatibility. (In case no clock-names are given, "pll" still
+has to be the first clock).
+-Removed incorrect newline in the middle of the cpu0 DT node.
+(This extra newline must have been added by mistake, since no other
+cpuX node in the same cluster had this extra newline added.)
 
-Thanks!
+Jorge Ramirez-Ortiz (5):
+  arm64: dts: qcom: msm8916: Add the clocks for the APCS mux/divider
+  arm64: dts: qcom: qcs404: Add HFPLL node
+  arm64: dts: qcom: qcs404: Add the clocks for APCS mux/divider
+  arm64: dts: qcom: qcs404: Add DVFS support
+  arm64: defconfig: Enable HFPLL
 
-> The pinctrl driver has an extra "u1ctsrts_a_1" pin group for them.
-> 
-> Add a new pin configuration to configure them correctly if needed.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
->  arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi | 26 +++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi b/arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi
-> index b6d0a60e9aed..e85a08ad2ea7 100644
-> --- a/arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/ste-dbx5x0-pinctrl.dtsi
-> @@ -65,6 +65,32 @@
->  				ste,config = <&slpm_out_wkup_pdis>;
->  			};
->  		};
-> +
-> +		u1ctsrts_a_1_default: u1ctsrts_a_1_default {
-> +			default_mux {
-> +				function = "u1";
-> +				groups = "u1ctsrts_a_1";
-> +			};
-> +			default_cfg1 {
-> +				pins = "GPIO6_AF6"; /* CTS */
-> +				ste,config = <&in_pu>;
-> +			};
-> +			default_cfg2 {
-> +				pins = "GPIO7_AG5"; /* RTS */
-> +				ste,config = <&out_hi>;
-> +			};
-> +		};
-> +
-> +		u1ctsrts_a_1_sleep: u1ctsrts_a_1_sleep {
-> +			sleep_cfg1 {
-> +				pins = "GPIO6_AF6"; /* CTS */
-> +				ste,config = <&slpm_in_wkup_pdis>;
-> +			};
-> +			sleep_cfg2 {
-> +				pins = "GPIO7_AG5"; /* RTS */
-> +				ste,config = <&slpm_out_hi_wkup_pdis>;
-> +			};
-> +		};
->  	};
->  
->  	uart2 {
-> -- 
-> 2.24.0
-> 
+ arch/arm64/boot/dts/qcom/msm8916.dtsi |  3 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi  | 42 +++++++++++++++++++++++++++
+ arch/arm64/configs/defconfig          |  1 +
+ 3 files changed, 45 insertions(+), 1 deletion(-)
+
+-- 
+2.23.0
+
