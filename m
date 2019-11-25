@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 073DC108FCF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2019 15:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C450108FD3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2019 15:25:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728035AbfKYOZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Nov 2019 09:25:17 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:41444 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728036AbfKYOZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Nov 2019 09:25:16 -0500
-Received: by mail-lj1-f195.google.com with SMTP id m4so16071881ljj.8
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2019 06:25:15 -0800 (PST)
+        id S1728059AbfKYOZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Nov 2019 09:25:20 -0500
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:35024 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728048AbfKYOZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Nov 2019 09:25:19 -0500
+Received: by mail-lf1-f65.google.com with SMTP id r15so8246430lff.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2019 06:25:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=sLculURoH3BCV7hyS93RpcUM9UKZHxxj8yiEZMlzgFI=;
-        b=e9zr5cFEFsYtz8NXh6wk3vUJiorgv8HQAamT1XM5/Vk90Irw61nDfa5wPaYmVwMzqk
-         Zud3SpzpmI0iGzF04+2AZv60HTwH4SR1gjdxeDGc2B2BL7ONVj8HgsFJJ85xFeB9Uy3i
-         SIBriFaViu/kJ2n5cvhCuu3GnC5cV+Mss1EtXmX2wP1ByKUha9tTCHOmwTiaqs0xZ7EX
-         WBRkPnnC6nOtQPYt9OgxSA+DTh1WIcWpotuxit2u6jM2bWGnof3coMDEVy1+ose+1age
-         Brx4DclEo7Umjh4JU8Ave451L3cOgdaZr4yTZaZ+PwZ9WyWBaVj9bRresnpboJmK0NTT
-         Z7Kg==
+        bh=EuFRcfNq3LsLJUbGBe/N0k0kxrqgC13hX5+2ejknKGs=;
+        b=AkAOL4O//f/RtBY5VC03PxSWYUE6xfXln26RyI5bNloyd5gy7kJqQlMwwu91Oaz0ZO
+         RHeLXkrD8E+/HVxzKXXpZ8Yg2m71+hIudIPVy9nlwgbwLaDUxhYOHoFMHeL5J/QYKI+O
+         +1ko2kO8OHLBdd3Gn0NpIelexXRaE8FTXlGhEPWeqn7t3vTY0ogWRFyfyKBWX+P9Hunu
+         /9y5p1pGDHOxWiwD0sklo209ARyQY1OjPi+FKaoCmMhR+SEa45qMXH9n2Ds335kHj/MU
+         ioWhRFXJAjRiDvxzofqr3KDMrkX7UBPNRwXI7KnRUYWSK8Ypzqj38UNhhIIvXLnAHQfc
+         2vzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=sLculURoH3BCV7hyS93RpcUM9UKZHxxj8yiEZMlzgFI=;
-        b=oJr+xhC1Vd8rRTdrFmLAeKSTTDCKbDFblwbtRfTaKfeDDZzMaZPuAdjJg7FRZTPYQA
-         InOF8zIEaSUSOsrt742XgLbOqQapOWmrGA9EFWKLVxAOgjVufeoZPAHGyjPBfOtmLEDW
-         t4LlF/WIPgjryr4NHw4innkU51TZI2F2dSrztGYdFBjGBRZgZ0tru+NGBS32l9eSbvlb
-         9FKQ8A7NCYAl5AuYQLLOOauH20awqadcXCJYaN4IpilrlvCH5H0nQfIuE/PmUXDXnowO
-         T01aD7V+wYE1zpUDxLhnn3ZNQTYwe5vtQAryVRpsa9HluxJzgcaCOCq9oV/u1HqJFqXl
-         9xpA==
-X-Gm-Message-State: APjAAAWeyjnFRjL0R7HDfNCfNsw8cPiycyRuZnb/tob8AxSTkcmTDgxi
-        /BIAr33ZKo5ScOdOk7md171dGw==
-X-Google-Smtp-Source: APXvYqxzruuMyNSCsHenp3VVyLy99hYliqQex3TauCdVPMev/vQosO5w0vBVcQdHh1R5S2l9zyaGPw==
-X-Received: by 2002:a2e:8e27:: with SMTP id r7mr23143728ljk.101.1574691914559;
-        Mon, 25 Nov 2019 06:25:14 -0800 (PST)
+        bh=EuFRcfNq3LsLJUbGBe/N0k0kxrqgC13hX5+2ejknKGs=;
+        b=syTgesZ9lSnDt7Dwqm0OM2wPDlG584q7mlheDdcMyowHIh6LQvCYRKH6mcOcrxQRFj
+         amNbCuJfXKAFg0u80jBxMQnIdfZViKUGKdpcEhfuE+CW0yOqniBrFokmet42yug0QQLL
+         F8c56Tj0+Q65vMiJ9jl55mGeGuqIAsXIMp80WCdP+86dEW0nCutJg0jUWdIdxxZoVs2k
+         c6wkGKRMj6I0c7REJIfCvisNToldg6vX0g33et8fR711uLBq+mK7t8twRLTCcXNVgCuN
+         yDuTW+FVBVXWdnenB0IfU6Ca4z4sHpU//ciupwSPKGBEhbWrcDHqoeTtEDOW/sKnomOI
+         885Q==
+X-Gm-Message-State: APjAAAWVOYfaNe1DIIoDkGddbT5W6bKm7jtY6+J2HzmcvionC6i7dhfF
+        zR+253ac6BPO/P7mvi9fvOGZbQ==
+X-Google-Smtp-Source: APXvYqzuq/eLmUxMrkGzcX3pUkJ6NfSsIbuDwa4XqpO40lHVmtRNc4qkwNjG1guC3iEzcehjjqVnkA==
+X-Received: by 2002:ac2:5b0f:: with SMTP id v15mr10082682lfn.99.1574691916018;
+        Mon, 25 Nov 2019 06:25:16 -0800 (PST)
 Received: from centauri.lan (ua-84-217-220-205.bbcust.telenor.se. [84.217.220.205])
-        by smtp.gmail.com with ESMTPSA id b28sm4595260ljp.9.2019.11.25.06.25.13
+        by smtp.gmail.com with ESMTPSA id b28sm4595260ljp.9.2019.11.25.06.25.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Nov 2019 06:25:14 -0800 (PST)
+        Mon, 25 Nov 2019 06:25:15 -0800 (PST)
 From:   Niklas Cassel <niklas.cassel@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, amit.kucheria@linaro.org,
         Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>,
+        Niklas Cassel <niklas.cassel@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/5] arm64: dts: qcom: msm8916: Add the clocks for the APCS mux/divider
-Date:   Mon, 25 Nov 2019 15:25:06 +0100
-Message-Id: <20191125142511.681149-2-niklas.cassel@linaro.org>
+Subject: [PATCH v2 2/5] arm64: dts: qcom: qcs404: Add HFPLL node
+Date:   Mon, 25 Nov 2019 15:25:07 +0100
+Message-Id: <20191125142511.681149-3-niklas.cassel@linaro.org>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191125142511.681149-1-niklas.cassel@linaro.org>
 References: <20191125142511.681149-1-niklas.cassel@linaro.org>
@@ -67,38 +68,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
 
-Specify the clocks that feed the APCS mux/divider instead of using
-default hardcoded values in the source code.
+The high frequency pll functionality is required to enable CPU
+frequency scaling operation.
 
-The driver still supports the previous bindings; however with this
-update it we allow the msm8916 to access the parent clock names
-required by the driver operation using the device tree node.
-
+Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
+Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
 Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
 Changes since v1:
--Swapped order of "pll" and "aux" clocks, in order to not break DT
-backwards compatibility. (In case no clock-names are given, "pll" still
-has to be the first clock).
+-None
 
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 8686e101905c..9ec41b24a51f 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -429,7 +429,8 @@
- 			compatible = "qcom,msm8916-apcs-kpss-global", "syscon";
- 			reg = <0xb011000 0x1000>;
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index f5f0c4c9cb16..78065fbb3626 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -904,6 +904,15 @@
  			#mbox-cells = <1>;
--			clocks = <&a53pll>;
-+			clocks = <&a53pll>, <&gcc GPLL0_VOTE>;
-+			clock-names = "pll", "aux";
- 			#clock-cells = <0>;
  		};
  
++		apcs_hfpll: clock-controller@b016000 {
++			compatible = "qcom,hfpll";
++			reg = <0x0b016000 0x30>;
++			#clock-cells = <0>;
++			clock-output-names = "apcs_hfpll";
++			clocks = <&xo_board>;
++			clock-names = "xo";
++		};
++
+ 		watchdog@b017000 {
+ 			compatible = "qcom,kpss-wdt";
+ 			reg = <0x0b017000 0x1000>;
 -- 
 2.23.0
 
