@@ -2,119 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2B5109B07
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2019 10:20:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 291F3109B29
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2019 10:22:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727588AbfKZJUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Nov 2019 04:20:40 -0500
-Received: from mx2.suse.de ([195.135.220.15]:47934 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727150AbfKZJUk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Nov 2019 04:20:40 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 50643BAB1;
-        Tue, 26 Nov 2019 09:20:38 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     andrew.murray@arm.com, maz@kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>
-Cc:     james.quinlan@broadcom.com, mbrugger@suse.com,
-        f.fainelli@gmail.com, phil@raspberrypi.org, jeremy.linton@arm.com,
-        linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 3/7] ARM: dts: bcm2711: Enable PCIe controller
-Date:   Tue, 26 Nov 2019 10:19:41 +0100
-Message-Id: <20191126091946.7970-4-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191126091946.7970-1-nsaenzjulienne@suse.de>
-References: <20191126091946.7970-1-nsaenzjulienne@suse.de>
+        id S1727452AbfKZJWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Nov 2019 04:22:45 -0500
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:44874 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727446AbfKZJWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Nov 2019 04:22:45 -0500
+Received: by mail-lf1-f67.google.com with SMTP id v201so12413831lfa.11;
+        Tue, 26 Nov 2019 01:22:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=nP42ri7Gfuyq7+jTSAaeHSR6UUUTuVIMdi0iTbY+h84=;
+        b=ovYMWZh7rJIAiQIsOphqx1xCiq5HXT19ucp08A6Hyajw4ROMLr8llSUbHC6t4TQbbK
+         ACgpjDob4IqxBrXWeNyQ5DWuHtKzhfrodRgDe4HZf/I2BlO9dhb3KFOYPGGzQqpr4Tzr
+         Kl7nncerWp7c7U/GWoDkqcdJA+K99QdIKjNxi/eA7+Yv9A/t6aCYgQZ1FltbxaTzzoTE
+         4AsFg2bM2KX0RP0FCJD/O/IG2nDPuPaGlcdLAqqPOOCj4YZLwBtna/a3teKAk5JeJkwa
+         k4Y0SxxyKhf06vtLD9Dqg7qh8UPyothUXTyyVUQ2V+T4JeSm4OLreRurbik48BVaGIKV
+         G4Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=nP42ri7Gfuyq7+jTSAaeHSR6UUUTuVIMdi0iTbY+h84=;
+        b=aYzwSDYwp0LMXU1ubKhSGt8LjA+WbD/rAZDwrn2fVQwZ+Rc/E/u65XupxAWFjgjrkt
+         jfshW28p3gLHKDPumbAq3dEjoblgomURSW0sctMNNP5KilcHBqXHeP0Y7fV2x+ClRAOC
+         hQWCm0vu1eH3++/v0k2MTca4H4QAB+QJn5Jv9DhTqz3pTCPyNJ41RP6Gs07THV1OQn2Y
+         KiHeznXpejc+XPghYFhmj16OcPVJ8pfeXBQFQxQHhZK6mZtVefLHoRILW775+NGtsxsb
+         FYBfs78Y0t4UU6SDWP4Lh1Resktij2gyIyBtAQSTYcg+csB+yJty9DiRW6TWOrzov1U8
+         DaqQ==
+X-Gm-Message-State: APjAAAUJczQmjehFtfAspbAF/lescnkWAVdfxaeLRiq5mTsIOUWUtAcJ
+        Dbv5iIG1Zq2ByreIYxw/wQQaYSqpUK6ts9VlbTQ=
+X-Google-Smtp-Source: APXvYqxwEoS4JdUZHseRdgXnA2T0ZSH6rIjpNKMLHoZ81qrtdpjff/6z2EOp2yzjzjEVqX1615n2wklv8ouZ3FFfeSM=
+X-Received: by 2002:ac2:5283:: with SMTP id q3mr23177580lfm.21.1574760162745;
+ Tue, 26 Nov 2019 01:22:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191121095350.158689-1-tali.perry1@gmail.com>
+ <20191121095350.158689-3-tali.perry1@gmail.com> <20191125151618.GE2412@kunai> <CAHb3i=tGTcu2q15E5CL_od1rDgRDyx=ygoGSCu88AfBrnFn71w@mail.gmail.com>
+In-Reply-To: <CAHb3i=tGTcu2q15E5CL_od1rDgRDyx=ygoGSCu88AfBrnFn71w@mail.gmail.com>
+From:   Tali Perry <tali.perry1@gmail.com>
+Date:   Tue, 26 Nov 2019 11:27:54 +0200
+Message-ID: <CAHb3i=s+u1gHXwi7j7V_N-c8f8n7c1XB3QhkY8EAJuv6PA5GNw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] i2c: npcm: Add Nuvoton NPCM I2C controller driver
+To:     Wolfram Sang <wsa@the-dreams.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        avifishman70@gmail.com, joel@jms.id.au,
+        Tomer Maimon <tmaimon77@gmail.com>, syniurge@gmail.com,
+        linux-i2c@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables bcm2711's PCIe bus, which is hardwired to a VIA
-Technologies XHCI USB 3.0 controller.
+Hi Wolfram,
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Thanks for your comments.
 
----
+The NPCM7XX BMC I2C\SMB controller HW module supports both SMB and I2C.
+It's main features are:
+1. Supports Fast-Mode (400 KHz clock) I2C and Fast-Mode-plus (1 MHz clock) =
+I2C
+2. Supports the =E2=80=98fairness=E2=80=99 arbitration protocol defined by =
+the MCTP
+SMBus/I2C Transport Binding Specification v1.0.0
+3. 32KB packets : this is an I2C spec limitation. The HW has no limit
+on packets size. It has a 16 bytes FIFO which can be reloaded over and
+over.
+4. w\o size byte (for SMB block protocol).
+5. Both master and slave. It can also replace modes in run time
+(requirement for IPMB and MCTP).
+6. Bus timing is selected to support both specs.
 
-This will likely need a rebase once the RPi GENET patches land.
+Originally the HW spec stated SMB everywhere .
 
-Changes since v2:
-  - Remove unused interrupt-map
-  - correct dma-ranges to it's full size, non power of 2 bus DMA
-    constraints now supported in linux-next[1]
-  - add device_type
-  - rename alias from pcie_0 to pcie0
+Should I rename the SMB to I2C all over the driver?
 
-Changes since v1:
-  - remove linux,pci-domain
+Thanks,
+Tali Perry
 
-[1] https://lkml.org/lkml/2019/11/21/235
 
- arch/arm/boot/dts/bcm2711.dtsi | 41 ++++++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
-
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 667658497898..2e121fc8b3d0 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -288,6 +288,47 @@ IRQ_TYPE_LEVEL_LOW)>,
- 		arm,cpu-registers-not-fw-configured;
- 	};
- 
-+	scb {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <1>;
-+
-+		ranges = <0x0 0x7c000000  0x0 0xfc000000  0x03800000>,
-+			 <0x6 0x00000000  0x6 0x00000000  0x40000000>;
-+
-+		pcie0: pcie@7d500000 {
-+			compatible = "brcm,bcm2711-pcie";
-+			reg = <0x0 0x7d500000 0x9310>;
-+			device_type = "pci";
-+			#address-cells = <3>;
-+			#interrupt-cells = <1>;
-+			#size-cells = <2>;
-+			interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pcie", "msi";
-+			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-+			interrupt-map = <0 0 0 1 &gicv2 GIC_SPI 143
-+							IRQ_TYPE_LEVEL_HIGH>;
-+			msi-controller;
-+			msi-parent = <&pcie0>;
-+
-+			ranges = <0x02000000 0x0 0xf8000000 0x6 0x00000000
-+				  0x0 0x04000000>;
-+			/*
-+			 * The wrapper around the PCIe block has a bug
-+			 * preventing it from accessing beyond the first 3GB of
-+			 * memory. As the bus DMA mask is rounded up to the
-+			 * closest power of two of the dma-range size, we're
-+			 * forced to set the limit at 2GB. This can be
-+			 * harmlessly changed in the future once the DMA code
-+			 * handles non power of two DMA limits.
-+			 */
-+			dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000
-+				      0x0 0xc0000000>;
-+			brcm,enable-ssc;
-+		};
-+	};
-+
- 	cpus: cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.24.0
-
+On Tue, Nov 26, 2019 at 8:47 AM Tali Perry <tali.perry1@gmail.com> wrote:
+>
+> Hi Wolfram,
+>
+> Thanks for your comments.
+>
+> The NPCM7XX BMC I2C\SMB controller HW module supports both SMB and I2C.
+> It's main features are:
+> 1. Supports Fast-Mode (400 KHz clock) I2C and Fast-Mode-plus (1 MHz clock=
+) I2C
+> 2. Supports the =E2=80=98fairness=E2=80=99 arbitration protocol defined b=
+y the MCTP SMBus/I2C Transport Binding Specification v1.0.0
+> 3. 32KB packets : this is an I2C spec limitation. The HW has no limit on =
+packets size. It has a 16 bytes FIFO which can be reloaded over and over.
+> 4. w\o size byte (for SMB block protocol).
+> 5. Both master and slave. It can also replace modes in run time (requirem=
+ent for IPMB and MCTP).
+> 6. Bus timing is selected to support both specs.
+>
+> Originally the HW spec stated SMB everywhere .
+>
+> Should I rename the SMB to I2C all over the driver?
+>
+> Thanks,
+> Tali Perry
+>
+>
+> On Mon, Nov 25, 2019 at 5:16 PM Wolfram Sang <wsa@the-dreams.de> wrote:
+>>
+>> On Thu, Nov 21, 2019 at 11:53:50AM +0200, Tali Perry wrote:
+>> > Add Nuvoton NPCM BMC i2c controller driver.
+>> >
+>> > Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+>>
+>> Looking at all this SMB_* naming of the registers and also the quirks,
+>> this looks more like an SMBUS controller to me?
+>>
+>> > +     // currently I2C slave IF only supports single byte operations.
+>> > +     // in order to utilyze the npcm HW FIFO, the driver will ask for=
+ 16bytes
+>> > +     // at a time, pack them in buffer, and then transmit them all to=
+gether
+>> > +     // to the FIFO and onward to the bus .
+>> > +     // NACK on read will be once reached to bus->adap->quirks->max_r=
+ead_len
+>> > +     // sending a NACK whever the backend requests for it is not supp=
+orted.
+>>
+>> This for example...
+>>
+>> > +static const struct i2c_adapter_quirks npcm_i2c_quirks =3D {
+>> > +     .max_read_len =3D 32768,
+>> > +     .max_write_len =3D 32768,
+>> > +     .max_num_msgs =3D 2,
+>> > +     .flags =3D I2C_AQ_COMB_WRITE_THEN_READ
+>> > +};
+>>
+>> ... and this. Like SMBus with the only exception of being able to send
+>> 32K in a row. Or?
+>>
