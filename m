@@ -2,108 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DBC410A7D7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 02:17:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ECAD10A7DA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 02:18:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbfK0BRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Nov 2019 20:17:15 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:21722 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725794AbfK0BRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Nov 2019 20:17:15 -0500
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAR1H4i4071174;
-        Tue, 26 Nov 2019 20:17:05 -0500
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2whcxpv00m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 Nov 2019 20:17:05 -0500
-Received: from m0098409.ppops.net (m0098409.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id xAR1H4nF071203;
-        Tue, 26 Nov 2019 20:17:04 -0500
-Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2whcxpuyu5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 Nov 2019 20:17:04 -0500
-Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
-        by ppma01dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id xAR1A3nF024503;
-        Wed, 27 Nov 2019 01:16:50 GMT
-Received: from b03cxnp07029.gho.boulder.ibm.com (b03cxnp07029.gho.boulder.ibm.com [9.17.130.16])
-        by ppma01dal.us.ibm.com with ESMTP id 2wevd6reer-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 27 Nov 2019 01:16:50 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp07029.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id xAR1GmIe43974918
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 27 Nov 2019 01:16:48 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id C01257805F;
-        Wed, 27 Nov 2019 01:16:48 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 3712B7805E;
-        Wed, 27 Nov 2019 01:16:48 +0000 (GMT)
-Received: from [9.70.82.143] (unknown [9.70.82.143])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed, 27 Nov 2019 01:16:48 +0000 (GMT)
-Subject: [PATCH 14/14] powerpc/vas: Free send window in VAS instance after
- credits returned
-From:   Haren Myneni <haren@linux.vnet.ibm.com>
-To:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        mpe@ellerman.id.au, npiggin@gmail.com, mikey@neuling.org,
-        herbert@gondor.apana.org.au
-Cc:     sukadev@linux.vnet.ibm.com, hbabu@us.ibm.com
-Content-Type: text/plain; charset="UTF-8"
-Date:   Tue, 26 Nov 2019 17:15:29 -0800
-Message-ID: <1574817329.13250.22.camel@hbabu-laptop>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-26_08:2019-11-26,2019-11-26 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 mlxlogscore=952 clxscore=1015 bulkscore=0
- impostorscore=0 phishscore=0 spamscore=0 malwarescore=0 mlxscore=0
- suspectscore=2 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1910280000 definitions=main-1911270009
+        id S1725851AbfK0BSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Nov 2019 20:18:08 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:47551 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725823AbfK0BSI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Nov 2019 20:18:08 -0500
+X-UUID: b7f63c0ea3f444df859299f8385c2a96-20191127
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=0KnhnC91YWzoMubvDqpW4dGN3q1TdTr1bqtKF7j6sHs=;
+        b=Ze3q6IDsVjL7jyl4GaNGizw4ToS7ypxaK92d3NWwCk9H2R/Y2/DvRKCiMJzwz/lGS11OugLHXAzc3lXHbFZALXLIfwNS07llKzbMABAJU563uSP2kbyQ333vekc8v4eFVWHasznsVDgBW8n23t+wGLFh0LQFp8dH8+RfowwPP3M=;
+X-UUID: b7f63c0ea3f444df859299f8385c2a96-20191127
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1307537078; Wed, 27 Nov 2019 09:18:02 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 27 Nov 2019 09:17:51 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 27 Nov 2019 09:17:09 +0800
+From:   <yongqiang.niu@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>
+Subject: [PATCH v1, 0/2] drm/mediatek: Fix external display issue 
+Date:   Wed, 27 Nov 2019 09:17:53 +0800
+Message-ID: <1574817475-22378-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-NX may be processing requests while trying to close window. Wait until
-all credits are returned and then free send window from VAS instance.
-
-Signed-off-by: Haren Myneni <haren@us.ibm.com>
----
- arch/powerpc/platforms/powernv/vas-window.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/powerpc/platforms/powernv/vas-window.c b/arch/powerpc/platforms/powernv/vas-window.c
-index 9ba354c..244952d7 100644
---- a/arch/powerpc/platforms/powernv/vas-window.c
-+++ b/arch/powerpc/platforms/powernv/vas-window.c
-@@ -1319,14 +1319,14 @@ int vas_win_close(struct vas_window *window)
- 
- 	unmap_paste_region(window);
- 
--	clear_vinst_win(window);
--
- 	poll_window_busy_state(window);
- 
- 	unpin_close_window(window);
- 
- 	poll_window_credits(window);
- 
-+	clear_vinst_win(window);
-+
- 	poll_window_castout(window);
- 
- 	/* if send window, drop reference to matching receive window */
--- 
-1.8.3.1
-
-
+RnJvbTogWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5jb20+DQoNCkZpeCBl
+eHRlcm5hbCBkaXNwbGF5IGlzc3VlDQoNCllvbmdxaWFuZyBOaXUgKDIpOg0KICBkcm0vbWVkaWF0
+ZWs6IEZpeHVwIGV4dGVybmFsIGRpc3BsYXkgYmxhY2sgc2NyZWVuIGlzc3VlDQogIGRybS9tZWRp
+YXRlazogRml4IGV4dGVybmFsIGRpc3BsYXkgdmJsYW5rIHRpbWVvdXQgaXNzdWUNCg0KIGRyaXZl
+cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBpLmMgICAgICAgICAgfCAxNCArKysrKy0tLS0NCiBk
+cml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9jcnRjLmMgICAgIHwgNDUgKysrKysrKysr
+KysrKysrKysrKystLS0tLS0tLS0NCiBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9k
+ZHBfY29tcC5oIHwgMTQgKysrKysrKysrDQogMyBmaWxlcyBjaGFuZ2VkLCA1NCBpbnNlcnRpb25z
+KCspLCAxOSBkZWxldGlvbnMoLSkNCg0KLS0gDQoxLjguMS4xLmRpcnR5DQo=
 
