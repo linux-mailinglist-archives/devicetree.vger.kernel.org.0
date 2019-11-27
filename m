@@ -2,185 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69EA910B3D5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 17:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62BBE10B3F9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 17:58:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727146AbfK0QuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Nov 2019 11:50:00 -0500
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:39932 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727125AbfK0Qt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 11:49:59 -0500
-Received: by mail-pl1-f196.google.com with SMTP id o9so10022879plk.6
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2019 08:49:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=XP8xQxHYdgThc9Zld1p2KHyvVQHdtDNpRupwHh4QK1c=;
-        b=E9tB3Qhfa0XrmfAUm3gCKwGioDLD3EWQViXM4CPXKKihXTIM5RXvsirNPtUfcAGO2f
-         Syy1YIo3f8NqeITx6v6UkzSMoJFXLq9KT7arLZmSs/hYRAqz+ODuBSK/jnptHFTW+Uvw
-         f9p3FFG+1KiyyLtqO8tUMsmjJGF8m7haGeg4k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XP8xQxHYdgThc9Zld1p2KHyvVQHdtDNpRupwHh4QK1c=;
-        b=iHQbnsur8M6JLMHcSaIVMJ5BPAbmeyLq1mhydl+U5yk91ANHXfU8G01SSEyLjiufBQ
-         dZ/mRSm9zNg8REhM6tSqhQMDhO1W1vlm7LhmSRLGgmbSIs7iHGQGLO4H59eJd/ajeAtC
-         wyhsY5CH3Wp6UYNLogWdt7kvT7iMN5MLJuK+oidotlUuyrXR5I7mgi14IjYoI1M2VoQi
-         ohniiw7UD1RMp9hsXuuyoZmR0xyDmTW8mmZ9UT2+lXU2upk/s3z+RStsggjx9OVpTyDb
-         8zIuaDm1UaAdBIaqVjo2vCDo7hIUrd2aO395FOzesfTYA181dlOGHB444z+pfRI+8fgh
-         WLPg==
-X-Gm-Message-State: APjAAAX+4ZQRrPBDNfETLztwA9PwxXqArIX5hxqYbvZ0ctkLVsi8A926
-        c5ngX3eXilaveDix1PPe7b/b+A==
-X-Google-Smtp-Source: APXvYqxA46ZEzE7Yv0U5LCXa9yNAl9DXPjMZ1oVoUL9L8QN5BgQiB0NTSIzl+FZG32FuOR1hC6qStQ==
-X-Received: by 2002:a17:902:bf0c:: with SMTP id bi12mr4773061plb.98.1574873398528;
-        Wed, 27 Nov 2019 08:49:58 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id k29sm4509575pfh.104.2019.11.27.08.49.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Nov 2019 08:49:57 -0800 (PST)
-Date:   Wed, 27 Nov 2019 08:49:56 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     "Sandeep Maheswaram (Temp)" <sanm@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: sc7180: Add USB related nodes
-Message-ID: <20191127164956.GF228856@google.com>
-References: <1573795421-13989-1-git-send-email-sanm@codeaurora.org>
- <1573795421-13989-2-git-send-email-sanm@codeaurora.org>
- <20191122005117.GM27773@google.com>
- <0101016eac17bc4a-9bcb2dd5-bcb0-4532-84ff-c423179bfec4-000000@us-west-2.amazonses.com>
+        id S1726984AbfK0Q6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Nov 2019 11:58:06 -0500
+Received: from outils.crapouillou.net ([89.234.176.41]:39042 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726593AbfK0Q6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 11:58:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1574873883; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=FjJ4Tk/F0ZTC/74OfEsWallNIDhhgYWkjdNvGClSw0g=;
+        b=QLV9SF3Qae5S2dUgXBoj+DMcvlqzZbgg4HMeGWaVuo9sW45KZBQNT80R3txS3eFdekuCI1
+        gry4Q3vkaeTgboX8QFfmH5/qedncGRnzrcV46D1kNHRP8d4naVW4dmPckTGM+Q6MQtHV4+
+        5Qgg7rZhb62+iZF997PAwq5j+V1W57c=
+Date:   Wed, 27 Nov 2019 17:57:53 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v4 4/6] MIPS: Ingenic: Initial YSH & ATIL CU Neo board
+ support.
+To:     Zhou Yanjie <zhouyanjie@zoho.com>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        paul.burton@mips.com, paulburton@kernel.org, jhogan@kernel.org,
+        mripard@kernel.org, shawnguo@kernel.org, mark.rutland@arm.com,
+        syq@debian.org, ralf@linux-mips.org, heiko@sntech.de,
+        icenowy@aosc.io, laurent.pinchart@ideasonboard.com,
+        krzk@kernel.org, geert+renesas@glider.be,
+        prasannatsmkumar@gmail.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, 772753199@qq.com
+Message-Id: <1574873873.3.1@crapouillou.net>
+In-Reply-To: <1574787974-58040-5-git-send-email-zhouyanjie@zoho.com>
+References: <1574787974-58040-1-git-send-email-zhouyanjie@zoho.com>
+        <1574787974-58040-5-git-send-email-zhouyanjie@zoho.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <0101016eac17bc4a-9bcb2dd5-bcb0-4532-84ff-c423179bfec4-000000@us-west-2.amazonses.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 27, 2019 at 09:01:07AM +0000, Sandeep Maheswaram (Temp) wrote:
-> Hi Matthias,
-> 
-> Thanks for the review.
-> 
-> On 11/22/2019 6:21 AM, Matthias Kaehlcke wrote:
-> > Hi Sandeep,
-> > 
-> > On Fri, Nov 15, 2019 at 10:53:41AM +0530, Sandeep Maheswaram wrote:
-> > > Add nodes for DWC3 USB controller, QMP and QUSB PHYs.
-> > > 
-> > > Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/sc7180-idp.dts |  25 ++++++++
-> > >   arch/arm64/boot/dts/qcom/sc7180.dtsi    | 105 ++++++++++++++++++++++++++++++++
-> > >   2 files changed, 130 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > index 666e9b9..2c7dbdc 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > 
-> > > ...
-> > > 
-> > > +		usb_1: usb@a6f8800 {
-> > > +			compatible = "qcom,sc7180-dwc3", "qcom,dwc3";
-> > > +			reg = <0 0x0a6f8800 0 0x400>;
-> > > +			status = "disabled";
-> > > +			#address-cells = <2>;
-> > > +			#size-cells = <2>;
-> > > +			ranges;
-> > > +			dma-ranges;
-> > > +
-> > > +			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
-> > > +				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
-> > > +				 <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-> > > +				 <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> > > +				 <&gcc GCC_USB30_PRIM_SLEEP_CLK>;
-> > > +			clock-names = "cfg_noc", "core", "iface", "mock_utmi",
-> > > +				      "sleep";
-> > > +
-> > > +			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
-> > > +					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
-> > > +			assigned-clock-rates = <19200000>, <150000000>;
-> > > +
-> > > +			interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "hs_phy_irq", "ss_phy_irq",
-> > > +					  "dm_hs_phy_irq", "dp_hs_phy_irq";
-> > > +
-> > > +			power-domains = <&gcc USB30_PRIM_GDSC>;
-> > > +
-> > > +			resets = <&gcc GCC_USB30_PRIM_BCR>;
-> > > +
-> > > +			usb_1_dwc3: dwc3@a600000 {
-> > > +				compatible = "snps,dwc3";
-> > > +				reg = <0 0x0a600000 0 0xe000>;
-> > > +				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
-> > > +				iommus = <&apps_smmu 0x540 0>;
-> > > +				snps,dis_u2_susphy_quirk;
-> > > +				snps,dis_enblslpm_quirk;
-> > > +				phys = <&usb_1_hsphy>, <&usb_1_ssphy>;
-> > > +				phy-names = "usb2-phy", "usb3-phy";
-> > > +			};
-> > I see the following message at boot:
-> > 
-> > [    4.248436] dwc3 a600000.dwc3: Failed to get clk 'ref': -2
-> > 
-> > Apparently the driver is operational regardless, however the binding lists
-> > the clocks as required:
-> > 
-> >    Required properties:
-> >     ...
-> >     - clock-names: should contain "ref", "bus_early", "suspend"
-> >     - clocks: list of phandle and clock specifier pairs corresponding to
-> >               entries in the clock-names property.
-> > 
-> >    [Documentation/devicetree/bindings/usb/dwc3.txt]
-> > 
-> > The driver code also has a comment stating that the clocks should be
-> > specified:
-> > 
-> >    /*
-> >     * Clocks are optional, but new DT platforms should support all
-> >     * clocks as required by the DT-binding.
-> >     */
-> > 
-> >    [drivers/usb/dwc3/core.txt]
-> We are implenting all the required clocks in glue driver
-> drivers/usb/dwc3/dwc3-qcom.c.
-> 
-> Also there is exception for qcom,dwc3 in documentation
-> 
-> Documentation/devicetree/bindings/usb/dwc3.txt
-> 
-> 
-> Exception for clocks:
-> 
-> clocks are optional if the parent node (i.e. glue-layer) is compatible to
-> one of the following:
-> "amlogic,meson-axg-dwc3"
-> "amlogic,meson-gxl-dwc3"
-> "cavium,octeon-7130-usb-uctl"
-> "qcom,dwc3"
-> "samsung,exynos5250-dwusb3"
-> "samsung,exynos5433-dwusb3"
-> "samsung,exynos7-dwusb3"
-> "sprd,sc9860-dwc3"
-> "st,stih407-dwc3"
-> "ti,am437x-dwc3"
-> "ti,dwc3"
-> "ti,keystone-dwc3"
-> "rockchip,rk3399-dwc3"
-> "xlnx,zynqmp-dwc3"
+Hi Zhou,
 
-ah, I missed this, thanks for the pointer!
+
+Le mer., nov. 27, 2019 at 01:06, Zhou Yanjie <zhouyanjie@zoho.com> a=20
+=E9crit :
+> Add a device tree for the Ingenic X1000 based YSH & ATIL CU Neo board.
+> Note that this is unselectable via Kconfig until the X1000 SoC is made
+> selectable in a later commit.
+>=20
+> Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
+> ---
+>=20
+> Notes:
+>     v1->v2:
+>     Rebase on top of mips-next, use TCU for system timer and=20
+> clocksource.
+>=20
+>     v2->v3:
+>     No change.
+>=20
+>     v3->v4:
+>     1.Adjust "model" in "cu1000.dts" to match the description in=20
+> "devices.yaml".
+>     2.Adjust "bool" in "Kconfig" to avoid duplicate names with=20
+> subsequent boards.
+>=20
+>  arch/mips/boot/dts/ingenic/Makefile   |   1 +
+>  arch/mips/boot/dts/ingenic/cu1000.dts |  52 ++++++++++++++++++
+>  arch/mips/configs/cu1000_defconfig    | 100=20
+> ++++++++++++++++++++++++++++++++++
+>  arch/mips/jz4740/Kconfig              |   4 ++
+>  4 files changed, 157 insertions(+)
+>  create mode 100644 arch/mips/boot/dts/ingenic/cu1000.dts
+>  create mode 100644 arch/mips/configs/cu1000_defconfig
+>=20
+> diff --git a/arch/mips/boot/dts/ingenic/Makefile=20
+> b/arch/mips/boot/dts/ingenic/Makefile
+> index 9cc4844..f6db7bb 100644
+> --- a/arch/mips/boot/dts/ingenic/Makefile
+> +++ b/arch/mips/boot/dts/ingenic/Makefile
+> @@ -2,5 +2,6 @@
+>  dtb-$(CONFIG_JZ4740_QI_LB60)	+=3D qi_lb60.dtb
+>  dtb-$(CONFIG_JZ4770_GCW0)	+=3D gcw0.dtb
+>  dtb-$(CONFIG_JZ4780_CI20)	+=3D ci20.dtb
+> +dtb-$(CONFIG_X1000_CU1000)	+=3D cu1000.dtb
+>=20
+>  obj-$(CONFIG_BUILTIN_DTB)	+=3D $(addsuffix .o, $(dtb-y))
+> diff --git a/arch/mips/boot/dts/ingenic/cu1000.dts=20
+> b/arch/mips/boot/dts/ingenic/cu1000.dts
+> new file mode 100644
+> index 00000000..f92f6af
+> --- /dev/null
+> +++ b/arch/mips/boot/dts/ingenic/cu1000.dts
+> @@ -0,0 +1,52 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/dts-v1/;
+> +
+> +#include "x1000.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/clock/ingenic,tcu.h>
+> +
+> +/ {
+> +	compatible =3D "yna,cu1000", "ingenic,x1000";
+> +	model =3D "YSH & ATIL General Board CU Neo";
+> +
+> +	aliases {
+> +		serial2 =3D &uart2;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path =3D &uart2;
+> +	};
+> +
+> +	memory {
+> +		device_type =3D "memory";
+> +		reg =3D <0x0 0x04000000>;
+> +	};
+> +};
+> +
+> +&exclk {
+> +	clock-frequency =3D <24000000>;
+> +};
+> +
+> +&tcu {
+> +	/* 1500 kHz for the system timer and clocksource */
+> +	assigned-clocks =3D <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER2>;
+> +	assigned-clock-rates =3D <1500000>, <1500000>;
+> +
+> +	/* Use channel #1 for the system timer channel #2 for the=20
+> clocksource */
+> +	ingenic,pwm-channels-mask =3D <0xfa>;
+
+ From the mask used, I'm gessing that you're reserving channels #0 and=20
+#2, not #1 and #2.
+
+> +};
+> +
+> +&uart2 {
+> +	status =3D "okay";
+> +
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&pins_uart2>;
+> +};
+> +
+> +&pinctrl {
+> +	pins_uart2: uart2 {
+> +		function =3D "uart2";
+> +		groups =3D "uart2-data-d";
+> +		bias-disable;
+> +	};
+> +};
+> diff --git a/arch/mips/configs/cu1000_defconfig=20
+> b/arch/mips/configs/cu1000_defconfig
+> new file mode 100644
+> index 00000000..88729ee
+> --- /dev/null
+> +++ b/arch/mips/configs/cu1000_defconfig
+> @@ -0,0 +1,100 @@
+> +CONFIG_LOCALVERSION_AUTO=3Dy
+> +CONFIG_KERNEL_GZIP=3Dy
+> +CONFIG_SYSVIPC=3Dy
+> +CONFIG_NO_HZ_IDLE=3Dy
+> +CONFIG_HIGH_RES_TIMERS=3Dy
+> +CONFIG_PREEMPT=3Dy
+> +CONFIG_IKCONFIG=3Dy
+> +CONFIG_IKCONFIG_PROC=3Dy
+> +CONFIG_LOG_BUF_SHIFT=3D14
+> +CONFIG_CGROUPS=3Dy
+> +CONFIG_MEMCG=3Dy
+> +CONFIG_MEMCG_KMEM=3Dy
+> +CONFIG_CGROUP_SCHED=3Dy
+> +CONFIG_CGROUP_FREEZER=3Dy
+> +CONFIG_CGROUP_DEVICE=3Dy
+> +CONFIG_CGROUP_CPUACCT=3Dy
+> +CONFIG_NAMESPACES=3Dy
+> +CONFIG_USER_NS=3Dy
+> +CONFIG_BLK_DEV_INITRD=3Dy
+> +CONFIG_INITRAMFS_SOURCE=3D"arch/mips/boot/ramdisk.cpio.gz"
+> +CONFIG_CC_OPTIMIZE_FOR_SIZE=3Dy
+> +CONFIG_SYSCTL_SYSCALL=3Dy
+> +CONFIG_KALLSYMS_ALL=3Dy
+> +CONFIG_EMBEDDED=3Dy
+> +# CONFIG_VM_EVENT_COUNTERS is not set
+> +# CONFIG_COMPAT_BRK is not set
+> +CONFIG_SLAB=3Dy
+> +CONFIG_MACH_INGENIC=3Dy
+> +CONFIG_X1000_CU1000=3Dy
+> +CONFIG_HIGHMEM=3Dy
+> +CONFIG_HZ_100=3Dy
+> +CONFIG_HZ=3D100
+
+This line looks malformed.
+
+> +# CONFIG_SECCOMP is not set
+> +# CONFIG_SUSPEND is not set
+> +# CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
+> +# CONFIG_COMPACTION is not set
+> +CONFIG_CMA=3Dy
+> +CONFIG_CMA_AREAS=3D7
+> +CONFIG_UEVENT_HELPER=3Dy
+> +CONFIG_UEVENT_HELPER_PATH=3D"/sbin/hotplug"
+> +CONFIG_DEVTMPFS=3Dy
+> +# CONFIG_FW_LOADER is not set
+> +# CONFIG_ALLOW_DEV_COREDUMP is not set
+> +# CONFIG_INPUT_MOUSEDEV is not set
+> +# CONFIG_INPUT_KEYBOARD is not set
+> +# CONFIG_INPUT_MOUSE is not set
+> +# CONFIG_SERIO is not set
+> +CONFIG_VT_HW_CONSOLE_BINDING=3Dy
+> +CONFIG_LEGACY_PTY_COUNT=3D2
+> +CONFIG_SERIAL_EARLYCON=3Dy
+> +CONFIG_SERIAL_8250=3Dy
+> +CONFIG_SERIAL_8250_CONSOLE=3Dy
+> +CONFIG_SERIAL_8250_NR_UARTS=3D3
+> +CONFIG_SERIAL_8250_RUNTIME_UARTS=3D3
+> +CONFIG_SERIAL_8250_INGENIC=3Dy
+> +CONFIG_SERIAL_OF_PLATFORM=3Dy
+> +# CONFIG_HW_RANDOM is not set
+> +CONFIG_GPIO_SYSFS=3Dy
+> +# CONFIG_HWMON is not set
+> +# CONFIG_LCD_CLASS_DEVICE is not set
+> +# CONFIG_BACKLIGHT_CLASS_DEVICE is not set
+> +# CONFIG_VGA_CONSOLE is not set
+> +# CONFIG_HID is not set
+> +# CONFIG_USB_SUPPORT is not set
+> +# CONFIG_IOMMU_SUPPORT is not set
+> +CONFIG_NVMEM=3Dy
+> +CONFIG_NVMEM_SYSFS=3Dy
+> +CONFIG_EXT4_FS=3Dy
+> +# CONFIG_DNOTIFY is not set
+> +CONFIG_PROC_KCORE=3Dy
+> +# CONFIG_PROC_PAGE_MONITOR is not set
+> +CONFIG_TMPFS=3Dy
+> +CONFIG_CONFIGFS_FS=3Dy
+> +CONFIG_NLS=3Dy
+> +CONFIG_NLS_CODEPAGE_936=3Dy
+> +CONFIG_NLS_CODEPAGE_950=3Dy
+> +CONFIG_NLS_ASCII=3Dy
+> +CONFIG_NLS_ISO8859_1=3Dy
+> +CONFIG_NLS_UTF8=3Dy
+> +CONFIG_CRYPTO_ECHAINIV=3Dy
+> +CONFIG_CRYPTO_AES=3Dy
+> +CONFIG_CRYPTO_DEFLATE=3Dy
+> +CONFIG_CRYPTO_LZO=3Dy
+> +CONFIG_PRINTK_TIME=3Dy
+> +CONFIG_CONSOLE_LOGLEVEL_DEFAULT=3D15
+> +CONFIG_CONSOLE_LOGLEVEL_QUIET=3D15
+> +CONFIG_MESSAGE_LOGLEVEL_DEFAULT=3D7
+> +CONFIG_DEBUG_INFO=3Dy
+> +CONFIG_STRIP_ASM_SYMS=3Dy
+> +CONFIG_DEBUG_FS=3Dy
+> +CONFIG_MAGIC_SYSRQ=3Dy
+> +CONFIG_PANIC_ON_OOPS=3Dy
+> +CONFIG_PANIC_TIMEOUT=3D10
+> +# CONFIG_SCHED_DEBUG is not set
+> +# CONFIG_DEBUG_PREEMPT is not set
+> +CONFIG_STACKTRACE=3Dy
+> +# CONFIG_FTRACE is not set
+> +CONFIG_CMDLINE_BOOL=3Dy
+> +CONFIG_CMDLINE=3D"console=3DttyS2,115200n8 mem=3D32M@0x0 earlycon=20
+> clk_ignore_unused"
+
+You already specify the stdout-path in the devicetree, no need to pass=20
+the "console" parameter.
+
+For the "mem" parameter, it's already set in the devicetree, so no need=20
+to set it again here.
+Besides, in the devicetree it is set to 64 MiB.
+
+Why is clk_ignore_unused needed?
+
+Cheers,
+-Paul
+
+> +CONFIG_CMDLINE_OVERRIDE=3Dy
+> diff --git a/arch/mips/jz4740/Kconfig b/arch/mips/jz4740/Kconfig
+> index 6b96844..ccaf507 100644
+> --- a/arch/mips/jz4740/Kconfig
+> +++ b/arch/mips/jz4740/Kconfig
+> @@ -16,6 +16,10 @@ config JZ4780_CI20
+>  	bool "MIPS Creator CI20"
+>  	select MACH_JZ4780
+>=20
+> +config X1000_CU1000
+> +	bool "YSH & ATIL General Module CU1000"
+> +	select MACH_X1000
+> +
+>  endchoice
+>=20
+>  config MACH_JZ4740
+> --
+> 2.7.4
+>=20
+>=20
+
+=
+
