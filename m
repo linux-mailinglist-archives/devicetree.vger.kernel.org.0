@@ -2,99 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F33C710A85E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 03:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0033710A916
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 04:33:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727230AbfK0B7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Nov 2019 20:59:24 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:8751 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727208AbfK0B7W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Nov 2019 20:59:22 -0500
-X-UUID: 89f9e712458143d5b34a774dfcbfa630-20191127
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=IWV6i4XvbNsjDusAu0aWVFucdSP8lwDUrIG+cdBLhtE=;
-        b=MtW8448UlV2blWcGciVPdas11KprBwumXkZe0LGS3pxz29MlToVIM+WAluHO8RLX7AgPmRPqpoFPfEhrlKpkZATfSl/sLMtO7UzD6vDVBoXuXID3NKtHhBrqx3xF/GbUn6HT/ryMURn0SlW2cssNAw+GzTLV4jLjvfPB1Vt7zr0=;
-X-UUID: 89f9e712458143d5b34a774dfcbfa630-20191127
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
-        (envelope-from <dennis-yc.hsieh@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 589041665; Wed, 27 Nov 2019 09:59:11 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 27 Nov 2019 09:58:45 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 27 Nov 2019 09:58:20 +0800
-From:   Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
-Subject: [PATCH v2 14/14] soc: mediatek: cmdq: add set event function
-Date:   Wed, 27 Nov 2019 09:58:57 +0800
-Message-ID: <1574819937-6246-16-git-send-email-dennis-yc.hsieh@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1574819937-6246-1-git-send-email-dennis-yc.hsieh@mediatek.com>
-References: <1574819937-6246-1-git-send-email-dennis-yc.hsieh@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: C035F1AD24EF99F5DCAC69C08201CE2B3B8D6D4B7766512DE3B8DB859AFF436D2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1726852AbfK0Dds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Nov 2019 22:33:48 -0500
+Received: from sender4-pp-o98.zoho.com ([136.143.188.98]:25885 "EHLO
+        sender4-pp-o98.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726729AbfK0Dds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Nov 2019 22:33:48 -0500
+ARC-Seal: i=1; a=rsa-sha256; t=1574825608; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=MurykgZIXLdz+OUVTTOoPhnDFLLScP3XNvDuJ3lHVW/19v66/AKi9bLhrJVKDwV4HWze35Hj/g6Jmd3F35joRsIgFZAO4k2x22SuxOT9VXZlECoxvaT7M8V2OqEx69OVxd4WsD24kPmZ/kOHbCKcm/8ZuD7U/cx4ZZk+JXcEshI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1574825608; h=Cc:Date:From:Message-ID:Subject:To; 
+        bh=TuRbAqCJtixX3GUqtL+gHnjT/Sm9uZHarcGIf7Ov5ZE=; 
+        b=ViHteWGIlE3+rTYb+Db0Lh6GJ54YF6oIEzBdOw3KWNWbh+5q6ICqSdUWBTiTrk0g+l09VtrCs8tBAu5GKT1czYdV0XPoR63AIksbl/0liOVGi9q0MrxOjjbww+P5WJCncquFXQXgfaJ/6kLsRln+oYOo0vf7K9FLpVZUBpiI3+E=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=zoho.com;
+        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
+        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
+  s=zapps768; d=zoho.com; 
+  h=from:to:cc:subject:date:message-id; 
+  b=A9HeLtKq2ekABrRsofmQJ++RrJDZJYOc4R5TMfDxofQ1wbhpLgzke4a32YDZX3IA5l77hOa8cFYY
+    BX2CEN2Rzue0nTSSLdMDxw6EL4yhaBmZ98GMVuHiDMJ5VAf2LkGM  
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1574825608;
+        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
+        h=From:To:Cc:Subject:Date:Message-Id;
+        bh=TuRbAqCJtixX3GUqtL+gHnjT/Sm9uZHarcGIf7Ov5ZE=;
+        b=C7LeFy5ZPg9NqLr+7PRUK8EOgHagcP9opkaiwwjVPPvJkVa6n3XLLCo3+EHBl68m
+        MwhH0MMIl2Y+3L0wj24+utLkLufQrRwnsInXRWqiJTgzGFp111bPV7YC/5Sa0IuheW1
+        uu270LUmhO5BfzmJO3CJLXSS1Qq+H5k6bTRWz0co=
+Received: from zhouyanjie-virtual-machine.localdomain (139.207.174.158 [139.207.174.158]) by mx.zohomail.com
+        with SMTPS id 1574825607870597.1454791514287; Tue, 26 Nov 2019 19:33:27 -0800 (PST)
+From:   Zhou Yanjie <zhouyanjie@zoho.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        paul.burton@mips.com, paulburton@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, mark.rutland@arm.com,
+        syq@debian.org, paul@crapouillou.net, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Subject: clk: Ingenic: Add support for the X1830 and add USB clk for X1000.
+Date:   Wed, 27 Nov 2019 11:32:51 +0800
+Message-Id: <1574825576-91028-1-git-send-email-zhouyanjie@zoho.com>
+X-Mailer: git-send-email 2.7.4
+X-ZohoMailClient: External
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIHNldCBldmVudCBmdW5jdGlvbiBpbiBjbWRxIGhlbHBlciBmdW5jdGlvbnMgdG8gc2V0IHNw
-ZWNpZmljIGV2ZW50Lg0KDQpTaWduZWQtb2ZmLWJ5OiBEZW5uaXMgWUMgSHNpZWggPGRlbm5pcy15
-Yy5oc2llaEBtZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstY21k
-cS1oZWxwZXIuYyAgIHwgMTUgKysrKysrKysrKysrKysrDQogaW5jbHVkZS9saW51eC9tYWlsYm94
-L210ay1jbWRxLW1haWxib3guaCB8ICAxICsNCiBpbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9t
-dGstY21kcS5oICAgIHwgIDkgKysrKysrKysrDQogMyBmaWxlcyBjaGFuZ2VkLCAyNSBpbnNlcnRp
-b25zKCspDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstY21kcS1oZWxw
-ZXIuYyBiL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jDQppbmRleCA2ZjI3
-MGZhZGZiNTAuLjA3YzZlY2M3NWJkZCAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvc29jL21lZGlhdGVr
-L210ay1jbWRxLWhlbHBlci5jDQorKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstY21kcS1o
-ZWxwZXIuYw0KQEAgLTM2MCw2ICszNjAsMjEgQEAgaW50IGNtZHFfcGt0X2NsZWFyX2V2ZW50KHN0
-cnVjdCBjbWRxX3BrdCAqcGt0LCB1MTYgZXZlbnQpDQogfQ0KIEVYUE9SVF9TWU1CT0woY21kcV9w
-a3RfY2xlYXJfZXZlbnQpOw0KIA0KK2ludCBjbWRxX3BrdF9zZXRfZXZlbnQoc3RydWN0IGNtZHFf
-cGt0ICpwa3QsIHUxNiBldmVudCkNCit7DQorCXN0cnVjdCBjbWRxX2luc3RydWN0aW9uIGluc3Qg
-PSB7IHswfSB9Ow0KKw0KKwlpZiAoZXZlbnQgPj0gQ01EUV9NQVhfRVZFTlQpDQorCQlyZXR1cm4g
-LUVJTlZBTDsNCisNCisJaW5zdC5vcCA9IENNRFFfQ09ERV9XRkU7DQorCWluc3QudmFsdWUgPSBD
-TURRX1dGRV9VUERBVEUgfCBDTURRX1dGRV9VUERBVEVfVkFMVUU7DQorCWluc3QuZXZlbnQgPSBl
-dmVudDsNCisNCisJcmV0dXJuIGNtZHFfcGt0X2FwcGVuZF9jb21tYW5kKHBrdCwgaW5zdCk7DQor
-fQ0KK0VYUE9SVF9TWU1CT0woY21kcV9wa3Rfc2V0X2V2ZW50KTsNCisNCiBpbnQgY21kcV9wa3Rf
-cG9sbChzdHJ1Y3QgY21kcV9wa3QgKnBrdCwgdTggc3Vic3lzLA0KIAkJICB1MTYgb2Zmc2V0LCB1
-MzIgdmFsdWUpDQogew0KZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvbWFpbGJveC9tdGstY21k
-cS1tYWlsYm94LmggYi9pbmNsdWRlL2xpbnV4L21haWxib3gvbXRrLWNtZHEtbWFpbGJveC5oDQpp
-bmRleCAzZjZiYzBkZmQ1ZGEuLmRiZWRkYTZjZmE5MSAxMDA2NDQNCi0tLSBhL2luY2x1ZGUvbGlu
-dXgvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmgNCisrKyBiL2luY2x1ZGUvbGludXgvbWFpbGJv
-eC9tdGstY21kcS1tYWlsYm94LmgNCkBAIC0xNyw2ICsxNyw3IEBADQogI2RlZmluZSBDTURRX0pV
-TVBfUEFTUwkJCUNNRFFfSU5TVF9TSVpFDQogDQogI2RlZmluZSBDTURRX1dGRV9VUERBVEUJCQlC
-SVQoMzEpDQorI2RlZmluZSBDTURRX1dGRV9VUERBVEVfVkFMVUUJCUJJVCgxNikNCiAjZGVmaW5l
-IENNRFFfV0ZFX1dBSVQJCQlCSVQoMTUpDQogI2RlZmluZSBDTURRX1dGRV9XQUlUX1ZBTFVFCQkw
-eDENCiANCmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9tdGstY21kcS5o
-IGIvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaA0KaW5kZXggNDBiYzYxYWQ4
-ZDMxLi5mMTE0NGZhYWI1ODIgMTAwNjQ0DQotLS0gYS9pbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRl
-ay9tdGstY21kcS5oDQorKysgYi9pbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9tdGstY21kcS5o
-DQpAQCAtMTY4LDYgKzE2OCwxNSBAQCBpbnQgY21kcV9wa3Rfd2FpdF9ub19jbGVhcihzdHJ1Y3Qg
-Y21kcV9wa3QgKnBrdCwgdTE2IGV2ZW50KTsNCiAgKi8NCiBpbnQgY21kcV9wa3RfY2xlYXJfZXZl
-bnQoc3RydWN0IGNtZHFfcGt0ICpwa3QsIHUxNiBldmVudCk7DQogDQorLyoqDQorICogY21kcV9w
-a3Rfc2V0X2V2ZW50KCkgLSBhcHBlbmQgc2V0IGV2ZW50IGNvbW1hbmQgdG8gdGhlIENNRFEgcGFj
-a2V0DQorICogQHBrdDoJdGhlIENNRFEgcGFja2V0DQorICogQGV2ZW50Ogl0aGUgZGVzaXJlZCBl
-dmVudCB0byBiZSBzZXQNCisgKg0KKyAqIFJldHVybjogMCBmb3Igc3VjY2VzczsgZWxzZSB0aGUg
-ZXJyb3IgY29kZSBpcyByZXR1cm5lZA0KKyAqLw0KK2ludCBjbWRxX3BrdF9zZXRfZXZlbnQoc3Ry
-dWN0IGNtZHFfcGt0ICpwa3QsIHUxNiBldmVudCk7DQorDQogLyoqDQogICogY21kcV9wa3RfcG9s
-bCgpIC0gQXBwZW5kIHBvbGxpbmcgY29tbWFuZCB0byB0aGUgQ01EUSBwYWNrZXQsIGFzayBHQ0Ug
-dG8NCiAgKgkJICAgICBleGVjdXRlIGFuIGluc3RydWN0aW9uIHRoYXQgd2FpdCBmb3IgYSBzcGVj
-aWZpZWQNCi0tIA0KMi4xOC4wDQo=
+1.Adjust existing code to make it compatible with Ingenic X1830 SoC.
+2.Add support for the clocks provided by the CGU in the Ingenic X1830
+  SoC, making use of the cgu code to do the heavy lifting.
+3.Add USB related clock for the Ingenic X1000 SoC, and use the
+  "CLK_OF_DECLARE_DRIVER" instead "CLK_OF_DECLARE" like the
+  other CGU drivers.
+
 
