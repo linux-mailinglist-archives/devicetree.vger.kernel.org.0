@@ -2,100 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10C2F10AA3C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 06:35:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C66B110AA40
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 06:37:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725861AbfK0FfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Nov 2019 00:35:24 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:35484 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725827AbfK0FfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 00:35:24 -0500
-Received: by mail-ed1-f67.google.com with SMTP id f8so3337188edv.2;
-        Tue, 26 Nov 2019 21:35:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=49Oa8wYum3/ZSF68b6FEDAYGeeDj1B7QQTfs5X12P5o=;
-        b=orG7A/Ag4Mpz194IxVqBueUmwn4kcBrVHzZgSJ1Ge8qVVvCffnV7hSLi39OuHvPBWq
-         5ECqbBft5gcDI7jRMhhdbklzC7Q20ek16p74SljfvnVM0pRLFa0LYwP5d2F98xfdS2BS
-         eOlS5WXgMWStnv0CDrBHQOmZbOdnY81OgeQDtxqwzOTtvycIlqOm1dkgBa6xMZ5QDU3a
-         63GeMux9odh+61DP5cmXh73oH6n2gA8aFMnTlXFIOKRhZ3JQg6QyI1Sea6MacTn813Bl
-         BOjWQlQGraKo9jkwyV7qEgq/BEcbObhGOTBvYAxMj4yrg1cArNCMiAJZoB8XB60Xebva
-         G1qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=49Oa8wYum3/ZSF68b6FEDAYGeeDj1B7QQTfs5X12P5o=;
-        b=dyk4vPDYNRSaKfUDVlisngitbSZZjVojgO9bvmNifkMoChrRvThNQod4dTqj0B3lFz
-         aBDfC/rxiXxHl7gRiFJFgjT+ADTzuR4AfuOhX2O42AxEvfryeeVCoBOrsERv4MrWt4dp
-         71FhA59fCHwJuJtd03EXzbPmwqdyk3ZCjfJBaXCmMI1v0Q6TJpjXxzsmXYcH8qkjdUGK
-         kErdWXf37q0GerxHE63qHM1LVFrIi4OhwGN5Fx9+wFujPr5Fu3etD8EYdWAdAcXgoB3x
-         bFoITrVGFjgY7HKbeoset00iJf2m0ZJghnfFMUND+Ki959KQPR+Ka2qmCgggVcJ8LmLz
-         tMyA==
-X-Gm-Message-State: APjAAAUF4OHGZPT13SG7lh09wKPgXybT1QltjrZozw/5D1zfydEdTZ0d
-        r2EecnOdw/ee8kLwGvaEJtt8JBzrWaUenDcIY5c=
-X-Google-Smtp-Source: APXvYqwQ8AbGM+kwuh2SxRqlpxfz20rbamxx7D0GEgKxBjcYRfCoJeN0AJA3JWgCFCweR06OFu5kduxXacMMGLAhPMI=
-X-Received: by 2002:a50:a2e5:: with SMTP id 92mr30508816edm.195.1574832922697;
- Tue, 26 Nov 2019 21:35:22 -0800 (PST)
-MIME-Version: 1.0
-References: <1573820552-21164-1-git-send-email-shubhrajyoti.datta@gmail.com> <20191126180932.3A04620727@mail.kernel.org>
-In-Reply-To: <20191126180932.3A04620727@mail.kernel.org>
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date:   Wed, 27 Nov 2019 11:05:11 +0530
-Message-ID: <CAKfKVtEkffpzPHX1=fm1gBEz=3wRKmjqc5bdj054Ubj+SB+a=Q@mail.gmail.com>
-Subject: Re: [PATCHv2 1/2] clk: clock-wizard: Move the clockwizard to clk
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
-        Mike Turquette <mturquette@baylibre.com>,
+        id S1726111AbfK0Fhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Nov 2019 00:37:46 -0500
+Received: from coyote.holtmann.net ([212.227.132.17]:57988 "EHLO
+        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725827AbfK0Fhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 00:37:45 -0500
+Received: from marcel-macbook.fritz.box (p4FF9F0D1.dip0.t-ipconnect.de [79.249.240.209])
+        by mail.holtmann.org (Postfix) with ESMTPSA id A6C0ACED06;
+        Wed, 27 Nov 2019 06:46:51 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 13.0 \(3601.0.10\))
+Subject: Re: [PATCH v6 0/4] Bluetooth: hci_bcm: Additional changes for BCM4354
+ support
+From:   Marcel Holtmann <marcel@holtmann.org>
+In-Reply-To: <CANFp7mU=URXhZ8V67CyGs1wZ2_N_jTk42wd0XveTpBDV4ir75w@mail.gmail.com>
+Date:   Wed, 27 Nov 2019 06:37:43 +0100
+Cc:     Johan Hedberg <johan.hedberg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Bluez mailing list <linux-bluetooth@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        netdev <netdev@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Ondrej Jirman <megous@megous.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Content-Type: text/plain; charset="UTF-8"
+        Chen-Yu Tsai <wens@csie.org>
+Content-Transfer-Encoding: 7bit
+Message-Id: <6A053F1E-E932-4087-8634-AEC6DED85B7D@holtmann.org>
+References: <20191118192123.82430-1-abhishekpandit@chromium.org>
+ <1CEDCBDC-221C-4E5F-90E9-898B02304562@holtmann.org>
+ <CANFp7mXNPsmfC_dDcxP1N9weiEFdogOvgSjuBLJSd+4-ONsoOQ@mail.gmail.com>
+ <1CEB6B69-09AA-47AA-BC43-BD17C00249E7@holtmann.org>
+ <CANFp7mU=URXhZ8V67CyGs1wZ2_N_jTk42wd0XveTpBDV4ir75w@mail.gmail.com>
+To:     Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+X-Mailer: Apple Mail (2.3601.0.10)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 26, 2019 at 11:39 PM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting shubhrajyoti.datta@gmail.com (2019-11-15 04:22:31)
-> > From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> >
-> > Move the clocking wizard driver from staging to clk.
-> >
-> > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> > ---
-> > this is moving the drivers/staging/clocking-wizard to clk
-> > v2:
-> > Added the makefile  and kconfig
-> >
-> >  drivers/clk/Kconfig                 |   6 +
-> >  drivers/clk/Makefile                |   1 +
-> >  drivers/clk/clk-xlnx-clock-wizard.c | 335 ++++++++++++++++++++++++++++++++++++
->
-> Where is the deletion of the file from staging? Has the TODO file in
-> staging been resolved?
-I was trying to address the  set rate and the reconfig and will post
-patches for the
-fractional part.
+Hi Abhishek,
 
-As part of that discussion[1]
-Greg suggested to move the code out of the staging.
+> The series looks good to me.
 
-[1] https://spinics.net/lists/linux-driver-devel/msg117326.html
+you also tested it on your hardware?
 
+Regards
 
+Marcel
 
-
->Please Cc Soren and Greg on these patches. Also
-> include a cover letter and convince us _why_ we should review these
-> patches in the commit text. Stating what the patch is doing, i.e.
-> "moving code around", is not helpful.
-Sure will do.
-
-
->
