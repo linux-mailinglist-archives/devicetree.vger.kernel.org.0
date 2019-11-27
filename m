@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A18710B0C0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 15:00:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EBE410B0B6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 14:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726990AbfK0N7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Nov 2019 08:59:39 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38635 "EHLO
+        id S1726920AbfK0N7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Nov 2019 08:59:38 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:57179 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726537AbfK0N7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 08:59:39 -0500
+        with ESMTP id S1726655AbfK0N7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 08:59:38 -0500
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1iZxqv-0005PB-JT; Wed, 27 Nov 2019 14:59:33 +0100
+        id 1iZxqv-0005PC-Jd; Wed, 27 Nov 2019 14:59:33 +0100
 Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1iZxqv-0008Da-2w; Wed, 27 Nov 2019 14:59:33 +0100
+        id 1iZxqv-0008EN-3R; Wed, 27 Nov 2019 14:59:33 +0100
 From:   Marco Felsch <m.felsch@pengutronix.de>
 To:     bgolaszewski@baylibre.com, linus.walleij@linaro.org,
         support.opensource@diasemi.com, lee.jones@linaro.org,
@@ -26,10 +26,12 @@ To:     bgolaszewski@baylibre.com, linus.walleij@linaro.org,
         stwiss.opensource@diasemi.com, Adam.Thomson.Opensource@diasemi.com
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         kernel@pengutronix.de
-Subject: [PATCH v2 0/5] DA9062 PMIC features
-Date:   Wed, 27 Nov 2019 14:59:27 +0100
-Message-Id: <20191127135932.7223-1-m.felsch@pengutronix.de>
+Subject: [PATCH v2 1/5] gpio: add support to get local gpio number
+Date:   Wed, 27 Nov 2019 14:59:28 +0100
+Message-Id: <20191127135932.7223-2-m.felsch@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191127135932.7223-1-m.felsch@pengutronix.de>
+References: <20191127135932.7223-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
@@ -41,32 +43,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Sometimes consumers needs to know the gpio-chip local gpio number of a
+'struct gpio_desc' for further configuration. This is often the case for
+mfd devices.
 
-this series address all comments made on [1]. Patch "regulator: da9062:
-fix suspend_enable/disable preparation" was applied mainline so I
-droppped it. Patch "gpio: add support to get local gpio number" is new
-and based on Linus suggestion. The v2 has no compile dependency like
-[1] but you need to apply [2] else the features can't be used.
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+ drivers/gpio/gpiolib.c        |  6 ++++++
+ include/linux/gpio/consumer.h | 10 ++++++++++
+ 2 files changed, 16 insertions(+)
 
-[1] https://lkml.org/lkml/2019/9/17/411
-[2] https://patchwork.ozlabs.org/cover/1201549/
-
-Marco Felsch (5):
-  gpio: add support to get local gpio number
-  dt-bindings: mfd: da9062: add regulator voltage selection
-    documentation
-  regulator: da9062: add voltage selection gpio support
-  dt-bindings: mfd: da9062: add regulator gpio enable/disable
-    documentation
-  regulator: da9062: add gpio based regulator dis-/enable support
-
- .../devicetree/bindings/mfd/da9062.txt        |  17 ++
- drivers/gpio/gpiolib.c                        |   6 +
- drivers/regulator/da9062-regulator.c          | 244 ++++++++++++++++++
- include/linux/gpio/consumer.h                 |  10 +
- 4 files changed, 277 insertions(+)
-
+diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+index 104ed299d5ea..7709648313fc 100644
+--- a/drivers/gpio/gpiolib.c
++++ b/drivers/gpio/gpiolib.c
+@@ -4377,6 +4377,12 @@ int gpiod_count(struct device *dev, const char *con_id)
+ }
+ EXPORT_SYMBOL_GPL(gpiod_count);
+ 
++int gpiod_to_offset(struct gpio_desc *desc)
++{
++	return gpio_chip_hwgpio(desc);
++}
++EXPORT_SYMBOL_GPL(gpiod_to_offset);
++
+ /**
+  * gpiod_get - obtain a GPIO for a given GPIO function
+  * @dev:	GPIO consumer, can be NULL for system-global GPIOs
+diff --git a/include/linux/gpio/consumer.h b/include/linux/gpio/consumer.h
+index b70af921c614..e2178c3bf7fd 100644
+--- a/include/linux/gpio/consumer.h
++++ b/include/linux/gpio/consumer.h
+@@ -60,6 +60,9 @@ enum gpiod_flags {
+ /* Return the number of GPIOs associated with a device / function */
+ int gpiod_count(struct device *dev, const char *con_id);
+ 
++/* Get the local chip offset from a global desc */
++int gpiod_to_offset(struct gpio_desc *desc);
++
+ /* Acquire and dispose GPIOs */
+ struct gpio_desc *__must_check gpiod_get(struct device *dev,
+ 					 const char *con_id,
+@@ -189,6 +192,13 @@ static inline int gpiod_count(struct device *dev, const char *con_id)
+ 	return 0;
+ }
+ 
++static inline int gpiod_to_offset(struct gpio_desc *desc)
++{
++	/* GPIO can never have been requested */
++	WARN_ON(desc);
++	return 0;
++}
++
+ static inline struct gpio_desc *__must_check gpiod_get(struct device *dev,
+ 						       const char *con_id,
+ 						       enum gpiod_flags flags)
 -- 
 2.20.1
 
