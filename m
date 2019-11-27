@@ -2,87 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B14D10ABF8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 09:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1146A10AC1F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 09:46:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726852AbfK0InL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Nov 2019 03:43:11 -0500
-Received: from baptiste.telenet-ops.be ([195.130.132.51]:52850 "EHLO
-        baptiste.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726937AbfK0InK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 03:43:10 -0500
-Received: from ramsan ([84.195.182.253])
-        by baptiste.telenet-ops.be with bizsmtp
-        id Wwiu2100b5USYZQ01wiua4; Wed, 27 Nov 2019 09:43:09 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iZsuU-0000xw-RV; Wed, 27 Nov 2019 09:42:54 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iZsuU-0004PA-P7; Wed, 27 Nov 2019 09:42:54 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Harish Jenny K N <harish_kandiga@mentor.com>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>
-Cc:     Alexander Graf <graf@amazon.com>,
-        Peter Maydell <peter.maydell@linaro.org>,
-        Paolo Bonzini <pbonzini@redhat.com>,
-        Phil Reid <preid@electromag.com.au>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Christoffer Dall <christoffer.dall@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, qemu-devel@nongnu.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v3 7/7] MAINTAINERS: Add GPIO Aggregator/Repeater section
-Date:   Wed, 27 Nov 2019 09:42:53 +0100
-Message-Id: <20191127084253.16356-8-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191127084253.16356-1-geert+renesas@glider.be>
-References: <20191127084253.16356-1-geert+renesas@glider.be>
+        id S1726143AbfK0IqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Nov 2019 03:46:11 -0500
+Received: from bombadil.infradead.org ([198.137.202.133]:52436 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726092AbfK0IqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 03:46:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=wXWwhpdRgill+QTPv3BKJAOvN43996rdTBF/4swV0U8=; b=FlP8wRbWl0zj7De91vYcG2C79
+        PtfKLaPfuDNa6KpnRDxy0fS5CW1/WBC2QkzQdd3uwh00blaoP5j6+Gl3q+8O5JAk1I6ZbMUw/6A9o
+        nYbRLjeK55ePNl8E4uj7o/U6veOHatkgw21qb4KqNQ4LrWUEc7m9JskRcraUsIIN+tpBmLSCvBlDK
+        VwFAaFCzk91GCmZy3kLOJE+KapzZfmNa5Po0POQ8t/IXUMaARP96Hb+bhdUFoS7Elk2eV0FvaeYMC
+        IEUnpzVwhlU5PX93IiFvjMUpHXzTxc+v+I/7xQ4KoeAK9WPm/QVieEpBXdbv2bG9/FBJ4Q4ssTccI
+        4ON2vYmfA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1iZsxd-0003st-AT; Wed, 27 Nov 2019 08:46:09 +0000
+Date:   Wed, 27 Nov 2019 00:46:09 -0800
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Haren Myneni <haren@linux.vnet.ibm.com>
+Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        mpe@ellerman.id.au, npiggin@gmail.com, mikey@neuling.org,
+        herbert@gondor.apana.org.au, sukadev@linux.vnet.ibm.com
+Subject: Re: [PATCH 09/14] powerpc/vas: Update CSB and notify process for
+ fault CRBs
+Message-ID: <20191127084609.GF17097@infradead.org>
+References: <1574817074.13250.16.camel@hbabu-laptop>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1574817074.13250.16.camel@hbabu-laptop>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a maintainership section for the GPIO Aggregator/Repeater, covering
-documentation, Device Tree bindings, and driver source code.
+>  
+> +static void notify_process(pid_t pid, u64 fault_addr)
+> +{
+> +	int rc;
+> +	struct kernel_siginfo info;
+> +
+> +	memset(&info, 0, sizeof(info));
+> +
+> +	info.si_signo = SIGSEGV;
+> +	info.si_errno = EFAULT;
+> +	info.si_code = SEGV_MAPERR;
+> +
+> +	info.si_addr = (void *)fault_addr;
+> +	rcu_read_lock();
+> +	rc = kill_pid_info(SIGSEGV, &info, find_vpid(pid));
+> +	rcu_read_unlock();
+> +
+> +	pr_devel("%s(): pid %d kill_proc_info() rc %d\n", __func__, pid, rc);
+> +}
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Harish: Do you want to be listed as maintainer, too?
+Shouldn't this use force_sig_fault_to_task instead?
 
-v3:
-  - New.
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> +	/*
+> +	 * User space passed invalid CSB address, Notify process with
+> +	 * SEGV signal.
+> +	 */
+> +	tsk = get_pid_task(window->pid, PIDTYPE_PID);
+> +	/*
+> +	 * Send window will be closed after processing all NX requests
+> +	 * and process exits after closing all windows. In multi-thread
+> +	 * applications, thread may not exists, but does not close FD
+> +	 * (means send window) upon exit. Parent thread (tgid) can use
+> +	 * and close the window later.
+> +	 */
+> +	if (tsk) {
+> +		if (tsk->flags & PF_EXITING)
+> +			task_exit = 1;
+> +		put_task_struct(tsk);
+> +		pid = vas_window_pid(window);
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e5949b6827b72f2b..0f12ebdaa8faa76b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7043,6 +7043,14 @@ S:	Maintained
- F:	Documentation/firmware-guide/acpi/gpio-properties.rst
- F:	drivers/gpio/gpiolib-acpi.c
- 
-+GPIO AGGREGATOR/REPEATER
-+M:	Geert Uytterhoeven <geert+renesas@glider.be>
-+L:	linux-gpio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/admin-guide/gpio/gpio-aggregator.rst
-+F:	Documentation/devicetree/bindings/gpio/gpio-repeater.yaml
-+F:	drivers/gpio/gpio-aggregator.c
-+
- GPIO IR Transmitter
- M:	Sean Young <sean@mess.org>
- L:	linux-media@vger.kernel.org
--- 
-2.17.1
+The pid is later used for sending the signal again, why not keep the
+reference?
 
+> +	} else {
+> +		pid = vas_window_tgid(window);
+> +
+> +		rcu_read_lock();
+> +		tsk = find_task_by_vpid(pid);
+> +		if (!tsk) {
+> +			rcu_read_unlock();
+> +			return;
+> +		}
+> +		if (tsk->flags & PF_EXITING)
+> +			task_exit = 1;
+> +		rcu_read_unlock();
+
+Why does this not need a reference to the task, but the other one does?
