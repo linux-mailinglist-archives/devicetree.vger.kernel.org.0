@@ -2,76 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C463B10B014
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 14:23:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 395F210B01A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2019 14:23:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726530AbfK0NXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Nov 2019 08:23:10 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:51125 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726822AbfK0NXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 08:23:10 -0500
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iZxHe-0001hJ-6L; Wed, 27 Nov 2019 14:23:06 +0100
-Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iZxHd-000623-Pf; Wed, 27 Nov 2019 14:23:05 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     support.opensource@diasemi.com, stwiss.opensource@diasemi.com,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        Adam.Thomson.Opensource@diasemi.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-input@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: Input: da9062 - fix dlg,disable-key-power description
-Date:   Wed, 27 Nov 2019 14:23:04 +0100
-Message-Id: <20191127132304.22924-4-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191127132304.22924-1-m.felsch@pengutronix.de>
-References: <20191127132304.22924-1-m.felsch@pengutronix.de>
+        id S1726873AbfK0NXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Nov 2019 08:23:49 -0500
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:37676 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726587AbfK0NXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Nov 2019 08:23:49 -0500
+Received: by mail-pf1-f194.google.com with SMTP id p24so10995500pfn.4;
+        Wed, 27 Nov 2019 05:23:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+         :user-agent;
+        bh=FYckdcYvzj5yK1e7XpJFaQ7ZpFtgpcz0P/S/HZ3xvbc=;
+        b=De9TnT8OPZ/OkNDYBgNjAksDWHzISRs/xzkfj1C3qsBCEHTgm0vG8VyIX/LYjDRKyj
+         MareuXWH38yaNVa5oZwxdlaVm8kALUSNOGcMGGnWm7onxh38Ms6rpfdE2HkGNI+3ucC8
+         fGTPcJ+PB1AS0O5lKIxWOs9DOu/OuhotKXujGQBuPn3D4nrZzJs9+A1VwxPlw1At3elQ
+         umy5EdOZ7iSrNlhnjTUfFaHOgGsDQuqcEQuLXfnmxdnbQoQzLY/85v5I3/cH0rXQQ89n
+         EgeIHjhNyZEtKnRLhJG12OQU8gaq9k3ruFP2MH6UryZ9agKdHLdufsDaGA5deLVB9VQ+
+         LD1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=FYckdcYvzj5yK1e7XpJFaQ7ZpFtgpcz0P/S/HZ3xvbc=;
+        b=O9F/L3KM2lLK3jucVglcPS3nzvNW33Uj7yrVEm3XbrJKEnTNBTPpA48FO4v1MdBPNl
+         AXMgIVq4/H6m1+xb/EzUnEA2AN3UL0vettmDHwt2kRwYc1xd+xd/kLtRRJXjQqRAwrDN
+         Em7xr+ol10plxiE+tSPDK1CXel88I3QcUvQX+zxPUNS027+kJXx1/mGD+3u1Tbze6aH+
+         b/PsBy/xccVileRgDQwjiWWdJtfedAegg0Ulv2Uiu97320GaidvPAcbmD/YPYdKv9FYp
+         DaakAQYEWt/6AiVrHpN+PaeCSt0ruKB9HA7bJqRI99vWDOIS/rK/csNJN8OVL91jYm19
+         bMHg==
+X-Gm-Message-State: APjAAAW+Nq9akkZeoiqi4TkgWHKu/klvKj9e9EPl7u7ag1pvZ1aSvnYL
+        zwRRvHA0PGlHmaYbTtjC0SA=
+X-Google-Smtp-Source: APXvYqz6/QPQIN/FIXGNBlmS5L9H3I4cIFW3BAhi8JvFvqwUYbWSeI4p/LK/W89Dganyyc04jkwrGA==
+X-Received: by 2002:a63:597:: with SMTP id 145mr2050606pgf.384.1574861028745;
+        Wed, 27 Nov 2019 05:23:48 -0800 (PST)
+Received: from cnn ([2402:3a80:46e:a1cb:a194:63c9:69fb:ee71])
+        by smtp.gmail.com with ESMTPSA id 16sm16855165pfc.21.2019.11.27.05.23.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 27 Nov 2019 05:23:48 -0800 (PST)
+Date:   Wed, 27 Nov 2019 18:53:40 +0530
+From:   manikandan-e <manikandan.hcl.ers.epl@gmail.com>
+To:     andrew@aj.id.au
+Cc:     joel@jms.id.au, sdasari@fb.com, vijaykhemka@fb.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org, manikandan.e@hcl.com
+Subject: [PATCH v4] ARM: dts: aspeed: Adding Facebook Yosemite V2 BMC
+Message-ID: <20191127132340.GA22672@cnn>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There was a bug within the driver since commit f889beaaab1c ("Input:
-da9063 - report KEY_POWER instead of KEY_SLEEP during power
-key-press"). Since we fixed the bug the KEY_POWER will be reported
-always so we need to adapt the dt-bindings too. Make the description
-more precise while on it.
+The Yosemite V2 is a facebook multi-node server
+platform that host four OCP server. The BMC
+in the Yosemite V2 platorm based on AST2500 SoC.
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+This patch adds linux device tree entry related to
+Yosemite V2 specific devices connected to BMC SoC.
+
+Signed-off-by: manikandan-e <manikandan.hcl.ers.epl@gmail.com>
 ---
-v2:
-- change description according Dmitry's suggestion.
+ .../boot/dts/aspeed-bmc-facebook-yosemitev2.dts    | 150 +++++++++++++++++++++
+ 1 file changed, 150 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
 
- Documentation/devicetree/bindings/input/da9062-onkey.txt | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/input/da9062-onkey.txt b/Documentation/devicetree/bindings/input/da9062-onkey.txt
-index 0005b2bdcdd7..9f895454179d 100644
---- a/Documentation/devicetree/bindings/input/da9062-onkey.txt
-+++ b/Documentation/devicetree/bindings/input/da9062-onkey.txt
-@@ -15,9 +15,8 @@ Required properties:
- 
- Optional properties:
- 
--- dlg,disable-key-power : Disable power-down using a long key-press. If this
--    entry exists the OnKey driver will remove support for the KEY_POWER key
--    press when triggered using a long press of the OnKey.
-+- dlg,disable-key-power : If this property is present, the host will not be
-+    issuing shutdown command over I2C in response to a long key-press.
- 
- - dlg,key-opmode : Set the nONKEY behaviour. This value is initial set by the
-     otp values. See nONKEY_PIN register description for more information.
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+new file mode 100644
+index 0000000..44e2b17
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-yosemitev2.dts
+@@ -0,0 +1,150 @@
++// SPDX-License-Identifier: GPL-2.0+
++// Copyright (c) 2018 Facebook Inc.
++/dts-v1/;
++
++#include "aspeed-g5.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
++
++/ {
++	model = "Facebook Yosemitev2 BMC";
++	compatible = "facebook,yosemitev2-bmc", "aspeed,ast2500";
++	aliases {
++		serial4 = &uart5;
++	};
++	chosen {
++		stdout-path = &uart5;
++	};
++
++	memory@80000000 {
++		reg = <0x80000000 0x20000000>;
++	};
++
++	iio-hwmon {
++		// VOLATAGE SENSOR
++		compatible = "iio-hwmon";
++		io-channels = <&adc 0> , <&adc 1> , <&adc 2> ,  <&adc 3> ,
++		<&adc 4> , <&adc 5> , <&adc 6> ,  <&adc 7> ,
++		<&adc 8> , <&adc 9> , <&adc 10>, <&adc 11> ,
++		<&adc 12> , <&adc 13> , <&adc 14> , <&adc 15> ;
++	};
++};
++
++&fmc {
++	status = "okay";
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++#include "openbmc-flash-layout.dtsi"
++	};
++};
++
++&spi1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi1_default>;
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "pnor";
++	};
++};
++
++&uart5 {
++	// BMC Console
++	status = "okay";
++};
++
++&mac0 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rmii1_default>;
++	use-ncsi;
++};
++
++&adc {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc0_default
++			&pinctrl_adc1_default
++			&pinctrl_adc2_default
++			&pinctrl_adc3_default
++			&pinctrl_adc4_default
++			&pinctrl_adc5_default
++			&pinctrl_adc6_default
++			&pinctrl_adc7_default
++			&pinctrl_adc8_default
++			&pinctrl_adc9_default
++			&pinctrl_adc10_default
++			&pinctrl_adc11_default
++			&pinctrl_adc12_default
++			&pinctrl_adc13_default
++			&pinctrl_adc14_default
++			&pinctrl_adc15_default>;
++};
++
++&i2c8 {
++	status = "okay";
++	//FRU EEPROM
++	eeprom@51 {
++		compatible = "atmel,24c64";
++		reg = <0x51>;
++		pagesize = <32>;
++	};
++};
++
++&i2c9 {
++	status = "okay";
++	tmp421@4e {
++	//INLET TEMP
++		compatible = "ti,tmp421";
++		reg = <0x4e>;
++	};
++	//OUTLET TEMP
++	tmp421@4f {
++		compatible = "ti,tmp421";
++		reg = <0x4f>;
++	};
++};
++
++&i2c10 {
++	status = "okay";
++	//HSC
++	adm1278@40 {
++		compatible = "adi,adm1278";
++		reg = <0x40>;
++	};
++};
++
++&i2c11 {
++	status = "okay";
++	//MEZZ_TEMP_SENSOR
++	tmp421@1f {
++		compatible = "ti,tmp421";
++		reg = <0x1f>;
++	};
++};
++
++&i2c12 {
++	status = "okay";
++	//MEZZ_FRU
++	eeprom@51 {
++		compatible = "atmel,24c64";
++		reg = <0x51>;
++		pagesize = <32>;
++	};
++};
++
++&pwm_tacho {
++	status = "okay";
++	//FSC
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
++	fan@0 {
++		reg = <0x00>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
++	};
++	fan@1 {
++		reg = <0x01>;
++		aspeed,fan-tach-ch = /bits/ 8 <0x02>;
++	};
++};
 -- 
-2.20.1
+2.7.4
 
