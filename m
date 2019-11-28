@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25F5010C36F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 06:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5928B10C369
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 06:10:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727438AbfK1FKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 00:10:32 -0500
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43460 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726935AbfK1FKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 00:10:11 -0500
-Received: by mail-pg1-f196.google.com with SMTP id b1so12273974pgq.10
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2019 21:10:11 -0800 (PST)
+        id S1727318AbfK1FKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 00:10:16 -0500
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:34678 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727218AbfK1FKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 00:10:14 -0500
+Received: by mail-pl1-f193.google.com with SMTP id h13so11077067plr.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2019 21:10:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=QO/lP+KDcMBuBF0dCbiBImn3ahE7Jw+zkWapBF57MgQ=;
-        b=jS4vAou0Kr4VlWLGW46xQ2mOeWEBO9xSfclqVZzZY6prqeXpGcE4q3l3Xx5PLk79oZ
-         yt8FdpGPdNdZ2G8OZY9ofcFQ6RHGR/f2dmna1niRT8P5LRmymIw7yNiS+X9eeNUaSlKM
-         2+Gs+JwPGWvX/7EfC2IcTHHOGHpS+4ftgU3cqPhiiDhxJSkfTu79VkQa1UQCn5whtfc+
-         WdfrCLD+xeu9oUM2RU6+TnqnRiKNvRf/UlbT/bVixd63o8ou4RXmjFL54TiWbfOqRbP0
-         3zICwN84cBLfHoYmUrXv9WU5uVkpPXB1CcpQ3HCpuvkP5D8mwXDwQ75SxOO+wqV2yqcB
-         tXjw==
+        bh=VUmL4qLsieRvwPq6R62FHNU4t8q1oQ82Y1SNhYOmg5k=;
+        b=D/EdEpZqCCtTGiwmEC6gq+PCA/Y+yTDJREnWu59+lBpHibMPIellRcG6NR3zwBZ/xx
+         OLmVSLIv3eX7q3wLN9j+c2n0JjO5XplIw9WMd8uSDYe9OF95xpsuAd8rk29X/Hd+01Tj
+         W77VEvKvNu60Xa6aMADiIWzQknKzchQvsD3dVqfzNqGHNe3VmiYARrwxWMJ4D1w0fl0K
+         YRo62TEYKYB4WuHdY/Xeige/XvQ222CnRfEmh67QgYKqArYKhs+IjP/Xf4D9lvoyCumN
+         HsH+6Y+XfFdBvJGolCgcSWJYxQkhAOebHTwJaN77THPerQMMc+RHJoa0BAYcxkRiZkBZ
+         XZ7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=QO/lP+KDcMBuBF0dCbiBImn3ahE7Jw+zkWapBF57MgQ=;
-        b=mlXUA8g25EY2Y4REdF2If+a8i1skcH+jll0SewLa0BDyqZFX3FetDSkkpYXwoTjhtu
-         PhWfX5tpDoJFFlw/mivlQYuAqAJDqwB4lLto05Z2oAFvQ8wcXERidY1PABb6T9p7b+8R
-         2dhIUGNll+n9T8UY91Tez2d+fxSOYKHqrWKDBJV8+gGFya1+x7NNGN9DLunbjEvhPloN
-         JnSMIHzYlJreZkbTILJNRpKeZWLecAj6F6st+hls0raRdpKWLAc1CeHXxV1aj5ANR9tH
-         3ikIhGkSY2EY/glAm5GTAer7E1Z72ONen+jXHEz+Zfs1c6CiAdHG6g2I9iq7twj07Fsk
-         b4pA==
-X-Gm-Message-State: APjAAAW5oQ+jNT6hYC2B2B3DAui0U8farbfmSFpcALNR/1ib9c8LFx0y
-        CNv9LgdcjoUanjPtOU0Vlame0w==
-X-Google-Smtp-Source: APXvYqxGPRbiVlZZUV1rk9y+AqcuPPIRI6ejj7HTdsPF3VM9U1EQBetfUhFQXHuhzrFwXyT1lX4LXQ==
-X-Received: by 2002:a62:1488:: with SMTP id 130mr3242980pfu.238.1574917810740;
-        Wed, 27 Nov 2019 21:10:10 -0800 (PST)
+        bh=VUmL4qLsieRvwPq6R62FHNU4t8q1oQ82Y1SNhYOmg5k=;
+        b=AJ10kPb904uz6VZz/UaEhmkRZQ6DglqiIbEGrvIf8c3jJn/aiNKnACusu9kth65RZG
+         Okrler/ShzpTAl8uZRs1zFWu+medMYf82skcIzjJZO48jyiusPpGE97PR+raGwao5RF+
+         wPtVRN7Ph0UYr4f7ey+PE1e+ZZ4z+odw8MvwOFCwZp+0kmSyGUS9pguXAgYu5Acty7nW
+         GXTZYkhUTJwkmEOs/EsPYCwdjUkxwq2vBcByzZQMORugS0ytZpq5FWVWc/y4OuKY9zoo
+         a5yRY8wG3p0jI0z9R8g/T+RLGU4I2t2gXmSU1cyYfyGpk5otPDXf2C9H80/nvYI60fsA
+         JPqw==
+X-Gm-Message-State: APjAAAVeS8cIF3jGnBem/1KH/s6r/8ZUNwIAYrNPQkVTK4efsT9wWwmZ
+        wx7YHdeknApE1PzeWrP9KoV8zw==
+X-Google-Smtp-Source: APXvYqw1Rx241aQ1QD+PueNp8aW3lcCk1ns7N57sTu49O5IMq1I9NZ4kt+Nn94dM2CeRSzBJKvW8ow==
+X-Received: by 2002:a17:90a:65cb:: with SMTP id i11mr10354421pjs.23.1574917811857;
+        Wed, 27 Nov 2019 21:10:11 -0800 (PST)
 Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id j20sm17799838pff.182.2019.11.27.21.10.09
+        by smtp.gmail.com with ESMTPSA id j20sm17799838pff.182.2019.11.27.21.10.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2019 21:10:10 -0800 (PST)
+        Wed, 27 Nov 2019 21:10:11 -0800 (PST)
 From:   John Stultz <john.stultz@linaro.org>
 To:     lkml <linux-kernel@vger.kernel.org>
-Cc:     John Stultz <john.stultz@linaro.org>,
+Cc:     Yu Chen <chenyu56@huawei.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -53,16 +53,16 @@ Cc:     John Stultz <john.stultz@linaro.org>,
         Heikki Krogerus <heikki.krogerus@linux.intel.com>,
         Suzuki K Poulose <suzuki.poulose@arm.com>,
         Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Yu Chen <chenyu56@huawei.com>, Felipe Balbi <balbi@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>,
         Hans de Goede <hdegoede@redhat.com>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
         Jun Li <lijun.kernel@gmail.com>,
         Valentin Schneider <valentin.schneider@arm.com>,
         Jack Pham <jackp@codeaurora.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v6 6/8] usb: dwc3: Rework resets initialization to be more flexible
-Date:   Thu, 28 Nov 2019 05:09:59 +0000
-Message-Id: <20191128051001.18995-7-john.stultz@linaro.org>
+        devicetree@vger.kernel.org, John Stultz <john.stultz@linaro.org>
+Subject: [PATCH v6 7/8] dt-bindings: misc: Add bindings for HiSilicon usb hub and data role switch functionality on HiKey960
+Date:   Thu, 28 Nov 2019 05:10:00 +0000
+Message-Id: <20191128051001.18995-8-john.stultz@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191128051001.18995-1-john.stultz@linaro.org>
 References: <20191128051001.18995-1-john.stultz@linaro.org>
@@ -71,20 +71,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dwc3 core binding specifies one reset.
+From: Yu Chen <chenyu56@huawei.com>
 
-However some variants of the hardware may have more. Previously
-this was handled by using the dwc3-of-simple glue driver, but
-that resulted in a proliferation of bindings for for every
-variant, when the only difference was the clocks and resets
-lists.
-
-So this patch reworks the reading of the resets to fetch all the
-resets specified in the dts together.
-
-This patch was recommended by Rob Herring <robh@kernel.org>
-as an alternative to creating multiple bindings for each variant
-of hardware.
+This patch adds binding documentation to support usb hub and usb
+data role switch of Hisilicon HiKey960 Board.
 
 Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc: Rob Herring <robh+dt@kernel.org>
@@ -102,30 +92,62 @@ Cc: Valentin Schneider <valentin.schneider@arm.com>
 Cc: Jack Pham <jackp@codeaurora.org>
 Cc: linux-usb@vger.kernel.org
 Cc: devicetree@vger.kernel.org
-Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Yu Chen <chenyu56@huawei.com>
 Signed-off-by: John Stultz <john.stultz@linaro.org>
-Change-Id: I4a26492f19e857f3f9f29bcdab81458016f70977
+Change-Id: I3f111b39b7a982b3489549076412a2f7c3c3d008
 ---
-v3: Rework dwc3 core rather then adding another dwc-of-simple
-    binding.
-v6: Re-introduce this patch, on Rob's suggestion
+v3: Reworked as usb-role-switch intermediary
 ---
- drivers/usb/dwc3/core.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/misc/hisilicon-hikey-usb.txt     | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index c6316d4b7593..19504b907476 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -1462,7 +1462,7 @@ static int dwc3_probe(struct platform_device *pdev)
- 
- 	dwc3_get_properties(dwc);
- 
--	dwc->reset = devm_reset_control_get_optional_shared(dev, NULL);
-+	dwc->reset = devm_reset_control_array_get(dev, true, true);
- 	if (IS_ERR(dwc->reset))
- 		return PTR_ERR(dwc->reset);
- 
+diff --git a/Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt b/Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt
+new file mode 100644
+index 000000000000..1e131b38230d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/hisilicon-hikey-usb.txt
+@@ -0,0 +1,40 @@
++Support usb hub and usb data role switch of Hisilicon HiKey960 Board.
++
++-----------------------------
++
++Required properties:
++- compatible: "hisilicon,gpio_hubv1"
++- typec-vbus-gpios: gpio to control the vbus of typeC port
++- otg-switch-gpios: gpio to switch DP & DM between the hub and typeC port
++- hub-vdd33-en-gpios: gpio to enable the power of hub
++- pinctrl-names: pin configuration state name ("default")
++- pinctrl-0: pinctrl config
++- usb-role-switch: flags the driver as a role switch provider
++- ports: two endpoints to connect the usb core role switch provider
++	 to the usb-c tcpm driver.
++
++Example
++-----
++	hisi_hikey_usb: hisi_hikey_usb {
++		compatible = "hisilicon,gpio_hubv1";
++		typec-vbus-gpios = <&gpio25 2 GPIO_ACTIVE_HIGH>;
++		otg-switch-gpios = <&gpio25 6 GPIO_ACTIVE_HIGH>;
++		hub-vdd33-en-gpios = <&gpio5 6 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&usbhub5734_pmx_func>;
++		usb-role-switch;
++
++		port {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			hikey_usb_ep0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&dwc3_role_switch>;
++			};
++			hikey_usb_ep1: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&rt1711h_ep>;
++			};
++		};
++	};
 -- 
 2.17.1
 
