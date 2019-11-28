@@ -2,90 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D7010C640
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 10:55:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A610A10C662
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:06:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726448AbfK1JzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 04:55:20 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35558 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726320AbfK1JzU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 04:55:20 -0500
-Received: by mail-wm1-f65.google.com with SMTP id n5so10968466wmc.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2019 01:55:19 -0800 (PST)
+        id S1726227AbfK1KGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 05:06:53 -0500
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:38037 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726133AbfK1KGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 05:06:50 -0500
+Received: by mail-lj1-f196.google.com with SMTP id k8so17298291ljh.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2019 02:06:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=isat9hh2CPhOOHLZVSbgQqR2m1NjFg+sucSFNzUZ1xY=;
-        b=ThVXUk4GJVBhjYDxMNtR8rdZXS+n2FlvOhhtUon4mG8gB2RUtVXkyCRZ7C+sz0qVPo
-         V/NEonkkZqFq5aJATe0krf026XYfOhbZFyhwMO/TuTS8XbZy1B1pbOdycUhtDJhPc0Nt
-         OLOP0yKkTPm1mVYGhrMF+e1bpIOtUJAhhqhyORi8YaNJ5MjroOc/dziEyXVeqlrwUbRi
-         +rkMvCc6z7TbvvWwEBrZM0d83gba1OV+fE/kUst2PKo+WZGlc31qD6zyiB6s9lLQArCf
-         Tit9VGJ6m2qE0IyaDu0FLuIfS2aeYBZ4ORVYb/75NauLT4Yz1zqgNix8RI87HypO8Qq6
-         IaVg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tUJALJT7TTpPicHHFkyqG0CxrKAUNpXMj/J44tCGQC4=;
+        b=MrIZCIXKCoWoT3alX7UY36qi/6SmTc8BmnSzXxmhsQpC3yJD3IGpnPHTHRA18Eq4Ii
+         dA9JQj8dImYM/knYLxHfT9Amb+CBMYLylpGe8yqPF3l74o2xTtnKKtGSQgoG6/WTJ/oL
+         HUwMesK82Mbk14A7KTmke+h5acBeYRP/otlWfqCq7PAbpIRdWJ10VEj2VCjL7tbbk+Rr
+         NxZZ9SHbyBXhfeY2zwMQ1yglciw9gS/q4pPMp2nX+/rBkPPnVgj9MQHTPDHOLO99uH2y
+         VKbEYHJ6ET/W96KuTASZNjb2IB0ZQxCPs672YjBtFM0beOSqC8SiM1NMvSwegQqNVtV1
+         +kQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=isat9hh2CPhOOHLZVSbgQqR2m1NjFg+sucSFNzUZ1xY=;
-        b=nQcPSAOsc/StHgYxaGhejm7Cv7ZJ3fEl6TgvRXAy4CED/UPxJqLfWz8zAqrgXluqxG
-         OHh/lLESZXi/P7W4yQUEKvByd5ya4TnzPZxzX+ws8imNbs2IvrUtHsY/+nlRecvLBowL
-         WWEAHp/0nRetsT8Q+HhVq/FgflcXU1yJMQF6U2L/RMpPmWl9C6xUPxvLHImUFez6xq/o
-         9hzKEBcqtyG8ZRiYQwqQawm2R+BHunBRPu4o8fnCoWP87S639s+200UL6GTQNa+XgnTr
-         387SFOicJhnq+GDBUHjadK0rMQppBdjgT8qA0lEvyrtgUhr2C2AJf43ddm4U7z9aXNtD
-         tvvg==
-X-Gm-Message-State: APjAAAXqCuOmf6DZMJ7MBtcGuUSKnM49ijpqJ8sHcE7ZryVPnIyW9dno
-        w3/trrFjRAUeaSJiZP/prMA=
-X-Google-Smtp-Source: APXvYqwT8jxd9fEcntEL13r32y5QQkMemmRdJ0zaaVfAqM2tqdyqdntJZU9zV3B7/UhZ5iJSkzz6XA==
-X-Received: by 2002:a1c:7215:: with SMTP id n21mr9078967wmc.129.1574934918244;
-        Thu, 28 Nov 2019 01:55:18 -0800 (PST)
-Received: from localhost ([193.47.161.132])
-        by smtp.gmail.com with ESMTPSA id m3sm22303095wrw.20.2019.11.28.01.55.16
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 28 Nov 2019 01:55:17 -0800 (PST)
-From:   Oliver Graute <oliver.graute@gmail.com>
-X-Google-Original-From: Oliver Graute <oliver.graute@kococonnector.com>
-Date:   Thu, 28 Nov 2019 10:55:14 +0100
-To:     Marc Gonzalez <marc.w.gonzalez@free.fr>
-Cc:     DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [RFC PATCH 1/1] arm64: dts: added basic DTS for qmx8 congatec
- board
-Message-ID: <20191128095514.GA2460@optiplex>
-References: <20191029122026.14208-1-oliver.graute@kococonnector.com>
- <20191029122026.14208-2-oliver.graute@kococonnector.com>
- <9b865fc1-3c7a-f1bd-8ef2-65088d64b314@free.fr>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tUJALJT7TTpPicHHFkyqG0CxrKAUNpXMj/J44tCGQC4=;
+        b=gzeOncwVQLrtblTtmRcHbL9yWRY4D47Iuh6ZBwcf35sbxYIntYedTQZC1tLnph2CeX
+         9ZKoj2uQkS8rDwWtokzTTUUBXcyCfQMFz52K6S77xxaFLYt7AZ0/3jkzDeCSZdP7FrJC
+         4SX2J7CHwpEvwVAynNeWKNaHFBcCae2OrPvQUWBmaVNEgNaFEu6vV04CnIUdVR7oyb5U
+         1uzn+9JS/Qz8aLYY16DryZmHUJRs7UR+7O25+6HGe845gQIfzRbzooodshfcsXpXWYGB
+         q7Ssc74vJbqkfi6t7hg8hlxZbOQCj37r+UQCeTa60cieV8thhzmw08P8zTW3mzncfibp
+         IcBg==
+X-Gm-Message-State: APjAAAUgAMkCdBdydWqp7GL9rGSKRljywICjcL8czYa094m8WfoUyn5u
+        Dbzvf2H0SPVTHv2FJQ1f1V3APL0pY+0VbGzzupwMUQ==
+X-Google-Smtp-Source: APXvYqwk5GfDLW4bgJe+dmZ3t+boVThpmLI6573Ta152HHaHVEwKJ6QpDlfomukhdkz0o/BidvY2uXE+XHx6i4GMZaA=
+X-Received: by 2002:a2e:9699:: with SMTP id q25mr33914816lji.251.1574935607136;
+ Thu, 28 Nov 2019 02:06:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9b865fc1-3c7a-f1bd-8ef2-65088d64b314@free.fr>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20191120133409.9217-1-peter.ujfalusi@ti.com> <20191120133409.9217-2-peter.ujfalusi@ti.com>
+ <CACRpkdbXX3=1EGpGRf6NgwUfY2Q0AKbGM8gJvVpY+BRAo5MQvQ@mail.gmail.com> <d423bc53-31df-b1b4-37da-932b7208a29e@ti.com>
+In-Reply-To: <d423bc53-31df-b1b4-37da-932b7208a29e@ti.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 28 Nov 2019 11:06:35 +0100
+Message-ID: <CACRpkdafEdsN6i16SA175wE4J_4+EhS5Uw4Qsg=cZ=EuDYHmgg@mail.gmail.com>
+Subject: Re: [RFC 1/2] dt-bindings: gpio: Document shared GPIO line usage
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/19, Marc Gonzalez wrote:
-> On 29/10/2019 13:23, Oliver Graute wrote:
-> 
-> > +&fec1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pinctrl_fec1>;
-> > +	phy-mode = "rgmii";
-> > +	phy-handle = <&ethphy0>;
-> > +	fsl,magic-packet;
-> > +	fsl,rgmii_txc_dly;
-> > +	fsl,rgmii_rxc_dly;
-> > +	status = "okay";
-> 
-> The two fsl,rgmii* properties do not exist in mainline.
-> I suppose there were copied from downstream?
+On Fri, Nov 22, 2019 at 2:36 PM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
+> On 22/11/2019 14.10, Linus Walleij wrote:
+> > On Wed, Nov 20, 2019 at 2:34 PM Peter Ujfalusi <peter.ujfalusi@ti.com> wrote:
+> >
+> >> Boards might use the same GPIO line to control several external devices.
+> >> Add section to document on how a shared GPIO pin can be described.
+> >>
+> >> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> >
+> > As I've stated earlier I think this information is surplus.
+> > If two devices have a phandle to the same GPIO line
+> > then it is by definition shared.
+>
+> Well, phandle + line number to be precise.
 
-you are right, I'll remove them.
+This is what I mean when I say "phandle to the same GPIO line".
+Like this:
 
-thx for your feedback.
+foo-gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
 
-Best regards,
+If the phandle <&gpio0 5 *>; appear in some other
+(non-disabled) node it has > 1 users.
 
-Oliver
+> >> +               line_a {
+> >> +                       gpio-shared;
+> >
+> > So this is unnecessary: if the same line is referenced
+> > by phandle from two places it is shared, simple as that.
+>
+> phandle is pointing to the gpio controller, not to the line.
+
+Cleared up above.
+
+> >> +                       gpios = <5 0>;
+> >> +                       output-low;
+> >
+> > This is overlapping with the use case to define initial
+> > state values for GPIOs, something that has been
+> > brought up repeatedly and I've collected links for
+> > previous discussions several times.
+>
+> I don't mind this to go away and the first set would configure the level.
+> Kept it here so I can reuse the gpio-hog code from gpiolib-of ;)
+
+People have tried to reuse the hog code to set up
+initial line levels as well, it failed because they could
+not get the DT bindings through the door.
+
+> > I guess if need be I have to look them up again.
+> >
+> > The DT maintainers don't like the hog syntax so
+> > something else is desired for this.
+>
+> I see, so the gpio-hog might change?
+
+They will not change since they are ABI, but their
+use case will not be extended AFAICT.
+Not my pick, I liked the hog syntax but we need
+consensus.
+
+> > (snip)
+> >> +The shared GPIO line management strategy can be selected with either of the
+> >> +following properties:
+> >> +- refcounted-low: The line must be kept low as long as there is at least one
+> >> +               request asking it to be low.
+> >> +- refcounted-high: The line must be kept high as long as there is at least one
+> >> +               request asking it to be high.
+> >
+> > Is this really needed? Isn't it more appropriate to just define the
+> > semantics such that as soon as some consumer requests the line
+> > high it will be refcounted high, and as soon as it is requested
+> > low by any consumer it will be refcounted low.
+>
+> Well. How do we decide which level is the one that should be preserved?
+
+First come first serve.
+
+If there is any conflict amongst the consumers we are
+screwed anyway so why try to establish where they should
+agree if they don't agree?
+
+> How would the core decide what to in a simplest case:
+> two device, they are the same part.
+> ENABLE pin which needs to be high to enable the device.
+> When the driver probes it asks for initial deasserted GPIO as the device
+> is not in active use.
+
+This makes me think it should be a unique driver
+with a unique compatible string, as it embodies
+use cases.
+
+It is too broad to just define
+refcounted-high or refcounted-low, that is hiding the
+real use case, so I would go for something like a
+resource in the device tree that all other devices that
+need it can take.
+
+Like a reset controller, precisely:
+
+reset: reset-controller {
+    compatible = "reset-gpio";
+    gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;
+    #reset-cells = <0>;
+};
+
+dev0 {
+    resets = <&reset>;
+};
+
+dev1 {
+    resets = <&reset>;
+};
+
+The ambition to use refcounted GPIOs to solve this
+usecase is probably wrong, I would say try to go for a
+GPIO-based reset controller instead.
+
+The fact that some Linux drivers are already using explicit
+GPIO's for their reset handling is maybe unfortunate,
+they will simply have to grow code to deal with a reset
+alternatively to GPIO, like first try to grab a reset
+handle and if that doesn't fall back to use a GPIO.
+
+I would say don't try to shoehorn this use case into the
+gpio library but instead try to create a reset controller that
+takes care of arbitrating the use of a single GPIO line.
+
+Yours,
+Linus Walleij
