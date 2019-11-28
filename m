@@ -2,114 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DECFB10C6BF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:33:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3151410C6D5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:38:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726227AbfK1KdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 05:33:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46782 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726191AbfK1KdF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Nov 2019 05:33:05 -0500
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8A8F821774;
-        Thu, 28 Nov 2019 10:33:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574937185;
-        bh=XkkZY50Ku/fTTkcm9Gj5G8wbLDZLo31fHLtFpoOVYCw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=13OFpcdb2oyl0G7fXdFH5DZQWxrcTEN4M4cMy0d8sc/zcZH7aOvPlsOmKKejf7uSK
-         GxuhBUi83tUboyJjztTNa5pya+hTY07JhVN3nZ2DhT4kl6XVhttuXcXguqPZEavXYM
-         eiHgzMrc1GjyRG/8pmyOhbMzQnQv6JU6eeqVScEM=
-Date:   Thu, 28 Nov 2019 11:33:01 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Stefan Mavrodiev <stefan@olimex.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/Allwinner sunXi SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 1/1] arm64: dts: allwinner: a64: olinuxino: Add VCC-PG
- supply
-Message-ID: <20191128103301.vjpkvjscy45ycgwg@gilmour.lan>
-References: <20191126110508.15264-1-stefan@olimex.com>
- <20191126162721.qi7scp3vadxn7k2i@gilmour.lan>
- <0c1d7377-7064-f509-ffc5-bd1e8f2fbaa8@olimex.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="stx4a5zlstsyhhjb"
-Content-Disposition: inline
-In-Reply-To: <0c1d7377-7064-f509-ffc5-bd1e8f2fbaa8@olimex.com>
+        id S1726227AbfK1Kiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 05:38:46 -0500
+Received: from sender4-pp-o98.zoho.com ([136.143.188.98]:25876 "EHLO
+        sender4-pp-o98.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726133AbfK1Kiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 05:38:46 -0500
+ARC-Seal: i=1; a=rsa-sha256; t=1574937489; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=XPqbXeBMXRdabPgNXCuXemkp9NfG7XufPrdRSGOrlGNKMc4at2sSg33OVaWvSIXErHhgQjwNtowJ+9Xzau/HtQofBt6cbCOfv5DT6jCJsqyAgce+n8ZNKS1OW80YsXS2fFqDYRNRE1pCrGqU12Hx9zRbABrzwYBryY14eF7j7Xg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1574937489; h=Cc:Date:From:Message-ID:Subject:To; 
+        bh=yxfZjaSzvJmmIF3/UDAUmKpxvOzSWUdEnx1zq5UN/00=; 
+        b=edt0plzyFotImPqliddn1VNt+ejQtm0cj+LjaVGldNOsUpECRwNpGt0B4uRaKS32IqXUgujPny3J+vHgVnWS/fJLV8dAehZwxiyXBV6ZAZiU6vSO3hXWaUlfLFjn5v/t7gceS1icjjJecAdgWN8af4qrx7HKGWyODSscFky6s5Q=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=zoho.com;
+        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
+        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
+  s=zapps768; d=zoho.com; 
+  h=from:to:cc:subject:date:message-id; 
+  b=Io2VzhN8FYm+jCGBn/nLbNTlVcpCWv3hs1b2ku2MD775kJ7bubjrri20OYkDI6pF8TFJFvjoBXU2
+    l/Sc5UuK6Q80LD0n3caDC2rZfvna1fLebb4z1COopR/8aLE0+AWF  
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1574937489;
+        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
+        h=From:To:Cc:Subject:Date:Message-Id;
+        bh=yxfZjaSzvJmmIF3/UDAUmKpxvOzSWUdEnx1zq5UN/00=;
+        b=k5YupAEv7Akw3gLKEWaNctmtE9vvoYUt29NR6PCdiv8UyyFzPxzhhwb4tMtbpOmp
+        IoWMz4WooSgEEqW+pyrlpvpZ2mCkNAOGH+nTmnbK7OkW9DeHyamhXxzY8md7EiQeh/Z
+        VuN2u1slKce+YE7qgpQ8QEu7sQYMcdZ+m9zvdIM4=
+Received: from zhouyanjie-virtual-machine.localdomain (182.148.156.27 [182.148.156.27]) by mx.zohomail.com
+        with SMTPS id 1574937487395663.3286323165637; Thu, 28 Nov 2019 02:38:07 -0800 (PST)
+From:   Zhou Yanjie <zhouyanjie@zoho.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, paul.burton@mips.com, paulburton@kernel.org,
+        jhogan@kernel.org, mripard@kernel.org, shawnguo@kernel.org,
+        mark.rutland@arm.com, syq@debian.org, ralf@linux-mips.org,
+        heiko@sntech.de, icenowy@aosc.io,
+        laurent.pinchart@ideasonboard.com, krzk@kernel.org,
+        geert+renesas@glider.be, paul@crapouillou.net,
+        prasannatsmkumar@gmail.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Subject: Add initial support for Ingenic X1000 SoC and Y&A CU Neo board v5.
+Date:   Thu, 28 Nov 2019 18:37:37 +0800
+Message-Id: <1574937467-101907-1-git-send-email-zhouyanjie@zoho.com>
+X-Mailer: git-send-email 2.7.4
+X-ZohoMailClient: External
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v4->v5:
+1.Adjust item naming to prevent conflicts with subsequent "CU Geo" boards.
+2.Rename "cu1000" to "cu1000-neo" to prevent conflicts with subsequent boards
+  such as "cu1000-geo", and so on.
+3.Remove "CONFIG_HZ=100" and "mem=32M@0x0" from defconfg, and update defconfig
+  for msc controller and rtc.
+4.Add msc controller and rtc DT node, and modify incorrect comments in DT.
 
---stx4a5zlstsyhhjb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-Hi Stefan,
-
-On Wed, Nov 27, 2019 at 09:07:40AM +0200, Stefan Mavrodiev wrote:
-> On 11/26/19 6:27 PM, Maxime Ripard wrote:
-> > Hi Stefan,
-> >
-> > On Tue, Nov 26, 2019 at 01:05:08PM +0200, Stefan Mavrodiev wrote:
-> > > On A64-OLinuXino boards, PG9 is used for USB1 enable/disable. The
-> > > port is supplied by DLDO4, which is disabled by default. The patch
-> > > adds the regulator as vcc-pg, which is later used by the pinctrl.
-> > >
-> > > Signed-off-by: Stefan Mavrodiev <stefan@olimex.com>
-> > > ---
-> > >   arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts | 4 ++++
-> > >   1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> > > index 01a9a52edae4..c9d8c9c4ef20 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> > > @@ -163,6 +163,10 @@
-> > >   	status = "okay";
-> > >   };
-> > >
-> > > +&pio {
-> > > +	vcc-pg-supply=<&reg_dldo4>;
-> > The equal sign should have spaces around it.
-> >
-> > Also, can you please list all the bank supplies while you're at it?
->
-> Sure. Should the supplies defined as regulators names be added also to the
-> pio node?
-> For example reg_aldo1 is named "vcc-pe".
-
-As far as I can tell, the A64 has regulators for PC, PD, PE, PG and
-PL, so you should list those (PL being under r_pio)
-
-> Also, since the commit message will be different for better representation
-> of the changes, should I send the next
-> patch as v2 or as a new one?
-
-Either way works for me as long as the commit message matches the changes.
-
-Thanks!
-Maxime
-
---stx4a5zlstsyhhjb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXd+iXQAKCRDj7w1vZxhR
-xcehAP963qGMNNtuK9UziU1syhhW7rH4N5zmtnS3s2iN4Mp0JwD/d4k4t/rtURBA
-Lpwkgow4mIPRk/bmMRu8JfSG0GizbQY=
-=1Rzz
------END PGP SIGNATURE-----
-
---stx4a5zlstsyhhjb--
