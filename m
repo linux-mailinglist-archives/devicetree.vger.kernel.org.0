@@ -2,250 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB0510C730
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:48:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90D5410C73B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:54:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727116AbfK1Ksa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 05:48:30 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:43807 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727172AbfK1KsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 05:48:00 -0500
-Received: by mail-ot1-f66.google.com with SMTP id l14so21818758oti.10
-        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2019 02:48:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=n2M2DOjN0rUIee7f4568qv54/w22jqT9t2zHXJTCIiw=;
-        b=RUGtgzBebXP1WZ9U1bG+HcXscXKN80DgVHovE3PcZrqWBA0Wy4VcipFW2KTgh6tHaR
-         +PdnRIM8vF4znJoXxcuHpd/hXdhaFfDbI7t5hdag9UEn4zreWqDlab1tbXI+aXOzcJ98
-         5KR7t7gQbCP2PVHM1L8zHTwOfxfS6yy/Koec/WOYTWLJNSGwG8ZGJPz5WsYpwMs+SKoM
-         F2XcGkA3KeQobqV0lAvoa6zxNMiBSqXib/rzgcGsbgI85sor94g1ws345m0cWSDzgkmV
-         C71huSCrIP8Pn+cBPYuDIC5HOzi1/jzR+S9PqlV9+wl14GN68xWqBezKZ/JYognJantJ
-         2NoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=n2M2DOjN0rUIee7f4568qv54/w22jqT9t2zHXJTCIiw=;
-        b=p5uGZ01llZiGmFZMLcXEeAbgzyLX6Jmg2hv8MAYCsIYeIGzy/Xh7IwhK3xAIxvQWzu
-         /NUHFk0QKovqRAGyoq/qrGgPN/bBPFYQPFv4VAgL+PBfDemLKoUooC864K7GMwFzYVcK
-         2zElSXGPDapsvsEOSvB4XacVf1P+mifCe5FFzw+rYbtCkXcXrg6ciVSFF/gbAutxPVVJ
-         LmFeYtchB/MchTUmziJKqxKcbZa+P6JfGE+PVyd+vb4AWw9/hMdqC4fEdOKqXwmFWefW
-         Tzg93Mn72Db7+zRT4zOANYedLPgw1lHxoEBVeYXrW9ggoKUqnXWwAy9HiNu04Ct3aFQs
-         BoKA==
-X-Gm-Message-State: APjAAAWJ5KG9e9HiJhtSyAS07+XF0qZhCuCjaXOnFTb829iuZEr9hnk4
-        A6DTvu0MNPRk01x4KvmWTI9jiuEeLhlrUqV56FGVnQ==
-X-Google-Smtp-Source: APXvYqwIkFVv7DR8vkf6HhHumjwzeFxERIxhx/z94crNx+5eHBWmuhZT3Pco4t/Z2qUI1fCGbsAYxly9lsdxfwBgFTw=
-X-Received: by 2002:a9d:5d10:: with SMTP id b16mr1859246oti.250.1574938079551;
- Thu, 28 Nov 2019 02:47:59 -0800 (PST)
+        id S1726546AbfK1KyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 05:54:09 -0500
+Received: from foss.arm.com ([217.140.110.172]:33652 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726191AbfK1KyJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Nov 2019 05:54:09 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 91CA61FB;
+        Thu, 28 Nov 2019 02:54:08 -0800 (PST)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B60083F6C4;
+        Thu, 28 Nov 2019 02:54:07 -0800 (PST)
+Subject: Re: [PATCH v5 03/14] coresight: cti: Add sysfs access to program
+ function regs
+To:     Mike Leach <mike.leach@linaro.org>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Cc:     mathieu.poirier@linaro.org
+References: <20191119231912.12768-1-mike.leach@linaro.org>
+ <20191119231912.12768-4-mike.leach@linaro.org>
+From:   Suzuki Kuruppassery Poulose <suzuki.poulose@arm.com>
+Message-ID: <cc0eb144-48a2-bde5-4790-2fd5e1168360@arm.com>
+Date:   Thu, 28 Nov 2019 10:54:06 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-References: <20191127115619.20278-1-m.felsch@pengutronix.de>
- <20191127115619.20278-4-m.felsch@pengutronix.de> <CACRpkdbd4J-FUNi=F12YQfNPajNCVaoKyqWU7qjmfFMbonzDKg@mail.gmail.com>
- <20191127150146.bbwse77eef6haita@pengutronix.de>
-In-Reply-To: <20191127150146.bbwse77eef6haita@pengutronix.de>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 28 Nov 2019 11:47:48 +0100
-Message-ID: <CAMpxmJVmvj_4DN85j4vu32FUZVnzmQzQfUtOVKAd0GVO3sWYmA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] pinctrl: da9062: add driver support
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20191119231912.12768-4-mike.leach@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=C5=9Br., 27 lis 2019 o 16:01 Marco Felsch <m.felsch@pengutronix.de> napisa=
-=C5=82(a):
->
-> Hi Linus,
->
-> On 19-11-27 14:49, Linus Walleij wrote:
-> > Hi Marco,
-> >
-> > thanks for your patch!
->
-> thanks for your fast response.
->
-> > On Wed, Nov 27, 2019 at 12:56 PM Marco Felsch <m.felsch@pengutronix.de>=
- wrote:
-> >
-> > > The DA9062 is a mfd pmic device which supports 5 GPIOs. The GPIOs can
-> > > be used as input, output or have a special use-case.
-> > >
-> > > The patch adds the support for the normal input/output use-case.
-> > >
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > (...)
-> >
-> > > +config PINCTRL_DA9062
-> > > +       tristate "Dialog Semiconductor DA9062 PMIC pinctrl and GPIO S=
-upport"
-> > > +       depends on MFD_DA9062
-> > > +       select GPIOLIB
-> >
-> > Hm this would be one of those that could use GENERIC_REGMAP_GPIO
-> > the day we invent it but we haven't invented it yet.
->
-> Yes it is. Is there a plan for GENERIC_REGMAP_GPIO?
->
+On 19/11/2019 23:19, Mike Leach wrote:
+> Adds in sysfs programming support for the CTI function register sets.
+> Allows direct manipulation of channel / trigger association registers.
+> 
+> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Signed-off-by: Mike Leach <mike.leach@linaro.org>
 
-Yes, it's the second item on my TODO after the LINEINFO_FD series. I
-just got a board I can use for developing this so I should have
-something shortly.
 
-Bart
+> +/*
+> + * #define CTI_DEBUG_INTEGRATION_CTRL to enable the access to the integration
+> + * control registers. Normally only used to investigate connection data.
+> + */
 
-> > > +#include <../gpio/gpiolib.h>
-> >
-> > Put a comment above this telling us why you do this thing.
->
-> Okay.
->
-> > > +static int da9062_gpio_get(struct gpio_chip *gc, unsigned int offset=
-)
-> > > +{
-> > (...)
-> > > +       return val & BIT(offset);
-> >
-> > You should #include <linux/bits.h> since you use BIT()
->
-> Argh.. of course I will add the include.
->
-> > Usually I clamp it like this:
-> > return !!(val & BIT(offset));
->
-> Okay, I can change that too.
->
-> > > +static int da9062_gpio_get_direction(struct gpio_chip *gc, unsigned =
-int offset)
-> > > +{
-> > > +       struct da9062_pctl *pctl =3D gpiochip_get_data(gc);
-> > > +       struct regmap *regmap =3D pctl->da9062->regmap;
-> > > +       int gpio_mode;
-> > > +
-> > > +       gpio_mode =3D da9062_pctl_get_pin_mode(regmap, offset);
-> > > +       if (gpio_mode < 0)
-> > > +               return gpio_mode;
-> > > +
-> > > +       switch (gpio_mode) {
-> > > +       case DA9062_PIN_ALTERNATE:
-> > > +               return -ENOTSUPP;
-> > > +       case DA9062_PIN_GPI:
-> > > +               return 1;
-> > > +       case DA9062_PIN_GPO_OD:
-> > > +       case DA9062_PIN_GPO_PP:
-> > > +               return 0;
-> >
-> > We recently added defines for these directions in
-> > <linux/gpio/driver.h>:
-> >
-> > #define GPIO_LINE_DIRECTION_IN  1
-> > #define GPIO_LINE_DIRECTION_OUT 0
-> >
-> > Please use these. (Soon in Torvald's tree, else
-> > in my "devel" branch.)
->
-> I rebased it onto your devel, thanks for the hint.
->
-> > > +static int da9062_gpio_direction_input(struct gpio_chip *gc,
-> > > +                                      unsigned int offset)
-> > > +{
-> > > +       struct da9062_pctl *pctl =3D gpiochip_get_data(gc);
-> > > +       struct regmap *regmap =3D pctl->da9062->regmap;
-> > > +       struct gpio_desc *desc =3D gpiochip_get_desc(gc, offset);
-> > > +       unsigned int gpi_type;
-> > > +       int ret;
-> > > +
-> > > +       ret =3D da9062_pctl_set_pin_mode(regmap, offset, DA9062_PIN_G=
-PI);
-> > > +       if (ret)
-> > > +               return ret;
-> > > +
-> > > +       /*
-> > > +        * If the gpio is active low we should set it in hw too. No w=
-orries
-> > > +        * about gpio_get() because we read and return the gpio-level=
-. So the
-> > > +        * gpiolib active_low handling is still correct.
-> > > +        *
-> > > +        * 0 - active low, 1 - active high
-> > > +        */
-> > > +       gpi_type =3D !gpiod_is_active_low(desc);
-> >
-> > That's interesting. Correct too, I guess.
->
-> Double checked it again and the datasheet calls it gpio-level so I
-> assume that this is correct.
->
-> > > +static int da9062_gpio_direction_output(struct gpio_chip *gc,
-> > > +                                       unsigned int offset, int valu=
-e)
-> > > +{
-> > > +       /* Push-Pull / Open-Drain options are configured during set_c=
-onfig */
-> > > +       da9062_gpio_set(gc, offset, value);
-> >
-> > That looks dangerous. There is no guarantee that .set_config()
-> > always gets called.
->
-> Hm.. it seems that other drivers using this assumption too:
->   - gpio-lp87565.c
->   - gpio-tps65218.c
->   - ...
->
-> But you're right I missed the possible users of
-> gpiod_direction_output_raw().
->
-> > Please create a local state container for the mode of each pin in
-> > struct da9062_pctl and set it to push-pull by default at probe, then
-> > set this to whatever the state is here and let the .set_config()
-> > alter it later if need be.
-> >
-> > If we don't do that you will get boot-time defaults I think and that
-> > might create bugs.
->
-> I will add a container for each pin, thanks for covering that.
->
-> > > +static int da9062_gpio_set_config(struct gpio_chip *gc, unsigned int=
- offset,
-> > > +                                 unsigned long config)
-> > > +{
-> > (...)
-> > > +       case PIN_CONFIG_DRIVE_OPEN_DRAIN:
-> > > +               return da9062_pctl_set_pin_mode(regmap, offset,
-> > > +                                               DA9062_PIN_GPO_OD);
-> > > +       case PIN_CONFIG_DRIVE_PUSH_PULL:
-> > > +               return da9062_pctl_set_pin_mode(regmap, offset,
-> > > +                                               DA9062_PIN_GPO_PP);
-> >
-> > So also store this in the per-pin state.
->
-> Of course.
->
-> Regards,
->   Marco
->
-> >
-> > Yours,
-> > Linus Walleij
-> >
->
-> --
-> Pengutronix e.K.                           |                             =
-|
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  =
-|
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    =
-|
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
-|
+On a second thought, I have some comments on this symbol.
+
+Given that the integration control registers may be useful for people to
+find the device connections, I strongly feel that this is provided
+via a CONFIG symbol rather than a  debug symbol within the code.
+
+i.e, CONFIG_CTI_DEBUG_INTEGRATION_CTRL, to help the people better.
+Codewise this doesn't make much difference, but it certainly makes
+it more easier for people to use it.
+
+We have used debug symbols elsewhere in the drivers for pure functional
+debugging purposes. However I feel this is case is superior.
+
+
+Cheers
+Suzuki
