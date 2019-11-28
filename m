@@ -2,139 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A68310CC31
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 16:55:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CF2610CC44
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 16:58:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726726AbfK1Py7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 10:54:59 -0500
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:42119 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726856AbfK1Pyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 10:54:55 -0500
-X-Originating-IP: 90.76.211.102
-Received: from localhost.localdomain (lfbn-1-2154-102.w90-76.abo.wanadoo.fr [90.76.211.102])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id ED59640002;
-        Thu, 28 Nov 2019 15:54:52 +0000 (UTC)
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v4 5/5] gpio: syscon: Add support for the Xylon LogiCVC GPIOs
-Date:   Thu, 28 Nov 2019 16:54:38 +0100
-Message-Id: <20191128155438.325738-6-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191128155438.325738-1-paul.kocialkowski@bootlin.com>
-References: <20191128155438.325738-1-paul.kocialkowski@bootlin.com>
+        id S1726650AbfK1P6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 10:58:34 -0500
+Received: from foss.arm.com ([217.140.110.172]:37796 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726401AbfK1P6e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Nov 2019 10:58:34 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 895C41FB;
+        Thu, 28 Nov 2019 07:58:33 -0800 (PST)
+Received: from [10.1.196.37] (e121345-lin.cambridge.arm.com [10.1.196.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B347D3F6C4;
+        Thu, 28 Nov 2019 07:58:32 -0800 (PST)
+Subject: Re: [PATCH] Revert "arm64: dts: juno: add dma-ranges property"
+To:     Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+References: <20191126165355.6696-1-sudeep.holla@arm.com>
+ <20191128154242.1035-1-sudeep.holla@arm.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <1e0ad966-031a-1343-a83e-8536a678341c@arm.com>
+Date:   Thu, 28 Nov 2019 15:58:28 +0000
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191128154242.1035-1-sudeep.holla@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LogiCVC display hardware block comes with GPIO capabilities
-that must be exposed separately from the main driver (as GPIOs) for
-use with regulators and panels. A syscon is used to share the same
-regmap across the two drivers.
+On 28/11/2019 3:42 pm, Sudeep Holla wrote:
+> This reverts commit 193d00a2b35ee3353813b4006a18131122087205.
+> 
+> Commit 951d48855d86 ("of: Make of_dma_get_range() work on bus nodes")
+> reworked the logic such that of_dma_get_range() works correctly
+> starting from a bus node containing "dma-ranges".
+> 
+> Since on Juno we don't have a SoC level bus node and "dma-ranges" is
+> present only in the root node, we get the following error:
+> 
+> OF: translation of DMA address(0) to CPU address failed node(/sram@2e000000)
+> OF: translation of DMA address(0) to CPU address failed node(/uart@7ff80000)
+> ...
+> OF: translation of DMA address(0) to CPU address failed node(/mhu@2b1f0000)
+> OF: translation of DMA address(0) to CPU address failed node(/iommu@2b600000)
+> OF: translation of DMA address(0) to CPU address failed node(/iommu@2b600000)
+> OF: translation of DMA address(0) to CPU address failed node(/iommu@2b600000)
+> 
+> So let's fix it by dropping the "dma-ranges" property for now. We can
+> add it later with a proper SoC bus node and moving all the devices that
+> belong there along with the "dma-ranges" if required.
 
-Since the GPIO capabilities are pretty simple, add them to the syscon
-GPIO driver.
+Acked-by: Robin Murphy <robin.murphy@arm.com>
 
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
----
- drivers/gpio/gpio-syscon.c | 65 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
+As mentioned before, this is fine since it doesn't represent any kind of 
+device-visible restriction; it was only there for completeness, and 
+we've since given in to the assumption that missing "dma-ranges" implies 
+a 1:1 mapping anyway.
 
-diff --git a/drivers/gpio/gpio-syscon.c b/drivers/gpio/gpio-syscon.c
-index 36136b7f3a3b..cf1127f81824 100644
---- a/drivers/gpio/gpio-syscon.c
-+++ b/drivers/gpio/gpio-syscon.c
-@@ -190,6 +190,67 @@ static const struct syscon_gpio_data keystone_dsp_gpio = {
- 	.set		= keystone_gpio_set,
- };
- 
-+#define LOGICVC_CTRL_REG		0x40
-+#define LOGICVC_CTRL_GPIO_SHIFT		11
-+#define LOGICVC_CTRL_GPIO_BITS		5
-+
-+#define LOGICVC_POWER_CTRL_REG		0x78
-+#define LOGICVC_POWER_CTRL_GPIO_SHIFT	0
-+#define LOGICVC_POWER_CTRL_GPIO_BITS	4
-+
-+static void logicvc_gpio_offset(struct syscon_gpio_priv *priv,
-+				unsigned offset, unsigned int *reg,
-+				unsigned int *bit)
-+{
-+	if (offset >= LOGICVC_CTRL_GPIO_BITS) {
-+		*reg = LOGICVC_POWER_CTRL_REG;
-+
-+		/* To the (virtual) power ctrl offset. */
-+		offset -= LOGICVC_CTRL_GPIO_BITS;
-+		/* To the actual bit offset in reg. */
-+		offset += LOGICVC_POWER_CTRL_GPIO_SHIFT;
-+	} else {
-+		*reg = LOGICVC_CTRL_REG;
-+
-+		/* To the actual bit offset in reg. */
-+		offset += LOGICVC_CTRL_GPIO_SHIFT;
-+	}
-+
-+	*bit = BIT(offset);
-+}
-+
-+static int logicvc_gpio_get(struct gpio_chip *chip, unsigned offset)
-+{
-+	struct syscon_gpio_priv *priv = gpiochip_get_data(chip);
-+	unsigned int reg, bit, value;
-+	int ret;
-+
-+	logicvc_gpio_offset(priv, offset, &reg, &bit);
-+
-+	ret = regmap_read(priv->syscon, reg, &value);
-+	if (ret)
-+		return ret;
-+
-+	return !!(value & bit);
-+}
-+
-+static void logicvc_gpio_set(struct gpio_chip *chip, unsigned offset, int val)
-+{
-+	struct syscon_gpio_priv *priv = gpiochip_get_data(chip);
-+	unsigned int reg, bit;
-+
-+	logicvc_gpio_offset(priv, offset, &reg, &bit);
-+
-+	regmap_update_bits(priv->syscon, reg, bit, val ? bit : 0);
-+}
-+
-+static const struct syscon_gpio_data logicvc_gpio = {
-+	.flags		= GPIO_SYSCON_FEAT_OUT,
-+	.bit_count	= LOGICVC_CTRL_GPIO_BITS + LOGICVC_POWER_CTRL_GPIO_BITS,
-+	.get		= logicvc_gpio_get,
-+	.set		= logicvc_gpio_set,
-+};
-+
- static const struct of_device_id syscon_gpio_ids[] = {
- 	{
- 		.compatible	= "cirrus,ep7209-mctrl-gpio",
-@@ -203,6 +264,10 @@ static const struct of_device_id syscon_gpio_ids[] = {
- 		.compatible	= "rockchip,rk3328-grf-gpio",
- 		.data		= &rockchip_rk3328_gpio_mute,
- 	},
-+	{
-+		.compatible	= "xylon,logicvc-3.02.a-gpio",
-+		.data		= &logicvc_gpio,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, syscon_gpio_ids);
--- 
-2.24.0
+Thanks,
+Robin.
 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> ---
+>   arch/arm64/boot/dts/arm/juno-base.dtsi | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> index 9e3e8ce6adfe..1f3c80aafbd7 100644
+> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
+> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> @@ -6,7 +6,6 @@
+>   	/*
+>   	 *  Devices shared by all Juno boards
+>   	 */
+> -	dma-ranges = <0 0 0 0 0x100 0>;
+>   
+>   	memtimer: timer@2a810000 {
+>   		compatible = "arm,armv7-timer-mem";
+> 
