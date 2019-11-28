@@ -2,69 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2798E10C6BB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DECFB10C6BF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726401AbfK1Kbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 05:31:37 -0500
-Received: from ns.iliad.fr ([212.27.33.1]:44474 "EHLO ns.iliad.fr"
+        id S1726227AbfK1KdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 05:33:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46782 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726383AbfK1Kbh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Nov 2019 05:31:37 -0500
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-        by ns.iliad.fr (Postfix) with ESMTP id 7AFA22056B;
-        Thu, 28 Nov 2019 11:31:35 +0100 (CET)
-Received: from [192.168.108.51] (freebox.vlq16.iliad.fr [213.36.7.13])
-        by ns.iliad.fr (Postfix) with ESMTP id 6BCB2201B5;
-        Thu, 28 Nov 2019 11:31:35 +0100 (CET)
-Subject: Re: [RFC PATCH 1/1] arm64: dts: added basic DTS for qmx8 congatec
- board
-To:     Oliver Graute <oliver.graute@gmail.com>
-Cc:     DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20191029122026.14208-1-oliver.graute@kococonnector.com>
- <20191029122026.14208-2-oliver.graute@kococonnector.com>
- <9b865fc1-3c7a-f1bd-8ef2-65088d64b314@free.fr>
- <20191128095514.GA2460@optiplex>
-From:   Marc Gonzalez <marc.w.gonzalez@free.fr>
-Message-ID: <ed8b6139-a67d-d5d3-c65b-260d020c95e0@free.fr>
-Date:   Thu, 28 Nov 2019 11:31:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1726191AbfK1KdF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Nov 2019 05:33:05 -0500
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8A8F821774;
+        Thu, 28 Nov 2019 10:33:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1574937185;
+        bh=XkkZY50Ku/fTTkcm9Gj5G8wbLDZLo31fHLtFpoOVYCw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=13OFpcdb2oyl0G7fXdFH5DZQWxrcTEN4M4cMy0d8sc/zcZH7aOvPlsOmKKejf7uSK
+         GxuhBUi83tUboyJjztTNa5pya+hTY07JhVN3nZ2DhT4kl6XVhttuXcXguqPZEavXYM
+         eiHgzMrc1GjyRG/8pmyOhbMzQnQv6JU6eeqVScEM=
+Date:   Thu, 28 Nov 2019 11:33:01 +0100
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Stefan Mavrodiev <stefan@olimex.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/Allwinner sunXi SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 1/1] arm64: dts: allwinner: a64: olinuxino: Add VCC-PG
+ supply
+Message-ID: <20191128103301.vjpkvjscy45ycgwg@gilmour.lan>
+References: <20191126110508.15264-1-stefan@olimex.com>
+ <20191126162721.qi7scp3vadxn7k2i@gilmour.lan>
+ <0c1d7377-7064-f509-ffc5-bd1e8f2fbaa8@olimex.com>
 MIME-Version: 1.0
-In-Reply-To: <20191128095514.GA2460@optiplex>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Thu Nov 28 11:31:35 2019 +0100 (CET)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="stx4a5zlstsyhhjb"
+Content-Disposition: inline
+In-Reply-To: <0c1d7377-7064-f509-ffc5-bd1e8f2fbaa8@olimex.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2019 10:55, Oliver Graute wrote:
 
-> On 28/11/19, Marc Gonzalez wrote:
-> 
->> On 29/10/2019 13:23, Oliver Graute wrote:
->>
->>> +&fec1 {
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&pinctrl_fec1>;
->>> +	phy-mode = "rgmii";
->>> +	phy-handle = <&ethphy0>;
->>> +	fsl,magic-packet;
->>> +	fsl,rgmii_txc_dly;
->>> +	fsl,rgmii_rxc_dly;
->>> +	status = "okay";
->>
->> The two fsl,rgmii* properties do not exist in mainline.
->> I suppose there were copied from downstream?
-> 
-> you are right, I'll remove them.
+--stx4a5zlstsyhhjb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-You should first check what the downstream driver does for them.
-And check if there is an equivalent action in mainline.
-These delays tend to be required for the PHY to work at all.
+Hi Stefan,
 
-Regards.
+On Wed, Nov 27, 2019 at 09:07:40AM +0200, Stefan Mavrodiev wrote:
+> On 11/26/19 6:27 PM, Maxime Ripard wrote:
+> > Hi Stefan,
+> >
+> > On Tue, Nov 26, 2019 at 01:05:08PM +0200, Stefan Mavrodiev wrote:
+> > > On A64-OLinuXino boards, PG9 is used for USB1 enable/disable. The
+> > > port is supplied by DLDO4, which is disabled by default. The patch
+> > > adds the regulator as vcc-pg, which is later used by the pinctrl.
+> > >
+> > > Signed-off-by: Stefan Mavrodiev <stefan@olimex.com>
+> > > ---
+> > >   arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts | 4 ++++
+> > >   1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
+> > > index 01a9a52edae4..c9d8c9c4ef20 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
+> > > @@ -163,6 +163,10 @@
+> > >   	status = "okay";
+> > >   };
+> > >
+> > > +&pio {
+> > > +	vcc-pg-supply=<&reg_dldo4>;
+> > The equal sign should have spaces around it.
+> >
+> > Also, can you please list all the bank supplies while you're at it?
+>
+> Sure. Should the supplies defined as regulators names be added also to the
+> pio node?
+> For example reg_aldo1 is named "vcc-pe".
+
+As far as I can tell, the A64 has regulators for PC, PD, PE, PG and
+PL, so you should list those (PL being under r_pio)
+
+> Also, since the commit message will be different for better representation
+> of the changes, should I send the next
+> patch as v2 or as a new one?
+
+Either way works for me as long as the commit message matches the changes.
+
+Thanks!
+Maxime
+
+--stx4a5zlstsyhhjb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXd+iXQAKCRDj7w1vZxhR
+xcehAP963qGMNNtuK9UziU1syhhW7rH4N5zmtnS3s2iN4Mp0JwD/d4k4t/rtURBA
+Lpwkgow4mIPRk/bmMRu8JfSG0GizbQY=
+=1Rzz
+-----END PGP SIGNATURE-----
+
+--stx4a5zlstsyhhjb--
