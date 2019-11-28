@@ -2,202 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD7EC10CC0B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 16:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C9E10CC36
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 16:55:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726633AbfK1PrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 10:47:16 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:37584 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726510AbfK1PrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Nov 2019 10:47:16 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xASFgPVo023621;
-        Thu, 28 Nov 2019 16:47:00 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=rUcrmp6FDis0MYM6sfyej2AR9/hatx5q+JoT9j7Vktc=;
- b=QgnRDT9ig/K54IfKnmwnt2JtFyprAUi04+kHWxFzQgcYH/QuQkzGhzskgFXZd9XgArH+
- UBtCPA2Y/6gadfBYviu05CWYYtwTy3lVmB/RI5CYW1uHdPnAThIkD/pNYsyVH/Mlyg7i
- 5I3fqSn+wL3QyxjLYI20t5wjBxw4Bk3f2v2w5fUJlOH4ge/Ot27pTadhSLehGzZwsyxX
- 3wjVqFe1nBQYQrLFWAn+A9yeXjXvz8R6gtC1ZYe/itZ9KneD4I2G+3+SoMFqMq1blm2k
- tqLp9L5fIkP7JZXInWUWIyUSpNlaC1Ppsl/v2/vE/nSUBKWti9Fj1rd4N7+iwC7TvpsS lw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2whcxktpp8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 28 Nov 2019 16:47:00 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D5DDE10002A;
-        Thu, 28 Nov 2019 16:46:59 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BFB482BF9AD;
-        Thu, 28 Nov 2019 16:46:59 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG3NODE1.st.com (10.75.127.7)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 28 Nov 2019 16:46:58
- +0100
-From:   Arnaud Pouliquen <arnaud.pouliquen@st.com>
-To:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Fabien Dessenne <fabien.dessenne@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>
-Subject: [PATCH] dt-bindings: stm32: convert mlahb to json-schema
-Date:   Thu, 28 Nov 2019 16:46:03 +0100
-Message-ID: <20191128154603.6911-1-arnaud.pouliquen@st.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726593AbfK1Pyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 10:54:50 -0500
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:53335 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726446AbfK1Pyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 10:54:50 -0500
+X-Originating-IP: 90.76.211.102
+Received: from localhost.localdomain (lfbn-1-2154-102.w90-76.abo.wanadoo.fr [90.76.211.102])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 9CE5540020;
+        Thu, 28 Nov 2019 15:54:47 +0000 (UTC)
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: [PATCH v4 0/5] LogiCVC mfd and GPIO support
+Date:   Thu, 28 Nov 2019 16:54:33 +0100
+Message-Id: <20191128155438.325738-1-paul.kocialkowski@bootlin.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG3NODE1.st.com
- (10.75.127.7)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-11-28_04:2019-11-28,2019-11-28 signatures=0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ML-AHB bus bindings to DT schema format using json-schema
+This series introduces support for the LogiCVC GPIO block to the syscon GPIO
+driver, with dt bindings documentation also including the top-level mfd
+component.
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
----
-Notice that this patch requests an update of the simple-bus schema to add
-the support of the "dma-ranges" property.
-A Pull request has been sent in parallel to the dt-schema github repo:
-https://github.com/devicetree-org/dt-schema/pull/30
+Changes since v3:
+- Added collected tags;
+- Kept syscon_gpio_data set function pointer line intact;
+- Grouped declarations in a single line as requested.
 
-To remind the topic around the use of "dma-ranges" please
-refer to following discussion: https://lkml.org/lkml/2019/4/3/1261
----
- .../devicetree/bindings/arm/stm32/mlahb.txt   | 37 ----------
- .../bindings/arm/stm32/st,mlahb.yaml          | 69 +++++++++++++++++++
- 2 files changed, 69 insertions(+), 37 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/stm32/mlahb.txt
- create mode 100644 Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
+Changes since v2:
+- Fixed dt schema examples.
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/mlahb.txt b/Documentation/devicetree/bindings/arm/stm32/mlahb.txt
-deleted file mode 100644
-index 25307aa1eb9b..000000000000
---- a/Documentation/devicetree/bindings/arm/stm32/mlahb.txt
-+++ /dev/null
-@@ -1,37 +0,0 @@
--ML-AHB interconnect bindings
--
--These bindings describe the STM32 SoCs ML-AHB interconnect bus which connects
--a Cortex-M subsystem with dedicated memories.
--The MCU SRAM and RETRAM memory parts can be accessed through different addresses
--(see "RAM aliases" in [1]) using different buses (see [2]) : balancing the
--Cortex-M firmware accesses among those ports allows to tune the system
--performance.
--
--[1]: https://www.st.com/resource/en/reference_manual/dm00327659.pdf
--[2]: https://wiki.st.com/stm32mpu/wiki/STM32MP15_RAM_mapping
--
--Required properties:
--- compatible: should be "simple-bus"
--- dma-ranges: describes memory addresses translation between the local CPU and
--	   the remote Cortex-M processor. Each memory region, is declared with
--	   3 parameters:
--		 - param 1: device base address (Cortex-M processor address)
--		 - param 2: physical base address (local CPU address)
--		 - param 3: size of the memory region.
--
--The Cortex-M remote processor accessed via the mlahb interconnect is described
--by a child node.
--
--Example:
--mlahb {
--	compatible = "simple-bus";
--	#address-cells = <1>;
--	#size-cells = <1>;
--	dma-ranges = <0x00000000 0x38000000 0x10000>,
--		     <0x10000000 0x10000000 0x60000>,
--		     <0x30000000 0x30000000 0x60000>;
--
--	m4_rproc: m4@10000000 {
--		...
--	};
--};
-diff --git a/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml b/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
-new file mode 100644
-index 000000000000..8ad3f7c7f9ab
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/arm/stm32/st,mlahb.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: STMicroelectronics STM32 ML-AHB interconnect bindings
-+
-+maintainers:
-+  - Fabien Dessenne <fabien.dessenne@st.com>
-+  - Arnaud Pouliquen <arnaud.pouliquen@st.com>
-+
-+description: |
-+  These bindings describe the STM32 SoCs ML-AHB interconnect bus which connects
-+  a Cortex-M subsystem with dedicated memories. The MCU SRAM and RETRAM memory
-+  parts can be accessed through different addresses (see "RAM aliases" in [1])
-+  using different buses (see [2]): balancing the Cortex-M firmware accesses
-+  among those ports allows to tune the system performance.
-+  [1]: https://www.st.com/resource/en/reference_manual/dm00327659.pdf
-+  [2]: https://wiki.st.com/stm32mpu/wiki/STM32MP15_RAM_mapping
-+
-+allOf:
-+ - $ref: /schemas/simple-bus.yaml#
-+
-+properties:
-+  compatible:
-+    contains:
-+      enum:
-+        - st,mlahb
-+
-+  dma-ranges:
-+    description: |
-+      Describe memory addresses translation between the local CPU and the
-+      remote Cortex-M processor. Each memory region, is declared with
-+      3 parameters:
-+      - param 1: device base address (Cortex-M processor address)
-+      - param 2: physical base address (local CPU address)
-+      - param 3: size of the memory region.
-+    maxItems: 3
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - '#address-cells'
-+  - '#size-cells'
-+  - dma-ranges
-+
-+examples:
-+  - |
-+    mlahb: ahb {
-+      compatible = "st,mlahb", "simple-bus";
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      reg = <0x10000000 0x40000>;
-+      dma-ranges = <0x00000000 0x38000000 0x10000>,
-+                   <0x10000000 0x10000000 0x60000>,
-+                   <0x30000000 0x30000000 0x60000>;
-+
-+      m4_rproc: m4@10000000 {
-+       reg = <0x10000000 0x40000>;
-+      };
-+    };
-+
-+...
+Changes since v1:
+- Converted dt bindings documentation to dt schemas;
+- Used BIT macro and removed version from structure name;
+- Improved documentation example with gpio-line-names;
+- Added vendor prefix to dt bindings;
+- Added mfd component dt bindings documentation.
+
+Cheers,
+
+Paul
+
+Paul Kocialkowski (5):
+  dt-bindings: Add Xylon vendor prefix
+  dt-bindings: mfd: Document the Xylon LogiCVC multi-function device
+  gpio: syscon: Add support for a custom get operation
+  dt-bindings: gpio: Document the Xylon LogiCVC GPIO controller
+  gpio: syscon: Add support for the Xylon LogiCVC GPIOs
+
+ .../bindings/gpio/xylon,logicvc-gpio.yaml     | 69 +++++++++++++++++++
+ .../bindings/mfd/xylon,logicvc.yaml           | 50 ++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ drivers/gpio/gpio-syscon.c                    | 68 +++++++++++++++++-
+ 4 files changed, 188 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/xylon,logicvc-gpio.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+
 -- 
-2.17.1
+2.24.0
 
