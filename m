@@ -2,234 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3DAB10C744
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 11:55:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DBA110C757
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2019 12:00:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726191AbfK1KzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Nov 2019 05:55:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34814 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726730AbfK1KzU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Nov 2019 05:55:20 -0500
-Received: from localhost.localdomain (cpc89242-aztw30-2-0-cust488.18-1.cable.virginm.net [86.31.129.233])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2FB9F21787;
-        Thu, 28 Nov 2019 10:55:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1574938519;
-        bh=lLJJ20+1Kf0z7RwaP9GF+SreDiq2IVYE6EiZ/qH42vk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=eCG+x0QCcmY4hxoE5yZNhO9eZXUNLTq+yA4kI5gERhl590TU8MowUDCxaBhqzAJMy
-         olzsEDlu7aa1K94vqqv6Ar7Bgv3A5MsOhbsa4yv+5m5CMgqKSp4LxAb+Wp14BZkV+Q
-         C8MIVxlQxt9s43fQjCL8r65OB0g9gb8vHpROfZis=
-From:   kbingham@kernel.org
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Miguel Ojeda Sandonis <miguel.ojeda.sandonis@gmail.com>,
-        Simon Goda <simon.goda@doulos.com>
-Cc:     Kieran Bingham <kbingham@kernel.org>
-Subject: [PATCH 3/3] drivers: auxdisplay: Add JHD1313 I2C interface driver
-Date:   Thu, 28 Nov 2019 10:55:08 +0000
-Message-Id: <20191128105508.3916-4-kbingham@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191128105508.3916-1-kbingham@kernel.org>
-References: <20191128105508.3916-1-kbingham@kernel.org>
+        id S1726610AbfK1K76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Nov 2019 05:59:58 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59160 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726191AbfK1K76 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Nov 2019 05:59:58 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xASAxoMf099557;
+        Thu, 28 Nov 2019 04:59:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1574938790;
+        bh=EeH349x8o4SCZvve2w+07qwX2Rkls7hx3AcZBuQt9LU=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=sWhxq+s3W0b+pkKBdLhbIultvfQuGqTfydHKuhZuEGUOEWj33z6YihPboOL6t1dft
+         uAy75xYdY9+wI6iOGGGydQs++Zh+l/S3CHBeQRN3I2Kti7d5/oNx+YvuwgGbM9kguG
+         WoT/XsT1WRF+Bgxp8ZYJZkvH2RWl3mCy5u4HTSCs=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xASAxosP045258
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 28 Nov 2019 04:59:50 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 28
+ Nov 2019 04:59:49 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 28 Nov 2019 04:59:49 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xASAxgJF073287;
+        Thu, 28 Nov 2019 04:59:46 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <nm@ti.com>,
+        <ssantosh@kernel.org>
+CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
+        <t-kristo@ti.com>, <tony@atomide.com>, <j-keerthy@ti.com>
+Subject: [PATCH v6 01/17] bindings: soc: ti: add documentation for k3 ringacc
+Date:   Thu, 28 Nov 2019 12:59:29 +0200
+Message-ID: <20191128105945.13071-2-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191128105945.13071-1-peter.ujfalusi@ti.com>
+References: <20191128105945.13071-1-peter.ujfalusi@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kieran Bingham <kbingham@kernel.org>
+From: Grygorii Strashko <grygorii.strashko@ti.com>
 
-Provide an auxdisplay driver for the JHD1313 as used by the Grove-LCD
-RGB Backlight module [0]. A datasheet for the JHD1214 is provided by
-seeed [1], which assumes that they are similar parts.
+The Ring Accelerator (RINGACC or RA) provides hardware acceleration to
+enable straightforward passing of work between a producer and a consumer.
+There is one RINGACC module per NAVSS on TI AM65x and j721e.
 
-The backlight for the Grove-LCD is already controllable with the PCA963x
-driver.
+This patch introduces RINGACC device tree bindings.
 
-[0] http://wiki.seeedstudio.com/Grove-LCD_RGB_Backlight/
-[1] https://seeeddoc.github.io/Grove-LCD_RGB_Backlight/res/JHD1214Y_YG_1.0.pdf
-
-Signed-off-by: Simon Goda <simon.goda@doulos.com>
-Signed-off-by: Kieran Bingham <kbingham@kernel.org>
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- MAINTAINERS                  |   4 ++
- drivers/auxdisplay/Kconfig   |  12 ++++
- drivers/auxdisplay/Makefile  |   1 +
- drivers/auxdisplay/jhd1313.c | 111 +++++++++++++++++++++++++++++++++++
- 4 files changed, 128 insertions(+)
- create mode 100644 drivers/auxdisplay/jhd1313.c
+ .../devicetree/bindings/soc/ti/k3-ringacc.txt | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/ti/k3-ringacc.txt
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8f075b866aaf..640f099ff7fb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8837,6 +8837,10 @@ S:	Maintained
- F:	Documentation/admin-guide/jfs.rst
- F:	fs/jfs/
- 
-+JHD1313 LCD Dispaly driver
-+M:	Kieran Bingham <kbingham@kernel.org>
-+F:	drivers/auxdisplay/jhd1313.c
-+
- JME NETWORK DRIVER
- M:	Guo-Fu Tseng <cooldavid@cooldavid.org>
- L:	netdev@vger.kernel.org
-diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
-index b8313a04422d..cfc61c1abdee 100644
---- a/drivers/auxdisplay/Kconfig
-+++ b/drivers/auxdisplay/Kconfig
-@@ -27,6 +27,18 @@ config HD44780
- 	  kernel and started at boot.
- 	  If you don't understand what all this is about, say N.
- 
-+config JHD1313
-+	tristate "JHD1313 Character LCD support"
-+	depends on I2C
-+	select CHARLCD
-+	---help---
-+	  Enable support for Character LCDs using a JHD1313 controller on I2C.
-+	  The LCD is accessible through the /dev/lcd char device (10, 156).
-+	  This code can either be compiled as a module, or linked into the
-+	  kernel and started at boot.
-+	  This supports the LCD panel on the Grove 16x2 LCD series.
-+	  If you don't understand what all this is about, say N.
-+
- config KS0108
- 	tristate "KS0108 LCD Controller"
- 	depends on PARPORT_PC
-diff --git a/drivers/auxdisplay/Makefile b/drivers/auxdisplay/Makefile
-index cf54b5efb07e..6e1405a61925 100644
---- a/drivers/auxdisplay/Makefile
-+++ b/drivers/auxdisplay/Makefile
-@@ -9,5 +9,6 @@ obj-$(CONFIG_KS0108)		+= ks0108.o
- obj-$(CONFIG_CFAG12864B)	+= cfag12864b.o cfag12864bfb.o
- obj-$(CONFIG_IMG_ASCII_LCD)	+= img-ascii-lcd.o
- obj-$(CONFIG_HD44780)		+= hd44780.o
-+obj-$(CONFIG_JHD1313)		+= jhd1313.o
- obj-$(CONFIG_HT16K33)		+= ht16k33.o
- obj-$(CONFIG_PARPORT_PANEL)	+= panel.o
-diff --git a/drivers/auxdisplay/jhd1313.c b/drivers/auxdisplay/jhd1313.c
+diff --git a/Documentation/devicetree/bindings/soc/ti/k3-ringacc.txt b/Documentation/devicetree/bindings/soc/ti/k3-ringacc.txt
 new file mode 100644
-index 000000000000..abf270e128ac
+index 000000000000..59758ccce809
 --- /dev/null
-+++ b/drivers/auxdisplay/jhd1313.c
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: GPL-2.0+
++++ b/Documentation/devicetree/bindings/soc/ti/k3-ringacc.txt
+@@ -0,0 +1,59 @@
++* Texas Instruments K3 NavigatorSS Ring Accelerator
 +
-+/*
-+ * JHD1313 I2C Character LCD driver for Linux.
-+ *
-+ * Kieran Bingham <kbingham@kernel.org>
-+ */
++The Ring Accelerator (RA) is a machine which converts read/write accesses
++from/to a constant address into corresponding read/write accesses from/to a
++circular data structure in memory. The RA eliminates the need for each DMA
++controller which needs to access ring elements from having to know the current
++state of the ring (base address, current offset). The DMA controller
++performs a read or write access to a specific address range (which maps to the
++source interface on the RA) and the RA replaces the address for the transaction
++with a new address which corresponds to the head or tail element of the ring
++(head for reads, tail for writes).
 +
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
++The Ring Accelerator is a hardware module that is responsible for accelerating
++management of the packet queues. The K3 SoCs can have more than one RA instances
 +
-+#include <linux/i2c.h>
++Required properties:
++- compatible	: Must be "ti,am654-navss-ringacc";
++- reg		: Should contain register location and length of the following
++		  named register regions.
++- reg-names	: should be
++		  "rt" - The RA Ring Real-time Control/Status Registers
++		  "fifos" - The RA Queues Registers
++		  "proxy_gcfg" - The RA Proxy Global Config Registers
++		  "proxy_target" - The RA Proxy Datapath Registers
++- ti,num-rings	: Number of rings supported by RA
++- ti,sci-rm-range-gp-rings : TI-SCI RM subtype for GP ring range
++- ti,sci	: phandle on TI-SCI compatible System controller node
++- ti,sci-dev-id	: TI-SCI device id of the ring accelerator
++- msi-parent	: phandle for "ti,sci-inta" interrupt controller
 +
-+#include "charlcd.h"
++Optional properties:
++ -- ti,dma-ring-reset-quirk : enable ringacc / udma ring state interoperability
++		  issue software w/a
 +
-+struct jhd1313 {
-+	struct i2c_client *client;
++Example:
++
++ringacc: ringacc@3c000000 {
++	compatible = "ti,am654-navss-ringacc";
++	reg =	<0x0 0x3c000000 0x0 0x400000>,
++		<0x0 0x38000000 0x0 0x400000>,
++		<0x0 0x31120000 0x0 0x100>,
++		<0x0 0x33000000 0x0 0x40000>;
++	reg-names = "rt", "fifos",
++		    "proxy_gcfg", "proxy_target";
++	ti,num-rings = <818>;
++	ti,sci-rm-range-gp-rings = <0x2>; /* GP ring range */
++	ti,dma-ring-reset-quirk;
++	ti,sci = <&dmsc>;
++	ti,sci-dev-id = <187>;
++	msi-parent = <&inta_main_udmass>;
 +};
 +
-+static void jhd1313_write_cmd(struct charlcd *lcd, int cmd)
-+{
-+	struct jhd1313 *jhd = lcd->drvdata;
-+	struct i2c_client *client = jhd->client;
++client:
 +
-+	i2c_smbus_write_byte_data(client, 0x00, cmd);
++dma_ipx: dma_ipx@<addr> {
++	...
++	ti,ringacc = <&ringacc>;
++	...
 +}
-+
-+static void jhd1313_write_data(struct charlcd *lcd, int data)
-+{
-+	struct jhd1313 *jhd = lcd->drvdata;
-+	struct i2c_client *client = jhd->client;
-+
-+	i2c_smbus_write_byte_data(client, 0x40, data);
-+}
-+
-+static const struct charlcd_ops jhd1313_ops = {
-+	.write_cmd	= jhd1313_write_cmd,
-+	.write_data	= jhd1313_write_data,
-+};
-+
-+static int jhd1313_probe(struct i2c_client *client)
-+{
-+	struct charlcd *lcd;
-+	struct jhd1313 *jhd;
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter,
-+				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA)) {
-+		dev_err(&client->dev, "i2c_check_functionality error\n");
-+		return -EIO;
-+	}
-+
-+	lcd = charlcd_alloc(sizeof(struct jhd1313));
-+	if (!lcd)
-+		return -ENOMEM;
-+
-+	jhd = lcd->drvdata;
-+	i2c_set_clientdata(client, lcd);
-+	jhd->client = client;
-+
-+	lcd->width = 16;
-+	lcd->height = 2;
-+	lcd->ifwidth = 8;
-+	lcd->ops = &jhd1313_ops;
-+
-+	ret = charlcd_register(lcd);
-+	if (ret) {
-+		charlcd_free(lcd);
-+		dev_err(&client->dev, "Failed to register JHD1313");
-+	}
-+
-+	return ret;
-+}
-+
-+static int jhd1313_remove(struct i2c_client *client)
-+{
-+	struct charlcd *lcd = i2c_get_clientdata(client);
-+
-+	charlcd_unregister(lcd);
-+	charlcd_free(lcd);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id jhd1313_id[] = {
-+	{ "jhd1313", 0 },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(i2c, jhd1313_id);
-+
-+static const struct of_device_id jhd1313_of_table[] = {
-+	{ .compatible = "jhd,jhd1313" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, jhd1313_of_table);
-+
-+static struct i2c_driver jhd1313_driver = {
-+	.driver = {
-+		.name = "jhd1313",
-+		.of_match_table = jhd1313_of_table,
-+	},
-+	.probe_new = jhd1313_probe,
-+	.remove = jhd1313_remove,
-+	.id_table = jhd1313_id,
-+};
-+
-+module_i2c_driver(jhd1313_driver);
-+
-+MODULE_DESCRIPTION("JHD1313 I2C Character LCD driver");
-+MODULE_AUTHOR("Kieran Bingham <kbingham@kernel.org>");
-+MODULE_LICENSE("GPL");
 -- 
-2.20.1
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
