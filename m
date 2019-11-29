@@ -2,141 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8514E10D1D7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 08:34:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AB3D10D21F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 08:58:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726834AbfK2HeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Nov 2019 02:34:22 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:43005 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726360AbfK2HeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 02:34:21 -0500
-Received: by mail-ed1-f67.google.com with SMTP id e10so4860682edv.9;
-        Thu, 28 Nov 2019 23:34:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GFt0Cmb0a1kRp5wwWCragfEc3sNuRvk3PTWifHDArig=;
-        b=Uap7SQHfc0sbWAmfcTq417dzCNiP9RnHAfzoMnydV32Ecg50AzRq4PCKz2lYc2E06e
-         5fJp18u+6B52SyAjpQzGBMF95iWOcqkwA7yIqNqRcEK9GmDYMhEHUnNahQDn3Be/au2i
-         uj1ctAEAr/sa1pNcc5dnSs6MJAM4uoY7F7dcj9QTb6DjTUQaoGQHcUspK4xm1/8gvKbD
-         WPDUwo9K1tlU8UR7g28lofecQp0W7KMKRvrcjerD/enujuvfgPAU6zb/B4mNCNYB96xr
-         efE7cKmR+36Opyd0TlpjLNBiDaicLduv7R+GkD7XSrNI4rhr8s+kzPmNJOsLB3GAQ+8A
-         vGxg==
-X-Gm-Message-State: APjAAAWnqvVhks8QHkDg3cm8FoQlytSKFRyO4ls06csDAvgsHjM+wDXl
-        zHLeYCyaVRGj8/ah0xx7GCSmIxrOFk0=
-X-Google-Smtp-Source: APXvYqy0+6aLRp42RkHD0ujD4B7a37asn//HKdn/MKrjaIxHS2BT5bdL9E7jRqg5jpENvBR7diqwAA==
-X-Received: by 2002:a17:906:f191:: with SMTP id gs17mr59511844ejb.207.1575012858688;
-        Thu, 28 Nov 2019 23:34:18 -0800 (PST)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
-        by smtp.gmail.com with ESMTPSA id df3sm1033861edb.1.2019.11.28.23.34.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Nov 2019 23:34:18 -0800 (PST)
-Received: by mail-wr1-f45.google.com with SMTP id b18so33810329wrj.8;
-        Thu, 28 Nov 2019 23:34:17 -0800 (PST)
-X-Received: by 2002:a05:6000:11c6:: with SMTP id i6mr2401488wrx.178.1575012857752;
- Thu, 28 Nov 2019 23:34:17 -0800 (PST)
+        id S1726763AbfK2H6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Nov 2019 02:58:43 -0500
+Received: from mx08-002cda01.pphosted.com ([185.183.28.84]:2752 "EHLO
+        mx08-002cda01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726215AbfK2H6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Nov 2019 02:58:43 -0500
+X-Greylist: delayed 1456 seconds by postgrey-1.27 at vger.kernel.org; Fri, 29 Nov 2019 02:58:41 EST
+Received: from pps.filterd (m0135533.ppops.net [127.0.0.1])
+        by mx07-002cda01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xAT7Uftf016662;
+        Fri, 29 Nov 2019 07:34:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=avl.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=08102019; bh=mndJQ/smTIpFZ71UHwUCS1vIUg3W7qYyZzfvdix2fEk=;
+ b=EJipJv71BWhIUjnpgufb0OLEc+TpjdS83bHzdnVqu7F/4nBfej8J0hIMwsCvgAv7ZZK9
+ 6mVsVjb9I14RwMbf1r8IQ3THhCOwCtsKrZY6HwbWf77imc+sbnoEzr3bC9boQkryTTUI
+ EfTOy8FCmJlVxokT4AUFXEES9SZS9930Ogh+MTjmOVzQy/Epq0KRu+h42jXwiJkkeg8z
+ 9M11AMTUbGVkg5SRLKBj6pAZN2KfcUeCgvTbx78GbDV1I3bBlCqxe8DoUEiL7omWfXtB
+ LfrnYd+3PUhRdz8z1U0pqJB8SPJePXG1kjXf+0dEYznwlv9W1fMugZJhTfGGPHLaulpG Nw== 
+Received: from atgrzso2901.avl01.avlcorp.lan ([192.102.17.76])
+        by mx07-002cda01.pphosted.com with ESMTP id 2whd0gw05a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 29 Nov 2019 07:34:21 +0000
+Received: from pps.filterd (atgrzso2901.avl01.avlcorp.lan [127.0.0.1])
+        by atgrzso2901.avl01.avlcorp.lan (8.16.0.27/8.16.0.27) with SMTP id xAT7TtSL013085;
+        Fri, 29 Nov 2019 08:34:21 +0100
+Received: from atgrzsw1695.avl01.avlcorp.lan ([10.13.100.86])
+        by atgrzso2901.avl01.avlcorp.lan with ESMTP id 2wewbptvf4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Fri, 29 Nov 2019 08:34:21 +0100
+Received: from atgrzsw3272.avl01.avlcorp.lan (10.12.65.158) by
+ atgrzsw1695.avl01.avlcorp.lan (10.12.64.163) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2; Fri, 29 Nov 2019 08:34:20 +0100
+Received: from ATGRZSW1694.avl01.avlcorp.lan (10.12.64.115) by
+ atgrzsw3272.avl01.avlcorp.lan (10.12.65.158) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2; Fri, 29 Nov 2019 08:34:20 +0100
+Received: from ATGRZWN210080.avl01.avlcorp.lan (10.12.100.12) by
+ ATGRZSW1694.avl01.avlcorp.lan (10.12.64.115) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Fri, 29 Nov 2019 08:34:20 +0100
+From:   <tomislav.denis@avl.com>
+To:     <jic23@kernel.org>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <tomislav.denis@avl.com>
+Subject: [PATCH v2 0/3] Add support for DLH pressure sensors
+Date:   Fri, 29 Nov 2019 08:34:17 +0100
+Message-ID: <20191129073420.9800-1-tomislav.denis@avl.com>
+X-Mailer: git-send-email 2.12.0.windows.1
+In-Reply-To: <20191114100908.11180-1-tomislav.denis@avl.com>
+References: <20191114100908.11180-1-tomislav.denis@avl.com>
 MIME-Version: 1.0
-References: <20191126110508.15264-1-stefan@olimex.com> <20191126162721.qi7scp3vadxn7k2i@gilmour.lan>
- <0c1d7377-7064-f509-ffc5-bd1e8f2fbaa8@olimex.com> <20191128103301.vjpkvjscy45ycgwg@gilmour.lan>
- <1e0509cc-4afc-d46f-84a9-5e54c60c9d7b@olimex.com>
-In-Reply-To: <1e0509cc-4afc-d46f-84a9-5e54c60c9d7b@olimex.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Fri, 29 Nov 2019 15:34:04 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67Dt1=2PMg6mgn5OUumrtgmvwnTFxFqrWjD-VcxWyVwRA@mail.gmail.com>
-Message-ID: <CAGb2v67Dt1=2PMg6mgn5OUumrtgmvwnTFxFqrWjD-VcxWyVwRA@mail.gmail.com>
-Subject: Re: [PATCH 1/1] arm64: dts: allwinner: a64: olinuxino: Add VCC-PG supply
-To:     Stefan Mavrodiev <stefan@olimex.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/Allwinner sunXi SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: f9e74532-fb7d-4806-8539-2b9574eafa9a
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-11-29_01:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=882
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1911140001 definitions=main-1911290063
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-11-29_01:2019-11-29,2019-11-29 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 clxscore=1015 mlxscore=0 lowpriorityscore=0
+ impostorscore=0 priorityscore=1501 adultscore=0 bulkscore=0 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-1911290064
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 29, 2019 at 3:22 PM Stefan Mavrodiev <stefan@olimex.com> wrote:
->
->
-> On 11/28/19 12:33 PM, Maxime Ripard wrote:
-> Hi Maxime,
-> > Hi Stefan,
-> >
-> > On Wed, Nov 27, 2019 at 09:07:40AM +0200, Stefan Mavrodiev wrote:
-> >> On 11/26/19 6:27 PM, Maxime Ripard wrote:
-> >>> Hi Stefan,
-> >>>
-> >>> On Tue, Nov 26, 2019 at 01:05:08PM +0200, Stefan Mavrodiev wrote:
-> >>>> On A64-OLinuXino boards, PG9 is used for USB1 enable/disable. The
-> >>>> port is supplied by DLDO4, which is disabled by default. The patch
-> >>>> adds the regulator as vcc-pg, which is later used by the pinctrl.
-> >>>>
-> >>>> Signed-off-by: Stefan Mavrodiev <stefan@olimex.com>
-> >>>> ---
-> >>>>    arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts | 4 ++++
-> >>>>    1 file changed, 4 insertions(+)
-> >>>>
-> >>>> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> >>>> index 01a9a52edae4..c9d8c9c4ef20 100644
-> >>>> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> >>>> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
-> >>>> @@ -163,6 +163,10 @@
-> >>>>            status = "okay";
-> >>>>    };
-> >>>>
-> >>>> +&pio {
-> >>>> +  vcc-pg-supply=<&reg_dldo4>;
-> >>> The equal sign should have spaces around it.
-> >>>
-> >>> Also, can you please list all the bank supplies while you're at it?
-> >> Sure. Should the supplies defined as regulators names be added also to the
-> >> pio node?
-> >> For example reg_aldo1 is named "vcc-pe".
-> > As far as I can tell, the A64 has regulators for PC, PD, PE, PG and
-> > PL, so you should list those (PL being under r_pio)
->
-> After quick check I've found a bug (maybe?). It's not possible to specify
-> vcc-pl-supply, because of this:
->
-> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/sunxi/pinctrl-sunxi.c#L778
->
-> During the probe of the pmu, the pinctrl tries to get a regulator, that
-> doesn't exist yet.
-> Because of this the system doesn't start (as expected).
+From: Tomislav Denis <tomislav.denis@avl.com>
 
-It's a circular dependency. The pinctrl driver requires a regulator, which
-is provided by the PMIC, which requires the pinctrl driver to mux a pin
-for the bus.
+This patchset adds support for All Sensors DLH series low
+voltage digital pressure sensors.
 
-For now there's no way to fix it, other than breaking the dependency.
+Datasheet: https://www.allsensors.com/cad/DS-0355_Rev_B.PDF
 
-> I've tried to ignore -EPROBE_DEFER. This seems to work, but only because
-> the regulator for
-> PL is defined as "regulator-always-on". The problem is that the refcount
-> is not incremented.
-> So if you export one gpio and the unexport it, the regulator will be
-> disabled. I'm not sure
-> how this can be resolved.
->
-> Should I skip vcc-pl-supply for now and list the other bank supplies?
+Changes in v2:
+- web page link in the MAINTAINERS file fixed
+- adjust the units of the output to the IIO ABI
+- unneceseary default case removed
+- define the channel member of the iio_chan_spec
+  struct for channels specification
+- remove explicit cast for pointers of type void *
+- add support for the EOC(data ready) pin
+- drop the unneceseary return ret;
+- rename dlh-i2c.yaml to asc,dlh-i2c.yaml
+- change the bindings copyright to GPL-2.0-only OR BSD-2-Clause
+- document EOC(data ready) pin
 
-Yes. That is the preferred and probably only way to deal with it.
-Please leave a comment saying why vcc-pl was skipped.
+Tomislav Denis (3):
+  iio: pressure: Add driver for DLH pressure sensors
+  dt-bindings: Add asc vendor
+  bindings: iio: pressure: Add dlh-i2c documentation
 
-ChenYu
+ .../bindings/iio/pressure/asc,dlh-i2c.yaml         |  51 +++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ MAINTAINERS                                        |   8 +
+ drivers/iio/pressure/Kconfig                       |  12 +
+ drivers/iio/pressure/Makefile                      |   1 +
+ drivers/iio/pressure/dlh-i2c.c                     | 429 +++++++++++++++++++++
+ 6 files changed, 503 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/asc,dlh-i2c.yaml
+ create mode 100644 drivers/iio/pressure/dlh-i2c.c
 
-> >> Also, since the commit message will be different for better representation
-> >> of the changes, should I send the next
-> >> patch as v2 or as a new one?
-> > Either way works for me as long as the commit message matches the changes.
-> >
-> > Thanks!
-> > Maxime
+-- 
+2.7.4
+
