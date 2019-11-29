@@ -2,126 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02F0F10D29D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 09:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B6D10D2F4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 10:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726800AbfK2IuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Nov 2019 03:50:10 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:44249 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725892AbfK2IuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 03:50:10 -0500
-Received: by mail-lj1-f193.google.com with SMTP id c19so4093771lji.11
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2019 00:50:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DDD/UnUADM3mnwpvsAchbYVhZu3juMpSxL84tbPsIbo=;
-        b=KVLHCWMignsuWlcS7LxuvXdykXnJdIoBNiW8JithqBRaN9wcvo1g4UE3oE6h6RdcRN
-         jLEvrMDIUWh3WxK9ixpeKqxPjlewzTq0GI6ilyuAFhW2YJf1ZqbkL3ADAUdPwFG875jh
-         x9vo6h0wlgAaxokaLK4+dCSaEdEZrMQXocgg3mRKJwRpOm0JsRMmk9AGZyiS5TIAU7qN
-         6LRFXkHjDx00GXywgORKLFx4NJ+nqr0y7wGWB2ZGfDi/YrZchGozjMmNsFaqACRsKEPr
-         fn6mkQtNRbJfvCBG9q3xKL9NRXLgrzKNGAdC+zFhxaiIniwKZZetUCiZPeUpg5H5cbep
-         yDpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DDD/UnUADM3mnwpvsAchbYVhZu3juMpSxL84tbPsIbo=;
-        b=M1mJwGrQOfw/bJrAzQZH3MXHYr21ek/JvvhQdO0GEWr24/NcCeL8SNYgsTaD3BdrsM
-         oO1u5MbDU9/ytZ7s7TAJvkEhdsIiiiuE+7XBmuR5KToYVAy4MR04uLkSISffeSqyZrDR
-         doWaeLebEgFubJx6XqUHlR+Jq408sSwkTNIwiJHDttygStGBbL4qGnZTrnAOgCsjmnvx
-         Ouxv33E47zURpt7gYrN3+AZWPHlOXOowh8rrA8XtEguFiIMty/5zDKX0G3mveb8Kf0qw
-         q6mOw5l8OICTsd8ljKmHmaPixCnjrtwe/YfNlS+SBdDkDSOMRWTphp8LQGp3wuOv1lyH
-         kD6w==
-X-Gm-Message-State: APjAAAVij9a9DU7+8MwYGu0MoQoHMqON9zt1JOMHmmj2fMB+d+Bb0zNn
-        SL/WOOdau+r1yC1H3q+81D78WnukuhWoWQ/P9Oygvg==
-X-Google-Smtp-Source: APXvYqxNOTdjq0eH1xPQUrG1i3ed9i46I+BwE5vw5X2SkpBR2UmTqJlh0NKv9bJLxRIPCTk4T6SWpbiyPuLBwslQnQw=
-X-Received: by 2002:a2e:9a12:: with SMTP id o18mr36852322lji.191.1575017408368;
- Fri, 29 Nov 2019 00:50:08 -0800 (PST)
-MIME-Version: 1.0
-References: <20191127115619.20278-1-m.felsch@pengutronix.de>
- <20191127115619.20278-3-m.felsch@pengutronix.de> <CACRpkdYLeSjsXaG6Bg4Y2-8PW41ALn4PN7QUvp3tA7XReWrKGg@mail.gmail.com>
- <20191127151929.GC4879@sirena.org.uk>
-In-Reply-To: <20191127151929.GC4879@sirena.org.uk>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 29 Nov 2019 09:49:56 +0100
-Message-ID: <CACRpkdbJbCwo7yALnywscCTZBzO1ZzWY_=c5RoVGqY7Eue3t=Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] mfd: da9062: add support for the DA9062 GPIOs in
- the core
-To:     Mark Brown <broonie@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1726586AbfK2JHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Nov 2019 04:07:41 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:39381 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725892AbfK2JHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 04:07:41 -0500
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iacFV-0002zM-HH; Fri, 29 Nov 2019 10:07:37 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iacFU-0005Yt-Hn; Fri, 29 Nov 2019 10:07:36 +0100
+Date:   Fri, 29 Nov 2019 10:07:36 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Support Opensource <support.opensource@diasemi.com>,
         Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v2 3/3] pinctrl: da9062: add driver support
+Message-ID: <20191129090736.f2ozwtrhynryatlq@pengutronix.de>
+References: <20191127115619.20278-1-m.felsch@pengutronix.de>
+ <20191127115619.20278-4-m.felsch@pengutronix.de>
+ <CACRpkdbd4J-FUNi=F12YQfNPajNCVaoKyqWU7qjmfFMbonzDKg@mail.gmail.com>
+ <20191127150146.bbwse77eef6haita@pengutronix.de>
+ <CAMpxmJVmvj_4DN85j4vu32FUZVnzmQzQfUtOVKAd0GVO3sWYmA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMpxmJVmvj_4DN85j4vu32FUZVnzmQzQfUtOVKAd0GVO3sWYmA@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:06:19 up 14 days, 24 min, 28 users,  load average: 0.07, 0.08,
+ 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 27, 2019 at 4:19 PM Mark Brown <broonie@kernel.org> wrote:
-> On Wed, Nov 27, 2019 at 02:35:33PM +0100, Linus Walleij wrote:
->
-> > I can clearly see that regmap's irqchip does not support
-> > hierarchical interrupt domains, so we should just make a
-> > mental note somewhere that "oh yeah and then one day
-> > we should make regmap irqchips play well with hierarchical
-> > interrupts".
->
-> Why, what do we need to do?  We're just doing all the default stuff,
-> it's not something we've opted out of, and the whole point with using
-> the frameworks should be that we should get software features like this
-> for free :(
+On 19-11-28 11:47, Bartosz Golaszewski wrote:
+> śr., 27 lis 2019 o 16:01 Marco Felsch <m.felsch@pengutronix.de> napisał(a):
+> >
+> > Hi Linus,
+> >
+> > On 19-11-27 14:49, Linus Walleij wrote:
+> > > Hi Marco,
+> > >
+> > > thanks for your patch!
+> >
+> > thanks for your fast response.
+> >
+> > > On Wed, Nov 27, 2019 at 12:56 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
+> > >
+> > > > The DA9062 is a mfd pmic device which supports 5 GPIOs. The GPIOs can
+> > > > be used as input, output or have a special use-case.
+> > > >
+> > > > The patch adds the support for the normal input/output use-case.
+> > > >
+> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > (...)
+> > >
+> > > > +config PINCTRL_DA9062
+> > > > +       tristate "Dialog Semiconductor DA9062 PMIC pinctrl and GPIO Support"
+> > > > +       depends on MFD_DA9062
+> > > > +       select GPIOLIB
+> > >
+> > > Hm this would be one of those that could use GENERIC_REGMAP_GPIO
+> > > the day we invent it but we haven't invented it yet.
+> >
+> > Yes it is. Is there a plan for GENERIC_REGMAP_GPIO?
+> >
+> 
+> Yes, it's the second item on my TODO after the LINEINFO_FD series. I
+> just got a board I can use for developing this so I should have
+> something shortly.
 
-I guess it is a bit about moving targets.
+So it is okay to keep the above select and change it later?
 
-The regmap irq thing was covering all reasonable cases until
-the hierarchical interrupts were introduced some years ago.
+Regards,
+  Marco
 
-The hallmark of these are that the irq_domain_ops implement
-.translate() .alloc() and .free() rather than .map() and .xlate()
-as the irqdomain in reqmap-irq currently does.
+> Bart
+> 
+> > > > +#include <../gpio/gpiolib.h>
+> > >
+> > > Put a comment above this telling us why you do this thing.
+> >
+> > Okay.
+> >
+> > > > +static int da9062_gpio_get(struct gpio_chip *gc, unsigned int offset)
+> > > > +{
+> > > (...)
+> > > > +       return val & BIT(offset);
+> > >
+> > > You should #include <linux/bits.h> since you use BIT()
+> >
+> > Argh.. of course I will add the include.
+> >
+> > > Usually I clamp it like this:
+> > > return !!(val & BIT(offset));
+> >
+> > Okay, I can change that too.
+> >
+> > > > +static int da9062_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
+> > > > +{
+> > > > +       struct da9062_pctl *pctl = gpiochip_get_data(gc);
+> > > > +       struct regmap *regmap = pctl->da9062->regmap;
+> > > > +       int gpio_mode;
+> > > > +
+> > > > +       gpio_mode = da9062_pctl_get_pin_mode(regmap, offset);
+> > > > +       if (gpio_mode < 0)
+> > > > +               return gpio_mode;
+> > > > +
+> > > > +       switch (gpio_mode) {
+> > > > +       case DA9062_PIN_ALTERNATE:
+> > > > +               return -ENOTSUPP;
+> > > > +       case DA9062_PIN_GPI:
+> > > > +               return 1;
+> > > > +       case DA9062_PIN_GPO_OD:
+> > > > +       case DA9062_PIN_GPO_PP:
+> > > > +               return 0;
+> > >
+> > > We recently added defines for these directions in
+> > > <linux/gpio/driver.h>:
+> > >
+> > > #define GPIO_LINE_DIRECTION_IN  1
+> > > #define GPIO_LINE_DIRECTION_OUT 0
+> > >
+> > > Please use these. (Soon in Torvald's tree, else
+> > > in my "devel" branch.)
+> >
+> > I rebased it onto your devel, thanks for the hint.
+> >
+> > > > +static int da9062_gpio_direction_input(struct gpio_chip *gc,
+> > > > +                                      unsigned int offset)
+> > > > +{
+> > > > +       struct da9062_pctl *pctl = gpiochip_get_data(gc);
+> > > > +       struct regmap *regmap = pctl->da9062->regmap;
+> > > > +       struct gpio_desc *desc = gpiochip_get_desc(gc, offset);
+> > > > +       unsigned int gpi_type;
+> > > > +       int ret;
+> > > > +
+> > > > +       ret = da9062_pctl_set_pin_mode(regmap, offset, DA9062_PIN_GPI);
+> > > > +       if (ret)
+> > > > +               return ret;
+> > > > +
+> > > > +       /*
+> > > > +        * If the gpio is active low we should set it in hw too. No worries
+> > > > +        * about gpio_get() because we read and return the gpio-level. So the
+> > > > +        * gpiolib active_low handling is still correct.
+> > > > +        *
+> > > > +        * 0 - active low, 1 - active high
+> > > > +        */
+> > > > +       gpi_type = !gpiod_is_active_low(desc);
+> > >
+> > > That's interesting. Correct too, I guess.
+> >
+> > Double checked it again and the datasheet calls it gpio-level so I
+> > assume that this is correct.
+> >
+> > > > +static int da9062_gpio_direction_output(struct gpio_chip *gc,
+> > > > +                                       unsigned int offset, int value)
+> > > > +{
+> > > > +       /* Push-Pull / Open-Drain options are configured during set_config */
+> > > > +       da9062_gpio_set(gc, offset, value);
+> > >
+> > > That looks dangerous. There is no guarantee that .set_config()
+> > > always gets called.
+> >
+> > Hm.. it seems that other drivers using this assumption too:
+> >   - gpio-lp87565.c
+> >   - gpio-tps65218.c
+> >   - ...
+> >
+> > But you're right I missed the possible users of
+> > gpiod_direction_output_raw().
+> >
+> > > Please create a local state container for the mode of each pin in
+> > > struct da9062_pctl and set it to push-pull by default at probe, then
+> > > set this to whatever the state is here and let the .set_config()
+> > > alter it later if need be.
+> > >
+> > > If we don't do that you will get boot-time defaults I think and that
+> > > might create bugs.
+> >
+> > I will add a container for each pin, thanks for covering that.
+> >
+> > > > +static int da9062_gpio_set_config(struct gpio_chip *gc, unsigned int offset,
+> > > > +                                 unsigned long config)
+> > > > +{
+> > > (...)
+> > > > +       case PIN_CONFIG_DRIVE_OPEN_DRAIN:
+> > > > +               return da9062_pctl_set_pin_mode(regmap, offset,
+> > > > +                                               DA9062_PIN_GPO_OD);
+> > > > +       case PIN_CONFIG_DRIVE_PUSH_PULL:
+> > > > +               return da9062_pctl_set_pin_mode(regmap, offset,
+> > > > +                                               DA9062_PIN_GPO_PP);
+> > >
+> > > So also store this in the per-pin state.
+> >
+> > Of course.
+> >
+> > Regards,
+> >   Marco
+> >
+> > >
+> > > Yours,
+> > > Linus Walleij
+> > >
+> >
+> > --
+> > Pengutronix e.K.                           |                             |
+> > Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
 
-The problem with hierarchical domains is that the system using
-them need to be hierarchical "all the way up" to the overarching
-top-level irqchip. Currently only the ARM GIC and the IXP4xx
-irq top-level irq controllers supports this, ruling out some
-obvious users like all non-ARM systems (for now).
-
-I think the assumption in hierarchical irq is that you have
-a few hardware-specific irchips and you know exactly which
-irqchip that goes on top of another one, as well as which
-hardware irq line is connected to which hardware irq line
-on the parent.
-
-Since we know the specific hardware (from a compatible
-string or so) we can hardcode the parent-to-child mappings
-of interrupt lines in the driver. These mappings are not
-in the device tree for example.
-
-Therefore supporting hierarchical and nonhierarchical alike
-in a very generic plug-in irqchip like the regmap-irq is a bit
-of a challenge as it has to support both hierarchical and
-non-hierarchical, because it is not possible to just
-convert this to hierarchical callbacks: it has to check what
-its parent is doing and adapt, essentially implement both
-hierarchical and non-hierarchical at this time.
-
-Also we need to pass mappings between parent and child
-somehow. In the gpiolib we did this with a callback to the
-GPIO-chip-specific driver. How to do it for something
-generic like regmap-irq is an open question.
-
-So it is a bit complex.
-
-(Marc may correct me here.)
-
-Yours,
-Linus Walleij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
