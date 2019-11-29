@@ -2,59 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE42A10D7C1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 16:16:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B43210D7DE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 16:28:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726903AbfK2PQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Nov 2019 10:16:30 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:34690 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726893AbfK2PQa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 10:16:30 -0500
-Received: by mail-ot1-f67.google.com with SMTP id w11so25180201ote.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2019 07:16:28 -0800 (PST)
+        id S1726903AbfK2P2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Nov 2019 10:28:33 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:37713 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726608AbfK2P2d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 10:28:33 -0500
+Received: by mail-wr1-f65.google.com with SMTP id w15so4713651wru.4
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2019 07:28:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=hkOXmCsd62Z6yZIgf5KLyyzjgYMJjkWtEWTlS4tFO94=;
-        b=rql5RVRKAWsmcyEksqX5HkTKnvgL/3f5yAoGXN+aOnexYPupc6fAhaR17bkksltyaL
-         73jz43NhgDvKCUo3w4yueWQpDlgH99tQ5zKey+6wfLAixwYR6VHWH3yXBokgjD+jZ7Uu
-         eXCFeS3cprICgWBUeV2/VKRVY1JWKMJwKJTXo7anMxSazddv+Youg2pqpqrqRYIVpjfV
-         FLK1xgHSQ865dJYisinzADhIU7I528sL3gMzcDmjkxmC1Am93AyS4m2lROijkZLiy0Z6
-         5exz7kNEC4aepVD8vEGnlTq0hdG9/5CeXuIrMlbDa9U8eBrK3dmXOhxxOHJ0NjEx8L/k
-         UU8Q==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=QBYK1E+SFEUtR4nuF0Hq1/Zl0vxT8rcgdq12kebEYCw=;
+        b=fybemh1fl5FELIMmoJZnWKoGU6gkjl55CTvBtsMkTjKBe9+9q5azX3vK7CrnWlD4+m
+         ATTa/+yYn808n2UnMe0zSU27V/ALJzcfyewxcwoGDLMpE+3nRgHaRQI6DA94AukXUiJB
+         hjsqV4+jtcmEmj/BDh8dLZ/DRjse6sDrT0bCl7ecTrNNyYBw6BwzfFzs7Ti5p0v23MnE
+         +fDRYLnLSJ559SpDXDxTsKfDHmPdDwfAe4/MCFncI1Wzvl2k8yyzbCe3Y5158WP0Gpt4
+         xntmd2a+Rl7Oonw3WrC2tR2S9zGYEskSnvLdMeDrEhklUgWbep0gTuvPx0qYaX4l87Lz
+         Gxwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=hkOXmCsd62Z6yZIgf5KLyyzjgYMJjkWtEWTlS4tFO94=;
-        b=WAnLmxzi30eEL2neZo92kOWGkPtKf1Lb+OEQtWD/xdFkkzlRbrTIyV8kBER5As1knc
-         w98oHKAQamu9Ehhr0oAMCkfk8hW+CS1VeEHostPgIr8cmnIHBNoNbJQFos7t1suhDBpB
-         h41l5dhXv2Kx84XFc+nKKocH0RQkYOm9JOdOok4dfqym16WOSNQh1atll0LOFH6kpOXc
-         fjY6t+NDpx5QM0BgYJZyIrB1FY+dVVF8ueY/QN9rv/cnriEbKh8C0mqXHswrI+HqS34V
-         G44d9d0HFfdbTOeHrKsIqHXi7RPrwfbKoJOYc+0FhIH19mmA4EMh1TPgDzFwfs63Crd2
-         UzmA==
-X-Gm-Message-State: APjAAAUAhngmymf6uuq7uXbv7EPn97djXj4ITwpbgLXtUe77U3oyXXhg
-        9uTMHs4gAY9bAAJBApKkuX/5SSUF8c7oLqBmzfI=
-X-Google-Smtp-Source: APXvYqylyv/XWvVVFaMyOfcrZusJw7Q/qSb55SdxJO4JBa38IeW3y2VnGkUMJPx6YWbRXNjXyFKcQ+Fy6aY8Cvvwgc0=
-X-Received: by 2002:a05:6830:150b:: with SMTP id k11mr11214869otp.178.1575040588521;
- Fri, 29 Nov 2019 07:16:28 -0800 (PST)
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=QBYK1E+SFEUtR4nuF0Hq1/Zl0vxT8rcgdq12kebEYCw=;
+        b=aCoAmq99U5vPRScsH/uxEyziza08u/bIw8B33SMNnH3p4g3zTavqTyNMk8bZL/JFv8
+         LOpx2su7f5Q5oqwyFKStiHILT6KueE2uHSLtZEjvAw2cNDkW5VsnerBU9YFXsyAOaZIl
+         mAZPX9OJS4ZNxicil3xSwxDYHrMhIZEJsWDK3OuBdVjyCF9UPiJMKFCcqVJxABR5yzGm
+         cUwNi79Ep7rT8LCNtwYlwG3l7DzT/vcizZ+Lv4OoGiooI1e5SFb2wH/izyJsqGyj6FgP
+         UMOyqo9U6FwUc8albBMqLC+KTPf6I49/hzRJdhcAWt7IFLNwJwKt7ZeU/Lk/f/pii0KY
+         Ziqw==
+X-Gm-Message-State: APjAAAVZcbbO/ChZpzxkZX3yT8+8gybxl7Sv+ZSOXDrL09ZgvoGQLrf6
+        SsnuEJrKaQHyutkyonlb5IHf0Q==
+X-Google-Smtp-Source: APXvYqwp522ZQItIPDw0UZZeNpADWsIPr6wHnrqJzszsiD5Ngr1SfU1KzHkCvXFfBFKhk2oWIkEzYw==
+X-Received: by 2002:a5d:4d8d:: with SMTP id b13mr10405744wru.6.1575041310867;
+        Fri, 29 Nov 2019 07:28:30 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id m3sm27328570wrw.20.2019.11.29.07.28.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Nov 2019 07:28:30 -0800 (PST)
+References: <20191129144605.182774-1-jian.hu@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Jian Hu <jian.hu@amlogic.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        "Rob Herring" <robh@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Chandle Zou <chandle.zou@amlogic.com>,
+        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/7] add Amlogic A1 clock controller driver
+In-reply-to: <20191129144605.182774-1-jian.hu@amlogic.com>
+Date:   Fri, 29 Nov 2019 16:28:29 +0100
+Message-ID: <1jwobi7lcy.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Received: by 2002:a4a:4f48:0:0:0:0:0 with HTTP; Fri, 29 Nov 2019 07:16:28
- -0800 (PST)
-Reply-To: jessica.u.m1977@gmail.com
-From:   Jessica Meir <jumier65@gmail.com>
-Date:   Fri, 29 Nov 2019 15:16:28 +0000
-Message-ID: <CAOhfx+S0=M12BRW05v+Uv=d2kJFrm66zgC1ydjZZz6U3ipAudQ@mail.gmail.com>
-Subject: Ola
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Oi, sou eu Jessica, por favor, quero saber se voc=C3=AA recebeu minha mensa=
-gem
+
+On Fri 29 Nov 2019 at 15:45, Jian Hu <jian.hu@amlogic.com> wrote:
+
+> add support for Amlogic A1 clock driver, the clock includes 
+> three parts: peripheral clocks, pll clocks, CPU clocks.
+> sys pll and CPU clocks will be sent in next patch.
+>
+> Changes since v1 at [2]:
+
+v2 or v1 ??
+
+> -add probe function for A1
+> -seperate the clock driver into two patch
+> -change some clock flags and ops
+> -add support for a1 PLL ops
+> -add A1 clock node
+>
+> Changes since v1 at [1]:
+> -place A1 config alphabetically
+> -add actual reason for RO ops, CLK_IS_CRITICAL, CLK_IGNORE_UNUSED
+> -separate the driver into two driver: peripheral and pll driver
+> -delete CLK_IGNORE_UNUSED flag for pwm b/c/d/e/f clock, dsp clock
+> -delete the change in Kconfig.platforms, address to Kevin alone
+> -remove the useless comments
+> -modify the meson pll driver to support A1 PLLs
+>
+> [1] https://lkml.kernel.org/r/1569411888-98116-1-git-send-email-jian.hu@amlogic.com
+> [2] https://lkml.kernel.org/r/1571382865-41978-1-git-send-email-jian.hu@amlogic.com
+>
+> Jian Hu (7):
+>   dt-bindings: clock: meson: add A1 PLL clock controller bindings
+>   clk: meson: add support for A1 PLL clock ops
+>   clk: meson: eeclk: refactor eeclk common driver to support A1
+>   clk: meson: a1: add support for Amlogic A1 PLL clock driver
+>   dt-bindings: clock: meson: add A1 peripheral clock controller bindings
+>   clk: meson: a1: add support for Amlogic A1 Peripheral clock driver
+>   arm64: dts: meson: add A1 PLL and periphs clock controller
+
+The arm64 is for the DT maintainer. Please send it separately after this
+series is applied (if it gets applied)
+
+> Please fix the underlying issue, then you can post your series again.
+
+This was a comment on your v2. Did you fix the orphan/ordering issue ?
+If you did, you probably should mention it here.
+If you did not, I'm probably not going to review this further until you do.
+
+>
+>  .../bindings/clock/amlogic,a1-clkc.yaml       |   70 +
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   |   56 +
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   26 +
+>  drivers/clk/meson/Kconfig                     |   20 +
+>  drivers/clk/meson/Makefile                    |    2 +
+>  drivers/clk/meson/a1-pll.c                    |  334 +++
+>  drivers/clk/meson/a1-pll.h                    |   56 +
+>  drivers/clk/meson/a1.c                        | 2309 +++++++++++++++++
+>  drivers/clk/meson/a1.h                        |  120 +
+>  drivers/clk/meson/clk-pll.c                   |   21 +
+>  drivers/clk/meson/clk-pll.h                   |    1 +
+>  drivers/clk/meson/meson-eeclk.c               |   59 +-
+>  drivers/clk/meson/meson-eeclk.h               |    2 +
+>  drivers/clk/meson/parm.h                      |    1 +
+>  include/dt-bindings/clock/a1-clkc.h           |   98 +
+>  include/dt-bindings/clock/a1-pll-clkc.h       |   16 +
+>  16 files changed, 3181 insertions(+), 10 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 drivers/clk/meson/a1-pll.c
+>  create mode 100644 drivers/clk/meson/a1-pll.h
+>  create mode 100644 drivers/clk/meson/a1.c
+>  create mode 100644 drivers/clk/meson/a1.h
+>  create mode 100644 include/dt-bindings/clock/a1-clkc.h
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+
