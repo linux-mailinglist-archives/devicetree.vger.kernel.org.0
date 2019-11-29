@@ -2,92 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8C010D2D6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 09:55:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02F0F10D29D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 09:50:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbfK2IzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Nov 2019 03:55:18 -0500
-Received: from sender4-pp-o98.zoho.com ([136.143.188.98]:25857 "EHLO
-        sender4-pp-o98.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726143AbfK2IzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 03:55:18 -0500
-ARC-Seal: i=1; a=rsa-sha256; t=1575017651; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=aHQGL27AFyIrx+4oOxuaIqQQQ05SYfgXcvBgDPo74I4GtjesLSMcmmSf98E4hz0E8fSu2z7kqUVejs8NL3zHAW0a7gU3S7shqull0lJlOaFeg4QiWfxs32e1UkqeGrt+LdQbQ/V2I+V9B0dlztkZBEwBt2rZK8fdvE1Zk5LRiXQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1575017651; h=Cc:Date:From:In-Reply-To:Message-ID:References:Subject:To; 
-        bh=1hGPrm+p5zUCh8vVbV4PGe97UQ4RnYIUCs3Zs7VaTEA=; 
-        b=eyAQlfXg11rewE0YRYgPP0SRA+Znw3khgFYEWhREQsg5kW4qcEF/162fNN0dDCCPZCkjAOkvrZEtSdcg3AsqsPwLIuF+6vCzs9hisj4To48ancE5xeOzyM6UWX11FjkoYLSCRONdT2tIqRqebKuTv7gEZuY1fYYcMYWQ1TDZGLo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=zoho.com;
-        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
-        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
-  s=zapps768; d=zoho.com; 
-  h=from:to:cc:subject:date:message-id:in-reply-to:references; 
-  b=JOkHCOHculHLpgRfs0cQ+GrhUZ6ZNVMhPKMrEMY9S1OFzi8T3JaB/la396AWgcR0vSPX1hg2A4/t
-    vkKWJUOv9ljPKin4glgH++3MSNLieW1c0/8zvcGfgfnDd/nQgO0O  
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1575017651;
-        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References;
-        bh=1hGPrm+p5zUCh8vVbV4PGe97UQ4RnYIUCs3Zs7VaTEA=;
-        b=cBGFQ57soBFWmCZPK1RiYIEn9CJ3aKspL4ueR2PYYkql0kl14d65Wx3TO0UVdLxZ
-        m1L3qLC4VZ0QSJSDB0mfZjMiebvEz7UQTiQwkNscUfGtPJfR/U7lHSrujMT2Vv7ah31
-        1kwSKTulP8+JC1zARaOS+kcRvNY11cSbbg4ExmGw=
-Received: from zhouyanjie-virtual-machine.localdomain (139.207.146.46 [139.207.146.46]) by mx.zohomail.com
-        with SMTPS id 1575017648817736.2370865952828; Fri, 29 Nov 2019 00:54:08 -0800 (PST)
-From:   Zhou Yanjie <zhouyanjie@zoho.com>
-To:     linux-mips@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, paul.burton@mips.com, paulburton@kernel.org,
-        jhogan@kernel.org, mripard@kernel.org, shawnguo@kernel.org,
-        mark.rutland@arm.com, syq@debian.org, ralf@linux-mips.org,
-        heiko@sntech.de, icenowy@aosc.io,
-        laurent.pinchart@ideasonboard.com, krzk@kernel.org,
-        geert+renesas@glider.be, paul@crapouillou.net,
-        prasannatsmkumar@gmail.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, 772753199@qq.com
-Subject: [PATCH v6 10/12] MIPS: CU1000: Update defconfig for rtc.
-Date:   Fri, 29 Nov 2019 16:48:51 +0800
-Message-Id: <1575017333-29020-11-git-send-email-zhouyanjie@zoho.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1575017333-29020-1-git-send-email-zhouyanjie@zoho.com>
-References: <1575017333-29020-1-git-send-email-zhouyanjie@zoho.com>
-X-ZohoMailClient: External
+        id S1726800AbfK2IuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Nov 2019 03:50:10 -0500
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:44249 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725892AbfK2IuK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 03:50:10 -0500
+Received: by mail-lj1-f193.google.com with SMTP id c19so4093771lji.11
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2019 00:50:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DDD/UnUADM3mnwpvsAchbYVhZu3juMpSxL84tbPsIbo=;
+        b=KVLHCWMignsuWlcS7LxuvXdykXnJdIoBNiW8JithqBRaN9wcvo1g4UE3oE6h6RdcRN
+         jLEvrMDIUWh3WxK9ixpeKqxPjlewzTq0GI6ilyuAFhW2YJf1ZqbkL3ADAUdPwFG875jh
+         x9vo6h0wlgAaxokaLK4+dCSaEdEZrMQXocgg3mRKJwRpOm0JsRMmk9AGZyiS5TIAU7qN
+         6LRFXkHjDx00GXywgORKLFx4NJ+nqr0y7wGWB2ZGfDi/YrZchGozjMmNsFaqACRsKEPr
+         fn6mkQtNRbJfvCBG9q3xKL9NRXLgrzKNGAdC+zFhxaiIniwKZZetUCiZPeUpg5H5cbep
+         yDpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DDD/UnUADM3mnwpvsAchbYVhZu3juMpSxL84tbPsIbo=;
+        b=M1mJwGrQOfw/bJrAzQZH3MXHYr21ek/JvvhQdO0GEWr24/NcCeL8SNYgsTaD3BdrsM
+         oO1u5MbDU9/ytZ7s7TAJvkEhdsIiiiuE+7XBmuR5KToYVAy4MR04uLkSISffeSqyZrDR
+         doWaeLebEgFubJx6XqUHlR+Jq408sSwkTNIwiJHDttygStGBbL4qGnZTrnAOgCsjmnvx
+         Ouxv33E47zURpt7gYrN3+AZWPHlOXOowh8rrA8XtEguFiIMty/5zDKX0G3mveb8Kf0qw
+         q6mOw5l8OICTsd8ljKmHmaPixCnjrtwe/YfNlS+SBdDkDSOMRWTphp8LQGp3wuOv1lyH
+         kD6w==
+X-Gm-Message-State: APjAAAVij9a9DU7+8MwYGu0MoQoHMqON9zt1JOMHmmj2fMB+d+Bb0zNn
+        SL/WOOdau+r1yC1H3q+81D78WnukuhWoWQ/P9Oygvg==
+X-Google-Smtp-Source: APXvYqxNOTdjq0eH1xPQUrG1i3ed9i46I+BwE5vw5X2SkpBR2UmTqJlh0NKv9bJLxRIPCTk4T6SWpbiyPuLBwslQnQw=
+X-Received: by 2002:a2e:9a12:: with SMTP id o18mr36852322lji.191.1575017408368;
+ Fri, 29 Nov 2019 00:50:08 -0800 (PST)
+MIME-Version: 1.0
+References: <20191127115619.20278-1-m.felsch@pengutronix.de>
+ <20191127115619.20278-3-m.felsch@pengutronix.de> <CACRpkdYLeSjsXaG6Bg4Y2-8PW41ALn4PN7QUvp3tA7XReWrKGg@mail.gmail.com>
+ <20191127151929.GC4879@sirena.org.uk>
+In-Reply-To: <20191127151929.GC4879@sirena.org.uk>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 29 Nov 2019 09:49:56 +0100
+Message-ID: <CACRpkdbJbCwo7yALnywscCTZBzO1ZzWY_=c5RoVGqY7Eue3t=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] mfd: da9062: add support for the DA9062 GPIOs in
+ the core
+To:     Mark Brown <broonie@kernel.org>,
+        Marc Zyngier <marc.zyngier@arm.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Selected rtc support by default.
+On Wed, Nov 27, 2019 at 4:19 PM Mark Brown <broonie@kernel.org> wrote:
+> On Wed, Nov 27, 2019 at 02:35:33PM +0100, Linus Walleij wrote:
+>
+> > I can clearly see that regmap's irqchip does not support
+> > hierarchical interrupt domains, so we should just make a
+> > mental note somewhere that "oh yeah and then one day
+> > we should make regmap irqchips play well with hierarchical
+> > interrupts".
+>
+> Why, what do we need to do?  We're just doing all the default stuff,
+> it's not something we've opted out of, and the whole point with using
+> the frameworks should be that we should get software features like this
+> for free :(
 
-Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
----
+I guess it is a bit about moving targets.
 
-Notes:
-    v5:
-    New patch.
-    
-    v5->v6:
-    No change.
+The regmap irq thing was covering all reasonable cases until
+the hierarchical interrupts were introduced some years ago.
 
- arch/mips/configs/cu1000-neo_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+The hallmark of these are that the irq_domain_ops implement
+.translate() .alloc() and .free() rather than .map() and .xlate()
+as the irqdomain in reqmap-irq currently does.
 
-diff --git a/arch/mips/configs/cu1000-neo_defconfig b/arch/mips/configs/cu1000-neo_defconfig
-index eef0c5a..b2c090a 100644
---- a/arch/mips/configs/cu1000-neo_defconfig
-+++ b/arch/mips/configs/cu1000-neo_defconfig
-@@ -63,6 +63,8 @@ CONFIG_GPIO_SYSFS=y
- # CONFIG_USB_SUPPORT is not set
- CONFIG_MMC=y
- CONFIG_MMC_JZ4740=y
-+CONFIG_RTC_CLASS=y
-+CONFIG_RTC_DRV_JZ4740=y
- CONFIG_DMADEVICES=y
- CONFIG_DMA_JZ4780=y
- # CONFIG_IOMMU_SUPPORT is not set
--- 
-2.7.4
+The problem with hierarchical domains is that the system using
+them need to be hierarchical "all the way up" to the overarching
+top-level irqchip. Currently only the ARM GIC and the IXP4xx
+irq top-level irq controllers supports this, ruling out some
+obvious users like all non-ARM systems (for now).
 
+I think the assumption in hierarchical irq is that you have
+a few hardware-specific irchips and you know exactly which
+irqchip that goes on top of another one, as well as which
+hardware irq line is connected to which hardware irq line
+on the parent.
 
+Since we know the specific hardware (from a compatible
+string or so) we can hardcode the parent-to-child mappings
+of interrupt lines in the driver. These mappings are not
+in the device tree for example.
+
+Therefore supporting hierarchical and nonhierarchical alike
+in a very generic plug-in irqchip like the regmap-irq is a bit
+of a challenge as it has to support both hierarchical and
+non-hierarchical, because it is not possible to just
+convert this to hierarchical callbacks: it has to check what
+its parent is doing and adapt, essentially implement both
+hierarchical and non-hierarchical at this time.
+
+Also we need to pass mappings between parent and child
+somehow. In the gpiolib we did this with a callback to the
+GPIO-chip-specific driver. How to do it for something
+generic like regmap-irq is an open question.
+
+So it is a bit complex.
+
+(Marc may correct me here.)
+
+Yours,
+Linus Walleij
