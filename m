@@ -2,90 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F08D910D27E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 09:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A5C10D294
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 09:47:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725892AbfK2IdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Nov 2019 03:33:21 -0500
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:44451 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725886AbfK2IdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 03:33:18 -0500
-Received: by mail-lf1-f68.google.com with SMTP id v201so20915873lfa.11
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2019 00:33:16 -0800 (PST)
+        id S1726586AbfK2IrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Nov 2019 03:47:13 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:41478 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725892AbfK2IrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 03:47:13 -0500
+Received: by mail-il1-f194.google.com with SMTP id q15so26320598ils.8
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2019 00:47:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=il0J5+MwLfAM/oT+CoAH5b4Qb2JalE9gDN/rISPfpwo=;
-        b=V045bc5kUlrbbrKjsGWI6fx5oVlc5UB1MLUbE34nb/BwDPQPv2fwavwAPcQUriNqRF
-         w4RuqF2NLwBC49XYT3y52UiHVriRWc+kp5DTCAh4vhsksH+AuKBHCOLM/OZdLNiZo7Wv
-         UUQ9rQVmfISLcMRuQffuMM1f/Bm7BzSeuITcyCuZs9rxHUbfHcHM6ejok+UALcvyIZV7
-         +RiMetzEudkP5N8snZp4xHtz6UZc6oM+TVul52fff+rbQwGlrzHx1D4LHJIcPp2ULeP2
-         Hz3icUO+J2VE8yumk7PEFM3+9KZM7SgjnX/0/xZTckBQlj0ueAL7mRAbC8wf+0/NOp83
-         T9RQ==
+         :cc:content-transfer-encoding;
+        bh=0bhuQ93HttrTxTAhNw8aS9QwCDZ8sDxBTo3J1Rx58OQ=;
+        b=nmL+CR9HMsMNScs9eViOCbnO2FWwFdw745UQjYogtV77gctBJkqPqj76RfwR2XEbXG
+         cHdusrKDuZlkEx5hdGEJpuVZlKR6Sf999e0lkGi8FKcZKcBvVE/k8jx6pzKcTa9t0kO9
+         PETk1FIMTjdixL8ZyOIHXt/vpjmry7r2RfyV+Tf4YgRYw+SWSKcYESMaf8FB5cvcutLU
+         jIUd1Vga11L0qXBh8B+8jufdrYUQtFJ4qO25gih85ryz2HJt27DEd/M6O+gtz8GP5W1e
+         lpzrFo+U/GwDqq6t4uYNjf2KlC2lHKrGHbFg+2gt6JwJ7yFIqB40gL1TPQCudvfOzhxo
+         bRJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=il0J5+MwLfAM/oT+CoAH5b4Qb2JalE9gDN/rISPfpwo=;
-        b=TxIhV1ZzKtOkcqF/b7vLaiAN5wntnnyrwUuL1BEusejyAtEUJGly7czkMRs3amZ3iW
-         MknBp6at6JGgMpTxIhpJBvlfw64b+zTDIdFdt14H5y9efcWsw9JuyLo2Pk4kJdH+xbWk
-         tEql2ZF+QYQ2qPq+flP02LIqRQQ3uO5vQltvkQfAiVH05yKdGYlgNICk0XOT0CtMI/+f
-         YuDaTg9GxZ8ftVuZVmtCPU/6GCdSTgUQYsSr6xlBuRNcGplhYZbwmte4qN6U1mfCD38h
-         ENDMvVJwUZSZb8IWX+b0EViC9ebdeJqnpOOdHJX0pgaNzlwYaheFOtLcDby+kn0CivHi
-         G+LA==
-X-Gm-Message-State: APjAAAVtudzsYWUHnz6tbq+zbjMlaJdFOOjWz0xEruRXEvOwElvvgIYt
-        sTp6WsMf+hEYYYp/NeYLavHy+3DxzEpsyur8AH33lA==
-X-Google-Smtp-Source: APXvYqyoc0FVxIgsDrfwyYoHK4jgCjVWSH09qmYYUgnLUoTs/XZodUt6ynHnfKK9Zt5B5ycVpnbwZioidRjgVtWf6aM=
-X-Received: by 2002:a19:7d02:: with SMTP id y2mr32888849lfc.86.1575016396196;
- Fri, 29 Nov 2019 00:33:16 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0bhuQ93HttrTxTAhNw8aS9QwCDZ8sDxBTo3J1Rx58OQ=;
+        b=bp7RoaXmrdlCQa/h30eYK037+Xg5UsWIZs6qLyXv9Hb++TNz7sIg0vmcKiGQtNftoP
+         nIvMtA+J+0x2F87hclRhzMDj7fHsVA+NXSoKMTKDELmKOP9zfohxIVAVd77ShhV/XSUt
+         aDiB+K8gJ58ljjUt1fW/CMtx5lqPBweA8lUWBU6N/LSR1TTu7WzFWtuv/Qv1QVCjFSUR
+         Ou6Ocwl4dMjmzbtJmiCAHTpJYz6a34bqbeMSr2BGQYdF+r6omrxO8aj26q9yBwo2mM3n
+         W6YFK7iMPixv8x4CmDfmcqskYClsWQ52eTN5Tc+M96JPLnUKbQ4tyZNqYPqc4EuTMDKQ
+         MDdw==
+X-Gm-Message-State: APjAAAXa8qCCtxMBse/kzbcNreaEg29wk770C1OhLZX6794hoLHTLcth
+        LGCJ0VYvBBBcXP070BNssFf7/j1C9nCPeeK4Ba2ISfI/
+X-Google-Smtp-Source: APXvYqy7SGubfXXTIwTKtjbr11EdnB50yfatCvnFFOvYEf0wubLbCixqeKYSolhozuG80EcW0JpH7nBbCalVHHTxZAY=
+X-Received: by 2002:a05:6e02:5c8:: with SMTP id l8mr2541678ils.287.1575017232331;
+ Fri, 29 Nov 2019 00:47:12 -0800 (PST)
 MIME-Version: 1.0
-References: <20191127135932.7223-1-m.felsch@pengutronix.de> <20191127135932.7223-5-m.felsch@pengutronix.de>
-In-Reply-To: <20191127135932.7223-5-m.felsch@pengutronix.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 29 Nov 2019 09:33:04 +0100
-Message-ID: <CACRpkdZHmbgaHHbsXuAg4GD_cWWSx33WQ71Sk11HySoeorfUbA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] dt-bindings: mfd: da9062: add regulator gpio
- enable/disable documentation
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, stwiss.opensource@diasemi.com,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+References: <20191120142038.30746-1-ktouil@baylibre.com> <20191120142038.30746-2-ktouil@baylibre.com>
+ <CACRpkdaZrvPObjyN4kasARzKZ9=PiAcvTzXzWkmC7R+Ay5tU8w@mail.gmail.com>
+ <CAMpxmJWSgYjcGdR7Zrj-=nA+H8cYfZUriHQPxN=8zgPDvD-wTA@mail.gmail.com>
+ <CACRpkdaW82pgQivc0VVgqqVv4fgXxMyGD3Lo8YHcMK7aGPDKaw@mail.gmail.com>
+ <CAMpxmJU_0MzroyD_ZF5WOxpZz3dkADLOmW7aKpWdJ7GCvo-RnA@mail.gmail.com>
+ <CACRpkdaPQKxfC66yhG=xdmCOGGd9PjDVCwZquKb+4HmuS_=kNA@mail.gmail.com>
+ <CALL1Z1xpcGyh_f3ooRT+gGApoAnS7YBMd2hUKqnt+pTcAFoeAg@mail.gmail.com> <CACRpkdYEEypRZOaO3Ta9aDgizNeLyUOSraBEhKaZcHaJV+o0gQ@mail.gmail.com>
+In-Reply-To: <CACRpkdYEEypRZOaO3Ta9aDgizNeLyUOSraBEhKaZcHaJV+o0gQ@mail.gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Fri, 29 Nov 2019 09:47:01 +0100
+Message-ID: <CAMRc=MfVod5ODvsQbVBny1+Yvre1F971uR_DqsvoiYATvUfoXw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: nvmem: new optional property write-protect-gpios
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Khouloud Touil <ktouil@baylibre.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        baylibre-upstreaming@groups.io,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-i2c <linux-i2c@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 27, 2019 at 2:59 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
-
-> At the gpio-based regulator enable/disable documentation. This property
-> can be applied to each subnode within the 'regulators' node so each
-> regulator can be configured differently.
+czw., 28 lis 2019 o 14:45 Linus Walleij <linus.walleij@linaro.org> napisa=
+=C5=82(a):
 >
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-(...)
-> +  - dlg,ena-sense-gpios : The GPIO reference which should be used by the
-> +    regulator to enable/disable the output. If the signal is active the
-> +    regulator is on else it is off. Attention: Sharing the same gpio for other
-> +    purposes or across multiple regulators is possible but the gpio settings
-> +    must be the same. Also the gpio phandle must refer to the mfd root node
-> +    other gpios are not allowed and make no sense.
+> On Tue, Nov 26, 2019 at 4:18 PM Khouloud Touil <ktouil@baylibre.com> wrot=
+e:
+>
+> > [Me]
+> >> 4. The code still need to be modified to set the value
+> >>    to "1" to assert the line since the gpiolib now handles
+> >>    the inversion semantics.
+>
+> > By saying "assert the wp" do you mean enable the write operation or
+> > block it ?
+>
+> Yeah one more layer of confusion, sorry :/
+>
+> By "asserting WP" I mean driving the line to a state where
+> writing to the EEPROM is enabled, i.e. the default state is
+> that the EEPROM is write protected and when you "assert"
+> WP it becomes writable.
+>
+> If you feel the inverse semantics are more intuitive (such that
+> WP comes up asserted and thus write protected), be my
+> guest :D
+>
 
-- Point out that this concerns references to the GPI general purpose
-input on the DA9062 itself, and not just "any" GPIO. The last sentence
-tries to say this but it should be stated more clearly.
+Ha! I've always assumed that "to assert the write-protect pin" means
+to *protect* the EEPROM from writing. That's why it comes up as
+asserted (logical '1' in the driver) and we need to deassert it (drive
+it low, logical '0' in the driver) to enable writing. This is the
+current behavior and I'd say in this case it's just a matter of very
+explicit statement that this is how it works in the DT binding?
 
-- Clarify which "gpio settings" must be the same, e.g. polarity I guess.
+Rob: any thoughts on this?
 
-Yours,
-Linus Walleij
+Bartosz
+
+> As long as it is unambiguously documented in the bindings
+> and with comments in the code I'm game for whatever the
+> at24 people feel is most appropriate. (You will set the standard
+> for everyone else.)
+>
+> Yours.
+> Linus Walleij
