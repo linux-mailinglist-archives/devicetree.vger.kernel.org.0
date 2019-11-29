@@ -2,83 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D0A10DA38
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 20:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9BB910DAC8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 22:09:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727028AbfK2TtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Nov 2019 14:49:14 -0500
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:33893 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726926AbfK2TtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 14:49:14 -0500
-Received: by mail-lf1-f67.google.com with SMTP id l18so5381981lfc.1;
-        Fri, 29 Nov 2019 11:49:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fBnj05Eh4vt/qckTOfX4DMzfi31Ryvk7fXMdBVIV/rY=;
-        b=KydJdq1QA2zZAeBkqhj2V46cvAvxvxGbz4MMaJ70OrWEAcZlvWx/ZVn0vwpTY/vEV+
-         16QsAODLnSTxf1gOc2XR5CCuM04rhH2mHfVTXvJrCssdT66ZW+9danUP5yU+v4Pk0ypQ
-         oXA8SymZnrZAs9/xLMcbdufTlvHxo+cEIQ6ssDaOeHqbFW7x6YhWpv4JjTg4wi42f14k
-         S1PRQh0KkGzyIGJ4AJqEqtH98nfLk/16kMifwzi2p7hxIyShW3LGdR0kHdo99Ac2//hW
-         UuAcg3bXtUuj88hu1ruw1nEWvDyxFBb89RPtXwqg40s92raZ32cIUoTVsXp3xRlfNRkI
-         mHfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fBnj05Eh4vt/qckTOfX4DMzfi31Ryvk7fXMdBVIV/rY=;
-        b=fp0MVYdNGT0CkIgJML9UowLLaSAwSu2TnyA5Nq02GxG+P0Ok7/oCoqRiwqR1PBC2O2
-         KaSZ4l25mA176EYyJH4t8J3tQTe8NlDk6xzNj1eDaFvqumwMjYsAREkgqyR0lQwWMAS4
-         oV1qq3k8vJn7Hv7kswDCriipe+o0f+xlAVoRFohJ/4J0tq0ybiZvRwcS6wmWUhC4YDBU
-         CBlbEyst+FkZ0LiUflOw4XeVrdYapE1V8xUf3uc7fuHKumQOtcY+t+cBOdenU4ZaKRus
-         2Lw846XmHbV0W3gTpzG1uTlRUcQgX4fKyHZvOfNrMm0ktxjS1s0gP1mZ/59WOx+QwXl3
-         I+QA==
-X-Gm-Message-State: APjAAAXijtDOd7sYc+c677XC3Bqc8GmwP4yVDIXODVUmXo/UrCH1fZh1
-        9jiVteDn3/lau1asEdA79EuzfHvl0T/PRfJbLq95hQ==
-X-Google-Smtp-Source: APXvYqxtTPuuT1Vh36OW8NOSd7X7fwzEom9MD0Gh+xzrA1PUqS3z6w13CLFApoRnrIWs+eTFNITNVgOfDrryREaW5y0=
-X-Received: by 2002:a19:f80a:: with SMTP id a10mr26306239lff.107.1575056952064;
- Fri, 29 Nov 2019 11:49:12 -0800 (PST)
+        id S1727090AbfK2VJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Nov 2019 16:09:53 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:36051 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727073AbfK2VJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 16:09:53 -0500
+Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id D75B723059;
+        Fri, 29 Nov 2019 22:09:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1575061791;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=vBGH4Is8jTUA/hpecRwlSpOFBZJJLpBTculd0msTkEU=;
+        b=EaG70I7RiyaiHNh/CcggLrwsnJYaFUU7+ulXZv6r7uax/uYOh4rlcOeqMH/3n3wvENoJIZ
+        gN0VCKL7LHsbbJ8/s8YolS1WJTPmr/1amTZIigQC6/FpyBMa2hlTszvhPrVMarKnhtzWJb
+        tC92UluXLeJUc8T3/mXoYXM5wBXYhyw=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH] arm64: dts: ls1028a: put SAIs into async mode
+Date:   Fri, 29 Nov 2019 22:09:37 +0100
+Message-Id: <20191129210937.26808-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20191129190541.30315-1-manivannan.sadhasivam@linaro.org> <20191129190541.30315-4-manivannan.sadhasivam@linaro.org>
-In-Reply-To: <20191129190541.30315-4-manivannan.sadhasivam@linaro.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 29 Nov 2019 16:49:25 -0300
-Message-ID: <CAOMZO5Btkd0NLM5RBFZHD5dryE7mR5JZRLC2X__pQNmjHGCywA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] media: i2c: imx290: Add RAW12 mode support
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, c.barrett@framos.com,
-        linux-kernel <linux-kernel@vger.kernel.org>, a.brela@framos.com,
-        Peter Griffin <peter.griffin@linaro.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spamd-Bar: ++++++
+X-Spam-Level: ******
+X-Rspamd-Server: web
+X-Spam-Status: Yes, score=6.40
+X-Spam-Score: 6.40
+X-Rspamd-Queue-Id: D75B723059
+X-Spamd-Result: default: False [6.40 / 15.00];
+         ARC_NA(0.00)[];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         R_MISSING_CHARSET(2.50)[];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         BROKEN_CONTENT_TYPE(1.50)[];
+         DKIM_SIGNED(0.00)[];
+         RCPT_COUNT_SEVEN(0.00)[8];
+         MID_CONTAINS_FROM(1.00)[];
+         NEURAL_HAM(-0.00)[-0.607];
+         RCVD_COUNT_ZERO(0.00)[0];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         ASN(0.00)[asn:31334, ipnet:2a02:810c::/31, country:DE];
+         SUSPICIOUS_RECIPS(1.50)[]
+X-Spam: Yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
+The LS1028A SoC has only unidirectional SAIs. Therefore, it doesn't make
+sense to have the RX and TX part synchronous. Even worse, the RX part
+wont work out of the box because by default it is configured as
+synchronous to the TX part. And as said before, the pinmux of the SoC
+can only be configured to route either the RX or the TX signals to the
+SAI but never both at the same time. Thus configure the asynchronous
+mode by default.
 
-On Fri, Nov 29, 2019 at 4:07 PM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
-               }
-> +
-> +               imx290->bpp = 10;
-> +
-> +               break;
-> +       case MEDIA_BUS_FMT_SRGGB12_1X12:
-> +               ret = imx290_set_register_array(imx290, imx290_12bit_settings,
-> +                                               ARRAY_SIZE(
-> +                                                       imx290_12bit_settings));
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Could you please write the ARRAY_SIZE and its parameter in the same line?
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 379913756e90..9be33426e5ce 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -637,6 +637,7 @@
+ 			dma-names = "tx", "rx";
+ 			dmas = <&edma0 1 4>,
+ 			       <&edma0 1 3>;
++			fsl,sai-asynchronous;
+ 			status = "disabled";
+ 		};
+ 
+@@ -651,6 +652,7 @@
+ 			dma-names = "tx", "rx";
+ 			dmas = <&edma0 1 6>,
+ 			       <&edma0 1 5>;
++			fsl,sai-asynchronous;
+ 			status = "disabled";
+ 		};
+ 
+@@ -665,6 +667,7 @@
+ 			dma-names = "tx", "rx";
+ 			dmas = <&edma0 1 8>,
+ 			       <&edma0 1 7>;
++			fsl,sai-asynchronous;
+ 			status = "disabled";
+ 		};
+ 
+@@ -679,6 +682,7 @@
+ 			dma-names = "tx", "rx";
+ 			dmas = <&edma0 1 10>,
+ 			       <&edma0 1 9>;
++			fsl,sai-asynchronous;
+ 			status = "disabled";
+ 		};
+ 
+@@ -693,6 +697,7 @@
+ 			dma-names = "tx", "rx";
+ 			dmas = <&edma0 1 12>,
+ 			       <&edma0 1 11>;
++			fsl,sai-asynchronous;
+ 			status = "disabled";
+ 		};
+ 
+@@ -707,6 +712,7 @@
+ 			dma-names = "tx", "rx";
+ 			dmas = <&edma0 1 14>,
+ 			       <&edma0 1 13>;
++			fsl,sai-asynchronous;
+ 			status = "disabled";
+ 		};
+ 
+-- 
+2.20.1
 
-It would improve readability.
-
-Thanks
