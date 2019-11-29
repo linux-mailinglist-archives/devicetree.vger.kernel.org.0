@@ -2,97 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F88310D4F6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 12:36:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DBE310D506
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2019 12:40:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726586AbfK2LgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Nov 2019 06:36:07 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:46323 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726215AbfK2LgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Nov 2019 06:36:07 -0500
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iaeZ7-0002le-Gy; Fri, 29 Nov 2019 12:36:01 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iaeZ6-00020W-Fx; Fri, 29 Nov 2019 12:36:00 +0100
-Date:   Fri, 29 Nov 2019 12:36:00 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Lee Jones <lee.jones@linaro.org>,
+        id S1726843AbfK2LkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Nov 2019 06:40:06 -0500
+Received: from olimex.com ([184.105.72.32]:43087 "EHLO olimex.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726805AbfK2LkG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Nov 2019 06:40:06 -0500
+Received: from localhost.localdomain ([94.155.250.134])
+        by olimex.com with ESMTPSA (ECDHE-RSA-AES128-GCM-SHA256:TLSv1.2:Kx=ECDH:Au=RSA:Enc=AESGCM(128):Mac=AEAD) (SMTP-AUTH username stefan@olimex.com, mechanism PLAIN)
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2019 03:39:54 -0800
+From:   Stefan Mavrodiev <stefan@olimex.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, stwiss.opensource@diasemi.com,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>
-Subject: Re: [PATCH v2 1/5] gpio: add support to get local gpio number
-Message-ID: <20191129113600.phbhqudrgtm2egpf@pengutronix.de>
-References: <20191127135932.7223-1-m.felsch@pengutronix.de>
- <20191127135932.7223-2-m.felsch@pengutronix.de>
- <CACRpkdbG=XiQHNZa+zBqdyTDRhyXD5rLxbLjp3qqGbcQeTX26Q@mail.gmail.com>
- <20191129101542.drtcn44twcyzxqmm@pengutronix.de>
- <CACRpkda-mYbzxL9u-U9AHrFihtAQBaZajrQ-SN=WQH6=bg4swg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkda-mYbzxL9u-U9AHrFihtAQBaZajrQ-SN=WQH6=bg4swg@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:32:22 up 14 days,  2:50, 29 users,  load average: 0.01, 0.02,
- 0.00
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner
+        sunXi SoC support),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Cc:     linux-sunxi@googlegroups.com, Stefan Mavrodiev <stefan@olimex.com>
+Subject: [PATCH v2 0/3] arm64: dts: allwinner: a64: olinuxino: Update regulators
+Date:   Fri, 29 Nov 2019 13:39:38 +0200
+Message-Id: <20191129113941.20170-1-stefan@olimex.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-11-29 11:19, Linus Walleij wrote:
-> On Fri, Nov 29, 2019 at 11:15 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> 
-> > > What about renaming gpio_chip_hwgpio() everywhere
-> > > to gpiod_to_offet(), remove it from drivers/gpio/gpiolib.h
-> > > and export it in <linux/gpio/consumer.h> instead?
-> >
-> > That's also possible but then we have to include the consumer.h header
-> > within the gpiolib.c and this seems to be wrong. But since I'm not the
-> > maintainer it is up to you and Bart. Both ways are possible,
-> 
-> What about following the pattern by the clk subsystem and
-> create <linux/gpio/private.h> and put it there?
-> 
-> It should be an indication to people to not use these features
-> lightly. We can decorate the header file with some warnings.
+This patch serie updates bank regulators for A64-OLinuXino and 
+A64-OLinuXino-eMMC.
 
-That's a good idea. So the following points should be done:
-  - rename gpio_chip_hwgpio() to gpiod_to_offset() or gpiod_to_local_offset()
-  - move the new helper to <linux/gpio/private.h>
-  - add kerneldoc
-  - add warnings into the header
+Also, eMMC supply is changed to ELDO1, which is the actual one. The same is
+done for the SDIO card - ALDO2 is changed to DCDC1.
 
-Regards,
-  Marco
+Changes for v2:
+ - Restore the original eMMC vmmc-supply property
+ - Add fixes and kernel tags
 
-> Yours,
-> Linus Walleij
-> 
+Stefan Mavrodiev (3):
+  arm64: dts: allwinner: a64: olinuxino: Fix eMMC supply regulator
+  arm64: dts: allwinner: a64: olinuxino: Add bank supply regulators
+  arm64: dts: allwinner: a64: olinuxino: Fix SDIO supply regulator
+
+ .../allwinner/sun50i-a64-olinuxino-emmc.dts    |  6 +++++-
+ .../dts/allwinner/sun50i-a64-olinuxino.dts     | 18 +++++++++++++++++-
+ 2 files changed, 22 insertions(+), 2 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
