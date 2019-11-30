@@ -2,47 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F7AA10DF01
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2019 20:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D177D10DF16
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2019 20:53:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726981AbfK3Trp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Nov 2019 14:47:45 -0500
-Received: from vault.bonstra.fr.eu.org ([51.158.68.104]:41412 "EHLO
-        vault.bonstra.fr.eu.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727027AbfK3Tro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Nov 2019 14:47:44 -0500
-Received: from val.bonstra.fr.eu.org (unknown [192.168.128.2])
-        by vault.bonstra.fr.eu.org (Postfix) with ESMTP id EEFAABFBCC;
-        Sat, 30 Nov 2019 19:47:42 +0000 (UTC)
-Received: from localhost.localdomain (vlad.gr1 [IPv6:fd7b:45cc:aa3d::3])
-        by val.bonstra.fr.eu.org (Postfix) with ESMTPSA id DC31164C1B;
-        Sat, 30 Nov 2019 20:47:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bonstra.fr.eu.org;
-        s=dkim1; t=1575143262; x=1576352862;
-        bh=KTDx3GIAk0BBY7Hm5xNIopsl0EDTIeBIgAhSNWOJzzw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=hYW2SQ4pZ4Dyiyg0ElkH2/+xQZu8QIAXI3Xriv0bqku/CSsuEL88uFdDWRFHYXDQf
-         HdzidRtoroHDaHAh039kYYCo8gphb1qE7bV5benmwc7sAhzxa5D4Ekteye98sPAlUY
-         qFc300TeYPbeARiu3P0CMbsmlmYU8ZVBDQNwaKeAPoFGfPBsmCfnfn81VflFRtYix3
-         2ppI91mHKYXf5JiXJUMTgbeuwHndA9+DCS+OdtYGJ4OOfU/5rO4nhqWesNrlpbJNrt
-         rE8xxtC3zm8eO/pYeZYrpCD4KsHyQJrjpAHH0oKVEY0ttOTvrwzQhedPrkcsCe9W6j
-         6uIrl45A0MY7Q==
-From:   Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>
-To:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
+        id S1727108AbfK3Txn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Nov 2019 14:53:43 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:33051 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727027AbfK3Txm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Nov 2019 14:53:42 -0500
+Received: by mail-wm1-f67.google.com with SMTP id y23so7557682wma.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2019 11:53:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=6soWZHI+mBTs41mjvaDIr6I3byHujiJ15JL91cIfBfg=;
+        b=kEyVUEniLeWRnZ/iiy3lXikbGhgzAhI2N1brCJfbLj+G6dOYjyFfej7e3DIDTykTeX
+         BkqKh1fi64gQTq/ft06MJO09fUkzk+OsPHAkca3CMipijhPl0lrR+mXm6f3ogG1ncPBE
+         0spvEpWI5Zpzl6PPPXhS4xSGDKBzeiu5k9QFOcmi5HHrPeHC1Tb/noHxjXCRgo55OQ/1
+         4/IQcowh65/19CLsL71wcOS2wz03MrIV5FTFuZaRn7SfqYG8cotZzO8on3NHTWjxlWt0
+         1XBIozO2PMAn2F8+GcJ1wGPRS79wJomXDi/Yo0zSp+Th9tHHmPWq9F8e66gvfSbdXHZN
+         YCEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6soWZHI+mBTs41mjvaDIr6I3byHujiJ15JL91cIfBfg=;
+        b=CAeF4qOIh/hvqbTm9/KkkvIHlhEB8K2aEVVfGAgAX3Q3dqZ4cksgDIAhXChLvLSOyV
+         /0oJk9/NvWOA+fVmWQQqIJSia4gB5bH2HlRec7AnH7lpb2rIUOb3WVEtEHjBHMl3LZ57
+         9Nu86UyHqK0ADwCk3ZIWLJp1Z9ltzU4nASrz3E5jTxWu/AtsUy3BgCFrb8hB8q7g1+qN
+         /85yziJDNw4SyoU7UHxSDdeWlvwna46W7qEjTqddk+29E3Ah4qrD2ZJxmHiagJ/Wd/Qu
+         pyXJVcexEH2PxA5ietOBg/FQJkNijfmzh4Lxrr6QVasdGXhjCRQk7d1BHcOZabO0LOFo
+         LImw==
+X-Gm-Message-State: APjAAAXTLhz6Gj11XEcOGevBx/Iy6seoRBo/qda9reygRWUK1+85rgep
+        tdutYIVkqvgneLkLyRS/7ejLbbyJHva71Q==
+X-Google-Smtp-Source: APXvYqxr0/UNhRe7WGzdPx15cQazIE3NboG8iq6r4/OO8DdXHDxu7PgO2q3pQSN2W8DFS0NtLmvM+w==
+X-Received: by 2002:a7b:cb07:: with SMTP id u7mr15761033wmj.174.1575143620444;
+        Sat, 30 Nov 2019 11:53:40 -0800 (PST)
+Received: from localhost ([37.238.188.27])
+        by smtp.gmail.com with ESMTPSA id a184sm8964233wmf.29.2019.11.30.11.53.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Nov 2019 11:53:40 -0800 (PST)
+From:   Mohammad Rasim <mohammad.rasim96@gmail.com>
+To:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: allwinner: a64: Enable Bluetooth on Teres-I
-Date:   Sat, 30 Nov 2019 20:47:19 +0100
-Message-Id: <20191130194719.112335-4-bonstra@bonstra.fr.eu.org>
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Mohammad Rasim <mohammad.rasim96@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH v4 1/3] dt-bindings: Add vendor prefix for Videostrong
+Date:   Sat, 30 Nov 2019 22:53:33 +0300
+Message-Id: <20191130195335.17740-2-mohammad.rasim96@gmail.com>
 X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191130194719.112335-1-bonstra@bonstra.fr.eu.org>
-References: <20191130194719.112335-1-bonstra@bonstra.fr.eu.org>
+In-Reply-To: <20191130195335.17740-1-mohammad.rasim96@gmail.com>
+References: <20191130195335.17740-1-mohammad.rasim96@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -50,43 +65,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The UART1 on the Teres-A64-I is connected to a rtl8723bs combo
-WLAN/Bluetooth controller, with three GPIOs used for device reset,
-host wake up and device wake up.
+Videostrong Technology Co., Ltd., A manufacturer of Android Players & STB
+(Android with DVB Hybrid box & DVB-T2/S2/C/ISDB-T/DTMB-TH/ATSC) as well as
+HD media players.
 
-Currently, the host wake up feature is not supported by the HCI H5
-driver.
-
-Signed-off-by: Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
 ---
- .../boot/dts/allwinner/sun50i-a64-teres-i.dts      | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-index 1069e7012c9c..b28e6d7cb227 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-@@ -325,6 +325,20 @@
- 	status = "okay";
- };
- 
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723bs-bt";
-+		powerdown-gpios = <&r_pio 0 4 GPIO_ACTIVE_LOW>; /* PL4 */
-+		host-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
-+		device-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+		firmware-name = "rtl8723bs_config-teres_a64_i.bin";
-+	};
-+};
-+
- &usbphy {
- 	usb1_vbus-supply = <&reg_usb1_vbus>;
- 	status = "okay";
--- 
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index fd6fa07c45b8..a6c83d70aa74 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1008,6 +1008,8 @@ patternProperties:
+     description: Variscite Ltd.
+   "^via,.*":
+     description: VIA Technologies, Inc.
++  "^videostrong,.*":
++    description: Videostrong Technology Co., Ltd.
+   "^virtio,.*":
+     description: Virtual I/O Device Specification, developed by the OASIS consortium
+   "^vishay,.*":
+--
 2.24.0
 
