@@ -2,102 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D20310DDDA
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2019 15:09:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61F0D10DE4D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2019 17:45:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726932AbfK3OJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Nov 2019 09:09:38 -0500
-Received: from mail-pj1-f66.google.com ([209.85.216.66]:44600 "EHLO
-        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725957AbfK3OJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Nov 2019 09:09:37 -0500
-Received: by mail-pj1-f66.google.com with SMTP id w8so14628224pjh.11
-        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2019 06:09:37 -0800 (PST)
+        id S1726799AbfK3Qpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Nov 2019 11:45:38 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:33963 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726497AbfK3Qpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Nov 2019 11:45:38 -0500
+Received: by mail-ot1-f66.google.com with SMTP id w11so27407213ote.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2019 08:45:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=FKtvrB0Mt1dPDCU0lQQZ0+l4lFfg4eSb8vzPxs0x5Z8=;
-        b=NMkJgp7dKL3T2uJcSbqnKzitPUjziDIfJ3LtXAhLmdnMzmv40dWWMkIqR1yKeiK+sI
-         wCpyM5e8aHnsEfAZblNQgMSBbCbB8v2WFqNdByM6hZ3+z1o87nyVUenCwdt74D4+ulIO
-         hAkbVXihxpLwP842/1Leq7lDEJr1QpvEeTE30S/uHthFsrG1XRv9Hx9was377htC/oBL
-         g2K7hL6jrlQnP32lkWxK4Z54hEcMCXTbNwYEhUaTTfnUNX7qoivwHzVexEkbfpDXHZoK
-         dmFi1XUaUbRfELLhcxQKs3S8F/R0o7A5bm8aDCkpbf5pVHtNV5B/JPdlS6CxxUiSIk5a
-         uVaA==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=ZVNz5m1CWpo/SXiD4QzfD5Yw/FjK8oLaMu7HNJDEPYA=;
+        b=VYd8Iq2q2bzl4CRwU6+F52OUsLa+f8JZ42AJdrApxGnlcmzprDnaqWC61btYNFqh83
+         AR7U8cqH61VtqcjLnMYTi6yGmKU3VNAI9YC8p2fxvtjglpKMsl+Buzd8zo34Tz5Yq36Z
+         DOYxIJf617Yq/aAk0OnEp9VZos1rXV/6OLjDvfHLQHxUxF8l5Ic6lPlR+DrQLI9uE4Gi
+         VkIlS+Qqwkk3sl95qqovNWZvpEbUo6+OQbxJJpLd+62SS5Iduf5+sMLrnBrpXTpHsXmO
+         qXVA6SYqLV7ebDOqiXu83dhYAMaa5Uh5Yvb2wduV9tzfgwCfI7/AHEFZSlVYMp7lAgzZ
+         6gsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=FKtvrB0Mt1dPDCU0lQQZ0+l4lFfg4eSb8vzPxs0x5Z8=;
-        b=uWGX9QNC9Lt/dRko11I1LX+dAfF+Z/B+2cDipKRMUUKvAdD9Qklh0P0IVPzRit9lZc
-         VgwTdU3APDT/sIyKOsy5dfvaQBlMm6pY2EXvLXb9reJxGZZ+g0pGFHd2KDJlT74hYEN9
-         GNAWIyi3IKCdXbkBXbdQ6gUk7c2Ngh6uoKQSD2T6FoYRQCGvcc81Sh5LuDhZP6PwluPl
-         ZgjSBw/czZexXpsqnanAi7lfDEUpSwlPyxGbMFwBgymFNFOupEKAOW9qRBtAze0zadrQ
-         qMpaMc0ESLeXylCyDXq3kpgZN6tHdJX29vlKID9RIUZdeq6UFHtWH010E1qblqn28Lp2
-         vjKQ==
-X-Gm-Message-State: APjAAAXo+2lI/oDxAkwq949xS+II6vnFmZPTzyvfHm/Am+6YbbSL0shV
-        aZHsTW/lB0ja98oqn2uEonlv
-X-Google-Smtp-Source: APXvYqzDwytiCfrEZJAt8NDxceGrzYgYfocCmVVy6k9xea1LbWHW7Mwlsg5/EklXVb4xjzRje9x+UQ==
-X-Received: by 2002:a17:90a:c697:: with SMTP id n23mr434520pjt.37.1575122976893;
-        Sat, 30 Nov 2019 06:09:36 -0800 (PST)
-Received: from Mani-XPS-13-9360 ([2409:4072:980:53e7:19a8:fb8d:d702:6994])
-        by smtp.gmail.com with ESMTPSA id p16sm28346128pgm.8.2019.11.30.06.09.31
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 30 Nov 2019 06:09:36 -0800 (PST)
-Date:   Sat, 30 Nov 2019 19:39:29 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, c.barrett@framos.com,
-        linux-kernel <linux-kernel@vger.kernel.org>, a.brela@framos.com,
-        Peter Griffin <peter.griffin@linaro.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>
-Subject: Re: [PATCH 3/5] media: i2c: imx290: Add RAW12 mode support
-Message-ID: <20191130140929.GA23629@Mani-XPS-13-9360>
-References: <20191129190541.30315-1-manivannan.sadhasivam@linaro.org>
- <20191129190541.30315-4-manivannan.sadhasivam@linaro.org>
- <CAOMZO5Btkd0NLM5RBFZHD5dryE7mR5JZRLC2X__pQNmjHGCywA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=ZVNz5m1CWpo/SXiD4QzfD5Yw/FjK8oLaMu7HNJDEPYA=;
+        b=Kd7pJVQycZ1kqvEH0o718nJ4QD8jiKjbXIjQM9OrPDvacJU2QC35yyQXqNKJ3hsVaH
+         Veqwnj/hWHEyO+fLCqEEFElde0QE/yvt1FZVVDbP828qruXuGtvOx1ok/3g8IQaWGEnH
+         2P2D1ToNMQXNwTPJvXS0s8Co5xlrjQ/ok+LT82Z04pbHcyuHljB7Mr9VtUpftBb6yaeH
+         nCAn6UU6m/p9j8bzL4eHOmt2fjyp8gHtPPQtUit08eQ0AcSksj5alxG5Xdj0dcIS8Kgl
+         nDIK329bFOXy3k6ZLETVehSwx0rjtljquUCcfRKHnCdq5TmEXrUuEDIrtGomHTHv/UZe
+         E+rA==
+X-Gm-Message-State: APjAAAUdIiSA6clP7IAiJkOx1vvAyFu1yxPYq/xfLf+uaRwgmx4wy6fM
+        udKM2liKQ99+xbpp4GSTelBKrgr6MYBNpF+MJVM=
+X-Google-Smtp-Source: APXvYqxRwWjvAkMrhpQgEeX/RcVFPp1T+xS3+CX51kjw/u9sAQlYWfOF/fJ4XL7Nco8iwh+Sl19jtF7nQZaf+y51d7o=
+X-Received: by 2002:a9d:173:: with SMTP id 106mr14914075otu.205.1575132335707;
+ Sat, 30 Nov 2019 08:45:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOMZO5Btkd0NLM5RBFZHD5dryE7mR5JZRLC2X__pQNmjHGCywA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Reply-To: kabiruwahid664@gmx.com
+Received: by 2002:a05:6830:18f8:0:0:0:0 with HTTP; Sat, 30 Nov 2019 08:45:35
+ -0800 (PST)
+From:   "Mr. Kabiru Wahid" <mrkabiruwahid47@gmail.com>
+Date:   Sat, 30 Nov 2019 12:45:35 -0400
+X-Google-Sender-Auth: fqst-rrLxEHBsVvkYacrhPAQTLw
+Message-ID: <CA+LcemeQ4ox3g-b0RuW6zFfNyeqxF+2E7ThQmOXkw1bju_AftQ@mail.gmail.com>
+Subject: Please I Need Your Respond!!
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
-
-On Fri, Nov 29, 2019 at 04:49:25PM -0300, Fabio Estevam wrote:
-> Hi Manivannan,
-> 
-> On Fri, Nov 29, 2019 at 4:07 PM Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
->                }
-> > +
-> > +               imx290->bpp = 10;
-> > +
-> > +               break;
-> > +       case MEDIA_BUS_FMT_SRGGB12_1X12:
-> > +               ret = imx290_set_register_array(imx290, imx290_12bit_settings,
-> > +                                               ARRAY_SIZE(
-> > +                                                       imx290_12bit_settings));
-> 
-> Could you please write the ARRAY_SIZE and its parameter in the same line?
-> 
-> It would improve readability.
-> 
-
-I don't favor this change but Sakari did this to supress the checkpatch
-warning while applying my initial patch, so now I did this here itself
-to maintain the uniformity.
-
-Thanks,
-Mani
-
-> Thanks
+Dear Friend! I am Kabiru Wahid a financial consultant in Burkina; I am
+contacting you in respect of my late client fund 15.5 Million Dollars
+deposited with a bank here in Burkina which is about to be confiscated
+by his bank Boa government after many years unclaimed, Kindly indicate
+your interest by sending me your full data; You should be rest assured
+that this is 100% risk-free also free from any scam/fraudulent
+act.----Reply me (kabiruwahid664@gmx.com)  Mr Kabiru Wahid!!
