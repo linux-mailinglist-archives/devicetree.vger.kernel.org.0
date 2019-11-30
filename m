@@ -2,91 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E251310DF3A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2019 21:23:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A2B610DF8D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2019 23:15:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727309AbfK3UXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Nov 2019 15:23:39 -0500
-Received: from vault.bonstra.fr.eu.org ([51.158.68.104]:41476 "EHLO
-        vault.bonstra.fr.eu.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727280AbfK3UXj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Nov 2019 15:23:39 -0500
-Received: from val.bonstra.fr.eu.org (unknown [192.168.128.2])
-        by vault.bonstra.fr.eu.org (Postfix) with ESMTP id 90334BFBCC;
-        Sat, 30 Nov 2019 20:23:37 +0000 (UTC)
-Received: from localhost.localdomain (vlad.gr1 [IPv6:fd7b:45cc:aa3d::3])
-        by val.bonstra.fr.eu.org (Postfix) with ESMTPSA id BB4D864C1B;
-        Sat, 30 Nov 2019 21:23:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=bonstra.fr.eu.org;
-        s=dkim1; t=1575145416; x=1576355016;
-        bh=KTDx3GIAk0BBY7Hm5xNIopsl0EDTIeBIgAhSNWOJzzw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=UjacfKcEmbQNnDInHocp5tbE+wr0WT/estqa6bJNtRbZSfUdnGXRTWfpwC21fXuqc
-         Q4VdN5W0fl5w8+pkpodLt696Bt8TzqwKvV7WrmcYaTCEOme4SpRMuX4sC55ypAyDSt
-         3Qiu1RmJrOKHWlrI53/4QbH27j8BRJDVyVA/F7p9yDn85tGZOidoMAaNob2nAMptIu
-         TL5Yrf6JiBrnbNMX9KhjKJRGnZlVYRgQHD19KwBpwHxUdwrP/SkZSBrai7hH/VS+A8
-         BxADUTpyz8uB/67wH8brJ8SMVT9BfYqDOBjRLxsni9xb722ojAZGmc2clZ0QR2BLqX
-         QaBiIl7Zj8JWA==
-From:   Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>
-To:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
+        id S1727213AbfK3WPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Nov 2019 17:15:39 -0500
+Received: from asavdk3.altibox.net ([109.247.116.14]:34372 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727025AbfK3WPi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Nov 2019 17:15:38 -0500
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id DE53820027;
+        Sat, 30 Nov 2019 23:15:34 +0100 (CET)
+Date:   Sat, 30 Nov 2019 23:15:33 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-omap@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org
-Subject: [PATCH v4 3/3] arm64: dts: allwinner: a64: Enable Bluetooth on Teres-I
-Date:   Sat, 30 Nov 2019 21:23:14 +0100
-Message-Id: <20191130202314.142096-4-bonstra@bonstra.fr.eu.org>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191130202314.142096-1-bonstra@bonstra.fr.eu.org>
-References: <20191130202314.142096-1-bonstra@bonstra.fr.eu.org>
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V5 2/3] dt-bindings: Add Logic PD Type 28 display panel
+Message-ID: <20191130221533.GC29715@ravnborg.org>
+References: <20191016135147.7743-1-aford173@gmail.com>
+ <20191016135147.7743-2-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191016135147.7743-2-aford173@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=pGLkceISAAAA:8
+        a=eRrw9GIQMXpSLQo85sUA:9 a=CjuIK1q_8ugA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The UART1 on the Teres-A64-I is connected to a rtl8723bs combo
-WLAN/Bluetooth controller, with three GPIOs used for device reset,
-host wake up and device wake up.
+Hi Adam.
+On Wed, Oct 16, 2019 at 08:51:46AM -0500, Adam Ford wrote:
+> This patch adds documentation of device tree bindings for the WVGA panel
+> Logic PD Type 28 display.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+> V5:  Replace GPIO_ACTIVE_HIGH with 0 to fix make dt_binding_check -k
+> V4:  Update per Rob H's suggestions and copy other panel yaml example from 5.4-rc1
+> V3:  Correct build errors from 'make dt_binding_check'
+> V2:  Use YAML instead of TXT for binding
+> 
 
-Currently, the host wake up feature is not supported by the HCI H5
-driver.
+Applied to drm-misc-next.
+It was applied before the driver changes so we had bindings
+for the driver changes when applied.
 
-Signed-off-by: Hugo Grostabussiat <bonstra@bonstra.fr.eu.org>
----
- .../boot/dts/allwinner/sun50i-a64-teres-i.dts      | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-index 1069e7012c9c..b28e6d7cb227 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts
-@@ -325,6 +325,20 @@
- 	status = "okay";
- };
- 
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723bs-bt";
-+		powerdown-gpios = <&r_pio 0 4 GPIO_ACTIVE_LOW>; /* PL4 */
-+		host-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
-+		device-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-+		firmware-name = "rtl8723bs_config-teres_a64_i.bin";
-+	};
-+};
-+
- &usbphy {
- 	usb1_vbus-supply = <&reg_usb1_vbus>;
- 	status = "okay";
--- 
-2.24.0
-
+	Sam
