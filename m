@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3B9810E3C7
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2019 23:20:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 640C110E3C9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2019 23:21:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727266AbfLAWUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Dec 2019 17:20:20 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:37762 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727252AbfLAWUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Dec 2019 17:20:20 -0500
-Received: by mail-ot1-f68.google.com with SMTP id k14so13680954otn.4
-        for <devicetree@vger.kernel.org>; Sun, 01 Dec 2019 14:20:20 -0800 (PST)
+        id S1727275AbfLAWVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Dec 2019 17:21:48 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:45611 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727252AbfLAWVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Dec 2019 17:21:48 -0500
+Received: by mail-ot1-f66.google.com with SMTP id r24so29386905otk.12
+        for <devicetree@vger.kernel.org>; Sun, 01 Dec 2019 14:21:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=eKEklKYTxc74yeDIIDJ461WwDRlTuHaPEY6AUOAVqFo=;
-        b=M6mSsQgJBmEfwwP+As7c0R5OhdjZuCgvUyD1CNLB1aBrxyiad8XFHPavJJufmLcToB
-         zgDaRn9buJ79JIwJOC+lIwto8K/nOimCOLwb4IkZDQDK8wo+C7kJkNchSFNV8A4GBYyK
-         AWfQ/JiqVN0qRupA1S5hwxBzyB4zlNKivSk4VFqDNXSJ9/CgVQdYS7pLhlC6hS5Ao8SX
-         lYSt5JL8PMZi5UFLcHmyfhlQFOWPLCE4ZOfAhSnBW+mGVrtPxisS2D0qcWBT16iLuQYY
-         mq4lEqsLZSYTQwNfxfOhQv6i4mOzkYb5f8CzQLgDkcmrTOVxF60VmoGmaXcwJEoOkFgL
-         woYA==
+        bh=zafjfhO80Bk14ln/ZiuCSbu3mvcfTQlO6J402qXWYSM=;
+        b=QPJW8QxlkiJRqiURjSFbtZXMQIUYtJcQpVd7rR1WS7yeSYQRdYBPlzVOIKp3TTcxmM
+         /wOR3VnNL2jPWeoGCQAqnDERlw+9cA+5D83WwjkgLukpOolIoss/R+QKawIJGJEMoUe1
+         usvzw10AAjQbFUoUrXhbCnApJ4n/CMD6V0+X1PRoTfpPkerzs36tcMyNhEQHN/6dFF2H
+         Wk9Dbokz3J0CTS7ak/riGYk/rBtHzGbVC78dM7wXPcBIXibN5kvVAN4Bw+HFj77Mnoc3
+         ncpMmp2ce9RdDuJ8e5v7MjWh/mwbSmj/aOaz2Sd/yBV74Ax6pZvpQZRGHNtOnlwG4Ivc
+         dvxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=eKEklKYTxc74yeDIIDJ461WwDRlTuHaPEY6AUOAVqFo=;
-        b=H861SrwmyC5M+tGGTr4q8UT8lKIJ6hdmPENcY1Zc67xzjQ9fu6XL5DGIAqUII+hnaJ
-         FQhoKRXkkhBbgoxBZmCpqd4hdmwecT8VZFiii0sRnzGYJ02X+MtJaXDIfLccEEuURDNV
-         1NluHtsHspZLOlZUgVZPMj85+vjLHA4CtBxYukngE9moXCWDLlExT+EkjJlVG4YvAIyo
-         73V89ErihNabDDXxcR1FyQOQtH/pDzu71RYWYjdj+9JodJ5NuW6hVbMNof7yUqCpnVW8
-         LrJ0pSDMXXl4M4nulYmw5BTTBVyQsDwALY9sE15yx9H24baSkju2tiblCKv+J4ebDaK7
-         4tmg==
-X-Gm-Message-State: APjAAAUO9bIbzYo49I2vpWpAVzf1SJUbt/heHs52cd818eUJdovYKDbl
-        m2mbj/KflFO0eTr20rLwlylxOh7MsOhcVHipUkU=
-X-Google-Smtp-Source: APXvYqyfdpkFF4YhIZQRSz5QfKb+7xwwpWjgMUwb72eA2kC/+/yx1PlnF+tDpLJneT1VNUkYtsoIolusAGGeAm5vPAw=
-X-Received: by 2002:a9d:5e0f:: with SMTP id d15mr18031458oti.96.1575238819567;
- Sun, 01 Dec 2019 14:20:19 -0800 (PST)
+        bh=zafjfhO80Bk14ln/ZiuCSbu3mvcfTQlO6J402qXWYSM=;
+        b=PnRrmcBDugslmg7a7sqUcufTeIAuf7EvjK0BfWUyfeL9P6stHO/2yuXULnvpM8MLNa
+         CnB3MTtfTi6MHgChk3qPaq7AOVqn43DOpWOTLCMduCtziKF4M5pZ+fNJ4g1KqDbHPcAt
+         J15D7kjd43Whpbc2ATftO9aBCveDbdNnMevXv9o2vTwXsxEALsD6CwSIoAmH2ksJZ/WJ
+         NknJf3bFC1iV7V1TLEk3gbIXv4bizGBIn2hZvAkbVHklBwa5YVJCTy23l/GUcmXDrBgA
+         Cf/cwVqdhjGxv12238EmSDKjlDtF3rUWTuhPY9tloWqDokcQg79Gyh48q7ZwOCjLWe9B
+         SizA==
+X-Gm-Message-State: APjAAAWTHHmIOhDQ2PA1RbBbQkmrLvjEmPCdNpYC9JODAMtM/S1sBPq6
+        qoZ2mtFLEUqNw1//EVvGuHcF2Exzb3Gedqb0Fes=
+X-Google-Smtp-Source: APXvYqytCSXqAwv0AIi382XWLFeFbvKAVyYBUZMoUap3BM482uhPvcgevQ0vf4+QmJZU4y6jypKVQosBwOaiUPONDBk=
+X-Received: by 2002:a9d:206c:: with SMTP id n99mr18109519ota.42.1575238905593;
+ Sun, 01 Dec 2019 14:21:45 -0800 (PST)
 MIME-Version: 1.0
-References: <20191130195335.17740-1-mohammad.rasim96@gmail.com> <20191130195335.17740-3-mohammad.rasim96@gmail.com>
-In-Reply-To: <20191130195335.17740-3-mohammad.rasim96@gmail.com>
+References: <20191130195335.17740-1-mohammad.rasim96@gmail.com> <20191130195335.17740-4-mohammad.rasim96@gmail.com>
+In-Reply-To: <20191130195335.17740-4-mohammad.rasim96@gmail.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 1 Dec 2019 23:20:08 +0100
-Message-ID: <CAFBinCD=Q+z3A4wJVumKs0-hzCvSqDuT0V3tpRPL08bQaLMBCQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: arm: amlogic: add Videostrong KII Pro bindings
+Date:   Sun, 1 Dec 2019 23:21:34 +0100
+Message-ID: <CAFBinCCYzThAM_DkQyDZ2LrF-6bJoxeNZDtfADmWOxLH+B3AUw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: meson-gxbb: add support for
+ Videostrong KII Pro
 To:     Mohammad Rasim <mohammad.rasim96@gmail.com>
 Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
@@ -59,10 +60,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 30, 2019 at 8:53 PM Mohammad Rasim
-<mohammad.rasim96@gmail.com> wrote:
->
-> Add the compatible for the Amlogic gxbb(s905) based kii pro
->
-> Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+[...]
+> +       leds {
+> +               compatible = "gpio-leds";
+> +               status {
+> +                       gpios = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_LOW>;
+> +                       default-state = "off";
+> +                       color = <LED_COLOR_ID_RED>;
+> +                       function = LED_FUNCTION_STATUS;
+why is LED_FUNCTION_STATUS not enclosed in <> like color above?
+
+
+Martin
