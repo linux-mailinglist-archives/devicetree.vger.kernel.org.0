@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F1E10E8FD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 11:33:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B565B10E900
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 11:33:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726330AbfLBKdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Dec 2019 05:33:09 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:40334 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727435AbfLBKdI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 05:33:08 -0500
-Received: by mail-wm1-f68.google.com with SMTP id t14so5042069wmi.5
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2019 02:33:06 -0800 (PST)
+        id S1726428AbfLBKdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Dec 2019 05:33:49 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:35078 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727378AbfLBKds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 05:33:48 -0500
+Received: by mail-wr1-f66.google.com with SMTP id g17so11485961wro.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2019 02:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20150623.gappssmtp.com; s=20150623;
+        d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=NbujNseECunLrgTOygV3gXrz0ppXeNI3Y3t4xov5aQU=;
-        b=qFs3Wq0Kg112YOZw7avQOJHM8xgA3AgiXpQgSLVH8qAqlP2P9FOdMe1KhnPkbWumHh
-         /mMOomRoJvOsq7gFxHk7iZw6B8vvL6N+QPVRD2SyICzbw0puBzgtLcGGLNb9yIOqPpK5
-         LDFNlf74k6YtC8bprUk+4Y4PS0P/i6BPZmgUZDw68n4aF5jeo7cwkug9A0nOR1zInmts
-         viOEDjPYz7vQ4mv29G+pwprrkngszcbI8nJbVqyhQr67++tDWlILKiucLPKW59XwE+Th
-         WFEEcDEmOVN6ynK86H9pc0Q+LkZh7F8DexL/zfeRr8pS5+eV/SZkGp8Y0m6qmMVCJG0+
-         DFnA==
+        bh=BZDOs+6KZ65EcElvSJt7ZXy2SOQLStp1UNKeuht/zHU=;
+        b=fmU7E+caJrhN4O84Y+GBUPoblqRU8cvSE8dkjhn+RfoMdpe5f3Z87mOLEdTZ8YWx4z
+         QALr7K7e4a46/SKwYPdiOlqulBxq3hYemJK/7mlsFmMVTgwOPK6o+rbJj6j1zxfk/sMn
+         Z5acmBAZMLSe+i4b8LXayUXSgYuqmyd/nyC+c1GT/adj2GI1Gvc17WVhjxrhCkh7bezO
+         fdUM11NMn2chRM2VxPgpXq1PpxzJy8+H4oomxiDg3AQOUk2nIuyGYJcEazASfiZO9wtg
+         QdyEnRohoejvYqH0h7KK6q+xbNoopaFjf+WSx6dPRM2TI78/Cf2TU4gJQsghe2Ry2fZX
+         1HmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=NbujNseECunLrgTOygV3gXrz0ppXeNI3Y3t4xov5aQU=;
-        b=Zyygj7bW0dQvXBDkVw9jvFoj5mu1SXK0eyvow1BqPJx1StWgVOqrSHC0EvW1A7LD2T
-         DK5+wR/6s5f9iDHjyDD/LMRVphuvq95+Q+H5mVi3QegLtXqk1UviPRGNDVuM/Sg7dcqd
-         5MUWGa/iBEhaxWSZHfHMO86ku6laUE0z/seQOWO2C6XTcf6LxxIl0RTXZukKNhWE/ACN
-         +I/kmxCa8UFMdQ+XJH2nlTgX2bfKCdrRy+AQDOHLnHC06Map3TZrcZDnJPMJsoLZ/N3u
-         Xw/cfPRrkAeCtHXxa0QENd2kCSGaNLCwkMku4sZOsgoYwY7WIue+S7o8PmAdIsNAS3uA
-         rUZg==
-X-Gm-Message-State: APjAAAV9Sk7N/ShKyhjp3eroooGB/qrdDAlvF1oeBPoKYKbn65EEO7Zr
-        WgZZFn+1w59vWQVVe+dd7xTciEKfDEc=
-X-Google-Smtp-Source: APXvYqx/zfGlr07Rgyo4vRcDRxmR59qe0zpo9aclFbg5OK7yOuJFdAYgGeUB8trIIQI5k1gPtsHHCw==
-X-Received: by 2002:a1c:8086:: with SMTP id b128mr25010547wmd.80.1575282785213;
-        Mon, 02 Dec 2019 02:33:05 -0800 (PST)
+        bh=BZDOs+6KZ65EcElvSJt7ZXy2SOQLStp1UNKeuht/zHU=;
+        b=bZ6Cdk/oPPRc/12nHLJLHSrk4HZV6hwiJNt40N73zRorIvAiAyCYBcCZMuWkd3EkxE
+         m+UKBZYY9OeHvJ8UM8DZWC8fkQMde6IOrvKHm+ccZO5CQfqhzg/FlRQ0TWEXI0+bvebS
+         +fp9HdFnWXStgU3y8BSiQBnRpcyKVHenLwVR+cMJjqzTqWwTYGMwfZ/dMn2/THiF0KQj
+         OKQBsuTjgctp6vQwU4ToDBSTNekAXxUZbPrs+PykY+p/HFCk7m/qo703EywppuEZNpF8
+         FYTtLZwWffxQP4je6l0WDrRxNbpfDpaPvUIwu8EX5N8uoH+Ne3N4CMaupF3dG9Kjfi6x
+         VQAw==
+X-Gm-Message-State: APjAAAVkgsKl4EwK1bOT9alS3KSikap9t+s3puucxFh7G67GTaP27dcF
+        YkDbJ0LnRD8KhfrsMeZXVUJ1dVHRPnA=
+X-Google-Smtp-Source: APXvYqysFOI6AOcGUQddrF8MtvJ5dTuF8wjH4s29z+XircZgUOI4BYk/do5s+5x7CSkxFY/Id3geig==
+X-Received: by 2002:adf:b602:: with SMTP id f2mr7387723wre.99.1575282824896;
+        Mon, 02 Dec 2019 02:33:44 -0800 (PST)
 Received: from [192.168.0.38] ([176.61.57.127])
-        by smtp.gmail.com with ESMTPSA id y20sm14961169wmi.25.2019.12.02.02.33.03
+        by smtp.gmail.com with ESMTPSA id z7sm22986240wma.46.2019.12.02.02.33.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Dec 2019 02:33:04 -0800 (PST)
+        Mon, 02 Dec 2019 02:33:44 -0800 (PST)
 Subject: Re: [PATCH v6 1/8] usb: dwc3: Registering a role switch in the DRD
  code.
 To:     John Stultz <john.stultz@linaro.org>,
@@ -66,9 +66,9 @@ Cc:     Yu Chen <chenyu56@huawei.com>,
         devicetree@vger.kernel.org
 References: <20191128051001.18995-1-john.stultz@linaro.org>
  <20191128051001.18995-2-john.stultz@linaro.org>
-From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
-Message-ID: <4008a130-06e0-23b2-a04a-667b1cdbfeb6@nexus-software.ie>
-Date:   Mon, 2 Dec 2019 10:33:19 +0000
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Message-ID: <a425d23e-2be3-8c56-afd9-a425d9318533@linaro.org>
+Date:   Mon, 2 Dec 2019 10:33:59 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
@@ -256,6 +256,6 @@ On 28/11/2019 05:09, John Stultz wrote:
 >   					   &dwc->edev_nb);
 > 
 
-This again I've used on the qcs404 and it works nicely.
+Try again ;)
 
 Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
