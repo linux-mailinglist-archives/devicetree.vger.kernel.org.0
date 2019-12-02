@@ -2,220 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0891310EA55
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 14:02:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FFCF10EA4A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 14:01:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727479AbfLBNCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Dec 2019 08:02:41 -0500
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:45795 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727462AbfLBNCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 08:02:40 -0500
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id xB2D1pmQ015197;
-        Mon, 2 Dec 2019 15:01:51 +0200
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
-        id 7317260275; Mon,  2 Dec 2019 15:01:51 +0200 (IST)
-From:   amirmizi6@gmail.com
-To:     Eyal.Cohen@nuvoton.com, jarkko.sakkinen@linux.intel.com,
-        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
-        jgg@ziepe.ca, arnd@arndb.de, gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        ayna@linux.vnet.ibm.com, Dan.Morav@nuvoton.com,
-        oren.tanami@nuvoton.com, shmulik.hager@nuvoton.com,
-        amir.mizinski@nuvoton.com, Amir Mizinski <amirmizi6@gmail.com>
-Subject: [PATCH v1 2/5] char: tpm: Add check_data handle to tpm_tis_phy_ops in order to check data integrity
-Date:   Mon,  2 Dec 2019 15:01:29 +0200
-Message-Id: <20191202130132.175382-3-amirmizi6@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20191202130132.175382-1-amirmizi6@gmail.com>
-References: <20191202130132.175382-1-amirmizi6@gmail.com>
+        id S1727391AbfLBNBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Dec 2019 08:01:39 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:58122 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727386AbfLBNBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 08:01:39 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1D718309;
+        Mon,  2 Dec 2019 14:01:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1575291697;
+        bh=WYmra6jda+Fp8NOdE5uzn+oGXn851nCErVz2IiLcgxA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nIbIj2POuyZeAMi5k6PheqcZfLAavfLvEMEus7Cs7/Xyxl7ZXPI33YgTrgqT6O3kv
+         3cFP+VG3F+s/yLhV6BxubaRm68MKmJG175CTynEeMwJRaHr6XOIqtD5UImdSWOvGuy
+         e5FU0OsETy9qXVdLv4iPFmR7H3CYQrT0febZBnB4=
+Date:   Mon, 2 Dec 2019 15:01:29 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Tony Lindgren <tony@atomide.com>, Jyri Sarha <jsarha@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>
+Subject: Re: [PATCH 1/3] ARM: dts: am437x-gp/epos-evm: fix panel compatible
+Message-ID: <20191202130129.GG4929@pendragon.ideasonboard.com>
+References: <20191114093950.4101-1-tomi.valkeinen@ti.com>
+ <20191114093950.4101-2-tomi.valkeinen@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191114093950.4101-2-tomi.valkeinen@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amir Mizinski <amirmizi6@gmail.com>
+Hi Tomi,
 
-The current principles:
-- When sending command:
-1. Host writes TPM_STS.commandReady
-2. Host writes command
-3. Host checks TPM received data correctly
-4. if not go to step 1
+Thank you for the patch.
 
-- When receiving data:
-1. Host check TPM_STS.dataAvail is set
-2. Host get data
-3. Host check received data are correct.
-4. if not Host write TPM_STS.responseRetry and go to step 1.
+On Thu, Nov 14, 2019 at 11:39:48AM +0200, Tomi Valkeinen wrote:
+> The LCD panel on AM4 GP EVMs and ePOS boards seems to be
+> osd070t1718-19ts. The current dts files say osd057T0559-34ts. Possibly
+> the panel has changed since the early EVMs, or there has been a mistake
+> with the panel type.
+> 
+> Update the DT files accordingly.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 
-this commit is based on previous work by Christophe Richard
+Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
----
- drivers/char/tpm/tpm_tis_core.c | 97 +++++++++++++++++++++++++----------------
- drivers/char/tpm/tpm_tis_core.h |  3 ++
- 2 files changed, 62 insertions(+), 38 deletions(-)
+> ---
+>  arch/arm/boot/dts/am437x-gp-evm.dts  | 2 +-
+>  arch/arm/boot/dts/am43x-epos-evm.dts | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/am437x-gp-evm.dts b/arch/arm/boot/dts/am437x-gp-evm.dts
+> index cae4500194fe..811c8cae315b 100644
+> --- a/arch/arm/boot/dts/am437x-gp-evm.dts
+> +++ b/arch/arm/boot/dts/am437x-gp-evm.dts
+> @@ -86,7 +86,7 @@
+>  		};
+>  
+>  	lcd0: display {
+> -		compatible = "osddisplays,osd057T0559-34ts", "panel-dpi";
+> +		compatible = "osddisplays,osd070t1718-19ts", "panel-dpi";
+>  		label = "lcd";
+>  
+>  		backlight = <&lcd_bl>;
+> diff --git a/arch/arm/boot/dts/am43x-epos-evm.dts b/arch/arm/boot/dts/am43x-epos-evm.dts
+> index 95314121d111..078cb473fa7d 100644
+> --- a/arch/arm/boot/dts/am43x-epos-evm.dts
+> +++ b/arch/arm/boot/dts/am43x-epos-evm.dts
+> @@ -42,7 +42,7 @@
+>  	};
+>  
+>  	lcd0: display {
+> -		compatible = "osddisplays,osd057T0559-34ts", "panel-dpi";
+> +		compatible = "osddisplays,osd070t1718-19ts", "panel-dpi";
+>  		label = "lcd";
+>  
+>  		backlight = <&lcd_bl>;
 
-diff --git a/drivers/char/tpm/tpm_tis_core.c b/drivers/char/tpm/tpm_tis_core.c
-index c3181ea..ce7f8a1 100644
---- a/drivers/char/tpm/tpm_tis_core.c
-+++ b/drivers/char/tpm/tpm_tis_core.c
-@@ -242,6 +242,15 @@ static u8 tpm_tis_status(struct tpm_chip *chip)
- 	return status;
- }
- 
-+static bool tpm_tis_check_data(struct tpm_chip *chip, const u8 *buf, size_t len)
-+{
-+	struct tpm_tis_data *priv = dev_get_drvdata(&chip->dev);
-+
-+	if (priv->phy_ops->check_data)
-+		return priv->phy_ops->check_data(priv, buf, len);
-+	return true;
-+}
-+
- static void tpm_tis_ready(struct tpm_chip *chip)
- {
- 	struct tpm_tis_data *priv = dev_get_drvdata(&chip->dev);
-@@ -308,47 +317,55 @@ static int tpm_tis_recv(struct tpm_chip *chip, u8 *buf, size_t count)
- {
- 	struct tpm_tis_data *priv = dev_get_drvdata(&chip->dev);
- 	int size = 0;
--	int status;
-+	int status, i;
- 	u32 expected;
-+	bool check_data = false;
- 
--	if (count < TPM_HEADER_SIZE) {
--		size = -EIO;
--		goto out;
--	}
-+	for (i = 0; i < TPM_RETRY && !check_data; i++) {
-+		if (count < TPM_HEADER_SIZE) {
-+			size = -EIO;
-+			goto out;
-+		}
- 
--	size = recv_data(chip, buf, TPM_HEADER_SIZE);
--	/* read first 10 bytes, including tag, paramsize, and result */
--	if (size < TPM_HEADER_SIZE) {
--		dev_err(&chip->dev, "Unable to read header\n");
--		goto out;
--	}
-+		size = recv_data(chip, buf, TPM_HEADER_SIZE);
-+		/* read first 10 bytes, including tag, paramsize, and result */
-+		if (size < TPM_HEADER_SIZE) {
-+			dev_err(&chip->dev, "Unable to read header\n");
-+			goto out;
-+		}
- 
--	expected = be32_to_cpu(*(__be32 *) (buf + 2));
--	if (expected > count || expected < TPM_HEADER_SIZE) {
--		size = -EIO;
--		goto out;
--	}
-+		expected = be32_to_cpu(*(__be32 *) (buf + 2));
-+		if (expected > count || expected < TPM_HEADER_SIZE) {
-+			size = -EIO;
-+			goto out;
-+		}
- 
--	size += recv_data(chip, &buf[TPM_HEADER_SIZE],
--			  expected - TPM_HEADER_SIZE);
--	if (size < expected) {
--		dev_err(&chip->dev, "Unable to read remainder of result\n");
--		size = -ETIME;
--		goto out;
--	}
-+		size += recv_data(chip, &buf[TPM_HEADER_SIZE],
-+				  expected - TPM_HEADER_SIZE);
-+		if (size < expected) {
-+			dev_err(&chip->dev, "Unable to read remainder of result\n");
-+			size = -ETIME;
-+			goto out;
-+		}
- 
--	if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
--				&priv->int_queue, false) < 0) {
--		size = -ETIME;
--		goto out;
--	}
--	status = tpm_tis_status(chip);
--	if (status & TPM_STS_DATA_AVAIL) {	/* retry? */
--		dev_err(&chip->dev, "Error left over data\n");
--		size = -EIO;
--		goto out;
--	}
-+		if (wait_for_tpm_stat(chip, TPM_STS_VALID, chip->timeout_c,
-+				      &priv->int_queue, false) < 0) {
-+			size = -ETIME;
-+			goto out;
-+		}
-+
-+		status = tpm_tis_status(chip);
-+		if (status & TPM_STS_DATA_AVAIL) {	/* retry? */
-+			dev_err(&chip->dev, "Error left over data\n");
-+			size = -EIO;
-+			goto out;
-+		}
- 
-+		check_data = tpm_tis_check_data(chip, buf, size);
-+		if (!check_data)
-+			tpm_tis_write8(priv, TPM_STS(priv->locality),
-+				       TPM_STS_RESPONSE_RETRY);
-+	}
- out:
- 	tpm_tis_ready(chip);
- 	return size;
-@@ -453,13 +470,17 @@ static void disable_interrupts(struct tpm_chip *chip)
- static int tpm_tis_send_main(struct tpm_chip *chip, const u8 *buf, size_t len)
- {
- 	struct tpm_tis_data *priv = dev_get_drvdata(&chip->dev);
--	int rc;
-+	int rc, i;
- 	u32 ordinal;
- 	unsigned long dur;
-+	bool data_valid = false;
- 
--	rc = tpm_tis_send_data(chip, buf, len);
--	if (rc < 0)
--		return rc;
-+	for (i = 0; i < TPM_RETRY && !data_valid; i++) {
-+		rc = tpm_tis_send_data(chip, buf, len);
-+		if (rc < 0)
-+			return rc;
-+		data_valid = tpm_tis_check_data(chip, buf, len);
-+	}
- 
- 	/* go and do it */
- 	rc = tpm_tis_write8(priv, TPM_STS(priv->locality), TPM_STS_GO);
-diff --git a/drivers/char/tpm/tpm_tis_core.h b/drivers/char/tpm/tpm_tis_core.h
-index d06c65b..486c2e9 100644
---- a/drivers/char/tpm/tpm_tis_core.h
-+++ b/drivers/char/tpm/tpm_tis_core.h
-@@ -34,6 +34,7 @@ enum tis_status {
- 	TPM_STS_GO = 0x20,
- 	TPM_STS_DATA_AVAIL = 0x10,
- 	TPM_STS_DATA_EXPECT = 0x08,
-+	TPM_STS_RESPONSE_RETRY = 0x02,
- };
- 
- enum tis_int_flags {
-@@ -106,6 +107,8 @@ struct tpm_tis_phy_ops {
- 	int (*read16)(struct tpm_tis_data *data, u32 addr, u16 *result);
- 	int (*read32)(struct tpm_tis_data *data, u32 addr, u32 *result);
- 	int (*write32)(struct tpm_tis_data *data, u32 addr, u32 src);
-+	bool (*check_data)(struct tpm_tis_data *data, const u8 *buf,
-+			   size_t len);
- };
- 
- static inline int tpm_tis_read_bytes(struct tpm_tis_data *data, u32 addr,
 -- 
-2.7.4
+Regards,
 
+Laurent Pinchart
