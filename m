@@ -2,134 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB4B10EA9B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 14:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E24610EA95
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 14:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727438AbfLBNNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Dec 2019 08:13:10 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:58274 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727454AbfLBNNK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 08:13:10 -0500
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8640C309;
-        Mon,  2 Dec 2019 14:13:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1575292388;
-        bh=4k2gpT/sh1J3AYsg87ypOtWUJndOQu78qYrYWpTPQHQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=suffUEexrYMZs3dlyifyV1VrIfHrYwokI6CdDOCg8tobPI5wEsyBMVx35MsrBve9T
-         fiTeMf/MN2k8KJTKsiUacf1KLkrNvHCVH+OMR+6ch4JEhRJqPm48CUQPKwNWjGcdTh
-         01dKm8w90icQbZczBB6xXH2I6rrMRKcLNOJW6Zw4=
-Date:   Mon, 2 Dec 2019 15:13:00 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Tony Lindgren <tony@atomide.com>, Jyri Sarha <jsarha@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>
-Subject: Re: [PATCH 0/3] drm/omap: fix am4 evm lcd
-Message-ID: <20191202131300.GJ4929@pendragon.ideasonboard.com>
-References: <20191114093950.4101-1-tomi.valkeinen@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20191114093950.4101-1-tomi.valkeinen@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727433AbfLBNNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Dec 2019 08:13:04 -0500
+Received: from mail-qt1-f170.google.com ([209.85.160.170]:46503 "EHLO
+        mail-qt1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727386AbfLBNNE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 08:13:04 -0500
+Received: by mail-qt1-f170.google.com with SMTP id 38so5333755qtb.13
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2019 05:13:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=ILsbkWyEUpe5k1jgYQVoQ+1hggPYkj8GB9hKLvJCPIc=;
+        b=GhTgliPEhfl+lmllKol5KPzzrhoA4qSpUltHr0hCVpna4jzwntn/PAPEsmYa80jqdz
+         +3+nzXYOEvMrwSRITrRoju2c3MOwTGTwwm/eldnaLTk3AeHEi5grDZ97VvBYu//Yv9Db
+         AjaOBud7RdMBtWoAiSoQ2bk0ADB6Aqli2NGELLxYyTa2zWDv1WV9dcY+NecTmpw4NHpT
+         KKrdnsNU+IqAxo9lYggVfhA8VN6C54WEMRet5NqDt6096FgFPqkAxJ4zSVNXi4Jz+V7C
+         Va03riVDE22EDT4Z5qiySxyXP2/dWxDrvHUKlsJ8wKOBfNkGqAU8Q1dpQBl0I7j+k3CO
+         qfzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ILsbkWyEUpe5k1jgYQVoQ+1hggPYkj8GB9hKLvJCPIc=;
+        b=W8aemrf4bV2dhY3vteNgGxv4934WCnJcQOkaHBkcZZH+0Qz+hh5ZmJ2p2/zd4tHH0O
+         KqPF5E3MAUL2JV+pZ7So7PVJX5QrvHulluSCIgOGBCUHJA12z8xG97otDhvGcqaFvqgy
+         Ym0EgeZ8usnAfoIw145CzsNdgghiWbmMqdVYizsRnbyjRQ4FLifdb/tN3h3av5NhHQjH
+         JEn8q/gep3U7HIu2oGYzJ7wEJUbLuAe3xBuRMXdkkh+Fek48d+LUrwb7xQPXfB1UL8l1
+         O6siGZdg7Cj0+b8uL4cYYfcRFctyGGYp2WrLzuoTfI0wPSkSGoZMFA14227z76bMxEjT
+         ko4w==
+X-Gm-Message-State: APjAAAUWCzdtQFFpWn9fAViDvQB3GkUKTadZ4Qw4GR858qBB3ynmXcML
+        jmYXkheqRAgLErnDL/A29DQ=
+X-Google-Smtp-Source: APXvYqwnkYYxhhPDxgh0V3hGM/8c9gN1A/GxyH0icE0kcTYmssvIYDqsIMGOrjtHsUIMahzTrtmR4g==
+X-Received: by 2002:ac8:22c4:: with SMTP id g4mr66408284qta.45.1575292382916;
+        Mon, 02 Dec 2019 05:13:02 -0800 (PST)
+Received: from fabio-Latitude-E5450.nxp.com ([177.221.114.206])
+        by smtp.gmail.com with ESMTPSA id x8sm14170893qki.60.2019.12.02.05.12.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2019 05:13:02 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v2 RESEND 1/2] dt-bindings: arm: fsl: Document i.MX7ULP Embedded Artists COM board
+Date:   Mon,  2 Dec 2019 10:13:17 -0300
+Message-Id: <20191202131318.11404-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
+Add an entry for the Embedded Artists i.MX7ULP COM board.
 
-On Thu, Nov 14, 2019 at 11:39:47AM +0200, Tomi Valkeinen wrote:
-> Hi Tony, Thierry, Laurent,
-> 
-> After the recent change of moving from omapdrm specific panel-dpi driver
-> to the DRM simple panel, AM4 EVM/ePOS's panel is not working quite
-> right. This series has fixes for it, but I'm not sure if these are the
-> right ways to fix the issues, so comments welcome.
-> 
-> 1) Panel driver is not probed. With omapdrm's panel-dpi, the match
-> happened with "panel-dpi" compatible string. Now with panel-simple, the
-> match should happen with the panel model compatible string, which is
-> "osddisplays,osd057T0559-34ts" in the DT file. However, no such
-> compatible exists in panel-simple.
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+Changes since v1:
+- None
 
-I've also noticed that we have a few other omap-based platforms that
-got broken, for the same reason :-( We're missing driver support for
-innolux,at070tn83, samsung,lte430wq-f0c and startek,startek-kd050c, and
-we have a few nodes that use panel-dpi without any more precise
-compatible string.
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> Interestingly, the actual panel at least on my EVMs and ePOSes is not
-> osd057T0559-34ts, but osd070t1718-19ts. Also, I was unable to find any
-> information about osd057T0559-34ts. I don't know the history with this,
-> so it is possible that the early versions of the boards did have
-> osd057T0559-34ts, but was later changed to osd070t1718-19ts.
-> 
-> As osd070t1718-19ts is supported by panel-simple, changing the
-> compatible string to osd070t1718-19ts in the DT file solves this one.
-> 
-> 2) Timings in DT file cause a kernel warning. Omapdrm's panel-dpi used
-> video timings from the DT file, so they are present in all the DT files.
-> panel-simple uses timings from a table in the panel-simple driver, but
-> gives a kernel warning if the DT file contains timings.
-> 
-> This can be solved by removing the timings from the DT file.
-> 
-> 3) Sync drive edge is not right. This one might have been present also
-> with panel-dpi, I didn't verify. The problem is that the panel-simple
-> data for osddisplays_osd070t1718_19ts defines bus_flags for DE polarity
-> and pixdata edge, but not for sync edge.
-> 
-> The datasheet for the panel does not give any hint on what the edge
-> should be.  Omapdrm defaults to driving syncs on falling edge, which
-> caused the image to be shifted one pixel to the right.
-> 
-> Adding DRM_BUS_FLAG_SYNC_DRIVE_POSEDGE bus_flag solves the problem. AM5
-> EVM also has the same panel with the same behavior.
-> 
-> ====
-> 
-> The reason I'm not sure if the 1) and 2) fixes are correct is that
-> they're breaking DT compatibility. Should we instead make changes to
-> panel-simple to keep the same DT files working?
-
-That's tempting, as breaking DT is quite bad, but that would require
-adding a match on panel-dpi, and parsing timings in the panel-simple
-driver. Thierry has always been opposed to that as far as I can tell,
-and even if I don't share his point of view, I don't want to move in
-this direction without a consensus.
-
-Your series is fine in my opinion, as even if we decide to handle
-backward compatibility in this case, changing the DT files in mainline
-is still the right way to go (if only to avoid giving wrong examples).
-
-> This would mean adding a new entry for the osd057T0559-34ts panel, but
-> as we don't have datasheet for it, I think we could just append the
-> compatible string to osd070t1718-19t's data.
-> 
-> It would also mean doing some change to the panel-simple code that gives
-> the warning about timings in DT data. This might make sense, as I think
-> we have other DT files with video timings too.
-> 
-> For 3), I think the patch is fine, but I'm not sure if the display
-> controller driver should be able to deduce the sync drive edge from the
-> pixdata drive edge. Are they usually the same? I have no idea...
-> 
-> Tomi Valkeinen (3):
->   ARM: dts: am437x-gp/epos-evm: fix panel compatible
->   ARM: dts: am437x-gp/epos-evm: drop unused panel timings
->   drm/panel: simple: fix osd070t1718_19ts sync drive edge
-> 
->  arch/arm/boot/dts/am437x-gp-evm.dts  | 18 +-----------------
->  arch/arm/boot/dts/am43x-epos-evm.dts | 18 +-----------------
->  drivers/gpu/drm/panel/panel-simple.c |  3 ++-
->  3 files changed, 4 insertions(+), 35 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index b08ae59cc57f..e75f03bf8fbb 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -234,6 +234,7 @@ properties:
+       - description: i.MX7ULP based Boards
+         items:
+           - enum:
++              - ea,imx7ulp-com           # i.MX7ULP Embedded Artists COM Board
+               - fsl,imx7ulp-evk           # i.MX7ULP Evaluation Kit
+           - const: fsl,imx7ulp
+ 
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
