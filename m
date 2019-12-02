@@ -2,85 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A00A10EB64
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 15:13:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD0C10EB6F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 15:17:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727391AbfLBONb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Dec 2019 09:13:31 -0500
-Received: from mga11.intel.com ([192.55.52.93]:20950 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727362AbfLBONa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Dec 2019 09:13:30 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Dec 2019 06:13:30 -0800
-X-IronPort-AV: E=Sophos;i="5.69,268,1571727600"; 
-   d="scan'208";a="204572503"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Dec 2019 06:13:26 -0800
-From:   Jani Nikula <jani.nikula@linux.intel.com>
-To:     Chandan Uddaraju <chandanu@codeaurora.org>,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, seanpaul@chromium.org
-Cc:     abhinavk@codeaurora.org, hoegsberg@google.com,
-        dri-devel@lists.freedesktop.org,
-        Chandan Uddaraju <chandanu@codeaurora.org>
-Subject: Re: [DPU PATCH v3 2/5] drm: add constant N value in helper file
-In-Reply-To: <0101016ec6ddf2ce-8548e076-2347-49be-a9be-4d81a14ad8f7-000000@us-west-2.amazonses.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <1575294437-6129-1-git-send-email-chandanu@codeaurora.org> <0101016ec6ddf2ce-8548e076-2347-49be-a9be-4d81a14ad8f7-000000@us-west-2.amazonses.com>
-Date:   Mon, 02 Dec 2019 16:13:24 +0200
-Message-ID: <87tv6ike7v.fsf@intel.com>
+        id S1727442AbfLBORI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Dec 2019 09:17:08 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:43923 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727362AbfLBORH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 09:17:07 -0500
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.pengutronix.de.)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1ibmVd-0006gc-Qk; Mon, 02 Dec 2019 15:17:05 +0100
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        patchwork-lst@pengutronix.de
+Subject: [PATCH] ARM: dts: imx6: RDU2: link eDP bridge to panel
+Date:   Mon,  2 Dec 2019 15:17:05 +0100
+Message-Id: <20191202141705.31880-1-l.stach@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Dec 2019, Chandan Uddaraju <chandanu@codeaurora.org> wrote:
-> The constant N value (0x8000) is used by multiple DP
-> drivers. Define this value in header file and use this
-> in the existing i915 display driver.
->
-> Signed-off-by: Chandan Uddaraju <chandanu@codeaurora.org>
+This makes the eDP bridge chip aware of the panel, so it properly
+advertises eDP instead of DP to userspace and allows for proper
+backlight control through the panel abstraction. This patch is just
+to add all the required nodes, actual linking of the display chain
+will be done by the bootloader depending on panel detection.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+---
+ arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-and ack for merging via drm-misc or whichever tree you find suitable.
-
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
->  include/drm/drm_dp_helper.h                  | 1 +
->  2 files changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ce05e80..1a4ccfd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7496,7 +7496,7 @@ static void compute_m_n(unsigned int m, unsigned int n,
->  	 * which the devices expect also in synchronous clock mode.
->  	 */
->  	if (constant_n)
-> -		*ret_n = 0x8000;
-> +		*ret_n = DP_LINK_CONSTANT_N_VALUE;
->  	else
->  		*ret_n = min_t(unsigned int, roundup_pow_of_two(n), DATA_LINK_N_MAX);
->  
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 8364502..69b8251 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1357,6 +1357,7 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
->   * DisplayPort link
->   */
->  #define DP_LINK_CAP_ENHANCED_FRAMING (1 << 0)
-> +#define DP_LINK_CONSTANT_N_VALUE 0x8000
->  
->  struct drm_dp_link {
->  	unsigned char revision;
-
+diff --git a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
+index 93be00a60c88..c4adbf66cc7c 100644
+--- a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
+@@ -392,6 +392,14 @@
+ 					remote-endpoint = <&disp0_out>;
+ 				};
+ 			};
++
++			port@2 {
++				reg = <2>;
++
++				tc358767_out: endpoint {
++					remote-endpoint = <&panel_in>;
++				};
++			};
+ 		};
+ 	};
+ };
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
