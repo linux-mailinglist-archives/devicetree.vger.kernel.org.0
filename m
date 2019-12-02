@@ -2,149 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5DB810EF7E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 19:48:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA04D10EF9D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2019 19:57:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727635AbfLBSsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Dec 2019 13:48:01 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38345 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727556AbfLBSsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 13:48:01 -0500
-Received: by mail-oi1-f195.google.com with SMTP id b8so659021oiy.5;
-        Mon, 02 Dec 2019 10:48:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mBpJM7Zj2wSiQOjSDmwoTTIZ3KSKjAbhhQOqtWInyn8=;
-        b=A7aMOrXpKhJy4fk39+qi/ANYq/TUy3hJ06XneZJ5oUT0OFi6rhHC9yRUlq9vS9iAFR
-         mHzY8wyQTwwGj2fVHFWlHn2l0PiT3mGWgVNMXxnPXTUC0y1MVqBKX7+nTMutffctrpd2
-         x8JOeWWdqz65qRlfbS25GyyDioj7MNgdSMp3VUIG9zri8nRaGJ7jn4y8n1Asprwfofrv
-         vDP9wBKSFeoybGjyfoHV+EwJHX/7iWbpZh/AHZgehJFNa9bpOdNBv5N/mbOdmgVhwjz1
-         YRXP7Xlyi2SQat1hID0fUq721cXvoRXXGYmntZ3ZdwGj10+rdZn9v0nEs3bw7CHW92SS
-         RwQA==
-X-Gm-Message-State: APjAAAX4YTCRhzP5CNeDWGhYr9adWNRwanVIknLUrT/UuKud7yTM4XRB
-        ieIV2x6UGNTVqSf8lpjJjQ==
-X-Google-Smtp-Source: APXvYqzdzdPrzk+OWMWznQdm93ETxyP6UWwf6N3cCEdAYlYM58GRWWErDRTEF83uYELHa89BF49evQ==
-X-Received: by 2002:aca:c38c:: with SMTP id t134mr354494oif.175.1575312479937;
-        Mon, 02 Dec 2019 10:47:59 -0800 (PST)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m133sm104652oia.29.2019.12.02.10.47.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2019 10:47:59 -0800 (PST)
-Date:   Mon, 2 Dec 2019 12:47:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Walle <michael@walle.cc>, Li Yang <leoyang.li@nxp.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [v10 1/2] dt/bindings: clk: Add YAML schemas for LS1028A Display
- Clock bindings
-Message-ID: <20191202184758.GA8408@bogus>
-References: <20191127101525.44516-1-wen.he_1@nxp.com>
+        id S1727580AbfLBS5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Dec 2019 13:57:44 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:45986 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727556AbfLBS5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 13:57:44 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB2IvZEH037270;
+        Mon, 2 Dec 2019 12:57:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1575313055;
+        bh=DWBbhnE6qXaM66hNWm292SwxJiicsKfBcrA4AX4NS6A=;
+        h=From:To:CC:Subject:Date;
+        b=eTB7v2lfyPJq2tA3EeQNWlMzZuvcPnGltujoflXNiLqLfDC+twyqJxeCYM3QCV3Jr
+         O9vPOq7gq7sm/0hUn+I1c5R4jRtNOOXNdgtsGGnrWzYZZ8+DhKBTj0VlBp9fDPPISw
+         20bw3sdBfQyqEUOU0HzqfkJvAq4Oa237RyTbm2ZU=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB2IvZae129273;
+        Mon, 2 Dec 2019 12:57:35 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 2 Dec
+ 2019 12:57:32 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 2 Dec 2019 12:57:32 -0600
+Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB2IvUI3057431;
+        Mon, 2 Dec 2019 12:57:30 -0600
+From:   Jyri Sarha <jsarha@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <tony@atomide.com>,
+        <bcousson@baylibre.com>, <devicetree@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>
+CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
+        <peter.ujfalusi@ti.com>, <bparrot@ti.com>
+Subject: [PATCH] ARM: dts: am335x-evm: Use drm simple-panel instead of tilcdc-panel
+Date:   Mon, 2 Dec 2019 20:57:29 +0200
+Message-ID: <20191202185729.12921-1-jsarha@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191127101525.44516-1-wen.he_1@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 27, 2019 at 06:15:24PM +0800, Wen He wrote:
-> LS1028A has a clock domain PXLCLK0 used for provide pixel clocks to Display
-> output interface. Add a YAML schema for this.
-> 
-> Signed-off-by: Wen He <wen.he_1@nxp.com>
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
-> change in v10:
->         - Add optional feild 'vco-frequency'.
-> 
->  .../devicetree/bindings/clock/fsl,plldig.yaml | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,plldig.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/fsl,plldig.yaml b/Documentation/devicetree/bindings/clock/fsl,plldig.yaml
-> new file mode 100644
-> index 000000000000..ee5b5c61a471
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/fsl,plldig.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bindings/clock/fsl,plldig.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP QorIQ Layerscape LS1028A Display PIXEL Clock Binding
-> +
-> +maintainers:
-> +  - Wen He <wen.he_1@nxp.com>
-> +
-> +description: |
-> +  NXP LS1028A has a clock domain PXLCLK0 used for the Display output
-> +  interface in the display core, as implemented in TSMC CLN28HPM PLL.
-> +  which generate and offers pixel clocks to Display.
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,ls1028a-plldig
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 0
-> +
-> +  vco-frequency:
+Move to use the new drm panel support in tilcdc together with added
+"tfc,s9700rtwv43tr-01b"-panel support in drm panel-simple.
 
-Needs vendor prefix and unit suffix:
+Signed-off-by: Jyri Sarha <jsarha@ti.com>
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+---
+"tfc,s9700rtwv43tr-01b" in panel-simple has been in for some time now
+so it is about time to get this in too.
 
-fsl,vco-hz
+ arch/arm/boot/dts/am335x-evm.dts | 44 +++++++++++++-------------------
+ 1 file changed, 18 insertions(+), 26 deletions(-)
 
-Or you could perhaps just use 'clock-frequency'.
+diff --git a/arch/arm/boot/dts/am335x-evm.dts b/arch/arm/boot/dts/am335x-evm.dts
+index a00145705c9b..0e286a1c9cc5 100644
+--- a/arch/arm/boot/dts/am335x-evm.dts
++++ b/arch/arm/boot/dts/am335x-evm.dts
+@@ -113,7 +113,7 @@
+ 		};
+ 	};
+ 
+-	backlight {
++	backlight: backlight {
+ 		compatible = "pwm-backlight";
+ 		pwms = <&ecap0 0 50000 0>;
+ 		brightness-levels = <0 51 53 56 62 75 101 152 255>;
+@@ -121,35 +121,19 @@
+ 	};
+ 
+ 	panel {
+-		compatible = "ti,tilcdc,panel";
++		compatible = "tfc,s9700rtwv43tr-01b";
++
+ 		status = "okay";
++
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&lcd_pins_s0>;
+-		panel-info {
+-			ac-bias           = <255>;
+-			ac-bias-intrpt    = <0>;
+-			dma-burst-sz      = <16>;
+-			bpp               = <32>;
+-			fdd               = <0x80>;
+-			sync-edge         = <0>;
+-			sync-ctrl         = <1>;
+-			raster-order      = <0>;
+-			fifo-th           = <0>;
+-		};
+ 
+-		display-timings {
+-			800x480p62 {
+-				clock-frequency = <30000000>;
+-				hactive = <800>;
+-				vactive = <480>;
+-				hfront-porch = <39>;
+-				hback-porch = <39>;
+-				hsync-len = <47>;
+-				vback-porch = <29>;
+-				vfront-porch = <13>;
+-				vsync-len = <2>;
+-				hsync-active = <1>;
+-				vsync-active = <1>;
++		backlight = <&backlight>;
++		ports {
++			port {
++				panel_0: endpoint@0 {
++					remote-endpoint = <&lcdc_0>;
++				};
+ 			};
+ 		};
+ 	};
+@@ -525,6 +509,14 @@
+ 	status = "okay";
+ 
+ 	blue-and-red-wiring = "crossed";
++
++	ports {
++		port {
++			lcdc_0: endpoint@0 {
++				remote-endpoint = <&panel_0>;
++			};
++		};
++	};
+ };
+ 
+ &elm {
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-> +     $ref: '/schemas/types.yaml#/definitions/uint32'
-> +     description: Optional for VCO frequency of the PLL in Hertz.
-> +        The VCO frequency of this PLL cannot be changed during runtime
-> +        only at startup. Therefore, the output frequencies are very
-> +        limited and might not even closely match the requested frequency.
-> +        To work around this restriction the user may specify its own
-> +        desired VCO frequency for the PLL. The frequency has to be in the
-> +        range of 650000000 to 1300000000.
-> +        If not set, the default frequency is 1188000000.
-
-A bunch of constraints you've listed here that should be schema rather 
-than freeform text:
-
-minimum: 650000000
-maximum: 1300000000
-default: 1188000000
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - '#clock-cells'
-> +
-> +examples:
-> +  # Display PIXEL Clock node:
-> +  - |
-> +    dpclk: clock-display@f1f0000 {
-> +        compatible = "fsl,ls1028a-plldig";
-> +        reg = <0x0 0xf1f0000 0x0 0xffff>;
-> +        #clock-cells = <0>;
-> +        clocks = <&osc_27m>;
-> +    };
-> +
-> +...
-> -- 
-> 2.17.1
-> 
