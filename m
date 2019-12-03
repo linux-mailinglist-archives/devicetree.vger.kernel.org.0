@@ -2,107 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3A5110FD24
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 13:04:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AD2C10FD93
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 13:26:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727016AbfLCMDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Dec 2019 07:03:37 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:38383 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726008AbfLCMDh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 07:03:37 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id C3E8C22083;
-        Tue,  3 Dec 2019 07:03:35 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 03 Dec 2019 07:03:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=tDbn2lnY4YnA7
-        5X5LYWz7jhosHuxo/9hHasNksDYQ9E=; b=KnHFG1qsnC0CBWROzsm9lLVGD4yXX
-        yXsn8x7JfmL1iMicxQ9Bv29H1/ImfJvpNNvzhqUVtwD2RU7NyxFfelvNu+fLskbn
-        R12c4F9x3IlOJb6aK2ahWGEbb4lGMHuTrirLaboXsWZFQBl7zPcxfqdmHpEWMZVt
-        xpLjzL3SQX5VcS43sOAeMFSagogwYb3QpG4R3TlFORjm2TDCa5DA4Ix/+QPwDAZA
-        qeLMZLn54OPBQiQy7d/S1QJKBNQ/WkQG2fZta5QFvAmeX5jmcU3jsM6Sufue3B1Q
-        qIVoSx0E04zhNhHYiDWgWHM8UQKLiNyN0/ByOcmIGpPgg0OZgG0Zxl+fA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=tDbn2lnY4YnA75X5LYWz7jhosHuxo/9hHasNksDYQ9E=; b=Rm3MmifX
-        jeHEre1+PElzDzsddqxc2BTQrHIWquaWQ+1Swf87C07BWCxVYqya0CDpBd4R6Hwz
-        G94AKvElbOT6ewWpHGCOYwKrLZxVDvsKMaInhyYJHDO7eHIju+E4po2DmCcdh1MR
-        jOh8qu6uzqTmNaHSMOZQxgaRljylYsT/JihlbVBF/7X6lQ1j2fiwnn/2ppEl7twB
-        ZddbSeCZWi+cetEpaufHo+IJMs2vE/h6wBDhSRThSoUaEMFz2rFRLY4ccZPFq808
-        urA9uTyKEShr2ZU9ODPWGn0Lx2VV0KkYhfzAO3l/I3wDyvaDXwU1rcsfHA4N12st
-        qGApoVMc/nxrCg==
-X-ME-Sender: <xms:F0_mXUYOT_MKjOxhU5H2gjlKPh-NZCOSBwDnL_WzOpb1jlOqHXwY7w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudejjedgfeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegr
-    jhdrihgurdgruheqnecukfhppeduudekrddvuddurdelvddrudefnecurfgrrhgrmhepmh
-    grihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgvrhfuihii
-    vgepudef
-X-ME-Proxy: <xmx:F0_mXZqVPzaBlE9vSyCRRDplhbuuqGw8cMn2T36O9LTbCvZttfhpOw>
-    <xmx:F0_mXQvddJzgU4CqVnAzs4k7xGJh3V921k6hJciCtfjQRjYGHvz1ig>
-    <xmx:F0_mXTNFpNdOoll9xKxb7AAI3cUWHOuuSPQJIvRXNsZzYL3Z7JVzVw>
-    <xmx:F0_mXXJfGDDVZlPr89JXlnzVgi2cAAwhyNrjUe530FXhl5FK2ZrjaQ>
-Received: from mistburn.lan (unknown [118.211.92.13])
-        by mail.messagingengine.com (Postfix) with ESMTPA id B435530600D2;
-        Tue,  3 Dec 2019 07:03:32 -0500 (EST)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-aspeed@lists.ozlabs.org
-Cc:     joel@jms.id.au, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 14/14] ARM: dts: ibm-power9-dual: Add a unit address for OCC nodes
-Date:   Tue,  3 Dec 2019 22:34:15 +1030
-Message-Id: <895711a51b34e0618761cb9e6594e6734769e1cc.1575369656.git-series.andrew@aj.id.au>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.08e3a6c95159f017b753d0f240086d1a7923758b.1575369656.git-series.andrew@aj.id.au>
-References: <cover.08e3a6c95159f017b753d0f240086d1a7923758b.1575369656.git-series.andrew@aj.id.au>
+        id S1726323AbfLCM0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Dec 2019 07:26:05 -0500
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:32890 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725907AbfLCM0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 07:26:05 -0500
+Received: by mail-qt1-f193.google.com with SMTP id d5so3566698qto.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2019 04:26:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KCV6d9hCioXwDxQSc+9jtdCsRf9f3DSaaCIPQTYGbKY=;
+        b=bpJPXACy569Uou4xeEkwZe9zGcFmIVFTruFj2RkHy7VtyGHrOoGRz3FqXS6kIL+sRo
+         daMX5qEwAaWytvZEWpXQrsbW2BR8GJe0aPT3Cj7ggNoQNY3Dh2zJwsQVDGqIjqUv/hdQ
+         v2w7Is0MN86M34UBMlqsoquVNzg/LUCns7zy7DYnvPW3vKggDzp9hAMv6pdFnZgEqcvf
+         C4CXXVbJGvuwu7Bf8+AGrGMJmfi+XQ46PkOQY/Y8DnSF1xg5jRT4EnhFTXMHrLm63DYi
+         Nr3L1gbqGsTXMpQbHcQsMQwZRuobk3Bz4Nzsvvx5aTaYSsezK7fEDiHD4k3YJUebl9YQ
+         mqrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KCV6d9hCioXwDxQSc+9jtdCsRf9f3DSaaCIPQTYGbKY=;
+        b=JtEbWyCKCVSinD/jNHnd+j3Mp0ayuS2yubpq0VXviV1oPYHiPyGP8aUDTuQFWljTE9
+         oMgCYoWAlaS1WBoLjxOiF7FdhEkXJwpeaqrsQeMRNxqGEIa6Z8s7HdRRzJ0r7vGuNjNI
+         Y2rg2O0Z4lCgvtVGHPkYc+pT/O3XOpq0zWJ1ij059V9LKxTLGxv7fq9VPpAzXP23HocK
+         LWpsp2VoDzaecu7DzXSHBwX0llTn4PuCHxJU3rGk1hgu/uO2WGALKGpp5pKEJDDMIYfo
+         YQNNpPlNiCsZJsmw6RgoGWKBDNyf1qYWl2jo874Wit7GW9643vSbb4MSzCum6+0p0pxy
+         Z9GQ==
+X-Gm-Message-State: APjAAAVjNbN8iqtWbOCQzu6ogBLCWyHZWjpszKezn88503Fzs4hKb6o4
+        ty8LMWeFU+htlci9Ku17TOF2eEg6XHObJD7MQCNRcg==
+X-Google-Smtp-Source: APXvYqweLlybh/rT5gfnZhz0yyuec8Zuu65/mrhliV+x4arFaG745EaW3zCKngE6hVl+mIngkPeM29sDhed2WB7clT0=
+X-Received: by 2002:ac8:1098:: with SMTP id a24mr4859094qtj.62.1575375964252;
+ Tue, 03 Dec 2019 04:26:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191119231912.12768-1-mike.leach@linaro.org> <20191119231912.12768-7-mike.leach@linaro.org>
+ <b2f640d3-c320-82d4-7399-172846820589@arm.com> <CAJ9a7VgkgoUTL0+_3kj53go_CKtAH3fO5xF9UNDPPz1se1SKSw@mail.gmail.com>
+ <ffda8aff-0904-7292-e2f1-93833b936c49@arm.com>
+In-Reply-To: <ffda8aff-0904-7292-e2f1-93833b936c49@arm.com>
+From:   Mike Leach <mike.leach@linaro.org>
+Date:   Tue, 3 Dec 2019 12:25:52 +0000
+Message-ID: <CAJ9a7VgH6tueHP_bCcwKzORbBxxADrRhUzPaSe=3NixCC05=Dw@mail.gmail.com>
+Subject: Re: [PATCH v5 06/14] coresight: cti: Add device tree support for v8
+ arch CTI
+To:     Suzuki Kuruppassery Poulose <suzuki.poulose@arm.com>
+Cc:     Coresight ML <coresight@lists.linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These temporarily have a unit address until userspace is fixed up as
-noted in comments elsewhere in the dtsi.
+Hi Suzuki,
 
-Fixes the following warning:
+On Tue, 3 Dec 2019 at 11:28, Suzuki Kuruppassery Poulose
+<suzuki.poulose@arm.com> wrote:
+>
+> On 03/12/2019 10:59, Mike Leach wrote:
+> > Hi Suzuki,
+> >
+> > On Fri, 29 Nov 2019 at 11:33, Suzuki Kuruppassery Poulose
+> > <suzuki.poulose@arm.com> wrote:
+> >>
+> >> On 19/11/2019 23:19, Mike Leach wrote:
+> >>> The v8 architecture defines the relationship between a PE, its optional ETM
+> >>> and a CTI. Unlike non-architectural CTIs which are implementation defined,
+> >>> this has a fixed set of connections which can therefore be represented as a
+> >>> simple tag in the device tree.
+> >>>
+> >>> This patch defines the tags needed to create an entry for this PE/ETM/CTI
+> >>> relationship, and provides functionality to implement the connection model
+> >>> in the CTI driver.
+> >>>
+> >>> Signed-off-by: Mike Leach <mike.leach@linaro.org>
+> >>> ---
+>
+>
+> >>> +#ifdef CONFIG_OF
+> >>> +/*
+> >>> + * CTI can be bound to a CPU, or a system device.
+> >>> + * CPU can be declared at the device top level or in a connections node
+> >>> + * so need to check relative to node not device.
+> >>> + */
+> >>> +static int of_cti_get_cpu_at_node(const struct device_node *node)
+> >>> +{
+> >>> +     int cpu;
+> >>> +     struct device_node *dn;
+> >>> +
+> >>> +     if (node == NULL)
+> >>> +             return -1;
+> >>> +
+> >>> +     dn = of_parse_phandle(node, "cpu", 0);
+> >>> +     /* CTI affinity defaults to no cpu */
+> >>> +     if (!dn)
+> >>> +             return -1;
+> >>> +     cpu = of_cpu_node_to_id(dn);
+> >>> +     of_node_put(dn);
+> >>> +
+> >>> +     /* No Affinity  if no cpu nodes are found */
+> >>> +     return (cpu < 0) ? -1 : cpu;
+> >>> +}
+> >>> +
+> >>> +static const char *of_cti_get_node_name(const struct device_node *node)
+> >>> +{
+> >>> +     if (node)
+> >>> +             return node->full_name;
+> >>> +     return "unknown";
+> >>> +}
+> >>> +#else
+> >>> +static int of_cti_get_cpu_at_node(const struct device_node *node)
+> >>> +{
+> >>> +     return -1;
+> >>> +}
+> >>> +
+> >>> +static const char *of_cti_get_node_name(const struct device_node *node)
+> >>> +{
+> >>> +     return "unknown";
+> >>> +}
+> >>> +#endif
+> >>> +
+> >>> +static int cti_plat_get_cpu_at_node(struct fwnode_handle *fwnode)
+> >>> +{
+> >>
+> >> You may simply reuse coresight_get_cpu() below, instead of adding this
+> >> duplicate set of functions. See below.
+> >>
+> >>
+> >
+> > No we can't. coresight_get_cpu gets the 'cpu' entry relative to the
+> > device node, this gets the 'cpu' relative to the supplied node.
+> > This is very important for the case where a none v8 architected PE is
+> > attached to a CTI. This will use the devicetree form:-
+> >
+> > cti@<addr> {
+> >      [ some stuff  ]
+> >     trig_conns@1 {
+> >            cpu = <&CPU0>
+> >            [trigger signal  connection info for this cpu]
+> >     }
+> > }
+> >
+> > trig_conns is a child node and we must look for 'cpu' relative to it.
+>
+> Ok. May be we could refactor the function to find the 'CPU' node
+> relative to the given "fwnode" and let the coresight_get_cpu() use it ?
+>
+> int coresight_get_cpu(struct device *dev)
+> {
+>         return coresight_get_fwnode_cpu(dev_fwnode(dev));
+> }
+>
+> That way it is clear what we are dealing with. i.e, fwnode of any level
+> (device or an intermediate node).
+>
 
-    arch/arm/boot/dts/ibm-power9-dual.dtsi:89.18-91.6: Warning (unit_address_vs_reg): /gpio-fsi/cfam@0,0/sbefifo@2400/occ: node has a reg or ranges property, but no unit name
-    arch/arm/boot/dts/ibm-power9-dual.dtsi:190.18-192.6: Warning (unit_address_vs_reg): /gpio-fsi/cfam@0,0/hub@3400/cfam@1,0/sbefifo@2400/occ: node has a reg or ranges property, but no unit name
+At present the generic coresight_get_cpu() deals with both DT and ACPI
+bindings.
+To refactor this would require re-factoring both binding types - and
+at present we have no definition for ACPI bindings for CTI and hence
+no way of knowing how the embedded cpu node is going to be
+represented.
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
- arch/arm/boot/dts/ibm-power9-dual.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I think we have to take just the DT binding as is for now as a CTI
+specific element and consider if it is worth re-factoring once the
+ACPI bindings are defined
 
-diff --git a/arch/arm/boot/dts/ibm-power9-dual.dtsi b/arch/arm/boot/dts/ibm-power9-dual.dtsi
-index 2abc42eda7b0..a0fa65b44b0f 100644
---- a/arch/arm/boot/dts/ibm-power9-dual.dtsi
-+++ b/arch/arm/boot/dts/ibm-power9-dual.dtsi
-@@ -86,7 +86,7 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			fsi_occ0: occ {
-+			fsi_occ0: occ@1 {
- 				compatible = "ibm,p9-occ";
- 			};
- 		};
-@@ -187,7 +187,7 @@
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 
--			fsi_occ1: occ {
-+			fsi_occ1: occ@2 {
- 				compatible = "ibm,p9-occ";
- 			};
- 		};
+Regards
+
+Mike
+
+> >>> +     csdev = cti_get_assoc_csdev_by_fwnode(cs_fwnode);
+> >>> +     if (csdev)
+> >>> +             assoc_name = dev_name(&csdev->dev);
+> >>
+> >> Does it make sense to defer the probing until the ETM device  turn up ?
+> >> Its fine either way.
+> >>
+> >
+> > Not really as the ETM is optional but the PE still has a CTI.
+>
+> Ah, you're right. Please ignore my comment.
+>
+> Kind regards
+> Suzuki
+
+
+
 -- 
-git-series 0.9.1
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
