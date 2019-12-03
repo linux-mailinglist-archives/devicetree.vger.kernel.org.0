@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D39310FFE0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 15:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74EF710FFE5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 15:15:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726534AbfLCOP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Dec 2019 09:15:28 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59036 "EHLO
+        id S1726086AbfLCOP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Dec 2019 09:15:29 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59046 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726418AbfLCOP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 09:15:27 -0500
+        with ESMTP id S1726505AbfLCOP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 09:15:29 -0500
 Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 5582A290577;
-        Tue,  3 Dec 2019 14:15:26 +0000 (GMT)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 0840B290595;
+        Tue,  3 Dec 2019 14:15:27 +0000 (GMT)
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Lucas Stach <l.stach@pengutronix.de>,
@@ -42,9 +42,9 @@ Cc:     Lucas Stach <l.stach@pengutronix.de>,
         devicetree@vger.kernel.org, Eric Anholt <eric@anholt.net>,
         Boris Brezillon <boris.brezillon@collabora.com>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v4 05/11] drm/bridge: Add the drm_for_each_bridge_in_chain() helper
-Date:   Tue,  3 Dec 2019 15:15:09 +0100
-Message-Id: <20191203141515.3597631-6-boris.brezillon@collabora.com>
+Subject: [PATCH v4 06/11] drm/bridge: Add the drm_bridge_get_prev_bridge() helper
+Date:   Tue,  3 Dec 2019 15:15:10 +0100
+Message-Id: <20191203141515.3597631-7-boris.brezillon@collabora.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191203141515.3597631-1-boris.brezillon@collabora.com>
 References: <20191203141515.3597631-1-boris.brezillon@collabora.com>
@@ -55,48 +55,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To iterate over all bridges attached to a specific encoder.
+The drm_bridge_get_prev_bridge() helper will be useful for bridge
+drivers that want to do bus format negotiation with their neighbours.
 
-Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
 Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
 Changes in v4:
-* Fix the doc header
+* Change the helper name to be consistent with the _next_bridge() helper
+* Update the commit message
 * Add Rbs
 
 Changes in v3:
-* None
+* Inline drm_bridge_chain_get_prev_bridge()
+* Fix the doc
 
 Changes in v2:
-* New patch
+* Fix the kerneldoc
+* Drop the !bridge || !bridge->encoder check
 ---
- include/drm/drm_bridge.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ include/drm/drm_bridge.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
 diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index c118726469ee..1eb854025a20 100644
+index 1eb854025a20..bfb0385163f1 100644
 --- a/include/drm/drm_bridge.h
 +++ b/include/drm/drm_bridge.h
-@@ -441,6 +441,17 @@ drm_bridge_chain_get_first_bridge(struct drm_encoder *encoder)
- 					struct drm_bridge, chain_node);
+@@ -426,6 +426,22 @@ drm_bridge_get_next_bridge(struct drm_bridge *bridge)
+ 	return list_next_entry(bridge, chain_node);
  }
  
 +/**
-+ * drm_for_each_bridge_in_chain() - Iterate over all bridges present in a chain
-+ * @encoder: the encoder to iterate bridges on
-+ * @bridge: a bridge pointer updated to point to the current bridge at each
-+ *	    iteration
++ * drm_bridge_get_prev_bridge() - Get the previous bridge in the chain
++ * @bridge: bridge object
 + *
-+ * Iterate over all bridges present in the bridge chain attached to @encoder.
++ * RETURNS:
++ * the previous bridge in the chain, or NULL if @bridge is the first.
 + */
-+#define drm_for_each_bridge_in_chain(encoder, bridge)			\
-+	list_for_each_entry(bridge, &(encoder)->bridge_chain, chain_node)
++static inline struct drm_bridge *
++drm_bridge_get_prev_bridge(struct drm_bridge *bridge)
++{
++	if (list_is_first(&bridge->chain_node, &bridge->encoder->bridge_chain))
++		return NULL;
 +
- bool drm_bridge_chain_mode_fixup(struct drm_bridge *bridge,
- 				 const struct drm_display_mode *mode,
- 				 struct drm_display_mode *adjusted_mode);
++	return list_prev_entry(bridge, chain_node);
++}
++
+ /**
+  * drm_bridge_chain_get_first_bridge() - Get the first bridge in the chain
+  * @encoder: encoder object
 -- 
 2.23.0
 
