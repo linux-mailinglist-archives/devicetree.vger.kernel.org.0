@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD1E10FE74
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 14:12:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C81010FE55
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 14:04:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725957AbfLCNM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Dec 2019 08:12:57 -0500
-Received: from comms.puri.sm ([159.203.221.185]:60682 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725954AbfLCNM4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Dec 2019 08:12:56 -0500
-X-Greylist: delayed 528 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Dec 2019 08:12:56 EST
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 6C488E0301;
-        Tue,  3 Dec 2019 05:04:07 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id PfiCBJBd9cA1; Tue,  3 Dec 2019 05:04:06 -0800 (PST)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     robh@kernel.org, mark.rutland@arm.com
-Cc:     kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: [PATCH] arm64: dts: imx8mq-librem5-devkit: add accelerometer and gyro sensor
-Date:   Tue,  3 Dec 2019 14:03:36 +0100
-Message-Id: <20191203130336.18763-1-martin.kepplinger@puri.sm>
-Content-Transfer-Encoding: 8bit
+        id S1726131AbfLCNEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Dec 2019 08:04:55 -0500
+Received: from bombadil.infradead.org ([198.137.202.133]:49612 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725954AbfLCNEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 08:04:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=swPLnU+mch3Xmy4l4gNFvfkSplS5ugsR2ljdaAIZq+8=; b=M8Y595qcM8HSiDgNNG6dYczb2
+        Pe72oiN1OM/5miwYjnPRYyA5q8yeDzR7UFs4AAMtsVL1+/fNGhCAPTsfr3FCkoCBMoXkYXSI5koN0
+        l9XuGn7bW6uVNKxP+tj3igXUgjA4azjLqLFLyjaWfYL2SSHfU5xhN94rai6/14NcUyCimhCYE/TPm
+        KFCW8HvCR3TZxuVhLcdawgyxvh7zBmKD4lHI/spONN5RXJgaGiwJCfeqxBKudY/3DErZYB7jGfGBl
+        Rnt4mef3hh9g3Puw2CZnD7oQjp4Eji1VNeQYBE38NpQ24rk0lKKgn1YUIaTCsYyVdZiTpUARwOiOF
+        q6yFB7t8w==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1ic7rF-00074e-57; Tue, 03 Dec 2019 13:04:49 +0000
+Date:   Tue, 3 Dec 2019 05:04:49 -0800
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Jun Nie <jun.nie@linaro.org>,
+        Christoph Hellwig <hch@infradead.org>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/4] mmc: sdhci: Add DMA memory boundary workaround
+Message-ID: <20191203130449.GA20607@infradead.org>
+References: <20191202144104.5069-1-jun.nie@linaro.org>
+ <20191202144104.5069-5-jun.nie@linaro.org>
+ <20191203103320.273a7309@xhacker.debian>
+ <CABymUCMVi_N2Mt82YDt7wrys4Z_vnXYEu15-YBa+S1CejT9iZw@mail.gmail.com>
+ <20191203165123.4e6f9e28@xhacker.debian>
+ <20191203173256.55f527d5@xhacker.debian>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191203173256.55f527d5@xhacker.debian>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that there is driver support, describe the accel and gyro sensor parts
-of the LSM9DS1 IMU.
+On Tue, Dec 03, 2019 at 09:49:33AM +0000, Jisheng Zhang wrote:
+> > can't work. I'm not sure I understand blk_queue_segment_boundary() properly.
+> > May Christoph help to clarify?
+> 
+> what's more, not all scatterlist in mmc are from block layer, for example, 
+> __mmc_blk_ioctl_cmd(), mmc_test.c etc..
+> 
+> How do we ensure the boundary is fine in these cases?
 
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index 683a11035643..7a92704c53ec 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -415,6 +415,13 @@
- 	pinctrl-0 = <&pinctrl_i2c3>;
- 	status = "okay";
- 
-+	accel_gyro@6a {
-+		compatible = "st,lsm9ds1-imu";
-+		reg = <0x6a>;
-+		vdd-supply = <&reg_3v3_p>;
-+		vddio-supply = <&reg_3v3_p>;
-+	};
-+
- 	magnetometer@1e	{
- 		compatible = "st,lsm9ds1-magn";
- 		reg = <0x1e>;
--- 
-2.20.1
-
+By using block layer passthrough requests (REQ_OP_DRV*).  Otherwise
+any other I/O limit imposed by the driver is ignored as well.
