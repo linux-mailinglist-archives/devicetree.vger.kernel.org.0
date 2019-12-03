@@ -2,97 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EB210FB8D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 11:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1426610FB97
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 11:16:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725957AbfLCKPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Dec 2019 05:15:46 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:32894 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726484AbfLCKPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 05:15:45 -0500
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 95F77309;
-        Tue,  3 Dec 2019 11:15:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1575368143;
-        bh=IVjK8/i+nUnppQ/CIcHWTcjPI3l6ji3A4nJKjmHK8yo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Yh9CIC75iZWShzztTl8a4pNolc5OLR+UhoRSwH7JGWrwQhZKXVASfzBKX0a5A8Wjz
-         k3ObQUJRIxTtCKDoDpTrO7gzol9qYMVcUddfj2JfT2Smes/ASPt9BgAcO5UNql2tct
-         Yluk4X7jUpbO99J6tniahgQiouHVyZgGXVTlJ/8s=
-Date:   Tue, 3 Dec 2019 12:15:37 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Chris Healy <cphealy@gmail.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
-        Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Clark <robdclark@gmail.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 12/21] drm/bridge: Add an ->atomic_check() hook
-Message-ID: <20191203101537.GO4730@pendragon.ideasonboard.com>
-References: <20191023154512.9762-1-boris.brezillon@collabora.com>
- <20191023154512.9762-13-boris.brezillon@collabora.com>
- <20191202170336.GP4929@pendragon.ideasonboard.com>
- <20191203111151.28d86f53@collabora.com>
+        id S1726718AbfLCKP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Dec 2019 05:15:58 -0500
+Received: from mail-pj1-f65.google.com ([209.85.216.65]:44380 "EHLO
+        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726533AbfLCKP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 05:15:57 -0500
+Received: by mail-pj1-f65.google.com with SMTP id w5so1326327pjh.11
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2019 02:15:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YrHITFCHdeD4+yA1cax6B7EYeghey89WnNbNyeOQhYw=;
+        b=f2J3JfSjMMQW4lP+yVzQFbEn4Aiben8OJjuINWOcR5DXVhob+s2ix0xLzjwfNxGkyR
+         jCx6fz/TB9QQ4IoJ56yCtbbtAOTmG4FEYzyh0B5MDRwDDDDrGrUJrzDjVCCddfzNVECR
+         GcVsk8Mc5sv8YOkbWdtvY80b8aAQ7At6I5U3Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YrHITFCHdeD4+yA1cax6B7EYeghey89WnNbNyeOQhYw=;
+        b=Iyp1BJh0tOkv+XJrJAZfG+EWOuNWAC28K4fWYE80vXd4kZf0CSl2/Ii+pucem7fo35
+         0oLy/63fbUG8fHcyjponolceiat47YvL5kfgRuzCE+rwWboizLsi3yvsRmXMYxv4JYhB
+         25E/Bu840GQhUTqgyW6vVVyGPmW2ukl6iivw5QMz/eo41TBXidy2AlU86uV4sDp06w7/
+         PCgGbAJXLEIpfN62vGUyoEa/YClkCvSAyOiRzKyc1nFjiXFonGg2EcMseTO8a+UIJkEV
+         ALKd9pz/HIoclg2XuJlUaUTBCRtgzhLxlVWq86SFC0lsFTmGqsojQlwDta0Bz9Y82Ini
+         8JiA==
+X-Gm-Message-State: APjAAAXcNyWIU6QN0L8Ey3b9ssRtqK5GjoKVZzsZ3nsy9cXwIklYfh20
+        1VyyKB3goNmBFoGLfx0DQe2WMw==
+X-Google-Smtp-Source: APXvYqwy1Cn4JTSApVIsHMb6V6BA1uS11JBgw/FaCROu8sNlG7sAcc2JMQI0h0RMKGl+scq8u+oxXw==
+X-Received: by 2002:a17:902:8d83:: with SMTP id v3mr4100209plo.205.1575368156923;
+        Tue, 03 Dec 2019 02:15:56 -0800 (PST)
+Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:254e:2b40:ef8:ee17])
+        by smtp.gmail.com with ESMTPSA id 129sm3070545pfw.71.2019.12.03.02.15.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2019 02:15:56 -0800 (PST)
+From:   Ikjoon Jang <ikjn@chromium.org>
+To:     linux-usb@vger.kernel.org
+Cc:     GregKroah-Hartman <gregkh@linuxfoundation.org>,
+        RobHerring <robh+dt@kernel.org>,
+        MarkRutland <mark.rutland@arm.com>,
+        AlanStern <stern@rowland.harvard.edu>,
+        SuwanKim <suwan.kim027@gmail.com>,
+        "GustavoA . R . Silva" <gustavo@embeddedor.com>,
+        IkjoonJang <ikjn@chromium.org>, JohanHovold <johan@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        drinkcat@chromium.org
+Subject: [PATCH v4 2/2] usb: overridable hub bInterval by device node
+Date:   Tue,  3 Dec 2019 18:15:52 +0800
+Message-Id: <20191203101552.199339-1-ikjn@chromium.org>
+X-Mailer: git-send-email 2.24.0.393.g34dc348eaf-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20191203111151.28d86f53@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Boris,
+This patch enables hub device to override its own endpoint descriptor's
+bInterval when the hub has a device node with "hub,interval" property.
 
-On Tue, Dec 03, 2019 at 11:11:51AM +0100, Boris Brezillon wrote:
-> On Mon, 2 Dec 2019 19:03:36 +0200 Laurent Pinchart wrote:
-> 
-> > > +	/**
-> > > +	 * @atomic_check:
-> > > +	 *
-> > > +	 * This method is responsible for checking bridge state correctness.
-> > > +	 * It can also check the state of the surrounding components in chain
-> > > +	 * to make sure the whole pipeline can work properly.  
-> > 
-> > As explained in the review of the RFC, I think it's a mistake not to
-> > define the semantics of this operation precisely, and in particular not
-> > to define explictly what parameters bridge drivers are allowed to modify
-> > here. I however don't want to make this a prerequisite for your series,
-> > so
-> > 
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > 
-> > but I'm sure we'll regret this later when different bridges will have
-> > slightly incompatible implementations.
-> 
-> Nothing prevents us from working on this clarification after the patch
-> series has been merged. I just said I couldn't come up with a good
-> set of rules on my own, as I don't really know what bridge->mode_fixup()
-> allows us to modify in the first place.
+When we know reducing autosuspend delay for built-in HIDs is better for
+power saving, we can reduce it to the optimal value. But if a parent hub
+has a long bInterval, mouse lags a lot from more frequent autosuspend.
+So this enables overriding bInterval for a hard wired hub device only
+when we know that reduces the power consumption.
 
-We can of course work on it later, but we both know it won't happen for
-some time, until different bridges will behave differently and we'll
-have to sort a really big mess :-)
+Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+Acked-by: Alan Stern <stern@rowland.harvard.edu>
+---
+ drivers/usb/core/config.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
+diff --git a/drivers/usb/core/config.c b/drivers/usb/core/config.c
+index 5f40117e68e7..95ec5af42a1c 100644
+--- a/drivers/usb/core/config.c
++++ b/drivers/usb/core/config.c
+@@ -6,6 +6,7 @@
+ #include <linux/usb.h>
+ #include <linux/usb/ch9.h>
+ #include <linux/usb/hcd.h>
++#include <linux/usb/of.h>
+ #include <linux/usb/quirks.h>
+ #include <linux/module.h>
+ #include <linux/slab.h>
+@@ -257,6 +258,14 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
+ 	memcpy(&endpoint->desc, d, n);
+ 	INIT_LIST_HEAD(&endpoint->urb_list);
+ 
++	/* device node property overrides bInterval */
++	if (usb_of_has_combined_node(to_usb_device(ddev))) {
++		u32 interval = 0;
++		if (!of_property_read_u32(ddev->of_node, "hub,interval",
++				    &interval))
++			d->bInterval = min_t(u8, interval, 255);
++	}
++
+ 	/*
+ 	 * Fix up bInterval values outside the legal range.
+ 	 * Use 10 or 8 ms if no proper value can be guessed.
 -- 
-Regards,
+2.24.0.393.g34dc348eaf-goog
 
-Laurent Pinchart
