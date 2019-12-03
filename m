@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1426610FB97
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 11:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1F8410FBA1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 11:17:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726718AbfLCKP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Dec 2019 05:15:58 -0500
-Received: from mail-pj1-f65.google.com ([209.85.216.65]:44380 "EHLO
-        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726533AbfLCKP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 05:15:57 -0500
-Received: by mail-pj1-f65.google.com with SMTP id w5so1326327pjh.11
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2019 02:15:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YrHITFCHdeD4+yA1cax6B7EYeghey89WnNbNyeOQhYw=;
-        b=f2J3JfSjMMQW4lP+yVzQFbEn4Aiben8OJjuINWOcR5DXVhob+s2ix0xLzjwfNxGkyR
-         jCx6fz/TB9QQ4IoJ56yCtbbtAOTmG4FEYzyh0B5MDRwDDDDrGrUJrzDjVCCddfzNVECR
-         GcVsk8Mc5sv8YOkbWdtvY80b8aAQ7At6I5U3Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YrHITFCHdeD4+yA1cax6B7EYeghey89WnNbNyeOQhYw=;
-        b=Iyp1BJh0tOkv+XJrJAZfG+EWOuNWAC28K4fWYE80vXd4kZf0CSl2/Ii+pucem7fo35
-         0oLy/63fbUG8fHcyjponolceiat47YvL5kfgRuzCE+rwWboizLsi3yvsRmXMYxv4JYhB
-         25E/Bu840GQhUTqgyW6vVVyGPmW2ukl6iivw5QMz/eo41TBXidy2AlU86uV4sDp06w7/
-         PCgGbAJXLEIpfN62vGUyoEa/YClkCvSAyOiRzKyc1nFjiXFonGg2EcMseTO8a+UIJkEV
-         ALKd9pz/HIoclg2XuJlUaUTBCRtgzhLxlVWq86SFC0lsFTmGqsojQlwDta0Bz9Y82Ini
-         8JiA==
-X-Gm-Message-State: APjAAAXcNyWIU6QN0L8Ey3b9ssRtqK5GjoKVZzsZ3nsy9cXwIklYfh20
-        1VyyKB3goNmBFoGLfx0DQe2WMw==
-X-Google-Smtp-Source: APXvYqwy1Cn4JTSApVIsHMb6V6BA1uS11JBgw/FaCROu8sNlG7sAcc2JMQI0h0RMKGl+scq8u+oxXw==
-X-Received: by 2002:a17:902:8d83:: with SMTP id v3mr4100209plo.205.1575368156923;
-        Tue, 03 Dec 2019 02:15:56 -0800 (PST)
-Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:254e:2b40:ef8:ee17])
-        by smtp.gmail.com with ESMTPSA id 129sm3070545pfw.71.2019.12.03.02.15.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 02:15:56 -0800 (PST)
-From:   Ikjoon Jang <ikjn@chromium.org>
-To:     linux-usb@vger.kernel.org
-Cc:     GregKroah-Hartman <gregkh@linuxfoundation.org>,
-        RobHerring <robh+dt@kernel.org>,
-        MarkRutland <mark.rutland@arm.com>,
-        AlanStern <stern@rowland.harvard.edu>,
-        SuwanKim <suwan.kim027@gmail.com>,
-        "GustavoA . R . Silva" <gustavo@embeddedor.com>,
-        IkjoonJang <ikjn@chromium.org>, JohanHovold <johan@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        drinkcat@chromium.org
-Subject: [PATCH v4 2/2] usb: overridable hub bInterval by device node
-Date:   Tue,  3 Dec 2019 18:15:52 +0800
-Message-Id: <20191203101552.199339-1-ikjn@chromium.org>
-X-Mailer: git-send-email 2.24.0.393.g34dc348eaf-goog
+        id S1725848AbfLCKRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Dec 2019 05:17:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34238 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725773AbfLCKRl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Dec 2019 05:17:41 -0500
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CBC562068E;
+        Tue,  3 Dec 2019 10:17:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1575368260;
+        bh=5ySN3e5aUDRbhiQLCPyxs/vWIneLIy4KAn4LJwCq6Qs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kMScm8GSzW4KeDWfSNSKzpGeRbVVCFvwkHxu3o+HncYmc1ZMD9uM8+flajxYG3OSj
+         /3ciRNYMo3BiZw+E7eMtEjiYd7+acvkY5XsvqH5JshHzGPG8kNDM9bW1JHSNuNlDOg
+         pVuRor6iCytI5GH4UIuH6jiB6DLUtCW0mKX2yae8=
+Date:   Tue, 3 Dec 2019 10:17:20 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Neal Liu <neal.liu@mediatek.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Lars Persson <lists@bofh.nu>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        wsd_upstream <wsd_upstream@mediatek.com>,
+        Sean Wang <sean.wang@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Crystal Guo =?utf-8?B?KOmDreaZtik=?= <Crystal.Guo@mediatek.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        Matt Mackall <mpm@selenic.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v5 3/3] hwrng: add mtk-sec-rng driver
+Message-ID: <20191203101720.GD6815@willie-the-truck>
+References: <1574864578-467-1-git-send-email-neal.liu@mediatek.com>
+ <1574864578-467-4-git-send-email-neal.liu@mediatek.com>
+ <CADnJP=uhD=J2NrpSwiX8oCTd-u_q05=HhsAV-ErCsXNDwVS0rA@mail.gmail.com>
+ <1575027046.24848.4.camel@mtkswgap22>
+ <CAKv+Gu_um7eRYXbieW7ogDX5mmZaxP7JQBJM9CajK+6CsO5RgQ@mail.gmail.com>
+ <20191202191146.79e6368c@why>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191202191146.79e6368c@why>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables hub device to override its own endpoint descriptor's
-bInterval when the hub has a device node with "hub,interval" property.
+On Mon, Dec 02, 2019 at 07:11:46PM +0000, Marc Zyngier wrote:
+> On Mon, 2 Dec 2019 16:12:09 +0000
+> Ard Biesheuvel <ard.biesheuvel@linaro.org> wrote:
+> 
+> > (adding some more arm64 folks)
+> > 
+> > On Fri, 29 Nov 2019 at 11:30, Neal Liu <neal.liu@mediatek.com> wrote:
+> > >
+> > > On Fri, 2019-11-29 at 18:02 +0800, Lars Persson wrote:  
+> > > > Hi Neal,
+> > > >
+> > > > On Wed, Nov 27, 2019 at 3:23 PM Neal Liu <neal.liu@mediatek.com> wrote:  
+> > > > >
+> > > > > For MediaTek SoCs on ARMv8 with TrustZone enabled, peripherals like
+> > > > > entropy sources is not accessible from normal world (linux) and
+> > > > > rather accessible from secure world (ATF/TEE) only. This driver aims
+> > > > > to provide a generic interface to ATF rng service.
+> > > > >  
+> > > >
+> > > > I am working on several SoCs that also will need this kind of driver
+> > > > to get entropy from Arm trusted firmware.
+> > > > If you intend to make this a generic interface, please clean up the
+> > > > references to MediaTek and give it a more generic name. For example
+> > > > "Arm Trusted Firmware random number driver".
+> > > >
+> > > > It will also be helpful if the SMC call number is configurable.
+> > > >
+> > > > - Lars  
+> > >
+> > > Yes, I'm trying to make this to a generic interface. I'll try to make
+> > > HW/platform related dependency to be configurable and let it more
+> > > generic.
+> > > Thanks for your suggestion.
+> > >  
+> > 
+> > I don't think it makes sense for each arm64 platform to expose an
+> > entropy source via SMC calls in a slightly different way, and model it
+> > as a h/w driver. Instead, we should try to standardize this, and
+> > perhaps expose it via the architectural helpers that already exist
+> > (get_random_seed_long() and friends), so they get plugged into the
+> > kernel random pool driver directly.
+> 
+> Absolutely. I'd love to see a standard, ARM-specified, virtualizable
+> RNG that is abstracted from the HW.
 
-When we know reducing autosuspend delay for built-in HIDs is better for
-power saving, we can reduce it to the optimal value. But if a parent hub
-has a long bInterval, mouse lags a lot from more frequent autosuspend.
-So this enables overriding bInterval for a hard wired hub device only
-when we know that reduces the power consumption.
+Same here. I hacked up some initial code for doing this with KVM [1], but
+I'd much rather it was part of a standard service specification so that
+we could use the same interface for talking to the firmware and the
+hypervisor.
 
-Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-Acked-by: Alan Stern <stern@rowland.harvard.edu>
----
- drivers/usb/core/config.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Will
 
-diff --git a/drivers/usb/core/config.c b/drivers/usb/core/config.c
-index 5f40117e68e7..95ec5af42a1c 100644
---- a/drivers/usb/core/config.c
-+++ b/drivers/usb/core/config.c
-@@ -6,6 +6,7 @@
- #include <linux/usb.h>
- #include <linux/usb/ch9.h>
- #include <linux/usb/hcd.h>
-+#include <linux/usb/of.h>
- #include <linux/usb/quirks.h>
- #include <linux/module.h>
- #include <linux/slab.h>
-@@ -257,6 +258,14 @@ static int usb_parse_endpoint(struct device *ddev, int cfgno, int inum,
- 	memcpy(&endpoint->desc, d, n);
- 	INIT_LIST_HEAD(&endpoint->urb_list);
- 
-+	/* device node property overrides bInterval */
-+	if (usb_of_has_combined_node(to_usb_device(ddev))) {
-+		u32 interval = 0;
-+		if (!of_property_read_u32(ddev->of_node, "hub,interval",
-+				    &interval))
-+			d->bInterval = min_t(u8, interval, 255);
-+	}
-+
- 	/*
- 	 * Fix up bInterval values outside the legal range.
- 	 * Use 10 or 8 ms if no proper value can be guessed.
--- 
-2.24.0.393.g34dc348eaf-goog
-
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=kvm/hvc
