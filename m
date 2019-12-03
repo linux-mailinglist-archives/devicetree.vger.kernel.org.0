@@ -2,117 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1F8410FBA1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 11:17:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC08210FBA0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 11:17:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725848AbfLCKRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Dec 2019 05:17:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34238 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725773AbfLCKRl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Dec 2019 05:17:41 -0500
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CBC562068E;
-        Tue,  3 Dec 2019 10:17:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1575368260;
-        bh=5ySN3e5aUDRbhiQLCPyxs/vWIneLIy4KAn4LJwCq6Qs=;
+        id S1725774AbfLCKRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Dec 2019 05:17:39 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:32948 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725773AbfLCKRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 05:17:39 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D9628309;
+        Tue,  3 Dec 2019 11:17:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1575368257;
+        bh=oT8aVb9gFuG6LRGtXmKix4LSGzY7LvR7mDNzrD/+yns=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kMScm8GSzW4KeDWfSNSKzpGeRbVVCFvwkHxu3o+HncYmc1ZMD9uM8+flajxYG3OSj
-         /3ciRNYMo3BiZw+E7eMtEjiYd7+acvkY5XsvqH5JshHzGPG8kNDM9bW1JHSNuNlDOg
-         pVuRor6iCytI5GH4UIuH6jiB6DLUtCW0mKX2yae8=
-Date:   Tue, 3 Dec 2019 10:17:20 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Neal Liu <neal.liu@mediatek.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Lars Persson <lists@bofh.nu>,
-        Mark Rutland <mark.rutland@arm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        b=kTzLTcnGXMWM4h61u/SIO3Yz8OFrRHkkF25jr033tOTzqQByAd2tS0T9ZNDXcyJWG
+         Ukz5kOQbtIf8Zxx0YJoJ3wFK6rZmQegNF0huN693flPsXmRmHSGJTT/QMX7TbdC4YS
+         D7d0nzyeLYGvTCg1VY33eEsI8KXneqlL7aHxLIx4=
+Date:   Tue, 3 Dec 2019 12:17:30 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Chris Healy <cphealy@gmail.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
+        Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Clark <robdclark@gmail.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Crystal Guo =?utf-8?B?KOmDreaZtik=?= <Crystal.Guo@mediatek.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 3/3] hwrng: add mtk-sec-rng driver
-Message-ID: <20191203101720.GD6815@willie-the-truck>
-References: <1574864578-467-1-git-send-email-neal.liu@mediatek.com>
- <1574864578-467-4-git-send-email-neal.liu@mediatek.com>
- <CADnJP=uhD=J2NrpSwiX8oCTd-u_q05=HhsAV-ErCsXNDwVS0rA@mail.gmail.com>
- <1575027046.24848.4.camel@mtkswgap22>
- <CAKv+Gu_um7eRYXbieW7ogDX5mmZaxP7JQBJM9CajK+6CsO5RgQ@mail.gmail.com>
- <20191202191146.79e6368c@why>
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 18/21] drm/bridge: panel: Propage bus format/flags
+Message-ID: <20191203101730.GP4730@pendragon.ideasonboard.com>
+References: <20191023154512.9762-1-boris.brezillon@collabora.com>
+ <20191023154512.9762-19-boris.brezillon@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20191202191146.79e6368c@why>
+In-Reply-To: <20191023154512.9762-19-boris.brezillon@collabora.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 02, 2019 at 07:11:46PM +0000, Marc Zyngier wrote:
-> On Mon, 2 Dec 2019 16:12:09 +0000
-> Ard Biesheuvel <ard.biesheuvel@linaro.org> wrote:
+Hi Boris,
+
+Thank you for the patch.
+
+On Wed, Oct 23, 2019 at 05:45:09PM +0200, Boris Brezillon wrote:
+> So that the previous bridge element in the chain knows which input
+> format the panel bridge expects.
 > 
-> > (adding some more arm64 folks)
-> > 
-> > On Fri, 29 Nov 2019 at 11:30, Neal Liu <neal.liu@mediatek.com> wrote:
-> > >
-> > > On Fri, 2019-11-29 at 18:02 +0800, Lars Persson wrote:  
-> > > > Hi Neal,
-> > > >
-> > > > On Wed, Nov 27, 2019 at 3:23 PM Neal Liu <neal.liu@mediatek.com> wrote:  
-> > > > >
-> > > > > For MediaTek SoCs on ARMv8 with TrustZone enabled, peripherals like
-> > > > > entropy sources is not accessible from normal world (linux) and
-> > > > > rather accessible from secure world (ATF/TEE) only. This driver aims
-> > > > > to provide a generic interface to ATF rng service.
-> > > > >  
-> > > >
-> > > > I am working on several SoCs that also will need this kind of driver
-> > > > to get entropy from Arm trusted firmware.
-> > > > If you intend to make this a generic interface, please clean up the
-> > > > references to MediaTek and give it a more generic name. For example
-> > > > "Arm Trusted Firmware random number driver".
-> > > >
-> > > > It will also be helpful if the SMC call number is configurable.
-> > > >
-> > > > - Lars  
-> > >
-> > > Yes, I'm trying to make this to a generic interface. I'll try to make
-> > > HW/platform related dependency to be configurable and let it more
-> > > generic.
-> > > Thanks for your suggestion.
-> > >  
-> > 
-> > I don't think it makes sense for each arm64 platform to expose an
-> > entropy source via SMC calls in a slightly different way, and model it
-> > as a h/w driver. Instead, we should try to standardize this, and
-> > perhaps expose it via the architectural helpers that already exist
-> > (get_random_seed_long() and friends), so they get plugged into the
-> > kernel random pool driver directly.
+> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> ---
+> Changes in v3:
+> * Adjust things to match the new bus-format negotiation approach
+> * Use drm_atomic_helper_bridge_propagate_bus_fmt
+> * Don't implement ->atomic_check() (the core now takes care of bus
+>   flags propagation)
 > 
-> Absolutely. I'd love to see a standard, ARM-specified, virtualizable
-> RNG that is abstracted from the HW.
+> Changes in v2:
+> * Adjust things to match the new bus-format negotiation approach
+> ---
+>  drivers/gpu/drm/bridge/panel.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
+> index f4e293e7cf64..a70c363a2bd0 100644
+> --- a/drivers/gpu/drm/bridge/panel.c
+> +++ b/drivers/gpu/drm/bridge/panel.c
+> @@ -127,6 +127,7 @@ static const struct drm_bridge_funcs panel_bridge_bridge_funcs = {
+>  	.enable = panel_bridge_enable,
+>  	.disable = panel_bridge_disable,
+>  	.post_disable = panel_bridge_post_disable,
+> +	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
 
-Same here. I hacked up some initial code for doing this with KVM [1], but
-I'd much rather it was part of a standard service specification so that
-we could use the same interface for talking to the firmware and the
-hypervisor.
+Shouldn't the format be retrieved from the panel instead of from the
+connector ? We're moving towards removing connector creation from
+bridges, so I think it would be more future-proof.
 
-Will
+>  };
+>  
+>  /**
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=kvm/hvc
+-- 
+Regards,
+
+Laurent Pinchart
