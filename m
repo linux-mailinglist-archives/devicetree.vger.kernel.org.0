@@ -2,114 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 362BD10F5FC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 04:57:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C1710F61D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 05:04:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726480AbfLCD5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Dec 2019 22:57:05 -0500
-Received: from regular1.263xmail.com ([211.150.70.198]:57056 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726327AbfLCD5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 22:57:05 -0500
-Received: from localhost (unknown [192.168.167.69])
-        by regular1.263xmail.com (Postfix) with ESMTP id 099C026F;
-        Tue,  3 Dec 2019 11:56:53 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [192.168.60.65] (unknown [103.29.142.67])
-        by smtp.263.net (postfix) whith ESMTP id P29215T140217218479872S1575345404246238_;
-        Tue, 03 Dec 2019 11:56:52 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <4be8404cf90eb1e5f1c309438c807949>
-X-RL-SENDER: kever.yang@rock-chips.com
-X-SENDER: yk@rock-chips.com
-X-LOGIN-NAME: kever.yang@rock-chips.com
-X-FST-TO: linux-arm-kernel@lists.infradead.org
-X-SENDER-IP: 103.29.142.67
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-Subject: Re: [PATCH] ARM: dts: rockchip: Add missing cpu operating points for
- rk3288-tinker
-To:     Jack Chen <redchenjs@foxmail.com>, heiko@sntech.de
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, Jack Chen <redchenjs@live.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20191202153540.26143-1-redchenjs@foxmail.com>
-From:   Kever Yang <kever.yang@rock-chips.com>
-Message-ID: <e94676c8-b759-6a30-8ef3-285fc0ba10a4@rock-chips.com>
-Date:   Tue, 3 Dec 2019 11:56:43 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1726651AbfLCEE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Dec 2019 23:04:57 -0500
+Received: from pbmsgap01.intersil.com ([192.157.179.201]:34908 "EHLO
+        pbmsgap01.intersil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726327AbfLCEE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Dec 2019 23:04:57 -0500
+Received: from pps.filterd (pbmsgap01.intersil.com [127.0.0.1])
+        by pbmsgap01.intersil.com (8.16.0.27/8.16.0.27) with SMTP id xB33hWLh032292;
+        Mon, 2 Dec 2019 22:45:51 -0500
+Received: from pbmxdp01.intersil.corp (pbmxdp01.pb.intersil.com [132.158.200.222])
+        by pbmsgap01.intersil.com with ESMTP id 2wkmu327q4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Mon, 02 Dec 2019 22:45:51 -0500
+Received: from pbmxdp01.intersil.corp (132.158.200.222) by
+ pbmxdp01.intersil.corp (132.158.200.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.1531.3; Mon, 2 Dec 2019 22:45:49 -0500
+Received: from localhost.localdomain (132.158.202.109) by
+ pbmxdp01.intersil.corp (132.158.200.222) with Microsoft SMTP Server id
+ 15.1.1531.3 via Frontend Transport; Mon, 2 Dec 2019 22:45:48 -0500
+From:   Chris Brandt <chris.brandt@renesas.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-renesas-soc@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        Chris Brandt <chris.brandt@renesas.com>
+Subject: [PATCH 0/6] spi: Add Renesas SPIBSC controller
+Date:   Mon, 2 Dec 2019 22:45:13 -0500
+Message-ID: <20191203034519.5640-1-chris.brandt@renesas.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-In-Reply-To: <20191202153540.26143-1-redchenjs@foxmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-12-02_06:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=junk_notspam policy=junk score=0 suspectscore=2 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1911200000 definitions=main-1912030031
+X-Proofpoint-Spam-Reason: mlx
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
+The Renesas SPI Bus Space Controller (SPIBSC) HW was specifically designed for
+accessing SPI flash devices. In the hardware manuals, it is almost always
+labeled as the "Renesas SPI Multi I/O Bus Controller". However, the HW IP is
+usually referred to within Renesas as the "SPIBSC" block.
 
-On 2019/12/2 下午11:35, Jack Chen wrote:
-> From: Jack Chen <redchenjs@live.com>
->
-> The Tinker Board / S devices use a special chip variant called rk3288-c
-> and use different operating points with a higher max frequency.
->
-> So add the missing operating points for Tinker Board / S devices, also
-> increase the vdd_cpu regulator-max-microvolt to 1400000 uV so that the
-> cpu can operate at 1.8 GHz.
->
-> Signed-off-by: Jack Chen <redchenjs@live.com>
+This driver has been tested on an RZ/A1H RSK and RZ/A2M EVB.
 
-This patch looks good to me,
+The testing mostly consisted of formatting an area as JFFS2 and doing copying
+of files and such.
+
+While the HW changed a little between the RZ/A1 and RZ/A2 generations, the IP
+block in the RZ/A2M was taken from the R-Car H3 design, so in theory this
+driver should work for R-Car Gen3 as well.
 
 
-Reviewed-by: Kever Yang <kever.yang@rock-chips.com>
 
-Thanks,
-- Kever
-> ---
->   arch/arm/boot/dts/rk3288-tinker.dtsi | 13 ++++++++++++-
->   1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
-> index 81e4e953d4a4..09e83b3d5e7d 100644
-> --- a/arch/arm/boot/dts/rk3288-tinker.dtsi
-> +++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
-> @@ -113,6 +113,17 @@
->   	cpu0-supply = <&vdd_cpu>;
->   };
->   
-> +&cpu_opp_table {
-> +	opp-1704000000 {
-> +		opp-hz = /bits/ 64 <1704000000>;
-> +		opp-microvolt = <1350000>;
-> +	};
-> +	opp-1800000000 {
-> +		opp-hz = /bits/ 64 <1800000000>;
-> +		opp-microvolt = <1400000>;
-> +	};
-> +};
-> +
->   &gmac {
->   	assigned-clocks = <&cru SCLK_MAC>;
->   	assigned-clock-parents = <&ext_gmac>;
-> @@ -175,7 +186,7 @@
->   				regulator-always-on;
->   				regulator-boot-on;
->   				regulator-min-microvolt = <750000>;
-> -				regulator-max-microvolt = <1350000>;
-> +				regulator-max-microvolt = <1400000>;
->   				regulator-name = "vdd_arm";
->   				regulator-ramp-delay = <6000>;
->   				regulator-state-mem {
+Chris Brandt (6):
+  clk: renesas: mstp: Add critical clock from device tree support
+  ARM: dts: r7s72100: Add SPIBSC clocks
+  clk: renesas: r7s9210: Add SPIBSC clock
+  spi: Add SPIBSC driver
+  ARM: dts: r7s9210: Add SPIBSC Device support
+  dt-bindings: spi: Document Renesas SPIBSC bindings
 
+ .../bindings/spi/spi-renesas-spibsc.txt       |  48 ++
+ arch/arm/boot/dts/r7s72100.dtsi               |  26 +-
+ arch/arm/boot/dts/r7s9210.dtsi                |  10 +
+ drivers/clk/renesas/clk-mstp.c                |  16 +-
+ drivers/clk/renesas/r7s9210-cpg-mssr.c        |   9 +
+ drivers/spi/Kconfig                           |   8 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-spibsc.c                      | 609 ++++++++++++++++++
+ 8 files changed, 719 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-renesas-spibsc.txt
+ create mode 100644 drivers/spi/spi-spibsc.c
+
+-- 
+2.23.0
 
