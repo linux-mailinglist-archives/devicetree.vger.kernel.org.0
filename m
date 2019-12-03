@@ -2,87 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6225710FFAD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 15:13:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F4810FFD4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2019 15:15:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726534AbfLCONW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Dec 2019 09:13:22 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:58353 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726804AbfLCONU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 09:13:20 -0500
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ic8vA-0000FI-AU; Tue, 03 Dec 2019 15:12:56 +0100
-Message-ID: <0aec80383d4deea2574a016c8a8b370bcc006c8e.camel@pengutronix.de>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: Update Hisilicon reset doc
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Jun Nie <jun.nie@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>, sboyd@kernel.org,
+        id S1726473AbfLCOPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Dec 2019 09:15:25 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:58886 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726298AbfLCOPZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Dec 2019 09:15:25 -0500
+Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D199C27FB0C;
+        Tue,  3 Dec 2019 14:15:22 +0000 (GMT)
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Chris Healy <cphealy@gmail.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
+        Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Clark <robdclark@gmail.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Wei Xu <xuwei5@hisilicon.com>, opensource@jilayne.com,
-        swinslow@gmail.com, allison@lohutok.net, yuehaibing@huawei.com,
-        tglx@linutronix.de, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        xuejiancheng@hisilicon.com
-Date:   Tue, 03 Dec 2019 15:12:53 +0100
-In-Reply-To: <CABymUCOoTZ0MAmtb9O2N+KZj+XF=073C9=BxBgbL9RXwMCuuMA@mail.gmail.com>
-References: <20191202144524.5391-1-jun.nie@linaro.org>
-         <20191202144524.5391-2-jun.nie@linaro.org>
-         <cd0fae1a6b88a37e034876b53b350e79f58c654f.camel@pengutronix.de>
-         <CABymUCOoTZ0MAmtb9O2N+KZj+XF=073C9=BxBgbL9RXwMCuuMA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        devicetree@vger.kernel.org, Eric Anholt <eric@anholt.net>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+Subject: [PATCH v4 00/11] drm: Add support for bus-format negotiation
+Date:   Tue,  3 Dec 2019 15:15:04 +0100
+Message-Id: <20191203141515.3597631-1-boris.brezillon@collabora.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-12-03 at 11:11 +0800, Jun Nie wrote:
-> Philipp Zabel <p.zabel@pengutronix.de> 于2019年12月3日周二 上午1:04写道：
-> > Hi Jun,
-> > 
-> > I have a few questions and comments about these patches. I notice that
-> > the changed device trees only use the default setting. Are these new
-> > features something that is required for the present SoCs, or is this in
-> > preparation for a new SoC?
-> 
-> Yes, this patch set is prepared for new SoC.
-> 
-> > On Mon, 2019-12-02 at 22:45 +0800, Jun Nie wrote:
-> > > Document the update of Hisilicon reset operation extension.
-> > > 
-> > > Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/clock/hisi-crg.txt    | 12 ++++----
-> > >  include/dt-bindings/reset/hisilicon-resets.h  | 28 +++++++++++++++++++
-> > >  2 files changed, 35 insertions(+), 5 deletions(-)
-> > >  create mode 100644 include/dt-bindings/reset/hisilicon-resets.h
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/clock/hisi-crg.txt b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-> > > index cc60b3d423f3..fd8b0a964806 100644
-> > > --- a/Documentation/devicetree/bindings/clock/hisi-crg.txt
-> > > +++ b/Documentation/devicetree/bindings/clock/hisi-crg.txt
-> > > @@ -26,19 +26,21 @@ to specify the clock which they consume.
-> > > 
-> > >  All these identifier could be found in <dt-bindings/clock/hi3519-clock.h>.
-> > > 
-> > > -- #reset-cells: should be 2.
-> > > +- #reset-cells: should be 3.
+This patch series aims at adding support for runtime bus-format
+negotiation between all elements of the
+'encoder -> bridges -> connector/display' section of the pipeline.
 
-If this is only needed for a new SoC, you should introduce a new
-compatible and leave #reset-cells = <2> for the old compatible. The new
-compatible can require #reset-cells = <3>. Wit this, the current device
-trees don't have to be changed at all.
+In order to support that, we need drm bridges to fully take part in the
+atomic state validation process, which requires adding a
+drm_bridge_state and a new drm_bridge_funcs.atomic_check() hook.
+Once those basic building blocks are in place, we can add new hooks to
+allow bus format negotiation (those are called just before
+->atomic_check()). The bus format selection is done at runtime by
+testing all possible combinations across the whole bridge chain until
+one is reported to work.
 
-regards
-Philipp
+No Major changes in this v4. I think I addressed all comments I got
+from Neil and Laurent (thanks for the detailed reviews BTW). Note that
+this version only contains core changes. Once those changes are merged
+I'll send the imx/panel/lvds-codec specific bits.
+
+A more detailed changelog is provided in each patch.
+
+This patch series is also available here [1].
+
+Thanks,
+
+Boris
+
+[1]https://github.com/bbrezillon/linux-0day/commits/drm-bridge-busfmt-v4
+
+Boris Brezillon (11):
+  drm/bridge: Rename bridge helpers targeting a bridge chain
+  drm/bridge: Introduce drm_bridge_get_next_bridge()
+  drm: Stop accessing encoder->bridge directly
+  drm/bridge: Make the bridge chain a double-linked list
+  drm/bridge: Add the drm_for_each_bridge_in_chain() helper
+  drm/bridge: Add the drm_bridge_get_prev_bridge() helper
+  drm/bridge: Clarify the atomic enable/disable hooks semantics
+  drm/bridge: Add a drm_bridge_state object
+  drm/bridge: Patch atomic hooks to take a drm_bridge_state
+  drm/bridge: Add an ->atomic_check() hook
+  drm/bridge: Add the necessary bits to support bus format negotiation
+
+ .../drm/bridge/analogix/analogix_dp_core.c    |  41 +-
+ drivers/gpu/drm/drm_atomic.c                  |  39 +
+ drivers/gpu/drm/drm_atomic_helper.c           |  53 +-
+ drivers/gpu/drm/drm_bridge.c                  | 756 +++++++++++++++---
+ drivers/gpu/drm/drm_encoder.c                 |  15 +-
+ drivers/gpu/drm/drm_probe_helper.c            |   4 +-
+ drivers/gpu/drm/exynos/exynos_drm_dsi.c       |  13 +-
+ drivers/gpu/drm/mediatek/mtk_hdmi.c           |   8 +-
+ drivers/gpu/drm/msm/edp/edp_bridge.c          |  10 +-
+ drivers/gpu/drm/omapdrm/omap_drv.c            |   4 +-
+ drivers/gpu/drm/omapdrm/omap_encoder.c        |   3 +-
+ drivers/gpu/drm/rcar-du/rcar_du_crtc.c        |  10 +-
+ drivers/gpu/drm/vc4/vc4_dsi.c                 |  18 +-
+ include/drm/drm_atomic.h                      |   3 +
+ include/drm/drm_bridge.h                      | 404 +++++++++-
+ include/drm/drm_encoder.h                     |   7 +-
+ 16 files changed, 1174 insertions(+), 214 deletions(-)
+
+-- 
+2.23.0
 
