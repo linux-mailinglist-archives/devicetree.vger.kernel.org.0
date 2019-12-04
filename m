@@ -2,56 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B9F11351F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 19:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93D5C11353F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 19:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728357AbfLDSlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 13:41:21 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:34609 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728244AbfLDSlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 13:41:20 -0500
-Received: by mail-lj1-f193.google.com with SMTP id m6so503612ljc.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2019 10:41:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=bdg8PpD1MNHjs9vqnpj5cadFXnKlLB7xAq7e78HRGIc=;
-        b=hCOTNzFsvN2B8K8ypwCfX75bNtw42G4wSgGWju7HH5Dle0mVeyGGoIPXGvUPJR72QN
-         T9Oe9vwf2zwDeji2tmDCnHxEcWjwzKioscr6wpForK2QNgwpip70cJQ2JHjeUyhxAmWM
-         8yUA5evuoc6gkwoubLp44ujxB28TcE90AKTXnoc/hQcRWWbfhvHauTb72AFPKVov0T7X
-         opVrJwrfZROBDTXuOCikn/47ckGiCRYLNuzb9RqbzYKaZJL90TtT1xFtnbhCw+3jmC0+
-         Xy2J2kVK4yQC07HFApsPygiW61rYBKeRig/sw88codai4BU2X2uF2USqOeZ/e8EzWTD4
-         tH9Q==
+        id S1728053AbfLDS54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 13:57:56 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33650 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727989AbfLDS5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 13:57:55 -0500
+Received: by mail-ot1-f67.google.com with SMTP id d17so262972otc.0;
+        Wed, 04 Dec 2019 10:57:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=bdg8PpD1MNHjs9vqnpj5cadFXnKlLB7xAq7e78HRGIc=;
-        b=pgl5qOAzrf+3CY5z018JGowqKVjvFLmeFk/YL7vWA75GksUhu/IVu0IEUJVeCUjlyY
-         9SM0vVXdZQAuih2nLx6M0B9qtyoYhCmg+pmcKjdb64QlO1HND0KRAp+kT8IlSLdmfaQl
-         zlDDmmLSvW83u3MdSksTFku2HAZy0gD9AgYDSI5l1scki5OfafTxP22q2PCbi2n1vhPn
-         Vbyp6eb1fjlkaX/RhpjgodfoBpZl7Vx4srWJrA5tman6+kbJB7aNMnyy3ugXk98livCK
-         qzwOwqTcKk4OgCJqTNp1f2MCsOh2GwgqaDdYA1LgE9M4/b0Yu3xDNoTROKj6Zrp2rwiT
-         QLvA==
-X-Gm-Message-State: APjAAAWeIosHmXr4U81fPYwzHc9J1LWQOHDBocNJWBgeqcXvtQr8gm33
-        210z8/tLuz4F4iwWgJXgQgTCTS+lxa2jhVeNMg9YOQ==
-X-Google-Smtp-Source: APXvYqxmamObVgr5isJY1iQfqh+YvbucMI0gq2iAqgxq/k3fx23zjKVofcyEJeZzTd12VKqdQBAgZRptCVATzP6UWF4=
-X-Received: by 2002:a2e:85c9:: with SMTP id h9mr3055403ljj.155.1575484878898;
- Wed, 04 Dec 2019 10:41:18 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TyFlWZtZeRnOIyikDPfUJupGzxrSsorOBrT8gOUOV5w=;
+        b=UUZaNQowzSRR2f2MZOIqeklA5y9J6oI+kHQSsEezq4NzzwXLtJ743wl4MXGz7Ax6au
+         1m22x+9gvTH3hfdtFdzk7KLiSo2cmW0EZyamdEKUO6JaFWDE3VibmjhNbbeqhskyx14x
+         coaPdasAcYCP1HIIgW3s8hFhMN5FmcjHgZGeq3AMjtXUGxXU33ibN+k1/9CaJnlKhpzd
+         TqcCdA5rsuSSPQUoD2hsjDJG1cEaN7mKpjAgKuxWHA0zN3RkvTxrwIek2hWxNYGLNxgQ
+         hCjpASN+YZhlVJMUs6ty46VuMVWcRz/+y5QBrdtJUJ+fdxBnjC9cBbmFUjiMrKYP0YHg
+         Gx2Q==
+X-Gm-Message-State: APjAAAU/Kn8SSlg4Oc26o6aoPwBtouny/GvIlbR8CPYmO1/F5l74rCk1
+        u3cfhg9Syz/J5o0lZhPtHA==
+X-Google-Smtp-Source: APXvYqzLrsljAw6xaQR9Yy1mWF3DkGaOVeVWuG61van3Eri4fGDE3iohUXta2mlOKmmOk1xZ5gGWuw==
+X-Received: by 2002:a05:6830:1cf:: with SMTP id r15mr3876151ota.231.1575485874840;
+        Wed, 04 Dec 2019 10:57:54 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i7sm2571659oib.42.2019.12.04.10.57.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Dec 2019 10:57:54 -0800 (PST)
+Date:   Wed, 4 Dec 2019 12:57:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc:     jic23@kernel.org, dragos.bogdan@analog.com,
+        alexandru.ardelean@analog.com, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel-usp@googlegroups.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: ad7292: fix channel
+ constraint
+Message-ID: <20191204185753.GA19409@bogus>
+References: <20191204155918.5ot4tplceqjeul6a@smtp.gmail.com>
 MIME-Version: 1.0
-Received: by 2002:ab3:699:0:0:0:0:0 with HTTP; Wed, 4 Dec 2019 10:41:18 -0800 (PST)
-Reply-To: sgt.kayla12@gmail.com
-From:   kayla <alexsson100@gmail.com>
-Date:   Wed, 4 Dec 2019 18:41:18 +0000
-Message-ID: <CAK=mMtxMeNKhC49SSH7PjqQ4ehg-92LnVxh5CYBrioSTr3ydqg@mail.gmail.com>
-Subject: Hello,
-To:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191204155918.5ot4tplceqjeul6a@smtp.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Happy new month to you my dear,how are you today?,have you received my
-massage?,please write me back,God bless you.
+On Wed, Dec 04, 2019 at 12:59:23PM -0300, Marcelo Schmitt wrote:
+> Change items property of AD7292 channels to correctly constrain their
+> quantity.
+> 
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+> ---
+> Changelog V2
+> - Shortened the message to make it closer to 50 columns.
+> 
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+
+I think Jonathan already applied this series.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+> index b68be3aaf587..18f1032b86f3 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7292.yaml
+> @@ -53,7 +53,8 @@ patternProperties:
+>          description: |
+>            The channel number. It can have up to 8 channels numbered from 0 to 7.
+>          items:
+> -          maximum: 7
+> +          - minimum: 0
+> +            maximum: 7
+>  
+>        diff-channels:
+>          description: see Documentation/devicetree/bindings/iio/adc/adc.txt
+> -- 
+> 2.23.0
+> 
