@@ -2,148 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1429112688
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 10:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A23DF1126A0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 10:10:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725994AbfLDJI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 04:08:56 -0500
-Received: from a27-186.smtp-out.us-west-2.amazonses.com ([54.240.27.186]:49242
-        "EHLO a27-186.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725922AbfLDJI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 04:08:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1575450535;
-        h=From:To:Cc:Subject:Date:Message-Id;
-        bh=ZBxBdnDiHly2BV89aFOWjn0ZPfJNCI0DumbcKy3IVyY=;
-        b=i2XHcBwUJFQuVzXho7p6uU0EPdU142qiOjFmn1c2sOEr4YKRePAAWjdGkawa7AJ/
-        D1lnRlAi1pmdAETn8biEkhgIuhWC1phfwnH1nqvwGzMMH6J4nR9PMFy49xcgYRPxufw
-        j244iHJ6dv6nmDR2Fdvb2sdDSH2RqSwLjRqmBUCM=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1575450534;
-        h=From:To:Cc:Subject:Date:Message-Id:Feedback-ID;
-        bh=ZBxBdnDiHly2BV89aFOWjn0ZPfJNCI0DumbcKy3IVyY=;
-        b=EgpryvcDIcJl3X7R8LmgPqZZ4lD1cBNpdne1LheHWJ0a/Hvsj+EqIZ3VgoaWK+N8
-        Zb7zJFJ0z3YlZNQPDHW80v7bTMUlTkM7ipMtTvZm6YGOdSf9MzvjSk0y7gXqaBLgoSv
-        dBceurYsE6LoMBaYFdBtxigtAURRuaL9kHpkB0Nc=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3BA35C433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v1] arm64: dts: sc7180: Add cpufreq HW node for cpu scaling
-Date:   Wed, 4 Dec 2019 09:08:54 +0000
-Message-ID: <0101016ed02b6356-5165eaaa-6c54-47ff-a008-821c91831e56-000000@us-west-2.amazonses.com>
-X-Mailer: git-send-email 2.7.4
-X-SES-Outgoing: 2019.12.04-54.240.27.186
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+        id S1727158AbfLDJKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 04:10:03 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:47610 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725922AbfLDJKC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 04:10:02 -0500
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 9238B291115;
+        Wed,  4 Dec 2019 09:10:00 +0000 (GMT)
+Date:   Wed, 4 Dec 2019 10:09:57 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Chris Healy <cphealy@gmail.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
+        Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Clark <robdclark@gmail.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Eric Anholt <eric@anholt.net>
+Subject: Re: [PATCH v4 00/11] drm: Add support for bus-format negotiation
+Message-ID: <20191204100957.15406559@collabora.com>
+In-Reply-To: <20191203181924.GU4730@pendragon.ideasonboard.com>
+References: <20191203141515.3597631-1-boris.brezillon@collabora.com>
+        <20191203181924.GU4730@pendragon.ideasonboard.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-cpufreq hw node required to scale CPU frequency on sc7180.
+On Tue, 3 Dec 2019 20:19:24 +0200
+Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
 
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+> Hi Boris,
+> 
+> On Tue, Dec 03, 2019 at 03:15:04PM +0100, Boris Brezillon wrote:
+> > This patch series aims at adding support for runtime bus-format
+> > negotiation between all elements of the
+> > 'encoder -> bridges -> connector/display' section of the pipeline.
+> > 
+> > In order to support that, we need drm bridges to fully take part in the
+> > atomic state validation process, which requires adding a
+> > drm_bridge_state and a new drm_bridge_funcs.atomic_check() hook.
+> > Once those basic building blocks are in place, we can add new hooks to
+> > allow bus format negotiation (those are called just before  
+> > ->atomic_check()). The bus format selection is done at runtime by  
+> > testing all possible combinations across the whole bridge chain until
+> > one is reported to work.
+> > 
+> > No Major changes in this v4. I think I addressed all comments I got
+> > from Neil and Laurent (thanks for the detailed reviews BTW). Note that
+> > this version only contains core changes. Once those changes are merged
+> > I'll send the imx/panel/lvds-codec specific bits.  
+> 
+> I think it would make sense to fast-track patches 01 to 07 (a bit
+> selfishly as I would have a need for them in omapdrm :-))
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index c0ac0a1..7629995 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -40,6 +40,7 @@
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_0>;
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			L2_0: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -55,6 +56,7 @@
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_100>;
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			L2_100: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -67,6 +69,7 @@
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_200>;
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			L2_200: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -79,6 +82,7 @@
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_300>;
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			L2_300: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -91,6 +95,7 @@
- 			reg = <0x0 0x400>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_400>;
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			L2_400: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -103,6 +108,7 @@
- 			reg = <0x0 0x500>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_500>;
-+			qcom,freq-domain = <&cpufreq_hw 0>;
- 			L2_500: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -115,6 +121,7 @@
- 			reg = <0x0 0x600>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_600>;
-+			qcom,freq-domain = <&cpufreq_hw 1>;
- 			L2_600: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -127,6 +134,7 @@
- 			reg = <0x0 0x700>;
- 			enable-method = "psci";
- 			next-level-cache = <&L2_700>;
-+			qcom,freq-domain = <&cpufreq_hw 1>;
- 			L2_700: l2-cache {
- 				compatible = "cache";
- 				next-level-cache = <&L3_0>;
-@@ -286,6 +294,17 @@
- 				status = "disabled";
- 			};
- 		};
-+
-+		cpufreq_hw: cpufreq@18323000 {
-+			compatible = "qcom,cpufreq-hw";
-+			reg = <0 0x18323000 0 0x1400>, <0 0x18325800 0 0x1400>;
-+			reg-names = "freq-domain0", "freq-domain1";
-+
-+			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
-+			clock-names = "xo", "alternate";
-+
-+			#freq-domain-cells = <1>;
-+		};
- 	};
+Will do that end of this week.
 
- 	timer {
---
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
+>, but starting
+> from 08 I wonder if it wouldn't make more sense to merge them with the
+> imx/panel/lvds-codec bits to have a user.
 
+I'd really like to see that happen early in this release cycle so we
+can catch bugs before those commits reach Linus' tree, and the
+lvds-codec changes depend on your PR. Can we make sure this one is
+merged just after the MW has closed and the drm-next -> drm-misc-next
+back merge done just after that?
