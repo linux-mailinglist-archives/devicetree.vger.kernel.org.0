@@ -2,81 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3685112B9D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 13:38:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60AE4112BD4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 13:44:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727781AbfLDMiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 07:38:08 -0500
-Received: from jabberwock.ucw.cz ([46.255.230.98]:54902 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726586AbfLDMiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 07:38:08 -0500
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id D52311C25E0; Wed,  4 Dec 2019 13:38:06 +0100 (CET)
-Date:   Wed, 4 Dec 2019 13:38:06 +0100
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Akinobu Mita <akinobu.mita@gmail.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Bjorn Andersson <bjorn@kryo.se>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Jean-Jacques Hiblot <jjhiblot@ti.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>
-Subject: Re: [PATCH 2/2] leds: meter: add leds-meter binding
-Message-ID: <20191204123806.GB29179@duo.ucw.cz>
-References: <1571756812-19005-1-git-send-email-akinobu.mita@gmail.com>
- <1571756812-19005-3-git-send-email-akinobu.mita@gmail.com>
- <CAL_JsqJ3+Ys5_JD0qnf7acS5wXUpAyU=Wdbfigud4p6fT1f9eg@mail.gmail.com>
+        id S1727508AbfLDMoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 07:44:22 -0500
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:43086 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727446AbfLDMoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 07:44:21 -0500
+Received: by mail-qt1-f196.google.com with SMTP id q8so7540357qtr.10
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2019 04:44:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=SWzs3svZdfoJNhQZue5B0UPApGf3QNVhTsPQAsjB3v0=;
+        b=YNKqFnrX9A37VXTiRJQeKr0TVoVFMlrNSYgUkn0licj+UoOJvZ+HJ8IjWp12nh0vJD
+         oytTss+Gq8P5m3/QMSk9JCuAV6wkVFMmzaroivqVDnEVM61FXNyCf9yJ9ShxtjiQAzs3
+         oP+XEYn8LB8uuNxPWuzgRGTKnRgL3GKoHUk8Ul/OCIn4gK08h9XtnXbtuPmEnWwV1n17
+         a54f8OonjvTFoOebCLtjTpqwEMalcfNKNaE5nCr8IHZsPF65G7ohSjT1TQyQmetMSyZK
+         5y7qzS9EGQgzC1cntwO4RcFJmjQnBSkiD9BmH/gb+uUzXGA+574DNCTpz9glICml7wve
+         5HNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=SWzs3svZdfoJNhQZue5B0UPApGf3QNVhTsPQAsjB3v0=;
+        b=tSpmI/RxI4WeZbHLYJMc/HKwuGciHp1kEj/6yWJVHedx8nmDKhgP3aXhOX3KmToF8T
+         18oPuEqx6UDstJVJ7CRZ9PFIwyCig1oMwNxPQ9DSPRxURuzYKQ7d9deQFu9oU3Zy8kJP
+         GSZ+QvW6JjgmBtqzpGiCDixpn0hk9OVJyTTaCEwWkBt5czSvgp2WH2cBu+3N5h20PvgE
+         GdvxMJ3OpHYYtwGwcxajDU+TnfVwkECnzE/22FIaB3Noa9lbmLadDiAs9484bl4fFb0i
+         BFHIiMY1aAPF6Yso4gWzpIPB2aaW49maj03r1P5esVWN8ifUtGnklyL/sYqbT/Jb1f70
+         Z/ng==
+X-Gm-Message-State: APjAAAXxmnGCviUoK9fBOBQ2NOmAQ+Gj4ojQoqaqwwNUgR29whY5+xdT
+        85IP83diAb0hU8YJ81gtgrys9u8qcCHw8Psho2U=
+X-Google-Smtp-Source: APXvYqxWzKOteDVh9XQL6m/8aKKtTfjBsArmcTuuA2whuVyRtJyctpUk/k0WpughITz8sXR5uhrYJxmexMBU0sOD298=
+X-Received: by 2002:ac8:67cb:: with SMTP id r11mr2394254qtp.54.1575463460895;
+ Wed, 04 Dec 2019 04:44:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="adJ1OR3c6QgCpb/j"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJ3+Ys5_JD0qnf7acS5wXUpAyU=Wdbfigud4p6fT1f9eg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Received: by 2002:ac8:2f0c:0:0:0:0:0 with HTTP; Wed, 4 Dec 2019 04:44:20 -0800 (PST)
+Reply-To: moneygram.1820@outlook.fr
+From:   "Rev.Dr Emmanuel Okoye CEO Ecobank-benin" 
+        <westernunion.benin982@gmail.com>
+Date:   Wed, 4 Dec 2019 13:44:20 +0100
+Message-ID: <CAP=nHBKe8nF-LP3f1956UTMeq15bm+xDr11wyG0H-FNEsu4NzQ@mail.gmail.com>
+Subject: Attn, dear Beneficiary. God has remembered your prayers
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Attn, dear Beneficiary.
 
---adJ1OR3c6QgCpb/j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+God has remembered your prayers
+I have already sent you Money Gram payment of $5000.00 today, MG 1029-8096
+This is because we have finally concluded to effect your transfer
+funds of $4.8,000.000usd
+through MONEY GRAM International Fund transfer Service
+Each payment will be sending to you by $5000.00 daily until the
+($4.8,000.000usd) is completely transferred
+we have this morning sent  MONEY GRAM payment of $5,000.00 in your name today
+So contact the MONEY GRAM Agent to pick up this first payment of $5000 now
 
-On Wed 2019-10-23 09:56:03, Rob Herring wrote:
-> On Tue, Oct 22, 2019 at 10:07 AM Akinobu Mita <akinobu.mita@gmail.com> wr=
-ote:
-> >
-> > Add DT binding for leds-meter.
->=20
-> What's an leds meter? Need a better explanation to understand if this
-> makes sense at all, but some comments on the schema below.
+Contact person Mrs. Alan Ude
+Dir. MONEY GRAM Service,Benin
+Phone number: +229 98856728
+E-mail: moneygram.1820@outlook.fr
 
-It groups several LEDs into one "virtual" LED.
+Ask him to give you the complete mtcn, sender name, question and
+answer to enable you
+pick up the $5000.00 sent today,
+Also you are instructed to re-confirm your information's
+to Mrs.Alan Ude as listed below to avoid wrong transactions.
 
-I'm not sure I like it. What is it good for?
+(1Your Full name:............................................
+(2 Phone number.....................................................
+(3 Contact address:.....................................
+(4 Age:..................................................................
+(5 Country..............................................
+(6) Sex .................................................................
+(7) your occupation...........................................
 
-We do not have many triggers that dim the LEDs, and if it is only used
-=66rom userspace, it can stay in userspace...?
+(8)Passport/By Attach or Drivers License Number:
+Contact Mrs. Alan Ude for your MONEY GRAM payment of $4.8,000.000usd
+Note please: I have paid service fees for you but the only money you
+are required
+to send to Mrs. Alan Ude is $90.00 only Transfer fee before you can
+pick up your transfer today.
 
-Best regards,
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+Send it to via Money Gram
+Receiver's Name-----Alan Ude
+Country----------Benin
+Address-----------Cotonou
+Quest--------Honest
+Ans-----------Trust
 
---adJ1OR3c6QgCpb/j
-Content-Type: application/pgp-signature; name="signature.asc"
+I done all my best for you to receive your transfer now ok.
+We need your urgent reply
+Best Regards
+Rev.Dr Emmanuel Okoye
+CEO Ecobank-benin
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCXeeorgAKCRAw5/Bqldv6
-8rX7AKCfFNZstUnytqFhPWiVHS5USwHH5gCguiizcO24mmi2COmPy7igzck4b+o=
-=8pXm
------END PGP SIGNATURE-----
-
---adJ1OR3c6QgCpb/j--
+If we did not receive it urgent from you today,
+I will go ahead and release you funds to Mrs. Lyndia Ppaulson as your
+representative.
