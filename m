@@ -2,88 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DBD9113126
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 18:53:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0D6113481
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 19:25:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728226AbfLDRxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 12:53:54 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:50782 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728120AbfLDRxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 12:53:54 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB4HrR3P079725;
-        Wed, 4 Dec 2019 11:53:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1575482007;
-        bh=F0nt7Pmnh68/O5Kde/RiIQN8BvHVUZTNfgFgZMTCYBA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=gPv5tYmPE1KQ25A9KFhR+W/RUdD4u5Y+xbYFN5sivADptIxq8DU56lOlH19oAAh3n
-         4MA827H5nsAum7axEp5scWPXKIRFuD8VcgJrv/UXdaXdPfrUOkNbcncgpINt1zewQ8
-         wg4kaVpr0+DoRXEHXIGFk1dfSBv/TbgV++j7N0vI=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB4HrR1t125780
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 4 Dec 2019 11:53:27 -0600
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 4 Dec
- 2019 11:53:20 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 4 Dec 2019 11:53:20 -0600
-Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB4HrBuB048941;
-        Wed, 4 Dec 2019 11:53:17 -0600
-From:   Jyri Sarha <jsarha@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <tony@atomide.com>,
-        <sam@ravnborg.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>
-CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
-        <peter.ujfalusi@ti.com>, <bparrot@ti.com>
-Subject: [PATCH 2/2] dt-bindings: display: Add obsolete note to "ti,tilcdc,panel" binding
-Date:   Wed, 4 Dec 2019 19:53:11 +0200
-Message-ID: <eabe78184ea7125dcff50826a0ee12a892443017.1575481630.git.jsarha@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1575481630.git.jsarha@ti.com>
-References: <cover.1575481630.git.jsarha@ti.com>
+        id S1729721AbfLDSB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 13:01:57 -0500
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:41991 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729275AbfLDSB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 13:01:56 -0500
+Received: by mail-ed1-f67.google.com with SMTP id e10so143607edv.9;
+        Wed, 04 Dec 2019 10:01:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mvp9L8yGr+7Q73cf5DiMFkH0tKxVcTrdu8kuP8KT/wA=;
+        b=AnLIlKDxiENCXMUrbqTM8dDUPRPRHtCYpWJQ8og66XUs0vdaxN8hGdg8m117J2krEJ
+         SJ2rAhNZms6onCSAEhb1qbbpGHdAC1mNwB1yBzp4a46YCvh4DYplVBpVi9hnAnUdTk3V
+         7u+AMPmaRBp2zv5wG50ryD9qcrQW5TYYYwRmOFGRps5AMuyfZUiqtmkQZCMW1y1LJeOa
+         DRVwsjJb7aZBa4lcDk/NWOrtV9UDX2xwfA8hVKNB2z+B1q8U/7/BNl9KF3mOCI0qisZE
+         E+Pm16Xc42UW7lkGqqQY1hd/GGQfyoVxJXRWw9ipzYEk34PlwrqXzIRMfYLNeN/9jAsg
+         NaAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mvp9L8yGr+7Q73cf5DiMFkH0tKxVcTrdu8kuP8KT/wA=;
+        b=EEYwIaKxo8kTZrJJuv1zBAzl97GY1n6+NM7G8zOqAg6JMNN+ZzGkgAypPSHNQaBzRd
+         0BqKpgayJBvbveJcakn6zAdPkDrw10Ct/MGguGy0TF6gMhLava5/u7ECBnDzPXUOTNXK
+         abnPnK5hkIISiDM0uPpASsGiKQsED5I3ggNCAOjD6PaH/ycjr568bU+s1iR+AFF/GaxF
+         aumXaQg7L5qFUWbGuxxtppEpE9nasNVCf1POGtqnfRE5goPa5gHdWjdPFpK3jQuLx80K
+         5dg7gQXpzp+YVCs7RlVPWyMIgKSdsvjMfuuYvgdvr0nVPwsZFa/BkZI05SgVDZHFQr+a
+         /Atg==
+X-Gm-Message-State: APjAAAWduixBQLK/55H3wzIFnnyN0FLvHMGhsrPcukO3KvOniCyD7NN8
+        PPpD+xD9moCccQox8dXLveshkeScr4ULOhfHzhSdNw==
+X-Google-Smtp-Source: APXvYqyH+H1j/zREsxP/LJQ/Q6PhP0dprWgGzUYK4IWlJ02sNpCzzk2ec/2tRbkR3GG2lr++MiA4m7gV4rTsfvod+5U=
+X-Received: by 2002:aa7:d64f:: with SMTP id v15mr5520399edr.71.1575482513957;
+ Wed, 04 Dec 2019 10:01:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1574465484-7115-1-git-send-email-jcrouse@codeaurora.org>
+ <0101016e95751c0b-33c9379b-6b8c-43b1-8785-e5e1b6f084f1-000000@us-west-2.amazonses.com>
+ <3a283a7c-df75-a30a-1bcb-74e631f06a71@arm.com>
+In-Reply-To: <3a283a7c-df75-a30a-1bcb-74e631f06a71@arm.com>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Wed, 4 Dec 2019 10:01:42 -0800
+Message-ID: <CAF6AEGuxgUQNuSQVECiUzpj4DM0R7UYme0Q9ggF1a=JCxAJsBA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] dt-bindings: arm-smmu: Add Adreno GPU variant
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Jordan Crouse <jcrouse@codeaurora.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "ti,tilcdc,panel" binding should not be used anymore, since tilcdc
-is fully capable of using generic drm panels like panel-simple and
-panel-common binding. However, the obsolete binding is still widely
-used in many mainline supported platforms that I do not have access to
-and who knows how many custom platforms. So I am afraid we have to
-keep the old bundled tilcdc panel driver around.
+On Wed, Dec 4, 2019 at 7:56 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> On 22/11/2019 11:31 pm, Jordan Crouse wrote:
+> > Add a compatible string to identify SMMUs that are attached
+> > to Adreno GPU devices that wish to support split pagetables.
+>
+> A software policy decision is not, in itself, a good justification for a
+> DT property. Is the GPU SMMU fundamentally different in hardware* from
+> the other SMMU(s) in any given SoC?
 
-Signed-off-by: Jyri Sarha <jsarha@ti.com>
----
- Documentation/devicetree/bindings/display/tilcdc/panel.txt | 6 ++++++
- 1 file changed, 6 insertions(+)
+The GPU CP has some sort of mechanism to switch pagetables.. although
+I guess under the firmware it is all the same.  Jordan should know
+better..
 
-diff --git a/Documentation/devicetree/bindings/display/tilcdc/panel.txt b/Documentation/devicetree/bindings/display/tilcdc/panel.txt
-index 808216310ea2..54963f9173cc 100644
---- a/Documentation/devicetree/bindings/display/tilcdc/panel.txt
-+++ b/Documentation/devicetree/bindings/display/tilcdc/panel.txt
-@@ -1,5 +1,11 @@
- Device-Tree bindings for tilcdc DRM generic panel output driver
- 
-+NOTE: This binding (and the related driver) is obsolete and should not
-+      be used anymore. Please refer to drm panel-common binding (and
-+      to a generic drm panel driver like panel-simple).
-+      Documentation/devicetree/bindings/display/panel/panel-common.yaml
-+      (drivers/gpu/drm/panel/panel-simple.c)
-+
- Required properties:
-  - compatible: value should be "ti,tilcdc,panel".
-  - panel-info: configuration info to configure LCDC correctly for the panel
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+BR,
+-R
 
+> (* where "hardware" may encompass hypervisor shenanigans)
+>
+> > Signed-off-by: Jordan Crouse <jcrouse@codeaurora.org>
+> > ---
+> >
+> >   Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 6 ++++++
+> >   1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> > index 6515dbe..db9f826 100644
+> > --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> > +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+> > @@ -31,6 +31,12 @@ properties:
+> >                 - qcom,sdm845-smmu-v2
+> >             - const: qcom,smmu-v2
+> >
+> > +      - description: Qcom Adreno GPU SMMU iplementing split pagetables
+> > +        items:
+> > +          - enum:
+> > +              - qcom,adreno-smmu-v2
+> > +          - const: qcom,smmu-v2
+>
+> Given that we already have per-SoC compatibles for Qcom SMMUs in
+> general, this seems suspiciously vague.
+>
+> Robin.
+>
+> > +
+> >         - description: Qcom SoCs implementing "arm,mmu-500"
+> >           items:
+> >             - enum:
+> >
+> _______________________________________________
+> iommu mailing list
+> iommu@lists.linux-foundation.org
+> https://lists.linuxfoundation.org/mailman/listinfo/iommu
