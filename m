@@ -2,84 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 663F711310B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 18:46:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B742113123
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 18:53:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727930AbfLDRq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 12:46:29 -0500
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:40691 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727828AbfLDRq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 12:46:29 -0500
-Received: by mail-pl1-f193.google.com with SMTP id g6so24530plp.7;
-        Wed, 04 Dec 2019 09:46:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=+Ef0Di1Mlcu80Pa6OnzfRhYDxxXa3qHYCdrx2xSTUmc=;
-        b=G4LQ6SqcaxFkJGoL1gpd4ycNNviowxOzXjMa51EICkpxjrYYKiJD3loZwTL+Gkv4It
-         8tnh8Jh31009rAnHy7t5m5o9L4JQhj8UnsU/g/TZX+KIIy7cF4uxsqWlPNw14XbfGt5L
-         ZfMFGGCNIBRexdOkiAXYyvTNGmrQRg1Ekd0r1RaXg1PWZBupfKwBcjUCD9n0bIG3JdN2
-         /uZc71iqkVP4G/1nsUfAbPkpEpXihYZ2kT1OSmLohRYMzGE0oONmwZ79plxW1S9qLJDm
-         e6wmAkszZTetCNq+go9X7sZJxsGFbn1A+Y21YkkSpp0UCJO3nHHsetNaD51Gd59goGP5
-         ei9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=+Ef0Di1Mlcu80Pa6OnzfRhYDxxXa3qHYCdrx2xSTUmc=;
-        b=sTndvu00bd62VfRAT3e0Z792RxLVXA5QZNESEXgFZgL+5B+dXkKoRgFdewu2JzdOs0
-         SNPFM0hP2MoId3c5PG9U353WYuJYlGlORIgGPrXbRWkfm8U8APBobWB+22bzndSiB384
-         4H7eN/2z40dEbhnT9+SlgfaTpKXY/ckFb2YwK8maQkwxHhO3B5MpcRFaPZwE2IizvcpT
-         QwMZWAMKKOjj3ajNI1/urofloQ0anvPN2gAKIBp2CnBt9OBqXJwg05G4X0U3P55UKwvj
-         ydbBwEL2tbWaCv1TGSuxkWXZZsk7R/g7AX0DtVad3F6cQPwrGk4MZNgiR+8lakGP1q0C
-         PkFA==
-X-Gm-Message-State: APjAAAW5IDu3lWaguT4Dn5ySM3jVgOkVdHIT8qLkMOCwazL8mFSSamgN
-        pCT5t3KGsVEoL5F2DZxmvdg+mwjzidmrLZKIiBA=
-X-Google-Smtp-Source: APXvYqxiM25mDXDKoFbGOZwJwH0bs15OaVwiQHsUdLywdLhGhJgTIeOLfUI/3u70DWdr0QFAtP0DkmvBfaWiUg2YCwo=
-X-Received: by 2002:a17:902:9308:: with SMTP id bc8mr4717449plb.18.1575481588283;
- Wed, 04 Dec 2019 09:46:28 -0800 (PST)
+        id S1727930AbfLDRxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 12:53:21 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:53190 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726934AbfLDRxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 12:53:21 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB4HrFnI109065;
+        Wed, 4 Dec 2019 11:53:15 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1575481995;
+        bh=iL2XbLmD+TrHNi/uMsELiJCOuYQfFmOUVnCynnFZPdc=;
+        h=From:To:CC:Subject:Date;
+        b=C2b+auW9hcSaC/m3uLidmaCMnA7SYbKMHz9xjCuYyd+VJauLtN1SQUIfHtEotKs5f
+         P3CPluvvS+cg6l+mop5hs8VIxwoB4H7dsiutq7LWDfuRZ5lBqhcSKOu/ZRRbyqBTDI
+         5cEsEVwxSllLgn9nu7/Ve6zwtjFOlgOUP9/AWcSM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB4HrFI7040834
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 4 Dec 2019 11:53:15 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 4 Dec
+ 2019 11:53:15 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 4 Dec 2019 11:53:15 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB4HrF6Y012761;
+        Wed, 4 Dec 2019 11:53:15 -0600
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <mkl@pengutronix.de>
+CC:     <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: tcan4x5x: Make wake-gpio an optional gpio
+Date:   Wed, 4 Dec 2019 11:51:11 -0600
+Message-ID: <20191204175112.7308-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-References: <20191204101042.4275-1-cleger@kalray.eu> <CAHp75VcMm3PPAgfFPLzVwg_RN7_vQfRmufvWiPOkYaErdGiNsw@mail.gmail.com>
- <2116673293.95313020.1575466238935.JavaMail.zimbra@kalray.eu>
-In-Reply-To: <2116673293.95313020.1575466238935.JavaMail.zimbra@kalray.eu>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 4 Dec 2019 19:46:18 +0200
-Message-ID: <CAHp75VdrsM8hzKdOo0AnRoEeTK-KKy-A-Aj_7yuEp9ZMNUjZ7g@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Add pinctrl support for dwapb gpio driver
-To:     =?UTF-8?Q?Cl=C3=A9ment_Leger?= <cleger@kalray.eu>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Hoan Tran <hoan@os.amperecomputing.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 4, 2019 at 3:30 PM Cl=C3=A9ment Leger <cleger@kalray.eu> wrote:
-> ----- On 4 Dec, 2019, at 13:24, Andy Shevchenko andy.shevchenko@gmail.com=
- wrote:
-> > On Wed, Dec 4, 2019 at 12:13 PM Clement Leger <cleger@kalray.eu> wrote:
+The wake-up of the device can be configured as an optional
+feature of the device.  Move the wake-up gpio from a requried
+property to an optional property.
 
-> > This series misses at least GPIO ACPI maintainers to be Cc'ed to for
-> > the certain changes.
-> > Moreover, I would like to see entire series in the future in my mailbox=
-.
->
-> Sorry, I messed up with get_maintainer.pl while sending the serie.
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+CC: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It's not your fault. I sent a patch to update MAINTAINERS to include
-header file under GPIO ACPI record.
+diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+index 27e1b4cebfbd..7cf5ef7acba4 100644
+--- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
++++ b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+@@ -10,7 +10,6 @@ Required properties:
+ 	- #size-cells: 0
+ 	- spi-max-frequency: Maximum frequency of the SPI bus the chip can
+ 			     operate at should be less than or equal to 18 MHz.
+-	- device-wake-gpios: Wake up GPIO to wake up the TCAN device.
+ 	- interrupt-parent: the phandle to the interrupt controller which provides
+                     the interrupt.
+ 	- interrupts: interrupt specification for data-ready.
+@@ -23,6 +22,7 @@ Optional properties:
+ 		       reset.
+ 	- device-state-gpios: Input GPIO that indicates if the device is in
+ 			      a sleep state or if the device is active.
++	- device-wake-gpios: Wake up GPIO to wake up the TCAN device.
+ 
+ Example:
+ tcan4x5x: tcan4x5x@0 {
+-- 
+2.23.0
 
-> I can resend it properly if needed.
-
-
---=20
-With Best Regards,
-Andy Shevchenko
