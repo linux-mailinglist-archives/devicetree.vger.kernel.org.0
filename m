@@ -2,71 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C23011268F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 10:09:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EAFD1126B4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 10:13:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727212AbfLDJJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 04:09:07 -0500
-Received: from relay11.mail.gandi.net ([217.70.178.231]:33565 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725922AbfLDJJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 04:09:07 -0500
-Received: from uno.lan (93-34-114-233.ip49.fastwebnet.it [93.34.114.233])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id D8B01100002;
-        Wed,  4 Dec 2019 09:09:00 +0000 (UTC)
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        tfiga@google.com, pavel@ucw.cz
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
-        (V4L/DVB)), devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v6 03/11] dt-bindings: video-interface: Expand rotation description
-Date:   Wed,  4 Dec 2019 10:10:48 +0100
-Message-Id: <20191204091056.4842-4-jacopo@jmondi.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191204091056.4842-1-jacopo@jmondi.org>
-References: <20191204091056.4842-1-jacopo@jmondi.org>
+        id S1725994AbfLDJNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 04:13:04 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:53634 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725922AbfLDJNE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 04:13:04 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D183B2E5;
+        Wed,  4 Dec 2019 10:13:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1575450782;
+        bh=DLM5cCVpIiTvnsH3JC8xvKQelO/hR7BI0EPVs3eAlow=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kzM7AUt6QVwQbzGcNShmVYRGF7cZy0G56tTNhws6vdylDtSZ8mpivCzO0LoByFU9k
+         zU6j7/26jWIr9N/aoDSA403924AQTD282woY3Q4bYH7XaJ0Z8qgMyBDjNeKTwGaX+y
+         PR8Jc6UTa5egbU8wUD6/7IDC9j9L45y+yIA7Nau0=
+Date:   Wed, 4 Dec 2019 11:12:55 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Chris Healy <cphealy@gmail.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
+        Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Clark <robdclark@gmail.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Eric Anholt <eric@anholt.net>
+Subject: Re: [PATCH v4 08/11] drm/bridge: Add a drm_bridge_state object
+Message-ID: <20191204091255.GB6705@pendragon.ideasonboard.com>
+References: <20191203141515.3597631-1-boris.brezillon@collabora.com>
+ <20191203141515.3597631-9-boris.brezillon@collabora.com>
+ <20191203181705.GT4730@pendragon.ideasonboard.com>
+ <20191204100302.38096544@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191204100302.38096544@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Expand the 'rotation' property description to define the direction and
-orientation of the axis around which the device mounting rotation is
-expressed.
+Hi Boris,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
----
- .../devicetree/bindings/media/video-interfaces.txt        | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+On Wed, Dec 04, 2019 at 10:03:02AM +0100, Boris Brezillon wrote:
+> On Tue, 3 Dec 2019 20:17:05 +0200 Laurent Pinchart wrote:
+> > On Tue, Dec 03, 2019 at 03:15:12PM +0100, Boris Brezillon wrote:
+> > > One of the last remaining objects to not have its atomic state.
+> > > 
+> > > This is being motivated by our attempt to support runtime bus-format
+> > > negotiation between elements of the bridge chain.
+> > > This patch just paves the road for such a feature by adding a new
+> > > drm_bridge_state object inheriting from drm_private_obj so we can
+> > > re-use some of the existing state initialization/tracking logic.
+> > > 
+> > > Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> > > Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> > > ---
+> > > Changes in v4:
+> > > * Fix the doc
+> > > * Kill default helpers (inlined)  
+> > 
+> > I liked the default helpers, inlining their content makes the code more
+> > difficult to follow in my opinion.
+> 
+> I'll go back to this approach then. Should I keep the original helper
+> names even though they're not globally visible (and should probably
+> never be)?
 
-diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-index 1211bdf80722..58b87a3f1fa4 100644
---- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-+++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-@@ -85,9 +85,11 @@ Optional properties
+I agree they should probably never be visible, and I trust your
+judgement on naming. Please double-check the documentation though, to
+ensure that it matches the implementation.
 
- - lens-focus: A phandle to the node of the focus lens controller.
+-- 
+Regards,
 
--- rotation: The device, typically an image sensor, is not mounted upright,
--  but a number of degrees counter clockwise. Typical values are 0 and 180
--  (upside down).
-+- rotation: The mount rotation of the device (typically an image sensor)
-+  expressed as counterclockwise rotation degrees along the axis perpendicular to
-+  the device mounting surface directed away from it. Typical values are 0
-+  degrees for upright mounted devices and 180 degrees for devices mounted upside
-+  down.
-
- - location: The mount location of a device (typically an image sensor or a flash
-   LED) expressed as a position relative to the usage orientation of the system
---
-2.23.0
-
+Laurent Pinchart
