@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BC7011362A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 21:10:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A79D211363C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 21:15:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728031AbfLDUKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 15:10:12 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44674 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727033AbfLDUKL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 15:10:11 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB4KA8SP060994;
-        Wed, 4 Dec 2019 14:10:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1575490208;
-        bh=Uz5fI0J8NJ5UZT+CHleC9Mtyt2vhsOtwW5oQaddVU38=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=PlGbgDEQqimL4s0qwbQdGXDtGEN4MODdEBwJ26eSDJTKft4y0i+EjJzWeL61NQm5w
-         0dQNjBWsuMRQvnboR0gIaGf4KsJFk22JgJsoxmw2ehUjKmjrmQE8yspM1wvHaSA2GJ
-         im5ngtu40sIORcZROrKSnzMc64unXJuuCtPBasGQ=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB4KA8uu105254
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 4 Dec 2019 14:10:08 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 4 Dec
- 2019 14:10:07 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 4 Dec 2019 14:10:07 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB4KA551001603;
-        Wed, 4 Dec 2019 14:10:05 -0600
-Subject: Re: [PATCH] ARM: dts: am335x-icev2: Add support for OSD9616P0899-10
- at i2c0
-To:     Jyri Sarha <jsarha@ti.com>, <tony@atomide.com>,
-        <bcousson@baylibre.com>, <devicetree@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>
-CC:     <peter.ujfalusi@ti.com>, <bparrot@ti.com>
-References: <20191204144024.16021-1-jsarha@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <edde771f-8780-e342-3e1b-e30eefac5e4f@ti.com>
-Date:   Wed, 4 Dec 2019 22:10:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1727989AbfLDUPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 15:15:03 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:48418 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727033AbfLDUPD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Dec 2019 15:15:03 -0500
+Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1icb2t-0001Zb-KG; Wed, 04 Dec 2019 21:14:47 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Akash Gajjar <akash@openedev.com>, Tom Cubie <tom@radxa.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amarula@amarulasolutions.com
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: rockchip: Add VMARC RK3399Pro SOM binding
+Date:   Wed, 04 Dec 2019 21:14:46 +0100
+Message-ID: <5408424.xnnVrITuBQ@diego>
+In-Reply-To: <20191204193240.GA6772@bogus>
+References: <20191121141445.28712-1-jagan@amarulasolutions.com> <20191121141445.28712-2-jagan@amarulasolutions.com> <20191204193240.GA6772@bogus>
 MIME-Version: 1.0
-In-Reply-To: <20191204144024.16021-1-jsarha@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/12/2019 16:40, Jyri Sarha wrote:
-> Add support for OSD9616P0899-10 96x16 passive matrix display. The
-> pre-charge period parameters are taken form a OSD9616P0899-10
-> document, but the display works fine with the default values too.
+Am Mittwoch, 4. Dezember 2019, 20:32:40 CET schrieb Rob Herring:
+> On Thu, Nov 21, 2019 at 07:44:41PM +0530, Jagan Teki wrote:
+> > VMARC RK3399Pro SOM is a standard SMARC SOM design with
+> > Rockchip RK3399Pro SoC, which is designed by Vamrs.
+> > 
+> > Since it is a standard SMARC design, it can be easily
+> > mounted on the supporting Carrier board. Radxa has
+> > suitable carrier board to mount and use it as a final
+> > version board.
+> > 
+> > Add dt-bindings for it.
+> > 
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> > Changes for v2:
+> > - none
+> > 
+> >  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > index 45728fd22af8..51aa458833a9 100644
+> > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> > @@ -526,4 +526,9 @@ properties:
+> >          items:
+> >            - const: tronsmart,orion-r68-meta
+> >            - const: rockchip,rk3368
+> > +
+> > +      - description: Vamrs VMARC RK3399Pro SOM
+> > +        items:
+> > +          - const: vamrs,rk3399pro-vmarc-som
 > 
-> Signed-off-by: Jyri Sarha <jsarha@ti.com>
-> ---
->   arch/arm/boot/dts/am335x-icev2.dts | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/am335x-icev2.dts b/arch/arm/boot/dts/am335x-icev2.dts
-> index 204bccfcc110..021eb57261fe 100644
-> --- a/arch/arm/boot/dts/am335x-icev2.dts
-> +++ b/arch/arm/boot/dts/am335x-icev2.dts
-> @@ -287,6 +287,19 @@
->   		gpio-controller;
->   		#gpio-cells = <2>;
->   	};
-> +
-> +	/* osd9616p0899-10 */
-> +	display@3c {
-> +		compatible = "solomon,ssd1306fb-i2c";
-> +		reg = <0x3c>;
-> +		solomon,height = <16>;
-> +		solomon,width = <96>;
-> +		solomon,com-seq;
-> +		solomon,com-invdir;
-> +		solomon,page-offset = <0>;
-> +		solomon,prechargep1 = <2>;
-> +		solomon,prechargep2 = <13>;
-> +	};
->   };
->   
->   &spi0 {
-> 
+> Why do you need this? You just override it in your dts files, so it is 
+> not really used. Perhaps the top-level should have all 3 compatibles? If 
+> so, then the schemas are wrong.
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+In the past we had SOMs that _could_ function alone, but looking at the
+announcement for this one [0] suggests that the SOM always needs a carrier
+board, so I don't think the SOM actually needs a separate entry but instead
+should be part of the carrier-board compatible list, as Rob suggested.
 
-  Tomi
+So I guess we should only have (from patch 3):
+  - description: Radxa ROCK Pi N10
+        items:
+          - const: radxa,rockpi-n10
+          - const: vamrs,rk3399pro-vmarc-som
+          - const: rockchip,rk3399pro
 
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
+Heiko
+
+[0] https://www.96rocks.com/blog/2019/09/11/introduce-vamrc-rk3399pro-som-and-ficus2-carrier-board/
+
+
