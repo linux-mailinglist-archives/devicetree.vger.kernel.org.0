@@ -2,95 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A23DF1126A0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 10:10:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A7711268C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 10:09:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727158AbfLDJKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 04:10:03 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:47610 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725922AbfLDJKC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 04:10:02 -0500
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 9238B291115;
-        Wed,  4 Dec 2019 09:10:00 +0000 (GMT)
-Date:   Wed, 4 Dec 2019 10:09:57 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Chris Healy <cphealy@gmail.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
-        Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Clark <robdclark@gmail.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Eric Anholt <eric@anholt.net>
-Subject: Re: [PATCH v4 00/11] drm: Add support for bus-format negotiation
-Message-ID: <20191204100957.15406559@collabora.com>
-In-Reply-To: <20191203181924.GU4730@pendragon.ideasonboard.com>
-References: <20191203141515.3597631-1-boris.brezillon@collabora.com>
-        <20191203181924.GU4730@pendragon.ideasonboard.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726632AbfLDJJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 04:09:00 -0500
+Received: from relay11.mail.gandi.net ([217.70.178.231]:35299 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725922AbfLDJJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 04:09:00 -0500
+Received: from uno.lan (93-34-114-233.ip49.fastwebnet.it [93.34.114.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 4B2BF100013;
+        Wed,  4 Dec 2019 09:08:55 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        tfiga@google.com, pavel@ucw.cz
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
+        (V4L/DVB)), devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>, Tomasz Figa <tfiga@chromium.org>
+Subject: [PATCH v6 01/11] dt-bindings: video-interfaces: Document 'location' property
+Date:   Wed,  4 Dec 2019 10:10:46 +0100
+Message-Id: <20191204091056.4842-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191204091056.4842-1-jacopo@jmondi.org>
+References: <20191204091056.4842-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 3 Dec 2019 20:19:24 +0200
-Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
+Add the 'location' device property, used to specify a device mounting
+position. The property is particularly meaningful for mobile devices
+with a well defined usage orientation.
 
-> Hi Boris,
-> 
-> On Tue, Dec 03, 2019 at 03:15:04PM +0100, Boris Brezillon wrote:
-> > This patch series aims at adding support for runtime bus-format
-> > negotiation between all elements of the
-> > 'encoder -> bridges -> connector/display' section of the pipeline.
-> > 
-> > In order to support that, we need drm bridges to fully take part in the
-> > atomic state validation process, which requires adding a
-> > drm_bridge_state and a new drm_bridge_funcs.atomic_check() hook.
-> > Once those basic building blocks are in place, we can add new hooks to
-> > allow bus format negotiation (those are called just before  
-> > ->atomic_check()). The bus format selection is done at runtime by  
-> > testing all possible combinations across the whole bridge chain until
-> > one is reported to work.
-> > 
-> > No Major changes in this v4. I think I addressed all comments I got
-> > from Neil and Laurent (thanks for the detailed reviews BTW). Note that
-> > this version only contains core changes. Once those changes are merged
-> > I'll send the imx/panel/lvds-codec specific bits.  
-> 
-> I think it would make sense to fast-track patches 01 to 07 (a bit
-> selfishly as I would have a need for them in omapdrm :-))
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Tomasz Figa <tfiga@chromium.org>
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+---
+ .../devicetree/bindings/media/video-interfaces.txt    | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Will do that end of this week.
+diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+index f884ada0bffc..1211bdf80722 100644
+--- a/Documentation/devicetree/bindings/media/video-interfaces.txt
++++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+@@ -89,6 +89,17 @@ Optional properties
+   but a number of degrees counter clockwise. Typical values are 0 and 180
+   (upside down).
 
->, but starting
-> from 08 I wonder if it wouldn't make more sense to merge them with the
-> imx/panel/lvds-codec bits to have a user.
++- location: The mount location of a device (typically an image sensor or a flash
++  LED) expressed as a position relative to the usage orientation of the system
++  where the device is installed on.
++  Possible values are:
++  0 - Front. The device is mounted on the front facing side of the system.
++  For mobile devices such as smartphones, tablets and laptops the front side is
++  the user facing side.
++  1 - Back. The device is mounted on the back side of the system, which is
++  defined as the opposite side of the front facing one.
++  2 - External. The device is not attached directly to the system but is
++  attached in a way that allows it to move freely.
 
-I'd really like to see that happen early in this release cycle so we
-can catch bugs before those commits reach Linus' tree, and the
-lvds-codec changes depend on your PR. Can we make sure this one is
-merged just after the MW has closed and the drm-next -> drm-misc-next
-back merge done just after that?
+ Optional endpoint properties
+ ----------------------------
+--
+2.23.0
+
