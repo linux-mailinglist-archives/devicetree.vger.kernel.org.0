@@ -2,74 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4281D112B3B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 13:21:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64428112B61
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 13:23:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727446AbfLDMVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 07:21:16 -0500
-Received: from inca-roads.misterjones.org ([213.251.177.50]:43763 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727445AbfLDMVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 07:21:16 -0500
-Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1icTeU-0002F5-09; Wed, 04 Dec 2019 13:21:06 +0100
-To:     <anarsoul@gmail.com>
-Subject: Re: [linux-sunxi] Re: [PATCH v3 1/2] arm64:  =?UTF-8?Q?arch=5Ftimer=3A=20Workaround=20for=20Allwinner=20A=36=34=20time?=  =?UTF-8?Q?r=20instability?=
-X-PHP-Originating-Script: 0:main.inc
+        id S1727826AbfLDMXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 07:23:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727731AbfLDMXH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Dec 2019 07:23:07 -0500
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7FE5B207DD;
+        Wed,  4 Dec 2019 12:23:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1575462187;
+        bh=VQII2ZPJA4Onl4Fa0MDvbaFDqWFHNptYhZaZDw4M8ok=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fdsvOfZ2O4I4ckLl1rqlAETymbvDr7vTNxeYSHpWWf2qYYMcwuCrR3BLMqoa9xqZ6
+         dDutb4vQNLhjVSShkAk3Ol3Gwgvfcuajbgm6MXuz8Otr/nwa5Kkeunco8Eyobrp+iU
+         h2SKhzqF7qdLx+Mkier3X0mEyG7zahMzuzxVToTc=
+Date:   Wed, 4 Dec 2019 20:22:57 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Michael Grzeschik <m.grzeschik@pengutronix.de>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] ARM: dts: imx25: usbhost port1 improvemts
+Message-ID: <20191204122256.GK3365@dragon>
+References: <20191120082955.3ovsoziurntmv7by@pengutronix.de>
+ <20191120211334.5580-1-m.grzeschik@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 04 Dec 2019 12:21:05 +0000
-From:   Marc Zyngier <maz@kernel.org>
-Cc:     <marc.zyngier@arm.com>, Samuel Holland <samuel@sholland.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-In-Reply-To: <CA+E=qVfaBcUN5iB3kaK5gHyURpWt7ET6_js=sLiDg4PCDXXTYA@mail.gmail.com>
-References: <20190113021719.46457-1-samuel@sholland.org>
- <20190113021719.46457-2-samuel@sholland.org>
- <472c5450-1b60-6ac7-b242-805c2a2f3272@arm.com>
- <CA+E=qVfaBcUN5iB3kaK5gHyURpWt7ET6_js=sLiDg4PCDXXTYA@mail.gmail.com>
-Message-ID: <4b922079aeed04f31ff67b3e7fb78022@www.loen.fr>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/0.7.2
-X-SA-Exim-Connect-IP: <locally generated>
-X-SA-Exim-Rcpt-To: anarsoul@gmail.com, marc.zyngier@arm.com, samuel@sholland.org, catalin.marinas@arm.com, will.deacon@arm.com, maxime.ripard@bootlin.com, wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com, daniel.lezcano@linaro.org, tglx@linutronix.de, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191120211334.5580-1-m.grzeschik@pengutronix.de>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[please note that my email address has changed]
+On Wed, Nov 20, 2019 at 10:13:32PM +0100, Michael Grzeschik wrote:
+> Michael Grzeschik (2):
+>   ARM: dts: imx25: consolidate properties of usbhost1 in dtsi file
+>   ARM: dts: imx25: describe maximum speed of internal usbhost port1 phy
 
-On 2019-12-04 04:18, Vasily Khoruzhick wrote:
-
-[...]
-
-> Unfortunately this patch doesn't completely eliminate the jumps. 
-> There
-> have been reports from users who still saw 95y jump even with the
-> patch applied.
->
-> Personally I've seen it once or twice on my Pine64-LTS.
->
-> Looks like we need bigger hammer. Does anyone have any idea what it 
-> could be?
-
-Which kernel version did you see this happening on?
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+Applied, thanks.
