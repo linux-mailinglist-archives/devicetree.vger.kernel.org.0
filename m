@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBAFC112340
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 08:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2715112347
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 08:08:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726899AbfLDHFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 02:05:06 -0500
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:43808 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725958AbfLDHFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 02:05:05 -0500
-Received: by mail-vs1-f67.google.com with SMTP id x4so1271577vsx.10
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2019 23:05:05 -0800 (PST)
+        id S1726508AbfLDHIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 02:08:02 -0500
+Received: from mail-vk1-f195.google.com ([209.85.221.195]:45624 "EHLO
+        mail-vk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726166AbfLDHIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 02:08:02 -0500
+Received: by mail-vk1-f195.google.com with SMTP id g7so198243vkl.12
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2019 23:08:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2ZctKunwgyLMVHuNRAeQfQcDadwdKlFmTmC1zk4+eNo=;
-        b=GVFJS0g6vusTIy7E8yDWR6wEBrqyHeA/dvrCjpzmFkRp6jwsN7tfaDhypIWgm+48GS
-         ajWWcNcJDaP2rqZnhxN0+YUkHQ3gIRQPwRr/haAfv4I3YFxFfrDZKdSoy38RzQzG2bZl
-         Q7CT8OHqOU2HIL1zI4nORvbwbSgfYgOvxu1nc=
+        bh=OnkkDqzzWZ7ko76SaJQtORbCXdve+uF2P+mzM2G6HOo=;
+        b=iDEL9iS/EMPOok9afqUeURuVVBWQu2rgnp9u7NRyLxffysoGn/smQASezgGuQEGqmS
+         /8UwFv7Nr9TwsZ3c+Sn4sdNe7BBdCIPTqOLBjutkMNnhAGUPakhlGvUiWDPiYgFthnlk
+         GbkAPob+qPjb9GKbnKSLQUxix4i9d0ZTJrduo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2ZctKunwgyLMVHuNRAeQfQcDadwdKlFmTmC1zk4+eNo=;
-        b=H0rsFyltdkaDPtV5dxUT/2v1DfUu7uVVXB39NfcREk6/zQlJbohTH/5Nr/IB90JIJz
-         5dEH19X5eNQBcr3DoK+sWrZEquQnPTIo63zUcHaLt+eFiWGmAlQrfbRX2hQOKtzmF2ib
-         Z7ke0cPcTKHmukNBC0sl8QKqL/7EQCsnztnNCB1LlFg8qWIXPreChaLOR8gkoW28mrdG
-         8rSgyTV3oepztb3VP2E1P3UDnW4/zWwi+ZvdreC/n1TPgfU3SkPbmx6AdX8BHo0sdVsn
-         C2ZOstv6rBKSC+cGMryIkjnZkqLcYJ6prjE/ZuJ7pkgBTSf7N+YEn2sGjnDAgRdYzdK1
-         7Yow==
-X-Gm-Message-State: APjAAAWJDFmoX1u3/+Y2KH1vKQ6iTvtqssa8ynHUUzH0YwYMlW1F8KwZ
-        nchnxtkMEpsQFkivf5U6+DwdnluenQ28pjaz9W+eJg==
-X-Google-Smtp-Source: APXvYqzRIFh1Vqlh+f07DqevfXqmOnXcLt0SM9csZ9fHfTfxYcneQ3lUouZNlG811MLLPfogJCwYgjOBmbJwJU6T5OE=
-X-Received: by 2002:a67:f541:: with SMTP id z1mr674820vsn.70.1575443104903;
- Tue, 03 Dec 2019 23:05:04 -0800 (PST)
+        bh=OnkkDqzzWZ7ko76SaJQtORbCXdve+uF2P+mzM2G6HOo=;
+        b=SKUNSFFpJHldCvbjETmMf7ASvj6aEXc0E1h39NqOL4Tw8kHuOaacK696Bx+5aFtvfH
+         PyPCUCUcwdnAfRBVjzLMkqURXHUaT65hx2r6lv05ei9H+hvrD9Y3FYV3eYy2waxd4UBn
+         9FUEmaVnxSkAPe4jnVpxxJ6sCfl3Q1BXt58pTLXgPH37HPWyDUEAhkcF1oCEY3Z8gJtB
+         7GvDIctE+SFKH1szToXOmV4Ri6Mu2iVjScgWHoNFZ1kg1cXPOU3jqcmYfdh+XK0o2aaL
+         ey71qtAC+3VOepMOQJq5/0HsQk7Qumil/T9CEQDx0230BHpRSnuyTA2hdLeF1iOy6+Iw
+         /EdQ==
+X-Gm-Message-State: APjAAAW4ewktuCDFf9mpofnpflPspG732mwxIk5wNb0ekUKOWIvBd+LJ
+        jqoL+WW3D4WUdO9wiWVEeq8Q4LCMpZjQXb1RMPHdzw==
+X-Google-Smtp-Source: APXvYqxMtDuWHWsIKqXE8KLvKaAuALmnb1dIz8TyrC1W4+0VCyLzJebseWTY1hSp0YU4qqoU9TqZ/pluQh0JsQvhQPU=
+X-Received: by 2002:a1f:d904:: with SMTP id q4mr317337vkg.13.1575443281606;
+ Tue, 03 Dec 2019 23:08:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20191203101552.199339-1-ikjn@chromium.org> <20191203165301.GH10631@localhost>
-In-Reply-To: <20191203165301.GH10631@localhost>
+References: <20191203101552.199339-1-ikjn@chromium.org> <Pine.LNX.4.44L0.1912031021120.1505-100000@iolanthe.rowland.org>
+In-Reply-To: <Pine.LNX.4.44L0.1912031021120.1505-100000@iolanthe.rowland.org>
 From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Wed, 4 Dec 2019 15:04:53 +0800
-Message-ID: <CAATdQgCqYrd_aXN5GDsso+F3WadNx3DQKK3Efk3tgkrv2VXjyw@mail.gmail.com>
+Date:   Wed, 4 Dec 2019 15:07:50 +0800
+Message-ID: <CAATdQgCNEyBjaFijBpWHnqtk90_17WbY2PhVoYSKKccPY3SxZQ@mail.gmail.com>
 Subject: Re: [PATCH v4 2/2] usb: overridable hub bInterval by device node
-To:     Johan Hovold <johan@kernel.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
 Cc:     linux-usb@vger.kernel.org,
         GregKroah-Hartman <gregkh@linuxfoundation.org>,
         RobHerring <robh+dt@kernel.org>,
         MarkRutland <mark.rutland@arm.com>,
-        AlanStern <stern@rowland.harvard.edu>,
         SuwanKim <suwan.kim027@gmail.com>,
         "GustavoA . R . Silva" <gustavo@embeddedor.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        JohanHovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
         Nicolas Boichat <drinkcat@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
@@ -60,9 +60,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 4, 2019 at 12:52 AM Johan Hovold <johan@kernel.org> wrote:
+On Tue, Dec 3, 2019 at 11:23 PM Alan Stern <stern@rowland.harvard.edu> wrote:
 >
-> On Tue, Dec 03, 2019 at 06:15:52PM +0800, Ikjoon Jang wrote:
+> On Tue, 3 Dec 2019, Ikjoon Jang wrote:
+>
 > > This patch enables hub device to override its own endpoint descriptor's
 > > bInterval when the hub has a device node with "hub,interval" property.
 > >
@@ -71,13 +72,7 @@ On Wed, Dec 4, 2019 at 12:52 AM Johan Hovold <johan@kernel.org> wrote:
 > > has a long bInterval, mouse lags a lot from more frequent autosuspend.
 > > So this enables overriding bInterval for a hard wired hub device only
 > > when we know that reduces the power consumption.
->
-> I think I saw you argue about why this shouldn't simply be configured at
-> runtime. Please include that here too, I can't seem to remember why...
-
-Okay.
-
->
+> >
 > > Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
 > > Acked-by: Alan Stern <stern@rowland.harvard.edu>
 > > ---
@@ -102,39 +97,25 @@ Okay.
 > >
 > > +     /* device node property overrides bInterval */
 > > +     if (usb_of_has_combined_node(to_usb_device(ddev))) {
->
-> Not only hubs have combined nodes so you probably need to check
-> bDeviceClass here instead.
-
-yes, you're right, I didn't think of that case:
-if (to_usb_device(ddev)->descriptor.bDeviceClass == USB_CLASS_HUB &&
-ddev->of_node && !of_property_read_u32(...))
-
-Or is it better to check bInterfaceClass, for composite devices with a
-hub interface inside?
-if (ifp->desc.bInterfaceClass == USB_CLASS_HUB && ddev->of_node &&
-!of_property_read_u32(...))
-
-I think checking bInterfaceClass is better.
-
->
 > > +             u32 interval = 0;
+>
+> Coding style: there should be a blank line here.  Also, you don't need
+> the "= 0" initializer.
+>
+> Otherwise okay.
+
+Okay, I will fix that.
+Thank you!
+
+>
+> Alan Stern
+>
 > > +             if (!of_property_read_u32(ddev->of_node, "hub,interval",
 > > +                                 &interval))
 > > +                     d->bInterval = min_t(u8, interval, 255);
->
-> You want min_t(u32, ...) here to avoid surprises when someone specifies
-> a value > 255.
-
-yes, thanks.
-
->
 > > +     }
 > > +
 > >       /*
 > >        * Fix up bInterval values outside the legal range.
 > >        * Use 10 or 8 ms if no proper value can be guessed.
 >
-> Johan
-
-I will send v5 soon, thank you.
