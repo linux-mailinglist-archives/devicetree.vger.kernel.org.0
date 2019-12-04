@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC0381130D2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 18:31:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E531130E3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 18:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727989AbfLDRbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 12:31:51 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:46882 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726934AbfLDRbv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Dec 2019 12:31:51 -0500
-Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1icYV9-0000uM-6T; Wed, 04 Dec 2019 18:31:47 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
+        id S1727828AbfLDRgv convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 4 Dec 2019 12:36:51 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:45531 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727033AbfLDRgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 12:36:51 -0500
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id A618F240002;
+        Wed,  4 Dec 2019 17:36:47 +0000 (UTC)
+Date:   Wed, 4 Dec 2019 18:36:46 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
 Cc:     linux-rockchip@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Move xin32k fixed-clock out of PX30 DTSI
-Date:   Wed, 04 Dec 2019 18:31:46 +0100
-Message-ID: <2665233.YyXs6BPQ7y@diego>
-In-Reply-To: <20191204171537.14163-1-miquel.raynal@bootlin.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Move xin32k fixed-clock out of
+ PX30 DTSI
+Message-ID: <20191204183646.2f7f6e7f@xps13>
+In-Reply-To: <2665233.YyXs6BPQ7y@diego>
 References: <20191204171537.14163-1-miquel.raynal@bootlin.com>
+        <2665233.YyXs6BPQ7y@diego>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Hi Heiko,
 
-Am Mittwoch, 4. Dezember 2019, 18:15:37 CET schrieb Miquel Raynal:
-> This clock has nothing to do in the PX30 DTSI as it is supposed to be
-> an input of the SoC. Moving it to the EVB DTS (only board file using
-> this DTSI) makes more sense. Also, when this clock is not a fixed
-> clock and comes from eg. a PMIC the situation can be described cleanly
-> in the device tree (avoids having to delete the fixed-clock node
-> first).
+Heiko Stübner <heiko@sntech.de> wrote on Wed, 04 Dec 2019 18:31:46
++0100:
+
+> Hi Miquel,
 > 
-> This clock is not mandatory to boot so it should not break existing
-> users.
+> Am Mittwoch, 4. Dezember 2019, 18:15:37 CET schrieb Miquel Raynal:
+> > This clock has nothing to do in the PX30 DTSI as it is supposed to be
+> > an input of the SoC. Moving it to the EVB DTS (only board file using
+> > this DTSI) makes more sense. Also, when this clock is not a fixed
+> > clock and comes from eg. a PMIC the situation can be described cleanly
+> > in the device tree (avoids having to delete the fixed-clock node
+> > first).
+> > 
+> > This clock is not mandatory to boot so it should not break existing
+> > users.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>  
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Sorry foo being the bearer of bad news again, but that issue got already
+> fixed by:
 
-Sorry foo being the bearer of bad news again, but that issue got already
-fixed by:
+He he, no problem :) I was not actually looking at the right branch
+(v5.5-armsoc/dts64).
 
-arm64: dts: rockchip: remove static xin32k from px30
-https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v5.5-armsoc/dts64&id=00519137f7d4fc19ff27f3d3f4fc45b5b222ae82
+> arm64: dts: rockchip: remove static xin32k from px30
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v5.5-armsoc/dts64&id=00519137f7d4fc19ff27f3d3f4fc45b5b222ae82
+> 
+> arm64: dts: rockchip: fix the px30-evb power tree
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v5.5-armsoc/dts64&id=915b6a8b54a6d436885a458867e59fb20fc6356d
+> 
+> 
+> On most/all Rockchip the xin32k clock is actually provided by the boards
+> pmic - the rk809 in this case.
 
-arm64: dts: rockchip: fix the px30-evb power tree
-https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/commit/?h=v5.5-armsoc/dts64&id=915b6a8b54a6d436885a458867e59fb20fc6356d
-
-
-On most/all Rockchip the xin32k clock is actually provided by the boards
-pmic - the rk809 in this case.
-
-
-Heiko
-
-
-
+Thanks for the confirmation!
+Miquèl
