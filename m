@@ -2,114 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A961F112A09
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 12:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F01112A0F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2019 12:25:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727466AbfLDLZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 06:25:05 -0500
-Received: from mx2.suse.de ([195.135.220.15]:38052 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727445AbfLDLZE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Dec 2019 06:25:04 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id D53B0B1C0;
-        Wed,  4 Dec 2019 11:25:02 +0000 (UTC)
-Subject: Re: [PATCH 1/6] dt-bindings: clock: add bindings for RTD1619 clocks
-To:     James Tai <james.tai@realtek.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-realtek-soc@lists.infradead.org" 
-        <linux-realtek-soc@lists.infradead.org>,
-        =?UTF-8?B?RWRnYXIgTGVlIFvmnY7mib/oq61d?= <cylee12@realtek.com>,
+        id S1727600AbfLDLZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 06:25:36 -0500
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52960 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727445AbfLDLZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 06:25:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=hdUxh+e5zga2P0izFHRNT+NvrTWWB1D5/zTtECXmmq4=; b=JTagQtuptdU5UemcVWdOQJIEh
+        OFH0vts2gKpQ1iiBkapQsyR1uePy39eUQAY7BJ/+fB9bAUDO2VYQODwUMn71zG6WIgJfX6qRmpZf/
+        1V9HQRS4ftqviYmdfALJmhYlBruoSZe9S2aCE53/83tgZxOxHKBdTUZ0ksbJ5QycveCPo=;
+Received: from fw-tnat-cam3.arm.com ([217.140.106.51] helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1icSme-0008Ib-VB; Wed, 04 Dec 2019 11:25:28 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id 33793D003B4; Wed,  4 Dec 2019 11:25:28 +0000 (GMT)
+Date:   Wed, 4 Dec 2019 11:25:28 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Chris Brandt <chris.brandt@renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20191203074513.9416-1-james.tai@realtek.com>
- <20191203074513.9416-2-james.tai@realtek.com>
- <f069747b-7f10-f47c-684d-11138b8fd129@suse.de>
- <1130d9316ffb49c8a99b9b2c2d8fa90f@realtek.com>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Message-ID: <da35686d-2584-a13f-b56e-ba3ff9768113@suse.de>
-Date:   Wed, 4 Dec 2019 12:25:00 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Subject: Re: [PATCH 4/6] spi: Add SPIBSC driver
+Message-ID: <20191204112528.GQ1998@sirena.org.uk>
+References: <20191203034519.5640-1-chris.brandt@renesas.com>
+ <20191203034519.5640-5-chris.brandt@renesas.com>
+ <20191203141944.GI1998@sirena.org.uk>
+ <CAMuHMdXk5DDebriHxmtz0NWF_zDhBK=fBZugdUfmEAyU0O4zMQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1130d9316ffb49c8a99b9b2c2d8fa90f@realtek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tuFXEhzhBeitrIAu"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXk5DDebriHxmtz0NWF_zDhBK=fBZugdUfmEAyU0O4zMQ@mail.gmail.com>
+X-Cookie: Cleanliness is next to impossible.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi James,
 
-[fixing Palmer]
+--tuFXEhzhBeitrIAu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Am 04.12.19 um 05:11 schrieb James Tai:
->> Am 03.12.19 um 08:45 schrieb James Tai:
->>> From: cylee12 <cylee12@realtek.com>
->>
->> Please fix the author (git commit --amend --author="...") and use an
->> appropriate git config setting (and communication to your team) to avoid this
->> reoccurring for new commits - already pointed out to James.
->>
->> BTW I wonder why we have so many seemingly unrelated people in CC
->> (Mediatek, RISC-V) that the patches and responses keep hanging in mailing list
->> moderation?
-> 
-> I used the "get_maintainer.pl" to find the email address of maintainers. However, 
-> I'm so sorry for mistakenly adding some unrelated people to this mail.
+On Tue, Dec 03, 2019 at 07:29:45PM +0100, Geert Uytterhoeven wrote:
+> On Tue, Dec 3, 2019 at 3:19 PM Mark Brown <broonie@kernel.org> wrote:
 
-Here's my git-send-email cccmd config that I recommend:
+> > > +     pm_runtime_put(&pdev->dev);
+> > > +     pm_runtime_disable(&pdev->dev);
 
-$ git config sendemail.cccmd
-scripts/get_maintainer.pl --nogit-fallback --norolestats
+> > There seems to be no purpose in the runtime PM code in this
+> > driver, there's no PM operations of any kind and the driver holds
+> > a runtime PM reference for the entire lifetime of the device.
 
---nogit-fallback suppresses Git history to be checked for previous
-contributors, saving time and avoiding unrelated or outdated people.
+> It matters for the clock domain (assumed the module clock is not always
+> marked as a critical clock).
 
---norolestats suppresses extensive "(...)" comments for the email
-addresses, which might wrap and break during transmission or when people
-reply.
+That seems like a problem with what the clock domains are doing
+surely?  The default is supposed to be that if runtime PM isn't
+enabled we get the behaviour the driver is manually implementing
+here.  Besides, if this is actually impacting power management
+I'd expect us to be letting the IP idle rather than holding it
+powered up all the time.
 
-In addition you obviously need to configure sendemail.to, and you may
-want to add multiple cc lines to [sendemail] in your .git/config to
-ensure all mails including cover letters reach LKML and LAKML, too:
+--tuFXEhzhBeitrIAu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-$ git config --get-all sendemail.to
-linux-realtek-soc@lists.infradead.org
-$ git config --get-all sendemail.cc
-linux-arm-kernel@lists.infradead.org
-linux-kernel@vger.kernel.org
+-----BEGIN PGP SIGNATURE-----
 
-Further, you need to ensure that you are sending from the right branch,
-so that the latest MAINTAINERS file and scripts get used. As Paul
-pointed out, Palmer's address is fixed in both linux-next and linux, so
-it is really puzzling where you got that old address from...
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl3nl6cACgkQJNaLcl1U
+h9Afawf/eQgbC66Cwx3RMeN7sk9wUXZAUk4TZVle+80Hk2LVcIERFOsvc+2dW0fI
+3ABYuDo501oIhvMzblGlvwwGaiTwLE6RQRgI0GKdfo5YFUB6FxfoCWYvXeqebpSi
+V/jasYVMSHF8/dBRx9zfQFQeBgLxNAjDUH7x0qMFuLJcU8XzpKXylnmt29xG3SzU
+4v4hlYGlI5Wiz0HqS11737iiGbyn485NEZbUoIl8lMgVQeTEBjSYRb2zJdGAv2He
+Wnq1FqodOSaXgUZPDAOAE62whmZT3nc2R3B9mnakoeDrW/CvRhSYuqeZxwxBH0II
+j6EcEn5PVMY3Dj9hqZH/mAHn1eY9tQ==
+=SEvO
+-----END PGP SIGNATURE-----
 
-Not understanding your setup, you'll have to debug on your own where
-those addresses came from. Try git send-email --dry-run to review the CC
-addresses before you send. You could also temporarily use --rolestats to
-see the MAINTAINERS section they came from.
-
-On the bright side, this time your patches arrived threaded correctly.
-
-Regards,
-Andreas
-
--- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
+--tuFXEhzhBeitrIAu--
