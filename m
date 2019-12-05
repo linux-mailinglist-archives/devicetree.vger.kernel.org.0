@@ -2,152 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB9B1143AD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 16:34:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFE0E1143BB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 16:36:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729790AbfLEPeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Dec 2019 10:34:17 -0500
-Received: from mail-wr1-f46.google.com ([209.85.221.46]:39194 "EHLO
-        mail-wr1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729695AbfLEPeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 10:34:17 -0500
-Received: by mail-wr1-f46.google.com with SMTP id y11so4139206wrt.6
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2019 07:34:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KzKSFA37zQ+fSsnCSfsJqcJWA1YqoEpujyYe82jiosA=;
-        b=1RAkL/YqqEmrVPedzEg2Pc0Ov3GvHhQDDskUsdP88FKftcpyQigTss9I7/RJeNaUWJ
-         8SxDYfPOP10oekWk/HW52CxH3vycbaZGijkt/iEktSBaQIOyZ+ZFiih4FwRMEvQrBtKt
-         q40mxhTIaXZm6rmsGymyE03yDP1zjMp5GsS4ojcVZP+c8ME5ZADLF9qLjLlhNtZPpVna
-         v40EMCUiDKqq0m4nYJfbIXt1EDhDHbUXfxR+luG/18Z936G2of2baLTrugjU1n9HO3i+
-         M1BlbA/SLFnu4eSJEi3Ts5ZyZKM7eCVemr2cYZJV0SNcv33nR7gSciCyUWMV6MMUmrRs
-         bYDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KzKSFA37zQ+fSsnCSfsJqcJWA1YqoEpujyYe82jiosA=;
-        b=f2co8ENbLS/6e4ZB9/0RVuBnlILo4GaFTWpRPG102d/BeFRspP3kwZa5sxQZ6bGgMb
-         fJNiH/lqKCDPZu7WH0o7XDcVa3xiV8JrPhDu5cVHWfDqXmVRcIMq67qaeZP4VhB5TJEI
-         Wp/4leI1A5ZbBCCrUZHEgPsReMDvVUyCMr8iy/k5lHSAy9DxXTmMOfc5WYpenQRyme3R
-         lqSeuYi4VMsq/pfraLcr0hnA4zD+UlZ5RHOcq25s17n07Kymnzayk1VcvsLOBGbKc7XB
-         Csgs3mWU8ckEUKnTh5c7R3E/QcJL8FZg6lJP8pCBxSGVC8L5duWbSp+lYeYaIvT/rZom
-         DYHQ==
-X-Gm-Message-State: APjAAAVFKhm6M4S8eHayZMfbAjhJqqyowo3nDkILM+jmxV8GK/Na52p9
-        qAvqwI3nsl+4UeObaHsEpLyskQ==
-X-Google-Smtp-Source: APXvYqzZBXKnAbQRB+UN+TlYuRc21RIUf2MlSS34PJhj5LkssDhww4cmP6eaWU2qSaFmGTFxlmAbFw==
-X-Received: by 2002:adf:83c7:: with SMTP id 65mr10264958wre.368.1575560054836;
-        Thu, 05 Dec 2019 07:34:14 -0800 (PST)
-Received: from bender.baylibre.local (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id u26sm191894wmj.9.2019.12.05.07.34.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Dec 2019 07:34:13 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     mjourdan@baylibre.com, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/4] dt-bindings: media: amlogic,gx-vdec: add bindings for G12A family
-Date:   Thu,  5 Dec 2019 16:34:06 +0100
-Message-Id: <20191205153408.26500-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20191205153408.26500-1-narmstrong@baylibre.com>
-References: <20191205153408.26500-1-narmstrong@baylibre.com>
+        id S1729047AbfLEPgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Dec 2019 10:36:03 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:53361 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726257AbfLEPgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 10:36:02 -0500
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1ictAb-0007Ei-Dv; Thu, 05 Dec 2019 16:35:57 +0100
+Received: from [IPv6:2001:67c:670:202:c1c2:3766:121d:8496] (unknown [IPv6:2001:67c:670:202:c1c2:3766:121d:8496])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id C1282489EC9;
+        Thu,  5 Dec 2019 15:35:54 +0000 (UTC)
+To:     Dan Murphy <dmurphy@ti.com>, Sean Nyekjaer <sean@geanix.com>
+Cc:     linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Sriram Dash <sriram.dash@samsung.com>
+References: <20191204175112.7308-1-dmurphy@ti.com>
+ <20191204175112.7308-2-dmurphy@ti.com>
+ <b9eaa5c4-13bc-295f-dcbf-d2a846243682@geanix.com>
+ <827b022e-9188-7bcf-25e3-3777df3b08a5@ti.com>
+ <809b9ff1-88e3-4e46-33e0-856db37898b2@pengutronix.de>
+ <76e96337-bbcf-89f1-2f1c-45144c15cb5b@ti.com>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Subject: Re: [PATCH 2/2] net: m_can: Make wake-up gpio an optional
+Message-ID: <e945f9da-f5a1-64b9-3c5e-5ca249fbed16@pengutronix.de>
+Date:   Thu, 5 Dec 2019 16:35:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <76e96337-bbcf-89f1-2f1c-45144c15cb5b@ti.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="Wc3YXHL1XLvzdI9vz7XTtzADIEYftsVJw"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings to support the Amlogic Video Decoder on the Amlogic G12A
-family.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--Wc3YXHL1XLvzdI9vz7XTtzADIEYftsVJw
+Content-Type: multipart/mixed; boundary="dTwGmQcY3cJl9phvti4yfNLUSimxXhLDz";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Dan Murphy <dmurphy@ti.com>, Sean Nyekjaer <sean@geanix.com>
+Cc: linux-can@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Sriram Dash <sriram.dash@samsung.com>
+Message-ID: <e945f9da-f5a1-64b9-3c5e-5ca249fbed16@pengutronix.de>
+Subject: Re: [PATCH 2/2] net: m_can: Make wake-up gpio an optional
+References: <20191204175112.7308-1-dmurphy@ti.com>
+ <20191204175112.7308-2-dmurphy@ti.com>
+ <b9eaa5c4-13bc-295f-dcbf-d2a846243682@geanix.com>
+ <827b022e-9188-7bcf-25e3-3777df3b08a5@ti.com>
+ <809b9ff1-88e3-4e46-33e0-856db37898b2@pengutronix.de>
+ <76e96337-bbcf-89f1-2f1c-45144c15cb5b@ti.com>
+In-Reply-To: <76e96337-bbcf-89f1-2f1c-45144c15cb5b@ti.com>
 
-For the G12A family, a supplementary clock is needed to operate the
-HEVC/VP9 decoder.
+--dTwGmQcY3cJl9phvti4yfNLUSimxXhLDz
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../bindings/media/amlogic,gx-vdec.yaml       | 42 ++++++++++++++++---
- 1 file changed, 37 insertions(+), 5 deletions(-)
+On 12/5/19 4:01 PM, Dan Murphy wrote:
+>> Dan, what about maintainerchip of the tcan4x5?
+>=20
+> Ooops that was buried in my inbox.
+>=20
+> It only makes sense for someone from TI to take maintainership of the=20
+> TCAN device.
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-index 878944867d6e..cc8dc264fc72 100644
---- a/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-+++ b/Documentation/devicetree/bindings/media/amlogic,gx-vdec.yaml
-@@ -27,12 +27,15 @@ description: |
- 
- properties:
-   compatible:
--    items:
-+    oneOf:
-+      - items:
-+        - enum:
-+          - amlogic,gxbb-vdec # GXBB (S905)
-+          - amlogic,gxl-vdec # GXL (S905X, S905D)
-+          - amlogic,gxm-vdec # GXM (S912)
-+        - const: amlogic,gx-vdec
-       - enum:
--        - amlogic,gxbb-vdec # GXBB (S905)
--        - amlogic,gxl-vdec # GXL (S905X, S905D)
--        - amlogic,gxm-vdec # GXM (S912)
--      - const: amlogic,gx-vdec
-+        - amlogic,g12a-vdec # G12A (S905X2, S905D2)
- 
-   interrupts:
-     minItems: 2
-@@ -59,13 +62,17 @@ properties:
- 
-   clocks:
-     minItems: 4
-+    maxItems: 5
- 
-   clock-names:
-+    minItems: 4
-+    maxItems: 5
-     items:
-       - const: dos_parser
-       - const: dos
-       - const: vdec_1
-       - const: vdec_hevc
-+      - const: vdec_hevcf
- 
-   amlogic,ao-sysctrl:
-     description: should point to the AOBUS sysctrl node
-@@ -77,6 +84,31 @@ properties:
-     allOf:
-       - $ref: /schemas/types.yaml#/definitions/phandle
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - amlogic,gx-vdec
-+
-+    then:
-+      properties:
-+        clock-names:
-+          maxItems: 4
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - amlogic,g12a-vdec
-+
-+    then:
-+      properties:
-+        clock-names:
-+          minItems: 5
-+
- required:
-   - compatible
-   - reg
--- 
-2.22.0
+Sriram Dash (Cc'ed) is maintainer of the MMIO driver:
 
+> +F:     Documentation/devicetree/bindings/net/can/m_can.txt            =
+                                                                         =
+                                                                  =20
+> +F:     drivers/net/can/m_can/m_can.c                                  =
+                                                                         =
+                                                                  =20
+> +F:     drivers/net/can/m_can/m_can.h                                  =
+                                                                         =
+                                                                  =20
+> +F:     drivers/net/can/m_can/m_can_platform.c                         =
+                                                                         =
+                                                                  =20
+
+See:
+
+> Do I need to submit a patch to the maintainers file or is the authorshi=
+p=20
+> enough?
+
+Yes, please send a patch, see Sriram's patch as an example:
+
+> https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can.git/commi=
+t/?h=3Dlinux-can-fixes-for-5.5-20191203&id=3D8c2a58568d6d952f7c7f1dac125b=
+33dc8414627b
+
+> As far as a device what country do you reside in?
+
+Germany, I'll drop you the address in a private Mail.
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+
+--dTwGmQcY3cJl9phvti4yfNLUSimxXhLDz--
+
+--Wc3YXHL1XLvzdI9vz7XTtzADIEYftsVJw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEmvEkXzgOfc881GuFWsYho5HknSAFAl3pI9YACgkQWsYho5Hk
+nSChZwf9GVUthIYenwb3wykFFV+orR1ib18vyom95EkMPLE8A0gkVpORZNVyuW/0
+flw90u5CDPJEargPlGsjsnqdXpOTByAbHJLeoJIZGY5ILBuYQzPVS1YWzxHShX/O
+U3R5qRG14DnY2b9dhbOUM91ri9ZL3arIh5BNwdIjzsari+LopKBdKCJr6LSO0wcx
+bJ7QYKCbQossyRLVdKY9lZfLGAGFhgj6hGk+N4qzx+d6o5nu7JuSDZ1qQp+hBUYl
+pxhJPR/kRyHbNLiIXFDaRUcPrNqGWg20W/2U2R2kygk8agvuOjnitiKeaqZq4yMJ
+7LMoeSmJz/KDnGi3miLxYr1FO6yR9A==
+=iM6m
+-----END PGP SIGNATURE-----
+
+--Wc3YXHL1XLvzdI9vz7XTtzADIEYftsVJw--
