@@ -2,147 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D95B1141F8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 14:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2097C11421A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 14:59:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729260AbfLEN4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Dec 2019 08:56:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39286 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729099AbfLEN4Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Dec 2019 08:56:24 -0500
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 41D1422525;
-        Thu,  5 Dec 2019 13:56:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1575554183;
-        bh=SI5/UqDvOLdW/ebXgeRPP0F1wEDuikwE8BLTviwj7zI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=yg7lntnXFYlbDO+rC98Zawl9736UXE/JoMSwLlGu7DSzz7ZIVo1Fn+kvVe5wFj8oX
-         ORE1V1NZRCFe2OD/LgTnjmhjR3dknHNDXRNDSgqnudzCaVzxk3wXXypAPX4W9yBJo/
-         IvY/jADxsCi/U5vhAWde20l3rRE8DKIdnpbdYnKY=
-Received: by mail-qk1-f180.google.com with SMTP id g15so3351553qka.8;
-        Thu, 05 Dec 2019 05:56:23 -0800 (PST)
-X-Gm-Message-State: APjAAAXnxAyCdpUF/kT0rPEg9X/NRMCpzg9nVS5m0TdkobzL+7eVYT7R
-        K4mWvs+KgtYlesl2KJcDMSb2LPvlcoSLOk0E9w==
-X-Google-Smtp-Source: APXvYqxTieNjxwOysjbfDY0Jzt7u28n6wJ0i4JI/0Df2CY+8bRxVrS6cJAN5zimj0f/y7nSsmjIvD9YzQK49P9OeD5Y=
-X-Received: by 2002:ae9:f205:: with SMTP id m5mr8502354qkg.152.1575554182339;
- Thu, 05 Dec 2019 05:56:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20191205002503.13088-1-masneyb@onstation.org> <20191205002503.13088-5-masneyb@onstation.org>
-In-Reply-To: <20191205002503.13088-5-masneyb@onstation.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 5 Dec 2019 07:56:10 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+jpz6_N18sChREC_xGYt9sSFZFtWr3omb_6o7+MFxuHg@mail.gmail.com>
-Message-ID: <CAL_Jsq+jpz6_N18sChREC_xGYt9sSFZFtWr3omb_6o7+MFxuHg@mail.gmail.com>
-Subject: Re: [PATCH 4/7] dt-bindings: Input: introduce new clock vibrator bindings
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1729558AbfLEN7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Dec 2019 08:59:42 -0500
+Received: from laurent.telenet-ops.be ([195.130.137.89]:55346 "EHLO
+        laurent.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729534AbfLEN7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 08:59:37 -0500
+Received: from ramsan ([84.195.182.253])
+        by laurent.telenet-ops.be with bizsmtp
+        id aDzY210065USYZQ01DzYQ6; Thu, 05 Dec 2019 14:59:36 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1icrfI-0002Ks-1D; Thu, 05 Dec 2019 14:59:32 +0100
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1icrfH-0001x4-VR; Thu, 05 Dec 2019 14:59:31 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Magnus Damm <magnus.damm@gmail.com>
+Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Input <linux-input@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/6] arm64: dts: renesas: r8a77961: Add more device nodes
+Date:   Thu,  5 Dec 2019 14:59:24 +0100
+Message-Id: <20191205135930.7454-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 4, 2019 at 6:25 PM Brian Masney <masneyb@onstation.org> wrote:
->
-> Add support for clock-based vibrator devices where the speed can be
-> controlled by changing the duty cycle.
->
-> Signed-off-by: Brian Masney <masneyb@onstation.org>
-> ---
->  .../bindings/input/clk-vibrator.yaml          | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/clk-vibrator.yaml
->
-> diff --git a/Documentation/devicetree/bindings/input/clk-vibrator.yaml b/Documentation/devicetree/bindings/input/clk-vibrator.yaml
-> new file mode 100644
-> index 000000000000..2103a5694fad
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/clk-vibrator.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bindings/input/clk-vibrator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Clock vibrator
-> +
-> +maintainers:
-> +  - Brian Masney <masneyb@onstation.org>
-> +
-> +description: |
-> +  Support for clock-based vibrator devices where the speed can be controlled
-> +  by changing the duty cycle.
-> +
-> +properties:
-> +  compatible:
-> +    const: clk-vibrator
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description: output clock that controls the speed
-> +    items:
-> +      - const: core
+	Hi all,
 
-No point in making up a name when there's only one clock, so drop.
+This patch series broadens support for the R-Car M3-W+ (aka R-Car M3-W
+ES3.0) Soc (R8A77961), by adding more device nodes to its DT source
+file, up to what can be tested reasonably using remote access.
 
-> +
-> +  clock-frequency: true
+This has been tested on a Salvator-XS development board.
+More details can be found in the individual patches.
 
-Given the frequency is variable, what does this mean in this case?
+To be queued in renesas-devel for v5.6.
 
-> +  enable-gpios:
-> +    maxItems: 1
-> +
-> +  vcc-supply:
-> +    description: Regulator that provides power
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - clock-frequency
+Thanks for your comments!
 
-Add:
+Geert Uytterhoeven (6):
+  arm64: dts: renesas: r8a77961: Add RWDT node
+  arm64: dts: renesas: r8a77961: Add GPIO nodes
+  arm64: dts: renesas: r8a77961: Add RAVB node
+  arm64: dts: renesas: r8a77961: Add SYS-DMAC nodes
+  arm64: dts: renesas: r8a77961: Add I2C nodes
+  arm64: dts: renesas: r8a77961: Add SDHI nodes
 
-additionalProperties: false
+ arch/arm64/boot/dts/renesas/r8a77961.dtsi | 390 +++++++++++++++++++++-
+ 1 file changed, 377 insertions(+), 13 deletions(-)
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,mmcc-msm8974.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    vibrator {
-> +        compatible = "clk-vibrator";
-> +
-> +        vcc-supply = <&pm8941_l19>;
-> +
-> +        clocks = <&mmcc CAMSS_GP1_CLK>;
-> +        clock-names = "core";
-> +        clock-frequency = <24000>;
-> +
-> +        enable-gpios = <&msmgpio 60 GPIO_ACTIVE_HIGH>;
-> +
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&vibrator_pin>;
-> +    };
-> --
-> 2.21.0
->
+-- 
+2.17.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
