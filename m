@@ -2,113 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2727113841
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 00:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D03D71138C8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 01:25:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728060AbfLDXdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 18:33:21 -0500
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:38948 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727989AbfLDXdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 18:33:21 -0500
-Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xB4NVv6Y097765;
-        Wed, 4 Dec 2019 18:32:53 -0500
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 2wpp7q8fsn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Dec 2019 18:32:53 -0500
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
-        by ppma05wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id xB4NULjT021977;
-        Wed, 4 Dec 2019 23:32:52 GMT
-Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
-        by ppma05wdc.us.ibm.com with ESMTP id 2wkg27hn2q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Dec 2019 23:32:52 +0000
-Received: from b01ledav002.gho.pok.ibm.com (b01ledav002.gho.pok.ibm.com [9.57.199.107])
-        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id xB4NWpFm34275634
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 4 Dec 2019 23:32:51 GMT
-Received: from b01ledav002.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 483FD124052;
-        Wed,  4 Dec 2019 23:32:51 +0000 (GMT)
-Received: from b01ledav002.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id C72D6124053;
-        Wed,  4 Dec 2019 23:32:50 +0000 (GMT)
-Received: from [9.10.101.151] (unknown [9.10.101.151])
-        by b01ledav002.gho.pok.ibm.com (Postfix) with ESMTP;
-        Wed,  4 Dec 2019 23:32:50 +0000 (GMT)
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon/pmbus: Add UCD90320 power
- sequencer
-To:     Rob Herring <robh@kernel.org>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, mark.rutland@arm.com,
-        corbet@lwn.net, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jim Wright <jlwright@us.ibm.com>
-References: <20191122222542.29661-1-wrightj@linux.vnet.ibm.com>
- <20191122222542.29661-2-wrightj@linux.vnet.ibm.com>
- <20191204225901.GA20804@bogus>
-From:   Jim Wright <wrightj@linux.vnet.ibm.com>
-Message-ID: <30187513-85f1-7336-32eb-fc0b19d6b093@linux.vnet.ibm.com>
-Date:   Wed, 4 Dec 2019 17:32:49 -0600
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1728510AbfLEAZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 19:25:10 -0500
+Received: from onstation.org ([52.200.56.107]:54056 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728053AbfLEAZK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Dec 2019 19:25:10 -0500
+Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id 9161D3E95C;
+        Thu,  5 Dec 2019 00:25:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1575505509;
+        bh=jc1PJE+8yGFVsNBkOUuUeXIzbxW2vJhuM2IJtGofqXQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gnfFmDPZTH6NNieh6XomfevdNEupKnTOxkjiSSCg8BFSL654u2I+GwDKst2kjHu+s
+         LoAhkbkIiPcJcial4QUBvsnT8kR7MxfIHLNuyNnB6ggh1j4qLVTmrmjlFjZVvbD92F
+         iygJW38kmuV6Rr3PbCSw7zIrNrtM3vjHtAKDUsI0=
+From:   Brian Masney <masneyb@onstation.org>
+To:     sboyd@kernel.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH 0/7] qcom: add clk-vibrator driver
+Date:   Wed,  4 Dec 2019 19:24:56 -0500
+Message-Id: <20191205002503.13088-1-masneyb@onstation.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20191204225901.GA20804@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-12-04_03:2019-12-04,2019-12-04 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
- priorityscore=1501 bulkscore=0 spamscore=0 phishscore=0 lowpriorityscore=0
- impostorscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1910280000
- definitions=main-1912040195
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This patch series adds support for the vibrator that's found on the
+Nexus 5 phone. I previously added a msm-vibrator driver to the input
+subsystem, however that's not the correct approach since the direct
+register writes should occur from within the clk subsystem based on the
+conversation at
+https://lore.kernel.org/lkml/20190516085018.2207-1-masneyb@onstation.org/
 
-On 12/4/2019 4:59 PM, Rob Herring wrote:
-> On Fri, Nov 22, 2019 at 04:25:41PM -0600, Jim Wright wrote:
->> From: Jim Wright <jlwright@us.ibm.com>
->>
->> Document the UCD90320 device tree binding.
->>
->> Signed-off-by: Jim Wright <jlwright@us.ibm.com>
->> ---
->>   .../devicetree/bindings/hwmon/pmbus/ucd90320.txt    | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/ucd90320.txt
-> Can you make this a schema. See
-> Documentation/devicetree/writing-schema.rst.
-Ok, will do and submit patch set revision.
-Thanks for the review,
-Jim Wright
->
->> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ucd90320.txt b/Documentation/devicetree/bindings/hwmon/pmbus/ucd90320.txt
->> new file mode 100644
->> index 000000000000..e1c1057c6292
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ucd90320.txt
->> @@ -0,0 +1,13 @@
->> +UCD90320 power sequencer
->> +-------------------------
->> +
->> +Requires node properties:
->> +- compatible : "ti,ucd90320"
->> +- reg : the I2C address of the device. This is 0x11, 0x13, 0x17, 0x31, 0x33,
->> +        0x37, 0x71, 0x73, or 0x77.
->> +
->> +Example:
->> +	ucd90320@11 {
->> +		compatible = "ti,ucd90320";
->> +		reg = <0x11>;
->> +	};
->> -- 
->> 2.17.1
->>
+So this patch series:
+
+  - Adds support for setting the clock duty cycle to clk-rcg2.c
+  - Removes the msm-vibrator driver and adds a generic clk-vibrator
+    driver in its place. No one is using this driver at the moment so we
+    shouldn't get any complaints.
+
+I also included the defconfig and dts changes. Once this whole series is
+deemed to be ready, it can be merged in pieces through the different
+subsystems. I included everything here as one patch series so everyone
+can see the complete picture of what I'm doing.
+
+Sorry it took me awhile to get back to correcting this; was working on
+other tasks on this phone.
+
+Brian Masney (7):
+  clk: qcom: add support for setting the duty cycle
+  dt-bindings: Input: drop msm-vibrator in favor of clk-vibrator
+  Input: drop msm-vibrator in favor of clk-vibrator driver
+  dt-bindings: Input: introduce new clock vibrator bindings
+  Input: introduce new clock vibrator driver
+  ARM: qcom_defconfig: drop msm-vibrator in favor of clk-vibrator driver
+  ARM: dts: qcom: msm8974-hammerhead: add support for vibrator
+
+ .../bindings/input/clk-vibrator.yaml          |  60 ++++++++
+ .../bindings/input/msm-vibrator.txt           |  36 -----
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    |  30 ++++
+ arch/arm/configs/qcom_defconfig               |   2 +-
+ drivers/clk/qcom/clk-rcg.h                    |   4 +
+ drivers/clk/qcom/clk-rcg2.c                   |  61 +++++++-
+ drivers/input/misc/Kconfig                    |  20 +--
+ drivers/input/misc/Makefile                   |   2 +-
+ .../misc/{msm-vibrator.c => clk-vibrator.c}   | 138 +++++++-----------
+ 9 files changed, 216 insertions(+), 137 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/clk-vibrator.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/msm-vibrator.txt
+ rename drivers/input/misc/{msm-vibrator.c => clk-vibrator.c} (51%)
+
+-- 
+2.21.0
+
