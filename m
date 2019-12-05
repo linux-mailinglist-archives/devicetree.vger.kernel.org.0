@@ -2,103 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF5891138B0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 01:25:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB941138F2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 01:46:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728645AbfLEAZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 19:25:13 -0500
-Received: from onstation.org ([52.200.56.107]:54108 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728590AbfLEAZM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Dec 2019 19:25:12 -0500
-Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id 9659B3EA09;
-        Thu,  5 Dec 2019 00:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1575505511;
-        bh=wrpNF5GI4EFOJIQeD1HHKoAOQrklQZzjGwI2qeKAV3U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Y2uLkgrp1ZnUemn32szS0PavSYADzVizEjtCtuPZH3VmtTsL8wvdvTNnoAamlGe+K
-         0ovU8u1AsAbq5xJ9v8UtXdJYJKWNEHwmhofrd4OsOYSFyaMYUYDPL5nQkEG4v3slGa
-         kUBLKsp9gx9ZXtPybU2vZ6K8genIuPSs8DJovDaI=
-From:   Brian Masney <masneyb@onstation.org>
-To:     sboyd@kernel.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [PATCH 7/7] ARM: dts: qcom: msm8974-hammerhead: add support for vibrator
-Date:   Wed,  4 Dec 2019 19:25:03 -0500
-Message-Id: <20191205002503.13088-8-masneyb@onstation.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191205002503.13088-1-masneyb@onstation.org>
-References: <20191205002503.13088-1-masneyb@onstation.org>
+        id S1728470AbfLEAqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 19:46:06 -0500
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:38631 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728238AbfLEAqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 19:46:05 -0500
+Received: by mail-pg1-f195.google.com with SMTP id a33so506056pgm.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2019 16:46:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=g7Dc3L6ucRDBTOgi1WYw/gKWAHJ0BhR7GlJLT2KOwWU=;
+        b=hlIfJxJ4UQcwyezs5GWGUzTpgBpkXycqViF5s7J9Lbgv7LX5Loh/lFJW26EARxlJS7
+         jQGy+dln8gbBR9ETp7bawc/SUPJ4DGK5qfw9eApXM2bPC8K/wSJANcY+yKbhAg+bDQHx
+         Jb81KyFdr/uon9IeHq8w2COMsphIkRmGm5YYY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=g7Dc3L6ucRDBTOgi1WYw/gKWAHJ0BhR7GlJLT2KOwWU=;
+        b=KAEyFQ95e+/EbB0z9McrvL1kMPCLDnWHzzkA+rYYWVqMOij3Gr5e5LxStflZbK/Eg+
+         41hJrSFusBA3TJVDmz/kK0Y7ODPDBuX13rM/eTPUlTijJsufvUHil306Dgg+9aZsq+Rk
+         E3HPc1Cm506xoNzT6UftFXdcG8d1dGXVoDLqwv1ktZ+dMkKb6yjTpVJqlVAuBBoEmhNW
+         tsxE/FJ9ffAelQv4vSeIfsP32u5q/vd+UB9TWAUxXSiPnTpV4/wA63AEQxAFvHyKgsYf
+         DAv0YMq7CuJhhOo9ILSSPA00ufMjoZaipGFxQWFBhNou82Iy76urlwOPVTaWfpzKuiUz
+         WDGQ==
+X-Gm-Message-State: APjAAAWNxyyDYs15zZnOggBFJ30IqblrrBoEc6ExDUKNDVivS6nDqf+p
+        jF9NLWJoSywCsv6+ay5wIujzVg==
+X-Google-Smtp-Source: APXvYqx2X3SI/+sIaJkgoq1wNauTweF2w9MvCcNu9sKGmwlik3upNJqHpW1nTOdh3mFbvDDMr0XIvg==
+X-Received: by 2002:a65:4809:: with SMTP id h9mr6325753pgs.265.1575506765134;
+        Wed, 04 Dec 2019 16:46:05 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
+        by smtp.gmail.com with ESMTPSA id hi2sm7325684pjb.22.2019.12.04.16.46.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Dec 2019 16:46:04 -0800 (PST)
+Date:   Wed, 4 Dec 2019 16:46:03 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Taniya Das <tdas@codeaurora.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: Re: [PATCH v1] arm64: dts: sc7180: Add cpufreq HW node for cpu
+ scaling
+Message-ID: <20191205004603.GK228856@google.com>
+References: <0101016ed02b6356-5165eaaa-6c54-47ff-a008-821c91831e56-000000@us-west-2.amazonses.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <0101016ed02b6356-5165eaaa-6c54-47ff-a008-821c91831e56-000000@us-west-2.amazonses.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the vibrator found on the Nexus 5 phone.
+On Wed, Dec 04, 2019 at 09:08:54AM +0000, Taniya Das wrote:
+> cpufreq hw node required to scale CPU frequency on sc7180.
+> 
+> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index c0ac0a1..7629995 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -40,6 +40,7 @@
+>  			reg = <0x0 0x0>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_0>;
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_0: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -55,6 +56,7 @@
+>  			reg = <0x0 0x100>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_100>;
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_100: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -67,6 +69,7 @@
+>  			reg = <0x0 0x200>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_200>;
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_200: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -79,6 +82,7 @@
+>  			reg = <0x0 0x300>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_300>;
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_300: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -91,6 +95,7 @@
+>  			reg = <0x0 0x400>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_400>;
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_400: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -103,6 +108,7 @@
+>  			reg = <0x0 0x500>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_500>;
+> +			qcom,freq-domain = <&cpufreq_hw 0>;
+>  			L2_500: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -115,6 +121,7 @@
+>  			reg = <0x0 0x600>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_600>;
+> +			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			L2_600: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -127,6 +134,7 @@
+>  			reg = <0x0 0x700>;
+>  			enable-method = "psci";
+>  			next-level-cache = <&L2_700>;
+> +			qcom,freq-domain = <&cpufreq_hw 1>;
+>  			L2_700: l2-cache {
+>  				compatible = "cache";
+>  				next-level-cache = <&L3_0>;
+> @@ -286,6 +294,17 @@
+>  				status = "disabled";
+>  			};
+>  		};
+> +
+> +		cpufreq_hw: cpufreq@18323000 {
+> +			compatible = "qcom,cpufreq-hw";
+> +			reg = <0 0x18323000 0 0x1400>, <0 0x18325800 0 0x1400>;
+> +			reg-names = "freq-domain0", "freq-domain1";
+> +
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
+> +			clock-names = "xo", "alternate";
+> +
+> +			#freq-domain-cells = <1>;
+> +		};
+>  	};
+> 
+>  	timer {
 
-Signed-off-by: Brian Masney <masneyb@onstation.org>
----
- .../qcom-msm8974-lge-nexus5-hammerhead.dts    | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-index 797a43be844e..e17ea4f602c1 100644
---- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-@@ -234,6 +234,21 @@
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wlan_regulator_pin>;
- 	};
-+
-+	vibrator {
-+		compatible = "clk-vibrator";
-+
-+		vcc-supply = <&pm8941_l19>;
-+
-+		clocks = <&mmcc CAMSS_GP1_CLK>;
-+		clock-names = "core";
-+		clock-frequency = <24000>;
-+
-+		enable-gpios = <&msmgpio 60 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vibrator_pin>;
-+	};
- };
- 
- &soc {
-@@ -355,6 +370,21 @@
- 				bias-disable;
- 			};
- 		};
-+
-+		vibrator_pin: vibrator {
-+			core {
-+				pins = "gpio27";
-+				function = "gp1_clk";
-+
-+				drive-strength = <6>;
-+				bias-disable;
-+			};
-+
-+			enable {
-+				pins = "gpio60";
-+				function = "gpio";
-+			};
-+		};
- 	};
- 
- 	sdhci@f9824900 {
--- 
-2.21.0
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
