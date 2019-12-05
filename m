@@ -2,109 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE13A1143FD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 16:48:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3BE9114471
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 17:08:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726257AbfLEPsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Dec 2019 10:48:21 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:44114 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726028AbfLEPsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 10:48:21 -0500
-Received: by mail-oi1-f193.google.com with SMTP id d62so3116108oia.11;
-        Thu, 05 Dec 2019 07:48:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XZiF8L55aoKSCKIPsroK6TKVziAXxA4eopxQuCxnWPg=;
-        b=j7xCbNPAfUIVLs3H6M0n+STqooL2KHW3AZu0fnhSi6JXSUVXpOWAfEJfOq77tZmXsC
-         PvbQTcCprSRxnlQBefSzfksWVMkz3Xi/krtKb6OuuKqrhef+3BySnxiD8JELF9VdnIoT
-         Kk68rwSbeTWJ4yF5b6gdwGHYEmS+Tcb5IgOspEXuu2nkyElGTzugOv3CTsGcs9bfsGGC
-         PkzD2JgJtRqBQcyMJPgcPbDxnMJtwlnupUtEKYzaiNb73MHUNR+6SzEvfPj7i4NlYPBM
-         lK7ryuw5nhy0Fh/sBjAOm5NPp3MDRwhzO8SeRKCz0iBHa0Q1zyqE67cfngChMjsXbNMq
-         3sLQ==
-X-Gm-Message-State: APjAAAV4Zh13ePUuWklTaK6sOlnhWeYbXNfzjkEmGjXjEmKkc44+nGNB
-        ltSeZjY91Lz5u/+Lhdv68F0xNDmTtkurAwyOGpU=
-X-Google-Smtp-Source: APXvYqw/+zkbokRYmfSgQpeCPIqliBYTc3RYgcji0fDJoOYlF/6LAGPuT8XtB0B9Q+xDPgtWc3MSZasdOt39nB2UEYI=
-X-Received: by 2002:aca:4a41:: with SMTP id x62mr7347186oia.148.1575560900523;
- Thu, 05 Dec 2019 07:48:20 -0800 (PST)
+        id S1730033AbfLEQII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Dec 2019 11:08:08 -0500
+Received: from gateway30.websitewelcome.com ([50.116.127.1]:36670 "EHLO
+        gateway30.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729964AbfLEQII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 11:08:08 -0500
+Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
+        by gateway30.websitewelcome.com (Postfix) with ESMTP id 0476A6CEE
+        for <devicetree@vger.kernel.org>; Thu,  5 Dec 2019 09:44:32 -0600 (CST)
+Received: from br164.hostgator.com.br ([192.185.176.180])
+        by cmsmtp with SMTP
+        id ctItiPOSjiJ43ctItirFdB; Thu, 05 Dec 2019 09:44:32 -0600
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Kono/osY8LIAISwNgMpURkYC4W/4gFk0QH7aAaQbSh4=; b=KFPZkvkv3OWyCyMPD6wcT7unhC
+        6aEdRcRYif0kIHhl0yXyKrMY0hNpFsLqZU+CGUJ72XPDGmA/z0S68k4QpNmw3eFyojrDCpCm4KDg9
+        RE3dD8aremRzo2tpfiHf/SQdqpw8UnxUTxoScV0BVsbOvOMQS+EZsyqjv81tRdnJa7jF0J4+GI51G
+        WQHoL6FVUyhm1jhXfydD+1KYUiXeakCrC5eCWoAMYVnRD28432aYw2Ol0jOTWQTci4PEb2ENaRyCR
+        fBxa7ucU20kx9IIWzJ1J2T21gWbVVlG/O8Rv/zXCxmm44uZZC8CO1cxdLdQQx5vqPj1AwSfuYSmX9
+        cPiukfrA==;
+Received: from [191.31.196.215] (port=35544 helo=castello.bz.toradex.local)
+        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <matheus@castello.eng.br>)
+        id 1ictIs-001jEH-US; Thu, 05 Dec 2019 12:44:31 -0300
+From:   Matheus Castello <matheus@castello.eng.br>
+To:     sre@kernel.org, krzk@kernel.org, robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, cw00.choi@samsung.com,
+        b.zolnierkie@samsung.com, lee.jones@linaro.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Matheus Castello <matheus@castello.eng.br>
+Subject: [PATCH v8 0/5] power: supply: MAX17040: Add IRQ for low level and alert SOC changes
+Date:   Thu,  5 Dec 2019 12:44:05 -0300
+Message-Id: <20191205154410.29462-1-matheus@castello.eng.br>
+X-Mailer: git-send-email 2.24.0.rc2
 MIME-Version: 1.0
-References: <20191203034519.5640-1-chris.brandt@renesas.com>
- <20191203034519.5640-7-chris.brandt@renesas.com> <CAMuHMdVBYpuoK7hcyNLK-mAdpTQz3ohTGXuYdFPHdpU5RoPr6Q@mail.gmail.com>
- <CAMuHMdV7XY7FB9pBsxuWxGsqYaD9n1Y+XZXEJO5OsuigjjUgpw@mail.gmail.com>
- <TY1PR01MB1562A6AFD8D0807B345B7A208A5D0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
- <CAMuHMdUn3h1VjYkARTFBqMij5aYg2mJSVErwceHc0NATBo+_hw@mail.gmail.com> <TY1PR01MB1562322613FC52617312F14E8A5D0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY1PR01MB1562322613FC52617312F14E8A5D0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 5 Dec 2019 16:48:09 +0100
-Message-ID: <CAMuHMdVy_0e5_94a-G83Tt14XsxmLFOpstvSP6Yw8m9oRW_eZg@mail.gmail.com>
-Subject: Re: [PATCH 6/6] dt-bindings: spi: Document Renesas SPIBSC bindings
-To:     Chris Brandt <Chris.Brandt@renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mason Yang <masonccyang@mxic.com.tw>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - castello.eng.br
+X-BWhitelist: no
+X-Source-IP: 191.31.196.215
+X-Source-L: No
+X-Exim-ID: 1ictIs-001jEH-US
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (castello.bz.toradex.local) [191.31.196.215]:35544
+X-Source-Auth: matheus@castello.eng.br
+X-Email-Count: 2
+X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chris,
+This series add IRQ handler for low level SOC alert, define a devicetree
+binding attribute to configure the alert level threshold and check for
+changes in SOC and power supply status for send uevents.
 
-On Wed, Dec 4, 2019 at 2:31 PM Chris Brandt <Chris.Brandt@renesas.com> wrote:
-> > To avoid future problems, you probably do want to specify spi-tx-bus-width =
-> > <4> and spi-rx-bus-width = <4> in DTS now.
->
-> I didn't do that because if the MTD layer then thinks I 'want' to do 4-bit access, then that introduces a new problem the solve.
-> The MTD layer might start sending down QUAD READ commands to the external SPI and then the SPI Flash will start sending back data on all 4 lines, but the controller is only configured for 1-bit transfers.
->
-> I honestly don't know when/why the MTD layer decides on switch from 1-bit to 4-bit mode, so while the board hardware is wired for 4-bit (as the DT would document), we are not ready to be doing 4-bit just yet.
-> I just want to try and get the driver in at first....then we can make it do fancy stuff later.
->
-> If someone can tell me that even if "spi-rx-bus-width = <4>" is put I the board DTS, the spi will still only do 1-bit transfers until the application specially enables 4-bit mode, then I'm fine with add bus-width=<4> in the DTS.
+Max17043/17044 have a pin for alert host about low level state of charge and
+this alert can be configured in a threshold from 1% up to 32% of SOC.
 
-Your spibsc driver does:
+Thanks Krzysztof Kozlowski, Lee Jones, Rob Herring and Sebastian Reichel for
+your time reviewing it.
 
-    master->mode_bits = SPI_CPOL | SPI_CPHA;
+Changes since v7:
+(Suggested by Sebastian Reichel)
+- Fix unrelated change
+- Use device_property_read_u32() and simplify the code
+- Check the irq and of_device_is_compatible in the first patch
 
-i.e. SPI_[TR]X_{QUAD,DUAL} are not set, so it should not try those modes.
+Changes since v6:
+(Suggested by Lee Jones)
+- Use relative paths in documentation
 
-At least on RSK+RZA1, the FLASHes are wired in quad mode, so you
-should describe the hardware in DT.
+Matheus Castello (5):
+  power: supply: max17040: Add IRQ handler for low SOC alert
+  dt-bindings: power: supply: Max17040: Add DT bindings for max17040
+    fuel gauge
+  devicetree: mfd: max14577: Add reference to max14040_battery.txt
+    descriptions
+  power: supply: max17040: Config alert SOC low level threshold from FDT
+  power: supply: max17040: Send uevent in SOC and status change
 
->
-> Unless....I did not understand you meaning....
->
-> Did you mean put 'spi-rx-bus-width = <4>' in the .dtsi????  (then I can override it back to <1>  that in the board .dts)???
-
-No, in the board .dtb.
-
-> > BTW, when using spibsc in direct-mapped mode: if you turn of and on again the
-> > module clock, does the spibsc need reprogramming?
->
-> Nope. Everything will stay the same (just like all the other peripherals). The only thing you 'might' want to do is flush the read cache (especially if you disconnected it because you were going to go out and re-write some of the flash in SPI mode).
-
-Good. So that means the MTD driver can be modular.  Unused clocks are
-turned off at boot, and can be turned on when the mtd-rom driver is loaded
-and activated.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../devicetree/bindings/mfd/max14577.txt      |   2 +
+ .../power/supply/max17040_battery.txt         |  33 +++++
+ drivers/power/supply/max17040_battery.c       | 130 +++++++++++++++++-
+ 3 files changed, 161 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/max17040_battery.txt
 
 --
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.24.0.rc2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
