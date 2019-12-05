@@ -2,171 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1400113B9C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 07:16:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57E22113BCD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 07:38:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726027AbfLEGQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Dec 2019 01:16:24 -0500
-Received: from mail-io1-f67.google.com ([209.85.166.67]:45840 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725905AbfLEGQY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 01:16:24 -0500
-Received: by mail-io1-f67.google.com with SMTP id i11so2339248ioi.12
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2019 22:16:24 -0800 (PST)
+        id S1728671AbfLEGhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Dec 2019 01:37:53 -0500
+Received: from mail-eopbgr680074.outbound.protection.outlook.com ([40.107.68.74]:2267
+        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726211AbfLEGhk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Dec 2019 01:37:40 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RVk1kCycfYPkLbfNWkT4UdIhWBW3pdBKyaMnWgcFqtvxJBBRXmZPB6esP8fBjEVB+k3fYTAf0zGK0VRu+zCuuILM0pqodpvBasrnKdQDbeKshv/fhLoIdtYPBeWGfCnoThD4AE4hH7WYr0emguVYDSRPyuKj75iQg22fkAg6tGoL6E0BKW+/O1Fgf3GrPVMxDi78QagWs1dPYU7zU/E6TYMQxc0TtJ5wD/cQACV60sstGCYtTlRNOWPkA9vRLHVyhcoUlE/gmEvStUyFUDB4x8xK1PLIr6oQl6lX3egW4XejjhN8M3lXMTEB0vQkNJKy3zERGm0JyRjj9UCtIKnksQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=33LS+ZyloUssHMLNiVKIi6pfKqJm0s1OswnsyX5QmCY=;
+ b=kwxhVZfxMESCN1b2sRR0PKUNNkomisw9kJgmbvdBuX3xsP8uEpoKK5+S/ss8TAV3NnczgCqdOJgZU9ky1ib2xKddprdkghqQscaYcLZMqR72ZsT9plOGRQErqX22Omcm8oZd+zqe6cGbPoefthn8XUKZGkfxx9DtFi5HBrnyRl2zSV8wDVPmekdA0S9RTTErM51rjqesnm8CWe1newjAQnvIwvG4PpcsIMrCO/P+PTgwU/OVanMZZG87QkOAMxG1tCW0UzYPN7jemCKMrSa7EgVCkzUT2mtRGt5vjhcdbXhXJevGlq2cEW/gqqtydbAP3rynv1GpMb5qDRb60g8h3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sagxzG2UOJgqtCWMTEvuG8BujWW/Ac96ALrG1/iNc1g=;
-        b=OpbZtYc602v9GzttMW4clzIL5MO4H74stJoLKvSgJ9YuuzxyAVwKg2x2E5bGNMS8Ix
-         VDGM0ySfeLoY9+ChJHUdC74eBzZEuLW95Lorx6yqi4GfEEPEMk7F9nkm/1HdMBuXIe8W
-         5dmUXfLm7RO8hDMjSRzUREtQ0GULXDZwxm5Vk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sagxzG2UOJgqtCWMTEvuG8BujWW/Ac96ALrG1/iNc1g=;
-        b=TrB3m8Pf0b5lhP1HPG9tAYpqjHbYca6PSG59q5EpRFYO2b/iOiKamfhgxl9LO4/quj
-         PGny+QV1mEmS4qLmxJDGwv9YHOXd+g5BXK4PmxKQPEadG0IRm0yYBfeBUvLkICOOP60d
-         a19kvBrdltseP9p1i4OKSG0e2WuKmq1N0G3x4TuRhgjoj9lGtbF1Tf+TUO+AAVFd6ls2
-         3PIBk4RP1F6KVg5uy4hYzzBjcZFm9DyT4fBZJhz2kIlvn/pCt87eoD3HVyzTJMvXBiu1
-         m/zehwZhPO1oOUoltdH7mxxwboObzCbbR488Mt8IeNp9+i5gqDwEGifq9LDEx0m26Pwm
-         8JSA==
-X-Gm-Message-State: APjAAAUDp7MbB64z2vZuZOLqs3haDhR4iTb0M3ZP0Y4Df3o0o1bBufGH
-        cmMtRUb7icjwl+vahJZ0KO+zcU95Z91NH9Df4ExpNw==
-X-Google-Smtp-Source: APXvYqwd0SY25U4cq3pwuC4ufVW/oZZK/mthsjkNg5Pt9lukryHB6LaDPd57XgXny29wudUpug6IojBLFRTn9swdYmo=
-X-Received: by 2002:a02:b18d:: with SMTP id t13mr158882jah.4.1575526583427;
- Wed, 04 Dec 2019 22:16:23 -0800 (PST)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=33LS+ZyloUssHMLNiVKIi6pfKqJm0s1OswnsyX5QmCY=;
+ b=XtbWNw7PeC8HngHNHgxnqby5z51/+Pw3X/tfyDDhA6R0RCaVdtbvWzHybwtsAK7tD/O7KudJHqTxV0ewYJx64Lh14wTGXc3cG2eIPc0EX4DoD9YgLARPQ/KiuIEPAg/2K2APtMpgtRPVgdQHlBczfe3s/PmIpVESLosjdpna7jc=
+Received: from BL0PR02CA0130.namprd02.prod.outlook.com (2603:10b6:208:35::35)
+ by BN7PR02MB4978.namprd02.prod.outlook.com (2603:10b6:408:2a::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2495.18; Thu, 5 Dec
+ 2019 06:37:36 +0000
+Received: from BL2NAM02FT013.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::204) by BL0PR02CA0130.outlook.office365.com
+ (2603:10b6:208:35::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2495.18 via Frontend
+ Transport; Thu, 5 Dec 2019 06:37:36 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ BL2NAM02FT013.mail.protection.outlook.com (10.152.77.19) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2474.17
+ via Frontend Transport; Thu, 5 Dec 2019 06:37:36 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <rajan.vaja@xilinx.com>)
+        id 1icklb-0000xN-1u; Wed, 04 Dec 2019 22:37:35 -0800
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <rajan.vaja@xilinx.com>)
+        id 1icklV-0000XV-Un; Wed, 04 Dec 2019 22:37:29 -0800
+Received: from xsj-pvapsmtp01 (xsj-smtp.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id xB56bJdw010325;
+        Wed, 4 Dec 2019 22:37:19 -0800
+Received: from [172.19.2.91] (helo=xsjjollys50.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <rajan.vaja@xilinx.com>)
+        id 1icklL-0000WL-Mg; Wed, 04 Dec 2019 22:37:19 -0800
+From:   Rajan Vaja <rajan.vaja@xilinx.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, michal.simek@xilinx.com,
+        jolly.shah@xilinx.com, m.tretter@pengutronix.de,
+        gustavo@embeddedor.com, tejas.patel@xilinx.com,
+        nava.manne@xilinx.com, mdf@kernel.org
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rajan Vaja <rajan.vaja@xilinx.com>
+Subject: [PATCH v3 0/6] clk: zynqmp: Extend and fix zynqmp clock driver
+Date:   Wed,  4 Dec 2019 22:35:53 -0800
+Message-Id: <1575527759-26452-1-git-send-email-rajan.vaja@xilinx.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1574415814-19797-1-git-send-email-rajan.vaja@xilinx.com>
+References: <1574415814-19797-1-git-send-email-rajan.vaja@xilinx.com>
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(376002)(396003)(346002)(136003)(39860400002)(199004)(189003)(4326008)(5660300002)(16586007)(50466002)(7696005)(81166006)(316002)(336012)(8676002)(48376002)(9786002)(107886003)(76176011)(356004)(51416003)(6666004)(81156014)(11346002)(305945005)(478600001)(14444005)(50226002)(8936002)(26005)(36756003)(7416002)(426003)(186003)(2616005)(2906002)(70206006)(44832011)(70586007)(36386004)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:BN7PR02MB4978;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;A:1;MX:1;
 MIME-Version: 1.0
-References: <1574817475-22378-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1574817475-22378-2-git-send-email-yongqiang.niu@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Thu, 5 Dec 2019 14:15:57 +0800
-Message-ID: <CAJMQK-iDnOWCYmxcREGschD=sDfU6yKpUu+koP3YDeO3MPCdhQ@mail.gmail.com>
-Subject: Re: [v1,1/2] drm/mediatek: Fixup external display black screen issue
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        lkml <linux-kernel@vger.kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 008fa6ff-3627-4751-bf7b-08d7794d9e10
+X-MS-TrafficTypeDiagnostic: BN7PR02MB4978:
+X-Microsoft-Antispam-PRVS: <BN7PR02MB4978A89B46C8FDFAF7DF1354B75C0@BN7PR02MB4978.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-Forefront-PRVS: 02426D11FE
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GixZawCC27bTcGF15s5shn5D7og2KQf6FBLpMwvLopd7E2MG1Bkm6XHqwa323sQe1kdWialSpvRtL5OeMXjtBEp3UKHSmqahn+ToANwUG9KR0zPyzxBta+IQEeWA82FQ99ZY3Pd4thmlSZyMN8iQGlOhe0D/1CVg3alGrDRN5rGcK6axvw1efNK2CThYkGWBOZW7eVlilo2PZDYyZgtJ+uf8nt8fXq0P3nV7vFJpzQTwtrWXsPqIAGyDcq+SqWKl69Ucezk5VZOXtnOvMHzEldRW/WhNYUhw4VghvJ4/xwxUE7p0LEOwqGZEAV5FcPDXp78dHPHvQIK9bVR/pifG68w3FFE6wb5edzR5pdg3KUnJ2Y2e9a8jdGBDZ5qTWh7PJr51K+3afDsKSNkiFwrWZM9Wd5yd836VG+CYSWBMcD+saytjXHTq3E9jBCBLz6W2y+H2jqv6oauq74Wb4OBFAwdjqU4MmoXlI5DBNOKTjM+XtsVTMpQzIOWDAG7Mc2s2
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2019 06:37:36.5823
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 008fa6ff-3627-4751-bf7b-08d7794d9e10
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR02MB4978
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 27, 2019 at 1:17 AM <yongqiang.niu@mediatek.com> wrote:
->
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
->
-> Problem:
-> overlay hangup when external display hotplut test
->
-> Fix:
-> disable overlay when crtc disable
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 39 +++++++++++++++++++++------------
->  1 file changed, 25 insertions(+), 14 deletions(-)
->
-> --
-> 1.8.1.1.dirty
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> index 4fb346c..7eca02f 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> @@ -369,6 +369,20 @@ static int mtk_crtc_ddp_hw_init(struct mtk_drm_crtc *mtk_crtc)
->         mtk_disp_mutex_add_comp(mtk_crtc->mutex, mtk_crtc->ddp_comp[i]->id);
->         mtk_disp_mutex_enable(mtk_crtc->mutex);
->
-> +       /* Initially configure all planes */
-> +       for (i = 0; i < mtk_crtc->layer_nr; i++) {
-> +               struct drm_plane *plane = &mtk_crtc->planes[i];
-> +               struct mtk_plane_state *plane_state;
-> +               struct mtk_ddp_comp *comp;
-> +               unsigned int local_layer;
-> +
-> +               plane_state = to_mtk_plane_state(plane->state);
-> +               comp = mtk_drm_ddp_comp_for_plane(crtc, plane, &local_layer);
-> +               if (comp)
-> +                       mtk_ddp_comp_layer_config(comp, local_layer,
-> +                                                 plane_state, NULL);
-> +       }
-> +
->         for (i = 0; i < mtk_crtc->ddp_comp_nr; i++) {
->                 struct mtk_ddp_comp *comp = mtk_crtc->ddp_comp[i];
->                 enum mtk_ddp_comp_id prev;
-> @@ -385,20 +399,6 @@ static int mtk_crtc_ddp_hw_init(struct mtk_drm_crtc *mtk_crtc)
->                 mtk_ddp_comp_start(comp);
->         }
->
-> -       /* Initially configure all planes */
-> -       for (i = 0; i < mtk_crtc->layer_nr; i++) {
-> -               struct drm_plane *plane = &mtk_crtc->planes[i];
-> -               struct mtk_plane_state *plane_state;
-> -               struct mtk_ddp_comp *comp;
-> -               unsigned int local_layer;
-> -
-> -               plane_state = to_mtk_plane_state(plane->state);
-> -               comp = mtk_drm_ddp_comp_for_plane(crtc, plane, &local_layer);
-> -               if (comp)
-> -                       mtk_ddp_comp_layer_config(comp, local_layer,
-> -                                                 plane_state, NULL);
-> -       }
-> -
->         return 0;
->
->  err_mutex_unprepare:
-> @@ -607,10 +607,21 @@ static void mtk_drm_crtc_atomic_disable(struct drm_crtc *crtc,
->         for (i = 0; i < mtk_crtc->layer_nr; i++) {
->                 struct drm_plane *plane = &mtk_crtc->planes[i];
->                 struct mtk_plane_state *plane_state;
-> +               struct mtk_ddp_comp *comp = mtk_crtc->ddp_comp[0];
-> +               unsigned int comp_layer_nr = mtk_ddp_comp_layer_nr(comp);
-> +               unsigned int local_layer;
->
->                 plane_state = to_mtk_plane_state(plane->state);
->                 plane_state->pending.enable = false;
->                 plane_state->pending.config = true;
-> +
-> +               if (i >= comp_layer_nr) {
-> +                       comp = mtk_crtc->ddp_comp[1];
-> +                       local_layer = i - comp_layer_nr;
-> +               } else
-> +                       local_layer = i;
-> +               mtk_ddp_comp_layer_config(comp, local_layer,
-> +                                         plane_state, NULL);
-This part should be moved to mtk_crtc_ddp_hw_fini(), or at least
-called after drm_crtc_vblank_off(). Otherwise we would see
-drm_wait_one_vblank warnings on 8173 when display turns off.
+ZynqMP clock driver can be used for Versal platform also. Add support
+for Versal platform in ZynqMP clock driver.
 
-[   25.696182] Call trace:
-[   25.698624]  drm_wait_one_vblank+0x1f0/0x1fc
-[   25.702886]  drm_crtc_wait_one_vblank+0x20/0x2c
-[   25.707415]  mtk_drm_crtc_atomic_disable+0xf0/0x308
-[   25.712287]  drm_atomic_helper_commit_modeset_disables+0x1b8/0x3c0
-[   25.718461]  mtk_atomic_complete+0x88/0x16c
-[   25.722638]  mtk_atomic_commit+0xa8/0xb0
-[   25.726553]  drm_atomic_commit+0x50/0x5c
-[   25.730469]  drm_atomic_helper_set_config+0x98/0xa0
-[   25.735341]  drm_mode_setcrtc+0x280/0x608
-[   25.739344]  drm_ioctl_kernel+0xcc/0x10c
-[   25.743261]  drm_ioctl+0x240/0x3c0
-[   25.746658]  drm_compat_ioctl+0xd8/0xe8
-[   25.750487]  __se_compat_sys_ioctl+0x100/0x26fc
-[   25.755009]  __arm64_compat_sys_ioctl+0x20/0x2c
-[   25.759534]  el0_svc_common+0xa4/0x154
-[   25.763277]  el0_svc_compat_handler+0x2c/0x38
-[   25.767628]  el0_svc_compat+0x8/0x18
-[   25.771195] ---[ end trace f4619fdac8f1c0ff ]---
+Also this patch series fixes divider calculation and adds support for get
+maximum divider, clock with CLK_DIVIDER_POWER_OF_TWO flag and warn user if
+clock users are more than allowed.
 
->
+Rajan Vaja (5):
+  dt-bindings: clock: Add bindings for versal clock driver
+  clk: zynqmp: Extend driver for versal
+  clk: zynqmp: Warn user if clock user are more than allowed
+  clk: zynqmp: Add support for get max divider
+  clk: zynqmp: Fix divider calculation
+
+Tejas Patel (1):
+  clk: zynqmp: Add support for clock with CLK_DIVIDER_POWER_OF_TWO flag
+
+ .../devicetree/bindings/clock/xlnx,versal-clk.yaml |  64 +++++++++++
+ drivers/clk/zynqmp/clkc.c                          |   3 +-
+ drivers/clk/zynqmp/divider.c                       | 118 +++++++++++++++++++-
+ drivers/clk/zynqmp/pll.c                           |   6 +-
+ drivers/firmware/xilinx/zynqmp.c                   |   2 +
+ include/dt-bindings/clock/xlnx-versal-clk.h        | 123 +++++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h               |   2 +
+ 7 files changed, 310 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+ create mode 100644 include/dt-bindings/clock/xlnx-versal-clk.h
+
+-- 
+Changes in v3:
+ - [PATCH 1/7]: Update SPDX-License-Identifier.
+Changes in v2:
+ - [PATCH 7/7]: Removed patch #7 to fix clock frac to handle backward
+		compatibility. Will send this patch separately with
+		proper backward compatibility handling.
+ - Rest of the changes are mentioned in individual patches.
+-- 
+2.7.4
+
