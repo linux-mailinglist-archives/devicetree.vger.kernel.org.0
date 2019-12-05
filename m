@@ -2,63 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5241F113942
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 02:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE24B1139BA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2019 03:19:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728121AbfLEBYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Dec 2019 20:24:47 -0500
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:34384 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728132AbfLEBYr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 20:24:47 -0500
-Received: by mail-ed1-f66.google.com with SMTP id cx19so1223060edb.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2019 17:24:46 -0800 (PST)
+        id S1728393AbfLECTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Dec 2019 21:19:43 -0500
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:33753 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728321AbfLECTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Dec 2019 21:19:42 -0500
+Received: by mail-yw1-f66.google.com with SMTP id 192so639655ywy.0;
+        Wed, 04 Dec 2019 18:19:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=99GF2nOjfZOF8173j+2SZldgprXSGq9Sob22FLrpWmY=;
-        b=m2DgBedi1/OJLJ73Y7cLr0NDHPmWlH+kS9QUMTn34gP0MXuMmvEYw1b2hMfejQ4rnF
-         k/K7ahgsU7kvjTL2FyWdavvP9GRSquUMhFBOpqDhw+vtMmJsghf+yLtLzseV7xtyF6CU
-         uMzIshkrxf2RdXqL8KFw+mlxx+5UzOVlV4JianyA5KBxohkgwqM+7XT07kdnIcQDFlCG
-         gLee0H6tfOVOwu3Q79yIe5w1pp0sY+YETfwKyXzjIsGapUrUjHsQBSr5XW9oTUjlISq1
-         8BTETNlX7SHoLc4gKBryGo9g62ohD+aLMWbVxLtkiTss+gDWpXy/01FWHQrMqGsKRCdS
-         2Bxw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W0wipGAlhtFBkJDMjyVi53Belp9dZbF8qy8E6IHBmAc=;
+        b=kUT4K4VJ3i15DzpOkpq7fK7DgnWrHPwjdAGZyO4qBy5SBblwpIll3K/BimeM7GBf6S
+         h5JNbWRPQXOoa69Dgpc/c28ZfdA2zZcMDn0ptcRrinbBAdxWFeqjSD39G8OEV6MxyfPo
+         PhBieSaCbbvXKPLJ6qAQIXFDisK10uuc/bcHHVArpwGNERDLN3/DEsxnEDPPk6bkLhK5
+         4elI7/lcLdf3xETQ+vSuio0Mj+v6HasE/Gc7/cO6p7ELWxy3WnuQltkRDKEdOnv9sY+q
+         0wznrP/qzbKz5EgEONJ1NCajYAtvI2dS0XRUVEfYWxtywhIHwozZSWqL/NjgHP6dkISy
+         hyPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=99GF2nOjfZOF8173j+2SZldgprXSGq9Sob22FLrpWmY=;
-        b=IeTioxc+oZOhPLSOcRnx/4328kenGc0AYXuNoSFYXmxAOAKWQTaa7+KbsCA1PVUzQW
-         F5XYEdZNfEcLv+nz2QGDmiv60qs7O0sXxV/+ILJXDzthqD4NFQ60DRV3NQzkW99EPnyl
-         OsRYIvfIYcwPuoN+LbSsdoFjv9Ae6CKaG5Ueoy2MpJL53Mflr48Rivkg5Rb8bIzvPvR4
-         bjS2xfQOp0u9Ek5in1hziYidx/V4ROOUkTaWX+TjvhR5iCWF862PO8abxpeNpviH4wsT
-         gZg69BsFf7xdh57E6dKzMWJDDAk45bjeClJ3m2c3X6Ly1tLSxPRYGK5C5wYQHyZMjYJ8
-         JnrQ==
-X-Gm-Message-State: APjAAAWaoa5+FtyQNDNKLnwSl1wC9Y/94fxcu3lp12yQ7QVYNCwJYoKi
-        V5g03J6R9dOe99qPqx1+zlt1/qZ5HTNcFDn9dqc=
-X-Google-Smtp-Source: APXvYqxzawmDFqG8vyIdYd2RDxUDGCO6tvXy+b6R4uBXYCPrmPMJ8wv/OwCKUz98jZQBhM0LUGDE/ZxjAt5hKO2arJ0=
-X-Received: by 2002:a50:f292:: with SMTP id f18mr7525192edm.169.1575509085750;
- Wed, 04 Dec 2019 17:24:45 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W0wipGAlhtFBkJDMjyVi53Belp9dZbF8qy8E6IHBmAc=;
+        b=X+eSXH8jWdof+vZ4ygDkRGJyoAy1lvG7DhDjAH7z+6wxU4+7jea+Ou9SuYdbMKp5fD
+         Ebtgi48ElFVdRqLhuBrz9QUgLIdLL2IfmOIo21MyG39Uwg0pbA4zU8GP2AUrI7vYKZwS
+         w5lN0F4ncQtaN/0/79i11oYOIhcyCEHiik562jlxUw5/JVouYJWmA3KPqhxv8CkQUAcX
+         5n0tbc1Cbqoy1km3o81rUssjNRoYSO7MokcldnIT0HB7dp+KHjeuOe+fuoPqetHLXhG0
+         jfFlPlybECBgakp5Gn+nQ5oe+9RsnNn16ZAbudlpfridtQsdDKGE++lD8c6NImv0Tf9Z
+         No8g==
+X-Gm-Message-State: APjAAAUci4Hc+qVuenoJ/jg14R+pNPuBoUL/D7I/BKd3wAwduDHoIJRm
+        8dUqH66n08GoDhAigDd7IjA=
+X-Google-Smtp-Source: APXvYqwmA0tNypyxHFhWWBSeQmaZKBrbjW0ry33aUyY5ro4GqrUJGZqXbgcg/CTdfAPjgNHekXLwLQ==
+X-Received: by 2002:a0d:d5d5:: with SMTP id x204mr3846561ywd.283.1575512380930;
+        Wed, 04 Dec 2019 18:19:40 -0800 (PST)
+Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
+        by smtp.gmail.com with ESMTPSA id l6sm4188449ywa.39.2019.12.04.18.19.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Dec 2019 18:19:40 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Adam Ford <aford173@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] soc: imx: Enable additional functionality of i.MX8M
+Date:   Wed,  4 Dec 2019 20:19:16 -0600
+Message-Id: <20191205021924.25188-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Reply-To: ibrahim8rahman@gmail.com
-Received: by 2002:a17:906:34c1:0:0:0:0 with HTTP; Wed, 4 Dec 2019 17:24:45
- -0800 (PST)
-From:   Ibrahim Rahman <ibrahim8rahman@gmail.com>
-Date:   Thu, 5 Dec 2019 01:24:45 +0000
-X-Google-Sender-Auth: 2r7FIu0B0q4lpWhvorB_T21m890
-Message-ID: <CAHqq7AAN9c+mTJ9S-GJYowLNwZmJNC=PnYSed8dZTTwXReWp6Q@mail.gmail.com>
-Subject: Dear Sir/Madam!,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Sir/Madam.
+The GPCv2 controller on the i.MX8M Mini is compatible with the driver
+used for the i.MX8MQ except for the register locations and names.
+The GPCv2 controller is used to enable additional periperals currently
+unavailable on the i.MX8M Mini.  In order to make them function,
+the GPCv2 needs to be adapted so the drivers can associate their
+power domain to the GPCv2 to enable them.
 
-I am Mr.Ibrahim Rahman. I have (15.5 M Dollars) to transfer into your
-account, I will send you more details about this deal and the
-procedures to follow when I receive a positive response from you,
+This series makes one include file slightly more generic,
+adds the iMX8M Mini entries, updates the bindings, adds them
+to the device tree, then associates the new power domain to
+both the OTG and PCIe controllers.
 
-Yours Sincerely,
+Adam Ford (7):
+  soc: imx: gpcv2: Rename imx8mq-power.h to imx8m-power.h
+  soc: imx: gpcv2: Update imx8m-power.h to include iMX8M Mini
+  soc: imx: gpcv2: add support for i.MX8M Mini SoC
+  dt-bindings: imx-gpcv2: Update bindings to support i.MX8M Mini
+  arm64: dts: imx8mm: add GPC power domains
+  ARM64: dts: imx8mm: Fix clocks and power domain for USB OTG
+  arm64: dts: imx8mm: Add PCIe support
+
+ .../bindings/power/fsl,imx-gpcv2.txt          |   6 +-
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 129 ++++++++-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |   2 +-
+ drivers/soc/imx/gpcv2.c                       | 246 +++++++++++++++++-
+ .../power/{imx8mq-power.h => imx8m-power.h}   |  14 +
+ 5 files changed, 389 insertions(+), 8 deletions(-)
+ rename include/dt-bindings/power/{imx8mq-power.h => imx8m-power.h} (57%)
+
+-- 
+2.20.1
+
