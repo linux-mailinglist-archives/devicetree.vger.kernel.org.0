@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A3E115040
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 13:17:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A60611503E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 13:17:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726313AbfLFMR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Dec 2019 07:17:27 -0500
+        id S1726312AbfLFMRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Dec 2019 07:17:35 -0500
 Received: from mail-sz.amlogic.com ([211.162.65.117]:17684 "EHLO
         mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726312AbfLFMR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 07:17:27 -0500
+        with ESMTP id S1726353AbfLFMRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 07:17:33 -0500
 Received: from localhost.localdomain (10.28.8.19) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 6 Dec 2019
- 20:17:50 +0800
+ 20:17:51 +0800
 From:   Qianggui Song <qianggui.song@amlogic.com>
 To:     Thomas Gleixner <tglx@linutronix.de>,
         Jason Cooper <jason@lakedaemon.net>,
@@ -30,9 +30,9 @@ CC:     Qianggui Song <qianggui.song@amlogic.com>,
         <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH 1/4] dt-bindings: interrupt-controller: New binding for Meson-A1 SoCs
-Date:   Fri, 6 Dec 2019 20:17:10 +0800
-Message-ID: <20191206121714.14579-2-qianggui.song@amlogic.com>
+Subject: [PATCH 4/4] arm64: dts: meson: a1: add gpio interrupt controller support
+Date:   Fri, 6 Dec 2019 20:17:13 +0800
+Message-ID: <20191206121714.14579-5-qianggui.song@amlogic.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191206121714.14579-1-qianggui.song@amlogic.com>
 References: <20191206121714.14579-1-qianggui.song@amlogic.com>
@@ -45,25 +45,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update dt-binding document for GPIO interrupt controller of Meson-A1 SoCs
+add gpio interrupt controller node to a1 SoC
 
 Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
 ---
- .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-index 684bb1cd75ec..23b18b92c558 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
-@@ -17,6 +17,7 @@ Required properties:
-     "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
-     "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
-     "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
-+    "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
- - reg : Specifies base physical address and size of the registers.
- - interrupt-controller : Identifies the node as an interrupt controller.
- - #interrupt-cells : Specifies the number of cells needed to encode an
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 0965259af869..6d52350a5652 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -92,6 +92,15 @@ gpio: bank@0400 {
+ 
+ 			};
+ 
++			gpio_intc: interrupt-controller@0440 {
++				compatible = "amlogic,meson-gpio-intc",
++					     "amlogic,meson-a1-gpio-intc";
++				reg = <0x0 0x0440 0x0 0x14>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				amlogic,channel-interrupts = <49 50 51 52 53 54 55 56>;
++			};
++
+ 			uart_AO: serial@1c00 {
+ 				compatible = "amlogic,meson-gx-uart",
+ 					     "amlogic,meson-ao-uart";
 -- 
 2.24.0
 
