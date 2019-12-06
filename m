@@ -2,123 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79A39114CC1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 08:41:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8259114D20
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 09:05:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726628AbfLFHlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Dec 2019 02:41:13 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:26913 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725858AbfLFHlM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 02:41:12 -0500
-Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 6 Dec 2019
- 15:41:36 +0800
-From:   Jian Hu <jian.hu@amlogic.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-CC:     Jian Hu <jian.hu@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Chandle Zou <chandle.zou@amlogic.com>,
-        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v4 2/6] clk: meson: add support for A1 PLL clock ops
-Date:   Fri, 6 Dec 2019 15:40:48 +0800
-Message-ID: <20191206074052.15557-3-jian.hu@amlogic.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191206074052.15557-1-jian.hu@amlogic.com>
-References: <20191206074052.15557-1-jian.hu@amlogic.com>
+        id S1726225AbfLFIFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Dec 2019 03:05:00 -0500
+Received: from conssluserg-02.nifty.com ([210.131.2.81]:31900 "EHLO
+        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726302AbfLFIE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 03:04:59 -0500
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54]) (authenticated)
+        by conssluserg-02.nifty.com with ESMTP id xB684ujw021333;
+        Fri, 6 Dec 2019 17:04:56 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com xB684ujw021333
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1575619496;
+        bh=5HkglI0EKjnLXCnlt94Q9XbXoUC156pTW0gJif8WsLM=;
+        h=From:Date:Subject:To:Cc:From;
+        b=fCADfeHV0pHWJfJJZReqYgrFWALqlNHJo4mhghcMnzY+qcFsW7i/T3WSK24ScT7Iy
+         dLN32NZkjERwIWiqpD6nV2aZduYg5CKr6dFWewRNvdMoKtHqrCqTwfUED1D4AQZa8r
+         +7zCdPbukVAygKyeaw31rJ+shCyWECyp1dsqKEqrtxgbb1WNCElPVs779xujmQ9G1Y
+         Q1fmoVO+I2KiZB3CGAtSgqGHUy0+T7zSCSqT20VzTKJ46qnaIn7575Cmltlu9kfuSX
+         Ltq8puz7u/G4nFsErrsyaLCPMonLBx9naBmnwBYdaOS3E0NjNUN7Bxfv+J6LxXZD9y
+         9uRI4N4PwMCdg==
+X-Nifty-SrcIP: [209.85.222.54]
+Received: by mail-ua1-f54.google.com with SMTP id f7so2464123uaa.8;
+        Fri, 06 Dec 2019 00:04:56 -0800 (PST)
+X-Gm-Message-State: APjAAAWo2ND7LJG/OUHYzSHyEO5OPsPx5RUSI6ibhFjGOVhmRJpjKg1z
+        1kqQqT83wNvxagVB96pJPKic0L6I7gFGW592pmM=
+X-Google-Smtp-Source: APXvYqy3+OU+tXwm9mApi3095nPuMim4hayi3qQUxbwWEblDDMPQ+2LojXhJOLXlE5A6bcurl/xkESk2ulBMZ17+6e4=
+X-Received: by 2002:ab0:3487:: with SMTP id c7mr9347188uar.25.1575619495354;
+ Fri, 06 Dec 2019 00:04:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.25]
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Fri, 6 Dec 2019 17:04:19 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQ29tXAFZaYODFyd4iAx9UhyjhyEtXxk+ZC+yUtXsqMMQ@mail.gmail.com>
+Message-ID: <CAK7LNAQ29tXAFZaYODFyd4iAx9UhyjhyEtXxk+ZC+yUtXsqMMQ@mail.gmail.com>
+Subject: About DT binding of reset control
+To:     Rob Herring <robh+dt@kernel.org>, DTML <devicetree@vger.kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The A1 PLL design is different with previous SoCs. The PLL
-internal analog modules Power-on sequence is different
-with previous, and thus requires a strict register sequence to
-enable the PLL.
+Hello, Rob, DT folks,
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
- drivers/clk/meson/clk-pll.c | 21 +++++++++++++++++++++
- drivers/clk/meson/clk-pll.h |  1 +
- drivers/clk/meson/parm.h    |  1 +
- 3 files changed, 23 insertions(+)
+I am trying to add the reset control into
+the Denali NAND controller driver:
+Documentation/devicetree/bindings/mtd/denali-nand.txt
+drivers/mtd/nand/raw/denali_dt.c
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index ddb1e5634739..4aff31a51589 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -318,6 +318,23 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
-+	/*
-+	 * The A1 design is different with previous SoCs.The PLL
-+	 * internal analog modules Power-on sequence is different with
-+	 * previous, and thus requires a strict register sequence to
-+	 * enable the PLL.
-+	 */
-+	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
-+		/* Enable the pll */
-+		meson_parm_write(clk->map, &pll->en, 1);
-+		udelay(10);
-+		/* Enable the pll self-adaption module current */
-+		meson_parm_write(clk->map, &pll->current_en, 1);
-+		udelay(40);
-+		meson_parm_write(clk->map, &pll->rst, 1);
-+		meson_parm_write(clk->map, &pll->rst, 0);
-+	}
-+
- 	/* do nothing if the PLL is already enabled */
- 	if (clk_hw_is_enabled(hw))
- 		return 0;
-@@ -347,6 +364,10 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
- 
- 	/* Disable the pll */
- 	meson_parm_write(clk->map, &pll->en, 0);
-+
-+	/* Disable PLL internal self-adaption module current */
-+	if (MESON_PARM_APPLICABLE(&pll->current_en))
-+		meson_parm_write(clk->map, &pll->current_en, 0);
- }
- 
- static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-index 367efd0f6410..30f039242a65 100644
---- a/drivers/clk/meson/clk-pll.h
-+++ b/drivers/clk/meson/clk-pll.h
-@@ -36,6 +36,7 @@ struct meson_clk_pll_data {
- 	struct parm frac;
- 	struct parm l;
- 	struct parm rst;
-+	struct parm current_en;
- 	const struct reg_sequence *init_regs;
- 	unsigned int init_count;
- 	const struct pll_params_table *table;
-diff --git a/drivers/clk/meson/parm.h b/drivers/clk/meson/parm.h
-index 3c9ef1b505ce..c53fb26577e3 100644
---- a/drivers/clk/meson/parm.h
-+++ b/drivers/clk/meson/parm.h
-@@ -20,6 +20,7 @@
- 	(((reg) & CLRPMASK(width, shift)) | ((val) << (shift)))
- 
- #define MESON_PARM_APPLICABLE(p)		(!!((p)->width))
-+#define MESON_PARM_CURRENT(p)			(!!((p)->width))
- 
- struct parm {
- 	u16	reg_off;
--- 
-2.24.0
+I'd like to get some advice about the DT binding
+before the detailed implementation.
 
+
+
+The IP datasheet clearly says
+two separate reset lines, like this:
+
+rst_n :           controller core reset
+reg_rst_n:     register flip-flop reset
+
+
+But, in actual SoC integration,
+the two reset signals are often tied up together, and
+the reset controller only provides 1-bit control.
+
+(The upstream platforms, SoCFPGA, UniPhier,
+ both are this case.)
+
+
+In this case, which is more preferred for the
+DT binding?
+
+
+[1] Define two resets explicitly according to the IP spec
+
+Optional properties:
+  reset-names :  contain "nand", "reg"
+  resets: phandles to the controller core reset, the register reset
+
+Example:
+
+   nand {
+         ....
+         reset-names = "nand", "reg";
+         resets = <&nand_rst>, <&nand_rst>;
+         ...
+   };
+
+
+
+[2] Allow arbitrary number of reset lines
+
+
+Optional properties:
+     resets: phandle(s) to reset(s)
+
+   The number of reset lines is SoC-dependent.
+
+
+Examples:
+
+      nand {
+
+               resets = <&nand>;
+                ...
+       };
+
+
+
+
+
+I guess [1] is more precise as the hardware specification.
+But, DT files will end up with giving the same phandle
+to both of the two resets.
+I think it is OK, but anyway better to ask
+before proceeding.
+
+Thanks.
+
+--
+Best Regards
+Masahiro Yamada
