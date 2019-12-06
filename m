@@ -2,84 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC744114F48
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 11:52:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BDEA114FA4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 12:14:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726669AbfLFKwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Dec 2019 05:52:04 -0500
-Received: from foss.arm.com ([217.140.110.172]:39402 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726608AbfLFKwD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Dec 2019 05:52:03 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F13D9DA7;
-        Fri,  6 Dec 2019 02:52:02 -0800 (PST)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8801D3F52E;
-        Fri,  6 Dec 2019 02:52:01 -0800 (PST)
-Date:   Fri, 6 Dec 2019 10:51:55 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Dilip Kota <eswara.kota@linux.intel.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@intel.com, gustavo.pimentel@synopsys.com,
-        andrew.murray@arm.com, robh@kernel.org,
-        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
-        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH v10 0/3] PCI: Add Intel PCIe Driver and respective
- dt-binding yaml file
-Message-ID: <20191206105155.GA20804@e121166-lin.cambridge.arm.com>
-References: <cover.1575612493.git.eswara.kota@linux.intel.com>
+        id S1726134AbfLFLOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Dec 2019 06:14:19 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:35234 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726128AbfLFLOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 06:14:19 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB6BE88C110234;
+        Fri, 6 Dec 2019 05:14:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1575630848;
+        bh=Zmh37uFMtwqctvfI1lVTnfB8t624XUrqIrQyeikJXz0=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Kr45+xjZxQAcs4cnBugZrs6uWYPcER8AaVw2Tue/UbcwSHkwVav6ljKdVNzAu1e41
+         GC31UJmNIpyOwiZG0UTvqI+LQovSxw8su78t7Sfrqjhc1JglRyVf0xRmZdDDA0WvRb
+         F6oiyxi9wEvfSPeiWy7wAsoHxMTY1FBm+zM35aCA=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB6BE781055118;
+        Fri, 6 Dec 2019 05:14:07 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 6 Dec
+ 2019 05:14:07 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 6 Dec 2019 05:14:07 -0600
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB6BE4Kl122422;
+        Fri, 6 Dec 2019 05:14:05 -0600
+Subject: Re: [PATCH] dt-bindings: net: mdio: use non vendor specific
+ compatible string in example
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>,
+        Simon Horman <simon.horman@netronome.com>,
+        netdev <netdev@vger.kernel.org>
+References: <20191127153928.22408-1-grygorii.strashko@ti.com>
+ <CAL_Jsq+viKkF4FFgpMhTjKCMLeGOX1o9Uq-StU6xwFuTcpCL2Q@mail.gmail.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <eb3cb685-5ddc-8e06-1e26-0f6bc43b294c@ti.com>
+Date:   Fri, 6 Dec 2019 13:14:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1575612493.git.eswara.kota@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <CAL_Jsq+viKkF4FFgpMhTjKCMLeGOX1o9Uq-StU6xwFuTcpCL2Q@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 06, 2019 at 03:27:47PM +0800, Dilip Kota wrote:
-> Intel PCIe is Synopsys based controller. Intel PCIe driver uses
-> DesignWare PCIe framework for host initialization and register
-> configurations.
-> 
-> Changes on v10:
-> 	Rebase the patches on mainline v5.4
 
-I meant current mainline (given that the PCI PR for v5.5 is now
-merged), not v5.4, patchset does not apply. Given that v5.5-rc1
-is coming up, please rebase on top of v5.5-rc1 and repost it I
-will try to merge it then.
 
-Thanks,
-Lorenzo
+On 05/12/2019 19:59, Rob Herring wrote:
+> On Wed, Nov 27, 2019 at 9:39 AM Grygorii Strashko
+> <grygorii.strashko@ti.com> wrote:
+>>
+>> Use non vendor specific compatible string in example, otherwise DT YAML
+>> schemas validation may trigger warnings specific to TI ti,davinci_mdio
+>> and not to the generic MDIO example.
+>>
+>> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+>> ---
+>>   Documentation/devicetree/bindings/net/mdio.yaml | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/mdio.yaml b/Documentation/devicetree/bindings/net/mdio.yaml
+>> index 5d08d2ffd4eb..524f062c6973 100644
+>> --- a/Documentation/devicetree/bindings/net/mdio.yaml
+>> +++ b/Documentation/devicetree/bindings/net/mdio.yaml
+>> @@ -56,7 +56,7 @@ patternProperties:
+>>   examples:
+>>     - |
+>>       davinci_mdio: mdio@5c030000 {
+>> -        compatible = "ti,davinci_mdio";
+>> +        compatible = "vendor,mdio";
+> 
+> The problem with this is eventually 'vendor,mdio' will get flagged as
+> an undocumented compatible. We're a ways off from being able to enable
+> that until we have a majority of bindings converted. Though maybe
+> examples can be enabled sooner rather than later.
+> 
 
-> 	Squashed the patch that fixes the below issue to this patch series.
-> 
-> 	  WARNING: unmet direct dependencies detected for PCIE_DW_HOST
-> 	    Depends on [n]: PCI [=y] && PCI_MSI_IRQ_DOMAIN [=n]
-> 	    Selected by [y]:
-> 	    - PCIE_INTEL_GW [=y] && PCI [=y] && OF [=y] && (X86 [=y] || COMPILE_TEST [=n])
-> 	  "reportedby Randy Dunlap <rdunlap@infradead.org>"
-> 
-> Dilip Kota (3):
->   dt-bindings: PCI: intel: Add YAML schemas for the PCIe RC controller
->   PCI: dwc: intel: PCIe RC controller driver
->   PCI: artpec6: Configure FTS with dwc helper function
-> 
->  .../devicetree/bindings/pci/intel-gw-pcie.yaml     | 138 ++++++
->  drivers/pci/controller/dwc/Kconfig                 |  11 +
->  drivers/pci/controller/dwc/Makefile                |   1 +
->  drivers/pci/controller/dwc/pcie-artpec6.c          |   8 +-
->  drivers/pci/controller/dwc/pcie-designware.c       |  57 +++
->  drivers/pci/controller/dwc/pcie-designware.h       |  12 +
->  drivers/pci/controller/dwc/pcie-intel-gw.c         | 545 +++++++++++++++++++++
->  include/uapi/linux/pci_regs.h                      |   1 +
->  8 files changed, 766 insertions(+), 7 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
->  create mode 100644 drivers/pci/controller/dwc/pcie-intel-gw.c
-> 
-> -- 
-> 2.11.0
-> 
+May be some generic compatible string be used for all examples,
+like: "vendor,example-ip". What do you think?
+
+-- 
+Best regards,
+grygorii
