@@ -2,111 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A2853115582
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 17:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7ADB1155B8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 17:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726352AbfLFQfB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 6 Dec 2019 11:35:01 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:44661 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726321AbfLFQfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 11:35:01 -0500
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 814C6C0009;
-        Fri,  6 Dec 2019 16:34:54 +0000 (UTC)
-Date:   Fri, 6 Dec 2019 17:34:53 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Change RK809 PMIC interrupt
- polarity
-Message-ID: <20191206173453.1b2f7844@xps13>
-In-Reply-To: <1601413.9zADmrJRdp@phil>
-References: <20191206154247.28057-1-miquel.raynal@bootlin.com>
-        <3285991.EbEXlA3CnX@phil>
-        <20191206165250.5877dec8@xps13>
-        <1601413.9zADmrJRdp@phil>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726321AbfLFQr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Dec 2019 11:47:26 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37194 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726284AbfLFQr0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 11:47:26 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB6GlLfs053956;
+        Fri, 6 Dec 2019 10:47:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1575650841;
+        bh=eWOw3QJP4L3LAo1YWMiAnMJSvxy22UtNfCBkDyDbRAU=;
+        h=From:To:CC:Subject:Date;
+        b=QoOAt2yUVAML0QV72QVvIDE3vjRsNrx0mhOOBCsFDLNZujeg+TJFt+V0wSOiBmqsQ
+         eYkB+hOk5dMwOE4/pJOLspTeRvM1ZL+AsJmp5MZxd+c4sRZmMvNF8reuKOs3idEIhh
+         N/Lw2UrjC0QlzMmHnkWds7VVGEJ/ls7i7iFPWRIc=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB6GlLj3117204
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 6 Dec 2019 10:47:21 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 6 Dec
+ 2019 10:47:21 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 6 Dec 2019 10:47:21 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB6GlLsQ106733;
+        Fri, 6 Dec 2019 10:47:21 -0600
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
+        <bunk@kernel.org>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <grygorii.strashko@ti.com>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2] dt-bindings: dp83867: Convert fifo-depth to common fifo-depth and make optional
+Date:   Fri, 6 Dec 2019 10:45:15 -0600
+Message-ID: <20191206164516.2702-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+Convert the ti,fifo-depth from a TI specific property to the common
+tx-fifo-depth property.  Also add support for the rx-fifo-depth.
 
-Heiko Stuebner <heiko@sntech.de> wrote on Fri, 06 Dec 2019 17:01:58
-+0100:
+These are optional properties for this device and if these are not
+available then the fifo depths are set to device default values.
 
-> Am Freitag, 6. Dezember 2019, 16:52:50 CET schrieb Miquel Raynal:
-> > Hi Heiko,
-> > 
-> > Heiko Stuebner <heiko@sntech.de> wrote on Fri, 06 Dec 2019 16:48:00
-> > +0100:
-> >   
-> > > Hi Miquel,
-> > > 
-> > > Am Freitag, 6. Dezember 2019, 16:42:47 CET schrieb Miquel Raynal:  
-> > > > PMIC interrupt can be active high or active low depending on BIT(1) of
-> > > > the GPIO_INT_CFG pin. The default is 0x1, which means active
-> > > > high. Change the polarity in the device tree to reflect the default
-> > > > state.
-> > > > 
-> > > > Without this and with the current code base, the interrupt never stops
-> > > > triggering while the MFD driver does not see anything to
-> > > > check/clear/mask so after 100000 spurious IRQs, the kernel simply
-> > > > desactivates the interrupt:
-> > > > 
-> > > >         irq 36: nobody cared (try booting with the "irqpoll" option)
-> > > >         [...]
-> > > >         handlers:
-> > > >         [<(____ptrval____)>] irq_default_primary_handler threaded
-> > > > 	[<(____ptrval____)>] regmap_irq_thread
-> > > >         Disabling IRQ #36
-> > > > 
-> > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>    
-> > > 
-> > > *coughs slightly*
-> > > 
-> > > mfd: rk808: Set RK817 interrupt polarity to low
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git/commit/drivers/mfd/rk808.c?h=for-mfd-next&id=dbd16ef53487084816a20f662423ab543a75fc83
-> > > 
-> > > Should be in the current merge window already I guess ;-)  
-> > 
-> > This time I swear I checked your tree. But this time we did not ended
-> > with the same fix so I missed this one *again* :)  
-> 
-> No worries ... I guess I should check where I hid additional patches ;-)
-> 
-> So right now px30 stuff is in the trees:
-> - mine
-> - mfd
-> - phy (first round of dsi phy, refinement pending on the list)
-> - nvmem (for the otp controller)
-> - drm (drm/rockchip: vop: add the definition of dclk_pol)
-> - clk
-> 
-> and pending on lists:
-> - drm (dsi support + timings)
-> - phy (refinement as mentioned above)
-> 
-> not submitted yet but planning to get this done this weekend:
-> - panel driver for px30-evb
-> - dsi devicetree stuff
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+Reported-by: Adrian Bunk <bunk@kernel.org>
+CC: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/net/ti,dp83867.txt | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-Thank you very much for the detailed list! I will soon work on the
-PMIC audio support and on secure boot, do not hesitate to ping me if
-you see this kind of work coming on the mailing list!
+diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.txt b/Documentation/devicetree/bindings/net/ti,dp83867.txt
+index db6aa3f2215b..8c733ef0941f 100644
+--- a/Documentation/devicetree/bindings/net/ti,dp83867.txt
++++ b/Documentation/devicetree/bindings/net/ti,dp83867.txt
+@@ -8,8 +8,6 @@ Required properties:
+ 	- ti,tx-internal-delay - RGMII Transmit Clock Delay - see dt-bindings/net/ti-dp83867.h
+ 		for applicable values. Required only if interface type is
+ 		PHY_INTERFACE_MODE_RGMII_ID or PHY_INTERFACE_MODE_RGMII_TXID
+-	- ti,fifo-depth - Transmitt FIFO depth- see dt-bindings/net/ti-dp83867.h
+-		for applicable values
+ 
+ Note: If the interface type is PHY_INTERFACE_MODE_RGMII the TX/RX clock delays
+       will be left at their default values, as set by the PHY's pin strapping.
+@@ -38,6 +36,14 @@ Optional property:
+ 			      be disabled by this property.  When omitted, the
+ 			      PHY's default will be left as is.
+ 
++	- ti,fifo-depth - Transmitt FIFO depth- see dt-bindings/net/ti-dp83867.h
++		for applicable values (deprecated)
++
++	-tx-fifo-depth - As defined in the ethernet-controller.yaml.  Values for
++			 the depth can be found in dt-bindings/net/ti-dp83867.h
++	-rx-fifo-depth - As defined in the ethernet-controller.yaml.  Values for
++			 the depth can be found in dt-bindings/net/ti-dp83867.h
++
+ Note: ti,min-output-impedance and ti,max-output-impedance are mutually
+       exclusive. When both properties are present ti,max-output-impedance
+       takes precedence.
+@@ -51,7 +57,7 @@ Example:
+ 		reg = <0>;
+ 		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+ 		ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_75_NS>;
+-		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++		tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+ 	};
+ 
+ Datasheet can be found:
+-- 
+2.23.0
 
-Thanks,
-Miquèl
