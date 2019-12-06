@@ -2,129 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7A89114AB6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 03:01:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E20114B15
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 03:50:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725988AbfLFCBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Dec 2019 21:01:49 -0500
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:45778 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725959AbfLFCBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 21:01:49 -0500
-Received: by mail-pl1-f194.google.com with SMTP id w7so2011218plz.12
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2019 18:01:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=yawCDzrn1DZPzEC7TC2gsk/hjYWQ4hmDMD32WCjrPbk=;
-        b=Y6tCO3KXQbX6mVGeqhEP97b/3pfwbgbG9fZAKtX3DfI/5sQ9/x7c0+d98HmaKY8VMk
-         S2YGlDSiYypUevwgwsDJ+10qNi8s2juIbE2sT4w6Q0MFWvg9pU+EfmMeTH2ei41cQ8Mp
-         d1JnDTZVyy9JhLP8EV0BqACLfqAQzxgyrjXYiOb7l0cAGo4oYw+Pv/SAgD8qnSKaC/0a
-         rD8FXgrCkyGEUJ/on8f71AZB3mNkw0p/h6EJheutKQYEjo2QLb/ufPFHz0rchJEzVzcc
-         aeqBqtuXQ1qK8dJGu6BXkoLkSNdJlG5XyKU+BTgBve2FPORSOYD8PpKRkR9sbaJ6yNhB
-         0eUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=yawCDzrn1DZPzEC7TC2gsk/hjYWQ4hmDMD32WCjrPbk=;
-        b=BDFMTdKHutSqyHx4PqMqfmh+I2Xmbe2GCyJKdgD3+urGKmPXbs8hLN9snr/LDrM4j+
-         wDW4y3ME3Z+b9EJtMElapoLSHfNyOjAgAxxHi43Jig0AVQgNeOESY8PtKAM9lU3CNpVs
-         3/pMelPjCVNgI/Eoei0zfU7fBpr5nDkIpwOuxuz1vF7Dx0IRIPvOqQxdErrJbTpyzGzm
-         4Q7eiWgZHIsNJUVA2ThWAE+Q2qeDuL0M5KXamX7R/XGH/4214d4ZQ0lz3pao11PpFvuQ
-         yzBLSB3ztnac91POnG6TuS2F78k+KCdlTY5xCPQgB+qifZuwRbyGwh5kIMYBQ2zlLkmq
-         w2/w==
-X-Gm-Message-State: APjAAAWJ0y/d9bfVjzqfibEd5gZvSI35Kj1FQMQVwPRcI2fvt11TJckj
-        8kZVeaH6fkI4UZ8RqYFVbUY=
-X-Google-Smtp-Source: APXvYqw2ueWFPqikZhD0a2qq1gWWV/hMz4rEndjfA9geXRuajF2h7mb6m0NVl6+8/W2Sr5Om8zAeDg==
-X-Received: by 2002:a17:90a:348c:: with SMTP id p12mr12729041pjb.105.1575597708183;
-        Thu, 05 Dec 2019 18:01:48 -0800 (PST)
-Received: from ?IPv6:240d:1a:90a:7900:b0a6:2318:ed21:5e5? ([240d:1a:90a:7900:b0a6:2318:ed21:5e5])
-        by smtp.gmail.com with ESMTPSA id z1sm14087108pfk.61.2019.12.05.18.01.45
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 05 Dec 2019 18:01:47 -0800 (PST)
-Subject: Re: [RFC] Efficiency of the phandle_cache on ppc64/SLOF
-To:     Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Michael Ellerman <mpe@ellerman.id.au>, devicetree@vger.kernel.org,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-References: <20191129151056.o5c44lm5lb4wsr4r@linutronix.de>
- <e1f232f5-3847-a519-5cce-95a26512e82b@gmail.com>
- <87tv6idp37.fsf@mpe.ellerman.id.au>
- <67e1da87-7f5a-3972-bc16-28bae2350c12@gmail.com>
- <CAL_JsqKieG5=teL7gABPKbJOQfvoS9s-ZPF-=R0yEE_LUoy-Kw@mail.gmail.com>
- <20191205163538.mzunfrpox7jbrssl@linutronix.de>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <084ed924-eaed-5232-a9f6-fe60128fe11a@gmail.com>
-Date:   Thu, 5 Dec 2019 20:01:41 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726491AbfLFCtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Dec 2019 21:49:03 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:14396 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726233AbfLFCtD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Dec 2019 21:49:03 -0500
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5de9c1970000>; Thu, 05 Dec 2019 18:48:55 -0800
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 05 Dec 2019 18:48:59 -0800
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 05 Dec 2019 18:48:59 -0800
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Dec
+ 2019 02:48:59 +0000
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Dec
+ 2019 02:48:58 +0000
+Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Fri, 6 Dec 2019 02:48:58 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.163.171]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5de9c1990000>; Thu, 05 Dec 2019 18:48:58 -0800
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <digetx@gmail.com>,
+        <mperttunen@nvidia.com>, <gregkh@linuxfoundation.org>,
+        <sboyd@kernel.org>, <tglx@linutronix.de>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>
+CC:     <allison@lohutok.net>, <pdeschrijver@nvidia.com>,
+        <pgaikwad@nvidia.com>, <mturquette@baylibre.com>,
+        <horms+renesas@verge.net.au>, <Jisheng.Zhang@synaptics.com>,
+        <krzk@kernel.org>, <arnd@arndb.de>, <spujar@nvidia.com>,
+        <josephl@nvidia.com>, <vidyas@nvidia.com>,
+        <daniel.lezcano@linaro.org>, <mmaddireddy@nvidia.com>,
+        <markz@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <perex@perex.cz>, <tiwai@suse.com>,
+        <alexios.zavras@intel.com>, <alsa-devel@alsa-project.org>
+Subject: [PATCH v3 00/15] Move PMC clocks into Tegra PMC driver
+Date:   Thu, 5 Dec 2019 18:48:40 -0800
+Message-ID: <1575600535-26877-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-In-Reply-To: <20191205163538.mzunfrpox7jbrssl@linutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1575600535; bh=0yY6O5GHk7xgeOMvI4k8qGNpUWrzvrDV5dKwrtLp/f4=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=p5fDX/1MwveGhBRGiUlIbddYp8Ctk6ez5ooV/2pkOm633fsIn3zDiZ7j1UbHqdAdG
+         Rv/7MxrOAbLMBRFBmpJ+fi/Ib6CB5IKhmUAlvtEm04SwIgmIzk9zDBTNcEDVxaDfjq
+         jW5e1b/0nj8Wf2K9Ej2UJl1g/V8+VJvRCHFViRK8wSObItVITQcwRJtVshOhrOdXNR
+         YmbH9aw9OtUIGc2gcEwngQX1INW4gt6/Zg+fDdRpxKtDXzJrlNwfcZysxh/CVUEEkd
+         TgXaA2tgf/UtKZTZyfZcIhWVO7OOa2fZKvrRuLvkpv3eZcmBoquiJ27La1DxNwQtFh
+         bzEqI7udvTKpw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/5/19 10:35 AM, Sebastian Andrzej Siewior wrote:
-> On 2019-12-03 10:56:35 [-0600], Rob Herring wrote:
->>> Another possibility would be to make the cache be dependent
->>> upon not CONFIG_PPC.  It might be possible to disable the
->>> cache with a minimal code change.
->>
->> I'd rather not do that.
->>
->> And yes, as mentioned earlier I don't like the complexity. I didn't
->> from the start and I'm  I'm still of the opinion we should have a
->> fixed or 1 time sized true cache (i.e. smaller than total # of
->> phandles). That would solve the RT memory allocation and locking issue
->> too.
->>
->> For reference, the performance difference between the current
->> implementation (assuming fixes haven't regressed it) was ~400ms vs. a
->> ~340ms improvement with a 64 entry cache (using a mask, not a hash).
->> IMO, 340ms improvement was good enough.
-> 
-> Okay. So the 814 phandles would result in an array with 1024 slots. That
-> would need 4KiB of memory.
+Tegra PMC has clk_out_1, clk_out_2, clk_out_3 and blink controls which
+are currently registered by Tegra clock driver using clk_regiser_mux and
+clk_register_gate which performs direct Tegra PMC register access.
 
-Is this amount of memory an issue for this system?
+When Tegra PMC is in secure mode, any access from non-secure world will
+not go through.
 
-If module support is not configured into the kernel then the cache is
-removed and memory freed in a late initcall.  I don't know if that helps
-your use case or not.
+This patch series adds these Tegra PMC clocks and blink controls to Tegra
+PMC driver with PMC as clock provider and removed them from Tegra clock
+driver. This also adds PMC specific clock id's to use in device tree and
+removed clock ids of PMC clock from Tegra clock driver.
+
+clk_out_1 is dedicated for audio mclk and current ASoC driver does not
+setting extern1 as parent for clk_out_1 and enabling clk_out_1 and
+currently this is taken care by Tegra clock driver during clock inits
+and there is no need to enable this during clock init.
+
+So, this series also includes patch that updates ASoC driver to take
+care of configuring parent of mclk and enabling mclk using both extern1
+and clk_out_1 and updates all device trees to use clk_out_1 from pmc as
+mclk incase if device tree don't specify assigned-clock-parents.
+
+This series also includes a patch for mclk fallback to use extern1
+when retrieving mclk fails with new device tree which uses pmc provider
+to have this backward compatible of new DT with old kernels.
+
+This series also includes a patch to remove clock ids for these clocks
+from clock dt-binding as these clocks are not used in any of the existing
+device tree except in tegra210-smaug.dts and this series includes a patch
+to update clock provider from tegra_car to pmc in tegra210-smaug.dts for
+clk_out_2.
+
+[v3]:	Changes between v2 and v3 are
+	- Removes set parent of clk_out_1_mux to extern1 and enabling
+	  extern1 from the clock driver.
+	- Doesn't enable clk_out_1 and blink by default in pmc driver
+	- Updates ASoC driver to take care of audio mclk parent
+	  configuration incase if device tree don't specify assigned
+	  clock parent properties and enables mclk using both clk_out_1
+	  and extern1.
+	- updates all device trees using extern1 as mclk in sound node
+	  to use clk_out_1 from pmc.
+	- patch for YAML format pmc dt-binding
+	- Includes v2 feedback
+
+[v2]:	Changes between v1 and v2 are
+	- v2 includes patches for adding clk_out_1, clk_out_2, clk_out_3,
+	  blink controls to Tegra PMC driver and removing clk-tegra-pmc.
+	- feedback related to pmc clocks in Tegra PMC driver from v1
+	- Removed patches for WB0 PLLM overrides and PLLE IDDQ PMC programming
+	  by the clock driver using helper functions from Tegra PMC.
+
+ 	  Note:
+	  To use helper functions from PMC driver, PMC early init need to
+	  happen prior to using helper functions and these helper functions are
+	  for PLLM Override and PLLE IDDQ programming in PMC during PLLM/PLLE
+	  clock registration which happen in clock_init prior to Tegra PMC
+	  probe.
+	  Moving PLLM/PLLE clocks registration to happen after Tegra PMC
+	  impacts other clocks EMC, MC and corresponding tegra_emc_init and
+	  tegra_mc_init.
+	  This implementation of configuring PMC registers thru helper
+	  functions in clock driver needs proper changes across PMC, Clock,
+	  EMC and MC inits to have it work across all Tegra platforms.
+
+	  Currently PLLM Override is not enabled in the bootloader so proper
+	  patches for this fix will be taken care separately.
+
+[v1]:	v1 includes patches for below fixes.
+	- adding clk_out_1, clk_out_2, clk_out_3, blink controls to Tegra PMC
+	  driver and removing clk-tegra-pmc.
+	- updated clock provider from tegra_car to pmc in the device tree
+	  tegra210-smaug.dts that uses clk_out_2.
+	- Added helper functions in PMC driver for WB0 PLLM overrides and PLLE
+	  IDDQ programming to use by clock driver and updated clock driver to
+	  use these helper functions and removed direct PMC access from clock
+	  driver and all pmc base address references in clock driver.
 
 
-> What about we go back to the fix 64 slots array but with hash32 for the
-> lookup? Without the hash we would be 60ms slower during boot (compared
-> to now, based on ancient data) but then the hash isn't expensive so we
-> end up with better coverage of the memory on systems which don't have a
-> plain enumeration of the phandle.
+Sowjanya Komatineni (15):
+  dt-bindings: soc: tegra-pmc: Add Tegra PMC clock bindings
+  dt-bindings: tegra: Convert Tegra PMC bindings to YAML
+  soc: tegra: Add Tegra PMC clock registrations into PMC driver
+  dt-bindings: soc: tegra-pmc: Add id for Tegra PMC blink control
+  soc: pmc: Add blink output clock registration to Tegra PMC
+  clk: tegra: Remove tegra_pmc_clk_init along with clk ids
+  dt-bindings: clock: tegra: Remove pmc clock ids from clock dt-bindings
+  ASoC: tegra: Add audio mclk control through clk_out_1 and extern1
+  ASoC: tegra: Add fallback for audio mclk
+  clk: tegra: Remove extern1 and cdev1 from clocks inittable
+  ARM: dts: tegra: Add clock-cells property to pmc
+  arm64: tegra: Add clock-cells property to Tegra PMC node
+  ARM: tegra: Update sound node clocks in device tree
+  arm64: tegra: smaug: Change clk_out_2 provider to pmc
+  ASoC: nau8825: change Tegra clk_out_2 provider from tegra_car to pmc
 
-That performance data is specific to one particular system.  It does not
-generalize to all devicetree based systems.  So don't draw too many
-conclusions from it.  If you want to understand the boot performance
-impact for your system, you need to measure the alternatives on
-your system.
+ .../bindings/arm/tegra/nvidia,tegra20-pmc.txt      |  45 ++-
+ .../bindings/arm/tegra/nvidia,tegra20-pmc.yaml     | 291 ++++++++++++++++++
+ .../devicetree/bindings/sound/nau8825.txt          |   2 +-
+ arch/arm/boot/dts/tegra114-dalmore.dts             |   7 +-
+ arch/arm/boot/dts/tegra114.dtsi                    |   4 +-
+ arch/arm/boot/dts/tegra124-apalis-v1.2.dtsi        |   7 +-
+ arch/arm/boot/dts/tegra124-apalis.dtsi             |   7 +-
+ arch/arm/boot/dts/tegra124-jetson-tk1.dts          |   7 +-
+ arch/arm/boot/dts/tegra124-nyan.dtsi               |   7 +-
+ arch/arm/boot/dts/tegra124-venice2.dts             |   7 +-
+ arch/arm/boot/dts/tegra124.dtsi                    |   4 +-
+ arch/arm/boot/dts/tegra20.dtsi                     |   4 +-
+ arch/arm/boot/dts/tegra30-apalis-v1.1.dtsi         |   7 +-
+ arch/arm/boot/dts/tegra30-apalis.dtsi              |   7 +-
+ arch/arm/boot/dts/tegra30-beaver.dts               |   7 +-
+ arch/arm/boot/dts/tegra30-cardhu.dtsi              |   7 +-
+ arch/arm/boot/dts/tegra30-colibri.dtsi             |   7 +-
+ arch/arm/boot/dts/tegra30.dtsi                     |   4 +-
+ arch/arm64/boot/dts/nvidia/tegra132.dtsi           |   4 +-
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts      |   2 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   2 +
+ drivers/clk/tegra/Makefile                         |   1 -
+ drivers/clk/tegra/clk-id.h                         |   7 -
+ drivers/clk/tegra/clk-tegra-pmc.c                  | 122 --------
+ drivers/clk/tegra/clk-tegra114.c                   |  12 -
+ drivers/clk/tegra/clk-tegra124.c                   |  28 +-
+ drivers/clk/tegra/clk-tegra20.c                    |   5 -
+ drivers/clk/tegra/clk-tegra210.c                   |  12 -
+ drivers/clk/tegra/clk-tegra30.c                    |  13 -
+ drivers/clk/tegra/clk.h                            |   1 -
+ drivers/soc/tegra/pmc.c                            | 340 +++++++++++++++++++++
+ include/dt-bindings/clock/tegra114-car.h           |  14 +-
+ include/dt-bindings/clock/tegra124-car-common.h    |  14 +-
+ include/dt-bindings/clock/tegra20-car.h            |   2 +-
+ include/dt-bindings/clock/tegra210-car.h           |  14 +-
+ include/dt-bindings/clock/tegra30-car.h            |  14 +-
+ include/dt-bindings/soc/tegra-pmc.h                |  19 ++
+ sound/soc/tegra/tegra_asoc_utils.c                 |  76 ++++-
+ sound/soc/tegra/tegra_asoc_utils.h                 |   1 +
+ 39 files changed, 890 insertions(+), 244 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+ delete mode 100644 drivers/clk/tegra/clk-tegra-pmc.c
+ create mode 100644 include/dt-bindings/soc/tegra-pmc.h
 
-Is there a memory usage issue for the systems that led to this thread?
-Unless there is a documented memory issue, I do not want to expand an
-issue with poor cache bucket percent utilization to the other issue
-of cache size.
-
--Frank
-
-> 
->> Rob
-> 
-> Sebastian
-> 
+-- 
+2.7.4
 
