@@ -2,156 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94314114C1E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 06:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36914114C9C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 08:28:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726091AbfLFFoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Dec 2019 00:44:37 -0500
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:41339 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726068AbfLFFoh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 00:44:37 -0500
-Received: by mail-ed1-f66.google.com with SMTP id c26so4794710eds.8;
-        Thu, 05 Dec 2019 21:44:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jG4VeHKyYrwbwzbvzBFt4Gx2edRiCsdmF+I1yIWaGOQ=;
-        b=hwk8aQjrxoq7/cMpTn3R/vI7AwL8vcmF8odckxSgFkQ7S5l8xjksnJ8GXpTauf6VxW
-         FbIV50+Finemz9inqv8p8j41pxeEKHNNiTaBbub+pgk7JxY5lpgS3hYLG8ATCX7ZFVUJ
-         uwcoARmbktnQSOrOAabeGjejFiovi03QBCyaK5qjJgTgfHABaIwl6sLey6iCxrHLGHc2
-         s6D4pmKTdaB48kvXcyRq90VKOHsjA4vR4zDhHYOKpEn9UfjSjHsv60cvhXqF5r0DK0p1
-         0hkd08vUqnTd6gqZMDG6fgBSNT1VzMrWRhfLztWMZtiOdx5zqQ+SaGXPRwBQMCWdQdDB
-         Gpwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jG4VeHKyYrwbwzbvzBFt4Gx2edRiCsdmF+I1yIWaGOQ=;
-        b=sR7N41nbiQGsPPkUeaImK66VFXttJq4w3Be24/ZQlBh574GnDSa7NTECidJ4O8ZM5q
-         m8G7TVC1WB+gUhmlT/KGS4D0HIoOztc++V8pMoNzyH0cUZbdGxLQG1OlSeVJ4hZcX9+L
-         Phing4XrS0HvfJNfEOs/1mFIeMpsx6jOj7bEzDOcB+v25JU3cz4RSSlS4A5ts+OUKXWU
-         Lnw6LI9hqrgYu8027eA3FQ4aJmraVKAQjak8MujzRJ6iO/AlGNHGIM5sFMzo/hsL04yc
-         EVY7rhshxPcRFQXoWaTcufTTYFv35/qSzxQVpHjZ4v+mZmVARteJagmJosxHBFGQqshL
-         tMsw==
-X-Gm-Message-State: APjAAAUUhaxIBVXqpa2xCS8/k+Tq2X6U1cSYD06djeL80nuwciIzi9Dw
-        QODySDSlTN2IQRsecaZO+bqgbQu1+BlPVrNeCBU=
-X-Google-Smtp-Source: APXvYqyDDeni3gnBiyE0+HxIAg+g/Cy0WoARGXH+7cPG3f7z554qdeBuocYEs/PL7lODC/WIgmE8dBBlC+DWW7zBBjU=
-X-Received: by 2002:a05:6402:12d1:: with SMTP id k17mr14585333edx.291.1575611074979;
- Thu, 05 Dec 2019 21:44:34 -0800 (PST)
-MIME-Version: 1.0
-References: <1574679352-2989-1-git-send-email-shubhrajyoti.datta@gmail.com> <20191205181740.GA26684@bogus>
-In-Reply-To: <20191205181740.GA26684@bogus>
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>
-Date:   Fri, 6 Dec 2019 11:14:23 +0530
-Message-ID: <CAKfKVtHnnFbgmtpRJYS7V97SvZdipnhf7Pe1kOxPpJh+30bEFA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: Add dt bindings for flex noc Performance Monitor
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-doc@vger.kernel.org,
-        corbet@lwn.net, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726225AbfLFH17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Dec 2019 02:27:59 -0500
+Received: from mga07.intel.com ([134.134.136.100]:34291 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725858AbfLFH17 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Dec 2019 02:27:59 -0500
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Dec 2019 23:27:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,283,1571727600"; 
+   d="scan'208";a="411933028"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga005.fm.intel.com with ESMTP; 05 Dec 2019 23:27:55 -0800
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+To:     lorenzo.pieralisi@arm.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com
+Cc:     gustavo.pimentel@synopsys.com, andrew.murray@arm.com,
+        robh@kernel.org, linux-kernel@vger.kernel.org,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com, Dilip Kota <eswara.kota@linux.intel.com>
+Subject: [PATCH v10 0/3] PCI: Add Intel PCIe Driver and respective dt-binding yaml file
+Date:   Fri,  6 Dec 2019 15:27:47 +0800
+Message-Id: <cover.1575612493.git.eswara.kota@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 5, 2019 at 11:47 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Nov 25, 2019 at 04:25:50PM +0530, shubhrajyoti.datta@gmail.com wrote:
-> > From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> >
-> > Add dt bindings for flexnoc Performance Monitor.
-> > The flexnoc counters for read and write response and requests are
-> > supported.
-> >
-> > Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> > ---
-> > changes from RFC:
-> > moved to schema / yaml
-> >
-> >  .../devicetree/bindings/perf/xlnx-flexnoc-pm.yaml  | 45 ++++++++++++++++++++++
-> >  1 file changed, 45 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/perf/xlnx-flexnoc-pm.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/perf/xlnx-flexnoc-pm.yaml b/Documentation/devicetree/bindings/perf/xlnx-flexnoc-pm.yaml
-> > new file mode 100644
-> > index 0000000..bd0f345
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/perf/xlnx-flexnoc-pm.yaml
-> > @@ -0,0 +1,45 @@
-> > +# SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
->
-> () around the licenses.
->
-> Are you good with GPL v10? Make it 'GPL-2.0-only' instead.
-fixed in v2
+Intel PCIe is Synopsys based controller. Intel PCIe driver uses
+DesignWare PCIe framework for host initialization and register
+configurations.
 
->
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/perf/xlnx-flexnoc-pm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Xilinx flexnoc Performance Monitor device tree bindings
-> > +
-> > +maintainers:
-> > +  - Arnd Bergmann <arnd@arndb.de>
-> > +  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->
-> This should be someone familar with this h/w (you).
->
-fixed in v2
-> > +
-> > +properties:
-> > +  compatible:
-> > +    # Versal SoC based boards
-> > +    items:
-> > +      - enum:
-> > +          - xlnx,flexnoc-pm-2.7
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: funnel registers
-> > +      - description: baselpd registers
-> > +      - description: basefpd registers
-> > +
-> > +  reg-names:
-> > +    # The core schema enforces this is a string array
-> > +    items:
-> > +      - const: funnel
-> > +      - const: baselpd
-> > +      - const: basefpd
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
->
-> No point having 'reg-names' if not required.
-this I am using to get the addresses.
+Changes on v10:
+	Rebase the patches on mainline v5.4
+	Squashed the patch that fixes the below issue to this patch series.
 
->
->
-> Add:
->
-> additionalProperties: false
+	  WARNING: unmet direct dependencies detected for PCIE_DW_HOST
+	    Depends on [n]: PCI [=y] && PCI_MSI_IRQ_DOMAIN [=n]
+	    Selected by [y]:
+	    - PCIE_INTEL_GW [=y] && PCI [=y] && OF [=y] && (X86 [=y] || COMPILE_TEST [=n])
+	  "reportedby Randy Dunlap <rdunlap@infradead.org>"
 
-updated in v2.
->
-> > +
-> > +examples:
-> > +  - |
-> > +    performance-monitor@f0920000 {
-> > +        compatible = "xlnx,flexnoc-pm-2.7";
-> > +        reg-names = "funnel", "baselpd", "basefpd";
-> > +        reg = <0x0 0xf0920000 0x0 0x1000>,
-> > +              <0x0 0xf0980000 0x0 0x9000>,
-> > +              <0x0 0xf0b80000 0x0 0x9000>;
-> > +    };
-> > --
-> > 2.1.1
-> >
+Dilip Kota (3):
+  dt-bindings: PCI: intel: Add YAML schemas for the PCIe RC controller
+  PCI: dwc: intel: PCIe RC controller driver
+  PCI: artpec6: Configure FTS with dwc helper function
+
+ .../devicetree/bindings/pci/intel-gw-pcie.yaml     | 138 ++++++
+ drivers/pci/controller/dwc/Kconfig                 |  11 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-artpec6.c          |   8 +-
+ drivers/pci/controller/dwc/pcie-designware.c       |  57 +++
+ drivers/pci/controller/dwc/pcie-designware.h       |  12 +
+ drivers/pci/controller/dwc/pcie-intel-gw.c         | 545 +++++++++++++++++++++
+ include/uapi/linux/pci_regs.h                      |   1 +
+ 8 files changed, 766 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/intel-gw-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-intel-gw.c
+
+-- 
+2.11.0
+
