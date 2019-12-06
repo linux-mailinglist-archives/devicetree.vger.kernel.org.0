@@ -2,209 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 85AF8115759
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 19:46:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E462011577A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2019 19:58:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726492AbfLFSqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Dec 2019 13:46:48 -0500
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:33236 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726621AbfLFSqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Dec 2019 13:46:47 -0500
-Received: by mail-pl1-f196.google.com with SMTP id c13so2448155pls.0;
-        Fri, 06 Dec 2019 10:46:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=G4bdwKxSNWK5BWyINk+HzQDIpWu/B7jQUeXjA7APZjo=;
-        b=IOCQ5mBXyjWFkS9TXSjGOveAENAla9ESYZ31r9Dl5jS1b79zs6xWdWHPqRd3SrMYZ3
-         zS2NpLOfp78BhgDBgxoonulFW6d3D8Z49rjbTdkVHlJJbs6oi3xs8OeXG3YnYvcuycVF
-         dWVBUlS6oeXzDhpGo5gL7Smot5DTl7FPevplwDVWDzVMwiXc4rOoLfjd0n/r4AnmBpwK
-         nmXGwrJ2zZfxNbMuEx/o/93cLfFfTVCPLv8EZak41xG1NI4ZgY+N/XN2DcTJt73pUFZz
-         eJc2E1TTNasw/oF0SXNaFvmlWpsATITaYZu9tcs3K0Ja3KD/BQgE7TxmO++P3Qmd9g+U
-         VtOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=G4bdwKxSNWK5BWyINk+HzQDIpWu/B7jQUeXjA7APZjo=;
-        b=kQKebqmGIthT45XZK3YIEkS0XoEvsmJDyPDUYuOsb4RBSBmsTJf9rSaQwkz3VqJC9V
-         1tz+x8RY4gPaagr7CgTN9p7DTJihR+8mZXjuo+n/x/zbabdcIDEu1cjuZXdaba6lgNUH
-         CxLZKD5yQUv5RuCJ5fE4HJ6Dzh8weg/Ssl9KjJcCIt2HpdsipJc7QOfySsBaJ4bQKSSt
-         z+biXFiloRgn88WDKDHHo+2FLGhkGzaQeYrkmb/QZv6mAgF2uSmP5bgmk97dVaOEapNg
-         1TN2XwAZgJElr46vqzQugjAa7Ut3IHczeDRAn4czFSpjDd3WP0D9LBHhAOUoIoshIFZd
-         JDpw==
-X-Gm-Message-State: APjAAAWYmoVzVEQAcc1qB21ufCMJ/WdlupVEImsWul3fAuQ2LXkNfGZl
-        CSmkBiF7NIy1N97bpZSVtDY=
-X-Google-Smtp-Source: APXvYqzAkqk6sls+s4gxGmJzuU/fKCFRgPpC70mSrT4+p2kE5yngx2IgoEvSFws63kxG4p373fzh1w==
-X-Received: by 2002:a17:90a:a48c:: with SMTP id z12mr17312557pjp.38.1575658006227;
-        Fri, 06 Dec 2019 10:46:46 -0800 (PST)
-Received: from localhost.localdomain ([103.51.73.190])
-        by smtp.gmail.com with ESMTPSA id p4sm16777039pfb.157.2019.12.06.10.46.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Dec 2019 10:46:45 -0800 (PST)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Daniel Schultz <d.schultz@phytec.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [RFCv1 8/8] arm: rockchip: drop unused field from rk8xx i2c node
-Date:   Fri,  6 Dec 2019 18:45:36 +0000
-Message-Id: <20191206184536.2507-9-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191206184536.2507-1-linux.amoon@gmail.com>
-References: <20191206184536.2507-1-linux.amoon@gmail.com>
+        id S1726350AbfLFS6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Dec 2019 13:58:10 -0500
+Received: from rere.qmqm.pl ([91.227.64.183]:51602 "EHLO rere.qmqm.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726321AbfLFS6J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Dec 2019 13:58:09 -0500
+Received: from remote.user (localhost [127.0.0.1])
+        by rere.qmqm.pl (Postfix) with ESMTPSA id 47V1xd4KSvz3c;
+        Fri,  6 Dec 2019 19:55:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+        t=1575658536; bh=ezWxskmwxI8C/8lBttgiFOBWumB5XqgQX2Lyv35wtXs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qVvSJYj9YFwdhcAJDhCbE27sYYMUvgdTONxp+WWKd+z5M7iiAI5MehkQT3K2RazLO
+         Fd9fJReH4fmO4JIbPH7vvAG5OF2f+k2n+Ld1c3N3PX5ld+hkdoJQ2IFzQMJIwLVZc3
+         677oFRZnpUv7WC+skB2A72eXwr/NiceO2d59iHAuZSWyiZ9j4ZIfNR224I4LEuylT/
+         OgQXR2R6mep2NizcYogzTvDzpSM7LavHwjNn8x1geUwhPTgKNZ4p0HkFQKk3rbFUkn
+         D2t6f0Opeh7KPGs9oDBi617XDzVFR99l7Pg+gcwf5VVg4jPbwVWPMzXiXjjzcViHtW
+         OGnWhmW29zmJQ==
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.101.4 at mail
+Date:   Fri, 6 Dec 2019 19:58:00 +0100
+From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, digetx@gmail.com,
+        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
+        sboyd@kernel.org, tglx@linutronix.de, robh-dt@kernel.org,
+        mark.rutland@arm.com, allison@lohutok.net, pdeschrijver@nvidia.com,
+        pgaikwad@nvidia.com, mturquette@baylibre.com,
+        horms-renesas@verge.net.au, Jisheng.Zhang@synaptics.com,
+        krzk@kernel.org, arnd@arndb.de, spujar@nvidia.com,
+        josephl@nvidia.com, vidyas@nvidia.com, daniel.lezcano@linaro.org,
+        mmaddireddy@nvidia.com, markz@nvidia.com,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, alexios.zavras@intel.com,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH v3 01/15] dt-bindings: soc: tegra-pmc: Add Tegra PMC
+ clock bindings
+Message-ID: <20191206185800.GB20259@qmqm.qmqm.pl>
+References: <1575600535-26877-1-git-send-email-skomatineni@nvidia.com>
+ <1575600535-26877-2-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-2
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1575600535-26877-2-git-send-email-skomatineni@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop unused rockchip,system-power-controller from rk8xx
-i2c node.
+On Thu, Dec 05, 2019 at 06:48:41PM -0800, Sowjanya Komatineni wrote:
+> Tegra PMC has clk_out_1, clk_out_2, clk_out_3 clocks and each of
+> these clocks has mux and a gate as a part of PMC controller.
+[...]
+> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.txt
+> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.txt
+[...]
+> +Clock consumer example:
+> +	host1x@50000000 {
+> +		...
+> +		vi@54080000 {
+> +			...
+> +			assigned-clocks = <&pmc TEGRA_PMC_CLK_OUT_3_MUX>;
+> +			assigned-clock-parents = <&tegra_car TEGRA210_CLK_EXTERN3>;
+> +		};
+> +		...
+> +	};
+> +	...
+> +	i2c@7000c500 {
+> +		cam_sensor {
+> +			...
+> +			clocks = <&pmc TEGRA_PMC_CLK_OUT_3>;
+> +			clock-names = "mclk";
+> +			...
+> +		};
+> +	};
 
-Cc: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- arch/arm/boot/dts/rk3036-kylin.dts        | 1 -
- arch/arm/boot/dts/rk3188-px3-evb.dts      | 1 -
- arch/arm/boot/dts/rk3288-evb-rk808.dts    | 1 -
- arch/arm/boot/dts/rk3288-phycore-som.dtsi | 1 -
- arch/arm/boot/dts/rk3288-popmetal.dts     | 1 -
- arch/arm/boot/dts/rk3288-tinker.dtsi      | 1 -
- arch/arm/boot/dts/rk3288-veyron.dtsi      | 1 -
- arch/arm/boot/dts/rk3288-vyasa.dts        | 1 -
- arch/arm/boot/dts/rv1108-elgin-r1.dts     | 1 -
- arch/arm/boot/dts/rv1108-evb.dts          | 1 -
- 10 files changed, 10 deletions(-)
+The assigned-clocks should be in the cam_sensor node, unless vi device
+also uses the clock.
 
-diff --git a/arch/arm/boot/dts/rk3036-kylin.dts b/arch/arm/boot/dts/rk3036-kylin.dts
-index fb3cf005cc90..0a7290ab718d 100644
---- a/arch/arm/boot/dts/rk3036-kylin.dts
-+++ b/arch/arm/boot/dts/rk3036-kylin.dts
-@@ -118,7 +118,6 @@ rk808: pmic@1b {
- 		interrupts = <RK_PA2 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int &global_pwroff>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <1>;
- 		clock-output-names = "xin32k", "rk808-clkout2";
-diff --git a/arch/arm/boot/dts/rk3188-px3-evb.dts b/arch/arm/boot/dts/rk3188-px3-evb.dts
-index c32e1d441cf7..334fa510995c 100644
---- a/arch/arm/boot/dts/rk3188-px3-evb.dts
-+++ b/arch/arm/boot/dts/rk3188-px3-evb.dts
-@@ -88,7 +88,6 @@ rk808: pmic@1c {
- 		reg = <0x1c>;
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PB3 IRQ_TYPE_LEVEL_LOW>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <1>;
- 		clock-output-names = "xin32k", "rk808-clkout2";
-diff --git a/arch/arm/boot/dts/rk3288-evb-rk808.dts b/arch/arm/boot/dts/rk3288-evb-rk808.dts
-index 16788209625b..4b280c4b4850 100644
---- a/arch/arm/boot/dts/rk3288-evb-rk808.dts
-+++ b/arch/arm/boot/dts/rk3288-evb-rk808.dts
-@@ -17,7 +17,6 @@ rk808: pmic@1b {
- 		interrupts = <RK_PA4 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int &global_pwroff>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <1>;
- 		clock-output-names = "xin32k", "rk808-clkout2";
-diff --git a/arch/arm/boot/dts/rk3288-phycore-som.dtsi b/arch/arm/boot/dts/rk3288-phycore-som.dtsi
-index 77a47b9b756d..2076566a2c97 100644
---- a/arch/arm/boot/dts/rk3288-phycore-som.dtsi
-+++ b/arch/arm/boot/dts/rk3288-phycore-som.dtsi
-@@ -148,7 +148,6 @@ rk818: pmic@1c {
- 		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <1>;
- 
-diff --git a/arch/arm/boot/dts/rk3288-popmetal.dts b/arch/arm/boot/dts/rk3288-popmetal.dts
-index 6a51940398b5..251668fee14d 100644
---- a/arch/arm/boot/dts/rk3288-popmetal.dts
-+++ b/arch/arm/boot/dts/rk3288-popmetal.dts
-@@ -168,7 +168,6 @@ rk808: pmic@1b {
- 		interrupts = <RK_PA4 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int &global_pwroff>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <1>;
- 		clock-output-names = "xin32k", "rk808-clkout2";
-diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
-index 0aeef23ca3db..15fc1caca852 100644
---- a/arch/arm/boot/dts/rk3288-tinker.dtsi
-+++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
-@@ -154,7 +154,6 @@ rk808: pmic@1b {
- 				<&gpio0 12 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int &global_pwroff &dvs_1 &dvs_2>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 
- 		vcc1-supply = <&vcc_sys>;
-diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-index 7525e3dd1fc1..d7663ebc798f 100644
---- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-@@ -221,7 +221,6 @@ rk808: pmic@1b {
- 		interrupts = <RK_PA4 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int_l>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <1>;
- 
-diff --git a/arch/arm/boot/dts/rk3288-vyasa.dts b/arch/arm/boot/dts/rk3288-vyasa.dts
-index ba06e9f97ddc..98e48ecb473e 100644
---- a/arch/arm/boot/dts/rk3288-vyasa.dts
-+++ b/arch/arm/boot/dts/rk3288-vyasa.dts
-@@ -167,7 +167,6 @@ rk808: pmic@1b {
- 		clock-output-names = "xin32k", "rk808-clkout2";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int &global_pwroff>;
--		rockchip,system-power-controller;
- 		wakeup-source;
- 
- 		vcc1-supply = <&vcc_sys>;
-diff --git a/arch/arm/boot/dts/rv1108-elgin-r1.dts b/arch/arm/boot/dts/rv1108-elgin-r1.dts
-index b1db924710c8..39acc472774d 100644
---- a/arch/arm/boot/dts/rv1108-elgin-r1.dts
-+++ b/arch/arm/boot/dts/rv1108-elgin-r1.dts
-@@ -67,7 +67,6 @@ rk805: pmic@18 {
- 		reg = <0x18>;
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
--		rockchip,system-power-controller;
- 
- 		vcc1-supply = <&vcc_sys>;
- 		vcc2-supply = <&vcc_sys>;
-diff --git a/arch/arm/boot/dts/rv1108-evb.dts b/arch/arm/boot/dts/rv1108-evb.dts
-index 30f3d0470ad9..e21817237792 100644
---- a/arch/arm/boot/dts/rv1108-evb.dts
-+++ b/arch/arm/boot/dts/rv1108-evb.dts
-@@ -80,7 +80,6 @@ rk805: pmic@18 {
- 		reg = <0x18>;
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
--		rockchip,system-power-controller;
- 
- 		vcc1-supply = <&vcc_sys>;
- 		vcc2-supply = <&vcc_sys>;
--- 
-2.24.0
-
+Best Regards,
+Micha³ Miros³aw
