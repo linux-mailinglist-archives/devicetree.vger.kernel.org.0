@@ -2,135 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D4A115E74
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2019 21:22:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94993115E7D
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2019 21:29:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726831AbfLGUWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Dec 2019 15:22:17 -0500
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:36593 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726826AbfLGUWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Dec 2019 15:22:17 -0500
-Received: by mail-pl1-f195.google.com with SMTP id k20so4140127pls.3
-        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2019 12:22:16 -0800 (PST)
+        id S1726755AbfLGU3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Dec 2019 15:29:00 -0500
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:41100 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726720AbfLGU27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Dec 2019 15:28:59 -0500
+Received: by mail-lj1-f196.google.com with SMTP id h23so11304193ljc.8
+        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2019 12:28:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RIGNb9tUxYsrgWzIrvsSPWd3nGUTvWJqMa0r5ty9ysg=;
-        b=FdvmcV7WJobL2lkk2TWCaEVCjYC7FRBoiSyYHSil2DoAUPxU8BWRJGIAQ/11IfR1hu
-         4vbL5lS4SE0hcSGsvFiOWsTuf83nq9fr5NAuNuL5KXHf3FBADZTqeJ/FzTYH4tOFslm4
-         Gy8JBaQJUnF2Slko5sJ67AtjqAEBiXuQiqg5lbXiAgMKbSy4QhNmDo11mRlAXZjPNFFW
-         5OeNEHnR8/vAaZm+q5jVKGEVx+QkQWTRLISXVZnpSXI4oMWCdLnRtt86m1ZDeliH3WUM
-         UwMS1doZ+lJ7pj2pP65P5tsPO4GKvXy8qqiQHH52UBV94XmVrlnoaFwYaHYMaZoEFeFM
-         MYbQ==
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=l2Bez8LdoluwsORjwCrpP+ORceYmTvmMN1fTDoAmM20=;
+        b=YPH9mj0Kpv04KhAttwgYfeRxoLsTRerNnVEWXNEmSiGXVVtmex1Xt6OXiOS3bhbOkL
+         px0mSPW7+X1FG4sDoeEfD1M24YYU2d2Gfmc0v55TdiToVI9CaQb8KI+Ycwa9iwo7nSP4
+         Oi6aVD4YHbgGxMoyTHM85piOKkbTTUSxrnK/v3WJCNm1+shNe+i0ug68uW8ijb7WFNok
+         qmEJGpLp6NI5IQML85sqnEYisDfdHKUWT3JRuvThUVwlD/gRf93GkPmif5fQGyNztp0Y
+         zWXgfmYBtSLRQceaVuceJknnC8vVyoAfW+M3DL1ihw/4H6jdL9j4U7ZegWzRi5wYqOqv
+         Lraw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RIGNb9tUxYsrgWzIrvsSPWd3nGUTvWJqMa0r5ty9ysg=;
-        b=VDoCU5E/cKrGhc4xyognt+1u7CnozqCe5JvGPmb7Q8F88JXcZAzPYU0MbGDyKWrzHF
-         pG1ag4+7/GtZ0ZQLIL4l4DzDYEeumvHVgJ9N+04cOsLSM4roNBWY2Q4/4ywk5/QUPsBU
-         0ijxcbtJQbSyWTZGL94Z4qJiX/s0/zTS5BmVXcVPQnfAP/JvZOl5VrQdakh4jA1MgDhT
-         hOYDNj/PEkSLRRcj2ypNjKvlFO3JQ3p5QbicwwZOH0XuTUErWM+dlPfAKwRilFyz0yd+
-         wTQrNPpjK69Nwpx/YTHYKquNAFRxnJ4546shOwWoqUmi4i9seZZB8OtxeoFPX63BGftI
-         xL/w==
-X-Gm-Message-State: APjAAAUaofewK0R79rqzBRXMzlHfqWlUksBEJG+dmHN+iMEpyd3flbse
-        laMcS2VaJjGzA1vazWHexT532A==
-X-Google-Smtp-Source: APXvYqzu7qBalmvtd2P3hBAnyhZsB4Y+b0o8j2oLQTJqENk9g9Nhnus49NLQ8srgkx9JPDJgvPjiRw==
-X-Received: by 2002:a17:90a:4803:: with SMTP id a3mr23574216pjh.101.1575750136274;
-        Sat, 07 Dec 2019 12:22:16 -0800 (PST)
-Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id r7sm21969662pfg.34.2019.12.07.12.22.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Dec 2019 12:22:15 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=l2Bez8LdoluwsORjwCrpP+ORceYmTvmMN1fTDoAmM20=;
+        b=IvuWhaXEO+4VZIUPwDpos6KWXb6L/8ySPnQ1i6NZfbiiCRYvgg/8wSfIIB/IMex3fB
+         WYVwDYqewIe/PjQSSWksQQYvf/FaARlJRUO6VzVG6oTEsLFpJYi/AgcmnMBZHx7WooD/
+         cC8AjpBIEWdm3pS+7KIOOkpcOyGWAn9Ya8tg4Da2UhP6YjYa1rbrOh0vhEiF2uylov25
+         fczfS8N1ksjoqlpzFmmBZT6uESmpX2Selmj5pVE49OpeGx/RCpCjvYGhKKFEhR90bqMw
+         KF8S+0pr4MU2I/4FXjW2uP9J95JE89vYJO5sp4s9b7cCNM7IuquNnSUm7qu2a2soGuR1
+         4JNA==
+X-Gm-Message-State: APjAAAVxRhD7tEUHu2zpkpGstuoPH5EEkixrvn/EMO4UdWzfN2M42iYp
+        jEVJnYO1teEivmU+Z4dgDyBUCA==
+X-Google-Smtp-Source: APXvYqyAYjqX+4BcVE2Sz01P1Gs79GkHwoh28QlbVnZ/sLKD9B7bxtxDLOonL3K55m0asDMMvJU3kQ==
+X-Received: by 2002:a2e:9687:: with SMTP id q7mr12472790lji.80.1575750537704;
+        Sat, 07 Dec 2019 12:28:57 -0800 (PST)
+Received: from wasted.cogentembedded.com ([2a00:1fa0:4830:260e:ff6:21f7:4d8b:4a84])
+        by smtp.gmail.com with ESMTPSA id a9sm8561722lfk.23.2019.12.07.12.28.56
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 07 Dec 2019 12:28:57 -0800 (PST)
+Subject: Re: [PATCH v2 0/6] spi: Add Renesas SPIBSC controller
+To:     Chris Brandt <chris.brandt@renesas.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, vinod.koul@linaro.org
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8996: Use generic QMP driver for UFS
-Date:   Sat,  7 Dec 2019 12:21:47 -0800
-Message-Id: <20191207202147.2314248-3-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191207202147.2314248-1-bjorn.andersson@linaro.org>
-References: <20191207202147.2314248-1-bjorn.andersson@linaro.org>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        Mason Yang <masonccyang@mxic.com.tw>
+References: <20191206134202.18784-1-chris.brandt@renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <922cfa46-efb5-9e6d-67ea-3ac505b8211c@cogentembedded.com>
+Date:   Sat, 7 Dec 2019 23:28:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191206134202.18784-1-chris.brandt@renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With support for the MSM8996 UFS PHY added to the common QMP driver,
-migrate the DTS to use the common QMP binding.
+Hello!
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 33 +++++++++++++++------------
- 1 file changed, 18 insertions(+), 15 deletions(-)
+  Thank you for having mty on CC:, I might have missed oit otherwise... :-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index c9c6efbbcc01..d0f2544ccf5b 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1323,27 +1323,30 @@ spmi_bus: qcom,spmi@400f000 {
- 			#interrupt-cells = <4>;
- 		};
- 
--		ufsphy: phy@627000 {
--			compatible = "qcom,msm8996-ufs-phy-qmp-14nm";
--			reg = <0x627000 0xda8>;
--			reg-names = "phy_mem";
--			#phy-cells = <0>;
-+		ufs_phy: phy@627000 {
-+			compatible = "qcom,msm8996-qmp-ufs-phy";
-+			reg = <0x00627000 0x1c4>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges;
- 
- 			vdda-phy-supply = <&pm8994_l28>;
- 			vdda-pll-supply = <&pm8994_l12>;
--
--			vdda-phy-max-microamp = <18380>;
--			vdda-pll-max-microamp = <9440>;
--
- 			vddp-ref-clk-supply = <&pm8994_l25>;
--			vddp-ref-clk-max-microamp = <100>;
--			vddp-ref-clk-always-on;
- 
--			clock-names = "ref_clk_src", "ref_clk";
--			clocks = <&rpmcc RPM_SMD_LN_BB_CLK>,
--				 <&gcc GCC_UFS_CLKREF_CLK>;
-+			clocks = <&gcc GCC_UFS_CLKREF_CLK>;
-+			clock-names = "ref";
-+
- 			resets = <&ufshc 0>;
-+			reset-names = "ufsphy";
- 			status = "disabled";
-+
-+			ufs_phy_lane: lanes@627400 {
-+				reg = <0x627400 0x12c>,
-+				      <0x627600 0x200>,
-+				      <0x627c00 0x1b4>;
-+				#phy-cells = <0>;
-+			};
- 		};
- 
- 		ufshc: ufshc@624000 {
-@@ -1351,7 +1354,7 @@ ufshc: ufshc@624000 {
- 			reg = <0x624000 0x2500>;
- 			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
- 
--			phys = <&ufsphy>;
-+			phys = <&ufs_phy_lane>;
- 			phy-names = "ufsphy";
- 
- 			vcc-supply = <&pm8994_l20>;
--- 
-2.24.0
+On 12/06/2019 04:41 PM, Chris Brandt wrote:
 
+> The Renesas SPI Bus Space Controller (SPIBSC) HW was specifically designed for
+> accessing Serial flash devices (QSPI,
+
+   The initial design did only support SPI, hence the SPI in the name.
+
+> HyperFlash, Octa Flash). In the hardware
+
+   Only added in "2nd generation" controllers, like on R-Car gen3, RZ/A2. 
+
+> manuals, it is almost always labeled as the "Renesas SPI Multi I/O Bus Controller".
+
+   Not seeing "Renesas" but the rest looks consistent across the manuals.
+
+> However, the HW IP is usually referred to within Renesas as the "SPI BSC".
+
+   Poor name for the 2nd generation controllers which also support at least HyperFlash.
+
+> Yes, the R-Car team nicknamed it RPC (for "Reduced Pin Count" flash) after HyperFash
+> support was added...but I personally think that RPC is not a good name for this
+> HW block.
+
+   SPIBSC is also misleading... RPC-IF seems misleading too as it's only spelled out
+in the R-Car gen3 and RZ/A2H manuals. 
+
+> This driver has been tested on an RZ/A1H RSK and RZ/A2M EVB.
+
+   In the SPI mode only, I assume?
+
+   What I have now is the core driver (or rather a library) placed under drivers/memory/
+and the SPI and HyperFlash front ends in drivers/spi/ and drivers/mtd/hyperbus/ respectfully.
+I'm almost ready to post the core driver/bindings, the SPI driver still needs some Mark Brown's
+comments addressed, and the HyperFlash driver is also ready but needs the existing HyperBus
+infrastructure properly fixed up (having a draft patch now)...
+
+> The testing mostly consisted of formatting an area as JFFS2 and doing copying
+> of files and such.
+
+   Did the same (or at least tried to :-) and I must admit that writing doesn't work with
+any of the front ends... I still need to get this fixed.
+
+> While the HW changed a little between the RZ/A1 and RZ/A2 generations, the IP
+> block in the RZ/A2M was taken from the R-Car H3 design, so in theory this
+> driver should work for R-Car Gen3 as well.
+
+   I don't think it's a good idea to use the SPI dedicated driver on R-Car gen3, I would rather
+see the RZ/A1 using the RPC-IF driver/library to reduce the code duplication...
+
+> =========================
+> Version 2 changes
+> =========================
+> * I got rid of all the critical clock stuff. The idea is is that if you are
+>   planning on using the SPI BSC, even in XIP mode, it should be described in DT.
+> 
+> * There is no actual 'runtime pm' implmented in the driver at the moment, and
+>   so just the standard enable/disable clock API is used.
+
+   My code does have RPM enabled and used.
+
+> * The compatible string "jedec,spi-nor" will be used to determine if a spi controller
+>   needs to be regitered or not. At the moment there is no setup needed for
+>   running in XIP mode, so we just need to signal that the peripheral clock should
+>   be left on and then we're done.
+
+[...]
+
+MBR, Sergei
