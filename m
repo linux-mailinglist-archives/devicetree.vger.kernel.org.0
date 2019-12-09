@@ -2,150 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9093116675
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 06:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 018BB11669D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 06:53:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726014AbfLIFhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 00:37:12 -0500
-Received: from pegase1.c-s.fr ([93.17.236.30]:14064 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725936AbfLIFhM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Dec 2019 00:37:12 -0500
-Received: from localhost (mailhub1-ext [192.168.12.233])
-        by localhost (Postfix) with ESMTP id 47WX4x3wfVz9v6RT;
-        Mon,  9 Dec 2019 06:37:05 +0100 (CET)
-Authentication-Results: localhost; dkim=pass
-        reason="1024-bit key; insecure key"
-        header.d=c-s.fr header.i=@c-s.fr header.b=GzhS+DwH; dkim-adsp=pass;
-        dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id iB1Z137g_8ck; Mon,  9 Dec 2019 06:37:05 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 47WX4x2Ccpz9v6RS;
-        Mon,  9 Dec 2019 06:37:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-s.fr; s=mail;
-        t=1575869825; bh=FEaKJXbXjOZ1lXq1C/Q2UlBfDCkQh9ayeBwDENy5BRg=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=GzhS+DwHmvcH7W0kx9/VDg8rH//PkeuA5gm9WiyQKP6X5IuU8WLySJ0Y45zfEKN53
-         MxN/37bQh9VhThRUzXfCuA5ZbNpmiEL8Bq9aPGzYggZBvIaeMlHiE88lB63mQINyA4
-         HacB28XxQpEZuPIshNaU3cWXTW9h2ZYOK3uGtVr4=
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id B1EF48B789;
-        Mon,  9 Dec 2019 06:37:09 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id z_yjYl-8tdf1; Mon,  9 Dec 2019 06:37:09 +0100 (CET)
-Received: from [172.25.230.100] (po15451.idsi0.si.c-s.fr [172.25.230.100])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 5B3758B755;
-        Mon,  9 Dec 2019 06:37:09 +0100 (CET)
-Subject: Re: [PATCH V2 00/13] powerpc/vas: Page fault handling for user space
- NX requests
-To:     Haren Myneni <haren@linux.ibm.com>, mpe@ellerman.id.au,
-        hch@infradead.org, mikey@neuling.org, npiggin@gmail.com,
-        herbert@gondor.apana.org.au, linuxppc-dev@lists.ozlabs.org,
+        id S1726343AbfLIFxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 00:53:36 -0500
+Received: from mail-dm6nam12on2048.outbound.protection.outlook.com ([40.107.243.48]:6099
+        "EHLO NAM12-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726038AbfLIFxg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Dec 2019 00:53:36 -0500
+Received: from DM6PR02CA0055.namprd02.prod.outlook.com (2603:10b6:5:177::32)
+ by MN2PR02MB6255.namprd02.prod.outlook.com (2603:10b6:208:1b9::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2516.12; Mon, 9 Dec
+ 2019 05:53:33 +0000
+Received: from SN1NAM02FT032.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::206) by DM6PR02CA0055.outlook.office365.com
+ (2603:10b6:5:177::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2516.14 via Frontend
+ Transport; Mon, 9 Dec 2019 05:53:33 +0000
+Authentication-Results: spf=softfail (sender IP is 149.199.60.83)
+ smtp.mailfrom=gmail.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=fail action=none header.from=gmail.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ gmail.com discourages use of 149.199.60.83 as permitted sender)
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ SN1NAM02FT032.mail.protection.outlook.com (10.152.72.126) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2495.26
+ via Frontend Transport; Mon, 9 Dec 2019 05:53:33 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <shubhrajyoti.datta@gmail.com>)
+        id 1ieBzB-0004Ml-2w; Sun, 08 Dec 2019 21:53:33 -0800
+Received: from localhost ([127.0.0.1] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <shubhrajyoti.datta@gmail.com>)
+        id 1ieBz5-00010W-VC; Sun, 08 Dec 2019 21:53:28 -0800
+Received: from [10.140.6.59] (helo=xhdshubhraj40.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <shubhrajyoti.datta@gmail.com>)
+        id 1ieBz5-0000yR-79; Sun, 08 Dec 2019 21:53:27 -0800
+From:   shubhrajyoti.datta@gmail.com
+To:     linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
         devicetree@vger.kernel.org
-Cc:     sukadev@linux.vnet.ibm.com
-References: <1575861522.16318.9.camel@hbabu-laptop>
-From:   Christophe Leroy <christophe.leroy@c-s.fr>
-Message-ID: <8ba807dd-9d5a-e42a-60e8-f9ad648026bf@c-s.fr>
-Date:   Mon, 9 Dec 2019 06:37:09 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+Cc:     gregkh@linuxfoundation.org, arnd@arndb.de, michal.simek@xilinx.com,
+        robh+dt@kernel.org, shubhrajyoti.datta@gmail.com,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: [PATCH 1/3] dt-bindings: misc: Add dt bindings for traffic generator
+Date:   Mon,  9 Dec 2019 11:23:18 +0530
+Message-Id: <1575870800-7369-1-git-send-email-shubhrajyoti.datta@gmail.com>
+X-Mailer: git-send-email 2.1.1
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-Result: No--5.340-7.0-31-1
+X-imss-scan-details: No--5.340-7.0-31-1;No--5.340-5.0-31-1
+X-TM-AS-User-Approved-Sender: No;No
+X-TM-AS-Result-Xfilter: Match text exemption rules:No
+X-EOPAttributedMessage: 0
+X-Matching-Connectors: 132203444136109666;(f9e945fa-a09a-4caa-7158-08d2eb1d8c44);()
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(376002)(346002)(396003)(39860400002)(189003)(199004)(70206006)(82202003)(73392003)(70586007)(81166006)(76482006)(2616005)(2906002)(26005)(5660300002)(336012)(48376002)(426003)(50466002)(86362001)(81156014)(8936002)(8676002)(316002)(498600001)(6666004)(51416003)(55446002)(4326008)(50226002)(450100002)(107886003)(305945005)(356004)(36756003)(9786002)(9686003);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR02MB6255;H:xsj-pvapsmtpgw01;FPR:;SPF:SoftFail;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
 MIME-Version: 1.0
-In-Reply-To: <1575861522.16318.9.camel@hbabu-laptop>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: bc5ebbfc-1249-40d9-b086-08d77c6c2040
+X-MS-TrafficTypeDiagnostic: MN2PR02MB6255:
+X-Microsoft-Antispam-PRVS: <MN2PR02MB6255864F593CF8FBFB78315A87580@MN2PR02MB6255.namprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-Forefront-PRVS: 02462830BE
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: D2HoYpjhVmfDo+nXsOPBHGdBA7Xm4E/x3za5ZLkf3h/FZM797GSMFNCkaWTgATz37WqRZAasBu536ZugSQqu3ReRYyMyqDi4Hfugcy/8BHGjvr+/qNmclEHXBSaJtpckAWYYDLbI5uDUdGH33bW949eLlEbiFVZjh9Avzbnhq3Xh2l2k0Gyp1ES8EVXiAl3P06UDEgzeNWaE+aBXfpCRC1WiWgCYIHrdmvMi5Ag4LCK5A9zuZ8Pr4mtn6gKzmMvGGGiFQFJrl0szNVOmZOKpvGz+A+fELq9nczrN1Tcef7S6Zf5rmsgBqHsqBDq1YQcHOuae3Rlsld5GSrWGxxMwyC0g8s4BjSlSiVUFBsEJcimwefAE4IUz4LbPEtT46Ppy9QXZHl66J+yhzSx+bu0Pp/bt3PDovl8S7PEJz0yM2V5qDfZHNMFPjJhIBzjhDLWO
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2019 05:53:33.4506
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bc5ebbfc-1249-40d9-b086-08d77c6c2040
+X-MS-Exchange-CrossTenant-Id: 5afe0b00-7697-4969-b663-5eab37d5f47e
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=5afe0b00-7697-4969-b663-5eab37d5f47e;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6255
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 
-What do you mean by NX ?
-Up to now, NX has been standing for No-eXecute. That's a bit in segment 
-registers on book3s/32 to forbid executing code.
+Add dt bindings for xilinx traffic generator IP.
 
-Therefore, some of your text is really misleading. If NX means something 
-else for you, your text must be unambiguous.
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+---
+ .../bindings/misc/xlnx,axi-traffic-gen.txt         | 25 ++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/xlnx,axi-traffic-gen.txt
 
-Christophe
+diff --git a/Documentation/devicetree/bindings/misc/xlnx,axi-traffic-gen.txt b/Documentation/devicetree/bindings/misc/xlnx,axi-traffic-gen.txt
+new file mode 100644
+index 0000000..6edb8f6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/xlnx,axi-traffic-gen.txt
+@@ -0,0 +1,25 @@
++* Xilinx AXI Traffic generator IP
++
++Required properties:
++- compatible: "xlnx,axi-traffic-gen"
++- interrupts: Should contain AXI Traffic Generator interrupts.
++- interrupt-parent: Must be core interrupt controller.
++- reg: Should contain AXI Traffic Generator registers location and length.
++- interrupt-names: Should contain both the intr names of device - error
++		   and completion.
++- xlnx,device-id: Device instance Id.
++
++Optional properties:
++- clocks: Input clock specifier. Refer to common clock bindings.
++
++Example:
++++++++++
++axi_traffic_gen_1: axi-traffic-gen@76000000 {
++	compatible = "xlnx,axi-traffic-gen-1.0", "xlnx,axi-traffic-gen";
++	clocks = <&clkc 15>;
++	interrupts = <0 2 2 2>;
++	interrupt-parent = <&axi_intc_1>;
++	interrupt-names = "err-out", "irq-out";
++	reg = <0x76000000 0x800000>;
++	xlnx,device-id = <0x0>;
++} ;
+-- 
+2.1.1
 
-Le 09/12/2019 à 04:18, Haren Myneni a écrit :
-> 
-> Applications will send compression / decompression requests to NX with
-> COPY/PASTE instructions. When NX is processing these requests, can hit
-> fault on the request buffer (not in memory). It issues an interrupt and
-> pastes fault CRB in fault FIFO. Expects kernel to handle this fault and
-> return credits for both send and fault windows after processing.
-> 
-> This patch series adds IRQ and fault window setup, and NX fault handling:
-> - Read IRQ# from "interrupts" property and configure IRQ per VAS instance.
-> - Set port# for each window to generate an interrupt when noticed fault.
-> - Set fault window and FIFO on which NX paste fault CRB.
-> - Setup IRQ thread fault handler per VAS instance.
-> - When receiving an interrupt, Read CRBs from fault FIFO and update
->    coprocessor_status_block (CSB) in the corresponding CRB with translation
->    failure (CSB_CC_TRANSLATION). After issuing NX requests, process polls
->    on CSB address. When it sees translation error, can touch the request
->    buffer to bring the page in to memory and reissue NX request.
-> - If copy_to_user fails on user space CSB address, OS sends SEGV signal.
-> 
-> Tested these patches with NX-GZIP support and will be posting this series
-> soon.
-> 
-> Patch 2: Define nx_fault_stamp on which NX writes fault status for the fault
->           CRB
-> Patch 3: Read interrupts and port properties per VAS instance
-> Patch 4: Setup fault window per each VAS instance. This window is used for
->           NX to paste fault CRB in FIFO.
-> Patches 5 & 6: Setup threaded IRQ per VAS and register NX with fault window
-> 	 ID and port number for each send window so that NX paste fault CRB
-> 	 in this window.
-> Patch 7: Reference to pid and mm so that pid is not used until window closed.
-> 	 Needed for multi thread application where child can open a window
-> 	 and can be used by parent later.
-> Patches 8 and 9: Process CRBs from fault FIFO and notify tasks by
->           updating CSB or through signals.
-> Patches 10 and 11: Return credits for send and fault windows after handling
->          faults.
-> Patch 13:Fix closing send window after all credits are returned. This issue
->           happens only for user space requests. No page faults on kernel
->           request buffer.
-> 
-> Changelog:
-> V2:
->    - Use threaded IRQ instead of own kernel thread handler
->    - Use pswid insted of user space CSB address to find valid CRB
->    - Removed unused macros and other changes as suggested by Christoph Hellwig
-> 
-> Haren Myneni (13):
->    powerpc/vas: Describe vas-port and interrupts properties
->    powerpc/vas: Define nx_fault_stamp in coprocessor_request_block
->    powerpc/vas: Read interrupts and vas-port device tree properties
->    powerpc/vas: Setup fault window per VAS instance
->    powerpc/vas: Setup thread IRQ handler per VAS instance
->    powerpc/vas: Register NX with fault window ID and IRQ port value
->    powerpc/vas: Take reference to PID and mm for user space windows
->    powerpc/vas: Update CSB and notify process for fault CRBs
->    powerpc/vas: Print CRB and FIFO values
->    powerpc/vas: Do not use default credits for receive window
->    powerpc/VAS: Return credits after handling fault
->    powerpc/vas: Display process stuck message
->    powerpc/vas: Free send window in VAS instance after credits returned
-> 
->   .../devicetree/bindings/powerpc/ibm,vas.txt        |   5 +
->   arch/powerpc/include/asm/icswx.h                   |  18 +-
->   arch/powerpc/platforms/powernv/Makefile            |   2 +-
->   arch/powerpc/platforms/powernv/vas-debug.c         |   2 +-
->   arch/powerpc/platforms/powernv/vas-fault.c         | 337 +++++++++++++++++++++
->   arch/powerpc/platforms/powernv/vas-window.c        | 173 ++++++++++-
->   arch/powerpc/platforms/powernv/vas.c               |  77 ++++-
->   arch/powerpc/platforms/powernv/vas.h               |  38 ++-
->   8 files changed, 627 insertions(+), 25 deletions(-)
->   create mode 100644 arch/powerpc/platforms/powernv/vas-fault.c
-> 
