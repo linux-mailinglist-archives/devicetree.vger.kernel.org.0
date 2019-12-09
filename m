@@ -2,123 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A85AD1177E7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 22:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C411F1177EC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 22:03:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726607AbfLIVBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 16:01:47 -0500
-Received: from mxa1.seznam.cz ([77.75.78.90]:27568 "EHLO mxa1.seznam.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726532AbfLIVBq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Dec 2019 16:01:46 -0500
-X-Greylist: delayed 732 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Dec 2019 16:01:45 EST
-Received: from email.seznam.cz
-        by email-smtpc8b.ko.seznam.cz (email-smtpc8b.ko.seznam.cz [10.53.13.225])
-        id 72f6188a29f84ce3735fd4d4;
-        Mon, 09 Dec 2019 22:01:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1575925300; bh=PrVyWKz+cStZKFUbfG88xeiAHpw+y5USeILJtHAAfcU=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=Y9baib6r+H7Lsi/Zm0rTxuMeV2IkRPtv/1g/4pt17rEs7ZouzKwYgFRFxtN9QzV2d
-         vDiOXLRyCCVKxcJEIukCA2Rpl1DwZmG1o0UKcp7yWXYa/TvLthcx4YNXJIPD5Ov4BO
-         n/c4GpXi5joNzTGcvsiIcrhXOm0y7tcXG3TQ/taM=
-Received: from localhost.localdomain (212.69.128.228 [212.69.128.228])
-        by email-relay21.ko.seznam.cz (Seznam SMTPD 1.3.108) with ESMTP;
-        Mon, 09 Dec 2019 21:49:25 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 2/2] dt-bindings: input/touchscreen: add bindings for zinitix
-Date:   Mon,  9 Dec 2019 21:46:29 +0100
-Message-Id: <20191209204629.27243-2-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191209204629.27243-1-michael.srba@seznam.cz>
-References: <20191209204629.27243-1-michael.srba@seznam.cz>
+        id S1726522AbfLIVDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 16:03:46 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56872 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726230AbfLIVDq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 16:03:46 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB9L3cvU067245;
+        Mon, 9 Dec 2019 15:03:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1575925418;
+        bh=Vo54NlPc9K8goMK1IZ45FTq3vcHvLoEuEauGik/ySfg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ZMMOR5ncDPmbR0UlVvHGPTiLOmFCmmKToSdYT30/DfZGN/enuZPJBhU9gAkLpjpq8
+         nmI+WRY3Os6AT0VtvBJPRKEQ+avQSs21gT1674/Jq2GbziBOA48D+hfRqlWUKLt0ms
+         W7Isrq59osIP/dU88FxEnv+tbLD3BlTNefgzrMdM=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB9L3cD4107652
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 9 Dec 2019 15:03:38 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 9 Dec
+ 2019 15:03:37 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 9 Dec 2019 15:03:37 -0600
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB9L3bqH105434;
+        Mon, 9 Dec 2019 15:03:37 -0600
+Subject: Re: [PATCH 2/2] net: m_can: Make wake-up gpio an optional
+To:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Sean Nyekjaer <sean@geanix.com>
+CC:     <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20191204175112.7308-1-dmurphy@ti.com>
+ <20191204175112.7308-2-dmurphy@ti.com>
+ <b9eaa5c4-13bc-295f-dcbf-d2a846243682@geanix.com>
+ <827b022e-9188-7bcf-25e3-3777df3b08a5@ti.com>
+ <809b9ff1-88e3-4e46-33e0-856db37898b2@pengutronix.de>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <dc24a8a3-d515-f84b-9f33-db92bd4a412a@ti.com>
+Date:   Mon, 9 Dec 2019 15:01:30 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
+In-Reply-To: <809b9ff1-88e3-4e46-33e0-856db37898b2@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+Marc
 
-This patch adds dts bindings for the zinitix bt541 touchscreen.
+On 12/5/19 8:39 AM, Marc Kleine-Budde wrote:
+> On 12/5/19 2:26 PM, Dan Murphy wrote:
+>> On 12/5/19 1:39 AM, Sean Nyekjaer wrote:
+>>>
+>>> On 04/12/2019 18.51, Dan Murphy wrote:
+>>>> The device has the ability to disable the wake-up pin option.
+>>>> The wake-up pin can be either force to GND or Vsup and does not have to
+>>>> be tied to a GPIO.  In order for the device to not use the wake-up
+>>>> feature
+>>>> write the register to disable the WAKE_CONFIG option.
+>>>>
+>>>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+>>>> CC: Sean Nyekjaer <sean@geanix.com>
+>>> Reviewed-by: Sean Nyekjaer <sean@geanix.com>
+>>>> ---
+>>>
+>>> Hi Dan,
+>>>
+>>> I would add tcan4x5x to the subject of this patch ->
+>>> "net: m_can: tcan4x5x Make wake-up gpio an optional"
+>>>
+>> Do you want me to submit v2 with the $subject change?
+>>
+>> Or would you fix it up when committing it?
+> I'll change the subject while applying.
+>
+> Dan, what about maintainerchip of the tcan4x5?
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- changes in v2: none
- changes in v3: document zinitix,mode property
+Do you know when you will be applying these?
 
+I have 2 patches I need to put on top.
 
- .../bindings/input/touchscreen/zinitix.txt    | 40 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
+Dan
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt b/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
-new file mode 100644
-index 000000000000..446efb9f5f55
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
-@@ -0,0 +1,40 @@
-+Device tree bindings for Zinitx BT541 touchscreen controller
-+
-+Required properties:
-+
-+ - compatible		: Should be "zinitix,bt541"
-+ - reg			: I2C address of the chip. Should be 0x20
-+ - interrupts		: Interrupt to which the chip is connected
-+
-+Optional properties:
-+
-+ - vdd-supply		: Analog power supply regulator on VCCA pin
-+ - vddo-supply		: Digital power supply regulator on VDD pin
-+ - zinitix,mode		: Mode of reporting touch points. Some modes may not work
-+			  with a particular ts firmware for unknown reasons. Available
-+			  modes are 1 and 2. Mode 2 is the default and preferred.
-+
-+The touchscreen-* properties are documented in touchscreen.txt in this
-+directory.
-+
-+Example:
-+
-+	i2c@00000000 {
-+		/* ... */
-+
-+		bt541@20 {
-+			compatible = "zinitix,bt541";
-+			reg = <0x20>;
-+			interrupt-parent = <&msmgpio>;
-+			interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&tsp_default>;
-+			vdd-supply = <&reg_vdd_tsp>;
-+			vddo-supply = <&pm8916_l6>;
-+			touchscreen-size-x = <540>;
-+			touchscreen-size-y = <960>;
-+			zinitix,mode = <2>;
-+		};
-+
-+		/* ... */
-+	};
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 967e78c5ec0a..1b0b5e23267d 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1066,6 +1066,8 @@ patternProperties:
-     description: Shenzhen Zidoo Technology Co., Ltd.
-   "^zii,.*":
-     description: Zodiac Inflight Innovations
-+  "^zinitix,.*":
-+    description: Zinitix Co., Ltd
-   "^zte,.*":
-     description: ZTE Corp.
-   "^zyxel,.*":
--- 
-2.24.0
+> regards,
+> Marc
+>
