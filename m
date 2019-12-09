@@ -2,98 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A70AC116FBB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:55:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AFDA116F99
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:51:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726527AbfLIOzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 09:55:54 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:36698 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725904AbfLIOzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:55:54 -0500
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2FE3AB2C;
-        Mon,  9 Dec 2019 15:49:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1575902944;
-        bh=moup88+1AXSzEBbkY0ogHDXr3kUQoRsbnyHWmDnec8A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MwGX9WKtAX0NlVKPSv8B6uqYCPjfM4orkrQE9h1nZ+HmGVnku0I1OHEgtpnAqnHCA
-         15aXPVvHmcZmo+/hxpMpaplTXiqilc0wAcOOG/jSJ1+cSiGK23lle39cEZ2rsn8B2J
-         5Zxa43KbOSTCzccEk9I8R7kKo1hq/qRAZaGE6n1A=
-Date:   Mon, 9 Dec 2019 16:48:57 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jyri Sarha <jsarha@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, tony@atomide.com,
-        sam@ravnborg.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, tomi.valkeinen@ti.com,
-        peter.ujfalusi@ti.com, bparrot@ti.com
-Subject: Re: [PATCH v2 3/3] drm/tilcdc: panel: Add WARN() with a comment to
- tilcdc-panel probe
-Message-ID: <20191209144857.GA12841@pendragon.ideasonboard.com>
-References: <cover.1575901747.git.jsarha@ti.com>
- <54966ffd61ca46528bc55961c532001aa7463c30.1575901747.git.jsarha@ti.com>
+        id S1726801AbfLIOva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 09:51:30 -0500
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:34393 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725956AbfLIOva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:51:30 -0500
+Received: by mail-pf1-f195.google.com with SMTP id n13so7373248pff.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2019 06:51:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y+0hUIOuHNjYLITTiiOz7YncnUCd05TXc7UArDjIWPQ=;
+        b=MTVk39t+p3sutUs/EaeRJsE9LBl7uiMHkFMRLZd/nX+Pe2fsFUDRRmXx9l/V5Dj6aV
+         59Z9O3SSk0vvqJhbLLM3jWLWTQgC0a5FRwezfJhM/mgIXd7HIQAOSTSiq0SsZSItO1RV
+         LBTAWLNycc1s071U3sy9+SqAlBOMKjNrnU7mE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y+0hUIOuHNjYLITTiiOz7YncnUCd05TXc7UArDjIWPQ=;
+        b=GiqUC2FtzmX4PTkj55fL5RwEns8JWUBcCBAmtu9RugnTBCK+wRmkl7YAC4CCfqzc4W
+         8LAOSLzA+XihPIQRh6rpLST03q9xpEbyYMtbMAd7yJwieBm+TYZCNND4EWQ8bJWrfTOj
+         IxwQNc7uiN3RErPn9Hn6NFeqlmOAQzpg0yyTuzW7DNp/IFcxpYt9tzy7JXwP+79HF4xd
+         yOKgIsyaMuo6wjXcijg9YanUzEuRK+6LVcvwDGFfwx8A10zDmlZSgZ7JCGEsahA8r9OB
+         Jil6bOseytFHPfQOdNq4lZhytF57g1ObXS4ZjcweRDFTrP46rpexesHR1s7plcS7p1Qv
+         Am6A==
+X-Gm-Message-State: APjAAAUE562cmrPSzNbQJaC6ubhRDCEoxz0/Rlk3CpGunudQFInhz6lu
+        6NK7prco3LqZ6NeWUm1mwQCuMw==
+X-Google-Smtp-Source: APXvYqywaG4WX0pSxF4HCeSSMFbKbY3wDRtmsG50dx44TU1Ypx6sq4Pk+CTzkgbiq0kZiYkp7z8Gbw==
+X-Received: by 2002:a63:1101:: with SMTP id g1mr18531573pgl.435.1575903089059;
+        Mon, 09 Dec 2019 06:51:29 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:b852:bd51:9305:4261])
+        by smtp.gmail.com with ESMTPSA id k16sm29143119pfh.97.2019.12.09.06.51.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2019 06:51:28 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     dri-devel@lists.freedesktop.org
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Archit Taneja <architt@codeaurora.org>, p.zabel@pengutronix.de,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Russell King <rmk+kernel@arm.linux.org.uk>
+Subject: [PATCH RESEND 0/4] drm: bridge: anx7688 and an optional feature
+Date:   Mon,  9 Dec 2019 22:50:12 +0800
+Message-Id: <20191209145016.227784-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.24.0.393.g34dc348eaf-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <54966ffd61ca46528bc55961c532001aa7463c30.1575901747.git.jsarha@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jyri,
+[Resend to cc more reviewers]
 
-Thank you for the patch.
+This series is to add anx7688 bridge driver. It is extended from
+previous work[1].
 
-On Mon, Dec 09, 2019 at 04:42:16PM +0200, Jyri Sarha wrote:
-> Add WARN() to the beginnig of tilcdc-panel probe. The obsolete
+The first 2 patches are same as previous version, with some modification
+due to drm core function changes and use regmap abstraction.
 
-s/beginnig/beginning/
+We add an optional feature bypass-gpios so that driver can decide if it serves
+as simple pass-thru by reading GPIO values, which is controlled by
+hardware.
 
-> tilcdc-panel driver should not be used anymore, since tilcdc is fully
-> capable of using generic drm panels like panel-simple and panel-common
-> binding.
-> 
-> Signed-off-by: Jyri Sarha <jsarha@ti.com>
-> ---
->  drivers/gpu/drm/tilcdc/tilcdc_panel.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_panel.c b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
-> index 5584e656b857..cf8e2462a524 100644
-> --- a/drivers/gpu/drm/tilcdc/tilcdc_panel.c
-> +++ b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
-> @@ -309,6 +309,16 @@ static int panel_probe(struct platform_device *pdev)
->  	struct pinctrl *pinctrl;
->  	int ret;
->  
-> +	/*
-> +	 * The obsolete tilcdc-panel driver should not be used
-> +         * anymore, since tilcdc is fully capable of using generic drm
-> +         * panels like panel-simple and panel-common binding.
+[1] https://lore.kernel.org/lkml/1467013727-11482-1-git-send-email-drinkcat@chromium.org/
 
-Indentation should use tabs.
+Hsin-Yi Wang (2):
+  dt-bindings: drm/bridge: analogix-anx78xx: support bypass GPIO
+  drm: bridge: anx7688: Support bypass GPIO feature
 
-> +	 */
-> +
-> +	WARN(true,
-> +	     "tilcdc-panel is obsolte and should not be used. Please update your configuration!\n",
+Nicolas Boichat (2):
+  dt-bindings: drm/bridge: analogix-anx7688: Add ANX7688 transmitter
+    binding
+  drm: bridge: anx7688: Add anx7688 bridge driver support.
 
-s/obsolte/obsolete/ or deprecated ?
-
-You may want to explicitly state what it should be updated to :-)
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +	     dev_name(&pdev->dev));
-> +
->  	/* bail out early if no DT data: */
->  	if (!node) {
->  		dev_err(&pdev->dev, "device-tree data is missing\n");
+ .../bindings/display/bridge/anx7688.txt       |  70 +++++
+ drivers/gpu/drm/bridge/Kconfig                |   9 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/analogix-anx7688.c     | 260 ++++++++++++++++++
+ 4 files changed, 340 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/anx7688.txt
+ create mode 100644 drivers/gpu/drm/bridge/analogix-anx7688.c
 
 -- 
-Regards,
+2.24.0.393.g34dc348eaf-goog
 
-Laurent Pinchart
