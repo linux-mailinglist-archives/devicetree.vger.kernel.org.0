@@ -2,81 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 516FF116554
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 04:20:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8C1411656A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 04:28:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727085AbfLIDU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Dec 2019 22:20:27 -0500
-Received: from mga14.intel.com ([192.55.52.115]:37235 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727084AbfLIDU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Dec 2019 22:20:27 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Dec 2019 19:20:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,294,1571727600"; 
-   d="scan'208";a="387102974"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by orsmga005.jf.intel.com with ESMTP; 08 Dec 2019 19:20:23 -0800
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-To:     lorenzo.pieralisi@arm.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        andrew.murray@arm.com, robh@kernel.org,
-        linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com, Dilip Kota <eswara.kota@linux.intel.com>
-Subject: [PATCH v11 3/3] PCI: artpec6: Configure FTS with dwc helper function
-Date:   Mon,  9 Dec 2019 11:20:06 +0800
-Message-Id: <d862101a58286c30636a5f4671861ac4f076bfb8.1575860791.git.eswara.kota@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <cover.1575860791.git.eswara.kota@linux.intel.com>
-References: <cover.1575860791.git.eswara.kota@linux.intel.com>
-In-Reply-To: <cover.1575860791.git.eswara.kota@linux.intel.com>
-References: <cover.1575860791.git.eswara.kota@linux.intel.com>
+        id S1726894AbfLID2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Dec 2019 22:28:16 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:2526 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726826AbfLID2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Dec 2019 22:28:16 -0500
+Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xB93CMHj026331;
+        Sun, 8 Dec 2019 22:28:02 -0500
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2wrte58cxy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 08 Dec 2019 22:28:02 -0500
+Received: from m0098393.ppops.net (m0098393.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id xB93PYaF076426;
+        Sun, 8 Dec 2019 22:28:01 -0500
+Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2wrte58cxu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 08 Dec 2019 22:28:01 -0500
+Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
+        by ppma04dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id xB93GLbk009672;
+        Mon, 9 Dec 2019 03:28:00 GMT
+Received: from b01cxnp22033.gho.pok.ibm.com (b01cxnp22033.gho.pok.ibm.com [9.57.198.23])
+        by ppma04dal.us.ibm.com with ESMTP id 2wr3q63311-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Dec 2019 03:28:00 +0000
+Received: from b01ledav006.gho.pok.ibm.com (b01ledav006.gho.pok.ibm.com [9.57.199.111])
+        by b01cxnp22033.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id xB93S01b45678864
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 9 Dec 2019 03:28:00 GMT
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id ED4B1AC05B;
+        Mon,  9 Dec 2019 03:27:59 +0000 (GMT)
+Received: from b01ledav006.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 2C285AC05F;
+        Mon,  9 Dec 2019 03:27:59 +0000 (GMT)
+Received: from [9.70.82.143] (unknown [9.70.82.143])
+        by b01ledav006.gho.pok.ibm.com (Postfix) with ESMTP;
+        Mon,  9 Dec 2019 03:27:59 +0000 (GMT)
+Subject: [PATCH V2 01/13] powerpc/vas: Describe vas-port and interrupts
+ properties
+From:   Haren Myneni <haren@linux.ibm.com>
+To:     mpe@ellerman.id.au
+Cc:     hch@infradead.org, mikey@neuling.org, npiggin@gmail.com,
+        herbert@gondor.apana.org.au, linuxppc-dev@lists.ozlabs.org,
+        devicetree@vger.kernel.org, sukadev@linux.vnet.ibm.com,
+        hbabu@us.ibm.com
+In-Reply-To: <1575861522.16318.9.camel@hbabu-laptop>
+References: <1575861522.16318.9.camel@hbabu-laptop>
+Content-Type: text/plain; charset="UTF-8"
+Date:   Sun, 08 Dec 2019 19:26:20 -0800
+Message-ID: <1575861980.16318.15.camel@hbabu-laptop>
+Mime-Version: 1.0
+X-Mailer: Evolution 2.28.3 
+Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-12-08_07:2019-12-05,2019-12-08 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=1 mlxscore=0
+ malwarescore=0 clxscore=1015 bulkscore=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 spamscore=0 priorityscore=1501 mlxlogscore=805
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-1912090028
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use DesignWare helper functions to configure Fast Training
-Sequence. Drop the respective code in the driver.
 
-Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
-Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Reviewed-by: Andrew Murray <andrew.murray@arm.com>
+Signed-off-by: Haren Myneni <haren@us.ibm.com>
 ---
- drivers/pci/controller/dwc/pcie-artpec6.c | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+ Documentation/devicetree/bindings/powerpc/ibm,vas.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/pci/controller/dwc/pcie-artpec6.c b/drivers/pci/controller/dwc/pcie-artpec6.c
-index 9e2482bd7b6d..28d5a1095200 100644
---- a/drivers/pci/controller/dwc/pcie-artpec6.c
-+++ b/drivers/pci/controller/dwc/pcie-artpec6.c
-@@ -51,9 +51,6 @@ static const struct of_device_id artpec6_pcie_of_match[];
- #define ACK_N_FTS_MASK			GENMASK(15, 8)
- #define ACK_N_FTS(x)			(((x) << 8) & ACK_N_FTS_MASK)
+diff --git a/Documentation/devicetree/bindings/powerpc/ibm,vas.txt b/Documentation/devicetree/bindings/powerpc/ibm,vas.txt
+index bf11d2f..12de08b 100644
+--- a/Documentation/devicetree/bindings/powerpc/ibm,vas.txt
++++ b/Documentation/devicetree/bindings/powerpc/ibm,vas.txt
+@@ -11,6 +11,8 @@ Required properties:
+   window context start and length, OS/User window context start and length,
+   "Paste address" start and length, "Paste window id" start bit and number
+   of bits)
++- ibm,vas-port : Port address for the interrupt.
++- interrupts: IRQ value for each VAS instance and level.
  
--#define FAST_TRAINING_SEQ_MASK		GENMASK(7, 0)
--#define FAST_TRAINING_SEQ(x)		(((x) << 0) & FAST_TRAINING_SEQ_MASK)
--
- /* ARTPEC-6 specific registers */
- #define PCIECFG				0x18
- #define  PCIECFG_DBG_OEN		BIT(24)
-@@ -313,10 +310,7 @@ static void artpec6_pcie_set_nfts(struct artpec6_pcie *artpec6_pcie)
- 	 * Set the Number of Fast Training Sequences that the core
- 	 * advertises as its N_FTS during Gen2 or Gen3 link training.
- 	 */
--	val = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
--	val &= ~FAST_TRAINING_SEQ_MASK;
--	val |= FAST_TRAINING_SEQ(180);
--	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
-+	dw_pcie_link_set_n_fts(pci, 180);
- }
+ Example:
  
- static void artpec6_pcie_assert_core_reset(struct artpec6_pcie *artpec6_pcie)
+@@ -18,5 +20,8 @@ Example:
+ 		compatible = "ibm,vas", "ibm,power9-vas";
+ 		reg = <0x6019100000000 0x2000000 0x6019000000000 0x100000000 0x8000000000000 0x100000000 0x20 0x10>;
+ 		name = "vas";
++		interrupts = <0x1f 0>;
++		interrupt-parent = <&mpic>;
+ 		ibm,vas-id = <0x1>;
++		ibm,vas-port = <0x6010001000000>;
+ 	};
 -- 
-2.11.0
+1.8.3.1
+
+
 
