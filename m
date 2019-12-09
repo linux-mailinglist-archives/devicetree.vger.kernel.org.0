@@ -2,117 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD24116FC3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E600F116FF3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 16:10:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726335AbfLIO4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 09:56:55 -0500
-Received: from mail-il1-f193.google.com ([209.85.166.193]:37693 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726310AbfLIO4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:56:55 -0500
-Received: by mail-il1-f193.google.com with SMTP id t9so12975433iln.4;
-        Mon, 09 Dec 2019 06:56:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GZjkca3Zp9sYYYIS/QPCEF0H2DGmE3kQodC7U7RI6jg=;
-        b=Jo1DFtbfEqbVJQq5XZ5LYzCv5LfIMXre5rs2IBqXAEswSM4ZyGHTOACUpAWl/JxobF
-         HLX/pPfXm0RL9M3l645yavzaROmAbjPrumBgCxOs+qt0jECTLvAP2saRGhxDiE4oVabe
-         x5ksCotFtF8bz+kAXYWj99jBeJUme6AdylQlFhZHK5Pd5Gk1t3eZiddRZuYK0LK40RxD
-         YSVYDjyxUtLqzzIQK4xOZoi+glaFkyr5SiLcxWGHnk44UhVVdqwlxJe//NV2RaRGPTNP
-         gl8tmVv118OmwBXVwaHHpaVbbEq1vi6cVvltYUcazpnix7+plbZ6LF5IODbwmjQ4/C3R
-         9miQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GZjkca3Zp9sYYYIS/QPCEF0H2DGmE3kQodC7U7RI6jg=;
-        b=HGkTwBtNpfa0PsAvonHxJuAzOIxbuXF03Cfft+CY/0La5g/uYt4+7CnOehphaIlYAf
-         oeVVf4hvIWtiwAV8s5Z29TaVHg0+9ptlOm1akBduHliIGI0nOWkFyawwi23sQAhGcrp5
-         M784IiwdijVdyyiJP05KvYzUrW5cB6ayAHEmvRFzhV+JcQ+8c4g3uuC+H2kJBACGGorh
-         k6gAXLtw4YyHf2rxQnJg0tEkgbyF9itKdCruZWlqLsvb+Xzf98EsM+JYWl9TZEEdfyJA
-         R9t1oB/NrFSVKWP/AE2RfY0ssvSrHX5YY9j/WFuGC+Bs3ef2OP5gex6vM3907pQ6ROM7
-         Al/A==
-X-Gm-Message-State: APjAAAXsKve5UM7kJ0xhJpWIDjOoQcCXi2/iZJ48/TC16wV2jlNNzNnh
-        6UrflmFgg8uYpJi46BVnYk0yzGhLQYid/1iMFwcOUGi6
-X-Google-Smtp-Source: APXvYqxlvrvi0P/1yFULp5Ov9uTz23XUXUnTAB4CPJ8ux5bZ/ALMike0pN8bBYyFrKhz/ds6VBHl/XO9ocuzIVo34UE=
-X-Received: by 2002:a92:3919:: with SMTP id g25mr10786954ila.221.1575903414183;
- Mon, 09 Dec 2019 06:56:54 -0800 (PST)
-MIME-Version: 1.0
-References: <20191206184536.2507-1-linux.amoon@gmail.com> <724aa7db-3838-16f9-d344-1789ae2a5746@arm.com>
-In-Reply-To: <724aa7db-3838-16f9-d344-1789ae2a5746@arm.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Mon, 9 Dec 2019 20:26:42 +0530
-Message-ID: <CANAwSgTPrP5FS3xb7SadZ+BwASWQxfO8rBmno8ZW0JzAxcqWKA@mail.gmail.com>
+        id S1726674AbfLIPKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 10:10:04 -0500
+Received: from mail.manjaro.org ([176.9.38.148]:56342 "EHLO manjaro.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725956AbfLIPKD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Dec 2019 10:10:03 -0500
+X-Greylist: delayed 1076 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Dec 2019 10:10:03 EST
+Received: from localhost (localhost [127.0.0.1])
+        by manjaro.org (Postfix) with ESMTP id ED77136E3C6B;
+        Mon,  9 Dec 2019 15:52:06 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at manjaro.org
+Received: from manjaro.org ([127.0.0.1])
+        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ROUn39D3oXYX; Mon,  9 Dec 2019 15:52:04 +0100 (CET)
+From:   Tobias Schramm <t.schramm@manjaro.org>
 Subject: Re: [RFCv1 0/8] RK3399 clean shutdown issue
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Peter Geis <pgwipeout@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Heiko Stuebner <heiko@sntech.de>,
         Jagan Teki <jagan@amarulasolutions.com>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         Daniel Schultz <d.schultz@phytec.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rockchip@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+References: <20191206184536.2507-1-linux.amoon@gmail.com>
+ <724aa7db-3838-16f9-d344-1789ae2a5746@arm.com>
+ <CAMdYzYoZY5gau=DGtPhk9CPV_WcyM4wjR9o+rPyaQfOzoy2Y=Q@mail.gmail.com>
+Message-ID: <5baf8423-8aa6-21a4-b066-71e3d12330cd@manjaro.org>
+Date:   Mon, 9 Dec 2019 15:51:04 +0100
+MIME-Version: 1.0
+In-Reply-To: <CAMdYzYoZY5gau=DGtPhk9CPV_WcyM4wjR9o+rPyaQfOzoy2Y=Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin,
+Hi,
 
-On Mon, 9 Dec 2019 at 18:59, Robin Murphy <robin.murphy@arm.com> wrote:
+> On Mon, Dec 9, 2019 at 8:29 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>> On 06/12/2019 6:45 pm, Anand Moon wrote:
+>>> Most of the RK3399 SBC boards do not perform clean
+>>> shutdown and clean reboot.
+>> FWIW reboot problems on RK3399 have been tracked down to issues in
+>> upstream ATF, and are unrelated to the PMIC.
+>>
+>>> These patches try to help resolve the issue with proper
+>>> shutdown by turning off the PMIC.
+>> As mentioned elsewhere[1], although this is what the BSP kernel seems to
+>> do, and in practice it's unlikely to matter for the majority of devboard
+>> users like you and me, I still feel a bit uncomfortable with this
+>> solution for systems using ATF as in principle the secure world might
+>> want to know about orderly shutdowns, and this effectively makes every
+>> shutdown an unexpected power loss from secure software's point of view.
+>>
+>> Robin.
+> Since ATF is operating completely in volatile memory, and shouldn't be
+> touching hardware once it passes off control to the kernel anyways,
+> what is the harm of pulling the rug out from under it?
+> If this idea is to prevent issues in the future, such as if ATF does
+> gain the ability to preempt hardware control, then at that time ATF
+> will need to be able to handle actually powering off devices using the
+> same functionality.
+
+As far as I know ATF implements PSCI, doesn't it? Thus I would assume 
+that it should most definitely handle power off for all platforms as 
+indicated by the presence of platform handlers in [1].
+
+> But as we discussed previously, ATF doesn't have this capability, so
+> in this case any board without a dedicated power-off gpio will be
+> unable to power off at all.
+> Also it seems that giving ATF this functionality, with the current
+> state of ATF, would be cost prohibitive.
 >
-> On 06/12/2019 6:45 pm, Anand Moon wrote:
-> > Most of the RK3399 SBC boards do not perform clean
-> > shutdown and clean reboot.
->
-> FWIW reboot problems on RK3399 have been tracked down to issues in
-> upstream ATF, and are unrelated to the PMIC.
+> I personally feel that allowing the kernel to do this is a solution to
+> the problem we have now.
 
-Yes I am aware of this changes.
-But, I have tired to study *RK808 datasheet V1.4* [0] below section
-*5.2.3 Power Channel Control/Monitor Registers*
-for clean reboot I was going to try disable some bit in below
-into reboot handle in the future patch.
+Maybe I'm missing something here but I'd suggest that implementing an 
+i2c driver in the rockchip platform part of ATF using libfdt to find the 
+PMIC from the devicetree would be the way to go.
 
-DCDC_EN_REG
-SLEEP_SET_OFF_REG1
-SLEEP_SET_OFF_REG2
-DCDC_UV_STS_REG
+[1] 
+https://github.com/ARM-software/arm-trusted-firmware/blob/master/lib/psci/psci_system_off.c#L31
 
-I was going see if this helps to do clean reboot.
-further more use this in suspend/resume operation.
-
-[0] http://rockchip.fr/RK808%20datasheet%20V1.4.pdf
-
-But I feed that their is some more issue with related to mmc or PCIe
-not able to cleanly release the resources while reboot which caused
-then to disable after reboot.
-
->
-> > These patches try to help resolve the issue with proper
-> > shutdown by turning off the PMIC.
->
-> As mentioned elsewhere[1], although this is what the BSP kernel seems to
-> do, and in practice it's unlikely to matter for the majority of devboard
-> users like you and me, I still feel a bit uncomfortable with this
-> solution for systems using ATF as in principle the secure world might
-> want to know about orderly shutdowns, and this effectively makes every
-> shutdown an unexpected power loss from secure software's point of view.
->
-> Robin.
->
-> [1]
-> http://lists.infradead.org/pipermail/linux-rockchip/2019-December/028183.html
->
-
-Yes I have follow the mailing list and I read this thread.
-I am not aware of ATF complete architecture.
-
--Anand
