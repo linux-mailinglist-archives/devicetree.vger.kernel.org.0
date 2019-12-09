@@ -2,101 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 106FA116F5D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A70AC116FBB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:55:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727893AbfLIOoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 09:44:12 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:34796 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727891AbfLIOoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:44:10 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xB9Egjpg017551;
-        Mon, 9 Dec 2019 15:43:52 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=vKx6OPdSeYJTuRGa0bHCD2tYSeg+UtY9A3haTmI2eKA=;
- b=c6ntOlc126VLKeqyu4GAC4nsRoo7L/y/wpleFu9k1K+1s90MlQADGV2W+omSCJCO3CvN
- EyJtnea6Ee3WS9nY/7HUgXOMnAg1Q+E2DGu5F7gHrOtsvZ9pbKRa3nD5kYUmbOR5pt2x
- ah1hkDXaCytdccqyyaH++WgfekYbeVLs76peteDiSzhFC/LaCP31IocckHdvEOA/Xx+X
- Aa4o3Nhws5Np5oqMvE85guQd3c5PJmv/Jwvm91G2SGNdt+7tbr0awKQOFHZkDxxT2G+A
- T6soWnVEfm7PhN1YgDLqZuruHnHt+7AcTziV0LU+HJ8+ZRhQE465zo4K4C/C5hBq7fKu vQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2wradh7xe1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 09 Dec 2019 15:43:52 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6C39910002A;
-        Mon,  9 Dec 2019 15:43:51 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3CA812D3765;
-        Mon,  9 Dec 2019 15:43:51 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.51) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 9 Dec
- 2019 15:43:50 +0100
-Subject: Re: [PATCH 5/5] ARM: dts: stm32: add phy-names to usbotg_hs on
- stm32mp157c-ev1
-To:     Amelie Delaunay <amelie.delaunay@st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20191121161259.25799-1-amelie.delaunay@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <181a4a40-f54c-3559-aaa9-9443fb2153ac@st.com>
-Date:   Mon, 9 Dec 2019 15:43:50 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726527AbfLIOzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 09:55:54 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:36698 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725904AbfLIOzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:55:54 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2FE3AB2C;
+        Mon,  9 Dec 2019 15:49:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1575902944;
+        bh=moup88+1AXSzEBbkY0ogHDXr3kUQoRsbnyHWmDnec8A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MwGX9WKtAX0NlVKPSv8B6uqYCPjfM4orkrQE9h1nZ+HmGVnku0I1OHEgtpnAqnHCA
+         15aXPVvHmcZmo+/hxpMpaplTXiqilc0wAcOOG/jSJ1+cSiGK23lle39cEZ2rsn8B2J
+         5Zxa43KbOSTCzccEk9I8R7kKo1hq/qRAZaGE6n1A=
+Date:   Mon, 9 Dec 2019 16:48:57 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jyri Sarha <jsarha@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, tony@atomide.com,
+        sam@ravnborg.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org, tomi.valkeinen@ti.com,
+        peter.ujfalusi@ti.com, bparrot@ti.com
+Subject: Re: [PATCH v2 3/3] drm/tilcdc: panel: Add WARN() with a comment to
+ tilcdc-panel probe
+Message-ID: <20191209144857.GA12841@pendragon.ideasonboard.com>
+References: <cover.1575901747.git.jsarha@ti.com>
+ <54966ffd61ca46528bc55961c532001aa7463c30.1575901747.git.jsarha@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20191121161259.25799-1-amelie.delaunay@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-12-09_04:2019-12-09,2019-12-09 signatures=0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <54966ffd61ca46528bc55961c532001aa7463c30.1575901747.git.jsarha@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Amélie,
+Hi Jyri,
 
-On 11/21/19 5:12 PM, Amelie Delaunay wrote:
-> phy-names is required by usbotg_hs driver to get the phy, otherwise, it
-> considers that there is no phys property.
+Thank you for the patch.
+
+On Mon, Dec 09, 2019 at 04:42:16PM +0200, Jyri Sarha wrote:
+> Add WARN() to the beginnig of tilcdc-panel probe. The obsolete
+
+s/beginnig/beginning/
+
+> tilcdc-panel driver should not be used anymore, since tilcdc is fully
+> capable of using generic drm panels like panel-simple and panel-common
+> binding.
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+> Signed-off-by: Jyri Sarha <jsarha@ti.com>
 > ---
->   arch/arm/boot/dts/stm32mp157c-ev1.dts | 1 +
->   1 file changed, 1 insertion(+)
+>  drivers/gpu/drm/tilcdc/tilcdc_panel.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> index 2010f6292a77..228e35e16884 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-> @@ -355,6 +355,7 @@
->   &usbotg_hs {
->   	dr_mode = "peripheral";
->   	phys = <&usbphyc_port1 0>;
-> +	phy-names = "usb2-phy";
->   	status = "okay";
->   };
->   
-> 
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_panel.c b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> index 5584e656b857..cf8e2462a524 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> @@ -309,6 +309,16 @@ static int panel_probe(struct platform_device *pdev)
+>  	struct pinctrl *pinctrl;
+>  	int ret;
+>  
+> +	/*
+> +	 * The obsolete tilcdc-panel driver should not be used
+> +         * anymore, since tilcdc is fully capable of using generic drm
+> +         * panels like panel-simple and panel-common binding.
 
+Indentation should use tabs.
 
-Series applied on stm32-next.
+> +	 */
+> +
+> +	WARN(true,
+> +	     "tilcdc-panel is obsolte and should not be used. Please update your configuration!\n",
 
-Note: due to new STM32 diversity I renamed some patches.
+s/obsolte/obsolete/ or deprecated ?
 
-Regards
-Alex
+You may want to explicitly state what it should be updated to :-)
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> +	     dev_name(&pdev->dev));
+> +
+>  	/* bail out early if no DT data: */
+>  	if (!node) {
+>  		dev_err(&pdev->dev, "device-tree data is missing\n");
+
+-- 
+Regards,
+
+Laurent Pinchart
