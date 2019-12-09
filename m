@@ -2,88 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF64116F90
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:50:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E34F7116FAA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:53:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726783AbfLIOue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 09:50:34 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:36592 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726677AbfLIOud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:50:33 -0500
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0CD25DAD;
-        Mon,  9 Dec 2019 15:50:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1575903031;
-        bh=iMA0EMCIcVhf1bAexv25ojEbqExgp+n80z/z9CDFqJo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kehsnBfjJjSGCd9e2JiRW6Qz+YP1pdWYqrl+G1It+mEU+1vRCgdUGeTpw4sshrfQ+
-         OgzeXaTiUXztWDwsvfVswez3dVhC9XKW78WeKIeL9vProh7XgzHh/yNNHaOkKbLp0R
-         5GvWh1nvD5M6wHg43pc6pK0Nk5JVTeniBdGgcrPo=
-Date:   Mon, 9 Dec 2019 16:50:24 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jyri Sarha <jsarha@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, tony@atomide.com,
-        sam@ravnborg.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, tomi.valkeinen@ti.com,
-        peter.ujfalusi@ti.com, bparrot@ti.com
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: Add obsolete note to
- "ti,tilcdc,panel" binding
-Message-ID: <20191209145024.GB12841@pendragon.ideasonboard.com>
-References: <cover.1575901747.git.jsarha@ti.com>
- <459ed943fe0725200062171755bcfe5f73713d50.1575901747.git.jsarha@ti.com>
+        id S1726080AbfLIOxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 09:53:14 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:46588 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726230AbfLIOxO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Dec 2019 09:53:14 -0500
+Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1ieKPN-0001Ca-En; Mon, 09 Dec 2019 15:53:09 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     linux-rockchip@lists.infradead.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, heiko@sntech.de,
+        christoph.muellner@theobroma-systems.com,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Subject: [PATCH 1/2] arm64: dts: rockchip: add core dsi components for px30
+Date:   Mon,  9 Dec 2019 15:53:00 +0100
+Message-Id: <20191209145301.5307-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <459ed943fe0725200062171755bcfe5f73713d50.1575901747.git.jsarha@ti.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jyri,
+From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
 
-Thank you for the patch.
+This adds the dw-mipi-dsi controller and the external dsi-dphy
+and hooks them into the display-subsystem on px30.
 
-On Mon, Dec 09, 2019 at 04:42:15PM +0200, Jyri Sarha wrote:
-> The "ti,tilcdc,panel" binding should not be used anymore, since tilcdc
-> is fully capable of using generic drm panels like panel-simple and
-> panel-common binding. However, the obsolete binding is still widely
-> used in many mainline supported platforms that I do not have access to
-> and who knows how many custom platforms. So I am afraid we have to
-> keep the old bundled tilcdc panel driver around.
+Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+---
+ arch/arm64/boot/dts/rockchip/px30.dtsi | 61 ++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-But can't we drop the bindings instead of marking them as obsolete, even
-if we keep the driver around for some time ?
-
-Also, would it make sense to set a date for the removal of the driver,
-and add it to the WARN() message in patch 3/3 ?
-
-> Signed-off-by: Jyri Sarha <jsarha@ti.com>
-> ---
->  Documentation/devicetree/bindings/display/tilcdc/panel.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tilcdc/panel.txt b/Documentation/devicetree/bindings/display/tilcdc/panel.txt
-> index 808216310ea2..54963f9173cc 100644
-> --- a/Documentation/devicetree/bindings/display/tilcdc/panel.txt
-> +++ b/Documentation/devicetree/bindings/display/tilcdc/panel.txt
-> @@ -1,5 +1,11 @@
->  Device-Tree bindings for tilcdc DRM generic panel output driver
->  
-> +NOTE: This binding (and the related driver) is obsolete and should not
-> +      be used anymore. Please refer to drm panel-common binding (and
-> +      to a generic drm panel driver like panel-simple).
-> +      Documentation/devicetree/bindings/display/panel/panel-common.yaml
-> +      (drivers/gpu/drm/panel/panel-simple.c)
-> +
->  Required properties:
->   - compatible: value should be "ti,tilcdc,panel".
->   - panel-info: configuration info to configure LCDC correctly for the panel
-
+diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
+index c31423f36192..ff53cc56f80f 100644
+--- a/arch/arm64/boot/dts/rockchip/px30.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+@@ -820,6 +820,19 @@ u2phy_otg: otg-port {
+ 		};
+ 	};
+ 
++	dsi_dphy: phy@ff2e0000 {
++		compatible = "rockchip,px30-dsi-dphy";
++		reg = <0x0 0xff2e0000 0x0 0x10000>;
++		clocks = <&pmucru SCLK_MIPIDSIPHY_REF>, <&cru PCLK_MIPIDSIPHY>;
++		clock-names = "ref", "pclk";
++		#clock-cells = <0>;
++		resets = <&cru SRST_MIPIDSIPHY_P>;
++		reset-names = "apb";
++		#phy-cells = <0>;
++		power-domains = <&power PX30_PD_VO>;
++		status = "disabled";
++	};
++
+ 	usb20_otg: usb@ff300000 {
+ 		compatible = "rockchip,px30-usb", "rockchip,rk3066-usb",
+ 			     "snps,dwc2";
+@@ -943,6 +956,44 @@ gpu: gpu@ff400000 {
+ 		status = "disabled";
+ 	};
+ 
++	dsi: dsi@ff450000 {
++		compatible = "rockchip,px30-mipi-dsi";
++		reg = <0x0 0xff450000 0x0 0x10000>;
++		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru PCLK_MIPI_DSI>;
++		clock-names = "pclk";
++		resets = <&cru SRST_MIPIDSI_HOST_P>;
++		reset-names = "apb";
++		phys = <&dsi_dphy>;
++		phy-names = "dphy";
++		power-domains = <&power PX30_PD_VO>;
++		rockchip,grf = <&grf>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		status = "disabled";
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				dsi_in_vopb: endpoint@0 {
++					reg = <0>;
++					remote-endpoint = <&vopb_out_dsi>;
++				};
++
++				dsi_in_vopl: endpoint@1 {
++					reg = <1>;
++					remote-endpoint = <&vopl_out_dsi>;
++				};
++			};
++		};
++	};
++
+ 	vopb: vop@ff460000 {
+ 		compatible = "rockchip,px30-vop-big";
+ 		reg = <0x0 0xff460000 0x0 0xefc>;
+@@ -960,6 +1011,11 @@ vopb: vop@ff460000 {
+ 		vopb_out: port {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++
++			vopb_out_dsi: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&dsi_in_vopb>;
++			};
+ 		};
+ 	};
+ 
+@@ -992,6 +1048,11 @@ vopl: vop@ff470000 {
+ 		vopl_out: port {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++
++			vopl_out_dsi: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&dsi_in_vopl>;
++			};
+ 		};
+ 	};
+ 
 -- 
-Regards,
+2.24.0
 
-Laurent Pinchart
