@@ -2,164 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8335411771B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 21:12:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D78FD117743
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 21:19:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726822AbfLIUMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 15:12:44 -0500
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:42632 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726608AbfLIUMk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 15:12:40 -0500
-Received: by mail-lj1-f196.google.com with SMTP id e28so17114331ljo.9;
-        Mon, 09 Dec 2019 12:12:38 -0800 (PST)
+        id S1726366AbfLIUTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 15:19:05 -0500
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:39003 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726354AbfLIUTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 15:19:04 -0500
+Received: by mail-lj1-f193.google.com with SMTP id e10so17154048ljj.6;
+        Mon, 09 Dec 2019 12:19:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=toXARQVeazduKdMBcjZ4AH+zKbnIDWRz3fBlo89SsY8=;
-        b=oyNHS4VlNQIeO8uN4MTz5mnnSbKmtqbZwyZ5dC7UpkgqBEwuGlmOIN0+RPkkDpEMOa
-         vCZXz7sr6AVN0zyHTNBcclHbuWsYc+4eO5xAzAjB7nTQhnuaqs6H0E95/9FyprYS6Nxh
-         3OghsnDtsPF72u6J9DOE11wxG0welgCE3mwMUMQ92BAWyHTsOzblUWF+kON4av1oX12Q
-         hOMQyJbCrvt01M4XYMXodNBql795RbFgyYevszJWpwRaNVe4cqSgfpvlCPZUekti4onD
-         K/cYJA/cZnHYMIxm7WENW7bOSBDY956QC5jk6f0MHTqVhPl5cJAAmU+rKjlIUgVhgB76
-         HMSg==
+        h=from:date:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=n1EdrnRTVcraROl5/h8aaMtwkvgNtthE6B0nadUQmNM=;
+        b=YyWaTa3gnmdIYwVKVbmo7iBU4bN5OGGRfD/62puTS0gNvrMO2Gn52AUyhSnCwq8CMd
+         wR03rB0TUPJbC5zMlN44+k7hjCwO+baR8t4mgLtW40gBXm/sehCBVm5s5M+xKBVhoGhr
+         W/ev/YydmL+HcKZLZvpcF7/hBtf/4WOgcYSrxRDzXmzCDtgZVbXlj5Dnl38zVEgiPBMC
+         S5Ar3nDEgmaur+OOaj3gG60Pb+KKkNB1wit28dY2jcQhMKrG3TL3IQkdm520wfV07mtg
+         J4SGJavVx2XoiPZWucDtJiYVUC0192OwXrhD/noBjLMJGN5Fw2PeTQfe6oUeJoGpxhzF
+         SS9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=toXARQVeazduKdMBcjZ4AH+zKbnIDWRz3fBlo89SsY8=;
-        b=ZXu/BU3rQ3FnotN/tqn0Piz0ErURHYpckMbqYb0BF8rpyQ5PyPrJklmRdCKr0bJBXN
-         vJGZlruNCAuz+99Swv8Cv7HCKe+YDbAfa3OD7Awfosgf2ndxSPNRdapBWtH9CdwSwfoE
-         jH9fYH235lm0n1raQ57CHwSFhSaV9ic3i1DljsV7loW2Px1t730eNXw5U0SmbCS1c02Y
-         up05PH0xady7l77E2lOeqX5Z8EmukEuC99v88tPsHhioGNdTDqOsotNXzuxo4jqTgoQ6
-         1NaT0khAuNFXnvtadZWr2I7Yoxztm3qTh/WhwiSUVisoE9jvP4a37FN76OTJfFExj7dN
-         b6Gw==
-X-Gm-Message-State: APjAAAVeO0IL2zOLTfOg0BgMzQ0FpxJyDrJnJO9yzxpZcfoZS1pOqyAj
-        A8uEoLBiuCZysGSKgvCde/U=
-X-Google-Smtp-Source: APXvYqzFJzecx4/IUoPCD798bOm5o7OiSgWA4hOkXHCqKz5R/DTqwq7ycwmvKJ9TE7el6GO2a/JYvA==
-X-Received: by 2002:a2e:9741:: with SMTP id f1mr17084867ljj.123.1575922357865;
-        Mon, 09 Dec 2019 12:12:37 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id k25sm453452lji.42.2019.12.09.12.12.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2019 12:12:36 -0800 (PST)
-Subject: Re: [PATCH v3 03/15] soc: tegra: Add Tegra PMC clock registrations
- into PMC driver
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
-        sboyd@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     allison@lohutok.net, pdeschrijver@nvidia.com, pgaikwad@nvidia.com,
-        mturquette@baylibre.com, horms+renesas@verge.net.au,
-        Jisheng.Zhang@synaptics.com, krzk@kernel.org, arnd@arndb.de,
-        spujar@nvidia.com, josephl@nvidia.com, vidyas@nvidia.com,
-        daniel.lezcano@linaro.org, mmaddireddy@nvidia.com,
-        markz@nvidia.com, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
-        alexios.zavras@intel.com, alsa-devel@alsa-project.org
-References: <1575600535-26877-1-git-send-email-skomatineni@nvidia.com>
- <1575600535-26877-4-git-send-email-skomatineni@nvidia.com>
- <7cf4ff77-2f33-4ee5-0e09-5aa6aef3e8be@gmail.com>
- <ad3a6743-4b36-fa25-9cc7-72803038ecc5@gmail.com>
- <dc7a057a-0bed-0e6f-0987-edcfec47f867@gmail.com>
- <288a1701-def6-d628-26bc-a305f817bdb1@gmail.com>
- <78644d45-2ae3-121f-99fc-0a46f205907d@nvidia.com>
- <b35916e1-c6ee-52ca-9111-5ae109437b6e@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <ccb715cc-c927-ea91-a26e-24d6eeeeef1a@gmail.com>
-Date:   Mon, 9 Dec 2019 23:12:35 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=n1EdrnRTVcraROl5/h8aaMtwkvgNtthE6B0nadUQmNM=;
+        b=CYVX9Rtlna9fLL7/k/no4qcrIwTK9BKv+iWZABLKD36PltZLT6HWT8Rjv7enQWiTYT
+         fD12LODkf8agla1cuHCFLrYnsxZeVgD44TQyS4d+7KkmXJctbSTJYj4YGfSIZJ65fp7J
+         iQkg4eP/9ylkUWlUefGGy94+3w4qoAt3CLiv1HBbuQ/hzB6OWW1sszVLmAYhnbl8uDgL
+         iRy0HJiMIn5WOsMRtauahfQObtsulHshrf+5O3CtgK3k5GK7a/yMhAJvJjWBZDDPSz0p
+         TSe0UhLG1ycbiNqLFl8/Qg3utX6ZDRyUBBQw7WiBJJhB6F3XsLueke4+eTCjeKHftOJo
+         6saA==
+X-Gm-Message-State: APjAAAUZ+Kz55wy0rtuK8HsmFqPNGewPabYB2puAhD0BMT1tmYOqqUhd
+        jX1NsYzz4RUESHo67rag5a0=
+X-Google-Smtp-Source: APXvYqyfu7gL7wbNI0OOFWaQIsqDNwc4LTHSY9AuWl7rOPaR/iVf8RbBzzn3iTnZxmGFFwaacn/o1A==
+X-Received: by 2002:a2e:5751:: with SMTP id r17mr18245968ljd.254.1575922742313;
+        Mon, 09 Dec 2019 12:19:02 -0800 (PST)
+Received: from rikard (h-158-174-187-196.NA.cust.bahnhof.se. [158.174.187.196])
+        by smtp.gmail.com with ESMTPSA id i19sm237269lfj.17.2019.12.09.12.19.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2019 12:19:01 -0800 (PST)
+From:   Rikard Falkeborn <rikard.falkeborn@gmail.com>
+X-Google-Original-From: Rikard Falkeborn <rikard.falkeborn>
+Date:   Mon, 9 Dec 2019 21:18:58 +0100
+To:     Rikard Falkeborn <rikard.falkeborn@gmail.com>, kishon@ti.com
+Cc:     megous@megous.com, arnd@arndb.de, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, icenowy@aosc.io, kishon@ti.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, mark.rutland@arm.com,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com,
+        robh+dt@kernel.org, tglx@linutronix.de, wens@csie.org
+Subject: Re: [PATCH v2] phy: allwinner: Fix GENMASK misuse
+Message-ID: <20191209201858.GA1223@rikard>
+References: <20191020134229.1216351-3-megous@megous.com>
+ <20191110124355.1569-1-rikard.falkeborn@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <b35916e1-c6ee-52ca-9111-5ae109437b6e@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191110124355.1569-1-rikard.falkeborn@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-08.12.2019 00:36, Sowjanya Komatineni пишет:
+On Sun, Nov 10, 2019 at 01:43:55PM +0100, Rikard Falkeborn wrote:
+> Arguments are supposed to be ordered high then low.
 > 
-> On 12/7/19 11:59 AM, Sowjanya Komatineni wrote:
->>
->> On 12/7/19 8:00 AM, Dmitry Osipenko wrote:
->>> 07.12.2019 18:53, Dmitry Osipenko пишет:
->>>> 07.12.2019 18:47, Dmitry Osipenko пишет:
->>>>> 07.12.2019 17:28, Dmitry Osipenko пишет:
->>>>>> 06.12.2019 05:48, Sowjanya Komatineni пишет:
->>>>>>> Tegra210 and prior Tegra PMC has clk_out_1, clk_out_2, clk_out_3
->>>>>>> with
->>>>>>> mux and gate for each of these clocks.
->>>>>>>
->>>>>>> Currently these PMC clocks are registered by Tegra clock driver
->>>>>>> using
->>>>>>> clk_register_mux and clk_register_gate by passing PMC base address
->>>>>>> and register offsets and PMC programming for these clocks happens
->>>>>>> through direct PMC access by the clock driver.
->>>>>>>
->>>>>>> With this, when PMC is in secure mode any direct PMC access from the
->>>>>>> non-secure world does not go through and these clocks will not be
->>>>>>> functional.
->>>>>>>
->>>>>>> This patch adds these clocks registration with PMC as a clock
->>>>>>> provider
->>>>>>> for these clocks. clk_ops callback implementations for these clocks
->>>>>>> uses tegra_pmc_readl and tegra_pmc_writel which supports PMC
->>>>>>> programming
->>>>>>> in secure mode and non-secure mode.
->>>>>>>
->>>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>>>>>> ---
->>>>> [snip]
->>>>>
->>>>>>> +
->>>>>>> +static const struct clk_ops pmc_clk_gate_ops = {
->>>>>>> +    .is_enabled = pmc_clk_is_enabled,
->>>>>>> +    .enable = pmc_clk_enable,
->>>>>>> +    .disable = pmc_clk_disable,
->>>>>>> +};
->>>>>> What's the benefit of separating GATE from the MUX?
->>>>>>
->>>>>> I think it could be a single clock.
->>>>> According to TRM:
->>>>>
->>>>> 1. GATE and MUX are separate entities.
->>>>>
->>>>> 2. GATE is the parent of MUX (see PMC's CLK_OUT paths diagram in TRM).
->>>>>
->>>>> 3. PMC doesn't gate EXTPERIPH clock but could "force-enable" it,
->>>>> correct?
+> Fixes: a228890f9458 ("phy: allwinner: add phy driver for USB3 PHY on Allwinner H6 SoC")
+> Signed-off-by: Rikard Falkeborn <rikard.falkeborn@gmail.com>
+> Tested-by: Ondrej Jirman <megous@megous.com>
+> ---
+> v1->v2: Add fixes tax. Add Ondrejs Tested-by. No functional change.
 > 
-> Was following existing clk-tegra-pmc as I am not sure of reason for
-> having these clocks registered as separate mux and gate clocks.
+>  drivers/phy/allwinner/phy-sun50i-usb3.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Yes, PMC clocks can be registered as single clock and can use clk_ops
-> for set/get parent and enable/disable.
+> diff --git a/drivers/phy/allwinner/phy-sun50i-usb3.c b/drivers/phy/allwinner/phy-sun50i-usb3.c
+> index 1169f3e83a6f..b1c04f71a31d 100644
+> --- a/drivers/phy/allwinner/phy-sun50i-usb3.c
+> +++ b/drivers/phy/allwinner/phy-sun50i-usb3.c
+> @@ -49,7 +49,7 @@
+>  #define SUNXI_LOS_BIAS(n)		((n) << 3)
+>  #define SUNXI_LOS_BIAS_MASK		GENMASK(5, 3)
+>  #define SUNXI_TXVBOOSTLVL(n)		((n) << 0)
+> -#define SUNXI_TXVBOOSTLVL_MASK		GENMASK(0, 2)
+> +#define SUNXI_TXVBOOSTLVL_MASK		GENMASK(2, 0)
+>  
+>  struct sun50i_usb3_phy {
+>  	struct phy *phy;
+> -- 
+> 2.24.0
 > 
-> enable/disable of PMC clocks is for force-enable to force the clock to
-> run regardless of ACCEPT_REQ or INVERT_REQ.
-> 
->>>> 4. clk_m_div2/4 are internal PMC OSC dividers and thus these clocks
->>>> should belong to PMC.
->>> Also, it should be "osc" and not "clk_m".
->>
->> I followed the same parents as it were in existing clk-tegra-pmc driver.
->>
->> Yeah they are wrong and they should be from osc and not clk_m.
->>
->> Will fix in next version.
->>
 
-Could you please describe the full EXTPERIPH clock topology and how the
-pinmux configuration is related to it all?
-
-What is internal to the Tegra chip and what are the external outputs?
-
-Is it possible to bypass PMC on T30+ for the EXTPERIPH clocks?
+Ping.
