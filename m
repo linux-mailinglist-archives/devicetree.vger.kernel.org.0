@@ -2,65 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7421167DB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 08:59:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC022116810
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 09:20:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727162AbfLIH7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 02:59:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45412 "EHLO mail.kernel.org"
+        id S1727084AbfLIIUR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 9 Dec 2019 03:20:17 -0500
+Received: from mxav.atlassib.ro ([82.208.157.3]:35208 "EHLO mxav.atlassib.ro"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727044AbfLIH7l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Dec 2019 02:59:41 -0500
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        id S1727047AbfLIIUR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Dec 2019 03:20:17 -0500
+X-Greylist: delayed 3579 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Dec 2019 03:20:16 EST
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by mxav.atlassib.ro (Postfix) with ESMTP id 7FEB35894DD;
+        Mon,  9 Dec 2019 09:19:57 +0200 (EET)
+Received: from mxav.atlassib.ro ([127.0.0.1])
+ by localhost (mxav.atlassib.ro [127.0.0.1]) (amavisd-maia, port 10024)
+ with ESMTP id 17051-02-2; Mon,  9 Dec 2019 09:19:57 +0200 (EET)
+Received: from HP-PC.local (unknown [85.108.196.9])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E19D9206D3;
-        Mon,  9 Dec 2019 07:59:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1575878380;
-        bh=/GDSAbwa+5Rfjx3NyL//+7tHWlsU4b2DACP4NCUjuqc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PQh3/U8SjkohY65/zdLAgeGBAo8aOdOXyNb6PLAJFEvqNzfnzHunAqqm6OAPkpmN1
-         zrsk2OG9UhVlMNtJZx6Q4VDrKoalaOO1zFoH2L2L0O2q9eDWLYft0ZwJrSukUybUV7
-         GkYpfIYsVDfjzjGtuSexH0VhF3BDfRmH/e08dX2U=
-Date:   Mon, 9 Dec 2019 15:59:21 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH] ARM: dts: colibri-imx6ull: correct wrong pinmuxing and
- add comments
-Message-ID: <20191209075920.GJ3365@dragon>
-References: <20191128171345.10533-1-philippe.schenker@toradex.com>
+        by mxav.atlassib.ro (Postfix) with ESMTP id 51B825894A7;
+        Mon,  9 Dec 2019 09:19:51 +0200 (EET)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191128171345.10533-1-philippe.schenker@toradex.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: JOIN THE ILLUMINATI FOR FAME,WEALTH AND POWER
+To:     Recipients <backuppc@atlassib.ro>
+From:   "Illuminati Order" <backuppc@atlassib.ro>
+Date:   Mon, 09 Dec 2019 10:19:49 +0300
+Reply-To: spritualtemplemaster@gmail.com
+X-Antivirus: Avast (VPS 191208-0, 12/08/2019), Outbound message
+X-Antivirus-Status: Clean
+Message-Id: <20191209071952.51B825894A7@mxav.atlassib.ro>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 28, 2019 at 05:14:14PM +0000, Philippe Schenker wrote:
-> Some pinmuxings are obviously wrong, originating from a copy/paste
-> error. This patch corrects that with the following strategy:
-> 
-> - Set all reserved bits to zero
-> - Leave drive strength and slew rate as is
-> - Add sensible pull and hysteresis depending on the function of the pin
-> - Not used pins are muxed to their reset-value defined by the SoC
-> 
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-
-It doesn't apply to my imx/dt branch.  Can you please rebase and resend?
-
-Shawn
+Are you a business man or woman, artist, politician, sportsman or woman or an ordinary person? Do you want to become rich, powerful and famous in the world? Join us to become an official member today. You shall be given an ideal opportunity and chance to become a member of the Order of  Illuminati.No human life sacrifice needed. Order of Illuminati brings along wealth and fame in life. You will have full access to eradicate poverty away from your life now. To secure your membership form. Reply via the following email:  spritualtemplemaster@gmail.com
