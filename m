@@ -2,116 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 673101169D0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 10:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36116116A16
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 10:49:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727729AbfLIJo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 04:44:27 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57628 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727724AbfLIJo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 04:44:26 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB99iJ6N108696;
-        Mon, 9 Dec 2019 03:44:19 -0600
+        id S1726377AbfLIJtH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 04:49:07 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:52836 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725994AbfLIJtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 04:49:07 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB99n4q5034636;
+        Mon, 9 Dec 2019 03:49:04 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1575884659;
-        bh=WLIFq7NRcnOQ5VrrQVld4qrMZ5LO0r2DacFF2Nqd75g=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=lPZPSKztLyHDhZKS4X3DYLyPRgStoxw7ECMb/BEvkkXKbB+O5KSFm/rI0kyDit7vN
-         tMx02pMFm1PTixuWfoVUYFEi+yNR6ey7B7F3vwSa78WOCtzSWMfFXnTIDXCLb+KhCc
-         MG3Kw/n6UQnbij5DEswm/2H0kyJV+WjkyKTyhypk=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB99iJ0q100211
+        s=ti-com-17Q1; t=1575884944;
+        bh=gXkmhjcxW2shpp8IuTFNOznIZj9QdXL4AF01PfYwrZs=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=SYYgamLftGLE21WsTvUWXHazxF6KK9Nl/WMmoZpwc+TEXlxwlCMZ+bb2l2wa4CnLr
+         eF3FFlHUZvop/NM3nb7zZ4lvUehYeS9T7PVAxndbLI+MjUeu0wuFwXF7f1LbRdXVpS
+         dk/g2SyoymsGKedhL1Xm1CF6KXICte7T/ebUoncU=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB99n4na050489
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 9 Dec 2019 03:44:19 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 9 Dec 2019 03:49:04 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 9 Dec
- 2019 03:44:18 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ 2019 03:49:04 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 9 Dec 2019 03:44:18 -0600
-Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB99hOWt080263;
-        Mon, 9 Dec 2019 03:44:14 -0600
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <nm@ti.com>,
-        <ssantosh@kernel.org>
-CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
-        <t-kristo@ti.com>, <tony@atomide.com>, <j-keerthy@ti.com>,
-        <vigneshr@ti.com>
-Subject: [PATCH v7 12/12] dmaengine: ti: k3-udma: Wait for peer teardown completion if supported
-Date:   Mon, 9 Dec 2019 11:43:32 +0200
-Message-ID: <20191209094332.4047-13-peter.ujfalusi@ti.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191209094332.4047-1-peter.ujfalusi@ti.com>
-References: <20191209094332.4047-1-peter.ujfalusi@ti.com>
+ Frontend Transport; Mon, 9 Dec 2019 03:49:04 -0600
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB99n28p009818;
+        Mon, 9 Dec 2019 03:49:02 -0600
+Subject: Re: [PATCH v4 0/3] phy: cadence: j721e-wiz: Add Type-C plug flip
+ support
+To:     <kishon@ti.com>
+CC:     <aniljoy@cadence.com>, <adouglas@cadence.com>, <nsekhar@ti.com>,
+        <jsarha@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20191028102153.24866-1-rogerq@ti.com>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <d9f3af03-b9a6-d5b9-dce6-e573ceef7348@ti.com>
+Date:   Mon, 9 Dec 2019 11:49:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20191028102153.24866-1-rogerq@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set the TDTYPE if it is supported on the platform (j721e) which will cause
-UDMAP to wait for the remote peer to finish the teardown before returning
-the teardown completed message.
+Hi Kishon,
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
----
- drivers/dma/ti/k3-udma.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+On 28/10/2019 12:21, Roger Quadros wrote:
+> Hi,
+> 
+> On J721e platform, the 2 lanes of SERDES PHY are used to achieve
+> USB Type-C plug flip support without any additional MUX component
+> by using a lane swap feature.
+> 
+> However, the driver needs to know the Type-C plug orientation before
+> it can decide whether to swap the lanes or not. This is achieved via a
+> GPIO named DIR.
+> 
+> Another constraint is that the lane swap must happen only when the PHY
+> is in inactive state. This is achieved by sampling the GPIO and
+> programming the lane swap before bringing the PHY out of reset.
+> 
+> This series adds support to read the GPIO and accordingly program
+> the Lane swap for Type-C plug flip support.
+> 
+> Series must be applied on top of
+> https://lkml.org/lkml/2019/10/23/589
 
-diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
-index 48933689f790..58239b53ba35 100644
---- a/drivers/dma/ti/k3-udma.c
-+++ b/drivers/dma/ti/k3-udma.c
-@@ -85,6 +85,7 @@ struct udma_rchan {
- 
- #define UDMA_FLAG_PDMA_ACC32		BIT(0)
- #define UDMA_FLAG_PDMA_BURST		BIT(1)
-+#define UDMA_FLAG_TDTYPE		BIT(2)
- 
- struct udma_match_data {
- 	u32 psil_base;
-@@ -1586,7 +1587,8 @@ static int udma_tisci_tx_channel_config(struct udma_chan *uc)
- 	req_tx.tx_supr_tdpkt = uc->notdpkt;
- 	req_tx.tx_fetch_size = fetch_size >> 2;
- 	req_tx.txcq_qnum = tc_ring;
--	if (uc->ep_type == PSIL_EP_PDMA_XY) {
-+	if (uc->ep_type == PSIL_EP_PDMA_XY &&
-+	    ud->match_data->flags & UDMA_FLAG_TDTYPE) {
- 		/* wait for peer to complete the teardown for PDMAs */
- 		req_tx.valid_params |=
- 				TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_TDTYPE_VALID;
-@@ -3032,7 +3034,7 @@ static struct udma_match_data am654_mcu_data = {
- static struct udma_match_data j721e_main_data = {
- 	.psil_base = 0x1000,
- 	.enable_memcpy_support = true,
--	.flags = UDMA_FLAG_PDMA_ACC32 | UDMA_FLAG_PDMA_BURST,
-+	.flags = UDMA_FLAG_PDMA_ACC32 | UDMA_FLAG_PDMA_BURST | UDMA_FLAG_TDTYPE,
- 	.statictr_z_mask = GENMASK(23, 0),
- 	.rchan_oes_offset = 0x400,
- 	.tpl_levels = 3,
-@@ -3046,7 +3048,7 @@ static struct udma_match_data j721e_main_data = {
- static struct udma_match_data j721e_mcu_data = {
- 	.psil_base = 0x6000,
- 	.enable_memcpy_support = false, /* MEM_TO_MEM is slow via MCU UDMA */
--	.flags = UDMA_FLAG_PDMA_ACC32 | UDMA_FLAG_PDMA_BURST,
-+	.flags = UDMA_FLAG_PDMA_ACC32 | UDMA_FLAG_PDMA_BURST | UDMA_FLAG_TDTYPE,
- 	.statictr_z_mask = GENMASK(23, 0),
- 	.rchan_oes_offset = 0x400,
- 	.tpl_levels = 2,
+I just tested this on top of Sierra PHY patches v3
+https://lkml.org/lkml/2019/11/28/186
+on v5.5-rc1
+
+USB3 works fine on J7ES.
+
+Please queue this along with the Sierra PHY patches for -next. Thanks.
+
+cheers,
+-roger
+
+> 
+> cheers,
+> -roger
+> 
+> Changelog:
+> v4
+> - fixes in dt-binding document
+>    - fix typo
+>    - change to typec-dir-debounce-ms and add min/max/default values
+>    - drop reference to uint32 type
+> - fixes in driver
+>    - change to updated typec-dir-debounce-ms property
+>    - add limit checks and use default value if not specified
+> 
+> v3
+> - Rebase on v2 of PHY series and update DT binding to yaml
+> 
+> v2
+> - revise commit log of patch 1
+> - use regmap_field in patch 3
+> 
+> Roger Quadros (3):
+>    phy: cadence: Sierra: add phy_reset hook
+>    dt-bindings: phy: ti,phy-j721e-wiz: Add Type-C dir GPIO
+>    phy: ti: j721e-wiz: Manage typec-gpio-dir
+> 
+>   .../bindings/phy/ti,phy-j721e-wiz.yaml        | 17 ++++++
+>   drivers/phy/cadence/phy-cadence-sierra.c      | 10 +++
+>   drivers/phy/ti/phy-j721e-wiz.c                | 61 +++++++++++++++++++
+>   3 files changed, 88 insertions(+)
+> 
+
 -- 
-Peter
-
 Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
 Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
