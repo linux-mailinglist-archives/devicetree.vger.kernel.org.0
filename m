@@ -2,134 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B0A2116E26
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 14:48:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7998F116E02
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 14:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727740AbfLINsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 08:48:13 -0500
-Received: from mickerik.phytec.de ([195.145.39.210]:59450 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727299AbfLINsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 08:48:13 -0500
-X-Greylist: delayed 902 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Dec 2019 08:48:13 EST
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1575898389; x=1578490389;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ZvMCSjdJbVZac2F8bcYMul/sOO8A2aMaXq5Bl5ynDSM=;
-        b=PQllKqhqFuqpazx3wP6CWciKQz6FIX8bGLb+BFM+6vqxpltgk0ZUQHNjHtfTZt2L
-        NHN8S+7EHwKLIb1RD5p6EXnd+jcbtXuQXuUmUldCrGGcYCjhri0mlbzBqT6L7PmA
-        UqWrHkCla85x1YgmAOmIvGeti+EqP834ZoleWhijArE=;
-X-AuditID: c39127d2-df9ff7000000408f-4e-5dee4d0e35f1
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id E1.83.16527.E0D4EED5; Mon,  9 Dec 2019 14:33:07 +0100 (CET)
-Received: from [172.16.23.108] ([172.16.23.108])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2019120914330285-69242 ;
-          Mon, 9 Dec 2019 14:33:02 +0100 
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: Add PHYTEC i.MX6 UL/ULL
- devicetree bindings
-To:     linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     devicetree@vger.kernel.org,
-        Andrew Smirnov <andrew.smirnov@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-imx@nxp.com,
+        id S1727683AbfLINeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 08:34:15 -0500
+Received: from foss.arm.com ([217.140.110.172]:60694 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727438AbfLINeP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Dec 2019 08:34:15 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E694328;
+        Mon,  9 Dec 2019 05:34:14 -0800 (PST)
+Received: from [10.1.196.37] (e121345-lin.cambridge.arm.com [10.1.196.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D5B0F3F718;
+        Mon,  9 Dec 2019 05:34:12 -0800 (PST)
+Subject: Re: [RFCv1 2/8] mfd: rk808: use syscore for RK805 PMIC shutdown
+To:     Anand Moon <linux.amoon@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>
-References: <1568980346-385840-1-git-send-email-s.riedmueller@phytec.de>
-From:   =?UTF-8?Q?Stefan_Riedm=c3=bcller?= <s.riedmueller@phytec.de>
-Message-ID: <f2084e4d-8e62-80fc-e578-d3d4be50af2f@phytec.de>
-Date:   Mon, 9 Dec 2019 14:33:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Daniel Schultz <d.schultz@phytec.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20191206184536.2507-1-linux.amoon@gmail.com>
+ <20191206184536.2507-3-linux.amoon@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <f1327196-66c9-d152-c0ca-914d43d6f55e@arm.com>
+Date:   Mon, 9 Dec 2019 13:34:09 +0000
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <1568980346-385840-1-git-send-email-s.riedmueller@phytec.de>
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 09.12.2019 14:33:02,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 09.12.2019 14:33:07,
-        Serialize complete at 09.12.2019 14:33:07
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20191206184536.2507-3-linux.amoon@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuplkeLIzCtJLcpLzFFi42JZI8DApSvq+y7WoPMyv0Vzh63F/CPnWC0e
-        XvW32PT4GqtF16+VzBaXd81hs7jb0slqsfT6RSaL1r1H2C3+bt/EYvFii7gDt8eaeWsYPXbO
-        usvusWlVJ5vHnWt72Dw2L6n32PhuB5NH/18Dj8+b5AI4orhsUlJzMstSi/TtErgyJi/cwVhw
-        UKBi0rqgBsZH3F2MnBwSAiYSW79fYu1i5OIQEtjKKLFv7xkmCOcUo8T6Z2sYQaqEBRIk5h/f
-        xA5iiwj4Slxf0cgCYjMLHGKSeNkGNklIwEOi6dApsDibgJPE4vMdbCA2r4CNxJZLW8FsFgEV
-        ifntk8DmiApESDzffoMRokZQ4uTMJ2C9nAKeEu+vL2YHOUJCoJFJYnvjQxaIU4UkTi8+ywyx
-        WF5i+9s5ULaZxLzND6FscYlbT+YzTWAUmoVk7iwkLbOQtMxC0rKAkWUVo1BuZnJ2alFmtl5B
-        RmVJarJeSuomRmCUHZ6ofmkHY98cj0OMTByMhxglOJiVRHiXTHwVK8SbklhZlVqUH19UmpNa
-        fIhRmoNFSZx3A29JmJBAemJJanZqakFqEUyWiYNTqoExYMKi50xf/pz7bb3efW9mmW6ZxrKC
-        nfyTVgpsbGb6+G5TfpXHGt0zy7f91Oc5EHPf8PFmWbHps498O8Wi2Wc3NSTRQjEl/KSstOs8
-        JRVDrutu9i8F7v1bq3i1QbDl/V1Hs3I/m4XrE0uVWE0a1z/dt8ZUIFEhRnd78bIejj/PVHzF
-        10tdm3pYiaU4I9FQi7moOBEACOJCtqACAAA=
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 06/12/2019 6:45 pm, Anand Moon wrote:
+> Use common syscore_shutdown for RK805 PMIC to do
+> clean I2C shutdown, drop the unused pm_pwroff_prep_fn
+> and pm_pwroff_fn function pointers.
 
-I just wanted to send a gentle ping for these two patches.
+Coincidentally, I've also been looking at RK805 for the sake of trying 
+to get suspend to behave on my RK3328 box, and I've ended up with some 
+slightly different cleanup patches - I'll tidy them up and post them for 
+comparison as soon as I can.
 
-Regards,
-Stefan
-
-
-On 20.09.19 13:52, Stefan Riedmueller wrote:
-> Add devicetree bindings for i.MX6 UL/ULL based phyCORE-i.MX6 UL/ULL and
-> phyBOARD-Segin.
-> 
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
-> Changes in v2:
->   - Use seperate description for each board instead of squashing them into
->     the standard board.
-> ---
->   Documentation/devicetree/bindings/arm/fsl.yaml | 18 ++++++++++++++++++
->   1 file changed, 18 insertions(+)
+>   drivers/mfd/rk808.c | 33 +++++++++++++++++----------------
+>   1 file changed, 17 insertions(+), 16 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 1b4b4e6573b5..c926ff6eac67 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -164,6 +164,15 @@ properties:
->                 - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
->             - const: fsl,imx6ul
+> diff --git a/drivers/mfd/rk808.c b/drivers/mfd/rk808.c
+> index e637f5bcc8bb..713d989064ba 100644
+> --- a/drivers/mfd/rk808.c
+> +++ b/drivers/mfd/rk808.c
+> @@ -467,16 +467,6 @@ static void rk808_update_bits(unsigned int reg, unsigned int mask,
+>   			"can't write to register 0x%x: %x!\n", reg, ret);
+>   }
 >   
-> +      - description: i.MX6UL PHYTEC phyBOARD-Segin
-> +        items:
-> +          - enum:
-> +              - phytec,imx6ul-pbacd10-emmc
-> +              - phytec,imx6ul-pbacd10-nand
-> +          - const: phytec,imx6ul-pbacd10  # PHYTEC phyBOARD-Segin with i.MX6 UL
-> +          - const: phytec,imx6ul-pcl063   # PHYTEC phyCORE-i.MX 6UL
-> +          - const: fsl,imx6ul
-> +
->         - description: Kontron N6310 S Board
->           items:
->             - const: kontron,imx6ul-n6310-s
-> @@ -183,6 +192,15 @@ properties:
->                 - fsl,imx6ull-14x14-evk     # i.MX6 UltraLiteLite 14x14 EVK Board
->             - const: fsl,imx6ull
+> -static void rk805_device_shutdown(void)
+> -{
+> -	rk808_update_bits(RK805_DEV_CTRL_REG, DEV_OFF, DEV_OFF);
+> -}
+> -
+> -static void rk805_device_shutdown_prepare(void)
+> -{
+> -	rk808_update_bits(RK805_GPIO_IO_POL_REG, SLP_SD_MSK, SHUTDOWN_FUN);
+> -}
+> -
+>   static void rk808_device_shutdown(void)
+>   {
+>   	rk808_update_bits(RK808_DEVCTRL_REG, DEV_OFF_RST, DEV_OFF_RST);
+> @@ -491,10 +481,23 @@ static void rk8xx_syscore_shutdown(void)
+>   {
+>   	struct rk808 *rk808 = i2c_get_clientdata(rk808_i2c_client);
 >   
-> +      - description: i.MX6ULL PHYTEC phyBOARD-Segin
-> +        items:
-> +          - enum:
-> +              - phytec,imx6ull-pbacd10-emmc
-> +              - phytec,imx6ull-pbacd10-nand
-> +          - const: phytec,imx6ull-pbacd10 # PHYTEC phyBOARD-Segin with i.MX6 ULL
-> +          - const: phytec,imx6ull-pcl063  # PHYTEC phyCORE-i.MX 6ULL
-> +          - const: fsl,imx6ull
+> -	if (system_state == SYSTEM_POWER_OFF &&
+> -	    (rk808->variant == RK809_ID || rk808->variant == RK817_ID)) {
+> -		rk808_update_bits(RK817_SYS_CFG(3), RK817_SLPPIN_FUNC_MSK,
+> -				SLPPIN_DN_FUN);
+> +	if (system_state == SYSTEM_POWER_OFF) {
+> +		dev_info(&rk808_i2c_client->dev, "System Shutdown Event\n");
 > +
->         - description: i.MX6ULZ based Boards
->           items:
->             - enum:
+> +		switch (rk808->variant) {
+> +		case RK805_ID:
+> +			rk808_update_bits(RK805_GPIO_IO_POL_REG,
+> +					SLP_SD_MSK, SHUTDOWN_FUN);
+> +			rk808_update_bits(RK805_DEV_CTRL_REG, DEV_OFF, DEV_OFF);
+
+Why this change? Shutdown via the SLEEP pin is working just fine on my 
+box :/
+
+Robin.
+
+> +			break;
+> +		case RK809_ID:
+> +		case RK817_ID:
+> +			rk808_update_bits(RK817_SYS_CFG(3),
+> +					RK817_SLPPIN_FUNC_MSK, SLPPIN_DN_FUN);
+> +			break;
+> +		default:
+> +			break;
+> +		}
+>   	}
+>   }
+>   
+> @@ -565,8 +568,6 @@ static int rk808_probe(struct i2c_client *client,
+>   		nr_pre_init_regs = ARRAY_SIZE(rk805_pre_init_reg);
+>   		cells = rk805s;
+>   		nr_cells = ARRAY_SIZE(rk805s);
+> -		rk808->pm_pwroff_fn = rk805_device_shutdown;
+> -		rk808->pm_pwroff_prep_fn = rk805_device_shutdown_prepare;
+>   		break;
+>   	case RK808_ID:
+>   		rk808->regmap_cfg = &rk808_regmap_config;
 > 
