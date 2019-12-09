@@ -2,70 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B46311176F5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 21:03:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA5D117708
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 21:10:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726342AbfLIUDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 15:03:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54516 "EHLO mail.kernel.org"
+        id S1726342AbfLIUKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 15:10:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57376 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726491AbfLIUDd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Dec 2019 15:03:33 -0500
+        id S1726230AbfLIUKG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Dec 2019 15:10:06 -0500
 Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E3072073D;
-        Mon,  9 Dec 2019 20:03:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2B75E214D8;
+        Mon,  9 Dec 2019 20:10:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1575921812;
-        bh=A0I5xt4XVITb5z+wlWL8aR+iy4vFVHNdEWorhG4GJ/Q=;
+        s=default; t=1575922205;
+        bh=Diy0RAMb2nmCr+FApInTdUlXJLEjOPXITAFoPxtK6Lw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EpZ4LttEWn+/f/Y3V6o4s1cgDDhtTtCGT82reKJT064VK/o1My1nkUMsM79YglWwX
-         R7Zwgd0VkHepPrARH41qnKM9B8sdt7DnN0/1mdbe7Br1ZnU0EkMZJMmGOnbSfTt+AE
-         hkqHJWZVKPdB6H94t2fQDteb8ikwRSiClkiVHGK0=
-Date:   Mon, 9 Dec 2019 20:31:12 +0100
+        b=sZFLl1YErRFnSKRSMXOxm4n5/u2qhnNLjtgxyrohyoLZ+o8nhFndXIBnXQsAU+MM2
+         /0gsZJcFQhNPp305wZejd1Lh83xdrq+035ePlZU9W2siegqsB+I00VwRzR+OyCEFWq
+         FERNlByejYl2Jd5EifpsZNDR2TjecUkM4vsyRe9g=
+Date:   Mon, 9 Dec 2019 20:37:29 +0100
 From:   Maxime Ripard <mripard@kernel.org>
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: set GPU clock to 432 MHz
-Message-ID: <20191209193112.qr6un5ryhyxwu6a5@hendrix.lan>
-References: <20191203021420.164129-1-anarsoul@gmail.com>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, wens@csie.org,
+        alistair23@gmail.com
+Subject: Re: [PATCH] arm64: allwinner: Enable Bluetooth and WiFi on sopine
+ baseboard
+Message-ID: <20191209193729.jfw2z4iqlhrzohse@hendrix.lan>
+References: <20191207192249.8346-1-alistair@alistair23.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191203021420.164129-1-anarsoul@gmail.com>
+In-Reply-To: <20191207192249.8346-1-alistair@alistair23.me>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Dec 02, 2019 at 06:14:20PM -0800, Vasily Khoruzhick wrote:
-> That's what BSP kernel sets it to and it seems to work fine.
+On Sat, Dec 07, 2019 at 11:22:49AM -0800, Alistair Francis wrote:
+> The sopine board has an optional RTL8723BS WiFi + BT module that can be
+> connected to UART1. Add this to the device tree so that it will work for
+> users if connected.
 >
-> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
 > ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../dts/allwinner/sun50i-a64-sopine-baseboard.dts  | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> index 27e48234f1c2..0051f39b3d98 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> @@ -976,6 +976,9 @@ mali: gpu@1c40000 {
->  			clocks = <&ccu CLK_BUS_GPU>, <&ccu CLK_GPU>;
->  			clock-names = "bus", "core";
->  			resets = <&ccu RST_BUS_GPU>;
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
+> index 920103ec0046..0a91f9d8ed47 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-sopine-baseboard.dts
+> @@ -214,6 +214,20 @@ &uart0 {
+>  	status = "okay";
+>  };
+>
+> +&uart1 {
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
+> +        status = "okay";
 > +
-> +			assigned-clocks = <&ccu CLK_GPU>;
-> +			assigned-clock-rates = <432000000>;
->  		};
+> +        bluetooth {
+> +                compatible = "realtek,rtl8723bs-bt";
+> +                reset-gpios = <&r_pio 0 4 GPIO_ACTIVE_LOW>; /* PL4 */
+> +                device-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
+> +                host-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+> +                firmware-postfix = "pine64";
+> +        };
+> +};
+> +
 
-This doesn't really guarantee anything. If the GPU needs to remain at
-that rate, it should be set in the driver. I just saw that you did
-send a PR in github, I just merged it.
+Output from checkpatch:
+total: 10 errors, 11 warnings, 0 checks, 20 lines checked
+
+More importantly, that binding isn't documented, and doesn't have a
+driver either.
+
+I guess you want to have a look at:
+https://www.spinics.net/lists/arm-kernel/msg771488.html
 
 Maxime
