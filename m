@@ -2,61 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3AD117002
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 16:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92EB811701A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 16:15:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726265AbfLIPMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 10:12:37 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:35946 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725956AbfLIPMh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 10:12:37 -0500
-Received: by mail-wm1-f68.google.com with SMTP id p17so15346041wma.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2019 07:12:36 -0800 (PST)
+        id S1726502AbfLIPPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 10:15:14 -0500
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:35302 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725956AbfLIPPO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 10:15:14 -0500
+Received: by mail-pg1-f194.google.com with SMTP id l24so7278741pgk.2;
+        Mon, 09 Dec 2019 07:15:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=S7m9By4/eRnSy0vxdfJ6TocT5eJ8gcKLceyHvlHTn3o=;
-        b=FUY23HbstcRwuE4zOzZaucW3H5iy+KnnHcLM4uGeN1uiVDuqvvXV1PoywgKjc508CG
-         cFnopV6UmvCUTw4H/C/gmJ9DHXRdSfuuJbxTzutz9zOmasANjZ0o3DNmhTeAZGNmK8nz
-         sorE/BYF/zZE1c6wzK0OXJnYlVJ9vBbLcVk+slY4Ftm1Yu2JqvOB3S/g+LeQAORjxc2E
-         ukI0mdsULzRaYPlGmdOXbDBH+K4uFwkab9SNqHRy+On5D0IqxJAlyqpe9tpdmV9LGRLp
-         aZ/iszfXj7H5eJX5uVigxItV5LueFWgJV35czK6rVUsAzIUDV9LS0xRXbrJZcF0x+abm
-         DO4A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5p1spyZSykr9TaP0CnkdC2CY7tPzDiSLkHXnb86Xovs=;
+        b=ebiupU584wSQfYKFi2wG9qmHHdMexkl4PdgFmox3KZidWxR9Nn5P8J+DLReJ5+IC7i
+         U1igfbyRMx5zpb5z5iehxHpAFenvBswLpAVG0yXBCKvh1RgZXM42Nm72gUWIHhGfriyy
+         7R/2f1jJ2xtBAqnOGOPG4tZsWr4TRbpjjP3JsAObtRf+9WuO6LTPMbbKsCc1iln4h2bj
+         lu9ljnsOSGiOegJujRwYoIDd9Bte2dqYhm2pc+BTQXEKWipqlTvTkEKjTzDR/ox4p2lC
+         k3jyKDLMtlhzgHzsSmLCT00JKWa8txDVmo2iuhLuAt/IkOwmHwwIQzYdcxj3RW/Jb2w3
+         YFAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=S7m9By4/eRnSy0vxdfJ6TocT5eJ8gcKLceyHvlHTn3o=;
-        b=Yym0XJfRKwZyg2AOGKPOn3P/8aseJiA3ob52TW+AXGQ7/bfvRXMVmm2H/gwXfGcoNc
-         WZyFs80GGx5YBLf1lQwGixk56TvRVvZp5QFxlEMHFVp06kCxkZD1t1PRhy/srO0i1Faz
-         SPygRdo24aRO48433KjQcbj6M2j/IISOVrzqYo6du69+EYBywq9jMdWZGxUWnV2x1ga9
-         eIDjXgC60YGp0kq2ttGZVj8YuIt8W9RZfc02k8WRbJ3Fi+QCbgO+Ni3ugRfZyXQhjVeh
-         sp07MdzbcUgymbJxsIOi1e1CrL7MSV6mfYgTTdVdP37AdIjzMV6mcDiMNjXqfwPwbcZV
-         cMBA==
-X-Gm-Message-State: APjAAAVm2GssicPDVZPtnUIXPc2qZ8R7u2NIyDa+xjArRzZKBd05D6o+
-        3/9Qp8qN+8eHvGqVbOAfQAJ65vtjqpMWjveWfVk=
-X-Google-Smtp-Source: APXvYqwzoO3o/AiB61CGXAKUsg1LaTjSiiA2FIK8HBRcGEj7/5bCwGEa3NOUzqzbhzw/j6mbdZnWRp5Wp07wwb1C+Fs=
-X-Received: by 2002:a1c:8055:: with SMTP id b82mr25475871wmd.127.1575904355733;
- Mon, 09 Dec 2019 07:12:35 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5p1spyZSykr9TaP0CnkdC2CY7tPzDiSLkHXnb86Xovs=;
+        b=QsfhIPExsrbehGrL4XwKzAAn0Y/jxfKWvhAzPtb5M2fKYwTaq+n+xLwunwPFGOg9xe
+         FZrxSiBW10PVeLchYkc0lE5PlicxAlAAI6xXlLNmlrq09uBoJM672vOqa4F4wPrS6Zwd
+         x0ZTJIbFrZmg19yWgN1Gdt4TBvtY9MaZCVG+n8Cyx1Kb2DHCz/i4E4KdJSZXVv7PXs7j
+         uVG6NxoGAAlKbAK37Bfp1rc4UaQ6A7SeKpRFF/7mHz2zx8lxVs7k4EVYAGFG5epI2gOH
+         kC7LxlAp0VOxbWPR+87teJaz1QJXaKypEAMksuPmqsucDqruDV/qMXkdqBi2rOEvG++w
+         vclQ==
+X-Gm-Message-State: APjAAAXHxoqe0gHF9SUJwPa6iB68u6/rhQsrngTcC9EnlyewfKwis1Yf
+        ub00YCmjoqF+V8TPDbbFQY71ZKLBtXpKCJGlzzs=
+X-Google-Smtp-Source: APXvYqy73+fW5VBN9n2K5kkmfSpXWFsoHC63VdxOXZsOUofjku7qNi1PvaEx8jie715xSpQ7TeJ5LxL3F0XfVxej14s=
+X-Received: by 2002:aa7:9697:: with SMTP id f23mr28831776pfk.232.1575904513324;
+ Mon, 09 Dec 2019 07:15:13 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a5d:678e:0:0:0:0:0 with HTTP; Mon, 9 Dec 2019 07:12:35 -0800 (PST)
-Reply-To: mrs.aalia.ahmed@gmail.com
-From:   "Mrs.Aalia.Ahmed" <adamhana1907@gmail.com>
-Date:   Mon, 9 Dec 2019 15:12:35 +0000
-Message-ID: <CAOGreOmMAd2360KFob+4taiiJRO1pO4W=gCDaK_TJqf9b9O5eA@mail.gmail.com>
-Subject: OK
-To:     undisclosed-recipients:;
+References: <20191209140234.6558-1-TheSven73@gmail.com> <20191209140234.6558-2-TheSven73@gmail.com>
+ <81e05dad-8582-7673-7ff3-658d7f08ed6a@ti.com>
+In-Reply-To: <81e05dad-8582-7673-7ff3-658d7f08ed6a@ti.com>
+From:   Sven Van Asbroeck <thesven73@gmail.com>
+Date:   Mon, 9 Dec 2019 10:15:02 -0500
+Message-ID: <CAGngYiVmOm2985Xu5pXdAx7Gx=hXJ-uUjMSgTv4L9_WeiyCXug@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] leds: tps6105x: add driver for mfd chip led mode
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Grigoryev Denis <grigoryev@fastwel.ru>,
+        Axel Lin <axel.lin@ingics.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-leds@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings My Dearest One.
+Thank you for the review, Dan. Some remarks below.
 
-My name is Mrs.Aalia.Ahmed, i saw your profile and became interested
-in you, please contact me through my email address
-(mrs.aalia.ahmed@gmail.com) to know each other and i have something
-very important to tell you, i wait for your response to my email ID.
-(mrs.aalia.ahmed@gmail.com
+On Mon, Dec 9, 2019 at 9:12 AM Dan Murphy <dmurphy@ti.com> wrote:
+>
+> > +     priv->fwnode = device_get_next_child_node(pdev->dev.parent, NULL);
+>
+> Probably need to check for NULL on the return
+>
+
+The driver will work without crashes or oopses even when this returns NULL:
+- struct led_init_data . fwnode is optional (can be NULL)
+- fwnode_handle_put() ignores NULL arguments
+
+By not checking for NULL here, non-devicetree users can still select
+led mode through platform data on the parent mfd driver, and things
+will "just work".
+
+Could I persuade you to keep this behaviour?
+Perhaps I should put a comment in to clarify?
+
+> > +     ret = regmap_update_bits(tps6105x->regmap, TPS6105X_REG_0,
+> > +             TPS6105X_REG0_MODE_MASK | TPS6105X_REG0_TORCHC_MASK,
+> > +             TPS6105X_REG0_MODE_TORCH << TPS6105X_REG0_MODE_SHIFT);
+> Checkpatch should have warned about alignment here
+
+I used 5.4's checkpatch.pl, but somehow it doesn't warn :(
+Will fix that up.
