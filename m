@@ -2,127 +2,426 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB17B117063
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 16:27:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B28B117078
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 16:30:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726675AbfLIP1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 10:27:31 -0500
-Received: from pegase1.c-s.fr ([93.17.236.30]:15213 "EHLO pegase1.c-s.fr"
+        id S1726509AbfLIPah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 10:30:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38430 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726602AbfLIP1b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Dec 2019 10:27:31 -0500
-Received: from localhost (mailhub1-ext [192.168.12.233])
-        by localhost (Postfix) with ESMTP id 47WnB35rydzB09ZD;
-        Mon,  9 Dec 2019 16:27:23 +0100 (CET)
-Authentication-Results: localhost; dkim=pass
-        reason="1024-bit key; insecure key"
-        header.d=c-s.fr header.i=@c-s.fr header.b=d6D8Suox; dkim-adsp=pass;
-        dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id RITqvsV8S1Sh; Mon,  9 Dec 2019 16:27:23 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 47WnB34pf2zB09ZM;
-        Mon,  9 Dec 2019 16:27:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-s.fr; s=mail;
-        t=1575905243; bh=p/RN9wGhuytc2JKpwnOpBoY/ljEFeRGohPJvKHyg07M=;
-        h=In-Reply-To:References:From:Subject:To:Cc:Date:From;
-        b=d6D8SuoxckLsdzpD0AWfxhXZIVE4gghHlWtwmYhJDcMFkRIF+4Fb6oK94X1MbY4om
-         9sHCkvrEZl+6IphLA+ch0Ra/EpGDmI/6hhPI+R1OnoIIegBMWbQ8N9tXj4dnD2mEWn
-         DUfshjKINhnclytEX7xgdk05MMY6qXbgMy7DLE8Y=
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id D37D48B7C5;
-        Mon,  9 Dec 2019 16:27:28 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id ZY9SOqlNrzzs; Mon,  9 Dec 2019 16:27:28 +0100 (CET)
-Received: from po16098vm.idsi0.si.c-s.fr (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 9E6FB8B7F2;
-        Mon,  9 Dec 2019 16:27:28 +0100 (CET)
-Received: by localhost.localdomain (Postfix, from userid 0)
-        id 715D563739; Mon,  9 Dec 2019 15:27:28 +0000 (UTC)
-Message-Id: <8d8d893816724a4a69a21434162a589fa1eb5f39.1575905123.git.christophe.leroy@c-s.fr>
-In-Reply-To: <518cfb83347d5372748e7fe72f94e2e9443d0d4a.1575905123.git.christophe.leroy@c-s.fr>
-References: <518cfb83347d5372748e7fe72f94e2e9443d0d4a.1575905123.git.christophe.leroy@c-s.fr>
-From:   Christophe Leroy <christophe.leroy@c-s.fr>
-Subject: [PATCH 2/2] spi: fsl: simplify error path in of_fsl_spi_probe()
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Mon,  9 Dec 2019 15:27:28 +0000 (UTC)
+        id S1726491AbfLIPah (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Dec 2019 10:30:37 -0500
+Received: from localhost (unknown [89.205.132.23])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E073E2068E;
+        Mon,  9 Dec 2019 15:30:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1575905435;
+        bh=LYjRBh90O5HYAIu5dtpovBGv6ud9Pv4H6SyZaJxCCG4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V8dyaFJc26XWEkqrZE7OPAFunXLGJAe4VMYn7kTD+y+HxwNy7kd6zOPRXPxKWP/rh
+         Gg1ejCitUO270AjzGN9I2QwBfkVkvSdsgZhLUDlh21TsKN3bhxbPXJcnV6s+WHKHdM
+         CUcxfPbFLLZbQUwnt8ZZ3X2+S/umolRLJw69IZr4=
+Date:   Mon, 9 Dec 2019 16:30:31 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     shubhrajyoti.datta@gmail.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        michal.simek@xilinx.com, robh+dt@kernel.org,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Subbaraya Sundeep Bhatta <sbhatta@xilinx.com>
+Subject: Re: [PATCH v2 1/2] uio: uio_xilinx_apm: Add Xilinx AXI performance
+ monitor driver
+Message-ID: <20191209153031.GC1280846@kroah.com>
+References: <1575901405-3084-1-git-send-email-shubhrajyoti.datta@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1575901405-3084-1-git-send-email-shubhrajyoti.datta@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No need to 'goto err;' for just doing a return.
-return directly from where the error happens.
+On Mon, Dec 09, 2019 at 07:53:24PM +0530, shubhrajyoti.datta@gmail.com wrote:
+> From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> 
+> Added driver for Xilinx AXI performance monitor IP.
+> 
+> Signed-off-by: Subbaraya Sundeep Bhatta <sbhatta@xilinx.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> ---
+> v2:
+> Updated the header
+> 
+>  drivers/uio/Kconfig          |  12 ++
+>  drivers/uio/Makefile         |   1 +
+>  drivers/uio/uio_xilinx_apm.c | 358 +++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 371 insertions(+)
+>  create mode 100644 drivers/uio/uio_xilinx_apm.c
+> 
+> diff --git a/drivers/uio/Kconfig b/drivers/uio/Kconfig
+> index 202ee81..de30312 100644
+> --- a/drivers/uio/Kconfig
+> +++ b/drivers/uio/Kconfig
+> @@ -165,4 +165,16 @@ config UIO_HV_GENERIC
+>  	  to network and storage devices from userspace.
+>  
+>  	  If you compile this as a module, it will be called uio_hv_generic.
+> +
+> +config UIO_XILINX_APM
+> +	tristate "Xilinx AXI Performance Monitor driver"
+> +	depends on MICROBLAZE || ARCH_ZYNQ || ARCH_ZYNQMP
+> +	help
+> +	  This driver is developed for AXI Performance Monitor IP, designed to
+> +	  monitor AXI4 traffic for performance analysis of AXI bus in the
+> +	  system. Driver maps HW registers and parameters to userspace.
+> +
+> +	  To compile this driver as a module, choose M here; the module
+> +	  will be called uio_xilinx_apm.
+> +
+>  endif
+> diff --git a/drivers/uio/Makefile b/drivers/uio/Makefile
+> index c285dd2..b3464d8 100644
+> --- a/drivers/uio/Makefile
+> +++ b/drivers/uio/Makefile
+> @@ -11,3 +11,4 @@ obj-$(CONFIG_UIO_PRUSS)         += uio_pruss.o
+>  obj-$(CONFIG_UIO_MF624)         += uio_mf624.o
+>  obj-$(CONFIG_UIO_FSL_ELBC_GPCM)	+= uio_fsl_elbc_gpcm.o
+>  obj-$(CONFIG_UIO_HV_GENERIC)	+= uio_hv_generic.o
+> +obj-$(CONFIG_UIO_XILINX_APM)	+= uio_xilinx_apm.o
+> diff --git a/drivers/uio/uio_xilinx_apm.c b/drivers/uio/uio_xilinx_apm.c
+> new file mode 100644
+> index 0000000..3f69922
+> --- /dev/null
+> +++ b/drivers/uio/uio_xilinx_apm.c
+> @@ -0,0 +1,358 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx AXI Performance Monitor
+> + *
+> + * Description:
+> + * This driver is developed for AXI Performance Monitor IP,
+> + * designed to monitor AXI4 traffic for performance analysis
+> + * of AXI bus in the system. Driver maps HW registers and parameters
+> + * to userspace. Userspace need not clear the interrupt of IP since
+> + * driver clears the interrupt.
+> + *
+> + * Copyright (c) 2019 Xilinx Inc.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+> +#include <linux/uio_driver.h>
+> +
+> +#define XAPM_IS_OFFSET		0x0038  /* Interrupt Status Register */
+> +#define DRV_NAME		"xilinxapm_uio"
+> +#define DRV_VERSION		"1.0"
 
-Signed-off-by: Christophe Leroy <christophe.leroy@c-s.fr>
----
- drivers/spi/spi-fsl-spi.c | 27 +++++++++------------------
- 1 file changed, 9 insertions(+), 18 deletions(-)
+No need for a version, the code is in the kernel tree, use the version
+of the kernel instead please.
 
-diff --git a/drivers/spi/spi-fsl-spi.c b/drivers/spi/spi-fsl-spi.c
-index 2d85c81983b1..e991c6ff4e7a 100644
---- a/drivers/spi/spi-fsl-spi.c
-+++ b/drivers/spi/spi-fsl-spi.c
-@@ -725,8 +725,8 @@ static int of_fsl_spi_probe(struct platform_device *ofdev)
- 	struct device_node *np = ofdev->dev.of_node;
- 	struct spi_master *master;
- 	struct resource mem;
--	int irq = 0, type;
--	int ret = -ENOMEM;
-+	int irq, type;
-+	int ret;
- 
- 	ret = of_mpc8xxx_spi_probe(ofdev);
- 	if (ret)
-@@ -741,10 +741,8 @@ static int of_fsl_spi_probe(struct platform_device *ofdev)
- 
- 		if (spisel_boot) {
- 			pinfo->immr_spi_cs = ioremap(get_immrbase() + IMMR_SPI_CS_OFFSET, 4);
--			if (!pinfo->immr_spi_cs) {
--				ret = -ENOMEM;
--				goto err;
--			}
-+			if (!pinfo->immr_spi_cs)
-+				return -ENOMEM;
- 		}
- #endif
- 		/*
-@@ -763,24 +761,17 @@ static int of_fsl_spi_probe(struct platform_device *ofdev)
- 
- 	ret = of_address_to_resource(np, 0, &mem);
- 	if (ret)
--		goto err;
-+		return ret;
- 
- 	irq = of_irq_to_resource(np, 0, NULL);
--	if (irq <= 0) {
--		ret = -EINVAL;
--		goto err;
--	}
-+	if (irq <= 0)
-+		return -EINVAL;
- 
- 	master = fsl_spi_probe(dev, &mem, irq);
--	if (IS_ERR(master)) {
--		ret = PTR_ERR(master);
--		goto err;
--	}
-+	if (IS_ERR(master))
-+		return PTR_ERR(master);
- 
- 	return 0;
--
--err:
--	return ret;
- }
- 
- static int of_fsl_spi_remove(struct platform_device *ofdev)
--- 
-2.13.3
+> +#define UIO_DUMMY_MEMSIZE	4096
+> +#define XAPM_MODE_ADVANCED	1
+> +#define XAPM_MODE_PROFILE	2
+> +#define XAPM_MODE_TRACE		3
+> +
+> +/**
+> + * struct xapm_param - HW parameters structure
+> + * @mode: Mode in which APM is working
+> + * @maxslots: Maximum number of Slots in APM
+> + * @eventcnt: Event counting enabled in APM
+> + * @eventlog: Event logging enabled in APM
+> + * @sampledcnt: Sampled metric counters enabled in APM
+> + * @numcounters: Number of counters in APM
+> + * @metricwidth: Metric Counter width (32/64)
+> + * @sampledwidth: Sampled metric counter width
+> + * @globalcntwidth: Global Clock counter width
+> + * @scalefactor: Scaling factor
+> + * @isr: Interrupts info shared to userspace
+> + * @is_32bit_filter: Flags for 32bit filter
+> + * @clk: Clock handle
+> + */
+> +struct xapm_param {
+> +	u32 mode;
+> +	u32 maxslots;
+> +	u32 eventcnt;
+> +	u32 eventlog;
+> +	u32 sampledcnt;
+> +	u32 numcounters;
+> +	u32 metricwidth;
+> +	u32 sampledwidth;
+> +	u32 globalcntwidth;
+> +	u32 scalefactor;
+> +	u32 isr;
+> +	bool is_32bit_filter;
+> +	struct clk *clk;
 
+You seem to copy this structure to hardware?  How?  This is not a
+definition of a proper hardware interface.  Or are you copying it to
+userspace?  If so, even worse!  This is not how to properly define such
+a structure at all.
+
+> +};
+> +
+> +/**
+> + * struct xapm_dev - Global driver structure
+> + * @info: uio_info structure
+> + * @param: xapm_param structure
+> + * @regs: IOmapped base address
+> + */
+> +struct xapm_dev {
+> +	struct uio_info info;
+> +	struct xapm_param param;
+> +	void __iomem *regs;
+> +};
+> +
+> +/**
+> + * xapm_handler - Interrupt handler for APM
+> + * @irq: IRQ number
+> + * @info: Pointer to uio_info structure
+> + *
+> + * Return: Always returns IRQ_HANDLED
+> + */
+> +static irqreturn_t xapm_handler(int irq, struct uio_info *info)
+> +{
+> +	struct xapm_dev *xapm = (struct xapm_dev *)info->priv;
+
+DO you need to cast?
+
+> +	void *ptr;
+> +
+> +	ptr = (unsigned long *)xapm->info.mem[1].addr;
+
+No need to cast.  And ptr is a void, not unsigned long *.
+
+> +	/* Clear the interrupt and copy the ISR value to userspace */
+> +	xapm->param.isr = readl(xapm->regs + XAPM_IS_OFFSET);
+> +	writel(xapm->param.isr, xapm->regs + XAPM_IS_OFFSET);
+> +	memcpy(ptr, &xapm->param, sizeof(struct xapm_param));
+
+Where did you just copy this memory to?
+
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +/**
+> + * xapm_getprop - Retrieves dts properties to param structure
+> + * @pdev: Pointer to platform device
+> + * @param: Pointer to param structure
+> + *
+> + * Returns: '0' on success and failure value on error
+> + */
+> +static int xapm_getprop(struct platform_device *pdev, struct xapm_param *param)
+> +{
+> +	u32 mode = 0;
+> +	int ret;
+> +	struct device_node *node;
+> +
+> +	node = pdev->dev.of_node;
+> +
+> +	/* Retrieve required dts properties and fill param structure */
+> +	ret = of_property_read_u32(node, "xlnx,enable-profile", &mode);
+> +	if (ret < 0)
+> +		dev_info(&pdev->dev, "no property xlnx,enable-profile\n");
+
+If it's an error, make it dev_err().  No need to be noisy otherwise.
+Same for all of these.
+
+> +	else if (mode)
+> +		param->mode = XAPM_MODE_PROFILE;
+> +
+> +	ret = of_property_read_u32(node, "xlnx,enable-trace", &mode);
+> +	if (ret < 0)
+> +		dev_info(&pdev->dev, "no property xlnx,enable-trace\n");
+> +	else if (mode)
+> +		param->mode = XAPM_MODE_TRACE;
+> +
+> +	ret = of_property_read_u32(node, "xlnx,num-monitor-slots",
+> +				   &param->maxslots);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,num-monitor-slots");
+
+Doesn't of_property_read_u32() print an error if it can not be found?
+Don't duplicate the message please.  Same for all of these.
+
+
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,enable-event-count",
+> +				   &param->eventcnt);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,enable-event-count");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,enable-event-log",
+> +				   &param->eventlog);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,enable-event-log");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,have-sampled-metric-cnt",
+> +				   &param->sampledcnt);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,have-sampled-metric-cnt");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,num-of-counters",
+> +				   &param->numcounters);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,num-of-counters");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,metric-count-width",
+> +				   &param->metricwidth);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,metric-count-width");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,metrics-sample-count-width",
+> +				   &param->sampledwidth);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property metrics-sample-count-width");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,global-count-width",
+> +				   &param->globalcntwidth);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,global-count-width");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "xlnx,metric-count-scale",
+> +				   &param->scalefactor);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "no property xlnx,metric-count-scale");
+> +		return ret;
+> +	}
+> +
+> +	param->is_32bit_filter = of_property_read_bool(node,
+> +						"xlnx,id-filter-32bit");
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * xapm_probe - Driver probe function
+> + * @pdev: Pointer to the platform_device structure
+> + *
+> + * Returns: '0' on success and failure value on error
+> + */
+> +
+
+Why the blank line?  Why the kernel doc for static functions?
+
+> +static int xapm_probe(struct platform_device *pdev)
+> +{
+> +	struct xapm_dev *xapm;
+> +	struct resource *res;
+> +	int irq;
+> +	int ret;
+> +	void *ptr;
+> +
+> +	xapm = devm_kzalloc(&pdev->dev, (sizeof(struct xapm_dev)), GFP_KERNEL);
+> +	if (!xapm)
+> +		return -ENOMEM;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	xapm->regs = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(xapm->regs)) {
+> +		dev_err(&pdev->dev, "unable to iomap registers\n");
+> +		return PTR_ERR(xapm->regs);
+> +	}
+> +
+> +	xapm->param.clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(xapm->param.clk)) {
+> +		if (PTR_ERR(xapm->param.clk) != -EPROBE_DEFER)
+> +			dev_err(&pdev->dev, "axi clock error\n");
+> +		return PTR_ERR(xapm->param.clk);
+> +	}
+> +
+> +	ret = clk_prepare_enable(xapm->param.clk);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Unable to enable clock.\n");
+> +		return ret;
+> +	}
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +	pm_runtime_set_active(&pdev->dev);
+> +	pm_runtime_enable(&pdev->dev);
+> +	/* Initialize mode as Advanced so that if no mode in dts, default
+> +	 * is Advanced
+> +	 */
+
+Odd commenting style, this isn't the network stack :)
+
+
+> +	xapm->param.mode = XAPM_MODE_ADVANCED;
+> +	ret = xapm_getprop(pdev, &xapm->param);
+> +	if (ret < 0)
+> +		goto err_clk_dis;
+> +
+> +	xapm->info.mem[0].name = "xilinx_apm";
+
+Not driver name?  Why have that #define then?
+
+> +	xapm->info.mem[0].addr = res->start;
+> +	xapm->info.mem[0].size = resource_size(res);
+> +	xapm->info.mem[0].memtype = UIO_MEM_PHYS;
+> +
+> +	xapm->info.mem[1].addr = (unsigned long)kzalloc(UIO_DUMMY_MEMSIZE,
+> +							GFP_KERNEL);
+> +	ptr = (unsigned long *)xapm->info.mem[1].addr;
+> +	xapm->info.mem[1].size = UIO_DUMMY_MEMSIZE;
+> +	xapm->info.mem[1].memtype = UIO_MEM_LOGICAL;
+> +
+> +	xapm->info.name = "axi-pmon";
+> +	xapm->info.version = DRV_VERSION;
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> +		dev_err(&pdev->dev, "unable to get irq\n");
+> +		ret = irq;
+> +		goto err_clk_dis;
+> +	}
+> +
+> +	xapm->info.irq = irq;
+> +	xapm->info.handler = xapm_handler;
+> +	xapm->info.priv = xapm;
+> +	xapm->info.irq_flags = IRQF_SHARED;
+> +
+> +	memcpy(ptr, &xapm->param, sizeof(struct xapm_param));
+
+Where did you just copy this to?
+
+> +
+> +	ret = uio_register_device(&pdev->dev, &xapm->info);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "unable to register to UIO\n");
+> +		goto err_clk_dis;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, xapm);
+> +
+> +	dev_info(&pdev->dev, "Probed Xilinx APM\n");
+
+Again, this should be quiet if all goes well, didn't I say that before?
+
+Finally, why do you need a UIO driver at all here?  Why can't the
+current ones work properly for you?
+
+thanks,
+
+greg k-h
