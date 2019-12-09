@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E95A116FB0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68219116FBD
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:56:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbfLIOxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 09:53:35 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:36664 "EHLO
+        id S1726677AbfLIO4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 09:56:02 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:36732 "EHLO
         perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725904AbfLIOxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:53:35 -0500
+        with ESMTP id S1726310AbfLIO4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:56:02 -0500
 Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D07A5DAD;
-        Mon,  9 Dec 2019 15:53:32 +0100 (CET)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id F1DB1B2C;
+        Mon,  9 Dec 2019 15:55:58 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1575903213;
-        bh=Q0OVJhjw7SZuhsekU9fG/W4V8dGuID7ElTtvVg2tjfI=;
+        s=mail; t=1575903359;
+        bh=vhHx1PjaeLJMGX9Xm/0FmdneX5UOPsaDKk1edME3V0E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fv4lpIeREWadJYjO759G72RPdXeU5ytjXx/ob10hZoTe/IswAGeDQLCHxUI4DX4Tt
-         tPlgWX51TCYGLR+dbgXIc4ZEPe+ngZdGMNcP0i/g8iawWiI0m71Fv7ci5WtugvivTl
-         8Tu1OQw3xhB28KH+8FSBX9B1XQUjhWiBXUruY6rc=
-Date:   Mon, 9 Dec 2019 16:53:26 +0200
+        b=KLmhXjwxkqST47lNHsRUzGQqrDVHkl3c+KEPg1zP3Ttm5HKzRD51bsx7fPcEoof5N
+         JkRhxfzbfdZyjwrPFyime4fUdMN//fdWye6bRsV+F6FR9CxaH6Yjbms1M9L5ujuLuG
+         xFBjXkFEh0fGG39k1yujz9Qv7wmaOuWNTRh9wa3Q=
+Date:   Mon, 9 Dec 2019 16:55:52 +0200
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To:     Hsin-Yi Wang <hsinyi@chromium.org>
 Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
@@ -38,15 +38,15 @@ Cc:     dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
         Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Matthias Brugger <mbrugger@suse.com>,
         Russell King <rmk+kernel@arm.linux.org.uk>
-Subject: Re: [PATCH RESEND 1/4] dt-bindings: drm/bridge: analogix-anx7688:
- Add ANX7688 transmitter binding
-Message-ID: <20191209145326.GC12841@pendragon.ideasonboard.com>
+Subject: Re: [PATCH RESEND 3/4] dt-bindings: drm/bridge: analogix-anx78xx:
+ support bypass GPIO
+Message-ID: <20191209145552.GD12841@pendragon.ideasonboard.com>
 References: <20191209145016.227784-1-hsinyi@chromium.org>
- <20191209145016.227784-2-hsinyi@chromium.org>
+ <20191209145016.227784-4-hsinyi@chromium.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20191209145016.227784-2-hsinyi@chromium.org>
+In-Reply-To: <20191209145016.227784-4-hsinyi@chromium.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -57,63 +57,82 @@ Hi Hsin-Yi,
 
 Thank you for the patch.
 
-On Mon, Dec 09, 2019 at 10:50:13PM +0800, Hsin-Yi Wang wrote:
-> From: Nicolas Boichat <drinkcat@chromium.org>
+On Mon, Dec 09, 2019 at 10:50:15PM +0800, Hsin-Yi Wang wrote:
+> Support optional feature: bypass GPIO.
 > 
-> Add support for analogix,anx7688
-> 
-> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> Some SoC (eg. mt8173) have a hardware mux that connects to 2 ports:
+> anx7688 and hdmi. When the GPIO is active, the bridge is bypassed.
+
+This doesn't look like the right place to fix this, as the mux is
+unrelated to the bridge. You would have to duplicate this logic in every
+bridge driver otherwise.
+
+Could you describe the hardware topology in a bit more details ? I can
+then try to advise on how to best support it.
+
 > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
->  .../bindings/display/bridge/anx7688.txt       | 32 +++++++++++++++++++
-
-How about converting this to yaml bindings already ? It's fairly simple
-and gives you DT validation.
-
->  1 file changed, 32 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/anx7688.txt
+>  .../bindings/display/bridge/anx7688.txt       | 40 ++++++++++++++++++-
+>  1 file changed, 39 insertions(+), 1 deletion(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/display/bridge/anx7688.txt b/Documentation/devicetree/bindings/display/bridge/anx7688.txt
-> new file mode 100644
-> index 000000000000..78b55bdb18f7
-> --- /dev/null
+> index 78b55bdb18f7..44185dcac839 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/anx7688.txt
 > +++ b/Documentation/devicetree/bindings/display/bridge/anx7688.txt
-> @@ -0,0 +1,32 @@
-> +Analogix ANX7688 SlimPort (Single-Chip Transmitter for DP over USB-C)
-> +---------------------------------------------------------------------
+> @@ -15,10 +15,13 @@ Required properties:
+>  Optional properties:
+>  
+>   - Video port for HDMI input, using the DT bindings defined in [1].
+> + - bypass-gpios        : External GPIO. If this GPIO is active, we assume
+> + the bridge is bypassed (e.g. by a mux).
+> + - pinctrl-0, pinctrl-names: the pincontrol settings to configure bypass GPIO.
+>  
+>  [1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+>  
+> -Example:
+> +Example 1:
+>  
+>  	anx7688: anx7688@2c {
+>  		compatible = "analogix,anx7688";
+> @@ -30,3 +33,38 @@ Example:
+>  			};
+>  		};
+>  	};
 > +
-> +The ANX7688 is a single-chip mobile transmitter to support 4K 60 frames per
-> +second (4096x2160p60) or FHD 120 frames per second (1920x1080p120) video
-> +resolution from a smartphone or tablet with full function USB-C.
+> +Example 2:
 > +
-> +This binding only describes the HDMI to DP display bridge.
+> +       anx7688: anx7688@2c {
+> +               compatible = "analogix,anx7688";
+> +               status = "okay";
+> +               reg = <0x2c>;
+> +               ddc-i2c-bus = <&hdmiddc0>;
 > +
-> +Required properties:
+> +               bypass-gpios = <&pio 36 GPIO_ACTIVE_HIGH>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&hdmi_mux_pins>;
 > +
-> + - compatible          : "analogix,anx7688"
-> + - reg                 : I2C address of the device (fixed at 0x2c)
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
 > +
-> +Optional properties:
+> +                       port@0 { /* input */
+> +                               reg = <0>;
 > +
-> + - Video port for HDMI input, using the DT bindings defined in [1].
+> +                               anx7688_in: endpoint {
+> +                                       remote-endpoint = <&hdmi_out_anx>;
+> +                               };
+> +                       };
 > +
-> +[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+> +                       port@1 { /* output */
+> +                               reg = <1>;
 > +
-> +Example:
+> +                               anx7688_out: endpoint {
+> +                                       remote-endpoint = <&hdmi_connector_in>;
+> +                               };
+> +                       };
+> +               };
+> +       };
 > +
-> +	anx7688: anx7688@2c {
-> +		compatible = "analogix,anx7688";
-> +		reg = <0x2c>;
-> +
-> +		port {
-> +			anx7688_in: endpoint {
-> +				remote-endpoint = <&hdmi0_out>;
-> +			};
-> +		};
-> +	};
-> -- 
-> 2.24.0.393.g34dc348eaf-goog
-> 
 
 -- 
 Regards,
