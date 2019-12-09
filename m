@@ -2,155 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25103116EE1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6228116F03
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2019 15:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727403AbfLIOZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Dec 2019 09:25:07 -0500
-Received: from mail-eopbgr770077.outbound.protection.outlook.com ([40.107.77.77]:49230
-        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727359AbfLIOZH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Dec 2019 09:25:07 -0500
-Received: from SN4PR0201CA0020.namprd02.prod.outlook.com
- (2603:10b6:803:2b::30) by BN6PR02MB2482.namprd02.prod.outlook.com
- (2603:10b6:404:55::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2516.12; Mon, 9 Dec
- 2019 14:25:05 +0000
-Received: from SN1NAM02FT063.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e44::201) by SN4PR0201CA0020.outlook.office365.com
- (2603:10b6:803:2b::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2516.12 via Frontend
- Transport; Mon, 9 Dec 2019 14:25:05 +0000
-Authentication-Results: spf=softfail (sender IP is 149.199.60.83)
- smtp.mailfrom=gmail.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=fail action=none header.from=gmail.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- gmail.com discourages use of 149.199.60.83 as permitted sender)
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- SN1NAM02FT063.mail.protection.outlook.com (10.152.72.213) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2495.26
- via Frontend Transport; Mon, 9 Dec 2019 14:25:05 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1ieJwo-0007qK-FV; Mon, 09 Dec 2019 06:23:38 -0800
-Received: from [127.0.0.1] (helo=xsj-smtp-dlp2.xlnx.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1ieJwj-0006oW-B1; Mon, 09 Dec 2019 06:23:33 -0800
-Received: from xsj-pvapsmtp01 (smtp-fallback.xilinx.com [149.199.38.66] (may be forged))
-        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id xB9ENWdJ017866;
-        Mon, 9 Dec 2019 06:23:32 -0800
-Received: from [10.140.6.59] (helo=xhdshubhraj40.xilinx.com)
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <shubhrajyoti.datta@gmail.com>)
-        id 1ieJwi-0006nz-2F; Mon, 09 Dec 2019 06:23:32 -0800
-From:   shubhrajyoti.datta@gmail.com
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     michal.simek@xilinx.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Subject: [PATCH v2 2/2] devicetree: bindings: Add the binding doc for xilinx APM
-Date:   Mon,  9 Dec 2019 19:53:25 +0530
-Message-Id: <1575901405-3084-2-git-send-email-shubhrajyoti.datta@gmail.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1575901405-3084-1-git-send-email-shubhrajyoti.datta@gmail.com>
-References: <1575901405-3084-1-git-send-email-shubhrajyoti.datta@gmail.com>
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-Result: No--6.273-7.0-31-1
-X-imss-scan-details: No--6.273-7.0-31-1;No--6.273-5.0-31-1
-X-TM-AS-User-Approved-Sender: No;No
-X-TM-AS-Result-Xfilter: Match text exemption rules:No
-X-EOPAttributedMessage: 0
-X-Matching-Connectors: 132203751052549827;(f9e945fa-a09a-4caa-7158-08d2eb1d8c44);()
-X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(376002)(396003)(346002)(39860400002)(136003)(189003)(199004)(9686003)(107886003)(81156014)(82202003)(4326008)(8936002)(86362001)(81166006)(70586007)(70206006)(8676002)(450100002)(316002)(2906002)(55446002)(36756003)(6666004)(356004)(498600001)(26005)(305945005)(9786002)(76482006)(2616005)(73392003)(336012)(5660300002)(426003)(42866002);DIR:OUT;SFP:1101;SCL:1;SRVR:BN6PR02MB2482;H:xsj-pvapsmtpgw01;FPR:;SPF:SoftFail;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+        id S1727268AbfLIOdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Dec 2019 09:33:00 -0500
+Received: from mail-pj1-f66.google.com ([209.85.216.66]:41292 "EHLO
+        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727038AbfLIOdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Dec 2019 09:33:00 -0500
+Received: by mail-pj1-f66.google.com with SMTP id ca19so5979967pjb.8
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2019 06:33:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uGbO5eA/EvkEthYW5iN8u16ydFfTV3nGR0kns1YSEq8=;
+        b=P+6OgH3wRjDpQ2U5Q0rrRheWAfDz6brjGOolhAYrfI+XHpr9AJQXkrzLt5mnTANHHe
+         6kjX5lrvWFn+Kzh7mCA2waxwenvqV2z7zOjWnVxPg5kZzDGIzdDBKdauuIKS687GFel4
+         lK7kd6xWyU7bCZUz7nx79DGRRGBGE8rneh8ccRlEgXlT9lqhlgFzNMThTeTMquZgkga1
+         77j618VNUcC6v9kkNAgOgrstKBJQc/7I2f1rcIHJiSrZfm+by5G7EgSWAtKROXXhSxqu
+         kN/3KOK/W8oKCvmZHZjenE/aAPytUZ0+q/o31lIBe87UNs4W3H4i0sbAltwNvF26dfMu
+         VmmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uGbO5eA/EvkEthYW5iN8u16ydFfTV3nGR0kns1YSEq8=;
+        b=nSqRqJhCgRTuMLH526CnlvCyGGaaQQQ4Jrnav1DrWprf4Iheu53ikIrb5nCD4dKLvG
+         hlJiOaqzYS8LfYtq68YLLRSBRWX7ZQGAFHXCV54hpPbTEyB9viO8/FI8Pp44xzek/RJA
+         FR2QMPLbQ+J0Oo3He+/vU9UrGwbzaPcuEai93yIEPWYHXxffru7PmpTyb4WBzd+EaUzs
+         9BWFA6+Sd8MDdodB0AwKj8ZeItsjmFAt1yPya6ZXstbVk4LTBFxOf12JWranlnN8//O8
+         j+PHEsbf5Y2KYgrIcX7Y+5aLM9/zQx86y9AqzyOWaxCPdDWXY/m7EfKAW0PPm3cug8um
+         8nCw==
+X-Gm-Message-State: APjAAAXTh9jaSBKawznWkV8vwEwSAdSe4OViP/lDhcyDBziwVJTrms1T
+        mmDT7CRZrVWh7oDEPj5PCec=
+X-Google-Smtp-Source: APXvYqy4RVacHM5VEz6sKAsm+VK1Q9vv8Q+gX/BUj6bRNoFploDMVpcSqufihDBKA8rygFotaghXYQ==
+X-Received: by 2002:a17:90b:8c6:: with SMTP id ds6mr18053912pjb.33.1575901980001;
+        Mon, 09 Dec 2019 06:33:00 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id h3sm12682121pfr.15.2019.12.09.06.32.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2019 06:32:58 -0800 (PST)
+Subject: Re: [PATCH 1/5] arm64: zynqmp: Add firmware DT node
+To:     "Edgar E. Iglesias" <edgar.iglesias@xilinx.com>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Edgar Iglesias <edgari@xilinx.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        Rajan Vaja <rajanv@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, qemu-devel@nongnu.org
+References: <20191018160735.15658-1-m.tretter@pengutronix.de>
+ <20191018160735.15658-2-m.tretter@pengutronix.de>
+ <20191208223814.GA21260@roeck-us.net>
+ <dbba2a25-cbf7-60f4-99f7-056512e28d00@xilinx.com>
+ <4821742f-2d60-b722-b954-263de975bf2e@roeck-us.net>
+ <20191209074840.GP32392@toto>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <d2e63acb-c076-7bfb-c492-0355ec106cbf@roeck-us.net>
+Date:   Mon, 9 Dec 2019 06:32:56 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7f39353d-0110-4d57-7c11-08d77cb395e5
-X-MS-TrafficTypeDiagnostic: BN6PR02MB2482:
-X-Microsoft-Antispam-PRVS: <BN6PR02MB248243FD0D3BFD1E278061CC87580@BN6PR02MB2482.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
-X-Forefront-PRVS: 02462830BE
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7ko+LpF7lVln+qf+9OCdrEQb8bT729BaPUuevIqd2Q6P7Y//d5dAXKO1dFbMjFJZTn0jHNVxK1ex4g6Hgymb/ttq8OA5SdVFBQuGbv5cW3cZaocrFHd5+wKkc3hzq8OtJEB1VuSgwNHX5clqEp51CH1PgBeRvNSHZsDi84lC5RnJ4LVsnihirsSvtKOFxl5kL47HqGeW/xanPKNaXSJulw51lVGjvqp4rq+VXmEY6FF1aSC06bhV9CBdnMqwsFVOceRmGxYul36Gj7vPo/V5JfwkaQfEsVjP8VXbkymw+ES9U+4uijv+vtftK4ey3dWxuFwkOqNq8k2p4VY2o7FP+UCEt3wrc3D4VSvNhWEdSQdGR6PDITEi2t8bcwtaWOqbw9i3X/ZLvh5XnRDEEMpBwYl8YXtE3Ca9FcGcGghsYLgzdYTWa7OYsKGUFbsafy48sPJIeYMm1qinVOtwzGpV7vnoBlQyKy/BwUsxK5wSum+0Y2Iw4OmkRoZACta9cZm5
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2019 14:25:05.0928
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f39353d-0110-4d57-7c11-08d77cb395e5
-X-MS-Exchange-CrossTenant-Id: 5afe0b00-7697-4969-b663-5eab37d5f47e
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=5afe0b00-7697-4969-b663-5eab37d5f47e;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB2482
+In-Reply-To: <20191209074840.GP32392@toto>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+On 12/8/19 11:48 PM, Edgar E. Iglesias wrote:
+> On Sun, Dec 08, 2019 at 11:19:33PM -0800, Guenter Roeck wrote:
+>> On 12/8/19 10:42 PM, Michal Simek wrote:
+>>> Hi, +Edgar
+>>>
+>>>
+>>> On 08. 12. 19 23:38, Guenter Roeck wrote:
+>>>> On Fri, Oct 18, 2019 at 06:07:31PM +0200, Michael Tretter wrote:
+>>>>> From: Rajan Vaja <rajan.vaja@xilinx.com>
+>>>>>
+>>>>> Add firmware DT node in ZynqMP device tree. This node
+>>>>> uses bindings as per new firmware interface driver.
+>>>>>
+>>>>> Signed-off-by: Rajan Vaja <rajanv@xilinx.com>
+>>>>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+>>>>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+>>>>
+>>>> With this patch applied in the mainline kernel, the qemu xlnx-zcu102
+>>>> emulation crashes (see below). Any idea what it might take to get
+>>>> qemu back to working ?
+>>>
+>>> Driver talks through ATF to PMU unit(microblaze). I don't think A53+MB
+>>> concept is working with mainline qemu. But crash is too hard. It should
+> 
+> Yes, QEMU doesn't support the Cortex-A53s along with the PMU MicroBlaze.
+> 
+> My workaround when using upstream QEMU is a modified DT without the PMU firmware
+> and with fixed-clock nodes.
+> 
 
-Add the devicetree binding for xilinx APM.
+I can't do that for my boot tests. Normally I would just disable ZYNQMP_FIRMWARE,
+but that is hard enabled with ARCH_ZYNQMP. I'll have to drop those tests,
+unfortunately, if the firmware driver is considered mandatory.
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
----
-v2:
-patch added
-
- .../devicetree/bindings/perf/xilinx_apm.txt        | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/xilinx_apm.txt
-
-diff --git a/Documentation/devicetree/bindings/perf/xilinx_apm.txt b/Documentation/devicetree/bindings/perf/xilinx_apm.txt
-new file mode 100644
-index 0000000..a11c82e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/xilinx_apm.txt
-@@ -0,0 +1,44 @@
-+* Xilinx AXI Performance monitor IP
-+
-+Required properties:
-+- compatible: "xlnx,axi-perf-monitor"
-+- interrupts: Should contain APM interrupts.
-+- interrupt-parent: Must be core interrupt controller.
-+- reg: Should contain APM registers location and length.
-+- xlnx,enable-profile: Enables the profile mode.
-+- xlnx,enable-trace: Enables trace mode.
-+- xlnx,num-monitor-slots: Maximum number of slots in APM.
-+- xlnx,enable-event-count: Enable event count.
-+- xlnx,enable-event-log: Enable event logging.
-+- xlnx,have-sampled-metric-cnt:Sampled metric counters enabled in APM.
-+- xlnx,num-of-counters: Number of counters in APM
-+- xlnx,metric-count-width: Metric Counter width (32/64)
-+- xlnx,metrics-sample-count-width: Sampled metric counter width
-+- xlnx,global-count-width: Global Clock counter width
-+- clocks: Input clock specifier.
-+
-+Optional properties:
-+- xlnx,id-filter-32bit: APM is in 32-bit mode
-+
-+Example:
-+++++++++
-+
-+apm: apm@44a00000 {
-+    compatible = "xlnx,axi-perf-monitor";
-+    interrupt-parent = <&axi_intc_1>;
-+    interrupts = <1 2>;
-+    reg = <0x44a00000 0x1000>;
-+    clocks = <&clkc 15>;
-+    xlnx,enable-profile = <0>;
-+    xlnx,enable-trace = <0>;
-+    xlnx,num-monitor-slots = <4>;
-+    xlnx,enable-event-count = <1>;
-+    xlnx,enable-event-log = <1>;
-+    xlnx,have-sampled-metric-cnt = <1>;
-+    xlnx,num-of-counters = <8>;
-+    xlnx,metric-count-width = <32>;
-+    xlnx,metrics-sample-count-width = <32>;
-+    xlnx,global-count-width = <32>;
-+    xlnx,metric-count-scale = <1>;
-+    xlnx,id-filter-32bit;
-+};
--- 
-2.1.1
-
+Guenter
