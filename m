@@ -2,98 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74264118991
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 14:24:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F337118A33
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 14:54:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727359AbfLJNYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 08:24:13 -0500
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:57637 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727061AbfLJNYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 08:24:12 -0500
-X-Originating-IP: 90.182.112.136
-Received: from localhost (136.112.broadband15.iol.cz [90.182.112.136])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 52D7960018;
-        Tue, 10 Dec 2019 13:24:06 +0000 (UTC)
-Date:   Tue, 10 Dec 2019 14:24:02 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, Lee Jones <lee.jones@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Jeff Kirsher <jeffrey.t.kirsher@intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Nicholas Mc Guire <hofrat@osadl.org>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v5 13/16] rtc: bd70528 add BD71828 support
-Message-ID: <20191210132402.GK1463890@piout.net>
-References: <cover.1574059625.git.matti.vaittinen@fi.rohmeurope.com>
- <648d09ab52fb125cab8d26dd13ef71dd4fd5f778.1574059625.git.matti.vaittinen@fi.rohmeurope.com>
+        id S1727131AbfLJNyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 08:54:52 -0500
+Received: from mga12.intel.com ([192.55.52.136]:51467 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727007AbfLJNyw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Dec 2019 08:54:52 -0500
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Dec 2019 05:54:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,299,1571727600"; 
+   d="scan'208";a="244853455"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga002.fm.intel.com with ESMTP; 10 Dec 2019 05:54:50 -0800
+Received: from andy by smile with local (Exim 4.93-RC7)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1iefyU-0003HI-24; Tue, 10 Dec 2019 15:54:50 +0200
+Date:   Tue, 10 Dec 2019 15:54:50 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kishon@ti.com, cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        peter.harliman.liem@intel.com, Ramuthevar@smile.fi.intel.com
+Subject: Re: [PATCH v7 2/2] phy: intel-lgm-emmc: Add support for eMMC PHY
+Message-ID: <20191210135450.GX32742@smile.fi.intel.com>
+References: <20191210025301.29551-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20191210025301.29551-3-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <648d09ab52fb125cab8d26dd13ef71dd4fd5f778.1574059625.git.matti.vaittinen@fi.rohmeurope.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20191210025301.29551-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Dec 10, 2019 at 10:53:01AM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> 
+> Add support for eMMC PHY on Intel's Lightning Mountain SoC.
 
-On 18/11/2019 09:00:47+0200, Matti Vaittinen wrote:
-> @@ -468,26 +596,35 @@ static int bd70528_probe(struct platform_device *pdev)
->  	 *  leave them enabled as irq-controller should disable irqs
->  	 *  from sub-registers when IRQ is disabled or freed.
->  	 */
-> -	ret = regmap_update_bits(mfd->regmap,
-> +	if (enable_main_irq) {
-> +		ret = regmap_update_bits(mfd->regmap,
->  				 BD70528_REG_INT_MAIN_MASK,
->  				 BD70528_INT_RTC_MASK, 0);
-> -	if (ret) {
-> -		dev_err(&pdev->dev, "Failed to enable RTC interrupts\n");
-> -		return ret;
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "Failed to enable RTC interrupts\n");
-> +			return ret;
-> +		}
->  	}
->  
->  	return rtc_register_device(rtc);
->  }
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 
-Missing blank line here.
+> Signed-off-by: Ramuthevar,Vadivel MuruganX <vadivel.muruganx.ramuthevar@linux.intel.com>
 
-> +static const struct platform_device_id bd718x7_rtc_id[] = {
-> +	{ "bd70528-rtc", ROHM_CHIP_TYPE_BD70528 },
-> +	{ "bd71828-rtc", ROHM_CHIP_TYPE_BD71828 },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(platform, bd718x7_rtc_id);
->  
-
-Else, Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Something wrong with the second SoB. And why you have two to begin with?
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+With Best Regards,
+Andy Shevchenko
+
+
