@@ -2,128 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ED4F11999A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 22:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35132119A78
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 22:59:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728690AbfLJVrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 16:47:17 -0500
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:40814 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729700AbfLJVrM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 16:47:12 -0500
-Received: by mail-pl1-f195.google.com with SMTP id g6so391827plp.7
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2019 13:47:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=iqFEfJ5VTHI7kv90uHb92Xkx2XtyoVgSFCJnm1RQLQU=;
-        b=EFHEE4npHM3CozjgfjX1aweI4Bpjv9tMkX7xoMDlYeDvYISZA1sB3lk/hc1BhVkwtP
-         dIuPZnj/E+ceF7h3Lg/s6mSR+sX02nUmEwnoilqX5KdbLwi4R8FOG1pyrZwWvIxQul4l
-         yDXbRQB8pTU8Q6o4BhW36BY/0LNhm55Qyx66I1fZVehSiVDY4Dy1hEe75GmrPHauDAn3
-         CYyTr50CFdq/4RtMbtJitPUhC98IGnL0uiQ87KciKaY12CPMslMMGAOlsmfy8DFhva2W
-         Z5IaHcTcHflle6A/9NHtMDvq0Kxrofj54cjqMwbMsl2tqxES0SWNEBT+iqIYuS5mhuYB
-         BTQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=iqFEfJ5VTHI7kv90uHb92Xkx2XtyoVgSFCJnm1RQLQU=;
-        b=HhKvmzb6f4LiQf+IPYsgIjoSPr8k7vR894qwlgGwbthxmsI0HNbt/nh8w+qXRH0G+x
-         Gf31OSYdSZgh7iCZvZM59ldXtqpkbRvudpUZgOF9hIwu/kPwbXhfDQ7mQG1WCXzgF9ky
-         UgABacdNkuN1m+Lz0xWgpTOrNj0SqnEIeTe7nw/Ct+OJdJWxEz4LstSNkfHtTTo3xRb1
-         087d3uEFhJf4ZuT9JwG4Xnu1BJNKlAWJ+zr85P4HykEU5IS/V+9iGMeITYAcOny03TNH
-         ghR5u4FXB/yEZWe1vDB0M9YDkLmtdVDRzefjszEtfQ5DGd+8xUKkRPO0atT2b/SDxuZu
-         TjOg==
-X-Gm-Message-State: APjAAAX9sL4enc72bvyIa1UIPZY5nPyqOYAslIp5jM7UkWjumU874aO1
-        LCJPLBkArVedBUVtM/4DZy8vMZOKpwel3Q==
-X-Google-Smtp-Source: APXvYqyWouSgn/WCq+jtqr4txQVR8xZ2GAJa0L6IdvZrZdsbAFw3Sl3H8rvTIGgfc48jOCynsAqafw==
-X-Received: by 2002:a17:90a:86c7:: with SMTP id y7mr7936504pjv.102.1576014431457;
-        Tue, 10 Dec 2019 13:47:11 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id z1sm4338pfk.61.2019.12.10.13.47.10
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 10 Dec 2019 13:47:10 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Anand Moon <linux.amoon@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
-In-Reply-To: <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
-References: <20191101143126.2549-1-linux.amoon@gmail.com> <7hfthtrvvv.fsf@baylibre.com> <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com> <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com> <7hfthsqcap.fsf@baylibre.com> <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
-Date:   Tue, 10 Dec 2019 13:47:09 -0800
-Message-ID: <7hpngvontu.fsf@baylibre.com>
+        id S1726714AbfLJV6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 16:58:34 -0500
+Received: from muru.com ([72.249.23.125]:44922 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726417AbfLJV6e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Dec 2019 16:58:34 -0500
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id DF892820B;
+        Tue, 10 Dec 2019 21:59:12 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Jean Pihet <jean.pihet@newoldbits.com>
+Subject: [PATCH 1/2] ARM: dts: Configure interconnect target module for am4 qspi
+Date:   Tue, 10 Dec 2019 13:58:30 -0800
+Message-Id: <20191210215831.6199-1-tony@atomide.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+We can now probe devices with device tree only configuration using
+ti-sysc interconnect target module driver. Let's configure the
+module, but keep the legacy "ti,hwmods" peroperty to avoid new boot
+time warnings. The legacy property will be removed in later patches
+together with the legacy platform data.
 
-> On Tue, Dec 10, 2019 at 7:13 PM Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Anand Moon <linux.amoon@gmail.com> writes:
->>
->> > Hi Neil / Kevin,
->> >
->> > On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
->> >>
->> >> On 09/12/2019 23:12, Kevin Hilman wrote:
->> >> > Anand Moon <linux.amoon@gmail.com> writes:
->> >> >
->> >> >> Some how this patch got lost, so resend this again.
->> >> >>
->> >> >> [0] https://patchwork.kernel.org/patch/11136545/
->> >> >>
->> >> >> This patch enable DVFS on GXBB Odroid C2.
->> >> >>
->> >> >> DVFS has been tested by running the arm64 cpuburn
->> >> >> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
->> >> >> PM-QA testing
->> >> >> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
->> >> >>
->> >> >> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
->> >> >
->> >> > Have you tested with the Harkernel u-boot?
->> >> >
->> >> > Last I remember, enabling CPUfreq will cause system hangs with the
->> >> > Hardkernel u-boot because of improperly enabled frequencies, so I'm not
->> >> > terribly inclined to merge this patch.
->> >
->> > HK u-boot have many issue with loading the kernel, with load address
->> > *it's really hard to build the kernel for HK u-boot*,
->> > to get the configuration correctly.
->> >
->> > Well I have tested with mainline u-boot with latest ATF .
->> > I would prefer mainline u-boot for all the Amlogic SBC, since
->> > they sync with latest driver changes.
->>
->> Yes, we would all prefer mainline u-boot, but the mainline kernel needs
->> to support the vendor u-boot that is shipping with the boards.  So
->> until Hardkernel (and other vendors) switch to mainline u-boot we do not
->> want to have upstream kernel defaults that will not boot with the vendor
->> u-boot.
->>
->> We can always support these features, but they just cannot be enabled
->> by default.
-> (I don't have an Odroid-C2 but I'm curious)
-> should Anand submit a patch to mainline u-boot instead?
+Cc: Jean Pihet <jean.pihet@newoldbits.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm/boot/dts/am4372.dtsi | 38 ++++++++++++++++++++++++++---------
+ 1 file changed, 28 insertions(+), 10 deletions(-)
 
-It would be in addition to $SUBJECT patch, not instead, I think.
-
-> the &scpi_clocks node could be enabled at runtime by mainline u-boot
-
-That would work, but I don't know about u-boot maintainers opinions on
-this kind of thing, so let's see what Neil thinks.
-
-Kevin
-
-
+diff --git a/arch/arm/boot/dts/am4372.dtsi b/arch/arm/boot/dts/am4372.dtsi
+--- a/arch/arm/boot/dts/am4372.dtsi
++++ b/arch/arm/boot/dts/am4372.dtsi
+@@ -305,17 +305,35 @@ gpmc: gpmc@50000000 {
+ 			status = "disabled";
+ 		};
+ 
+-		qspi: spi@47900000 {
+-			compatible = "ti,am4372-qspi";
+-			reg = <0x47900000 0x100>,
+-			      <0x30000000 0x4000000>;
+-			reg-names = "qspi_base", "qspi_mmap";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
++		target-module@47900000 {
++			compatible = "ti,sysc-omap4", "ti,sysc";
+ 			ti,hwmods = "qspi";
+-			interrupts = <0 138 0x4>;
+-			num-cs = <4>;
+-			status = "disabled";
++			reg = <0x47900000 0x4>,
++			      <0x47900010 0x4>;
++			reg-names = "rev", "sysc";
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>,
++					<SYSC_IDLE_SMART_WKUP>;
++			clocks = <&l3s_clkctrl AM4_L3S_QSPI_CLKCTRL 0>;
++			clock-names = "fck";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0x47900000 0x1000>,
++				 <0x30000000 0x30000000 0x4000000>;
++
++			qspi: spi@0 {
++				compatible = "ti,am4372-qspi";
++				reg = <0 0x100>,
++				      <0x30000000 0x4000000>;
++				reg-names = "qspi_base", "qspi_mmap";
++				clocks = <&dpll_per_m2_div4_ck>;
++				clock-names = "fck";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupts = <0 138 0x4>;
++				num-cs = <4>;
++			};
+ 		};
+ 
+ 		dss: dss@4832a000 {
+-- 
+2.24.0
