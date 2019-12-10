@@ -2,83 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92C93118407
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 10:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FC941183EF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 10:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727469AbfLJJvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 04:51:21 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:33149 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727502AbfLJJvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 04:51:20 -0500
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iecAm-0007SC-FR; Tue, 10 Dec 2019 10:51:16 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1iecAl-00040m-NJ; Tue, 10 Dec 2019 10:51:15 +0100
-Date:   Tue, 10 Dec 2019 10:51:15 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        robh+dt@kernel.org, support.opensource@diasemi.com,
-        Adam.Thomson.Opensource@diasemi.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Add DA9062 GPIO support
-Message-ID: <20191210095115.kxvm7elfkiw2kdem@pengutronix.de>
-References: <20191129165817.20426-1-m.felsch@pengutronix.de>
+        id S1727149AbfLJJuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 04:50:50 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37864 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726574AbfLJJuu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 04:50:50 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBA9odiL055607;
+        Tue, 10 Dec 2019 03:50:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1575971439;
+        bh=3/2/4TqPWi9y2MRMMJxSgZoD8FE5fToV9VA4meBh3OA=;
+        h=From:To:CC:Subject:Date;
+        b=Q8dAHncSrM3uAXx+oqmTTbaP2ZM5fvhRt4JtSZEqGol6IwcOqZPp/qoBlDx7vIOhy
+         6zY1XNZTbZnHKMI6e7YF6hulKH24u7KAUbJo7EKBlzQyObS2KncALKfEFMZfoNqGLr
+         4UBZgD2MzPUBTYyTStApIt+MznIqqof6lUqJoYvg=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBA9odNO018132
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 10 Dec 2019 03:50:39 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 10
+ Dec 2019 03:50:39 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 10 Dec 2019 03:50:39 -0600
+Received: from a0230074-OptiPlex-7010.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBA9oZVj048503;
+        Tue, 10 Dec 2019 03:50:36 -0600
+From:   Faiz Abbas <faiz_abbas@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>
+CC:     <kishon@ti.com>, <adrian.hunter@intel.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <ulf.hansson@linaro.org>,
+        <zhang.chunyan@linaro.org>, <tony@atomide.com>
+Subject: [PATCH v3 0/7] Port am335 and am437 devices to sdhci-omap
+Date:   Tue, 10 Dec 2019 15:21:44 +0530
+Message-ID: <20191210095151.15441-1-faiz_abbas@ti.com>
+X-Mailer: git-send-email 2.19.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191129165817.20426-1-m.felsch@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:50:51 up 25 days,  1:09, 33 users,  load average: 0.14, 0.06,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The following add driver patches for porting TI's am335x and am437x
+devices to the sdhci-omap driver.
 
-gentle ping.
+This involves adding external DMA support to sdhci (first 3 patches from
+Chunyan) plus some miscellaneous patches to take care of deviations of
+the controllers from the sdhci model.
 
-Regards,
-  Marco
+DT changes will be posted in a separate series.
 
-On 19-11-29 17:58, Marco Felsch wrote:
-> Hi,
-> 
-> this update address all comments made on [1], for further details see
-> the patch based changelog.
-> 
-> [1] https://patchwork.ozlabs.org/cover/1201549/
-> 
-> Marco Felsch (3):
->   dt-bindings: mfd: da9062: add gpio bindings
->   mfd: da9062: add support for the DA9062 GPIOs in the core
->   pinctrl: da9062: add driver support
-> 
->  .../devicetree/bindings/mfd/da9062.txt        |  10 +
->  MAINTAINERS                                   |   1 +
->  drivers/mfd/da9062-core.c                     |  16 +-
->  drivers/pinctrl/Kconfig                       |  12 +
->  drivers/pinctrl/Makefile                      |   1 +
->  drivers/pinctrl/pinctrl-da9062.c              | 297 ++++++++++++++++++
->  6 files changed, 336 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/pinctrl/pinctrl-da9062.c
-> 
-> -- 
-> 2.20.1
-> 
+Untested versions of Chunyan's patches were posted before[1].
+
+Tested on: am335x-evm, am335x-boneblack, am335x-sk, am437x-gpevm,
+am43xx-gpevm, am437x-idk, dra7xx-evm, dra72x-evm.
+
+I need some help with testing all the other beaglebone variants and SDIO
+Wifi cards.
+
+v3:
+1. Dropped patch 1 because the tasklet was removed by Adrian in an
+   earlier series.
+2. Added dma bindings in sdhci-omap as optional properties.
+3. Rebased on top of latest mainline.
+
+v2:
+1. sdhci is using two bottom halves. One threaded_rq for card detect and a
+   tasklet for finishing mmc requests. Patch 1 removes the tasklet and
+   moves its function to the threaded_irq. This enables me to
+   terminate_sync() in sdhci_request_done()
+
+2. Factored out common code for between the normal adn external dma case
+
+3. Using existing API sdhci_data_timeout_irq for disabling DTO during
+   erase commands.
+
+4. Fixed subject line for dt-bindings patch.
+
+[1] https://patchwork.kernel.org/project/linux-mmc/list/?series=54897
+
+
+Chunyan Zhang (3):
+  dt-bindings: sdhci-omap: Add properties for using external dma
+  mmc: sdhci: add support for using external DMA devices
+  mmc: sdhci-omap: Add using external dma
+
+Faiz Abbas (4):
+  mmc: sdhci: Add quirk for disabling DTO during erase command
+  mmc: sdhci-omap: Add DISABLE_DTO_FOR_ERASE Quirk
+  dt-bindings: sdhci-omap: Add am335x and am437x specific bindings
+  mmc: sdhci-omap: Add am335x and am437x specific compatibles
+
+ .../devicetree/bindings/mmc/sdhci-omap.txt    |  11 +
+ drivers/mmc/host/Kconfig                      |   4 +
+ drivers/mmc/host/sdhci-omap.c                 |  27 +-
+ drivers/mmc/host/sdhci.c                      | 290 ++++++++++++++++--
+ drivers/mmc/host/sdhci.h                      |  10 +
+ 5 files changed, 313 insertions(+), 29 deletions(-)
+
+-- 
+2.19.2
+
