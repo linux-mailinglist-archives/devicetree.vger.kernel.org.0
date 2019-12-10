@@ -2,138 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADD8511914F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 21:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7418A119160
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 21:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbfLJUAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 15:00:34 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:44551 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726691AbfLJUAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 15:00:33 -0500
-Received: by mail-wr1-f65.google.com with SMTP id q10so21512019wrm.11;
-        Tue, 10 Dec 2019 12:00:32 -0800 (PST)
+        id S1726500AbfLJUBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 15:01:39 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:43332 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726598AbfLJUBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 15:01:39 -0500
+Received: by mail-wr1-f68.google.com with SMTP id d16so21492705wre.10;
+        Tue, 10 Dec 2019 12:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+xeCGefpGQy2sjgNGOl+Y50d//RwjlVI7sRbqcHrAp4=;
-        b=BiS1cDh+P9bCWW2ka7NcIQDHU99Kn5O7ZAiRBjLegvHkYyubb9sankMnNyOIadKGtj
-         sipBJHj72DaqrBpuSGE2i1gnbMh+2SPZWmzWWn7kvwwtXAftCIp+/Dy0TFdbAPNB3nap
-         uz0VMQlUU5KpSY0lSU8FRmcC9eL2PfqFKvV4GMf/TaUxKkF7km3Z/NqrhCLSVeittWVO
-         C890+Y3XjK2L1aa5Lr40eSOdznCUEt7P4HhBWwNRcK/wziGaudjuvXmARbN6ukznGH3y
-         9MjTcMUFVHBhu4uWmjeD0UgYLDKKM0txxMrfChn8EjPe5YgrrI+D1xsL6q4kmV95R0mT
-         XQKg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Po2VpYcFa8arMmQElIzg8ts/l2BOi8KtBQ9ifjUcxhc=;
+        b=GDFNbiRDmc/Dx0anO4WL3fjzLKs4732xpj4XHB1kaCfw7QsLKpI10VoQDGfsh8nYqQ
+         wVjdpXxOYoAzgmBUZ7qUpXK9DgZUl3bLqEL+pAXpJGN7YT1im/AoyqxEtD3ZSVFVKVnK
+         ilvtCk704/3OakKf0M6cB8BX/qe17kuJ4WrGZtOH2gZF3thtRkp9hj6r2Gx4VSGAOvB5
+         mCy2ry3zZYZG4JyRoOawymXy1CHXIGnzK/DwTK2bFVZsjwFOIlLxJdUbfj4UbXvfan8k
+         pRuWw0NpEcV/lbv2SAfQXORb2keGKJHFF/drxsM9kcquS5ZeV4kFhJ1FpMF+BlvD5pxK
+         JDdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+xeCGefpGQy2sjgNGOl+Y50d//RwjlVI7sRbqcHrAp4=;
-        b=I1TNV5wFx7nHjzxdU85PMM8f1eH78WBrFkrfCUN9DEkiL+00jiete0QlwCio7LJerO
-         8udowyHpZVC+Z4EWpZPTlBmbuaX2Gyod/8nyc20iaUt1pyU9H8MsaK68BeC8xUedLZUL
-         pgLon5TliCh6k0rBlt3o0v/f0pZPKmEeq3Ycsrent/5BGS7CBKZQMU2ffQd2nqS/SyX6
-         sn9C9XEk7HpoXrGG8bG6PeWEecHnRzjv4EQ5n1AO/ueTSNsRWIYJRqJspLM3BahYldOb
-         BY/6PQeFqwNsss2TpJCvIIEndwRrVhOqHEXN7EzULPfjfUoJ/uqkRJUTaw1nAa0MjO6V
-         lyug==
-X-Gm-Message-State: APjAAAVu8gxpz//kpvKVJAYxmChiEatua0XORFuyYqiSLC0Eh3dAqySS
-        MitMj+6kEFQ1q/lH5vGgkV0=
-X-Google-Smtp-Source: APXvYqzpu8OOo+U+YwFj7SHZFDBR48BOqfZIl7wVK/FMuNySRzX9p5e7U6/uTahIjSPirfINT95Mrw==
-X-Received: by 2002:adf:9c8f:: with SMTP id d15mr1530407wre.390.1576008031386;
-        Tue, 10 Dec 2019 12:00:31 -0800 (PST)
-Received: from localhost.localdomain (p200300F1371AD700428D5CFFFEB99DB8.dip0.t-ipconnect.de. [2003:f1:371a:d700:428d:5cff:feb9:9db8])
-        by smtp.googlemail.com with ESMTPSA id t81sm4428610wmg.6.2019.12.10.12.00.29
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Po2VpYcFa8arMmQElIzg8ts/l2BOi8KtBQ9ifjUcxhc=;
+        b=S9DGKAhk9p1zOIMgQwvC9QI5MbjsEzO9XzdHIR7urtLcZEsAk9q5Ok/L34dtX8TbQ5
+         qRLiXIlP3sXdMAAs6Yi+MsQTpFMV6G3gzCw/RDQQvGlu6YL8lbEon40uLASjshiipmBF
+         ORdpanvPjTXFWPWRe0vFPk9ILKlldf5sLaC7WOLnNAZbx4cODLVKCYOkrWZjHAOWPNKT
+         lHUxL4yYrnkw1n1pC4Y7nay/ADvot47ERRQk3MnbdoBtdrsk/QWhZX5Bhx7mXylCePJf
+         8nOL+KsmY1V0yrb33Nl/ja5vxrV0CRuRiQFem6vM+7QY659KGXO2Ee7VT5zVXP1w13j5
+         9LUQ==
+X-Gm-Message-State: APjAAAVwKoWDHCw4I8Hy5mBI/V/K6YHVvL9TZKTAV9bv4gReytUGxZDN
+        2o55cxVzgwLMIkRrCthXhwW100xF
+X-Google-Smtp-Source: APXvYqzHTERxcshg/vkN601hSQ1Og9RLmRmiJZXYHOg0oIRC+4FLYahrnRQMGu9ST/L2H0XnpS9jwg==
+X-Received: by 2002:adf:e812:: with SMTP id o18mr5050154wrm.127.1576008096684;
+        Tue, 10 Dec 2019 12:01:36 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id z6sm4352255wmz.12.2019.12.10.12.01.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2019 12:00:30 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org, ulf.hansson@linaro.org
-Cc:     robh+dt@kernel.org, jianxin.pan@amlogic.com, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        lnykww@gmail.com, yinxin_1989@aliyun.com,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 0/2] Amlogic 32-bit Meson SoC SDHC MMC controller driver
-Date:   Tue, 10 Dec 2019 21:00:20 +0100
-Message-Id: <20191210200022.29696-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.24.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Tue, 10 Dec 2019 12:01:35 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
+        ARCHITECTURE),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
+        ARM ARCHITECTURE), Jim Quinlan <jim2101024@gmail.com>
+Subject: [PATCH 0/2] reset: Add Broadcom STB RESCAL reset controller
+Date:   Tue, 10 Dec 2019 11:59:01 -0800
+Message-Id: <20191210195903.24127-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Philipp,
 
-this is the first non-RFC version of the driver for the Amlogic "SDHC"
-MMC controller found on Meson6, Meson8, Meson8b and Meson8m2 SoCs.
+This patch series adds support for the BCM7216 RESCAL reset controller
+which is necessary to initialize SATA and PCIe0/1 on that chip.
 
-The public S805 (Meson8b) datasheet has some documentation starting on
-page 74: [0]
+Please let us know if you have any comments. Thanks!
 
-It's performance is still not as good as the driver from Amlogic's 3.10
-kernel, but it does not corrupt data anymore (as RFC v1 did).
+Jim Quinlan (2):
+  dt-bindings: reset: Document BCM7216 RESCAL reset controller
+  reset: Add Broadcom STB RESCAL reset controller
 
-Special thanks to the people who supported me off-list - you are
-amazing and deserve to be mentioned here:
-- Xin Yin who helped me fix two more write corruption problems. I am
-  hoping that he will reply with Reviewed-by, Tested-by and Bug-fixed-by
-- Jianxin Pan for sharing some of the internal workings of this MMC
-  controller with me
-- Wei Wang for spotting the initial write corruption problem and helping
-  test this driver on his board. I have his permission to add his
-  Tested-by (off-list, he's Cc'ed so if there's any problem he can speak
-  up)
-
-
-Changes since v2 at [2]:
-- rebased on top of v5.5-rc1
-- added Rob's and Xin Yin's Reviewed-by and Tested-by (thank you!)
-- (note: Kevin had v2 of this series in -next for a few days so the
-   build test robots could play with it. I haven't received any negative
-   feedback in that time)
-
-Changes since RFC v1 at [1]:
-- don't set MESON_SDHC_MISC_MANUAL_STOP to fix one of three write
-  corruption problems. the out-of-tree 3.10 "reference" driver doesn't
-  set it either
-- check against data->flags instead of cmd->flags when testing for
-  MMC_DATA_WRITE as spotted by Xin Yin (many thanks!). This fixes
-  another write corruption problem
-- clear the FIFOs after successfully transferring data as suggested by
-  Xin Yin (many thanks!). This is what the 3.10 driver did and fixes yet
-  another write corruption problem
-- integrate the clock suggestions from Jianxin Pan so the driver is now
-  able to set up the clocks correctly for all known cases. documentation
-  is also added to the patch description. Thank you Jianxin for the
-  help!
-- set the correct max_busy_timeout as suggested by Jianxin Pan (thanks!)
-- convert the dt-bindings to .yaml (which is why I didn't add Rob's
-  Reviewed-by)
-- switch to struct clk_parent_data as part of newer common clock
-  framework APIs to simplify the clock setup
-- dropped CMD23 support because it seems to hurt read and write
-  performance by 10-20% in my tests. it's not clear why, but for now we
-  can live without this.
-- use devm_platform_ioremap_resource instead of open-coding it
-
-
-[0] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-[1] https://patchwork.kernel.org/cover/11035505/
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2019-November/014576.html
-
-
-Martin Blumenstingl (2):
-  dt-bindings: mmc: Document the Amlogic Meson SDHC MMC host controller
-  mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host
-
- .../bindings/mmc/amlogic,meson-mx-sdhc.yaml   |   64 +
- drivers/mmc/host/Kconfig                      |   14 +
- drivers/mmc/host/Makefile                     |    1 +
- drivers/mmc/host/meson-mx-sdhc.c              | 1174 +++++++++++++++++
- 4 files changed, 1253 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
- create mode 100644 drivers/mmc/host/meson-mx-sdhc.c
+ .../reset/brcm,bcm7216-pcie-sata-rescal.txt   |  26 ++++
+ drivers/reset/Kconfig                         |   7 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-brcmstb-rescal.c          | 124 ++++++++++++++++++
+ 4 files changed, 158 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm7216-pcie-sata-rescal.txt
+ create mode 100644 drivers/reset/reset-brcmstb-rescal.c
 
 -- 
-2.24.0
+2.17.1
 
