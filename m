@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CFB1119CB0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 23:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D56E1119E9E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 23:54:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728188AbfLJWcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 17:32:43 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:33624 "EHLO gloria.sntech.de"
+        id S1727370AbfLJWyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 17:54:39 -0500
+Received: from muru.com ([72.249.23.125]:44978 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728109AbfLJWcm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Dec 2019 17:32:42 -0500
-Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1ieo3b-0001KO-MX; Tue, 10 Dec 2019 23:32:39 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
-Cc:     dianders@chromium.org, linux-bluetooth@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/1] ARM: dts: rockchip: Add brcm bluetooth for rk3288-veyron
-Date:   Tue, 10 Dec 2019 23:32:38 +0100
-Message-ID: <4093066.yl7jOIBBcd@phil>
-In-Reply-To: <20191127223909.253873-2-abhishekpandit@chromium.org>
-References: <20191127223909.253873-1-abhishekpandit@chromium.org> <20191127223909.253873-2-abhishekpandit@chromium.org>
+        id S1727257AbfLJWyj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Dec 2019 17:54:39 -0500
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 3E52D820B;
+        Tue, 10 Dec 2019 22:55:17 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Tero Kristo <t-kristo@ti.com>
+Subject: [PATCH 0/6] Probe omap4 crypt accelerators with ti-sysc
+Date:   Tue, 10 Dec 2019 14:54:27 -0800
+Message-Id: <20191210225433.2720-1-tony@atomide.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 27. November 2019, 23:39:09 CET schrieb Abhishek Pandit-Subedi:
-> This enables the Broadcom uart bluetooth driver on uart0 and gives it
-> ownership of its gpios. In order to use this, you must enable the
-> following kconfig options:
-> - CONFIG_BT_HCIUART_BCM
-> - CONFIG_SERIAL_DEV
-> 
-> This is applicable to rk3288-veyron series boards that use the bcm43540
-> wifi+bt chips.
-> 
-> As part of this change, also refactor the pinctrl across the various
-> boards. All the boards using broadcom bluetooth shouldn't touch the
-> bt_dev_wake pin.
-> 
-> Signed-off-by: Abhishek Pandit-Subedi <abhishekpandit@chromium.org>
+Hi,
 
-applied for 5.6 with Matthias' Rb.
+This series updates omap4 crypto accelerators to probe with ti-sysc.
 
-Thanks
-Heiko
+Note that this series depends on the following series:
+
+[PATCH 0/5] Clock changes needed to probe rng on omap4 and 5
+
+Regards,
+
+Tony
 
 
+Tony Lindgren (6):
+  ARM: dts: Configure interconnect target module for omap4 sham
+  ARM: dts: Configure interconnect target module for omap4 aes
+  ARM: dts: Configure interconnect target module for omap4 des
+  ARM: OMAP2+: Drop legacy platform data for omap4 aes
+  ARM: OMAP2+: Drop legacy platform data for omap4 sham
+  ARM: OMAP2+: Drop legacy platform data for omap4 des
+
+ arch/arm/boot/dts/omap4-l4.dtsi            |  29 +++++
+ arch/arm/boot/dts/omap4.dtsi               | 110 ++++++++++++-----
+ arch/arm/mach-omap2/omap_hwmod_44xx_data.c | 135 ---------------------
+ 3 files changed, 109 insertions(+), 165 deletions(-)
+
+-- 
+2.24.0
