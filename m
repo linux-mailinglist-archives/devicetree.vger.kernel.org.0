@@ -2,98 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D188A119244
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 21:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08E23119A64
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 22:53:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726100AbfLJUlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 15:41:20 -0500
-Received: from mail-io1-f68.google.com ([209.85.166.68]:42766 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726187AbfLJUlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 15:41:20 -0500
-Received: by mail-io1-f68.google.com with SMTP id f82so20265238ioa.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2019 12:41:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wFg8ZEWJIN7vey53mkr4mIFmYCyQyvthzeZbaGJwPkw=;
-        b=a6cnK+73982+3Kq5xHFk7AV6S2kIJzbXAeQjdiuU/quDeRHtvjScGn9NdiBzAl+ehr
-         YObqKIw+0lJPMEvJ2S4WKhnhjyPdQmeaAfUXnzZrpkSItd5rvp+KOq19FUd9FR3Xc07s
-         PSqfT0D1aQ/Apqo1M8znUmPBZWMMbjplC9MMQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wFg8ZEWJIN7vey53mkr4mIFmYCyQyvthzeZbaGJwPkw=;
-        b=TZA6FMFQLMz1GCAlDfUDG11gvXcyvIXRrbEhJH9FBnVNyuYEAcug1L4nH8iotHnng6
-         f3Vl3Ej+1EvTCWltVETzFXw7kywWMy9DlB3DUsaTq6HdRSywahwMKfmPmbJtbPcCc6SJ
-         7gZkYAzd0Y+qp3U5s+pNi6Vq67jesmra80X7M3Q/nRm3bzLEdleP1pxEQXkMwm9mdOzn
-         Yne0lyGcWuuG9/o6APZI2bADEO3K7IzM7EICvsBzMcBMRK52ttVMekj0moEIsKW+5JaQ
-         0tNLB02QmIJqd0TVoGWFOW4eu8hnS7EnuaqbfU1rhTCzthlMS8IKLe8vP9qQvqULuOY6
-         A6Zg==
-X-Gm-Message-State: APjAAAWbWJsD4CY6PUoQ+5lhom0w/MSViQVXBIYRAMG7Q2zzmRle/LKx
-        X34wl/J/QXiv7RhDWjFzyneVVsc71Xc=
-X-Google-Smtp-Source: APXvYqyAGkhy+Dtq3ExUyqrN5iFK6hPD76Y/BpVkxvbp+VjGcTjPLxgPGYSEpxYs4+lkFiV+b2pblw==
-X-Received: by 2002:a02:742:: with SMTP id f63mr34595036jaf.138.1576010479495;
-        Tue, 10 Dec 2019 12:41:19 -0800 (PST)
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com. [209.85.166.43])
-        by smtp.gmail.com with ESMTPSA id v21sm945072ios.69.2019.12.10.12.41.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2019 12:41:17 -0800 (PST)
-Received: by mail-io1-f43.google.com with SMTP id s2so20252543iog.10
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2019 12:41:17 -0800 (PST)
-X-Received: by 2002:a6b:be84:: with SMTP id o126mr25960550iof.269.1576010477101;
- Tue, 10 Dec 2019 12:41:17 -0800 (PST)
+        id S1727414AbfLJVHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 16:07:45 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54190 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727335AbfLJVHo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Dec 2019 16:07:44 -0500
+Received: from localhost (mobile-166-170-223-177.mycingular.net [166.170.223.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C86E82467E;
+        Tue, 10 Dec 2019 21:07:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1576012064;
+        bh=2ykNyvGZMJo7g3XX2Ffo2Sm4t/OZWneo6t2EKj0O0vs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=tiZ5TXWGgfMMcgH1qAGW16vBSyFbf8QVFgba/3MyF+aPuDTbo4hJyiKvDLa/T3dHf
+         QC17RvTnsNWgjsiKExbDTckPZJk/RCI/j1M9mCOmDjgARxC0K8V6pKEybDPhvvojm+
+         0dNknNsvmHuDSPRrzN1/QfLHPNP0Fm1IwVXvM5HU=
+Date:   Tue, 10 Dec 2019 15:07:41 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, joro@8bytes.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
+        will@kernel.org, robin.murphy@arm.com, eric.auger@redhat.com,
+        jonathan.cameron@huawei.com, zhangfei.gao@linaro.org
+Subject: Re: [PATCH v3 12/13] PCI/ATS: Add PASID stubs
+Message-ID: <20191210210741.GA143420@google.com>
 MIME-Version: 1.0
-References: <20191108092824.9773-1-rnayak@codeaurora.org> <20191108092824.9773-14-rnayak@codeaurora.org>
- <CAD=FV=VUoj1egZqw9koNHDPBCCEh_XZ5nZAPNKcnya2UACG8hw@mail.gmail.com> <0101016eef5f3e37-2ab48ced-3543-4680-82f8-2c1950b012cd-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101016eef5f3e37-2ab48ced-3543-4680-82f8-2c1950b012cd-000000@us-west-2.amazonses.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 10 Dec 2019 12:41:05 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UgqcO0zELnopP9DXSqc-AZpJVwT24CDxrt_P39eWK9Lg@mail.gmail.com>
-Message-ID: <CAD=FV=UgqcO0zELnopP9DXSqc-AZpJVwT24CDxrt_P39eWK9Lg@mail.gmail.com>
-Subject: Re: [PATCH v5 13/13] arm64: dts: sc7180: Add qupv3_0 and qupv3_1
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191209180514.272727-13-jean-philippe@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Dec 09, 2019 at 07:05:13PM +0100, Jean-Philippe Brucker wrote:
+> The SMMUv3 driver, which may be built without CONFIG_PCI, will soon gain
+> PASID support.  Partially revert commit c6e9aefbf9db ("PCI/ATS: Remove
+> unused PRI and PASID stubs") to re-introduce the PASID stubs, and avoid
+> adding more #ifdefs to the SMMU driver.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 
-On Tue, Dec 10, 2019 at 2:33 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> On 12/6/2019 5:55 PM, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Fri, Nov 8, 2019 at 5:29 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
-> >>
-> >> From: Roja Rani Yarubandi <rojay@codeaurora.org>
-> >>
-> >> Add QUP SE instances configuration for sc7180.
-> >>
-> >> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> >> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> >> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> >> ---
-> >>   arch/arm64/boot/dts/qcom/sc7180-idp.dts | 146 +++++
-> >>   arch/arm64/boot/dts/qcom/sc7180.dtsi    | 675 ++++++++++++++++++++++++
-> >>   2 files changed, 821 insertions(+)
-> >
-> > Comments below could be done in a follow-up patch if it makes more sense.
+Acked-by: Bjorn Helgaas <bhelgaas@google.com>
 
-Just to note: looks like your patch is now landed in the Qualcomm
-maintainer tree, so I'll look for the fixes in a follow-up patch.  :-)
-
--Doug
+> ---
+>  include/linux/pci-ats.h | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/include/linux/pci-ats.h b/include/linux/pci-ats.h
+> index 5d62e78946a3..d08f0869f121 100644
+> --- a/include/linux/pci-ats.h
+> +++ b/include/linux/pci-ats.h
+> @@ -33,6 +33,9 @@ void pci_disable_pasid(struct pci_dev *pdev);
+>  int pci_pasid_features(struct pci_dev *pdev);
+>  int pci_max_pasids(struct pci_dev *pdev);
+>  #else /* CONFIG_PCI_PASID */
+> +static inline int pci_enable_pasid(struct pci_dev *pdev, int features)
+> +{ return -EINVAL; }
+> +static inline void pci_disable_pasid(struct pci_dev *pdev) { }
+>  static inline int pci_pasid_features(struct pci_dev *pdev)
+>  { return -EINVAL; }
+>  static inline int pci_max_pasids(struct pci_dev *pdev)
+> -- 
+> 2.24.0
+> 
