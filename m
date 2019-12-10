@@ -2,101 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42BF4119E98
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 23:54:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D4D0119F25
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 00:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727274AbfLJWyH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Dec 2019 17:54:07 -0500
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:35845 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726892AbfLJWyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 17:54:07 -0500
-Received: by mail-pg1-f193.google.com with SMTP id k3so8978234pgc.3;
-        Tue, 10 Dec 2019 14:54:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=Uc6nUyx0tWcpYbMt8ma4oxDDyJv0615QHHpUzzEGUYg=;
-        b=rxTdYtyGil11OqU8xmilGx2QIhnrRQcS1GdxFVeauU7mqgYLfkCMHh1d3sSWVL6NJl
-         ivjN7IxT979Jzm1kaPgtIi+QihFy4Oqn8D8VEreDwBd4voC4cOBRJw/hfBvT/Rj1Qg5o
-         DAI1vPVqmDnCXyX7pcRvgADjtky6zy/SzXGUv7SdPv7aqIJouSsxSjIXZVqOMA8hn90x
-         D34Al5YdmKeXNEvRde7WF4RCvVwVWdCxmUpX7xcrumDKwgdhNVmrqpiyP81cAYmWO1Ff
-         JVDBlvKxf52ZuWJoVUtTA+xr1XBh8dC1prX8OrjqzZMsyKNgnJws5sppaxegBVSsclTd
-         eDTw==
-X-Gm-Message-State: APjAAAUXkOvoij9bOIJndIpMr1fc5+Aw4gPwNVBnc5gKztuDC0LHY5wf
-        uAfJ/uDi5ppSEFqRfpJVFcM=
-X-Google-Smtp-Source: APXvYqzT4nRMuygUybmv0z7MJHp0Jn15ImWI/vUXkOVE8NMGjoWmLiq4x33grbemVSea0CIPzLKwZQ==
-X-Received: by 2002:aa7:9d0d:: with SMTP id k13mr344069pfp.254.1576018446035;
-        Tue, 10 Dec 2019 14:54:06 -0800 (PST)
-Received: from localhost ([2601:646:8a00:9810:5af3:56d9:f882:39d4])
-        by smtp.gmail.com with ESMTPSA id d4sm37554pjz.12.2019.12.10.14.54.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2019 14:54:05 -0800 (PST)
-Date:   Tue, 10 Dec 2019 14:55:03 -0800
-From:   Paul Burton <paulburton@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Zhou Yanjie <zhouyanjie@zoho.com>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, paul.burton@mips.com, mturquette@baylibre.com,
-        sboyd@kernel.org, mark.rutland@arm.com, syq@debian.org,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
-Subject: Re: [PATCH 1/5] clk: Ingenic: Adjust code to make it compatible with
- X1830.
-Message-ID: <20191210225503.nf77ksu2sznngbp2@lantea.localdomain>
-References: <1574825576-91028-1-git-send-email-zhouyanjie@zoho.com>
- <1574825576-91028-2-git-send-email-zhouyanjie@zoho.com>
- <1574876253.3.4@crapouillou.net>
- <5DDF694B.1000902@zoho.com>
- <1575026622.3.2@crapouillou.net>
+        id S1726631AbfLJXR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 18:17:26 -0500
+Received: from muru.com ([72.249.23.125]:45020 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725999AbfLJXR0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Dec 2019 18:17:26 -0500
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id DD038820B;
+        Tue, 10 Dec 2019 23:18:04 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Keerthy <j-keerthy@ti.com>,
+        Tero Kristo <t-kristo@ti.com>
+Subject: [PATCH 00/14] Probe am3, am4 and dra7 crypto accelerators with ti-sysc
+Date:   Tue, 10 Dec 2019 15:17:08 -0800
+Message-Id: <20191210231722.44215-1-tony@atomide.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <1575026622.3.2@crapouillou.net>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul, Zhou,
+Hi,
 
-On Fri, Nov 29, 2019 at 12:23:42PM +0100, Paul Cercueil wrote:
-> > > > @@ -93,8 +93,17 @@ ingenic_pll_recalc_rate(struct clk_hw *hw,
-> > > > unsigned long parent_rate)
-> > > >      n += pll_info->n_offset;
-> > > >      od_enc = ctl >> pll_info->od_shift;
-> > > >      od_enc &= GENMASK(pll_info->od_bits - 1, 0);
-> > > > -    bypass = !pll_info->no_bypass_bit &&
-> > > > -         !!(ctl & BIT(pll_info->bypass_bit));
-> > > > +
-> > > > +    if (pll_info->version >= CGU_X1830) {
-> > > > +        spin_lock_irqsave(&cgu->lock, flags);
-> > > > +        ctl = readl(cgu->base + pll_info->reg[0]);
-> > > > +        spin_unlock_irqrestore(&cgu->lock, flags);
-> > > 
-> > > Why the spinlock?
-> > > 
-> > 
-> > The original code used spinlock when reading the control register,
-> > so when reading this new control register, I think it should also
-> > be added with spinlock.
-> 
-> Well, the original code looks wrong to me. There's nothing to protect here.
-> 
-> Maybe @Paul Burton can shed some light?
+This series updates crypto accelerators to probe with ti-sysc and device tree
+data for am3, am4 and dra7.
 
-I wish I could remember, but I agree it seems pointless here. The only
-way I can think it could be of any use is if writes to the CGU register
-we're accessing aren't atomic (ie. if we could observe a partially
-completed write), but I don't believe that's the case.
+Regards,
 
-So Zhou, if you want to drop the spinlock here from your X1830 path &
-ideally also add a patch to remove it in the non-X1830 path that would
-be great.
+Tony
 
-Thanks,
-    Paul
+
+Tony Lindgren (14):
+  ARM: dts: Configure interconnect target module for am3 sham
+  ARM: dts: Configure interconnect target module for am4 sham
+  ARM: dts: Configure interconnect target module for dra7 sham
+  ARM: dts: Configure interconnect target module for am3 aes
+  ARM: dts: Configure interconnect target module for am4 aes
+  ARM: dts: Configure interconnect target module for dra7 aes
+  ARM: dts: Configure interconnect target module for am4 des
+  ARM: dts: Configure interconnect target module for dra7 des
+  ARM: OMAP2+: Drop legacy platform data for am3 and am4 sham
+  ARM: OMAP2+: Drop legacy platform data for dra7 sham
+  ARM: OMAP2+: Drop legacy platform data for am3 and am4 aes
+  ARM: OMAP2+: Drop legacy platform data for dra7 aes
+  ARM: OMAP2+: Drop legacy platform data for am4 des
+  ARM: OMAP2+: Drop legacy platform data for dra7 des
+
+ arch/arm/boot/dts/am33xx.dtsi                 |  69 +++++++--
+ arch/arm/boot/dts/am4372.dtsi                 | 105 +++++++++++---
+ arch/arm/boot/dts/dra7-l4.dtsi                |  31 ++++
+ arch/arm/boot/dts/dra7.dtsi                   | 118 +++++++++++-----
+ .../omap_hwmod_33xx_43xx_common_data.h        |   4 -
+ .../omap_hwmod_33xx_43xx_interconnect_data.c  |  16 ---
+ .../omap_hwmod_33xx_43xx_ipblock_data.c       |  54 -------
+ arch/arm/mach-omap2/omap_hwmod_33xx_data.c    |   2 -
+ arch/arm/mach-omap2/omap_hwmod_43xx_data.c    |  35 -----
+ arch/arm/mach-omap2/omap_hwmod_7xx_data.c     | 132 ------------------
+ 10 files changed, 250 insertions(+), 316 deletions(-)
+
+-- 
+2.24.0
