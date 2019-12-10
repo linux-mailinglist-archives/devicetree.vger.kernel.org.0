@@ -2,115 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1BE8119EAA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 23:54:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42BF4119E98
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 23:54:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727461AbfLJWyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 17:54:45 -0500
-Received: from muru.com ([72.249.23.125]:45010 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727453AbfLJWyp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Dec 2019 17:54:45 -0500
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id AC4028385;
-        Tue, 10 Dec 2019 22:55:23 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, Tero Kristo <t-kristo@ti.com>
-Subject: [PATCH 6/6] ARM: OMAP2+: Drop legacy platform data for omap4 des
-Date:   Tue, 10 Dec 2019 14:54:33 -0800
-Message-Id: <20191210225433.2720-7-tony@atomide.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191210225433.2720-1-tony@atomide.com>
-References: <20191210225433.2720-1-tony@atomide.com>
+        id S1727274AbfLJWyH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Dec 2019 17:54:07 -0500
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:35845 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726892AbfLJWyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 17:54:07 -0500
+Received: by mail-pg1-f193.google.com with SMTP id k3so8978234pgc.3;
+        Tue, 10 Dec 2019 14:54:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=Uc6nUyx0tWcpYbMt8ma4oxDDyJv0615QHHpUzzEGUYg=;
+        b=rxTdYtyGil11OqU8xmilGx2QIhnrRQcS1GdxFVeauU7mqgYLfkCMHh1d3sSWVL6NJl
+         ivjN7IxT979Jzm1kaPgtIi+QihFy4Oqn8D8VEreDwBd4voC4cOBRJw/hfBvT/Rj1Qg5o
+         DAI1vPVqmDnCXyX7pcRvgADjtky6zy/SzXGUv7SdPv7aqIJouSsxSjIXZVqOMA8hn90x
+         D34Al5YdmKeXNEvRde7WF4RCvVwVWdCxmUpX7xcrumDKwgdhNVmrqpiyP81cAYmWO1Ff
+         JVDBlvKxf52ZuWJoVUtTA+xr1XBh8dC1prX8OrjqzZMsyKNgnJws5sppaxegBVSsclTd
+         eDTw==
+X-Gm-Message-State: APjAAAUXkOvoij9bOIJndIpMr1fc5+Aw4gPwNVBnc5gKztuDC0LHY5wf
+        uAfJ/uDi5ppSEFqRfpJVFcM=
+X-Google-Smtp-Source: APXvYqzT4nRMuygUybmv0z7MJHp0Jn15ImWI/vUXkOVE8NMGjoWmLiq4x33grbemVSea0CIPzLKwZQ==
+X-Received: by 2002:aa7:9d0d:: with SMTP id k13mr344069pfp.254.1576018446035;
+        Tue, 10 Dec 2019 14:54:06 -0800 (PST)
+Received: from localhost ([2601:646:8a00:9810:5af3:56d9:f882:39d4])
+        by smtp.gmail.com with ESMTPSA id d4sm37554pjz.12.2019.12.10.14.54.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2019 14:54:05 -0800 (PST)
+Date:   Tue, 10 Dec 2019 14:55:03 -0800
+From:   Paul Burton <paulburton@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Zhou Yanjie <zhouyanjie@zoho.com>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, paul.burton@mips.com, mturquette@baylibre.com,
+        sboyd@kernel.org, mark.rutland@arm.com, syq@debian.org,
+        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
+Subject: Re: [PATCH 1/5] clk: Ingenic: Adjust code to make it compatible with
+ X1830.
+Message-ID: <20191210225503.nf77ksu2sznngbp2@lantea.localdomain>
+References: <1574825576-91028-1-git-send-email-zhouyanjie@zoho.com>
+ <1574825576-91028-2-git-send-email-zhouyanjie@zoho.com>
+ <1574876253.3.4@crapouillou.net>
+ <5DDF694B.1000902@zoho.com>
+ <1575026622.3.2@crapouillou.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <1575026622.3.2@crapouillou.net>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now probe devices with ti-sysc interconnect driver and dts
-data. Let's drop the related platform data and custom ti,hwmods
-dts property.
+Hi Paul, Zhou,
 
-As we're just dropping data, and the early platform data init
-is based on the custom ti,hwmods property, we want to drop both
-the platform data and ti,hwmods property in a single patch.
+On Fri, Nov 29, 2019 at 12:23:42PM +0100, Paul Cercueil wrote:
+> > > > @@ -93,8 +93,17 @@ ingenic_pll_recalc_rate(struct clk_hw *hw,
+> > > > unsigned long parent_rate)
+> > > >      n += pll_info->n_offset;
+> > > >      od_enc = ctl >> pll_info->od_shift;
+> > > >      od_enc &= GENMASK(pll_info->od_bits - 1, 0);
+> > > > -    bypass = !pll_info->no_bypass_bit &&
+> > > > -         !!(ctl & BIT(pll_info->bypass_bit));
+> > > > +
+> > > > +    if (pll_info->version >= CGU_X1830) {
+> > > > +        spin_lock_irqsave(&cgu->lock, flags);
+> > > > +        ctl = readl(cgu->base + pll_info->reg[0]);
+> > > > +        spin_unlock_irqrestore(&cgu->lock, flags);
+> > > 
+> > > Why the spinlock?
+> > > 
+> > 
+> > The original code used spinlock when reading the control register,
+> > so when reading this new control register, I think it should also
+> > be added with spinlock.
+> 
+> Well, the original code looks wrong to me. There's nothing to protect here.
+> 
+> Maybe @Paul Burton can shed some light?
 
-Cc: Tero Kristo <t-kristo@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/omap4-l4.dtsi            |  1 -
- arch/arm/mach-omap2/omap_hwmod_44xx_data.c | 38 ----------------------
- 2 files changed, 39 deletions(-)
+I wish I could remember, but I agree it seems pointless here. The only
+way I can think it could be of any use is if writes to the CGU register
+we're accessing aren't atomic (ie. if we could observe a partially
+completed write), but I don't believe that's the case.
 
-diff --git a/arch/arm/boot/dts/omap4-l4.dtsi b/arch/arm/boot/dts/omap4-l4.dtsi
---- a/arch/arm/boot/dts/omap4-l4.dtsi
-+++ b/arch/arm/boot/dts/omap4-l4.dtsi
-@@ -2187,7 +2187,6 @@ target-module@a4000 {			/* 0x480a4000, ap 59 34.0 */
- 
- 		des_target: target-module@a5000 {	/* 0x480a5000 */
- 			compatible = "ti,sysc-omap2", "ti,sysc";
--			ti,hwmods = "des";
- 			reg = <0xa5030 0x4>,
- 			      <0xa5034 0x4>,
- 			      <0xa5038 0x4>;
-diff --git a/arch/arm/mach-omap2/omap_hwmod_44xx_data.c b/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
---- a/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_44xx_data.c
-@@ -858,43 +858,6 @@ static struct omap_hwmod omap44xx_emif2_hwmod = {
- 	},
- };
- 
--
--/*
-- * 'des' class for DES3DES module
-- */
--static struct omap_hwmod_class_sysconfig omap44xx_des_sysc = {
--	.rev_offs	= 0x30,
--	.sysc_offs	= 0x34,
--	.syss_offs	= 0x38,
--	.sysc_flags	= SYSS_HAS_RESET_STATUS,
--};
--
--static struct omap_hwmod_class omap44xx_des_hwmod_class = {
--	.name		= "des",
--	.sysc		= &omap44xx_des_sysc,
--};
--
--static struct omap_hwmod omap44xx_des_hwmod = {
--	.name		= "des",
--	.class		= &omap44xx_des_hwmod_class,
--	.clkdm_name	= "l4_secure_clkdm",
--	.main_clk	= "l3_div_ck",
--	.prcm		= {
--		.omap4	= {
--			.context_offs	= OMAP4_RM_L4SEC_DES3DES_CONTEXT_OFFSET,
--			.clkctrl_offs	= OMAP4_CM_L4SEC_DES3DES_CLKCTRL_OFFSET,
--			.modulemode	= MODULEMODE_SWCTRL,
--		},
--	},
--};
--
--static struct omap_hwmod_ocp_if omap44xx_l3_main_2__des = {
--	.master		= &omap44xx_l3_main_2_hwmod,
--	.slave		= &omap44xx_des_hwmod,
--	.clk		= "l3_div_ck",
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- /*
-  * 'fdif' class
-  * face detection hw accelerator module
-@@ -2951,7 +2914,6 @@ static struct omap_hwmod_ocp_if *omap44xx_hwmod_ocp_ifs[] __initdata = {
- 	&omap44xx_l4_cfg__usb_tll_hs,
- 	&omap44xx_mpu__emif1,
- 	&omap44xx_mpu__emif2,
--	&omap44xx_l3_main_2__des,
- 	NULL,
- };
- 
--- 
-2.24.0
+So Zhou, if you want to drop the spinlock here from your X1830 path &
+ideally also add a patch to remove it in the non-X1830 path that would
+be great.
+
+Thanks,
+    Paul
