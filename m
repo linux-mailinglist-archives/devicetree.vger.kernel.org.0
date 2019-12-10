@@ -2,129 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 34F29118C53
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 16:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DAFD118CC5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 16:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727482AbfLJPRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 10:17:20 -0500
-Received: from pegase1.c-s.fr ([93.17.236.30]:48955 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727448AbfLJPRU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Dec 2019 10:17:20 -0500
-Received: from localhost (mailhub1-ext [192.168.12.233])
-        by localhost (Postfix) with ESMTP id 47XNvw6cFPz9txNy;
-        Tue, 10 Dec 2019 16:17:16 +0100 (CET)
-Authentication-Results: localhost; dkim=pass
-        reason="1024-bit key; insecure key"
-        header.d=c-s.fr header.i=@c-s.fr header.b=pQG2hmmL; dkim-adsp=pass;
-        dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id evbLJu89xxoe; Tue, 10 Dec 2019 16:17:16 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 47XNvw5b4hz9txNq;
-        Tue, 10 Dec 2019 16:17:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-s.fr; s=mail;
-        t=1575991036; bh=p/RN9wGhuytc2JKpwnOpBoY/ljEFeRGohPJvKHyg07M=;
-        h=In-Reply-To:References:From:Subject:To:Cc:Date:From;
-        b=pQG2hmmLGeKr7afIsn4MGxkLUDeBbXB1/yLQk52nFJ10g1ixc+1FJjhWLuFU1AacW
-         GJvPXJ0hzT1xkLqhsG5mo4n8iuNqzozvY0L2DG8qQ381DuFZf1dzwWhLXEQtjS69jq
-         I66FNHT+JNDI99vBfZYE3lar3AR/FJKd1HIOHmSM=
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 4F5BA8B754;
-        Tue, 10 Dec 2019 16:17:18 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id MuGuyZPvd_AU; Tue, 10 Dec 2019 16:17:18 +0100 (CET)
-Received: from po16098vm.idsi0.si.c-s.fr (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 819338B819;
-        Tue, 10 Dec 2019 16:17:17 +0100 (CET)
-Received: by localhost.localdomain (Postfix, from userid 0)
-        id F13FF6373D; Tue, 10 Dec 2019 15:17:16 +0000 (UTC)
-Message-Id: <539a3b82463f64e8055f166c915f0e90f752c7b0.1575990944.git.christophe.leroy@c-s.fr>
-In-Reply-To: <1cdd0a26d7e1545f32c8bc4dc7458ebecdd6aaed.1575990944.git.christophe.leroy@c-s.fr>
-References: <1cdd0a26d7e1545f32c8bc4dc7458ebecdd6aaed.1575990944.git.christophe.leroy@c-s.fr>
-From:   Christophe Leroy <christophe.leroy@c-s.fr>
-Subject: [PATCH v2 2/2] spi: fsl: simplify error path in of_fsl_spi_probe()
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        kbuild test robot <lkp@intel.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 10 Dec 2019 15:17:16 +0000 (UTC)
+        id S1727482AbfLJPmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 10:42:17 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:37290 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727407AbfLJPmR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 10:42:17 -0500
+Received: by mail-wr1-f67.google.com with SMTP id w15so20710354wru.4
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2019 07:42:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=6NwUJ31Bo5gKSBcxH1IDObD46smc7wVjOw9e/arLHQA=;
+        b=FrZeEqkqxNArFnKorxAKtv5XDSo6QeJdoZVA3gbtqAuJdQz5fTj0xOXb8o+1KVUvDk
+         VQDURHvy6+QMWLTUkh4QpEprSfPEi3UruZTRfNwb/OwrQ53/mmiZrSJjI7oD3gFrQbbf
+         UOBLk7b46xE+6spl4k7pZcsr7UJLXAI2UnMTaGSdNLTtuwEomrQYvz8V+7uQPfyJyfJi
+         FavcexNoEe2wxlQXYsUE+wS5/xHgRpcEJU0t8wgLgAV6PxLZBwFIL7fivmzduXIP6srx
+         CYcFdJsEk33pgCn9mOEEQOAbEXyiWLO8fVdKCfA7JqhcZuWdB5OCASUjaHeyUQFE5hmr
+         7dwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=6NwUJ31Bo5gKSBcxH1IDObD46smc7wVjOw9e/arLHQA=;
+        b=HXT0vF2q1GHBfbVncA6M2jPpB2IBKiSLOy5Lj2QJWGLyoDILslksuxsPYSsQCedkQG
+         L1FAknWxjgMAlaSOehJlFxuL0bbi6+vvSXBCP46Nbv4cWpfKOKgsEQ1IiHIc6OL9JQd1
+         GbPirEwxqEZxraajqUc9rARdsbO1VNOlxVBZlo+/tnaxqrtDdR18XXyO846nUYhGM5CW
+         j1VLIpzw1DQMPabXyKgjhhUP8w7Ah1+2bGMyIMLydJ+9aNJSjEwhZx2PVeT1kDQmh3Fu
+         o6zDxdP/gXi6sy39UrtRHEdm8p9ihGQKCWLBgHt/2aip2lzjl6ccbflwsOMvP88UFEJm
+         Abjg==
+X-Gm-Message-State: APjAAAXoqK/f9ZfjRctzFqQU8PuxPXc+KZsRWEErshnaAOe8fs50OQQn
+        05IZIXdFAN0uPVbhj0iRwdfXvw==
+X-Google-Smtp-Source: APXvYqx0+sRZpARe7yyKwoh1VzPjcBcUfnEDPjYDAlfGydTyHMB1TtXdHHswyB1vjks0B67ZVwWqOg==
+X-Received: by 2002:a5d:558d:: with SMTP id i13mr916414wrv.364.1575992535224;
+        Tue, 10 Dec 2019 07:42:15 -0800 (PST)
+Received: from khouloud-ThinkPad-T470p.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id o7sm3469085wmc.41.2019.12.10.07.42.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2019 07:42:14 -0800 (PST)
+From:   Khouloud Touil <ktouil@baylibre.com>
+To:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, srinivas.kandagatla@linaro.org,
+        baylibre-upstreaming@groups.io
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linus.walleij@linaro.org,
+        Khouloud Touil <ktouil@baylibre.com>
+Subject: [PATCH v2 0/4] at24: move write-protect pin handling to nvmem core
+Date:   Tue, 10 Dec 2019 16:41:53 +0100
+Message-Id: <20191210154157.21930-1-ktouil@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No need to 'goto err;' for just doing a return.
-return directly from where the error happens.
+The write-protect pin handling looks like a standard property that
+could benefit other users if available in the core nvmem framework.
+    
+Instead of modifying all the drivers to check this pin, make the
+nvmem subsystem check if the write-protect GPIO being passed
+through the nvmem_config or defined in the device tree and pull it
+low whenever writing to the memory.
 
-Signed-off-by: Christophe Leroy <christophe.leroy@c-s.fr>
----
- drivers/spi/spi-fsl-spi.c | 27 +++++++++------------------
- 1 file changed, 9 insertions(+), 18 deletions(-)
+This patchset:
 
-diff --git a/drivers/spi/spi-fsl-spi.c b/drivers/spi/spi-fsl-spi.c
-index 2d85c81983b1..e991c6ff4e7a 100644
---- a/drivers/spi/spi-fsl-spi.c
-+++ b/drivers/spi/spi-fsl-spi.c
-@@ -725,8 +725,8 @@ static int of_fsl_spi_probe(struct platform_device *ofdev)
- 	struct device_node *np = ofdev->dev.of_node;
- 	struct spi_master *master;
- 	struct resource mem;
--	int irq = 0, type;
--	int ret = -ENOMEM;
-+	int irq, type;
-+	int ret;
- 
- 	ret = of_mpc8xxx_spi_probe(ofdev);
- 	if (ret)
-@@ -741,10 +741,8 @@ static int of_fsl_spi_probe(struct platform_device *ofdev)
- 
- 		if (spisel_boot) {
- 			pinfo->immr_spi_cs = ioremap(get_immrbase() + IMMR_SPI_CS_OFFSET, 4);
--			if (!pinfo->immr_spi_cs) {
--				ret = -ENOMEM;
--				goto err;
--			}
-+			if (!pinfo->immr_spi_cs)
-+				return -ENOMEM;
- 		}
- #endif
- 		/*
-@@ -763,24 +761,17 @@ static int of_fsl_spi_probe(struct platform_device *ofdev)
- 
- 	ret = of_address_to_resource(np, 0, &mem);
- 	if (ret)
--		goto err;
-+		return ret;
- 
- 	irq = of_irq_to_resource(np, 0, NULL);
--	if (irq <= 0) {
--		ret = -EINVAL;
--		goto err;
--	}
-+	if (irq <= 0)
-+		return -EINVAL;
- 
- 	master = fsl_spi_probe(dev, &mem, irq);
--	if (IS_ERR(master)) {
--		ret = PTR_ERR(master);
--		goto err;
--	}
-+	if (IS_ERR(master))
-+		return PTR_ERR(master);
- 
- 	return 0;
--
--err:
--	return ret;
- }
- 
- static int of_fsl_spi_remove(struct platform_device *ofdev)
+- adds support for the write-protect pin split into two parts.
+The first patch modifies modifies the relevant binding document,
+while the second modifies the nvmem code to pull the write-protect
+GPIO low (if present) during write operations.
+
+- removes support for the write-protect pin split into two parts.
+The first patch modifies the relevant binding document to remove
+the wp-gpio, while the second removes the relevant code in the
+at24 driver.
+
+Changes since v1:
+-Add an explenation on how the wp-gpios works
+-keep reference to the wp-gpios in the at24 binding
+
+Khouloud Touil (4):
+  dt-bindings: nvmem: new optional property write-protect-gpios
+  nvmem: add support for the write-protect pin
+  dt-bindings: at24: remove the optional property write-protect-gpios
+  eeprom: at24: remove the write-protect pin support
+
+ .../devicetree/bindings/eeprom/at24.yaml      |  6 +-----
+ .../devicetree/bindings/nvmem/nvmem.yaml      |  9 +++++++++
+ drivers/misc/eeprom/at24.c                    |  9 ---------
+ drivers/nvmem/core.c                          | 19 +++++++++++++++++--
+ drivers/nvmem/nvmem.h                         |  2 ++
+ include/linux/nvmem-provider.h                |  3 +++
+ 6 files changed, 32 insertions(+), 16 deletions(-)
+
 -- 
-2.13.3
+2.17.1
 
