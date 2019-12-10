@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0103118CCA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 16:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 786EC118CD1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 16:42:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727557AbfLJPmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 10:42:19 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:39066 "EHLO
+        id S1727330AbfLJPmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 10:42:32 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:39073 "EHLO
         mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727440AbfLJPmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 10:42:17 -0500
-Received: by mail-wr1-f67.google.com with SMTP id y11so20599374wrt.6
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2019 07:42:16 -0800 (PST)
+        with ESMTP id S1727525AbfLJPmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 10:42:19 -0500
+Received: by mail-wr1-f67.google.com with SMTP id y11so20599457wrt.6
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2019 07:42:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=DYGCPlFYfMEo2ftPv0Z0kGJqzS3pUpAwvlGql73I9Zo=;
-        b=JnGRUlhX7iRqoMyv7JDwrWvHc2bZ1iB+KpNAHCFq0O9OVhsjih/fG50MoAkvz/PDit
-         IM2Gk/ygL2VBxPBxuxWdSmiSWRF3V8hCXX2vf3KPfZkV1e/esNFP1Rs7yOSf/95Dy+67
-         QaakjZbFwax/LcTA+kHx2vbCl+rW8/i6+j/07QVVbA8TXDZ6HpAa2PZkpdrINqMY1mLC
-         XzvgbFqz6EsntOXM5CaWKRrDamJhBtXfVzh5PDYVk6kJyGkqLVRbrEFcNGQ5oGxFQuqy
-         fN94q7TYNyysZcvEqjnibJowJMHmT4F+9/ktkez/dojR0ZX3nSAPTIKsO5Xl3T+3vIYH
-         QMuw==
+        bh=w4D6ZqamJW9QSroTdCyeCwKsa+r24vCro2cOz6VJshk=;
+        b=XDJgVY9Nq/Bwd9tasYyqOJZUxEl9HxMnhBkzMYCb4XFprY/wyK/6NOZ9cYHDFugzms
+         mjqEk/NTc0CAUlPwrkDFlpkJ/lUBK4Ztuc8/QBDtRfGD6a6n+iu3W6zO/W4zht9X0ZpO
+         Uj+jgkNncdn80EFCOc2nwuctP8hFPeWnhgGrFZM/AjOjjhxzfXNycgswVJBJ7zZnoQtI
+         EEH05c0gCrzmXgu0T2BN/5mHVeRSHlb5fs7QgXqPlpNaY7e2UdPnGEpH9hiIYq9P4i/8
+         T29uZh7WCTQHJ4hKtMaWoEiknjuTNGMBwzAhFcUKZ1EU2OxqQVJBNYw36/V0IQTlfBxx
+         MYyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=DYGCPlFYfMEo2ftPv0Z0kGJqzS3pUpAwvlGql73I9Zo=;
-        b=ijcrYz3YVisrVRhV4tT6JrjyYzIimoVNfeeX2fZylI5GZbpDBIHu4YIGQ++ouwsCnV
-         SdB3+ow5ss/oHTlPt/gMmQzP08Nm9TIWfzAuMYifSafHv33IwRV38vKCMXS1z9383MFx
-         y79SExOJqQ8m8qw9hKYrDckgW3DI/Dereo3hvTotj64oYmnjTc+34mTcA+3IC0CzhtHb
-         1hwLJWJRppyne2lCujMxdaKR5u8+DvrZfvmj6g4EWkYgf86Hr89erjqSldrxG3Qnoxhr
-         +O6zo5ww/bl2ndqVAc2iSOhbJ5LdoUPEdMLo4GwvJfcDSArMlHO/8HuH+Xm2w0cbDC86
-         k2Zg==
-X-Gm-Message-State: APjAAAXS1pBu1bQxo55Ast2pvKiPzHma3pkphmYHRKcFuSVVTibyqmGM
-        sLcD+0jG4Auox3hP2kHV5T6KNz97wpC5xE6t3I4=
-X-Google-Smtp-Source: APXvYqw5F0u16O8eA21qt4EDgRqamkoRROndktfP1CGYcsyRpfJ2HD9IhxtTNmPlYsdjzWHbJAoXQg==
-X-Received: by 2002:a5d:5308:: with SMTP id e8mr3999583wrv.77.1575992536121;
-        Tue, 10 Dec 2019 07:42:16 -0800 (PST)
+        bh=w4D6ZqamJW9QSroTdCyeCwKsa+r24vCro2cOz6VJshk=;
+        b=BHRjjWrpnEGxLiKZ1N2VPU1SVnTfNdBU3BxrNoyth0HUcL/b+0JdJp4R+GqFY7Bnns
+         b+TKK5Sl92SbGeBU3mU0zY+yDc374yP2bnHvMAS87d0s2ewAK0+HrFmNSim3ZQ+qXjdN
+         L6PxX8K9GEaLjc2p2wIHL9Dj9xnxB9w9EL5Z3wn1hVC3vYyqjSWC1XU+oJ/OHXPucvtL
+         Le0kFncu87fzaMRwcAHJthOH5LunxNiWVAMyVqdeKVIeckp5vhHnDsE5Dssvz+8U+t8w
+         peUHYeIxmgt2S2EmxjP2wM/g5Y9YQTnOFnL/b6FGRfFKGdZLUQ2umRlHthVlAMeAh2QD
+         tNbg==
+X-Gm-Message-State: APjAAAVh+4+1YPGbxfxLtb5p5NjmJ3bhvbLZhI37yz8sOFZtZwydkyWi
+        RTvc4t8OuMw4oJSbPv381OjxRg==
+X-Google-Smtp-Source: APXvYqzCgA0PcGad9RTEou2mhhv6GR2/UeLuAcIFhkrUBd747CO23p8eft22O+eXRUUlpImtvMVRxg==
+X-Received: by 2002:adf:b605:: with SMTP id f5mr3847966wre.383.1575992537146;
+        Tue, 10 Dec 2019 07:42:17 -0800 (PST)
 Received: from khouloud-ThinkPad-T470p.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o7sm3469085wmc.41.2019.12.10.07.42.15
+        by smtp.googlemail.com with ESMTPSA id o7sm3469085wmc.41.2019.12.10.07.42.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2019 07:42:15 -0800 (PST)
+        Tue, 10 Dec 2019 07:42:16 -0800 (PST)
 From:   Khouloud Touil <ktouil@baylibre.com>
 To:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
         mark.rutland@arm.com, srinivas.kandagatla@linaro.org,
@@ -50,9 +50,9 @@ To:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-i2c@vger.kernel.org, linus.walleij@linaro.org,
         Khouloud Touil <ktouil@baylibre.com>
-Subject: [PATCH v2 1/4] dt-bindings: nvmem: new optional property write-protect-gpios
-Date:   Tue, 10 Dec 2019 16:41:54 +0100
-Message-Id: <20191210154157.21930-2-ktouil@baylibre.com>
+Subject: [PATCH v2 2/4] nvmem: add support for the write-protect pin
+Date:   Tue, 10 Dec 2019 16:41:55 +0100
+Message-Id: <20191210154157.21930-3-ktouil@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191210154157.21930-1-ktouil@baylibre.com>
 References: <20191210154157.21930-1-ktouil@baylibre.com>
@@ -61,54 +61,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Several memories have a write-protect pin, that when pulled high, it
-blocks the write operation.
-
-On some boards, this pin is connected to a GPIO and pulled high by
-default, which forces the user to manually change its state before
-writing.
+The write-protect pin handling looks like a standard property that
+could benefit other users if available in the core nvmem framework.
 
 Instead of modifying all the memory drivers to check this pin, make
 the NVMEM subsystem check if the write-protect GPIO being passed
 through the nvmem_config or defined in the device tree and pull it
 low whenever writing to the memory.
 
-Add a new optional property to the device tree binding document, which
-allows to specify the GPIO line to which the write-protect pin is
-connected.
+There was a suggestion for introducing the gpiodesc from pdata, but
+as pdata is already removed it could be replaced by adding it to
+nvmem_config.
+
+Reference: https://lists.96boards.org/pipermail/dev/2018-August/001056.html
 
 Signed-off-by: Khouloud Touil <ktouil@baylibre.com>
 ---
- Documentation/devicetree/bindings/nvmem/nvmem.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/nvmem/core.c           | 19 +++++++++++++++++--
+ drivers/nvmem/nvmem.h          |  2 ++
+ include/linux/nvmem-provider.h |  3 +++
+ 3 files changed, 22 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-index 1c75a059206c..ea012b2f2e77 100644
---- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-@@ -34,6 +34,14 @@ properties:
-     description:
-       Mark the provider as read only.
- 
-+  wp-gpios:
-+    description:
-+      GPIO to which the write-protect pin of the chip is connected.
-+      The write-protect GPIO is asserted, when it's driven high
-+      (logical '1') to block the write operation. It's deasserted,
-+      when it's driven low (logical '0') to allow writing.
-+    maxItems: 1
+diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+index 9f1ee9c766ec..3e1c94c4eee8 100644
+--- a/drivers/nvmem/core.c
++++ b/drivers/nvmem/core.c
+@@ -15,6 +15,7 @@
+ #include <linux/module.h>
+ #include <linux/nvmem-consumer.h>
+ #include <linux/nvmem-provider.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/of.h>
+ #include <linux/slab.h>
+ #include "nvmem.h"
+@@ -54,8 +55,14 @@ static int nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
+ static int nvmem_reg_write(struct nvmem_device *nvmem, unsigned int offset,
+ 			   void *val, size_t bytes)
+ {
+-	if (nvmem->reg_write)
+-		return nvmem->reg_write(nvmem->priv, offset, val, bytes);
++	int ret;
 +
- patternProperties:
-   "^.*@[0-9a-f]+$":
-     type: object
-@@ -66,6 +74,7 @@ examples:
-       qfprom: eeprom@700000 {
-           #address-cells = <1>;
-           #size-cells = <1>;
-+          wp-gpios = <&gpio1 3 0>;
++	if (nvmem->reg_write) {
++		gpiod_set_value_cansleep(nvmem->wp_gpio, 0);
++		ret = nvmem->reg_write(nvmem->priv, offset, val, bytes);
++		gpiod_set_value_cansleep(nvmem->wp_gpio, 1);
++		return ret;
++	}
  
-           /* ... */
+ 	return -EINVAL;
+ }
+@@ -338,6 +345,14 @@ struct nvmem_device *nvmem_register(const struct nvmem_config *config)
+ 		kfree(nvmem);
+ 		return ERR_PTR(rval);
+ 	}
++	if (config->wp_gpio)
++		nvmem->wp_gpio = config->wp_gpio;
++	else
++		nvmem->wp_gpio = gpiod_get_optional(config->dev, "wp",
++						    GPIOD_OUT_HIGH);
++	if (IS_ERR(nvmem->wp_gpio))
++		return PTR_ERR(nvmem->wp_gpio);
++
  
+ 	kref_init(&nvmem->refcnt);
+ 	INIT_LIST_HEAD(&nvmem->cells);
+diff --git a/drivers/nvmem/nvmem.h b/drivers/nvmem/nvmem.h
+index eb8ed7121fa3..be0d66d75c8a 100644
+--- a/drivers/nvmem/nvmem.h
++++ b/drivers/nvmem/nvmem.h
+@@ -9,6 +9,7 @@
+ #include <linux/list.h>
+ #include <linux/nvmem-consumer.h>
+ #include <linux/nvmem-provider.h>
++#include <linux/gpio/consumer.h>
+ 
+ struct nvmem_device {
+ 	struct module		*owner;
+@@ -26,6 +27,7 @@ struct nvmem_device {
+ 	struct list_head	cells;
+ 	nvmem_reg_read_t	reg_read;
+ 	nvmem_reg_write_t	reg_write;
++	struct gpio_desc	*wp_gpio;
+ 	void *priv;
+ };
+ 
+diff --git a/include/linux/nvmem-provider.h b/include/linux/nvmem-provider.h
+index fe051323be0a..6d6f8e5d24c9 100644
+--- a/include/linux/nvmem-provider.h
++++ b/include/linux/nvmem-provider.h
+@@ -11,6 +11,7 @@
+ 
+ #include <linux/err.h>
+ #include <linux/errno.h>
++#include <linux/gpio/consumer.h>
+ 
+ struct nvmem_device;
+ struct nvmem_cell_info;
+@@ -45,6 +46,7 @@ enum nvmem_type {
+  * @word_size:	Minimum read/write access granularity.
+  * @stride:	Minimum read/write access stride.
+  * @priv:	User context passed to read/write callbacks.
++ * @wp-gpio:   Write protect pin
+  *
+  * Note: A default "nvmem<id>" name will be assigned to the device if
+  * no name is specified in its configuration. In such case "<id>" is
+@@ -58,6 +60,7 @@ struct nvmem_config {
+ 	const char		*name;
+ 	int			id;
+ 	struct module		*owner;
++	struct gpio_desc	*wp_gpio;
+ 	const struct nvmem_cell_info	*cells;
+ 	int			ncells;
+ 	enum nvmem_type		type;
 -- 
 2.17.1
 
