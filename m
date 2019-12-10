@@ -2,157 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A721C118B7A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 15:50:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1355B118BE2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 16:03:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727159AbfLJOuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 09:50:17 -0500
-Received: from mail-io1-f66.google.com ([209.85.166.66]:46245 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727145AbfLJOuR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 09:50:17 -0500
-Received: by mail-io1-f66.google.com with SMTP id t26so7630172ioi.13;
-        Tue, 10 Dec 2019 06:50:17 -0800 (PST)
+        id S1727534AbfLJPDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 10:03:04 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:39325 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727272AbfLJPDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 10:03:04 -0500
+Received: by mail-wm1-f65.google.com with SMTP id d5so2018614wmb.4;
+        Tue, 10 Dec 2019 07:03:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EopU7gHpRZaFwvjzHn1zzfgni4g/N/UohJ2TWwA1/m0=;
-        b=vYOET9ni2r/x+WsiXrE22CAhuCTJnazMZnB6tLnbsJJvL+/CzhU1nqV1u6g92L2TNW
-         9sAEay9IDtRMUHOayxwKfjT2r9lN4koXTLKoLVKDzZBZDWLgiNin4xODz2NgytLN1/72
-         hSSQLiWGAvpQ7f2Y//zUXwIJC82LiIBHDcfAmnjHonbk5FQwzEZiOjSEo0561jYZhJQq
-         9yWghFa/pG9x9CtBfd3VU/Oe4JciVfoezbgYDgf4VpZQxVfHPdKyvhhMhqOAQUU3XcXu
-         VPxq27c1c96xJRk8NXIqa8i9pLr3WYopimSbG/2WEAdS8VXGN5q5zikx6CNmL00QOCP9
-         dCMA==
+         :cc:content-transfer-encoding;
+        bh=P+ZsUNL/y2u1OQUqoT9Jt+rQhvtloBYS2x5ThkHTunQ=;
+        b=Yneg9xPSRZHDcb+NWskA4LXjnBnezcmDF8bxXG5RmlhRjMeFGdkligslCTg27edhKA
+         g9bftXjCrEXMczPAVqnP1iPvKKZ43yvPrIeZWRUBhZHl8rWFVxTfR0kRxV56ibwnMxEV
+         Luvupsr1hNfQpkSM1XuQQ7aU53m0K0wmHJyiJQv1Zu3NoYM75NpYZDh3LmQl0pCFYWxD
+         JgnwiER30lTyMLg9AP/Xj2zTiQ7aJ/BzNpY+HSoL5sSDAQ/SKaQw1QMbKegKa59WgLay
+         5qPzwMrguH18vmdxQ/DnXHFzA6d26vJNzi88Z9wMwcEi8yQYdrA6UhMZyFYSvLWIpMOD
+         e+Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EopU7gHpRZaFwvjzHn1zzfgni4g/N/UohJ2TWwA1/m0=;
-        b=pZ5JkB9yXAmlgCcVOaYlWXNeqyJDdFlc9JGT8462BRLf5t+5gAUM7FoNsaOckUTU2i
-         HSfkW/SM9WBY9L3Ewvxc6Peiv8YP7dfL6FaATIFF7JFezO/zf73pW1er5Q3iL3emiWAI
-         OsdFspy6BFmNrqeSCWfJw7E5DKFj9gG4w6GGemR3IZf0OYE9guqo9RGPZ1+/XM9wwcZi
-         A5MQTKf5+DdeEcVi4YvzQU/EvX+kx9dDnRituhAmfELakFMyBbwA9VuGN8PtZ7TMzT5A
-         mKOfVioxTgPtoIbE4AbWTrPRoFIEXVogQzRwoLO7WoZEbH6Igd+v/NjPq9uUKBn2EQIh
-         6e5w==
-X-Gm-Message-State: APjAAAX3fKvm/QgQ6nsN2Bp8TjqKemxUXnHPp+GZzGxX6MY569tLyUVF
-        v3YNfw0CT40zEcPJy9oswAepx4St1dM9sn/vlZA=
-X-Google-Smtp-Source: APXvYqyg+Q4PiSVD+TRIfNYYQb9a80Ve7CWTpf0XRMvR2kxSQvCVSYQFM+LAKN06jjFUHKWALrHPxHKTq7zl/ShAp7s=
-X-Received: by 2002:a6b:e008:: with SMTP id z8mr24398133iog.246.1575989416712;
- Tue, 10 Dec 2019 06:50:16 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=P+ZsUNL/y2u1OQUqoT9Jt+rQhvtloBYS2x5ThkHTunQ=;
+        b=YrSvXBFeLCwXL9roeIfX7kmEibq+0oAbPiZhUnhGhoYdxJ1N4MVyQKhALU+aPvzWFZ
+         ntu64DEV3y2huNnVfv410tmFwU8rD4bsExs9BmBy10nyAvEipZH1VwELQk+OD+Um4nYd
+         A0sSD6u3pFR9mvSVYwRbrYztRSPslQCjwYWvcFAJQdJ5or5pzsDXNiHF3pbHauSXSyp5
+         BNZ0+yUgwbQZQjRyPuXUE4o4TR1JcFcAua5Jh2XjJs6NJMT2XlG3TtZS4V4EU3gzMNDh
+         hdO9hEOa/4ckdp9XsJfZXLciFBdwBp/SGnDGnhMD8SD1AgFdRLvKz0o9ZX+CmkReIrPf
+         ZeRg==
+X-Gm-Message-State: APjAAAVtojvmM17EV9h9WB0+59YobELkbPRpLDgZMDMtpyUqtGw4Z2vI
+        jBZA9YmOTf9AaDRcF856d4tMH9Efjw4DyWPoGcc=
+X-Google-Smtp-Source: APXvYqzkXjsaYAifLbwc79RkgYYsp7dChnUi0vR1wWqDGo/VWSDuysPo4WSKmR3Gsy2OPQFPtzWA/rYF88tNkbE0CJo=
+X-Received: by 2002:a05:600c:204:: with SMTP id 4mr5940038wmi.1.1575990181829;
+ Tue, 10 Dec 2019 07:03:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20191101143126.2549-1-linux.amoon@gmail.com> <7hfthtrvvv.fsf@baylibre.com>
- <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
-In-Reply-To: <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Tue, 10 Dec 2019 20:20:05 +0530
-Message-ID: <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com>
-Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
+References: <20191209182024.20509-1-peron.clem@gmail.com> <20191209182024.20509-2-peron.clem@gmail.com>
+ <20191210093843.qoypomttr4b7kbep@gilmour.lan>
+In-Reply-To: <20191210093843.qoypomttr4b7kbep@gilmour.lan>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Tue, 10 Dec 2019 16:02:50 +0100
+Message-ID: <CAJiuCcd7hO=xY9io_+CZW9ybAVZeH5TsfS0Hfjr+LtCXh11vrg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] arm64: dts: allwinner: Convert license to SPDX identifier
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil / Kevin,
+Hi Maxime,
 
-On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Tue, 10 Dec 2019 at 10:38, Maxime Ripard <mripard@kernel.org> wrote:
 >
-> On 09/12/2019 23:12, Kevin Hilman wrote:
-> > Anand Moon <linux.amoon@gmail.com> writes:
+> Hi Cl=C3=A9ment,
+>
+> On Mon, Dec 09, 2019 at 07:20:23PM +0100, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Use a shorter SPDX identifier instead of pasting the
+> > whole license.
 > >
-> >> Some how this patch got lost, so resend this again.
-> >>
-> >> [0] https://patchwork.kernel.org/patch/11136545/
-> >>
-> >> This patch enable DVFS on GXBB Odroid C2.
-> >>
-> >> DVFS has been tested by running the arm64 cpuburn
-> >> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
-> >> PM-QA testing
-> >> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
-> >>
-> >> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/axp803.dtsi     | 39 +------------------
+> >  .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 39 +------------------
+> >  .../dts/allwinner/sun50i-a64-nanopi-a64.dts   | 39 +------------------
+> >  .../dts/allwinner/sun50i-a64-olinuxino.dts    | 39 +------------------
+> >  .../dts/allwinner/sun50i-a64-orangepi-win.dts | 39 +------------------
+> >  .../dts/allwinner/sun50i-a64-pine64-plus.dts  | 39 +------------------
+> >  .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 39 +------------------
+> >  .../allwinner/sun50i-a64-sopine-baseboard.dts | 39 +------------------
+> >  .../boot/dts/allwinner/sun50i-a64-sopine.dtsi | 39 +------------------
+> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 39 +------------------
+> >  .../allwinner/sun50i-h5-nanopi-neo-plus2.dts  | 39 +------------------
+> >  .../dts/allwinner/sun50i-h5-nanopi-neo2.dts   | 39 +------------------
+> >  .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  | 39 +------------------
+> >  .../allwinner/sun50i-h5-orangepi-prime.dts    | 39 +------------------
+> >  .../sun50i-h5-orangepi-zero-plus2.dts         | 39 +------------------
+> >  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  | 39 +------------------
+> >  16 files changed, 16 insertions(+), 608 deletions(-)
 > >
-> > Have you tested with the Harkernel u-boot?
-> >
-> > Last I remember, enabling CPUfreq will cause system hangs with the
-> > Hardkernel u-boot because of improperly enabled frequencies, so I'm not
-> > terribly inclined to merge this patch.
+> > diff --git a/arch/arm64/boot/dts/allwinner/axp803.dtsi b/arch/arm64/boo=
+t/dts/allwinner/axp803.dtsi
+> > index f0349ef4bfdd..0e13e75132ac 100644
+> > --- a/arch/arm64/boot/dts/allwinner/axp803.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/axp803.dtsi
+> > @@ -1,43 +1,6 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR X11)
+> >  /*
+> >   * Copyright 2017 Icenowy Zheng <icenowy@aosc.xyz>
+> > - *
+> > - * This file is dual-licensed: you can use it either under the terms
+> > - * of the GPL or the X11 license, at your option. Note that this dual
+> > - * licensing only applies to this file, and not this project as a
+> > - * whole.
+> > - *
+> > - *  a) This file is free software; you can redistribute it and/or
+> > - *     modify it under the terms of the GNU General Public License as
+> > - *     published by the Free Software Foundation; either version 2 of =
+the
+> > - *     License, or (at your option) any later version.
+> > - *
+> > - *     This file is distributed in the hope that it will be useful,
+> > - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+> > - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> > - *     GNU General Public License for more details.
+> > - *
+> > - * Or, alternatively,
+> > - *
+> > - *  b) Permission is hereby granted, free of charge, to any person
+> > - *     obtaining a copy of this software and associated documentation
+> > - *     files (the "Software"), to deal in the Software without
+> > - *     restriction, including without limitation the rights to use,
+> > - *     copy, modify, merge, publish, distribute, sublicense, and/or
+> > - *     sell copies of the Software, and to permit persons to whom the
+> > - *     Software is furnished to do so, subject to the following
+> > - *     conditions:
+> > - *
+> > - *     The above copyright notice and this permission notice shall be
+> > - *     included in all copies or substantial portions of the Software.
+> > - *
+> > - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+> > - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+> > - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+> > - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+> > - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+> > - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+> > - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> > - *     OTHER DEALINGS IN THE SOFTWARE.
+> >   */
+>
+> Thanks for sending a new iteration of this. I had a look at the
+> licenses texts associated to the SPDX tag in the LICENSES folder, and
+> it turns out that the tag we should be using for that text is
+> MIT. While we mention X11 in the header, the text associated to the
+> X11 license isn't the one we have in our headers.
 
-HK u-boot have many issue with loading the kernel, with load address
-*it's really hard to build the kernel for HK u-boot*,
-to get the configuration correctly.
-
-Well I have tested with mainline u-boot with latest ATF .
-I would prefer mainline u-boot for all the Amlogic SBC, since
-they sync with latest driver changes.
+Yes you're right text associated is the MIT License.
 
 >
-> Same, since the bootloader boots with the max supported freq of the board,
-> there is not real need of DVFS except for specific low-power use-cases.
+> I guess we should make very clear in the commit log that even though
+> the tag now reports MIT, this maps to the same license text and is not
+> therefore a license change.
+
+Ok I will add this to the commit log
+
+Regards,
+Cl=C3=A9ment
 >
-> And still, some early boards still use the bad SCPI freq table, we can't break them.
->
-> Neil
->
-I will leave this to your expert domain knowledge if you want to
-enable this now.
-
-Here is output of on the latest kernel.
-*cpupower*
-#  cpupower frequency-info
-analyzing CPU 0:
-  driver: scpi-cpufreq
-  CPUs which run at the same hardware frequency: 0 1 2 3
-  CPUs which need to have their frequency coordinated by software: 0 1 2 3
-  maximum transition latency: 200 us
-  hardware limits: 100.0 MHz - 1.54 GHz
-  available frequency steps:  100.0 MHz, 250 MHz, 500 MHz, 1000 MHz,
-1.30 GHz, 1.54 GHz
-  available cpufreq governors: conservative ondemand userspace
-powersave performance schedutil
-  current policy: frequency should be within 100.0 MHz and 100.0 MHz.
-                  The governor "ondemand" may decide which speed to use
-                  within this range.
-  current CPU frequency: 100.0 MHz (asserted by call to hardware)
-
-*powertop*
-# powertop
-            Package |            CPU 0
- 100 MHz    47.1%   |  100 MHz    41.5%
- 250 MHz     0.0%   |  250 MHz     0.0%
- 500 MHz     0.0%   |  500 MHz     0.0%
-1000 MHz     0.0%   | 1000 MHz     0.0%
-1296 MHz     0.0%   | 1296 MHz     0.0%
-1.54 GHz     0.0%   | 1.54 GHz     0.0%
-Idle        52.9%   | Idle        58.5%
-
-> >
-> >> Patch based on my next-20191031 for 5.5.x kernel.
-> >> Hope this is not late entry.
-> >
-> > Re: "too late".  FYI... when you post things as RFC, it means you're
-> > looking for comments (Request For Comment) but that it's not intended
-> > for merging.
-
-Ok  thanks for this input.
-
-> >
-> > I didn't see any comments on this, but I also didn't see a non-RFC
-> > follow-up, so I didn't queue it for v5.5.
-No problem.
-> >
-> > Kevin
-> >
->
--Anand
+> Thanks!
+> Maxime
