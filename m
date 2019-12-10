@@ -2,248 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52775119168
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 21:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 949F1119159
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2019 21:01:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727079AbfLJUBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 15:01:45 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46973 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726930AbfLJUBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 15:01:45 -0500
-Received: by mail-wr1-f67.google.com with SMTP id z7so21419225wrl.13;
-        Tue, 10 Dec 2019 12:01:43 -0800 (PST)
+        id S1727049AbfLJUAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Dec 2019 15:00:49 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:38966 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726892AbfLJUAe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 15:00:34 -0500
+Received: by mail-wm1-f67.google.com with SMTP id d5so3043298wmb.4;
+        Tue, 10 Dec 2019 12:00:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=gXxjPhJ3Q7lu/30NWGeVZetMfJAJiDa+9jYWsXuiNY4=;
-        b=QwyahkVI/O2HXvXv01ZnNh5RjagGtwlxGoPp97Kvt1FjORtnBVkybPbcIdhn/TT4z9
-         McqMXz5y0280tJFMD4jzZbp5PXxqILyf876XCWN5b5V5dHyuGFyzXa3XXzmmxrWIoKAp
-         jYwQlKE0XDAUaToLLRYvNuSvinUnoRCe7oM5GH1p6hCA0wvwAxFz1Dv9Ut6yBC9HHfZ9
-         rjFW1blGL6I6LVWNSP9WJftoxojZ0GhrJeq5BY56psiNI871Wws7yWtsZYoLgVUlgt7h
-         mab0mv0siqcdJXH+b6f0XxC1m/eWIoe+e9pxTmjcowk09VrNsPmte+xFOwqsdKp1RhuG
-         B4jQ==
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+tCXSRcOGp8AB2agMQyFNpx6A5VvIGH5Te8hf64YcWw=;
+        b=PcDOdUTMeTW9ZZMJ7mDGB217v44GZWE94XzfRXSgj82kQD4ttkGWJ3WiY0/FnItCQX
+         04BAre3cfoGvEIFSfolLLH22vaX4z0t//H7P+QZXopaMY79J9SkUnTP+iT5tMdQO5vs5
+         oZS5mYDsL/6+4VhGFEleiew50AuJGi8pJHeMravjd2P8Ck+n/P7GyvOEstUMaMMGLN9q
+         Br6Z98gUcts9ysgG+t6lV9hSnkCMY9KI11hlDFdmvAIyuonFdk0RyE6bRy/KIxWgSdxQ
+         eLsNh8sDH2+BERz5j/23/mxBRz8mC2zqlD5Zvz2sen8OaB7jWNX8FrnZwCvrMwu8IvWs
+         z1SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=gXxjPhJ3Q7lu/30NWGeVZetMfJAJiDa+9jYWsXuiNY4=;
-        b=nw1uq+LOglhpwOkNgIUYy/xonNTtVG/5J76x/PtXU0/worksVH8wpn7uhs/IjdRmXu
-         BkZ7UBxaZK5sItNG+bHn7IhgfRm1xK+mpTC5cnuOtWuHuCGtPBrGBq+RAEB/4O1Q+5Oe
-         FrSqZ3BxHe39WfRK+CHrAVw0CasWr0O5pkXHcFpijEUbDM/05eVZo6+JoSF0OaKc1WBs
-         HCw0pm/hK956a0IKqzyq68a7yLsvZlIMoKRx+LOOjr7C7q0TYg05fNy3K5QBNm3t5ziG
-         XQxaT6ykTBKPNbmEf7EVPEfObK57vyjg1eRPYwQg3/TxtBsS3tVLPtCjzytLjbyuLDCk
-         +mpA==
-X-Gm-Message-State: APjAAAXTalJwZQ0GlMLf2ubndlvcOJS/9KYaepL+tVNMJ5dMQVuk9eIu
-        mekyw1BcT7kHt3S0uQuYsddl2YUX
-X-Google-Smtp-Source: APXvYqzlwL2JVvC24iFfkTJHpiYHh759+P/FnYILdCUDrTo3HueHBW1pbEbI79hKMfNAMaulXP3iHA==
-X-Received: by 2002:a5d:65c5:: with SMTP id e5mr5190052wrw.311.1576008102576;
-        Tue, 10 Dec 2019 12:01:42 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id z6sm4352255wmz.12.2019.12.10.12.01.39
+         :references:mime-version:content-transfer-encoding;
+        bh=+tCXSRcOGp8AB2agMQyFNpx6A5VvIGH5Te8hf64YcWw=;
+        b=LbLCe5zn6S+0SZIxn2kElWgWps/jPCYI3CwoU5PjpGCVlA6i4bdZRjDPuAQHCq46ee
+         KAQvnL0fA93ZzhGaOtZdcWq82eOqPkjdHRV/61H+4N4LhzbplX5sUj7vpAX8NHYMvlVK
+         /AVYvbUQbsNfutFzQUky1IcPL6MpegkyLF6OqTq/sZtuVmHxiFUN3NtjuCHB8RXCFqpm
+         XFKLKP33UvApcI9OWrzvz5xKJFxOeBvPlh9DuzSVmRMpWGK7yJ/01LehCu9GubbPWQ+A
+         FlR1gUU5XYSyjpdP2wy9x3Y6ubFhFwuYADa5sSwgt47HSxhGVuFed4pz9RFHKEx98ohO
+         CXLw==
+X-Gm-Message-State: APjAAAU+88aPkRPMFtJUn7Z5u3Kl51gTFmyaAzbedWQ63AJ/GzYaPcNg
+        6EunshroAP7SLX5sEY2Kuso=
+X-Google-Smtp-Source: APXvYqzrsvco5XJD7/5sA83REuKxpORSzOHblfQuIBFlT49tQcREjH5VmRYckMc89eWDPNGust+UUw==
+X-Received: by 2002:a7b:cf01:: with SMTP id l1mr6861581wmg.86.1576008032761;
+        Tue, 10 Dec 2019 12:00:32 -0800 (PST)
+Received: from localhost.localdomain (p200300F1371AD700428D5CFFFEB99DB8.dip0.t-ipconnect.de. [2003:f1:371a:d700:428d:5cff:feb9:9db8])
+        by smtp.googlemail.com with ESMTPSA id t81sm4428610wmg.6.2019.12.10.12.00.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2019 12:01:41 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Jim Quinlan <jim2101024@gmail.com>,
-        Jim Quinlan <im2101024@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
-        ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE)
-Subject: [PATCH 2/2] reset: Add Broadcom STB RESCAL reset controller
-Date:   Tue, 10 Dec 2019 11:59:03 -0800
-Message-Id: <20191210195903.24127-3-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191210195903.24127-1-f.fainelli@gmail.com>
-References: <20191210195903.24127-1-f.fainelli@gmail.com>
+        Tue, 10 Dec 2019 12:00:32 -0800 (PST)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, ulf.hansson@linaro.org
+Cc:     robh+dt@kernel.org, jianxin.pan@amlogic.com, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        lnykww@gmail.com, yinxin_1989@aliyun.com,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: mmc: Document the Amlogic Meson SDHC MMC host controller
+Date:   Tue, 10 Dec 2019 21:00:21 +0100
+Message-Id: <20191210200022.29696-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191210200022.29696-1-martin.blumenstingl@googlemail.com>
+References: <20191210200022.29696-1-martin.blumenstingl@googlemail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jim Quinlan <jim2101024@gmail.com>
+This documents the devicetree bindings for the SDHC MMC host controller
+found in Meson6, Meson8, Meson8b and Meson8m2 SoCs. It can use a
+bus-width of 1/4/8-bit and it supports eMMC spec 4.4x/4.5x including
+HS200 mode (up to 100MHz clock).
 
-On BCM7216 there is a special purpose reset controller named RESCAL
-(reset calibration) which is necessary for SATA and PCIe0/1 to operate
-correctly. This commit adds support for such a reset controller to be
-available.
-
-Signed-off-by: Jim Quinlan <im2101024@gmail.com>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/reset/Kconfig                |   7 ++
- drivers/reset/Makefile               |   1 +
- drivers/reset/reset-brcmstb-rescal.c | 124 +++++++++++++++++++++++++++
- 3 files changed, 132 insertions(+)
- create mode 100644 drivers/reset/reset-brcmstb-rescal.c
+ .../bindings/mmc/amlogic,meson-mx-sdhc.yaml   | 64 +++++++++++++++++++
+ 1 file changed, 64 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 12f5c897788d..b7cc0a2049d9 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -49,6 +49,13 @@ config RESET_BRCMSTB
- 	  This enables the reset controller driver for Broadcom STB SoCs using
- 	  a SUN_TOP_CTRL_SW_INIT style controller.
- 
-+config RESET_BRCMSTB_RESCAL
-+	bool "Broadcom STB RESCAL reset controller"
-+	default ARCH_BRCMSTB || COMPILE_TEST
-+	help
-+	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
-+	  BCM7216.
-+
- config RESET_HSDK
- 	bool "Synopsys HSDK Reset Driver"
- 	depends on HAS_IOMEM
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 00767c03f5f2..1e4291185c52 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -8,6 +8,7 @@ obj-$(CONFIG_RESET_ATH79) += reset-ath79.o
- obj-$(CONFIG_RESET_AXS10X) += reset-axs10x.o
- obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
-+obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
- obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
- obj-$(CONFIG_RESET_IMX7) += reset-imx7.o
- obj-$(CONFIG_RESET_LANTIQ) += reset-lantiq.o
-diff --git a/drivers/reset/reset-brcmstb-rescal.c b/drivers/reset/reset-brcmstb-rescal.c
+diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
 new file mode 100644
-index 000000000000..58a30e624a14
+index 000000000000..862aedba680f
 --- /dev/null
-+++ b/drivers/reset/reset-brcmstb-rescal.c
-@@ -0,0 +1,124 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (C) 2018 Broadcom */
++++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/amlogic,meson-mx-sdhc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
++title: Amlogic Meson SDHC controller Device Tree Bindings
 +
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+#include <linux/types.h>
++allOf:
++  - $ref: "mmc-controller.yaml"
 +
-+#define BRCM_RESCAL_START	0
-+#define	BRCM_RESCAL_START_BIT	BIT(0)
-+#define BRCM_RESCAL_CTRL	4
-+#define BRCM_RESCAL_STATUS	8
-+#define BRCM_RESCAL_STATUS_BIT	BIT(0)
++maintainers:
++  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 +
-+struct brcm_rescal_reset {
-+	void __iomem	*base;
-+	struct device *dev;
-+	struct reset_controller_dev rcdev;
-+};
++description: |
++  The SDHC MMC host controller on Amlogic SoCs provides an eMMC and MMC
++  card interface with 1/4/8-bit bus width.
++  It supports eMMC spec 4.4x/4.5x including HS200 (up to 100MHz clock).
 +
-+static int brcm_rescal_reset_assert(struct reset_controller_dev *rcdev,
-+				      unsigned long id)
-+{
-+	return 0;
-+}
++properties:
++  compatible:
++    items:
++      - enum:
++        - amlogic,meson8-sdhc
++        - amlogic,meson8b-sdhc
++        - amlogic,meson8m2-sdhc
++      - const: amlogic,meson-mx-sdhc
 +
-+static int brcm_rescal_reset_deassert(struct reset_controller_dev *rcdev,
-+				      unsigned long id)
-+{
-+	struct brcm_rescal_reset *data =
-+		container_of(rcdev, struct brcm_rescal_reset, rcdev);
-+	void __iomem *base = data->base;
-+	const int NUM_RETRIES = 10;
-+	u32 reg;
-+	int i;
++  reg:
++    minItems: 1
 +
-+	reg = readl(base + BRCM_RESCAL_START);
-+	writel(reg | BRCM_RESCAL_START_BIT, base + BRCM_RESCAL_START);
-+	reg = readl(base + BRCM_RESCAL_START);
-+	if (!(reg & BRCM_RESCAL_START_BIT)) {
-+		dev_err(data->dev, "failed to start sata/pcie rescal\n");
-+		return -EIO;
-+	}
++  interrupts:
++    minItems: 1
 +
-+	reg = readl(base + BRCM_RESCAL_STATUS);
-+	for (i = NUM_RETRIES; i >= 0 &&  !(reg & BRCM_RESCAL_STATUS_BIT); i--) {
-+		udelay(100);
-+		reg = readl(base + BRCM_RESCAL_STATUS);
-+	}
-+	if (!(reg & BRCM_RESCAL_STATUS_BIT)) {
-+		dev_err(data->dev, "timedout on sata/pcie rescal\n");
-+		return -ETIMEDOUT;
-+	}
++  clocks:
++    minItems: 5
 +
-+	reg = readl(base + BRCM_RESCAL_START);
-+	writel(reg ^ BRCM_RESCAL_START_BIT, base + BRCM_RESCAL_START);
-+	reg = readl(base + BRCM_RESCAL_START);
-+	dev_dbg(data->dev, "sata/pcie rescal success\n");
++  clock-names:
++    items:
++      - const: pclk
++      - const: clkin0
++      - const: clkin1
++      - const: clkin2
++      - const: clkin3
 +
-+	return 0;
-+}
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
 +
-+static int brcm_rescal_reset_xlate(struct reset_controller_dev *rcdev,
-+				   const struct of_phandle_args *reset_spec)
-+{
-+	/* This is needed if #reset-cells == 0. */
-+	return 0;
-+}
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+static const struct reset_control_ops brcm_rescal_reset_ops = {
-+	.assert = brcm_rescal_reset_assert,
-+	.deassert = brcm_rescal_reset_deassert,
-+};
-+
-+static int brcm_rescal_reset_probe(struct platform_device *pdev)
-+{
-+	struct brcm_rescal_reset *data;
-+	struct resource *res;
-+
-+	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	data->base = devm_ioremap_resource(&pdev->dev, res);
-+
-+	if (IS_ERR(data->base))
-+		return PTR_ERR(data->base);
-+
-+	platform_set_drvdata(pdev, data);
-+
-+	data->rcdev.owner = THIS_MODULE;
-+	data->rcdev.nr_resets = 1;
-+	data->rcdev.ops = &brcm_rescal_reset_ops;
-+	data->rcdev.of_node = pdev->dev.of_node;
-+	data->rcdev.of_xlate = brcm_rescal_reset_xlate;
-+	data->dev = &pdev->dev;
-+
-+	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-+}
-+
-+static const struct of_device_id brcm_rescal_reset_of_match[] = {
-+	{ .compatible = "brcm,bcm7216-pcie-sata-rescal" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, brcm_rescal_reset_of_match);
-+
-+static struct platform_driver brcm_rescal_reset_driver = {
-+	.probe = brcm_rescal_reset_probe,
-+	.driver = {
-+		.name	= "brcm-rescal-reset",
-+		.of_match_table	= brcm_rescal_reset_of_match,
-+	}
-+};
-+module_platform_driver(brcm_rescal_reset_driver);
-+
-+MODULE_AUTHOR("Broadcom");
-+MODULE_DESCRIPTION("Broadcom Sata/PCIe rescal reset controller");
-+MODULE_LICENSE("GPL v2");
++    mmc@8e00 {
++      compatible = "amlogic,meson8-sdhc", "amlogic,meson-mx-sdhc";
++      reg = <0x8e00 0x42>;
++      interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
++      clocks = <&sdhc_pclk>, <&xtal>, <&fclk_div4>, <&fclk_div3>, <&fclk_div5>;
++      clock-names = "pclk", "clkin0", "clkin1", "clkin2", "clkin3";
++    };
 -- 
-2.17.1
+2.24.0
 
