@@ -2,181 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0475C11A026
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 01:46:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E817B11A065
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 02:20:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726500AbfLKAqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Dec 2019 19:46:07 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:44229 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbfLKAqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 19:46:07 -0500
-Received: by mail-ot1-f65.google.com with SMTP id x3so17245625oto.11;
-        Tue, 10 Dec 2019 16:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=dNo8gQB2Lns6lssefACZcuCEFfgXMn9otoHM3Ump6ZU=;
-        b=MSQi9449EbBVtE8SBD/GOeFr9lc1VEeadwIPv0OUHQIqzCemeFd7M/BqaTHJH2HbFC
-         VyC2WdGAJ0Oy7BMvm6c+VXsJmVA9T5O44nKl/i7bv6PirSOnQbfzSRo6tWVFKd5w1Tzp
-         EM+9Ny2MRBFb5NHvtnHw5Dye3NOTdNk7MqGkiIxyjoSL4Fv19pYxLtPnlF66mlPaY0BU
-         ccadh1t27sktMAwSiei7ID54Jtbum+31GKoG2tV0xt3XzxvvBIYyHzo1sRSy99F1emGF
-         BpQeZnZqYUN6v+/AO5QZoW5U5JqSERSUYzkuCLqTi/DD2JIqIxn8V8guYI5nTfJyhAcF
-         Toaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=dNo8gQB2Lns6lssefACZcuCEFfgXMn9otoHM3Ump6ZU=;
-        b=YqcGZO+Ni9INFPO5Azmc4aJmV13XVhoWEiC/RLvx8iXp/UOL+6IZl20XkuvlbrEpeg
-         79jnf94A4odAphi3f064Scrw3z3YsUEIdGjeGb9ucQfjcDPsQnwayJdY4+h35GdBNdGL
-         S6gbCiNMmeVQuhTEfjLfF03DS9MioAggST7JUy9QLW2O1e36bHDFVxLGNJF3N7VA7OpE
-         mqzM/RBSIj+MPgk/ov9CGw5GJR9STCKmVo/UUT86JjEx4kgmDY7NKcT+1PzOGNngmtYT
-         gpLvJZCnENsg0mPEs0xWWh1Bv/D8u6uW8fYX7m/3LDSGSsFfA7OCGmW+M11Nz3iUz0cF
-         9fkA==
-X-Gm-Message-State: APjAAAXz1o4+FH5gPoIocJXydWYmteqp6s24sLCAuVdjliXSdsyZDxu4
-        yvFPKKmjQ1vC08WISTm8wDvEuXO1yUU7lYgA8Co=
-X-Google-Smtp-Source: APXvYqxlHTr1UZyzC6aCajvAM4W2Nsg3YlT+KI7UUGo3jxS4zv5rW02mvvBuzLyLP3MDtSmh3sJHzcCwjpOwaw6OzaY=
-X-Received: by 2002:a9d:4f0e:: with SMTP id d14mr452420otl.90.1576025165539;
- Tue, 10 Dec 2019 16:46:05 -0800 (PST)
+        id S1726500AbfLKBUQ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Dec 2019 20:20:16 -0500
+Received: from sender4-op-o11.zoho.com ([136.143.188.11]:17164 "EHLO
+        sender4-op-o11.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726364AbfLKBUP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Dec 2019 20:20:15 -0500
+ARC-Seal: i=1; a=rsa-sha256; t=1576027194; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=nBC/a8KgwAEFS8owKJPJteNGwqKKpZ9l/pwkdpn0hYabhMF2sWdKEU7AtMAzjtXy863uwAZBHDt7RiA/UIT8Cad4imwinPXuhx1JY0kg63LRmGGBLI6pLZottID3rigiZ7x4n0Px9MttjiMt2VGL4BiFzVYNE1MZdUPiPzKuCTs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1576027194; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=DuYLWfyJP9Xff1OS3yX3DZJn48FedLL4mZAzGQCoZrE=; 
+        b=Wwyh+DhfYltvYfBZy2eveO0P5AYDvNf2uwNfLH6TkoyLY/a2eb6vNxnlFByCfW6xj+Db5r6swJyx+gQ8WI5maDG+uNf4zvYLPA/NfCk9LSTyQ5kEIDOWn09r8QqNvOLM+Xh0mDugnjBXK+XgjTefW3XHZezS/we7Y1dviFfqu/I=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=dlrobertson.com;
+        spf=pass  smtp.mailfrom=dan@dlrobertson.com;
+        dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
+Received: from nessie.verizon.net (pool-173-73-58-202.washdc.fios.verizon.net [173.73.58.202]) by mx.zohomail.com
+        with SMTPS id 157602719391847.389218584379364; Tue, 10 Dec 2019 17:19:53 -0800 (PST)
+From:   Dan Robertson <dan@dlrobertson.com>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        devicetree@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Joe Perches <joe@perches.com>,
+        Dan Robertson <dan@dlrobertson.com>
+Message-ID: <20191211010308.1525-1-dan@dlrobertson.com>
+Subject: [PATCH v6 0/2] iio: add driver for Bosch BMA400 accelerometer
+Date:   Wed, 11 Dec 2019 01:03:06 +0000
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-References: <20191014141718.22603-1-narmstrong@baylibre.com>
- <20191014141718.22603-2-narmstrong@baylibre.com> <20191023201141.GA21235@bogus>
- <CA+3zgmsJPsvXgsjDQKKrSG+UNdY3SK+hKCTD2X3hGG+OXejHig@mail.gmail.com>
- <CAKgpwJWU3jB0DWEKE09TOV+YLceBFJ75ZirAXQbuhj8v3FwjXg@mail.gmail.com>
- <c32007f5-88b9-45c5-b542-b1dc4dbc76ea@baylibre.com> <CAKgpwJVHF6Ytdt9kq5SwiixFDLym_UPG51aXag1nVVay0pzofQ@mail.gmail.com>
- <45212db9-e366-2669-5c0a-3c5bd06287f6@synopsys.com> <ce35b6d2-7ed1-be2d-6e38-4c6e89340a40@baylibre.com>
-In-Reply-To: <ce35b6d2-7ed1-be2d-6e38-4c6e89340a40@baylibre.com>
-From:   Tim <elatllat@gmail.com>
-Date:   Tue, 10 Dec 2019 19:45:54 -0500
-Message-ID: <CA+3zgmtWQwdJG5NT-t7__Mqt5u_U3m4+HEL6p4PWxx5NES7_AQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] doc: dt: bindings: usb: dwc3: Update entries for
- disabling SS instances in park mode
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-amlogic@lists.infradead.org" 
-        <linux-amlogic@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dongjin Kim <tobetter@gmail.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8BIT
+X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just writing to say;
-this patch is still performing well on 5.5.0-rc1, and
-there is no speed improvement by adding DWC3_GUCTL_NAK_PER_ENH_HS BIT(17)
-    I get up to 3890 ms second lag with "ping -s 5120 $IP" when
-copying between USB HDDs either way, but at least this patch stops the
-crashing.
+Only update from the last patchset are the changes to the Kconfig
+options.
+
+Cheers,
+
+ - Dan
 
 
-On Tue, Dec 10, 2019 at 3:55 AM Neil Armstrong <narmstrong@baylibre.com> wr=
-ote:
->
-> Hi,
->
-> On 12/11/2019 21:03, Thinh Nguyen wrote:
-> > Hi,
-> >
-> > Jun Li wrote:
-> >> This bug exists on all current versions per information I got from Syn=
-opsys.
-> >> + Thinh Nguyen <thinhn@synopsys.com>.
-> >>
-> >> Li Jun
-> >
-> > The GUCTL1.PARKMODE_DISABLE_SS is only available in dwc_usb3 controller
-> > running in host mode. This should not be set for other IPs.
-> >
-> > This can be disabled by default based on IP, but I recommend to have a
-> > property to enable this feature for devices that need this.
->
-> Thanks, so this patchset is the right way to solve this.
->
-> Felipe, would it be possible to have it merged for next release ?
-> Should I resend it ?
->
-> Thanks,
-> Neil
->
-> >
-> >
-> >>
-> >> Neil Armstrong <narmstrong@baylibre.com> =E4=BA=8E2019=E5=B9=B411=E6=
-=9C=8812=E6=97=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=885:00=E5=86=99=E9=81=
-=93=EF=BC=9A
-> >>> Hi Li,
-> >>>
-> >>> On 11/11/2019 02:58, Jun Li wrote:
-> >>>> Hi Neil
-> >>>>
-> >>>> As I got the information from Synopsys, this bug exists on current I=
-P versions,
-> >>>> and per my tests with external USB3 hub + 2 Super speed udisks on da=
-ta
-> >>>> read by dd, I can reproduce this issue with different kernel version=
-s, also I
-> >>>> didn't see obvious performance drop by dd tests after disable park m=
-ode for
-> >>>> super speed, so should we just disable it by default so no need a qu=
-irk?
-> >>> I don't have any opinion on this, I think the USB & DWC3 maintainers =
-should decide
-> >>> how to handle this.
-> >>>
-> >>> Did Synopsys specified a range of affected IP version ?
-> >>>
-> >>> Neil
-> >>>
-> >>>> Li Jun
-> >>>>
-> >>>> Tim <elatllat@gmail.com> =E4=BA=8E2019=E5=B9=B411=E6=9C=8811=E6=97=
-=A5=E5=91=A8=E4=B8=80 =E4=B8=8A=E5=8D=888:42=E5=86=99=E9=81=93=EF=BC=9A
-> >>>>> Thanks for working on this Neil,
-> >>>>> Is there something that needs doing for this patch to make it into =
-5.3 or 5.4?
-> >>>>> As previously mentioned the patch set fixes the issue on affected h=
-ardware;
-> >>>>>      https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__patchwo=
-rk.kernel.org_patch_11164515_&d=3DDwIFaQ&c=3DDPL6_X_6JkXFx7AXWqB0tg&r=3Du9F=
-YoxKtyhjrGFcyixFYqTjw1ZX0VsG2d8FCmzkTY-w&m=3DBCfRHM9e86039Su0-QvK_yUjNnYrnl=
-_BcvxTtViypT8&s=3DaV5u7uxNX6oTLB3_-qNuzrNvyiqx_rPC6P9TMqG-LNE&e=3D
-> >>>>>
-> >>>>>
-> >>>>>
-> >>>>> On Wed, Oct 23, 2019 at 4:11 PM Rob Herring <robh@kernel.org> wrote=
-:
-> >>>>>> On Mon, Oct 14, 2019 at 04:17:16PM +0200, Neil Armstrong wrote:
-> >>>>>>> This patch updates the documentation with the information related
-> >>>>>>> to the quirks that needs to be added for disabling all SuperSpeed=
- XHCi
-> >>>>>>> instances in park mode.
-> >>>>>>>
-> >>>>>>> CC: Dongjin Kim <tobetter@gmail.com>
-> >>>>>>> Cc: Jianxin Pan <jianxin.pan@amlogic.com>
-> >>>>>>> Reported-by: Tim <elatllat@gmail.com>
-> >>>>>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >>>>>>> ---
-> >>>>>>>   Documentation/devicetree/bindings/usb/dwc3.txt | 2 ++
-> >>>>>>>   1 file changed, 2 insertions(+)
-> >>>>>> Sigh, what's one more to the never ending list of quirks...
-> >>>>>>
-> >>>>>> Acked-by: Rob Herring <robh@kernel.org>
-> >
-> > BR,
-> > Thinh
-> >
->
+Changes in v6:
+
+ * Improve readability Kconfig options
+
+Changes in v5:
+
+ * Move to using a function instead of lookup tables for scale and
+   frequency conversions.
+ * Rename DT bindings to bosch,bma400.yaml
+ * Fixed other errors and improvements found by reviewers
+
+Changes in v4:
+
+ * Fix error in DT bindings
+ * Fix typo when setting the OSR
+ * Simplified the cached sample frequency
+ * Fix the MODULE_LICENSE
+
+Changes in v3:
+
+ * Use yaml format for DT bindings
+ * Remove strict dependency on OF
+ * Tidy Kconfig dependencies
+ * Stylistic changes
+ * Do not soft-reset device on remove
+
+Changes in v2:
+
+ * Implemented iio_info -> read_avail
+ * Stylistic changes
+ * Implemented devicetree bindings
+
+
+Dan Robertson (2):
+  dt-bindings: iio: accel: bma400: add bindings
+  iio: (bma400) add driver for the BMA400
+
+ .../bindings/iio/accel/bosch,bma400.yaml      |  39 +
+ drivers/iio/accel/Kconfig                     |  16 +
+ drivers/iio/accel/Makefile                    |   2 +
+ drivers/iio/accel/bma400.h                    |  95 ++
+ drivers/iio/accel/bma400_core.c               | 823 ++++++++++++++++++
+ drivers/iio/accel/bma400_i2c.c                |  62 ++
+ 6 files changed, 1037 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bma400.yaml
+ create mode 100644 drivers/iio/accel/bma400.h
+ create mode 100644 drivers/iio/accel/bma400_core.c
+ create mode 100644 drivers/iio/accel/bma400_i2c.c
+
+
+
