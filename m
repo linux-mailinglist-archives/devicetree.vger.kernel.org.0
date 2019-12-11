@@ -2,202 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3477D11A405
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 06:47:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8829C11A40F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 06:55:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725800AbfLKFrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 00:47:35 -0500
-Received: from conuserg-10.nifty.com ([210.131.2.77]:23052 "EHLO
-        conuserg-10.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726208AbfLKFre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 00:47:34 -0500
-Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
-        by conuserg-10.nifty.com with ESMTP id xBB5jdVb019523;
-        Wed, 11 Dec 2019 14:45:41 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-10.nifty.com xBB5jdVb019523
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1576043142;
-        bh=5tRNV+uzJuKYOSVUsYXTU2MrmaE0khMYlLEUoRe31qk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=20huwndAsZd8pNPrAO75GRTW41FmXK5L/af2R9egldxaSTeoLXA1cDLnahlzlucmS
-         LpR62oEUtUEmPlwS7bLW6nCh6Kd5x+z5RZ3eJiLVWPoDH7vosMIqCa/dXw0GzCB0im
-         mQLWnBL24Y54gTkjtbF0QPSDOaSsrO6ASRsTtr4/vvsHZh2DvJ20oadGNCQ81zSTeu
-         5B708QnHg7ODZJdZ8by93NHJWvlf8bSXljveTq9ucgmDzNR0Q9TJRbHMerX4+IS0tM
-         Rfcgi0/5AcyeVtlmgI+0xZaJhlcg09+FM0rlrE5Xq5cb1Hyo3rsVUvM124cpKrlXJj
-         2Td98Q8XctjsA==
-X-Nifty-SrcIP: [153.142.97.92]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     linux-mtd@lists.infradead.org
-Cc:     Dinh Nguyen <dinguyen@kernel.org>, Marek Vasut <marex@denx.de>,
-        Ley Foon Tan <ley.foon.tan@intel.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] mtd: rawnand: denali_dt: add reset controlling
-Date:   Wed, 11 Dec 2019 14:45:38 +0900
-Message-Id: <20191211054538.8283-2-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191211054538.8283-1-yamada.masahiro@socionext.com>
-References: <20191211054538.8283-1-yamada.masahiro@socionext.com>
+        id S1727790AbfLKFy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 00:54:59 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:35000 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725973AbfLKFyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 00:54:54 -0500
+X-UUID: 18846f4ba71044ba9c908b5f9c501de1-20191211
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=8qhhdoDqZ+CygTdbYi8g0Gw9RSr1TQM9pKMrc5q2zEY=;
+        b=JmrzCBN2MdKqL7vvN2PnVdOS+pKcLPb5fHssSPthAL1Aa0MBuif9rkMBB8aKjkobvdBa+guB+PO440BH1Q1rhrHCrOfvOKV5iaqNn0zX+n6pU1N3KzLki5AAMtjKo9gLKfShAXdb6q1FkxyngPl+sGaZZHtqNZjqsgduv2cbI50=;
+X-UUID: 18846f4ba71044ba9c908b5f9c501de1-20191211
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 974004315; Wed, 11 Dec 2019 13:54:44 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 11 Dec 2019 13:54:31 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 11 Dec 2019 13:54:37 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v5 01/11] dt-bindings: phy-mtk-tphy: add two optional properties for u2phy
+Date:   Wed, 11 Dec 2019 13:54:13 +0800
+Message-ID: <1576043663-14240-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 93C3912FB354FF2DFCC9DDD3570751E44B5EE4DE40033869E5414810FA15E18F2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the Denali NAND Flash Memory Controller User's Guide,
-this IP has two reset signals.
-
-  rst_n:     reset most of FFs in the controller core
-  reg_rst_n: reset all FFs in the register interface, and in the
-             initialization sequencer
-
-This commit supports controlling those reset signals.
-
-It is possible to control them separately from the IP point of view
-although they might be often tied up together in actual SoC integration.
-
-The IP spec says, asserting only the reg_rst_n without asserting rst_n
-will cause unpredictable behavior in the controller. So, the driver
-deasserts ->rst_reg and ->rst in this order.
-
-Another thing that should be kept in mind is the automated initialization
-sequence (a.k.a. 'bootstrap' process) is kicked off when reg_rst_n is
-deasserted.
-
-When the reset is deasserted, the controller issues a RESET command
-to the chip select 0, and attempts to read out the chip ID, and further
-more, ONFI parameters if it is an ONFI-compliant device. Then, the
-controller sets up the relevant registers based on the detected
-device parameters.
-
-This process might be useful for tiny boot firmware, but is redundant
-for Linux Kernel because nand_scan_ident() probes devices and sets up
-parameters accordingly. Rather, this hardware feature is annoying
-because it ends up with misdetection due to bugs.
-
-So, commit 0615e7ad5d52 ("mtd: nand: denali: remove Toshiba and Hynix
-specific fixup code") changed the driver to not rely on it.
-
-However, there is no way to prevent it from running. The IP provides
-the 'bootstrap_inhibit_init' port to suppress this sequence, but it is
-usually out of software control, and dependent on SoC implementation.
-As for the Socionext UniPhier platform, LD4 always enables it. For the
-later SoCs, the bootstrap sequence runs depending on the boot mode.
-
-I added usleep_range() to make the driver wait until the sequence
-finishes. Otherwise, the driver would fail to detect the chip due
-to the race between the driver and hardware-controlled sequence.
-
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
----
-
-Changes in v2:
- - Split into two patches
-
- drivers/mtd/nand/raw/denali_dt.c | 40 +++++++++++++++++++++++++++++++-
- 1 file changed, 39 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mtd/nand/raw/denali_dt.c b/drivers/mtd/nand/raw/denali_dt.c
-index 8b779a899dcf..9a294c3f6ec8 100644
---- a/drivers/mtd/nand/raw/denali_dt.c
-+++ b/drivers/mtd/nand/raw/denali_dt.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <linux/clk.h>
-+#include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/io.h>
- #include <linux/ioport.h>
-@@ -14,6 +15,7 @@
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
-+#include <linux/reset.h>
- 
- #include "denali.h"
- 
-@@ -22,6 +24,8 @@ struct denali_dt {
- 	struct clk *clk;	/* core clock */
- 	struct clk *clk_x;	/* bus interface clock */
- 	struct clk *clk_ecc;	/* ECC circuit clock */
-+	struct reset_control *rst;	/* core reset */
-+	struct reset_control *rst_reg;	/* register reset */
- };
- 
- struct denali_dt_data {
-@@ -151,6 +155,14 @@ static int denali_dt_probe(struct platform_device *pdev)
- 	if (IS_ERR(dt->clk_ecc))
- 		return PTR_ERR(dt->clk_ecc);
- 
-+	dt->rst = devm_reset_control_get_optional_shared(dev, "nand");
-+	if (IS_ERR(dt->rst))
-+		return PTR_ERR(dt->rst);
-+
-+	dt->rst_reg = devm_reset_control_get_optional_shared(dev, "reg");
-+	if (IS_ERR(dt->rst_reg))
-+		return PTR_ERR(dt->rst_reg);
-+
- 	ret = clk_prepare_enable(dt->clk);
- 	if (ret)
- 		return ret;
-@@ -166,10 +178,30 @@ static int denali_dt_probe(struct platform_device *pdev)
- 	denali->clk_rate = clk_get_rate(dt->clk);
- 	denali->clk_x_rate = clk_get_rate(dt->clk_x);
- 
--	ret = denali_init(denali);
-+	/*
-+	 * Deassert the register reset, and the core reset in this order.
-+	 * Deasserting the core reset while the register reset is asserted
-+	 * will cause unpredictable behavior in the controller.
-+	 */
-+	ret = reset_control_deassert(dt->rst_reg);
- 	if (ret)
- 		goto out_disable_clk_ecc;
- 
-+	ret = reset_control_deassert(dt->rst);
-+	if (ret)
-+		goto out_assert_rst_reg;
-+
-+	/*
-+	 * When the reset is deasserted, the initialization sequence is kicked
-+	 * (bootstrap process). The driver must wait until it finished.
-+	 * Otherwise, it will result in unpredictable behavior.
-+	 */
-+	usleep_range(200, 1000);
-+
-+	ret = denali_init(denali);
-+	if (ret)
-+		goto out_assert_rst;
-+
- 	for_each_child_of_node(dev->of_node, np) {
- 		ret = denali_dt_chip_init(denali, np);
- 		if (ret) {
-@@ -184,6 +216,10 @@ static int denali_dt_probe(struct platform_device *pdev)
- 
- out_remove_denali:
- 	denali_remove(denali);
-+out_assert_rst:
-+	reset_control_assert(dt->rst);
-+out_assert_rst_reg:
-+	reset_control_assert(dt->rst_reg);
- out_disable_clk_ecc:
- 	clk_disable_unprepare(dt->clk_ecc);
- out_disable_clk_x:
-@@ -199,6 +235,8 @@ static int denali_dt_remove(struct platform_device *pdev)
- 	struct denali_dt *dt = platform_get_drvdata(pdev);
- 
- 	denali_remove(&dt->controller);
-+	reset_control_assert(dt->rst);
-+	reset_control_assert(dt->rst_reg);
- 	clk_disable_unprepare(dt->clk_ecc);
- 	clk_disable_unprepare(dt->clk_x);
- 	clk_disable_unprepare(dt->clk);
--- 
-2.17.1
+QWRkIHR3byBvcHRpb25hbCBwcm9wZXJ0aWVzLCBvbmUgZm9yIHR1bmluZyBKLUsgdm9sdGFnZSBi
+eSBJTlRSLA0KYW5vdGhlciBmb3IgZGlzY29ubmVjdCB0aHJlc2hvbGQsIGJvdGggb2YgdGhlbSBh
+cmUgcmVsYXRlZCB3aXRoDQpjb25uZWN0IGRldGVjdGlvbg0KDQpTaWduZWQtb2ZmLWJ5OiBDaHVu
+ZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQpBY2tlZC1ieTogUm9iIEhlcnJp
+bmcgPHJvYmhAa2VybmVsLm9yZz4NCi0tLQ0KdjU6IGFkZCBhY2tlZC1ieSBSb2INCg0KdjQ6IG5v
+IGNoYW5nZXMNCg0KdjM6IGNoYW5nZSBjb21taXQgbG9nDQoNCnYyOiBjaGFuZ2UgZGVzY3JpcHRp
+b24NCi0tLQ0KIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waHkvcGh5LW10ay10
+cGh5LnR4dCB8IDIgKysNCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspDQoNCmRpZmYg
+LS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L3BoeS1tdGstdHBo
+eS50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L3BoeS1tdGstdHBo
+eS50eHQNCmluZGV4IGE1ZjdhNGYwZGJjMS4uY2U2YWJmYmRmYmUxIDEwMDY0NA0KLS0tIGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9waHktbXRrLXRwaHkudHh0DQorKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L3BoeS1tdGstdHBoeS50eHQN
+CkBAIC01Miw2ICs1Miw4IEBAIE9wdGlvbmFsIHByb3BlcnRpZXMgKFBIWV9UWVBFX1VTQjIgcG9y
+dCAoY2hpbGQpIG5vZGUpOg0KIC0gbWVkaWF0ZWssZXllLXZydAk6IHUzMiwgdGhlIHNlbGVjdGlv
+biBvZiBWUlQgcmVmZXJlbmNlIHZvbHRhZ2UNCiAtIG1lZGlhdGVrLGV5ZS10ZXJtCTogdTMyLCB0
+aGUgc2VsZWN0aW9uIG9mIEhTX1RYIFRFUk0gcmVmZXJlbmNlIHZvbHRhZ2UNCiAtIG1lZGlhdGVr
+LGJjMTIJOiBib29sLCBlbmFibGUgQkMxMiBvZiB1MnBoeSBpZiBzdXBwb3J0IGl0DQorLSBtZWRp
+YXRlayxkaXNjdGgJOiB1MzIsIHRoZSBzZWxlY3Rpb24gb2YgZGlzY29ubmVjdCB0aHJlc2hvbGQN
+CistIG1lZGlhdGVrLGludHIJOiB1MzIsIHRoZSBzZWxlY3Rpb24gb2YgaW50ZXJuYWwgUiAocmVz
+aXN0YW5jZSkNCiANCiBFeGFtcGxlOg0KIA0KLS0gDQoyLjI0LjANCg==
 
