@@ -2,153 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29ED011A8D1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 11:25:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D2E711A8FF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 11:36:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728821AbfLKKY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 05:24:56 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35542 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727469AbfLKKY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 05:24:56 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBBAOj8Q115655;
-        Wed, 11 Dec 2019 04:24:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1576059885;
-        bh=W+RMFciMhRgB2xiAH7N3KcyPOaKYa0Y2g73Ycx9qJBU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=AlEFjwGweVEw8qSb+hWRM560R4gcZ7LdQZ7uT5KGIJsgTrfW8NMyt7CLxYaIfAK7/
-         9i+s5zTdbewcepjqroGmDL/g963+nLlM7PN4rIUCzTtx7AnaFGJ6YvBuMudA2LnFlu
-         E9LCQFxJqBv/nvaI1HudJqEX0eIujtBgobWH2jN8=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBBAOjKf030751;
-        Wed, 11 Dec 2019 04:24:45 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 11
- Dec 2019 04:24:43 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 11 Dec 2019 04:24:43 -0600
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBBAOeLj096803;
-        Wed, 11 Dec 2019 04:24:40 -0600
-Subject: Re: [PATCH v7 11/12] firmware: ti_sci: rm: Add support for tx_tdtype
- parameter for tx channel
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, <vkoul@kernel.org>,
-        <robh+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>
-CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
-        <tony@atomide.com>, <j-keerthy@ti.com>, <vigneshr@ti.com>
-References: <20191209094332.4047-1-peter.ujfalusi@ti.com>
- <20191209094332.4047-12-peter.ujfalusi@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <3d3a4f1d-e449-88d6-ec5a-5ce516faf436@ti.com>
-Date:   Wed, 11 Dec 2019 12:24:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1728550AbfLKKgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 05:36:05 -0500
+Received: from mx07-002cda01.pphosted.com ([185.132.180.122]:5266 "EHLO
+        mx07-002cda01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728030AbfLKKgF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Dec 2019 05:36:05 -0500
+Received: from pps.filterd (m0135534.ppops.net [127.0.0.1])
+        by mx07-002cda01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBB9uHgr010037;
+        Wed, 11 Dec 2019 09:59:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=avl.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=08102019; bh=sKv1Q+W8G0/Kap939kV8/J8YKysqithOUtf1evnTyms=;
+ b=A8aPDB0dgDBcZfrbueiabNKcLXWC1wI26881c1ccjlMACpqNFBFAHClUo/jOMpQpfYai
+ h6Vw7O/CP35cZWHqFMTiuJzT0XbouK1t9ZLEfxVXAzX1cUSU/Iibznzq1IDRoZjRdSd7
+ kbx+L+JFh8RLPm12SLnOCSAzg3uFrF3lrUVpJ92/oTzj8sAoXyQZht2Q0Q8Fyv7RNoEx
+ 7rDUwWinxErsuTYkC58R1VW05vy3+bCWBRhJM6zXwM2vSHD/+hzMI+l4VX6xf+nhM7FR
+ 5aerJjhZOJCGyGmvPn68GlynnpU+xIUQvGFn27BpgIGtr1M5eZ8pSDXvWKFQjcXZSiDf tQ== 
+Received: from atgrzso2901.avl01.avlcorp.lan ([192.102.17.76])
+        by mx07-002cda01.pphosted.com with ESMTP id 2wr2ac70bf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 11 Dec 2019 09:59:48 +0000
+Received: from pps.filterd (atgrzso2901.avl01.avlcorp.lan [127.0.0.1])
+        by atgrzso2901.avl01.avlcorp.lan (8.16.0.27/8.16.0.27) with SMTP id xBB7mM9v014344;
+        Wed, 11 Dec 2019 10:59:48 +0100
+Received: from atgrzsw3758.avl01.avlcorp.lan ([10.13.100.86])
+        by atgrzso2901.avl01.avlcorp.lan with ESMTP id 2wr4nq1wkg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 11 Dec 2019 10:59:47 +0100
+Received: from atgrzsw3271.avl01.avlcorp.lan (10.12.65.157) by
+ atgrzsw3758.avl01.avlcorp.lan (10.37.149.11) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_DHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1779.2;
+ Wed, 11 Dec 2019 10:59:47 +0100
+Received: from ATGRZSW1694.avl01.avlcorp.lan (10.12.64.115) by
+ atgrzsw3271.avl01.avlcorp.lan (10.12.65.157) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2; Wed, 11 Dec 2019 10:59:47 +0100
+Received: from ATGRZWN210214.avl01.avlcorp.lan (10.12.100.12) by
+ ATGRZSW1694.avl01.avlcorp.lan (10.12.64.115) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Wed, 11 Dec 2019 10:59:47 +0100
+From:   <tomislav.denis@avl.com>
+To:     <jic23@kernel.org>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <tomislav.denis@avl.com>
+Subject: [PATCH v4 2/3] dt-bindings: Add asc vendor
+Date:   Wed, 11 Dec 2019 10:59:45 +0100
+Message-ID: <20191211095946.7904-3-tomislav.denis@avl.com>
+X-Mailer: git-send-email 2.10.1.windows.1
+In-Reply-To: <20191211095946.7904-1-tomislav.denis@avl.com>
+References: <20191211095946.7904-1-tomislav.denis@avl.com>
 MIME-Version: 1.0
-In-Reply-To: <20191209094332.4047-12-peter.ujfalusi@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: f9e74532-fb7d-4806-8539-2b9574eafa9a
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-12-11_01:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=1 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1911140001 definitions=main-1912110062
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-12-11_02:2019-12-11,2019-12-11 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 priorityscore=1501 spamscore=0 impostorscore=0 bulkscore=0
+ malwarescore=0 adultscore=0 mlxscore=0 suspectscore=1 clxscore=1015
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-1912110086
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/12/2019 11:43, Peter Ujfalusi wrote:
-> The system controller's resource manager have support for configuring the
-> TDTYPE of TCHAN_CFG register on j721e.
-> With this parameter the teardown completion can be controlled:
-> TDTYPE == 0: Return without waiting for peer to complete the teardown
-> TDTYPE == 1: Wait for peer to complete the teardown
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+From: Tomislav Denis <tomislav.denis@avl.com>
 
-Hi Peter,
+All Sensors Corporation is a manufacturer of MEMS piezoresitive
+ultra low pressure sensors and pressure transducers.
 
-You somehow dropped my reviewed by tag from this patch, this appears 
-identical to the v6 one. So,
+Signed-off-by: Tomislav Denis <tomislav.denis@avl.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Reviewed-by: Tero Kristo <t-kristo@ti.com>
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 967e78c..88247b3 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -109,6 +109,8 @@ patternProperties:
+     description: Artesyn Embedded Technologies Inc.
+   "^asahi-kasei,.*":
+     description: Asahi Kasei Corp.
++  "^asc,.*":
++    description: All Sensors Corporation
+   "^aspeed,.*":
+     description: ASPEED Technology Inc.
+   "^asus,.*":
+-- 
+2.7.4
 
-> ---
->   drivers/firmware/ti_sci.c              | 1 +
->   drivers/firmware/ti_sci.h              | 7 +++++++
->   include/linux/soc/ti/ti_sci_protocol.h | 2 ++
->   3 files changed, 10 insertions(+)
-> 
-> diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
-> index 4126be9e3216..f13e4a96f3b7 100644
-> --- a/drivers/firmware/ti_sci.c
-> +++ b/drivers/firmware/ti_sci.c
-> @@ -2412,6 +2412,7 @@ static int ti_sci_cmd_rm_udmap_tx_ch_cfg(const struct ti_sci_handle *handle,
->   	req->fdepth = params->fdepth;
->   	req->tx_sched_priority = params->tx_sched_priority;
->   	req->tx_burst_size = params->tx_burst_size;
-> +	req->tx_tdtype = params->tx_tdtype;
->   
->   	ret = ti_sci_do_xfer(info, xfer);
->   	if (ret) {
-> diff --git a/drivers/firmware/ti_sci.h b/drivers/firmware/ti_sci.h
-> index f0d068c03944..255327171dae 100644
-> --- a/drivers/firmware/ti_sci.h
-> +++ b/drivers/firmware/ti_sci.h
-> @@ -910,6 +910,7 @@ struct rm_ti_sci_msg_udmap_rx_flow_opt_cfg {
->    *   12 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::tx_credit_count
->    *   13 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::fdepth
->    *   14 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::tx_burst_size
-> + *   15 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::tx_tdtype
->    *
->    * @nav_id: SoC device ID of Navigator Subsystem where tx channel is located
->    *
-> @@ -973,6 +974,11 @@ struct rm_ti_sci_msg_udmap_rx_flow_opt_cfg {
->    *
->    * @tx_burst_size: UDMAP transmit channel burst size configuration to be
->    * programmed into the tx_burst_size field of the TCHAN_TCFG register.
-> + *
-> + * @tx_tdtype: UDMAP transmit channel teardown type configuration to be
-> + * programmed into the tdtype field of the TCHAN_TCFG register:
-> + * 0 - Return immediately
-> + * 1 - Wait for completion message from remote peer
->    */
->   struct ti_sci_msg_rm_udmap_tx_ch_cfg_req {
->   	struct ti_sci_msg_hdr hdr;
-> @@ -994,6 +1000,7 @@ struct ti_sci_msg_rm_udmap_tx_ch_cfg_req {
->   	u16 fdepth;
->   	u8 tx_sched_priority;
->   	u8 tx_burst_size;
-> +	u8 tx_tdtype;
->   } __packed;
->   
->   /**
-> diff --git a/include/linux/soc/ti/ti_sci_protocol.h b/include/linux/soc/ti/ti_sci_protocol.h
-> index 9531ec823298..f3aed0b91564 100644
-> --- a/include/linux/soc/ti/ti_sci_protocol.h
-> +++ b/include/linux/soc/ti/ti_sci_protocol.h
-> @@ -342,6 +342,7 @@ struct ti_sci_msg_rm_udmap_tx_ch_cfg {
->   #define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_SUPR_TDPKT_VALID        BIT(11)
->   #define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_CREDIT_COUNT_VALID      BIT(12)
->   #define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_FDEPTH_VALID            BIT(13)
-> +#define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_TDTYPE_VALID            BIT(15)
->   	u16 nav_id;
->   	u16 index;
->   	u8 tx_pause_on_err;
-> @@ -359,6 +360,7 @@ struct ti_sci_msg_rm_udmap_tx_ch_cfg {
->   	u16 fdepth;
->   	u8 tx_sched_priority;
->   	u8 tx_burst_size;
-> +	u8 tx_tdtype;
->   };
->   
->   /**
-> 
-
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
