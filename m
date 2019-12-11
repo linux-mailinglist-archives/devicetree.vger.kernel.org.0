@@ -2,100 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9CB11A424
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 06:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B57111A461
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 07:19:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727904AbfLKFzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 00:55:09 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:58919 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727837AbfLKFzG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 00:55:06 -0500
-X-UUID: 811d2b0dff5d446494d97977dc38b47d-20191211
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=XON1V6tySuKrrDd+LZuRUKWj6qe9V3o3++228yp8h3k=;
-        b=ESKfSwtYEJel+qShT+LTMdaz2d0yPLjuphWzpp3VWmsECyoUHMgKyS0tEwAt4BVwVPcZQziES9mpY9wcTVIPT/jcgs2njpu3fqn2TK1cjTJC9ugsBEb+45W6dzrMdd/E3F75MjdFZJIvvwZw5t5Fa8IiHdv2I6DveiMyp18pJfM=;
-X-UUID: 811d2b0dff5d446494d97977dc38b47d-20191211
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 42493875; Wed, 11 Dec 2019 13:54:56 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 11 Dec 2019 13:53:58 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 11 Dec 2019 13:54:50 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S1726208AbfLKGTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 01:19:38 -0500
+Received: from mail-pj1-f65.google.com ([209.85.216.65]:39781 "EHLO
+        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726357AbfLKGTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 01:19:38 -0500
+Received: by mail-pj1-f65.google.com with SMTP id v93so8511404pjb.6
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2019 22:19:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YRavSC33ZtK/7zUsAUhvwvnYf94ej0Wa3q2MGL/7bjE=;
+        b=G1irwZRtD6I4pLurc23D+bW7EdIavtCQy5pnDmv2sZKR3/O+cZhA7VkC/0TGO6lA+B
+         VhX8LuaIMGiSRxxTbduglep2ElbyfqkuWpYeYldOa9suu+nvv76Z7HLGqTgfMJH/VoqJ
+         /jArc5qR+n+7P1pFQZiI63+xOzBPv904pg8q4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YRavSC33ZtK/7zUsAUhvwvnYf94ej0Wa3q2MGL/7bjE=;
+        b=mZIaIX8m67IQqcUjE4iciOXvUTH/+t5S5r26WPJwrHN+t6hol0/zMCBkil7dKoIyKh
+         Wklkt9wuP1hK5u1u5lYjmCi4q+KygdR1SpDrRi82I16CtK+Q2PIxX8R4yeBUVHRl2lHf
+         gBCsiEX4JFf5v1cVwpsl1eEgQqDCoyvzuuKCBvh99YH9Za9/zCrTrs+CJM/72aKt2Kum
+         0S0b/jjGbRCsiiZH+o0nW4Bh8RFtqc22m/r5Wc044AE19kG6o4GiSiCC76MvumI3cH/k
+         AUiLvZlLdpl3dPMFLwX4dTQZXePtSQIWZ42WwVS3qQRXIZDc9W6OahlsgWmzTCfm+076
+         1q6Q==
+X-Gm-Message-State: APjAAAUb4haf5WA9IgKPXCFhk6qj1ijUX981a9Z6rb4WHTYHwYnKmyG8
+        p4gkTmkBrI3Co0DHWI6RG1pt2A==
+X-Google-Smtp-Source: APXvYqyyzVU6PmkPeOeBgKV6jY3bzTZPDmSqYSbUHfdlOt8oTvxIuNEEYVxyU8HYqS26xWZXbgMPvw==
+X-Received: by 2002:a17:90b:124a:: with SMTP id gx10mr1680582pjb.118.1576045176977;
+        Tue, 10 Dec 2019 22:19:36 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:b852:bd51:9305:4261])
+        by smtp.gmail.com with ESMTPSA id h5sm1225579pfk.30.2019.12.10.22.19.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2019 22:19:36 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     dri-devel@lists.freedesktop.org
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v5 11/11] arm64: dts: mt2712: use non-empty ranges for usb-phy
-Date:   Wed, 11 Dec 2019 13:54:23 +0800
-Message-ID: <1576043663-14240-11-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1576043663-14240-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1576043663-14240-1-git-send-email-chunfeng.yun@mediatek.com>
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        p.zabel@pengutronix.de,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Russell King <rmk+kernel@arm.linux.org.uk>
+Subject: [PATCH RESEND 0/4] drm: bridge: anx7688 and mux drivers
+Date:   Wed, 11 Dec 2019 14:19:07 +0800
+Message-Id: <20191211061911.238393-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.24.0.525.g8f36a354ae-goog
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: E8A290FF9FD2179443F17556F81E7A3BC6A551CDB3B9A8AC9CC0F71F0DD2591A2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VXNlIG5vbi1lbXB0eSByYW5nZXMgZm9yIHVzYi1waHkgdG8gbWFrZSB0aGUgbGF5b3V0IG9mDQpp
-dHMgcmVnaXN0ZXJzIGNsZWFyZXI7DQpSZXBsYWNlIGRlcHJlY2F0ZWQgY29tcGF0aWJsZSBieSBn
-ZW5lcmljDQoNClNpZ25lZC1vZmYtYnk6IENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlh
-dGVrLmNvbT4NCi0tLQ0KdjN+djU6IG5vIGNoYW5nZXMNCg0KdjI6IHVzZSBnZW5lcmljIGNvbXBh
-dGlibGUNCi0tLQ0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQyNzEyZS5kdHNpIHwg
-NDIgKysrKysrKysrKysrLS0tLS0tLS0tLS0NCiAxIGZpbGUgY2hhbmdlZCwgMjIgaW5zZXJ0aW9u
-cygrKSwgMjAgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRz
-L21lZGlhdGVrL210MjcxMmUuZHRzaSBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQy
-NzEyZS5kdHNpDQppbmRleCA0MzMwN2JhZDNmMGQuLmUyNGYyZjJmNjAwNCAxMDA2NDQNCi0tLSBh
-L2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQyNzEyZS5kdHNpDQorKysgYi9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210MjcxMmUuZHRzaQ0KQEAgLTY5NywzMCArNjk3LDMxIEBA
-IHVzYl9ob3N0MDogeGhjaUAxMTI3MDAwMCB7DQogCX07DQogDQogCXUzcGh5MDogdXNiLXBoeUAx
-MTI5MDAwMCB7DQotCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10MjcxMi11M3BoeSI7DQotCQkj
-YWRkcmVzcy1jZWxscyA9IDwyPjsNCi0JCSNzaXplLWNlbGxzID0gPDI+Ow0KLQkJcmFuZ2VzOw0K
-KwkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDI3MTItdHBoeSIsDQorCQkJICAgICAibWVkaWF0
-ZWssZ2VuZXJpYy10cGh5LXYyIjsNCisJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJI3NpemUt
-Y2VsbHMgPSA8MT47DQorCQlyYW5nZXMgPSA8MCAwIDB4MTEyOTAwMDAgMHg5MDAwPjsNCiAJCXN0
-YXR1cyA9ICJva2F5IjsNCiANCi0JCXUycG9ydDA6IHVzYi1waHlAMTEyOTAwMDAgew0KLQkJCXJl
-ZyA9IDwwIDB4MTEyOTAwMDAgMCAweDcwMD47DQorCQl1MnBvcnQwOiB1c2ItcGh5QDAgew0KKwkJ
-CXJlZyA9IDwweDAgMHg3MDA+Ow0KIAkJCWNsb2NrcyA9IDwmY2xrMjZtPjsNCiAJCQljbG9jay1u
-YW1lcyA9ICJyZWYiOw0KIAkJCSNwaHktY2VsbHMgPSA8MT47DQogCQkJc3RhdHVzID0gIm9rYXki
-Ow0KIAkJfTsNCiANCi0JCXUycG9ydDE6IHVzYi1waHlAMTEyOTgwMDAgew0KLQkJCXJlZyA9IDww
-IDB4MTEyOTgwMDAgMCAweDcwMD47DQorCQl1MnBvcnQxOiB1c2ItcGh5QDgwMDAgew0KKwkJCXJl
-ZyA9IDwweDgwMDAgMHg3MDA+Ow0KIAkJCWNsb2NrcyA9IDwmY2xrMjZtPjsNCiAJCQljbG9jay1u
-YW1lcyA9ICJyZWYiOw0KIAkJCSNwaHktY2VsbHMgPSA8MT47DQogCQkJc3RhdHVzID0gIm9rYXki
-Ow0KIAkJfTsNCiANCi0JCXUzcG9ydDA6IHVzYi1waHlAMTEyOTg3MDAgew0KLQkJCXJlZyA9IDww
-IDB4MTEyOTg3MDAgMCAweDkwMD47DQorCQl1M3BvcnQwOiB1c2ItcGh5QDg3MDAgew0KKwkJCXJl
-ZyA9IDwweDg3MDAgMHg5MDA+Ow0KIAkJCWNsb2NrcyA9IDwmY2xrMjZtPjsNCiAJCQljbG9jay1u
-YW1lcyA9ICJyZWYiOw0KIAkJCSNwaHktY2VsbHMgPSA8MT47DQpAQCAtNzYwLDMwICs3NjEsMzEg
-QEAgdXNiX2hvc3QxOiB4aGNpQDExMmMwMDAwIHsNCiAJfTsNCiANCiAJdTNwaHkxOiB1c2ItcGh5
-QDExMmUwMDAwIHsNCi0JCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQyNzEyLXUzcGh5IjsNCi0J
-CSNhZGRyZXNzLWNlbGxzID0gPDI+Ow0KLQkJI3NpemUtY2VsbHMgPSA8Mj47DQotCQlyYW5nZXM7
-DQorCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10MjcxMi10cGh5IiwNCisJCQkgICAgICJtZWRp
-YXRlayxnZW5lcmljLXRwaHktdjIiOw0KKwkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkjc2l6
-ZS1jZWxscyA9IDwxPjsNCisJCXJhbmdlcyA9IDwwIDAgMHgxMTJlMDAwMCAweDkwMDA+Ow0KIAkJ
-c3RhdHVzID0gIm9rYXkiOw0KIA0KLQkJdTJwb3J0MjogdXNiLXBoeUAxMTJlMDAwMCB7DQotCQkJ
-cmVnID0gPDAgMHgxMTJlMDAwMCAwIDB4NzAwPjsNCisJCXUycG9ydDI6IHVzYi1waHlAMCB7DQor
-CQkJcmVnID0gPDB4MCAweDcwMD47DQogCQkJY2xvY2tzID0gPCZjbGsyNm0+Ow0KIAkJCWNsb2Nr
-LW5hbWVzID0gInJlZiI7DQogCQkJI3BoeS1jZWxscyA9IDwxPjsNCiAJCQlzdGF0dXMgPSAib2th
-eSI7DQogCQl9Ow0KIA0KLQkJdTJwb3J0MzogdXNiLXBoeUAxMTJlODAwMCB7DQotCQkJcmVnID0g
-PDAgMHgxMTJlODAwMCAwIDB4NzAwPjsNCisJCXUycG9ydDM6IHVzYi1waHlAODAwMCB7DQorCQkJ
-cmVnID0gPDB4ODAwMCAweDcwMD47DQogCQkJY2xvY2tzID0gPCZjbGsyNm0+Ow0KIAkJCWNsb2Nr
-LW5hbWVzID0gInJlZiI7DQogCQkJI3BoeS1jZWxscyA9IDwxPjsNCiAJCQlzdGF0dXMgPSAib2th
-eSI7DQogCQl9Ow0KIA0KLQkJdTNwb3J0MTogdXNiLXBoeUAxMTJlODcwMCB7DQotCQkJcmVnID0g
-PDAgMHgxMTJlODcwMCAwIDB4OTAwPjsNCisJCXUzcG9ydDE6IHVzYi1waHlAODcwMCB7DQorCQkJ
-cmVnID0gPDB4ODcwMCAweDkwMD47DQogCQkJY2xvY2tzID0gPCZjbGsyNm0+Ow0KIAkJCWNsb2Nr
-LW5hbWVzID0gInJlZiI7DQogCQkJI3BoeS1jZWxscyA9IDwxPjsNCi0tIA0KMi4yNC4wDQo=
+This is a resend of [1] with a few modification due to drm core function
+changes and use regmap abstraction.
+
+The gpio mux driver is required for MT8173 board layout:
+
+                                  /-- anx7688
+-- MT8173 HDMI bridge -- GPIO mux
+                                  \-- native HDMI
+
+[1] https://lore.kernel.org/lkml/1467013727-11482-1-git-send-email-drinkcat@chromium.org/
+
+Nicolas Boichat (4):
+  dt-bindings: drm/bridge: analogix-anx7688: Add ANX7688 transmitter
+    binding
+  drm: bridge: anx7688: Add anx7688 bridge driver support.
+  dt-bindings: drm/bridge: Add GPIO display mux binding
+  drm: bridge: Generic GPIO mux driver
+
+ .../bindings/display/bridge/anx7688.yaml      |  60 ++++
+ .../bindings/display/bridge/gpio-mux.yaml     |  89 +++++
+ drivers/gpu/drm/bridge/Kconfig                |  19 ++
+ drivers/gpu/drm/bridge/Makefile               |   2 +
+ drivers/gpu/drm/bridge/analogix-anx7688.c     | 202 ++++++++++++
+ drivers/gpu/drm/bridge/generic-gpio-mux.c     | 306 ++++++++++++++++++
+ 6 files changed, 678 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/anx7688.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+ create mode 100644 drivers/gpu/drm/bridge/analogix-anx7688.c
+ create mode 100644 drivers/gpu/drm/bridge/generic-gpio-mux.c
+
+-- 
+2.24.0.525.g8f36a354ae-goog
 
