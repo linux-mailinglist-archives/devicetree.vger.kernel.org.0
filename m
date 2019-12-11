@@ -2,257 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D3B311AD9E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 15:36:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28B4411AE0E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 15:44:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729686AbfLKOgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 09:36:55 -0500
-Received: from mga04.intel.com ([192.55.52.120]:41331 "EHLO mga04.intel.com"
+        id S1729936AbfLKOnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 09:43:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42606 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729513AbfLKOgz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Dec 2019 09:36:55 -0500
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Dec 2019 06:36:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; 
-   d="scan'208";a="220476305"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga001.fm.intel.com with ESMTP; 11 Dec 2019 06:36:41 -0800
-Received: from andy by smile with local (Exim 4.93-RC7)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1if36W-0000CJ-VS; Wed, 11 Dec 2019 16:36:40 +0200
-Date:   Wed, 11 Dec 2019 16:36:40 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V6, 2/2] media: i2c: ov02a10: Add OV02A10 image sensor driver
-Message-ID: <20191211143640.GU32742@smile.fi.intel.com>
-References: <20191211112849.16705-1-dongchun.zhu@mediatek.com>
- <20191211112849.16705-3-dongchun.zhu@mediatek.com>
+        id S1727554AbfLKOnI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Dec 2019 09:43:08 -0500
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 238A3208C3
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2019 14:43:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1576075387;
+        bh=KFfQNkUYiaxpZSkDd3vnatm8Pex2SO090xacUJWZAiY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dQ8PxouxBtzSkD/SY89/t+7MH0YaHk/qZJ/WcXheUOoPTi4i3LT2jvVjkH7H/4JNe
+         WkmrQPsWXOb1I0qL2zvxUgafu8XyNweH23pzBliGEN/5ZhtdnxbzKUbqA7qPfW5TU2
+         3qh1cV1ilitn3shOfQag5b/pOYNlrxbS8IKhabFI=
+Received: by mail-qt1-f181.google.com with SMTP id i12so5276839qtp.6
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2019 06:43:07 -0800 (PST)
+X-Gm-Message-State: APjAAAW8vJ5L+ZaTCmJ9Djh01tRSeqDLMGqmSfqPwYgBX2G6QrJnQa+k
+        k0qgyqY5/BGSCHEM5zg4PLlVeDeEfsApGNhbPg==
+X-Google-Smtp-Source: APXvYqwD0FJIjMvjJBPmFuuENQkheeJ4wVvUF1IyxSpKbBXWh5scH8jawDRrmPS865hRVFnlCGTxYMmv78RsGKk+Too=
+X-Received: by 2002:ac8:1c4e:: with SMTP id j14mr3088761qtk.300.1576075386306;
+ Wed, 11 Dec 2019 06:43:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191211112849.16705-3-dongchun.zhu@mediatek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20191129151056.o5c44lm5lb4wsr4r@linutronix.de>
+ <e1f232f5-3847-a519-5cce-95a26512e82b@gmail.com> <87tv6idp37.fsf@mpe.ellerman.id.au>
+ <67e1da87-7f5a-3972-bc16-28bae2350c12@gmail.com> <CAL_JsqKieG5=teL7gABPKbJOQfvoS9s-ZPF-=R0yEE_LUoy-Kw@mail.gmail.com>
+ <20191205163538.mzunfrpox7jbrssl@linutronix.de> <084ed924-eaed-5232-a9f6-fe60128fe11a@gmail.com>
+ <20191209133531.ykkknqmeeb36rv7l@linutronix.de> <CAL_JsqLVJi_v9yD5khLUvJHDEXFj=eXFf-CHXz30y0mYojt-Yg@mail.gmail.com>
+ <c2334575-fa38-eb73-bb56-21a530e773bf@gmail.com>
+In-Reply-To: <c2334575-fa38-eb73-bb56-21a530e773bf@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 11 Dec 2019 08:42:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLAHjzoD67ocKf=Bv6X2S0fmC6HkezduC_61V-eeiqqTw@mail.gmail.com>
+Message-ID: <CAL_JsqLAHjzoD67ocKf=Bv6X2S0fmC6HkezduC_61V-eeiqqTw@mail.gmail.com>
+Subject: Re: [RFC] Efficiency of the phandle_cache on ppc64/SLOF
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        devicetree@vger.kernel.org,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 11, 2019 at 07:28:49PM +0800, Dongchun Zhu wrote:
-> Add a V4L2 sub-device driver for OV02A10 image sensor. The OV02A10 is a
-> 1/5" CMOS sensor from Omnivision, asupporting output format: 10-bit Raw.
-> 
-> This chip has a single MIPI lane interface and use the I2C bus for
-> control and the CSI-2 bus for data.
+On Tue, Dec 10, 2019 at 2:17 AM Frank Rowand <frowand.list@gmail.com> wrote=
+:
+>
+> On 12/9/19 7:51 PM, Rob Herring wrote:
+> > On Mon, Dec 9, 2019 at 7:35 AM Sebastian Andrzej Siewior
+> > <bigeasy@linutronix.de> wrote:
+> >>
+> >> On 2019-12-05 20:01:41 [-0600], Frank Rowand wrote:
+> >>> Is there a memory usage issue for the systems that led to this thread=
+?
+> >>
+> >> No, no memory issue led to this thread. I was just testing my patch an=
+d
+> >> I assumed that I did something wrong in the counting/lock drop/lock
+> >> acquire/allocate path because the array was hardly used. So I started =
+to
+> >> look deeper=E2=80=A6
+> >> Once I figured out everything was fine, I was curious if everyone is
+> >> aware of the different phandle creation by dtc vs POWER. And I posted
+> >> the mail in the thread.
+> >> Once you confirmed that everything is "known / not an issue" I was rea=
+dy
+> >> to take off [0].
+> >>
+> >> Later more replies came in such as one mail [1] from Rob describing th=
+e
+> >> original reason with 814 phandles. _Here_ I was just surprised that 10=
+24
+> >> were used over 64 entries for a benefit of 60ms. I understand that thi=
+s
+> >> is low concern for you because that memory is released if modules are
+> >> not enabled. I usually see that module support is left enabled.
+> >>
+> >> However, Rob suggested / asked about the fixed size array (this is how=
+ I
+> >> understood it):
+> >> |And yes, as mentioned earlier I don't like the complexity. I didn't
+> >> |from the start and I'm  I'm still of the opinion we should have a
+> >> |fixed or 1 time sized true cache (i.e. smaller than total # of
+> >> |phandles). That would solve the RT memory allocation and locking issu=
+e
+> >> |too.
+> >>
+> >> so I attempted to ask if we should have the fixed size array maybe
+> >> with the hash_32() instead the mask. This would make my other patch
+> >> obsolete because the fixed size array should not have a RT issue. The
+> >> hash_32() part here would address the POWER issue where the cache is
+> >> currently not used efficiently.
+> >>
+> >> If you want instead to keep things as-is then this is okay from my sid=
+e.
+> >> If you want to keep this cache off on POWER then I could contribute a
+> >> patch doing so.
+> >
+> > It turns out there's actually a bug in the current implementation. If
+> > we have multiple phandles with the same mask, then we leak node
+> > references if we miss in the cache and re-assign the cache entry.
+>
+> Aaargh.  Patch sent.
+>
+> > Easily fixed I suppose, but holding a ref count for a cached entry
+> > seems wrong. That means we never have a ref count of 0 on every node
+> > with a phandle.
+>
+> It will go to zero when the cache is freed.
+>
+> My memory is that we free the cache as part of removing an overlay.  I'll
+> verify whether my memory is correct.
 
-...
+Yes, as part of having entries for every phandle we release and
+realloc when number of phandles changes. If the size is fixed, then we
+can stop doing that. We only need to remove entries in
+of_detach_node() as that should always happen before nodes are
+removed, right?
 
-> +#define OV02A10_MASK_8_BITS                            0xff
-
-Besides GENMASK() why do you need a definition here? What's the point?
-
-...
-
-> +static int ov02a10_entity_init_cfg(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_pad_config *cfg)
-> +{
-> +	struct v4l2_subdev_format fmt = {
-> +		.which = cfg ? V4L2_SUBDEV_FORMAT_TRY
-> +			     : V4L2_SUBDEV_FORMAT_ACTIVE,
-> +		.format = {
-> +			.width = 1600,
-
-> +			.height = 1200
-
-Leave comma here.
-
-> +		}
-> +	};
-> +
-> +	ov02a10_set_fmt(sd, cfg, &fmt);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +	ret = i2c_smbus_write_byte_data(client, OV02A10_REG_GAIN,
-> +					(val & OV02A10_MASK_8_BITS));
-
-Too many parentheses.
-
-> +	if (ret < 0)
-> +		return ret;
-
-...
-
-> +static int ov02a10_set_vblank(struct ov02a10 *ov02a10, int val)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(&ov02a10->subdev);
-
-if you do
-
-	int vts = val + ov02a10->cur_mode->height - OV02A10_BASIC_LINE;
-
-you may increase readability below...
-
-> +	int ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, REG_PAGE_SWITCH, REG_ENABLE);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, OV02A10_REG_VTS_H,
-> +					(((val + ov02a10->cur_mode->height -
-> +					OV02A10_BASIC_LINE) >>
-> +					OV02A10_VTS_SHIFT) &
-> +					OV02A10_MASK_8_BITS));
-
-	ret = i2c_smbus_write_byte_data(client, OV02A10_REG_VTS_H,
-					(vts >> OV02A10_VTS_SHIFT) &
-					OV02A10_MASK_8_BITS));
-
-And actually why do you need this mask here? Isn't enough to call
-
-	ret = i2c_smbus_write_byte_data(client, OV02A10_REG_VTS_H,
-					vts >> OV02A10_VTS_SHIFT);
-
-here...
-
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, OV02A10_REG_VTS_L,
-> +					((val + ov02a10->cur_mode->height -
-> +					OV02A10_BASIC_LINE) &
-> +					OV02A10_MASK_8_BITS));
-
-...and
-
-	ret = i2c_smbus_write_byte_data(client, OV02A10_REG_VTS_L, vts);
-
-here?
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return i2c_smbus_write_byte_data(client, REG_GLOBAL_EFFECTIVE,
-> +					 REG_ENABLE);
-> +}
-
-...
-
-> +static int ov02a10_check_hwcfg(struct device *dev, struct ov02a10 *ov02a10)
-> +{
-> +	struct fwnode_handle *ep;
-> +	struct fwnode_handle *fwnode = dev_fwnode(dev);
-> +	struct v4l2_fwnode_endpoint bus_cfg = {
-
-> +		.bus_type = V4L2_MBUS_CSI2_DPHY
-
-Leave comma here.
-
-> +	};
-> +	unsigned int i, j;
-> +	int ret;
-
-> +	if (!fwnode)
-> +		return -ENXIO;
-
-A bit strange error code here.
-
-> +
-> +	ep = fwnode_graph_get_next_endpoint(fwnode, NULL);
-> +	if (!ep)
-> +		return -ENXIO;
-> +
-> +	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
-> +	fwnode_handle_put(ep);
-> +	if (ret)
-> +		return ret;
-
-> +	if (!bus_cfg.nr_of_link_frequencies) {
-> +		dev_err(dev, "no link frequencies defined");
-> +		ret = -EINVAL;
-> +		goto check_hwcfg_error;
-> +	}
-
-I still think it's redundant check, though it's up to maintainers.
-
-> +
-> +	for (i = 0; i < ARRAY_SIZE(link_freq_menu_items); i++) {
-> +		for (j = 0; j < bus_cfg.nr_of_link_frequencies; j++) {
-> +			if (link_freq_menu_items[i] ==
-> +				bus_cfg.link_frequencies[j])
-> +				break;
-> +		}
-> +
-> +		if (j == bus_cfg.nr_of_link_frequencies) {
-> +			dev_err(dev, "no link frequency %lld supported",
-> +				link_freq_menu_items[i]);
-> +			ret = -EINVAL;
-> +			goto check_hwcfg_error;
-> +		}
-> +	}
-> +
-> +check_hwcfg_error:
-> +	v4l2_fwnode_endpoint_free(&bus_cfg);
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int ov02a10_probe(struct i2c_client *client)
-> +{
-
-> +	/* Optional indication of physical rotation of sensor */
-> +	ret = fwnode_property_read_u32(dev_fwnode(dev), "rotation", &rotation);
-
-> +	if (!ret) {
-
-Why not positive conditional?
-
-> +		ov02a10->upside_down = rotation == 180;
-> +		if (rotation == 180) {
-> +			ov02a10->upside_down = true;
-> +			ov02a10->fmt.code = MEDIA_BUS_FMT_SRGGB10_1X10;
-> +		}
-> +	} else {
-> +		dev_warn(dev, "failed to get rotation\n");
-> +	}
-> +
-> +	/* Optional indication of mipi TX speed */
-> +	ret = fwnode_property_read_u32(dev_fwnode(dev), "ovti,mipi-tx-speed",
-> +				       &clock_lane_tx_speed);
-> +
-
-> +	if (!ret)
-
-Ditto.
-
-> +		ov02a10->mipi_clock_tx_speed = clock_lane_tx_speed;
-> +	else
-> +		dev_warn(dev, "failed to get mipi tx speed, using default...\n");
-> +
-
-> +	return ret;
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Rob
