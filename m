@@ -2,169 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1B1B11A86B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 11:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C915A11A8A6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 11:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728128AbfLKKAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 05:00:03 -0500
-Received: from mga11.intel.com ([192.55.52.93]:7124 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728027AbfLKKAD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Dec 2019 05:00:03 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Dec 2019 02:00:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,301,1571727600"; 
-   d="scan'208";a="245186313"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga002.fm.intel.com with ESMTP; 11 Dec 2019 02:00:02 -0800
-Received: from [10.226.39.9] (unknown [10.226.39.9])
-        by linux.intel.com (Postfix) with ESMTP id AD65558033E;
-        Wed, 11 Dec 2019 01:59:59 -0800 (PST)
-Subject: Re: [PATCH v10 2/3] PCI: dwc: intel: PCIe RC controller driver
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     lorenzo.pieralisi@arm.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
-        gustavo.pimentel@synopsys.com, andrew.murray@arm.com,
-        robh@kernel.org, linux-kernel@vger.kernel.org,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
-References: <20191210234951.GA175479@google.com>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <7f5f0eec-465e-9c21-35ac-b6906119ed5e@linux.intel.com>
-Date:   Wed, 11 Dec 2019 17:59:58 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1728543AbfLKKMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 05:12:00 -0500
+Received: from mx07-002cda01.pphosted.com ([185.132.180.122]:46193 "EHLO
+        mx07-002cda01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727829AbfLKKMA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Dec 2019 05:12:00 -0500
+X-Greylist: delayed 726 seconds by postgrey-1.27 at vger.kernel.org; Wed, 11 Dec 2019 05:11:57 EST
+Received: from pps.filterd (m0135534.ppops.net [127.0.0.1])
+        by mx07-002cda01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBB9tvKU009950;
+        Wed, 11 Dec 2019 09:59:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=avl.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=08102019;
+ bh=9ZyHZUPN7z4Trra14S3zV/8/hl7XyA/SF/Uv/GnbFJM=;
+ b=W3gGA+91uu58Rau9KdI7muM1GxwpioumEjOIT5BwCm8uLXNzcfLpY4VEr+wMYrJLkL0h
+ e2lNVqVK/VldrHdLAB5gOxnGLhoY7OdyN42FjYM+1wvRzTgNEmx3iUGlLiJK0Q2oBXrU
+ z4Ze3YTmjHBrpyJpZHgWRtstrxW2oL5UZPcsRkULv+YdEwCcxayCbSNJuJnXv+QNzYMH
+ bKIpZoLA3S4Gvahx6Tej/VkUQQRY+xYPBa3PmYjD0Dib8+y/Lm93ydu/SAc4CpcElKby
+ DwnAvBluUkPm8kuNsI8+7BPBbBGhLIYyZ+XajOoxBqOLNaxp+6qDmV0Lg/42L8y5ocHz Ag== 
+Received: from atgrzso8133.avl01.avlcorp.lan ([192.102.17.76])
+        by mx07-002cda01.pphosted.com with ESMTP id 2wr2ac70bd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 11 Dec 2019 09:59:48 +0000
+Received: from pps.filterd (atgrzso8133.avl01.avlcorp.lan [127.0.0.1])
+        by atgrzso8133.avl01.avlcorp.lan (8.16.0.27/8.16.0.27) with SMTP id xBB7mf7v026664;
+        Wed, 11 Dec 2019 10:59:47 +0100
+Received: from atgrzsw1695.avl01.avlcorp.lan ([10.13.100.86])
+        by atgrzso8133.avl01.avlcorp.lan with ESMTP id 2wr3hmsyve-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Wed, 11 Dec 2019 10:59:47 +0100
+Received: from ATGRZSW1694.avl01.avlcorp.lan (10.12.64.115) by
+ atgrzsw1695.avl01.avlcorp.lan (10.12.64.163) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2; Wed, 11 Dec 2019 10:59:47 +0100
+Received: from ATGRZWN210214.avl01.avlcorp.lan (10.12.100.12) by
+ ATGRZSW1694.avl01.avlcorp.lan (10.12.64.115) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Wed, 11 Dec 2019 10:59:47 +0100
+From:   <tomislav.denis@avl.com>
+To:     <jic23@kernel.org>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <tomislav.denis@avl.com>
+Subject: [PATCH v4 0/3] Add support for DLH pressure sensors
+Date:   Wed, 11 Dec 2019 10:59:43 +0100
+Message-ID: <20191211095946.7904-1-tomislav.denis@avl.com>
+X-Mailer: git-send-email 2.10.1.windows.1
 MIME-Version: 1.0
-In-Reply-To: <20191210234951.GA175479@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: f9e74532-fb7d-4806-8539-2b9574eafa9a
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-12-11_01:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=899
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1911140001 definitions=main-1912110062
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-12-11_02:2019-12-11,2019-12-11 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 priorityscore=1501 spamscore=0 impostorscore=0 bulkscore=0
+ malwarescore=0 adultscore=0 mlxscore=0 suspectscore=0 clxscore=1015
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-1912110086
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Tomislav Denis <tomislav.denis@avl.com>
 
-On 12/11/2019 7:49 AM, Bjorn Helgaas wrote:
-> On Fri, Dec 06, 2019 at 03:27:49PM +0800, Dilip Kota wrote:
->> Add support to PCIe RC controller on Intel Gateway SoCs.
->> PCIe controller is based of Synopsys DesignWare PCIe core.
->>
->> Intel PCIe driver requires Upconfigure support, Fast Training
->> Sequence and link speed configurations. So adding the respective
->> helper functions in the PCIe DesignWare framework.
->> It also programs hardware autonomous speed during speed
->> configuration so defining it in pci_regs.h.
->>
->> Also, mark Intel PCIe driver depends on MSI IRQ Domain
->> as Synopsys DesignWare framework depends on the
->> PCI_MSI_IRQ_DOMAIN.
->>
->> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
->> Signed-off-by: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
->> Reviewed-by: Andrew Murray <andrew.murray@arm.com>
->> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
->> Acked-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
->> --- a/drivers/pci/controller/dwc/pcie-designware.c
->> +++ b/drivers/pci/controller/dwc/pcie-designware.c
->> @@ -14,6 +14,8 @@
->>   
->>   #include "pcie-designware.h"
->>   
->> +extern const unsigned char pcie_link_speed[];
-> This shouldn't be needed; there's a declaration in drivers/pci/pci.h.
-Sure, will do it. Thanks for pointing it.
->
->> +struct intel_pcie_soc {
->> +	unsigned int pcie_ver;
->> +	unsigned int pcie_atu_offset;
->> +	u32 num_viewport;
->> +};
-> Looks a little strange to have the fields below lined up but the ones
-> above not.
-My miss, i will update it.
->
->> +struct intel_pcie_port {
->> +	struct dw_pcie		pci;
->> +	void __iomem		*app_base;
->> +	struct gpio_desc	*reset_gpio;
->> +	u32			rst_intrvl;
->> +	u32			max_speed;
->> +	u32			link_gen;
->> +	u32			max_width;
->> +	u32			n_fts;
->> +	struct clk		*core_clk;
->> +	struct reset_control	*core_rst;
->> +	struct phy		*phy;
->> +	u8			pcie_cap_ofst;
->> +};
->> +
->> +static void pcie_update_bits(void __iomem *base, u32 ofs, u32 mask, u32 val)
->> +{
->> +	u32 old;
->> +
->> +	old = readl(base + ofs);
->> +	val = (old & ~mask) | (val & mask);
->> +
->> +	if (val != old)
->> +		writel(val, base + ofs);
-> I assume this is never used on registers where the "old & ~mask" part
-> contains RW1C bits?  If there are RW1C bits in that part, this will
-> corrupt them.
-There is no impact because RW1C bits of respective registers are 0s at 
-the time of this function call.
->
->> +	if (!lpp->pcie_cap_ofst) {
->> +		ret = dw_pcie_find_capability(&lpp->pci, PCI_CAP_ID_EXP);
->> +		if (!ret) {
->> +			ret = -ENXIO;
->> +			dev_err(dev, "Invalid PCIe capability offset\n");
-> Some of your messages start with a capital letter, others not.
-I will correct it.
->
->> +int intel_pcie_msi_init(struct pcie_port *pp)
-> You might add a comment here like the one at
-> ks_pcie_am654_msi_host_init().  Since the users of the
-> .msi_host_init() function pointer only call the function if the
-> pointer is non-NULL, it's not completely obvious why you have this
-> stub function.
-Ok, i will change it.
->
->> +{
->> +	/* PCIe MSI/MSIx is handled by MSI in x86 processor */
->> +	return 0;
->> +}
->> +	/*
->> +	 * Intel PCIe doesn't configure IO region, so set viewport
->> +	 * to not to perform IO region access.
-> s/to not to/to not/
-Ok, i will fix it.
->
->> +	 */
->> +	pci->num_viewport = data->num_viewport;
->> +
->> +	dev_info(dev, "Intel PCIe Root Complex Port init done\n");
-> Probably superfluous.
-I will remove the print then!
->
->> +
->> +	return ret;
-> Since the return value is known here:
->
->    return 0;
+This patchset adds support for All Sensors DLH series low
+voltage digital pressure sensors.
 
-Ok, i will update it.
+Datasheet: https://www.allsensors.com/cad/DS-0355_Rev_B.PDF
 
-I see, this patch series is merged in the maintainer tree.
-Should i need to submit as a separate patch on top of maintainer tree or 
-submit the new version of whole patch series?
-Please let me know the best practice.
+Changes in v4:
+- unused includes removed
+- fixed casting from big endian to cpu endian
+- removed -i2c from all filenames
+- removed _i2c from driver name and all functions 
 
-Regards,
-Dilip
+Changes in v3:
+- missing ack included in the commit message
+- unneceseary iio_buffer_enabled check removed
+- data ready trigger removed
+- trigger handler and read raw functions refactored
 
->
->> +}
+Changes in v2:
+- web page link in the MAINTAINERS file fixed
+- adjust the units of the output to the IIO ABI
+- unneceseary default case removed
+- define the channel member of the iio_chan_spec
+  struct for channels specification
+- remove explicit cast for pointers of type void *
+- add support for the EOC(data ready) pin
+- drop the unneceseary return ret;
+- rename dlh-i2c.yaml to asc,dlh-i2c.yaml
+- change the bindings copyright to GPL-2.0-only OR BSD-2-Clause
+- document EOC(data ready) pin
+
+Tomislav Denis (3):
+  iio: pressure: Add driver for DLH pressure sensors
+  dt-bindings: Add asc vendor
+  bindings: iio: pressure: Add documentation for dlh driver
+
+ .../devicetree/bindings/iio/pressure/asc,dlh.yaml  |  51 +++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ MAINTAINERS                                        |   8 +
+ drivers/iio/pressure/Kconfig                       |  12 +
+ drivers/iio/pressure/Makefile                      |   1 +
+ drivers/iio/pressure/dlh.c                         | 375 +++++++++++++++++++++
+ 6 files changed, 449 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/asc,dlh.yaml
+ create mode 100644 drivers/iio/pressure/dlh.c
+
+-- 
+2.7.4
+
