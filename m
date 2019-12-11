@@ -2,98 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3B5B11A893
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 11:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29ED011A8D1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 11:25:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728606AbfLKKFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 05:05:23 -0500
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34200 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727829AbfLKKFX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 05:05:23 -0500
-Received: by mail-io1-f66.google.com with SMTP id z193so22039700iof.1;
-        Wed, 11 Dec 2019 02:05:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6+pzCvZCcIDCxscL/F2NTKLDHzaJQZFzo8UlrqTqymo=;
-        b=OAQ8RhQT+BNhH5WtADE/JwpRUFq8FjSxLcLoHKg9BhA8CFuwWyRros3rT6ka5Ur4/+
-         Ihml7KGm0Y4m4/XXTvPsq3lLnCdfzvm/y7ogVvxBUW63YsQggBu6Q/EsnrOv87po8LQT
-         L1HTnnb7mESRAokBz9AV7RYDJ6bK+6uF9ajOBWDuq1AJsH+VEBdspzP8QU60fwLDZAY+
-         aY+AiCuPlGavc2xAsguOm+mFP3bHPyVOqUlCj2eLmHgV/NGaeX4DsEFFV1cDvGguJI6I
-         nDiSxVAaccq0FEnyYb7K0GSCJo9e/i7jtr2TX8RHlzK5X6nw5ifr1rVNHJWD+2ooxIr+
-         WZKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6+pzCvZCcIDCxscL/F2NTKLDHzaJQZFzo8UlrqTqymo=;
-        b=CF+jeYuTg8LvEez+yCRVr6axGZ3wCXFXY+oI6LYqNIIf2MTlY3ZLL0xv6v6AMHnXce
-         DMY4p2So/D2wG4kFUY6Vzx8qlCC9t3dCRo76e0r2GcWpqwpEmKQ1o7GLPwLyA5WslvKM
-         8PVGDyqDQ/XFnPIPVTnNBOHlVT6ayQewyvnjahyOka8v0uuDzTY2mxrroOEZ2OTjxEkD
-         i80x8uzXv9YPA/4cpobfUy1WvsyOxzQfIeoazFW6CaR1ehvarm36M5yFp6sKItoMdfdk
-         vguwSHk5TwFT9jF3Rze+kKjZYtorw3Lbdfs6K2A/X71bpxVoj0Ayl/hj6nqVgnDFvQR7
-         y3HA==
-X-Gm-Message-State: APjAAAVrKWyQRHeh/j+jfk75KA1fnnTjHHP62LSx3/miq7a8b6OfIWQk
-        2lZ6WI9WQbeM2RJU56smSOMhTOhVvvDC7eLvTQdGbQ==
-X-Google-Smtp-Source: APXvYqzQQF2cztKd3cNyU8ZNYeCQxBqzhYSOLa4dn2jZiKW/BvdhA1lQKaPvEUrsQi7tB6c3eXGWxmzJ+mHnVwC7J58=
-X-Received: by 2002:a02:a309:: with SMTP id q9mr2222824jai.141.1576058722472;
- Wed, 11 Dec 2019 02:05:22 -0800 (PST)
+        id S1728821AbfLKKY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 05:24:56 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35542 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727469AbfLKKY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 05:24:56 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBBAOj8Q115655;
+        Wed, 11 Dec 2019 04:24:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1576059885;
+        bh=W+RMFciMhRgB2xiAH7N3KcyPOaKYa0Y2g73Ycx9qJBU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=AlEFjwGweVEw8qSb+hWRM560R4gcZ7LdQZ7uT5KGIJsgTrfW8NMyt7CLxYaIfAK7/
+         9i+s5zTdbewcepjqroGmDL/g963+nLlM7PN4rIUCzTtx7AnaFGJ6YvBuMudA2LnFlu
+         E9LCQFxJqBv/nvaI1HudJqEX0eIujtBgobWH2jN8=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBBAOjKf030751;
+        Wed, 11 Dec 2019 04:24:45 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 11
+ Dec 2019 04:24:43 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 11 Dec 2019 04:24:43 -0600
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBBAOeLj096803;
+        Wed, 11 Dec 2019 04:24:40 -0600
+Subject: Re: [PATCH v7 11/12] firmware: ti_sci: rm: Add support for tx_tdtype
+ parameter for tx channel
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, <vkoul@kernel.org>,
+        <robh+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>
+CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
+        <tony@atomide.com>, <j-keerthy@ti.com>, <vigneshr@ti.com>
+References: <20191209094332.4047-1-peter.ujfalusi@ti.com>
+ <20191209094332.4047-12-peter.ujfalusi@ti.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <3d3a4f1d-e449-88d6-ec5a-5ce516faf436@ti.com>
+Date:   Wed, 11 Dec 2019 12:24:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-References: <20191211084112.971-1-linux.amoon@gmail.com> <a4610efc-844a-2d43-5db1-cf813102e701@baylibre.com>
- <20191211092741.totwucrkversjbav@gondor.apana.org.au>
-In-Reply-To: <20191211092741.totwucrkversjbav@gondor.apana.org.au>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Wed, 11 Dec 2019 15:35:11 +0530
-Message-ID: <CANAwSgSNKa2HgYZPhrFdsA4mwOgvaiBSzay_-eo-n80KqwXHLA@mail.gmail.com>
-Subject: Re: [PATCHv1 0/3] Enable crypto module on Amlogic GXBB SoC platform
-To:     Herbert Xu <herbert@gondor.apana.org.au>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        linux-crypto@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20191209094332.4047-12-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Herbert,
+On 09/12/2019 11:43, Peter Ujfalusi wrote:
+> The system controller's resource manager have support for configuring the
+> TDTYPE of TCHAN_CFG register on j721e.
+> With this parameter the teardown completion can be controlled:
+> TDTYPE == 0: Return without waiting for peer to complete the teardown
+> TDTYPE == 1: Wait for peer to complete the teardown
+> 
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-On Wed, 11 Dec 2019 at 14:57, Herbert Xu <herbert@gondor.apana.org.au> wrote:
->
-> On Wed, Dec 11, 2019 at 09:53:56AM +0100, Neil Armstrong wrote:
-> >
-> > On 11/12/2019 09:41, Anand Moon wrote:
-> > > [sudo] password for alarm:
-> > > [  903.867059] tcrypt:
-> > > [  903.867059] testing speed of async ecb(aes) (ecb(aes-arm64)) encryption
-> >
-> > Wow, I'm surprised it works on GXBB, Amlogic completely removed HW crypto for GXBB in all their
-> > vendor BSPs, in Linux, U-Boot and ATF chain.
-> >
-> > Could you run more tests to be sure it's really functional ?
->
-> Well as you can see from the tcrypt output, it's actually using
-> aes-arm64 which is certainly not the amlogic driver.  Presumably
-> the amlogic driver failed to load/register.
->
-> Cheers,
-> --
-> Email: Herbert Xu <herbert@gondor.apana.org.au>
-> Home Page: http://gondor.apana.org.au/~herbert/
-> PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Hi Peter,
 
-Yes I think so you are correct.no Hardware Accelerated crypto on GXBB.
-Failed to load the module.
+You somehow dropped my reviewed by tag from this patch, this appears 
+identical to the v6 one. So,
 
--Anand
+Reviewed-by: Tero Kristo <t-kristo@ti.com>
+
+> ---
+>   drivers/firmware/ti_sci.c              | 1 +
+>   drivers/firmware/ti_sci.h              | 7 +++++++
+>   include/linux/soc/ti/ti_sci_protocol.h | 2 ++
+>   3 files changed, 10 insertions(+)
+> 
+> diff --git a/drivers/firmware/ti_sci.c b/drivers/firmware/ti_sci.c
+> index 4126be9e3216..f13e4a96f3b7 100644
+> --- a/drivers/firmware/ti_sci.c
+> +++ b/drivers/firmware/ti_sci.c
+> @@ -2412,6 +2412,7 @@ static int ti_sci_cmd_rm_udmap_tx_ch_cfg(const struct ti_sci_handle *handle,
+>   	req->fdepth = params->fdepth;
+>   	req->tx_sched_priority = params->tx_sched_priority;
+>   	req->tx_burst_size = params->tx_burst_size;
+> +	req->tx_tdtype = params->tx_tdtype;
+>   
+>   	ret = ti_sci_do_xfer(info, xfer);
+>   	if (ret) {
+> diff --git a/drivers/firmware/ti_sci.h b/drivers/firmware/ti_sci.h
+> index f0d068c03944..255327171dae 100644
+> --- a/drivers/firmware/ti_sci.h
+> +++ b/drivers/firmware/ti_sci.h
+> @@ -910,6 +910,7 @@ struct rm_ti_sci_msg_udmap_rx_flow_opt_cfg {
+>    *   12 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::tx_credit_count
+>    *   13 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::fdepth
+>    *   14 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::tx_burst_size
+> + *   15 - Valid bit for @ref ti_sci_msg_rm_udmap_tx_ch_cfg::tx_tdtype
+>    *
+>    * @nav_id: SoC device ID of Navigator Subsystem where tx channel is located
+>    *
+> @@ -973,6 +974,11 @@ struct rm_ti_sci_msg_udmap_rx_flow_opt_cfg {
+>    *
+>    * @tx_burst_size: UDMAP transmit channel burst size configuration to be
+>    * programmed into the tx_burst_size field of the TCHAN_TCFG register.
+> + *
+> + * @tx_tdtype: UDMAP transmit channel teardown type configuration to be
+> + * programmed into the tdtype field of the TCHAN_TCFG register:
+> + * 0 - Return immediately
+> + * 1 - Wait for completion message from remote peer
+>    */
+>   struct ti_sci_msg_rm_udmap_tx_ch_cfg_req {
+>   	struct ti_sci_msg_hdr hdr;
+> @@ -994,6 +1000,7 @@ struct ti_sci_msg_rm_udmap_tx_ch_cfg_req {
+>   	u16 fdepth;
+>   	u8 tx_sched_priority;
+>   	u8 tx_burst_size;
+> +	u8 tx_tdtype;
+>   } __packed;
+>   
+>   /**
+> diff --git a/include/linux/soc/ti/ti_sci_protocol.h b/include/linux/soc/ti/ti_sci_protocol.h
+> index 9531ec823298..f3aed0b91564 100644
+> --- a/include/linux/soc/ti/ti_sci_protocol.h
+> +++ b/include/linux/soc/ti/ti_sci_protocol.h
+> @@ -342,6 +342,7 @@ struct ti_sci_msg_rm_udmap_tx_ch_cfg {
+>   #define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_SUPR_TDPKT_VALID        BIT(11)
+>   #define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_CREDIT_COUNT_VALID      BIT(12)
+>   #define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_FDEPTH_VALID            BIT(13)
+> +#define TI_SCI_MSG_VALUE_RM_UDMAP_CH_TX_TDTYPE_VALID            BIT(15)
+>   	u16 nav_id;
+>   	u16 index;
+>   	u8 tx_pause_on_err;
+> @@ -359,6 +360,7 @@ struct ti_sci_msg_rm_udmap_tx_ch_cfg {
+>   	u16 fdepth;
+>   	u8 tx_sched_priority;
+>   	u8 tx_burst_size;
+> +	u8 tx_tdtype;
+>   };
+>   
+>   /**
+> 
+
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
