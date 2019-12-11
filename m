@@ -2,75 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DE0E11B6DA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 17:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FFAF11B799
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 17:09:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732684AbfLKQDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 11:03:39 -0500
-Received: from rere.qmqm.pl ([91.227.64.183]:51024 "EHLO rere.qmqm.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388818AbfLKQD3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Dec 2019 11:03:29 -0500
-Received: from remote.user (localhost [127.0.0.1])
-        by rere.qmqm.pl (Postfix) with ESMTPSA id 47Y1tl0DK4zwQ;
-        Wed, 11 Dec 2019 17:03:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
-        t=1576080207; bh=AO4ukHwV9QpNi0US401dnW4qucmusMjSQ/kpCSF8EjY=;
-        h=Date:In-Reply-To:References:From:Subject:To:Cc:From;
-        b=NAi+IgEn5gdlt/3Jqm8U2WEv6nA4APhea1eDhUw3egVvfTjQfZ0Wy8tCJ7UQz+WRF
-         hLahOWk8eRVWehZlHD7usJkXV9neZPvHm87zAlt4ddBT26F3C1tOHJZ/7a9MEk8swN
-         RrupacI0Kz9zHcHL3EFUSoFONtJ2uwO8VvZwWTha3yuF8YREaRfn/keleLLf/9/Brj
-         2/NR8hFnWL9Vm2E6khvevcpSwFzeHRzkVPWRJIPzPZXWQDe+Byi8ZELdk5x/GHGgWE
-         lXN/vjqsJ39abOPl8ciKN/+7x5a9N2H80Yn3sNAWm/ewnVCdWRy/V8/7IFtgfgB/gO
-         OWSnu3TcW41lw==
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.101.4 at mail
-Date:   Wed, 11 Dec 2019 17:03:26 +0100
-Message-Id: <882916345a8aa2dc545a1bd2ca150cf913371d1a.1576079249.git.mirq-linux@rere.qmqm.pl>
-In-Reply-To: <cover.1576079249.git.mirq-linux@rere.qmqm.pl>
-References: <cover.1576079249.git.mirq-linux@rere.qmqm.pl>
-From:   =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-Subject: [PATCH v2 9/9] dt-bindings: input: elants-i2c: Document eKTF3624
+        id S1731655AbfLKQI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 11:08:56 -0500
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:39456 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731064AbfLKQIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 11:08:55 -0500
+Received: by mail-lf1-f66.google.com with SMTP id y1so5814031lfb.6
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2019 08:08:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7tqplQQb9CHWGQTUQAovBElvDHnJZMbpYf+CcpC4kqQ=;
+        b=wcCk/jTnkASJR6Sp/LYKO/aXJ7GWZ8rt2oRypmgmWabEkCBK/cKu2NrwVq/17FV8tI
+         t8yWfb8AWXbvEC/SrExJq/b1iu5pzWFwfpyvs6DaxjS4mHCuqftAMSTM+KRfYHSxUwjv
+         rGQaDG8b8/7PtjZd8u88TM+BiNgMFo7S/W8OZINIzpJJ4eRtGG5eCE6PmW8CmIaH5F8d
+         XqRYgOE582W9iKhrrr8OR5UcKjnMscE3yjhUAou7rAYKCERvfVpsIBRG+djXzSoJgKlG
+         eketxGshmv8KyDlmzBI1mFELQnNUOH9w8fYc2ITrvlY7hd9sLE55fL+XxkmcymfpWGaF
+         /jhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=7tqplQQb9CHWGQTUQAovBElvDHnJZMbpYf+CcpC4kqQ=;
+        b=PzduaLs77jj5Mu49pvXp5G+2OG32dzIeTLDcmeLnfecnpBfG0H4Zdk7Tx8lttKrzSX
+         5ids3ryf4qoEo5o/xpX9apno++W90HVnt22keGB/YWFxeJMIixSfkEyIB8h1KoEZNF+T
+         raZ4d6dekxUi1hnul9Os+0VJW9LFUg2+IqLL+BlENHpsSWmH4klM1Lqf/WUDhRUHAaWA
+         17GtYdbEvpMc+vTK31doJwV+vfR4OKyKkrHclZOuAJSQz+Te1PrDfuvZHpqfqqnzYq5g
+         TBFqsiDVatthOVse17cYjJmMZtG6LLdK/5E8b9FRYAFArfAXZnV+QXW2vGDzfViZYDF/
+         LA5w==
+X-Gm-Message-State: APjAAAU+59+f/+0/kEimHpb8Fj3tffIcBEXQtAqZEr54VAQLmAGUoGdO
+        QzRcZC91y4jHwn2OvmzMFAg+yQ==
+X-Google-Smtp-Source: APXvYqw6vroN4zWGsiE3et8xvPmJr20vyWmpeLQ82KdA0bF4KoKWTmc/RVLOq511WAvgGFLqkk/0uA==
+X-Received: by 2002:ac2:5ec3:: with SMTP id d3mr2706348lfq.176.1576080533659;
+        Wed, 11 Dec 2019 08:08:53 -0800 (PST)
+Received: from wasted.cogentembedded.com ([2a00:1fa0:8d8:12fe:a87e:d4b8:621e:2b62])
+        by smtp.gmail.com with ESMTPSA id h24sm1407649ljl.80.2019.12.11.08.08.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 11 Dec 2019 08:08:52 -0800 (PST)
+Subject: Re: [PATCH RFC 0/2] Add Renesas RPC-IF support
+To:     Chris Brandt <Chris.Brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Yang <masonccyang@mxic.com.tw>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>
+References: <cb7022c9-0059-4eb2-7910-aab42124fa1c@cogentembedded.com>
+ <TY1PR01MB156234F5B44BB43D3DCA98128A5A0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <03a630e2-280f-98b7-a9c8-6533716720e5@cogentembedded.com>
+Date:   Wed, 11 Dec 2019 19:08:51 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-To:     linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh-dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        James Chen <james.chen@emc.com.tw>,
-        Johnny Chuang <johnny.chuang@emc.com.tw>,
-        Scott Liu <scott.liu@emc.com.tw>
+In-Reply-To: <TY1PR01MB156234F5B44BB43D3DCA98128A5A0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dmitry Osipenko <digetx@gmail.com>
+HEllo
 
-The eKTF3624 hardware is similar to eKTH3500.
+On 12/11/2019 05:33 PM, Chris Brandt wrote:
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
----
- Documentation/devicetree/bindings/input/elants_i2c.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+>> Here's a set of 2 patches against Linus' repo. Renesas Reduced Pin Count
+>> Interface (RPC-IF) allows a SPI flash or HyperFlash connected to the SoC to
+>> be accessed via the external address space read mode or the manual mode.
+> 
+> Looking at this driver, all it is are APIs. Meaning another driver is 
+> needed to sit in between the MTD layer and this HW driver layer.
 
-diff --git a/Documentation/devicetree/bindings/input/elants_i2c.txt b/Documentation/devicetree/bindings/input/elants_i2c.txt
-index 45fab32bbc19..1bc60303f0ea 100644
---- a/Documentation/devicetree/bindings/input/elants_i2c.txt
-+++ b/Documentation/devicetree/bindings/input/elants_i2c.txt
-@@ -1,7 +1,7 @@
- Elantech I2C Touchscreen
- 
- Required properties:
--- compatible: must be "elan,ekth3500".
-+- compatible: must be "elan,ekth3500" or "elan,ektf3624".
- - reg: I2C address of the chip.
- - interrupts: interrupt to which the chip is connected (see interrupt
-   binding[0]).
--- 
-2.20.1
+   Between the hardware and SPI, and between the hardware and HyperFlash
+infrastructure. There's a lot of the common hardware code common between
+these 2 driver areas.
 
+> In the driver that I did, if the "RPC" HW is going to be used to control
+> a SPI Flash device, it registered a spi controller and then the MTD 
+> layer could access the device just like any other SPI controller driver. No
+> additional drivers are needed.
+
+   We're already been thru that with Mason's patch -- I don't want the code
+duplicated between 2 drivers.
+
+> Looking at the hyperbus driver that is in drivers/mtd/hyperbus/, it 
+> seems that if the "RPC" HW is going to be used to control HyperFlash, then 
+
+   Sure. But the code controlling RPC hardware is largely the same b/w 2 cases.
+
+> all you would need to do is register a hyperbus controller using 
+> hyperbus_register_device(). Then the MTD layer could read/write the flash using 
+> normal MTD CFI interface.
+
+   That's what I do (the current realization makes too many assumptions about
+the HF hardware (both direct read and write). 
+
+> Why do you think you need another layer in between the HW driver and the
+> MTD layer?
+
+   Because we don't want any duplicated code. Also, think about DT -- it
+describes the hardware, not the driver configuration.
+
+> Is your goal to make a multi-layered system where the HW jumps back and forth
+> in between operating modes at runtime? I'm not sure of the use case for all of
+> this.
+
+   My goal is to prevent the code duplication (and keep DT sane too).
+
+> Chris
+
+MBR, Sergei
