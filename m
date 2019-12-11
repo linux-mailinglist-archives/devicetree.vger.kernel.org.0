@@ -2,84 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7000011AEA0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 16:00:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB4A511B64A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2019 17:00:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727477AbfLKPAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 10:00:39 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:34765 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727457AbfLKPAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Dec 2019 10:00:39 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBBEhAkJ010271;
-        Wed, 11 Dec 2019 16:00:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=X7XKW0IFAjlaDZjhcypUC4M+ZEHKNAi6hKrzPgGf/sA=;
- b=g/T3BAzqjvFArvGv1o4HuY9OIO22HvWGAaXTT+CnW4j8jfwbJ6TP9Tim9UfR/B0lpoJl
- Xwk/DEXeTLq1qmWfigTr/k3/tNlypJMk77VniAOT21OarcOXgMPQKVwquoZ+eSJCf3Dh
- cHg/yfs5iTVAQzL9QXcgMXUnPoI2rSuNE7OcRgba9/lKaREWnwANC1r4+Axj7vWNOo7b
- iG/tEac4gj5zxlM1dOQ7Gnr0qGG5BsE+Nsjw6xi9gQ55uP0FNjkaRzd7JW3xG309o6fI
- G0Y7krqmELHZeQLoy1m9zImC6QfXMIYZN0ODZJhh3821Om02TyA9zb3t03wtkBpWgubA 8Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2wtfqh4wyx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 11 Dec 2019 16:00:28 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 74EEB10002A;
-        Wed, 11 Dec 2019 16:00:24 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5E69F2BC7C8;
-        Wed, 11 Dec 2019 16:00:24 +0100 (CET)
-Received: from localhost (10.75.127.48) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 11 Dec 2019 16:00:24
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH] dt-bindings: pwm: fix nodename pattern
-Date:   Wed, 11 Dec 2019 16:00:21 +0100
-Message-ID: <20191211150021.20125-1-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
+        id S1729945AbfLKP7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 10:59:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38404 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731544AbfLKPN6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Dec 2019 10:13:58 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 664BA24689;
+        Wed, 11 Dec 2019 15:13:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1576077238;
+        bh=IMKUB3WFZG/+SvJTD6DakkLU6JGoz3fFgZ4SomQZJQc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=is+9F5t0XtX/Z6al/ApsVcyz/eaIp+3c6AEzjNYwEB9L+nQG5W9csovDxjqtrTEeV
+         nXMNEywUWT/1CSiEQaZufwW1lGkZn05oBP0SG9/SS0IEdj++qDZ3j3F/IDL5VS6/w9
+         oqKg+ULuN0MeZmwe9ORfrvL9yh6BXADFCYhQiK6o=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Erhard Furtner <erhard_f@mailbox.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Tyrel Datwyler <tyreld@linux.ibm.com>,
+        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 116/134] of: unittest: fix memory leak in attach_node_and_children
+Date:   Wed, 11 Dec 2019 10:11:32 -0500
+Message-Id: <20191211151150.19073-116-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191211151150.19073-1-sashal@kernel.org>
+References: <20191211151150.19073-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG5NODE2.st.com (10.75.127.14) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-12-11_03:2019-12-11,2019-12-11 signatures=0
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Typical pwm nodes should be named pwm@xxx.
-The pattern shouldn't match nodes named pwm-xxx to avoid
-conflicts with pinmux or pwm-fan nodes.
+From: Erhard Furtner <erhard_f@mailbox.org>
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+[ Upstream commit 2aacace6dbbb6b6ce4e177e6c7ea901f389c0472 ]
+
+In attach_node_and_children memory is allocated for full_name via
+kasprintf. If the condition of the 1st if is not met the function
+returns early without freeing the memory. Add a kfree() to fix that.
+
+This has been detected with kmemleak:
+Link: https://bugzilla.kernel.org/show_bug.cgi?id=205327
+
+It looks like the leak was introduced by this commit:
+Fixes: 5babefb7f7ab ("of: unittest: allow base devicetree to have symbol metadata")
+
+Signed-off-by: Erhard Furtner <erhard_f@mailbox.org>
+Reviewed-by: Michael Ellerman <mpe@ellerman.id.au>
+Reviewed-by: Tyrel Datwyler <tyreld@linux.ibm.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- Documentation/devicetree/bindings/pwm/pwm.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/of/unittest.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm.yaml b/Documentation/devicetree/bindings/pwm/pwm.yaml
-index fa4f9de92090..29b86886c282 100644
---- a/Documentation/devicetree/bindings/pwm/pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/pwm.yaml
-@@ -11,7 +11,7 @@ maintainers:
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 92e895d864584..ca7823eef2b40 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1146,8 +1146,10 @@ static void attach_node_and_children(struct device_node *np)
+ 	full_name = kasprintf(GFP_KERNEL, "%pOF", np);
  
- properties:
-   $nodename:
--    pattern: "^pwm(@.*|-[0-9a-f])*$"
-+    pattern: "^pwm(@.*[0-9a-f])*$"
+ 	if (!strcmp(full_name, "/__local_fixups__") ||
+-	    !strcmp(full_name, "/__fixups__"))
++	    !strcmp(full_name, "/__fixups__")) {
++		kfree(full_name);
+ 		return;
++	}
  
-   "#pwm-cells":
-     description:
+ 	dup = of_find_node_by_path(full_name);
+ 	kfree(full_name);
 -- 
-2.15.0
+2.20.1
 
