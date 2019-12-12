@@ -2,150 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 975B211D059
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 15:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A4C11D06D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 16:03:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728522AbfLLO7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 09:59:39 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:53744 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729147AbfLLO7b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 09:59:31 -0500
-Received: by mail-wm1-f65.google.com with SMTP id n9so2707283wmd.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2019 06:59:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=wL1S1bgqlZTjVQetMFkk5eNUJ/UNdvXmJ2Kwf4J4AxE=;
-        b=rdw2uwGBHujHLxO2VyLqw+p1RAJwg1bqLq7hEkKjaQKD3rskfaMQiUD91Ih87dEaAe
-         WAg9407///dvCsf5zVZ1muxNJ0UAIyZAnR2s5zzwCss6z6nWBqEYQoFVuMydZg6p28dT
-         TxQWqQeLGTBAzQUw4zxlXSaHvfwNXgSkjvba3egg28CqA8D9g+0rJmVKaSnkfn+JmJxO
-         rHfXvzNyVmrSI6n5FUt7KHcBDOCh6sHr3/H+6fpbIMb5yjnEOXeWrACPlyoe3suFyGH4
-         aGzkJttL4BZZ3jTuQpcds+iZF3UaIVKK9Chu1wro1nu2J5pfXJozLmGaoSYlW32ORDt6
-         aCCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=wL1S1bgqlZTjVQetMFkk5eNUJ/UNdvXmJ2Kwf4J4AxE=;
-        b=BCYBkUp9NUwGlSgVZLJdW2UqoDa59Wg9xSsVcTsLFWxCCm3ZSG+usBH86KSeODiEqx
-         m96U9ZCgMxR/Zuh2/Fd3lq8bLyFHX0d4COFEHWPEpCXPXzaAq6nTkHtLva168ZHENgLm
-         LRHqc6ljURlThHYPaBXaSKwbS825WIK/oap32XafcVhYXiS1rFZMGk86AFHj3RTIoir5
-         SgMcOZ3pAx2AF4iLlFNR6YoXmjN0v7VFIaHOrC4NwojfbtFE1hn4//Uz7yoldlA/89lZ
-         U6cBInnuKMWA+saNWesj8CkpWcd+h1ItE5kVMDCfjSX3L8odKC+mSiOtvc6ylhcksy2A
-         alww==
-X-Gm-Message-State: APjAAAXl6aQymNToGG0KjYU+ZJ75+uW6aLnEHtpUrD4y5gLTMuKDN5EF
-        WV+7OLl0nW3e3stBtrJAB9RzKA==
-X-Google-Smtp-Source: APXvYqw+cVD/rdJCHti73dxy0wOlGDqwQNjwezLmwIy6Ao4DWzhFTD+ajeIK8+jSK/wySrgNk1ajCw==
-X-Received: by 2002:a1c:20d6:: with SMTP id g205mr7227703wmg.38.1576162770429;
-        Thu, 12 Dec 2019 06:59:30 -0800 (PST)
-Received: from glaroque-ThinkPad-T480.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id h8sm6670292wrx.63.2019.12.12.06.59.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Dec 2019 06:59:29 -0800 (PST)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     narmstrong@baylibre.com, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl, khilman@baylibre.com,
-        devicetree@vger.kernel.org
-Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] media: platform: meson-ao-cec-g12a: add wakeup support
-Date:   Thu, 12 Dec 2019 15:59:25 +0100
-Message-Id: <20191212145925.32123-4-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191212145925.32123-1-glaroque@baylibre.com>
-References: <20191212145925.32123-1-glaroque@baylibre.com>
+        id S1728603AbfLLPDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 10:03:52 -0500
+Received: from mailgw01.mediatek.com ([216.200.240.184]:42039 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728581AbfLLPDw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 10:03:52 -0500
+X-UUID: 19c4e568909043eb8a02ec1502cd1e2d-20191212
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=F7v29UFNtFNozY6v/Vmo8huw/9C0N0CfhqOK+BHJmfA=;
+        b=pe5grwTEbxdX+eTkwE4Ar8K4zi/1qUGrGJxUuCGROcDg5t2JSSCQA0QCVg3yEPHNjashIe2SJSO0ZU/xkS2AttIYkmEHisbN+8tf2AxYDn962cGDX4HAwEMwr5Wv3QluUZHSLJ+XtVlCwgK3WU1o5UFYCsmCNxY2o+YJMeCq6zU=;
+X-UUID: 19c4e568909043eb8a02ec1502cd1e2d-20191212
+Received: from mtkcas68.mediatek.inc [(172.29.94.19)] by mailgw01.mediatek.com
+        (envelope-from <landen.chao@mediatek.com>)
+        (musrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1856947062; Thu, 12 Dec 2019 07:03:50 -0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 12 Dec 2019 07:04:04 -0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 12 Dec 2019 23:03:32 +0800
+Message-ID: <1576163014.23763.90.camel@mtksdccf07>
+Subject: Re: [PATCH net-next 2/6] net: dsa: mt7530: Extend device data ready
+ for adding a new hardware
+From:   Landen Chao <landen.chao@mediatek.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
+        "vivien.didelot@savoirfairelinux.com" 
+        <vivien.didelot@savoirfairelinux.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        Sean Wang <Sean.Wang@mediatek.com>,
+        "opensource@vdorst.com" <opensource@vdorst.com>,
+        "frank-w@public-files.de" <frank-w@public-files.de>
+Date:   Thu, 12 Dec 2019 23:03:34 +0800
+In-Reply-To: <d77e3109-e022-3581-2ca8-02889c5ddbf4@gmail.com>
+References: <cover.1575914275.git.landen.chao@mediatek.com>
+         <2d546d6bb15ff8b4b75af2220e20db4e634f4145.1575914275.git.landen.chao@mediatek.com>
+         <d77e3109-e022-3581-2ca8-02889c5ddbf4@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add register configuration to activate wakeup feature in bl301
-
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- drivers/media/platform/meson/ao-cec-g12a.c | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
-index 3b39e875292e..d441b5a62b0c 100644
---- a/drivers/media/platform/meson/ao-cec-g12a.c
-+++ b/drivers/media/platform/meson/ao-cec-g12a.c
-@@ -25,6 +25,7 @@
- #include <media/cec.h>
- #include <media/cec-notifier.h>
- #include <linux/clk-provider.h>
-+#include <linux/mfd/syscon.h>
- 
- /* CEC Registers */
- 
-@@ -168,6 +169,19 @@
- 
- #define CECB_WAKEUPCTRL		0x31
- 
-+#define CECB_FUNC_CFG_REG		0xA0
-+#define CECB_FUNC_CFG_MASK		GENMASK(6, 0)
-+#define CECB_FUNC_CFG_CEC_ON		0x01
-+#define CECB_FUNC_CFG_OTP_ON		0x02
-+#define CECB_FUNC_CFG_AUTO_STANDBY	0x04
-+#define CECB_FUNC_CFG_AUTO_POWER_ON	0x08
-+#define CECB_FUNC_CFG_ALL		0x2f
-+#define CECB_FUNC_CFG_NONE		0x0
-+
-+#define CECB_LOG_ADDR_REG	0xA4
-+#define CECB_LOG_ADDR_MASK	GENMASK(22, 16)
-+#define CECB_LOG_ADDR_SHIFT	16
-+
- struct meson_ao_cec_g12a_data {
- 	/* Setup the internal CECB_CTRL2 register */
- 	bool				ctrl2_setup;
-@@ -177,6 +191,7 @@ struct meson_ao_cec_g12a_device {
- 	struct platform_device		*pdev;
- 	struct regmap			*regmap;
- 	struct regmap			*regmap_cec;
-+	struct regmap			*regmap_ao_sysctrl;
- 	spinlock_t			cec_reg_lock;
- 	struct cec_notifier		*notify;
- 	struct cec_adapter		*adap;
-@@ -518,6 +533,12 @@ meson_ao_cec_g12a_set_log_addr(struct cec_adapter *adap, u8 logical_addr)
- 					 BIT(logical_addr - 8));
- 	}
- 
-+	if (ao_cec->regmap_ao_sysctrl)
-+		ret |= regmap_update_bits(ao_cec->regmap_ao_sysctrl,
-+					 CECB_LOG_ADDR_REG,
-+					  CECB_FUNC_CFG_MASK,
-+					  logical_addr << CECB_LOG_ADDR_SHIFT);
-+
- 	/* Always set Broadcast/Unregistered 15 address */
- 	ret |= regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
- 				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8),
-@@ -618,6 +639,13 @@ static int meson_ao_cec_g12a_adap_enable(struct cec_adapter *adap, bool enable)
- 		regmap_write(ao_cec->regmap_cec, CECB_CTRL2,
- 			     FIELD_PREP(CECB_CTRL2_RISE_DEL_MAX, 2));
- 
-+	if (ao_cec->regmap_ao_sysctrl) {
-+		regmap_update_bits(ao_cec->regmap_ao_sysctrl,
-+				   CECB_FUNC_CFG_REG,
-+				   CECB_FUNC_CFG_MASK,
-+				   CECB_FUNC_CFG_ALL);
-+	}
-+
- 	meson_ao_cec_g12a_irq_setup(ao_cec, true);
- 
- 	return 0;
-@@ -692,6 +720,11 @@ static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
- 		goto out_probe_adapter;
- 	}
- 
-+	ao_cec->regmap_ao_sysctrl = syscon_regmap_lookup_by_phandle
-+		(pdev->dev.of_node, "amlogic,ao-sysctrl");
-+	if (IS_ERR(ao_cec->regmap_ao_sysctrl))
-+		dev_warn(&pdev->dev, "ao-sysctrl syscon regmap lookup failed.\n");
-+
- 	irq = platform_get_irq(pdev, 0);
- 	ret = devm_request_threaded_irq(&pdev->dev, irq,
- 					meson_ao_cec_g12a_irq,
--- 
-2.17.1
+T24gVGh1LCAyMDE5LTEyLTEyIGF0IDExOjQ1ICswODAwLCBGbG9yaWFuIEZhaW5lbGxpIHdyb3Rl
+Og0KPiANCj4gT24gMTIvMTAvMjAxOSAxMjoxNCBBTSwgTGFuZGVuIENoYW8gd3JvdGU6DQo+ID4g
+QWRkIGEgc3RydWN0dXJlIGhvbGRpbmcgcmVxdWlyZWQgb3BlcmF0aW9ucyBmb3IgZWFjaCBkZXZp
+Y2Ugc3VjaCBhcyBkZXZpY2UNCj4gPiBpbml0aWFsaXphdGlvbiwgUEhZIHBvcnQgcmVhZCBvciB3
+cml0ZSwgYSBjaGVja2VyIHdoZXRoZXIgUEhZIGludGVyZmFjZSBpcw0KPiA+IHN1cHBvcnRlZCBv
+biBhIGNlcnRhaW4gcG9ydCwgTUFDIHBvcnQgc2V0dXAgZm9yIGVpdGhlciBidXMgcGFkIG9yIGEN
+Cj4gPiBzcGVjaWZpYyBQSFkgaW50ZXJmYWNlLg0KPiA+IA0KPiA+IFRoZSBwYXRjaCBpcyBkb25l
+IGZvciByZWFkeSBhZGRpbmcgYSBuZXcgaGFyZHdhcmUgTVQ3NTMxLg0KPiA+IA0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IExhbmRlbiBDaGFvIDxsYW5kZW4uY2hhb0BtZWRpYXRlay5jb20+DQo+ID4gU2ln
+bmVkLW9mZi1ieTogU2VhbiBXYW5nIDxzZWFuLndhbmdAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0K
+PiBbc25pcF0NCj4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L2RzYS9tdDc1MzAuYyBi
+L2RyaXZlcnMvbmV0L2RzYS9tdDc1MzAuYw0KPiA+IGluZGV4IGVkMWVjMTBlYzYyYi4uOWE2NDhk
+MWY1ZDA5IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbmV0L2RzYS9tdDc1MzAuYw0KPiA+ICsr
+KyBiL2RyaXZlcnMvbmV0L2RzYS9tdDc1MzAuYw0KPiA+IEBAIC00MjUsNyArNDI1LDcgQEAgbXQ3
+NTMwX2ZkYl93cml0ZShzdHJ1Y3QgbXQ3NTMwX3ByaXYgKnByaXYsIHUxNiB2aWQsDQo+ID4gIH0N
+Cj4gPiAgDQo+ID4gIHN0YXRpYyBpbnQNCj4gPiAtbXQ3NTMwX3BhZF9jbGtfc2V0dXAoc3RydWN0
+IGRzYV9zd2l0Y2ggKmRzLCBpbnQgbW9kZSkNCj4gPiArbXQ3NTMwX3BhZF9jbGtfc2V0dXAoc3Ry
+dWN0IGRzYV9zd2l0Y2ggKmRzLCBwaHlfaW50ZXJmYWNlX3QgbW9kZSkNCj4gDQo+IEhlcmUgeW91
+IHBhc3MgYSBwaHlfaW50ZXJmYWNlX3QgYXJndW1lbnQgYnV0IG5vdCBpbiBtdDc2MzJfcGFkX2Ns
+a19zZXR1cCgpLg0KPiANCj4gPiArc3RhdGljIGludA0KPiA+ICttdDc1MzBfcGFkX3NldHVwKHN0
+cnVjdCBkc2Ffc3dpdGNoICpkcywgY29uc3Qgc3RydWN0IHBoeWxpbmtfbGlua19zdGF0ZSAqc3Rh
+dGUpDQo+ID4gK3sNCj4gPiArCXN0cnVjdCBtdDc1MzBfcHJpdiAqcHJpdiA9IGRzLT5wcml2Ow0K
+PiA+ICsNCj4gPiArCS8qIFNldHVwIFRYIGNpcmN1aXQgaW5jbHVpbmcgcmVsZXZhbnQgUEFEIGFu
+ZCBkcml2aW5nICovDQo+ID4gKwltdDc1MzBfcGFkX2Nsa19zZXR1cChkcywgc3RhdGUtPmludGVy
+ZmFjZSk7DQo+ID4gKw0KPiA+ICsJaWYgKHByaXYtPmlkID09IElEX01UNzUzMCkgew0KPiA+ICsJ
+CS8qIFNldHVwIFJYIGNpcmN1aXQsIHJlbGV2YW50IFBBRCBhbmQgZHJpdmluZyBvbiB0aGUNCj4g
+PiArCQkgKiBob3N0IHdoaWNoIG11c3QgYmUgcGxhY2VkIGFmdGVyIHRoZSBzZXR1cCBvbiB0aGUN
+Cj4gPiArCQkgKiBkZXZpY2Ugc2lkZSBpcyBhbGwgZmluaXNoZWQuDQo+ID4gKwkJICovDQo+ID4g
+KwkJbXQ3NjIzX3BhZF9jbGtfc2V0dXAoZHMpOw0KPiANCj4gV291bGQgbm90IGl0IG1ha2Ugc2Vu
+c2UgdG8gcGFzcyBpdCBkb3duIGhlcmUgYXMgd2VsbCBmb3IgY29uc2lzdGVuY3k/DQptdDc2MjNf
+cGFkX2NsaygpIGNvbnRhaW5zIHRoZSBzZXR0aW5nIGZvciBQSFlfSU5URVJGQUNFX01PREVfVFJH
+TUlJLiBJdA0KaXMgcmVhbGx5IGJldHRlciB0byBwYXNzIHBoeV9pbnRlcmZhY2VfdCBmb3IgZXJy
+b3IgaGFuZGxpbmcuDQo+IA0KPiBbc25pcF0NCj4gDQo+ID4gQEAgLTE2NjAsOCArMTc2OCwxOSBA
+QCBtdDc1MzBfcHJvYmUoc3RydWN0IG1kaW9fZGV2aWNlICptZGlvZGV2KQ0KPiA+ICAJLyogR2V0
+IHRoZSBoYXJkd2FyZSBpZGVudGlmaWVyIGZyb20gdGhlIGRldmljZXRyZWUgbm9kZS4NCj4gPiAg
+CSAqIFdlIHdpbGwgbmVlZCBpdCBmb3Igc29tZSBvZiB0aGUgY2xvY2sgYW5kIHJlZ3VsYXRvciBz
+ZXR1cC4NCj4gPiAgCSAqLw0KPiA+IC0JcHJpdi0+aWQgPSAodW5zaWduZWQgaW50KSh1bnNpZ25l
+ZCBsb25nKQ0KPiA+IC0JCW9mX2RldmljZV9nZXRfbWF0Y2hfZGF0YSgmbWRpb2Rldi0+ZGV2KTsN
+Cj4gPiArCXByaXYtPmluZm8gPSBvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEoJm1kaW9kZXYtPmRl
+dik7DQo+ID4gKwlpZiAoIXByaXYtPmluZm8pDQo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ID4g
+Kw0KPiA+ICsJLyogU2FuaXR5IGNoZWNrIGlmIHRoZXNlIHJlcXVpcmVkIGRldmljZSBvcGVyc3Rh
+aW9ucyBhcmUgZmlsbGVkDQo+ID4gKwkgKiBwcm9wZXJseS4NCj4gDQo+IFR5cG86IG9wZXJhdGlv
+bnMuDQpPb3BzLCBzb3JyeS4gSSdsbCBjb3JyZWN0IGl0Lg0KDQpMYW5kZW4NCj4gDQo+IE90aGVy
+IHRoYW4gdGhhdCwgdGhpcyBsb29rcyBva2F5IHRvIG1lLg0KDQo=
 
