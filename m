@@ -2,95 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9305811CECC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 14:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADDF11CF09
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 15:00:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729489AbfLLNw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 08:52:28 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35650 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729487AbfLLNw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 08:52:28 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBCDqKTj007119;
-        Thu, 12 Dec 2019 07:52:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1576158740;
-        bh=vAQVIfM6lNlj4IasYr/CUoaJLd7q8vHhwJ8Pj5vAUnc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=MyVv+c2MTRgVJo95EsMMYfF22kOE/CjD14lOmk8IofXPCsaspO2R4YljzP2+HDU08
-         wB5Hy4jSx76plz61MHBUMboGIQASA4XQslhGrJoAmv+H56mKemxscwEPHWOF0vzNY0
-         xvgjdCCo7CKx2S74ydZ9BwWZ72aELkYSrXomc/SI=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBCDqJwa110134;
-        Thu, 12 Dec 2019 07:52:19 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 12
- Dec 2019 07:52:19 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Thu, 12 Dec 2019 07:52:19 -0600
-Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBCDq1hu023044;
-        Thu, 12 Dec 2019 07:52:16 -0600
-From:   Jyri Sarha <jsarha@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
-        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <subhajit_paul@ti.com>,
-        <praneeth@ti.com>, <yamonkar@cadence.com>, <sjakhade@cadence.com>,
-        <sam@ravnborg.org>, <robh+dt@kernel.org>
-Subject: [PATCH v3 5/5] MAINTAINERS: add entry for tidss
-Date:   Thu, 12 Dec 2019 15:52:01 +0200
-Message-ID: <09da3a37ca59bb45bef62f2335a191985363d393.1576158368.git.jsarha@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1576158368.git.jsarha@ti.com>
-References: <cover.1576158368.git.jsarha@ti.com>
+        id S1729523AbfLLOAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 09:00:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54994 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729524AbfLLOAQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Dec 2019 09:00:16 -0500
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 922A021655;
+        Thu, 12 Dec 2019 14:00:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1576159215;
+        bh=w6j7nt8EVQhGqeeabig/3mMtxBUSwyE1b0/3qRLnlMY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rmi1gkkd4I+2394B3wixXdiXO3A3D0r2w2dH7yVZGFDe1Z8I0ja30fsJ2t8IZ+rCh
+         Duh2X+pXYS65dQtBq5brAD93r3mic178CAaeGzI1CbWc5IyIJ4BKhxWIqg+jTrDGWr
+         HUvkRctVRdbDGf5w3EXNugc6xO4/q/zWl++5AmOk=
+Received: by mail-qk1-f173.google.com with SMTP id r14so1618225qke.13;
+        Thu, 12 Dec 2019 06:00:15 -0800 (PST)
+X-Gm-Message-State: APjAAAWpxBDC38pzafU1+iiYfc2q4ZKd66/w08OALT6gF81m3mqlQhTz
+        MTgHxZ5Vg2XRB2MSw7gF2TGcwbP7BhM/0X59WQ==
+X-Google-Smtp-Source: APXvYqylVaRXooiFXE5LLn2gb6i2E8GDU2gD9ANvwzpoLnrIk+YG9DZFfJ8BliPuj1AETH76SC8tJJD1gjvt1ijX7t4=
+X-Received: by 2002:ae9:f205:: with SMTP id m5mr8219015qkg.152.1576159214753;
+ Thu, 12 Dec 2019 06:00:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1575965693-30395-1-git-send-email-frowand.list@gmail.com>
+ <20191211201856.GA21857@bogus> <486ce60c-8a74-7baf-1054-c81c83e79e56@gmail.com>
+In-Reply-To: <486ce60c-8a74-7baf-1054-c81c83e79e56@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 12 Dec 2019 08:00:03 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL_0UUrjPG3G4vzO5fzzREV4tr5Y+ykRxzU+Cqz4_YgdQ@mail.gmail.com>
+Message-ID: <CAL_JsqL_0UUrjPG3G4vzO5fzzREV4tr5Y+ykRxzU+Cqz4_YgdQ@mail.gmail.com>
+Subject: Re: [PATCH] of: refcount leak when phandle_cache entry replaced
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for tidss DRM driver.
+On Thu, Dec 12, 2019 at 5:17 AM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 12/11/19 2:18 PM, Rob Herring wrote:
+> > On Tue, 10 Dec 2019 02:14:53 -0600, frowand.list@gmail.com wrote:
+> >> From: Frank Rowand <frank.rowand@sony.com>
+> >>
+> >> of_find_node_by_phandle() does not do an of_node_put() of the existing
+> >> node in a phandle cache entry when that node is replaced by a new node.
+> >>
+> >> Reported-by: Rob Herring <robh+dt@kernel.org>
+> >> Fixes: b8a9ac1a5b99 ("of: of_node_get()/of_node_put() nodes held in phandle cache")
+> >> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> >> ---
+> >>
+> >> Checkpatch will warn about a line over 80 characters.  Let me know
+> >> if that bothers you.
+> >>
+> >>  drivers/of/base.c | 2 ++
+> >>  1 file changed, 2 insertions(+)
+> >>
+> >
+> > Applied, thanks.
+> >
+> > Rob
+> >
+>
+> If the rework patch of the cache that you posted shortly after accepting
+> my patch, then my patch becomes not needed and is just extra noise in the
+> history.  Once your patch finishes review (I am assuming it probably
+> will), then my patch should be reverted.
 
-Version history:
+The question is what to backport: nothing, this patch or mine? My
+thought was to apply this mainly to backport. If you're fine with
+nothing or mine, then we can drop it. I'm a bit nervous marking mine
+for stable.
 
-v2: no change
-
-v3: - Move tidss entry after omapdrm
-    - Add "T:     git git://anongit.freedesktop.org/drm/drm-misc"
-
-Signed-off-by: Jyri Sarha <jsarha@ti.com>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 741e3f433f6e..e89fbfb1ce06 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5559,6 +5559,17 @@ S:	Maintained
- F:	drivers/gpu/drm/omapdrm/
- F:	Documentation/devicetree/bindings/display/ti/
- 
-+DRM DRIVERS FOR TI KEYSTONE
-+M:	Jyri Sarha <jsarha@ti.com>
-+M:	Tomi Valkeinen <tomi.valkeinen@ti.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	drivers/gpu/drm/tidss/
-+F:	Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-+T:	git git://anongit.freedesktop.org/drm/drm-misc
-+
- DRM DRIVERS FOR V3D
- M:	Eric Anholt <eric@anholt.net>
- S:	Supported
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+Rob
