@@ -2,210 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7EA311D1ED
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 17:10:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 276BE11D1B2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 17:02:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729719AbfLLQKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 11:10:18 -0500
-Received: from gateway31.websitewelcome.com ([192.185.143.43]:11498 "EHLO
-        gateway31.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729675AbfLLQKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Dec 2019 11:10:18 -0500
-X-Greylist: delayed 1445 seconds by postgrey-1.27 at vger.kernel.org; Thu, 12 Dec 2019 11:10:17 EST
-Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
-        by gateway31.websitewelcome.com (Postfix) with ESMTP id DD9A074820
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2019 09:46:11 -0600 (CST)
-Received: from e36.ehosts.com ([192.185.128.17])
-        by cmsmtp with SMTP
-        id fQfLiEsK9iJ43fQfLiesa2; Thu, 12 Dec 2019 09:46:11 -0600
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=singleboardsolutions.com; s=default; h=Message-ID:CC:To:Date:From:Subject:
-        Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=UMrk7SVJBaZoF5+E4IWNlDb5JQkYTRr384MzHtkSMNA=; b=Z6F45GnZxN2pseuh0IHHkf69/s
-        ZLOxtsygVBMQDpO7ull4wMLqcSmdySbPZvytspNyu2pUslfuHN/55s2KRqikKLBC5+E5gapNgaaXl
-        NAknwJTUy7yBoxUao54lCEhsviPaOlUAFap8Ls3ZQ7zGD04OjmJjFdakIOnDIAgOkGblTHOpaKUT7
-        GGxhZmp2azaq1Yd6hLkYjDBMnUAuljMr/tgsucpANmmnJAwdndG6GDFTNKm68bwyqQ7U/+Om0ahbG
-        5/4QYPZzmFm75kkCvNBRN3X/3NRJvQnmkWKmlccw/oAe1JruqtpbPQdf2pErpAlMCdRfUTE3lSC2T
-        vkLtKQHA==;
-Received: from [172.58.138.77] (port=57064 helo=[IPV6:2607:fb90:1784:5f4e:a5d4:b11d:2550:9cec])
-        by e36.ehosts.com with esmtpa (Exim 4.92)
-        (envelope-from <tmckahan@singleboardsolutions.com>)
-        id 1ifQfL-001viD-Fm; Thu, 12 Dec 2019 08:46:11 -0700
-In-Reply-To: <678df227-38be-47af-7ee3-741a391a196c@fivetechno.de>
-References: <678df227-38be-47af-7ee3-741a391a196c@fivetechno.de>
-X-Referenced-Uid: 55
-Thread-Topic: [PATCH 2/3] arm64: dts: rockchip: Enable PD for USB-C-Port on rk3399-roc-pc.
-X-Is-Generated-Message-Id: true
-X-Blue-Identity: !l=635&o=43&fo=3004&pl=525&po=0&qs=PREFIX&f=HTML&n=Thomas%20McKahan&e=tmckahan%40singleboardsolutions.com&m=!%3ANDg0ODA5OGEtZmVjOS00NjIyLTkwMTUtZGI5MTM5OGY1ZGU3%3ASU5CT1g%3D%3ANTU%3D%3AANSWERED&p=491&q=SHOW
-User-Agent: Android
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
- charset=UTF-8
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Enable PD for USB-C-Port on rk3399-roc-pc.
-From:   Thomas McKahan <tmckahan@singleboardsolutions.com>
-Date:   Thu, 12 Dec 2019 10:46:09 -0500
-To:     Markus Reichl <m.reichl@fivetechno.de>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S1729563AbfLLQCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 11:02:24 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:44720 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729247AbfLLQCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 11:02:24 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sjoerd)
+        with ESMTPSA id 588E328B82D
+Received: by beast.luon.net (Postfix, from userid 1000)
+        id 618673E1F0D; Thu, 12 Dec 2019 17:02:20 +0100 (CET)
+From:   Sjoerd Simons <sjoerd.simons@collabora.co.uk>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        narmstrong@baylibre.com
-Message-ID: <84920a36-230f-42a6-a960-a71e685be99f@singleboardsolutions.com>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - e36.ehosts.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - singleboardsolutions.com
-X-BWhitelist: no
-X-Source-IP: 172.58.138.77
-X-Source-L: No
-X-Exim-ID: 1ifQfL-001viD-Fm
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([IPV6:2607:fb90:1784:5f4e:a5d4:b11d:2550:9cec]) [172.58.138.77]:57064
-X-Source-Auth: tmckahan@singleboardsolutions.com
-X-Email-Count: 5
-X-Source-Cap: ZWxlY3RyaTk7ZWxlY3RyaTk7ZTM2LmVob3N0cy5jb20=
-X-Local-Domain: yes
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH] ARM: dts: imx6qdl: Enable egalax touch screen
+Date:   Thu, 12 Dec 2019 17:02:20 +0100
+Message-Id: <20191212160220.2265521-1-sjoerd.simons@collabora.co.uk>
+X-Mailer: git-send-email 2.24.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Markus,
+Sabrelite boards can have an lvds screen attached with a built-in i2c touch
+screen. Enable this in the dtsi.
 
-=C2=A0=C2=A0=C2=A0 I have been working with this as well, ca=
-me across it on Armbian=2E I was also trying to eliminate the warning conce=
-rning the lack of port with limited success=2E=C2=A0 I also missed the inte=
-rrupt pin definition I see=2E=C2=A0 I will test this later today=2E=C2=A0 
-=
+Signed-off-by: Sjoerd Simons <sjoerd.simons@collabora.co.uk>
+---
 
-=C2=A0=C2=A0 I've added Neil Armstrong for information in case any boards =
-on the Amlogic side are similarly configured, I think a few other Rockchip =
-ones at least are missing connector nodes, it appears to be a consistent is=
-sue presumably due to driver changes=2E
+ arch/arm/boot/dts/imx6qdl-sabrelite.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
--Tony
-
-
-=E2=81=A3
-
-On Dec 10, 2019=
-, 7:45 AM, at 7:45 AM, Markus Reichl <m=2Ereichl@fivetechno=2Ede> wrote:
->U=
-SB-C-Port 0 on rk3399-roc-pc is designed to supply the board=2E
->To meet th=
-e power requirements of up to 45W a power delivery (PD)
->compatible supply =
-is needed=2E To configure the PD the node of the
->fusb302 needs a connector=
- property with desired PD description=2E
->
->Signed-off-by: Markus Reichl <m=
-=2Ereichl@fivetechno=2Ede>
->---
->Presently the board in mainline has to be =
-powered from a 12V supply,
->connected to two pins on the expansion header a=
-s the standard 5V
->delivered by the unconfigured USB-C plug is not enough f=
-or higher
->loads or peripherals on USB or M=2E2=2E
->
->With this patch the b=
-oard requests 15V from the PD and runs fine
->on high loads with NVME SSD, E=
-thernet, SDIO WLAN and USB peripherals=2E
->During boot the 12V supply is st=
-ill needed for some seconds,
->as the fusb302 shuts down or resets the PD sh=
-ortly when initializing
->(BUG?)=2E
->
->The board's 12V line is running prese=
-ntly on 5V, the default output
->voltage of the MP8859 on I2C-7, for wich no=
- mainline kernel driver
->exists yet=2E
->---
->  arch/arm64/boot/dts/rockchip=
-/rk3399-roc-pc=2Edtsi | 16 ++++++++++++++--
->  1 file changed, 14 insertion=
-s(+), 2 deletions(-)
->
->diff --git a/arch/arm64/boot/dts/rockchip/rk3399-ro=
-c-pc=2Edtsi
->b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc=2Edtsi
->index 8e0=
-1b04144b7=2E=2E90783b2b1d1f 100644
->--- a/arch/arm64/boot/dts/rockchip/rk33=
-99-roc-pc=2Edtsi
->+++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc=2Edtsi
->=
-@@ -6,6 +6,7 @@
->  /dts-v1/;
->  #include <dt-bindings/input/linux-event-cod=
-es=2Eh>
->  #include <dt-bindings/pwm/pwm=2Eh>
->+#include <dt-bindings/usb/p=
-d=2Eh>
->  #include "rk3399=2Edtsi"
->  #include "rk3399-opp=2Edtsi"
->  
->@@ =
--540,11 +541,22 @@ fusb0: usb-typec@22 {
->  		compatible =3D "fcs,fusb302";=
-
->  		reg =3D <0x22>;
->  		interrupt-parent =3D <&gpio1>;
->-		interrupts =
-=3D <2 IRQ_TYPE_LEVEL_LOW>;
->+		interrupts =3D <RK_PA2 IRQ_TYPE_LEVEL_LOW>;=
-
->  		pinctrl-names =3D "default";
->  		pinctrl-0 =3D <&fusb0_int>;
->  		vb=
-us-supply =3D <&vcc_vbus_typec0>;
->-		status =3D "okay";
->+
->+		usb_con: co=
-nnector {
->+			compatible =3D "usb-c-connector";
->+			label =3D "USB-C-0";
-=
->+			power-role =3D "dual";
->+			try-power-role =3D "sink";
->+			source-pdo=
-s =3D <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
->+			sink-pdos =3D <PDO_=
-FIXED(5000, 3000, PDO_FIXED_USB_COMM)
->+				     PDO_VAR(5000, 15000, 3000)=
-
->+				     PDO_PPS_APDO(5000, 15000, 3000)>;
->+			op-sink-microwatt =3D <4=
-5000000>;
->+		};
->  	};
->  };
->  
->-- 
->2=2E24=2E0
->
->
->___________________=
-____________________________
->Linux-rockchip mailing list
->Linux-rockchip@l=
-ists=2Einfradead=2Eorg
->http://lists=2Einfradead=2Eorg/mailman/listinfo/lin=
-ux-rockchip
+diff --git a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+index 8468216dae9b..382b127b2251 100644
+--- a/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sabrelite.dtsi
+@@ -416,6 +416,14 @@ &i2c3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c3>;
+ 	status = "okay";
++
++	touchscreen@4 {
++		compatible = "eeti,egalax_ts";
++		reg = <0x04>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
++		wakeup-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
++	};
+ };
+ 
+ &iomuxc {
+-- 
+2.24.0
 
