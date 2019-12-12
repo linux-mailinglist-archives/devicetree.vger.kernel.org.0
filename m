@@ -2,127 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 492F911C3E4
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 04:38:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E24311C3FB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 04:42:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbfLLDiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 22:38:25 -0500
-Received: from mail-eopbgr70074.outbound.protection.outlook.com ([40.107.7.74]:46000
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        id S1726771AbfLLDkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 22:40:02 -0500
+Received: from mx2.suse.de ([195.135.220.15]:58618 "EHLO mx1.suse.de"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726808AbfLLDiZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Dec 2019 22:38:25 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TsbV6CqJ5Xz8kmDgPlmTuJ9ThsghR5dhU09wEgXOPNOZ0EtM91Qvhp/cG7DB16b0unOj+2mnBv8QbTUGn0fNOU21ABrjgD5LDKx63vgl9YdqTWhpA6eW9yQQ+TOi2CJ2Wl/NnGLiyVc3TN1K83mEBlXo6vUWdqmPNoAvwKZY+5wkhWbqCBedoIac60f4nes2hVAUZ4EfSbqotQHce7Ht4LvFCIpoDjCz8IcTJ6YNH7LNofMSqsW+rc2jXYPQN1qiKMZvBhz+ytgJO6w1Pu7jlf2idzwONlIgcjXJbZTzBDSPwFJ9jibwZfag9oL4gHD4T53cnna2fjU54d3BzjQI7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RKrX6ryfsoHTWteG4YWcHdXIXAEYymq1bqNyglJ7oXo=;
- b=EuJvxwfE7aQUDE0qZV+chzTOM19FDYveKeCL1b9ElXlwGJH8Crvb7ckX7Q1PRcZO2onZaBOu2gL6pPXw1WQfoL4KTfOTDvOgjutWZI0HhFEg4fbLcj15dFI/BYZuyFt37tQ+VvN2uWMuL5P7XmEPGxg6w7OJYlywVg9QBPgqyyI5GLkoDOoBTdZ/6vmjm3puYJ6+NO7QL3E8OqnPg0Yvyf5sJHxDX304yjjkac6XkTYZXKsPmNofQmX3Bd36kCfYgUg1tUWe6u8+cK3G9WCtcogLazfIbBKY2F1vT8ukowzW92QTrqrLz+L4ikS9t+VYHF+78ZlLckaE+EujYINwkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RKrX6ryfsoHTWteG4YWcHdXIXAEYymq1bqNyglJ7oXo=;
- b=krUCc7g32i8hZ/9TCTC+5EBdixek/92lSRvBQNRltFJAu3kIgCpjeeHJL35Kwx6UYNDaaEBEdRQIRY0tM1PI7U/de3+uHT5sOC+GjaU2bz6MN6iwfO1Hh3fyEg3IGZQBoUQ4wmQfsahKwb5mBekJpOC8seRYCq1ibETDwf2WsUM=
-Received: from VI1PR04MB4431.eurprd04.prod.outlook.com (20.177.55.205) by
- VI1PR04MB3181.eurprd04.prod.outlook.com (10.170.229.31) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.16; Thu, 12 Dec 2019 03:38:19 +0000
-Received: from VI1PR04MB4431.eurprd04.prod.outlook.com
- ([fe80::c947:5ae7:2a68:a4f2]) by VI1PR04MB4431.eurprd04.prod.outlook.com
- ([fe80::c947:5ae7:2a68:a4f2%3]) with mapi id 15.20.2538.017; Thu, 12 Dec 2019
- 03:38:19 +0000
-From:   Peng Ma <peng.ma@nxp.com>
-To:     "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        Robin Gong <yibin.gong@nxp.com>
-CC:     "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, Peng Ma <peng.ma@nxp.com>
-Subject: [v5 3/3] dt-bindings: dma: fsl-edma: add new fsl,fsl,ls1028a-edma
-Thread-Topic: [v5 3/3] dt-bindings: dma: fsl-edma: add new
- fsl,fsl,ls1028a-edma
-Thread-Index: AQHVsJ2Y3HluABJs6U+dHTTAWS2VzA==
-Date:   Thu, 12 Dec 2019 03:38:19 +0000
-Message-ID: <20191212033714.4090-3-peng.ma@nxp.com>
-References: <20191212033714.4090-1-peng.ma@nxp.com>
-In-Reply-To: <20191212033714.4090-1-peng.ma@nxp.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK2PR04CA0049.apcprd04.prod.outlook.com
- (2603:1096:202:14::17) To VI1PR04MB4431.eurprd04.prod.outlook.com
- (2603:10a6:803:6f::13)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.ma@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 268bf6c8-a945-4f3c-80ce-08d77eb4baf9
-x-ms-traffictypediagnostic: VI1PR04MB3181:|VI1PR04MB3181:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB3181B07DF42EBBD15073185AED550@VI1PR04MB3181.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 0249EFCB0B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(366004)(346002)(376002)(39860400002)(396003)(199004)(189003)(1076003)(6512007)(5660300002)(478600001)(6486002)(26005)(71200400001)(6506007)(2906002)(316002)(52116002)(4326008)(186003)(66476007)(110136005)(66946007)(64756008)(66446008)(6636002)(54906003)(8936002)(8676002)(81166006)(81156014)(86362001)(2616005)(44832011)(36756003)(66556008)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3181;H:VI1PR04MB4431.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: NApVTTCYqkocNgogXz/mPLE4VRbd5fIc715b90n5GfBbHWffJUMtrwdjJHGBVbfa0Vq1SCbYXutB8o0qfXaf9Ef6hUNu1feHJR1+10tbI7uAMngcCW6mXWcQHCTLsYmSuM7yeth2thFMcEuUaUGXKJINn8Z2KVz4zYiBE4caqDbWrk84UWtwh/zCOZkMYPyPKza/x+YM/IOIdgIGjLvXMKmtdfK+JYSa6hF9Okv79PMUD8ofCl0/uCwleYsqPKQ5pKg0DhHNL1MiBv3iZsmS+AFEgmnG7v30ehaAEMoks1DADypKW5YXyAOJjHLZnVYPQlJdh23Az7i9/fUelPzshbX7HfPt/EzBBDTLy5/R+fZalopQGB15hyg75sL0gWCr74MOJt6xR26S0vQvAVHujTQQ5qPkHYAYCWE38jq2NyYssIKSwB4F+O+mj6ctrT72GbZ812nIo8iHftCwbUfBEXMHCSWEreTYgwuQDCGyRFVa8yMMfElD3//5hXWnAn2C
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S1727507AbfLLDkC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Dec 2019 22:40:02 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id EA039AE34;
+        Thu, 12 Dec 2019 03:39:58 +0000 (UTC)
+From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+To:     linux-realtek-soc@lists.infradead.org, linux-leds@vger.kernel.org
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-amlogic@lists.infradead.org, Roc He <hepeng@zidoo.tv>,
+        zypeng@titanmec.com, sales@fdhisi.com, csd@princeton.com.tw
+Subject: [RFC 00/25] arm64: realtek: Add Xnano X5 and implement TM1628/FD628/AiP1618 LED controllers
+Date:   Thu, 12 Dec 2019 04:39:27 +0100
+Message-Id: <20191212033952.5967-1-afaerber@suse.de>
+X-Mailer: git-send-email 2.16.4
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 268bf6c8-a945-4f3c-80ce-08d77eb4baf9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2019 03:38:19.7261
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vFbyO9MlOWMSuAQmaxYNqlxCeLGUmVOllqSNuQsV6jml5UAUX7Sxc9YTBIkgBYZm
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3181
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QORIQ LS1028A soc used fsl,vf610-edma, but it has a little bit different
-from others, so add new compatible to distinguish them.
+Hello,
 
-Signed-off-by: Peng Ma <peng.ma@nxp.com>
----
-Changed for v5:
-	- add new patch=20
+This patch series implements the LED controllers found in some RTD1295 based
+TV set-top boxes.
 
- Documentation/devicetree/bindings/dma/fsl-edma.txt | 1 +
- 1 file changed, 1 insertion(+)
+Ever since I've had mainline Linux kernels booting on my Zidoo X9S TV box,
+it's been bugging me that it kept displaying "boot" on its front display.
+A hot lead was a TM1628 chip on the front display's daughterboard, which
+English and Chinese datasheets were available for. The biggest hurdle
+to overcome was whether and how this chip was connected to the SoC.
+Confusingly the datasheet talks about "Serial Interface" and shows pins
+DIO, SCLK and STB; whereas neither UART nor SPI DT nodes seemed to be in use
+for this, no mention of such chipset in the binary vendor DT, and only one
+seemingly unrelated exported GPIO. Sadly Zidoo have refused to share GPL
+sourcecode with me, and the public GPL code drops from NAS and SBC vendors
+didn't seem to include drivers for this chip. Last weekend, review of vendor
+DT pinctrl nodes revealed a "spi@1" pinctrl node in use by the pinctrl node
+itself, despite there being only one GSPI block on the SoC. debugfs under
+Android revealed GPIO pins named "fp_stb", "fp_data" and "fp_clk" (on X5:
+3x "vfdtest", unhelpfully). So I hereby present my first 3-wire SPI slave,
+using standard spi-gpio driver.
 
-diff --git a/Documentation/devicetree/bindings/dma/fsl-edma.txt b/Documenta=
-tion/devicetree/bindings/dma/fsl-edma.txt
-index 29dd3ccb1235..e77b08ebcd06 100644
---- a/Documentation/devicetree/bindings/dma/fsl-edma.txt
-+++ b/Documentation/devicetree/bindings/dma/fsl-edma.txt
-@@ -10,6 +10,7 @@ Required properties:
- - compatible :
- 	- "fsl,vf610-edma" for eDMA used similar to that on Vybrid vf610 SoC
- 	- "fsl,imx7ulp-edma" for eDMA2 used similar to that on i.mx7ulp
-+	- "fsl,fsl,ls1028a-edma" for eDMA used similar to that on Vybrid vf610 So=
-C
- - reg : Specifies base physical address(s) and size of the eDMA registers.
- 	The 1st region is eDMA control register's address and size.
- 	The 2nd and the 3rd regions are programmable channel multiplexing
---=20
-2.17.1
+This required to extend the spi-gpio driver with Little Endian support.
+
+TM1628 and related chipsets have an internal Display RAM, from which they
+control a two-dimensional array of LED components, often used for
+seven-segment displays, i.e. clock display, but also for indicators.
+Individual LEDs can be turned on/off, but brightness is applied globally.
+Some chipsets also support polling a two-dimensional key pad.
+
+This initial RFC implements a SPI slave driver within Linux leds subsystem
+and lets DT expose individual LED components as two-state LEDs, allowing
+to assign standard Linux LED triggers and to control them via sysfs.
+
+It goes on to add a "text" attribute to the driver that enables DT-configured
+seven-segment displays; I was expecting to find precedence in auxdisplay
+subsystem but came up empty. So my driver currently integrates its own
+generic (but incomplete) character-to-8-segments mapping, as well as in a
+second step a combined-characters-to-8-segments mapping, which then gets
+mapped to the chipset's available output lines. Doing this as sysfs device
+attribute had the advantage of being able to test it quickly; it also leaves
+timezone management to userspace and lets it choose between wall clock and
+playback time as needed. LED triggers appeared to be per-LED; otherwise an
+RTC-implemented interrupt based LED trigger would've been nice for RTD1195+,
+since my pending irqchip driver exposes interrupts down to half-second that
+would seem ideal for accurately driving such a display, with blinking colon.
+
+Finally, it sketches how keypad handling could be integrated into the leds
+driver, but I am lacking a test case for that functionality.
+Distinguishing LEDs and key inputs in DT may get difficult...
+
+For brightness control I am still investigating the backlight API and
+defaulting to the chipset's default (lowest) brightness.
+
+Prepended is a new DT for Xnano X5 OTT TV Box, featuring an FD628 display.
+
+Displays connected to these controllers didn't have any model or vendor
+usually, and for the lengthy numbers from my X9S, Google found no hits.
+Therefore I've been unable to come up with compatible strings for those
+displays and need to configure it per .dts, even though some may be using
+the same, e.g., "88:88" type display model.
+Whereas the same display might be connected to different LED controllers,
+thus is orthogonal to the controller's compatible string.
+
+Another aspect here is that the leds binding expects to have child nodes
+per LED directly on the LED controller node. So I've gone to lengths to
+shoehorn my display child node into that scheme via wildcard reg property.
+
+The alternative would be to define some special child node, as done for the
+SPI controller's "slave" node, to use as display. But in theory there might
+be multiple displays connected to one controller (which is neglected here).
+And in theory the same display might be wired up differently, so at most
+the display model could tell us about layout and availability of LEDs, but
+we'd still need a mapping from the LED controller's to the display's pins.
+So far neither of the two displays tested actually use the segment lines
+for the segments, but rather switch segment and grid lines.
+
+So in theory we might consider the display as LED controller and implement
+binding/driver on that level (moving it to DT root node like gpio-leds),
+if we can hook it up to the actual LED controller in this case on SPI bus?
+Assuming we can actually identify the display with some compatible string,
+that is.
+However, update efficiency has been a concern, with clock display in mind.
+Thus, forcing two SPI commands (three SPI transfers) per LED segment, as the
+the current LED API would entail, should better be avoided. This led to the
+current design of having everything in tm1628 driver, so that we can easily
+determine the scope of an update operation there (one per LED; all for text,
+to be optimized through bit field of dirtied bytes).
+
+Locking is completely missing still. We'll need at least a mutex to avoid,
+e.g., a heartbeat LED trigger and a text update conflicting on SPI bus or
+"hazards" becoming visible on the display during conflicting byte updates.
+
+Module remove support is missing, too.
+
+We may also need to revisit my error checking and either inline functions
+or drop checks on the LED bit level, if it becomes a performance bottleneck.
+
+On the cosmetic side, some lines are still beyond 80 characters.
+
+Some more notes:
+* Public TM1628 V1.1 datasheet is in Chinese only and differs from the
+  unversioned English version found elsewhere on datasheet sites by
+  documenting more display modes, included here (guessed from Arabic numbers).
+* Public FD628 datasheet is Chinese only (guesses based on Arabic numbers).
+  FD623 appears to have more output lines, which would fit current data types.
+* AiP1618 links were all broken (404); try Google "site:szfdwdz.com" search
+  to actually find the documents available on their site.
+* Princeton PT6964 is another related LED controller with public datasheet
+  that I did not encounter in my TV boxes yet, thus not included here.
+  Datasheets are linked only for PT6959 and PT6967, but PT6964 V1.3 and V1.4
+  are available elsewhere. PT6967 has more output lines, which my current
+  data types could barely hold. Maybe bump them all to u32 type right away?
+* TM1628 is also found on MeLE V9 TV box, to be tested.
+* FD628 is also found on Amlogic S905X2 based Vontar X96 Max TV box,
+  to be tested (once UART is soldered).
+* AiP1618 was found on Ava and Lake I TV boxes, to be tested.
+* It remained unclear to me which of these many similar chipsets was first.
+  My driver name is therefore based on the chip I encountered first.
+
+This series is based on my not-yet-posted RTD1295 pinctrl and GPIO drivers.
+
+Latest experimental patches at:
+https://github.com/afaerber/linux/commits/rtd1295-next
+
+Have a lot of fun!
+
+Cheers,
+Andreas
+
+Cc: linux-leds@vger.kernel.org
+Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>
+Cc: Dan Murphy <dmurphy@ti.com>
+
+Cc: linux-rtc@vger.kernel.org
+Cc: Alessandro Zummo <a.zummo@towertech.it>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+
+Cc: devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>
+
+Cc: linux-spi@vger.kernel.org
+Cc: Mark Brown <broonie@kernel.org>
+
+Cc: linux-amlogic@lists.infradead.org
+
+Cc: Roc He <hepeng@zidoo.tv>
+# No email for Xnano
+
+Cc: zypeng@titanmec.com
+Cc: sales@fdhisi.com
+# No email for szfdwdz.com
+Cc: csd@princeton.com.tw
+
+Andreas Färber (25):
+  dt-bindings: vendor-prefixes: Add Xnano
+  dt-bindings: arm: realtek: Add Xnano X5
+  arm64: dts: realtek: rtd1295: Add Xnano X5
+  spi: gpio: Implement LSB First bitbang support
+  dt-bindings: vendor-prefixes: Add Titan Micro Electronics
+  dt-bindings: leds: Add Titan Micro Electronics TM1628
+  leds: Add Titan Micro Electronics TM1628
+  arm64: dts: realtek: rtd129x-zidoo-x9s: Add TM1628 LED controller
+  arm64: dts: realtek: rtd1295-zidoo-x9s: Add regular LEDs to TM1628
+  dt-bindings: vendor-prefixes: Add Fuda Hisi Microelectronics
+  dt-bindings: leds: tm1628: Add Fuda Hisi Microelectronics FD628
+  leds: tm1628: Add Fuda Hisi Microelectronics FD628
+  arm64: dts: realtek: rtd1295-xnano-x5: Add FD628 LED controller
+  arm64: dts: realtek: rtd1295-xnano-x5: Add regular LEDs to FD628
+  dt-bindings: vendor-prefixes: Add Fude Microelectronics
+  dt-bindings: leds: tm1628: Add Fude Microelectronics AiP1618
+  leds: tm1628: Prepare Fude Microelectronics AiP1618
+  dt-bindings: leds: tm1628: Define display child nodes
+  leds: tm1628: Add 7-segment display support
+  arm64: dts: realtek: rtd1295-zidoo-x9s: Add display to TM1628
+  arm64: dts: realtek: rtd1295-xnano-x5: Add display to FD628
+  leds: tm1826: Add combined glyph support
+  WIP: leds: tm1628: Prepare TM1628 keys
+  WIP: leds: tm1628: Prepare FD628 keys
+  WIP: leds: tm1628: Prepare AiP1618 keys
+
+ Documentation/devicetree/bindings/arm/realtek.yaml |   1 +
+ .../devicetree/bindings/leds/titanmec,tm1628.yaml  | 134 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   8 +
+ arch/arm64/boot/dts/realtek/Makefile               |   1 +
+ arch/arm64/boot/dts/realtek/rtd1295-xnano-x5.dts   | 108 +++
+ arch/arm64/boot/dts/realtek/rtd1295-zidoo-x9s.dts  |  36 +-
+ drivers/leds/Kconfig                               |  12 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-tm1628.c                         | 727 +++++++++++++++++++++
+ drivers/spi/spi-bitbang-txrx.h                     |  68 +-
+ drivers/spi/spi-gpio.c                             |  42 +-
+ 11 files changed, 1126 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/titanmec,tm1628.yaml
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1295-xnano-x5.dts
+ create mode 100644 drivers/leds/leds-tm1628.c
+
+-- 
+2.16.4
 
