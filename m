@@ -2,91 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 466CA11D15E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 16:49:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA99911D165
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 16:51:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729304AbfLLPtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 10:49:49 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38765 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729013AbfLLPtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 10:49:49 -0500
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ifQin-0001h4-O8; Thu, 12 Dec 2019 16:49:45 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ifQim-0005ng-Ko; Thu, 12 Dec 2019 16:49:44 +0100
-Date:   Thu, 12 Dec 2019 16:49:44 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Support Opensource <support.opensource@diasemi.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] Add DA9062 GPIO support
-Message-ID: <20191212154944.ponjwqtxen54ggtg@pengutronix.de>
-References: <20191129165817.20426-1-m.felsch@pengutronix.de>
- <20191210095115.kxvm7elfkiw2kdem@pengutronix.de>
- <CACRpkda0BCBj1LeFkWsjBPHi_4d-F+eu0tDLm9VrFbn1RyWkWA@mail.gmail.com>
+        id S1729589AbfLLPvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 10:51:05 -0500
+Received: from out28-99.mail.aliyun.com ([115.124.28.99]:43750 "EHLO
+        out28-99.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729152AbfLLPvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 10:51:05 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3872682|-1;CH=green;DM=CONTINUE|CONTINUE|true|0.130249-0.00893165-0.86082;DS=CONTINUE|ham_system_inform|0.13022-0.00608784-0.863692;FP=0|0|0|0|0|-1|-1|-1;HT=e01a16378;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=11;RT=11;SR=0;TI=SMTPD_---.GFo2FEj_1576165852;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.GFo2FEj_1576165852)
+          by smtp.aliyun-inc.com(10.147.40.7);
+          Thu, 12 Dec 2019 23:50:57 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, paul@crapouillou.net, paul.burton@mips.com,
+        paulburton@kernel.org, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Subject: 
+Date:   Thu, 12 Dec 2019 23:50:47 +0800
+Message-Id: <1576165850-20727-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
+ubject: Add I2C support for the Ingenic X1000 SoC.
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkda0BCBj1LeFkWsjBPHi_4d-F+eu0tDLm9VrFbn1RyWkWA@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 16:47:09 up 27 days,  7:05, 36 users,  load average: 0.05, 0.21,
- 0.13
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Add support for probing i2c driver on the X1000 Soc from Ingenic.
+call the corresponding fifo parameter according to the device
+model obtained from the devicetree.
 
-On 19-12-12 15:56, Linus Walleij wrote:
-> On Tue, Dec 10, 2019 at 10:51 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> 
-> > gentle ping.
-> (...)
-> > > Marco Felsch (3):
-> > >   dt-bindings: mfd: da9062: add gpio bindings
-> > >   mfd: da9062: add support for the DA9062 GPIOs in the core
-> > >   pinctrl: da9062: add driver support
-> 
-> I can merge this to the pinctrl subsystem but then I need
-> Lee's ACK on patches 1 & 2 as they are to the MFD subsystem
-> and I think he will want me to create an immutable branch too?
-> 
-> As Lee is not even on the To: line I think it is unlikely to happen,
-> so maybe repost, stating your request for his ACK?
-
-Damn I forgot him.. Let me resend it with the MFD guys on the To:
-
-Regards,
-  Marco
-
-> 
-> Yours,
-> Linus Walleij
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
