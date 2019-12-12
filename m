@@ -2,109 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF58711C1BB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 01:58:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7754311C1D7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 02:05:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727296AbfLLA6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Dec 2019 19:58:20 -0500
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:32863 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727257AbfLLA6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 19:58:20 -0500
-Received: by mail-lj1-f196.google.com with SMTP id 21so287498ljr.0;
-        Wed, 11 Dec 2019 16:58:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ac4sBjrgbwD1XozPAPJcThsfbfGffUb6YgSx3fBWo7o=;
-        b=I0EtZGomGE4S18jWCsR5a6o2SiqCPE2g7bd9wqwinusTJNqRASUyYKtXDcwN4vAs5u
-         gP0Y7o/FWTwPOs8yaHfM1lD9KKjsnU1yT0ljFqxCvWEoS89048J6S8UrS/lBi6Oi+bKW
-         mnyqNbjNx1tVjL9zFB+g+grWNUKdDFoZ/BzMtoTHmDG5nLUdtRsB9BZ8ham33Xbx4em3
-         KFZa+CpYIubB8K7+UFyRBA2+PP66k1tuw4Ml20UazSZL4GyM7ZyLwGl8+QDCbmZw34kY
-         e5IGWAhM9qdKgxnXkBMbMQgIG9mafMjQmuVyJKepkPvP6APaYrM8/4bfgB8rRFLUfdbG
-         puJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ac4sBjrgbwD1XozPAPJcThsfbfGffUb6YgSx3fBWo7o=;
-        b=JVMGsx4MDILZ8zfxY2+7VJ1jEO+ps0hhHjx3lO4v+NB72urX9BPWqbGoO5ikIZZXff
-         TdRegkNHe7S+1lUKUI1VOx0zX4Jo82kjSUZmZJrvRutnJU+CEUY+IjVQJH0qEPqwSHJ3
-         ySZ/zgMXbyxTV/afJvY0YAqMfpRGiXBO8PMyGfkqBwvfK314TKJoB385zj+T4BHKYY9a
-         5vT9Z+Oh/O7U6biAA7DGXXSrnYvTniLLrM9soZupT7jF+iNilCU7yu1S/aEN2wE+VlKq
-         n39UvmNRzqPpFinE308L1+cqNDjB/ZBkDKMADx/ogFHF0ra82X+zn2evhSzhO7cOm8Vv
-         ZAaA==
-X-Gm-Message-State: APjAAAWugiX7uu0B63GeDlDO4PWXzdylCul2AAm4L1PWgFVxWLX4NCew
-        ppNuV8/Cd040pM5Tvp3CIUg=
-X-Google-Smtp-Source: APXvYqwxgFQMB4q7QALXGTiqBeirOv/A1DerRzMiZLhZS32dbnz0mwu3JZQyqN+43bru59v+A1EKQw==
-X-Received: by 2002:a2e:99c3:: with SMTP id l3mr4107084ljj.250.1576112298238;
-        Wed, 11 Dec 2019 16:58:18 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id k24sm2323326ljj.27.2019.12.11.16.58.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2019 16:58:17 -0800 (PST)
-Subject: Re: [PATCH v2 8/9] dt-bindings: input: elants-i2c: Document common
- touchscreen properties
-To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh-dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, Henrik Rydberg <rydberg@bitmath.org>,
-        James Chen <james.chen@emc.com.tw>,
-        Johnny Chuang <johnny.chuang@emc.com.tw>,
-        Scott Liu <scott.liu@emc.com.tw>
-References: <cover.1576079249.git.mirq-linux@rere.qmqm.pl>
- <ecacdd9b1baea0cf332c30f3c7e01d5e734957be.1576079249.git.mirq-linux@rere.qmqm.pl>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <24fcfedd-1c32-0c2e-73e3-08c4e289d96a@gmail.com>
-Date:   Thu, 12 Dec 2019 03:58:16 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        id S1727419AbfLLBFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Dec 2019 20:05:53 -0500
+Received: from mail-out.m-online.net ([212.18.0.10]:35408 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727354AbfLLBFx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Dec 2019 20:05:53 -0500
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 47YFwX40CXz1rQBK;
+        Thu, 12 Dec 2019 02:05:48 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 47YFwX2Q08z1qqkq;
+        Thu, 12 Dec 2019 02:05:48 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id q-W7gOHmTDAQ; Thu, 12 Dec 2019 02:04:36 +0100 (CET)
+X-Auth-Info: ryjPqBpzHulkb8n+Csi9otVruh6YyTMa0AaPwPgVcBA=
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Thu, 12 Dec 2019 02:04:35 +0100 (CET)
+Subject: Re: [PATCH v2 2/2] mtd: rawnand: denali_dt: add reset controlling
+To:     Masahiro Yamada <yamada.masahiro@socionext.com>,
+        linux-mtd@lists.infradead.org
+Cc:     Dinh Nguyen <dinguyen@kernel.org>,
+        Ley Foon Tan <ley.foon.tan@intel.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-kernel@vger.kernel.org
+References: <20191211054538.8283-1-yamada.masahiro@socionext.com>
+ <20191211054538.8283-2-yamada.masahiro@socionext.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <399bb8ab-74c5-1be3-4156-6d854738b548@denx.de>
+Date:   Thu, 12 Dec 2019 01:22:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <ecacdd9b1baea0cf332c30f3c7e01d5e734957be.1576079249.git.mirq-linux@rere.qmqm.pl>
+In-Reply-To: <20191211054538.8283-2-yamada.masahiro@socionext.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-11.12.2019 19:03, Michał Mirosław пишет:
-> From: Dmitry Osipenko <digetx@gmail.com>
-> 
-> Document support of the common touchscreen properties.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
-> ---
->  Documentation/devicetree/bindings/input/elants_i2c.txt | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/elants_i2c.txt b/Documentation/devicetree/bindings/input/elants_i2c.txt
-> index 5edac8be0802..45fab32bbc19 100644
-> --- a/Documentation/devicetree/bindings/input/elants_i2c.txt
-> +++ b/Documentation/devicetree/bindings/input/elants_i2c.txt
-> @@ -14,9 +14,13 @@ Optional properties:
->  - reset-gpios: reset gpio the chip is connected to.
->  - vcc33-supply: a phandle for the regulator supplying 3.3V power.
->  - vccio-supply: a phandle for the regulator supplying IO power.
-> +- see [2] for additional properties
+On 12/11/19 6:45 AM, Masahiro Yamada wrote:
+[...]
+> diff --git a/drivers/mtd/nand/raw/denali_dt.c b/drivers/mtd/nand/raw/denali_dt.c
+> index 8b779a899dcf..9a294c3f6ec8 100644
+> --- a/drivers/mtd/nand/raw/denali_dt.c
+> +++ b/drivers/mtd/nand/raw/denali_dt.c
+> @@ -6,6 +6,7 @@
+>   */
+>  
+>  #include <linux/clk.h>
+> +#include <linux/delay.h>
+>  #include <linux/err.h>
+>  #include <linux/io.h>
+>  #include <linux/ioport.h>
+> @@ -14,6 +15,7 @@
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>  
+>  #include "denali.h"
+>  
+> @@ -22,6 +24,8 @@ struct denali_dt {
+>  	struct clk *clk;	/* core clock */
+>  	struct clk *clk_x;	/* bus interface clock */
+>  	struct clk *clk_ecc;	/* ECC circuit clock */
+> +	struct reset_control *rst;	/* core reset */
+> +	struct reset_control *rst_reg;	/* register reset */
+>  };
+>  
+>  struct denali_dt_data {
+> @@ -151,6 +155,14 @@ static int denali_dt_probe(struct platform_device *pdev)
+>  	if (IS_ERR(dt->clk_ecc))
+>  		return PTR_ERR(dt->clk_ecc);
+>  
+> +	dt->rst = devm_reset_control_get_optional_shared(dev, "nand");
+> +	if (IS_ERR(dt->rst))
+> +		return PTR_ERR(dt->rst);
 > +
-> +For additional optional properties see: touchscreen.txt
+> +	dt->rst_reg = devm_reset_control_get_optional_shared(dev, "reg");
+> +	if (IS_ERR(dt->rst_reg))
+> +		return PTR_ERR(dt->rst_reg);
+> +
+>  	ret = clk_prepare_enable(dt->clk);
+>  	if (ret)
+>  		return ret;
+> @@ -166,10 +178,30 @@ static int denali_dt_probe(struct platform_device *pdev)
+>  	denali->clk_rate = clk_get_rate(dt->clk);
+>  	denali->clk_x_rate = clk_get_rate(dt->clk_x);
 >  
->  [0]: Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
->  [1]: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-> +[2]: Documentation/devicetree/bindings/input/touchscreen/touchscreen.txt
+> -	ret = denali_init(denali);
+> +	/*
+> +	 * Deassert the register reset, and the core reset in this order.
+> +	 * Deasserting the core reset while the register reset is asserted
+> +	 * will cause unpredictable behavior in the controller.
+> +	 */
+> +	ret = reset_control_deassert(dt->rst_reg);
+>  	if (ret)
+>  		goto out_disable_clk_ecc;
 >  
->  Example:
->  	&i2c1 {
-> 
+> +	ret = reset_control_deassert(dt->rst);
+> +	if (ret)
+> +		goto out_assert_rst_reg;
+> +
+> +	/*
+> +	 * When the reset is deasserted, the initialization sequence is kicked
+> +	 * (bootstrap process). The driver must wait until it finished.
+> +	 * Otherwise, it will result in unpredictable behavior.
+> +	 */
+> +	usleep_range(200, 1000);
+> +
+> +	ret = denali_init(denali);
+> +	if (ret)
+> +		goto out_assert_rst;
+> +
+>  	for_each_child_of_node(dev->of_node, np) {
+>  		ret = denali_dt_chip_init(denali, np);
+>  		if (ret) {
+> @@ -184,6 +216,10 @@ static int denali_dt_probe(struct platform_device *pdev)
+>  
+>  out_remove_denali:
+>  	denali_remove(denali);
+> +out_assert_rst:
+> +	reset_control_assert(dt->rst);
+> +out_assert_rst_reg:
+> +	reset_control_assert(dt->rst_reg);
 
-Rob's email address is incorrect: <robh-dt@kernel.org> ->
-<robh+dt@kernel.org>
+Maybe you can use devm_add_action_or_reset() here , like in e.g.
+drivers/input/touchscreen/ili210x.c , to avoid this unwinding ?
 
-But I suppose he's keeping an eye on the device-tree ML.
+[...]
