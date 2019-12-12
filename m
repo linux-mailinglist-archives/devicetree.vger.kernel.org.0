@@ -2,126 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D56A811D18C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 16:55:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7EA311D1ED
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2019 17:10:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729509AbfLLPzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 10:55:22 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:33793 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729540AbfLLPzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 10:55:22 -0500
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ifQo8-0002KX-2S; Thu, 12 Dec 2019 16:55:16 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1ifQo5-000678-TI; Thu, 12 Dec 2019 16:55:13 +0100
-Date:   Thu, 12 Dec 2019 16:55:13 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Mark Brown <broonie@kernel.org>,
-        Support Opensource <Support.Opensource@diasemi.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH v3 3/6] dt-bindings: mfd: da9062: add regulator voltage
- selection documentation
-Message-ID: <20191212155513.fevajupxi6omphzf@pengutronix.de>
-References: <20191129172537.31410-1-m.felsch@pengutronix.de>
- <20191129172537.31410-4-m.felsch@pengutronix.de>
- <20191204134631.GT1998@sirena.org.uk>
- <20191210094144.mxximpuouchy3fqu@pengutronix.de>
- <AM5PR1001MB099497419E4DCA69D424EC35805A0@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
- <20191211170918.q7kqkd4lrwwp7jl3@pengutronix.de>
- <CACRpkda4PFA=99u33xsXzQND1FaP=8GXGRQULngcd5a=zFepXg@mail.gmail.com>
+        id S1729719AbfLLQKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 11:10:18 -0500
+Received: from gateway31.websitewelcome.com ([192.185.143.43]:11498 "EHLO
+        gateway31.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729675AbfLLQKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Dec 2019 11:10:18 -0500
+X-Greylist: delayed 1445 seconds by postgrey-1.27 at vger.kernel.org; Thu, 12 Dec 2019 11:10:17 EST
+Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
+        by gateway31.websitewelcome.com (Postfix) with ESMTP id DD9A074820
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2019 09:46:11 -0600 (CST)
+Received: from e36.ehosts.com ([192.185.128.17])
+        by cmsmtp with SMTP
+        id fQfLiEsK9iJ43fQfLiesa2; Thu, 12 Dec 2019 09:46:11 -0600
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=singleboardsolutions.com; s=default; h=Message-ID:CC:To:Date:From:Subject:
+        Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+        Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=UMrk7SVJBaZoF5+E4IWNlDb5JQkYTRr384MzHtkSMNA=; b=Z6F45GnZxN2pseuh0IHHkf69/s
+        ZLOxtsygVBMQDpO7ull4wMLqcSmdySbPZvytspNyu2pUslfuHN/55s2KRqikKLBC5+E5gapNgaaXl
+        NAknwJTUy7yBoxUao54lCEhsviPaOlUAFap8Ls3ZQ7zGD04OjmJjFdakIOnDIAgOkGblTHOpaKUT7
+        GGxhZmp2azaq1Yd6hLkYjDBMnUAuljMr/tgsucpANmmnJAwdndG6GDFTNKm68bwyqQ7U/+Om0ahbG
+        5/4QYPZzmFm75kkCvNBRN3X/3NRJvQnmkWKmlccw/oAe1JruqtpbPQdf2pErpAlMCdRfUTE3lSC2T
+        vkLtKQHA==;
+Received: from [172.58.138.77] (port=57064 helo=[IPV6:2607:fb90:1784:5f4e:a5d4:b11d:2550:9cec])
+        by e36.ehosts.com with esmtpa (Exim 4.92)
+        (envelope-from <tmckahan@singleboardsolutions.com>)
+        id 1ifQfL-001viD-Fm; Thu, 12 Dec 2019 08:46:11 -0700
+In-Reply-To: <678df227-38be-47af-7ee3-741a391a196c@fivetechno.de>
+References: <678df227-38be-47af-7ee3-741a391a196c@fivetechno.de>
+X-Referenced-Uid: 55
+Thread-Topic: [PATCH 2/3] arm64: dts: rockchip: Enable PD for USB-C-Port on rk3399-roc-pc.
+X-Is-Generated-Message-Id: true
+X-Blue-Identity: !l=635&o=43&fo=3004&pl=525&po=0&qs=PREFIX&f=HTML&n=Thomas%20McKahan&e=tmckahan%40singleboardsolutions.com&m=!%3ANDg0ODA5OGEtZmVjOS00NjIyLTkwMTUtZGI5MTM5OGY1ZGU3%3ASU5CT1g%3D%3ANTU%3D%3AANSWERED&p=491&q=SHOW
+User-Agent: Android
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkda4PFA=99u33xsXzQND1FaP=8GXGRQULngcd5a=zFepXg@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 16:51:05 up 27 days,  7:09, 36 users,  load average: 0.12, 0.17,
- 0.13
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+ charset=UTF-8
+Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Enable PD for USB-C-Port on rk3399-roc-pc.
+From:   Thomas McKahan <tmckahan@singleboardsolutions.com>
+Date:   Thu, 12 Dec 2019 10:46:09 -0500
+To:     Markus Reichl <m.reichl@fivetechno.de>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        narmstrong@baylibre.com
+Message-ID: <84920a36-230f-42a6-a960-a71e685be99f@singleboardsolutions.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - e36.ehosts.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - singleboardsolutions.com
+X-BWhitelist: no
+X-Source-IP: 172.58.138.77
+X-Source-L: No
+X-Exim-ID: 1ifQfL-001viD-Fm
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([IPV6:2607:fb90:1784:5f4e:a5d4:b11d:2550:9cec]) [172.58.138.77]:57064
+X-Source-Auth: tmckahan@singleboardsolutions.com
+X-Email-Count: 5
+X-Source-Cap: ZWxlY3RyaTk7ZWxlY3RyaTk7ZTM2LmVob3N0cy5jb20=
+X-Local-Domain: yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Markus,
 
-On 19-12-12 16:08, Linus Walleij wrote:
-> On Wed, Dec 11, 2019 at 6:09 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> 
-> > I discussed it with a colleague again and he mentioned that pinctrl
-> > should be named pinctrl instead it should be named padctrl.
-> 
-> Quoting Documentation/driver-api/pinctl.rst:
-> 
-> (...)
-> Definition of PIN:
-> 
-> - PINS are equal to pads, fingers, balls or whatever packaging input or
->   output line you want to control and these are denoted by unsigned integers
->   in the range 0..maxpin.
-> (...)
+=C2=A0=C2=A0=C2=A0 I have been working with this as well, ca=
+me across it on Armbian=2E I was also trying to eliminate the warning conce=
+rning the lack of port with limited success=2E=C2=A0 I also missed the inte=
+rrupt pin definition I see=2E=C2=A0 I will test this later today=2E=C2=A0 
+=
 
-Okay there is the definition.
+=C2=A0=C2=A0 I've added Neil Armstrong for information in case any boards =
+on the Amlogic side are similarly configured, I think a few other Rockchip =
+ones at least are missing connector nodes, it appears to be a consistent is=
+sue presumably due to driver changes=2E
 
-> > We don't
-> > reconfigure the pad to a other function it is still a device general
-> > purpose input pad. The hw-signal flow goes always trough the gpio block
-> > so one argument more for my solution. Also we don't configure the "pad"
-> > to be a vsel/ena-pin. The hw-pad can only be a gpio or has an alternate
-> > function (WDKICK for GPIO0, Seq. SYS_EN for GPIO2, Seq. PWR_EN for GPIO4).
-> > Instead we tell the regulator to use _this_ GPIO e.g. for voltage
-> > selection so we go the other way around. My last argument why pinctrl
-> > isn't the correct place is that the GPIO1 can be used for
-> > regulator-0:vsel-in and for regulator-1:enable-in. So this pad would
-> > have different states which is invalid IMHO.
-> 
-> Yeah it is just one of these cases where the silicon designer pulled
-> a line of polysilicone over to the regulator enable signal and put a
-> switch on it and say "so you can also enable the regulator
-> with a signal from here", it can be used in parallel with anything
-> else, which is especially messy.
+-Tony
 
-I didn't say that the design isn't messy ;) I just wanna make the right
-abstraction and IMHO this is the correct abstraction.
 
-Regards,
-  Marco
+=E2=81=A3
 
-> Special cases require special handling, since the electronic design
-> of this thing is a bit Rube Goldberg.
-> 
-> Yours,
-> Linus Walleij
-> 
+On Dec 10, 2019=
+, 7:45 AM, at 7:45 AM, Markus Reichl <m=2Ereichl@fivetechno=2Ede> wrote:
+>U=
+SB-C-Port 0 on rk3399-roc-pc is designed to supply the board=2E
+>To meet th=
+e power requirements of up to 45W a power delivery (PD)
+>compatible supply =
+is needed=2E To configure the PD the node of the
+>fusb302 needs a connector=
+ property with desired PD description=2E
+>
+>Signed-off-by: Markus Reichl <m=
+=2Ereichl@fivetechno=2Ede>
+>---
+>Presently the board in mainline has to be =
+powered from a 12V supply,
+>connected to two pins on the expansion header a=
+s the standard 5V
+>delivered by the unconfigured USB-C plug is not enough f=
+or higher
+>loads or peripherals on USB or M=2E2=2E
+>
+>With this patch the b=
+oard requests 15V from the PD and runs fine
+>on high loads with NVME SSD, E=
+thernet, SDIO WLAN and USB peripherals=2E
+>During boot the 12V supply is st=
+ill needed for some seconds,
+>as the fusb302 shuts down or resets the PD sh=
+ortly when initializing
+>(BUG?)=2E
+>
+>The board's 12V line is running prese=
+ntly on 5V, the default output
+>voltage of the MP8859 on I2C-7, for wich no=
+ mainline kernel driver
+>exists yet=2E
+>---
+>  arch/arm64/boot/dts/rockchip=
+/rk3399-roc-pc=2Edtsi | 16 ++++++++++++++--
+>  1 file changed, 14 insertion=
+s(+), 2 deletions(-)
+>
+>diff --git a/arch/arm64/boot/dts/rockchip/rk3399-ro=
+c-pc=2Edtsi
+>b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc=2Edtsi
+>index 8e0=
+1b04144b7=2E=2E90783b2b1d1f 100644
+>--- a/arch/arm64/boot/dts/rockchip/rk33=
+99-roc-pc=2Edtsi
+>+++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc=2Edtsi
+>=
+@@ -6,6 +6,7 @@
+>  /dts-v1/;
+>  #include <dt-bindings/input/linux-event-cod=
+es=2Eh>
+>  #include <dt-bindings/pwm/pwm=2Eh>
+>+#include <dt-bindings/usb/p=
+d=2Eh>
+>  #include "rk3399=2Edtsi"
+>  #include "rk3399-opp=2Edtsi"
+>  
+>@@ =
+-540,11 +541,22 @@ fusb0: usb-typec@22 {
+>  		compatible =3D "fcs,fusb302";=
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+>  		reg =3D <0x22>;
+>  		interrupt-parent =3D <&gpio1>;
+>-		interrupts =
+=3D <2 IRQ_TYPE_LEVEL_LOW>;
+>+		interrupts =3D <RK_PA2 IRQ_TYPE_LEVEL_LOW>;=
+
+>  		pinctrl-names =3D "default";
+>  		pinctrl-0 =3D <&fusb0_int>;
+>  		vb=
+us-supply =3D <&vcc_vbus_typec0>;
+>-		status =3D "okay";
+>+
+>+		usb_con: co=
+nnector {
+>+			compatible =3D "usb-c-connector";
+>+			label =3D "USB-C-0";
+=
+>+			power-role =3D "dual";
+>+			try-power-role =3D "sink";
+>+			source-pdo=
+s =3D <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
+>+			sink-pdos =3D <PDO_=
+FIXED(5000, 3000, PDO_FIXED_USB_COMM)
+>+				     PDO_VAR(5000, 15000, 3000)=
+
+>+				     PDO_PPS_APDO(5000, 15000, 3000)>;
+>+			op-sink-microwatt =3D <4=
+5000000>;
+>+		};
+>  	};
+>  };
+>  
+>-- 
+>2=2E24=2E0
+>
+>
+>___________________=
+____________________________
+>Linux-rockchip mailing list
+>Linux-rockchip@l=
+ists=2Einfradead=2Eorg
+>http://lists=2Einfradead=2Eorg/mailman/listinfo/lin=
+ux-rockchip
+
