@@ -2,83 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAD4311EC6B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 22:02:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E21111EC67
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 22:01:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726004AbfLMVCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 16:02:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39742 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725937AbfLMVCO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Dec 2019 16:02:14 -0500
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 07EDB2465E;
-        Fri, 13 Dec 2019 21:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1576270933;
-        bh=+dKkT9qss0TqkoVOkTkEq+PspUmRCwAnZfc5MFA4ENA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LhHtURfCvYmIuRkJl99Qo4S/nI7eK7un+4JAniuPEYc13zprB59KF7t7i++Z6NeZ0
-         yaLz2PsMmvHqR/ShLKJhzoFL45g70ouFfoSU8+Ug6F6LS86EAMxj6EaZW+wT/2pat3
-         3jyrr61NeviJnSr9l2R62Si/MxU3Oq+AGSELqrAI=
-Received: by mail-pl1-f176.google.com with SMTP id p27so1725298pli.10;
-        Fri, 13 Dec 2019 13:02:13 -0800 (PST)
-X-Gm-Message-State: APjAAAVvFC+lug4SRvof++l8PEvfQo7g/zkl7LVjmMPQIbErPwoNYMiY
-        9frVdBYIfwWo896JXbdetgeHplb05fqLhZpjMw==
-X-Google-Smtp-Source: APXvYqyB90WtC9yvdYd6CmgFqz44rFwwJP+EgXqkcen8gQAUWJSXIFADvOtFxe2f6ycbB1XDnFfJpLpI9ICEyUjapLU=
-X-Received: by 2002:a0c:f68f:: with SMTP id p15mr13564621qvn.79.1576250763417;
- Fri, 13 Dec 2019 07:26:03 -0800 (PST)
+        id S1726463AbfLMVBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 16:01:18 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45594 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725937AbfLMVBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 16:01:18 -0500
+Received: by mail-ot1-f68.google.com with SMTP id 59so597530otp.12;
+        Fri, 13 Dec 2019 13:01:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=iXvK/DgUAVIQ/iP0u6siJXqf038De/0OUOXTVFOApf0=;
+        b=KeMTZZYrQHeRmdI8xFFPqIGzd2XJEyD1kNpg2w3RRPfWNIyAKv6+cYEPslGMmXaosE
+         rTl3osaY7y7arTwSGI6Xf8Rby1y35+dGTiSvo0nNh95De2ui3kjeAHO8RQIqBesZ1jJl
+         g7weCcMf6AAtLFh+VT3FALY+IoqOkuIvFR83ZRyN+EwDg76PUFfNFy2arKmKKOpWY8tb
+         SOtfaNZf4gTXgJvaDCDoygBaQwptJuB+6xTeCaQaf7NmcV5mCgD1B7hyN3KgblE0lZg+
+         IIU14YOOZpi1gcdWh4IVjC8+M1wxlx2JLdf9LXMB8LeHs506Hwzu+kCKaSAGYq7ufLjG
+         53fA==
+X-Gm-Message-State: APjAAAWRsrmVOvcw/K/VfOIafSDYpPCfvRqyY59/HMknPhkUwfHRzvVa
+        rN2Jh2GxpRKB5twEZ2G+vw==
+X-Google-Smtp-Source: APXvYqzDrki2Ich1+AgVwEniyn9x2SLFG1dDLqDCkZ0aNNzbXybs6tahFd54zRXO08pSf6Z5Ui/OCA==
+X-Received: by 2002:a9d:708f:: with SMTP id l15mr17597671otj.286.1576270877204;
+        Fri, 13 Dec 2019 13:01:17 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f1sm3760838otq.4.2019.12.13.13.01.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Dec 2019 13:01:16 -0800 (PST)
+Date:   Fri, 13 Dec 2019 15:01:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Anil Varughese <aniljoy@cadence.com>,
+        Roger Quadros <rogerq@ti.com>, Jyri Sarha <jsarha@ti.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 13/14] dt-bindings: phy: Document WIZ (SERDES wrapper)
+ bindings
+Message-ID: <20191213210116.GA8975@bogus>
+References: <20191128104648.21894-1-kishon@ti.com>
+ <20191128104648.21894-14-kishon@ti.com>
 MIME-Version: 1.0
-References: <20191213074055.26193-1-maxime@cerno.tech>
-In-Reply-To: <20191213074055.26193-1-maxime@cerno.tech>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 13 Dec 2019 09:25:51 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLxGe9sWrTdZhuT69o_LBxQTi6TxcbT28WdC1gsPw5+fQ@mail.gmail.com>
-Message-ID: <CAL_JsqLxGe9sWrTdZhuT69o_LBxQTi6TxcbT28WdC1gsPw5+fQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: media: Convert Allwinner hardware codec to a schema
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191128104648.21894-14-kishon@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 13, 2019 at 1:41 AM Maxime Ripard <maxime@cerno.tech> wrote:
->
-> The Allwinner SoCs have a hardware video codec that is supported in Linux,
-> with a matching Device Tree binding.
->
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for that controller over to a YAML schemas.
->
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+On Thu, Nov 28, 2019 at 04:16:47PM +0530, Kishon Vijay Abraham I wrote:
+> Add DT binding documentation for WIZ (SERDES wrapper). WIZ is *NOT* a
+> PHY but a wrapper used to configure some of the input signals to the
+> SERDES. It is used with both Sierra(16G) and Torrent(10G) serdes.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> [jsarha@ti.com: Add separate compatible for Sierra(16G) and Torrent(10G)
+>  SERDES]
+> Signed-off-by: Jyri Sarha <jsarha@ti.com>
 > ---
->  .../allwinner,sun4i-a10-video-engine.yaml     | 83 +++++++++++++++++++
->  .../devicetree/bindings/media/cedrus.txt      | 57 -------------
->  2 files changed, 83 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/cedrus.txt
->
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
+>  .../bindings/phy/ti,phy-j721e-wiz.yaml        | 158 ++++++++++++++++++
+>  1 file changed, 158 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
 > new file mode 100644
-> index 000000000000..47c8513555b2
+> index 000000000000..5cd6f907f6af
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-video-engine.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0+
+> +++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+> @@ -0,0 +1,158 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/ti,phy-j721e-wiz.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: TI J721E WIZ (SERDES Wrapper)
+> +
+> +maintainers:
+> +  - Kishon Vijay Abraham I <kishon@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +      enum:
+> +          - ti,j721e-wiz-16g
+> +          - ti,j721e-wiz-10g
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 3
+> +    description: clock-specifier to represent input to the WIZ
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fck
+> +      - const: core_ref_clk
+> +      - const: ext_ref_clk
+> +
+> +  num-lanes:
+> +    minimum: 1
+> +    maximum: 4
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +  assigned-clocks:
+> +    maxItems: 2
+> +
+> +  assigned-clock-parents:
+> +    maxItems: 2
+> +
+> +patternProperties:
+> +  "^pll[0|1]_refclk$":
 
-Do you have rights to change the license (adding '+' aka '-or-later')?
-If so, please add BSD-2-Clause. I don't have any other comments, so
-just confirm and I can change it when applying.
+Use '-' rather than '_' in node names.
 
-Rob
+> +    type: object
+> +    description: |
+> +      WIZ node should have subnodes for each of the PLLs present in
+> +      the SERDES.
+
+No properties in each of these nodes? They need to be defined.
+
+> +
+> +  "^cmn_refclk1?_dig_div$":
+> +    type: object
+> +    description: |
+> +      WIZ node should have subnodes for each of the PMA common refclock
+> +      provided by the SERDES.
+> +
+> +  "^refclk_dig$":
+> +    type: object
+> +    description: |
+> +      WIZ node should have subnode for refclk_dig to select the reference
+> +      clock source for the reference clock used in the PHY and PMA digital
+> +      logic.
+> +
+> +  "^serdes@[0-9a-f]+$":
+> +    type: object
+> +    description: |
+> +      WIZ node should have '1' subnode for the SERDES. It could be either
+> +      Sierra SERDES or Torrent SERDES. Sierra SERDES should follow the
+> +      bindings specified in
+> +      Documentation/devicetree/bindings/phy/phy-cadence-sierra.txt
+> +      Torrent SERDES should follow the bindings specified in
+> +      Documentation/devicetree/bindings/phy/phy-cadence-dp.txt
+> +
+> +required:
+> +  - compatible
+> +  - power-domains
+> +  - clocks
+> +  - clock-names
+> +  - num-lanes
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - "#reset-cells"
+> +  - ranges
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +    wiz@5000000 {
+> +           compatible = "ti,j721e-wiz-16g";
+> +           #address-cells = <1>;
+> +           #size-cells = <1>;
+> +           power-domains = <&k3_pds 292 TI_SCI_PD_EXCLUSIVE>;
+> +           clocks = <&k3_clks 292 5>, <&k3_clks 292 11>, <&dummy_cmn_refclk>;
+> +           clock-names = "fck", "core_ref_clk", "ext_ref_clk";
+> +           assigned-clocks = <&k3_clks 292 11>, <&k3_clks 292 0>;
+> +           assigned-clock-parents = <&k3_clks 292 15>, <&k3_clks 292 4>;
+> +           num-lanes = <2>;
+> +           #reset-cells = <1>;
+> +           ranges = <0x5000000 0x0 0x5000000 0x10000>;
+> +
+> +           pll0_refclk {
+> +                  clocks = <&k3_clks 293 13>, <&dummy_cmn_refclk>;
+> +                  clock-output-names = "wiz1_pll0_refclk";
+
+Kind of pointless with only 1 output.
+
+> +                  #clock-cells = <0>;
+> +                  assigned-clocks = <&wiz1_pll0_refclk>;
+> +                  assigned-clock-parents = <&k3_clks 293 13>;
+> +           };
+> +
+> +           pll1_refclk {
+> +                  clocks = <&k3_clks 293 0>, <&dummy_cmn_refclk1>;
+> +                  clock-output-names = "wiz1_pll1_refclk";
+> +                  #clock-cells = <0>;
+> +                  assigned-clocks = <&wiz1_pll1_refclk>;
+> +                  assigned-clock-parents = <&k3_clks 293 0>;
+> +           };
+> +
+> +           cmn_refclk_dig_div {
+> +                  clocks = <&wiz1_refclk_dig>;
+> +                  clock-output-names = "wiz1_cmn_refclk_dig_div";
+> +                  #clock-cells = <0>;
+> +           };
+> +
+> +           cmn_refclk1_dig_div {
+> +                  clocks = <&wiz1_pll1_refclk>;
+> +                  clock-output-names = "wiz1_cmn_refclk1_dig_div";
+> +                  #clock-cells = <0>;
+> +           };
+> +
+> +           refclk_dig {
+> +                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>, <&dummy_cmn_refclk>, <&dummy_cmn_refclk1>;
+> +                  clock-output-names = "wiz0_refclk_dig";
+> +                  #clock-cells = <0>;
+> +                  assigned-clocks = <&wiz0_refclk_dig>;
+> +                  assigned-clock-parents = <&k3_clks 292 11>;
+> +           };
+> +
+> +           serdes@5000000 {
+> +                  compatible = "cdns,ti,sierra-phy-t0";
+> +                  reg-names = "serdes";
+> +                  reg = <0x5000000 0x10000>;
+> +                  #address-cells = <1>;
+> +                  #size-cells = <0>;
+> +                  resets = <&serdes_wiz0 0>;
+> +                  reset-names = "sierra_reset";
+> +                  clocks = <&wiz0_cmn_refclk_dig_div>, <&wiz0_cmn_refclk1_dig_div>;
+> +                  clock-names = "cmn_refclk_dig_div", "cmn_refclk1_dig_div";
+> +           };
+> +    };
+> -- 
+> 2.17.1
+> 
