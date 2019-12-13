@@ -2,158 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01BD711ED26
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 22:47:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC5811ED9F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 23:17:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726004AbfLMVrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 16:47:22 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36545 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725554AbfLMVrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 16:47:22 -0500
-Received: by mail-oi1-f194.google.com with SMTP id c16so1216319oic.3;
-        Fri, 13 Dec 2019 13:47:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=w5xdh98E7mr6+86lSxAaIdccaOQtAOZWUmlaUNXldZU=;
-        b=LKV8rcMOgKk7/VE8asb2OpaD2VK/TNgns1UMYe7+6aLIrEY61UenWbxEI0Jz+vY/WC
-         Vc+pipNBGqWTkX8it/xDgqelWIWoj4jB+6aEic4GqiUV2wOjk4UgAChhexqmL4sdI896
-         Hc1TNm2O1FUNQrOuugxmkCBS4sFgL9vgnqGsny5dFfJ6mV1XDst2o7EWRaO/CgE9FqDI
-         7p5SyFQtsz+XCYD5DT7nedfRA+1EnsWOHlp4by1iFOGl+rI/gjYFdE59jxSuUKyapCj1
-         a13mEc1tZYAfALKPBX2d3rlNl3A39g7+TWl4nK8PxUzPFlQmPOar7XNyLug9klivhlc/
-         W10Q==
-X-Gm-Message-State: APjAAAV896p3/T45VD7YaENvsXcc5Sz3ekFL6RECQpKZawcfr5r2jdHC
-        YKio3vin0PZhjkqLHnIgag==
-X-Google-Smtp-Source: APXvYqzm62Y9qN5g4QrstJ8YOMO5rKtfDZ1qoaPCIsVdFH1v/4Bxp+t6KiBbsCr+3sooAIymdRKrSg==
-X-Received: by 2002:aca:4a41:: with SMTP id x62mr7648394oia.148.1576273641167;
-        Fri, 13 Dec 2019 13:47:21 -0800 (PST)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p83sm1913240oia.51.2019.12.13.13.47.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2019 13:47:20 -0800 (PST)
-Date:   Fri, 13 Dec 2019 15:47:19 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Harigovindan P <harigovi@codeaurora.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, jsanka@codeaurora.org,
-        chandanu@codeaurora.org, nganji@codeaurora.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: display: add sc7180 panel variant
-Message-ID: <20191213214719.GA11149@bogus>
-References: <1575010545-25971-1-git-send-email-harigovi@codeaurora.org>
- <1575010545-25971-2-git-send-email-harigovi@codeaurora.org>
+        id S1726345AbfLMWR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 17:17:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38638 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725948AbfLMWR6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Dec 2019 17:17:58 -0500
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0F9192073D;
+        Fri, 13 Dec 2019 22:17:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1576275477;
+        bh=tlc6zX/LTEyF5wczNgFfQrREIesmdwXR+IfQ/HzAsqI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BkxSAcqVhR0pEES5vqzaja2g/RZ4Zz1iwoK5Yo4PncyYac7iZxStJ+xuU3nPxDrh6
+         0YmTwFqmA3/uqTdAVhcCtFaEYOoHGCVhgQnhIQIGiCKp7TOkX/sEQSHtgccpwHM3NJ
+         mWxS5sjFZZ9cUhKehXAcDrTfxjqDjsOZE9wb9aMo=
+Received: by mail-qk1-f174.google.com with SMTP id z76so538668qka.2;
+        Fri, 13 Dec 2019 14:17:57 -0800 (PST)
+X-Gm-Message-State: APjAAAWvc023vKK6GfR8jcmsz3cunA4YJ50GWLodEn8WB2xoJIH/Rry1
+        EmLmuGZmagLy3/uG1oaQ5Slntji76Rw5eYcLBQ==
+X-Google-Smtp-Source: APXvYqyLVGyr/ou6/zCUSR6nbqEvM4qZSGd5lkUZviadNs7lGm/zXP4dZkMOJJThzBpo59gYWshwpV/gf0X0NWtCe7c=
+X-Received: by 2002:a05:620a:135b:: with SMTP id c27mr1536497qkl.119.1576245251094;
+ Fri, 13 Dec 2019 05:54:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1575010545-25971-2-git-send-email-harigovi@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20191211061911.238393-1-hsinyi@chromium.org> <20191211061911.238393-4-hsinyi@chromium.org>
+In-Reply-To: <20191211061911.238393-4-hsinyi@chromium.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 13 Dec 2019 07:53:59 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+jkgDj6-SH1FrnjB1CQmf33=XUwN3N_fw_aJsQm3Fq9A@mail.gmail.com>
+Message-ID: <CAL_Jsq+jkgDj6-SH1FrnjB1CQmf33=XUwN3N_fw_aJsQm3Fq9A@mail.gmail.com>
+Subject: Re: [PATCH RESEND 3/4] dt-bindings: drm/bridge: Add GPIO display mux binding
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Russell King <rmk+kernel@arm.linux.org.uk>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 29, 2019 at 12:25:44PM +0530, Harigovindan P wrote:
-> Add a compatible string to support sc7180 panel version.
-> 
-> Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
+On Wed, Dec 11, 2019 at 12:19 AM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> From: Nicolas Boichat <drinkcat@chromium.org>
+>
+> Add bindings for Generic GPIO mux driver.
+>
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
->  .../bindings/display/visionox,rm69299.txt          | 68 ++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100755 Documentation/devicetree/bindings/display/visionox,rm69299.txt
-
-Source files should not have execute permission.
-
-New bindings should be in DT schema format.
-
-checkpatch.pl will tell you both of these things.
-
-> 
-> diff --git a/Documentation/devicetree/bindings/display/visionox,rm69299.txt b/Documentation/devicetree/bindings/display/visionox,rm69299.txt
-> new file mode 100755
-> index 0000000..4622191
+> Change from RFC to v1:
+> - txt to yaml
+> ---
+>  .../bindings/display/bridge/gpio-mux.yaml     | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml b/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+> new file mode 100644
+> index 000000000000..cef098749066
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/visionox,rm69299.txt
-> @@ -0,0 +1,68 @@
-> +Visionox model RM69299 DSI display driver
+> +++ b/Documentation/devicetree/bindings/display/bridge/gpio-mux.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/gpio-mux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +The Visionox RM69299 is a generic display driver, currently only configured
-> +for use in the 1080p display on the Qualcomm SC7180 MTP board.
-> +
-> +Required properties:
-> +- compatible: should be "visionox,rm69299-1080p-display"
+> +title: Generic display mux (1 input, 2 outputs)
 
-RM69299 may be generic, but 1080p sounds like a specific panel.
+What makes it generic? Doesn't the mux chip have power supply,
+possibly a reset line or not, etc.? What about a mux where the GPIO
+controls the mux?
 
-Is there anything besides a 'display'? If not, '-display' is redundant.
+Generally, we avoid 'generic' bindings because h/w is rarely generic.
+You can have a generic driver which works on multiple devices.
 
-> +- vdda-supply: phandle of the regulator that provides the supply voltage
-> +  Power IC supply
-> +- vdd3p3-supply: phandle of the regulator that provides the supply voltage
-> +  Power IC supply
-> +- reset-gpios: phandle of gpio for reset line
-> +  This should be 8mA, gpio can be configured using mux, pinctrl, pinctrl-names
-> +  (active low)
-> +- mode-gpios: phandle of the gpio for choosing the mode of the display
-> +  for single DSI
+> +
+> +maintainers:
+> +  - Nicolas Boichat <drinkcat@chromium.org>
+> +
+> +description: |
+> +  This bindings describes a simple display (e.g. HDMI) mux, that has 1
+> +  input, and 2 outputs. The mux status is controlled by hardware, and
+> +  its status is read back using a GPIO.
+> +
+> +properties:
+> +  compatible:
+> +    const: gpio-display-mux
+> +
+> +  detect-gpios:
+> +    maxItems: 1
+> +    description: GPIO that indicates the active output
+> +
+> +  ports:
+> +    type: object
+> +
+> +    properties:
+> +      port@0:
+> +        type: object
+> +        description: |
+> +          Video port for input.
+> +
+> +      port@1:
+> +        type: object
+> +        description: |
+> +          2 video ports for output.
+> +          The reg value in the endpoints matches the GPIO status: when
+> +          GPIO is asserted, endpoint with reg value <1> is selected.
 
-The modes are what?
+You should describe 'endpoint@0' and 'endpoint@1' here too.
 
-> +- ports: This device has one video port driven by one DSI. Their connections
-> +  are modeled using the OF graph bindings specified in
-> +  Documentation/devicetree/bindings/graph.txt.
-> +  - port@0: DSI input port driven by master DSI
 > +
-> +Example:
+> +    required:
+> +      - port@0
+> +      - port@1
 > +
-> +	dsi@ae94000 {
-> +		panel@0 {
-> +			compatible = "visionox,rm69299-1080p-display";
-> +			reg = <0>;
+> +required:
+> +  - compatible
+> +  - detect-gpios
+> +  - ports
 > +
-> +			vdda-supply = <&src_pp1800_l8c>;
-> +			vdd3p3-supply = <&src_pp2800_l18a>;
+> +examples:
+> +  - |
+> +    hdmi_mux: hdmi_mux {
+> +      compatible = "gpio-display-mux";
+> +      status = "okay";
+
+Don't show status in examples.
+
+> +      detect-gpios = <&pio 36 GPIO_ACTIVE_HIGH>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&hdmi_mux_pins>;
+> +      ddc-i2c-bus = <&hdmiddc0>;
+
+Not documented. Is the i2c bus muxed too? If not, then this is in the
+wrong place.
+
 > +
-> +			pinctrl-names = "default", "suspend";
-> +			pinctrl-0 = <&disp_pins_default>;
-> +			pinctrl-1 = <&disp_pins_default>;
+> +      ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +			reset-gpios = <&pm6150l_gpios 3 0>;
+> +        port@0 { /* input */
+> +          reg = <0>;
 > +
-> +			display-timings {
-> +				timing0: timing-0 {
-> +					/* originally
-> +					 * 268316160 Mhz,
-> +					 * but value below fits
-> +					 * better w/ downstream
-> +					 */
-> +					clock-frequency = <158695680>;
-> +					hactive = <1080>;
-> +					vactive = <2248>;
-> +					hfront-porch = <26>;
-> +					hback-porch = <36>;
-> +					hsync-len = <2>;
-> +					vfront-porch = <56>;
-> +					vback-porch = <4>;
-> +					vsync-len = <4>;
-> +				};
-> +			};
+> +          hdmi_mux_in: endpoint {
+> +            remote-endpoint = <&hdmi0_out>;
+> +          };
+> +        };
 > +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				port@0 {
-> +					reg = <0>;
-> +					panel0_in: endpoint {
-> +						remote-endpoint = <&dsi0_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> -- 
-> 2.7.4
-> 
+> +        port@1 { /* output */
+> +          reg = <1>;
+> +
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          hdmi_mux_out_anx: endpoint@0 {
+> +            reg = <0>;
+> +            remote-endpoint = <&anx7688_in>;
+> +          };
+> +
+> +          hdmi_mux_out_hdmi: endpoint@1 {
+> +            reg = <1>;
+> +            remote-endpoint = <&hdmi_connector_in>;
+> +          };
+> +        };
+> +      };
+> +    };
+> --
+> 2.24.0.525.g8f36a354ae-goog
+>
