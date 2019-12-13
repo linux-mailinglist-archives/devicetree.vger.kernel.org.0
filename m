@@ -2,104 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB0AC11E28C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 12:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5282811E2A6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 12:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbfLMLMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 06:12:06 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:16232 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726608AbfLMLMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Dec 2019 06:12:06 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBDB9en6024382;
-        Fri, 13 Dec 2019 12:09:57 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=kn47bweEcRXjNdyx35wkLzXPiXE55ZWSwCRUAHvHXbA=;
- b=Dz5wO7vZTR3jxun7AaF48i5y0oFQ2pc7iZZlcyCCMeEoJin3Bpr6/iMy3UkCYKt/ZWhQ
- FnZweSWH/7Z+75WlrB0Nv/PaYOaTctPY/lJeJK7XWfivA3LkclQTOj0XdVWBVEoG8kqg
- Hu5En5eAQ443ZWw24bS3/KmdLOnlMX2xdv+Jscv6hMMc6aDrHjHGXm8zt4SUx8fl56Y+
- k5LGLR/wSWPEfXHBoIAouty4/WnpjAucLQXa1OYl2PH5Aoud0m63qvG61hMwRjXFIqZR
- kXp3fj/NXokm2BmWU4zdAm02br9XtEkBSQl1VqzBi0Q45nZDkXOJm5NRjnTQyS0+Jbcj 8g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2wrbrfvrut-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 13 Dec 2019 12:09:57 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0406A100034;
-        Fri, 13 Dec 2019 12:09:52 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BDC572AB94E;
-        Fri, 13 Dec 2019 12:09:52 +0100 (CET)
-Received: from SFHDAG3NODE3.st.com (10.75.127.9) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 13 Dec
- 2019 12:09:52 +0100
-Received: from SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476]) by
- SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476%20]) with mapi id
- 15.00.1347.000; Fri, 13 Dec 2019 12:09:51 +0100
-From:   Benjamin GAIGNARD <benjamin.gaignard@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Alexandre TORGUE <alexandre.torgue@st.com>
-CC:     Thierry Reding <thierry.reding@gmail.com>,
-        =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= 
-        <u.kleine-koenig@pengutronix.de>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: pwm: fix nodename pattern
-Thread-Topic: [PATCH] dt-bindings: pwm: fix nodename pattern
-Thread-Index: AQHVsDO3MV8l3Qp4hkSb3+FMjTJqHqe1R/UAgADP3oCAALXMAIABDOQA
-Date:   Fri, 13 Dec 2019 11:09:51 +0000
-Message-ID: <7b0167ca-6797-b89a-dd61-fa6db30022f7@st.com>
-References: <20191211150021.20125-1-benjamin.gaignard@st.com>
- <CAL_JsqJKWoX_kY2kSieOA-wXO5xKtDbhXPMCjg-d4FHHEvOmHg@mail.gmail.com>
- <60921a82-9241-9c6e-0a17-0bd93dc52978@st.com>
- <CAL_JsqLboOKoJ0SjjS_AFkibdHzVo4tK3Z2xSUxVNBrdt5UEsQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqLboOKoJ0SjjS_AFkibdHzVo4tK3Z2xSUxVNBrdt5UEsQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.44]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <AD768ADD1075174EBB9969B3FA46AC4C@st.com>
-Content-Transfer-Encoding: base64
+        id S1725948AbfLMLSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 06:18:31 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:38922 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725937AbfLMLSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 06:18:31 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBDBI4Pa039556;
+        Fri, 13 Dec 2019 05:18:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1576235884;
+        bh=H7BPSf+Mb4Osfrs3oWk3vvPWNcaDr0hYs41wVOdU79s=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Wp+akN+CcgXl8k0vHjR4dwjBGuDVeh4X3WAB5FRsyF5hfMhTYPXdKjHbmY2w7CR1J
+         xi2vOPEjg2DE7dk2MQLvcTfiZixyTkLnNsKsbGC6NJM6Kgm998BeeoUYZcXCOYJKF/
+         AAfAYPJLnphSdiiCC3fhJsOLqPu8Dac4P3SsteuY=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBDBI3MO062693
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 Dec 2019 05:18:03 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 13
+ Dec 2019 05:18:03 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 13 Dec 2019 05:18:03 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBDBI0au096481;
+        Fri, 13 Dec 2019 05:18:00 -0600
+Subject: Re: [PATCH v3 5/5] MAINTAINERS: add entry for tidss
+To:     Daniel Vetter <daniel@ffwll.ch>, Jyri Sarha <jsarha@ti.com>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <yamonkar@cadence.com>, <praneeth@ti.com>, <sjakhade@cadence.com>,
+        <robh+dt@kernel.org>, <peter.ujfalusi@ti.com>,
+        <laurent.pinchart@ideasonboard.com>, <subhajit_paul@ti.com>,
+        <sam@ravnborg.org>
+References: <cover.1576158368.git.jsarha@ti.com>
+ <09da3a37ca59bb45bef62f2335a191985363d393.1576158368.git.jsarha@ti.com>
+ <20191213103024.GH624164@phenom.ffwll.local>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <0acedebf-25d9-6ae2-1307-8f764af449af@ti.com>
+Date:   Fri, 13 Dec 2019 13:17:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-12-13_03:2019-12-13,2019-12-13 signatures=0
+In-Reply-To: <20191213103024.GH624164@phenom.ffwll.local>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxMi8xMi8xOSA4OjA3IFBNLCBSb2IgSGVycmluZyB3cm90ZToNCj4gT24gVGh1LCBEZWMg
-MTIsIDIwMTkgYXQgMjoxNiBBTSBCZW5qYW1pbiBHQUlHTkFSRA0KPiA8YmVuamFtaW4uZ2FpZ25h
-cmRAc3QuY29tPiB3cm90ZToNCj4+DQo+PiBPbiAxMi8xMS8xOSA4OjUyIFBNLCBSb2IgSGVycmlu
-ZyB3cm90ZToNCj4+PiBPbiBXZWQsIERlYyAxMSwgMjAxOSBhdCA5OjAwIEFNIEJlbmphbWluIEdh
-aWduYXJkDQo+Pj4gPGJlbmphbWluLmdhaWduYXJkQHN0LmNvbT4gd3JvdGU6DQo+Pj4+IFR5cGlj
-YWwgcHdtIG5vZGVzIHNob3VsZCBiZSBuYW1lZCBwd21AeHh4Lg0KPj4+PiBUaGUgcGF0dGVybiBz
-aG91bGRuJ3QgbWF0Y2ggbm9kZXMgbmFtZWQgcHdtLXh4eCB0byBhdm9pZA0KPj4+PiBjb25mbGlj
-dHMgd2l0aCBwaW5tdXggb3IgcHdtLWZhbiBub2Rlcy4NCj4+PiBJdCBvbmx5IG1hdGNoZXMgcHdt
-LSQoYS1oZXgtbnVtYmVyKSwgbm90IGFueSBzdHJpbmcsIHNvIHRoYXQgc2hvdWxkbid0DQo+Pj4g
-YmUgYSBwcm9ibGVtLiBUaGlzIGlzIG5lZWRlZCBmb3IgdGhpbmdzIGxpa2UgR1BJTyBiYXNlZCBk
-ZXZpY2VzIChub3QNCj4+PiBqdXN0IFBXTXMpIHdoaWNoIGRvbid0IGhhdmUgYW55IGFkZHJlc3Mu
-DQo+Pj4NCj4+PiBQaW5tdXggbm9kZXMgYXJlIGdvaW5nIHRvIG5lZWQgdG8gYWRvcHQgc29tZSBz
-b3J0IG9mIHN0YW5kYXJkIHBhdHRlcm4NCj4+PiB3ZSBjYW4gbWF0Y2ggb24uDQo+PiBJIGhhdmUg
-cHVzaCBhIHBhdGNoIHRvIHN0b3AgdXNpbmcgJ0AnIGFuZCAnXycgaW4gcGlubXV4IGdyb3VwcyBu
-YW1lczoNCj4+IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL3BhdGNod29yay9wYXRjaC8xMTYyNTkx
-Lw0KPj4gSXQgcmVtb3ZlIHRoZSB3YXJuaW5ncyB3aGVuIGNvbXBpbGluZyB0aGUgZGV2aWNldHJl
-IHdpdGggVz0xMiBidXQgcHdtLnlhbWwNCj4+IGNvbXBsYWluIGJlY2F1c2UgcHdtIHBpbm11eCBp
-cyBuYW1lZCBwd20tMS4NCj4+DQo+PiBIb3cgY2FuIEkgc29sdmUgdGhlc2UgaXNzdWVzIGF0IHRo
-ZSBzYW1lIHRpbWUgPw0KPiBOYW1lIHRoZSBub2RlcyAqLXBpbnMgb3IgKi1waW5zLVswLTldLiBZ
-b3UncmUgcHJvYmFibHkgZ29pbmcgdG8gbmVlZA0KPiBzb21lIHBhdHRlcm4gYW55d2F5cyB3aGVu
-IHlvdSBkbyBhIHBpbm11eCBzY2hlbWEuDQorIEFsZXggYmVjYXVzZSB0aGF0IGltcGFjdCBwaW4g
-bm9kZSBwYXR0ZXJuIGluIHN0LHN0bTMyLXBpbmN0cmwueWFtbA0KDQpCZW5qYW1pbg0KDQo+IFJv
-Yg==
+Hi Daniel,
+
+On 13/12/2019 12:30, Daniel Vetter wrote:
+
+>> +DRM DRIVERS FOR TI KEYSTONE
+>> +M:	Jyri Sarha <jsarha@ti.com>
+>> +M:	Tomi Valkeinen <tomi.valkeinen@ti.com>
+>> +L:	dri-devel@lists.freedesktop.org
+>> +S:	Maintained
+>> +F:	drivers/gpu/drm/tidss/
+>> +F:	Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
+>> +F:	Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+>> +F:	Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+>> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+> 
+> Is the plan to also move other TI drivers over (like tilcdc) or just an
+> experiment to see what happens? Asking since if eventually omapdrm moves
+> that might be a bit much (or at least needs a discussion first).
+
+Hmm, yes, I think we should have a plan for these.
+
+tilcdc: small, old driver, and I don't see much changes for it. The HW is very different from the 
+ones supported by omapdrm and tidss (the two of which have many commonalities). I think drm-misc is 
+fine for tilcdc.
+
+omapdrm: big changes going on for now, but after the rewrite to get rid of omapdrm specific drivers 
+is done, I expect the patch count to drop, as the HW is "legacy".
+
+tidss: the "new" driver, which should get most attention in the future (after omapdrm rewrite).
+
+All in all, sometimes there have been very few patches for many months, and then sometimes there's a 
+big series.
+
+I haven't seen a need to have a maintained branch for omapdrm, as multiple people working on 
+conflicting items has been very rare (there aren't that many people working on omapdrm). So I've 
+picked patches to my private branch, which I have rebased as needed. And then I've either pushed via 
+drm-misc if there's just a few patches, or sent a pull request if there's a lot.
+
+Is such a mixed model ok?
+
+I'm not sure how much is too much for drm-misc, but probably omapdrm and tidss combined (if pushing 
+everything always via drm-misc) is a bit too much. So perhaps a maintained TI tree would be an 
+option too, and pushing everything for omapdrm and tidss via that tree.
+
+I'm fine with all options, so I think we can go with whatever is most acceptable from DRM maintainer 
+point of view.
+
+  Tomi
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
