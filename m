@@ -2,139 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B00211E3C9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 13:46:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 113A211E39E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 13:33:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727101AbfLMMqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 07:46:25 -0500
-Received: from mailgw02.mediatek.com ([216.200.240.185]:36355 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727050AbfLMMqY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 07:46:24 -0500
-X-UUID: 69c1bf4fdee64f56bb10b7bf5823af4c-20191213
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=f1qK2+7LZodsQlO7o2fhFIATRwJd4H3mQKGMDaRrhWg=;
-        b=S2CBRI9IIeLbtgqzvQhYB6IxXK+S2jUQNv6LzqYBSJ9q/hCJ2g8mM//wmqh39b48Dz4ghWXDBi2MAh/nbJH0ujUwgYusT5fTB1q2wD6/TIB3EPG2JRb6A5j3bo8/Q/mMJkGDNzEeaGzD8fWZ0fpJPlTdNzn4xo3vsPA68fFDBuE=;
-X-UUID: 69c1bf4fdee64f56bb10b7bf5823af4c-20191213
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (musrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 34509982; Fri, 13 Dec 2019 04:46:22 -0800
-Received: from mtkmbs07n2.mediatek.inc ((172.21.101.141)) by
- mtkmbs07n2.mediatek.inc ((172.21.101.141)) with ShadowRedundancy id
- 15.0.1395.4; Fri, 13 Dec 2019 12:45:29 +0000
-Received: from mtkmbs07n1.mediatek.inc (172.21.101.16) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 13 Dec 2019 17:07:52 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 13 Dec 2019 17:07:35 +0800
-Message-ID: <1576228087.2242.0.camel@mtksdaap41>
-Subject: Re: [PATCH v8 3/4] misc: eeprom: at24: support pm_runtime control
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-CC:     linux-i2c <linux-i2c@vger.kernel.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        linux-devicetree <devicetree@vger.kernel.org>
-Date:   Fri, 13 Dec 2019 17:08:07 +0800
-In-Reply-To: <CAMpxmJWh3YMkn_1B=nJLmRRXn9uD2kU4grf8c+sMbWtKFZOv=w@mail.gmail.com>
-References: <20191213081230.23494-1-bibby.hsieh@mediatek.com>
-         <20191213081230.23494-4-bibby.hsieh@mediatek.com>
-         <CAMpxmJWh3YMkn_1B=nJLmRRXn9uD2kU4grf8c+sMbWtKFZOv=w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726916AbfLMMdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 07:33:49 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37694 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726903AbfLMMdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 07:33:49 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBDCXOQJ050037;
+        Fri, 13 Dec 2019 06:33:24 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1576240404;
+        bh=kMkbjET+QrAsmFNseBerdM5MMsQ1B5BpEEYyXYTBjTg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=qKtEzxPGp0D1cBFmxFRBzseKuJP5UAS9wh3rK7b46v3ZSxSQ8Mem2pChZJnCeam96
+         pSURWaCFMI+PlDvVXEzSv7MdWcNjs3xOuTB+PF+Vg/KapZYrs/Dqu5W3r+9cZVP08l
+         Qi5934tMg6UCV+HBkqtcXPoZWT8GjXx/OPIo9nRM=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBDCXOlR055977
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 Dec 2019 06:33:24 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 13
+ Dec 2019 06:33:22 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 13 Dec 2019 06:33:22 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBDCXK6C002889;
+        Fri, 13 Dec 2019 06:33:20 -0600
+Subject: Re: [PATCH 1/4] ARM: dts: am437x-gp-evm: add HDMI support
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Tony Lindgren <tony@atomide.com>, <linux-omap@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <dri-devel@lists.freedesktop.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20191125131100.9839-1-tomi.valkeinen@ti.com>
+ <20191212172104.GY35479@atomide.com> <20191212173110.GA35479@atomide.com>
+ <d09526b2-8435-bef2-0489-0c3c8173d451@ti.com>
+ <20191213104204.GB4860@pendragon.ideasonboard.com>
+ <2f5cfca4-d36d-da2d-59ba-b76669daeded@ti.com>
+ <20191213114207.GC4860@pendragon.ideasonboard.com>
+ <36d8dde1-1a76-5a5f-2a41-8bc52dfcf2fa@ti.com>
+ <20191213122845.GD4860@pendragon.ideasonboard.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <3900f4b3-4604-cb64-ebdd-ae168ef1d2fb@ti.com>
+Date:   Fri, 13 Dec 2019 14:33:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20191213122845.GD4860@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDE5LTEyLTEzIGF0IDEwOjAyICswMTAwLCBCYXJ0b3N6IEdvbGFzemV3c2tpIHdy
-b3RlOg0KPiBwdC4sIDEzIGdydSAyMDE5IG8gMDk6NDcgQmliYnkgSHNpZWggPGJpYmJ5LmhzaWVo
-QG1lZGlhdGVrLmNvbT4gbmFwaXNhxYIoYSk6DQo+ID4NCj4gPiBBbHRob3VnaCBpbiB0aGUgbW9z
-dCBwbGF0Zm9ybXMsIHRoZSBwb3dlciBvZiBlZXByb20gYXJlIGFsd2F5DQo+ID4gb24sIHNvbWUg
-cGxhdGZvcm1zIGRpc2FibGUgdGhlIGVlcHJvbSBwb3dlciBpbiBvcmRlciB0byBtZWV0DQo+ID4g
-bG93IHBvd2VyIHJlcXVlc3QuIFRoaXMgcGF0Y2ggYWRkIHRoZSBwbV9ydW50aW1lIG9wcyB0byBj
-b250cm9sDQo+ID4gcG93ZXIgdG8gc3VwcG9ydCBhbGwgcGxhdGZvcm1zLg0KPiA+DQo+ID4gU2ln
-bmVkLW9mZi1ieTogQmliYnkgSHNpZWggPGJpYmJ5LmhzaWVoQG1lZGlhdGVrLmNvbT4NCj4gPiAt
-LS0NCj4gPiAgZHJpdmVycy9taXNjL2VlcHJvbS9hdDI0LmMgfCA0MCArKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNDAgaW5zZXJ0aW9u
-cygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWlzYy9lZXByb20vYXQyNC5jIGIv
-ZHJpdmVycy9taXNjL2VlcHJvbS9hdDI0LmMNCj4gPiBpbmRleCAwNjgxZDVmZGQ1MzguLjA2YWUy
-Y2MzMmY3OSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL21pc2MvZWVwcm9tL2F0MjQuYw0KPiA+
-ICsrKyBiL2RyaXZlcnMvbWlzYy9lZXByb20vYXQyNC5jDQo+ID4gQEAgLTIyLDYgKzIyLDcgQEAN
-Cj4gPiAgI2luY2x1ZGUgPGxpbnV4L252bWVtLXByb3ZpZGVyLmg+DQo+ID4gICNpbmNsdWRlIDxs
-aW51eC9yZWdtYXAuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4gPiAr
-I2luY2x1ZGUgPGxpbnV4L3JlZ3VsYXRvci9jb25zdW1lci5oPg0KPiA+ICAjaW5jbHVkZSA8bGlu
-dXgvZ3Bpby9jb25zdW1lci5oPg0KPiA+DQo+ID4gIC8qIEFkZHJlc3MgcG9pbnRlciBpcyAxNiBi
-aXQuICovDQo+ID4gQEAgLTkxLDYgKzkyLDcgQEAgc3RydWN0IGF0MjRfZGF0YSB7DQo+ID4NCj4g
-PiAgICAgICAgIHN0cnVjdCBncGlvX2Rlc2MgKndwX2dwaW87DQo+ID4NCj4gPiArICAgICAgIHN0
-cnVjdCByZWd1bGF0b3IgKnZjY19yZWc7DQo+ID4gICAgICAgICAvKg0KPiA+ICAgICAgICAgICog
-U29tZSBjaGlwcyB0aWUgdXAgbXVsdGlwbGUgSTJDIGFkZHJlc3NlczsgZHVtbXkgZGV2aWNlcyBy
-ZXNlcnZlDQo+ID4gICAgICAgICAgKiB0aGVtIGZvciB1cywgYW5kIHdlJ2xsIHVzZSB0aGVtIHdp
-dGggU01CdXMgY2FsbHMuDQo+ID4gQEAgLTY2Miw2ICs2NjQsMTIgQEAgc3RhdGljIGludCBhdDI0
-X3Byb2JlKHN0cnVjdCBpMmNfY2xpZW50ICpjbGllbnQpDQo+ID4gICAgICAgICBhdDI0LT5jbGll
-bnRbMF0uY2xpZW50ID0gY2xpZW50Ow0KPiA+ICAgICAgICAgYXQyNC0+Y2xpZW50WzBdLnJlZ21h
-cCA9IHJlZ21hcDsNCj4gPg0KPiA+ICsgICAgICAgYXQyNC0+dmNjX3JlZyA9IGRldm1fcmVndWxh
-dG9yX2dldChkZXYsICJ2Y2MiKTsNCj4gPiArICAgICAgIGlmIChJU19FUlIoYXQyNC0+dmNjX3Jl
-ZykpIHsNCj4gPiArICAgICAgICAgICAgICAgZGV2X2VycihkZXYsICJmYWlsZWQgdG8gZ2V0IGF0
-MjQgVkNDIHJlZ3VsYXRvclxuIik7DQo+IA0KPiBUaGUgcmVndWxhdG9yIGNvcmUgaXMgcXVpdGUg
-dmVyYm9zZSBpbiBpdHMgZXJyb3IgbWVzc2FnZXMgd2hlbiBjYWxsaW5nDQo+IHJlZ3VsYXRvcl9n
-ZXQoKSAtIHlvdSBkb24ndCBuZWVkIHRvIGFkZCB5b3VycyBoZXJlLiBKdXN0IHJldHVybiB0aGUN
-Cj4gZXJyb3IgY29kZS4NCg0KT2ssIHdpbGwgcmVtb3ZlIGl0Lg0KDQo+IA0KPiA+ICsgICAgICAg
-ICAgICAgICByZXR1cm4gUFRSX0VSUihhdDI0LT52Y2NfcmVnKTsNCj4gPiArICAgICAgIH0NCj4g
-PiArDQo+ID4gICAgICAgICBhdDI0LT53cF9ncGlvID0gZGV2bV9ncGlvZF9nZXRfb3B0aW9uYWwo
-ZGV2LCAid3AiLCBHUElPRF9PVVRfSElHSCk7DQo+ID4gICAgICAgICBpZiAoSVNfRVJSKGF0MjQt
-PndwX2dwaW8pKQ0KPiA+ICAgICAgICAgICAgICAgICByZXR1cm4gUFRSX0VSUihhdDI0LT53cF9n
-cGlvKTsNCj4gPiBAQCAtNzAxLDYgKzcwOSwxMiBAQCBzdGF0aWMgaW50IGF0MjRfcHJvYmUoc3Ry
-dWN0IGkyY19jbGllbnQgKmNsaWVudCkNCj4gPg0KPiA+ICAgICAgICAgaTJjX3NldF9jbGllbnRk
-YXRhKGNsaWVudCwgYXQyNCk7DQo+ID4NCj4gPiArICAgICAgIGVyciA9IHJlZ3VsYXRvcl9lbmFi
-bGUoYXQyNC0+dmNjX3JlZyk7DQo+ID4gKyAgICAgICBpZiAoZXJyKSB7DQo+ID4gKyAgICAgICAg
-ICAgICAgIGRldl9lcnIoZGV2LCAiRmFpbGVkIHRvIGVuYWJsZSBhdDI0IHZjYyByZWd1bGF0b3Jc
-biIpOw0KPiANCj4gRHJvcCB0aGUgYXQyNCBuYW1lIC0gZGV2X2VycigpIHdpbGwgcHJpbnQgdGhl
-IGRldmljZSBuYW1lIGZvciB5b3UuDQo+IA0KT2suDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVy
-biBlcnI7DQo+ID4gKyAgICAgICB9DQo+ID4gKw0KPiA+ICAgICAgICAgLyogZW5hYmxlIHJ1bnRp
-bWUgcG0gKi8NCj4gPiAgICAgICAgIHBtX3J1bnRpbWVfc2V0X2FjdGl2ZShkZXYpOw0KPiA+ICAg
-ICAgICAgcG1fcnVudGltZV9lbmFibGUoZGV2KTsNCj4gPiBAQCAtNzEzLDYgKzcyNyw3IEBAIHN0
-YXRpYyBpbnQgYXQyNF9wcm9iZShzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50KQ0KPiA+ICAgICAg
-ICAgcG1fcnVudGltZV9pZGxlKGRldik7DQo+ID4gICAgICAgICBpZiAoZXJyKSB7DQo+ID4gICAg
-ICAgICAgICAgICAgIHBtX3J1bnRpbWVfZGlzYWJsZShkZXYpOw0KPiA+ICsgICAgICAgICAgICAg
-ICByZWd1bGF0b3JfZGlzYWJsZShhdDI0LT52Y2NfcmVnKTsNCj4gPiAgICAgICAgICAgICAgICAg
-cmV0dXJuIC1FTk9ERVY7DQo+ID4gICAgICAgICB9DQo+ID4NCj4gPiBAQCAtNzI5LDE0ICs3NDQs
-MzkgQEAgc3RhdGljIGludCBhdDI0X3Byb2JlKHN0cnVjdCBpMmNfY2xpZW50ICpjbGllbnQpDQo+
-ID4gIHN0YXRpYyBpbnQgYXQyNF9yZW1vdmUoc3RydWN0IGkyY19jbGllbnQgKmNsaWVudCkNCj4g
-PiAgew0KPiA+ICAgICAgICAgcG1fcnVudGltZV9kaXNhYmxlKCZjbGllbnQtPmRldik7DQo+ID4g
-KyAgICAgICBpZiAocG1fcnVudGltZV9zdGF0dXNfc3VzcGVuZGVkKCZjbGllbnQtPmRldikpDQo+
-ID4gKyAgICAgICAgICAgICAgIHJlZ3VsYXRvcl9kaXNhYmxlKGF0MjQtPnZjY19yZWcpOw0KPiAN
-Cj4gV2h5IGRpZG4ndCB5b3UgZml4IHRoZSBpbnZlcnRlZCBsb2dpYyBoZXJlIGFzIEkgcG9pbnRl
-ZCBvdXQgYmFjayBpbiB2Ng0KPiBvZiB0aGlzIHNlcmllcz8NCj4gDQpTb3JyeSBmb3IgbWlzc2lu
-ZyBpdCBhZ2Fpbi4uLg0KSSB3aWxsIGFkZCBpbnZlcnQgbmV4dCB2ZXJzaW9uLg0KDQpCaWJieQ0K
-PiBCYXJ0DQo+IA0KPiA+ICAgICAgICAgcG1fcnVudGltZV9zZXRfc3VzcGVuZGVkKCZjbGllbnQt
-PmRldik7DQo+ID4NCj4gPiAgICAgICAgIHJldHVybiAwOw0KPiA+ICB9DQo+ID4NCj4gPiArc3Rh
-dGljIGludCBfX21heWJlX3VudXNlZCBhdDI0X3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2KQ0K
-PiA+ICt7DQo+ID4gKyAgICAgICBzdHJ1Y3QgaTJjX2NsaWVudCAqY2xpZW50ID0gdG9faTJjX2Ns
-aWVudChkZXYpOw0KPiA+ICsgICAgICAgc3RydWN0IGF0MjRfZGF0YSAqYXQyNCA9IGkyY19nZXRf
-Y2xpZW50ZGF0YShjbGllbnQpOw0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiByZWd1bGF0b3Jf
-ZGlzYWJsZShhdDI0LT52Y2NfcmVnKTsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBf
-X21heWJlX3VudXNlZCBhdDI0X3Jlc3VtZShzdHJ1Y3QgZGV2aWNlICpkZXYpDQo+ID4gK3sNCj4g
-PiArICAgICAgIHN0cnVjdCBpMmNfY2xpZW50ICpjbGllbnQgPSB0b19pMmNfY2xpZW50KGRldik7
-DQo+ID4gKyAgICAgICBzdHJ1Y3QgYXQyNF9kYXRhICphdDI0ID0gaTJjX2dldF9jbGllbnRkYXRh
-KGNsaWVudCk7DQo+ID4gKw0KPiA+ICsgICAgICAgcmV0dXJuIHJlZ3VsYXRvcl9lbmFibGUoYXQy
-NC0+dmNjX3JlZyk7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgZGV2
-X3BtX29wcyBhdDI0X3BtX29wcyA9IHsNCj4gPiArICAgICAgIFNFVF9TWVNURU1fU0xFRVBfUE1f
-T1BTKHBtX3J1bnRpbWVfZm9yY2Vfc3VzcGVuZCwNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIHBtX3J1bnRpbWVfZm9yY2VfcmVzdW1lKQ0KPiA+ICsgICAgICAgU0VUX1JVTlRJ
-TUVfUE1fT1BTKGF0MjRfc3VzcGVuZCwgYXQyNF9yZXN1bWUsIE5VTEwpDQo+ID4gK307DQo+ID4g
-Kw0KPiA+ICBzdGF0aWMgc3RydWN0IGkyY19kcml2ZXIgYXQyNF9kcml2ZXIgPSB7DQo+ID4gICAg
-ICAgICAuZHJpdmVyID0gew0KPiA+ICAgICAgICAgICAgICAgICAubmFtZSA9ICJhdDI0IiwNCj4g
-PiArICAgICAgICAgICAgICAgLnBtID0gJmF0MjRfcG1fb3BzLA0KPiA+ICAgICAgICAgICAgICAg
-ICAub2ZfbWF0Y2hfdGFibGUgPSBhdDI0X29mX21hdGNoLA0KPiA+ICAgICAgICAgICAgICAgICAu
-YWNwaV9tYXRjaF90YWJsZSA9IEFDUElfUFRSKGF0MjRfYWNwaV9pZHMpLA0KPiA+ICAgICAgICAg
-fSwNCj4gPiAtLQ0KPiA+IDIuMTguMA0KDQo=
+On 13/12/2019 14:28, Laurent Pinchart wrote:
 
+>> So... In the DT file, we would have multiple endpoints in the same output port in DSS, one going to
+>> the panel, one to the SiI9022? omapdrm could then create two encoders, one abstracting the DPI
+>> output and the connection to the panel, one abstracting the DPI output and SiI9022?
+> 
+> That's the idea, yes.
+> 
+>> And then someone would need to handle the GPIO, and set it based on the output used. These kind of
+>> gpios are always difficult, as they don't belong anywhere =).
+> 
+> https://lore.kernel.org/lkml/20191211061911.238393-5-hsinyi@chromium.org/
+> 
+> Still, the infrastructure in omapdrm would need quite a bit of work.
+> We're just about to get a helper layer for linear pipelines merged, and
+> we already need to go one step further :-)
+
+Alright, sounds like this will be doable in the future. So let's drop this and the epos HDMI patches 
+for now.
+
+This does sound like quite a bit of work, as you say, so I have no idea when we can get there (on 
+the omapdrm side). In the minimum we should first get the big omapdrm rework done, in order to avoid 
+nasty conflicts.
+
+Thanks for educating me =).
+
+  Tomi
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
