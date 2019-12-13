@@ -2,94 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9E311E629
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 16:07:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BB8811E635
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 16:09:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726590AbfLMPG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 10:06:29 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:54399 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727897AbfLMPG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 10:06:28 -0500
-Received: by mail-wm1-f66.google.com with SMTP id b19so2531752wmj.4
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2019 07:06:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=zVYjiV40raA+irtPup6zp1Dmv8nl1xIXsEkpKqD3rgw=;
-        b=VeFLq+4GpUuwpIm90GS0n+hEPfFGzcbuhoIB0PM5nLufjs0UAfX9PJL3hA51N4VKOl
-         KfIk7UqTTPWyv/FbJiHdlziFU9wiXJEe8kRbbtdo7a1/dXo+JadmcXvd3qgaJa6NnHH4
-         V721mn7ZWI4UxXXLVhSQcflSljmixpbeVRaxciGrQCo8vQL3Ekl4W6G6bttZXcfPqpGw
-         nl8fiqqoeW08/a1RsvvMYeI7LUdExZsICrcXJkfTXH9m/MqEuiMPZT+2s2mn8qN10QAy
-         IKy1LrFLquP54fjqKaUjY8orntPErL+P19XiJy1DT2AErcjaLDkeopvqAjzGFDin2dbd
-         A39A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=zVYjiV40raA+irtPup6zp1Dmv8nl1xIXsEkpKqD3rgw=;
-        b=AYHON41N1xUJkLQM0BLZgmalzn+SQY7JOBxJnq0GXyssQnEwZzfwze6Gd/ATGHAxUh
-         Y68B2r08SCVjiiEJOzrIDe1kXp3X/q7p7S05iBmn85HqyCGnc9wnH7cp3Dz+EdkoVhVP
-         LTcVPInm7358QhmPShx1brPhQ2wPkAkNl9NStWUiHgW+GlAkEFLzv3ezXkjVam0F0nlA
-         kePBxwYWqyphJ4/sLF6M+dHMdzRpq1E5TNlcNOhSf1ERFnazfOyoKe9cCnBqxbQYVgYv
-         Dad42sXZYUozpmKBewtWvQpDEBJ5wt5X3D5uiYZ9sz9zcgL/HFM0tu7D4BWEbZBuEcVF
-         f8jQ==
-X-Gm-Message-State: APjAAAUCstmBQKm8s+TSOS+/xxDCt4cclirrdsL/I4BB3fhzGUtIUNR6
-        jMl6yZqDrtatThO+lnIMP+sI7A==
-X-Google-Smtp-Source: APXvYqyhRx1/4GO9KdmDjWOPa8J6ecg/1XIViS8vFaLpiXkn64jYSGb3Q2OJaKQuE5yidzpFCAom9Q==
-X-Received: by 2002:a1c:7c18:: with SMTP id x24mr14127321wmc.21.1576249585996;
-        Fri, 13 Dec 2019 07:06:25 -0800 (PST)
-Received: from localhost.localdomain ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
-        by smtp.gmail.com with ESMTPSA id x16sm10449403wmk.35.2019.12.13.07.06.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2019 07:06:25 -0800 (PST)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     marcel@holtmann.org, johan.hedberg@gmail.com,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     netdev@vger.kernel.org, nsaenzjulienne@suse.de,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com
-Subject: [PATCH v5 2/2] bluetooth: hci_bcm: enable IRQ capability from devicetree
-Date:   Fri, 13 Dec 2019 16:06:22 +0100
-Message-Id: <20191213150622.14162-3-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191213150622.14162-1-glaroque@baylibre.com>
-References: <20191213150622.14162-1-glaroque@baylibre.com>
+        id S1727539AbfLMPJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 10:09:48 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:55304 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727536AbfLMPJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 10:09:48 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 312F7E00;
+        Fri, 13 Dec 2019 16:09:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1576249785;
+        bh=o0CHrYc/I6WkpvTk7+BesHWKBfYO6bupATH/o75dbwU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mDAhW94IwncfLplmU4vn8//7eN/1PBQpAfRa6g+02MsXGWgvOlLAWSlNlB5ip3tyw
+         7jySM6NlCLHobkLpS4V2XvoClJQiu4zmNpvXFxOkdIfEAFaKiTXrdx+jFCImi4u4Hb
+         lalLOR5/uDbq2GZcZN5F78GoizUvG8WavsE1/5lM=
+Date:   Fri, 13 Dec 2019 17:09:35 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: Re: [PATCH v3 1/7] media: vb2: Add a helper to get the vb2 buffer
+ attached to a request
+Message-ID: <20191213150935.GC24654@pendragon.ideasonboard.com>
+References: <20191213125414.90725-1-boris.brezillon@collabora.com>
+ <20191213125414.90725-2-boris.brezillon@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20191213125414.90725-2-boris.brezillon@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Actually IRQ can be found from GPIO but all platforms don't support
-gpiod_to_irq, it's the case on amlogic chip.
-so to have possibility to use interrupt mode we need to add interrupts
-property in devicetree and support it in driver.
+Hi Boris,
 
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- drivers/bluetooth/hci_bcm.c | 3 +++
- 1 file changed, 3 insertions(+)
+On Fri, Dec 13, 2019 at 01:54:08PM +0100, Boris Brezillon wrote:
+> vb2_request_get_buf() returns the N-th buffer attached to a media
+> request.
+> 
+> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> ---
+> Changes in v3:
+> * None
+> 
+> Changes in v2:
+> * Adjust the kernel doc as suggested by Hans
+> ---
+>  .../media/common/videobuf2/videobuf2-core.c   | 23 +++++++++++++++++++
+>  include/media/videobuf2-core.h                | 11 +++++++++
+>  2 files changed, 34 insertions(+)
+> 
+> diff --git a/drivers/media/common/videobuf2/videobuf2-core.c b/drivers/media/common/videobuf2/videobuf2-core.c
+> index 4489744fbbd9..c4c7980dcb0d 100644
+> --- a/drivers/media/common/videobuf2/videobuf2-core.c
+> +++ b/drivers/media/common/videobuf2/videobuf2-core.c
+> @@ -1416,6 +1416,29 @@ unsigned int vb2_request_buffer_cnt(struct media_request *req)
+>  }
+>  EXPORT_SYMBOL_GPL(vb2_request_buffer_cnt);
+>  
+> +struct vb2_buffer *vb2_request_get_buf(struct media_request *req,
+> +				       unsigned int n)
+> +{
+> +	struct media_request_object *obj;
+> +	struct vb2_buffer *buf = NULL;
+> +	unsigned int nbufs = 0;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&req->lock, flags);
+> +	list_for_each_entry(obj, &req->objects, list) {
+> +		if (!vb2_request_object_is_buffer(obj) ||
+> +		    nbufs++ < n)
+> +			continue;
+> +
+> +		buf = container_of(obj, struct vb2_buffer, req_obj);
+> +		break;
+> +	}
+> +	spin_unlock_irqrestore(&req->lock, flags);
+> +
+> +	return buf;
+> +}
+> +EXPORT_SYMBOL_GPL(vb2_request_get_buf);
+> +
+>  int vb2_core_prepare_buf(struct vb2_queue *q, unsigned int index, void *pb)
+>  {
+>  	struct vb2_buffer *vb;
+> diff --git a/include/media/videobuf2-core.h b/include/media/videobuf2-core.h
+> index a2b2208b02da..6206e25df764 100644
+> --- a/include/media/videobuf2-core.h
+> +++ b/include/media/videobuf2-core.h
+> @@ -1225,4 +1225,15 @@ bool vb2_request_object_is_buffer(struct media_request_object *obj);
+>   */
+>  unsigned int vb2_request_buffer_cnt(struct media_request *req);
+>  
+> +/**
+> + * vb2_request_get_buf() - return the buffer at index @idx
+> + *
+> + * @req:	the request.
+> + * @n:		search for the Nth buffer in the req object list
 
-diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
-index f8f5c593a05c..99dee878b092 100644
---- a/drivers/bluetooth/hci_bcm.c
-+++ b/drivers/bluetooth/hci_bcm.c
-@@ -13,6 +13,7 @@
- #include <linux/module.h>
- #include <linux/acpi.h>
- #include <linux/of.h>
-+#include <linux/of_irq.h>
- #include <linux/property.h>
- #include <linux/platform_data/x86/apple.h>
- #include <linux/platform_device.h>
-@@ -1144,6 +1145,8 @@ static int bcm_of_probe(struct bcm_device *bdev)
- 	device_property_read_u32(bdev->dev, "max-speed", &bdev->oper_speed);
- 	device_property_read_u8_array(bdev->dev, "brcm,bt-pcm-int-params",
- 				      bdev->pcm_int_params, 5);
-+	bdev->irq = of_irq_get_byname(bdev->dev->of_node, "host-wakeup");
-+
- 	return 0;
- }
- 
+It's not very clear to me what "n" is here. Wouldn't it be better to
+pass the queue pointer instead, to get a buffer for a given queue ?
+
+> + *
+> + * Return a vb2 buffer or NULL if there's no buffer at the specified position
+> + */
+> +struct vb2_buffer *vb2_request_get_buf(struct media_request *req,
+> +				       unsigned int n);
+> +
+>  #endif /* _MEDIA_VIDEOBUF2_CORE_H */
+
 -- 
-2.17.1
+Regards,
 
+Laurent Pinchart
