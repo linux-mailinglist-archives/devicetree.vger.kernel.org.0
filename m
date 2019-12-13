@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5538911E9CA
+	by mail.lfdr.de (Postfix) with ESMTP id C6DA011E9CB
 	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 19:11:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728639AbfLMSK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 13:10:59 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:52391 "EHLO
+        id S1728682AbfLMSLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 13:11:00 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:36981 "EHLO
         relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728599AbfLMSK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 13:10:59 -0500
+        with ESMTP id S1728674AbfLMSLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 13:11:00 -0500
 Received: from localhost.localdomain (unknown [91.224.148.103])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id F2189200009;
-        Fri, 13 Dec 2019 18:10:52 +0000 (UTC)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 8629920000D;
+        Fri, 13 Dec 2019 18:10:57 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -29,51 +29,38 @@ Cc:     <linux-arm-kernel@lists.infradead.org>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         dri-devel@lists.freedesktop.org,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 00/12] Add PX30 LVDS support
-Date:   Fri, 13 Dec 2019 19:10:39 +0100
-Message-Id: <20191213181051.25983-1-miquel.raynal@bootlin.com>
+Subject: [PATCH 01/12] dt-bindings: display: rockchip-lvds: Declare PX30 compatible
+Date:   Fri, 13 Dec 2019 19:10:40 +0100
+Message-Id: <20191213181051.25983-2-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191213181051.25983-1-miquel.raynal@bootlin.com>
+References: <20191213181051.25983-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Document the PX30 LVDS compatible.
 
-This series aims at supporting LVDS on PX30.
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+ .../devicetree/bindings/display/rockchip/rockchip-lvds.txt       | 1 +
+ 1 file changed, 1 insertion(+)
 
-A first couple of patches update the documentation with the new
-compatible and the presence of a PHY. Then, the existing Rockchip
-driver is cleaned and extended to support PX30 specificities. Finally,
-the PX30 DTSI is updated with CRTC routes, the DSI DPHY and the LVDS
-IP itself.
-
-Cheers,
-Miquèl
-
-Miquel Raynal (12):
-  dt-bindings: display: rockchip-lvds: Declare PX30 compatible
-  dt-bindings: display: rockchip-lvds: Document PX30 PHY
-  drm/rockchip: lvds: Fix indentation of a #define
-  drm/rockchip: lvds: Harmonize function names
-  drm/rockchip: lvds: Change platform data
-  drm/rockchip: lvds: Create an RK3288 specific probe function
-  drm/rockchip: lvds: Helpers should return decent values
-  drm/rockchip: lvds: Pack functions together
-  drm/rockchip: lvds: Add PX30 support
-  arm64: dts: rockchip: Add PX30 CRTCs graph LVDS endpoints
-  arm64: dts: rockchip: Add PX30 DSI DPHY
-  arm64: dts: rockchip: Add PX30 LVDS
-
- .../display/rockchip/rockchip-lvds.txt        |   4 +
- arch/arm64/boot/dts/rockchip/px30.dtsi        |  58 ++
- drivers/gpu/drm/rockchip/rockchip_lvds.c      | 516 ++++++++++++------
- drivers/gpu/drm/rockchip/rockchip_lvds.h      |  19 +-
- 4 files changed, 441 insertions(+), 156 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt b/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+index 7849ff039229..aa5663a6fd42 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-lvds.txt
+@@ -4,6 +4,7 @@ Rockchip RK3288 LVDS interface
+ Required properties:
+ - compatible: matching the soc type, one of
+ 	- "rockchip,rk3288-lvds";
++	- "rockchip,px30-lvds";
+ 
+ - reg: physical base address of the controller and length
+ 	of memory mapped region.
 -- 
 2.20.1
 
