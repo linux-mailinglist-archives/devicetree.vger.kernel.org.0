@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07ACD11E496
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 14:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD2311E49C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 14:30:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727486AbfLMNaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 08:30:01 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:40584 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727425AbfLMNaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 08:30:01 -0500
-Received: by mail-wm1-f66.google.com with SMTP id t14so6567667wmi.5
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2019 05:30:00 -0800 (PST)
+        id S1727494AbfLMNaL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 08:30:11 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35300 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727490AbfLMNaC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 08:30:02 -0500
+Received: by mail-wr1-f68.google.com with SMTP id g17so6673186wro.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2019 05:30:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=CgnEiw//WJHGzufAg0EVPn2uPGD0ymse5mrY0tAd6l4=;
-        b=vOOpviAxpLRGWbDnsRDeW/Z1cMyneMze+jcUF80fZMjE8m6MgW1/3+1igyAiE8jaQZ
-         sd0ebigH6c+U2qkc0FI8CrJdSX8t/BFyvVanWL+z/ZwFmiq8KMr6hU04tpRbTrysoWaa
-         yoPfSR4+yq0vvpWheb1LEqa6KrqxM4/w1DHAbcWu6R2h7cUrw86N2hRISkX0Sqf11C5/
-         tomV/QGS/iS3FPhs4Qvi1TeuZWNaa5y1JuD7iZ079m1bD5Zbm6JGMM/bbeJrhG+RBg4J
-         V4ST4UPBQEhdvtiaiIlEFYgjErWwFvWkj9ry2CB3q4X2skuv5zdQMWGc0Xopg/dgE4z+
-         fPxg==
+        bh=RihAxbyPf1sWOBRmJF5IKCF0zpUINaJgm3m7kfkEZZY=;
+        b=fAowkLwbvcaMDwhICxvEuVnjEW+/HgTUaD7s4A/Xn36fZT0rVKZ4y7m1k0IE2WY4yG
+         HpLmm5baYQ5QfDQDu1l10QecPEfxHOTfdJPIpLnZ51SFJQ4h0v/1XCERjTz+Lewf5W0S
+         RoqxDd5K94lovPJJYQIzqqsWkO4Qd8QDymklzOooZuJrb9LpQFXyXk5+KLfphgJeKNY/
+         rmGC7TI6Wv2mdHg7NC3Q0x6uxP4dOZEwaNz7COjP6srZrTQrT36UqZt2d1GSZdsWDte9
+         eJDuz/WkglAvJY9CbMC40XjUUkcqgFwuOeInr59Xp2kvFvbrbOsB5eGqYlqUMV+MDr2Z
+         HD7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=CgnEiw//WJHGzufAg0EVPn2uPGD0ymse5mrY0tAd6l4=;
-        b=Rf/hoYZzwgJSMLUxWnkBYdA5wlWb3JJ+uJzgwOAzto72JPedHU0BOirULrDwe6pBVg
-         sfwFKVBtROWvKEVnLS3+rE9vqMD6VrKeAGWmzDiP7XfJv3fPUqcIXVmkIQ47GmFPvdjg
-         NQXYa3KxqBsPZ0eDT3Y3YQzudvWD51HSONb8bMEGedq6azMRvRbMqfuFBn9JKnydBZR7
-         bHTftsgNbuPD3qQ15MO9vlQ2tLCJl8nHJdxIHljYOGbLzeo5iYYmb0jD9deoW4YKVElV
-         8KghmbBIw783I0OOlnT/eUf86ukJECG990uxs/9ujX3fuNbbiGH0lE8rZpmL8JTUbOe/
-         FsOg==
-X-Gm-Message-State: APjAAAXohjHdX0f5ukr+U2QGAx7hc8XMD0rGewDtCyBvISnAPNL20ZlZ
-        1J8+ryv2C0TlaS3DL+ew28spjQ==
-X-Google-Smtp-Source: APXvYqys8/RNfak7NGL62z6NcWptRE36wV1YR+wvRxs1Ya8mDCpWIYIyNly0sr/UON3XlfgQlSltTw==
-X-Received: by 2002:a05:600c:149:: with SMTP id w9mr12997218wmm.132.1576243799677;
-        Fri, 13 Dec 2019 05:29:59 -0800 (PST)
+        bh=RihAxbyPf1sWOBRmJF5IKCF0zpUINaJgm3m7kfkEZZY=;
+        b=XwGsZh/3sT5GCJ+7oCYkHbWjB4ezVDj01sQYxaTNao1FUpet3O1q5FlmCXNuMPecNF
+         lIyNK4HlVdvPzMA8GfBihRVG4DoU12zBIhfPJcW1mg5QoeFz/hq3W5ceQn4PbDiK7cqT
+         bTn5SfwcXC2AYRI9mXvH0ugAoMzJ6bSMQvYvIaiegM5rclU7fulIulXxLwakPbOOZ0eC
+         5AsXwttRddafLA2TI64tdZW53Y54eAf4pVfl8oo4329/lsbvwFcSz/tCSlZ1m6hwnW4h
+         v4fbbmO1uEU4kIO+nwj/9iF6b/HAACMcCvJSRgzhNM4wtSD0JG4AsoyRvfYA1FKKDGru
+         YZlQ==
+X-Gm-Message-State: APjAAAWTVHEB/qdsBDRTbh5u2W2J94Tilh/I0+zD9xy0jXYKQsSlWs40
+        5LZuSGkjNZtYs1WIaV1UVz5v8bU6fXQ=
+X-Google-Smtp-Source: APXvYqwNnx7cmRRsx41+o7uRC5/UJmd0OtDKCdpnC8FmFH+IVjL9ZtYfSJJwPHF91ntNAr9l0PWr/w==
+X-Received: by 2002:adf:e6c6:: with SMTP id y6mr12978031wrm.284.1576243800998;
+        Fri, 13 Dec 2019 05:30:00 -0800 (PST)
 Received: from localhost.localdomain ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
-        by smtp.gmail.com with ESMTPSA id n3sm10540543wmc.27.2019.12.13.05.29.58
+        by smtp.gmail.com with ESMTPSA id n3sm10540543wmc.27.2019.12.13.05.29.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2019 05:29:59 -0800 (PST)
+        Fri, 13 Dec 2019 05:30:00 -0800 (PST)
 From:   Guillaume La Roque <glaroque@baylibre.com>
 To:     narmstrong@baylibre.com, mchehab@kernel.org,
         hverkuil-cisco@xs4all.nl, khilman@baylibre.com,
         devicetree@vger.kernel.org
 Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/3] media: dt-bindings: media: meson-ao-cec: Add support of ao-sysctrl syscon
-Date:   Fri, 13 Dec 2019 14:29:54 +0100
-Message-Id: <20191213132956.11074-2-glaroque@baylibre.com>
+Subject: [PATCH v2 2/3] arm64: dts: meson-g12g12: add syscon phandle in cec node
+Date:   Fri, 13 Dec 2019 14:29:55 +0100
+Message-Id: <20191213132956.11074-3-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191213132956.11074-1-glaroque@baylibre.com>
 References: <20191213132956.11074-1-glaroque@baylibre.com>
@@ -60,30 +60,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ao-sysctrl syscon phandle property is needed for CEC wakeup support.
-This property is optional.
+add syscon phandle in cec node to activate wakeup support
 
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 ---
- .../devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml    | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml b/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-index 41197578f19a..1f721498d249 100644
---- a/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-+++ b/Documentation/devicetree/bindings/media/amlogic,meson-gx-ao-cec.yaml
-@@ -32,6 +32,10 @@ properties:
-     allOf:
-       - $ref: /schemas/types.yaml#/definitions/phandle
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 7fabc8d9654a..98c6a1d1d035 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -1899,6 +1899,7 @@
+ 				interrupts = <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>;
+ 				clocks = <&clkc_AO CLKID_AO_CTS_OSCIN>;
+ 				clock-names = "oscin";
++				amlogic,ao-sysctrl = <&rti>;
+ 				status = "disabled";
+ 			};
  
-+  amlogic,ao-sysctrl:
-+    description: phandle to the ao-sysctrl syscon
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+
- allOf:
-   - if:
-       properties:
 -- 
 2.17.1
 
