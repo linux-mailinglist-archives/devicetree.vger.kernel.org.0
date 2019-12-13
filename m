@@ -2,111 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA4411E8F3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 18:13:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5729C11E8F9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 18:13:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728339AbfLMRKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 12:10:10 -0500
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2191 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728012AbfLMRKJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Dec 2019 12:10:09 -0500
-Received: from lhreml704-cah.china.huawei.com (unknown [172.18.7.108])
-        by Forcepoint Email with ESMTP id AAD5AC95724CE7AC0041;
-        Fri, 13 Dec 2019 17:10:08 +0000 (GMT)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- lhreml704-cah.china.huawei.com (10.201.108.45) with Microsoft SMTP Server
- (TLS) id 14.3.408.0; Fri, 13 Dec 2019 17:10:07 +0000
-Received: from localhost (10.202.226.57) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 13 Dec
- 2019 17:10:08 +0000
-Date:   Fri, 13 Dec 2019 17:10:06 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, <lenb@kernel.org>
-CC:     <linux-pci@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-acpi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <iommu@lists.linux-foundation.org>, <joro@8bytes.org>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <lorenzo.pieralisi@arm.com>, <guohanjun@huawei.com>,
-        <sudeep.holla@arm.com>, <rjw@rjwysocki.net>, <will@kernel.org>,
-        <robin.murphy@arm.com>, <bhelgaas@google.com>,
-        <eric.auger@redhat.com>, <zhangfei.gao@linaro.org>
-Subject: Re: [PATCH v3 00/13] iommu: Add PASID support to Arm SMMUv3
-Message-ID: <20191213171006.00003e99@Huawei.com>
-In-Reply-To: <20191209180514.272727-1-jean-philippe@linaro.org>
-References: <20191209180514.272727-1-jean-philippe@linaro.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1728194AbfLMRKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 12:10:50 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:57346 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728379AbfLMRKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 12:10:50 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A61B7E1D;
+        Fri, 13 Dec 2019 18:10:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1576257047;
+        bh=zn9I2+W9n9yW37O2l/bdOIDUCOKYH46nzAWKSfMmVvY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wn0wp5tCAQBmrc56Ik8TmVWk61nc4RX1gJmKqw8lmCyCVW+KVYoSLrShHab6Xt4dC
+         uqbqZALEMxZVX2t/yhcWTbEfZ/jk/9cZcOTbmApylU5oZJ/wf+QHSfA6AUmqeKwpFq
+         3CQSiQyMdpPGSgke/7BeNf2TEVR0W1cHhj8ZZs+o=
+Date:   Fri, 13 Dec 2019 19:10:38 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Simon Horman <horms@verge.net.au>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Peter Rosin <peda@axentia.se>
+Subject: Re: [PATCH v4 06/13] drm/bridge: lvds-codec: Add "lvds-decoder"
+ support
+Message-ID: <20191213171038.GH4860@pendragon.ideasonboard.com>
+References: <1573660292-10629-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1573660292-10629-7-git-send-email-fabrizio.castro@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.57]
-X-ClientProxiedBy: lhreml721-chm.china.huawei.com (10.201.108.72) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1573660292-10629-7-git-send-email-fabrizio.castro@bp.renesas.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Dec 2019 19:05:01 +0100
-Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
+Hi Fabrizio,
 
-> Add support for Substream ID and PASIDs to the SMMUv3 driver.
-> Changes since v2 [1]:
+On Wed, Nov 13, 2019 at 03:51:25PM +0000, Fabrizio Castro wrote:
+> Add support for transparent LVDS decoders by adding a new
+> compatible string ("lvds-decoder") to the driver.
+> This patch also adds member connector_type to struct lvds_codec,
+> and that's because LVDS decoders have a different connector type
+> from LVDS encoders. We fill this new member up with the data
+> matching the compatible string.
 > 
-> * Split preparatory work into patches 5, 6, 8 and 9.
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 > 
-> * Added patch 1. Not strictly relevant, but since we're moving the DMA
->   allocations and adding a new one, we might as well clean the flags
->   first.
+> ---
+> v3->v4:
+> * New patch
+> ---
+>  drivers/gpu/drm/bridge/lvds-codec.c | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
 > 
-> * Fixed a double free reported by Jonathan, and other small
->   issues.
-> 
-> * Added patch 12. Upstream commit c6e9aefbf9db ("PCI/ATS: Remove unused
->   PRI and PASID stubs") removed the unused PASID stubs. Since the SMMU
->   driver can be built without PCI, the stubs are now needed.
-> 
-> [1] https://lore.kernel.org/linux-iommu/20191108152508.4039168-1-jean-philippe@linaro.org/
+> diff --git a/drivers/gpu/drm/bridge/lvds-codec.c b/drivers/gpu/drm/bridge/lvds-codec.c
+> index b5801a2..c32e125 100644
+> --- a/drivers/gpu/drm/bridge/lvds-codec.c
+> +++ b/drivers/gpu/drm/bridge/lvds-codec.c
+> @@ -7,6 +7,7 @@
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/platform_device.h>
+>  
+> @@ -17,6 +18,7 @@ struct lvds_codec {
+>  	struct drm_bridge bridge;
+>  	struct drm_bridge *panel_bridge;
+>  	struct gpio_desc *powerdown_gpio;
+> +	u32 connector_type;
+>  };
+>  
+>  static int lvds_codec_attach(struct drm_bridge *bridge)
+> @@ -65,6 +67,7 @@ static int lvds_codec_probe(struct platform_device *pdev)
+>  	if (!lvds_codec)
+>  		return -ENOMEM;
+>  
+> +	lvds_codec->connector_type = (u32)of_device_get_match_data(&pdev->dev);
 
-Hi Jean-Philippe,
+I'm now getting a compilation failure here:
 
-Series looks great to me.  FWIW
+drivers/gpu/drm/bridge/lvds-codec.c: In function ‘lvds_codec_probe’:
+drivers/gpu/drm/bridge/lvds-codec.c:68:31: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
+  lvds_codec->connector_type = (u32)of_device_get_match_data(&pdev->dev);
+                               ^
 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-for the patches I didn't comment on in this version as I couldn't find anything
-to comment about ;)
+The fix should be simple:
 
-Thanks
+	lvds_codec->connector_type = (uintptr_t)of_device_get_match_data(dev);
 
-Jonathan
+I'm bothered by the fact that I've compiled this before without any
+issue, so this really puzzles me. Do you get the same warning ?
 
-> 
-> Jean-Philippe Brucker (13):
->   iommu/arm-smmu-v3: Drop __GFP_ZERO flag from DMA allocation
->   dt-bindings: document PASID property for IOMMU masters
->   iommu/arm-smmu-v3: Support platform SSID
->   ACPI/IORT: Support PASID for platform devices
->   iommu/arm-smmu-v3: Prepare arm_smmu_s1_cfg for SSID support
->   iommu/arm-smmu-v3: Add context descriptor tables allocators
->   iommu/arm-smmu-v3: Add support for Substream IDs
->   iommu/arm-smmu-v3: Propate ssid_bits
->   iommu/arm-smmu-v3: Handle failure of arm_smmu_write_ctx_desc()
->   iommu/arm-smmu-v3: Add second level of context descriptor table
->   iommu/arm-smmu-v3: Improve add_device() error handling
->   PCI/ATS: Add PASID stubs
->   iommu/arm-smmu-v3: Add support for PCI PASID
-> 
->  .../devicetree/bindings/iommu/iommu.txt       |   6 +
->  drivers/acpi/arm64/iort.c                     |  18 +
->  drivers/iommu/arm-smmu-v3.c                   | 462 +++++++++++++++---
->  drivers/iommu/of_iommu.c                      |   6 +-
->  include/linux/iommu.h                         |   2 +
->  include/linux/pci-ats.h                       |   3 +
->  6 files changed, 437 insertions(+), 60 deletions(-)
-> 
+>  	lvds_codec->powerdown_gpio = devm_gpiod_get_optional(dev, "powerdown",
+>  							     GPIOD_OUT_HIGH);
+>  	if (IS_ERR(lvds_codec->powerdown_gpio)) {
+> @@ -105,7 +108,7 @@ static int lvds_codec_probe(struct platform_device *pdev)
+>  
+>  	lvds_codec->panel_bridge =
+>  		devm_drm_panel_bridge_add_typed(dev, panel,
+> -						DRM_MODE_CONNECTOR_LVDS);
+> +						lvds_codec->connector_type);
+>  	if (IS_ERR(lvds_codec->panel_bridge))
+>  		return PTR_ERR(lvds_codec->panel_bridge);
+>  
+> @@ -133,8 +136,18 @@ static int lvds_codec_remove(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id lvds_codec_match[] = {
+> -	{ .compatible = "lvds-encoder" },
+> -	{ .compatible = "thine,thc63lvdm83d" },
+> +	{
+> +		.compatible = "lvds-decoder",
+> +		.data = (void *)DRM_MODE_CONNECTOR_DPI,
+> +	},
+> +	{
+> +		.compatible = "lvds-encoder",
+> +		.data = (void *)DRM_MODE_CONNECTOR_LVDS,
+> +	},
+> +	{
+> +		.compatible = "thine,thc63lvdm83d",
+> +		.data = (void *)DRM_MODE_CONNECTOR_LVDS,
+> +	},
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, lvds_codec_match);
 
+-- 
+Regards,
 
+Laurent Pinchart
