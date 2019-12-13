@@ -2,111 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC0F11DCC5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 05:06:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C50311DD0A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 05:16:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731688AbfLMEGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 23:06:37 -0500
-Received: from m228-5.mailgun.net ([159.135.228.5]:26749 "EHLO
-        m228-5.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727778AbfLMEGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 23:06:37 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1576209996; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=t3WuJRdbhQpYuvgidbSiHcxucdQ22ZxkAD1DdKzZCFQ=; b=EUsDVSAsZJDpmWYySTAcYp4AE6lPdeSe4r2d/uUexVFBBb4KbCyTttVGwo+VYcrq5tNNTksZ
- WNktCbTAKQA8aXKvBGxkwBywIPbA4cd4rX2pQzI18DcO3IgbfGTlKzsDI8CaQ5QsujTadYV4
- xC4uquwlfWxOuD8joxUQKUbJn90=
-X-Mailgun-Sending-Ip: 159.135.228.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5df30e4b.7f9bd3706ed8-smtp-out-n03;
- Fri, 13 Dec 2019 04:06:35 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 02BB4C447A1; Fri, 13 Dec 2019 04:06:34 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.131.117.127] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0F548C43383;
-        Fri, 13 Dec 2019 04:06:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0F548C43383
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH 0/7] arm64: dts: sc7180: Make dtbs_check mostly happy
-To:     Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, Kiran Gunda <kgunda@codeaurora.org>,
-        swboyd@chromium.org, mka@chromium.org,
-        Sandeep Maheswaram <sanm@codeaurora.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Maulik Shah <mkshah@codeaurora.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-References: <20191212193544.80640-1-dianders@chromium.org>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <5bccad6f-748e-1024-acd0-04af0a4cb731@codeaurora.org>
-Date:   Fri, 13 Dec 2019 09:36:26 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1731829AbfLMEQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 23:16:20 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:39198 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727778AbfLMEQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 23:16:20 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBD4GCZb015201;
+        Thu, 12 Dec 2019 22:16:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1576210572;
+        bh=wC9RBQmFmSj7MlFhLB/gvP67wVficio8GAklPgNPB/4=;
+        h=From:To:CC:Subject:Date;
+        b=I8cP+vaEknExtIYo3C8JYF+imFXekdgOy/4EWhsAnud5wQsKNa3KAKOTrRy5FKycr
+         xRsz5ZlffLDGvlAdteTuiWUIhXdgVhSv+z647Chfz6h9y2Yq3CgwKaksNmhws7iQKq
+         k8rR/oGKeNogyHCCX2dV0qOMlzDd1ST6lQrQNdm4=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBD4GCSF120254
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 12 Dec 2019 22:16:12 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 12
+ Dec 2019 22:16:12 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 12 Dec 2019 22:16:12 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBD4GCcV011374;
+        Thu, 12 Dec 2019 22:16:12 -0600
+From:   Dave Gerlach <d-gerlach@ti.com>
+To:     Tony Lindgren <tony@atomide.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Dave Gerlach <d-gerlach@ti.com>
+Subject: [PATCH 0/2] ARM: dts: am33xx/am4372: Add cpuidle dt states
+Date:   Thu, 12 Dec 2019 22:17:23 -0600
+Message-ID: <20191213041725.16831-1-d-gerlach@ti.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20191212193544.80640-1-dianders@chromium.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+This series adds DT idle states for TI am33xx and am4372 platforms.
+The mpu_gate is added for both platforms which gates the MPU clock
+to save power during idle. It depends on the driver series sent
+here [1].
 
-On 12/13/2019 1:05 AM, Douglas Anderson wrote:
-> This gets rid of all of the dtbs_check that showed up atop the current
-> qcom maintainer tree for sc7180-idp, except the errors in the
-> 'thermal-sensor' nodes.  I believe those are known / being dealt with
-> separately [1] [2].
-> 
-> I don't expect this series to have any functional changes, it just
-> makes the device tree cleaner.  I was able to boot after applying
-> these patches atop a working tree.
-> 
-> I have tried to sort the changes here, first including the "obviously
-> correct" changes and later changes I am less certain about.  There are
-> no known dependencies between the changes.
+Regards,
+Dave
 
-Thanks Doug for these cleanups, for the series
+[1] https://marc.info/?l=linux-kernel&m=157620644400324&w=2
 
-Reviewed-by: Rajendra Nayak <rnayak@codeaurora.org>
+Dave Gerlach (2):
+  ARM: dts: am33xx: Add idle_states for cpuidle
+  ARM: dts: am4372: Add idle_states for cpuidle
 
-> 
-> [1] https://lore.kernel.org/r/CAD=FV=UXC3UT78vGBr9rRuRxz=8iwH4tOkFx6NC-pSs+Z5+7Xw@mail.gmail.com
-> [2] https://lore.kernel.org/r/CAD=FV=UtHebABCpJo1QUc6C2v2iZq2rFL+pTMx=EHBL+7d=jTQ@mail.gmail.com
-> 
-> 
-> Douglas Anderson (7):
->    arm64: dts: qcom: sc7180: Add SoC name to compatible
->    arm64: dts: qcom: sc7180: Rename gic-its node to msi-controller
->    arm64: dts: qcom: sc7180: Add "#clock-cells" property to usb_1_ssphy
->    arm64: dts: qcom: pm6150: Remove macro from unit name of adc-chan
->    arm64: dts: qcom: sc7180: Avoid "memory" for cmd-db reserved-memory
->      node
->    arm64: dts: qcom: sc7180: Avoid "phy" for USB QMP PHY wrapper
->    arm64: dts: qcom: sc7180: Use 'ranges' in arm,armv7-timer-mem node
-> 
->   arch/arm64/boot/dts/qcom/pm6150.dtsi    |  2 +-
->   arch/arm64/boot/dts/qcom/sc7180-idp.dts |  2 +-
->   arch/arm64/boot/dts/qcom/sc7180.dtsi    | 45 +++++++++++++------------
->   3 files changed, 25 insertions(+), 24 deletions(-)
-> 
+ arch/arm/boot/dts/am33xx.dtsi | 12 ++++++++++++
+ arch/arm/boot/dts/am4372.dtsi | 12 ++++++++++++
+ 2 files changed, 24 insertions(+)
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.20.1
+
