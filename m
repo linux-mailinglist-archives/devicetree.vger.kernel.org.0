@@ -2,133 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB8811E635
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 16:09:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB8711E655
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 16:21:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727539AbfLMPJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 10:09:48 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:55304 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727536AbfLMPJs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 10:09:48 -0500
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 312F7E00;
-        Fri, 13 Dec 2019 16:09:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1576249785;
-        bh=o0CHrYc/I6WkpvTk7+BesHWKBfYO6bupATH/o75dbwU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mDAhW94IwncfLplmU4vn8//7eN/1PBQpAfRa6g+02MsXGWgvOlLAWSlNlB5ip3tyw
-         7jySM6NlCLHobkLpS4V2XvoClJQiu4zmNpvXFxOkdIfEAFaKiTXrdx+jFCImi4u4Hb
-         lalLOR5/uDbq2GZcZN5F78GoizUvG8WavsE1/5lM=
-Date:   Fri, 13 Dec 2019 17:09:35 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Tomasz Figa <tfiga@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>, kernel@collabora.com,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: Re: [PATCH v3 1/7] media: vb2: Add a helper to get the vb2 buffer
- attached to a request
-Message-ID: <20191213150935.GC24654@pendragon.ideasonboard.com>
-References: <20191213125414.90725-1-boris.brezillon@collabora.com>
- <20191213125414.90725-2-boris.brezillon@collabora.com>
+        id S1727534AbfLMPV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 10:21:27 -0500
+Received: from out28-195.mail.aliyun.com ([115.124.28.195]:44113 "EHLO
+        out28-195.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726908AbfLMPV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 10:21:27 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1875682|-1;CH=green;DM=CONTINUE|CONTINUE|true|0.0205657-0.000635969-0.978798;DS=CONTINUE|ham_system_inform|0.104908-0.00039177-0.8947;FP=12608124286243724992|1|1|1|0|-1|-1|-1;HT=e01l07423;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.GGSxanS_1576250475;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.GGSxanS_1576250475)
+          by smtp.aliyun-inc.com(10.147.40.233);
+          Fri, 13 Dec 2019 23:21:21 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        paul.burton@mips.com, paulburton@kernel.org, paul@crapouillou.net,
+        mturquette@baylibre.com, sboyd@kernel.org, mark.rutland@arm.com,
+        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
+Subject: clk: Ingenic: Add support for the X1830 v2.
+Date:   Fri, 13 Dec 2019 23:21:06 +0800
+Message-Id: <1576250472-124315-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20191213125414.90725-2-boris.brezillon@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Boris,
+v1->v2:
+1.Use two fields (pll_reg & bypass_reg) instead of the 2-values
+  array (reg[2]).
+2.Remove the "pll_info->version" and add a "pll_info->rate_multiplier".
+3.Fix the coding style and add more detailed commit message.
+4.Remove [4/5] and [5/5] in v1, because some problems were found in
+  subsequent tests.
+5.Remove unnecessary spinlock as Paul Burton and Paul Cercueil's suggestion.
+6.Change my Signed-off-by from "Zhou Yanjie <zhouyanjie@zoho.com>"
+  to "周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>" because
+  the old mailbox is in an unstable state.
 
-On Fri, Dec 13, 2019 at 01:54:08PM +0100, Boris Brezillon wrote:
-> vb2_request_get_buf() returns the N-th buffer attached to a media
-> request.
-> 
-> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-> ---
-> Changes in v3:
-> * None
-> 
-> Changes in v2:
-> * Adjust the kernel doc as suggested by Hans
-> ---
->  .../media/common/videobuf2/videobuf2-core.c   | 23 +++++++++++++++++++
->  include/media/videobuf2-core.h                | 11 +++++++++
->  2 files changed, 34 insertions(+)
-> 
-> diff --git a/drivers/media/common/videobuf2/videobuf2-core.c b/drivers/media/common/videobuf2/videobuf2-core.c
-> index 4489744fbbd9..c4c7980dcb0d 100644
-> --- a/drivers/media/common/videobuf2/videobuf2-core.c
-> +++ b/drivers/media/common/videobuf2/videobuf2-core.c
-> @@ -1416,6 +1416,29 @@ unsigned int vb2_request_buffer_cnt(struct media_request *req)
->  }
->  EXPORT_SYMBOL_GPL(vb2_request_buffer_cnt);
->  
-> +struct vb2_buffer *vb2_request_get_buf(struct media_request *req,
-> +				       unsigned int n)
-> +{
-> +	struct media_request_object *obj;
-> +	struct vb2_buffer *buf = NULL;
-> +	unsigned int nbufs = 0;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&req->lock, flags);
-> +	list_for_each_entry(obj, &req->objects, list) {
-> +		if (!vb2_request_object_is_buffer(obj) ||
-> +		    nbufs++ < n)
-> +			continue;
-> +
-> +		buf = container_of(obj, struct vb2_buffer, req_obj);
-> +		break;
-> +	}
-> +	spin_unlock_irqrestore(&req->lock, flags);
-> +
-> +	return buf;
-> +}
-> +EXPORT_SYMBOL_GPL(vb2_request_get_buf);
-> +
->  int vb2_core_prepare_buf(struct vb2_queue *q, unsigned int index, void *pb)
->  {
->  	struct vb2_buffer *vb;
-> diff --git a/include/media/videobuf2-core.h b/include/media/videobuf2-core.h
-> index a2b2208b02da..6206e25df764 100644
-> --- a/include/media/videobuf2-core.h
-> +++ b/include/media/videobuf2-core.h
-> @@ -1225,4 +1225,15 @@ bool vb2_request_object_is_buffer(struct media_request_object *obj);
->   */
->  unsigned int vb2_request_buffer_cnt(struct media_request *req);
->  
-> +/**
-> + * vb2_request_get_buf() - return the buffer at index @idx
-> + *
-> + * @req:	the request.
-> + * @n:		search for the Nth buffer in the req object list
-
-It's not very clear to me what "n" is here. Wouldn't it be better to
-pass the queue pointer instead, to get a buffer for a given queue ?
-
-> + *
-> + * Return a vb2 buffer or NULL if there's no buffer at the specified position
-> + */
-> +struct vb2_buffer *vb2_request_get_buf(struct media_request *req,
-> +				       unsigned int n);
-> +
->  #endif /* _MEDIA_VIDEOBUF2_CORE_H */
-
--- 
-Regards,
-
-Laurent Pinchart
