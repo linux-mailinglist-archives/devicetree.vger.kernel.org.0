@@ -2,151 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C93A11E49B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 14:30:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C85C11E4D8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 14:47:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727512AbfLMNaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 08:30:05 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:40589 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727425AbfLMNaF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 08:30:05 -0500
-Received: by mail-wm1-f68.google.com with SMTP id t14so6567783wmi.5
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2019 05:30:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=VXzCIVNIyEIalSwrDVu1JlYLLJVG8LUdZccZXShpYsw=;
-        b=nZ9BQpSuWb9dDeJykWlitqmovokkBjW/QjlPbblKCvaHm0mccziJSL6ajoVWDfotQt
-         XnXJBWVcWNLc5JqFW+o9Tl23W+/w+x5W/n0yEqrgk6z0/klrDcJ9SfNGCgMevbuYx1lG
-         PrEHbPePlNDmwl725H0hAvDzGoMTkkksqbQhhcoCR03XcDFG3miJ7j1meXOF47Dlzqj/
-         PhoneeU8HryDHVuUxDu+S7zYoeFUXDwS9XIFegBzSCM1Iacw2SqzmaHN/hkDNLrrDDuR
-         oN6lS4cBVlahfCWW3hMbLY9yQzsgKZp/9i5oJV08NN4dEaKFVgf18DKoGYD6cvDudgHb
-         zQMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=VXzCIVNIyEIalSwrDVu1JlYLLJVG8LUdZccZXShpYsw=;
-        b=CCUy1zq2AjenXNtmXuu40UR5vma5QwP46NLm4CY+dr1yTrip2VO/EyyS91ZdD0IstD
-         0mJ0swvii1NRzoi+ObHq0mPQ1dMeVlqhsoWTysfewigdg+HzOHkv9D2EqbY5ABT9zS8J
-         SNEDRazMOpQEw/+kqV75W1qgmYhbHzm0UU0MQrL72ULe3IReOa2TWARmBdMuLBndD142
-         tJrOoYBUj8HcrVDuV8RRdGU8u7/MNblkNjv+A9MMB/m/rOy0j8XiiAu3jqJbG9R5gjnh
-         FaapGJt0H4UNtssUo3CpUuQ3dxWA94ouRsO8oX1SsABcMX2Us2w4c6hksT+KmFNqLmm+
-         3aiw==
-X-Gm-Message-State: APjAAAUIIgABTcp9LUtUhwkIvNu83bxAOxmvFITNYbP/qZIQpFJoN7dS
-        0c3w1NlQ/lbUY+RtaIKinAp+LQ==
-X-Google-Smtp-Source: APXvYqySye0Al7ofzrrLCFePLmE9J5EDhkpPFb1QMhV+Eca0/HHqNuayvmb667XyzUHwTfXeZTWmWA==
-X-Received: by 2002:a1c:8086:: with SMTP id b128mr13635797wmd.80.1576243802038;
-        Fri, 13 Dec 2019 05:30:02 -0800 (PST)
-Received: from localhost.localdomain ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
-        by smtp.gmail.com with ESMTPSA id n3sm10540543wmc.27.2019.12.13.05.30.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2019 05:30:01 -0800 (PST)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     narmstrong@baylibre.com, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl, khilman@baylibre.com,
-        devicetree@vger.kernel.org
-Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] media: platform: meson-ao-cec-g12a: add wakeup support
-Date:   Fri, 13 Dec 2019 14:29:56 +0100
-Message-Id: <20191213132956.11074-4-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191213132956.11074-1-glaroque@baylibre.com>
-References: <20191213132956.11074-1-glaroque@baylibre.com>
+        id S1726928AbfLMNrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 08:47:31 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:51698 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726524AbfLMNrb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Dec 2019 08:47:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=awCXz0GwD1LDcWzOjDMp0h+d0sdlS80mO4Nbpi4KuV0=; b=B022IG0f4HXZeMBlMNrforMruq
+        dFK7znmRa1CpiTRnP5y5JakiioHQ+FdeEMCHwk2Gj0/OgbKerI8jebCoeNmN1LuX1Yu+7UNmUTTXy
+        MGKwep3ErD6V9+pLSXg9iuy7P0DRSQDYOfxGJpzrOZ0+YYKV7JvJNzXUQvMMLC7dJSiw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1iflHg-00019i-1C; Fri, 13 Dec 2019 14:47:08 +0100
+Date:   Fri, 13 Dec 2019 14:47:08 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     biao huang <biao.huang@mediatek.com>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, yt.shen@mediatek.com
+Subject: Re: [PATCH 1/2] net-next: stmmac: mediatek: add more suuport for RMII
+Message-ID: <20191213134708.GA4286@lunn.ch>
+References: <20191212024145.21752-1-biao.huang@mediatek.com>
+ <20191212024145.21752-2-biao.huang@mediatek.com>
+ <20191212132520.GB9959@lunn.ch>
+ <1576200981.29387.13.camel@mhfsdcap03>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1576200981.29387.13.camel@mhfsdcap03>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add register configuration to activate wakeup feature in bl301
+> The clock labeled as "rmii_internal" is needed only in RMII(when MAC provides
+> reference clock), and useless for RGMII/MII/RMII(when phy provides reference
+> clock).
+> 
+> So, add a boolean flag to indicate where the RMII reference clock is from, MAC
+> or PHY, if MAC, enable the "rmii_internal", or disable it.
+> and this clock already documented in dt-binding in PATCH 2/2.
+> 
+> For power saving, it should not be enabled in default, so can't add it to the
+> existing list of clocks directly.
+> 
+> Any advice for this special case?
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- drivers/media/platform/meson/ao-cec-g12a.c | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+O.K. Add the boolean, but also add the clock to the list of clocks in
+DT. Don't hard code the clock name in the driver.
 
-diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
-index 891533060d49..85850b974126 100644
---- a/drivers/media/platform/meson/ao-cec-g12a.c
-+++ b/drivers/media/platform/meson/ao-cec-g12a.c
-@@ -25,6 +25,7 @@
- #include <media/cec.h>
- #include <media/cec-notifier.h>
- #include <linux/clk-provider.h>
-+#include <linux/mfd/syscon.h>
- 
- /* CEC Registers */
- 
-@@ -168,6 +169,18 @@
- 
- #define CECB_WAKEUPCTRL		0x31
- 
-+#define CECB_FUNC_CFG_REG		0xA0
-+#define CECB_FUNC_CFG_MASK		GENMASK(6, 0)
-+#define CECB_FUNC_CFG_CEC_ON		0x01
-+#define CECB_FUNC_CFG_OTP_ON		0x02
-+#define CECB_FUNC_CFG_AUTO_STANDBY	0x04
-+#define CECB_FUNC_CFG_AUTO_POWER_ON	0x08
-+#define CECB_FUNC_CFG_ALL		0x2f
-+#define CECB_FUNC_CFG_NONE		0x0
-+
-+#define CECB_LOG_ADDR_REG	0xA4
-+#define CECB_LOG_ADDR_MASK	GENMASK(22, 16)
-+
- struct meson_ao_cec_g12a_data {
- 	/* Setup the internal CECB_CTRL2 register */
- 	bool				ctrl2_setup;
-@@ -177,6 +190,7 @@ struct meson_ao_cec_g12a_device {
- 	struct platform_device		*pdev;
- 	struct regmap			*regmap;
- 	struct regmap			*regmap_cec;
-+	struct regmap			*regmap_ao_sysctrl;
- 	spinlock_t			cec_reg_lock;
- 	struct cec_notifier		*notify;
- 	struct cec_adapter		*adap;
-@@ -518,6 +532,13 @@ meson_ao_cec_g12a_set_log_addr(struct cec_adapter *adap, u8 logical_addr)
- 					 BIT(logical_addr - 8));
- 	}
- 
-+	if (ao_cec->regmap_ao_sysctrl)
-+		ret |= regmap_update_bits(ao_cec->regmap_ao_sysctrl,
-+					 CECB_LOG_ADDR_REG,
-+					 CECB_LOG_ADDR_MASK,
-+					 FIELD_PREP(CECB_LOG_ADDR_MASK,
-+						    logical_addr));
-+
- 	/* Always set Broadcast/Unregistered 15 address */
- 	ret |= regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
- 				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8),
-@@ -618,6 +639,13 @@ static int meson_ao_cec_g12a_adap_enable(struct cec_adapter *adap, bool enable)
- 		regmap_write(ao_cec->regmap_cec, CECB_CTRL2,
- 			     FIELD_PREP(CECB_CTRL2_RISE_DEL_MAX, 2));
- 
-+	if (ao_cec->regmap_ao_sysctrl) {
-+		regmap_update_bits(ao_cec->regmap_ao_sysctrl,
-+				   CECB_FUNC_CFG_REG,
-+				   CECB_FUNC_CFG_MASK,
-+				   CECB_FUNC_CFG_ALL);
-+	}
-+
- 	meson_ao_cec_g12a_irq_setup(ao_cec, true);
- 
- 	return 0;
-@@ -685,6 +713,11 @@ static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
- 		goto out_probe_adapter;
- 	}
- 
-+	ao_cec->regmap_ao_sysctrl = syscon_regmap_lookup_by_phandle
-+		(pdev->dev.of_node, "amlogic,ao-sysctrl");
-+	if (IS_ERR(ao_cec->regmap_ao_sysctrl))
-+		dev_warn(&pdev->dev, "ao-sysctrl syscon regmap lookup failed.\n");
-+
- 	irq = platform_get_irq(pdev, 0);
- 	ret = devm_request_threaded_irq(&pdev->dev, irq,
- 					meson_ao_cec_g12a_irq,
--- 
-2.17.1
-
+    Andrew
