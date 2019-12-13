@@ -2,60 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D9A11DD52
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 05:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC36411DD4D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 05:57:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731839AbfLME6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 23:58:51 -0500
-Received: from m228-4.mailgun.net ([159.135.228.4]:60175 "EHLO
-        m228-4.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731684AbfLME6v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 23:58:51 -0500
-X-Greylist: delayed 304 seconds by postgrey-1.27 at vger.kernel.org; Thu, 12 Dec 2019 23:58:42 EST
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1576213131; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=hBwq830ssQQu7DOCklsksw2TNX9kkLNPJbT5z7eq4z8=; b=EOQyjqt+YMeDOBuoa9VX1kiyCNSnu76ExMMb11SU8WJKLWq5C/jfU2SHYniujNV2BKyusVaz
- JqAuJRTIw0SQy96p6yJmKN2aZc9JW7f4Xj2jHnZ2xFJNtBwxhk/dm+DRaYrNGOZyfXmn9n8U
- q+wjVsjhtMNv4WisBN16PtTc1cs=
-X-Mailgun-Sending-Ip: 159.135.228.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5df3195b.7f511a9c5340-smtp-out-n03;
- Fri, 13 Dec 2019 04:53:47 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C8BBDC447A1; Fri, 13 Dec 2019 04:53:46 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D97C1C447A2;
-        Fri, 13 Dec 2019 04:53:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D97C1C447A2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
+        id S1731900AbfLME5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 23:57:40 -0500
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:45604 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731496AbfLME5k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 23:57:40 -0500
+Received: by mail-pl1-f196.google.com with SMTP id bc8so710256plb.12
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2019 20:57:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cvwe20yUJDJuFJ66zvHMDZeiCBexsoGR7m8CsDCyCu4=;
+        b=X2PRwyMyCuxiKRaie0hFrkxzqLEOPlOz+26PPrWgf6Uclbta2wGm5N7QPTP9IHfAZm
+         qx41XdHXGk0wGNodDYVtSfyomKAInudAl44gz5Cnjh7ZJo3RVGyljrrldIcrM0UG/Ql6
+         gSkNnNEOqi7MXs8lWa00tcK16Z1ieFZsGUj4c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cvwe20yUJDJuFJ66zvHMDZeiCBexsoGR7m8CsDCyCu4=;
+        b=ogTzeKLmjlgYJ3ieatQ9wEEFo3WfKLAw+Uib7WXFoQGlOTrRG1/8A/ma9U3N7rSiJ+
+         lGoPEUfThS2boYYWGhdebxexilrAZPB3pIBy/FWXv9dx7xOhnIKR62O1oaUYQmGsI58M
+         /1jzFTQc9Jh0x3VZkQL6Rdbj55vuqciK5xd0JKdZLajXdt3lZ6JiSFlG9g9b5E32r1aN
+         ePi2/kd/fCp9JVWw5lfBfLpsDDhPryOEU2dbf8y0WWkhWSn4R5x6LjQLSrME4n/p15LH
+         xS3bls/54/rUwWPf1nYUfivaI0AxzxkSPYNNMmKf4c9fqutRgCoNKGVlaLbma72ug/hM
+         VU6g==
+X-Gm-Message-State: APjAAAV2iFixsI7xvOoLGATuT08srhXVqGfnX9G/MCQVgGDgHk2CM5Fa
+        1hP1FkMvPFejewYOzKztrEmkrg==
+X-Google-Smtp-Source: APXvYqwnWUp0o8KtiSrYFm8++pXYoHNI+Rddu1ElryZsNalMMsCCoQR6YhWaVxkyQC5g//D6B5tL2A==
+X-Received: by 2002:a17:90a:8a12:: with SMTP id w18mr14128302pjn.68.1576213059923;
+        Thu, 12 Dec 2019 20:57:39 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:b852:bd51:9305:4261])
+        by smtp.gmail.com with ESMTPSA id o16sm8539538pgl.58.2019.12.12.20.57.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Dec 2019 20:57:39 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: qcs404: Update the compatible for watchdog timer
-Date:   Fri, 13 Dec 2019 10:23:20 +0530
-Message-Id: <757995875cc12d3f5a8f5fd5659b04653950970a.1576211720.git.saiprakash.ranjan@codeaurora.org>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <cover.1576211720.git.saiprakash.ranjan@codeaurora.org>
-References: <cover.1576211720.git.saiprakash.ranjan@codeaurora.org>
+        Daniel Kurtz <djkurtz@chromium.org>
+Subject: [PATCH] arm64: dts: mt8173: add Mediatek JPEG Codec
+Date:   Fri, 13 Dec 2019 12:57:20 +0800
+Message-Id: <20191213045720.172738-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.24.1.735.g03f4e72817-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -63,27 +60,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the compatible for QCS404 watchdog timer with proper
-SoC specific compatible.
+Add JPEG codec node in mt8173.
 
-Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index f5f0c4c9cb16..c9e8e629045b 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -905,7 +905,7 @@
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+index 15f1842f6df3..82df8940d515 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+@@ -1401,6 +1401,20 @@ vcodec_enc: vcodec@18002000 {
+ 						 <&topckgen CLK_TOP_UNIVPLL1_D2>;
  		};
  
- 		watchdog@b017000 {
--			compatible = "qcom,kpss-wdt";
-+			compatible = "qcom,apss-wdt-qcs404", "qcom,kpss-wdt";
- 			reg = <0x0b017000 0x1000>;
- 			clocks = <&sleep_clk>;
- 		};
++		jpegdec: jpegdec@18004000 {
++			compatible = "mediatek,mt8173-jpgdec";
++			reg = <0 0x18004000 0 0x1000>;
++			interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_LOW>;
++			clocks = <&vencsys CLK_VENC_CKE0>,
++				 <&vencsys CLK_VENC_CKE3>;
++			clock-names = "jpgdec-smi",
++				      "jpgdec";
++			power-domains = <&scpsys MT8173_POWER_DOMAIN_VENC>;
++			mediatek,larb = <&larb3>;
++			iommus = <&iommu M4U_PORT_JPGDEC_WDMA>,
++				 <&iommu M4U_PORT_JPGDEC_BSDMA>;
++		};
++
+ 		vencltsys: clock-controller@19000000 {
+ 			compatible = "mediatek,mt8173-vencltsys", "syscon";
+ 			reg = <0 0x19000000 0 0x1000>;
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.24.1.735.g03f4e72817-goog
+
