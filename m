@@ -2,40 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A90C911DD40
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 05:53:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47D9A11DD52
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 05:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731789AbfLMExo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Dec 2019 23:53:44 -0500
-Received: from m228-5.mailgun.net ([159.135.228.5]:34635 "EHLO
-        m228-5.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731958AbfLMExo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 23:53:44 -0500
+        id S1731839AbfLME6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Dec 2019 23:58:51 -0500
+Received: from m228-4.mailgun.net ([159.135.228.4]:60175 "EHLO
+        m228-4.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731684AbfLME6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Dec 2019 23:58:51 -0500
+X-Greylist: delayed 304 seconds by postgrey-1.27 at vger.kernel.org; Thu, 12 Dec 2019 23:58:42 EST
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1576212822; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1576213131; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=zq6q1p+b4tRfI4yWLN1R0Wzm/786IrWnXTnmewjdUUs=; b=LsQYWyS8y9oK5cNKNyRn9Vo34egmaLAch/p8LCseAGgo5OUe/tsGNxpgYjJbG2+P7OA7XsW6
- s22eBzm7uha9qCgTuSK1xcCNNfiGFS2ENY+eMapUyCjOl8lGgv3TC3QcHxshDNWO5Z0Somop
- ZVmYWRFFPt3uXJYWTYN9IbF8N6w=
-X-Mailgun-Sending-Ip: 159.135.228.5
+ Sender; bh=hBwq830ssQQu7DOCklsksw2TNX9kkLNPJbT5z7eq4z8=; b=EOQyjqt+YMeDOBuoa9VX1kiyCNSnu76ExMMb11SU8WJKLWq5C/jfU2SHYniujNV2BKyusVaz
+ JqAuJRTIw0SQy96p6yJmKN2aZc9JW7f4Xj2jHnZ2xFJNtBwxhk/dm+DRaYrNGOZyfXmn9n8U
+ q+wjVsjhtMNv4WisBN16PtTc1cs=
+X-Mailgun-Sending-Ip: 159.135.228.4
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5df31956.7f0ead40f6f8-smtp-out-n03;
- Fri, 13 Dec 2019 04:53:42 -0000 (UTC)
+ by mxa.mailgun.org with ESMTP id 5df3195b.7f511a9c5340-smtp-out-n03;
+ Fri, 13 Dec 2019 04:53:47 -0000 (UTC)
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 009E6C447A4; Fri, 13 Dec 2019 04:53:41 +0000 (UTC)
+        id C8BBDC447A1; Fri, 13 Dec 2019 04:53:46 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id CF5FEC433CB;
-        Fri, 13 Dec 2019 04:53:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CF5FEC433CB
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D97C1C447A2;
+        Fri, 13 Dec 2019 04:53:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D97C1C447A2
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
 From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
@@ -49,9 +50,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org,
         Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Subject: [PATCH 2/3] dt-bindings: watchdog: Add compatible for QCS404, SC7180, SDM845, SM8150
-Date:   Fri, 13 Dec 2019 10:23:19 +0530
-Message-Id: <3f871ae3818b46423430074689e33bc34b28aa1c.1576211720.git.saiprakash.ranjan@codeaurora.org>
+Subject: [PATCH 3/3] arm64: dts: qcom: qcs404: Update the compatible for watchdog timer
+Date:   Fri, 13 Dec 2019 10:23:20 +0530
+Message-Id: <757995875cc12d3f5a8f5fd5659b04653950970a.1576211720.git.saiprakash.ranjan@codeaurora.org>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <cover.1576211720.git.saiprakash.ranjan@codeaurora.org>
 References: <cover.1576211720.git.saiprakash.ranjan@codeaurora.org>
@@ -62,37 +63,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing compatible for watchdog timer on QCS404,
-SC7180, SDM845 and SM8150 SoCs.
+Update the compatible for QCS404 watchdog timer with proper
+SoC specific compatible.
 
 Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
 ---
- .../devicetree/bindings/watchdog/qcom-wdt.yaml       | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-index 4a42f4261322..ec25ce1c9e2e 100644
---- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-@@ -12,6 +12,18 @@ maintainers:
- properties:
-   compatible:
-     oneOf:
-+      - items:
-+          - const: qcom,apss-wdt-sc7180
-+          - const: qcom,kpss-wdt
-+      - items:
-+          - const: qcom,apss-wdt-sdm845
-+          - const: qcom,kpss-wdt
-+      - items:
-+          - const: qcom,apss-wdt-sm8150
-+          - const: qcom,kpss-wdt
-+      - items:
-+          - const: qcom,apss-wdt-qcs404
-+          - const: qcom,kpss-wdt
-       - const: qcom,kpss-timer
-       - const: qcom,kpss-wdt
-       - const: qcom,kpss-wdt-apq8064
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index f5f0c4c9cb16..c9e8e629045b 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -905,7 +905,7 @@
+ 		};
+ 
+ 		watchdog@b017000 {
+-			compatible = "qcom,kpss-wdt";
++			compatible = "qcom,apss-wdt-qcs404", "qcom,kpss-wdt";
+ 			reg = <0x0b017000 0x1000>;
+ 			clocks = <&sleep_clk>;
+ 		};
 -- 
 QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
 of Code Aurora Forum, hosted by The Linux Foundation
