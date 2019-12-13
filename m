@@ -2,297 +2,410 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF67911E2C3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 12:28:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A3711E2E4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 12:41:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726638AbfLML22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 06:28:28 -0500
-Received: from mail-il1-f196.google.com ([209.85.166.196]:42256 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725799AbfLML21 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 06:28:27 -0500
-Received: by mail-il1-f196.google.com with SMTP id a6so1768983ili.9;
-        Fri, 13 Dec 2019 03:28:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SApHZXxkyc33oQaGK6ky4W1VLNyP7mSMuSzcqHJ/PMo=;
-        b=HhDJni7Z8Yno+RYPsfonnh9u7UmeNE60s3l8GDJ5FsG12OyvWMXhrinljTrHbKD4+5
-         2xIpEk4Q7aekunme4PXh2CTzJbYFHwJzPzJh13yXzDlZud3PxhDGfbmyel4AAMP50yWg
-         HwNS9GiuiS9hnITqC41XdouC/rSjpT/LD2iRHgubIHsbTaxIAJHG7OQKE3zqCw2E+KGs
-         ohASwrdD4mWl+9NEypLgSLJCBkyTXr6e9IBxJlxiPTvBVHBS86ps752U9g+ESSuOeUIV
-         zdXXirsH0aCVba3F/hRWGAx831heB78XEk+MMfBwXApnBgmLefFw5I1mIiRan+GyhwR1
-         +txg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SApHZXxkyc33oQaGK6ky4W1VLNyP7mSMuSzcqHJ/PMo=;
-        b=f/gKqKAYfiHOaFGGgnVsJtuC+MraUOL/jZI055IiTssDHA9kUruBNk89voEGIcwrqK
-         XSaOWOb4OJ4E+UGwUlZdsEBz/P0mTYT3Z+z6wlUAFSV5dHY2lL/7lGZWx9/qekTpkBfD
-         b31rzySLbQwAbll2AB/SUqI7xqAuvoOtdSQSDP/Ory8QI8jV8k3E1tVrlG4qna4JJf32
-         u0z4elQuuoLBR1GMmHmInyvGqvaIQOSgIhZXp8aoHrY62/RqKxUnOWNAl82Vnzwcf+Y7
-         SvZwTYwzushclJMxuT/oWBUiZnpPxLvC9jw6ruTPckucIuGBzRZ/CSTaQ0aWK01LrwkX
-         Pfdg==
-X-Gm-Message-State: APjAAAUoJQnoskMBzSkRaxxVHr9KHH74WYo2ngrVAEU/iSDd/yaud4qy
-        +E+vD9Xh0jwr1XT1XK22/RxkkqPkrpEAaAQKBgk=
-X-Google-Smtp-Source: APXvYqwg0FT6i21iRj8cES5CzIZe+O41zVwBf4zrhT9VlubUT5C87Ye5zvW1/OTnwkaaVp0JwGsy31bWMWtRA/EdKSQ=
-X-Received: by 2002:a92:49d1:: with SMTP id k78mr13607183ilg.6.1576236506638;
- Fri, 13 Dec 2019 03:28:26 -0800 (PST)
+        id S1725818AbfLMLkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 06:40:14 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:44699 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725799AbfLMLkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Dec 2019 06:40:14 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 8806E6227;
+        Fri, 13 Dec 2019 06:40:12 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 13 Dec 2019 06:40:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=NOJF5aGJ9ckmW6XB3QtuOIOnhbe
+        S+P1d9AIRUJs17cY=; b=MdjkF6qNRzMRH4GlY3dG/VBW3LsNiyAcbP+bABW9t27
+        /q31SN1awTlYztTlqHSv1/lVBUZUn4uVJKZPf/zrUJMmzdBqXI/PEUk2LJprDdUK
+        mGtqciT6Msf0yU2dTq/GS6b3LjFQQH9Ney9YnT22viBnRjyd4p5UgGnOHKtQYgeK
+        Eql2gKS6KB4ksdbssnesKQ3Yw/W+IjrUxHAkxDGIAOX5Cq3PZmFs/CgvFp9WY/w2
+        DNfy7pk0WbUvBWgUaXCLoA9waT4BigCwrcoynYPB2afybp32DBfGtxxngiWdBAYD
+        UakEum/0xwziMoDOIcJQfRA//NvTRGO85xMzUAiQCDQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=NOJF5a
+        GJ9ckmW6XB3QtuOIOnhbeS+P1d9AIRUJs17cY=; b=EXIDy+g/FXVZgt78al76Vh
+        O0h30uY9x/vRdVS8r3j35M1Uaxe1oocrgmQNaB0WYEyAT1c91SWnz7Vr5vXTonej
+        ihROzQsEH0aybqh6pKDXAQiz4To0/MARLM7ft+i7XwS2hNJeKu0DS1oM6cf8PECR
+        pbs77sFc7oaeI6VQsitmBTcetG1/VNQORtS3mnBb7io7NnubZuBt/mMsSAkmpqxq
+        Lqkyw9jM8WTVeSCru0ZOVNtarf5BoQ19AuKoRc7QYYdEM2sHa/Y4h2KONWHIREvx
+        Kea6sEYSlo3yd4wZzrgWklPYM4DeMxOz7MVVOl8cv7slemGX1P5xiFI7zlPg7Y9g
+        ==
+X-ME-Sender: <xms:nHjzXVjJJ6RqqHBoJzKvn8VjkIxC1ftcYW--EV-wAcRiNuOyeEFyqg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudelledgfeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuffhomhgrih
+    hnpeguvghvihgtvghtrhgvvgdrohhrghenucfkphepledtrdekledrieekrdejieenucfr
+    rghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthhenucevlh
+    hushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:nHjzXfwSQsSDzFPeCjrlb5jVBtdusKWnr-7JN91179jC6sRHU41jtA>
+    <xmx:nHjzXTLMg9FPgstGG6ij6TG0Iu62wLxhrYsdUjFdBV5Pe90uWvmraw>
+    <xmx:nHjzXU3EvkEbavMz7JLYB4IQPdOeG7xxkgUeECuRx3A9bIXw7U1kXA>
+    <xmx:nHjzXbFEJm0RCWCmqTXSJebGMvrolXU3cm7tvFpAeEKlzF5d1VOgHg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 8E9B58005C;
+        Fri, 13 Dec 2019 06:40:11 -0500 (EST)
+Date:   Fri, 13 Dec 2019 12:40:08 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Mike Leach <mike.leach@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
+        suzuki.poulose@arm.com, robh+dt@kernel.org, liviu.dudau@arm.com,
+        sudeep.holla@arm.com, lorenzo.pieralisi@arm.com, agross@kernel.org
+Subject: Re: [PATCH v6 05/15] dt-bindings: arm: Adds CoreSight CTI hardware
+ definitions.
+Message-ID: <20191213114008.uyghh3rdbnaumcft@gilmour.lan>
+References: <20191211230813.5144-1-mike.leach@linaro.org>
 MIME-Version: 1.0
-References: <20191101143126.2549-1-linux.amoon@gmail.com> <7hfthtrvvv.fsf@baylibre.com>
- <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com> <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com>
- <7hfthsqcap.fsf@baylibre.com> <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
- <7hpngvontu.fsf@baylibre.com> <4e1339b4-c751-3edc-3a2e-36931ad1c503@baylibre.com>
- <CAFBinCCgKcwXSLxS_CRvz9JZvQo8PcUGm=egBbabVZSrkSc30Q@mail.gmail.com>
-In-Reply-To: <CAFBinCCgKcwXSLxS_CRvz9JZvQo8PcUGm=egBbabVZSrkSc30Q@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Fri, 13 Dec 2019 16:58:13 +0530
-Message-ID: <CANAwSgSFR3kftWLPqyoYfyxdQ5dcp2W7NgRCaFNkMj-xEDY1Kw@mail.gmail.com>
-Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: multipart/mixed; boundary="0000000000000fd7b0059994291b"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="fkdcimf53iaxg7ry"
+Content-Disposition: inline
+In-Reply-To: <20191211230813.5144-1-mike.leach@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000000fd7b0059994291b
-Content-Type: text/plain; charset="UTF-8"
 
-Hi Martin
+--fkdcimf53iaxg7ry
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Fri, 13 Dec 2019 at 01:40, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+Hi,
+
+On Wed, Dec 11, 2019 at 11:08:13PM +0000, Mike Leach wrote:
+> Adds new coresight-cti.yaml file describing the bindings required to define
+> CTI in the device trees.
 >
-> Hi Neil,
+> Adds an include file to dt-bindings/arm to define constants describing
+> common signal functionality used in CoreSight and generic usage.
 >
-> On Wed, Dec 11, 2019 at 9:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >
-> > On 10/12/2019 22:47, Kevin Hilman wrote:
-> > > Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
-> > >
-> > >> On Tue, Dec 10, 2019 at 7:13 PM Kevin Hilman <khilman@baylibre.com> wrote:
-> > >>>
-> > >>> Anand Moon <linux.amoon@gmail.com> writes:
-> > >>>
-> > >>>> Hi Neil / Kevin,
-> > >>>>
-> > >>>> On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> > >>>>>
-> > >>>>> On 09/12/2019 23:12, Kevin Hilman wrote:
-> > >>>>>> Anand Moon <linux.amoon@gmail.com> writes:
-> > >>>>>>
-> > >>>>>>> Some how this patch got lost, so resend this again.
-> > >>>>>>>
-> > >>>>>>> [0] https://patchwork.kernel.org/patch/11136545/
-> > >>>>>>>
-> > >>>>>>> This patch enable DVFS on GXBB Odroid C2.
-> > >>>>>>>
-> > >>>>>>> DVFS has been tested by running the arm64 cpuburn
-> > >>>>>>> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
-> > >>>>>>> PM-QA testing
-> > >>>>>>> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
-> > >>>>>>>
-> > >>>>>>> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
-> > >>>>>>
-> > >>>>>> Have you tested with the Harkernel u-boot?
-> > >>>>>>
-> > >>>>>> Last I remember, enabling CPUfreq will cause system hangs with the
-> > >>>>>> Hardkernel u-boot because of improperly enabled frequencies, so I'm not
-> > >>>>>> terribly inclined to merge this patch.
-> > >>>>
-> > >>>> HK u-boot have many issue with loading the kernel, with load address
-> > >>>> *it's really hard to build the kernel for HK u-boot*,
-> > >>>> to get the configuration correctly.
-> > >>>>
-> > >>>> Well I have tested with mainline u-boot with latest ATF .
-> > >>>> I would prefer mainline u-boot for all the Amlogic SBC, since
-> > >>>> they sync with latest driver changes.
-> > >>>
-> > >>> Yes, we would all prefer mainline u-boot, but the mainline kernel needs
-> > >>> to support the vendor u-boot that is shipping with the boards.  So
-> > >>> until Hardkernel (and other vendors) switch to mainline u-boot we do not
-> > >>> want to have upstream kernel defaults that will not boot with the vendor
-> > >>> u-boot.
-> > >>>
-> > >>> We can always support these features, but they just cannot be enabled
-> > >>> by default.
-> > >> (I don't have an Odroid-C2 but I'm curious)
-> > >> should Anand submit a patch to mainline u-boot instead?
-> > >
-> > > It would be in addition to $SUBJECT patch, not instead, I think.
-> > >
-> > >> the &scpi_clocks node could be enabled at runtime by mainline u-boot
-> > >
-> > > That would work, but I don't know about u-boot maintainers opinions on
-> > > this kind of thing, so let's see what Neil thinks.
-> >
-> > U-Boot doesn't anything to do with SCPI, SCPI discusses directly with the SCP
-> > processor, and the CPU clock is set to 1,56GHz by the BL2 boot stage before
-> > U-boot starts.
-> >
-> > The only viable solution I see now is to find if we could add a DT OPP table
-> > only for Odroid-C2 dts to bypass the SCPI OPP table.
-> my understanding is that mainline u-boot (with whatever SCP firmware
-> it uses) provides the *correct* OPP table
-
-Right now I am not sure how this OPP table is populated.
-But I saw the same freq table used in 3.16.x kernel after enable the clk.
-
-> in this case it would be "safe" to have SCPI enabled with mainline u-boot
-> @Anand: please correct me if I misunderstood you
+> Signed-off-by: Mike Leach <mike.leach@linaro.org>
+> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> ---
+>  .../bindings/arm/coresight-cti.yaml           | 303 ++++++++++++++++++
+>  .../devicetree/bindings/arm/coresight.txt     |   7 +
+>  MAINTAINERS                                   |   2 +
+>  include/dt-bindings/arm/coresight-cti-dt.h    |  37 +++
+>  4 files changed, 349 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/coresight-cti.yaml
+>  create mode 100644 include/dt-bindings/arm/coresight-cti-dt.h
 >
+> diff --git a/Documentation/devicetree/bindings/arm/coresight-cti.yaml b/Documentation/devicetree/bindings/arm/coresight-cti.yaml
+> new file mode 100644
+> index 000000000000..cbbe88fa7148
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/coresight-cti.yaml
+> @@ -0,0 +1,303 @@
+> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
+> +# Copyright 2019 Linaro Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/coresight-cti.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM Coresight Cross Trigger Interface (CTI) device.
+> +
+> +description: |
+> +  The CoreSight Embedded Cross Trigger (ECT) consists of CTI devices connected
+> +  to one or more CoreSight components and/or a CPU, with CTIs interconnected in
+> +  a star topology via the Cross Trigger Matrix (CTM), which is not programmable.
+> +  The ECT components are not part of the trace generation data path and are thus
+> +  not part of the CoreSight graph described in the general CoreSight bindings
+> +  file coresight.txt.
+> +
+> +  The CTI component properties define the connections between the individual
+> +  CTI and the components it is directly connected to, consisting of input and
+> +  output hardware trigger signals. CTIs can have a maximum number of input and
+> +  output hardware trigger signals (8 each for v1 CTI, 32 each for v2 CTI). The
+> +  number is defined at design time, the maximum of each defined in the DEVID
+> +  register.
+> +
+> +  CTIs are interconnected in a star topology via the CTM, using a number of
+> +  programmable channels, usually 4, but again implementation defined and
+> +  described in the DEVID register. The star topology is not required to be
+> +  described in the bindings as the actual connections are software
+> +  programmable.
+> +
+> +  In general the connections between CTI and components via the trigger signals
+> +  are implementation defined, except when the CTI is connected to an ARM v8
+> +  architecture core and optional ETM.
+> +
+> +  In this case the ARM v8 architecture defines the required signal connections
+> +  between CTI and the CPU core and ETM if present. In the case of a v8
+> +  architecturally connected CTI an additional compatible string is used to
+> +  indicate this feature (arm,coresight-cti-v8-arch).
+> +
+> +  When CTI trigger connection information is unavailable then a minimal driver
+> +  binding can be declared with no explicit trigger signals. This will result
+> +  the driver detecting the maximum available triggers and channels from the
+> +  DEVID register and make them all available for use as a single default
+> +  connection. Any user / client application will require additional information
+> +  on the connections between the CTI and other components for correct operation.
+> +  This information might be found by enabling the Integration Test registers in
+> +  the driver (set CONFIG_CORESIGHT_CTI_INTEGRATION_TEST in Kernel
+> +  configuration). These registers may be used to explore the trigger connections
+> +  between CTI and other CoreSight components.
+> +
+> +  Certain triggers between CoreSight devices and the CTI have specific types
+> +  and usages. These can be defined along with the signal indexes with the
+> +  constants defined in <dt-bindings/arm/coresight-cti-dt.h>
+> +
+> +  For example a CTI connected to a core will usually have a DBGREQ signal. This
+> +  is defined in the binding as type PE_EDBGREQ. These types will appear in an
+> +  optional array alongside the signal indexes. Omitting types will default all
+> +  signals to GEN_IO.
+> +
+> +  Note that some hardware trigger signals can be connected to non-CoreSight
+> +  components (e.g. UART etc) depending on hardware implementation.
+> +
+> +maintainers:
+> +  - Mike Leach <mike.leach@linaro.org>
+> +
+> +allOf:
+> +  - $ref: /schemas/arm/primecell.yaml#
+> +
+> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - arm,coresight-cti
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^cti(@[0-9a-f]+)$"
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +        - const: arm,coresight-cti
+> +        - const: arm,primecell
+> +      - items:
+> +        - const: arm,coresight-cti-v8-arch
+> +        - const: arm,coresight-cti
+> +        - const: arm,primecell
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  cpu:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/phandle
 
-As per my understanding DVFS OPP frequency table for SCPI firmware set
-for 1.536 GHz
-somewhere in BL2 as pointed by Neil.
+You can drop the allOf here, and move the $ref directly under cpu:
 
-Arm Trusted firmware added new secure SCPI communication with
-Cortex-M3 co processor.
-[0] https://github.com/ARM-software/arm-trusted-firmware/blob/master/docs/plat/meson-gxbb.rst
-[1] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/amlogic/common/aml_scpi.c
+> +    description: Handle to cpu this device is associated with.
+> +
+> +  arm,cti-ctm-id:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
 
-ATF generated the *bl1.bin* which is replace the Amlogic's bl1.bin
-while preparing
-the new u-boot *u-boot.gxbb* image.
+Ditto
 
-> my idea to "enable SCPI with mainline u-boot" is to have u-boot update
-> the "status" property of the scpi_clocks node.
-> u-boot does something similar with the mac-address property of the
-> Ethernet controller for example.
-> as result of this users of mainline u-boot would have working CPU
-> DVFS, while users of the old vendor u-boot would run at fixed 1.54GHz.
->
->
-> Martin
+> +    description:
+> +      Defines the CTM this CTI is connected to, in large systems with multiple
+> +      separate CTI/CTM nets. Typically multi-socket systems where the CTM is
+> +      propagated between sockets.
+> +
+> +  arm,cs-dev-assoc:
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/phandle
 
-Right now as per my understanding 1.536 GHz max is bit under clocked.
+Ditto,
 
-Some time ago on Odroid Forum tried to over clock the cpu to 2GHz.
-[3] https://forum.odroid.com/viewtopic.php?f=139&t=18738
-So more investigation need to done in this line.
+> +    description:
+> +      defines a phandle reference to an associated CoreSight trace device.
+> +      When the associated trace device is enabled, then the respective CTI
+> +      will be enabled. Use in a trig-conns node, or in CTI base node when
+> +      arm,cti-v8-arch present. If the associated device has not been registered
+> +      then the node name will be stored as the connection name for later
+> +      resolution. If the associated device is not a CoreSight device or not
+> +      registered then the node name will remain the connection name and
+> +      automatic enabling will not occur.
+> +
+> +patternProperties:
+> +  '^trig_conns@([0-9]+)$':
 
-I also tried the same with HardKernel Image, with modifying the boot.ini
-I could increase the max DVFS cpu frequency to 1.90 GHz,
-This is just proof of concept.
+underscores in nodename are frowned upon (and generate a warning in
+dtc), you should avoid them.
 
-odroid:~# cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
-100000 250000 500000 1000000 1296000 1536000 1656000 1680000 1752000 1896000
+> +    type: object
+> +    description:
+> +      A trigger connections child node which describes the trigger signals
+> +      between this CTI and another hardware device. This device may be a CPU,
+> +      CoreSight device, any other hardware device or simple external IO lines.
+> +      The connection may have both input and output triggers, or only one or the
+> +      other.
+> +
+> +    properties:
+> +
+> +      arm,trig-in-sigs:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 1
+> +        maxItems: 32
+> +        description:
+> +          List of CTI trigger in signal numbers in use by a trig-conns node.
+> +
+> +      arm,trig-in-types:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 1
+> +        maxItems: 32
+> +        description:
+> +          List of constants representing the types for the CTI trigger in
+> +          signals. Types in this array match to the corresponding signal in the
+> +          arm,trig-in-sigs array. If the -types array is smaller, or omitted
+> +          completely, then the types will default to GEN_IO.
+> +
+> +      arm,trig-out-sigs:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 1
+> +        maxItems: 32
+> +        description:
+> +          List of CTI trigger out signal numbers in use by a trig-conns node.
+> +
+> +      arm,trig-out-types:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 1
+> +        maxItems: 32
+> +        description:
+> +          List of constants representing the types for the CTI trigger out
+> +          signals. Types in this array match to the corresponding signal
+> +          in the arm,trig-out-sigs array. If the "-types" array is smaller,
+> +          or omitted completely, then the types will default to GEN_IO.
+> +
+> +      arm,trig-filters:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        minItems: 1
+> +        maxItems: 32
+> +        description:
+> +          List of CTI trigger out signals that will be blocked from becoming
+> +          active, unless filtering is disabled on the driver.
+> +
+> +      arm,trig-conn-name:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          Defines a connection name that will be displayed, if the cpu or
+> +          arm,cs-dev-assoc properties are not being used in this connection.
+> +          Principle use for CTI that are connected to non-CoreSight devices, or
+> +          external IO.
+> +
+> +    anyOf:
+> +      - required:
+> +        - arm,trig-in-sigs
+> +      - required:
+> +        - arm,trig-out-sigs
+> +    oneOf:
+> +      - required:
+> +        - arm,trig-conn-name
+> +      - required:
+> +        - cpu
+> +      - required:
+> +        - arm,cs-dev-assoc
 
-I have some minimal stress testing attached are the results for HK
-3.16.x kernel.
+This would mean that either arm,trig-conn-name, cpu xor
+arm,cs-dev-assoc is required in the trig_conn child nodes, but they
+don't seem to be defined at this level but in the parent node?
 
-For now we should not enable this clock.
-Until we can possible to check for higher clock frequency to work stable
-on all Amlogic S905X SBC.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  # minimum CTI definition. DEVID register used to set number of triggers.
+> +  - |
+> +    cti@20020000 {
+> +      compatible = "arm,coresight-cti", "arm,primecell";
+> +      reg = <0x20020000 0x1000>;
+> +
+> +      clocks = <&soc_smc50mhz>;
+> +      clock-names = "apb_pclk";
+> +    };
+> +  #  v8 architecturally defined CTI - CPU + ETM connections generated by the
+> +  #  driver according to the v8 architecture specification.
+> +  - |
+> +    cti@859000 {
+> +      compatible = "arm,coresight-cti-v8-arch", "arm,coresight-cti",
+> +                   "arm,primecell";
+> +      reg = <0x859000 0x1000>;
+> +
+> +      clocks = <&soc_smc50mhz>;
+> +      clock-names = "apb_pclk";
+> +
+> +      cpu = <&CPU1>;
+> +      arm,cs-dev-assoc = <&etm1>;
 
-I like the Neil's approach to use it's own dts OPP table for SCPI protocol.
+and it looks like arm,cs-dev-assoc and cpu can be combined?
 
--Anand
+> +    };
+> +  # Implementation defined CTI - CPU + ETM connections explicitly defined..
+> +  # Shows use of type constants from dt-bindings/arm/coresight-cti-dt.h
+> +  - |
+> +    #include <dt-bindings/arm/coresight-cti-dt.h>
+> +
+> +    cti@858000 {
+> +      compatible = "arm,coresight-cti", "arm,primecell";
+> +      reg = <0x858000 0x1000>;
+> +
+> +      clocks = <&soc_smc50mhz>;
+> +      clock-names = "apb_pclk";
+> +
+> +      arm,cti-ctm-id = <1>;
+> +
+> +      trig-conns@0 {
 
---0000000000000fd7b0059994291b
-Content-Type: text/plain; charset="US-ASCII"; name="cpufreq_odroid_c2_3.16.78-48.txt"
-Content-Disposition: attachment; filename="cpufreq_odroid_c2_3.16.78-48.txt"
-Content-Transfer-Encoding: base64
-Content-ID: <f_k4414bbd0>
-X-Attachment-Id: f_k4414bbd0
+So, what I think happened here is that your patternProperties doesn't
+match anything (underscore vs dash), and since you don't have
+additionalProperties set to false, it doesn't warn that there's
+properties that aren't defined in the binding. Meaning that none of
+the child nodes in the bindings are effectively validated.
 
-cm9vdEBvZHJvaWQ6fiMgc3lzYmVuY2ggLS10ZXN0PWNwdSAtLXRocmVhZHM9NCAtLWNwdS1tYXgt
-cHJpbWU9MjAwMDAwMCBydW4NCldBUk5JTkc6IHRoZSAtLXRlc3Qgb3B0aW9uIGlzIGRlcHJlY2F0
-ZWQuIFlvdSBjYW4gcGFzcyBhIHNjcmlwdCBuYW1lIG9yIHBhdGggb24gdGhlIGNvbW1hbmQgbGlu
-ZSB3aXRob3V0IGFueSBvcHRpb25zLg0Kc3lzYmVuY2ggMS4wLjExICh1c2luZyBzeXN0ZW0gTHVh
-SklUIDIuMS4wLWJldGEzKQ0KDQpSdW5uaW5nIHRoZSB0ZXN0IHdpdGggZm9sbG93aW5nIG9wdGlv
-bnM6DQpOdW1iZXIgb2YgdGhyZWFkczogNA0KSW5pdGlhbGl6aW5nIHJhbmRvbSBudW1iZXIgZ2Vu
-ZXJhdG9yIGZyb20gY3VycmVudCB0aW1lDQoNCg0KUHJpbWUgbnVtYmVycyBsaW1pdDogMjAwMDAw
-MA0KDQpJbml0aWFsaXppbmcgd29ya2VyIHRocmVhZHMuLi4NCg0KVGhyZWFkcyBzdGFydGVkIQ0K
-DQpDUFUgc3BlZWQ6DQogICAgZXZlbnRzIHBlciBzZWNvbmQ6ICAgICAwLjA5DQoNCkdlbmVyYWwg
-c3RhdGlzdGljczoNCiAgICB0b3RhbCB0aW1lOiAgICAgICAgICAgICAgICAgICAgICAgICAgNDYu
-NDc5OXMNCiAgICB0b3RhbCBudW1iZXIgb2YgZXZlbnRzOiAgICAgICAgICAgICAgNA0KDQpMYXRl
-bmN5IChtcyk6DQogICAgICAgICBtaW46ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMzEz
-MTkuODINCiAgICAgICAgIGF2ZzogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzODU4My4z
-Nw0KICAgICAgICAgbWF4OiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDQ2NDc4LjUzDQog
-ICAgICAgICA5NXRoIHBlcmNlbnRpbGU6ICAgICAgICAgICAgICAgICAgNDYxMDMuNTINCiAgICAg
-ICAgIHN1bTogICAgICAgICAgICAgICAgICAgICAgICAgICAgIDE1NDMzMy40Nw0KDQpUaHJlYWRz
-IGZhaXJuZXNzOg0KICAgIGV2ZW50cyAoYXZnL3N0ZGRldik6ICAgICAgICAgICAxLjAwMDAvMC4w
-MA0KICAgIGV4ZWN1dGlvbiB0aW1lIChhdmcvc3RkZGV2KTogICAzOC41ODM0LzYuOTgNCnJvb3RA
-b2Ryb2lkOn4jIGNwdWZyZXEtDQpjcHVmcmVxLWFwZXJmICBjcHVmcmVxLWluZm8gICBjcHVmcmVx
-LXNldA0Kcm9vdEBvZHJvaWQ6fiMgY3B1ZnJlcS1pbmZvDQpjcHVmcmVxdXRpbHMgMDA4OiBjcHVm
-cmVxLWluZm8gKEMpIERvbWluaWsgQnJvZG93c2tpIDIwMDQtMjAwOQ0KUmVwb3J0IGVycm9ycyBh
-bmQgYnVncyB0byBjcHVmcmVxQHZnZXIua2VybmVsLm9yZywgcGxlYXNlLg0KYW5hbHl6aW5nIENQ
-VSAwOg0KICBkcml2ZXI6IG1lc29uX2NwdWZyZXENCiAgQ1BVcyB3aGljaCBydW4gYXQgdGhlIHNh
-bWUgaGFyZHdhcmUgZnJlcXVlbmN5OiAwIDEgMiAzDQogIENQVXMgd2hpY2ggbmVlZCB0byBoYXZl
-IHRoZWlyIGZyZXF1ZW5jeSBjb29yZGluYXRlZCBieSBzb2Z0d2FyZTogMCAxIDIgMw0KICBtYXhp
-bXVtIHRyYW5zaXRpb24gbGF0ZW5jeTogMjAwIHVzLg0KICBoYXJkd2FyZSBsaW1pdHM6IDEwMC4w
-IE1IeiAtIDEuOTAgR0h6DQogIGF2YWlsYWJsZSBmcmVxdWVuY3kgc3RlcHM6IDEwMC4wIE1Ieiwg
-MjUwIE1IeiwgNTAwIE1IeiwgMTAwMCBNSHosIDEuMzAgR0h6LCAxLjU0IEdIeiwgMS42NiBHSHos
-IDEuNjggR0h6LCAxLjc1IEdIeiwgMS45MCBHSHoNCiAgYXZhaWxhYmxlIGNwdWZyZXEgZ292ZXJu
-b3JzOiBob3RwbHVnLCBpbnRlcmFjdGl2ZSwgY29uc2VydmF0aXZlLCBvbmRlbWFuZCwgdXNlcnNw
-YWNlLCBwb3dlcnNhdmUsIHBlcmZvcm1hbmNlDQogIGN1cnJlbnQgcG9saWN5OiBmcmVxdWVuY3kg
-c2hvdWxkIGJlIHdpdGhpbiAxMDAuMCBNSHogYW5kIDEwMC4wIE1Iei4NCiAgICAgICAgICAgICAg
-ICAgIFRoZSBnb3Zlcm5vciAicGVyZm9ybWFuY2UiIG1heSBkZWNpZGUgd2hpY2ggc3BlZWQgdG8g
-dXNlDQogICAgICAgICAgICAgICAgICB3aXRoaW4gdGhpcyByYW5nZS4NCiAgY3VycmVudCBDUFUg
-ZnJlcXVlbmN5IGlzIDEwMC4wIE1IeiAoYXNzZXJ0ZWQgYnkgY2FsbCB0byBoYXJkd2FyZSkuDQog
-IGNwdWZyZXEgc3RhdHM6IDEwMC4wIE1IejoyOC41NCUsIDI1MCBNSHo6MC4wMCUsIDUwMCBNSHo6
-MC4wMCUsIDEwMDAgTUh6OjAuMDAlLCAxLjMwIEdIejowLjAwJSwgMS41NCBHSHo6MC4wMCUsIDEu
-NjYgR0h6OjAuMDAlLCAxLjY4IEdIejowLjAwJSwgMS43NSBHSHo6MC4wMCUsIDEuOTAgR0h6Ojcx
-LjQ2JSAgKDIpDQphbmFseXppbmcgQ1BVIDE6DQogIGRyaXZlcjogbWVzb25fY3B1ZnJlcQ0KICBD
-UFVzIHdoaWNoIHJ1biBhdCB0aGUgc2FtZSBoYXJkd2FyZSBmcmVxdWVuY3k6IDAgMSAyIDMNCiAg
-Q1BVcyB3aGljaCBuZWVkIHRvIGhhdmUgdGhlaXIgZnJlcXVlbmN5IGNvb3JkaW5hdGVkIGJ5IHNv
-ZnR3YXJlOiAwIDEgMiAzDQogIG1heGltdW0gdHJhbnNpdGlvbiBsYXRlbmN5OiAyMDAgdXMuDQog
-IGhhcmR3YXJlIGxpbWl0czogMTAwLjAgTUh6IC0gMS45MCBHSHoNCiAgYXZhaWxhYmxlIGZyZXF1
-ZW5jeSBzdGVwczogMTAwLjAgTUh6LCAyNTAgTUh6LCA1MDAgTUh6LCAxMDAwIE1IeiwgMS4zMCBH
-SHosIDEuNTQgR0h6LCAxLjY2IEdIeiwgMS42OCBHSHosIDEuNzUgR0h6LCAxLjkwIEdIeg0KICBh
-dmFpbGFibGUgY3B1ZnJlcSBnb3Zlcm5vcnM6IGhvdHBsdWcsIGludGVyYWN0aXZlLCBjb25zZXJ2
-YXRpdmUsIG9uZGVtYW5kLCB1c2Vyc3BhY2UsIHBvd2Vyc2F2ZSwgcGVyZm9ybWFuY2UNCiAgY3Vy
-cmVudCBwb2xpY3k6IGZyZXF1ZW5jeSBzaG91bGQgYmUgd2l0aGluIDEwMC4wIE1IeiBhbmQgMTAw
-LjAgTUh6Lg0KICAgICAgICAgICAgICAgICAgVGhlIGdvdmVybm9yICJwZXJmb3JtYW5jZSIgbWF5
-IGRlY2lkZSB3aGljaCBzcGVlZCB0byB1c2UNCiAgICAgICAgICAgICAgICAgIHdpdGhpbiB0aGlz
-IHJhbmdlLg0KICBjdXJyZW50IENQVSBmcmVxdWVuY3kgaXMgMTAwLjAgTUh6IChhc3NlcnRlZCBi
-eSBjYWxsIHRvIGhhcmR3YXJlKS4NCiAgY3B1ZnJlcSBzdGF0czogMTAwLjAgTUh6OjI4LjU0JSwg
-MjUwIE1IejowLjAwJSwgNTAwIE1IejowLjAwJSwgMTAwMCBNSHo6MC4wMCUsIDEuMzAgR0h6OjAu
-MDAlLCAxLjU0IEdIejowLjAwJSwgMS42NiBHSHo6MC4wMCUsIDEuNjggR0h6OjAuMDAlLCAxLjc1
-IEdIejowLjAwJSwgMS45MCBHSHo6NzEuNDYlICAoMikNCmFuYWx5emluZyBDUFUgMjoNCiAgZHJp
-dmVyOiBtZXNvbl9jcHVmcmVxDQogIENQVXMgd2hpY2ggcnVuIGF0IHRoZSBzYW1lIGhhcmR3YXJl
-IGZyZXF1ZW5jeTogMCAxIDIgMw0KICBDUFVzIHdoaWNoIG5lZWQgdG8gaGF2ZSB0aGVpciBmcmVx
-dWVuY3kgY29vcmRpbmF0ZWQgYnkgc29mdHdhcmU6IDAgMSAyIDMNCiAgbWF4aW11bSB0cmFuc2l0
-aW9uIGxhdGVuY3k6IDIwMCB1cy4NCiAgaGFyZHdhcmUgbGltaXRzOiAxMDAuMCBNSHogLSAxLjkw
-IEdIeg0KICBhdmFpbGFibGUgZnJlcXVlbmN5IHN0ZXBzOiAxMDAuMCBNSHosIDI1MCBNSHosIDUw
-MCBNSHosIDEwMDAgTUh6LCAxLjMwIEdIeiwgMS41NCBHSHosIDEuNjYgR0h6LCAxLjY4IEdIeiwg
-MS43NSBHSHosIDEuOTAgR0h6DQogIGF2YWlsYWJsZSBjcHVmcmVxIGdvdmVybm9yczogaG90cGx1
-ZywgaW50ZXJhY3RpdmUsIGNvbnNlcnZhdGl2ZSwgb25kZW1hbmQsIHVzZXJzcGFjZSwgcG93ZXJz
-YXZlLCBwZXJmb3JtYW5jZQ0KICBjdXJyZW50IHBvbGljeTogZnJlcXVlbmN5IHNob3VsZCBiZSB3
-aXRoaW4gMTAwLjAgTUh6IGFuZCAxMDAuMCBNSHouDQogICAgICAgICAgICAgICAgICBUaGUgZ292
-ZXJub3IgInBlcmZvcm1hbmNlIiBtYXkgZGVjaWRlIHdoaWNoIHNwZWVkIHRvIHVzZQ0KICAgICAg
-ICAgICAgICAgICAgd2l0aGluIHRoaXMgcmFuZ2UuDQogIGN1cnJlbnQgQ1BVIGZyZXF1ZW5jeSBp
-cyAxMDAuMCBNSHogKGFzc2VydGVkIGJ5IGNhbGwgdG8gaGFyZHdhcmUpLg0KICBjcHVmcmVxIHN0
-YXRzOiAxMDAuMCBNSHo6MjguNTQlLCAyNTAgTUh6OjAuMDAlLCA1MDAgTUh6OjAuMDAlLCAxMDAw
-IE1IejowLjAwJSwgMS4zMCBHSHo6MC4wMCUsIDEuNTQgR0h6OjAuMDAlLCAxLjY2IEdIejowLjAw
-JSwgMS42OCBHSHo6MC4wMCUsIDEuNzUgR0h6OjAuMDAlLCAxLjkwIEdIejo3MS40NiUgICgyKQ0K
-YW5hbHl6aW5nIENQVSAzOg0KICBkcml2ZXI6IG1lc29uX2NwdWZyZXENCiAgQ1BVcyB3aGljaCBy
-dW4gYXQgdGhlIHNhbWUgaGFyZHdhcmUgZnJlcXVlbmN5OiAwIDEgMiAzDQogIENQVXMgd2hpY2gg
-bmVlZCB0byBoYXZlIHRoZWlyIGZyZXF1ZW5jeSBjb29yZGluYXRlZCBieSBzb2Z0d2FyZTogMCAx
-IDIgMw0KICBtYXhpbXVtIHRyYW5zaXRpb24gbGF0ZW5jeTogMjAwIHVzLg0KICBoYXJkd2FyZSBs
-aW1pdHM6IDEwMC4wIE1IeiAtIDEuOTAgR0h6DQogIGF2YWlsYWJsZSBmcmVxdWVuY3kgc3RlcHM6
-IDEwMC4wIE1IeiwgMjUwIE1IeiwgNTAwIE1IeiwgMTAwMCBNSHosIDEuMzAgR0h6LCAxLjU0IEdI
-eiwgMS42NiBHSHosIDEuNjggR0h6LCAxLjc1IEdIeiwgMS45MCBHSHoNCiAgYXZhaWxhYmxlIGNw
-dWZyZXEgZ292ZXJub3JzOiBob3RwbHVnLCBpbnRlcmFjdGl2ZSwgY29uc2VydmF0aXZlLCBvbmRl
-bWFuZCwgdXNlcnNwYWNlLCBwb3dlcnNhdmUsIHBlcmZvcm1hbmNlDQogIGN1cnJlbnQgcG9saWN5
-OiBmcmVxdWVuY3kgc2hvdWxkIGJlIHdpdGhpbiAxMDAuMCBNSHogYW5kIDEwMC4wIE1Iei4NCiAg
-ICAgICAgICAgICAgICAgIFRoZSBnb3Zlcm5vciAicGVyZm9ybWFuY2UiIG1heSBkZWNpZGUgd2hp
-Y2ggc3BlZWQgdG8gdXNlDQogICAgICAgICAgICAgICAgICB3aXRoaW4gdGhpcyByYW5nZS4NCiAg
-Y3VycmVudCBDUFUgZnJlcXVlbmN5IGlzIDEwMC4wIE1IeiAoYXNzZXJ0ZWQgYnkgY2FsbCB0byBo
-YXJkd2FyZSkuDQogIGNwdWZyZXEgc3RhdHM6IDEwMC4wIE1IejoyOC41NSUsIDI1MCBNSHo6MC4w
-MCUsIDUwMCBNSHo6MC4wMCUsIDEwMDAgTUh6OjAuMDAlLCAxLjMwIEdIejowLjAwJSwgMS41NCBH
-SHo6MC4wMCUsIDEuNjYgR0h6OjAuMDAlLCAxLjY4IEdIejowLjAwJSwgMS43NSBHSHo6MC4wMCUs
-IDEuOTAgR0h6OjcxLjQ1JSAgKDIpDQpyb290QG9kcm9pZDp+Iw0K
---0000000000000fd7b0059994291b--
+> +            arm,trig-in-sigs = <4 5 6 7>;
+> +            arm,trig-in-types = <ETM_EXTOUT
+> +                                 ETM_EXTOUT
+> +                                 ETM_EXTOUT
+> +                                 ETM_EXTOUT>;
+> +            arm,trig-out-sigs = <4 5 6 7>;
+> +            arm,trig-out-types = <ETM_EXTIN
+> +                                  ETM_EXTIN
+> +                                  ETM_EXTIN
+> +                                  ETM_EXTIN>;
+> +            arm,cs-dev-assoc = <&etm0>;
+> +      };
+
+Nodes with unit-address must have a matching reg property. This will
+generate a dtc warning too.
+
+Maxime
+
+--fkdcimf53iaxg7ry
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXfN4mAAKCRDj7w1vZxhR
+xY8UAP0Qp/EVYzbL4sazFvQqmeJSS40dpgN+eGkMvOFNvi6FVAD+NsbhpCh+KBJr
+wByCoQPMMZIg8gObRRfB4+t8iWLBZg0=
+=Ury3
+-----END PGP SIGNATURE-----
+
+--fkdcimf53iaxg7ry--
