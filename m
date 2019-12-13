@@ -2,68 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BF911E885
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 17:42:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4500111E8A0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2019 17:45:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728334AbfLMQlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Dec 2019 11:41:18 -0500
-Received: from michel.telenet-ops.be ([195.130.137.88]:40636 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728335AbfLMQlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Dec 2019 11:41:18 -0500
-Received: from ramsan ([84.195.182.253])
-        by michel.telenet-ops.be with bizsmtp
-        id dUhG2100J5USYZQ06UhGJ6; Fri, 13 Dec 2019 17:41:16 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ifo0C-0006um-Mi; Fri, 13 Dec 2019 17:41:16 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ifo0C-0000zO-Lc; Fri, 13 Dec 2019 17:41:16 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 7/7] arm64: dts: renesas: r8a77970: Group tuples in thermal reg property
-Date:   Fri, 13 Dec 2019 17:41:15 +0100
-Message-Id: <20191213164115.3697-9-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191213164115.3697-1-geert+renesas@glider.be>
-References: <20191213164115.3697-1-geert+renesas@glider.be>
+        id S1728371AbfLMQpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Dec 2019 11:45:13 -0500
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2189 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728109AbfLMQpM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Dec 2019 11:45:12 -0500
+Received: from lhreml703-cah.china.huawei.com (unknown [172.18.7.107])
+        by Forcepoint Email with ESMTP id D295B1175F5A999CD297;
+        Fri, 13 Dec 2019 16:45:10 +0000 (GMT)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ lhreml703-cah.china.huawei.com (10.201.108.44) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Fri, 13 Dec 2019 16:45:10 +0000
+Received: from localhost (10.202.226.57) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 13 Dec
+ 2019 16:45:10 +0000
+Date:   Fri, 13 Dec 2019 16:45:08 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+CC:     <linux-pci@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-acpi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <iommu@lists.linux-foundation.org>, <joro@8bytes.org>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <lorenzo.pieralisi@arm.com>, <guohanjun@huawei.com>,
+        <sudeep.holla@arm.com>, <rjw@rjwysocki.net>, <lenb@kernel.org>,
+        <will@kernel.org>, <robin.murphy@arm.com>, <bhelgaas@google.com>,
+        <eric.auger@redhat.com>, <zhangfei.gao@linaro.org>
+Subject: Re: [PATCH v3 01/13] iommu/arm-smmu-v3: Drop __GFP_ZERO flag from
+ DMA allocation
+Message-ID: <20191213164508.00001f99@Huawei.com>
+In-Reply-To: <20191209180514.272727-2-jean-philippe@linaro.org>
+References: <20191209180514.272727-1-jean-philippe@linaro.org>
+        <20191209180514.272727-2-jean-philippe@linaro.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.57]
+X-ClientProxiedBy: lhreml721-chm.china.huawei.com (10.201.108.72) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To improve human readability and enable automatic validation, the tuples
-in "reg" properties should be grouped.
+On Mon, 9 Dec 2019 19:05:02 +0100
+Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
 
-Fix this by grouping the tuples in the thermal node's "reg" property
-using angle brackets.
+> Since commit 518a2f1925c3 ("dma-mapping: zero memory returned from
+> dma_alloc_*"), dma_alloc_* always initializes memory to zero, so there
+> is no need to use dma_zalloc_* or pass the __GFP_ZERO flag anymore.
+> 
+> The flag was introduced by commit 04fa26c71be5 ("iommu/arm-smmu: Convert
+> DMA buffer allocations to the managed API"), since the managed API
+> didn't provide a dmam_zalloc_coherent() function.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/arm64/boot/dts/renesas/r8a77970.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Good to tidy these up whilst we are here.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77970.dtsi b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-index 6e1456032851c88f..dbf1c677dbc6e51f 100644
---- a/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-@@ -302,8 +302,8 @@
- 
- 		thermal: thermal@e6190000 {
- 			compatible = "renesas,thermal-r8a77970";
--			reg =  <0 0xe6190000 0 0x10
--				0 0xe6190100 0 0x120>;
-+			reg = <0 0xe6190000 0 0x10>,
-+			      <0 0xe6190100 0 0x120>;
- 			interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.17.1
+Jonathan
+
+> ---
+>  drivers/iommu/arm-smmu-v3.c | 9 ++++-----
+>  1 file changed, 4 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
+> index effe72eb89e7..d4e8b7f8d9f4 100644
+> --- a/drivers/iommu/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm-smmu-v3.c
+> @@ -1675,7 +1675,7 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
+>  
+>  	desc->span = STRTAB_SPLIT + 1;
+>  	desc->l2ptr = dmam_alloc_coherent(smmu->dev, size, &desc->l2ptr_dma,
+> -					  GFP_KERNEL | __GFP_ZERO);
+> +					  GFP_KERNEL);
+>  	if (!desc->l2ptr) {
+>  		dev_err(smmu->dev,
+>  			"failed to allocate l2 stream table for SID %u\n",
+> @@ -2161,8 +2161,7 @@ static int arm_smmu_domain_finalise_s1(struct arm_smmu_domain *smmu_domain,
+>  		return asid;
+>  
+>  	cfg->cdptr = dmam_alloc_coherent(smmu->dev, CTXDESC_CD_DWORDS << 3,
+> -					 &cfg->cdptr_dma,
+> -					 GFP_KERNEL | __GFP_ZERO);
+> +					 &cfg->cdptr_dma, GFP_KERNEL);
+>  	if (!cfg->cdptr) {
+>  		dev_warn(smmu->dev, "failed to allocate context descriptor\n");
+>  		ret = -ENOMEM;
+> @@ -2883,7 +2882,7 @@ static int arm_smmu_init_strtab_2lvl(struct arm_smmu_device *smmu)
+>  
+>  	l1size = cfg->num_l1_ents * (STRTAB_L1_DESC_DWORDS << 3);
+>  	strtab = dmam_alloc_coherent(smmu->dev, l1size, &cfg->strtab_dma,
+> -				     GFP_KERNEL | __GFP_ZERO);
+> +				     GFP_KERNEL);
+>  	if (!strtab) {
+>  		dev_err(smmu->dev,
+>  			"failed to allocate l1 stream table (%u bytes)\n",
+> @@ -2910,7 +2909,7 @@ static int arm_smmu_init_strtab_linear(struct arm_smmu_device *smmu)
+>  
+>  	size = (1 << smmu->sid_bits) * (STRTAB_STE_DWORDS << 3);
+>  	strtab = dmam_alloc_coherent(smmu->dev, size, &cfg->strtab_dma,
+> -				     GFP_KERNEL | __GFP_ZERO);
+> +				     GFP_KERNEL);
+>  	if (!strtab) {
+>  		dev_err(smmu->dev,
+>  			"failed to allocate linear stream table (%u bytes)\n",
+
 
