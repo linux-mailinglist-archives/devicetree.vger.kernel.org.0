@@ -2,202 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6B011F59E
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2019 05:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF8811F642
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2019 06:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726793AbfLOEZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Dec 2019 23:25:06 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:55703 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726019AbfLOEZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Dec 2019 23:25:05 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 379475AC9;
-        Sat, 14 Dec 2019 23:25:04 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Sat, 14 Dec 2019 23:25:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=eiExqcZ7ujXnf
-        ULrpep8+tjQvNG7hCVX9mCQFkEA6Uo=; b=Y3B7esRl9WjdxAbHeNYyrAjnpTM5n
-        /sxSOD24kVHfDwnWXzc2FcA0QeX+Syj9i8dtZz/HLEb96dWpD90JPa2DDsbG10qq
-        4qp9saXXWWXMD7wOGjpEfA2ZBy3F588WejM4+hUDCNddldCGctUhQTjJJtEdZKtU
-        ZgnuJFqVGgxe/FVzNxYkWApkmkQJrbeaHg0jYbhFfXNJ841aeD5t4oRGtFGb7ifU
-        4WPajAbXxI4R+C5O4WTzm7HJfHbrNNMalRaXBdTqC4HPlL2YOHJWdBeREiek+29K
-        EIuP5IbCbDQfy6RvOT9C/Wcf9cOAswMvclhtT7bRCGpal1ek3jqsaqBNQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=eiExqcZ7ujXnfULrpep8+tjQvNG7hCVX9mCQFkEA6Uo=; b=Oe0HD8Xi
-        1Mk7itRp/qo0Mk7pIEd/zKrwkmAT+4VBjv7vwuJq/ybqpemhfBTI2Xne8EBclGfP
-        xNl+10hp1MAddEx9AbVSXE8Ng/PNI5k/jg/2QyYhZDNaKn2jW3xrs0YMtSG3YRKc
-        ldF0KsHlOmF87mgZ2kNbtFwm8GA1/MqlUFnXvZo1zx9LTj3zwBb3K+yyU6GGraqs
-        ZK0I0U8K9kKd5kF67i/XKy84Rdny2+Evnn/QD3II5pRN6QN/4As1oC4QdrBaz5E3
-        1nnzBqdiPxMr5+CCw63bWtt6T0/aBKS4SjkkJsEV+PelyL4PDUmtjesCRm1EBZfk
-        pQR+e8WWak2tXA==
-X-ME-Sender: <xms:oLX1XYDiok_1POBQxg95OkoXKhgLHZktDPGxuFQK7HTd-nJ1SQFbtA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrvddtvddgieelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucfkph
-    epjedtrddufeehrddugeekrdduhedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghm
-    uhgvlhesshhhohhllhgrnhgurdhorhhgnecuvehluhhsthgvrhfuihiivgepvd
-X-ME-Proxy: <xmx:oLX1XSLpkAWwI3qOhoCsdTWKd9fqMHG0la571rOACOwOKvyhpipQdQ>
-    <xmx:oLX1XbzWSA3A86E2CJGAWj90Ea1rxhHH_sRktGr7nCtFPxqbiVhXfA>
-    <xmx:oLX1XWw7An2FuzIJTNcjVCiiH8eFAWLmCHz95XkzsfH8fRw2GK3Tpw>
-    <xmx:oLX1XRH3K7Di1erBh9UIyftu4nis3iwYuRKcTDaFU4EYI89DrSYflQ>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 2730A80059;
-        Sat, 14 Dec 2019 23:25:03 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ondrej Jirman <megous@megous.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v5 8/8] firmware: arm_scpi: Support unidirectional mailbox channels
-Date:   Sat, 14 Dec 2019 22:24:55 -0600
-Message-Id: <20191215042455.51001-9-samuel@sholland.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191215042455.51001-1-samuel@sholland.org>
-References: <20191215042455.51001-1-samuel@sholland.org>
+        id S1725827AbfLOF2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Dec 2019 00:28:54 -0500
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:42255 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725788AbfLOF2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Dec 2019 00:28:54 -0500
+Received: by mail-pl1-f193.google.com with SMTP id x13so3015528plr.9
+        for <devicetree@vger.kernel.org>; Sat, 14 Dec 2019 21:28:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=VArzzSYeZEnpsaB9lSQeUL2zfIxu29Y0Zz4FR1tu7JY=;
+        b=tW5F+Zd5b48NbircyveTalm3eEyXXvDX8uDfvz88xAzAwDaT8J0Re2vrTvVcLwZ9M3
+         vxDPYkpLYoJl8UHGMgbTkJPutIhO+kBbIzpFTp7zA9MFR+UFkvJMvXDyxi/ShlE4MRGE
+         SIF6FIvwY22x6q2C5udfBWCTRyU/hmnwrIw1IFQtFWoGrZIl8PASzNODgHp3vfZPakJn
+         9opaNNNcdVVzCT79+U3OMO33Jm9wDp4f2SoMmd7prQ+00iwE1TV8qoSL8H8NBgHYtIFd
+         cuOJGmKfjLnjasI0pwYp3DmoC/R52MA1On2GVW4lRp9DO6+/3KCK1L4vJhfX7VMr5RW9
+         jq+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=VArzzSYeZEnpsaB9lSQeUL2zfIxu29Y0Zz4FR1tu7JY=;
+        b=FpeX+n7DipBlujIuYQkYpq7g/B/u/8srEmXOT2AgpShwHTJ03iHa1fKL6j4U43sFVg
+         0oB7m18IG0Utn6gGPM4tXj7X8U+on9X456+LcD4TcBGz7/KevxqHZw19vG6Sb4nYFfcE
+         MTOvS+w6P1eBmCTqpWLJG8MsD6Q0aa8eLJFNUJAlWXVvAwgP69TAD/mHlXpseY8Bkgrm
+         FEAgSSUqpWEOn+ilZl9KGBkcCQYMJQC2JFBrMCdK7eJsyxBDLSFEqnL0bJBP9CJy4Uxc
+         DuMNEVmKn+h9R/5HeJ5qE6fZsaaRuwn+Y/K/cnOzPb6+Ja7jZ2bXo5nVVGw6rrSp/L3G
+         Lf2g==
+X-Gm-Message-State: APjAAAX+wHG2x+AKpJbXN708W0h08HOWaoqZ9KGS7EMPoGMnRA4R1LBK
+        jLPfOEMnjQd7yeKOWsVxQcM=
+X-Google-Smtp-Source: APXvYqwSSKqqUXTBl3k08aWoi2vzBg3H+3mYhqmyTE9INsm/dJratjDB0m+59ebJf0tP26Egm92aYg==
+X-Received: by 2002:a17:90a:1b45:: with SMTP id q63mr10587989pjq.118.1576387733685;
+        Sat, 14 Dec 2019 21:28:53 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id a15sm17884108pfh.169.2019.12.14.21.28.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Dec 2019 21:28:52 -0800 (PST)
+Subject: Re: [PATCH 1/5] arm64: zynqmp: Add firmware DT node
+To:     Michal Simek <michal.simek@xilinx.com>,
+        "Edgar E. Iglesias" <edgar.iglesias@xilinx.com>
+Cc:     Michael Tretter <m.tretter@pengutronix.de>,
+        Edgar Iglesias <edgari@xilinx.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        Rajan Vaja <rajanv@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, qemu-devel@nongnu.org
+References: <20191018160735.15658-1-m.tretter@pengutronix.de>
+ <20191018160735.15658-2-m.tretter@pengutronix.de>
+ <20191208223814.GA21260@roeck-us.net>
+ <dbba2a25-cbf7-60f4-99f7-056512e28d00@xilinx.com>
+ <4821742f-2d60-b722-b954-263de975bf2e@roeck-us.net>
+ <20191209074840.GP32392@toto>
+ <d2e63acb-c076-7bfb-c492-0355ec106cbf@roeck-us.net>
+ <fa36a9e9-9e44-d1ff-cfdc-22d0484318ff@xilinx.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <573f0472-9779-c5df-f199-4e0958753fd8@roeck-us.net>
+Date:   Sat, 14 Dec 2019 21:28:51 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <fa36a9e9-9e44-d1ff-cfdc-22d0484318ff@xilinx.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some mailbox controllers have only unidirectional channels, so we need a
-pair of them for each SCPI channel. If a mbox-names property is present,
-look for "rx" and "tx" mbox channels; otherwise, the existing behavior
-is preserved, and a single mbox channel is used for each SCPI channel.
+On 12/9/19 7:02 AM, Michal Simek wrote:
+> On 09. 12. 19 15:32, Guenter Roeck wrote:
+>> On 12/8/19 11:48 PM, Edgar E. Iglesias wrote:
+>>> On Sun, Dec 08, 2019 at 11:19:33PM -0800, Guenter Roeck wrote:
+>>>> On 12/8/19 10:42 PM, Michal Simek wrote:
+>>>>> Hi, +Edgar
+>>>>>
+>>>>>
+>>>>> On 08. 12. 19 23:38, Guenter Roeck wrote:
+>>>>>> On Fri, Oct 18, 2019 at 06:07:31PM +0200, Michael Tretter wrote:
+>>>>>>> From: Rajan Vaja <rajan.vaja@xilinx.com>
+>>>>>>>
+>>>>>>> Add firmware DT node in ZynqMP device tree. This node
+>>>>>>> uses bindings as per new firmware interface driver.
+>>>>>>>
+>>>>>>> Signed-off-by: Rajan Vaja <rajanv@xilinx.com>
+>>>>>>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+>>>>>>> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+>>>>>>
+>>>>>> With this patch applied in the mainline kernel, the qemu xlnx-zcu102
+>>>>>> emulation crashes (see below). Any idea what it might take to get
+>>>>>> qemu back to working ?
+>>>>>
+>>>>> Driver talks through ATF to PMU unit(microblaze). I don't think A53+MB
+>>>>> concept is working with mainline qemu. But crash is too hard. It should
+>>>
+>>> Yes, QEMU doesn't support the Cortex-A53s along with the PMU MicroBlaze.
+>>>
+>>> My workaround when using upstream QEMU is a modified DT without the
+>>> PMU firmware
+>>> and with fixed-clock nodes.
+>>>
+>>
+>> I can't do that for my boot tests. Normally I would just disable
+>> ZYNQMP_FIRMWARE,
+>> but that is hard enabled with ARCH_ZYNQMP. I'll have to drop those tests,
+>> unfortunately, if the firmware driver is considered mandatory.
+> 
+> We can make it optional.
+> Rajan: please send a patch for it.
+> 
 
-Note that since the mailbox framework only supports a single phandle
-with each name (mbox_request_channel_byname always returns the first
-one), this new mode only supports a single SCPI channel.
+I'll disable the related boot tests for now. If/when this is fixed, let me know,
+and I'll re-enable it.
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- drivers/firmware/arm_scpi.c | 58 +++++++++++++++++++++++++++++--------
- 1 file changed, 46 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/firmware/arm_scpi.c b/drivers/firmware/arm_scpi.c
-index a80c331c3a6e..36ff9dd8d0fa 100644
---- a/drivers/firmware/arm_scpi.c
-+++ b/drivers/firmware/arm_scpi.c
-@@ -231,7 +231,8 @@ struct scpi_xfer {
- 
- struct scpi_chan {
- 	struct mbox_client cl;
--	struct mbox_chan *chan;
-+	struct mbox_chan *rx_chan;
-+	struct mbox_chan *tx_chan;
- 	void __iomem *tx_payload;
- 	void __iomem *rx_payload;
- 	struct list_head rx_pending;
-@@ -505,7 +506,7 @@ static int scpi_send_message(u8 idx, void *tx_buf, unsigned int tx_len,
- 	msg->rx_len = rx_len;
- 	reinit_completion(&msg->done);
- 
--	ret = mbox_send_message(scpi_chan->chan, msg);
-+	ret = mbox_send_message(scpi_chan->tx_chan, msg);
- 	if (ret < 0 || !rx_buf)
- 		goto out;
- 
-@@ -854,8 +855,13 @@ static void scpi_free_channels(void *data)
- 	struct scpi_drvinfo *info = data;
- 	int i;
- 
--	for (i = 0; i < info->num_chans; i++)
--		mbox_free_channel(info->channels[i].chan);
-+	for (i = 0; i < info->num_chans; i++) {
-+		struct scpi_chan *pchan = &info->channels[i];
-+
-+		if (pchan->tx_chan != pchan->rx_chan)
-+			mbox_free_channel(pchan->tx_chan);
-+		mbox_free_channel(pchan->rx_chan);
-+	}
- }
- 
- static int scpi_remove(struct platform_device *pdev)
-@@ -903,6 +909,7 @@ static int scpi_probe(struct platform_device *pdev)
- 	struct resource res;
- 	struct device *dev = &pdev->dev;
- 	struct device_node *np = dev->of_node;
-+	bool use_mbox_names = false;
- 
- 	scpi_info = devm_kzalloc(dev, sizeof(*scpi_info), GFP_KERNEL);
- 	if (!scpi_info)
-@@ -916,6 +923,14 @@ static int scpi_probe(struct platform_device *pdev)
- 		dev_err(dev, "no mboxes property in '%pOF'\n", np);
- 		return -ENODEV;
- 	}
-+	if (of_get_property(dev->of_node, "mbox-names", NULL)) {
-+		use_mbox_names = true;
-+		if (count != 2) {
-+			dev_err(dev, "need exactly 2 mboxes with mbox-names\n");
-+			return -ENODEV;
-+		}
-+		count /= 2;
-+	}
- 
- 	scpi_info->channels = devm_kcalloc(dev, count, sizeof(struct scpi_chan),
- 					   GFP_KERNEL);
-@@ -961,15 +976,34 @@ static int scpi_probe(struct platform_device *pdev)
- 		mutex_init(&pchan->xfers_lock);
- 
- 		ret = scpi_alloc_xfer_list(dev, pchan);
--		if (!ret) {
--			pchan->chan = mbox_request_channel(cl, idx);
--			if (!IS_ERR(pchan->chan))
--				continue;
--			ret = PTR_ERR(pchan->chan);
--			if (ret != -EPROBE_DEFER)
--				dev_err(dev, "failed to get channel%d err %d\n",
--					idx, ret);
-+		if (ret)
-+			return ret;
-+
-+		if (use_mbox_names) {
-+			pchan->rx_chan = mbox_request_channel_byname(cl, "rx");
-+			if (IS_ERR(pchan->rx_chan)) {
-+				ret = PTR_ERR(pchan->rx_chan);
-+				goto fail;
-+			}
-+			pchan->tx_chan = mbox_request_channel_byname(cl, "tx");
-+			if (IS_ERR(pchan->rx_chan)) {
-+				ret = PTR_ERR(pchan->tx_chan);
-+				goto fail;
-+			}
-+		} else {
-+			pchan->rx_chan = mbox_request_channel(cl, idx);
-+			if (IS_ERR(pchan->rx_chan)) {
-+				ret = PTR_ERR(pchan->rx_chan);
-+				goto fail;
-+			}
-+			pchan->tx_chan = pchan->rx_chan;
- 		}
-+		continue;
-+
-+fail:
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get channel%d err %d\n",
-+				idx, ret);
- 		return ret;
- 	}
- 
--- 
-2.23.0
-
+Guenter
