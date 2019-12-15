@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9833911FA95
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2019 19:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 142D711FAE3
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2019 20:56:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726526AbfLOSye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Dec 2019 13:54:34 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:35338 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726219AbfLOSyd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Dec 2019 13:54:33 -0500
-Received: by mail-lj1-f195.google.com with SMTP id j6so4317954lja.2;
-        Sun, 15 Dec 2019 10:54:32 -0800 (PST)
+        id S1726481AbfLOT42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Dec 2019 14:56:28 -0500
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:37588 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726146AbfLOT41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Dec 2019 14:56:27 -0500
+Received: by mail-pg1-f195.google.com with SMTP id q127so2426038pga.4
+        for <devicetree@vger.kernel.org>; Sun, 15 Dec 2019 11:56:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=lWviGd0q9M7mX9BtKeMbyBIvqQbgGAAL9cMMxClvQgg=;
-        b=ahQQFLVq8VEuKSkuR/NnhDV1T3CEomWC4pJOJnVTPTe2lIAQRYLghoLWitFyVqEPj8
-         M4Hhl9kXueLUPgTARXRNEykYsRvK6wEhli1Cit+YOtageWnpJkqPBIucdYcd23GsLSmQ
-         DOLkQ5N3SorE5aYMDJuOQg2MSXtoCbMsNLLrv/KfgFAF970KNHuYcAZlrw/z4NT4H/2S
-         T1FFQCD4J2CZn/v3D8d3UF9ttsJo0Q/+D+qWiZ7ySSwxyEwAU0UdYf4hNi4QjdWTx9H6
-         ktmb2XyanPVYw+fqEUjZUGyuFtbDgCinPCqULdjGxpGpbTa+5KBiXNU4JznnuH+JBO2u
-         dXfA==
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=xVlHo/nlCMF/qBOiT/VWeXY0vmm1o3tLmTZcUn6/oaU=;
+        b=DUvMIF0QFOTQxH81JOUzG93EnqkGo8iYo7Lrg7rDp7kmCy6fNi6LPYdGbuqMmmu2S/
+         vMk5R1Tekf+KM6khmVWfEBHeKGd+Wcv2jCAhovSwh8RjJZaRBfk28pjyuiMG8HNghhN+
+         RGpRL7jhtzoad+EEq+rR/V5hOa4pErRPSq+SaZBigyAKRf6YXqLM1hQ5euCCFf5xtp/Z
+         YTgjPnsFknNsrc1ov6fL8oK+ABWoNVAW7bwwxEeErIJKhQ5iJrzk2MqKPm/NVGCgIcbt
+         bXcJnvnnxPH+i+AGlY8aIW2Iout+LDUg9YYF2Yw9Oe3rgYWimi2IYVB3vRIfTrBbz3yN
+         9hiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=lWviGd0q9M7mX9BtKeMbyBIvqQbgGAAL9cMMxClvQgg=;
-        b=rXoOjctx6pFjsxRa/XKhD3E9cmhs9x2Vzyc2logxqIY8v3TkegmvcXLjafqkzyiJVS
-         JdqwX2R77suIeXI28WG2hgKXnSciube32RAfXgx1j/oodwqR/pIBpnK7zyychmxUsWZu
-         gMLnWoDR7aAbWR0T0+UTKk/wdRCZOoRVPRGQxHv157+zv8LzYItxa14/KvoB7iIndWLe
-         2KM/pfFjTSlEFTNU2KP+EK7Rz30drbKwFaP2nzpjrqa1DF9YhFzM/IbPsu9CtfmVwE9Q
-         YHvsLTXpcxbKdWMfA3obOtxVYhZ3OKZjhzCqho2mFRURm42T/zZyzVK77JzsOeAikOfj
-         esoA==
-X-Gm-Message-State: APjAAAXIE8CIDXElAWJr8KZOMBK2OymJWhGwVj9PyWIUfGcdwVVfW8JR
-        LNa+eacMz5f7koHZeQ73GCY=
-X-Google-Smtp-Source: APXvYqwjQnuQA16yy6o3m75gF/sZExlEHtLc1G0qzNYWc1Ck1n6372OKLFumw5uApIRe7vpO+8muKA==
-X-Received: by 2002:a2e:8505:: with SMTP id j5mr15075021lji.235.1576436071558;
-        Sun, 15 Dec 2019 10:54:31 -0800 (PST)
-Received: from localhost.localdomain (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.gmail.com with ESMTPSA id t2sm8738514ljj.11.2019.12.15.10.54.30
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=xVlHo/nlCMF/qBOiT/VWeXY0vmm1o3tLmTZcUn6/oaU=;
+        b=GKTFrWW8o63aN82WsIaYmzM7Snyp5Rmv0R+yFLbEXpbVRl/qM4JM9dJLTdFUVuURQI
+         OgHH6+EX+PC/gHazcBIaPC4eulbrguk4d4mfZDfumTQKJatKiuaFyr1WHhWBxjMQaH/V
+         B5n9LrlT1tcBef9xcqKEGyd/XTP0Ho2t3AhSxR+4/8ka3jUJ3H7+0CFVZjTNr6yUwaZq
+         81RX+VIMSpjX95TPU+1LzSdWYCja7D0IFKfUfXaWRD78Cjm1VPoTcGrlyzbjVc82TiRq
+         uoOE/3KTkWd0gYQYB4DRUMt1QxaGQpHZ69aheWpjS0tI8SytyNPel69On48OcINsuXPP
+         pDHQ==
+X-Gm-Message-State: APjAAAWE7Az3DziV0g7Vbaq/Q66PpGMjrcUt0Iaj74BCGm93+f7gmLiH
+        tr6sXxoNAsNfkORcur6V/z1ipw==
+X-Google-Smtp-Source: APXvYqxEKsNxK2ArifpMSeV3q5mX++F0jrdmxTOyWcJDZYYNJOVdT9sdTwJBe4gGIhdguz3qVIfILA==
+X-Received: by 2002:a62:8205:: with SMTP id w5mr12272097pfd.136.1576439787225;
+        Sun, 15 Dec 2019 11:56:27 -0800 (PST)
+Received: from localhost ([64.62.168.194])
+        by smtp.gmail.com with ESMTPSA id i3sm19528061pfg.94.2019.12.15.11.56.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Dec 2019 10:54:30 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] dt-bindings: net: broadcom-bluetooth: Document BCM4329 support
-Date:   Sun, 15 Dec 2019 21:52:53 +0300
-Message-Id: <20191215185253.14024-2-digetx@gmail.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191215185253.14024-1-digetx@gmail.com>
-References: <20191215185253.14024-1-digetx@gmail.com>
+        Sun, 15 Dec 2019 11:56:26 -0800 (PST)
+Date:   Sun, 15 Dec 2019 11:56:23 -0800 (PST)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Palmer Dabbelt <palmerdabbelt@google.com>
+cc:     yash.shah@sifive.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        aou@eecs.berkeley.edu, bmeng.cn@gmail.com, allison@lohutok.net,
+        alexios.zavras@intel.com, Atish Patra <Atish.Patra@wdc.com>,
+        tglx@linutronix.de, Greg KH <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] riscv: cacheinfo: Add support to determine no. of
+ L2 cache way enabled
+In-Reply-To: <mhng-a1ba4b8a-4c6a-43e9-a87a-f8bbbe3555d8@palmerdabbelt-glaptop>
+Message-ID: <alpine.DEB.2.21.9999.1912151155010.64438@viisi.sifive.com>
+References: <1575890706-36162-3-git-send-email-yash.shah@sifive.com>  <1575890706-36162-1-git-send-email-yash.shah@sifive.com> <mhng-a1ba4b8a-4c6a-43e9-a87a-f8bbbe3555d8@palmerdabbelt-glaptop>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BCM4329 is a 802.11 a/b/g/n WiFi + Bluetooth 2.1 chip which is found
-in Azurewave AW-NH611 WiFi+BT module.
+On Fri, 13 Dec 2019, Palmer Dabbelt wrote:
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- Documentation/devicetree/bindings/net/broadcom-bluetooth.txt | 1 +
- 1 file changed, 1 insertion(+)
+> I thought the plan was to get this stuff out of arch/riscv?  It looks like it
+> only got half-way done.
 
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-index b5eadee4a9a7..c44a30dbe43d 100644
---- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-+++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-@@ -11,6 +11,7 @@ Required properties:
- 
-  - compatible: should contain one of the following:
-    * "brcm,bcm20702a1"
-+   * "brcm,bcm4329-bt"
-    * "brcm,bcm4330-bt"
-    * "brcm,bcm43438-bt"
-    * "brcm,bcm4345c5"
--- 
-2.24.0
+That's still the plan.  Will probably send that one upstream in v5.5-rc.  
 
+Am not a huge fan of moving it to drivers/soc, for a few different 
+reasons, but some people seem to feel very passionately about it.
+
+
+- Paul
