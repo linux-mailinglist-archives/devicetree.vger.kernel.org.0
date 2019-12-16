@@ -2,156 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD0E911FD69
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 05:04:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A94C11FE2A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 06:43:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726718AbfLPEEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Dec 2019 23:04:46 -0500
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:44289 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726690AbfLPEEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Dec 2019 23:04:46 -0500
-Received: by mail-pg1-f196.google.com with SMTP id x7so2864917pgl.11
-        for <devicetree@vger.kernel.org>; Sun, 15 Dec 2019 20:04:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KahZqBcsSeKct0EiqWh21SP8RWNU6LEX1G6vgvPIaWU=;
-        b=kGwLd5atrUc73L3QDEe7IMwNAXlqPT7cFEDLFPFPUXSsHutHgEC2AwTFxI/8VI+KQn
-         iPEHYAOrXYVuYu6BVCM+RofvQdR1HSJ65F7IOjR0VY2VBWfdQC/xxujDPNoz+pcVV5tH
-         iGF/BFq+NZosrFooUh0y88Mv2AI4mN0k4s/masJGoL+CTBYIBkF7b5M28IJQFurpuagy
-         04HZG76QJ0Lpt6u/axhtJI7XnmlHNsyhq7U2WQ+dc7Lo1VLQptTYkAj9NkLkeIcyJrfs
-         IVhsNjaw+gS3tdlGE7mmg1hK5ftiznqpMdPFSttg7rACDfQTOGvPqlEmBgsy8lggHuE5
-         dALQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KahZqBcsSeKct0EiqWh21SP8RWNU6LEX1G6vgvPIaWU=;
-        b=V7raHKcTf6Cccx6xbgNn8YAkfFWTjmqC+4KMt+vYSthcM7J3RahV6mJRf4HlHIj2PM
-         PuVeY38hpW0vgZGfGm0PzZ7Lrisl797dHWQhRlvKgOoj0OiIw8wi6Fj9VIPW2i17Z/6Y
-         VCARn1IZqtwc1XeP/5MxU/+M1RtK3wjT1B9WarZ81KRI6Rl5DkoKjZeQ7IlTphQppGjl
-         XsjbJc4qKS48LHKVOTo2dhzOIQB/7Nj3RtE1VAVF7pUnuWI7pFkB3a7PgWu/vgTNNeb5
-         sR+Dqg5iVHWx/zIaJE5RR+ZhWu6VpFIggItzimXHS41NnclsYWo1+6gM8tU0x3O0iT3g
-         kLiQ==
-X-Gm-Message-State: APjAAAVFj4o3xlN8ulWQaaKO9ICIBXd0OKcXSRgsCrV3uysDyxyHuUjG
-        BGHEZIXnbSRWtDIj8hj4cuPV
-X-Google-Smtp-Source: APXvYqyVi0+Wbe50rt3k5sbyx+Sr5W0wpzKMSIEk9kmraZfdbZ3nxQhfzWFDFBYzxcKOueAOPfg6eg==
-X-Received: by 2002:a63:9d8f:: with SMTP id i137mr15549868pgd.33.1576469085659;
-        Sun, 15 Dec 2019 20:04:45 -0800 (PST)
-Received: from Mani-XPS-13-9360 ([2409:4072:797:cc22:ad66:df45:6a09:a260])
-        by smtp.gmail.com with ESMTPSA id g191sm19637765pfb.19.2019.12.15.20.04.38
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 15 Dec 2019 20:04:44 -0800 (PST)
-Date:   Mon, 16 Dec 2019 09:34:34 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     karthik poduval <karthik.poduval@gmail.com>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>, mchehab@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com, peter.griffin@linaro.org
-Subject: Re: [PATCH 4/5] media: i2c: imx290: Add support to enumerate all
- frame sizes
-Message-ID: <20191216040434.GA14778@Mani-XPS-13-9360>
-References: <20191129190541.30315-1-manivannan.sadhasivam@linaro.org>
- <20191129190541.30315-5-manivannan.sadhasivam@linaro.org>
- <20191203085604.GC5282@valkosipuli.retiisi.org.uk>
- <20191215174834.GD11427@Mani-XPS-13-9360>
- <CAFP0Ok8Vqze8ZRyT1WvMXZeBLcx7oKcTO1Kad4kSFLbpHkok-A@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFP0Ok8Vqze8ZRyT1WvMXZeBLcx7oKcTO1Kad4kSFLbpHkok-A@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726710AbfLPFlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 00:41:17 -0500
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:4331 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726227AbfLPFlR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Dec 2019 00:41:17 -0500
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 16 Dec 2019 11:10:06 +0530
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 16 Dec 2019 11:09:40 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 7D3FF1A59; Mon, 16 Dec 2019 11:09:40 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH v3 0/2] Add USB DWC3 support for SC7180
+Date:   Mon, 16 Dec 2019 11:09:00 +0530
+Message-Id: <1576474742-23409-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Dec 15, 2019 at 03:52:37PM -0800, karthik poduval wrote:
-> What if someone adds RAW8 or RAW14 formats in future the enum frame sizes
-> code doesn't have to be patched again if written using a loop on formats
-> array.
-> 
+Converting dt binding to yaml.
+Adding compatible for SC7180 in dt bindings.
 
-Please don't top post :)
+Changes in v3:
+Dropped the patch for adding the compatible in dwc3 driver from the series.
+Addressed the comments from Doug in yaml file.
 
-IMX290 only supports RAW10 and RAW12 formats. And I don't think this driver
-can handle any other CMOS sensors from Sony, so looping over imx290_formats
-seems unnecessary to me.
+Changes in v2:
+Sorted the compatible in dwc3 driver.
+Converted dt binding to yaml.
+Added compatible in yaml.
 
-Thanks,
-Mani
+Sandeep Maheswaram (2):
+  dt-bindings: usb: qcom,dwc3: Convert USB DWC3 bindings
+  dt-bindings: usb: qcom,dwc3: Add compatible for SC7180
 
-> On Sun, Dec 15, 2019, 9:49 AM Manivannan Sadhasivam <
-> manivannan.sadhasivam@linaro.org> wrote:
-> 
-> > Hi Sakari,
-> >
-> > On Tue, Dec 03, 2019 at 10:56:04AM +0200, Sakari Ailus wrote:
-> > > On Sat, Nov 30, 2019 at 12:35:40AM +0530, Manivannan Sadhasivam wrote:
-> > > > Add support to enumerate all frame sizes supported by IMX290. This is
-> > > > required for using with userspace tools such as libcamera.
-> > > >
-> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org
-> > >
-> > > > ---
-> > > >  drivers/media/i2c/imx290.c | 20 ++++++++++++++++++++
-> > > >  1 file changed, 20 insertions(+)
-> > > >
-> > > > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> > > > index d5bb3a59ac46..f26c4a0ee0a0 100644
-> > > > --- a/drivers/media/i2c/imx290.c
-> > > > +++ b/drivers/media/i2c/imx290.c
-> > > > @@ -468,6 +468,25 @@ static int imx290_enum_mbus_code(struct
-> > v4l2_subdev *sd,
-> > > >     return 0;
-> > > >  }
-> > > >
-> > > > +static int imx290_enum_frame_size(struct v4l2_subdev *subdev,
-> > > > +                             struct v4l2_subdev_pad_config *cfg,
-> > > > +                             struct v4l2_subdev_frame_size_enum *fse)
-> > > > +{
-> > > > +   if ((fse->code != imx290_formats[0].code) &&
-> > > > +       (fse->code != imx290_formats[1].code))
-> > >
-> > > Please use a loop over imx290_formats instead.
-> > >
-> >
-> > May I know why? What benefit does it provide over current method?
-> >
-> > Thanks,
-> > Mani
-> >
-> > > > +           return -EINVAL;
-> > > > +
-> > > > +   if (fse->index >= ARRAY_SIZE(imx290_modes))
-> > > > +           return -EINVAL;
-> > > > +
-> > > > +   fse->min_width = imx290_modes[fse->index].width;
-> > > > +   fse->max_width = imx290_modes[fse->index].width;
-> > > > +   fse->min_height = imx290_modes[fse->index].height;
-> > > > +   fse->max_height = imx290_modes[fse->index].height;
-> > > > +
-> > > > +   return 0;
-> > > > +}
-> > > > +
-> > > >  static int imx290_get_fmt(struct v4l2_subdev *sd,
-> > > >                       struct v4l2_subdev_pad_config *cfg,
-> > > >                       struct v4l2_subdev_format *fmt)
-> > > > @@ -820,6 +839,7 @@ static const struct v4l2_subdev_video_ops
-> > imx290_video_ops = {
-> > > >  static const struct v4l2_subdev_pad_ops imx290_pad_ops = {
-> > > >     .init_cfg = imx290_entity_init_cfg,
-> > > >     .enum_mbus_code = imx290_enum_mbus_code,
-> > > > +   .enum_frame_size = imx290_enum_frame_size,
-> > > >     .get_fmt = imx290_get_fmt,
-> > > >     .set_fmt = imx290_set_fmt,
-> > > >  };
-> > >
-> > > --
-> > > Regards,
-> > >
-> > > Sakari Ailus
-> >
+ .../devicetree/bindings/usb/qcom,dwc3.txt          | 104 --------------
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         | 154 +++++++++++++++++++++
+ 2 files changed, 154 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/qcom,dwc3.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
