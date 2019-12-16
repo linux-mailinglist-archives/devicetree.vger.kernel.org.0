@@ -2,116 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36B2F1218F4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 19:47:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC9CA1219B2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 20:10:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727761AbfLPSrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 13:47:33 -0500
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:39503 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728019AbfLPSra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 13:47:30 -0500
-Received: by mail-lj1-f194.google.com with SMTP id e10so7941604ljj.6
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 10:47:29 -0800 (PST)
+        id S1726655AbfLPTKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 14:10:10 -0500
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:43126 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726426AbfLPTKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 14:10:09 -0500
+Received: by mail-qt1-f196.google.com with SMTP id b3so6625514qti.10
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 11:10:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZzVqpm7vISxN2XVUCXGY2m/2XgAiTT0hZi9cW/dInYQ=;
-        b=dZKk5AqvtPHFii8jZi+8J/lePw5/aQn7GaI4xJEsfiKeEXKxrjqY7SsMgUzuGBuAnJ
-         lhHmUXQNOUmAKADBgGGctmtIDE3s/1+6pcASqF2hFgTu8mD30bn9yMBCo9ZTLNOxljHx
-         QYDm+2L84AhvHNfnxjn+ViFTqrOeIfMOVPu7Prn88zScJX9hR2BR2hWtwKdwQrdLAV2Q
-         eMvufEfsfkYQJhyt6Ah6X7ItvTdP8KnIZaJQ0bHcOQ1ywCsoMJ4rdxsO8mFO1zOkOPES
-         nuI7/rn3Hlv7CyP/TU81LEOUpC8Pqo6udw7BvliaHjOa/FSQLmOs+87UyF19Vsk+bk65
-         Mi/g==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Uw9U7rblKVGuRst+OVJeS+hnJio304MdqULIkTyPuXA=;
+        b=sFr/Mv4DBTCYaRnfl12PIOZSe3JPJLY87L9IdBCtKXouRLYpCoc67xxz5/6xwu4uI5
+         XHx+efnEQIs5JBtfY4CNDP1bkQSOaC/oQPNm7RP7pGlOaPu/BxnWHB0tl2PEDF2mqgPM
+         7ZWFWB9/DxusPCQm7QzPNDR13dOCEmDnUWTS1ZsZflHVfa6cBw3jF/1jQvvj0VFJJ848
+         EdnF4DOhPkDSP4NVk8qmM1ldPBDhChTFcIsEg/JckUHWM3a7KlDlzisdid7V/9cfGE5J
+         kUaKbKZvKpVF/IT0jyt4LN3g4UH+q/4qpw1cwKoI8MTiECYny6XojCFD/fH+oMYfTevf
+         X2WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=ZzVqpm7vISxN2XVUCXGY2m/2XgAiTT0hZi9cW/dInYQ=;
-        b=oCmJPxH0U5j37/Zd0DyMSJHTboluTMZV9wGF0xWTeZt8vETOfvNNcXP+4qsdQSOQht
-         I7lcj0FvzeR0rHZkoNKKMEChAU9wk5bLXKj3p4+5fLM1mNJYRz6Z7pJO7Il+iAVtQ3fl
-         BnpSjynbJ+rWLB+vs4wCvPb8dJ2/D5sQ/X2ZOigh5Kkcv0NYC/xFkwzt4ciKVtGJTCv2
-         LsBj7aZ7dFlxQglBkYR+VBvL77+qzjmaE3TOWNfhWsu5ZK3RjIpWUr8SD+3NP/LD7aex
-         2FtXC3JdRswlZromaelJcGd7O/E2ymugL2nbmTNGRqpE9g0XFo2pgu0YDkmPwq/XI1NX
-         ye8g==
-X-Gm-Message-State: APjAAAW6Mh4yD5wNIXOJm+YDQx5fIHb1OtoU9VfmVOSJXx4BkgZghwvS
-        zLdf7df3O7akGz6ZVsgU9+5VwA==
-X-Google-Smtp-Source: APXvYqwA7Ysm4UNtu9E+akNwfRxfaN3bIefRHQCWigpiGZVf0Q7o0UssOPcmwHdK6c+oVuOA9w9V3Q==
-X-Received: by 2002:a2e:3a12:: with SMTP id h18mr379963lja.81.1576522049068;
-        Mon, 16 Dec 2019 10:47:29 -0800 (PST)
-Received: from wasted.cogentembedded.com ([2a00:1fa0:48df:e424:ff05:dd96:8970:d4c9])
-        by smtp.gmail.com with ESMTPSA id g27sm9427223lfj.49.2019.12.16.10.47.27
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 16 Dec 2019 10:47:28 -0800 (PST)
-Subject: Re: [PATCH v2 1/6] spi: Add SPIBSC driver
-To:     Chris Brandt <Chris.Brandt@renesas.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Mason Yang <masonccyang@mxic.com.tw>
-References: <20191206134202.18784-1-chris.brandt@renesas.com>
- <20191206134202.18784-2-chris.brandt@renesas.com>
- <37c13497-d20f-583f-72d7-1e3c8a241990@cogentembedded.com>
- <TYXPR01MB1568ED4D40CEC399E64F6A2B8A550@TYXPR01MB1568.jpnprd01.prod.outlook.com>
- <7386b38f-2f52-39cb-3887-e97b024ec563@cogentembedded.com>
- <2e3211c6-59e8-3057-66a2-29b89a353b8a@cogentembedded.com>
- <TY1PR01MB1562F30F0B58465A6988F29C8A540@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Organization: Cogent Embedded
-Message-ID: <a9b051ac-da70-37bb-bb82-540f0f161b25@cogentembedded.com>
-Date:   Mon, 16 Dec 2019 21:47:26 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Uw9U7rblKVGuRst+OVJeS+hnJio304MdqULIkTyPuXA=;
+        b=DROoamBECawVM2R2BOu+oEJmUoTZ4wdI1DSOWo0/2SjF0jr1BySDkt+zTJX2XjObma
+         LlnsET2cUrEti6yyMaXF0wCF3vIlznW5PAIuRfBxKwRRv9NHZtoMpTO7mBZR84F6skdn
+         kMyJyyhlIcm9Be+iKNKWZg4itDeHzM36Tv11c0VZQUVVm78k0/VyouTToCJ87NmvaHSS
+         NHW59jVOkIS7bpWXGHHGz3J2MhiozE/Rab83+yA8m2loQ3HqdoVfXBqH6LOMl+X8g7AX
+         unPTNhw8v9Lf3GEO+gMKseev9ViGUtFhjX4RfE6715snxxy5PcsrPP4g4aUAH3TYnkYZ
+         rGMg==
+X-Gm-Message-State: APjAAAV4HsED3s4Is8gAjqlWueRak4xyHizxQzS7O2cJD7kfBuAZbLxJ
+        Jydq7VQNMKdXbAWbQ2AV0VyrjvKtTlxRucYYuw/QqQ==
+X-Google-Smtp-Source: APXvYqyhwdhD8SVt5G6Rr61HxNIfhkRMf/+yf6TiwVRSl8xiJY/x5WTcD8VdvPpANl2cfQ+cjpouMbfBl+2FjNsQtHg=
+X-Received: by 2002:ac8:5257:: with SMTP id y23mr829308qtn.88.1576523408360;
+ Mon, 16 Dec 2019 11:10:08 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <TY1PR01MB1562F30F0B58465A6988F29C8A540@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+References: <20191211230813.5144-1-mike.leach@linaro.org> <20191213114008.uyghh3rdbnaumcft@gilmour.lan>
+ <CAJ9a7VjhbAxmJPc1TT2EfzEC6EPinf7Kq8qbv1ZQ-_S0qmfXow@mail.gmail.com> <20191214202631.2h7jzfafkdqew2js@gilmour.lan>
+In-Reply-To: <20191214202631.2h7jzfafkdqew2js@gilmour.lan>
+From:   Mike Leach <mike.leach@linaro.org>
+Date:   Mon, 16 Dec 2019 19:09:57 +0000
+Message-ID: <CAJ9a7Vh7cvHO-CO1D-xZgeRgNaFhqaJ+aYmMN94BQgeSxWbccA@mail.gmail.com>
+Subject: Re: [PATCH v6 05/15] dt-bindings: arm: Adds CoreSight CTI hardware definitions.
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Coresight ML <coresight@lists.linaro.org>,
+        devicetree@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Suzuki K. Poulose" <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        agross@kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/13/2019 11:43 PM, Chris Brandt wrote:
+Hi Maxime
 
->>    The patch isn't applicable as well, and the behaviour is the same as in
->> 5.2.-rc6 based
->> kernel --deleted file is back after remounting, sync or not...
-> 
-> Do the basic R/W operations works?
-> 
-> Here is the first test I do on my platforms. After I passed this, everything
-> else seems to worked pretty good (writing large files).
-> 
-> $ flash_eraseall -j /dev/mtd4
-> $ mount -t jffs2 /dev/mtdblock4 /mnt
-> $ echo "hello" > /mnt/hello.txt
-> $ sync
+On Sat, 14 Dec 2019 at 20:26, Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> On Fri, Dec 13, 2019 at 03:04:35PM +0000, Mike Leach wrote:
+> > > > +    type: object
+> > > > +    description:
+> > > > +      A trigger connections child node which describes the trigger signals
+> > > > +      between this CTI and another hardware device. This device may be a CPU,
+> > > > +      CoreSight device, any other hardware device or simple external IO lines.
+> > > > +      The connection may have both input and output triggers, or only one or the
+> > > > +      other.
+> > > > +
+> > > > +    properties:
+> > > > +
+> > > > +      arm,trig-in-sigs:
+> > > > +        allOf:
+> > > > +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > +        minItems: 1
+> > > > +        maxItems: 32
+> > > > +        description:
+> > > > +          List of CTI trigger in signal numbers in use by a trig-conns node.
+> > > > +
+> > > > +      arm,trig-in-types:
+> > > > +        allOf:
+> > > > +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > +        minItems: 1
+> > > > +        maxItems: 32
+> > > > +        description:
+> > > > +          List of constants representing the types for the CTI trigger in
+> > > > +          signals. Types in this array match to the corresponding signal in the
+> > > > +          arm,trig-in-sigs array. If the -types array is smaller, or omitted
+> > > > +          completely, then the types will default to GEN_IO.
+> > > > +
+> > > > +      arm,trig-out-sigs:
+> > > > +        allOf:
+> > > > +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > +        minItems: 1
+> > > > +        maxItems: 32
+> > > > +        description:
+> > > > +          List of CTI trigger out signal numbers in use by a trig-conns node.
+> > > > +
+> > > > +      arm,trig-out-types:
+> > > > +        allOf:
+> > > > +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > +        minItems: 1
+> > > > +        maxItems: 32
+> > > > +        description:
+> > > > +          List of constants representing the types for the CTI trigger out
+> > > > +          signals. Types in this array match to the corresponding signal
+> > > > +          in the arm,trig-out-sigs array. If the "-types" array is smaller,
+> > > > +          or omitted completely, then the types will default to GEN_IO.
+> > > > +
+> > > > +      arm,trig-filters:
+> > > > +        allOf:
+> > > > +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > +        minItems: 1
+> > > > +        maxItems: 32
+> > > > +        description:
+> > > > +          List of CTI trigger out signals that will be blocked from becoming
+> > > > +          active, unless filtering is disabled on the driver.
+> > > > +
+> > > > +      arm,trig-conn-name:
+> > > > +        allOf:
+> > > > +          - $ref: /schemas/types.yaml#/definitions/string
+> > > > +        description:
+> > > > +          Defines a connection name that will be displayed, if the cpu or
+> > > > +          arm,cs-dev-assoc properties are not being used in this connection.
+> > > > +          Principle use for CTI that are connected to non-CoreSight devices, or
+> > > > +          external IO.
+> > > > +
+> > > > +    anyOf:
+> > > > +      - required:
+> > > > +        - arm,trig-in-sigs
+> > > > +      - required:
+> > > > +        - arm,trig-out-sigs
+> > > > +    oneOf:
+> > > > +      - required:
+> > > > +        - arm,trig-conn-name
+> > > > +      - required:
+> > > > +        - cpu
+> > > > +      - required:
+> > > > +        - arm,cs-dev-assoc
+> > >
+> > > This would mean that either arm,trig-conn-name, cpu xor
+> > > arm,cs-dev-assoc is required in the trig_conn child nodes, but they
+> > > don't seem to be defined at this level but in the parent node?
+> > >
+> >
+> > cpu and rm,cs-dev-assoc can appear in the parent node if the
+> > arm,coresight-cti-v8-arch compatible string is used - hence declared
+> > at that level. See the examples for the v8 compatible layout.
+> >
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - clocks
+> > > > +  - clock-names
+> > > > +
+> > > > +examples:
+> > > > +  # minimum CTI definition. DEVID register used to set number of triggers.
+> > > > +  - |
+> > > > +    cti@20020000 {
+> > > > +      compatible = "arm,coresight-cti", "arm,primecell";
+> > > > +      reg = <0x20020000 0x1000>;
+> > > > +
+> > > > +      clocks = <&soc_smc50mhz>;
+> > > > +      clock-names = "apb_pclk";
+> > > > +    };
+> > > > +  #  v8 architecturally defined CTI - CPU + ETM connections generated by the
+> > > > +  #  driver according to the v8 architecture specification.
+> > > > +  - |
+> > > > +    cti@859000 {
+> > > > +      compatible = "arm,coresight-cti-v8-arch", "arm,coresight-cti",
+> > > > +                   "arm,primecell";
+> > > > +      reg = <0x859000 0x1000>;
+> > > > +
+> > > > +      clocks = <&soc_smc50mhz>;
+> > > > +      clock-names = "apb_pclk";
+> > > > +
+> > > > +      cpu = <&CPU1>;
+> > > > +      arm,cs-dev-assoc = <&etm1>;
+> > >
+> > > and it looks like arm,cs-dev-assoc and cpu can be combined?
+> > >
+> > Absolutely - a CTI can and is connected to both the CPU and an
+> > optional ETM attached to the CPU in a v8 architecture system.
+>
+> That's not what
+>
+> > > > +    oneOf:
+> > > > +      - required:
+> > > > +        - arm,trig-conn-name
+> > > > +      - required:
+> > > > +        - cpu
+> > > > +      - required:
+> > > > +        - arm,cs-dev-assoc
+>
+> Is saying though. oneOf is a xor, you can have one of the three
+> schemas that are valid, but not more than that.
+>
 
-   This works but the created file doesn't survive a remount.
- 
-> If the Flash was recognized at boot, then we know that the ID command (0x9F)
-> at least worked. Meaning read commands were at least working (which is the
-> difficult one for this HW...writing is easier)
+This required schema only applies to the trig-conns@ child nodes. So
+each trig-conns can have one only of the three attributes - as each
+trig-conns node represents a single connection between the CTI and a
+component, and defines the trigger signals that exist in that
+connections.
 
-   BTW, during boot I'm seeing with thsi driver:
+At the cti@ level, if the compatible is the arm,coresight-cti-v8-arch
+type, then both cpu and arm,cs-dev-assoc can appear at this level as
+we only need to know the devices it is connected to - the individual
+trigger signals in the connections are defined by the architecture and
+do not need repeating here.
 
-spi spi0.0: setup: ignoring unsupported mode bits 800                           
-spi-nor spi0.0: Failed to parse optional parameter table: ff81                  
+> > > > +    };
+> > > > +  # Implementation defined CTI - CPU + ETM connections explicitly defined..
+> > > > +  # Shows use of type constants from dt-bindings/arm/coresight-cti-dt.h
+> > > > +  - |
+> > > > +    #include <dt-bindings/arm/coresight-cti-dt.h>
+> > > > +
+> > > > +    cti@858000 {
+> > > > +      compatible = "arm,coresight-cti", "arm,primecell";
+> > > > +      reg = <0x858000 0x1000>;
+> > > > +
+> > > > +      clocks = <&soc_smc50mhz>;
+> > > > +      clock-names = "apb_pclk";
+> > > > +
+> > > > +      arm,cti-ctm-id = <1>;
+> > > > +
+> > > > +      trig-conns@0 {
+> > >
+> > > So, what I think happened here is that your patternProperties doesn't
+> > > match anything (underscore vs dash), and since you don't have
+> > > additionalProperties set to false, it doesn't warn that there's
+> > > properties that aren't defined in the binding. Meaning that none of
+> > > the child nodes in the bindings are effectively validated.
+> > >
+> >
+> > OK - fixing the name should fix this.
+> > I can't use additionalProperties as this is prohibited for bindings
+> > that use ref: (according to the example-schema.yaml)
+>
+> Ah right, I missed that one, sorry. In this case, you can use the
+> keyword unevaluatedProperties instead. As its name suggests, it will
+> report an error if there's a property that hasn't been validated by
+> any schemas.
+>
+> Note that this is a keyword introduced by the latest schemas spec
+> (draft 2019-09) which isn't supported by the DT tools yet. But putting
+> it into your schema will at least allow to have that check when the
+> tools will support it.
+>
+> > > > +            arm,trig-in-sigs = <4 5 6 7>;
+> > > > +            arm,trig-in-types = <ETM_EXTOUT
+> > > > +                                 ETM_EXTOUT
+> > > > +                                 ETM_EXTOUT
+> > > > +                                 ETM_EXTOUT>;
+> > > > +            arm,trig-out-sigs = <4 5 6 7>;
+> > > > +            arm,trig-out-types = <ETM_EXTIN
+> > > > +                                  ETM_EXTIN
+> > > > +                                  ETM_EXTIN
+> > > > +                                  ETM_EXTIN>;
+> > > > +            arm,cs-dev-assoc = <&etm0>;
+> > > > +      };
+> > >
+> > > Nodes with unit-address must have a matching reg property. This will
+> > > generate a dtc warning too.
+> >
+> > That's interesting - I don't get any dtc warnings when compiling or
+> > when running make dt_binding_checl
+>
+> Linux disables a lot of DTC warnings. You can see all (I think?) the
+> warnings by passing W=1 in the environment when you compile the device
+> trees.
+>
+Thanks -  the W=12 starts outputting warnings for lack of reg in child nodes.
+I'll build the requirement into the next version so it is explicitly
+called out in the check.
 
-   (The 2nd message is also seen with my drivers).
+> > Is this rule documented anywhere? I cannot see it in the 0.2 spec
+> > version from devicetree.org or any of the examples / docs in the
+> > kernel tree.
+>
+> The commit adding it to DTC is this one
+> https://git.kernel.org/pub/scm/utils/dtc/dtc.git/commit/?id=852e9ecbe1976927057402f8a8f71ee8e8a49098
 
-> Chris
+I was referring to the requirement for reg = <N> in node@<N> child
+nodes - though I have now spotted this in the early part of the
+0.3-rc2 spec - which appears to be the latest I have access to.
 
-MBR, Sergei
+So I can add in the reg<> parameters and fix this up.
+
+>
+> It just seems that while valid, it's against best practices.
+>
+> Maxime
+
+Thanks
+
+Mike
+--
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
