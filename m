@@ -2,257 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 560C4120493
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 12:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACB241204FC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:09:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727435AbfLPL7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 06:59:05 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:36915 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727241AbfLPL7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 06:59:05 -0500
-Received: by mail-ed1-f67.google.com with SMTP id cy15so4788580edb.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 03:59:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OdxYjoNvvAigHgcFiC0RbqBfDi1gELByEUzUPakRzAU=;
-        b=QS4oJUXMBR1LKAmIRfNd7TsTPRvZM+p35ulJJJ0tqyFHzhtpDodYo5LQgsYohpMD38
-         jd2GpYZzmeFrxdjcvVHDIEQU5Ob37zkgIrdMFcPd6V+3m11xQam+VZueAHmC/FTDgrce
-         M3ruBdp8qqJK+f4rArJwqJ1LXk+sdQpFvLVbA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OdxYjoNvvAigHgcFiC0RbqBfDi1gELByEUzUPakRzAU=;
-        b=CpaQkBJScBgAISMh52SM6F6BViIAyJBw3/1+eFQ2QuLGdYC5ecY3JSmFuYqWSishV2
-         Rlmziw4/C64+qcuyl6/spxw0e3O8Sv8wGxJPuRUd3cOjJ9ak3C7P+s8JGHDcz4aFnbbL
-         qY3Oz4euELPTgnEPaGNapC8igE3sx2yFP0WkM9rKU5vqwlV+lDDuGZDCz2bailb9LVby
-         ik6EIS92bYvnswpw1nMr/BoNXJjoRmjfGmXClTD2+ROYDR+Hwv3jBk7LdwONgMC8VW1D
-         eAFtKPCCAo9s46EeuZB6qbPlNLBl1O0OmeApV/pL6pooqN9Nv/0fv5F2p/P2WDHRpK0q
-         xQcw==
-X-Gm-Message-State: APjAAAWkO4nFuk8fD1g6UJJ92r2UfzRQtW/7HNI1I4Ke1/nUL2jdp8re
-        8SkAx2gd5iACEVOYQG+I+k2h3uu8//LM1g==
-X-Google-Smtp-Source: APXvYqwJZoNKkfbr3Z/Gltz0WmAQTMFZ9+jnenRUlUlLDWryEh8csmac7VxlIlWv+8NSyaGpYQXoYg==
-X-Received: by 2002:a17:906:1c5b:: with SMTP id l27mr31891859ejg.143.1576497542336;
-        Mon, 16 Dec 2019 03:59:02 -0800 (PST)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
-        by smtp.gmail.com with ESMTPSA id p18sm91284ejx.80.2019.12.16.03.59.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Dec 2019 03:59:01 -0800 (PST)
-Received: by mail-wr1-f41.google.com with SMTP id c14so6917095wrn.7
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 03:59:01 -0800 (PST)
-X-Received: by 2002:adf:f586:: with SMTP id f6mr28927980wro.46.1576497541085;
- Mon, 16 Dec 2019 03:59:01 -0800 (PST)
-MIME-Version: 1.0
-References: <20191216080445.8747-1-bibby.hsieh@mediatek.com> <20191216080445.8747-5-bibby.hsieh@mediatek.com>
-In-Reply-To: <20191216080445.8747-5-bibby.hsieh@mediatek.com>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Mon, 16 Dec 2019 20:58:49 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5CU79CnRkpo8bpijMCvtzKAkQXj6nadt3YyQSCcq5roXQ@mail.gmail.com>
-Message-ID: <CAAFQd5CU79CnRkpo8bpijMCvtzKAkQXj6nadt3YyQSCcq5roXQ@mail.gmail.com>
-Subject: Re: [PATCH v9 4/4] i2c: core: support bus regulator controlling in adapter
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
-Cc:     Wolfram Sang <wsa@the-dreams.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
+        id S1727385AbfLPMIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 07:08:15 -0500
+Received: from lucky1.263xmail.com ([211.157.147.134]:43786 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727335AbfLPMIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:08:14 -0500
+Received: from localhost (unknown [192.168.167.235])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 870654C155;
+        Mon, 16 Dec 2019 20:00:33 +0800 (CST)
+X-MAIL-GRAY: 1
+X-MAIL-DELIVERY: 0
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [172.16.12.170] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P6439T140595418887936S1576497632255958_;
+        Mon, 16 Dec 2019 20:00:33 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <fe66bc1cc6d4f292d8f04f4015343336>
+X-RL-SENDER: andy.yan@rock-chips.com
+X-SENDER: yxj@rock-chips.com
+X-LOGIN-NAME: andy.yan@rock-chips.com
+X-FST-TO: linux-arm-kernel@lists.infradead.org
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+Subject: =?UTF-8?Q?Re=3a_=5bPATCH_09/12=5d_drm/rockchip=3a_lvds=3a_Add_PX30_?=
+ =?UTF-8?B?c3VwcG9ydOOAkOivt+azqOaEj++8jOmCruS7tueUsWxpbnV4LXJvY2tjaGlwLWJv?=
+ =?UTF-8?Q?unces+andy=2eyan=3drock-chips=2ecom=40lists=2einfradead=2eorg?=
+ =?UTF-8?B?5Luj5Y+R44CR?=
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Sandy Huang <hjc@rock-chips.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20191213181051.25983-1-miquel.raynal@bootlin.com>
+ <20191213181051.25983-10-miquel.raynal@bootlin.com>
+From:   Andy Yan <andy.yan@rock-chips.com>
+Message-ID: <02b3373e-790b-5f0c-40a0-7cc423a0dac5@rock-chips.com>
+Date:   Mon, 16 Dec 2019 20:00:31 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
+MIME-Version: 1.0
+In-Reply-To: <20191213181051.25983-10-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bibby,
+Hi Miquel:
 
-On Mon, Dec 16, 2019 at 5:04 PM Bibby Hsieh <bibby.hsieh@mediatek.com> wrote:
+Thanks for your work here.
+
+A discussion about the grf write macro bellow.
+
+On 12/14/19 2:10 AM, Miquel Raynal wrote:
+> Introduce PX30 LVDS support. This means adding the relevant helper
+> functions, a specific probe and also the initialization of a specific
+> PHY.
 >
-> Although in the most platforms, the bus power of i2c
-> are alway on, some platforms disable the i2c bus power
-> in order to meet low power request.
->
-> We get and enable bulk regulator in i2c adapter device.
->
-> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  drivers/i2c/i2c-core-base.c | 65 +++++++++++++++++++++++++++++++++++++
->  include/linux/i2c.h         |  3 ++
->  2 files changed, 68 insertions(+)
+>   drivers/gpu/drm/rockchip/rockchip_lvds.c | 173 +++++++++++++++++++++++
+>   drivers/gpu/drm/rockchip/rockchip_lvds.h |  14 ++
+>   2 files changed, 187 insertions(+)
 >
-
-Thanks for the patch! Please see my comments below.
-
-> diff --git a/drivers/i2c/i2c-core-base.c b/drivers/i2c/i2c-core-base.c
-> index 9333c865d4a9..e95ebd0af200 100644
-> --- a/drivers/i2c/i2c-core-base.c
-> +++ b/drivers/i2c/i2c-core-base.c
-> @@ -306,6 +306,7 @@ static int i2c_smbus_host_notify_to_irq(const struct i2c_client *client)
->  static int i2c_device_probe(struct device *dev)
->  {
->         struct i2c_client       *client = i2c_verify_client(dev);
-> +       struct i2c_adapter      *adap = client->adapter;
->         struct i2c_driver       *driver;
->         int status;
->
-> @@ -371,6 +372,12 @@ static int i2c_device_probe(struct device *dev)
->
->         dev_dbg(dev, "probe\n");
->
-> +       status = regulator_enable(adap->bus_reg);
-> +       if (status != 0) {
-> +               dev_err(&adap->dev, "Failed to enable power regulator\n");
-> +               goto err_clear_wakeup_irq;
-> +       }
-> +
->         status = of_clk_set_defaults(dev->of_node, false);
->         if (status < 0)
->                 goto err_clear_wakeup_irq;
-> @@ -407,6 +414,7 @@ static int i2c_device_probe(struct device *dev)
->  static int i2c_device_remove(struct device *dev)
->  {
->         struct i2c_client       *client = i2c_verify_client(dev);
-> +       struct i2c_adapter      *adap = client->adapter;
->         struct i2c_driver       *driver;
->         int status = 0;
->
-> @@ -420,6 +428,8 @@ static int i2c_device_remove(struct device *dev)
->         }
->
->         dev_pm_domain_detach(&client->dev, true);
-> +       if (!pm_runtime_status_suspended(&adap->dev))
-> +               regulator_disable(adap->bus_reg);
->
->         dev_pm_clear_wake_irq(&client->dev);
->         device_init_wakeup(&client->dev, false);
-> @@ -431,6 +441,54 @@ static int i2c_device_remove(struct device *dev)
->         return status;
->  }
->
-> +#ifdef CONFIG_PM_SLEEP
-> +static int i2c_resume(struct device *dev)
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_lvds.c b/drivers/gpu/drm/rockchip/rockchip_lvds.c
+> index a0c203dcd66f..e550c2f102e0 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_lvds.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_lvds.c
+> @@ -10,6 +10,7 @@
+>   #include <linux/component.h>
+>   #include <linux/mfd/syscon.h>
+>   #include <linux/of_graph.h>
+> +#include <linux/phy/phy.h>
+>   #include <linux/pinctrl/devinfo.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_runtime.h>
+> @@ -54,6 +55,7 @@ struct rockchip_lvds {
+>   	void __iomem *regs;
+>   	struct regmap *grf;
+>   	struct clk *pclk;
+> +	struct phy *dphy;
+>   	const struct rockchip_lvds_soc_data *soc_data;
+>   	int output; /* rgb lvds or dual lvds output */
+>   	int format; /* vesa or jeida format */
+> @@ -322,6 +324,133 @@ static void rk3288_lvds_encoder_disable(struct drm_encoder *encoder)
+>   	drm_panel_unprepare(lvds->panel);
+>   }
+>   
+> +static int px30_lvds_poweron(struct rockchip_lvds *lvds)
 > +{
-> +       struct i2c_client *client = i2c_verify_client(dev);
-> +       struct i2c_adapter *adap = client->adapter;
-
-We need to ensure here that if the slave device was not runtime
-suspended before the system suspend, the regulator is enabled before
-the slave's resume callback is called.
-
+> +	int ret;
 > +
-> +       return pm_generic_resume(&adap->dev);
+> +	ret = pm_runtime_get_sync(lvds->dev);
+> +	if (ret < 0) {
+> +		DRM_DEV_ERROR(lvds->dev, "failed to get pm runtime: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Enable LVDS mode */
+> +	return regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
+> +				  PX30_LVDS_MODE_EN(1) | PX30_LVDS_P2S_EN(1),
+> +				  PX30_LVDS_MODE_EN(1) | PX30_LVDS_P2S_EN(1));
 > +}
 > +
-> +static int i2c_suspend(struct device *dev)
+> +static void px30_lvds_poweroff(struct rockchip_lvds *lvds)
 > +{
-> +       struct i2c_client *client = i2c_verify_client(dev);
-> +       struct i2c_adapter *adap = client->adapter;
+> +	regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
+> +			   PX30_LVDS_MODE_EN(1) | PX30_LVDS_P2S_EN(1),
+> +			   PX30_LVDS_MODE_EN(0) | PX30_LVDS_P2S_EN(0));
 > +
-> +       return pm_generic_suspend(&adap->dev);
-
-We need to ensure that the regulator is disabled when the system suspends.
-
-> +}
-> +#endif
-> +
-> +#ifdef CONFIG_PM
-> +static int i2c_runtime_resume(struct device *dev)
-> +{
-> +       struct i2c_client *client = i2c_verify_client(dev);
-> +       struct i2c_adapter *adap = client->adapter;
-> +
-> +       pm_generic_runtime_resume(&adap->dev);
-
-Why adap->dev? This callback is expected to execute a PM operation on
-the I2C slave device.
-
-Also, don't we need some error handling here?
-
-> +
-> +       return regulator_enable(adap->bus_reg);
+> +	pm_runtime_put(lvds->dev);
 > +}
 > +
-> +static int i2c_runtime_suspend(struct device *dev)
+> +static int px30_lvds_grf_config(struct drm_encoder *encoder,
+> +				struct drm_display_mode *mode)
 > +{
-> +       struct i2c_client *client = i2c_verify_client(dev);
-> +       struct i2c_adapter *adap = client->adapter;
+> +	struct rockchip_lvds *lvds = encoder_to_lvds(encoder);
+> +	u8 nhsync = !(mode->flags & DRM_MODE_FLAG_PHSYNC);
+> +	u8 nvsync = !(mode->flags & DRM_MODE_FLAG_PVSYNC);
+> +	u8 ndclk = !(mode->flags & DRM_MODE_FLAG_PCSYNC);
+> +	int ret;
 > +
-> +       pm_generic_runtime_suspend(&adap->dev);
-
-Ditto.
-
+> +	if (lvds->output != DISPLAY_OUTPUT_LVDS) {
+> +		DRM_DEV_ERROR(lvds->dev, "Unsupported display output %d\n",
+> +			      lvds->output);
+> +		return -EINVAL;
+> +	}
 > +
-> +       if (!pm_runtime_status_suspended(&adap->dev))
-
-Since we just executed a suspend operation on the device, how is it
-possible that it isn't suspended?
-
-> +               return regulator_disable(client->adapter->bus_reg);
+> +	if (nhsync ^ nvsync) {
+> +		DRM_DEV_ERROR(lvds->dev, "Unsupported Hsync/Vsync polarity\n");
+> +		return -EINVAL;
+> +	}
 > +
-> +       return 0;
+> +	/* Set format */
+> +	ret = regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
+> +				 PX30_LVDS_FORMAT(lvds->format),
+> +				 PX30_LVDS_FORMAT(lvds->format));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Control Hsync/Vsync polarity */
+> +	ret = regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON0,
+> +				 PX30_LVDS_TIE_CLKS(1),
+> +				 PX30_LVDS_TIE_CLKS(1));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Set Hsync/Vsync polarity */
+> +	ret = regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON0,
+> +				 PX30_LVDS_INVERT_CLKS(1),
+> +				 PX30_LVDS_INVERT_CLKS(nhsync));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Set dclk polarity */
+> +	return regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON0,
+> +				  PX30_LVDS_INVERT_DCLK(1),
+> +				  PX30_LVDS_INVERT_DCLK(ndclk));
 > +}
-> +#endif
 > +
-> +static const struct dev_pm_ops i2c_device_pm = {
-> +       SET_SYSTEM_SLEEP_PM_OPS(i2c_suspend, i2c_resume)
-> +       SET_RUNTIME_PM_OPS(i2c_runtime_suspend, i2c_runtime_resume, NULL)
+> +static int px30_lvds_set_vop_source(struct rockchip_lvds *lvds,
+> +				    struct drm_encoder *encoder)
+> +{
+> +	int vop;
+> +
+> +	vop = drm_of_encoder_active_endpoint_id(lvds->dev->of_node, encoder);
+> +	if (vop < 0)
+> +		return vop;
+> +
+> +	return regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
+> +				  PX30_LVDS_VOP_SEL(1),
+> +				  PX30_LVDS_VOP_SEL(vop));
+> +}
+> +
+> +static void px30_lvds_encoder_enable(struct drm_encoder *encoder)
+> +{
+> +	struct rockchip_lvds *lvds = encoder_to_lvds(encoder);
+> +	struct drm_display_mode *mode = &encoder->crtc->state->adjusted_mode;
+> +	int ret;
+> +
+> +	drm_panel_prepare(lvds->panel);
+> +
+> +	ret = px30_lvds_poweron(lvds);
+> +	if (ret) {
+> +		DRM_DEV_ERROR(lvds->dev, "failed to power on LVDS: %d\n", ret);
+> +		drm_panel_unprepare(lvds->panel);
+> +		return;
+> +	}
+> +
+> +	ret = px30_lvds_grf_config(encoder, mode);
+> +	if (ret) {
+> +		DRM_DEV_ERROR(lvds->dev, "failed to configure LVDS: %d\n", ret);
+> +		drm_panel_unprepare(lvds->panel);
+> +		return;
+> +	}
+> +
+> +	ret = px30_lvds_set_vop_source(lvds, encoder);
+> +	if (ret) {
+> +		DRM_DEV_ERROR(lvds->dev, "failed to set VOP source: %d\n", ret);
+> +		drm_panel_unprepare(lvds->panel);
+> +		return;
+> +	}
+> +
+> +	drm_panel_enable(lvds->panel);
+> +}
+> +
+> +static void px30_lvds_encoder_disable(struct drm_encoder *encoder)
+> +{
+> +	struct rockchip_lvds *lvds = encoder_to_lvds(encoder);
+> +
+> +	drm_panel_disable(lvds->panel);
+> +	px30_lvds_poweroff(lvds);
+> +	drm_panel_unprepare(lvds->panel);
+> +}
+> +
+>   static const
+>   struct drm_encoder_helper_funcs rk3288_lvds_encoder_helper_funcs = {
+>   	.enable = rk3288_lvds_encoder_enable,
+> @@ -329,6 +458,13 @@ struct drm_encoder_helper_funcs rk3288_lvds_encoder_helper_funcs = {
+>   	.atomic_check = rockchip_lvds_encoder_atomic_check,
+>   };
+>   
+> +static const
+> +struct drm_encoder_helper_funcs px30_lvds_encoder_helper_funcs = {
+> +	.enable = px30_lvds_encoder_enable,
+> +	.disable = px30_lvds_encoder_disable,
+> +	.atomic_check = rockchip_lvds_encoder_atomic_check,
 > +};
 > +
->  static void i2c_device_shutdown(struct device *dev)
->  {
->         struct i2c_client *client = i2c_verify_client(dev);
-> @@ -488,6 +546,7 @@ struct bus_type i2c_bus_type = {
->         .probe          = i2c_device_probe,
->         .remove         = i2c_device_remove,
->         .shutdown       = i2c_device_shutdown,
-> +       .pm             = &i2c_device_pm,
->  };
->  EXPORT_SYMBOL_GPL(i2c_bus_type);
->
-> @@ -1351,6 +1410,11 @@ static int i2c_register_adapter(struct i2c_adapter *adap)
->                 goto out_reg;
->
->         dev_dbg(&adap->dev, "adapter [%s] registered\n", adap->name);
-> +       adap->bus_reg = devm_regulator_get(&adap->dev, "bus");
-> +       if (IS_ERR(adap->bus_reg)) {
-> +               res = PTR_ERR(adap->bus_reg);
-> +               goto out_reg;
-> +       }
->
->         pm_runtime_no_callbacks(&adap->dev);
->         pm_suspend_ignore_children(&adap->dev, true);
-> @@ -1580,6 +1644,7 @@ void i2c_del_adapter(struct i2c_adapter *adap)
->         dev_dbg(&adap->dev, "adapter [%s] unregistered\n", adap->name);
->
->         pm_runtime_disable(&adap->dev);
-> +       devm_regulator_put(adap->bus_reg);
->
->         i2c_host_notify_irq_teardown(adap);
->
-> diff --git a/include/linux/i2c.h b/include/linux/i2c.h
-> index d2f786706657..833b81a680da 100644
-> --- a/include/linux/i2c.h
-> +++ b/include/linux/i2c.h
-> @@ -15,6 +15,7 @@
->  #include <linux/device.h>      /* for struct device */
->  #include <linux/sched.h>       /* for completion */
->  #include <linux/mutex.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/rtmutex.h>
->  #include <linux/irqdomain.h>           /* for Host Notify IRQ */
->  #include <linux/of.h>          /* for struct device_node */
-> @@ -330,6 +331,7 @@ struct i2c_client {
->         int init_irq;                   /* irq set at initialization    */
->         int irq;                        /* irq issued by device         */
->         struct list_head detected;
+>   static const struct drm_encoder_funcs rockchip_lvds_encoder_funcs = {
+>   	.destroy = drm_encoder_cleanup,
+>   };
+> @@ -379,16 +515,53 @@ static int rk3288_lvds_probe(struct platform_device *pdev,
+>   	return 0;
+>   }
+>   
+> +static int px30_lvds_probe(struct platform_device *pdev,
+> +			   struct rockchip_lvds *lvds)
+> +{
+> +	int ret;
 > +
+> +	/* MSB */
+> +	ret =  regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
+> +				  PX30_LVDS_MSBSEL(1),
+> +				  PX30_LVDS_MSBSEL(1));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* PHY */
+> +	lvds->dphy = devm_phy_get(&pdev->dev, "dphy");
+> +	if (IS_ERR(lvds->dphy))
+> +		return PTR_ERR(lvds->dphy);
+> +
+> +	phy_init(lvds->dphy);
+> +	if (ret)
+> +		return ret;
+> +
+> +	phy_set_mode(lvds->dphy, PHY_MODE_LVDS);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return phy_power_on(lvds->dphy);
+> +}
+> +
+>   static const struct rockchip_lvds_soc_data rk3288_lvds_data = {
+>   	.probe = rk3288_lvds_probe,
+>   	.helper_funcs = &rk3288_lvds_encoder_helper_funcs,
+>   };
+>   
+> +static const struct rockchip_lvds_soc_data px30_lvds_data = {
+> +	.probe = px30_lvds_probe,
+> +	.helper_funcs = &px30_lvds_encoder_helper_funcs,
+> +};
+> +
+>   static const struct of_device_id rockchip_lvds_dt_ids[] = {
+>   	{
+>   		.compatible = "rockchip,rk3288-lvds",
+>   		.data = &rk3288_lvds_data
+>   	},
+> +	{
+> +		.compatible = "rockchip,px30-lvds",
+> +		.data = &px30_lvds_data
+> +	},
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, rockchip_lvds_dt_ids);
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_lvds.h b/drivers/gpu/drm/rockchip/rockchip_lvds.h
+> index e41e9ab3c306..7cfb102b4854 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_lvds.h
+> +++ b/drivers/gpu/drm/rockchip/rockchip_lvds.h
+> @@ -106,4 +106,18 @@
+>   #define LVDS_VESA_18				2
+>   #define LVDS_JEIDA_18				3
+>   
+> +#define WRITE_EN(v, h, l)  ((GENMASK(h, l) << 16) | (v << l))
 
-Unnecessary change.
 
-Best regards,
-Tomasz
+How about rename WRITE_EN to HIWORD_UPDATE to keep align with other 
+modules that write grf: such as 
+dwmac-rk.c/dw-mipi-dsi-rockhip.c/dw-hdmi-rockchip.c
+
+> +
+> +#define PX30_LVDS_GRF_PD_VO_CON0		0x434
+> +#define   PX30_LVDS_TIE_CLKS(val)		WRITE_EN(val,  8,  8)
+> +#define   PX30_LVDS_INVERT_CLKS(val)		WRITE_EN(val,  9,  9)
+> +#define   PX30_LVDS_INVERT_DCLK(val)		WRITE_EN(val,  5,  5)
+> +
+> +#define PX30_LVDS_GRF_PD_VO_CON1		0x438
+> +#define   PX30_LVDS_FORMAT(val)			WRITE_EN(val, 14, 13)
+> +#define   PX30_LVDS_MODE_EN(val)		WRITE_EN(val, 12, 12)
+> +#define   PX30_LVDS_MSBSEL(val)			WRITE_EN(val, 11, 11)
+> +#define   PX30_LVDS_P2S_EN(val)			WRITE_EN(val,  6,  6)
+> +#define   PX30_LVDS_VOP_SEL(val)		WRITE_EN(val,  1,  1)
+> +
+>   #endif /* _ROCKCHIP_LVDS_ */
+
+
