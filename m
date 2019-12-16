@@ -2,985 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F63C120EFE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 17:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D287120F27
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 17:19:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726730AbfLPQNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 11:13:48 -0500
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:42544 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726561AbfLPQNr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 11:13:47 -0500
-Received: by mail-pf1-f194.google.com with SMTP id 4so5824437pfz.9;
-        Mon, 16 Dec 2019 08:13:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+4+scaIVUTCXcRIlfoyOpMPHWnLMjcPvd+9F13NCi4Y=;
-        b=t7AM6YW51mtUcM93FuQ7vnBBdecrll1XX+KgMVkxpEbR2ZV6uSE25QOXcbrk9zLFzN
-         qRfXmtqkQ27Hv0hPK3F0XDpOgl+HkKN30nuOrSv6UScmok6VCp04g+c7CyypUTuKoo6/
-         cD+WBLvW4UuL5DQUR4VcUEU1J5rDppDyoqJzz5EGPEVwWJDQ7OdmnQHTmUZGOSgchzZ5
-         h6Dbbf9OTMfaOuvp7o9XS7SQytcfMScWcdxTInvqqAyjo9ivwEz/UE3H7Vj/bIugNgPQ
-         Wa+2s7BvRSHqTdO+gEHWVi8E7knyNAIwzqcXUi5+DjIYZ+uqBhdwZ/KJin7Cz9d5waMF
-         +OVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+4+scaIVUTCXcRIlfoyOpMPHWnLMjcPvd+9F13NCi4Y=;
-        b=PzZbv3Z6DK6/rP2ZLU+OpXWsKBo2kn+f5d+6xhd7kDLNKYRtYdb2SepIsr/6DVSGZf
-         1IbGSw5tJ57EcJld6XW+Um+GZMB0NgwKIPBLjl7grQFN6D7pzU96wrorwBdlSJqjMgG9
-         Dj9MEyZ+B0YQ3E1SVqGIx2EyzUuBwQek/3AYCp7j7o46q/h1EG1tVTe2zx4fJlPnQfB5
-         rgrCs0pAmkVmF7EG+yLlkh3Iww0L8oOe7FWjeZERFGEIVRhW3bWxja/5yznCBqP6ICS+
-         dFYlTcYwe98Cychw5wdcFbzRC+WzrMiyOHgyqNdc3zTI0ZajXjE1Yy0sZxfPdBGvmvA/
-         TFOg==
-X-Gm-Message-State: APjAAAXdWBraWUiQm8ScS+lgJVGnHjvhPxVm7bzcvOP4sV/CdsVY9vqT
-        uMYCwXl2x/iGNHkp56p5r9KVI7ul
-X-Google-Smtp-Source: APXvYqz+jT5H19QAVjyzgqN/6iv9V+2t/9IPhdZ9h9gcfIf8EtQ2169N+UH6ZJd466AZrf/nkIsF7w==
-X-Received: by 2002:aa7:9192:: with SMTP id x18mr16770893pfa.125.1576512825264;
-        Mon, 16 Dec 2019 08:13:45 -0800 (PST)
-Received: from localhost.localdomain (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
-        by smtp.gmail.com with ESMTPSA id 83sm23478433pgh.12.2019.12.16.08.13.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2019 08:13:44 -0800 (PST)
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     netdev@vger.kernel.org
-Cc:     David Miller <davem@davemloft.net>, devicetree@vger.kernel.org,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
+        id S1726671AbfLPQQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 11:16:52 -0500
+Received: from zimbra2.kalray.eu ([92.103.151.219]:37848 "EHLO
+        zimbra2.kalray.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725805AbfLPQQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 11:16:52 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra2.kalray.eu (Postfix) with ESMTP id 6B3DC27E071F;
+        Mon, 16 Dec 2019 17:16:50 +0100 (CET)
+Received: from zimbra2.kalray.eu ([127.0.0.1])
+        by localhost (zimbra2.kalray.eu [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id AP85RCpn7i6n; Mon, 16 Dec 2019 17:16:49 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra2.kalray.eu (Postfix) with ESMTP id 407CC27E0BD7;
+        Mon, 16 Dec 2019 17:16:49 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 zimbra2.kalray.eu 407CC27E0BD7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kalray.eu;
+        s=32AE1B44-9502-11E5-BA35-3734643DEF29; t=1576513009;
+        bh=KR939lExQcRXFUHVUhpJ/ZllnQWAxZq25C9GZNkR76U=;
+        h=Date:From:To:Message-ID:MIME-Version;
+        b=gJ68o9f/e8oFmWIH5unONRa2aEajhIPONxIGQK7Y7vK/b87SpQ/Y6aaAPSrYCG2EE
+         9pMx+CZOtCmNUACqRWsjg2muWJeLoTo5Ts7SFDVHGHKC2bls/VgsAU8t4az2ITGpx2
+         FqeCz12tAfoCC9QY6wj3XVCKu9Lu9GDpVHPVI72w=
+X-Virus-Scanned: amavisd-new at zimbra2.kalray.eu
+Received: from zimbra2.kalray.eu ([127.0.0.1])
+        by localhost (zimbra2.kalray.eu [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id vxr3CEuQAYvY; Mon, 16 Dec 2019 17:16:49 +0100 (CET)
+Received: from zimbra2.kalray.eu (localhost [127.0.0.1])
+        by zimbra2.kalray.eu (Postfix) with ESMTP id 225B127E071F;
+        Mon, 16 Dec 2019 17:16:49 +0100 (CET)
+Date:   Mon, 16 Dec 2019 17:16:48 +0100 (CET)
+From:   =?utf-8?Q?Cl=C3=A9ment?= Leger <cleger@kalray.eu>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Fabien DESSENNE <fabien.dessenne@st.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Willem de Bruijn <willemb@google.com>,
-        Wingman Kwok <w-kwok2@ti.com>
-Subject: [PATCH V6 net-next 11/11] ptp: Add a driver for InES time stamping IP core.
-Date:   Mon, 16 Dec 2019 08:13:26 -0800
-Message-Id: <33afc113fa0b301d289522971c83dbbf0d36c8ba.1576511937.git.richardcochran@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1576511937.git.richardcochran@gmail.com>
-References: <cover.1576511937.git.richardcochran@gmail.com>
+        Mark Rutland <mark.rutland@arm.com>, od <od@zcrc.me>,
+        linux-remoteproc <linux-remoteproc@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Message-ID: <1421722418.96878492.1576513008758.JavaMail.zimbra@kalray.eu>
+In-Reply-To: <1428337657.96784882.1576485771590.JavaMail.zimbra@kalray.eu>
+References: <20191210164014.50739-1-paul@crapouillou.net> <20191210164014.50739-3-paul@crapouillou.net> <f25180f2-7c6d-0022-12b2-cd9c202f39d3@st.com> <1576362603.3.5@crapouillou.net> <1428337657.96784882.1576485771590.JavaMail.zimbra@kalray.eu>
+Subject: Re: [PATCH v4 3/5] remoteproc: Add prepare/unprepare callbacks
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [192.168.40.202]
+X-Mailer: Zimbra 8.8.12_GA_3794 (ZimbraWebClient - GC75 (Linux)/8.8.12_GA_3794)
+Thread-Topic: remoteproc: Add prepare/unprepare callbacks
+Thread-Index: uueckZt7bHlt5Prq/c0hmSkfQsRjRiJ9Kq+O
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The InES at the ZHAW offers a PTP time stamping IP core.  The FPGA
-logic recognizes and time stamps PTP frames on the MII bus.  This
-patch adds a driver for the core along with a device tree binding to
-allow hooking the driver to MII buses.
+Hi Paul,
 
-Signed-off-by: Richard Cochran <richardcochran@gmail.com>
----
- drivers/ptp/Kconfig    |  10 +
- drivers/ptp/Makefile   |   1 +
- drivers/ptp/ptp_ines.c | 859 +++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 870 insertions(+)
- create mode 100644 drivers/ptp/ptp_ines.c
+I tested your patch and implemented the prepare callback only.
+This is working correctly and the callback is correctly called
+to enable clocks right before loading code into memory.
 
-diff --git a/drivers/ptp/Kconfig b/drivers/ptp/Kconfig
-index b45d2b86d8ca..e466b3586754 100644
---- a/drivers/ptp/Kconfig
-+++ b/drivers/ptp/Kconfig
-@@ -89,6 +89,16 @@ config DP83640_PHY
- 	  In order for this to work, your MAC driver must also
- 	  implement the skb_tx_timestamp() function.
- 
-+config PTP_1588_CLOCK_INES
-+	tristate "ZHAW InES PTP time stamping IP core"
-+	depends on NETWORK_PHY_TIMESTAMPING
-+	depends on PHYLIB
-+	depends on PTP_1588_CLOCK
-+	help
-+	  This driver adds support for using the ZHAW InES 1588 IP
-+	  core.  This clock is only useful if the MII bus of your MAC
-+	  is wired up to the core.
-+
- config PTP_1588_CLOCK_PCH
- 	tristate "Intel PCH EG20T as PTP clock"
- 	depends on X86_32 || COMPILE_TEST
-diff --git a/drivers/ptp/Makefile b/drivers/ptp/Makefile
-index 69a06f86a450..3fb91bebbaf7 100644
---- a/drivers/ptp/Makefile
-+++ b/drivers/ptp/Makefile
-@@ -6,6 +6,7 @@
- ptp-y					:= ptp_clock.o ptp_chardev.o ptp_sysfs.o
- obj-$(CONFIG_PTP_1588_CLOCK)		+= ptp.o
- obj-$(CONFIG_PTP_1588_CLOCK_DTE)	+= ptp_dte.o
-+obj-$(CONFIG_PTP_1588_CLOCK_INES)	+= ptp_ines.o
- obj-$(CONFIG_PTP_1588_CLOCK_IXP46X)	+= ptp_ixp46x.o
- obj-$(CONFIG_PTP_1588_CLOCK_PCH)	+= ptp_pch.o
- obj-$(CONFIG_PTP_1588_CLOCK_KVM)	+= ptp_kvm.o
-diff --git a/drivers/ptp/ptp_ines.c b/drivers/ptp/ptp_ines.c
-new file mode 100644
-index 000000000000..52c1e85082a8
---- /dev/null
-+++ b/drivers/ptp/ptp_ines.c
-@@ -0,0 +1,859 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2018 MOSER-BAER AG
-+//
-+
-+#define pr_fmt(fmt) "InES_PTP: " fmt
-+
-+#include <linux/ethtool.h>
-+#include <linux/export.h>
-+#include <linux/if_vlan.h>
-+#include <linux/mii_timestamper.h>
-+#include <linux/module.h>
-+#include <linux/net_tstamp.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_irq.h>
-+#include <linux/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/ptp_classify.h>
-+#include <linux/ptp_clock_kernel.h>
-+#include <linux/stddef.h>
-+
-+MODULE_DESCRIPTION("Driver for the ZHAW InES PTP time stamping IP core");
-+MODULE_AUTHOR("Richard Cochran <richardcochran@gmail.com>");
-+MODULE_VERSION("1.0");
-+MODULE_LICENSE("GPL");
-+
-+/* GLOBAL register */
-+#define MCAST_MAC_SELECT_SHIFT	2
-+#define MCAST_MAC_SELECT_MASK	0x3
-+#define IO_RESET		BIT(1)
-+#define PTP_RESET		BIT(0)
-+
-+/* VERSION register */
-+#define IF_MAJOR_VER_SHIFT	12
-+#define IF_MAJOR_VER_MASK	0xf
-+#define IF_MINOR_VER_SHIFT	8
-+#define IF_MINOR_VER_MASK	0xf
-+#define FPGA_MAJOR_VER_SHIFT	4
-+#define FPGA_MAJOR_VER_MASK	0xf
-+#define FPGA_MINOR_VER_SHIFT	0
-+#define FPGA_MINOR_VER_MASK	0xf
-+
-+/* INT_STAT register */
-+#define RX_INTR_STATUS_3	BIT(5)
-+#define RX_INTR_STATUS_2	BIT(4)
-+#define RX_INTR_STATUS_1	BIT(3)
-+#define TX_INTR_STATUS_3	BIT(2)
-+#define TX_INTR_STATUS_2	BIT(1)
-+#define TX_INTR_STATUS_1	BIT(0)
-+
-+/* INT_MSK register */
-+#define RX_INTR_MASK_3		BIT(5)
-+#define RX_INTR_MASK_2		BIT(4)
-+#define RX_INTR_MASK_1		BIT(3)
-+#define TX_INTR_MASK_3		BIT(2)
-+#define TX_INTR_MASK_2		BIT(1)
-+#define TX_INTR_MASK_1		BIT(0)
-+
-+/* BUF_STAT register */
-+#define RX_FIFO_NE_3		BIT(5)
-+#define RX_FIFO_NE_2		BIT(4)
-+#define RX_FIFO_NE_1		BIT(3)
-+#define TX_FIFO_NE_3		BIT(2)
-+#define TX_FIFO_NE_2		BIT(1)
-+#define TX_FIFO_NE_1		BIT(0)
-+
-+/* PORT_CONF register */
-+#define CM_ONE_STEP		BIT(6)
-+#define PHY_SPEED_SHIFT		4
-+#define PHY_SPEED_MASK		0x3
-+#define P2P_DELAY_WR_POS_SHIFT	2
-+#define P2P_DELAY_WR_POS_MASK	0x3
-+#define PTP_MODE_SHIFT		0
-+#define PTP_MODE_MASK		0x3
-+
-+/* TS_STAT_TX register */
-+#define TS_ENABLE		BIT(15)
-+#define DATA_READ_POS_SHIFT	8
-+#define DATA_READ_POS_MASK	0x1f
-+#define DISCARDED_EVENTS_SHIFT	4
-+#define DISCARDED_EVENTS_MASK	0xf
-+
-+#define INES_N_PORTS		3
-+#define INES_REGISTER_SIZE	0x80
-+#define INES_PORT_OFFSET	0x20
-+#define INES_PORT_SIZE		0x20
-+#define INES_FIFO_DEPTH		90
-+#define INES_MAX_EVENTS		100
-+
-+#define BC_PTP_V1		0
-+#define BC_PTP_V2		1
-+#define TC_E2E_PTP_V2		2
-+#define TC_P2P_PTP_V2		3
-+
-+#define OFF_PTP_CLOCK_ID	20
-+#define OFF_PTP_PORT_NUM	28
-+
-+#define PHY_SPEED_10		0
-+#define PHY_SPEED_100		1
-+#define PHY_SPEED_1000		2
-+
-+#define PORT_CONF \
-+	((PHY_SPEED_1000 << PHY_SPEED_SHIFT) | (BC_PTP_V2 << PTP_MODE_SHIFT))
-+
-+#define ines_read32(s, r)	__raw_readl(&s->regs->r)
-+#define ines_write32(s, v, r)	__raw_writel(v, &s->regs->r)
-+
-+#define MESSAGE_TYPE_SYNC		1
-+#define MESSAGE_TYPE_P_DELAY_REQ	2
-+#define MESSAGE_TYPE_P_DELAY_RESP	3
-+#define MESSAGE_TYPE_DELAY_REQ		4
-+
-+#define SYNC				0x0
-+#define DELAY_REQ			0x1
-+#define PDELAY_REQ			0x2
-+#define PDELAY_RESP			0x3
-+
-+static LIST_HEAD(ines_clocks);
-+static DEFINE_MUTEX(ines_clocks_lock);
-+
-+struct ines_global_registers {
-+	u32 id;
-+	u32 test;
-+	u32 global;
-+	u32 version;
-+	u32 test2;
-+	u32 int_stat;
-+	u32 int_msk;
-+	u32 buf_stat;
-+};
-+
-+struct ines_port_registers {
-+	u32 port_conf;
-+	u32 p_delay;
-+	u32 ts_stat_tx;
-+	u32 ts_stat_rx;
-+	u32 ts_tx;
-+	u32 ts_rx;
-+};
-+
-+struct ines_timestamp {
-+	struct list_head list;
-+	unsigned long	tmo;
-+	u16		tag;
-+	u64		sec;
-+	u64		nsec;
-+	u64		clkid;
-+	u16		portnum;
-+	u16		seqid;
-+};
-+
-+struct ines_port {
-+	struct ines_port_registers	*regs;
-+	struct mii_timestamper		mii_ts;
-+	struct ines_clock		*clock;
-+	bool				rxts_enabled;
-+	bool				txts_enabled;
-+	unsigned int			index;
-+	struct delayed_work		ts_work;
-+	/* lock protects event list and tx_skb */
-+	spinlock_t			lock;
-+	struct sk_buff			*tx_skb;
-+	struct list_head		events;
-+	struct list_head		pool;
-+	struct ines_timestamp		pool_data[INES_MAX_EVENTS];
-+};
-+
-+struct ines_clock {
-+	struct ines_port		port[INES_N_PORTS];
-+	struct ines_global_registers	*regs;
-+	void __iomem			*base;
-+	struct device_node		*node;
-+	struct list_head		list;
-+};
-+
-+static bool ines_match(struct sk_buff *skb, unsigned int ptp_class,
-+		       struct ines_timestamp *ts);
-+static int ines_rxfifo_read(struct ines_port *port);
-+static u64 ines_rxts64(struct ines_port *port, unsigned int words);
-+static bool ines_timestamp_expired(struct ines_timestamp *ts);
-+static u64 ines_txts64(struct ines_port *port, unsigned int words);
-+static void ines_txtstamp_work(struct work_struct *work);
-+static bool is_sync_pdelay_resp(struct sk_buff *skb, int type);
-+static u8 tag_to_msgtype(u8 tag);
-+
-+static void ines_clock_cleanup(struct ines_clock *clock)
-+{
-+	struct ines_port *port;
-+	int i;
-+
-+	for (i = 0; i < INES_N_PORTS; i++) {
-+		port = &clock->port[i];
-+		cancel_delayed_work_sync(&port->ts_work);
-+	}
-+}
-+
-+static int ines_clock_init(struct ines_clock *clock, struct device_node *node,
-+			   void __iomem *addr)
-+{
-+	unsigned long port_addr;
-+	struct ines_port *port;
-+	int i, j;
-+
-+	INIT_LIST_HEAD(&clock->list);
-+	clock->node = node;
-+	clock->base = addr;
-+	clock->regs = clock->base;
-+
-+	for (i = 0; i < INES_N_PORTS; i++) {
-+		port = &clock->port[i];
-+		port_addr = (unsigned long) clock->base +
-+			INES_PORT_OFFSET + i * INES_PORT_SIZE;
-+		port->regs = (struct ines_port_registers *) port_addr;
-+		port->clock = clock;
-+		port->index = i;
-+		INIT_DELAYED_WORK(&port->ts_work, ines_txtstamp_work);
-+		spin_lock_init(&port->lock);
-+		INIT_LIST_HEAD(&port->events);
-+		INIT_LIST_HEAD(&port->pool);
-+		for (j = 0; j < INES_MAX_EVENTS; j++)
-+			list_add(&port->pool_data[j].list, &port->pool);
-+	}
-+
-+	ines_write32(clock, 0xBEEF, test);
-+	ines_write32(clock, 0xBEEF, test2);
-+
-+	pr_debug("ID      0x%x\n", ines_read32(clock, id));
-+	pr_debug("TEST    0x%x\n", ines_read32(clock, test));
-+	pr_debug("VERSION 0x%x\n", ines_read32(clock, version));
-+	pr_debug("TEST2   0x%x\n", ines_read32(clock, test2));
-+
-+	for (i = 0; i < INES_N_PORTS; i++) {
-+		port = &clock->port[i];
-+		ines_write32(port, PORT_CONF, port_conf);
-+	}
-+
-+	return 0;
-+}
-+
-+static void ines_dump_ts(char *label, struct ines_timestamp *ts)
-+{
-+#ifdef DEBUG
-+	pr_err("%s timestamp, tag=0x%04hx t=%llu.%9llu c=0x%llx p=%hu s=%hu\n",
-+	       label, ts->tag, ts->sec, ts->nsec,
-+	       ts->clkid, ts->portnum, ts->seqid);
-+#endif
-+}
-+
-+static struct ines_port *ines_find_port(struct device_node *node, u32 index)
-+{
-+	struct ines_port *port = NULL;
-+	struct ines_clock *clock;
-+	struct list_head *this;
-+
-+	mutex_lock(&ines_clocks_lock);
-+	list_for_each(this, &ines_clocks) {
-+		clock = list_entry(this, struct ines_clock, list);
-+		if (clock->node == node) {
-+			port = &clock->port[index];
-+			break;
-+		}
-+	}
-+	mutex_unlock(&ines_clocks_lock);
-+	return port;
-+}
-+
-+static u64 ines_find_rxts(struct ines_port *port, struct sk_buff *skb, int type)
-+{
-+	struct list_head *this, *next;
-+	struct ines_timestamp *ts;
-+	unsigned long flags;
-+	u64 ns = 0;
-+
-+	if (type == PTP_CLASS_NONE)
-+		return 0;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+	ines_rxfifo_read(port);
-+	list_for_each_safe(this, next, &port->events) {
-+		ts = list_entry(this, struct ines_timestamp, list);
-+		if (ines_timestamp_expired(ts)) {
-+			list_del_init(&ts->list);
-+			list_add(&ts->list, &port->pool);
-+			continue;
-+		}
-+		if (ines_match(skb, type, ts)) {
-+			ns = ts->sec * 1000000000ULL + ts->nsec;
-+			list_del_init(&ts->list);
-+			list_add(&ts->list, &port->pool);
-+			break;
-+		}
-+	}
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	return ns;
-+}
-+
-+static u64 ines_find_txts(struct ines_port *port, struct sk_buff *skb)
-+{
-+	unsigned int class = ptp_classify_raw(skb), i;
-+	u32 data_rd_pos, buf_stat, mask, ts_stat_tx;
-+	struct ines_timestamp ts;
-+	unsigned long flags;
-+	u64 ns = 0;
-+
-+	mask = TX_FIFO_NE_1 << port->index;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	for (i = 0; i < INES_FIFO_DEPTH; i++) {
-+
-+		buf_stat = ines_read32(port->clock, buf_stat);
-+		if (!(buf_stat & mask)) {
-+			pr_debug("Tx timestamp FIFO unexpectedly empty\n");
-+			break;
-+		}
-+		ts_stat_tx = ines_read32(port, ts_stat_tx);
-+		data_rd_pos = (ts_stat_tx >> DATA_READ_POS_SHIFT) &
-+			DATA_READ_POS_MASK;
-+		if (data_rd_pos) {
-+			pr_err("unexpected Tx read pos %u\n", data_rd_pos);
-+			break;
-+		}
-+
-+		ts.tag     = ines_read32(port, ts_tx);
-+		ts.sec     = ines_txts64(port, 3);
-+		ts.nsec    = ines_txts64(port, 2);
-+		ts.clkid   = ines_txts64(port, 4);
-+		ts.portnum = ines_read32(port, ts_tx);
-+		ts.seqid   = ines_read32(port, ts_tx);
-+
-+		ines_dump_ts("Tx", &ts);
-+
-+		if (ines_match(skb, class, &ts)) {
-+			ns = ts.sec * 1000000000ULL + ts.nsec;
-+			break;
-+		}
-+	}
-+
-+	spin_unlock_irqrestore(&port->lock, flags);
-+	return ns;
-+}
-+
-+static int ines_hwtstamp(struct mii_timestamper *mii_ts, struct ifreq *ifr)
-+{
-+	struct ines_port *port = container_of(mii_ts, struct ines_port, mii_ts);
-+	u32 cm_one_step = 0, port_conf, ts_stat_rx, ts_stat_tx;
-+	struct hwtstamp_config cfg;
-+	unsigned long flags;
-+
-+	if (copy_from_user(&cfg, ifr->ifr_data, sizeof(cfg)))
-+		return -EFAULT;
-+
-+	/* reserved for future extensions */
-+	if (cfg.flags)
-+		return -EINVAL;
-+
-+	switch (cfg.tx_type) {
-+	case HWTSTAMP_TX_OFF:
-+		ts_stat_tx = 0;
-+		break;
-+	case HWTSTAMP_TX_ON:
-+		ts_stat_tx = TS_ENABLE;
-+		break;
-+	case HWTSTAMP_TX_ONESTEP_P2P:
-+		ts_stat_tx = TS_ENABLE;
-+		cm_one_step = CM_ONE_STEP;
-+		break;
-+	default:
-+		return -ERANGE;
-+	}
-+
-+	switch (cfg.rx_filter) {
-+	case HWTSTAMP_FILTER_NONE:
-+		ts_stat_rx = 0;
-+		break;
-+	case HWTSTAMP_FILTER_ALL:
-+	case HWTSTAMP_FILTER_PTP_V1_L4_EVENT:
-+	case HWTSTAMP_FILTER_PTP_V1_L4_SYNC:
-+	case HWTSTAMP_FILTER_PTP_V1_L4_DELAY_REQ:
-+		return -ERANGE;
-+	case HWTSTAMP_FILTER_PTP_V2_L4_EVENT:
-+	case HWTSTAMP_FILTER_PTP_V2_L4_SYNC:
-+	case HWTSTAMP_FILTER_PTP_V2_L4_DELAY_REQ:
-+	case HWTSTAMP_FILTER_PTP_V2_L2_EVENT:
-+	case HWTSTAMP_FILTER_PTP_V2_L2_SYNC:
-+	case HWTSTAMP_FILTER_PTP_V2_L2_DELAY_REQ:
-+	case HWTSTAMP_FILTER_PTP_V2_EVENT:
-+	case HWTSTAMP_FILTER_PTP_V2_SYNC:
-+	case HWTSTAMP_FILTER_PTP_V2_DELAY_REQ:
-+		ts_stat_rx = TS_ENABLE;
-+		cfg.rx_filter = HWTSTAMP_FILTER_PTP_V2_EVENT;
-+		break;
-+	default:
-+		return -ERANGE;
-+	}
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	port_conf = ines_read32(port, port_conf);
-+	port_conf &= ~CM_ONE_STEP;
-+	port_conf |= cm_one_step;
-+
-+	ines_write32(port, port_conf, port_conf);
-+	ines_write32(port, ts_stat_rx, ts_stat_rx);
-+	ines_write32(port, ts_stat_tx, ts_stat_tx);
-+
-+	port->rxts_enabled = ts_stat_rx == TS_ENABLE ? true : false;
-+	port->txts_enabled = ts_stat_tx == TS_ENABLE ? true : false;
-+
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	return copy_to_user(ifr->ifr_data, &cfg, sizeof(cfg)) ? -EFAULT : 0;
-+}
-+
-+static void ines_link_state(struct mii_timestamper *mii_ts,
-+			    struct phy_device *phydev)
-+{
-+	struct ines_port *port = container_of(mii_ts, struct ines_port, mii_ts);
-+	u32 port_conf, speed_conf;
-+	unsigned long flags;
-+
-+	switch (phydev->speed) {
-+	case SPEED_10:
-+		speed_conf = PHY_SPEED_10 << PHY_SPEED_SHIFT;
-+		break;
-+	case SPEED_100:
-+		speed_conf = PHY_SPEED_100 << PHY_SPEED_SHIFT;
-+		break;
-+	case SPEED_1000:
-+		speed_conf = PHY_SPEED_1000 << PHY_SPEED_SHIFT;
-+		break;
-+	default:
-+		pr_err("bad speed: %d\n", phydev->speed);
-+		return;
-+	}
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	port_conf = ines_read32(port, port_conf);
-+	port_conf &= ~(0x3 << PHY_SPEED_SHIFT);
-+	port_conf |= speed_conf;
-+
-+	ines_write32(port, port_conf, port_conf);
-+
-+	spin_unlock_irqrestore(&port->lock, flags);
-+}
-+
-+static bool ines_match(struct sk_buff *skb, unsigned int ptp_class,
-+		       struct ines_timestamp *ts)
-+{
-+	u8 *msgtype, *data = skb_mac_header(skb);
-+	unsigned int offset = 0;
-+	u16 *portn, *seqid;
-+	u64 *clkid;
-+
-+	if (unlikely(ptp_class & PTP_CLASS_V1))
-+		return false;
-+
-+	if (ptp_class & PTP_CLASS_VLAN)
-+		offset += VLAN_HLEN;
-+
-+	switch (ptp_class & PTP_CLASS_PMASK) {
-+	case PTP_CLASS_IPV4:
-+		offset += ETH_HLEN + IPV4_HLEN(data + offset) + UDP_HLEN;
-+		break;
-+	case PTP_CLASS_IPV6:
-+		offset += ETH_HLEN + IP6_HLEN + UDP_HLEN;
-+		break;
-+	case PTP_CLASS_L2:
-+		offset += ETH_HLEN;
-+		break;
-+	default:
-+		return false;
-+	}
-+
-+	if (skb->len + ETH_HLEN < offset + OFF_PTP_SEQUENCE_ID + sizeof(*seqid))
-+		return false;
-+
-+	msgtype = data + offset;
-+	clkid = (u64 *)(data + offset + OFF_PTP_CLOCK_ID);
-+	portn = (u16 *)(data + offset + OFF_PTP_PORT_NUM);
-+	seqid = (u16 *)(data + offset + OFF_PTP_SEQUENCE_ID);
-+
-+	if (tag_to_msgtype(ts->tag & 0x7) != (*msgtype & 0xf)) {
-+		pr_debug("msgtype mismatch ts %hhu != skb %hhu\n",
-+			 tag_to_msgtype(ts->tag & 0x7), *msgtype & 0xf);
-+		return false;
-+	}
-+	if (cpu_to_be64(ts->clkid) != *clkid) {
-+		pr_debug("clkid mismatch ts %llx != skb %llx\n",
-+			 cpu_to_be64(ts->clkid), *clkid);
-+		return false;
-+	}
-+	if (ts->portnum != ntohs(*portn)) {
-+		pr_debug("portn mismatch ts %hu != skb %hu\n",
-+			 ts->portnum, ntohs(*portn));
-+		return false;
-+	}
-+	if (ts->seqid != ntohs(*seqid)) {
-+		pr_debug("seqid mismatch ts %hu != skb %hu\n",
-+			 ts->seqid, ntohs(*seqid));
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
-+static bool ines_rxtstamp(struct mii_timestamper *mii_ts,
-+			  struct sk_buff *skb, int type)
-+{
-+	struct ines_port *port = container_of(mii_ts, struct ines_port, mii_ts);
-+	struct skb_shared_hwtstamps *ssh;
-+	u64 ns;
-+
-+	if (!port->rxts_enabled)
-+		return false;
-+
-+	ns = ines_find_rxts(port, skb, type);
-+	if (!ns)
-+		return false;
-+
-+	ssh = skb_hwtstamps(skb);
-+	ssh->hwtstamp = ns_to_ktime(ns);
-+	netif_rx(skb);
-+
-+	return true;
-+}
-+
-+static int ines_rxfifo_read(struct ines_port *port)
-+{
-+	u32 data_rd_pos, buf_stat, mask, ts_stat_rx;
-+	struct ines_timestamp *ts;
-+	unsigned int i;
-+
-+	mask = RX_FIFO_NE_1 << port->index;
-+
-+	for (i = 0; i < INES_FIFO_DEPTH; i++) {
-+		if (list_empty(&port->pool)) {
-+			pr_err("event pool is empty\n");
-+			return -1;
-+		}
-+		buf_stat = ines_read32(port->clock, buf_stat);
-+		if (!(buf_stat & mask))
-+			break;
-+
-+		ts_stat_rx = ines_read32(port, ts_stat_rx);
-+		data_rd_pos = (ts_stat_rx >> DATA_READ_POS_SHIFT) &
-+			DATA_READ_POS_MASK;
-+		if (data_rd_pos) {
-+			pr_err("unexpected Rx read pos %u\n", data_rd_pos);
-+			break;
-+		}
-+
-+		ts = list_first_entry(&port->pool, struct ines_timestamp, list);
-+		ts->tmo     = jiffies + HZ;
-+		ts->tag     = ines_read32(port, ts_rx);
-+		ts->sec     = ines_rxts64(port, 3);
-+		ts->nsec    = ines_rxts64(port, 2);
-+		ts->clkid   = ines_rxts64(port, 4);
-+		ts->portnum = ines_read32(port, ts_rx);
-+		ts->seqid   = ines_read32(port, ts_rx);
-+
-+		ines_dump_ts("Rx", ts);
-+
-+		list_del_init(&ts->list);
-+		list_add_tail(&ts->list, &port->events);
-+	}
-+
-+	return 0;
-+}
-+
-+static u64 ines_rxts64(struct ines_port *port, unsigned int words)
-+{
-+	unsigned int i;
-+	u64 result;
-+	u16 word;
-+
-+	word = ines_read32(port, ts_rx);
-+	result = word;
-+	words--;
-+	for (i = 0; i < words; i++) {
-+		word = ines_read32(port, ts_rx);
-+		result <<= 16;
-+		result |= word;
-+	}
-+	return result;
-+}
-+
-+static bool ines_timestamp_expired(struct ines_timestamp *ts)
-+{
-+	return time_after(jiffies, ts->tmo);
-+}
-+
-+static int ines_ts_info(struct mii_timestamper *mii_ts,
-+			struct ethtool_ts_info *info)
-+{
-+	info->so_timestamping =
-+		SOF_TIMESTAMPING_TX_HARDWARE |
-+		SOF_TIMESTAMPING_TX_SOFTWARE |
-+		SOF_TIMESTAMPING_RX_HARDWARE |
-+		SOF_TIMESTAMPING_RX_SOFTWARE |
-+		SOF_TIMESTAMPING_SOFTWARE |
-+		SOF_TIMESTAMPING_RAW_HARDWARE;
-+
-+	info->phc_index = -1;
-+
-+	info->tx_types =
-+		(1 << HWTSTAMP_TX_OFF) |
-+		(1 << HWTSTAMP_TX_ON) |
-+		(1 << HWTSTAMP_TX_ONESTEP_P2P);
-+
-+	info->rx_filters =
-+		(1 << HWTSTAMP_FILTER_NONE) |
-+		(1 << HWTSTAMP_FILTER_PTP_V2_EVENT);
-+
-+	return 0;
-+}
-+
-+static u64 ines_txts64(struct ines_port *port, unsigned int words)
-+{
-+	unsigned int i;
-+	u64 result;
-+	u16 word;
-+
-+	word = ines_read32(port, ts_tx);
-+	result = word;
-+	words--;
-+	for (i = 0; i < words; i++) {
-+		word = ines_read32(port, ts_tx);
-+		result <<= 16;
-+		result |= word;
-+	}
-+	return result;
-+}
-+
-+static bool ines_txts_onestep(struct ines_port *port, struct sk_buff *skb, int type)
-+{
-+	unsigned long flags;
-+	u32 port_conf;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+	port_conf = ines_read32(port, port_conf);
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	if (port_conf & CM_ONE_STEP)
-+		return is_sync_pdelay_resp(skb, type);
-+
-+	return false;
-+}
-+
-+static void ines_txtstamp(struct mii_timestamper *mii_ts,
-+			  struct sk_buff *skb, int type)
-+{
-+	struct ines_port *port = container_of(mii_ts, struct ines_port, mii_ts);
-+	struct sk_buff *old_skb = NULL;
-+	unsigned long flags;
-+
-+	if (!port->txts_enabled || ines_txts_onestep(port, skb, type)) {
-+		kfree_skb(skb);
-+		return;
-+	}
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	if (port->tx_skb)
-+		old_skb = port->tx_skb;
-+
-+	port->tx_skb = skb;
-+
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	if (old_skb)
-+		kfree_skb(old_skb);
-+
-+	schedule_delayed_work(&port->ts_work, 1);
-+}
-+
-+static void ines_txtstamp_work(struct work_struct *work)
-+{
-+	struct ines_port *port =
-+		container_of(work, struct ines_port, ts_work.work);
-+	struct skb_shared_hwtstamps ssh;
-+	struct sk_buff *skb;
-+	unsigned long flags;
-+	u64 ns;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+	skb = port->tx_skb;
-+	port->tx_skb = NULL;
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	ns = ines_find_txts(port, skb);
-+	if (!ns) {
-+		kfree_skb(skb);
-+		return;
-+	}
-+	ssh.hwtstamp = ns_to_ktime(ns);
-+	skb_complete_tx_timestamp(skb, &ssh);
-+}
-+
-+static bool is_sync_pdelay_resp(struct sk_buff *skb, int type)
-+{
-+	u8 *data = skb->data, *msgtype;
-+	unsigned int offset = 0;
-+
-+	if (type & PTP_CLASS_VLAN)
-+		offset += VLAN_HLEN;
-+
-+	switch (type & PTP_CLASS_PMASK) {
-+	case PTP_CLASS_IPV4:
-+		offset += ETH_HLEN + IPV4_HLEN(data + offset) + UDP_HLEN;
-+		break;
-+	case PTP_CLASS_IPV6:
-+		offset += ETH_HLEN + IP6_HLEN + UDP_HLEN;
-+		break;
-+	case PTP_CLASS_L2:
-+		offset += ETH_HLEN;
-+		break;
-+	default:
-+		return 0;
-+	}
-+
-+	if (type & PTP_CLASS_V1)
-+		offset += OFF_PTP_CONTROL;
-+
-+	if (skb->len < offset + 1)
-+		return 0;
-+
-+	msgtype = data + offset;
-+
-+	switch ((*msgtype & 0xf)) {
-+	case SYNC:
-+	case PDELAY_RESP:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static u8 tag_to_msgtype(u8 tag)
-+{
-+	switch (tag) {
-+	case MESSAGE_TYPE_SYNC:
-+		return SYNC;
-+	case MESSAGE_TYPE_P_DELAY_REQ:
-+		return PDELAY_REQ;
-+	case MESSAGE_TYPE_P_DELAY_RESP:
-+		return PDELAY_RESP;
-+	case MESSAGE_TYPE_DELAY_REQ:
-+		return DELAY_REQ;
-+	}
-+	return 0xf;
-+}
-+
-+static struct mii_timestamper *ines_ptp_probe_channel(struct device *device,
-+						      unsigned int index)
-+{
-+	struct device_node *node = device->of_node;
-+	struct ines_port *port;
-+
-+	if (index > INES_N_PORTS - 1) {
-+		dev_err(device, "bad port index %u\n", index);
-+		return ERR_PTR(-EINVAL);
-+	}
-+	port = ines_find_port(node, index);
-+	if (!port) {
-+		dev_err(device, "missing port index %u\n", index);
-+		return ERR_PTR(-ENODEV);
-+	}
-+	port->mii_ts.rxtstamp = ines_rxtstamp;
-+	port->mii_ts.txtstamp = ines_txtstamp;
-+	port->mii_ts.hwtstamp = ines_hwtstamp;
-+	port->mii_ts.link_state = ines_link_state;
-+	port->mii_ts.ts_info = ines_ts_info;
-+
-+	return &port->mii_ts;
-+}
-+
-+static void ines_ptp_release_channel(struct device *device,
-+				     struct mii_timestamper *mii_ts)
-+{
-+}
-+
-+static struct mii_timestamping_ctrl ines_ctrl = {
-+	.probe_channel = ines_ptp_probe_channel,
-+	.release_channel = ines_ptp_release_channel,
-+};
-+
-+static int ines_ptp_ctrl_probe(struct platform_device *pld)
-+{
-+	struct ines_clock *clock;
-+	struct resource *res;
-+	void __iomem *addr;
-+	int err = 0;
-+
-+	res = platform_get_resource(pld, IORESOURCE_MEM, 0);
-+	if (!res) {
-+		dev_err(&pld->dev, "missing memory resource\n");
-+		return -EINVAL;
-+	}
-+	addr = devm_ioremap_resource(&pld->dev, res);
-+	if (IS_ERR(addr)) {
-+		err = PTR_ERR(addr);
-+		goto out;
-+	}
-+	clock = kzalloc(sizeof(*clock), GFP_KERNEL);
-+	if (!clock) {
-+		err = -ENOMEM;
-+		goto out;
-+	}
-+	if (ines_clock_init(clock, pld->dev.of_node, addr)) {
-+		kfree(clock);
-+		err = -ENOMEM;
-+		goto out;
-+	}
-+	err = register_mii_tstamp_controller(&pld->dev, &ines_ctrl);
-+	if (err) {
-+		kfree(clock);
-+		goto out;
-+	}
-+	mutex_lock(&ines_clocks_lock);
-+	list_add_tail(&ines_clocks, &clock->list);
-+	mutex_unlock(&ines_clocks_lock);
-+
-+	dev_set_drvdata(&pld->dev, clock);
-+out:
-+	return err;
-+}
-+
-+static int ines_ptp_ctrl_remove(struct platform_device *pld)
-+{
-+	struct ines_clock *clock = dev_get_drvdata(&pld->dev);
-+
-+	unregister_mii_tstamp_controller(&pld->dev);
-+	mutex_lock(&ines_clocks_lock);
-+	list_del(&clock->list);
-+	mutex_unlock(&ines_clocks_lock);
-+	ines_clock_cleanup(clock);
-+	kfree(clock);
-+	return 0;
-+}
-+
-+static const struct of_device_id ines_ptp_ctrl_of_match[] = {
-+	{ .compatible = "ines,ptp-ctrl" },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, ines_ptp_ctrl_of_match);
-+
-+static struct platform_driver ines_ptp_ctrl_driver = {
-+	.probe  = ines_ptp_ctrl_probe,
-+	.remove = ines_ptp_ctrl_remove,
-+	.driver = {
-+		.name = "ines_ptp_ctrl",
-+		.of_match_table = of_match_ptr(ines_ptp_ctrl_of_match),
-+	},
-+};
-+module_platform_driver(ines_ptp_ctrl_driver);
--- 
-2.20.1
+Regarding unprepare, I have no usecase for this since clocks
+disabling and resetting is done in rproc_stop. Thus, I did not
+tested this part. Did you add it to be called after the subdevices
+unprepare call ? If not, what is the use case for this ?
+ie, what are you doing in unprepare that you don't do in stop ?
 
+Obviously it should work but I can't say I tested it completely !
+
+Regards,
+
+Cl=C3=A9ment
+
+
+----- On 16 Dec, 2019, at 09:42, Cl=C3=A9ment Leger cleger@kalray.eu wrote:
+
+> Hi Paul
+>=20
+> ----- On 14 Dec, 2019, at 23:30, Paul Cercueil paul@crapouillou.net wrote=
+:
+>=20
+>> Hi Fabien,
+>>=20
+>>=20
+>> Le jeu., d=C3=A9c. 12, 2019 at 10:03, Fabien DESSENNE
+>> <fabien.dessenne@st.com> a =C3=A9crit :
+>>> Hi Paul
+>>>=20
+>>>=20
+>>> On 10/12/2019 5:40 PM, Paul Cercueil wrote:
+>>>>  The .prepare() callback is called before the firmware is loaded to
+>>>>  memory. This is useful for instance in the case where some setup is
+>>>>  required for the memory to be accessible.
+>>>=20
+>>>=20
+>>> I am trying to figure out what king of 'setup' may be required. From
+>>> the
+>>> ingenic driver I understand that you need to enable clocks to allow
+>>> some
+>>> memory access.
+>>>=20
+>>> Instead of adding this new ops, why not enabling clocks in probe()?
+>>=20
+>> Enabling the clocks in the probe means that the clocks will be
+>> unconditionally enabled until the driver is removed, even if the remote
+>> processor end up being unused. That would be a waste of power.
+>=20
+> We have the same kind of "problem" for k1c remoteproc driver (not yet
+> upstream, depends on new arch). We need to enable clocks to load code
+> into remote processor memory and currently we do that in probe.
+> However, as you stated, we would like to enable them as late as possible
+> (just before loading code) to avoid wasting power unnecessarily. So the
+> "prepare" callback totally makes sense.
+>=20
+> Regards,
+>=20
+> Cl=C3=A9ment
+>=20
+>>=20
+>> Cheers,
+>> -Paul
+>>=20
+>>=20
+>>>=20
+>>> BR
+>>>=20
+>>> Fabien
+>>>=20
+>>>=20
+>>>>=20
+>>>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>>>  ---
+>>>>=20
+>>>>  Notes:
+>>>>       v2-v4: No change
+>>>>=20
+>>>>    drivers/remoteproc/remoteproc_core.c | 16 +++++++++++++++-
+>>>>    include/linux/remoteproc.h           |  4 ++++
+>>>>    2 files changed, 19 insertions(+), 1 deletion(-)
+>>>>=20
+>>>>  diff --git a/drivers/remoteproc/remoteproc_core.c
+>>>> b/drivers/remoteproc/remoteproc_core.c
+>>>>  index 0a9fc7fdd1c3..3ea5f675a148 100644
+>>>>  --- a/drivers/remoteproc/remoteproc_core.c
+>>>>  +++ b/drivers/remoteproc/remoteproc_core.c
+>>>>  @@ -1299,11 +1299,19 @@ static int rproc_start(struct rproc *rproc,
+>>>> const struct firmware *fw)
+>>>>    =09struct device *dev =3D &rproc->dev;
+>>>>    =09int ret;
+>>>>=20
+>>>>  +=09if (rproc->ops->prepare) {
+>>>>  +=09=09ret =3D rproc->ops->prepare(rproc);
+>>>>  +=09=09if (ret) {
+>>>>  +=09=09=09dev_err(dev, "Failed to prepare rproc: %d\n", ret);
+>>>>  +=09=09=09return ret;
+>>>>  +=09=09}
+>>>>  +=09}
+>>>>  +
+>>>>    =09/* load the ELF segments to memory */
+>>>>    =09ret =3D rproc_load_segments(rproc, fw);
+>>>>    =09if (ret) {
+>>>>    =09=09dev_err(dev, "Failed to load program segments: %d\n", ret);
+>>>>  -=09=09return ret;
+>>>>  +=09=09goto unprepare_rproc;
+>>>>    =09}
+>>>>=20
+>>>>    =09/*
+>>>>  @@ -1354,6 +1362,9 @@ static int rproc_start(struct rproc *rproc,
+>>>> const struct firmware *fw)
+>>>>    =09rproc_unprepare_subdevices(rproc);
+>>>>    reset_table_ptr:
+>>>>    =09rproc->table_ptr =3D rproc->cached_table;
+>>>>  +unprepare_rproc:
+>>>>  +=09if (rproc->ops->unprepare)
+>>>>  +=09=09rproc->ops->unprepare(rproc);
+>>>>=20
+>>>>    =09return ret;
+>>>>    }
+>>>>  @@ -1483,6 +1494,9 @@ static int rproc_stop(struct rproc *rproc,
+>>>> bool crashed)
+>>>>=20
+>>>>    =09rproc->state =3D RPROC_OFFLINE;
+>>>>=20
+>>>>  +=09if (rproc->ops->unprepare)
+>>>>  +=09=09rproc->ops->unprepare(rproc);
+>>>>  +
+>>>>    =09dev_info(dev, "stopped remote processor %s\n", rproc->name);
+>>>>=20
+>>>>    =09return 0;
+>>>>  diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+>>>>  index 5f201f0c86c3..a6272d1ba384 100644
+>>>>  --- a/include/linux/remoteproc.h
+>>>>  +++ b/include/linux/remoteproc.h
+>>>>  @@ -355,6 +355,8 @@ enum rsc_handling_status {
+>>>>=20
+>>>>    /**
+>>>>     * struct rproc_ops - platform-specific device handlers
+>>>>  + * @prepare:=09prepare the device for power up (before the firmware
+>>>> is loaded)
+>>>>  + * @unprepare:=09unprepare the device after it is stopped
+>>>>     * @start:=09power on the device and boot it
+>>>>     * @stop:=09power off the device
+>>>>     * @kick:=09kick a virtqueue (virtqueue id given as a parameter)
+>>>>  @@ -371,6 +373,8 @@ enum rsc_handling_status {
+>>>>     * @get_boot_addr:=09get boot address to entry point specified in
+>>>> firmware
+>>>>     */
+>>>>    struct rproc_ops {
+>>>>  +=09int (*prepare)(struct rproc *rproc);
+>>>>  +=09void (*unprepare)(struct rproc *rproc);
+>>>>    =09int (*start)(struct rproc *rproc);
+>>>>    =09int (*stop)(struct rproc *rproc);
+> > >>    =09void (*kick)(struct rproc *rproc, int vqid);
