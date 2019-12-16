@@ -2,130 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E26131205D8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67CFA1205DE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:37:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727542AbfLPMev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 07:34:51 -0500
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:38826 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727512AbfLPMev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:34:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=mXT8PBeEReMSOgHvnBy5MAfeGjDb/CwmY3oTPLFEi0w=; b=dljlnK4FFsG7hCEolR4dDdxeZ
-        uM6HJ7j1Xg3OJUqaWpOYGz44Xf9vuRPwr8vA7vlqusydLlfDwJGVfECnqSKOR4eDI4gF5pwFegnM8
-        ZMvxtDoOnqEEs7gJPxj3JmuZJhH3fPuhYxnZP5MUyNH6EVDRYiouUBYWHD20VHi4QjBIOBkGZlxti
-        MkTtrlNNe/n+1wJX73P4OnybhD/Vv4ncfALdKFB/Cg7laO77mIVmqgi6x1TWVXf5PkVqqsK6g3Hpz
-        OgmxtxOgL8WTuGmIwlC8ryrX2DZqBhhahKo0kKzbs/OVn69WFsKDuntLAhdya9e5cosGtkleMXHFp
-        J2ddif37w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53760)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1igpaI-0007NN-2K; Mon, 16 Dec 2019 12:34:46 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1igpaE-0002O5-SD; Mon, 16 Dec 2019 12:34:42 +0000
-Date:   Mon, 16 Dec 2019 12:34:42 +0000
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Jon Nettleton <jon@solid-run.com>,
-        Rabeeh Khoury <rabeeh@solid-run.com>,
-        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: lx2160a: add MDIO descriptions
-Message-ID: <20191216123442.GG25745@shell.armlinux.org.uk>
-References: <20191209120010.GG25745@shell.armlinux.org.uk>
- <E1ieHiP-0004wT-2O@rmk-PC.armlinux.org.uk>
- <20191211073330.GO15858@dragon>
- <20191216110253.GE25745@shell.armlinux.org.uk>
- <20191216113455.GF25745@shell.armlinux.org.uk>
+        id S1727513AbfLPMgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 07:36:51 -0500
+Received: from mail-sz.amlogic.com ([211.162.65.117]:15210 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727512AbfLPMgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:36:50 -0500
+Received: from localhost.localdomain (10.28.8.19) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 16 Dec 2019
+ 20:37:24 +0800
+From:   Qianggui Song <qianggui.song@amlogic.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>
+CC:     Qianggui Song <qianggui.song@amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH v2 0/4] irqchip/meson-gpio: Add support for Meson-A1 SoC
+Date:   Mon, 16 Dec 2019 20:36:41 +0800
+Message-ID: <20191216123645.10099-1-qianggui.song@amlogic.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191216113455.GF25745@shell.armlinux.org.uk>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.19]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 16, 2019 at 11:34:56AM +0000, Russell King - ARM Linux admin wrote:
-> On Mon, Dec 16, 2019 at 11:02:53AM +0000, Russell King - ARM Linux admin wrote:
-> > On Wed, Dec 11, 2019 at 03:33:31PM +0800, Shawn Guo wrote:
-> > > On Mon, Dec 09, 2019 at 12:00:37PM +0000, Russell King wrote:
-> > > > Add MDIO descriptions to the lx2160a dtsi file, so we can use them in
-> > > > the SolidRun Clearfog CX platform.
-> > > > 
-> > > > Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
-> > > > ---
-> > > >  .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 20 +++++++++++++++++++
-> > > >  1 file changed, 20 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > > > index 0bd98f179bfa..617e1f1a2339 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-> > > > @@ -863,6 +863,26 @@
-> > > >  			fsl,extts-fifo;
-> > > >  		};
-> > > >  
-> > > > +		emdio1: mdio@8b96000 {
-> > > > +			compatible = "fsl,fman-memac-mdio";
-> > > > +			reg = <0x00 0x8b96000 0x00 0x1000>;
-> > > > +			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			little-endian;
-> > > > +			#address-cells = <0x01>;
-> > > > +			#size-cells = <0x00>;
-> > > > +			status = "disabled";
-> > > > +		};
-> > > > +
-> > > > +		emdio2: mdio@8b97000 {
-> > > > +			compatible = "fsl,fman-memac-mdio";
-> > > > +			reg = <0x00 0x8b97000 0x00 0x1000>;
-> > > > +			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			little-endian;
-> > > > +			#address-cells = <0x01>;
-> > > > +			#size-cells = <0x00>;
-> > > > +			status = "disabled";
-> > > > +		};
-> > > > +
-> > > 
-> > > Ioana Ciornei already had a patch [1] adding emdio1, but unfortunately,
-> > > emdio2 was missing from there.
-> > > 
-> > > Shawn
-> > > 
-> > > [1] https://lkml.org/lkml/2019/12/4/675
-> > 
-> > Okay, I'll wait until after the next merge window before resubmitting.
-> > Thanks.
-> 
-> Just to be clear: the reasons are:
-> 1) Ioana's patch was _not_ copied to linux-arm-kernel as it should have
->    been.
-> 2) I can't download the patch off lkml.org to sanely rebase on top of it
-> 3) I'm not hunting around to try and find it on another archive site
-> 4) I'm not digging about in random git trees trying to find it.
-> 
-> This makes it unnecessarily difficult to progress these patches.
+This patchset adds support for GPIO interrupt controller of Meson-A1 SoC
+which use new register layout, two main things are done in the patchset
+1. rework current driver
+2. add a1 support
 
-Okay, I finally found it at:
+changes since v1 at [0]
+ - place initial macro after the definition of param structure
+ - make common data as parameter of initial macro
+ - add dummy init function for previous chips
 
-https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git/patch/?id=6e1b8fae892daa7ffb48570264b8e43b3f807e9a
+[0]https://lore.kernel.org/linux-amlogic/20191206121714.14579-1-qianggui.song@amlogic.com
 
-Note that that was unnecessarily difficult - google was unable to find
-it.  Ioana's patch should have been copied to linux-arm-kernel as per
-MAINTAINERS, but wasn't.  Is copying the appropriate mailing lists for
-a patch now optional?
+Qianggui Song (4):
+  dt-bindings: interrupt-controller: New binding for Meson-A1 SoCs
+  irqchip/meson-gpio: rework meson irqchip driver to support meson-A1
+    SoCs
+  irqchip/meson-gpio: Add support for meson a1 SoCs
+  arm64: dts: meson: a1: add gpio interrupt controller support
+
+ .../amlogic,meson-gpio-intc.txt               |   1 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |   9 ++
+ drivers/irqchip/irq-meson-gpio.c              | 137 ++++++++++++++----
+ 3 files changed, 122 insertions(+), 25 deletions(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+2.24.0
+
