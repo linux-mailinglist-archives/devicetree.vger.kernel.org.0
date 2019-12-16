@@ -2,115 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A83B5120631
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:47:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E144120676
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:56:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727743AbfLPMrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 07:47:48 -0500
-Received: from michel.telenet-ops.be ([195.130.137.88]:54844 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727741AbfLPMrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:47:48 -0500
-Received: from ramsan ([84.195.182.253])
-        by michel.telenet-ops.be with bizsmtp
-        id ecnj210075USYZQ06cnjWt; Mon, 16 Dec 2019 13:47:47 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1igpmp-0004EZ-1M; Mon, 16 Dec 2019 13:47:43 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1igpmp-0004Lb-0R; Mon, 16 Dec 2019 13:47:43 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     Eugeniu Rosca <erosca@de.adit-jv.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 6/6] arm64: dts: renesas: r8a77961: Add SDHI nodes
-Date:   Mon, 16 Dec 2019 13:47:40 +0100
-Message-Id: <20191216124740.16647-7-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191216124740.16647-1-geert+renesas@glider.be>
-References: <20191216124740.16647-1-geert+renesas@glider.be>
+        id S1727611AbfLPMzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 07:55:54 -0500
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:40610 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727550AbfLPMzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:55:54 -0500
+Received: by mail-ed1-f68.google.com with SMTP id b8so2279392edx.7
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 04:55:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=tDwS+iNU9JGSp+goJy4t4RaGpR/i+KbC6rKWKCSOga0=;
+        b=tsaFFwAkFZPP3uePZhLGpihy3O3TyfZCUNT49AgDqcgEQbCsmMswil8lcmPpx7MVWA
+         ZyLaoVA/bbz6k1dybdduufHEzItoBHmNd/0c91+2CoSOeJ1if9bcfPyaceiiDKbMLsJ2
+         Th6c9HrUOkLuDwWbKdVXKt5K+YG+mIbV5mIP2jqbUOgL4FMMVdzTeMz2vA+4t8WdxZRy
+         B/NsV2eBRsGYFKgZqSZZEHDQqu99IZc0Y0jC4114vAXPiiGfK86U3kAP0Wll4ut94Thl
+         L/E3wr7+NuGUxjzVwEKWtzF9HL8OGcHxtGH5Y+8hOow1j1/tJ49VHNpYs2rLejWJSqci
+         2nuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=tDwS+iNU9JGSp+goJy4t4RaGpR/i+KbC6rKWKCSOga0=;
+        b=n1RpN1zLeKAjr0lfz20zAsiM8ZU7bnI+WMeRFo8zj2EHkrxEyeyIs9jI3pQ9PmYMm/
+         DA2YhJ7P6CH6YSryxYLaw503a6lj3m/fI1ciNL8Ptf1A0J4/8d57Q3A4WfnMPzCAzJrx
+         C4Tf5F2RqThojCJf3ibiIy8cASwDc1suO8iKk+tlWU0qG3aes+uz8CFw7Z0bDtrmdZTQ
+         /KPPv1Az+XpbpH/fXVarSJFhdkJJqTWdxhQXeAl5xCZrf2ilNvxdtkN0tVx4EiqLu6wt
+         vy59H4UQCZMa5T/J2PCDZyM8xDiBj1nLN1C5KsmUgoTcTA79CWuSEIfUdZTKZwUMPOuh
+         8wew==
+X-Gm-Message-State: APjAAAVDoO8z918fFyoV9/RjOiQBYzeQYyKvbBmem/lg7fG1GMpzcfmr
+        Bsy/ZFEJOglp1579XGRWfvSzG8fiyHeFPZn91PY=
+X-Google-Smtp-Source: APXvYqy4YQhEsUngx6+kPmjSqg6TVkx0e06K7noYt3aS+IjSlGNX/ZkXV5EJkL/PUPpff1SgWN+R5yB0DYNFcv/VDSg=
+X-Received: by 2002:aa7:d84b:: with SMTP id f11mr31679903eds.96.1576500952537;
+ Mon, 16 Dec 2019 04:55:52 -0800 (PST)
+MIME-Version: 1.0
+Received: by 2002:a05:6402:22dc:0:0:0:0 with HTTP; Mon, 16 Dec 2019 04:55:52
+ -0800 (PST)
+Reply-To: moneygram.1820@outlook.fr
+From:   "Mrs. ALAN UDE, Official Director.Money Gram-Benin" 
+        <eco.bank1204@gmail.com>
+Date:   Mon, 16 Dec 2019 13:55:52 +0100
+Message-ID: <CAOE+jADT4zuvCiAsa=43yEUKtgEWHsvOfM28G2V1JjY+Fiw3gA@mail.gmail.com>
+Subject: Why did you authorized Mrs. Lyndia Paulson to receive your funds
+ $4.800.000 us dollars from this office?,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device nodes for the SDHI Interfaces on the Renesas R-Car M3-W+
-(r8a77961) SoC.
+MONEY GRAM.
+AROPORT INTL DE COTONOU COTONOU.
+Office of Mrs. ALAN UDE.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - No changes.
+Attn,Dear Funds beneficiary.
 
-Test procedure (eMMC):
-  1. "hd /dev/mmcblk0boot1".
----
- arch/arm64/boot/dts/renesas/r8a77961.dtsi | 39 +++++++++++++++++++++--
- 1 file changed, 36 insertions(+), 3 deletions(-)
+I am Mrs. ALAN UDE., Official Director.Money Gram-Benin
+Confirm to us urgent,
+Why  did you authorized Mrs. Lyndia Paulson to receive your funds
+$4.800.000 us dollars from this office?, I need your urgent response
+now because this woman contacted us again this morning with all her
+mailing address stating that you are very ill, meanwhile you have
+advised her to claim the funds on your behalf, i am real confuse now,
+and i need to hear from you urgent before our office will release your
+transfer to this woman,
+Here is the address she forward to us this morning where your funds
+will be transfer to her.Please do you know this address?
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index 77fbe0f508a50778..be3824bda632233e 100644
---- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-@@ -905,18 +905,51 @@
- 		};
- 
- 		sdhi0: sd@ee100000 {
-+			compatible = "renesas,sdhi-r8a77961",
-+				     "renesas,rcar-gen3-sdhi";
- 			reg = <0 0xee100000 0 0x2000>;
--			/* placeholder */
-+			interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 314>;
-+			max-frequency = <200000000>;
-+			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-+			resets = <&cpg 314>;
-+			status = "disabled";
-+		};
-+
-+		sdhi1: sd@ee120000 {
-+			compatible = "renesas,sdhi-r8a77961",
-+				     "renesas,rcar-gen3-sdhi";
-+			reg = <0 0xee120000 0 0x2000>;
-+			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 313>;
-+			max-frequency = <200000000>;
-+			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-+			resets = <&cpg 313>;
-+			status = "disabled";
- 		};
- 
- 		sdhi2: sd@ee140000 {
-+			compatible = "renesas,sdhi-r8a77961",
-+				     "renesas,rcar-gen3-sdhi";
- 			reg = <0 0xee140000 0 0x2000>;
--			/* placeholder */
-+			interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 312>;
-+			max-frequency = <200000000>;
-+			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-+			resets = <&cpg 312>;
-+			status = "disabled";
- 		};
- 
- 		sdhi3: sd@ee160000 {
-+			compatible = "renesas,sdhi-r8a77961",
-+				     "renesas,rcar-gen3-sdhi";
- 			reg = <0 0xee160000 0 0x2000>;
--			/* placeholder */
-+			interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 311>;
-+			max-frequency = <200000000>;
-+			power-domains = <&sysc R8A77961_PD_ALWAYS_ON>;
-+			resets = <&cpg 311>;
-+			status = "disabled";
- 		};
- 
- 		gic: interrupt-controller@f1010000 {
--- 
-2.17.1
+Full name, Mrs. Lyndia Paulson
+Address. 21644 Vaca Dr.
+Eckert Colorado 81418
+Country. USA
 
+Also i want you to know that we have cut down the transfer fees to
+$23.00 only for your help, to enable you afford it,
+this is because we need all our real customers to receive their funds
+before the end of this year 2019, due after this physical year 2019,
+all remaining and unclaimed funds in our office will be cancelled, so
+you are advised to try and send the remaining $23.00 today so that you
+can pick up your first $US5000.00 immediately today,
+I promise you with all of my life, no more fees, this $23.00 is the
+last fee you will pay to receive your transfer now, once i receive it,
+you must pick up first $US5000.00 at your Money Gram today,
+and i will send you another US$5000.00 tomorrow morning, i just plan
+to make sure that you receive at least $100,000.00 US Dollars before
+the Christmas day, to enable you celebrate a good Christmas with your
+family. Note Iam only here to help you out and make sure you did not
+lose your transfer total amount of $4.8m us dollars to Mrs. Lyndia
+Paulson ok.
+So try and send the $23.00 today once you receive this email ok. God
+bless you, it is your time to rejoice and be happy forever.
+Send the transfer fee $23.00 to us by Money Gram.
+
+Receiver's Name--------Alan Ude
+Country------Benin
+City address-----Cotonou
+Amount------23.00 dollars Only
+Text  Question---------Honest
+Answer-----------------Trust
+
+Thanks
+I wait for your urgent response
+Mrs. ALAN UDE., Official Director.Money Gram-Benin
