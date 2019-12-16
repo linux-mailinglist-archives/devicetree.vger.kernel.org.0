@@ -2,110 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E144120676
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:56:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 704D0120710
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 14:25:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727611AbfLPMzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 07:55:54 -0500
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:40610 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727550AbfLPMzy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:55:54 -0500
-Received: by mail-ed1-f68.google.com with SMTP id b8so2279392edx.7
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 04:55:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=tDwS+iNU9JGSp+goJy4t4RaGpR/i+KbC6rKWKCSOga0=;
-        b=tsaFFwAkFZPP3uePZhLGpihy3O3TyfZCUNT49AgDqcgEQbCsmMswil8lcmPpx7MVWA
-         ZyLaoVA/bbz6k1dybdduufHEzItoBHmNd/0c91+2CoSOeJ1if9bcfPyaceiiDKbMLsJ2
-         Th6c9HrUOkLuDwWbKdVXKt5K+YG+mIbV5mIP2jqbUOgL4FMMVdzTeMz2vA+4t8WdxZRy
-         B/NsV2eBRsGYFKgZqSZZEHDQqu99IZc0Y0jC4114vAXPiiGfK86U3kAP0Wll4ut94Thl
-         L/E3wr7+NuGUxjzVwEKWtzF9HL8OGcHxtGH5Y+8hOow1j1/tJ49VHNpYs2rLejWJSqci
-         2nuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=tDwS+iNU9JGSp+goJy4t4RaGpR/i+KbC6rKWKCSOga0=;
-        b=n1RpN1zLeKAjr0lfz20zAsiM8ZU7bnI+WMeRFo8zj2EHkrxEyeyIs9jI3pQ9PmYMm/
-         DA2YhJ7P6CH6YSryxYLaw503a6lj3m/fI1ciNL8Ptf1A0J4/8d57Q3A4WfnMPzCAzJrx
-         C4Tf5F2RqThojCJf3ibiIy8cASwDc1suO8iKk+tlWU0qG3aes+uz8CFw7Z0bDtrmdZTQ
-         /KPPv1Az+XpbpH/fXVarSJFhdkJJqTWdxhQXeAl5xCZrf2ilNvxdtkN0tVx4EiqLu6wt
-         vy59H4UQCZMa5T/J2PCDZyM8xDiBj1nLN1C5KsmUgoTcTA79CWuSEIfUdZTKZwUMPOuh
-         8wew==
-X-Gm-Message-State: APjAAAVDoO8z918fFyoV9/RjOiQBYzeQYyKvbBmem/lg7fG1GMpzcfmr
-        Bsy/ZFEJOglp1579XGRWfvSzG8fiyHeFPZn91PY=
-X-Google-Smtp-Source: APXvYqy4YQhEsUngx6+kPmjSqg6TVkx0e06K7noYt3aS+IjSlGNX/ZkXV5EJkL/PUPpff1SgWN+R5yB0DYNFcv/VDSg=
-X-Received: by 2002:aa7:d84b:: with SMTP id f11mr31679903eds.96.1576500952537;
- Mon, 16 Dec 2019 04:55:52 -0800 (PST)
+        id S1727833AbfLPNZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 08:25:12 -0500
+Received: from vps.xff.cz ([195.181.215.36]:45352 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727758AbfLPNZM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Dec 2019 08:25:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1576502709; bh=es+nOMcbHNUvRapBUN4dNUN1UmQSHOWrTb4CbncHywQ=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=tsO1ZGF1xfKCIUq16OlM2icXeTDgx8P0RR99yzocXToFCSskUe4dEZqEyANAQwbZh
+         nzkxDr39xTguJz3bbHmXeowcERvh5XnXHD1zwPNH2XirEWE6tkTzeLpa6CRwNHK9OU
+         dzQjLfqVJDbcHudGbMBRHzmlYsObxhMjB4WV0A8Q=
+Date:   Mon, 16 Dec 2019 14:25:09 +0100
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Stefan Wahren <wahrenst@gmx.net>
+Cc:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Eric Anholt <eric@anholt.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V4 01/10] bluetooth: hci_bcm: Fix RTS handling during
+ startup
+Message-ID: <20191216132509.ofqcdpwxsd7324ql@core.my.home>
+Mail-Followup-To: Stefan Wahren <wahrenst@gmx.net>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Eric Anholt <eric@anholt.net>, Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org
+References: <1570375708-26965-1-git-send-email-wahrenst@gmx.net>
+ <1570375708-26965-2-git-send-email-wahrenst@gmx.net>
+ <61789264-a4c2-ac85-9d74-d186213ec70a@gmx.net>
 MIME-Version: 1.0
-Received: by 2002:a05:6402:22dc:0:0:0:0 with HTTP; Mon, 16 Dec 2019 04:55:52
- -0800 (PST)
-Reply-To: moneygram.1820@outlook.fr
-From:   "Mrs. ALAN UDE, Official Director.Money Gram-Benin" 
-        <eco.bank1204@gmail.com>
-Date:   Mon, 16 Dec 2019 13:55:52 +0100
-Message-ID: <CAOE+jADT4zuvCiAsa=43yEUKtgEWHsvOfM28G2V1JjY+Fiw3gA@mail.gmail.com>
-Subject: Why did you authorized Mrs. Lyndia Paulson to receive your funds
- $4.800.000 us dollars from this office?,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <61789264-a4c2-ac85-9d74-d186213ec70a@gmx.net>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MONEY GRAM.
-AROPORT INTL DE COTONOU COTONOU.
-Office of Mrs. ALAN UDE.
+Hello,
 
-Attn,Dear Funds beneficiary.
+On Sun, Oct 20, 2019 at 11:17:28PM +0200, Stefan Wahren wrote:
+> Hi Marcel,
+> hi Johan,
+> 
+> Am 06.10.19 um 17:28 schrieb Stefan Wahren:
+> > The RPi 4 uses the hardware handshake lines for CYW43455, but the chip
+> > doesn't react to HCI requests during DT probe. The reason is the inproper
+> > handling of the RTS line during startup. According to the startup
+> > signaling sequence in the CYW43455 datasheet, the hosts RTS line must
+> > be driven after BT_REG_ON and BT_HOST_WAKE.
+> >
+> > Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> > ---
+> >  drivers/bluetooth/hci_bcm.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
+> > index 7646636..0f73f6a 100644
+> > --- a/drivers/bluetooth/hci_bcm.c
+> > +++ b/drivers/bluetooth/hci_bcm.c
+> > @@ -445,9 +445,11 @@ static int bcm_open(struct hci_uart *hu)
+> >
+> >  out:
+> >  	if (bcm->dev) {
+> > +		hci_uart_set_flow_control(hu, true);
+> >  		hu->init_speed = bcm->dev->init_speed;
+> >  		hu->oper_speed = bcm->dev->oper_speed;
+> >  		err = bcm_gpio_set_power(bcm->dev, true);
+> > +		hci_uart_set_flow_control(hu, false);
+> >  		if (err)
+> >  			goto err_unset_hu;
+> >  	}
+> > --
+> > 2.7.4
+> 
+> would be nice to get some feedback about this.
 
-I am Mrs. ALAN UDE., Official Director.Money Gram-Benin
-Confirm to us urgent,
-Why  did you authorized Mrs. Lyndia Paulson to receive your funds
-$4.800.000 us dollars from this office?, I need your urgent response
-now because this woman contacted us again this morning with all her
-mailing address stating that you are very ill, meanwhile you have
-advised her to claim the funds on your behalf, i am real confuse now,
-and i need to hear from you urgent before our office will release your
-transfer to this woman,
-Here is the address she forward to us this morning where your funds
-will be transfer to her.Please do you know this address?
+I started seeing failures on Orange Pi 3 in 5.5-rc:
 
-Full name, Mrs. Lyndia Paulson
-Address. 21644 Vaca Dr.
-Eckert Colorado 81418
-Country. USA
+[    3.839134] Bluetooth: hci0: command 0xfc18 tx timeout
+[   11.999136] Bluetooth: hci0: BCM: failed to write update baudrate (-110)
+[   12.004613] Bluetooth: hci0: Failed to set baudrate
+[   12.123187] Bluetooth: hci0: BCM: chip id 130
+[   12.128398] Bluetooth: hci0: BCM: features 0x0f
+[   12.154686] Bluetooth: hci0: BCM4345C5
+[   12.157165] Bluetooth: hci0: BCM4345C5 (003.006.006) build 0000
+[   15.343684] Bluetooth: hci0: BCM4345C5 (003.006.006) build 0038
 
-Also i want you to know that we have cut down the transfer fees to
-$23.00 only for your help, to enable you afford it,
-this is because we need all our real customers to receive their funds
-before the end of this year 2019, due after this physical year 2019,
-all remaining and unclaimed funds in our office will be cancelled, so
-you are advised to try and send the remaining $23.00 today so that you
-can pick up your first $US5000.00 immediately today,
-I promise you with all of my life, no more fees, this $23.00 is the
-last fee you will pay to receive your transfer now, once i receive it,
-you must pick up first $US5000.00 at your Money Gram today,
-and i will send you another US$5000.00 tomorrow morning, i just plan
-to make sure that you receive at least $100,000.00 US Dollars before
-the Christmas day, to enable you celebrate a good Christmas with your
-family. Note Iam only here to help you out and make sure you did not
-lose your transfer total amount of $4.8m us dollars to Mrs. Lyndia
-Paulson ok.
-So try and send the $23.00 today once you receive this email ok. God
-bless you, it is your time to rejoice and be happy forever.
-Send the transfer fee $23.00 to us by Money Gram.
+Switch to higher baudrate works again after reverting this patch.
 
-Receiver's Name--------Alan Ude
-Country------Benin
-City address-----Cotonou
-Amount------23.00 dollars Only
-Text  Question---------Honest
-Answer-----------------Trust
+That board also uses RTS/CTS signalling.
 
-Thanks
-I wait for your urgent response
-Mrs. ALAN UDE., Official Director.Money Gram-Benin
+I guess the patch needs re-thinking/maybe other chips may not need this?
+
+I don't have access to datasheets.
+
+regards,
+	o.
+
+> Regards
+> Stefan
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
