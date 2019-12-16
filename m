@@ -2,67 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 116411218D7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 19:47:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 466441218CA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 19:46:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728072AbfLPRzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 12:55:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53180 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727907AbfLPRzo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Dec 2019 12:55:44 -0500
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F2C60206B7;
-        Mon, 16 Dec 2019 17:55:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1576518944;
-        bh=1mV3/yNh0GSIc3le4APUDwgLnHAoG5ix4puzI6eZqdk=;
-        h=In-Reply-To:References:To:From:Subject:Date:From;
-        b=fGcixwDaIx9KQmcQ0FuaB2h1kXmJF52KbQSo+72cuAAZ12ydjmYtZR9/nC1Ni4f75
-         TQbZGhEmrtrFr+1bzMU79jw16HsVPSU8DCJKfrOvsIp+RtX4PJz51qXFteOvQG61cb
-         /C4/dDxXIc1M6hx7xf6Y1Zy+G7GTThMjiaR+qUZ0=
-Content-Type: text/plain; charset="utf-8"
+        id S1727498AbfLPSq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 13:46:29 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:38518 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727787AbfLPR4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 12:56:18 -0500
+Received: by mail-ot1-f65.google.com with SMTP id h20so10168609otn.5;
+        Mon, 16 Dec 2019 09:56:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=aw1ByhbMIhX8L3tpVoMfqyhN1NAHJbr1+p+FNO511mw=;
+        b=nrMvKXP819hDukBTzAVD5fj7fjnXlO/iuNiZNRauhqvxPAleLPK7PhDPEEswRvauou
+         tE53c/EHRbEmJiXf7zwCH3XN3m5qF1s5mYNpEEP5opSLUT4hqqlt0Lg/qtuvo484QaHT
+         YXScST/HMAOvoj7jtqkkCKtD7IF/WE2T2jNWQ6Ud+35aOhIysvPZmFeHehQ7CoaQU+eT
+         jDPZb8FuJcQQCNIC/eMpFJ5MiiKFHC9dQGhG76hFmKvNqQu2HkNhpO7HnYUXjOaFMIZH
+         0W8gIt9at6MDjIvNujZtzkBsAW5F9lYwDMU7GZBT0b+A1lvtHCcMdVK+Qvy+t/m5HbZO
+         u5Fw==
+X-Gm-Message-State: APjAAAWIBm03hyu+rzzmsyhE6g4uB4ZnbfPNrsylMvyBZRSb5eIpn/ye
+        ui71fIhptEQUiaITI3GjLQ==
+X-Google-Smtp-Source: APXvYqwnnF6ea7JjKjRTbA+MoqjFiZwsAnK2w39lJst7Lqh4AyRaVH2JJ0Lo6JAUE+Ksjh06jg4ewA==
+X-Received: by 2002:a9d:600e:: with SMTP id h14mr32060423otj.113.1576518977031;
+        Mon, 16 Dec 2019 09:56:17 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p127sm7017255oig.26.2019.12.16.09.56.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Dec 2019 09:56:16 -0800 (PST)
+Date:   Mon, 16 Dec 2019 11:56:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     kishon@ti.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Subject: Re: [PATCH RESEND 1/2] dt-bindings: phy: drop #clock-cells from
+ rockchip,px30-dsi-dphy
+Message-ID: <20191216175615.GA23392@bogus>
+References: <20191216122448.27867-1-heiko@sntech.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <F2C21019-79F4-450F-A575-9621E5747C4E@walle.cc>
-References: <20191205072653.34701-1-wen.he_1@nxp.com> <20191205072653.34701-2-wen.he_1@nxp.com> <20191212221817.B7FF1206DA@mail.kernel.org> <F2C21019-79F4-450F-A575-9621E5747C4E@walle.cc>
-To:     Li Yang <leoyang.li@nxp.com>, Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Michael Walle <michael@walle.cc>,
-        Rob Herring <robh+dt@kernel.org>, Wen He <wen.he_1@nxp.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [v11 2/2] clk: ls1028a: Add clock driver for Display output interface
-User-Agent: alot/0.8.1
-Date:   Mon, 16 Dec 2019 09:55:43 -0800
-Message-Id: <20191216175543.F2C60206B7@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191216122448.27867-1-heiko@sntech.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Michael Walle (2019-12-12 16:06:16)
-> Am 12. Dezember 2019 23:18:16 MEZ schrieb Stephen Boyd <sboyd@kernel.org>:
-> >Quoting Wen He (2019-12-04 23:26:53)
-> >> Add clock driver for QorIQ LS1028A Display output interfaces(LCD,
-> >DPHY),
-> >> as implemented in TSMC CLN28HPM PLL, this PLL supports the
-> >programmable
-> >> integer division and range of the display output pixel clock's
-> >27-594MHz.
-> >>=20
-> >> Signed-off-by: Wen He <wen.he_1@nxp.com>
-> >> Signed-off-by: Michael Walle <michael@walle.cc>
-> >
-> >Is Michael the author? SoB chain is backwards here.
->=20
-> the original driver was from Wen. I've just supplied some code and
-> the vco frequency stuff. so its basically a sob of us both.=20
->=20
-> -michael=20
+On Mon, 16 Dec 2019 13:24:47 +0100, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> 
+> Further review of the dsi components for the px30 revealed that the
+> phy shouldn't expose the pll as clock but instead handle settings
+> via phy parameters.
+> 
+> As the phy binding is new and not used anywhere yet, just drop them
+> so they don't get used.
+> 
+> Fixes: 3817c7961179 ("dt-bindings: phy: add yaml binding for rockchip,px30-dsi-dphy")
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> ---
+> Hi Kishon,
+> 
+> maybe suitable as a fix for 5.5-rc?
+> 
+> Thanks
+> Heiko
+> 
+>  .../devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml      | 5 -----
+>  1 file changed, 5 deletions(-)
+> 
 
-Ok. That's a Co-developed-by: tag then. Thanks for letting us know.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
+If a tag was not added on purpose, please state why and what changed.
