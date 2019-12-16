@@ -2,170 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D19B1203AE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 12:21:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 846A112040A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 12:35:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727427AbfLPLUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 06:20:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40488 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727086AbfLPLUr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Dec 2019 06:20:47 -0500
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 77993206CB;
-        Mon, 16 Dec 2019 11:20:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1576495247;
-        bh=Mpc6KplCorpdPPjd389Z2K1v+WF0Ie2Wk28APYU3EIs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UGMeVmTnoijpaXf0URFSEnCAv2QMv1w4vRp1RBYhvOjr4CWEskkLNUgDf2fd+/91T
-         u9eHV45b6wdXZsbDBv6MufHf+l5akQjQKX51yICGrGeVg8jgDQZilSbp6BAom+IqcC
-         Y7wsZm3BFQcwZ8XuLl9OoumuAFnRAITIuNShN1oI=
-Date:   Mon, 16 Dec 2019 12:20:42 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [PATCH v12 1/7] dt-bindings: sun6i-dsi: Document A64 MIPI-DSI
- controller
-Message-ID: <20191216112042.f4xvlgnbm4dk6wkq@gilmour.lan>
-References: <20191203134816.5319-1-jagan@amarulasolutions.com>
- <20191203134816.5319-2-jagan@amarulasolutions.com>
- <20191204133600.gnv6dnhk6upe7xod@gilmour.lan>
- <CAMty3ZDU57Hj3ZSBC6sSMFWN9-HQadA03hmXUNUVS1W0UQQ3DA@mail.gmail.com>
+        id S1727377AbfLPLfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 06:35:05 -0500
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:38044 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727274AbfLPLfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 06:35:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=n73CyjMCqSKZkVyvGTrxdoiHOlBdDgdbZjZVrU1/nds=; b=MqiaVdcPcT+aDlGgSmzA23X2j
+        4lQ3aor0A63huFN55+D8c+fuJDw3Yu4rqaXrBrkh+0RWc4IYJ5YqCGKlGzBDdidftrXXEMLvec0Ig
+        XiJiv0h/psysHKVNfzOChb/zy/1qkDtLgquM8HSpRaJMzFc3lb0QxoVHmrAAj+xG9U+J9mgZIOfLW
+        SnJCibte+pAyicnUgnkgkWsP/JDdU/h3PSpsmCuLtwAM2DiBxEleMTs9ncKAa7Vn6e54AcH3uWs1f
+        cv0Fk+0bogaTVXEerQCZSe30lAm8oGSnBfCJFRmj+hd++YLQxafICyWdY7FArpffMqWzO2T17FqQs
+        gSmHe4P/Q==;
+Received: from shell.armlinux.org.uk ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:49602)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1igoeQ-00072Q-BP; Mon, 16 Dec 2019 11:34:58 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1igoeO-0002Ln-1S; Mon, 16 Dec 2019 11:34:56 +0000
+Date:   Mon, 16 Dec 2019 11:34:56 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Jon Nettleton <jon@solid-run.com>,
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Rabeeh Khoury <rabeeh@solid-run.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: lx2160a: add MDIO descriptions
+Message-ID: <20191216113455.GF25745@shell.armlinux.org.uk>
+References: <20191209120010.GG25745@shell.armlinux.org.uk>
+ <E1ieHiP-0004wT-2O@rmk-PC.armlinux.org.uk>
+ <20191211073330.GO15858@dragon>
+ <20191216110253.GE25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="j7bmzwiznwnaw3ax"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMty3ZDU57Hj3ZSBC6sSMFWN9-HQadA03hmXUNUVS1W0UQQ3DA@mail.gmail.com>
+In-Reply-To: <20191216110253.GE25745@shell.armlinux.org.uk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---j7bmzwiznwnaw3ax
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Dec 16, 2019 at 04:37:20PM +0530, Jagan Teki wrote:
-> On Wed, Dec 4, 2019 at 7:06 PM Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > On Tue, Dec 03, 2019 at 07:18:10PM +0530, Jagan Teki wrote:
-> > > The MIPI DSI controller in Allwinner A64 is similar to A33.
-> > >
-> > > But unlike A33, A64 doesn't have DSI_SCLK gating so it is valid
-> > > to have separate compatible for A64 on the same driver.
-> > >
-> > > DSI_SCLK uses mod clock-names on dt-bindings, so the same
-> > > is not required for A64.
-> > >
-> > > On that note
-> > > - A64 require minimum of 1 clock like the bus clock
-> > > - A33 require minimum of 2 clocks like both bus, mod clocks
-> > >
-> > > So, update dt-bindings so-that it can document both A33,
-> > > A64 bindings requirements.
-> > >
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+On Mon, Dec 16, 2019 at 11:02:53AM +0000, Russell King - ARM Linux admin wrote:
+> On Wed, Dec 11, 2019 at 03:33:31PM +0800, Shawn Guo wrote:
+> > On Mon, Dec 09, 2019 at 12:00:37PM +0000, Russell King wrote:
+> > > Add MDIO descriptions to the lx2160a dtsi file, so we can use them in
+> > > the SolidRun Clearfog CX platform.
+> > > 
+> > > Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
 > > > ---
-> > > Changes for v12:
-> > > - Use 'enum' instead of oneOf+const
-> > >
-> > >  .../display/allwinner,sun6i-a31-mipi-dsi.yaml | 20 +++++++++++++++++--
-> > >  1 file changed, 18 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > index dafc0980c4fa..b91446475f35 100644
-> > > --- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > @@ -15,7 +15,9 @@ properties:
-> > >    "#size-cells": true
-> > >
-> > >    compatible:
-> > > -    const: allwinner,sun6i-a31-mipi-dsi
-> > > +    enum:
-> > > +      - allwinner,sun6i-a31-mipi-dsi
-> > > +      - allwinner,sun50i-a64-mipi-dsi
-> > >
-> > >    reg:
-> > >      maxItems: 1
-> > > @@ -24,6 +26,8 @@ properties:
-> > >      maxItems: 1
-> > >
-> > >    clocks:
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > >      items:
-> > >        - description: Bus Clock
-> > >        - description: Module Clock
-> > > @@ -63,13 +67,25 @@ required:
-> > >    - reg
-> > >    - interrupts
-> > >    - clocks
-> > > -  - clock-names
-> > >    - phys
-> > >    - phy-names
-> > >    - resets
-> > >    - vcc-dsi-supply
-> > >    - port
-> > >
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +         compatible:
-> > > +           contains:
-> > > +             const: allwinner,sun6i-a31-mipi-dsi
-> > > +      then:
-> > > +        properties:
-> > > +          clocks:
-> > > +            minItems: 2
-> > > +        required:
-> > > +          - clock-names
+> > >  .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 20 +++++++++++++++++++
+> > >  1 file changed, 20 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> > > index 0bd98f179bfa..617e1f1a2339 100644
+> > > --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> > > @@ -863,6 +863,26 @@
+> > >  			fsl,extts-fifo;
+> > >  		};
+> > >  
+> > > +		emdio1: mdio@8b96000 {
+> > > +			compatible = "fsl,fman-memac-mdio";
+> > > +			reg = <0x00 0x8b96000 0x00 0x1000>;
+> > > +			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			little-endian;
+> > > +			#address-cells = <0x01>;
+> > > +			#size-cells = <0x00>;
+> > > +			status = "disabled";
+> > > +		};
 > > > +
-> >
-> > Your else condition should check that the number of clocks items is 1
-> > on the A64
->
-> But the minItems mentioned as 1 in clocks, which is unchanged number
-> by default. doesn't it sufficient?
+> > > +		emdio2: mdio@8b97000 {
+> > > +			compatible = "fsl,fman-memac-mdio";
+> > > +			reg = <0x00 0x8b97000 0x00 0x1000>;
+> > > +			interrupts = <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			little-endian;
+> > > +			#address-cells = <0x01>;
+> > > +			#size-cells = <0x00>;
+> > > +			status = "disabled";
+> > > +		};
+> > > +
+> > 
+> > Ioana Ciornei already had a patch [1] adding emdio1, but unfortunately,
+> > emdio2 was missing from there.
+> > 
+> > Shawn
+> > 
+> > [1] https://lkml.org/lkml/2019/12/4/675
+> 
+> Okay, I'll wait until after the next merge window before resubmitting.
+> Thanks.
 
-In the main schema, it's said that the clocks property can have one or
-two elements (to cover the A31 case that has one, and the A64 case
-that has 2).
+Just to be clear: the reasons are:
+1) Ioana's patch was _not_ copied to linux-arm-kernel as it should have
+   been.
+2) I can't download the patch off lkml.org to sanely rebase on top of it
+3) I'm not hunting around to try and find it on another archive site
+4) I'm not digging about in random git trees trying to find it.
 
-This is fine.
+This makes it unnecessarily difficult to progress these patches.
 
-Later on, you enforce that the A64 has two elements, and this is fine
-too.
-
-However, you never check that on the A31 you only have one clock, and
-you could very well have two and no one would notice.
-
-Maxime
-
---j7bmzwiznwnaw3ax
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXfdoigAKCRDj7w1vZxhR
-xeS/AP9UV7Xns9t5VOhLEF+tbuQ+jcstzHVAz1d0xXveWqK7uAEAqK1mC/scTm09
-qaYD48OkBiF38cUHEBrXBJdLGSE9gQI=
-=7xiu
------END PGP SIGNATURE-----
-
---j7bmzwiznwnaw3ax--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
