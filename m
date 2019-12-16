@@ -2,122 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0C861207C3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 15:00:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88AAC1207C9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 15:00:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727916AbfLPN6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 08:58:49 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59964 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727899AbfLPN6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 08:58:48 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 2B89C291974
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Collabora Kernel ML <kernel@collabora.com>, matthias.bgg@gmail.com,
-        drinkcat@chromium.org, hsinyi@chromium.org,
-        Jitao Shi <jitao.shi@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ulrich Hecht <uli@fpond.eu>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        David Airlie <airlied@linux.ie>,
+        id S1727906AbfLPOA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 09:00:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57650 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727895AbfLPOA3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Dec 2019 09:00:29 -0500
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B6FF220684;
+        Mon, 16 Dec 2019 14:00:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1576504828;
+        bh=jdFxBKgT93c3jWBHm8m4ZNJqE+g91z3/HhdnxSdPqNs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=2MtKvPzn98o3Zde83TLKGVd+xDbArRelFftBwc4hJgoFOq4ZUxwNBRDKkPUuUB/9G
+         c2GG1mAcpt/gchMK2fkzpckK2B1hcMkqg/W2NL/BoDoZTjZPpkfBaWosvLXSyWaS4O
+         nJcWWO3X8ePpccLyO9K5a+audJq7aT6i7koZLXsA=
+Date:   Mon, 16 Dec 2019 15:00:25 +0100
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH v21 1/2] Documentation: bridge: Add documentation for ps8640 DT properties
-Date:   Mon, 16 Dec 2019 14:58:33 +0100
-Message-Id: <20191216135834.27775-2-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191216135834.27775-1-enric.balletbo@collabora.com>
-References: <20191216135834.27775-1-enric.balletbo@collabora.com>
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ondrej Jirman <megous@megous.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v5 1/8] clk: sunxi-ng: Mark msgbox clocks as critical
+Message-ID: <20191216140025.6sfmqneiyxjqe6v7@gilmour.lan>
+References: <20191215042455.51001-1-samuel@sholland.org>
+ <20191215042455.51001-2-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="orhnilvx6yyc5lzw"
+Content-Disposition: inline
+In-Reply-To: <20191215042455.51001-2-samuel@sholland.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jitao Shi <jitao.shi@mediatek.com>
 
-Add documentation for DT properties supported by
-ps8640 DSI-eDP converter.
+--orhnilvx6yyc5lzw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-Signed-off-by: Ulrich Hecht <uli@fpond.eu>
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
+On Sat, Dec 14, 2019 at 10:24:48PM -0600, Samuel Holland wrote:
+> The msgbox clock is critical because the hardware it controls is shared
+> between Linux and system firmware. The message box may be used by the
+> EL3 secure monitor's PSCI implementation. On 64-bit sunxi SoCs, this is
+> provided by ARM TF-A; 32-bit SoCs use a different implementation. The
+> secure monitor uses the message box to forward requests to power
+> management firmware running on a separate CPU.
+>
+> It is not enough for the secure monitor to enable the clock each time
+> Linux performs a SMC into EL3, as both the firmware and Linux can run
+> concurrently on separate CPUs. So it is never safe for Linux to turn
+> this clock off, and it should be marked as critical.
+>
+> At this time, such power management firmware only exists for the A64 and
+> H5 SoCs.  However, it makes sense to take care of all CCU drivers now
+> for consistency, and to ease the transition in the future once firmware
+> is ported to the other SoCs.
+>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Changes in v21: None
-Changes in v19: None
-Changes in v18: None
-Changes in v17: None
-Changes in v16: None
-Changes in v15: None
-Changes in v14: None
-Changes in v13: None
-Changes in v12: None
-Changes in v11: None
+This is pretty much the same case than for the AR100 clock though,
+right?
 
- .../bindings/display/bridge/ps8640.txt        | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ps8640.txt
+I'm still not sure about why we should enable it that clock all the
+time, even if you're not using the ARISC.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ps8640.txt b/Documentation/devicetree/bindings/display/bridge/ps8640.txt
-new file mode 100644
-index 000000000000..7b13f92f7359
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ps8640.txt
-@@ -0,0 +1,44 @@
-+ps8640-bridge bindings
-+
-+Required properties:
-+	- compatible: "parade,ps8640"
-+	- reg: first page address of the bridge.
-+	- sleep-gpios: OF device-tree gpio specification for PD pin.
-+	- reset-gpios: OF device-tree gpio specification for reset pin.
-+	- vdd12-supply: OF device-tree regulator specification for 1.2V power.
-+	- vdd33-supply: OF device-tree regulator specification for 3.3V power.
-+	- ports: The device node can contain video interface port nodes per
-+		 the video-interfaces bind[1]. For port@0,set the reg = <0> as
-+		 ps8640 dsi in and port@1,set the reg = <1> as ps8640 eDP out.
-+
-+Optional properties:
-+	- mode-sel-gpios: OF device-tree gpio specification for mode-sel pin.
-+[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
-+
-+Example:
-+	edp-bridge@18 {
-+		compatible = "parade,ps8640";
-+		reg = <0x18>;
-+		sleep-gpios = <&pio 116 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&pio 115 GPIO_ACTIVE_LOW>;
-+		mode-sel-gpios = <&pio 92 GPIO_ACTIVE_HIGH>;
-+		vdd12-supply = <&ps8640_fixed_1v2>;
-+		vdd33-supply = <&mt6397_vgp2_reg>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			port@0 {
-+				reg = <0>;
-+				ps8640_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+				ps8640_out: endpoint {
-+					remote-endpoint = <&panel_in>;
-+				};
-+			};
-+		};
-+	};
--- 
-2.20.1
+Maxime
 
+--orhnilvx6yyc5lzw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXfeN+QAKCRDj7w1vZxhR
+xZBuAP9Ia+0yr/oIdBQG1t+E3BzWwHMnlV5Sjd2kxueCGpo/HQD/bOzlGVC7h/lX
+e+NB4e8WsigEdVU31jCtR+QPP4lVzQo=
+=bWXY
+-----END PGP SIGNATURE-----
+
+--orhnilvx6yyc5lzw--
