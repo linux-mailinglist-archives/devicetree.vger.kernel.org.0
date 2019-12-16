@@ -2,337 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ACB241204FC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 993E81204AF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 13:06:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727385AbfLPMIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Dec 2019 07:08:15 -0500
-Received: from lucky1.263xmail.com ([211.157.147.134]:43786 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727335AbfLPMIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:08:14 -0500
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 870654C155;
-        Mon, 16 Dec 2019 20:00:33 +0800 (CST)
-X-MAIL-GRAY: 1
-X-MAIL-DELIVERY: 0
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [172.16.12.170] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P6439T140595418887936S1576497632255958_;
-        Mon, 16 Dec 2019 20:00:33 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <fe66bc1cc6d4f292d8f04f4015343336>
-X-RL-SENDER: andy.yan@rock-chips.com
-X-SENDER: yxj@rock-chips.com
-X-LOGIN-NAME: andy.yan@rock-chips.com
-X-FST-TO: linux-arm-kernel@lists.infradead.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-Subject: =?UTF-8?Q?Re=3a_=5bPATCH_09/12=5d_drm/rockchip=3a_lvds=3a_Add_PX30_?=
- =?UTF-8?B?c3VwcG9ydOOAkOivt+azqOaEj++8jOmCruS7tueUsWxpbnV4LXJvY2tjaGlwLWJv?=
- =?UTF-8?Q?unces+andy=2eyan=3drock-chips=2ecom=40lists=2einfradead=2eorg?=
- =?UTF-8?B?5Luj5Y+R44CR?=
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Sandy Huang <hjc@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20191213181051.25983-1-miquel.raynal@bootlin.com>
- <20191213181051.25983-10-miquel.raynal@bootlin.com>
-From:   Andy Yan <andy.yan@rock-chips.com>
-Message-ID: <02b3373e-790b-5f0c-40a0-7cc423a0dac5@rock-chips.com>
-Date:   Mon, 16 Dec 2019 20:00:31 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+        id S1727385AbfLPMFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Dec 2019 07:05:09 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:44550 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727241AbfLPMFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Dec 2019 07:05:08 -0500
+X-UUID: 99596b7cd1b34e16ad389c4c76883501-20191216
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Clqeu4fvpnmS/ZiCD2V6ResMoNTOcGR52Rz6w11NnqM=;
+        b=nDJx9W5KJFahX1t1CcbTr7Djqfdsn5p3qRV2ehZQXEYnybufZMQXcAT/Oj81dnmmwA2ooS79lPFVO8zU0vyQpWzRzcmssPJtIXM8iCqxY1dK+KxMLFHsSRTfr4PFH4sx1CanzsQOM6iSgwbLOIR2V0mO7l3V3QqUfJ8CLX23g8k=;
+X-UUID: 99596b7cd1b34e16ad389c4c76883501-20191216
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 60780563; Mon, 16 Dec 2019 20:05:03 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 16 Dec
+ 2019 20:04:02 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 16 Dec 2019 20:04:44 +0800
+Message-ID: <1576497901.28043.71.camel@mhfsdcap03>
+Subject: Re: [RESEND,PATCH 01/13] dt-bindings: mediatek: Add bindings for
+ MT6779
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Chao Hao <chao.hao@mediatek.com>
+CC:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <wsd_upstream@mediatek.com>,
+        Jun Yan <jun.yan@mediatek.com>,
+        Cui Zhang <cui.zhang@mediatek.com>,
+        Guangming Cao <guangming.cao@mediatek.com>,
+        Anan Sun <anan.sun@mediatek.com>,
+        Miles Chen <miles.chen@mediatek.com>
+Date:   Mon, 16 Dec 2019 20:05:01 +0800
+In-Reply-To: <20191104115238.2394-2-chao.hao@mediatek.com>
+References: <20191104115238.2394-1-chao.hao@mediatek.com>
+         <20191104115238.2394-2-chao.hao@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20191213181051.25983-10-miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-TM-SNTS-SMTP: A9E5E71080A842134B9DA6CCB99242C492F30F72968470E68E8786C7F60B10FC2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel:
-
-Thanks for your work here.
-
-A discussion about the grf write macro bellow.
-
-On 12/14/19 2:10 AM, Miquel Raynal wrote:
-> Introduce PX30 LVDS support. This means adding the relevant helper
-> functions, a specific probe and also the initialization of a specific
-> PHY.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->   drivers/gpu/drm/rockchip/rockchip_lvds.c | 173 +++++++++++++++++++++++
->   drivers/gpu/drm/rockchip/rockchip_lvds.h |  14 ++
->   2 files changed, 187 insertions(+)
->
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_lvds.c b/drivers/gpu/drm/rockchip/rockchip_lvds.c
-> index a0c203dcd66f..e550c2f102e0 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_lvds.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_lvds.c
-> @@ -10,6 +10,7 @@
->   #include <linux/component.h>
->   #include <linux/mfd/syscon.h>
->   #include <linux/of_graph.h>
-> +#include <linux/phy/phy.h>
->   #include <linux/pinctrl/devinfo.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_runtime.h>
-> @@ -54,6 +55,7 @@ struct rockchip_lvds {
->   	void __iomem *regs;
->   	struct regmap *grf;
->   	struct clk *pclk;
-> +	struct phy *dphy;
->   	const struct rockchip_lvds_soc_data *soc_data;
->   	int output; /* rgb lvds or dual lvds output */
->   	int format; /* vesa or jeida format */
-> @@ -322,6 +324,133 @@ static void rk3288_lvds_encoder_disable(struct drm_encoder *encoder)
->   	drm_panel_unprepare(lvds->panel);
->   }
->   
-> +static int px30_lvds_poweron(struct rockchip_lvds *lvds)
-> +{
-> +	int ret;
-> +
-> +	ret = pm_runtime_get_sync(lvds->dev);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(lvds->dev, "failed to get pm runtime: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Enable LVDS mode */
-> +	return regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
-> +				  PX30_LVDS_MODE_EN(1) | PX30_LVDS_P2S_EN(1),
-> +				  PX30_LVDS_MODE_EN(1) | PX30_LVDS_P2S_EN(1));
-> +}
-> +
-> +static void px30_lvds_poweroff(struct rockchip_lvds *lvds)
-> +{
-> +	regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
-> +			   PX30_LVDS_MODE_EN(1) | PX30_LVDS_P2S_EN(1),
-> +			   PX30_LVDS_MODE_EN(0) | PX30_LVDS_P2S_EN(0));
-> +
-> +	pm_runtime_put(lvds->dev);
-> +}
-> +
-> +static int px30_lvds_grf_config(struct drm_encoder *encoder,
-> +				struct drm_display_mode *mode)
-> +{
-> +	struct rockchip_lvds *lvds = encoder_to_lvds(encoder);
-> +	u8 nhsync = !(mode->flags & DRM_MODE_FLAG_PHSYNC);
-> +	u8 nvsync = !(mode->flags & DRM_MODE_FLAG_PVSYNC);
-> +	u8 ndclk = !(mode->flags & DRM_MODE_FLAG_PCSYNC);
-> +	int ret;
-> +
-> +	if (lvds->output != DISPLAY_OUTPUT_LVDS) {
-> +		DRM_DEV_ERROR(lvds->dev, "Unsupported display output %d\n",
-> +			      lvds->output);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (nhsync ^ nvsync) {
-> +		DRM_DEV_ERROR(lvds->dev, "Unsupported Hsync/Vsync polarity\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Set format */
-> +	ret = regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
-> +				 PX30_LVDS_FORMAT(lvds->format),
-> +				 PX30_LVDS_FORMAT(lvds->format));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Control Hsync/Vsync polarity */
-> +	ret = regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON0,
-> +				 PX30_LVDS_TIE_CLKS(1),
-> +				 PX30_LVDS_TIE_CLKS(1));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Set Hsync/Vsync polarity */
-> +	ret = regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON0,
-> +				 PX30_LVDS_INVERT_CLKS(1),
-> +				 PX30_LVDS_INVERT_CLKS(nhsync));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Set dclk polarity */
-> +	return regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON0,
-> +				  PX30_LVDS_INVERT_DCLK(1),
-> +				  PX30_LVDS_INVERT_DCLK(ndclk));
-> +}
-> +
-> +static int px30_lvds_set_vop_source(struct rockchip_lvds *lvds,
-> +				    struct drm_encoder *encoder)
-> +{
-> +	int vop;
-> +
-> +	vop = drm_of_encoder_active_endpoint_id(lvds->dev->of_node, encoder);
-> +	if (vop < 0)
-> +		return vop;
-> +
-> +	return regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
-> +				  PX30_LVDS_VOP_SEL(1),
-> +				  PX30_LVDS_VOP_SEL(vop));
-> +}
-> +
-> +static void px30_lvds_encoder_enable(struct drm_encoder *encoder)
-> +{
-> +	struct rockchip_lvds *lvds = encoder_to_lvds(encoder);
-> +	struct drm_display_mode *mode = &encoder->crtc->state->adjusted_mode;
-> +	int ret;
-> +
-> +	drm_panel_prepare(lvds->panel);
-> +
-> +	ret = px30_lvds_poweron(lvds);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(lvds->dev, "failed to power on LVDS: %d\n", ret);
-> +		drm_panel_unprepare(lvds->panel);
-> +		return;
-> +	}
-> +
-> +	ret = px30_lvds_grf_config(encoder, mode);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(lvds->dev, "failed to configure LVDS: %d\n", ret);
-> +		drm_panel_unprepare(lvds->panel);
-> +		return;
-> +	}
-> +
-> +	ret = px30_lvds_set_vop_source(lvds, encoder);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(lvds->dev, "failed to set VOP source: %d\n", ret);
-> +		drm_panel_unprepare(lvds->panel);
-> +		return;
-> +	}
-> +
-> +	drm_panel_enable(lvds->panel);
-> +}
-> +
-> +static void px30_lvds_encoder_disable(struct drm_encoder *encoder)
-> +{
-> +	struct rockchip_lvds *lvds = encoder_to_lvds(encoder);
-> +
-> +	drm_panel_disable(lvds->panel);
-> +	px30_lvds_poweroff(lvds);
-> +	drm_panel_unprepare(lvds->panel);
-> +}
-> +
->   static const
->   struct drm_encoder_helper_funcs rk3288_lvds_encoder_helper_funcs = {
->   	.enable = rk3288_lvds_encoder_enable,
-> @@ -329,6 +458,13 @@ struct drm_encoder_helper_funcs rk3288_lvds_encoder_helper_funcs = {
->   	.atomic_check = rockchip_lvds_encoder_atomic_check,
->   };
->   
-> +static const
-> +struct drm_encoder_helper_funcs px30_lvds_encoder_helper_funcs = {
-> +	.enable = px30_lvds_encoder_enable,
-> +	.disable = px30_lvds_encoder_disable,
-> +	.atomic_check = rockchip_lvds_encoder_atomic_check,
-> +};
-> +
->   static const struct drm_encoder_funcs rockchip_lvds_encoder_funcs = {
->   	.destroy = drm_encoder_cleanup,
->   };
-> @@ -379,16 +515,53 @@ static int rk3288_lvds_probe(struct platform_device *pdev,
->   	return 0;
->   }
->   
-> +static int px30_lvds_probe(struct platform_device *pdev,
-> +			   struct rockchip_lvds *lvds)
-> +{
-> +	int ret;
-> +
-> +	/* MSB */
-> +	ret =  regmap_update_bits(lvds->grf, PX30_LVDS_GRF_PD_VO_CON1,
-> +				  PX30_LVDS_MSBSEL(1),
-> +				  PX30_LVDS_MSBSEL(1));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* PHY */
-> +	lvds->dphy = devm_phy_get(&pdev->dev, "dphy");
-> +	if (IS_ERR(lvds->dphy))
-> +		return PTR_ERR(lvds->dphy);
-> +
-> +	phy_init(lvds->dphy);
-> +	if (ret)
-> +		return ret;
-> +
-> +	phy_set_mode(lvds->dphy, PHY_MODE_LVDS);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return phy_power_on(lvds->dphy);
-> +}
-> +
->   static const struct rockchip_lvds_soc_data rk3288_lvds_data = {
->   	.probe = rk3288_lvds_probe,
->   	.helper_funcs = &rk3288_lvds_encoder_helper_funcs,
->   };
->   
-> +static const struct rockchip_lvds_soc_data px30_lvds_data = {
-> +	.probe = px30_lvds_probe,
-> +	.helper_funcs = &px30_lvds_encoder_helper_funcs,
-> +};
-> +
->   static const struct of_device_id rockchip_lvds_dt_ids[] = {
->   	{
->   		.compatible = "rockchip,rk3288-lvds",
->   		.data = &rk3288_lvds_data
->   	},
-> +	{
-> +		.compatible = "rockchip,px30-lvds",
-> +		.data = &px30_lvds_data
-> +	},
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, rockchip_lvds_dt_ids);
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_lvds.h b/drivers/gpu/drm/rockchip/rockchip_lvds.h
-> index e41e9ab3c306..7cfb102b4854 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_lvds.h
-> +++ b/drivers/gpu/drm/rockchip/rockchip_lvds.h
-> @@ -106,4 +106,18 @@
->   #define LVDS_VESA_18				2
->   #define LVDS_JEIDA_18				3
->   
-> +#define WRITE_EN(v, h, l)  ((GENMASK(h, l) << 16) | (v << l))
-
-
-How about rename WRITE_EN to HIWORD_UPDATE to keep align with other 
-modules that write grf: such as 
-dwmac-rk.c/dw-mipi-dsi-rockhip.c/dw-hdmi-rockchip.c
-
-> +
-> +#define PX30_LVDS_GRF_PD_VO_CON0		0x434
-> +#define   PX30_LVDS_TIE_CLKS(val)		WRITE_EN(val,  8,  8)
-> +#define   PX30_LVDS_INVERT_CLKS(val)		WRITE_EN(val,  9,  9)
-> +#define   PX30_LVDS_INVERT_DCLK(val)		WRITE_EN(val,  5,  5)
-> +
-> +#define PX30_LVDS_GRF_PD_VO_CON1		0x438
-> +#define   PX30_LVDS_FORMAT(val)			WRITE_EN(val, 14, 13)
-> +#define   PX30_LVDS_MODE_EN(val)		WRITE_EN(val, 12, 12)
-> +#define   PX30_LVDS_MSBSEL(val)			WRITE_EN(val, 11, 11)
-> +#define   PX30_LVDS_P2S_EN(val)			WRITE_EN(val,  6,  6)
-> +#define   PX30_LVDS_VOP_SEL(val)		WRITE_EN(val,  1,  1)
-> +
->   #endif /* _ROCKCHIP_LVDS_ */
-
+T24gTW9uLCAyMDE5LTExLTA0IGF0IDE5OjUyICswODAwLCBDaGFvIEhhbyB3cm90ZToNCj4gVGhp
+cyBwYXRjaCBhZGRzIGRlc2NyaXB0aW9uIGZvciBNVDY3NzkgSU9NTVUuDQo+IA0KPiBNVDY3Nzkg
+aGFzIHR3byBpb21tdXMsIHRoZXkgYXJlIE1NX0lPTU1VIGFuZCBBUFVfSU9NTVUgd2hpY2gNCj4g
+dXNlIEFSTSBTaG9ydC1EZXNjcmlwdG9yIHRyYW5zbGF0aW9uIGZvcm1hdC4NCj4gDQo+IFRoZSBN
+VDY3NzkgSU9NTVUgaGFyZHdhcmUgZGlhZ3JhbSBpcyBhcyBiZWxvdywgaXQgaXMgb25seSBhIGJy
+aWVmDQo+IGRpYWdyYW0gYWJvdXQgaW9tbXUsIGl0IGRvbid0IGZvY3VzIG9uIHRoZSBwYXJ0IG9m
+IHNtaV9sYXJiLCBzbw0KPiBJIGRvbid0IGRlc2NyaWJlIHRoZSBzbWlfbGFyYiBkZXRhaWxlZGx5
+Lg0KPiANCj4gCQkJICAgICBFTUkNCj4gCQkJICAgICAgfA0KPiAJICAgLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gCSAgIHwJCQkJCXwNCj4gICAgICAgICBNTV9JT01N
+VSAgICAgICAgICAgICAgICAgICAgICAgICAgICBBUFVfSU9NTVUNCj4gCSAgIHwJCQkJCXwNCj4g
+ICAgICAgIFNNSV9DT01NT00tLS0tLS0tLS0tLQkJICAgICBBUFVfQlVTDQo+ICAgICAgICAgICB8
+CQkgICB8CQkJfA0KPiAgICAgU01JX0xBUkIoMH4xMSkgIFNNSV9MQVJCMTIoRkFLRSkJICAgIFNN
+SV9MQVJCMTMoRkFLRSkNCj4gCSAgfAkJICAgfAkJCXwNCj4gCSAgfAkJICAgfAkJICAgLS0tLS0t
+LS0tLS0tLS0NCj4gCSAgfAkJICAgfAkJICAgfAkgfAl8DQo+ICAgIE11bHRpbWVkaWEgZW5naW5l
+CSAgQ0NVCQkgIFZQVSAgIE1ETEEgICBFTURBDQo+IA0KPiBBbGwgdGhlIGNvbm5lY3Rpb25zIGFy
+ZSBoYXJkd2FyZSBmaXhlZCwgc29mdHdhcmUgY2FuIG5vdCBhZGp1c3QgaXQuDQo+IA0KPiBGcm9t
+IHRoZSBkaWFncmFtIGFib3ZlLCBNTV9JT01NVSBwcm92aWRlcyBtYXBwaW5nIGZvciBtdWx0aW1l
+ZGlhIGVuZ2luZSwNCj4gYnV0IENDVSBpcyBjb25uZWN0ZWQgd2l0aCBzbWlfY29tbW9uIGRpcmVj
+dGx5LCB3ZSBjYW4gdGFrZSB0aGVtIGFzIGxhcmIxMi4NCj4gQVBVX0lPTU1VIHByb3ZpZGVzIG1h
+cHBpbmcgZm9yIEFQVSBlbmdpbmUsIHdlIGNhbiB0YWtlIHRoZW0gbGFyYjEzLg0KPiBMYXJiMTIg
+YW5kIExhcmIxMyBhcmUgZmFrZSBsYXJicy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IENoYW8gSGFv
+IDxjaGFvLmhhb0BtZWRpYXRlay5jb20+DQo+IC0tLQ0KPiAgLi4uL2JpbmRpbmdzL2lvbW11L21l
+ZGlhdGVrLGlvbW11LnR4dCAgICAgICAgIHwgICAyICsNCj4gIGluY2x1ZGUvZHQtYmluZGluZ3Mv
+bWVtb3J5L210Njc3OS1sYXJiLXBvcnQuaCB8IDIxNyArKysrKysrKysrKysrKysrKysNCj4gIDIg
+ZmlsZXMgY2hhbmdlZCwgMjE5IGluc2VydGlvbnMoKykNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBp
+bmNsdWRlL2R0LWJpbmRpbmdzL21lbW9yeS9tdDY3NzktbGFyYi1wb3J0LmgNCj4gDQo+IGRpZmYg
+LS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW9tbXUvbWVkaWF0ZWss
+aW9tbXUudHh0IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lvbW11L21lZGlh
+dGVrLGlvbW11LnR4dA0KPiBpbmRleCBjZTU5YTUwNWY1YTQuLmMxY2NkODU4MmViMiAxMDA2NDQN
+Cj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2lvbW11L21lZGlhdGVr
+LGlvbW11LnR4dA0KPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaW9t
+bXUvbWVkaWF0ZWssaW9tbXUudHh0DQo+IEBAIC01OCw2ICs1OCw3IEBAIFJlcXVpcmVkIHByb3Bl
+cnRpZXM6DQo+ICAtIGNvbXBhdGlibGUgOiBtdXN0IGJlIG9uZSBvZiB0aGUgZm9sbG93aW5nIHN0
+cmluZzoNCj4gIAkibWVkaWF0ZWssbXQyNzAxLW00dSIgZm9yIG10MjcwMSB3aGljaCB1c2VzIGdl
+bmVyYXRpb24gb25lIG00dSBIVy4NCj4gIAkibWVkaWF0ZWssbXQyNzEyLW00dSIgZm9yIG10Mjcx
+MiB3aGljaCB1c2VzIGdlbmVyYXRpb24gdHdvIG00dSBIVy4NCj4gKwkibWVkaWF0ZWssbXQ2Nzc5
+LW00dSIgZm9yIG10Njc3OSB3aGljaCB1c2VzIGdlbmVyYXRpb24gdHdvIG00dSBIVy4NCj4gIAki
+bWVkaWF0ZWssbXQ3NjIzLW00dSIsICJtZWRpYXRlayxtdDI3MDEtbTR1IiBmb3IgbXQ3NjIzIHdo
+aWNoIHVzZXMNCj4gIAkJCQkJCSAgICAgZ2VuZXJhdGlvbiBvbmUgbTR1IEhXLg0KPiAgCSJtZWRp
+YXRlayxtdDgxNzMtbTR1IiBmb3IgbXQ4MTczIHdoaWNoIHVzZXMgZ2VuZXJhdGlvbiB0d28gbTR1
+IEhXLg0KPiBAQCAtNzgsNiArNzksNyBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiAgCVNwZWNp
+ZmllcyB0aGUgbXRrX200dV9pZCBhcyBkZWZpbmVkIGluDQo+ICAJZHQtYmluZGluZy9tZW1vcnkv
+bXQyNzAxLWxhcmItcG9ydC5oIGZvciBtdDI3MDEsIG10NzYyMw0KPiAgCWR0LWJpbmRpbmcvbWVt
+b3J5L210MjcxMi1sYXJiLXBvcnQuaCBmb3IgbXQyNzEyLA0KPiArCWR0LWJpbmRpbmcvbWVtb3J5
+L210Njc3OS1sYXJiLXBvcnQuaCBmb3IgbXQ2Nzc5LA0KPiAgCWR0LWJpbmRpbmcvbWVtb3J5L210
+ODE3My1sYXJiLXBvcnQuaCBmb3IgbXQ4MTczLCBhbmQNCj4gIAlkdC1iaW5kaW5nL21lbW9yeS9t
+dDgxODMtbGFyYi1wb3J0LmggZm9yIG10ODE4My4NCj4gIA0KPiBkaWZmIC0tZ2l0IGEvaW5jbHVk
+ZS9kdC1iaW5kaW5ncy9tZW1vcnkvbXQ2Nzc5LWxhcmItcG9ydC5oIGIvaW5jbHVkZS9kdC1iaW5k
+aW5ncy9tZW1vcnkvbXQ2Nzc5LWxhcmItcG9ydC5oDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+
+IGluZGV4IDAwMDAwMDAwMDAwMC4uOGI3ZjJkMjQ0NmVhDQo+IC0tLSAvZGV2L251bGwNCj4gKysr
+IGIvaW5jbHVkZS9kdC1iaW5kaW5ncy9tZW1vcnkvbXQ2Nzc5LWxhcmItcG9ydC5oDQo+IEBAIC0w
+LDAgKzEsMjE3IEBADQo+ICsvKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMCAqLw0K
+PiArLyoNCj4gKyAqIENvcHlyaWdodCAoYykgMjAxOSBNZWRpYVRlayBJbmMuDQo+ICsgKiBBdXRo
+b3I6IENoYW8gSGFvIDxjaGFvLmhhb0BtZWRpYXRlay5jb20+DQo+ICsgKi8NCj4gKw0KPiArI2lm
+bmRlZiBfRFRTX0lPTU1VX1BPUlRfTVQ2Nzc5X0hfDQo+ICsjZGVmaW5lIF9EVFNfSU9NTVVfUE9S
+VF9NVDY3NzlfSF8NCj4gKw0KPiArI2RlZmluZSBNVEtfTTRVX0lEKGxhcmIsIHBvcnQpCQkgKCgo
+bGFyYikgPDwgNSkgfCAocG9ydCkpDQo+ICsNCj4gKyNkZWZpbmUgTTRVX0xBUkIwX0lECQkJIDAN
+Cj4gKyNkZWZpbmUgTTRVX0xBUkIxX0lECQkJIDENCj4gKyNkZWZpbmUgTTRVX0xBUkIyX0lECQkJ
+IDINCj4gKyNkZWZpbmUgTTRVX0xBUkIzX0lECQkJIDMNCj4gKyNkZWZpbmUgTTRVX0xBUkI0X0lE
+CQkJIDQNCj4gKyNkZWZpbmUgTTRVX0xBUkI1X0lECQkJIDUNCj4gKyNkZWZpbmUgTTRVX0xBUkI2
+X0lECQkJIDYNCj4gKyNkZWZpbmUgTTRVX0xBUkI3X0lECQkJIDcNCj4gKyNkZWZpbmUgTTRVX0xB
+UkI4X0lECQkJIDgNCj4gKyNkZWZpbmUgTTRVX0xBUkI5X0lECQkJIDkNCj4gKyNkZWZpbmUgTTRV
+X0xBUkIxMF9JRAkJCSAxMA0KPiArI2RlZmluZSBNNFVfTEFSQjExX0lECQkJIDExDQo+ICsjZGVm
+aW5lIE00VV9MQVJCMTJfSUQJCQkgMTINCj4gKyNkZWZpbmUgTTRVX0xBUkIxM19JRAkJCSAxMw0K
+PiArDQo+ICsvKiBsYXJiMCAqLw0KPiArI2RlZmluZSBNNFVfUE9SVF9ESVNQX1BPU1RNQVNLMAkJ
+IE1US19NNFVfSUQoTTRVX0xBUkIwX0lELCAwKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9ESVNQX09W
+TDBfSERSCQkgTVRLX000VV9JRChNNFVfTEFSQjBfSUQsIDEpDQo+ICsjZGVmaW5lIE00VV9QT1JU
+X0RJU1BfT1ZMMV9IRFIJCSBNVEtfTTRVX0lEKE00VV9MQVJCMF9JRCwgMikNCj4gKyNkZWZpbmUg
+TTRVX1BPUlRfRElTUF9PVkwwCQkgTVRLX000VV9JRChNNFVfTEFSQjBfSUQsIDMpDQo+ICsjZGVm
+aW5lIE00VV9QT1JUX0RJU1BfT1ZMMQkJIE1US19NNFVfSUQoTTRVX0xBUkIwX0lELCA0KQ0KPiAr
+I2RlZmluZSBNNFVfUE9SVF9ESVNQX1BWUklDMAkJIE1US19NNFVfSUQoTTRVX0xBUkIwX0lELCA1
+KQ0KPiArI2RlZmluZSBNNFVfUE9SVF9ESVNQX1JETUEwCQkgTVRLX000VV9JRChNNFVfTEFSQjBf
+SUQsIDYpDQo+ICsjZGVmaW5lIE00VV9QT1JUX0RJU1BfV0RNQTAJCSBNVEtfTTRVX0lEKE00VV9M
+QVJCMF9JRCwgNykNCj4gKyNkZWZpbmUgTTRVX1BPUlRfRElTUF9GQUtFMAkJIE1US19NNFVfSUQo
+TTRVX0xBUkIwX0lELCA4KQ0KPiArDQo+ICsvKiBsYXJiMSAqLw0KPiArI2RlZmluZSBNNFVfUE9S
+VF9ESVNQX09WTDBfMkxfSERSCSBNVEtfTTRVX0lEKE00VV9MQVJCMV9JRCwgMCkNCj4gKyNkZWZp
+bmUgTTRVX1BPUlRfRElTUF9PVkwxXzJMX0hEUgkgTVRLX000VV9JRChNNFVfTEFSQjFfSUQsIDEp
+DQo+ICsjZGVmaW5lIE00VV9QT1JUX0RJU1BfT1ZMMF8yTAkJIE1US19NNFVfSUQoTTRVX0xBUkIx
+X0lELCAyKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9ESVNQX09WTDFfMkwJCSBNVEtfTTRVX0lEKE00
+VV9MQVJCMV9JRCwgMykNCj4gKyNkZWZpbmUgTTRVX1BPUlRfRElTUF9SRE1BMQkJIE1US19NNFVf
+SUQoTTRVX0xBUkIxX0lELCA0KQ0KPiArI2RlZmluZSBNNFVfUE9SVF9NRFBfUFZSSUMwCQkgTVRL
+X000VV9JRChNNFVfTEFSQjFfSUQsIDUpDQo+ICsjZGVmaW5lIE00VV9QT1JUX01EUF9QVlJJQzEJ
+CSBNVEtfTTRVX0lEKE00VV9MQVJCMV9JRCwgNikNCj4gKyNkZWZpbmUgTTRVX1BPUlRfTURQX1JE
+TUEwCQkgTVRLX000VV9JRChNNFVfTEFSQjFfSUQsIDcpDQo+ICsjZGVmaW5lIE00VV9QT1JUX01E
+UF9SRE1BMQkJIE1US19NNFVfSUQoTTRVX0xBUkIxX0lELCA4KQ0KPiArI2RlZmluZSBNNFVfUE9S
+VF9NRFBfV1JPVDBfUgkJIE1US19NNFVfSUQoTTRVX0xBUkIxX0lELCA5KQ0KPiArI2RlZmluZSBN
+NFVfUE9SVF9NRFBfV1JPVDBfVwkJIE1US19NNFVfSUQoTTRVX0xBUkIxX0lELCAxMCkNCj4gKyNk
+ZWZpbmUgTTRVX1BPUlRfTURQX1dST1QxX1IJCSBNVEtfTTRVX0lEKE00VV9MQVJCMV9JRCwgMTEp
+DQo+ICsjZGVmaW5lIE00VV9QT1JUX01EUF9XUk9UMV9XCQkgTVRLX000VV9JRChNNFVfTEFSQjFf
+SUQsIDEyKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9ESVNQX0ZBS0UxCQkgTVRLX000VV9JRChNNFVf
+TEFSQjFfSUQsIDEzKQ0KPiArDQo+ICsvKiBsYXJiMi1WREVDICovDQo+ICsjZGVmaW5lIE00VV9Q
+T1JUX0hXX1ZERUNfTUNfRVhUICAgICAgICAgIE1US19NNFVfSUQoTTRVX0xBUkIyX0lELCAwKQ0K
+PiArI2RlZmluZSBNNFVfUE9SVF9IV19WREVDX1VGT19FWFQgICAgICAgICBNVEtfTTRVX0lEKE00
+VV9MQVJCMl9JRCwgMSkNCj4gKyNkZWZpbmUgTTRVX1BPUlRfSFdfVkRFQ19QUF9FWFQgICAgICAg
+ICAgTVRLX000VV9JRChNNFVfTEFSQjJfSUQsIDIpDQo+ICsjZGVmaW5lIE00VV9QT1JUX0hXX1ZE
+RUNfUFJFRF9SRF9FWFQgICAgIE1US19NNFVfSUQoTTRVX0xBUkIyX0lELCAzKQ0KPiArI2RlZmlu
+ZSBNNFVfUE9SVF9IV19WREVDX1BSRURfV1JfRVhUICAgICBNVEtfTTRVX0lEKE00VV9MQVJCMl9J
+RCwgNCkNCj4gKyNkZWZpbmUgTTRVX1BPUlRfSFdfVkRFQ19QUFdSQVBfRVhUICAgICAgTVRLX000
+VV9JRChNNFVfTEFSQjJfSUQsIDUpDQo+ICsjZGVmaW5lIE00VV9QT1JUX0hXX1ZERUNfVElMRV9F
+WFQgICAgICAgIE1US19NNFVfSUQoTTRVX0xBUkIyX0lELCA2KQ0KPiArI2RlZmluZSBNNFVfUE9S
+VF9IV19WREVDX1ZMRF9FWFQgICAgICAgICBNVEtfTTRVX0lEKE00VV9MQVJCMl9JRCwgNykNCj4g
+KyNkZWZpbmUgTTRVX1BPUlRfSFdfVkRFQ19WTEQyX0VYVCAgICAgICAgTVRLX000VV9JRChNNFVf
+TEFSQjJfSUQsIDgpDQo+ICsjZGVmaW5lIE00VV9QT1JUX0hXX1ZERUNfQVZDX01WX0VYVCAgICAg
+IE1US19NNFVfSUQoTTRVX0xBUkIyX0lELCA5KQ0KPiArI2RlZmluZSBNNFVfUE9SVF9IV19WREVD
+X1VGT19FTkNfRVhUICAgICBNVEtfTTRVX0lEKE00VV9MQVJCMl9JRCwgMTApDQo+ICsjZGVmaW5l
+IE00VV9QT1JUX0hXX1ZERUNfUkdfQ1RSTF9ETUFfRVhUIE1US19NNFVfSUQoTTRVX0xBUkIyX0lE
+LCAxMSkNCj4gKw0KPiArLypsYXJiMy1WRU5DKi8NCg0KTm9ybWFsbHkgYWRkIHNwYWNlIGJlZm9y
+ZSBhbmQgYWZ0ZXIgdGhlIHdvcmQuIExpa2U6IC8qIGxhcmIzLVZFTkMgKi8NCg0KYmVsb3cgYXJl
+IHRoZSBzYW1lLg0KDQo+ICsjZGVmaW5lIE00VV9QT1JUX1ZFTkNfUkNQVQkJIE1US19NNFVfSUQo
+TTRVX0xBUkIzX0lELCAwKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9WRU5DX1JFQwkJIE1US19NNFVf
+SUQoTTRVX0xBUkIzX0lELCAxKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9WRU5DX0JTRE1BCQkgTVRL
+X000VV9JRChNNFVfTEFSQjNfSUQsIDIpDQo+ICsjZGVmaW5lIE00VV9QT1JUX1ZFTkNfU1ZfQ09N
+VgkJIE1US19NNFVfSUQoTTRVX0xBUkIzX0lELCAzKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9WRU5D
+X1JEX0NPTVYJCSBNVEtfTTRVX0lEKE00VV9MQVJCM19JRCwgNCkNCj4gKyNkZWZpbmUgTTRVX1BP
+UlRfVkVOQ19OQk1fUkRNQQkJIE1US19NNFVfSUQoTTRVX0xBUkIzX0lELCA1KQ0KPiArI2RlZmlu
+ZSBNNFVfUE9SVF9WRU5DX05CTV9SRE1BX0xJVEUJIE1US19NNFVfSUQoTTRVX0xBUkIzX0lELCA2
+KQ0KPiArI2RlZmluZSBNNFVfUE9SVF9KUEdFTkNfWV9SRE1BCQkgTVRLX000VV9JRChNNFVfTEFS
+QjNfSUQsIDcpDQo+ICsjZGVmaW5lIE00VV9QT1JUX0pQR0VOQ19DX1JETUEJCSBNVEtfTTRVX0lE
+KE00VV9MQVJCM19JRCwgOCkNCj4gKyNkZWZpbmUgTTRVX1BPUlRfSlBHRU5DX1FfVEFCTEUJCSBN
+VEtfTTRVX0lEKE00VV9MQVJCM19JRCwgOSkNCj4gKyNkZWZpbmUgTTRVX1BPUlRfSlBHRU5DX0JT
+RE1BCQkgTVRLX000VV9JRChNNFVfTEFSQjNfSUQsIDEwKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9K
+UEdERUNfV0RNQQkJIE1US19NNFVfSUQoTTRVX0xBUkIzX0lELCAxMSkNCj4gKyNkZWZpbmUgTTRV
+X1BPUlRfSlBHREVDX0JTRE1BCQkgTVRLX000VV9JRChNNFVfTEFSQjNfSUQsIDEyKQ0KPiArI2Rl
+ZmluZSBNNFVfUE9SVF9WRU5DX05CTV9XRE1BCQkgTVRLX000VV9JRChNNFVfTEFSQjNfSUQsIDEz
+KQ0KPiArI2RlZmluZSBNNFVfUE9SVF9WRU5DX05CTV9XRE1BX0xJVEUJIE1US19NNFVfSUQoTTRV
+X0xBUkIzX0lELCAxNCkNCj4gKyNkZWZpbmUgTTRVX1BPUlRfVkVOQ19DVVJfTFVNQQkJIE1US19N
+NFVfSUQoTTRVX0xBUkIzX0lELCAxNSkNCj4gKyNkZWZpbmUgTTRVX1BPUlRfVkVOQ19DVVJfQ0hS
+T01BCSBNVEtfTTRVX0lEKE00VV9MQVJCM19JRCwgMTYpDQo+ICsjZGVmaW5lIE00VV9QT1JUX1ZF
+TkNfUkVGX0xVTUEJCSBNVEtfTTRVX0lEKE00VV9MQVJCM19JRCwgMTcpDQo+ICsjZGVmaW5lIE00
+VV9QT1JUX1ZFTkNfUkVGX0NIUk9NQQkgTVRLX000VV9JRChNNFVfTEFSQjNfSUQsIDE4KQ0KPiAr
+DQo+ICsvKmxhcmI0LWR1bW15Ki8NCj4gKw0KPiArLypsYXJiNS1JTUcqLw0KDQpbc25pcF0NCg0K
+PiArDQo+ICsjZGVmaW5lIE00VV9QT1JUX1ZQVQkJCSBNVEtfTTRVX0lEKE00VV9MQVJCMTNfSUQs
+IDApDQo+ICsjZGVmaW5lIE00VV9QT1JUX01ETEEJCQkgTVRLX000VV9JRChNNFVfTEFSQjEzX0lE
+LCAxKQ0KPiArI2RlZmluZSBNNFVfUE9SVF9FRE1BCQkJIE1US19NNFVfSUQoTTRVX0xBUkIxM19J
+RCwgMikNCj4gKw0KPiArI2RlZmluZSBNNFVfUE9SVF9VTktOT1dOCQkgKE00VV9QT1JUX0VETUEg
+KyAxKQ0KDQpXaGVuIGRvIHlvdSBuZWVkIHRoaXMgVU5LTk9XTiBvbmU/IFRoZSBvdGhlciBTb0Mg
+ZG9lc24ndCBoYXZlIGl0LiBQbGVhc2UNCnJlbW92ZSBpZiBpdCBpcyB1bm5lY2Vzc2FyeS4NCg0K
+PiArDQo+ICsjZW5kaWYNCg0K
 
