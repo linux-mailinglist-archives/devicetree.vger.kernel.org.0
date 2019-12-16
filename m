@@ -2,114 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F305511FCFF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 03:52:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6E311FD35
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2019 04:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726488AbfLPCwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Dec 2019 21:52:49 -0500
-Received: from mailout4.samsung.com ([203.254.224.34]:55515 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726551AbfLPCwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Dec 2019 21:52:49 -0500
-Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20191216025246epoutp04476f6d257c36b68c4ec81e336f08ce97~gulpStWgW1999219992epoutp04a
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 02:52:46 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20191216025246epoutp04476f6d257c36b68c4ec81e336f08ce97~gulpStWgW1999219992epoutp04a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1576464766;
-        bh=/PWYmeUhh3ou+AZOp2VAT0jkte7v9srIXdaSGzR3udg=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=p4xhlFqFTdkJYKSnAHwZxP4JU3aaRY33TG4wrQ8DRF/npI3l34PtV3cTl0SKuUmlX
-         UUg+SriHTpvY5BP/tEW89C2Rk4vE+zV4gV3t/YZ32nKlz5EdHvZtocZxvChXgCxzia
-         ma6SwbgGVYNwGedbUb1TexDvZLBAsJNJ1vc+Horo=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20191216025246epcas1p3eff9b42f49bcd6e27e8c91891e9f4c31~gulotuucC2925429254epcas1p3I;
-        Mon, 16 Dec 2019 02:52:46 +0000 (GMT)
-Received: from epsmges1p4.samsung.com (unknown [182.195.40.153]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 47bm626JyYzMqYkV; Mon, 16 Dec
-        2019 02:52:42 +0000 (GMT)
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        42.10.48019.A71F6FD5; Mon, 16 Dec 2019 11:52:42 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-        20191216025242epcas1p4af6a46c4d50f5e41a44d50b0fdfc1825~gullMawfQ1584215842epcas1p4B;
-        Mon, 16 Dec 2019 02:52:42 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20191216025242epsmtrp182ab11862d87b6219cde22d349bbaad6~gullKire_1347813478epsmtrp1F;
-        Mon, 16 Dec 2019 02:52:42 +0000 (GMT)
-X-AuditID: b6c32a38-23fff7000001bb93-0c-5df6f17a2b32
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F0.A6.06569.A71F6FD5; Mon, 16 Dec 2019 11:52:42 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20191216025242epsmtip2ef8a4df971d610f9c2658d0b080c8238~gulk84ytd2221022210epsmtip22;
-        Mon, 16 Dec 2019 02:52:42 +0000 (GMT)
-Subject: Re: [RFC PATCH v2 08/11] arm: dts: exynos: Add parents and
- #interconnect-cells to Exynos4412
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     myungjoo.ham@samsung.com, inki.dae@samsung.com,
-        sw0312.kim@samsung.com, georgi.djakov@linaro.org,
-        leonard.crestez@nxp.com, m.szyprowski@samsung.com,
-        b.zolnierkie@samsung.com, krzk@kernel.org
-Organization: Samsung Electronics
-Message-ID: <eecc5d38-f6ab-b1ea-1a08-0afb2dcddbef@samsung.com>
-Date:   Mon, 16 Dec 2019 11:59:17 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        id S1726551AbfLPDXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Dec 2019 22:23:05 -0500
+Received: from mga07.intel.com ([134.134.136.100]:13122 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726437AbfLPDXF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Dec 2019 22:23:05 -0500
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Dec 2019 19:23:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,320,1571727600"; 
+   d="scan'208";a="212096532"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga008.fm.intel.com with ESMTP; 15 Dec 2019 19:23:04 -0800
+Received: from [10.226.38.59] (unknown [10.226.38.59])
+        by linux.intel.com (Postfix) with ESMTP id 2A22F580479;
+        Sun, 15 Dec 2019 19:23:01 -0800 (PST)
+Subject: Re: [PATCH v8 1/2] dt-bindings: phy: intel-emmc-phy: Add YAML schema
+ for LGM eMMC PHY
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kishon@ti.com, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        peter.harliman.liem@intel.com
+References: <20191212015320.20969-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20191212015320.20969-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20191213190819.GA19560@bogus>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <fc4a2812-56d8-3008-151a-d143993da803@linux.intel.com>
+Date:   Mon, 16 Dec 2019 11:23:01 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <693e250d-9656-df67-9685-188020b43542@samsung.com>
-Content-Language: en-US
+In-Reply-To: <20191213190819.GA19560@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGJsWRmVeSWpSXmKPExsWy7bCmgW7Vx2+xBjuXmFjcn9fKaLFxxnpW
-        i/lHzrFaXPn6ns1i+t5NbBaT7k9gsTh/fgO7xYq7H1ktNj2+xmpxedccNovPvUcYLWac38dk
-        sfbIXXaL240r2CxmTH7J5sDvsWlVJ5vHnWt72Dzudx9n8ti8pN5j47sdTB59W1YxenzeJBfA
-        HpVtk5GamJJapJCal5yfkpmXbqvkHRzvHG9qZmCoa2hpYa6kkJeYm2qr5OIToOuWmQN0t5JC
-        WWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVim1ICWnwLJArzgxt7g0L10vOT/XytDAwMgUqDAh
-        O+Nv3yWmgitaFT233zE3MC5Q7GLk5JAQMJG4sOYscxcjF4eQwA5GiZl7T0A5nxglFp5vY4Fw
-        vjFKbL+6lRWm5eLJ71BVexkl/l1+yAaSEBJ4zyix54I/iC0skC5xvfMTE4jNJqAlsf/FDTaQ
-        BhGB/4wSp5etZAVxmAWOMUrsvfOTBaSKX0BR4uqPx4wgNq+AncTMc7vBprIIqEosXHsAbJKo
-        QJjEyW0tUDWCEidnPgHr5RSwl/g2axoziM0sIC5x68l8JghbXqJ562xmiLMPsUvcWm7RxcgB
-        ZLtIHNiWDhEWlnh1fAs7hC0l8bK/Dcqullh58gjY0RICHYwSW/ZfgHrfWGL/0slMIHOYBTQl
-        1u/ShwgrSuz8PZcRYi2fxLuvPawQq3glOtqEIEqUJS4/uMsEYUtKLG7vZJvAqDQLyTOzkDww
-        C8kDsxCWLWBkWcUollpQnJueWmxYYIIc25sYwWlay2IH455zPocYBTgYlXh4X2R8ixViTSwr
-        rsw9xCjBwawkwpuq/TlWiDclsbIqtSg/vqg0J7X4EKMpMKwnMkuJJucDc0heSbyhqZGxsbGF
-        iaGZqaGhkjgvx4+LsUIC6YklqdmpqQWpRTB9TBycUg2MWkdTU5UD35r9mTk3s0CapziH/4rd
-        xyYfi89eMmnXN+w3Or1NIplB41bI+zdvJt4+czxqodS68/8L36hd7+lfvPHEhosm2unxYZ+W
-        tapqC1ixXZmywOZ6/fOJnnc4p1+aOIl3Bcuk2yvy5JdIvt06q76s9ted9k2dXFHWRSWtT8w9
-        O1xm6HBrKbEUZyQaajEXFScCAMLL5vvpAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMIsWRmVeSWpSXmKPExsWy7bCSvG7Vx2+xBhvO81jcn9fKaLFxxnpW
-        i/lHzrFaXPn6ns1i+t5NbBaT7k9gsTh/fgO7xYq7H1ktNj2+xmpxedccNovPvUcYLWac38dk
-        sfbIXXaL240r2CxmTH7J5sDvsWlVJ5vHnWt72Dzudx9n8ti8pN5j47sdTB59W1YxenzeJBfA
-        HsVlk5Kak1mWWqRvl8CV8bfvElPBFa2KntvvmBsYFyh2MXJySAiYSFw8+Z25i5GLQ0hgN6NE
-        97a/LBAJSYlpF48CJTiAbGGJw4eLIWreMkqs3tfNCFIjLJAucb3zExOIzSagJbH/xQ02kCIR
-        gf+MEg/bjjGCOMwCxxglPq5YzwrR/oFRYvLz36wgLfwCihJXfzwGG8UrYCcx89xuNhCbRUBV
-        YuHaA2BjRQXCJHYuecwEUSMocXLmE7DzOAXsJb7NmsYMYjMLqEv8mXcJyhaXuPVkPhOELS/R
-        vHU28wRG4VlI2mchaZmFpGUWkpYFjCyrGCVTC4pz03OLDQuM8lLL9YoTc4tL89L1kvNzNzGC
-        o1ZLawfjiRPxhxgFOBiVeHgdsr/FCrEmlhVX5h5ilOBgVhLhTdX+HCvEm5JYWZValB9fVJqT
-        WnyIUZqDRUmcVz7/WKSQQHpiSWp2ampBahFMlomDU6qBUUPjxK3mjDfvVZKe+dXzbP/113KJ
-        34lbYRLqM86rrfg2+9juqfv+buT880pySfiEaJtd//9FLyj6oqUbOuX4FI2nPfOFuc7wRmxw
-        O8TELxituFHy0POzoenpK8t9go/e3CF4eP0Xw+nKBzI9uU3M9RgOPDuyv27rkpm6Z+vmPrHW
-        4TE9FXFvs4QSS3FGoqEWc1FxIgA03wJD1gIAAA==
-X-CMS-MailID: 20191216025242epcas1p4af6a46c4d50f5e41a44d50b0fdfc1825
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20190919142329eucas1p299762f99dd55a5d625633ceec84219f9
-References: <20190919142236.4071-1-a.swigon@samsung.com>
-        <CGME20190919142329eucas1p299762f99dd55a5d625633ceec84219f9@eucas1p2.samsung.com>
-        <20190919142236.4071-9-a.swigon@samsung.com>
-        <693e250d-9656-df67-9685-188020b43542@samsung.com>
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -117,171 +51,103 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On 12/16/19 9:51 AM, Chanwoo Choi wrote:
-> On 9/19/19 11:22 PM, Artur Świgoń wrote:
->> From: Artur Świgoń <a.swigon@partner.samsung.com>
+    Thank you for the review comments.
+
+On 14/12/2019 3:08 AM, Rob Herring wrote:
+> On Thu, Dec 12, 2019 at 09:53:19AM +0800, Ramuthevar,Vadivel MuruganX wrote:
+>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 >>
->> This patch adds two fields to the Exynos4412 DTS:
->>   - parent: to declare connections between nodes that are not in a
->>     parent-child relation in devfreq;
->>   - #interconnect-cells: required by the interconnect framework.
+>> Add a YAML schema to use the host controller driver with the
+>> eMMC PHY on Intel's Lightning Mountain SoC.
 >>
->> Please note that #interconnect-cells is always zero and node IDs are not
->> hardcoded anywhere. The above-mentioned parent-child relation in devfreq
->> means that there is a shared power line ('devfreq' property). The 'parent'
->> property only signifies an interconnect connection.
->>
->> Signed-off-by: Artur Świgoń <a.swigon@partner.samsung.com>
+>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 >> ---
->>  arch/arm/boot/dts/exynos4412-odroid-common.dtsi | 1 +
->>  arch/arm/boot/dts/exynos4412.dtsi               | 9 +++++++++
->>  2 files changed, 10 insertions(+)
+>>   .../bindings/phy/intel,lgm-emmc-phy.yaml           | 62 ++++++++++++++++++++++
+>>   1 file changed, 62 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
 >>
->> diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
->> index ea55f377d17c..bdd61ae86103 100644
->> --- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
->> +++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
->> @@ -106,6 +106,7 @@
->>  &bus_leftbus {
->>  	devfreq-events = <&ppmu_leftbus_3>, <&ppmu_rightbus_3>;
->>  	vdd-supply = <&buck3_reg>;
->> +	parent = <&bus_dmc>;
-> 
-> As I mentioned on other reply,
-> I'm not sure to use the specific 'parent' property to make
-> the connection between buses. If possible, you better to
-> use the standard way like OF graph. Except for making
-> the connection between buses by 'parent' property,
-> looks good to me.
+>> diff --git a/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
+>> new file mode 100644
+>> index 000000000000..aed11258d96d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
+>> @@ -0,0 +1,62 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/intel,lgm-emmc-phy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Intel Lightning Mountain(LGM) eMMC PHY Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> +
+>> +description: |+
+>> +  Bindings for eMMC PHY on Intel's Lightning Mountain SoC, syscon
+>> +  node is used to reference the base address of eMMC phy registers.
+>> +
+>> +  The eMMC PHY node should be the child of a syscon node with the
+>> +  required property:
+>> +
+>> +  - compatible:         Should be one of the following:
+>> +                        "intel,lgm-syscon", "syscon"
+>> +  - reg:
+>> +      maxItems: 1
+>> +
+>> +properties:
+>> +  compatible:
+>> +    contains:
+> You need to drop 'contains'. That implies other strings can also be
+> present.
+Sure, I will drop contains..
+>> +      const: intel,lgm-emmc-phy
+>> +
+>> +  "#phy-cells":
+>> +    const: 0
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    maxItems: 1
+> Drop maxItems. It should be:
+>
+> const: emmcclk
+>
+> Or just drop clock-names because you don't really need *-names when
+> there is only 1.
 
-I tried to think it continuously. I withdraw the my opinion
-using OF graph. If you make the property name like the following
-example, it is possible for exynos.
-- exynos,interconnect-parent-node = <&bus_dmc>; or other proper name.
+Noted, fix it.
 
-Regardless of existing 'devfreq' property, I think you better to
-make the connection between buses for only interconnect as following
-example: This make it possible user can draw the correct tree by tracking
-the 'exynos,interconnect-parent-node' value.
-
-diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-index ea55f377d17c..53f87f46e161 100644
---- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-@@ -90,6 +90,7 @@
- &bus_dmc {
-        devfreq-events = <&ppmu_dmc0_3>, <&ppmu_dmc1_3>;
-        vdd-supply = <&buck1_reg>;
-+       #interconnect-cells = <0>;
-        status = "okay";
- };
- 
-@@ -106,6 +107,8 @@
- &bus_leftbus {
-        devfreq-events = <&ppmu_leftbus_3>, <&ppmu_rightbus_3>;
-        vdd-supply = <&buck3_reg>;
-+       exynos,interconnect-parent-node = <&bus_dmc>;
-+       #interconnect-cells = <0>;
-        status = "okay";
- };
- 
-@@ -116,6 +119,8 @@
- 
- &bus_display {
-        devfreq = <&bus_leftbus>;
-+       exynos,interconnect-parent-node = <&bus_leftbus>;
-+       #interconnect-cells = <0>;
-        status = "okay";
- };
-
-
-> 
-> 
->>  	status = "okay";
->>  };
->>  
->> diff --git a/arch/arm/boot/dts/exynos4412.dtsi b/arch/arm/boot/dts/exynos4412.dtsi
->> index d20db2dfe8e2..a70a671acacd 100644
->> --- a/arch/arm/boot/dts/exynos4412.dtsi
->> +++ b/arch/arm/boot/dts/exynos4412.dtsi
->> @@ -390,6 +390,7 @@
->>  			clocks = <&clock CLK_DIV_DMC>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_dmc_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -398,6 +399,7 @@
->>  			clocks = <&clock CLK_DIV_ACP>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_acp_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -406,6 +408,7 @@
->>  			clocks = <&clock CLK_DIV_C2C>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_dmc_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -459,6 +462,7 @@
->>  			clocks = <&clock CLK_DIV_GDL>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_leftbus_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -467,6 +471,7 @@
->>  			clocks = <&clock CLK_DIV_GDR>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_leftbus_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -475,6 +480,7 @@
->>  			clocks = <&clock CLK_ACLK160>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_display_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -483,6 +489,7 @@
->>  			clocks = <&clock CLK_ACLK133>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_fsys_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -491,6 +498,7 @@
->>  			clocks = <&clock CLK_ACLK100>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_peri_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
->> @@ -499,6 +507,7 @@
->>  			clocks = <&clock CLK_SCLK_MFC>;
->>  			clock-names = "bus";
->>  			operating-points-v2 = <&bus_leftbus_opp_table>;
->> +			#interconnect-cells = <0>;
->>  			status = "disabled";
->>  		};
->>  
+With Best Regards
+Vadivel
+>> +
+>> +required:
+>> +  - "#phy-cells"
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +examples:
+>> +  - |
+>> +    sysconf: chiptop@e0200000 {
+>> +      compatible = "intel,lgm-syscon", "syscon";
+>> +      reg = <0xe0200000 0x100>;
+>> +
+>> +      emmc-phy: emmc-phy@a8 {
+>> +        compatible = "intel,lgm-emmc-phy";
+>> +        reg = <0x00a8 0x10>;
+>> +        clocks = <&emmc>;
+>> +        clock-names = "emmcclk";
+>> +        #phy-cells = <0>;
+>> +      };
+>> +    };
+>> +...
+>> -- 
+>> 2.11.0
 >>
-> 
-> 
-
-
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
