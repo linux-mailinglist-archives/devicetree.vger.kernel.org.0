@@ -2,221 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C1C2122AEB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40D45122B37
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727406AbfLQMGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 07:06:44 -0500
-Received: from mail-il1-f195.google.com ([209.85.166.195]:34507 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726831AbfLQMGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 07:06:44 -0500
-Received: by mail-il1-f195.google.com with SMTP id s15so5102811iln.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2019 04:06:43 -0800 (PST)
+        id S1727840AbfLQMRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 07:17:01 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:36233 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726690AbfLQMRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 07:17:01 -0500
+Received: by mail-wm1-f65.google.com with SMTP id p17so2910250wma.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2019 04:16:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kJFvFlTIidZyYqjLvZTlE95MCLu7jntYF3GzY++GrcU=;
-        b=qtoUbxZKi8HQaYf/hEuyljG2Lk9x3aTYRUUhA+yNAkDKcQJk7YJ0lE6it9xS7/MtNE
-         BH1N5iQvubVOF8dccCLV5moaKunrYjZQI/yqGf3BIh2A6y9OSaM4ASIGeUZi6MMVUOUL
-         NaROAhN2+tEmIzppIlC25TZZFlD0N2HhlIUBw=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uvkcmzWWNz9+vvDl5lj9jSidtFGQN7sTpNsfRZj6iOc=;
+        b=p1fpn1woHPX0xistfLZ2FIMnrxMkOwvBnFdqRaqUrUsBTdUGddlqaXaKDbVYA58saV
+         zl4sFWG3x9FKyHmdSfAgHZmnMHwYTOqFKWgXE7npDUO++TaANqqJR5flItwqSW3BVsk+
+         NIb49F2bDT/Zgn7DjYYgTL90X/8JXIZE3IfTXG7sgltuT/ypstmEu8TPxCZ7ol/6jaYm
+         /pubBnp85lw3s0/l89Ume7f/ZrdoXf6EKE7r1fHAzSaDdTm/A8qV5wbjuYb27WgyUSNo
+         yXR3QckcV4o3dfR3LiTUfkvLb93D0WfClTushCMklkeaH2kulnoQlxiJhckYwASPk+6+
+         C2Cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kJFvFlTIidZyYqjLvZTlE95MCLu7jntYF3GzY++GrcU=;
-        b=oDuJGAn+2hCRq5V41xrHJYSsXUDSffBKWIxeQr0EyjsdOFbdbjLiWSHj2sT0udCiV4
-         pue1uTaAw2TNCg1U5+92DBqOEDAqKs2om61E4Q9zii3iG1lljoHhSRLB6+Ne5T62CfnC
-         PSNFEJYP1hKKxYDLuugn/thcedkzUWkcyKjcc/30aoC2+lyK6YKOpSlCGUiXZy+UElBh
-         kFrO/baDK4IWWMbocBNG6k4532LcIP+p0BE60758HPzkO6LMu0Bdjd47e1ymSICt/bGC
-         DromUasiEEzu9fop+G1zbYhYsJHi44NM7Xjxk9WDTmX4QyLkTcG4IQSzRmCUty7chq/K
-         nsyQ==
-X-Gm-Message-State: APjAAAV+UiXQA0B2Dt9M8wDPSiWVeN6s1KhaSXtfL471GZr0HLnDrrTT
-        ROXnZd670rI2zLQrNHW+yraQE7lc4jekhuXJ+GBEKQ==
-X-Google-Smtp-Source: APXvYqzo1LW8pYHyyqjgRw5xkXeBYSK8ws4WYpGdREfWhRvAF2p1T/KlJp3RESV+UxI8vdA2SxK9Moux+dAQE89yUZ0=
-X-Received: by 2002:a92:17cb:: with SMTP id 72mr16272735ilx.173.1576584402380;
- Tue, 17 Dec 2019 04:06:42 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uvkcmzWWNz9+vvDl5lj9jSidtFGQN7sTpNsfRZj6iOc=;
+        b=UIv7NhSKWafAGgbhdgSskZJ2npYSFplZqWlFSL+UOOLBxjn5HFGELBlnElFs0Yak1G
+         NKmmsXLRstrgiB37cNHYE518D42ovkVME3d2gSGGTrgm9VGc5dk06aD0QBO7lkSwMKuU
+         rB1aZDCO2QeUtrsG/iFhDFVIDzhxOtW2Scu8AND3af3RznttaDewinCSlACLDNrx+fD+
+         oykzI5dJCl8ryL1J8A+Z3wgiJetR2cDULyd8MlIhVWayAq5fbpVt8+K0zqpT81bcESrK
+         bmXjkjT/RPK1QbOzcKvWk9x6DdwdNNieoqLgNH1tevst2uRDG5S0IeeZr/a3JxeQx7Ss
+         mkhg==
+X-Gm-Message-State: APjAAAVkeS+Oifd/0cPvfkt5GqR2QorSgVP7sMMRu9kq6OuEWmnqWDKM
+        HAUgOPoYTSgF0LP9UZdO2sL89Q==
+X-Google-Smtp-Source: APXvYqy0Y+iBxxIqL2VTzMcQpKB1C0uzPqguqaHBeN0RjsFa/n7TfiB/n92Yqnot3rrj/anxAG05Wg==
+X-Received: by 2002:a1c:7508:: with SMTP id o8mr5038469wmc.74.1576585019035;
+        Tue, 17 Dec 2019 04:16:59 -0800 (PST)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id f1sm25087270wru.6.2019.12.17.04.16.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2019 04:16:58 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     robh@kernel.org, broonie@kernel.org, lee.jones@linaro.org,
+        linus.walleij@linaro.org
+Cc:     vinod.koul@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        spapothi@codeaurora.org, bgoswami@codeaurora.org,
+        linux-gpio@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v5 00/11] ASoC: Add support to WCD9340/WCD9341 codec
+Date:   Tue, 17 Dec 2019 12:16:31 +0000
+Message-Id: <20191217121642.28534-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20191203134816.5319-1-jagan@amarulasolutions.com>
- <20191203134816.5319-2-jagan@amarulasolutions.com> <20191204133600.gnv6dnhk6upe7xod@gilmour.lan>
- <CAMty3ZDU57Hj3ZSBC6sSMFWN9-HQadA03hmXUNUVS1W0UQQ3DA@mail.gmail.com>
- <20191216112042.f4xvlgnbm4dk6wkq@gilmour.lan> <CAMty3ZBU-XaxR_vM5L2yVbhR5ftfbtDn3jP00qCxBF+owVyqDQ@mail.gmail.com>
- <20191216183410.akrmytbvaeg37wms@gilmour.lan>
-In-Reply-To: <20191216183410.akrmytbvaeg37wms@gilmour.lan>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Tue, 17 Dec 2019 17:36:31 +0530
-Message-ID: <CAMty3ZDoE6fxA3gSeUAV+WJEz0_qdQgU43Uxiq2YnH-yFuxZfg@mail.gmail.com>
-Subject: Re: [PATCH v12 1/7] dt-bindings: sun6i-dsi: Document A64 MIPI-DSI controller
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 17, 2019 at 12:04 AM Maxime Ripard <mripard@kernel.org> wrote:
->
-> On Mon, Dec 16, 2019 at 10:29:08PM +0530, Jagan Teki wrote:
-> > On Mon, Dec 16, 2019 at 4:50 PM Maxime Ripard <mripard@kernel.org> wrote:
-> > >
-> > > On Mon, Dec 16, 2019 at 04:37:20PM +0530, Jagan Teki wrote:
-> > > > On Wed, Dec 4, 2019 at 7:06 PM Maxime Ripard <mripard@kernel.org> wrote:
-> > > > >
-> > > > > On Tue, Dec 03, 2019 at 07:18:10PM +0530, Jagan Teki wrote:
-> > > > > > The MIPI DSI controller in Allwinner A64 is similar to A33.
-> > > > > >
-> > > > > > But unlike A33, A64 doesn't have DSI_SCLK gating so it is valid
-> > > > > > to have separate compatible for A64 on the same driver.
-> > > > > >
-> > > > > > DSI_SCLK uses mod clock-names on dt-bindings, so the same
-> > > > > > is not required for A64.
-> > > > > >
-> > > > > > On that note
-> > > > > > - A64 require minimum of 1 clock like the bus clock
-> > > > > > - A33 require minimum of 2 clocks like both bus, mod clocks
-> > > > > >
-> > > > > > So, update dt-bindings so-that it can document both A33,
-> > > > > > A64 bindings requirements.
-> > > > > >
-> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > > > > ---
-> > > > > > Changes for v12:
-> > > > > > - Use 'enum' instead of oneOf+const
-> > > > > >
-> > > > > >  .../display/allwinner,sun6i-a31-mipi-dsi.yaml | 20 +++++++++++++++++--
-> > > > > >  1 file changed, 18 insertions(+), 2 deletions(-)
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > > > > index dafc0980c4fa..b91446475f35 100644
-> > > > > > --- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> > > > > > @@ -15,7 +15,9 @@ properties:
-> > > > > >    "#size-cells": true
-> > > > > >
-> > > > > >    compatible:
-> > > > > > -    const: allwinner,sun6i-a31-mipi-dsi
-> > > > > > +    enum:
-> > > > > > +      - allwinner,sun6i-a31-mipi-dsi
-> > > > > > +      - allwinner,sun50i-a64-mipi-dsi
-> > > > > >
-> > > > > >    reg:
-> > > > > >      maxItems: 1
-> > > > > > @@ -24,6 +26,8 @@ properties:
-> > > > > >      maxItems: 1
-> > > > > >
-> > > > > >    clocks:
-> > > > > > +    minItems: 1
-> > > > > > +    maxItems: 2
-> > > > > >      items:
-> > > > > >        - description: Bus Clock
-> > > > > >        - description: Module Clock
-> > > > > > @@ -63,13 +67,25 @@ required:
-> > > > > >    - reg
-> > > > > >    - interrupts
-> > > > > >    - clocks
-> > > > > > -  - clock-names
-> > > > > >    - phys
-> > > > > >    - phy-names
-> > > > > >    - resets
-> > > > > >    - vcc-dsi-supply
-> > > > > >    - port
-> > > > > >
-> > > > > > +allOf:
-> > > > > > +  - if:
-> > > > > > +      properties:
-> > > > > > +         compatible:
-> > > > > > +           contains:
-> > > > > > +             const: allwinner,sun6i-a31-mipi-dsi
-> > > > > > +      then:
-> > > > > > +        properties:
-> > > > > > +          clocks:
-> > > > > > +            minItems: 2
-> > > > > > +        required:
-> > > > > > +          - clock-names
-> > > > > > +
-> > > > >
-> > > > > Your else condition should check that the number of clocks items is 1
-> > > > > on the A64
-> > > >
-> > > > But the minItems mentioned as 1 in clocks, which is unchanged number
-> > > > by default. doesn't it sufficient?
-> > >
-> > > In the main schema, it's said that the clocks property can have one or
-> > > two elements (to cover the A31 case that has one, and the A64 case
-> > > that has 2).
-> > >
-> > > This is fine.
-> > >
-> > > Later on, you enforce that the A64 has two elements, and this is fine
-> > > too.
-> >
-> > Actually A31 case has 2 and A64 case has 1.
-> >
-> > >
-> > > However, you never check that on the A31 you only have one clock, and
-> > > you could very well have two and no one would notice.
-> >
-> > I did check A31 case for 2 but not in A64. this is what you mean? so
-> > adding A64 check like below would fine?
-> >
-> > allOf:
-> >   - if:
-> >       properties:
-> >          compatible:
-> >            contains:
-> >              const: allwinner,sun6i-a31-mipi-dsi
->
-> You need a new line here
+This patchset adds support to Qualcomm WCD9340/WCD9341 Codec which
+is a standalone Hi-Fi audio codec IC.
+This codec supports both I2S/I2C and SLIMbus audio interfaces.
+On slimbus interface it supports two data lanes; 16 Tx ports
+and 8 Rx ports. It has Five DACs and seven dedicated interpolators,
+Multibutton headset control (MBHC), Active noise cancellation,
+Sidetone paths, MAD (mic activity detection) and codec processing engine.
+It supports Class-H differential earpiece out and stereo single
+ended headphones out.
 
-I couldn't see new line before then: in example schema -
-https://elixir.bootlin.com/linux/v5.5-rc2/source/Documentation/devicetree/bindings/example-schema.yaml#L208
-May be a new changes for this ML or so?
+This codec also has integrated SoundWire controller.
+Patchset for this is already sent for review at
+https://patchwork.kernel.org/cover/11185769/
+    
+This patchset has been tested on SDM845 based DragonBoard DB845c and
+Lenovo Yoga C630 laptop with WSA881x smart speaker amplifiers via
+soundwire and 4 DMICs.
 
->
-> >       then:
->
-> This is the wrong level of indentation, it needs to be at the same level than if
+gpio controller patch does not have any link dependency, it can go by its own.
 
-True, I have seen it in example schema.
+Most of the code in this driver is rework of Qualcomm downstream drivers
+used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
 
->
-> >         properties:
-> >           clocks:
-> >             minItems: 2
->
-> Newline
->
-> >         required:
-> >           - clock-names
->
-> Newline
->
-> >   - if:
-> >       properties:
-> >          compatible:
-> >            contains:
-> >              const: allwinner,sun50i-a64-mipi-dsi
-> >       then:
-> >         properties:
-> >           clocks:
-> >             minItems: 1
->
-> (and same thing here).
->
-> But yeah, otherwise that's what I meant
+Thanks,
+srini
 
-Thanks for the detailed review.
+Changes since v4:
+ - updated microvolt bindings as suggested by Rob.
+ - slimbus optional property patch already applied.
+
+Srinivas Kandagatla (11):
+  ASoC: dt-bindings: add dt bindings for WCD9340/WCD9341 audio codec
+  mfd: wcd934x: add support to wcd9340/wcd9341 codec
+  ASoC: wcd934x: add support to wcd9340/wcd9341 codec
+  ASoC: wcd934x: add basic controls
+  ASoC: wcd934x: add playback dapm widgets
+  ASoC: wcd934x: add capture dapm widgets
+  ASoC: wcd934x: add audio routings
+  dt-bindings: gpio: wcd934x: Add bindings for gpio
+  gpio: wcd934x: Add support to wcd934x gpio controller
+  ASoC: qcom: dt-bindings: Add compatible for DB845c and Lenovo Yoga
+  ASoC: qcom: sdm845: add support to DB845c and Lenovo Yoga
+
+ .../bindings/gpio/qcom,wcd934x-gpio.yaml      |   47 +
+ .../devicetree/bindings/sound/qcom,sdm845.txt |    5 +-
+ .../bindings/sound/qcom,wcd934x.yaml          |  175 +
+ drivers/gpio/Kconfig                          |    8 +
+ drivers/gpio/Makefile                         |    1 +
+ drivers/gpio/gpio-wcd934x.c                   |  104 +
+ drivers/mfd/Kconfig                           |   12 +
+ drivers/mfd/Makefile                          |    1 +
+ drivers/mfd/wcd934x.c                         |  306 +
+ include/linux/mfd/wcd934x/registers.h         |  531 ++
+ include/linux/mfd/wcd934x/wcd934x.h           |   31 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wcd934x.c                    | 5084 +++++++++++++++++
+ sound/soc/qcom/sdm845.c                       |   86 +-
+ 15 files changed, 6401 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/qcom,wcd934x-gpio.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd934x.yaml
+ create mode 100644 drivers/gpio/gpio-wcd934x.c
+ create mode 100644 drivers/mfd/wcd934x.c
+ create mode 100644 include/linux/mfd/wcd934x/registers.h
+ create mode 100644 include/linux/mfd/wcd934x/wcd934x.h
+ create mode 100644 sound/soc/codecs/wcd934x.c
+
+-- 
+2.21.0
+
