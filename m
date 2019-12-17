@@ -2,97 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB1B41234C3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 19:25:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 640ED123517
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 19:38:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727977AbfLQSZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 13:25:12 -0500
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:47096 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726813AbfLQSZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 13:25:12 -0500
-Received: by mail-lj1-f194.google.com with SMTP id z17so12024163ljk.13;
-        Tue, 17 Dec 2019 10:25:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Jo3/k6HeLWByk3JzqbzlDt3Xg6ep2UUq9K6e/8xjHQg=;
-        b=nuCpdps6sZn78SQU9DzoRiw3IkjpyX3fMC68SuUg1v8a4/ryJ7bFCfXkRH1s7Acdd7
-         CnJ9S8UWiu5pXovzcoDEVWKANwWy4+QDo8DGKSMuAHP+t1i5A7Ky/u9lzXlq3tkV2Psc
-         SJ0ptyxgT8lfa9ilAFG1ucc1muLf3QzTFrvVlUtPalcJSYToEB2jV+P7nfDAG/1p75Ug
-         4RlvmQ4srs+k2wfj0AXgsPm8+bAbQY8gcO7NRwZ3x1sjJ5yTBw6LwHeyJ7zf2+RpxnCT
-         234STMIOJNdnX1Nb5tW1QQMSg9Ve0mp+AXT+TqPUShwZS/mr5eic1Y18meRO9drwnmBU
-         eM8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Jo3/k6HeLWByk3JzqbzlDt3Xg6ep2UUq9K6e/8xjHQg=;
-        b=IDMVw/svVyYe/L6tQGa1SmLEvZP5LAsVfuZ3cN1pp4MUp6nQQbksmVT7bJHZJ97gdm
-         88H/85nSZmVCed8TGwasXrHKQOq8EhPQ2D9yZN1fnVXKM0LjQCbyud0pyN3Ry+dWuoQV
-         0dVRrZ5N6tnNQNcaeHvmnDPOAtINtaEgF//Fn+SEvoXjDHbRHT1MruqUquyliuv6VsBo
-         Vu3mzp8tzPa+N8hDdwI9EqKgsnK7eTZrttHION1aSxt3wPHS5smIXEBvepic/zuPXjMp
-         qGp5hBAaXpqHcmrBgT1oSNE43+F9iGoQ53Zg5Huvw3JZsyeHhqFM+um9sSq8VAxkmQO5
-         Y9kQ==
-X-Gm-Message-State: APjAAAVwtpwFSCHN5+tEWEHjd8QGVTYJcHLDdAXtGAhi1piutgLGCWr0
-        hfE1U3Li20aQ4CW/kEGwpOTRYHpJfSEVBScdzUUMU0nn0kQ=
-X-Google-Smtp-Source: APXvYqzW1YksSJ6QtiK3LM0rolkvX9vCpmJdwLz7NfDCGnoVddPs0R2yuhQXciocVIc/pbFL+gJfSbYSUFtAqLX4HOs=
-X-Received: by 2002:a2e:b5ac:: with SMTP id f12mr4472796ljn.0.1576607110175;
- Tue, 17 Dec 2019 10:25:10 -0800 (PST)
-MIME-Version: 1.0
-References: <20191213153910.11235-1-aford173@gmail.com> <20191213153910.11235-3-aford173@gmail.com>
- <VI1PR0402MB3485AB1908AD6B6617CFC08C98500@VI1PR0402MB3485.eurprd04.prod.outlook.com>
- <CAHCN7xLrX0R7Uag2vc1qMp4z=1r3haCWrcp4qJT0H0eC3RiA4Q@mail.gmail.com>
-In-Reply-To: <CAHCN7xLrX0R7Uag2vc1qMp4z=1r3haCWrcp4qJT0H0eC3RiA4Q@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 17 Dec 2019 15:25:04 -0300
-Message-ID: <CAOMZO5B_CCEf_cdAWs_FDC1c6t0RG1KjRjGidoDPmPmgxY=ebg@mail.gmail.com>
-Subject: Re: [PATCH V2 3/3] arm64: defconfig: Enable CRYPTO_DEV_FSL_CAAM
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Horia Geanta <horia.geanta@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Aymen Sghaier <aymen.sghaier@nxp.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1728130AbfLQSit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 13:38:49 -0500
+Received: from baptiste.telenet-ops.be ([195.130.132.51]:43510 "EHLO
+        baptiste.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727935AbfLQSit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 13:38:49 -0500
+Received: from ramsan ([84.195.182.253])
+        by baptiste.telenet-ops.be with bizsmtp
+        id f6ei2100B5USYZQ016eiwo; Tue, 17 Dec 2019 19:38:47 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ihHk2-0003aF-Io; Tue, 17 Dec 2019 19:38:42 +0100
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ihHk2-00007v-FM; Tue, 17 Dec 2019 19:38:42 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Magnus Damm <magnus.damm@gmail.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/5] arm64: renesas: Split/rename R-Car H3 support
+Date:   Tue, 17 Dec 2019 19:38:36 +0100
+Message-Id: <20191217183841.432-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+	Hi all,
 
-On Tue, Dec 17, 2019 at 10:07 AM Adam Ford <aford173@gmail.com> wrote:
+Despite using the same compatible values ("r8a7795"-based) because of
+historical reasons, R-Car H3 ES1.x (R8A77950) and R-Car H3 ES2.0+
+(R8A77951) are really different SoCs, with different part numbers.
 
-> Out of curiosity, what is the rule for when things are 'm' vs 'y'?
->
-> In the Code Aurora repo, it is set to 'y' and the mainline kernel for
-> the i.MX6/7, the imx_v6_v7_defconfig is also set to 'y' which is why I
-> used 'y' here.
->
-> I can do a V3 to address the other items you noted, but I want to
-> understand the rules about the defconfig so I don't make the same
-> mistake again.
+Hence this patch series splits the config symbols for R-Car H3, and
+renames the related DTS files, to maintain a clear separation between
+early (ES1.x) and later (ES2.0+) SoC revisions.  This will pave the way
+for configuring out support for early SoC revisions, which can reduce
+kernel size, especially in the pin control subsystem.
+This is similar to the recent split of R8A7796 symbols for R-Car M3-W
+(R8A77960) and M3-W+ (R8A77961)[1], and the related DTS file renames[2],
+but different due to the sharing of compatible values between R-Car H3
+ES1.x and H3 ES2.0+.
 
-In arch/arm64/configs/defconfig we try to select modules whenever possible.
+This series also includes the rename/cleanup of the ULCB DTS file names,
+as suggested by Eugeniu Rosca.  As DTS files are already being renamed
+for v5.6[2], it makes sense to combine them with other renames, to avoid
+inconveniencing the user with multiple renames in multiple kernel
+versions.
 
-The exceptions are drivers that are vital for boot such as PMIC,
-pinctrl, clks, etc.
+The pin control part will be handled in a separate patch.
 
-The CAAM driver does not fall into this category, so selecting it as
-module is preferred here.
+For your convenience, all of this is available in the
+topic/r8a7795-rename-v1 branch of my renesas-drivers git repository at
+git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git.
 
-Thanks
+Thanks for your comments!
+
+References:
+  [1] "[PATCH v2 00/11] arm64: renesas: Add r8a77961 support"
+      https://lore.kernel.org/linux-renesas-soc/20191023123342.13100-1-geert+renesas@glider.be/
+  [2] "[PATCH/RFC] arm64: dts: renesas: Rename r8a7796* to r8a77960*"
+      https://lore.kernel.org/linux-renesas-soc/20191211131311.23661-1-geert+renesas@glider.be/
+
+Geert Uytterhoeven (5):
+  arm64: dts: renesas: Rename r8a7795{-es1,}* to r8a7795[01]*
+  arm64: dts: renesas: Drop redudant SoC prefixes from ULCB DTS file
+    names
+  arm64: dts: renesas: Sort DTBs in Makefile
+  arm64: dts: renesas: Prepare for split of ARCH_R8A7795 into
+    ARCH_R8A7795[01]
+  soc: renesas: Add ARCH_R8A7795[01] for existing R-Car H3
+
+ arch/arm64/boot/dts/renesas/Makefile          | 21 ++++++++++---------
+ ...salvator-x.dts => r8a77950-salvator-x.dts} |  4 ++--
+ ...795-h3ulcb-kf.dts => r8a77950-ulcb-kf.dts} |  4 ++--
+ ...a7795-es1-h3ulcb.dts => r8a77950-ulcb.dts} |  4 ++--
+ .../{r8a7795-es1.dtsi => r8a77950.dtsi}       |  4 ++--
+ ...salvator-x.dts => r8a77951-salvator-x.dts} |  4 ++--
+ ...lvator-xs.dts => r8a77951-salvator-xs.dts} |  8 +++----
+ ...es1-h3ulcb-kf.dts => r8a77951-ulcb-kf.dts} |  4 ++--
+ .../{r8a7795-h3ulcb.dts => r8a77951-ulcb.dts} |  4 ++--
+ .../renesas/{r8a7795.dtsi => r8a77951.dtsi}   |  2 +-
+ ...960-m3ulcb-kf.dts => r8a77960-ulcb-kf.dts} |  2 +-
+ ...{r8a77960-m3ulcb.dts => r8a77960-ulcb.dts} |  0
+ ...65-m3nulcb-kf.dts => r8a77965-ulcb-kf.dts} |  2 +-
+ ...r8a77965-m3nulcb.dts => r8a77965-ulcb.dts} |  0
+ drivers/soc/renesas/Kconfig                   |  8 +++++++
+ 15 files changed, 40 insertions(+), 31 deletions(-)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-es1-salvator-x.dts => r8a77950-salvator-x.dts} (96%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-h3ulcb-kf.dts => r8a77950-ulcb-kf.dts} (75%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-es1-h3ulcb.dts => r8a77950-ulcb.dts} (89%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-es1.dtsi => r8a77950.dtsi} (98%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-salvator-x.dts => r8a77951-salvator-x.dts} (96%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-salvator-xs.dts => r8a77951-salvator-xs.dts} (96%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-es1-h3ulcb-kf.dts => r8a77951-ulcb-kf.dts} (75%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795-h3ulcb.dts => r8a77951-ulcb.dts} (92%)
+ rename arch/arm64/boot/dts/renesas/{r8a7795.dtsi => r8a77951.dtsi} (99%)
+ rename arch/arm64/boot/dts/renesas/{r8a77960-m3ulcb-kf.dts => r8a77960-ulcb-kf.dts} (92%)
+ rename arch/arm64/boot/dts/renesas/{r8a77960-m3ulcb.dts => r8a77960-ulcb.dts} (100%)
+ rename arch/arm64/boot/dts/renesas/{r8a77965-m3nulcb-kf.dts => r8a77965-ulcb-kf.dts} (92%)
+ rename arch/arm64/boot/dts/renesas/{r8a77965-m3nulcb.dts => r8a77965-ulcb.dts} (100%)
+
+-- 
+2.17.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
