@@ -2,130 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C17412247D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 07:07:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 219D7122496
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 07:22:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726767AbfLQGGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 01:06:17 -0500
-Received: from mail-pj1-f65.google.com ([209.85.216.65]:45412 "EHLO
-        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727124AbfLQGGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 01:06:16 -0500
-Received: by mail-pj1-f65.google.com with SMTP id r11so4068322pjp.12
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 22:06:16 -0800 (PST)
+        id S1726609AbfLQGWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 01:22:15 -0500
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:43389 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725886AbfLQGWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 01:22:15 -0500
+Received: by mail-pg1-f194.google.com with SMTP id k197so5067938pga.10
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 22:22:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pqq8EI8PetXDTX9SD5fPHS3ySd+6zzeipLGlfcg5Zxs=;
-        b=IWrGd/seVhqfkyiDseJWo0Sbfx11NJtoTwyu5c4/nSABcXvEq+W+6nvn/9GQ7bwwq2
-         85T22nRr5aeyzQcY4FH4w9g/ybLLtlaMva2KA1RsF/Hb5xiwliz19As+Hvv7xdotEXcC
-         xssP5NVYgHtz30sK/ibkPM1V1ScT5WmL63b2U=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fwHTfnJaI9qnMvf2gSHfOz3OAkZOCzCGX5TYMPhWqUA=;
+        b=dFn7VKlHM/jteR5MfqGleAz/hb1y6mlIHXAhvp1Jq7TNAdwfpl0D30IIVXK32ytp6Q
+         +YAo0OOlee56Yr5UTweg+CKiB565URXCbLnmw4B8JBfXVDOngHrK8DX0OPk6m5eVc0nE
+         b9VPMLnT2AxEfHM/z5N53rqS/4C2J1ciUc/x8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pqq8EI8PetXDTX9SD5fPHS3ySd+6zzeipLGlfcg5Zxs=;
-        b=IF0wA9f3onDI75XwjoWboUJNfow+jut0U9A3v7DAZUkf07jxNhV3x53hRQ6OYVHuUm
-         jIV7tfMYC4SQDK+xJOblLJ14aClEBpAp45NWSPL9MW4tr4CWp7LZQJ5+vVG2acrtwKss
-         /gMxW67v1wPnYqE8N6qd8ZxQqFAwF+XwMRG4ije81Fikqb3x0tH+rf/gU+Fnoqs2W9k4
-         whriVZNGE/XAAjS56zRczQ+yjWpyDILPAlweHOPTUDlLPUAEN2cqfh2KiSLpoJ1IG97o
-         O8ZRswSyqz8Whp2d/FIVFIrG+WFb/m7yUUMVi+k6N/Bte0bEFwlfxjzVhkaCsCnmZOfD
-         SSEw==
-X-Gm-Message-State: APjAAAUbVcXSzU3A5y1QjsKuHFAtbOS0KITqo3s3SrSBz18+WM3lrlaB
-        QAI7oQ60tiGBjbGi0eVyNit7xg==
-X-Google-Smtp-Source: APXvYqy3ZSrRGG3wJsbsNsELq8FiXxGqWLLQkso+ZvvdJb7SNnlcTLsYAG9ULRHOPTO+a9QqGIJTJg==
-X-Received: by 2002:a17:90a:cb87:: with SMTP id a7mr3969666pju.135.1576562775797;
-        Mon, 16 Dec 2019 22:06:15 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id u20sm24396721pgf.29.2019.12.16.22.06.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2019 22:06:15 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>, mka@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, swboyd@chromium.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: [PATCH] dt-bindings: timer: Use non-empty ranges in example
-Date:   Mon, 16 Dec 2019 22:05:32 -0800
-Message-Id: <20191216220512.1.I7dbd712cfe0bdf7b53d9ef9791072b7e9c6d3c33@changeid>
-X-Mailer: git-send-email 2.24.1.735.g03f4e72817-goog
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fwHTfnJaI9qnMvf2gSHfOz3OAkZOCzCGX5TYMPhWqUA=;
+        b=MUvetxFHJ2BSNQDRiD6XVYTvI2HlHsliYdWZnJ2QzrRWQCtOKE9h2eogPw8KEYqvpJ
+         NPz98dBa0zJXyC8HC4bh1MVpP1aSt7xh/XDPlDyTnOTVIugx9L+3s7HXG0jZ/qck8hw9
+         nB12qnjoCt4fxy/n2zYTmkT8fuUVgqfBsZs6d2E3yIsj0LD8kLiKwPYVZSNInZuI7o/G
+         pWt9Tf/pLMvjKT2LS0sKZSNlgxr6tEVHPOzLlRr8ZvVbB4kUPNyED5gJ/KoO+2xdy0kh
+         Yb94L/Jx31pzIKj3YbZ8rjA5XLW05eN/bwzmU2N9zgGr7kYqOf8DYM6+j4137AXD0DSD
+         kyIg==
+X-Gm-Message-State: APjAAAWpuusBi52jQ5K3A8pgxRqQvcm9XR69t0aMmJfPtW5UoNtJ9PLh
+        R7V9/8vpc50E0aRWnSQqaMwqw2mRw8E=
+X-Google-Smtp-Source: APXvYqz1+jKe5dY50V7Sx12aMKdUpb+jLUWAqhWauDzdb7RImspghcvN4MQpLT7PqdodOkiZt8jwQg==
+X-Received: by 2002:a62:2a12:: with SMTP id q18mr21200490pfq.203.1576563733953;
+        Mon, 16 Dec 2019 22:22:13 -0800 (PST)
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com. [209.85.210.181])
+        by smtp.gmail.com with ESMTPSA id s22sm784961pfe.90.2019.12.16.22.22.13
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Dec 2019 22:22:13 -0800 (PST)
+Received: by mail-pf1-f181.google.com with SMTP id y14so6944011pfm.13
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2019 22:22:13 -0800 (PST)
+X-Received: by 2002:a6b:be84:: with SMTP id o126mr2416373iof.269.1576563289206;
+ Mon, 16 Dec 2019 22:14:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191212193544.80640-1-dianders@chromium.org> <20191212113540.7.Ia9bd3fca24ad34a5faaf1c3e58095c74b38abca1@changeid>
+ <5df2b752.1c69fb81.77c46.0f9a@mx.google.com>
+In-Reply-To: <5df2b752.1c69fb81.77c46.0f9a@mx.google.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 16 Dec 2019 22:14:35 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UGRqeAr8vVUfx3ADyxNLJRz3g=YhWNX1adgepx_kADrA@mail.gmail.com>
+Message-ID: <CAD=FV=UGRqeAr8vVUfx3ADyxNLJRz3g=YhWNX1adgepx_kADrA@mail.gmail.com>
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sc7180: Use 'ranges' in
+ arm,armv7-timer-mem node
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Maulik Shah <mkshah@codeaurora.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On many arm64 qcom device trees, running `make dtbs_check` yells:
+Hi,
 
-  timer@17c20000: #size-cells:0:0: 1 was expected
+On Thu, Dec 12, 2019 at 1:55 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Douglas Anderson (2019-12-12 11:35:43)
+> > Running `make dtbs_check` yells:
+> >
+> >   arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml: timer@17c20000: #size-cells:0:0: 1 was expected
+> >
+> > It appears that someone was trying to assert the fact that sub-nodes
+> > describing frames would never have a size that's more than 32-bits
+> > big.  That's certainly true in the case of sc7180.
+> >
+> > I guess this is a hint that it's time to do the thing that nobody
+> > seems to do but that "writing-bindings.txt" says we should all do.
+> > Specifically it says: "DO use non-empty 'ranges' to limit the size of
+> > child buses/devices".  That means we should probably limit the
+>
+> It got cut off here. I'm waiting to find out what it is!!
 
-It appears that someone was trying to assert the fact that sub-nodes
-describing frames would never have a size that's more than 32-bits
-big.  That does indeed appear to be true for all cases I could find.
+I was going to say that I should use ranges to limit the address cells
+in addition to the size cells, but then I think I must have got
+distracted and forgot to finish my
 
-Currently many arm64 qcom device tree files have a #address-cells and
-about in commit bede7d2dc8f3 ("arm64: dts: qcom: sdm845: Increase
-address and size cells for soc").  That means the only way we can
-shrink them down is to use a non-empty ranges.
 
-Since forever it has said in "writing-bindings.txt" to "DO use
-non-empty 'ranges' to limit the size of child buses/devices".  I guess
-we should start listening to it.
+> > I believe that this patch is the way to do it and there should be no
+> > bad side effects here.  I believe that since we're far enough down
+> > (not trying to describe an actual device, just some sub-pieces) that
+> > this won't cause us to run into the problems that caused us to
+> > increase the soc-level #address-cells and #size-cells to 2 in sdm845
+> > in commit bede7d2dc8f3 ("arm64: dts: qcom: sdm845: Increase address
+> > and size cells for soc").
+> >
+> > I can at least confirm that "arch_mem_timer" seems to keep getting
+> > interrupts in "/proc/interrupts" after this change.
+> >
+> > Fixes: 90db71e48070 ("arm64: dts: sc7180: Add minimal dts/dtsi files for SC7180 soc")
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+>
+> This pattern exists in most of the qcom dts files. Can you fix all the
+> arm,armv7-timer-mem nodes. Maybe the binding has the same problem too in
+> the example.
 
-I believe (but am not certain) that this also means that we should use
-"ranges" to simplify the "reg" of our sub devices by specifying an
-offset.  Let's update the example in the bindings to make this
-obvious.
+Yeah.  I'm a little scared to go and do this for every qcom device
+tree file since I have no good way to test them, but I suppose I can
+give it a shot.  I was kinda thinking that, in general, it would make
+sense for folks to tackle one SoC at a time and make that SoC clean
+and test it.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
-See:
-  https://lore.kernel.org/r/20191212113540.7.Ia9bd3fca24ad34a5faaf1c3e58095c74b38abca1@changeid
+In any case, your idea about updating the example seemed wise to me,
+so I sent out:
 
-...for the patch that sparked this change.
+https://lore.kernel.org/r/20191216220512.1.I7dbd712cfe0bdf7b53d9ef9791072b7e9c6d3c33@changeid
 
- .../devicetree/bindings/timer/arm,arch_timer_mmio.yaml | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+I'll put this patch on hold until Rob gives his thoughts on that one
+so we can really make sure we're supposed to be using ranges in this
+way.
 
-diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-index b3f0fe96ff0d..d927b42ddeb8 100644
---- a/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-+++ b/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
-@@ -99,22 +99,22 @@ examples:
-       compatible = "arm,armv7-timer-mem";
-       #address-cells = <1>;
-       #size-cells = <1>;
--      ranges;
-+      ranges = <0 0xf0000000 0x1000>;
-       reg = <0xf0000000 0x1000>;
-       clock-frequency = <50000000>;
- 
--      frame@f0001000 {
-+      frame@0 {
-         frame-number = <0>;
-         interrupts = <0 13 0x8>,
-                <0 14 0x8>;
--        reg = <0xf0001000 0x1000>,
--              <0xf0002000 0x1000>;
-+        reg = <0x0000 0x1000>,
-+              <0x1000 0x1000>;
-       };
- 
-       frame@f0003000 {
-         frame-number = <1>;
-         interrupts = <0 15 0x8>;
--        reg = <0xf0003000 0x1000>;
-+        reg = <0x2000 0x1000>;
-       };
-     };
- 
--- 
-2.24.1.735.g03f4e72817-goog
-
+-Doug
