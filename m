@@ -2,144 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83A40123466
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 19:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F5FA12348E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 19:17:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728237AbfLQSHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 13:07:15 -0500
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.124]:36500 "EHLO
-        mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727795AbfLQSHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 13:07:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1576606032;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=UMXxJFiRafysqC5ToenIitB6VIK2rKk3aw2iJjhwYXI=;
-        b=jPyk8Ja+RdOWhpFdqUTfsfA+H6ltACGPK5lQH4IPxGajY6gI/KZiwKv5k9nWwUsJQg
-        PygrXs70zgHo6VNUVOd17tH5Yjic8n/6YO+tT4x1nTGqrK1ILzsYcjtvG9g23A9wnsLF
-        anF/a6z+jusjZjHmGqvOj2qyJdc8CpU5jG1UMz4KXq47iB3zJHs2FG6AtUu6n2zdpk1k
-        1f1+DxmggO0xBFnmwoNQGg5u9xZgw5kQdpfXVLey+e+AaoGo77XuD0oqmCUiJavU54oc
-        ktSOBIA4/FcP7h1CB08jt/vTRNL+XpxN6SaXhWPK7Auh1Q/ZbBD0aOI3xEDZpBlolXjb
-        I9sQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXH5Hd8HaSCa"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 46.0.7 DYNA|AUTH)
-        with ESMTPSA id q020e2vBHI732eU
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Tue, 17 Dec 2019 19:07:03 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alexios Zavras <alexios.zavras@intel.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Subject: [PATCH v2 2/2] wl1251: remove ti,power-gpio for SDIO mode
-Date:   Tue, 17 Dec 2019 19:07:00 +0100
-Message-Id: <644b6f86c7ad5c24753a721cb262d8a9a371d914.1576606020.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <cover.1576606020.git.hns@goldelico.com>
-References: <cover.1576606020.git.hns@goldelico.com>
+        id S1726859AbfLQSRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 13:17:30 -0500
+Received: from mail.bugwerft.de ([46.23.86.59]:41202 "EHLO mail.bugwerft.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726722AbfLQSRa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 13:17:30 -0500
+Received: from [192.168.178.106] (pD95EF574.dip0.t-ipconnect.de [217.94.245.116])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id 6E681281A97;
+        Tue, 17 Dec 2019 18:11:03 +0000 (UTC)
+Subject: Re: [PATCH 07/10] i2c: Add driver for AD242x bus controller
+To:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Wolfram Sang <wsa@the-dreams.de>
+Cc:     linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-i2c@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        broonie@kernel.org, lee.jones@linaro.org, lars@metafoo.de,
+        pascal.huerst@gmail.com
+References: <20191209183511.3576038-1-daniel@zonque.org>
+ <20191209183511.3576038-9-daniel@zonque.org>
+ <64adf5d7-754a-f1da-aa9b-11579c5a2780@lucaceresoli.net>
+ <20191212163315.GA3932@kunai>
+ <482316ef-775a-cb7b-015e-e00463503e6b@zonque.org>
+ <4f2e1332-eac3-e54d-5de8-b84a76cb1a34@lucaceresoli.net>
+From:   Daniel Mack <daniel@zonque.org>
+Message-ID: <a55f7642-3ea1-e762-b5fc-8ff10b83ccc7@zonque.org>
+Date:   Tue, 17 Dec 2019 19:17:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <4f2e1332-eac3-e54d-5de8-b84a76cb1a34@lucaceresoli.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove handling of this property from code.
+Hi Luca,
 
-Note that wl->power_gpio is still needed in
-the header file for SPI mode (N900).
+On 12/17/19 9:35 AM, Luca Ceresoli wrote:
+> On 15/12/19 21:27, Daniel Mack wrote:
 
-Suggested by: Ulf Hansson <ulf.hansson@linaro.org>
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- drivers/net/wireless/ti/wl1251/sdio.c | 32 ++-------------------------
- 1 file changed, 2 insertions(+), 30 deletions(-)
+>> The a2b code has to tell the 'master node' the final destination of the
+>> payload by programming registers on its primary i2c address, and then
+>> forwards the messages to its secondary i2c address. The layout of the
+>> messages don't change, and neither do the flags; i2c messages are being
+>> sent as i2c messages, except their addresses are changed, a bit like NAT
+>> in networking. That procedure is described on page 3-4 of the TRM,
+>> "Remote Peripheral I2C Accesses".
+>>
+>> The 'real' i2c master that handles the hardware bus is responsible for
+>> adding start conditions, and as the messages as such are untouched, I
+>> believe it should do the right thing. The code in my xfer functions
+>> merely suppresses reprogramming remote addresses by remembering the last
+>> one that was used, but that is independent of the start conditions on
+>> the wire.
+> 
+> My concern is not about the start condition, it's about the *repeated*
+> start condition.
+> 
+> The first question is whether the A2B chips can do it. What if the host
+> processor sets a slave chip address and then issues two messages
+> separated by a repeated start condition? Will the slave transceiver emit
+> a repeated start condition too?
 
-diff --git a/drivers/net/wireless/ti/wl1251/sdio.c b/drivers/net/wireless/ti/wl1251/sdio.c
-index a032a1f92b57..4dff8bceb649 100644
---- a/drivers/net/wireless/ti/wl1251/sdio.c
-+++ b/drivers/net/wireless/ti/wl1251/sdio.c
-@@ -15,9 +15,7 @@
- #include <linux/wl12xx.h>
- #include <linux/irq.h>
- #include <linux/pm_runtime.h>
--#include <linux/gpio.h>
- #include <linux/of.h>
--#include <linux/of_gpio.h>
- #include <linux/of_irq.h>
- 
- #include "wl1251.h"
-@@ -162,15 +160,6 @@ static int wl1251_sdio_set_power(struct wl1251 *wl, bool enable)
- printk("%s %d\n", __func__, enable);
- 
- 	if (enable) {
--		/*
--		 * Power is controlled by runtime PM, but we still call board
--		 * callback in case it wants to do any additional setup,
--		 * for example enabling clock buffer for the module.
--		 */
--		if (gpio_is_valid(wl->power_gpio))
--			gpio_set_value(wl->power_gpio, true);
--
--
- 		ret = pm_runtime_get_sync(&func->dev);
- 		if (ret < 0) {
- 			pm_runtime_put_sync(&func->dev);
-@@ -188,9 +177,6 @@ printk("%s %d\n", __func__, enable);
- 		ret = pm_runtime_put_sync(&func->dev);
- 		if (ret < 0)
- 			goto out;
--
--		if (gpio_is_valid(wl->power_gpio))
--			gpio_set_value(wl->power_gpio, false);
- 	}
- 
- out:
-@@ -245,31 +231,17 @@ printk("%s: of=%pOFcC\n", __func__, np);
- 
- 	wl1251_board_data = wl1251_get_platform_data();
- 	if (!IS_ERR(wl1251_board_data)) {
--		wl->power_gpio = wl1251_board_data->power_gpio;
- 		wl->irq = wl1251_board_data->irq;
- 		wl->use_eeprom = wl1251_board_data->use_eeprom;
- 	} else if (np) {
--		wl->use_eeprom = of_property_read_bool(np,
--						       "ti,wl1251-has-eeprom");
--		wl->power_gpio = of_get_named_gpio(np, "ti,power-gpio", 0);
-+		wl->use_eeprom = of_property_read_bool(np, "ti,wl1251-has-eeprom");
- 		wl->irq = of_irq_get(np, 0);
--
--		if (wl->power_gpio == -EPROBE_DEFER ||
--		    wl->irq == -EPROBE_DEFER) {
-+		if (wl->irq == -EPROBE_DEFER) {
- 			ret = -EPROBE_DEFER;
- 			goto disable;
- 		}
- 	}
- 
--	if (gpio_is_valid(wl->power_gpio)) {
--		ret = devm_gpio_request(&func->dev, wl->power_gpio,
--								"wl1251 power");
--		if (ret) {
--			wl1251_error("Failed to request gpio: %d\n", ret);
--			goto disable;
--		}
--	}
--
- 	if (wl->irq) {
- 		irq_set_status_flags(wl->irq, IRQ_NOAUTOEN);
- 		ret = request_irq(wl->irq, wl1251_line_irq, 0, "wl1251", wl);
--- 
-2.23.0
+Ah, alright. Thanks for taking the time to explain. I'll have to do some 
+measurements with a hardware analyzer. Will revisit this then, and 
+either provide an implementation that handles such cases correctly, or a 
+comment to explain that the hardware can't do it.
 
+
+Best regards,
+Daniel
