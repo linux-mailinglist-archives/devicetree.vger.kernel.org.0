@@ -2,62 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B54DB122FFB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 16:19:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0709A123008
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 16:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727571AbfLQPTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 10:19:33 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:57584 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727384AbfLQPTd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Dec 2019 10:19:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=x0tBjWTkEEptH8DLU+ypbOyVxnViHKO5btFKlu5EOBI=; b=rCel2fFho5IWcRSftdFqOdw0ZY
-        B0qWQJCifklk6JBoK/HkOxDnF0nlAzm0VHYYmVJwP2iu711wM3mDcfwM6bcqA8rTVMu7EAJ6Rh7LT
-        MZf7Fh7lz/prfHO1hCDYXqtCuMO7CvGFR9AqwaLvCt16kn5vBrBuzCNsNES+xVcN40+o=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ihEdF-0002ME-UB; Tue, 17 Dec 2019 16:19:29 +0100
-Date:   Tue, 17 Dec 2019 16:19:29 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Willem de Bruijn <willemb@google.com>,
-        Wingman Kwok <w-kwok2@ti.com>
-Subject: Re: [PATCH V6 net-next 09/11] net: mdio: of: Register discovered MII
- time stampers.
-Message-ID: <20191217151929.GG17965@lunn.ch>
-References: <cover.1576511937.git.richardcochran@gmail.com>
- <4abb37f501cb51bf84cb5512f637747d73dcd3cc.1576511937.git.richardcochran@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4abb37f501cb51bf84cb5512f637747d73dcd3cc.1576511937.git.richardcochran@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727571AbfLQPUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 10:20:12 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:20461 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728247AbfLQPUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 10:20:09 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1576596006; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=at6Q9HgyoubIf4gg4ufGlVz7NLnvEC1D7+LwMbGBMJk=; b=SEax488X9zpYD/kK1P2wVRVkrud9ygwaxEYcF69QeNlyapocPvYYKwvxc+NZJhQ4izOLwBlt
+ naWWauVxmxusOaOBPmfgPTYh1Mv1mvDXP+Qsv33vZ+csDI/8f/9Eo1FHqdiwUGZeWrl9j/v/
+ zv8bqMVdeB3mCoeYpwxFN5S60Qs=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5df8f21f.7fefd1b8a768-smtp-out-n02;
+ Tue, 17 Dec 2019 15:19:59 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 18BDDC447A5; Tue, 17 Dec 2019 15:19:58 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from jhugo-perf-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jhugo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6695BC433CB;
+        Tue, 17 Dec 2019 15:19:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6695BC433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
+From:   Jeffrey Hugo <jhugo@codeaurora.org>
+To:     sboyd@kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        marc.w.gonzalez@free.fr, mturquette@baylibre.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jeffrey Hugo <jhugo@codeaurora.org>
+Subject: [PATCH v11 1/4] dt-bindings: clock: Document external clocks for MSM8998 gcc
+Date:   Tue, 17 Dec 2019 08:19:47 -0700
+Message-Id: <1576595987-10043-1-git-send-email-jhugo@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1576595954-9991-1-git-send-email-jhugo@codeaurora.org>
+References: <1576595954-9991-1-git-send-email-jhugo@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 16, 2019 at 08:13:24AM -0800, Richard Cochran wrote:
-> When parsing a PHY node, register its time stamper, if any, and attach
-> the instance to the PHY device.
-> 
-> Signed-off-by: Richard Cochran <richardcochran@gmail.com>
+The global clock controller on MSM8998 can consume a number of external
+clocks.  Document them.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+For 7180 and 8150, the hardware always exists, so no clocks are truly
+optional.  Therefore, simplify the binding by removing the min/max
+qualifiers to clocks.  Also, fixup an example so that dt_binding_check
+passes.
 
-    Andrew
+Signed-off-by: Jeffrey Hugo <jhugo@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/clock/qcom,gcc.yaml        | 73 +++++++++++++++++-----
+ 1 file changed, 59 insertions(+), 14 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+index e73a56f..f2b5cd6 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
+@@ -40,20 +40,40 @@ properties:
+        - qcom,gcc-sm8150
+ 
+   clocks:
+-    minItems: 1
+-    maxItems: 3
+-    items:
+-      - description: Board XO source
+-      - description: Board active XO source
+-      - description: Sleep clock source
++    oneOf:
++      #qcom,gcc-sm8150
++      #qcom,gcc-sc7180
++      - items:
++        - description: Board XO source
++        - description: Board active XO source
++        - description: Sleep clock source
++      #qcom,gcc-msm8998
++      - items:
++        - description: Board XO source
++        - description: Sleep clock source
++        - description: USB 3.0 phy pipe clock
++        - description: UFS phy rx symbol clock for pipe 0
++        - description: UFS phy rx symbol clock for pipe 1
++        - description: UFS phy tx symbol clock
++        - description: PCIE phy pipe clock
+ 
+   clock-names:
+-    minItems: 1
+-    maxItems: 3
+-    items:
+-      - const: bi_tcxo
+-      - const: bi_tcxo_ao
+-      - const: sleep_clk
++    oneOf:
++      #qcom,gcc-sm8150
++      #qcom,gcc-sc7180
++      - items:
++        - const: bi_tcxo
++        - const: bi_tcxo_ao
++        - const: sleep_clk
++      #qcom,gcc-msm8998
++      - items:
++        - const: xo
++        - const: sleep_clk
++        - const: usb3_pipe
++        - const: ufs_rx_symbol0
++        - const: ufs_rx_symbol1
++        - const: ufs_tx_symbol0
++        - const: pcie0_pipe
+ 
+   '#clock-cells':
+     const: 1
+@@ -118,6 +138,7 @@ else:
+       compatible:
+         contains:
+           enum:
++            - qcom,gcc-msm8998
+             - qcom,gcc-sm8150
+             - qcom,gcc-sc7180
+   then:
+@@ -179,10 +200,34 @@ examples:
+     clock-controller@100000 {
+       compatible = "qcom,gcc-sc7180";
+       reg = <0x100000 0x1f0000>;
+-      clocks = <&rpmhcc 0>, <&rpmhcc 1>;
+-      clock-names = "bi_tcxo", "bi_tcxo_ao";
++      clocks = <&rpmhcc 0>, <&rpmhcc 1>, <0>;
++      clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk";
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++    };
++
++  # Example of MSM8998 GCC:
++  - |
++    clock-controller@100000 {
++      compatible = "qcom,gcc-msm8998";
+       #clock-cells = <1>;
+       #reset-cells = <1>;
+       #power-domain-cells = <1>;
++      reg = <0x00100000 0xb0000>;
++      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
++               <&sleep>,
++               <0>,
++               <0>,
++               <0>,
++               <0>,
++               <0>;
++      clock-names = "xo",
++                    "sleep",
++                    "usb3_pipe",
++                    "ufs_rx_symbol0",
++                    "ufs_rx_symbol1",
++                    "ufs_tx_symbol0",
++                    "pcie0_pipe";
+     };
+ ...
+-- 
+Qualcomm Technologies, Inc. is a member of the
+Code Aurora Forum, a Linux Foundation Collaborative Project.
