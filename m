@@ -2,87 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D3DF123510
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 19:38:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D77EC123572
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 20:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728071AbfLQSip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 13:38:45 -0500
-Received: from andre.telenet-ops.be ([195.130.132.53]:34178 "EHLO
-        andre.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727935AbfLQSip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 13:38:45 -0500
-Received: from ramsan ([84.195.182.253])
-        by andre.telenet-ops.be with bizsmtp
-        id f6ei2100J5USYZQ016eiFX; Tue, 17 Dec 2019 19:38:44 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ihHk2-0003aT-NN; Tue, 17 Dec 2019 19:38:42 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ihHk2-000089-Ls; Tue, 17 Dec 2019 19:38:42 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 5/5] soc: renesas: Add ARCH_R8A7795[01] for existing R-Car H3
-Date:   Tue, 17 Dec 2019 19:38:41 +0100
-Message-Id: <20191217183841.432-6-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191217183841.432-1-geert+renesas@glider.be>
-References: <20191217183841.432-1-geert+renesas@glider.be>
+        id S1727162AbfLQTOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 14:14:34 -0500
+Received: from mail-io1-f68.google.com ([209.85.166.68]:46583 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726866AbfLQTOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 14:14:34 -0500
+Received: by mail-io1-f68.google.com with SMTP id t26so11886484ioi.13
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2019 11:14:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Gk4zGNe4RkiCC67QiUQNXztH/c+pmqVCrQR1ZNiu5/g=;
+        b=cjy9caXMF5Od130mHudpDibjbCaHKnj0LTk2mAzK7ZlxMECAw8bGp78YldI59f2kg3
+         I3O+ubladcHrSlM7MIk5GJAAWvbF0yYWKOaDCFeR1VqP2T2nTfTkil31EBzvw8duon+o
+         sO4eRl9SNuroo4P86yIvujh9TXBqF+dE33JlE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Gk4zGNe4RkiCC67QiUQNXztH/c+pmqVCrQR1ZNiu5/g=;
+        b=FpXxZoj9BPth7UMppbGUiSuCpTXstsN7hL4ph20LjYeE3eLMLWDG1TL1DXnMXyOBve
+         4EeQkjv0wVM07mY1GNlddFXx4P4EZD5jQLeU0e+nmdI7DIsWtmRTWQnm+04sS0KoQjt0
+         9rm1R4Z/iw2pwClJ2K3CQXo2JByf762/Tx/kuDSyXrTCpAJZHCM/e+8vGDiArLgTo4l6
+         TLopSBJuz7JCp7TTH5SnKqqPtUCmeR2QTgsz46iOm75Q8jyQsuLmlFnz5cXLm+MCJP5g
+         UO1KDbXeev3mCxEXYVNgYCOaj8z1pDU5/4B7Jh6c0Lj/Hyyx4GUtYuwRYlV3fxvbc9q3
+         vaWg==
+X-Gm-Message-State: APjAAAXztFYfEEKbceyTik+Oj5M10PfA+s6BkwyrZbZk+BSfAJhnBxYm
+        Kf4t8E3QgVdbWFZxnDIQ3TtbMKoOePQ=
+X-Google-Smtp-Source: APXvYqzUDUDGombOKTds1Cr/sMd+fIcUpe6ydOGCveDNl4cG4kZbUFbFXfj6dLmLTkOWiMxPZT1MsA==
+X-Received: by 2002:a6b:4107:: with SMTP id n7mr4786353ioa.245.1576610073235;
+        Tue, 17 Dec 2019 11:14:33 -0800 (PST)
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com. [209.85.166.170])
+        by smtp.gmail.com with ESMTPSA id y131sm4027518iof.56.2019.12.17.11.14.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Dec 2019 11:14:32 -0800 (PST)
+Received: by mail-il1-f170.google.com with SMTP id v69so8166708ili.10
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2019 11:14:31 -0800 (PST)
+X-Received: by 2002:a92:ca90:: with SMTP id t16mr4233941ilo.218.1576610071185;
+ Tue, 17 Dec 2019 11:14:31 -0800 (PST)
+MIME-Version: 1.0
+References: <1576474742-23409-1-git-send-email-sanm@codeaurora.org> <1576474742-23409-2-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <1576474742-23409-2-git-send-email-sanm@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 17 Dec 2019 11:14:17 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=U48gdGHMbQ22M_59t6va2n41Zh1CDTqMJYpLCwiD35Mg@mail.gmail.com>
+Message-ID: <CAD=FV=U48gdGHMbQ22M_59t6va2n41Zh1CDTqMJYpLCwiD35Mg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: usb: qcom,dwc3: Convert USB DWC3 bindings
+To:     Sandeep Maheswaram <sanm@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-usb@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Manu Gautam <mgautam@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Despite using the same compatible values ("r8a7795"-based) because of
-historical reasons, R-Car H3 ES1.x (R8A77950) and R-Car H3 ES2.0+
-(R8A77951) are really different SoCs, with different part numbers.
+Hi,
 
-Reflect this in the SoC configuration, by adding CONFIG_ARCH_R8A77950
-and CONFIG_ARCH_R8A77951 as new config symbols.  These are intended to
-replace CONFIG_ARCH_R8A7795, and will allow making support for early SoC
-revisions optional.
+On Sun, Dec 15, 2019 at 9:40 PM Sandeep Maheswaram <sanm@codeaurora.org> wrote:
+>
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> new file mode 100644
+> index 0000000..c8eda58
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -0,0 +1,153 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm SuperSpeed DWC3 USB SoC controller
+> +
+> +maintainers:
+> +  - Manu Gautam <mgautam@codeaurora.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,msm8996-dwc3
+> +          - qcom,msm8998-dwc3
+> +          - qcom,sdm845-dwc3
+> +      - const: qcom,dwc3
+> +
+> +  reg:
+> +    description: Offset and length of register set for QSCRATCH wrapper
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +  "#size-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +  power-domains:
+> +    description: specifies a phandle to PM domain provider node
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      A list of phandle and clock-specifier pairs for the clocks
+> +      listed in clock-names.
+> +    minItems: 3
 
-Note that for now, CONFIG_ARCH_R8A7795 is retained, and just selects
-CONFIG_ARCH_R8A77950 and CONFIG_ARCH_R8A77951.  This relaxes
-dependencies of other subsystems on the SoC configuration symbol, and
-provides a smooth transition path for config files through "make
-oldconfig".
+Actually, maybe the best way to express the min/max is to match what
+'gpu/arm,mali-midgard.yaml' does.  Specifically later down in the
+bindings you can amend this, like this I think:
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/soc/renesas/Kconfig | 8 ++++++++
- 1 file changed, 8 insertions(+)
+allOf:
+- if:
+    properties:
+      compatible:
+        contains:
+          const: "qcom,msm8996-dwc3"
+  then:
+    properties:
+      clocks:
+        minItems: 3
+        maxItems: 3
+      clock-names:
+        minItems: 3
+        maxItems: 3
 
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index 2d10e34cdbe4d117..ba2b8b51d2d986f1 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -192,8 +192,16 @@ config ARCH_R8A774C0
- 	help
- 	  This enables support for the Renesas RZ/G2E SoC.
- 
-+config ARCH_R8A77950
-+	bool
-+
-+config ARCH_R8A77951
-+	bool
-+
- config ARCH_R8A7795
- 	bool "Renesas R-Car H3 SoC Platform"
-+	select ARCH_R8A77950
-+	select ARCH_R8A77951
- 	select ARCH_RCAR_GEN3
- 	select SYSC_R8A7795
- 	help
--- 
-2.17.1
+...then remove minItems from here.  Now you'll have the default
+min/max of 5 for most devices but for the special case of
+"qcom,msm8996-dwc3" you'll have min/max of 3.
 
+
+> +    items:
+> +      - description: System Config NOC clock. Not present on "qcom,msm8996-dwc3" compatible.
+> +      - description: Master/Core clock, have to be >= 125 MHz for SS operation and >= 60MHz for HS operation
+
+To make the grammer gooder, s/have/has/
+
+
+> +      - description: System bus AXI clock. Not present on "qcom,msm8996-dwc3" compatible.
+> +      - description: Mock utmi clock needed for ITP/SOF generation in host mode.Its frequency should be 19.2MHz.
+> +      - description: Sleep clock, used for wakeup when USB3 core goes into low power mode (U3).
+
+* Please word wrap to ~80 chracters.
+* As Stephen says, order matters.  Please match order of old bindings
+(and in clock-names)
+* Please end each with a period.
+
+
+> +  clock-names:
+> +    minItems: 3
+> +    items:
+> +      - const: cfg_noc
+> +      - const: core
+> +      - const: iface
+> +      - const: mock_utmi
+> +      - const: sleep
+> +
+> +  assigned-clocks:
+> +    items:
+> +      - description: Phandle to MOCK_UTMI_CLK.
+> +      - description: Phandle to MASTER_CLK.
+> +
+> +  assigned-clock-rates:
+> +    description:
+> +      Should be 19.2MHz (19200000) for MOCK_UTMI_CLK
+> +      >=125MHz (125000000) for MASTER_CLK in SS mode
+> +      >=60MHz (60000000) for MASTER_CLK in HS mode
+> +    maxItems: 2
+
+You can still express some limits here even if we don't go all out
+with the "oneOf".  AKA I think this is better:
+
+assigned-clock-rates:
+  items:
+    - const: 19200000
+    - minimum: 60000000
+      description: >= 60 MHz in HS mode, >= 125 MHz in SS mode
+
+
+> +  resets:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Specifies interrupts from controller wrapper used
+> +      to wakeup from low power/suspend state. Must contain
+> +      one or more entry for interrupt-names property.
+
+Now that sub-items have a description this top level description
+doesn't add anything.  Delete.
+
+
+> +    items:
+> +      - description: The interrupt that is asserted when a wakeup event is received on USB2 bus.
+> +      - description: The interrupt that is asserted when a wakeup event is received on USB3 bus.
+
+Word wrap please.
+
+
+> +      - description: Wakeup event on DM line.
+> +      - description: Wakeup event on DP line.
+> +
+> +  interrupt-names:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+
+As Rob said in response to your previous version: "Already has a type,
+don't need."
+
+
+> +    items:
+> +      - const: hs_phy_irq
+> +      - const: ss_phy_irq
+> +      - const: dm_hs_phy_irq
+> +      - const: dp_hs_phy_irq
+> +
+> +  qcom,select-utmi-as-pipe-clk:
+> +    description:
+> +      If present, disable USB3 pipe_clk requirement.
+> +      Used when dwc3 operates without SSPHY and only
+> +      HS/FS/LS modes are supported.
+> +    type: boolean
+> +
+> +# Required child node:
+> +
+> +patternProperties:
+> +  "^dwc3@[0-9a-f]+$":
+> +    type: object
+> +    description:
+> +      A child node must exist to represent the core DWC3 IP block
+> +      The content of the node is defined in dwc3.txt.
+> +
+> +# Phy documentation is provided in the following places:
+> +# Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt   - USB3 QMP PHY
+> +# Documentation/devicetree/bindings/phy/qcom-qusb2-phy.txt - USB2 QUSB2 PHY
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - power-domains
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +        usb3_0: usb30@a6f8800 {
+> +            compatible = "qcom,dwc3";
+
+Your example is missing the SoC-specific compatible string, so it
+fails your own schema.
+
+
+> +            reg = <0xa6f8800 0x400>;
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges;
+> +            interrupts = <0 131 0>, <0 486 0>, <0 488 0>, <0 489 0>;
+
+In general I believe "0" is frowned upon for IRQ flags.  Your example
+should probably be this from sdm845:
+
+interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
+     <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>,
+     <GIC_SPI 488 IRQ_TYPE_LEVEL_HIGH>,
+     <GIC_SPI 489 IRQ_TYPE_LEVEL_HIGH>;
+
+...and you'll likely need a #include in the example.  See below.
+
+
+> +            interrupt-names = "hs_phy_irq", "ss_phy_irq",
+> +                    "dm_hs_phy_irq", "dp_hs_phy_irq";
+> +
+> +            clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+
+As Rob requested in the previous version, please run:
+
+make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+
+If the next version doesn't pass "dt_binding_check" I suspect that
+people will stop reviewing your change, so please make sure you've
+figured out how to do this.
+
+When you do that, you'll see a syntax error here because
+"GCC_USB30_PRIM_MASTER_CLK" isn't defined anywhere in your example.
+You need to include it.  AKA this should be at the top of your
+example:
+
+#include <dt-bindings/clock/qcom,gcc-sdm845.h>
