@@ -2,385 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C0F122667
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 09:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE75912269A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 09:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726411AbfLQIOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 03:14:45 -0500
-Received: from out28-169.mail.aliyun.com ([115.124.28.169]:47179 "EHLO
-        out28-169.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726734AbfLQIOo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 03:14:44 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436282|-1;CH=green;DM=CONTINUE|CONTINUE|true|0.46939-0.010306-0.520304;DS=CONTINUE|ham_alarm|0.00590902-0.000709764-0.993381;FP=13680077501297591483|3|2|10|0|-1|-1|-1;HT=e02c03310;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.GIuIYRX_1576570455;
-Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.GIuIYRX_1576570455)
-          by smtp.aliyun-inc.com(10.147.40.44);
-          Tue, 17 Dec 2019 16:14:35 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     linux-mips@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        paul.burton@mips.com, paulburton@kernel.org, mark.rutland@arm.com,
-        paul@crapouillou.net, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, 2374286503@qq.com
-Subject: [PATCH v3 2/2] I2C: JZ4780: Add support for the X1000.
-Date:   Tue, 17 Dec 2019 16:14:10 +0800
-Message-Id: <1576570450-122556-4-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1576570450-122556-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1576570450-122556-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S1725870AbfLQIYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 03:24:46 -0500
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:54098 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725805AbfLQIYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 03:24:46 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBH8O37e026676;
+        Tue, 17 Dec 2019 09:24:33 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=u4ZnCG3JwwEgOMIhN/AX7q3BNavU/cal6soqQfW8/vk=;
+ b=poEflfU7WipianGUh4qcW0Ougu12H/fKNIAbdgx6mzbidUxEywqXwbXGJH1x2f9Js2Eu
+ aS3mr7YNZhjqRaYKcWz3zByLF5ZW9T5n5WfwF05rMM00tn76jJSYgNc94YDIBJI9PpfM
+ qspKnXNy+mTn0cFlkrHOiCAt4HyOncaz65lNRDDplnjWn1gt0phUJxfB7WvOY47QcFOn
+ xhfdPX9LMbghIuloAbAPvqjgzfq4rx46yZWhfOLxsoX+wCa7vk330OoJy7866+QfrIsT
+ 5BaCvq+DxNxyX1q/nF6fTq51+W2sUwiWVNENg31KC41AJY9dYeXiVvocmUpnvYvbptC4 9g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2wvp36wpx0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Dec 2019 09:24:32 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 79431100034;
+        Tue, 17 Dec 2019 09:24:32 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4B57322085F;
+        Tue, 17 Dec 2019 09:24:32 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG3NODE1.st.com (10.75.127.7)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Dec 2019 09:24:31
+ +0100
+From:   Arnaud Pouliquen <arnaud.pouliquen@st.com>
+To:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Fabien Dessenne <fabien.dessenne@st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>
+Subject: [PATCH v2] dt-bindings: stm32: convert mlahb to json-schema
+Date:   Tue, 17 Dec 2019 09:24:15 +0100
+Message-ID: <20191217082415.14844-1-arnaud.pouliquen@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE1.st.com
+ (10.75.127.7)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2019-12-17_01:2019-12-16,2019-12-16 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for probing i2c driver on the X1000 Soc from Ingenic.
-call the corresponding fifo parameter according to the device
-model obtained from the devicetree.
+Convert the ML-AHB bus bindings to DT schema format using json-schema
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-Acked-by: Paul Cercueil <paul@crapouillou.net>
+Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
 ---
+V2: Add "ranges" property as mandatory
+---
+ .../devicetree/bindings/arm/stm32/mlahb.txt   | 37 ----------
+ .../bindings/arm/stm32/st,mlahb.yaml          | 70 +++++++++++++++++++
+ 2 files changed, 70 insertions(+), 37 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/stm32/mlahb.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
 
-Notes:
-    v1->v2:
-    Add code to check device_get_match_data(), if it return a NULL ptr,
-    then print an error message and return -ENODEV.
-    
-    v2->v3:
-    Fix coding-style issues.
-
- drivers/i2c/busses/i2c-jz4780.c | 156 +++++++++++++++++++++++++++++-----------
- 1 file changed, 116 insertions(+), 40 deletions(-)
-
-diff --git a/drivers/i2c/busses/i2c-jz4780.c b/drivers/i2c/busses/i2c-jz4780.c
-index 25dcd73..16a67a6 100644
---- a/drivers/i2c/busses/i2c-jz4780.c
-+++ b/drivers/i2c/busses/i2c-jz4780.c
-@@ -4,6 +4,7 @@
-  *
-  * Copyright (C) 2006 - 2009 Ingenic Semiconductor Inc.
-  * Copyright (C) 2015 Imagination Technologies
-+ * Copyright (C) 2019 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-  */
- 
- #include <linux/bitops.h>
-@@ -17,6 +18,7 @@
- #include <linux/io.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/sched.h>
- #include <linux/slab.h>
-@@ -55,6 +57,7 @@
- #define JZ4780_I2C_ACKGC	0x98
- #define JZ4780_I2C_ENSTA	0x9C
- #define JZ4780_I2C_SDAHD	0xD0
-+#define X1000_I2C_SDAHD		0x7C
- 
- #define JZ4780_I2C_CTRL_STPHLD		BIT(7)
- #define JZ4780_I2C_CTRL_SLVDIS		BIT(6)
-@@ -73,6 +76,8 @@
- #define JZ4780_I2C_STA_TFNF		BIT(1)
- #define JZ4780_I2C_STA_ACT		BIT(0)
- 
-+#define X1000_I2C_DC_STOP		BIT(9)
+diff --git a/Documentation/devicetree/bindings/arm/stm32/mlahb.txt b/Documentation/devicetree/bindings/arm/stm32/mlahb.txt
+deleted file mode 100644
+index 25307aa1eb9b..000000000000
+--- a/Documentation/devicetree/bindings/arm/stm32/mlahb.txt
++++ /dev/null
+@@ -1,37 +0,0 @@
+-ML-AHB interconnect bindings
+-
+-These bindings describe the STM32 SoCs ML-AHB interconnect bus which connects
+-a Cortex-M subsystem with dedicated memories.
+-The MCU SRAM and RETRAM memory parts can be accessed through different addresses
+-(see "RAM aliases" in [1]) using different buses (see [2]) : balancing the
+-Cortex-M firmware accesses among those ports allows to tune the system
+-performance.
+-
+-[1]: https://www.st.com/resource/en/reference_manual/dm00327659.pdf
+-[2]: https://wiki.st.com/stm32mpu/wiki/STM32MP15_RAM_mapping
+-
+-Required properties:
+-- compatible: should be "simple-bus"
+-- dma-ranges: describes memory addresses translation between the local CPU and
+-	   the remote Cortex-M processor. Each memory region, is declared with
+-	   3 parameters:
+-		 - param 1: device base address (Cortex-M processor address)
+-		 - param 2: physical base address (local CPU address)
+-		 - param 3: size of the memory region.
+-
+-The Cortex-M remote processor accessed via the mlahb interconnect is described
+-by a child node.
+-
+-Example:
+-mlahb {
+-	compatible = "simple-bus";
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	dma-ranges = <0x00000000 0x38000000 0x10000>,
+-		     <0x10000000 0x10000000 0x60000>,
+-		     <0x30000000 0x30000000 0x60000>;
+-
+-	m4_rproc: m4@10000000 {
+-		...
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml b/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
+new file mode 100644
+index 000000000000..68917bb7c7e8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/stm32/st,mlahb.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/arm/stm32/st,mlahb.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
- static const char * const jz4780_i2c_abrt_src[] = {
- 	"ABRT_7B_ADDR_NOACK",
- 	"ABRT_10ADDR1_NOACK",
-@@ -130,18 +135,33 @@ static const char * const jz4780_i2c_abrt_src[] = {
- #define JZ4780_I2CFLCNT_ADJUST(n)	(((n) - 1) < 8 ? 8 : ((n) - 1))
- 
- #define JZ4780_I2C_FIFO_LEN	16
--#define TX_LEVEL		3
--#define RX_LEVEL		(JZ4780_I2C_FIFO_LEN - TX_LEVEL - 1)
++title: STMicroelectronics STM32 ML-AHB interconnect bindings
 +
-+#define X1000_I2C_FIFO_LEN	64
- 
- #define JZ4780_I2C_TIMEOUT	300
- 
- #define BUFSIZE 200
- 
-+enum ingenic_i2c_version {
-+	ID_JZ4780,
-+	ID_X1000,
-+};
++maintainers:
++  - Fabien Dessenne <fabien.dessenne@st.com>
++  - Arnaud Pouliquen <arnaud.pouliquen@st.com>
 +
-+/* ingenic_i2c_config: SoC specific config data. */
-+struct ingenic_i2c_config {
-+	enum ingenic_i2c_version version;
++description: |
++  These bindings describe the STM32 SoCs ML-AHB interconnect bus which connects
++  a Cortex-M subsystem with dedicated memories. The MCU SRAM and RETRAM memory
++  parts can be accessed through different addresses (see "RAM aliases" in [1])
++  using different buses (see [2]): balancing the Cortex-M firmware accesses
++  among those ports allows to tune the system performance.
++  [1]: https://www.st.com/resource/en/reference_manual/dm00327659.pdf
++  [2]: https://wiki.st.com/stm32mpu/wiki/STM32MP15_RAM_mapping
 +
-+	int fifosize;
-+	int tx_level;
-+	int rx_level;
-+};
++allOf:
++ - $ref: /schemas/simple-bus.yaml#
 +
- struct jz4780_i2c {
- 	void __iomem		*iomem;
- 	int			 irq;
- 	struct clk		*clk;
- 	struct i2c_adapter	 adap;
-+	const struct ingenic_i2c_config *cdata;
- 
- 	/* lock to protect rbuf and wbuf between xfer_rd/wr and irq handler */
- 	spinlock_t		lock;
-@@ -340,11 +360,18 @@ static int jz4780_i2c_set_speed(struct jz4780_i2c *i2c)
- 
- 	if (hold_time >= 0) {
- 		/*i2c hold time enable */
--		hold_time |= JZ4780_I2C_SDAHD_HDENB;
--		jz4780_i2c_writew(i2c, JZ4780_I2C_SDAHD, hold_time);
-+		if (i2c->cdata->version >= ID_X1000) {
-+			jz4780_i2c_writew(i2c, X1000_I2C_SDAHD, hold_time);
-+		} else {
-+			hold_time |= JZ4780_I2C_SDAHD_HDENB;
-+			jz4780_i2c_writew(i2c, JZ4780_I2C_SDAHD, hold_time);
-+		}
- 	} else {
- 		/* disable hold time */
--		jz4780_i2c_writew(i2c, JZ4780_I2C_SDAHD, 0);
-+		if (i2c->cdata->version >= ID_X1000)
-+			jz4780_i2c_writew(i2c, X1000_I2C_SDAHD, 0);
-+		else
-+			jz4780_i2c_writew(i2c, JZ4780_I2C_SDAHD, 0);
- 	}
- 
- 	return 0;
-@@ -359,9 +386,11 @@ static int jz4780_i2c_cleanup(struct jz4780_i2c *i2c)
- 	spin_lock_irqsave(&i2c->lock, flags);
- 
- 	/* can send stop now if need */
--	tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
--	tmp &= ~JZ4780_I2C_CTRL_STPHLD;
--	jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	if (i2c->cdata->version < ID_X1000) {
-+		tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
-+		tmp &= ~JZ4780_I2C_CTRL_STPHLD;
-+		jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	}
- 
- 	/* disable all interrupts first */
- 	jz4780_i2c_writew(i2c, JZ4780_I2C_INTM, 0);
-@@ -399,11 +428,19 @@ static int jz4780_i2c_prepare(struct jz4780_i2c *i2c)
- 	return jz4780_i2c_enable(i2c);
- }
- 
--static void jz4780_i2c_send_rcmd(struct jz4780_i2c *i2c, int cmd_count)
-+static void jz4780_i2c_send_rcmd(struct jz4780_i2c *i2c,
-+								 int cmd_count,
-+								 int cmd_left)
- {
- 	int i;
- 
--	for (i = 0; i < cmd_count; i++)
-+	for (i = 0; i < cmd_count - 1; i++)
-+		jz4780_i2c_writew(i2c, JZ4780_I2C_DC, JZ4780_I2C_DC_READ);
++properties:
++  compatible:
++    contains:
++      enum:
++        - st,mlahb
 +
-+	if ((cmd_left == 0) && (i2c->cdata->version >= ID_X1000))
-+		jz4780_i2c_writew(i2c, JZ4780_I2C_DC,
-+				JZ4780_I2C_DC_READ | X1000_I2C_DC_STOP);
-+	else
- 		jz4780_i2c_writew(i2c, JZ4780_I2C_DC, JZ4780_I2C_DC_READ);
- }
- 
-@@ -458,37 +495,44 @@ static irqreturn_t jz4780_i2c_irq(int irqno, void *dev_id)
- 
- 		rd_left = i2c->rd_total_len - i2c->rd_data_xfered;
- 
--		if (rd_left <= JZ4780_I2C_FIFO_LEN)
-+		if (rd_left <= i2c->cdata->fifosize)
- 			jz4780_i2c_writew(i2c, JZ4780_I2C_RXTL, rd_left - 1);
- 	}
- 
- 	if (intst & JZ4780_I2C_INTST_TXEMP) {
- 		if (i2c->is_write == 0) {
- 			int cmd_left = i2c->rd_total_len - i2c->rd_cmd_xfered;
--			int max_send = (JZ4780_I2C_FIFO_LEN - 1)
-+			int max_send = (i2c->cdata->fifosize - 1)
- 					 - (i2c->rd_cmd_xfered
- 					 - i2c->rd_data_xfered);
- 			int cmd_to_send = min(cmd_left, max_send);
- 
- 			if (i2c->rd_cmd_xfered != 0)
- 				cmd_to_send = min(cmd_to_send,
--						  JZ4780_I2C_FIFO_LEN
--						  - TX_LEVEL - 1);
-+						  i2c->cdata->fifosize
-+						  - i2c->cdata->tx_level - 1);
- 
- 			if (cmd_to_send) {
--				jz4780_i2c_send_rcmd(i2c, cmd_to_send);
- 				i2c->rd_cmd_xfered += cmd_to_send;
-+				cmd_left = i2c->rd_total_len -
-+						i2c->rd_cmd_xfered;
-+				jz4780_i2c_send_rcmd(i2c,
-+						cmd_to_send, cmd_left);
++  dma-ranges:
++    description: |
++      Describe memory addresses translation between the local CPU and the
++      remote Cortex-M processor. Each memory region, is declared with
++      3 parameters:
++      - param 1: device base address (Cortex-M processor address)
++      - param 2: physical base address (local CPU address)
++      - param 3: size of the memory region.
++    maxItems: 3
 +
- 			}
- 
--			cmd_left = i2c->rd_total_len - i2c->rd_cmd_xfered;
- 			if (cmd_left == 0) {
- 				intmsk = jz4780_i2c_readw(i2c, JZ4780_I2C_INTM);
- 				intmsk &= ~JZ4780_I2C_INTM_MTXEMP;
- 				jz4780_i2c_writew(i2c, JZ4780_I2C_INTM, intmsk);
- 
--				tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
--				tmp &= ~JZ4780_I2C_CTRL_STPHLD;
--				jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+				if (i2c->cdata->version < ID_X1000) {
-+					tmp = jz4780_i2c_readw(i2c,
-+							JZ4780_I2C_CTRL);
-+					tmp &= ~JZ4780_I2C_CTRL_STPHLD;
-+					jz4780_i2c_writew(i2c,
-+							JZ4780_I2C_CTRL, tmp);
-+				}
- 			}
- 		} else {
- 			unsigned short data;
-@@ -497,23 +541,26 @@ static irqreturn_t jz4780_i2c_irq(int irqno, void *dev_id)
- 			i2c_sta = jz4780_i2c_readw(i2c, JZ4780_I2C_STA);
- 
- 			while ((i2c_sta & JZ4780_I2C_STA_TFNF) &&
--			       (i2c->wt_len > 0)) {
-+					(i2c->wt_len > 0)) {
- 				i2c_sta = jz4780_i2c_readw(i2c, JZ4780_I2C_STA);
- 				data = *i2c->wbuf;
- 				data &= ~JZ4780_I2C_DC_READ;
--				jz4780_i2c_writew(i2c, JZ4780_I2C_DC,
--						  data);
-+				if ((!i2c->stop_hold) && (i2c->cdata->version >=
-+						ID_X1000))
-+					data |= X1000_I2C_DC_STOP;
-+				jz4780_i2c_writew(i2c, JZ4780_I2C_DC, data);
- 				i2c->wbuf++;
- 				i2c->wt_len--;
- 			}
- 
- 			if (i2c->wt_len == 0) {
--				if (!i2c->stop_hold) {
-+				if ((!i2c->stop_hold) && (i2c->cdata->version <
-+						ID_X1000)) {
- 					tmp = jz4780_i2c_readw(i2c,
--							       JZ4780_I2C_CTRL);
-+							JZ4780_I2C_CTRL);
- 					tmp &= ~JZ4780_I2C_CTRL_STPHLD;
--					jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL,
--							  tmp);
-+					jz4780_i2c_writew(i2c,
-+							JZ4780_I2C_CTRL, tmp);
- 				}
- 
- 				jz4780_i2c_trans_done(i2c);
-@@ -567,20 +614,22 @@ static inline int jz4780_i2c_xfer_read(struct jz4780_i2c *i2c,
- 	i2c->rd_data_xfered = 0;
- 	i2c->rd_cmd_xfered = 0;
- 
--	if (len <= JZ4780_I2C_FIFO_LEN)
-+	if (len <= i2c->cdata->fifosize)
- 		jz4780_i2c_writew(i2c, JZ4780_I2C_RXTL, len - 1);
- 	else
--		jz4780_i2c_writew(i2c, JZ4780_I2C_RXTL, RX_LEVEL);
-+		jz4780_i2c_writew(i2c, JZ4780_I2C_RXTL, i2c->cdata->rx_level);
- 
--	jz4780_i2c_writew(i2c, JZ4780_I2C_TXTL, TX_LEVEL);
-+	jz4780_i2c_writew(i2c, JZ4780_I2C_TXTL, i2c->cdata->tx_level);
- 
- 	jz4780_i2c_writew(i2c, JZ4780_I2C_INTM,
- 			  JZ4780_I2C_INTM_MRXFL | JZ4780_I2C_INTM_MTXEMP
- 			  | JZ4780_I2C_INTM_MTXABT | JZ4780_I2C_INTM_MRXOF);
- 
--	tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
--	tmp |= JZ4780_I2C_CTRL_STPHLD;
--	jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	if (i2c->cdata->version < ID_X1000) {
-+		tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
-+		tmp |= JZ4780_I2C_CTRL_STPHLD;
-+		jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	}
- 
- 	spin_unlock_irqrestore(&i2c->lock, flags);
- 
-@@ -626,14 +675,16 @@ static inline int jz4780_i2c_xfer_write(struct jz4780_i2c *i2c,
- 	i2c->wbuf = buf;
- 	i2c->wt_len = len;
- 
--	jz4780_i2c_writew(i2c, JZ4780_I2C_TXTL, TX_LEVEL);
-+	jz4780_i2c_writew(i2c, JZ4780_I2C_TXTL, i2c->cdata->tx_level);
- 
- 	jz4780_i2c_writew(i2c, JZ4780_I2C_INTM, JZ4780_I2C_INTM_MTXEMP
- 					| JZ4780_I2C_INTM_MTXABT);
- 
--	tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
--	tmp |= JZ4780_I2C_CTRL_STPHLD;
--	jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	if (i2c->cdata->version < ID_X1000) {
-+		tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
-+		tmp |= JZ4780_I2C_CTRL_STPHLD;
-+		jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	}
- 
- 	spin_unlock_irqrestore(&i2c->lock, flags);
- 
-@@ -716,8 +767,25 @@ static const struct i2c_algorithm jz4780_i2c_algorithm = {
- 	.functionality	= jz4780_i2c_functionality,
- };
- 
-+static const struct ingenic_i2c_config jz4780_i2c_config = {
-+	.version = ID_JZ4780,
++  '#address-cells':
++    const: 1
 +
-+	.fifosize = JZ4780_I2C_FIFO_LEN,
-+	.tx_level = JZ4780_I2C_FIFO_LEN / 2,
-+	.rx_level = JZ4780_I2C_FIFO_LEN / 2 - 1,
-+};
++  '#size-cells':
++    const: 1
 +
-+static const struct ingenic_i2c_config x1000_i2c_config = {
-+	.version = ID_X1000,
++required:
++  - compatible
++  - '#address-cells'
++  - '#size-cells'
++  - dma-ranges
 +
-+	.fifosize = X1000_I2C_FIFO_LEN,
-+	.tx_level = X1000_I2C_FIFO_LEN / 2,
-+	.rx_level = X1000_I2C_FIFO_LEN / 2 - 1,
-+};
++examples:
++  - |
++    mlahb: ahb {
++      compatible = "st,mlahb", "simple-bus";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      reg = <0x10000000 0x40000>;
++      ranges;
++      dma-ranges = <0x00000000 0x38000000 0x10000>,
++                   <0x10000000 0x10000000 0x60000>,
++                   <0x30000000 0x30000000 0x60000>;
 +
- static const struct of_device_id jz4780_i2c_of_matches[] = {
--	{ .compatible = "ingenic,jz4780-i2c", },
-+	{ .compatible = "ingenic,jz4780-i2c", .data = &jz4780_i2c_config },
-+	{ .compatible = "ingenic,x1000-i2c", .data = &x1000_i2c_config },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, jz4780_i2c_of_matches);
-@@ -734,6 +802,12 @@ static int jz4780_i2c_probe(struct platform_device *pdev)
- 	if (!i2c)
- 		return -ENOMEM;
- 
-+	i2c->cdata = device_get_match_data(&pdev->dev);
-+	if (!i2c->cdata) {
-+		dev_err(&pdev->dev, "Error: No device match found\n");
-+		return -ENODEV;
-+	}
++      m4_rproc: m4@10000000 {
++       reg = <0x10000000 0x40000>;
++      };
++    };
 +
- 	i2c->adap.owner		= THIS_MODULE;
- 	i2c->adap.algo		= &jz4780_i2c_algorithm;
- 	i2c->adap.algo_data	= i2c;
-@@ -777,9 +851,11 @@ static int jz4780_i2c_probe(struct platform_device *pdev)
- 
- 	dev_info(&pdev->dev, "Bus frequency is %d KHz\n", i2c->speed);
- 
--	tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
--	tmp &= ~JZ4780_I2C_CTRL_STPHLD;
--	jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	if (i2c->cdata->version < ID_X1000) {
-+		tmp = jz4780_i2c_readw(i2c, JZ4780_I2C_CTRL);
-+		tmp &= ~JZ4780_I2C_CTRL_STPHLD;
-+		jz4780_i2c_writew(i2c, JZ4780_I2C_CTRL, tmp);
-+	}
- 
- 	jz4780_i2c_writew(i2c, JZ4780_I2C_INTM, 0x0);
- 
++...
 -- 
-2.7.4
+2.17.1
 
