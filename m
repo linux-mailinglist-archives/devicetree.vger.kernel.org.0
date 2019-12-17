@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D848122E24
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 15:10:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D87B122E34
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 15:12:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728821AbfLQOKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 09:10:10 -0500
-Received: from smtp1.de.adit-jv.com ([93.241.18.167]:52901 "EHLO
-        smtp1.de.adit-jv.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728801AbfLQOKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 09:10:07 -0500
-Received: from localhost (smtp1.de.adit-jv.com [127.0.0.1])
-        by smtp1.de.adit-jv.com (Postfix) with ESMTP id 2D6123C00BB;
-        Tue, 17 Dec 2019 15:10:06 +0100 (CET)
-Received: from smtp1.de.adit-jv.com ([127.0.0.1])
-        by localhost (smtp1.de.adit-jv.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id pNCGCFyi540P; Tue, 17 Dec 2019 15:10:01 +0100 (CET)
-Received: from HI2EXCH01.adit-jv.com (hi2exch01.adit-jv.com [10.72.92.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtp1.de.adit-jv.com (Postfix) with ESMTPS id 12AE03C057C;
-        Tue, 17 Dec 2019 15:10:01 +0100 (CET)
-Received: from vmlxhi-102.adit-jv.com (10.72.93.66) by HI2EXCH01.adit-jv.com
- (10.72.92.24) with Microsoft SMTP Server (TLS) id 14.3.468.0; Tue, 17 Dec
- 2019 15:10:00 +0100
-Date:   Tue, 17 Dec 2019 15:10:00 +0100
-From:   Eugeniu Rosca <erosca@de.adit-jv.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-CC:     Magnus Damm <magnus.damm@gmail.com>,
-        Eugeniu Rosca <erosca@de.adit-jv.com>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Eugeniu Rosca <roscaeugeniu@gmail.com>
-Subject: Re: [PATCH v2 1/6] arm64: dts: renesas: r8a77961: Add RWDT node
-Message-ID: <20191217141000.GB27250@vmlxhi-102.adit-jv.com>
-References: <20191216124740.16647-1-geert+renesas@glider.be>
- <20191216124740.16647-2-geert+renesas@glider.be>
+        id S1728656AbfLQOMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 09:12:02 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34460 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728575AbfLQOMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 09:12:02 -0500
+Received: by mail-ot1-f66.google.com with SMTP id a15so919899otf.1;
+        Tue, 17 Dec 2019 06:12:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7rqOZSsecbL2UhtBa4fx6RNVQTfn4hGMuYHOIPPf+Vg=;
+        b=fb0I30PDXz6XyrKKiCrSrS98AXGcnwj5kzborhjfcEF+JuCbdA8rGVCuECur1w938L
+         7yY4XX2uHmQm7ZpokrWq9SeMyO/bhgErbE3YPh9F5npHtoSbNdr9RftaShI0kEdgXvW8
+         PHpN3PUKJKBHip5gdBgkjNNAKmeMWZBHBWQfgJ9t3IwlDcqa1rAZMmIVL+LMGcCVWxoj
+         yeql20Xqrh6hjk6p6kPVGoGmWuA/TfvEY34qIK+U0XnBSqqj0Wne6yeg/dVPFoZ/3o/e
+         yTP0JmjzdiOvfKYCoIc4KpuUBWWGxYRUlG17FfXQmEo7qkfwklX0dLvKxQ0LQ1dglimG
+         s5mA==
+X-Gm-Message-State: APjAAAVpystEA5NA7jOx/1z7WepZBseHhc+RL3E30d4q3jQxSSOrwXMk
+        S2SyNtDN/ijJPK0m9Rr7gQ==
+X-Google-Smtp-Source: APXvYqzpVlXg5lD8QaRZoYczlzBvb9EV2OaM1vk2lbqIALkgqhWBspcL5MF3P9ytTEuLdP0Xt2oy1Q==
+X-Received: by 2002:a9d:1d02:: with SMTP id m2mr35624006otm.45.1576591921370;
+        Tue, 17 Dec 2019 06:12:01 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v25sm8050659otk.51.2019.12.17.06.12.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2019 06:12:00 -0800 (PST)
+Date:   Tue, 17 Dec 2019 08:11:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     sboyd@kernel.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/7] dt-bindings: Input: drop msm-vibrator in favor of
+ clk-vibrator
+Message-ID: <20191217141159.GA21795@bogus>
+References: <20191205002503.13088-1-masneyb@onstation.org>
+ <20191205002503.13088-3-masneyb@onstation.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191216124740.16647-2-geert+renesas@glider.be>
-X-Originating-IP: [10.72.93.66]
+In-Reply-To: <20191205002503.13088-3-masneyb@onstation.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Mon, Dec 16, 2019 at 01:47:35PM +0100, Geert Uytterhoeven wrote:
-> Add a device node for the RCLK Watchdog Timer (RWDT) on the Renesas
-> R-Car M3-W+ (r8a77961) SoC.
+On Wed,  4 Dec 2019 19:24:58 -0500, Brian Masney wrote:
+> Let's drop the msm-vibrator bindings so that the more generic
+> clk-vibrator can be used instead. No one is currently using these
+> bindings so this won't affect any users.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
 > ---
-> v2:
->   - No changes.
+>  .../bindings/input/msm-vibrator.txt           | 36 -------------------
+>  1 file changed, 36 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/msm-vibrator.txt
 > 
-> Test procedure:
->   1. "cat > /dev/watchdog",
->   2. Wait 60s for reboot.
 
-Same behavior on my target!
-
-Reviewed-by: Eugeniu Rosca <erosca@de.adit-jv.com>
-Tested-by: Eugeniu Rosca <erosca@de.adit-jv.com>
-
--- 
-Best Regards,
-Eugeniu
+Acked-by: Rob Herring <robh@kernel.org>
