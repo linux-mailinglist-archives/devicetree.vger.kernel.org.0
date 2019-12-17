@@ -2,230 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE35122B23
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:17:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDC7C122B4B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:20:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727969AbfLQMRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 07:17:20 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:33242 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727950AbfLQMRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 07:17:16 -0500
-Received: by mail-wr1-f66.google.com with SMTP id b6so11089217wrq.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2019 04:17:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UpfkndITw/1h6ZYfXIWQrUX2mzHma7l6m7IK0V8q2nM=;
-        b=Abw3cj2lbXrOSkCCt1xvDj375HfQrVnUYPWgKzH+JhB9zQYVcPTnjK1hhEJN9jH5Ql
-         +7HbWTlFHir+TeCUoAnyrslEoEzqbSih0IRiDUp7aMMvrty/y44lwc0LtC8IRv/kKpL3
-         9LK92xQA+q5VRGlzDFjI8wj8XwXVTi2eJfbmGZSimS5kghu5nF7sjIdyXRTZyqfgZvD6
-         UHsWc7nqcL64ERb2qhhKV6ZfUcLv8ZeEvbCN34dGqUSUdn9uNUXEhwITKHFGPL1QXIzA
-         Vndxjs7P6PwAkeCDH2D22gqhKK3quul4OxL1vo/4BACxS+fXaHKldROOBJSPMEdRgaek
-         +74g==
+        id S1727487AbfLQMUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 07:20:00 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:41292 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726933AbfLQMUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 07:20:00 -0500
+Received: by mail-ot1-f66.google.com with SMTP id r27so13524842otc.8;
+        Tue, 17 Dec 2019 04:19:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UpfkndITw/1h6ZYfXIWQrUX2mzHma7l6m7IK0V8q2nM=;
-        b=Lnlx6FXZ5cjaHU8e4YewqknXEaxyMxRNjOyEEJWD0o/ymnwGemxLicyurjhGvFk4or
-         /BfyF2BrWgRxOhe+GA15ROMVpV9VCV57GbdQ5gwTLGP1SQ3nRF13ZtAmWzfHKkFMJwiC
-         O3c2YWvZxMdzsy1uGYtz+Fg7a2S+mQtRFufR5DjafUrR1JJT2XUH2HqXaM7mntkAkKAu
-         hsKcK/H29afPt0IxB0DD5QlMGyur8U2OFX8yDeMmWMLx+byKiLVs+hEgm0gJE9FfYTH7
-         6Rdubo0TBxlWKdCj+X5W05QqRVHo37CCEGV7kemuUaoD2OmbS8JasMeVE6Q29J03eBgT
-         e2TQ==
-X-Gm-Message-State: APjAAAU6Hk+YlMgM0tcHLIjF0ckDpic9ho3FIKCHmukrFZKGLbgBetva
-        vTfib3zATiefuchGx00esBQUoPgEN84=
-X-Google-Smtp-Source: APXvYqy7+Vgw/klg6kwKo9JrsWfZ6grcRRW7hNzoqPnmnoCUPlMboTlXRpvXAu9vBFQdcrFu7E0AjA==
-X-Received: by 2002:a5d:6089:: with SMTP id w9mr36327749wrt.228.1576585034676;
-        Tue, 17 Dec 2019 04:17:14 -0800 (PST)
-Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id f1sm25087270wru.6.2019.12.17.04.17.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2019 04:17:14 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     robh@kernel.org, broonie@kernel.org, lee.jones@linaro.org,
-        linus.walleij@linaro.org
-Cc:     vinod.koul@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        spapothi@codeaurora.org, bgoswami@codeaurora.org,
-        linux-gpio@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v5 11/11] ASoC: qcom: sdm845: add support to DB845c and Lenovo Yoga
-Date:   Tue, 17 Dec 2019 12:16:42 +0000
-Message-Id: <20191217121642.28534-12-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20191217121642.28534-1-srinivas.kandagatla@linaro.org>
-References: <20191217121642.28534-1-srinivas.kandagatla@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0U15JxqTWohe4GLhfwPMbmA9156s0i20ALyMdM/t43M=;
+        b=PZfd/VIm/ZEAeC1vT5QTgtadoAH3VARjb5G1wyCu899S00I3QqpUmuUew7wtxuMEzs
+         KGqcgQXwhCgTbt9Sqi/mUQkhfRLwjewTaL7Bsq7AfePOsznz6A8Hqm/l2sm7EVmEy/d4
+         WdyCzeevQHnt9kO1lGe8X2oZNzsE+UHK6LULMFlALKSmk+CxpzGhNjJPclTpBILG1j8I
+         KdUSBTwYQl+R4hOwMKXF2yMLN/96SW5G5T8Nyft3VaMwhfN12bE1PAgMM87ZBcRfMBFJ
+         4SHHYg8EBBSCxIhu75hBs/PaEOiCU62SuPIi98gzwEffIhyToX4+KKAd3YXCnZ+6/j3a
+         bpuQ==
+X-Gm-Message-State: APjAAAXxlggpS+MZ7RDHPkb2aX28/n3ET8H6BZG7kHqOJ/vawBHczPo6
+        E+tPuw+4Us2IKbPcEdV37SN+AiN8Hx+XH49Z68ZcWg==
+X-Google-Smtp-Source: APXvYqwkdCwHahSuzYZ+Y81qKjRN63MiahQdOtK75IEiAYkiWMv9UXYUX0fqo59WGI8tjtR25Z+A2O3DlS1vzMShzgI=
+X-Received: by 2002:a9d:2073:: with SMTP id n106mr37395735ota.145.1576585199481;
+ Tue, 17 Dec 2019 04:19:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191216124740.16647-1-geert+renesas@glider.be> <20191217120116.GA11814@vmlxhi-102.adit-jv.com>
+In-Reply-To: <20191217120116.GA11814@vmlxhi-102.adit-jv.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 17 Dec 2019 13:19:48 +0100
+Message-ID: <CAMuHMdXoKN0X+pukArrnfeSs9vaF20sW2zaf=v7UX2WD6w4G-w@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] arm64: dts: renesas: r8a77961: Add more device nodes
+To:     Eugeniu Rosca <erosca@de.adit-jv.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support to Lenovo Yoga c630 compatible strings
-and related setup to the sound machine driver.
+Hi Eugeniu,
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/qcom/sdm845.c | 86 ++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 85 insertions(+), 1 deletion(-)
+On Tue, Dec 17, 2019 at 1:01 PM Eugeniu Rosca <erosca@de.adit-jv.com> wrote:
+> On Mon, Dec 16, 2019 at 01:47:34PM +0100, Geert Uytterhoeven wrote:
+> > This patch series broadens support for the R-Car M3-W+ (aka R-Car M3-W
+> > ES3.0) Soc (R8A77961), by adding more device nodes to its DT source
+> > file, up to what can be tested reasonably using remote access.
+> > For your convenience, it is available in the topic/r8a77961-v2 branch of
+> > my renesas-drivers git repository at
+> > git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git.
+>
+> I only see below r8a77961.dtsi commit on topic/r8a77961-v2:
+> 8e4529f2ac8293 ("arm64: dts: renesas: Add Renesas R8A77961 SoC support")
 
-diff --git a/sound/soc/qcom/sdm845.c b/sound/soc/qcom/sdm845.c
-index 28f3cef696e6..3b5547a27aad 100644
---- a/sound/soc/qcom/sdm845.c
-+++ b/sound/soc/qcom/sdm845.c
-@@ -24,6 +24,9 @@
- #define RIGHT_SPK_TDM_TX_MASK   0xC0
- #define SPK_TDM_RX_MASK         0x03
- #define NUM_TDM_SLOTS           8
-+#define SLIM_MAX_TX_PORTS 16
-+#define SLIM_MAX_RX_PORTS 16
-+#define WCD934X_DEFAULT_MCLK_RATE	9600000
- 
- struct sdm845_snd_data {
- 	struct snd_soc_jack jack;
-@@ -36,6 +39,39 @@ struct sdm845_snd_data {
- 
- static unsigned int tdm_slot_offset[8] = {0, 4, 8, 12, 16, 20, 24, 28};
- 
-+static int sdm845_slim_snd_hw_params(struct snd_pcm_substream *substream,
-+				     struct snd_pcm_hw_params *params)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai_link *dai_link = rtd->dai_link;
-+	struct snd_soc_dai *cpu_dai = rtd->cpu_dai;
-+	u32 rx_ch[SLIM_MAX_RX_PORTS], tx_ch[SLIM_MAX_TX_PORTS];
-+	u32 rx_ch_cnt = 0, tx_ch_cnt = 0;
-+	int ret = 0, i;
-+
-+	for (i = 0 ; i < dai_link->num_codecs; i++) {
-+		ret = snd_soc_dai_get_channel_map(rtd->codec_dais[i],
-+				&tx_ch_cnt, tx_ch, &rx_ch_cnt, rx_ch);
-+
-+		if (ret != 0 && ret != -ENOTSUPP) {
-+			pr_err("failed to get codec chan map, err:%d\n", ret);
-+			return ret;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+
-+		if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-+			ret = snd_soc_dai_set_channel_map(cpu_dai, 0, NULL,
-+							  rx_ch_cnt, rx_ch);
-+		else
-+			ret = snd_soc_dai_set_channel_map(cpu_dai, tx_ch_cnt,
-+							  tx_ch, 0, NULL);
-+	}
-+
-+	return 0;
-+}
-+
- static int sdm845_tdm_snd_hw_params(struct snd_pcm_substream *substream,
- 					struct snd_pcm_hw_params *params)
- {
-@@ -151,6 +187,11 @@ static int sdm845_snd_hw_params(struct snd_pcm_substream *substream,
- 	case QUATERNARY_TDM_TX_0:
- 		ret = sdm845_tdm_snd_hw_params(substream, params);
- 		break;
-+	case SLIMBUS_0_RX...SLIMBUS_6_TX:
-+		ret = sdm845_slim_snd_hw_params(substream, params);
-+		break;
-+	case QUATERNARY_MI2S_RX:
-+		break;
- 	default:
- 		pr_err("%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
- 		break;
-@@ -173,7 +214,20 @@ static int sdm845_dai_init(struct snd_soc_pcm_runtime *rtd)
- 	struct snd_soc_dai *cpu_dai = rtd->cpu_dai;
- 	struct sdm845_snd_data *pdata = snd_soc_card_get_drvdata(card);
- 	struct snd_jack *jack;
--	int rval;
-+	struct snd_soc_dai_link *dai_link = rtd->dai_link;
-+	/*
-+	 * Codec SLIMBUS configuration
-+	 * RX1, RX2, RX3, RX4, RX5, RX6, RX7, RX8, RX9, RX10, RX11, RX12, RX13
-+	 * TX1, TX2, TX3, TX4, TX5, TX6, TX7, TX8, TX9, TX10, TX11, TX12, TX13
-+	 * TX14, TX15, TX16
-+	 */
-+	unsigned int rx_ch[SLIM_MAX_RX_PORTS] = {144, 145, 146, 147, 148, 149,
-+					150, 151, 152, 153, 154, 155, 156};
-+	unsigned int tx_ch[SLIM_MAX_TX_PORTS] = {128, 129, 130, 131, 132, 133,
-+					    134, 135, 136, 137, 138, 139,
-+					    140, 141, 142, 143};
-+	int rval, i;
-+
- 
- 	if (!pdata->jack_setup) {
- 		rval = snd_soc_card_jack_new(card, "Headset Jack",
-@@ -211,6 +265,21 @@ static int sdm845_dai_init(struct snd_soc_pcm_runtime *rtd)
- 			return rval;
- 		}
- 		break;
-+	case SLIMBUS_0_RX...SLIMBUS_6_TX:
-+		for (i = 0 ; i < dai_link->num_codecs; i++) {
-+			rval = snd_soc_dai_set_channel_map(rtd->codec_dais[i],
-+							  ARRAY_SIZE(tx_ch),
-+							  tx_ch,
-+							  ARRAY_SIZE(rx_ch),
-+							  rx_ch);
-+			if (rval != 0 && rval != -ENOTSUPP)
-+				return rval;
-+
-+			snd_soc_dai_set_sysclk(rtd->codec_dais[i], 0,
-+					       WCD934X_DEFAULT_MCLK_RATE,
-+					       SNDRV_PCM_STREAM_PLAYBACK);
-+		}
-+		break;
- 	default:
- 		break;
- 	}
-@@ -256,6 +325,14 @@ static int sdm845_snd_startup(struct snd_pcm_substream *substream)
- 		}
- 		snd_soc_dai_set_fmt(cpu_dai, fmt);
- 		snd_soc_dai_set_fmt(codec_dai, codec_dai_fmt);
-+		break;
-+	case QUATERNARY_MI2S_RX:
-+		snd_soc_dai_set_sysclk(cpu_dai,
-+			Q6AFE_LPASS_CLK_ID_QUAD_MI2S_IBIT,
-+			MI2S_BCLK_RATE, SNDRV_PCM_STREAM_PLAYBACK);
-+		snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_CBS_CFS);
-+
-+
- 		break;
- 
- 	case QUATERNARY_TDM_RX_0:
-@@ -294,6 +371,8 @@ static int sdm845_snd_startup(struct snd_pcm_substream *substream)
- 			}
- 		}
- 		break;
-+	case SLIMBUS_0_RX...SLIMBUS_6_TX:
-+		break;
- 
- 	default:
- 		pr_err("%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
-@@ -338,6 +417,9 @@ static void  sdm845_snd_shutdown(struct snd_pcm_substream *substream)
- 				0, SNDRV_PCM_STREAM_PLAYBACK);
- 		}
- 		break;
-+	case SLIMBUS_0_RX...SLIMBUS_6_TX:
-+	case QUATERNARY_MI2S_RX:
-+		break;
- 
- 	default:
- 		pr_err("%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
-@@ -451,6 +533,8 @@ static int sdm845_snd_platform_remove(struct platform_device *pdev)
- 
- static const struct of_device_id sdm845_snd_device_id[]  = {
- 	{ .compatible = "qcom,sdm845-sndcard" },
-+	{ .compatible = "qcom,db845c-sndcard" },
-+	{ .compatible = "lenovo,yoga-c630-sndcard" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sdm845_snd_device_id);
+Oops.
+
+> It looks like the patches are from one of below branches?
+>  - topic/r8a77961-extra-v2
+
+Yes, that's the right branch.
+Sorry for the confusion.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.21.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
