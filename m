@@ -2,65 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7366E122C0E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FCB5122C11
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:42:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727700AbfLQMmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 07:42:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47608 "EHLO mail.kernel.org"
+        id S1728116AbfLQMmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 07:42:42 -0500
+Received: from foss.arm.com ([217.140.110.172]:35818 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727029AbfLQMmS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Dec 2019 07:42:18 -0500
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9C48B2146E;
-        Tue, 17 Dec 2019 12:42:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1576586538;
-        bh=fn0Mzuac6XWWX/lbHquGjs8c6za1aC4Yj8JI7MDkpHw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dbnFyqnyj2HrknsdSsFIT4Ye6BcJGISFdWg2Cq9UMN6cMktzCIM7a6ys2i4IebeeM
-         JTrHctRXis+Fq3Tqe1+CAkWQ4ZHIp5i5QNS5BgWOy4TWs/mpWAux4s8ZgT14NG3UxO
-         DxwWZboV7QSJ4aBjEBER0zmVIn+RuQM7p9YUq7tQ=
-Received: by mail-lj1-f174.google.com with SMTP id p8so4126731ljg.0;
-        Tue, 17 Dec 2019 04:42:17 -0800 (PST)
-X-Gm-Message-State: APjAAAUcBf4x7Iriw5p2HgzG9nDIoApZ8B/kb8pbPC3y8fXNNLQntwzS
-        0cJ5pV+BB22N6QS+4hVcz3wZkIUV4lDWKDKCiyY=
-X-Google-Smtp-Source: APXvYqwkp8CWsEFyEekYy1CYPaxi/8JkVNoBZdvgkoMYBa+yBWdKEK/4Pd+Lr0BWIJi5vIveL7uxDcLnWXady9cM+rQ=
-X-Received: by 2002:a2e:b0db:: with SMTP id g27mr3138848ljl.74.1576586535875;
- Tue, 17 Dec 2019 04:42:15 -0800 (PST)
+        id S1727519AbfLQMml (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 07:42:41 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3DFF531B;
+        Tue, 17 Dec 2019 04:42:41 -0800 (PST)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A9D143F718;
+        Tue, 17 Dec 2019 04:42:40 -0800 (PST)
+Date:   Tue, 17 Dec 2019 12:42:39 +0000
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH 08/13] PCI: cadence: Use local management register to
+ configure Vendor ID
+Message-ID: <20191217124238.GE24359@e119886-lin.cambridge.arm.com>
+References: <20191209092147.22901-1-kishon@ti.com>
+ <20191209092147.22901-9-kishon@ti.com>
 MIME-Version: 1.0
-References: <20191214152755.25138-1-angus@akkea.ca> <20191214152755.25138-2-angus@akkea.ca>
-In-Reply-To: <20191214152755.25138-2-angus@akkea.ca>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 17 Dec 2019 13:42:04 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPfYYFthdwn5XeJ_Meo-12vsCKQKhjG8kc+R-vTEzjp9nw@mail.gmail.com>
-Message-ID: <CAJKOXPfYYFthdwn5XeJ_Meo-12vsCKQKhjG8kc+R-vTEzjp9nw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] power: supply: max17042: add MAX17055 support
-To:     "Angus Ainslie (Purism)" <angus@akkea.ca>
-Cc:     Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel@puri.sm
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191209092147.22901-9-kishon@ti.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 14 Dec 2019 at 16:28, Angus Ainslie (Purism) <angus@akkea.ca> wrote:
->
-> The MAX17055 is very similar to the MAX17042 so extend the driver.
->
-> Signed-off-by: Angus Ainslie (Purism) <angus@akkea.ca>
+On Mon, Dec 09, 2019 at 02:51:42PM +0530, Kishon Vijay Abraham I wrote:
+> PCI_VENDOR_ID in root port configuration space is read-only register
+> and writing to it will have no effect. Use local management register to
+> configure Vendor ID and Subsystem Vendor ID.
+
+Is this a bug fix? Can you add a Fixes tag and make that clearer?
+
+Thanks,
+
+Andrew Murray
+
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  drivers/power/supply/max17042_battery.c | 17 +++++++--
->  include/linux/power/max17042_battery.h  | 48 ++++++++++++++++++++++++-
->  2 files changed, 61 insertions(+), 4 deletions(-)
-
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
+>  drivers/pci/controller/cadence/pcie-cadence-host.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> index cf817be237af..afb2c96a6538 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> @@ -71,6 +71,7 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+>  {
+>  	struct cdns_pcie *pcie = &rc->pcie;
+>  	u32 value, ctrl;
+> +	u32 id;
+>  
+>  	/*
+>  	 * Set the root complex BAR configuration register:
+> @@ -90,8 +91,12 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+>  	cdns_pcie_writel(pcie, CDNS_PCIE_LM_RC_BAR_CFG, value);
+>  
+>  	/* Set root port configuration space */
+> -	if (rc->vendor_id != 0xffff)
+> -		cdns_pcie_rp_writew(pcie, PCI_VENDOR_ID, rc->vendor_id);
+> +	if (rc->vendor_id != 0xffff) {
+> +		id = CDNS_PCIE_LM_ID_VENDOR(rc->vendor_id) |
+> +			CDNS_PCIE_LM_ID_SUBSYS(rc->vendor_id);
+> +		cdns_pcie_writel(pcie, CDNS_PCIE_LM_ID, id);
+> +	}
+> +
+>  	if (rc->device_id != 0xffff)
+>  		cdns_pcie_rp_writew(pcie, PCI_DEVICE_ID, rc->device_id);
+>  
+> -- 
+> 2.17.1
+> 
