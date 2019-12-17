@@ -2,116 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB79F122FF0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 16:17:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F95E123003
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 16:19:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727830AbfLQPRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 10:17:10 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:57558 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727756AbfLQPRK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Dec 2019 10:17:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=y66LTNctU06qMoQJMhGK01LwiVWQsFjlTor1V8U/M9w=; b=MsOUtrVtfaCbVMQDsLN65yytmx
-        lBQezlhYx+H8SB8Q1PkUmvlmle6Gw3FX/K9nFLpjWXLMluyxbCHpFSmJ3ru9DFdMSlKfzfgDnWQ0F
-        ejc83k0Hg67VLgYDuI4urPYBGKlU58n4q/76VJK0RqfADR42VeuPoXVpzcYwWziOT8HI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ihEav-0002Jg-LL; Tue, 17 Dec 2019 16:17:05 +0100
-Date:   Tue, 17 Dec 2019 16:17:05 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Willem de Bruijn <willemb@google.com>,
-        Wingman Kwok <w-kwok2@ti.com>
-Subject: Re: [PATCH V6 net-next 08/11] dt-bindings: ptp: Introduce MII time
- stamping devices.
-Message-ID: <20191217151705.GF17965@lunn.ch>
-References: <cover.1576511937.git.richardcochran@gmail.com>
- <f74e71626f6c9115ab9cf919cc8eaed10220ecb2.1576511937.git.richardcochran@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f74e71626f6c9115ab9cf919cc8eaed10220ecb2.1576511937.git.richardcochran@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1728227AbfLQPTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 10:19:51 -0500
+Received: from mail25.static.mailgun.info ([104.130.122.25]:18885 "EHLO
+        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728342AbfLQPTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 10:19:50 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1576595989; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=rL62ogSm89mxzqo5jGWrbCifh9fRJzz4WrEa353v4VY=; b=gvYAtqEbyXFKc2a0vGATqIKFSsaEJPdQFQ6QFzqm0naLuxc89it893RAqFXHWLmGFhoTdjqa
+ M08S75WOlcLt11eKi1UuXki+wJRfJyztv7oJe4dlT/rOkEj4wH7G8ysMpmme/11TdxryKSJ6
+ vs3o3JErtdRMJ4IWqmCQ9qWM+1M=
+X-Mailgun-Sending-Ip: 104.130.122.25
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5df8f203.7f3c7a516e30-smtp-out-n03;
+ Tue, 17 Dec 2019 15:19:31 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 259B5C433A2; Tue, 17 Dec 2019 15:19:31 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from jhugo-perf-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jhugo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 72CADC43383;
+        Tue, 17 Dec 2019 15:19:29 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 72CADC43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jhugo@codeaurora.org
+From:   Jeffrey Hugo <jhugo@codeaurora.org>
+To:     sboyd@kernel.org
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        marc.w.gonzalez@free.fr, mturquette@baylibre.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jeffrey Hugo <jhugo@codeaurora.org>
+Subject: [PATCH v11 0/4] MSM8998 Multimedia Clock Controller
+Date:   Tue, 17 Dec 2019 08:19:14 -0700
+Message-Id: <1576595954-9991-1-git-send-email-jhugo@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Dec 16, 2019 at 08:13:23AM -0800, Richard Cochran wrote:
-> This patch add a new binding that allows non-PHY MII time stamping
-> devices to find their buses.  The new documentation covers both the
-> generic binding and one upcoming user.
-> 
-> Signed-off-by: Richard Cochran <richardcochran@gmail.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+The multimedia clock controller (mmcc) is the main clock controller for
+the multimedia subsystem and is required to enable things like display and
+camera.
 
-Rob might want YAML?
+v11:
+-rebsed to 5.5-rc1
+-picked up review tags
 
-    
+v10:
+-Add Taniya Das as co-maintainer as she indicated a willingness to do so
+-Add sleep clock
+-Add a gcc example per request
+-Pick up tags
 
+v9:
+-expand the commit text for the DT changes a bit more to explain some of the
+extra changes
 
+v8:
+-drop dts changes from series per Stephen's request
+-fix the mislabeled mmcc example
+-drop Stephen as maintainer of the mmcc binding
 
-> ---
->  .../devicetree/bindings/ptp/ptp-ines.txt      | 35 ++++++++++++++++
->  .../devicetree/bindings/ptp/timestamper.txt   | 41 +++++++++++++++++++
->  2 files changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ptp/ptp-ines.txt
->  create mode 100644 Documentation/devicetree/bindings/ptp/timestamper.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/ptp/ptp-ines.txt b/Documentation/devicetree/bindings/ptp/ptp-ines.txt
-> new file mode 100644
-> index 000000000000..4c242bd1ce9c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ptp/ptp-ines.txt
-> @@ -0,0 +1,35 @@
-> +ZHAW InES PTP time stamping IP core
-> +
-> +The IP core needs two different kinds of nodes.  The control node
-> +lives somewhere in the memory map and specifies the address of the
-> +control registers.  There can be up to three port handles placed as
-> +attributes of PHY nodes.  These associate a particular MII bus with a
-> +port index within the IP core.
-> +
-> +Required properties of the control node:
-> +
-> +- compatible:		"ines,ptp-ctrl"
-> +- reg:			physical address and size of the register bank
-> +
-> +Required format of the port handle within the PHY node:
-> +
-> +- timestamper:		provides control node reference and
-> +			the port channel within the IP core
-> +
-> +Example:
-> +
-> +	tstamper: timestamper@60000000 {
-> +		compatible = "ines,ptp-ctrl";
-> +		reg = <0x60000000 0x80>;
-> +	};
-> +
-> +	ethernet@80000000 {
-> +		...
-> +		mdio {
-> +			...
-> +			ethernet-phy@3 {
-> +				...
-> +				timestamper = <&tstamper 0>;
+v7:
+-port to gcc.yaml.  Drop reviewed-by for DT changes as they got completely
+rewritten
+-drop "clk: qcom: smd: Add XO clock for MSM8998".  Will need to find another
+solution and this is not blocking right now
+-convert mmcc to yaml
+-drop errant clk.h include
+-use blank entries in the DT when no clock is available
 
-You should also add this to Documentation/devicetree/bindings/net/ethernet-phy.yaml
+v6:
+-drop clk_get from mmcc clock provider
 
-    Andrew
+v5:
+-handle the case where gcc uses rpmcc for xo, but the link is not specified in dt
+-have gcc select rpmcc
+
+v4:
+-fix makefile to use correct config item
+-pick up tags
+-fix ordering of clocks and clock-names in dt
+-drop MODULE_ALIAS
+-wait for xo in mmcc since that was found to be useful in some debug configs
+
+v3:
+-Rebase onto linux-next to get the final version of the clk parent rewrite
+series
+-Moved the bindings header to the bindings patch per Rob
+-Made xo manditory for GCC to work around the lack of clk orphan probe defer
+to avoid the uart console glitch
+
+v2:
+-Rebased on the "Rewrite clk parent handling" series and updated to the clk init
+mechanisms introduced there.
+-Marked XO clk as CLK_IGNORE_UNUSED to avoid the concern about the XO going away
+"incorrectly" during late init
+-Corrected the name of the XO clock to "xo"
+-Dropped the fake XO clock in GCC to prevent a namespace conflict
+-Fully enumerated the external clocks (DSI PLLs, etc) in the DT binding
+-Cleaned up the weird newlines in the added DT node
+-Added DT header file to msm8998 DT for future clients
+
+Jeffrey Hugo (4):
+  dt-bindings: clock: Document external clocks for MSM8998 gcc
+  dt-bindings: clock: Convert qcom,mmcc to DT schema
+  dt-bindings: clock: Add support for the MSM8998 mmcc
+  clk: qcom: Add MSM8998 Multimedia Clock Controller (MMCC) driver
+
+ .../devicetree/bindings/clock/qcom,gcc.yaml        |   73 +-
+ .../devicetree/bindings/clock/qcom,mmcc.txt        |   28 -
+ .../devicetree/bindings/clock/qcom,mmcc.yaml       |   98 +
+ drivers/clk/qcom/Kconfig                           |    9 +
+ drivers/clk/qcom/Makefile                          |    1 +
+ drivers/clk/qcom/mmcc-msm8998.c                    | 2913 ++++++++++++++++++++
+ include/dt-bindings/clock/qcom,mmcc-msm8998.h      |  210 ++
+ 7 files changed, 3290 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,mmcc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+ create mode 100644 drivers/clk/qcom/mmcc-msm8998.c
+ create mode 100644 include/dt-bindings/clock/qcom,mmcc-msm8998.h
+
+-- 
+Qualcomm Technologies, Inc. is a member of the
+Code Aurora Forum, a Linux Foundation Collaborative Project.
