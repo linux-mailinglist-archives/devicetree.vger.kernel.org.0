@@ -2,48 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87F601232B0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 17:39:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 037FE1232C4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 17:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728188AbfLQQjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 11:39:49 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:35786 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727766AbfLQQjt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 11:39:49 -0500
-Received: by mail-oi1-f196.google.com with SMTP id k4so1506411oik.2;
-        Tue, 17 Dec 2019 08:39:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FQXepPjODALKwBSGmvnI626nvPCyXuF/Gz5QtqNwjz0=;
-        b=m/l1gF9g80kMTKpqAleJet4slwjphXO/hXSkyk1WSp4GJk9j5JP7vitw+UecYBu2P/
-         SOVfMWNJtOqo1OEnf38N3tEdMcYxPL9goVWLuyxggmA+QIPYF+UrhswEIeLULhRh47n0
-         t1PTO6tdID/frITGv46kQz5LoX+qNelsPIQm9C/cw22hZIH04n5yx52dGpx9SeNrzpue
-         bOUr947Y1+cDLgPpFgSb+cy1wunK+5QJ9QrDXNVhsw4rVWpOG26ySwUxEeO0ncUqobAW
-         14HUxdhOx2GDvIBVXFk4uGMy0c0EjnCgpMSHMIP0d+mZc1KT/swEb3mrO/VkOJ9sN2rV
-         LLOQ==
-X-Gm-Message-State: APjAAAUlCr+XW+K0FoMnHHQtf+cEXOTrv1GF24bCZrvBIchhPY2GKjvw
-        n2jjus+9QicQdLwqbpUVkhZVBuM=
-X-Google-Smtp-Source: APXvYqzVlefm3KM6A23hWqlPPbDdTcYce3iPL46mvJF3fNG92N17VS6twDJQbqt/xZskF6mWsj6jSg==
-X-Received: by 2002:aca:a9c5:: with SMTP id s188mr925723oie.154.1576600787852;
-        Tue, 17 Dec 2019 08:39:47 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id 15sm8040164oix.46.2019.12.17.08.39.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2019 08:39:47 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: [PATCH] dt-bindings: Add missing 'properties' keyword enclosing 'snps,tso'
-Date:   Tue, 17 Dec 2019 10:39:46 -0600
-Message-Id: <20191217163946.25052-1-robh@kernel.org>
+        id S1727384AbfLQQnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 11:43:41 -0500
+Received: from nbd.name ([46.4.11.11]:51148 "EHLO nbd.name"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727417AbfLQQnl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 11:43:41 -0500
+Received: from pd95fd66b.dip0.t-ipconnect.de ([217.95.214.107] helo=bertha.fritz.box)
+        by ds12 with esmtpa (Exim 4.89)
+        (envelope-from <john@phrozen.org>)
+        id 1ihFwe-0004wY-Vr; Tue, 17 Dec 2019 17:43:37 +0100
+From:   John Crispin <john@phrozen.org>
+To:     Kalle Valo <kvalo@codeaurora.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        devicetree@vger.kernel.org, John Crispin <john@phrozen.org>
+Subject: [PATCH 1/2] dt: bindings: net: ath11k: add qcom,board_id definition
+Date:   Tue, 17 Dec 2019 17:43:28 +0100
+Message-Id: <20191217164329.4151-1-john@phrozen.org>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -52,30 +30,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT property definitions must be under a 'properties' keyword. This was
-missing for 'snps,tso' in an if/then clause. A meta-schema fix will
-catch future errors like this.
+We need to be able to define what id the board has allowing us to load the
+correct definition data. This patch adds the description of the required
+property.
 
-Fixes: 7db3545aef5f ("dt-bindings: net: stmmac: Convert the binding to a schemas")
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>
-Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: John Crispin <john@phrozen.org>
 ---
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/net/wireless/qcom,ath11k.yaml        | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 4845e29411e4..e08cd4c4d568 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -347,6 +347,7 @@ allOf:
-               - st,spear600-gmac
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index a1717db36dba..c68daf6ad424 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -142,6 +142,11 @@ properties:
+         * reg
+         * reg-names
  
-     then:
-+      properties:
-         snps,tso:
-           $ref: /schemas/types.yaml#definitions/flag
-           description:
++  qcom,board_id:
++      $ref: /schemas/types.yaml#/definitions/uint32
++      description:
++        The board id defining what board definition should be loaded
++
+ required:
+   - compatible
+   - reg
 -- 
 2.20.1
 
