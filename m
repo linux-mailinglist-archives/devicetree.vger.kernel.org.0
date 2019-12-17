@@ -2,118 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 000031235E5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 20:44:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A074E12366B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 21:05:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727909AbfLQToT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 14:44:19 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:47043 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727849AbfLQToT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 14:44:19 -0500
-Received: by mail-lj1-f193.google.com with SMTP id z17so12272056ljk.13
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2019 11:44:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:from:to:cc:references:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Vye4oexJqkfXygyyqfKKuP3+inegaXkNPqfoCHpgpw4=;
-        b=lMjHeNrDcmPquzjFtMxngt+Tg9J0qL9x70PiYWvW1z/pd8s1iFHFz0Vb6ZEYQGn4Gy
-         /1+nYCBnjdA55PBOa7Qo5CZZvxuI5jWXO+vNrhqFSH7p7CcklekDI3G31++vd9nMMHil
-         C+tGHmaL3kFlB5uaTT9GJ9K/AcJL0q2VGWLHBVUjNzk9+R8KI8Vzo07PLFIbK2I4ZK+S
-         ycVfSeVGBr1fFMlqwdStQwEzuzKWEIDjfAsLEZH0Sf6GBPEJ9dmjIjK22vj/60Rn5/y/
-         WGsHoWuh6WZzBYhL6jzyPa6GC0TIqL4UGBDDtU2rfWPKLi1UBzvHvgzAK8BHA0RJywP7
-         6VsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Vye4oexJqkfXygyyqfKKuP3+inegaXkNPqfoCHpgpw4=;
-        b=AUHzDcVrdymA5sqVadMLU64AF4pgBOq5VZRPs8k/Io66TACuiEgX94IXDwRA+oeoTg
-         vIV3G8YiP70XEbfuDi/NuQxfhf8pMTDKrjcwxIQ/XPethCGQKUME3ljScjiHsMV+K6is
-         GP2GTEYQqIBLFVyJBLL7mEGdYNUtmw168tO7Kob1yTuDKd3dsGqhDdpSAEbQS88E3Pn9
-         PNLO6ecIPVPyGdS/COJD8vna3TZmx0Rax8wM0MddqhsnuqXfwwlhhJzYl1064yWaCYTk
-         jZdRuxNuLoVh9nq1bGXyhrxJbXEIYuziuHek8yvPLncm5YhW9LN8evg33fO/lbFmj7qT
-         xneQ==
-X-Gm-Message-State: APjAAAUArawCno2t1fQJl7BPJIF6SV3mhaebDzDCQsKde/WUbg28ZnXd
-        RR4xi4CCXp3Q0DpRAAT4ewRaHQ==
-X-Google-Smtp-Source: APXvYqxGNCXLpZUOsrPpJGhGu15Gp7tw29s3tQRAjYHNkZQ3cn4kdZlrEpaQGbhF+IZ3jDWBkdMdRw==
-X-Received: by 2002:a2e:920b:: with SMTP id k11mr4291780ljg.111.1576611857779;
-        Tue, 17 Dec 2019 11:44:17 -0800 (PST)
-Received: from wasted.cogentembedded.com ([2a00:1fa0:411:5312:624c:c19e:baea:21d3])
-        by smtp.gmail.com with ESMTPSA id m15sm13324733ljg.4.2019.12.17.11.44.15
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 17 Dec 2019 11:44:16 -0800 (PST)
-Subject: Re: [PATCH v2 0/6] spi: Add Renesas SPIBSC controller
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-To:     Chris Brandt <Chris.Brandt@renesas.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Mason Yang <masonccyang@mxic.com.tw>,
-        Boris Brezillon <bbrezillon@kernel.org>
-References: <20191206134202.18784-1-chris.brandt@renesas.com>
- <922cfa46-efb5-9e6d-67ea-3ac505b8211c@cogentembedded.com>
- <TY1PR01MB156215E8668C0317FA0826B18A580@TY1PR01MB1562.jpnprd01.prod.outlook.com>
- <e6a73df5-31c4-3472-f7bc-a0984f1f5380@cogentembedded.com>
- <TY1PR01MB1562D343E1AB06DCA2973DAC8A550@TY1PR01MB1562.jpnprd01.prod.outlook.com>
- <590840ce-a250-2512-3d04-c2420d83f7da@cogentembedded.com>
-Organization: Cogent Embedded
-Message-ID: <90164352-6b74-ff78-261c-374f51f83330@cogentembedded.com>
-Date:   Tue, 17 Dec 2019 22:44:14 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.1
+        id S1727628AbfLQUEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 15:04:14 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:1796 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727036AbfLQUEN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 15:04:13 -0500
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5df934b10000>; Tue, 17 Dec 2019 12:04:01 -0800
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Tue, 17 Dec 2019 12:04:10 -0800
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Tue, 17 Dec 2019 12:04:10 -0800
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Dec
+ 2019 20:04:10 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Tue, 17 Dec 2019 20:04:10 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.174.101]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5df934b90004>; Tue, 17 Dec 2019 12:04:10 -0800
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <digetx@gmail.com>,
+        <mperttunen@nvidia.com>, <gregkh@linuxfoundation.org>,
+        <sboyd@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <spujar@nvidia.com>, <josephl@nvidia.com>,
+        <daniel.lezcano@linaro.org>, <mmaddireddy@nvidia.com>,
+        <markz@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 00/19] Move PMC clocks into Tegra PMC driver
+Date:   Tue, 17 Dec 2019 12:03:47 -0800
+Message-ID: <1576613046-17159-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-In-Reply-To: <590840ce-a250-2512-3d04-c2420d83f7da@cogentembedded.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1576613041; bh=9ykUQswi8/hqVpW6YWfKvKtTcZiGIo2H7ZAdst/hka4=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=nQ9U7nJaDVIrATvnecUPToOfEK/sWSdr5aCaOzmVcYp2JjZBecGFY8+bBlBsjSZG6
+         ycqBn2IvkrvhUFjjSAEpD8Za298S+IOkhwUo0pVAih4eXau5etnuyncIwBaHuXSe9p
+         VDDx2PIQupZAZH+P8aqdzjj4dJNVeDW7VB6ny/9Xz355/QRmUR21PQVJPXVWiMIX8W
+         KqsFVcF1v1PLmN4HgTkSl6jm4+mnkl1D14TLFjTAKWamAgGZAF3nz3eJc6uyqu/Vwz
+         sgVrLDAxsaAkTwPcRtPCZleNmysQugcFAggdZvMgJ2eST4hSQXRBzKgAnHZb/0/zPN
+         W//+420yQlmWg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/16/2019 11:31 PM, Sergei Shtylyov wrote:
+This patch series moves Tegra PMC clocks from clock driver to pmc driver
+along with the device trees changes and audio driver which uses one of
+the pmc clock for audio mclk.
 
-[...]
->> My understanding is that HyperFlash uses standard CFI commands, so all 
-> 
->    The CFI command set driver needed some changes too (e.g. using the status
-> register to determine if a command is done).
-> 
->> we need to do is register a CFI device in the driver, just like we 
->> register a serial flash device.
-> 
->> (I guess I could go look at the sample code for our RTOS package and find out)
->>
->>>> library that you are proposing have a very different API than just
->>>> 'send bytes' and 'receive bytes'?
->>>
->>>    There's "prepare" and "transfer" APIs and also "direct map read" API.
-> 
->   The 1st one prepares the values to be written in either SPI mode or direct
-> read mode registers. Then you can call "transfer" or "direct mao read" which
-> would write out the register values into either set...
-> 
->> I wonder what is the value of the "direct map read" (other than XIP in 
->> RZ/A systems). If you really want to directly access the flash (no 
->> buffering though the MTD layer), you need to register as a mtd-rom device, 
->> and then you don't really need an API at all.
-> 
->   I'd leave this question to Boris, else I never complete this msg. :-) 
+Tegra PMC has clk_out_1, clk_out_2, clk_out_3 and blink controls which
+are currently registered by Tegra clock driver using clk_regiser_mux and
+clk_register_gate which performs direct Tegra PMC register access.
 
-   Didn't really summon him, doing that now... :-)
+When Tegra PMC is in secure mode, any access from non-secure world will
+not go through.
 
->> Chris
+This patch series adds these Tegra PMC clocks and blink controls to Tegra
+PMC driver with PMC as clock provider and removes them from Tegra clock
+driver.
 
-MBR, Sergei
+PMC clock clk_out_1 is dedicated for audio mclk from Tegra30 thru Tegra210
+and clock driver does inital parent configuration for it and enables them.
+But this clock should be taken care by audio driver as there is no need
+to have this clock pre enabled.
+
+So, this series also includes patch that updates ASoC driver to take
+care of parent configuration for mclk if device tree don't specify
+initial parent configuration using assigned-clock-parents.
+
+DTs are also updated to use clk_out_1 as audio mclk rather than extern1.
+
+This series also includes a patch for mclk fallback to extern1 when
+retrieving mclk fails to have this backward compatible of new DT with
+old kernels.
+
+[v4]:	Changes between v3 and v4 are
+	- v3 Feedback
+	- Updated clocks clk_m_div2 and clk_m_div4 as osc_div2 and osc_div4.
+	  Tegra don't have clk_m_div2, clk_m_div4 and they should actually
+	  be osc_div2 and osc_div4 clocks from osc pads.
+	- Fixed PMC clock parents to use osc, osc_div2, osc_div4.
+	- Register each PMC clock as single clock rather than separate
+	  mux and gate clocks.
+	- Update ASoC utils to use resource managed APIs rather than
+	  using clk_get and clk_put.
+	- Updated device tree and ASoC driver to use clk_out_1 instead of
+	  clk_out_1_mux as PMC clocks are registered as single clock.
+	- Update clock driver init_table to not enable audio related clocks
+	  as ASoC utils will do audio clock enables.
+
+[v3]:	Changes between v2 and v3 are
+	- Removes set parent of clk_out_1_mux to extern1 and enabling
+	  extern1 from the clock driver.
+	- Doesn't enable clk_out_1 and blink by default in pmc driver
+	- Updates ASoC driver to take care of audio mclk parent
+	  configuration incase if device tree don't specify assigned
+	  clock parent properties and enables mclk using both clk_out_1
+	  and extern1.
+	- updates all device trees using extern1 as mclk in sound node
+	  to use clk_out_1 from pmc.
+	- patch for YAML format pmc dt-binding
+	- Includes v2 feedback
+
+[v2]:	Changes between v1 and v2 are
+	- v2 includes patches for adding clk_out_1, clk_out_2, clk_out_3,
+	  blink controls to Tegra PMC driver and removing clk-tegra-pmc.
+	- feedback related to pmc clocks in Tegra PMC driver from v1
+	- Removed patches for WB0 PLLM overrides and PLLE IDDQ PMC programming
+	  by the clock driver using helper functions from Tegra PMC.
+
+ 	  Note:
+	  To use helper functions from PMC driver, PMC early init need to
+	  happen prior to using helper functions and these helper functions are
+	  for PLLM Override and PLLE IDDQ programming in PMC during PLLM/PLLE
+	  clock registration which happen in clock_init prior to Tegra PMC
+	  probe.
+	  Moving PLLM/PLLE clocks registration to happen after Tegra PMC
+	  impacts other clocks EMC, MC and corresponding tegra_emc_init and
+	  tegra_mc_init.
+	  This implementation of configuring PMC registers thru helper
+	  functions in clock driver needs proper changes across PMC, Clock,
+	  EMC and MC inits to have it work across all Tegra platforms.
+
+	  Currently PLLM Override is not enabled in the bootloader so proper
+	  patches for this fix will be taken care separately.
+
+[v1]:	v1 includes patches for below fixes.
+	- adding clk_out_1, clk_out_2, clk_out_3, blink controls to Tegra PMC
+	  driver and removing clk-tegra-pmc.
+	- updated clock provider from tegra_car to pmc in the device tree
+	  tegra210-smaug.dts that uses clk_out_2.
+	- Added helper functions in PMC driver for WB0 PLLM overrides and PLLE
+	  IDDQ programming to use by clock driver and updated clock driver to
+	  use these helper functions and removed direct PMC access from clock
+	  driver and all pmc base address references in clock driver.
+
+
+
+Sowjanya Komatineni (19):
+  dt-bindings: clock: tegra: Change CLK_M_DIV to OSC_DIV clocks
+  clk: tegra: Change CLK_M_DIV clocks to OSC_DIV clocks
+  clk: tegra: Fix Tegra PMC clock out parents
+  dt-bindings: tegra: Convert Tegra PMC bindings to YAML
+  dt-bindings: soc: tegra-pmc: Add Tegra PMC clock bindings
+  soc: tegra: Add Tegra PMC clock registrations into PMC driver
+  dt-bindings: soc: tegra-pmc: Add id for Tegra PMC 32KHz blink clock
+  soc: tegra: Add support for 32KHz blink clock
+  clk: tegra: Remove tegra_pmc_clk_init along with clk ids
+  dt-bindings: clock: tegra: Remove pmc clock ids from clock dt-bindings
+  ASoC: tegra: Use device managed resource APIs to get the clock
+  ASoC: tegra: Add initial parent configuration for audio mclk
+  ASoC: tegra: Add fallback implementation for audio mclk
+  clk: tegra: Remove audio related clock enables from clocks init_table
+  ARM: dts: tegra: Add clock-cells property to pmc
+  arm64: tegra: Add clock-cells property to Tegra PMC node
+  ARM: tegra: Update sound node clocks in device tree
+  arm64: tegra: smaug: Change clk_out_2 provider to pmc
+  ASoC: nau8825: change Tegra clk_out_2 provider from tegra_car to pmc
+
+ .../bindings/arm/tegra/nvidia,tegra20-pmc.txt      |  37 ++-
+ .../bindings/arm/tegra/nvidia,tegra20-pmc.yaml     | 291 +++++++++++++++++
+ .../devicetree/bindings/sound/nau8825.txt          |   2 +-
+ arch/arm/boot/dts/tegra114-dalmore.dts             |   7 +-
+ arch/arm/boot/dts/tegra114.dtsi                    |   4 +-
+ arch/arm/boot/dts/tegra124-apalis-v1.2.dtsi        |   7 +-
+ arch/arm/boot/dts/tegra124-apalis.dtsi             |   7 +-
+ arch/arm/boot/dts/tegra124-jetson-tk1.dts          |   7 +-
+ arch/arm/boot/dts/tegra124-nyan.dtsi               |   7 +-
+ arch/arm/boot/dts/tegra124-venice2.dts             |   7 +-
+ arch/arm/boot/dts/tegra124.dtsi                    |   4 +-
+ arch/arm/boot/dts/tegra20.dtsi                     |   4 +-
+ arch/arm/boot/dts/tegra30-apalis-v1.1.dtsi         |   7 +-
+ arch/arm/boot/dts/tegra30-apalis.dtsi              |   7 +-
+ arch/arm/boot/dts/tegra30-beaver.dts               |   7 +-
+ arch/arm/boot/dts/tegra30-cardhu.dtsi              |   7 +-
+ arch/arm/boot/dts/tegra30-colibri.dtsi             |   7 +-
+ arch/arm/boot/dts/tegra30.dtsi                     |   4 +-
+ arch/arm64/boot/dts/nvidia/tegra132.dtsi           |   4 +-
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts      |   2 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   2 +
+ drivers/clk/tegra/Makefile                         |   1 -
+ drivers/clk/tegra/clk-id.h                         |  11 +-
+ drivers/clk/tegra/clk-tegra-fixed.c                |  32 +-
+ drivers/clk/tegra/clk-tegra-pmc.c                  | 122 -------
+ drivers/clk/tegra/clk-tegra114.c                   |  41 +--
+ drivers/clk/tegra/clk-tegra124.c                   |  46 +--
+ drivers/clk/tegra/clk-tegra20.c                    |   9 +-
+ drivers/clk/tegra/clk-tegra210.c                   |  30 +-
+ drivers/clk/tegra/clk-tegra30.c                    |  31 +-
+ drivers/clk/tegra/clk.h                            |   1 -
+ drivers/soc/tegra/pmc.c                            | 355 +++++++++++++++++++++
+ include/dt-bindings/clock/tegra114-car.h           |  18 +-
+ include/dt-bindings/clock/tegra124-car-common.h    |  18 +-
+ include/dt-bindings/clock/tegra20-car.h            |   2 +-
+ include/dt-bindings/clock/tegra210-car.h           |  18 +-
+ include/dt-bindings/clock/tegra30-car.h            |  18 +-
+ include/dt-bindings/soc/tegra-pmc.h                |  16 +
+ sound/soc/tegra/tegra_alc5632.c                    |   7 +-
+ sound/soc/tegra/tegra_asoc_utils.c                 |  79 +++--
+ sound/soc/tegra/tegra_asoc_utils.h                 |   1 -
+ sound/soc/tegra/tegra_max98090.c                   |  22 +-
+ sound/soc/tegra/tegra_rt5640.c                     |  22 +-
+ sound/soc/tegra/tegra_rt5677.c                     |   7 +-
+ sound/soc/tegra/tegra_sgtl5000.c                   |   7 +-
+ sound/soc/tegra/tegra_wm8753.c                     |  22 +-
+ sound/soc/tegra/tegra_wm8903.c                     |  22 +-
+ sound/soc/tegra/tegra_wm9712.c                     |   8 +-
+ sound/soc/tegra/trimslice.c                        |  18 +-
+ 49 files changed, 967 insertions(+), 448 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+ delete mode 100644 drivers/clk/tegra/clk-tegra-pmc.c
+ create mode 100644 include/dt-bindings/soc/tegra-pmc.h
+
+-- 
+2.7.4
+
