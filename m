@@ -2,215 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B6B5122BDB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:39:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A86FA122C06
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 13:41:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728028AbfLQMja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 07:39:30 -0500
-Received: from foss.arm.com ([217.140.110.172]:35638 "EHLO foss.arm.com"
+        id S1728182AbfLQMkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 07:40:55 -0500
+Received: from foss.arm.com ([217.140.110.172]:35756 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728051AbfLQMj3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Dec 2019 07:39:29 -0500
+        id S1727029AbfLQMky (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 07:40:54 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4CBD6328;
-        Tue, 17 Dec 2019 04:39:28 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98D8C3F718;
-        Tue, 17 Dec 2019 04:39:27 -0800 (PST)
-Date:   Tue, 17 Dec 2019 12:39:26 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Dan Murphy <dmurphy@ti.com>, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-clk@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        matti.vaittinen@fi.rohmeurope.com,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        mazziesaccount@gmail.com,
-        Michael Turquette <mturquette@baylibre.com>,
-        Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 02C0C31B;
+        Tue, 17 Dec 2019 04:40:54 -0800 (PST)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7057C3F718;
+        Tue, 17 Dec 2019 04:40:53 -0800 (PST)
+Date:   Tue, 17 Dec 2019 12:40:51 +0000
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Subject: Applied "dt-bindings: regulator: Document ROHM BD71282 regulator bindings" to the regulator tree
-In-Reply-To: <0985fec1cce98b1db66e5df2d9bcf2dfd9c224a7.1576054779.git.matti.vaittinen@fi.rohmeurope.com>
-Message-Id: <applied-0985fec1cce98b1db66e5df2d9bcf2dfd9c224a7.1576054779.git.matti.vaittinen@fi.rohmeurope.com>
-X-Patchwork-Hint: ignore
+        Arnd Bergmann <arnd@arndb.de>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH 07/13] PCI: cadence: Add new *ops* for CPU addr fixup
+Message-ID: <20191217124050.GD24359@e119886-lin.cambridge.arm.com>
+References: <20191209092147.22901-1-kishon@ti.com>
+ <20191209092147.22901-8-kishon@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191209092147.22901-8-kishon@ti.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Mon, Dec 09, 2019 at 02:51:41PM +0530, Kishon Vijay Abraham I wrote:
+> Cadence driver uses "mem" memory resource to obtain the offset of
+> configuration space address region, memory space address region and
+> message space address region. The obtained offset is used to program
+> the Address Translation Unit (ATU). However certain platforms like TI's
+> J721E SoC require the absolute address to be programmed in the ATU and not
+> just the offset.
+> 
+> The same problem was solved in designware driver using a platform specific
+> ops for CPU addr fixup in commit a660083eb06c5bb0 ("PCI: dwc: designware:
 
-   dt-bindings: regulator: Document ROHM BD71282 regulator bindings
+Thanks for this reference, though this doesn't need to be in the commit
+log, please put such comments underneath a ---.
 
-has been applied to the regulator tree at
+> Add new *ops* for CPU addr fixup"). Follow a similar mechanism in
+> Cadence too instead of directly using "mem" memory resource in Cadence
+> PCIe core.
+> 
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../pci/controller/cadence/pcie-cadence-host.c    | 15 ++++-----------
+>  drivers/pci/controller/cadence/pcie-cadence.c     |  8 ++++++--
+>  drivers/pci/controller/cadence/pcie-cadence.h     |  1 +
+>  3 files changed, 11 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> index 2efc33b1cade..cf817be237af 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+> @@ -105,15 +105,14 @@ static int cdns_pcie_host_init_root_port(struct cdns_pcie_rc *rc)
+>  static int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
+>  {
+>  	struct cdns_pcie *pcie = &rc->pcie;
+> -	struct resource *mem_res = pcie->mem_res;
+>  	struct resource *bus_range = rc->bus_range;
+>  	struct resource *cfg_res = rc->cfg_res;
+>  	struct device *dev = pcie->dev;
+>  	struct device_node *np = dev->of_node;
+>  	struct of_pci_range_parser parser;
+> +	u64 cpu_addr = cfg_res->start;
+>  	struct of_pci_range range;
+>  	u32 addr0, addr1, desc1;
+> -	u64 cpu_addr;
+>  	int r, err;
+>  
+>  	/*
+> @@ -126,7 +125,9 @@ static int cdns_pcie_host_init_address_translation(struct cdns_pcie_rc *rc)
+>  	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_PCI_ADDR1(0), addr1);
+>  	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_DESC1(0), desc1);
+>  
+> -	cpu_addr = cfg_res->start - mem_res->start;
+> +	if (pcie->ops->cpu_addr_fixup)
+> +		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
+> +
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.6
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Won't this patch cause a breakage for existing users that won't have defined a
+cpu_addr_fixup? The offset isn't being calculated and so cpu_addr will be wrong?
 
 Thanks,
-Mark
 
-From 84a867c078136887dea64fa6e336333b657bc6a1 Mon Sep 17 00:00:00 2001
-From: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Date: Wed, 11 Dec 2019 11:35:57 +0200
-Subject: [PATCH] dt-bindings: regulator: Document ROHM BD71282 regulator
- bindings
+Andrew Murray
 
-Document ROHM BD71828 PMIC regulator device tree bindings.
-
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Link: https://lore.kernel.org/r/0985fec1cce98b1db66e5df2d9bcf2dfd9c224a7.1576054779.git.matti.vaittinen@fi.rohmeurope.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../regulator/rohm,bd71828-regulator.yaml     | 107 ++++++++++++++++++
- 1 file changed, 107 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.yaml
-
-diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.yaml
-new file mode 100644
-index 000000000000..71ce032b8cf8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/rohm,bd71828-regulator.yaml
-@@ -0,0 +1,107 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/rohm,bd71828-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ROHM BD71828 Power Management Integrated Circuit regulators
-+
-+maintainers:
-+  - Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-+
-+description: |
-+  This module is part of the ROHM BD71828 MFD device. For more details
-+  see Documentation/devicetree/bindings/mfd/rohm,bd71828-pmic.yaml.
-+
-+  The regulator controller is represented as a sub-node of the PMIC node
-+  on the device tree.
-+
-+  Regulator nodes should be named to BUCK_<number> and LDO_<number>.
-+  The valid names for BD71828 regulator nodes are
-+  BUCK1, BUCK2, BUCK3, BUCK4, BUCK5, BUCK6, BUCK7
-+  LDO1, LDO2, LDO3, LDO4, LDO5, LDO6, LDO7
-+
-+patternProperties:
-+  "^LDO[1-7]$":
-+    type: object
-+    allOf:
-+      - $ref: regulator.yaml#
-+    description:
-+      Properties for single LDO regulator.
-+
-+    properties:
-+      regulator-name:
-+        pattern: "^ldo[1-7]$"
-+        description:
-+          should be "ldo1", ..., "ldo7"
-+
-+  "^BUCK[1-7]$":
-+    type: object
-+    allOf:
-+      - $ref: regulator.yaml#
-+    description:
-+      Properties for single BUCK regulator.
-+
-+    properties:
-+      regulator-name:
-+        pattern: "^buck[1-7]$"
-+        description:
-+          should be "buck1", ..., "buck7"
-+
-+      rohm,dvs-run-voltage:
-+        allOf:
-+          - $ref: "/schemas/types.yaml#/definitions/uint32"
-+          - minimum: 0
-+            maximum: 3300000
-+        description:
-+          PMIC default "RUN" state voltage in uV. See below table for
-+          bucks which support this. 0 means disabled.
-+
-+      rohm,dvs-idle-voltage:
-+        allOf:
-+          - $ref: "/schemas/types.yaml#/definitions/uint32"
-+          - minimum: 0
-+            maximum: 3300000
-+        description:
-+          PMIC default "IDLE" state voltage in uV. See below table for
-+          bucks which support this. 0 means disabled.
-+
-+      rohm,dvs-suspend-voltage:
-+        allOf:
-+          - $ref: "/schemas/types.yaml#/definitions/uint32"
-+          - minimum: 0
-+            maximum: 3300000
-+        description:
-+          PMIC default "SUSPEND" state voltage in uV. See below table for
-+          bucks which support this. 0 means disabled.
-+
-+      rohm,dvs-lpsr-voltage:
-+        allOf:
-+          - $ref: "/schemas/types.yaml#/definitions/uint32"
-+          - minimum: 0
-+            maximum: 3300000
-+        description:
-+          PMIC default "LPSR" state voltage in uV. See below table for
-+          bucks which support this. 0 means disabled.
-+
-+        # Supported default DVS states:
-+        #     buck       |    run     |   idle    | suspend  | lpsr
-+        #--------------------------------------------------------------
-+        # 1, 2, 6, and 7 | supported  | supported | supported (*)
-+        #--------------------------------------------------------------
-+        # 3, 4, and 5    |                    supported (**)
-+        #--------------------------------------------------------------
-+        #
-+        #(*)  LPSR and SUSPEND states use same voltage but both states have own
-+        #     enable /
-+        #     disable settings. Voltage 0 can be specified for a state to make
-+        #     regulator disabled on that state.
-+        #
-+        #(**) All states use same voltage but have own enable / disable
-+        #     settings. Voltage 0 can be specified for a state to make
-+        #     regulator disabled on that state.
-+
-+    required:
-+      - regulator-name
-+  additionalProperties: false
-+additionalProperties: false
--- 
-2.20.1
-
+>  	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(12) |
+>  		(lower_32_bits(cpu_addr) & GENMASK(31, 8));
+>  	addr1 = upper_32_bits(cpu_addr);
+> @@ -264,14 +265,6 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
+>  	}
+>  	rc->cfg_res = res;
+>  
+> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mem");
+> -	if (!res) {
+> -		dev_err(dev, "missing \"mem\"\n");
+> -		return -EINVAL;
+> -	}
+> -
+> -	pcie->mem_res = res;
+> -
+>  	ret = cdns_pcie_start_link(pcie, true);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to start link\n");
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.c b/drivers/pci/controller/cadence/pcie-cadence.c
+> index de5b3b06f2d0..bd93d0f92f55 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.c
+> @@ -113,7 +113,9 @@ void cdns_pcie_set_outbound_region(struct cdns_pcie *pcie, u8 fn,
+>  	cdns_pcie_writel(pcie, CDNS_PCIE_AT_OB_REGION_DESC1(r), desc1);
+>  
+>  	/* Set the CPU address */
+> -	cpu_addr -= pcie->mem_res->start;
+> +	if (pcie->ops->cpu_addr_fixup)
+> +		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
+> +
+>  	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(nbits) |
+>  		(lower_32_bits(cpu_addr) & GENMASK(31, 8));
+>  	addr1 = upper_32_bits(cpu_addr);
+> @@ -140,7 +142,9 @@ void cdns_pcie_set_outbound_region_for_normal_msg(struct cdns_pcie *pcie, u8 fn,
+>  	}
+>  
+>  	/* Set the CPU address */
+> -	cpu_addr -= pcie->mem_res->start;
+> +	if (pcie->ops->cpu_addr_fixup)
+> +		cpu_addr = pcie->ops->cpu_addr_fixup(pcie, cpu_addr);
+> +
+>  	addr0 = CDNS_PCIE_AT_OB_REGION_CPU_ADDR0_NBITS(17) |
+>  		(lower_32_bits(cpu_addr) & GENMASK(31, 8));
+>  	addr1 = upper_32_bits(cpu_addr);
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+> index c879dd3d2893..ffa8b9f78ff8 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.h
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
+> @@ -233,6 +233,7 @@ struct cdns_pcie_ops {
+>  	void	(*write)(void __iomem *addr, int size, u32 value);
+>  	int	(*start_link)(struct cdns_pcie *pcie, bool start);
+>  	bool	(*is_link_up)(struct cdns_pcie *pcie);
+> +	u64     (*cpu_addr_fixup)(struct cdns_pcie *pcie, u64 cpu_addr);
+>  };
+>  
+>  /**
+> -- 
+> 2.17.1
+> 
