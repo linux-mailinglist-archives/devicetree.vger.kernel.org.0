@@ -2,238 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B1F4122465
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 06:59:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A340122446
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 06:53:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725836AbfLQF6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 00:58:48 -0500
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:21436 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727124AbfLQF6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Dec 2019 00:58:48 -0500
-Received: from pps.filterd (m0098413.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBH5w5Em028408;
-        Tue, 17 Dec 2019 00:58:29 -0500
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 2wxfgsr62d-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 17 Dec 2019 00:58:29 -0500
-Received: from m0098413.ppops.net (m0098413.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id xBH5wTf9029419;
-        Tue, 17 Dec 2019 00:58:29 -0500
-Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 2wxfgsr626-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 17 Dec 2019 00:58:29 -0500
-Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
-        by ppma04wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id xBH5tapp030662;
-        Tue, 17 Dec 2019 05:58:28 GMT
-Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
-        by ppma04wdc.us.ibm.com with ESMTP id 2wvqc69ger-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 17 Dec 2019 05:58:28 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id xBH5wRlb31195556
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 17 Dec 2019 05:58:28 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id DB9C0C605D;
-        Tue, 17 Dec 2019 05:58:27 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7843AC6055;
-        Tue, 17 Dec 2019 05:58:27 +0000 (GMT)
-Received: from [9.70.82.143] (unknown [9.70.82.143])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Tue, 17 Dec 2019 05:58:27 +0000 (GMT)
-Subject: [PATCH V3 08/13] powerpc/vas: Update CSB and notify process for
- fault CRBs
-From:   Haren Myneni <haren@linux.ibm.com>
-To:     mpe@ellerman.id.au
-Cc:     hch@infradead.org, devicetree@vger.kernel.org, mikey@neuling.org,
-        herbert@gondor.apana.org.au, npiggin@gmail.com,
-        linuxppc-dev@lists.ozlabs.org, sukadev@linux.vnet.ibm.com
-In-Reply-To: <1576561080.16318.6531.camel@hbabu-laptop>
-References: <1576561080.16318.6531.camel@hbabu-laptop>
-Content-Type: text/plain; charset="UTF-8"
-Date:   Mon, 16 Dec 2019 21:56:35 -0800
-Message-ID: <1576562195.16318.6542.camel@hbabu-laptop>
-Mime-Version: 1.0
-X-Mailer: Evolution 2.28.3 
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-12-17_01:2019-12-16,2019-12-16 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=785 mlxscore=0
- clxscore=1015 impostorscore=0 bulkscore=0 phishscore=0 adultscore=0
- spamscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
- suspectscore=1 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1910280000 definitions=main-1912170053
+        id S1728064AbfLQFvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 00:51:52 -0500
+Received: from mailout4.samsung.com ([203.254.224.34]:15189 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727683AbfLQFvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 00:51:12 -0500
+Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20191217055109epoutp048b10c5b1ea0372987e06eafc576bf754~hEqrOzWkm0680406804epoutp04e
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2019 05:51:09 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20191217055109epoutp048b10c5b1ea0372987e06eafc576bf754~hEqrOzWkm0680406804epoutp04e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1576561869;
+        bh=8KCqrRiUEVLa3021FF4CS5+nZP/tWBbnEr5rHbveB7c=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=feSl2LeYSKIJz2vnNOgg+fCucOp2aP4P9huSrsEQBoXjlmGy8lVVJ0fjTsIPThBZE
+         4Z1pfbn++btNOwlPpRhEb1xsc2Or/LRBGJIs5JCpNkUK4hF5STm5+l3nTd2n1sMePF
+         ab8uoaF7HHQJC11merFhlx/naXuIsLwdwP1tgbTo=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20191217055108epcas1p1218b944d39a70168aff3d834376885e4~hEqqmUrkv2681226812epcas1p1q;
+        Tue, 17 Dec 2019 05:51:08 +0000 (GMT)
+Received: from epsmges1p2.samsung.com (unknown [182.195.40.153]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 47cS1P6jsDzMqYks; Tue, 17 Dec
+        2019 05:51:05 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        36.C7.48498.9CC68FD5; Tue, 17 Dec 2019 14:51:05 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+        20191217055105epcas1p365e306f27fd53852b793155c929ee634~hEqnhLQga1365213652epcas1p3m;
+        Tue, 17 Dec 2019 05:51:05 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20191217055105epsmtrp27b2b1099645bc64a87516a9a1d1703dc~hEqngVJu31905819058epsmtrp27;
+        Tue, 17 Dec 2019 05:51:05 +0000 (GMT)
+X-AuditID: b6c32a36-a3dff7000001bd72-50-5df86cc990b4
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        E9.7E.06569.9CC68FD5; Tue, 17 Dec 2019 14:51:05 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20191217055105epsmtip1b7ee68403bfad60ee2748cfe982f1131~hEqnUMcXt3103131031epsmtip1Z;
+        Tue, 17 Dec 2019 05:51:05 +0000 (GMT)
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+To:     krzk@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        heiko@sntech.de, leonard.crestez@nxp.com, lukasz.luba@arm.com
+Cc:     a.swigon@samsung.com, m.szyprowski@samsung.com, kgene@kernel.org,
+        cw00.choi@samsung.com, myungjoo.ham@samsung.com,
+        kyungmin.park@samsung.com, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH 0/9] PM / devfreq: Remove deprecated 'devfreq' and
+ 'devfreq-events' properties
+Date:   Tue, 17 Dec 2019 14:57:29 +0900
+Message-Id: <20191217055738.28445-1-cw00.choi@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRjuO2fn7BSuDrPLl1GtI0UK6o46/ZSUKI2V/hBCAmnZYTs4cbd2
+        5rpSanZRspsFpWmZiZfKdI1ckS10IUVpppUZpmVROBNNraCgNk9R/57nfZ7nffne76VweQUZ
+        RGWbbLzVxBkYco7kVnuIMuyh4btG6e2IRYOVhwB6OfWRQBc9nQT69c5LoBPDXhx1dTVJ0ZOC
+        USmqG5ggkGP4BYF67lwg0WSJB6AvQ79wdK7rHoaqCgql6LpnQIpqXnZj6HV+HYkOtXqka+Xq
+        a5XXgNrRUESqb145oG4ec2Hq484GoG55UYmrJx3L0qQZOWv0PKfjrQrepDXrsk1ZCUzK5sz1
+        maoYJRvGxqFYRmHijHwCk5SaFrYh2+B7BqOwc4ZcXymNEwQmInGN1Zxr4xV6s2BLYHiLzmCJ
+        s4QLnFHINWWFa83GeFapjFT5jNtz9IPlVZjlBNw18mCSzAO98mIwm4J0NHzsrQTFYA4lp10A
+        dleMEiL5AmDZwUZSJF8B7B1xYn8jl8reSEShFcDPZz9hIpkCsK30sMTvIulQ6P7UR/rxfHo/
+        vNjumjHh9CsM3n3WT/iFQHo7/NlxeiYgoVfCluZx4McyOh4+GmwE4rjl8GrTfdwfhvRHErYP
+        tfgEykeS4NR4uugJhCMdTqmIg+DkWCsp4r2w/qGHFLNHAXS6nxKiEAXdNaWYvw9Oh8AbdyLE
+        8gp4+0fFzFycngvHpo8R4igZPHr4z8KCYc/QwJ9NLIbVR4pI0aKG/cM5/rKc1sD3E4+wk2Bp
+        2b/+lwBoAAt5i2DM4gXWEvn/LznAzGmGxrjA5c7UNkBTgAmQWezfNHKCswu7jW0AUjgzX+ZS
+        +EoyHbd7D281Z1pzDbzQBlS+3Z3CgxZozb5DN9kyWVVkVFQUimZjVCzLLJJR37s1cjqLs/E5
+        PG/hrX9zGDU7KA9E8/YMY9/Wqr6A6jOO1GfHUgpLpatbX5cnJ2ZHBmt76ULdpqTYVM1Eb+ee
+        6RL3krnF294KG3d0ro119yRjtSUcmWwPnDiftqy51qtch0ZTirbM+1Afh83aX/r8p3ajJl3S
+        LDn57sN1/ai+ydkfIDy15zN3962aDh9ZELFzfF3iFCMR9BwbilsF7jdnY8IWsAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNLMWRmVeSWpSXmKPExsWy7bCSnO7JnB+xBkfeiVjcn9fKaHH9y3NW
+        i/lHzrFa/H/0mtWi//FrZovz5zewW5xtesNuseLuR1aLTY+vsVpc3jWHzeJz7xFGi08P/jNb
+        zDi/j8liYVMLu8XaI3fZLZZev8hkcbtxBZtF694j7A5CHmvmrWH02LSqk81j85J6j43vdjB5
+        9G1Zxeix/do8Zo/Pm+QC2KO4bFJSczLLUov07RK4Mu7PXshU0C9R8eroZ7YGxitCXYycHBIC
+        JhILZt1j6WLk4hAS2M0ocfTUFFaIhKTEtItHmbsYOYBsYYnDh4shaj4xSrxbOA2shk1AS2L/
+        ixtsILaIQBujxJLvciA2s8BzJol9XWYgtrBAnETrqtOMIDaLgKrE9o0fwGxeASuJU/fXMULs
+        kpdYveEA8wRGngWMDKsYJVMLinPTc4sNC4zyUsv1ihNzi0vz0vWS83M3MYKDWEtrB+OJE/GH
+        GAU4GJV4eCVKvscKsSaWFVfmHmKU4GBWEuHdoQAU4k1JrKxKLcqPLyrNSS0+xCjNwaIkziuf
+        fyxSSCA9sSQ1OzW1ILUIJsvEwSnVwGgZ+XOS5/TFibt2n2neM2N2oOZPpr+py+5+eGw7+93S
+        zryYHyavv0zbMpdpb5DRueCCVmddq8L7lzw4SwVtsjJvcBhq73w5vXdR126W2b8yDjq0XH74
+        ov7CrJ+TtW96V9redl3BbPu+9/N7p/PxsnXC6h4S7/+oet+oCQyb+kZYsWpZQWT57WAlluKM
+        REMt5qLiRAABxhNSXgIAAA==
+X-CMS-MailID: 20191217055105epcas1p365e306f27fd53852b793155c929ee634
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20191217055105epcas1p365e306f27fd53852b793155c929ee634
+References: <CGME20191217055105epcas1p365e306f27fd53852b793155c929ee634@epcas1p3.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The devfreq and devfreq-event subsystem provided the following two properties:
+- Provide 'devfreq' property in order to get the parent devfreq device
+  by devfreq_get_devfreq_by_phandle() if devfreq device use passive governor.
+- Provide 'devfreq-events' property in order to get the devfreq-event device
+  by devfreq_event_get_edev_by_phandle().
 
-For each fault CRB, update fault address in CRB (fault_storage_addr)
-and translation error status in CSB so that user space can touch the
-fault address and resend the request. If the user space passed invalid
-CSB address send signal to process with SIGSEGV.
+But, two properties name is not proper expressing the h/w
+and 'devfreq' word is name of linux subsystem intead of any h/w name.
 
-Signed-off-by: Sukadev Bhattiprolu <sukadev@linux.vnet.ibm.com>
-Signed-off-by: Haren Myneni <haren@us.ibm.com>
----
- arch/powerpc/platforms/powernv/vas-fault.c | 121 +++++++++++++++++++++++++++++
- 1 file changed, 121 insertions(+)
+Hand over the rights for deciding the property name for getting
+the devfreq/devfreq-event device on devicetree, to each devfreq driver.
 
-diff --git a/arch/powerpc/platforms/powernv/vas-fault.c b/arch/powerpc/platforms/powernv/vas-fault.c
-index 57f21ea..45bea15c 100644
---- a/arch/powerpc/platforms/powernv/vas-fault.c
-+++ b/arch/powerpc/platforms/powernv/vas-fault.c
-@@ -11,6 +11,7 @@
- #include <linux/slab.h>
- #include <linux/uaccess.h>
- #include <linux/kthread.h>
-+#include <linux/sched/signal.h>
- #include <linux/mmu_context.h>
- #include <asm/icswx.h>
- 
-@@ -26,6 +27,125 @@
- #define VAS_FAULT_WIN_FIFO_SIZE	(4 << 20)
- 
- /*
-+ * Update the CSB to indicate a translation error.
-+ *
-+ * If the fault is in the CSB address itself or if we are unable to
-+ * update the CSB, send a signal to the process, because we have no
-+ * other way of notifying the user process.
-+ *
-+ * Remaining settings in the CSB are based on wait_for_csb() of
-+ * NX-GZIP.
-+ */
-+static void update_csb(struct vas_window *window,
-+			struct coprocessor_request_block *crb)
-+{
-+	int rc;
-+	struct pid *pid;
-+	void __user *csb_addr;
-+	struct task_struct *tsk;
-+	struct kernel_siginfo info;
-+	struct coprocessor_status_block csb;
-+
-+	/*
-+	 * NX user space windows can not be opened for task->mm=NULL
-+	 * and faults will not be generated for kernel requests.
-+	 */
-+	if (!window->mm || !window->user_win)
-+		return;
-+
-+	csb_addr = (void *)be64_to_cpu(crb->csb_addr);
-+
-+	csb.cc = CSB_CC_TRANSLATION;
-+	csb.ce = CSB_CE_TERMINATION;
-+	csb.cs = 0;
-+	csb.count = 0;
-+
-+	/*
-+	 * Returns the fault address in CPU format since it is passed with
-+	 * signal. But if the user space expects BE format, need changes.
-+	 * i.e either kernel (here) or user should convert to CPU format.
-+	 * Not both!
-+	 */
-+	csb.address = be64_to_cpu(crb->stamp.nx.fault_storage_addr);
-+	csb.flags = 0;
-+
-+	use_mm(window->mm);
-+	rc = copy_to_user(csb_addr, &csb, sizeof(csb));
-+	/*
-+	 * User space polls on csb.flags (first byte). So add barrier
-+	 * then copy first byte with csb flags update.
-+	 */
-+	smp_mb();
-+	if (!rc) {
-+		csb.flags = CSB_V;
-+		rc = copy_to_user(csb_addr, &csb, sizeof(u8));
-+	}
-+	unuse_mm(window->mm);
-+
-+	/* Success */
-+	if (!rc)
-+		return;
-+
-+	/*
-+	 * User space passed invalid CSB address, Notify process with
-+	 * SEGV signal.
-+	 */
-+	pid = window->pid;
-+	tsk = get_pid_task(pid, PIDTYPE_PID);
-+	/*
-+	 * Send window will be closed after processing all NX requests
-+	 * and process exits after closing all windows. In multi-thread
-+	 * applications, thread may not exists, but does not close FD
-+	 * (means send window) upon exit. Parent thread (tgid) can use
-+	 * and close the window later.
-+	 * pid and mm references are taken when window is opened by
-+	 * process (pid). So tgid is used only when child thread is not
-+	 * available in multithread tasks.
-+	 *
-+	 */
-+	if (!tsk) {
-+		pid = window->tgid;
-+		tsk = get_pid_task(pid, PIDTYPE_PID);
-+		/*
-+		 * Parent thread will be closing window during its exit.
-+		 * So should not get here.
-+		 */
-+		if (!tsk)
-+			return;
-+	}
-+
-+	/* Do not notify if the task is exiting. */
-+	if (tsk->flags & PF_EXITING) {
-+		put_task_struct(tsk);
-+		return;
-+	}
-+	put_task_struct(tsk);
-+
-+	pr_err("Invalid CSB address 0x%p signalling pid(%d)\n",
-+			csb_addr, pid_vnr(pid));
-+
-+	clear_siginfo(&info);
-+	info.si_signo = SIGSEGV;
-+	info.si_errno = EFAULT;
-+	info.si_code = SEGV_MAPERR;
-+	info.si_addr = csb_addr;
-+
-+	/*
-+	 * process will be polling on csb.flags after request is sent to
-+	 * NX. So generally CSB update should not fail except when an
-+	 * application does not follow the process properly. So an error
-+	 * message will be displayed and leave it to user space whether
-+	 * to ignore or handle this signal.
-+	 */
-+	rcu_read_lock();
-+	rc = kill_pid_info(SIGSEGV, &info, pid);
-+	rcu_read_unlock();
-+
-+	pr_devel("%s(): pid %d kill_proc_info() rc %d\n", __func__,
-+			pid_vnr(pid), rc);
-+}
-+
-+/*
-  * Process CRBs that we receive on the fault window.
-  */
- irqreturn_t vas_fault_handler(int irq, void *data)
-@@ -102,6 +222,7 @@ irqreturn_t vas_fault_handler(int irq, void *data)
- 			return IRQ_HANDLED;
- 		}
- 
-+		update_csb(window, crb);
- 	} while (true);
- 
- 	return IRQ_HANDLED;
+So, replace 'devfreq' and 'devfreq-events' property with following property
+name according to each devfreq driver:
+--------------------------------------------------------------------
+Old property  | New propert        | Device driver name            |
+--------------------------------------------------------------------
+devfreq       | exynos,parent-bus  | exynos-bus.c                  |
+              |                    |                               |
+devfreq-events| exynos,ppmu-device | exynos-bus.c, exynos5422-dmc.c|
+              | rockchip,dfi-device| rk3399_dmc.c                  |
+--------------------------------------------------------------------
+
+Chanwoo Choi (8):
+  PM / devfreq: Remove devfreq_get_devfreq_by_phandle function
+  PM / devfreq: event: Add devfreq_event_get_edev_by_node function
+  PM / devfreq: exynos-bus: Replace deprecated 'devfreq' property
+  PM / devfreq: exynos-bus: Replace deprecated 'devfreq-events' property
+  PM / devfreq: rk3399_dmc: Replace deprecated 'devfreq-events' property
+  memory: samsung: exynos5422-dmc: Replace deprecated 'devfreq-events' property
+  ARM: dts: exynos: Replace deprecated property for Exynos bus and DMC
+  arm64: dts: exynos: Replace deprecated property for Exynos bus
+
+Leonard Crestez (1):
+  PM / devfreq: Add devfreq_get_devfreq_by_node function
+
+ .../bindings/devfreq/exynos-bus.txt           | 22 +++----
+ .../bindings/devfreq/rk3399_dmc.txt           |  4 +-
+ .../memory-controllers/exynos5422-dmc.txt     |  6 +-
+ arch/arm/boot/dts/exynos3250-monk.dts         |  2 +-
+ arch/arm/boot/dts/exynos3250-rinato.dts       | 18 +++---
+ .../boot/dts/exynos4412-itop-scp-core.dtsi    | 16 ++---
+ arch/arm/boot/dts/exynos4412-midas.dtsi       | 18 +++---
+ .../boot/dts/exynos4412-odroid-common.dtsi    | 18 +++---
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi | 34 +++++------
+ .../dts/exynos/exynos5433-tm2-common.dtsi     | 20 +++----
+ drivers/devfreq/devfreq-event.c               | 53 +++--------------
+ drivers/devfreq/devfreq.c                     | 25 +++-----
+ drivers/devfreq/exynos-bus.c                  | 58 ++++++++++++++++---
+ drivers/devfreq/rk3399_dmc.c                  | 16 ++++-
+ drivers/memory/samsung/exynos5422-dmc.c       | 37 ++++++++++--
+ include/linux/devfreq-event.h                 | 14 ++---
+ include/linux/devfreq.h                       |  6 +-
+ 17 files changed, 197 insertions(+), 170 deletions(-)
+
 -- 
-1.8.3.1
-
-
+2.17.1
 
