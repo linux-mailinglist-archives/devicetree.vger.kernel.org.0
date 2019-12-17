@@ -2,103 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F20DB122702
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 09:50:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2CD8122724
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2019 09:56:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726759AbfLQIuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Dec 2019 03:50:22 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:49604 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725893AbfLQIuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Dec 2019 03:50:22 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBH8oIgj011515;
-        Tue, 17 Dec 2019 02:50:18 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1576572618;
-        bh=7VWSQNU7kHSJwi7TH4NML4wI3nW2GubcarW9HzOBN7Q=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=N52btY71OtDkSnFeBOSSRrRcoW29gHkRieddMJuRupAYEk0B//pL5jf88hLP+ECd7
-         5G8q/jX0J9gR40qP6qan5hmVqQO1nS5zfGHZDouUD3QGi0B1NVUC5AbIaJKGI4dH70
-         X49t4DVHOmCdsPOxN0eiYBjhqfSV0Xo2tTOnl9Os=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBH8oI0S040163
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 17 Dec 2019 02:50:18 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 17
- Dec 2019 02:50:18 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 17 Dec 2019 02:50:18 -0600
-Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBH8o6dY062966;
-        Tue, 17 Dec 2019 02:50:15 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>
-Subject: [PATCH 3/3] ARM: dts: beagle-x15-common: Model 5V0 regulator
-Date:   Tue, 17 Dec 2019 14:21:24 +0530
-Message-ID: <20191217085124.22480-4-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191217085124.22480-1-kishon@ti.com>
-References: <20191217085124.22480-1-kishon@ti.com>
+        id S1726734AbfLQI4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Dec 2019 03:56:10 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:56792 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725893AbfLQI4K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Dec 2019 03:56:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=Rb0YZBuF7fyymuJc9F5dt+KrT6e7je4rrQTXU1u/Fns=; b=h/O3F2cMuzQs9kWWtp0mZ9Y8AT
+        ZPV6k3hZ9LS6BQ/tiBQzBib2NSRvrVKCzZzUz51FaXjhMdjMo8XsqR+DHG2mNuo7k864TUBs0FBWR
+        lvj0erRYQOKxcJjzkcydl8CT9Ww4uMh957VKhLXwlUvCUZsXv7wWd/Au5cObY6U8k+XM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.92.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ih8e6-0002Gn-79; Tue, 17 Dec 2019 09:55:58 +0100
+Date:   Tue, 17 Dec 2019 09:55:58 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Chris Snook <chris.snook@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, Russell King <linux@armlinux.org.uk>
+Subject: Re: [PATCH v5 5/5] net: dsa: add support for Atheros AR9331 built-in
+ switch
+Message-ID: <20191217085558.GF6994@lunn.ch>
+References: <20191216074403.313-1-o.rempel@pengutronix.de>
+ <20191216074403.313-6-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191216074403.313-6-o.rempel@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On am57xx-beagle-x15, 5V0 is connected to P16, P17, P18 and P19
-connectors. On am57xx-evm, 5V0 regulator is used to get 3V6 regulator
-which is connected to the COMQ port. Model 5V0 regulator here in order
-for it to be used in am57xx-evm to model 3V6 regulator.
+On Mon, Dec 16, 2019 at 08:44:03AM +0100, Oleksij Rempel wrote:
+> Provide basic support for Atheros AR9331 built-in switch. So far it
+> works as port multiplexer without any hardware offloading support.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> +
+> +/* dummy reg to change page */
+> +#define AR9331_SW_REG_PAGE			BIT(18)
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- .../boot/dts/am57xx-beagle-x15-common.dtsi    | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Nit pick: It seems odd to define a register number using a BIT macro.
 
-diff --git a/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi b/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi
-index 9a94c96b0350..a813a0cf3ff3 100644
---- a/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi
-+++ b/arch/arm/boot/dts/am57xx-beagle-x15-common.dtsi
-@@ -29,6 +29,27 @@
- 		reg = <0x0 0x80000000 0x0 0x80000000>;
- 	};
- 
-+	main_12v0: fixedregulator-main_12v0 {
-+		/* main supply */
-+		compatible = "regulator-fixed";
-+		regulator-name = "main_12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	evm_5v0: fixedregulator-evm_5v0 {
-+		/* Output of TPS54531D */
-+		compatible = "regulator-fixed";
-+		regulator-name = "evm_5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&main_12v0>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
- 	vdd_3v3: fixedregulator-vdd_3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vdd_3v3";
--- 
-2.17.1
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
+    Andrew
