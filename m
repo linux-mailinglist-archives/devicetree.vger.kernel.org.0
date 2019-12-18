@@ -2,115 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A805B1248C8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 14:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 403041248EE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 15:02:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727067AbfLRNyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 08:54:09 -0500
-Received: from mout.gmx.net ([212.227.17.22]:47233 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726998AbfLRNyI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Dec 2019 08:54:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1576677243;
-        bh=ZhcDDcNfsfafFdvs1JQcGHU/hpgdybDLx7pCjlP+xVM=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=XK1rBebkH++Y1QL+eER5du3AZsBxW6t/Gmc0yw30HIR8Ck6ty8siCmjRLlOq9VY1S
-         f8rK3dtAYf2lALCFwZTzrT19Ta+gh/R3TXxQVzHJ4y4/aR7iCZsrdSjHMZwbjGYCxn
-         thnuBI7n/Zcm9BWdNvE8KzRYSOm8dLYgdLfUnFVU=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [185.76.99.135] ([185.76.99.135]) by web-mail.gmx.net
- (3c-app-gmx-bap62.server.lan [172.19.172.132]) (via HTTP); Wed, 18 Dec 2019
- 14:54:03 +0100
+        id S1727255AbfLROB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 09:01:57 -0500
+Received: from mail-vk1-f194.google.com ([209.85.221.194]:37731 "EHLO
+        mail-vk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727215AbfLROB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 09:01:57 -0500
+Received: by mail-vk1-f194.google.com with SMTP id b129so657465vka.4
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2019 06:01:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iDDXhiVTyjttx83CIWs0F1XonSq49Z4FwKDL4AKSMZ0=;
+        b=BQV2PwjmbtuoWSC6pu036LkQ2z7jmrFW6qlzts/aZDJynU93TGkLUhBp1tK0JsTFaT
+         S2b+dwMSp+ypQMOMXdOs9LFVYT7fgaSnIF6v4Fdpd6rCw36hFZjNVJQq/ePUT36d7n1n
+         D1ffm2D1fhMhbjnIctBnD8i0BiNqyl8E/ruo7fbsOjIVAw+HRNjyOX3tha/u9SsSNIk6
+         IB11YGyhc9yROsqDogYMqWIf3e3tv6zde8cexBNY7mOtar629cjEidMYs9B3ROwqzBLd
+         /nM+061/J2VcBtRQ7dKOpHAiXKfXghjHS7RiWirp6/pETZAB1yRLXPv0Fhv0nw2+IMsu
+         UnwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iDDXhiVTyjttx83CIWs0F1XonSq49Z4FwKDL4AKSMZ0=;
+        b=IuRjTWBUXKBm6mtc7T2QM8+rf/lJu7QsuO8CUW0NEOGznxQGBzD9sZ2QHdnpsAgrcu
+         80RIcoZARWg+Z651zcHO1R6q9+M+811MUa6sM++9f6Z8fPFM3FW1VeM934hLninpY2mO
+         gDOA2Yq2VB+h0ilsu4D5XVmpdc34o0wyLkyH9B+h9RtVVa92nDPq0X4hJLrPnpQFrhHV
+         9khdisqr9iV9ZCocEXhU7ohT+9X1Tdu7Xqs4mbfVNDuH/CrzUhGN+1gU9owWftGodAUE
+         RmlC8/EoLB1o/oVdQHlzxXBOtJM/9LOkJN5u3mP6sffhrG9mEZOrjlbupJ56PhxJd8W+
+         Ck+A==
+X-Gm-Message-State: APjAAAW5fXIg/ZornEgukqh/arP1AvNDhyQKG4CmuHrsL1V6FH75XXc2
+        +31GP+OxUZ3/QxMSqjrLFm5dtak5Fd8ayiDVxiOY9g==
+X-Google-Smtp-Source: APXvYqwKppPVSkF/tgQZTFhbMXTfr2S4Ix4tS00kAV6zskzWPozXs1ppIIQpeKIDB7d8k+f5RedW4PwJL7fcueb9+8I=
+X-Received: by 2002:a1f:4541:: with SMTP id s62mr1807754vka.59.1576677716241;
+ Wed, 18 Dec 2019 06:01:56 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <trinity-d7a098bf-51a2-4579-93c9-963826ed2895-1576677243636@3c-app-gmx-bap62>
-From:   "Frank Wunderlich" <frank-w@public-files.de>
-To:     "Masahiro Yamada" <masahiroy@kernel.org>
-Cc:     "Linux Kbuild mailing list" <linux-kbuild@vger.kernel.org>,
-        "Michal Marek" <michal.lkml@markovi.net>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        DTML <devicetree@vger.kernel.org>
-Subject: Aw: Re: [PATCH] kbuild: Add DTC_CPP_FLAGS
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 18 Dec 2019 14:54:03 +0100
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAK7LNARWYE4-4Qp-YfTrrt1YCZ68b28FDoE45cDJkZTqUyXNUw@mail.gmail.com>
-References: <20191218114625.28438-1-frank-w@public-files.de>
- <CAK7LNARWYE4-4Qp-YfTrrt1YCZ68b28FDoE45cDJkZTqUyXNUw@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:IPEYO5erNR3VIgkP26Ywy22WTWQkOf9vN8fjbS56GYJQF0o6de1mtWEGI8IjV1m+jU8TF
- 3k76khgIJtZ6dmgLTKOuR3djzyaqRsERlxXcPq/ov0DxOQv0xSq740gNPqZBhdffYA5EuukAokko
- 9boOvproSK4KWQ/MY5/YNELjGh8WGFILYQtgAJM0rnQZPujUhB89vhNWl6xIf3e33yDAHa+YantC
- ntLllE7GdbDVNceTMN+7KG3qbfzvb9AMflXfOijv8HQoWnCZ1eD6HMRKRIbR6Sononw2Qimr1P0u
- d4=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:s4mPEd+k28k=:K9yIMO1inLEXGbGxzMcLZt
- kxi2OI5xu/PLSRGCYa8rgEvelPZvFG7ScNxj59El6atgpkLps4J0J7OpDTmk0DqTMQu4ILPw5
- RcKuYnhTiRK8D/TZ1ooLUXG/OFLEsEPy2Cent4kgR3+zNwGQwVlC4cxkpyiRemeJcfln89kP7
- wo/BTXQ8x5XxKFY7NhHxIubfgXowzLfpfkJnZYJSBBR3Ny35Axt9/yl0gh6CGxNP9WocpO7pC
- 9+q2fUe9mYfJiLX8+yVD9wG+iyZfEw7kgf/+E9jMpT7gcwaOtKt4qz2PiME2k6wMoT6cpuLcq
- wODlqkagwlWUt7eq0XpfmUp6fVKUPjN2DYh6TyILnRD8pOH6MGdCOvw26bftMKK9QyYD2NWxZ
- MNs3FwOddJjd1ql/0Y/oE9lyRW2MEqML3jGaoJmShuNw7JNjVd+qDi5J1+lMEIA8Lf0CMWMRp
- LIpz6NYKTkMle2hSM7CDpeuSvK3T5Wob+ixDutg8V7vlFNjhW8MUX5PFbIUi2iZmKwR6QGH+v
- BhCVRYf7TOVz30C7SSYQ4NMz/clRBkLC/n5el1BDLAzq+bUQ2gEXqPs+zpXd+XNIDUrUfvNOT
- 9o5putGwzFXN9OY/WF4BwtO3LVSBI13XxV7O1Tloc0gIinlyVefrutQpB/mx4/ECohe/UbI8l
- Igq3b96srX3rzn9vSNoKrXOFnbBu9pbrQJBINL6aOB7Ao8qBBPV9hs4sDC33HQpgHlKw=
-Content-Transfer-Encoding: quoted-printable
+References: <20191211133934.16932-1-ludovic.Barre@st.com>
+In-Reply-To: <20191211133934.16932-1-ludovic.Barre@st.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 18 Dec 2019 15:01:20 +0100
+Message-ID: <CAPDyKFpoqEXO1JvjF=0hX97PiwP=2c1eWORsacb8QvZM=1Tvjw@mail.gmail.com>
+Subject: Re: [PATCH V2] mmc: mmci: add threaded irq to abort DPSM of
+ non-functional state
+To:     Ludovic Barre <ludovic.Barre@st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-thank you for your answer... i waited for this argument ;) so here an exam=
-ple (don't wanted to add in patch itself):
-
-i have 2 different Bananapi-r64 boards with different switch-chips (v0.x r=
-tl8367,v1.x xmt7531). for 1 of the switches (mt7531) there are 2 drivers (=
-phy-driver + dsa driver) available and so i have 3 different configs in DT=
-S.
-
-Imho dtsi should contain only config for 1 chip, but the board has only 1 =
-dts. Till now i have copied the whole dts twice, so i have 3 independent d=
-ts. if i Patch any other in one like for bluetooth, wifi, which is same on=
- each board i have to do it on all 3 dts files.
-
-so i tried to make the switch-part conditionally, include the right dtsi f=
-or switch to 1 bpi-r64 dts based on -D param passed to the build-chain.
-
-#ifdef __SWITCH_RTL8367__
-       #include "rtl8367.dtsi"
-#endif
-#ifdef __SWITCH_MT7531_DSA__
-       #include "mt7531.dtsi"
-#endif
-
-imho i can/should not include a dtsi to a dtsi and no dts to dts, so i can=
-not have a small dts (with the switch-config) including the whole r64 boar=
-d. Am i right?
-
-and this change should be less interferring than other ideas i'm thinking =
-about.
-
-Another example: I had tried adding the include/generated/autoconf.h to dt=
-si (same reason) which needs a change in scripts/dtc/include-prefixes/ (ad=
-d symlink) or an odd include in the dtsi (#include "../../../../../include=
-/generated/autoconf.h"). Both ways not nice...
-
-regards Frank
-
-
-> Gesendet: Mittwoch, 18. Dezember 2019 um 14:31 Uhr
-> Von: "Masahiro Yamada" <masahiroy@kernel.org>
-> I think this is questionable
-> since DT is supposed to describe hardware.
-> Does it depends on #ifdef or some external defines?
+On Wed, 11 Dec 2019 at 14:40, Ludovic Barre <ludovic.Barre@st.com> wrote:
 >
-> If you want to add variations,
-> you can add a new DTS which includes other DTS(I) files.
+> From: Ludovic Barre <ludovic.barre@st.com>
+>
+> If datatimeout occurs on R1B request, the Data Path State Machine stays
+> in busy and is non-functional. Only a reset aborts the DPSM.
+>
+> Like a reset must be outside of critical section, this patch adds
+> threaded irq function to release state machine. In this case,
+> the mmc_request_done is called at the end of threaded irq and
+> skipped into irq handler.
+>
+> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
 
+Applied for next, thanks!
+
+I took the liberty of doing some minor updates (changelog/comment),
+please have a look and let me know if there is something you want me
+to change.
+
+And again, apologize for the delays!
+
+Kind regards
+Uffe
+
+
+> ---
+> change V2:
+>  -check IRQ_WAKE_THREAD only in mmci_cmd_irq error part,
+>   to avoid this test in mmci_request_end.
+>
+> ---
+>  drivers/mmc/host/mmci.c | 46 +++++++++++++++++++++++++++++++++++------
+>  drivers/mmc/host/mmci.h |  1 +
+>  2 files changed, 41 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
+> index 40e72c30ea84..2b91757e3e84 100644
+> --- a/drivers/mmc/host/mmci.c
+> +++ b/drivers/mmc/host/mmci.c
+> @@ -1321,6 +1321,7 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
+>         } else if (host->variant->busy_timeout && busy_resp &&
+>                    status & MCI_DATATIMEOUT) {
+>                 cmd->error = -ETIMEDOUT;
+> +               host->irq_action = IRQ_WAKE_THREAD;
+>         } else {
+>                 cmd->resp[0] = readl(base + MMCIRESPONSE0);
+>                 cmd->resp[1] = readl(base + MMCIRESPONSE1);
+> @@ -1339,7 +1340,10 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
+>                                 return;
+>                         }
+>                 }
+> -               mmci_request_end(host, host->mrq);
+> +
+> +               if (host->irq_action != IRQ_WAKE_THREAD)
+> +                       mmci_request_end(host, host->mrq);
+> +
+>         } else if (sbc) {
+>                 mmci_start_command(host, host->mrq->cmd, 0);
+>         } else if (!host->variant->datactrl_first &&
+> @@ -1532,9 +1536,9 @@ static irqreturn_t mmci_irq(int irq, void *dev_id)
+>  {
+>         struct mmci_host *host = dev_id;
+>         u32 status;
+> -       int ret = 0;
+>
+>         spin_lock(&host->lock);
+> +       host->irq_action = IRQ_HANDLED;
+>
+>         do {
+>                 status = readl(host->base + MMCISTATUS);
+> @@ -1574,12 +1578,41 @@ static irqreturn_t mmci_irq(int irq, void *dev_id)
+>                 if (host->variant->busy_detect_flag)
+>                         status &= ~host->variant->busy_detect_flag;
+>
+> -               ret = 1;
+>         } while (status);
+>
+>         spin_unlock(&host->lock);
+>
+> -       return IRQ_RETVAL(ret);
+> +       return host->irq_action;
+> +}
+> +
+> +/*
+> + * mmci_irq_threaded is call if the mmci host need to release state machines
+> + * before to terminate the request.
+> + * If datatimeout occurs on R1B request, the Data Path State Machine stays
+> + * in busy and is non-functional. Only a reset can to abort the DPSM.
+> + */
+> +static irqreturn_t mmci_irq_threaded(int irq, void *dev_id)
+> +{
+> +       struct mmci_host *host = dev_id;
+> +       unsigned long flags;
+> +
+> +       if (host->rst) {
+> +               reset_control_assert(host->rst);
+> +               udelay(2);
+> +               reset_control_deassert(host->rst);
+> +       }
+> +
+> +       spin_lock_irqsave(&host->lock, flags);
+> +       writel(host->clk_reg, host->base + MMCICLOCK);
+> +       writel(host->pwr_reg, host->base + MMCIPOWER);
+> +       writel(MCI_IRQENABLE | host->variant->start_err,
+> +              host->base + MMCIMASK0);
+> +
+> +       host->irq_action = IRQ_HANDLED;
+> +       mmci_request_end(host, host->mrq);
+> +       spin_unlock_irqrestore(&host->lock, flags);
+> +
+> +       return host->irq_action;
+>  }
+>
+>  static void mmci_request(struct mmc_host *mmc, struct mmc_request *mrq)
+> @@ -2071,8 +2104,9 @@ static int mmci_probe(struct amba_device *dev,
+>                         goto clk_disable;
+>         }
+>
+> -       ret = devm_request_irq(&dev->dev, dev->irq[0], mmci_irq, IRQF_SHARED,
+> -                       DRIVER_NAME " (cmd)", host);
+> +       ret = devm_request_threaded_irq(&dev->dev, dev->irq[0], mmci_irq,
+> +                                       mmci_irq_threaded, IRQF_SHARED,
+> +                                       DRIVER_NAME " (cmd)", host);
+>         if (ret)
+>                 goto clk_disable;
+>
+> diff --git a/drivers/mmc/host/mmci.h b/drivers/mmc/host/mmci.h
+> index 158e1231aa23..5e63c0596364 100644
+> --- a/drivers/mmc/host/mmci.h
+> +++ b/drivers/mmc/host/mmci.h
+> @@ -412,6 +412,7 @@ struct mmci_host {
+>
+>         struct timer_list       timer;
+>         unsigned int            oldstat;
+> +       u32                     irq_action;
+>
+>         /* pio stuff */
+>         struct sg_mapping_iter  sg_miter;
+> --
+> 2.17.1
+>
