@@ -2,149 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E473124D5C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 17:27:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58867124D91
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 17:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727626AbfLRQYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 11:24:22 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:27760 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727577AbfLRQYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 11:24:12 -0500
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
-  Eugen.Hristev@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Eugen.Hristev@microchip.com";
-  x-sender="Eugen.Hristev@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
-  include:servers.mcsv.net include:mktomail.com
-  include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Eugen.Hristev@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com; spf=Pass smtp.mailfrom=Eugen.Hristev@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: bf1H/xFMqKgXahp31c/tqJTXlbFQMSYHPhVaCTR8lMFEVk6ZzRD/DmfN0ALSD08X96EUJ94J3D
- 6coHAHi46/HczHjSark5kIa60a+lySkeoNcP0JaZDJQFXYnVNOx29Ev4THBrQGdZjapDjTdIS9
- 3Ey64sXJDJDHNUwFtPZ17rduDRM/FJXNiWX8j6F2w3OTuv03S+a77kBLOFgEN9gfB0INqTSKcv
- XuOp/leJJlHgnvWW3tNJ6l0BgDAFHr5SjeEGKK0sMmeR4sDPV81CHVyo17p5gugO/62Vvogy+M
- IO4=
-X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; 
-   d="scan'208";a="58200070"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Dec 2019 09:24:11 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 18 Dec 2019 09:24:08 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 18 Dec 2019 09:24:08 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UjqbQJ5bhPrCZgsKks3OTmO2HmMqJLnJ7XHMcORDAb971Nfn1bbF/jI0qtODIDSUfThKotWuHAHyJrNDLfmGSTLimgUDMqTUWpavEoyneVBvRVUkffPf+moeBrGY4CwVs1KP0gu+XWj5rmV8oJCbOdZ7FHcu2g1cw3sMQ5K8eDcRCXzDAIz3Xr0QZLr4Ua00yPTT8U8W6ZFXfE6yDxQBgyAPyNgMtdPDLEfhJD81xV7s3uDIaBfT2U4pmTykRfLSGMCqklW1JrOUT7mBIPyU+4GItSFG8K4AwiqdhgwCVklW1Kl6wlB1Nn5bDkmYmhe3UzlR8CD7ihCqhmHBxY1T8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tP5UvQD1MTEBjelpPd3B3IN7q5WR77UDFIA46K2YJt4=;
- b=W5+QYH4iwdK1I5EnevLpMSBh0oq3h+hlnKXwfF5S+93SnVUeZON/OjW19sXXjPyFc3xq5+GzK0ipKtEhKdHo65CBKk5Jxpl7Wq1dwtAo7xaf++kjBoYdXAYIplx76dffuBxXPV+kzCXcR8NuH0FF//UAUngo9Wpu2LLwec/bXia1OnUICPrV9XTjbT0qPPRFtiTEhIDgGTFE45Fsx9xcUYIGutgFxV05hOMFlwnsqRmqc1o4lKq8zMLYD4DJKJ5awOWDOnEaoYREutD1TrDTwTAM2lbJ+qlhZpkyItvjiRwv9nChQ21bdazhUz/Qr2hpcimD/PDD73BsfUO+aqA+FA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S1727260AbfLRQ3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 11:29:17 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:39996 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726931AbfLRQ3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 11:29:17 -0500
+Received: by mail-lj1-f194.google.com with SMTP id u1so2829414ljk.7;
+        Wed, 18 Dec 2019 08:29:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tP5UvQD1MTEBjelpPd3B3IN7q5WR77UDFIA46K2YJt4=;
- b=uzc0bar1kIiZZ4sfbl85qzHvShLhNWvFGvnJ5BuZQ+kGkm0oqu/V7hfqi6yrlfzsoH/fDqZQrChi35sdTTkIpE75UrW7y/xIjnAvCLiQ2KuK9j8aM6swj8vkEuitHyu6VQxpeUGcpGGcdZxgarpvkHmgkdo/PxC7t41FTyYPdbM=
-Received: from DM5PR11MB1242.namprd11.prod.outlook.com (10.168.108.8) by
- DM5PR11MB1913.namprd11.prod.outlook.com (10.175.87.148) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2559.14; Wed, 18 Dec 2019 16:24:05 +0000
-Received: from DM5PR11MB1242.namprd11.prod.outlook.com
- ([fe80::9039:e0e8:9032:20c1]) by DM5PR11MB1242.namprd11.prod.outlook.com
- ([fe80::9039:e0e8:9032:20c1%12]) with mapi id 15.20.2559.012; Wed, 18 Dec
- 2019 16:24:05 +0000
-From:   <Eugen.Hristev@microchip.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <alexandre.belloni@bootlin.com>
-CC:     <Nicolas.Ferre@microchip.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <a.zummo@towertech.it>, <Ludovic.Desroches@microchip.com>,
-        <Eugen.Hristev@microchip.com>
-Subject: [PATCH 10/10] ARM: dts: at91: sama5d2_xplained: enable
- rtc_adc_trigger
-Thread-Topic: [PATCH 10/10] ARM: dts: at91: sama5d2_xplained: enable
- rtc_adc_trigger
-Thread-Index: AQHVtb+QPhJ2pL0iFUaSi+H+uVoRXA==
-Date:   Wed, 18 Dec 2019 16:24:03 +0000
-Message-ID: <1576686157-11939-11-git-send-email-eugen.hristev@microchip.com>
-References: <1576686157-11939-1-git-send-email-eugen.hristev@microchip.com>
-In-Reply-To: <1576686157-11939-1-git-send-email-eugen.hristev@microchip.com>
-Accept-Language: en-US, ro-RO
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.7.4
-x-originating-ip: [94.177.32.156]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d24aa346-f9db-44dd-63eb-08d783d6b3a3
-x-ms-traffictypediagnostic: DM5PR11MB1913:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR11MB19131E4EFDAFDE18415BA94FE8530@DM5PR11MB1913.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:626;
-x-forefront-prvs: 0255DF69B9
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(39860400002)(346002)(376002)(136003)(396003)(199004)(189003)(4744005)(2616005)(66556008)(316002)(107886003)(8676002)(71200400001)(8936002)(66476007)(26005)(6506007)(2906002)(64756008)(66446008)(66946007)(81156014)(76116006)(81166006)(5660300002)(478600001)(36756003)(54906003)(186003)(4326008)(86362001)(6512007)(110136005)(91956017)(6486002);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR11MB1913;H:DM5PR11MB1242.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: microchip.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: eVp+s0zvuU3EAgjepAKGnY5P/yQvUVPIRH3MGIwKVEo0kP9qbLQRsgEaMuBV3FmqIJ+k25QPLKSqXFvRqe/GE7WSidN4Kq2X7CWSpQqwrx+8/n5MM59u5Rp3Djb0RiF+TbhaqTOXtY80qvveSFx3ErgqDyxL2zhC8eFCQtQ68adVvfQafW49AFHCQ3r0T0o4gsWhfQlqRNuCH8nJCTONYIx0vp7tvP2jdHpODHlTKkTVs0p/SvXbQk2ni7X1LSUeeHQXV3iMgGnGwI6RgyQBT+BB+tfo4wxqH3qpmc9fbQtLciNzTfwB6/RQdVXivsEFsAkc2aA5KCUfZKd6uQkUo2Jl1yZ5eRmbtOlGqFXjC3CO/RxlhbRulc5jx14keDpeqpcWhqXd4tTCkvbgIhCFtqJtPGkvVBKRMGblqbAs7BEQhDdiraZDPZi1gwlIlHgY
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=WQicZqKEkT2OZmLOJnAO4CaO5tjlYphliKW/thglAIk=;
+        b=mRjbZ5kqRb+nZFf1VYRVS1SFpeF3hbzu+2gaBs5D6Y2M+gnXwgTING/FvsX+tThtKq
+         5rTMofkjV/E5e/MZ2j3tDncSitqVr6ADrqGh3gW0MIH6jXgQ7BbwX+CUCcHOI3+6Xcxi
+         97QSlFdsUcmdVBFG1VE+oMSIiDWaFff3Mir25eMJE4x2iY0h8l53ivzAeDTGe8640P+2
+         Sl5cDTP9ce5q8uGCXLt+wsXeyEBpIxz/NCwIA2BAaKGk4H6rKTGGnyi4+UycA47MIvyI
+         FI2sw8osMwmsURvQ6ZK9B/QWQeAcUh9Dk7MGjlCBuplDJk02So++mPvc1teFE8iUjS1L
+         bqkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=WQicZqKEkT2OZmLOJnAO4CaO5tjlYphliKW/thglAIk=;
+        b=TSzxmyUj/M9xm7SqTYOv5lmXhgRMQYSe/rAMnzu/p9iqRgA8zByB5PSiFl1eLrfgTP
+         5KQpwYcfnE1qx0p9azkRS5W5San5EHSI33BpMFty3FQVnKTYRezAKWAxuor8hYnMfSWh
+         UBcVwPGba6gSf69IgJ0dH/MsrCBBPiXd9R8uRPXiVwjNeX7U0NnjZ51pkERXDPjxpE5b
+         V1M0xpyJXe0veylyUv9rdIAQiEo/TvDIiNE0/ZnsPXVgkKkcvzmiKWD10lIJ4RVUDaD2
+         SMVZBaaQYkwF4YKrwJ1W1Esx16oJ3k5ulF8a16Y+r3FfVplT8jsE+5tcOQ8ME4Gkapai
+         7HJg==
+X-Gm-Message-State: APjAAAXLYo8Y6QXKl18TQn69jubDhK3qvXHaFKrVZyu0P0d5UCYxzlUt
+        wkekC/WCYPRzVGwnjqjiwOxCmeEy
+X-Google-Smtp-Source: APXvYqyLt6czXw6YDKW6MkhVKWnt1H6Ng7jVNikMA9C5Un3Gx3rBOieGP7JmsHrw3Bj3sbIKfp167A==
+X-Received: by 2002:a2e:9ad8:: with SMTP id p24mr2437609ljj.148.1576686553416;
+        Wed, 18 Dec 2019 08:29:13 -0800 (PST)
+Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
+        by smtp.googlemail.com with ESMTPSA id u16sm1426742ljo.22.2019.12.18.08.29.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Dec 2019 08:29:12 -0800 (PST)
+Subject: Re: [PATCH v4 13/19] ASoC: tegra: Add fallback implementation for
+ audio mclk
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
+        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, spujar@nvidia.com,
+        josephl@nvidia.com, daniel.lezcano@linaro.org,
+        mmaddireddy@nvidia.com, markz@nvidia.com,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1576613046-17159-1-git-send-email-skomatineni@nvidia.com>
+ <1576613046-17159-14-git-send-email-skomatineni@nvidia.com>
+ <e2f96102-33fa-cbe5-f488-666b7b7ffb06@gmail.com>
+ <7e49fef8-112c-1694-9316-7a23db8a01a4@gmail.com>
+ <66a28f8a-82e8-5b12-464c-4c91441d1511@nvidia.com>
+ <fb36edbf-08c9-aa7e-a7fd-6ee15261a525@gmail.com>
+ <de4d2693-3d5c-d154-22eb-2e41ddc12974@gmail.com>
+ <1499a012-f5e1-3c76-6750-5858765a0532@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <13074e67-2807-d494-b8b4-b2e3b529117a@gmail.com>
+Date:   Wed, 18 Dec 2019 19:29:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: d24aa346-f9db-44dd-63eb-08d783d6b3a3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2019 16:24:03.8902
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Hot+cqMGsu1fuiD/NY2uOYGx8Rf1m9uh9Sx5vHJFeC/mLsYvg2+HiEy2wAKpeWtU/+tyoBkj06FKxXvp95pJISFCnRFlH7HDws8gFY2318k=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1913
+In-Reply-To: <1499a012-f5e1-3c76-6750-5858765a0532@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eugen Hristev <eugen.hristev@microchip.com>
+18.12.2019 18:43, Sowjanya Komatineni пишет:
+> 
+> On 12/17/19 11:31 PM, Dmitry Osipenko wrote:
+>> 18.12.2019 10:22, Dmitry Osipenko пишет:
+>>> 18.12.2019 10:14, Sowjanya Komatineni пишет:
+>>>> On 12/17/19 11:01 PM, Dmitry Osipenko wrote:
+>>>>> 18.12.2019 09:59, Dmitry Osipenko пишет:
+>>>>>> 17.12.2019 23:04, Sowjanya Komatineni пишет:
+>>>>>>> mclk is from clk_out_1 which is part of Tegra PMC block and pmc
+>>>>>>> clocks
+>>>>>>> are moved to Tegra PMC driver with pmc as clock provider and
+>>>>>>> using pmc
+>>>>>>> clock ids.
+>>>>>>>
+>>>>>>> New device tree uses clk_out_1 from pmc clock provider.
+>>>>>>>
+>>>>>>> So, this patch adds implementation for mclk fallback to extern1 when
+>>>>>>> retrieving mclk returns -ENOENT to be backward compatible of new
+>>>>>>> device
+>>>>>>> tree with older kernels.
+>>>>>>>
+>>>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>>>>>> ---
+>>>>>>>    sound/soc/tegra/tegra_asoc_utils.c | 11 ++++++++++-
+>>>>>>>    1 file changed, 10 insertions(+), 1 deletion(-)
+>>>>>>>
+>>>>>>> diff --git a/sound/soc/tegra/tegra_asoc_utils.c
+>>>>>>> b/sound/soc/tegra/tegra_asoc_utils.c
+>>>>>>> index fe9ca8acd0fb..1b88c6043082 100644
+>>>>>>> --- a/sound/soc/tegra/tegra_asoc_utils.c
+>>>>>>> +++ b/sound/soc/tegra/tegra_asoc_utils.c
+>>>>>>> @@ -191,7 +191,16 @@ int tegra_asoc_utils_init(struct
+>>>>>>> tegra_asoc_utils_data *data,
+>>>>>>>        data->clk_cdev1 = devm_clk_get(dev, "mclk");
+>>>>>>>        if (IS_ERR(data->clk_cdev1)) {
+>>>>>>>            dev_err(data->dev, "Can't retrieve clk cdev1\n");
+>>>>>>> -        return PTR_ERR(data->clk_cdev1);
+>>>>>>> +        if (PTR_ERR(data->clk_cdev1) != -ENOENT)
+>>>>>>> +            return PTR_ERR(data->clk_cdev1);
+>>>>>>> +        /* Fall back to extern1 */
+>>>>>>> +        data->clk_cdev1 = devm_clk_get(dev, "extern1");
+>>>>>>> +        if (IS_ERR(data->clk_cdev1)) {
+>>>>>>> +            dev_err(data->dev, "Can't retrieve clk extern1\n");
+>>>>>>> +            return PTR_ERR(data->clk_cdev1);
+>>>>>>> +        }
+>>>>>>> +
+>>>>>>> +        dev_err(data->dev, "Falling back to extern1\n");
+>>>>>>>        }
+>>>>>>>          /*
+>>>>>>>
+>>>>>> [    1.769091] ------------[ cut here ]------------
+>>>>>> [    1.769249] WARNING: CPU: 2 PID: 1 at drivers/clk/clk.c:954
+>>>>>> clk_core_disable+0xa5/0x1d4
+>>>>>> [    1.769330] clk_out_1 already disabled
+>>>>>> [    1.769459] Modules linked in:
+>>>>>> [    1.769541] CPU: 2 PID: 1 Comm: swapper/0 Not tainted
+>>>>>> 5.5.0-rc1-next-20191213-00167-g6b9fbcdac8f3-dirty #266
+>>>>>> [    1.769676] Hardware name: NVIDIA Tegra SoC (Flattened Device
+>>>>>> Tree)
+>>>>>> [    1.769775] [<c010e4bd>] (unwind_backtrace) from [<c010a0fd>]
+>>>>>> (show_stack+0x11/0x14)
+>>>>>> [    1.769918] [<c010a0fd>] (show_stack) from [<c09a37b1>]
+>>>>>> (dump_stack+0x85/0x94)
+>>>>>> [    1.770061] [<c09a37b1>] (dump_stack) from [<c011f3d1>]
+>>>>>> (__warn+0xc1/0xc4)
+>>>>>> [    1.770144] [<c011f3d1>] (__warn) from [<c011f691>]
+>>>>>> (warn_slowpath_fmt+0x61/0x78)
+>>>>>> [    1.770285] [<c011f691>] (warn_slowpath_fmt) from [<c04a0e7d>]
+>>>>>> (clk_core_disable+0xa5/0x1d4)
+>>>>>> [    1.770427] [<c04a0e7d>] (clk_core_disable) from [<c04a0fc3>]
+>>>>>> (clk_core_disable_lock+0x17/0x20)
+>>>>>> [    1.770516] [<c04a0fc3>] (clk_core_disable_lock) from [<c07792bb>]
+>>>>>> (tegra_asoc_utils_set_rate+0x53/0x208)
+>>>>>> [    1.770662] [<c07792bb>] (tegra_asoc_utils_set_rate) from
+>>>>>> [<c077b8c5>] (tegra_rt5640_probe+0xd5/0x128)
+>>>>>> [    1.770808] [<c077b8c5>] (tegra_rt5640_probe) from [<c0555eb7>]
+>>>>>> (platform_drv_probe+0x33/0x68)
+>>>>>> [    1.770958] [<c0555eb7>] (platform_drv_probe) from [<c055471d>]
+>>>>>> (really_probe+0x14d/0x240)
+>>>>>> [    1.771099] [<c055471d>] (really_probe) from [<c055493f>]
+>>>>>> (driver_probe_device+0x43/0x11c)
+>>>>>> [    1.771187] [<c055493f>] (driver_probe_device) from [<c0554b25>]
+>>>>>> (device_driver_attach+0x3d/0x40)
+>>>>>> [    1.771328] [<c0554b25>] (device_driver_attach) from [<c0554b5f>]
+>>>>>> (__driver_attach+0x37/0x78)
+>>>>>> [    1.771469] [<c0554b5f>] (__driver_attach) from [<c05532fb>]
+>>>>>> (bus_for_each_dev+0x43/0x6c)
+>>>>>> [    1.771609] [<c05532fb>] (bus_for_each_dev) from [<c0553e0f>]
+>>>>>> (bus_add_driver+0xe3/0x148)
+>>>>>> [    1.771692] [<c0553e0f>] (bus_add_driver) from [<c055531d>]
+>>>>>> (driver_register+0x39/0xa0)
+>>>>>> [    1.771833] [<c055531d>] (driver_register) from [<c0102c2f>]
+>>>>>> (do_one_initcall+0x43/0x1bc)
+>>>>>> [    1.771979] [<c0102c2f>] (do_one_initcall) from [<c1000ce5>]
+>>>>>> (kernel_init_freeable+0x121/0x194)
+>>>>>> [    1.772129] [<c1000ce5>] (kernel_init_freeable) from [<c09b40e9>]
+>>>>>> (kernel_init+0xd/0xd0)
+>>>>>> [    1.772215] [<c09b40e9>] (kernel_init) from [<c01010bd>]
+>>>>>> (ret_from_fork+0x11/0x34)
+>>>>>> [    1.772349] Exception stack(0xde907fb0 to 0xde907ff8)
+>>>>>>
+>>>>> Although, that's probably related to the "ASoC: tegra: Add initial
+>>>>> parent configuration for audio mclk".
+>>>>>
+>>>> Actually I see these warnings of already unprepared and already
+>>>> disabled
+>>>> for pll_a, pll_a_out0, and clk_out_1 even without this whole patch
+>>>> series as well.
+>>>>
+>>>> I think its from tegra_asoc_utils_set_rate() doing
+>>>> clk_disable_unprepare
+>>>> and these clocks are already unprepared and disabled so its just
+>>>> warning
+>>>> from clk_core_unprepare and clk_core_disable.
+>>> Doesn't happen for me without this series.
+> 
+> I looked at wrong log, right earlier clock driver keeps them enabled so
+> asoc_utils_set_rate() disables the clock fine but now enabling audio
+> clock should be done in asoc_utils_init() to let the
+> clk_disable_unprepare from asoc_utils_set_rate not to show this warning.
+> 
+> But actually we don't need to have clock enabled in asoc_utils_init
+> prior to invoking asoc_utils_set_rate from utils_init and its just warns
+> during sound driver probe because clock is already in disabled state. At
+> same time it doesn't harm to have it kept enabled in utils_init. So will
+> keep it enabled in asoc_utils_init to prevent this warning to show up.
+> 
+>> But sound works with both old/new device-trees.
 
-Enable the rtc_adc_trigger node.
-
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d2_xplained.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dt=
-s/at91-sama5d2_xplained.dts
-index 9d0a7fb..606ca70 100644
---- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-+++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
-@@ -645,3 +645,7 @@
- 		};
- 	};
- };
-+
-+&rtc_adc_trigger {
-+	status =3D "okay";
-+};
---=20
-2.7.4
+The rule of thumb: don't enable anything when it shouldn't be enabled.
+If clocks are disabled at the time of drivers probe, then drivers
+shouldn't disable the clocks.
