@@ -2,244 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF7EB124AEC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 16:12:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84F0C124B51
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 16:15:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727512AbfLRPLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 10:11:51 -0500
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:38269 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727511AbfLRPLr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 10:11:47 -0500
-Received: by mail-ua1-f66.google.com with SMTP id z17so750254uac.5
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2019 07:11:45 -0800 (PST)
+        id S1727193AbfLRPPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 10:15:17 -0500
+Received: from mail-eopbgr1400111.outbound.protection.outlook.com ([40.107.140.111]:2975
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726980AbfLRPPQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Dec 2019 10:15:16 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=C5yFUmV7c4AllxY+9Uw/tkKSVsaiQSqJoCOfo9Z4jZZX6iSiQ+AMDM/50epvr/QrMQUdezwduzQopP6JlqffeEOnDxvAFgM0gu4iaGiUc0ruRC3ld+JKSIkAYhW6JrGra2r5JCo0quiu+4Fxq8pgA2YUvPepf1VwJB3wwROa00ZtLTrDrSl6qtpuB5ZHediIj/lzHF4Szk5CvQyNJiS+A5k4umJ1/B429sMVTb7akOEchF7FKC5ta1RP/oebbMlN/WPrPaD5yqTubl3T/rqmOzuWRm3HJJ//6wYN5YgCz2yhD/YmiHxSi+AAIghS9m1g3W4bdL+dscR7rxzZqTYLJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ao4I1Vy0WMgwCvmDeFUNmYHozM75FTFX35O1C9a4eF0=;
+ b=OC15qC+VPUmuBJ3MOUq/tkjMIQMvLmmiJ31EDxUG7Kk9mU3xdJI7pXsoFaVxwAEyDPbJVa4FYAVM4atoP0DHXfOF0bAOkBNwR6HPpDdfXHHPA3d8LdDkZLx4urZQKNw8v3TuuYG3yXRS7HuBiLuUpGNVf1r0L+525dHjXkXaBlTB0/YI6XKk5uNTo8bSkQ320HzDaZqEaeeEl7cU6FPaffqqEb1KWSbt8Fyde96T5HjF5697nWxs1QePU4FhgYFi0Ykp8sTCpB8/606qAwodJvnf1Rjd+9Xv7lXKtpjqsFFfcd4ccrLsW0E0H9R4USp+J5xj0PpLf3xVjXDwi+0Xog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OG/pM/wl2nU75Ce+HHMv6RzUgI11FdyesZawxBUPdMo=;
-        b=sjxLPdqPMrWCiphZxrkk/aw+he+VCwR/j4xHVgnfx30c9y7WrySH0ZYfQ7gh3PREfX
-         wQRdWBaCujUPM62xcIlkuUyLa0wFeKzZkuUT86MuIDwLLJjvJu4Nfp0RXzU1KyHY+I7E
-         f+tfhzGksjrXSTjSfAGuLrf2FB1LywGABMos918G4y5Gi+dKniW7jLz2NdrfTBv/Sres
-         mKHEkeGAGqDurGMX0VzvKl87Ft5xhzwAVN37w2mxLek+aM4x8tCCyDuLs0U46a+F8bxn
-         CK8bNsy93M34jpcpDhqau5xatHXEBHjviqduADf0U+OP+/q4W9lRh697GWBgvPJr41X9
-         bvKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OG/pM/wl2nU75Ce+HHMv6RzUgI11FdyesZawxBUPdMo=;
-        b=NyXDBDCFdkDZIxFPGwWr4Kq/zhEfwvbH0ogTlRxNLPf627KCdHgNRy5BMoW8ThDoZv
-         vYWJvtE8qdZh+5DceB+RpC1s962p//VFXf5sAvUi2rphwQHNf3xqc+XyIu1rVllllZCB
-         GaGNGv8ot8CZ+Y26ij/zSzTR9B1sAU+rr1uK9ECMeJmnlBzTTSPbqTa7q2l6eDMrrfXt
-         KRxiljb86CWHOjn0jCooghTGGJpbchuoEhprdHkeHSUrtyZpR9jzmRmEk+k9/IR33Z70
-         UwCIjtpBvRPAGqmrVrGEKs2++spi9kQVsZQps6xTiXhbHo7uqkzcvSgjNxFkJ2D0CY/o
-         AZ3A==
-X-Gm-Message-State: APjAAAXeDEtxA91lRV/3u/YZpeoT7ZGPaZHxuHhoRcDE78uRk8itGaYk
-        K3nE19sMFNVZmHUj4E22PLkJoRx0TjpZZUAhucUI1lvo0NY=
-X-Google-Smtp-Source: APXvYqxIemSRkPQQlkOHIgb1DLI/F80ZGX0B3DDxjvdIfGtoGmFwb3OGpLHbe5uZsgnRUDNiscbxAsqS/SFF84Oq+ro=
-X-Received: by 2002:ab0:e16:: with SMTP id g22mr1660978uak.129.1576681904792;
- Wed, 18 Dec 2019 07:11:44 -0800 (PST)
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ao4I1Vy0WMgwCvmDeFUNmYHozM75FTFX35O1C9a4eF0=;
+ b=C1cU8TCKwQEVSK7T89yFz3zHnJPHD+Zti+rX5TChCjX+rYc4fc8LQ+jvjZUZ4KkVO9g5mXVxzJPF8sbWSMdISG0LXtUQt89nlNxZ50f/a2kbYBGt+uQbv1m7lHxT7ysYvxSENon8fjR08xK4ieD4LzLE2N5laFfVRq3CKWoTJmY=
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
+ TY1PR01MB1753.jpnprd01.prod.outlook.com (52.133.160.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.18; Wed, 18 Dec 2019 15:15:12 +0000
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::5166:5e51:90f5:3ee1]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::5166:5e51:90f5:3ee1%7]) with mapi id 15.20.2559.012; Wed, 18 Dec 2019
+ 15:15:12 +0000
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+CC:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: RE: [PATCH net-next v2 1/3] dt-bindings: can: rcar_can: Add r8a774b1
+ support
+Thread-Topic: [PATCH net-next v2 1/3] dt-bindings: can: rcar_can: Add r8a774b1
+ support
+Thread-Index: AQHVf3asq0vI/T9FDU6adsa1qbGfO6dadlUAgGX2QUA=
+Date:   Wed, 18 Dec 2019 15:15:12 +0000
+Message-ID: <TY1PR01MB17708F6646BD736C52A22BFCC0530@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+References: <1570717560-7431-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1570717560-7431-2-git-send-email-fabrizio.castro@bp.renesas.com>
+ <20191014181016.GA1927@bogus>
+In-Reply-To: <20191014181016.GA1927@bogus>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: bdad0aa8-d633-4aa4-bd1f-08d783cd1439
+x-ms-traffictypediagnostic: TY1PR01MB1753:|TY1PR01MB1753:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <TY1PR01MB17533B2E222C9CBA4423966DC0530@TY1PR01MB1753.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:494;
+x-forefront-prvs: 0255DF69B9
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(136003)(39860400002)(366004)(376002)(346002)(199004)(189003)(86362001)(81156014)(44832011)(186003)(71200400001)(76116006)(81166006)(66946007)(8676002)(66446008)(64756008)(66556008)(66476007)(9686003)(8936002)(55016002)(2906002)(4326008)(33656002)(53546011)(7416002)(7696005)(6506007)(4744005)(54906003)(316002)(26005)(52536014)(478600001)(5660300002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1753;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: E56h1cKzAOorJEsiyfVGlHadFza/qcvU9/MrDlKKAVPYgm5RpT1cWsxiBBivzQZJXNZ4hdCF5y6qLZuzGUYPIba9tQtyOek0Fy6rJKbF2qnN3tZMuu40DmQgk6OTGdknEErEDZTy+ub0Lm+5AU1SDmQueSejUVhw3ek/UD2PYTIHsBDNm1HSHfXn51lWPdmcwyvx/voGbAUhSXFb5XYUszmBLC513Scw2jD/IvX8+zt+EDORhSeetYiC2N1m7Tz8Ts5dawNNdZo1ypoonPMkZGWQyV7YgeVem9XzdLgTMHyA/QG2fVckA7Xb4nzA9udoDEih6kA16SHgB0SajuVGL3UvhrqZpNUZZj/246rhwX0FBRXz9s1iPJFi0OCuQbsY7y786EXHSO2aKXDznKtHdfYDnoyQhi79in0xosNA2o5phgEZOiPTF14c4E6vWtka
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <1571668177-3766-1-git-send-email-rampraka@codeaurora.org>
- <CAPDyKFoZEc-m7NMnaAa5bjtCSp4wyJqic3cLHk95xracoWcCUA@mail.gmail.com> <0101016eb6152d19-fa1453b7-ae71-49d7-b13b-8c4009375ee1-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101016eb6152d19-fa1453b7-ae71-49d7-b13b-8c4009375ee1-000000@us-west-2.amazonses.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 18 Dec 2019 16:11:08 +0100
-Message-ID: <CAPDyKFoc-c23d4U6m3UMxtA7KhnHeeUN5u-Rpiwsbsz7PnyT+w@mail.gmail.com>
-Subject: Re: [RFC 0/6] mmc: Add clock scaling support for mmc driver
-To:     Ram Prakash Gupta <rampraka@codeaurora.org>
-Cc:     Asutosh Das <asutoshd@codeaurora.org>,
-        Sahitya Tummala <stummala@codeaurora.org>,
-        Sayali Lokhande <sayalil@codeaurora.org>,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        cang@codeaurora.org, ppvk@codeaurora.org,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Doug Anderson <dianders@google.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bdad0aa8-d633-4aa4-bd1f-08d783cd1439
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2019 15:15:12.5348
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KS0aSXdaIr7OTn8EPMZlknI/hhfkKqIBmdbfz6rzlgeBYi0t8LtmhRI6RPDcdUGa8Ftb7lM9vM374G+TfU8e3ry3Zz3bMpxzSHNhu4gaIdU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1753
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Nov 2019 at 08:34, <rampraka@codeaurora.org> wrote:
->
-> Hi Ulf,
->
-> Seems some setting issue with my thunderbird application.
-> Sorry for spams, please ignore my last responses as unsupported
-> characters got added.
->
-> Typing my response again from browser and re-sending.
->
-> Thanks,
-> Ram
->
-> On 2019-10-22 14:10, Ulf Hansson wrote:
-> > On Mon, 21 Oct 2019 at 16:30, Ram Prakash Gupta
-> > <rampraka@codeaurora.org> wrote:
-> >>
-> >> This change adds the use of devfreq based clock scaling to MMC.
-> >> This applicable for eMMC and SDCard.
-> >> For some workloads, such as video playback, it isn't necessary
-> >> for these cards to run at high speed. Running at lower
-> >> frequency, in such cases can still meet the deadlines for data
-> >> transfers.
-> >>
-> >> Scaling down the clock frequency dynamically has power savings
-> >> not only because the bus is running at lower frequency but also
-> >> has an advantage of scaling down the system core voltage, if
-> >> supported. Provide an ondemand clock scaling support similar
-> >> to the cpufreq ondemand governor having two thresholds,
-> >> up_threshold and down_threshold to decide whether to increase
-> >> the frequency or scale it down respectively as per load.
+Hi Geert,
+
+Do you think you can take this patch?
+
+Thanks,
+Fab
+
+> From: Rob Herring <robh@kernel.org>
+> Sent: 14 October 2019 19:10
+> Subject: Re: [PATCH net-next v2 1/3] dt-bindings: can: rcar_can: Add r8a7=
+74b1 support
+>=20
+> On Thu, 10 Oct 2019 15:25:58 +0100, Fabrizio Castro wrote:
+> > Document RZ/G2N (r8a774b1) SoC specific bindings.
 > >
-> > This sounds simple, but what the series is doing is far more
-> > complicated but scaling the bus clock, as it also re-negotiates the
-> > bus speed mode.
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > v1->v2:
+> > * No change
 > >
-> > Each time the triggering point for scaling up/down is hit, then a
-> > series of commands needs to be sent to the card, including running the
-> > tuning procedure. The point is, for sure, this doesn't come for free,
-> > both from a latency point of view, but also from an energy cost point
-> > of view. So, whether this really improves the behaviour, seems like
-> > very use case sensitive, right!?
->
-> Switching modes would incur some latency for sending commands to switch
-> modes, but tuning is not needed as most of the emmc devices used now a
-> days are with enhanced strobe support, so tuning would not add up any
-> latency as it is not required in hs400 enhanced strobe mode.
->
-> This feature is implemented for video playback case, where data transfer
-> request is less, where this feature helps with saving power consumption.
->
-> And when there is burst of data transfer request, load will remain
-> _high_
-> so there won't be any switching and hence it won't affect any existing
-> use cases from latency point of view.
->
-> Also if hw supports to switch clk frequency without changing mode. I
-> will
-> make change in code. For this I have seek input from hw team.
->
->  From collected data, I see this feature is helping in saving power
-> consumption. And no energy penalty is observed. Please share if I am
-> missing any specific. Power saving using this feature is quite good
-> and considerable. Please find the data below.
->
-> Use Case                             Delta at Battery  Power Impact
-> 30 fps at HD 1080p decode 20Mbps       10 mA               11%
-> 30 fps at UHD 8b H.264 42 Mbps         20.93 mA            19%
->
+> >  Documentation/devicetree/bindings/net/can/rcar_can.txt | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
 > >
-> > Overall, when it comes to use cases, we have very limited knowledge
-> > about them at the mmc block layer level. I think it should remain like
-> > that. If at any place at all, this information is better maintained by
-> > the generic block layer and potentially the configured I/O scheduler.
->
-> I think, generic block layer do not have knowledge of use case for data
-> transfer request. And devfreq framework have been used to implement this
-> feature, which should be same in any layer.
-
-Just to be clear, my main concern here is not using the devfreq framework.
-
-It's rather whether switching speed modes is really worth it, which
-Doug pointed out as well.
-
->
-> Also mobile platforms comes mostly with emmc and ufs as storage media.
-> And clock scaling is already implemented in upstream ufs driver using
-> devfreq framework. On similar line, this feature is implemented for mmc
-> driver. So I believe, clk scaling implementation is better placed in mmc
-> driver rather in generic block layer.
-
-At some point you want to trigger the clock to be scaled up/down,
-probably because of reaching some bandwidth threshold. This part seems
-like a generic block thing and not an mmc specific thing.
-
-Exactly how that would affect this approach is hard to say, but my
-point is, that I don't want to sprinkle the mmc subsystem with code
-that may belong in upper common layers.
-
->
-> >
-> > This brings me to a question about the tests you have you run. Can you
-> > share some information and data about that?
->
-> Test case used are 1080p and 4k video playback use case. As this feature
-> is implemented specifically for video playback use case.
-
-Right.
-
-It seems to me, that you are optimizing for only one particular use
-case. How do you make sure to not increase energy consumption, for
-other use cases that would gain from running at the highest speed mode
-and "race to idle"?
-
-I think you need to take a step back and think more general about this
-approach. More importantly, you need to provide more data to prove
-your approach, also according to suggestions from Dough.
-
-> >
-> >>
-> >>
-> >> Ram Prakash Gupta (6):
-> >>   mmc: core: Parse clk scaling dt entries
-> >>   mmc: core: Add core scaling support in driver
-> >>   mmc: core: Initialize clk scaling for mmc and SDCard
-> >>   mmc: core: Add debugfs entries for scaling support
-> >>   mmc: sdhci-msm: Add capability in platfrom host
-> >>   dt-bindings: mmc: sdhci-msm: Add clk scaling dt parameters
-> >>
-> >>  .../devicetree/bindings/mmc/sdhci-msm.txt          |  19 +
-> >
-> > I noticed that the DT patch was put last in the series, but the
-> > parsing is implemented in the first patch. Please flip this around. If
-> > you want to implement DT parsing of new bindings, please make sure to
-> > discuss the new bindings first.
->
-> I will update in next post.
->
-> >
-> >>  drivers/mmc/core/block.c                           |  19 +-
-> >>  drivers/mmc/core/core.c                            | 777
-> >> +++++++++++++++++++++
-> >>  drivers/mmc/core/core.h                            |  17 +
-> >>  drivers/mmc/core/debugfs.c                         |  90 +++
-> >>  drivers/mmc/core/host.c                            | 226 ++++++
-> >>  drivers/mmc/core/mmc.c                             | 246 ++++++-
-> >>  drivers/mmc/core/queue.c                           |   2 +
-> >>  drivers/mmc/core/sd.c                              |  84 ++-
-> >>  drivers/mmc/host/sdhci-msm.c                       |   2 +
-> >>  include/linux/mmc/card.h                           |   7 +
-> >>  include/linux/mmc/host.h                           |  66 ++
-> >>  12 files changed, 1550 insertions(+), 5 deletions(-)
-> >
-> > This is a lot of new code in the mmc core, which I would then need to
-> > maintain, of course. I have to admit, I am a bit concerned about that,
-> > so you have to convince me that there are good reasons for me to apply
-> > this.
-> >
-> > As I stated above, I think the approach looks quite questionable in
-> > general. And even if you can share measurement, that it improves the
-> > behaviour, I suspect (without a deeper code review) that some of the
-> > code better belongs in common block device layer.
->
->  From the collected power data, I see this as good reason to have this
-> feature in mmc driver as number is quite considerable.
->
-> For approach, it would be helpful if you share your inputs regarding
-> this
-> approach. And as you have stated, this can be further discussed after a
-> review from you.
-
-Besides my comments above, Doug has provided you with valuable
-feedback. Please follow up on that as well, if you still intend to
-pursue with this approach.
-
-Kind regards
-Uffe
+>=20
+> Acked-by: Rob Herring <robh@kernel.org>
