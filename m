@@ -2,75 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9D512460A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 12:46:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11279124619
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 12:49:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726749AbfLRLq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 06:46:27 -0500
-Received: from foss.arm.com ([217.140.110.172]:43340 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725930AbfLRLq1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Dec 2019 06:46:27 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F0DC430E;
-        Wed, 18 Dec 2019 03:46:26 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4AE713F6CF;
-        Wed, 18 Dec 2019 03:46:26 -0800 (PST)
-Date:   Wed, 18 Dec 2019 11:46:24 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     robh@kernel.org, lee.jones@linaro.org, linus.walleij@linaro.org,
-        vinod.koul@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        spapothi@codeaurora.org, bgoswami@codeaurora.org,
-        linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v5 03/11] ASoC: wcd934x: add support to wcd9340/wcd9341
- codec
-Message-ID: <20191218114624.GB3219@sirena.org.uk>
-References: <20191217121642.28534-1-srinivas.kandagatla@linaro.org>
- <20191217121642.28534-4-srinivas.kandagatla@linaro.org>
+        id S1726856AbfLRLtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 06:49:19 -0500
+Received: from inca-roads.misterjones.org ([213.251.177.50]:41229 "EHLO
+        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726141AbfLRLtT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Dec 2019 06:49:19 -0500
+Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
+        (envelope-from <maz@kernel.org>)
+        id 1ihXpI-0007MK-JJ; Wed, 18 Dec 2019 12:49:12 +0100
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Subject: RE: [PATCH 1/3] dt-bindings/irq: add binding for NXP INTMUX  interrupt multiplexer
+X-PHP-Originating-Script: 0:main.inc
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uQr8t48UFsdbeI+V"
-Content-Disposition: inline
-In-Reply-To: <20191217121642.28534-4-srinivas.kandagatla@linaro.org>
-X-Cookie: Power is poison.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Wed, 18 Dec 2019 11:49:12 +0000
+From:   Marc Zyngier <maz@kernel.org>
+Cc:     <tglx@linutronix.de>, <jason@lakedaemon.net>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <shawnguo@kernel.org>,
+        <s.hauer@pengutronix.de>, "S.j. Wang" <shengjiu.wang@nxp.com>,
+        <kernel@pengutronix.de>, <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Andy Duan <fugang.duan@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+In-Reply-To: <DB7PR04MB4618957D7423FFBAECD1EC7EE6530@DB7PR04MB4618.eurprd04.prod.outlook.com>
+References: <1576653615-27954-1-git-send-email-qiangqing.zhang@nxp.com>
+ <1576653615-27954-2-git-send-email-qiangqing.zhang@nxp.com>
+ <254925e345493019c3e1e558b37e46f2@www.loen.fr>
+ <DB7PR04MB4618048D025D094618C6F99FE6530@DB7PR04MB4618.eurprd04.prod.outlook.com>
+ <DB7PR04MB4618957D7423FFBAECD1EC7EE6530@DB7PR04MB4618.eurprd04.prod.outlook.com>
+Message-ID: <796eb027cbecbdc9dbc01b417d196a44@www.loen.fr>
+X-Sender: maz@kernel.org
+User-Agent: Roundcube Webmail/0.7.2
+X-SA-Exim-Connect-IP: <locally generated>
+X-SA-Exim-Rcpt-To: qiangqing.zhang@nxp.com, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de, shengjiu.wang@nxp.com, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, fugang.duan@nxp.com, aisheng.dong@nxp.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2019-12-18 11:34, Joakim Zhang wrote:
+>> -----Original Message-----
+>> From: Joakim Zhang <qiangqing.zhang@nxp.com>
+>> Sent: 2019年12月18日 18:22
+>> To: Marc Zyngier <maz@kernel.org>
+>> Cc: tglx@linutronix.de; jason@lakedaemon.net; robh+dt@kernel.org;
+>> mark.rutland@arm.com; shawnguo@kernel.org; s.hauer@pengutronix.de; 
+>> S.j.
+>> Wang <shengjiu.wang@nxp.com>; kernel@pengutronix.de;
+>> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
+>> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-arm-kernel@lists.infradead.org; Andy Duan 
+>> <fugang.duan@nxp.com>;
+>> Aisheng Dong <aisheng.dong@nxp.com>
+>> Subject: RE: [PATCH 1/3] dt-bindings/irq: add binding for NXP INTMUX 
+>> interrupt
+>> multiplexer
 
---uQr8t48UFsdbeI+V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[...]
 
-On Tue, Dec 17, 2019 at 12:16:34PM +0000, Srinivas Kandagatla wrote:
+>> > What I don't understand is how the interrupt descriptor can 
+>> indicate
+>> > which channel it is multiplexed on. The driver doesn't makes this
+>> > clear either, and I strongly suspect that it was never tested with 
+>> more than a
+>> single channel...
+>>
+>> Yes, to be frank, I tested with a signle channel, I will take this 
+>> into
+>> consideration. Thanks.
+> Hi Marc,
+>
+> I tested channels from 1 to 8, and no issue found.
+>
+> We register irq handler with irq_set_chained_handler_and_data(), so
+> the interrupt descriptor could find the controller's private data, 
+> and
+> channel index is one part of private data.
+> I think this can explain the interrupt descriptor how to indicate
+> which channel it is multiplexed.
 
-> +config SND_SOC_WCD934X
-> +	tristate "WCD9340/WCD9341 Codec"
-> +	depends on SLIMBUS
-> +	select REGMAP_SLIMBUS
-> +	select REGMAP_IRQ
-> +	help
+But that doesn't explain how the driver can find which channel a given
+interrupts is wired to. Nothing in your binding shows how you can 
+extract
+the channel number from the interrupt descriptor. Nothing in the driver
+even *computes* a channel number.
 
-Why does this not depend on the MFD change?
+As far as I can see, you register a bunch of domains, all with the same
+OF node, so all your interrupts end-up with the same domain. Is it 
+really
+what you expect?
 
---uQr8t48UFsdbeI+V
-Content-Type: application/pgp-signature; name="signature.asc"
+This driver looks terribly wrong.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl36EY8ACgkQJNaLcl1U
-h9CJewf/UNyw0O0xrJ7lqLqOtpx2X0NT8thQQh2NcyNp4m8qbmYDJ15qmTMAM+yj
-mP+3wP/Qf8hD8sTAidpOg9krTC5rCGi8k7lHizePkZEkmxilFp6IEr4xPSFimHhR
-bp2p/9XvAgJcXlsDTaRRknBtErDfSIfcNmPjC9Lz0Q9jAlQKMjPVj9K7Wm4o96zQ
-L/Cz3jQOHeNSRCBQKjkMDUSesDQIzZUAAEShRq82RT+dxa8K531f8AoFQKf+D2KZ
-3EmrYGye3MJgMTZ+8elie/8uBaRKqhCei3zZecF05lN43KThV/U5aEGY/p/RW6O4
-xnnuzr+hkC5Hu7jMR8DbzcNHfEuS+g==
-=vos4
------END PGP SIGNATURE-----
-
---uQr8t48UFsdbeI+V--
+         M.
+-- 
+Jazz is not dead. It just smells funny...
