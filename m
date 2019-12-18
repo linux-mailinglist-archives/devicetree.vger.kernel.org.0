@@ -2,165 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6690C1240D4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 09:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC3F41240EC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 09:03:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725955AbfLRIAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 03:00:11 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:30607 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725882AbfLRIAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 03:00:11 -0500
-Received: from [10.28.39.99] (10.28.39.99) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 18 Dec
- 2019 16:00:21 +0800
-Subject: Re: [PATCH v4 1/6] dt-bindings: clock: meson: add A1 PLL clock
- controller bindings
-To:     Maxime Ripard <maxime@cerno.tech>
-CC:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Chandle Zou <chandle.zou@amlogic.com>,
-        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20191206074052.15557-1-jian.hu@amlogic.com>
- <20191206074052.15557-2-jian.hu@amlogic.com>
- <20191213103856.qo7vlnuk4ajz3vq5@gilmour.lan>
-From:   Jian Hu <jian.hu@amlogic.com>
-Message-ID: <ba16b846-1d5f-3d1e-e8e2-420687d11e8a@amlogic.com>
-Date:   Wed, 18 Dec 2019 16:00:20 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1726526AbfLRICb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 03:02:31 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:49981 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726788AbfLRICa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 03:02:30 -0500
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ihUHj-0004ei-JI; Wed, 18 Dec 2019 09:02:19 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ihUHg-0000Ze-C8; Wed, 18 Dec 2019 09:02:16 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Andrew Lunn <andrew@lunn.ch>, Chris Snook <chris.snook@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        James Hogan <jhogan@kernel.org>,
+        Jay Cliburn <jcliburn@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Burton <paul.burton@mips.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, Russell King <linux@armlinux.org.uk>
+Subject: [PATCH v7 0/4] add dsa switch support for ar9331
+Date:   Wed, 18 Dec 2019 09:02:11 +0100
+Message-Id: <20191218080215.2151-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <20191213103856.qo7vlnuk4ajz3vq5@gilmour.lan>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.28.39.99]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime
+changes v6:
+- remove ag71xx changes from this patch set. It needs more work.
+- ar9331: fix register definition and add ASCII art switch documentation.
 
-Thanks for your review
+changes v6:
+- rebase against net-next
 
-On 2019/12/13 18:38, Maxime Ripard wrote:
-> Hi,
-> 
-> On Fri, Dec 06, 2019 at 03:40:47PM +0800, Jian Hu wrote:
->> Add the documentation to support Amlogic A1 PLL clock driver,
->> and add A1 PLL clock controller bindings.
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
->>   include/dt-bindings/clock/a1-pll-clkc.h       | 16 +++++
->>   2 files changed, 75 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->>   create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->> new file mode 100644
->> index 000000000000..7feeef5abf1b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->> @@ -0,0 +1,59 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->> +/*
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + */
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
->> +
->> +maintainers:
->> +  - Neil Armstrong <narmstrong@baylibre.com>
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +  - Jian Hu <jian.hu@jian.hu.com>
->> +
->> +properties:
->> +  compatible:
->> +    - enum:
->> +        - amlogic,a1-pll-clkc
-> 
-> I'm not sure this works, compatible shouldn't contain a list.
-> 
-I refered to 
-Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml.
+changes v5:
+- remote support for port5. The effort of using this port is
+  questionable. Currently, it is better to not use it at all, then
+  adding buggy support.
+- remove port enable call back. There is nothing what we actually need
+  to enable.
+- rebase it against v5.5-rc1 
 
-I have used 'dt-doc-validate' tools to check, it will report something 
-wrong below.
+changes v4:
+- ag71xx: ag71xx_mac_validate fix always false comparison (&& -> ||)
+- tag_ar9331: use skb_pull_rcsum() instead of skb_pull().
+- tag_ar9331: drop skb_set_mac_header()
 
-properties:compatible: [{'enum': ['amlogic,a1-pll-clkc']}] is not of 
-type 'object', 'boolean'
+changes v3:
+- ag71xx: ag71xx_mac_config: ignore MLO_AN_INBAND mode. It is not
+  supported by HW and SW.
+- ag71xx: ag71xx_mac_validate: return all supported bits on
+  PHY_INTERFACE_MODE_NA
 
-Refer to
-https://github.com/robherring/dt-schema/blob/master/example-schema.yaml
+changes v2:
+- move Atheros AR9331 TAG format to separate patch
+- use netdev_warn_once in the tag driver to reduce potential message spam
+- typo fixes
+- reorder tag driver alphabetically 
+- configure switch to maximal frame size
+- use mdiobus_read/write
+- fail if mdio sub node is not found
+- add comment for post reset state
+- remove deprecated comment about device id
+- remove phy-handle option for node with fixed-link
+- ag71xx: set 1G support only for GMII mode
 
-I will change it like this:
+This patch series provides dsa switch support for Atheros ar9331 WiSoC.
+As side effect ag71xx needed to be ported to phylink to make the switch
+driver (as well phylink based) work properly.
 
-properties:
-   compatible:
-     oneOf:
-       - enum:
-          - amlogic,a1-pll-clkc
+Oleksij Rempel (4):
+  dt-bindings: net: dsa: qca,ar9331 switch documentation
+  MIPS: ath79: ar9331: add ar9331-switch node
+  net: dsa: add support for Atheros AR9331 TAG format
+  net: dsa: add support for Atheros AR9331 built-in switch
 
-And It has been passed by 'dt-doc-validate' tools.
+ .../devicetree/bindings/net/dsa/ar9331.txt    | 148 +++
+ arch/mips/boot/dts/qca/ar9331.dtsi            | 119 ++-
+ arch/mips/boot/dts/qca/ar9331_dpt_module.dts  |  13 +
+ drivers/net/dsa/Kconfig                       |   2 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/qca/Kconfig                   |  11 +
+ drivers/net/dsa/qca/Makefile                  |   2 +
+ drivers/net/dsa/qca/ar9331.c                  | 855 ++++++++++++++++++
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   6 +
+ net/dsa/Makefile                              |   1 +
+ net/dsa/tag_ar9331.c                          |  96 ++
+ 12 files changed, 1255 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/ar9331.txt
+ create mode 100644 drivers/net/dsa/qca/Kconfig
+ create mode 100644 drivers/net/dsa/qca/Makefile
+ create mode 100644 drivers/net/dsa/qca/ar9331.c
+ create mode 100644 net/dsa/tag_ar9331.c
 
-Is it right?
+-- 
+2.24.0
 
-> You can write this like:
-> compatible:
->    const: amlogic,a1-pll-clkc
-> 
->> +  "#clock-cells":
->> +    const: 1
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +clocks:
->> +  minItems: 2
->> +  maxItems: 2
-> 
-> This is redundant, it will be added automatically by the tools ...
-If I remove the minItems, it will pass by dt-doc-validate.
-
-Would please tell how to use dt-schema to generate automatically it?
-
-> 
->> +  items:
->> +   - description: Input xtal_fixpll
->> +   - description: Input xtal_hifipll
-> 
-> ... When you have a list of items :)
-> 
->> +
->> +clock-names:
->> +  minItems: 2
->> +  maxItems: 2
->> +  items:
->> +     - const: xtal_fixpll
->> +     - const: xtal_hifipll
-> 
-> Same story here
-OK, I will change it when I find the right way.
-> 
-> Maxime
-> 
