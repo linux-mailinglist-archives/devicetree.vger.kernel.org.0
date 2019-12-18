@@ -2,87 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D3EA31257B3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 00:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 655DA1257BC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 00:28:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbfLRXY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 18:24:56 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45448 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726561AbfLRXY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 18:24:56 -0500
-Received: by mail-ot1-f65.google.com with SMTP id 59so4535133otp.12;
-        Wed, 18 Dec 2019 15:24:55 -0800 (PST)
+        id S1726559AbfLRX2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 18:28:03 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:42446 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725948AbfLRX2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 18:28:03 -0500
+Received: by mail-ot1-f66.google.com with SMTP id 66so4554074otd.9;
+        Wed, 18 Dec 2019 15:28:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dELFswO/ZamTfaCN5XxodoQpvZdOkZM8MbmQEsadND0=;
-        b=IVhU+NsrrR4AupUkIbPzUhMuJAq9PTyz+EMBBlRXQTOWzSeNig7RED/60+8cS6PX0O
-         HvTks9zfG+Ym/S+S24l8yRW02y5xnJgWQpJxiQW37iUFkCBUQq2hZjoqc7Mh+dT8ouqW
-         E9SUNwwTYZnuRGObBBsUyNGgpgPftnFhcOtbq/y0CNB9LfPG4Q1L0870pJKYWgz/G6PC
-         o+NcYUuFA6K/bq62mdcAtjt3ZbcB6NOU0zxs5FcFOvhfCeZJZHODJTDVEEvghh5lBa8U
-         N0DrnCUkYsGxWely5pElmsRbBN7VP+4Ro2oMBr8p0nheWDvZ+upSSN90PP0OMDHOeLYF
-         Gghw==
-X-Gm-Message-State: APjAAAULbPLGR7aVXbZ9WFLC6amsAxsO2EGS11OsgphzD2NvWKjLPVbC
-        WtkxZBVoycBXJI66x03VkSpr9tnyiA==
-X-Google-Smtp-Source: APXvYqzHyWcPfEyL2EH+lh3tYRLKLa8Bfyz/wUmiKWWg1qLqXOiPu4DAaIA4Yfl1oR1eEiVXugQmNQ==
-X-Received: by 2002:a05:6830:1716:: with SMTP id 22mr5695216otk.229.1576711495116;
-        Wed, 18 Dec 2019 15:24:55 -0800 (PST)
+        bh=/ZyKu0j0L9P7EvNBTxpXXf5dLPtT7NxrO5TJj8pvG5Y=;
+        b=hagH+WzcPCj5kQRzJkjSsDBJnAZ/8sDX4zQp2MbznxGTBL5dBiKdyTL2bhj/vVz67r
+         rL7fvtQ6l4l6c7D2BIwYuzw/lswe7WDPTNUXs1i91koDMMKOGvgfkDGi8JXl/LknXQuE
+         8KS+zSW/0VtccllfqnZOLFMuBOZiky7NjQFBx0oSLqiVcBOSEDLlR+HKWsUZLGCdDZDN
+         4+AcvxImpEAFcvb6vCbmjwnQb6tpeCdLQAgJ6EPk1/LWeHMl1J3ijSu4QE8wqotHVtuD
+         GP93pfS7VV8Qbeo5hOYuoYRPdBfMCzRX2migc6XrAKAi5OcdNySJpuAJxCFSarjHm/6f
+         0lDw==
+X-Gm-Message-State: APjAAAX2FnoHyrdDfhScWEU53eMrpOW/HaxIFa24EqjqflJ1Uw/7qnuJ
+        vwW7IRullOVFVLF19DBUbg==
+X-Google-Smtp-Source: APXvYqwFPAhcuE93trHjiCLFU7ouah/UBbc6dMZe8ceDZG28OQ30K7jW48tVS8UqkME+NAqnpXd6Vw==
+X-Received: by 2002:a05:6830:1248:: with SMTP id s8mr5388885otp.202.1576711682987;
+        Wed, 18 Dec 2019 15:28:02 -0800 (PST)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j23sm1320099oij.56.2019.12.18.15.24.54
+        by smtp.gmail.com with ESMTPSA id w203sm1369927oia.12.2019.12.18.15.28.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2019 15:24:54 -0800 (PST)
-Date:   Wed, 18 Dec 2019 17:24:53 -0600
+        Wed, 18 Dec 2019 15:28:02 -0800 (PST)
+Date:   Wed, 18 Dec 2019 17:28:01 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Michael Grzeschik <m.grzeschik@pengutronix.de>
-Cc:     andrew@lunn.ch, f.fainelli@gmail.com, netdev@vger.kernel.org,
-        davem@davemloft.net, kernel@pengutronix.de,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] dt-bindings: net: dsa: document additional
- Microchip KSZ8863/8873 switch
-Message-ID: <20191218232453.GA23039@bogus>
-References: <20191218200831.13796-1-m.grzeschik@pengutronix.de>
- <20191218200831.13796-5-m.grzeschik@pengutronix.de>
+To:     James Tai <james.tai@realtek.com>
+Cc:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        linux-realtek-soc@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: realtek: Document RTD1319 and
+ Realtek PymParticle EVB
+Message-ID: <20191218232801.GA28835@bogus>
+References: <20191205082555.22633-1-james.tai@realtek.com>
+ <20191205082555.22633-2-james.tai@realtek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191218200831.13796-5-m.grzeschik@pengutronix.de>
+In-Reply-To: <20191205082555.22633-2-james.tai@realtek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 18, 2019 at 09:08:31PM +0100, Michael Grzeschik wrote:
-> It is a 3-Port 10/100 Ethernet Switch. One CPU-Port and two
-> Switch-Ports.
+On Thu, 5 Dec 2019 16:25:54 +0800, James Tai wrote:
+> Define compatible strings for Realtek RTD1319 SoC and Realtek PymParticle
+> EVB.
 > 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Michael Grzeschik <m.grzeschik@pengutronix.de>
+> Signed-off-by: James Tai <james.tai@realtek.com>
 > ---
-> v1 -> v2: - nothing changes
->           - already Acked-by Rob Herring
+>  Documentation/devicetree/bindings/arm/realtek.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-So you need to add the ack to the commit msg.
-
-> 
->  Documentation/devicetree/bindings/net/dsa/ksz.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/ksz.txt b/Documentation/devicetree/bindings/net/dsa/ksz.txt
-> index 95e91e84151c3..a5d71862f53cb 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/ksz.txt
-> +++ b/Documentation/devicetree/bindings/net/dsa/ksz.txt
-> @@ -8,6 +8,8 @@ Required properties:
->    - "microchip,ksz8765"
->    - "microchip,ksz8794"
->    - "microchip,ksz8795"
-> +  - "microchip,ksz8863"
-> +  - "microchip,ksz8873"
->    - "microchip,ksz9477"
->    - "microchip,ksz9897"
->    - "microchip,ksz9896"
-> -- 
-> 2.24.0
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
