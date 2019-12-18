@@ -2,120 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8949112438B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 10:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D168124396
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 10:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726141AbfLRJpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 04:45:23 -0500
-Received: from inca-roads.misterjones.org ([213.251.177.50]:56745 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725930AbfLRJpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Dec 2019 04:45:23 -0500
-Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1ihVtN-0004U6-2R; Wed, 18 Dec 2019 10:45:17 +0100
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Subject: Re: [PATCH 1/3] dt-bindings/irq: add binding for NXP INTMUX  interrupt multiplexer
-X-PHP-Originating-Script: 0:main.inc
+        id S1725955AbfLRJrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 04:47:41 -0500
+Received: from Galois.linutronix.de ([193.142.43.55]:57182 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725799AbfLRJrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 04:47:41 -0500
+Received: from bigeasy by Galois.linutronix.de with local (Exim 4.80)
+        (envelope-from <bigeasy@linutronix.de>)
+        id 1ihVvd-0005Rx-IR; Wed, 18 Dec 2019 10:47:37 +0100
+Date:   Wed, 18 Dec 2019 10:47:37 +0100
+From:   Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Segher Boessenkool <segher@kernel.crashing.org>
+Subject: Re: [PATCH] of: Rework and simplify phandle cache to use a fixed size
+Message-ID: <20191218094737.tqq5oeajfgvds6n5@linutronix.de>
+References: <20191211232345.24810-1-robh@kernel.org>
+ <CAL_JsqKfV-4mx_uidUupQJT4qfq+y+qx1=S=Du-Qsaweh4CPUQ@mail.gmail.com>
+ <20191212130539.loxpr2hbfcodh4gz@linutronix.de>
+ <CAL_JsqJgi+Rd1jiBiTcbuoiZUnpahdNfbAQNkbPH4LEM1Cs09A@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 18 Dec 2019 09:45:16 +0000
-From:   Marc Zyngier <maz@kernel.org>
-Cc:     <tglx@linutronix.de>, <jason@lakedaemon.net>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <shawnguo@kernel.org>,
-        <s.hauer@pengutronix.de>, <shengjiu.wang@nxp.com>,
-        <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <fugang.duan@nxp.com>,
-        <aisheng.dong@nxp.com>
-In-Reply-To: <1576653615-27954-2-git-send-email-qiangqing.zhang@nxp.com>
-References: <1576653615-27954-1-git-send-email-qiangqing.zhang@nxp.com>
- <1576653615-27954-2-git-send-email-qiangqing.zhang@nxp.com>
-Message-ID: <254925e345493019c3e1e558b37e46f2@www.loen.fr>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/0.7.2
-X-SA-Exim-Connect-IP: <locally generated>
-X-SA-Exim-Rcpt-To: qiangqing.zhang@nxp.com, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de, shengjiu.wang@nxp.com, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, fugang.duan@nxp.com, aisheng.dong@nxp.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJgi+Rd1jiBiTcbuoiZUnpahdNfbAQNkbPH4LEM1Cs09A@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-12-18 07:20, Joakim Zhang wrote:
-> This patch adds the DT bindings for the NXP INTMUX interrupt 
-> multiplexer
-> found in the i.MX8 family SoCs.
->
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> ---
->  .../interrupt-controller/fsl,intmux.txt       | 34 
-> +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.txt
->
-> diff --git
+On 2019-12-12 13:28:26 [-0600], Rob Herring wrote:
+> On Thu, Dec 12, 2019 at 7:05 AM Sebastian Andrzej Siewior
+> <bigeasy@linutronix.de> wrote:
+> >
+> > On 2019-12-11 17:48:54 [-0600], Rob Herring wrote:
+> > > > -       if (phandle_cache) {
+> > > > -               if (phandle_cache[masked_handle] &&
+> > > > -                   handle == phandle_cache[masked_handle]->phandle)
+> > > > -                       np = phandle_cache[masked_handle];
+> > > > -               if (np && of_node_check_flag(np, OF_DETACHED)) {
+> > > > -                       WARN_ON(1); /* did not uncache np on node removal */
+> > > > -                       of_node_put(np);
+> > > > -                       phandle_cache[masked_handle] = NULL;
+> > > > -                       np = NULL;
+> > > > -               }
+> > > > +       if (phandle_cache[handle_hash] &&
+> > > > +           handle == phandle_cache[handle_hash]->phandle)
+> > > > +               np = phandle_cache[handle_hash];
+> > > > +       if (np && of_node_check_flag(np, OF_DETACHED)) {
+> > > > +               WARN_ON(1); /* did not uncache np on node removal */
+> > >
+> > > BTW, I don't think this check is even valid. If we failed to detach
+> > > and remove the node from the cache, then we could be accessing np
+> > > after freeing it.
+> >
+> > this is kmalloc()ed memory which is always valid. If the memory is
+> > already re-used then
+> >         handle == phandle_cache[handle_hash]->phandle
+> >
+> > will fail (the check, not the memory access itself).
 > 
-> a/Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.txt
+> There's a 1 in 2^32 chance it won't.
+
+:)
+
+> > If the check
+> > remains valid then you can hope for the OF_DETACHED flag to trigger the
+> > warning.
 > 
-> b/Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.txt
-> new file mode 100644
-> index 000000000000..be3c6848f36c
-> --- /dev/null
-> +++ 
-> b/Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.txt
-> @@ -0,0 +1,34 @@
-> +Freescale INTMUX interrupt multiplexer
-> +
-> +Required properties:
-> +
-> +- compatible: Should be:
-> +	- "fsl,imx-intmux"
-> +- reg: Physical base address and size of registers.
-> +- interrupts: Should contain the parent interrupt lines (up to 8) 
-> used to
-> +  multiplex the input interrupts.
-> +- clocks: Should contain one clock for entry in clock-names.
-> +- clock-names:
-> +   - "ipg": main logic clock
-> +- interrupt-controller: Identifies the node as an interrupt 
-> controller.
-> +- #interrupt-cells: Specifies the number of cells needed to encode 
-> an
-> +  interrupt source. The value must be 1.
-> +
-> +Optional properties:
-> +
-> +- fsl,intmux_chans: The number of channels used for interrupt 
-> source. The
-> +  Maximum value is 8.
-> +
-> +Example:
-> +
-> +	intmux@37400000 {
-> +		compatible = "fsl,imx-intmux";
-> +		reg = <0x37400000 0x1000>;
-> +		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&clk IMX8QM_CM40_IPG_CLK>;
-> +		clock-names = "ipg";
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +		fsl,intmux_chans = <1>;
-> +	};
-> +
+> Keyword is hope.
+> 
+> To look at it another way. Do we need this check? It is in the "fast
+> path". There's a single location where we set OF_DETACHED and the
+> cache entry is removed at the same time. Also, if we do free the
+> node's memory, it also checks for OF_DETACHED. Previously, a free
+> wouldn't happen because we incremented the ref count on nodes in the
+> cache.
 
-What I don't understand is how the interrupt descriptor can indicate
-which channel it is multiplexed on. The driver doesn't makes this
-clear either, and I strongly suspect that it was never tested with
-more than a single channel...
+So get rid of it then. It is just __of_detach_node() that removes it.
 
-Thanks,
+> Rob
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+Sebastian
