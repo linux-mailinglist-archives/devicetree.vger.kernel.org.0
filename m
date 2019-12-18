@@ -2,291 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CFD3124D12
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 17:22:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B1E9124D49
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2019 17:26:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727185AbfLRQW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Dec 2019 11:22:27 -0500
-Received: from mail-eopbgr40080.outbound.protection.outlook.com ([40.107.4.80]:28644
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727124AbfLRQW0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Dec 2019 11:22:26 -0500
+        id S1727437AbfLRQYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Dec 2019 11:24:02 -0500
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:32906 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726985AbfLRQYC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Dec 2019 11:24:02 -0500
+Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
+  Eugen.Hristev@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+  envelope-from="Eugen.Hristev@microchip.com";
+  x-sender="Eugen.Hristev@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+  include:servers.mcsv.net include:mktomail.com
+  include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa5.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+  envelope-from="Eugen.Hristev@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa5.microchip.iphmx.com; spf=Pass smtp.mailfrom=Eugen.Hristev@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: Pj4dhcNBKEnadabKBkLJr6CQTYxW7OjkSOB1cANzjHJsAmlKJ9Qpl88AoCoae1+piF1VYbw+0X
+ Y4Sf+mm81IdiJyAHK2PhBPQ0N2hZCX2Rs2t1EMtI8k6PWA/IaqcD79ries6v8Knu6eSdMvybm1
+ 2+4EXdqc+hZpEqWqnXByMR3PGDoC+L5LrCpcHTes2cVQO4jmEcCMEhOwIvv/YYHa1mss21kxsC
+ i7NEYtCwznZo11l6rUF5kJjCQCg1LExMY64ewX5wuoAZniwqFAvalTMZ5YAAa5djiUW6xvr5px
+ xB0=
+X-IronPort-AV: E=Sophos;i="5.69,330,1571727600"; 
+   d="scan'208";a="59426779"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Dec 2019 09:24:01 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 18 Dec 2019 09:23:58 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5 via Frontend
+ Transport; Wed, 18 Dec 2019 09:23:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=clRIXXL0G13Nnuh3UVWQEy1wE9Ys9ILspf7HFrwwSCDg2Z5g2+NJODBvg3ysV+xADyC9vkTIJyurb+nTMrBBPLRy3cu4IzB+DKWuznlgxFWxpe9Ht9lcutmwmrGy49b68w4cu0uA4XIowJUhbqe9VxH6NUASUq1xl0h48tG4YqH7hGUq84N1ZQ7pq84q7zU2g32p3ie7yDW2UT0AyONp+KK18aZughyRXythaJi5TOiHZt+AkOWeYZX9o+u5+AOFYhDwGnSbJiqwwtsLi5gcUX83+OeO/4A9fcHYXWEQ5oXPENBabtmuOlQFKmsuDUq+Jn0LeFJD/TpDKFXfDVvj7A==
+ b=RP/A+6l5W3Si9Lm4L+KmNhsrAiSJXA+PT0Z8jcibzEp4djtcW5QrovElkDbX6V9GM3VCHbxWnmHgAk1HKMevCNKB6rH31L/S57KIYtEAG6IbGKh1mytEXEe/NBn1jEJ1HvsSbg3WifV/2UPR2ewn+M+WLOkUJFA4OTgw3ao5lNm/ZMkKoodJ70Y01SUvPjmbQXOuwM1in1PKdZExyjmJiA44vlol1P9bTHt6uAeDnP6N6jTDDfNeShgpYJEo4S3eGwSJ4i2y14JP26sxDC0X1OH9DWloFZS6RPJ/PHIfeUlf3NJiPabjkkL/+J6wIl28kJ5tw62C69pPffB7IVZ78g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sKdab3p6OxgZ99tL83gL2haeWlKPxNNLswcCH4jOCPI=;
- b=b9XT7tNKXlZxD0xADeS3AHCIeN8BC3XgGPTwstg79wcPPP8BN83inG/ElaeoncL/wZjvqbxfSk9LedFmVD4+dDbr20ymWsCZsVRp0LhAF4Z0rs2iqPRzljYgESFI02gsg1z8Q9m2Ge1066di+Xz4VbCq5UjlHG4SNYc4t0OXGwdmRbR2Net3BkQkNY0LOmybKfx2m0Hm9NMJKV84gjOkMcPJkkMGhtMiyD2whrY+4kwJAUgpTAYYaS2wJFIPjdA8NLq89UU1GzHFrugeGwZbtiW4Rkykz5KmDdtSkpSCkXa+PNzmlQA120Zvvjm0+YZkBDZQK9JFGXpKTZBWP20JhA==
+ bh=nkbxb1EvYc7ZEC/RY7x0LhCxXUt8pumOzfafB8ahW5s=;
+ b=dGc1194ZqhltYd2KaGUyBmQDF0XeAV/R8A78XHcVWes0zFS69Si1ZEBD7qMke5cMHyyMdhF29y23DJM/x8bClqwchvhYzgYB4rwESiLW60UmSGOkPutQkj8CC/+Sli3HqQz+b+ERL00z50jHVRMR6i1BVveD08AzzAFBwZyElc6fGXG61e1vloxHszNvy9zoCK2QwBpxkJ5bnrQR0yyD3gaCAL6PDpamRdTKamuSfihXpDTiSEafmkQjlakbLdtUhmJi6yY/6KoyE0DZZTNujEL5AEJodNhCw6nnBYVB4GouuCbTIMl4ubDiAjUtr30KTt8xksqPW665J4ePhud8TQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sKdab3p6OxgZ99tL83gL2haeWlKPxNNLswcCH4jOCPI=;
- b=TkYNmdIx4K96VFR4tSamqdd5gKZYTim8pBN7TsX2bsAtQpT5wf4U/BYvpSdgvo5OIeZ4hCWqljl517Zyd9ldIUAz5lu6dewGtY6mDa43Urlwptf6C+lI3jFjERS3aUsrtgV1gB1Wc8Jp6vyg8rCv+cuiNn2dVBHkVmovRSzzTaw=
-Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
- VI1PR04MB5693.eurprd04.prod.outlook.com (20.178.126.142) with Microsoft SMTP
+ bh=nkbxb1EvYc7ZEC/RY7x0LhCxXUt8pumOzfafB8ahW5s=;
+ b=qjM3J37Kkb62vMVODHhSHORGb1h9sckkp+O/puCV4dOd7WO6/ISJrO5QB+kPiI5aVyjhQPuktrW1R5bhIir8CKFfA15RExTFlG2WuI2BP36Qy0XgtVlLGKDVTMMnErgyrf8f2ARfQKiImkMN/07BOmEsJr8V6IvESGhDzsVmJAs=
+Received: from DM5PR11MB1242.namprd11.prod.outlook.com (10.168.108.8) by
+ DM5PR11MB1913.namprd11.prod.outlook.com (10.175.87.148) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2559.14; Wed, 18 Dec 2019 16:22:21 +0000
-Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
- ([fe80::2c49:44c8:2c02:68b1]) by VI1PR04MB7023.eurprd04.prod.outlook.com
- ([fe80::2c49:44c8:2c02:68b1%5]) with mapi id 15.20.2559.012; Wed, 18 Dec 2019
- 16:22:21 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Adam Ford <aford173@gmail.com>, Jacky Bai <ping.bai@nxp.com>
-CC:     Stephen Boyd <sboyd@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Angus Ainslie <angus@akkea.ca>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        Martin Kepplinger <martink@posteo.de>,
-        Silvano Di Ninno <silvano.dininno@nxp.com>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Subject: Re: [PATCH v7 0/5] PM / devfreq: Add dynamic scaling for imx8m ddr
- controller
-Thread-Topic: [PATCH v7 0/5] PM / devfreq: Add dynamic scaling for imx8m ddr
- controller
-Thread-Index: AQHVoX4nPagdJ4eJVUSp7HmX0gzdZg==
-Date:   Wed, 18 Dec 2019 16:22:21 +0000
-Message-ID: <VI1PR04MB702379645745FB697033FE6BEE530@VI1PR04MB7023.eurprd04.prod.outlook.com>
-References: <cover.1574458460.git.leonard.crestez@nxp.com>
- <CAHCN7xKNwit8ueUO0OkebfYh=4hsL7_+DRWEbn2dEt0H322W4w@mail.gmail.com>
- <VI1PR04MB70231CA0E3C4574211518359EE530@VI1PR04MB7023.eurprd04.prod.outlook.com>
- <CAHCN7xJNy0z2hvWbM3UhLni5ruS+sCLeBH8BKiYexe3Sp=6Q0w@mail.gmail.com>
- <VI1PR04MB70235951BC137515BDD2FDC7EE530@VI1PR04MB7023.eurprd04.prod.outlook.com>
- <CAHCN7xKHJAb8k1A+WC3EUOmgLTx-Kbjw_5EsmwyhDkkOKCsmGQ@mail.gmail.com>
-Accept-Language: en-US
+ 15.20.2559.14; Wed, 18 Dec 2019 16:23:58 +0000
+Received: from DM5PR11MB1242.namprd11.prod.outlook.com
+ ([fe80::9039:e0e8:9032:20c1]) by DM5PR11MB1242.namprd11.prod.outlook.com
+ ([fe80::9039:e0e8:9032:20c1%12]) with mapi id 15.20.2559.012; Wed, 18 Dec
+ 2019 16:23:58 +0000
+From:   <Eugen.Hristev@microchip.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <alexandre.belloni@bootlin.com>
+CC:     <Nicolas.Ferre@microchip.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <a.zummo@towertech.it>, <Ludovic.Desroches@microchip.com>,
+        <Eugen.Hristev@microchip.com>
+Subject: [PATCH 00/10] Enhancements to at91-sama5d2_adc and rtc trigger
+Thread-Topic: [PATCH 00/10] Enhancements to at91-sama5d2_adc and rtc trigger
+Thread-Index: AQHVtb+MrR5owibMB0+1LePacD8d5g==
+Date:   Wed, 18 Dec 2019 16:23:57 +0000
+Message-ID: <1576686157-11939-1-git-send-email-eugen.hristev@microchip.com>
+Accept-Language: en-US, ro-RO
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [89.37.124.34]
+x-mailer: git-send-email 2.7.4
+x-originating-ip: [94.177.32.156]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 20fc3907-ca29-45c8-c1a9-08d783d675bb
-x-ms-traffictypediagnostic: VI1PR04MB5693:|VI1PR04MB5693:
+x-ms-office365-filtering-correlation-id: 80a705b2-8144-4f9d-da0c-08d783d6af27
+x-ms-traffictypediagnostic: DM5PR11MB1913:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB56931FE04880016924AD6C04EE530@VI1PR04MB5693.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3044;
+x-microsoft-antispam-prvs: <DM5PR11MB1913D99BDE223D6267EBE2A1E8530@DM5PR11MB1913.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 0255DF69B9
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(366004)(396003)(376002)(136003)(39860400002)(199004)(189003)(45080400002)(55016002)(110136005)(54906003)(71200400001)(86362001)(7416002)(316002)(9686003)(2906002)(966005)(5660300002)(6636002)(33656002)(6506007)(26005)(44832011)(8936002)(52536014)(8676002)(7696005)(81156014)(53546011)(81166006)(66446008)(4326008)(66476007)(66556008)(64756008)(478600001)(66946007)(76116006)(91956017)(186003)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5693;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(39860400002)(346002)(376002)(136003)(396003)(199004)(189003)(2616005)(66556008)(316002)(107886003)(8676002)(71200400001)(8936002)(66476007)(26005)(6506007)(2906002)(64756008)(66446008)(66946007)(81156014)(76116006)(81166006)(5660300002)(478600001)(36756003)(54906003)(186003)(4326008)(86362001)(6512007)(110136005)(91956017)(6486002);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR11MB1913;H:DM5PR11MB1242.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: microchip.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: x8kk0StQWxHRAgR/85IEuqKJUyt/qXeuxRStcwKAocaQ3eJUfUDY/eaD/eBjnKPBe3fwC83rto49mOspPkM4vSGdPslt9Xj7Is7Q88/A5gHRnbLe6zrm3CAcysnWYRvvXqyvtxoy7AdbEU7MRwM7SbT9NZphsOpnp/EAKF6k50erBohBrrUwcFPMT8gpZKusf+1RiicI9Kniz/pHc4mJm76MP7wH2J2cqLGVllUsR8BWqxPrCZuCv8yPQyit5AxHAxb2MdjGpsakiqoi2SreDjb3oSsPQLmIqkrstSu7DD97QisiAIdiIgW6B7yhTLJXFm82/wWM/E0y/nmvmGA0O+Tigpqt78vzzmZ/x3SLssWD/fnD+INBHzLXk51+0Nl8Yawb1W5+cDvBRihFOnr+RvTrbgq/Pl2lhFDH34wPUgb40ap8h8VjcDiwvseOfeIy3gIZb+epmlvI86Azpt0rMIi23mLr29QMdIEllrFfRsYFhw8b5fOUXS/dQu4HyBsTbhyZ72uWJZ9UfxK93QmuHA==
-Content-Type: text/plain; charset="us-ascii"
+x-microsoft-antispam-message-info: kMd3B5gmnN3fqJ49NdX1qCNxxpFCfRvTH3vsBDAA/WJ5z1sPhFvaE3/tCGahu8HSlHRvkchL0BU7x8YeqVNSsGBGd3+U6b63590fTylC5TYLlI/jEsU0GWZ6IbISKy8R115RX3Mb1d8bJn742UD6BlB14vqS1rutCrA8i/O8Wj+T0rUkuMKVfXAbYDCCzsQTc0T+eGBdspDlta0sKoE4hkBJb7rvWXK8OvVM/jzM0Gm8SLWr4WmAlXI0wpRJMc1sElDpgh8oUuvB1z5MQqm0jBEISCgTLSChI2oAJZSUn0do6esVxWrx0F/9WKXc3OmPyJeuZBDyFL1NXY1sE5G4nVvkmw7Y3wcx6e8kkXXpvETL4C13MThm4TMQwEeCE7R9aOoA70XELPtaqI4SuykZ/ZsZ4S5qA5euXUoHsB9ZTfhFZdhdzxvAgCpxAYu46g1M
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20fc3907-ca29-45c8-c1a9-08d783d675bb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2019 16:22:21.6200
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80a705b2-8144-4f9d-da0c-08d783d6af27
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2019 16:23:57.9030
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fdRdvQT2rZ19bgfhFpR/ZInT9hDPHhoTQFJwlBth/u4+CRw/pbNfV1FhxpUrqW7roX0tLR4ntqYoXYmBFbK49g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5693
+X-MS-Exchange-CrossTenant-userprincipalname: lxzwzGRzhd5qNdDoHeVBwY42NsFXqV+qYWTyiux1yXFaof4+LjpdIqkE+/SbGLLECTcfTW7rk1XzoufHgkHvDQB5GnpPGwWpN1jVjPbaTFw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1913
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.12.2019 17:37, Adam Ford wrote:=0A=
-> On Wed, Dec 18, 2019 at 9:16 AM Leonard Crestez <leonard.crestez@nxp.com>=
- wrote:=0A=
->>=0A=
->> On 18.12.2019 17:05, Adam Ford wrote:=0A=
->>> On Wed, Dec 18, 2019 at 8:44 AM Leonard Crestez <leonard.crestez@nxp.co=
-m> wrote:=0A=
->>>>=0A=
->>>> On 18.12.2019 15:35, Adam Ford wrote:=0A=
->>>>> On Fri, Nov 22, 2019 at 3:45 PM Leonard Crestez <leonard.crestez@nxp.=
-com> wrote:=0A=
->>>>>>=0A=
->>>>>> This adds support for dynamic scaling of the DDR Controller (ddrc)=
-=0A=
->>>>>> present on i.MX8M series chips. Actual frequency switching is=0A=
->>>>>> implemented inside TF-A, this driver wraps the SMC calls and=0A=
->>>>>> synchronizes the clk tree.=0A=
->>>>>>=0A=
->>>>>> DRAM frequency switching requires clock manipulation but during this=
- operation=0A=
->>>>>> DRAM itself is briefly inaccessible so this operation is performed a=
- SMC call=0A=
->>>>>> to by TF-A which runs from a SRAM area. Upon returning to linux the =
-clock tree=0A=
->>>>>> is updated to correspond to hardware configuration.=0A=
->>>>>>=0A=
->>>>>> This is handled via CLK_GET_RATE_NO_CACHE for dividers but muxes are=
- handled=0A=
->>>>>> manually: the driver will prepare/enable the new parents ahead of sw=
-itching (so=0A=
->>>>>> that the expected roots are enabled) and afterwards it will call clk=
-_set_parent=0A=
->>>>>> to ensure the parents in clock framework are up-to-date.=0A=
->>>>>>=0A=
->>>>>> This series is useful standalone and roughly similar to devfreq driv=
-ers for=0A=
->>>>>> tegra and rockchip.=0A=
->>>>>>=0A=
->>>>>> Running at lower dram rates saves power but can affect the functiona=
-lity of=0A=
->>>>>> other blocks in the chip (display, vpu etc). Support for in-kernel c=
-onstraints=0A=
->>>>>> will some separately.=0A=
->>>>>>=0A=
->>>>>> This series has no dependencies outside linux-next. The driver depen=
-ds=0A=
->>>>>> on features from the NXP branch of TF-A and will cleanly fail to pro=
-be=0A=
->>>>>> on mainline. There are also plans to upstream dram dvfs in TF-A.=0A=
->>>>>>=0A=
->>>>>> Leonard Crestez (5):=0A=
->>>>>>      clk: imx8m: Set CLK_GET_RATE_NOCACHE on dram clocks=0A=
->>>>>>      clk: imx: Mark dram pll on 8mm and 8mn with CLK_GET_RATE_NOCACH=
-E=0A=
->>>>>>      dt-bindings: memory: Add bindings for imx8m ddr controller=0A=
->>>>>>      PM / devfreq: Add dynamic scaling for imx8m ddr controller=0A=
->>>>>>      arm64: dts: imx8m: Add ddr controller nodes=0A=
->>>>>>=0A=
->>>>>>     .../memory-controllers/fsl/imx8m-ddrc.yaml    |  72 +++=0A=
->>>>>>     arch/arm64/boot/dts/freescale/imx8mm-evk.dts  |  18 +=0A=
->>>>>>     arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  10 +=0A=
->>>>>>     .../boot/dts/freescale/imx8mn-ddr4-evk.dts    |  18 +=0A=
->>>>>>     arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  10 +=0A=
->>>>>>     arch/arm64/boot/dts/freescale/imx8mq-evk.dts  |  24 +=0A=
->>>>>>     arch/arm64/boot/dts/freescale/imx8mq.dtsi     |  10 +=0A=
->>>>>>     drivers/clk/imx/clk-imx8mm.c                  |  11 +-=0A=
->>>>>>     drivers/clk/imx/clk-imx8mn.c                  |  12 +-=0A=
->>>>>>     drivers/clk/imx/clk-imx8mq.c                  |  12 +-=0A=
->>>>>>     drivers/clk/imx/clk-pll14xx.c                 |   7 +=0A=
->>>>>>     drivers/clk/imx/clk.h                         |   1 +=0A=
->>>>>>     drivers/devfreq/Kconfig                       |   9 +=0A=
->>>>>=0A=
->>>>> Since there is a Kconfig change, should there me a defconfig change?=
-=0A=
->>>>=0A=
->>>> Yes, you need to enable CONFIG_ARM_IMX8M_DDRC_DEVFREQ in order to test=
-=0A=
->>>> this. Enabling as "m" should work.=0A=
->>>=0A=
->>> I enabled it as 'm' but I was more curious to know if we should push=0A=
->>> this upstream with the rest of the series.=0A=
->>=0A=
->> I skipped enabling because it's very experimental; maybe after imx=0A=
->> interconnect is also enabled?=0A=
->>=0A=
->>>>>>     drivers/devfreq/Makefile                      |   1 +=0A=
->>>>>>     drivers/devfreq/imx8m-ddrc.c                  | 465 ++++++++++++=
-++++++=0A=
->>>>>>     15 files changed, 670 insertions(+), 10 deletions(-)=0A=
->>>>>>     create mode 100644 Documentation/devicetree/bindings/memory-cont=
-rollers/fsl/imx8m-ddrc.yaml=0A=
->>>>>>     create mode 100644 drivers/devfreq/imx8m-ddrc.c=0A=
->>>>>=0A=
->>>>> I applied the whole series against 5.5-rc1 and I am trying to test it=
-.=0A=
->>>>> I know the 4.14 kernel NXP posted on Code Aurora is capable to=0A=
->>>>> lowering the DDRC controller to 25MHz on the 8MM when the video is=0A=
->>>>> off.  Since there is no video support yet for the 8MM, I was expectin=
-g=0A=
->>>>> to see the DDRC clock to be at or around 25MHz.=0A=
->>>>>=0A=
->>>>> Using debug FS, I can see the dram core clock is still running at=0A=
->>>>> 750MHz, and measuring power, it shows something consistent with what =
-I=0A=
->>>>> see on the Code Aurora kernel with video turned on and the clock at=
-=0A=
->>>>> 750MHz.=0A=
->>>>>=0A=
->>>>> Is there some way to get the dram_core_clk to drop to 25MHz to see=0A=
->>>>> some power reduction?  The same commands used in the Yocto build don'=
-t=0A=
->>>>> apply here since we don't have video.=0A=
->>>>=0A=
->>>> Current upstream driver just keeps current frequency by default. Try t=
-he=0A=
->>>> following:=0A=
->>>>=0A=
->>>> cd /sys/class/devfreq/devices/devfreq0=0A=
->>>=0A=
->>> can't cd to /sys/class/devfreq/devices/devfreq0: No such file or direct=
-ory=0A=
->>>=0A=
->>> I did some checking and I found:=0A=
->>>       imx8m-ddrc-devfreq 3d400000.memory-controller: failed to init=0A=
->>> firmware freq info: -19=0A=
->>>=0A=
->>> Was there some prerequisite patches I needed to apply before your serie=
-s?=0A=
->>=0A=
->> You need a recent version of TF-A from nxp ( upstream). Try this:=0A=
->>=0A=
->> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fsour=
-ce.codeaurora.org%2Fexternal%2Fimx%2Fimx-atf%2Flog%2F%3Fh%3Dimx_4.19.35_1.1=
-.0&amp;data=3D02%7C01%7Cleonard.crestez%40nxp.com%7Cc07fadd829994fe6293c08d=
-783d02fa9%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637122802480130351&a=
-mp;sdata=3DdVovGr1ttwrnSz39MPNNVg%2FB8HV5AjrHXGbksO3XvVo%3D&amp;reserved=3D=
-0=0A=
->>=0A=
->> Or this:=0A=
->> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgith=
-ub.com%2Fcdleonard%2Farm-trusted-firmware%2Fcommits%2Fimx_2.0.y_busfreq&amp=
-;data=3D02%7C01%7Cleonard.crestez%40nxp.com%7Cc07fadd829994fe6293c08d783d02=
-fa9%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637122802480140347&amp;sda=
-ta=3DQ9KPq60FOxJ7GflwupNaXvbqHIR40Ej5GxeY%2BhHI658%3D&amp;reserved=3D0=0A=
->>=0A=
->> Support on upstream ATF is not yet available=0A=
-> =0A=
-> I cloned your github branch and built it per the instructions in the=0A=
-> u-boot readme file.=0A=
-> did a make clean on u-boot, copied the bl31.bin to u-boot and rebuild=0A=
-> per U-Boot's instructions.=0A=
-> =0A=
-> U-Boot booted and Linux booted, but I still get:=0A=
-> =0A=
->     imx8m-ddrc-devfreq 3d400000.memory-controller: failed to init=0A=
-> firmware freq info: -19=0A=
-=0A=
-Which version of u-boot is that, upstream? I'm subscribed to uboot =0A=
-mailing list and I see that imx8m support has its own separate issues =0A=
-but my familiarity is limited :(=0A=
-=0A=
-I've only ever tested with NXP uboot and the NXP version of mkimage:=0A=
-=0A=
-https://source.codeaurora.org/external/imx/uboot-imx/log/?h=3Dimx_v2019.04_=
-4.19.35_1.1.0=0A=
-https://source.codeaurora.org/external/imx/imx-mkimage/=0A=
-=0A=
-My bootloader prints the following BuildInfo:=0A=
-   - ATF 70fa7bc =0A=
-=0A=
-   - U-Boot 2019.04-00019-g4d377539a119=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+From: Eugen Hristev <eugen.hristev@microchip.com>
+
+This series includes support for having the Real Time Clock trigger
+capability for the Analog to Digital Converter in sama5d2-based SoCs
+(RTC ADC Trigger)
+
+The first patch of the series has been already submitted on the iio mailing=
+ list
+as
+[PATCH] iio: adc: at91-sama5d2_adc: update for other trigger usage
+But I also include here for reference since the other commits on the driver
+use this as a base commit.
+
+In short, the RTC block can trigger the ADC block to perform a conversion.
+To solve this, I created a driver named rtc-adc-trigger that shares the
+register map with the RTC. It's done in devicetree as a subnode.
+This driver will register a separate trigger inside the iio subsystem.
+This trigger can then be associated to the ADC driver (sysfs current_trigge=
+r).
+However, this is not enough. The ADC has to be aware that it;s being
+triggered by the RTC (TRGMOD and TRGSEL). So, this hardware link between
+the two IPs has been described as a phandle reference in the ADC node to th=
+e
+RTC trigger node.
+At runtime (trigger selection), the ADC will check if the assigned trigger
+is the RTC one given by the phandle link. If so, it will configure
+accordingly.
+The RTC trigger driver will also register to sysfs two attributes for
+selecting the desired trigger frequency.
+One attribute is RO : list of possible frequencies.
+Another attribute is RW: current set frequency.
+
+To achieve all this, had to make a small patch on the RTC to populate
+child nodes platform data to probe them.
+
+Fixed other issues with the adc driver: unfinished conversions on IRQ in
+triggered mode, and differential channels missing configurations in
+triggered mode.
+
+For exercising this, created DT patches for sama5d2/sama5d2_xplained.
+
+Here is a sample of how it works in sysfs:
+
+ # cat /sys/bus/iio/devices/trigger0/trigger_frequency_hz
+ 1
+ # echo 1 > /sys/bus/iio/devices/iio:device0/scan_elements/in_voltage4_en
+ # cat /sys/bus/iio/devices/
+ iio:device0/        iio_sysfs_trigger/  trigger0/           trigger1/
+ # cat /sys/bus/iio/devices/trigger0/name
+ f80480b0.at91_rtc_adc
+ # iio_generic_buffer -n fc030000.adc -t f80480b0.at91_rtc_adc -c 5
+ iio device number being used is 0
+ iio trigger number being used is 0
+ /sys/bus/iio/devices/iio:device0 f80480b0.at91_rtc_adc
+ 3298.388672
+ 3294.360352
+ 3291.943359
+ 3294.360352
+ 3291.943359
+
+
+Future work:
+In the future the node would have to be enabled for other sama5d2 based
+boards as well, and MAINTAINERS to be updated if this driver is accepted.
+
+
+Eugen Hristev (10):
+  iio: adc: at91-sama5d2_adc: update for other trigger usage
+  dt-bindings: iio: adc: at91-sama5d2: add rtc-trigger optional property
+  dt-bindings: iio: trigger: at91-rtc-trigger: add bindings
+  rtc: at91rm9200: use of_platform_populate as return value
+  iio: trigger: at91-rtc-trigger: introduce at91 rtc adc trigger driver
+  iio: adc: at91-sama5d2_adc: handle unfinished conversions
+  iio: adc: at91-sama5d2_adc: fix differential channels in triggered
+    mode
+  iio: adc: at91-sama5d2_adc: implement RTC triggering
+  ARM: dts: at91: sama5d2: add rtc_adc_trigger node
+  ARM: dts: at91: sama5d2_xplained: enable rtc_adc_trigger
+
+ .../bindings/iio/adc/at91-sama5d2_adc.txt          |   4 +
+ .../bindings/iio/trigger/at91-rtc-trigger.yaml     |  44 +++
+ arch/arm/boot/dts/at91-sama5d2_xplained.dts        |   4 +
+ arch/arm/boot/dts/sama5d2.dtsi                     |  11 +
+ drivers/iio/adc/at91-sama5d2_adc.c                 | 336 ++++++++++++++++-=
+----
+ drivers/iio/trigger/Kconfig                        |  10 +
+ drivers/iio/trigger/Makefile                       |   1 +
+ drivers/iio/trigger/at91-rtc-trigger.c             | 213 +++++++++++++
+ drivers/rtc/rtc-at91rm9200.c                       |   2 +-
+ 9 files changed, 543 insertions(+), 82 deletions(-)
+ create mode 040000 Documentation/devicetree/bindings/iio/trigger
+ create mode 100644 Documentation/devicetree/bindings/iio/trigger/at91-rtc-=
+trigger.yaml
+ create mode 100644 drivers/iio/trigger/at91-rtc-trigger.c
+
+--=20
+2.7.4
