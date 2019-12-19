@@ -2,159 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A6D126808
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 18:29:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57F2212680B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 18:29:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727066AbfLSR2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 12:28:42 -0500
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:47055 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727029AbfLSR2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 12:28:41 -0500
-Received: by mail-pg1-f193.google.com with SMTP id z124so3452764pgb.13;
-        Thu, 19 Dec 2019 09:28:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=yf9x7J4CUf5atAEG5GNkhAPGZNNfFUTHbw0cShPeAGo=;
-        b=lf4LeI/d3WIz5hIkRKhsC4D++BKhL5mFQ1ddsTVWfwYGLuI+zaGphyAfHXoQv7O9UJ
-         JINyc3ovjehf6FedEq0Vm1k1+eZg8UAFCGlFFII8H2g/T9fxn0FBsgumCApIJKgnvGnf
-         P79O0u2LS8dv7/P3hvqJcUPoWzC2Zun4hZPcrBB3uidhZnrfBg8ho61fcbTNEQw2ag1v
-         1EiYl204ha212XtwhHHeJs9eYXaiXeOA7845p7UWu0H6G7eyDDnz8uX913Zvg/zhuTJ3
-         4Vz0e614YSnXnm9Qu+msVxoNkH5G3MNW6uthvgdyxJaYMu9cHJVpteAqIaBaSFBiwhIy
-         0oHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yf9x7J4CUf5atAEG5GNkhAPGZNNfFUTHbw0cShPeAGo=;
-        b=LZyJh63EZ44k9BSXaoJgBwgzWrK9XH52lyn+yp+EAjVZXKMq+ZyGGLYvPQ73EZM2r7
-         OCYrJ3ITXHaVrXVPx5LcvcL7G2dtVabUw1pgp75qSZEVvJrP/YQYAn4gALqFLCrEtzGr
-         6q+lslALUB8dlkMRmG9anfc3s+Q6L/Z4y3hcPcccteboQQYqpLqgIcJP7Nc/oDcdQo5C
-         FGmU5kWOeW+IuLemHHqbDl9rWJSAI91awuomZhGvUihP3f9A34u/XRMXx/i35XZXWtms
-         E3MXWDENPGR+PuSRGqA93qeP58WK34hCxI9UeUVc/z3ScvC7gOBunzZsfvXcz0o8uMUd
-         HGjw==
-X-Gm-Message-State: APjAAAVV4AmkTrEHKyw7kHoXIeeP/1rQKlEuSyBLysNA174pM5RG31f/
-        MHe1lfnjC0Fl10aaa98W7Kg=
-X-Google-Smtp-Source: APXvYqwGLD0638hkg+H61q0hZkuVBkX9PZVyf2VbtSBiRWlWhG2C5kOYGaK/AsGEtYD6+crgshGN/w==
-X-Received: by 2002:a62:3343:: with SMTP id z64mr10556181pfz.150.1576776520564;
-        Thu, 19 Dec 2019 09:28:40 -0800 (PST)
-Received: from anarsoul-thinkpad.lan (216-71-213-236.dyn.novuscom.net. [216.71.213.236])
-        by smtp.gmail.com with ESMTPSA id v143sm536209pfc.71.2019.12.19.09.28.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 09:28:40 -0800 (PST)
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-To:     Yangtao Li <tiny.windzz@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megous@megous.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>
-Subject: [PATCH v8 7/7] arm64: dts: allwinner: a64: Add thermal sensors and thermal zones
-Date:   Thu, 19 Dec 2019 09:28:23 -0800
-Message-Id: <20191219172823.1652600-8-anarsoul@gmail.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191219172823.1652600-1-anarsoul@gmail.com>
-References: <20191219172823.1652600-1-anarsoul@gmail.com>
+        id S1727144AbfLSR2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 12:28:46 -0500
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:37114 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727106AbfLSR2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 12:28:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=8zbAzNcfI9oZ8v2ntYbWufi4k/9wq+l907iSnZf7FUU=; b=JCGh18A4PCK/syxO0EHwoSBYV
+        GJY9Xh1XgWA/1ErUDsZmPaD49K/DdJzNttu0WKagLhKCq9E711XrlzoL3vam914Lxv/Lq2y3WL0te
+        V0MX7ay20xSl4NYHh1GX0AGiaIDatTAUiZYeoMkD7mRs34iN38nU0MGiicqDNMOma7gQ30LwGd1tm
+        gbu1osGT/LwYpIQcbG3Fxa0LWQS3ry0cBr03xm9EFPoOCaTLePgKQFdGJMqZpqHfHj+ujS0ctOXz9
+        ax/IJView/HciZicjXKrXlGCmP3+5qWTi2TSeYfjkx3/GBMUE7p0H9i6qfOF2214eeAP0PLOq3nDL
+        Ds8hCmMzQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55164)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1ihzbK-0003pn-8y; Thu, 19 Dec 2019 17:28:38 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1ihzbG-0005XL-Kp; Thu, 19 Dec 2019 17:28:34 +0000
+Date:   Thu, 19 Dec 2019 17:28:34 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     madalin.bucur@nxp.com
+Cc:     davem@davemloft.net, netdev@vger.kernel.org, andrew@lunn.ch,
+        f.fainelli@gmail.com, hkallweit1@gmail.com, shawnguo@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] net: phy: add interface modes for XFI, SFI
+Message-ID: <20191219172834.GC25745@shell.armlinux.org.uk>
+References: <1576768881-24971-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1576768881-24971-2-git-send-email-madalin.bucur@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1576768881-24971-2-git-send-email-madalin.bucur@oss.nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A64 has 3 thermal sensors: 1 for CPU, 2 for GPU.
+On Thu, Dec 19, 2019 at 05:21:16PM +0200, Madalin Bucur wrote:
+> From: Madalin Bucur <madalin.bucur@nxp.com>
+> 
+> Add explicit entries for XFI, SFI to make sure the device
+> tree entries for phy-connection-type "xfi" or "sfi" are
+> properly parsed and differentiated against the existing
+> backplane 10GBASE-KR mode.
 
-Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+10GBASE-KR is actually used for XFI and SFI (due to a slight mistake on
+my part, it should've been just 10GBASE-R).
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index 27e48234f1c2..5e3f16c3b706 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -49,6 +49,7 @@
- #include <dt-bindings/reset/sun50i-a64-ccu.h>
- #include <dt-bindings/reset/sun8i-de2.h>
- #include <dt-bindings/reset/sun8i-r-ccu.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -211,6 +212,29 @@ timer {
- 			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
- 	};
- 
-+	thermal-zones {
-+		cpu_thermal: cpu0-thermal {
-+			/* milliseconds */
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&ths 0>;
-+		};
-+
-+		gpu0_thermal: gpu0-thermal {
-+			/* milliseconds */
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&ths 1>;
-+		};
-+
-+		gpu1_thermal: gpu1-thermal {
-+			/* milliseconds */
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&ths 2>;
-+		};
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		#address-cells = <1>;
-@@ -485,6 +509,12 @@ mmc2: mmc@1c11000 {
- 		sid: eeprom@1c14000 {
- 			compatible = "allwinner,sun50i-a64-sid";
- 			reg = <0x1c14000 0x400>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			ths_calibration: thermal-sensor-calibration@34 {
-+				reg = <0x34 0x8>;
-+			};
- 		};
- 
- 		crypto: crypto@1c15000 {
-@@ -810,6 +840,18 @@ codec: codec@1c22e00 {
- 			status = "disabled";
- 		};
- 
-+		ths: thermal-sensor@1c25000 {
-+			compatible = "allwinner,sun50i-a64-ths";
-+			reg = <0x01c25000 0x100>;
-+			clocks = <&ccu CLK_BUS_THS>, <&ccu CLK_THS>;
-+			clock-names = "bus", "mod";
-+			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&ccu RST_BUS_THS>;
-+			nvmem-cells = <&ths_calibration>;
-+			nvmem-cell-names = "calibration";
-+			#thermal-sensor-cells = <1>;
-+		};
-+
- 		uart0: serial@1c28000 {
- 			compatible = "snps,dw-apb-uart";
- 			reg = <0x01c28000 0x400>;
+Please explain exactly what the difference is between XFI, SFI and
+10GBASE-R. I have not been able to find definitive definitions for
+XFI and SFI anywhere, and they appear to be precisely identical to
+10GBASE-R. It seems that it's just a terminology thing, with
+different groups wanting to "own" what is essentially exactly the
+same interface type.
+
+> 
+> Signed-off-by: Madalin Bucur <madalin.bucur@nxp.com>
+> ---
+>  include/linux/phy.h | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/phy.h b/include/linux/phy.h
+> index 5032d453ac66..ebb793621f0b 100644
+> --- a/include/linux/phy.h
+> +++ b/include/linux/phy.h
+> @@ -99,7 +99,8 @@ typedef enum {
+>  	PHY_INTERFACE_MODE_2500BASEX,
+>  	PHY_INTERFACE_MODE_RXAUI,
+>  	PHY_INTERFACE_MODE_XAUI,
+> -	/* 10GBASE-KR, XFI, SFI - single lane 10G Serdes */
+> +	PHY_INTERFACE_MODE_XFI,
+> +	PHY_INTERFACE_MODE_SFI,
+>  	PHY_INTERFACE_MODE_10GKR,
+>  	PHY_INTERFACE_MODE_USXGMII,
+>  	PHY_INTERFACE_MODE_MAX,
+> @@ -175,6 +176,10 @@ static inline const char *phy_modes(phy_interface_t interface)
+>  		return "rxaui";
+>  	case PHY_INTERFACE_MODE_XAUI:
+>  		return "xaui";
+> +	case PHY_INTERFACE_MODE_XFI:
+> +		return "xfi";
+> +	case PHY_INTERFACE_MODE_SFI:
+> +		return "sfi";
+>  	case PHY_INTERFACE_MODE_10GKR:
+>  		return "10gbase-kr";
+>  	case PHY_INTERFACE_MODE_USXGMII:
+> -- 
+> 2.1.0
+> 
+> 
+
 -- 
-2.24.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
