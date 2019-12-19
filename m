@@ -2,98 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21E78125C86
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 09:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFB11125CA1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 09:29:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726683AbfLSIYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 03:24:04 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:57914 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726439AbfLSIYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 03:24:04 -0500
+        id S1726648AbfLSI3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 03:29:32 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:54724 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726591AbfLSI3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 03:29:32 -0500
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBJ8Nc1g021997;
-        Thu, 19 Dec 2019 02:23:38 -0600
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBJ8TOcM038842;
+        Thu, 19 Dec 2019 02:29:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1576743818;
-        bh=KBG5iq2J57LxDEJ/48Wb0cURBv3cJ3Ry7vLG+uPUAGU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=pt+xc5NfacCXvEFsiXoZ9/SU4Mszsv0yR8NzvD1CHIC3zbxkhgvjjI2SsEdjwo896
-         wfsim/toGtMTBYO5tbIadPAZNaXAYvXguQO367BCPpo7jpLB7nLv5cPRlLZHabkAh0
-         p6lHYPrbUEX9MfQUzTJGeLPKTDyM5GmN2tDI7/w0=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBJ8NcJt117625
+        s=ti-com-17Q1; t=1576744164;
+        bh=qHodQfVRoxRI6Q5T0UwFr5pC1wfIqkcyWERy28q6efM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=rFFo8hMSSugW3xBnanhPdce0vj4r2wn92etK1aDt7i4TSJMWFK6pylOxtFH49rT4V
+         elwE09sGfpgkdY5/VOCCo02Ah2TbXfRK+rvq9L+dx8B7zFYW4+9u3S9JtfBLmi+dAg
+         cnFSx3j0bzRviyHkJqSyCL1xrM3fSOgKyoqm4OVM=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBJ8TO6E124868
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 19 Dec 2019 02:23:38 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 19 Dec 2019 02:29:24 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 19
- Dec 2019 02:23:37 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Dec 2019 02:29:23 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Thu, 19 Dec 2019 02:23:37 -0600
-Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBJ8NJI9095098;
-        Thu, 19 Dec 2019 02:23:34 -0600
-From:   Jyri Sarha <jsarha@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
-        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <subhajit_paul@ti.com>,
-        <praneeth@ti.com>, <yamonkar@cadence.com>, <sjakhade@cadence.com>,
-        <sam@ravnborg.org>, <robh+dt@kernel.org>, <maxime@cerno.tech>
-Subject: [PATCH v4 5/5] MAINTAINERS: add entry for tidss
-Date:   Thu, 19 Dec 2019 10:23:19 +0200
-Message-ID: <e6caaa23c15880984545d1734343725e3abe1bd4.1576704528.git.jsarha@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1576704528.git.jsarha@ti.com>
-References: <cover.1576704528.git.jsarha@ti.com>
+ Frontend Transport; Thu, 19 Dec 2019 02:29:24 -0600
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBJ8TKFJ062210;
+        Thu, 19 Dec 2019 02:29:21 -0600
+Subject: Re: [PATCH 01/13] PCI: cadence: Remove stray "pm_runtime_put_sync()"
+ in error path
+To:     Andrew Murray <andrew.murray@arm.com>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>
+References: <20191209092147.22901-1-kishon@ti.com>
+ <20191209092147.22901-2-kishon@ti.com>
+ <20191216134526.GW24359@e119886-lin.cambridge.arm.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <a1b70012-9cfc-0420-2717-8bdd9df1b4de@ti.com>
+Date:   Thu, 19 Dec 2019 14:01:03 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20191216134526.GW24359@e119886-lin.cambridge.arm.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for tidss DRM driver.
+Hi Andrew,
 
-Version history:
+On 16/12/19 7:15 pm, Andrew Murray wrote:
+> On Mon, Dec 09, 2019 at 02:51:35PM +0530, Kishon Vijay Abraham I wrote:
+>> commit bd22885aa188f135fd9 ("PCI: cadence: Refactor driver to use
+>> as a core library") while refactoring the Cadence PCIe driver to be
+>> used as library, removed pm_runtime_get_sync() from cdns_pcie_ep_setup()
+>> and cdns_pcie_host_setup() but missed to remove the corresponding
+>> pm_runtime_put_sync() in the error path. Fix it here.
+>>
+>> Fixes: commit bd22885aa188f135fd9 ("PCI: cadence: Refactor driver to use
+> 
+> As this is a fix, a commit subject starting with PCI: cadence: Fix ... may
+> be more obvious.
+> 
+> I'd suggest you use the shorter form of this, i.e. Fixes: %h (\"%s\"))
+> 
+> Fixes: bd22885aa188 ("PCI: cadence: Refactor driver to use as a core library")
+> 
+>> as a core library")
 
-v2: no change
+Okay.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>   drivers/pci/controller/cadence/pcie-cadence-ep.c   | 2 --
+>>   drivers/pci/controller/cadence/pcie-cadence-host.c | 2 --
+>>   2 files changed, 4 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep.c b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+>> index 1c173dad67d1..560f22b4d165 100644
+>> --- a/drivers/pci/controller/cadence/pcie-cadence-ep.c
+>> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+>> @@ -473,7 +473,5 @@ int cdns_pcie_ep_setup(struct cdns_pcie_ep *ep)
+>>   	pci_epc_mem_exit(epc);
+>>   
+>>    err_init:
+>> -	pm_runtime_put_sync(dev);
+>> -
+>>   	return ret;
+>>   }
+>> diff --git a/drivers/pci/controller/cadence/pcie-cadence-host.c b/drivers/pci/controller/cadence/pcie-cadence-host.c
+>> index 9b1c3966414b..ccf55e143e1d 100644
+>> --- a/drivers/pci/controller/cadence/pcie-cadence-host.c
+>> +++ b/drivers/pci/controller/cadence/pcie-cadence-host.c
+>> @@ -275,7 +275,5 @@ int cdns_pcie_host_setup(struct cdns_pcie_rc *rc)
+>>   	pci_free_resource_list(&resources);
+>>   
+>>    err_init:
+>> -	pm_runtime_put_sync(dev);
+>> -
+> 
+> There is probably more you can do here for both -host and -ep:
+> 
+>   - Remove the possibly now unused <linux/pm_runtime.h> include
+>   - Remove the err_init label and return directly from source.
 
-v3: - Move tidss entry after omapdrm
-    - Add "T:     git git://anongit.freedesktop.org/drm/drm-misc"
+Okay, will fix this up.
 
-v4: no change
-
-Signed-off-by: Jyri Sarha <jsarha@ti.com>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 741e3f433f6e..e89fbfb1ce06 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5559,6 +5559,17 @@ S:	Maintained
- F:	drivers/gpu/drm/omapdrm/
- F:	Documentation/devicetree/bindings/display/ti/
- 
-+DRM DRIVERS FOR TI KEYSTONE
-+M:	Jyri Sarha <jsarha@ti.com>
-+M:	Tomi Valkeinen <tomi.valkeinen@ti.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	drivers/gpu/drm/tidss/
-+F:	Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-+T:	git git://anongit.freedesktop.org/drm/drm-misc
-+
- DRM DRIVERS FOR V3D
- M:	Eric Anholt <eric@anholt.net>
- S:	Supported
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+Thanks
+Kishon
