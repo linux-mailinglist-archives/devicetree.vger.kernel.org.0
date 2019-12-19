@@ -2,325 +2,1391 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 817CA126431
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 15:03:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2017126425
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 15:02:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726752AbfLSOCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 09:02:54 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:40836 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726744AbfLSOCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 09:02:54 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBJE2d7x006319;
-        Thu, 19 Dec 2019 08:02:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1576764159;
-        bh=Z/4zy0bcGlzZwPsLdqMD3dCPHP5/S3bwFza9AnZkYRc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=OqT+X7vBi7HBzPbV1doQXHCO4o6151/DytKPJ9///IgvYua5oJvj/8OWhWyP0GEQZ
-         6FuSrlpEZ18zrRcfVynuWvtHkiDi2dQ0+Cpmg6t3Bxo+5plpVya651WwObe9dP0kuk
-         6IlW6JFA58jPNV8UpKtseCpZ4/zb9vxEPUv/ghk0=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBJE2daH065521
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 19 Dec 2019 08:02:39 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 19
- Dec 2019 08:02:34 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Thu, 19 Dec 2019 08:02:34 -0600
-Received: from [10.1.3.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBJE2V2F054819;
-        Thu, 19 Dec 2019 08:02:32 -0600
-Subject: Re: [PATCH v4 3/5] dt-bindings: display: ti,j721e-dss: Add dt-schema
- yaml binding
-To:     Maxime Ripard <maxime@cerno.tech>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
-        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <subhajit_paul@ti.com>,
-        <praneeth@ti.com>, <yamonkar@cadence.com>, <sjakhade@cadence.com>,
-        <sam@ravnborg.org>, <robh+dt@kernel.org>
-References: <cover.1576704528.git.jsarha@ti.com>
- <89db418c91689beb6e63e0c3c99b39655948b429.1576704528.git.jsarha@ti.com>
- <20191219083839.lmuhxynbbqy4d4hp@gilmour.lan>
-From:   Jyri Sarha <jsarha@ti.com>
-Autocrypt: addr=jsarha@ti.com; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <2acd648f-6532-c7d8-c9d0-f4c5229c7923@ti.com>
-Date:   Thu, 19 Dec 2019 16:01:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        id S1726801AbfLSOCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 09:02:40 -0500
+Received: from mail-vs1-f66.google.com ([209.85.217.66]:44592 "EHLO
+        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726778AbfLSOCj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 09:02:39 -0500
+Received: by mail-vs1-f66.google.com with SMTP id p6so3794271vsj.11
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2019 06:02:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l2H240SaFkuMlbbqslDF8cvZrjRL48Nvwm1uxbEG9ww=;
+        b=KrBVNWq804IFeb3e5S9RbUW9JuQvcnypq6ld/5ovzr0pH8jt3FcXtyykGkEHVceVN/
+         83UmwKGjS+97XWmduM+i0KPGmYAoDwjv/q35xWYfeHCGmdu4/uhWZ0ojmjv5CQcjpR7k
+         zDB5vcYffkyNuWumF0sL3Qon/Vl5ps6VoLxNbcXQv8eMYYaNOGwIsQJqXOZJNtlKBPVo
+         +4NUWjMs91clylpfzFEGE0VHRW6crzxVbKdaya7Xlqow0CFZfXVcQu2o/MyZrs40eXyW
+         romnFVM33No8ZXPOnmcPVvzpMOZ/K0FEAgH1bsD5aUD17J1zlyYb+wkL/I9JRvpu0Pgx
+         hpdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l2H240SaFkuMlbbqslDF8cvZrjRL48Nvwm1uxbEG9ww=;
+        b=Jc8R4ohAaR+QIrzvZ9iakOo69oK5alMtmsfk9K1RLmdpeSe4RQLnpYDnKUbsZJ0y4X
+         xW7cbdecttc+K+ddhy8mlAO7e1hex1TBl7kHAAzhFPdxxDaJJ8h1R4dvf0DhRv8m27Fi
+         AE8Q78X/04SA8ty2inAY8tazuGjzx7Mr2x16UYKA8XJ8wSlM1X/A5LNsohUAKGh2h5kR
+         yW9tchpduo8TJtwuhIWXnGGuhId8iDpZmj9Hdv9ICOUOOuYnI6ifpoDaTqX/qpf8DVZx
+         WMMtBuedquwTNb4b/RR8U8MfDuHvsyrL6Ng8g3owti5Sp0AjWzFVa7fEJ3TKkd9EOVXW
+         HfBg==
+X-Gm-Message-State: APjAAAWrOaM7pKJJu45npADrYNL3Um9GPppc6GLmcgNB/0JKLBeb9PEc
+        EKQqcA6hDvy5oxh7s/yGXjhaMwJtpDPlAhD60Wn/lw==
+X-Google-Smtp-Source: APXvYqxtuO2lSrsbeHzBSTzckM+hwmGF4j/xETnf39Acnj3qquKcMgjhYK83Ao8GDRJej6xY75UDMaksBTZuNS+Vhk8=
+X-Received: by 2002:a67:b649:: with SMTP id e9mr5161864vsm.34.1576764156437;
+ Thu, 19 Dec 2019 06:02:36 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20191219083839.lmuhxynbbqy4d4hp@gilmour.lan>
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature";
-        boundary="lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W"
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20191210200022.29696-1-martin.blumenstingl@googlemail.com> <20191210200022.29696-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20191210200022.29696-3-martin.blumenstingl@googlemail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 19 Dec 2019 15:01:59 +0100
+Message-ID: <CAPDyKFoMEjSJt2n3-XGbHwq_3zQ6MhPifUyOELLeTqFKPkAqYg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] mmc: host: meson-mx-sdhc: new driver for the
+ Amlogic Meson SDHC host
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        lnykww@gmail.com, yinxin_1989@aliyun.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W
-Content-Type: multipart/mixed; boundary="5pmhAxlWnc8hbbeJiFxw5k5ShGwaMHvg1"
+On Tue, 10 Dec 2019 at 21:00, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> The SDHC MMC host controller on Amlogic SoCs provides an eMMC and MMC
+> card interface with 1/4/8-bit bus width.
+> It supports eMMC spec 4.4x/4.5x including HS200 (up to 100MHz clock).
+>
+> The public S805 datasheet [0] contains a short documentation about the
+> registers. Unfortunately it does not describe how to use the registers
+> to make the hardware work. Thus this driver is based on reading (and
+> understanding) the Amlogic 3.10 GPL kernel code.
+>
+> Some hardware details are not easy to see. Jianxin Pan was kind enough
+> to answer my questions:
+> The hardware has built-in busy timeout support. The maximum timeout is
+> 30 seconds. This is only documented in Amlogic's internal
+> documentation.
+>
+> The controller only works with very specific clock configurations. The
+> details are not part of the public datasheet. In my own words the
+> supported configurations are:
+> - 399.812kHz:   clkin =  850MHz div = 2126 sd_rx_phase = 63
+> - 1MHz:         clkin =  850MHz div = 850  sd_rx_phase = 55
+> - 5.986MHz:     clkin =  850MHz div = 142  sd_rx_phase = 24
+> - 25MHz:        clkin =  850MHz div = 34   sd_rx_phase = 15
+> - 47.222MHz:    clkin =  850MHz div = 18   sd_rx_phase = 11/15 (SDR50/HS)
+> - 53.125MHz:    clkin =  850MHz div = 16   sd_rx_phase = (tuning)
+> - 70.833MHz:    clkin =  850MHz div = 12   sd_rx_phase = (tuning)
+> - 85MHz:        clkin =  850MHz div = 10   sd_rx_phase = (tuning)
+> - 94.44MHz:     clkin =  850MHz div = 9    sd_rx_phase = (tuning)
+> - 106.25MHz:    clkin =  850MHz div = 8    sd_rx_phase = (tuning)
+> - 127.5MHz:     clkin = 1275MHz div = 10   sd_rx_phase = (tuning)
+> - 141.667MHz:   clkin =  850MHz div = 6    sd_rx_phase = (tuning)
+> - 159.375MHz:   clkin = 1275MHz div = 8    sd_rx_phase = (tuning)
+> - 212.5MHz:     clkin = 1275MHz div = 6    sd_rx_phase = (tuning)
+> - (sd_tx_phase is always 1, 94.44MHz is not listed in the datasheet
+>    but this is what the 3.10 BSP kernel on Odroid-C1 actually uses)
+>
+> NOTE: CMD23 support is disabled for now because it results in command
+> timeouts and thus decreases read performance.
+>
+> Tested-by: Wei Wang <lnykww@gmail.com>
+> Tested-by: Xin Yin <yinxin_1989@aliyun.com>
+> Reviewed-by: Xin Yin <yinxin_1989@aliyun.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/mmc/host/Kconfig         |   14 +
+>  drivers/mmc/host/Makefile        |    1 +
+>  drivers/mmc/host/meson-mx-sdhc.c | 1174 ++++++++++++++++++++++++++++++
+>  3 files changed, 1189 insertions(+)
+>  create mode 100644 drivers/mmc/host/meson-mx-sdhc.c
+>
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index d06b2dfe3c95..2e2c83d0d4a7 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -405,6 +405,20 @@ config MMC_MESON_GX
+>
+>           If you have a controller with this interface, say Y here.
+>
+> +config MMC_MESON_MX_SDHC
+> +       tristate "Amlogic Meson SDHC Host Controller support"
+> +       depends on (ARM && ARCH_MESON) || COMPILE_TEST
+> +       depends on COMMON_CLK
+> +       depends on OF
+> +       help
+> +         This selects support for the SDHC Host Controller on
+> +         Amlogic Meson6, Meson8, Meson8b and Meson8m2 SoCs.
+> +         The controller supports the SD/SDIO Spec 3.x and eMMC Spec 4.5x
+> +         with 1, 4, and 8 bit bus widths.
+> +
+> +         If you have a controller with this interface, say Y or M here.
+> +         If unsure, say N.
+> +
+>  config MMC_MESON_MX_SDIO
+>         tristate "Amlogic Meson6/Meson8/Meson8b SD/MMC Host Controller support"
+>         depends on ARCH_MESON || COMPILE_TEST
+> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> index 21d9089e5eda..9a0c22a8139a 100644
+> --- a/drivers/mmc/host/Makefile
+> +++ b/drivers/mmc/host/Makefile
+> @@ -68,6 +68,7 @@ obj-$(CONFIG_MMC_VUB300)      += vub300.o
+>  obj-$(CONFIG_MMC_USHC)         += ushc.o
+>  obj-$(CONFIG_MMC_WMT)          += wmt-sdmmc.o
+>  obj-$(CONFIG_MMC_MESON_GX)     += meson-gx-mmc.o
+> +obj-$(CONFIG_MMC_MESON_MX_SDHC)        += meson-mx-sdhc.o
+>  obj-$(CONFIG_MMC_MESON_MX_SDIO)        += meson-mx-sdio.o
+>  obj-$(CONFIG_MMC_MOXART)       += moxart-mmc.o
+>  obj-$(CONFIG_MMC_SUNXI)                += sunxi-mmc.o
+> diff --git a/drivers/mmc/host/meson-mx-sdhc.c b/drivers/mmc/host/meson-mx-sdhc.c
+> new file mode 100644
+> index 000000000000..9053c73e3f50
+> --- /dev/null
+> +++ b/drivers/mmc/host/meson-mx-sdhc.c
+> @@ -0,0 +1,1174 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Amlogic Meson6/Meson8/Meson8b/Meson8m2 SDHC MMC host controller driver.
+> + *
+> + * Copyright (C) 2019 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/device.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/types.h>
+> +
+> +#include <linux/mmc/host.h>
+> +#include <linux/mmc/mmc.h>
+> +#include <linux/mmc/sdio.h>
+> +#include <linux/mmc/slot-gpio.h>
+> +
+> +#define MESON_SDHC_ARGU                                                0x00
+> +
+> +#define MESON_SDHC_SEND                                                0x04
+> +       #define MESON_SDHC_SEND_CMD_INDEX                       GENMASK(5, 0)
+> +       #define MESON_SDHC_SEND_CMD_HAS_RESP                    BIT(6)
+> +       #define MESON_SDHC_SEND_CMD_HAS_DATA                    BIT(7)
+> +       #define MESON_SDHC_SEND_RESP_LEN                        BIT(8)
+> +       #define MESON_SDHC_SEND_RESP_NO_CRC                     BIT(9)
+> +       #define MESON_SDHC_SEND_DATA_DIR                        BIT(10)
+> +       #define MESON_SDHC_SEND_DATA_STOP                       BIT(11)
+> +       #define MESON_SDHC_SEND_R1B                             BIT(12)
+> +       #define MESON_SDHC_SEND_TOTAL_PACK                      GENMASK(31, 16)
+> +
+> +#define MESON_SDHC_CTRL                                                0x08
+> +       #define MESON_SDHC_CTRL_DAT_TYPE                        GENMASK(1, 0)
+> +       #define MESON_SDHC_CTRL_DDR_MODE                        BIT(2)
+> +       #define MESON_SDHC_CTRL_TX_CRC_NOCHECK                  BIT(3)
+> +       #define MESON_SDHC_CTRL_PACK_LEN                        GENMASK(12, 4)
+> +       #define MESON_SDHC_CTRL_RX_TIMEOUT                      GENMASK(19, 13)
+> +       #define MESON_SDHC_CTRL_RX_PERIOD                       GENMASK(23, 20)
+> +       #define MESON_SDHC_CTRL_RX_ENDIAN                       GENMASK(26, 24)
+> +       #define MESON_SDHC_CTRL_SDIO_IRQ_MODE                   BIT(27)
+> +       #define MESON_SDHC_CTRL_DAT0_IRQ_SEL                    BIT(28)
+> +       #define MESON_SDHC_CTRL_TX_ENDIAN                       GENMASK(31, 29)
+> +
+> +#define MESON_SDHC_STAT                                                0x0c
+> +       #define MESON_SDHC_STAT_CMD_BUSY                        BIT(0)
+> +       #define MESON_SDHC_STAT_DAT3_0                          GENMASK(4, 1)
+> +       #define MESON_SDHC_STAT_CMD                             BIT(5)
+> +       #define MESON_SDHC_STAT_RXFIFO_CNT                      GENMASK(12, 6)
+> +       #define MESON_SDHC_STAT_TXFIFO_CNT                      GENMASK(19, 13)
+> +       #define MESON_SDHC_STAT_DAT7_4                          GENMASK(23, 20)
+> +
+> +#define MESON_SDHC_CLKC                                                0x10
+> +       #define MESON_SDHC_CLKC_CLK_DIV                         GENMASK(11, 0)
+> +       #define MESON_SDHC_CLKC_TX_CLK_ON                       BIT(12)
+> +       #define MESON_SDHC_CLKC_RX_CLK_ON                       BIT(13)
+> +       #define MESON_SDHC_CLKC_SD_CLK_ON                       BIT(14)
+> +       #define MESON_SDHC_CLKC_MOD_CLK_ON                      BIT(15)
+> +       #define MESON_SDHC_CLKC_CLK_SRC_SEL                     GENMASK(18, 16)
+> +       #define MESON_SDHC_CLKC_CLK_JIC                         BIT(24)
+> +       #define MESON_SDHC_CLKC_MEM_PWR_OFF                     GENMASK(26, 25)
+> +
+> +#define MESON_SDHC_ADDR                                                0x14
+> +
+> +#define MESON_SDHC_PDMA                                                0x18
+> +       #define MESON_SDHC_PDMA_DMA_MODE                        BIT(0)
+> +       #define MESON_SDHC_PDMA_PIO_RDRESP                      GENMASK(3, 1)
+> +       #define MESON_SDHC_PDMA_DMA_URGENT                      BIT(4)
+> +       #define MESON_SDHC_PDMA_WR_BURST                        GENMASK(9, 5)
+> +       #define MESON_SDHC_PDMA_RD_BURST                        GENMASK(14, 10)
+> +       #define MESON_SDHC_PDMA_RXFIFO_TH                       GENMASK(21, 15)
+> +       #define MESON_SDHC_PDMA_TXFIFO_TH                       GENMASK(28, 22)
+> +       #define MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH             GENMASK(30, 29)
+> +       #define MESON_SDHC_PDMA_TXFIFO_FILL                     BIT(31)
+> +
+> +#define MESON_SDHC_MISC                                                0x1c
+> +       #define MESON_SDHC_MISC_WCRC_ERR_PATT                   GENMASK(6, 4)
+> +       #define MESON_SDHC_MISC_WCRC_OK_PATT                    GENMASK(9, 7)
+> +       #define MESON_SDHC_MISC_BURST_NUM                       GENMASK(21, 16)
+> +       #define MESON_SDHC_MISC_THREAD_ID                       GENMASK(27, 22)
+> +       #define MESON_SDHC_MISC_MANUAL_STOP                     BIT(28)
+> +       #define MESON_SDHC_MISC_TXSTART_THRES                   GENMASK(31, 29)
+> +
+> +#define MESON_SDHC_DATA                                                0x20
+> +
+> +#define MESON_SDHC_ICTL                                                0x24
+> +       #define MESON_SDHC_ICTL_RESP_OK                         BIT(0)
+> +       #define MESON_SDHC_ICTL_RESP_TIMEOUT                    BIT(1)
+> +       #define MESON_SDHC_ICTL_RESP_ERR_CRC                    BIT(2)
+> +       #define MESON_SDHC_ICTL_RESP_OK_NOCLEAR                 BIT(3)
+> +       #define MESON_SDHC_ICTL_DATA_1PACK_OK                   BIT(4)
+> +       #define MESON_SDHC_ICTL_DATA_TIMEOUT                    BIT(5)
+> +       #define MESON_SDHC_ICTL_DATA_ERR_CRC                    BIT(6)
+> +       #define MESON_SDHC_ICTL_DATA_XFER_OK                    BIT(7)
+> +       #define MESON_SDHC_ICTL_RX_HIGHER                       BIT(8)
+> +       #define MESON_SDHC_ICTL_RX_LOWER                        BIT(9)
+> +       #define MESON_SDHC_ICTL_DAT1_IRQ                        BIT(10)
+> +       #define MESON_SDHC_ICTL_DMA_DONE                        BIT(11)
+> +       #define MESON_SDHC_ICTL_RXFIFO_FULL                     BIT(12)
+> +       #define MESON_SDHC_ICTL_TXFIFO_EMPTY                    BIT(13)
+> +       #define MESON_SDHC_ICTL_ADDI_DAT1_IRQ                   BIT(14)
+> +       #define MESON_SDHC_ICTL_ALL_IRQS                        GENMASK(14, 0)
+> +       #define MESON_SDHC_ICTL_DAT1_IRQ_DELAY                  GENMASK(17, 16)
+> +
+> +#define MESON_SDHC_ISTA                                                0x28
+> +       #define MESON_SDHC_ISTA_RESP_OK                         BIT(0)
+> +       #define MESON_SDHC_ISTA_RESP_TIMEOUT                    BIT(1)
+> +       #define MESON_SDHC_ISTA_RESP_ERR_CRC                    BIT(2)
+> +       #define MESON_SDHC_ISTA_RESP_OK_NOCLEAR                 BIT(3)
+> +       #define MESON_SDHC_ISTA_DATA_1PACK_OK                   BIT(4)
+> +       #define MESON_SDHC_ISTA_DATA_TIMEOUT                    BIT(5)
+> +       #define MESON_SDHC_ISTA_DATA_ERR_CRC                    BIT(6)
+> +       #define MESON_SDHC_ISTA_DATA_XFER_OK                    BIT(7)
+> +       #define MESON_SDHC_ISTA_RX_HIGHER                       BIT(8)
+> +       #define MESON_SDHC_ISTA_RX_LOWER                        BIT(9)
+> +       #define MESON_SDHC_ISTA_DAT1_IRQ                        BIT(10)
+> +       #define MESON_SDHC_ISTA_DMA_DONE                        BIT(11)
+> +       #define MESON_SDHC_ISTA_RXFIFO_FULL                     BIT(12)
+> +       #define MESON_SDHC_ISTA_TXFIFO_EMPTY                    BIT(13)
+> +       #define MESON_SDHC_ISTA_ADDI_DAT1_IRQ                   BIT(14)
+> +       #define MESON_SDHC_ISTA_ALL_IRQS                        GENMASK(14, 0)
+> +
+> +#define MESON_SDHC_SRST                                                0x2c
+> +       #define MESON_SDHC_SRST_MAIN_CTRL                       BIT(0)
+> +       #define MESON_SDHC_SRST_RXFIFO                          BIT(1)
+> +       #define MESON_SDHC_SRST_TXFIFO                          BIT(2)
+> +       #define MESON_SDHC_SRST_DPHY_RX                         BIT(3)
+> +       #define MESON_SDHC_SRST_DPHY_TX                         BIT(4)
+> +       #define MESON_SDHC_SRST_DMA_IF                          BIT(5)
+> +
+> +#define MESON_SDHC_ESTA                                                0x30
+> +       #define MESON_SDHC_ESTA_11_13                           GENMASK(13, 11)
+> +
+> +#define MESON_SDHC_ENHC                                                0x34
+> +       #define MESON_SDHC_ENHC_MESON8M2_WRRSP_MODE             BIT(0)
+> +       #define MESON_SDHC_ENHC_MESON8M2_CHK_WRRSP              BIT(1)
+> +       #define MESON_SDHC_ENHC_MESON8M2_CHK_DMA                BIT(2)
+> +       #define MESON_SDHC_ENHC_MESON8M2_DEBUG                  GENMASK(5, 3)
+> +       #define MESON_SDHC_ENHC_MESON6_RX_TIMEOUT               GENMASK(7, 0)
+> +       #define MESON_SDHC_ENHC_MESON6_DMA_RD_RESP              BIT(16)
+> +       #define MESON_SDHC_ENHC_MESON6_DMA_WR_RESP              BIT(17)
+> +       #define MESON_SDHC_ENHC_SDIO_IRQ_PERIOD                 GENMASK(15, 8)
+> +       #define MESON_SDHC_ENHC_RXFIFO_TH                       GENMASK(24, 18)
+> +       #define MESON_SDHC_ENHC_TXFIFO_TH                       GENMASK(31, 25)
+> +
+> +#define MESON_SDHC_CLK2                                                0x38
+> +       #define MESON_SDHC_CLK2_RX_CLK_PHASE                    GENMASK(11, 0)
+> +       #define MESON_SDHC_CLK2_SD_CLK_PHASE                    GENMASK(23, 12)
+> +
+> +#define MESON_SDHC_MAX_BLK_SIZE                                        512
+> +#define MESON_SDHC_NUM_TUNING_TRIES                            10
+> +
+> +struct meson_mx_sdhc_data {
+> +       void (*init_hw)(struct mmc_host *mmc);
+> +       void (*set_pdma)(struct mmc_host *mmc);
+> +       void (*wait_before_send)(struct mmc_host *mmc);
+> +       bool hardware_flush_all_cmds;
+> +};
+> +
+> +struct meson_mx_sdhc_host {
+> +       struct mmc_host                 *mmc;
+> +
+> +       struct mmc_request              *mrq;
+> +       struct mmc_command              *cmd;
+> +       int                             error;
+> +
+> +       void __iomem                    *base;
+> +
+> +       struct clk_divider              clkc_clk_div;
+> +       struct clk_gate                 clkc_tx_clk_on;
+> +       struct clk_gate                 clkc_rx_clk_on;
+> +       struct clk_gate                 clkc_sd_clk_on;
+> +       struct clk_gate                 clkc_mod_clk_on;
+> +       struct clk_mux                  clkc_clk_src_sel;
+> +
+> +       struct clk                      *pclk;
+> +
+> +       struct clk                      *tx_clk;
+> +       struct clk                      *rx_clk;
+> +       struct clk                      *sd_clk;
+> +       struct clk                      *mod_clk;
 
---5pmhAxlWnc8hbbeJiFxw5k5ShGwaMHvg1
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-GB
-Content-Transfer-Encoding: quoted-printable
+This is crazy. It's looks like the driver is a driver for a clock
+provider rather than an mmc host driver. :-)
 
-On 19/12/2019 10:38, Maxime Ripard wrote:
-> Hi,
->=20
-> On Thu, Dec 19, 2019 at 10:23:17AM +0200, Jyri Sarha wrote:
->> Add dt-schema yaml bindig for J721E DSS, J721E version TI Keystone
->> Display SubSystem.
->>
->> Version history:
->>
->> v2: no change
->>
->> v3: - reg-names: "wp" -> "wb"
->>     - Add ports node
->>     - Add includes to dts example
->>     - reindent dts example
->>
->> v4: - Add descriptions to reg, clocks, and interrups properties
->>     - Remove minItems when its value is the same as maxItems value
->>
->> Signed-off-by: Jyri Sarha <jsarha@ti.com>
->> ---
->>  .../bindings/display/ti/ti,j721e-dss.yaml     | 209 +++++++++++++++++=
-+
->>  1 file changed, 209 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/display/ti/ti,j7=
-21e-dss.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss=
-=2Eyaml b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
->> new file mode 100644
->> index 000000000000..cd68c4294f9a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
->> @@ -0,0 +1,209 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright 2019 Texas Instruments Incorporated
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/display/ti/ti,j721e-dss.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Texas Instruments J721E Display Subsystem
->> +
->> +maintainers:
->> +  - Jyri Sarha <jsarha@ti.com>
->> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
->> +
->> +description: |
->> +  The J721E TI Keystone Display SubSystem with four output ports and
->> +  four video planes. There is two full video planes and two "lite
->> +  planes" without scaling support. The video ports can be connected t=
-o
->> +  the SoC's DPI pins or to integrated display bridges on the SoC.
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,j721e-dss
->> +
->> +  reg:
->> +    maxItems: 17
->> +    description: |
->> +      Addresses to each DSS memory region described in the SoC's TRM.=
+Can you please elaborate a bit on what all these different clocks are
+needed for? Are really all of them needed?
 
->> +      The reg-names refer to memory regions as follows:
->> +      reg-names: Region Name in TRM:     Description:
->> +      common_m   DSS0_DISPC_0_COMMON_M   DSS Master common register a=
-rea
->> +      common_s0  DSS0_DISPC_0_COMMON_SO  DSS Shared common register a=
-rea 0
->> +      common_s1  DSS0_DISPC_0_COMMON_S1  DSS Shared common register a=
-rea 1
->> +      common_s2  DSS0_DISPC_0_COMMON_S2  DSS Shared common register a=
-rea 2
->> +      vidl1      DSS0_VIDL1              VIDL1 light video plane 1
->> +      vidl2      DSS0_VIDL2              VIDL2 light video plane 2
->> +      vid1       DSS0_VID1               VID1 video plane 1
->> +      vid2       DSS0_VID2               VID1 video plane 2
->> +      ovr1       DSS0_OVR1               OVR1 overlay manager for vp1=
+> +
+> +       bool                            clocks_enabled;
+> +
+> +       const struct meson_mx_sdhc_data *platform;
+> +};
+> +
+> +static void meson_mx_sdhc_mask_bits(struct mmc_host *mmc, u8 reg, u32 mask,
+> +                                   u32 val)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 regval;
+> +
+> +       regval = readl(host->base + reg);
+> +       regval &= ~mask;
+> +       regval |= (val & mask);
+> +
+> +       writel(regval, host->base + reg);
+> +}
+> +
+> +static void meson_mx_sdhc_hw_reset(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +
+> +       writel(MESON_SDHC_SRST_MAIN_CTRL |  MESON_SDHC_SRST_RXFIFO |
+> +              MESON_SDHC_SRST_TXFIFO | MESON_SDHC_SRST_DPHY_RX |
+> +              MESON_SDHC_SRST_DPHY_TX | MESON_SDHC_SRST_DMA_IF,
+> +              host->base + MESON_SDHC_SRST);
+> +       usleep_range(10, 100);
+> +
+> +       writel(0, host->base + MESON_SDHC_SRST);
+> +       usleep_range(10, 100);
+> +}
+> +
+> +static void meson_mx_sdhc_clear_fifo(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 stat;
+> +
+> +       stat = readl(host->base + MESON_SDHC_STAT);
+> +       if (!FIELD_GET(MESON_SDHC_STAT_RXFIFO_CNT, stat) &&
+> +           !FIELD_GET(MESON_SDHC_STAT_TXFIFO_CNT, stat))
+> +               return;
+> +
+> +       writel(MESON_SDHC_SRST_RXFIFO | MESON_SDHC_SRST_TXFIFO |
+> +              MESON_SDHC_SRST_MAIN_CTRL, host->base + MESON_SDHC_SRST);
+> +       udelay(5);
+> +
+> +       stat = readl(host->base + MESON_SDHC_STAT);
+> +       if (FIELD_GET(MESON_SDHC_STAT_RXFIFO_CNT, stat) ||
+> +           FIELD_GET(MESON_SDHC_STAT_TXFIFO_CNT, stat))
+> +               dev_warn(mmc_dev(host->mmc),
+> +                        "Failed to clear FIFOs, RX: %lu, TX: %lu\n",
+> +                        FIELD_GET(MESON_SDHC_STAT_RXFIFO_CNT, stat),
+> +                        FIELD_GET(MESON_SDHC_STAT_TXFIFO_CNT, stat));
+> +}
+> +
+> +static void meson_mx_sdhc_wait_cmd_ready(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 stat, esta;
+> +       int ret;
+> +
+> +       ret = readl_poll_timeout(host->base + MESON_SDHC_STAT, stat,
+> +                                !(stat & MESON_SDHC_STAT_CMD_BUSY), 1,
+> +                                100000);
 
->> +      ovr2       DSS0_OVR2               OVR2 overlay manager for vp2=
+This looks quite inefficient. Isn't there a corresponding IRQ that you
+can look for instead, no?
 
->> +      ovr3       DSS0_OVR3               OVR1 overlay manager for vp3=
+Can you perhaps also elaborate a bit on what kind of busy check you
+are doing here? Maybe also add some comment about that in the code.
 
->> +      ovr4       DSS0_OVR4               OVR2 overlay manager for vp4=
+> +       if (ret) {
+> +               dev_warn(mmc_dev(mmc),
+> +                        "Failed to poll for CMD_BUSY while processing CMD%d\n",
+> +                        host->cmd->opcode);
+> +               meson_mx_sdhc_hw_reset(mmc);
+> +       }
+> +
+> +       ret = readl_poll_timeout(host->base + MESON_SDHC_ESTA, esta,
+> +                                !(esta & MESON_SDHC_ESTA_11_13), 1, 100000);
 
->> +      vp1        DSS0_VP1                VP1 video port 1
->> +      vp2        DSS0_VP2                VP1 video port 2
->> +      vp3        DSS0_VP3                VP1 video port 3
->> +      vp4        DSS0_VP4                VP1 video port 4
->> +      wp         DSS0_WB                 Write Back registers
->=20
-> I guess it applies to all your schemas in that patch series, but you
-> could just do something like
->=20
-> reg:
->   items:
->     - description: DSS Master common register area
->     - description: DSS Shared common register area 0
->     - description: DSS Shared common register area 1
->=20
+Another polling. Not possible to wait for an IRQ instead?
 
-Ok, thanks. I was not sure if you can do that (still a newbie with
-yaml). What do you think about Peter Ujfalusi's suggestion of putting
-the descriptions to reg-names (and clock-names and  interrupt-names)?
-e.g. something like this:
+What are the polling about?
 
-  reg-names:
-    items:
-      - const: common_m
-      - description: DSS Master common register area
-      - const: common_s0
-      - description: DSS Master common register area
-=2E..
+> +       if (ret) {
+> +               dev_warn(mmc_dev(mmc),
+> +                        "Failed to poll for ESTA[13:11] while processing CMD%d\n",
+> +                        host->cmd->opcode);
 
-Or is that even allowed?
+What is ESTA[13:11]? If you are going to log a message, please make it
+more understandable.
 
+> +               meson_mx_sdhc_hw_reset(mmc);
+> +       }
+> +}
+> +
+> +static void meson_mx_sdhc_start_cmd(struct mmc_host *mmc,
+> +                                   struct mmc_command *cmd)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 ictl, send;
+> +       int pack_len;
+> +
+> +       host->cmd = cmd;
+> +
+> +       ictl = MESON_SDHC_ICTL_DATA_TIMEOUT | MESON_SDHC_ICTL_DATA_ERR_CRC |
+> +              MESON_SDHC_ICTL_RXFIFO_FULL | MESON_SDHC_ICTL_TXFIFO_EMPTY |
+> +              MESON_SDHC_ICTL_RESP_TIMEOUT | MESON_SDHC_ICTL_RESP_ERR_CRC;
+> +
+> +       send = FIELD_PREP(MESON_SDHC_SEND_CMD_INDEX, cmd->opcode);
+> +
+> +       if (cmd->data) {
+> +               send |= MESON_SDHC_SEND_CMD_HAS_DATA;
+> +               send |= FIELD_PREP(MESON_SDHC_SEND_TOTAL_PACK,
+> +                                  cmd->data->blocks - 1);
+> +
+> +               if (cmd->data->blksz < MESON_SDHC_MAX_BLK_SIZE)
+> +                       pack_len = cmd->data->blksz;
+> +               else
+> +                       pack_len = 0;
+> +
+> +               if (cmd->data->flags & MMC_DATA_WRITE)
+> +                       send |= MESON_SDHC_SEND_DATA_DIR;
+> +
+> +               /*
+> +                * If command with no data, just wait response done
+> +                * interrupt(int[0]), and if command with data transfer, just
+> +                * wait dma done interrupt(int[11]), don't need care about
+> +                * dat0 busy or not.
+> +                */
+> +               if (host->platform->hardware_flush_all_cmds ||
+> +                   cmd->data->flags & MMC_DATA_WRITE)
+> +                       /* hardware flush: */
+> +                       ictl |= MESON_SDHC_ICTL_DMA_DONE;
+> +               else
+> +                       /* software flush: */
+> +                       ictl |= MESON_SDHC_ICTL_DATA_XFER_OK;
+> +       } else {
+> +               pack_len = 0;
+> +
+> +               ictl |= MESON_SDHC_ICTL_RESP_OK;
+> +       }
+> +
+> +       if (cmd->opcode == MMC_STOP_TRANSMISSION)
+> +               send |= MESON_SDHC_SEND_DATA_STOP;
+> +
+> +       if (cmd->flags & MMC_RSP_PRESENT)
+> +               send |= MESON_SDHC_SEND_CMD_HAS_RESP;
+> +
+> +       if (cmd->flags & MMC_RSP_136) {
+> +               send |= MESON_SDHC_SEND_RESP_LEN;
+> +               send |= MESON_SDHC_SEND_RESP_NO_CRC;
+> +       }
+> +
+> +       if (!(cmd->flags & MMC_RSP_CRC))
+> +               send |= MESON_SDHC_SEND_RESP_NO_CRC;
+> +
+> +       if (cmd->flags & MMC_RSP_BUSY)
+> +               send |= MESON_SDHC_SEND_R1B;
+> +
+> +       /* enable the new IRQs and mask all pending ones */
+> +       writel(ictl, host->base + MESON_SDHC_ICTL);
+> +       writel(MESON_SDHC_ISTA_ALL_IRQS, host->base + MESON_SDHC_ISTA);
+> +
+> +       writel(cmd->arg, host->base + MESON_SDHC_ARGU);
+> +
+> +       meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_CTRL, MESON_SDHC_CTRL_PACK_LEN,
+> +                               FIELD_PREP(MESON_SDHC_CTRL_PACK_LEN, pack_len));
+> +
+> +       if (cmd->data)
+> +               writel(sg_dma_address(cmd->data->sg),
+> +                      host->base + MESON_SDHC_ADDR);
+> +
+> +       meson_mx_sdhc_wait_cmd_ready(mmc);
+> +
+> +       if (cmd->data)
+> +               host->platform->set_pdma(mmc);
+> +
+> +       if (host->platform->wait_before_send)
+> +               host->platform->wait_before_send(mmc);
+> +
+> +       writel(send, host->base + MESON_SDHC_SEND);
+> +}
+> +
+> +static void meson_mx_sdhc_disable_clks(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +
+> +       if (!host->clocks_enabled)
+> +               return;
+> +
+> +       clk_disable_unprepare(host->tx_clk);
+> +       clk_disable_unprepare(host->rx_clk);
+> +       clk_disable_unprepare(host->sd_clk);
+> +
+> +       clk_disable_unprepare(host->mod_clk);
 
-> ...
->=20
-> That way, you wouldn't have to worry about the maxItems, and you end
-> up doing pretty much that already in the description
->=20
->> +  reg-names:
->> +    items:
->> +      - const: common_m
->> +      - const: common_s0
->> +      - const: common_s1
->> +      - const: common_s2
->> +      - const: vidl1
->> +      - const: vidl2
->> +      - const: vid1
->> +      - const: vid2
->> +      - const: ovr1
->> +      - const: ovr2
->> +      - const: ovr3
->> +      - const: ovr4
->> +      - const: vp1
->> +      - const: vp2
->> +      - const: vp3
->> +      - const: vp4
->> +      - const: wb
->> +
->> +  clocks:
->> +    maxItems: 5
->> +    description:
->> +      phandles to clock nodes for DSS functional clock (fck) and vide=
-o
->> +      port 1, 2, 3 and 4 pixel clocks (vp1, vp2, vp3, vp4).
->> +
->> +  clock-names:
->> +    items:
->> +      - const: fck
->> +      - const: vp1
->> +      - const: vp2
->> +      - const: vp3
->> +      - const: vp4
->> +
->> +  interrupts:
->> +    maxItems: 4
->> +    description:
->> +      Interrupt descriptions for common irq registers in common_m,
->> +      common_m0, common_m1, and common_m2, sections.
->=20
-> Same story here, but the names don't match interrupt-names. I guess
-> describing what those interrupts actually are would be great: you just
-> define how the driver calls them, but not what they are actually doing
-> or representing.
->=20
-> I'm guessing that would end up in something like that:
->=20
-> interrupts:
->   items:
->     - description: DSS Master interrupt
->     - description: DSS Shared 0 interrupt
->     - description: DSS Shared 1 interrupt
->     - description: DSS Shared 2 interrupt
->=20
-> Maxime
->=20
+clk_bulk_disable_unprepare() seems like a better option to use here.
 
+> +
+> +       host->clocks_enabled = false;
+> +}
+> +
+> +static int meson_mx_sdhc_enable_clks(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       struct clk *clocks[] = {
+> +               host->mod_clk,
+> +               host->sd_clk,
+> +               host->tx_clk,
+> +               host->rx_clk,
+> +       };
+> +       int i, ret;
+> +
+> +       if (host->clocks_enabled)
+> +               return 0;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(clocks); i++) {
+> +               ret = clk_prepare_enable(clocks[i]);
+> +               if (ret) {
+> +                       dev_err(mmc_dev(mmc), "Failed to enable clock %s\n",
+> +                               __clk_get_name(clocks[i]));
+> +                       goto err;
+> +               }
+> +       }
 
---=20
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+clk_bulk_prepare_enable() seems like a better option to use here.
 
+> +
+> +       host->clocks_enabled = true;
+> +
+> +       return 0;
+> +
+> +err:
+> +       while (--i >= 0)
+> +               clk_disable_unprepare(clocks[i]);
+> +
+> +       return ret;
+> +}
+> +
+> +static int meson_mx_sdhc_set_clk(struct mmc_host *mmc, struct mmc_ios *ios)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 rx_clk_phase, val;
+> +       int ret;
+> +
+> +       meson_mx_sdhc_disable_clks(mmc);
+> +
+> +       if (ios->clock) {
+> +               ret = clk_set_rate(host->sd_clk, ios->clock);
+> +               if (ret) {
+> +                       dev_warn(mmc_dev(mmc),
+> +                                "Failed to set MMC clock to %uHz: %d\n",
+> +                                ios->clock, host->error);
+> +                       return ret;
+> +               }
+> +
+> +               ret = meson_mx_sdhc_enable_clks(mmc);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               mmc->actual_clock = clk_get_rate(host->sd_clk);
+> +
+> +               /*
+> +                * according to Amlogic the following latching points are
+> +                * selected with empirical values, there is no (known) formula
+> +                * to calculate these.
+> +                */
+> +               if (mmc->actual_clock > 100000000) {
+> +                       rx_clk_phase = 1;
+> +               } else if (mmc->actual_clock > 45000000) {
+> +                       if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
+> +                               rx_clk_phase = 15;
+> +                       else
+> +                               rx_clk_phase = 11;
+> +               } else if (mmc->actual_clock >= 25000000) {
+> +                       rx_clk_phase = 15;
+> +               } else if (mmc->actual_clock > 5000000) {
+> +                       rx_clk_phase = 23;
+> +               } else if (mmc->actual_clock > 1000000) {
+> +                       rx_clk_phase = 55;
+> +               } else {
+> +                       rx_clk_phase = 1061;
+> +               }
 
---5pmhAxlWnc8hbbeJiFxw5k5ShGwaMHvg1--
+The latching points (in frequency) looks closely related to the bus
+speed timing frequency.
 
---lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+Perhaps that doesn't matter, but I am wondering whether you may want
+to check "ios.timing" in conjunction with the clock rate?
 
------BEGIN PGP SIGNATURE-----
+> +
+> +               val = FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE, rx_clk_phase);
+> +               meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_CLK2,
+> +                                       MESON_SDHC_CLK2_RX_CLK_PHASE, val);
+> +       } else {
+> +               mmc->actual_clock = 0;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static void meson_mx_sdhc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       unsigned short vdd = ios->vdd;
+> +       u32 dat_type;
+> +
+> +       switch (ios->power_mode) {
+> +       case MMC_POWER_OFF:
+> +               vdd = 0;
+> +               /* fall through */
+> +
+> +       case MMC_POWER_UP:
+> +               if (!IS_ERR(mmc->supply.vmmc)) {
+> +                       host->error = mmc_regulator_set_ocr(mmc,
+> +                                                           mmc->supply.vmmc,
+> +                                                           vdd);
+> +                       if (host->error)
+> +                               return;
+> +               }
+> +
+> +               break;
+> +
+> +       case MMC_POWER_ON:
+> +               break;
+> +       }
+> +
+> +       host->error = meson_mx_sdhc_set_clk(mmc, ios);
+> +       if (host->error)
+> +               return;
+> +
+> +       switch (ios->bus_width) {
+> +       case MMC_BUS_WIDTH_1:
+> +               dat_type = FIELD_PREP(MESON_SDHC_CTRL_DAT_TYPE, 0);
+> +               break;
+> +
+> +       case MMC_BUS_WIDTH_4:
+> +               dat_type = FIELD_PREP(MESON_SDHC_CTRL_DAT_TYPE, 1);
+> +               break;
+> +
+> +       case MMC_BUS_WIDTH_8:
+> +               dat_type = FIELD_PREP(MESON_SDHC_CTRL_DAT_TYPE, 2);
+> +               break;
+> +
+> +       default:
+> +               dev_err(mmc_dev(mmc), "unsupported bus width: %d\n",
+> +                       ios->bus_width);
+> +               host->error = -EINVAL;
+> +               return;
+> +       }
+> +
+> +       meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_CTRL, MESON_SDHC_CTRL_DAT_TYPE,
+> +                               dat_type);
+> +}
+> +
+> +static int meson_mx_sdhc_map_dma(struct mmc_host *mmc, struct mmc_request *mrq)
+> +{
+> +       struct mmc_data *data = mrq->data;
+> +       int dma_len;
+> +
+> +       if (!data)
+> +               return 0;
+> +
+> +       dma_len = dma_map_sg(mmc_dev(mmc), data->sg, data->sg_len,
+> +                            mmc_get_dma_dir(data));
+> +       if (dma_len <= 0) {
+> +               dev_err(mmc_dev(mmc), "dma_map_sg failed\n");
+> +               return -ENOMEM;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static void meson_mx_sdhc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       struct mmc_command *cmd = mrq->cmd;
+> +
+> +       if (!host->error)
+> +               host->error = meson_mx_sdhc_map_dma(mmc, mrq);
+> +
+> +       if (host->error) {
+> +               cmd->error = host->error;
+> +               mmc_request_done(mmc, mrq);
+> +               return;
+> +       }
+> +
+> +       host->mrq = mrq;
+> +
+> +       meson_mx_sdhc_start_cmd(mmc, mrq->cmd);
+> +}
+> +
+> +static int meson_mx_sdhc_card_busy(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 stat = readl(host->base + MESON_SDHC_STAT);
+> +
+> +       return FIELD_GET(MESON_SDHC_STAT_DAT3_0, stat) == 0;
+> +}
+> +
+> +static bool meson_mx_sdhc_tuning_point_matches(struct mmc_host *mmc,
+> +                                              u32 opcode)
+> +{
+> +       unsigned int i, num_matches = 0;
+> +       int ret;
+> +
+> +       for (i = 0; i < MESON_SDHC_NUM_TUNING_TRIES; i++) {
+> +               ret = mmc_send_tuning(mmc, opcode, NULL);
+> +               if (!ret)
+> +                       num_matches++;
+> +       }
+> +
+> +       return num_matches == MESON_SDHC_NUM_TUNING_TRIES;
+> +}
+> +
+> +static int meson_mx_sdhc_execute_tuning(struct mmc_host *mmc, u32 opcode)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       int div, start, len, best_start, best_len;
+> +       int curr_phase, old_phase, new_phase;
+> +       u32 val;
+> +
+> +       len = 0;
+> +       start = 0;
+> +       best_len = 0;
+> +
+> +       val = readl(host->base + MESON_SDHC_CLK2);
+> +       old_phase = FIELD_GET(MESON_SDHC_CLK2_RX_CLK_PHASE, val);
+> +
+> +       val = readl(host->base + MESON_SDHC_CLKC);
+> +       div = FIELD_GET(MESON_SDHC_CLKC_CLK_DIV, val);
+> +
+> +       for (curr_phase = 0; curr_phase <= div; curr_phase++) {
+> +               val = FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE, curr_phase);
+> +               meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_CLK2,
+> +                                       MESON_SDHC_CLK2_RX_CLK_PHASE, val);
+> +
+> +               if (meson_mx_sdhc_tuning_point_matches(mmc, opcode)) {
+> +                       if (!len) {
+> +                               start = curr_phase;
+> +
+> +                               dev_dbg(mmc_dev(mmc),
+> +                                       "New RX phase window starts at %u\n",
+> +                                       start);
+> +                       }
+> +
+> +                       len++;
+> +               } else {
+> +                       if (len > best_len) {
+> +                               best_start = start;
+> +                               best_len = len;
+> +
+> +                               dev_dbg(mmc_dev(mmc),
+> +                                       "New best RX phase window: %u - %u\n",
+> +                                       best_start, best_start + best_len);
+> +                       }
+> +
+> +                       /* reset the current window */
+> +                       len = 0;
+> +               }
+> +       }
+> +
+> +       if (len > best_len)
+> +               /* the last window is the best (or possibly only) window */
+> +               new_phase = start + (len / 2);
+> +       else if (best_len)
+> +               /* there was a better window than the last */
+> +               new_phase = best_start + (best_len / 2);
+> +       else
+> +               /* no window was found at all, reset to the original phase */
+> +               new_phase = old_phase;
+> +
+> +       val = FIELD_PREP(MESON_SDHC_CLK2_RX_CLK_PHASE, new_phase);
+> +       meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_CLK2,
+> +                               MESON_SDHC_CLK2_RX_CLK_PHASE, val);
+> +
+> +       if (!len && !best_len)
+> +               return -EIO;
+> +
+> +       dev_dbg(mmc_dev(mmc), "Tuned RX clock phase to %u\n", new_phase);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct mmc_host_ops meson_mx_sdhc_ops = {
+> +       .hw_reset                       = meson_mx_sdhc_hw_reset,
+> +       .request                        = meson_mx_sdhc_request,
+> +       .set_ios                        = meson_mx_sdhc_set_ios,
+> +       .card_busy                      = meson_mx_sdhc_card_busy,
+> +       .execute_tuning                 = meson_mx_sdhc_execute_tuning,
+> +       .get_cd                         = mmc_gpio_get_cd,
+> +       .get_ro                         = mmc_gpio_get_ro,
+> +};
+> +
+> +static void meson_mx_sdhc_request_done(struct meson_mx_sdhc_host *host)
+> +{
+> +       struct mmc_request *mrq = host->mrq;
+> +       struct mmc_host *mmc = host->mmc;
+> +
+> +       /* disable interrupts and mask all pending ones */
+> +       meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_ICTL,
+> +                               MESON_SDHC_ICTL_ALL_IRQS, 0);
+> +       meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_ISTA, MESON_SDHC_ISTA_ALL_IRQS,
+> +                               MESON_SDHC_ISTA_ALL_IRQS);
+> +
+> +       host->mrq = NULL;
+> +       host->cmd = NULL;
+> +
+> +       mmc_request_done(mmc, mrq);
+> +}
+> +
+> +static u32 meson_mx_sdhc_read_response(struct meson_mx_sdhc_host *host, u8 idx)
+> +{
+> +       meson_mx_sdhc_mask_bits(host->mmc, MESON_SDHC_PDMA,
+> +                               MESON_SDHC_PDMA_DMA_MODE, 0);
+> +
+> +       meson_mx_sdhc_mask_bits(host->mmc, MESON_SDHC_PDMA,
+> +                               MESON_SDHC_PDMA_PIO_RDRESP,
+> +                               FIELD_PREP(MESON_SDHC_PDMA_PIO_RDRESP, idx));
+> +
+> +       return readl(host->base + MESON_SDHC_ARGU);
+> +}
+> +
+> +static irqreturn_t meson_mx_sdhc_irq(int irq, void *data)
+> +{
+> +       struct meson_mx_sdhc_host *host = data;
+> +       struct mmc_command *cmd = host->cmd;
+> +       u32 ictl, ista;
+> +
+> +       ictl = readl(host->base + MESON_SDHC_ICTL);
+> +       ista = readl(host->base + MESON_SDHC_ISTA);
+> +
+> +       if (!(ictl & ista))
+> +               return IRQ_NONE;
+> +
+> +       if (ista & MESON_SDHC_ISTA_RXFIFO_FULL ||
+> +           ista & MESON_SDHC_ISTA_TXFIFO_EMPTY)
+> +               cmd->error = -EIO;
+> +       else if (ista & MESON_SDHC_ISTA_RESP_ERR_CRC)
+> +               cmd->error = -EILSEQ;
+> +       else if (ista & MESON_SDHC_ISTA_RESP_TIMEOUT)
+> +               cmd->error = -ETIMEDOUT;
+> +
+> +       if (cmd->data) {
+> +               if (ista & MESON_SDHC_ISTA_DATA_ERR_CRC)
+> +                       cmd->data->error = -EILSEQ;
+> +               else if (ista & MESON_SDHC_ISTA_DATA_TIMEOUT)
+> +                       cmd->data->error = -ETIMEDOUT;
+> +       }
+> +
+> +       if (cmd->error || (cmd->data && cmd->data->error))
+> +               dev_dbg(mmc_dev(host->mmc), "CMD%d error, ISTA: 0x%08x\n",
+> +                       cmd->opcode, ista);
+> +
+> +       return IRQ_WAKE_THREAD;
+> +}
+> +
+> +static irqreturn_t meson_mx_sdhc_irq_thread(int irq, void *irq_data)
+> +{
+> +       struct meson_mx_sdhc_host *host = irq_data;
+> +       struct mmc_command *cmd;
+> +       u32 pdma;
+> +
+> +       cmd = host->cmd;
+> +       if (WARN_ON(!cmd))
+> +               return IRQ_HANDLED;
+> +
+> +       if (cmd->data && !cmd->data->error) {
+> +               if (!host->platform->hardware_flush_all_cmds &&
+> +                   cmd->data->flags & MMC_DATA_READ) {
+> +                       meson_mx_sdhc_wait_cmd_ready(host->mmc);
+> +
+> +                       pdma = readl(host->base + MESON_SDHC_PDMA);
+> +                       pdma |= FIELD_PREP(MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH,
+> +                                          2);
+> +                       writel(pdma, host->base);
+> +               }
+> +
+> +               dma_unmap_sg(mmc_dev(host->mmc), cmd->data->sg,
+> +                            cmd->data->sg_len, mmc_get_dma_dir(cmd->data));
+> +
+> +               cmd->data->bytes_xfered = cmd->data->blksz * cmd->data->blocks;
+> +       }
+> +
+> +       meson_mx_sdhc_wait_cmd_ready(host->mmc);
+> +
+> +       if (cmd->flags & MMC_RSP_136) {
+> +               cmd->resp[0] = meson_mx_sdhc_read_response(host, 4);
+> +               cmd->resp[1] = meson_mx_sdhc_read_response(host, 3);
+> +               cmd->resp[2] = meson_mx_sdhc_read_response(host, 2);
+> +               cmd->resp[3] = meson_mx_sdhc_read_response(host, 1);
+> +       } else {
+> +               cmd->resp[0] = meson_mx_sdhc_read_response(host, 0);
+> +       }
+> +
+> +       if (cmd->error == -EIO || cmd->error == -ETIMEDOUT)
+> +               meson_mx_sdhc_hw_reset(host->mmc);
+> +       else if (cmd->data)
+> +               /*
+> +                * Clear the FIFOs after completing data transfers to prevent
+> +                * corrupting data on write access. It's not clear why this is
+> +                * needed (for reads and writes), but it mimics what the BSP
+> +                * kernel did.
+> +                */
+> +               meson_mx_sdhc_clear_fifo(host->mmc);
+> +
+> +       meson_mx_sdhc_request_done(host);
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static struct clk *meson_mx_sdhc_register_clk(struct device *dev,
+> +                                             struct clk_hw *hw,
+> +                                             const char *name,
+> +                                             int num_parents,
+> +                                             const struct clk_parent_data *pd,
+> +                                             unsigned long flags,
+> +                                             const struct clk_ops *ops)
+> +{
+> +       struct clk_init_data init;
+> +
+> +       init.name = devm_kasprintf(dev, GFP_KERNEL, "%s#%s", dev_name(dev),
+> +                                  name);
+> +       if (!init.name)
+> +               return ERR_PTR(-ENOMEM);
+> +
+> +       init.num_parents = num_parents;
+> +       init.parent_data = pd;
+> +       init.flags = flags;
+> +       init.ops = ops;
+> +
+> +       hw->init = &init;
+> +
+> +       return devm_clk_register(dev, hw);
 
-iQIzBAEBCgAdFiEEMuwitgUoIEsi53ohkDazUNfWGUEFAl37gvYACgkQkDazUNfW
-GUHD7hAA4F+jUC0zMFknujFq9bdfIDsncuO1m6FxZ3B4momsVeafI6VjXeoWjiNa
-W9IodFTCqvbQP8h0HMY6E0Hv+cZWlhk+IMMF7r+I301uX+qEFeEgU2sI/EYfCYC+
-BQcDtwjgU6nGbRzW36XDjQ4WO5YFV/ePP0ZSkDqmV4l+kKfso7bXPmIqWd6X8r+E
-R5Z+KhKnkdyEaA+Ha8QRumnnKIku0jndR6AsbGNzOcEIZ/FMm7jlc3CAOmGL8R2p
-y8iHp5sXpbF3Ewfxwj+imNf9VoCCsuvzlL8cugqJnhLa4A6EsY0JnGM2Su3IdrER
-9krrROjJCDL69zW4Px463gO0T2suan9/t11ynH+z4Jj2B280ppGaqlGwMPbw5MAq
-cyrTzsgNZwZj+xqWjdQO+GbSdduNCO4MmyTlmxfjbMGjRSCT0FSSo8AFpgXJ3gkt
-/TL6n8qdUo5Pw13OI9t1Jg87/XeoipFTOMfJ2b64RMiSRG+Pc4DHZkTUyWUCIxQ2
-oXTMEapnVljsM1Dzi5nGfgzVMtLLnfLBzNsvgLqhIxV9H3SzxoLM/KPEaZUqPlah
-t3hbT+zl59DHZRrJtEhujgAX+Q4s3HK/65Wi97jedKd7cnwYW5gIDfS2BxPMtLdV
-GpA1RlF+iC215KhV9rc5cURvSMoVRHj34KwkKzHhI02MuqzcfHE=
-=s4ax
------END PGP SIGNATURE-----
+devm_clk_register() is deprecated. Please convert to
+devm_clk_hw_register() instead.
 
---lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W--
+Note that, this may also lead to that you need to update the
+corresponding DT bindings for the clocks.
+
+Additionally, in regards to the deployment of the clock support, this
+leads to quite some more changes. In principle, the code managing the
+clock provider parts should be quite independent of the clock consumer
+part. I didn't look more closely, maybe this is already the case, then
+the conversion is simple.
+
+> +}
+> +
+> +static int meson_mx_sdhc_register_clks(struct meson_mx_sdhc_host *host)
+> +{
+> +       static const struct clk_div_table clk_div_table[] = {
+> +               { .div = 6, .val = 5, },
+> +               { .div = 8, .val = 7, },
+> +               { .div = 9, .val = 8, },
+> +               { .div = 10, .val = 9, },
+> +               { .div = 12, .val = 11, },
+> +               { .div = 16, .val = 15, },
+> +               { .div = 18, .val = 17, },
+> +               { .div = 34, .val = 33, },
+> +               { .div = 142, .val = 141, },
+> +               { .div = 850, .val = 849, },
+> +               { .div = 2126, .val = 2125, },
+> +               { .div = 4096, .val = 4095, },
+> +               { /* sentinel */ },
+> +       };
+> +       static const struct clk_parent_data mux_parent_data[] = {
+> +               { .fw_name = "clkin0", .index = -1, },
+> +               { .fw_name = "clkin1", .index = -1, },
+> +               { .fw_name = "clkin2", .index = -1, },
+> +               { .fw_name = "clkin3", .index = -1, },
+> +       };
+> +       struct clk_parent_data div_parent_data = {
+> +               .hw = &host->clkc_clk_src_sel.hw, .index = -1,
+> +       };
+> +       struct clk_parent_data gate_parent_data = {
+> +               .hw = &host->clkc_clk_div.hw, .index = -1,
+> +       };
+> +       struct clk *clk;
+> +
+> +       host->clkc_clk_src_sel.reg = host->base + MESON_SDHC_CLKC;
+> +       host->clkc_clk_src_sel.shift = __ffs(MESON_SDHC_CLKC_CLK_SRC_SEL);
+> +       host->clkc_clk_src_sel.mask = MESON_SDHC_CLKC_CLK_SRC_SEL >>
+> +                                     host->clkc_clk_src_sel.shift;
+> +       clk = meson_mx_sdhc_register_clk(mmc_dev(host->mmc),
+> +                                        &host->clkc_clk_src_sel.hw,
+> +                                        "clk_src_sel",
+> +                                        ARRAY_SIZE(mux_parent_data),
+> +                                        mux_parent_data, 0, &clk_mux_ops);
+> +       if (IS_ERR(clk))
+> +               return PTR_ERR(clk);
+> +
+> +       host->clkc_clk_div.reg = host->base + MESON_SDHC_CLKC;
+> +       host->clkc_clk_div.shift = __ffs(MESON_SDHC_CLKC_CLK_DIV);
+> +       host->clkc_clk_div.width = fls(MESON_SDHC_CLKC_CLK_DIV) -
+> +                                  host->clkc_clk_div.shift;
+> +       host->clkc_clk_div.table = clk_div_table;
+> +       clk = meson_mx_sdhc_register_clk(mmc_dev(host->mmc),
+> +                                        &host->clkc_clk_div.hw, "clk_div", 1,
+> +                                        &div_parent_data, CLK_SET_RATE_PARENT,
+> +                                        &clk_divider_ops);
+> +       if (IS_ERR(clk))
+> +               return PTR_ERR(clk);
+> +
+> +       host->clkc_mod_clk_on.reg = host->base + MESON_SDHC_CLKC;
+> +       host->clkc_mod_clk_on.bit_idx = __ffs(MESON_SDHC_CLKC_MOD_CLK_ON);
+> +       host->mod_clk = meson_mx_sdhc_register_clk(mmc_dev(host->mmc),
+> +                                                  &host->clkc_mod_clk_on.hw,
+> +                                                  "mod_clk_on", 1,
+> +                                                  &gate_parent_data, 0,
+> +                                                  &clk_gate_ops);
+> +       if (IS_ERR(host->mod_clk))
+> +               return PTR_ERR(host->mod_clk);
+> +
+> +       host->clkc_tx_clk_on.reg = host->base + MESON_SDHC_CLKC;
+> +       host->clkc_tx_clk_on.bit_idx = __ffs(MESON_SDHC_CLKC_TX_CLK_ON);
+> +       host->tx_clk = meson_mx_sdhc_register_clk(mmc_dev(host->mmc),
+> +                                                 &host->clkc_tx_clk_on.hw,
+> +                                                 "tx_clk_on", 1,
+> +                                                 &gate_parent_data,
+> +                                                 CLK_SET_RATE_PARENT,
+> +                                                 &clk_gate_ops);
+> +       if (IS_ERR(host->tx_clk))
+> +               return PTR_ERR(host->tx_clk);
+> +
+> +       host->clkc_rx_clk_on.reg = host->base + MESON_SDHC_CLKC;
+> +       host->clkc_rx_clk_on.bit_idx = __ffs(MESON_SDHC_CLKC_RX_CLK_ON);
+> +       host->rx_clk = meson_mx_sdhc_register_clk(mmc_dev(host->mmc),
+> +                                                 &host->clkc_rx_clk_on.hw,
+> +                                                 "rx_clk_on", 1,
+> +                                                 &gate_parent_data,
+> +                                                 CLK_SET_RATE_PARENT,
+> +                                                 &clk_gate_ops);
+> +       if (IS_ERR(host->rx_clk))
+> +               return PTR_ERR(host->rx_clk);
+> +
+> +       host->clkc_sd_clk_on.reg = host->base + MESON_SDHC_CLKC;
+> +       host->clkc_sd_clk_on.bit_idx = __ffs(MESON_SDHC_CLKC_SD_CLK_ON);
+> +       host->sd_clk = meson_mx_sdhc_register_clk(mmc_dev(host->mmc),
+> +                                                 &host->clkc_sd_clk_on.hw,
+> +                                                 "sd_clk_on", 1,
+> +                                                 &gate_parent_data,
+> +                                                 CLK_SET_RATE_PARENT,
+> +                                                 &clk_gate_ops);
+> +       if (IS_ERR(host->sd_clk))
+> +               return PTR_ERR(host->sd_clk);
+> +
+> +       return 0;
+> +}
+> +
+> +static void meson_mx_sdhc_init_hw_meson8(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 val;
+> +
+> +       val = FIELD_PREP(MESON_SDHC_MISC_TXSTART_THRES, 7) |
+> +             FIELD_PREP(MESON_SDHC_MISC_WCRC_ERR_PATT, 5) |
+> +             FIELD_PREP(MESON_SDHC_MISC_WCRC_OK_PATT, 2);
+> +       writel(val, host->base + MESON_SDHC_MISC);
+> +
+> +       val = FIELD_PREP(MESON_SDHC_ENHC_RXFIFO_TH, 63) |
+> +             MESON_SDHC_ENHC_MESON6_DMA_WR_RESP |
+> +             FIELD_PREP(MESON_SDHC_ENHC_MESON6_RX_TIMEOUT, 255) |
+> +             FIELD_PREP(MESON_SDHC_ENHC_SDIO_IRQ_PERIOD, 12);
+> +       writel(val, host->base + MESON_SDHC_ENHC);
+> +};
+> +
+> +static void meson_mx_sdhc_set_pdma_meson8(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 pdma;
+> +
+> +       pdma = readl(host->base + MESON_SDHC_PDMA);
+> +
+> +       pdma |= MESON_SDHC_PDMA_DMA_MODE;
+> +
+> +       if (host->cmd->data->flags & MMC_DATA_WRITE) {
+> +               pdma &= ~MESON_SDHC_PDMA_RD_BURST;
+> +               pdma |= FIELD_PREP(MESON_SDHC_PDMA_RD_BURST, 31);
+> +
+> +               pdma |= MESON_SDHC_PDMA_TXFIFO_FILL;
+> +       } else {
+> +               pdma &= ~MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH;
+> +               pdma |= FIELD_PREP(MESON_SDHC_PDMA_RXFIFO_MANUAL_FLUSH, 1);
+> +       }
+> +
+> +       writel(pdma, host->base + MESON_SDHC_PDMA);
+> +
+> +       if (host->cmd->data->flags & MMC_DATA_WRITE) {
+> +               pdma &= ~MESON_SDHC_PDMA_RD_BURST;
+> +               pdma |= FIELD_PREP(MESON_SDHC_PDMA_RD_BURST, 15);
+> +
+> +               writel(pdma, host->base + MESON_SDHC_PDMA);
+> +       }
+> +}
+> +
+> +static void meson_mx_sdhc_wait_before_send_meson8(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 val;
+> +       int ret;
+> +
+> +       ret = readl_poll_timeout(host->base + MESON_SDHC_ESTA, val, val == 0,
+> +                                1, 200);
+> +       if (ret)
+> +               dev_warn(mmc_dev(mmc),
+> +                        "Failed to wait for ESTA to clear: 0x%08x\n", val);
+> +
+> +       if (host->cmd->data && host->cmd->data->flags & MMC_DATA_WRITE) {
+> +               ret = readl_poll_timeout(host->base + MESON_SDHC_STAT, val,
+> +                                        val & MESON_SDHC_STAT_TXFIFO_CNT,
+> +                                        1, 200);
+> +               if (ret)
+> +                       dev_warn(mmc_dev(mmc),
+> +                                "Failed to wait for TX FIFO to fill\n");
+> +       }
+> +}
+> +
+> +static void meson_mx_sdhc_init_hw_meson8m2(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 val;
+> +
+> +       val = FIELD_PREP(MESON_SDHC_MISC_TXSTART_THRES, 6) |
+> +             FIELD_PREP(MESON_SDHC_MISC_WCRC_ERR_PATT, 5) |
+> +             FIELD_PREP(MESON_SDHC_MISC_WCRC_OK_PATT, 2);
+> +       writel(val, host->base + MESON_SDHC_MISC);
+> +
+> +       val = FIELD_PREP(MESON_SDHC_ENHC_RXFIFO_TH, 64) |
+> +             FIELD_PREP(MESON_SDHC_ENHC_MESON8M2_DEBUG, 1) |
+> +             MESON_SDHC_ENHC_MESON8M2_WRRSP_MODE |
+> +             FIELD_PREP(MESON_SDHC_ENHC_SDIO_IRQ_PERIOD, 12),
+> +       writel(val, host->base + MESON_SDHC_ENHC);
+> +}
+> +
+> +static void meson_mx_sdhc_set_pdma_meson8m2(struct mmc_host *mmc)
+> +{
+> +       meson_mx_sdhc_mask_bits(mmc, MESON_SDHC_PDMA,
+> +                               MESON_SDHC_PDMA_DMA_MODE,
+> +                               MESON_SDHC_PDMA_DMA_MODE);
+> +}
+> +
+> +static void meson_mx_sdhc_init_hw(struct mmc_host *mmc)
+> +{
+> +       struct meson_mx_sdhc_host *host = mmc_priv(mmc);
+> +       u32 val;
+> +
+> +       meson_mx_sdhc_hw_reset(mmc);
+> +
+> +       val = FIELD_PREP(MESON_SDHC_CTRL_RX_PERIOD, 0xf) |
+> +             FIELD_PREP(MESON_SDHC_CTRL_RX_TIMEOUT, 0x7f) |
+> +             FIELD_PREP(MESON_SDHC_CTRL_RX_ENDIAN, 0x7) |
+> +             FIELD_PREP(MESON_SDHC_CTRL_TX_ENDIAN, 0x7);
+> +       writel(val, host->base + MESON_SDHC_CTRL);
+> +
+> +       /*
+> +        * start with a valid divider and enable the memory (un-setting
+> +        * MESON_SDHC_CLKC_MEM_PWR_OFF).
+> +        */
+> +       val = MESON_SDHC_CLKC_CLK_DIV;
+> +       writel(val, host->base + MESON_SDHC_CLKC);
+> +
+> +       val = FIELD_PREP(MESON_SDHC_CLK2_SD_CLK_PHASE, 1);
+> +       writel(val, host->base + MESON_SDHC_CLK2);
+> +
+> +       val = MESON_SDHC_PDMA_DMA_URGENT |
+> +             FIELD_PREP(MESON_SDHC_PDMA_WR_BURST, 7) |
+> +             FIELD_PREP(MESON_SDHC_PDMA_TXFIFO_TH, 49) |
+> +             FIELD_PREP(MESON_SDHC_PDMA_RD_BURST, 15) |
+> +             FIELD_PREP(MESON_SDHC_PDMA_RXFIFO_TH, 7);
+> +       writel(val, host->base + MESON_SDHC_PDMA);
+> +
+> +       /* some initialization bits depend on the SoC: */
+> +       host->platform->init_hw(mmc);
+> +
+> +       /* disable and mask all interrupts: */
+> +       writel(0, host->base + MESON_SDHC_ICTL);
+> +       writel(MESON_SDHC_ISTA_ALL_IRQS, host->base + MESON_SDHC_ISTA);
+> +}
+> +
+> +static int meson_mx_sdhc_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct meson_mx_sdhc_host *host;
+> +       struct mmc_host *mmc;
+> +       int ret, irq;
+> +
+> +       mmc = mmc_alloc_host(sizeof(*host), dev);
+> +       if (!mmc)
+> +               return -ENOMEM;
+> +
+> +       ret = devm_add_action_or_reset(dev, (void(*)(void *))mmc_free_host,
+> +                                      mmc);
+> +       if (ret) {
+> +               dev_err(dev, "Failed to register mmc_free_host action\n");
+> +               return ret;
+> +       }
+> +
+> +       host = mmc_priv(mmc);
+> +       host->mmc = mmc;
+> +
+> +       platform_set_drvdata(pdev, host);
+> +
+> +       host->platform = device_get_match_data(dev);
+> +       if (!host->platform)
+> +               return -EINVAL;
+> +
+> +       host->base = devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(host->base))
+> +               return PTR_ERR(host->base);
+> +
+> +       host->pclk = devm_clk_get(dev, "pclk");
+> +       if (IS_ERR(host->pclk))
+> +               return PTR_ERR(host->pclk);
+> +
+> +       /* accessing any register requires the module clock to be enabled: */
+> +       ret = clk_prepare_enable(host->pclk);
+> +       if (ret) {
+> +               dev_err(dev, "Failed to enable 'pclk' clock\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = devm_add_action_or_reset(dev,
+> +                                      (void(*)(void *))clk_disable_unprepare,
+> +                                      host->pclk);
+> +       if (ret) {
+> +               dev_err(dev,
+> +                       "Failed to register clk_disable_unprepare action\n");
+> +               return ret;
+> +       }
+> +
+> +       meson_mx_sdhc_init_hw(mmc);
+> +
+> +       ret = meson_mx_sdhc_register_clks(host);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* Get regulators and the supported OCR mask */
+> +       ret = mmc_regulator_get_supply(mmc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       mmc->max_req_size = SZ_128K;
+> +       mmc->max_seg_size = mmc->max_req_size;
+> +       mmc->max_blk_count = FIELD_GET(MESON_SDHC_SEND_TOTAL_PACK, ~0);
+> +       mmc->max_blk_size = MESON_SDHC_MAX_BLK_SIZE;
+> +       mmc->max_busy_timeout = 30 * MSEC_PER_SEC;
+> +       mmc->f_min = clk_round_rate(host->sd_clk, 1);
+> +       mmc->f_max = clk_round_rate(host->sd_clk, ULONG_MAX);
+> +       mmc->max_current_180 = 300;
+> +       mmc->max_current_330 = 300;
+> +       mmc->caps |= MMC_CAP_ERASE | MMC_CAP_HW_RESET;
+> +       mmc->ops = &meson_mx_sdhc_ops;
+> +
+> +       ret = mmc_of_parse(mmc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       irq = platform_get_irq(pdev, 0);
+> +       ret = devm_request_threaded_irq(dev, irq, meson_mx_sdhc_irq,
+> +                                       meson_mx_sdhc_irq_thread, IRQF_ONESHOT,
+> +                                       NULL, host);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = mmc_add_host(mmc);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return 0;
+> +}
+> +
+> +static int meson_mx_sdhc_remove(struct platform_device *pdev)
+> +{
+> +       struct meson_mx_sdhc_host *host = platform_get_drvdata(pdev);
+> +
+> +       mmc_remove_host(host->mmc);
+> +
+> +       meson_mx_sdhc_disable_clks(host->mmc);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct meson_mx_sdhc_data meson_mx_sdhc_data_meson8 = {
+> +       .init_hw                        = meson_mx_sdhc_init_hw_meson8,
+> +       .set_pdma                       = meson_mx_sdhc_set_pdma_meson8,
+> +       .wait_before_send               = meson_mx_sdhc_wait_before_send_meson8,
+> +       .hardware_flush_all_cmds        = false,
+> +};
+> +
+> +static const struct meson_mx_sdhc_data meson_mx_sdhc_data_meson8m2 = {
+> +       .init_hw                        = meson_mx_sdhc_init_hw_meson8m2,
+> +       .set_pdma                       = meson_mx_sdhc_set_pdma_meson8m2,
+> +       .hardware_flush_all_cmds        = true,
+> +};
+> +
+> +static const struct of_device_id meson_mx_sdhc_of_match[] = {
+> +       {
+> +               .compatible = "amlogic,meson8-sdhc",
+> +               .data = &meson_mx_sdhc_data_meson8
+> +       },
+> +       {
+> +               .compatible = "amlogic,meson8b-sdhc",
+> +               .data = &meson_mx_sdhc_data_meson8
+> +       },
+> +       {
+> +               .compatible = "amlogic,meson8m2-sdhc",
+> +               .data = &meson_mx_sdhc_data_meson8m2
+> +       },
+> +       { /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, meson_mx_sdhc_of_match);
+> +
+> +static struct platform_driver meson_mx_sdhc_driver = {
+> +       .probe   = meson_mx_sdhc_probe,
+> +       .remove  = meson_mx_sdhc_remove,
+> +       .driver  = {
+> +               .name = "meson-mx-sdhc",
+> +               .of_match_table = of_match_ptr(meson_mx_sdhc_of_match),
+> +       },
+> +};
+> +
+> +module_platform_driver(meson_mx_sdhc_driver);
+> +
+> +MODULE_DESCRIPTION("Meson6, Meson8, Meson8b and Meson8m2 SDHC Host Driver");
+> +MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
+> +MODULE_LICENSE("GPL v2");
+> --
+> 2.24.0
+>
+
+Besides the above comments, I think overall the code looks quite okay to me.
+
+Kind regards
+Uffe
