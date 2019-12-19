@@ -2,71 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99951126DC8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 20:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1C99126CEB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 20:07:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727968AbfLSTM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 14:12:26 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:40809 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727699AbfLSSgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 13:36:52 -0500
-Received: by mail-ot1-f67.google.com with SMTP id w21so567177otj.7;
-        Thu, 19 Dec 2019 10:36:51 -0800 (PST)
+        id S1727991AbfLSTHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 14:07:11 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:41860 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728137AbfLSSnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 13:43:23 -0500
+Received: by mail-ot1-f66.google.com with SMTP id r27so8339997otc.8;
+        Thu, 19 Dec 2019 10:43:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zivQ+zB9chH5mQdMiQjMKA9RY31jCG6HIj79CgErI2w=;
-        b=kAf6ihh9wxbIvATjCIk1XzOueTAb4ILK6QSqWOi+Gn2QSle6Oo4KugnsE/9PreFHgb
-         Hh6d/6dYReYu5rty5VKIn4U1+E719XEXUCWyA6HTGpDMVTvO2l+Jj7Nl1WOedUdWsCYE
-         mGRHIGhOD+HXYMiQXUuKsUvxtUvSbCZQkaCr2MQCwo0c5DcWDzQbozJN+XpFejHfKCFR
-         6ZbPxqt9DXkAjifwP9RKxuJLMzp6UkOSfo5D9FuPVnrD0lcXItvKGkpJQd/oIi6JgplA
-         duSIZuPCkkVVEWZw9+aXSBIbbpCH3xAmlv/zUHWDYH6LVLWIZn1STSYuzNvyMKKodhkr
-         Ywtw==
-X-Gm-Message-State: APjAAAVztAg9dfsLjmjq0d0KrWB4P88MuWnVoif7fwDO6czTP748hFT/
-        zXDe2Uw17Z28atTNU22IC+S3vB0YAA==
-X-Google-Smtp-Source: APXvYqw33b/AA4V/6L+JZWrNjHnU++RQzimV+ODRfuMYe8enaJtZW+SQb2ERW5KuWVojra9xd/zYhQ==
-X-Received: by 2002:a05:6830:1116:: with SMTP id w22mr10593033otq.216.1576780611093;
-        Thu, 19 Dec 2019 10:36:51 -0800 (PST)
+        bh=ATCr26B2OQVBaMy930gvC8+YwzqQLoxjbV1kq1l7KCk=;
+        b=CjcHXC7bZXk5AsbMcdwa+6cfASsiCGVz+wR56vMtBUcxd5jDPbYMhnK4oYaexzOTug
+         u4tPYpYd/NxUejUhl6V7DD2j/rnc9CjQfNcFAWc4DBZdm9V3DWI+h0I3aHq1myFSFS+Q
+         8ybcBFLJBnTCDB+UTlzxm7b+10RKjTQ1PgQnXPLnPITiKn2/zZkuYp1hnOOVWKzCah2B
+         ssY7r1rMqo+YB98MYw6hQF8ir91mb6C92kPJbgAwLQ8LkUtqYirtdsiJVI8v97ZB2Cny
+         OdpTnwj6ZdsRbOc19lj+G07GCvVQ711SdE7AjTqev9emjZquJkqr6Q5ZVug8Hxeogqma
+         sUoA==
+X-Gm-Message-State: APjAAAXB2965kvh0ogAd3ywbMTXMzOc2chjy2Dto3hLAktctn5Mx8Cop
+        ycUUAzUva8gjldq+f1tmWbD5vYRMlQ==
+X-Google-Smtp-Source: APXvYqzHVHy4Y8bxjQIOFjcCok4NiCDbPD19EFZ7LpJjtchr7wNNUALhEQj3m9Oz59bjfHKnScEnxw==
+X-Received: by 2002:a9d:6d06:: with SMTP id o6mr10381223otp.239.1576781002486;
+        Thu, 19 Dec 2019 10:43:22 -0800 (PST)
 Received: from localhost ([2607:fb90:bdf:98e:3549:d84c:9720:edb4])
-        by smtp.gmail.com with ESMTPSA id w12sm2371730otk.75.2019.12.19.10.36.50
+        by smtp.gmail.com with ESMTPSA id r205sm2279361oih.54.2019.12.19.10.43.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 10:36:50 -0800 (PST)
-Date:   Thu, 19 Dec 2019 12:36:48 -0600
+        Thu, 19 Dec 2019 10:43:21 -0800 (PST)
+Date:   Thu, 19 Dec 2019 12:43:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: arm: move sprd board file to vendor
- directory
-Message-ID: <20191219183648.GA11279@bogus>
-References: <20191209114404.22483-1-zhang.lyra@gmail.com>
- <20191209114404.22483-3-zhang.lyra@gmail.com>
+To:     shubhrajyoti.datta@gmail.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        michal.simek@xilinx.com, gregkh@linuxfoundation.org,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: Re: [PATCH v2 2/2] devicetree: bindings: Add the binding doc for
+ xilinx APM
+Message-ID: <20191219184318.GA13328@bogus>
+References: <1575901405-3084-1-git-send-email-shubhrajyoti.datta@gmail.com>
+ <1575901405-3084-2-git-send-email-shubhrajyoti.datta@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191209114404.22483-3-zhang.lyra@gmail.com>
+In-Reply-To: <1575901405-3084-2-git-send-email-shubhrajyoti.datta@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  9 Dec 2019 19:44:03 +0800, Chunyan Zhang wrote:
-> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+On Mon, Dec 09, 2019 at 07:53:25PM +0530, shubhrajyoti.datta@gmail.com wrote:
+> From: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > 
-> We've created a vendor directory for sprd, so move the board bindings to
-> there.
+> Add the devicetree binding for xilinx APM.
 > 
-> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > ---
->  Documentation/devicetree/bindings/arm/{ => sprd}/sprd.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->  rename Documentation/devicetree/bindings/arm/{ => sprd}/sprd.yaml (92%)
+> v2:
+> patch added
 > 
+>  .../devicetree/bindings/perf/xilinx_apm.txt        | 44 ++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/xilinx_apm.txt
 
-Acked-by: Rob Herring <robh@kernel.org>
+As Michal said, DT schema please.
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/xilinx_apm.txt b/Documentation/devicetree/bindings/perf/xilinx_apm.txt
+> new file mode 100644
+> index 0000000..a11c82e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/xilinx_apm.txt
+> @@ -0,0 +1,44 @@
+> +* Xilinx AXI Performance monitor IP
+> +
+> +Required properties:
+> +- compatible: "xlnx,axi-perf-monitor"
+
+Version?
+
+> +- interrupts: Should contain APM interrupts.
+> +- interrupt-parent: Must be core interrupt controller.
+
+Drop this.
+
+> +- reg: Should contain APM registers location and length.
+> +- xlnx,enable-profile: Enables the profile mode.
+> +- xlnx,enable-trace: Enables trace mode.
+> +- xlnx,num-monitor-slots: Maximum number of slots in APM.
+> +- xlnx,enable-event-count: Enable event count.
+> +- xlnx,enable-event-log: Enable event logging.
+> +- xlnx,have-sampled-metric-cnt:Sampled metric counters enabled in APM.
+> +- xlnx,num-of-counters: Number of counters in APM
+> +- xlnx,metric-count-width: Metric Counter width (32/64)
+> +- xlnx,metrics-sample-count-width: Sampled metric counter width
+> +- xlnx,global-count-width: Global Clock counter width
+
+All these synthesis time config and not discoverable?
+
+Tell h/w designers to add feature registers so all this is 
+discoverable. </rant>
+
+> +- clocks: Input clock specifier.
+> +
+> +Optional properties:
+> +- xlnx,id-filter-32bit: APM is in 32-bit mode
+> +
+> +Example:
+> +++++++++
+> +
+> +apm: apm@44a00000 {
+> +    compatible = "xlnx,axi-perf-monitor";
+> +    interrupt-parent = <&axi_intc_1>;
+> +    interrupts = <1 2>;
+> +    reg = <0x44a00000 0x1000>;
+> +    clocks = <&clkc 15>;
+> +    xlnx,enable-profile = <0>;
+> +    xlnx,enable-trace = <0>;
+> +    xlnx,num-monitor-slots = <4>;
+> +    xlnx,enable-event-count = <1>;
+> +    xlnx,enable-event-log = <1>;
+> +    xlnx,have-sampled-metric-cnt = <1>;
+> +    xlnx,num-of-counters = <8>;
+> +    xlnx,metric-count-width = <32>;
+> +    xlnx,metrics-sample-count-width = <32>;
+> +    xlnx,global-count-width = <32>;
+> +    xlnx,metric-count-scale = <1>;
+> +    xlnx,id-filter-32bit;
+> +};
+> -- 
+> 2.1.1
+> 
