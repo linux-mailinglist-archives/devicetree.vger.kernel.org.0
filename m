@@ -2,170 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EEFA12641B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 14:58:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 817CA126431
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 15:03:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbfLSN6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 08:58:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44810 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726712AbfLSN6f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Dec 2019 08:58:35 -0500
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EB73024680;
-        Thu, 19 Dec 2019 13:58:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1576763914;
-        bh=JOfDuzbX5KhFQruw5/hk7NXJKA6KWbQ5U0uen+8uMe8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W/fJRZXBUvYkHq3JlwObr/7TxhyVP73UtkCQDHeP+pZ0z2sFRgmyKrlQRpaf9uD8O
-         jR8ZeleXC8Rgbf8v2xJT4CPTvh/cUiNjKj1UhTWbOHHGBu4aEJQwJF8vImJN1phNY6
-         exOXosUCscOy4yKa7VEWdiEgSdYqzmkhIc/Z2TIc=
-Received: by mail-qk1-f174.google.com with SMTP id z76so5046023qka.2;
-        Thu, 19 Dec 2019 05:58:33 -0800 (PST)
-X-Gm-Message-State: APjAAAWmTcCt7Tfqb7Av36vibksl2RcpNQpmRWVsAE59ReCj363Q4BgC
-        5PQZMcqhDXOnbxePZZcCBJKeCc7+WW0zQYuUrg==
-X-Google-Smtp-Source: APXvYqxIEdSdLGQ1r7BdWufTzQ/ecvo0rjriE1A6fphicM+PwzjpRWbhhJbCCHPqP1QOATmIWvV31zWPninmnAf8LbY=
-X-Received: by 2002:a37:a70b:: with SMTP id q11mr8042276qke.393.1576763912999;
- Thu, 19 Dec 2019 05:58:32 -0800 (PST)
+        id S1726752AbfLSOCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 09:02:54 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:40836 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726744AbfLSOCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 09:02:54 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBJE2d7x006319;
+        Thu, 19 Dec 2019 08:02:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1576764159;
+        bh=Z/4zy0bcGlzZwPsLdqMD3dCPHP5/S3bwFza9AnZkYRc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=OqT+X7vBi7HBzPbV1doQXHCO4o6151/DytKPJ9///IgvYua5oJvj/8OWhWyP0GEQZ
+         6FuSrlpEZ18zrRcfVynuWvtHkiDi2dQ0+Cpmg6t3Bxo+5plpVya651WwObe9dP0kuk
+         6IlW6JFA58jPNV8UpKtseCpZ4/zb9vxEPUv/ghk0=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBJE2daH065521
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 19 Dec 2019 08:02:39 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 19
+ Dec 2019 08:02:34 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 19 Dec 2019 08:02:34 -0600
+Received: from [10.1.3.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBJE2V2F054819;
+        Thu, 19 Dec 2019 08:02:32 -0600
+Subject: Re: [PATCH v4 3/5] dt-bindings: display: ti,j721e-dss: Add dt-schema
+ yaml binding
+To:     Maxime Ripard <maxime@cerno.tech>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
+        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <subhajit_paul@ti.com>,
+        <praneeth@ti.com>, <yamonkar@cadence.com>, <sjakhade@cadence.com>,
+        <sam@ravnborg.org>, <robh+dt@kernel.org>
+References: <cover.1576704528.git.jsarha@ti.com>
+ <89db418c91689beb6e63e0c3c99b39655948b429.1576704528.git.jsarha@ti.com>
+ <20191219083839.lmuhxynbbqy4d4hp@gilmour.lan>
+From:   Jyri Sarha <jsarha@ti.com>
+Autocrypt: addr=jsarha@ti.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <2acd648f-6532-c7d8-c9d0-f4c5229c7923@ti.com>
+Date:   Thu, 19 Dec 2019 16:01:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-References: <cover.1575529553.git.saiprakash.ranjan@codeaurora.org>
- <0101016ed57a3259-eee09e9e-e99a-40f1-ab1c-63e58a42615c-000000@us-west-2.amazonses.com>
- <20191218233714.GA30302@bogus> <7469b239edd4beed3e8fefdf02f10ada@codeaurora.org>
-In-Reply-To: <7469b239edd4beed3e8fefdf02f10ada@codeaurora.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 19 Dec 2019 07:58:21 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL-uBGy5ekHUZAJB4L1QYoCpnOw-4QPpZraXnsZ49wZ6w@mail.gmail.com>
-Message-ID: <CAL_JsqL-uBGy5ekHUZAJB4L1QYoCpnOw-4QPpZraXnsZ49wZ6w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: edac: Add DT bindings for Kryo EDAC
-To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        James Morse <james.morse@arm.com>,
-        Robert Richter <rrichter@marvell.com>,
-        linux-edac <linux-edac@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Evan Green <evgreen@chromium.org>,
-        Trilok Soni <tsoni@codeaurora.org>,
-        Prasad Sodagudi <psodagud@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20191219083839.lmuhxynbbqy4d4hp@gilmour.lan>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature";
+        boundary="lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W"
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 19, 2019 at 12:50 AM Sai Prakash Ranjan
-<saiprakash.ranjan@codeaurora.org> wrote:
->
-> Hi Rob,
->
-> On 2019-12-19 05:07, Rob Herring wrote:
-> > On Thu, Dec 05, 2019 at 09:53:05AM +0000, Sai Prakash Ranjan wrote:
-> >> This adds DT bindings for Kryo EDAC implemented with RAS
-> >> extensions on KRYO{3,4}XX CPU cores for reporting of cache
-> >> errors.
-> >>
-> >> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> >> ---
-> >>  .../bindings/edac/qcom-kryo-edac.yaml         | 67
-> >> +++++++++++++++++++
-> >>  1 file changed, 67 insertions(+)
-> >>  create mode 100644
-> >> Documentation/devicetree/bindings/edac/qcom-kryo-edac.yaml
-> >>
-> >> diff --git
-> >> a/Documentation/devicetree/bindings/edac/qcom-kryo-edac.yaml
-> >> b/Documentation/devicetree/bindings/edac/qcom-kryo-edac.yaml
-> >> new file mode 100644
-> >> index 000000000000..1a39429a73b4
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/edac/qcom-kryo-edac.yaml
-> >> @@ -0,0 +1,67 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/edac/qcom-kryo-edac.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Kryo Error Detection and Correction(EDAC)
-> >> +
-> >> +maintainers:
-> >> +  - Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> >> +
-> >> +description: |
-> >> +  Kryo EDAC is defined to describe on-chip error detection and
-> >> correction
-> >> +  for the Kryo CPU cores which implement RAS extensions. It will
-> >> report
-> >> +  all Single Bit Errors and Double Bit Errors found in L1/L2 caches
-> >> in
-> >> +  in two registers ERXSTATUS_EL1 and ERXMISC0_EL1. L3-SCU cache
-> >> errors
-> >> +  are reported in ERR1STATUS and ERR1MISC0 registers.
-> >> +    ERXSTATUS_EL1 - Selected Error Record Primary Status Register,
-> >> EL1
-> >> +    ERXMISC0_EL1 - Selected Error Record Miscellaneous Register 0,
-> >> EL1
-> >> +    ERR1STATUS - Error Record Primary Status Register
-> >> +    ERR1MISC0 - Error Record Miscellaneous Register 0
-> >> +  Current implementation of Kryo ECC(Error Correcting Code) mechanism
-> >> is
-> >> +  based on interrupts.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - qcom,kryo-edac
-> >> +
-> >> +  interrupts:
-> >> +    minItems: 1
-> >> +    maxItems: 4
-> >> +    items:
-> >> +      - description: l1-l2 cache faultirq interrupt
-> >> +      - description: l1-l2 cache errirq interrupt
-> >> +      - description: l3-scu cache errirq interrupt
-> >> +      - description: l3-scu cache faultirq interrupt
-> >> +
-> >> +  interrupt-names:
-> >> +    minItems: 1
-> >> +    maxItems: 4
-> >
-> > You are saying only these combinations are valid:
-> >
-> > l1-l2-faultirq
-> >
-> > l1-l2-faultirq
-> > l1-l2-errirq
-> >
-> > l1-l2-faultirq
-> > l1-l2-errirq
-> > l3-scu-errirq
-> >
-> > l1-l2-faultirq
-> > l1-l2-errirq
-> > l3-scu-errirq
-> > l3-scu-faultirq
-> >
-> > Is that your intent?
-> >
->
-> No, I want any combination of interrupts to be valid with atleast one
-> interrupt as mandatory.
-> I thought specifying minItems as 1 and maxItems as 4 will take care of
-> this,  am I doing something wrong?
+--lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W
+Content-Type: multipart/mixed; boundary="5pmhAxlWnc8hbbeJiFxw5k5ShGwaMHvg1"
 
-Interrupts (really all properties) have a defined order in DT and an
-'items' list defines both the order and index. You'll need to use
-oneOf and list out the possibilities. Stick to ones you actually need.
+--5pmhAxlWnc8hbbeJiFxw5k5ShGwaMHvg1
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-GB
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On 19/12/2019 10:38, Maxime Ripard wrote:
+> Hi,
+>=20
+> On Thu, Dec 19, 2019 at 10:23:17AM +0200, Jyri Sarha wrote:
+>> Add dt-schema yaml bindig for J721E DSS, J721E version TI Keystone
+>> Display SubSystem.
+>>
+>> Version history:
+>>
+>> v2: no change
+>>
+>> v3: - reg-names: "wp" -> "wb"
+>>     - Add ports node
+>>     - Add includes to dts example
+>>     - reindent dts example
+>>
+>> v4: - Add descriptions to reg, clocks, and interrups properties
+>>     - Remove minItems when its value is the same as maxItems value
+>>
+>> Signed-off-by: Jyri Sarha <jsarha@ti.com>
+>> ---
+>>  .../bindings/display/ti/ti,j721e-dss.yaml     | 209 +++++++++++++++++=
++
+>>  1 file changed, 209 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/ti/ti,j7=
+21e-dss.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss=
+=2Eyaml b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+>> new file mode 100644
+>> index 000000000000..cd68c4294f9a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+>> @@ -0,0 +1,209 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright 2019 Texas Instruments Incorporated
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/display/ti/ti,j721e-dss.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Texas Instruments J721E Display Subsystem
+>> +
+>> +maintainers:
+>> +  - Jyri Sarha <jsarha@ti.com>
+>> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
+>> +
+>> +description: |
+>> +  The J721E TI Keystone Display SubSystem with four output ports and
+>> +  four video planes. There is two full video planes and two "lite
+>> +  planes" without scaling support. The video ports can be connected t=
+o
+>> +  the SoC's DPI pins or to integrated display bridges on the SoC.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: ti,j721e-dss
+>> +
+>> +  reg:
+>> +    maxItems: 17
+>> +    description: |
+>> +      Addresses to each DSS memory region described in the SoC's TRM.=
+
+>> +      The reg-names refer to memory regions as follows:
+>> +      reg-names: Region Name in TRM:     Description:
+>> +      common_m   DSS0_DISPC_0_COMMON_M   DSS Master common register a=
+rea
+>> +      common_s0  DSS0_DISPC_0_COMMON_SO  DSS Shared common register a=
+rea 0
+>> +      common_s1  DSS0_DISPC_0_COMMON_S1  DSS Shared common register a=
+rea 1
+>> +      common_s2  DSS0_DISPC_0_COMMON_S2  DSS Shared common register a=
+rea 2
+>> +      vidl1      DSS0_VIDL1              VIDL1 light video plane 1
+>> +      vidl2      DSS0_VIDL2              VIDL2 light video plane 2
+>> +      vid1       DSS0_VID1               VID1 video plane 1
+>> +      vid2       DSS0_VID2               VID1 video plane 2
+>> +      ovr1       DSS0_OVR1               OVR1 overlay manager for vp1=
+
+>> +      ovr2       DSS0_OVR2               OVR2 overlay manager for vp2=
+
+>> +      ovr3       DSS0_OVR3               OVR1 overlay manager for vp3=
+
+>> +      ovr4       DSS0_OVR4               OVR2 overlay manager for vp4=
+
+>> +      vp1        DSS0_VP1                VP1 video port 1
+>> +      vp2        DSS0_VP2                VP1 video port 2
+>> +      vp3        DSS0_VP3                VP1 video port 3
+>> +      vp4        DSS0_VP4                VP1 video port 4
+>> +      wp         DSS0_WB                 Write Back registers
+>=20
+> I guess it applies to all your schemas in that patch series, but you
+> could just do something like
+>=20
+> reg:
+>   items:
+>     - description: DSS Master common register area
+>     - description: DSS Shared common register area 0
+>     - description: DSS Shared common register area 1
+>=20
+
+Ok, thanks. I was not sure if you can do that (still a newbie with
+yaml). What do you think about Peter Ujfalusi's suggestion of putting
+the descriptions to reg-names (and clock-names and  interrupt-names)?
+e.g. something like this:
+
+  reg-names:
+    items:
+      - const: common_m
+      - description: DSS Master common register area
+      - const: common_s0
+      - description: DSS Master common register area
+=2E..
+
+Or is that even allowed?
+
+
+> ...
+>=20
+> That way, you wouldn't have to worry about the maxItems, and you end
+> up doing pretty much that already in the description
+>=20
+>> +  reg-names:
+>> +    items:
+>> +      - const: common_m
+>> +      - const: common_s0
+>> +      - const: common_s1
+>> +      - const: common_s2
+>> +      - const: vidl1
+>> +      - const: vidl2
+>> +      - const: vid1
+>> +      - const: vid2
+>> +      - const: ovr1
+>> +      - const: ovr2
+>> +      - const: ovr3
+>> +      - const: ovr4
+>> +      - const: vp1
+>> +      - const: vp2
+>> +      - const: vp3
+>> +      - const: vp4
+>> +      - const: wb
+>> +
+>> +  clocks:
+>> +    maxItems: 5
+>> +    description:
+>> +      phandles to clock nodes for DSS functional clock (fck) and vide=
+o
+>> +      port 1, 2, 3 and 4 pixel clocks (vp1, vp2, vp3, vp4).
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: fck
+>> +      - const: vp1
+>> +      - const: vp2
+>> +      - const: vp3
+>> +      - const: vp4
+>> +
+>> +  interrupts:
+>> +    maxItems: 4
+>> +    description:
+>> +      Interrupt descriptions for common irq registers in common_m,
+>> +      common_m0, common_m1, and common_m2, sections.
+>=20
+> Same story here, but the names don't match interrupt-names. I guess
+> describing what those interrupts actually are would be great: you just
+> define how the driver calls them, but not what they are actually doing
+> or representing.
+>=20
+> I'm guessing that would end up in something like that:
+>=20
+> interrupts:
+>   items:
+>     - description: DSS Master interrupt
+>     - description: DSS Shared 0 interrupt
+>     - description: DSS Shared 1 interrupt
+>     - description: DSS Shared 2 interrupt
+>=20
+> Maxime
+>=20
+
+
+--=20
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
+
+--5pmhAxlWnc8hbbeJiFxw5k5ShGwaMHvg1--
+
+--lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEMuwitgUoIEsi53ohkDazUNfWGUEFAl37gvYACgkQkDazUNfW
+GUHD7hAA4F+jUC0zMFknujFq9bdfIDsncuO1m6FxZ3B4momsVeafI6VjXeoWjiNa
+W9IodFTCqvbQP8h0HMY6E0Hv+cZWlhk+IMMF7r+I301uX+qEFeEgU2sI/EYfCYC+
+BQcDtwjgU6nGbRzW36XDjQ4WO5YFV/ePP0ZSkDqmV4l+kKfso7bXPmIqWd6X8r+E
+R5Z+KhKnkdyEaA+Ha8QRumnnKIku0jndR6AsbGNzOcEIZ/FMm7jlc3CAOmGL8R2p
+y8iHp5sXpbF3Ewfxwj+imNf9VoCCsuvzlL8cugqJnhLa4A6EsY0JnGM2Su3IdrER
+9krrROjJCDL69zW4Px463gO0T2suan9/t11ynH+z4Jj2B280ppGaqlGwMPbw5MAq
+cyrTzsgNZwZj+xqWjdQO+GbSdduNCO4MmyTlmxfjbMGjRSCT0FSSo8AFpgXJ3gkt
+/TL6n8qdUo5Pw13OI9t1Jg87/XeoipFTOMfJ2b64RMiSRG+Pc4DHZkTUyWUCIxQ2
+oXTMEapnVljsM1Dzi5nGfgzVMtLLnfLBzNsvgLqhIxV9H3SzxoLM/KPEaZUqPlah
+t3hbT+zl59DHZRrJtEhujgAX+Q4s3HK/65Wi97jedKd7cnwYW5gIDfS2BxPMtLdV
+GpA1RlF+iC215KhV9rc5cURvSMoVRHj34KwkKzHhI02MuqzcfHE=
+=s4ax
+-----END PGP SIGNATURE-----
+
+--lvnmzd5MQJeWgjpGHrk5fUt4U9udObU1W--
