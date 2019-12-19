@@ -2,81 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4776A12659E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 16:21:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9670C1265AC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 16:25:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726759AbfLSPVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 10:21:44 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:34200 "EHLO inva021.nxp.com"
+        id S1726928AbfLSPZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 10:25:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37974 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726908AbfLSPVj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Dec 2019 10:21:39 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EC99D201107;
-        Thu, 19 Dec 2019 16:21:37 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id DF09E20008E;
-        Thu, 19 Dec 2019 16:21:37 +0100 (CET)
-Received: from fsr-fed2164-101.ea.freescale.net (fsr-fed2164-101.ea.freescale.net [10.171.82.91])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 56117203C8;
-        Thu, 19 Dec 2019 16:21:37 +0100 (CET)
-From:   Madalin Bucur <madalin.bucur@oss.nxp.com>
-To:     davem@davemloft.net, netdev@vger.kernel.org
-Cc:     linux@armlinux.org.uk, andrew@lunn.ch, f.fainelli@gmail.com,
-        hkallweit1@gmail.com, shawnguo@kernel.org,
-        devicetree@vger.kernel.org,
-        Madalin Bucur <madalin.bucur@oss.nxp.com>
-Subject: [PATCH 6/6] net: phy: aquantia: add support for PHY_INTERFACE_MODE_XFI
-Date:   Thu, 19 Dec 2019 17:21:21 +0200
-Message-Id: <1576768881-24971-7-git-send-email-madalin.bucur@oss.nxp.com>
-X-Mailer: git-send-email 2.1.0
-In-Reply-To: <1576768881-24971-1-git-send-email-madalin.bucur@oss.nxp.com>
-References: <1576768881-24971-1-git-send-email-madalin.bucur@oss.nxp.com>
-Content-Type: text/plain; charset="us-ascii"
-Reply-to: madalin.bucur@nxp.com
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726776AbfLSPZH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Dec 2019 10:25:07 -0500
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E31BC24676
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2019 15:25:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1576769106;
+        bh=/oz0Lnf4DBLEQwFr/zzM8JbVGrzMMRE5/AMWXswFdtQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=kLg7lIRN7/VT2Jo+na25JWjyu7yPZTM+VkfvwR7yq9fcghHST3w/sfCThzj2FhqB5
+         oaRJ7Nh1s99P8b9QvbeY3hazzEUMhU03Pj3mhTL4CSRcwnKLUywRSjBLnmMAWOuOnp
+         upYL3uh3lUJUKnqpPk8Z7DB2hvmUvTsGA5FE1FZw=
+Received: by mail-wm1-f53.google.com with SMTP id m24so5835661wmc.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2019 07:25:05 -0800 (PST)
+X-Gm-Message-State: APjAAAVCTM2F8HZ0zbI6icz8dion/rI+aNSrsyG+82KmF2Ooh3cJxQvK
+        FXH8a/OnS+Er8/pkgwbbJwqtL29npTFIGxwvWDk=
+X-Google-Smtp-Source: APXvYqyjAmLF5BxFtYYgMh0BMNtnKW8iHMmHE/m7GJOovj1r3RwzFCSGytQtjSCErxKIy8ZGsFId38iCST7gaefT5vk=
+X-Received: by 2002:a7b:cf12:: with SMTP id l18mr11402298wmg.66.1576769104353;
+ Thu, 19 Dec 2019 07:25:04 -0800 (PST)
+MIME-Version: 1.0
+References: <20191219084332.944123-1-maxime@cerno.tech>
+In-Reply-To: <20191219084332.944123-1-maxime@cerno.tech>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Thu, 19 Dec 2019 23:24:52 +0800
+X-Gmail-Original-Message-ID: <CAGb2v643z-GwEgOV_OS96ESihDgGNOwp2s7eyJr68QFyPNqd_Q@mail.gmail.com>
+Message-ID: <CAGb2v643z-GwEgOV_OS96ESihDgGNOwp2s7eyJr68QFyPNqd_Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: Convert Allwinner A80 USB PHY
+ controller to a schema
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PHY_INTERFACE_MODE_10GKR was introduced as a catch-all
-value for 10GBase-KR, XFI, SFI, to differentiate against XGMII.
-The AQR PHYs support XFI as a PHY connection type, adding it
-to the list of supported types. I'm not sure whether 10GBase-KR
-is actually supported or not on the AQR devices so I'm not
-touching that.
+On Thu, Dec 19, 2019 at 4:43 PM Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> The Allwinner A80 SoCs have a USB PHY controller that is used by Linux,
+> with a matching Device Tree binding.
+>
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for that controller over to a YAML schemas.
+>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
+>  .../phy/allwinner,sun9i-a80-usb-phy.yaml      | 135 ++++++++++++++++++
+>  .../devicetree/bindings/phy/sun9i-usb-phy.txt |  37 -----
+>  2 files changed, 135 insertions(+), 37 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/allwinner,sun9i-a80-usb-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/sun9i-usb-phy.txt
+>
+> diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun9i-a80-usb-phy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun9i-a80-usb-phy.yaml
+> new file mode 100644
+> index 000000000000..ded7d6f0a119
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/allwinner,sun9i-a80-usb-phy.yaml
+> @@ -0,0 +1,135 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/allwinner,sun9i-a80-usb-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner A80 USB PHY Device Tree Bindings
+> +
+> +maintainers:
+> +  - Chen-Yu Tsai <wens@csie.org>
+> +  - Maxime Ripard <mripard@kernel.org>
+> +
+> +properties:
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  compatible:
+> +    const: allwinner,sun9i-a80-usb-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    anyOf:
+> +      - description: Main PHY Clock
+> +
+> +      - items:
+> +          - description: Main PHY clock
+> +          - description: HSIC 12MHz clock
+> +          - description: HSIC 480MHz clock
+> +
+> +  clock-names:
+> +    oneOf:
+> +      - const: phy
+> +
+> +      - items:
+> +          - const: phy
+> +          - const: hsic_12M
+> +          - const: hsic_480M
+> +
+> +  resets:
+> +    anyOf:
+> +      - description: Normal USB PHY reset
+> +
+> +      - items:
+> +          - description: Normal USB PHY reset
+> +          - description: HSIC Reset
+> +
+> +  reset-names:
+> +    oneOf:
+> +      - const: phy
+> +
+> +      - items:
+> +          - const: phy
+> +          - const: hsic
+> +
+> +  phy_type:
+> +    const: hsic
+> +    description:
+> +      When absent, the PHY type will be assumed to be normal USB.
+> +
+> +  phy-supply:
+> +    description:
+> +      Regulator that powers VBUS
+> +
+> +required:
+> +  - "#phy-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +
+> +additionalProperties: false
+> +
+> +if:
+> +  properties:
+> +    phy_type:
+> +      const: hsic
+> +
+> +  required:
+> +    - phy_type
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      maxItems: 3
+> +
+> +    clock-names:
+> +      maxItems: 3
+> +
+> +    resets:
+> +      maxItems: 2
+> +
+> +    reset-names:
+> +      maxItems: 2
 
-Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
----
- drivers/net/phy/aquantia_main.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+So this is slightly incorrect. If phy_type == "hsic", then the
+"phy" clock and reset should not be needed. I say should because
+no boards actually came with HSIC implemented. The A80 Optimus
+board had the HSIC lines on one of the GPIO headers, but I never
+had any HSIC chips lol.
 
-diff --git a/drivers/net/phy/aquantia_main.c b/drivers/net/phy/aquantia_main.c
-index 975789d9349d..688a637f1aba 100644
---- a/drivers/net/phy/aquantia_main.c
-+++ b/drivers/net/phy/aquantia_main.c
-@@ -358,9 +358,11 @@ static int aqr107_read_status(struct phy_device *phydev)
- 
- 	switch (FIELD_GET(MDIO_PHYXS_VEND_IF_STATUS_TYPE_MASK, val)) {
- 	case MDIO_PHYXS_VEND_IF_STATUS_TYPE_KR:
--	case MDIO_PHYXS_VEND_IF_STATUS_TYPE_XFI:
- 		phydev->interface = PHY_INTERFACE_MODE_10GKR;
- 		break;
-+	case MDIO_PHYXS_VEND_IF_STATUS_TYPE_XFI:
-+		phydev->interface = PHY_INTERFACE_MODE_XFI;
-+		break;
- 	case MDIO_PHYXS_VEND_IF_STATUS_TYPE_USXGMII:
- 		phydev->interface = PHY_INTERFACE_MODE_USXGMII;
- 		break;
-@@ -493,6 +495,7 @@ static int aqr107_config_init(struct phy_device *phydev)
- 	    phydev->interface != PHY_INTERFACE_MODE_2500BASEX &&
- 	    phydev->interface != PHY_INTERFACE_MODE_XGMII &&
- 	    phydev->interface != PHY_INTERFACE_MODE_USXGMII &&
-+	    phydev->interface != PHY_INTERFACE_MODE_XFI &&
- 	    phydev->interface != PHY_INTERFACE_MODE_10GKR)
- 		return -ENODEV;
- 
--- 
-2.1.0
+ChenYu
 
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sun9i-a80-usb.h>
+> +    #include <dt-bindings/reset/sun9i-a80-usb.h>
+> +
+> +    usbphy1: phy@a00800 {
+> +        compatible = "allwinner,sun9i-a80-usb-phy";
+> +        reg = <0x00a00800 0x4>;
+> +        clocks = <&usb_clocks CLK_USB0_PHY>;
+> +        clock-names = "phy";
+> +        resets = <&usb_clocks RST_USB0_PHY>;
+> +        reset-names = "phy";
+> +        phy-supply = <&reg_usb1_vbus>;
+> +        #phy-cells = <0>;
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/clock/sun9i-a80-usb.h>
+> +    #include <dt-bindings/reset/sun9i-a80-usb.h>
+> +
+> +    usbphy3: phy@a02800 {
+> +        compatible = "allwinner,sun9i-a80-usb-phy";
+> +        reg = <0x00a02800 0x4>;
+> +        clocks = <&usb_clocks CLK_USB2_PHY>,
+> +                 <&usb_clocks CLK_USB_HSIC>,
+> +                 <&usb_clocks CLK_USB2_HSIC>;
+> +        clock-names = "phy",
+> +                      "hsic_12M",
+> +                      "hsic_480M";
+> +        resets = <&usb_clocks RST_USB2_PHY>,
+> +                 <&usb_clocks RST_USB2_HSIC>;
+> +        reset-names = "phy",
+> +                      "hsic";
+> +        phy_type = "hsic";
+> +        phy-supply = <&reg_usb3_vbus>;
+> +        #phy-cells = <0>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/phy/sun9i-usb-phy.txt b/Documentation/devicetree/bindings/phy/sun9i-usb-phy.txt
+> deleted file mode 100644
+> index 64f7109aea1f..000000000000
+> --- a/Documentation/devicetree/bindings/phy/sun9i-usb-phy.txt
+> +++ /dev/null
+> @@ -1,37 +0,0 @@
+> -Allwinner sun9i USB PHY
+> ------------------------
+> -
+> -Required properties:
+> -- compatible : should be one of
+> -  * allwinner,sun9i-a80-usb-phy
+> -- reg : a list of offset + length pairs
+> -- #phy-cells : from the generic phy bindings, must be 0
+> -- phy_type : "hsic" for HSIC usage;
+> -            other values or absence of this property indicates normal USB
+> -- clocks : phandle + clock specifier for the phy clocks
+> -- clock-names : depending on the "phy_type" property,
+> -  * "phy" for normal USB
+> -  * "hsic_480M", "hsic_12M" for HSIC
+> -- resets : a list of phandle + reset specifier pairs
+> -- reset-names : depending on the "phy_type" property,
+> -  * "phy" for normal USB
+> -  * "hsic" for HSIC
+> -
+> -Optional Properties:
+> -- phy-supply : from the generic phy bindings, a phandle to a regulator that
+> -              provides power to VBUS.
+> -
+> -It is recommended to list all clocks and resets available.
+> -The driver will only use those matching the phy_type.
+> -
+> -Example:
+> -       usbphy1: phy@a01800 {
+> -               compatible = "allwinner,sun9i-a80-usb-phy";
+> -               reg = <0x00a01800 0x4>;
+> -               clocks = <&usb_phy_clk 2>, <&usb_phy_clk 10>,
+> -                      <&usb_phy_clk 3>;
+> -               clock-names = "hsic_480M", "hsic_12M", "phy";
+> -               resets = <&usb_phy_clk 18>, <&usb_phy_clk 19>;
+> -               reset-names = "hsic", "phy";
+> -               #phy-cells = <0>;
+> -       };
+> --
+> 2.23.0
+>
