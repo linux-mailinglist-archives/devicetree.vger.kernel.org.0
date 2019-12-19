@@ -2,84 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CFAB12642D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 15:02:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E54E126456
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 15:11:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726853AbfLSOCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 09:02:43 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:29174 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726744AbfLSOCm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Dec 2019 09:02:42 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBJDgbJo030197;
-        Thu, 19 Dec 2019 15:02:31 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=lmYBkuR7hu/iO85iNxJiScrX1QW68m2Wp1jYoIywx+U=;
- b=GGKi5DLB7NESlB2r6cTCXbIuYTJ0jr85Am2eS6uqGs+aci2NBMZq3aN55KXOanmI5H8q
- QIlnS9qMb18zfmyp3USNnCPnxL/nSIZZjDft96pV9B895xKT4N6zSFoDh513fA7poNPk
- TNx0cn9F8k6s6hNT9gfeR2L72PRSAQB6PWK/ayaTjb1LtHEOv9C32ub6WLh+MMO2goE3
- fnTynm/avWiw6UjfBp5G4vt4WHxaKg+4yVOGKdo/nsjRFd4cSUPcctwV50HtORjEmUIa
- 0gArsbFGuPPVzfVdmthjLe5l5Vn8prFMuFiqvW8AI7xibU/ueI7KxnMJa1wX55AQohFE HQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2wvnret2vp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Dec 2019 15:02:31 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6A9AB10002A;
-        Thu, 19 Dec 2019 15:02:28 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 52C332C38BE;
-        Thu, 19 Dec 2019 15:02:28 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 19 Dec 2019 15:02:28
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <davem@davemloft.net>, <robh@kernel.org>, <mark.rutland@arm.com>,
-        <mripard@kernel.org>, <martin.blumenstingl@googlemail.com>,
-        <andrew@lunn.ch>, <narmstrong@baylibre.com>,
-        <alexandru.ardelean@analog.com>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH] dt-bindings: net: stmmac: add missing properties keyword
-Date:   Thu, 19 Dec 2019 15:02:26 +0100
-Message-ID: <20191219140226.16820-1-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
+        id S1726801AbfLSOLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 09:11:15 -0500
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:40646 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726695AbfLSOLP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 09:11:15 -0500
+Received: by mail-ed1-f68.google.com with SMTP id b8so4993340edx.7
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2019 06:11:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=clZzE5oWuHu58s8VOdHWBVy38e2LT2FNqa0IOiJ8Pno=;
+        b=n5WKHtOjKZAcEpXknaKrANkMjPc5I9UKtCBGQ78HA2khJ4nfDTYRJYEc2+fj3I1Fkn
+         ha25hcVjnIDI+wrc1oFeWcvd8eBNuapXSPBoqY0nKHI2V03hwHZ+Ay/jFSkkEO0kW0BY
+         NM4Ql8kso4wGnxO+V0PrRoGr9hO1a01H9GkjcfQT9QoLwVBLDtwQ3BuUjW6y9sAv8lfg
+         Syr9yRHqd5u7Kv6K8ZUFm1qm3zv1yySq8mPCo+epWPqtyIG/zDpvLIPKs6ntJSWfWhFI
+         fZiZASZTwE6EYJBxtv269hcaO52Mwo7k67Mkh1PtyRFg1Fdleszn9rB/L30T79sxc40C
+         cc1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=clZzE5oWuHu58s8VOdHWBVy38e2LT2FNqa0IOiJ8Pno=;
+        b=VYab9qdNH36LhPlxtqz7mXwOLTeHPvLpGjokeVdMwyu+NDEp/biOPHt2cgNLVoS39s
+         vSzvnXfQ3K/LCJF/sSGM/SRiZIPWPWi3Yo1ucv5YjjlCVVvG1i7JWGcCSdhKq+Nv0b02
+         ROQfiUMhpG9+oF3ISVbodUxmafhpSMlRssx6kXRA/i6VQ7c+IM5XVid58VcsRTp+Vukw
+         YyF1gO2riJf7gIt6t8HW1rezzW1mVJmm1DvV5LRsG+S4RK/KYJLAz8GUfSVqnC6htuBs
+         Wfdflo40KvTEPnxiX9OzGuhw2C8RCwwcLOmSq3xysX+E/ruCKi9pTh9Sy7dB+/lyFGfZ
+         y46w==
+X-Gm-Message-State: APjAAAW68QRWM03thFeNXJj3o3Pl7A6BfLyC3T5ozOFvE0GO+A1g00ps
+        VCrPBWSo66C5K44B0baj1ax0ow==
+X-Google-Smtp-Source: APXvYqxl9SNHmQvO1V2+yKIouleHiF6c6w+NSNZDRU8V+Hpd4Y0zEbiUkVrTKUgdQk/MjFnTiDxYXQ==
+X-Received: by 2002:a05:6402:1251:: with SMTP id l17mr9406658edw.54.1576764672969;
+        Thu, 19 Dec 2019 06:11:12 -0800 (PST)
+Received: from [192.168.27.209] ([37.157.136.193])
+        by smtp.googlemail.com with ESMTPSA id i9sm418056edl.34.2019.12.19.06.11.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2019 06:11:11 -0800 (PST)
+Subject: Re: [PATCH v2 06/12] dt-bindings: media: venus: Convert msm8916 to DT
+ schema
+To:     Rob Herring <robh@kernel.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>
+Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Vikash Garodia <vgarodia@codeaurora.org>,
+        dikshita@codeaurora.org
+References: <20191218132251.24161-1-stanimir.varbanov@linaro.org>
+ <20191218132251.24161-7-stanimir.varbanov@linaro.org>
+ <CAL_Jsq+1Z72J03tZa9T4DLzR7skFweV8Xe4vBd_QBUktVOekrA@mail.gmail.com>
+From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
+Message-ID: <0d11ce8f-cd34-624f-e1be-0f533968adbd@linaro.org>
+Date:   Thu, 19 Dec 2019 16:11:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-12-19_01:2019-12-17,2019-12-19 signatures=0
+In-Reply-To: <CAL_Jsq+1Z72J03tZa9T4DLzR7skFweV8Xe4vBd_QBUktVOekrA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing 'properties' keyword to be compliant with syntax requirements
+Hi Rob,
 
-Fixes: 7db3545aef5fa ("dt-bindings: net: stmmac: Convert the binding to a schemas")
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Thanks for the review!
 
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 4845e29411e4..e08cd4c4d568 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -347,6 +347,7 @@ allOf:
-               - st,spear600-gmac
- 
-     then:
-+      properties:
-         snps,tso:
-           $ref: /schemas/types.yaml#definitions/flag
-           description:
+On 12/19/19 12:51 AM, Rob Herring wrote:
+> On Wed, Dec 18, 2019 at 7:24 AM Stanimir Varbanov
+> <stanimir.varbanov@linaro.org> wrote:
+>>
+>> Convert qcom,msm8916-venus Venus binding to DT schema
+>>
+>> Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
+>> ---
+>>  .../bindings/media/qcom,venus-msm8916.yaml    | 115 ++++++++++++++++++
+>>  1 file changed, 115 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/media/qcom,venus-msm8916.yaml
+> 
+> Make the filename match the compatible.
+> 
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/qcom,venus-msm8916.yaml b/Documentation/devicetree/bindings/media/qcom,venus-msm8916.yaml
+>> new file mode 100644
+>> index 000000000000..f82a8d968202
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/qcom,venus-msm8916.yaml
+>> @@ -0,0 +1,115 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/media/qcom,venus-msm8916.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Qualcomm Venus video encode and decode accelerators
+>> +
+>> +maintainers:
+>> +  - Stanimir Varbanov <stanimir.varbanov@linaro.org>
+>> +
+>> +description: |
+>> +  The Venus IP is a video encode and decode accelerator present
+>> +  on Qualcomm platforms
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,msm8916-venus
+> 
+> Not likely a 2nd compatible here?, so you can use 'const' instead.
+
+I don't expect more compatibles here. I split every compatible on
+separate .yaml file to make bindings clearer.
+
+> 
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 3
+>> +
+>> +  clock-names:
+>> +    maxItems: 3
+> 
+> Don't need this. Implied with the length of 'items'.
+> 
+>> +    items:
+>> +      - const: core
+>> +      - const: iface
+>> +      - const: bus
+>> +
+>> +  iommus:
+>> +    minItems: 1
+>> +    maxItems: 20
+>> +
+>> +  memory-region:
+>> +    maxItems: 1
+>> +
+>> +  video-decoder:
+>> +    type: object
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: "venus-decoder"
+>> +
+>> +    required:
+>> +      - compatible
+> 
+>        additionalProperties: false
+> 
+>> +
+>> +  video-encoder:
+>> +    type: object
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        const: "venus-encoder"
+>> +
+>> +    required:
+>> +      - compatible
+> 
+> Here too.
+
+I guess the above comments are valid for the the other DT schema
+conversions in this series? If so I'll correct them as well in next version.
+
 -- 
-2.15.0
-
+regards,
+Stan
