@@ -2,74 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C151126FDD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 22:44:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C621D126FF6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 22:48:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727179AbfLSVoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 16:44:10 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:40152 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726959AbfLSVoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 16:44:10 -0500
-Received: by mail-oi1-f196.google.com with SMTP id c77so3325476oib.7;
-        Thu, 19 Dec 2019 13:44:09 -0800 (PST)
+        id S1727078AbfLSVsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 16:48:17 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38382 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726880AbfLSVsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 16:48:17 -0500
+Received: by mail-ot1-f67.google.com with SMTP id d7so4620492otf.5;
+        Thu, 19 Dec 2019 13:48:16 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=FMElxYGUaSvjFXl0P6MMWBQdNOBXnhJem0sijB1jNlQ=;
-        b=YeOBMyFfZwHVBwJpyWwJSSjB8OGUcHXt1F1L427P37yvA1YaRfuTTW6Bv9hxV+2UJd
-         nR9FMSU9plfaIJrO8jk3j97y/53PDyHDQJtqXOvR53EVaF84by2VEL1mfAiW33HspL5n
-         kh8kPnDt5TfD8+pptuGEOymTzFzVNFYiGKOBBfE33cbYf7vH+CkwbZU+k4UvgAMu+Ur2
-         UToV6iuKHi0B07a1U2oNf74DcLEf1fj2ie2iL8qVpke+U2+I1kp7ay0DV7spxcmusy+W
-         mkbSEAIQI1VWqPgdH2Dx+l07lJ4kf+6ogLlxsMs4E2nrgXlnUCLhcuIEATn91mgiz0lq
-         kRRg==
-X-Gm-Message-State: APjAAAWgsaywsUlyuQYisDbQGmm0ltXUSE614P7Nld5+VxAQurzN2Pql
-        SU0w4vNTtI5Vf0txeM3Kdg==
-X-Google-Smtp-Source: APXvYqxt7sKze7DVN1FPvYYBCO0UXzM6SctbxwLjFwHk62Irq/zGTuZRo/iDgFuvxqEUzX864s353g==
-X-Received: by 2002:aca:b1d4:: with SMTP id a203mr3084869oif.150.1576791848821;
-        Thu, 19 Dec 2019 13:44:08 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=z8WpkfaBd9LcNOS1ekWzc3jrpBFEgAwL/QCFq5Jyeew=;
+        b=AvxU+4kJ3aXwhwlLJ0DtiRGeL0xFfCOo62CZzDc3v+uZ13VhgY74sGeEIkjDquwmlS
+         SJVHtJ8u5Vgl6nnXuTveknv8aWkxSWwcRVFxvER4oSMF9ZmA6N1OnID3FAhMJJkMBGs5
+         5DHmRR9P5nIAeZFguR+Ux+yorEwbQNSRx9WHU0n6ukmdCt7hWeqXQ3M2V6k4jAHvnoxt
+         l8PNZJoYEMyZRgjc89bHKatVvgm86t5OsCWJ2Msg0DTy98fQuWxp/02xzPNJBUAkZXaU
+         NrHrWs2+4GhPN7f6z0OsR7B6OadTvWIqvhx3PjIj1YqR6LYz06a1P0ORbS3iCWmeKYBw
+         UOeQ==
+X-Gm-Message-State: APjAAAV/S6uiMA2Hd8qHiREbSRXlqjmBvrXYOyVV//S+JqnTbaFimlcc
+        eWC7KYn6EM3ZrU/8rV4KzQ==
+X-Google-Smtp-Source: APXvYqyRMrFF8GIOCRwcLqbmo96aJh0GGtJtfkuQW1KREFiW1KO2DI9WZdU4KIzqYrCOJ1NQrGxQ6A==
+X-Received: by 2002:a05:6830:22e3:: with SMTP id t3mr10536060otc.193.1576792096066;
+        Thu, 19 Dec 2019 13:48:16 -0800 (PST)
 Received: from localhost ([2607:fb90:1cd2:8a0d:3549:d84c:9720:edb4])
-        by smtp.gmail.com with ESMTPSA id p24sm2563558oth.28.2019.12.19.13.44.07
+        by smtp.gmail.com with ESMTPSA id n17sm2572850otq.46.2019.12.19.13.48.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 13:44:08 -0800 (PST)
-Date:   Thu, 19 Dec 2019 13:43:59 -0800
+        Thu, 19 Dec 2019 13:48:15 -0800 (PST)
+Date:   Thu, 19 Dec 2019 15:48:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        James Chen <james.chen@emc.com.tw>,
-        Johnny Chuang <johnny.chuang@emc.com.tw>,
-        Scott Liu <scott.liu@emc.com.tw>
-Subject: Re: [PATCH v2 9/9] dt-bindings: input: elants-i2c: Document eKTF3624
-Message-ID: <20191219214254.GA25646@bogus>
-References: <cover.1576079249.git.mirq-linux@rere.qmqm.pl>
- <882916345a8aa2dc545a1bd2ca150cf913371d1a.1576079249.git.mirq-linux@rere.qmqm.pl>
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: media: renesas,ceu: Convert to yaml
+Message-ID: <20191219214806.GA32623@bogus>
+References: <20191211171300.87023-1-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <882916345a8aa2dc545a1bd2ca150cf913371d1a.1576079249.git.mirq-linux@rere.qmqm.pl>
+In-Reply-To: <20191211171300.87023-1-jacopo+renesas@jmondi.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Dec 2019 17:03:26 +0100, =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= wrote:
-> From: Dmitry Osipenko <digetx@gmail.com>
+On Wed, 11 Dec 2019 18:13:00 +0100, Jacopo Mondi wrote:
+> Convert the Renesas CEU bindings description to yaml schema and remove
+> the existing textual bindings document.
 > 
-> The eKTF3624 hardware is similar to eKTH3500.
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
 > ---
->  Documentation/devicetree/bindings/input/elants_i2c.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> v1 -> v2:
+> - Dual license as suggested by Rob
+> - Fix compatible string for r7s72100-ceu
+> - Add 'default' to bus-width endpoint property
+> 
+> Thanks
+>    j
+> ---
+>  .../devicetree/bindings/media/renesas,ceu.txt | 86 -------------------
+>  .../bindings/media/renesas,ceu.yaml           | 78 +++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 79 insertions(+), 87 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/renesas,ceu.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/renesas,ceu.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
+
+Rob
