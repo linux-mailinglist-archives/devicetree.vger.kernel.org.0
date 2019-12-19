@@ -2,155 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 53A7E126807
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 18:29:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35EEB126820
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 18:30:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727078AbfLSR2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 12:28:42 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52506 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727031AbfLSR2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 12:28:41 -0500
-Received: by mail-wm1-f67.google.com with SMTP id p9so6281331wmc.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2019 09:28:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=KM9qiMDfWKFWWdCAAPZQUcLR4rcoEPUjfLdlA5II0go=;
-        b=Xk3y9UvfTT0+Ov2hyWIqLRGjMtYrhB1HcKktCLIY0h/JLmVYGwjuV1P6zpdiJh8qNR
-         TmcZB+0dGj0Ko3YCsB5487mevpccX9VqujsdaaNeoIbRIPcvy+J99YXACmc1m25VD2A7
-         iDPWOs6laaTvmsHw+2v027T3QnXfBukqPbs2fuaxKJaX3o1acyRS0+qG5C+fpC8cvg+1
-         78LrhSHW5jUUSCN4QsQMGkQ/4wB7aT1m9qMe2lTBVhHnmT3k5z4zpBhg9A1tRkeSuU8e
-         UnuM4Va7wx0yd+kY6cgbyjh7Ha/FSiT/CTkLVrOx349EcPEat7shDxLuOkLv9fpX6B48
-         n0gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=KM9qiMDfWKFWWdCAAPZQUcLR4rcoEPUjfLdlA5II0go=;
-        b=m6eMFf6Pxi8f7oNWmNePEAcK5lbpcDuH3Qapr2QV//MlN0pvfzKuimkxq5C7nR7YJq
-         l1ABwe2QanEwkmmt8dUa+Xz9XTqz9cVQ1VqqPDnXqbLfLw1wIksMrorc2i7kFOMZVq3x
-         fnMqS2xhMuVKAHB/N3tLih1UXabWXyujaiNLRIt3ZPvbpPXhHDhgEfFhqKhW+84vkQFB
-         fdK/oqjfQE0TTQH14p4ftKg4AtVYExEwfRBQBSYwlY5xmC1HA2l6JYACukV9itBlcGyB
-         eP/b5JAAzMX4+JYvwnezwuZpZ7KYgU4AKjc4CTrlY1l3pMm5/cobxw4KTBxxOPuAm2/T
-         ApHg==
-X-Gm-Message-State: APjAAAU+J19ETkeNIalgjvm9iTjQVUY4UBRRDx+pViPpJzM4IYCDso0q
-        4fwYFGmxInonDBGj2qseIo+/aA==
-X-Google-Smtp-Source: APXvYqxEChvbzvXz1AWKw3LjAHZoXrlun6tgfrVy7bOQosew+hDZAwYPv96u+0LKl9otucSH4hTVGg==
-X-Received: by 2002:a7b:c93a:: with SMTP id h26mr11102986wml.83.1576776520153;
-        Thu, 19 Dec 2019 09:28:40 -0800 (PST)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id n67sm6887821wmf.46.2019.12.19.09.28.38
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 19 Dec 2019 09:28:39 -0800 (PST)
-Subject: Re: [alsa-devel] [PATCH v6 02/11] mfd: wcd934x: add support to
- wcd9340/wcd9341 codec
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        broonie@kernel.org, lee.jones@linaro.org, linus.walleij@linaro.org
-Cc:     robh@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, vinod.koul@linaro.org,
-        devicetree@vger.kernel.org, spapothi@codeaurora.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20191219103153.14875-1-srinivas.kandagatla@linaro.org>
- <20191219103153.14875-3-srinivas.kandagatla@linaro.org>
- <af48cd71-fa1a-dbc5-0e88-e315ea13c28c@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <db36d6d7-40a2-bbd2-f299-838abf4d92cc@linaro.org>
-Date:   Thu, 19 Dec 2019 17:28:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726911AbfLSRaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 12:30:23 -0500
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:37186 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726818AbfLSRaX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 12:30:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=joiIL60i33gQwU7JNxW0f8NaOlF7POfgRUGaP64zU60=; b=HJKmIxFxgR1VFLr/8cqtc/no6
+        CgTOKTDq07ieyqGWpEpxV8UH8XHAmuFDsBz88OLmYeU9UREfooy9Ffxwevk7pCLeHHuIi7DkUCdL/
+        TAKrHCZdXh1uimmJ3onDz+U803HzhhOo+KzkivAObHX6e58ffMpMkLVJKaXXUxG1DyBCYaxx7wFKA
+        a+5AXduyVqo9kDPNfTwerL0H9vDfBXnIK/DRA3ui8EmMxBqa0EalR6yIlQU5RYdYDSCiiAN1RFhjh
+        VeM+D1cvUkrn9aU78A4HhmVkqHoKXsD8eS7AxmLhox61ghZoNVbG6CYw34xAvqzcn96fHnPzVsALl
+        hDBR8RI5A==;
+Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:43512)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1ihzcw-0003qu-2f; Thu, 19 Dec 2019 17:30:18 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1ihzcu-0005XU-Hm; Thu, 19 Dec 2019 17:30:16 +0000
+Date:   Thu, 19 Dec 2019 17:30:16 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     madalin.bucur@nxp.com
+Cc:     davem@davemloft.net, netdev@vger.kernel.org, andrew@lunn.ch,
+        f.fainelli@gmail.com, hkallweit1@gmail.com, shawnguo@kernel.org,
+        devicetree@vger.kernel.org,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>
+Subject: Re: [PATCH 5/6] net: fsl/fman: add support for PHY_INTERFACE_MODE_SFI
+Message-ID: <20191219173016.GD25745@shell.armlinux.org.uk>
+References: <1576768881-24971-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1576768881-24971-6-git-send-email-madalin.bucur@oss.nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <af48cd71-fa1a-dbc5-0e88-e315ea13c28c@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1576768881-24971-6-git-send-email-madalin.bucur@oss.nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 19/12/2019 16:36, Pierre-Louis Bossart wrote:
+On Thu, Dec 19, 2019 at 05:21:20PM +0200, Madalin Bucur wrote:
+> Add support for the SFI PHY interface mode.
 > 
->> +static int wcd934x_slim_status(struct slim_device *sdev,
->> +                   enum slim_device_status status)
->> +{
->> +    switch (status) {
->> +    case SLIM_DEVICE_STATUS_UP:
->> +        return wcd934x_slim_status_up(sdev);
->> +    case SLIM_DEVICE_STATUS_DOWN:
->> +        mfd_remove_devices(&sdev->dev);
->> +        break;
->> +    default:
->> +        return -EINVAL;
->> +    }
->> +
->> +    return 0;
->> +}
->> +
+> Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
+> ---
+>  drivers/net/ethernet/freescale/fman/fman_memac.c | 2 ++
+>  drivers/net/ethernet/freescale/fman/mac.c        | 2 ++
+>  2 files changed, 4 insertions(+)
 > 
-> this is interesting/surprising - I just noticed what looks like a 
-> significant change in how probe/initialization are handled.
-> 
-> It was my understanding that in SLIMbus the Linux devices are created at 
-> probe time, and when the device reports present this 'device_status' 
-> callback is used to notify the codec driver of a change. The rationale 
-> for this was that the codec driver may control power switches/gpios that 
-> are necessary for the device to appear on the bus.
+> diff --git a/drivers/net/ethernet/freescale/fman/fman_memac.c b/drivers/net/ethernet/freescale/fman/fman_memac.c
+> index d0b12efadd6c..09fdec935bf2 100644
+> --- a/drivers/net/ethernet/freescale/fman/fman_memac.c
+> +++ b/drivers/net/ethernet/freescale/fman/fman_memac.c
+> @@ -440,6 +440,7 @@ static int init(struct memac_regs __iomem *regs, struct memac_cfg *cfg,
+>  	tmp = 0;
+>  	switch (phy_if) {
+>  	case PHY_INTERFACE_MODE_XFI:
+> +	case PHY_INTERFACE_MODE_SFI:
 
-We use same rational here to power switch and flip reset pins in device 
-probe to power up the actual SLIMBus device in device probe.
+No difference between these two.
 
-Only difference here is that the actual SLIMBus device itself is 
-represented as many child devices based on there functionality.
+>  	case PHY_INTERFACE_MODE_XGMII:
+>  		tmp |= IF_MODE_10G;
+>  		break;
+> @@ -456,6 +457,7 @@ static int init(struct memac_regs __iomem *regs, struct memac_cfg *cfg,
+>  	/* TX_FIFO_SECTIONS */
+>  	tmp = 0;
+>  	if (phy_if == PHY_INTERFACE_MODE_XFI ||
+> +	    phy_if == PHY_INTERFACE_MODE_SFI ||
 
-SLIMBus parent device in this case is MFD device which is created at 
-probe time. However child devices for that device like gpio controller, 
-codec, clock controller and soundwire controller are created only after 
-the device is enumerated on the bus. Before that none of these devices 
-will be in a position to talk on the bus.
+Again, no difference between these two.
 
+>  	    phy_if == PHY_INTERFACE_MODE_XGMII) {
+>  		if (slow_10g_if) {
+>  			tmp |= (TX_FIFO_SECTIONS_TX_AVAIL_SLOW_10G |
+> diff --git a/drivers/net/ethernet/freescale/fman/mac.c b/drivers/net/ethernet/freescale/fman/mac.c
+> index 2944188c19b3..5e6317742c38 100644
+> --- a/drivers/net/ethernet/freescale/fman/mac.c
+> +++ b/drivers/net/ethernet/freescale/fman/mac.c
+> @@ -542,6 +542,7 @@ static const u16 phy2speed[] = {
+>  	[PHY_INTERFACE_MODE_QSGMII]		= SPEED_1000,
+>  	[PHY_INTERFACE_MODE_XGMII]		= SPEED_10000,
+>  	[PHY_INTERFACE_MODE_XFI]		= SPEED_10000,
+> +	[PHY_INTERFACE_MODE_SFI]		= SPEED_10000,
 
-> 
-> This argument was used to require an change in the SoundWire 
-> implementation, so we followed this model of creating devices at probe 
-> time based on information reported by ACPI/DT, and used the 
-> 'update_status' callback when the device is present on the bus (which 
-> may happen after a delay or controlled by an external power switch). 
-> This approach can lead to 'ghost devices' described in firmware but not 
-> populated in hardware, and power management opens on how long a bus 
-> needs to remain active if no devices report present.
-> 
-> What I understand from the code above is that the devices are actually 
-> created when the SLIMbus device reports PRESENT, which seems a 180 
-> degree change in directions?
-> 
-Note these are the child devices of the MFD SLIMBus device.
+Again, no difference between these two.
 
+>  };
+>  
+>  static struct platform_device *dpaa_eth_add_device(int fman_id,
+> @@ -800,6 +801,7 @@ static int mac_probe(struct platform_device *_of_dev)
+>  
+>  	/* The 10G interface only supports one mode */
+>  	if (mac_dev->phy_if == PHY_INTERFACE_MODE_XFI ||
+> +	    mac_dev->phy_if == PHY_INTERFACE_MODE_SFI ||
 
-> I actually prefer it this way, and all current discussions in MIPI 
-> circles point to the fact that when the bus starts all devices on that 
-> bus should already be powered and have the ability to report present 
-> immediately (if the bus starts in a 'safe' mode and then later programs 
-> different PHY parameters, a device can no longer join the bus)
+Again, no difference between these two.
 
-In our case we need to switch on few regulators and flip the reset pio 
-to be able to bring the device to enumerate.
+I just don't see the point of perpetuating the XFI and SFI names for
+something that is just plain 10GBASE-R.
 
-> 
-> I would however not remove the devices when the status is down but only 
-> on an explicit .remove.
-
-Am open for suggestions but I would not like the child devices to talk 
-on the bus once the SLIMbus device is down! Only way to ensure or make 
-it silent is to remove.
-
-Thanks,
-srini
-> 
-> Feedback welcome.
-> -Pierre
-> 
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
