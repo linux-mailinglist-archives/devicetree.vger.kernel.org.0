@@ -2,89 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E774C1264FE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 15:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF94126527
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 15:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726757AbfLSOlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 09:41:44 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:26602 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726701AbfLSOln (ORCPT
+        id S1726789AbfLSOsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 09:48:51 -0500
+Received: from mail25.static.mailgun.info ([104.130.122.25]:19617 "EHLO
+        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726767AbfLSOsv (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Dec 2019 09:41:43 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id xBJEaUs2014020;
-        Thu, 19 Dec 2019 15:41:29 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=4w2ShoR7xwVF0wnOQZIXhRopSNfU1RmvtACz1IZSq24=;
- b=pivPKPDAsmSlxywUl2qBLLWzbiUw8lh/4aWPzNYh0h+XpFJ/gTs1/t7G+UvSFCVlLe6Z
- g19MJMhmGqPE36afaXAyE6sfAy7HKU8uMG2tPPBSKoF8iVIsoVzluCfPRGSNN6vIRYr3
- ToTp23Ql8+Ehgi/vpaVf4h1T55ibG1aJ606oDrh3Nt3e4whoNd6fX8i+hGPzCIkVNoCb
- jxV4bF35F8WRZHxZgp47NtsDKlO1BtntAN98Ei36eadIpz1p6b53cb4nz4iUbh8r+I7S
- NvRAcOcNz7839roTATzmN/RlFsKnrt5yOgCkCmWkiNd0CdI+M/f7ac61LeHDilng6l8s 0g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2wvp37a8h6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Dec 2019 15:41:29 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1C85D100042;
-        Thu, 19 Dec 2019 15:41:21 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 022D62C6B65;
-        Thu, 19 Dec 2019 15:41:21 +0100 (CET)
-Received: from localhost (10.75.127.49) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 19 Dec 2019 15:41:20
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <srinivas.kandagatla@linaro.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <fabrice.gasnier@st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH 3/3] ARM: dts: stm32: change nvmem node name on stm32mp1
-Date:   Thu, 19 Dec 2019 15:41:17 +0100
-Message-ID: <20191219144117.21527-4-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20191219144117.21527-1-benjamin.gaignard@st.com>
-References: <20191219144117.21527-1-benjamin.gaignard@st.com>
+        Thu, 19 Dec 2019 09:48:51 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1576766931; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=3zKPnWBvxLfobydpG1oWipP1FXmPrlABqmI/X79v9lQ=;
+ b=sCqge6UeJOw3HZGXDPIJmhBxxBGUar5fZfjo5ydvT+32gX36m49bE7tRmJlt6IAEdrirH9Oe
+ M/df4yXVjwjSRpGLuk91YiUx6O0gJmugX8iTKQm1f/VdnlCt/D6lbZAhnouDUKAi0JDioG/d
+ qpHqR0WwUAEi3eV5weMl9WIFQb8=
+X-Mailgun-Sending-Ip: 104.130.122.25
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5dfb8dd0.7fb376be70a0-smtp-out-n03;
+ Thu, 19 Dec 2019 14:48:48 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6DD52C00A44; Thu, 19 Dec 2019 14:48:48 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E782CC5383A;
+        Thu, 19 Dec 2019 14:48:47 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
- definitions=2019-12-19_01:2019-12-17,2019-12-19 signatures=0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 19 Dec 2019 20:18:47 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        James Morse <james.morse@arm.com>,
+        Robert Richter <rrichter@marvell.com>,
+        linux-edac <linux-edac@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Evan Green <evgreen@chromium.org>,
+        Trilok Soni <tsoni@codeaurora.org>,
+        Prasad Sodagudi <psodagud@codeaurora.org>
+Subject: Re: [PATCH 1/2] dt-bindings: edac: Add DT bindings for Kryo EDAC
+In-Reply-To: <CAL_JsqL-uBGy5ekHUZAJB4L1QYoCpnOw-4QPpZraXnsZ49wZ6w@mail.gmail.com>
+References: <cover.1575529553.git.saiprakash.ranjan@codeaurora.org>
+ <0101016ed57a3259-eee09e9e-e99a-40f1-ab1c-63e58a42615c-000000@us-west-2.amazonses.com>
+ <20191218233714.GA30302@bogus>
+ <7469b239edd4beed3e8fefdf02f10ada@codeaurora.org>
+ <CAL_JsqL-uBGy5ekHUZAJB4L1QYoCpnOw-4QPpZraXnsZ49wZ6w@mail.gmail.com>
+Message-ID: <86b3a0735df320bc7808930f2bbd0d97@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change non volatile node name from nvmem to efuse to be compliant
-with yaml schema.
+On 2019-12-19 19:28, Rob Herring wrote:
+>> > Is that your intent?
+>> >
+>> 
+>> No, I want any combination of interrupts to be valid with atleast one
+>> interrupt as mandatory.
+>> I thought specifying minItems as 1 and maxItems as 4 will take care of
+>> this,  am I doing something wrong?
+> 
+> Interrupts (really all properties) have a defined order in DT and an
+> 'items' list defines both the order and index. You'll need to use
+> oneOf and list out the possibilities. Stick to ones you actually need.
+> 
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks, I will make the change in the next spin.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 3dd570b10181..c157d122b0f0 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -1485,7 +1485,7 @@
- 			status = "disabled";
- 		};
- 
--		bsec: nvmem@5c005000 {
-+		bsec: efuse@5c005000 {
- 			compatible = "st,stm32mp15-bsec";
- 			reg = <0x5c005000 0x400>;
- 			#address-cells = <1>;
+-Sai
+
 -- 
-2.15.0
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
