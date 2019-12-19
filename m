@@ -2,131 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F366126144
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 12:52:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A45D126152
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 12:54:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726834AbfLSLwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 06:52:13 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:53894 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726828AbfLSLwD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 06:52:03 -0500
-Received: by mail-wm1-f66.google.com with SMTP id m24so5126967wmc.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2019 03:52:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=hbXoP0vp+PirYvwWUgyHBe1Esfy/aJnIgbBAojigrF0=;
-        b=LypOjrsbEXY8+p1H8QsI/d/4m54NfYisDoA50iSu2jHPNY17JWdPP4URvvQYB/snb/
-         8N2iUUNJE3Kzz+1mV9d8kMdxrtf0ubHPujowM1L7/OjXuL9N5zjfbD3O2qicLjryXY7L
-         clvFUz7v7TbdUsvHTpd6eepalzO5ha+3NlfBp7UHBYEpEVpR8K1A/IUHWWaWBEICXf9x
-         F+4E5i8E7EWg0mxZHSiP1qHyiy8XbH1hcauTdW9yrxRbCWWLFbO+765obtH5l4NC0N/p
-         UzTve8Kgp6Uifmbvg8qgI1o/LoC6uEKR8ph40LqX5cXQ7CTL/Q5PpQLGnqPxPifw4hJR
-         BMpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=hbXoP0vp+PirYvwWUgyHBe1Esfy/aJnIgbBAojigrF0=;
-        b=pjf5Zzh8gU6Gpud42Pv5KM2UTaP0UiGFph6vSd+SIkbGWyLZoIaLQ6557l28ucfAzb
-         55wWZH3CoCsEyCqzPgp5XceWvLEbaZsoyBzKmmSvX9tbpOeVoCVykEsSAeyEfTPZJCBa
-         TIEtb30JVsBmO+4YwlCOyA2wQBMTY7J/PaLjyzn2oPvbmPa707s2/DvmbrOCWYyE9CKD
-         AsJdiCisRvnwiQFJ3cQVzmQZA8iIoLvfFBz8CT0msJsivx7vZ/qVJ/ReT7BGMxw+4Xwm
-         kcy00msbXaAnShVB4FuGQ97UM4NXlCxNBSSIE95WLcdmfwMFmT11mo37YiKR3P10hqJW
-         PVFA==
-X-Gm-Message-State: APjAAAXVU/OAu1yOs4xciEB6DnoEoKvDw00j+hfKp65lDy3pKPrhlIK9
-        yU6zDH9aiZfxK8cyvJ6xiy23Ug==
-X-Google-Smtp-Source: APXvYqxZ/oEM+nqoc8/gYEZ994ql7c784S/DiPIFRUFGg4yIpfxl7xtlNfGudIoaveyihp9K+F/28g==
-X-Received: by 2002:a7b:cf12:: with SMTP id l18mr10187082wmg.66.1576756321641;
-        Thu, 19 Dec 2019 03:52:01 -0800 (PST)
-Received: from localhost.localdomain (i16-les01-ntr-213-44-229-207.sfr.lns.abo.bbox.fr. [213.44.229.207])
-        by smtp.googlemail.com with ESMTPSA id k16sm6489660wru.0.2019.12.19.03.52.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 03:52:01 -0800 (PST)
-From:   Khouloud Touil <ktouil@baylibre.com>
-To:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, srinivas.kandagatla@linaro.org,
-        baylibre-upstreaming@groups.io
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linus.walleij@linaro.org,
-        Khouloud Touil <ktouil@baylibre.com>
-Subject: [PATCH v3 4/4] eeprom: at24: remove the write-protect pin support
-Date:   Thu, 19 Dec 2019 12:51:41 +0100
-Message-Id: <20191219115141.24653-5-ktouil@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191219115141.24653-1-ktouil@baylibre.com>
-References: <20191219115141.24653-1-ktouil@baylibre.com>
+        id S1726895AbfLSLyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 06:54:35 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54060 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726692AbfLSLyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 06:54:33 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBJBsQ7f094692;
+        Thu, 19 Dec 2019 05:54:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1576756466;
+        bh=0wneAsr2dIRQgUOU8O6OrKktT1aM0VMh6k8EH1G2T9g=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Y7nKHasEJ0XxpznpaLYRknLdxcb/F01l1qO5LxRpjmiOVw6au+fi8WVMOUDtSJv9q
+         MJQPniruZNRrVnECnrhvByY91xGTWQwfx16eiu4iP1OTXQ5j03qJFV4H2GRna4sT2W
+         +r2J7HHMI2KErdjfWqrKaBMvFqB/jzCYK93oJoOE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBJBsQ4L001524;
+        Thu, 19 Dec 2019 05:54:26 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 19
+ Dec 2019 05:54:25 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 19 Dec 2019 05:54:25 -0600
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBJBsMcp080167;
+        Thu, 19 Dec 2019 05:54:23 -0600
+Subject: Re: [PATCH 05/13] PCI: cadence: Add read and write accessors to
+ perform only 32-bit accesses
+To:     Andrew Murray <andrew.murray@arm.com>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>
+References: <20191209092147.22901-1-kishon@ti.com>
+ <20191209092147.22901-6-kishon@ti.com>
+ <20191216144932.GY24359@e119886-lin.cambridge.arm.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <d1ee4579-a3da-6a73-3516-a6d264f80995@ti.com>
+Date:   Thu, 19 Dec 2019 17:26:05 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
+MIME-Version: 1.0
+In-Reply-To: <20191216144932.GY24359@e119886-lin.cambridge.arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NVMEM framework is an interface for the at24 EEPROMs as well as for
-other drivers, instead of passing the wp-gpios over the different
-drivers each time, it would be better to pass it over the NVMEM
-subsystem once and for all.
+Hi Andrew,
 
-Removing the support for the write-protect pin after adding it to the
-NVMEM subsystem.
+On 16/12/19 8:19 pm, Andrew Murray wrote:
+> On Mon, Dec 09, 2019 at 02:51:39PM +0530, Kishon Vijay Abraham I wrote:
+>> Certain platforms like TI's J721E allow only 32-bit register accesses.
+> 
+> When I first read this I thought you meant only 32-bit accesses are allowed
+> and not other sizes (such as 64-bit). However the limitation you address
+> here is that the J721E allows only 32-bit *aligned* register accesses.
 
-Signed-off-by: Khouloud Touil <ktouil@baylibre.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/misc/eeprom/at24.c | 9 ---------
- 1 file changed, 9 deletions(-)
+It's both, it allows only 32-bit aligned accesses and the size should be
+only 32 bits. That's why I always use "readl" in the APIs below.
+> 
+> It would be helpful to make this clearer in the commit message.
+> 
+> You can also shorten the commit subject to 'PCI: cadence: Add read/write
+> accessors for 32-bit aligned accesses' or similar.
+> 
+>> Add read and write accessors to perform only 32-bit accesses in order to
+>> support platfroms like TI's J721E.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  drivers/pci/controller/cadence/pcie-cadence.c | 40 +++++++++++++++++++
+>>  drivers/pci/controller/cadence/pcie-cadence.h |  2 +
+>>  2 files changed, 42 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/cadence/pcie-cadence.c b/drivers/pci/controller/cadence/pcie-cadence.c
+>> index cd795f6fc1e2..de5b3b06f2d0 100644
+>> --- a/drivers/pci/controller/cadence/pcie-cadence.c
+>> +++ b/drivers/pci/controller/cadence/pcie-cadence.c
+>> @@ -7,6 +7,46 @@
+>>  
+>>  #include "pcie-cadence.h"
+>>  
+>> +u32 cdns_pcie_read32(void __iomem *addr, int size)
+> 
+> Given there is already a cdns_pcie_readl in pcie-cadence.h it may help
+> to name this in a way that doesn't cause confusion. Here 32 is perhaps
+> being used to suggest the size of the actual read performed, the
+> maximum size of 'size' or the alignment.
+> 
+> 
+>> +{
+>> +	void __iomem *aligned_addr = PTR_ALIGN_DOWN(addr, 0x4);
+>> +	unsigned int offset = (unsigned long)addr & 0x3;
+>> +	u32 val = readl(aligned_addr);
+>> +
+>> +	if (!IS_ALIGNED((uintptr_t)addr, size)) {
+>> +		pr_err("Invalid Address in function:%s\n", __func__);
+> 
+> Would this be better as a BUG? Without a BUG this error could get ignored
+> and yet the device may not behave as expected.
 
-diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-index 0681d5fdd538..8fce49a6d9cd 100644
---- a/drivers/misc/eeprom/at24.c
-+++ b/drivers/misc/eeprom/at24.c
-@@ -22,7 +22,6 @@
- #include <linux/nvmem-provider.h>
- #include <linux/regmap.h>
- #include <linux/pm_runtime.h>
--#include <linux/gpio/consumer.h>
- 
- /* Address pointer is 16 bit. */
- #define AT24_FLAG_ADDR16	BIT(7)
-@@ -89,8 +88,6 @@ struct at24_data {
- 
- 	struct nvmem_device *nvmem;
- 
--	struct gpio_desc *wp_gpio;
--
- 	/*
- 	 * Some chips tie up multiple I2C addresses; dummy devices reserve
- 	 * them for us, and we'll use them with SMBus calls.
-@@ -457,12 +454,10 @@ static int at24_write(void *priv, unsigned int off, void *val, size_t count)
- 	 * from this host, but not from other I2C masters.
- 	 */
- 	mutex_lock(&at24->lock);
--	gpiod_set_value_cansleep(at24->wp_gpio, 0);
- 
- 	while (count) {
- 		ret = at24_regmap_write(at24, buf, off, count);
- 		if (ret < 0) {
--			gpiod_set_value_cansleep(at24->wp_gpio, 1);
- 			mutex_unlock(&at24->lock);
- 			pm_runtime_put(dev);
- 			return ret;
-@@ -472,7 +467,6 @@ static int at24_write(void *priv, unsigned int off, void *val, size_t count)
- 		count -= ret;
- 	}
- 
--	gpiod_set_value_cansleep(at24->wp_gpio, 1);
- 	mutex_unlock(&at24->lock);
- 
- 	pm_runtime_put(dev);
-@@ -662,9 +656,6 @@ static int at24_probe(struct i2c_client *client)
- 	at24->client[0].client = client;
- 	at24->client[0].regmap = regmap;
- 
--	at24->wp_gpio = devm_gpiod_get_optional(dev, "wp", GPIOD_OUT_HIGH);
--	if (IS_ERR(at24->wp_gpio))
--		return PTR_ERR(at24->wp_gpio);
- 
- 	writable = !(flags & AT24_FLAG_READONLY);
- 	if (writable) {
--- 
-2.17.1
+yeah.
+> 
+> 
+>> +		return 0;
+>> +	}
+>> +
+>> +	if (size > 2)
+>> +		return val;
+> 
+> I think you make the assumption here that if size > 2 then it's 4. It could
+> be 3 (though unlikely) in which case you'd want to fall through to the next
+> line.
 
+This assumption is used elsewhere too (e.g drivers/pci/access.c). I
+generally don't prefer adding handlers for non-occurring error
+scenarios, but If you insist I can fix that.
+
+Thanks
+Kishon
