@@ -2,165 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B093B1265A9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 16:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D7B01265CE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 16:31:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726789AbfLSPY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 10:24:58 -0500
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:35546 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726776AbfLSPY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 10:24:58 -0500
-Received: by mail-lj1-f194.google.com with SMTP id j6so6681206lja.2;
-        Thu, 19 Dec 2019 07:24:56 -0800 (PST)
+        id S1726817AbfLSPb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 10:31:57 -0500
+Received: from mail-yw1-f66.google.com ([209.85.161.66]:35482 "EHLO
+        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726840AbfLSPb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 10:31:57 -0500
+Received: by mail-yw1-f66.google.com with SMTP id i190so2305696ywc.2;
+        Thu, 19 Dec 2019 07:31:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3yKXPaH8GS879pqXVR/snYWjruJaHyZcREhClQNij3g=;
-        b=gVtkEjgUrkMRB8e7nkrrEaIOsKTs1U/wa+nxCOWiWK2ohBbnpEtzzySkl3TPG5SlH9
-         oap5cxYuqSHChf6p+0P9sLdjWnlaAQl7UBIdJt7ZQHqqB6Qp2Q8TYhWSIHF+J0hNVmH7
-         8IRAQmk9jMu5x16puZ0DQFlhkQBzvQS2NQi2k4ZgC3JNJjq0Pneo4KuhsI0pXpvUWBk+
-         x+/SDePocPlvbP0VYnjCkMoEsA7cJUpLnZxUlA8cYftHpzHAG48S8X6uW6frpB7NkdRv
-         qM3aV8C05fP1WqAJI8hhfI4IK7JMeuppmyTrhkhparmr8KAf5XWxwdFW6F971a8DXqOj
-         ccWA==
+        bh=0NS200i4beBiDZcSz17C86J6e+34gJkf3amB13gbLIc=;
+        b=moj7sj9dWzaMwXqnydmBqHVoerql4EHQnEu72gFSsz9GpTEj13ur2Xs8HafibbOQX3
+         m12zHFaCiU6KKivTGbERgf9NocnKQywhOYisr/O0Yr+WkBTR7rrc84dGBhJSouFVm+jf
+         4BTWIDhBdLdQCoXiDZHyR4Qt5WWWbGzqcwj9mwz7ZVqMCpYEcUnFd4J+hkhiqgolppt0
+         9X7gY0yyOXA8ZrTD4xl6/gPqWVJ/jBqEzg6V3D8ch9UKI1h32Hpv6XkKDkjNu9WfSJvq
+         letZDm8gNn6ZN7nT+ZyKMpbLpaU8za4JklAN/8PYroPUqiXdrp3Q7vpfUOYacoesyJPA
+         vBHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=3yKXPaH8GS879pqXVR/snYWjruJaHyZcREhClQNij3g=;
-        b=fDhvEButImWQAHKvoGdekvqFA5TEq/h480RuQqe+rZSiE1UWqFrrVnwIbMUaGo4G63
-         VW5VA7hZ0/7krxOzxZfz+kHSpuTVu6/s5b5Rl9Bi+HmNyuugijSi96bbcTdwGH2eO1i6
-         QowhZrSJW/AeydexQkzeFXGfl5bUpwV3VCYRmPqCrCEBCANmUxfomMFoo68thmV5ZTLw
-         M6vB3L/pKj7eSo9VqdWNVPTucF6Gu5R5J6KuVT67JTDuE7nr8beghAcmCzQVx7LTWEH7
-         tCkJJAN6I0nsSljxv1hOelNqgw0SYQ/w74HWdPi2Ui6/ipRDlGuRt3OPqQlBrLGia3bY
-         VpBA==
-X-Gm-Message-State: APjAAAVdM1GW9or+dXhbOo0nnesDJONICt4hJZhbNR3S0Rxt9bcHXx7+
-        NXY17SYBM93DPm+a4IE4UD4C9naj
-X-Google-Smtp-Source: APXvYqyJssPSlz0Dc0X/2QV7w34lCHn5qTLPDN/x0+7lKWei8juRmm7o9Avf0Tmdmr2p9Nl1kh7MFA==
-X-Received: by 2002:a2e:90da:: with SMTP id o26mr6426240ljg.25.1576769095399;
-        Thu, 19 Dec 2019 07:24:55 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id y1sm691185ljm.12.2019.12.19.07.24.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Dec 2019 07:24:54 -0800 (PST)
-Subject: Re: [PATCH v1 2/4] usb: phy: tegra: Hook up init/shutdown callbacks
-To:     Peter Chen <peter.chen@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20191218175313.16235-1-digetx@gmail.com>
- <20191218175313.16235-3-digetx@gmail.com>
- <20191219065619.GA19921@b29397-desktop>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <d10ca21c-3918-3f2c-f279-c0ce9f37aca5@gmail.com>
-Date:   Thu, 19 Dec 2019 18:24:54 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        bh=0NS200i4beBiDZcSz17C86J6e+34gJkf3amB13gbLIc=;
+        b=HpUNg6YHIuYJ6xUi6Dhr23MDi5KVBZwiRcvn/kKR/cpw9sIBwBbtnqNiOGs1zg1keS
+         Pp/XvhwHOrcoxYgVIRfyj+fvgs8i1WR3P5eH2wbXwlCA1OYx+P8hbcSlBPA7UvXlpYLD
+         gI2SjVt24Z5yNf5ywBkYbp5rFvNyFeFCojy4eEtQQpx2jrijGXZ7zD0ZYDBP4DSmR4P3
+         t0k3Wd8JvA8Jfvvxauegj/RLKM4pmcMcQm2nXHpRDWTCq2U/YN9tYk1w4CRAf+dgODxt
+         zRJ7UHUNxaR7BrTSpwruHfyUu2dLAkK0AQB8nSHR/W7AldkehF5GC1f8UCDVd0UQm076
+         Imug==
+X-Gm-Message-State: APjAAAXDZNTrRRdFh1R/QiZOZXy69Snsu036Le32oZxdk6BrcZjNchNr
+        VI0W46buOY//47rFZwyDPvE=
+X-Google-Smtp-Source: APXvYqz3/28lqTRv8g8ivv0VFBMm0tMO5Jy/MfUDHMKSsLxcSBaUZYBjxWp5bOW3WlLHaFy+oZpeCA==
+X-Received: by 2002:a81:ae51:: with SMTP id g17mr6957536ywk.302.1576769515399;
+        Thu, 19 Dec 2019 07:31:55 -0800 (PST)
+Received: from [192.168.1.46] (c-73-88-245-53.hsd1.tn.comcast.net. [73.88.245.53])
+        by smtp.gmail.com with ESMTPSA id h193sm2462864ywc.88.2019.12.19.07.31.54
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 19 Dec 2019 07:31:54 -0800 (PST)
+Subject: Re: [PATCH] of: Rework and simplify phandle cache to use a fixed size
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Segher Boessenkool <segher@kernel.crashing.org>,
+        Frank Rowand <frowand.list@gmail.com>
+References: <20191211232345.24810-1-robh@kernel.org>
+ <CAL_JsqKfV-4mx_uidUupQJT4qfq+y+qx1=S=Du-Qsaweh4CPUQ@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <597da13c-585b-4091-ecb6-da3cd19fcbc3@gmail.com>
+Date:   Thu, 19 Dec 2019 09:31:54 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20191219065619.GA19921@b29397-desktop>
+In-Reply-To: <CAL_JsqKfV-4mx_uidUupQJT4qfq+y+qx1=S=Du-Qsaweh4CPUQ@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-19.12.2019 09:56, Peter Chen пишет:
-> On 19-12-18 20:53:11, Dmitry Osipenko wrote:
->> Generic PHY provides init/shutdown callbacks which allow USB-host drivers
->> to abstract PHY's hardware management in a common way. This change allows
->> to remove Tegra-specific PHY handling from the ChipIdea driver.
+On 12/11/19 5:48 PM, Rob Herring wrote:
+> On Wed, Dec 11, 2019 at 5:23 PM Rob Herring <robh@kernel.org> wrote:
 >>
->> Note that ChipIdea's driver shall be changed at the same time because it
->> turns PHY ON without the PHY's initialization and this doesn't work now,
->> resulting in a NULL dereference of phy->freq because it's set during of
->> the PHY's initialization.
+>> The phandle cache was added to speed up of_find_node_by_phandle() by
+>> avoiding walking the whole DT to find a matching phandle. The
+>> implementation has several shortcomings:
 >>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>   - The cache is designed to work on a linear set of phandle values.
+>>     This is true for dtc generated DTs, but not for other cases such as
+>>     Power.
+>>   - The cache isn't enabled until of_core_init() and a typical system
+>>     may see hundreds of calls to of_find_node_by_phandle() before that
+>>     point.
+>>   - The cache is freed and re-allocated when the number of phandles
+>>     changes.
+>>   - It takes a raw spinlock around a memory allocation which breaks on
+>>     RT.
+>>
+>> Change the implementation to a fixed size and use hash_32() as the
+>> cache index. This greatly simplifies the implementation. It avoids
+>> the need for any re-alloc of the cache and taking a reference on nodes
+>> in the cache. We only have a single source of removing cache entries
+>> which is of_detach_node().
+>>
+>> Using hash_32() removes any assumption on phandle values improving
+>> the hit rate for non-linear phandle values. The effect on linear values
+>> using hash_32() is about a 10% collision. The chances of thrashing on
+>> colliding values seems to be low.
+>>
+>> To compare performance, I used a RK3399 board which is a pretty typical
+>> system. I found that just measuring boot time as done previously is
+>> noisy and may be impacted by other things. Also bringing up secondary
+>> cores causes some issues with measuring, so I booted with 'nr_cpus=1'.
+>> With no caching, calls to of_find_node_by_phandle() take about 20124 us
+>> for 1248 calls. There's an additional 288 calls before time keeping is
+>> up. Using the average time per hit/miss with the cache, we can calculate
+>> these calls to take 690 us (277 hit / 11 miss) with a 128 entry cache
+>> and 13319 us with no cache or an uninitialized cache.
+>>
+>> Comparing the 3 implementations the time spent in
+>> of_find_node_by_phandle() is:
+>>
+>> no cache:        20124 us (+ 13319 us)
+>> 128 entry cache:  5134 us (+ 690 us)
+>> current cache:     819 us (+ 13319 us)
+>>
+>> We could move the allocation of the cache earlier to improve the
+>> current cache, but that just further complicates the situation as it
+>> needs to be after slab is up, so we can't do it when unflattening (which
+>> uses memblock).
+>>
+>> Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+>> Cc: Michael Ellerman <mpe@ellerman.id.au>
+>> Cc: Segher Boessenkool <segher@kernel.crashing.org>
+>> Cc: Frank Rowand <frowand.list@gmail.com>
+>> Signed-off-by: Rob Herring <robh@kernel.org>
 >> ---
->>  drivers/usb/chipidea/ci_hdrc_tegra.c |   9 --
->>  drivers/usb/phy/phy-tegra-usb.c      | 165 +++++++++++++++++----------
->>  2 files changed, 102 insertions(+), 72 deletions(-)
->>
->> diff --git a/drivers/usb/chipidea/ci_hdrc_tegra.c b/drivers/usb/chipidea/ci_hdrc_tegra.c
->> index 0c9911d44ee5..7455df0ede49 100644
->> --- a/drivers/usb/chipidea/ci_hdrc_tegra.c
->> +++ b/drivers/usb/chipidea/ci_hdrc_tegra.c
->> @@ -83,13 +83,6 @@ static int tegra_udc_probe(struct platform_device *pdev)
->>  		return err;
->>  	}
->>  
->> -	/*
->> -	 * Tegra's USB PHY driver doesn't implement optional phy_init()
->> -	 * hook, so we have to power on UDC controller before ChipIdea
->> -	 * driver initialization kicks in.
->> -	 */
->> -	usb_phy_set_suspend(udc->phy, 0);
->> -
->>  	/* setup and register ChipIdea HDRC device */
->>  	udc->data.name = "tegra-udc";
->>  	udc->data.flags = soc->flags;
->> @@ -109,7 +102,6 @@ static int tegra_udc_probe(struct platform_device *pdev)
->>  	return 0;
->>  
->>  fail_power_off:
->> -	usb_phy_set_suspend(udc->phy, 1);
->>  	clk_disable_unprepare(udc->clk);
->>  	return err;
->>  }
->> @@ -119,7 +111,6 @@ static int tegra_udc_remove(struct platform_device *pdev)
->>  	struct tegra_udc *udc = platform_get_drvdata(pdev);
->>  
->>  	ci_hdrc_remove_device(udc->dev);
->> -	usb_phy_set_suspend(udc->phy, 1);
->>  	clk_disable_unprepare(udc->clk);
->>  
->>  	return 0;
->> diff --git a/drivers/usb/phy/phy-tegra-usb.c b/drivers/usb/phy/phy-tegra-usb.c
->> index ea7ef1dc0b42..15bd253d53c9 100644
->> --- a/drivers/usb/phy/phy-tegra-usb.c
->> +++ b/drivers/usb/phy/phy-tegra-usb.c
->> @@ -238,23 +238,6 @@ static int utmip_pad_open(struct tegra_usb_phy *phy)
->>  {
->>  	int ret;
->>  
->> -	phy->pad_clk = devm_clk_get(phy->u_phy.dev, "utmi-pads");
->> -	if (IS_ERR(phy->pad_clk)) {
->> -		ret = PTR_ERR(phy->pad_clk);
->> -		dev_err(phy->u_phy.dev,
->> -			"Failed to get UTMIP pad clock: %d\n", ret);
->> -		return ret;
->> -	}
->> -
->> -	phy->pad_rst = devm_reset_control_get_optional_shared(
->> -						phy->u_phy.dev, "utmi-pads");
->> -	if (IS_ERR(phy->pad_rst)) {
->> -		ret = PTR_ERR(phy->pad_rst);
->> -		dev_err(phy->u_phy.dev,
->> -			"Failed to get UTMI-pads reset: %d\n", ret);
->> -		return ret;
->> -	}
->> -
->>  	ret = clk_prepare_enable(phy->pad_clk);
->>  	if (ret) {
->>  		dev_err(phy->u_phy.dev,
->> @@ -315,6 +298,18 @@ static int utmip_pad_close(struct tegra_usb_phy *phy)
->>  	return ret;
->>  }
+>>  drivers/of/base.c       | 133 ++++++++--------------------------------
+>>  drivers/of/dynamic.c    |   2 +-
+>>  drivers/of/of_private.h |   4 +-
+>>  drivers/of/overlay.c    |  10 ---
+>>  4 files changed, 28 insertions(+), 121 deletions(-)
 > 
-> Acked-by: Peter Chen <peter.chen@nxp.com>
+> [...]
 > 
-> Felipe, would you please queue this series after reviewing for USB PHY
-> changes? If not, Dmitry may need to split the patch.
+>> -       if (phandle_cache) {
+>> -               if (phandle_cache[masked_handle] &&
+>> -                   handle == phandle_cache[masked_handle]->phandle)
+>> -                       np = phandle_cache[masked_handle];
+>> -               if (np && of_node_check_flag(np, OF_DETACHED)) {
+>> -                       WARN_ON(1); /* did not uncache np on node removal */
+>> -                       of_node_put(np);
+>> -                       phandle_cache[masked_handle] = NULL;
+>> -                       np = NULL;
+>> -               }
+>> +       if (phandle_cache[handle_hash] &&
+>> +           handle == phandle_cache[handle_hash]->phandle)
+>> +               np = phandle_cache[handle_hash];
+>> +       if (np && of_node_check_flag(np, OF_DETACHED)) {
+>> +               WARN_ON(1); /* did not uncache np on node removal */
+> 
+> BTW, I don't think this check is even valid. If we failed to detach
+> and remove the node from the cache, then we could be accessing np
+> after freeing it.
+> 
+> Rob
+> 
 
-I'll take a closer look whether it is possible to factor out ChipIdea's
-driver change into a separate patch in a sensible way. Thanks!
+I added the OF_DETACHED checks out of extreme paranoia.  They can be
+removed.
+
+-Frank
