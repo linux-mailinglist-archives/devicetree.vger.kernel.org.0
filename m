@@ -2,72 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4513B126B54
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 19:56:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB1FF126D75
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 20:14:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729789AbfLSSzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 13:55:52 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:44840 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730734AbfLSSzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 13:55:51 -0500
-Received: by mail-ot1-f65.google.com with SMTP id h9so5829048otj.11;
-        Thu, 19 Dec 2019 10:55:51 -0800 (PST)
+        id S1727436AbfLSSgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 13:36:05 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:35703 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727414AbfLSSgF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 13:36:05 -0500
+Received: by mail-oi1-f196.google.com with SMTP id k4so3470350oik.2;
+        Thu, 19 Dec 2019 10:36:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wXgmx2Ya6ChzyKkm+w7jzvBT8XbvFcpO0BqUgNxYIdk=;
-        b=LsOlbLSl/Vnrx0vUjwoh2gQsGuS+XuvDkEspbSE0XcxVvQak+wWUa9WeFefkfDlX+o
-         2R6OwnuvafOZPRm7ee9T/TcpLt8N1SqmMyYUcn1crA0UPppZBNZxLQ6XqFVthE2nYKGi
-         fyZFCpYyp8ona297yoS4gKQyAaaD/Xm21YFI8PiDMDO50eh8/KwiVrWM1shTADl7EYfv
-         +u+Il0a1kAGL8V1DadtVfMSg2LIsebSNYboUcWN/mMNKlYSuCdcOpTScykJ7owdYMUJv
-         YlWWLjKEtXfOjtUaKXzBg9V9AcvX3ancAKXyRiYKhfc91M0t+T3FWqMwxrXUoNFJrNEL
-         ceuA==
-X-Gm-Message-State: APjAAAWZfqdXTpTYMdA1KOdm149cUZTSTEQOQkEAMChVS0txPNnXNJa8
-        R8Ybuo2Tq2Y3/po/EFXGVQ==
-X-Google-Smtp-Source: APXvYqxeB4DOtUVYcpXXJFu5X4OixvgM6U/N50o8s9FjCHRYhR58jeSq3kd209OlqlF1nvQCEA0K2A==
-X-Received: by 2002:a05:6830:1047:: with SMTP id b7mr10714492otp.77.1576781751311;
-        Thu, 19 Dec 2019 10:55:51 -0800 (PST)
+        bh=4OsvmAuY75E+vu9jghg3GThqB5YS2TizfBTomdGepIQ=;
+        b=OzkYYn2Id7SfaGJQHSZ8WcMwCT8t4SY7ryY/Q8P0oxbT38K2D0l3Zx2620KDVVpzqA
+         nrxn1H5AVJZ4EpswOcax0nMhjj0Om1qhUWqIcp5BfmINOYdJf+59fhtjhQeKNXfXlLYa
+         4e+8xdrGLeeqkdLMAHFKAjpXiF/4uJP+BAJJKyAAn08KROiyDik3p8y1qfDYiIH1bGtX
+         6RzjkU0jYx6U+EBiOUlihBxjrhUrN2P/0PCgFquuPQByuGPuuaxY/2flH9pSAAuI5LcO
+         B8YpNir75BM+BUr7MbQM4bWxfeZJCDlIYgoEf9VMG6x9T4zEE76m6ihxC+6T3VMO54wS
+         h5HA==
+X-Gm-Message-State: APjAAAVIA9TUzVWjKpqN5eZ4BSAUK2WMBzifprx+WGKsLanxQCy1tn5O
+        HgbEAV8JO3K3u4WZsAp/vTIMeNTsbg==
+X-Google-Smtp-Source: APXvYqyvbDBw02JZD0mbOg+mPYLDYThtKsrGFMhEk+PHRiDggZXhdjnWXDKdBY76zsy4T+PrEuPsKA==
+X-Received: by 2002:aca:c494:: with SMTP id u142mr2956136oif.86.1576780564540;
+        Thu, 19 Dec 2019 10:36:04 -0800 (PST)
 Received: from localhost ([2607:fb90:bdf:98e:3549:d84c:9720:edb4])
-        by smtp.gmail.com with ESMTPSA id e6sm2414722otl.12.2019.12.19.10.55.50
+        by smtp.gmail.com with ESMTPSA id q18sm1745728otk.38.2019.12.19.10.36.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 10:55:50 -0800 (PST)
-Date:   Thu, 19 Dec 2019 12:55:48 -0600
+        Thu, 19 Dec 2019 10:36:03 -0800 (PST)
+Date:   Thu, 19 Dec 2019 12:36:02 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hanna Hawa <hhhawa@amazon.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, tsahee@annapurnalabs.com,
-        antoine.tenart@bootlin.com, hhhawa@amazon.com,
-        mchehab+samsung@kernel.org, davem@davemloft.net,
-        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
-        tglx@linutronix.de, khilman@baylibre.com, chanho.min@lge.com,
-        heiko@sntech.de, nm@ti.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        dwmw@amazon.co.uk, benh@amazon.com, ronenk@amazon.com,
-        talel@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
-        barakw@amazon.com
-Subject: Re: [PATCH v2 3/6] dt-bindings: arm: amazon: update maintainers of
- amazon,al DT bindings
-Message-ID: <20191219185548.GA4637@bogus>
-References: <20191209161341.29607-1-hhhawa@amazon.com>
- <20191209161341.29607-4-hhhawa@amazon.com>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: Add Unisoc's SC9863A SoC support
+Message-ID: <20191219183602.GA31035@bogus>
+References: <20191209114404.22483-1-zhang.lyra@gmail.com>
+ <20191209114404.22483-4-zhang.lyra@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191209161341.29607-4-hhhawa@amazon.com>
+In-Reply-To: <20191209114404.22483-4-zhang.lyra@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Dec 2019 16:13:38 +0000, Hanna Hawa wrote:
-> Update maintainers of amazon,al DT bindings.
+On Mon, Dec 09, 2019 at 07:44:04PM +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > 
-> Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
+> Add basic DT to support Unisoc's SC9863A, with this patch,
+> the board sp9863a-1h10 can run into console.
+> 
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > ---
->  Documentation/devicetree/bindings/arm/amazon,al.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
+>  arch/arm64/boot/dts/sprd/Makefile         |   3 +-
+>  arch/arm64/boot/dts/sprd/sc9863a.dtsi     | 523 ++++++++++++++++++++++
+>  arch/arm64/boot/dts/sprd/sharkl3.dtsi     | 148 ++++++
+>  arch/arm64/boot/dts/sprd/sp9863a-1h10.dts |  39 ++
+>  4 files changed, 712 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/boot/dts/sprd/sc9863a.dtsi
+>  create mode 100644 arch/arm64/boot/dts/sprd/sharkl3.dtsi
+>  create mode 100644 arch/arm64/boot/dts/sprd/sp9863a-1h10.dts
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+> diff --git a/arch/arm64/boot/dts/sprd/sharkl3.dtsi b/arch/arm64/boot/dts/sprd/sharkl3.dtsi
+> new file mode 100644
+> index 000000000000..3b5a94560481
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/sprd/sharkl3.dtsi
+> @@ -0,0 +1,148 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Unisoc Sharkl3 platform DTS file
+> + *
+> + * Copyright (C) 2019, Unisoc Inc.
+> + */
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	soc: soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		ap_ahb_regs: syscon@20e00000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x20e00000 0 0x4000>;
+> +		};
+> +
+> +		pub_ctrl_regs: syscon@300e0000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+
+Having a bunch of the same compatible doesn't look right. I assume by 
+the label names each of these are a different set of registers. The 
+compatible should be specific enough the OS can match to a driver that 
+knows the register details.
+
+Doesn't look like you use all these, so maybe drop until you do and/or 
+figure out if you can use common bindings for some of these.
+
+> +			reg = <0 0x300e0000 0 0x4000>;
+> +		};
+> +
+> +		pub_wrap_regs: syscon@300f0000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x300f0000 0 0x1000>;
+> +		};
+> +
+> +		pmu_regs: syscon@402b0000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x402b0000 0 0x4000>;
+> +		};
+> +
+> +		aon_apb_regs: syscon@402e0000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x402e0000 0 0x4000>;
+> +		};
+> +
+> +		anlg_phy_g1_regs: syscon@40350000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x40350000 0 0x3000>;
+> +		};
+> +
+> +		anlg_phy_g2_regs: syscon@40353000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x40353000 0 0x3000>;
+> +		};
+> +
+> +		anlg_phy_g4_regs: syscon@40359000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x40359000 0 0x3000>;
+> +		};
+> +
+> +		anlg_phy_g5_regs: syscon@4035c000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x4035c000 0 0x3000>;
+> +		};
+> +
+> +		anlg_phy_g7_regs: syscon@40363000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x40363000 0 0x3000>;
+> +		};
+> +
+> +		anlg_wrap_wcn_regs: syscon@40366000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x40366000 0 0x3000>;
+> +		};
+> +
+> +		mm_ahb_regs: syscon@60800000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x60800000 0 0x1000>;
+> +		};
+> +
+> +		mm_vsp_ahb_regs: syscon@62000000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x62000000 0 0x1000>;
+> +		};
+> +
+> +		ap_apb_regs: syscon@71300000 {
+> +			compatible = "sprd,sc9863a-glbregs", "syscon";
+> +			reg = <0 0x71300000 0 0x4000>;
+> +		};
+> +
+> +		apb@70000000 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges = <0 0x0 0x70000000 0x10000000>;
+> +
+> +			uart0: serial@0 {
+> +				compatible = "sprd,sc9863a-uart",
+> +					     "sprd,sc9836-uart";
+> +				reg = <0x0 0x100>;
+> +				interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&ext_26m>;
+> +				status = "disabled";
+> +			};
+> +
+> +			uart1: serial@100000 {
+> +				compatible = "sprd,sc9863a-uart",
+> +					     "sprd,sc9836-uart";
+> +				reg = <0x100000 0x100>;
+> +				interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&ext_26m>;
+> +				status = "disabled";
+> +			};
+> +
+> +			uart2: serial@200000 {
+> +				compatible = "sprd,sc9863a-uart",
+> +					     "sprd,sc9836-uart";
+> +				reg = <0x200000 0x100>;
+> +				interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&ext_26m>;
+> +				status = "disabled";
+> +			};
+> +
+> +			uart3: serial@300000 {
+> +				compatible = "sprd,sc9863a-uart",
+> +					     "sprd,sc9836-uart";
+> +				reg = <0x300000 0x100>;
+> +				interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&ext_26m>;
+> +				status = "disabled";
+> +			};
+> +
+> +			uart4: serial@400000 {
+> +				compatible = "sprd,sc9863a-uart",
+> +					     "sprd,sc9836-uart";
+> +				reg = <0x400000 0x100>;
+> +				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&ext_26m>;
+> +				status = "disabled";
+> +			};
+> +		};
+> +	};
+> +
+> +	ext_26m: ext-26m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <26000000>;
+> +		clock-output-names = "ext-26m";
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/sprd/sp9863a-1h10.dts b/arch/arm64/boot/dts/sprd/sp9863a-1h10.dts
+> new file mode 100644
+> index 000000000000..5c32c1596337
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/sprd/sp9863a-1h10.dts
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Unisoc SP9863A-1h10 boards DTS file
+> + *
+> + * Copyright (C) 2019, Unisoc Inc.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc9863a.dtsi"
+> +
+> +/ {
+> +	model = "Spreadtrum SP9863A-1H10 Board";
+> +
+> +	compatible = "sprd,sp9863a-1h10", "sprd,sc9863a";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		serial1 = &uart1;
+> +	};
+> +
+> +	memory@80000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x80000000>;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial1:115200n8";
+> +		bootargs = "earlycon";
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> -- 
+> 2.20.1
+> 
