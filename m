@@ -2,91 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A505125F4D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 11:37:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FB2F125F6A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 11:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726818AbfLSKht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 05:37:49 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:37947 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726752AbfLSKhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 05:37:37 -0500
-Received: by mail-wm1-f67.google.com with SMTP id u2so5066701wmc.3;
-        Thu, 19 Dec 2019 02:37:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ZYQSBkLnONYX/PnkBykc7VPkafXkRFxOt23+Xt4Hyj4=;
-        b=VLU136fIRhESLlmFupey/sOBNdND3IphP7G4RS2aD5W99DW1K9xk08F8ijrBhVmEEV
-         fhCrhlJ/lmuKTAdbbh0yyam7nxUljnzgdR2vpB4DZp8RIvZveyDVdZuQbzx6MsaDiQT8
-         IlFCJixXEySbDSfF8TBsO+nSYoK8qjok47B7NqXPwymjfp3moisC0nTXn5uoGTrFlk5t
-         AXlTOPrdtgB9CA3JnP5OcmBADwBr4Yj6BEXdFKKR4tjAkDw3XJClggezcuINKQiG0Trn
-         94rViwrz41fJzPVOriYRHXA0KSxptr8svwKTAcMx6zXFcW/FgTsSKrGSf5brglFCXT4D
-         Fe5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ZYQSBkLnONYX/PnkBykc7VPkafXkRFxOt23+Xt4Hyj4=;
-        b=GEwUZYC9fmyaGniP9yD5d5YaHYO0TTnvKbB5G5BQ3wKTAwvN215VQ7v0UxPAOBwUmR
-         dR1m4KckmZQkBqfL9MR2SKxaGwKneh4HWAh/UngaMFWcB90Mb00g1doJ0ZJKXTMYw0K8
-         8VXa31aBqVAGa62uMYMF0hej4vCoXsZbAWJV3kqPyEDh+ZOwCNac7Tk2Mdu/FzP5GzvT
-         43wo7LW9RbV8o41+7wlaHJDIIN4cwelI3qRBTqai1mFIDLxc57Wquj1pVRCwc2kcKRBJ
-         a2SaI11FChKKHt9vM5Kqqc6bgBe7PTFhW1BzXfQ0+CCtFh0okZOKqdk0lh35u4T5ZThh
-         2RoQ==
-X-Gm-Message-State: APjAAAWQJnHR6o3H5kJwwQwju5TROCxkiNJiy0rcDi2KfeayZN3DjmV1
-        Apx+CDlQiqV57H/ALAWkEgE=
-X-Google-Smtp-Source: APXvYqyu4CHHESJHwWO4mQD0gvyVXS4oLZQKp6t1SFS0IkfogPWz2i84Y2s+k8MRk78EjXoRa9jTQg==
-X-Received: by 2002:a1c:4c10:: with SMTP id z16mr9657235wmf.136.1576751855275;
-        Thu, 19 Dec 2019 02:37:35 -0800 (PST)
-Received: from localhost.localdomain (p5B3F677C.dip0.t-ipconnect.de. [91.63.103.124])
-        by smtp.gmail.com with ESMTPSA id c68sm5735147wme.13.2019.12.19.02.37.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 02:37:34 -0800 (PST)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, mripard@kernel.org,
-        heiko@sntech.de, shawnguo@kernel.org,
-        laurent.pinchart@ideasonboard.com, icenowy@aosc.io,
-        mchehab+samsung@kernel.org, davem@davemloft.net,
-        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 4/4] MAINTAINERS: Add entry for mpq7920 PMIC driver
-Date:   Thu, 19 Dec 2019 11:37:21 +0100
-Message-Id: <20191219103721.10935-5-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191219103721.10935-1-sravanhome@gmail.com>
-References: <20191219103721.10935-1-sravanhome@gmail.com>
+        id S1726633AbfLSKmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 05:42:50 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:41585 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726730AbfLSKmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Dec 2019 05:42:49 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1576752169; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-Id: Date: Subject: To: From: Sender;
+ bh=T9NsD/M02vdnbyOUnwhyyGvAMjZyJMRP82J5Usiy73c=; b=CdY8KbsCXeYckDzZkNXPemqIfV88LaWDMWyf44xvVZGKC4oxBWhX51InQipvzaKUEFwe6npw
+ eK03FhD4/ql0+hla+KX9RV36qZLpnbp5Krg9khCUAyqsQ0JO9GE8v8imlPdfXKSDFgURZTJ3
+ XDT652bBYRCvf65eIxuPKOTjRz8=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5dfb5426.7fc03d6f2ca8-smtp-out-n01;
+ Thu, 19 Dec 2019 10:42:46 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A3D07C447BB; Thu, 19 Dec 2019 10:42:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from srichara-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sricharan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 33C73C4479C;
+        Thu, 19 Dec 2019 10:42:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 33C73C4479C
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=sricharan@codeaurora.org
+From:   Sricharan R <sricharan@codeaurora.org>
+To:     sricharan@codeaurora.org, agross@kernel.org,
+        devicetree@vger.kernel.org, linus.walleij@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-soc@vger.kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
+        sivaprak@codeaurora.org
+Subject: [PATCH V2 0/7] Add minimal boot support for IPQ6018
+Date:   Thu, 19 Dec 2019 16:11:42 +0530
+Message-Id: <1576752109-24497-1-git-send-email-sricharan@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mpq7920 PMIC driver.
+The IPQ6018 is Qualcomm’s 802.11ax SoC for Routers,
+Gateways and Access Points.
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+This series adds minimal board boot support for ipq6018-cp01 board.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0fd82e674cf4..8a31285b59c6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11128,6 +11128,13 @@ S:	Maintained
- F:	Documentation/driver-api/serial/moxa-smartio.rst
- F:	drivers/tty/mxser.*
- 
-+MONOLITHIC POWER SYSTEM PMIC DRIVER
-+M:	Saravanan Sekar <sravanhome@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/regulator/mpq7920.yaml
-+F:	drivers/regulator/mpq7920.c
-+F:	drivers/regulator/mpq7920.h
-+
- MR800 AVERMEDIA USB FM RADIO DRIVER
- M:	Alexey Klimov <klimov.linux@gmail.com>
- L:	linux-media@vger.kernel.org
+[v2]
+ * Splitted dt bindings  and driver into different patches. Added missing bindings
+   and some style changes.
+ * Added ipq6018 schema
+ * Addressed review comments for gcc clock bindings.
+ * Removed all clk critical flags, removed 1/1 factor clocks, moved to new
+   way of specifying clk parents, and addressed other review comments.
+ * Sorted nodes based on address, name, label. Removed unused clock nodes,
+   Addressed other review comments.
+
+Sricharan R (7):
+  dt-bindings: pinctrl: qcom: Add ipq6018 pinctrl bindings
+  pinctrl: qcom: Add ipq6018 pinctrl driver
+  dt-bindings: qcom: Add ipq6018 bindings
+  clk: qcom: Add DT bindings for ipq6018 gcc clock controller
+  clk: qcom: Add ipq6018 Global Clock Controller support
+  arm64: dts: Add ipq6018 SoC and CP01 board support
+  arm64: defconfig: Enable qcom ipq6018 clock and pinctrl
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+ .../devicetree/bindings/clock/qcom,gcc.yaml        |    3 +-
+ .../bindings/pinctrl/qcom,ipq6018-pinctrl.yaml     |  172 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts       |   41 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  215 +
+ arch/arm64/configs/defconfig                       |    3 +
+ drivers/clk/qcom/Kconfig                           |    8 +
+ drivers/clk/qcom/Makefile                          |    1 +
+ drivers/clk/qcom/gcc-ipq6018.c                     | 4674 ++++++++++++++++++++
+ drivers/pinctrl/qcom/Kconfig                       |   10 +
+ drivers/pinctrl/qcom/Makefile                      |    1 +
+ drivers/pinctrl/qcom/pinctrl-ipq6018.c             | 1161 +++++
+ include/dt-bindings/clock/qcom,gcc-ipq6018.h       |  262 ++
+ include/dt-bindings/reset/qcom,gcc-ipq6018.h       |  157 +
+ 15 files changed, 6715 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq6018.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq6018.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq6018.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-ipq6018.h
+ create mode 100644 include/dt-bindings/reset/qcom,gcc-ipq6018.h
+
 -- 
-2.17.1
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
