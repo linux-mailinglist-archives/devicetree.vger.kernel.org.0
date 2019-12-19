@@ -2,158 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C89125CCA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 09:38:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42AAF125CE9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2019 09:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726536AbfLSIiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 03:38:02 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:13260 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726463AbfLSIiB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 03:38:01 -0500
-Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 19 Dec
- 2019 16:38:33 +0800
-Subject: Re: [PATCH v2 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
- DWC3 Glue Bindings
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <felipe.balbi@linux.intel.com>,
-        Kevin Hilman <khilman@baylibre.com>
-CC:     Yue Wang <yue.wang@amlogic.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jian Hu <jian.hu@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-References: <1576636944-196192-1-git-send-email-hanjie.lin@amlogic.com>
- <1576636944-196192-3-git-send-email-hanjie.lin@amlogic.com>
- <daa67976-e2ad-e114-b5fd-87eb5ae00eeb@baylibre.com>
-From:   Hanjie Lin <hanjie.lin@amlogic.com>
-Message-ID: <c159449b-f266-2b90-fd1b-fc8988bef9e6@amlogic.com>
-Date:   Thu, 19 Dec 2019 16:38:32 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1726622AbfLSIqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 03:46:00 -0500
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:33527 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726498AbfLSIqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Dec 2019 03:46:00 -0500
+X-Greylist: delayed 435 seconds by postgrey-1.27 at vger.kernel.org; Thu, 19 Dec 2019 03:45:59 EST
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.west.internal (Postfix) with ESMTP id 7DF5655A;
+        Thu, 19 Dec 2019 03:38:42 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Thu, 19 Dec 2019 03:38:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=TOad0CQlAYdFxFSlhlqZROlIaJ/
+        tfvAfV7J03rJuV3Q=; b=PFjBmxKfa17H2ZTT59/2v8Tuz0eCpa/CL4HIfHyZm/d
+        6hrMALmE6EgzF3zpsE9a9J9RjecY3xLPQFGLYKQCf1FA0gdaOT/W1wJls76mRHAu
+        2TYjSH4qDYLR5QZhAt9LZXoOeEDqcSswZ1ix5v2+xJaNNFA9p5TLEovThr8vN0Vu
+        FLRnOkfQAsqTr9tSvi+ZycayfDEMzkRRijh54WkPYXnolnY36HSnTJURbWPFaFpL
+        hrkHLFvlS6sQub+RA+tPy3/0BZE65hdJpK6v7SbRxs7uUb47xYiMA32MBpGjIoSk
+        BqbmbQBdjqrtsVN/z4/PmbCXVPM0ini+weixlyaz6HA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=TOad0C
+        QlAYdFxFSlhlqZROlIaJ/tfvAfV7J03rJuV3Q=; b=Tkn7hI81Ko/0UhUmJfjMPu
+        /6vE76xZQIZczWTQqTWmcKvP5UhEaf8R11akfrkoCXUfEZGMIddYgHIIOy446nRD
+        DiAIOE1weHCUmIwWGcKiakxIXC/OyBSJV17LOD902LuYP7TPPCOCRtujqbFkEcsl
+        0JIF+m4P55fieqLr2EWUnPOlNFvZHEvERaAOYZYsot/LtX4H9r8gXpPDTfJvNysw
+        y2VaCQ84jeRbwNxZ4051hGaEPSj4Y6zWMEwiA1X94VJ29VEnahFusHoUYPBBA8ul
+        qJQ7L37rrddIVI+TCGCSVDsO9Yhp7GfOCeG0tBvRvKhrCIv9Cmze5HuJvnPDcv8g
+        ==
+X-ME-Sender: <xms:ETf7XT_fVi9mp99cbDK5Y4NdGH5vmL9ByL9Z0SHriXyj0bBMiRsONA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrvddutddguddvudcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrg
+    hinhepuggvvhhitggvthhrvggvrdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecu
+    rfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghhnecuve
+    hluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:ETf7XcGGt3XZBC0ombLEka2yZkOCt_W-9VM_FtxxmwGjWh5guHK__g>
+    <xmx:ETf7XT2zC9qFKJcb9EodmyKLXCxMuwrIouSniOTCHqidqsWkg_SXyQ>
+    <xmx:ETf7XegUNuXPYePuAvW-2-J1sTj5yKWpQvIdmX8Ra_MueDbIPol1Ug>
+    <xmx:Ejf7XfRt_UOS1TcedCPWHf2lVGvSfk2zaWyXr2fSa8uDzF35QxbT37vxZfE>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 09E3880059;
+        Thu, 19 Dec 2019 03:38:40 -0500 (EST)
+Date:   Thu, 19 Dec 2019 09:38:39 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jyri Sarha <jsarha@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        tomi.valkeinen@ti.com, laurent.pinchart@ideasonboard.com,
+        peter.ujfalusi@ti.com, bparrot@ti.com, subhajit_paul@ti.com,
+        praneeth@ti.com, yamonkar@cadence.com, sjakhade@cadence.com,
+        sam@ravnborg.org, robh+dt@kernel.org
+Subject: Re: [PATCH v4 3/5] dt-bindings: display: ti,j721e-dss: Add dt-schema
+ yaml binding
+Message-ID: <20191219083839.lmuhxynbbqy4d4hp@gilmour.lan>
+References: <cover.1576704528.git.jsarha@ti.com>
+ <89db418c91689beb6e63e0c3c99b39655948b429.1576704528.git.jsarha@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <daa67976-e2ad-e114-b5fd-87eb5ae00eeb@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.38.198]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yiknogogty4yey3d"
+Content-Disposition: inline
+In-Reply-To: <89db418c91689beb6e63e0c3c99b39655948b429.1576704528.git.jsarha@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--yiknogogty4yey3d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 2019/12/18 21:13, Neil Armstrong wrote:
-> Hi,
-> 
-> On 18/12/2019 03:42, Hanjie Lin wrote:
->> The Amlogic A1 SoC Family embeds 1 USB Controllers:
->>  - a DWC3 IP configured as Host for USB2 and USB3
->>
->> A glue connects the controllers to the USB2 PHY of A1 SoC.
->>
->> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
->> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
->> ---
->>  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 32 ++++++++++++++++++++++
->>  1 file changed, 32 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> index 4efb77b..9740027 100644
->> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> @@ -9,6 +9,8 @@ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
->>  
->>  maintainers:
->>    - Neil Armstrong <narmstrong@baylibre.com>
->> +  - Hanjie Lin <hanjie.lin@amlogic.com>
->> +  - Yue Wang <yue.wang@amlogic.com>
->>  
->>  description: |
->>    The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
->> @@ -22,10 +24,14 @@ description: |
->>    The DWC3 Glue controls the PHY routing and power, an interrupt line is
->>    connected to the Glue to serve as OTG ID change detection.
->>  
->> +  The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
->> +  host-only mode.
->> +
->>  properties:
->>    compatible:
->>      enum:
->>        - amlogic,meson-g12a-usb-ctrl
->> +      - amlogic,meson-a1-usb-ctrl
->>  
->>    ranges: true
->>  
->> @@ -124,4 +130,30 @@ examples:
->>                snps,quirk-frame-length-adjustment;
->>            };
->>      };
->> +  - |
->> +    usb: usb@ffe09000 {
->> +          status = "okay";
->> +          compatible = "amlogic,meson-a1-usb-ctrl";
->> +          reg = <0x0 0xffe09000 0x0 0xa0>;
->> +          #address-cells = <2>;
->> +          #size-cells = <2>;
->> +          ranges;
->>  
->> +          clocks = <&clkc_periphs CLKID_USB_CTRL>,
->> +           <&clkc_periphs CLKID_USB_BUS>,
->> +           <&clkc_periphs CLKID_XTAL_USB_PHY>,
->> +           <&clkc_periphs CLKID_XTAL_USB_CTRL>;
->> +          clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy", "xtal_usb_ctrl";
->> +          resets = <&reset RESET_USBCTRL>;
->> +          phys = <&usb2_phy0>;
->> +          phy-names = "usb2-phy0";
->> +
->> +          dwc3: usb@ff400000 {
->> +                  compatible = "snps,dwc3";
->> +                  reg = <0x0 0xff400000 0x0 0x100000>;
->> +                  interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
->> +                  dr_mode = "host";
->> +                  snps,dis_u2_susphy_quirk;
->> +                  snps,quirk-frame-length-adjustment = <0x20>;
->> +          };
->> +  };
->>
-> 
-> I doubt this passed the dt_binding_check !
-> 
-> 
-> Please add the clock-names only for amlogic,meson-a1-usb-ctrl,
-> set the phys maxItems to 1 for amlogic,meson-a1-usb-ctrl,
-> and set dr_mode as host in the example or make it required only
-> for amlogic,meson-g12a-usb-ctrl.
-> 
-> Neil
-> 
-> .
-> 
+Hi,
 
-Hi Neil,
+On Thu, Dec 19, 2019 at 10:23:17AM +0200, Jyri Sarha wrote:
+> Add dt-schema yaml bindig for J721E DSS, J721E version TI Keystone
+> Display SubSystem.
+>
+> Version history:
+>
+> v2: no change
+>
+> v3: - reg-names: "wp" -> "wb"
+>     - Add ports node
+>     - Add includes to dts example
+>     - reindent dts example
+>
+> v4: - Add descriptions to reg, clocks, and interrups properties
+>     - Remove minItems when its value is the same as maxItems value
+>
+> Signed-off-by: Jyri Sarha <jsarha@ti.com>
+> ---
+>  .../bindings/display/ti/ti,j721e-dss.yaml     | 209 ++++++++++++++++++
+>  1 file changed, 209 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+> new file mode 100644
+> index 000000000000..cd68c4294f9a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+> @@ -0,0 +1,209 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 Texas Instruments Incorporated
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/display/ti/ti,j721e-dss.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Texas Instruments J721E Display Subsystem
+> +
+> +maintainers:
+> +  - Jyri Sarha <jsarha@ti.com>
+> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
+> +
+> +description: |
+> +  The J721E TI Keystone Display SubSystem with four output ports and
+> +  four video planes. There is two full video planes and two "lite
+> +  planes" without scaling support. The video ports can be connected to
+> +  the SoC's DPI pins or to integrated display bridges on the SoC.
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,j721e-dss
+> +
+> +  reg:
+> +    maxItems: 17
+> +    description: |
+> +      Addresses to each DSS memory region described in the SoC's TRM.
+> +      The reg-names refer to memory regions as follows:
+> +      reg-names: Region Name in TRM:     Description:
+> +      common_m   DSS0_DISPC_0_COMMON_M   DSS Master common register area
+> +      common_s0  DSS0_DISPC_0_COMMON_SO  DSS Shared common register area 0
+> +      common_s1  DSS0_DISPC_0_COMMON_S1  DSS Shared common register area 1
+> +      common_s2  DSS0_DISPC_0_COMMON_S2  DSS Shared common register area 2
+> +      vidl1      DSS0_VIDL1              VIDL1 light video plane 1
+> +      vidl2      DSS0_VIDL2              VIDL2 light video plane 2
+> +      vid1       DSS0_VID1               VID1 video plane 1
+> +      vid2       DSS0_VID2               VID1 video plane 2
+> +      ovr1       DSS0_OVR1               OVR1 overlay manager for vp1
+> +      ovr2       DSS0_OVR2               OVR2 overlay manager for vp2
+> +      ovr3       DSS0_OVR3               OVR1 overlay manager for vp3
+> +      ovr4       DSS0_OVR4               OVR2 overlay manager for vp4
+> +      vp1        DSS0_VP1                VP1 video port 1
+> +      vp2        DSS0_VP2                VP1 video port 2
+> +      vp3        DSS0_VP3                VP1 video port 3
+> +      vp4        DSS0_VP4                VP1 video port 4
+> +      wp         DSS0_WB                 Write Back registers
 
-It does report errors by dt_binding_check, I will check the list again.
+I guess it applies to all your schemas in that patch series, but you
+could just do something like
 
-Thanks
+reg:
+  items:
+    - description: DSS Master common register area
+    - description: DSS Shared common register area 0
+    - description: DSS Shared common register area 1
 
-Hanjie.lin
+...
 
+That way, you wouldn't have to worry about the maxItems, and you end
+up doing pretty much that already in the description
+
+> +  reg-names:
+> +    items:
+> +      - const: common_m
+> +      - const: common_s0
+> +      - const: common_s1
+> +      - const: common_s2
+> +      - const: vidl1
+> +      - const: vidl2
+> +      - const: vid1
+> +      - const: vid2
+> +      - const: ovr1
+> +      - const: ovr2
+> +      - const: ovr3
+> +      - const: ovr4
+> +      - const: vp1
+> +      - const: vp2
+> +      - const: vp3
+> +      - const: vp4
+> +      - const: wb
+> +
+> +  clocks:
+> +    maxItems: 5
+> +    description:
+> +      phandles to clock nodes for DSS functional clock (fck) and video
+> +      port 1, 2, 3 and 4 pixel clocks (vp1, vp2, vp3, vp4).
+> +
+> +  clock-names:
+> +    items:
+> +      - const: fck
+> +      - const: vp1
+> +      - const: vp2
+> +      - const: vp3
+> +      - const: vp4
+> +
+> +  interrupts:
+> +    maxItems: 4
+> +    description:
+> +      Interrupt descriptions for common irq registers in common_m,
+> +      common_m0, common_m1, and common_m2, sections.
+
+Same story here, but the names don't match interrupt-names. I guess
+describing what those interrupts actually are would be great: you just
+define how the driver calls them, but not what they are actually doing
+or representing.
+
+I'm guessing that would end up in something like that:
+
+interrupts:
+  items:
+    - description: DSS Master interrupt
+    - description: DSS Shared 0 interrupt
+    - description: DSS Shared 1 interrupt
+    - description: DSS Shared 2 interrupt
+
+Maxime
+
+--yiknogogty4yey3d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXfs3DwAKCRDj7w1vZxhR
+xQiVAP0YWTQKwabkPS0Ih/yZ7kgZaZI/NkawL5OBnikqfkHl/wEA06JzVJW6zmLb
+KdfMCcJtHUIF26iEy6TRIpttWUDgCAI=
+=Rz1N
+-----END PGP SIGNATURE-----
+
+--yiknogogty4yey3d--
