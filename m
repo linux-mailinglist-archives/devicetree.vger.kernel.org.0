@@ -2,190 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DFF80128078
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 17:17:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 316A712804E
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 17:04:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727470AbfLTQRt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 Dec 2019 11:17:49 -0500
-Received: from sender4-op-o11.zoho.com ([136.143.188.11]:17158 "EHLO
-        sender4-op-o11.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727381AbfLTQRt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 11:17:49 -0500
-ARC-Seal: i=1; a=rsa-sha256; t=1576858600; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=gckRibb8Afdchjm61CYCqdHZ8cfB2NnAqgCHgJF61VMGulncfInULGvtTltC8Fo2Z5rO7WsxyO4IJF4H4iAlydUdBoRbJ51HFARaF28LW17On/oiGin2Y2eD+i1Lt1tyxmwL3Vs+oFtFsRSAh0RL7W7blPaPT4Ficuj6C3fKiFI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1576858600; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=9oGsK/VE1d5EJ2EKa+QIda+UxgjxEvV/nclu3dPCbmM=; 
-        b=BdTIdYDzsLK+pOMlSdwjb610bnS1WGNTpHalptGFzCZHzS4VFVfq23aHxvJswbE1e1iwb/ZBd+aRTKzGtBDyPAiCmeINfhtI76YAyKpzUlTWsOHqyg+5LX1Z8Jpna1AsoYSoAD0RQBmTKC4lgskBqXtD/+Um31Vu3BzwxjjY/WA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=dlrobertson.com;
-        spf=pass  smtp.mailfrom=dan@dlrobertson.com;
-        dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
-Received: from nessie.verizon.net (pool-173-73-58-202.washdc.fios.verizon.net [173.73.58.202]) by mx.zohomail.com
-        with SMTPS id 1576858599026967.3364096978336; Fri, 20 Dec 2019 08:16:39 -0800 (PST)
-From:   Dan Robertson <dan@dlrobertson.com>
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        devicetree@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
-        Joe Perches <joe@perches.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Dan Robertson <dan@dlrobertson.com>
-Message-ID: <20191220160051.26321-4-dan@dlrobertson.com>
-Subject: [PATCH v8 3/3] iio: (bma400) basic regulator support
-Date:   Fri, 20 Dec 2019 16:00:51 +0000
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191220160051.26321-1-dan@dlrobertson.com>
-References: <20191220160051.26321-1-dan@dlrobertson.com>
+        id S1727233AbfLTQEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 11:04:20 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:43107 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727181AbfLTQEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 11:04:20 -0500
+Received: by mail-ot1-f66.google.com with SMTP id p8so12388657oth.10;
+        Fri, 20 Dec 2019 08:04:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/0luK+WwgKuSiOa98RbWzLq3abcmu9sv6SofOdHarLw=;
+        b=bPKNyCD3NGqeyJXSpFjy17xvhfWOqg1vcw39RDn7vorA1FbyH5T6tXOASKTqqWoeUq
+         rMUmveMs4YG5W0W2DXCK6WVdPr43RrPsxJtsb7XTIQvG3btAMVnhgO3fY0L7D87g9n1S
+         7Scl7fW7L9m6kg56RQ54oeYIIgLEvqJZapwVK+Uyp72GK0NDFWLTr4UMIjO/jVWWyy8V
+         ZCOaeZ3/+PLmZAoTNEVUeaTALkwB5pNR4w2KOveel/TzU0VGJ9nPNzTMRM1/blhDz94Q
+         Gzy8/0Gq5lN1csZ71CXG8PTsZz5kiBfYRKMHaLuUa0pfsoZCybuV3DA7MFdAVjx4M9Ob
+         Zdfw==
+X-Gm-Message-State: APjAAAVU6TWxsTiFbIiim/bP+dCf0baRyVAeLjeC/nZLMHke3XYMWLf8
+        IozkMZJCqmF58keZIqnZDvMOeKRTSg/wQJHXixo=
+X-Google-Smtp-Source: APXvYqwIBXEf8Or8cIB/dLb8EUcezl3h1qf5WHhhSUgyISMMo6XfEF6/MW1vA50EZ88LJQNV52+2bem/u3xmPUfK7XM=
+X-Received: by 2002:a05:6830:2141:: with SMTP id r1mr15678372otd.39.1576857859067;
+ Fri, 20 Dec 2019 08:04:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-X-ZohoMailClient: External
-Content-Type: text/plain; charset=utf8
+References: <1576667617-35615-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1576667617-35615-1-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 20 Dec 2019 17:04:07 +0100
+Message-ID: <CAMuHMdX71dO803qY+GyYx5Dz+miat3f=NCOFc8aBn_pmqe5Zog@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Fix EXTAL Clock frequency
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Marian-Cristian Rotariu 
+        <marian-cristian.rotariu.rb@bp.renesas.com>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Simon Horman <horms@verge.net.au>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the VDD and VDDIO regulators using the regulator
-framework.
+Hi Biju,
 
-Signed-off-by: Dan Robertson <dan@dlrobertson.com>
----
- drivers/iio/accel/Kconfig       |  1 +
- drivers/iio/accel/bma400.h      |  4 ++++
- drivers/iio/accel/bma400_core.c | 39 ++++++++++++++++++++++++++++-----
- 3 files changed, 39 insertions(+), 5 deletions(-)
+On Wed, Dec 18, 2019 at 12:15 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> As per the schematic, the extal frequency is 16.6666MHz. However
+> it is wrongly mentioned as 16666666 on the SoC dtsi.
+>
+> Fixes: 438419ebd3f86221390 ("arm64: dts: renesas: Add HiHope RZ/G2M
+> main board support")
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-index 670e60568033..9cfe9c790190 100644
---- a/drivers/iio/accel/Kconfig
-+++ b/drivers/iio/accel/Kconfig
-@@ -116,6 +116,7 @@ config BMA400
- 	tristate "Bosch BMA400 3-Axis Accelerometer Driver"
- 	select REGMAP
- 	select BMA400_I2C if I2C
-+	select REGULATOR
- 	help
- 	  Say Y here if you want to build a driver for the Bosch BMA400
- 	  triaxial acceleration sensor.
-diff --git a/drivers/iio/accel/bma400.h b/drivers/iio/accel/bma400.h
-index 15c0e307d2c4..5ad10db9819f 100644
---- a/drivers/iio/accel/bma400.h
-+++ b/drivers/iio/accel/bma400.h
-@@ -86,6 +86,10 @@
- #define BMA400_SCALE_MIN            38357
- #define BMA400_SCALE_MAX            306864
- 
-+#define BMA400_NUM_REGULATORS       2
-+#define BMA400_VDD_REGULATOR        0
-+#define BMA400_VDDIO_REGULATOR      1
-+
- extern const struct regmap_config bma400_regmap_config;
- 
- int bma400_probe(struct device *dev, struct regmap *regmap, const char *name);
-diff --git a/drivers/iio/accel/bma400_core.c b/drivers/iio/accel/bma400_core.c
-index e7ba01e79d2c..61eb676e46be 100644
---- a/drivers/iio/accel/bma400_core.c
-+++ b/drivers/iio/accel/bma400_core.c
-@@ -19,6 +19,7 @@
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- 
- #include "bma400.h"
- 
-@@ -53,6 +54,7 @@ struct bma400_sample_freq {
- struct bma400_data {
- 	struct device *dev;
- 	struct regmap *regmap;
-+	struct regulator_bulk_data regulators[BMA400_NUM_REGULATORS];
- 	struct mutex mutex; /* data register lock */
- 	struct iio_mount_matrix orientation;
- 	enum bma400_power_mode power_mode;
-@@ -573,17 +575,38 @@ static int bma400_init(struct bma400_data *data)
- 		goto out;
- 	}
- 
-+	data->regulators[BMA400_VDD_REGULATOR].supply = "vdd";
-+	data->regulators[BMA400_VDDIO_REGULATOR].supply = "vddio";
-+	ret = devm_regulator_bulk_get(data->dev,
-+				      ARRAY_SIZE(data->regulators),
-+				      data->regulators);
-+	if (ret) {
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(data->dev,
-+				"Failed to get regulators: %d\n",
-+				ret);
-+
-+		goto out;
-+	}
-+	ret = regulator_bulk_enable(ARRAY_SIZE(data->regulators),
-+				    data->regulators);
-+	if (ret) {
-+		dev_err(data->dev, "Failed to enable regulators: %d\n",
-+			ret);
-+		goto out;
-+	}
-+
- 	ret = bma400_get_power_mode(data);
- 	if (ret) {
- 		dev_err(data->dev, "Failed to get the initial power-mode\n");
--		goto out;
-+		goto err_reg_disable;
- 	}
- 
- 	if (data->power_mode != POWER_MODE_NORMAL) {
- 		ret = bma400_set_power_mode(data, POWER_MODE_NORMAL);
- 		if (ret) {
- 			dev_err(data->dev, "Failed to wake up the device\n");
--			goto out;
-+			goto err_reg_disable;
- 		}
- 		/*
- 		 * TODO: The datasheet waits 1500us here in the example, but
-@@ -596,15 +619,15 @@ static int bma400_init(struct bma400_data *data)
- 
- 	ret = bma400_get_accel_output_data_rate(data);
- 	if (ret)
--		goto out;
-+		goto err_reg_disable;
- 
- 	ret = bma400_get_accel_oversampling_ratio(data);
- 	if (ret)
--		goto out;
-+		goto err_reg_disable;
- 
- 	ret = bma400_get_accel_scale(data);
- 	if (ret)
--		goto out;
-+		goto err_reg_disable;
- 
- 	/*
- 	 * Once the interrupt engine is supported we might use the
-@@ -614,6 +637,9 @@ static int bma400_init(struct bma400_data *data)
- 	 */
- 	return regmap_write(data->regmap, BMA400_ACC_CONFIG2_REG, 0x00);
- 
-+err_reg_disable:
-+	regulator_bulk_disable(ARRAY_SIZE(data->regulators),
-+			       data->regulators);
- out:
- 	return ret;
- }
-@@ -809,6 +835,9 @@ int bma400_remove(struct device *dev)
- 	ret = bma400_set_power_mode(data, POWER_MODE_SLEEP);
- 	mutex_unlock(&data->mutex);
- 
-+	regulator_bulk_disable(ARRAY_SIZE(data->regulators),
-+			       data->regulators);
-+
- 	iio_device_unregister(indio_dev);
- 
- 	return ret;
+Thanks for your patch!
 
+> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> @@ -154,7 +154,7 @@
+>  };
+>
+>  &extal_clk {
+> -       clock-frequency = <16666666>;
+> +       clock-frequency = <16666600>;
+>  };
 
+Given the schematics say the accuracy of the part is specified as 50ppm[*],
+changing this doesn't matter much, IMHO.
+
+[*] Yeah, that's more than 4s/day, so it would made a lousy watch, if not
+    for NTP ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
