@@ -2,84 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52FCA127A76
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 13:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C8E6127AB8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 13:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727329AbfLTMAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 07:00:33 -0500
-Received: from mx.socionext.com ([202.248.49.38]:46351 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727241AbfLTMAd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Dec 2019 07:00:33 -0500
-Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 20 Dec 2019 21:00:31 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id 953D2603AB;
-        Fri, 20 Dec 2019 21:00:31 +0900 (JST)
-Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Fri, 20 Dec 2019 21:01:08 +0900
-Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
-        by iyokan.css.socionext.com (Postfix) with ESMTP id 098D24044A;
-        Fri, 20 Dec 2019 21:00:31 +0900 (JST)
-Received: from [10.213.132.48] (unknown [10.213.132.48])
-        by yuzu.css.socionext.com (Postfix) with ESMTP id CC2D012044A;
-        Fri, 20 Dec 2019 21:00:30 +0900 (JST)
-Date:   Fri, 20 Dec 2019 21:00:30 +0900
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 0/6] phy: socionext: Add some improvements and legacy SoC support
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
-In-Reply-To: <1573035979-32200-1-git-send-email-hayashi.kunihiko@socionext.com>
-References: <1573035979-32200-1-git-send-email-hayashi.kunihiko@socionext.com>
-Message-Id: <20191220210030.BD1F.4A936039@socionext.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Becky! ver. 2.70 [ja]
+        id S1727291AbfLTMKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 07:10:16 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:46359 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727252AbfLTMKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 07:10:16 -0500
+Received: by mail-wr1-f68.google.com with SMTP id z7so9151306wrl.13;
+        Fri, 20 Dec 2019 04:10:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=S0pnr3nn0AYuzGua9zuiRclMABFt/sduS8+fdDz3j0k=;
+        b=fKXaJDUb6gSLYzCgHpdACzerQMB95lJNlCiFznE8f/Ss7IY6w2rV7BK3Es5TcjAcAX
+         CEFs8mwpW19H0jmsTSD6vdZzq6CYXDsqYjan0HJU4TRvpdXddDdoXl/93Vg/EwetxI/g
+         aWWjb+YAVTkXZMJiN6QeLQtVholhbOLmhwGQh7PJ1GfHID9XkvFzm9+mK7LU2nOCzEY6
+         hJ2eDs6v8uo7b4mHtvh5o701wkZNJZ7FXeVRoiqDQOu81/RjuQSgTI92Vh6Kniqb+CzU
+         rklPjP3ZcMREuhbWF3hwSNhYJ7WCW0bAnrCh2VzOPLIh2ar63zh4O9FY4qkeufWnoRVw
+         2DRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=S0pnr3nn0AYuzGua9zuiRclMABFt/sduS8+fdDz3j0k=;
+        b=GpawQ2CcBxbB0u2ntYZO/1Dloc2Qb9jNPJ4APbddiizsmxyruj9hpgAMAGz5T7DiN3
+         SBB4tf/9+kMoW1fJQnYzrV611EeMQaXhzadmpFclIu01GMGbUd5yMvG5ZjzTvKM3XRuy
+         dnZlVSQjSZSoSVVWu7D0qnHXwQr7F+aZnc3vFXUyDS60foCLfHTTOWtdRZ90tqkk2ozz
+         E95ljTCfnlYx8/CcRzgV3LXRBD3SDQXSeltArqhum0VYhEcA0tVNjZ2chVg7KmEPK7Zc
+         U+5D1xajkJPR8lqdftM+JdzmNbbzBVTOl5wYXax1m/BuvBhM8AwqoTmJQ2LG5RactF3T
+         yL9A==
+X-Gm-Message-State: APjAAAVQ/k4U3xxJ3cOJdsUhOnT2czsCKkVb7pp+gXduGmwYEQS2XNF6
+        XUPy4TuRRCOGMpr/0HKU/ZY=
+X-Google-Smtp-Source: APXvYqxz4JySI0uFXl1jq8Ac0DazRPpLLkKp56hG8npofCaMs8UjmxmgXnTjmZ8VgRgev06SnzD9iA==
+X-Received: by 2002:a5d:6ac5:: with SMTP id u5mr14874567wrw.271.1576843814425;
+        Fri, 20 Dec 2019 04:10:14 -0800 (PST)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id s16sm9722493wrn.78.2019.12.20.04.10.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 20 Dec 2019 04:10:13 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: rockchip: rk3308-evb: sort nodes in alphabetical order
+Date:   Fri, 20 Dec 2019 13:10:06 +0100
+Message-Id: <20191220121007.29337-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Sort nodes in alphabetical order.
+Place &saradc below &pwm0.
 
-Gentle ping.
-Are there any comments about this series?
-
-Thank you,
-
-On Wed, 6 Nov 2019 19:26:13 +0900 <hayashi.kunihiko@socionext.com> wrote:
-
-> This series adds some improvements to PHY interface drivers, and adds legacy SoC
-> support that needs to manage gio clock and reset.
-> 
-> Kunihiko Hayashi (6):
->   phy: socionext: Use devm_platform_ioremap_resource()
->   dt-bindings: phy: socionext: Add Pro5 support and remove Pro4 from
->     usb3-hsphy
->   phy: uniphier-usb3ss: Add Pro5 support
->   phy: uniphier-usb3hs: Add legacy SoC support for Pro5
->   phy: uniphier-usb3hs: Change Rx sync mode to avoid communication
->     failure
->   phy: uniphier-pcie: Add legacy SoC support for Pro5
-> 
->  .../devicetree/bindings/phy/uniphier-pcie-phy.txt  | 13 ++-
->  .../bindings/phy/uniphier-usb3-hsphy.txt           |  6 +-
->  .../bindings/phy/uniphier-usb3-ssphy.txt           |  5 +-
->  drivers/phy/socionext/phy-uniphier-pcie.c          | 87 ++++++++++++++++----
->  drivers/phy/socionext/phy-uniphier-usb3hs.c        | 92 ++++++++++++++++------
->  drivers/phy/socionext/phy-uniphier-usb3ss.c        |  8 +-
->  6 files changed, 163 insertions(+), 48 deletions(-)
-> 
-> -- 
-> 2.7.4
-
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
-Best Regards,
-Kunihiko Hayashi
+ arch/arm64/boot/dts/rockchip/rk3308-evb.dts | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+index 9b4f855ea..e8f15dcce 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3308-evb.dts
+@@ -190,11 +190,6 @@
+ 	cpu-supply = <&vdd_core>;
+ };
+ 
+-&saradc {
+-	status = "okay";
+-	vref-supply = <&vcc_1v8>;
+-};
+-
+ &pinctrl {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rtc_32k>;
+@@ -219,8 +214,13 @@
+ };
+ 
+ &pwm0 {
+-	status = "okay";
+ 	pinctrl-0 = <&pwm0_pin_pull_down>;
++	status = "okay";
++};
++
++&saradc {
++	vref-supply = <&vcc_1v8>;
++	status = "okay";
+ };
+ 
+ &uart4 {
+-- 
+2.11.0
 
