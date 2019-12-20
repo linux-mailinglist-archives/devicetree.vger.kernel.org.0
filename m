@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E9622127F62
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 16:34:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB325127FED
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 16:51:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727395AbfLTPeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 10:34:06 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:35226 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727181AbfLTPeF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Dec 2019 10:34:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=FlEdcjqR14Yp6BDuBVePu7rcTs7oSKGfaNl9lmmWvhY=; b=zFKX5Mx6zfivGSorxUsCX27mrf
-        Mdb7jKv4NoU2UpfVY45idZm7bRTqFThe+ouaRvXPd4oGnAAhXw3PSRzXQcp0PToyJj8nEk62cGtIX
-        bzhUpCsvadN1+mTB6aJRnpwhbimkq4102brSkFxx2RKwX8OJwhozOOuKIRSrBfEZCeSU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1iiKHv-0003HC-5i; Fri, 20 Dec 2019 16:33:59 +0100
-Date:   Fri, 20 Dec 2019 16:33:59 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Willem de Bruijn <willemb@google.com>,
-        Wingman Kwok <w-kwok2@ti.com>
-Subject: Re: [PATCH V6 net-next 06/11] net: Introduce a new MII time stamping
- interface.
-Message-ID: <20191220153359.GA11117@lunn.ch>
-References: <cover.1576511937.git.richardcochran@gmail.com>
- <28939f11b984759257167e778d0c73c0dd206a35.1576511937.git.richardcochran@gmail.com>
- <20191217092155.GL6994@lunn.ch>
- <20191220145712.GA3846@localhost>
+        id S1727565AbfLTPve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 10:51:34 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:40432 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727411AbfLTPvd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 10:51:33 -0500
+Received: by mail-oi1-f195.google.com with SMTP id c77so4312635oib.7;
+        Fri, 20 Dec 2019 07:51:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tulvWuO+lfC11OaHpbro2bnBMTva8CQZsIKaKyF21W0=;
+        b=UJwup9Bb3803MRbopQr7p+m07N32OBnvrYjf3nfv2bMTBfuZT4uGwPUXhSGYz7IDxy
+         mrDVj83hk2vcf3nHWlMe8+AxPjBhqQwyoFat83iwDDd7eZIXhJ/gepyoTSnjQIMB4vP1
+         ScpZE11mrJHHL7YyMP79KM3bqOpWkPoO8jaIt0fOYFbGiPr0H4s3zxuWQVJ5ixxLA1JT
+         vuWW374yedPCiNfFgpa5k7f84q0199vK8WRJyZrmupiZzSywly+saJCCnV5YhRAOIdjn
+         JLWeRqOTui3nAEhVPN5zc5Onl+pUJzRk27AVAsFSA0sU9DV3mv6XSmNGc0roe1zEaRo0
+         MVZw==
+X-Gm-Message-State: APjAAAVLBdsuh8zyW5nBUTKs0u+qo3uReb9CK6HtpX2c0xaMBuGNFLwx
+        5oSg53cLathP9KJwAuazTq68Dr7/2pmzhsjkew8=
+X-Google-Smtp-Source: APXvYqzchUhqLwQiMfXZKXZyP7v8fIN2PO8DqcEhtTUOkjyL7QPAh7bHF/N4b1oZe/fFPjGrc7KJChncR16AfjCVknA=
+X-Received: by 2002:a05:6808:292:: with SMTP id z18mr648668oic.131.1576857092572;
+ Fri, 20 Dec 2019 07:51:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191220145712.GA3846@localhost>
+References: <20191213164115.3697-1-geert+renesas@glider.be> <506390662.44203.1576307324771@webmail.strato.com>
+In-Reply-To: <506390662.44203.1576307324771@webmail.strato.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 20 Dec 2019 16:51:21 +0100
+Message-ID: <CAMuHMdVfV1u_fWGSP7SyDDR4vCB2qVkibr0irtUMnSfoh=nGUg@mail.gmail.com>
+Subject: Re: [PATCH 0/7] arm: dts: renesas: Group tuples in
+ reg/ranges/dma-ranges/states properties
+To:     Ulrich Hecht <uli@fpond.eu>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 20, 2019 at 06:57:12AM -0800, Richard Cochran wrote:
-> On Tue, Dec 17, 2019 at 10:21:55AM +0100, Andrew Lunn wrote:
-> > Forward declarations are considered bad.
-> 
-> Not by me!
+On Sat, Dec 14, 2019 at 8:08 AM Ulrich Hecht <uli@fpond.eu> wrote:
+> > On December 13, 2019 at 5:41 PM Geert Uytterhoeven <geert+renesas@glider.be> wrote:
+> > To improve human readability and enable automatic validation, tuples
+> > in various properties should be grouped.  While "make dtbs_check" does
+> > not impose this yet for all properties, it does for some, hence
+> > triggering me to fix (I hope) all of them.
+> >
+> > Unfortunately even after this, a few "... is too long" warnings are
+> > still printed (e.g. for PCI "ranges"), which I believe are false
+> > positives.
+> >
+> > This series is against renesas-devel-2019-12-13-v5.5-rc1[*] with
+> > "[PATCH] ARM: dts: rcar-gen2: Fix PCI high address in
+> > interrupt-map-mask" applied on top.
+> >
+> > Thanks for your comments!
+>
+> For the whole series:
+> Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
 
-Lets see what David says.
+Thanks, queuing in renesas-devel for v5.6.
 
-> > For the moment what you have is sufficient. I doubt anybody is using
-> > the dp83640 with phylink, and the new hardware you are targeting seems
-> > to be RGMII based, not SERDES, which is the main use case for PHYLINK.
-> 
-> Yeah, my impression is that the phyter will be the first and last phy
-> time stamping device ever created.  Designers reject this part because
-> it is 100 mbit only.  And there are no gigabit+ phys with time
-> stamping at all.
+Gr{oetje,eeting}s,
 
-The Marvell PHY datasheets indicate they support PTP. I've not looked
-at how they implement it, and if the current model will work.
+                        Geert
 
-   Andrew
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
