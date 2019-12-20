@@ -2,161 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35794127684
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 08:35:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE686127694
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 08:37:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725874AbfLTHfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 02:35:20 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:12616 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726030AbfLTHfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 02:35:20 -0500
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5dfc79ac0000>; Thu, 19 Dec 2019 23:35:08 -0800
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 19 Dec 2019 23:35:19 -0800
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 19 Dec 2019 23:35:19 -0800
-Received: from [10.19.108.118] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 20 Dec
- 2019 07:35:16 +0000
-Subject: Re: [Patch V2 00/18] Tegra XUSB OTG support
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Nagarjuna Kristam <nkristam@nvidia.com>
-CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <kishon@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1576660591-10383-1-git-send-email-nkristam@nvidia.com>
- <20191219131349.GI1440537@ulmo>
-X-Nvconfidentiality: public
-From:   JC Kuo <jckuo@nvidia.com>
-Message-ID: <5212a532-1366-ff4f-e9c2-94b04e23eefd@nvidia.com>
-Date:   Fri, 20 Dec 2019 15:35:14 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        id S1727177AbfLTHh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 02:37:57 -0500
+Received: from us-smtp-1.mimecast.com ([207.211.31.81]:42122 "EHLO
+        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726327AbfLTHh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Dec 2019 02:37:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1576827476;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ik9zblcACLAYgG8OzsfmWBMKQZGOxI4PWyiE7YKno5I=;
+        b=VzTl+FWdBJLgUfSzDxWUlJgzuLQxGaoltgeKhuS9d7exycSynIUCw/8gT/m6ZTSysPh4PW
+        Ia34F+NMKCRVZHGk3fRKyLiQnnnwxcKf25XSqbcn7hQU0Yys0cbz59TfS8m1Kat/bG1paW
+        8qI+UK9knXwYECO5bpE+/uqaKvGLpJo=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-53-Yj7cv9uRPJKIqWgx-7vRcw-1; Fri, 20 Dec 2019 02:37:52 -0500
+X-MC-Unique: Yj7cv9uRPJKIqWgx-7vRcw-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2A04C107ACC4;
+        Fri, 20 Dec 2019 07:37:49 +0000 (UTC)
+Received: from [10.36.116.117] (ovpn-116-117.ams2.redhat.com [10.36.116.117])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 9336263BA1;
+        Fri, 20 Dec 2019 07:37:39 +0000 (UTC)
+Subject: Re: [PATCH v4 10/13] iommu/arm-smmu-v3: Add second level of context
+ descriptor table
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org
+Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
+        will@kernel.org, robin.murphy@arm.com, bhelgaas@google.com,
+        jonathan.cameron@huawei.com, zhangfei.gao@linaro.org
+References: <20191219163033.2608177-1-jean-philippe@linaro.org>
+ <20191219163033.2608177-11-jean-philippe@linaro.org>
+From:   Auger Eric <eric.auger@redhat.com>
+Message-ID: <d663f79a-d53b-d410-1757-979c50436ce3@redhat.com>
+Date:   Fri, 20 Dec 2019 08:37:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-In-Reply-To: <20191219131349.GI1440537@ulmo>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20191219163033.2608177-11-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1576827309; bh=g6cinNKpqTaYMi4kn9LaHC8VtZ+9vfK0NwqwRxkQQ3I=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=Y6oJ3aJwLN3PCdxpS/MejfceoJ/njnLjWhXyjSgJzYIPFt/fV07ypdyLLpTNfFBNC
-         izOP0QGOVSKIB7Jz/JojMSMykpP2CpgzaBSz6b3BVB40xDF+30ookfvkVbt1/gUG5G
-         dfW0U12nPyeMoqY2rwD4bxZD5nzHmiRFqTqC7xJdNXydb1dA/zIwm8yxmqy92JQUxt
-         UTkgu+MlWTMR+DfvPEqEIKhtQ+XOHvb+0ya/iQNoyC4W4S1XCvomqhK0bIZhWausf3
-         DIdpYg6ReBr2cr+KVMterj4QrHBholgCH/z7B5nXxiP8jNHUtRVkBH7YQgeqL2hp7J
-         POgkki8pSP55A==
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jean,
 
-
-On 12/19/19 9:13 PM, Thierry Reding wrote:
-> On Wed, Dec 18, 2019 at 02:46:13PM +0530, Nagarjuna Kristam wrote:
->> This patch series adds OTG support on XUSB hardware used in Tegra210 and
->> Tegra186 SoCs.
->>
->> This patchset is composed with :
->>  - dt bindings of XUSB Pad Controller
->>  - dt bindings for XUSB device Driver
->>  - Tegra PHY driver for usb-role-switch and usb-phy
->>  - Tegra XUSB host mode driver to support OTG mode
->>  - Tegra XUSB device mode driver to use usb-phy and multi device mode
->>  - dts for XUSB pad controller
->>  - dts for xudc
->>
->> Tegra Pad controller driver register for role switch updates for
->> OTG/peripheral capable USB ports and adds usb-phy for that corresponding
->> USB ports.
->>
->> Host and Device mode drivers gets usb-phy from USB2's phy and registers
->> notifier for role changes to perform corresponding role tasks.
->>
->> Tests done:
->>  - device mode support using micro-B USB cable connection between ubuntu
->>    host and DUT on micro-B port
-It's a micro-AB port according to Micro USB specifications.
-
->>  - host mode support by connecting pen-drive to micro USB port on DUT
->>    using micro-B OTG cable.
-It's a standard-A to micro-A converter.
-
->>  - toggling between these 2 modes by hot plugging corresponding cables.
+On 12/19/19 5:30 PM, Jean-Philippe Brucker wrote:
+> The SMMU can support up to 20 bits of SSID. Add a second level of page
+> tables to accommodate this. Devices that support more than 1024 SSIDs now
+> have a table of 1024 L1 entries (8kB), pointing to tables of 1024 context
+> descriptors (64kB), allocated on demand.
 > 
-> Are there any tests we can run without manual intervention? Can we force
-> the device into peripheral mode and then setup a configuration using
-> configfs? I'm not sure how useful that would be since it doesn't really
-> exercise the driver code very much and doesn't tell whether it's
-> actually working.
-> 
-> Any other way how we can test this?
-> 
-I don't think there is a way to test role-swap and host/device driver without
-swapping cables. Thanks.
+> Tested-by: Zhangfei Gao <zhangfei.gao@linaro.org>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Reviewed-by: Eric Auger <eric.auger@redhat.com>
 
-> Thierry
+Thanks
+
+Eric
+
+> ---
+>  drivers/iommu/arm-smmu-v3.c | 154 +++++++++++++++++++++++++++++++++---
+>  1 file changed, 144 insertions(+), 10 deletions(-)
 > 
->>
->> DUT: Jetson-tx1, Jetson tx2.
->>
->> V2:
->>  - Updated usb-role-switch documentation for Padctl driver.
->>  - Update XUDC bindings doc as suggested by Rob.
->>  - Used standard error codes for error return.
->>  - Added of_platform_depopulate during error and driver removal.
->>  - Updated error variable during phy initialization in XUDC driver.
->>  - Updated Tegra210 soc dtb file as per changes to binding doc.
->>
->> Nagarjuna Kristam (18):
->>   dt-bindings: phy: tegra-xusb: Add usb-role-switch
->>   dt-bindings: usb: Add NVIDIA Tegra XUSB device mode controller binding
->>   phy: tegra: xusb: Add usb-role-switch support
->>   phy: tegra: xusb: Add usb-phy support
->>   phy: tegra: xusb: Add support to get companion USB 3 port
->>   phy: tegra: xusb: Add set_mode support for USB 2 phy on Tegra210
->>   phy: tegra: xusb: Add set_mode support for utmi phy on Tegra186
->>   usb: xhci-tegra: Add OTG support
->>   usb: gadget: tegra-xudc: Remove usb-role-switch support
->>   usb: gadget: tegra-xudc: Add usb-phy support
->>   usb: gadget: tegra-xudc: use phy_set_mode to set/unset device mode
->>   usb: gadget: tegra-xudc: support multiple device modes
->>   arm64: tegra: update OTG port entries for jetson-tx1
->>   arm64: tegra: update OTG port entries for jetson-tx2
->>   arm64: tegra: Add xudc node for Tegra210
->>   arm64: tegra: Enable xudc on Jetson TX1
->>   arm64: tegra: Add xudc node for Tegra186
->>   arm64: tegra: Enable xudc node on Jetson TX2
->>
->>  .../bindings/phy/nvidia,tegra124-xusb-padctl.txt   |   6 +
->>  .../devicetree/bindings/usb/nvidia,tegra-xudc.yaml | 190 ++++++++++++++
->>  arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts |  23 +-
->>  arch/arm64/boot/dts/nvidia/tegra186.dtsi           |  19 ++
->>  arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi     |  34 ++-
->>  arch/arm64/boot/dts/nvidia/tegra210.dtsi           |  19 ++
->>  drivers/phy/tegra/Kconfig                          |   1 +
->>  drivers/phy/tegra/xusb-tegra186.c                  | 109 ++++++--
->>  drivers/phy/tegra/xusb-tegra210.c                  | 126 ++++++++--
->>  drivers/phy/tegra/xusb.c                           | 134 ++++++++++
->>  drivers/phy/tegra/xusb.h                           |   5 +
->>  drivers/usb/gadget/udc/tegra-xudc.c                | 276 ++++++++++++++-------
->>  drivers/usb/host/xhci-tegra.c                      | 225 ++++++++++++++++-
->>  include/linux/phy/tegra/xusb.h                     |   2 +
->>  14 files changed, 1031 insertions(+), 138 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.yaml
->>
->> -- 
->> 2.7.4
->>
+> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
+> index b825a5639afc..bf106a7b53eb 100644
+> --- a/drivers/iommu/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm-smmu-v3.c
+> @@ -224,6 +224,7 @@
+>  
+>  #define STRTAB_STE_0_S1FMT		GENMASK_ULL(5, 4)
+>  #define STRTAB_STE_0_S1FMT_LINEAR	0
+> +#define STRTAB_STE_0_S1FMT_64K_L2	2
+>  #define STRTAB_STE_0_S1CTXPTR_MASK	GENMASK_ULL(51, 6)
+>  #define STRTAB_STE_0_S1CDMAX		GENMASK_ULL(63, 59)
+>  
+> @@ -263,7 +264,20 @@
+>  
+>  #define STRTAB_STE_3_S2TTB_MASK		GENMASK_ULL(51, 4)
+>  
+> -/* Context descriptor (stage-1 only) */
+> +/*
+> + * Context descriptors.
+> + *
+> + * Linear: when less than 1024 SSIDs are supported
+> + * 2lvl: at most 1024 L1 entries,
+> + *       1024 lazy entries per table.
+> + */
+> +#define CTXDESC_SPLIT			10
+> +#define CTXDESC_L2_ENTRIES		(1 << CTXDESC_SPLIT)
+> +
+> +#define CTXDESC_L1_DESC_DWORDS		1
+> +#define CTXDESC_L1_DESC_VALID		1
+> +#define CTXDESC_L1_DESC_L2PTR_MASK	GENMASK_ULL(51, 12)
+> +
+>  #define CTXDESC_CD_DWORDS		8
+>  #define CTXDESC_CD_0_TCR_T0SZ		GENMASK_ULL(5, 0)
+>  #define ARM64_TCR_T0SZ			GENMASK_ULL(5, 0)
+> @@ -575,7 +589,12 @@ struct arm_smmu_cd_table {
+>  };
+>  
+>  struct arm_smmu_s1_cfg {
+> -	struct arm_smmu_cd_table	table;
+> +	/* Leaf tables or linear table */
+> +	struct arm_smmu_cd_table	*tables;
+> +	size_t				num_tables;
+> +	/* First level tables, when two levels are used */
+> +	__le64				*l1ptr;
+> +	dma_addr_t			l1ptr_dma;
+>  	struct arm_smmu_ctx_desc	cd;
+>  	u8				s1fmt;
+>  	u8				s1cdmax;
+> @@ -1521,9 +1540,48 @@ static void arm_smmu_free_cd_leaf_table(struct arm_smmu_device *smmu,
+>  {
+>  	size_t size = num_entries * (CTXDESC_CD_DWORDS << 3);
+>  
+> +	if (!table->ptr)
+> +		return;
+>  	dmam_free_coherent(smmu->dev, size, table->ptr, table->ptr_dma);
+>  }
+>  
+> +static void arm_smmu_write_cd_l1_desc(__le64 *dst,
+> +				      struct arm_smmu_cd_table *table)
+> +{
+> +	u64 val = (table->ptr_dma & CTXDESC_L1_DESC_L2PTR_MASK) |
+> +		  CTXDESC_L1_DESC_VALID;
+> +
+> +	WRITE_ONCE(*dst, cpu_to_le64(val));
+> +}
+> +
+> +static __le64 *arm_smmu_get_cd_ptr(struct arm_smmu_domain *smmu_domain,
+> +				   u32 ssid)
+> +{
+> +	__le64 *l1ptr;
+> +	unsigned int idx;
+> +	struct arm_smmu_cd_table *table;
+> +	struct arm_smmu_device *smmu = smmu_domain->smmu;
+> +	struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+> +
+> +	if (cfg->s1fmt == STRTAB_STE_0_S1FMT_LINEAR)
+> +		return cfg->tables[0].ptr + ssid * CTXDESC_CD_DWORDS;
+> +
+> +	idx = ssid >> CTXDESC_SPLIT;
+> +	table = &cfg->tables[idx];
+> +	if (!table->ptr) {
+> +		if (arm_smmu_alloc_cd_leaf_table(smmu, table,
+> +						 CTXDESC_L2_ENTRIES))
+> +			return NULL;
+> +
+> +		l1ptr = cfg->l1ptr + idx * CTXDESC_L1_DESC_DWORDS;
+> +		arm_smmu_write_cd_l1_desc(l1ptr, table);
+> +		/* An invalid L1CD can be cached */
+> +		arm_smmu_sync_cd(smmu_domain, ssid, false);
+> +	}
+> +	idx = ssid & (CTXDESC_L2_ENTRIES - 1);
+> +	return table->ptr + idx * CTXDESC_CD_DWORDS;
+> +}
+> +
+>  static u64 arm_smmu_cpu_tcr_to_cd(u64 tcr)
+>  {
+>  	u64 val = 0;
+> @@ -1556,8 +1614,14 @@ static int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain,
+>  	u64 val;
+>  	bool cd_live;
+>  	struct arm_smmu_device *smmu = smmu_domain->smmu;
+> -	__le64 *cdptr = smmu_domain->s1_cfg.table.ptr + ssid *
+> -			CTXDESC_CD_DWORDS;
+> +	__le64 *cdptr;
+> +
+> +	if (WARN_ON(ssid >= (1 << smmu_domain->s1_cfg.s1cdmax)))
+> +		return -E2BIG;
+> +
+> +	cdptr = arm_smmu_get_cd_ptr(smmu_domain, ssid);
+> +	if (!cdptr)
+> +		return -ENOMEM;
+>  
+>  	val = le64_to_cpu(cdptr[0]);
+>  	cd_live = !!(val & CTXDESC_CD_0_V);
+> @@ -1604,20 +1668,87 @@ static int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain,
+>  
+>  static int arm_smmu_alloc_cd_tables(struct arm_smmu_domain *smmu_domain)
+>  {
+> +	int ret;
+> +	size_t size = 0;
+> +	size_t max_contexts;
+>  	struct arm_smmu_device *smmu = smmu_domain->smmu;
+>  	struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+>  
+> -	cfg->s1fmt = STRTAB_STE_0_S1FMT_LINEAR;
+> -	return arm_smmu_alloc_cd_leaf_table(smmu, &cfg->table,
+> -					    1 << cfg->s1cdmax);
+> +	max_contexts = 1 << cfg->s1cdmax;
+> +
+> +	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB) ||
+> +	    max_contexts <= CTXDESC_L2_ENTRIES) {
+> +		cfg->s1fmt = STRTAB_STE_0_S1FMT_LINEAR;
+> +		cfg->num_tables = 1;
+> +	} else {
+> +		cfg->s1fmt = STRTAB_STE_0_S1FMT_64K_L2;
+> +		cfg->num_tables = DIV_ROUND_UP(max_contexts,
+> +					       CTXDESC_L2_ENTRIES);
+> +
+> +		size = cfg->num_tables * (CTXDESC_L1_DESC_DWORDS << 3);
+> +		cfg->l1ptr = dmam_alloc_coherent(smmu->dev, size,
+> +						 &cfg->l1ptr_dma,
+> +						 GFP_KERNEL);
+> +		if (!cfg->l1ptr) {
+> +			dev_warn(smmu->dev,
+> +				 "failed to allocate L1 context table\n");
+> +			return -ENOMEM;
+> +		}
+> +	}
+> +
+> +	cfg->tables = devm_kzalloc(smmu->dev, sizeof(struct arm_smmu_cd_table) *
+> +				   cfg->num_tables, GFP_KERNEL);
+> +	if (!cfg->tables) {
+> +		ret = -ENOMEM;
+> +		goto err_free_l1;
+> +	}
+> +
+> +	/*
+> +	 * Only allocate a leaf table for linear case. With two levels, leaf
+> +	 * tables are allocated lazily.
+> +	 */
+> +	if (cfg->s1fmt == STRTAB_STE_0_S1FMT_LINEAR) {
+> +		ret = arm_smmu_alloc_cd_leaf_table(smmu, &cfg->tables[0],
+> +						   max_contexts);
+> +		if (ret)
+> +			goto err_free_tables;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_free_tables:
+> +	devm_kfree(smmu->dev, cfg->tables);
+> +	cfg->tables = NULL;
+> +err_free_l1:
+> +	if (cfg->l1ptr) {
+> +		dmam_free_coherent(smmu->dev, size, cfg->l1ptr, cfg->l1ptr_dma);
+> +		cfg->l1ptr = NULL;
+> +		cfg->l1ptr_dma = 0;
+> +	}
+> +	return ret;
+>  }
+>  
+>  static void arm_smmu_free_cd_tables(struct arm_smmu_domain *smmu_domain)
+>  {
+> +	int i;
+>  	struct arm_smmu_device *smmu = smmu_domain->smmu;
+>  	struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+> +	size_t num_leaf_entries = 1 << cfg->s1cdmax;
+> +	struct arm_smmu_cd_table *table = cfg->tables;
+> +
+> +	if (cfg->l1ptr) {
+> +		size_t size = cfg->num_tables * (CTXDESC_L1_DESC_DWORDS << 3);
+>  
+> -	arm_smmu_free_cd_leaf_table(smmu, &cfg->table, 1 << cfg->s1cdmax);
+> +		dmam_free_coherent(smmu->dev, size, cfg->l1ptr, cfg->l1ptr_dma);
+> +		cfg->l1ptr = NULL;
+> +		cfg->l1ptr_dma = 0;
+> +		num_leaf_entries = CTXDESC_L2_ENTRIES;
+> +	}
+> +
+> +	for (i = 0; i < cfg->num_tables; i++, table++)
+> +		arm_smmu_free_cd_leaf_table(smmu, table, num_leaf_entries);
+> +	devm_kfree(smmu->dev, cfg->tables);
+> +	cfg->tables = NULL;
+>  }
+>  
+>  /* Stream table manipulation functions */
+> @@ -1737,6 +1868,9 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+>  	}
+>  
+>  	if (s1_cfg) {
+> +		dma_addr_t ptr_dma = s1_cfg->l1ptr ? s1_cfg->l1ptr_dma :
+> +				     s1_cfg->tables[0].ptr_dma;
+> +
+>  		BUG_ON(ste_live);
+>  		dst[1] = cpu_to_le64(
+>  			 FIELD_PREP(STRTAB_STE_1_S1DSS, STRTAB_STE_1_S1DSS_SSID0) |
+> @@ -1749,7 +1883,7 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+>  		   !(smmu->features & ARM_SMMU_FEAT_STALL_FORCE))
+>  			dst[1] |= cpu_to_le64(STRTAB_STE_1_S1STALLD);
+>  
+> -		val |= (s1_cfg->table.ptr_dma & STRTAB_STE_0_S1CTXPTR_MASK) |
+> +		val |= (ptr_dma & STRTAB_STE_0_S1CTXPTR_MASK) |
+>  			FIELD_PREP(STRTAB_STE_0_CFG, STRTAB_STE_0_CFG_S1_TRANS) |
+>  			FIELD_PREP(STRTAB_STE_0_S1CDMAX, s1_cfg->s1cdmax) |
+>  			FIELD_PREP(STRTAB_STE_0_S1FMT, s1_cfg->s1fmt);
+> @@ -2265,7 +2399,7 @@ static void arm_smmu_domain_free(struct iommu_domain *domain)
+>  	if (smmu_domain->stage == ARM_SMMU_DOMAIN_S1) {
+>  		struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+>  
+> -		if (cfg->table.ptr) {
+> +		if (cfg->tables) {
+>  			arm_smmu_free_cd_tables(smmu_domain);
+>  			arm_smmu_bitmap_free(smmu->asid_map, cfg->cd.asid);
+>  		}
+> 
+
