@@ -2,104 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BAB2127ABB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 13:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4AA3127B02
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 13:25:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727346AbfLTMKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 07:10:17 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:36519 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727177AbfLTMKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 07:10:16 -0500
-Received: by mail-wr1-f67.google.com with SMTP id z3so9214901wru.3;
-        Fri, 20 Dec 2019 04:10:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=X8fFKkVj4hVB9s3VYcXKcrcscgrJeT7dVkyworQG7Xs=;
-        b=MslHLb5TC48pWyXB4rVGeaN6vAkMcZk2Fa4J70Qk+CY3wY0hUJFGBwlni22LS3h6Nh
-         YkEn+fR3yKhiWZV/zYs/7cdNCwZdC3CEc7CFIkD7IE1PmA+1/49VH5dgYWCCh3bgxxc1
-         16tOH2klG8c+0QyUK69jc8x865EfIyboJPlg1r1t7TwOsHZTdor/R9G4DjIX6iWIEHdH
-         gmwZNGoKGXc1hORo8+WyQSxyFqD5K99YNELnymcSSgj5B5qkQ4FbDqUG2cFgm0M8uCdh
-         FtqEuPccZNS/5NTvodhMjvp0v3mVL6WWdOI382nHbqYW7X3stO92+huOi6gyi6oMWT14
-         3Jgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=X8fFKkVj4hVB9s3VYcXKcrcscgrJeT7dVkyworQG7Xs=;
-        b=DI8RRCW6ev9b78JusOR2c/JUZ1TVIScbmzefTX1hKv1Dw5RnfTzv8kRw9/Rg9BRTcy
-         nZevSiWrDo8ickUIeHlPaqckNGAFm/PdoS70vpDCIhfVp2ObcksfqSCa4DEjUFUCvoe9
-         BW5goXHRYxGsbMvJ1a5SbSxM2p5ifmvmhyH/MhO7u6bNPdzaHJujDwFeQv+Ouz5VbBKL
-         9moN5wSW8exT9HjrUbXFB/dCp2EWuiACpXQzpI02uwAFu+ZsPiPmTiiOiPa6R0UHvius
-         W8oYAtAsJ50Vo9T6PHGj2XTXOiU6b3FyErfk/xTTklqDFk3zq4RrrF5zsxj0rE4Xww/A
-         t00g==
-X-Gm-Message-State: APjAAAX++bqJGtqcGawmECY5tcgbE0aGQWjyDqVLJ/Hf2ms6ARQRK774
-        h1yzhXAc8ndFBvTbRVFSnYg=
-X-Google-Smtp-Source: APXvYqxu69/OA3v3zdnCC+w0hFNzMJZksszafbk/ti6SQ/UDJYSqsScNIR4ZDvM0JKvWKNarB+0Fwg==
-X-Received: by 2002:adf:ce87:: with SMTP id r7mr14428940wrn.245.1576843815297;
-        Fri, 20 Dec 2019 04:10:15 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id s16sm9722493wrn.78.2019.12.20.04.10.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 20 Dec 2019 04:10:14 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: rk3308-roc-cc: sort nodes in alphabetical order
-Date:   Fri, 20 Dec 2019 13:10:07 +0100
-Message-Id: <20191220121007.29337-2-jbx6244@gmail.com>
+        id S1727399AbfLTMY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 07:24:56 -0500
+Received: from mail.andi.de1.cc ([85.214.55.253]:48358 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727347AbfLTMY4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Dec 2019 07:24:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Message-Id:Date:Subject:Cc:To:From:Sender:
+        Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=RBosA1WXv7+ZQ+18j+VhmhTjKGR8E8xllD/Rd9oJey4=; b=Tk2mRZKAgHCqxHXhZkJZCaXkcz
+        ziDMUULEv7GANWvFA+/U0sKpZscZo/do24A4Pg4/5KH64P9F78UefievcccXdBj7+1VGNHClW4MJH
+        sQ8WBEu8GuWD8jbx+pvJ5dSFsJRXwj3nz+iPQwVArFVRU+VN/V3EgD/ointGEBkabTOM=;
+Received: from [2a02:790:ff:1019:7ee9:d3ff:fe1f:a246] (helo=localhost)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iiHKn-0001zJ-6K; Fri, 20 Dec 2019 13:24:45 +0100
+Received: from andi by localhost with local (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1iiHKj-0008TW-Ni; Fri, 20 Dec 2019 13:24:42 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, stefan@agner.ch, b.galvani@gmail.com,
+        phh@phh.me, letux-kernel@openphoenux.org
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v5 0/5] Add rtc support for rn5t618 mfd
+Date:   Fri, 20 Dec 2019 13:24:11 +0100
+Message-Id: <20191220122416.31881-1-andreas@kemnade.info>
 X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191220121007.29337-1-jbx6244@gmail.com>
-References: <20191220121007.29337-1-jbx6244@gmail.com>
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sort nodes in alphabetical order.
-Place &pwm5 below &pwm0.
+In the variant RC5T619 the mfd has an RTC. This patchset adds
+support for it. To do so it adds the missing register defines in 
+rn5t618.h and general irq handling for that.
+It seems that the irq definitions are the same except missing RTC
+but due to missing ability to test that I do not add them here.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+The rtc driver itself is based on 
+https://github.com/kobolabs/Kobo-Reader/blob/master/hw/imx6sll-clara/kernel.tar.bz2
+but heavily reworked.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-index 23527daa7..14ba4c152 100644
---- a/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3308-roc-cc.dts
-@@ -141,12 +141,6 @@
- 	};
- };
- 
--&pwm5 {
--	status = "okay";
--	pinctrl-names = "active";
--	pinctrl-0 = <&pwm5_pin_pull_down>;
--};
--
- &pinctrl {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rtc_32k>;
-@@ -165,8 +159,14 @@
- };
- 
- &pwm0 {
--	status = "okay";
- 	pinctrl-0 = <&pwm0_pin_pull_down>;
-+	status = "okay";
-+};
-+
-+&pwm5 {
-+	pinctrl-names = "active";
-+	pinctrl-0 = <&pwm5_pin_pull_down>;
-+	status = "okay";
- };
- 
- &sdmmc {
+It was tested on the Kobo Clara HD.
+
+For cleaning up there is a separate off-topic patch:
+mfd: rn5t618: cleanup i2c_device_id
+
+Changes in v5:
+- static rn5t618_irq_init
+- PLATFORM_DEVID_NONE
+- added some Acked-Bys
+
+Changes in v4:
+- use macros for IRQ definitions
+- merge rn5t618-core.c and rn5t618-irq.c
+
+Changes in v3:
+- alignment cleanup
+- output cleanup, remove useless toggling of alarm flag in rtc probe
+- updated bindings description, so patch 1/5 becomes 2/6 and so on
+
+Changes in v2:
+- no dead code in irq code
+- various improvements and cleanups in rtc driver itself
+
+Andreas Kemnade (5):
+  dt-bindings: mfd: rn5t618: Document optional property interrupts
+  mfd: rn5t618: add IRQ support
+  mfd: rn5t618: add RTC related registers
+  mfd: rn5t618: add more subdevices
+  rtc: rc5t619: add ricoh rc5t619 RTC driver
+
+ Documentation/devicetree/bindings/mfd/rn5t618.txt |   4 +
+ drivers/mfd/Kconfig                               |   1 +
+ drivers/mfd/rn5t618.c                             | 109 +++++-
+ drivers/rtc/Kconfig                               |  10 +
+ drivers/rtc/Makefile                              |   1 +
+ drivers/rtc/rtc-rc5t619.c                         | 444 ++++++++++++++++++++++
+ include/linux/mfd/rn5t618.h                       |  26 ++
+ 7 files changed, 593 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/rtc/rtc-rc5t619.c
+
 -- 
 2.11.0
 
