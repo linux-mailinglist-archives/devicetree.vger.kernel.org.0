@@ -2,119 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB1D128033
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 16:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE87112806C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 17:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727362AbfLTP55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 10:57:57 -0500
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:39955 "EHLO
-        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727181AbfLTP55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Dec 2019 10:57:57 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.west.internal (Postfix) with ESMTP id 85DBB63B;
-        Fri, 20 Dec 2019 10:57:55 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 20 Dec 2019 10:57:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=DWRfGrqmcAZSxRGOF3HGl72f8EB
-        7ZuJWZqiu9aOnifY=; b=DkomQHJlMT7fij4JGea//tOVJqfbrW6hyptmKNpYa+e
-        NVrUDsINKPMllW3Bo+XD6GnzRGv21tJfmDOUAKqSZO5BcudCnfNPR1QRqpdpg3RJ
-        8lJm24JOHYyiPkTvGtTRxmduVGmgnsDN0a35qDoYAiybK/8JwTUN0Z7okfgv3ZJA
-        E2dzQiRBs8pgkffif8yCo1G2l/pdkwZhF2OqVXVDOT4jcOj9qM3Lm0mY/uHW+KRe
-        zDXDd6xVidKrHUHBZHJpt+5AVUUSnluugImupfz9XdLgXgCdk1Q6SEQNgKAKSp6L
-        C1zpDQ4LH5crjxHWJskVE2icUuOKmH3cD8CVjYxwYhg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=DWRfGr
-        qmcAZSxRGOF3HGl72f8EB7ZuJWZqiu9aOnifY=; b=sD3QUXn7GQ/sLewF8dIEpe
-        aKOrYz2SDxqE0kivCjtvk6q6lW3+xc/dNq+X1yc/hyNEznumEix5lF4sQM06IXDO
-        wa5ZWhP1XIpjFmJqE68WkXHamxFKJlVFFJtoJ8gZuCVQocVJWFubNG+r1pWdLXc5
-        T/jh3Pszy+vXUVcZ1woAeQwDygKhfy/srvLr9d8tD1Uo0LTBy+m0jbNetQZHXNdu
-        meQYRFHUHD89e3S6sPadaW2ZvqVB3jyrv4IAdXtaEpt442GPQC+ndP9+wExzt85X
-        A/t98ULPS+5vsaASm3ZzIQm79o8OwabduD4FF0jcimogSUkJDjaP3lXjckmh+8pA
-        ==
-X-ME-Sender: <xms:g-_8XQmgia-VUX4bAeKUMBnqJ55En6jU9dCDwathLlTJeMAwjANb1Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrvddufedgkeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecukfhppeeltd
-    drkeelrdeikedrjeeinecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggv
-    rhhnohdrthgvtghhnecuvehluhhsthgvrhfuihiivgepud
-X-ME-Proxy: <xmx:g-_8XatDgCcAKQEjqxg0QHGws72P22V6ArelMmNKT7Efy7c_DxkoFA>
-    <xmx:g-_8XWcyOx2FC3KyZJ-HeXVNr3bKN6XR312zuIYE4njziu2nwsU7Vw>
-    <xmx:g-_8XawNW9h0Qm0Z-V7wjXDMOf4Q1WNBdeD7-0NkxHFcaiuqval_bg>
-    <xmx:g-_8XQFwB7OoTIGnAIzHD47cunS23Cjt9v7e37YhjomidfRg-BpPvqkQH0M>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A870180064;
-        Fri, 20 Dec 2019 10:57:54 -0500 (EST)
-Date:   Fri, 20 Dec 2019 16:57:53 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Jyri Sarha <jsarha@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        tomi.valkeinen@ti.com, laurent.pinchart@ideasonboard.com,
-        peter.ujfalusi@ti.com, bparrot@ti.com, praneeth@ti.com,
-        yamonkar@cadence.com, sjakhade@cadence.com, sam@ravnborg.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v5 3/5] dt-bindings: display: ti,j721e-dss: Add dt-schema
- yaml binding
-Message-ID: <20191220155753.n3dn2zwwlcp6jhwe@gilmour.lan>
-References: <cover.1576857145.git.jsarha@ti.com>
- <e05570c9c5c0a22f5aaa36dd2503fe918b1f941e.1576857145.git.jsarha@ti.com>
+        id S1727406AbfLTQQp convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 Dec 2019 11:16:45 -0500
+Received: from sender4-op-o11.zoho.com ([136.143.188.11]:17107 "EHLO
+        sender4-op-o11.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727233AbfLTQQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 11:16:45 -0500
+ARC-Seal: i=1; a=rsa-sha256; t=1576858590; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=cwELt0bUFRAISzp+utjX49o116gaJzcoAgIdVaidRii3F2f5IJsJhPFg12THAD3av2iID4UDFeDcOglHHcetez6tb5AiQeTnuBuHPKImbpJ227JbwcmLHqviWKISjrx5Ix5cm/9F8bhBS2AhSB9d5/WVQJ4j0o7vsJe36WaH9n0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1576858590; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=AaT03GYlto89xDiCdH3WCjerKcBnYWeAplz3CO2IaIU=; 
+        b=XP6w1HS43rnX2tdqv6iqZVGzXEQqHDdkCvbWvakfJABB2ujdv0hPtkIoIi9MoPs0I/fQxf0sDCPKpyb2jOlTethTG7jI/KFdg2PgjzuMsFwuo40hmS/2r9n8JMFAiEidmpeWubaObCVQkcLEmYYaClroMeG9WdcfEnSkYnAtCeE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=dlrobertson.com;
+        spf=pass  smtp.mailfrom=dan@dlrobertson.com;
+        dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
+Received: from nessie.verizon.net (pool-173-73-58-202.washdc.fios.verizon.net [173.73.58.202]) by mx.zohomail.com
+        with SMTPS id 1576858589287435.38899860347146; Fri, 20 Dec 2019 08:16:29 -0800 (PST)
+From:   Dan Robertson <dan@dlrobertson.com>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        devicetree@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Joe Perches <joe@perches.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Dan Robertson <dan@dlrobertson.com>
+Message-ID: <20191220160051.26321-1-dan@dlrobertson.com>
+Subject: [PATCH v8 0/3] iio: add driver for Bosch BMA400 accelerometer
+Date:   Fri, 20 Dec 2019 16:00:48 +0000
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5g2qeeyvhxl6r4rp"
-Content-Disposition: inline
-In-Reply-To: <e05570c9c5c0a22f5aaa36dd2503fe918b1f941e.1576857145.git.jsarha@ti.com>
+Content-Transfer-Encoding: 8BIT
+X-ZohoMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+I made basic improvements based on the previous code including removing
+the use of division when setting the scale and setting the sample
+frequency and using devm_regulator_bulk_get.
 
---5g2qeeyvhxl6r4rp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Cheers,
 
-On Fri, Dec 20, 2019 at 05:55:11PM +0200, Jyri Sarha wrote:
-> Add dt-schema yaml bindig for J721E DSS, J721E version TI Keystone
-> Display SubSystem.
->
-> Version history:
->
-> v2: no change
->
-> v3: - reg-names: "wp" -> "wb"
->     - Add ports node
->     - Add includes to dts example
->     - reindent dts example
->
-> v4: - Add descriptions to reg, clocks, and interrups properties
->     - Remove minItems when its value is the same as maxItems value
->
-> v5: - itemize reg, clocks and interrupts properties' descriptions
->     - there is no "vp" reg-name, only "wb" for write back
->
-> Signed-off-by: Jyri Sarha <jsarha@ti.com>
+ - Dan
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+Changes in v8:
+ * Fixup MAINTAINERS entry
+ * Remove the use od division when setting scale and sample frequency
+ * Use devm_regulator_bulk_get
 
-Thanks!
-Maxime
+Changes in v7:
 
---5g2qeeyvhxl6r4rp
-Content-Type: application/pgp-signature; name="signature.asc"
+ * Added MAINTAINERS entry
+ * Added basic vddio and vdd regulator support
+ * Added vddio and vdd supply to devicetree bindings
+ * Added interrupts to devicetree bindings
 
------BEGIN PGP SIGNATURE-----
+Changes in v6:
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXfzvgQAKCRDj7w1vZxhR
-xQuJAPoCMeJSZlBNoqBslhL4ciQb5qC/a79LgCL5VVW9MAuDggEAwLzB9XTsBEDj
-mWwNPp/cIcyOuk1le02mJ0Y5wCYsNAU=
-=mW22
------END PGP SIGNATURE-----
+ * Improve readability Kconfig options
 
---5g2qeeyvhxl6r4rp--
+Changes in v5:
+
+ * Move to using a function instead of lookup tables for scale and
+   frequency conversions.
+ * Rename DT bindings to bosch,bma400.yaml
+ * Fixed other errors and improvements found by reviewers
+
+Changes in v4:
+
+ * Fix error in DT bindings
+ * Fix typo when setting the OSR
+ * Simplified the cached sample frequency
+ * Fix the MODULE_LICENSE
+
+Changes in v3:
+
+ * Use yaml format for DT bindings
+ * Remove strict dependency on OF
+ * Tidy Kconfig dependencies
+ * Stylistic changes
+ * Do not soft-reset device on remove
+
+Changes in v2:
+
+ * Implemented iio_info -> read_avail
+ * Stylistic changes
+ * Implemented devicetree bindings
+
+Dan Robertson (3):
+  dt-bindings: iio: accel: bma400: add bindings
+  iio: (bma400) add driver for the BMA400
+  iio: (bma400) basic regulator support
+
+ .../bindings/iio/accel/bosch,bma400.yaml      |  54 ++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/accel/Kconfig                     |  17 +
+ drivers/iio/accel/Makefile                    |   2 +
+ drivers/iio/accel/bma400.h                    |  99 ++
+ drivers/iio/accel/bma400_core.c               | 849 ++++++++++++++++++
+ drivers/iio/accel/bma400_i2c.c                |  61 ++
+ 7 files changed, 1089 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bma400.yaml
+ create mode 100644 drivers/iio/accel/bma400.h
+ create mode 100644 drivers/iio/accel/bma400_core.c
+ create mode 100644 drivers/iio/accel/bma400_i2c.c
+
+
+
