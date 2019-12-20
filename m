@@ -2,108 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4AD0127A04
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 12:34:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4F9127A12
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 12:37:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727198AbfLTLeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 06:34:00 -0500
-Received: from conuserg-08.nifty.com ([210.131.2.75]:36599 "EHLO
-        conuserg-08.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727258AbfLTLd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 06:33:57 -0500
-Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
-        by conuserg-08.nifty.com with ESMTP id xBKBW2Ww010984;
-        Fri, 20 Dec 2019 20:32:06 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-08.nifty.com xBKBW2Ww010984
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1576841527;
-        bh=ebkAQxjiSXSHSZJ50xrvpwnSGWgbaQckYjuIVK7i+/s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=q9tqyp34bhuaZ8GMgUE6ux1iJpphWD4rLGw+wcOCE6Rmvg9RsG2iADpLVJq23mfEH
-         EKszhamf4xolnnBF9Tk0a1T51iAqU7ozV67syYV0bhjRgOZwTMjiD0uz+7A+MPhhsd
-         KrNKu4L6JeP8gJk9W68BijvkwYfn1N2tSDJ6Ul2f/pwakP53oMZNTbpVpNwOqV6p/6
-         y7dDFdFHv6qW4DFaiwqtHxF1OQI+s13YiYpijQCjUGiIpkuxxZJBdcYiUOL9n5csuR
-         v//dM1ziup0I4YKIn1nhiMEdKFJWrNuyJeEgzyplbWpUZgmdZ2cLmL3Vzuf8uALnPo
-         oFqGr1ohj2VOw==
-X-Nifty-SrcIP: [153.142.97.92]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     linux-mtd@lists.infradead.org
-Cc:     Dinh Nguyen <dinguyen@kernel.org>, Marek Vasut <marex@denx.de>,
-        Ley Foon Tan <ley.foon.tan@intel.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Richard Weinberger <richard@nod.at>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/5] dt-bindings: mtd: denali_dt: document reset property
-Date:   Fri, 20 Dec 2019 20:31:53 +0900
-Message-Id: <20191220113155.28177-4-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191220113155.28177-1-yamada.masahiro@socionext.com>
-References: <20191220113155.28177-1-yamada.masahiro@socionext.com>
+        id S1727191AbfLTLhc convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 20 Dec 2019 06:37:32 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:47840 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727184AbfLTLhc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Dec 2019 06:37:32 -0500
+Received: from ip5f5a5f74.dynamic.kabel-deutschland.de ([95.90.95.116] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iiGb0-0000CY-Vd; Fri, 20 Dec 2019 12:37:27 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Rob Herring <robh@kernel.org>, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Subject: Re: [PATCH RESEND 1/2] dt-bindings: phy: drop #clock-cells from rockchip,px30-dsi-dphy
+Date:   Fri, 20 Dec 2019 12:37:26 +0100
+Message-ID: <3795174.JdKOkfR0EK@diego>
+In-Reply-To: <45c59145-5705-90f9-ff0e-c84cf8d17e8b@ti.com>
+References: <20191216122448.27867-1-heiko@sntech.de> <12525836.FhlgEYrHGb@diego> <45c59145-5705-90f9-ff0e-c84cf8d17e8b@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the Denali NAND Flash Memory Controller User's Guide,
-this IP has two reset signals.
+Hi Kishon,
 
-  rst_n:     reset most of FFs in the controller core
-  reg_rst_n: reset all FFs in the register interface, and in the
-             initialization sequencer
+Am Freitag, 20. Dezember 2019, 12:21:28 CET schrieb Kishon Vijay Abraham I:
+> 
+> On 16/12/19 11:31 pm, Heiko Stübner wrote:
+> > Hi Rob,
+> > 
+> > Am Montag, 16. Dezember 2019, 18:56:15 CET schrieb Rob Herring:
+> >> On Mon, 16 Dec 2019 13:24:47 +0100, Heiko Stuebner wrote:
+> >>> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> >>>
+> >>> Further review of the dsi components for the px30 revealed that the
+> >>> phy shouldn't expose the pll as clock but instead handle settings
+> >>> via phy parameters.
+> >>>
+> >>> As the phy binding is new and not used anywhere yet, just drop them
+> >>> so they don't get used.
+> >>>
+> >>> Fixes: 3817c7961179 ("dt-bindings: phy: add yaml binding for rockchip,px30-dsi-dphy")
+> >>> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> >>> ---
+> >>> Hi Kishon,
+> >>>
+> >>> maybe suitable as a fix for 5.5-rc?
+> >>>
+> >>> Thanks
+> >>> Heiko
+> >>>
+> >>>  .../devicetree/bindings/phy/rockchip,px30-dsi-dphy.yaml      | 5 -----
+> >>>  1 file changed, 5 deletions(-)
+> >>>
+> >>
+> >> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> >> there's no need to repost patches *only* to add the tags. The upstream
+> >> maintainer will do that for acks received on the version they apply.
+> >>
+> >> If a tag was not added on purpose, please state why and what changed.
+> > 
+> > sorry about that. The original response somehow did not thread correctly
+> > in my mail client, probably some fault on my side, so I've only found your
+> > mail just now by digging hard.
+> > 
+> > @Kishon, the original mail already got an
+> > 
+> > Acked-by: Rob Herring <robh@kernel.org>
+> 
+> merged now, Thanks!
 
-This commit specifies these reset signals.
+thanks ... just to make sure, did you also see the driver changes in patch2?
+As I don't see them in either of your branches :-)
 
-It is possible to control them separately from the IP point of view
-although they might be often tied up together in actual SoC integration.
+Thanks
+Heiko
 
-At least for the upstream platforms, Altera/Intel SOCFPGA and Socionext
-UniPhier, the reset controller seems to provide only 1-bit control for
-the NAND controller. If it is the case, the resets property should
-reference to the same phandles for "nand" and "reg" resets, like this:
-
-    resets = <&nand_rst>, <&nand_rst>;
-    reset-names = "nand", "reg";
-
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
-
-Changes in v3: None
-Changes in v2:
-  - Split into two patches
-
- Documentation/devicetree/bindings/mtd/denali-nand.txt | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mtd/denali-nand.txt b/Documentation/devicetree/bindings/mtd/denali-nand.txt
-index b32aed1db46d..98916a84bbf6 100644
---- a/Documentation/devicetree/bindings/mtd/denali-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/denali-nand.txt
-@@ -14,6 +14,11 @@ Required properties:
-     interface clock, and the ECC circuit clock.
-   - clock-names: should contain "nand", "nand_x", "ecc"
- 
-+Optional properties:
-+  - resets: may contain phandles to the controller core reset, the register
-+    reset
-+  - reset-names: may contain "nand", "reg"
-+
- Sub-nodes:
-   Sub-nodes represent available NAND chips.
- 
-@@ -46,6 +51,8 @@ nand: nand@ff900000 {
- 	reg-names = "nand_data", "denali_reg";
- 	clocks = <&nand_clk>, <&nand_x_clk>, <&nand_ecc_clk>;
- 	clock-names = "nand", "nand_x", "ecc";
-+	resets = <&nand_rst>, <&nand_reg_rst>;
-+	reset-names = "nand", "reg";
- 	interrupts = <0 144 4>;
- 
- 	nand@0 {
--- 
-2.17.1
 
