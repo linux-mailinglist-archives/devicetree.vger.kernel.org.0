@@ -2,265 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96EC5127603
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 08:00:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E5C127619
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 08:03:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727167AbfLTHAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 02:00:05 -0500
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:37758 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726142AbfLTHAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 02:00:05 -0500
-Received: by mail-pl1-f194.google.com with SMTP id c23so3693010plz.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2019 23:00:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fC3JoLkbnwXvlpi7t/a7WSOC0sr7d5AZj1xh2J+UQWc=;
-        b=fgUzCoxZIrK8T+zhBZBxenZpkETpNWuij5YvgiDRqexvZ6DuCnw1A5aHv48ouQ77ib
-         CtIfZpOF1PzVz0Ozn9aVjnmio8aK2cITR3+NmlKwRzHxk3SV/A4tUMcWEKWON5GHCFCV
-         xBCpkJb17a3FBh88qlrJmml4whEOSaX4p4BxufL66ZLSqT2Cjy5aLgp5so+es+pM6Duu
-         VPEKZOxMj5VnJllBsku7+B26djfOC4Qx+xfNGAp5l+ZQGmEVsie1Fd1WEZFHYCjVYPOT
-         Qi+DwE7kqGOpvV6VIxgnQPRa6Rchh/wS6XogUPvc3JpRVNMShUwgK9VdXy7g6gqRqSjP
-         3oWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fC3JoLkbnwXvlpi7t/a7WSOC0sr7d5AZj1xh2J+UQWc=;
-        b=bqcl2pVUV/m9LSwNJ273Y6kCbiydq3HP+ODharvzvgvl8ZDXWQRQxHHzyx7PKKWoX6
-         cO/a57CY8rJSRPPbEiLkUw1NqFoCTy1XjCPgBcEQ7MLGf7YyUajQNTe67Y0s5RMjYlcK
-         Qcs+dT1hXsLhrxqo/6qavLeK9hGiaJLmxDEKbC0oKI4Zug3RLLH1Q6URAnqksY+muYTB
-         RjIrUx/YMl+/coGZmZRFph0xQYTiIhRFWM2t23z/HORSsG7VGIRVYL8S8jr4Mec9VU3X
-         jiOYQP9dxQj0mfULFU93JKcMdwHjZpCvWylfR2wVEo9ScXpUOnEM52D+hHJwmeH1bpaK
-         QjJQ==
-X-Gm-Message-State: APjAAAXd63XYklFN/RusS1nrow3QPNlbt5bjEecR0jbmv6mkUUJFSMcW
-        6S+on7LJ1efnqwwO4rLzvAutzw==
-X-Google-Smtp-Source: APXvYqyvF8WqOEnDOKkQl2mto0QI+sqGXOJYxmZaqRoa8Klu1NtQWWmTfOdd/Szh3Agx5Dhifxokrw==
-X-Received: by 2002:a17:90a:2467:: with SMTP id h94mr6695795pje.79.1576825204473;
-        Thu, 19 Dec 2019 23:00:04 -0800 (PST)
-Received: from ripper (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id v4sm11046290pgo.63.2019.12.19.23.00.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 23:00:03 -0800 (PST)
-Date:   Thu, 19 Dec 2019 22:59:54 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     jhugo@codeaurora.org, robh+dt@kernel.org, ohad@wizery.com,
-        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, agross@kernel.org
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: msm8998: Add ADSP, MPSS and
- SLPI nodes
-Message-ID: <20191220065954.GA1908628@ripper>
-References: <20191218132217.28141-1-sibis@codeaurora.org>
- <20191218132217.28141-6-sibis@codeaurora.org>
+        id S1727298AbfLTHDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 02:03:23 -0500
+Received: from mail-sz.amlogic.com ([211.162.65.117]:33863 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725874AbfLTHDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 02:03:22 -0500
+Received: from [10.28.39.99] (10.28.39.99) by mail-sz.amlogic.com (10.28.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 20 Dec
+ 2019 15:03:52 +0800
+Subject: Re: [PATCH v4 2/6] clk: meson: add support for A1 PLL clock ops
+From:   Jian Hu <jian.hu@amlogic.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+CC:     Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Chandle Zou <chandle.zou@amlogic.com>,
+        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20191206074052.15557-1-jian.hu@amlogic.com>
+ <20191206074052.15557-3-jian.hu@amlogic.com>
+ <1j8snhluhg.fsf@starbuckisacylon.baylibre.com>
+ <741284be-2ae8-1102-22bc-c510e822c883@amlogic.com>
+ <1jk16vb8qm.fsf@starbuckisacylon.baylibre.com>
+ <0bc6176f-c0b8-5c31-4c6b-d3686eefe56e@amlogic.com>
+Message-ID: <627a8d8b-f049-4cdd-6dd0-5c5acc58a90c@amlogic.com>
+Date:   Fri, 20 Dec 2019 15:03:52 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191218132217.28141-6-sibis@codeaurora.org>
+In-Reply-To: <0bc6176f-c0b8-5c31-4c6b-d3686eefe56e@amlogic.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.28.39.99]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 18 Dec 05:22 PST 2019, Sibi Sankar wrote:
+Hi jerome
 
-> This patch adds ADSP, MPSS and SLPI nodes for MSM8998 SoCs.
+On 2019/12/18 16:37, Jian Hu wrote:
 > 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi |   8 ++
->  arch/arm64/boot/dts/qcom/msm8998.dtsi     | 124 ++++++++++++++++++++++
->  2 files changed, 132 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-> index 6db3f9e0344d1..e87094665c52c 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi
-> @@ -312,6 +312,14 @@
->  	};
->  };
->  
-> +&remoteproc_adsp {
-> +	status = "okay";
-> +};
-> +
-> +&remoteproc_slpi {
-> +	status = "okay";
-> +};
-> +
->  &tlmm {
->  	gpio-reserved-ranges = <0 4>, <81 4>;
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index 8d799e868a5d3..014127700afb0 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -1075,6 +1075,61 @@
->  			#interrupt-cells = <0x2>;
->  		};
->  
-> +		remoteproc_mss: remoteproc@4080000 {
-> +			compatible = "qcom,msm8998-mss-pil";
-> +			reg = <0x04080000 0x100>, <0x04180000 0x20>;
-> +			reg-names = "qdsp6", "rmb";
-> +
-> +			interrupts-extended =
-> +				<&intc GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
-> +				<&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> +				<&modem_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> +				<&modem_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> +				<&modem_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
-> +				<&modem_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "wdog", "fatal", "ready",
-> +					  "handover", "stop-ack",
-> +					  "shutdown-ack";
-> +
-> +			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
-> +				 <&gcc GCC_BIMC_MSS_Q6_AXI_CLK>,
-> +				 <&gcc GCC_BOOT_ROM_AHB_CLK>,
-> +				 <&gcc GCC_MSS_GPLL0_DIV_CLK_SRC>,
-> +				 <&gcc GCC_MSS_SNOC_AXI_CLK>,
-> +				 <&gcc GCC_MSS_MNOC_BIMC_AXI_CLK>,
-> +				 <&rpmcc RPM_SMD_QDSS_CLK>,
-> +				 <&rpmcc RPM_SMD_XO_CLK_SRC>;
+> On 2019/12/17 17:29, Jerome Brunet wrote:
+>>
+>> On Tue 17 Dec 2019 at 09:41, Jian Hu <jian.hu@amlogic.com> wrote:
+>>
+>>> On 2019/12/12 18:16, Jerome Brunet wrote:
+>>>>
+>>>> On Fri 06 Dec 2019 at 08:40, Jian Hu <jian.hu@amlogic.com> wrote:
+>>>>
+>>>>> The A1 PLL design is different with previous SoCs. The PLL
+>>>>> internal analog modules Power-on sequence is different
+>>>>> with previous, and thus requires a strict register sequence to
+>>>>> enable the PLL.
+>>>>>
+>>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>>>> ---
+>>>>>    drivers/clk/meson/clk-pll.c | 21 +++++++++++++++++++++
+>>>>>    drivers/clk/meson/clk-pll.h |  1 +
+>>>>>    drivers/clk/meson/parm.h    |  1 +
+>>>>>    3 files changed, 23 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+>>>>> index ddb1e5634739..4aff31a51589 100644
+>>>>> --- a/drivers/clk/meson/clk-pll.c
+>>>>> +++ b/drivers/clk/meson/clk-pll.c
+>>>>> @@ -318,6 +318,23 @@ static int meson_clk_pll_enable(struct clk_hw 
+>>>>> *hw)
+>>>>>        struct clk_regmap *clk = to_clk_regmap(hw);
+>>>>>        struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
+>>>>>    +    /*
+>>>>> +     * The A1 design is different with previous SoCs.The PLL
+>>>>> +     * internal analog modules Power-on sequence is different with
+>>>>> +     * previous, and thus requires a strict register sequence to
+>>>>> +     * enable the PLL.
+>>>>
+>>>> The code does something more, not completly different. This comment is
+>>>> not aligned with what the code does
+>>> ok, I will correct the comment.
+>>>>
+>>>>> +     */
+>>>>> +    if (MESON_PARM_APPLICABLE(&pll->current_en)) {
+>>>>> +        /* Enable the pll */
+>>>>> +        meson_parm_write(clk->map, &pll->en, 1);
+>>>>> +        udelay(10);
+>>>>> +        /* Enable the pll self-adaption module current */
+>>>>> +        meson_parm_write(clk->map, &pll->current_en, 1);
+>>>>> +        udelay(40);
+>>>>> +        meson_parm_write(clk->map, &pll->rst, 1);
+>>>>> +        meson_parm_write(clk->map, &pll->rst, 0);
+>>>>
+>>>> Here you enable the PLL and self adaptation module then reset the PLL.
+>>>> However:
+>>>> #1 when you enter this function, the PLL should already by in reset
+>>>> and disabled
+>>>> #2 the code after that will reset the PLL again
+>>> For A1 PLLs, There is no reset bit, It will not reset the PLL.
+>>> And in V2, you mentioned PARM 'rst' can be used for one toggling, And 
+>>> 'rst'
+>>> is used for BIT(6) in CTRL2.
+>>>
+>>
+>> oh my ! What is it then ? Why do you need to toggle it ? What does is 
+>> do ?
+>>
+> The PLL enable flow:
+>       step1: enable the PLL
+>       step2: enable the self adaptation module
+>       step3: reset the lock detect module, let the lock detect module 
+>             work，And then the PLL will work.
+> 
+> Toggle the bit 6 in CTRL2 can reset the lock detect module.
 
-RPM_SMD_XO_CLK_SRC doesn't seem to be implemented...
+#1  I intend to introduce a new PARM 'l_detect', and the 
+meson_clk_pll_enable is blow. Please help to review it.
 
-I did pull in a patch from Jeff that defines it, but when I boot the
-modem I see the following error repeatedly:
+static int meson_clk_pll_enable(struct clk_hw *hw)
+{
+         struct clk_regmap *clk = to_clk_regmap(hw);
+         struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
 
-[  616.632227] qcom-q6v5-mss 4080000.remoteproc: fatal error received: dog_hb.c:266:DOG_HB detects starvation of task 0xda172640, triage with its own
+         /* do nothing if the PLL is already enabled */
+         if (clk_hw_is_enabled(hw))
+                 return 0;
+         /*
+          * Compared with the previous SoCs, self-adaption module current
+          * is newly added, keep the new power-on sequence to enable the
+          * PLL.
+          */
+         if (MESON_PARM_APPLICABLE(&pll->current_en)) {
+                 /* Enable the pll */
+                 meson_parm_write(clk->map, &pll->en, 1);
+                 udelay(10);
+                 /* Enable the pll self-adaption module current */
+                 meson_parm_write(clk->map, &pll->current_en, 1);
+                 udelay(40);
+                 /* Enable lock detect module */
+                 meson_parm_write(clk->map, &pll->l_detect, 1);
+                 meson_parm_write(clk->map, &pll->l_detect, 0);
+                 goto out;
+         }
+
+         /* Make sure the pll is in reset */
+         meson_parm_write(clk->map, &pll->rst, 1);
+
+         /* Enable the pll */
+         meson_parm_write(clk->map, &pll->en, 1);
+
+         /* Take the pll out reset */
+         meson_parm_write(clk->map, &pll->rst, 0);
+
+out:
+         if (meson_clk_pll_wait_lock(hw))
+                 return -EIO;
+
+         return 0;
+}
 
 
+#2  Add check for PARM 'rst' when
+writing to it, the same with frac.
 
-All the qrtr services seems registered nicely, so the remote does come
-up before it goes down.
+if (MESON_PARM_APPLICABLE(&pll->rst))
+    meson_parm_write(clk->map, &pll->rst, 1);
 
-Also, adsp comes up nicely.
 
-Regards,
-Bjorn
+And I have tested it for it, The periphs and hifi pll works well.
 
-> +			clock-names = "iface", "bus", "mem", "gpll0_mss",
-> +				      "snoc_axi", "mnoc_axi", "qdss", "xo";
-> +
-> +			qcom,smem-states = <&modem_smp2p_out 0>;
-> +			qcom,smem-state-names = "stop";
-> +
-> +			resets = <&gcc GCC_MSS_RESTART>;
-> +			reset-names = "mss_restart";
-> +
-> +			qcom,halt-regs = <&tcsr_mutex_regs 0x23000 0x25000 0x24000>;
-> +
-> +			power-domains = <&rpmpd MSM8998_VDDCX>,
-> +					<&rpmpd MSM8998_VDDMX>;
-> +			power-domain-names = "cx", "mx";
-> +
-> +			mba {
-> +				memory-region = <&mba_mem>;
-> +			};
-> +
-> +			mpss {
-> +				memory-region = <&mpss_mem>;
-> +			};
-> +
-> +			glink-edge {
-> +				interrupts = <GIC_SPI 452 IRQ_TYPE_EDGE_RISING>;
-> +				label = "modem";
-> +				qcom,remote-pid = <1>;
-> +				mboxes = <&apcs_glb 15>;
-> +			};
-> +		};
-> +
->  		gpucc: clock-controller@5065000 {
->  			compatible = "qcom,msm8998-gpucc";
->  			#clock-cells = <1>;
-> @@ -1088,6 +1143,42 @@
->  				      "gpll0";
->  		};
->  
-> +		remoteproc_slpi: remoteproc@5800000 {
-> +			compatible = "qcom,msm8998-slpi-pas";
-> +			reg = <0x05800000 0x4040>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 390 IRQ_TYPE_EDGE_RISING>,
-> +					      <&slpi_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> +					      <&slpi_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> +					      <&slpi_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> +					      <&slpi_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "wdog", "fatal", "ready",
-> +					  "handover", "stop-ack";
-> +
-> +			px-supply = <&vreg_lvs2a_1p8>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-> +				 <&rpmcc RPM_SMD_AGGR2_NOC_CLK>;
-> +			clock-names = "xo", "aggre2";
-> +
-> +			memory-region = <&slpi_mem>;
-> +
-> +			qcom,smem-states = <&slpi_smp2p_out 0>;
-> +			qcom,smem-state-names = "stop";
-> +
-> +			power-domains = <&rpmpd MSM8998_SSCCX>;
-> +			power-domain-names = "ssc_cx";
-> +
-> +			status = "disabled";
-> +
-> +			glink-edge {
-> +				interrupts = <GIC_SPI 179 IRQ_TYPE_EDGE_RISING>;
-> +				label = "dsps";
-> +				qcom,remote-pid = <3>;
-> +				mboxes = <&apcs_glb 27>;
-> +			};
-> +		};
-> +
->  		stm: stm@6002000 {
->  			compatible = "arm,coresight-stm", "arm,primecell";
->  			reg = <0x06002000 0x1000>,
-> @@ -1880,6 +1971,39 @@
->  			#size-cells = <0>;
->  		};
->  
-> +		remoteproc_adsp: remoteproc@17300000 {
-> +			compatible = "qcom,msm8998-adsp-pas";
-> +			reg = <0x17300000 0x4040>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 162 IRQ_TYPE_EDGE_RISING>,
-> +					      <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> +					      <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> +					      <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> +					      <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "wdog", "fatal", "ready",
-> +					  "handover", "stop-ack";
-> +
-> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
-> +			clock-names = "xo";
-> +
-> +			memory-region = <&adsp_mem>;
-> +
-> +			qcom,smem-states = <&adsp_smp2p_out 0>;
-> +			qcom,smem-state-names = "stop";
-> +
-> +			power-domains = <&rpmpd MSM8998_VDDCX>;
-> +			power-domain-names = "cx";
-> +
-> +			status = "disabled";
-> +
-> +			glink-edge {
-> +				interrupts = <GIC_SPI 157 IRQ_TYPE_EDGE_RISING>;
-> +				label = "lpass";
-> +				qcom,remote-pid = <2>;
-> +				mboxes = <&apcs_glb 9>;
-> +			};
-> +		};
-> +
->  		apcs_glb: mailbox@17911000 {
->  			compatible = "qcom,msm8998-apcs-hmss-global";
->  			reg = <0x17911000 0x1000>;
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+Or any good idea about it?
+
+>>> Quote V2 the HIFI PLL init_regs definition：
+>>>
+>>>
+>>> +static const struct reg_sequence a1_hifi_init_regs[] = {
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL1, .def = 0x01800000 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL3, .def = 0x100a1100 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL4, .def = 0x00302000 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x01f18440 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x11f18440, .delay_us = 
+>>> 10 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL0, .def = 0x15f18440, .delay_us = 
+>>> 40 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001140 },
+>>> +    { .reg = ANACTRL_HIFIPLL_CTRL2, .def = 0x00001100 },
+>>> +};
+>>>
+>>> So maybe another new PARM should be defined to avoid the ambiguity.
+>>> What do you think about it?
+>>
+>> This is not the point of my comment Jian !
+>>
+>> I'm assuming here that you have tested your v4 before sending and that
+>> it work (hopefully)
+>>
+> Yes, it works wells. I have tested the drivers before sending every 
+> patchset version.
+>> The fact is that with this code, when disabled the bit behind rst
+>> (whatever it is) is set. So when you get to enable the bit is already 
+>> set.
+>> The code you sent does the same as the snip I gave you in the reply.
+>>
+>> Now, if your PLL is THAT different, maybe it would be best if you could
+>> clearly explain how it works, what bit should be set and why. Then we
+>> will be able to figure out how the driver has to be restructured.
+>>
+> the same as 'The PLL enable flow' above
+>>>
+>>>>
+>>>> So if what you submited works, inserting the following should 
+>>>> accomplish
+>>>> the same thing:
+>>>>
+>>>> ---8<---
+>>>> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+>>>> index 489092dde3a6..9b38df0a7682 100644
+>>>> --- a/drivers/clk/meson/clk-pll.c
+>>>> +++ b/drivers/clk/meson/clk-pll.c
+>>>> @@ -330,6 +330,13 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
+>>>>           /* Enable the pll */
+>>>>           meson_parm_write(clk->map, &pll->en, 1);
+>>>>
+>>>> +       if (MESON_PARM_APPLICABLE(&pll->current_en)) {
+>>>> +               udelay(10);
+>>>> +               /* Enable the pll self-adaption module current */
+>>>> +               meson_parm_write(clk->map, &pll->current_en, 1);
+>>>> +               udelay(40);
+>>>> +       }
+>>>> +
+>>>>           /* Take the pll out reset */
+>>>>           meson_parm_write(clk->map, &pll->rst, 0);
+>>>> --->8---
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>> +    }
+>>>>> +
+>>>>>        /* do nothing if the PLL is already enabled */
+>>>>>        if (clk_hw_is_enabled(hw))
+>>>>>            return 0;
+>>>>
+>>>> In any case, nothing should be done on the clock before this check
+>>>> otherwise you might just break the clock
+>>>>
+>>> OK, I will put the enabled check ahead.
+>>>>> @@ -347,6 +364,10 @@ static void meson_clk_pll_disable(struct 
+>>>>> clk_hw *hw)
+>>>>>          /* Disable the pll */
+>>>>>        meson_parm_write(clk->map, &pll->en, 0);
+>>>>> +
+>>>>> +    /* Disable PLL internal self-adaption module current */
+>>>>> +    if (MESON_PARM_APPLICABLE(&pll->current_en))
+>>>>> +        meson_parm_write(clk->map, &pll->current_en, 0);
+>>>>>    }
+>>>>>      static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned 
+>>>>> long
+>>>>> rate,
+>>>>> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+>>>>> index 367efd0f6410..30f039242a65 100644
+>>>>> --- a/drivers/clk/meson/clk-pll.h
+>>>>> +++ b/drivers/clk/meson/clk-pll.h
+>>>>> @@ -36,6 +36,7 @@ struct meson_clk_pll_data {
+>>>>>        struct parm frac;
+>>>>>        struct parm l;
+>>>>>        struct parm rst;
+>>>>> +    struct parm current_en;
+>>>>>        const struct reg_sequence *init_regs;
+>>>>>        unsigned int init_count;
+>>>>>        const struct pll_params_table *table;
+>>>>> diff --git a/drivers/clk/meson/parm.h b/drivers/clk/meson/parm.h
+>>>>> index 3c9ef1b505ce..c53fb26577e3 100644
+>>>>> --- a/drivers/clk/meson/parm.h
+>>>>> +++ b/drivers/clk/meson/parm.h
+>>>>> @@ -20,6 +20,7 @@
+>>>>>        (((reg) & CLRPMASK(width, shift)) | ((val) << (shift)))
+>>>>>      #define MESON_PARM_APPLICABLE(p)        (!!((p)->width))
+>>>>> +#define MESON_PARM_CURRENT(p)            (!!((p)->width))
+>>>>
+>>>> Why do we need that ?
+>>> OK, I will remove it ,and use 'MESON_PARM_APPLICABLE' instead
+>>>>
+>>>>>      struct parm {
+>>>>>        u16    reg_off;
+>>>>
+>>>> .
+>>>>
+>>
+>> .
+>>
