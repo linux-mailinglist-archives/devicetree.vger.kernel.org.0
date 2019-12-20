@@ -2,106 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 209FA127FBD
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 16:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9622127F62
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 16:34:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727402AbfLTPnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 10:43:50 -0500
-Received: from sender4-op-o11.zoho.com ([136.143.188.11]:17179 "EHLO
-        sender4-op-o11.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727394AbfLTPnu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 10:43:50 -0500
-ARC-Seal: i=1; a=rsa-sha256; t=1576856617; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=LMfAddAC147eF5m77yvmXtqBvWmzPz8EeM2CLg/O2oKsihO159fCaKZNAIdl+JtIqPRpT6QwsyZvE2pyPitqWgFoHWSR8mst+1bZmyhjSXSKwrgNv21iyY60GkBMesduxm3HopdH14oWSjK2+ldR/BxnPJZPPfdh03fYjLnt6jw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1576856617; h=Content-Type:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=ELXCfpLFeQLNeL9QjnCCUngKGgfk8dL/TAnQ4db+uqs=; 
-        b=fdiUXZnwWeK5DxojtYqIUglgxCAUgdU93kUYA4cRBK67fgNvv5ODmXCr6D9pzABvTz/y9QtJklZkX46F3cJlxFh6FIHkIJnG2KUaAFnqa1aaaux3874olKeYVbPgT+feEiHhYSm1hT5r2vndVTy76Wo7x+N50JGwRFnLth9nTlc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=dlrobertson.com;
-        spf=pass  smtp.mailfrom=dan@dlrobertson.com;
-        dmarc=pass header.from=<dan@dlrobertson.com> header.from=<dan@dlrobertson.com>
-Received: from nessie (pool-173-73-58-202.washdc.fios.verizon.net [173.73.58.202]) by mx.zohomail.com
-        with SMTPS id 1576856616397592.4934687792177; Fri, 20 Dec 2019 07:43:36 -0800 (PST)
-Date:   Fri, 20 Dec 2019 15:28:05 +0000
-From:   Dan Robertson <dan@dlrobertson.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727395AbfLTPeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 10:34:06 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:35226 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727181AbfLTPeF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Dec 2019 10:34:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=FlEdcjqR14Yp6BDuBVePu7rcTs7oSKGfaNl9lmmWvhY=; b=zFKX5Mx6zfivGSorxUsCX27mrf
+        Mdb7jKv4NoU2UpfVY45idZm7bRTqFThe+ouaRvXPd4oGnAAhXw3PSRzXQcp0PToyJj8nEk62cGtIX
+        bzhUpCsvadN1+mTB6aJRnpwhbimkq4102brSkFxx2RKwX8OJwhozOOuKIRSrBfEZCeSU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1iiKHv-0003HC-5i; Fri, 20 Dec 2019 16:33:59 +0100
+Date:   Fri, 20 Dec 2019 16:33:59 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Richard Cochran <richardcochran@gmail.com>
+Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Jacob Keller <jacob.e.keller@intel.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Joe Perches <joe@perches.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v7 2/3] iio: (bma400) add driver for the BMA400
-Message-ID: <20191220152805.GD16415@nessie>
-References: <20191219041039.23396-1-dan@dlrobertson.com>
- <20191219041039.23396-3-dan@dlrobertson.com>
- <CAHp75VdVmfAi5hSp23Gn8nm6LmX-Mr5Tnxcbus90DrRL+gVFRA@mail.gmail.com>
- <20191220043220.GA16415@nessie>
- <CAHp75Vec5ADoFH9KoTnU5+uEZvGqS2+NUN+MLTiwzofDtGG0+A@mail.gmail.com>
- <CAHp75VdzE4uKKJ_5g8eMZR+GSX9W+7Lc+kh2OYt5o7_8_NHTpw@mail.gmail.com>
+        Miroslav Lichvar <mlichvar@redhat.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Willem de Bruijn <willemb@google.com>,
+        Wingman Kwok <w-kwok2@ti.com>
+Subject: Re: [PATCH V6 net-next 06/11] net: Introduce a new MII time stamping
+ interface.
+Message-ID: <20191220153359.GA11117@lunn.ch>
+References: <cover.1576511937.git.richardcochran@gmail.com>
+ <28939f11b984759257167e778d0c73c0dd206a35.1576511937.git.richardcochran@gmail.com>
+ <20191217092155.GL6994@lunn.ch>
+ <20191220145712.GA3846@localhost>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHp75VdzE4uKKJ_5g8eMZR+GSX9W+7Lc+kh2OYt5o7_8_NHTpw@mail.gmail.com>
-X-ZohoMailClient: External
+In-Reply-To: <20191220145712.GA3846@localhost>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 20, 2019 at 11:32:42AM +0200, Andy Shevchenko wrote:
-> On Fri, Dec 20, 2019 at 11:27 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Fri, Dec 20, 2019 at 6:48 AM Dan Robertson <dan@dlrobertson.com> wrote:
-> > > On Thu, Dec 19, 2019 at 01:02:28PM +0200, Andy Shevchenko wrote:
-> > > > On Thu, Dec 19, 2019 at 6:27 AM Dan Robertson <dan@dlrobertson.com> wrote:
-> >
-> > > > > +static int bma400_set_accel_output_data_rate(struct bma400_data *data,
-> > > > > +                                            int hz, int uhz)
-> > > > > +{
-> > > > > +       unsigned int idx;
-> > > > > +       unsigned int odr;
-> > > > > +       unsigned int val;
-> > > > > +       int ret;
-> > > > > +
-> > > > > +       if (hz >= BMA400_ACC_ODR_MIN_WHOLE_HZ) {
-> > > > > +               if (uhz || hz % BMA400_ACC_ODR_MIN_WHOLE_HZ)
-> > > > > +                       return -EINVAL;
-> > > > > +
-> > > > > +               val = hz / BMA400_ACC_ODR_MIN_WHOLE_HZ;
-> > > >
-> > > > Again, AFAICS division may be avoided in both cases (% and / above)
-> > > > because of is_power_of_2() check below.
-> > > > Can you revisit this?
-> > >
-> > > Yeah I can update this in the next patchset, but I don't know if it is much more
-> > > readable this way.
-> >
-> > You may describe the algo in the comment.
-> >
-> > Let's see how it might look like
-> >
-> >   if (uhz)
-> >     return -EINVAL;
-> >   idx = __ffs(val);
-> >   /* We're expecting value to be 2^n * ODR_MIN_WHOLE_HZ */
-> >   if ((val >> idx) != BMA400_ACC_ODR_MIN_WHOLE_HZ)
+On Fri, Dec 20, 2019 at 06:57:12AM -0800, Richard Cochran wrote:
+> On Tue, Dec 17, 2019 at 10:21:55AM +0100, Andrew Lunn wrote:
+> > Forward declarations are considered bad.
 > 
-> Okay, this would require trickier conditional for the cases when
-> MIN_WHOLE_HZ can be divided by 2^k...
-> Still from performance point of view it might be much faster than division.
+> Not by me!
 
-I think the other checks will ensure we return -EINVAL in those cases. I ran a
-basic for loop and verified this.
+Lets see what David says.
 
-Cheers,
+> > For the moment what you have is sufficient. I doubt anybody is using
+> > the dp83640 with phylink, and the new hardware you are targeting seems
+> > to be RGMII based, not SERDES, which is the main use case for PHYLINK.
+> 
+> Yeah, my impression is that the phyter will be the first and last phy
+> time stamping device ever created.  Designers reject this part because
+> it is 100 mbit only.  And there are no gigabit+ phys with time
+> stamping at all.
 
- - Dan
+The Marvell PHY datasheets indicate they support PTP. I've not looked
+at how they implement it, and if the current model will work.
 
+   Andrew
