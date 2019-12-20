@@ -2,84 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB325127FED
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 16:51:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B5112801B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 16:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727565AbfLTPve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 10:51:34 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:40432 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727411AbfLTPvd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 10:51:33 -0500
-Received: by mail-oi1-f195.google.com with SMTP id c77so4312635oib.7;
-        Fri, 20 Dec 2019 07:51:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tulvWuO+lfC11OaHpbro2bnBMTva8CQZsIKaKyF21W0=;
-        b=UJwup9Bb3803MRbopQr7p+m07N32OBnvrYjf3nfv2bMTBfuZT4uGwPUXhSGYz7IDxy
-         mrDVj83hk2vcf3nHWlMe8+AxPjBhqQwyoFat83iwDDd7eZIXhJ/gepyoTSnjQIMB4vP1
-         ScpZE11mrJHHL7YyMP79KM3bqOpWkPoO8jaIt0fOYFbGiPr0H4s3zxuWQVJ5ixxLA1JT
-         vuWW374yedPCiNfFgpa5k7f84q0199vK8WRJyZrmupiZzSywly+saJCCnV5YhRAOIdjn
-         JLWeRqOTui3nAEhVPN5zc5Onl+pUJzRk27AVAsFSA0sU9DV3mv6XSmNGc0roe1zEaRo0
-         MVZw==
-X-Gm-Message-State: APjAAAVLBdsuh8zyW5nBUTKs0u+qo3uReb9CK6HtpX2c0xaMBuGNFLwx
-        5oSg53cLathP9KJwAuazTq68Dr7/2pmzhsjkew8=
-X-Google-Smtp-Source: APXvYqzchUhqLwQiMfXZKXZyP7v8fIN2PO8DqcEhtTUOkjyL7QPAh7bHF/N4b1oZe/fFPjGrc7KJChncR16AfjCVknA=
-X-Received: by 2002:a05:6808:292:: with SMTP id z18mr648668oic.131.1576857092572;
- Fri, 20 Dec 2019 07:51:32 -0800 (PST)
+        id S1727401AbfLTPze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 10:55:34 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:33762 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727233AbfLTPze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 10:55:34 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBKFtHgo026055;
+        Fri, 20 Dec 2019 09:55:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1576857317;
+        bh=2Mb0c+dOlwfsL6ve4ik/6/xjjtAIDmXAIiGHuMekctk=;
+        h=From:To:CC:Subject:Date;
+        b=yIuae4Ybpe/mcJYHGKIgbT27+q09P1OPE4d7rLCXVRWmuoUCFoAG1xjQ5m7OasQHL
+         7hAhDVCEb80dgC3P7ASEv3N0YNuEDkZd1xUdZ7Vv40McTHyPFxdrAiUxgIlek/OdXz
+         TNW0DmiogFVs52Y1RZA7yi6r+1VXcp2NqeJZOtzo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBKFtHw1109925
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 20 Dec 2019 09:55:17 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 20
+ Dec 2019 09:55:16 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 20 Dec 2019 09:55:16 -0600
+Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBKFtEDx005603;
+        Fri, 20 Dec 2019 09:55:14 -0600
+From:   Jyri Sarha <jsarha@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>
+CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
+        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <praneeth@ti.com>,
+        <yamonkar@cadence.com>, <sjakhade@cadence.com>, <sam@ravnborg.org>,
+        <robh+dt@kernel.org>, <maxime@cerno.tech>
+Subject: [PATCH v5 0/5] drm/tidss: New driver for TI Keystone platform Display SubSystem
+Date:   Fri, 20 Dec 2019 17:55:08 +0200
+Message-ID: <cover.1576857145.git.jsarha@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20191213164115.3697-1-geert+renesas@glider.be> <506390662.44203.1576307324771@webmail.strato.com>
-In-Reply-To: <506390662.44203.1576307324771@webmail.strato.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 20 Dec 2019 16:51:21 +0100
-Message-ID: <CAMuHMdVfV1u_fWGSP7SyDDR4vCB2qVkibr0irtUMnSfoh=nGUg@mail.gmail.com>
-Subject: Re: [PATCH 0/7] arm: dts: renesas: Group tuples in
- reg/ranges/dma-ranges/states properties
-To:     Ulrich Hecht <uli@fpond.eu>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 14, 2019 at 8:08 AM Ulrich Hecht <uli@fpond.eu> wrote:
-> > On December 13, 2019 at 5:41 PM Geert Uytterhoeven <geert+renesas@glider.be> wrote:
-> > To improve human readability and enable automatic validation, tuples
-> > in various properties should be grouped.  While "make dtbs_check" does
-> > not impose this yet for all properties, it does for some, hence
-> > triggering me to fix (I hope) all of them.
-> >
-> > Unfortunately even after this, a few "... is too long" warnings are
-> > still printed (e.g. for PCI "ranges"), which I believe are false
-> > positives.
-> >
-> > This series is against renesas-devel-2019-12-13-v5.5-rc1[*] with
-> > "[PATCH] ARM: dts: rcar-gen2: Fix PCI high address in
-> > interrupt-map-mask" applied on top.
-> >
-> > Thanks for your comments!
->
-> For the whole series:
-> Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
+Changes since v4:
+- itemize named resource property descriptions in dt binding
+- fix wp to wb in the ti,j721e-dss reg property description
+- remove fifo underflow irq handling, it is not an error and
+  it should be used for debug purposes only
+- memory tuning, prefetch plane fifo up to high-threshold value to
+  minimize possibility of underflows.
 
-Thanks, queuing in renesas-devel for v5.6.
+Changes since v3:
+- Add descriptions some yaml binding properites
+- Remove redundant minItems directives from yaml bindings
+- Remove ports node from ti,k2g-dss yaml binding
+- no change to MAINTAINERS or to the driver code
 
-Gr{oetje,eeting}s,
+Changes since v2:
+- Add version history to commit messages
+- Fix yaml bindings now that got dt_binding_check dtbs_check working propery
+- Move tidss entry in MAINTAINERS after omapdrm and add "T: git
+  git://anongit.freedesktop.org/drm/drm-misc"
+- no change to driver code
 
-                        Geert
+Changes since the first version of the patch series [2]:
+- "drm/tidss: New driver for TI Keystone platform Display SubSystem"
+ - rebased on top of drm-next-2019-11-27
+ - sort all include lines in all files
+ - remove all include <drm/drmP.h>
+ - remove select "select VIDEOMODE_HELPERS"
+ - call dispc_vp_setup() later in tidss_crtc_atomic_flush() (there is no
+   to call it in new modeset case as it is also called in vp_enable())
+ - change probe sequence and drm_device allocation (follow example in drm_drv.c)
+ - use __maybe_unused instead of #ifdef for pm functions
+ - remove "struct drm_fbdev_cma *fbdev;" from driver data
+ - check panel connector type before connecting it
+- No change to binding or MAINTAINERS patches
+
+There was couple of attempts upstream an earlier version of this
+driver about a year ago [1]. Back then I needed to stop my efforts to
+implement support for next Keystone DSS version, so now the driver
+supports three different Keystone DSS version on three different SoCs.
+
+I am starting the patch series versioning from the beginning because it
+has been over a year since the previous patch set and the structure of
+the driver has evolved quite a bit. However, all the earlier comments
+should be addressed in this series.
+
+[1] https://patchwork.freedesktop.org/series/44947/
+[2] https://lists.freedesktop.org/archives/dri-devel/2019-November/246542.html
+
+Jyri Sarha (5):
+  dt-bindings: display: ti,k2g-dss: Add dt-schema yaml binding
+  dt-bindings: display: ti,am65x-dss: Add dt-schema yaml binding
+  dt-bindings: display: ti,j721e-dss: Add dt-schema yaml binding
+  drm/tidss: New driver for TI Keystone platform Display SubSystem
+  MAINTAINERS: add entry for tidss
+
+ .../bindings/display/ti/ti,am65x-dss.yaml     |  152 +
+ .../bindings/display/ti/ti,j721e-dss.yaml     |  208 ++
+ .../bindings/display/ti/ti,k2g-dss.yaml       |  109 +
+ MAINTAINERS                                   |   11 +
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/tidss/Kconfig                 |   14 +
+ drivers/gpu/drm/tidss/Makefile                |   12 +
+ drivers/gpu/drm/tidss/tidss_crtc.c            |  376 +++
+ drivers/gpu/drm/tidss/tidss_crtc.h            |   46 +
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 2647 +++++++++++++++++
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  132 +
+ drivers/gpu/drm/tidss/tidss_dispc_regs.h      |  243 ++
+ drivers/gpu/drm/tidss/tidss_drv.c             |  285 ++
+ drivers/gpu/drm/tidss/tidss_drv.h             |   39 +
+ drivers/gpu/drm/tidss/tidss_encoder.c         |   88 +
+ drivers/gpu/drm/tidss/tidss_encoder.h         |   17 +
+ drivers/gpu/drm/tidss/tidss_irq.c             |  146 +
+ drivers/gpu/drm/tidss/tidss_irq.h             |   72 +
+ drivers/gpu/drm/tidss/tidss_kms.c             |  248 ++
+ drivers/gpu/drm/tidss/tidss_kms.h             |   15 +
+ drivers/gpu/drm/tidss/tidss_plane.c           |  217 ++
+ drivers/gpu/drm/tidss/tidss_plane.h           |   25 +
+ drivers/gpu/drm/tidss/tidss_scale_coefs.c     |  202 ++
+ drivers/gpu/drm/tidss/tidss_scale_coefs.h     |   22 +
+ 25 files changed, 5329 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
+ create mode 100644 drivers/gpu/drm/tidss/Kconfig
+ create mode 100644 drivers/gpu/drm/tidss/Makefile
+ create mode 100644 drivers/gpu/drm/tidss/tidss_crtc.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_crtc.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_dispc.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_dispc.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_dispc_regs.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_drv.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_drv.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_encoder.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_encoder.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_irq.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_irq.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_kms.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_kms.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_plane.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_plane.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_scale_coefs.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_scale_coefs.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
