@@ -2,90 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D218D127747
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 09:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 652BB127761
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 09:44:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727177AbfLTIhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 03:37:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52214 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726651AbfLTIhS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Dec 2019 03:37:18 -0500
-Received: from localhost (unknown [106.201.107.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C4A0A2467F;
-        Fri, 20 Dec 2019 08:37:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1576831037;
-        bh=MwmGwgRhGq+RQ75KDzhynCsOSx4RNN1uA6bAbx7zxGQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qs3ZUFjS2s6IKXqXMNe+xw4oHPJ0ryil98Uvc7u2PQ7Vlev7g9+6xq/DEPvCZFwea
-         itZLuk5mM64Ij3Hn4v4sB/iA3mixlNGx4D0to0STKet4Wcg2U1i/18E8c4/8mqoa1W
-         UX4KFY3+4mNitKcgQe1be5pFxHiy69NyNLkammhQ=
-Date:   Fri, 20 Dec 2019 14:07:13 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     robh+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
-        dan.j.williams@intel.com, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
-        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com,
-        j-keerthy@ti.com, vigneshr@ti.com
-Subject: Re: [PATCH v7 05/12] dmaengine: Add support for reporting DMA cached
- data amount
-Message-ID: <20191220083713.GL2536@vkoul-mobl>
-References: <20191209094332.4047-1-peter.ujfalusi@ti.com>
- <20191209094332.4047-6-peter.ujfalusi@ti.com>
+        id S1727176AbfLTIn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 03:43:57 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:38253 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727191AbfLTIn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Dec 2019 03:43:56 -0500
+Received: by mail-ed1-f65.google.com with SMTP id i16so7476318edr.5;
+        Fri, 20 Dec 2019 00:43:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IXbuaf/Cq2tGfd6OZrRmEJyDn3Ce5xlbWFBppOEzCYc=;
+        b=IulSYQ1S+hyqanhMqs0MDzV+WyUZFvvvbu1tKbfYMlf1QeHAwwh6DWHeSRvL3PGcxM
+         1jcPnFr7jhKfymYpL3vD+bsXfIGtwDxpSv/MM0JBIWcbymhg8f70+EQ7ka/PaqWhhTY8
+         0oWTNN36K85SieK4b+PHB9qi1IShVZJ2zaQKWMQ4GZ3DHNoEjnk0CKcig3Hc/X3FoyX+
+         XI0W4CmglS2sXM66YgTs5JHjWA1wOPCx0P+xlVGLY1M7suoROjmGewgNGXrwW8e0T17H
+         VCn6WZOoA+ldUf0o8jNwJJANJThxbxGe6cq7z0Jz+qcOfRjqNKgwAiRPajo3k18y34h7
+         4uEA==
+X-Gm-Message-State: APjAAAXc7sMA1Us4p3zr0qsywW/FwHzc//OOrAbQdS+CqK//57VanbZR
+        52nwmMf8JtciRhuY1+TqUHo=
+X-Google-Smtp-Source: APXvYqxp9hgF9PmaT2oTuADAB64PkgIFMZvrclHRsxE6EbN2yuHZHHK9cKtisRYEhpTDGewTtbAR7A==
+X-Received: by 2002:a17:906:b797:: with SMTP id dt23mr14655260ejb.241.1576831434074;
+        Fri, 20 Dec 2019 00:43:54 -0800 (PST)
+Received: from pi3 ([194.230.155.234])
+        by smtp.googlemail.com with ESMTPSA id u23sm842501edq.74.2019.12.20.00.43.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Dec 2019 00:43:53 -0800 (PST)
+Date:   Fri, 20 Dec 2019 09:43:50 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     robh+dt@kernel.org, heiko@sntech.de, leonard.crestez@nxp.com,
+        lukasz.luba@arm.com, mark.rutland@arm.com, a.swigon@samsung.com,
+        m.szyprowski@samsung.com, kgene@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 04/11] dt-bindings: devfreq: exynos-bus: Replace
+ deprecated 'devfreq' and 'devfreq-events' property
+Message-ID: <20191220084350.GA20583@pi3>
+References: <20191220002430.11995-1-cw00.choi@samsung.com>
+ <CGME20191220001759epcas1p3051f7916542b7234aac5273e0baab83b@epcas1p3.samsung.com>
+ <20191220002430.11995-5-cw00.choi@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20191209094332.4047-6-peter.ujfalusi@ti.com>
+In-Reply-To: <20191220002430.11995-5-cw00.choi@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-12-19, 11:43, Peter Ujfalusi wrote:
-> A DMA hardware can have big cache or FIFO and the amount of data sitting in
-> the DMA fabric can be an interest for the clients.
+On Fri, Dec 20, 2019 at 09:24:23AM +0900, Chanwoo Choi wrote:
+> In order to remove the deprecated 'devfreq' and 'devfreq-events' property,
+> replace with new following properties
+> - Replace 'devfreq' with 'exynos,parent-bus' property
+> - Replace 'devfreq-events' with 'exynos,ppmu-device' property
 > 
-> For example in audio we want to know the delay in the data flow and in case
-> the DMA have significantly large FIFO/cache, it can affect the latenc/delay
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Reviewed-by: Tero Kristo <t-kristo@ti.com>
+> Signed-off-by: Chanwoo Choi <cw00.choi@samsung.com>
 > ---
->  drivers/dma/dmaengine.h   | 8 ++++++++
->  include/linux/dmaengine.h | 2 ++
->  2 files changed, 10 insertions(+)
-> 
-> diff --git a/drivers/dma/dmaengine.h b/drivers/dma/dmaengine.h
-> index 501c0b063f85..b0b97475707a 100644
-> --- a/drivers/dma/dmaengine.h
-> +++ b/drivers/dma/dmaengine.h
-> @@ -77,6 +77,7 @@ static inline enum dma_status dma_cookie_status(struct dma_chan *chan,
->  		state->last = complete;
->  		state->used = used;
->  		state->residue = 0;
-> +		state->in_flight_bytes = 0;
->  	}
->  	return dma_async_is_complete(cookie, complete, used);
->  }
-> @@ -87,6 +88,13 @@ static inline void dma_set_residue(struct dma_tx_state *state, u32 residue)
->  		state->residue = residue;
->  }
->  
-> +static inline void dma_set_in_flight_bytes(struct dma_tx_state *state,
-> +					   u32 in_flight_bytes)
-> +{
-> +	if (state)
-> +		state->in_flight_bytes = in_flight_bytes;
-> +}
+>  .../bindings/devfreq/exynos-bus.txt           | 22 +++++++++----------
+>  1 file changed, 11 insertions(+), 11 deletions(-)
 
-This would be used by dmaengine drivers right, so lets move it to drivers/dma/dmaengine.h
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-lets not expose this to users :)
+Best regards,
+Krzysztof
 
--- 
-~Vinod
