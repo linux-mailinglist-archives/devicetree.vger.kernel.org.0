@@ -2,115 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8795C127321
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 02:56:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80764127345
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 03:00:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727460AbfLTB4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Dec 2019 20:56:17 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:36663 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727437AbfLTB4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 20:56:17 -0500
-Received: by mail-lj1-f195.google.com with SMTP id r19so8325909ljg.3;
-        Thu, 19 Dec 2019 17:56:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=i7a3lxaMDdErpekYLxYZCSpGszEjiHMz9VIU/9b2FAA=;
-        b=Gaur1TkDTfgRCAAJ2jfXLAtd91digvvIIikB88uo1dJJu/ngUmUAduyjVTTecEsPbY
-         2ezfycR++WnNJa5bhjjWIlzkn6K9EKUjdMxteA2Re2xODQ8wqQ3BOL33fru9bl5htJue
-         QjAnWq0dRdUmL0vuMovs6SyWKCErWy3B+ZuiXBPudXUX0HdDYMYtrdLdQAMp9bzsExtD
-         XV8wwqTLH+5LcNW0tmY8K7qI40dYA0ddYen2acLCSKofTrakr5nDPDSqxS0dDiKQZe8+
-         04t1P4sAYMw6109j1HfsmdSSUEVzd3xclbPhQZL2zGe3pX5x7pAm43gVmxAU3Pasbms+
-         TX3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=i7a3lxaMDdErpekYLxYZCSpGszEjiHMz9VIU/9b2FAA=;
-        b=fywmB/oamn+5sVvB+hV7Ph82fSO3kkkon+VpS19JDp01D7UXmt6g0nyzCU6hhLrQT4
-         tTD0zDa49zH20VgTJAlhlr3KPHVhUwu+MclcfFuHDrc0AYxnkFDqrhb97CfBnSM7LkAX
-         X41FLIiXcPWU/vAyeRrVEvj+5ujl0PaUFU4ptgljcBX71cHUBsjAebcCrNEWaKEayyi4
-         quW3ltYzXjvYKcEkMMZlzfjd3c/bcJxMb9lazJ0ISHjiIc3J4ypoqFLJznLGMnPtH5a+
-         VctaxB6z0kT8LXrgD5stzo2lEsfKspq1sqXGB9h8Dmx9dAxnNKmtLLV2L0GqE7o5gfQk
-         UTUg==
-X-Gm-Message-State: APjAAAUfmyeAWKfaNsyjHN5k1mi3U+3GGVbCL9GXukl/l7xKo4hl/AkY
-        vTqxkQvAFlN9mRj8ZjcT0RMNiRfd
-X-Google-Smtp-Source: APXvYqwbN97kGheLd00XaTVr135VZRcJmbkDNLnp4cnbkDtsFk0Z5/dfW9k80jO5EEXSV5IdepTn0Q==
-X-Received: by 2002:a2e:2c04:: with SMTP id s4mr8493693ljs.35.1576806974736;
-        Thu, 19 Dec 2019 17:56:14 -0800 (PST)
-Received: from localhost.localdomain (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.gmail.com with ESMTPSA id m13sm3270901lfo.40.2019.12.19.17.56.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 17:56:14 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 10/10] usb: chipidea: tegra: Add USB_TEGRA_PHY module to driver's dependencies
-Date:   Fri, 20 Dec 2019 04:52:38 +0300
-Message-Id: <20191220015238.9228-11-digetx@gmail.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191220015238.9228-1-digetx@gmail.com>
-References: <20191220015238.9228-1-digetx@gmail.com>
+        id S1727016AbfLTCAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Dec 2019 21:00:30 -0500
+Received: from twhmllg4.macronix.com ([211.75.127.132]:20888 "EHLO
+        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726964AbfLTCAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Dec 2019 21:00:30 -0500
+X-Greylist: delayed 876 seconds by postgrey-1.27 at vger.kernel.org; Thu, 19 Dec 2019 21:00:29 EST
+Received: from TWHMLLG4.macronix.com (localhost [127.0.0.2] (may be forged))
+        by TWHMLLG4.macronix.com with ESMTP id xBK1jrCs058740;
+        Fri, 20 Dec 2019 09:45:53 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from twhfm1p2.macronix.com (twhfm1p2.macronix.com [172.17.20.92])
+        by TWHMLLG4.macronix.com with ESMTP id xBK1jKui058465;
+        Fri, 20 Dec 2019 09:45:20 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
+        by Forcepoint Email with ESMTP id C202A1DF76EF89CEE2A3;
+        Fri, 20 Dec 2019 09:45:20 +0800 (CST)
+In-Reply-To: <6f4c5d92-3ca4-2d1d-47c4-cbd52ad428b0@cogentembedded.com>
+References: <20191206134202.18784-1-chris.brandt@renesas.com> <922cfa46-efb5-9e6d-67ea-3ac505b8211c@cogentembedded.com> <TY1PR01MB156215E8668C0317FA0826B18A580@TY1PR01MB1562.jpnprd01.prod.outlook.com> <e6a73df5-31c4-3472-f7bc-a0984f1f5380@cogentembedded.com> <TY1PR01MB1562D343E1AB06DCA2973DAC8A550@TY1PR01MB1562.jpnprd01.prod.outlook.com> <590840ce-a250-2512-3d04-c2420d83f7da@cogentembedded.com> <TY1PR01MB1562B9EB96818DCA507079808A510@TY1PR01MB1562.jpnprd01.prod.outlook.com> <bb630141-021c-5618-f266-b98b29956fa8@cogentembedded.com> <TY1PR01MB1562E196AB1C582F186CC74B8A520@TY1PR01MB1562.jpnprd01.prod.outlook.com> <6f4c5d92-3ca4-2d1d-47c4-cbd52ad428b0@cogentembedded.com>
+To:     "Sergei Shtylyov" <sergei.shtylyov@cogentembedded.com>
+Cc:     "Mark Brown" <broonie@kernel.org>,
+        "Chris Brandt" <Chris.Brandt@renesas.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Stephen Boyd" <sboyd@kernel.org>
+Subject: Re: [PATCH v2 0/6] spi: Add Renesas SPIBSC controller
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-KeepSent: 3F92D76C:33FFFBFC-482584D6:00093DAC;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OF3F92D76C.33FFFBFC-ON482584D6.00093DAC-482584D6.0009A51D@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Fri, 20 Dec 2019 09:45:21 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/12/20 AM 09:45:20,
+        Serialize complete at 2019/12/20 AM 09:45:20
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG4.macronix.com xBK1jKui058465
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now, when ci_hdrc_tegra kernel module is loaded, the phy_tegra_usb module
-is loaded too regardless of kernel's configuration. Previously this
-problem was masked because Tegra's EHCI driver is usually enabled in
-kernel's config and thus PHY driver was getting loaded because of it, but
-now I was making some more thorough testing and noticed that PHY's module
-isn't getting auto-loaded without the host driver.
 
-Note that ChipIdea's driver doesn't use any of the exported functions of
-phy_tegra_usb module and thus the module needs to be requested explicitly.
-
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/usb/chipidea/Kconfig         | 1 +
- drivers/usb/chipidea/ci_hdrc_tegra.c | 6 ++++++
- 2 files changed, 7 insertions(+)
-
-diff --git a/drivers/usb/chipidea/Kconfig b/drivers/usb/chipidea/Kconfig
-index ae850b3fddf2..d53db520e209 100644
---- a/drivers/usb/chipidea/Kconfig
-+++ b/drivers/usb/chipidea/Kconfig
-@@ -7,6 +7,7 @@ config USB_CHIPIDEA
- 	select RESET_CONTROLLER
- 	select USB_ULPI_BUS
- 	select USB_ROLE_SWITCH
-+	select USB_TEGRA_PHY if ARCH_TEGRA
- 	help
- 	  Say Y here if your system has a dual role high speed USB
- 	  controller based on ChipIdea silicon IP. It supports:
-diff --git a/drivers/usb/chipidea/ci_hdrc_tegra.c b/drivers/usb/chipidea/ci_hdrc_tegra.c
-index 7455df0ede49..8bc11100245d 100644
---- a/drivers/usb/chipidea/ci_hdrc_tegra.c
-+++ b/drivers/usb/chipidea/ci_hdrc_tegra.c
-@@ -53,6 +53,12 @@ static int tegra_udc_probe(struct platform_device *pdev)
- 	struct tegra_udc *udc;
- 	int err;
+Hello,
  
-+	if (IS_MODULE(CONFIG_USB_TEGRA_PHY)) {
-+		err = request_module("phy_tegra_usb");
-+		if (err)
-+			return err;
-+	}
-+
- 	udc = devm_kzalloc(&pdev->dev, sizeof(*udc), GFP_KERNEL);
- 	if (!udc)
- 		return -ENOMEM;
--- 
-2.24.0
+> On 12/19/2019 07:57 PM, Chris Brandt wrote:
+> 
+> >>> So at the moment, there is nothing yet for me to 'try' on the RZ/A 
+series,
+> >> correct?
+> >>
+> >>    Why, I can send you a working version of the SPI driver, and even 
+HF one
+> >> if you're
+> >> interested.
+> > 
+> > The point of this whole discussion is to determine if we should have 2 
+drivers
+> > for the same Renesas HW IP.
+> > 
+> > There was a RPC-IF patch series that made it to v17....and is now 
+dead.
+
+
+It's under review by Geert Uytterhoeven
+
+https://patchwork.kernel.org/project/linux-renesas-soc/list/?submitter=181859 
+
+
+https://patchwork.kernel.org/patch/11078131/ 
+https://patchwork.kernel.org/patch/11078133/ 
+
+
+thanks & best regards,
+Mason
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
 
