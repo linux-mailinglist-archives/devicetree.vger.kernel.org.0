@@ -2,179 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF69127693
-	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 08:37:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9FEC12769F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Dec 2019 08:38:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726002AbfLTHh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Dec 2019 02:37:57 -0500
-Received: from us-smtp-1.mimecast.com ([207.211.31.81]:22250 "EHLO
-        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727177AbfLTHh5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Dec 2019 02:37:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1576827476;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=fPptbBAOO0GcMCPdxf9qZyN4g0rcLLRix/sll54J6WU=;
-        b=Z83NZmHJRYsK/7F1CqZpX6tT4jkGcKuz/NBpkeLWmcapdTPY3oX4dg+Kj+l7hLO9QcmQgG
-        cAJnmywi+oxUV6qcBRGSaxAt33t/Hi2XPurx5XAwkvaHZBe/CnAGlyPpyXDP8yAcCHJt9G
-        e6j517ua1pYmX/Gq0m5okcm4+djoTo8=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-163-9VEu2D28Oh-yyCnTTKDODw-1; Fri, 20 Dec 2019 02:37:52 -0500
-X-MC-Unique: 9VEu2D28Oh-yyCnTTKDODw-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id B3863184BEC0;
-        Fri, 20 Dec 2019 07:37:49 +0000 (UTC)
-Received: from [10.36.116.117] (ovpn-116-117.ams2.redhat.com [10.36.116.117])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 89EE25DA2C;
-        Fri, 20 Dec 2019 07:37:40 +0000 (UTC)
-Subject: Re: [PATCH v4 13/13] iommu/arm-smmu-v3: Add support for PCI PASID
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org
-Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
-        will@kernel.org, robin.murphy@arm.com, bhelgaas@google.com,
-        jonathan.cameron@huawei.com, zhangfei.gao@linaro.org
-References: <20191219163033.2608177-1-jean-philippe@linaro.org>
- <20191219163033.2608177-14-jean-philippe@linaro.org>
-From:   Auger Eric <eric.auger@redhat.com>
-Message-ID: <8c843513-15a4-e51a-a32c-6316273c3289@redhat.com>
-Date:   Fri, 20 Dec 2019 08:37:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
-MIME-Version: 1.0
-In-Reply-To: <20191219163033.2608177-14-jean-philippe@linaro.org>
-Content-Type: text/plain; charset=utf-8
+        id S1726030AbfLTHiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Dec 2019 02:38:52 -0500
+Received: from mail-eopbgr00055.outbound.protection.outlook.com ([40.107.0.55]:29188
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725965AbfLTHiw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Dec 2019 02:38:52 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QGGiVuqTS9H1b5xm/lrWVCclNUaW2Vmah8tXrCuYzWfV+7WWjSrotA+5raNz2z/7YGHyHWdp1ZM5U0zlmTe2N1h+oBGK2FoW0yxvokhd51/QUa8y3JtSreHRFBq2CqXpGZ4vllW4NOjUiySPI4JKtvdPpvGTqstYV8dHtYGeTPxMFxBSuvw4k0PO4Fp0RComV43jjF0uzVi6EvxL28NbKzHpQUxTVhN+IbJQPrTHyXir+UcDwq50TLY5FC1zTxYU/3MKABy+7hcua5jrkyqPCRM+74qSHH8xVcLDwWIBAd159LCdIfWXeMM6Cluc0KyPdwysH2NHK36MEr68/ytqkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bIAkZUtMuWVqmAijM2+Qw0lR7L0Nx8eKSa935UpUKkA=;
+ b=A3HM/+oHwB0SsODhewS7mjw5wx/Hiayz1NpNe9fAHNdsT3uGz0I1aSz8mW+ldRG5S0cku4tRYRDEZcti+1qF+lF99gCAg6H4o3ZIAGuKjMi6HFnfHWiA5q3eE4cRNHQ5PIcaUGO4sTlyZtu5FAa+PFkDU2OHrERsL8kYyjEjsiM0GP0bfzjuw9FoPhJSOoqQO0BPdqyoDCz5v29TvdwNuStYhkyN8AWADnO//fABJPUtkutpWEE6lwjc7t5BaHqyobYgXN8VsjCVY5mo6W6Y56IDeF1eCpSGlNTC2KxIwAvddFTA4JV+4ejBsSRMtA3Oi61eD4kflRiCoWSjzrSScQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bIAkZUtMuWVqmAijM2+Qw0lR7L0Nx8eKSa935UpUKkA=;
+ b=Namo/UWpzD+Xg6WFWqvnPSmvQjvrhADPsyeS8GhJ045rIWYnzVW2EIL8izY+ZJF4CjvoypVRd04p8f3YMum3rRRvPIXVBu6bCTzdQdNLzHZxEd8INbKukYQRzGEGe7pswIAQJ56t7ImyI6vyRYqHHxk/rUJ4J8bFdmpKR4duExc=
+Received: from VI1PR04MB5567.eurprd04.prod.outlook.com (20.178.123.83) by
+ VI1PR04MB5248.eurprd04.prod.outlook.com (20.177.52.143) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2559.15; Fri, 20 Dec 2019 07:38:46 +0000
+Received: from VI1PR04MB5567.eurprd04.prod.outlook.com
+ ([fe80::f099:4735:430c:ef1d]) by VI1PR04MB5567.eurprd04.prod.outlook.com
+ ([fe80::f099:4735:430c:ef1d%2]) with mapi id 15.20.2559.016; Fri, 20 Dec 2019
+ 07:38:46 +0000
+From:   "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>,
+        "antoine.tenart@free-electrons.com" 
+        <antoine.tenart@free-electrons.com>,
+        "jaz@semihalf.com" <jaz@semihalf.com>,
+        "baruch@tkos.co.il" <baruch@tkos.co.il>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 1/6] net: phy: add interface modes for XFI, SFI
+Thread-Topic: [PATCH 1/6] net: phy: add interface modes for XFI, SFI
+Thread-Index: AQHVtn//emqdPRPEmEKC7Ncoej9h46fBtnoAgAAR9oCAAAh2AIAAKmuAgAAEEQCAAKEqIA==
+Date:   Fri, 20 Dec 2019 07:38:45 +0000
+Message-ID: <VI1PR04MB556768668EEEDFD61B7AA518EC2D0@VI1PR04MB5567.eurprd04.prod.outlook.com>
+References: <1576768881-24971-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1576768881-24971-2-git-send-email-madalin.bucur@oss.nxp.com>
+ <20191219172834.GC25745@shell.armlinux.org.uk>
+ <VI1PR04MB5567FA3170CF45F877870E8CEC520@VI1PR04MB5567.eurprd04.prod.outlook.com>
+ <20191219190308.GE25745@shell.armlinux.org.uk>
+ <VI1PR04MB5567010C06EB9A4734431106EC520@VI1PR04MB5567.eurprd04.prod.outlook.com>
+ <20191219214930.GG25745@shell.armlinux.org.uk>
+In-Reply-To: <20191219214930.GG25745@shell.armlinux.org.uk>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=madalin.bucur@oss.nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [212.146.100.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 93dffde8-c633-4ac4-9d26-08d7851fa563
+x-ms-traffictypediagnostic: VI1PR04MB5248:|VI1PR04MB5248:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB52481451C62653234A257A76AD2D0@VI1PR04MB5248.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 025796F161
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(366004)(136003)(396003)(376002)(346002)(13464003)(199004)(189003)(55016002)(9686003)(478600001)(26005)(186003)(4326008)(64756008)(66946007)(86362001)(66476007)(66446008)(66556008)(7416002)(5660300002)(2906002)(7696005)(81166006)(81156014)(8936002)(76116006)(33656002)(6506007)(71200400001)(110136005)(54906003)(316002)(52536014)(8676002)(966005);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5248;H:VI1PR04MB5567.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+received-spf: None (protection.outlook.com: oss.nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: o7kjiIwvS6VBWgRH+ENKOZkXMk/KcfffGjODRpojsv+cjelxEJdXYEMymtP/hTvF+m+0hOvjaazfeu62wESp4+P3/bPOUyb0NVOSttD10a99SCpT+lo1ZC05ma9MNRShVJy+IzuufRqYvvqq/fENWM+4ppE19LjastSwZ6M+0ZypHiALcdNvd4NZxhGnuDlXfh0R3q0aLah3eBGJutDWNygj/mCtiaqpM7cZlMGTwFR4qJSVXv6cU9WW96tf6Bhpo0g9hDrm5bQn56wN/ceR0PrVOblDXwNVGU6EAC1yzraLqy6fKKorp/wKtCDPPHMd7FZA/duam9uv15eJGkwYzzvwsE3EUyzsnOdWr3304e4fKXnya/5RPwGH0A4yZA5IvWhcVkMKCNn7CAnx4rJY0ZyuKBE7bVCxvp4Ej3S93kP1Zk43/p4TSwEWhaE7IPlD+mP3Ggt00fZpZAyBEQb9FJ0Do1dK7UnHePGC92ZHSJdi3HIOVqM8Zj8ZIkB2G3OIkX3qaO1oRtv1ren7a/sd8ahtSVnrlqoIAGoa/JKNI44=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93dffde8-c633-4ac4-9d26-08d7851fa563
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Dec 2019 07:38:46.0394
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: w47uo4bjNgCvgQRc4BYPnlJC7RQ6cjk/uBzpyTYUEd5eb/Z9eb2QNbj9S1MM90wDXk765FuLwJ0vrm9yUUzjeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5248
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
+> -----Original Message-----
+> From: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+> On Thu, Dec 19, 2019 at 09:34:57PM +0000, Madalin Bucur (OSS) wrote:
+> > > -----Original Message-----
+> > > From: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+> > > On Thu, Dec 19, 2019 at 06:32:51PM +0000, Madalin Bucur wrote:
+> > > > > -----Original Message-----
+> > > > > From: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+> > > > >
+> > > > > On Thu, Dec 19, 2019 at 05:21:16PM +0200, Madalin Bucur wrote:
+> > > > > > From: Madalin Bucur <madalin.bucur@nxp.com>
+> > > > > >
+> > > > > > Add explicit entries for XFI, SFI to make sure the device
+> > > > > > tree entries for phy-connection-type "xfi" or "sfi" are
+> > > > > > properly parsed and differentiated against the existing
+> > > > > > backplane 10GBASE-KR mode.
+> > > > >
+> > > > > 10GBASE-KR is actually used for XFI and SFI (due to a slight
+> > > > > mistake on my part, it should've been just 10GBASE-R).
+> > > > >
+> > > > > Please explain exactly what the difference is between XFI, SFI
+> > > > > and 10GBASE-R. I have not been able to find definitive definition=
+s
+> > > > > for XFI and SFI anywhere, and they appear to be precisely identic=
+al
+> > > > > to 10GBASE-R. It seems that it's just a terminology thing, with
+> > > > > different groups wanting to "own" what is essentially exactly the
+> > > > > same interface type.
+> > > >
+> > > > Hi Russell,
+> > > >
+> > > > 10GBase-R could be used as a common nominator but just as well 10G
+> > > > and remove the rest while we're at it. There are/may be differences=
+ in
+> > > > features, differences in the way the HW is configured (the most
+> > > > important aspect) and one should be able to determine what interfac=
+e
+> > > > type is in use to properly configure the HW. SFI does not have the
+> > > > CDR function in the PMD, relying on the PMA signal conditioning vs =
+the
+> > > > XFI that requires this in the PMD. We kept the xgmii compatible for=
+ so
+> > > > long without much issues until someone started cleaning up the PHY
+> > > > supported modes. Since we're doing that, let's be rigorous. The 10G=
+Base-KR
+> > > > is important too, we have some backplane code in preparation and
+> > > > having it there could pave the way for a simpler integration.
+> > >
+> > > The problem we currently have is:
+> > >
+> > > $ grep '10gbase-kr' arch/*/boot/dts -r
+> > >
+> > > virtually none of those are actually backplane. For the mcbin
+> > > matches, these are either to a 88x3310 PHY for the doubleshot, which
+> > > dynamically operates between XFI, 5GBASE-R, 2500BASE-X, or SGMII acco=
+rding
+> > > to the datasheet.
+> >
+> > Yes, I've seen it's used already in several places:
+> >
+> > $ grep PHY_INTERFACE_MODE_10GKR drivers/net -nr
+> > drivers/net/phy/marvell10g.c:219:       if (iface !=3D
+> PHY_INTERFACE_MODE_10GKR) {
+> > drivers/net/phy/marvell10g.c:307:           phydev->interface !=3D
+> PHY_INTERFACE_MODE_10GKR)
+> > drivers/net/phy/marvell10g.c:389:            phydev->interface =3D=3D
+> PHY_INTERFACE_MODE_10GKR) && phydev->link) {
+> > drivers/net/phy/marvell10g.c:398:                       phydev-
+> >interface =3D PHY_INTERFACE_MODE_10GKR;
+> > drivers/net/phy/phylink.c:296:          case PHY_INTERFACE_MODE_10GKR:
+> > drivers/net/phy/aquantia_main.c:361:            phydev->interface =3D
+> PHY_INTERFACE_MODE_10GKR;
+> > drivers/net/phy/aquantia_main.c:499:        phydev->interface !=3D
+> PHY_INTERFACE_MODE_10GKR)
+> > drivers/net/phy/sfp-bus.c:340:          return
+> PHY_INTERFACE_MODE_10GKR;
+> > drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c:1117:   return
+> interface =3D=3D PHY_INTERFACE_MODE_10GKR ||
+> > drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c:1203:   case
+> PHY_INTERFACE_MODE_10GKR:
+> > drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c:1652:   case
+> PHY_INTERFACE_MODE_10GKR:
+> > drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c:4761:   case
+> PHY_INTERFACE_MODE_10GKR:
+> > drivers/net/ethernet/marvell/mvpp2/mvpp2_main.c:4783:   case
+> PHY_INTERFACE_MODE_10GKR:
+> >
+> > We should fix this, if it's incorrect.
+> >
+> > > If we add something else, then the problem becomes what to do about
+> > > that lot - one of the problems is, it seems we're going to be
+> > > breaking DT compatibility by redefining 10gbase-kr to be correct.
+> >
+> > We need the committer/maintainer to update that to a correct value.
+>=20
+> The general principle is, we don't break existing DT - in that, we
+> expect DT files from current kernels to work with future kernels. So,
+> we're kind of stuck with "10gbase-kr" being used for this at least in
+> the medium term.
+>=20
+> By all means introduce "xfi" and "sfi" if you think that there is a
+> need to discriminate between the two, but I've seen no hardware which
+> that treats them any differently from 10gbase-r.
+>=20
+> If we want to support real 10gbase-kr, then I think we need to consider
+> how to do that without affecting compatibility with what we already
+> have.
+>=20
+> --
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down
+> 622kbps up
+> According to speedtest.net: 11.9Mbps down 500kbps up
 
-On 12/19/19 5:30 PM, Jean-Philippe Brucker wrote:
-> Enable PASID for PCI devices that support it. Since the SSID tables are
-> allocated by arm_smmu_attach_dev(), PASID has to be enabled early enough.
-> arm_smmu_dev_feature_enable() would be too late, since by that time the
-> main DMA domain has already been attached. Do it in add_device() instead.
-> 
-> Tested-by: Zhangfei Gao <zhangfei.gao@linaro.org>
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+I've looked at the device tree entries using 10GBase-KR:
 
-Thanks
+all these are disabled:
 
-Eric
+// disabled, commit mentions interface is SFI, jaz@semihalf.com
+arch/arm64/boot/dts/marvell/cn9132-db.dts:107:  phy-mode =3D "10gbase-kr";
 
-> ---
->  drivers/iommu/arm-smmu-v3.c | 55 ++++++++++++++++++++++++++++++++++++-
->  1 file changed, 54 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
-> index e62ca80f2f76..8e95ecad4c9a 100644
-> --- a/drivers/iommu/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm-smmu-v3.c
-> @@ -2644,6 +2644,53 @@ static void arm_smmu_disable_ats(struct arm_smmu_master *master)
->  	atomic_dec(&smmu_domain->nr_ats_masters);
->  }
->  
-> +static int arm_smmu_enable_pasid(struct arm_smmu_master *master)
-> +{
-> +	int ret;
-> +	int features;
-> +	int num_pasids;
-> +	struct pci_dev *pdev;
-> +
-> +	if (!dev_is_pci(master->dev))
-> +		return -ENODEV;
-> +
-> +	pdev = to_pci_dev(master->dev);
-> +
-> +	features = pci_pasid_features(pdev);
-> +	if (features < 0)
-> +		return features;
-> +
-> +	num_pasids = pci_max_pasids(pdev);
-> +	if (num_pasids <= 0)
-> +		return num_pasids;
-> +
-> +	ret = pci_enable_pasid(pdev, features);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to enable PASID\n");
-> +		return ret;
-> +	}
-> +
-> +	master->ssid_bits = min_t(u8, ilog2(num_pasids),
-> +				  master->smmu->ssid_bits);
-> +	return 0;
-> +}
-> +
-> +static void arm_smmu_disable_pasid(struct arm_smmu_master *master)
-> +{
-> +	struct pci_dev *pdev;
-> +
-> +	if (!dev_is_pci(master->dev))
-> +		return;
-> +
-> +	pdev = to_pci_dev(master->dev);
-> +
-> +	if (!pdev->pasid_enabled)
-> +		return;
-> +
-> +	master->ssid_bits = 0;
-> +	pci_disable_pasid(pdev);
-> +}
-> +
->  static void arm_smmu_detach_dev(struct arm_smmu_master *master)
->  {
->  	unsigned long flags;
-> @@ -2852,13 +2899,16 @@ static int arm_smmu_add_device(struct device *dev)
->  
->  	master->ssid_bits = min(smmu->ssid_bits, fwspec->num_pasid_bits);
->  
-> +	/* Note that PASID must be enabled before, and disabled after ATS */
-> +	arm_smmu_enable_pasid(master);
-> +
->  	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB))
->  		master->ssid_bits = min_t(u8, master->ssid_bits,
->  					  CTXDESC_LINEAR_CDMAX);
->  
->  	ret = iommu_device_link(&smmu->iommu, dev);
->  	if (ret)
-> -		goto err_free_master;
-> +		goto err_disable_pasid;
->  
->  	group = iommu_group_get_for_dev(dev);
->  	if (IS_ERR(group)) {
-> @@ -2871,6 +2921,8 @@ static int arm_smmu_add_device(struct device *dev)
->  
->  err_unlink:
->  	iommu_device_unlink(&smmu->iommu, dev);
-> +err_disable_pasid:
-> +	arm_smmu_disable_pasid(master);
->  err_free_master:
->  	kfree(master);
->  	fwspec->iommu_priv = NULL;
-> @@ -2891,6 +2943,7 @@ static void arm_smmu_remove_device(struct device *dev)
->  	arm_smmu_detach_dev(master);
->  	iommu_group_remove_device(dev);
->  	iommu_device_unlink(&smmu->iommu, dev);
-> +	arm_smmu_disable_pasid(master);
->  	kfree(master);
->  	iommu_fwspec_free(dev);
->  }
-> 
+// disabled, SFI with SFP cage, jaz@semihalf.com
+arch/arm64/boot/dts/marvell/cn9130-db.dts:131:  phy-mode =3D "10gbase-kr";
+arch/arm64/boot/dts/marvell/cn9131-db.dts:89:   phy-mode =3D "10gbase-kr";
 
+these are used:
+
+// SFP ports, antoine.tenart@free-electrons.com
+arch/arm64/boot/dts/marvell/armada-7040-db.dts:279:     phy-mode =3D "10gba=
+se-kr";=20
+arch/arm64/boot/dts/marvell/armada-8040-db.dts:190:     phy-mode =3D "10gba=
+se-kr";
+arch/arm64/boot/dts/marvell/armada-8040-db.dts:334:     phy-mode =3D "10gba=
+se-kr";
+
+// SFP, 10GKR, antoine.tenart@free-electrons.com
+arch/arm64/boot/dts/marvell/armada-8040-mcbin.dts:37:   phy-mode =3D "10gba=
+se-kr";
+arch/arm64/boot/dts/marvell/armada-8040-mcbin.dts:44:   phy-mode =3D "10gba=
+se-kr";
+
+// SFP, baruch@tkos.co.il
+arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts:279: phy-mode =
+=3D "10gbase-kr";
+
+// SFP+, rmk+kernel@armlinux.org.uk
+arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dts:19:        phy=
+-mode =3D "10gbase-kr";=20
+arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dts:26:        phy=
+-mode =3D "10gbase-kr";=20
+
+I've added the information I could derive from the commit message.
+Maybe the original authors of the commits can help us with more
+information on the actual HW capabilities/operation mode.
+
+Regards,
+Madalin
