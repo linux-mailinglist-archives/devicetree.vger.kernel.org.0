@@ -2,211 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01051128E1B
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2019 14:25:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AC6128E5A
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2019 15:10:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726613AbfLVNZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Dec 2019 08:25:05 -0500
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:35851 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726539AbfLVNZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Dec 2019 08:25:04 -0500
-Received: by mail-pl1-f196.google.com with SMTP id a6so5376346plm.3;
-        Sun, 22 Dec 2019 05:25:04 -0800 (PST)
+        id S1726521AbfLVOKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Dec 2019 09:10:53 -0500
+Received: from mail-pj1-f66.google.com ([209.85.216.66]:39705 "EHLO
+        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726393AbfLVOKx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Dec 2019 09:10:53 -0500
+Received: by mail-pj1-f66.google.com with SMTP id t101so6304947pjb.4;
+        Sun, 22 Dec 2019 06:10:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=yAOtMUwD/qpfStPtispf3vk9JaKfKQUNKLcLxT26P+w=;
-        b=TX7pOrAwGAXN6pE7nq78PMMvdr4vJzLvqz44HqMKGqbQsNjK5i6RvG5WMB/hR6KGf6
-         4NPr2Qfy5CiPUykEyODKg8lqNrjqq0WnUFUfdnUyt6E5NnM8dPN+ydbjQJFH73UVuK16
-         XaupZPv3e96ASYNJlvURztvPFk85Ks1X68k+Fa+J7QyQIaAwqxYR/VRBesLb8DWm6dhg
-         5JaD48vFawlXW9c/3fe837M17MBHZR1+09CVwQA+qgVrNPv5QmJQ0dTv2uLH8ZNzbSgw
-         rF2icc//h7Vcn1FCO2KphtRVvZYL994ltq/Ldk9k7vltBl6/sPW6bumwtcgKXmI1/ZcK
-         x1Zw==
+        h=from:to:cc:subject:date:message-id;
+        bh=814BTk/L0iDRXw/rhLXQMNOV1fosSV7rD9UHif3vpVY=;
+        b=JuRT9FopP2EEsJFprskl8hSX3GWW2Un0HHelK6DBp9o8hiLwpxC7bwoc94k12Lmdso
+         b+kz3j1RfVI6FuPpBn+5gayCndU9ncisa6HRajcHdjNJaksdmqvF0qayAfxYyl2WGLrb
+         q02hPaqn+wg34kmvjrNYBvtvzeQVHGy6l+4EbcuGEAtE19OgkdP5LOGQReoCG2gBKz9h
+         dHqdVzxf6N09eUKpbMFd8+Cgk7Z5PwASxiLtZlDqvQIXIigCAYX5yUWTugU9MUZRTWAm
+         k0BUeSkOOxPZL4H74Sv7z6Q4X+UH3witBkHgAh8rZJKd0SKN9LJJceoiRCW6Ou+O+rdj
+         /qBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=yAOtMUwD/qpfStPtispf3vk9JaKfKQUNKLcLxT26P+w=;
-        b=USBmtuLNzMuNCaYPVSu3roXvWe78C+Oz7OZCpMLUIyvBI2bnazBM13Kn/iz+0O+A5h
-         nmDZgTAaTubszY+3JIixzfF/HYmguEQFRbEf8/ZRsk4jiAEXP3opCtf+Hq16PhhVwrF+
-         9hoDM7OVBoDjAIkANmYmlzVA9RYjPAxgU0eqjaS5HD6tCxsHqwkg6dix0ZMQbgB/CbSs
-         VtXk2H2qMpapeOdBjsbT1rGqUpJNO1XpkbpnvKYstXRvBTufWJ5qn6s35K8ryOCznXZ1
-         ysH24bfPI/NEYuT441bnJfFwQENDT/gJcCp9J3QzCa3jAye2CDwpmlsUHxwdIHLjlpjG
-         wv/w==
-X-Gm-Message-State: APjAAAVfbjRGD7wYHfF5FKko/gdwthfRfS7OLxBTdzIviiLNL0fA2Qt3
-        rNPOK00lpoUhHNJ70EbSw8U=
-X-Google-Smtp-Source: APXvYqz7JAli1bhkUSt9KMgUJ/tuA/JNFlY9P88wOQBoqkeETc3LPCu0h3YXwDXQ7y2NnbxuZ+4qMg==
-X-Received: by 2002:a17:902:8207:: with SMTP id x7mr1160978pln.286.1577021103598;
-        Sun, 22 Dec 2019 05:25:03 -0800 (PST)
-Received: from localhost (64.64.229.47.16clouds.com. [64.64.229.47])
-        by smtp.gmail.com with ESMTPSA id b4sm20816190pfd.18.2019.12.22.05.25.01
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 22 Dec 2019 05:25:03 -0800 (PST)
-Date:   Sun, 22 Dec 2019 21:24:59 +0800
-From:   Dejin Zheng <zhengdejin5@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 08/10] usb: phy: tegra: Use u32 for hardware register
- variables
-Message-ID: <20191222132227.GA7096@nuc8i5>
-References: <20191220015238.9228-1-digetx@gmail.com>
- <20191220015238.9228-9-digetx@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191220015238.9228-9-digetx@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=814BTk/L0iDRXw/rhLXQMNOV1fosSV7rD9UHif3vpVY=;
+        b=CdMiZBqFUImleeVlmfvfSj2lLVlQWPv6q3Gp2C8Vk2lvBMnPj1BvmbSwM4+oizC7Nw
+         KmtGX0E2EyV1A2LEuFdH7/4ft5ILD6j3bePmf0ARuGCUCDyytw61NHeWovIr5MyDMm05
+         eBfiZ0Ap+m5IeSdpeCzzqz/K+7zJVEjVmh9BzM8a8D1/na5Bj4prYFt8G25i0CteYaQV
+         LretpcIUGYjBaA68Sr5USEvfkFBaNz6B/eOwmLMO1zRvN2z/yMNOWo5y/6DEuUc1hRtK
+         mXqF+pdBf+NTknLqePj7pU5oKJhgx70RyhTyAHWAZ1Lwo4W1PL9ZsEh2OwrzdWpSNpsU
+         ylBA==
+X-Gm-Message-State: APjAAAU9ARzelI5A+q2dwU7AtUNOYSdNcfHVSTv9h7jApECvsXrH54Wu
+        kmJ84hiM+jnpqlZjWtSnQVbaeSrMMy8=
+X-Google-Smtp-Source: APXvYqx9IgirQ91Y6HfU8ZfcWDOeIcYiq7FgqmvZOrqmwHqKuGk2qVXZWLC6Bq9NQP34wgYMdILrEA==
+X-Received: by 2002:a17:90a:b30b:: with SMTP id d11mr27707591pjr.22.1577023852076;
+        Sun, 22 Dec 2019 06:10:52 -0800 (PST)
+Received: from localhost.localdomain ([240f:34:212d:1:368e:e048:68f1:84e7])
+        by smtp.gmail.com with ESMTPSA id x33sm18320073pga.86.2019.12.22.06.10.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 22 Dec 2019 06:10:50 -0800 (PST)
+From:   Akinobu Mita <akinobu.mita@gmail.com>
+To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Akinobu Mita <akinobu.mita@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kamil Debski <kamil@wypas.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH 0/2] hwmon: (pwm-fan) add option to stop fan on shutdown
+Date:   Sun, 22 Dec 2019 23:10:21 +0900
+Message-Id: <1577023823-9615-1-git-send-email-akinobu.mita@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 20, 2019 at 04:52:36AM +0300, Dmitry Osipenko wrote:
-> There is a mix of u32/ULONG usage in the driver's code. Let's switch to
-> u32 uniformly, for consistency.
-> 
-> Suggested-by: Thierry Reding <thierry.reding@gmail.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/usb/phy/phy-tegra-usb.c | 28 +++++++++++++++-------------
->  1 file changed, 15 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/usb/phy/phy-tegra-usb.c b/drivers/usb/phy/phy-tegra-usb.c
-> index d5739b6e0b6c..551c94e3877a 100644
-> --- a/drivers/usb/phy/phy-tegra-usb.c
-> +++ b/drivers/usb/phy/phy-tegra-usb.c
-> @@ -202,7 +202,7 @@ static inline struct tegra_usb_phy *to_tegra_usb_phy(struct usb_phy *u_phy)
->  static void set_pts(struct tegra_usb_phy *phy, u8 pts_val)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	if (phy->soc_config->has_hostpc) {
->  		val = readl_relaxed(base + TEGRA_USB_HOSTPC1_DEVLC);
-> @@ -221,7 +221,7 @@ static void set_pts(struct tegra_usb_phy *phy, u8 pts_val)
->  static void set_phcd(struct tegra_usb_phy *phy, bool enable)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	if (phy->soc_config->has_hostpc) {
->  		val = readl_relaxed(base + TEGRA_USB_HOSTPC1_DEVLC);
-> @@ -320,7 +320,8 @@ static int utmip_pad_power_on(struct tegra_usb_phy *phy)
->  {
->  	struct tegra_utmip_config *config = phy->config;
->  	void __iomem *base = phy->pad_regs;
-> -	unsigned long val, flags;
-> +	unsigned long flags;
-> +	u32 val;
-Why are you still using unsigned long here?
+The pwm-fan driver leaves the fun running when shutting down the system.
+(On the other hand the gpio-fan driver stops it.)
 
->  	int err;
->  
->  	err = clk_prepare_enable(phy->pad_clk);
-> @@ -355,7 +356,8 @@ static int utmip_pad_power_on(struct tegra_usb_phy *phy)
->  static int utmip_pad_power_off(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->pad_regs;
-> -	unsigned long val, flags;
-> +	unsigned long flags;
-> +	u32 val;
-ditto
+This adds an optional property "disable-state-shutdown" in case someone
+wants to stop the fun running when shutting down the system.
 
->  	int err;
->  
->  	if (!utmip_pad_count) {
-> @@ -393,7 +395,7 @@ static int utmi_wait_register(void __iomem *reg, u32 mask, u32 result)
->  static void utmi_phy_clk_disable(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	/*
->  	 * The USB driver may have already initiated the phy clock
-> @@ -425,7 +427,7 @@ static void utmi_phy_clk_disable(struct tegra_usb_phy *phy)
->  static void utmi_phy_clk_enable(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	/*
->  	 * The USB driver may have already initiated the phy clock
-> @@ -460,7 +462,7 @@ static int utmi_phy_power_on(struct tegra_usb_phy *phy)
->  {
->  	struct tegra_utmip_config *config = phy->config;
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  	int err;
->  
->  	val = readl_relaxed(base + USB_SUSP_CTRL);
-> @@ -611,7 +613,7 @@ static int utmi_phy_power_on(struct tegra_usb_phy *phy)
->  static int utmi_phy_power_off(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	utmi_phy_clk_disable(phy);
->  
-> @@ -646,7 +648,7 @@ static int utmi_phy_power_off(struct tegra_usb_phy *phy)
->  static void utmi_phy_preresume(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	val = readl_relaxed(base + UTMIP_TX_CFG0);
->  	val |= UTMIP_HS_DISCON_DISABLE;
-> @@ -656,7 +658,7 @@ static void utmi_phy_preresume(struct tegra_usb_phy *phy)
->  static void utmi_phy_postresume(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	val = readl_relaxed(base + UTMIP_TX_CFG0);
->  	val &= ~UTMIP_HS_DISCON_DISABLE;
-> @@ -667,7 +669,7 @@ static void utmi_phy_restore_start(struct tegra_usb_phy *phy,
->  				   enum tegra_usb_phy_port_speed port_speed)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	val = readl_relaxed(base + UTMIP_MISC_CFG0);
->  	val &= ~UTMIP_DPDM_OBSERVE_SEL(~0);
-> @@ -687,7 +689,7 @@ static void utmi_phy_restore_start(struct tegra_usb_phy *phy,
->  static void utmi_phy_restore_end(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  
->  	val = readl_relaxed(base + UTMIP_MISC_CFG0);
->  	val &= ~UTMIP_DPDM_OBSERVE;
-> @@ -698,7 +700,7 @@ static void utmi_phy_restore_end(struct tegra_usb_phy *phy)
->  static int ulpi_phy_power_on(struct tegra_usb_phy *phy)
->  {
->  	void __iomem *base = phy->regs;
-> -	unsigned long val;
-> +	u32 val;
->  	int err;
->  
->  	err = gpio_direction_output(phy->reset_gpio, 0);
-> -- 
-> 2.24.0
-> 
+Akinobu Mita (2):
+  hwmon: (pwm-fan) add option to stop fan on shutdown
+  dt-bindings: hwmon: (pwm-fan) add disable-state-shutdown property
+
+ .../devicetree/bindings/hwmon/pwm-fan.txt          |  2 ++
+ drivers/hwmon/pwm-fan.c                            | 24 ++++++++++++++++++++--
+ 2 files changed, 24 insertions(+), 2 deletions(-)
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Kamil Debski <kamil@wypas.org>
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Cc: Guenter Roeck <linux@roeck-us.net>
+-- 
+2.7.4
+
