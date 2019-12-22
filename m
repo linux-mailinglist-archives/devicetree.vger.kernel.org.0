@@ -2,107 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4F4E128E4A
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2019 15:10:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA56128E60
+	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2019 15:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725903AbfLVOKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Dec 2019 09:10:39 -0500
-Received: from mail-wm1-f47.google.com ([209.85.128.47]:33161 "EHLO
-        mail-wm1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725840AbfLVOKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Dec 2019 09:10:39 -0500
-Received: by mail-wm1-f47.google.com with SMTP id d139so13021859wmd.0;
-        Sun, 22 Dec 2019 06:10:37 -0800 (PST)
+        id S1726613AbfLVOK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Dec 2019 09:10:56 -0500
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:45445 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726564AbfLVOK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Dec 2019 09:10:56 -0500
+Received: by mail-pf1-f195.google.com with SMTP id 2so7837598pfg.12;
+        Sun, 22 Dec 2019 06:10:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t7AbgJnlI2EgW2o46IrRW4rMlaaCjoaiBzQBWSad/QY=;
-        b=UczAdNSrjKhjynMj1kLnOFEfs6dBxuD9HS+qUfUS0ScfIOcm+JxMWk5oSaxBOkXByR
-         6gaLQqz3Mrz4qnPgputIbZ8rDwtcyjGTLKEnitpxLYIcNPmYF/krKuiJby6/FG1ThV1x
-         lWOFCCtp665LX5whMlvedNYORO30ma30VfSfu8luz8MqyMKoE85dZHn6rUFtScVgluQz
-         kcZny23KO0BF2TtqNDbLkEwLtKT4jMje2mofyUL9GglvxahI7tzl29d9td3sWDYADhLx
-         gphKu7SRjbY5pgidDmIGr46fzb56tVFY1u3SmCb/bzpJbXgy9hDo9o48nYMCzMgzrpMo
-         tfSg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=y2NgiqlWrB0g1nYThxREdvdN0lYU2uUNLMalSkDDff8=;
+        b=fxhiRDaJnFZagib3CeNKGtfPJXOjuu8y7mIxT8xt2DaPo6QZX13U144wA2Ot02mzta
+         mjv+29sTjUQf3vVS4St6SXHNZh+RoQwL8GZlG9n3CuHeHhY2MJlvxH29wN9npcXgBScl
+         A/i8RXBYpJ46iLd8xT/NnLhtzhvA2sD2LL8ShHWlSNthfAAGoB+Pwen4GRoUsNpGJAZ3
+         NYS/9O52cE7QHiY/yg/RfIlpuJQULU12OrwuEW9VqKq5dRrdsSMqm4Op8UBcZXRDXZq5
+         h4KbWg5p+fGlbX5wyUWo1QvUQKF8DI6rUA+Hpw69V4xVqzjfgYn4p0l3edkJOUaWxF35
+         xZgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=t7AbgJnlI2EgW2o46IrRW4rMlaaCjoaiBzQBWSad/QY=;
-        b=n1JHnzAjM4l3MMT0w0jvYMnrFayccMPnyU2MepY1HlKJiHShhcgn5LDlckHBaYdiO/
-         MdFdD7paNDQmxY/ilDBZftm/T+Lb4fi6jLvueBEz3ti6CU2gLhTa8eJAnvbT4ZhzNdSg
-         ampwcX9Z3ss3hkZxNCut/02++q9nT8Rm3zEbtzmnPAX2sCySovHU/Jjj2qIqPyKYZ6Cy
-         E9pSlPt+UteE9zKWyIRMVt9b5QvfgQZTapB029qPxwlq06gBbCvN4yV4/+5XTKAwIr2q
-         ZordvI//AO8hKZmB5iN9DpxH+kkV10VYmOkkotgQ6hIxjsN/J/SIL0tkCvLy+RXPrt/h
-         JYlQ==
-X-Gm-Message-State: APjAAAU7/XhEqXZ6PZ/Vf8hTWKiBtPxHdnH62ZV/GSsOyACQV+1imxV7
-        ebkT2ESPavsm5oW8KHEwf2I=
-X-Google-Smtp-Source: APXvYqzvd6XcPv4vx+hdJsXC32Q1Do76lfi1GgENJOeIj9qM+MtsJHFTfEKt5YaFE6KurC1wrYCX1g==
-X-Received: by 2002:a7b:ca4b:: with SMTP id m11mr27386857wml.164.1577023837135;
-        Sun, 22 Dec 2019 06:10:37 -0800 (PST)
-Received: from localhost (p2E5BEF3F.dip0.t-ipconnect.de. [46.91.239.63])
-        by smtp.gmail.com with ESMTPSA id m10sm16950082wrx.19.2019.12.22.06.10.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2019 06:10:35 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 00/13] memory: tegra: Add Tegra186/Tegra194 support
-Date:   Sun, 22 Dec 2019 15:10:22 +0100
-Message-Id: <20191222141035.1649937-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.24.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=y2NgiqlWrB0g1nYThxREdvdN0lYU2uUNLMalSkDDff8=;
+        b=osGm1RjeoiS9DNg7ApdQcgKgFtaX6485Xyr2VtUTSZKsXdSvxC+D/c617LxZO4p3IJ
+         +VNEztyjOkQj/DBjuiP3snOG+RWXp3ByVWnT09b8s8Q0+cSf0tAmlQlLpfeACP976TU7
+         enT9v4osM0pWupK86JIbHdvLf9yqJKnEchuXjd/HBtSiPIotsjnd7MxR9dWT4iyzjzz/
+         8o1Y8t/4aQ7Zip5yI6Ud7avO93vd9no98vuYIGVXLcL43CSkFO+1c+P02mxdijJyjuBp
+         jZjbX21Gtbdk1UDnhl8Iwnu8mBeGNftG71xTzh0BQSUSjPVBEY7VEKo57sMNNUMXtpJu
+         ESxw==
+X-Gm-Message-State: APjAAAWGocCcrvZMiFYGiZzsjLzZvKsC54ipiO2cW4ZO5OpAqB/CHIwP
+        t7oiGuety6DNiTI8FyhCJQomRb8P9Us=
+X-Google-Smtp-Source: APXvYqz19xRqv00GKGiTWaxyYCkFcRGVDz67nDMNvrCZxMzhuk+LP0W777jysfBEOiMp76TRkFPSGQ==
+X-Received: by 2002:a65:66da:: with SMTP id c26mr26319588pgw.354.1577023855335;
+        Sun, 22 Dec 2019 06:10:55 -0800 (PST)
+Received: from localhost.localdomain ([240f:34:212d:1:368e:e048:68f1:84e7])
+        by smtp.gmail.com with ESMTPSA id x33sm18320073pga.86.2019.12.22.06.10.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 22 Dec 2019 06:10:54 -0800 (PST)
+From:   Akinobu Mita <akinobu.mita@gmail.com>
+To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Akinobu Mita <akinobu.mita@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kamil Debski <kamil@wypas.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH 1/2] hwmon: (pwm-fan) add option to stop fan on shutdown
+Date:   Sun, 22 Dec 2019 23:10:22 +0900
+Message-Id: <1577023823-9615-2-git-send-email-akinobu.mita@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1577023823-9615-1-git-send-email-akinobu.mita@gmail.com>
+References: <1577023823-9615-1-git-send-email-akinobu.mita@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+The pwm-fan driver leaves the fun running when shutting down the system.
+(On the other hand the gpio-fan driver stops it.)
 
-Hi,
+This adds an optional property "disable-state-shutdown" in case someone
+wants to stop the fun running when shutting down the system.
 
-this set of patches improves the Tegra186 memory controller support and
-extends it with Tegra194 support. The first three patches add the needed
-device tree bindings and headers. Patches 4-10 first refactor the driver
-to make it easier to support multiple SoC generations and finally add
-EMC frequency scaling support (via debugfs) as well as Tegra194 support.
-The last three patches enable the memory and external memory controllers
-in device tree.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Kamil Debski <kamil@wypas.org>
+Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Signed-off-by: Akinobu Mita <akinobu.mita@gmail.com>
+---
+ drivers/hwmon/pwm-fan.c | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
 
-Thierry
-
-Thierry Reding (13):
-  dt-bindings: memory: Add Tegra186 memory client IDs
-  dt-bindings: memory: Add Tegra194 memory controller header
-  dt-bindings: memory: Add Tegra186 memory subsystem
-  memory: tegra: Rename tegra_mc to tegra186_mc on Tegra186
-  memory: tegra: Add per-SoC data for Tegra186
-  memory: tegra: Extract memory client SID programming
-  memory: tegra: Add system sleep support
-  memory: tegra: Support DVFS on Tegra186 and later
-  memory: tegra: Only include support for enabled SoCs
-  memory: tegra: Add support for the Tegra194 memory controller
-  arm64: tegra: Add interrupt for memory controller on Tegra186
-  arm64: tegra: Add external memory controller on Tegra186
-  arm64: tegra: Add the memory subsystem on Tegra194
-
- .../nvidia,tegra186-mc.yaml                   |  130 ++
- arch/arm64/boot/dts/nvidia/tegra186.dtsi      |   22 +
- .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi |    4 +
- arch/arm64/boot/dts/nvidia/tegra194.dtsi      |   43 +
- drivers/memory/tegra/Makefile                 |    3 +-
- drivers/memory/tegra/tegra186-emc.c           |  293 +++++
- drivers/memory/tegra/tegra186.c               | 1122 ++++++++++++++++-
- include/dt-bindings/memory/tegra186-mc.h      |  139 ++
- include/dt-bindings/memory/tegra194-mc.h      |  410 ++++++
- 9 files changed, 2110 insertions(+), 56 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
- create mode 100644 drivers/memory/tegra/tegra186-emc.c
- create mode 100644 include/dt-bindings/memory/tegra194-mc.h
-
+diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
+index 42ffd2e..8775d37 100644
+--- a/drivers/hwmon/pwm-fan.c
++++ b/drivers/hwmon/pwm-fan.c
+@@ -33,6 +33,7 @@ struct pwm_fan_ctx {
+ 	u8 pulses_per_revolution;
+ 	ktime_t sample_start;
+ 	struct timer_list rpm_timer;
++	bool disable_state_shutdown;
+ 
+ 	unsigned int pwm_value;
+ 	unsigned int pwm_fan_state;
+@@ -292,6 +293,9 @@ static int pwm_fan_probe(struct platform_device *pdev)
+ 
+ 	mutex_init(&ctx->lock);
+ 
++	ctx->disable_state_shutdown =
++		of_property_read_bool(dev->of_node, "disable-state-shutdown");
++
+ 	ctx->pwm = devm_of_pwm_get(dev, dev->of_node, NULL);
+ 	if (IS_ERR(ctx->pwm)) {
+ 		ret = PTR_ERR(ctx->pwm);
+@@ -390,8 +394,7 @@ static int pwm_fan_probe(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
+-#ifdef CONFIG_PM_SLEEP
+-static int pwm_fan_suspend(struct device *dev)
++static int pwm_fan_disable(struct device *dev)
+ {
+ 	struct pwm_fan_ctx *ctx = dev_get_drvdata(dev);
+ 	struct pwm_args args;
+@@ -418,6 +421,22 @@ static int pwm_fan_suspend(struct device *dev)
+ 	return 0;
+ }
+ 
++static void pwm_fan_shutdown(struct platform_device *pdev)
++{
++	struct pwm_fan_ctx *ctx = platform_get_drvdata(pdev);
++
++	if (!ctx->disable_state_shutdown)
++		return;
++
++	pwm_fan_disable(&pdev->dev);
++}
++
++#ifdef CONFIG_PM_SLEEP
++static int pwm_fan_suspend(struct device *dev)
++{
++	return pwm_fan_disable(dev);
++}
++
+ static int pwm_fan_resume(struct device *dev)
+ {
+ 	struct pwm_fan_ctx *ctx = dev_get_drvdata(dev);
+@@ -455,6 +474,7 @@ MODULE_DEVICE_TABLE(of, of_pwm_fan_match);
+ 
+ static struct platform_driver pwm_fan_driver = {
+ 	.probe		= pwm_fan_probe,
++	.shutdown	= pwm_fan_shutdown,
+ 	.driver	= {
+ 		.name		= "pwm-fan",
+ 		.pm		= &pwm_fan_pm,
 -- 
-2.24.1
+2.7.4
 
