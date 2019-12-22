@@ -2,104 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A47A0129022
-	for <lists+devicetree@lfdr.de>; Sun, 22 Dec 2019 23:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7992212904C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 00:37:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726267AbfLVWAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Dec 2019 17:00:07 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:40657 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726162AbfLVWAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Dec 2019 17:00:07 -0500
-Received: by mail-lj1-f195.google.com with SMTP id u1so15930019ljk.7;
-        Sun, 22 Dec 2019 14:00:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VellRtHE/5yjg7j+D4UN10YKpU4GLE2v6UKynyOlfDQ=;
-        b=WhltqlZSrXu23QRAxXQHl8ih659/oDLnfkM2wPjzR9avvvxjHpMWi3mbuJtkjn8Vgd
-         TSzZBmhc9TpNv9rPUiQ7coza8u0I9ALjlVFat8jt2wcKIAj1H9CKxPsUBScqWLzAB3ja
-         GWp54lxPyIAfHWlx1aYF12YVh159C73A8D3cTKvkeijkk8/eY/hmN5d/DDpSkoNj5yvI
-         ll273KJ4KQ5HFge45mORaFrbrLiATM2BY2A8M6ZO6qg3RqkGIFbUrqgPTABkhX331Q2N
-         3MPgEXkcpvwyxkOwsKCHwHjMgFKZK/EbFgelCPBVAw8USoMvt7MzLiwPHf0BK72ieOOf
-         +fbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VellRtHE/5yjg7j+D4UN10YKpU4GLE2v6UKynyOlfDQ=;
-        b=YRS9S+nWrN6HYTF8FEoE//OGK2g4OaSg2I9WYKD7FEiMsb93yFNgK2O09N/DTtEUaT
-         9nWGhXobpDJHydBLKAQFeFL9H82IOvPCIh3R5CPfOxY3nPFUjw5ZwJqBujst/P+CyIT9
-         nJBZozvRXtZg/lklVxIpG5/w3EKK4iglyeC9g84YdfVq7P+mRuoDZeM6rFNFTaZIWMtJ
-         FK7LVFH3rK1FHUIdwwysuFA79ltdP10Gchly4TSfUQTe4BXFtClo+HZMhDVNSIwjGcGx
-         y+W5qo9QvuwPN2tvu6z6PTxWzBqfh/G+asiHKFHwz0K5cDu58MMLUYGCmyynpaCmBq1C
-         QVcA==
-X-Gm-Message-State: APjAAAV05Gcb5AI3lt5zIhkzjf4w1p8iZKKOdp+NwTP4AsDHuTGIY9vx
-        oGu0LMkvSs+58rmlSHv3SEyCz7Wa
-X-Google-Smtp-Source: APXvYqy268PtBXj8TWBZE2EXtp5dZdQM/k5Azk1RRhX+9RHcur7tiTgRqoZvn8QRrYrkvpBasJxpzw==
-X-Received: by 2002:a2e:b555:: with SMTP id a21mr12074989ljn.170.1577052004315;
-        Sun, 22 Dec 2019 14:00:04 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id u16sm8524682lfi.36.2019.12.22.14.00.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Dec 2019 14:00:03 -0800 (PST)
-Subject: Re: [PATCH v5 18/19] arm64: tegra: smaug: Change clk_out_2 provider
- to pmc
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, broonie@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
-        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, spujar@nvidia.com,
-        josephl@nvidia.com, daniel.lezcano@linaro.org,
-        mmaddireddy@nvidia.com, markz@nvidia.com,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1576880825-15010-1-git-send-email-skomatineni@nvidia.com>
- <1576880825-15010-19-git-send-email-skomatineni@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <2f85578e-8552-9e2e-9f67-355b24d6b99f@gmail.com>
-Date:   Mon, 23 Dec 2019 01:00:01 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        id S1726114AbfLVXhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Dec 2019 18:37:25 -0500
+Received: from titan.ufpe.br ([150.161.6.80]:38354 "EHLO canit.ufpe.br"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726057AbfLVXhZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Dec 2019 18:37:25 -0500
+Received: from zimbraufpe.ufpe.br (zimbraufpe.ufpe.br [150.161.6.73])
+        by canit.ufpe.br (8.14.4/8.14.4/Debian-4) with ESMTP id xBMNb5k1130510
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 22 Dec 2019 20:37:06 -0300
+Received: from localhost (localhost [127.0.0.1])
+        by zimbraufpe.ufpe.br (Postfix) with ESMTP id 0E503C7A3948;
+        Sun, 22 Dec 2019 20:37:04 -0300 (-03)
+X-Virus-Scanned: amavisd-new at ufpe.br
+Received: from zimbraufpe.ufpe.br ([127.0.0.1])
+        by localhost (zimbraufpe.ufpe.br [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 0X7v5IwT_RGt; Sun, 22 Dec 2019 20:37:03 -0300 (-03)
+Received: from zimbraufpe.ufpe.br (zimbraufpe.ufpe.br [150.161.6.73])
+        by zimbraufpe.ufpe.br (Postfix) with ESMTP id B719D6B7FCAC;
+        Sun, 22 Dec 2019 20:37:03 -0300 (-03)
+Date:   Sun, 22 Dec 2019 20:37:03 -0300 (BRT)
+From:   Victhor Foster <victhor.foster@ufpe.br>
+To:     linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Cc:     agross <agross@kernel.org>, robh+dt <robh+dt@kernel.org>,
+        mark rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>
+Message-ID: <108381142.9510389.1577057823350.JavaMail.zimbra@ufpe.br>
+Subject: [PATCH] arm: dts: apq8084: Change tsens definition to new style
 MIME-Version: 1.0
-In-Reply-To: <1576880825-15010-19-git-send-email-skomatineni@nvidia.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [179.235.209.15]
+X-Mailer: Zimbra 8.8.7_GA_1964 (ZimbraWebClient - GC78 (Linux)/8.8.7_GA_1964)
+Thread-Index: /aPAUEAnqdHVSSwgzgG/IXT197l2aA==
+Thread-Topic: apq8084: Change tsens definition to new style
+X-Bayes-Prob: 0.5 (Score 0: No Bayes scoring rules defined, tokens from: SAIDA)
+X-Spam-Score: 0.00 () [Hold at 10.00] 
+X-CanIt-Incident-Id: 011FbB6Pz
+X-CanIt-Geo: ip=150.161.6.73; country=BR; region=Pernambuco; city=Recife; latitude=-8.05; longitude=-34.9000; http://maps.google.com/maps?q=-8.05,-34.9000&z=6
+X-CanItPRO-Stream: SAIDA
+X-Canit-Stats-ID: 011FbB6Pz - d77f4841f649 - 20191222
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=ufpe.br; h=date:from:to
+        :cc:message-id:subject:mime-version:content-type
+        :content-transfer-encoding; s=ufpe201801; bh=0euJECY7iR6dg4GlbOo
+        CvBVpwi9Hb5UrQY0uzUfBPTY=; b=dHog3oudUN97pg/72qtBc6odhww7BaStsG1
+        bRXOkmQittW4zobegTcdCGyQ4C2XDeZ3pt3vUxq+m+qDtBFM0AeM1wVXQBLaMrxG
+        cZcAdC1imngXLNAmrrInyNXZ8s6JJf9wrMqbZsjH9LZtOyAQCCROgVq/K6IoZNkI
+        3nTacZA2rpZfnwb/EUZhmOxRppxFYlZqXrieSomYap1zUx5jrRVpmxho4Bd59Nkv
+        gfzIjitxCkSYlDRbTg4J4YZsAWGdWSJjoWwoM+4g9zadlzGcAXvHXqd3YJBog7iz
+        qGqLvTELjDhSG3Xt98mnzAX4sA6AGja+DtMBC0L43wuQmtlJr8w==
+X-Scanned-By: CanIt (www . roaringpenguin . com) on 150.161.6.80
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-21.12.2019 01:27, Sowjanya Komatineni пишет:
-> clk_out_2 is one of the clocks from Tegra PMC block and Tegra PMC
-> clocks are moved from clock driver to pmc driver with pmc as clock
-> provider and using pmc clock ids.
-> 
-> This patch changes clk_out_2 provider to pmc and uses corresponding
-> pmc clock id for clk_out_2.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> index 72c7a04ac1df..2faab6390552 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-smaug.dts
-> @@ -1592,7 +1592,7 @@
->  			reg = <0x1a>;
->  			interrupt-parent = <&gpio>;
->  			interrupts = <TEGRA_GPIO(E, 6) IRQ_TYPE_LEVEL_LOW>;
-> -			clocks = <&tegra_car TEGRA210_CLK_CLK_OUT_2>;
-> +			clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_2>;
->  			clock-names = "mclk";
->  
->  			nuvoton,jkdet-enable;
-> 
+This patch changes the tsens peripheral definition to the new style, which fixes a kernel panic caused by a change in the tsens driver, introduced by commit 37624b58542fb9f2d9a70e6ea006ef8a5f66c30b.
+There was a patch submitted recently to this list that should fix this problem with old device trees and the new driver, so it may be redundant at this point, in terms of fixing the kernel panic, but this should align the APQ8084 device tree with the others.
 
-Isn't "assigned-clocks" needed here?
+Signed-off by: Victhor Foster <victhor.foster@ufpe.br>
+---
+ arch/arm/boot/dts/qcom-apq8084.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/qcom-apq8084.dtsi b/arch/arm/boot/dts/qcom-apq8084.dtsi
+index 0a0fb147ebb9..26d79ff2af22 100644
+--- a/arch/arm/boot/dts/qcom-apq8084.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8084.dtsi
+@@ -253,9 +253,11 @@ tsens_backup: backup@440 {
+ 
+ 		tsens: thermal-sensor@fc4a8000 {
+ 			compatible = "qcom,msm8974-tsens";
+-			reg = <0xfc4a8000 0x2000>;
++			reg = <0xfc4a9000 0x1000>, /* TM */
++			      <0xfc4a8000 0x1000>; /* SROT */
+ 			nvmem-cells = <&tsens_calib>, <&tsens_backup>;
+ 			nvmem-cell-names = "calib", "calib_backup";
++			#qcom,sensors = <11>;
+ 			#thermal-sensor-cells = <1>;
+ 		};
+ 
+-- 
+2.24.0
