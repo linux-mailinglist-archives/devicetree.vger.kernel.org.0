@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BAA129114
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 04:07:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46F8512912A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 04:38:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726557AbfLWDHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Dec 2019 22:07:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55412 "EHLO mail.kernel.org"
+        id S1726557AbfLWDiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Dec 2019 22:38:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38576 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726539AbfLWDHE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Dec 2019 22:07:04 -0500
-Received: from localhost.localdomain (unknown [180.106.222.238])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1726539AbfLWDiE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Dec 2019 22:38:04 -0500
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 64A1D2067C;
-        Mon, 23 Dec 2019 03:07:01 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7C9E3206D3;
+        Mon, 23 Dec 2019 03:38:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577070424;
-        bh=tGKbfl4nYGrpKIa7XUFcKI6UndQrGfcsMQv6v2wYn+w=;
-        h=From:To:Cc:Subject:Date:From;
-        b=GzISkFog5/WYeLvQ6e67aPyPLaYVJi9UQ++LfgRVU4St0TSUfomA/94/uqYIbTXHN
-         qYAln6E/rrLnFBFYhUtlL4EhDfihUCZgT/TCTcRoLYS0kH1UTadC1IX63CSj3snuIR
-         3+qvqGD/l+5GK7Q7hUoohObyHM4LBHbRndWOyb9U=
+        s=default; t=1577072283;
+        bh=byu92t4rRZcTmj4uQmg4Cq+RCMhLO6AQbfs1oyQJ8QQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FEiT2kK2KUKtp/RS4hR+N+9kPautjSI06XktyChIvRRO3R7zAirpcdCUx0T186lV9
+         74qXSNOv4IMvbAkDXflXyAlNhGiV+vzvtpaADHy3REGgEXtjVYEwTmvn7yK/9CfmNv
+         0BfKbRwpUajXGfaiOqGK0cw7gGOisv9qsKpTYSHs=
+Date:   Mon, 23 Dec 2019 11:37:42 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: [PATCH] bindings: fsl: document compatibles of lx2160a boards
-Date:   Mon, 23 Dec 2019 11:05:09 +0800
-Message-Id: <20191223030509.13298-1-shawnguo@kernel.org>
-X-Mailer: git-send-email 2.18.0
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Li Yang <leoyang.li@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jon Nettleton <jon@solid-run.com>,
+        Rabeeh Khoury <rabeeh@solid-run.com>
+Subject: Re: [PATCH v2 0/2] Add support for Solidrun CEX7 platforms
+Message-ID: <20191223033741.GF11523@dragon>
+References: <20191216124042.GH25745@shell.armlinux.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191216124042.GH25745@shell.armlinux.org.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The lx2160a board compatibles "fsl,lx2160a-qds" and "fsl,lx2160a-rdb"
-have been in use.  Let's document them.
+On Mon, Dec 16, 2019 at 12:40:42PM +0000, Russell King - ARM Linux admin wrote:
+> Hi,
+> 
+> This series adds support for the Solidrun Clearfog CX and Honeycomb
+> platforms that various developers have access to.
+> 
+> v2: fix review comments.
+> 
+>  arch/arm64/boot/dts/freescale/Makefile             |   2 +
+>  .../arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi | 127 +++++++++++++++++++++
+>  .../boot/dts/freescale/fsl-lx2160a-clearfog-cx.dts |  15 +++
+>  .../dts/freescale/fsl-lx2160a-clearfog-itx.dtsi    |  57 +++++++++
+>  .../boot/dts/freescale/fsl-lx2160a-honeycomb.dts   |  15 +++
+>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi     |  10 ++
+>  6 files changed, 226 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2160a-cex7.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2160a-honeycomb.dts
 
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+I applied both patches.  Please send a follow-up patch to document new
+board compatibles.
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 6f241a3b5a20..ee538f3a7f4d 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -389,6 +389,13 @@ properties:
-               - fsl,ls2088a-rdb
-           - const: fsl,ls2088a
- 
-+      - description: LX2160A based Boards
-+        items:
-+          - enum:
-+              - fsl,lx2160a-qds
-+              - fsl,lx2160a-rdb
-+          - const: fsl,lx2160a
-+
-       - description: S32V234 based Boards
-         items:
-           - enum:
--- 
-2.18.0
-
+Shawn
