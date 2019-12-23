@@ -2,169 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AC3A1294C8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 12:07:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 467E61294D6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 12:10:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726150AbfLWLGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 06:06:17 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:52766 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726918AbfLWLGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 06:06:06 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBNB5txe067332;
-        Mon, 23 Dec 2019 05:05:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1577099155;
-        bh=VgdWAAJ3Cz8tiJk/iLF7p/5t+YnecUVQdlQ8kNoKFXU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=UoxeAjlYwCQ2sLKXKo2e9e6TOQhzNiiMKWLsTvljz/X0oleqHX+A9Bl8IJUh1FQnJ
-         HBoP/HcHIvF5H/Zn5cGwoRVnF5aTyyomxVrlVGK7jUg4GjQFJK0Ky9eB7hbZ4ZCkQg
-         92hWHY1bcsTDib4jaKxFU2nFJDUJbfLbatbKBzpU=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBNB5tJJ041498
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 23 Dec 2019 05:05:55 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 23
- Dec 2019 05:05:55 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 23 Dec 2019 05:05:55 -0600
-Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBNB4eMP025693;
-        Mon, 23 Dec 2019 05:05:51 -0600
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <nm@ti.com>,
-        <ssantosh@kernel.org>
-CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
-        <t-kristo@ti.com>, <tony@atomide.com>, <j-keerthy@ti.com>,
-        <vigneshr@ti.com>, <frowand.list@gmail.com>
-Subject: [PATCH v8 18/18] soc: ti: k3-ringacc: Allow the driver to be built as module
-Date:   Mon, 23 Dec 2019 13:04:58 +0200
-Message-ID: <20191223110458.30766-19-peter.ujfalusi@ti.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20191223110458.30766-1-peter.ujfalusi@ti.com>
-References: <20191223110458.30766-1-peter.ujfalusi@ti.com>
+        id S1726663AbfLWLKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 06:10:41 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:38054 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726257AbfLWLKl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Dec 2019 06:10:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=tBB2+h5a9ut+dDBSWF0v9H6PyQlOx+QMXbp/30kZwSM=; b=ArfCyL8iEY3A5DioT9p89u2LxM
+        XOy3mPXAr4L/cECxMDfrlzoWVNr4H4nWhXSW/n/ZjNRw5PZMsooOeZe2/24my5YATsP23ubl9ZUYT
+        SgkzH1YLx2cw5NVJfC0WrWX8JIF9GdiiG5u9/6KsFPEuDhhz1BLdAJsfLKcgjZSJpumI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ijLbc-00022R-I9; Mon, 23 Dec 2019 12:10:32 +0100
+Date:   Mon, 23 Dec 2019 12:10:32 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     Madalin Bucur <madalin.bucur@oss.nxp.com>, davem@davemloft.net,
+        netdev@vger.kernel.org, f.fainelli@gmail.com, hkallweit1@gmail.com,
+        shawnguo@kernel.org, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, Madalin Bucur <madalin.bucur@nxp.com>
+Subject: Re: [PATCH net-next v2 1/7] net: phy: add interface modes for XFI,
+ SFI
+Message-ID: <20191223111032.GI32356@lunn.ch>
+References: <1577096053-20507-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1577096053-20507-2-git-send-email-madalin.bucur@oss.nxp.com>
+ <20191223105743.GN25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191223105743.GN25745@shell.armlinux.org.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ring accelerator driver can be built as module since all depending
-functions are exported.
+On Mon, Dec 23, 2019 at 10:57:43AM +0000, Russell King - ARM Linux admin wrote:
+> On Mon, Dec 23, 2019 at 12:14:07PM +0200, Madalin Bucur wrote:
+> > From: Madalin Bucur <madalin.bucur@nxp.com>
+> > 
+> > Add explicit entries for XFI, SFI to make sure the device
+> > tree entries for phy-connection-type "xfi" or "sfi" are
+> > properly parsed and differentiated against the existing
+> > backplane 10GBASE-KR mode.
+> > 
+> > Signed-off-by: Madalin Bucur <madalin.bucur@nxp.com>
+> 
+> NAK until we've finished discussing this matter in the previous posting.
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Tested-by: Keerthy <j-keerthy@ti.com>
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- drivers/soc/ti/Kconfig      |  2 +-
- drivers/soc/ti/k3-ringacc.c | 29 ++++++++++++++++++++++++++---
- 2 files changed, 27 insertions(+), 4 deletions(-)
+Agreed.
 
-diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
-index 4486e055794c..bdce98f68a3e 100644
---- a/drivers/soc/ti/Kconfig
-+++ b/drivers/soc/ti/Kconfig
-@@ -81,7 +81,7 @@ config TI_SCI_PM_DOMAINS
- 	  rootfs may be available.
- 
- config TI_K3_RINGACC
--	bool "K3 Ring accelerator Sub System"
-+	tristate "K3 Ring accelerator Sub System"
- 	depends on ARCH_K3 || COMPILE_TEST
- 	depends on TI_SCI_INTA_IRQCHIP
- 	help
-diff --git a/drivers/soc/ti/k3-ringacc.c b/drivers/soc/ti/k3-ringacc.c
-index 5fb2ee2ac978..fd9f35b7c9a6 100644
---- a/drivers/soc/ti/k3-ringacc.c
-+++ b/drivers/soc/ti/k3-ringacc.c
-@@ -7,7 +7,7 @@
- 
- #include <linux/dma-mapping.h>
- #include <linux/io.h>
--#include <linux/init.h>
-+#include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/soc/ti/k3-ringacc.h>
-@@ -264,6 +264,11 @@ struct k3_ring *k3_ringacc_request_ring(struct k3_ringacc *ringacc,
- 
- 	mutex_lock(&ringacc->req_lock);
- 
-+	if (!try_module_get(ringacc->dev->driver->owner)) {
-+		mutex_unlock(&ringacc->req_lock);
-+		return NULL;
-+	}
-+
- 	if (id == K3_RINGACC_RING_ID_ANY) {
- 		/* Request for any general purpose ring */
- 		struct ti_sci_resource_desc *gp_rings =
-@@ -308,6 +313,7 @@ struct k3_ring *k3_ringacc_request_ring(struct k3_ringacc *ringacc,
- 	return &ringacc->rings[id];
- 
- error:
-+	module_put(ringacc->dev->driver->owner);
- 	mutex_unlock(&ringacc->req_lock);
- 	return NULL;
- }
-@@ -488,6 +494,8 @@ int k3_ringacc_ring_free(struct k3_ring *ring)
- no_init:
- 	clear_bit(ring->ring_id, ringacc->rings_inuse);
- 
-+	module_put(ringacc->dev->driver->owner);
-+
- out:
- 	mutex_unlock(&ringacc->req_lock);
- 	return 0;
-@@ -1140,18 +1148,33 @@ static int k3_ringacc_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static int k3_ringacc_remove(struct platform_device *pdev)
-+{
-+	struct k3_ringacc *ringacc = dev_get_drvdata(&pdev->dev);
-+
-+	mutex_lock(&k3_ringacc_list_lock);
-+	list_del(&ringacc->list);
-+	mutex_unlock(&k3_ringacc_list_lock);
-+	return 0;
-+}
-+
- /* Match table for of_platform binding */
- static const struct of_device_id k3_ringacc_of_match[] = {
- 	{ .compatible = "ti,am654-navss-ringacc", },
- 	{},
- };
-+MODULE_DEVICE_TABLE(of, k3_ringacc_of_match);
- 
- static struct platform_driver k3_ringacc_driver = {
- 	.probe		= k3_ringacc_probe,
-+	.remove		= k3_ringacc_remove,
- 	.driver		= {
- 		.name	= "k3-ringacc",
- 		.of_match_table = k3_ringacc_of_match,
--		.suppress_bind_attrs = true,
- 	},
- };
--builtin_platform_driver(k3_ringacc_driver);
-+module_platform_driver(k3_ringacc_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("TI Ringacc driver for K3 SOCs");
-+MODULE_AUTHOR("Grygorii Strashko <grygorii.strashko@ti.com>");
--- 
-Peter
+Lets fully understand the issues before we start patching stuff.
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+     Andrew
