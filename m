@@ -2,60 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFFB12913D
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 04:57:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF19E1291AA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 06:49:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726604AbfLWD5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Dec 2019 22:57:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45694 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726539AbfLWD5Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Dec 2019 22:57:24 -0500
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 47A3E20709;
-        Mon, 23 Dec 2019 03:57:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577073444;
-        bh=HMWmu7fLzjD4zHWaJI1X0iL80kRp1P9VNuoGUhoQRKM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=xJzoeeF1/dw1fgzu36QaQ97BE8OM0U2I1GejPfCl/ybUsDko7hz9wVs/TpOoKeqXB
-         zI8e03xUgf/NVbcZFVre+m7tAV5sDvB0/uxkYHkrxvky6uU+e5I9AztgISvrqW7AIh
-         8krSe87z2BpOaWjH4TJVpWzP0qJ2pXGN0A1GxenQ=
-Date:   Mon, 23 Dec 2019 11:57:01 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Peng Ma <peng.ma@nxp.com>
-Cc:     "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Leo Li <leoyang.li@nxp.com>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [v5 2/3] arm64: dts: ls1028a: Update edma compatible to fit eDMA
- driver
-Message-ID: <20191223035701.GK11523@dragon>
-References: <20191212033714.4090-1-peng.ma@nxp.com>
- <20191212033714.4090-2-peng.ma@nxp.com>
+        id S1726059AbfLWFt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 00:49:29 -0500
+Received: from mail-pj1-f66.google.com ([209.85.216.66]:53513 "EHLO
+        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725909AbfLWFt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 00:49:29 -0500
+Received: by mail-pj1-f66.google.com with SMTP id n96so6961048pjc.3
+        for <devicetree@vger.kernel.org>; Sun, 22 Dec 2019 21:49:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1XUacwVg6UtA8MchmvXuh03DJHAG9CnuImbIcloSG5k=;
+        b=P+iJV5pbry18PLZyr669o+IPKh7QicKAILliFehkugV8ZOKOxqSVcVXCmVSgYN9xrj
+         xPe/xyLltPJI0X9rQ5GMwIfto/S4RT67Q3m7djdZY1OI6uYLvGqoHUhK+AGCiiojEPLm
+         zvsrB/SWV0NUhLbE2cPom+DB22t5tcs8k0dhTICX6mSFxKzyzMegfjldRBFkbD/PA23q
+         /7U/8X+5JVjimI1Q24WalhGe91L1whzdSfg6ro0rNYPBfCCiKVfg6vC3RmjDE9Zhon/S
+         TiNnGD7+dIqmKWYJuX7UXloGM21mecV56nSdh2yFlLZPDfGvWj+zzjQSW6+QbV0LY3dd
+         afFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1XUacwVg6UtA8MchmvXuh03DJHAG9CnuImbIcloSG5k=;
+        b=gfaiIMi6wALUfyVzF8unh6hDpkXZn1gogqx8L5mgYuiEoZvY3g//XlPe6sp07ySKb1
+         vCNj4pX63YYK6iBOUPdUk1GKNU2cspT7F85/D8xdEF7ugCnAMN/+DMKnJIFvOqPtKjLg
+         EFfvSWsfASZywEJiunJMu1UMmaaIL62Bbo3jVw1bQVqLcKteKYvL7D/jsx/vmlwfMWgT
+         8/TwLE8JLU0gw2aE9H5XF5stUZb/C3MEjBzJRdkEljETfm/UZJ9OAixoGPHaAJpBp+D8
+         3w6sB4oZXgTIEjo5N/Jvg+2onxinjUotgMa39dRNC1/xy+N4YQSOTGMtMOus2niNjsYo
+         ZsXQ==
+X-Gm-Message-State: APjAAAUCA6RmH/EQbqFJmkKWmndBL6/1hTcm1l/5dGIAihvgwbTGLuF1
+        lF+4kAZRLQXqaUBKIQMNqNDfqA==
+X-Google-Smtp-Source: APXvYqw+lXD6B//G6RmvqL6dzbQ+OHOTBYMX7tSL/CHI+FnUJbP04tPOj2vJTeE6aVXU6tCj3fxQmQ==
+X-Received: by 2002:a17:90a:b392:: with SMTP id e18mr25820505pjr.118.1577080168070;
+        Sun, 22 Dec 2019 21:49:28 -0800 (PST)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id l14sm19731779pgt.42.2019.12.22.21.49.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 22 Dec 2019 21:49:27 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, ath10k@lists.infradead.org
+Subject: [PATCH 0/2] ath10k: Enable QDSS clock on sm8150
+Date:   Sun, 22 Dec 2019 21:48:53 -0800
+Message-Id: <20191223054855.3020665-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20191212033714.4090-2-peng.ma@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 12, 2019 at 03:38:15AM +0000, Peng Ma wrote:
-> The eDMA of LS1028A soc has a little bit different from others, So we
-> should distinguish them in driver by compatible.
-> 
-> Signed-off-by: Peng Ma <peng.ma@nxp.com>
+On SM8150 the WiFi firmware depends on the QDSS clock ticking, or the system
+will reset due to an NoC error. So this adds an optional clock to the ath10k
+binding and makes sure it's enabled while the WiFi firmware needs it.
 
-Applied, thanks.
+Bjorn Andersson (2):
+  ath10k: Add optional qdss clk
+  arm64: dts: qcom: sm8150: Specify qdss clock for wifi
+
+ .../devicetree/bindings/net/wireless/qcom,ath10k.txt          | 2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi                          | 4 ++--
+ drivers/net/wireless/ath/ath10k/snoc.c                        | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+-- 
+2.24.0
+
