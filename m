@@ -2,119 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C61151295C5
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 13:01:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 244171295D6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 13:07:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726680AbfLWMBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 07:01:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36232 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726663AbfLWMBo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Dec 2019 07:01:44 -0500
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 43B3F20709;
-        Mon, 23 Dec 2019 12:01:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577102504;
-        bh=d1XHN84mIpC2WXkedmTZRyzHrAdPTzEjVBsv9ilL3eQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=AWSgqV1tfgltZkoaQo7tvfGClXEg/YBvCCIwImwZXzCgnC4OYTFGLi3U81XZZ914f
-         0FTZnPBCXhQGVSXh1Eq+ViGhQTAGedHaUdu+JB4pR848N/WxNtQVETImFl7GfnAAR8
-         nJ/qLxlRL/hO9leeHauXQTjqTQOh4mALTyOwYLGw=
-Date:   Mon, 23 Dec 2019 12:01:39 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     <Eugen.Hristev@microchip.com>
-Cc:     <robh+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <Nicolas.Ferre@microchip.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <a.zummo@towertech.it>, <Ludovic.Desroches@microchip.com>
-Subject: Re: [PATCH 03/10] dt-bindings: iio: trigger: at91-rtc-trigger: add
- bindings
-Message-ID: <20191223120139.557416b8@archlinux>
-In-Reply-To: <1576686157-11939-4-git-send-email-eugen.hristev@microchip.com>
-References: <1576686157-11939-1-git-send-email-eugen.hristev@microchip.com>
-        <1576686157-11939-4-git-send-email-eugen.hristev@microchip.com>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1726763AbfLWMHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 07:07:49 -0500
+Received: from mail-pf1-f171.google.com ([209.85.210.171]:43454 "EHLO
+        mail-pf1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726691AbfLWMHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 07:07:49 -0500
+Received: by mail-pf1-f171.google.com with SMTP id x6so7998023pfo.10
+        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2019 04:07:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=C/NDjdg8YQGt2AK0E3j6iJbr0F2WO/uc87KiGLNm5+Y=;
+        b=lpEzaA4THpszZ/Ppu08/O5yU3X9L1VnX/RSyAW7pJ6NA3OLZ0vjsmsFnI8vG8nPbaD
+         zsYyT5aS9ySca5D4+dL28IC7b2sKFof3SuMwfxuNTaQtr9w5sLvlJnOKKbtEFmt0WFLz
+         iCt+0xxqZsCR7gu6a2pQrRH+NArsx+RuI/yDlTvgX5z2ZrrTNgnY6NwFQVGojuFvDGK2
+         I1CZD4j4IL9Vv28yupdAH9IhI8iUVPRNbW4ygUwziLJALVIiQmxSlRBnrsNwjqcVXgf4
+         3nRH0iCulN/RVMvuSuVYWIZabui0OesVwX7ZWsm1qNnruJFsfktHK4/iYxQb4HlAcI4r
+         K+ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=C/NDjdg8YQGt2AK0E3j6iJbr0F2WO/uc87KiGLNm5+Y=;
+        b=kmaIS5ao9fiI4VQX6QfWcZ1YnDlb0+Topa7yzSxMk56uyiyuk6qfhJX2IRPqyd1RG6
+         JEQDcx+V40GRsnySqSJsEHoE9z1GB7FiXa+cnIA5gaywD97H7YO2OBuH4TmujUVFkLj9
+         /fVEy78wbFqjBW9dOjYX0aF6jw1FDgiMOzuTmo5YfIMJverJkAW6EwtWs++COacI/A5l
+         WHrw9FGhTeQALlFyNXfuD6gfaaXY/ZsYnO9la5gibPCXxQ136aU6ZhthqKkJkEPNT8Ws
+         UOgFvflTQ7dUXvCm1BnpwqAYRBxdZYpSrho83Peck0Z6viE9AdwVflMicIraOsJeIrOv
+         qY4A==
+X-Gm-Message-State: APjAAAUm6zNyGq+L9MgeFwo/iZdeVv0054BFWNa98tWib5XwERARXVNC
+        RUxDo/Rmu4u4u4dW8S2906w=
+X-Google-Smtp-Source: APXvYqzJdMswDscvxWPNKy12Y1hZaE/fHu30MCc7H6WYWHOBZmhGNSLOz+IZWUO3159cxb2kCjA4cA==
+X-Received: by 2002:a63:a350:: with SMTP id v16mr29499781pgn.87.1577102867968;
+        Mon, 23 Dec 2019 04:07:47 -0800 (PST)
+Received: from localhost.localdomain ([2804:14c:482:5bb:db1f:d676:5d7d:ed2b])
+        by smtp.gmail.com with ESMTPSA id k1sm744312pjl.21.2019.12.23.04.07.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Dec 2019 04:07:46 -0800 (PST)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH v2] ARM: dts: imx7: Unify temp-grade and speed-grade nodes
+Date:   Mon, 23 Dec 2019 09:07:19 -0300
+Message-Id: <20191223120719.7448-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Dec 2019 16:23:59 +0000
-<Eugen.Hristev@microchip.com> wrote:
+The following warning is seen when building with W=1:
 
-> From: Eugen Hristev <eugen.hristev@microchip.com>
-> 
-> Add bindings for AT91 RTC ADC Trigger hardware node.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-If this does make sense (under discussion) I think it should be in
-the rtc binding doc.  This doesn't make it explicit that this particular
-block is a child node of that block as far as I can see...
+arch/arm/boot/dts/imx7s.dtsi:551.39-553.7: Warning (unique_unit_address): /soc/aips-bus@30000000/ocotp-ctrl@30350000/temp-grade@10: duplicate unit-address (also used in node /soc/aips-bus@30000000/ocotp-ctrl@30350000/speed-grade@10)
 
-Jonathan
+Since temp-grade and speed-grade point to the same node, replace them by
+a single one to avoid the duplicate unit-address warning.
 
-> ---
->  .../bindings/iio/trigger/at91-rtc-trigger.yaml     | 44 ++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 040000 Documentation/devicetree/bindings/iio/trigger
->  create mode 100644 Documentation/devicetree/bindings/iio/trigger/at91-rtc-trigger.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/trigger/at91-rtc-trigger.yaml b/Documentation/devicetree/bindings/iio/trigger/at91-rtc-trigger.yaml
-> new file mode 100644
-> index 0000000..c8c5886
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/trigger/at91-rtc-trigger.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +# Copyright 2019 Eugen Hristev <eugen.hristev@gmail.com>
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/bindings/iio/trigger/microchip,rtc-adc-trigger.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Microchip AT91 RTC ADC Trigger (Real Time Clock to Analog to Digital Converter)
-> +
-> +maintainers:
-> +  - Eugen Hristev <eugen.hristev@microchip.com>
-> +
-> +description: |
-> +  Bindings for the Microchip AT91 RTC ADC Trigger.
-> +  The Real Time Clock block inside AT91 SoCs can be connected with a direct
-> +  hardware line to the ADC. This line can be raised at a specific time
-> +  interval in order to trigger the ADC to perform conversions.
-> +  Datasheet can be found here: http://ww1.microchip.com/downloads/en/devicedoc/ds60001476b.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - microchip,rtc-adc-trigger
-> +
-> +  reg:
-> +    description: |
-> +      Register map address (start address, size).
-> +    maxItems: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    {
-> +      #address_cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      rtc_adc_trigger: rtc-adc-trigger {
-> +        reg = <0x0 0x10>;
-> +        compatible = "microchip,rtc-adc-trigger";
-> +      };
-> +    };
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+Changes since v1:
+- Change the node name to fuse-grade (Shawn).
+
+ arch/arm/boot/dts/imx7d.dtsi | 2 +-
+ arch/arm/boot/dts/imx7s.dtsi | 9 ++-------
+ 2 files changed, 3 insertions(+), 8 deletions(-)
+
+diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
+index d8acd7cc7918..92f6d0c2a74f 100644
+--- a/arch/arm/boot/dts/imx7d.dtsi
++++ b/arch/arm/boot/dts/imx7d.dtsi
+@@ -12,7 +12,7 @@
+ 			clock-frequency = <996000000>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			#cooling-cells = <2>;
+-			nvmem-cells = <&cpu_speed_grade>;
++			nvmem-cells = <&fuse_grade>;
+ 			nvmem-cell-names = "speed_grade";
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+index 139ab9b98472..568d7a984aa6 100644
+--- a/arch/arm/boot/dts/imx7s.dtsi
++++ b/arch/arm/boot/dts/imx7s.dtsi
+@@ -152,8 +152,7 @@
+ 		interrupt-parent = <&gpc>;
+ 		interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
+ 		fsl,tempmon = <&anatop>;
+-		nvmem-cells = <&tempmon_calib>,
+-			<&tempmon_temp_grade>;
++		nvmem-cells = <&tempmon_calib>,	<&fuse_grade>;
+ 		nvmem-cell-names = "calib", "temp_grade";
+ 		clocks = <&clks IMX7D_PLL_SYS_MAIN_CLK>;
+ 	};
+@@ -548,11 +547,7 @@
+ 					reg = <0x3c 0x4>;
+ 				};
+ 
+-				tempmon_temp_grade: temp-grade@10 {
+-					reg = <0x10 0x4>;
+-				};
+-
+-				cpu_speed_grade: speed-grade@10 {
++				fuse_grade: fuse-grade@10 {
+ 					reg = <0x10 0x4>;
+ 				};
+ 			};
+-- 
+2.17.1
 
