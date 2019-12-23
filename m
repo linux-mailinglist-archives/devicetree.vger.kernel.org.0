@@ -2,198 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FB7912952B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 12:34:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 846B4129569
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 12:36:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727210AbfLWLeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 06:34:08 -0500
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:45633 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727146AbfLWLeI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 06:34:08 -0500
-Received: by mail-lf1-f66.google.com with SMTP id 203so12332092lfa.12
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2019 03:34:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=T1y8MMPNkqcrm20up1WtHiDJ34NUPmK2DHqDsNPyhC4=;
-        b=ADm3wWZImcglGNzePYJDfnN8M0JUlQ5PtPe5E50RqqFWTmMTtETsAvZo4NeNhckwqd
-         E28GFEn43RSTWd6NisqrDH6TTSBVK5M0of3J/cfGmfvVbTI8Ex7zk0866p/pJXK5wqiS
-         +C28+fUx1PYlT1Rr5ZIlZn6DM99d+5JVZ7ModYadUCL9hnaOzWcgF4UZfUSEgPdXuP5i
-         h9ewBJhPXtlBoXiWfYZavGFP3+SUEgwnpmM31PCPfUe4wy2RE428/xp6tJQZ5xfGB2OC
-         otmTsqRcJS4I5o9bvWDho29L9S8Vbm5p/bcZGVkvKSKkVdXEUwv4Ul6n8Z6KJ/eT4ZiS
-         CGxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=T1y8MMPNkqcrm20up1WtHiDJ34NUPmK2DHqDsNPyhC4=;
-        b=s/QxxXbo+bULnm+v4byO3WVOa8i9DU05ISU1FBDr+LkfkeZLacUemVHnEGZF2fWIDl
-         W5t+770OGNBY5UreS7vr3ho4se/VtN8eQEKNcqQLuETs9N/1lchPY6sHiSSUicpDS0j1
-         u3K4is7IbKFCU0Cm9O32nRn1oshGRGDSa/tRg3quTiGQDrv5pjPb6qplnZJKQP1CUINX
-         bEpa7pMBGlyQXE5X02WZqk7WU6L5AMYONf7Rd8GFe8m88CwwR7iQlnCW5hjr6n/rK9PV
-         3G88+LXhrfiWCZm1Ra8lw3v4CEbe8Kpth6FVvLYEdkHXmpZDKVIb0O01Ua1LaSLTgSV0
-         d8ng==
-X-Gm-Message-State: APjAAAUEq+cnZSenfUoq5BKDqNMJcml6dlOI7+OfHuYulCErFHQ4JVHy
-        yJaJbB+DWhjFmQEZ51v008HUIA==
-X-Google-Smtp-Source: APXvYqz2kQqY/39Q+EZKqXZwbPvv6tw98YGX97VVrwhkh+SlFQbNfb7b4baKAf9tTl7Z0bnVOKJcpA==
-X-Received: by 2002:ac2:4a91:: with SMTP id l17mr16799912lfp.75.1577100845219;
-        Mon, 23 Dec 2019 03:34:05 -0800 (PST)
-Received: from localhost.localdomain ([37.157.136.193])
-        by smtp.gmail.com with ESMTPSA id g15sm8381500ljk.8.2019.12.23.03.34.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Dec 2019 03:34:04 -0800 (PST)
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Vikash Garodia <vgarodia@codeaurora.org>, dikshita@codeaurora.org,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Subject: [PATCH v3 12/12] dt-bindings: media: venus: delete old binding document
-Date:   Mon, 23 Dec 2019 13:33:11 +0200
-Message-Id: <20191223113311.20602-13-stanimir.varbanov@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191223113311.20602-1-stanimir.varbanov@linaro.org>
-References: <20191223113311.20602-1-stanimir.varbanov@linaro.org>
+        id S1727221AbfLWLgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 06:36:39 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55768 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727425AbfLWLgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 06:36:39 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBNBaQd4076186;
+        Mon, 23 Dec 2019 05:36:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1577100986;
+        bh=7PM2ExdFmOb9fTnrkCAvPvStWpyhC4HlYdlnuYMgkPA=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=aThz1c95Y01tgz3j5uHahRmYXBp091MoH635BZu0AoiA+dT7LaZgv/+Q3tLXAwTVQ
+         eE2l2Gdi15/vc3ZGHVFzWR5hRYEJRYFv8vrfOi6AJuqwfFzvzYqQw0emR+58sRb2uC
+         lUZ91GQPf/+I1DrqFJjCnu0X9OBdGn9A0FIW5wFQ=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBNBaQ8p064888
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 23 Dec 2019 05:36:26 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 23
+ Dec 2019 05:36:26 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 23 Dec 2019 05:36:26 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBNBaM2E039852;
+        Mon, 23 Dec 2019 05:36:23 -0600
+Subject: Re: [PATCH v8 14/18] of: irq: Export of_msi_get_domain
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <nm@ti.com>,
+        <ssantosh@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <grygorii.strashko@ti.com>, <lokeshvutla@ti.com>,
+        <t-kristo@ti.com>, <tony@atomide.com>, <j-keerthy@ti.com>,
+        <vigneshr@ti.com>, <frowand.list@gmail.com>
+References: <20191223110458.30766-1-peter.ujfalusi@ti.com>
+ <20191223110458.30766-15-peter.ujfalusi@ti.com>
+Message-ID: <f49e6c3f-804b-27d8-5712-b381be49c3f4@ti.com>
+Date:   Mon, 23 Dec 2019 13:36:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <20191223110458.30766-15-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After transitioning to YAML DT schema we don't need this old-style
-document.
+Hi Matthias,
 
-Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
----
- .../devicetree/bindings/media/qcom,venus.txt  | 120 ------------------
- 1 file changed, 120 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/qcom,venus.txt
+On 23/12/2019 13.04, Peter Ujfalusi wrote:
+> From: Matthias Brugger <matthias.bgg@gmail.com>
+> 
+> Export of_mis_get_domain to enable it for users from outside.
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,venus.txt b/Documentation/devicetree/bindings/media/qcom,venus.txt
-deleted file mode 100644
-index b602c4c025e7..000000000000
---- a/Documentation/devicetree/bindings/media/qcom,venus.txt
-+++ /dev/null
-@@ -1,120 +0,0 @@
--* Qualcomm Venus video encoder/decoder accelerators
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: Value should contain one of:
--		- "qcom,msm8916-venus"
--		- "qcom,msm8996-venus"
--		- "qcom,sdm845-venus"
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: Register base address and length of the register map.
--- interrupts:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: Should contain interrupt line number.
--- clocks:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: A List of phandle and clock specifier pairs as listed
--		    in clock-names property.
--- clock-names:
--	Usage: required for msm8916
--	Value type: <stringlist>
--	Definition: Should contain the following entries:
--		- "core"	Core video accelerator clock
--		- "iface"	Video accelerator AHB clock
--		- "bus"		Video accelerator AXI clock
--- clock-names:
--	Usage: required for msm8996
--	Value type: <stringlist>
--	Definition: Should contain the following entries:
--		- "core"	Core video accelerator clock
--		- "iface"	Video accelerator AHB clock
--		- "bus"		Video accelerator AXI clock
--		- "mbus"	Video MAXI clock
--- power-domains:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: A phandle and power domain specifier pairs to the
--		    power domain which is responsible for collapsing
--		    and restoring power to the peripheral.
--- iommus:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: A list of phandle and IOMMU specifier pairs.
--- memory-region:
--	Usage: required
--	Value type: <phandle>
--	Definition: reference to the reserved-memory for the firmware
--		    memory region.
--
--* Subnodes
--The Venus video-codec node must contain two subnodes representing
--video-decoder and video-encoder, and one optional firmware subnode.
--Firmware subnode is needed when the platform does not have TrustZone.
--
--Every of video-encoder or video-decoder subnode should have:
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: Value should contain "venus-decoder" or "venus-encoder"
--- clocks:
--	Usage: required for msm8996
--	Value type: <prop-encoded-array>
--	Definition: A List of phandle and clock specifier pairs as listed
--		    in clock-names property.
--- clock-names:
--	Usage: required for msm8996
--	Value type: <stringlist>
--	Definition: Should contain the following entries:
--		- "core"	Subcore video accelerator clock
--
--- power-domains:
--	Usage: required for msm8996
--	Value type: <prop-encoded-array>
--	Definition: A phandle and power domain specifier pairs to the
--		    power domain which is responsible for collapsing
--		    and restoring power to the subcore.
--
--The firmware subnode must have:
--
--- iommus:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: A list of phandle and IOMMU specifier pairs.
--
--* An Example
--	video-codec@1d00000 {
--		compatible = "qcom,msm8916-venus";
--		reg = <0x01d00000 0xff000>;
--		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&gcc GCC_VENUS0_VCODEC0_CLK>,
--			 <&gcc GCC_VENUS0_AHB_CLK>,
--			 <&gcc GCC_VENUS0_AXI_CLK>;
--		clock-names = "core", "iface", "bus";
--		power-domains = <&gcc VENUS_GDSC>;
--		iommus = <&apps_iommu 5>;
--		memory-region = <&venus_mem>;
--
--		video-decoder {
--			compatible = "venus-decoder";
--			clocks = <&mmcc VIDEO_SUBCORE0_CLK>;
--			clock-names = "core";
--			power-domains = <&mmcc VENUS_CORE0_GDSC>;
--		};
--
--		video-encoder {
--			compatible = "venus-encoder";
--			clocks = <&mmcc VIDEO_SUBCORE1_CLK>;
--			clock-names = "core";
--			power-domains = <&mmcc VENUS_CORE1_GDSC>;
--		};
--
--		video-firmware {
--			iommus = <&apps_iommu 0x10b2 0x0>;
--		};
--	};
--- 
-2.17.1
+FYI, I have picked this old patch from you. I can not find the history
+why it is not in the kernel...
 
+> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
+>  drivers/of/irq.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+> index a296eaf52a5b..73017506ef00 100644
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
+> @@ -673,6 +673,7 @@ struct irq_domain *of_msi_get_domain(struct device *dev,
+>  
+>  	return NULL;
+>  }
+> +EXPORT_SYMBOL_GPL(of_msi_get_domain);
+>  
+>  /**
+>   * of_msi_configure - Set the msi_domain field of a device
+> 
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
