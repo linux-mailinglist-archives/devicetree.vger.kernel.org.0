@@ -2,109 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E29112986B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 16:45:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF961298C1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 17:35:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726717AbfLWPo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 10:44:56 -0500
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:39612 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725912AbfLWPo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 10:44:56 -0500
-Received: by mail-lj1-f196.google.com with SMTP id l2so18142395lja.6;
-        Mon, 23 Dec 2019 07:44:54 -0800 (PST)
+        id S1726783AbfLWQfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 11:35:53 -0500
+Received: from mail-wr1-f49.google.com ([209.85.221.49]:42336 "EHLO
+        mail-wr1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726718AbfLWQfx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 11:35:53 -0500
+Received: by mail-wr1-f49.google.com with SMTP id q6so17161496wro.9
+        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2019 08:35:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2lALFLqIheLEgHIom7mAgKB0pZF1q4wqqt0Xf8KC/5k=;
-        b=F+t1T8f/odmPzTeWRutRZxrRMBiD4W7vGnaiMemNWGLu9vhNsfXsQQnsoi3SioIkeA
-         Kv7qGootjoia5FiW7NE0XAK4XiGXnfXsfz07IZX7tUVtH7pJUEKQBPiIJqPJHPhYSqah
-         D+khuic8IqTB0+ohtEE4jJXzgV2I+ER7dRekTkD1kK6dD4EVdR+WUidMB9t4gH4HQEfZ
-         ysqGtrVtbiQXBPjO6eJx4b/jnhGeDITTY/XxnKcyYZC0/K7PItaELcyvHa7HViOZjnc5
-         X4pvqn/kaVX92uTADclg7X6RS8xvYuRrh2sDFur9NDdn2o/E2jrL4l8IUNfOHxCTA7hT
-         drXA==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=6pYALjvCMONqPlKDdfwUfxSZqlLUSb8zwcvL/ighjfc=;
+        b=QeposXQXkhj29XcZaTg19lPt95+VRwICWCIHRIUV17SKXN9vNqUfOATigRv3DO4zTI
+         NPfzlSctWIqyUiV7iR1sEvmj7G/f/4B1Esw/H7Z23M9OWtCqc5VpRD4nTNDp4Ks0jWgs
+         2UR1naPPgcyNcZE6RWA0iEbF8TV0fluMyoERI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2lALFLqIheLEgHIom7mAgKB0pZF1q4wqqt0Xf8KC/5k=;
-        b=TXdcGBo6tjdeUU1+StHhA+jvB9H4ARU2sdJ7ppxiOgMSw4+SDVzw1p3CCUqFvRtvqU
-         VUXxmJaXHkAl+xQnzojUM6M83e+sSMZQbN1CgEV/PDan4IxyBz7TEC84yPGKvmuuKFQ2
-         8nyudMJttSL3EKGLOiEvY0bRW4/vfsS62RSmqikUFgQKXNJUu69gOqI50X/dtVgT3+L6
-         hMY4IbgBIeOMHVqgzgvB1y7JnSxmn8ByoXVgghlMAI4b6e/kuHNsneX6rG2CL1bcvVqg
-         1HW1944Pr7gpvWb34G7qj9/VkpQ1rd1nSVEMab9uD39MkhXF92Emm6JVGX881HL8qsKY
-         kDeQ==
-X-Gm-Message-State: APjAAAXIiE0NMxM+zAWFUwDtGJo3S8nwlp1gbp8qg8RAh89Btx2ghISv
-        88mSbMvJRVEb/I6OTGk7LK5Jowiv
-X-Google-Smtp-Source: APXvYqwCeMb4P6fTo5DY4lhAVMql6DOsA6uHHbcjjpLG3OVynOKOvEBNHbpvrDATFxq7x3aiUb8DPg==
-X-Received: by 2002:a2e:9e16:: with SMTP id e22mr1077005ljk.220.1577115893563;
-        Mon, 23 Dec 2019 07:44:53 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id w17sm8494314lfn.22.2019.12.23.07.44.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 23 Dec 2019 07:44:53 -0800 (PST)
-Subject: Re: [PATCH 1/2] ARM: dts: tegra20: add labels to i2c nodes
-To:     Richard Leitner <richard.leitner@skidata.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20191219130431.30458-1-richard.leitner@skidata.com>
- <01ac756c-1e51-5d62-ca45-9e0b4f106a29@gmail.com>
- <27d4c933-8117-f38e-d4da-e58326fc6ee4@skidata.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <1a93a7a6-c3a1-0b94-ce3e-de8971487de5@gmail.com>
-Date:   Mon, 23 Dec 2019 18:44:52 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
-MIME-Version: 1.0
-In-Reply-To: <27d4c933-8117-f38e-d4da-e58326fc6ee4@skidata.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=6pYALjvCMONqPlKDdfwUfxSZqlLUSb8zwcvL/ighjfc=;
+        b=saTd4Rw1rV/9zR+REI/P8TVQElQJGG2cNMHurJoxJQMQJoj6/wHdQRxQmz4NfmjhG5
+         GyDETR0bdLp8FN8XKoYMVCyp+MJWyg7ofZXyhckxB3Qzp5w0x4Y+Np2q5WJKIKGpy8jv
+         k3HieBRynz7rcxhV21Q9NLBIlJYr+AwA4DQMLih9GRL5LMDwpw26svjvLMdd00EXsPRG
+         maqwA/Z/oIGedMEwXymrvBF5CsCQ29burt4WQN+QTsZMdPQGERZ40nFslAVKsNPWxb9g
+         GmZPVQ5dXSpHgb0glOId4CjEuN9MxzF6F4oGzfyvJXHvDxRUL21VGyE9EfuiBPwV8P3W
+         +LSA==
+X-Gm-Message-State: APjAAAWTieXtnKmUwP09UhOs2vhEw9w/SoN5JEbgvMNaRrb1YpLqkoOl
+        KZwFGxJu1EmBAYMr9U7YAiNYgQ==
+X-Google-Smtp-Source: APXvYqx6phOTxFluVkbXRrN7JXc5+NhmvV4f/omDkOTdewNBC0PpQPfOtn+hhlM6OPsEf2czRVf39Q==
+X-Received: by 2002:a5d:4a84:: with SMTP id o4mr30584003wrq.396.1577118950458;
+        Mon, 23 Dec 2019 08:35:50 -0800 (PST)
+Received: from localhost.localdomain ([37.160.152.81])
+        by smtp.gmail.com with ESMTPSA id s8sm20412498wrt.57.2019.12.23.08.35.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Dec 2019 08:35:49 -0800 (PST)
+From:   Michael Trimarchi <michael@amarulasolutions.com>
+To:     Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/3] Engicam icore fixes
+Date:   Mon, 23 Dec 2019 17:35:43 +0100
+Message-Id: <20191223163546.29637-1-michael@amarulasolutions.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-23.12.2019 10:46, Richard Leitner пишет:
-> Hi,
-> thanks for the reply.
-> 
-> On 20/12/2019 15:00, Dmitry Osipenko wrote:
->> 19.12.2019 16:04, Richard Leitner пишет:
->>> Add numbered labels to the i2c nodes of the Tegra20 SoC so we just need
->>> to alias it from derived boards.
->>>
->>> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
->>> ---
->>>   arch/arm/boot/dts/tegra20.dtsi | 6 +++---
->>>   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> ...
-> 
->>
->> Hello Richard,
->>
->> Why derived boards couldn't label nodes by themselves? That's what all
->> derived boards are doing already.
-> 
-> Of course they can, but IMHO its more useful to have the same labels for
-> all derived boards.
-> 
->>
->> BTW, upstream should benefit from the submitted changes. This is not a
->> very useful change for upstream if you're not updating the actual DTs of
->> any of the boards in arch/arm/boot/dts/*.
-> 
-> That's true. I thought of also patching the actual DTs but wasn't sure
-> if that should be in the same series...
-> Based on your answer I guess it should be.
-> 
-> Therefore I'll send a v2 soon.
-> 
-> Thanks again & regards;richard.l
+Fix ethernet in imx6dl-icore-1.5 mipi developent kit. Adjust ethernet
+reset in icore boards
 
-Seeing the full picture will be very helpful, thanks.
+Michael Trimarchi (3):
+  ARM: dts: imx6dl: Fix typo in i.CoreM6 1.5 Dual MIPI starter kit
+  ARM: dts: imx6dl: Remove duplication in Engicam i.CoreM6 1.5 Quad/Dual
+    MIPI
+  arm: dts: imx6qdl: Move the phy reset at device level
+
+ arch/arm/boot/dts/imx6dl-icore-mipi.dts  |  2 +-
+ arch/arm/boot/dts/imx6qdl-icore-1.5.dtsi |  2 --
+ arch/arm/boot/dts/imx6qdl-icore.dtsi     | 15 ++++++++++++++-
+ 3 files changed, 15 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
+
