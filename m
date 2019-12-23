@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAC46129B18
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 22:32:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38789129B3A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 22:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726846AbfLWVcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 16:32:41 -0500
-Received: from rere.qmqm.pl ([91.227.64.183]:57934 "EHLO rere.qmqm.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726817AbfLWVcl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Dec 2019 16:32:41 -0500
-Received: from remote.user (localhost [127.0.0.1])
-        by rere.qmqm.pl (Postfix) with ESMTPSA id 47hXd161hnz5Y;
-        Mon, 23 Dec 2019 22:32:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
-        t=1577136758; bh=O/d828ISA+n1x4IWaq8yeucNGGNrooHV7Ka+PXufgYU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cU77YKvNJgICtrxQwdrkuA3dQmlcb8JweNlMyWAgunfnFPBDztMQ9mNZutXs3wY0M
-         bLepP0vcFy4lhzj/XoAAmsd5S2fEKwaUVVHKoD5L+2LAQYWwtGxsJTnKpu8dBVcNuO
-         a4tabsxU6iYFP6vH2NSeZiCtuKhUmC1LXFzUjc9cNfJNkEDsipFwo6d+Lr1R0DYzYp
-         OD6ckcGPRmWjduIsXOGp1CCLTcKAOkOoJuBTBFzeQM0es/zNTJmcoL94jPigS60mKB
-         O9ZTMghJZmA/x/NhP5wUuQ+Li65bpKqxnmGCbUd/uT4Z38ZzVekALoxobVpKIGMDBe
-         4md82MjUvOVAw==
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.101.4 at mail
-Date:   Mon, 23 Dec 2019 22:32:34 +0100
-From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Peter Chen <peter.chen@nxp.com>, Rob Herring <robh-dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 10/10] usb: chipidea: tegra: Add USB_TEGRA_PHY module
- to driver's dependencies
-Message-ID: <20191223213234.GA28786@qmqm.qmqm.pl>
-References: <20191220015238.9228-1-digetx@gmail.com>
- <20191220015238.9228-11-digetx@gmail.com>
- <20191220035650.GC19921@b29397-desktop>
- <fb7dee6e-e645-fe45-126c-c5f1e280bc26@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fb7dee6e-e645-fe45-126c-c5f1e280bc26@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1726948AbfLWVom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 16:44:42 -0500
+Received: from lists.gateworks.com ([108.161.130.12]:55770 "EHLO
+        lists.gateworks.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726832AbfLWVom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 16:44:42 -0500
+Received: from 68-189-91-139.static.snlo.ca.charter.com ([68.189.91.139] helo=rjones.pdc.gateworks.com)
+        by lists.gateworks.com with esmtp (Exim 4.82)
+        (envelope-from <rjones@gateworks.com>)
+        id 1ijVk9-0007o6-Pq; Mon, 23 Dec 2019 22:00:01 +0000
+From:   Robert Jones <rjones@gateworks.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Robert Jones <rjones@gateworks.com>
+Subject: [PATCH v3 0/4] ARM: dts: imx: Add GW59xx Gateworks specials
+Date:   Mon, 23 Dec 2019 13:44:08 -0800
+Message-Id: <20191223214412.12259-1-rjones@gateworks.com>
+X-Mailer: git-send-email 2.9.2
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 20, 2019 at 07:31:08AM +0300, Dmitry Osipenko wrote:
-> 20.12.2019 06:56, Peter Chen пишет:
-> > On 19-12-20 04:52:38, Dmitry Osipenko wrote:
-[...]
-> >> --- a/drivers/usb/chipidea/ci_hdrc_tegra.c
-> >> +++ b/drivers/usb/chipidea/ci_hdrc_tegra.c
-> >> @@ -53,6 +53,12 @@ static int tegra_udc_probe(struct platform_device *pdev)
-> >>  	struct tegra_udc *udc;
-> >>  	int err;
-> >>  
-> >> +	if (IS_MODULE(CONFIG_USB_TEGRA_PHY)) {
-> >> +		err = request_module("phy_tegra_usb");
-> >> +		if (err)
-> >> +			return err;
-> >> +	}
-> >> +
-> > 
-> > Why you do this dependency, if this controller driver can't
-> > get USB PHY, it should return error. What's the return value
-> > after calling below:
-> > 
-> > 	udc->phy = devm_usb_get_phy_by_phandle(&pdev->dev, "nvidia,phy", 0);
-> 
-> It returns -EPROBE_DEFER when phy_tegra_usb isn't loaded.
+This series adds board support for the GW59xx Gateworks Ventana family
+specials.
 
-How are other driver modules autoloaded? Isn't there an appropriate
-MODALIAS or MODULE_DEVICE_TABLE in there?
+Changes in v2:
+ - Generalized node names
+ - Removed unnecessary labels
+ - Expanded patch subject
+ - Removed undocumented compatible string in dts**
 
-Best Regards,
-Michał Mirosław
+** I realize that the "gw,ventana" still exists here, but that cant be removed
+without breaking a conditional check in arch/arm/mach-imx/mach-imx6q.c
+
+Changes in v3:
+ - Fixed a conflict in arch/arm/boot/dts/Makefile
+
+Robert Jones (3):
+  ARM: dts: imx: Add GW5907 board support
+  ARM: dts: imx: Add GW5913 board support
+  ARM: dts: imx: Add GW5912 board support
+
+Tim Harvey (1):
+  ARM: dts: imx: Add GW5910 board support
+
+ arch/arm/boot/dts/Makefile            |   8 +
+ arch/arm/boot/dts/imx6dl-gw5907.dts   |  14 +
+ arch/arm/boot/dts/imx6dl-gw5910.dts   |  14 +
+ arch/arm/boot/dts/imx6dl-gw5912.dts   |  13 +
+ arch/arm/boot/dts/imx6dl-gw5913.dts   |  14 +
+ arch/arm/boot/dts/imx6q-gw5907.dts    |  14 +
+ arch/arm/boot/dts/imx6q-gw5910.dts    |  14 +
+ arch/arm/boot/dts/imx6q-gw5912.dts    |  13 +
+ arch/arm/boot/dts/imx6q-gw5913.dts    |  14 +
+ arch/arm/boot/dts/imx6qdl-gw5907.dtsi | 399 +++++++++++++++++++++++++++
+ arch/arm/boot/dts/imx6qdl-gw5910.dtsi | 491 ++++++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/imx6qdl-gw5912.dtsi | 461 +++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/imx6qdl-gw5913.dtsi | 348 ++++++++++++++++++++++++
+ 13 files changed, 1817 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-gw5907.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-gw5910.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-gw5912.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-gw5913.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-gw5907.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-gw5910.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-gw5912.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-gw5913.dts
+ create mode 100644 arch/arm/boot/dts/imx6qdl-gw5907.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6qdl-gw5910.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6qdl-gw5912.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6qdl-gw5913.dtsi
+
+-- 
+2.9.2
+
