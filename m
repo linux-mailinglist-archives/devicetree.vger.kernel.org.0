@@ -2,133 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3239E12920A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 07:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F9B12920F
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 07:55:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725811AbfLWGxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 01:53:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57872 "EHLO mail.kernel.org"
+        id S1725811AbfLWGzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 01:55:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59064 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725810AbfLWGxs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Dec 2019 01:53:48 -0500
-Received: from localhost (unknown [223.226.34.186])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1725810AbfLWGzV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Dec 2019 01:55:21 -0500
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 074DA20663;
-        Mon, 23 Dec 2019 06:53:45 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9620B20663;
+        Mon, 23 Dec 2019 06:55:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577084027;
-        bh=E9GtJEv5/Wg7wYSZvBrnuOFI6hszhwu0cq6AppC+9qw=;
+        s=default; t=1577084120;
+        bh=39ehGZ6TuL922vgrdz2h/bRu6TOJa3ZY3hJJ2N9KD9A=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=j+LXOHERLq+MKBHwX9oReM+7sdw6pEx/s6vS7PyfqPzKYep06rK5pIlC4m4Gducuq
-         mfX/7Cw8wMCBSF3tMP0UEiWULBiZ9nz6f8dnC78zuo278yvLszzyY+2EtyXWQLq6Jg
-         n5kwc14VXmG8ht7j0M596/8/bNi+j4Ai7rEbaEIw=
-Date:   Mon, 23 Dec 2019 12:23:40 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     robh+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
-        dan.j.williams@intel.com, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
-        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com,
-        j-keerthy@ti.com, vigneshr@ti.com
-Subject: Re: [PATCH v7 08/12] dt-bindings: dma: ti: Add document for K3 UDMA
-Message-ID: <20191223065340.GU2536@vkoul-mobl>
-References: <20191209094332.4047-1-peter.ujfalusi@ti.com>
- <20191209094332.4047-9-peter.ujfalusi@ti.com>
+        b=HW+GJS5OxSVhugdZ53LcIsfKTacGVpg6i8VPohFdkaXvBTZZ5Gft/aTeytg9wPTQw
+         qC0xltbypWCL5MPPInkZw5WdA/K0miyj1St6t+XwQyHSW9o//mvtbP81SnAKQ5LA1W
+         okYlXQFuzM2+Zuu5b/dE0xSVXprh64vRDs1D4FmA=
+Date:   Mon, 23 Dec 2019 14:54:59 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, xiaobo.xie@nxp.com,
+        jiafei.pan@nxp.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: ls1028a: fix little-big endian issue
+ for dcfg
+Message-ID: <20191223065458.GO11523@dragon>
+References: <20191213021839.23517-1-yinbo.zhu@nxp.com>
+ <20191213021839.23517-2-yinbo.zhu@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191209094332.4047-9-peter.ujfalusi@ti.com>
+In-Reply-To: <20191213021839.23517-2-yinbo.zhu@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-12-19, 11:43, Peter Ujfalusi wrote:
-> New binding document for
-> Texas Instruments K3 NAVSS Unified DMA – Peripheral Root Complex (UDMA-P).
+On Fri, Dec 13, 2019 at 10:18:39AM +0800, Yinbo Zhu wrote:
+> dcfg use little endian that SoC register value will be correct
 > 
-> UDMA-P is introduced as part of the K3 architecture and can be found in
-> AM654 and j721e.
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/dma/ti/k3-udma.yaml   | 185 ++++++++++++++++++
->  1 file changed, 185 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> new file mode 100644
-> index 000000000000..77aef4a4abce
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
-> @@ -0,0 +1,185 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/ti/k3-udma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments K3 NAVSS Unified DMA Device Tree Bindings
-> +
-> +maintainers:
-> +  - Peter Ujfalusi <peter.ujfalusi@ti.com>
-> +
-> +description: |
-> +  The UDMA-P is intended to perform similar (but significantly upgraded)
-> +  functions as the packet-oriented DMA used on previous SoC devices. The UDMA-P
-> +  module supports the transmission and reception of various packet types.
-> +  The UDMA-P is architected to facilitate the segmentation and reassembly of
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
+> Acked-by: Shawn Guo <shawnguo@kernel.org>
+> Acked-by: Yangbo Lu <yangbo.lu@nxp.com>
 
-How about:
+I reworded the subject and commit log a little, added Fixes tag and
+applied a fix.
 
-The UDMA-P architecture facilitates the segmentation...
-
-> +  SoC DMA data structure compliant packets to/from smaller data blocks that are
-> +  natively compatible with the specific requirements of each connected
-> +  peripheral.
-> +  Multiple Tx and Rx channels are provided within the DMA which allow multiple
-> +  segmentation or reassembly operations to be ongoing. The DMA controller
-> +  maintains state information for each of the channels which allows packet
-> +  segmentation and reassembly operations to be time division multiplexed between
-> +  channels in order to share the underlying DMA hardware. An external DMA
-> +  scheduler is used to control the ordering and rate at which this multiplexing
-> +  occurs for Transmit operations. The ordering and rate of Receive operations
-> +  is indirectly controlled by the order in which blocks are pushed into the DMA
-> +  on the Rx PSI-L interface.
-> +
-> +  The UDMA-P also supports acting as both a UTC and UDMA-C for its internal
-> +  channels. Channels in the UDMA-P can be configured to be either Packet-Based
-> +  or Third-Party channels on a channel by channel basis.
-> +
-> +  All transfers within NAVSS is done between PSI-L source and destination
-> +  threads.
-> +  The peripherals serviced by UDMA can be PSI-L native (sa2ul, cpsw, etc) or
-> +  legacy, non PSI-L native peripherals. In the later case a special, small PDMA
-> +  is tasked to act as a bridge between the PSI-L fabric and the legacy
-> +  peripheral.
-> +
-> +  PDMAs can be configured via UDMAP peer registers to match with the
-> +  configuration of the legacy peripheral.
-> +
-> +allOf:
-> +  - $ref: "../dma-controller.yaml#"
-> +
-> +properties:
-> +  "#dma-cells":
-> +    const: 1
-> +    description: |
-> +      The cell is the PSI-L  thread ID of the remote (to UDMAP) end.
-> +      Valid ranges for thread ID depends on the data movement direction:
-> +      for source thread IDs (rx): 0 - 0x7fff
-> +      for destination thread IDs (tx): 0x8000 - 0xffff
-> +
-> +      PLease refer to the device documentation for the PSI-L thread map and also
-
-s/PLease/Please
-
--- 
-~Vinod
+    arm64: dts: ls1028a: fix endian setting for dcfg
+    
+    DCFG block uses little endian.  Fix it so that register access becomes
+    correct.
+    
+    Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
+    Acked-by: Yangbo Lu <yangbo.lu@nxp.com>
+    Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+    Signed-off-by: Shawn Guo <shawnguo@kernel.org>
