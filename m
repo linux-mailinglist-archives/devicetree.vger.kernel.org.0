@@ -2,149 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37B89129B35
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 22:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03A67129B5E
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 23:06:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726884AbfLWVoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 16:44:32 -0500
-Received: from mail-io1-f67.google.com ([209.85.166.67]:43188 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726817AbfLWVoc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 16:44:32 -0500
-Received: by mail-io1-f67.google.com with SMTP id n21so15883742ioo.10;
-        Mon, 23 Dec 2019 13:44:31 -0800 (PST)
+        id S1726832AbfLWWGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 17:06:12 -0500
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:41893 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726817AbfLWWGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 17:06:11 -0500
+Received: by mail-lj1-f195.google.com with SMTP id h23so19087793ljc.8;
+        Mon, 23 Dec 2019 14:06:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=koCPH0cxDF98YbtxSO0x6h+giqorikDtjWlhEuBq+TE=;
-        b=HTCbj/0XVTGB/KTu/PdEO4PeXaUwXec4k2rZhUz2+pFW1HTk9BpyyrF2q7eFYEE63n
-         I37QuNMYtTdCFN+K93pQff9cqpDlV5e0ngY8oIW1jgIkmtNUbEa8U3LvfZWiRzUmmFyc
-         2a4GVb44gvYUcxj7BRngqqXDn2/sxqQtk0y/23GoA0M/skPKloTFiPWxgrRNgcQJnS+n
-         +wNOH+yszpOVh9+9BwbaL3PQO5VR9Xxc5ZD5cH24s8WhgyWkG1EuNjd7wVxaOUzyiDz8
-         zTWEgeqLZ5I3ummZ+H3O8+sBQhcbTez7mmPvtlKlhyuwuMRz9+BHL+324fl97D2vi/aj
-         vy/g==
+        bh=ZoDTN0tAP4UxL3pRwsJo0kDQkgx7F0cKeDJGsDtJLqY=;
+        b=bywnbBQNSXt35oFe163CE9RBzx1F3a5jgaRdbSalfAskaEaW6W/JkuGrUhHjcxQ+UE
+         LQcshd1zb/ztbz8y6tzyN5HBCNeBQ2JptlRgk589Fnf1Nag+1AY6znwdB3xDoLCj7ZCD
+         4AZVydbHYqEG5oRa7zzabl1UDTeD87lFqCdBsocPg918+9LvMN7PZSmOBx8hBEMDa2ln
+         /+Uq9hcvwf+uD9huqFDpy3No7JoYuoObm6pNn98ehzz0NyhI53L3KImxnSR8kfNp64h9
+         APFm+/US132gAv9gzG7RFeQ+4q03mUvv2pfV7CCCXsWknU6tuliTHaG7xv9Zj8jajiL6
+         Em/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=koCPH0cxDF98YbtxSO0x6h+giqorikDtjWlhEuBq+TE=;
-        b=AWVMKfy/AyrMsQxlFxbibWaAReFI7DAg8I7bt3zwnd+YamsmU4xVHywjtTyDO0g0lj
-         /WI4bGCtjPtwbt00ofUWdrEkGiuHdT7yAVjzaRpCwNXqxrdNkI/3HjVa+qJNj7PuZH6b
-         hDFkgnz6KJfzg+q6kJFavVZaMh/CAYus9MetkyUs7IEVigaVhwdTfh/a/sIv+dvVrWoj
-         vpUgII5SAp4gknYbwfw73b7/qIYwBF/4jic9Zlk2oOLNAvBpsPSvFZ2CkEy8eXdAkuR3
-         9OAfIZ9GJUrvRt0A94Y6p+AdN97kvJYS8G0HlgKvA9AgVBKsifMKmfBJfeLT0UFTgQ5O
-         QcOQ==
-X-Gm-Message-State: APjAAAVV2JGJY+5/jtFK8S0kEpM0/aazBdTgqGzX3AC0Z3Vm5dVrlSEe
-        JXjBGXKyu51KwWidus0bwyxvb6ij59/Ukqp+KwQ=
-X-Google-Smtp-Source: APXvYqyu46ajAJWwSKClwA3Ac23soXJMDMYYyY/c2MylFWpxaO6OKoAWs4fUYI7wX7F4yfyuIR8jIEmZ6TniFrsXx0s=
-X-Received: by 2002:a02:2a8e:: with SMTP id w136mr6107392jaw.117.1577137471307;
- Mon, 23 Dec 2019 13:44:31 -0800 (PST)
+        bh=ZoDTN0tAP4UxL3pRwsJo0kDQkgx7F0cKeDJGsDtJLqY=;
+        b=pJplq2JY8d7zexNmFNyvz3/bA2Lz6oNxDVUoX0Ckw3kEVLTsFPAXvLGqh8hBZGAsWI
+         NF3mUKbdNXFVC2QWZUAHGZ0TcuhvEyhKGjEd8ZJFMPyIp7a1UPSGIKoUOuu5rrPcnT7h
+         YyP/v0M/F5FK2fj8KF8Owx83lEpvA5IOD8kuB9IXYjBjy60vM93Ar4+GjV1ZpSP5pVAO
+         bQ7g+QlV9URXxyV5t0dcg03SpIb2lxudnu4FPuEBBiXGN5MJaG7kA3rLQ546zyp0Jtg0
+         0VVmwMxqSHqtcDpoajKFmD+c/+fi/kZ5Cfm27rKH17cVFJHVXhnogKfDOlXiadYjSFAD
+         f84g==
+X-Gm-Message-State: APjAAAXDYOel0xAM/4kC8JhQkhTarBoOv6rTGILCix/A3dNi65/vQ02X
+        5UhtYZLl8glBSe4PSGtz9C5gP6URfpF7Q1g4BtjIi2hvMzk=
+X-Google-Smtp-Source: APXvYqwfG8lTEmVUklHua2nUo1PoQYbrA0O9crTZ1Q3KU3RzKuvPKZx2lfnBqjIdHMf5yhXOuidmIW8CzEyATzbg+Oo=
+X-Received: by 2002:a2e:943:: with SMTP id 64mr7392159ljj.17.1577138769532;
+ Mon, 23 Dec 2019 14:06:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20191210003124.32376-1-jassisinghbrar@gmail.com> <20191219194000.GA23698@bogus>
-In-Reply-To: <20191219194000.GA23698@bogus>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Mon, 23 Dec 2019 15:44:20 -0600
-Message-ID: <CABb+yY3COBOHLQXkQMzB_DWh-yXsrtJqnD9vi9FfMPYBTgVuyg@mail.gmail.com>
-Subject: Re: [PATCHv1 1/2] dt-bindings: max3421-udc: add dt bindings for
- MAX3420 UDC
-To:     Rob Herring <robh@kernel.org>
-Cc:     Felipe Balbi <balbi@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
+References: <20191223214412.12259-1-rjones@gateworks.com> <20191223214412.12259-2-rjones@gateworks.com>
+In-Reply-To: <20191223214412.12259-2-rjones@gateworks.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 23 Dec 2019 19:05:56 -0300
+Message-ID: <CAOMZO5CLfyZjuz3c+Xr9v0D5h+r83PGgi8BrMnQZOOZSM-iGGw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] ARM: dts: imx: Add GW5907 board support
+To:     Robert Jones <rjones@gateworks.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-usb@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Tim Harvey <tharvey@gateworks.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 19, 2019 at 1:40 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Dec 09, 2019 at 06:31:24PM -0600, jassisinghbrar@gmail.com wrote:
-> > From: Jassi Brar <jaswinder.singh@linaro.org>
-> >
-> > Add YAML dt bindings for Maxim MAX3420 UDC controller.
-> >
-> > Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
-> > ---
-> >  .../bindings/usb/maxim,max3420-udc.yaml       | 60 +++++++++++++++++++
-> >  1 file changed, 60 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/maxim,max3420-udc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/maxim,max3420-udc.yaml b/Documentation/devicetree/bindings/usb/maxim,max3420-udc.yaml
-> > new file mode 100644
-> > index 000000000000..cf4eec8a618e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/maxim,max3420-udc.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
->
-> Dual license new bindings please:
->
-> (GPL-2.0-only OR BSD-2-Clause)
->
-ok
+Hi Robert,
 
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/maxim,max3420-udc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MAXIM MAX3420/1 USB Peripheral Controller
-> > +
-> > +maintainers:
-> > +  - Jassi Brar <jaswinder.singh@linaro.org>
-> > +
-> > +description: |
-> > +  The controller provices USB2.0 compliant FullSpeed peripheral
-> > +  implementation over the  SPI interface.
+On Mon, Dec 23, 2019 at 6:44 PM Robert Jones <rjones@gateworks.com> wrote:
 >
-> space                        ^
+> The Gateworks GW5907 is an IMX6 SoC based single board computer with:
+>  - IMX6Q or IMX6DL
+>  - 32bit DDR3 DRAM
+>  - FEC GbE Phy
+>  - bi-color front-panel LED
+>  - 256MB NAND boot device
+>  - Gateworks System Controller (hwmon, pushbutton controller, EEPROM)
+>  - Digital IO expander (pca9555)
+>  - Joystick 12bit adc (ads1015)
 >
-ok
+> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> Signed-off-by: Robert Jones <rjones@gateworks.com>
 
-> > +
-> > +  Specifications about the part can be found at:
-> > +    http://datasheets.maximintegrated.com/en/ds/MAX3420E.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - maxim,max3420-udc
-> > +      - maxim,max3421-udc
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    items:
-> > +      - const: udc
-> > +      - const: vbus
->
-> interrupts are integers, not strings. Should be interrupt-names?
->
-yes
+Not clear on the authorship on this patch.
 
-> > +
-> > +  spi-max-frequency:
-> > +    maximum: 26000000
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-names
->
-> Add:
->
-> additionalProperties: false
->
-ok
+If the original author is Tim, then his name should appear in the From field.
 
-Thanks.
+> ---
+>  arch/arm/boot/dts/Makefile            |   2 +
+>  arch/arm/boot/dts/imx6dl-gw5907.dts   |  14 ++
+>  arch/arm/boot/dts/imx6q-gw5907.dts    |  14 ++
+>  arch/arm/boot/dts/imx6qdl-gw5907.dtsi | 399 ++++++++++++++++++++++++++++++++++
+>  4 files changed, 429 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6dl-gw5907.dts
+>  create mode 100644 arch/arm/boot/dts/imx6q-gw5907.dts
+>  create mode 100644 arch/arm/boot/dts/imx6qdl-gw5907.dtsi
+>
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 1e9e1af..9ee80e2 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -422,6 +422,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+>         imx6dl-gw560x.dtb \
+>         imx6dl-gw5903.dtb \
+>         imx6dl-gw5904.dtb \
+> +       imx6dl-gw5907.dtb \
+
+You should add an additional patch that add these new boards in
+Documentation/devicetree/bindings/arm/fsl.yaml
