@@ -2,97 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F7B81298C6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 17:36:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C730C1298D2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 17:43:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726890AbfLWQf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 11:35:56 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:40353 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfLWQf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 11:35:56 -0500
-Received: by mail-wr1-f66.google.com with SMTP id c14so17183755wrn.7
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2019 08:35:55 -0800 (PST)
+        id S1726766AbfLWQnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 11:43:04 -0500
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:43064 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726718AbfLWQnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 11:43:04 -0500
+Received: by mail-lj1-f196.google.com with SMTP id a13so18325138ljm.10;
+        Mon, 23 Dec 2019 08:43:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=bJVh8WsGr3CI8B2tc3c0W8dsIPUnbHIuVomMDM1yxMw=;
-        b=JueXquKjYAzw369ZDgQeg6ZhcnZzvfjoaA0K89EUCS5KZ0VFh33wOgTKQKFjRDrT8u
-         uwLAIQAUrO0DJF9nHIG7QmYYzGtyZLp5RZa+E5M2OHTUFpeexZn+22NAZZrBer4mMVqp
-         vh/k08bEwUZtdUSciU5JyDJZNPc1V9oj5wqD0=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ifd1wnOruXsNwGxgtVXfg7wrVzRZczBNll4oBe85Rx0=;
+        b=VdRvCks/jfwxO4dWau5qXjKg7Czet2xK/6zBWvd+csldlQEbIfTF+8Lzc3holb75U5
+         cnp5E18ddrQ1CaJhOKKO2zTXn+h1jIXGk/cn3/on25hcPnsI5uox+BvRCmOywT1VK21l
+         2iKgm7Ajn807bXuiwOnVZ5NYQ0FBHLiXlC11yTk+tgSKy/NJ1wohhmSpm5I5HAEUOavT
+         Q1+KSqC9zlF/F+LayoP2kWgAfAUPLuVPw/dOFTZsYkjff+jsV7msqbhA1g4o6AjAvPt6
+         RgwUGWSUpcfuEt1j7aKP6m4yYrTb1P0Cdm0p4cHUkUfh1Cm1GumSdPkAmAAjgl3JH5/i
+         o4cA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=bJVh8WsGr3CI8B2tc3c0W8dsIPUnbHIuVomMDM1yxMw=;
-        b=eIDAvBL9+o15rhQ/1oP9jv+nfTRFzp8UeicXFnkXc9g+ncK75wuN2NhaHl2KBE33ip
-         uYylnKk+BObcKA8s3tRvyadBvaoXuHMtdXmONJSyP2yFfr6XeTnQewYbvw+LyFndL1vl
-         cXwg2CXM6qiSNOibmt34EX+StnMepa1skxv2Q6RTw60EvevcE/UQqJ0jSzIvuHOc4YZH
-         zwSUw+gGy7slymRHLwALagcItUL7An80NoI5+o1AmTVbkYfeIeU346N9wJybo2gCl5dO
-         F1l/AQvRh/apzuQeYeT5XuWFNY8aLBfoEDB5690KbxmfLG5gJJBuWH+lLjXahS7zoAck
-         XSaQ==
-X-Gm-Message-State: APjAAAUALMUK0aO5Qldg2pIDxYSTMHn83i3oVCn0NMvl/qzGe+KkgM/t
-        OhtjGgGWDUrbyFfygyKnAjootw==
-X-Google-Smtp-Source: APXvYqxZtuqE8FktXe/h2KgteDfao2o2HcXVpMbTU/NwW++DbgqIE8sZSmcm+xFmkLeBYG+AcTmJZA==
-X-Received: by 2002:a5d:4281:: with SMTP id k1mr32062692wrq.72.1577118954457;
-        Mon, 23 Dec 2019 08:35:54 -0800 (PST)
-Received: from localhost.localdomain ([37.160.152.81])
-        by smtp.gmail.com with ESMTPSA id s8sm20412498wrt.57.2019.12.23.08.35.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Dec 2019 08:35:54 -0800 (PST)
-From:   Michael Trimarchi <michael@amarulasolutions.com>
-To:     Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org
-Cc:     Fabio Estevam <festevam@gmail.com>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ifd1wnOruXsNwGxgtVXfg7wrVzRZczBNll4oBe85Rx0=;
+        b=LuakQGnr8udAEAgui+E9DjrtP5O3EB6rV1ekDVy9L5CxTmWE9VmqBUOBGsh62kL2ag
+         gTgwBVA473uJfjrq+h/oPbrTeWFvZu5+WiGTN2Iu8+3UChonW3wTmxJ960AvUOenvlVf
+         fEkwWIilsL6kM4Pn/hi2a2g7IEH4erDAwz4fDkqaGMfaONT2OKM23WWecUn8mCewNT1I
+         kw1S9tcw/Rxnnecghwj+iuEFycprS5UuJgkTS8QqJjgIZgHaHNckgJiwkehRKWkeJYOI
+         j131ZXoXU5CFhOinryPmTyIJNNE/xkBl7EbafSQbtVM2b60xbY8IWgcTiUWtKRcfv6X2
+         8KUg==
+X-Gm-Message-State: APjAAAUanndEO3TJZu9WkyA4wKhNRXkAZ0s4w0+nU/K70tgE3eo54OGr
+        78CK1savKvE0ayXrCVUWD/IIBEznM6S+ZUmMuLQ=
+X-Google-Smtp-Source: APXvYqxiDj8lIaZAB1jqC0aYJ4gqv06ifcJTyVxtncJI7fCxlQvV/RvTs4NldhRGJ9shbRDE2tRI2uNEWq4Ysl8deoU=
+X-Received: by 2002:a2e:814e:: with SMTP id t14mr17964339ljg.149.1577119382325;
+ Mon, 23 Dec 2019 08:43:02 -0800 (PST)
+MIME-Version: 1.0
+References: <20191223163546.29637-1-michael@amarulasolutions.com> <20191223163546.29637-2-michael@amarulasolutions.com>
+In-Reply-To: <20191223163546.29637-2-michael@amarulasolutions.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 23 Dec 2019 13:42:49 -0300
+Message-ID: <CAOMZO5CzZvDSEkYcz3LzMCnLp8ZW7zNBd18LkKZWtbh0PMQvdg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: imx6dl: Fix typo in i.CoreM6 1.5 Dual MIPI
+ starter kit
+To:     Michael Trimarchi <michael@amarulasolutions.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 3/3] arm: dts: imx6qdl: Move the phy reset at device level
-Date:   Mon, 23 Dec 2019 17:35:46 +0100
-Message-Id: <20191223163546.29637-4-michael@amarulasolutions.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191223163546.29637-1-michael@amarulasolutions.com>
-References: <20191223163546.29637-1-michael@amarulasolutions.com>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LAN8720 needs a reset of every clock enable. The reset needs
-to be done at device level, due the flag PHY_RST_AFTER_CLK_EN
+Hi Michael,
 
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
----
- arch/arm/boot/dts/imx6qdl-icore.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+On Mon, Dec 23, 2019 at 1:35 PM Michael Trimarchi
+<michael@amarulasolutions.com> wrote:
+>
+> Fix the file to be included in dual mipi starter kit. This
+> fix ethernet probing
+>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> ---
+>  arch/arm/boot/dts/imx6dl-icore-mipi.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/imx6dl-icore-mipi.dts b/arch/arm/boot/dts/imx6dl-icore-mipi.dts
+> index e43bccb78ab2..d8f3821a0ffd 100644
+> --- a/arch/arm/boot/dts/imx6dl-icore-mipi.dts
+> +++ b/arch/arm/boot/dts/imx6dl-icore-mipi.dts
+> @@ -8,7 +8,7 @@
+>  /dts-v1/;
+>
+>  #include "imx6dl.dtsi"
+> -#include "imx6qdl-icore.dtsi"
+> +#include "imx6qdl-icore-1.5.dtsi"
 
-diff --git a/arch/arm/boot/dts/imx6qdl-icore.dtsi b/arch/arm/boot/dts/imx6qdl-icore.dtsi
-index 7814f1ef0804..756f3a9f1b4f 100644
---- a/arch/arm/boot/dts/imx6qdl-icore.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-icore.dtsi
-@@ -150,10 +150,23 @@
- &fec {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_enet>;
--	phy-reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
- 	clocks = <&clks IMX6QDL_CLK_ENET>, <&clks IMX6QDL_CLK_ENET>, <&rmii_clk>;
- 	phy-mode = "rmii";
-+	phy-handle = <&eth_phy>;
- 	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		eth_phy: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <4000>;
-+			reset-deassert-us = <4000>;
-+		};
-+	};
- };
- 
- &gpmi {
--- 
-2.17.1
-
+Jagan submitted the same fix today:
+http://lists.infradead.org/pipermail/linux-arm-kernel/2019-December/701895.html
