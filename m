@@ -2,102 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4250129668
-	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 14:18:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 303E31296A1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Dec 2019 14:46:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726795AbfLWNSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Dec 2019 08:18:10 -0500
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:43250 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726709AbfLWNSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Dec 2019 08:18:10 -0500
-Received: by mail-pg1-f194.google.com with SMTP id k197so8809148pga.10
-        for <devicetree@vger.kernel.org>; Mon, 23 Dec 2019 05:18:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YI1v+z8jxNo/h/j7idm/0EKSnx3iifQZL/1wkb63EVY=;
-        b=NC56cI6/Z/H7oTnHAnJ09gyexnPHn4BiJOYPYq5aP1muAWM1ORzqA8pzUEOnRw8nYp
-         epKje1I/XIJaj3u6zbTm0w5yn0zlcjh8hsY25dOubLMowIQeW/O4dHnate74cyV/EuHs
-         y/9WSbvBsEDXIbs3cLMoD2zHjg1WNY+/hIkXQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YI1v+z8jxNo/h/j7idm/0EKSnx3iifQZL/1wkb63EVY=;
-        b=rEXpGqiQ/eKH7MLdpiElPcvW/wsL9E6ve6oVZ7GVB+8EYymTFcU//rh6x2D82UTfRa
-         ZyP4uHi3jr+9U2ci6CJDMsSO5udeC4NV840CJFL83dPOUnPdm6RtCP7K6LMu7Xikb2FH
-         aJiG0PPT+X9/DwF/2/eKzM/vv1Fi/3Iiuw7RHX37ejjMSRHhEkxxx/+im7HtmK6wB9et
-         TrOEM/FwrRtxCjgmAQLB/ltaDa+I9S6xnMyDwF10ENiAhG8nlgVuJnJrf6rAdXEUNIUK
-         jZXi9WknVOwoz0T5m0d66QiufW6oUWuZ6IC9N0T+0c9Khtrtex6Vo0KdwDJTHwyPlBHi
-         V8Bg==
-X-Gm-Message-State: APjAAAUcJQYXc8KFbbBN1gdEAVlEcESNVYBUs1UZKWLJd1C28xDfme/7
-        Py2t6cObNek+fhVLz/Gz0eXEEA==
-X-Google-Smtp-Source: APXvYqyGVdeczBs5yRxyBCpYz4pqjAoDs2yBT7CWuKxBsDQCMyszUoKgfbCh2g1PZKtcKNMYizSH2g==
-X-Received: by 2002:a63:3245:: with SMTP id y66mr31152112pgy.234.1577107088874;
-        Mon, 23 Dec 2019 05:18:08 -0800 (PST)
-Received: from localhost.localdomain ([49.206.201.226])
-        by smtp.gmail.com with ESMTPSA id h16sm24731770pfn.85.2019.12.23.05.18.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Dec 2019 05:18:07 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH] ARM: dts: imx6q-icore-mipi: Use 1.5 version of i.Core MX6DL
-Date:   Mon, 23 Dec 2019 18:47:50 +0530
-Message-Id: <20191223131750.2589-1-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
+        id S1726777AbfLWNqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Dec 2019 08:46:42 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:38272 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726733AbfLWNqm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Dec 2019 08:46:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=bSCU9ggM4t8oYLfb+CzYIiVu00cmp7t1fROUDLoekzE=; b=2tsuAGxawTw2fBco5baqmQJVpM
+        nOQJLdcuz2XNiyDD3fpPvnEEGZFLx9qaqVdD7dBDCIcfykby4zAFw0JBdIy2Ra+QZotVV4VOrpotT
+        PMviJ8+2GRU3sv9QlCJfnQSWspUk6aqkrbgSWhL2xvjfbOYkg3YTWKpIar+TjWyeefs0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1ijO2c-00044V-Df; Mon, 23 Dec 2019 14:46:34 +0100
+Date:   Mon, 23 Dec 2019 14:46:34 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     Madalin Bucur <madalin.bucur@nxp.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/6] net: phy: add interface modes for XFI, SFI
+Message-ID: <20191223134634.GL32356@lunn.ch>
+References: <1576768881-24971-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1576768881-24971-2-git-send-email-madalin.bucur@oss.nxp.com>
+ <20191219172834.GC25745@shell.armlinux.org.uk>
+ <VI1PR04MB5567FA3170CF45F877870E8CEC520@VI1PR04MB5567.eurprd04.prod.outlook.com>
+ <20191223120730.GO25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191223120730.GO25745@shell.armlinux.org.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The EDIMM STARTER KIT i.Core 1.5 MIPI Evaluation is based on
-the 1.5 version of the i.Core MX6 cpu module. The 1.5 version
-differs from the original one for a few details, including the
-ethernet PHY interface clock provider.
+> Given that meeting these electrical characteristics involves the
+> effects of the board, and it is impractical for a board to switch
+> between different electrical characteristics at runtime (routing serdes
+> lanes to both a SFP+ and XFP cage is impractical due to reflections on
+> unterminated paths) I really don't see any reason why we need two
+> different phy_interface_t definitions for these.  As mentioned, the
+> difference between XFI and SFI is electrical, and involves the board
+> layout, which is a platform specific issue.
 
-With this commit, the ethernet interface works properly:
-SMSC LAN8710/LAN8720 2188000.ethernet-1:00: attached PHY driver
+Hi Russell
 
-While before using the 1.5 version, ethernet failed to startup
-do to un-clocked PHY interface:
-fec 2188000.ethernet eth0: could not attach to PHY
+So we make phy_interface_t define the protocol. We should clearly
+document that.
 
-Similar fix has merged for i.Core MX6Q but missed to update for DL.
+Are we going to need another well defined DT property for the
+electrical interface? What is where we have XFI and SFI, etc?
 
-Fixes: a8039f2dd089 ("ARM: dts: imx6dl: Add Engicam i.CoreM6 1.5 Quad/Dual MIPI starter kit support")
-Cc: Jacopo Mondi <jacopo@jmondi.org>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm/boot/dts/imx6dl-icore-mipi.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/imx6dl-icore-mipi.dts b/arch/arm/boot/dts/imx6dl-icore-mipi.dts
-index e43bccb78ab2..d8f3821a0ffd 100644
---- a/arch/arm/boot/dts/imx6dl-icore-mipi.dts
-+++ b/arch/arm/boot/dts/imx6dl-icore-mipi.dts
-@@ -8,7 +8,7 @@
- /dts-v1/;
- 
- #include "imx6dl.dtsi"
--#include "imx6qdl-icore.dtsi"
-+#include "imx6qdl-icore-1.5.dtsi"
- 
- / {
- 	model = "Engicam i.CoreM6 DualLite/Solo MIPI Starter Kit";
--- 
-2.18.0.321.gffc6fa0e3
-
+	   Andrew
