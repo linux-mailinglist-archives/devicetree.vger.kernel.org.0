@@ -2,58 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AE8B129F30
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2019 09:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA9D0129FA1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2019 10:16:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726195AbfLXIhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Dec 2019 03:37:18 -0500
-Received: from mail-il1-f195.google.com ([209.85.166.195]:41955 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726116AbfLXIhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Dec 2019 03:37:18 -0500
-Received: by mail-il1-f195.google.com with SMTP id f10so16059902ils.8
-        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2019 00:37:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=LcGU1mt+nAQIi3eKcWZpiy7DqrkNG23tK1MNYV9CB+M=;
-        b=thLznmLowQYlgCkXssGgqDu9lyH9UW6YjKmOssHb1tTK4hOQZrMXPmcN+NyMPf6FCl
-         UvREnc30T4YWVk+0sz5tUX66h6x9TrTk5PLAy+j6B7YQx87dbuBKpJdKp6vHEaeyv/Mk
-         +ugQax6dxzQYdZRO2RuhmUBXO0k1ex+ujK03f0IwAMz2143noOnX/n9FaaLqE/JawMIu
-         cAyyILMJ9qtw2dvj23jE86BJWZZAt8n9o0u6ZQ2NXyeUK9YTazBgzNeXTkC83D8e6w+y
-         LyuzLzl8dZr8HmmG/1asFn/Ndqg1z9wICefdZo1ski0C2gomR8pQBnx9Wa/071qwcZbY
-         xpeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=LcGU1mt+nAQIi3eKcWZpiy7DqrkNG23tK1MNYV9CB+M=;
-        b=sN9j95xRjK74eRDzHz1VbwOYrwEwZBqxHoHqn0W0sOPN72gDCwZ7RhKrDHDnUf/d53
-         rTiInqY9pF3JL7SVC6vSkQUR7dGI/MUiOTjZQnaSvVmW4cjKMtw5stf0UhhQRKgd9sL7
-         7Xc9yWcP4MBF4WLhTwJRG+JgtNZz5mjWLQF6nVZOMfKfL+8ZGHTS6Xc6qaMkAXWDKSwp
-         hSvuxV/tFaylIct+e17IqOOn2AE6l720ojPLYS2yrSqow94hHS3iXRhSxJEY2rDWjYU5
-         X/iAUoTz0XN4HJNmHlLXCbAjLozRw4Shm3OyppbhXucB8bgaX4GYlIWm1fktHoqT5Wgq
-         8h4g==
-X-Gm-Message-State: APjAAAULBR1/sRB1jI3JWdw5O/++YB+cgslrIfPteAkxPukGlAHEOn2l
-        gQKnIHloxcp5RtK4Po2hoQ6h1fa/varFTvy2ItE=
-X-Google-Smtp-Source: APXvYqz2tBa4QzKmO6wzSXUBWoAEt+AdW5keElYd0pxn2QCdUk0KRvhLw5nMwIzFzVTuSc6Cp+qr2Z5Nq+YfPm0LYgM=
-X-Received: by 2002:a92:3b98:: with SMTP id n24mr4582447ilh.108.1577176637594;
- Tue, 24 Dec 2019 00:37:17 -0800 (PST)
+        id S1726068AbfLXJQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Dec 2019 04:16:55 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:41068 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726065AbfLXJQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Dec 2019 04:16:55 -0500
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20191224091653euoutp028cbf8d24893711c098b924060a124392~jQ-TF20_i1135911359euoutp028
+        for <devicetree@vger.kernel.org>; Tue, 24 Dec 2019 09:16:53 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20191224091653euoutp028cbf8d24893711c098b924060a124392~jQ-TF20_i1135911359euoutp028
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1577179013;
+        bh=n/lifaWZUFK80v/YAbn/FG0VHaQnlU2MI4t8NpK5U6g=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=Z2Ny8g3wUJ2LppcHQ3XRWFab9AfffPlZCG4Uyrwq+/knoeC7JTQjgWF1RLxNWgMZc
+         SAH3Kw0bbU1g13DEYa8oFSNOEwm/SnsDWQPHka91KZqEdNATRVb38e+ey4q+TLhlat
+         f7uZZmkq0uO3AdeKTB8Rd5wqBL/rxNe+AahM7zBU=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20191224091652eucas1p1359633ad0e35d53925f3cdea3a6b2a61~jQ-SsAJb20321803218eucas1p1s;
+        Tue, 24 Dec 2019 09:16:52 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 65.BA.60679.487D10E5; Tue, 24
+        Dec 2019 09:16:52 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20191224091652eucas1p19f6407e5e86032240b164b79ab6f14c5~jQ-SVvJZx2513625136eucas1p1S;
+        Tue, 24 Dec 2019 09:16:52 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20191224091652eusmtrp2e519a25031cd0b4e72dd2f6e571adfa5~jQ-SU5CLQ2586325863eusmtrp2e;
+        Tue, 24 Dec 2019 09:16:52 +0000 (GMT)
+X-AuditID: cbfec7f4-0e5ff7000001ed07-05-5e01d7849c3e
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 32.B9.07950.487D10E5; Tue, 24
+        Dec 2019 09:16:52 +0000 (GMT)
+Received: from [106.120.51.74] (unknown [106.120.51.74]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20191224091651eusmtip1aa8a0c29f9c6828958bc329e6e862665~jQ-Rfi67b1674516745eusmtip1x;
+        Tue, 24 Dec 2019 09:16:51 +0000 (GMT)
+Subject: Re: [PATCH v4 04/11] drm/bridge: Make the bridge chain a
+ double-linked list
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        kernel@collabora.com, Sam Ravnborg <sam@ravnborg.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chris Healy <cphealy@gmail.com>, devicetree@vger.kernel.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>
+From:   Andrzej Hajda <a.hajda@samsung.com>
+Message-ID: <1010f5fc-0672-643c-4410-e053a928cb66@samsung.com>
+Date:   Tue, 24 Dec 2019 10:16:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+        Thunderbird/68.2.2
 MIME-Version: 1.0
-Received: by 2002:ac0:f302:0:0:0:0:0 with HTTP; Tue, 24 Dec 2019 00:37:16
- -0800 (PST)
-Reply-To: bethnatividad9@gmail.com
-From:   Beth Nat <clementidibia1960@gmail.com>
-Date:   Tue, 24 Dec 2019 08:37:16 +0000
-Message-ID: <CAEG=icHSiKA+obxr5hSbrz+bX3f1O1rMyddMXXp8YnqnRrxBeQ@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <60f03d50-7c0f-c3d0-920f-0625c08b2171@samsung.com>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRjuO+fsnLPR4mxqvlh0mfSjIiuL+OhiBV3OnyDoZpbm1INGXmJT
+        ywqyspiWYkmWszR0ltjCMTUvOdDlJTWHlmKaUysrjEY3NVbZap5F/nve532e730e+FhSeYn2
+        Y4/GJwqaeHWsipZRD1ucthVpfShsVYFpMb6g24Q7nrYTuLG+lcCFTTYJ7pn4ROPe72MkbvvY
+        S+EK2xUJ7jz/kcHpVw0MftBkZ3BJXzeBrVmH8Ej5MXzR0sTgUmcVwjdzxmjsrCugtih5Y4ER
+        8Z9eXGT4kesugq+xGxBfq7czfL4uT8Kby9Jp/kn2M4IfvtxK8IbcXprPqixDfENmDsV/My/Y
+        LQ+RbYwSYo8mC5qVQeGymOpOPXM8c/lJ4+BnIhV9VmUgKQvcWsgv1lEZSMYquVIEU6/zCHEY
+        R1BntiBx+IbA2Oki/1mcxj7P4h6CwWv5HosDwauBYsKt8uL2Q9uvVCYDsaw3FwGPsze7NSTn
+        pOBnbR7l1tDcUpiq6KfdWM4FQfPUkMStp7glYOs/4KZ9uGAY7XkjESUKaMsbnbZKuc1w7seX
+        6UAktxCqHbc82BcGRgun8wDXwMLkIwMhpt4GX9t6GBF7wYfWSg+eD67aQo/mLAyXppGiWYeg
+        ylTrqbwBBm0/aHc48m/o8rqVIr0VSurPTdPAzYEXDoWYYQ5ce3iDFGk56C4pRfViGO6s8jzo
+        CyVdE3Q2UulnNNPPaKOf0Ub//+4dRJUhXyFJGxctaAPjhRMBWnWcNik+OiAyIc6M/v7Ojt+t
+        4zWo7leEFXEsUs2Wmx7PClNK1MnalDgrApZUecvva1CYUh6lTjklaBKOaJJiBa0VzWMpla98
+        TdFYqJKLVicKxwThuKD5tyVYqV8qMika7IZ9oQHPXeulB696SZdayCuDLX6nh/Y6Ft5tslje
+        RdKH5h/es7U7ZectU0PN25Z322RjL312yBPS1+3yyq0ydATeN4ek24v8R866WpaXpG1/1n7G
+        Gn3jvf+B8UWTwfWK5q6hoIGN/ESwIlfd3fj+dvHcybmJjXzOm/CQkxON21WUNka9ehmp0ar/
+        AONdQpGZAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFKsWRmVeSWpSXmKPExsVy+t/xu7ot1xnjDD7N5rFo7rC1OH3mFJPF
+        wT3HmSzmHznHanHl63s2i6vfXzJbnHxzlcVi87keVouzTW/YLTonLmG3WHvkLrvF0usXmSwO
+        9UVbPFifbdG69wi7xYqfWxktZkx+yWbxc9c8FgchjzXz1jB6vL/Ryu7xYOp/Jo8dd5cweuyc
+        dZfdY3bHTFaPTas62TxOTLjE5HG/+ziTx5JpV9k8+rasYvQ40DuZxePzJrkA3ig9m6L80pJU
+        hYz84hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07m5TUnMyy1CJ9uwS9jO1nZ7EX9GpXrLnz
+        gamB8YNSFyMnh4SAicTPNdcZuxi5OIQEljJKfO78xwaREJfYPf8tM4QtLPHnWhcbRNFrRokd
+        V88zgiSEBcIkTv5pYAexRQSSJHbvXQc2iVngN4vE2UvzWCA6jjFLzP/7Bmwsm4CmxN/NN8Fs
+        XgE7iaN/77F2MXJwsAioSpy7GQ4SFhWIkHj7+yYrRImgxMmZT1hAbE4Be4nGXx/BLmIWUJf4
+        M+8SlC0vsf3tHChbXOLWk/lMExiFZiFpn4WkZRaSlllIWhYwsqxiFEktLc5Nzy020itOzC0u
+        zUvXS87P3cQITBfbjv3csoOx613wIUYBDkYlHt6IgwxxQqyJZcWVuYcYJTiYlUR4Vxcxxgnx
+        piRWVqUW5ccXleakFh9iNAX6bSKzlGhyPjCV5ZXEG5oamltYGpobmxubWSiJ83YIHIwREkhP
+        LEnNTk0tSC2C6WPi4JRqYFxxfXvF4T+RL85Pyt9ygLP869uFApM0naefLHXVYNfu/mhWxSzB
+        q/Wna++Cy/6aW4VTzTTndMyZJPz9I++FfNvT//8l+NSHM+VUpQRN2zLBbNcKv+sNi29uuvQ4
+        oVdzQ8jb8wLfUx/M4epxNfz5I3Gis1BbnOrNXQ5qP1Rq3WxO1vN/9/i89rsSS3FGoqEWc1Fx
+        IgDwxFjSLQMAAA==
+X-CMS-MailID: 20191224091652eucas1p19f6407e5e86032240b164b79ab6f14c5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20191203141542eucas1p23771a9c49ef18144c832fc536bdae61a
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20191203141542eucas1p23771a9c49ef18144c832fc536bdae61a
+References: <20191203141515.3597631-1-boris.brezillon@collabora.com>
+        <CGME20191203141542eucas1p23771a9c49ef18144c832fc536bdae61a@eucas1p2.samsung.com>
+        <20191203141515.3597631-5-boris.brezillon@collabora.com>
+        <4e901ab9-07d4-4238-7322-c7c5a3959513@samsung.com>
+        <20191216155551.083dcbaf@collabora.com>
+        <75a06e2a-4587-ee16-0f5d-af75fbe89793@samsung.com>
+        <20191216162542.261c821c@collabora.com>
+        <60f03d50-7c0f-c3d0-920f-0625c08b2171@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-How are you today my dear? i saw your profile and it interests me, i
-am a Military nurse from USA. Can we be friend? I want to know more
-about you.
+On 23.12.2019 10:55, Marek Szyprowski wrote:
+> Hi Boris,
+>
+> On 16.12.2019 16:25, Boris Brezillon wrote:
+>> On Mon, 16 Dec 2019 16:02:36 +0100
+>> Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>>> Hi Boris,
+>>>
+>>> On 16.12.2019 15:55, Boris Brezillon wrote:
+>>>> On Mon, 16 Dec 2019 14:54:25 +0100
+>>>> Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>>>>> On 03.12.2019 15:15, Boris Brezillon wrote:
+>>>>>> So that each element in the chain can easily access its predecessor.
+>>>>>> This will be needed to support bus format negotiation between elements
+>>>>>> of the bridge chain.
+>>>>>>
+>>>>>> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+>>>>>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>>>>>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>>> I've noticed that this patch got merged to linux-next as commit
+>>>>> 05193dc38197021894b17239fafbd2eb1afe5a45. Sadly it breaks booting of
+>>>>> Samsung Exynos5250-based Arndale board. Booting stops after following
+>>>>> messages:
+>>>>>
+>>>>> [drm] Exynos DRM: using 14400000.fimd device for DMA mapping operations
+>>>>> exynos-drm exynos-drm: bound 14400000.fimd (ops fimd_component_ops)
+>>>>> exynos-drm exynos-drm: bound 14450000.mixer (ops mixer_component_ops)
+>>>>> exynos-drm exynos-drm: bound 14500000.dsi (ops exynos_dsi_component_ops)
+>>>>> exynos-drm exynos-drm: bound 14530000.hdmi (ops hdmi_component_ops)
+>>>>> [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+>>>>> [drm] No driver support for vblank timestamp query.
+>>>>> [drm] Cannot find any crtc or sizes
+>>>>> [drm] Cannot find any crtc or sizes
+>>>>> [drm] Initialized exynos 1.1.0 20180330 for exynos-drm on minor 0
+>>>>>
+>>>>> I will try to debug this and provide more information soon.
+>>>>>   
+>>>> Can you try with this diff applied?
+>>> This patch doesn't change anything.
+>> Okay. Can you do a list_for_each_entry() on both encoder->bridge_chain
+>> and dsi->bridge_chain (dump bridge pointers in a pr_info()) before and
+>> after the list_splice_init() call?
+> encoder->bridge_chain contains only one element. dsi->drive_chain is empty.
+>
+> Replacing that list_splice() with INIT_LIST_HEAD(&encoder->bridge_chain) 
+> fixed the boot issue. It looks that this is related with the way the 
+> Exynos DSI handles bridges (in bridge and out brige?). Maybe Andrzej 
+> will give a bit more detailed comment and spread some light on this.
+
+
+Hi Marek, Boris,
+
+
+I have not followed latest patches due to high work load, my bad. Marek
+thanks from pointing
+
+About ExynosDSI bridge handling:
+
+The order of calling encoder, bridge (and consequently panel) ops
+enforced by DRM core (bridge->pre_enable, encoder->enable,
+bridge->enable) does not fit to ExynosDSI hardware initialization
+sequence, if I remember correctly it does not fit to whole MIPI DSI
+standard (I think similar situation is with eDP). As a result DSI
+drivers must use some ugly workarounds, rely on HW properly coping with
+incorrect sequences, or, as in case of ExynosDSI driver, just avoid
+using encoder->bridge chaining and call bridge ops by itself when suitable.
+
+So proper patch converting to double-linked list should not try to
+splice ExynosDSI private bridge list with with encoder's, encoder's list
+should be always empty, as Marek suggested.
+
+
+Regards
+
+Andrzej
+
+
+>
+> I can send a formal patch fixing this if You want.
+>
+>>>> --->8---
+>>>> diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+>>>> index 3955f84dc893..118ecedc7621 100644
+>>>> --- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+>>>> +++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+>>>> @@ -1523,7 +1523,7 @@ static int exynos_dsi_host_attach(struct mipi_dsi_host *host,
+>>>>           if (out_bridge) {
+>>>>                   drm_bridge_attach(encoder, out_bridge, NULL);
+>>>>                   dsi->out_bridge = out_bridge;
+>>>> -               list_splice(&encoder->bridge_chain, &dsi->bridge_chain);
+>>>> +               list_splice_init(&encoder->bridge_chain, &dsi->bridge_chain);
+>>>>           } else {
+>>>>                   int ret = exynos_dsi_create_connector(encoder);
+>>>>    
+>>>> diff --git a/drivers/gpu/drm/vc4/vc4_dsi.c b/drivers/gpu/drm/vc4/vc4_dsi.c
+>>>> index 6c5b80ad6154..e1378d48210f 100644
+>>>> --- a/drivers/gpu/drm/vc4/vc4_dsi.c
+>>>> +++ b/drivers/gpu/drm/vc4/vc4_dsi.c
+>>>> @@ -1613,7 +1613,7 @@ static int vc4_dsi_bind(struct device *dev, struct device *master, void *data)
+>>>>            * from our driver, since we need to sequence them within the
+>>>>            * encoder's enable/disable paths.
+>>>>            */
+>>>> -       list_splice(&dsi->encoder->bridge_chain, &dsi->bridge_chain);
+>>>> +       list_splice_init(&dsi->encoder->bridge_chain, &dsi->bridge_chain);
+>>>>    
+>>>>           if (dsi->port == 0)
+>>>>                   vc4_debugfs_add_regset32(drm, "dsi0_regs", &dsi->regset);
+>>>> @@ -1639,7 +1639,7 @@ static void vc4_dsi_unbind(struct device *dev, struct device *master,
+>>>>            * Restore the bridge_chain so the bridge detach procedure can happen
+>>>>            * normally.
+>>>>            */
+>>>> -       list_splice(&dsi->bridge_chain, &dsi->encoder->bridge_chain);
+>>>> +       list_splice_init(&dsi->bridge_chain, &dsi->encoder->bridge_chain);
+>>>>           vc4_dsi_encoder_destroy(dsi->encoder);
+>>>>    
+>>>>           if (dsi->port == 1)
+>>>>
+>>>>
+> Best regards
+
+
