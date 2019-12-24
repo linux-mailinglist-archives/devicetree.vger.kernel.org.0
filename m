@@ -2,200 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07984129E94
-	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2019 08:46:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFB42129EC7
+	for <lists+devicetree@lfdr.de>; Tue, 24 Dec 2019 09:05:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727034AbfLXHqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Dec 2019 02:46:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37476 "EHLO mail.kernel.org"
+        id S1726091AbfLXIFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Dec 2019 03:05:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53504 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726910AbfLXHqk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Dec 2019 02:46:40 -0500
+        id S1726037AbfLXIFi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Dec 2019 03:05:38 -0500
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1589220706;
-        Tue, 24 Dec 2019 07:46:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B0C99206CB;
+        Tue, 24 Dec 2019 08:05:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577173599;
-        bh=1BJxrvDxsrR7VIQZMUVHbOxilZxPHKLhLbtnCYK0wCI=;
+        s=default; t=1577174736;
+        bh=q+4fNfvxwFfvm6ehxq3tf+yjKjbLqy3OGlMpvibfKhE=;
         h=In-Reply-To:References:Cc:From:To:Subject:Date:From;
-        b=JdfRkv/iA1GPjKltY9g+b6rJwS1+cIxjN0vr48ttnpmYMEX8QPn5meFCchbWv1huh
-         l5/CLVEWnsvGvfxUOH+WSJj1UElcjrFHTrpxVoM+UwvZIgbLRtqAKwkA5RoQzbHRTr
-         W3VvVkpDVzCB4m2PWvDaoMi4Nd5r5ZrjumyhIS7s=
+        b=pPvzsbBbP6MR6SnA/5X0FeGfkVY4CZ8izcoN8yDgHPCIZ8eCCPaoRCSPYhysvW6Pj
+         rrnvi6eQuNIpLyKF8r6SaTuPP8sI5VJLaO6ycV27jLxP02Mqmnj+kZY5u3hC+fxZAY
+         DaslL24dbHa06DyBXjvuKwkCPMl+7xcxIV0LkOVo=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20191209183511.3576038-11-daniel@zonque.org>
-References: <20191209183511.3576038-1-daniel@zonque.org> <20191209183511.3576038-11-daniel@zonque.org>
-Cc:     mturquette@baylibre.com, robh+dt@kernel.org, broonie@kernel.org,
-        lee.jones@linaro.org, lars@metafoo.de, pascal.huerst@gmail.com,
-        Daniel Mack <daniel@zonque.org>
+In-Reply-To: <20191209233305.18619-2-michael@walle.cc>
+References: <20191209233305.18619-1-michael@walle.cc> <20191209233305.18619-2-michael@walle.cc>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Walle <michael@walle.cc>
 From:   Stephen Boyd <sboyd@kernel.org>
-To:     Daniel Mack <daniel@zonque.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 09/10] clk: Add support for AD242x clock output providers
+To:     Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] clk: fsl-sai: new driver
 User-Agent: alot/0.8.1
-Date:   Mon, 23 Dec 2019 23:46:38 -0800
-Message-Id: <20191224074639.1589220706@mail.kernel.org>
+Date:   Tue, 24 Dec 2019 00:05:35 -0800
+Message-Id: <20191224080536.B0C99206CB@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Daniel Mack (2019-12-09 10:35:10)
-> diff --git a/drivers/clk/clk-ad242x.c b/drivers/clk/clk-ad242x.c
+Quoting Michael Walle (2019-12-09 15:33:05)
+> diff --git a/drivers/clk/clk-fsl-sai.c b/drivers/clk/clk-fsl-sai.c
 > new file mode 100644
-> index 000000000000..201789d8f174
+> index 000000000000..b92054d15ab1
 > --- /dev/null
-> +++ b/drivers/clk/clk-ad242x.c
-> @@ -0,0 +1,231 @@
+> +++ b/drivers/clk/clk-fsl-sai.c
+> @@ -0,0 +1,84 @@
 > +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Freescale SAI BCLK as a generic clock driver
+> + *
+> + * Copyright 2019 Kontron Europe GmbH
+> + */
 > +
-> +#include <linux/module.h>
-> +#include <linux/kernel.h>
-> +#include <linux/clk.h>
-
-Is this include used?
-
 > +#include <linux/clk-provider.h>
 > +#include <linux/err.h>
-> +#include <linux/errno.h>
-
-Is this include used?
-
-> +#include <linux/mfd/ad242x.h>
-
-Any way we can avoid this build dependency? Maybe just put defines in
-this driver that deals with the clk bits of the device?
-
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/slab.h>
 > +
-> +#include <dt-bindings/clock/adi,ad242x.h>
+> +#define I2S_CSR                0x00
+> +#define I2S_CR2                0x08
+> +#define CSR_BCE_BIT    28
+> +#define CR2_BCD                BIT(24)
+> +#define CR2_DIV_SHIFT  0
+> +#define CR2_DIV_WIDTH  8
 > +
-> +#define AD242X_NUM_CLKS 2
-> +
-> +struct ad242x_clk_hw {
-> +       struct clk_hw hw;
-> +       struct clk_init_data init;
-
-Do we need to keep around this init data after probe? I'd rather leave
-this out.
-
-> +       struct ad242x_node *node;
-
-What's the point of this structure? Can we use dev->parent->regmap and
-just store the struct regmap pointer here instead of using this custom
-struct?
-
-> +       u8 reg;
+> +struct fsl_sai_clk {
+> +       struct clk_divider div;
+> +       struct clk_gate gate;
+> +       spinlock_t lock;
 > +};
 > +
-> +struct ad242x_clk_driver_data {
-> +       struct ad242x_clk_hw hw[AD242X_NUM_CLKS];
-
-If this is the only drvdata, then I'd prefer just the array and not
-another struct so we can have clarity.
-
-> +};
-> +
-> +static inline struct ad242x_clk_hw *to_ad242x_clk(struct clk_hw *hw)
+> +static void __init fsl_sai_clk_setup(struct device_node *node)
 > +{
-> +       return container_of(hw, struct ad242x_clk_hw, hw);
-> +}
+> +       const char *clk_name =3D node->name;
+> +       struct fsl_sai_clk *sai_clk;
+> +       unsigned int num_parents;
+> +       const char *parent_name;
+> +       void __iomem *base;
+> +       struct clk_hw *hw;
 > +
-[...]
-> +
-> +static long ad242x_clk_round_rate(struct clk_hw *hw, unsigned long rate,
-> +                                 unsigned long *parent_rate)
-> +{
-> +       unsigned long pll_rate =3D *parent_rate * 2048UL;
-> +       unsigned long prediv, div;
-> +
-> +       if (rate > pll_rate / 4 || rate < pll_rate / 1024UL)
-> +               return -EINVAL;
-
-This callback should round the rate to something valid. If the rate is
-larger than pll_rate / 4 then it should clamp to be the highest rate
-supported. Likewise for something slow.
-
-> +
-> +       ad242x_do_div(rate, pll_rate, &prediv, &div);
-> +
-> +       return pll_rate / (prediv * div);
-> +}
-> +
-[...]
-> +
-> +static struct clk_hw *
-> +ad242x_of_clk_get(struct of_phandle_args *clkspec, void *data)
-> +{
-> +       struct ad242x_clk_driver_data *drvdata =3D data;
-> +       unsigned int idx =3D clkspec->args[0];
-> +
-> +       return &drvdata->hw[idx].hw;
-
-It looks quite a bit like of_clk_hw_onecell_get(). Can that be used? Or
-at least check for out of bounds and return failure?
-
-> +}
-> +
-> +static int ad242x_clk_probe(struct platform_device *pdev)
-> +{
-> +       const char *clk_names[AD242X_NUM_CLKS] =3D { "clkout1", "clkout2"=
- };
-> +       u8 regs[AD242X_NUM_CLKS] =3D { AD242X_CLK1CFG, AD242X_CLK2CFG };
-> +       struct ad242x_clk_driver_data *drvdata;
-> +       struct device *dev =3D &pdev->dev;
-> +       const char *sync_clk_name;
-> +       struct ad242x_node *node;
-> +       int i, ret;
-> +
-> +       if (!dev->of_node)
-> +               return -ENODEV;
-
-Please drop this. It's not useful.
-
-> +
-> +       drvdata =3D devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-> +       if (!drvdata)
-> +               return -ENOMEM;
-> +
-> +       node =3D dev_get_drvdata(dev->parent);
-
-Add a NULL check on node?
-
-> +       sync_clk_name =3D ad242x_master_get_clk_name(node->master);
-> +
-> +       for (i =3D 0; i < AD242X_NUM_CLKS; i++) {
-> +               const char *name;
-> +
-> +               if (of_property_read_string_index(dev->of_node,
-> +                                                 "clock-output-names",
-> +                                                 i, &name) =3D=3D 0)
-> +                       drvdata->hw[i].init.name =3D name;
-> +               else
-> +                       drvdata->hw[i].init.name =3D clk_names[i];
-
-Do you need unique names? Or can you generate psuedo unique names based
-on the device name and clk number?
-
-> +
-> +               drvdata->hw[i].reg =3D regs[i];
-> +               drvdata->hw[i].init.ops =3D &ad242x_clk_ops;
-> +               drvdata->hw[i].init.num_parents =3D 1;
-> +               drvdata->hw[i].init.parent_names =3D &sync_clk_name;
-> +               drvdata->hw[i].hw.init =3D &drvdata->hw[i].init;
-> +               drvdata->hw[i].node =3D node;
-> +
-> +               ret =3D devm_clk_hw_register(dev, &drvdata->hw[i].hw);
-> +               if (ret < 0)
-> +                       return ret;
+> +       num_parents =3D of_clk_get_parent_count(node);
+> +       if (!num_parents) {
+> +               pr_err("%s: no parent found", clk_name);
+> +               return;
 > +       }
 > +
-> +       return devm_of_clk_add_hw_provider(dev, ad242x_of_clk_get, drvdat=
-a);
+> +       parent_name =3D of_clk_get_parent_name(node, 0);
+
+Could this use the new way of specifying clk parents so that we don't
+have to query DT for parent names and just let the core framework do it
+whenever it needs to?
+
+> +
+> +       sai_clk =3D kzalloc(sizeof(*sai_clk), GFP_KERNEL);
+> +       if (!sai_clk)
+> +               return;
+> +
+> +       base =3D of_iomap(node, 0);
+> +       if (base =3D=3D NULL) {
+> +               pr_err("%s: failed to map register space", clk_name);
+> +               goto err;
+> +       }
+> +
+> +       spin_lock_init(&sai_clk->lock);
+> +
+> +       sai_clk->gate.reg =3D base + I2S_CSR;
+> +       sai_clk->gate.bit_idx =3D CSR_BCE_BIT;
+> +       sai_clk->gate.lock =3D &sai_clk->lock;
+> +
+> +       sai_clk->div.reg =3D base + I2S_CR2;
+> +       sai_clk->div.shift =3D CR2_DIV_SHIFT;
+> +       sai_clk->div.width =3D CR2_DIV_WIDTH;
+> +       sai_clk->div.lock =3D &sai_clk->lock;
+> +
+> +       /* set clock direction, we are the BCLK master */
+
+Should this configuration come from DT somehow?
+
+> +       writel(CR2_BCD, base + I2S_CR2);
+> +
+> +       hw =3D clk_hw_register_composite(NULL, clk_name, &parent_name, 1,
+> +                                      NULL, NULL,
+> +                                      &sai_clk->div.hw, &clk_divider_ops,
+> +                                      &sai_clk->gate.hw, &clk_gate_ops,
+> +                                      CLK_SET_RATE_GATE);
+> +       if (IS_ERR(hw))
+> +               goto err;
+> +
+> +       of_clk_add_hw_provider(node, of_clk_hw_simple_get, hw);
+> +
+> +       return;
+> +
+> +err:
+> +       kfree(sai_clk);
 > +}
+> +
+> +CLK_OF_DECLARE(fsl_sai_clk, "fsl,vf610-sai-clock", fsl_sai_clk_setup);
+
+Is there a reason this can't be a platform device driver?
+
