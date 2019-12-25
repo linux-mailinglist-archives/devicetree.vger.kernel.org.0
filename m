@@ -2,110 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79ED012A79D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2019 12:07:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D67E12A7BF
+	for <lists+devicetree@lfdr.de>; Wed, 25 Dec 2019 12:56:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726853AbfLYLHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Dec 2019 06:07:39 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:36356 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726409AbfLYLHc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Dec 2019 06:07:32 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id ECA7AFB03;
-        Wed, 25 Dec 2019 12:07:30 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id YAXewXdkN_Lz; Wed, 25 Dec 2019 12:07:29 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 827C5411F8; Wed, 25 Dec 2019 12:07:19 +0100 (CET)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/6] leds: lm3692x: Make sure we don't exceed the maximum led current
-Date:   Wed, 25 Dec 2019 12:07:19 +0100
-Message-Id: <96dad031f3a9ff5bbc311d0ec8768b348b996bcf.1577271823.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <cover.1577271823.git.agx@sigxcpu.org>
-References: <cover.1577271823.git.agx@sigxcpu.org>
+        id S1726289AbfLYL4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Dec 2019 06:56:18 -0500
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:32852 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726185AbfLYL4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Dec 2019 06:56:18 -0500
+Received: by mail-lf1-f65.google.com with SMTP id n25so16797303lfl.0
+        for <devicetree@vger.kernel.org>; Wed, 25 Dec 2019 03:56:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5mol6HJrMqqa1NJdam/PhpUhWyScfd+EBsQoCUp51Ik=;
+        b=WTk1X7pxTyAFammbLNK7vRIMYYVvfw2Eotomu0eqpjnsMjM6g4FkkLRl4IxXW8ZpYR
+         fK9mC6m6vj+Zg0SSU0vc10/4HHMzIRVynhqg5xy7lo2sTGztVriSHbEOSxi0BQZzZ9ui
+         J1zC5SbiH2jVooIrPLRpLazyUpTeJ2zJho5KmqhuOc555fPlEz20jYN6a3fmNubU8dGT
+         G4hN36M/p1pF+1ecdDwRrO9Mm4JSYSDs89wvm+i/+k66eV5uFvQBHp1GTyl1BxPIDFeB
+         qV600Xn8gcOKap9ze+D82ZENpg25e0KHWQ09Ma6HSLmfJEBtZ3Vj1/GDpmfcD+VqP8KH
+         JKNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5mol6HJrMqqa1NJdam/PhpUhWyScfd+EBsQoCUp51Ik=;
+        b=G5ULSEA1LLB6WLV2mLgz+mf8CQo4QUd1H8LuzahuxzLuEp2K94Z/kyPmsixra/34OB
+         nMnLONUqWeBUktBuD24j+2YdqPCL4QAgSnM2fFkByj36a0UKeM9Z1DHvuseqpLF2Qtxy
+         HnE/0qTejbjCRaBnDSmHHqFrNIGf/PkLlBxzKzAGpjcvsJQwkF6V3OakLxxLW5KkUlnz
+         r6FVTahLKf7q+q6JU8n0Ryvck8KgvTcQdY7lBn2ALcQYixFEFPkPhmiAy1xnsqj/C6gw
+         HESC/VjhTgjUUZNm9xK35neiJOT7TR9PCw8+4dsvl8SZWveigGAe/mWxXYCw09o6rT8p
+         /htQ==
+X-Gm-Message-State: APjAAAVtEcPp+ndHNp1Dk3Usftbmy7n6t/ZzZO7JsAHXgH+XSipjG76F
+        utG8hYNLbbxhfVfOO7YRWumc5X26pDs=
+X-Google-Smtp-Source: APXvYqxsFWA2taLpUG5L1Aq/k8Pfzo9J+USCKy6bqVt61nncQ1kFP0NTXJYLubmK+nxbJwNTqEfwCQ==
+X-Received: by 2002:a19:dc14:: with SMTP id t20mr22945983lfg.47.1577274976625;
+        Wed, 25 Dec 2019 03:56:16 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-21cd225c.014-348-6c756e10.bbcust.telenor.se. [92.34.205.33])
+        by smtp.gmail.com with ESMTPSA id o19sm13544465lji.54.2019.12.25.03.56.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Dec 2019 03:56:15 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] drm/panel: Add DT bindings for Novatek NT35510-based panels
+Date:   Wed, 25 Dec 2019 12:56:09 +0100
+Message-Id: <20191225115610.14518-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current is given by the formular from page 12 of
-https://www.ti.com/lit/ds/symlink/lm36922.pdf. We use this to limit the
-led's max_brightness using the led-max-microamp DT property.
+This adds device tree bindings for the Novatek NT35510-based
+family of panels. Since several such panels are in existence
+we define bindings common for all, and define the compatible
+string for one certain panel (Hydis HVA40WV1).
 
-The formular for the lm36923 is identical according to the data sheet.
+As other panels are discovered and investigated, we can add
+more compatibles to the binding.
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
+Cc: Stephan Gerhold <stephan@gerhold.net>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/leds/leds-lm3692x.c | 25 ++++++++++++++++++++++++-
- 1 file changed, 24 insertions(+), 1 deletion(-)
+ .../display/panel/novatek-nt35510.yaml        | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/novatek-nt35510.yaml
 
-diff --git a/drivers/leds/leds-lm3692x.c b/drivers/leds/leds-lm3692x.c
-index ff20560a8263..d7e5de8fe8db 100644
---- a/drivers/leds/leds-lm3692x.c
-+++ b/drivers/leds/leds-lm3692x.c
-@@ -6,6 +6,7 @@
- #include <linux/i2c.h>
- #include <linux/init.h>
- #include <linux/leds.h>
-+#include <linux/log2.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/of.h>
-@@ -320,11 +321,29 @@ static int lm3692x_init(struct lm3692x_led *led)
- 	return ret;
- }
- 
-+static enum led_brightness lm3692x_max_brightness(struct lm3692x_led *led,
-+						  u32 max_cur)
-+{
-+	u32 max_code;
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek-nt35510.yaml b/Documentation/devicetree/bindings/display/panel/novatek-nt35510.yaml
+new file mode 100644
+index 000000000000..a4a6b5adf15b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/novatek-nt35510.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/novatek-nt35510.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/* see p.12 of LM36922 data sheet for brightness formula */
-+	if (led->brightness_ctrl & LM3692X_MAP_MODE_EXP) {
-+		/*  228 =~ 1.0 / log2(1.003040572) */
-+		max_code = ilog2(max_cur/50) * 228;
-+	} else {
-+		max_code = ((max_cur * 1000) - 37806) / 12195;
-+	}
-+	if (max_code > 0x7FF)
-+		max_code = 0x7FF;
++title: Novatek NT35510-based display panels
 +
-+	return max_code >> 3;
-+}
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
 +
- static int lm3692x_probe_dt(struct lm3692x_led *led)
- {
- 	struct fwnode_handle *child = NULL;
- 	struct led_init_data init_data = {};
--	u32 ovp;
-+	u32 ovp, max_cur;
- 	bool exp_mode;
- 	int ret;
- 
-@@ -397,6 +416,10 @@ static int lm3692x_probe_dt(struct lm3692x_led *led)
- 		return ret;
- 	}
- 
-+	fwnode_property_read_u32(child, "led-max-microamp", &max_cur);
-+	led->led_dev.max_brightness = ret ? LED_FULL :
-+		lm3692x_max_brightness(led, max_cur);
++allOf:
++  - $ref: panel-common.yaml#
 +
- 	init_data.fwnode = child;
- 	init_data.devicename = led->client->name;
- 	init_data.default_label = ":";
++properties:
++  compatible:
++    const: hydis,hva40wv1
++    description: This indicates the panel manufacturer of the panel
++      that is in turn using the NT35510 panel driver. The compatible
++      string determines how the NT35510 panel driver shall be configured
++      to work with the indicated panel.
++  reg: true
++  reset-gpios: true
++  vdd-supply:
++     description: regulator that supplies the vdd voltage
++  vddi-supply:
++     description: regulator that supplies the vddi voltage
++  backlight: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi@a0351000 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        panel {
++            compatible = "hydis,hva40wv1";
++            reg = <0>;
++            vdd-supply = <&ab8500_ldo_aux4_reg>;
++            vddi-supply = <&ab8500_ldo_aux6_reg>;
++            reset-gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
++            backlight = <&gpio_bl>;
++        };
++    };
++
++...
 -- 
-2.23.0
+2.21.0
 
