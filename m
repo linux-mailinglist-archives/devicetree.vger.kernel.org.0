@@ -2,159 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21D5912AB8A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2019 11:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA5CF12ABA6
+	for <lists+devicetree@lfdr.de>; Thu, 26 Dec 2019 11:37:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726075AbfLZKNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Dec 2019 05:13:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39292 "EHLO mail.kernel.org"
+        id S1726055AbfLZKho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Dec 2019 05:37:44 -0500
+Received: from vps.xff.cz ([195.181.215.36]:41446 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726023AbfLZKNO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Dec 2019 05:13:14 -0500
-Received: from localhost (lfbn-lyo-1-633-204.w90-119.abo.wanadoo.fr [90.119.206.204])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C39CD206CB;
-        Thu, 26 Dec 2019 10:13:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577355192;
-        bh=XKgSXeOZ0xu54J+uvOH0sgeJ1AtiZFyRjKDwwibbcW0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KwTdXUr1oybIqcY+zz8Tn7EC3Hclm9AVvfiTY3R0W08IEvfxOAeOIFuevCq/W7lkK
-         EfgIdzfGctRyFoUIaNcOdrihgZEBrD+Q/erSrApvVu15Tr0XI8y85f2mb/7YVqPjKu
-         fU0bQSkvA0Rkxj0LCb1S+JLLDXGl9GV8PJ/aSnX4=
-Date:   Thu, 26 Dec 2019 11:14:33 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1725954AbfLZKhn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Dec 2019 05:37:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1577356660; bh=u9ETC+o/IDmexaGn/AkVQX1tykjZ0Q5WXzCFWQs4IxA=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=hR1Cvt5PDfOSjCTfWyHa0hGTOieD3sPrxsLePg0TlTIASuwGzDl2q8GisgkgvrTND
+         Ad042SwFVeTyJpga15dKzjnyL7Qx+AdS3XTEibZ3G/+eZY6Acv3SnomV22XY5ZCo6S
+         Yz1kcKqWTVQjg7HfdcsxUxBJorFSPu5KJji2LpCk=
+Date:   Thu, 26 Dec 2019 11:37:39 +0100
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ondrej Jirman <megous@megous.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v5 2/8] dt-bindings: mailbox: Add a sun6i message box
- binding
-Message-ID: <20191226101433.is5jqzkn3f7qv6jt@hendrix.home>
-References: <20191215042455.51001-1-samuel@sholland.org>
- <20191215042455.51001-3-samuel@sholland.org>
- <20191216140422.on4bredklgdxywbw@gilmour.lan>
- <d3a1c7c2-953a-cbfe-970e-c00f9a9f5742@sholland.org>
+        devicetree@vger.kernel.org,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        linux-pm@vger.kernel.org, Yangtao Li <tiny.windzz@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 0/7] add thermal sensor driver for A64, A83T, H3, H5,
+ H6, R40
+Message-ID: <20191226103739.bz3i73gjmn5q5veu@core.my.home>
+Mail-Followup-To: Maxime Ripard <mripard@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        linux-pm@vger.kernel.org, Yangtao Li <tiny.windzz@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-arm-kernel@lists.infradead.org
+References: <20191219172823.1652600-1-anarsoul@gmail.com>
+ <20191219173321.bni4tbrhfkkphv7k@gilmour.lan>
+ <4015380d-33ef-312c-a886-6e8bf65c976a@linaro.org>
+ <20191226092751.dc3boaxsaeivuhw4@hendrix.home>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="emgowsokxyl7s5kc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d3a1c7c2-953a-cbfe-970e-c00f9a9f5742@sholland.org>
+In-Reply-To: <20191226092751.dc3boaxsaeivuhw4@hendrix.home>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---emgowsokxyl7s5kc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi,
-
-On Mon, Dec 16, 2019 at 01:45:08PM -0600, Samuel Holland wrote:
-> On 12/16/19 8:04 AM, Maxime Ripard wrote:
-> > Hi,
+On Thu, Dec 26, 2019 at 10:27:51AM +0100, Maxime Ripard wrote:
+> On Tue, Dec 24, 2019 at 07:30:55PM +0100, Daniel Lezcano wrote:
+> > On 19/12/2019 18:33, Maxime Ripard wrote:
+> > > Hi,
+> > >
+> > > On Thu, Dec 19, 2019 at 09:28:16AM -0800, Vasily Khoruzhick wrote:
+> > >> This patchset adds driver for thermal sensor in A64, A83T, H3, H5,
+> > >> H6 and R40 SoCs.
+> > >
+> > > Thanks again for working on this.
+> > >
+> > > I'll merge the DT patches when the driver will have been merged.
 > >
-> > On Sat, Dec 14, 2019 at 10:24:49PM -0600, Samuel Holland wrote:
-> >> This mailbox hardware is present in Allwinner sun6i, sun8i, sun9i, and
-> >> sun50i SoCs. Add a device tree binding for it. As it has only been
-> >> tested on the A83T, A64, H3/H5, and H6 SoCs, only those compatibles are
-> >> included.
-> >>
-> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> >> ---
-> >>  .../mailbox/allwinner,sun6i-a31-msgbox.yaml   | 78 +++++++++++++++++++
-> >>  1 file changed, 78 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml b/Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml
-> >> new file mode 100644
-> >> index 000000000000..dd746e07acfd
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml
-> >> @@ -0,0 +1,78 @@
-> >> +# SPDX-License-Identifier: GPL-2.0
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/mailbox/allwinner,sun6i-a31-msgbox.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Allwinner sunxi Message Box
-> >> +
-> >> +maintainers:
-> >> +  - Samuel Holland <samuel@sholland.org>
-> >> +
-> >> +description: |
-> >> +  The hardware message box on sun6i, sun8i, sun9i, and sun50i SoCs is a
-> >> +  two-user mailbox controller containing 8 unidirectional FIFOs. An interrupt
-> >> +  is raised for received messages, but software must poll to know when a
-> >> +  transmitted message has been acknowledged by the remote user. Each FIFO can
-> >> +  hold four 32-bit messages; when a FIFO is full, clients must wait before
-> >> +  attempting more transmissions.
-> >> +
-> >> +  Refer to ./mailbox.txt for generic information about mailbox device-tree
-> >> +  bindings.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +     items:
-> >> +      - enum:
-> >> +          - allwinner,sun8i-a83t-msgbox
-> >> +          - allwinner,sun8i-h3-msgbox
-> >> +          - allwinner,sun50i-a64-msgbox
-> >> +          - allwinner,sun50i-h6-msgbox
-> >> +      - const: allwinner,sun6i-a31-msgbox
+> > I've applied patches 1 & 2.
 > >
-> > This will fail for the A31, since it won't have two compatibles but
-> > just one.
->
-> You asked me earlier to only include compatibles that had been tested, so I did.
-> This hasn't been tested on the A31, so there's no A31-only compatible.
+> > They are in the testing branch and will go to the linux-next branch as
+> > soon as the kernelci passes.
+> 
+> I just merged all the other patches (except the patch 6, for the H6,
+> as requested by Vasily on IRC).
 
-The binding is the description, and that description already matches
-the A31 compatible, and it's completely abstract from whether we have
-software to support it.
+Hello,
 
-We have bindings that have no drivers in the tree for example, but are
-just there to make the representation complete.
+I think you can apply H6 patch. This was just some misunderstanding
+and H6 is working.
 
-In this case, we shouldn't enable it in the A31 DTSI, but we should
-document the binding properly.
+thnaks and regards,
+	o.
 
-> >> +  '#mbox-cells':
-> >> +    const: 1
-> >
-> > However, you should document what the argument is about?
->
-> Ok. "Number of cells used to encode a mailbox specifier" should work.
+> Thanks to everyone involved!
+> Maxime
 
-It's not really what I meant, what I meant is what is is that
-specifier you're talking about here. The customers' mailbox properties
-will have a phandle and a number: what is this number representing?
 
-Maxime
 
---emgowsokxyl7s5kc
-Content-Type: application/pgp-signature; name="signature.asc"
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXgSICQAKCRDj7w1vZxhR
-xcTaAP9BWdxgvK6iqBRFqkPE4oDAfjIRlh8hIgMDnZ2PpAYrggEAxyvUS1jgv0e/
-PC/VTzMBZCU8znd1SCHWpM660gfLeQI=
-=zc+u
------END PGP SIGNATURE-----
-
---emgowsokxyl7s5kc--
