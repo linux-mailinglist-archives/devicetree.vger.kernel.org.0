@@ -2,76 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5824D12B473
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 13:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 126D612B483
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 13:22:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726379AbfL0MRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Dec 2019 07:17:04 -0500
-Received: from honk.sigxcpu.org ([24.134.29.49]:60900 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726053AbfL0MRE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Dec 2019 07:17:04 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 5C2E4FB03;
-        Fri, 27 Dec 2019 13:17:02 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id TI76RAkMDfvm; Fri, 27 Dec 2019 13:17:01 +0100 (CET)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 9B10049799; Fri, 27 Dec 2019 13:17:00 +0100 (CET)
-Date:   Fri, 27 Dec 2019 13:17:00 +0100
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt: bindings: lm3692x: Add ti,ovp-microvolt
- property
-Message-ID: <20191227121700.GA18032@bogon.m.sigxcpu.org>
-References: <cover.1577271823.git.agx@sigxcpu.org>
- <f45e30f43b7d20ac14f93309a006249fdb351ddd.1577271823.git.agx@sigxcpu.org>
- <20191226100615.GA4033@amd>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191226100615.GA4033@amd>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727218AbfL0MWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Dec 2019 07:22:09 -0500
+Received: from mail-lj1-f177.google.com ([209.85.208.177]:46829 "EHLO
+        mail-lj1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726379AbfL0MWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Dec 2019 07:22:09 -0500
+Received: by mail-lj1-f177.google.com with SMTP id m26so24541571ljc.13
+        for <devicetree@vger.kernel.org>; Fri, 27 Dec 2019 04:22:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=U8Ue5vhLnmgWcERuYYynEzv1XucZwapNJFZkmMkgenw=;
+        b=D60nQnW3XJ03QmjGKNvwm5kDyZo7gjLV8XVCr1xiU8Nterp03sJrM23/f2WNEl5MUr
+         oLxBWh658v70RqAjRFLoUX9qqE+d6Ap2WfxLpbLVedudKT+5svBjFPcQQ0FIq+yjy0lm
+         lgkK377s8MOsgr+X/LMNrwOn1T/hvVX1SHsq4AKaVoVz2NBFkqAE6xd26va89FI2DGly
+         BBPTIF/m0ZuRiI7ecAWqYfQqE1ovcMHFsSJROELcCNhBf0ZYqzm5wHfkfc3B1rgw70N1
+         D+PdQFdIHIQ3xi+o04yaSOrBGrBIVJpZIrB9nba15gHd+GqKAva+4fz9xcchNRsoOjpi
+         QHbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=U8Ue5vhLnmgWcERuYYynEzv1XucZwapNJFZkmMkgenw=;
+        b=RXjUtxVLIYpmxUtefAukeCo6j0kz8DlcismPaq/UoB0yfeH8hbbfzJKqLwP19UGgRd
+         nNT/fVh+HueggkoR03tq/n7vZ/lUzCRRAc9F1vgRsvkN4zVURMW+VsAXsA3P7eJawwlK
+         OOmU0Fh/h6cUa+CW3CSH/jYyYuWReGY7KLWi+gDeLVlFrxCLgp2Ub+VeCkbmaAbidquT
+         Qu/qIdUAZ+2zI7sYhve9qHmQByqAN6iR4Ce7EYU2DVs3/YVa2rzodEAtTkrV4H4J1yqS
+         8QQp+8HlYAMzX7X7oxNMljdlMSnt1DkX7hkbBg5xbSJopMdQrbpV7ajMjDfY7i9XO4H5
+         MTzw==
+X-Gm-Message-State: APjAAAXgYQog/YMiXVJsc6FjE6F2hfFxBiDCUffHRPhBkR1TK/OE2xjc
+        qRDY3gQkNbjMfkJUOo/Vruocgw==
+X-Google-Smtp-Source: APXvYqytvqDzcMovvIcyLMEhiHEwdmISb5T3xkVUkTm9lXIKfTAlYpwVJxZYFlpVT448cbRGS7d5Hw==
+X-Received: by 2002:a05:651c:282:: with SMTP id b2mr27878285ljo.41.1577449327124;
+        Fri, 27 Dec 2019 04:22:07 -0800 (PST)
+Received: from TM-8481.Dlink (office.dev.rtsoft.ru. [62.117.114.130])
+        by smtp.googlemail.com with ESMTPSA id x21sm13523692ljd.2.2019.12.27.04.22.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Dec 2019 04:22:06 -0800 (PST)
+From:   Andrey Konovalov <andrey.konovalov@linaro.org>
+To:     mchehab@kernel.org, robh+dt@kernel.org
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        peter.griffin@linaro.org, ezequiel@collabora.com,
+        Andrey Konovalov <andrey.konovalov@linaro.org>
+Subject: [PATCH v2 0/2] Add IMX219 CMOS image sensor support
+Date:   Fri, 27 Dec 2019 15:21:12 +0300
+Message-Id: <20191227122114.23075-1-andrey.konovalov@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Thu, Dec 26, 2019 at 11:06:15AM +0100, Pavel Machek wrote:
-> On Wed 2019-12-25 12:07:14, Guido Günther wrote:
-> > This allows to set the overvoltage protection to 17V, 21V, 25V or 29V.
-> > 
-> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> 
-> Acked-by: Pavel	 Machek <pavel@ucw.cz>
+This patchset adds support for IMX219 CMOS image sensor from Sony.
+Sony IMX219 is an 8MPix, 1/4.0-inch CMOS active pixel digital image sensor
+with an active array size of 3280H x 2464V. It is programmable through
+I2C interface. Image data are sent through MIPI CSI-2, which can be configured
+as either 2 or 4 data lanes, but this driver currently only supports 2 lanes.
+The currently supported resolutions are 3280x2464 @ 15fps, 1920x1080 @ 30fps
+(cropped FOV), and 1640x1232 (2x2 binned) @ 30fps.
 
-Thanks!
+The driver has been tested with Raspberry Pi Camera Module v2 connected to
+Raspberry Pi Zero W.
 
-> I will need Rob's Ack.
-> 
-> > @@ -44,6 +48,7 @@ led-controller@36 {
-> >  
-> >  	enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-> >  	vled-supply = <&vbatt>;
-> > +	ti,ovp-microvolt = <25000000>;
-> 
-> Wed often put the default values here.
+Changes since v1 [1]:
 
-Makes sense, thanks.
- -- Guido
+dt-bindings:
+  - license updated to (GPL-2.0-only OR BSD-2-Clause)
+  - non-standard 'camera-clk' property has got type, description, properties,
+    and required
+  - 'clock-lanes', 'data-lanes', and 'clock-noncontinuous' moved to the correct
+    node, the syntax has been fixed
+  - 'port' added to required properties
+  - minor corrections to some other property descriptions
 
-> 									Pavel
-> -- 
-> (english) http://www.livejournal.com/~pavelmachek
-> (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
+imx219 sensor driver:
+  - fixed width variables replaced with '[unsigned] int' where appropriate
+  - excessive comments dropped
+  - imx219_get_format_code() returns 'codes[...]', and doesn't use an extra
+    internal variable any more
+  - initializing 'ret' to 0 in the beginning of imx219_set_ctrl() dropped
+  - uses IMX219_XCLK_FREQ macro instead of hardcoded number
+  - IMX219_REG_ORIENTATION is dropped from the mode_*x*_regs[] tables as it is 
+    written by the control handler
+  - imx219_stop_streaming() return value changed to void 
+  - calling imx219_power_on() moved from imx219_identify_module() to
+    imx219_probe(), and calling imx219_power_off() in the probe() error path
+    has been added. This simplifies imx219_identify_module(), and ensures
+    that the sensor is powered off after probe() and until streaming is
+    started
+  - comment referring to "xclr" pin changed to call it "enable pin" vs "power
+    down pin" to better match the "OUT_HIGH" pin configuration
 
+Thanks,
+Andrey
+
+[1] https://patchwork.kernel.org/cover/11284783/
+
+
+Andrey Konovalov (1):
+  dt-bindings: media: i2c: Add IMX219 CMOS sensor binding
+
+Dave Stevenson (1):
+  media: i2c: Add driver for Sony IMX219 sensor
+
+ .../devicetree/bindings/media/i2c/imx219.yaml |  134 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   12 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/imx219.c                    | 1240 +++++++++++++++++
+ 5 files changed, 1395 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/imx219.yaml
+ create mode 100644 drivers/media/i2c/imx219.c
+
+-- 
+2.17.1
 
