@@ -2,162 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2149C12B5F9
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 17:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9853912B8C7
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 18:58:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726495AbfL0Qxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Dec 2019 11:53:54 -0500
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:43682 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726379AbfL0Qxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Dec 2019 11:53:54 -0500
-Received: by mail-ed1-f68.google.com with SMTP id dc19so25737753edb.10;
-        Fri, 27 Dec 2019 08:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PutLJWPd2cEOhbmgZKTEhd5XEP7OpzpWifMhut4DmqA=;
-        b=DwiKlg3avHIENCyNavhob2AMpVyTS9QSLl42Sq+4wmPxA2eGoEaW0dNQJSDgR9qVI/
-         gVpTH5X0CHsaaBqUQSIqqYyJvt9ANz4oUcUiF1HgEuaNFJ4f5fSTRM+ZdOaxipbQ+37l
-         e52TCpfVMWTs/4gfu4RQu63sv+6g+UJdbWRp+TidXrL8tOQ5ctn3zFDhXQl7NGKZtaEy
-         ejJ3rs1FslamWH8noA5P8dlPPpBQmf7bK+8qfHBl8yjGCGtAJYq7knGY0d37A9JguVRB
-         6wK1qjeq7+pJfp7csnP5t+//L8L+/RTNsK49f9NZAKBd2xrob+rD8KIBexvwXOkcSiRD
-         3zRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PutLJWPd2cEOhbmgZKTEhd5XEP7OpzpWifMhut4DmqA=;
-        b=ndYCI3/fQPYhVgkEdZmaNNCFUD9dL99pDMAcWgS414N+sbh3tAnxekWXfEH9qd2ytd
-         yMG3TzJaPZS4xzAYrOsVkao0XxBno7cl8KXdXkY8GrAuf9x+jvsaMxfr39xI0n4Pv9Zc
-         FJKWEEv6s8edVEAgNRyFR0FBiQwHRZCdfpKKJO4q3rQzWX2clBIT5ghtauiwtp8JVMLx
-         V8MeLNAqmt/VdIoovQFwkO+SkmidUPWcoPntpTvZvQ3hlYsMfvbkU4yyLTvd/n6Jf46q
-         LakZLmQXAEqCHUeDwmzGiJFVj7oYPltdlQmk5Bgk8DEnTlZ7Q19fGdTit4Xe3dajNLCu
-         xOvg==
-X-Gm-Message-State: APjAAAW2fW7NZHqsCBZXwHbwZ+sZI/x9mlvX4cYZmpfBUGiMdoL+n/Lm
-        tPzay9vTgdW3gAzy1DYbiSGgFHM/pY4qoGScZJ4=
-X-Google-Smtp-Source: APXvYqygkSSfnw8HoIDr9icAV5YXJN/IAat2JIa4d06E0rVnVK5uFaStiuAG+Sxv/pJ2HevsAWvvqJm4znilTktaA3I=
-X-Received: by 2002:aa7:c80b:: with SMTP id a11mr57661239edt.240.1577465632157;
- Fri, 27 Dec 2019 08:53:52 -0800 (PST)
+        id S1727513AbfL0Rlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Dec 2019 12:41:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37924 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727506AbfL0Rlg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Dec 2019 12:41:36 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5329721775;
+        Fri, 27 Dec 2019 17:41:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1577468495;
+        bh=HJ0ymcUkdCCjoz9nZLNfodLIvHB94KyevMzMw3Nhzz8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ZAh7GBGUU2igbVkSXBMyyXdEGiawjjdwywsuhfOM6+vWGP7H8gN0mRJ2OebqxYjW/
+         sNe6Rwym4m5rmsnlBjh//+C5ldb3IHuvBfE1YSMASIL9UHkCJ4UMMT4eSCfEklZLKo
+         21iTR6Q+Yk37NTTmgwTcIeD2gUdQ2MyVeapKWVio=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Stefan Roese <sr@denx.de>, Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 030/187] ARM: dts: imx6ul: imx6ul-14x14-evk.dtsi: Fix SPI NOR probing
+Date:   Fri, 27 Dec 2019 12:38:18 -0500
+Message-Id: <20191227174055.4923-30-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20191227174055.4923-1-sashal@kernel.org>
+References: <20191227174055.4923-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <20191227094606.143637-1-jian.hu@amlogic.com> <20191227094606.143637-3-jian.hu@amlogic.com>
-In-Reply-To: <20191227094606.143637-3-jian.hu@amlogic.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 27 Dec 2019 17:53:41 +0100
-Message-ID: <CAFBinCC4Fgn3QQ6H-TWO_Xx+USonzMDZDyvJBfYp-_6=pmKdLQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/5] clk: meson: add support for A1 PLL clock ops
-To:     Jian Hu <jian.hu@amlogic.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Chandle Zou <chandle.zou@amlogic.com>,
-        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jian,
+From: Stefan Roese <sr@denx.de>
 
-On Fri, Dec 27, 2019 at 10:46 AM Jian Hu <jian.hu@amlogic.com> wrote:
-[...]
-> @@ -294,9 +298,12 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
->  {
->         struct clk_regmap *clk = to_clk_regmap(hw);
->         struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-> +       int ret = 0;
->
-> -       if (meson_parm_read(clk->map, &pll->rst) ||
-> -           !meson_parm_read(clk->map, &pll->en) ||
-> +       if (MESON_PARM_APPLICABLE(&pll->rst))
-> +               ret = meson_parm_read(clk->map, &pll->rst);
-> +
-> +       if (ret || !meson_parm_read(clk->map, &pll->en) ||
->             !meson_parm_read(clk->map, &pll->l))
->                 return 0;
-I had to read this part twice to understand what it's doing because I
-misunderstood what "ret" is used for (I thought that some "return ret"
-is missing)
-my proposal to make it easier to read:
-...
-if (MESON_PARM_APPLICABLE(&pll->rst) &&
-    meson_parm_read(clk->map, &pll->rst))
-  return 0;
+[ Upstream commit 0aeb1f2b74f3402e9cdb7c0b8e2c369c9767301e ]
 
-if (!meson_parm_read(clk->map, &pll->en) ||
-    !meson_parm_read(clk->map, &pll->l))
-                 return 0;
-...
+Without this "jedec,spi-nor" compatible property, probing of the SPI NOR
+does not work on the NXP i.MX6ULL EVK. Fix this by adding this
+compatible property to the DT.
 
-please let me know what you think about this
+Fixes: 7d77b8505aa9 ("ARM: dts: imx6ull: fix the imx6ull-14x14-evk configuration")
+Signed-off-by: Stefan Roese <sr@denx.de>
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Reviewed-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/imx6ul-14x14-evk.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> @@ -321,6 +328,23 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
->         /* do nothing if the PLL is already enabled */
->         if (clk_hw_is_enabled(hw))
->                 return 0;
-> +       /*
-> +        * Compared with the previous SoCs, self-adaption module current
-> +        * is newly added for A1, keep the new power-on sequence to enable the
-> +        * PLL.
-> +        */
-> +       if (MESON_PARM_APPLICABLE(&pll->current_en)) {
-> +               /* Enable the pll */
-> +               meson_parm_write(clk->map, &pll->en, 1);
-> +               udelay(10);
-> +               /* Enable the pll self-adaption module current */
-> +               meson_parm_write(clk->map, &pll->current_en, 1);
-> +               udelay(40);
-> +               /* Enable lock detect module */
-> +               meson_parm_write(clk->map, &pll->l_detect, 1);
-> +               meson_parm_write(clk->map, &pll->l_detect, 0);
-> +               goto out;
-> +       }
-in all other functions you are skipping the pll->rst register by
-checking for MESON_PARM_APPLICABLE(&pll->rst)
-I like that because it's a pattern which is easy to follow
+diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+index c2a9dd57e56a..aa86341adaaa 100644
+--- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
++++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+@@ -215,7 +215,7 @@
+ 	flash0: n25q256a@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "micron,n25q256a";
++		compatible = "micron,n25q256a", "jedec,spi-nor";
+ 		spi-max-frequency = <29000000>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-tx-bus-width = <4>;
+-- 
+2.20.1
 
-do you think we can make this part consistent with that?
-I'm thinking of something like this (not compile-tested and I dropped
-all comments, just so you get the idea):
-...
-if (MESON_PARM_APPLICABLE(&pll->rst)
-  meson_parm_write(clk->map, &pll->rst, 1);
-
-meson_parm_write(clk->map, &pll->en, 1);
-
-if (MESON_PARM_APPLICABLE(&pll->rst))
-  meson_parm_write(clk->map, &pll->rst, 0);
-
-if (MESON_PARM_APPLICABLE(&pll->current_en))
-  meson_parm_write(clk->map, &pll->current_en, 1);
-
-if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
-  meson_parm_write(clk->map, &pll->l_detect, 1);
-  meson_parm_write(clk->map, &pll->l_detect, 0);
-}
-
-if (meson_clk_pll_wait_lock(hw))
-...
-
-I see two (and a half) benefits here:
-- if there's a PLL with neither the pll->current_en nor the pll->rst
-registers then you get support for this implementation for free
-- the if (MESON_PARM_APPLICABLE(...)) pattern is already used in the
-driver, but only for one register (in your example when
-MESON_PARM_APPLICABLE(&pll->current_en) exists you also modify the
-pll->l_detect register, which I did not expect)
-- only counts half: no use of "goto", which in my opinion makes it
-very easy to read (just read from top to bottom, checking each "if")
-
-
-Martin
