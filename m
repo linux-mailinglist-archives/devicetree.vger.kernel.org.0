@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA94612B86B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 18:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88F8C12B848
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 18:55:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727907AbfL0Rzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Dec 2019 12:55:37 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38970 "EHLO mail.kernel.org"
+        id S1727804AbfL0RmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Dec 2019 12:42:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39036 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727792AbfL0RmO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Dec 2019 12:42:14 -0500
+        id S1727801AbfL0RmR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Dec 2019 12:42:17 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 85348218AC;
-        Fri, 27 Dec 2019 17:42:13 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A924220740;
+        Fri, 27 Dec 2019 17:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577468534;
-        bh=zKTBkj+dms4Z/T6nHnFDicQS7r9JXyUG8csVj+Gi90c=;
+        s=default; t=1577468536;
+        bh=CuHDXm6CnEmH/l+I+Z4tOhOiGH9ZvYgGUysk2Z+MD98=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QNTlCT30b32br+sjgqez/6xGhPCp4IkzQAviuhadF26WBwlEn87tqyAfER7TnxGg/
-         49basU6CYMO71ANoJZucV7fmvVjN3g57yKhFIWpl8EymvNimoe3ih1X5XvKm+EAN4P
-         44n+0gl6JOpy6UV+AWLM2IAJxlOy6GrDRP6ukiUU=
+        b=KE1O/E0y13n/AeY0F2+lu8TZQ80i6ilEtQr19xPB7ZCWluh1Zix09Rpx6czpZ10jv
+         F9T8SN1sN8JlvgdExA+7QAAS9+HX+L52yWft/nBmCXE7WFxPEdrAFQHNG3+Wa3eIJ/
+         jWCNK1JPUG8fxJGDppm/F/c9tcldF+5wIu6OPFO4=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Mans Rullgard <mans@mansr.com>, Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 064/187] ARM: dts: am335x-sancloud-bbe: fix phy mode
-Date:   Fri, 27 Dec 2019 12:38:52 -0500
-Message-Id: <20191227174055.4923-64-sashal@kernel.org>
+Cc:     Stefan Wahren <wahrenst@gmx.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 066/187] ARM: dts: bcm283x: Fix critical trip point
+Date:   Fri, 27 Dec 2019 12:38:54 -0500
+Message-Id: <20191227174055.4923-66-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191227174055.4923-1-sashal@kernel.org>
 References: <20191227174055.4923-1-sashal@kernel.org>
@@ -43,33 +43,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mans Rullgard <mans@mansr.com>
+From: Stefan Wahren <wahrenst@gmx.net>
 
-[ Upstream commit c842b8c4ff9859f750447f3ca08f64b2ed23cebc ]
+[ Upstream commit 30e647a764d446723a7e0fb08d209e0104f16173 ]
 
-The phy mode should be rgmii-id.  For some reason, it used to work with
-rgmii-txid but doesn't any more.
+During definition of the CPU thermal zone of BCM283x SoC family there
+was a misunderstanding of the meaning "criticial trip point" and the
+thermal throttling range of the VideoCore firmware. The latter one takes
+effect when the core temperature is at least 85 degree celsius or higher
 
-Signed-off-by: Mans Rullgard <mans@mansr.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+So the current critical trip point doesn't make sense, because the
+thermal shutdown appears before the firmware has a chance to throttle
+the ARM core(s).
+
+Fix these unwanted shutdowns by increasing the critical trip point
+to a value which shouldn't be reached with working thermal throttling.
+
+Fixes: 0fe4d2181cc4 ("ARM: dts: bcm283x: Add CPU thermal zone with 1 trip point")
+Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/am335x-sancloud-bbe.dts | 2 +-
+ arch/arm/boot/dts/bcm283x.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/am335x-sancloud-bbe.dts b/arch/arm/boot/dts/am335x-sancloud-bbe.dts
-index 8678e6e35493..e5fdb7abb0d5 100644
---- a/arch/arm/boot/dts/am335x-sancloud-bbe.dts
-+++ b/arch/arm/boot/dts/am335x-sancloud-bbe.dts
-@@ -108,7 +108,7 @@
+diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dtsi
+index 2d191fcbc2cc..90125ce19a1b 100644
+--- a/arch/arm/boot/dts/bcm283x.dtsi
++++ b/arch/arm/boot/dts/bcm283x.dtsi
+@@ -40,7 +40,7 @@
  
- &cpsw_emac0 {
- 	phy-handle = <&ethphy0>;
--	phy-mode = "rgmii-txid";
-+	phy-mode = "rgmii-id";
- };
- 
- &i2c0 {
+ 			trips {
+ 				cpu-crit {
+-					temperature	= <80000>;
++					temperature	= <90000>;
+ 					hysteresis	= <0>;
+ 					type		= "critical";
+ 				};
 -- 
 2.20.1
 
