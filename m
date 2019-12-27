@@ -2,37 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 108C812B882
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 18:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA94612B86B
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 18:56:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727664AbfL0Rl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Dec 2019 12:41:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38476 "EHLO mail.kernel.org"
+        id S1727907AbfL0Rzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Dec 2019 12:55:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38970 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727494AbfL0Rl4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Dec 2019 12:41:56 -0500
+        id S1727792AbfL0RmO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Dec 2019 12:42:14 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 48CEE22B48;
-        Fri, 27 Dec 2019 17:41:55 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 85348218AC;
+        Fri, 27 Dec 2019 17:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1577468516;
-        bh=3cMs4tT+RemEJnmuF4khxgCvz9o2HcNgNZpneHdQLRw=;
+        s=default; t=1577468534;
+        bh=zKTBkj+dms4Z/T6nHnFDicQS7r9JXyUG8csVj+Gi90c=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NeO/Q6dCwVUNNbIphP1CyWFZP1iWckxfpgcffIefAK3QEAzwk22BGzs85cSj0To7z
-         1z2R7N1DDOh+0FlWm5mZRmDVm4r9YtLNZlG7tKAvmT0ZIri0MH1tTTxPD0aatXWTXC
-         lDaNW+izyfy8YejZ5Y8y1ZVQYL81Gf4WLh2mjyaU=
+        b=QNTlCT30b32br+sjgqez/6xGhPCp4IkzQAviuhadF26WBwlEn87tqyAfER7TnxGg/
+         49basU6CYMO71ANoJZucV7fmvVjN3g57yKhFIWpl8EymvNimoe3ih1X5XvKm+EAN4P
+         44n+0gl6JOpy6UV+AWLM2IAJxlOy6GrDRP6ukiUU=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Simon Horman <simon.horman@netronome.com>,
-        Ray Jui <ray.jui@broadcom.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 048/187] ARM: dts: Cygnus: Fix MDIO node address/size cells
-Date:   Fri, 27 Dec 2019 12:38:36 -0500
-Message-Id: <20191227174055.4923-48-sashal@kernel.org>
+Cc:     Mans Rullgard <mans@mansr.com>, Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 064/187] ARM: dts: am335x-sancloud-bbe: fix phy mode
+Date:   Fri, 27 Dec 2019 12:38:52 -0500
+Message-Id: <20191227174055.4923-64-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191227174055.4923-1-sashal@kernel.org>
 References: <20191227174055.4923-1-sashal@kernel.org>
@@ -45,38 +43,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+From: Mans Rullgard <mans@mansr.com>
 
-[ Upstream commit fac2c2da3596d77c343988bb0d41a8c533b2e73c ]
+[ Upstream commit c842b8c4ff9859f750447f3ca08f64b2ed23cebc ]
 
-The MDIO node on Cygnus had an reversed #address-cells and
- #size-cells properties, correct those.
+The phy mode should be rgmii-id.  For some reason, it used to work with
+rgmii-txid but doesn't any more.
 
-Fixes: 40c26d3af60a ("ARM: dts: Cygnus: Add the ethernet switch and ethernet PHY")
-Reported-by: Simon Horman <simon.horman@netronome.com>
-Reviewed-by: Ray Jui <ray.jui@broadcom.com>
-Reviewed-by: Simon Horman <simon.horman@netronome.com>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Mans Rullgard <mans@mansr.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/bcm-cygnus.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/am335x-sancloud-bbe.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/bcm-cygnus.dtsi b/arch/arm/boot/dts/bcm-cygnus.dtsi
-index 2dac3efc7640..1bc45cfd5453 100644
---- a/arch/arm/boot/dts/bcm-cygnus.dtsi
-+++ b/arch/arm/boot/dts/bcm-cygnus.dtsi
-@@ -174,8 +174,8 @@
- 		mdio: mdio@18002000 {
- 			compatible = "brcm,iproc-mdio";
- 			reg = <0x18002000 0x8>;
--			#size-cells = <1>;
--			#address-cells = <0>;
-+			#size-cells = <0>;
-+			#address-cells = <1>;
- 			status = "disabled";
+diff --git a/arch/arm/boot/dts/am335x-sancloud-bbe.dts b/arch/arm/boot/dts/am335x-sancloud-bbe.dts
+index 8678e6e35493..e5fdb7abb0d5 100644
+--- a/arch/arm/boot/dts/am335x-sancloud-bbe.dts
++++ b/arch/arm/boot/dts/am335x-sancloud-bbe.dts
+@@ -108,7 +108,7 @@
  
- 			gphy0: ethernet-phy@0 {
+ &cpsw_emac0 {
+ 	phy-handle = <&ethphy0>;
+-	phy-mode = "rgmii-txid";
++	phy-mode = "rgmii-id";
+ };
+ 
+ &i2c0 {
 -- 
 2.20.1
 
