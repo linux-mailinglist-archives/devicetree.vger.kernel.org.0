@@ -2,65 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B341E12B07D
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 03:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DEB712B0D2
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 04:24:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726115AbfL0CQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Dec 2019 21:16:05 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:44196 "EHLO inva020.nxp.com"
+        id S1726277AbfL0DYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Dec 2019 22:24:12 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35830 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726550AbfL0CQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Dec 2019 21:16:03 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 70C7C1A1008;
-        Fri, 27 Dec 2019 03:16:02 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1427F1A0683;
-        Fri, 27 Dec 2019 03:15:52 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 6063D40291;
-        Fri, 27 Dec 2019 10:15:39 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, bjorn.andersson@linaro.org, olof@lixom.net,
-        maxime@cerno.tech, leonard.crestez@nxp.com, dinguyen@kernel.org,
-        marcin.juszkiewicz@linaro.org, ping.bai@nxp.com, abel.vesa@nxp.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 3/3] arm64: defconfig: Enable CONFIG_CLK_IMX8MP by default
-Date:   Fri, 27 Dec 2019 10:12:28 +0800
-Message-Id: <1577412748-28213-3-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1577412748-28213-1-git-send-email-Anson.Huang@nxp.com>
-References: <1577412748-28213-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726138AbfL0DYL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Dec 2019 22:24:11 -0500
+Received: from localhost (unknown [106.51.110.206])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6BFD520409;
+        Fri, 27 Dec 2019 03:24:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1577417051;
+        bh=s944JgsWuexqbpJwZEh5NgcpT/2p+A42CXGeuiQy7Cc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lniWdE+1CfCD2taWKoVqrH7HpvP+yRHnD2Ra7FVmywg6c0/03a2CJdRyCluQakkCv
+         GLSWslgnSUy5vY2amMPTrS1yi0Nm8jJO3XKDLjIsOpjN44R8He1v3fBFQRQU6It3t1
+         UBblyNrF0bExvBoZgH91fh6akV7tZfdj3g6R0I7o=
+Date:   Fri, 27 Dec 2019 08:54:06 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/5] phy: qcom-qmp: Add SDM845 QMP and QHP PHYs
+Message-ID: <20191227032406.GA3006@vkoul-mobl>
+References: <20191107000917.1092409-1-bjorn.andersson@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191107000917.1092409-1-bjorn.andersson@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Select CONFIG_CLK_IMX8MP by default to support i.MX8MP clock driver.
+On 06-11-19, 16:09, Bjorn Andersson wrote:
+> Add support for the two PCIe PHYs found in Qualcomm SDM845.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+I have tested this on db845 so:
+Tested-by: Vinod Koul <vkoul@kernel.org>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c7a94c4ff..8d9b9ce 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -701,6 +701,7 @@ CONFIG_COMMON_CLK_PWM=y
- CONFIG_CLK_RASPBERRYPI=m
- CONFIG_CLK_IMX8MM=y
- CONFIG_CLK_IMX8MN=y
-+CONFIG_CLK_IMX8MP=y
- CONFIG_CLK_IMX8MQ=y
- CONFIG_CLK_IMX8QXP=y
- CONFIG_TI_SCI_CLK=y
 -- 
-2.7.4
-
+~Vinod
