@@ -2,112 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5339B12B1D6
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 07:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7795312B1E9
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 07:38:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726495AbfL0GhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Dec 2019 01:37:07 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:54727 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726483AbfL0GhH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Dec 2019 01:37:07 -0500
-Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 27 Dec 2019
- 14:37:18 +0800
-From:   Hanjie Lin <hanjie.lin@amlogic.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>
-CC:     Hanjie Lin <hanjie.lin@amlogic.com>,
-        Yue Wang <yue.wang@amlogic.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jian Hu <jian.hu@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Subject: [PATCH v3 6/6] arm64: dts: meson: a1: Enable DWC3 controller
-Date:   Fri, 27 Dec 2019 14:36:46 +0800
-Message-ID: <1577428606-69855-7-git-send-email-hanjie.lin@amlogic.com>
+        id S1727047AbfL0Giv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Dec 2019 01:38:51 -0500
+Received: from mail25.static.mailgun.info ([104.130.122.25]:20925 "EHLO
+        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726197AbfL0Git (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Dec 2019 01:38:49 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1577428729; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=nq8/oRwBTL0CHWndYEmMuTpFlMH3x2xQLeaPRjlV7ek=; b=WomordFKcjyXUbfKt7Et+bpKY96J9A4qX8scWzoKssc5gfooYCDqSvUlOcr6royWqK2mOlNR
+ E7t9QbhRYUB5gPAnfIUf+tmuoC67gxBITtVGto+6ueMczYtkxKU62E6+YAexdIjZD3kkbHhd
+ NsT3KZcxeYhuTFJ5mCckT5jEWgA=
+X-Mailgun-Sending-Ip: 104.130.122.25
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e05a6f7.7f080e93e960-smtp-out-n02;
+ Fri, 27 Dec 2019 06:38:47 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4D4C8C433A2; Fri, 27 Dec 2019 06:38:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.0
+Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B7335C43383;
+        Fri, 27 Dec 2019 06:38:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B7335C43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v3 0/6] Add GPU & Video Clock controller driver for SC7180
+Date:   Fri, 27 Dec 2019 12:08:28 +0530
+Message-Id: <1577428714-17766-1-git-send-email-tdas@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
-References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.18.11.213]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable DWC3 controller for Meson A1 SoC.
+[v3]
+ * Update the clock items in Documentation binding with the GPLL0 branch names.
+ * Update gpu_cc_parent_data to remove .name for GCC GPLL0 source.
+ * Mark video_cc_xo_clk clock critical from videocc probe.
 
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 33 +++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+[v2]
+ * Split Fabia code cleanup and calibration code.
+ * Few cleanups for GPU/Video CC are
+    * header file inclusion, const for pll vco table.
+    * removal of always enabled clock from gpucc.
+    * compatibles added in sorted order.
+    * move from core_initcall to subsys_initcall().
+    * cleanup clk_parent_data for clocks to be provided from DT.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index bd63374a..76f787d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -7,6 +7,8 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/meson-a1-power.h>
- #include <dt-bindings/reset/amlogic,meson-a1-reset.h>
-+#include <dt-bindings/clock/a1-pll-clkc.h>
-+#include <dt-bindings/clock/a1-clkc.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -125,6 +127,37 @@
- 			#interrupt-cells = <3>;
- 			#address-cells = <0>;
- 		};
-+
-+		usb: usb@ffe09000 {
-+			status = "okay";
-+			compatible = "amlogic,meson-a1-usb-ctrl";
-+			reg = <0x0 0xffe09000 0x0 0xa0>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&clkc_periphs CLKID_USB_CTRL>,
-+				 <&clkc_periphs CLKID_USB_BUS>,
-+				 <&clkc_periphs CLKID_XTAL_USB_PHY>,
-+				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
-+			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
-+					"xtal_usb_ctrl";
-+			resets = <&reset RESET_USBCTRL>;
-+
-+			dr_mode = "host";
-+
-+			phys = <&usb2_phy1>;
-+			phy-names = "usb2-phy1";
-+
-+			dwc3: usb@ff400000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff400000 0x0 0x100000>;
-+				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+				dr_mode = "host";
-+				snps,dis_u2_susphy_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.7.4
+[v1]
+ * Fabia PLLs could fail latching in the case where the PLL is not
+   calibrated, so add support to calibrate in prepare clock ops.
 
+ * Add driver support for Graphics clock controller for SC7180 and also
+   update device tree bindings for the various clocks supported in the
+   clock controller.
+
+ * Add driver support for Video clock controller for SC7180 and also
+   update device tree bindings for the various clocks supported in the
+   clock controller.
+
+Taniya Das (6):
+  dt-bindings: clock: Add YAML schemas for the QCOM GPUCC clock bindings
+  dt-bindings: clock: Introduce QCOM Graphics clock bindings
+  clk: qcom: Add graphics clock controller driver for SC7180
+  dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock
+    bindings
+  dt-bindings: clock: Introduce SC7180 QCOM Video clock bindings
+  clk: qcom: Add video clock controller driver for SC7180
+
+ .../devicetree/bindings/clock/qcom,gpucc.txt       |  24 --
+ .../devicetree/bindings/clock/qcom,gpucc.yaml      |  72 ++++++
+ .../devicetree/bindings/clock/qcom,videocc.txt     |  18 --
+ .../devicetree/bindings/clock/qcom,videocc.yaml    |  62 +++++
+ drivers/clk/qcom/Kconfig                           |  16 ++
+ drivers/clk/qcom/Makefile                          |   2 +
+ drivers/clk/qcom/gpucc-sc7180.c                    | 266 +++++++++++++++++++++
+ drivers/clk/qcom/videocc-sc7180.c                  | 259 ++++++++++++++++++++
+ include/dt-bindings/clock/qcom,gpucc-sc7180.h      |  21 ++
+ include/dt-bindings/clock/qcom,videocc-sc7180.h    |  23 ++
+ 10 files changed, 721 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,gpucc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,videocc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+ create mode 100644 drivers/clk/qcom/gpucc-sc7180.c
+ create mode 100644 drivers/clk/qcom/videocc-sc7180.c
+ create mode 100644 include/dt-bindings/clock/qcom,gpucc-sc7180.h
+ create mode 100644 include/dt-bindings/clock/qcom,videocc-sc7180.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
