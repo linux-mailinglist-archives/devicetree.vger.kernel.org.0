@@ -2,157 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F4B712B3A4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 10:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A8E512B3CD
+	for <lists+devicetree@lfdr.de>; Fri, 27 Dec 2019 11:16:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726502AbfL0Jqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Dec 2019 04:46:31 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:21110 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726677AbfL0Jqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Dec 2019 04:46:31 -0500
-Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 27 Dec 2019
- 17:46:34 +0800
-From:   Jian Hu <jian.hu@amlogic.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-CC:     Jian Hu <jian.hu@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Chandle Zou <chandle.zou@amlogic.com>,
-        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v5 2/5] clk: meson: add support for A1 PLL clock ops
-Date:   Fri, 27 Dec 2019 17:46:03 +0800
-Message-ID: <20191227094606.143637-3-jian.hu@amlogic.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191227094606.143637-1-jian.hu@amlogic.com>
-References: <20191227094606.143637-1-jian.hu@amlogic.com>
+        id S1726354AbfL0KQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Dec 2019 05:16:18 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:58786 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726297AbfL0KQR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Dec 2019 05:16:17 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id BFBBBFB03;
+        Fri, 27 Dec 2019 11:16:15 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id LOpDKjPcq13w; Fri, 27 Dec 2019 11:16:14 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 6CF2E49799; Fri, 27 Dec 2019 11:16:14 +0100 (CET)
+Date:   Fri, 27 Dec 2019 11:16:14 +0100
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt: bindings: lm3692x: Document new properties
+Message-ID: <20191227101614.GB2716@bogon.m.sigxcpu.org>
+References: <cover.1576499103.git.agx@sigxcpu.org>
+ <35a23315938909c80e7772838e1de0d2d46302f2.1576499103.git.agx@sigxcpu.org>
+ <20191226191906.GA13331@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.25]
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191226191906.GA13331@bogus>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compared with the previous SoCs, self-adaption module current
-is newly added for A1, And there is no reset parm except the
-fixed pll. In A1 PLL the PLL enable sequence is different, Using
-the new power-on sequence to enable the PLL.
+Hi,
+On Thu, Dec 26, 2019 at 12:19:06PM -0700, Rob Herring wrote:
+> On Mon, Dec 16, 2019 at 01:28:05PM +0100, Guido Günther wrote:
+> > We allow configuration of brightness mode and over voltage
+> > protection.
+> > 
+> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> > ---
+> >  Documentation/devicetree/bindings/leds/leds-lm3692x.txt | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/leds-lm3692x.txt b/Documentation/devicetree/bindings/leds/leds-lm3692x.txt
+> > index 4c2d923f8758..f195e8b45d85 100644
+> > --- a/Documentation/devicetree/bindings/leds/leds-lm3692x.txt
+> > +++ b/Documentation/devicetree/bindings/leds/leds-lm3692x.txt
+> > @@ -18,6 +18,10 @@ Required properties:
+> >  Optional properties:
+> >  	- enable-gpios : gpio pin to enable/disable the device.
+> >  	- vled-supply : LED supply
+> > +	- ti,brightness-mapping-exponential: Whether to use exponential
+> > +	    brightness mapping
+> > +	- ti,overvoltage-volts: Overvoltage protection in Volts, can
+> > +	    be 0 (unprotected), 21, 25 or 29V
+> 
+> '-microvolt' is the standard unit suffix.
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
- drivers/clk/meson/clk-pll.c | 40 ++++++++++++++++++++++++++++++++-----
- drivers/clk/meson/clk-pll.h |  2 ++
- 2 files changed, 37 insertions(+), 5 deletions(-)
+Fixed in v2:
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index ddb1e5634739..9eb7d465d123 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -283,10 +283,14 @@ static void meson_clk_pll_init(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
- 	if (pll->init_count) {
--		meson_parm_write(clk->map, &pll->rst, 1);
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 1);
-+
- 		regmap_multi_reg_write(clk->map, pll->init_regs,
- 				       pll->init_count);
--		meson_parm_write(clk->map, &pll->rst, 0);
-+
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 0);
- 	}
- }
- 
-@@ -294,9 +298,12 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
- {
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
-+	int ret = 0;
- 
--	if (meson_parm_read(clk->map, &pll->rst) ||
--	    !meson_parm_read(clk->map, &pll->en) ||
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		ret = meson_parm_read(clk->map, &pll->rst);
-+
-+	if (ret || !meson_parm_read(clk->map, &pll->en) ||
- 	    !meson_parm_read(clk->map, &pll->l))
- 		return 0;
- 
-@@ -321,6 +328,23 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 	/* do nothing if the PLL is already enabled */
- 	if (clk_hw_is_enabled(hw))
- 		return 0;
-+	/*
-+	 * Compared with the previous SoCs, self-adaption module current
-+	 * is newly added for A1, keep the new power-on sequence to enable the
-+	 * PLL.
-+	 */
-+	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
-+		/* Enable the pll */
-+		meson_parm_write(clk->map, &pll->en, 1);
-+		udelay(10);
-+		/* Enable the pll self-adaption module current */
-+		meson_parm_write(clk->map, &pll->current_en, 1);
-+		udelay(40);
-+		/* Enable lock detect module */
-+		meson_parm_write(clk->map, &pll->l_detect, 1);
-+		meson_parm_write(clk->map, &pll->l_detect, 0);
-+		goto out;
-+	}
- 
- 	/* Make sure the pll is in reset */
- 	meson_parm_write(clk->map, &pll->rst, 1);
-@@ -331,6 +355,7 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 	/* Take the pll out reset */
- 	meson_parm_write(clk->map, &pll->rst, 0);
- 
-+out:
- 	if (meson_clk_pll_wait_lock(hw))
- 		return -EIO;
- 
-@@ -343,10 +368,15 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
- 	/* Put the pll is in reset */
--	meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 1);
- 
- 	/* Disable the pll */
- 	meson_parm_write(clk->map, &pll->en, 0);
-+
-+	/* Disable PLL internal self-adaption module current */
-+	if (MESON_PARM_APPLICABLE(&pll->current_en))
-+		meson_parm_write(clk->map, &pll->current_en, 0);
- }
- 
- static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-index 367efd0f6410..a2228c0fdce5 100644
---- a/drivers/clk/meson/clk-pll.h
-+++ b/drivers/clk/meson/clk-pll.h
-@@ -36,6 +36,8 @@ struct meson_clk_pll_data {
- 	struct parm frac;
- 	struct parm l;
- 	struct parm rst;
-+	struct parm current_en;
-+	struct parm l_detect;
- 	const struct reg_sequence *init_regs;
- 	unsigned int init_count;
- 	const struct pll_params_table *table;
--- 
-2.24.0
+   https://lore.kernel.org/linux-leds/20191226100615.GA4033@amd/T/#u
 
+Cheers,
+ -- Guido
+
+> 
+> >  
+> >  Required child properties:
+> >  	- reg : 0 - Will enable all LED sync paths
+> > -- 
+> > 2.23.0
+> > 
+> 
