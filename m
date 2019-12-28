@@ -2,89 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D957412BD29
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2019 10:31:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D79CF12BDB8
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2019 15:03:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726460AbfL1JbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Dec 2019 04:31:12 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:39459 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726248AbfL1JbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Dec 2019 04:31:11 -0500
-Received: by mail-wr1-f66.google.com with SMTP id y11so28192930wrt.6;
-        Sat, 28 Dec 2019 01:31:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=o9uPVfods/TVOloLC6n+hV7w8ZRoPGnL5hHWUQYyLUc=;
-        b=o0Fg+5oi5HSyrmfBEZQq8OyJEp0SmiMuZ0A6ig6Fmmz+gqe/bQgTgSi1lLY7NsLW7T
-         m4uuidhPQuD611jssxsFee3aPyYuQ92haXXnqhqFFk0cp3aaDtkfwev12eSX5kSCkc1D
-         IbpnolD1qExRXPokhFofQYFRO2h8yKPLDkj0nQ3rMe84NhDLSjigtjHPkUS8khMPg/U3
-         Moud9sMPQuEtJ2sULFizndLerwDI/znaFA77AvVMSKq2QjPpQS2qJ4nRTpfR8VERWFL0
-         0V3gezJUiyS3z9M1TcwjB+KkGgnrAD0qH39jhJJnrKTT09RqWej37cbHZ8mAGMXi1f5R
-         6aww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=o9uPVfods/TVOloLC6n+hV7w8ZRoPGnL5hHWUQYyLUc=;
-        b=BBxseyhe6tjCc36Tj7egsU2X0wL/KYl+AeZROKNlPlu/5MU3kwL5zr4h4T1Qd5un8e
-         14Ri1I9Ia3kVDjWSTibQltajo7I7kYIfihuWyNXLTpt4SuyOwFwamwsmgrmHpKxakJtK
-         nLOJBIXRDeS+KM7xZuyaT4qUU0yJRORIpw+1G7RU2TqKsBuW1XPuF4zqJ1IfDarqUCvL
-         XyL1PnjvhGsb45xyT46vO96em5J/gG+fQNjmXLlDUAqT9n50dOuYSSSTUq4OyQH2ebs5
-         waW4BRHL3reKydmhP0HT8ByM2q8jtlcJ8GQJG3DZ4U2FzKtCwqUHog2cBJMqbpJwsDuW
-         MEWA==
-X-Gm-Message-State: APjAAAUSnS28xbyerRp8gsTLpfvepH8y/DQgcVGn7p21G+L4hzQq5ALI
-        IXiZL9E2+kNjNAR1wTtabHA=
-X-Google-Smtp-Source: APXvYqxwhzxrrXhowjx87gKHx7n+poe0jh8A6oRsexhxdA6dIFus+27xymrwqEZwbLBvIWQomfISXQ==
-X-Received: by 2002:a5d:46c7:: with SMTP id g7mr54555918wrs.11.1577525469686;
-        Sat, 28 Dec 2019 01:31:09 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id w20sm13776710wmk.34.2019.12.28.01.31.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 28 Dec 2019 01:31:09 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, ulf.hansson@linaro.org,
-        linux-mmc@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: mmc: clarify disable-wp text
-Date:   Sat, 28 Dec 2019 10:30:59 +0100
-Message-Id: <20191228093059.2817-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20191228093059.2817-1-jbx6244@gmail.com>
-References: <20191219145843.3823-1-jbx6244@gmail.com>
- <20191228093059.2817-1-jbx6244@gmail.com>
+        id S1726100AbfL1ODg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Dec 2019 09:03:36 -0500
+Received: from mx2.suse.de ([195.135.220.15]:49520 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726075AbfL1ODf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Dec 2019 09:03:35 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id F0112B193;
+        Sat, 28 Dec 2019 14:03:33 +0000 (UTC)
+Subject: Re: [PATCH v4 0/8] ARM: Initial RTD1195 and MeLE X1000 & Horseradish
+ support
+To:     linux-realtek-soc@lists.infradead.org
+Cc:     Rob Herring <robh@kernel.org>, James Tai <james.tai@realtek.com>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20191123203759.20708-1-afaerber@suse.de>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <0b8a87e8-057a-27ff-ff10-d1c09d55a585@suse.de>
+Date:   Sat, 28 Dec 2019 15:03:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
+MIME-Version: 1.0
+In-Reply-To: <20191123203759.20708-1-afaerber@suse.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"disable-wp" has been removed from all Rockchip eMMC and SDIO dts nodes,
-but people still continue to submit new patches with "disable-wp" added
-to other nodes then for the SD card slot,
-what it was designed for in the first place.
-So clarify the "disable-wp" text by adding that this option should
-not be used in combination with eMMC or SDIO.
+Am 23.11.19 um 21:37 schrieb Andreas Färber:
+> Andreas Färber (8):
+>    dt-bindings: arm: realtek: Add RTD1195 and MeLE X1000
+>    ARM: Prepare Realtek RTD1195
+>    ARM: dts: Prepare Realtek RTD1195 and MeLE X1000
+>    ARM: dts: rtd1195: Exclude boot ROM from memory ranges
+>    ARM: dts: rtd1195: Introduce r-bus
+>    dt-bindings: arm: realtek: Add Realtek Horseradish EVB
+>    ARM: dts: rtd1195: Add Realtek Horseradish EVB
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied these to linux-realtek.git:
 
-diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-index d668d0fbe..3c0df4016 100644
---- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
-@@ -99,7 +99,7 @@ properties:
-       dedicated write-protect detection logic. If a GPIO is always used
-       for the write-protect detection logic, it is sufficient to not
-       specify the wp-gpios property in the absence of a write-protect
--      line.
-+      line. Not used in combination with eMMC or SDIO.
- 
-   wp-gpios:
-     description:
+https://git.kernel.org/pub/scm/linux/kernel/git/afaerber/linux-realtek.git/log/?h=v5.6/dt
+https://git.kernel.org/pub/scm/linux/kernel/git/afaerber/linux-realtek.git/log/?h=v5.6/soc
+
+>    ARM: realtek: Enable RTD1195 arch timer
+
+Holding this one back still.
+
+Regards,
+Andreas
+
 -- 
-2.11.0
-
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
