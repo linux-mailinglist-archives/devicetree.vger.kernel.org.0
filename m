@@ -2,42 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A639C12BD2F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2019 10:48:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7334212BD26
+	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2019 10:31:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726362AbfL1JsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Dec 2019 04:48:22 -0500
-Received: from host226-242-177-94.static.arubacloud.fr ([94.177.242.226]:35564
-        "EHLO mail.mojoka.tk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1726248AbfL1JsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Dec 2019 04:48:22 -0500
-Received: by mail.mojoka.tk (Postfix, from userid 48)
-        id 1E482541F; Sat, 28 Dec 2019 04:11:32 -0500 (EST)
-To:     devicetree@vger.kernel.org
-Subject: Inquiry
-X-PHP-Originating-Script: 0:uunialer.php
-From:   Sinara-Group <sinara-group@list.ru>
-Reply-To: juliansmith2015@mail.ru
-MIME-Version: 1.0
-Content-Type:   text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7BIT
-Message-Id: <20191228091132.1E482541F@mail.mojoka.tk>
-Date:   Sat, 28 Dec 2019 04:11:32 -0500 (EST)
+        id S1726359AbfL1JbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Dec 2019 04:31:10 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35235 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726071AbfL1JbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Dec 2019 04:31:10 -0500
+Received: by mail-wr1-f68.google.com with SMTP id g17so28189184wro.2;
+        Sat, 28 Dec 2019 01:31:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=C1Yhclh1rO03TNl8BGVnCeZSpEaHjzvQF/HLnspJXUo=;
+        b=UF2l6vUzWgQRLwbEC3+YvM5hGubotXdidH8OdLBgnmTH/RD80HhdZlD88JdaS8GAal
+         VtnLyQhrUP6hP/vSyuUkKE/khyWu3nwtzsIbGDp7hzJEFbF1NK/iqDKR0nRSmwBv/AMO
+         /6EM7FQBM+l9hk9iFl84STiLVEO7SMKoVzv8o5mrSdKOjfI+yacF3q5eEgZNZ6KbUf7x
+         BjqyI/gtQSN0bCjjgnrOsTRtl+HIjZSCxG1ywzPQpJ/DIJ3y55AvvclakTMF0FynwnVV
+         fg8B4RVWtVKXnORJHh5oEosm6UZBcRQC1Q5cDdHmxoQZIMAm0q34TUMRj3BnEtzH1MZ1
+         XzBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=C1Yhclh1rO03TNl8BGVnCeZSpEaHjzvQF/HLnspJXUo=;
+        b=h1E+Ws1DRQ2hzxla6RKx3tNGGtIZHXnGuBFcap3/7gfMvTRTsIagNEGPMFU1Q+m85X
+         elynORpRi1/elNHDOF2Zab77Nw8yzNNbG+wbtl41uGaYadgWTY0IHCZjHa61Zxlnvxy8
+         nNPQq3RANSwvS0SGwpuYvFjulA/BlWUlsN+WYGTMO1ub+P3ZBTHAgBHH42mAw8M7ezEz
+         weZ9tfYi/AsGW5EzqSs15ne31dXtE/mAUTuQuYVFBrCyEe+2NzX1zB6eAIP6FqjKlNWd
+         N6hxQ6rYoygafY7SUC1WZrbBp9ehKKAqBepWCNSFBjTmGWMDgA8Zkhh9XSUH69EuFK0n
+         HQMQ==
+X-Gm-Message-State: APjAAAXSU/iYCN8semJYWSoGXZdgQhL93Qefz9+tX6e/hML3o2jW636T
+        UWgICyU3BbGWtZUvTG/fX7Y=
+X-Google-Smtp-Source: APXvYqwlnqVc7lbLCW9DYPOLB9f1dCvRIPPtiRq05ZZxZYuTyAl2jQdy3IZk/NVFYr5tVYuZRLMSgg==
+X-Received: by 2002:a5d:4cc9:: with SMTP id c9mr53663014wrt.70.1577525468939;
+        Sat, 28 Dec 2019 01:31:08 -0800 (PST)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id w20sm13776710wmk.34.2019.12.28.01.31.08
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 28 Dec 2019 01:31:08 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, ulf.hansson@linaro.org,
+        linux-mmc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: mmc: remove identical phrase in disable-wp text
+Date:   Sat, 28 Dec 2019 10:30:58 +0100
+Message-Id: <20191228093059.2817-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20191219145843.3823-1-jbx6244@gmail.com>
+References: <20191219145843.3823-1-jbx6244@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,friend,
+There are two identical phrases in the disable-wp text,
+so remove one of them.
 
-This is Ms. Julian Smith and i am purchasing manager from Sinara Group Co.,LTD in Russia.
-We are glad to know about your company from the web and we are interested in your products.
-Could you kindly send us your Latest catalog and price list for our trial order.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Thanks and Best Regards,
-
-Julian Smith
-Purchasing Manager
-Sinara Group Co.,LTD
-
+diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+index b130450c3..d668d0fbe 100644
+--- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
++++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+@@ -96,8 +96,7 @@ properties:
+     description:
+       When set, no physical write-protect line is present. This
+       property should only be specified when the controller has a
+-      dedicated write-protect detection logic. If a GPIO is always
+-      used for the write-protect detection. If a GPIO is always used
++      dedicated write-protect detection logic. If a GPIO is always used
+       for the write-protect detection logic, it is sufficient to not
+       specify the wp-gpios property in the absence of a write-protect
+       line.
+-- 
+2.11.0
 
