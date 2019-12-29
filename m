@@ -2,94 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0FBC12BEF8
-	for <lists+devicetree@lfdr.de>; Sat, 28 Dec 2019 21:36:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A954C12C001
+	for <lists+devicetree@lfdr.de>; Sun, 29 Dec 2019 03:48:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727190AbfL1Ugc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Dec 2019 15:36:32 -0500
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:37941 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727106AbfL1UgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Dec 2019 15:36:16 -0500
-Received: by mail-lj1-f194.google.com with SMTP id w1so7881739ljh.5;
-        Sat, 28 Dec 2019 12:36:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fgW9WfTn8X3WZuGcM/h5imLbxZaVk2cOU8JExlEzbac=;
-        b=a7vEaKGiraduPlz/LEWZFrz2HVZNJmM+o8/HNt+p4O6ZbUkPFk8qbHsozvcq0YtQ5o
-         ygQC0BnfUieesBs6dDquCRfaPzOQG00oINlNygIhpQWxNVLZoj3qKaMvZg7HI4Rp5Nu7
-         0qNQB1/JZp7ynY1oOWr7C73fKiEPSmQLmpC9uan7/ECSqLi9n6oCRvamwYfpASD17PL4
-         5gR4e7Ie/NOL2qfpYMMJO8lyYmEW2qAd1L1+A2MK/fQOlpnJkafOd5jdgJ/hDF0iIzIC
-         a/TMbDGYl5L04dfGT8jaRsG2PdEPrDiW9tCfARyrd5tMiZwUB/dTBYLSAb00Gj0RLgG0
-         ofdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fgW9WfTn8X3WZuGcM/h5imLbxZaVk2cOU8JExlEzbac=;
-        b=Zf6GZjZNgIidiT+f79dS45OqDWnSofdnd05JTYh3ZhFOwWgzx4rkUyV12dYQXmHWK6
-         RZJt3sPXFsBIOdWonZo7eJL8L6WB+m1xF5WoIm6mPFpKMZRh8jyVTwyZm4XohZuWOwRL
-         ZxLavDUOlE4I01PxA4nGKqNIsaXuD24tFkiFysND3m86Qh07O0nyNAFz/lpkNJJEWd6z
-         /pDDL73gBhvr8kF8a0BthWVaWpiuxzk1wncUrNgxvukODJF61Y8/753LDVJJsHFpwHQM
-         N/iEkqTw39xLuWFEZcDXvOwA3NuOns8VN3HFvfhjD+nILjfNAZ6LcmYWUQe6ZaWo7ffR
-         pS5A==
-X-Gm-Message-State: APjAAAXhF+I/Vp/y+YQ687ujY3kg8KyLDJyRrCaaj1nidtSny4rz5HEz
-        kf2XgX/OJ9nbbiGjJyxNMvGu0X3g
-X-Google-Smtp-Source: APXvYqwkWEkCJvJNUwGG0WqfR9fyeX9vhdoAfDOI7ZSJ384mLZEsH+drdrJLz1djD2HuBOPj73CllQ==
-X-Received: by 2002:a2e:909a:: with SMTP id l26mr12822834ljg.209.1577565373710;
-        Sat, 28 Dec 2019 12:36:13 -0800 (PST)
-Received: from localhost.localdomain (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.gmail.com with ESMTPSA id d9sm15162614lja.73.2019.12.28.12.36.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Dec 2019 12:36:13 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 16/16] usb: host: ehci-tegra: Remove unused fields from tegra_ehci_hcd
-Date:   Sat, 28 Dec 2019 23:33:58 +0300
-Message-Id: <20191228203358.23490-17-digetx@gmail.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191228203358.23490-1-digetx@gmail.com>
-References: <20191228203358.23490-1-digetx@gmail.com>
+        id S1726359AbfL2Cse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Dec 2019 21:48:34 -0500
+Received: from mx2.suse.de ([195.135.220.15]:56764 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726329AbfL2Cse (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Dec 2019 21:48:34 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id 96E9FAC2C;
+        Sun, 29 Dec 2019 02:48:32 +0000 (UTC)
+Subject: Re: [PATCH v2 0/2] Initial RTD1319 SoC and Realtek PymParticle EVB
+ support
+To:     James Tai <james.tai@realtek.com>
+Cc:     linux-realtek-soc@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org
+References: <20191228150553.6210-1-james.tai@realtek.com>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <9fbe4392-5028-3718-8c97-547a46efad2a@suse.de>
+Date:   Sun, 29 Dec 2019 03:48:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
+In-Reply-To: <20191228150553.6210-1-james.tai@realtek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are few stale fields in tegra_ehci_hcd structure, let's remove them.
+Hi James,
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- drivers/usb/host/ehci-tegra.c | 2 --
- 1 file changed, 2 deletions(-)
+Am 28.12.19 um 16:05 schrieb James Tai:
+> Cc: Andreas Färber <afaerber@suse.de>
 
-diff --git a/drivers/usb/host/ehci-tegra.c b/drivers/usb/host/ehci-tegra.c
-index 4d2cdec4cb78..eb82cdfffc3c 100644
---- a/drivers/usb/host/ehci-tegra.c
-+++ b/drivers/usb/host/ehci-tegra.c
-@@ -42,12 +42,10 @@ struct tegra_ehci_soc_config {
- };
- 
- struct tegra_ehci_hcd {
--	struct tegra_usb_phy *phy;
- 	struct clk *clk;
- 	struct reset_control *rst;
- 	int port_resuming;
- 	bool needs_double_reset;
--	enum tegra_usb_phy_port_speed port_speed;
- };
- 
- static int tegra_reset_usb_controller(struct platform_device *pdev)
+This time you CC'ed me only on the cover letter, so that I didn't get 
+notified of, e.g., Marc's review comments. I wonder why: realtek.yaml is 
+in MAINTAINERS, and so is dts/realtek/, so get_maintainers.pl should've 
+picked me up, even if you forgot to explicitly CC me? Please check what 
+went wrong there and make sure it doesn't happen again for the next 
+submission.
+
+Thanks,
+Andreas
+
+>   .../devicetree/bindings/arm/realtek.yaml      |   6 +
+>   arch/arm64/boot/dts/realtek/Makefile          |   2 +
+>   .../boot/dts/realtek/rtd1319-pymparticle.dts  |  43 ++++
+>   arch/arm64/boot/dts/realtek/rtd1319.dtsi      |  12 +
+>   arch/arm64/boot/dts/realtek/rtd13xx.dtsi      | 212 ++++++++++++++++++
+>   5 files changed, 275 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
+>   create mode 100644 arch/arm64/boot/dts/realtek/rtd1319.dtsi
+>   create mode 100644 arch/arm64/boot/dts/realtek/rtd13xx.dtsi
+
 -- 
-2.24.0
-
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
