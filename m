@@ -2,232 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65EBD12D05B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2019 14:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 782B712D0DE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Dec 2019 15:39:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727470AbfL3NjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 30 Dec 2019 08:39:08 -0500
-Received: from xavier.telenet-ops.be ([195.130.132.52]:37014 "EHLO
-        xavier.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727469AbfL3NjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Dec 2019 08:39:00 -0500
-Received: from ramsan ([84.195.182.253])
-        by xavier.telenet-ops.be with bizsmtp
-        id kDeu2100B5USYZQ01DeuGj; Mon, 30 Dec 2019 14:38:57 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ilvG2-0001h6-KK; Mon, 30 Dec 2019 14:38:54 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1ilvG2-0001Xs-IR; Mon, 30 Dec 2019 14:38:54 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH/RFC 2/2] gpio: of: Add DT overlay support for GPIO hogs
-Date:   Mon, 30 Dec 2019 14:38:52 +0100
-Message-Id: <20191230133852.5890-3-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191230133852.5890-1-geert+renesas@glider.be>
-References: <20191230133852.5890-1-geert+renesas@glider.be>
+        id S1727497AbfL3Ojm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 30 Dec 2019 09:39:42 -0500
+Received: from rtits2.realtek.com ([211.75.126.72]:59203 "EHLO
+        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727445AbfL3Ojm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 30 Dec 2019 09:39:42 -0500
+Authenticated-By: 
+X-SpamFilter-By: BOX Solutions SpamTrap 5.62 with qID xBUEdGNb016238, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (RTITCAS11.realtek.com.tw[172.21.6.12])
+        by rtits2.realtek.com.tw (8.15.2/2.57/5.78) with ESMTPS id xBUEdGNb016238
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 30 Dec 2019 22:39:16 +0800
+Received: from RTEXDAG02.realtek.com.tw (172.21.6.101) by
+ RTITCAS11.realtek.com.tw (172.21.6.12) with Microsoft SMTP Server (TLS) id
+ 14.3.468.0; Mon, 30 Dec 2019 22:39:15 +0800
+Received: from RTEXMB03.realtek.com.tw (172.21.6.96) by
+ RTEXDAG02.realtek.com.tw (172.21.6.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Mon, 30 Dec 2019 22:39:15 +0800
+Received: from RTEXMB03.realtek.com.tw ([fe80::71dc:5fb1:bef0:757d]) by
+ RTEXMB03.realtek.com.tw ([fe80::71dc:5fb1:bef0:757d%8]) with mapi id
+ 15.01.1779.005; Mon, 30 Dec 2019 22:39:15 +0800
+From:   James Tai <james.tai@realtek.com>
+To:     =?utf-8?B?QW5kcmVhcyBGw6RyYmVy?= <afaerber@suse.de>,
+        "linux-realtek-soc@lists.infradead.org" 
+        <linux-realtek-soc@lists.infradead.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 03/14] arm64: dts: realtek: rtd139x: Introduce CRT, iso and misc syscon
+Thread-Topic: [PATCH 03/14] arm64: dts: realtek: rtd139x: Introduce CRT, iso
+ and misc syscon
+Thread-Index: AQHVqT1ukhvuuHKN7k25t3sPVqizRKfS6xcw
+Date:   Mon, 30 Dec 2019 14:39:15 +0000
+Message-ID: <f1cdc0d47a434e318d7eee11c0e6c364@realtek.com>
+References: <20191202182205.14629-1-afaerber@suse.de>
+ <20191202182205.14629-4-afaerber@suse.de>
+In-Reply-To: <20191202182205.14629-4-afaerber@suse.de>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [114.37.128.25]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As GPIO hogs are configured at GPIO controller initialization time,
-adding/removing GPIO hogs in DT overlays does not work.
-
-Add support for GPIO hogs described in DT overlays by registering an OF
-reconfiguration notifier, to handle the addition and removal of GPIO hog
-subnodes to/from a GPIO controller device node.
-
-Note that when a GPIO hog device node is being removed, its "gpios"
-properties is no longer available, so we have to keep track of which
-node a hog belongs to, which is done by adding a pointer to the hog's
-device node to struct gpio_desc.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/gpio/gpiolib-of.c | 84 +++++++++++++++++++++++++++++++++++++++
- drivers/gpio/gpiolib-of.h |  2 +
- drivers/gpio/gpiolib.c    | 14 +++++--
- drivers/gpio/gpiolib.h    |  3 ++
- 4 files changed, 100 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index dfae797846bb746b..89a6138ac0a4b506 100644
---- a/drivers/gpio/gpiolib-of.c
-+++ b/drivers/gpio/gpiolib-of.c
-@@ -649,6 +649,10 @@ static int of_gpiochip_add_hog(struct gpio_chip *chip, struct device_node *hog)
- 		ret = gpiod_hog(desc, name, lflags, dflags);
- 		if (ret < 0)
- 			return ret;
-+
-+#ifdef CONFIG_OF_DYNAMIC
-+		desc->hog = hog;
-+#endif
- 	}
- 
- 	return 0;
-@@ -676,11 +680,91 @@ static int of_gpiochip_scan_gpios(struct gpio_chip *chip)
- 			of_node_put(np);
- 			return ret;
- 		}
-+
-+		of_node_set_flag(np, OF_POPULATED);
- 	}
- 
- 	return 0;
- }
- 
-+#ifdef CONFIG_OF_DYNAMIC
-+/**
-+ * of_gpiochip_remove_hog - Remove all hogs in a hog device node
-+ * @chip:	gpio chip to act on
-+ * @hog:	device node describing the hogs
-+ */
-+static void of_gpiochip_remove_hog(struct gpio_chip *chip,
-+				   struct device_node *hog)
-+{
-+	struct gpio_desc *descs = chip->gpiodev->descs;
-+	unsigned int i;
-+
-+	for (i = 0; i < chip->ngpio; i++) {
-+		if (test_bit(FLAG_IS_HOGGED, &descs[i].flags) &&
-+		    descs[i].hog == hog)
-+			gpiochip_free_own_desc(&descs[i]);
-+	}
-+}
-+
-+static int of_gpiochip_match_node(struct gpio_chip *chip, void *data)
-+{
-+	return chip->gpiodev->dev.of_node == data;
-+}
-+
-+static struct gpio_chip *of_find_gpiochip_by_node(struct device_node *np)
-+{
-+	return gpiochip_find(np, of_gpiochip_match_node);
-+}
-+
-+static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
-+			  void *arg)
-+{
-+	struct of_reconfig_data *rd = arg;
-+	struct gpio_chip *chip;
-+	int ret;
-+
-+	switch (of_reconfig_get_state_change(action, arg)) {
-+	case OF_RECONFIG_CHANGE_ADD:
-+		if (!of_property_read_bool(rd->dn, "gpio-hog"))
-+			return NOTIFY_OK;	/* not for us */
-+
-+		if (of_node_test_and_set_flag(rd->dn, OF_POPULATED))
-+			return NOTIFY_OK;
-+
-+		chip = of_find_gpiochip_by_node(rd->dn->parent);
-+		if (chip == NULL)
-+			return NOTIFY_OK;	/* not for us */
-+
-+		ret = of_gpiochip_add_hog(chip, rd->dn);
-+		if (ret < 0) {
-+			pr_err("%s: failed to add hogs for %pOF\n", __func__,
-+			       rd->dn);
-+			of_node_clear_flag(rd->dn, OF_POPULATED);
-+			return notifier_from_errno(ret);
-+		}
-+		break;
-+
-+	case OF_RECONFIG_CHANGE_REMOVE:
-+		if (!of_node_check_flag(rd->dn, OF_POPULATED))
-+			return NOTIFY_OK;	/* already depopulated */
-+
-+		chip = of_find_gpiochip_by_node(rd->dn->parent);
-+		if (chip == NULL)
-+			return NOTIFY_OK;	/* not for us */
-+
-+		of_gpiochip_remove_hog(chip, rd->dn);
-+		of_node_clear_flag(rd->dn, OF_POPULATED);
-+		break;
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+struct notifier_block gpio_of_notifier = {
-+	.notifier_call = of_gpio_notify,
-+};
-+#endif /* CONFIG_OF_DYNAMIC */
-+
- /**
-  * of_gpio_simple_xlate - translate gpiospec to the GPIO number and flags
-  * @gc:		pointer to the gpio_chip structure
-diff --git a/drivers/gpio/gpiolib-of.h b/drivers/gpio/gpiolib-of.h
-index 9768831b1fe2f25b..ed26664f153782fc 100644
---- a/drivers/gpio/gpiolib-of.h
-+++ b/drivers/gpio/gpiolib-of.h
-@@ -35,4 +35,6 @@ static inline bool of_gpio_need_valid_mask(const struct gpio_chip *gc)
- }
- #endif /* CONFIG_OF_GPIO */
- 
-+extern struct notifier_block gpio_of_notifier;
-+
- #endif /* GPIOLIB_OF_H */
-diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-index bff5ac774d870b67..ef12cfcaf0962c1c 100644
---- a/drivers/gpio/gpiolib.c
-+++ b/drivers/gpio/gpiolib.c
-@@ -2952,6 +2952,9 @@ static bool gpiod_free_commit(struct gpio_desc *desc)
- 		clear_bit(FLAG_PULL_DOWN, &desc->flags);
- 		clear_bit(FLAG_BIAS_DISABLE, &desc->flags);
- 		clear_bit(FLAG_IS_HOGGED, &desc->flags);
-+#ifdef CONFIG_OF_DYNAMIC
-+		desc->hog = NULL;
-+#endif
- 		ret = true;
- 	}
- 
-@@ -5145,10 +5148,15 @@ static int __init gpiolib_dev_init(void)
- 	if (ret < 0) {
- 		pr_err("gpiolib: failed to allocate char dev region\n");
- 		bus_unregister(&gpio_bus_type);
--	} else {
--		gpiolib_initialized = true;
--		gpiochip_setup_devs();
-+		return ret;
- 	}
-+
-+	gpiolib_initialized = true;
-+	gpiochip_setup_devs();
-+
-+	if (IS_ENABLED(CONFIG_OF_DYNAMIC))
-+		WARN_ON(of_reconfig_notifier_register(&gpio_of_notifier));
-+
- 	return ret;
- }
- core_initcall(gpiolib_dev_init);
-diff --git a/drivers/gpio/gpiolib.h b/drivers/gpio/gpiolib.h
-index a4a759920faa48ab..7af9931e8572304a 100644
---- a/drivers/gpio/gpiolib.h
-+++ b/drivers/gpio/gpiolib.h
-@@ -118,6 +118,9 @@ struct gpio_desc {
- 	const char		*label;
- 	/* Name of the GPIO */
- 	const char		*name;
-+#ifdef CONFIG_OF_DYNAMIC
-+	struct device_node	*hog;
-+#endif
- };
- 
- int gpiod_request(struct gpio_desc *desc, const char *label);
--- 
-2.17.1
-
+PiBHcm91cCB0aGUgbm9uLWlzbyByZXNldCBjb250cm9sbGVyIG5vZGVzIGludG8gYSBDUlQgc3lz
+Y29uIG1mZCBub2RlLg0KPiBHcm91cCByZXNldCBjb250cm9sbGVyLCB3YXRjaGRvZyBhbmQgVUFS
+VDAgaW50byBhbiBJc29sYXRpb24gbWZkIG5vZGUuDQo+IEdyb3VwIFVBUlQxIGFuZCBVQVJUMiBp
+bnRvIGEgTWlzY2VsbGFuZW91cyBzeXNjb24gbWZkIG5vZGUuDQo+IA0KPiBDYzogSmFtZXMgVGFp
+IDxqYW1lcy50YWlAcmVhbHRlay5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IEFuZHJlYXMgRsOkcmJl
+ciA8YWZhZXJiZXJAc3VzZS5kZT4NCj4gLS0tDQo+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL3JlYWx0
+ZWsvcnRkMTM5eC5kdHNpIHwgMTQ3DQo+ICsrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLS0N
+Cj4gIDEgZmlsZSBjaGFuZ2VkLCA5MCBpbnNlcnRpb25zKCspLCA1NyBkZWxldGlvbnMoLSkNCj4g
+DQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlYWx0ZWsvcnRkMTM5eC5kdHNp
+DQo+IGIvYXJjaC9hcm02NC9ib290L2R0cy9yZWFsdGVrL3J0ZDEzOXguZHRzaQ0KPiBpbmRleCBj
+MTFhNTA1ZTQzZTIuLjNhNTcxZjNiN2UzOCAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9ib290
+L2R0cy9yZWFsdGVrL3J0ZDEzOXguZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3Jl
+YWx0ZWsvcnRkMTM5eC5kdHNpDQo+IEBAIC02MSw3MCArNjEsMzEgQEANCj4gIAkJCSNzaXplLWNl
+bGxzID0gPDE+Ow0KPiAgCQkJcmFuZ2VzID0gPDB4MCAweDk4MDAwMDAwIDB4MjAwMDAwPjsNCj4g
+DQo+IC0JCQlyZXNldDE6IHJlc2V0LWNvbnRyb2xsZXJAMCB7DQo+IC0JCQkJY29tcGF0aWJsZSA9
+ICJzbnBzLGR3LWxvdy1yZXNldCI7DQo+IC0JCQkJcmVnID0gPDB4MCAweDQ+Ow0KPiAtCQkJCSNy
+ZXNldC1jZWxscyA9IDwxPjsNCj4gLQkJCX07DQo+IC0NCj4gLQkJCXJlc2V0MjogcmVzZXQtY29u
+dHJvbGxlckA0IHsNCj4gLQkJCQljb21wYXRpYmxlID0gInNucHMsZHctbG93LXJlc2V0IjsNCj4g
+LQkJCQlyZWcgPSA8MHg0IDB4ND47DQo+IC0JCQkJI3Jlc2V0LWNlbGxzID0gPDE+Ow0KPiAtCQkJ
+fTsNCj4gLQ0KPiAtCQkJcmVzZXQzOiByZXNldC1jb250cm9sbGVyQDggew0KPiAtCQkJCWNvbXBh
+dGlibGUgPSAic25wcyxkdy1sb3ctcmVzZXQiOw0KPiAtCQkJCXJlZyA9IDwweDggMHg0PjsNCj4g
+LQkJCQkjcmVzZXQtY2VsbHMgPSA8MT47DQo+IC0JCQl9Ow0KPiAtDQo+IC0JCQlyZXNldDQ6IHJl
+c2V0LWNvbnRyb2xsZXJANTAgew0KPiAtCQkJCWNvbXBhdGlibGUgPSAic25wcyxkdy1sb3ctcmVz
+ZXQiOw0KPiAtCQkJCXJlZyA9IDwweDUwIDB4ND47DQo+IC0JCQkJI3Jlc2V0LWNlbGxzID0gPDE+
+Ow0KPiAtCQkJfTsNCj4gLQ0KPiAtCQkJaXNvX3Jlc2V0OiByZXNldC1jb250cm9sbGVyQDcwODgg
+ew0KPiAtCQkJCWNvbXBhdGlibGUgPSAic25wcyxkdy1sb3ctcmVzZXQiOw0KPiAtCQkJCXJlZyA9
+IDwweDcwODggMHg0PjsNCj4gLQkJCQkjcmVzZXQtY2VsbHMgPSA8MT47DQo+IC0JCQl9Ow0KPiAt
+DQo+IC0JCQl3ZHQ6IHdhdGNoZG9nQDc2ODAgew0KPiAtCQkJCWNvbXBhdGlibGUgPSAicmVhbHRl
+ayxydGQxMjk1LXdhdGNoZG9nIjsNCj4gLQkJCQlyZWcgPSA8MHg3NjgwIDB4MTAwPjsNCj4gLQkJ
+CQljbG9ja3MgPSA8Jm9zYzI3TT47DQo+IC0JCQl9Ow0KPiAtDQo+IC0JCQl1YXJ0MDogc2VyaWFs
+QDc4MDAgew0KPiAtCQkJCWNvbXBhdGlibGUgPSAic25wcyxkdy1hcGItdWFydCI7DQo+IC0JCQkJ
+cmVnID0gPDB4NzgwMCAweDQwMD47DQo+IC0JCQkJcmVnLXNoaWZ0ID0gPDI+Ow0KPiArCQkJY3J0
+OiBzeXNjb25AMCB7DQo+ICsJCQkJY29tcGF0aWJsZSA9ICJzeXNjb24iLCAic2ltcGxlLW1mZCI7
+DQo+ICsJCQkJcmVnID0gPDB4MCAweDEwMDA+Ow0KPiAgCQkJCXJlZy1pby13aWR0aCA9IDw0PjsN
+Cj4gLQkJCQljbG9jay1mcmVxdWVuY3kgPSA8MjcwMDAwMDA+Ow0KPiAtCQkJCXJlc2V0cyA9IDwm
+aXNvX3Jlc2V0IFJURDEyOTVfSVNPX1JTVE5fVVIwPjsNCj4gLQkJCQlzdGF0dXMgPSAiZGlzYWJs
+ZWQiOw0KPiArCQkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiArCQkJCSNzaXplLWNlbGxzID0g
+PDE+Ow0KPiArCQkJCXJhbmdlcyA9IDwweDAgMHgwIDB4MTAwMD47DQo+ICAJCQl9Ow0KPiANCj4g
+LQkJCXVhcnQxOiBzZXJpYWxAMWIyMDAgew0KPiAtCQkJCWNvbXBhdGlibGUgPSAic25wcyxkdy1h
+cGItdWFydCI7DQo+IC0JCQkJcmVnID0gPDB4MWIyMDAgMHgxMDA+Ow0KPiAtCQkJCXJlZy1zaGlm
+dCA9IDwyPjsNCj4gKwkJCWlzbzogc3lzY29uQDcwMDAgew0KPiArCQkJCWNvbXBhdGlibGUgPSAi
+c3lzY29uIiwgInNpbXBsZS1tZmQiOw0KPiArCQkJCXJlZyA9IDwweDcwMDAgMHgxMDAwPjsNCj4g
+IAkJCQlyZWctaW8td2lkdGggPSA8ND47DQo+IC0JCQkJY2xvY2stZnJlcXVlbmN5ID0gPDQzMjAw
+MDAwMD47DQo+IC0JCQkJcmVzZXRzID0gPCZyZXNldDIgUlREMTI5NV9SU1ROX1VSMT47DQo+IC0J
+CQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gKwkJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4g
+KwkJCQkjc2l6ZS1jZWxscyA9IDwxPjsNCj4gKwkJCQlyYW5nZXMgPSA8MHgwIDB4NzAwMCAweDEw
+MDA+Ow0KPiAgCQkJfTsNCj4gDQo+IC0JCQl1YXJ0Mjogc2VyaWFsQDFiNDAwIHsNCj4gLQkJCQlj
+b21wYXRpYmxlID0gInNucHMsZHctYXBiLXVhcnQiOw0KPiAtCQkJCXJlZyA9IDwweDFiNDAwIDB4
+MTAwPjsNCj4gLQkJCQlyZWctc2hpZnQgPSA8Mj47DQo+ICsJCQltaXNjOiBzeXNjb25AMWIwMDAg
+ew0KPiArCQkJCWNvbXBhdGlibGUgPSAic3lzY29uIiwgInNpbXBsZS1tZmQiOw0KPiArCQkJCXJl
+ZyA9IDwweDFiMDAwIDB4MTAwMD47DQo+ICAJCQkJcmVnLWlvLXdpZHRoID0gPDQ+Ow0KPiAtCQkJ
+CWNsb2NrLWZyZXF1ZW5jeSA9IDw0MzIwMDAwMDA+Ow0KPiAtCQkJCXJlc2V0cyA9IDwmcmVzZXQy
+IFJURDEyOTVfUlNUTl9VUjI+Ow0KPiAtCQkJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ICsJCQkJ
+I2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ICsJCQkJI3NpemUtY2VsbHMgPSA8MT47DQo+ICsJCQkJ
+cmFuZ2VzID0gPDB4MCAweDFiMDAwIDB4MTAwMD47DQo+ICAJCQl9Ow0KPiAgCQl9Ow0KPiANCj4g
+QEAgLTE0MCwzICsxMDEsNzUgQEANCj4gIAkJfTsNCj4gIAl9Ow0KPiAgfTsNCj4gKw0KPiArJmNy
+dCB7DQo+ICsJcmVzZXQxOiByZXNldC1jb250cm9sbGVyQDAgew0KPiArCQljb21wYXRpYmxlID0g
+InNucHMsZHctbG93LXJlc2V0IjsNCj4gKwkJcmVnID0gPDB4MCAweDQ+Ow0KPiArCQkjcmVzZXQt
+Y2VsbHMgPSA8MT47DQo+ICsJfTsNCj4gKw0KPiArCXJlc2V0MjogcmVzZXQtY29udHJvbGxlckA0
+IHsNCj4gKwkJY29tcGF0aWJsZSA9ICJzbnBzLGR3LWxvdy1yZXNldCI7DQo+ICsJCXJlZyA9IDww
+eDQgMHg0PjsNCj4gKwkJI3Jlc2V0LWNlbGxzID0gPDE+Ow0KPiArCX07DQo+ICsNCj4gKwlyZXNl
+dDM6IHJlc2V0LWNvbnRyb2xsZXJAOCB7DQo+ICsJCWNvbXBhdGlibGUgPSAic25wcyxkdy1sb3ct
+cmVzZXQiOw0KPiArCQlyZWcgPSA8MHg4IDB4ND47DQo+ICsJCSNyZXNldC1jZWxscyA9IDwxPjsN
+Cj4gKwl9Ow0KPiArDQo+ICsJcmVzZXQ0OiByZXNldC1jb250cm9sbGVyQDUwIHsNCj4gKwkJY29t
+cGF0aWJsZSA9ICJzbnBzLGR3LWxvdy1yZXNldCI7DQo+ICsJCXJlZyA9IDwweDUwIDB4ND47DQo+
+ICsJCSNyZXNldC1jZWxscyA9IDwxPjsNCj4gKwl9Ow0KPiArfTsNCj4gKw0KPiArJmlzbyB7DQo+
+ICsJaXNvX3Jlc2V0OiByZXNldC1jb250cm9sbGVyQDg4IHsNCj4gKwkJY29tcGF0aWJsZSA9ICJz
+bnBzLGR3LWxvdy1yZXNldCI7DQo+ICsJCXJlZyA9IDwweDg4IDB4ND47DQo+ICsJCSNyZXNldC1j
+ZWxscyA9IDwxPjsNCj4gKwl9Ow0KPiArDQo+ICsJd2R0OiB3YXRjaGRvZ0A2ODAgew0KPiArCQlj
+b21wYXRpYmxlID0gInJlYWx0ZWsscnRkMTI5NS13YXRjaGRvZyI7DQo+ICsJCXJlZyA9IDwweDY4
+MCAweDEwMD47DQo+ICsJCWNsb2NrcyA9IDwmb3NjMjdNPjsNCj4gKwl9Ow0KPiArDQo+ICsJdWFy
+dDA6IHNlcmlhbEA4MDAgew0KPiArCQljb21wYXRpYmxlID0gInNucHMsZHctYXBiLXVhcnQiOw0K
+PiArCQlyZWcgPSA8MHg4MDAgMHg0MDA+Ow0KPiArCQlyZWctc2hpZnQgPSA8Mj47DQo+ICsJCXJl
+Zy1pby13aWR0aCA9IDw0PjsNCj4gKwkJY2xvY2stZnJlcXVlbmN5ID0gPDI3MDAwMDAwPjsNCj4g
+KwkJcmVzZXRzID0gPCZpc29fcmVzZXQgUlREMTI5NV9JU09fUlNUTl9VUjA+Ow0KPiArCQlzdGF0
+dXMgPSAiZGlzYWJsZWQiOw0KPiArCX07DQo+ICt9Ow0KPiArDQo+ICsmbWlzYyB7DQo+ICsJdWFy
+dDE6IHNlcmlhbEAyMDAgew0KPiArCQljb21wYXRpYmxlID0gInNucHMsZHctYXBiLXVhcnQiOw0K
+PiArCQlyZWcgPSA8MHgyMDAgMHgxMDA+Ow0KPiArCQlyZWctc2hpZnQgPSA8Mj47DQo+ICsJCXJl
+Zy1pby13aWR0aCA9IDw0PjsNCj4gKwkJY2xvY2stZnJlcXVlbmN5ID0gPDQzMjAwMDAwMD47DQo+
+ICsJCXJlc2V0cyA9IDwmcmVzZXQyIFJURDEyOTVfUlNUTl9VUjE+Ow0KPiArCQlzdGF0dXMgPSAi
+ZGlzYWJsZWQiOw0KPiArCX07DQo+ICsNCj4gKwl1YXJ0Mjogc2VyaWFsQDQwMCB7DQo+ICsJCWNv
+bXBhdGlibGUgPSAic25wcyxkdy1hcGItdWFydCI7DQo+ICsJCXJlZyA9IDwweDQwMCAweDEwMD47
+DQo+ICsJCXJlZy1zaGlmdCA9IDwyPjsNCj4gKwkJcmVnLWlvLXdpZHRoID0gPDQ+Ow0KPiArCQlj
+bG9jay1mcmVxdWVuY3kgPSA8NDMyMDAwMDAwPjsNCj4gKwkJcmVzZXRzID0gPCZyZXNldDIgUlRE
+MTI5NV9SU1ROX1VSMj47DQo+ICsJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ICsJfTsNCj4gK307
+DQo+IC0tDQo+IDIuMTYuNA0KPiANCj4gDQoNCkFja2VkLWJ5OiBKYW1lcyBUYWkgPGphbWVzLnRh
+aUByZWFsdGVrLmNvbT4NCg0K
