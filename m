@@ -2,185 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4763D12E0D2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2020 23:39:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C8D312E0E1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Jan 2020 23:46:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727340AbgAAWjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jan 2020 17:39:41 -0500
-Received: from mail-dm6nam11on2063.outbound.protection.outlook.com ([40.107.223.63]:15904
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727312AbgAAWjl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Jan 2020 17:39:41 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M973YnASEB8mDyZurW66vhEC3GqM+y2HNKi+NMkBXN4EOSv8Fw90ROES0L+Npm7OjS+mxaLW5WTBChx3foB10mq9OH85XlDGKhyFOjHOfx5kcRqlRN1xO9Acz9VzPYIZQA6n/rB+YRYhJkFDFd5gNc9AQw/Y1iQisEoRZOQhTl3bonNgXerL7V0iXZk2IeS8Gbtw0hT+ZKREiwueE0dJF3uJ8isXIttre6uvDIxsxsPwU7GiMMU/R5OkM1lkoiR37yC1aX67fSH4rfPY3wGq4YrC7+zV8Q0tJ6kszXGTrPtAEk47A6NWCqqeqoHncr9lpSCH9ld7PkqyPK4kvTqkuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y0peHFhz4JsdRgZ001sffVjHiDQF1CukSGMEkAPuJHc=;
- b=P3iVsc0MDlmDqlvIZ9UeUjHEXLeqaZDihKcK8oS3nIAusmBSqFNN4O7aP/g6myYmqmrX8Mrb5L0QWW/G2UgAhrsS1+ms5oqNwqv3mcs/TyQedtfytVoX7kspL5LYSz289CvSuodt+owETFPA2G8rVpp7j8HNbwMMnCkCO2IEptKPBWxmtPaxPFZmD6XndQtPVFeVy1pbSS21Ohd9AcadfVpD8WopgmXrgvRXylM7QkMdV3+vhMhYCqjMdv18ZgzzeYcR2D4e9pLSBZsT4AI6x4kPX2pY3yj1SRjN6kwHPODVqw7e327qwDz0IyG3mP5PfKElB4DgWNk37//7jnzOsw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
+        id S1727398AbgAAWqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jan 2020 17:46:43 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:40564 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727393AbgAAWqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jan 2020 17:46:36 -0500
+Received: by mail-wr1-f67.google.com with SMTP id c14so37744142wrn.7;
+        Wed, 01 Jan 2020 14:46:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y0peHFhz4JsdRgZ001sffVjHiDQF1CukSGMEkAPuJHc=;
- b=CG+My5AA55qI+WP7igu1Ybgy7A03CMlEV7TJvyjPzHLAGyXOFN0AClDTOQOqg0zkkj6zboCeWeMiigETmslQ5qGI/5He7DssshN+Sm122YxlroNzCj8c3tqF8cIngncrc277vXYNkOH3tCLYdPcCzWtOIabzKCabEfLN3WZVbyo=
-Received: from SN6PR08MB5053.namprd08.prod.outlook.com (52.135.107.153) by
- SN6PR08MB3967.namprd08.prod.outlook.com (52.132.123.150) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2581.12; Wed, 1 Jan 2020 22:39:36 +0000
-Received: from SN6PR08MB5053.namprd08.prod.outlook.com
- ([fe80::7c80:2b62:5d9a:2139]) by SN6PR08MB5053.namprd08.prod.outlook.com
- ([fe80::7c80:2b62:5d9a:2139%4]) with mapi id 15.20.2581.007; Wed, 1 Jan 2020
- 22:39:36 +0000
-Received: from labundy.com (136.49.227.119) by SN4PR0701CA0017.namprd07.prod.outlook.com (2603:10b6:803:28::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2581.12 via Frontend Transport; Wed, 1 Jan 2020 22:39:35 +0000
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>
-Subject: Re: [PATCH v2 4/7] pwm: Add support for Azoteq IQS620A PWM generator
-Thread-Topic: [PATCH v2 4/7] pwm: Add support for Azoteq IQS620A PWM generator
-Thread-Index: AQHVrij+8yO8xEtV+ECzt9/U9i+G6qexaTEAgAEU0QCAAHrSgIAIuWeAgADVNACABeTNAIAAXxsAgAE1m4CAAsXugIAPxXqA
-Date:   Wed, 1 Jan 2020 22:39:36 +0000
-Message-ID: <20200101223933.GB14339@labundy.com>
-References: <1575851866-18919-5-git-send-email-jeff@labundy.com>
- <20191209073206.6pftsak5v25jdepz@pengutronix.de>
- <20191210000252.GA6361@labundy.com>
- <20191210072227.434hyv5wl3rwztqx@pengutronix.de>
- <20191215203607.GA31390@labundy.com>
- <20191216091912.r4onikojbkbmguag@pengutronix.de>
- <20191220031924.GA2658@labundy.com>
- <20191220085948.iagsdpjqd6ixdo7j@pengutronix.de>
- <20191221032755.GA3051@labundy.com>
- <20191222214851.kapsro6b6qylke43@pengutronix.de>
-In-Reply-To: <20191222214851.kapsro6b6qylke43@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: SN4PR0701CA0017.namprd07.prod.outlook.com
- (2603:10b6:803:28::27) To SN6PR08MB5053.namprd08.prod.outlook.com
- (2603:10b6:805:78::25)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=jeff@labundy.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [136.49.227.119]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bd9bca75-ca53-4206-f1a9-08d78f0b7a7a
-x-ms-traffictypediagnostic: SN6PR08MB3967:
-x-microsoft-antispam-prvs: <SN6PR08MB39677A8B95C0F9332F6A7330D3210@SN6PR08MB3967.namprd08.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 02698DF457
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(34096005)(376002)(366004)(136003)(396003)(346002)(39830400003)(199004)(189003)(55674003)(1076003)(81166006)(66574012)(36756003)(8886007)(33656002)(54906003)(966005)(4326008)(6916009)(316002)(55016002)(71200400001)(8676002)(5660300002)(8936002)(81156014)(508600001)(7416002)(66556008)(66446008)(66476007)(66946007)(64756008)(2906002)(2616005)(186003)(52116002)(86362001)(26005)(7696005)(16526019)(956004);DIR:OUT;SFP:1101;SCL:1;SRVR:SN6PR08MB3967;H:SN6PR08MB5053.namprd08.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: labundy.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lMZ6SoMFUffWNRzxYouXnauoD0zUKGZBcoxlkEH/u8qURWzihZWOp87VDRbmvN9dJ50TCkK+1QcPVhhhiitZQXmk5/HokxAvA8tFRVoLrimMwdiFSHdPfDn7StJ6drEA+ZvD8Khu549vECp0+7WVvn7s6jUqydG7PgMYfq3z1LLLlZNZQrKy9+KgJLqQRGxPoTnJp8G4RCe1o2/lmdpn2/HZ7xjo/9HvT6x8YPIRBOo/iuC/MFe/86xezKvZ04fwMeIIZSKgGgPB7wtrMlkccwHatxn8fP0uquC1X7SUpsVKfpfa8g+Xa/4fGEKBwKTHWiG4kktajPq6mdRpsqIwHYjhRg54GCkDgU+rq+ZmHPL+U/tDQw1oweHNAtZFs/b3nsXIDc2V57lMilN/tNVae7sKACZCeUdTmn82ptH8ERMzJaYPjmA0HP1kDiz2HjH05sZ+UWpzbLt3DTN1lDSIbCTyr4+Nov4EP2QS7Dcrbp/7PF+gwiHQ5ruCVhRiDHgZ0LWXRTKZUiQ6l5nVh3xKMHKpT6T9SZYHjFA3TzaaQK8=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <6A177FE230B3CD40AEB33128657FCEBC@namprd08.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+giR89WDjZU7dYJgn+VeERWM0MCUeGo4U5OGWtnpSHY=;
+        b=HcNO/0Dus47RfAYdDwVWc+xNcxffaIXyZc0qawWBum9Tvlju7ZdvWtJO+xmmbRYnf3
+         VZM1BBFknkj2dCS3X/PNHI0Dh0bn/4t3FIGP+xqFZtneQwV5u5Z/fFLP/0c/g0iJUDJJ
+         FrHjJMYV0x9/jZVP7FL4Roupf7LviilKWQt9oZP0f+1YG3i7sqJyjMxa8RWIf5zy5yu/
+         wsDh4xXkTeYSS7HFjGbhngEWYK9tST7nAAlopuPh2G0LTHuXYqxDdx/ZY1uYdqmMFIYX
+         lGGiiWKsPwWnmhAlogu/1ODgJTFAAHlY1U9C+MESXg3owIX30Lm1FqLlE4VVNyyW9V9a
+         RnCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+giR89WDjZU7dYJgn+VeERWM0MCUeGo4U5OGWtnpSHY=;
+        b=fYguGAIFsZSBICdMS2Ug35c1ArTFH6ahbJihPC15CkwRKI5hxiz0DakyV1Z6xd3t0x
+         llL8oPMW+zOlW3IYRCKManY/XaJkw0Gap71QtevaxqMRF+zLD+DbdlZ4F0Apq4JWKOGX
+         heirJW6/HfGBP4Dd2wJI4z24CdSOZ4h4bykOkPjDNL36sZTEuv/E3waKT873TH/HRw5+
+         UTwCHAID6TEGT32zm5w55X08uJ8B1xRn+iKStH46KSU5Wbr32noF7u6VD0p7055j89az
+         ez64w3gXORomqjx8MjdyXgT9xS10+xiMY3PVyYRbFHo2shnAfdcmdvTNZxf6Dq7+Kgqc
+         BTyA==
+X-Gm-Message-State: APjAAAWft4FYJY/vJ73Tm1BrGjbKY6drQouv8PxmqahuMzWomr2VgQfK
+        WcRaOGOQuAk3Go4YnwF32H4=
+X-Google-Smtp-Source: APXvYqy8Hj2CdTKm8VIldyNL9lpKTrZpAFzd1CsGxkdx6C7PHnHTylEJy2tuN8ol4wcSL1oV/Ml04g==
+X-Received: by 2002:a5d:51cc:: with SMTP id n12mr80782539wrv.177.1577918794594;
+        Wed, 01 Jan 2020 14:46:34 -0800 (PST)
+Received: from localhost.localdomain ([46.216.160.87])
+        by smtp.gmail.com with ESMTPSA id j12sm57716173wrw.54.2020.01.01.14.46.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Jan 2020 14:46:33 -0800 (PST)
+Received: from jek by localhost.localdomain with local (Exim 4.93)
+        (envelope-from <jekhor@gmail.com>)
+        id 1imml6-00039p-5B; Thu, 02 Jan 2020 01:46:32 +0300
+From:   Yauhen Kharuzhy <jekhor@gmail.com>
+To:     linux-pm@vger.kernel.org
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Yauhen Kharuzhy <jekhor@gmail.com>
+Subject: [PATCH 1/3] power: supply: bq25890_charger: Add support of BQ25892 and BQ25896 chips
+Date:   Thu,  2 Jan 2020 01:46:25 +0300
+Message-Id: <20200101224627.12093-1-jekhor@gmail.com>
+X-Mailer: git-send-email 2.25.0.rc0
 MIME-Version: 1.0
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd9bca75-ca53-4206-f1a9-08d78f0b7a7a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jan 2020 22:39:36.1223
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OBkBGL+Upgi3Bc0fz3E+IOwOcjNfCWIgBYaj3zQg2PdFakp7MYKfEqq0XMsqGFuXxFMpwoEjNXWhhHYL4S4lUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR08MB3967
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+Support BQ25892 and BQ25896 chips by this driver. They shared one chip
+ID 0, so distinquish them by device revisions (2 for 25896 and 1 for
+25892).
 
-On Sun, Dec 22, 2019 at 10:48:51PM +0100, Uwe Kleine-K=F6nig wrote:
-> Hello Jeff,
->=20
-> On Sat, Dec 21, 2019 at 03:28:01AM +0000, Jeff LaBundy wrote:
-> > I heard back from the vendor today; they've acknowledged the limitation=
- and
-> > are considering adding support for 0% in a future ROM spin. In the mean=
-time,
-> > they've agreed to describe the high-impedance behavior in the data shee=
-t as
-> > well as include the pull-down resistor in an example schematic.
->=20
-> Oh wow, seems like a good vendor then. :-)
->=20
-> > > > Option (3) seems like overkill for such a simple PWM, and ultimatel=
-y doesn't
-> > > > add any value because I don't want to allow option (1) behavior in =
-any case.
-> > > > Whether the PWM is disabled because it is truly disabled or to simu=
-late a 0%
-> > > > duty cycle as in option (2), the pull-down is ultimately required r=
-egardless
-> > > > of whether or not the data sheet happens to go into such detail.
-> > >=20
-> > > Actually I like option 3 best.
-> > > =20
-> >=20
-> > Based on your other feedback, I'm moving forward under the impression t=
-hat
-> > you'll still accept option (2); please let me know if I have misunderst=
-ood
-> > (thank you for being flexible).
->=20
-> Yeah, that's fine. If in the end it shows that this is a bad idea we can
-> still change to (3).
->=20
+Signed-off-by: Yauhen Kharuzhy <jekhor@gmail.com>
+---
+ drivers/power/supply/bq25890_charger.c | 97 ++++++++++++++++++++------
+ 1 file changed, 76 insertions(+), 21 deletions(-)
 
-Sounds great. As soon as 5.5-rc5 lands this weekend, I'll rebase v3 and
-send it out.
+diff --git a/drivers/power/supply/bq25890_charger.c b/drivers/power/supply/bq25890_charger.c
+index 9d1ec8d677de..a3dcd4eb1287 100644
+--- a/drivers/power/supply/bq25890_charger.c
++++ b/drivers/power/supply/bq25890_charger.c
+@@ -25,12 +25,20 @@
+ #define BQ25895_ID			7
+ #define BQ25896_ID			0
+ 
++enum bq25890_chip_version {
++	BQ25890,
++	BQ25892,
++	BQ25895,
++	BQ25896,
++};
++
+ enum bq25890_fields {
+ 	F_EN_HIZ, F_EN_ILIM, F_IILIM,				     /* Reg00 */
+ 	F_BHOT, F_BCOLD, F_VINDPM_OFS,				     /* Reg01 */
+ 	F_CONV_START, F_CONV_RATE, F_BOOSTF, F_ICO_EN,
+ 	F_HVDCP_EN, F_MAXC_EN, F_FORCE_DPM, F_AUTO_DPDM_EN,	     /* Reg02 */
+-	F_BAT_LOAD_EN, F_WD_RST, F_OTG_CFG, F_CHG_CFG, F_SYSVMIN,    /* Reg03 */
++	F_BAT_LOAD_EN, F_WD_RST, F_OTG_CFG, F_CHG_CFG, F_SYSVMIN,
++	F_MIN_VBAT_SEL,						     /* Reg03 */
+ 	F_PUMPX_EN, F_ICHG,					     /* Reg04 */
+ 	F_IPRECHG, F_ITERM,					     /* Reg05 */
+ 	F_VREG, F_BATLOWV, F_VRECHG,				     /* Reg06 */
+@@ -39,8 +47,9 @@ enum bq25890_fields {
+ 	F_BATCMP, F_VCLAMP, F_TREG,				     /* Reg08 */
+ 	F_FORCE_ICO, F_TMR2X_EN, F_BATFET_DIS, F_JEITA_VSET,
+ 	F_BATFET_DLY, F_BATFET_RST_EN, F_PUMPX_UP, F_PUMPX_DN,	     /* Reg09 */
+-	F_BOOSTV, F_BOOSTI,					     /* Reg0A */
+-	F_VBUS_STAT, F_CHG_STAT, F_PG_STAT, F_SDP_STAT, F_VSYS_STAT, /* Reg0B */
++	F_BOOSTV, F_PFM_OTG_DIS, F_BOOSTI,			     /* Reg0A */
++	F_VBUS_STAT, F_CHG_STAT, F_PG_STAT, F_SDP_STAT, F_0B_RSVD,
++	F_VSYS_STAT,						     /* Reg0B */
+ 	F_WD_FAULT, F_BOOST_FAULT, F_CHG_FAULT, F_BAT_FAULT,
+ 	F_NTC_FAULT,						     /* Reg0C */
+ 	F_FORCE_VINDPM, F_VINDPM,				     /* Reg0D */
+@@ -91,7 +100,7 @@ struct bq25890_device {
+ 	struct regmap *rmap;
+ 	struct regmap_field *rmap_fields[F_MAX_FIELDS];
+ 
+-	int chip_id;
++	enum bq25890_chip_version chip_version;
+ 	struct bq25890_init_data init_data;
+ 	struct bq25890_state state;
+ 
+@@ -111,8 +120,7 @@ static const struct regmap_access_table bq25890_writeable_regs = {
+ static const struct regmap_range bq25890_volatile_reg_ranges[] = {
+ 	regmap_reg_range(0x00, 0x00),
+ 	regmap_reg_range(0x09, 0x09),
+-	regmap_reg_range(0x0b, 0x0c),
+-	regmap_reg_range(0x0e, 0x14),
++	regmap_reg_range(0x0b, 0x14),
+ };
+ 
+ static const struct regmap_access_table bq25890_volatile_regs = {
+@@ -155,7 +163,7 @@ static const struct reg_field bq25890_reg_fields[] = {
+ 	[F_OTG_CFG]		= REG_FIELD(0x03, 5, 5),
+ 	[F_CHG_CFG]		= REG_FIELD(0x03, 4, 4),
+ 	[F_SYSVMIN]		= REG_FIELD(0x03, 1, 3),
+-	/* MIN_VBAT_SEL on BQ25896 */
++	[F_MIN_VBAT_SEL]	= REG_FIELD(0x03, 0, 0), // BQ25896 only
+ 	/* REG04 */
+ 	[F_PUMPX_EN]		= REG_FIELD(0x04, 7, 7),
+ 	[F_ICHG]		= REG_FIELD(0x04, 0, 6),
+@@ -188,8 +196,8 @@ static const struct reg_field bq25890_reg_fields[] = {
+ 	[F_PUMPX_DN]		= REG_FIELD(0x09, 0, 0),
+ 	/* REG0A */
+ 	[F_BOOSTV]		= REG_FIELD(0x0A, 4, 7),
+-	/* PFM_OTG_DIS 3 on BQ25896 */
+ 	[F_BOOSTI]		= REG_FIELD(0x0A, 0, 2), // reserved on BQ25895
++	[F_PFM_OTG_DIS]		= REG_FIELD(0x0A, 3, 3), // BQ25896 only
+ 	/* REG0B */
+ 	[F_VBUS_STAT]		= REG_FIELD(0x0B, 5, 7),
+ 	[F_CHG_STAT]		= REG_FIELD(0x0B, 3, 4),
+@@ -275,6 +283,7 @@ static const union {
+ 	struct bq25890_lookup lt;
+ } bq25890_tables[] = {
+ 	/* range tables */
++	/* TODO: BQ25896 has max ICHG 3008 mA */
+ 	[TBL_ICHG] =	{ .rt = {0,	  5056000, 64000} },	 /* uA */
+ 	[TBL_ITERM] =	{ .rt = {64000,   1024000, 64000} },	 /* uA */
+ 	[TBL_VREG] =	{ .rt = {3840000, 4608000, 16000} },	 /* uV */
+@@ -391,11 +400,13 @@ static int bq25890_power_supply_get_property(struct power_supply *psy,
+ 		break;
+ 
+ 	case POWER_SUPPLY_PROP_MODEL_NAME:
+-		if (bq->chip_id == BQ25890_ID)
++		if (bq->chip_version == BQ25890)
+ 			val->strval = "BQ25890";
+-		else if (bq->chip_id == BQ25895_ID)
++		else if (bq->chip_version == BQ25892)
++			val->strval = "BQ25892";
++		else if (bq->chip_version == BQ25895)
+ 			val->strval = "BQ25895";
+-		else if (bq->chip_id == BQ25896_ID)
++		else if (bq->chip_version == BQ25896)
+ 			val->strval = "BQ25896";
+ 		else
+ 			val->strval = "UNKNOWN";
+@@ -741,6 +752,56 @@ static int bq25890_usb_notifier(struct notifier_block *nb, unsigned long val,
+ 	return NOTIFY_OK;
+ }
+ 
++static int bq25890_get_chip_version(struct bq25890_device *bq)
++{
++	int id, rev;
++
++	id = bq25890_field_read(bq, F_PN);
++	if (id < 0) {
++		dev_err(bq->dev, "Cannot read chip ID.\n");
++		return id;
++	}
++
++	rev = bq25890_field_read(bq, F_DEV_REV);
++	if (rev < 0) {
++		dev_err(bq->dev, "Cannot read chip revision.\n");
++		return id;
++	}
++
++	switch (id) {
++	case BQ25890_ID:
++		bq->chip_version = BQ25890;
++		break;
++
++	/* BQ25892 and BQ25896 share same ID 0 */
++	case BQ25896_ID:
++		switch (rev) {
++		case 0:
++			bq->chip_version = BQ25896;
++			break;
++		case 1:
++			bq->chip_version = BQ25892;
++			break;
++		default:
++			dev_err(bq->dev,
++				"Unknown device revision %d, assume BQ25892\n",
++				rev);
++			bq->chip_version = BQ25892;
++		}
++		break;
++
++	case BQ25895_ID:
++		bq->chip_version = BQ25895;
++		break;
++
++	default:
++		dev_err(bq->dev, "Unknown chip ID %d\n", id);
++		return -ENODEV;
++	}
++
++	return 0;
++}
++
+ static int bq25890_irq_probe(struct bq25890_device *bq)
+ {
+ 	struct gpio_desc *irq;
+@@ -859,16 +920,10 @@ static int bq25890_probe(struct i2c_client *client,
+ 
+ 	i2c_set_clientdata(client, bq);
+ 
+-	bq->chip_id = bq25890_field_read(bq, F_PN);
+-	if (bq->chip_id < 0) {
+-		dev_err(dev, "Cannot read chip ID.\n");
+-		return bq->chip_id;
+-	}
+-
+-	if ((bq->chip_id != BQ25890_ID) && (bq->chip_id != BQ25895_ID)
+-			&& (bq->chip_id != BQ25896_ID)) {
+-		dev_err(dev, "Chip with ID=%d, not supported!\n", bq->chip_id);
+-		return -ENODEV;
++	ret = bq25890_get_chip_version(bq);
++	if (ret) {
++		dev_err(dev, "Cannot read chip ID or unknown chip.\n");
++		return ret;
+ 	}
+ 
+ 	if (!dev->platform_data) {
+-- 
+2.25.0.rc0
 
-I failed to catch this in my previous reply, but the comment I've added
-to iqs620_pwm_get_state actually reads as follows:
-
-/*
- * Since the device cannot generate a 0% duty cycle, requests to do so
- * force subsequent calls to iqs620_pwm_get_state to report the output
- * as disabled with duty cycle equal to that which was in use prior to
- * the request. This is not ideal, but is the best compromise based on
- * the capabilities of the device.
- */
-
-This matches the present implementation, not your proposed comment that
-claims duty cycle is clamped to 1 / 256 ms following a request for a 0%
-duty cycle.
-
-This seems OK since the concept of a duty cycle or period aren't really
-relevant if the output is disabled in my opinion. However if you prefer
-I update iqs620_pwm_apply to clamp duty cycle to 1 / 256 ms (instead of
-leaving it untouched) in this case, please let me know.
-
-> Best regards
-> Uwe
->=20
-> --=20
-> Pengutronix e.K.                           | Uwe Kleine-K=F6nig          =
-  |
-> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
-|
-
-Wishing you a Happy New Year,
-Jeff LaBundy
