@@ -2,160 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DD512E17C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 02:27:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE31212E195
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 03:06:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727565AbgABB1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Jan 2020 20:27:23 -0500
-Received: from foss.arm.com ([217.140.110.172]:43550 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725895AbgABB1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Jan 2020 20:27:23 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 258551063;
-        Wed,  1 Jan 2020 17:27:23 -0800 (PST)
-Received: from localhost.localdomain (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B0E8A3F703;
-        Wed,  1 Jan 2020 17:27:21 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 3/3] ARM: dts: sun8i: R40: Add SPI controllers nodes and pinmuxes
-Date:   Thu,  2 Jan 2020 01:26:57 +0000
-Message-Id: <20200102012657.9278-4-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20200102012657.9278-1-andre.przywara@arm.com>
-References: <20200102012657.9278-1-andre.przywara@arm.com>
+        id S1727579AbgABCGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Jan 2020 21:06:02 -0500
+Received: from mail-io1-f68.google.com ([209.85.166.68]:38588 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727544AbgABCGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Jan 2020 21:06:02 -0500
+Received: by mail-io1-f68.google.com with SMTP id v3so37078389ioj.5
+        for <devicetree@vger.kernel.org>; Wed, 01 Jan 2020 18:06:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UHVPj5/UF7FmXw5E/6Coz8EOtDK8UfYd1n1yDId2PbU=;
+        b=XwQN52HFHiN4fB5kwYTv9zn1C76bI0Iz71wHNgvVewPn60QLGI/53rhJcn0f8qP7wG
+         sYdC1zIp6TQZ1YvNlqMDGXJ9S/iB8GP3sVWi03ibUV1M0gGPnF9lkzJYdq5Sihm1aCxD
+         JQsB5mHL8hEMMmYlnX96DExdAaIOIfSU1FKTs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UHVPj5/UF7FmXw5E/6Coz8EOtDK8UfYd1n1yDId2PbU=;
+        b=RPFKjT5cdWEJ5xtY460IuR8k5xO3aH91UkfuZYUbhuLTDkzFqJYepOAx63N461poK7
+         Ux/qyV6RPYjHMJzVT6kc/NaSOZCLawSN65zlS6v11N4XrUQtuVQ6ftY+aUQFgmI/6saN
+         pm9Ny9beKjVM1ZMbWKj1Izz7COXgQcfs7OpoOb5RQGCIJnQ1EZKhGZ3lcyJz7FVPq84X
+         SUFV6RMl/BXfJXNP75b74PqR4JqAatbqxCvNvxvW+83CY9iLGyt+yncL3MSFTRH/CAGL
+         ogtn647YQO4AyBpYZNqucx7fnGH3km9hFI9o0sm3jwAJXgJ0WDmTQN3nTdEsh9+iYj9F
+         B7Ww==
+X-Gm-Message-State: APjAAAUCCtYJYfny1nkZmIOQTWtijBdk5SsJSWFCK4h+ja803vv3cXzP
+        /OSiugJeRu8mEp+Ee+r2pHM1DqRklCAfTqAW8t3ifQ==
+X-Google-Smtp-Source: APXvYqwGWLjQw3gcajosmfzURd5ps+qyn12aquFWSg8sHauYhmdDjIpsc9fULZuWJKPuLIwEScJP+9CPNw9R1+t3PaY=
+X-Received: by 2002:a05:6638:72c:: with SMTP id j12mr64525970jad.136.1577930761321;
+ Wed, 01 Jan 2020 18:06:01 -0800 (PST)
+MIME-Version: 1.0
+References: <20191217102930.26102-1-mtwget@gmail.com>
+In-Reply-To: <20191217102930.26102-1-mtwget@gmail.com>
+From:   Matt Ranostay <matt.ranostay@konsulko.com>
+Date:   Thu, 2 Jan 2020 10:05:49 +0800
+Message-ID: <CAJCx=gnyF69PxHVh38nP1AYwi=Tt4J9bYYR-w00uGODUfCrKyg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: iio: chemical: Add bindings for
+ Dynament Premier series single gas sensor
+To:     YuDong Zhang <mtwget@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Allwinner R40 SoC contains four SPI controllers, using the newer
-sun6i design (but at the legacy addresses).
-The controller seems to be fully compatible to the A64 one, so no driver
-changes are necessary.
-The first three controller can be used on two sets of pins, but SPI3 is
-only routed to one set on Port A.
+On Tue, Dec 17, 2019 at 6:29 PM YuDong Zhang <mtwget@gmail.com> wrote:
+>
+> Dynament Premier series single gas sensor.
+>
+> Signed-off-by: YuDong Zhang <mtwget@gmail.com>
+> ---
+>  .../iio/chemical/dynament,premier.yaml        | 39 +++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 42 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/dynament,premier.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/chemical/dynament,premier.yaml b/Documentation/devicetree/bindings/iio/chemical/dynament,premier.yaml
+> new file mode 100644
+> index 000000000000..e2bbae4dd086
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/chemical/dynament,premier.yaml
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/chemical/dynament,premier.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Dynament Premier series single gas sensor
+> +
+> +maintainers:
+> +  - YuDong Zhang <mtwget@gmail.com>
+> +
+> +description: |
+> +  single gas sensor capable of measuring gas concentration of dust
+> +  particles, multi-gas sensor are not supported.
+> +
+> +  Specifications about the sensor can be found at:
+> +    https://www.dynament.com/_webedit/uploaded-files/All%20Files/SIL%20Data/tds0045_1.44.pdf, read chapter 1.5.2 Read live data simple
 
-Tested by connecting a SPI flash to a Bananapi M2 Berry on the SPI0
-PortC header pins.
+Typo of sample?
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
----
- arch/arm/boot/dts/sun8i-r40.dtsi | 89 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
+- Matt
 
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index 8dcbc4465fbb..af437391dcf4 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -418,6 +418,41 @@
- 				bias-pull-up;
- 			};
- 
-+			spi0_pc_pins: spi0-pc-pins {
-+				pins = "PC0", "PC1", "PC2", "PC23";
-+				function = "spi0";
-+			};
-+
-+			spi0_pi_pins: spi0-pi-pins {
-+				pins = "PI10", "PI11", "PI12", "PI13", "PI14";
-+				function = "spi0";
-+			};
-+
-+			spi1_pa_pins: spi1-pa-pins {
-+				pins = "PA0", "PA1", "PA2", "PA3", "PA4";
-+				function = "spi1";
-+			};
-+
-+			spi1_pi_pins: spi1-pi-pins {
-+				pins = "PI15", "PI16", "PI17", "PI18", "PI19";
-+				function = "spi1";
-+			};
-+
-+			spi2_pb_pins: spi2-pb-pins {
-+				pins = "PB13", "PB14", "PB15", "PB16", "PB17";
-+				function = "spi2";
-+			};
-+
-+			spi2_pc_pins: spi2-pc-pins {
-+				pins = "PC19", "PC20", "PC21", "PC22";
-+				function = "spi2";
-+			};
-+
-+			spi3_pins: spi3-pins {
-+				pins = "PA5", "PA6", "PA7", "PA8", "PA9";
-+				function = "spi3";
-+			};
-+
- 			uart0_pb_pins: uart0-pb-pins {
- 				pins = "PB22", "PB23";
- 				function = "uart0";
-@@ -594,6 +629,60 @@
- 			#size-cells = <0>;
- 		};
- 
-+		spi0: spi@1c05000 {
-+			compatible = "allwinner,sun8i-r40-spi",
-+				     "allwinner,sun8i-h3-spi";
-+			reg = <0x01c05000 0x1000>;
-+			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
-+			clock-names = "ahb", "mod";
-+			resets = <&ccu RST_BUS_SPI0>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		spi1: spi@1c06000 {
-+			compatible = "allwinner,sun8i-r40-spi",
-+				     "allwinner,sun8i-h3-spi";
-+			reg = <0x01c06000 0x1000>;
-+			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_SPI1>, <&ccu CLK_SPI1>;
-+			clock-names = "ahb", "mod";
-+			resets = <&ccu RST_BUS_SPI1>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		spi2: spi@1c07000 {
-+			compatible = "allwinner,sun8i-r40-spi",
-+				     "allwinner,sun8i-h3-spi";
-+			reg = <0x01c07000 0x1000>;
-+			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_SPI2>, <&ccu CLK_SPI2>;
-+			clock-names = "ahb", "mod";
-+			resets = <&ccu RST_BUS_SPI2>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		spi3: spi@1c0f000 {
-+			compatible = "allwinner,sun8i-r40-spi",
-+				     "allwinner,sun8i-h3-spi";
-+			reg = <0x01c0f000 0x1000>;
-+			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_SPI3>, <&ccu CLK_SPI3>;
-+			clock-names = "ahb", "mod";
-+			pinctrl-0 = <&spi3_pins>;
-+			pinctrl-names = "default";
-+			resets = <&ccu RST_BUS_SPI3>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
- 		ahci: sata@1c18000 {
- 			compatible = "allwinner,sun8i-r40-ahci";
- 			reg = <0x01c18000 0x1000>;
--- 
-2.14.5
-
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - dynament,premier
+> +
+> +  vcc-supply:
+> +    description: regulator that provides power to the sensor
+> +
+> +required:
+> +  - compatible
+> +
+> +examples:
+> +  - |
+> +    serial {
+> +      single-gas-sensor {
+> +        compatible = "dynament,premier";
+> +        vcc-supply = <&reg_vcc5v0>;
+> +      };
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 6046f4555852..5afca0586c41 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -261,6 +261,8 @@ patternProperties:
+>      description: Dragino Technology Co., Limited
+>    "^dserve,.*":
+>      description: dServe Technology B.V.
+> +  "^dynament,.*":
+> +    description: Dynament, Ltd.
+>    "^ea,.*":
+>      description: Embedded Artists AB
+>    "^ebs-systart,.*":
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ae228ac7adc9..4842a0afe32b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -5796,6 +5796,7 @@ DYNAMENT PREMIER SERIES SINGLE GAS SENSOR DRIVER
+>  M:     YuDong Zhang <mtwget@gmail.com>
+>  S:     Maintained
+>  F:     drivers/iio/chemical/premier.c
+> +F:     Documentation/devicetree/bindings/iio/chemical/dynament,premier.yaml
+>
+>  DYNAMIC DEBUG
+>  M:     Jason Baron <jbaron@akamai.com>
+> --
+> 2.24.1
+>
