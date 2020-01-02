@@ -2,98 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B5812E400
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 09:47:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 531D012E40F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 09:50:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727825AbgABIru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jan 2020 03:47:50 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:34464 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727756AbgABIrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jan 2020 03:47:49 -0500
-Received: by mail-wr1-f67.google.com with SMTP id t2so38513623wrr.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2020 00:47:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=J3vpyuDp2fSfI1qhxZyNCpDspi8gOZ6c6sySzOGZgtI=;
-        b=ETMcyAjibH5n172XygOMVaHuPRax3MGgc0BbFkqXLH7/36LaaNc+EKQY40lSeUgVnw
-         6DuzTkMGXI7AbpR3gcRRGCyQqMjctZG9PfzGuk61Z/vgxcx0hscCfUbkpF6rMqH7Navk
-         jAVbh1eLBI73S2OfF+vlXQp9PdynXWk+FuRgIfYaVVQ5368gwxaFwa7Q0yf6be0xmAGH
-         PGQtdhh/jBmqLbKtV7B3CKbvvPo6D0NlNbSAfN0UT89zLBGbkD5tkFIqiU1OVytEkBpq
-         ThjtAIVCMfTLXIZWymFgmebd2zdU/3g83MrZexOvp5Y/mrYGMmtVK0yBKC3H8O6Cgi13
-         njxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=J3vpyuDp2fSfI1qhxZyNCpDspi8gOZ6c6sySzOGZgtI=;
-        b=DmRXRBJcEXP1tM+CAkfYT5gEfwomWXH3+gC7EHqVmQACb6X/JvUZiahxVTQWnRK3Pk
-         mouNpkLUAXjdYB4H2IpiGmvzTNckaQMg5HNGsdk60ZiRfUJoNUHsovU8e9hpHkxd3D7W
-         GomprfJXh+0/QBGj/wBbXxizz4qKBIT6DEZWO0X73J3yBAbuKhwC/Qmz1OUClgbYEvhG
-         5o5NOsRTROafK7UBFRfzg3SglGJCESwDwBMwnDQc6i0m/nv1ui0wdfgujFL3kgCOrVUq
-         qIOmMqzxSxqkqwxgCzW9WUK0xKlidiS1igQbvRSjnTN5YPmcnLmIJM7FkhM6BzfiVuym
-         9Mpw==
-X-Gm-Message-State: APjAAAW2BEhPxCxyEDs2mnOQ2odcOrA/qEADASwsHFr80EYOzrF33x42
-        1o/D2tNHFwFLeQoOXzonwZS3QA==
-X-Google-Smtp-Source: APXvYqylKev69ahCZ35+EK+4UPvdRjneJYVaHT074cYq27+Fas8yAzV9sioz80p55eadrTDO/VC0Sg==
-X-Received: by 2002:adf:dd8a:: with SMTP id x10mr81603053wrl.117.1577954867937;
-        Thu, 02 Jan 2020 00:47:47 -0800 (PST)
-Received: from dell ([2.27.35.135])
-        by smtp.gmail.com with ESMTPSA id a16sm54987960wrt.37.2020.01.02.00.47.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jan 2020 00:47:47 -0800 (PST)
-Date:   Thu, 2 Jan 2020 08:47:59 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        mazziesaccount@gmail.com, Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: bd718x7: Yamlify and add BD71850
-Message-ID: <20200102084759.GB22390@dell>
-References: <20191217084824.GA26539@localhost.localdomain>
- <20191226221654.GA30474@bogus>
+        id S1727870AbgABIu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jan 2020 03:50:58 -0500
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:58184 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727817AbgABIu5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jan 2020 03:50:57 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0028mjoQ007721;
+        Thu, 2 Jan 2020 09:50:41 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=LRdbeTk9U+whaEXucHpmJKJIXLSTzy8TN4eCF8nKnlk=;
+ b=rdW5FCjvJZp4jjB8Zq169+SO5I2yDOHHeVn9ffeFn0qfFuJbIkdLiqX37tZHl1losuIT
+ K8xlccRILYvzn4OG7G7rjKj9+f8hSg0OvrEcF/fTaT4mLeehR26aGdvHRfq2WZEALEka
+ d/WbwqX9C1YmDYto0kEaZ4KI7p68kBKNvvoZIvPXOTGaR3ggaYNWtAiYZVsjuZngvvv/
+ uDH/MdR8jQjnoIRHltOPNuJH+7E76GyPeoZUIHGL/4PCFQ93dw7Dag2CC92UTRR4OQdu
+ iYX04ChjY3jCq4AXgjpEU3puzFoNxPJvBMGcTjJHvhaez7pErnf08R9ypcmjMgTQr563 Ig== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2x5wd6a4bv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 02 Jan 2020 09:50:41 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 897E8100034;
+        Thu,  2 Jan 2020 09:50:40 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 666FF21ED5A;
+        Thu,  2 Jan 2020 09:50:40 +0100 (CET)
+Received: from SFHDAG3NODE3.st.com (10.75.127.9) by SFHDAG3NODE3.st.com
+ (10.75.127.9) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 2 Jan
+ 2020 09:50:39 +0100
+Received: from SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476]) by
+ SFHDAG3NODE3.st.com ([fe80::3507:b372:7648:476%20]) with mapi id
+ 15.00.1347.000; Thu, 2 Jan 2020 09:50:39 +0100
+From:   Benjamin GAIGNARD <benjamin.gaignard@st.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "kgene@kernel.org" <kgene@kernel.org>,
+        "hminas@synopsys.com" <hminas@synopsys.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>,
+        Amelie DELAUNAY <amelie.delaunay@st.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: exynos: Remove unneeded "snps,dwc2" from
+ hsotg node
+Thread-Topic: [PATCH v2 2/2] ARM: dts: exynos: Remove unneeded "snps,dwc2"
+ from hsotg node
+Thread-Index: AQHVtlgQQnPVTv47G0+aNYZYg4bX66fS0MUAgARFMYA=
+Date:   Thu, 2 Jan 2020 08:50:39 +0000
+Message-ID: <bbc7e34c-75c2-dfe0-70f3-0685e8e54fed@st.com>
+References: <20191219103536.25485-1-benjamin.gaignard@st.com>
+ <20191219103536.25485-3-benjamin.gaignard@st.com> <20191230153758.GB4918@pi3>
+In-Reply-To: <20191230153758.GB4918@pi3>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.48]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <189E2F8963AD1C41B89EA1A9DC82B15E@st.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191226221654.GA30474@bogus>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2020-01-02_02:2019-12-30,2020-01-02 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Dec 2019, Rob Herring wrote:
-
-> On Tue, Dec 17, 2019 at 10:48:24AM +0200, Matti Vaittinen wrote:
-> > Convert ROHM bd71837 and bd71847 PMIC binding text docs to yaml. Split
-> > the binding document to two separate documents (own for BD71837 and BD71847)
-> > as they have different amount of regulators. This way we can better enforce
-> > the node name check for regulators. ROHM is also providing BD71850 - which
-> > is almost identical to BD71847 - main difference is some initial regulator
-> > states. The BD71850 can be driven by same driver and it has same buck/LDO
-> > setup as BD71847 - add it to BD71847 binding document and introduce
-> > compatible for it.
-> > 
-> > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > ---
-> > 
-> > Oh dear how bad I am with yaml...
-> 
-> Looks pretty good overall.
-> 
-> I hope 'yamlify' doesn't catch on. :)
-
-Adopted.
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+DQpPbiAxMi8zMC8xOSA0OjM3IFBNLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPiBPbiBU
+aHUsIERlYyAxOSwgMjAxOSBhdCAxMTozNTozNkFNICswMTAwLCBCZW5qYW1pbiBHYWlnbmFyZCB3
+cm90ZToNCj4+IFJlbW92ZSAic25wcyxkd2MyIiBmcm9tIGhzb3RnQDEyNDgwMDAwIG5vZGUgY29t
+cGF0aWJsZSBsaXN0IGJlY2F1c2UNCj4+ICJzYW1zdW5nLHMzYzY0MDAtaHNvdGciIHNob3VsZCBi
+ZSBlbm91Z2guDQo+IFRoZSBtb3JlIGRldGFpbGVkIGNvbXBhdGlibGUgaXMgYWxtb3N0IGFsd2F5
+cyAiZW5vdWdoIi4gU29tZSBvdGhlciBub2Rlcw0KPiBhbHNvIGhhdmUgZGV0YWlsZWQrZ2VuZXJp
+YyBjb21wYXRpYmxlLiBJbiB0aGlzIGNhc2UgdGhlcmUgaXMgYSBkcml2ZXINCj4gbWF0Y2hpbmcg
+InNucHMsZHdjMiIgc28gd2h5IHJlbW92aW5nIGl0Pw0KDQpGaXJzdCBiZWNhdXNlLCB1bmxpa2Ug
+dGhlIG90aGVycyBkd2MyIGRldmljZXMsIHRoaXMgY29tcGF0aWJsZSB3YXNuJ3QgDQpkZXNjcmli
+ZSBpbiB0aGUgYmluZGluZ3MgZmlsZQ0KDQpzbyBJIGhhZCB0byBpbnZlc3RpZ2F0ZWQgaG93IGl0
+IHNob3VsZCB3b3JrIGFuZCwgb24gc2Ftc3VuZyBEVCBmaWxlcywgDQpvbmx5ICJzYW1zdW5nLHMz
+YzY0MDAtaHNvdGciLg0KDQogRnJvbSBkcml2ZXIgY29kZSBwb2ludCBvZiB2aWV3IHRoYXQgc2Vl
+bXMgY29oZXJlbnQgKHdlIGRvIHRoZSBzYW1lIGZvciANCnN0bTMyKS4NCg0KV2l0aCB0aGF0IGlu
+IG1pbmQgSSBoYXZlIGRlY2lkZWQgdG8gcmVtb3ZlICJzbnBzLGR3YzIiIGZyb20gZXh5bm9zIERU
+IA0KZmlsZSByYXRoZXIgdGhhbiBhZGQgaXQgZXZlcnl3aGVyZSBlbHNlLg0KDQpCZW5qYW1pbg0K
+DQo+DQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo+DQo+PiBTaWduZWQtb2ZmLWJ5OiBC
+ZW5qYW1pbiBHYWlnbmFyZCA8YmVuamFtaW4uZ2FpZ25hcmRAc3QuY29tPg0KPj4gLS0tDQo+PiAg
+IGFyY2gvYXJtL2Jvb3QvZHRzL2V4eW5vczMyNTAuZHRzaSB8IDIgKy0NCj4+ICAgMSBmaWxlIGNo
+YW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+Pg0KPj4gZGlmZiAtLWdpdCBh
+L2FyY2gvYXJtL2Jvb3QvZHRzL2V4eW5vczMyNTAuZHRzaSBiL2FyY2gvYXJtL2Jvb3QvZHRzL2V4
+eW5vczMyNTAuZHRzaQ0KPj4gaW5kZXggYjAxNmIwYjY4MzA2Li5kNDg2NjI2OWY0ZWUgMTAwNjQ0
+DQo+PiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9leHlub3MzMjUwLmR0c2kNCj4+ICsrKyBiL2Fy
+Y2gvYXJtL2Jvb3QvZHRzL2V4eW5vczMyNTAuZHRzaQ0KPj4gQEAgLTM2Miw3ICszNjIsNyBAQA0K
+Pj4gICAJCX07DQo+PiAgIA0KPj4gICAJCWhzb3RnOiBoc290Z0AxMjQ4MDAwMCB7DQo+PiAtCQkJ
+Y29tcGF0aWJsZSA9ICJzYW1zdW5nLHMzYzY0MDAtaHNvdGciLCAic25wcyxkd2MyIjsNCj4+ICsJ
+CQljb21wYXRpYmxlID0gInNhbXN1bmcsczNjNjQwMC1oc290ZyI7DQo+PiAgIAkJCXJlZyA9IDww
+eDEyNDgwMDAwIDB4MjAwMDA+Ow0KPj4gICAJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQxIElS
+UV9UWVBFX0xFVkVMX0hJR0g+Ow0KPj4gICAJCQljbG9ja3MgPSA8JmNtdSBDTEtfVVNCT1RHPjsN
+Cj4+IC0tIA0KPj4gMi4xNS4wDQo+Pg==
