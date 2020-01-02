@@ -2,101 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1213612E784
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 15:55:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E04712E7FD
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 16:17:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728674AbgABOzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jan 2020 09:55:12 -0500
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:46966 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728652AbgABOzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jan 2020 09:55:12 -0500
-Received: by mail-pl1-f194.google.com with SMTP id y8so17887241pll.13
-        for <devicetree@vger.kernel.org>; Thu, 02 Jan 2020 06:55:11 -0800 (PST)
+        id S1728638AbgABPRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jan 2020 10:17:51 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:42414 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728561AbgABPRv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jan 2020 10:17:51 -0500
+Received: by mail-lj1-f194.google.com with SMTP id y4so26679199ljj.9;
+        Thu, 02 Jan 2020 07:17:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=qQ3dPyVIYOxnnD+V93y32YHWB9TyUbtp8D+2BSxgJjI=;
-        b=HAA0qFXPm/feR1Ew/vwtwclzWPyBuVhbCMyKzSfk+mFTqf+hLc7gq+QlFGuYOyr/fc
-         CyhSu4o6NwWWTPcJn1t2qjZtoHIo/vbiZMrudIJlV8u+ikmzs+30YbcYs29LU9vFfW+z
-         Aj/dyGVA8AvnEZbqp9vnD5aC85GvONjy0ss2CPjOPdNZpVYplhIQ/0G8/CDQd/Nqhu+z
-         X5J60RFDye1a+qyv691H9YIKYuRP1iZ8kowTd4C+3hR6y834ctBesFJfkPWsqH3PI6s9
-         caxkCijpZALFHNzbuvTe5hO4OcCoNKHJuloha4Q4Q5eQMOKxmCa5Bw8qwYHZOyVQqYmT
-         SVNQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=BQek1hpGtAcuz3Vy94GFTxcBosOLuEGkc1EsxVOl7K0=;
+        b=rm6d9E+dTNWcbvvwgWbOuPY6szM3rkWylgsiKib7v/V9yznlEsOsFwX+N2GwxKm9U/
+         qWscJQCbsvRA5ARFjYODsuNr2mt8t0SjPKbFIkshsLU+B9PtUQVyieZ6wNEJCSZ6sohO
+         27i470vK8+FYTG4xMLLSr4GPKbk1cr4cg2CuUg8YdNrhaFOJoKzI6j/GRxnYq5rgDbcm
+         vUYKLKvwT1mRsooiqTSbboIB9xwD8NetwGWEp+sfnw6rvNm3hkxjiD80wZ7tMJ6r1QFz
+         O/4kShUi1C5bBOfNwHhevjBt45lkHKgqD6n2NoMawUeJDZDdSqm4KV4R6X2U2mmNryXO
+         4rKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=qQ3dPyVIYOxnnD+V93y32YHWB9TyUbtp8D+2BSxgJjI=;
-        b=JQ8pvNa5ator/zBjrimi/zjreEesh/VIS7LJw0PxIi5StUdKeh67pLyl5H0LT6FM0q
-         Uk0RehFdQk2vzC+/VdPI2W/9chIyhSisHh0qVW3ywUU2253TuhBqDd6dR9ep13nJmQ7u
-         zpHN4uTNlecwlbxrcxN3HWLZ/CBpCOx2UkkeEtZkXwxFscaugiYkIZy3QquiHZ75tC+J
-         UUOyxk6i3AEVWln1a0NdbAkU0GdLQI9GwYXlU4iDztb2hRU0szRqnuX0NYOIzgxJJbxo
-         Rthd5JNVCt6G/j48TGAhKJ9VtI/m+Amah30lE5o8R/y5kffJlF2CK9+h5ldPzzUMze6h
-         C71w==
-X-Gm-Message-State: APjAAAUb/OpFwSzrpyM6xIEwb2Mh4I2eskWHOhMRBUTUoNt36pi5yPEs
-        m0BQEoAut3k6mosgyTvCqtnvDYyED22dgA==
-X-Google-Smtp-Source: APXvYqwQggvFSNCdOyWo4GIOGfBb4EPNOjBCZx/+BM2YzYiNE/19lee99UQH/FwKdi2eQNwxfET3Yw==
-X-Received: by 2002:a17:902:8c91:: with SMTP id t17mr83625707plo.225.1577976911485;
-        Thu, 02 Jan 2020 06:55:11 -0800 (PST)
-Received: from localhost ([103.195.202.148])
-        by smtp.gmail.com with ESMTPSA id d65sm64405487pfa.159.2020.01.02.06.55.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Jan 2020 06:55:11 -0800 (PST)
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, swboyd@chromium.org,
-        sivaa@codeaurora.org, Andy Gross <agross@kernel.org>
-Cc:     devicetree@vger.kernel.org
-Subject: [PATCH v3 9/9] arm64: dts: msm8998: thermal: Add critical interrupt support
-Date:   Thu,  2 Jan 2020 20:24:34 +0530
-Message-Id: <445b152a10e51c29590659ce717f505d56a98d9e.1577976221.git.amit.kucheria@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1577976221.git.amit.kucheria@linaro.org>
-References: <cover.1577976221.git.amit.kucheria@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=BQek1hpGtAcuz3Vy94GFTxcBosOLuEGkc1EsxVOl7K0=;
+        b=ASVNTFb06OPMzozrwX9iDdOUWqBWV26aqWP9DeiSTxgtY8OudLWE8LDeu2tjsOCK/l
+         U+kpSjjJzQyWdTO2UULNGzzCmrLSLz2U1VL3cm1o+au8IJa9trJfrcTTFkAw2jeLiQSV
+         4ZvWfeTJYfXr01A81YkyfqK1b4uyZmRI39tR2RcxV77bIYOP/CbTIKLJw5M89QfZtzon
+         I9n2wwRkXpnpinRpaxhxTbZOlXOjCqgXxFGzR9EfoyqkTcO5nJI9dewnZU/CgAQ+DO8n
+         17A8tILf7ifhOEercnbI6gwOD2Rot/k/ZA3qi/niz2iQIG0UggZ7A2F8u61PotrKOodN
+         9W1g==
+X-Gm-Message-State: APjAAAW9JRPDrrYsJTJw6pzWVE7fvo7teUAJveskMlnSruAsDf9bYjap
+        aSj9XjgkdetlG/nsmmApeMaUVLoi
+X-Google-Smtp-Source: APXvYqxvkVFnhiPOxFv+7ZRxTUIFTDSny58aAUFqXUPm0qk5W3c5Kf0KO4HWqsPuKxknmCVge1rAdQ==
+X-Received: by 2002:a2e:943:: with SMTP id 64mr37257269ljj.17.1577978269110;
+        Thu, 02 Jan 2020 07:17:49 -0800 (PST)
+Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
+        by smtp.googlemail.com with ESMTPSA id g27sm23515861lfj.49.2020.01.02.07.17.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jan 2020 07:17:48 -0800 (PST)
+Subject: Re: [PATCH v2 10/10] usb: chipidea: tegra: Add USB_TEGRA_PHY module
+ to driver's dependencies
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Peter Chen <peter.chen@nxp.com>, Rob Herring <robh-dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20191220015238.9228-1-digetx@gmail.com>
+ <20191220015238.9228-11-digetx@gmail.com>
+ <20191220035650.GC19921@b29397-desktop>
+ <fb7dee6e-e645-fe45-126c-c5f1e280bc26@gmail.com>
+ <20191223213234.GA28786@qmqm.qmqm.pl>
+ <7174833f-8325-7fb4-d190-78ba4bed0cbb@gmail.com>
+ <20191230210259.GD24135@qmqm.qmqm.pl>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <b34972e3-569e-d74a-4d30-d52c89032a08@gmail.com>
+Date:   Thu, 2 Jan 2020 18:17:47 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
+In-Reply-To: <20191230210259.GD24135@qmqm.qmqm.pl>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register critical interrupts for each of the two tsens controllers
+31.12.2019 00:02, Michał Mirosław пишет:
+> On Tue, Dec 24, 2019 at 07:21:05AM +0300, Dmitry Osipenko wrote:
+>> 24.12.2019 00:32, Michał Mirosław пишет:
+>>> On Fri, Dec 20, 2019 at 07:31:08AM +0300, Dmitry Osipenko wrote:
+>>>> 20.12.2019 06:56, Peter Chen пишет:
+>>>>> On 19-12-20 04:52:38, Dmitry Osipenko wrote:
+>>> [...]
+>>>>>> --- a/drivers/usb/chipidea/ci_hdrc_tegra.c
+>>>>>> +++ b/drivers/usb/chipidea/ci_hdrc_tegra.c
+>>>>>> @@ -53,6 +53,12 @@ static int tegra_udc_probe(struct platform_device *pdev)
+>>>>>>  	struct tegra_udc *udc;
+>>>>>>  	int err;
+>>>>>>  
+>>>>>> +	if (IS_MODULE(CONFIG_USB_TEGRA_PHY)) {
+>>>>>> +		err = request_module("phy_tegra_usb");
+>>>>>> +		if (err)
+>>>>>> +			return err;
+>>>>>> +	}
+>>>>>> +
+>>>>>
+>>>>> Why you do this dependency, if this controller driver can't
+>>>>> get USB PHY, it should return error. What's the return value
+>>>>> after calling below:
+>>>>>
+>>>>> 	udc->phy = devm_usb_get_phy_by_phandle(&pdev->dev, "nvidia,phy", 0);
+>>>>
+>>>> It returns -EPROBE_DEFER when phy_tegra_usb isn't loaded.
+>>>
+>>> How are other driver modules autoloaded? Isn't there an appropriate
+>>> MODALIAS or MODULE_DEVICE_TABLE in there?
+>>
+>> Hello Michał,
+>>
+>> The phy_tegra_usb module is fine by itself, it's getting autoloaded.
+>>
+>> The problem is that ci_hdrc_tegra module depends on the phy_tegra_usb
+>> module and thus the PHY module should be loaded before the CI module,
+>> otherwise CI driver fails with the EPROBE_DEFER.
+> 
+> Why, then, is CI driver not being probed again after PHY driver loads?
+> EPROBE_DEFER is what should cause driver core to re-probe a device after
+> other devices appear (PHY in this case).
 
-Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+CI driver is getting re-probed just fine if PHY's driver module is
+loaded manually after loading the CI's module. This patch removes this
+necessity to manually load PHY's module.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index fc7838ea9a01..4b786b8651a9 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -817,8 +817,9 @@
- 			reg = <0x010ab000 0x1000>, /* TM */
- 			      <0x010aa000 0x1000>; /* SROT */
- 			#qcom,sensors = <14>;
--			interrupts = <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "uplow";
-+			interrupts = <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
- 			#thermal-sensor-cells = <1>;
- 		};
- 
-@@ -827,8 +828,9 @@
- 			reg = <0x010ae000 0x1000>, /* TM */
- 			      <0x010ad000 0x1000>; /* SROT */
- 			#qcom,sensors = <8>;
--			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "uplow";
-+			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow", "critical";
- 			#thermal-sensor-cells = <1>;
- 		};
- 
--- 
-2.20.1
-
+This is just a minor convenience change that brings the CI's driver
+loading behaviour on par with the behaviour of loading Tegra's EHCI
+driver module.
