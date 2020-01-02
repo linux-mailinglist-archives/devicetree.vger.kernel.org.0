@@ -2,234 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 75F3512E968
-	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 18:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3840F12EA6A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Jan 2020 20:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727731AbgABR3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Jan 2020 12:29:01 -0500
-Received: from mout.kundenserver.de ([212.227.126.130]:54221 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727422AbgABR3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jan 2020 12:29:00 -0500
-Received: from localhost ([31.212.60.142]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MKsSj-1j1huT06wf-00LJ2m; Thu, 02 Jan 2020 18:28:44 +0100
-Date:   Thu, 2 Jan 2020 18:28:43 +0100
-From:   Andreas Klinger <ak@it-klinger.de>
-To:     jic23@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        rpi-receiver@htl-steyr.ac.at, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] iio: srf04: add power management feature
-Message-ID: <20200102172841.iv2ej5gtnufkqmll@arbad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Provags-ID: V03:K1:kpxqvnxU/14xcISH9Vs4iYpjFPgF+e9DupLuJTMB0sPPmTuFfud
- S2LZ5n1tFEL4LNDrnQGsnwWfvD1DTBBTHAFY4jzWpNEZgi7RGMExP4uWPF1R5edYZFUgY1I
- zMoTuZHxzLMrJEgBaH8ucLa+YbFz1sdexbtBlGslHM5d/6Jk8cYU96QI+tlL3vRBAxhfiHL
- QbAU13R5vtI94dXfD8urQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:HWY5LQvu8DU=:1ozE28T7Iwzi4a3NmLbjh2
- PFOus3z0uNkvKELjeyyQhBgBjDebgZNUsr80G+IYss1EUb1ZPeJ5qt8VCIWVa7MJgIsmt5OwO
- e/H/VJoX0kx+QFbRxup1BAiFKcfwqg8zpS6C1N7tZl0aIqHpSoCyOfM1i5c1teIRsBkpnesmP
- q1WhrP8UIY0v2b4/90+KvDMusmByRBSiB4gPPv494hoRLek0Pmb15iZ1N/EY96eZlPO63BoBs
- XcwAdixWdsyntr1lp+FoWjMS8FIjctm5QjdE6yVyvTzzLu0bJqEfjlbiJ8XTD/DFmruX7EtwI
- o+pPsYHuR61NQbeutVHPmc658Gjbsp30JKCk6pIwsCv0lIOaNU6HF8VWllz4kt7DKs8/RUoJe
- vQrTfogUZQjpEUDXVSu7Mntxh3uOU60VIcb/u4uLh0VsozcvUc8/MaVqk4izsUVaTYteZFpmP
- So40h6UwKr9ropaiBJasLm7/PawRSleyIRL7pBUnRjiB3RrXJ953D5yTnaSxs/4MDFbtmEebD
- /0GCZHrT2i7ZSQKQ4wFbiWECCl3dUEhfytdfYK90CgbcIol3QRjj9u+DdjqwJ7vp4U03R76UU
- Sx8AJ4aRUkFBmu03qdAt4fvixrMNtlZ1RTR+wswHf6aI4pqiVjk+y2VnbPXPvLsHo+HWkAPZ/
- cY6oZ1R09MrI800KjDJCStTpp3ABX4/Vr745AZeV+6MU0lWne+MmudfYRpNeHpOTxdro1+cRe
- SPrk3rFQgNFuhawm+JtNuiw913tnMR7/J0H4sDnJk3svuO9l1D/Wlbh3U5vQAV7oaDRA2fV4Y
- bhhkKcjYOZzkPR3Kcv1xIleYZalVfHnmb9mJXjOvc3/c4F4TNSiF00O0uA0jSZ2+bI2eoejqq
- Iwhh19GB/BOijlT5HTAA==
+        id S1728657AbgABT2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Jan 2020 14:28:50 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:50130 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728260AbgABT2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Jan 2020 14:28:17 -0500
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 002JGuE3095346;
+        Thu, 2 Jan 2020 14:28:00 -0500
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2x9j3p0qqg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 02 Jan 2020 14:28:00 -0500
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+        by ppma02wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id 002JFLSv000313;
+        Thu, 2 Jan 2020 19:27:58 GMT
+Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
+        by ppma02wdc.us.ibm.com with ESMTP id 2x5xp6k0cy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 02 Jan 2020 19:27:58 +0000
+Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 002JRvoK47317312
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 2 Jan 2020 19:27:57 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 601D4BE056;
+        Thu,  2 Jan 2020 19:27:57 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id BA063BE04F;
+        Thu,  2 Jan 2020 19:27:56 +0000 (GMT)
+Received: from talon7.ibm.com (unknown [9.41.103.158])
+        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Thu,  2 Jan 2020 19:27:56 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-aspeed@lists.ozlabs.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, jason@lakedaemon.net, maz@kernel.org,
+        robh+dt@kernel.org, tglx@linutronix.de, joel@jms.id.au,
+        andrew@aj.id.au, eajames@linux.ibm.com
+Subject: [PATCH v4 00/12] aspeed: Add SCU interrupt controller and XDMA engine drivers
+Date:   Thu,  2 Jan 2020 13:27:44 -0600
+Message-Id: <1577993276-2184-1-git-send-email-eajames@linux.ibm.com>
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,18.0.572
+ definitions=2020-01-02_06:2020-01-02,2020-01-02 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ clxscore=1015 suspectscore=1 phishscore=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=675 bulkscore=0 priorityscore=1501 spamscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-2001020156
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add suspend and resume operations for being used by optional power
-management.
+This series first adds a driver to control the interrupt controller provided by
+the System Control Unit (SCU) on the AST2500 and AST2600 SOCs. The interrupts
+made available are necessary for the control of the XDMA engine embedded in the
+same Aspeed SOCs.
+This series then adds a driver to control the XDMA engine. This driver was
+previously sent to the list without support for the AST2600, and has been
+refactored significantly to enable that support. The XDMA engine performs
+automatic DMA operations between the Aspeed SOC (acting as a BMC) and a host
+processor.
 
-The suspend function is switching off an GPIO which can be used by the
-hardware to switch power off. The resume function is switching the GPIO on
-and sleeps an adjustable time to give the device a chance to be up and
-running.
+Changes since v3:
+ - See individual patches; just clean-up items
 
-If activated the driver gets into autosuspend after some time of
-inactivity.
+Changes since v2:
+ - See individual patches
+ - Drop rainier dts patch
+ - In summary, remove references to VGA memory as the XDMA driver doesn't care
+   where it is. Remove SDRAM controller reference. Move user reset
+   functionality to a separate patch and make it an ioctl.
 
-Suggested-by: Franz Parzer <rpi-receiver@htl-steyr.ac.at>
-Signed-off-by: Andreas Klinger <ak@it-klinger.de>
----
- drivers/iio/proximity/srf04.c | 104 +++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 103 insertions(+), 1 deletion(-)
+Changes since v1:
+ - See individual patches
+ - In summary, first the irqchip driver switched to use the parent SCU regmap
+   rather than iomapping it's register. Secondly, the XDMA initialization
+   switched to use properties from the device tree rather than dynamically
+   calculate memory spaces, and system config.
 
-diff --git a/drivers/iio/proximity/srf04.c b/drivers/iio/proximity/srf04.c
-index 01eb8cc63076..b19d910298d6 100644
---- a/drivers/iio/proximity/srf04.c
-+++ b/drivers/iio/proximity/srf04.c
-@@ -45,6 +45,7 @@
- #include <linux/sched.h>
- #include <linux/interrupt.h>
- #include <linux/delay.h>
-+#include <linux/pm_runtime.h>
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
- 
-@@ -56,6 +57,7 @@ struct srf04_data {
- 	struct device		*dev;
- 	struct gpio_desc	*gpiod_trig;
- 	struct gpio_desc	*gpiod_echo;
-+	struct gpio_desc	*gpiod_power;
- 	struct mutex		lock;
- 	int			irqnr;
- 	ktime_t			ts_rising;
-@@ -63,6 +65,7 @@ struct srf04_data {
- 	struct completion	rising;
- 	struct completion	falling;
- 	const struct srf04_cfg	*cfg;
-+	int			startup_time_ms;
- };
- 
- static const struct srf04_cfg srf04_cfg = {
-@@ -97,6 +100,9 @@ static int srf04_read(struct srf04_data *data)
- 	u64 dt_ns;
- 	u32 time_ns, distance_mm;
- 
-+	if (data->gpiod_power)
-+		pm_runtime_get_sync(data->dev);
-+
- 	/*
- 	 * just one read-echo-cycle can take place at a time
- 	 * ==> lock against concurrent reading calls
-@@ -110,6 +116,11 @@ static int srf04_read(struct srf04_data *data)
- 	udelay(data->cfg->trigger_pulse_us);
- 	gpiod_set_value(data->gpiod_trig, 0);
- 
-+	if (data->gpiod_power) {
-+		pm_runtime_mark_last_busy(data->dev);
-+		pm_runtime_put_autosuspend(data->dev);
-+	}
-+
- 	/* it should not take more than 20 ms until echo is rising */
- 	ret = wait_for_completion_killable_timeout(&data->rising, HZ/50);
- 	if (ret < 0) {
-@@ -268,6 +279,26 @@ static int srf04_probe(struct platform_device *pdev)
- 		return PTR_ERR(data->gpiod_echo);
- 	}
- 
-+#ifdef CONFIG_PM
-+	data->gpiod_power = devm_gpiod_get_optional(dev, "power",
-+								GPIOD_OUT_LOW);
-+	if (IS_ERR(data->gpiod_power)) {
-+		dev_err(dev, "failed to get power-gpios: err=%ld\n",
-+						PTR_ERR(data->gpiod_power));
-+		return PTR_ERR(data->gpiod_power);
-+	}
-+	if (data->gpiod_power) {
-+
-+		if (of_property_read_u32(dev->of_node, "startup-time-ms",
-+						&data->startup_time_ms))
-+			data->startup_time_ms = 100;
-+		dev_dbg(dev, "using power gpio: startup-time-ms=%d\n",
-+							data->startup_time_ms);
-+	}
-+#else
-+	data->gpiod_power = NULL;
-+#endif
-+
- 	if (gpiod_cansleep(data->gpiod_echo)) {
- 		dev_err(data->dev, "cansleep-GPIOs not supported\n");
- 		return -ENODEV;
-@@ -296,14 +327,85 @@ static int srf04_probe(struct platform_device *pdev)
- 	indio_dev->channels = srf04_chan_spec;
- 	indio_dev->num_channels = ARRAY_SIZE(srf04_chan_spec);
- 
--	return devm_iio_device_register(dev, indio_dev);
-+	ret = iio_device_register(indio_dev);
-+	if (ret < 0) {
-+		dev_err(data->dev, "iio_device_register: %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (data->gpiod_power) {
-+		pm_runtime_set_autosuspend_delay(data->dev, 1000);
-+		pm_runtime_use_autosuspend(data->dev);
-+
-+		ret = pm_runtime_set_active(data->dev);
-+		if (ret) {
-+			dev_err(data->dev, "pm_runtime_set_active: %d\n", ret);
-+			iio_device_unregister(indio_dev);
-+		}
-+
-+		pm_runtime_enable(data->dev);
-+		pm_runtime_idle(data->dev);
-+	}
-+
-+	return ret;
- }
- 
-+static int srf04_remove(struct platform_device *pdev)
-+{
-+	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-+	struct srf04_data *data = iio_priv(indio_dev);
-+
-+	iio_device_unregister(indio_dev);
-+
-+	if (data->gpiod_power) {
-+		pm_runtime_disable(data->dev);
-+		pm_runtime_set_suspended(data->dev);
-+	}
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_PM
-+static int srf04_pm_runtime_suspend(struct device *dev)
-+{
-+	struct platform_device *pdev = container_of(dev,
-+						struct platform_device, dev);
-+	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-+	struct srf04_data *data = iio_priv(indio_dev);
-+
-+	gpiod_set_value(data->gpiod_power, 0);
-+
-+	return 0;
-+}
-+
-+static int srf04_pm_runtime_resume(struct device *dev)
-+{
-+	struct platform_device *pdev = container_of(dev,
-+						struct platform_device, dev);
-+	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-+	struct srf04_data *data = iio_priv(indio_dev);
-+
-+	gpiod_set_value(data->gpiod_power, 1);
-+	msleep(data->startup_time_ms);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops srf04_pm_ops = {
-+	SET_RUNTIME_PM_OPS(srf04_pm_runtime_suspend,
-+				srf04_pm_runtime_resume, NULL)
-+};
-+#endif
-+
- static struct platform_driver srf04_driver = {
- 	.probe		= srf04_probe,
-+	.remove		= srf04_remove,
- 	.driver		= {
- 		.name		= "srf04-gpio",
- 		.of_match_table	= of_srf04_match,
-+#ifdef CONFIG_PM
-+		.pm		= &srf04_pm_ops,
-+#endif
- 	},
- };
- 
+Eddie James (12):
+  dt-bindings: interrupt-controller: Add Aspeed SCU interrupt controller
+  irqchip: Add Aspeed SCU interrupt controller
+  ARM: dts: aspeed: ast2500: Add SCU interrupt controller
+  ARM: dts: aspeed: ast2600: Add SCU interrupt controllers
+  dt-bindings: soc: Add Aspeed XDMA Engine
+  soc: aspeed: Add XDMA Engine Driver
+  soc: aspeed: xdma: Add user interface
+  soc: aspeed: xdma: Add reset ioctl
+  ARM: dts: aspeed: ast2500: Add XDMA Engine
+  ARM: dts: aspeed: ast2600: Add XDMA Engine
+  ARM: dts: aspeed: witherspoon: Enable XDMA Engine
+  ARM: dts: aspeed: tacoma: Enable XDMA engine
+
+ .../aspeed,ast2xxx-scu-ic.txt                 |   23 +
+ .../devicetree/bindings/soc/aspeed/xdma.txt   |   40 +
+ MAINTAINERS                                   |   16 +
+ arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts   |    5 +
+ .../boot/dts/aspeed-bmc-opp-witherspoon.dts   |    5 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   19 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |   27 +
+ drivers/irqchip/Makefile                      |    2 +-
+ drivers/irqchip/irq-aspeed-scu-ic.c           |  239 ++++
+ drivers/soc/aspeed/Kconfig                    |    8 +
+ drivers/soc/aspeed/Makefile                   |    1 +
+ drivers/soc/aspeed/aspeed-xdma.c              | 1031 +++++++++++++++++
+ .../interrupt-controller/aspeed-scu-ic.h      |   23 +
+ include/uapi/linux/aspeed-xdma.h              |   42 +
+ 14 files changed, 1480 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2xxx-scu-ic.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/aspeed/xdma.txt
+ create mode 100644 drivers/irqchip/irq-aspeed-scu-ic.c
+ create mode 100644 drivers/soc/aspeed/aspeed-xdma.c
+ create mode 100644 include/dt-bindings/interrupt-controller/aspeed-scu-ic.h
+ create mode 100644 include/uapi/linux/aspeed-xdma.h
+
 -- 
-2.11.0
+2.24.0
+
