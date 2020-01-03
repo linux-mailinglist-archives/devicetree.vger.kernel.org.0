@@ -2,45 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F15912F8DC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 14:40:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A0C12F8CE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 14:35:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727543AbgACNkw convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 3 Jan 2020 08:40:52 -0500
-Received: from mail.a-hostel.com ([193.193.200.100]:49266 "EHLO
-        mail.a-hostel.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727508AbgACNkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 08:40:52 -0500
-X-Greylist: delayed 2948 seconds by postgrey-1.27 at vger.kernel.org; Fri, 03 Jan 2020 08:40:51 EST
-Received: from localhost (localhost [127.0.0.1])
-        by mail.a-hostel.com (Postfix) with ESMTP id AFBB21B214A4;
-        Fri,  3 Jan 2020 14:51:39 +0200 (EET)
-Received: from mail.a-hostel.com ([127.0.0.1])
-        by localhost (mail.a-hostel.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id i8D-waxUpHpN; Fri,  3 Jan 2020 14:51:39 +0200 (EET)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.a-hostel.com (Postfix) with ESMTP id 3365C1B2149E;
-        Fri,  3 Jan 2020 14:51:39 +0200 (EET)
-X-Virus-Scanned: amavisd-new at a-hostel.com
-Received: from mail.a-hostel.com ([127.0.0.1])
-        by localhost (mail.a-hostel.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 0LeS6SQQmqq0; Fri,  3 Jan 2020 14:51:38 +0200 (EET)
-Received: from [192.168.1.123] (unknown [196.251.11.190])
-        by mail.a-hostel.com (Postfix) with ESMTPSA id CB5AF1B2147A;
-        Fri,  3 Jan 2020 14:51:33 +0200 (EET)
-Content-Type: text/plain; charset="utf-8"
+        id S1727523AbgACNfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jan 2020 08:35:32 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:46510 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727508AbgACNfc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Jan 2020 08:35:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=+G47s2y2Sg2fK9dxyGmLkDMSg3BWEgjGRsQXMWhTH40=; b=RZnmy0RktlxTOiaci5ujm5SkgM
+        sj9PqJ5OSEpfxJWoVYB36/1Pl6K0jTQm3po3dG6SDD8Wfw9xjvt9SjWyCEuP5swCXyGVEtTEwFnUY
+        FZ4JorisTE3hwC/tQNR9wyWBUIZYUMnkwi/R/PVkF7QxC5R6JPCQGGwhmmsAQMOmAZmE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1inN6p-0006JX-TD; Fri, 03 Jan 2020 14:35:23 +0100
+Date:   Fri, 3 Jan 2020 14:35:23 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+Subject: Re: [PATCH 1/6] net: phy: add interface modes for XFI, SFI
+Message-ID: <20200103133523.GA22988@lunn.ch>
+References: <1576768881-24971-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <1576768881-24971-2-git-send-email-madalin.bucur@oss.nxp.com>
+ <20191219172834.GC25745@shell.armlinux.org.uk>
+ <VI1PR04MB5567FA3170CF45F877870E8CEC520@VI1PR04MB5567.eurprd04.prod.outlook.com>
+ <20191223120730.GO25745@shell.armlinux.org.uk>
+ <DB8PR04MB69858081021729EC70216BE3EC230@DB8PR04MB6985.eurprd04.prod.outlook.com>
+ <20200103092718.GB25745@shell.armlinux.org.uk>
+ <20200103094204.GA18808@shell.armlinux.org.uk>
+ <DB8PR04MB698591AAC029ADE9F7FFF69BEC230@DB8PR04MB6985.eurprd04.prod.outlook.com>
+ <20200103125310.GE25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Spende an Sie.
-To:     Recipients <reservations@hotel-khreschatyk.kiev.ua>
-From:   "Manuel Franco" <reservations@hotel-khreschatyk.kiev.ua>
-Date:   Fri, 03 Jan 2020 04:51:28 -0800
-Reply-To: Manuelfrancco@hotmail.com
-Message-Id: <20200103125133.CB5AF1B2147A@mail.a-hostel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200103125310.GE25745@shell.armlinux.org.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hallo Lieber, mein Name ist Manuel Franco, Gewinner des Power Ball Jackpots im April 2019 in Höhe von 786 Millionen US-Dollar. Ich spende 4.600.000,00 € für wohltätige Zwecke, um Ihnen und den Armen in Ihrer Gemeinde zu helfen. Senden Sie mir eine E-Mail an: Manuelfrancco@hotmail.com, um weitere Informationen zum Erhalt meiner Spende zu erhalten. 
+> What I might be willing to accept is if we were to introduce
+> XFI_10GBASER, XFI_10GBASEW, XFI_10GFC, XFI_G709 and their SFI
+> counterparts - but, there would remain one HUGE problem with that,
+> which is the total lack of specification of the board characteristics
+> required to achieve XFI electrical compliance.
+
+Hi Russell
+
+The four RGMII variants are precedents for mixing protocol and
+'electrical' properties, in terms of clock delays. But having four
+RGMII variants has been a pain point, implementations getting it
+wrong, etc.
+
+So i would avoid mixing them in one property. I would prefer we keep
+phy-mode as a protocol property, and we define additional DT
+properties to describe the electrical parts of the SERDES interface.
+
+Madalin, what electrical properties do you actually need in DT?  I
+guess you need to know if it is using XFI or SFI. But that is only the
+start. Do you want to place all the other properties in DT as well, or
+are they in a board specific firmware blobs, and you just need to know
+if you should use the XFI blob or the SFI blob?
+
+We can probably define a vendor neutral DT property for XFI vs SFI,
+but i expect all the other electrical properties are going to be
+vendor specific.
+
+       Andrew
