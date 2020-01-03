@@ -2,100 +2,544 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9493212FD7A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 21:15:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F51812FE98
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 23:09:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727836AbgACUP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jan 2020 15:15:57 -0500
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:39548 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726050AbgACUP4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 15:15:56 -0500
-Received: by mail-qt1-f195.google.com with SMTP id e5so37698050qtm.6
-        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2020 12:15:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=40ACnQIUnpge54Cj+EODMXbGQ2AM0yGbootCDBdgIh0=;
-        b=sdCzN7UBxFMH0TcAsjrnkZ1kCJR3KirAqNeYyTC4T1Z/Rq8YIYvuakE9JshqUUbj4/
-         gYD9V7CLkGwl0ftfHEY/lQep6AHlTULWNnN+w0SNhwnqUvL0tyvk2yCeF0JctQvw0NiY
-         MFzE2EwLJ+Dle2TBaZ1aOzn72cYYAySwgQXosugcMnahUCunaQVZu/6K2WptEGm0+psW
-         W/RO4Xvl4JxavnzBe2rFTWMbbkgwx/H8R5tBi2RnHZYGOV2sZ4k5V9Y/VgnnOFT1ExKe
-         01nixN1W856t1KLa9yy4kx0FQTyFCTJo304QySt4fbefl36r7QPfhCte4bHkcPH31ymD
-         /JpQ==
+        id S1728549AbgACWJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jan 2020 17:09:08 -0500
+Received: from mail-io1-f65.google.com ([209.85.166.65]:37134 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728687AbgACWJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 17:09:08 -0500
+Received: by mail-io1-f65.google.com with SMTP id k24so12501076ioc.4
+        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2020 14:09:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=40ACnQIUnpge54Cj+EODMXbGQ2AM0yGbootCDBdgIh0=;
-        b=cGG1H+Vx3ipBm276Ftq3g5qrsJ5MT0tKZ/821nujM/jnlxstReQpNV2Ok9n5QuHO+4
-         uwqhr/fTJEiLdDXU0mRW2cdOZZkweqYxGbl9DgFR55KjzigWHvNT/zHfDfdSQTyxp9Ef
-         2Zt71sN3WzuZVJgwkX1x6GBBytj3qVp0tXQ4aIiPzBp8oDpwgVROo1sN7MxQrp1oQqNW
-         mJKQSOfcrTVlqkPzrmx16KdSGwiIf85aX03BzlrVCWMDZFMZ3qNa9SEMjdwVFU1zjzul
-         EJWCBxDycFj8lD0d4qBVONFF+ugQAd5sfQIZzQXh+oDC4+OCXceAz1KJHHQd833zpDP7
-         qIBA==
-X-Gm-Message-State: APjAAAWqSKC8xh1yhDxIAUxvvM9TzDczs+IYnaQro8CH6sP7xBXnVIdg
-        drD9wktojfmgDbjfOq1I6p0lWXlIUdnLoYPRylQ=
-X-Google-Smtp-Source: APXvYqw2M09quIEAEvXiM3voOJ4gfF+ACEImDf+OckM2gi1YA+FwIXLKEubYKZCLlqPueGJMd+OoDY3+LRVYi3AnV7g=
-X-Received: by 2002:aed:3e21:: with SMTP id l30mr66315781qtf.357.1578082555783;
- Fri, 03 Jan 2020 12:15:55 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jaq5PZV0113fH8a1/ccNdlJ+K9H3T4ORM/dajcDMbeI=;
+        b=X0UafaxXtZREr0cgkNWmWFrp1VOt2/UIb56JQptQuBSYqwB+jYlsIOPbxdLzuSWMNV
+         YrEq+ekqNZsGSYpLSLJCMS3bD2R+W75f+p9nvltv+mSokopOp1xA+szhLCI06GcAiVhH
+         s0m+y4LKP6WJq58EK8rRjG6EIo6Dhp3Vw0qhNzrf6wBiVXSDqjwil+0yP9M5OKDlMpVH
+         dyPJK8On1IYYOS8RrbQmTvfyh5yqfenR21fv982Kig+6vTReuQ+tshP1oFgqsHnbqJa3
+         0LCnSy2/are7spJJzTwckpBtsjp8qnX3xZ1fDPewc/YIoxu0k1rX2OJ8LHNd/ZR3Lk9Y
+         iaGw==
+X-Gm-Message-State: APjAAAWmvNkuH6Z4aOHyC2CS3sscPOyvq0Lg8bDuhES1gZUNu4+wiNue
+        LqMoGKKIsPEA6JQ6DdnaNiOJT3A=
+X-Google-Smtp-Source: APXvYqxdzq2qvS0xlAWM9bxNA51khJ7BWoFKBQrQf0cC6H8AP2fMIbQtNaJp+QG5mawL4H+cYqr8ow==
+X-Received: by 2002:a02:7086:: with SMTP id f128mr68204892jac.12.1578089346215;
+        Fri, 03 Jan 2020 14:09:06 -0800 (PST)
+Received: from rob-hp-laptop ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id f76sm21436083ild.82.2020.01.03.14.09.04
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jan 2020 14:09:05 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 2219a5
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Fri, 03 Jan 2020 15:09:03 -0700
+Date:   Fri, 3 Jan 2020 15:09:03 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, matthias.bgg@gmail.com,
+        mark.rutland@arm.com
+Subject: Re: [PATCH v2 1/2] arm64: dts: mediatek: add dtsi for MT8516
+Message-ID: <20200103220903.GA14332@bogus>
+References: <20200103162234.103094-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Received: by 2002:ac8:4410:0:0:0:0:0 with HTTP; Fri, 3 Jan 2020 12:15:55 -0800 (PST)
-From:   "Rev.Dr Emmanuel Okoye CEO Ecobank-benin" 
-        <westernunion.benin982@gmail.com>
-Date:   Fri, 3 Jan 2020 21:15:55 +0100
-Message-ID: <CAP=nHB+DN+y6CDd3cq5coH4OxWizwgbAV9q3vx3aOGLrNQKr1g@mail.gmail.com>
-Subject: I promise you must be happy today, God has uplifted you and your
- family ok
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200103162234.103094-1-fparent@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend
+On Fri, Jan 03, 2020 at 05:22:33PM +0100, Fabien Parent wrote:
+> The MT8516 SoC provides the following peripherals: GPIO, UART, USB2,
+> SPI, eMMC, SDIO, NAND, Flash, ADC, I2C, PWM, Timers, IR, Ethernet, and
+> Audio (I2S, SPDIF, TDM).
+> 
+> This commit is adding the basic dtsi file with the support of the
+> following IPs: Clock, Pinctrl, WDT, GPIO, UART, SPI, eMMC, I2C, Timers,
+> MMC, RNG PWM.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> ---
+> 
+> V2:
+> 	* Remove unused clock for CPU nodes
+> 	* Fix formatting / spacing
+> 	* Fix compatible for SPI node: s/mediatek,mt2701-spi/mediatek,mt2712-spi/
+> 	* Rename "sdio" node label into "mmc"
+> 	* Add "rng" and "pwm" nodes.
+> 
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8516-pinfunc.h | 663 ++++++++++++++++++
+>  arch/arm64/boot/dts/mediatek/mt8516.dtsi      | 426 +++++++++++
+>  2 files changed, 1089 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8516-pinfunc.h
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8516.dtsi
 
-i hope all is well with you,if so, glory be to God almighty. I'm very
-happy to inform you, about my success in getting payment funds under
-the cooperation of a new partner from United States of
-America.Presently I am in uk for investment projects with my own share
-of the total sum. I didn't forget your past efforts. IMF finally
-approved your compensation payment funds this morning by prepaid (ATM)
-Debit card of US$12,500.000.00Million Dollars, Since you not received
-this payment yet, I was not certified
-but it is not your fault and not my fault, I hold nothing against
-you.than bank official whom has been detaining the transfer in the
-bank, trying to claim your funds by themselves.
 
-Therefore, in appreciation of your effort I have raised an
-International prepaid (ATM) Debit card of US$12,500.000.00 in your
-favor as compensation to you.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> new file mode 100644
+> index 000000000000..39ce244f1e40
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> @@ -0,0 +1,426 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2019 MediaTek Inc.
+> + * Copyright (c) 2019 BayLibre, SAS.
+> + * Author: Fabien Parent <fparent@baylibre.com>
+> + */
+> +
+> +#include <dt-bindings/clock/mt8516-clk.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +#include "mt8516-pinfunc.h"
+> +
+> +/ {
+> +	compatible = "mediatek,mt8516";
+> +	interrupt-parent = <&sysirq>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cluster0_opp: opp_table0 {
 
-Now, i want you to contact my Diplomatic Agent, His name is Mike Benz
-on His  e-mail Address (mikebenz550@aol.com
+opp-table-0
 
-ask Him to send the Prepaid (ATM) Debit card to you. Bear in mind that
-the money is in Prepaid (ATM) Debit card, not cash, so you need to
-send to him,
-your full name
-address  where the prepaid (ATM) Debit card will be delivered to you,
-including your cell phone number. Finally, I left explicit
-instructions with him, on how to send the (ATM CARD) to you.
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +		opp-598000000 {
+> +			opp-hz = /bits/ 64 <598000000>;
+> +			opp-microvolt = <1150000>;
+> +		};
+> +		opp-747500000 {
+> +			opp-hz = /bits/ 64 <747500000>;
+> +			opp-microvolt = <1150000>;
+> +		};
+> +		opp-1040000000 {
+> +			opp-hz = /bits/ 64 <1040000000>;
+> +			opp-microvolt = <1200000>;
+> +		};
+> +		opp-1196000000 {
+> +			opp-hz = /bits/ 64 <1196000000>;
+> +			opp-microvolt = <1250000>;
+> +		};
+> +		opp-1300000000 {
+> +			opp-hz = /bits/ 64 <1300000000>;
+> +			opp-microvolt = <1300000>;
+> +		};
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35";
+> +			reg = <0x0>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CLUSTER_SLEEP_0 &CLUSTER_SLEEP_0>,
+> +				<&CPU_SLEEP_0_0 &CPU_SLEEP_0_0 &CPU_SLEEP_0_0>;
+> +			clocks = <&infracfg CLK_IFR_MUX1_SEL>,
+> +				 <&topckgen CLK_TOP_MAINPLL_D2>;
+> +			clock-names = "cpu", "intermediate";
+> +			operating-points-v2 = <&cluster0_opp>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35";
+> +			reg = <0x1>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CLUSTER_SLEEP_0 &CLUSTER_SLEEP_0>,
+> +				<&CPU_SLEEP_0_0 &CPU_SLEEP_0_0 &CPU_SLEEP_0_0>;
+> +			clocks = <&infracfg CLK_IFR_MUX1_SEL>,
+> +				 <&topckgen CLK_TOP_MAINPLL_D2>;
+> +			clock-names = "cpu", "intermediate";
+> +			operating-points-v2 = <&cluster0_opp>;
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35";
+> +			reg = <0x2>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CLUSTER_SLEEP_0 &CLUSTER_SLEEP_0>,
+> +				<&CPU_SLEEP_0_0 &CPU_SLEEP_0_0 &CPU_SLEEP_0_0>;
+> +			clocks = <&infracfg CLK_IFR_MUX1_SEL>,
+> +				 <&topckgen CLK_TOP_MAINPLL_D2>;
+> +			clock-names = "cpu", "intermediate";
+> +			operating-points-v2 = <&cluster0_opp>;
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a35";
+> +			reg = <0x3>;
+> +			enable-method = "psci";
+> +			cpu-idle-states = <&CLUSTER_SLEEP_0 &CLUSTER_SLEEP_0>,
+> +				<&CPU_SLEEP_0_0 &CPU_SLEEP_0_0 &CPU_SLEEP_0_0>;
+> +			clocks = <&infracfg CLK_IFR_MUX1_SEL>,
+> +				 <&topckgen CLK_TOP_MAINPLL_D2>;
+> +			clock-names = "cpu", "intermediate", "armpll";
+> +			operating-points-v2 = <&cluster0_opp>;
+> +		};
+> +
+> +		idle-states {
+> +			entry-method = "psci";
+> +
+> +			CPU_SLEEP_0_0: cpu-sleep-0-0 {
+> +				compatible = "arm,idle-state";
+> +				entry-latency-us = <600>;
+> +				exit-latency-us = <600>;
+> +				min-residency-us = <1200>;
+> +				arm,psci-suspend-param = <0x0010000>;
+> +			};
+> +
+> +			CLUSTER_SLEEP_0: cluster-sleep-0 {
+> +				compatible = "arm,idle-state";
+> +				entry-latency-us = <800>;
+> +				exit-latency-us = <1000>;
+> +				min-residency-us = <2000>;
+> +				arm,psci-suspend-param = <0x2010000>;
+> +			};
+> +		};
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0", "arm,psci-0.2", "arm,psci";
 
-The Prepaid (ATM) Debit card, will be send to you through my
-Diplomatic Agent Mr. Mike Benz immediately you contact him. So contact
-my Diplomatic Agent Mr. Mike Benz immediately you receive this letter.
-Below is his contact information:
+Not a valid combination of compatibles. Running 'make dtbs_check' will 
+tell you this.
 
-NAME : MIKE BENZ
-EMAIL ADDRESS: mikebenz550@aol.com
-Text Him, (256) 284-4886
+> +		method = "smc";
+> +	};
+> +
+> +	clk26m: clk26m {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <26000000>;
+> +		clock-output-names = "clk26m";
+> +	};
+> +
+> +	clk32k: clk32k {
+> +		compatible = "fixed-clock";
+> +		#clock-cells = <0>;
+> +		clock-frequency = <32000>;
+> +		clock-output-names = "clk32k";
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		/* 128 KiB reserved for ARM Trusted Firmware (BL31) */
+> +		bl31_secmon_reserved: secmon@43000000 {
+> +			no-map;
+> +			reg = <0 0x43000000 0 0x20000>;
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupt-parent = <&gic>;
+> +		interrupts = <GIC_PPI 13
+> +			     (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14
+> +			     (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11
+> +			     (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10
+> +			     (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +
+> +	pmu {
+> +		compatible = "arm,armv8-pmuv3";
+> +		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_SPI 5 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_SPI 6 IRQ_TYPE_LEVEL_LOW>,
+> +			     <GIC_SPI 7 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> +	};
+> +
+> +	soc {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		compatible = "simple-bus";
+> +		ranges;
+> +
+> +		topckgen: topckgen@10000000 {
+> +			compatible = "mediatek,mt8516-topckgen", "syscon";
+> +			reg = <0 0x10000000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		infracfg: infracfg@10001000 {
+> +			compatible = "mediatek,mt8516-infracfg", "syscon";
+> +			reg = <0 0x10001000 0 0x1000>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		apmixedsys: apmixedsys@10018000 {
+> +			compatible = "mediatek,mt8516-apmixedsys", "syscon";
+> +			reg = <0 0x10018000 0 0x710>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+> +		toprgu: toprgu@10007000 {
+> +			compatible = "mediatek,mt8516-wdt",
+> +				     "mediatek,mt6589-wdt";
+> +			reg = <0 0x10007000 0 0x1000>;
+> +			interrupts = <GIC_SPI 198 IRQ_TYPE_EDGE_FALLING>;
+> +			#reset-cells = <1>;
+> +		};
+> +
+> +		timer: timer@10008000 {
+> +			compatible = "mediatek,mt8516-timer",
+> +				     "mediatek,mt6577-timer";
+> +			reg = <0 0x10008000 0 0x1000>;
+> +			interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_CLK26M_D2>,
+> +				 <&clk32k>,
+> +				 <&topckgen CLK_TOP_APXGPT>;
+> +			clock-names = "clk13m", "clk32k", "bus";
+> +		};
+> +
+> +		syscfg_pctl_a: syscfg_pctl_a@10005000 {
 
-Request for Delivery of the Prepaid (ATM) Debit card  to you today.
-Note, please I have paid for the whole service fees for you, so the
-only money you will send to my Diplomatic Agent Mr. Mike Benz is
-$50.00 for your prepaid (ATM) Debit card DELIVERY FEE to your address
-ok.
-Let me know once you receive this Card at your address.
-Best regards,
-Rev.Dr, George Adadar
+Don't use '_' in node names.
+
+> +			compatible = "mediatek,mt8516-pctl-a-syscfg", "syscon";
+> +			reg = <0 0x10005000 0 0x1000>;
+> +		};
+> +
+> +		pio: pinctrl@10005000 {
+> +			compatible = "mediatek,mt8516-pinctrl";
+> +			reg = <0 0x1000b000 0 0x1000>;
+> +			mediatek,pctl-regmap = <&syscfg_pctl_a>;
+> +			pins-are-numbered;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
+> +		};
+> +
+> +		pwrap: pwrap@1000f000 {
+> +			compatible = "mediatek,mt8516-pwrap";
+> +			reg = <0 0x1000f000 0 0x1000>;
+> +			reg-names = "pwrap";
+> +			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_PMICWRAP_26M>,
+> +				 <&topckgen CLK_TOP_PMICWRAP_AP>;
+> +			clock-names = "spi", "wrap";
+> +		};
+> +
+> +		sysirq: intpol-controller@10200620 {
+
+interrupt-controller@...
+
+> +			compatible = "mediatek,mt8516-sysirq",
+> +				     "mediatek,mt6577-sysirq";
+> +			interrupt-controller;
+> +			#interrupt-cells = <3>;
+> +			interrupt-parent = <&gic>;
+> +			reg = <0 0x10200620 0 0x20>;
+> +		};
+> +
+> +		gic: interrupt-controller@10310000 {
+> +			compatible = "arm,gic-400";
+> +			#interrupt-cells = <3>;
+> +			interrupt-parent = <&gic>;
+> +			interrupt-controller;
+> +			reg = <0 0x10310000 0 0x1000>,
+> +			      <0 0x10320000 0 0x1000>,
+> +			      <0 0x10340000 0 0x2000>,
+> +			      <0 0x10360000 0 0x2000>;
+> +			interrupts = <GIC_PPI 9
+> +				(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> +		};
+> +
+> +		uart0: serial@11005000 {
+> +			compatible = "mediatek,mt8516-uart",
+> +				     "mediatek,mt6577-uart";
+> +			reg = <0 0x11005000 0 0x1000>;
+> +			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_UART0_SEL>,
+> +				 <&topckgen CLK_TOP_UART0>;
+> +			clock-names = "baud","bus";
+
+space                                        ^
+
+> +			status = "disabled";
+> +		};
+> +
+> +		uart1: serial@11006000 {
+> +			compatible = "mediatek,mt8516-uart",
+> +				     "mediatek,mt6577-uart";
+> +			reg = <0 0x11006000 0 0x1000>;
+> +			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_UART1_SEL>,
+> +				 <&topckgen CLK_TOP_UART1>;
+> +			clock-names = "baud","bus";
+
+space
+
+> +			status = "disabled";
+> +		};
+> +
+> +		uart2: serial@11007000 {
+> +			compatible = "mediatek,mt8516-uart",
+> +				     "mediatek,mt6577-uart";
+> +			reg = <0 0x11007000 0 0x1000>;
+> +			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_UART2_SEL>,
+> +				 <&topckgen CLK_TOP_UART2>;
+> +			clock-names = "baud","bus";
+
+space
+
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c0: i2c@11009000 {
+> +			compatible = "mediatek,mt8516-i2c",
+> +				     "mediatek,mt2712-i2c";
+> +			reg = <0 0x11009000 0 0x90>,
+> +			      <0 0x11000180 0 0x80>;
+> +			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+> +				 <&infracfg CLK_IFR_I2C0_SEL>,
+> +				 <&topckgen CLK_TOP_I2C0>,
+> +				 <&topckgen CLK_TOP_APDMA>;
+> +			clock-names = "main-source",
+> +				      "main-sel",
+> +				      "main",
+> +				      "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c1: i2c@1100a000 {
+> +			compatible = "mediatek,mt8516-i2c",
+> +				     "mediatek,mt2712-i2c";
+> +			reg = <0 0x1100a000 0 0x90>,
+> +			      <0 0x11000200 0 0x80>;
+> +			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+> +				 <&infracfg CLK_IFR_I2C1_SEL>,
+> +				 <&topckgen CLK_TOP_I2C1>,
+> +				 <&topckgen CLK_TOP_APDMA>;
+> +			clock-names = "main-source",
+> +				      "main-sel",
+> +				      "main",
+> +				      "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		i2c2: i2c@1100b000 {
+> +			compatible = "mediatek,mt8516-i2c",
+> +				     "mediatek,mt2712-i2c";
+> +			reg = <0 0x1100b000 0 0x90>, <0 0x11000280 0 0x80>;
+> +			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+> +				 <&infracfg CLK_IFR_I2C2_SEL>,
+> +				 <&topckgen CLK_TOP_I2C2>,
+> +				 <&topckgen CLK_TOP_APDMA>;
+> +			clock-names = "main-source",
+> +				      "main-sel",
+> +				      "main",
+> +				      "dma";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+> +		spi: spi@1100c000 {
+> +			compatible = "mediatek,mt8516-spi",
+> +				     "mediatek,mt2712-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			reg = <0 0x1100c000 0 0x1000>;
+> +			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_UNIVPLL_D12>,
+> +				 <&topckgen CLK_TOP_SPI_SEL>,
+> +				 <&topckgen CLK_TOP_SPI>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc0: mmc@11120000 {
+> +			compatible = "mediatek,mt8516-mmc";
+> +			reg = <0 0x11120000 0 0x1000>;
+> +			interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_MSDC0>,
+> +				 <&topckgen CLK_TOP_AHB_INFRA_SEL>,
+> +				 <&topckgen CLK_TOP_MSDC0_INFRA>;
+> +			clock-names = "source", "hclk", "source_cg";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc1: mmc@11130000 {
+> +			compatible = "mediatek,mt8516-mmc";
+> +			reg = <0 0x11130000 0 0x1000>;
+> +			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_MSDC1>,
+> +				 <&topckgen CLK_TOP_AHB_INFRA_SEL>,
+> +				 <&topckgen CLK_TOP_MSDC1_INFRA>;
+> +			clock-names = "source", "hclk", "source_cg";
+> +			status = "disabled";
+> +		};
+> +
+> +		mmc2: mmc@11170000 {
+> +			compatible = "mediatek,mt8516-mmc";
+> +			reg = <0 0x11170000 0 0x1000>;
+> +			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_MSDC2>,
+> +				 <&topckgen CLK_TOP_RG_MSDC2>,
+> +				 <&topckgen CLK_TOP_MSDC2_INFRA>;
+> +			clock-names = "source", "hclk", "source_cg";
+> +			status = "disabled";
+> +		};
+> +
+> +		rng: rng@1020c000 {
+> +			compatible = "mediatek,mt8516-rng",
+> +				     "mediatek,mt7623-rng";
+> +			reg = <0 0x1020c000 0 0x100>;
+> +			clocks = <&topckgen CLK_TOP_TRNG>;
+> +			clock-names = "rng";
+> +		};
+> +
+> +		pwm: pwm@11008000 {
+> +			compatible = "mediatek,mt8516-pwm";
+> +			reg = <0 0x11008000 0 0x1000>;
+> +			interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_PWM>,
+> +				 <&topckgen CLK_TOP_PWM_B>,
+> +				 <&topckgen CLK_TOP_PWM1_FB>,
+> +				 <&topckgen CLK_TOP_PWM2_FB>,
+> +				 <&topckgen CLK_TOP_PWM3_FB>,
+> +				 <&topckgen CLK_TOP_PWM4_FB>,
+> +				 <&topckgen CLK_TOP_PWM5_FB>;
+> +			clock-names = "top", "main", "pwm1", "pwm2", "pwm3",
+> +				      "pwm4", "pwm5";
+> +		};
+> +	};
+> +};
+> -- 
+> 2.25.0.rc0
+> 
