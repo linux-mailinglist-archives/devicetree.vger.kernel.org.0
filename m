@@ -2,98 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E70012F57A
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 09:30:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79A1912F5DD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 10:00:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727453AbgACIa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jan 2020 03:30:27 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:6568 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727444AbgACIa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 03:30:27 -0500
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5e0efb930000>; Fri, 03 Jan 2020 00:30:11 -0800
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 03 Jan 2020 00:30:26 -0800
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 03 Jan 2020 00:30:26 -0800
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 3 Jan
- 2020 08:30:26 +0000
-Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Fri, 3 Jan 2020 08:30:25 +0000
-Received: from jckuo-lt.nvidia.com (Not Verified[10.19.108.118]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5e0efba00005>; Fri, 03 Jan 2020 00:30:25 -0800
-From:   JC Kuo <jckuo@nvidia.com>
-To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <robh@kernel.org>, <jonathanh@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, JC Kuo <jckuo@nvidia.com>
-Subject: [PATCH v1 2/2] arm64: tegra: Add fuse/apbmisc node on Tegra194
-Date:   Fri, 3 Jan 2020 16:30:18 +0800
-Message-ID: <20200103083018.10575-3-jckuo@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200103083018.10575-1-jckuo@nvidia.com>
-References: <20200103083018.10575-1-jckuo@nvidia.com>
-X-NVConfidentiality: public
+        id S1725972AbgACJAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jan 2020 04:00:32 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:49319 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726050AbgACJAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 04:00:31 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id C6944230E1;
+        Fri,  3 Jan 2020 10:00:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1578042029;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=cxest8tMtRZIdMS9+HLvWHLoP9WwYOR1xCl5Hh5xNZQ=;
+        b=HVHMul+06/ZqJth5tKFXAnG5dpRCq4qhYeW3NtIHl/pcOfI7lniaAEVLNvdgIL4ZRV/eMq
+        9pHtaXe2W30cM+5iMTQ3BfdBfegn/YY2xoQlPYHJQPRSOMvWYZOuIsf63p8cyeDFz5Hra6
+        pPajyaQkEQJ0mLNgU90PDN65qrDSUZI=
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1578040211; bh=8Y2BijVcIEM5KZxyDPUnXjgOr5Qx+yudf7guW4l5b1o=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=PKBXj69SXQxleu1Mmu0a1WuLR1DTnOl2y8tbOYeaZQoKrasqeZybmdoAfiqjYpK47
-         jIlVTwDCkqltqiviMp1TbU4/g9/cuU4hmaUY2vLDLI90/Tzb9Hz/qixjc9bn72yTiE
-         PyM4tvtHpJIgbtBl6CTl/ZTOX5cgew9JlGXm+XoE4w8jv9x2dO3qHCFe9eRK7Ggy2h
-         SbHwp1Ql7M3X2ueCMdX227r7EKir83jgwpvK68tvYbM/+/YCAK76NvyfqTchcVcW6h
-         VJVdVCdeJG8lvtfarfbHAFA517YqBiYjcmxWecnhlGvvjSds9CWkbk38WUyVtJRxGi
-         Wm9MAOutXYKxw==
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 03 Jan 2020 10:00:27 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v2 2/2] clk: fsl-sai: new driver
+In-Reply-To: <20200102080929.0EE2C215A4@mail.kernel.org>
+References: <20191209233305.18619-1-michael@walle.cc>
+ <20191209233305.18619-2-michael@walle.cc>
+ <20191224080536.B0C99206CB@mail.kernel.org>
+ <91275d33d6a7c9978a2c70545fde38cd@walle.cc>
+ <20200102080929.0EE2C215A4@mail.kernel.org>
+Message-ID: <6b092a602b3b8cf09160b1dcb4a282e6@walle.cc>
+X-Sender: michael@walle.cc
+User-Agent: Roundcube Webmail/1.3.8
+X-Spamd-Bar: +
+X-Spam-Level: *
+X-Rspamd-Server: web
+X-Spam-Status: No, score=1.40
+X-Spam-Score: 1.40
+X-Rspamd-Queue-Id: C6944230E1
+X-Spamd-Result: default: False [1.40 / 15.00];
+         ARC_NA(0.00)[];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DKIM_SIGNED(0.00)[];
+         RCPT_COUNT_SEVEN(0.00)[7];
+         NEURAL_HAM(-0.00)[-0.273];
+         RCVD_COUNT_ZERO(0.00)[0];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         MID_RHS_MATCH_FROM(0.00)[];
+         SUSPICIOUS_RECIPS(1.50)[]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds Tegra194 fuse and apbmisc device nodes.
+Hi Stephen,
 
-Signed-off-by: JC Kuo <jckuo@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+>> >> +       parent_name = of_clk_get_parent_name(node, 0);
+>> >
+>> > Could this use the new way of specifying clk parents so that we don't
+>> > have to query DT for parent names and just let the core framework do it
+>> > whenever it needs to?
+>> 
+>> you mean specifying parent_data with .index = 0? Seems like
+>> clk_composite
+>> does not support this. The parent can only be specified by supplying 
+>> the
+>> clock names.
+>> 
+>> I could add that in a separate patch. What do you think about the
+>> following new functions, where a driver can use parent_data instead
+>> of parent_names.
+> 
+> I started doing this in
+> https://lkml.kernel.org/r/20190830150923.259497-1-sboyd@kernel.org but 
+> I
+> never got around to the composite clks. Sounds fine to add this new API
+> for your use case.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 495f692e6a0b..f336bc3e195a 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -21,6 +21,12 @@
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0x0 0x40000000>;
- 
-+		misc@100000 {
-+			compatible = "nvidia,tegra194-misc";
-+			reg = <0x00100000 0xf000>,
-+			      <0x0010f000 0x1000>;
-+		};
-+
- 		gpio: gpio@2200000 {
- 			compatible = "nvidia,tegra194-gpio";
- 			reg-names = "security", "gpio";
-@@ -627,6 +633,13 @@
- 			status = "disabled";
- 		};
- 
-+		fuse@3820000 {
-+			compatible = "nvidia,tegra194-efuse";
-+			reg = <0x03820000 0x10000>;
-+			clocks = <&bpmp TEGRA194_CLK_FUSE>;
-+			clock-names = "fuse";
-+		};
-+
- 		gic: interrupt-controller@3881000 {
- 			compatible = "arm,gic-400";
- 			#interrupt-cells = <3>;
--- 
-2.17.1
+Yeah took me a while to figure out what you've meant by the "new way" ;)
+Anyway, I've posted a v3 of this series with the new composite clock 
+API.
 
+> 
+>> 
+>> +struct clk *clk_register_composite_pdata(struct device *dev, const 
+>> char
+>> *name,
+>> +               const struct clk_parent_data *parent_data,
+>> +               struct clk_hw *mux_hw, const struct clk_ops *mux_ops,
+>> +               struct clk_hw *rate_hw, const struct clk_ops 
+>> *rate_ops,
+>> +               struct clk_hw *gate_hw, const struct clk_ops 
+>> *gate_ops,
+>> +               unsigned long flags);
+
+num_parents was missing here. added that in the v3.
+
+-michael
