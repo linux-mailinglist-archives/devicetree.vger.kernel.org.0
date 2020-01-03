@@ -2,140 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0089912FF4D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 00:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB1D12FF51
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 00:54:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726232AbgACXx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jan 2020 18:53:29 -0500
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:45423 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726229AbgACXx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 18:53:29 -0500
-Received: by mail-lf1-f66.google.com with SMTP id 203so32818857lfa.12;
-        Fri, 03 Jan 2020 15:53:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=IkWuwHhNqLcza831ZlMeVrnl9ktIFXitOGr/KLniDZ8=;
-        b=fiMkZOvkxr3/Ka139fV+tAEu9JXx99jZA4+ujYgmvL2yF5YWP9Tr04cRPJCjwQI2pU
-         +gdWogmZwiOzXVseFUmxw0YnlKA2rfini6TsZF/LPKJkcoSFgv0s9b5Zmy+soFK41Z7Q
-         D2NSm2hUtbVWTA2Q1rlnTJ6Hw4ddY30CNW6emOCNeg5E0lsuvwso2CgBYXneKD/J11vl
-         qofxNzKLDUrHuUe1j0dw0eUMG7LAegBar2VMCh3hgIzMkoXDxMO3uhe5HoqGPw0F6fT5
-         QG47+r4diPjGqUYAlHclycTZL8TqgY2vHyKGeuJx9lN6oBJt8Dzc2f/aoS1ZGF45w0+s
-         ECtA==
+        id S1726823AbgACXyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jan 2020 18:54:03 -0500
+Received: from mail-io1-f68.google.com ([209.85.166.68]:40240 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726229AbgACXyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 18:54:03 -0500
+Received: by mail-io1-f68.google.com with SMTP id x1so43049902iop.7
+        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2020 15:54:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=IkWuwHhNqLcza831ZlMeVrnl9ktIFXitOGr/KLniDZ8=;
-        b=XC1rGZT2pr1shVxoGXUb1Z1TV8U2cIT14IzDtThjgMGl8ZhRNg0NcPZXHJBtmv3TrR
-         DZtBl0/tJ0f3I+T1p5SuM4DrVXBPoVQ9IrhrPtO8RBm5Tb/3rVDsQdrtOlKqwjkts3kN
-         qo5Q6A3BsLGLD/UGqiGmxaqHu4/suf1MGY2PdhkWqmSx6n/0s+KZkBsagkOP/mFHHuf9
-         5JUvLej/ZbpzXcU0fkCTURiBt9tlMe7Kt8jwSZ3v8laDDtN/PEVgZa+LbHF7pgqpywR7
-         /quAOXNx6u2BT4L9DsCz0J44CAvmrV+RozejqZz4YEEUy0mAijdnG8RfEdgfHzUIzMyS
-         1mbw==
-X-Gm-Message-State: APjAAAV9K5+dGX5z+IVVXphtilIBX800YSF0Ysggz8N+X2Di2jXlkBR3
-        7aWTvzU0L+gdLQE1cQBr7laa7w6b
-X-Google-Smtp-Source: APXvYqxYnPraSPjUxGGCPLBWOykvd7sszKxpAFINbaJxoztv8+s1SAv8apNOvOV/UaIcDOph2saGKA==
-X-Received: by 2002:a19:ca59:: with SMTP id h25mr50410860lfj.27.1578095606543;
-        Fri, 03 Jan 2020 15:53:26 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id q11sm17503060ljm.76.2020.01.03.15.53.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jan 2020 15:53:25 -0800 (PST)
-Subject: Re: [PATCH v3 10/16] usb: phy: tegra: Use device-tree notion of
- reset-GPIO's active-state
-To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20191228203358.23490-1-digetx@gmail.com>
- <20191228203358.23490-11-digetx@gmail.com>
- <20200103075803.GC14228@qmqm.qmqm.pl>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <42f1d6c9-99f2-b829-0d2c-649fcdfb156d@gmail.com>
-Date:   Sat, 4 Jan 2020 02:53:24 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DLv6sevWK4SOmkrjtAjyOZj+Qda5b1Jn7x8aH9qo+K8=;
+        b=DCDLIaoVgsOUIPPe7+Toie2TmSWWKM5rObh6rSU38BTgkGpB2zC8zys/6zKEO3SAs2
+         QwAWovGfrbGpUAibApuz7yZSJ581oDV2mXuaBhLogC+zpjlPdRLKMpauK8sPINIwDkW9
+         PPCNOrRElAE5wfYuzaohDulzSi+izmJrA7qzfIJgy3Mp5X29rk9f4S3aX3C3+RV9gMvt
+         4eWtg0V1ATK/YwI6Kt2/6YnetiW6KUAFPIBQRETFkrysAtyJR7dpYhX/f2rI4stSEr94
+         2berYjoHunCpI88dyJL18nIiiekYafNJST4hTbCGqj0uO09aCG6d8pyPnODhbOTxEiIt
+         gBkQ==
+X-Gm-Message-State: APjAAAVWkxbITZ69q9gM+vMfvXOm+V+9P1t9DwcjegeCz+S3l7LGSe6O
+        YjaP9sT0wPFsd4Lnzb/F00x4sI8=
+X-Google-Smtp-Source: APXvYqwS9QnLjTyER0Ible7mOIW8WfgjQACezUrx78s+znaWg66mYV2pszliIeDLVAav/WLE3MFcnA==
+X-Received: by 2002:a5e:de04:: with SMTP id e4mr62373031iok.47.1578095642493;
+        Fri, 03 Jan 2020 15:54:02 -0800 (PST)
+Received: from rob-hp-laptop ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id g23sm18645531ila.15.2020.01.03.15.54.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jan 2020 15:54:01 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 2219b7
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Fri, 03 Jan 2020 16:53:59 -0700
+Date:   Fri, 3 Jan 2020 16:53:59 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     pisa@cmp.felk.cvut.cz
+Cc:     devicetree@vger.kernel.org, mkl@pengutronix.de,
+        linux-can@vger.kernel.org, socketcan@hartkopp.net,
+        wg@grandegger.com, davem@davemloft.net, mark.rutland@arm.com,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        martin.jerabek01@gmail.com, ondrej.ille@gmail.com,
+        jnovak@fel.cvut.cz, jara.beran@gmail.com, porazil@pikron.com
+Subject: Re: [PATCH v3 2/6] dt-bindings: net: can: binding for CTU CAN FD
+ open-source IP core.
+Message-ID: <20200103235359.GA23875@bogus>
+References: <cover.1576922226.git.pisa@cmp.felk.cvut.cz>
+ <61533d59378822f8c808abf193b40070810d3d35.1576922226.git.pisa@cmp.felk.cvut.cz>
 MIME-Version: 1.0
-In-Reply-To: <20200103075803.GC14228@qmqm.qmqm.pl>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <61533d59378822f8c808abf193b40070810d3d35.1576922226.git.pisa@cmp.felk.cvut.cz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-03.01.2020 10:58, Michał Mirosław пишет:
-> On Sat, Dec 28, 2019 at 11:33:52PM +0300, Dmitry Osipenko wrote:
-> [...]
->>  static int ulpi_open(struct tegra_usb_phy *phy)
->>  {
->> -	int err;
->> -
->> -	err = gpio_direction_output(phy->reset_gpio, 0);
->> -	if (err) {
->> -		dev_err(phy->u_phy.dev,
->> -			"ULPI reset GPIO %d direction not deasserted: %d\n",
->> -			phy->reset_gpio, err);
->> -		return err;
->> -	}
->> +	gpiod_set_value_cansleep(phy->reset_gpio, 1);
->>  
->>  	return 0;
->>  }
+On Sat, Dec 21, 2019 at 03:07:31PM +0100, pisa@cmp.felk.cvut.cz wrote:
+> From: Pavel Pisa <pisa@cmp.felk.cvut.cz>
 > 
-> The message now removed seems inverted to the meaning of the code. Is
-> this a bug, or the reset really should be asserted here?
+> Signed-off-by: Pavel Pisa <pisa@cmp.felk.cvut.cz>
+> ---
+>  .../devicetree/bindings/net/can/ctu,ctucanfd.txt   | 61 ++++++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/can/ctu,ctucanfd.txt
 
-The removed message was added in patch #2 and indeed it should say
-"asserted". Good catch, thanks!
+Bindings are moving DT schema format now. Not something I'd require on a 
+respin I've already reviewed, but OTOH it's been 10 months to respin 
+from v2. So:
 
-> I can see that
-> it is deasserted in phy_power_up, but that goes before or after ulpi_open()?
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-The ulpi_phy_power_on happens after the ulpi_open, please take a look at
-tegra_usb_phy_init().
+If you have a v4, then please convert to a schema.
 
-> After the change below, the reset is asserted at probe() time now.
-
-Yes, the probe now asserts the reset. It is an intended change because
-it should be a bit better to explicitly per-initialize the GPIO state to
-an expected state during of the GPIO retrieval, like most of other
-drivers do and which should be a "generic/common way".
-
-Actually, the reset assertion of ulpi_open() could be removed safely now
-since it doesn't do anything useful, given that probe asserts the reset.
-
-> [...]
->> -		err = devm_gpio_request(&pdev->dev, tegra_phy->reset_gpio,
->> -					"ulpi_phy_reset_b");
->> +		gpiod = devm_gpiod_get_from_of_node(&pdev->dev, np,
->> +						    "nvidia,phy-reset-gpio",
->> +						    0, GPIOD_OUT_HIGH,
->> +						    "ulpi_phy_reset_b");
->> +		err = PTR_ERR_OR_ZERO(gpiod);
->>  		if (err) {
->> -			dev_err(&pdev->dev, "Request failed for GPIO %d: %d\n",
->> -				tegra_phy->reset_gpio, err);
->> +			dev_err(&pdev->dev,
->> +				"Request failed for reset GPIO: %d\n", err);
->>  			return err;
->>  		}
->> +		tegra_phy->reset_gpio = gpiod;
-> 
-> A nice extension to kernel's printf - "%pe" format - has just landed in
-> Linus' master tree.
-
-Thank you very much, I didn't know about that.
-
-I'll prepare v4 with the above things addressed, thank you again and
-please let me know if you'll spot anything else!
+Rob
