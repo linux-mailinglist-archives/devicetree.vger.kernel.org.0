@@ -2,109 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F50112FB92
-	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 18:24:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA4A12FC31
+	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 19:19:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728159AbgACRYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jan 2020 12:24:51 -0500
-Received: from mout.gmx.net ([212.227.17.21]:59297 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728113AbgACRYv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Jan 2020 12:24:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1578072275;
-        bh=Ki5Xx495F4YsB6ncXu7kfMIyiYqWsyfQhKXh4uBlEQU=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=GEZctov4iOwNBeFTSqRZTAQF4JKqhkJagQ1e89tgBXjEgFFN+oWtXJqbYkgsBpZz2
-         gtGBaotnXK58d0wE01SGgMjCOcJuYyd2W7zSFFRGtacGg1f6NENPJ3sh+8/hZBFgjD
-         Y3lG64Dt4s686/BlvSelQgpd3nGvPvb/p5iZlonU=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from localhost.localdomain ([37.4.249.154]) by mail.gmx.com
- (mrgmx104 [212.227.17.168]) with ESMTPSA (Nemesis) id
- 1MRmfi-1jAy5p0hiM-00TGog; Fri, 03 Jan 2020 18:24:35 +0100
-From:   Stefan Wahren <wahrenst@gmx.net>
-To:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
+        id S1728255AbgACSTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jan 2020 13:19:23 -0500
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:39552 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728186AbgACSTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 13:19:23 -0500
+Received: by mail-pf1-f195.google.com with SMTP id q10so23861636pfs.6;
+        Fri, 03 Jan 2020 10:19:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=/bkVpKLcARihH63b9lhuj6u+KHSXhqLrTec8GSi2HiQ=;
+        b=U3aWBB0eAPUe5/1UmDixtix7tccIYAwaS17+7kxEE/IPIq1dTHL4znhs+SfRfybZ+3
+         GV3s0wALIainuvKZqN6MlT0jug76jR1lo/R4e++MEmgSTJ7qhU3VcsDC3rsB7myoGjjb
+         kWiBDQxKsYtAQGHqscCgLdcTdbGv1GSrAELRwmzyj47s9WdqcL6qOZrEcweQL/k9SCiV
+         7Lrj/y/qIqJa4XIUx+7JpEnUOXK4Hx+Pwc0qbsktlPvrETHhpFmyROOE+6juFjchrJ98
+         07kWC6B/RR0Eu4BCizRJ+ET24shStGA4Jj2yMSJ0y5nL1jUyeaI5e5FJ21AVm0+wI1h6
+         ZRLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/bkVpKLcARihH63b9lhuj6u+KHSXhqLrTec8GSi2HiQ=;
+        b=KobQPiM0EIWfpVQaaunf99tfjTiGHYXASieCxgqEXX00+qWBZKHEsaS64/ADpTtiSs
+         yi8ok/jcirkwsEJF8u8X2Uj+XrvH55Ly6N3sB7iLja8EoOqmcszpmfVp0QCmrtCUc2Bs
+         LXzTbiUjlDIie1NQtsPK0wKtmm+NtLEki9vsya5Kwv3MGeS3PSo4vWML48sCgsmbVcTi
+         RCgkTlMVB+zZd34RHw3Ca4Jg/oeKrSfkK/yBj5uQ2h1MfKcUDvq9KYmbTHvnrwhmh/R6
+         FvnuoX8XanfUw1+eUdzddTONJ1UWdFWiQytv3cxGXHBr38xg8zpm+43fsh5NNWUg5Xci
+         6oWw==
+X-Gm-Message-State: APjAAAUL285XhJTUuUxiUldv+70jQU4NdBzxAMbbS+NW/xgTVVJJSbtB
+        cXuhRF6B/4CQeK0EvpdB8SP/1/HQ2sE=
+X-Google-Smtp-Source: APXvYqwAf9b3wmXwzbSi1jvr+9Q5jQiDl+xXarqGzrWNzpwlxn5PP+a7oVWcFRe1BR53uq/8uLsjJw==
+X-Received: by 2002:aa7:9829:: with SMTP id q9mr88211919pfl.231.1578075562347;
+        Fri, 03 Jan 2020 10:19:22 -0800 (PST)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
+        by smtp.gmail.com with ESMTPSA id j8sm41783602pfe.182.2020.01.03.10.19.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Jan 2020 10:19:21 -0800 (PST)
+From:   Al Cooper <alcooperx@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V2 4/4] ARM: configs: Build BCM2711 thermal as module
-Date:   Fri,  3 Jan 2020 18:23:56 +0100
-Message-Id: <1578072236-31820-5-git-send-email-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1578072236-31820-1-git-send-email-wahrenst@gmx.net>
-References: <1578072236-31820-1-git-send-email-wahrenst@gmx.net>
-X-Provags-ID: V03:K1:6YiHejA8tz/7oRcej/Y+aw4g3ItMrl44kB/QtEKWQ9VUcM8sLzF
- GraS2XuJy48/Tbe+V+qJojRYmnmXrxp4x1p05vtH/Nlo3cC+rot5nYH+v7iugevRXef/s6d
- k74SGUKH6no2bTAJrWqZJN780NAS95qNtFymhMZX/nnBFJkEqYP5IWJYrsOfWF8rSEit4NB
- efCy1K2tzGNwfxrM/CDVQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:jdbFcKc7zF4=:XLFLIi7nawvnlcyUr6+46L
- 0SDMsXKCo0dpBTbfncvc/bocSkvxF+lzgryxE9dRixoytn29pcF48aaXp6OeSkGDfzjnVxKJF
- RPeeJPLPrLtlTWZKRinPwPiEd7NU00xgIjQwXHisHMHcGpO/gjqVZk4H5KE8/bSXf5JBpl5Kp
- 3UwTS08qBnm1Wef2p3HDgjVvFwfGkwWGGyAqj+Gmxxtq5dsHULTXjDFLgqqvU/3qnIe/KwMSG
- LW5/tbOR+OViQGKktaypu/6Ik4O/fOHTy86wi+uwNq8LLQhc9htGKP6TIg+u1dC/8hVwl11hH
- LWMiBNE88Yn0yvMqpu79DvTSfXmGw1w6LJ9oGeOAarHrIPJeHXCX/WodvXDHiRFTLTRJzWqIj
- grGwhggFT9HSJ3OngwXgrtOt6Fd3KJy3QQdNls/KJHOVcRoUnW4+7voHAXWWLGMkQS773NWQ5
- fx/QJWfT7d/Al3cxxOqDoBepvXuLXJqa8ZIZDkhZcvh8juhx0JMDx2rp5hI4QVj2DFZzrIozK
- WbZYhvp5PqyUJ9ra6KmfaaavlNAGvgU/AQTP8pott4zlBdN3DYHRbs5ywZWf+RtQPPoaUNqAL
- 3oBkOFepo+vLzxa/MKNRFD7xxpA1w81aMyVyfC4EuKUxkhqY8uVtPd9zGo6/OY4bD64eua1wr
- /A1EffQcoN+HcNnT6kTdFVvvEctTpq1YCQeMh636jJJd+ooHzWIeOI92fKQdk/LNPXuXdbxbv
- nJFBjh0wAZPalxnpnf9jrae2MIaius6vls7nuHoZM9d2aUC96lDd2/F6tDh9rJ8jTcV/88/AQ
- 4RZeNd2VRAzFrWakhLnaexgPb8bpm5H/PdLhSa5xoMH3/olZfHWbPHWrDslAijUklEb7UF8Vs
- 0CMa39WkFW4a5YkjBnni/FCWq7xsrvZV2CLYi1NhoCtuM9/loBBMT3Hwdh+WWqCv0joOrmvVK
- Tz8s6qnNenSNTkPkUjeZcx4jFXtKpuheXzhxCPhJpu8j95yLl+ykgyyZIoD58Wi2JD0PDUNkj
- nZFpbfVrbH3WxNOBCozexVF+bO//YEqBfEwWwwuJrmseCr4VRbpDpyIBBGZP2iYBPnCO/K1gP
- 3isX6gUnwS9xCgLTWVkUFDhWVPVhM2TEfDk5ohUqLUJYndOOaH4UVo6aMB8BZzGMflgYWq27f
- 5j0bu/WqQQ0N55l4pAhO5L54BsaTLr5uxvQ8MLLN0y0QpbGJ/hwMYq5f6ylhCwiA2e9sEtKEF
- NGe3ULhh4Kr0WoPUv7dHadTIjrohwWBCmo38lXg==
-Content-Transfer-Encoding: quoted-printable
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
+        ARCHITECTURE), Srinath Mannam <srinath.mannam@broadcom.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
+        ARM ARCHITECTURE)
+Subject: [PATCH v4 00/13] phy: usb: Updates to Broadcom STB USB PHY driver
+Date:   Fri,  3 Jan 2020 13:17:58 -0500
+Message-Id: <20200103181811.22939-1-alcooperx@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This builds the BCM2711 thermal driver as module for the Raspberry Pi 4.
+This patchset contains various updates to the Broadcom STB USB Driver.
+The updates include:
+- Add support for 7216 and 7211 Broadcom SoCs which use the new
+  Synopsys USB Controller.
+- Add support for USB Wake
+- Add various bug fixes.
 
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-=2D--
- arch/arm/configs/multi_v7_defconfig | 1 +
- arch/arm64/configs/defconfig        | 1 +
- 2 files changed, 2 insertions(+)
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_=
-v7_defconfig
-index 3f1b96d..f5d19cc 100644
-=2D-- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -496,6 +496,7 @@ CONFIG_IMX_THERMAL=3Dy
- CONFIG_ROCKCHIP_THERMAL=3Dy
- CONFIG_RCAR_THERMAL=3Dy
- CONFIG_ARMADA_THERMAL=3Dy
-+CONFIG_BCM2711_THERMAL=3Dm
- CONFIG_BCM2835_THERMAL=3Dm
- CONFIG_BRCMSTB_THERMAL=3Dm
- CONFIG_ST_THERMAL_MEMMAP=3Dy
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 6a83ba2..b2f6673 100644
-=2D-- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -442,6 +442,7 @@ CONFIG_ROCKCHIP_THERMAL=3Dm
- CONFIG_RCAR_THERMAL=3Dy
- CONFIG_RCAR_GEN3_THERMAL=3Dy
- CONFIG_ARMADA_THERMAL=3Dy
-+CONFIG_BCM2711_THERMAL=3Dm
- CONFIG_BCM2835_THERMAL=3Dm
- CONFIG_BRCMSTB_THERMAL=3Dm
- CONFIG_EXYNOS_THERMAL=3Dy
-=2D-
-2.7.4
+v4 - Fix mispelling, change Synopsis to Synopsys. Also add
+     "Reviewed-by: Rob Herring" to bindings patch. There are no
+     functional code changes in v4.
+
+v3 - Rebase to v5.5-rc1
+
+v2 - Changes based on review feedback
+   - Add vendor prefix to DT property "syscon-piarbctl"
+   - Use standard "wakeup" instead of "wake" for DT "interrupt-names"
+
+Al Cooper (13):
+  phy: usb: EHCI DMA may lose a burst of DMA data for 7255xA0 family
+  phy: usb: Get all drivers that use USB clks using correct
+    enable/disable
+  phy: usb: Put USB phys into IDDQ on suspend to save power in S2 mode
+  phy: usb: Add "wake on" functionality
+  phy: usb: Restructure in preparation for adding 7216 USB support
+  dt-bindings: Add Broadcom STB USB PHY binding document
+  phy: usb: Add support for new Synopsys USB controller on the 7216
+  phy: usb: Add support for new Synopsys USB controller on the 7211b0
+  phy: usb: fix driver to defer on clk_get defer
+  phy: usb: PHY's MDIO registers not accessible without device installed
+  phy: usb: bdc: Fix occasional failure with BDC on 7211
+  phy: usb: USB driver is crashing during S3 resume on 7216
+  phy: usb: Add support for wake and USB low power mode for 7211 S2/S5
+
+ .../bindings/phy/brcm,brcmstb-usb-phy.txt     |  69 ++-
+ drivers/phy/broadcom/Makefile                 |   2 +-
+ .../phy/broadcom/phy-brcm-usb-init-synopsys.c | 414 ++++++++++++++++++
+ drivers/phy/broadcom/phy-brcm-usb-init.c      | 226 +++++-----
+ drivers/phy/broadcom/phy-brcm-usb-init.h      | 148 ++++++-
+ drivers/phy/broadcom/phy-brcm-usb.c           | 269 ++++++++++--
+ 6 files changed, 943 insertions(+), 185 deletions(-)
+ create mode 100644 drivers/phy/broadcom/phy-brcm-usb-init-synopsys.c
+
+-- 
+2.17.1
 
