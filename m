@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B1712FD78
+	by mail.lfdr.de (Postfix) with ESMTP id 9493212FD7A
 	for <lists+devicetree@lfdr.de>; Fri,  3 Jan 2020 21:15:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727861AbgACUP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727836AbgACUP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 3 Jan 2020 15:15:57 -0500
-Received: from mail-qv1-f68.google.com ([209.85.219.68]:39380 "EHLO
-        mail-qv1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727836AbgACUP4 (ORCPT
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:39548 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726050AbgACUP4 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 15:15:56 -0500
-Received: by mail-qv1-f68.google.com with SMTP id y8so16689265qvk.6
+Received: by mail-qt1-f195.google.com with SMTP id e5so37698050qtm.6
         for <devicetree@vger.kernel.org>; Fri, 03 Jan 2020 12:15:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:from:date:message-id:subject:to;
         bh=40ACnQIUnpge54Cj+EODMXbGQ2AM0yGbootCDBdgIh0=;
-        b=PaaLSu08C6pZO4KYX5Xib8/8LK/VZKfIEkKsCszkEjMvbtnYiYyrSGbWLGJ3+0MVZy
-         c0a2awYaqSh4YQSvIa9swPZwfNRCmPBADNdJ0CgmUeKp8MxukpSrikrGm954YKkiDf6C
-         XsUE9t7IARMdPLB5SdGQDC+RzyN0uLd+THleTe7qRiWKiUk9KxdcLWL3CBnfP6AQPYqb
-         soWRPWMB7d8BF3OAbdxL2UIb5go8mZgJL8biRtoRgu00u3zfgcbladqM77cg9PPLUt5j
-         m4qEnuMCw9jckbrViHNNnB4AKjDhEqcbOMXIZ+tvvPmVZvwhTcBaIxz17l4I0nr4LlM4
-         1Qkg==
+        b=sdCzN7UBxFMH0TcAsjrnkZ1kCJR3KirAqNeYyTC4T1Z/Rq8YIYvuakE9JshqUUbj4/
+         gYD9V7CLkGwl0ftfHEY/lQep6AHlTULWNnN+w0SNhwnqUvL0tyvk2yCeF0JctQvw0NiY
+         MFzE2EwLJ+Dle2TBaZ1aOzn72cYYAySwgQXosugcMnahUCunaQVZu/6K2WptEGm0+psW
+         W/RO4Xvl4JxavnzBe2rFTWMbbkgwx/H8R5tBi2RnHZYGOV2sZ4k5V9Y/VgnnOFT1ExKe
+         01nixN1W856t1KLa9yy4kx0FQTyFCTJo304QySt4fbefl36r7QPfhCte4bHkcPH31ymD
+         /JpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
         bh=40ACnQIUnpge54Cj+EODMXbGQ2AM0yGbootCDBdgIh0=;
-        b=MoN+GMnSm98pUGH/uFTRFXylhc5yYvJFkfac7F7hKfGweAbiDHrKC1ZL8ED96kKYu2
-         n9JQKD26gCaFXRSr6wOf/aAL/N8m96JBExUbAqMniss4AsmJa1YdEC5dGEh5R1GMA3/l
-         B8LLp/qCUcY4p7YbD4r0jTBaF3WWfw/1oAOYFIWPYLibhHA7DpCJfeBggxfvQITHCWHy
-         v0G1N69p1/FAd1j8H3DHTHSNNuXkDeHkharlobIiUBqp3GuWT0MzfcgKJpcPHshzxkTA
-         u5HnuAqLNbUdkHtSvax5blONZ7pz7eViNqTi8YMSPoTcvIJ8D8pyurqF0QiYlzihA3h0
-         Hk4w==
-X-Gm-Message-State: APjAAAXXLguA38LtwlsFsqlF90gPoVZZ9Hc/OpOpRe9Vremw7ql628pf
-        gWT9oiSioAm4XKaYqY03p/11Fcf9EDgUhcg6Qms=
-X-Google-Smtp-Source: APXvYqyGYGyEvPpQdq5MOfVtJD1EtFgvO+dCiU8yg1MjIAsAhj2V7SAS2Q0WHTJ09/SsNuT4r6E1mYGMXRKuMbL85Es=
-X-Received: by 2002:a05:6214:13ef:: with SMTP id ch15mr62542233qvb.183.1578082555798;
+        b=cGG1H+Vx3ipBm276Ftq3g5qrsJ5MT0tKZ/821nujM/jnlxstReQpNV2Ok9n5QuHO+4
+         uwqhr/fTJEiLdDXU0mRW2cdOZZkweqYxGbl9DgFR55KjzigWHvNT/zHfDfdSQTyxp9Ef
+         2Zt71sN3WzuZVJgwkX1x6GBBytj3qVp0tXQ4aIiPzBp8oDpwgVROo1sN7MxQrp1oQqNW
+         mJKQSOfcrTVlqkPzrmx16KdSGwiIf85aX03BzlrVCWMDZFMZ3qNa9SEMjdwVFU1zjzul
+         EJWCBxDycFj8lD0d4qBVONFF+ugQAd5sfQIZzQXh+oDC4+OCXceAz1KJHHQd833zpDP7
+         qIBA==
+X-Gm-Message-State: APjAAAWqSKC8xh1yhDxIAUxvvM9TzDczs+IYnaQro8CH6sP7xBXnVIdg
+        drD9wktojfmgDbjfOq1I6p0lWXlIUdnLoYPRylQ=
+X-Google-Smtp-Source: APXvYqw2M09quIEAEvXiM3voOJ4gfF+ACEImDf+OckM2gi1YA+FwIXLKEubYKZCLlqPueGJMd+OoDY3+LRVYi3AnV7g=
+X-Received: by 2002:aed:3e21:: with SMTP id l30mr66315781qtf.357.1578082555783;
  Fri, 03 Jan 2020 12:15:55 -0800 (PST)
 MIME-Version: 1.0
 Received: by 2002:ac8:4410:0:0:0:0:0 with HTTP; Fri, 3 Jan 2020 12:15:55 -0800 (PST)
 From:   "Rev.Dr Emmanuel Okoye CEO Ecobank-benin" 
         <westernunion.benin982@gmail.com>
 Date:   Fri, 3 Jan 2020 21:15:55 +0100
-Message-ID: <CAP=nHBJS-9jP_Bgd2xPhmkkhUhFRvMop=qP2Nvj3ZJgWvYZcxQ@mail.gmail.com>
+Message-ID: <CAP=nHB+DN+y6CDd3cq5coH4OxWizwgbAV9q3vx3aOGLrNQKr1g@mail.gmail.com>
 Subject: I promise you must be happy today, God has uplifted you and your
  family ok
 To:     undisclosed-recipients:;
