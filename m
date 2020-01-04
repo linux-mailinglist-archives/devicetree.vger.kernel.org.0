@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 475F1130345
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 16:34:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A00F713034A
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 16:34:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725943AbgADPdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jan 2020 10:33:51 -0500
-Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:44202 "EHLO
+        id S1726080AbgADPeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jan 2020 10:34:02 -0500
+Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:44572 "EHLO
         wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726080AbgADPdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jan 2020 10:33:51 -0500
+        by vger.kernel.org with ESMTP id S1726016AbgADPeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jan 2020 10:34:02 -0500
 Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
         by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1inlQn-0000ox-Gq; Sat, 04 Jan 2020 16:33:37 +0100
+        id 1inlR8-0002an-Ix; Sat, 04 Jan 2020 16:33:58 +0100
 X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
         linuxbbg.five-lan.de
 Received: from roc-pc (p508F384D.dip0.t-ipconnect.de [80.143.56.77])
         (authenticated bits=0)
-        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id 004FXass009220
+        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id 004FXv67009246
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Sat, 4 Jan 2020 16:33:36 +0100
+        Sat, 4 Jan 2020 16:33:57 +0100
 From:   Markus Reichl <m.reichl@fivetechno.de>
-To:     linux-rockchip@lists.infradead.org
+To:     linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
 Cc:     Markus Reichl <m.reichl@fivetechno.de>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        devicetree@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 0/5] regulator: mp8859: add driver for DC/DC converter used on rk3399-roc-pc board
-Date:   Sat,  4 Jan 2020 16:32:44 +0100
-Message-Id: <20200104153321.6584-1-m.reichl@fivetechno.de>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 3/5] dt-bindings: add vendor Monolithic Power Systems
+Date:   Sat,  4 Jan 2020 16:32:47 +0100
+Message-Id: <20200104153321.6584-4-m.reichl@fivetechno.de>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200104153321.6584-1-m.reichl@fivetechno.de>
+References: <20200104153321.6584-1-m.reichl@fivetechno.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1578152030;a7085fc8;
-X-HE-SMSGID: 1inlQn-0000ox-Gq
+X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1578152041;d61c18a9;
+X-HE-SMSGID: 1inlR8-0002an-Ix
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On rk3399-roc-pc board a voltage regulator MP8859 from Monolithic Power Systems
-is used to supply the 12V power line. This delivers 5V as a default value after
-boot. The voltage is controllable via I2C.
-Add a basic driver to set and get the voltage of the MP8859 and add a matching
-node with fixed 12V in the DT of the board. 
+MPS produce power regulators like the MP8859.
 
-Markus Reichl (5):
-  regulator: mp8859: add driver
-  regulator: mp8859: add config option and build entry
-  dt-bindings: add vendor Monolithic Power Systems
-  dt-bindings: regulator: add MPS mp8859 voltage regulator
-  arm64: dts: rockchip: Enable mp8859 regulator on rk3399-roc-pc
+Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/regulator/mp8859.txt  |  22 +++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |  32 ++--
- drivers/regulator/Kconfig                     |  11 ++
- drivers/regulator/Makefile                    |   1 +
- drivers/regulator/mp8859.c                    | 156 ++++++++++++++++++
- 6 files changed, 210 insertions(+), 14 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/regulator/mp8859.txt
- create mode 100644 drivers/regulator/mp8859.c
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index fa6aa3c5a500..4fa3bb494745 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -617,6 +617,8 @@ patternProperties:
+     description: Moxa Inc.
+   "^mpl,.*":
+     description: MPL AG
++  "^mps,.*":
++    description: Monolithic Power Systems Inc.
+   "^mqmaker,.*":
+     description: mqmaker Inc.
+   "^mscc,.*":
 -- 
 2.24.1
 
