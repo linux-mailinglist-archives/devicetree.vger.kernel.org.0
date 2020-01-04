@@ -2,75 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1FF0130253
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 13:15:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CF3B130297
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 15:20:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725805AbgADMPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jan 2020 07:15:25 -0500
-Received: from mail-il1-f195.google.com ([209.85.166.195]:34117 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725802AbgADMPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jan 2020 07:15:25 -0500
-Received: by mail-il1-f195.google.com with SMTP id s15so38801329iln.1
-        for <devicetree@vger.kernel.org>; Sat, 04 Jan 2020 04:15:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=qf/BIsx35rb92mjbVcBV+oNpoN6HQnmoWv/86CJd8IQ=;
-        b=El7xeMHZqSqVEqz5Qz37EjY9d7H9xpNQ3YG/3IT/SvkZKOLlH75TzTPS1J+1h7J9c4
-         JwiQu2VT369mQhQJVVt9gv2Ikjn3u102ZdoOV+oNpkOtj03/xtnPTKv2zgfr6a/Tvz+d
-         dvAuU8NYQCHbzSYNTWQ9+gNccWPG+8ZtuUuX7tgHF3+De9A3mWcEWCAO60yRnK/M91BV
-         eaHSHXG209LbiDL/Hz5TpAc1WuDjPC+l2BVO6IuD8R907EL4cFZfdExnXfRfFwM32SRA
-         ohY3rApwwQCqhi/Hq7yeA43tcbjf03GLAaK6qoGAHK7T+mCTaO8gmBGYvck9JHf5azJS
-         fOHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=qf/BIsx35rb92mjbVcBV+oNpoN6HQnmoWv/86CJd8IQ=;
-        b=W01dMCoSvPMiCQlLv5JtIrfAicUweScNM3Mc7+L+8vqtoKg/ZI68gsbZcL/xs49r79
-         2OJL3Hzh+tSOui8zlc0eYQgFHP3Qta21O/TCfxPx+Pq27xBdPyRRosW3dticToW9x0Zm
-         hZTWRbIpKvdOgJ/HC3wbjFqJBP+Jk1jmdsnxPZNwBW6QKaBDKJZBjbtvSh8yO3i/3KCx
-         12LJ+RZgSOBuSnFR4nKR8heH/tlnNBU/W/pkFVq0HbUgld6fg2SzJIfMutlRSx+wM4eh
-         v48HMUzdcY6bqUMBpHyxGjOEbBh1VnQwcuuLijDuvs0Nm0vSPqITO8BWuPvK2ZxEf2Kg
-         1grw==
-X-Gm-Message-State: APjAAAW4F2lIZ7nXPzkYiVCLXQ3hGm+dMGpMe7q55yCaGT+/e5scEFXn
-        XdIz9Ku4YPoOzoFDgl3jTAgHeY8KKVP2e/0KJ0s=
-X-Google-Smtp-Source: APXvYqycEXqkBeAaG/DvaTkxVhNmvrZ81O36QrZ3DUfgOwbgYY7OQtIKx91kJqHDWotX/kwWQnFBJ9gRJmnYHgAusZQ=
-X-Received: by 2002:a92:48c2:: with SMTP id j63mr57782025ilg.153.1578140124105;
- Sat, 04 Jan 2020 04:15:24 -0800 (PST)
+        id S1725940AbgADOUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jan 2020 09:20:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34006 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725924AbgADOUR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 Jan 2020 09:20:17 -0500
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8872922B48;
+        Sat,  4 Jan 2020 14:20:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1578147617;
+        bh=XsnHsHj53JhaNYFbo6CFsI3eeVhtmBQ3PCkV9VTU9Hs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cuQWj+ghg2SnHa/Geq6Fb5zpTiTpIcRhG/BSO2FF5F/yFYZSkTuL+Apmr7vFf6BDm
+         rMmn4RFiatdKPi4Ag0vnuMCM1mM7EP6naB3Dv0Cpl3hnzhOUCQF2+VWph0ZvQ5mBEv
+         I9e2N5Iet/IQV+5fTulEYEb94y0ai+vY/g7U0P2k=
+Date:   Sat, 4 Jan 2020 15:20:14 +0100
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH v3 2/9] drm/sun4i: tcon: Add TCON LCD support for R40
+Message-ID: <20200104142014.o6znmngwjw7o46dl@gilmour.lan>
+References: <20191231130528.20669-1-jagan@amarulasolutions.com>
+ <20191231130528.20669-3-jagan@amarulasolutions.com>
+ <20200102105424.kmte7aooh2gkrcnu@gilmour.lan>
+ <CAMty3ZA0e8eJZWvAh0x=KGAZVL3apdao3COvR6j3-ckv0cdvcg@mail.gmail.com>
+ <20200102154703.3prgwcjyo36g5g5u@gilmour.lan>
+ <CAMty3ZB_6GyK=hhJU-8yAQiom1Uq25ojFbKaGrK1fmW8SnDV_A@mail.gmail.com>
 MIME-Version: 1.0
-Reply-To: zaama250@gmx.us
-Received: by 2002:a05:6602:25ca:0:0:0:0 with HTTP; Sat, 4 Jan 2020 04:15:23
- -0800 (PST)
-From:   ZA ZA <ab9520487@gmail.com>
-Date:   Sat, 4 Jan 2020 04:15:23 -0800
-X-Google-Sender-Auth: zmXwFEeRMzNxJxA6Yo-3MSrE_JI
-Message-ID: <CAE+yXuQPDdS2VA1jOtCP7K68aF0jODOF6T+vBqOb7rZmtodyfg@mail.gmail.com>
-Subject: OK
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zomtrfc34zk3phes"
+Content-Disposition: inline
+In-Reply-To: <CAMty3ZB_6GyK=hhJU-8yAQiom1Uq25ojFbKaGrK1fmW8SnDV_A@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings,
 
-It was nice to have your contact and I hope this mail doesn't come to
-you as a surprise or be treated as spam because i consider this
-information highly classified and pertinent. I am Mr. Ahmed Zama A
-Senior staff in one of Bank here in Ouagadougou Burkina Faso  I am
-contacting you with regards to this particular fund floating in our
-Bank belonging to one of our deceased customer.( =E2=82=AC15 million Euros =
-) I
-decided to contact you about these unclaimed deposits. If you are not
-interested, please ignore this mail and go about your normal business
-but if you are interested please reply me and i will give you the full
-information.
+--zomtrfc34zk3phes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Regards,
+Hi,
 
-Ahmed Zama
+On Thu, Jan 02, 2020 at 10:04:40PM +0530, Jagan Teki wrote:
+> On Thu, Jan 2, 2020 at 9:17 PM Maxime Ripard <mripard@kernel.org> wrote:
+> >
+> > On Thu, Jan 02, 2020 at 09:10:31PM +0530, Jagan Teki wrote:
+> > > On Thu, Jan 2, 2020 at 4:24 PM Maxime Ripard <mripard@kernel.org> wrote:
+> > > >
+> > > > On Tue, Dec 31, 2019 at 06:35:21PM +0530, Jagan Teki wrote:
+> > > > > TCON LCD0, LCD1 in allwinner R40, are used for managing
+> > > > > LCD interfaces like RGB, LVDS and DSI.
+> > > > >
+> > > > > Like TCON TV0, TV1 these LCD0, LCD1 are also managed via
+> > > > > tcon top.
+> > > > >
+> > > > > Add support for it, in tcon driver.
+> > > > >
+> > > > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > > > ---
+> > > > > Changes for v3:
+> > > > > - none
+> > > > >
+> > > > >  drivers/gpu/drm/sun4i/sun4i_tcon.c | 8 ++++++++
+> > > > >  1 file changed, 8 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > > > index fad72799b8df..69611d38c844 100644
+> > > > > --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > > > +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > > > @@ -1470,6 +1470,13 @@ static const struct sun4i_tcon_quirks sun8i_a83t_tv_quirks = {
+> > > > >       .has_channel_1          = true,
+> > > > >  };
+> > > > >
+> > > > > +static const struct sun4i_tcon_quirks sun8i_r40_lcd_quirks = {
+> > > > > +     .supports_lvds          = true,
+> > > > > +     .has_channel_0          = true,
+> > > > > +     /* TODO Need to support TCON output muxing via GPIO pins */
+> > > > > +     .set_mux                = sun8i_r40_tcon_tv_set_mux,
+> > > >
+> > > > What is this muking about? And why is it a TODO?
+> > >
+> > > Muxing similar like how TCON TOP handle TV0, TV1 I have reused the
+> > > same so-that it would configure de port selection via
+> > > sun8i_tcon_top_de_config
+> > >
+> > > TCON output muxing have gpio with GPIOD and GPIOH bits, which select
+> > > which of LCD or TV TCON outputs to the LCD function pins. I have
+> > > marked these has TODO for further support as mentioned by Chen-Yu in
+> > > v1[1].
+> >
+> > It should be in the commit log.
+>
+> Make sense.
+>
+> > What's the plan to support that when needed? And that means that the
+> > LCD and TV outputs are mutually exclusive? We should at the very least
+> > check that both aren't enabled at the same time.
+>
+> Yes, LCD or TV within the outselect seems to be mutually exclusive.
+> Like LCD0 or TV0 can output to GPIOD incase of TV0_OUTSEL and LCD1 or
+> TV1 can output to GPIOH incase of TV1_OUTSEL. I think checking them
+> before configuring TCON_TOP_PORT_SEL_REG would make sense, let me know
+> if you have any suggestions?
+
+Making sure in atomic_check that TV and LCD are not used at the same
+time, and then in encoders mode_set / enable mux the pins to our
+encoders would be my first guess.
+
+Maxime
+
+--zomtrfc34zk3phes
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXhCfHgAKCRDj7w1vZxhR
+xQw+AQC+UAAD2DuXR7nMr0l0A/3NybkZVTKykyr2HbVJa1arrgEAuPLgwEfGu61X
+lS7E6DoCPkU97rnULAbmAOLQBZyMjws=
+=D1UE
+-----END PGP SIGNATURE-----
+
+--zomtrfc34zk3phes--
