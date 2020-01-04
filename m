@@ -2,216 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3796F12FFA1
-	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 01:35:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F20912FF97
+	for <lists+devicetree@lfdr.de>; Sat,  4 Jan 2020 01:33:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726703AbgADAfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Jan 2020 19:35:16 -0500
-Received: from mail-io1-f66.google.com ([209.85.166.66]:35555 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726229AbgADAfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 19:35:16 -0500
-Received: by mail-io1-f66.google.com with SMTP id v18so43147658iol.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2020 16:35:15 -0800 (PST)
+        id S1726697AbgADAdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Jan 2020 19:33:22 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:35301 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726229AbgADAdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Jan 2020 19:33:22 -0500
+Received: by mail-il1-f194.google.com with SMTP id g12so38041859ild.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Jan 2020 16:33:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=OkEhI0mGAaFruOBaLTQQRQIQxA1NVDP05WMjkcVPHmI=;
-        b=jsWypKOG6TXpFzpgbOxwIGZLbkCnvTDE8kYIaAHLr/SkUZ6Tg47ipjLDf0EwuOE60y
-         erf2+Wwax/mjdYs0ZR8PT7GKcfVvY1h8/LfG5m95LLumfDy/zqM33wh4DR9KrttN3xWi
-         vr0/uZIM2ADGrkyFq+x6QSZLq9s9E0sWmeoVE0rrWVdJOKw8QfflH+Ujb0lDPGr1mjT8
-         pMgpkPjgMW1E+qqURIxQxHl2t6cbisNRj9hR6EofgKRUp90Ted4hdKLzouwk6MBkttjo
-         Htb+7sUxFtCe+b0ybdRO658O+HhI+N9zDh6ZpmRrGXz9jpnI4aeM+RsCgtfMZE4zvsRj
-         ilWQ==
-X-Gm-Message-State: APjAAAUX+QhPRMvHnagrKH6T/9mv2UPC5P3sa97y6k0/6MIKTnusP2Eq
-        /ukhucNtMjTO2X+qXD/pyu8wj6c=
-X-Google-Smtp-Source: APXvYqyzl9eC6OroCoQrtYhrIaRX+xl0WBCCohL4+qJwNrOP2uHdZYw5Ra4WdkKTHducAasd0KPATA==
-X-Received: by 2002:a02:c787:: with SMTP id n7mr71930157jao.85.1578098114801;
-        Fri, 03 Jan 2020 16:35:14 -0800 (PST)
+        bh=k8CKT1is0EUxteWZfaLzNNpxRWfsUWmMNgxluVtAzcQ=;
+        b=Xr+QZh+uTq5hSUvPwTGeoArDPuJd5I0zgbQcC76Ia/fYNQxMMhxll0OrFd/8h5dzgX
+         3Y8p3fs7NDTslapOOHgwJjhNlfP66Uwd9jWTcHCnlp2W4m6MK1VvJryqg0nNoyvmcQ2r
+         8VVEwFR8vf0HlHcPwskdJzwl7asOXx0BWiGUX+abOSsxRInbXfJoXLXxJ/U8XcgNkfXs
+         pp95Y7Jh80jYCxr1sVgOaQv1HMXnPGqF01m26NhqnpMPtqrei9eM7gjMyP2Zoqu2UkP4
+         Yh4LwEE8//u85jNEqXVpBG/X9jIt/mMo2qQuASuZ4I+ZVVMSqj+WLsRwFxQ/12eT+MYr
+         hfiw==
+X-Gm-Message-State: APjAAAUorSV4m3vKRHxaNBR+VPJE8l4z7YhfXfZDZYd6x/0+T1JQfvTt
+        yZVhCCed7C2LN6qAOODRVrinzgM=
+X-Google-Smtp-Source: APXvYqy88+ic50I9pIm8Arz+hymVtONVNKERmucUREuzCvAn9pOQRDMkbjc0JqxdlbrR01VUpg1VrQ==
+X-Received: by 2002:a92:5d5d:: with SMTP id r90mr69949140ilb.284.1578098000864;
+        Fri, 03 Jan 2020 16:33:20 -0800 (PST)
 Received: from rob-hp-laptop ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id z24sm21348328ilf.31.2020.01.03.16.35.13
+        by smtp.gmail.com with ESMTPSA id g6sm21644427ilj.64.2020.01.03.16.33.19
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Jan 2020 16:35:14 -0800 (PST)
+        Fri, 03 Jan 2020 16:33:20 -0800 (PST)
 Received: from rob (uid 1000)
         (envelope-from rob@rob-hp-laptop)
-        id 2219a5
+        id 2219ec
         by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Fri, 03 Jan 2020 17:32:10 -0700
-Date:   Fri, 3 Jan 2020 17:32:10 -0700
+        Fri, 03 Jan 2020 17:33:18 -0700
+Date:   Fri, 3 Jan 2020 17:33:18 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Hanjie Lin <hanjie.lin@amlogic.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Yue Wang <yue.wang@amlogic.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, Carlo Caione <carlo@caione.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jian Hu <jian.hu@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Subject: Re: [PATCH v3 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
- DWC3 Glue Bindings
-Message-ID: <20200104003210.GA29074@bogus>
-References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
- <1577428606-69855-3-git-send-email-hanjie.lin@amlogic.com>
+To:     Taniya Das <tdas@codeaurora.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette =?iso-8859-1?Q?=A0?= 
+        <mturquette@baylibre.com>, David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: clock: Add YAML schemas for the QCOM
+ GPUCC clock bindings
+Message-ID: <20200104003318.GA5129@bogus>
+References: <1577428714-17766-1-git-send-email-tdas@codeaurora.org>
+ <1577428714-17766-2-git-send-email-tdas@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1577428606-69855-3-git-send-email-hanjie.lin@amlogic.com>
+In-Reply-To: <1577428714-17766-2-git-send-email-tdas@codeaurora.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 27, 2019 at 02:36:42PM +0800, Hanjie Lin wrote:
-> The Amlogic A1 SoC Family embeds 1 USB Controllers:
->  - a DWC3 IP configured as Host for USB2 and USB3
+On Fri, 27 Dec 2019 12:08:29 +0530, Taniya Das wrote:
+> The GPUCC clock provider have a bunch of generic properties that
+> are needed in a device tree. Add a YAML schemas for those.
 > 
-> A glue connects the controllers to the USB2 PHY of A1 SoC.
-> 
-> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> Signed-off-by: Taniya Das <tdas@codeaurora.org>
 > ---
->  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 57 +++++++++++++++++++---
->  1 file changed, 51 insertions(+), 6 deletions(-)
+>  .../devicetree/bindings/clock/qcom,gpucc.txt       | 24 --------
+>  .../devicetree/bindings/clock/qcom,gpucc.yaml      | 71 ++++++++++++++++++++++
+>  2 files changed, 71 insertions(+), 24 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,gpucc.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> index 4efb77b..6103cc2 100644
-> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> @@ -9,6 +9,8 @@ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
->  
->  maintainers:
->    - Neil Armstrong <narmstrong@baylibre.com>
-> +  - Hanjie Lin <hanjie.lin@amlogic.com>
-> +  - Yue Wang <yue.wang@amlogic.com>
->  
->  description: |
->    The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
-> @@ -22,10 +24,14 @@ description: |
->    The DWC3 Glue controls the PHY routing and power, an interrupt line is
->    connected to the Glue to serve as OTG ID change detection.
->  
-> +  The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
-> +  host-only mode.
-> +
->  properties:
->    compatible:
->      enum:
->        - amlogic,meson-g12a-usb-ctrl
-> +      - amlogic,meson-a1-usb-ctrl
->  
->    ranges: true
->  
-> @@ -37,6 +43,11 @@ properties:
->  
->    clocks:
->      minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 4
->  
->    resets:
->      minItems: 1
-> @@ -47,17 +58,22 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  phys:
-> +    minItems: 1
-> +    maxItems: 3
-> +
->    phy-names:
->      items:
->        - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
->        - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
->        - const: usb3-phy0 # USB3 PHY if USB3_0 is used
->  
-> -  phys:
-> -    minItems: 1
-> -    maxItems: 3
-> -
 
-Why the unnecessary move?
-
-> -  dr_mode: true
-> +  dr_mode:
-> +    description: usb mode for G12A
-> +    enum:
-> +      - host
-> +      - peripheral
-> +      - otg
-
-No, this is a common property that doesn't need to be redefined here. It 
-was correct as-is.
-
->  
->    power-domains:
->      maxItems: 1
-> @@ -80,9 +96,9 @@ required:
->    - resets
->    - reg
->    - interrupts
-> -  - phy-names
->    - phys
->    - dr_mode
-> +  - phy-names
-
-Again, unnecessary change.
-
->  
->  examples:
->    - |
-> @@ -124,4 +140,33 @@ examples:
->                snps,quirk-frame-length-adjustment;
->            };
->      };
-> +  - |
-> +    a1_usb: usb@ffe09000 {
-
-You are only adding a compatible. No need for a whole new example.
-
-> +          status = "okay";
-> +          compatible = "amlogic,meson-a1-usb-ctrl";
-> +          reg = <0 0xffe09000 0x0 0xa0>;
-> +          #address-cells = <1>;
-> +          #size-cells = <1>;
-> +          ranges;
->  
-> +          clocks = <&clkc_periphs 36>,
-> +                   <&clkc_periphs 85>,
-> +                   <&clkc_periphs 2>,
-> +                   <&clkc_periphs 3>;
-> +          clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
-> +                        "xtal_usb_ctrl";
-> +
-> +          resets = <&reset 36>;
-> +
-> +          phys = <&usb2_phy1>;
-> +          phy-names = "usb2-phy1";
-> +
-> +          a1_dwc3: usb@ff400000 {
-> +                  compatible = "snps,dwc3";
-> +                  reg = <0xff400000 0x100000>;
-> +                  interrupts = <0 90 4>;
-> +                  dr_mode = "host";
-> +                  snps,dis_u2_susphy_quirk;
-> +                  snps,quirk-frame-length-adjustment = <0x20>;
-> +          };
-> +    };
-> -- 
-> 2.7.4
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
