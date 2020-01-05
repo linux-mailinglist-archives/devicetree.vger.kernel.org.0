@@ -2,62 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16A7013050B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2020 00:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D14F013051D
+	for <lists+devicetree@lfdr.de>; Sun,  5 Jan 2020 01:10:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726135AbgADXYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Jan 2020 18:24:35 -0500
-Received: from fgw20-4.mail.saunalahti.fi ([62.142.5.107]:14681 "EHLO
-        fgw20-4.mail.saunalahti.fi" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726191AbgADXYf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jan 2020 18:24:35 -0500
-Received: from darkstar.musicnaut.iki.fi (85-76-82-2-nat.elisa-mobile.fi [85.76.82.2])
-        by fgw20.mail.saunalahti.fi (Halon) with ESMTP
-        id 1f4f40ca-2f47-11ea-826b-005056bd6ce9;
-        Sun, 05 Jan 2020 01:08:30 +0200 (EET)
-Date:   Sun, 5 Jan 2020 01:08:30 +0200
-From:   Aaro Koskinen <aaro.koskinen@iki.fi>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Odelu Kukatla <okukatla@codeaurora.org>, georgi.djakov@linaro.org,
-        daidavid1@codeaurora.org, bjorn.andersson@linaro.org,
-        evgreen@google.com, Andy Gross <agross@kernel.org>,
+        id S1726205AbgAEAKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Jan 2020 19:10:39 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:37699 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726191AbgAEAKj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Jan 2020 19:10:39 -0500
+X-Originating-IP: 195.189.32.242
+Received: from pc.localdomain (unknown [195.189.32.242])
+        (Authenticated sender: contact@artur-rojek.eu)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 71EC31C0004;
+        Sun,  5 Jan 2020 00:10:35 +0000 (UTC)
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sboyd@kernel.org, ilina@codeaurora.org, seansw@qti.qualcomm.com,
-        elder@linaro.org, linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [V2, 1/3] dt-bindings: interconnect: Add Qualcomm SC7180 DT
- bindings
-Message-ID: <20200104230830.GA27471@darkstar.musicnaut.iki.fi>
-References: <1577782737-32068-1-git-send-email-okukatla@codeaurora.org>
- <1577782737-32068-2-git-send-email-okukatla@codeaurora.org>
- <20200104220142.GA28701@bogus>
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Paul Cercueil <paul@crapouillou.net>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Artur Rojek <contact@artur-rojek.eu>
+Subject: [PATCH 1/5] IIO: Ingenic JZ47xx: Add xlate cb to retrieve correct channel idx
+Date:   Sun,  5 Jan 2020 01:16:35 +0100
+Message-Id: <20200105001639.142061-1-contact@artur-rojek.eu>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200104220142.GA28701@bogus>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Provide an of_xlate callback in order to retrieve the correct channel
+specifier index from the IIO channels array.
 
-On Sat, Jan 04, 2020 at 03:01:42PM -0700, Rob Herring wrote:
-> On Tue, Dec 31, 2019 at 02:28:55PM +0530, Odelu Kukatla wrote:
-> > diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
-> > new file mode 100644
-> > index 0000000..487da5e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
-> > @@ -0,0 +1,155 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> 
-> Dual license new bindings:
-> 
-> (GPL-2.0-only OR BSD-2-Clause)
+Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+Tested-by: Paul Cercueil <paul@crapouillou.net>
+---
+ drivers/iio/adc/ingenic-adc.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-Just curious, is that mandatory for any new bindings?
+diff --git a/drivers/iio/adc/ingenic-adc.c b/drivers/iio/adc/ingenic-adc.c
+index 39c0a609fc94..7a24bc1dabe1 100644
+--- a/drivers/iio/adc/ingenic-adc.c
++++ b/drivers/iio/adc/ingenic-adc.c
+@@ -383,6 +383,21 @@ static int ingenic_adc_read_raw(struct iio_dev *iio_dev,
+ 	}
+ }
+ 
++static int ingenic_adc_of_xlate(struct iio_dev *iio_dev,
++				const struct of_phandle_args *iiospec)
++{
++	int i;
++
++	if (!iiospec->args_count)
++		return -EINVAL;
++
++	for (i = 0; i < iio_dev->num_channels; ++i)
++		if (iio_dev->channels[i].channel == iiospec->args[0])
++			return i;
++
++	return -EINVAL;
++}
++
+ static void ingenic_adc_clk_cleanup(void *data)
+ {
+ 	clk_unprepare(data);
+@@ -392,6 +407,7 @@ static const struct iio_info ingenic_adc_info = {
+ 	.write_raw = ingenic_adc_write_raw,
+ 	.read_raw = ingenic_adc_read_raw,
+ 	.read_avail = ingenic_adc_read_avail,
++	.of_xlate = ingenic_adc_of_xlate,
+ };
+ 
+ static const struct iio_chan_spec ingenic_channels[] = {
+-- 
+2.24.1
 
-A.
