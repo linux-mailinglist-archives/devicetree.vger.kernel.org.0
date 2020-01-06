@@ -2,72 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C36A130D55
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 07:02:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C6DF130D8B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 07:30:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726818AbgAFGCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jan 2020 01:02:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46416 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726338AbgAFGCr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Jan 2020 01:02:47 -0500
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 49A5720848;
-        Mon,  6 Jan 2020 06:02:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1578290566;
-        bh=5hxva25df32tAsqNh8cqFx9odnLgu5hRKNw8HZPCLjk=;
-        h=In-Reply-To:References:Cc:To:Subject:From:Date:From;
-        b=eJpHhyL6Zn+jn0TWh26dV/uWPfkkWmsibBqQhvb21LVcA6A7krW1p2EYvzXNOKOcK
-         ZHOPLcOkOfPCnDSxRNQ3b9pxbUrX2wYkH4wWSFdwiASwgMB9KVTYbGmcU+0aeg6ay6
-         vV9ndySbUZQE22ipz4z55cTxtK2FyQVvBOuHX2Vk=
-Content-Type: text/plain; charset="utf-8"
+        id S1726770AbgAFGaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jan 2020 01:30:07 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55646 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726338AbgAFGaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 01:30:07 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0066Twd3058392;
+        Mon, 6 Jan 2020 00:29:58 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1578292198;
+        bh=5W0rKJu0XtdYnxnW8BrYFVS8xjJz8MYgse/qdgZRWLg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=SwUxVCk0+CdxCZ4ImRcknP+52vhb2XKld42U4cy6yqZaABJFGJST5o1TUMKKCs+aV
+         4YYbKFRWXmW7rOuG3P9uTvXWaSO/0Vy6WQ1/+7KegL+BX9Hqf+o0yKZ8Upm9DbbYFH
+         8ErQWgsUmOUkWSZ9WYv0Uxl9Den9NCPhDyKyd0po=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0066TwJl054027;
+        Mon, 6 Jan 2020 00:29:58 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 6 Jan
+ 2020 00:29:58 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 6 Jan 2020 00:29:58 -0600
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0066Tt7g006074;
+        Mon, 6 Jan 2020 00:29:56 -0600
+Subject: Re: [PATCH v4 00/14] PHY: Add support for SERDES in TI's J721E SoC
+To:     Rob Herring <robh+dt@kernel.org>,
+        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
+        Roger Quadros <rogerq@ti.com>, Jyri Sarha <jsarha@ti.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20191216095712.13266-1-kishon@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <5e2e9bb7-5d9a-b0bb-7057-ed1fbdfb11f7@ti.com>
+Date:   Mon, 6 Jan 2020 12:02:01 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200106045833.1725-1-masahiroy@kernel.org>
-References: <20200106045833.1725-1-masahiroy@kernel.org>
-Cc:     Julia Lawall <julia.lawall@lip6.fr>, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>
-To:     Andrew Morton <akpm@linux-foundation.org>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH] treewide: remove redundent IS_ERR() before error code check
-From:   Stephen Boyd <sboyd@kernel.org>
-User-Agent: alot/0.8.1
-Date:   Sun, 05 Jan 2020 22:02:45 -0800
-Message-Id: <20200106060246.49A5720848@mail.kernel.org>
+In-Reply-To: <20191216095712.13266-1-kishon@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Masahiro Yamada (2020-01-05 20:58:33)
-> 'PTR_ERR(p) =3D=3D -E*' is a stronger condition than IS_ERR(p).
-> Hence, IS_ERR(p) is unneeded.
->=20
-> The semantic patch that generates this commit is as follows:
->=20
-> // <smpl>
-> @@
-> expression ptr;
-> constant error_code;
-> @@
-> -IS_ERR(ptr) && (PTR_ERR(ptr) =3D=3D - error_code)
-> +PTR_ERR(ptr) =3D=3D - error_code
-> // </smpl>
->=20
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
 
-For
 
->  drivers/clk/clk.c                    | 2 +-
+On 16/12/19 3:26 PM, Kishon Vijay Abraham I wrote:
+> TI's J721E SoC uses Cadence Sierra SERDES for USB, PCIe and SGMII.
+> TI has a wrapper named WIZ to control input signals to Sierra and
+> Torrent SERDES.
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+Merged this series.
 
+Thanks
+Kishon
+
+> 
+> This patch series:
+>  1) Add support to WIZ module present in TI's J721E SoC
+>  2) Adapt Cadence Sierra PHY driver to be used for J721E SoC
+> 
+> Changes from v3:
+>  *) Fix Rob's comments on dt bindings
+>         -> Add properties to be added in WIZ child nodes to binding
+>         -> Use '-' rather than '_' in node names
+> 
+> Changes from v2:
+>  *) Deprecate "phy_clk" binding
+>  *) Fix Rob's comment on dt bindings
+>         -> Include BSD-2-Clause license identifier
+>         -> drop "oneOf" and "items" for compatible
+>         -> Fixed "num-lanes" to include only scalar keywords
+>         -> Change to 32-bit address space for child nodes
+> *) Rename cmn_refclk/cmn_refclk1 to cmn_refclk_dig_div/
+>    cmn_refclk1_dig_div
+> 
+> Changes from v1:
+>  *) Change the dt binding Documentation of WIZ wrapper to YAML format
+>  *) Fix an issue in Sierra while doimg rmmod
+> 
+> The series has also been pushed to
+> https://github.com/kishon/linux-wip.git j7_serdes_v4
+> 
+> Anil Varughese (1):
+>   phy: cadence: Sierra: Configure both lane cdb and common cdb registers
+>     for external SSC
+> 
+> Kishon Vijay Abraham I (13):
+>   dt-bindings: phy: Sierra: Add bindings for Sierra in TI's J721E
+>   phy: cadence: Sierra: Make "phy_clk" and "sierra_apb" optional
+>     resources
+>   phy: cadence: Sierra: Use "regmap" for read and write to Sierra
+>     registers
+>   phy: cadence: Sierra: Add support for SERDES_16G used in J721E SoC
+>   phy: cadence: Sierra: Make cdns_sierra_phy_init() as phy_ops
+>   phy: cadence: Sierra: Modify register macro names to be in sync with
+>     Sierra user guide
+>   phy: cadence: Sierra: Get reset control "array" for each link
+>   phy: cadence: Sierra: Check for PLL lock during PHY power on
+>   phy: cadence: Sierra: Change MAX_LANES of Sierra to 16
+>   phy: cadence: Sierra: Set cmn_refclk_dig_div/cmn_refclk1_dig_div
+>     frequency to 25MHz
+>   phy: cadence: Sierra: Use correct dev pointer in
+>     cdns_sierra_phy_remove()
+>   dt-bindings: phy: Document WIZ (SERDES wrapper) bindings
+>   phy: ti: j721e-wiz: Add support for WIZ module present in TI J721E SoC
+> 
+>  .../bindings/phy/phy-cadence-sierra.txt       |  13 +-
+>  .../bindings/phy/ti,phy-j721e-wiz.yaml        | 204 ++++
+>  drivers/phy/cadence/phy-cadence-sierra.c      | 699 +++++++++++---
+>  drivers/phy/ti/Kconfig                        |  15 +
+>  drivers/phy/ti/Makefile                       |   1 +
+>  drivers/phy/ti/phy-j721e-wiz.c                | 898 ++++++++++++++++++
+>  6 files changed, 1691 insertions(+), 139 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+>  create mode 100644 drivers/phy/ti/phy-j721e-wiz.c
+> 
