@@ -2,117 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DBBD130E41
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 09:01:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB66130E5B
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 09:07:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725817AbgAFIBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jan 2020 03:01:49 -0500
-Received: from mga03.intel.com ([134.134.136.65]:32659 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725446AbgAFIBt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Jan 2020 03:01:49 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Jan 2020 00:01:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,401,1571727600"; 
-   d="scan'208";a="215128790"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga008.jf.intel.com with ESMTP; 06 Jan 2020 00:01:48 -0800
-Received: from [10.226.38.20] (unknown [10.226.38.20])
-        by linux.intel.com (Postfix) with ESMTP id CD9CC5802C0;
-        Mon,  6 Jan 2020 00:01:46 -0800 (PST)
-Subject: Re: [PATCH v10 0/2] phy: intel-lgm-emmc: Add support for eMMC PHY
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, peter.harliman.liem@intel.com
-References: <20191217015658.23017-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <c5df1165-5b8d-f329-582f-15553eb5eb1a@ti.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <9917ebc0-656e-6539-504a-208ef375a989@linux.intel.com>
-Date:   Mon, 6 Jan 2020 16:01:45 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1725996AbgAFIG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jan 2020 03:06:29 -0500
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:39185 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725446AbgAFIG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 03:06:29 -0500
+Received: by mail-pl1-f196.google.com with SMTP id g6so18618304plp.6
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2020 00:06:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Kc4OOP9HlDHrazGn8ygbL0+SnkDIKiZeyDLgjyCdafs=;
+        b=N6vlhfEmOvMy7F7CmodSMsAX5uy/sztUmVOPhLo8EIl9iFwQ2NLWDi1zBiQ0HUI+ro
+         H563QhrI02xzr4klertPbDzI0unhimjQiTnFJo9Lm/Y5LNTk7uQDut/SczTOtbFuvfFy
+         T67gJwf+zgRk1FzK/lyW90NtqOanKwHtonwbvMw3QYn1nQeU/MYxDRE9oMfGw9yOKWz+
+         R8hxdeoq07y1LNcYCPr4h+rDa12O9RqgQPqubsGtauUci2YgAYgyBn6YjxkUe+fniB3F
+         AwcjV8JD6WgPv2DEehMpZ9CoJhopQgW3nafA0e470xlqukNHjbhNdSOkkOZynRJ+An8G
+         VJqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Kc4OOP9HlDHrazGn8ygbL0+SnkDIKiZeyDLgjyCdafs=;
+        b=QvN2rN7XbFwls3izQ0hOOhPVA3nAcyD7hHE5dghYzlS61VcjzPFU9o5VskSAh5rCra
+         qtlIW6VoQGT5UzL8t6rUT/Cf36D02oBXdlaOG65tp6ERKOmb0Brb3b4HCAh0ho2vomQ1
+         mJLgTiVZm5gSpCda1KecqrIPsC3w314nv31tycFQZunvi/ou6q5W6cQtTs+n5Ss4rORK
+         eElV9sj/8U3nXoIs1S7w0mK6G3dkq3Uyqq0khix5k3fwDPhJHxSYNs4VN3QI/bwpzngi
+         KN8pPv9kwMD3HgQTTBT2gU4xCAcn5h1IScq3gmWO/mxE8WZt15wdvDOgWpv6+N6qSTTk
+         xYuA==
+X-Gm-Message-State: APjAAAXndZQcL3QufNGzmbUogkBwVOos5VcfOiJVxh9JqUj0WNN/vUVr
+        kL3VUNFh6FONllXT0wGIjGmEfGirtgA=
+X-Google-Smtp-Source: APXvYqzPwEbf3yDTuo1YSLiQbcrhWeM/h2hOgU19IgmTT+k+BL1n/XH4cHd3sSgnA+OFj25/f1W7Gw==
+X-Received: by 2002:a17:902:d898:: with SMTP id b24mr100079663plz.133.1578297988771;
+        Mon, 06 Jan 2020 00:06:28 -0800 (PST)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id y20sm11916038pfe.107.2020.01.06.00.06.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2020 00:06:28 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] clk: qcom: gcc-msm8996: Fix CLKREF parenting
+Date:   Mon,  6 Jan 2020 00:05:44 -0800
+Message-Id: <20200106080546.3192125-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <c5df1165-5b8d-f329-582f-15553eb5eb1a@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+We've always seen intermittent resets of msm8996 during boot, seemingly related
+to PCIe somehow. The likely cause of these errors are the fact that the CLKREF
+of all PHYs are parented by LN_BB, which while being on during boot is disabled
+by the UFS host driver if it fails to find its PHY.
 
-On 6/1/2020 3:24 PM, Kishon Vijay Abraham I wrote:
->
-> On 17/12/19 7:26 AM, Ramuthevar,Vadivel MuruganX wrote:
->> Add eMMC-PHY support for Intel LGM SoC
-> merged now, Thanks!
+As such, depending on the timeing (and success) of the UFS initialization, PCIe
+might loose its clocking.
 
-Thanks a lot!!! Kishon for the quick rely and merge.
+These two patches ensures that LN_BB, connected to the CXO2 pad on the SoC, is
+described as parent for all the CLKREF clocks. So that they all vote for this
+clock appropriately.
 
----
-Regards
-Vadivel
->
-> -Kishon
->
->> changes in v10:
->>    - Rob's review comments update in YAML
->>    - drop clock-names since it is single entry
->>   
->> changes in v9:
->>    - Rob's review comments update in YAML
->>
->> changes in v8:
->>   Remove the extra Signed-of-by
->>
->> changes in v7:
->>   Rebased to maintainer kernel tree phy-tag-5.5
->>
->> changes in v6:
->>     - cobined comaptible strings
->>     - added as contiguous and can be a single entry for reg properties
->> changes in v5:
->>     - earlier Review-by tag given by Rob
->>     - rework done with syscon parent node.
->>
->>   changes in v4:
->>     - As per Rob's review: validate 5.2 and 5.3
->>     - drop unrelated items.
->>
->>   changes in v3:
->>     - resolve 'make dt_binding_check' warnings
->>
->>   changes in v2:
->>     As per Rob Herring review comments, the following updates
->>    - change GPL-2.0 -> (GPL-2.0-only OR BSD-2-Clause)
->>    - filename is the compatible string plus .yaml
->>    - LGM: Lightning Mountain
->>    - update maintainer
->>    - add intel,syscon under property list
->>    - keep one example instead of two
->>
->>
->>
->> Ramuthevar Vadivel Murugan (2):
->>    dt-bindings: phy: intel-emmc-phy: Add YAML schema for LGM eMMC PHY
->>    phy: intel-lgm-emmc: Add support for eMMC PHY
->>
->>   .../bindings/phy/intel,lgm-emmc-phy.yaml           |  56 ++++
->>   drivers/phy/Kconfig                                |   1 +
->>   drivers/phy/Makefile                               |   1 +
->>   drivers/phy/intel/Kconfig                          |   9 +
->>   drivers/phy/intel/Makefile                         |   2 +
->>   drivers/phy/intel/phy-intel-emmc.c                 | 283 +++++++++++++++++++++
->>   6 files changed, 352 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->>   create mode 100644 drivers/phy/intel/Kconfig
->>   create mode 100644 drivers/phy/intel/Makefile
->>   create mode 100644 drivers/phy/intel/phy-intel-emmc.c
->>
+Bjorn Andersson (2):
+  clk: qcom: gcc-msm8996: Fix parent for CLKREF clocks
+  arm64: dts: qcom: msm8996: Define parent clocks for gcc
+
+ .../devicetree/bindings/clock/qcom,gcc.yaml   | 10 ++++++
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  3 ++
+ drivers/clk/qcom/gcc-msm8996.c                | 35 +++++++++++++++----
+ 3 files changed, 41 insertions(+), 7 deletions(-)
+
+-- 
+2.24.0
+
