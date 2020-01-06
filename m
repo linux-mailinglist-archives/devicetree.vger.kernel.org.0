@@ -2,59 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E91B130CF2
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 06:23:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E18130D33
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 06:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726536AbgAFFXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jan 2020 00:23:40 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47620 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725446AbgAFFXk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 00:23:40 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0065NTJd030572;
-        Sun, 5 Jan 2020 23:23:29 -0600
+        id S1726338AbgAFFa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jan 2020 00:30:57 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:46734 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726303AbgAFFa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 00:30:57 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0065UmVp123951;
+        Sun, 5 Jan 2020 23:30:48 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1578288209;
-        bh=rTz3tg0hukG6B7Zkj7d+S6fA37E2Q8Ph5uLJXD8dxww=;
+        s=ti-com-17Q1; t=1578288648;
+        bh=l3SBppAnhj+nCRQvU2uA5pxuogA04+AgYwbbsVVv9EM=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Z8VCJpO4Wx34j08zAwzjmyhePKALEpr4bj3GwgpRjcRFPVp76bd559eS49h8VZxmS
-         4U1Ho4mtD6bMRORY1fxKDFpheE9ys9SEpOCSR1Hha/WVIWU7zMJdDnnXKILPuPH6pM
-         41CKR/CFZ7kNK1wEh+Fct/bmbHghJNsdH+2xFZ94=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0065NT2p076205;
-        Sun, 5 Jan 2020 23:23:29 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+        b=Su0gWFZwb1VAtWnyYa8HXAL1JszTInCplgf/dDL9xJPzE7pH17mZ4oM/r/leuMq66
+         zVbFl+Xt5DO/OIyDsfr/QW1sNISV8QDFE5w3oOf30WW4gRBjpBg2A7qPO/1WUwL4mS
+         yI19JtuZ88IHVI1KWSddXZicOL2BILYM02NnlBpI=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0065Ump6048897
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 5 Jan 2020 23:30:48 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Sun, 5 Jan
- 2020 23:23:28 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ 2020 23:30:48 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Sun, 5 Jan 2020 23:23:28 -0600
+ Frontend Transport; Sun, 5 Jan 2020 23:30:48 -0600
 Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0065NPAk105709;
-        Sun, 5 Jan 2020 23:23:26 -0600
-Subject: Re: [PATCH v4 00/13] phy: usb: Updates to Broadcom STB USB PHY driver
-To:     Al Cooper <alcooperx@gmail.com>, <linux-kernel@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Srinath Mannam <srinath.mannam@broadcom.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200103181811.22939-1-alcooperx@gmail.com>
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0065Uiu9120958;
+        Sun, 5 Jan 2020 23:30:45 -0600
+Subject: Re: [PATCH v2 01/14] dt-bindings: phy: Convert Cadence MHDP PHY
+ bindings to YAML.
+To:     Yuti Amonkar <yamonkar@cadence.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>, <maxime@cerno.tech>
+CC:     <jsarha@ti.com>, <tomi.valkeinen@ti.com>, <praneeth@ti.com>,
+        <mparab@cadence.com>, <sjakhade@cadence.com>
+References: <1577114139-14984-1-git-send-email-yamonkar@cadence.com>
+ <1577114139-14984-2-git-send-email-yamonkar@cadence.com>
 From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <76cf24f1-4d72-2dec-ef80-36d6d3744ebe@ti.com>
-Date:   Mon, 6 Jan 2020 10:55:30 +0530
+Message-ID: <5b1c3157-2584-c9c2-0823-ce4a5c709492@ti.com>
+Date:   Mon, 6 Jan 2020 11:02:50 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200103181811.22939-1-alcooperx@gmail.com>
+In-Reply-To: <1577114139-14984-2-git-send-email-yamonkar@cadence.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -64,53 +61,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On 23/12/19 8:45 PM, Yuti Amonkar wrote:
+> - Convert the MHDP PHY devicetree bindings to yaml schemas.
+> - Rename DP PHY to have generic Torrent PHY nomrnclature.
+> - Rename compatible string from "cdns,dp-phy" to "cdns,torrent-phy".
+>   This will not affect ABI as the driver has never been functional,
+>   and therefore do not exist in any active use case
 
-On 03/01/20 11:47 PM, Al Cooper wrote:
-> This patchset contains various updates to the Broadcom STB USB Driver.
-> The updates include:
-> - Add support for 7216 and 7211 Broadcom SoCs which use the new
->   Synopsys USB Controller.
-> - Add support for USB Wake
-> - Add various bug fixes.
+Since the Torrent SERDES is similar in design to Sierra SERDES, can we
+make the binding look similar too.
 
-merged, thanks!
+For example, with the current binding here, it might not be possible to
+specify multi-link. Sierra has a subnode for every link.
 
--Kishon
+Thanks
+Kishon
+
 > 
+> Signed-off-by: Yuti Amonkar <yamonkar@cadence.com>
+> ---
+>  .../devicetree/bindings/phy/phy-cadence-dp.txt     | 30 ----------
+>  .../bindings/phy/phy-cadence-torrent.yaml          | 64 ++++++++++++++++++++++
+>  2 files changed, 64 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-dp.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
 > 
-> v4 - Fix mispelling, change Synopsis to Synopsys. Also add
->      "Reviewed-by: Rob Herring" to bindings patch. There are no
->      functional code changes in v4.
-> 
-> v3 - Rebase to v5.5-rc1
-> 
-> v2 - Changes based on review feedback
->    - Add vendor prefix to DT property "syscon-piarbctl"
->    - Use standard "wakeup" instead of "wake" for DT "interrupt-names"
-> 
-> Al Cooper (13):
->   phy: usb: EHCI DMA may lose a burst of DMA data for 7255xA0 family
->   phy: usb: Get all drivers that use USB clks using correct
->     enable/disable
->   phy: usb: Put USB phys into IDDQ on suspend to save power in S2 mode
->   phy: usb: Add "wake on" functionality
->   phy: usb: Restructure in preparation for adding 7216 USB support
->   dt-bindings: Add Broadcom STB USB PHY binding document
->   phy: usb: Add support for new Synopsys USB controller on the 7216
->   phy: usb: Add support for new Synopsys USB controller on the 7211b0
->   phy: usb: fix driver to defer on clk_get defer
->   phy: usb: PHY's MDIO registers not accessible without device installed
->   phy: usb: bdc: Fix occasional failure with BDC on 7211
->   phy: usb: USB driver is crashing during S3 resume on 7216
->   phy: usb: Add support for wake and USB low power mode for 7211 S2/S5
-> 
->  .../bindings/phy/brcm,brcmstb-usb-phy.txt     |  69 ++-
->  drivers/phy/broadcom/Makefile                 |   2 +-
->  .../phy/broadcom/phy-brcm-usb-init-synopsys.c | 414 ++++++++++++++++++
->  drivers/phy/broadcom/phy-brcm-usb-init.c      | 226 +++++-----
->  drivers/phy/broadcom/phy-brcm-usb-init.h      | 148 ++++++-
->  drivers/phy/broadcom/phy-brcm-usb.c           | 269 ++++++++++--
->  6 files changed, 943 insertions(+), 185 deletions(-)
->  create mode 100644 drivers/phy/broadcom/phy-brcm-usb-init-synopsys.c
+> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-dp.txt b/Documentation/devicetree/bindings/phy/phy-cadence-dp.txt
+> deleted file mode 100644
+> index 7f49fd54e..0000000
+> --- a/Documentation/devicetree/bindings/phy/phy-cadence-dp.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -Cadence MHDP DisplayPort SD0801 PHY binding
+> -===========================================
+> -
+> -This binding describes the Cadence SD0801 PHY hardware included with
+> -the Cadence MHDP DisplayPort controller.
+> -
+> --------------------------------------------------------------------------------
+> -Required properties (controller (parent) node):
+> -- compatible	: Should be "cdns,dp-phy"
+> -- reg		: Defines the following sets of registers in the parent
+> -		  mhdp device:
+> -			- Offset of the DPTX PHY configuration registers
+> -			- Offset of the SD0801 PHY configuration registers
+> -- #phy-cells	: from the generic PHY bindings, must be 0.
+> -
+> -Optional properties:
+> -- num_lanes	: Number of DisplayPort lanes to use (1, 2 or 4)
+> -- max_bit_rate	: Maximum DisplayPort link bit rate to use, in Mbps (2160,
+> -		  2430, 2700, 3240, 4320, 5400 or 8100)
+> --------------------------------------------------------------------------------
+> -
+> -Example:
+> -	dp_phy: phy@f0fb030a00 {
+> -		compatible = "cdns,dp-phy";
+> -		reg = <0xf0 0xfb030a00 0x0 0x00000040>,
+> -		      <0xf0 0xfb500000 0x0 0x00100000>;
+> -		num_lanes = <4>;
+> -		max_bit_rate = <8100>;
+> -		#phy-cells = <0>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> new file mode 100644
+> index 0000000..3587312
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> @@ -0,0 +1,64 @@
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/phy-cadence-torrent.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Cadence Torrent SD0801 PHY binding for DisplayPort
+> +
+> +description:
+> +  This binding describes the Cadence SD0801 PHY hardware included with
+> +  the Cadence MHDP DisplayPort controller.
+> +
+> +maintainers:
+> +  - Swapnil Jakhade <sjakhade@cadence.com>
+> +  - Yuti Amonkar <yamonkar@cadence.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: cdns,torrent-phy
+> +
+> +  reg:
+> +    items:
+> +      - description: Offset of the DPTX PHY configuration registers.
+> +      - description: Offset of the SD0801 PHY configuration registers.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dptx_phy
+> +      - const: sd0801_phy
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  num_lanes:
+> +    description:
+> +      Number of DisplayPort lanes.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [1, 2, 4]
+> +
+> +  max_bit_rate:
+> +    description:
+> +      Maximum DisplayPort link bit rate to use, in Mbps
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/uint32
+> +      - enum: [2160, 2430, 2700, 3240, 4320, 5400, 8100]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dp_phy: phy@f0fb030a00 {
+> +          compatible = "cdns,torrent-phy";
+> +          reg = <0xf0 0xfb030a00 0x0 0x00000040>,
+> +                <0xf0 0xfb500000 0x0 0x00100000>;
+> +          num_lanes = <4>;
+> +          max_bit_rate = <8100>;
+> +          #phy-cells = <0>;
+> +    };
+> +...
 > 
