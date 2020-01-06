@@ -2,105 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74156131858
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 20:10:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83919131869
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 20:13:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbgAFTKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jan 2020 14:10:09 -0500
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:39006 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726569AbgAFTKI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 14:10:08 -0500
-Received: by mail-pg1-f195.google.com with SMTP id b137so27284090pga.6;
-        Mon, 06 Jan 2020 11:10:08 -0800 (PST)
+        id S1726701AbgAFTNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jan 2020 14:13:25 -0500
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:38592 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726659AbgAFTNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 14:13:25 -0500
+Received: by mail-pg1-f194.google.com with SMTP id a33so27289484pgm.5
+        for <devicetree@vger.kernel.org>; Mon, 06 Jan 2020 11:13:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=5UWJNKwGSnZRp2VqvhJODGUDqM6guG99MwzXRTV7Nb0=;
-        b=ipVTd/8WzUVxxKpTAZ5SKS4Qu+ymKDslRCsM2dW8CGQMRNF6NzHNamg6TOhJBPyGg4
-         ORhCV/Q5T8y2fc6B1zO52fudCe7Ri99+HF+7CYMnu/g6aUg/jkTAxDng5wgqVlYQPW5M
-         Eb1mHgurqw9jEMBxSZrCkCc/YNhvW1uG9OzYyDLsfbfTLtq8DxHe2/KfwxYAVG5uY07m
-         Bu+Es72kW0OdrMRIyWbKxuwGZnqRBRvhXad4hOpPqKc9VD/hJXtap77MbDviSyNM10Wi
-         rq9UBlVrwtu3Xybe/h9VTxYu7wSVEZitLRu2ig4aK71hqy34yItwhdaoDe3AQ1acwACR
-         8n1Q==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=CWeF+qEiMx35B55O581zGPkQBg4u6jbLRdkEV6WWjg8=;
+        b=ebxUl9dh1FKnFxAkXnwnaZCuaaW7Za3VZTOLf6eUWfhcIgGX1Xz4QDGju8SuP5ORKP
+         +du3pSdkH3bQlfRjCN85Ni0pP7LTiGwkCL4usBBoPhMGs/VMDbPuDOhZXAs4jIC7YSpo
+         YUZgh/lxWqemlC2IiMVH7ZifwWjV3hC1ot50I8x0NIKEM7/T7oUPFcio0crZXbwyMGRK
+         USHhjFnz5ZPdh1xzGPh3VrEq2zf2esPa9ytQvLFI3zghZ9o+qrEICzfoLrWXxWgCeCUe
+         84RIcJbbsECIWTdE/mUg9cmjkk21JgRELcVxW66bZElpCAa+SGdAUEXOu2hpLWdnhP+u
+         hOXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=5UWJNKwGSnZRp2VqvhJODGUDqM6guG99MwzXRTV7Nb0=;
-        b=pYL5uIdx7aZJKyaWj2wLXAJeeqolVv6liUqzlcoS60wXfZgwjqP2mVvsE61NAJkr4i
-         ytqzTjV3U4aG8EOKU/8LT8svShR8ZN8Cds4LtnpGBfiVCYydEBx1ak3XnlQ1wdrJF5DZ
-         U5p1YqY+I/N9/DfLQwferxZVhYpCM07XXOg4ajtm3QX8DOgsRBw68lyaAX0KIWvT4PWl
-         0yumoBq6/vkNYQlM956/VHWPGY3ozxW+Q+j60W0lo4gKzoDwdzorinWIsJOP/vdYmOaM
-         bWfcYT+2jS96ZEiOouiQeElvhMcSJSkCDi2siBZrdoXjg5l/mF6uMpvfpRGriCCFYaLJ
-         rHTw==
-X-Gm-Message-State: APjAAAUKM1ip9WzZeKOf1SqNxX9cNE529WGMLPVN1zdieadwqUG/nbsV
-        eOLr9cXpEa0iZb4hStipdSI=
-X-Google-Smtp-Source: APXvYqy3M3OIjOkADUaBh75HkL/X1n2uuXocdJbwJl2rTbC++kuHHBua+mNCifGNrP3hQMUCclRBEg==
-X-Received: by 2002:a63:7705:: with SMTP id s5mr110197804pgc.379.1578337808378;
-        Mon, 06 Jan 2020 11:10:08 -0800 (PST)
-Received: from localhost ([2001:19f0:6001:12c8:5400:2ff:fe72:6403])
-        by smtp.gmail.com with ESMTPSA id s24sm24868480pjp.17.2020.01.06.11.10.07
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 06 Jan 2020 11:10:07 -0800 (PST)
-From:   Yangtao Li <tiny.windzz@gmail.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
-        krzk@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Yangtao Li <tiny.windzz@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: exynos: tiny4412: add proper panel node
-Date:   Mon,  6 Jan 2020 19:10:03 +0000
-Message-Id: <20200106191003.21584-2-tiny.windzz@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200106191003.21584-1-tiny.windzz@gmail.com>
-References: <20200106191003.21584-1-tiny.windzz@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=CWeF+qEiMx35B55O581zGPkQBg4u6jbLRdkEV6WWjg8=;
+        b=pSSZwOXPwUk3wGCve0iFr4f1hHYr7hhu0RhDDRsd+Ah5gU4BKr7zIKGYIYkP8M+VFm
+         S2VwcBLTxiOxs08tfDJkDtgxpjEPwWgQaXz6g6PUFA9r1kKZo6Fp1ZTEmWrT0CUK2vQk
+         dFc7eR1V7ggKD/OSO9mEPmcjaXQvXfufMfxEwrxZDkC54/jLCwwWzXYrbEA+cfm00P9e
+         kvycIDDGGVDNOwYeMzlP9HWA8YXgxSOEB1N5DUYGpfAbR7Hd/xjaFDpsegO72U8/wLPp
+         Q1w9z+pVNv1593QRecmYO7x5obc5ehmLTzzuBA+f8pakRFsrOB6l8Yr1/fzPmjS1MQ18
+         0fKQ==
+X-Gm-Message-State: APjAAAWE9cZN1Aq7m86mgQ7KdXKuaTABFGMPak3oEvLe7M0rNhCXqJhK
+        oAUnngti6i9xWAsUr677BlNmvw==
+X-Google-Smtp-Source: APXvYqwVRgLXSzVPKren8Gq/VjMYYjdAkXhimprfkvlgbJfFMBCuRAYFriDOjImyXhnvrMbBQoyGsQ==
+X-Received: by 2002:a63:eb02:: with SMTP id t2mr112827707pgh.289.1578338004229;
+        Mon, 06 Jan 2020 11:13:24 -0800 (PST)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id r66sm80457803pfc.74.2020.01.06.11.13.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Jan 2020 11:13:23 -0800 (PST)
+Date:   Mon, 6 Jan 2020 11:13:21 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stanimir Varbanov <stanimir.varbanov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: msm8996: Fix venus iommu nodename error
+Message-ID: <20200106191321.GU3755841@builder>
+References: <20200106102305.27059-1-stanimir.varbanov@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200106102305.27059-1-stanimir.varbanov@linaro.org>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add at070tn92 panel for tiny4412 board.
+On Mon 06 Jan 02:23 PST 2020, Stanimir Varbanov wrote:
 
-Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
----
- arch/arm/boot/dts/exynos4412-tiny4412.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> Fix the following error/warn seen with make dtbs_check
+> 
+> arm,smmu-venus@d40000: $nodename:0: 'arm,smmu-venus@d40000' does not match '^iommu@[0-9a-f]*'
+> arm,smmu-venus@d40000: clock-names:0: 'bus' was expected
+> arm,smmu-venus@d40000: clock-names:1: 'iface' was expected
+> 
+> by rename nodename to "iommu".
+> 
+> Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
 
-diff --git a/arch/arm/boot/dts/exynos4412-tiny4412.dts b/arch/arm/boot/dts/exynos4412-tiny4412.dts
-index 2b62cb27420c..57f9d09233ad 100644
---- a/arch/arm/boot/dts/exynos4412-tiny4412.dts
-+++ b/arch/arm/boot/dts/exynos4412-tiny4412.dts
-@@ -66,6 +66,16 @@
- 			clock-frequency = <24000000>;
- 		};
- 	};
-+
-+	panel {
-+		compatible = "innolux,at070tn92";
-+
-+		port {
-+			panel_input: endpoint {
-+				remote-endpoint = <&lcdc_output>;
-+			};
-+		};
-+	};
- };
- 
- &fimd {
-@@ -74,6 +84,12 @@
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	status = "okay";
-+	port@3 {
-+		reg = <3>;
-+		lcdc_output: endpoint {
-+			remote-endpoint = <&panel_input>;
-+		};
-+	};
- };
- 
- &rtc {
--- 
-2.17.1
+Thanks Stan, applied.
 
+> ---
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 4ca2e7b44559..9bbcee31f28b 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -2267,7 +2267,7 @@
+>  			};
+>  		};
+>  
+> -		venus_smmu: arm,smmu-venus@d40000 {
+> +		venus_smmu: iommu@d40000 {
+>  			compatible = "qcom,msm8996-smmu-v2", "qcom,smmu-v2";
+>  			reg = <0xd40000 0x20000>;
+>  			#global-interrupts = <1>;
+> -- 
+> 2.17.1
+> 
