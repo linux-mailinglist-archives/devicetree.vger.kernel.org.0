@@ -2,159 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E91130ED3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 09:43:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8D47130EE8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Jan 2020 09:52:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725843AbgAFImr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jan 2020 03:42:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40320 "EHLO mail.kernel.org"
+        id S1725821AbgAFIwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jan 2020 03:52:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57294 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726463AbgAFImq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 6 Jan 2020 03:42:46 -0500
-Received: from wens.tw (mirror2.csie.ntu.edu.tw [140.112.30.76])
+        id S1725446AbgAFIwC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 6 Jan 2020 03:52:02 -0500
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6381B2467C;
-        Mon,  6 Jan 2020 08:42:45 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C12BE20848;
+        Mon,  6 Jan 2020 08:52:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1578300165;
-        bh=0EIGPjYZo6FBtZUEJQgirKj6xdjoxrfaE3eT2iKS86s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=unTNw/nHTKzY1uXQZVSWdfnLxW9lfD7nao0e3WVvhzeaa2N4VgILukEnQwHayt+PX
-         zD/ZWIdj9j0IDldXXusntoeJxgHzAgLPoFoMdMQMRqZMus1eDGTr7MFBZpjdZZRN3g
-         fnjF2/nNcPxDeqdtX1sdwfm7m7K+bGZKKX+9mymk=
-Received: by wens.tw (Postfix, from userid 1000)
-        id 73CB35FD7D; Mon,  6 Jan 2020 16:42:41 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        s=default; t=1578300722;
+        bh=E+6+jXxqoUF8JBv1qsja8+TZpcYAmNNZ5HQDABfvKuI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=h4xlslVdQiv8N7fhoPP8JaP1b9TB5P6wsd2h1uTZhbj6lyDVHVZ+WMhTITIGHQLuQ
+         60WtDtaXaJXoqrGGifMzcOYrMX54CAUZKQR3hmCsLrSFYvf/l3v40R3HgK7XW57zO/
+         ZBUDURZ8mB6nyLnIqnrs6aRuRuzkGsa5swSDFxP4=
+Date:   Mon, 6 Jan 2020 09:51:59 +0100
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] [DO NOT MERGE] ARM: dts: sun8i-r40: bananapi-m2-ultra: Enable OV5640 camera
-Date:   Mon,  6 Jan 2020 16:42:40 +0800
-Message-Id: <20200106084240.1076-8-wens@kernel.org>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200106084240.1076-1-wens@kernel.org>
+Subject: Re: [PATCH v2 3/7] dt-bindings: bus: sunxi: Add R40 MBUS compatible
+Message-ID: <20200106085159.oirhyvxov6c4lzs6@gilmour.lan>
 References: <20200106084240.1076-1-wens@kernel.org>
+ <20200106084240.1076-4-wens@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="fzzjkvck4wgddh6g"
+Content-Disposition: inline
+In-Reply-To: <20200106084240.1076-4-wens@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
 
-Bananapi offers a small OV5640 based camera module, attached via an FPC
-connector.
+--fzzjkvck4wgddh6g
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Add the related regulator constraints, and hook everything up.
+On Mon, Jan 06, 2020 at 04:42:36PM +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
+>
+> Allwinner R40 SoC also contains MBUS controller.
+>
+> Add compatible for it.
+>
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-diff --git a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-index 42d62d1ba1dc..86183d40c7af 100644
---- a/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-+++ b/arch/arm/boot/dts/sun8i-r40-bananapi-m2-ultra.dts
-@@ -113,6 +113,24 @@ &ahci {
- 	status = "okay";
- };
- 
-+&csi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&csi0_8bits_pins>;
-+	status = "okay";
-+
-+	port {
-+		/* Parallel bus endpoint */
-+		csi0_from_ov5640: endpoint {
-+			remote-endpoint = <&ov5640_to_csi0>;
-+			bus-width = <8>;
-+			hsync-active = <1>; /* Active high */
-+			vsync-active = <1>; /* Active high */
-+			data-active = <1>;  /* Active high */
-+			pclk-sample = <1>;  /* Rising */
-+		};
-+	};
-+};
-+
- &de {
- 	status = "okay";
- };
-@@ -164,6 +182,37 @@ axp22x: pmic@34 {
- 
- #include "axp22x.dtsi"
- 
-+&i2c4 {
-+	status = "okay";
-+
-+	ov5640: camera@3c {
-+		compatible = "ovti,ov5640";
-+		reg = <0x3c>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&csi0_mclk_pin>;
-+		clocks = <&ccu CLK_CSI0_MCLK>;
-+		clock-names = "xclk";
-+
-+		reset-gpios = <&pio 8 7 GPIO_ACTIVE_LOW>; /* PI7 */
-+		powerdown-gpios = <&pio 8 6 GPIO_ACTIVE_HIGH>; /* PI6 */
-+		AVDD-supply = <&reg_aldo1>;
-+		DOVDD-supply = <&reg_eldo1>;
-+		DVDD-supply = <&reg_eldo2>;
-+
-+		port {
-+			ov5640_to_csi0: endpoint {
-+				remote-endpoint = <&csi0_from_ov5640>;
-+				bus-width = <8>;
-+				data-shift = <2>;
-+				hsync-active = <1>; /* Active high */
-+				vsync-active = <1>; /* Active high */
-+				data-active = <1>;  /* Active high */
-+				pclk-sample = <1>;  /* Rising */
-+			};
-+		};
-+	};
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_dcdc1>;
- 	bus-width = <4>;
-@@ -209,6 +258,12 @@ &pio {
- 	vcc-pg-supply = <&reg_dldo1>;
- };
- 
-+&reg_aldo1 {
-+	regulator-name = "csi-avdd";
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+};
-+
- &reg_aldo2 {
- 	regulator-min-microvolt = <2500000>;
- 	regulator-max-microvolt = <2500000>;
-@@ -289,6 +344,18 @@ &reg_dldo4 {
- 	regulator-name = "vdd2v5-sata";
- };
- 
-+&reg_eldo1 {
-+	regulator-name = "csi-iovcc";
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+};
-+
-+&reg_eldo2 {
-+	regulator-name = "csi-dvdd";
-+	regulator-min-microvolt = <1500000>;
-+	regulator-max-microvolt = <1500000>;
-+};
-+
- &reg_eldo3 {
- 	regulator-min-microvolt = <1200000>;
- 	regulator-max-microvolt = <1200000>;
--- 
-2.24.1
+Thanks!
+Maxime
 
+--fzzjkvck4wgddh6g
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXhL1LwAKCRDj7w1vZxhR
+xWpOAP4whnttbvE2hfVbsNwjE7RNPqRTYADXuBxx1mgcnvmu2wD/XEaXL0cTGKKp
+YA8JcPr/DbtfRVazD96m/sWxWyu/UAQ=
+=z178
+-----END PGP SIGNATURE-----
+
+--fzzjkvck4wgddh6g--
