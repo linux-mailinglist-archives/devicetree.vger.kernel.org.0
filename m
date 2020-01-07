@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 661AB1326EC
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 14:01:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B60132716
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 14:09:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728080AbgAGNBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jan 2020 08:01:44 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:36249 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727834AbgAGNBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 08:01:44 -0500
-Received: by mail-wm1-f66.google.com with SMTP id p17so19296725wma.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2020 05:01:42 -0800 (PST)
+        id S1727994AbgAGNJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jan 2020 08:09:06 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:45474 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726937AbgAGNJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 08:09:06 -0500
+Received: by mail-wr1-f67.google.com with SMTP id j42so53812024wrj.12
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2020 05:09:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=rsd4WxHtfQsVDCvn7FcjJVFWrx0QIgf8GxfkAbKjofQ=;
-        b=t57Lq1k++t+1RObQ6sShnQgRverizUkmwShdSCnRt9lpDnO9ae7437MuvUAIXbrJ13
-         INGbLEg/mxAp0Az+JMD+P/LXln2x3nRQtn89tWSipX+cmE+giYUSjw0azjchIbqEeXIA
-         R3TnAzO/6tD73X3mZ06to1NKqGSM3dHV/KGpDlk4tr6qx0f4a88uNKIImQky61zgNluh
-         m81wnD2SGnhdCbhdcms6156P5FWQ/5m4g4IiqvvyrmPPgt2N3eOvI69cXoZu6ZoULuBM
-         b3lt43QWtL5G69mqtICN/BNHVuJAmOvp8aKuMAC8M1AJIn1u503vbmdmafHh6WyaQRzt
-         jF2A==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Iz352BxuGbNcIztke1mPgtWeM92kMtEgll1IObizsfo=;
+        b=mh0np/XSsz+h4CoB38HETauJmkbz8BR6FmKGypqqOtcnNzw7u0JHU+rG8g+IuVrB3T
+         YC0UU4aDQQE8m3zagVnJMXDnO18NcI3ySxEPagHAkbOXr+KyYC9WKn9l3vgnk9fLoGBt
+         yYXzfW2u6rTKVa6Ii0nqRHruIC+8JiV2NMBGtxPwop0glq3FlMPTyxSMCAs8Plk3M6Y8
+         huiqjx2dS3pSH3+pU86kwN7yGkKjVGVG3U773NeU3HIBSzEm1U7OEkfhV+P/Q/KnZ3IG
+         Vb+h3q5bop0U7ImfGrNvU5pQV40e/N7CvKVRsBkpEa4pQaQa+CQX+ONTFykH/UylPIYM
+         xCMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=rsd4WxHtfQsVDCvn7FcjJVFWrx0QIgf8GxfkAbKjofQ=;
-        b=DwPvqZopMEsdOg9I+tryPim17gD06AdbpTxxuhMirX7IUcqGOQ/0NEVdHYbUwVEouH
-         jfxqAe7X7mhExKechfDS7qFma2o/ng9G7WKzwg47+Tghnv9scmIwEtnRy5Ald1llyuAw
-         sxcpDVmJ+YCpSZCNnsM07BA30wzecmujTIehzLgbzXUfwXcgjdRtr6kcA+hoUljFStgV
-         gHm+MLw1Lmxg97Vzk1F2O/JUNkDUe2lvYYf1CqEBHmBLE4oKYOBfpC11JSPDWvGVP2eO
-         +c1WIMEKrnBLnu+mHptaEobUveU/qIOybmn3/0QsLazaaxV1JgMAJD+pEt7GuryIyrHq
-         oH8g==
-X-Gm-Message-State: APjAAAVhUsythsJZVxjDUxj6dKFoo0EdgYqUFKrikT7MMTUG/2HK6OgK
-        AwuU0HYiQn3pDwYhZ4X4LracQg==
-X-Google-Smtp-Source: APXvYqwMlqIbVKT8/8AOvzjJhmb6FM38WJc7sDo3lwZDlIiVfkTWsJRI+dWlgGyRqgxg/h7EevIgaA==
-X-Received: by 2002:a1c:2187:: with SMTP id h129mr41447568wmh.44.1578402102060;
-        Tue, 07 Jan 2020 05:01:42 -0800 (PST)
-Received: from dell ([2.27.35.135])
-        by smtp.gmail.com with ESMTPSA id r15sm26449932wmh.21.2020.01.07.05.01.40
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Iz352BxuGbNcIztke1mPgtWeM92kMtEgll1IObizsfo=;
+        b=GPqgRxbZRcm8i4UJqDajCsCAzA2S7ObslZsBZKZ644o7wjDgKJ8LFiNbAkQxf1OJyW
+         lh+9QIyYJKY1ukiMWTLHi93dVtA08o+tx5oAdPYO7A7IrpdwWwqzZ/x4wum5NBIOeSOg
+         LFYkXr98RuEpuzEVMC528p2HtqVcBrAP2eXpTwBUR/CnTUR0aqCWuDJagvAK4IkuWWgN
+         0/Xae0/LquFgRfArI1J8nsQuxoDwoQE3W37OPqXahCoazxMkyQVb3aT82ZuLfmvnc4ue
+         e+2LwlBrQyLD4p9/IeUJ4yPjVnCuAAeEwVBWpZeCtDVKC467+KFXJD80+OdwYCgrk+kZ
+         NBqg==
+X-Gm-Message-State: APjAAAUv3ZU+j7FfftX1bF3biZ0Tw9+ZkBMurUKpQ+B+8GXrQ31AStoM
+        gOvXa/wk4cjT8S3Q75oGhVPb9A==
+X-Google-Smtp-Source: APXvYqzva1xlPiPPlyDupp/or7rh5j3PKMzL2qSijT1KHNdr4CPcPjMT6cjFSkIdDmHoOWHjWka4iQ==
+X-Received: by 2002:adf:d0c1:: with SMTP id z1mr112621130wrh.371.1578402544210;
+        Tue, 07 Jan 2020 05:09:04 -0800 (PST)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id b18sm7287035wru.50.2020.01.07.05.09.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2020 05:01:41 -0800 (PST)
-Date:   Tue, 7 Jan 2020 13:01:55 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: bd718x7: Yamlify and add BD71850
-Message-ID: <20200107130155.GK14821@dell>
-References: <20191227111235.GA3370@localhost.localdomain>
+        Tue, 07 Jan 2020 05:09:03 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org
+Cc:     robh@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, spapothi@codeaurora.org,
+        bgoswami@codeaurora.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v7 0/2] gpio: wcd934x: Add support to wcd934x gpio controller
+Date:   Tue,  7 Jan 2020 13:08:42 +0000
+Message-Id: <20200107130844.20763-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191227111235.GA3370@localhost.localdomain>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 27 Dec 2019, Matti Vaittinen wrote:
+This patchset adds support to gpio controller found in Qualcomm
+WCD9340/WCD9341 Codec.
+This two patches are split of bigger patch series at https://lwn.net/Articles/807737/
+Audio codec is already merged as part of ASoC tree. 
+There is no compile time dependency on this series, can go via gpio tree.
 
-> Convert ROHM bd71837 and bd71847 PMIC binding text docs to yaml. Split
-> the binding document to two separate documents (own documents for BD71837
-> and BD71847) as they have different amount of regulators. This way we can
-> better enforce the node name check for regulators. ROHM is also providing
-> BD71850 - which is almost identical to BD71847 - main difference is some
-> initial regulator states. The BD71850 can be driven by same driver and it
-> has same buck/LDO setup as BD71847 - add it to BD71847 binding document and
-> introduce compatible for it.
-> 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> ---
-> 
-> changes since v1:
-> - constrains to short and long presses.
-> - reworded commit message to shorten a line exceeding 75 chars
-> - added 'additionalProperties: false'
-> - removed 'clock-names' from example node
-> 
->  .../bindings/mfd/rohm,bd71837-pmic.txt        |  90 -------
->  .../bindings/mfd/rohm,bd71837-pmic.yaml       | 236 ++++++++++++++++++
->  .../bindings/mfd/rohm,bd71847-pmic.yaml       | 222 ++++++++++++++++
->  .../regulator/rohm,bd71837-regulator.txt      | 162 ------------
->  .../regulator/rohm,bd71837-regulator.yaml     | 103 ++++++++
->  .../regulator/rohm,bd71847-regulator.yaml     |  97 +++++++
+Thanks,
+srini
 
-Can you split these out per-subsystem, so that I can apply the MFD
-changes please?
+Changes since v6:
+- Removed dependency on GPIO_GENERIC as suggested by Linus W.
+- added support to get_direction()
 
->  6 files changed, 658 insertions(+), 252 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd71847-regulator.yaml
+Srinivas Kandagatla (2):
+  dt-bindings: gpio: wcd934x: Add bindings for gpio
+  gpio: wcd934x: Add support to wcd934x gpio controller
+
+ .../bindings/gpio/qcom,wcd934x-gpio.yaml      |  47 +++++++
+ drivers/gpio/Kconfig                          |   7 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-wcd934x.c                   | 121 ++++++++++++++++++
+ 4 files changed, 176 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/qcom,wcd934x-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-wcd934x.c
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.21.0
+
