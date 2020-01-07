@@ -2,131 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74D65132261
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 10:30:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B255813227D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 10:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727658AbgAGJaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jan 2020 04:30:08 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36457 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727799AbgAGJaC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 04:30:02 -0500
-Received: by mail-wm1-f67.google.com with SMTP id p17so18558448wma.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2020 01:30:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=hbXoP0vp+PirYvwWUgyHBe1Esfy/aJnIgbBAojigrF0=;
-        b=Nztzmz6eNrDSgwY251Ai+jCaKcgVlMtbs1husDeHVSovbnUMRq6BQy6T+FkRY85QUt
-         IkPm2kc6gb4TKRKF9FcJrxc731QOVyMcGew3dD/tSBQKjAP+LRKZGh6aOooQaVKWp+Rg
-         6P2tqHM0gwsm5x60u/aaTllCnqHwav8cEdD0E7g9LTNfRzQZWXu1H3TEASKMczMBFKh/
-         R2ngRp/SMpSrOxjfH8STM4JpDVUIjGekw8rmweJQe1Jfy8YQdPaYt7hYZHkLWcIXtBgz
-         fMR+HotI04mrMB8PYD19t+3Jyka0X9Daq1OE3DteC2aMDwpujEvYoAgBTrBi25T7g1kj
-         Xxzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=hbXoP0vp+PirYvwWUgyHBe1Esfy/aJnIgbBAojigrF0=;
-        b=UYeILn2QSzmdEYAWhQXYOVXxeQJJ+9o3Op+Sxig9eO8AeFfvj+6KhWoDHhDZmfwgdb
-         cnH+41Ioo6W4aHVtHca1xEFFmM2Q4AgC8dE7wE8UObl2huXn9db364UP/blesDOhQlYG
-         tvp9RmaiyzKuX/Ctsrzm961jQ55MFDoNmTzwaPHQprqsvZbStAfUTYfmGRdHSqOIl2GK
-         Ju2mpW/ULB3wkuNMLlUeyPcEY6bOH3TBCwqdbpGWu/r32sgTNcsoJwZ7V9f4eYyA8uQ3
-         tTWBbtW0xFEj5jxeofbr6Vpme4SGVqLjvTjZOfY5xIjBmSBZ5V0lBgnuIyRJbDMCEY2v
-         uuzQ==
-X-Gm-Message-State: APjAAAVvA0T0cCewrZx4isuoLz8MdZfKxvNgrARPCNf+0jyKVHRZoyrq
-        AxDWC7Jd6h4xbyFIFFpJfAPf2Q==
-X-Google-Smtp-Source: APXvYqyMhTwWVXgMXGm8nvfoFZGmid0emBih3D9seLYFLTuL1tiWCOCML9NhsBa+tTTztQfalDR/kQ==
-X-Received: by 2002:a7b:c936:: with SMTP id h22mr37566162wml.115.1578389401133;
-        Tue, 07 Jan 2020 01:30:01 -0800 (PST)
-Received: from localhost.localdomain (i16-les01-ntr-213-44-229-207.sfr.lns.abo.bbox.fr. [213.44.229.207])
-        by smtp.googlemail.com with ESMTPSA id x14sm25959969wmj.42.2020.01.07.01.30.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2020 01:30:00 -0800 (PST)
-From:   Khouloud Touil <ktouil@baylibre.com>
-To:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, srinivas.kandagatla@linaro.org,
-        baylibre-upstreaming@groups.io
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linus.walleij@linaro.org,
-        Khouloud Touil <ktouil@baylibre.com>
-Subject: [PATCH v4 5/5] eeprom: at24: remove the write-protect pin support
-Date:   Tue,  7 Jan 2020 10:29:22 +0100
-Message-Id: <20200107092922.18408-6-ktouil@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200107092922.18408-1-ktouil@baylibre.com>
-References: <20200107092922.18408-1-ktouil@baylibre.com>
+        id S1727675AbgAGJe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jan 2020 04:34:29 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:33204 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727427AbgAGJe3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 7 Jan 2020 04:34:29 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D91CC1A020C;
+        Tue,  7 Jan 2020 10:34:27 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2651A1A0342;
+        Tue,  7 Jan 2020 10:34:12 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 364B0402C4;
+        Tue,  7 Jan 2020 16:56:55 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org, bjorn.andersson@linaro.org, olof@lixom.net,
+        maxime@cerno.tech, leonard.crestez@nxp.com, dinguyen@kernel.org,
+        marcin.juszkiewicz@linaro.org, ping.bai@nxp.com, abel.vesa@nxp.com,
+        nsekhar@ti.com, t-kristo@ti.com, peng.fan@nxp.com,
+        yuehaibing@huawei.com, aisheng.dong@nxp.com, sfr@canb.auug.org.au,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V2 1/5] clk: imx: Remove __init for imx_obtain_fixed_clk_hw() API
+Date:   Tue,  7 Jan 2020 16:53:13 +0800
+Message-Id: <1578387197-5750-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-NVMEM framework is an interface for the at24 EEPROMs as well as for
-other drivers, instead of passing the wp-gpios over the different
-drivers each time, it would be better to pass it over the NVMEM
-subsystem once and for all.
+Some of i.MX SoCs' clock driver use platform driver model,
+and they need to call imx_obtain_fixed_clk_hw() API, so
+imx_obtain_fixed_clk_hw() API should NOT be in .init section.
 
-Removing the support for the write-protect pin after adding it to the
-NVMEM subsystem.
-
-Signed-off-by: Khouloud Touil <ktouil@baylibre.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
- drivers/misc/eeprom/at24.c | 9 ---------
- 1 file changed, 9 deletions(-)
+New patch.
+---
+ drivers/clk/imx/clk.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-index 0681d5fdd538..8fce49a6d9cd 100644
---- a/drivers/misc/eeprom/at24.c
-+++ b/drivers/misc/eeprom/at24.c
-@@ -22,7 +22,6 @@
- #include <linux/nvmem-provider.h>
- #include <linux/regmap.h>
- #include <linux/pm_runtime.h>
--#include <linux/gpio/consumer.h>
+diff --git a/drivers/clk/imx/clk.c b/drivers/clk/imx/clk.c
+index cfc05e4..e61d6d7 100644
+--- a/drivers/clk/imx/clk.c
++++ b/drivers/clk/imx/clk.c
+@@ -94,8 +94,8 @@ struct clk_hw * __init imx_obtain_fixed_clock_hw(
+ 	return __clk_get_hw(clk);
+ }
  
- /* Address pointer is 16 bit. */
- #define AT24_FLAG_ADDR16	BIT(7)
-@@ -89,8 +88,6 @@ struct at24_data {
+-struct clk_hw * __init imx_obtain_fixed_clk_hw(struct device_node *np,
+-					       const char *name)
++struct clk_hw *imx_obtain_fixed_clk_hw(struct device_node *np,
++					const char *name)
+ {
+ 	struct clk *clk;
  
- 	struct nvmem_device *nvmem;
- 
--	struct gpio_desc *wp_gpio;
--
- 	/*
- 	 * Some chips tie up multiple I2C addresses; dummy devices reserve
- 	 * them for us, and we'll use them with SMBus calls.
-@@ -457,12 +454,10 @@ static int at24_write(void *priv, unsigned int off, void *val, size_t count)
- 	 * from this host, but not from other I2C masters.
- 	 */
- 	mutex_lock(&at24->lock);
--	gpiod_set_value_cansleep(at24->wp_gpio, 0);
- 
- 	while (count) {
- 		ret = at24_regmap_write(at24, buf, off, count);
- 		if (ret < 0) {
--			gpiod_set_value_cansleep(at24->wp_gpio, 1);
- 			mutex_unlock(&at24->lock);
- 			pm_runtime_put(dev);
- 			return ret;
-@@ -472,7 +467,6 @@ static int at24_write(void *priv, unsigned int off, void *val, size_t count)
- 		count -= ret;
- 	}
- 
--	gpiod_set_value_cansleep(at24->wp_gpio, 1);
- 	mutex_unlock(&at24->lock);
- 
- 	pm_runtime_put(dev);
-@@ -662,9 +656,6 @@ static int at24_probe(struct i2c_client *client)
- 	at24->client[0].client = client;
- 	at24->client[0].regmap = regmap;
- 
--	at24->wp_gpio = devm_gpiod_get_optional(dev, "wp", GPIOD_OUT_HIGH);
--	if (IS_ERR(at24->wp_gpio))
--		return PTR_ERR(at24->wp_gpio);
- 
- 	writable = !(flags & AT24_FLAG_READONLY);
- 	if (writable) {
 -- 
-2.17.1
+2.7.4
 
