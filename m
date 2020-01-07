@@ -2,221 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BD3D131DB9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 03:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6D6B131DE1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 04:15:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727377AbgAGCnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 6 Jan 2020 21:43:35 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:44315 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727295AbgAGCnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 21:43:35 -0500
-Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 7 Jan
- 2020 10:43:58 +0800
-Subject: Re: [PATCH v3 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
- DWC3 Glue Bindings
-To:     Rob Herring <robh@kernel.org>
-CC:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Yue Wang <yue.wang@amlogic.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jian Hu <jian.hu@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
- <1577428606-69855-3-git-send-email-hanjie.lin@amlogic.com>
- <20200104003210.GA29074@bogus>
-From:   Hanjie Lin <hanjie.lin@amlogic.com>
-Message-ID: <11875bd0-0248-4c68-964a-004e1d15ab83@amlogic.com>
-Date:   Tue, 7 Jan 2020 10:43:58 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
+        id S1727384AbgAGDPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 6 Jan 2020 22:15:39 -0500
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:37552 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727295AbgAGDPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 6 Jan 2020 22:15:39 -0500
+Received: by mail-qk1-f194.google.com with SMTP id 21so41515253qky.4;
+        Mon, 06 Jan 2020 19:15:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AtlpYaLLMTE+8NWj8eY7Oj/Fx28nhIerkc8u9tEkgfs=;
+        b=EaEf9e/uQygjuM+AEzZUvq8zZj4XTSn8eBSZxJ2kdECMeMr2xsLtNwLrM8H1zWadMR
+         vhcxHHa1FQugOhTE6EOcR3Cagp5qN1zXyVY6TQM1TMoE0yAIds5qKhHWXdZQjwxNYwAa
+         8LNL3Mgs3mEIDhXSZcI/JY3GiTiP1rFayNVIc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AtlpYaLLMTE+8NWj8eY7Oj/Fx28nhIerkc8u9tEkgfs=;
+        b=H+8fI2704f1cxekGdDIdwOUFhd2q5jZpnO60lC1vbf60k15aVEzpTHh6JVGAhgwkSt
+         yb2qguctP28E1SEe7Uw/i9HWZAHNly7oDXD4pNFan/PfTCuLIlD+xuFbiejrmOc/keSy
+         K0iOB1TnWUOxrOxJVQPpoVvCqL9/9ooKiKkJq/MURCYB9i4O4eZbhPl6g9r7Qr6yL1zm
+         nAWSmA4GRIo7suc82saW0z4zyYNDFgVBqBo5eqZRYUqmu2rWNyCoKE1zHtk8buGaY23M
+         q6y2E9mXzTiSyj/+FOnQWWFVoGpda+2gr3GlLiPztSHyIn0YyWzLxUSBj/UXgpmjWKQ1
+         FHsQ==
+X-Gm-Message-State: APjAAAX/HxPKSo1C1+Ov4jegtIJJuihqZNznTpB7QTd+zEN5T3DO/c6v
+        2Mcfo5aLq5PgoJg5XF9MFV61QzaKJxCIaIn1eA0=
+X-Google-Smtp-Source: APXvYqzHsbqA4VEOnhaS6z/+XeB6SwzNXtgr4zi0SMOslB8kLr9/KAIzZeRbEKo3csmaVlW7PqquRa2yw1FsJCWhzuU=
+X-Received: by 2002:ae9:e702:: with SMTP id m2mr85124606qka.208.1578366938200;
+ Mon, 06 Jan 2020 19:15:38 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20200104003210.GA29074@bogus>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.38.198]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+References: <20200107011503.17435-1-jae.hyun.yoo@linux.intel.com> <20200107011503.17435-4-jae.hyun.yoo@linux.intel.com>
+In-Reply-To: <20200107011503.17435-4-jae.hyun.yoo@linux.intel.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 7 Jan 2020 03:15:26 +0000
+Message-ID: <CACPK8XejA6emrboLzfwEpmn=dn1JcyHKJVud_cBXVNRiZixgTA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] media: aspeed: add AST2600 support
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     Eddie James <eajames@linux.ibm.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        linux-media@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 7 Jan 2020 at 01:14, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
+>
+> Video engine in AST2600 has the exactly same register set with
+> AST2500 except VR084 register which provides more precise JPEG
+> size read back. This commit adds support for the difference and
+> adds 'aspeed,ast2600-video-engine' compatible OF string.
+>
+> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+> ---
+>  drivers/media/platform/aspeed-video.c | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/media/platform/aspeed-video.c b/drivers/media/platform/aspeed-video.c
+> index d8593cb2ae84..0dbe72672338 100644
+> --- a/drivers/media/platform/aspeed-video.c
+> +++ b/drivers/media/platform/aspeed-video.c
+> @@ -72,10 +72,10 @@
+>  #define  VE_SEQ_CTRL_CAP_BUSY          BIT(16)
+>  #define  VE_SEQ_CTRL_COMP_BUSY         BIT(18)
+>
+> -#ifdef CONFIG_MACH_ASPEED_G5
+> -#define  VE_SEQ_CTRL_JPEG_MODE         BIT(13) /* AST2500 */
+> -#else
+> +#ifdef CONFIG_MACH_ASPEED_G4
+>  #define  VE_SEQ_CTRL_JPEG_MODE         BIT(8)  /* AST2400 */
+> +#else
+> +#define  VE_SEQ_CTRL_JPEG_MODE         BIT(13) /* AST2500/2600 */
+>  #endif /* CONFIG_MACH_ASPEED_G5 */
 
+Yeah, nah. This should have never been done this way. I will send some
+patches to fix it up, and you can add ast2600 support on top of them,
+if that works for you.
 
-On 2020/1/4 8:32, Rob Herring wrote:
-> On Fri, Dec 27, 2019 at 02:36:42PM +0800, Hanjie Lin wrote:
->> The Amlogic A1 SoC Family embeds 1 USB Controllers:
->>  - a DWC3 IP configured as Host for USB2 and USB3
->>
->> A glue connects the controllers to the USB2 PHY of A1 SoC.
->>
->> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
->> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
->> ---
->>  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 57 +++++++++++++++++++---
->>  1 file changed, 51 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> index 4efb77b..6103cc2 100644
->> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> @@ -9,6 +9,8 @@ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
->>  
->>  maintainers:
->>    - Neil Armstrong <narmstrong@baylibre.com>
->> +  - Hanjie Lin <hanjie.lin@amlogic.com>
->> +  - Yue Wang <yue.wang@amlogic.com>
->>  
->>  description: |
->>    The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
->> @@ -22,10 +24,14 @@ description: |
->>    The DWC3 Glue controls the PHY routing and power, an interrupt line is
->>    connected to the Glue to serve as OTG ID change detection.
->>  
->> +  The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
->> +  host-only mode.
->> +
->>  properties:
->>    compatible:
->>      enum:
->>        - amlogic,meson-g12a-usb-ctrl
->> +      - amlogic,meson-a1-usb-ctrl
->>  
->>    ranges: true
->>  
->> @@ -37,6 +43,11 @@ properties:
->>  
->>    clocks:
->>      minItems: 1
->> +    maxItems: 4
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    maxItems: 4
->>  
->>    resets:
->>      minItems: 1
->> @@ -47,17 +58,22 @@ properties:
->>    interrupts:
->>      maxItems: 1
->>  
->> +  phys:
->> +    minItems: 1
->> +    maxItems: 3
->> +
->>    phy-names:
->>      items:
->>        - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
->>        - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
->>        - const: usb3-phy0 # USB3 PHY if USB3_0 is used
->>  
->> -  phys:
->> -    minItems: 1
->> -    maxItems: 3
->> -
-> 
-> Why the unnecessary move?
-> 
+Cheers,
 
-I saw most "phys" attributes are front of "phy-names" in dts, maybe looks pretty no other reasons.
+Joel
 
->> -  dr_mode: true
->> +  dr_mode:
->> +    description: usb mode for G12A
->> +    enum:
->> +      - host
->> +      - peripheral
->> +      - otg
-> 
-> No, this is a common property that doesn't need to be redefined here. It 
-> was correct as-is.
-> 
-
-Ok, I will modify it.
-
->>  
->>    power-domains:
->>      maxItems: 1
->> @@ -80,9 +96,9 @@ required:
->>    - resets
->>    - reg
->>    - interrupts
->> -  - phy-names
->>    - phys
->>    - dr_mode
->> +  - phy-names
-> 
-> Again, unnecessary change.
-> 
-
-Ok
-
->>  
->>  examples:
->>    - |
->> @@ -124,4 +140,33 @@ examples:
->>                snps,quirk-frame-length-adjustment;
->>            };
->>      };
->> +  - |
->> +    a1_usb: usb@ffe09000 {
-> 
-> You are only adding a compatible. No need for a whole new example.
-> 
-
-Ok, I will fix it.
-
-Thanks, 
-
-Hanjie
-
->> +          status = "okay";
->> +          compatible = "amlogic,meson-a1-usb-ctrl";
->> +          reg = <0 0xffe09000 0x0 0xa0>;
->> +          #address-cells = <1>;
->> +          #size-cells = <1>;
->> +          ranges;
->>  
->> +          clocks = <&clkc_periphs 36>,
->> +                   <&clkc_periphs 85>,
->> +                   <&clkc_periphs 2>,
->> +                   <&clkc_periphs 3>;
->> +          clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
->> +                        "xtal_usb_ctrl";
->> +
->> +          resets = <&reset 36>;
->> +
->> +          phys = <&usb2_phy1>;
->> +          phy-names = "usb2-phy1";
->> +
->> +          a1_dwc3: usb@ff400000 {
->> +                  compatible = "snps,dwc3";
->> +                  reg = <0xff400000 0x100000>;
->> +                  interrupts = <0 90 4>;
->> +                  dr_mode = "host";
->> +                  snps,dis_u2_susphy_quirk;
->> +                  snps,quirk-frame-length-adjustment = <0x20>;
->> +          };
->> +    };
->> -- 
->> 2.7.4
->>
-> 
-> .
-> 
+>
+>  #define VE_CTRL                                0x008
+> @@ -135,6 +135,12 @@
+>
+>  #define VE_OFFSET_COMP_STREAM          0x078
+>
+> +#ifdef CONFIG_MACH_ASPEED_G6
+> +#define VE_JPEG_COMP_SIZE_READ_BACK    0x084   /* AST2600 */
+> +#else
+> +#define VE_JPEG_COMP_SIZE_READ_BACK    VE_OFFSET_COMP_STREAM
+> +#endif
+> +
+>  #define VE_SRC_LR_EDGE_DET             0x090
+>  #define  VE_SRC_LR_EDGE_DET_LEFT       GENMASK(11, 0)
+>  #define  VE_SRC_LR_EDGE_DET_NO_V       BIT(12)
+> @@ -572,7 +578,7 @@ static irqreturn_t aspeed_video_irq(int irq, void *arg)
+>         if (sts & VE_INTERRUPT_COMP_COMPLETE) {
+>                 struct aspeed_video_buffer *buf;
+>                 u32 frame_size = aspeed_video_read(video,
+> -                                                  VE_OFFSET_COMP_STREAM);
+> +                                                  VE_JPEG_COMP_SIZE_READ_BACK);
+>
+>                 spin_lock(&video->lock);
+>                 clear_bit(VIDEO_FRAME_INPRG, &video->flags);
+> @@ -1719,6 +1725,7 @@ static int aspeed_video_remove(struct platform_device *pdev)
+>  static const struct of_device_id aspeed_video_of_match[] = {
+>         { .compatible = "aspeed,ast2400-video-engine" },
+>         { .compatible = "aspeed,ast2500-video-engine" },
+> +       { .compatible = "aspeed,ast2600-video-engine" },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, aspeed_video_of_match);
+> --
+> 2.17.1
+>
