@@ -2,111 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AFFE132E25
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 19:16:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD520132E67
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 19:29:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728391AbgAGSQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jan 2020 13:16:20 -0500
-Received: from mout.gmx.net ([212.227.15.19]:53047 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728358AbgAGSQU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Jan 2020 13:16:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1578420966;
-        bh=ywvSvkZtxIFgQK2uzodzJ55BZghcFbFAXSLbAwo36wY=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Idmw230VWPBhZW2v+dAYw62P6JElxPEL/uqCuoHO0gDvDK3VOnfVdcv9d1ALNkZ2+
-         Y+8kPpr9BiXxUfm8bw+Xmjv/SzBxlFpg2EK/a8Hg1b+OzEQC+AII1OlGsc5FjmhCdA
-         PYd0h0yBiUAl3qCFDZaEL6GR5SqLeAQ2sKdGgVLY=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from localhost.localdomain ([37.4.249.154]) by mail.gmx.com
- (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1M1HZo-1irdDo1LiM-002s6V; Tue, 07 Jan 2020 19:16:06 +0100
-From:   Stefan Wahren <wahrenst@gmx.net>
-To:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V3 4/4] ARM: configs: Build BCM2711 thermal as module
-Date:   Tue,  7 Jan 2020 19:15:57 +0100
-Message-Id: <1578420957-32229-5-git-send-email-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1578420957-32229-1-git-send-email-wahrenst@gmx.net>
-References: <1578420957-32229-1-git-send-email-wahrenst@gmx.net>
-X-Provags-ID: V03:K1:KgT8/xCsDfTXBG/ZvIRxjN+W6EAwuQgL8jv7F25Vy4z+LXj8G1P
- FvRXVhgSwOlulZ964d6rnvX7HL7dcwoY5KFt4EhM20cYoQ7YJ90EDHTamYirCxIqbox1UqU
- ONycfR3lNn3uKEv5yBZAPy3RJBy/loio9XdwmoBs6tYkYaaVTtIztndrmforVufG7I03eQv
- W3OI55XFGJevmqp5FLjsQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:XO0bOe0Ep8o=:kSgMi1gYunuPgzCu/XiJe8
- 55cXkb2VEpp+0ZB7lgktyFvshluW/8SnuuoMm0yhsBOUju5moUy3EZx62VduAycSWKQ78+NnI
- nuuYaeMimJEZFIkXd/bIo8qA7TQgY5Ai7wFwAtnufeOK6yhqeXld+O6drS9SE7OUPwiRaFLvX
- a4z3zZIJ/WSdgxfIjZJl+1A8tbqJu7QHtc7BvlrnNqu0L7T9RP/4wKZFs+iqJxgb56ONYX6aW
- eJEAdrGioHnjoWK1N2opYc6mYPThXU7WIGI67W1LEp4sdfzemZwQzCuEX4itQkAnL2DeCQ5Ga
- TB3twKe/JfrKyCgWbB1LzE4zIekmdDkNCLP1O1ry0t5+zdTGCZqjgF0aW1XQwp7nUNAKqvnkR
- oGFH00fcZrTjP7GTsAHM1SFbj/j8S4XbS2KGdNqEc+X3ozKoe941uA4inBhtY+DCHFbDc82RB
- saG1XiaXGsPKwjXuAqFoy+XoGrMHnHWh5g9mP7Zd8K8eY9UW2y2qLVLlIfRct6viL+vCIg5bq
- bBOs7WNQuQK66Q8JwSFVNkWe5cjQ4sjCurxBOCJu6414eyACNqp75abbUH3UXbZ1ZWeQB05gV
- pAQjr6XZtxFBUpzRIscP1mp92bxLC60clMvMwMY7L3J2tmJzvf+8KaEZ46/AXpMn/5UHILhV8
- RHgsmsQOZtPYbgegdxdoBc4kR22+31P9QayG4NNZpKN6TEFlqDfoNUbNez4dIJleG22IlSiAm
- HnfbzPvVXjeK2JiZBcfGTDhAuoGbB8Fj+2eQ26gxDe6zKM6e+8/ggitNae4Dbbw0frlGYT/H6
- Wawodx5tZYYdi+XZ6h7xR7gVz+qUtDxU3/g+269QUGswvjIS+a6z7lzkEuyK7V6ieV8u7Eh4X
- sN1khUObrdWcgax2sqRsD0RD05hMRw3yVlf9xuWpUo/SWo+mVR/rXK6YkXDiRCL5kmMzaJ/ZF
- b4PktMNM1fUynsV780QqPYKWWfAdvMlDCWnofVBqBUPHArgmZeAkiFzfCcecwEBz+jAxwUZmE
- ANzUWQENqeKB/qYYpxtBwoBTpfvKT9aAuk83/Xxf8kHjFo2JE0BLWXqe+/i6FQUtXR4VmNd2G
- UVWlOQJHCJCaXerv7dUwcdFH2tluzwimauf3xv9Suhg06gzqG2AzZefj6DSqfSFAESG+a1r9m
- u1k2ZLky+lFSekVHbbxsc5W/2rXnl7YvbHVJ1NqvR0HhNJjn7ISBZGvzeJz7kFQCKjXZiQA76
- XprBZmCVmQkyOoIyjE6h4g5xdzecqsXUyniZ7MA==
-Content-Transfer-Encoding: quoted-printable
+        id S1728391AbgAGS3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jan 2020 13:29:46 -0500
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:33701 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727925AbgAGS3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 13:29:46 -0500
+Received: by mail-pl1-f193.google.com with SMTP id ay11so32016plb.0;
+        Tue, 07 Jan 2020 10:29:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=R00xNPsCF8UW/szKUy4WCcj0M7xSEsY8VrV3QDe1Oo0=;
+        b=CYAMnJvk6SbEGhlwkKO0AU34UPtn7TFji5Ps19RbS8eRYq8wo3OUwKlS4XmNeopGmw
+         QiFXRSNjOagwTIFztbuUUjbF6qBGjG5EqWUDnsTeDPvXGaymxUKOIkhLgXUhBk+u31iH
+         KIugAhILIf72swrEM10d9I+R/hnEGyBQRfbBvyp9X5+3vTsquRDSlYzvCKLyAO71jQqU
+         BRua/j4i2V6W3EhyxNLWaidgQSdHiAZQIMFRrHPCkrJLvjxQ+6Fva0moX1B3Za4LNly3
+         grRreqi+zjsyRIBFuQd8pvJSluNizRXJPQij7kV+xmds96HDCKPquqbMibZf42oeDtAx
+         5Oeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=R00xNPsCF8UW/szKUy4WCcj0M7xSEsY8VrV3QDe1Oo0=;
+        b=TAsn/IXBoKo80Cg8XsRpatHZTyyJQXou8jUTWtbMQ31/TTWOO7keJ6B/CvxHCGrMKp
+         7TfMn0U+ffb44CtvlHVl1h8jkZqafj1oyntE7JQr0NDI+o96IOKO9GdBwzCvZlSvET25
+         syauNwwFRBgkcQ1DKvgbgowbUgmxppSM8yP+QZA5rExZz0aJgLW1TQhafOs0J/aSNuvS
+         dDITmT4fvaRDOE5X6Ww6fjADCz/6Lk+FaYFSW5lY3uewKSAtmMvyWNhezTm9vgzS3fyc
+         8MFZIH5KCsFtYMpkyJA1aiOEWDOYgqSRF5FUDYRsoOSZU5T6n7QFEIIjsYoBlu2SHvb9
+         8/OQ==
+X-Gm-Message-State: APjAAAWREfGp6qFcPACdEBz7KAB2yXj43Tlyg3fj+/HfToi6L2DQvrxB
+        0yhGwLpxVphEpHqPhdSmLRY=
+X-Google-Smtp-Source: APXvYqwFTbjgTXASmix+3u3414wvuMf8vHp4E+Qp8r0vx/3MvZxQpaU4ZHNyie4f5G1akERvond2Jw==
+X-Received: by 2002:a17:90a:26e1:: with SMTP id m88mr1162523pje.101.1578421786005;
+        Tue, 07 Jan 2020 10:29:46 -0800 (PST)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id u3sm436809pga.72.2020.01.07.10.29.45
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 07 Jan 2020 10:29:45 -0800 (PST)
+Date:   Tue, 7 Jan 2020 10:29:44 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jiaxin Yu <jiaxin.yu@mediatek.com>, yong.liang@mediatek.com,
+        wim@linux-watchdog.org, p.zabel@pengutronix.de,
+        matthias.bgg@gmail.com, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        chang-an.chen@mediatek.com, freddy.hsin@mediatek.com,
+        yingjoe.chen@mediatek.com, sboyd@kernel.org
+Subject: Re: [PATCH v10 1/2] dt-bindings: mediatek: mt8183: Add #reset-cells
+Message-ID: <20200107182944.GB22909@roeck-us.net>
+References: <1578280296-18946-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1578280296-18946-2-git-send-email-jiaxin.yu@mediatek.com>
+ <20200106215721.GB31059@bogus>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200106215721.GB31059@bogus>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This builds the BCM2711 thermal driver as module for the Raspberry Pi 4.
+On Mon, Jan 06, 2020 at 03:57:21PM -0600, Rob Herring wrote:
+> On Mon, 6 Jan 2020 11:11:35 +0800, Jiaxin Yu wrote:
+> > Add #reset-cells property and update example
+> > 
+> > Signed-off-by: yong.liang <yong.liang@mediatek.com>
+> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> > Reviewed-by: Yingjoe Chen <yingjoe.chen@mediatek.com>
+> > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > ---
+> >  .../devicetree/bindings/watchdog/mtk-wdt.txt  | 10 ++++++---
+> >  .../reset-controller/mt2712-resets.h          | 22 +++++++++++++++++++
+> >  .../reset-controller/mt8183-resets.h          | 17 ++++++++++++++
+> >  3 files changed, 46 insertions(+), 3 deletions(-)
+> >  create mode 100644 include/dt-bindings/reset-controller/mt2712-resets.h
+> > 
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
 
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Tested-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-=2D--
- arch/arm/configs/multi_v7_defconfig | 1 +
- arch/arm64/configs/defconfig        | 1 +
- 2 files changed, 2 insertions(+)
+v9 and a couple of versions before that did not include the update to
+the bindings file. I got lost in the many versions and don't recall if
+that was ever tagged as Reviewed-by: in an earlier version.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_=
-v7_defconfig
-index 3f1b96d..f5d19cc 100644
-=2D-- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -496,6 +496,7 @@ CONFIG_IMX_THERMAL=3Dy
- CONFIG_ROCKCHIP_THERMAL=3Dy
- CONFIG_RCAR_THERMAL=3Dy
- CONFIG_ARMADA_THERMAL=3Dy
-+CONFIG_BCM2711_THERMAL=3Dm
- CONFIG_BCM2835_THERMAL=3Dm
- CONFIG_BRCMSTB_THERMAL=3Dm
- CONFIG_ST_THERMAL_MEMMAP=3Dy
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 6a83ba2..b2f6673 100644
-=2D-- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -442,6 +442,7 @@ CONFIG_ROCKCHIP_THERMAL=3Dm
- CONFIG_RCAR_THERMAL=3Dy
- CONFIG_RCAR_GEN3_THERMAL=3Dy
- CONFIG_ARMADA_THERMAL=3Dy
-+CONFIG_BCM2711_THERMAL=3Dm
- CONFIG_BCM2835_THERMAL=3Dm
- CONFIG_BRCMSTB_THERMAL=3Dm
- CONFIG_EXYNOS_THERMAL=3Dy
-=2D-
-2.7.4
-
+Guenter
