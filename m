@@ -2,113 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 834701324B1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 12:19:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A34F81324D0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 12:28:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727650AbgAGLTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jan 2020 06:19:49 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:49809 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727427AbgAGLTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 06:19:49 -0500
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1iomti-0001FG-Ne; Tue, 07 Jan 2020 12:19:42 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1iomtg-0007Ek-DM; Tue, 07 Jan 2020 12:19:40 +0100
-Date:   Tue, 7 Jan 2020 12:19:40 +0100
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>
-Subject: Re: [PATCH v2 4/7] pwm: Add support for Azoteq IQS620A PWM generator
-Message-ID: <20200107111940.ymiey7npx6rrppqz@pengutronix.de>
-References: <20191209073206.6pftsak5v25jdepz@pengutronix.de>
- <20191210000252.GA6361@labundy.com>
- <20191210072227.434hyv5wl3rwztqx@pengutronix.de>
- <20191215203607.GA31390@labundy.com>
- <20191216091912.r4onikojbkbmguag@pengutronix.de>
- <20191220031924.GA2658@labundy.com>
- <20191220085948.iagsdpjqd6ixdo7j@pengutronix.de>
- <20191221032755.GA3051@labundy.com>
- <20191222214851.kapsro6b6qylke43@pengutronix.de>
- <20200101223933.GB14339@labundy.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200101223933.GB14339@labundy.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1727949AbgAGL2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jan 2020 06:28:02 -0500
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:20460 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727915AbgAGL2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 06:28:02 -0500
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 07 Jan 2020 16:57:56 +0530
+Received: from harigovi-linux.qualcomm.com ([10.204.66.157])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 07 Jan 2020 16:57:38 +0530
+Received: by harigovi-linux.qualcomm.com (Postfix, from userid 2332695)
+        id 90D402574; Tue,  7 Jan 2020 16:57:37 +0530 (IST)
+From:   Harigovindan P <harigovi@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Harigovindan P <harigovi@codeaurora.org>, robdclark@gmail.com,
+        seanpaul@chromium.org, sean@poorly.run
+Subject: [PATCH v2 0/2] Add support for rm69299 Visionox panel driver and add devicetree bindings for visionox panel
+Date:   Tue,  7 Jan 2020 16:57:27 +0530
+Message-Id: <1578396449-17062-1-git-send-email-harigovi@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
+Current patchset adds support for rm69299 visionox panel driver used 
+in MSM reference platforms. The visionox panel driver supports a 
+resolution of 1080x2248 with 4 lanes and supports only single DSI mode.
 
-On Wed, Jan 01, 2020 at 10:39:36PM +0000, Jeff LaBundy wrote:
-> On Sun, Dec 22, 2019 at 10:48:51PM +0100, Uwe Kleine-König wrote:
-> > On Sat, Dec 21, 2019 at 03:28:01AM +0000, Jeff LaBundy wrote:
-> > > Based on your other feedback, I'm moving forward under the impression that
-> > > you'll still accept option (2); please let me know if I have misunderstood
-> > > (thank you for being flexible).
-> > 
-> > Yeah, that's fine. If in the end it shows that this is a bad idea we can
-> > still change to (3).
-> 
-> Sounds great. As soon as 5.5-rc5 lands this weekend, I'll rebase v3 and
-> send it out.
-> 
-> I failed to catch this in my previous reply, but the comment I've added
-> to iqs620_pwm_get_state actually reads as follows:
-> 
-> /*
->  * Since the device cannot generate a 0% duty cycle, requests to do so
->  * force subsequent calls to iqs620_pwm_get_state to report the output
->  * as disabled with duty cycle equal to that which was in use prior to
->  * the request. This is not ideal, but is the best compromise based on
->  * the capabilities of the device.
->  */
-> 
-> This matches the present implementation, not your proposed comment that
-> claims duty cycle is clamped to 1 / 256 ms following a request for a 0%
-> duty cycle.
+Current patchset is tested on actual panel.
 
-Yeah, if that's the mechanism that is actually implemented, that's fine
-of course.
+Changes in v1:
+	-add devicetree bindings for visionox panel.
+	-Split out panel driver patch from dsi config changes(Rob Clark).
+        -Remove unrelated code(Stephen Boyd).
+        -Remove static arrays to make regulator setup
+         open coded in probe(Stephen Boyd).
+        -Remove pre-assigning variables(Stephen Boyd).
+        -Inline panel_add function into probe(Stephen Boyd).
+        -Use mipi_dsi_dcs_write directly(Rob Clark).
+	-Remove qcom_rm69299_1080p_panel_magic_cmds array(Rob Clark).
+Changes in v2:
+	-Removed unwanted properties from description.
+	-Creating source files without execute permissions(Rob Herring).
+	-Dropping redundant space in Kconfig(Sam Ravnborg).
+	-Changing structure for include files(Sam Ravnborg).
+	-Removing backlight related code and functions(Sam Ravnborg).
+	-Removing repeated printing of error message(Sam Ravnborg).
+	-Adding drm_connector as an argument for get_modes function.
 
-> This seems OK since the concept of a duty cycle or period aren't really
-> relevant if the output is disabled in my opinion. However if you prefer
-> I update iqs620_pwm_apply to clamp duty cycle to 1 / 256 ms (instead of
-> leaving it untouched) in this case, please let me know.
+Harigovindan P (2):
+  dt-bindings: display: add sc7180 panel variant
+  drm/panel: add support for rm69299 visionox panel driver
 
-For a disabled PWM the duty_cycle and period are not relevant, for an
-enabled PWM running with 0% the period matters (at least in theory)
-however.
-
-Best regards
-Uwe
+ .../bindings/display/visionox,rm69299.txt          |  48 +++
+ drivers/gpu/drm/panel/Kconfig                      |   8 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-visionox-rm69299.c     | 370 +++
+ 4 files changed, 427 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/visionox,rm69299.txt
+ create mode 100644 drivers/gpu/drm/panel/panel-visionox-rm69299.c
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+2.7.4
+
