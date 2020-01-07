@@ -2,97 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4468E132019
-	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 08:00:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1285A13202A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Jan 2020 08:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725874AbgAGHAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jan 2020 02:00:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37342 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725781AbgAGHAI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 7 Jan 2020 02:00:08 -0500
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6D92F206DB;
-        Tue,  7 Jan 2020 07:00:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1578380407;
-        bh=mqVAhJYsDI+d9WjdV8n8DMR9ou/rAJnSZlAgkuo6W9o=;
-        h=In-Reply-To:References:Cc:To:Subject:From:Date:From;
-        b=aEqhSLP7UscDWt/g0rnZTzPSmOVPtuv25EZAc0MuCqYhpQrhc2QkDjuZ7QFZBnO5h
-         jYSDwkDVEbXmD91SJs+L4JIN5aokcceddk+PL+7p+gYfCcACiWmwuPH/10/4HR4ddT
-         jaN5gdi57+7Tb/DTQMbTociQ4MHJsQ+oq0Hn0+50=
-Content-Type: text/plain; charset="utf-8"
+        id S1727338AbgAGHCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jan 2020 02:02:23 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:59067 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725987AbgAGHCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 02:02:21 -0500
+X-UUID: ec656c754bc74df4a1004d53a349acb6-20200107
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=RvU/Kf9/Q/5yNWiwRa+kdVfxoeAOhMP7au0EssfZUn8=;
+        b=d7EBZApsUd8bRPNaXuK/3QblvdUscYwQyufhd5DJjfDlqH15N+p0RJlL3rDpR5HBNBO6bRmAS85YxJaW9BjHA19M6UcHXJtZJ4MhRgPRJcrHWY9m56NR0hkeKGkH19LhbN+r9vasBbm6zPUNEwY0prWboGENvXaq3Kbj0aZjqfc=;
+X-UUID: ec656c754bc74df4a1004d53a349acb6-20200107
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 967155660; Tue, 07 Jan 2020 15:02:15 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 7 Jan 2020 15:01:41 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 7 Jan 2020 15:01:09 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: PM / AVS: SVS: Introduce SVS engine
+Date:   Tue, 7 Jan 2020 15:01:51 +0800
+Message-ID: <20200107070154.1574-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <4726f580-fe88-5b20-e869-4e31bd63c6e3@kernel.org>
-References: <20190918013459.15966-1-dinguyen@kernel.org> <20190918013459.15966-2-dinguyen@kernel.org> <20190918050010.74B4021848@mail.kernel.org> <4726f580-fe88-5b20-e869-4e31bd63c6e3@kernel.org>
-Cc:     devicetree@vger.kernel.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org
-To:     Dinh Nguyen <dinguyen@kernel.org>, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/2] clk: socfpga: agilex: add clock driver for the Agilex platform
-From:   Stephen Boyd <sboyd@kernel.org>
-User-Agent: alot/0.8.1
-Date:   Mon, 06 Jan 2020 23:00:06 -0800
-Message-Id: <20200107070007.6D92F206DB@mail.kernel.org>
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dinh Nguyen (2019-12-03 07:15:21)
-> Hi Stephen,
->=20
-> On 9/18/19 12:00 AM, Stephen Boyd wrote:
-> > Quoting Dinh Nguyen (2019-09-17 18:34:59)
-> >> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> >> index 0cad76021297..ef2c96c0f1e0 100644
-> >> --- a/drivers/clk/Makefile
-> >> +++ b/drivers/clk/Makefile
-> >> @@ -18,6 +18,7 @@ endif
-> >> =20
->=20
-> <snip>
->=20
-> >> +struct clk *agilex_register_pll(const char *name,
-> >> +                               const char * const *parent_names,
-> >> +                               u8 num_parents, unsigned long flags,
-> >> +                               void __iomem *reg, unsigned long offse=
-t)
-> >> +{
-> >> +       struct clk *clk;
-> >> +       struct socfpga_pll *pll_clk;
-> >> +       struct clk_init_data init;
-> >> +
-> >> +       pll_clk =3D kzalloc(sizeof(*pll_clk), GFP_KERNEL);
-> >> +       if (WARN_ON(!pll_clk))
-> >> +               return NULL;
-> >> +
-> >> +       pll_clk->hw.reg =3D reg + offset;
-> >> +
-> >> +       if (streq(name, SOCFPGA_BOOT_CLK))
-> >> +               init.ops =3D &clk_boot_ops;
-> >> +       else
-> >> +               init.ops =3D &agilex_clk_pll_ops;
-> >> +
-> >> +       init.name =3D name;
-> >> +       init.flags =3D flags;
-> >> +
-> >> +       init.num_parents =3D num_parents;
-> >> +       init.parent_names =3D parent_names;
-> >=20
-> > Is it possible to use the new way of specifying clk parents here so that
-> > we don't have to keep using strings to describe the clk topology?
-> >=20
->=20
-> Can you point me to what you mean here? Perhaps a driver that is using
-> this new way of specifying clk parents?
->=20
-
-I'm supposed to write some documentation, but you can look for drivers
-that have 'struct clk_parent_data' until I write the doc up.
-
- $ git grep 'struct clk_parent_data' -- drivers/clk/
+MS4gU1ZTIGRyaXZlciB1c2UgT1BQIGFkanVzdCBldmVudCBpbiBbMV0gdG8gdXBkYXRlIE9QUCB0
+YWJsZSB2b2x0YWdlIHBhcnQuDQoyLiBTVlMgZHRzIG5vZGUgcmVmZXJzIHRvIENQVSBvcHAgdGFi
+bGUgWzJdIGFuZCBHUFUgb3BwIHRhYmxlIFszXS4NCjMuIFNWUyBhbmQgdGhlcm1hbCBkdHMgdXNl
+IHRoZSBzYW1lIHRoZXJtYWwgZWZ1c2UgWzRdLg0KNC4gU1ZTIGR0cyBuZWVkcyBQTUlDIHJlZ3Vs
+YXRvciBbNV0uDQogDQpbMV0gaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMTE5
+MzUxMy8NClsyXSBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzExMzA0OTM1Lw0K
+WzNdIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTExMzIzODEvDQpbNF0gaHR0
+cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMTMxNjQ5NS8NCls1XSBodHRwczovL3Bh
+dGNod29yay5rZXJuZWwub3JnL3BhdGNoLzExMjg0NjE3Lw0KDQpjaGFuZ2VzIHNpbmNlIHY1Og0K
+LSBBZGQgQ09ORklHX05WTUVNIGRlcGVuZGVuY3kgaW4gU1ZTIEtjb25maWcuDQotIEFwcGx5IHRo
+ZSBsYXRlc3QgZGV2X3BtX29wcF9hZGp1c3Rfdm9sdGFnZSgpIGZyb20gWzFdIGluIFNWUyBkcml2
+ZXIuDQotIEFkZCBkZXZfcG1fb3BwX3B1dChvcHApIGFmdGVyIGNhbGxpbmcgZGV2X3BtX29wcF9n
+ZXRfdm9sdGFnZShvcHApLg0KLSBGaXggbXVsdGktbGluZSBjb21tZW50IHN0eWxlLg0KLSBBZGQg
+I2RlZmluZSB3L2JpdCBmb3IgbWFnaWMgY29uc3RhbnRzLg0KLSBSZXBsYWNlICJpbnQgc3ZzX2lz
+X3N1cHBvcnRlZCgpIiB3aXRoICJib29sIHN2c19pc19zdXBwb3J0ZWQoKSIuDQotIFVzZSBkZWZh
+dWx0L21heCBzaXplIGZvciBhbGxvY2F0aW5nIG1lbW9yaWVzIHRvDQpvcHBfdm9sdHMvaW5pdDAy
+X3ZvbHRzL3ZvbHRzL29wcF9mcmVxcy9mcmVxc19wY3QgaW4gc3RydWN0IHN2c19iYW5rLg0KLSBO
+YW1lICJtYWluIiBpbnN0ZWFkIG9mICJtYWluX2NsayIgaW4gU1ZTIG5vZGVzIGZvciBnZXR0aW5n
+IFNWUyBjbGsuDQotIEluIFNWUyBiaW5kaW5nIGRvY3VtZW50LCByZW1vdmUgZm91cnRoIHBhcmFt
+ZXRlciBvZiBHSUMgaW50ZXJydXB0cy4NCi0gVXNlICctJyBpbiBub2RlIG5hbWVzLg0KDQpSb2dl
+ciBMdSAoMyk6DQogIGR0LWJpbmRpbmdzOiBzb2M6IGFkZCBtdGsgc3ZzIGR0LWJpbmRpbmdzDQog
+IGFybTY0OiBkdHM6IG10ODE4MzogYWRkIHN2cyBkZXZpY2UgaW5mb3JtYXRpb24NCiAgUE0gLyBB
+VlM6IFNWUzogSW50cm9kdWNlIFNWUyBlbmdpbmUNCg0KIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L3Bvd2VyL210ay1zdnMudHh0ICAgICB8ICAgNzYgKw0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
+aWF0ZWsvbXQ4MTgzLWV2Yi5kdHMgICB8ICAgMTYgKw0KIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWVk
+aWF0ZWsvbXQ4MTgzLmR0c2kgICAgICB8ICAgNDEgKw0KIGRyaXZlcnMvcG93ZXIvYXZzL0tjb25m
+aWcgICAgICAgICAgICAgICAgICAgICB8ICAgMTAgKw0KIGRyaXZlcnMvcG93ZXIvYXZzL01ha2Vm
+aWxlICAgICAgICAgICAgICAgICAgICB8ICAgIDEgKw0KIGRyaXZlcnMvcG93ZXIvYXZzL210a19z
+dnMuYyAgICAgICAgICAgICAgICAgICB8IDIwNzUgKysrKysrKysrKysrKysrKysNCiBpbmNsdWRl
+L2xpbnV4L3Bvd2VyL210a19zdnMuaCAgICAgICAgICAgICAgICAgfCAgIDIzICsNCiA3IGZpbGVz
+IGNoYW5nZWQsIDIyNDIgaW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcG93ZXIvbXRrLXN2cy50eHQNCiBjcmVhdGUgbW9k
+ZSAxMDA2NDQgZHJpdmVycy9wb3dlci9hdnMvbXRrX3N2cy5jDQogY3JlYXRlIG1vZGUgMTAwNjQ0
+IGluY2x1ZGUvbGludXgvcG93ZXIvbXRrX3N2cy5oDQoNCg==
 
