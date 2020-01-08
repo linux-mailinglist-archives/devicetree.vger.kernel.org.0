@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A0E8133AD0
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 06:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50E0D133ADE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 06:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726439AbgAHFYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 00:24:08 -0500
-Received: from mail-pj1-f66.google.com ([209.85.216.66]:35701 "EHLO
-        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726637AbgAHFYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 00:24:07 -0500
-Received: by mail-pj1-f66.google.com with SMTP id s7so566671pjc.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2020 21:24:07 -0800 (PST)
+        id S1726708AbgAHFYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 00:24:11 -0500
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:41876 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726692AbgAHFYK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 00:24:10 -0500
+Received: by mail-pl1-f193.google.com with SMTP id bd4so627046plb.8
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2020 21:24:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=GZPi5S7C9JBOvDvG9rs8XlkVI4VOHpLwCsMiOaYI8o4=;
-        b=KZ2Fr1SIWZOlOI/MInwohmz1Hb6Xx7Tq+QTxkCat51I7DcfFdbynSqAxDlo/ZrmAzy
-         bzYx04hvPnPCCny7HlSE8qtcQ54XXy3skRRoKWw/srh/+NPKZBDJmkfK0r32EhMKP8As
-         Ki1O01CCcGhKnBDTGVZ2lIeuDq9nZ6XwreZMY=
+        bh=Ra+20wVCtfatvw0K5yioGbAxlT9AXOAj2fQq6fBwVqo=;
+        b=FDcmjcfuosKrI1aVlpORYzf8ILvaDJIrH3VeYHavKxE5uksMP8wy+dqr+rtKJisPrE
+         xlYwd3lJXAmmyLWii0G328QSVx2jDBV4cxAewFF92xHO+tmLrnXLqN8Ecyy75QFduPs7
+         CEirAlKXuTSmlbnNiX0sxmPpxKElpSFVyZKcs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=GZPi5S7C9JBOvDvG9rs8XlkVI4VOHpLwCsMiOaYI8o4=;
-        b=FdX0MzeJi3zQMWUDhVmS58okfICWRG08VMF5J8qN+Sm/ceieaNgO4RjxUgicUd4PlM
-         I3EDaRjszHgD0q5OebeAM5U7racNZGdBWMWFSgYzueiTdmrJd9QrL7n7DCoYOmkcMf4a
-         P18dVVVXwJOPSicKay/2j4AldUheM5Cqky1+zCoL+1gXJG8CPDr+kBtO2eYTFZxfZ1q1
-         nNL3ubJbhQmVi/CXxeiFKBOLvfqPKsSKoJQ1U9Bt/7H91ZYh5jCVrOorg+oj9iK+zxlw
-         atsULNWUledB9P/Wa6XGUDBy5jV2mll/+I4tSWmFFFZacvaw7Ahm6EYS4MJMsMosxVdL
-         F8QA==
-X-Gm-Message-State: APjAAAUfsAMcB0eCn9SF01kmq/HpF9mTDlThBcYCLI8uliALR1llIymP
-        vo+b0tbWGe+CppYsfNtmZtoE+w==
-X-Google-Smtp-Source: APXvYqyXscgEKtXSz2fpP6ePSqF6Ze4O7OI5VBeA+RFqRdvOMivOeOELOfMM09JM7WNsSJ6itelcsA==
-X-Received: by 2002:a17:90a:d789:: with SMTP id z9mr2508178pju.5.1578461047043;
-        Tue, 07 Jan 2020 21:24:07 -0800 (PST)
+        bh=Ra+20wVCtfatvw0K5yioGbAxlT9AXOAj2fQq6fBwVqo=;
+        b=kyD/cnnbQitjAR2FvLHUIvjvxZ7wxY8aTb88rJJkvPBMiPhRlHyUpdtf5nrdWJRtVb
+         iHUDZbiEDOLzgilt1ap2ZlA0cnTioYmNenPCRyzTpkS9GdD+sDFp4x/i1aZA7qY9ogGw
+         3OCm2VgkXV8dWx5UyJVVr4yHMCF1fAGYFOQzE5G4KUarOLafA6cSrdpOz/WDRZ/1KWGq
+         aUGbvERzXgFKcWHTz2Cl/kiWSaagoWJdkCzzd/h4vA7rpX3qQ/RZA6k+TQobqWti2bvI
+         snVEba+juLRYa5R6oQLWJd5Rwc+xMiKKqnyvHamntluPWsz4Jkzs6oHKoTTm/fifBpMc
+         TRaQ==
+X-Gm-Message-State: APjAAAUCHrZSrmtOk52pGOpvejxojDDW+hyiwZw2SqTgi3SPICocjSCV
+        SOfJOO3zwtskioGxrywRmrrAVw==
+X-Google-Smtp-Source: APXvYqxY4WiSpt87/FZwdfEEf+Pbv809uvPrWp4yZnui6jFSnmuTtOBb/0vcAlWflwuVhfVm7OsonA==
+X-Received: by 2002:a17:90a:e389:: with SMTP id b9mr2426783pjz.7.1578461049926;
+        Tue, 07 Jan 2020 21:24:09 -0800 (PST)
 Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:d8b7:33af:adcb:b648])
-        by smtp.gmail.com with ESMTPSA id n24sm387505pff.12.2020.01.07.21.24.04
+        by smtp.gmail.com with ESMTPSA id n24sm387505pff.12.2020.01.07.21.24.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Jan 2020 21:24:06 -0800 (PST)
+        Tue, 07 Jan 2020 21:24:09 -0800 (PST)
 From:   Nicolas Boichat <drinkcat@chromium.org>
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
@@ -54,9 +54,9 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, hsinyi@chromium.org
-Subject: [PATCH v2 4/7] drm/panfrost: Add support for a second regulator for the GPU
-Date:   Wed,  8 Jan 2020 13:23:34 +0800
-Message-Id: <20200108052337.65916-5-drinkcat@chromium.org>
+Subject: [PATCH v2 5/7] drm/panfrost: Add support for multiple power domain support
+Date:   Wed,  8 Jan 2020 13:23:35 +0800
+Message-Id: <20200108052337.65916-6-drinkcat@chromium.org>
 X-Mailer: git-send-email 2.24.1.735.g03f4e72817-goog
 In-Reply-To: <20200108052337.65916-1-drinkcat@chromium.org>
 References: <20200108052337.65916-1-drinkcat@chromium.org>
@@ -67,65 +67,190 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some GPUs, namely, the bifrost/g72 part on MT8183, have a second
-regulator for their SRAM, let's add support for that.
+When there is a single power domain per device, the core will
+ensure the power domains are all switched on.
+
+However, when there are multiple ones, as in MT8183 Bifrost GPU,
+we need to handle them in driver code.
+
 
 Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
 ---
- drivers/gpu/drm/panfrost/panfrost_device.c | 21 +++++++++++++++++++++
- drivers/gpu/drm/panfrost/panfrost_device.h |  1 +
- 2 files changed, 22 insertions(+)
+
+The downstream driver we use on chromeos-4.19 currently uses 2
+additional devices in device tree to accomodate for this [1], but
+I believe this solution is cleaner.
+
+[1] https://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/heads/chromeos-4.19/drivers/gpu/arm/midgard/platform/mediatek/mali_kbase_runtime_pm.c#31
+
+drivers/gpu/drm/panfrost/panfrost_device.c | 87 ++++++++++++++++++++--
+ drivers/gpu/drm/panfrost/panfrost_device.h |  4 +
+ 2 files changed, 83 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/panfrost/panfrost_device.c b/drivers/gpu/drm/panfrost/panfrost_device.c
-index 238fb6d54df4732..a0b0a6fef8b4e63 100644
+index a0b0a6fef8b4e63..c6e9e059de94a4d 100644
 --- a/drivers/gpu/drm/panfrost/panfrost_device.c
 +++ b/drivers/gpu/drm/panfrost/panfrost_device.c
-@@ -102,12 +102,33 @@ static int panfrost_regulator_init(struct panfrost_device *pfdev)
- 		return ret;
- 	}
+@@ -5,6 +5,7 @@
+ #include <linux/clk.h>
+ #include <linux/reset.h>
+ #include <linux/platform_device.h>
++#include <linux/pm_domain.h>
+ #include <linux/regulator/consumer.h>
  
-+	pfdev->regulator_sram = devm_regulator_get_optional(pfdev->dev, "sram");
-+	if (IS_ERR(pfdev->regulator_sram)) {
-+		ret = PTR_ERR(pfdev->regulator_sram);
-+		dev_err(pfdev->dev, "failed to get SRAM regulator: %d\n", ret);
-+		goto err;
+ #include "panfrost_device.h"
+@@ -131,6 +132,67 @@ static void panfrost_regulator_fini(struct panfrost_device *pfdev)
+ 	regulator_disable(pfdev->regulator_sram);
+ }
+ 
++static void panfrost_pm_domain_fini(struct panfrost_device *pfdev)
++{
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(pfdev->pm_domain_devs); i++) {
++		if (!pfdev->pm_domain_devs[i])
++			break;
++
++		if (pfdev->pm_domain_links[i])
++			device_link_del(pfdev->pm_domain_links[i]);
++
++		dev_pm_domain_detach(pfdev->pm_domain_devs[i], true);
++	}
++}
++
++static int panfrost_pm_domain_init(struct panfrost_device *pfdev)
++{
++	int err;
++	int i, num_domains;
++
++	num_domains = of_count_phandle_with_args(pfdev->dev->of_node,
++						 "power-domains",
++						 "#power-domain-cells");
++	/* Single domains are handled by the core. */
++	if (num_domains < 2)
++		return 0;
++
++	if (num_domains > ARRAY_SIZE(pfdev->pm_domain_devs)) {
++		dev_err(pfdev->dev, "Too many pm-domains: %d\n", num_domains);
++		return -EINVAL;
 +	}
 +
-+	if (pfdev->regulator_sram) {
-+		ret = regulator_enable(pfdev->regulator_sram);
-+		if (ret < 0) {
++	for (i = 0; i < num_domains; i++) {
++		pfdev->pm_domain_devs[i] =
++			dev_pm_domain_attach_by_id(pfdev->dev, i);
++		if (IS_ERR(pfdev->pm_domain_devs[i])) {
++			err = PTR_ERR(pfdev->pm_domain_devs[i]);
++			pfdev->pm_domain_devs[i] = NULL;
 +			dev_err(pfdev->dev,
-+				"failed to enable SRAM regulator: %d\n", ret);
++				"failed to get pm-domain %d: %d\n", i, err);
++			goto err;
++		}
++
++		pfdev->pm_domain_links[i] = device_link_add(pfdev->dev,
++				pfdev->pm_domain_devs[i], DL_FLAG_PM_RUNTIME |
++				DL_FLAG_STATELESS | DL_FLAG_RPM_ACTIVE);
++		if (!pfdev->pm_domain_links[i]) {
++			dev_err(pfdev->pm_domain_devs[i],
++				"adding device link failed!\n");
++			err = -ENODEV;
 +			goto err;
 +		}
 +	}
 +
- 	return 0;
++	return 0;
 +
 +err:
-+	regulator_disable(pfdev->regulator);
-+	return ret;
- }
- 
- static void panfrost_regulator_fini(struct panfrost_device *pfdev)
- {
- 	regulator_disable(pfdev->regulator);
-+	regulator_disable(pfdev->regulator_sram);
- }
- 
++	panfrost_pm_domain_fini(pfdev);
++	return err;
++}
++
  int panfrost_device_init(struct panfrost_device *pfdev)
+ {
+ 	int err;
+@@ -161,37 +223,45 @@ int panfrost_device_init(struct panfrost_device *pfdev)
+ 		goto err_out1;
+ 	}
+ 
++	err = panfrost_pm_domain_init(pfdev);
++	if (err) {
++		dev_err(pfdev->dev, "pm_domain init failed %d\n", err);
++		goto err_out2;
++	}
++
+ 	res = platform_get_resource(pfdev->pdev, IORESOURCE_MEM, 0);
+ 	pfdev->iomem = devm_ioremap_resource(pfdev->dev, res);
+ 	if (IS_ERR(pfdev->iomem)) {
+ 		dev_err(pfdev->dev, "failed to ioremap iomem\n");
+ 		err = PTR_ERR(pfdev->iomem);
+-		goto err_out2;
++		goto err_out3;
+ 	}
+ 
+ 	err = panfrost_gpu_init(pfdev);
+ 	if (err)
+-		goto err_out2;
++		goto err_out3;
+ 
+ 	err = panfrost_mmu_init(pfdev);
+ 	if (err)
+-		goto err_out3;
++		goto err_out4;
+ 
+ 	err = panfrost_job_init(pfdev);
+ 	if (err)
+-		goto err_out4;
++		goto err_out5;
+ 
+ 	err = panfrost_perfcnt_init(pfdev);
+ 	if (err)
+-		goto err_out5;
++		goto err_out6;
+ 
+ 	return 0;
+-err_out5:
++err_out6:
+ 	panfrost_job_fini(pfdev);
+-err_out4:
++err_out5:
+ 	panfrost_mmu_fini(pfdev);
+-err_out3:
++err_out4:
+ 	panfrost_gpu_fini(pfdev);
++err_out3:
++	panfrost_pm_domain_fini(pfdev);
+ err_out2:
+ 	panfrost_reset_fini(pfdev);
+ err_out1:
+@@ -208,6 +278,7 @@ void panfrost_device_fini(struct panfrost_device *pfdev)
+ 	panfrost_mmu_fini(pfdev);
+ 	panfrost_gpu_fini(pfdev);
+ 	panfrost_reset_fini(pfdev);
++	panfrost_pm_domain_fini(pfdev);
+ 	panfrost_regulator_fini(pfdev);
+ 	panfrost_clk_fini(pfdev);
+ }
 diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
-index 06713811b92cdf7..a124334d69e7e93 100644
+index a124334d69e7e93..92d471676fc7823 100644
 --- a/drivers/gpu/drm/panfrost/panfrost_device.h
 +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
-@@ -60,6 +60,7 @@ struct panfrost_device {
- 	struct clk *clock;
- 	struct clk *bus_clock;
+@@ -19,6 +19,7 @@ struct panfrost_job;
+ struct panfrost_perfcnt;
+ 
+ #define NUM_JOB_SLOTS 3
++#define MAX_PM_DOMAINS 3
+ 
+ struct panfrost_features {
+ 	u16 id;
+@@ -62,6 +63,9 @@ struct panfrost_device {
  	struct regulator *regulator;
-+	struct regulator *regulator_sram;
+ 	struct regulator *regulator_sram;
  	struct reset_control *rstc;
++	/* pm_domains for devices with more than one. */
++	struct device *pm_domain_devs[MAX_PM_DOMAINS];
++	struct device_link *pm_domain_links[MAX_PM_DOMAINS];
  
  	struct panfrost_features features;
+ 
 -- 
 2.24.1.735.g03f4e72817-goog
 
