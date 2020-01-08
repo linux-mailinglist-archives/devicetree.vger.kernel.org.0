@@ -2,177 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79A5F134824
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 17:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E81134834
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 17:42:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728182AbgAHQjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 11:39:47 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:42965 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727127AbgAHQjr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 11:39:47 -0500
-Received: by mail-ot1-f68.google.com with SMTP id 66so4162710otd.9
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 08:39:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7YuLu/5ssx5qi8ML+jSjpakNJXIUPRCs4C4ET7aw5Z8=;
-        b=JnD20b65NO24QC7/dIrXcg18dV4/S7EqiCfHh/AIt2uJf0/yvpjZVOA1IuEG+SV3Mk
-         yZ2WXzqTdmAY7aKsvPFNupUV1Kv+MEECaQH9ek+W6CHwhTFYOWpBOedqOtVvftXNUnxY
-         nxNlgdTiFE5rVcNe2YSBrs5++hhCVCD8ruvhkKFb5g1nYaie3kHBMIydTLYxOrEWMfaR
-         cdSG336j5bHnicsOOfSw3aauFIxIoW9fQE+AQbb5hSfzdBKx7rlgx53FLuYplvSqVLcL
-         N68BKeKmGYKulXoBg7GxpcrCS/EvQ37vh6mjFNkPMdlTlmaeGB2m6TqHX0BusJ+NLjKK
-         sxBA==
-X-Gm-Message-State: APjAAAVwqxtMrOxA9ocq+G9bKx1lxwReKgVat60vV3DXTIJV6uI+N1RR
-        QP0cKqXS4uKDmEelAgXZt2kSpXw=
-X-Google-Smtp-Source: APXvYqxlnwuzZZPN7FoPjzaNZuoEy12eD5BiM/0kLo5H2570EjbQi+HsQKSAHS88RrQpvYZTb4If7w==
-X-Received: by 2002:a05:6830:108a:: with SMTP id y10mr4858935oto.81.1578501585912;
-        Wed, 08 Jan 2020 08:39:45 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w8sm1233928ote.80.2020.01.08.08.39.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2020 08:39:45 -0800 (PST)
-Received: from rob (uid 1000)
-        (envelope-from rob@rob-hp-laptop)
-        id 22001a
-        by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Wed, 08 Jan 2020 10:39:43 -0600
-Date:   Wed, 8 Jan 2020 10:39:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Shyam Kumar Thella <sthella@codeaurora.org>
-Cc:     agross@kernel.org, srinivas.kandagatla@linaro.org,
-        mark.rutland@arm.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: nvmem: add binding for QTI SPMI SDAM
-Message-ID: <20200108163943.GA26863@bogus>
-References: <1577165532-28772-1-git-send-email-sthella@codeaurora.org>
+        id S1729091AbgAHQmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 11:42:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59140 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729081AbgAHQmD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Jan 2020 11:42:03 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2DE2C2070E;
+        Wed,  8 Jan 2020 16:42:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1578501722;
+        bh=j6P2//MHLKqz2GhzDg5E3HmPNrU87sDx/XYnqK6TwoI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LarfkwTKeSWJ3nkgtC+JFBvV2M2JwLQ74UCCoKAq4113MEIHBozlIYM4icKGMrjyd
+         HG4SrM4vMpw29MOoLMg08YPceYX8H5KVgMrZoBfoLVMf1NCWqZFltY+V4K9Z2wvxp6
+         CHoXf44CS2QcqCptzxOpEgrGvqTp99XFNYywwFS0=
+Date:   Wed, 8 Jan 2020 17:41:59 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     jassisinghbrar@gmail.com
+Cc:     balbi@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Subject: Re: [PATCH v2 2/2] usb: gadget: add udc driver for max3420
+Message-ID: <20200108164159.GA2494836@kroah.com>
+References: <20200105225509.21590-1-jassisinghbrar@gmail.com>
+ <20200105225557.21729-1-jassisinghbrar@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1577165532-28772-1-git-send-email-sthella@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200105225557.21729-1-jassisinghbrar@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Dec 24, 2019 at 11:02:12AM +0530, Shyam Kumar Thella wrote:
-> QTI SDAM allows PMIC peripherals to access the shared memory that is
-> available on QTI PMICs. Add documentation for it.
-> 
-> Signed-off-by: Shyam Kumar Thella <sthella@codeaurora.org>
-> ---
->  .../devicetree/bindings/nvmem/qcom,spmi-sdam.yaml  | 79 ++++++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-> new file mode 100644
-> index 0000000..8961a99
+On Sun, Jan 05, 2020 at 04:55:57PM -0600, jassisinghbrar@gmail.com wrote:
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/qcom,spmi-sdam.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> +++ b/drivers/usb/gadget/udc/max3420_udc.c
+> @@ -0,0 +1,1333 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * MAX3420 Device Controller driver for USB.
+> + *
+> + * Author: Jaswinder Singh Brar <jaswinder.singh@linaro.org>
+> + * (C) Copyright 2019 Linaro Ltd
+> + *
+> + * Based on:
+> + *	o MAX3420E datasheet
+> + *		http://datasheets.maximintegrated.com/en/ds/MAX3420E.pdf
+> + *	o MAX342{0,1}E Programming Guides
+> + *		https://pdfserv.maximintegrated.com/en/an/AN3598.pdf
+> + *		https://pdfserv.maximintegrated.com/en/an/AN3785.pdf
+> + *
+> + * This file is licenced under the GPL v2.
 
-Dual license new bindings:
+This line says that the SPDX line above is a lie :(
 
-(GPL-2.0-only OR BSD-2-Clause)
+Please fix this.
 
-Please spread the word in QCom. 
+As pennance, please re-read Documentation/process/license-rules.rst.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/qcom,spmi-sdam.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SPMI SDAM DT bindings
-> +
-> +maintainers:
-> +  - Shyam Kumar Thella <sthella@codeaurora.org>
-> +
-> +description: |
-> +  The SDAM provides scratch register space for the PMIC clients. This
-> +  memory can be used by software to store information or communicate
-> +  to/from the PBUS.
-> +
-> +allOf:
-> +  - $ref: "nvmem.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,spmi-sdam
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
+thanks,
 
-ranges? The child addresses should be translateable I assume.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +patternProperties:
-> +  "^.*@[0-9a-f]+$":
-> +    type: object
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +        description:
-> +          Offset and size in bytes within the storage device.
-> +
-> +      bits:
-
-Needs a type reference. 
-
-> +        maxItems: 1
-> +        items:
-> +          items:
-> +            - minimum: 0
-> +              maximum: 7
-> +              description:
-> +                Offset in bit within the address range specified by reg.
-> +            - minimum: 1
-
-max is 7?
-
-> +              description:
-> +                Size in bit within the address range specified by reg.
-> +
-> +    required:
-> +      - reg
-> +
-> +    additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +      sdam_1: nvram@b000 {
-> +         #address-cells = <1>;
-> +         #size-cells = <1>;
-> +         compatible = "qcom,spmi-sdam";
-> +          reg = <0xb000 0x100>;
-> +
-> +          /* Data cells */
-> +          restart_reason: restart@50 {
-> +              reg = <0x50 0x1>;
-> +              bits = <7 2>;
-
-How do you have bit 8 in a 1 byte register?
-
-> +          };
-> +      };
-> +...
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
->  a Linux Foundation Collaborative Project
-> 
+greg k-h
