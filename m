@@ -2,91 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FC9F13438F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 14:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54EB91343B4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 14:23:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727852AbgAHNMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 08:12:54 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:38396 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726672AbgAHNMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 08:12:51 -0500
-Received: by mail-wr1-f67.google.com with SMTP id y17so3337718wrh.5;
-        Wed, 08 Jan 2020 05:12:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ZYQSBkLnONYX/PnkBykc7VPkafXkRFxOt23+Xt4Hyj4=;
-        b=DEqNeINvEPFZrR82s01TIr2Z5zkaL3KzinrkHm1nflYyWOneu654e9Kv8RTghk/5tG
-         b/tCXXQ9KE8N7j8UszhHK9watAkwfIcQJSejG3KkrerNPYqohgag6wH0rKovU3gFpN4K
-         nBFQE/Ilq+OJhly61BsWQu4UFfbdMBeMoRgNEz4Xwa+1SirL6h7A8S1PcUaCeyXpTHs2
-         Z21+XkFeje3+Xvp+Aa+Pa7sK6CRon2Hu9BQStwVi5wuMYBsn2s/8zUKkiwpOv+vITCqV
-         fFqDRurAcq09zYoIP6Ga87pFNLQ5AnPwkD9kodK4L+GNgKc2gQWKgB/xxFrtJF/Y+Smn
-         zAVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ZYQSBkLnONYX/PnkBykc7VPkafXkRFxOt23+Xt4Hyj4=;
-        b=q70KyYlVVwuLmNNgrTXbI96+/Cvgo6zfgtmLmg4JzWz4oh3ZSl+CdaLF5WhEzbo19D
-         EYkWboo6CYmvNDW6tL4cFOjWTuk/n6tTpsSo+bqiJHZSgS874plrcL/m4lM40CUUyYwn
-         6nRCAXl019lw8fWJu3sehmHPpcX2dYkAZwGyY91Od3//4Nu0HmMtwHxc2pcirQng27cD
-         Bv6vF1hQ8IKTt/rvrZXhD66O0hhbYQDQoTqgVTlyyu/Rp3fFrpGnNLnhmGa1rf0pTT60
-         4e8eEhNY2RNi243OfnlZWQRGh/jWlZZKhECdx8f1Ta2V+uUoLdYrtD24VGaYZUDUUlGj
-         2qYQ==
-X-Gm-Message-State: APjAAAVZbYDz8IAiD895uq1u4ccqzTdYiPg4YM4Igtg+qOZ/75ymrIus
-        V6TYRl4o+E88Hw34zTdRTis=
-X-Google-Smtp-Source: APXvYqxj2owmLk2IT33kc+mzFJE9ViqbragwDPdKw11kvr+eaFOqEk6sIhBZPF92jcoV9vAdi2Nv8g==
-X-Received: by 2002:adf:f7c4:: with SMTP id a4mr4390211wrq.332.1578489169124;
-        Wed, 08 Jan 2020 05:12:49 -0800 (PST)
-Received: from localhost.localdomain (p5B3F64F6.dip0.t-ipconnect.de. [91.63.100.246])
-        by smtp.gmail.com with ESMTPSA id k82sm3875878wmf.10.2020.01.08.05.12.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2020 05:12:48 -0800 (PST)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, mripard@kernel.org,
-        shawnguo@kernel.org, heiko@sntech.de, sam@ravnborg.org,
-        icenowy@aosc.io, laurent.pinchart@ideasonboard.com,
-        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
-        davem@davemloft.net, mchehab+samsung@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/4] MAINTAINERS: Add entry for mpq7920 PMIC driver
-Date:   Wed,  8 Jan 2020 14:12:34 +0100
-Message-Id: <20200108131234.24128-5-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200108131234.24128-1-sravanhome@gmail.com>
-References: <20200108131234.24128-1-sravanhome@gmail.com>
+        id S1726947AbgAHNXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 08:23:04 -0500
+Received: from foss.arm.com ([217.140.110.172]:44500 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726757AbgAHNXE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Jan 2020 08:23:04 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A8B431B;
+        Wed,  8 Jan 2020 05:23:04 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99F2B3F703;
+        Wed,  8 Jan 2020 05:23:03 -0800 (PST)
+Date:   Wed, 8 Jan 2020 13:23:02 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, hsinyi@chromium.org
+Subject: Re: [PATCH v2 4/7] drm/panfrost: Add support for a second regulator
+ for the GPU
+Message-ID: <20200108132302.GA3817@sirena.org.uk>
+References: <20200108052337.65916-1-drinkcat@chromium.org>
+ <20200108052337.65916-5-drinkcat@chromium.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="KsGdsel6WgEHnImy"
+Content-Disposition: inline
+In-Reply-To: <20200108052337.65916-5-drinkcat@chromium.org>
+X-Cookie: Trouble always comes at the wrong time.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mpq7920 PMIC driver.
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+--KsGdsel6WgEHnImy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0fd82e674cf4..8a31285b59c6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11128,6 +11128,13 @@ S:	Maintained
- F:	Documentation/driver-api/serial/moxa-smartio.rst
- F:	drivers/tty/mxser.*
- 
-+MONOLITHIC POWER SYSTEM PMIC DRIVER
-+M:	Saravanan Sekar <sravanhome@gmail.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/regulator/mpq7920.yaml
-+F:	drivers/regulator/mpq7920.c
-+F:	drivers/regulator/mpq7920.h
-+
- MR800 AVERMEDIA USB FM RADIO DRIVER
- M:	Alexey Klimov <klimov.linux@gmail.com>
- L:	linux-media@vger.kernel.org
--- 
-2.17.1
+On Wed, Jan 08, 2020 at 01:23:34PM +0800, Nicolas Boichat wrote:
 
+> Some GPUs, namely, the bifrost/g72 part on MT8183, have a second
+> regulator for their SRAM, let's add support for that.
+
+> +	pfdev->regulator_sram = devm_regulator_get_optional(pfdev->dev, "sram");
+> +	if (IS_ERR(pfdev->regulator_sram)) {
+
+This supply is required for the devices that need it so I'd therefore
+expect the driver to request the supply non-optionally based on the
+compatible string rather than just hoping that a missing regulator isn't
+important.  Though I do have to wonder given the lack of any active
+management of the supply if this is *really* part of the GPU or if it's
+more of a SoC thing, it's not clear what exactly adding this code is
+achieving.
+
+--KsGdsel6WgEHnImy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl4V17MACgkQJNaLcl1U
+h9B1Tgf9F6myo+YZUDZcDAsE1tQHONaZ147hS3g2NDCgQf79b/fWyNVelAPRvxg+
+wz+J0q2LmDX9K0ldimkt+BEitrL5aVQsPjw/WOXbOk/n4FBP11uDMxk9i586GGfO
+EXHDmfUQh8D+wEjZBKck8+yaa0NYCFoHdlxc3rPILim9fGRiJKa18EdbPRfb7lNm
+86k2Nkicmd8gkBfk7GlJ8MgGabr1ezpiza+F/vhTkEm+WHCcDwy+BadJG5whNnC0
+GmKn0ieyraLxmVUjC4BpkJbeG/ye5VPCOcLn4ZjGrRU209STb45MyFAlAaYFNzX0
+0wWQAm/aPa23vn2QhxYUW1RALdueLQ==
+=UhEZ
+-----END PGP SIGNATURE-----
+
+--KsGdsel6WgEHnImy--
