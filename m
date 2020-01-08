@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C70C51345DA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 16:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04F8A1345BE
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 16:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726921AbgAHPKf convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 8 Jan 2020 10:10:35 -0500
-Received: from emcscan.emc.com.tw ([192.72.220.5]:61464 "EHLO
-        emcscan.emc.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727437AbgAHPKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 10:10:35 -0500
-X-Greylist: delayed 587 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 Jan 2020 10:10:34 EST
-X-IronPort-AV: E=Sophos;i="5.56,253,1539619200"; 
-   d="scan'208";a="34122422"
-Received: from unknown (HELO webmail.emc.com.tw) ([192.168.10.1])
-  by emcscan.emc.com.tw with ESMTP; 08 Jan 2020 23:00:45 +0800
-Received: from 192.168.10.23
-        by webmail.emc.com.tw with MailAudit ESMTP Server V5.0(2833:0:AUTH_RELAY)
-        (envelope-from <johnny.chuang@emc.com.tw>); Wed, 08 Jan 2020 23:00:43 +0800 (CST)
-Received: from 39.10.5.22
-        by webmail.emc.com.tw with Mail2000 ESMTPA Server V7.00(2479:0:AUTH_LOGIN)
-        (envelope-from <johnny.chuang@emc.com.tw>); Wed, 08 Jan 2020 23:00:41 +0800 (CST)
-From:   "Johnny.Chuang" <johnny.chuang@emc.com.tw>
-To:     "'Dmitry Osipenko'" <digetx@gmail.com>,
-        "'Dmitry Torokhov'" <dmitry.torokhov@gmail.com>,
-        =?utf-8?Q?'Micha=C5=82_Miros=C5=82aw'?= <mirq-linux@rere.qmqm.pl>
-Cc:     <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        "'Scott Liu'" <scott.liu@emc.com.tw>,
-        "'James Chen'" <james.chen@emc.com.tw>,
-        <linux-kernel@vger.kernel.org>,
-        "'Henrik Rydberg'" <rydberg@bitmath.org>,
-        "'Mark Rutland'" <mark.rutland@arm.com>,
-        "'Rob Herring'" <robh-dt@kernel.org>
-References: <cover.1576079249.git.mirq-linux@rere.qmqm.pl> <20191212192420.GD101194@dtor-ws> <7c67b849-369f-8a20-4f9e-9e0a7caec1cb@gmail.com>
-In-Reply-To: <7c67b849-369f-8a20-4f9e-9e0a7caec1cb@gmail.com>
-Subject: RE: [PATCH v2 0/9] input: elants: Support Asus TF300T touchscreen
-Date:   Wed, 8 Jan 2020 23:00:33 +0800
-Message-ID: <000001d5c634$655bed20$3013c760$@emc.com.tw>
+        id S1728932AbgAHPHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 10:07:54 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43344 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727629AbgAHPHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 10:07:53 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 008F7ofC014550;
+        Wed, 8 Jan 2020 09:07:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1578496070;
+        bh=nABr0rOy2x3lVMXTWU5UFQKT88ibNI0DZI1k0DXXm1g=;
+        h=From:To:CC:Subject:Date;
+        b=DwgBmErTNRTBxZ1yQAz126k7JknMk2vOe8t4wMKOcKueQQLrYFch3xVJwmrPHjMh9
+         FbsVBXr+nHW1lSVHNzEJ2my24avSboZ6Anqv87e1jiCdKA5bGDWKb2++vpyfYU+Ot9
+         YzyMIIWVbd7po7puPDlMPmoxtGvbeiSk6SyMbxR4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 008F7oWA105408;
+        Wed, 8 Jan 2020 09:07:50 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 8 Jan
+ 2020 09:07:50 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 8 Jan 2020 09:07:50 -0600
+Received: from a0230074-OptiPlex-7010.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 008F7ln0018107;
+        Wed, 8 Jan 2020 09:07:48 -0600
+From:   Faiz Abbas <faiz_abbas@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <ulf.hansson@linaro.org>, <adrian.hunter@intel.com>,
+        <faiz_abbas@ti.com>, <robh+dt@kernel.org>
+Subject: [PATCH 0/3] Update phy configuration for AM65x
+Date:   Wed, 8 Jan 2020 20:39:17 +0530
+Message-ID: <20200108150920.14547-1-faiz_abbas@ti.com>
+X-Mailer: git-send-email 2.19.2
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 8BIT
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQG/wbboUgEFdZ2Q4eX8SCV758q1EAKWfXCAAgu9J8mn59GaYA==
-Content-Language: zh-tw
-x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcMDUwMTBcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZiODRiYTI5ZTM1Ylxtc2dzXG1zZy00YjEyMDg4NC0zMjI3LTExZWEtODM0MS03YzVjZjg3NDk0NzhcYW1lLXRlc3RcNGIxMjA4ODYtMzIyNy0xMWVhLTgzNDEtN2M1Y2Y4NzQ5NDc4Ym9keS50eHQiIHN6PSI3MDMiIHQ9IjEzMjIyOTY5MDk0Mjk2MzgxMiIgaD0iU0RWQzJ5V3lBTldGRWdEVzgvaUpjQ0RGdG5BPSIgaWQ9IiIgYmw9IjAiIGJvPSIxIi8+PC9tZXRhPg==
-x-dg-rorf: true
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> 12.12.2019 22:24, Dmitry Torokhov пишет:
-> > On Wed, Dec 11, 2019 at 05:03:18PM +0100, Michał Mirosław wrote:
-> >> This series cleans up the driver a bit and implements changes needed
-> >> to support EKTF3624-based touchscreen used in eg. Asus TF300T tablet.
-> >
-> > Johnny, could you please take a look at this patch series?
-> >
-> > Thanks!
-> 
-> Hello Johnny,
-> 
-> Could you please let us know whether you or anyone else from Elan are going
-> to take a look at this patchset anytime soon?
+The following patches update phy configurations for AM65x as given in
+the latest data manual.
 
-Hi Dmitry Osipenko,
+The patches depend on my fixes series posted just before this:
+https://patchwork.kernel.org/project/linux-mmc/list/?series=225425
 
-I'm sorry to reply late. James Chen will take a look at this patch set. 
+Device tree patch updating the actual otap values will be posted
+separately.
+
+Tested with Am65x-evm and J721e-evm.
+
+Faiz Abbas (3):
+  dt-bindings: mmc: sdhci-am654: Update Output tap delay binding
+  mmc: sdhci_am654: Update OTAPDLY writes
+  mmc: sdhci_am654: Enable DLL only for some speed modes
+
+ .../devicetree/bindings/mmc/sdhci-am654.txt   |  21 +-
+ drivers/mmc/host/sdhci_am654.c                | 247 ++++++++++++------
+ include/linux/mmc/host.h                      |   2 +
+ 3 files changed, 192 insertions(+), 78 deletions(-)
+
+-- 
+2.19.2
 
