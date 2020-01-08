@@ -2,170 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 228811342A1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 13:57:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43F4A134387
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 14:12:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728419AbgAHM4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 07:56:52 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:56412 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726144AbgAHM4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 07:56:52 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: alyssa)
-        with ESMTPSA id 18140292E2E
-Date:   Wed, 8 Jan 2020 07:56:45 -0500
-From:   Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
-To:     Nicolas Boichat <drinkcat@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        Steven Price <steven.price@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, hsinyi@chromium.org
-Subject: Re: [PATCH v2 0/7] Add dts for mt8183 GPU (and misc panfrost patches)
-Message-ID: <20200108125645.GA3057@kevin>
-References: <20200108052337.65916-1-drinkcat@chromium.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0F1p//8PRICkK4MW"
-Content-Disposition: inline
-In-Reply-To: <20200108052337.65916-1-drinkcat@chromium.org>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+        id S1726708AbgAHNMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 08:12:46 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:33694 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726199AbgAHNMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 08:12:46 -0500
+Received: by mail-wr1-f66.google.com with SMTP id b6so3382222wrq.0;
+        Wed, 08 Jan 2020 05:12:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=CW1vsmVOYVpnu21wOV1FaVQtVlxQeM9zvVeI3WDjoeQ=;
+        b=TGiv7UgYOnCvuzeHdEbOimyJWrw0yKav/L80GnMtkV3tQsGQB0qsfwJwoIjI9a8EyY
+         Edi0fjN7J30XXnYRBDvH7r9dNEIoUg/OMEesb0PGkwjop57B8UHXxtx//W7JVGu6MpIW
+         tl8YijCWvV/pLDOzHl7ZiTXVguS7u2J1rCSftGu1mpKseTBKrmOIVoN+sRMbnhPpFLmh
+         XDbB4gKsAzGM0uBcgTjabj/xHFzKuxgFc+giboEvqLY3lexuRV1FCVJJ8st3/lrThiOX
+         01giLKsLHfvrMx0vbHbzS5hMDL+1XfeRbKNB/XOwDoh/BCjIFoskOi7PntEsweng0igd
+         CVEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=CW1vsmVOYVpnu21wOV1FaVQtVlxQeM9zvVeI3WDjoeQ=;
+        b=ExbJa0NvjYmwlOHSP9PlFZRzZltGTw+2QHhJIXT+R0LhnmMUPgfbJooUrSJl2W0amK
+         Aby5/vrD1A7v2bOit3w5F7Pqz2Kn1DUMN5Gq9ZTCBQIpfy7rVZ0IjGF1bTqV/XZSvavO
+         VWm2NPPk5LY4F7LC9yXouE3NNw8s5T6IUvW8HlISQexoq+wBvk2kf+LXNoAThrAHQQ9Q
+         GSB/xdz3hj0HJed+nEnXDhjzdJfDf0XC+PwzHiTeOACt+iUMex+kKVYioCmaxHDYLkiq
+         dd7OImeQCtk1xHHjc3jeUup9OAGIvqtqE3Gom8+O/IVj17+TdTxYYfpsKSfyF7VgrO30
+         3jGA==
+X-Gm-Message-State: APjAAAVZiQTVTXoVeGiyh2yP8MU4NQCqNkKOsgH+tSkgnvrjE+CPrd/D
+        BNJH+nwp24leJPr+CzvAcGU=
+X-Google-Smtp-Source: APXvYqw/u2BVw/HyzOF7uxDcGn7emrybdnMAcnzp/hI83PU8kL4Xy2UxLatfb/e8u7n4Ijadyri1gg==
+X-Received: by 2002:adf:edd0:: with SMTP id v16mr4468409wro.310.1578489163703;
+        Wed, 08 Jan 2020 05:12:43 -0800 (PST)
+Received: from localhost.localdomain (p5B3F64F6.dip0.t-ipconnect.de. [91.63.100.246])
+        by smtp.gmail.com with ESMTPSA id k82sm3875878wmf.10.2020.01.08.05.12.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2020 05:12:42 -0800 (PST)
+From:   Saravanan Sekar <sravanhome@gmail.com>
+To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, mripard@kernel.org,
+        shawnguo@kernel.org, heiko@sntech.de, sam@ravnborg.org,
+        icenowy@aosc.io, laurent.pinchart@ideasonboard.com,
+        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
+        davem@davemloft.net, mchehab+samsung@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] Add regulator support for mpq7920
+Date:   Wed,  8 Jan 2020 14:12:30 +0100
+Message-Id: <20200108131234.24128-1-sravanhome@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Changes in V5:
+    - removed timeslot related changes, the timeslot register holds the value of
+      time duration between each regulator of power on/off sequence. Although
+      timeslot register is accessed over I2C the changes reflects on next powercycle
+      of pmic, so cannot handled part of this driver.
+    - device tree bindings property are defined per regulator node
 
---0F1p//8PRICkK4MW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in V4:
+    - fixed 0-DAY warnings
 
-Patches 1,2,3,6 are:
+Changes in V3:
+    - fixed review comments in Documentation and dt_bindings_check passed
 
-	Reviewed-by: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+Changes in V2:
+    - fixed all the review comments in the driver, avoid ternery operator, inline & constant
+    - fixed/modifed review comments in Documentation
 
-The remaining patches in the series are Acked-by.
+This patch series add support for PMIC regulator driver for Monolithic
+Power System's MPQ7920 chipset. MPQ7920 provides support for 4-BUCK converter,
+one fixed voltage RTCLDO and 4-LDO regualtor, accessed over I2C.
 
-Reportedly the kernel should work on certain Bifrost boards more or less
-as-is, but I'm not positive about the details. It's possible some of
-these are G72-specific or MT-specific issues; Robin and Stephen will
-know more.
+Saravanan Sekar (4):
+  dt-bindings: Add an entry for Monolithic Power System, MPS
+  dt-bindings: regulator: add document bindings for mpq7920
+  regulator: mpq7920: add mpq7920 regulator driver
+  MAINTAINERS: Add entry for mpq7920 PMIC driver
 
-Very nice work so far!
+Saravanan Sekar (4):
+  dt-bindings: Add an entry for Monolithic Power System, MPS
+  dt-bindings: regulator: add document bindings for mpq7920
+  regulator: mpq7920: add mpq7920 regulator driver
+  MAINTAINERS: Add entry for mpq7920 PMIC driver
 
-Alyssa
+ .../bindings/regulator/mps,mpq7920.yaml       | 202 +++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ drivers/regulator/Kconfig                     |  10 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/mpq7920.c                   | 342 ++++++++++++++++++
+ drivers/regulator/mpq7920.h                   |  72 ++++
+ 7 files changed, 636 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mps,mpq7920.yaml
+ create mode 100644 drivers/regulator/mpq7920.c
+ create mode 100644 drivers/regulator/mpq7920.h
 
-On Wed, Jan 08, 2020 at 01:23:30PM +0800, Nicolas Boichat wrote:
-> Hi!
->=20
-> Sorry for the long delay since https://patchwork.kernel.org/patch/1113238=
-1/,
-> finally got around to give this a real try.
->=20
-> The main purpose of this series is to upstream the dts change and the bin=
-ding
-> document, but I wanted to see how far I could probe the GPU, to check tha=
-t the
-> binding is indeed correct. The rest of the patches are RFC/work-in-progre=
-ss, but
-> I think some of them could already be picked up.
->=20
-> So this is tested on MT8183 with a chromeos-4.19 kernel, and a ton of
-> backports to get the latest panfrost driver (I should probably try on
-> linux-next at some point but this was the path of least resistance).
->=20
-> I tested it as a module as it's more challenging (originally probing would
-> work built-in, on boot, but not as a module, as I didn't have the power
-> domain changes, and all power domains are on by default during boot).
->=20
-> Probing logs looks like this, currently:
-> [  221.867726] panfrost 13040000.gpu: clock rate =3D 511999970
-> [  221.867929] panfrost 13040000.gpu: Linked as a consumer to regulator.14
-> [  221.868600] panfrost 13040000.gpu: Linked as a consumer to regulator.31
-> [  221.870586] panfrost 13040000.gpu: Linked as a consumer to genpd:0:130=
-40000.gpu
-> [  221.871492] panfrost 13040000.gpu: Linked as a consumer to genpd:1:130=
-40000.gpu
-> [  221.871866] panfrost 13040000.gpu: Linked as a consumer to genpd:2:130=
-40000.gpu
-> [  221.872427] panfrost 13040000.gpu: mali-g72 id 0x6221 major 0x0 minor =
-0x3 status 0x0
-> [  221.872439] panfrost 13040000.gpu: features: 00000000,13de77ff, issues=
-: 00000000,00000400
-> [  221.872445] panfrost 13040000.gpu: Features: L2:0x07120206 Shader:0x00=
-000000 Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
-> [  221.872449] panfrost 13040000.gpu: shader_present=3D0x7 l2_present=3D0=
-x1
-> [  221.873526] panfrost 13040000.gpu: error powering up gpu stack
-> [  221.878088] [drm] Initialized panfrost 1.1.0 20180908 for 13040000.gpu=
- on minor 2
-> [  221.940817] panfrost 13040000.gpu: error powering up gpu stack
-> [  222.018233] panfrost 13040000.gpu: error powering up gpu stack
-> (repeated)
->=20
-> So the GPU is probed, but there's an issue when powering up the STACK, not
-> quite sure why, I'll try to have a deeper look, at some point.
->=20
-> Thanks!
->=20
-> Nicolas
->=20
-> v2:
->  - Use sram instead of mali_sram as SRAM supply name.
->  - Rename mali@ to gpu@.
->  - Add dt-bindings changes
->  - Stacking patches after the device tree change that allow basic
->    probing (still incomplete and broken).
->=20
-> Nicolas Boichat (7):
->   dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
->   arm64: dts: mt8183: Add node for the Mali GPU
->   drm/panfrost: Improve error reporting in panfrost_gpu_power_on
->   drm/panfrost: Add support for a second regulator for the GPU
->   drm/panfrost: Add support for multiple power domain support
->   RFC: drm/panfrost: Add bifrost compatible string
->   RFC: drm/panfrost: devfreq: Add support for 2 regulators
->=20
->  .../bindings/gpu/arm,mali-bifrost.yaml        |  20 ++++
->  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   7 ++
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 104 +++++++++++++++++
->  drivers/gpu/drm/panfrost/panfrost_devfreq.c   |  18 +++
->  drivers/gpu/drm/panfrost/panfrost_device.c    | 108 ++++++++++++++++--
->  drivers/gpu/drm/panfrost/panfrost_device.h    |   7 ++
->  drivers/gpu/drm/panfrost/panfrost_drv.c       |   1 +
->  drivers/gpu/drm/panfrost/panfrost_gpu.c       |  15 ++-
->  8 files changed, 267 insertions(+), 13 deletions(-)
->=20
-> --=20
-> 2.24.1.735.g03f4e72817-goog
->=20
+-- 
+2.17.1
 
---0F1p//8PRICkK4MW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEQ17gm7CvANAdqvY4/v5QWgr1WA0FAl4V0YcACgkQ/v5QWgr1
-WA2z0Q//WX513kQuB2ztPrVdeEsNW0mXDe8s1n5AKMDsEY0qTeR48HQjPkug4+vX
-RCioXDCqH4EJDlQ+JSJZHD+Ehsy9NgMxFpBeJZNO/S9yh05ThDuxi1Cpp0jAan5L
-Xe1DqD9LeyOeH3UIOUkiUASyKs7JVozgO6x40jYa2z8bt4WN1aI4GOrJ0s0CpSOh
-2oaN9oSPeCZYkAPk40m1Ygk/MNa+mpaVA5kDOF90YyhSh8fjXfhCopjRRTQh7koH
-O94imgpCBY6WPDSQGQv9itX54ZR41JUTjE+APpGMG4wnoVt7bdRF/YZdePz8LNlZ
-IqFWQ1e0EM0/BkoIGje9DO+jdC+Gu3ADBNrs67kqDlwaHMS7yb7q7HfGVYyS0+tF
-cJylSj1GQ2ChQXu6KwyMf44IEloUfFZ7y2oJWBp1BMvLbu+Sgdr6uEBu2tYJ0AYA
-L4WnOrEADX6BWjbo1BjKRflVYyjiz1SWptE4BrADD7aDuXH9w0OSE70x1fCscVBN
-hhyT6aZSESsKSilhgCwrnacA+9htvu3uEmDS0YWpCZ9UpVw9a7rb/S4T6wUJZBBG
-MoGXDDbLnFq2JcI48k45gp2HTGnjHwTsLmTpxrEo+QfnawFRVmnqWyPrHFJ1lVVO
-BE0kDN4lbWYYZCZ4vKT4GLHwXGBLTaTI6b7/V2ZaLQtv4tCuHzM=
-=jsFA
------END PGP SIGNATURE-----
-
---0F1p//8PRICkK4MW--
