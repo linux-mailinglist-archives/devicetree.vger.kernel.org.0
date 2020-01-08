@@ -2,112 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC89134075
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 12:27:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0452C1340B5
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 12:41:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726466AbgAHL1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 06:27:41 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:29186 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726098AbgAHL1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 06:27:40 -0500
-X-UUID: c02c473c9be144d299865735663f90f0-20200108
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=1fi/fDDjeP/w31P1XgOwqFMDo56O99pCAi7DUbNxiWw=;
-        b=r/5T5aJWB59LTnEkYNHmW6r5/rlvodqYKmJvWZ4DBmfbXvx14YA6w2sXfrmVK8ed2rNBb71n4uE6EsfTWVEcJ6ZQ6QtBU2082sqAjE1Y5YiuVINjsR4frij6u3q7guy1Qqjk/Fzt8kjYs4tqeeDjb9mSGU0a+MZtdBvA+8tYJ64=;
-X-UUID: c02c473c9be144d299865735663f90f0-20200108
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
-        (envelope-from <hanks.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1577135201; Wed, 08 Jan 2020 19:27:36 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 8 Jan 2020 19:28:10 +0800
-Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 8 Jan 2020 19:25:57 +0800
-Message-ID: <1578482850.7554.18.camel@mtkswgap22>
-Subject: Re: [PATCH v2 05/11] pinctrl: mediatek: avoid virtual gpio trying
- to set reg
-From:   Hanks Chen <hanks.chen@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Rob Herring <robh@kernel.org>, CC Hwang <cc.hwang@mediatek.com>,
-        <wsd_upstream@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Sean Wang <sean.wang@kernel.org>,
-        Loda Chou <loda.chou@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        "Mars Cheng" <mars.cheng@mediatek.com>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Date:   Wed, 8 Jan 2020 19:27:30 +0800
-In-Reply-To: <CACRpkdZUxpQ1tS9mKG9tc_U==M2BL9HwXt3DS1t413GGSEaVTA@mail.gmail.com>
-References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com>
-         <1566206502-4347-6-git-send-email-mars.cheng@mediatek.com>
-         <CACRpkdZa_sQgvWC3ic0NxrVi9gS1cNTsV-wa-SDpA0e5kutBRw@mail.gmail.com>
-         <1577022724.7468.20.camel@mtkswgap22>
-         <CACRpkdZUxpQ1tS9mKG9tc_U==M2BL9HwXt3DS1t413GGSEaVTA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1727112AbgAHLle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 06:41:34 -0500
+Received: from mail.blih.net ([212.83.177.182]:49453 "EHLO mail.blih.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726098AbgAHLld (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Jan 2020 06:41:33 -0500
+X-Greylist: delayed 399 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 Jan 2020 06:41:32 EST
+Received: from mail.blih.net (mail.blih.net [212.83.177.182])
+        by mail.blih.net (OpenSMTPD) with ESMTP id 27424418;
+        Wed, 8 Jan 2020 12:34:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=bidouilliste.com; h=date
+        :from:to:cc:subject:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; s=mail;
+         bh=7H1NUSmMYGTvCzHTp3u946ayonA=; b=PhASKloPmfq2zxtZhhvFAVJcLYh9
+        EeNHZSLV3mkesmLFO4T3Zv9cyEvX7K8LYSaRUbtxmJKYjsJm59EEUnqH7jaTybjT
+        MwIQgnrZKmvn/5njwiZ4jPZue6SdVnp3sw8xxu1XjqdfXjYAwEzYS07V1zttJZnb
+        u76lUtexR10di7o=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=bidouilliste.com; h=date
+        :from:to:cc:subject:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; q=dns; s=
+        mail; b=Rxq9HddvpMW4jpGLx2rRA8IPzZWQwam861gSUz+9SUdaKmhBjzGWOdAa
+        YtayE0ngW4S0NUt48Yaq4LgJRCyXj4MaleCocNkh652cQxB7HR0uOpdEoKuQoK+q
+        xZIua6BHtguXz9stBKjDeKVTyAWVnlYhMNb1RSQUiTZxnRnPOns=
+Received: from skull.home.blih.net (lfbn-idf2-1-1164-130.w90-92.abo.wanadoo.fr [90.92.223.130])
+        by mail.blih.net (OpenSMTPD) with ESMTPSA id 32876efc
+        TLS version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO;
+        Wed, 8 Jan 2020 12:34:51 +0100 (CET)
+Date:   Wed, 8 Jan 2020 12:34:48 +0100
+From:   Emmanuel Vadot <manu@bidouilliste.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-spi@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Mark Brown <broonie@kernel.org>,
+        Icenowy Zheng <icenowy@aosc.xyz>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: sun50i: H6: Add SPI controllers nodes
+ and pinmuxes
+Message-Id: <20200108123448.26286186e74f899caaf5ad35@bidouilliste.com>
+In-Reply-To: <20200108101006.150706-2-andre.przywara@arm.com>
+References: <20200108101006.150706-1-andre.przywara@arm.com>
+        <20200108101006.150706-2-andre.przywara@arm.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; amd64-portbld-freebsd13.0)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTAxLTA3IGF0IDExOjIwICswMTAwLCBMaW51cyBXYWxsZWlqIHdyb3RlOg0K
-PiBPbiBNb24sIERlYyAyMywgMjAxOSBhdCA0OjExIEFNIEhhbmtzIENoZW4gPGhhbmtzLmNoZW5A
-bWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPiBPbiBGcmksIDIwMTktMDgtMjMgYXQgMTA6NTcgKzAy
-MDAsIExpbnVzIFdhbGxlaWogd3JvdGU6DQo+ID4gPiBPbiBNb24sIEF1ZyAxOSwgMjAxOSBhdCAx
-MToyMiBBTSBNYXJzIENoZW5nIDxtYXJzLmNoZW5nQG1lZGlhdGVrLmNvbT4gd3JvdGU6DQo+IA0K
-PiA+ID4gVGhpcyBkb2VzIG5vdCBleHBsYWluIHdoYXQgYSAidmlydHVhbCBHUElPIiBpcyBpbiB0
-aGlzDQo+ID4gPiBjb250ZXh0LCBzbyBwbGVhc2UgZWxhYm9yYXRlLiBXaGF0IGlzIHRoaXM/IFdo
-eSBkb2VzDQo+ID4gPiBpdCBleGlzdD8gV2hhdCBpcyBpdCB1c2VkIGZvcj8NCj4gPiA+DQo+ID4g
-PiBHUElPIGlzICJnZW5lcmFsIHB1cnBvc2UgaW5wdXQvb3V0cHV0IiBhbmQgaXQgaXMgYQ0KPiA+
-ID4gcHJldHR5IHJ1YmJlcnkgY2F0ZWdvcnkgYWxyZWFkeSBhcyBpdCBpcywgc28gd2UgbmVlZA0K
-PiA+ID4gdG8gZGVmaW5lIG91ciB0ZXJtcyBwcmV0dHkgc3RyaWN0bHkuDQo+ID4gPg0KPiA+IFZp
-cnR1YWwgR1BJTyBvbmx5IHVzZWQgaW5zaWRlIFNPQyBhbmQgbm90IGJlaW5nIGV4cG9ydGVkIHRv
-IG91dHNpZGUgU09DDQo+ID4gaW4gTVRLIHBsYXRmb3JtLiBTb21lIG1vZHVsZXMgdXNlIHZpcnR1
-YWwgR1BJTyBhcyBlaW50IChlLmcuIHBtaWMgb3INCj4gPiB1c2IpLg0KPiANCj4gSSB3b3VsZCBj
-YWxsIHRoYXQgaW50ZXJuYWwgR1BJT3MsIHRob3NlIGFyZSB2ZXJ5IHJlYWwgcmFpbHMgaW5zaWRl
-DQo+IHRoZSBjaGlwIG1hZGUgd2l0aCBwb2x5c2lsaWNvbmUgc28gdGhlcmUgaXMgbm90aGluZyAi
-dmlydHVhbCINCj4gYWJvdXQgdGhlbS4gSWYgdGhlIGRvY3VtZW50YXRpb24gZm9yIHRoZSBjaGlw
-IGNhbGxzIHRoZW0gdmlydHVhbA0KPiB0aGVuIGV4cGxhaW4gaW4gdGhlIGRyaXZlciB0aGF0IHRo
-ZXNlIGFyZSBTb0MtaW50ZXJuYWwNCj4gbGluZXMgc28gdGhhdCBldmVyeW9uZSB3aWxsIGdldCBp
-dC4NCj4gDQoNCkdvdCBpdCwgSSB3aWxsIGFkZCB0aGUgaW5mbyBpbnRvIHRoZSBkcml2ZXIgaW4g
-djMgDQoNCj4gSXMgdGhlIFBNSUMgaW5zaWRlIHRoZSBTb0M/IEkgdGhvdWdodCB0aGF0IHdhcyB1
-c3VhbGx5IG91dHNpZGUgb2YgaXQNCj4gaW4gaXRzIG93biBjaGlwLg0KPiANCj4gQnV0IEkgc3Vw
-cG9zZSB0aGVyZSBjb3VsZCBiZSBzb21lIGludGVyZmFjZSB0byBpdCBpbiB0aGUgU29DIGFuZA0K
-PiB0aGVuIHRoYXQgaW50ZXJmYWNlIGhhcyB0aGlzIEVJTlQ/DQo+IA0KDQpUaGF0J3MgcmlnaHQu
-IEkgdXNlIGluY29ycmVjdCB3b3JkLg0KZS5nLiBwbWljIGludGVyZmFjZSBpbnNpZGUgdGhlIFNP
-QyAoUE1JRiksIG5vdCBwbWljLi4uDQoNCj4gPiBJbiBNVEsgcGxhdGZvcm0sIGV4dGVybmFsIGlu
-dGVycnVwdCAoRUlOVCkgYW5kIEdQSU8gaXMgMS0xIG1hcHBpbmcgYW5kDQo+ID4gd2UgY2FuIHNl
-dCBHUElPIGFzIGVpbnQuDQo+ID4gQnV0IHNvbWUgbW9kdWxlcyB1c2Ugc3BlY2lmaWMgZWludCB3
-aGljaCBkb2Vzbid0IGhhdmUgcmVhbCBHUElPIHBpbi4NCj4gPiBTbyB3ZSB1c2UgdmlydHVhbCBH
-UElPIHRvIG1hcCBpdC4NCj4gDQo+IE9LIEkgZ2V0IGl0IEkgdGhpbmsuLi4ganVzdCBwdXQgdGhl
-c2UgY29tbWVudHMgaW50byB0aGUgY29kZSBhcyB3ZWxsDQo+IHNvIHdlIHVuZGVyc3RhbmQgd2hl
-biByZWFkaW5nIHRoZSBjb2RlIHdoYXQgaXMgZ29pbmcgb24uDQoNCkdvdCBpdCwgd2lsbCBhZGQg
-dGhlIGNvbW1lbnRzIGluIHYzLiBUaGFua3MgZm9yIHJldmlld2luZy4NCg0KPiANCj4gPiA+ID4g
-KyAgICAgICBpZiAobXRrX2lzX3ZpcnRfZ3BpbyhodywgZ3BpbykpDQo+ID4gPiA+ICsgICAgICAg
-ICAgICAgICByZXR1cm4gMTsNCj4gPiA+DQo+ID4gPiBXaHkgYXJlICJ2aXJ0dWFsIEdQSU9zIiBh
-bHdheXMgaW5wdXRzPw0KPiA+DQo+ID4gV2Ugc2V0IHZpcnR1YWwgR1BJTyBhcyBlaW50Lg0KPiA+
-IEl0IG1lYW4gdmlydHVhbCBHUElPIG9ubHkgdXNlZCBpbnNpZGUgU09DIGFuZCBub3QgYmVpbmcg
-ZXhwb3J0ZWQgdG8NCj4gPiBvdXRzaWRlIFNPQy4NCj4gDQo+IEFyZSB5b3Ugc2F5aW5nIHRoYXQ6
-DQo+IC0gIlZpcnR1YWwiIEdQSU9zIGFyZSBhbHdheXMgYW5kIG9ubHkgdXNlZCBmb3IgaW50ZXJy
-dXB0cw0KPiAtIFNpbmNlIHRoZXkgYXJlIG9ubHkgdXNlZCBmb3IgaW50ZXJydXB0cywgdGhleSBh
-cmUgYWx3YXlzIGlucHV0cw0KPiANCj4gVGhlbiB3cml0ZSB0aGF0IGluIGEgY29tbWVudCB0byB0
-aGUgYWJvdmUgY2hhbmdlIHNvIHdlIGtub3cNCj4gdGhpcyBjb250ZXh0Lg0KPiANCg0KWWVzLCB2
-aXJ0dWFsIEdQSU9zIGFyZSBhbHdheXMgYW5kIG9ubHkgdXNlZCBmb3IgaW50ZXJydXB0cyBpbiBt
-dGsNCnBsYXRmb3JtLiBJJ2xsIGFkZCB0aGUgY29tbWVudHMgaW4gdjMuIFRoYW5rcyBmb3IgcmV2
-aWV3aW5nDQoNCj4gWW91cnMsDQo+IExpbnVzIFdhbGxlaWoNCj4gDQo+IF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IExpbnV4LW1lZGlhdGVrIG1haWxp
-bmcgbGlzdA0KPiBMaW51eC1tZWRpYXRla0BsaXN0cy5pbmZyYWRlYWQub3JnDQo+IGh0dHA6Ly9s
-aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtbWVkaWF0ZWsNCg0KDQo=
 
+ Hi Andre,
+
+On Wed,  8 Jan 2020 10:10:05 +0000
+Andre Przywara <andre.przywara@arm.com> wrote:
+
+> The Allwinner H6 SoC contains two SPI controllers similar to the H3/A64,
+> but with the added capability of 3-wire and 4-wire operation modes.
+> For now the driver does not support those, but the SPI registers are
+> fully backwards-compatible, just adding bits and registers which were
+> formerly reserved. So we can use the existing driver for the "normal" SPI
+> modes, for instance to access the SPI NOR flash soldered on the PineH64
+> board.
+> We use an H6 specific compatible string in addition to the existing H3
+> string, so when the driver later gains Quad SPI support, it should work
+> automatically without any DT changes.
+> 
+> Tested by accessing the SPI flash on a Pine H64 board (SPI0), also
+> connecting another SPI flash to the SPI1 header pins.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 54 ++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> index 3329283e38ab..40835850893e 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -338,6 +338,30 @@
+>  				bias-pull-up;
+>  			};
+>  
+> +			/omit-if-no-ref/
+
+ That would prevent users to use an overlay and use those pins, is that
+something that we want ? I'm not sure that the space saved by those are
+useful.
+
+ Cheers,
+
+> +			spi0_pins: spi0-pins {
+> +				pins = "PC0", "PC2", "PC3";
+> +				function = "spi0";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			spi0_cs_pin: spi0-cs-pin {
+> +				pins = "PC5";
+> +				function = "spi0";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			spi1_pins: spi1-pins {
+> +				pins = "PH4", "PH5", "PH6";
+> +				function = "spi1";
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			spi1_cs_pin: spi1-cs-pin {
+> +				pins = "PH3";
+> +				function = "spi1";
+> +			};
+> +
+>  			spdif_tx_pin: spdif-tx-pin {
+>  				pins = "PH7";
+>  				function = "spdif";
+> @@ -504,6 +528,36 @@
+>  			#size-cells = <0>;
+>  		};
+>  
+> +		spi0: spi@5010000 {
+> +			compatible = "allwinner,sun50i-h6-spi",
+> +				     "allwinner,sun8i-h3-spi";
+> +			reg = <0x05010000 0x1000>;
+> +			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
+> +			clock-names = "ahb", "mod";
+> +			dmas = <&dma 22>, <&dma 22>;
+> +			dma-names = "rx", "tx";
+> +			resets = <&ccu RST_BUS_SPI0>;
+> +			status = "disabled";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		spi1: spi@5011000 {
+> +			compatible = "allwinner,sun50i-h6-spi",
+> +				     "allwinner,sun8i-h3-spi";
+> +			reg = <0x05011000 0x1000>;
+> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&ccu CLK_BUS_SPI1>, <&ccu CLK_SPI1>;
+> +			clock-names = "ahb", "mod";
+> +			dmas = <&dma 23>, <&dma 23>;
+> +			dma-names = "rx", "tx";
+> +			resets = <&ccu RST_BUS_SPI1>;
+> +			status = "disabled";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+>  		emac: ethernet@5020000 {
+>  			compatible = "allwinner,sun50i-h6-emac",
+>  				     "allwinner,sun50i-a64-emac";
+> -- 
+> 2.17.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+
+-- 
+Emmanuel Vadot <manu@bidouilliste.com> <manu@freebsd.org>
