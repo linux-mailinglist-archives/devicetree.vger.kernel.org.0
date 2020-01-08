@@ -2,174 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0452C1340B5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 12:41:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AEF71340A0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 12:37:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727112AbgAHLle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 06:41:34 -0500
-Received: from mail.blih.net ([212.83.177.182]:49453 "EHLO mail.blih.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726098AbgAHLld (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Jan 2020 06:41:33 -0500
-X-Greylist: delayed 399 seconds by postgrey-1.27 at vger.kernel.org; Wed, 08 Jan 2020 06:41:32 EST
-Received: from mail.blih.net (mail.blih.net [212.83.177.182])
-        by mail.blih.net (OpenSMTPD) with ESMTP id 27424418;
-        Wed, 8 Jan 2020 12:34:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=bidouilliste.com; h=date
-        :from:to:cc:subject:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=mail;
-         bh=7H1NUSmMYGTvCzHTp3u946ayonA=; b=PhASKloPmfq2zxtZhhvFAVJcLYh9
-        EeNHZSLV3mkesmLFO4T3Zv9cyEvX7K8LYSaRUbtxmJKYjsJm59EEUnqH7jaTybjT
-        MwIQgnrZKmvn/5njwiZ4jPZue6SdVnp3sw8xxu1XjqdfXjYAwEzYS07V1zttJZnb
-        u76lUtexR10di7o=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=bidouilliste.com; h=date
-        :from:to:cc:subject:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; q=dns; s=
-        mail; b=Rxq9HddvpMW4jpGLx2rRA8IPzZWQwam861gSUz+9SUdaKmhBjzGWOdAa
-        YtayE0ngW4S0NUt48Yaq4LgJRCyXj4MaleCocNkh652cQxB7HR0uOpdEoKuQoK+q
-        xZIua6BHtguXz9stBKjDeKVTyAWVnlYhMNb1RSQUiTZxnRnPOns=
-Received: from skull.home.blih.net (lfbn-idf2-1-1164-130.w90-92.abo.wanadoo.fr [90.92.223.130])
-        by mail.blih.net (OpenSMTPD) with ESMTPSA id 32876efc
-        TLS version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO;
-        Wed, 8 Jan 2020 12:34:51 +0100 (CET)
-Date:   Wed, 8 Jan 2020 12:34:48 +0100
-From:   Emmanuel Vadot <manu@bidouilliste.com>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-spi@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Mark Brown <broonie@kernel.org>,
-        Icenowy Zheng <icenowy@aosc.xyz>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: sun50i: H6: Add SPI controllers nodes
- and pinmuxes
-Message-Id: <20200108123448.26286186e74f899caaf5ad35@bidouilliste.com>
-In-Reply-To: <20200108101006.150706-2-andre.przywara@arm.com>
-References: <20200108101006.150706-1-andre.przywara@arm.com>
-        <20200108101006.150706-2-andre.przywara@arm.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; amd64-portbld-freebsd13.0)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        id S1727205AbgAHLhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 06:37:23 -0500
+Received: from szxga06-in.huawei.com ([45.249.212.32]:34408 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726098AbgAHLhX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Jan 2020 06:37:23 -0500
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 8599411B6155C6BB9C78;
+        Wed,  8 Jan 2020 19:37:21 +0800 (CST)
+Received: from [127.0.0.1] (10.57.101.250) by DGGEMS401-HUB.china.huawei.com
+ (10.3.19.201) with Microsoft SMTP Server id 14.3.439.0; Wed, 8 Jan 2020
+ 19:37:18 +0800
+Subject: Re: [PATCH] arm64: dts: hi3798cv200: correct PCIe 'bus-range' setting
+To:     Shawn Guo <shawn.guo@linaro.org>
+References: <20200107122908.18025-1-shawn.guo@linaro.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+From:   Wei Xu <xuwei5@hisilicon.com>
+Message-ID: <5E15BEEE.2040100@hisilicon.com>
+Date:   Wed, 8 Jan 2020 19:37:18 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+ Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <20200107122908.18025-1-shawn.guo@linaro.org>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.57.101.250]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Shawn,
 
- Hi Andre,
+On 2020/1/7 20:29, Shawn Guo wrote:
+> The PCIe 'bus-range' setting is incorrect and causing the following
+> message during boot.
+>
+> pci_bus 0000:01: busn_res: can not insert [bus 01-ff] under [bus 00-0f] (conflicts with (null) [bus 00-0f])
+>
+> Correct it to get rid of the message.
+>
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 
-On Wed,  8 Jan 2020 10:10:05 +0000
-Andre Przywara <andre.przywara@arm.com> wrote:
+Thanks!
+Applied to the hisilicon arm64 dt tree.
 
-> The Allwinner H6 SoC contains two SPI controllers similar to the H3/A64,
-> but with the added capability of 3-wire and 4-wire operation modes.
-> For now the driver does not support those, but the SPI registers are
-> fully backwards-compatible, just adding bits and registers which were
-> formerly reserved. So we can use the existing driver for the "normal" SPI
-> modes, for instance to access the SPI NOR flash soldered on the PineH64
-> board.
-> We use an H6 specific compatible string in addition to the existing H3
-> string, so when the driver later gains Quad SPI support, it should work
-> automatically without any DT changes.
-> 
-> Tested by accessing the SPI flash on a Pine H64 board (SPI0), also
-> connecting another SPI flash to the SPI1 header pins.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Best Regards,
+Wei
+
 > ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 54 ++++++++++++++++++++
->  1 file changed, 54 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> index 3329283e38ab..40835850893e 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -338,6 +338,30 @@
->  				bias-pull-up;
->  			};
->  
-> +			/omit-if-no-ref/
-
- That would prevent users to use an overlay and use those pins, is that
-something that we want ? I'm not sure that the space saved by those are
-useful.
-
- Cheers,
-
-> +			spi0_pins: spi0-pins {
-> +				pins = "PC0", "PC2", "PC3";
-> +				function = "spi0";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			spi0_cs_pin: spi0-cs-pin {
-> +				pins = "PC5";
-> +				function = "spi0";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			spi1_pins: spi1-pins {
-> +				pins = "PH4", "PH5", "PH6";
-> +				function = "spi1";
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			spi1_cs_pin: spi1-cs-pin {
-> +				pins = "PH3";
-> +				function = "spi1";
-> +			};
-> +
->  			spdif_tx_pin: spdif-tx-pin {
->  				pins = "PH7";
->  				function = "spdif";
-> @@ -504,6 +528,36 @@
->  			#size-cells = <0>;
->  		};
->  
-> +		spi0: spi@5010000 {
-> +			compatible = "allwinner,sun50i-h6-spi",
-> +				     "allwinner,sun8i-h3-spi";
-> +			reg = <0x05010000 0x1000>;
-> +			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_SPI0>, <&ccu CLK_SPI0>;
-> +			clock-names = "ahb", "mod";
-> +			dmas = <&dma 22>, <&dma 22>;
-> +			dma-names = "rx", "tx";
-> +			resets = <&ccu RST_BUS_SPI0>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		spi1: spi@5011000 {
-> +			compatible = "allwinner,sun50i-h6-spi",
-> +				     "allwinner,sun8i-h3-spi";
-> +			reg = <0x05011000 0x1000>;
-> +			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_SPI1>, <&ccu CLK_SPI1>;
-> +			clock-names = "ahb", "mod";
-> +			dmas = <&dma 23>, <&dma 23>;
-> +			dma-names = "rx", "tx";
-> +			resets = <&ccu RST_BUS_SPI1>;
-> +			status = "disabled";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
->  		emac: ethernet@5020000 {
->  			compatible = "allwinner,sun50i-h6-emac",
->  				     "allwinner,sun50i-a64-emac";
-> -- 
-> 2.17.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>   arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> index 0a30aaae6bf2..4d1a3d1fc31c 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
+> @@ -569,7 +569,7 @@
+>   			#address-cells = <3>;
+>   			#size-cells = <2>;
+>   			device_type = "pci";
+> -			bus-range = <0 15>;
+> +			bus-range = <0x00 0xff>;
+>   			num-lanes = <1>;
+>   			ranges = <0x81000000 0x0 0x00000000 0x4f00000 0x0 0x100000
+>   				  0x82000000 0x0 0x3000000 0x3000000 0x0 0x01f00000>;
 
 
--- 
-Emmanuel Vadot <manu@bidouilliste.com> <manu@freebsd.org>
