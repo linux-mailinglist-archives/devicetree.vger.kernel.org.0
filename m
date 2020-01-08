@@ -2,222 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6240B1345C7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 16:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95CCB1345E3
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 16:15:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726921AbgAHPIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 10:08:07 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:40878 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728969AbgAHPIF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 10:08:05 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 008F7vEb079329;
-        Wed, 8 Jan 2020 09:07:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1578496077;
-        bh=4z+bifZE71KtY+TAZ/V2h1d+jTbA9mP+HP5hK+rrBaM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=LrQIp9Lwn+24oU/6JXg7a7d2yDEbWDhSN7VTKga69eoMBAI2VqvYZlWpwv6c0YrLQ
-         gAr9EAghY1vEALmon8ZWlj7I02P3RqfMaWk8XhIvT5rP4s6qpDI3HdceC5Pk3cFnSz
-         KyITl9BwCjTzUV483/lK6K7NTYvnkqR576hn226s=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 008F7vwA105519;
-        Wed, 8 Jan 2020 09:07:57 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 8 Jan
- 2020 09:07:57 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 8 Jan 2020 09:07:57 -0600
-Received: from a0230074-OptiPlex-7010.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 008F7ln3018107;
-        Wed, 8 Jan 2020 09:07:55 -0600
-From:   Faiz Abbas <faiz_abbas@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <ulf.hansson@linaro.org>, <adrian.hunter@intel.com>,
-        <faiz_abbas@ti.com>, <robh+dt@kernel.org>
-Subject: [PATCH 3/3] mmc: sdhci_am654: Enable DLL only for some speed modes
-Date:   Wed, 8 Jan 2020 20:39:20 +0530
-Message-ID: <20200108150920.14547-4-faiz_abbas@ti.com>
-X-Mailer: git-send-email 2.19.2
-In-Reply-To: <20200108150920.14547-1-faiz_abbas@ti.com>
-References: <20200108150920.14547-1-faiz_abbas@ti.com>
+        id S1726556AbgAHPPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 10:15:19 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:36371 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726651AbgAHPPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 10:15:19 -0500
+Received: by mail-oi1-f196.google.com with SMTP id c16so2915894oic.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 07:15:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=9MKeoU4FP/L/hIFVTYWRTXWHyDcNCL5GfbSqC8Dc1Ew=;
+        b=uKnLKwTnZoLM0f9U4I2ESsjCHdvYa0X8l9MeO5dy6BNxNmhZ1ORvmWFkz5Zr5dDB8+
+         1AN7l6zJ7IZirbpu7JGm7xe4tBlkrpuI+xGT+r+dra8up6KN5OcGN9jQEdXYRbrdU1XN
+         AlZRDPcTE/grNZIbm/yBpr0ABqS6WYHyCciK/lubmgxyT7KkIIuTo5nVt+7QK8vqO4uS
+         oTnSoByxj2r8mKNdAP/nGs31IPpvF/uvvAB6uqbMmsOV0gSUAqmvSsZAdrYlgmLi0jX3
+         W33NXWexh7HRqXAOSRss2ZiRaZs42w7xLPTQK8f3p9+WhNWCA8EI6TxrOqSNVWRMUqj0
+         8p/A==
+X-Gm-Message-State: APjAAAWSv7yQ5iaKq2kBYtVPsTFwrJWRwxqGj+D4NWTti3JqYnhW0uJy
+        FWK8FQiGFpTnPa6X8RdNtaHhAB4=
+X-Google-Smtp-Source: APXvYqwZq6Fe+Ym+f8ew+ic3Hs0wzKsgc4yp76SrmsOZ6HCDc6sXyVExqD+ALnad+GGY6BU/rmDJiQ==
+X-Received: by 2002:aca:c68f:: with SMTP id w137mr3488409oif.179.1578496517706;
+        Wed, 08 Jan 2020 07:15:17 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 101sm1193937otj.55.2020.01.08.07.15.15
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2020 07:15:16 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 220333
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Wed, 08 Jan 2020 09:15:15 -0600
+Date:   Wed, 8 Jan 2020 09:15:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ming-Fan Chen <ming-fan.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Evan Green <evgreen@chromium.org>,
+        Joerg Roedel <jroedel@suse.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com
+Subject: Re: [PATCH v3 1/3] dt-bindings: mediatek: Add binding for MT6779 SMI
+Message-ID: <20200108151515.GA18724@bogus>
+References: <1578465691-30692-1-git-send-email-ming-fan.chen@mediatek.com>
+ <1578465691-30692-3-git-send-email-ming-fan.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1578465691-30692-3-git-send-email-ming-fan.chen@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Its recommended that DLL must only be enabled for SDR50, DDR50, DDR52,
-SDR104, HS200 and HS400 speed modes. Move DLL configuration to its own
-function and call it only in the above speed modes.
+On Wed, Jan 08, 2020 at 02:41:29PM +0800, Ming-Fan Chen wrote:
+> This patch add description for MT6779 SMI.
+> There are GALS in smi-larb but without clock of GALS alone.
+> 
+> changelog since v2:
+> Add GALS for mt6779 in smi-common.txt
+> 
+> Signed-off-by: Ming-Fan Chen <ming-fan.chen@mediatek.com>
+> ---
+>  .../memory-controllers/mediatek,smi-common.txt     |    5 +++--
+>  .../memory-controllers/mediatek,smi-larb.txt       |    3 ++-
+>  2 files changed, 5 insertions(+), 3 deletions(-)
 
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
----
- drivers/mmc/host/sdhci_am654.c | 128 +++++++++++++++++----------------
- 1 file changed, 68 insertions(+), 60 deletions(-)
-
-diff --git a/drivers/mmc/host/sdhci_am654.c b/drivers/mmc/host/sdhci_am654.c
-index bb977de43f7d..575bbab1a6ed 100644
---- a/drivers/mmc/host/sdhci_am654.c
-+++ b/drivers/mmc/host/sdhci_am654.c
-@@ -119,16 +119,80 @@ static const struct timing_data td[] = {
- 	[MMC_TIMING_MMC_HS400] = {"ti,otap-del-sel-hs400", MMC_CAP2_HS400},
- };
- 
-+static void sdhci_am654_setup_dll(struct sdhci_host *host, unsigned int clock)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_am654_data *sdhci_am654 = sdhci_pltfm_priv(pltfm_host);
-+	int sel50, sel100, freqsel;
-+	u32 mask, val;
-+	int ret;
-+
-+	if (sdhci_am654->flags & FREQSEL_2_BIT) {
-+		switch (clock) {
-+		case 200000000:
-+			sel50 = 0;
-+			sel100 = 0;
-+			break;
-+		case 100000000:
-+			sel50 = 0;
-+			sel100 = 1;
-+			break;
-+		default:
-+			sel50 = 1;
-+			sel100 = 0;
-+		}
-+
-+		/* Configure PHY DLL frequency */
-+		mask = SEL50_MASK | SEL100_MASK;
-+		val = (sel50 << SEL50_SHIFT) | (sel100 << SEL100_SHIFT);
-+		regmap_update_bits(sdhci_am654->base, PHY_CTRL5, mask, val);
-+
-+	} else {
-+		switch (clock) {
-+		case 200000000:
-+			freqsel = 0x0;
-+			break;
-+		default:
-+			freqsel = 0x4;
-+		}
-+
-+		regmap_update_bits(sdhci_am654->base, PHY_CTRL5, FREQSEL_MASK,
-+				   freqsel << FREQSEL_SHIFT);
-+	}
-+	/* Configure DLL TRIM */
-+	mask = DLL_TRIM_ICP_MASK;
-+	val = sdhci_am654->trm_icp << DLL_TRIM_ICP_SHIFT;
-+
-+	/* Configure DLL driver strength */
-+	mask |= DR_TY_MASK;
-+	val |= sdhci_am654->drv_strength << DR_TY_SHIFT;
-+	regmap_update_bits(sdhci_am654->base, PHY_CTRL1, mask, val);
-+
-+	/* Enable DLL */
-+	regmap_update_bits(sdhci_am654->base, PHY_CTRL1, ENDLL_MASK,
-+			   0x1 << ENDLL_SHIFT);
-+	/*
-+	 * Poll for DLL ready. Use a one second timeout.
-+	 * Works in all experiments done so far
-+	 */
-+	ret = regmap_read_poll_timeout(sdhci_am654->base, PHY_STAT1, val,
-+				       val & DLLRDY_MASK, 1000, 1000000);
-+	if (ret) {
-+		dev_err(mmc_dev(host->mmc), "DLL failed to relock\n");
-+		return;
-+	}
-+
-+	sdhci_am654->dll_on = true;
-+}
-+
- static void sdhci_am654_set_clock(struct sdhci_host *host, unsigned int clock)
- {
- 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
- 	struct sdhci_am654_data *sdhci_am654 = sdhci_pltfm_priv(pltfm_host);
- 	unsigned char timing = host->mmc->ios.timing;
--	int sel50, sel100, freqsel;
- 	u32 otap_del_sel;
- 	u32 otap_del_ena;
- 	u32 mask, val;
--	int ret;
- 
- 	if (sdhci_am654->dll_on) {
- 		regmap_update_bits(sdhci_am654->base, PHY_CTRL1, ENDLL_MASK, 0);
-@@ -163,64 +227,8 @@ static void sdhci_am654_set_clock(struct sdhci_host *host, unsigned int clock)
- 
- 		regmap_update_bits(sdhci_am654->base, PHY_CTRL4, mask, val);
- 
--		if (sdhci_am654->flags & FREQSEL_2_BIT) {
--			switch (clock) {
--			case 200000000:
--				sel50 = 0;
--				sel100 = 0;
--				break;
--			case 100000000:
--				sel50 = 0;
--				sel100 = 1;
--				break;
--			default:
--				sel50 = 1;
--				sel100 = 0;
--			}
--
--			/* Configure PHY DLL frequency */
--			mask = SEL50_MASK | SEL100_MASK;
--			val = (sel50 << SEL50_SHIFT) | (sel100 << SEL100_SHIFT);
--			regmap_update_bits(sdhci_am654->base, PHY_CTRL5, mask,
--					   val);
--		} else {
--			switch (clock) {
--			case 200000000:
--				freqsel = 0x0;
--				break;
--			default:
--				freqsel = 0x4;
--			}
--
--			regmap_update_bits(sdhci_am654->base, PHY_CTRL5,
--					   FREQSEL_MASK,
--					   freqsel << FREQSEL_SHIFT);
--		}
--
--		/* Configure DLL TRIM */
--		mask = DLL_TRIM_ICP_MASK;
--		val = sdhci_am654->trm_icp << DLL_TRIM_ICP_SHIFT;
--
--		/* Configure DLL driver strength */
--		mask |= DR_TY_MASK;
--		val |= sdhci_am654->drv_strength << DR_TY_SHIFT;
--		regmap_update_bits(sdhci_am654->base, PHY_CTRL1, mask, val);
--		/* Enable DLL */
--		regmap_update_bits(sdhci_am654->base, PHY_CTRL1, ENDLL_MASK,
--				   0x1 << ENDLL_SHIFT);
--		/*
--		 * Poll for DLL ready. Use a one second timeout.
--		 * Works in all experiments done so far
--		 */
--		ret = regmap_read_poll_timeout(sdhci_am654->base, PHY_STAT1,
--					       val, val & DLLRDY_MASK, 1000,
--					       1000000);
--		if (ret) {
--			dev_err(mmc_dev(host->mmc), "DLL failed to relock\n");
--			return;
--		}
--
--		sdhci_am654->dll_on = true;
-+		if (timing > MMC_TIMING_UHS_SDR25)
-+			sdhci_am654_setup_dll(host, clock);
- 	}
- }
- 
--- 
-2.19.2
-
+Acked-by: Rob Herring <robh@kernel.org>
