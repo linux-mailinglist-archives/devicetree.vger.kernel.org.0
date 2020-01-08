@@ -2,199 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B8F1134873
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 17:50:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FE85134863
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 17:47:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729313AbgAHQu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 11:50:27 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:38581 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726401AbgAHQu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 11:50:27 -0500
-Received: by mail-ot1-f65.google.com with SMTP id d7so4217144otf.5
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 08:50:26 -0800 (PST)
+        id S1728511AbgAHQrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 11:47:51 -0500
+Received: from mail-pj1-f68.google.com ([209.85.216.68]:37717 "EHLO
+        mail-pj1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727606AbgAHQrv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 11:47:51 -0500
+Received: by mail-pj1-f68.google.com with SMTP id m13so1328118pjb.2;
+        Wed, 08 Jan 2020 08:47:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=I/iJML5ATipLJpCzFxPDsc2+WpGDDa+OYyCfapgnpuk=;
+        b=Iidq6aVwz8nS3WShTOFkInEwzt6ganUQzttY4cRX8NLY3fbqRkJFWuKygnu6aQMgbr
+         AzqEEOlqEBAmguR6s1PgYfq5EoWuICf4Mjb4CtVmMfLM/QAqH1CVPGp4RmZnax3WgMWq
+         oqk/pPKaWC7HyrU79A/904ELMmoRdH6uPNxeh7HeKEtrZx6SFbYLA0+X2k6W+9DwSjVZ
+         /4/BvFD2zYCcA8UE+AzmHZVafUvZZ5QJYlK8lojIDd5TIMnGBZX1dCFIHURiaRBg2m7P
+         SOkpNGQWjtgpL8O6S4wm0S6HsUrHZmPMd9YI6NWl+jb2itqUcqiJC2E4aNPh1Z+iOLPt
+         e8fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=CkWGPmeVEEVzqEBeNOF39Am+w28soAd+AXNynQRs0bw=;
-        b=hM5XKkqjDxh08zIOnvWmvhp398GtTDm5qbx8XQSQn6HQaLYDxLIIV4+oY7ovx3lxIs
-         XcLJXM+6WqbDGIBe9qnf24bhiZHSC8GBq6XrtSsa7SGB1N4XA9R97TcAcV+1DHbwdcb4
-         bRHMFXP7pO8cVWMPyaK1bq9xXLKjov9Z0uuq+DcQqc0OMJST/ZvPQ/28YhPL1PWw9a3N
-         hc12XOIXcBHQABHEz78+Tb+Dhd3CPFbiAi4+mfAgs+O9T31VzjqN44gLpSwzkD5BoxG7
-         w5pcQmOtoLcBMPkkW7tap69ctllyyAI1RZiq1AwiyDvJKdbESBy20K52a2G3Ox1qCFV/
-         OiLw==
-X-Gm-Message-State: APjAAAUjE8PlGYLMZjHXhWi7GKtzvmXdG4Qe1FC46LGHBEucUbo6HSu0
-        8tQ32Curzlxm3MSq3/iN2iJUjI4=
-X-Google-Smtp-Source: APXvYqzQNEkTn9n1o+ATj9lkp+gJktAslpSrVGjIIe7QEfc35UKgyFLHEQ4W+G3hRxxrwBTZUd8V4w==
-X-Received: by 2002:a9d:ee2:: with SMTP id 89mr4671257otj.270.1578502225755;
-        Wed, 08 Jan 2020 08:50:25 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 26sm1264747oij.9.2020.01.08.08.50.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2020 08:50:25 -0800 (PST)
-Received: from rob (uid 1000)
-        (envelope-from rob@rob-hp-laptop)
-        id 220333
-        by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Wed, 08 Jan 2020 10:46:23 -0600
-Date:   Wed, 8 Jan 2020 10:46:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-input@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
-        Donggeun Kim <dg77.kim@samsung.com>,
-        Minkyu Kang <mk7.kang@samsung.com>,
-        =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Oskar Andero <oskar.andero@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2 v1] iio: light: Add DT bindings for GP2AP002
-Message-ID: <20200108164623.GA18967@bogus>
-References: <20191228201109.13635-1-linus.walleij@linaro.org>
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=I/iJML5ATipLJpCzFxPDsc2+WpGDDa+OYyCfapgnpuk=;
+        b=GVfVOqnCYAdVGAn1hnLmx1sgEYQd1Ig95OzNHIi6koyKS4Olw/0o6Q6CmjZHbHDO7H
+         hsmTacr/4R672E0LAbG2AZvwhtzWKKPYU3lVhrjuZixExFr1ut9Bb/g4QVqCdG/ktcvZ
+         TM09YxXZxVhgLyzBFMwlsj1HFsCLPh0oLyP6A88bOZQztZXmYpt3Pn1OzJtaAblZczFN
+         +8qcyaVNsBiJD//plN/CMA8H9WgZwCOwDRl/6SrPI50C4SJ0g8/mYoqaervgQzROHQMY
+         G2AE/Q4dIQNDGJVI199xqfEwbm/KsA/LsZVrYqueZUd9iJtFEEDYm9omatFq2w0zAIKx
+         jk1A==
+X-Gm-Message-State: APjAAAVlCT4+oljdB8+hq6qzS6IQUrXhMelk0mIPmFIHoLYtbfCvxtCK
+        bnN7Q+cgOeOIOVVpRtTbZck=
+X-Google-Smtp-Source: APXvYqzzGkEEGsLXeTYKJAJ/+KdmWL93yCDNsIM2ps556QxDnnfkgD5wsj3MJEiMTtTQn+YNXO0p0g==
+X-Received: by 2002:a17:902:9b86:: with SMTP id y6mr5803846plp.253.1578502070224;
+        Wed, 08 Jan 2020 08:47:50 -0800 (PST)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z26sm3838266pgu.80.2020.01.08.08.47.48
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 08 Jan 2020 08:47:49 -0800 (PST)
+Date:   Wed, 8 Jan 2020 08:47:48 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Vadim Pasternak <vadimp@mellanox.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "vijaykhemka@fb.com" <vijaykhemka@fb.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Michael Shych <michaelsh@mellanox.com>
+Subject: Re: [RFC PATCH hwmon-next v1 5/5] hwmon: (pmbus/tps53679) Extend
+ device list supported by driver
+Message-ID: <20200108164748.GD28993@roeck-us.net>
+References: <a30e4f98-65a4-f93c-371e-7691aace41f7@roeck-us.net>
+ <AM6PR05MB52245C747A0EB1691C3EBFBFA23C0@AM6PR05MB5224.eurprd05.prod.outlook.com>
+ <05925e70-0079-2467-b703-eba8d8667eaf@roeck-us.net>
+ <AM6PR05MB52242EA6A029D4C5F011A21BA23C0@AM6PR05MB5224.eurprd05.prod.outlook.com>
+ <20200106210104.GA9219@roeck-us.net>
+ <AM6PR05MB52247DB7AB2677F5F36BAAE9A23C0@AM6PR05MB5224.eurprd05.prod.outlook.com>
+ <a76015b5-74e3-5f84-dfce-f5cce34c302a@roeck-us.net>
+ <AM6PR05MB5224ED5368BD037051F5BF92A23F0@AM6PR05MB5224.eurprd05.prod.outlook.com>
+ <5be3c6c4-81e8-7731-2b6e-39b7ad6531d5@roeck-us.net>
+ <AM6PR05MB5224C166E608C3BBD09E4606A23E0@AM6PR05MB5224.eurprd05.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20191228201109.13635-1-linus.walleij@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <AM6PR05MB5224C166E608C3BBD09E4606A23E0@AM6PR05MB5224.eurprd05.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Dec 28, 2019 at 09:11:08PM +0100, Linus Walleij wrote:
-> This adds device tree bindings for the GP2AP002 light
-> and proximity sensor.
+On Wed, Jan 08, 2020 at 02:10:50PM +0000, Vadim Pasternak wrote:
 > 
-> As with other early proximity sensors (~2010) the light
-> sensor and proximity sensors were combined into a single
-> component.
+> Hi Guenter,
 > 
-> Cc: Stephan Gerhold <stephan@gerhold.net>
-> Cc: Donggeun Kim <dg77.kim@samsung.com>
-> Cc: Minkyu Kang <mk7.kang@samsung.com>
-> Cc: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
-> Cc: Jonathan Bakker <xc-racer2@live.ca>
-> Cc: Oskar Andero <oskar.andero@gmail.com>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->  .../bindings/iio/light/sharp,gp2ap002.yaml    | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
+> We are looking for possibility to provide some kind of flexible driver to handle
+> different devices from different vendors, but which have common nature,
+> like support of two pages for telemetry with same set of functions and same
+> formats. (Actually driver could be flexible regarding the number of pages).
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml b/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
-> new file mode 100644
-> index 000000000000..27d129e76a8b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/sharp,gp2ap002.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sharp GP2AP002A00F and GP2AP002S00F proximity and ambient light sensors
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +description: |
-> +  Proximity and ambient light sensor with IR LED for the proximity
-> +  sensing and an analog output for light intensity. The ambient light
-> +  sensor output is not available on the GP2AP002S00F variant.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sharp,gp2ap002a00f
-> +      - sharp,gp2ap002s00f
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: an interrupt for proximity, usually a GPIO line
-> +
-> +  vdd-supply:
-> +    maxItems: 1
-
-*-supply is always 1 item, so drop.
-
-> +    description: VDD power supply a phandle to a regulator
-> +
-> +  vio-supply:
-> +    maxItems: 1
-> +    description: VIO power supply a phandle to a regulator
-> +
-> +  io-channels:
-> +    maxItems: 1
-> +    description: ALSOUT ADC channel to read the ambient light
-> +
-> +  io-channel-names:
-> +    const: "alsout"
-
-Drop quotes
-
-> +
-> +  sharp,proximity-far-hysteresis:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Hysteresis setting for "far" object detection, this setting is
-> +      device-unique and adjust the optical setting for proximity detection
-> +      of a "far away" object in front of the sensor.
-
-0-2^32 is allowed?
-
-default?
-
-> +
-> +  sharp,proximity-close-hysteresis:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Hysteresis setting for "close" object detection, this setting is
-> +      device-unique and adjust the optical setting for proximity detection
-> +      of a "close" object in front of the sensor.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - sharp,proximity-far-hysteresis
-> +  - sharp,proximity-close-hysteresis
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      light-sensor@44 {
-> +        compatible = "sharp,gp2ap002a00f";
-> +        reg = <0x44>;
-> +        interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
-> +        vdd-supply = <&vdd_regulator>;
-> +        vio-supply = <&vio_regulator>;
-> +        io-channels = <&adc_channel>;
-> +        io-channel-names = "alsout";
-> +        sharp,proximity-far-hysteresis = <0x2f>;
-> +        sharp,proximity-close-hysteresis = <0x0f>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.21.0
+> While the difference only in VID codes mapping.
 > 
+> The motivation for that is to give free hand to HW design to choose which
+> particular device to use on the same system type.
+> There are two main reasons for such requirement:
+> - Quality of device (we already had a serios problems with ucd9224 and
+>   tps53679, caused system meltdown). In such case the intention is to move
+>   to fallback devices in the next batches.
+> - Device availability in stock. Sometimes vendors can't supply in time the
+>    necessary quantity.
+> 
+> Currently there are the devices from three vendor: TI tps536xx, Infineon
+> xdpe122 and MPS mp2975.
+> All have different mapping of VID codes.
+> 
+> It could be also few additional devices, which are supposed to be used as
+> fallback devices.
+> 
+> We have several very big customers ordering now huge quantity of our
+> systems, which are very conservative regarding image upgrade.
+> Means we can provide now support for tps536xx, xdpe122xx and mp2975
+> but in case new devices are coming soon, we will be able to support it in kernel
+> for their image after year or even more.
+> 
+> We can provide ACPI pmbus driver, which will read VID mapping from ACPI
+> DSDT table. This mapping table will contain the names of available modes
+> and specific vendor code for this mode. Like:
+> PMBVR11=1
+> PMBVR12=2
+> PMBVR13=5
+> PMBIMVP9=10
+> And driver will set info->vrm_version[i] according to this mapping.
+> 
+
+The DSDT would have to provide all properties, not just the VID modes.
+At the very least that would have to be the number of pages, data formats,
+vrm version, and the supported attributes per page. It should be possible
+to also add m/b/R information for each of the sensor classes, but I guess
+the actual implementation could be postponed until it is needed.
+
+This could all be done through the existing generic driver (pmbus.c);
+it would not really require a new driver. ACPI/DSDT could provide firmware
+properties, and pmbus.c could read those using device_property API
+functions (eg device_property_read_u32(dev, "vrm-mode")). Would that work
+for you ?
+
+Thanks,
+Guenter
