@@ -2,77 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 526681346C7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 16:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B16D21346E2
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 17:00:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727237AbgAHP6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 10:58:23 -0500
-Received: from foss.arm.com ([217.140.110.172]:46506 "EHLO foss.arm.com"
+        id S1728340AbgAHP6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 10:58:53 -0500
+Received: from foss.arm.com ([217.140.110.172]:46582 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727221AbgAHP6X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Jan 2020 10:58:23 -0500
+        id S1727746AbgAHP6w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 8 Jan 2020 10:58:52 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C863131B;
-        Wed,  8 Jan 2020 07:58:22 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 26176328;
+        Wed,  8 Jan 2020 07:58:52 -0800 (PST)
 Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 51A6D3F534;
-        Wed,  8 Jan 2020 07:58:22 -0800 (PST)
-Date:   Wed, 8 Jan 2020 15:58:20 +0000
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 828FC3F534;
+        Wed,  8 Jan 2020 07:58:51 -0800 (PST)
+Date:   Wed, 08 Jan 2020 15:58:50 +0000
 From:   Mark Brown <broonie@kernel.org>
 To:     Saravanan Sekar <sravanhome@gmail.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        mripard@kernel.org, shawnguo@kernel.org, heiko@sntech.de,
-        sam@ravnborg.org, icenowy@aosc.io,
-        laurent.pinchart@ideasonboard.com, gregkh@linuxfoundation.org,
-        Jonathan.Cameron@huawei.com, davem@davemloft.net,
-        mchehab+samsung@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: Add an entry for Monolithic Power
- System, MPS
-Message-ID: <20200108155820.GB4036@sirena.org.uk>
-References: <20200108131234.24128-1-sravanhome@gmail.com>
- <20200108131234.24128-2-sravanhome@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="l76fUT7nc3MelDdI"
-Content-Disposition: inline
-In-Reply-To: <20200108131234.24128-2-sravanhome@gmail.com>
-X-Cookie: My vaseline is RUNNING...
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc:     broonie@kernel.org, davem@davemloft.net,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        heiko@sntech.de, icenowy@aosc.io, Jonathan.Cameron@huawei.com,
+        laurent.pinchart@ideasonboard.com, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        mark.rutland@arm.com, mchehab+samsung@kernel.org,
+        mripard@kernel.org, robh+dt@kernel.org, sam@ravnborg.org,
+        shawnguo@kernel.org, sravanhome@gmail.com
+Subject: Applied "MAINTAINERS: Add entry for mpq7920 PMIC driver" to the regulator tree
+In-Reply-To: <20200108131234.24128-5-sravanhome@gmail.com>
+Message-Id: <applied-20200108131234.24128-5-sravanhome@gmail.com>
+X-Patchwork-Hint: ignore
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The patch
 
---l76fUT7nc3MelDdI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+   MAINTAINERS: Add entry for mpq7920 PMIC driver
 
-On Wed, Jan 08, 2020 at 02:12:31PM +0100, Saravanan Sekar wrote:
+has been applied to the regulator tree at
 
->    "^mitsubishi,.*":
->      description: Mitsubishi Electric Corporation
-> +  "^mps,.*":
-> +    description: Monolithic Power Systems, Inc.
->    "^mosaixtech,.*":
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.6
 
-This isn't sorted properly, since someone else already added MPS in the
-correct place I'll just drop this.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
---l76fUT7nc3MelDdI
-Content-Type: application/pgp-signature; name="signature.asc"
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
------BEGIN PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl4V/BwACgkQJNaLcl1U
-h9By3wf/YYMc9sjiEySnW17B8F3RVOkg5bgEkSuVhF/8h0kW0tIn0tOEezWbrj7f
-sfbwrQS1Wi8tAMhDcSzCTXWUHImnaFZ++X46xm0K818/GBS0Dj3lt5LGUBfS3XVS
-wYB6TH0g75fcqlnAPIu8QVgaN7NZeyjpCpwkQ+qCuPGKTyCUjrazLIbrUVZVwPqu
-nrOwtiqEtU1qhQcshzXavIa+XlqkdGkR3iW0TzLYvxdzpZtHNTMGnZL2vAt8lIXg
-355T7ykJ7DzvQwpSg6CrOTuFEAeiCAMWBxm4rnkMoEHabc+fHYdIP5E4yTDLf364
-3l9KPT6h6uWNcXsdAISI2JtCqR4BkQ==
-=4QhW
------END PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---l76fUT7nc3MelDdI--
+Thanks,
+Mark
+
+From c5bae95b4e60a07dd4f06452ccae5805ed16b40d Mon Sep 17 00:00:00 2001
+From: Saravanan Sekar <sravanhome@gmail.com>
+Date: Wed, 8 Jan 2020 14:12:34 +0100
+Subject: [PATCH] MAINTAINERS: Add entry for mpq7920 PMIC driver
+
+Add MAINTAINERS entry for Monolithic Power Systems mpq7920 PMIC driver.
+
+Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
+Link: https://lore.kernel.org/r/20200108131234.24128-5-sravanhome@gmail.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ MAINTAINERS | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index bd5847e802de..73780dbd60a6 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11138,6 +11138,13 @@ S:	Maintained
+ F:	Documentation/driver-api/serial/moxa-smartio.rst
+ F:	drivers/tty/mxser.*
+ 
++MONOLITHIC POWER SYSTEM PMIC DRIVER
++M:	Saravanan Sekar <sravanhome@gmail.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/regulator/mpq7920.yaml
++F:	drivers/regulator/mpq7920.c
++F:	drivers/regulator/mpq7920.h
++
+ MR800 AVERMEDIA USB FM RADIO DRIVER
+ M:	Alexey Klimov <klimov.linux@gmail.com>
+ L:	linux-media@vger.kernel.org
+-- 
+2.20.1
+
