@@ -2,219 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1284133DF8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 10:13:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DBF8133E22
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 10:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727549AbgAHJLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 04:11:35 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:40385 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727406AbgAHJLf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 04:11:35 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00899bT1017836;
-        Wed, 8 Jan 2020 10:11:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=Qt6i6KPRHtgRJQut9X3TPALLv7har3yUeiDYGj7lcIU=;
- b=oxh2MeGoGeJHjL8Eqgvvt/mvaB2QNcH3ufXaqXXiAYiu9LcWZcqCuKxpY4yAlndNN4jY
- TpjGO3qa9ramyykbcfJJ9JZGqei9UPBIVudqHGFUbmyDs5FO3kQdpzJx6tiETLXxYk/7
- lggtZR6GqklcOnwi5zWuKI+9q0d+otkBUpWuWh5iNzRGVut+hItz4+4JswVuSkW2JJI4
- w6xzNF59EPS8oc9j4A4Qg8bnjXNySy1GVDAArK+wqwePhJm9q5+mfqvOOB/+iHQBDIUB
- HsK39Og1QedQ0Rv6JoWYQVIgucIysOGUcZ5TqSlnfMIVYoCyzUHWtWfvDN1iYmcqruiz YA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xakuqtwbk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 08 Jan 2020 10:11:28 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3E584100034;
-        Wed,  8 Jan 2020 10:11:23 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 33CA422088E;
-        Wed,  8 Jan 2020 10:11:23 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 8 Jan 2020 10:11:22
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <dmitry.torokhov@gmail.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <hadess@hadess.net>
-CC:     <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <yannick.fertre@st.com>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH v2 2/2] dt-bindings: touchscreen: Convert Goodix touchscreen to json-schema
-Date:   Wed, 8 Jan 2020 10:11:18 +0100
-Message-ID: <20200108091118.5130-3-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200108091118.5130-1-benjamin.gaignard@st.com>
-References: <20200108091118.5130-1-benjamin.gaignard@st.com>
+        id S1727578AbgAHJOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 04:14:43 -0500
+Received: from mail-qv1-f66.google.com ([209.85.219.66]:46828 "EHLO
+        mail-qv1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727592AbgAHJOj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 04:14:39 -0500
+Received: by mail-qv1-f66.google.com with SMTP id u1so1070987qvk.13
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 01:14:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SPzHp/TCuO+PA2nHlHMVzeUghB/5uams6CZGUZBj35o=;
+        b=K/jE8RWozDdRYmSsW9itFfvjGkVpL/zCzGu39X34ur7j0Be+cWMBI2auPmoluvn4c1
+         /S/feNX81zbnksyn4ZVjM/8vfVA6T/7g7v52oVDY/X+5X9Y9F/hAbdyl8xKfHD3iR7ln
+         3kR5KrCmE2zxPQDibCfArttMxzqMRbVfVXuiM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SPzHp/TCuO+PA2nHlHMVzeUghB/5uams6CZGUZBj35o=;
+        b=R2qCoAclmfJ/Uwk5bOZVtWzM/fdt6SbL1SzbAooIX/vcF4mfVXK3MYR4mz6FcmYfLo
+         8OqEzINzF3fSnxzJoTFa2F2MLPG2dgX/PGHe2MDqKHdrSfuy7bYBnKxQ+tLpyHd7ZztX
+         mwTIRInquq+x+HtD8kKwqWirND7Ct7it87qnQqTGOj0pcqATEm5l+Dd19P2X/0Tpm7Hp
+         IARuLjpb+b7dqyMN2mOvfwB7SreZ7dImQLpgJ/X4abGZ0ItfmkcxJfS7XFTOLeYFV09m
+         jIx2hXhOk2KEfUZn+R+c2X609QjqJYtzCe2WxMg66ZjiUld0uY1/zauz4azBlbzY0w1t
+         Rxyw==
+X-Gm-Message-State: APjAAAXLiyx1HphxB6L3F2CIY+tCg4RmrXgvay2Lrnfx3HhRsVJRVA20
+        Yo6WD3xYkNYPJi4UhCuKyTGEg+pp0bz/Rs/pazkMYA==
+X-Google-Smtp-Source: APXvYqxf/pnt/xOzQY9MksejO/BRE5fT3xBR6Oezhn4Kzl/SblH+zp9r0nnNwuErhStHc9QFh2BYf2nQYASas+C1/yI=
+X-Received: by 2002:a0c:f703:: with SMTP id w3mr3236524qvn.6.1578474878009;
+ Wed, 08 Jan 2020 01:14:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-08_01:2020-01-08,2020-01-08 signatures=0
+References: <20191227141405.3396-1-yong.liang@mediatek.com>
+ <20191227141405.3396-2-yong.liang@mediatek.com> <CANMq1KD=jAPn4Y7zQZrsg9FB7Cq6tNX0R8OF4qX21Sjy2=0Naw@mail.gmail.com>
+In-Reply-To: <CANMq1KD=jAPn4Y7zQZrsg9FB7Cq6tNX0R8OF4qX21Sjy2=0Naw@mail.gmail.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Wed, 8 Jan 2020 17:14:27 +0800
+Message-ID: <CANMq1KB4PzAUdp03go0Ur_khi2bM3+oNUhHtMK=--V6DmGXiDA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] amr64: dts: modify mt8183.dtsi
+To:     Yong Liang <yong.liang@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>, wim@linux-watchdog.org,
+        linux@roeck-us.net, linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Goodix binding to DT schema format using json-schema
+On Wed, Jan 8, 2020 at 4:56 PM Nicolas Boichat <drinkcat@chromium.org> wrote:
+>
+> minor nit, s/amr64/arm64/ in the commit title.
+>
+> On Fri, Dec 27, 2019 at 10:15 PM Yong Liang <yong.liang@mediatek.com> wrote:
+> >
+> > From: "yong.liang" <yong.liang@mediatek.com>
+> >
+> > 1. Include mt8183-reset.h and add reset-cells in infracfg
+> > in dtsi file
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
-version 2:
-- enumerate goodix's I2C adresses
-- add description for irq-gpio property
-- reference the common properties used by goodix
+Err, wait, doesn't this depend on
+http://lists.infradead.org/pipermail/linux-mediatek/2020-January/026170.html
+?
 
- .../bindings/input/touchscreen/goodix.txt          | 50 --------------
- .../bindings/input/touchscreen/goodix.yaml         | 78 ++++++++++++++++++++++
- 2 files changed, 78 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/goodix.txt
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> > 2. Add watchdog device node
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.txt b/Documentation/devicetree/bindings/input/touchscreen/goodix.txt
-deleted file mode 100644
-index fc03ea4cf5ab..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/goodix.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--Device tree bindings for Goodix GT9xx series touchscreen controller
--
--Required properties:
--
-- - compatible		: Should be "goodix,gt1151"
--				 or "goodix,gt5663"
--				 or "goodix,gt5688"
--				 or "goodix,gt911"
--				 or "goodix,gt9110"
--				 or "goodix,gt912"
--				 or "goodix,gt927"
--				 or "goodix,gt9271"
--				 or "goodix,gt928"
--				 or "goodix,gt967"
-- - reg			: I2C address of the chip. Should be 0x5d or 0x14
-- - interrupts		: Interrupt to which the chip is connected
--
--Optional properties:
--
-- - irq-gpios		: GPIO pin used for IRQ. The driver uses the
--			  interrupt gpio pin as output to reset the device.
-- - reset-gpios		: GPIO pin used for reset
-- - AVDD28-supply	: Analog power supply regulator on AVDD28 pin
-- - VDDIO-supply		: GPIO power supply regulator on VDDIO pin
-- - touchscreen-inverted-x
-- - touchscreen-inverted-y
-- - touchscreen-size-x
-- - touchscreen-size-y
-- - touchscreen-swapped-x-y
--
--The touchscreen-* properties are documented in touchscreen.txt in this
--directory.
--
--Example:
--
--	i2c@00000000 {
--		/* ... */
--
--		gt928@5d {
--			compatible = "goodix,gt928";
--			reg = <0x5d>;
--			interrupt-parent = <&gpio>;
--			interrupts = <0 0>;
--
--			irq-gpios = <&gpio1 0 0>;
--			reset-gpios = <&gpio1 1 0>;
--		};
--
--		/* ... */
--	};
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-new file mode 100644
-index 000000000000..d7c3262b2494
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/goodix.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Goodix GT9xx series touchscreen controller Bindings
-+
-+maintainers:
-+  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - goodix,gt1151
-+      - goodix,gt5663
-+      - goodix,gt5688
-+      - goodix,gt911
-+      - goodix,gt9110
-+      - goodix,gt912
-+      - goodix,gt927
-+      - goodix,gt9271
-+      - goodix,gt928
-+      - goodix,gt967
-+
-+  reg:
-+    enum: [ 0x5d, 0x14 ]
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  irq-gpios:
-+    description: GPIO pin used for IRQ.
-+                 The driver uses the interrupt gpio pin as
-+                 output to reset the device.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  AVDD28-supply:
-+    description: Analog power supply regulator on AVDD28 pin
-+
-+  VDDIO-supply:
-+    description: GPIO power supply regulator on VDDIO pin
-+
-+  touchscreen-inverted-x: true
-+  touchscreen-inverted-y: true
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+  touchscreen-swapped-x-y: true
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+examples:
-+- |
-+    i2c@00000000 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      gt928@5d {
-+        compatible = "goodix,gt928";
-+        reg = <0x5d>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <0 0>;
-+        irq-gpios = <&gpio1 0 0>;
-+        reset-gpios = <&gpio1 1 0>;
-+      };
-+    };
-+
-+...
--- 
-2.15.0
+Can we have a patch with just this change instead, since you're
+sending the binding with it.
 
+> >
+> > Signed-off-by: yong.liang <yong.liang@mediatek.com>
+>
+> Tested-by: Nicolas Boichat <drinkcat@chromium.org>
+>
+> > ---
+> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > [snip]
