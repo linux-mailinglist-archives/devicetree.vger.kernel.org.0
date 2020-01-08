@@ -2,85 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1590C134849
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 17:44:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B8F1134873
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 17:50:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729363AbgAHQoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 11:44:01 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:37785 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729359AbgAHQoB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 11:44:01 -0500
-Received: by mail-ot1-f66.google.com with SMTP id k14so4200245otn.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 08:44:00 -0800 (PST)
+        id S1729313AbgAHQu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 11:50:27 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:38581 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726401AbgAHQu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 11:50:27 -0500
+Received: by mail-ot1-f65.google.com with SMTP id d7so4217144otf.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 08:50:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to:user-agent;
-        bh=7YudrN+HcdAitESoUxkwkQAilxZS2k+YB5rlrRgMBQ0=;
-        b=Ch9nEN+SZf4lgCXmlhqLboM4JpCl3Y0ifn5unBqzLc2uazfah4yAI2g3mRtS5hIWs7
-         vg5N7uhkZmNmTAsgIBv6/eFg/knbTq0obs4NxAF7TV+f35EiBpKd/f5WbbJH80TGRFBC
-         TfDrzHyoVQFo4VLN99YZOjMeUyOU6RErj64p6OiEzvvFO6MCd6J9HFYEE1sAzYfQrYaC
-         F/3bDHYDe3n9UwQDFgLt7bgecD00F3z3DeLgzEB93dEiuOib4ZtZYKR4pcM8OmVdiOnR
-         BhHG6BAoyCo2niq5E08JJQlnFfatml2+5nlzQI7WJYei3EZZciZfdU1hyk+koaa0ATEO
-         t6tQ==
-X-Gm-Message-State: APjAAAW6pGc0qKIS28Cp3u77WVNzJg9SQKoxRe3H/c1/uxlalsr+bQ1s
-        pVwBtyi3HzxB7glleGXLQm18hI8=
-X-Google-Smtp-Source: APXvYqzPHNwXvZxOCBJUPpUXAKQsPd9t1UUZyFuKL5brY/X5Mv3QUmXx3/Hvt8lJuTou6HzIi8Sjqw==
-X-Received: by 2002:a05:6830:1653:: with SMTP id h19mr4448224otr.305.1578501839412;
-        Wed, 08 Jan 2020 08:43:59 -0800 (PST)
+        bh=CkWGPmeVEEVzqEBeNOF39Am+w28soAd+AXNynQRs0bw=;
+        b=hM5XKkqjDxh08zIOnvWmvhp398GtTDm5qbx8XQSQn6HQaLYDxLIIV4+oY7ovx3lxIs
+         XcLJXM+6WqbDGIBe9qnf24bhiZHSC8GBq6XrtSsa7SGB1N4XA9R97TcAcV+1DHbwdcb4
+         bRHMFXP7pO8cVWMPyaK1bq9xXLKjov9Z0uuq+DcQqc0OMJST/ZvPQ/28YhPL1PWw9a3N
+         hc12XOIXcBHQABHEz78+Tb+Dhd3CPFbiAi4+mfAgs+O9T31VzjqN44gLpSwzkD5BoxG7
+         w5pcQmOtoLcBMPkkW7tap69ctllyyAI1RZiq1AwiyDvJKdbESBy20K52a2G3Ox1qCFV/
+         OiLw==
+X-Gm-Message-State: APjAAAUjE8PlGYLMZjHXhWi7GKtzvmXdG4Qe1FC46LGHBEucUbo6HSu0
+        8tQ32Curzlxm3MSq3/iN2iJUjI4=
+X-Google-Smtp-Source: APXvYqzQNEkTn9n1o+ATj9lkp+gJktAslpSrVGjIIe7QEfc35UKgyFLHEQ4W+G3hRxxrwBTZUd8V4w==
+X-Received: by 2002:a9d:ee2:: with SMTP id 89mr4671257otj.270.1578502225755;
+        Wed, 08 Jan 2020 08:50:25 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r63sm1218066oib.56.2020.01.08.08.43.58
+        by smtp.gmail.com with ESMTPSA id 26sm1264747oij.9.2020.01.08.08.50.25
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2020 08:43:58 -0800 (PST)
+        Wed, 08 Jan 2020 08:50:25 -0800 (PST)
 Received: from rob (uid 1000)
         (envelope-from rob@rob-hp-laptop)
         id 220333
         by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Wed, 08 Jan 2020 10:43:57 -0600
-Date:   Wed, 8 Jan 2020 10:43:57 -0600
+        Wed, 08 Jan 2020 10:46:23 -0600
+Date:   Wed, 8 Jan 2020 10:46:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Tiezhu Yang <yangtiezhu@loongson.cn>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] net: phy: Fix compile warning about
- of_mdiobus_child_is_phy
-Message-ID: <20200108164357.GA17209@bogus>
-References: <1577442659-12134-1-git-send-email-yangtiezhu@loongson.cn>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-input@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        Donggeun Kim <dg77.kim@samsung.com>,
+        Minkyu Kang <mk7.kang@samsung.com>,
+        =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2 v1] iio: light: Add DT bindings for GP2AP002
+Message-ID: <20200108164623.GA18967@bogus>
+References: <20191228201109.13635-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1577442659-12134-1-git-send-email-yangtiezhu@loongson.cn>
+In-Reply-To: <20191228201109.13635-1-linus.walleij@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 27, 2019 at 06:30:59PM +0800, Tiezhu Yang wrote:
-> Fix the following compile warning when CONFIG_OF_MDIO is not set:
+On Sat, Dec 28, 2019 at 09:11:08PM +0100, Linus Walleij wrote:
+> This adds device tree bindings for the GP2AP002 light
+> and proximity sensor.
 > 
->   CC      drivers/net/phy/mdio_bus.o
-> In file included from drivers/net/phy/mdio_bus.c:23:0:
-> ./include/linux/of_mdio.h:58:13: warning: ‘of_mdiobus_child_is_phy’ defined but not used [-Wunused-function]
->  static bool of_mdiobus_child_is_phy(struct device_node *child)
->              ^
+> As with other early proximity sensors (~2010) the light
+> sensor and proximity sensors were combined into a single
+> component.
 > 
-> Fixes: 0aa4d016c043 ("of: mdio: export of_mdiobus_child_is_phy")
-> Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
+> Cc: Stephan Gerhold <stephan@gerhold.net>
+> Cc: Donggeun Kim <dg77.kim@samsung.com>
+> Cc: Minkyu Kang <mk7.kang@samsung.com>
+> Cc: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+> Cc: Jonathan Bakker <xc-racer2@live.ca>
+> Cc: Oskar Andero <oskar.andero@gmail.com>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  include/linux/of_mdio.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/iio/light/sharp,gp2ap002.yaml    | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml b/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
+> new file mode 100644
+> index 000000000000..27d129e76a8b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/light/sharp,gp2ap002.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sharp GP2AP002A00F and GP2AP002S00F proximity and ambient light sensors
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
+> +  Proximity and ambient light sensor with IR LED for the proximity
+> +  sensing and an analog output for light intensity. The ambient light
+> +  sensor output is not available on the GP2AP002S00F variant.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sharp,gp2ap002a00f
+> +      - sharp,gp2ap002s00f
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: an interrupt for proximity, usually a GPIO line
+> +
+> +  vdd-supply:
+> +    maxItems: 1
 
-A similar patch was already applied.
+*-supply is always 1 item, so drop.
 
-Rob
+> +    description: VDD power supply a phandle to a regulator
+> +
+> +  vio-supply:
+> +    maxItems: 1
+> +    description: VIO power supply a phandle to a regulator
+> +
+> +  io-channels:
+> +    maxItems: 1
+> +    description: ALSOUT ADC channel to read the ambient light
+> +
+> +  io-channel-names:
+> +    const: "alsout"
+
+Drop quotes
+
+> +
+> +  sharp,proximity-far-hysteresis:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Hysteresis setting for "far" object detection, this setting is
+> +      device-unique and adjust the optical setting for proximity detection
+> +      of a "far away" object in front of the sensor.
+
+0-2^32 is allowed?
+
+default?
+
+> +
+> +  sharp,proximity-close-hysteresis:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Hysteresis setting for "close" object detection, this setting is
+> +      device-unique and adjust the optical setting for proximity detection
+> +      of a "close" object in front of the sensor.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - sharp,proximity-far-hysteresis
+> +  - sharp,proximity-close-hysteresis
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      light-sensor@44 {
+> +        compatible = "sharp,gp2ap002a00f";
+> +        reg = <0x44>;
+> +        interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
+> +        vdd-supply = <&vdd_regulator>;
+> +        vio-supply = <&vio_regulator>;
+> +        io-channels = <&adc_channel>;
+> +        io-channel-names = "alsout";
+> +        sharp,proximity-far-hysteresis = <0x2f>;
+> +        sharp,proximity-close-hysteresis = <0x0f>;
+> +      };
+> +    };
+> +
+> +...
+> -- 
+> 2.21.0
+> 
