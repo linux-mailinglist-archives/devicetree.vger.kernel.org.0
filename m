@@ -2,164 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72303134273
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 13:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAE1F13425E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 13:56:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728340AbgAHM41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 07:56:27 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:54957 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728338AbgAHM41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 07:56:27 -0500
-Received: by mail-wm1-f67.google.com with SMTP id b19so2362912wmj.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 04:56:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ew1hz14XJ1Dpt7wqzV49Fz4wnBuxCyRMUnILoU48lls=;
-        b=gxypxAsrA7ptvZE2WNq/4Gvs+ShKj4YOKRQ8w14R1Z6OMietrucCnBNzKTCZtyEQ0A
-         TzuNqzF5b6KNoNDoJ1ClCbR2cseQL5T3zXt3ooqStSjf65XrkdpzT4evxeVZNthHmMlO
-         S6aePC/A0TfH0U4cWVPihY12e9/tKFQEH6SEclrIyskOld7lgOL2FfyzRsCVRv0uun32
-         1be1SrNjFiVA3JM6tEz9rcmsh7HC41PV1r/141jT5PDy6ID468hBWrBCrOQMQe1ZUBUU
-         4KEJ1s+9u3S4UdeXCvBdjXLlnd0581gRk3Eu1tW1OLs5QbAF5tsF0ikj5TBCi9hKd7/X
-         Aoog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ew1hz14XJ1Dpt7wqzV49Fz4wnBuxCyRMUnILoU48lls=;
-        b=Mg1Pt7EtFEEUFbt1lG+QClwZptXjltmm8tYJ/nvUyxO8O4NCK85TVTeE9DIFv01q2V
-         FOuCyvieAnHo9H2GwQGsk/TJIgFjZmZC0Y3FJED33FSMT5PFPt2z077bVsM0LhVNmn9D
-         zEaWE52676o+2tspbuHI4lEJbleUCck7HDslGtnJtTWioMH2MzNJORSSQOILB9LGnTwm
-         nMhouNzgDf3j7eX0wiiQ7laBBS8LIUiRxNIfCsMxEqtrzxksIGZNxrcQlhcnK3lva4SZ
-         zRz051Mc+zGwL2ANDfA8yxU23mzmh9+hrqfV83QIu0tJNfbDpGMrLs6X1X7hkQGp2t8j
-         0tDA==
-X-Gm-Message-State: APjAAAXcRRpj15K/ShF6eIuJhiXjcdkVoVCCCCvP4A+bmF9BYSvr91hl
-        ka/gamyI1sHz897btmbpWKseig==
-X-Google-Smtp-Source: APXvYqwiysuJ7YPCjw5v19f+VxUh6uIylHpXDzD6fU9bVJY3KzMo1iKtdkQvEY457UMon5Y8mLS6qw==
-X-Received: by 2002:a1c:9d52:: with SMTP id g79mr3783156wme.148.1578488185459;
-        Wed, 08 Jan 2020 04:56:25 -0800 (PST)
-Received: from localhost.localdomain (93-143-224-199.adsl.net.t-com.hr. [93.143.224.199])
-        by smtp.googlemail.com with ESMTPSA id k7sm3598475wmi.19.2020.01.08.04.56.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2020 04:56:25 -0800 (PST)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Christian Lamparter <chunkeey@gmail.com>,
-        Sven Eckelmann <sven.eckelmann@openmesh.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Subject: [PATCH v2 2/2] ARM64: dts: qcom: add gpio-ranges property
-Date:   Wed,  8 Jan 2020 13:54:57 +0100
-Message-Id: <20200108125455.308969-2-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200108125455.308969-1-robert.marko@sartura.hr>
-References: <20200108125455.308969-1-robert.marko@sartura.hr>
+        id S1727317AbgAHM4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 07:56:05 -0500
+Received: from esa4.microchip.iphmx.com ([68.232.154.123]:31331 "EHLO
+        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726254AbgAHM4F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 07:56:05 -0500
+Received-SPF: Pass (esa4.microchip.iphmx.com: domain of
+  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="Claudiu.Beznea@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+  include:servers.mcsv.net include:mktomail.com
+  include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa4.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa4.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: feLro1JNCFp1+UpYxfUe+bG2IPLSvnlmgEXzWgR/sW3uX4OwPBSjnIj8qhK2OnwOjjDOqzVpbt
+ g8bZUzYBbwpp+khpk6/ata/+DQPt9aBwtnPADf6kO2iqyJour8APSLqAWRCsC61k0Iv5val3AB
+ +w32RZ3p2/hGM7Abr6FCBcun5Lp4TmpY9srfoUiBepWiL5KArSMVzb6N8wh8mTDnlI4CxH7Kr6
+ OQwyP26353aBoemlTeFG5Bpj+fE3wiMJjSz0Au3d7cS/SPDHITUHuvh3QHOPTtmyV4EvzqeVnH
+ K3Q=
+X-IronPort-AV: E=Sophos;i="5.69,410,1571727600"; 
+   d="scan'208";a="60517506"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Jan 2020 05:56:03 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 8 Jan 2020 05:56:02 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.85.251) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Wed, 8 Jan 2020 05:55:55 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <vkoul@kernel.org>,
+        <eugen.hristev@microchip.com>, <jic23@kernel.org>,
+        <knaack.h@gmx.de>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <mchehab@kernel.org>, <lee.jones@linaro.org>,
+        <richard.genoud@gmail.com>, <radu_nicolae.pirea@upb.ro>,
+        <tudor.ambarus@microchip.com>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>, <wg@grandegger.com>,
+        <mkl@pengutronix.de>, <a.zummo@towertech.it>, <broonie@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 00/16] add device tree for SAM9X60 SoC and SAM9X60-EK board
+Date:   Wed, 8 Jan 2020 14:55:07 +0200
+Message-ID: <1578488123-26127-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Lamparter <chunkeey@gmail.com>
+This series add device tree for SAM9X60 SoC and SAM9X60-EK board.
+Allong with these, there are patches that documents some compatibles
+for SAM9X60's IPs.
 
-This patch adds the gpio-ranges property to almost all of
-the Qualcomm ARM platforms that utilize the pinctrl-msm
-framework.
+Claudiu Beznea (15):
+  dt-bindings: at_xdmac: add entry for microchip compatibles
+  dt-bindings: atmel-can: add microchip,sam9x60-can
+  dt-bindings: atmel-tcb: add microchip,<chip>-tcb
+  dt-bindings: atmel-isi: add microchip,sam9x60-isi
+  dt-bindings: at91-sama5d2_adc: add microchip,sam9x60-adc
+  dt-bindings: atmel-matrix: add microchip,sam9x60-matrix
+  dt-bindings: atmel-nand: add microchip,sam9x60-pmecc
+  dt-bindings: atmel-sysreg: add microchip,sam9x60-ddramc
+  dt-bindings: atmel-smc: add microchip,sam9x60-smc
+  dt-bindings: atmel-gpbr: add microchip,sam9x60-gpbr
+  dt-bindings: atmel,at91rm9200-rtc: add microchip,sam9x60-rtc
+  dt-bindings: spi_atmel: add microchip,sam9x60-spi
+  dt-bindings: atmel-usart: add microchip,<chip>-usart
+  dt-bindings: arm: add sam9x60-ek board
+  ARM: at91/defconfig: enable MMC_SDHCI_OF_AT91 and MICROCHIP_PIT64B
 
-The gpio-ranges property is part of the gpiolib subsystem.
-As a result, the binding text is available in section
-"2.1 gpio- and pin-controller interaction" of
-Documentation/devicetree/bindings/gpio/gpio.txt
+Sandeep Sheriker Mallikarjun (1):
+  ARM: dts: at91: sam9x60: add device tree for soc and board
 
-For more information please see the patch titled:
-"pinctrl: msm: fix gpio-hog related boot issues" from
-this series.
+ .../devicetree/bindings/arm/atmel-at91.yaml        |   6 +
+ .../devicetree/bindings/arm/atmel-sysregs.txt      |   1 +
+ .../devicetree/bindings/dma/atmel-xdma.txt         |   3 +-
+ .../bindings/iio/adc/at91-sama5d2_adc.txt          |   2 +-
+ .../devicetree/bindings/media/atmel-isi.txt        |   2 +-
+ .../devicetree/bindings/mfd/atmel-gpbr.txt         |   4 +-
+ .../devicetree/bindings/mfd/atmel-matrix.txt       |   1 +
+ .../devicetree/bindings/mfd/atmel-smc.txt          |   1 +
+ .../devicetree/bindings/mfd/atmel-tcb.txt          |   5 +-
+ .../devicetree/bindings/mfd/atmel-usart.txt        |   6 +-
+ .../devicetree/bindings/mtd/atmel-nand.txt         |   1 +
+ .../devicetree/bindings/net/can/atmel-can.txt      |   3 +-
+ .../bindings/rtc/atmel,at91rm9200-rtc.txt          |   3 +-
+ .../devicetree/bindings/spi/spi_atmel.txt          |   2 +-
+ arch/arm/boot/dts/Makefile                         |   2 +
+ arch/arm/boot/dts/at91-sam9x60ek.dts               | 647 +++++++++++++++++++
+ arch/arm/boot/dts/sam9x60.dtsi                     | 691 +++++++++++++++++++++
+ arch/arm/configs/at91_dt_defconfig                 |   4 +
+ 18 files changed, 1373 insertions(+), 11 deletions(-)
+ create mode 100644 arch/arm/boot/dts/at91-sam9x60ek.dts
+ create mode 100644 arch/arm/boot/dts/sam9x60.dtsi
 
-Reported-by: Sven Eckelmann <sven.eckelmann@openmesh.com>
-Tested-by: Sven Eckelmann <sven.eckelmann@openmesh.com> [ipq4019]
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-Tested-by: Robert Marko <robert.marko@sartura.hr> [ipq4019]
-Cc: Luka Perkov <luka.perkov@sartura.hr>
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
-Changes since v1:
-- Split ARM and ARM64 DTS changes into separate patches
-
- arch/arm64/boot/dts/qcom/ipq8074.dtsi | 1 +
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 1 +
- arch/arm64/boot/dts/qcom/msm8992.dtsi | 1 +
- arch/arm64/boot/dts/qcom/msm8994.dtsi | 1 +
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 1 +
- 5 files changed, 5 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-index 67ee5f560104..2b31823d3ccd 100644
---- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-@@ -21,6 +21,7 @@
- 			reg = <0x1000000 0x300000>;
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-controller;
-+			gpio-ranges = <&tlmm 0 0 70>;
- 			#gpio-cells = <0x2>;
- 			interrupt-controller;
- 			#interrupt-cells = <0x2>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 5ea9fb8f2f87..2d1cbe762b3a 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -374,6 +374,7 @@
- 			reg = <0x1000000 0x300000>;
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-controller;
-+			gpio-ranges = <&msmgpio 0 0 122>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8992.dtsi b/arch/arm64/boot/dts/qcom/msm8992.dtsi
-index 8be60c08a9ab..2021795c99ad 100644
---- a/arch/arm64/boot/dts/qcom/msm8992.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8992.dtsi
-@@ -171,6 +171,7 @@
- 			reg = <0xfd510000 0x4000>;
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-controller;
-+			gpio-ranges = <&msmgpio 0 0 146>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-index 3932757f78b7..b1c2d7d6a0f2 100644
---- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-@@ -133,6 +133,7 @@
- 			reg = <0xfd510000 0x4000>;
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-controller;
-+			gpio-ranges = <&msmgpio 0 0 146>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index 87f4d9c1b0d4..81576aeb2408 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -1234,6 +1234,7 @@
- 			reg = <0x01010000 0x300000>;
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-controller;
-+			gpio-ranges = <&msmgpio 0 0 150>;
- 			#gpio-cells = <2>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
 -- 
-2.24.1
+2.7.4
 
