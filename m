@@ -2,93 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C8277133A51
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 05:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E20E4133A9F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 05:57:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727298AbgAHEZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 7 Jan 2020 23:25:55 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:10446 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727283AbgAHEZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 23:25:55 -0500
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5e1559c00000>; Tue, 07 Jan 2020 20:25:36 -0800
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Tue, 07 Jan 2020 20:25:54 -0800
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Tue, 07 Jan 2020 20:25:54 -0800
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 8 Jan
- 2020 04:25:53 +0000
-Received: from rnnvemgw01.nvidia.com (10.128.109.123) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Wed, 8 Jan 2020 04:25:53 +0000
-Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.162.131]) by rnnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5e1559d00000>; Tue, 07 Jan 2020 20:25:53 -0800
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <perex@perex.cz>, <tiwai@suse.com>,
-        <digetx@gmail.com>, <mperttunen@nvidia.com>,
-        <gregkh@linuxfoundation.org>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <spujar@nvidia.com>, <josephl@nvidia.com>,
-        <daniel.lezcano@linaro.org>, <mmaddireddy@nvidia.com>,
-        <markz@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v7 21/21] ASoC: nau8825: change Tegra clk_out_2 provider to tegra_pmc
-Date:   Tue, 7 Jan 2020 20:25:15 -0800
-Message-ID: <1578457515-3477-22-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1578457515-3477-1-git-send-email-skomatineni@nvidia.com>
-References: <1578457515-3477-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1726481AbgAHE5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 7 Jan 2020 23:57:19 -0500
+Received: from mail-pj1-f65.google.com ([209.85.216.65]:34759 "EHLO
+        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726333AbgAHE5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 7 Jan 2020 23:57:19 -0500
+Received: by mail-pj1-f65.google.com with SMTP id s94so5917357pjc.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Jan 2020 20:57:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=4mtdywEsJk+nT9VyFRx8P9/lJ04ak0DTV5M3N2oJ6TI=;
+        b=IFCNzfE7iaak3dYJ1Yo+CaQgGqdHU+rfnC0wA0asEZh3mwNM1h3hScSbEa03vlZRgV
+         MAPp5pCSefK9OXvYT5Waxldi6gEVqLLUSA+o4HblpXqowqsmbdQuimnfTf+AGUW/LHW1
+         THk3eO06X4L8Elr5oqkT++qalFZVbq1SV9b3oUjmDCX+OUemW2JL9pLvU39PHC4aE6PJ
+         3dwNd11UTsTeqK4HiKkBGeQkG7hnLu09OwNu3UeRKPtqmTZf+uIIDeTFjdzd+K2uilN1
+         cntRJGYp9dQ5zOwrEnt+A+DuE40gtfi65O3OKNIXPDRzhBaXRl74aJn8KjKjzt74dwLi
+         +E7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=4mtdywEsJk+nT9VyFRx8P9/lJ04ak0DTV5M3N2oJ6TI=;
+        b=Cdm7/DVSAsRGXB9KMdozd7QlaFbwZEIF1fsKlcr1ShaZdj+uH8TQTEKct5PadeYUah
+         nmgK0l0TDIrM6OZdENrFkEAyfzZ9LRuN8V06rn2QNfB0UA5h1c77ZC7XY+2H3aMeEAC1
+         5NnqmTaItw3zfSRQUq6J4LGj+xMxrFR3K+gZM2GOCw0FmEIuGKu26X9NIkvOGnRwd64b
+         C0CYSI5lw+N0PKpHTHvKaomOGLb2r8bmrp5Gea8ufR6Z3ghg5JJPwTMqD3lhdxIREs60
+         Q+C1Rq8JsbJx7Yaa0VSMoecvO14nBnWzha5B4bzqAo8hXMpk96wG2FA1NyTA56Q1epD7
+         6raw==
+X-Gm-Message-State: APjAAAUL+ApICNEret2F0T0vLl/m2qr9zBZCtL5XNFBVKNMSn6x7CyTd
+        pQMfszNwPhG67FzXARd05j1cww==
+X-Google-Smtp-Source: APXvYqyAiUM0Zfk94sj3wybH1+jEV9hsV42rj3yXWIoRlo02aJPtDczc5InitHATpM/Ute/7PNrkUA==
+X-Received: by 2002:a17:902:760e:: with SMTP id k14mr3539817pll.238.1578459437930;
+        Tue, 07 Jan 2020 20:57:17 -0800 (PST)
+Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id j38sm1469771pgj.27.2020.01.07.20.57.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Jan 2020 20:57:17 -0800 (PST)
+Date:   Tue, 7 Jan 2020 20:57:14 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Sharat Masetty <smasetty@codeaurora.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] arm64: dts: sdm845: move gpu zap nodes to per-device
+ dts
+Message-ID: <20200108045714.GH738324@yoga>
+References: <20200108013847.899170-1-robdclark@gmail.com>
+ <20200108013847.899170-4-robdclark@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1578457536; bh=pWNZAo13Br7GvFxHxRFIS/1sozX6HF632kX/lxY43iQ=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=NFkGm820zbY010IcHMC5idC6pN9XMW/B7u/1UVUjVw3kSpwdoCesS38MFXmORb1wD
-         0JKF+xvJOGoPt/2IYWIbPcejn9m1P5LGbR6h8sUa7Th8hp+i0sG2otGiz7D+HaR+6Y
-         KoE6qNR6Z9KcgqTNmbx+3+o5ox9W75jU1brrdpDTSk4xTcOeCL7FrEN7XrHhjiUgPd
-         X9YESHjIlC0Ef8wskMMZoyCjmu+szWoY/+RyUQpqeznr+BOGoo3gIMcrjQ+ECWbR5e
-         2Vfmv3x06GDumeVhCUBch7pl+jMn/1D+DDS14/ev0X2JYBAE6ib89+VWgmZTVP/lC0
-         +D3xtfmLHdJ2w==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200108013847.899170-4-robdclark@gmail.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tegra clk_out_1, clk_out_2, and clk_out_3 are part of PMC block and
-these clocks are moved from clock drvier to pmc driver with pmc as
-a provider for these clocks.
+On Tue 07 Jan 17:38 PST 2020, Rob Clark wrote:
 
-Update bindings document to use pmc as clock provider for clk_out_2 and
-change id to pmc clock id.
+> From: Rob Clark <robdclark@chromium.org>
+> 
+> We want to specify per-device firmware-name, so move the zap node into
+> the .dts file for individual boards/devices.  This lets us get rid of
+> the /delete-node/ for cheza, which does not use zap.
+> 
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi           | 1 -
+>  arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 7 +++++++
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts              | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi                 | 6 +-----
+>  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 7 +++++++
+>  5 files changed, 23 insertions(+), 6 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> index 9a4ff57fc877..2db79c1ecdac 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> @@ -165,7 +165,6 @@ panel_in_edp: endpoint {
+>  /delete-node/ &venus_mem;
+>  /delete-node/ &cdsp_mem;
+>  /delete-node/ &cdsp_pas;
+> -/delete-node/ &zap_shader;
+>  /delete-node/ &gpu_mem;
+>  
+>  /* Increase the size from 120 MB to 128 MB */
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> index d100f46791a6..c472195e44fb 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -352,6 +352,13 @@ &gcc {
+>  			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
+>  };
+>  
+> +&gpu {
+> +	zap-shader {
+> +		memory-region = <&gpu_mem>;
+> +		firmware-name = "qcom/db845c/a630_zap.mbn";
 
-Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- Documentation/devicetree/bindings/sound/nau8825.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+We agreed upon qcom/sdm845/* for the test-signed 845 firmware :)
 
-diff --git a/Documentation/devicetree/bindings/sound/nau8825.txt b/Documentation/devicetree/bindings/sound/nau8825.txt
-index d16d96839bcb..388a7bc60b1f 100644
---- a/Documentation/devicetree/bindings/sound/nau8825.txt
-+++ b/Documentation/devicetree/bindings/sound/nau8825.txt
-@@ -101,5 +101,5 @@ Example:
-       nuvoton,crosstalk-enable;
- 
-       clock-names = "mclk";
--      clocks = <&tegra_car TEGRA210_CLK_CLK_OUT_2>;
-+      clocks = <&tegra_pmc TEGRA_PMC_CLK_OUT_2>;
-   };
--- 
-2.7.4
+> +	};
+> +};
+> +
+>  &pm8998_gpio {
+>  	vol_up_pin_a: vol-up-active {
+>  		pins = "gpio6";
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> index c57548b7b250..876155fc0547 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -360,6 +360,14 @@ &gcc {
+>  			   <GCC_LPASS_SWAY_CLK>;
+>  };
+>  
+> +&gpu {
+> +	zap-shader {
+> +		memory-region = <&gpu_mem>;
+> +		// TODO presumably mtp can use same "test key" signed zap?
 
+Drop this comment after s/db845c/sdm845/
+
+> +		firmware-name = "qcom/db845c/a630_zap.mbn";
+
+Apart from that, I think this looks good!
+
+Regards,
+Bjorn
+
+> +	};
+> +};
+> +
+>  &i2c10 {
+>  	status = "okay";
+>  	clock-frequency = <400000>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index ddb1f23c936f..601c57cc9b6d 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -2804,7 +2804,7 @@ dsi1_phy: dsi-phy@ae96400 {
+>  			};
+>  		};
+>  
+> -		gpu@5000000 {
+> +		gpu: gpu@5000000 {
+>  			compatible = "qcom,adreno-630.2", "qcom,adreno";
+>  			#stream-id-cells = <16>;
+>  
+> @@ -2824,10 +2824,6 @@ gpu@5000000 {
+>  
+>  			qcom,gmu = <&gmu>;
+>  
+> -			zap_shader: zap-shader {
+> -				memory-region = <&gpu_mem>;
+> -			};
+> -
+>  			gpu_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index 13dc619687f3..b255be3a4a0a 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -245,6 +245,13 @@ &gcc {
+>  			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
+>  };
+>  
+> +&gpu {
+> +	zap-shader {
+> +		memory-region = <&gpu_mem>;
+> +		firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn";
+> +	};
+> +};
+> +
+>  &i2c1 {
+>  	status = "okay";
+>  	clock-frequency = <400000>;
+> -- 
+> 2.24.1
+> 
