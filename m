@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F0122134E14
-	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 21:54:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5810F134E1E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Jan 2020 21:54:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727564AbgAHUyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 15:54:23 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37326 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727507AbgAHUyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 15:54:23 -0500
-Received: by mail-ot1-f67.google.com with SMTP id k14so4976967otn.4
-        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 12:54:22 -0800 (PST)
+        id S1727181AbgAHUyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 15:54:53 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38382 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727069AbgAHUyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 15:54:51 -0500
+Received: by mail-ot1-f68.google.com with SMTP id d7so4975365otf.5
+        for <devicetree@vger.kernel.org>; Wed, 08 Jan 2020 12:54:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=irwHBzNJL11iS3DIpsshB1iOiTtfFrxmr67ljB2o42w=;
-        b=RvxbMknusHO4tg0vxOZP0/oJl6mhPccMw5GHggjSdK/q0nf0q0ptYDP6dguZhEWYhd
-         zUOB1sn01kWr/9vW2M/UolxM+I7wV5t2sBqY7jBz1vYx9x6bo7O/khxYLLR7RWHpWrh7
-         GQsZDIMbimImHTZPakr3e18odY9i4eYpvdTHuLU7lDBTktwp53ohepzAZD6u6wtPO913
-         ex+eGkur4OcFX7EgVXrEkDBIF7Fv9viNOkuLrEKBx6/M8sKVjYzKR6xOiqfq5olqX0om
-         EEMz27YfKWH5aZAxk0OMN+HbMd1asX30LtWyiw2GaSVKwRuzskH8oejau7FImsarklym
-         IiEw==
-X-Gm-Message-State: APjAAAXnIE34i1guZssjzwBFoVbMtdgWasHhay+a+Y/IKZTWg94UxD94
-        mFjBYWFvQ1JitC7/JbaWVcFY4/Q=
-X-Google-Smtp-Source: APXvYqylUekhNBuRsxQAUJK95JHQj89usO0AoI9UE14nJJNsNl0Ug9CwVRoQeB4sZeScgpNL4zmBSw==
-X-Received: by 2002:a9d:6045:: with SMTP id v5mr5335000otj.252.1578516862270;
-        Wed, 08 Jan 2020 12:54:22 -0800 (PST)
+        bh=jf75AHX9cWk938eoPABkjnqB5jtoAKhCXPRF42yiNM0=;
+        b=V5bqMjQ6tOT2byyUzpCQelQ17+XyzlJfBh/fX4hi4/yDJ1d4k1QsAN3w1ZOPg0Z6A9
+         20jNejcJ8C2tkdHKuMrxX+aHp42JmXFsHMHG8Ww6ypsjZOCjQYuVoMRYEhZxOyunuU+l
+         hbEuxK+9E7iIK2Nm6SLlSQEwVt6IPe878wZ2Qu92rq+fZLgJQqXFnlMC7z8xrNUQ/+Lr
+         CxoXK9sYyJlPzG4cVgLfCX3xDVtw2vSyTr4n3sP3Mgz3bhmin/yAMF63HcH15G1Ay7gb
+         sCahjJuYAbhNCzv610rmRW9fr3r2Cgc3ZS+5qMrm0ECPGzWV7woM+wwy+PHh0dMpv35G
+         1NJg==
+X-Gm-Message-State: APjAAAXzYOyXnFqP/06jSkRzOENKZJ4r/uIBRN6kXhNBsUPDuM/vs3kf
+        4jwDa5+qQ7TF9ffK1YeJGLfj7lQ=
+X-Google-Smtp-Source: APXvYqwgRsNCgnIzYurHwI24pGt4G3q9G7FH1/pI9ObUBoaDX2gXrCGXC5cUU8Iopk9g16Xhb5cH2g==
+X-Received: by 2002:a05:6830:138b:: with SMTP id d11mr5412586otq.38.1578516890376;
+        Wed, 08 Jan 2020 12:54:50 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v4sm1552605otf.7.2020.01.08.12.54.20
+        by smtp.gmail.com with ESMTPSA id w201sm1462952oif.29.2020.01.08.12.54.48
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2020 12:54:21 -0800 (PST)
+        Wed, 08 Jan 2020 12:54:48 -0800 (PST)
 Received: from rob (uid 1000)
         (envelope-from rob@rob-hp-laptop)
         id 2208fa
         by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Wed, 08 Jan 2020 14:54:19 -0600
-Date:   Wed, 8 Jan 2020 14:54:19 -0600
+        Wed, 08 Jan 2020 14:54:47 -0600
+Date:   Wed, 8 Jan 2020 14:54:47 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Khouloud Touil <ktouil@baylibre.com>
 Cc:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
@@ -47,34 +47,31 @@ Cc:     bgolaszewski@baylibre.com, robh+dt@kernel.org,
         baylibre-upstreaming@groups.io, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
         linus.walleij@linaro.org, Khouloud Touil <ktouil@baylibre.com>
-Subject: Re: [PATCH v4 3/5] dt-bindings: at24: make wp-gpios a reference to
- the property defined by nvmem
-Message-ID: <20200108205419.GA16184@bogus>
+Subject: Re: [PATCH v4 4/5] dt-bindings: at25: add reference for the wp-gpios
+ property
+Message-ID: <20200108205447.GA16981@bogus>
 References: <20200107092922.18408-1-ktouil@baylibre.com>
- <20200107092922.18408-4-ktouil@baylibre.com>
+ <20200107092922.18408-5-ktouil@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200107092922.18408-4-ktouil@baylibre.com>
+In-Reply-To: <20200107092922.18408-5-ktouil@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  7 Jan 2020 10:29:20 +0100, Khouloud Touil wrote:
-> NVMEM framework is an interface for the at24 EEPROMs as well as for
-> other drivers, instead of passing the wp-gpios over the different
-> drivers each time, it would be better to pass it over the NVMEM
-> subsystem once and for all.
-> 
-> Making wp-gpios a reference to the property defined by nvmem.
+On Tue,  7 Jan 2020 10:29:21 +0100, Khouloud Touil wrote:
+> As the at25 uses the NVMEM subsystem, and the property is now being
+> handled, adding reference for it in the device tree binding document,
+> which allows to specify the GPIO line to which the write-protect pin
+> is connected.
 > 
 > Signed-off-by: Khouloud Touil <ktouil@baylibre.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  Documentation/devicetree/bindings/eeprom/at24.yaml | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/eeprom/at25.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
