@@ -2,86 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CE71135BCE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 15:54:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3ABE135C0E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 16:00:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731822AbgAIOyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jan 2020 09:54:06 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:23224 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731813AbgAIOyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 09:54:06 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 009Erngq011603;
-        Thu, 9 Jan 2020 15:53:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=+ND5CjHMeUis+Fgum1owaxE711vUexvCa9xmQAs4TX0=;
- b=DF6ZFxQylDQHqp/3YUXtPT2okAUsawVy7VeuvUcXlfKkTzUcMMkGC/nfctiWENJuMa3p
- p1yXnRsmN9Oa+Y5Wth2OFq5d7iyP/Wlsyyk38rZtqytL20oKfr2LzqYd+1kvE7sydCPD
- gXdqczgiPP7WCDDFffc9j6RHH5HIDc8SNFAmhsszI0MZfikQrMZiTm+46efaAozQfPKV
- 2PPeQxfvRvjsqb5CxgstXzPmYcvD9Jib5X6yiyrMPNHiV5ZNkoAuozqC31QH5LU4Rjfn
- VJ01t3cQVquUVYR+dhbLQdLFPqt4P1qTcbF+jZsZgb2iqHOyDSHJgDgrJY6gYW6sAypP Uw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xakm5tamb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 09 Jan 2020 15:53:49 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DD93910003B;
-        Thu,  9 Jan 2020 15:53:40 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CEA372BD410;
-        Thu,  9 Jan 2020 15:53:40 +0100 (CET)
-Received: from localhost (10.75.127.49) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 9 Jan 2020 15:53:40
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <daniel.lezcano@linaro.org>, <tglx@linutronix.de>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
-        <linux@armlinux.org.uk>, <p.paillet@st.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH 3/3] ARM: stm32: select STM32 low power timer clock event driver
-Date:   Thu, 9 Jan 2020 15:53:33 +0100
-Message-ID: <20200109145333.12260-4-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200109145333.12260-1-benjamin.gaignard@st.com>
-References: <20200109145333.12260-1-benjamin.gaignard@st.com>
+        id S1732068AbgAIO7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jan 2020 09:59:00 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:19612 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1732000AbgAIO7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 09:59:00 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1578581939; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=iSl+LB/3BIrP2Fa1QYnWMrI84wPYNQRIyqOJ3huP4hI=; b=i5f0LcNBz7o2xZXoq4IbKQYH5tD4+iWUDrGSNf3vdHLpnGPWuE0wgJDi/MjIRWezMoMFwfn7
+ M3cFfAuneefXF7bmn4v2b9v6cyuFvtx2gzvLI1UvbjkxKnFjz0MGtUtoIzv024CC9rHp51XH
+ EFgvgujlAut2wBbfp4X5hIKC7EA=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e173fb1.7fa221314848-smtp-out-n02;
+ Thu, 09 Jan 2020 14:58:57 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A9DD4C4479C; Thu,  9 Jan 2020 14:58:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.204.79.138] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akdwived)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B7A33C433CB;
+        Thu,  9 Jan 2020 14:58:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B7A33C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akdwived@codeaurora.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: Documentation for qcom,eud
+To:     Rob Herring <robh@kernel.org>,
+        Prakruthi Deepak Heragu <pheragu@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ckadabi@codeaurora.org, tsoni@codeaurora.org,
+        bryanh@codeaurora.org, psodagud@codeaurora.org,
+        rnayak@codeaurora.org,
+        Satya Durga Srinivasu Prabhala <satyap@codeaurora.org>
+References: <1542310374-18474-1-git-send-email-pheragu@codeaurora.org>
+ <1542310374-18474-2-git-send-email-pheragu@codeaurora.org>
+ <20181117144705.GA18155@bogus>
+From:   "Dwivedi, Avaneesh Kumar (avani)" <akdwived@codeaurora.org>
+Message-ID: <7308d80f-7d0c-62bd-5b7d-63813e420c47@codeaurora.org>
+Date:   Thu, 9 Jan 2020 20:28:51 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-09_02:2020-01-09,2020-01-09 signatures=0
+In-Reply-To: <20181117144705.GA18155@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Select STM32 low power clock event driver by default
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- arch/arm/mach-stm32/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+On 11/17/2018 8:17 PM, Rob Herring wrote:
+> On Thu, Nov 15, 2018 at 11:32:53AM -0800, Prakruthi Deepak Heragu wrote:
+>> Documentation for Embedded USB Debugger (EUD) device tree bindings.
+> I asked questions on v2 which were never answered.
 
-diff --git a/arch/arm/mach-stm32/Kconfig b/arch/arm/mach-stm32/Kconfig
-index 57699bd8f107..441fc6923f7f 100644
---- a/arch/arm/mach-stm32/Kconfig
-+++ b/arch/arm/mach-stm32/Kconfig
-@@ -9,6 +9,7 @@ menuconfig ARCH_STM32
- 	select ARM_AMBA
- 	select ARCH_HAS_RESET_CONTROLLER
- 	select CLKSRC_STM32
-+	select CLKSRC_STM32_LP
- 	select PINCTRL
- 	select RESET_CONTROLLER
- 	select STM32_EXTI
+HI Rob,
+
+Can you please review my replies against your comments on patchset v2?
+
+>
+>> Signed-off-by: Satya Durga Srinivasu Prabhala <satyap@codeaurora.org>
+>> Signed-off-by: Prakruthi Deepak Heragu <pheragu@codeaurora.org>
+>> ---
+>>   .../devicetree/bindings/soc/qcom/qcom,msm-eud.txt  | 43 ++++++++++++++++++++++
+>>   1 file changed, 43 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,msm-eud.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,msm-eud.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,msm-eud.txt
+>> new file mode 100644
+>> index 0000000..6d339e7
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,msm-eud.txt
+>> @@ -0,0 +1,43 @@
+>> +* Qualcomm Technologies Inc Embedded USB Debugger (EUD)
+>> +
+>> +The EUD (Embedded USB Debugger) is a mini-USB hub implemented
+>> +on chip to support the USB-based debug and trace capabilities.
+>> +
+>> +Required properties:
+>> +
+>> + - compatible:  Should be "qcom,msm-eud"
+>> + - interrupts:  Interrupt number
+>> + - reg: Should be address and size of EUD register space
+>> +
+>> +EUD notifies clients for VBUS attach/detach and charger enable/disable
+>> +events. The link between client and EUD is established via a directed
+>> +graph. EUD has one endpoint of the graph link mentioning EUD as an
+>> +output link and clients of EUD should have the other endpoint of the
+>> +graph link as an input link.
+>> +
+>> +An example for EUD device node:
+>> +
+>> +	eud: qcom,msm-eud@88e0000 {
+>> +		compatible = "qcom,msm-eud";
+>> +		interrupts = <GIC_SPI 492 IRQ_TYPE_LEVEL_HIGH>;
+>> +		reg = <0x88e0000 0x4000>;
+>> +		usb_con: connector {
+>> +                compatible = "usb-c-connector";
+>> +                label = "USB-C";
+>> +                port {
+>> +                	    eud_usb_output: endpoint {
+>> +                        	    remote-endpoint = <&eud_usb3_input>;
+>> +                        };
+>> +        	    };
+>> +        };
+>> +	};
+>> +
+>> +An example for EUD client:
+>> +
+>> +	usb3 {
+>> +		port {
+>> +                eud_usb3_input: endpoint {
+>> +                        remote-endpoint = <&eud_usb_output>;
+>> +                };
+>> +        };
+>> +	};
+>> -- 
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+>> a Linux Foundation Collaborative Project
+>>
 -- 
-2.15.0
-
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project.
