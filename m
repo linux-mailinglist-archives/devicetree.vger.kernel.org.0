@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E01135AA8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 14:53:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43539135AAD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 14:53:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731374AbgAINwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jan 2020 08:52:37 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:52151 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731354AbgAINwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 08:52:35 -0500
-Received: by mail-wm1-f65.google.com with SMTP id d73so3016763wmd.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 05:52:34 -0800 (PST)
+        id S1731375AbgAINwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jan 2020 08:52:47 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44594 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731371AbgAINwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 08:52:37 -0500
+Received: by mail-wr1-f67.google.com with SMTP id q10so7441237wrm.11
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 05:52:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=wDdT9mwNJb39SdHGme3Rl9FLVtZ/pPu7zEryCFQu5mw=;
-        b=dpQhhEzU8ZdAV6dngpJDK3vCdHcsoKFGCyJyp60edFReYxuWDiZXLCljlb0JMvhG0A
-         50BZK6liDrJjpi7/eqHoCqYPwnETOCpaQ4qArOHdegCqviTE3qfNrE6iMzmAjmv80SQ9
-         OMbO+VkEitn1bWBdLoPAb7xKgjBZCFuBS9HqcRVktviHRiyzUKiBv2Q/mxotrIHhmR++
-         ULYRzUpqfJHqRu9lU2kCDjPdtthchZFQ7tM3D5XDysbInMt2Bx2i4uprH0VooHLPmYY5
-         wTOj7Hf+cHVaIsfajvI9aG4FkiwGqDKATl4pMuGV0011ZNBf938GuUpJNLvO43t2k4cl
-         AZGQ==
+        bh=cY7VEq1SDPcCbR2gLted+yBjAeKIqKC5FGvxBvtyOjU=;
+        b=YJV0pzx6ld6r0Ittxt8eGiqDQWelxWmJaXiOraeu7kqgy6yUKEl5CjC6krtJ4rrrxp
+         4houNQ8Q8UXHox536aXCM7bWjnJil2sW4Ifwt+ACXDVydt8XuYEkC39UKfu0kzF+FufS
+         a7g15u0+b0YHpt7dOUYfYHYD9xA5DZpLdHpNvgf6yEZzC8ttI2NzhYTjJyAOiloqwbaj
+         bPWnY4DxpIgqUaZwfq9y210ggcbkH6fn+qB9lXXlVSK68lp3bFhfX08XzhhjgVZ3q8r6
+         30Q/n6atlyOxZY/9UzXlCX2VifEXBhYnOQqhehai/Oesy1RbkJkDpih43bF3FMS6g507
+         pd+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=wDdT9mwNJb39SdHGme3Rl9FLVtZ/pPu7zEryCFQu5mw=;
-        b=pubegi0iLt3tPkpAltjAsUAWIKAiLmoAHiqjIUuFEZk3gOJTJ9jUKwr4Y42KhzhtJJ
-         45BKduWUKTZrUCvcA0BHi0a/9MV8DHhNX9hDs1o/VUmGVX4gLQj+FMdfKGcONh5ofxKR
-         gpAemBNE6EfvsE1jPnJB68wpu8u2xkLMPYT0pDde1sko5ojABRwURG09loLmWiXp1LCX
-         P15F6ROHbCUkUqCYnxGWja/wTftyS8Ue8exdJp5Ltw4sr/KKn0WKgTgXagipLrobgdWp
-         GLHDxujZh9PQ4jqD6uCMSMYAMKujqWImJAhoKPQYxUpvOHLYzNGybimDRfD3rI4Pt3JX
-         qARg==
-X-Gm-Message-State: APjAAAXgTCjKPz+/EIixaTKkSRwJYdjvObdto6RxU+P7C5j7PC0DepEE
-        PF9w3iPrMrA374Lkkv5PRpR13g==
-X-Google-Smtp-Source: APXvYqwi6eSbXZCs88gz3BT3ZgLThAHMy95DtZQwNI4D3VZDjgmv6pCPIEVoxQkMsNmck5ND5GcXqw==
-X-Received: by 2002:a1c:7f4f:: with SMTP id a76mr5153449wmd.77.1578577953676;
-        Thu, 09 Jan 2020 05:52:33 -0800 (PST)
+        bh=cY7VEq1SDPcCbR2gLted+yBjAeKIqKC5FGvxBvtyOjU=;
+        b=fPTcLLi8O/4NdqM59QXeS9jFcpl9TiIC2YDapzo2+6gkRYaTOX2OG0ZeQ2YGNgcgYJ
+         WmEvgqrVg9l7q06CG63QuwokG3zm5KZ7UUWFOkihkpBLtACILvoQNIIHP4+kCuGrnjnZ
+         by32anBwrKfMDwVGdgMyV4Mwwb7G6ayZCMM/eDhM9Jo85m+kc2r3cjx2f6pRcteBnKRg
+         ArcynCsqIbWFlY/5908e20iHYICbIqV5D/zM3JLnbW6hMJIExHvx/kwYFJm6VIsNSa1u
+         5Y2BOsSBjwzJpRUGzdtLCVzAAlxouVW3jnYFOYvFwmt2kC6WQTTN1zuvgnqFX4r7mxG7
+         xsHw==
+X-Gm-Message-State: APjAAAW/JLMmZ41rV40oLwKeivVfsd4kYKbkLc/5xpsTSNtxUeGb4IwR
+        bPDatMMseJJRFRN3o3eKRz+na8LNifH01A==
+X-Google-Smtp-Source: APXvYqxIdhdkFDDM3qDOhD9CTVBp8Wso36d/Vi3BKD/mngqoG1YAwUgO6ZuEWuzzKIDn2YcQz8XRbw==
+X-Received: by 2002:a5d:6ca1:: with SMTP id a1mr10795256wra.36.1578577955315;
+        Thu, 09 Jan 2020 05:52:35 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id u24sm2880054wml.10.2020.01.09.05.52.32
+        by smtp.gmail.com with ESMTPSA id e6sm8476868wru.44.2020.01.09.05.52.34
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 09 Jan 2020 05:52:33 -0800 (PST)
+        Thu, 09 Jan 2020 05:52:34 -0800 (PST)
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-arm-kernel@lists.infradead.org, git@xilinx.com
-Cc:     Venkatesh Yadav Abbarapu <venkatesh.abbarapu@xilinx.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Harini Katakam <harini.katakam@xilinx.com>,
+Cc:     Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
         Mark Rutland <mark.rutland@arm.com>,
         Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 6/8] arm64: zynqmp: Fix the si570 clock frequency on zcu111
-Date:   Thu,  9 Jan 2020 14:52:20 +0100
-Message-Id: <02f0e609601065c8aa4acb4ed9916bade10c6a14.1578577931.git.michal.simek@xilinx.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 7/8] arm64: zynqmp: Remove broken-cd from zcu100-revC
+Date:   Thu,  9 Jan 2020 14:52:21 +0100
+Message-Id: <b068e60d4058ccb0d784a0cc35e8aecf5ffb98fd.1578577931.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <cover.1578577931.git.michal.simek@xilinx.com>
 References: <cover.1578577931.git.michal.simek@xilinx.com>
@@ -66,32 +66,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Venkatesh Yadav Abbarapu <venkatesh.abbarapu@xilinx.com>
+Card detect bit was broken on revA and it is working fine with revC
+board that's why this property can be removed.
 
-The si570 clock frequency should be 156.25MHz as per datasheet.
-
-Signed-off-by: Venkatesh Yadav Abbarapu <venkatesh.abbarapu@xilinx.com>
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
- arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-index 022c732005ee..cb2e46833a7b 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-@@ -317,7 +317,7 @@ si570_2: clock-generator@5d { /* USER MGT SI570 - u49 */
- 				reg = <0x5d>;
- 				temperature-stability = <50>;
- 				factory-fout = <156250000>;
--				clock-frequency = <148500000>;
-+				clock-frequency = <156250000>;
- 				clock-output-names = "si570_mgt";
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+index dd60f7d85cc8..2b3757dd74cc 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+@@ -226,7 +226,6 @@ &rtc {
+ &sdhci0 {
+ 	status = "okay";
+ 	no-1-8-v;
+-	broken-cd; /* CD has to be enabled by default */
+ 	disable-wp;
+ };
+ 
 -- 
 2.24.0
 
