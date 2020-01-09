@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D574C1352E1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 06:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D681C1352ED
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 07:00:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725899AbgAIF6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jan 2020 00:58:01 -0500
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:48037 "EHLO
+        id S1726162AbgAIGAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jan 2020 01:00:20 -0500
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:52067 "EHLO
         out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725893AbgAIF6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 00:58:01 -0500
+        by vger.kernel.org with ESMTP id S1727980AbgAIGAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 01:00:20 -0500
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id E833321F18;
-        Thu,  9 Jan 2020 00:57:59 -0500 (EST)
+        by mailout.nyi.internal (Postfix) with ESMTP id 8197D21FC5;
+        Thu,  9 Jan 2020 01:00:19 -0500 (EST)
 Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Thu, 09 Jan 2020 00:57:59 -0500
+  by compute4.internal (MEProxy); Thu, 09 Jan 2020 01:00:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
         mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=EsMKsMKI6HhF0F0RtD4RD5a7b8gvE2C
-        1Qv6MEtScRc0=; b=EYJ8qXOpV4/5J8MYiMmaa8eIayd6/H1HHxWVnf/tlbBRNto
-        fm3Q4Fh9cgfTPSjK9rNLBrbApDVyxe12FJ6FoZMKKIfI/o35oYFzeLu6sT3doOGF
-        rcFXwT1B87faUViSKpFIk5dp7w9b6b1ZbDQ4lcHqWbsPGsGFCNIi50of4Bw6cWKU
-        ekZNyPTwr+pi3KXXZta4A2ce3LNLVAaV0OFbWJcyw2t1UHsHCXy3s2gDwynYWvRX
-        khyCdm6jNGvzlO5JxDtVtSxAqmv3uvntP1ADUTyt4LTp4CGPiTFl2pqOWJz6EZGB
-        mR5+2YEur68wjgp6AuSFr0OGMqhiZkdVDAWLygQ==
+        :subject:content-type; s=fm1; bh=Ynx/sG4Nu6QytMUoZxOmN9kX3FtDIxE
+        I42xzek+Pfn0=; b=LqFr7arSoDu5Ff5sghPBU8wQvXcaFr+xPZ8DpIwUC1EwRKh
+        csyaUzs3fDGb3CqlhOYeb3dD4qpYnM+aAPvo9UZVqydctoF0GgmPjEgfMGJVBlC/
+        R2kvibCgVnGtmScJnesyC8ihQZvSSCgd+q7fwyYuGaa6ZH7yjTyWVYwMSCLcdpU2
+        sSSlht3cSzY9U6+c6+TRjo/jNHJXmRPoFHdcbK7GIjyRurNQEHhkNghUlT4g+Sz/
+        enLpYrcJVlJzhfs9PIZy7bEmVrHd48dgBfg4nyH/7P76LQGhEgEnWdBnSniAtvRm
+        lV4A2FfWru2grAym/fBTEWddIORwEuKpty3uJMg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=EsMKsM
-        KI6HhF0F0RtD4RD5a7b8gvE2C1Qv6MEtScRc0=; b=Xs3rnUenGEIz7PHXDH/03Y
-        bensMd8MOXuP70PFSP5rGOVCtoYjI+24kyTIhCofx5Aqx37f1gC8jDgU15/oRQUd
-        LdgzprFRmP6YgEaSB6lLnuNbfNW3pO09P62Hu6WmhW9NKc/2G8ZMhDDh4NcyD/kc
-        x/+D9ZQL1v3ELOxcigJB7vzlM8ZdqvIWhKBpyhdUa+QF/ftdqx4EOa1zwJm00Q42
-        rnYIihXXh7Brqo2zg998zDTNBBSQRzqkqmKrzKUPyx0xfIhNmeVai8XZihgMrY0F
-        ZPtGCB8EsSjwlYlgGNE3ykKDD1Hf0eQZ7hORs5R/cBp4zp/GOxtnCeIiucAwzsDw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Ynx/sG
+        4Nu6QytMUoZxOmN9kX3FtDIxEI42xzek+Pfn0=; b=L5xnqsv9k6wEYvD96af8mZ
+        KJ6gFX39DOvLO1F/3u6rqQKuTIye6YWiHVGdV8tyyBK1hvJaUEojlJwuQ7vjVhXw
+        fHsQigQfCqdJ+vt29npPSKye7wPGOlR809lqqmvnzd/2cGZHfe1mED5upc7aiBb2
+        g0pcUGK/7i6jUuOIIR0Tl1Deyj958oSJ9bLiE4zf1xXihIDWxSWacldznmSf3MHN
+        DmG9q6Obkc48+poA+uRiMUcarSHT+bTOLkZHHw7JEP1N+/1Ud9O9UMvLmzqD0pyl
+        u7Y7b24/Jwo2gy1zF9QL1s2/RHMA10vO3SUGEdhAqmBLdkeyIidUZhpVpX90sxxA
         ==
-X-ME-Sender: <xms:5sAWXqSUlHYgKeyBAM34X3wt_YQWCvCZVjGTSY5TXCy87amJcWywmw>
+X-ME-Sender: <xms:csEWXl4d5InvpzdQqvXJe6xxBm_jiD-aAgV_cuJb1Z76h4c1PdSh9A>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrvdehledgkedvucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
     rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
     grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
-    rhfuihiivgeptd
-X-ME-Proxy: <xmx:5sAWXsGOqfvR6Phd36-p-3SnwtH8TSSKIX3Rmt3T9d1006Y7MkK_mw>
-    <xmx:5sAWXqk3XoSaA_SeoBMr0RsoC56Drn_goMsUKLUjsyJUFe72GHz8ng>
-    <xmx:5sAWXn0of7jeys2u1opLc6hpZ4gTFaloF-tefoSgxIkX7eh0ckpCpw>
-    <xmx:58AWXpMqXvEOp__CoPwm3O8ewgPsyAqYxgS_SfH0SUTGJEdmdW4OHg>
+    rhfuihiivgepud
+X-ME-Proxy: <xmx:csEWXkVHGvGyPnB8f2vYMtyktgufMFoU8rP3jShm1QhLxOjpSoFaoQ>
+    <xmx:csEWXn2OivLIWMoIQ_cp0xp1NOs-z-Z1wuWmuH5x40H3Qiy6rownVA>
+    <xmx:csEWXrPtnZxpy46ybLx4XhRrMthe6gvkPzdj7VBgNt5HqzQPn3SpMQ>
+    <xmx:c8EWXo3B7ifWwjIPH21fvIxwgdd0QTec8UJN5ciOpqVBnwxfwI4Vow>
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id BD6ACE00A2; Thu,  9 Jan 2020 00:57:58 -0500 (EST)
+        id 5C3BAE00A1; Thu,  9 Jan 2020 01:00:18 -0500 (EST)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.1.7-740-g7d9d84e-fmstable-20200109v1
 Mime-Version: 1.0
-Message-Id: <cb602d43-7e00-4d7b-8f05-6b774d573901@www.fastmail.com>
-In-Reply-To: <1577993276-2184-9-git-send-email-eajames@linux.ibm.com>
+Message-Id: <d1e6ea02-0b16-4dc6-8abb-1bbf30bd6548@www.fastmail.com>
+In-Reply-To: <1577993276-2184-10-git-send-email-eajames@linux.ibm.com>
 References: <1577993276-2184-1-git-send-email-eajames@linux.ibm.com>
- <1577993276-2184-9-git-send-email-eajames@linux.ibm.com>
-Date:   Thu, 09 Jan 2020 16:29:57 +1030
+ <1577993276-2184-10-git-send-email-eajames@linux.ibm.com>
+Date:   Thu, 09 Jan 2020 16:32:17 +1030
 From:   "Andrew Jeffery" <andrew@aj.id.au>
 To:     "Eddie James" <eajames@linux.ibm.com>,
         linux-aspeed@lists.ozlabs.org
@@ -66,7 +66,7 @@ Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         "Marc Zyngier" <maz@kernel.org>,
         "Rob Herring" <robh+dt@kernel.org>, tglx@linutronix.de,
         "Joel Stanley" <joel@jms.id.au>
-Subject: Re: [PATCH v4 08/12] soc: aspeed: xdma: Add reset ioctl
+Subject: Re: [PATCH v4 09/12] ARM: dts: aspeed: ast2500: Add XDMA Engine
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -76,12 +76,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On Fri, 3 Jan 2020, at 05:57, Eddie James wrote:
-> Users of the XDMA engine need a way to reset it if something goes wrong.
-> Problems on the host side, or user error, such as incorrect host
-> address, may result in the DMA operation never completing and no way to
-> determine what went wrong. Therefore, add an ioctl to reset the engine
-> so that users can recover in this situation.
+> Add a node for the XDMA engine with all the necessary information.
 > 
 > Signed-off-by: Eddie James <eajames@linux.ibm.com>
 
-Acked-by: Andrew Jeffery <andrew@aj.id.au>
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
