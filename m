@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9984135745
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 11:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73B31135743
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 11:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730409AbgAIKnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1730238AbgAIKnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 9 Jan 2020 05:43:04 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:40587 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729452AbgAIKnD (ORCPT
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38889 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730363AbgAIKnD (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 05:43:03 -0500
-Received: by mail-wm1-f66.google.com with SMTP id t14so2244166wmi.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 02:43:01 -0800 (PST)
+Received: by mail-wm1-f68.google.com with SMTP id u2so2260714wmc.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 02:43:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=SkP26v/29sY5BZoOYQZTZZMRC2NCKhLFiuqXUfgUjgM=;
-        b=uoqz0OpGuZlIKpuC1qD25vMQ8f8AwUGhljW7ahY/QhxT8Xe2V3SblVo39+T7MCrfOQ
-         p+7+4dCMK3j8YQ4uNpPRGj5JCrFgrzCOK0AC0WYWXm78egPzuldiXFUvffzk4Ph/YrL+
-         rb23xRV9xN2hMWIkKiWTswiYewjWish8ZU2ztY+rZl1xtNUz033UCWG7SsNFwihNqK9Z
-         nJhSskX+XSv8KkL8U5MeKNzXJSxVU2HhFnTZdFCb14ffLGfnHxoIztFtu58Tdu9YKVtN
-         cG3YFf6/zeJe2CkeAcezY8lz1+2heGetqWb9mfUgE9N2xsnOmN9bi6uHSNCCSpGeVFtn
-         vtQw==
+        bh=tXpo5MYGeWvRjvLGBcgNx4X2h+6aZ6zfLICyaTGuIUI=;
+        b=My8DmB5olwApnKKCvFVwxMr/v2iQP+0A8hHlAm654JXhpMg5Q9TEXV0SJ7C3K1vTOg
+         jSzLPx4QTudKMOBUOYzLJDlEUBvB3yAMOEN8aTA6/RZe4H1/jcjHJ09kzGQwnteziFWa
+         G//ngvcBJbdQU/iq2146XfoKDzZW5jlBDHvc7UV9OFKMr5SEJYULBOXe3ovU9E6CcI0F
+         pX9lXHfLkoCBGtAytjcWkXB9dXAbPTMLpYiClsFQ38eu0YOfnnhQDjBh5HDS26dMesbw
+         qYmni0/Ibam0yQFLnIGRS2i0LxVJX8piLS7ahmQwdgl08cPxozQSVCR1Ma4kW1WLWods
+         neag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=SkP26v/29sY5BZoOYQZTZZMRC2NCKhLFiuqXUfgUjgM=;
-        b=cjt4zT+Af/f+3MVpd15VxZGdKs+ssMEzK+XcNjpmsKDn79adMQdelUgmNu0z6D5lLW
-         StZY5TRcHqB628Bke+AezU5WLDjwsBM8xh4Mmc7HtCmk99Fq5bVZnJJYicEit7YArgKD
-         gWaV7Q5s+9fclM2UHTo+hs46LCuk0eRGa3e9ZifuWGDQZZAMx5gRhpG+6KT9VbqtrgUr
-         QyKPSyQWb9ZeCdTcSAriiAfgE+1g1A0O3azbt6lOwpZtyOR4isbn5tTN9klG1UygdE4n
-         pRBexg++V7LIsi1BNYGN98asSTLYaZ4UuY61KpweBlDb81lupEQgdcJAH3Q9B13uqa9h
-         LRxg==
-X-Gm-Message-State: APjAAAXj26tFjLTq+5YxRCLhwaVNe747f1PtqQGr8zmHU9FUcnwiHe3p
-        jT46SPLxAEMh8Hlo6KmfSXZAGg==
-X-Google-Smtp-Source: APXvYqyfTgBCgG8JNZwv9gyCo6cleXy4olSHdPrj/npJ2qIXbxd0e54RdUeD4kfVeYeqABDs4it7ww==
-X-Received: by 2002:a1c:81ce:: with SMTP id c197mr4091282wmd.96.1578566580609;
-        Thu, 09 Jan 2020 02:43:00 -0800 (PST)
+        bh=tXpo5MYGeWvRjvLGBcgNx4X2h+6aZ6zfLICyaTGuIUI=;
+        b=YgMFwKwPtuht3FLsIUcFTgjD3sFXuWZb73/TG/+Pr+EP5w86v/eEj/qTOjw3z9z208
+         jkZuqlSO6oDHPSVBEYkJgnmAHtvpNiNgr3BLA+1qIG6LEq/fgnDeBG9S+gDbOgPzgBmH
+         GUoLg/yMeXEAykB1zWK/8O/uVMh1KDnQ1QshobXvhgwembo+Pt52oUtC638GdRFDwS4H
+         w5r+SVBD1RgWc61DaF4E/+QB80JZfw2xLRReTcq6tqcwa9O2cmfnPfK/bzc0mEg4Adku
+         SQwauZIBS3okDWvvnwixyweLXMpVBy+1i+xSSh4LH6Za2TTDO2O47J9Lztzda7N7BVvq
+         5EGQ==
+X-Gm-Message-State: APjAAAWMB6jq9SgpSQBv1VINbR2G8hTIdBrNZJuMFiPC9BvR3iZiR5DD
+        DXRdnTTxlAzqugn+wW7m0b+INQ==
+X-Google-Smtp-Source: APXvYqxIIYtqFKRMNSIKDcAb5L/+eaHkyC2++l5LvjLq/4NkV3xN9MOMzfCuZK3amBt2RcpYC+BSFA==
+X-Received: by 2002:a7b:c183:: with SMTP id y3mr3944041wmi.45.1578566581595;
+        Thu, 09 Jan 2020 02:43:01 -0800 (PST)
 Received: from glaroque-ThinkPad-T480.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id q68sm2587167wme.14.2020.01.09.02.42.59
+        by smtp.gmail.com with ESMTPSA id q68sm2587167wme.14.2020.01.09.02.43.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2020 02:43:00 -0800 (PST)
+        Thu, 09 Jan 2020 02:43:01 -0800 (PST)
 From:   Guillaume La Roque <glaroque@baylibre.com>
 To:     marcel@holtmann.org, johan.hedberg@gmail.com,
         devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org
 Cc:     johan@kernel.org, nsaenzjulienne@suse.de,
         linux-kernel@vger.kernel.org, khilman@baylibre.com
-Subject: [PATCH v6 1/2] dt-bindings: net: bluetooth: add interrupts properties
-Date:   Thu,  9 Jan 2020 11:42:56 +0100
-Message-Id: <20200109104257.6942-2-glaroque@baylibre.com>
+Subject: [PATCH v6 2/2] bluetooth: hci_bcm: enable IRQ capability from devicetree
+Date:   Thu,  9 Jan 2020 11:42:57 +0100
+Message-Id: <20200109104257.6942-3-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200109104257.6942-1-glaroque@baylibre.com>
 References: <20200109104257.6942-1-glaroque@baylibre.com>
@@ -59,29 +59,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add interrupts and interrupt-names as optional properties
-to support host-wakeup by interrupt properties instead of
-host-wakeup-gpios.
+Add support for getting IRQ directly from DT instead of relying on
+converting a GPIO to IRQ. This is needed for platforms with GPIO
+controllers that that do not support gpiod_to_irq().
 
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 ---
- Documentation/devicetree/bindings/net/broadcom-bluetooth.txt | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/bluetooth/hci_bcm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-index c44a30dbe43d..d33bbc998687 100644
---- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-+++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-@@ -37,7 +37,9 @@ Optional properties:
-     - pcm-frame-type: short, long
-     - pcm-sync-mode: slave, master
-     - pcm-clock-mode: slave, master
--
-+ - interrupts: must be one, used to wakeup the host processor if
-+   gpiod_to_irq function not supported
-+ - interrupt-names: must be "host-wakeup"
- 
- Example:
+diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
+index 769bb4404bd1..b236cb11c0dc 100644
+--- a/drivers/bluetooth/hci_bcm.c
++++ b/drivers/bluetooth/hci_bcm.c
+@@ -13,6 +13,7 @@
+ #include <linux/module.h>
+ #include <linux/acpi.h>
+ #include <linux/of.h>
++#include <linux/of_irq.h>
+ #include <linux/property.h>
+ #include <linux/platform_data/x86/apple.h>
+ #include <linux/platform_device.h>
+@@ -1151,6 +1152,8 @@ static int bcm_of_probe(struct bcm_device *bdev)
+ 	device_property_read_u32(bdev->dev, "max-speed", &bdev->oper_speed);
+ 	device_property_read_u8_array(bdev->dev, "brcm,bt-pcm-int-params",
+ 				      bdev->pcm_int_params, 5);
++	bdev->irq = of_irq_get_byname(bdev->dev->of_node, "host-wakeup");
++
+ 	return 0;
+ }
  
 -- 
 2.17.1
