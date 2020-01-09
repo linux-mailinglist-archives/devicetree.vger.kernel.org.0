@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19C25135AD3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 15:02:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D75C135AE4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 15:03:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729712AbgAIOCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jan 2020 09:02:25 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:40118 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729533AbgAIOCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 09:02:25 -0500
-Received: by mail-wm1-f67.google.com with SMTP id t14so2946416wmi.5
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 06:02:23 -0800 (PST)
+        id S1731460AbgAIOCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jan 2020 09:02:42 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:36767 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731456AbgAIOCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 09:02:42 -0500
+Received: by mail-wm1-f65.google.com with SMTP id p17so2971803wma.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 06:02:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cH3/OtZ3DAvw8IgKFnqPXU8D4jtKtoD9aLE/M0BbcKs=;
-        b=Q7PFKTGxpyCSu9tOEMplXNfwBzehjnBpiHUyvo+zkGU7Jnf4Pk73EORE5sthX5quPi
-         NZfAq9ONyqTNDWQUy4XkVGDXC/iLmaFl6eHu/m+CGEyOKWB2SRTyN1Uh4M9aYlQyUCgI
-         lPGue0manFc74H5onYbbMtUeLfH150STGLEYotHrptrBwpwaQX5908a5KWP/o3UuS/mc
-         +Fhsc2Cgc6sI3nRyMiKGzsTlVjMYnosUMQoLRtSO0m4H2tbVrcV566XiPwRaTQYq1XrT
-         h7oXEmdZf1tbOffD4LeeZ4Ye5a3GON25kL38+23iJBXg6Y65XEWVSDfxgNTVCq7X/h8o
-         YkDw==
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=i4WlGl2APfpv2lRrFN39WYIWl+QrT3wDSJtharCyfCg=;
+        b=XOd9sP1TVktE8HKqQnu820uW9CLDKpXDc2oLvP44cMRM1nVI9dp/EfqStuDVL0IaOK
+         2GUgfxZa7fXsM7IVB86GRA6c41WAZMuz110w9wE5mJyVcPgPp+LJjM5ljrczxbmqSqGF
+         wLmAQsZvC1Cfihj7Sl8c8yBFck1sfS1QNIZgw3x5VWZtRGy1dLctuWBu0RcXMFmyHSE3
+         8WrSmubYKBptazOrGeObwN71AAJURhXhKaf+13ZyoIfKI8/EdQENUhpU2gTej7A1gGDv
+         wCEr5rPovhdtEomoiruOvOlacyPmscFE39UEnRJMsVv+HOb/AKi8jrk+fuKxaB7ITv/5
+         i6PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=cH3/OtZ3DAvw8IgKFnqPXU8D4jtKtoD9aLE/M0BbcKs=;
-        b=n9GrTbG/IytVyB9B1UA4MuiyqzViQHwAKE/4WyKwnRba5ZWR/YcvRSVOzzBWwCZ1x3
-         sQBoory9gkoR+DKcEnrmCF44QMOAJEa04/WFMXnmSa6IGljsf8XboRjyWHXMUY18LWfm
-         yOWmcgqhPkOgKOF9lp+FHGmtt9aVK7+ALten8qR4G1TSWoVNjNZ+Fwog8FE1bMqYa/eD
-         bZmNyr8516qbtQrh0HlrF40a3qPt7wcULlD4F0EEOfv7TWadZ818r+T1s3rHGOoK5QX1
-         KbT67EevQwdWF25kRyCXiHE2s03v2lvEE6HHwiD9mrlP1Guiwl4W5C6JI7SkQbUq9vqC
-         Gs7w==
-X-Gm-Message-State: APjAAAXgm+7jSmH/9CbaiGpm9tMmdpwl/+C0smZrs1p1IGT34YIBsBlr
-        q9Rt+g54otaAlidCOkDyZzpSlg==
-X-Google-Smtp-Source: APXvYqz9WNWkReumkSXQjkJSbEUPQl0vWe2bk7mCzx+9uimnftzUwsh7ehidAGZy+lLpg/8XU0tk6w==
-X-Received: by 2002:a1c:7901:: with SMTP id l1mr5038497wme.67.1578578543372;
-        Thu, 09 Jan 2020 06:02:23 -0800 (PST)
+         :in-reply-to:references:mime-version:content-transfer-encoding;
+        bh=i4WlGl2APfpv2lRrFN39WYIWl+QrT3wDSJtharCyfCg=;
+        b=mHlb2DdL2S8HX+CpTwk2lsF2iLff4ZS7iCPoDxHNwQ/CAE7kQK8OyZTBA9snSPFoZs
+         Fj6F9MgBX6nj6ZORsarDVu6KrD9RQg82+bhflUq0r6GhPPH20x2XlBFyVReOmHG/7N8u
+         NKj/SAlcFvErDlpb6Z0yquSJ4PLyk84YFnUS07I2deMacCmhOk33FceU0dip7vTySvWj
+         Ad9wv+NHqiyQVy3s3JYZ9+D77aBTnHsT6sqQXmZs3Dw0BcLr5V36C2IpKIEgV6h2aF9Y
+         SFPPO1hMMJiALiEXyZutwfFltvAj7SD/eCNqUOk71LUjvE5lkdqF/sRABMhHl+7XAZNK
+         MCbQ==
+X-Gm-Message-State: APjAAAX2GfxN4NbhNJtFMKI4XOhv6leR70Vq+PYQNkeZ8Pw5qSppjeva
+        FqjCivea0FVcgLETcfl7Spiu8w==
+X-Google-Smtp-Source: APXvYqz3DqsI5MGZY3ATZ/jamxaASkH6cwXd4RR901fnZTW0429qYhylN5IHhyTmlow651Pues0jVQ==
+X-Received: by 2002:a1c:1bc3:: with SMTP id b186mr5092722wmb.79.1578578545543;
+        Thu, 09 Jan 2020 06:02:25 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id g18sm2851975wmh.48.2020.01.09.06.02.22
+        by smtp.gmail.com with ESMTPSA id x17sm7971846wrt.74.2020.01.09.06.02.24
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 09 Jan 2020 06:02:22 -0800 (PST)
+        Thu, 09 Jan 2020 06:02:24 -0800 (PST)
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-arm-kernel@lists.infradead.org, git@xilinx.com
 Cc:     Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Harini Katakam <harini.katakam@xilinx.com>,
         Jan Kiszka <jan.kiszka@siemens.com>,
         Mark Rutland <mark.rutland@arm.com>,
         Rajan Vaja <rajan.vaja@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
         Ulf Hansson <ulf.hansson@linaro.org>,
-        Venkatesh Yadav Abbarapu <venkatesh.abbarapu@xilinx.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 0/7] arm64: zynqmp: Enable iio-hwmon based on iio ina226 driver with labels
-Date:   Thu,  9 Jan 2020 15:02:14 +0100
-Message-Id: <cover.1578578535.git.michal.simek@xilinx.com>
+Subject: [PATCH 1/7] arm64: zynqmp: Enable iio-hwmon for ina226 on zcu100
+Date:   Thu,  9 Jan 2020 15:02:15 +0100
+Message-Id: <3697b726f12df89d6fc222b64672f8fc3779ec3c.1578578535.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.24.0
+In-Reply-To: <cover.1578578535.git.michal.simek@xilinx.com>
+References: <cover.1578578535.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,31 +66,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+ina226 hwmon driver is deprecated and it is recommended to use new iio
+based driver. The patch is enabling iio-hwmon driver to export
+functionality from IIO to hwmon interface to be able to use lm-sensors
+package.
 
-the patch 2c3d0c9ffd24 ("iio: core: Add optional symbolic label to device attributes")
-added support for labelling IIO devices that's why I can enable iio based
-ina226 driver with label property.
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
-Thanks,
-Michal
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-
-Michal Simek (7):
-  arm64: zynqmp: Enable iio-hwmon for ina226 on zcu100
-  arm64: zynqmp: Enable iio-hwmon for ina226 on zcu111
-  arm64: zynqmp: Add label property to all ina226 on zcu111
-  arm64: zynqmp: Enable iio-hwmon for ina226 on zcu102
-  arm64: zynqmp: Add label property to all ina226 on zcu102
-  arm64: zynqmp: Enable iio-hwmon for ina226 on zcu106
-  arm64: zynqmp: Add label property to all ina226 on zcu106
-
- .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    |   8 +-
- .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 145 +++++++++++++++---
- .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 145 +++++++++++++++---
- .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 113 ++++++++++++--
- 4 files changed, 360 insertions(+), 51 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+index a109e82982ae..d60110ad8367 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
+@@ -103,6 +103,11 @@ sdio_pwrseq: sdio-pwrseq {
+ 		reset-gpios = <&gpio 7 GPIO_ACTIVE_LOW>; /* WIFI_EN */
+ 		post-power-on-delay-ms = <10>;
+ 	};
++
++	ina226 {
++		compatible = "iio-hwmon";
++		io-channels = <&u35 0>, <&u35 1>, <&u35 2>, <&u35 3>;
++	};
+ };
+ 
+ &dcc {
+@@ -191,8 +196,9 @@ i2csw_5: i2c@5 {
+ 			#size-cells = <0>;
+ 			reg = <5>;
+ 			/* PS_PMBUS */
+-			ina226@40 { /* u35 */
++			u35: ina226@40 { /* u35 */
+ 				compatible = "ti,ina226";
++				#io-channel-cells = <1>;
+ 				reg = <0x40>;
+ 				shunt-resistor = <10000>;
+ 				/* MIO31 is alert which should be routed to PMUFW */
 -- 
 2.24.0
 
