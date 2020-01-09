@@ -2,69 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 657AE135124
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 03:01:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E43135157
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 03:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727797AbgAICBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Jan 2020 21:01:15 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:51538 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726913AbgAICBP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 8 Jan 2020 21:01:15 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 51FAC1A07E9;
-        Thu,  9 Jan 2020 03:01:13 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0DC9C1A0F74;
-        Thu,  9 Jan 2020 03:01:03 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 7ED15402C8;
-        Thu,  9 Jan 2020 10:00:50 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     aisheng.dong@nxp.com, festevam@gmail.com, shawnguo@kernel.org,
-        stefan@agner.ch, kernel@pengutronix.de, linus.walleij@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        catalin.marinas@arm.com, will@kernel.org, abel.vesa@nxp.com,
-        olof@lixom.net, maxime@cerno.tech, dinguyen@kernel.org,
-        leonard.crestez@nxp.com, marcin.juszkiewicz@linaro.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V5 3/3] arm64: defconfig: Select CONFIG_PINCTRL_IMX8MP by default
-Date:   Thu,  9 Jan 2020 09:57:03 +0800
-Message-Id: <1578535023-10064-3-git-send-email-Anson.Huang@nxp.com>
+        id S1726913AbgAICa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Jan 2020 21:30:57 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:32408 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726758AbgAICa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Jan 2020 21:30:57 -0500
+Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Thu, 9 Jan 2020
+ 10:31:20 +0800
+From:   Hanjie Lin <hanjie.lin@amlogic.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kevin Hilman <khilman@baylibre.com>
+CC:     Hanjie Lin <hanjie.lin@amlogic.com>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Carlo Caione <carlo@caione.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Jian Hu <jian.hu@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Yue Wang <yue.wang@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+Subject: [PATCH v4 0/6] arm64: meson: Add support for USB on Amlogic A1
+Date:   Thu, 9 Jan 2020 10:30:39 +0800
+Message-ID: <1578537045-23260-1-git-send-email-hanjie.lin@amlogic.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1578535023-10064-1-git-send-email-Anson.Huang@nxp.com>
-References: <1578535023-10064-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.18.11.213]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CONFIG_PINCTRL_IMX8MP by default to support i.MX8MP
-pinctrl driver.
+This patchset is composed with :
+- bindings of the PHY
+- bindings of the USB Control Glue
+- PHY Driver
+- USB Control Glue driver
+- dts of the PHY
+- dts of the USB Controller
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
----
-No changes.
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+The Amlogic A1 USB Complex is composed of :
+- 1 DWC3 USB controller for USB2 Host functionality
+- 1 USB2 PHY for USB2 Host functionality
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d0ea0d0..d35b417 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -396,6 +396,7 @@ CONFIG_PINCTRL_SINGLE=y
- CONFIG_PINCTRL_MAX77620=y
- CONFIG_PINCTRL_IMX8MM=y
- CONFIG_PINCTRL_IMX8MN=y
-+CONFIG_PINCTRL_IMX8MP=y
- CONFIG_PINCTRL_IMX8MQ=y
- CONFIG_PINCTRL_IMX8QXP=y
- CONFIG_PINCTRL_IPQ8074=y
+The USB Control Glue setups the clocks and the reset about DWC3 USB
+controller, and binds to the USB2 PHY. It also configures the 8bit
+UTMI interfaces for the USB2 PHY, including setting USB2 phy mode.
+
+The USB2 PHY driver initializes the phy analog settings, phy PLL 
+setup and phy tuning.
+
+This patchset is based on A1 clock/power domain/reset series at [0].
+
+Changes since v1:[1]
+ - integrate glue and phy drivers into g12a's
+ 
+Changes since v2:[2]
+ - modify amlogic,meson-g12a-usb-ctrl.yaml with dt_binding_check tool
+ - phy/glue driver use of_device_get_match_data to distinguish A1 from G12A
+
+Changes since v3:[3]
+ - fix bindings mistakes of the PHY according Rob's comments
+ - fix bindings mistakes of the USB Control Glue according Rob's comments
+ - phy driver add xtal_usb_phy clock which moved from glue driver
+ - glue driver use otg_mode instead of soc_id to support otg function
+
+[0]
+https://patchwork.kernel.org/project/linux-amlogic/list/?series=185477
+https://patchwork.kernel.org/project/linux-amlogic/list/?series=180055
+https://patchwork.kernel.org/project/linux-amlogic/list/?series=189643
+
+[1] : https://lore.kernel.org/linux-amlogic/1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com
+
+[2] : https://lore.kernel.org/linux-amlogic/1576636944-196192-1-git-send-email-hanjie.lin@amlogic.com
+
+[3] : https://lore.kernel.org/linux-amlogic/1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com
+
+Hanjie Lin (6):
+  dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
+  dt-bindings: usb: dwc3: Add the Amlogic A1 Family DWC3 Glue Bindings
+  phy: amlogic: Add Amlogic A1 USB2 PHY Driver
+  usb: dwc3: Add Amlogic A1 DWC3 glue
+  arm64: dts: meson: a1: Enable USB2 PHY
+  arm64: dts: meson: a1: Enable DWC3 controller
+
+ .../bindings/phy/amlogic,meson-a1-usb2-phy.yaml    | 56 ++++++++++++
+ .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 11 +++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          | 43 ++++++++++
+ drivers/phy/amlogic/phy-meson-g12a-usb2.c          | 99 +++++++++++++++-------
+ drivers/usb/dwc3/dwc3-meson-g12a.c                 | 99 ++++++++++++++++------
+ 5 files changed, 250 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+
 -- 
 2.7.4
 
