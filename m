@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 32759136030
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 19:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 287BE136034
+	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2020 19:34:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388456AbgAISeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 9 Jan 2020 13:34:10 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:33235 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725958AbgAISeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 13:34:10 -0500
-Received: by mail-wr1-f67.google.com with SMTP id b6so8550435wrq.0;
-        Thu, 09 Jan 2020 10:34:09 -0800 (PST)
+        id S1727905AbgAISes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 9 Jan 2020 13:34:48 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:40309 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388496AbgAISes (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 9 Jan 2020 13:34:48 -0500
+Received: by mail-il1-f194.google.com with SMTP id c4so6513653ilo.7
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 10:34:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=VFJ3xIIkT+cbdzjfutrDdpZrJagndmFNonhtgg/BtSw=;
-        b=kWzpCcgAYo8/OuCHxa1VIYf7367unZ2vOvPriiOgVi7nNHR0TkkCls/j6I+GHT0u76
-         JQEP9meZhsw6Om2B7V733N+h06H6Emv2GZdLL6Yde62GoVUienAmFnxqxRuMIVipqvob
-         XkY1fs8ee3dhNACbPHklqCCTRPtSTYoGOtutiX9fbp31ufm3jDMInN3woX6s5EMUAn/2
-         xO9oGwWhLpfqJDgU4tZcAjmXrwS41BLJ6kchsn43lYnn5gTTGl7xCXWaaejfu/HFC0Wa
-         /NJcCZAu4h2fgAwpuggaSP/V0UQ9d2IcS3zByvX6NAOVSBMZIalzS63VC1xgd9NXzdSL
-         BA8A==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=wjEPAcCB9ChJWBCWxQyuWyaFPQyw6HCZ2YKBaBbQkbo=;
+        b=pQMBW8hxBMmeFCxSXq9sRTmwa3TC5YJgx6VrEoMNH/3IVK1hnJ8TW6rdt+DPRq3NxE
+         fTOAFaXoLjuqcAYtQzlC1kPmOE93opz17Rni3rWTYwki/mcwsnpGs3uVehvrKOpUVxkI
+         UxB83rSb0HNNA1y7W5IvCvIonJtxy+Wqozk86kMPNrH95kTfrJJyqXdBKyKYTCsVfLSn
+         wyoNIi7m9R/Ej8rIeQPTZyA0MUk6zl8jy5/F2GrJIAWaH7Ym/BjRit1fs/6hWk46UmGr
+         OttLoRkaWz9B+PX/2NJNzEtehpZRaKs+WFOuT0DpSToKZDPyKieb7JZ+CqCM0+KTO0hr
+         3W1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=VFJ3xIIkT+cbdzjfutrDdpZrJagndmFNonhtgg/BtSw=;
-        b=B8ZSVrv84Wuclj1eGQXXIT8T+w9eazkTnlfhEyplDzk7t/MuvuM7qs8yT62ZYydfQ6
-         VUPesQg3nlEsuT1v1czbfWNPw4OQT7LDU53v6nZZ8zs97YajFuDA0nVekqFWNddSAtcp
-         k70JF03D0C6wwC8FKdB9ZgTiFRNqn5BF69ThqVkL3GT4HTnaOseefl+ZobxlOiuoV2jh
-         ABI+YEnlQq/rTrTPAruXd0pkEBea9CNR29C7OvS3RVPfXw9iQtrmivc76qRVZb1jmyrA
-         41erHt5lCGt7E3t962JN5ilvtzpGuqlwAzziL6FEaIShdkorKdN78QyDLynG7lHDe7KA
-         7u+Q==
-X-Gm-Message-State: APjAAAXhzuiqlCiglGYN30YziOuGDDAKHd2mcZCR/kdlnRk7PeJjVLru
-        DwAsiYrBohvKZ4ETeziW3ep+ZhlyEeS9yg==
-X-Google-Smtp-Source: APXvYqyV2/5QuIoHe8526NZbLMVS26GP/nzlygEIgvgVJ9vpwNkjMdmQir4WQq8vYpJnSxE4X7Bp/w==
-X-Received: by 2002:a5d:6211:: with SMTP id y17mr12239983wru.344.1578594848706;
-        Thu, 09 Jan 2020 10:34:08 -0800 (PST)
-Received: from [192.168.0.104] (p5B3F655B.dip0.t-ipconnect.de. [91.63.101.91])
-        by smtp.gmail.com with ESMTPSA id x10sm9784016wrp.58.2020.01.09.10.34.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jan 2020 10:34:07 -0800 (PST)
-Subject: Re: [PATCH v6 3/4] regulator: mpq7920: add mpq7920 regulator driver
-To:     Mark Brown <broonie@kernel.org>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        mripard@kernel.org, shawnguo@kernel.org, heiko@sntech.de,
-        sam@ravnborg.org, icenowy@aosc.io,
-        laurent.pinchart@ideasonboard.com, gregkh@linuxfoundation.org,
-        Jonathan.Cameron@huawei.com, davem@davemloft.net,
-        mchehab+samsung@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200109112548.23914-1-sravanhome@gmail.com>
- <20200109112548.23914-4-sravanhome@gmail.com>
- <20200109132835.GA7768@sirena.org.uk>
-From:   saravanan sekar <sravanhome@gmail.com>
-Message-ID: <aefe7c78-6bd9-bafd-9215-5784f8168400@gmail.com>
-Date:   Thu, 9 Jan 2020 19:34:04 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=wjEPAcCB9ChJWBCWxQyuWyaFPQyw6HCZ2YKBaBbQkbo=;
+        b=DZT+QHTw6NfSnqx91UXLiY0DbXFHhD60LZgBO2KHP0+gbdMcFrpTs9cp96//JIHFek
+         XcfpbzfUqkIVVNslLw9dpKykjHG9rwbZtJ1fSzpmipoQDUwlRUJ+NmQ6udFzCA7HwIWA
+         itQVUMAH3j1GAtyrulsc4rB2bDIXSu2GFek3JMpuxyofiThtVOJgbKhG4y0iXQHhedqB
+         aFj1sk8POFwucKVcbC8wfuD8lAo9lLkWNSV1tl2stqar2vcMf88EkwmgEJs5N6Pcjg8w
+         wjs3mXZkEes3yUOQ03n+/f2MsjGO7sobEiV7QYla+4uYztJoYMD5b4mXnFdeBeN2TSrG
+         rbaw==
+X-Gm-Message-State: APjAAAVrIRpOhS31zcV/FCKGUERAO9aiJhVrTaNXVK9vu3OZFw3p39XB
+        Ze6PzXspSCHNF96965xc02oc4mKuY9DR9xQ0zQ==
+X-Google-Smtp-Source: APXvYqzPcgEqy/UGcvw+szKEiM0VaEjnX7fwkO30Av2/M9e6bXiXUI/RQHy3q3nygxb3nJxeGdE/EBvUn/fXOlnYzME=
+X-Received: by 2002:a92:c9cc:: with SMTP id k12mr10057788ilq.269.1578594887753;
+ Thu, 09 Jan 2020 10:34:47 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20200109132835.GA7768@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Received: by 2002:a02:6603:0:0:0:0:0 with HTTP; Thu, 9 Jan 2020 10:34:47 -0800 (PST)
+Reply-To: mikebenz550@aol.com
+From:   "MS. MARYANNA B. THOMASON" <info.zennitbankplcnigerian@gmail.com>
+Date:   Thu, 9 Jan 2020 19:34:47 +0100
+Message-ID: <CABHzvrn=UW_o-qo5ChQhN+=1Ub0d5iYTxS3mMPNz0fzLqwQGdw@mail.gmail.com>
+Subject: CONTACT DIPLOMATIC MIKE BENZ TO RECEIVE YOUR ATM MASTER CARD WORTH
+ $12.8MILLION US DOLLARS,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ATTN DEAR.
 
-On 09/01/20 2:28 pm, Mark Brown wrote:
-> On Thu, Jan 09, 2020 at 12:25:47PM +0100, Saravanan Sekar wrote:
->> Adding regulator driver for the device mpq7920.
->> The MPQ7920 PMIC device contains four DC-DC buck converters and
->> five regulators, is designed for automotive and accessed over I2C.
-> This doesn't apply against current code, please check and resend.
+CONTACT DIPLOMATIC MIKE BENZ TO RECEIVE YOUR ATM MASTER CARD WORTH
+$12.8MILLION US DOLLARS,
+CONTACT HIM ON THIS EMAIL ADDRESS
 
-Means should I rebase this v6 patch to linux-next and send, or
-of_parse_cb callback changes as separate patch on top of v5?
+EMAIL/ mikebenz550@aol.com
+PHONE (720) 928-6289 TEXT HIM AS YOU CONTACT HIM TODAY OK.
 
+HE IS WAITING TO HEAR FROM YOU NOW. WITH YOUR FULL DELIVERY ADDRESS
+SUCH AS YOUR LISTED BELOW.
+YOUR FULL NAME
+ADDRESS
+TELEPHONE NUMBERS
 
+I WAIT TO HEAR FROM YOU ONCE YOU RECEIVE YOUR ATM MASTER CARD WOTH
+$12.800,000MILLION US DOLLARS FROM MR. MIKE BENZ TODAY, NOTE YOU ARE
+JUST REQUIRED TO SEND HIM $25.00 ONCE YOU CONTACT HER FOR YOUR ATM
+MASTER CARD DELIVERY FEE.
+
+ASK HIM HOW YOU CAN SEND THE DELIVERY FEE OF $25.00 ONLY TO HIM
+IMMEDIATELY TO ENABLE HIM DELIVER TO YOUR HOUSE ADDRESS VERY URGENT
+TODAY OK. THIS IS ONLY HELP I CAN YOU TO RECEIVE YOUR FUNDS NOW OK.
+
+THANKS FOR YOUR COPPERATION.
+MS. MARYANNA B. THOMASON
