@@ -2,110 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B512A136C13
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 12:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 485B0136C6E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 12:55:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727821AbgAJLkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jan 2020 06:40:00 -0500
-Received: from foss.arm.com ([217.140.110.172]:42862 "EHLO foss.arm.com"
+        id S1727939AbgAJLyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jan 2020 06:54:54 -0500
+Received: from foss.arm.com ([217.140.110.172]:43218 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727812AbgAJLkA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Jan 2020 06:40:00 -0500
+        id S1728142AbgAJLyl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Jan 2020 06:54:41 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75FAF1063;
-        Fri, 10 Jan 2020 03:39:59 -0800 (PST)
-Received: from [10.1.194.52] (e112269-lin.cambridge.arm.com [10.1.194.52])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 29DAA3F534;
-        Fri, 10 Jan 2020 03:39:57 -0800 (PST)
-Subject: Re: [PATCH v2 4/7] drm/panfrost: Add support for a second regulator
- for the GPU
-To:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        David Airlie <airlied@linux.ie>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Mark Brown <broonie@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
-References: <20200108052337.65916-1-drinkcat@chromium.org>
- <20200108052337.65916-5-drinkcat@chromium.org>
- <20200108132302.GA3817@sirena.org.uk>
- <CANMq1KBo8ND+YDHaCw3yZZ0RUr69-NSUcVbqu38DuZvHUB-LFw@mail.gmail.com>
- <CAL_JsqKvNBCVkiE4zKn0aXdrV4Ncx2bB6+KRpM+aPpMVzS4XbQ@mail.gmail.com>
-From:   Steven Price <steven.price@arm.com>
-Message-ID: <d580b57a-d3c8-ece2-19f3-211c52444bfd@arm.com>
-Date:   Fri, 10 Jan 2020 11:39:56 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKvNBCVkiE4zKn0aXdrV4Ncx2bB6+KRpM+aPpMVzS4XbQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 14F7813A1;
+        Fri, 10 Jan 2020 03:54:41 -0800 (PST)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.44])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9FCA23F73B;
+        Fri, 10 Jan 2020 03:54:39 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Robert Hancock <hancock@sedsystems.ca>, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: [PATCH 13/14] net: axienet: Allow DMA to beyond 4GB
+Date:   Fri, 10 Jan 2020 11:54:14 +0000
+Message-Id: <20200110115415.75683-14-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200110115415.75683-1-andre.przywara@arm.com>
+References: <20200110115415.75683-1-andre.przywara@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/01/2020 16:56, Rob Herring wrote:
-> On Wed, Jan 8, 2020 at 4:52 PM Nicolas Boichat <drinkcat@chromium.org> wrote:
->>
->> On Wed, Jan 8, 2020 at 9:23 PM Mark Brown <broonie@kernel.org> wrote:
->>>
->>> On Wed, Jan 08, 2020 at 01:23:34PM +0800, Nicolas Boichat wrote:
->>>
->>>> Some GPUs, namely, the bifrost/g72 part on MT8183, have a second
->>>> regulator for their SRAM, let's add support for that.
->>>
->>>> +     pfdev->regulator_sram = devm_regulator_get_optional(pfdev->dev, "sram");
->>>> +     if (IS_ERR(pfdev->regulator_sram)) {
->>>
->>> This supply is required for the devices that need it so I'd therefore
->>> expect the driver to request the supply non-optionally based on the
->>> compatible string rather than just hoping that a missing regulator isn't
->>> important.
->>
->> That'd be a bit awkward to match, though... Currently all bifrost
->> share the same compatible "arm,mali-bifrost", and it'd seem
->> weird/wrong to match "mediatek,mt8183-mali" in this driver? I have no
->> idea if any other Mali implementation will require a second regulator,
->> but with the MT8183 we do need it, see below.
-> 
-> The current number of supported bifrost platforms is 0. It's only a
-> matter of time until SoC specific compatibles need to be used in the
-> driver. This is why we require them.
-> 
-> It could very well be that all bifrost implementations need 2
-> supplies. On chip RAMs are very frequently a separate thing which are
-> synthesized differently from logic. At least within a specific IP
-> model, I somewhat doubt there's a variable number of supplies. It
-> could be possible to connect both to the same supply, but the correct
-> way to handle that is both -supply properties point to the same
-> regulator.
+With all DMA address accesses wrapped, we can actually support 64-bit
+DMA if this option was chosen at IP integration time.
+Since there is no way to autodetect the actual address bus width, we
+make use of the existing "xlnx,addrwidth" DT property to let the driver
+know about the width. The value in this property should match the
+"Address Width" parameter used when synthesizing the IP.
 
-To be honest I've no idea what different SoC designs have done, but one
-of the intentions of core stacks was that sets of GPU cores would be on
-different power supplies. (I think this is to avoid issues with inrush
-current etc, but I'm not a hardware engineer). So I would expect designs
-with a large number of cores to have more physical supplies than designs
-with fewer cores.
+This increases the DMA mask to let the kernel choose buffers from
+memory at higher addresses.
 
-However, from a driver perspective this is all meant to be hidden by the
-hardware PDC which the GPU talks to. So the actual power up/down of the
-supplies may be completely automatic and therefore not described in the
-DT. So the actual number of software-controllable supplies could be 1 or
-could be more if the individual physical supplies are visible to software.
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+---
+ .../net/ethernet/xilinx/xilinx_axienet_main.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-The Hikey960 for instance hides everything behind a mailbox interface,
-and it's simply a case of requesting a frequency.
+diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
+index f7f593df0c11..e036834549b3 100644
+--- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
++++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
+@@ -1786,6 +1786,7 @@ static int axienet_probe(struct platform_device *pdev)
+ 	struct net_device *ndev;
+ 	const void *mac_addr;
+ 	struct resource *ethres;
++	int addr_width = 32;
+ 	u32 value;
+ 
+ 	ndev = alloc_etherdev(sizeof(*lp));
+@@ -1915,6 +1916,8 @@ static int axienet_probe(struct platform_device *pdev)
+ 						     &dmares);
+ 		lp->rx_irq = irq_of_parse_and_map(np, 1);
+ 		lp->tx_irq = irq_of_parse_and_map(np, 0);
++		of_property_read_u32(np, "xlnx,addrwidth", &addr_width);
++
+ 		of_node_put(np);
+ 		lp->eth_irq = platform_get_irq(pdev, 0);
+ 	} else {
+@@ -1944,6 +1947,9 @@ static int axienet_probe(struct platform_device *pdev)
+ 	 * We can detect this case by writing all 1's to one such register
+ 	 * and see if that sticks: when the IP is configured for 32 bits
+ 	 * only, those registers are RES0.
++	 * We can't autodetect the actual width this way, so we still use
++	 * a 32-bit DMA mask and rely on the xlnk,addrwidth DT property
++	 * to set this properly.
+ 	 * Those MSB registers were introduced in IP v7.1, which we check first.
+ 	 */
+ 	if ((axienet_ior(lp, XAE_ID_OFFSET) >> 24) >= 0x9) {
+@@ -1961,6 +1967,19 @@ static int axienet_probe(struct platform_device *pdev)
+ 		}
+ 	}
+ 
++	if (!(lp->features & XAE_FEATURE_DMA_64BIT)) {
++		if (addr_width > 32)
++			dev_warn(&pdev->dev, "trimming DMA width from %d to 32 bits\n",
++				 addr_width);
++		addr_width = 32;
++	}
++
++	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(addr_width));
++	if (ret) {
++		dev_err(&pdev->dev, "No suitable DMA available\n");
++		goto free_netdev;
++	}
++
+ 	/* Check for Ethernet core IRQ (optional) */
+ 	if (lp->eth_irq <= 0)
+ 		dev_info(&pdev->dev, "Ethernet core IRQ not defined\n");
+-- 
+2.17.1
 
-Steve
