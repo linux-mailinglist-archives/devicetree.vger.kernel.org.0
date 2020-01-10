@@ -2,110 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D82241366D3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 06:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EADF21366EA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 06:48:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726766AbgAJFnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jan 2020 00:43:15 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:21526 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726787AbgAJFnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jan 2020 00:43:15 -0500
-Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 10 Jan 2020
- 13:43:29 +0800
-From:   Hanjie Lin <hanjie.lin@amlogic.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>
-CC:     Hanjie Lin <hanjie.lin@amlogic.com>,
-        Yue Wang <yue.wang@amlogic.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jian Hu <jian.hu@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Subject: [PATCH v5 6/6] arm64: dts: meson: a1: Enable DWC3 controller
-Date:   Fri, 10 Jan 2020 13:42:37 +0800
-Message-ID: <1578634957-54826-7-git-send-email-hanjie.lin@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1578634957-54826-1-git-send-email-hanjie.lin@amlogic.com>
-References: <1578634957-54826-1-git-send-email-hanjie.lin@amlogic.com>
+        id S1726384AbgAJFsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jan 2020 00:48:43 -0500
+Received: from mail-il1-f195.google.com ([209.85.166.195]:34099 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726096AbgAJFsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jan 2020 00:48:43 -0500
+Received: by mail-il1-f195.google.com with SMTP id s15so874117iln.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2020 21:48:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=Rjbe3pVeMfYVPdmVklZ4b2stSqI32LIYp+bn/8NyJvk=;
+        b=EoAwwPzFbgiRsnUUlRUB+7PJJ+AVZHBFZNa4oCuKjMjk+VX3Rv2gZbyhXN98TCybTp
+         PBy780Tq3Cc85A26X3EBT40XqHi5MP8JYXCBKUJTpVdv+mjZJclSIhKHV9rm/XDTpl7M
+         pogDXUI57E7l/V53iccUYgAa4PaavVy7nShf4RmWB0IE7/kqJjd6I8VvNt2ctkpey0R+
+         1P1p6c8oKVlnSQXlMUAi135eUVdE04l+Q90e7lKwQtGYJ82TLEIGidP2aCh97qQNG1lT
+         ZFlNPcgAPgefpssYMKSK06CNKTHVPFDbFE9kDTsdVLG7mDguNqf1JVIxvkbzEer0qljW
+         za/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=Rjbe3pVeMfYVPdmVklZ4b2stSqI32LIYp+bn/8NyJvk=;
+        b=b/20viSV1Qp/LhkpfZz2mcdvjNHmAhcAFKgKG6WWPI7sg/QqJghtq8m8fY6kgKwm98
+         1wXVkyZAyK2j43my85ub9nr68Se2IlavSYDHhv0OxOf3V9Xl50Drpxbz2aRMAlm0sD1t
+         RiUPe9zBMatsRVdBVGq5s2RpcWolcM0rjW8gYGLSn3lrqfeobkmHFl7GMauoiEWPXN7w
+         0PQ4CSVbiUAC6+pBUbpBsS0cxB7qM8rw35/B5igtS3L6yC3lfQ6sLJ2jafJzBQOcA5+F
+         lZ6zmr1KLIbDizYdZIX4Qs2TZAlyuxDp8ndseyqOSmrAxYso8R5gSMo+t2hFIN9hnQ8a
+         WuWg==
+X-Gm-Message-State: APjAAAXNLhr3oejU5Ij2bDWSA1EMTr5PR9JjIpmKIpCyxjYTrCZpXFV1
+        K46F62J04Pz5x7ldd25l9L8pA6nrb2sHE8G8SUo=
+X-Google-Smtp-Source: APXvYqztB2tRw2ad2QXbllKeG/4TbBhrIvR8Z+5VOpuvHjHh/nEyJnHbZsp+T6UyLpdn9NDXHAcoHLsG1NRP6Fk7hU4=
+X-Received: by 2002:a92:cacb:: with SMTP id m11mr1224941ilq.133.1578635322667;
+ Thu, 09 Jan 2020 21:48:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.18.11.213]
+Received: by 2002:a92:1704:0:0:0:0:0 with HTTP; Thu, 9 Jan 2020 21:48:42 -0800 (PST)
+Reply-To: rickschaech@gmail.com
+From:   Rick Schaech <julianlfrd@gmail.com>
+Date:   Fri, 10 Jan 2020 01:48:42 -0400
+Message-ID: <CACEXX6iYj=4E8eSGLr31Q0_Jma6Ytc=_giqA-A_VDwbVD291eA@mail.gmail.com>
+Subject: I wait for your swift response
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable DWC3 controller for Meson A1 SoC.
+Dear, I'm Mr Rick Schaech, I am the General Account Auditor, Though i
+know we have not meet each other before but sometimes in life God have
+a reason of bringing two people from two different countries together
+as business partners or life partners.
 
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+My dear friend, I have the sum of 15.7 Million USD i wish to put in
+your name due to the death of my late client who died several years
+ago as his next of kin column still remain blank. Though the internet
+medium is highly abuse these days but am assuring you that this
+transaction is legitimate and I am contacting you that we may have a
+deal, note for your cooperation and collaboration 40% of the sum will
+be for you while the other 60% will be for me as well. I wait for your
+swift response for more details. please forward your response to my
+personal E-mail: rickschaech@gmail.com
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index fb0ba85..9077ffa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -7,6 +7,8 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/meson-a1-power.h>
- #include <dt-bindings/reset/amlogic,meson-a1-reset.h>
-+#include <dt-bindings/clock/a1-pll-clkc.h>
-+#include <dt-bindings/clock/a1-clkc.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -127,6 +129,35 @@
- 			#interrupt-cells = <3>;
- 			#address-cells = <0>;
- 		};
-+
-+		usb: usb@ffe09000 {
-+			status = "okay";
-+			compatible = "amlogic,meson-a1-usb-ctrl";
-+			reg = <0x0 0xffe09000 0x0 0xa0>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&clkc_periphs CLKID_USB_CTRL>,
-+				 <&clkc_periphs CLKID_USB_BUS>,
-+				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
-+			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_ctrl";
-+			resets = <&reset RESET_USBCTRL>;
-+
-+			dr_mode = "host";
-+
-+			phys = <&usb2_phy1>;
-+			phy-names = "usb2-phy1";
-+
-+			dwc3: usb@ff400000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff400000 0x0 0x100000>;
-+				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+				dr_mode = "host";
-+				snps,dis_u2_susphy_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.7.4
-
+Yours sincerely,
+Rick Schaech.
