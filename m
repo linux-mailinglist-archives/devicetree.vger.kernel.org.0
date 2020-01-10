@@ -2,127 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E705136EA4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 14:50:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9D21136F31
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 15:21:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728264AbgAJNtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jan 2020 08:49:21 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:44901 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728249AbgAJNtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Jan 2020 08:49:19 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00ADlv1F031938;
-        Fri, 10 Jan 2020 14:49:11 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=pJ+w24JgyaLP7e1zcwVqY+8juR4jhF3VPSq9PUdMLDs=;
- b=d6s1gU+HpUA+w/3J0NhO2Gvv+WMnIUxtSrvSrBmSW+jaTCigaI6851ohSaJ0hmAovPSs
- iUMCLVHUSEPgXVze4mlhSNnCdvQFFFQM3l3p8vB+4RoPhngooIhOoEhEE29xSYLOzGch
- zW6bvjAME+JIjOGOUNte9YJCH6dJdiIkXUaTBWczcx6hPQx4/FgUUdT6l9z6FeVjIfWw
- OuIcc1ONFCrtt//4bTTAP3pW2APzzO9TQjBpviKH7g2I4TO4OuCxj5v7z6dGfkdzGcOc
- DKhG8wRCOdR8E0DBPgt5Zy6oZZO4/G+9yrxx7Z7g+k8OUR2RXZuD5xQ5LrWCbMDG81/l CA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xakur7dud-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 10 Jan 2020 14:49:11 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 9009010003D;
-        Fri, 10 Jan 2020 14:49:06 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 827A82BC7D1;
-        Fri, 10 Jan 2020 14:49:06 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG6NODE1.st.com (10.75.127.16)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 10 Jan 2020 14:49:05
- +0100
-From:   Ludovic Barre <ludovic.barre@st.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Ludovic Barre <ludovic.barre@st.com>
-Subject: [PATCH 9/9] mmc: mmci: add sdmmc variant revision 2.0
-Date:   Fri, 10 Jan 2020 14:48:23 +0100
-Message-ID: <20200110134823.14882-10-ludovic.barre@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200110134823.14882-1-ludovic.barre@st.com>
-References: <20200110134823.14882-1-ludovic.barre@st.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-10_01:2020-01-10,2020-01-09 signatures=0
+        id S1727795AbgAJOVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jan 2020 09:21:37 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:34077 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727781AbgAJOVh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jan 2020 09:21:37 -0500
+Received: by mail-wr1-f68.google.com with SMTP id t2so2004029wrr.1;
+        Fri, 10 Jan 2020 06:21:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=QkqpNRwkXEHz49j2PunwFe7h2mlM4jVm/CGNg1v229A=;
+        b=inEtJl6o63GPIno4sMCknRjQUtHCqDqQ2rVqdGl39A15ONvLjSveFoJZKq0KuAp8uh
+         7jTxdKyb5QX0N8GlIczHpo6kE4aiQ1EJjf+zclxPcozEZ/SPIdEUWaaZkc+liDfkKTJT
+         f57oFrnG+PA2o+tvcFZ9Zu7p5T4zatmHRREv53K+Kpi/HALZpo3jbxssQyaQ9zpXyYB3
+         1O4Vdn/dU/95ezs7ngnYqwSuDpK+w8Et5Dy4fT9VETk1EAzw5h4wGGjPlRWG+f/v4d7O
+         bNF38GbFVVXoCGzg0Sm4yJm6gc3WTDp4WMdGUXQ6M2pim5906SlsmSRH+xWkFKoDq+NC
+         NsmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=QkqpNRwkXEHz49j2PunwFe7h2mlM4jVm/CGNg1v229A=;
+        b=tqU/Vm1uCqRwCuIEVg/UaQGL7hvG4xy60hDiYxTTiqMd5YSDnrlhO2Ywz0i5btzFL4
+         eL852wa1ykBuv9p2gtBXTo4mQiLRQa0XNCv8fVDpYNgxqZ/HXharaM3mqdCTwAnSm1Lu
+         NI6TRBRfjd3hHSFdvzs6hR52w++cZbuwHNFKss81SUP3QCXvsKBkBBP/f+mLNpB0g5pM
+         Tyk04aW0u8PbicU1ZaA2j/Abmz+0xe5wjLn81+V/hBl9MhhDDBwBYtqOeVz1SghE1sHK
+         kqkNImBAzQ3xiBmuHIHjRY2GE4a5MTL8MpMRSxE6QmcBIhRw3TpzE5q3OWpPTfnpiDiI
+         /Pkg==
+X-Gm-Message-State: APjAAAW1SXY8vaf10UHrFe9R/VIWQSklWvyGdVYsNDZiZC5aGfmE5INd
+        aK0Z8zKy7KZwEKqx8FJ1yAI=
+X-Google-Smtp-Source: APXvYqxYWXbCZdBdnX3KYOwBOuGZD+qOcrwZQvIgjFefd82CDaIRhFVRhyi/m8FK/YH+aDHgE/O3oQ==
+X-Received: by 2002:a5d:5704:: with SMTP id a4mr3904876wrv.198.1578666095767;
+        Fri, 10 Jan 2020 06:21:35 -0800 (PST)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id a9sm2314148wmm.15.2020.01.10.06.21.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 Jan 2020 06:21:35 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: add reg property to brcmf sub node
+Date:   Fri, 10 Jan 2020 15:21:28 +0100
+Message-Id: <20200110142128.13522-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a sdmmc variant revision 2.0.
-This revision is backward compatible with 1.1, and adds dma
-link list support.
+An experimental test with the command below gives this error:
+rk3399-firefly.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-orangepi.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-khadas-edge.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-khadas-edge-captain.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-khadas-edge-v.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+So fix this by adding a reg property to the brcmf sub node.
+Also add #address-cells and #size-cells to prevent more warnings.
 
-Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- drivers/mmc/host/mmci.c | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 3 +++
+ arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 3 +++
+ arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 3 +++
+ 3 files changed, 9 insertions(+)
 
-diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
-index d76a59c06cb0..2a570cbf6f69 100644
---- a/drivers/mmc/host/mmci.c
-+++ b/drivers/mmc/host/mmci.c
-@@ -275,6 +275,31 @@ static struct variant_data variant_stm32_sdmmc = {
- 	.init			= sdmmc_variant_init,
- };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
+index 92de83dd4..06043179f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
+@@ -669,9 +669,12 @@
+ 	vqmmc-supply = &vcc1v8_s3;	/* IO line */
+ 	vmmc-supply = &vcc_sdio;	/* card's power */
  
-+static struct variant_data variant_stm32_sdmmcv2 = {
-+	.fifosize		= 16 * 4,
-+	.fifohalfsize		= 8 * 4,
-+	.f_max			= 208000000,
-+	.stm32_clkdiv		= true,
-+	.cmdreg_cpsm_enable	= MCI_CPSM_STM32_ENABLE,
-+	.cmdreg_lrsp_crc	= MCI_CPSM_STM32_LRSP_CRC,
-+	.cmdreg_srsp_crc	= MCI_CPSM_STM32_SRSP_CRC,
-+	.cmdreg_srsp		= MCI_CPSM_STM32_SRSP,
-+	.cmdreg_stop		= MCI_CPSM_STM32_CMDSTOP,
-+	.data_cmd_enable	= MCI_CPSM_STM32_CMDTRANS,
-+	.irq_pio_mask		= MCI_IRQ_PIO_STM32_MASK,
-+	.datactrl_first		= true,
-+	.datacnt_useless	= true,
-+	.datalength_bits	= 25,
-+	.datactrl_blocksz	= 14,
-+	.datactrl_any_blocksz	= true,
-+	.stm32_idmabsize_mask	= GENMASK(16, 5),
-+	.dma_lli		= true,
-+	.busy_timeout		= true,
-+	.busy_detect_flag	= MCI_STM32_BUSYD0,
-+	.busy_detect_mask	= MCI_STM32_BUSYD0ENDMASK,
-+	.init			= sdmmc_variant_init,
-+};
-+
- static struct variant_data variant_qcom = {
- 	.fifosize		= 16 * 4,
- 	.fifohalfsize		= 8 * 4,
-@@ -2334,6 +2359,11 @@ static const struct amba_id mmci_ids[] = {
- 		.mask	= 0xf0ffffff,
- 		.data	= &variant_stm32_sdmmc,
- 	},
-+	{
-+		.id     = 0x00253180,
-+		.mask	= 0xf0ffffff,
-+		.data	= &variant_stm32_sdmmcv2,
-+	},
- 	/* Qualcomm variants */
- 	{
- 		.id     = 0x00051180,
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	brcmf: wifi@1 {
++		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+index 4944d78a0..e87a04477 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+@@ -654,9 +654,12 @@
+ 	sd-uhs-sdr104;
+ 	vqmmc-supply = <&vcc1v8_s3>;
+ 	vmmc-supply = <&vccio_sd>;
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	brcmf: wifi@1 {
++		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+index 0541dfce9..9c659f311 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+@@ -648,9 +648,12 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+ 	sd-uhs-sdr104;
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	brcmf: wifi@1 {
++		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
 -- 
-2.17.1
+2.11.0
 
