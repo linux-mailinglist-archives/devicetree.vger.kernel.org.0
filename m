@@ -2,589 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4C31371FD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 16:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96FA1137292
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 17:12:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728330AbgAJP7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jan 2020 10:59:40 -0500
-Received: from hermes.aosc.io ([199.195.250.187]:49075 "EHLO hermes.aosc.io"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728382AbgAJP7k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Jan 2020 10:59:40 -0500
-Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
-        by hermes.aosc.io (Postfix) with ESMTPSA id 6D15B46F0B;
-        Fri, 10 Jan 2020 15:54:25 +0000 (UTC)
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-sunxi@googlegroups.com, Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 5/5] arm64: dts: allwinner: a64: add support for PineTab
-Date:   Fri, 10 Jan 2020 23:52:25 +0800
-Message-Id: <20200110155225.1051749-6-icenowy@aosc.io>
-In-Reply-To: <20200110155225.1051749-1-icenowy@aosc.io>
-References: <20200110155225.1051749-1-icenowy@aosc.io>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aosc.io; s=dkim;
-        t=1578671672;
-        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding:in-reply-to:references;
-        bh=z+Kq6A63EtwlyKQSQFuPbKcJuYB32CgiQCu9q4IqV/Y=;
-        b=pHtq9Nly1pmrgFO8+ONHrKabdpP931tSndQPVOWxlsmdW4Xq9j4hFGAlwycy4zCDHJczTH
-        9iUKKqnQUYZMAA/DkqONv6N9WYk/MKSdkwJ2UE98bi9KbZzlt9ybjHj+wG1PfW1Sy6L5DA
-        1/1UqZA1W3mJvPQhFiudPsRse3LGa2Q=
+        id S1728532AbgAJQMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jan 2020 11:12:10 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:37206 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728370AbgAJQMK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jan 2020 11:12:10 -0500
+Received: by mail-wm1-f65.google.com with SMTP id f129so2552815wmf.2;
+        Fri, 10 Jan 2020 08:12:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=xkMOmNmLa62Vpfa8/ICLyRTkAbbIVBU7ErtKb0uzIMQ=;
+        b=aPkSw08SMUilULHj7HsZy/gdCwo3Abv1ABNWaL48dKNFzHJDyXA/Yz4/F0YVY1jkDo
+         lhP+Pox6M56eJW/hGKC6Tij4PUxV3RJrHSSUiKta+i1LBsgvkc/rfQNL3pHfSYonDvCq
+         +BZU5WF2BhqM37KlGhgv7jAgx7Vmx46Fw67w7QekdaKwOSMdbmhbOBgCer1EjC4riXaB
+         uNWGAtr+tWsO7JOtMKgs/8fv2p4oVebAwKgpiQJU9jRIQig/UaTuvTbRNhgSOPYuwm14
+         QYYo8gkDPgpY2c/UygtbWCK5g7gibLoVKxF9R82X8vXy/n0U19hq2NJaZC0BEuhPafF3
+         3YBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=xkMOmNmLa62Vpfa8/ICLyRTkAbbIVBU7ErtKb0uzIMQ=;
+        b=QJV+ZhQxSSFYutTihLY8rxZdwlFquCMOXAnJHKp7U+EHS2lKCOq4sjckOr/rmu4md4
+         7BeNcK8JwKScIkXbqOGuTLyc1hqjE64NUqF7bFCR3BTG4bhCCXRtXX4ZapsF/M7caFSs
+         rKq84pHYsUgjoL+RvdtNJDtMOot3uPjx2qRW8UH7mToXaMsfUds1cG5gKIdT3OwiA04A
+         rJQW7BT23JdGxrS/vPR9qjuLzx3EOUDzw/JOjIk0RVbOsQ9O6x0oFBSctgMv9mcvlG1f
+         3t29+9NIaPUXWigf/Bl4iIk/+T7p7dH9v+Xq3W2mYhno8CI2VO+lYj8z2GHe6BJJN9WT
+         uf7g==
+X-Gm-Message-State: APjAAAVsitahzmJyvGASlNeG4cwxeLbZlba9ZdmE1xj+kewj7A9RmE05
+        zp8nm1fTbPqHNz8+1UuQ3Rs=
+X-Google-Smtp-Source: APXvYqzAXbMEDqrzxi6gn4Xy/KMH6yHFAQP4FHoyyt5JulLOcl6Xolbecb4sqUX5qD/e9+jnjevHCw==
+X-Received: by 2002:a1c:a982:: with SMTP id s124mr5063032wme.132.1578672728261;
+        Fri, 10 Jan 2020 08:12:08 -0800 (PST)
+Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id x10sm2713533wrp.58.2020.01.10.08.12.07
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 10 Jan 2020 08:12:07 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: fix dwmmc clock name for px30 and rk3308
+Date:   Fri, 10 Jan 2020 17:12:00 +0100
+Message-Id: <20200110161200.22755-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PineTab is a 10.1" tablet by Pine64 with Allwinner A64 inside.
+An experimental test with the command below gives this error:
+px30-evb.dt.yaml: dwmmc@ff390000: clock-names:2:
+'ciu-drive' was expected
+rk3308-evb.dt.yaml: dwmmc@ff480000: clock-names:2:
+'ciu-drive' was expected
 
-It includes the following peripherals:
+'ciu-drv' is not a valid dwmmc clock name,
+so fix this by changing it to 'ciu-drive'.
 
-USB:
-- A microUSB Type-B port connected to the OTG-capable USB PHY of
-Allwinner A64. The ID pin is connected to a GPIO of the A64 SoC, and the
-Vbus is connected to the Vbus of AXP803 PMIC. These enables OTG
-functionality on this port.
-- A USB Type-A port is connected to the internal hub attached to the
-non-OTG USB PHY of Allwinner A64.
-- There are reserved pins for an external keyboard connected to the
-internal hub.
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
 
-Power:
-- The microUSB port has its Vbus connected to AXP803, mentioned above.
-- A DC jack (of a strange size, 2.5mm outer diameter) is connected to
-the ACIN of AXP803.
-- A Li-Polymer battery is connected to the battery pins of AXP803.
-
-Storage:
-- An tradition Pine64 eMMC slot is on the board, mounted with an eMMC
-module by factory.
-- An external microSD slot is hidden under a protect case.
-
-Display:
-- A MIPI-DSI LCD panel (800x1280) is connected to the DSI port of A64 SoC.
-- A mini HDMI port.
-
-Input:
-- A touch panel attached to a Goodix GT9271 touch controller.
-- Volume keys connected to the LRADC of the A64 SoC.
-
-Camera:
-- An OV5640 CMOS camera is at rear, connected to the CSI bus of A64 SoC.
-- A GC2145 CMOS camera is at front, shares the same CSI bus with OV5640.
-
-Audio:
-- A headphone jack is conencted to the SoC's internal codec.
-- A speaker connected is to the Line Out port of SoC's internal codec, via
-an amplifier.
-
-Misc:
-- Debug UART is muxed with the headphone jack, with the switch next to
-the microSD slot.
-- A bosch BMA223 accelerometer is connected to the I2C bus of A64 SoC.
-- Wi-Fi and Bluetooth are available via a RTL8723CS chip, similar to the
-one in Pinebook.
-
-This commit adds a basically usable device tree for it, implementing
-most of the features mentioned above. HDMI is not supported now because
-bad LCD-HDMI coexistence situation of mainline A64 display driver, and
-the front camera currently lacks a driver and a facility to share the
-bus with the rear one.
-
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/Makefile        |   1 +
- .../boot/dts/allwinner/sun50i-a64-pinetab.dts | 461 ++++++++++++++++++
- 2 files changed, 462 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
+ arch/arm64/boot/dts/rockchip/px30.dtsi   | 6 +++---
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index cf4f78617c3f..6dad63881cd3 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-orangepi-win.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pine64-lts.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pine64-plus.dtb sun50i-a64-pine64.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinebook.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h5-bananapi-m2-plus.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-new file mode 100644
-index 000000000000..1dfa3668636e
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
-@@ -0,0 +1,461 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2019 Icenowy Zheng <icenowy@aosc.xyz>
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-a64.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/ {
-+	model = "PineTab";
-+	compatible = "pine64,pinetab", "allwinner,sun50i-a64";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &rtl8723cs;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-+		brightness-levels = <0 10 20 30 40 50 60 70 80 90 100>;
-+		default-brightness-level = <8>;
-+		enable-gpios = <&pio 3 23 GPIO_ACTIVE_HIGH>; /* PD23 */
-+		power-supply = <&vdd_bl>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	i2c-csi {
-+		compatible = "i2c-gpio";
-+		sda-gpios = <&pio 4 13 GPIO_ACTIVE_HIGH>; /* PE13 */
-+		scl-gpios = <&pio 4 12 GPIO_ACTIVE_HIGH>; /* PE12 */
-+		i2c-gpio,delay-us = <5>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Rear camera */
-+		ov5640: camera@3c {
-+			compatible = "ovti,ov5640";
-+			reg = <0x3c>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&csi_mclk_pin>;
-+			clocks = <&ccu CLK_CSI_MCLK>;
-+			clock-names = "xclk";
-+
-+			AVDD-supply = <&reg_dldo3>;
-+			DOVDD-supply = <&reg_aldo1>;
-+			DVDD-supply = <&reg_eldo3>;
-+			reset-gpios = <&pio 4 14 GPIO_ACTIVE_LOW>; /* PE14 */
-+			powerdown-gpios = <&pio 4 15 GPIO_ACTIVE_HIGH>; /* PE15 */
-+
-+			port {
-+				ov5640_ep: endpoint {
-+					remote-endpoint = <&csi_ep>;
-+					bus-width = <8>;
-+					hsync-active = <1>; /* Active high */
-+					vsync-active = <0>; /* Active low */
-+					data-active = <1>;  /* Active high */
-+					pclk-sample = <1>;  /* Rising */
-+				};
-+			};
-+		};
-+	};
-+
-+	speaker_amp: audio-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		enable-gpios = <&pio 7 7 GPIO_ACTIVE_HIGH>; /* PH7 */
-+		sound-name-prefix = "Speaker Amp";
-+	};
-+
-+	vdd_bl: regulator@0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "bl-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pio 7 6 GPIO_ACTIVE_HIGH>; /* PH6 */
-+		enable-active-high;
-+	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&r_pio 0 2 GPIO_ACTIVE_LOW>; /* PL2 */
-+		post-power-on-delay-ms = <200>;
-+	};
-+};
-+
-+&codec {
-+	status = "okay";
-+};
-+
-+&codec_analog {
-+	hpvcc-supply = <&reg_eldo1>;
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&csi {
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		csi_ep: endpoint {
-+			remote-endpoint = <&ov5640_ep>;
-+			bus-width = <8>;
-+			hsync-active = <1>; /* Active high */
-+			vsync-active = <0>; /* Active low */
-+			data-active = <1>;  /* Active high */
-+			pclk-sample = <1>;  /* Rising */
-+		};
-+	};
-+};
-+
-+&dai {
-+	status = "okay";
-+};
-+
-+&de {
-+	status = "okay";
-+};
-+
-+&dphy {
-+	status = "okay";
-+};
-+
-+&dsi {
-+	vcc-dsi-supply = <&reg_dldo1>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "feixin,k101-im2ba02";
-+		reg = <0>;
-+		avdd-supply = <&reg_dc1sw>;
-+		dvdd-supply = <&reg_dc1sw>;
-+		cvdd-supply = <&reg_ldo_io1>;
-+		reset-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
-+		backlight = <&backlight>;
-+	};
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_pins>;
-+	status = "okay";
-+
-+	touchscreen@5d {
-+		compatible = "goodix,gt9271";
-+		reg = <0x5d>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <7 4 IRQ_TYPE_LEVEL_HIGH>; /* PH4 */
-+		irq-gpios = <&pio 7 4 GPIO_ACTIVE_HIGH>; /* PH4 */
-+		reset-gpios = <&pio 7 8 GPIO_ACTIVE_HIGH>; /* PH8 */
-+		AVDD28-supply = <&reg_ldo_io1>;
-+	};
-+};
-+
-+&i2c0_pins {
-+	bias-pull-up;
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pins>;
-+	status = "okay";
-+
-+	bma223@18 {
-+		compatible = "bosch,bma223", "bosch,bma222e";
-+		reg = <0x18>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <7 5 IRQ_TYPE_LEVEL_HIGH>; /* PH5 */
-+		mount-matrix = "0", "-1", "0",
-+			       "-1", "0", "0",
-+			       "0", "0", "-1";
-+	};
-+};
-+
-+&lradc {
-+	vref-supply = <&reg_aldo3>;
-+	status = "okay";
-+
-+	button-200 {
-+		label = "Volume Up";
-+		linux,code = <KEY_VOLUMEUP>;
-+		channel = <0>;
-+		voltage = <200000>;
-+	};
-+
-+	button-400 {
-+		label = "Volume Down";
-+		linux,code = <KEY_VOLUMEDOWN>;
-+		channel = <0>;
-+		voltage = <400000>;
-+	};
-+};
-+
-+&mixer1 {
-+	status = "okay";
-+};
-+
-+&mmc0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc0_pins>;
-+	vmmc-supply = <&reg_dcdc1>;
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&mmc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc1_pins>;
-+	vmmc-supply = <&reg_dldo4>;
-+	vqmmc-supply = <&reg_eldo1>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+
-+	rtl8723cs: wifi@1 {
-+		reg = <1>;
-+	};
-+};
-+
-+&mmc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc2_pins>;
-+	vmmc-supply = <&reg_dcdc1>;
-+	vqmmc-supply = <&reg_dcdc1>;
-+	bus-width = <8>;
-+	non-removable;
-+	cap-mmc-hw-reset;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&pwm {
-+	status = "okay";
-+};
-+
-+&r_rsb {
-+	status = "okay";
-+
-+	axp803: pmic@3a3 {
-+		compatible = "x-powers,axp803";
-+		reg = <0x3a3>;
-+		interrupt-parent = <&r_intc>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+		x-powers,drive-vbus-en;
-+	};
-+};
-+
-+#include "axp803.dtsi"
-+
-+&ac_power_supply {
-+	status = "okay";
-+};
-+
-+&battery_power_supply {
-+	status = "okay";
-+};
-+
-+&reg_aldo1 {
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "dovdd-csi";
-+};
-+
-+&reg_aldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-pl";
-+};
-+
-+&reg_aldo3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <2700000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-pll-avcc";
-+};
-+
-+&reg_dc1sw {
-+	regulator-name = "vcc-lcd";
-+};
-+
-+&reg_dcdc1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-3v3";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1000000>;
-+	regulator-max-microvolt = <1300000>;
-+	regulator-name = "vdd-cpux";
-+};
-+
-+/* DCDC3 is polyphased with DCDC2 */
-+
-+&reg_dcdc5 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1200000>;
-+	regulator-max-microvolt = <1200000>;
-+	regulator-name = "vcc-dram";
-+};
-+
-+&reg_dcdc6 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1100000>;
-+	regulator-max-microvolt = <1100000>;
-+	regulator-name = "vdd-sys";
-+};
-+
-+&reg_dldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-hdmi-dsi-sensor";
-+};
-+
-+&reg_dldo3 {
-+	regulator-min-microvolt = <2800000>;
-+	regulator-max-microvolt = <2800000>;
-+	regulator-name = "avdd-csi";
-+};
-+
-+&reg_dldo4 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-wifi";
-+};
-+
-+&reg_drivevbus {
-+	regulator-name = "usb0-vbus";
-+	status = "okay";
-+};
-+
-+&reg_eldo1 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "cpvdd";
-+};
-+
-+&reg_eldo2 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "vcca-1v8";
-+};
-+
-+&reg_eldo3 {
-+	regulator-min-microvolt = <1800000>;
-+	regulator-max-microvolt = <1800000>;
-+	regulator-name = "dvdd-1v8-csi";
-+};
-+
-+&reg_fldo1 {
-+	regulator-min-microvolt = <1200000>;
-+	regulator-max-microvolt = <1200000>;
-+	regulator-name = "vcc-1v2-hsic";
-+};
-+
-+&reg_fldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1100000>;
-+	regulator-max-microvolt = <1100000>;
-+	regulator-name = "vdd-cpus";
-+};
-+
-+&reg_ldo_io0 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-usb";
-+	status = "okay";
-+};
-+
-+&reg_ldo_io1 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-enable-ramp-delay = <3500000>;
-+	regulator-name = "vcc-touchscreen";
-+	status = "okay";
-+};
-+
-+&reg_rtc_ldo {
-+	regulator-name = "vcc-rtc";
-+};
-+
-+&sound {
-+	status = "okay";
-+	simple-audio-card,aux-devs = <&codec_analog>, <&speaker_amp>;
-+	simple-audio-card,widgets = "Microphone", "Internal Microphone Left",
-+				    "Microphone", "Internal Microphone Right",
-+				    "Headphone", "Headphone Jack",
-+				    "Speaker", "Internal Speaker";
-+	simple-audio-card,routing =
-+			"Left DAC", "AIF1 Slot 0 Left",
-+			"Right DAC", "AIF1 Slot 0 Right",
-+			"Speaker Amp INL", "LINEOUT",
-+			"Speaker Amp INR", "LINEOUT",
-+			"Internal Speaker", "Speaker Amp OUTL",
-+			"Internal Speaker", "Speaker Amp OUTR",
-+			"Headphone Jack", "HP",
-+			"AIF1 Slot 0 Left ADC", "Left ADC",
-+			"AIF1 Slot 0 Right ADC", "Right ADC",
-+			"Internal Microphone Left", "MBIAS",
-+			"MIC1", "Internal Microphone Left",
-+			"Internal Microphone Right", "HBIAS",
-+			"MIC2", "Internal Microphone Right";
-+};
-+
-+&uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usb_power_supply {
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 7 9 GPIO_ACTIVE_HIGH>; /* PH9 */
-+	usb0_vbus_power-supply = <&usb_power_supply>;
-+	usb0_vbus-supply = <&reg_drivevbus>;
-+	usb1_vbus-supply = <&reg_ldo_io0>;
-+	status = "okay";
-+};
+diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
+index 9a0f77ea4..07fe187cf 100644
+--- a/arch/arm64/boot/dts/rockchip/px30.dtsi
++++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
+@@ -885,7 +885,7 @@
+ 		interrupts = <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_SDMMC>, <&cru SCLK_SDMMC>,
+ 			 <&cru SCLK_SDMMC_DRV>, <&cru SCLK_SDMMC_SAMPLE>;
+-		clock-names = "biu", "ciu", "ciu-drv", "ciu-sample";
++		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+ 		fifo-depth = <0x100>;
+ 		max-frequency = <150000000>;
+ 		pinctrl-names = "default";
+@@ -900,7 +900,7 @@
+ 		interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_SDIO>, <&cru SCLK_SDIO>,
+ 			 <&cru SCLK_SDIO_DRV>, <&cru SCLK_SDIO_SAMPLE>;
+-		clock-names = "biu", "ciu", "ciu-drv", "ciu-sample";
++		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+ 		fifo-depth = <0x100>;
+ 		max-frequency = <150000000>;
+ 		pinctrl-names = "default";
+@@ -915,7 +915,7 @@
+ 		interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
+ 		clocks = <&cru HCLK_EMMC>, <&cru SCLK_EMMC>,
+ 			 <&cru SCLK_EMMC_DRV>, <&cru SCLK_EMMC_SAMPLE>;
+-		clock-names = "biu", "ciu", "ciu-drv", "ciu-sample";
++		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+ 		fifo-depth = <0x100>;
+ 		max-frequency = <150000000>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
+index 8bdc66c62..fa0d55f1a 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
+@@ -591,7 +591,7 @@
+ 		bus-width = <4>;
+ 		clocks = <&cru HCLK_SDMMC>, <&cru SCLK_SDMMC>,
+ 			 <&cru SCLK_SDMMC_DRV>, <&cru SCLK_SDMMC_SAMPLE>;
+-		clock-names = "biu", "ciu", "ciu-drv", "ciu-sample";
++		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+ 		fifo-depth = <0x100>;
+ 		max-frequency = <150000000>;
+ 		pinctrl-names = "default";
+@@ -606,7 +606,7 @@
+ 		bus-width = <8>;
+ 		clocks = <&cru HCLK_EMMC>, <&cru SCLK_EMMC>,
+ 			 <&cru SCLK_EMMC_DRV>, <&cru SCLK_EMMC_SAMPLE>;
+-		clock-names = "biu", "ciu", "ciu-drv", "ciu-sample";
++		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+ 		fifo-depth = <0x100>;
+ 		max-frequency = <150000000>;
+ 		status = "disabled";
+@@ -619,7 +619,7 @@
+ 		bus-width = <4>;
+ 		clocks = <&cru HCLK_SDIO>, <&cru SCLK_SDIO>,
+ 			 <&cru SCLK_SDIO_DRV>, <&cru SCLK_SDIO_SAMPLE>;
+-		clock-names = "biu", "ciu", "ciu-drv", "ciu-sample";
++		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
+ 		fifo-depth = <0x100>;
+ 		max-frequency = <150000000>;
+ 		pinctrl-names = "default";
 -- 
-2.23.0
+2.11.0
 
