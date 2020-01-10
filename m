@@ -2,153 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA56137184
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 16:40:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C898E1371F9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 16:59:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728356AbgAJPkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jan 2020 10:40:25 -0500
-Received: from mail-il1-f195.google.com ([209.85.166.195]:39661 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728369AbgAJPkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jan 2020 10:40:25 -0500
-Received: by mail-il1-f195.google.com with SMTP id x5so2078733ila.6;
-        Fri, 10 Jan 2020 07:40:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=zfveKwnRK85mJXCf2w5k6uuMDFTAUqHiB2SRdT1OPtw=;
-        b=Eyf2pDtvCwsChMpc+mpR9mGl+B89HFzVOVjGCDfOKJzIuX/1FUntYjwt/szKs2X2RP
-         oyZsDtCNH9oXEolJwkI4bijMHUmbH5gDCN9bnb1TEsZ89cjwOfEIS2J9qXOpPcL79TkC
-         Jb3nK4NB5HgKGsCGV0DVJoZjflgCFWqifdSJEarXjG5DUdLUIwsZUlBxHtetIJ/SVbwT
-         /IUOavZELqgR8+Me4B2vS5JeYUae0m/LokZu+KbQnGX9lQKnXY1JxtIpMOa+Zi4ApeJ6
-         ndDe1GXurmXskgSPnAcbFjg9dPc3vPv8p1l4pRzbYxD9N3enYdTuE2JSHf7TreI+m/Bb
-         LqZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=zfveKwnRK85mJXCf2w5k6uuMDFTAUqHiB2SRdT1OPtw=;
-        b=nVdRICVi5/6BzjSiBkebzBwwhZQMXYWlvsa78xhm32tjkQ72jBWEWekwKVFOi1mGLV
-         fDaB+t/KOdN7T3I7wHKCEPO+WNLkEMq6/SgakL/ZQzyYZEVNXmQrhJx9lb+mE9LengLf
-         9bbs/IjXBRt5UIz/PmY0yj7Axvl6K1RO433DB66QjT5wJ6WZCNLBKovuB05/smjpdmWR
-         6UOj8eaL+xpGTe6U1oBte/zEyJVdEToWKnVigdSZpqVO67039EVPQT5/mWT9C1WnT8Cs
-         fwV/q35xOPS8qyw3sQqW8hTZ+82D2HE2FzZKoJ4fIev7FtFynL04zBN0PwVk0UxWhGNB
-         ulhA==
-X-Gm-Message-State: APjAAAWqwGcTmi0CLuucPtBHL/Plmv0HyaEdQIO4PWeegOFdx3zkIbdu
-        gg0H9vjVggf6DZcuJBWbTpYbwAjNYHlO/rdlATU=
-X-Google-Smtp-Source: APXvYqwVstS0bfJ7o2vEobkH8jOr99DSJkX7e0rovYTLXZAar3F1T2Nwyk4CYH3OT34MDdWPeSc7+j1+bIEtM/b8RdQ=
-X-Received: by 2002:a92:d5cf:: with SMTP id d15mr3025126ilq.306.1578670824629;
- Fri, 10 Jan 2020 07:40:24 -0800 (PST)
+        id S1728320AbgAJP7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jan 2020 10:59:40 -0500
+Received: from hermes.aosc.io ([199.195.250.187]:49074 "EHLO hermes.aosc.io"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728367AbgAJP7j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 10 Jan 2020 10:59:39 -0500
+Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
+        by hermes.aosc.io (Postfix) with ESMTPSA id 89D1E46EF0;
+        Fri, 10 Jan 2020 15:53:22 +0000 (UTC)
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-sunxi@googlegroups.com, Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH 0/5] Add support for Pine64 PineTab
+Date:   Fri, 10 Jan 2020 23:52:20 +0800
+Message-Id: <20200110155225.1051749-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Received: by 2002:a02:5809:0:0:0:0:0 with HTTP; Fri, 10 Jan 2020 07:40:24
- -0800 (PST)
-In-Reply-To: <20200110142128.13522-1-jbx6244@gmail.com>
-References: <20200110142128.13522-1-jbx6244@gmail.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Date:   Fri, 10 Jan 2020 16:40:24 +0100
-Message-ID: <CA+z=w3UjX71Nw7W+iiGkQh=UJkPMsEn1phSdp25d--O8QM-ETQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: add reg property to brcmf sub node
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aosc.io; s=dkim;
+        t=1578671613;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=arqgargl3bY9HACPJC+50BrUGIBgfwYWhQpbFvgf9g8=;
+        b=IQf56fS/L+J88wDn5NITVutxMKkOSUkKA6VObrxd0nceXBTehZ53tj/U1e4PgIkZkj1bjf
+        4iQVIUnkzeFOm/209cHapWzv7Yz0uEmmP3Nt0UPwdShfzRIfpjhuw3glbKy7Cf4/6bPgrU
+        kC/XnMd4+vPsplC+ya6/xeUFS8zfnHA=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patchset tries to add support for the PineTab tablet from Pine64.
 
-Question for Heiko or rob+dt.
-Where would should #address-cells and #size-cells go in the dts or to the dtsi.
-In case they become required in a futhure rockchip-dw-mshc.yaml?
-ie. Should we patch all XXX rockchip,rk3288-dw-mshc nodes with them?
+As it uses a specific MIPI-DSI panel, the support of the panel should be
+introduced first, with its DT binding.
 
-Thanks
+Then a device tree is added. Thanks to the community's contributions
+these years, we now have most of the functionalities of the tablet
+available in this device tree.
 
-2020-01-10 15:21 GMT+01:00, Johan Jonker <jbx6244@gmail.com>:
-> An experimental test with the command below gives this error:
-> rk3399-firefly.dt.yaml: dwmmc@fe310000: wifi@1:
-> 'reg' is a required property
-> rk3399-orangepi.dt.yaml: dwmmc@fe310000: wifi@1:
-> 'reg' is a required property
-> rk3399-khadas-edge.dt.yaml: dwmmc@fe310000: wifi@1:
-> 'reg' is a required property
-> rk3399-khadas-edge-captain.dt.yaml: dwmmc@fe310000: wifi@1:
-> 'reg' is a required property
-> rk3399-khadas-edge-v.dt.yaml: dwmmc@fe310000: wifi@1:
-> 'reg' is a required property
-> So fix this by adding a reg property to the brcmf sub node.
-> Also add #address-cells and #size-cells to prevent more warnings.
->
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
->
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 3 +++
->  arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 3 +++
->  arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 3 +++
->  3 files changed, 9 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-> b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-> index 92de83dd4..06043179f 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-> @@ -669,9 +669,12 @@
->  	vqmmc-supply = &vcc1v8_s3;	/* IO line */
->  	vmmc-supply = &vcc_sdio;	/* card's power */
->
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
->  	status = "okay";
->
->  	brcmf: wifi@1 {
-> +		reg = <1>;
->  		compatible = "brcm,bcm4329-fmac";
->  		interrupt-parent = <&gpio0>;
->  		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> index 4944d78a0..e87a04477 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> @@ -654,9 +654,12 @@
->  	sd-uhs-sdr104;
->  	vqmmc-supply = <&vcc1v8_s3>;
->  	vmmc-supply = <&vccio_sd>;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
->  	status = "okay";
->
->  	brcmf: wifi@1 {
-> +		reg = <1>;
->  		compatible = "brcm,bcm4329-fmac";
->  		interrupt-parent = <&gpio0>;
->  		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-> b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-> index 0541dfce9..9c659f311 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-> @@ -648,9 +648,12 @@
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
->  	sd-uhs-sdr104;
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
->  	status = "okay";
->
->  	brcmf: wifi@1 {
-> +		reg = <1>;
->  		compatible = "brcm,bcm4329-fmac";
->  		interrupt-parent = <&gpio0>;
->  		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-> --
-> 2.11.0
->
->
+Icenowy Zheng (5):
+  dt-bindings: vendor-prefix: add Shenzhen Feixin Photoelectics Co., Ltd
+  dt-bindings: panel: add Feixin K101 IM2BA02 MIPI-DSI panel
+  drm/panel: Add Feixin K101 IM2BA02 panel
+  dt-bindings: arm: sunxi: add binding for PineTab tablet
+  arm64: dts: allwinner: a64: add support for PineTab
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../display/panel/feixin,k101-im2ba02.yaml    |  54 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+ .../boot/dts/allwinner/sun50i-a64-pinetab.dts | 461 +++++++++++++++
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-feixin-k101-im2ba02.c | 548 ++++++++++++++++++
+ 9 files changed, 1087 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/feixin,k101-im2ba02.yaml
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts
+ create mode 100644 drivers/gpu/drm/panel/panel-feixin-k101-im2ba02.c
+
+-- 
+2.23.0
+
