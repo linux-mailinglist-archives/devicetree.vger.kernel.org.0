@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FF63136C8F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 12:58:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFFCC136CE4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 13:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728024AbgAJL5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jan 2020 06:57:24 -0500
-Received: from sonic312-20.consmr.mail.bf2.yahoo.com ([74.6.128.82]:37701 "EHLO
-        sonic312-20.consmr.mail.bf2.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728003AbgAJL5Y (ORCPT
+        id S1727903AbgAJMTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jan 2020 07:19:13 -0500
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:23802 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728116AbgAJMTM (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 10 Jan 2020 06:57:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1578657442; bh=E+ks7AydzaUb4ISZTuxin7s0E6gVmk5020fTLYVYB5E=; h=Date:From:Reply-To:Subject:References:From:Subject; b=R3gXsySB3C7WV4K6KDTlfwbJhgYt/GEbLtkSPqgdsoju9Oju4q7WR45OOYZJfVFms+O3Kmku98aZJBIVcLr8IVor7hSfqxP1CpJ7qnnuk2W6jIehk6bHcVxeZVQhmOXdXW6X9eySrZhNVVw9sz3esZ+iHWGq+cHQVI6PlpAo1Umfy+jQeVzwwF/ZdwC67gNUBzmsadFQEaLwznybDjNuHL5iExdce1idWgIuM9+YbxkuZSVy8eS19JIgzoSAhc1nvu4rC/nJO5FlcDfA8L7z+SjesansxbP1/WYCXKYMMcWtvNCV9Yfs4PHpA8qxYSMWfQNzsBsoDb+YHLBa9yEJEw==
-X-YMail-OSG: 1JRtVWUVM1kdx3TGPXWh84EJ1_WwV6lxU7UH45itfZdzyrK2xZ4Yo5hrvTG17cV
- nH.qlr6CQbAJ_Xf4Xo3Wb1l3Y.uCSBlPLQ8lbGY4NmswBnlUHsLXqqlMxFjnc4dbK2oF0Pa4P7ih
- SairwuWlnqEPPomCVCLEskZ7S4aBvK9UcMjYcH9o9bL8Ciy4JsF.4B0lxkkxmo.._Vb0MMjpSFOX
- e2eGzajJnUsUvQC6BvwMZRPSntgcLqi4FXoSYNSZnE3.dwRIFa9ClMovgb.AQABd8A5D_k7LQtSq
- 7q7kBe2CAN4p4zJZo70nhsOc6_2gbz3yJaUWV72AtkHaFGFKdvseLyhK_PxLBSgcslH.mMqoPdTq
- PHSfQm_OZ4JQ1LjARRbPAvrLMVpZ.23f7XcA.xIDF0cn.XqD3QeGorn2S3yB.sCMmlb7esYWznI7
- 3FKx.VRPSQ9XHd2MYm6K2UcLTzi5iJzUyPjGTxX0Iv7H0IMQaSjhWQQ16HAqaZo3w3Kv6y7mVLja
- ygR9XHboIZfQyPZAN0ibFg9ijJQG5ppO6HmlOOpURb5fw4Eji3qUXjW06xvrJs1ZrxsZ65EFqWIn
- zcb9T89ZyWVpxl6dMImBTgBLfkvey6d_4RdYo_hcrzsXcZaqJPwnBzkIUJF40EqlLuEsiWA3wC4r
- HpJHn7NzrlaulJKqcAdMtSbQzKPY8UDkBotYldqFPsQlcvTV0Ejtf1wz4GtDMDAQc98JJ1hk5jOc
- B0g91EgcM3rG6PiZ_ilOYLjwJd.A5AMFd8.ajAfXvL6EaT_ATxx97fpUGKBlqC7Ntd_meNELn4Uj
- .B_puptoL8nokNLpIratKSmQKHNHxqQH5bXXdMwvdsJJHIe7W.UPsyyVwkNsuf98NcY091u3b5H3
- TXzUSDPXF0gElW2uYGJsPE_fqHj2bXc7HoO3y9nB6ahwvcisGjFWBhPWvInlpzKlzke5dH2bvmHN
- 61szFoGbdCHmalLy96XA3DNDGZdFBLVQC.scacDL1ME.oaBoiqwLza9eNyGu1fy5oW1ZGA0iPnpf
- dqUDtvwsh4T6duXH6iWdeeraurhuNvJmcfEMVwcIemvDVrhxWzGvHm7GBM_vAe5jFrSsun9YvbLg
- Kvm2n5_xtdV5BT8pT7.BNA6IGbS3ZJ8Vk_qKxywpoF1ODw6xO_aR5Q4zwDCW8gGUDAKl_xVAh6tu
- r9drsBmYqyCoIXp6acMUy2D1aZ2eEB9xKRL8VVI0QnqZu2SQqhtb6xkOQZfpOt0zIeWqAAcgS_OX
- 3EHd4pwLlyPC4At8McI7XdXCDjqKz6uWb4x1pB9e_k5PxHKXzkBRrbUVtRcuRRojJCnhx0wd.UgP
- uXKVC1zXKKCl4YF_qpODrolA-
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.bf2.yahoo.com with HTTP; Fri, 10 Jan 2020 11:57:22 +0000
-Date:   Fri, 10 Jan 2020 11:57:22 +0000 (UTC)
-From:   Aisha Gaddafi <gaisha983@gmail.com>
-Reply-To: gaddafia504@gmail.com
-Message-ID: <697845896.6244548.1578657442067@mail.yahoo.com>
-Subject: Dear Friend,
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-References: <697845896.6244548.1578657442067.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.14873 YMailNodin Mozilla/5.0 (Windows NT 6.1; rv:72.0) Gecko/20100101 Firefox/72.0
-To:     unlisted-recipients:; (no To-header on input)
+        Fri, 10 Jan 2020 07:19:12 -0500
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 10 Jan 2020 17:49:07 +0530
+Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 10 Jan 2020 17:48:45 +0530
+Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
+        id 0355522B4; Fri, 10 Jan 2020 17:48:44 +0530 (IST)
+From:   Sandeep Maheswaram <sanm@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Manu Gautam <mgautam@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>
+Subject: [PATCH v3 0/5] Add QUSB2 PHY support for SC7180
+Date:   Fri, 10 Jan 2020 17:48:14 +0530
+Message-Id: <1578658699-30458-1-git-send-email-sanm@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
+Added QUSB2 PHY support for SC7180.
+Converting dt binding to yaml.
+Adding compatible for SC7180 in dt bindings.
 
-I came across your e-mail contact prior a private search while in need of 
-your assistance. My name is Aisha  Gaddafi a single Mother and a Widow with 
-three Children. I am the only biological Daughter of late Libyan President 
-(Late Colonel Muammar Gaddafi).
+Changes in v3:
+*Using the generic phy cfg table for QUSB2 V2 phy.
+*Added support for overriding tuning parameters in QUSB2 V2 PHY
+from device tree.
 
-I have investment funds worth Twenty Seven Million Five Hundred Thousand 
-United State Dollar ($27.500.000.00 ) and i need a trusted investment 
-Manager/Partner because of my current refugee status, however, I am 
-interested in you for investment project assistance in your country, may be 
-from there, we can build business relationship in the nearest future.
+Changes in v2:
+Sorted the compatible in driver.
+Converted dt binding to yaml.
+Added compatible in yaml.
 
-I am willing to negotiate investment/business profit sharing ratio with you 
-base on the future investment earning profits.
+Sandeep Maheswaram (5):
+  phy: qcom-qusb2: Add QUSB2 PHY support for SC7180
+  dt-bindings: phy: qcom,qusb2: Convert QUSB2 phy bindings to yaml
+  dt-bindings: phy: qcom-qusb2: Add support for overriding Phy tuning
+    parameters
+  phy: qcom-qusb2: Add support for overriding tuning parameters in QUSB2
+    V2 PHY
+  arm64: dts: qcom: sc7180: Update QUSB2 V2 Phy tuning params for SC7180
 
-If you are willing to handle this project on my behalf kindly reply urgent 
-to enable me provide you more information about the investment funds.
+ .../devicetree/bindings/phy/qcom,qusb2-phy.yaml    | 185 +++++++++++++++++++++
+ .../devicetree/bindings/phy/qcom-qusb2-phy.txt     |  68 --------
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts            |   6 +-
+ drivers/phy/qualcomm/phy-qcom-qusb2.c              |  73 +++++++-
+ 4 files changed, 254 insertions(+), 78 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,qusb2-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/qcom-qusb2-phy.txt
 
-Your Urgent Reply Will Be Appreciated.
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-Best Regards
-Mrs Aisha Gaddafi
-(gaddafia504@gmail.com)
