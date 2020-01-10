@@ -2,58 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A7213679F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 07:42:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95BAE136782
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2020 07:38:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731547AbgAJGme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 10 Jan 2020 01:42:34 -0500
-Received: from contraloriadf.gob.mx ([187.141.35.90]:44179 "EHLO
-        contraloriadf.gob.mx" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731540AbgAJGme (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jan 2020 01:42:34 -0500
-X-Greylist: delayed 562 seconds by postgrey-1.27 at vger.kernel.org; Fri, 10 Jan 2020 01:42:34 EST
-Received: from localhost (localhost [127.0.0.1])
-        by contraloriadf.gob.mx (Postfix) with ESMTP id 62D55E20F0;
-        Fri, 10 Jan 2020 00:33:06 -0600 (CST)
-Received: from contraloriadf.gob.mx ([127.0.0.1])
-        by localhost (contraloriadf.gob.mx [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 1MEKiXae8Zsb; Fri, 10 Jan 2020 00:33:06 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-        by contraloriadf.gob.mx (Postfix) with ESMTP id C8FC0E20F4;
-        Fri, 10 Jan 2020 00:33:05 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.8.4 contraloriadf.gob.mx C8FC0E20F4
+        id S1731601AbgAJGiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 10 Jan 2020 01:38:16 -0500
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:34819 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731455AbgAJGiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 10 Jan 2020 01:38:16 -0500
+Received: by mail-pl1-f194.google.com with SMTP id g6so473492plt.2;
+        Thu, 09 Jan 2020 22:38:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=contraloriadf.gob.mx; s=D26545A4-B627-11E5-8BF2-997FD958E9DA;
-        t=1578637985; bh=yo719o7/OD8gcu7N5mU9Vl9/uXhye6aNijPdIQ5xoNc=;
-        h=Date:From:Reply-To:Message-ID:Subject:MIME-Version:Content-Type:
-         Content-Transfer-Encoding;
-        b=qZCRMnNUw4NfCqN1dxKdHfO89M8QdVJT13fw9HQhp8FQ26nhVZeNMYsfxudQX3Hq7
-         kNbols0K2uyPQtifAhXk3t0OdSmlQa3ubBhOeOKQASt9iNSfjDSVJUdJB4wgN/722z
-         rhr2Yv1J7Pk6yscL+AgiOokHhQV7j/uehUyb08AE=
-X-Virus-Scanned: amavisd-new at contraloriadf.gob.mx
-Received: from contraloriadf.gob.mx ([127.0.0.1])
-        by localhost (contraloriadf.gob.mx [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id f2k0IDUHG52W; Fri, 10 Jan 2020 00:33:05 -0600 (CST)
-Received: from contraloriadf.gob.mx (contraloriadf [10.250.102.152])
-        by contraloriadf.gob.mx (Postfix) with ESMTP id 3C8DDE20F0;
-        Fri, 10 Jan 2020 00:33:05 -0600 (CST)
-Date:   Fri, 10 Jan 2020 00:33:04 -0600 (CST)
-From:   "wang jianlin (wanda)" <agtrujilloc@contraloriadf.gob.mx>
-Reply-To: "wang jianlin (wanda)" <wang-jianlin2@dwandagroup.com>
-Message-ID: <986469267.551596.1578637984542.JavaMail.zimbra@contraloriadf.gob.mx>
-Subject: =?utf-8?Q?Wohlt=C3=A4tigkeitsprojekt?=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XzSVhJbBkfsdAFpiPcDHodKbSp7cGOHmTB0FXORy/UQ=;
+        b=WQogdfYX8EoyRIeQRsfBo1hrXvhwduv2MCN8Hq/VxYtyHfbHuQDooDFwfi5+d6yq/H
+         ES8lgFQZ2OE9Lad4/5fqWpIqbmj+X9nniX8KOD3RqD+0lOaYXdbG45d0/0Wnx+8AMCAk
+         mcQh4a02LFafaZnrc2q3i21932DQA5s53d2lJtRcCCVBCEQp/u8UIRRrGYycAo/0dl7f
+         xctReJt5Ivslf6wIpl5/bmeyYKjn4UML2WmYYMf/Rr1L6cxDjahV59d0Sb35zrfpnc+k
+         5QIgsm0ffdxYoALEkuRosyngYSK0XPqEXJ80iDcx4g9YAXleUGQ6kio/ah6YFaY0dwC5
+         ZLbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XzSVhJbBkfsdAFpiPcDHodKbSp7cGOHmTB0FXORy/UQ=;
+        b=T2J9lNc7EBDYQX0K59QQec1/PcJyvMQMA7dL9m0M4DlUpZC297+uQpXFIrATXKO0xU
+         5IWRz2KNDKQ/pd3eJPG67xRj8F2eYu45xZUEZYEQ+j3bY20/YvoRMng9qmTdmNmuRiiv
+         ItYpiTrg+jlCMHKoRGmRmlGi4J/C2HMbL1Xx4koZYd4ynFzxYBe+/BhvKqyH603arV0b
+         /uTlqhYXjpgvdhsP+IyG+FKbBBrP18GL1HxWPGTswOiUsrMtFeZMZgIL0BMXD5ISSXlr
+         8syqk/oPxyztjhoODe3ehdo+Ps6Pg0wk+EJjbqYdCQFUtXW9shgZfq0ZTjJS6FpFR7SA
+         pBsw==
+X-Gm-Message-State: APjAAAVq5+IhlCJpTXbMFN9+mj49nLdoYByiXlxnmQFWlo1Isuk4oCqH
+        XbdV8E6LIxYDKX6kQeieESc=
+X-Google-Smtp-Source: APXvYqxqu2HL0oxeGEdWjvbSmrZsOd3K0PLzJecLgh6qqC+JEdXeh92VfKR6ASaQmJSsQP6XAdnpZQ==
+X-Received: by 2002:a17:902:8a89:: with SMTP id p9mr2382882plo.126.1578638295291;
+        Thu, 09 Jan 2020 22:38:15 -0800 (PST)
+Received: from ubt.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id m19sm1102021pjv.10.2020.01.09.22.38.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Jan 2020 22:38:14 -0800 (PST)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>
+Subject: [PATCH v6 0/2] Add Unisoc's SC9863A support
+Date:   Fri, 10 Jan 2020 14:37:53 +0800
+Message-Id: <20200110063755.19804-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Originating-IP: [185.234.218.233]
-X-Mailer: Zimbra 8.0.5_GA_5839 (ZimbraWebClient - GC79 (Win)/8.0.5_GA_5839)
-Thread-Topic: =?utf-8?Q?Wohlt=C3=A4tigkeitsprojekt?=
-Thread-Index: EV14CPZXS4lLNbOpy1FEtN5l5ydPfg==
-To:     unlisted-recipients:; (no To-header on input)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sie haben eine Spende erhalten. antworten Sie f=C3=BCr weitere Details.
-Wang Jianlin
+SC9863A has Octa-core ARM Cortex A55 application processor. Find more
+details about it on the website: http://www.unisoc.com/sc9863a
+
+Changes from v5:
+* Discarded .../bindings/arm/sprd/global-regs.yaml which will be added back
+  when adding syscon into sc9863a devicetree.
+
+Changes from v4:
+* Removed syscon nodes which should be added when used.
+* Added Acked-by from Rob Herring.
+
+Changes from v3:
+* Rebased on v5.5-rc1;
+* Fix the cpu-map to put all cpus into the single cluster;
+* Fixed a bindings error.
+
+Changes from v2:
+* Discard some dt-bindings patches which have been applied by Rob Herring.
+* Added a new dt-binding file for sprd global-regs, also added a vendor directory for sprd.
+* Moved sprd.yaml to the vendor directory.
+* Addressed comments from Rob:
+- fixed dtbs_check errors;
+- move gic under to the bus node;
+- removed msi-controller from gic, sinceSC9863A doesn't provide ITS;
+- added specific compatible string for syscon nodes;
+- cut down registers range of syscon nodes;
+- removed unnecessary property "sprd,sc-id";
+- added earlycon support in devicetree.
+
+Changes from v1: 
+- Convert DT bindings to json-schema.
+
+Chunyan Zhang (2):
+  dt-bindings: arm: move sprd board file to vendor directory
+  arm64: dts: Add Unisoc's SC9863A SoC support
+
+ .../bindings/arm/{ => sprd}/sprd.yaml         |   2 +-
+ arch/arm64/boot/dts/sprd/Makefile             |   3 +-
+ arch/arm64/boot/dts/sprd/sc9863a.dtsi         | 523 ++++++++++++++++++
+ arch/arm64/boot/dts/sprd/sharkl3.dtsi         |  78 +++
+ arch/arm64/boot/dts/sprd/sp9863a-1h10.dts     |  39 ++
+ 5 files changed, 643 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/arm/{ => sprd}/sprd.yaml (92%)
+ create mode 100644 arch/arm64/boot/dts/sprd/sc9863a.dtsi
+ create mode 100644 arch/arm64/boot/dts/sprd/sharkl3.dtsi
+ create mode 100644 arch/arm64/boot/dts/sprd/sp9863a-1h10.dts
+
+-- 
+2.20.1
+
