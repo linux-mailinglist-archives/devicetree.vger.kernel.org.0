@@ -2,45 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C1CF1382FE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2020 20:09:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B5D9138386
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2020 21:37:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730903AbgAKTI4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 11 Jan 2020 14:08:56 -0500
-Received: from mail.a-hostel.com ([193.193.200.100]:51926 "EHLO
-        mail.a-hostel.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730901AbgAKTIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jan 2020 14:08:55 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.a-hostel.com (Postfix) with ESMTP id 3B4E31B44137;
-        Sat, 11 Jan 2020 21:08:51 +0200 (EET)
-Received: from mail.a-hostel.com ([127.0.0.1])
-        by localhost (mail.a-hostel.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id uLKdkV89Gyu0; Sat, 11 Jan 2020 21:08:51 +0200 (EET)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.a-hostel.com (Postfix) with ESMTP id 008F41B4414A;
-        Sat, 11 Jan 2020 21:08:51 +0200 (EET)
-X-Virus-Scanned: amavisd-new at a-hostel.com
-Received: from mail.a-hostel.com ([127.0.0.1])
-        by localhost (mail.a-hostel.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id io5VmU7h1ZYW; Sat, 11 Jan 2020 21:08:50 +0200 (EET)
-Received: from [100.120.71.150] (unknown [185.246.210.151])
-        by mail.a-hostel.com (Postfix) with ESMTPSA id 6DB2E1B44137;
-        Sat, 11 Jan 2020 21:08:46 +0200 (EET)
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1731280AbgAKUhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 11 Jan 2020 15:37:01 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:41874 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731281AbgAKUhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 11 Jan 2020 15:37:01 -0500
+Received: by mail-ed1-f65.google.com with SMTP id c26so4979684eds.8;
+        Sat, 11 Jan 2020 12:37:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5lVQbTK1CQNJLbn+dfYa9kwkLSnyzK1w6ElpnSy1kD8=;
+        b=JrQNGe25400SidHXkopUC0o6/smR+GNbFtP1ae37v/m/2Xm91sqTsS2CEaQHvsexqT
+         nxJeoKgEvQAwP1hRLIaChq9Oye7pvR78Pb/h8taDSYbmkR8rfSn+cWqMqhdMyOiHZECm
+         BJpM2MzE+lDhIhg0av5bc2hFTJlpXtmNxhK9pqaUThWmR/VH+uvZ3niJDaOqOJLt6LKQ
+         hjb54JCcKYHsa+RFW+O3jkPKXVdUs9qGGu7kKgBiIx24gsO57MZS70rSm/0/fenQ9diG
+         6OjfvypJ2FoamHZjIMA0cHbz3I/cnDxCQYxVPl4xvbeRiUmj2xtwGVDOV1W3v7LmmeiI
+         kovA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5lVQbTK1CQNJLbn+dfYa9kwkLSnyzK1w6ElpnSy1kD8=;
+        b=NfxIY6de29He35yA7MiDafkFKyLU1Ihp/X/RNK7BP1bmK2+llwb9MzvtjpsLzOtu/a
+         uaQcbNv3n18AVv0HuDKG5TrnkEFErieM9goDvbJXAPzDVLuT/iRkbNaFre3n77ndF4Ja
+         kOjvZXo5EVHOvKi8/n7Oi0DVRAybAdTOLY79UTplO6k5lkFBs61TzyFuP/Rv4w718oNo
+         Iw3dr/09OumZ2FXJ0IUslaxhuU790Yx+Y8seyCkE738FIS1zv6pFZ+rXMXT9Mhdu4q1L
+         RYel0T02StdaqbUfYIcj5/govQymGbazk0pbj1z9Zjw4huBP7LBcoRUWqUQqTVOkkp+g
+         Yc7A==
+X-Gm-Message-State: APjAAAVcwJRVaRCXSUyUxDo/OxIu3wjRQYjgrEbz1uZUn51+CAu9D/CB
+        HFq0lc2hIsFUy6o2T4OYrRzZ97mQlYVtd0mGsog=
+X-Google-Smtp-Source: APXvYqy3VjOtoPNH3qxa+q4QIo6rrFf00xb5aOXFHChIgJasCdlp1oMaMFIGt2FfOI3OgpTjzTiJuOH4oRlnUqVdJHE=
+X-Received: by 2002:a17:906:27cb:: with SMTP id k11mr9430045ejc.301.1578775019610;
+ Sat, 11 Jan 2020 12:36:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: IMFC-Finanzierung
-To:     Recipients <reservations@hotel-khreschatyk.kiev.ua>
-From:   "IMFC-Finanzierung" <reservations@hotel-khreschatyk.kiev.ua>
-Date:   Sat, 11 Jan 2020 11:08:42 -0800
-Reply-To: imfcompensationfunding@gmail.com
-Message-Id: <20200111190846.6DB2E1B44137@mail.a-hostel.com>
+References: <1578634957-54826-1-git-send-email-hanjie.lin@amlogic.com> <1578634957-54826-4-git-send-email-hanjie.lin@amlogic.com>
+In-Reply-To: <1578634957-54826-4-git-send-email-hanjie.lin@amlogic.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 11 Jan 2020 21:36:48 +0100
+Message-ID: <CAFBinCC9fNu0HWEy05by=acuDv-06FkUU1X0BaVT8tmvNMxBMg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/6] phy: amlogic: Add Amlogic A1 USB2 PHY Driver
+To:     Hanjie Lin <hanjie.lin@amlogic.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Yue Wang <yue.wang@amlogic.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, Carlo Caione <carlo@caione.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Jian Hu <jian.hu@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sie haben sich für den IMFC-Zuschuss von 2.500.000,00 Euro qualifiziert (Frau Ronnie Mara Holbrook) Email: imfcompensationfunding@gmail.com  
-Weitere Informationen zum Einfordern Ihrer Gelder
+On Fri, Jan 10, 2020 at 6:43 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
+>
+> This adds support for the USB2 PHY found in the Amlogic A1 SoC Family.
+>
+> It supports host mode only.
+>
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
