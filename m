@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFE21387FE
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2020 20:54:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A092A138811
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2020 20:54:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733236AbgALTyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jan 2020 14:54:13 -0500
-Received: from mail-pj1-f66.google.com ([209.85.216.66]:39279 "EHLO
+        id S2387402AbgALTyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 12 Jan 2020 14:54:22 -0500
+Received: from mail-pj1-f66.google.com ([209.85.216.66]:51552 "EHLO
         mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732957AbgALTyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jan 2020 14:54:13 -0500
-Received: by mail-pj1-f66.google.com with SMTP id e11so1784324pjt.4;
-        Sun, 12 Jan 2020 11:54:12 -0800 (PST)
+        with ESMTP id S2387395AbgALTyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jan 2020 14:54:21 -0500
+Received: by mail-pj1-f66.google.com with SMTP id d15so1881460pjw.1;
+        Sun, 12 Jan 2020 11:54:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yud86Z6TCLSzd0rR4y2aIB+ldRZqkAROXID9MEYSFRY=;
-        b=LSneU5osfAdaRa9Vis9gXCnleS2SMgQoqlVF/rEy1osnQVkvwuFe6u8RCRMr3wWcMp
-         E2rVGBfMju31g+0ewn3GNANjbuulCUd5V3VSGix2PEO57fWsxVASbXyz063zxmSX+XZ6
-         21MfAudMiQ53BiNHLWuWOCk46PTajisQUTlYp12+Hq8cRLcU4xYaHFC7HKaZyb0AFOQK
-         ci32Mh6d2ppBTnOStnwnILDtlMzErf0hYp8e2dEqBAvpolSLU4p/rVnj/NIbqtbt3+o7
-         VAzJ1mknsTEVjFU6k2PN6nIR0G6R8KarlkyXSkuNfUMpvHcCRQauRPeQQK69GlR3XB22
-         f5yw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=WAKFhdZyK7HD40XoPNoJKm5mL4rsXQP3NWhrKWK0Lv8=;
+        b=tkhxotQzMNS/84e+1iIUXadR/8wu+V1vzYgRh2Ofqgjn0UiFS8RtohOkSahN1x2BnB
+         Ezl3uybClY4/hFIRyNf0sBbVgHCuNzXtXJe55THmPY/prpnj3t3FvDAae+TTzydQKw+F
+         V0dlsni7YyKNdyiVKNvHvxbkh4VsGhEhktieKL5kqh5IxFfdFlFU8ZWJwRWwiFVNzhlv
+         pdvzWv4Yk55XFad7bMaX0qHn93hXvzxCM4diIFhfXz7YwWngfwBrPt37tej9vLRyEygs
+         TL0j5d9fmp2SzjsXIR61s9sUu3iuu5uFpEiDaUG2iBfBz99AhBekKJeHDFSi/270qNmo
+         OdnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yud86Z6TCLSzd0rR4y2aIB+ldRZqkAROXID9MEYSFRY=;
-        b=PSVwbEp4mAkmA1mKMKmDBMVw+9r3v5Aein29muCX/5uCFlLPLK8rgzaiXeWbs5wZEE
-         2eXx9FhlqwP+HA4tKXJt6vH3gE7I/II6dwg2b6AeLxg2jIx/C6y2y0B9gAiUiWAdGKCV
-         ICAvLZHrvFtftxIDz1cyIWWGZKGiI5acmxdmZOle5R6826kOjZmXkzTBmmvcdrfiU95U
-         jeVb6c1AJ2J/R8g7Up5QV9O7h8M4ZBtorzObsTtieOnKW4zhoKMPsNjfXf3DbOHyg06a
-         VxIHM20fw+RgKkufCgrOj5L4BsmAF4/Tk11xJSvMxOuSR6DDMVdMhU3UOzUa+WLGy/Oi
-         7qnQ==
-X-Gm-Message-State: APjAAAWaypDa4CyW3x5wQag00zyNB2SmMrkSqdLqaw9+0sxJt4VcKaSz
-        xp933umjKe7iEULfY4s5wFw=
-X-Google-Smtp-Source: APXvYqzg3ZTlrgWnSzwGAoyDQpR2QVy2mV1UbfhCVOs0nnzZiJ5QYI/WrPy1+HK2WaVmhK9ISXkm4A==
-X-Received: by 2002:a17:902:aa85:: with SMTP id d5mr17395774plr.16.1578858851944;
-        Sun, 12 Jan 2020 11:54:11 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=WAKFhdZyK7HD40XoPNoJKm5mL4rsXQP3NWhrKWK0Lv8=;
+        b=e8iIV8XOVgCBFSPWsNTChSVV2C9jvItTSbsz7G7aK32sy2hgZwmjZHevP49m5LEBro
+         baZsBYyxuu9EOTlYrSJJ4WhhlYzXs8PmgLI7kESFqqshLJRCgiH9CfkGJWAyVfVL39dO
+         ZmCPPRA3k9l4v80/giK/FYzLf7VMSSBczBxDVcdvBBt8CZojWBR4twFQBrF31FS6Eigd
+         4TASZPN/Bp1WgrvCjtzn13+6oVIE56P3sexKbEOpiMPybx4CXHYEUkjwkln/oBkHHv3E
+         0baUu2iiOEiSA2846CLS+dtxfgTthJv31khRAj506aZNbNRtPAJkvfJZlzCb6mpjwIT/
+         jUeA==
+X-Gm-Message-State: APjAAAW1mltg0SioLrGjPCaQfcoXUOx/iJZUfPxF0c00Lukl7wZmLdnN
+        UGozGATxNkUQfLGKpZTQdeE=
+X-Google-Smtp-Source: APXvYqwTHGhndNZNsQKYW9nTAcuiFTj1LSY80cI+G9OpcouT/PjQ1Ca1QJlhYXRZmaQOV1+0IG/iHw==
+X-Received: by 2002:a17:902:426:: with SMTP id 35mr10638467ple.302.1578858860792;
+        Sun, 12 Jan 2020 11:54:20 -0800 (PST)
 Received: from localhost (c-73-25-156-94.hsd1.or.comcast.net. [73.25.156.94])
-        by smtp.gmail.com with ESMTPSA id u128sm11418702pfu.60.2020.01.12.11.54.10
+        by smtp.gmail.com with ESMTPSA id 17sm11391924pfv.142.2020.01.12.11.54.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jan 2020 11:54:11 -0800 (PST)
+        Sun, 12 Jan 2020 11:54:20 -0800 (PST)
 From:   Rob Clark <robdclark@gmail.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
@@ -51,17 +51,19 @@ Cc:     freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         Sharat Masetty <smasetty@codeaurora.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Clark <robdclark@chromium.org>,
-        Brian Masney <masneyb@onstation.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), Douglas Anderson <dianders@chromium.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org (open list),
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: [PATCH v2 0/4] drm/msm: use firmware-name to find zap fw
-Date:   Sun, 12 Jan 2020 11:53:56 -0800
-Message-Id: <20200112195405.1132288-1-robdclark@gmail.com>
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2 3/4] dt-bindings: drm/msm/gpu: Document firmware-name
+Date:   Sun, 12 Jan 2020 11:53:59 -0800
+Message-Id: <20200112195405.1132288-4-robdclark@gmail.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200112195405.1132288-1-robdclark@gmail.com>
+References: <20200112195405.1132288-1-robdclark@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -71,36 +73,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rob Clark <robdclark@chromium.org>
 
-For devices which use zap fw to take the GPU out of secure mode on
-reset, the firmware is likely to be signed with a device specific key.
-Meaning that we can't have a single filesystem (or /lib/firmware) that
-works on multiple devices.
+The firmware-name property in the zap node can be used to specify a
+device specific zap firmware.
 
-So allow a firmware-name to be specified in the zap-shader node in dt.
-This moves the zap-shader node out of the core sdm845.dtsi and into per-
-device dts files.  Which also removes the need for /delete-node/ in
-sdm845-cheza.dtsi (as cheza devices do not use zap).
+Signed-off-by: Rob Clark <robdclark@chromium.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ Documentation/devicetree/bindings/display/msm/gpu.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-This aligns with how Bjorn has been handling the similar situation with
-adsp/cdsp/mpss fw:
-
-   https://patchwork.kernel.org/patch/11160089/
-
-Rob Clark (4):
-  drm/msm: support firmware-name for zap fw (v2)
-  drm/msm: allow zapfw to not be specified in gpulist
-  dt-bindings: drm/msm/gpu: Document firmware-name
-  arm64: dts: sdm845: move gpu zap nodes to per-device dts
-
- .../devicetree/bindings/display/msm/gpu.txt   |  3 ++
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi    |  1 -
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |  7 +++
- arch/arm64/boot/dts/qcom/sdm845-mtp.dts       |  7 +++
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  6 +--
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts |  7 +++
- drivers/gpu/drm/msm/adreno/adreno_gpu.c       | 50 +++++++++++++++----
- 7 files changed, 64 insertions(+), 17 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
+index 3e6cd3f64a78..7edc298a15f2 100644
+--- a/Documentation/devicetree/bindings/display/msm/gpu.txt
++++ b/Documentation/devicetree/bindings/display/msm/gpu.txt
+@@ -33,6 +33,8 @@ Required properties:
+ - zap-shader: For a5xx and a6xx devices this node contains a memory-region that
+   points to reserved memory to store the zap shader that can be used to help
+   bring the GPU out of secure mode.
++- firmware-name: optional property of the 'zap-shader' node, listing the
++  relative path of the device specific zap firmware.
+ 
+ Example 3xx/4xx/a5xx:
+ 
+@@ -85,6 +87,7 @@ Example a6xx (with GMU):
+ 
+ 		zap-shader {
+ 			memory-region = <&zap_shader_region>;
++			firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn"
+ 		};
+ 	};
+ };
 -- 
 2.24.1
 
