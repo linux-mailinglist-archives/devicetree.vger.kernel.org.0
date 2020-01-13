@@ -2,165 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 113FB1397E8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 18:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1CA913980A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 18:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728664AbgAMRil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jan 2020 12:38:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37720 "EHLO mail.kernel.org"
+        id S1728558AbgAMRuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jan 2020 12:50:40 -0500
+Received: from muru.com ([72.249.23.125]:50750 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728633AbgAMRil (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 13 Jan 2020 12:38:41 -0500
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A80012081E;
-        Mon, 13 Jan 2020 17:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1578937120;
-        bh=BukZKWNlxC+JwXLqOoHMayChsb+HPTO4K7l59x2xb2s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RUYgfHXRk8+M0dS1OS29Cv9nL6I6NxkyTZUnDDVcWiEvSUG3+0Gw7dIpWSlGfySkz
-         oFsfgZWidxVqOh4gA9/THmZmv6hzMmteJltwDXkTh+SEPKNgkz1zcmEY09kmTn3T8c
-         B+TpykPpdJR2O383fl8iii04+LNQITclltFneS8Q=
-Received: by mail-qt1-f175.google.com with SMTP id d18so9788589qtj.10;
-        Mon, 13 Jan 2020 09:38:40 -0800 (PST)
-X-Gm-Message-State: APjAAAXUbtL/oTX5zF2ZoeIUYQ5uQBJdqsVqWORT2AZT6F0H7CvKQ8sv
-        JsmC/jkiLYG5QhWYg3/uf8KPitaWTcjw6nBdFQ==
-X-Google-Smtp-Source: APXvYqz8ZpzCIdEqPnB6Xb4WCqJl6WDzcbEbT8Lk9bxvnLRfjwOfbd5b9X315eomLEuZjxSWd9Ult4Ze9/2TwzIblrk=
-X-Received: by 2002:ac8:5513:: with SMTP id j19mr15214178qtq.143.1578937119737;
- Mon, 13 Jan 2020 09:38:39 -0800 (PST)
-MIME-Version: 1.0
-References: <20191218062024.25475-1-rahul.tanwar@linux.intel.com>
-In-Reply-To: <20191218062024.25475-1-rahul.tanwar@linux.intel.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 13 Jan 2020 11:38:28 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKi0K5Db5CGk7AKqwHML3J8uD5AK8mjoGtiTupr41K_fQ@mail.gmail.com>
-Message-ID: <CAL_JsqKi0K5Db5CGk7AKqwHML3J8uD5AK8mjoGtiTupr41K_fQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: intel: Update to use generic bindings
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S1726435AbgAMRuk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Jan 2020 12:50:40 -0500
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id B3D868047;
+        Mon, 13 Jan 2020 17:51:21 +0000 (UTC)
+Date:   Mon, 13 Jan 2020 09:50:36 -0800
+From:   Tony Lindgren <tony@atomide.com>
+To:     Robert Nelson <robertcnelson@gmail.com>
+Cc:     "Matwey V. Kornilov" <matwey@sai.msu.ru>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        yixin zhu <yixin.zhu@linux.intel.com>, qi-ming.wu@intel.com,
-        cheol.yong.kim@intel.com
-Content-Type: text/plain; charset="UTF-8"
+        "open list:OMAP DEVICE TREE SUPPORT" <linux-omap@vger.kernel.org>,
+        "open list:OMAP DEVICE TREE SUPPORT" <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm: dts: am335x-boneblack-common: fix memory size
+Message-ID: <20200113175036.GL5885@atomide.com>
+References: <20200106130909.7697-1-matwey@sai.msu.ru>
+ <CAOCHtYgyN+qXXX1YeEcO+nvRFrAL1HAVVMvjfeJ5nvxVjtFKtg@mail.gmail.com>
+ <CAJs94EbUL6o9sM+pwxwpqHVDkFqy7wFRirET-Vq3SNVd3grUsA@mail.gmail.com>
+ <20200106210509.GF5885@atomide.com>
+ <CAOCHtYhKUyUwunnWDT1CuRTpzS78d7xKq3qB3Phys7RgUZnM3w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOCHtYhKUyUwunnWDT1CuRTpzS78d7xKq3qB3Phys7RgUZnM3w@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 18, 2019 at 12:20 AM Rahul Tanwar
-<rahul.tanwar@linux.intel.com> wrote:
->
-> Kernel 5.5 adds generic pin mux & cfg node schema. Update pinctrl bindings
-> for LGM to use these newly added schemas. Also, rename filename to match
-> the compatible string.
->
-> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
-> ---
->  .../devicetree/bindings/pinctrl/intel,lgm-io.yaml  |  76 ++++++++++++++
->  .../bindings/pinctrl/intel,lgm-pinctrl.yaml        | 116 ---------------------
->  2 files changed, 76 insertions(+), 116 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/intel,lgm-io.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
+* Robert Nelson <robertcnelson@gmail.com> [200107 18:33]:
+> On Mon, Jan 6, 2020 at 3:05 PM Tony Lindgren <tony@atomide.com> wrote:
+> >
+> > * Matwey V. Kornilov <matwey@sai.msu.ru> [200106 20:48]:
+> > > пн, 6 янв. 2020 г. в 23:44, Robert Nelson <robertcnelson@gmail.com>:
+> > > >
+> > > > On Mon, Jan 6, 2020 at 7:10 AM Matwey V. Kornilov <matwey@sai.msu.ru> wrote:
+> > > > >
+> > > > > BeagleBone Black series is equipped with 512MB RAM
+> > > > > whereas only 256MB is included from am335x-bone-common.dtsi
+> > > >
+> > > > FYI: While all versions from the factory are 512MB, some 3rd parties
+> > > > offered 1GB reballing upgrades..
+> >
+> > So what's the conclusion, is it safe to bump the default size to
+> > 512MB then?
+> >
+> > The custom ones could use their own dts file if bootloader is not
+> > setting the RAM.
+> 
+> Yeah this is safe for factory devices. Classic u-boot will update
+> these for modified boards.
 
-Pretty sure I've said on multiple occasions to run 'make
-dt_binding_check'... Linux-next is broken by this (and others).
+OK applying into fixes thanks.
 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/intel,lgm-io.yaml b/Documentation/devicetree/bindings/pinctrl/intel,lgm-io.yaml
-> new file mode 100644
-> index 000000000000..a386fb520510
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/intel,lgm-io.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bindings/pinctrl/intel,lgm-io.yaml#
-
-Drop 'bindings' from the path.
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel Lightning Mountain SoC pinmux & GPIO controller binding
-> +
-> +maintainers:
-> +  - Rahul Tanwar <rahul.tanwar@linux.intel.com>
-> +
-> +description: |
-> +  Pinmux & GPIO controller controls pin multiplexing & configuration including
-> +  GPIO function selection & GPIO attributes configuration.
-> +
-> +allOf:
-> +  - $ref: pincfg-node.yaml#
-> +  - $ref: pinmux-node.yaml#
-
-This 'allOf' is at the wrong level...
-
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,lgm-io
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +# Client device subnode's properties
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-
-...It should be here.
-
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +
-> +    properties:
-> +      function: true
-> +      group: true
-> +      pins: true
-> +      pinmux: true
-> +      bias-pull-up: true
-> +      bias-pull-down: true
-> +      drive-strength: true
-> +      slew-rate: true
-> +      drive-open-drain: true
-> +      output-enable: true
-> +
-> +    required:
-> +      - function
-> +      - group
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Pinmux controller node
-> +  - |
-> +    pinctrl: pinctrl@e2880000 {
-> +        compatible = "intel,lgm-io";
-> +        reg = <0xe2880000 0x100000>;
-> +
-> +        uart0-pins {
-> +             pins = <64>, /* UART_RX0 */
-> +                    <65>; /* UART_TX0 */
-> +             function = "CONSOLE_UART0";
-> +             pinmux = <1>,
-> +                      <1>;
-> +             groups = "CONSOLE_UART0";
-
-'groups' is not a defined property. Should be 'group'.
-
-> +          };
-> +    };
-> +
-> +...
+Tony
