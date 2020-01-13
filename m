@@ -2,78 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB7C139C18
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 23:03:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10848139C76
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 23:30:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728909AbgAMWDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jan 2020 17:03:17 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55446 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728836AbgAMWDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 17:03:17 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00DM359O037548;
-        Mon, 13 Jan 2020 16:03:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1578952985;
-        bh=Rug31THYwQPzP8BGKmAJvjnJL0H8q1fUltZDH8C1XQY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=MNGKiCq0/28AymdWvy+mdIznd2JMQoTm5hbutpzvfWH9eeOnlUq31M1Z25fakKZrH
-         Ycs4Sz3tkVsjJk47pM+IIoLvucZPg11R129autkxsPu1nEN61ITS+Dh0IF9oVGmlUp
-         k56YzmCUfroMCBwMjV1YkM9WUHlumMWwRjzuR80M=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00DM35RR057932
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 13 Jan 2020 16:03:05 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 13
- Jan 2020 16:03:04 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 13 Jan 2020 16:03:05 -0600
-Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with SMTP id 00DM34np014332;
-        Mon, 13 Jan 2020 16:03:04 -0600
-Date:   Mon, 13 Jan 2020 16:06:50 -0600
-From:   Benoit Parrot <bparrot@ti.com>
-To:     Jyri Sarha <jsarha@ti.com>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
-        <peter.ujfalusi@ti.com>, <praneeth@ti.com>, <yamonkar@cadence.com>,
-        <sjakhade@cadence.com>, <sam@ravnborg.org>, <robh+dt@kernel.org>,
-        <maxime@cerno.tech>
-Subject: Re: [PATCH v5 5/5] MAINTAINERS: add entry for tidss
-Message-ID: <20200113220650.p4dhulzhdhm6oxtm@ti.com>
-References: <cover.1576857145.git.jsarha@ti.com>
- <fdb8bc85150c39e039869974b4160a36c71ec9b5.1576857145.git.jsarha@ti.com>
+        id S1728797AbgAMWaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jan 2020 17:30:16 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:45871 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726530AbgAMWaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 17:30:15 -0500
+Received: by mail-oi1-f195.google.com with SMTP id n16so9901747oie.12
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2020 14:30:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2aqbv7Gs5aPw45r0A4Glmj6TozevE0VvRNxou586VsA=;
+        b=rcVBWp+mqQDUqAgR+sU7irAu2fZ6YAGdU48xqPOU5lmN+TM50A5UqBcN38HEVNX2A8
+         xbmuCc9Vo/O3zxN37++ILUnOgTGytu16X30fFVHwAFC6YO/cFtZMK//tKA8oxpxGsJxj
+         +7WGPKwiWOck4to5NVOrHJSM9ENMRVRsx5j+QU0Czbga3RQr+BwokBY31tnr7lHnT/A/
+         Ldf4qleeVxTA5Uii7JQsqRbRNunMUhMtALiyCaBpA9AyT1agtd8Dt/DdgVfjMYe4SBlo
+         4UqFIOJAQ6rO0chl7utiNK/rGZQFALP4MsRwMs8nT+/+SfSmYjcS5qf8a4+Ur5GS3kih
+         Teqg==
+X-Gm-Message-State: APjAAAWX/Wi3Z7w4n9HnGfga3H9va2uM3skDL4XZtW4KvkD5JFJ+vePn
+        dnWBp1JJETlpwVxcuM/Q/ceNptM=
+X-Google-Smtp-Source: APXvYqwFBNC0Fiuvxr0X8yQxDeccndYlIgmnp3yByVkAJhO8r7pp4+svnNhD7lJ0Z4iPvxuvz6uQAQ==
+X-Received: by 2002:a05:6808:4c2:: with SMTP id a2mr13570228oie.118.1578954614963;
+        Mon, 13 Jan 2020 14:30:14 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a17sm4591590otp.66.2020.01.13.14.30.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2020 14:30:13 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 220b00
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Mon, 13 Jan 2020 16:30:11 -0600
+Date:   Mon, 13 Jan 2020 16:30:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     skomatineni@nvidia.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, broonie@kernel.org, lgirdwood@gmail.com,
+        perex@perex.cz, tiwai@suse.com, digetx@gmail.com,
+        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
+        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        pdeschrijver@nvidia.com, pgaikwad@nvidia.com, spujar@nvidia.com,
+        josephl@nvidia.com, daniel.lezcano@linaro.org,
+        mmaddireddy@nvidia.com, markz@nvidia.com,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 06/21] dt-bindings: tegra: Convert Tegra PMC bindings
+ to YAML
+Message-ID: <20200113223011.GA18406@bogus>
+References: <1578457515-3477-1-git-send-email-skomatineni@nvidia.com>
+ <1578457515-3477-7-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <fdb8bc85150c39e039869974b4160a36c71ec9b5.1576857145.git.jsarha@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <1578457515-3477-7-git-send-email-skomatineni@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jyri Sarha <jsarha@ti.com> wrote on Fri [2019-Dec-20 17:55:13 +0200]:
-> Add entry for tidss DRM driver.
+On Tue, 7 Jan 2020 20:25:00 -0800, Sowjanya Komatineni wrote:
+> This patch converts text based Tegra PMC bindings document to YAML
+> schema for performing dt validation.
 > 
-> Version history:
+> Tested-by: Dmitry Osipenko <digetx@gmail.com>
+> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  .../bindings/arm/tegra/nvidia,tegra20-pmc.txt      | 300 ------------------
+>  .../bindings/arm/tegra/nvidia,tegra20-pmc.yaml     | 340 +++++++++++++++++++++
+>  2 files changed, 340 insertions(+), 300 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
 > 
-> v2: no change
-> 
-> v3: - Move tidss entry after omapdrm
->     - Add "T:     git git://anongit.freedesktop.org/drm/drm-misc"
-> 
-> v4: no change
-> 
-> v5: no change
-> 
-> Signed-off-by: Jyri Sarha <jsarha@ti.com>
 
-Reviewed-by: Benoit Parrot <bparrot@ti.com>
-
+Reviewed-by: Rob Herring <robh@kernel.org>
