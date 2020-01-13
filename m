@@ -2,85 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E12A6139C1D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 23:03:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE5C2139C0B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 23:00:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728952AbgAMWDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jan 2020 17:03:24 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:39958 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728949AbgAMWDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 17:03:22 -0500
-Received: by mail-oi1-f193.google.com with SMTP id c77so9845898oib.7
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2020 14:03:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TPVDmHPgyswCSzHUpaO4xXgku0uEWmnDxxOITskBC8M=;
-        b=YK6wH77vgs/j8FryEkPEe6teqqSQP6WnsAQup9dIny5OtFIO4Tkn9AcU1Jgo2/Aep0
-         hwFUXlnpvVpSdY0smVY/CWi1sC3QqY6OftIEhn6kWXYbk6Cjrk5oIYxRwdXttJcx5gPa
-         ZpV9CPpi0IrkCqzS0+/mp0YeKIKcOLjjyB5m8y9WgG5VJOVy2GbQv8XTjpc30HbgbKE3
-         KZUvekDYucwnmKn6huEQfI/oD1M8xQiHgakKaXLN1e2czKMmthHuskSDcOcM3qr9kOku
-         eXPqCLaJrAzTYVIJx2GZ13+uZOgDxmVTqPg29T1VYDQ6sB5YdaUjrcNwZZWjEb7k0sMm
-         gYvw==
-X-Gm-Message-State: APjAAAX7FG+b3Iz7ZdsqH9cmqlNMBKjntodypiQH3HTWLKPbN2DlqHjh
-        vymNtelyQdl+9YmMguQQ7Ib0h1U=
-X-Google-Smtp-Source: APXvYqzhYhzYSPEfvbX9Pzh2pcU83cpsWQlSQAd4VLhi+VKTAgK0Fb66Qx1q3G85oFOY/XDU/eBdqg==
-X-Received: by 2002:aca:4a87:: with SMTP id x129mr13899871oia.165.1578953001634;
-        Mon, 13 Jan 2020 14:03:21 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w201sm3954917oif.29.2020.01.13.14.03.19
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2020 14:03:19 -0800 (PST)
-Received: from rob (uid 1000)
-        (envelope-from rob@rob-hp-laptop)
-        id 22198d
-        by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Mon, 13 Jan 2020 16:03:18 -0600
-Date:   Mon, 13 Jan 2020 16:03:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     skomatineni@nvidia.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, broonie@kernel.org, lgirdwood@gmail.com,
-        perex@perex.cz, tiwai@suse.com, digetx@gmail.com,
-        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
-        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        pdeschrijver@nvidia.com, pgaikwad@nvidia.com, spujar@nvidia.com,
-        josephl@nvidia.com, daniel.lezcano@linaro.org,
-        mmaddireddy@nvidia.com, markz@nvidia.com,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 03/21] dt-bindings: clock: tegra: Add DT id for OSC
- clock
-Message-ID: <20200113220318.GA1891@bogus>
-References: <1578457515-3477-1-git-send-email-skomatineni@nvidia.com>
- <1578457515-3477-4-git-send-email-skomatineni@nvidia.com>
+        id S1728792AbgAMWAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jan 2020 17:00:45 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49300 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728733AbgAMWAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 17:00:45 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00DM0VWX053559;
+        Mon, 13 Jan 2020 16:00:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1578952831;
+        bh=h30FkLQxpT0s2f9FS/yiLRSqFGFXrqsriFcLOq47z28=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=CO36YNzavPNrUWISmqiu3nSpHhO0jzgPdudzYgEYdyQptk92DZK79W5UNIrozc02H
+         z+NKerOCIMPNQu5inkgH2ibXQ1vO721vydKPVGtrsXwSI7lGPgKhYVdin5qwMw+GFr
+         KwBozDBFvi0kkF+91WJ6R7+KVq7cDmd6cxQCeUeI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00DM0VKZ054106
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 13 Jan 2020 16:00:31 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 13
+ Jan 2020 16:00:30 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 13 Jan 2020 16:00:30 -0600
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with SMTP id 00DM0U0v010298;
+        Mon, 13 Jan 2020 16:00:30 -0600
+Date:   Mon, 13 Jan 2020 16:04:16 -0600
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Jyri Sarha <jsarha@ti.com>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
+        <peter.ujfalusi@ti.com>, <praneeth@ti.com>, <yamonkar@cadence.com>,
+        <sjakhade@cadence.com>, <sam@ravnborg.org>, <robh+dt@kernel.org>,
+        <maxime@cerno.tech>
+Subject: Re: [PATCH v5 1/5] dt-bindings: display: ti,k2g-dss: Add dt-schema
+ yaml binding
+Message-ID: <20200113220416.geymiqy4iueypf7n@ti.com>
+References: <cover.1576857145.git.jsarha@ti.com>
+ <a89be75beefdc4e9ab5f194495b49f3538c9fc5e.1576857145.git.jsarha@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <1578457515-3477-4-git-send-email-skomatineni@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <a89be75beefdc4e9ab5f194495b49f3538c9fc5e.1576857145.git.jsarha@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 7 Jan 2020 20:24:57 -0800, Sowjanya Komatineni wrote:
-> OSC is one of the parent for Tegra clocks clk_out_1, clk_out_2, and
-> clk_out_3.
+Jyri Sarha <jsarha@ti.com> wrote on Fri [2019-Dec-20 17:55:09 +0200]:
+> Add dt-schema yaml bindig for K2G DSS, an ultra-light version of TI
+> Keystone Display SubSystem.
 > 
-> This patch adds DT id for OSC clock to allow parent configuration
-> through device tree.
+> Version history:
 > 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  include/dt-bindings/clock/tegra114-car.h        | 2 +-
->  include/dt-bindings/clock/tegra124-car-common.h | 2 +-
->  include/dt-bindings/clock/tegra210-car.h        | 2 +-
->  include/dt-bindings/clock/tegra30-car.h         | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
+> v2: no change
 > 
+> v3: - Add ports node
+>     - Add includes to dts example
+>     - reindent dts example
+> 
+> v4: - Add descriptions to reg and clocks properties
+>     - Remove minItems when its value is the same as maxItems value
+>     - Remove ports node
+> 
+> v5: - itemize reg and clocks properties' descriptions
+> 
+> Signed-off-by: Jyri Sarha <jsarha@ti.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Benoit Parrot <bparrot@ti.com>
+
