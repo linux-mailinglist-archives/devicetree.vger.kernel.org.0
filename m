@@ -2,115 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D67B138A75
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 05:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F4E5138A9A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 06:19:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387588AbgAMEwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 12 Jan 2020 23:52:17 -0500
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:43396 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387540AbgAMEwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 12 Jan 2020 23:52:17 -0500
-Received: by mail-qk1-f196.google.com with SMTP id t129so7406532qke.10
-        for <devicetree@vger.kernel.org>; Sun, 12 Jan 2020 20:52:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=e91pGy24VVvYbYr4rZmi8ICedLezu/8qcs1+qti5PJ0=;
-        b=nJa1RC4Is4dH0rAe9i+D5MWd8LXDimOk6ZHr02eCBlWBA8xjfA1YwLeH281ThOQo26
-         3n0FogtRyfXpjYPLqCmbEwWd6PleQsb+MViHIIAEWMv1TouAMJ/z0HNp/N2WOxWDQey8
-         01RkACdWQwDmWqyqttBUE7JWHXXbHLKWKmir0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=e91pGy24VVvYbYr4rZmi8ICedLezu/8qcs1+qti5PJ0=;
-        b=Q6HhcpTqNHgB9Y7U1KVeqcIr+mccO21Dcv3BRecMfwp7gwbCQjmI0ZCbRILmkogclZ
-         rg63NSl/4HWMc6eCrDIjzAdcJzSraHFhXMVkNMcKfjvuJbH8rRnrtoYMLsmPCH5GOCg1
-         LYJWGoycBkpkJC76IS8KhDyQsEQahoRHugBluLUQ0k3vd/ml+ibGo/vSkpcOMPgeZHvb
-         GK3YIvdr5Rfplzx25QgW6dzYnWKC3Mw8PQxKgMjt3+w+YG6LfZhT1FupkhaaiLHYFqg8
-         tXF9DhRSyuntGn+Uf0WfCHEBOrYK4i4oqFyK4fLRz4tRTwJkSGCPvFSVoULXB1kg5L9g
-         eDig==
-X-Gm-Message-State: APjAAAVUFQ3HUi3vcLHLWORMGI+yjcPdTIivH90Xose/dSzFeMTbrzH0
-        2GvGfb0DY4qKjgve2YwshwKzOnvfehG4pOvunBH+Vg==
-X-Google-Smtp-Source: APXvYqxQiKAiE5eUtsTQf70lo04q3M2951zkP4HBkJ3NdNMiSbRwCRCDOu23qOqzzIb3z7Vd3CR6g4sfwUCYbV478kw=
-X-Received: by 2002:ae9:f003:: with SMTP id l3mr9903798qkg.457.1578891136362;
- Sun, 12 Jan 2020 20:52:16 -0800 (PST)
-MIME-Version: 1.0
-References: <20191226093930.22413-1-yong.liang@mediatek.com>
- <20191226093930.22413-2-yong.liang@mediatek.com> <675aa211-eba5-e44c-0931-32c1b6d5ca8b@gmail.com>
-In-Reply-To: <675aa211-eba5-e44c-0931-32c1b6d5ca8b@gmail.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Mon, 13 Jan 2020 12:52:05 +0800
-Message-ID: <CANMq1KDAsgxaxU+GTuDMLbQ-MSQHsk+iQCNDSRJ+SPRODyebDw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/1] amr64: dts: modify mt8183.dtsi
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Yong Liang <yong.liang@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+        id S1726336AbgAMFS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jan 2020 00:18:58 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:57177 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726109AbgAMFS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 13 Jan 2020 00:18:58 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5203E5E53;
+        Mon, 13 Jan 2020 00:18:57 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Mon, 13 Jan 2020 00:18:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=6RlrtGe1q52aL1FVbHTu04Aqfx
+        pcbL40rnxbamSASaQ=; b=YQsB2aith4yB1iR4q7Qv83xSwXmzwCJPLCqu22y4D4
+        WOvCJ5nJCXPYv1NwGctRu2pNiXX7Eb/bK97QCbnmxTSerI3r2BCJ1oc21tS42wH5
+        /XeOpgBxGZcqjazPw9djtJ/3UjGfWju3G0/dYWSAMSbBKjtGS8y3+fIawbTmrut2
+        +8ake2cs7vPMk+kP0/8L2DP3wFgdF2r1YZiqxOJ5Oa19agjPB4WgpRZOnkVz34wi
+        y0WLg5ah5owKJqTV8/xqjlLGF/o6TVy9Sc/hCcDk9jNGdtUJQq5Wxts33p1uK+Ly
+        B9/MN+TMltbC7doz0lgLzMMncYdWj1X+20lkC5caFe9Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=6RlrtGe1q52aL1FVb
+        HTu04AqfxpcbL40rnxbamSASaQ=; b=puh6hTBxLgcHepAg9hBIwKzIbBlH+8SA9
+        v8MZxJqQZFZnU3AIyGRg9IRPQJIamqanw6kh4nLB3sSP6pE66V2ibV+ZN+2Owgea
+        nbCLTzLX4C8DOn3ERRs/XdMQX5ru2g4QT1woctQVoUXuq9rP3IANNl3iypMy2ox/
+        7rCb1stKNDmu2Z+ILQX59ZaEzogQUUMv0O8rSnLN7GcTxh0S6rISA058P24zcix7
+        BKXYw7TlMsU9gYSRKbiMJyck2kgePy0rBHCL8a4d8l5Oo6TyCeDL6FF61HO931I4
+        WIqJyFe3quteXs2A3EFyqde27f4Xi0jgQDNoQqa1QFOr2raFPQ0dA==
+X-ME-Sender: <xms:vf0bXo56cXW2l6Y1on66Ze8BLTfeYodBIAvglnEqjcAdHVbuAinP7A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrvdeiledgkeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucffohhmrg
+    hinhepkhgvrhhnvghlrdhorhhgnecukfhppeejtddrudefhedrudegkedrudehudenucfr
+    rghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrghenuc
+    evlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:vf0bXn0LLzwxeJtfTtss5-A73Z59R1ByuHmCkmT5Eo5c0GHajikHfA>
+    <xmx:vf0bXvCvXMuf0aqxoNHxw8jHwGLHy7K5KqTmHNLEazGZNwnHFqfHBw>
+    <xmx:vf0bXp10YMv7sB_lSQiegZl2J5GZvuD4JIs0lsQ-mqCx1i14pm-jHg>
+    <xmx:wf0bXnydl4R1ASwqR8oeqLGwNj4wXOu9KC6-DgomT9xP51_EI6hBNg>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 75AE630607B4;
+        Mon, 13 Jan 2020 00:18:52 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Ondrej Jirman <megous@megous.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v6 0/6] Allwinner sun6i message box support
+Date:   Sun, 12 Jan 2020 23:18:46 -0600
+Message-Id: <20200113051852.15996-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.23.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 8, 2020 at 10:05 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->
->
->
-> On 26/12/2019 10:39, Yong Liang wrote:
-> > From: "yong.liang" <yong.liang@mediatek.com>
-> >
-> > Include mt8183-reset.h and add reset-cells in infracfg
-> > in dtsi file
-> >
-> > Signed-off-by: yong.liang <yong.liang@mediatek.com>
->
-> applied with fixed subject line to v5.5-next/dts64
+This series adds support for the "hardware message box" in sun8i, sun9i,
+and sun50i SoCs, used for communication with the ARISC management
+processor (the platform's equivalent of the ARM SCP). The end goal is to
+use the arm_scpi driver as a client, communicating with firmware running
+on the ARISC CPU.
 
-Well the subject line here still says amr64 ,-P
+I have tested this driver with various firmware programs and mailbox
+clients on the A64, H5, and H6 SoCs (including specifically the arm_scpi
+driver), and Ondrej Jirman has tested the driver on the A83T (using a
+similar patch to arm_scpi).
 
-https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.5-next/dts64&id=42f8e5356122feb2003d7696c83cfec46daa8d44
+The clock changes are dropped in favor of:
+https://lore.kernel.org/linux-clk/20191230193127.8803-1-samuel@sholland.org/
 
-I guess you can still fix this up as the branch has nothing else on it
-and we shoudn't care about stability.
+Hopefully I've learned my lesson that adding more tangentially-related
+patches doesn't increase the likelihood of getting things merged. This
+patch just includes the driver and the device tree changes.
 
->
-> Thanks
->
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 10b32471bc7b..76bfcbdf097a 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -8,6 +8,7 @@
-> >  #include <dt-bindings/clock/mt8183-clk.h>
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >  #include <dt-bindings/interrupt-controller/irq.h>
-> > +#include <dt-bindings/reset-controller/mt8183-resets.h>
-> >  #include "mt8183-pinfunc.h"
-> >
-> >  / {
-> > @@ -227,6 +228,7 @@
-> >                       compatible = "mediatek,mt8183-infracfg", "syscon";
-> >                       reg = <0 0x10001000 0 0x1000>;
-> >                       #clock-cells = <1>;
-> > +                     #reset-cells = <1>;
-> >               };
-> >
-> >               pio: pinctrl@10005000 {
-> >
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Thanks,
+Samuel
+
+Changes from v5:
+  - Rebased on tag sunxi-dt-for-5.5-2
+  - Dropped unnecessary/unrelated patches
+  - Addressed Maxime's dt-binding comments
+  - Used devm_reset_control_get_exclusive
+
+Changes from v4:
+  - Rebased on sunxi-next
+  - Dropped AR100 clock patch, as it was controversial and unnecessary
+  - Renamed sunxi-msgbox to sun6i-msgbox and sun6i-a31-msgbox
+  - Added comments about not asserting the reset line
+  - Dropped A80 DTS changes as they were untested
+  - Added Ondrej's Tested-by for A83T
+  - Dropped the demo; replaced with a real arm_scpi fix
+
+Changes from v3:
+  - Rebased on sunxi-next
+  - Added Rob's Reviewed-by for patch 3
+  - Fixed a crash when receiving a message on a disabled channel
+  - Cleaned up some comments/formatting in the driver
+  - Fixed #mbox-cells in sunxi-h3-h5.dtsi (patch 7)
+  - Removed the irqchip example (no longer relevant to the fw design)
+  - Added a demo/example client that uses the driver and a toy firmware
+
+Changes from v2:
+  - Merge patches 1-3
+  - Add a comment in the code explaining the CLK_IS_CRITICAL usage
+  - Add a patch to mark the AR100 clocks as critical
+  - Use YAML for the device tree binding
+  - Include a not-for-merge example usage of the mailbox
+
+Changes from v1:
+  - Marked message box clocks as critical instead of hacks in the driver
+  - 8 unidirectional channels instead of 4 bidirectional pairs
+  - Use per-SoC compatible strings and an A31 fallback compatible
+  - Dropped the mailbox framework patch
+  - Include DT patches for SoCs that document the message box
+
+Samuel Holland (6):
+  dt-bindings: mailbox: Add a sun6i message box binding
+  mailbox: sun6i-msgbox: Add a new mailbox driver
+  ARM: dts: sunxi: a83t: Add msgbox node
+  ARM: dts: sunxi: h3/h5: Add msgbox node
+  arm64: dts: allwinner: a64: Add msgbox node
+  arm64: dts: allwinner: h6: Add msgbox node
+
+ .../mailbox/allwinner,sun6i-a31-msgbox.yaml   |  80 +++++
+ arch/arm/boot/dts/sun8i-a83t.dtsi             |  10 +
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  10 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  10 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  10 +
+ drivers/mailbox/Kconfig                       |   9 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/sun6i-msgbox.c                | 332 ++++++++++++++++++
+ 8 files changed, 463 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/allwinner,sun6i-a31-msgbox.yaml
+ create mode 100644 drivers/mailbox/sun6i-msgbox.c
+
+-- 
+2.23.0
+
