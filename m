@@ -2,189 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 583F513992E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 19:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07639139966
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 19:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728799AbgAMSpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jan 2020 13:45:16 -0500
-Received: from mail-pj1-f67.google.com ([209.85.216.67]:35916 "EHLO
-        mail-pj1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728665AbgAMSpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 13:45:16 -0500
-Received: by mail-pj1-f67.google.com with SMTP id n59so4663208pjb.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2020 10:45:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Ma2e5QYJYr2+A6y40/wWxo50e76HZ6NsW8KSbxEHjSo=;
-        b=m+SbGLEhSGBwvvFJbDSHlMmJomNfrgDq8qjOcFCm8B7zoxv7EKK1gzWUONFYo8OX/W
-         08rMpkBfroMiE4JGp9r/tJZFHnsARi8orZHss/E1RhdsKBycHTuxlVFZjDan7xfObqNU
-         x3nw0x7PXDL2gS+qxOh2stpOLg5RJxAOIEQa+j4asWIm2VI/vkd/WW3hpIHNTP6twJPu
-         iqL+bZ5fdfvoSfWJBQGGsSs+seYjYOJjA48qEmIrkeqXerbaevThP4alSG+cZroztMw6
-         NwQ9ugcyRVRGvERYR+wgH7wLrrmUuJynpXa55IfKW93CwvPd5DlLIPw7B6vM6VpNlZIt
-         IoyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ma2e5QYJYr2+A6y40/wWxo50e76HZ6NsW8KSbxEHjSo=;
-        b=QJMtUoG7RzGHDE/tkXTkBLYHDTbBjz4D5mp8HkyRiLst6MCGLTXCebwjAYG/CNoMZ1
-         LSMSvKl34Eg20PZf2inEE/X84U/b+07gQl3womRwjbK0M1WBick4AuwVFhvuxzYOBvB2
-         cCGiiMF0f5v5mI/aoqVocETSAtcuWGbFFGX8aer2UPUaHH2ZxrG6Jeq4dLudkmATfArA
-         cehJKWym6/Y2kNS71kmRW0GvjPhuTY8597mP3mL1A7QfL9Lw+SetFHBDU4SuMXXzyNFG
-         ccR9MnoNJFpGIk9y+VX54NfuBg03Xpqv/Hi2/TSbPr2TnEzlimYMFuB0IwLNKHh9+hH+
-         vwVg==
-X-Gm-Message-State: APjAAAVUdnuYp35eSyYO5/wyN1RR5TuYVkEQIhHO1kl2LOWQ533+7RQ5
-        PhnIM+jGZLG5XeaObh2C2YGxmA==
-X-Google-Smtp-Source: APXvYqzHz76NihH7xSMfwYbiUU9+Ra4XYRiSYA8sn78I7UDiQzEwqFB/ZeMZpOI8LWIDNUUolUUMNw==
-X-Received: by 2002:a17:90b:8ce:: with SMTP id ds14mr14763316pjb.57.1578941114957;
-        Mon, 13 Jan 2020 10:45:14 -0800 (PST)
-Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id u18sm14254825pgn.9.2020.01.13.10.45.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2020 10:45:14 -0800 (PST)
-Date:   Mon, 13 Jan 2020 10:45:11 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Sharat Masetty <smasetty@codeaurora.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Andy Gross <agross@kernel.org>,
+        id S1728674AbgAMS47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jan 2020 13:56:59 -0500
+Received: from mout.kundenserver.de ([212.227.126.135]:56589 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726985AbgAMS46 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 13:56:58 -0500
+Received: from localhost.localdomain ([37.4.249.154]) by
+ mrelayeu.kundenserver.de (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1M5fdC-1il0Lq3iMk-007BNQ; Mon, 13 Jan 2020 19:56:41 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/4] arm64: dts: sdm845: move gpu zap nodes to
- per-device dts
-Message-ID: <20200113184511.GB1511@yoga>
-References: <20200112195405.1132288-1-robdclark@gmail.com>
- <20200112195405.1132288-5-robdclark@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200112195405.1132288-5-robdclark@gmail.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH V5 0/4] ARM: Enable thermal support for Raspberry Pi 4
+Date:   Mon, 13 Jan 2020 19:56:14 +0100
+Message-Id: <1578941778-23321-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:hv0hsyqJpIwtbxYMr5BT7QCXdH39k5R/zvSb7rg54zqAk2xVZdt
+ vqACBCM0IqNpkOOTIylb5dwGyyf5vtgFWk5hM8ifMETYCoaHMiXocVmc/u6L0jVJ3a70GG0
+ WqH44JD2oGbMpWrPyeo56FQNAvk9R6ldrtNEgAbXNIhYvYVrW5zf3zsKF+8u/0zL5B8SUTN
+ fimf7LOArh48+BUHwVVMw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ipaKVj28PZs=:Wp79E36xfZoin7V0NtPfVO
+ 2IiRI/BtF4+V5ucyiYw4DA9CWBhL7ysioYVaxZUdIOclJoKL1jURyLG00hk6e4v5knohS2Gve
+ oeq+me+cNaIrissmLGCSBfMuFhDGDMUs198CGvXJ1F2lKvNmQe9TQqEScUCIT9Pz3/IO5KD+A
+ R7eYfZjuqhyhAk1sZzOShCIND/lGEupAns2GWqJ9e8mmIJCSHow2bUx1CnNYtHAIK2kGgu+OY
+ 8oJcfeaDaoNrPnJtS3AgNwmj9kGCVN94SUevoX4blg6AuWPytWHcJ4oeKlQI2j6sjBp+CVybF
+ hBb4D4mtqXlDh7/SEHwc9bItJLGE2CwsvKcjZWOo5ddoX4GDtipxu0CZ5VSjXP5hPGpwWlIeE
+ /InOwbuakmSjFqJpyW4HcC71Lz5y//yeuAhub7PToo9WMIeuKeJzknPI2jBEZLtXqlo1UPGkl
+ rQTYBfnaM6E+LV8veCl/OVmW9aiNavKU2gcMWJ9uNghWJiKsrnywMZ5LWb/5BgBs9x73wM/mG
+ Gy+5SS4cb7JR2Sg7ojGnF4AjdUAw/nOJAfiJeQFl6/k1iMNrgSWJko+mWiNBYZd0f4wi/wKNo
+ LzAoWMGEKRSFeaeVq1ZJQuhzqnyU2MWHDv3Ny51E3JZ8O14GGUFe9xPQCnNym2jOh8mYgT1wm
+ xaejTbj6+3zi65viJJ3vcb5ajhdBaYjJpn4flhNU+v7LjMKEYhvzaaE89WKF6QUuV6DK2H8D3
+ rWob67I3BOzJX/NyEghuqcqoVeAefLoQ1+9z94AI1XiDHWcOfTj23vLLHQ7crTJaWXkkQbSKT
+ wkSPKRHbKHMhXJXICcosys6C/GjTM7cOGtgwzWO0RzPxgzV95pJ1todNZpenkpGt9MerMb07F
+ 7NvciYDn0MRnn36LWT+A8xDfABGEIsXO9Pj2yWHkA=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 12 Jan 11:54 PST 2020, Rob Clark wrote:
+This series enables thermal support for the Raspberry Pi 4. Neither the
+bcm2835_thermal nor the brcmstb_thermal are suitable for the BCM2711.
+So add a new thermal driver to read out the SoC temperature from the
+AVS RO block of the BCM2711.
 
-> From: Rob Clark <robdclark@chromium.org>
-> 
-> We want to specify per-device firmware-name, so move the zap node into
-> the .dts file for individual boards/devices.  This lets us get rid of
-> the /delete-node/ for cheza, which does not use zap.
-> 
+Changes in V5:
+- git the rid of device member in private structure
+- improve readability of bcm2711_get_temp
+- avoid trace message in get_temp callback
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Changes in V4:
+- change my email address to avoid spurious characters
 
-> Signed-off-by: Rob Clark <robdclark@chromium.org>
-> ---
-> v2: use 'sdm845' for subdir for devices that use test-key signed fw
-> 
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi           | 1 -
->  arch/arm64/boot/dts/qcom/sdm845-db845c.dts           | 7 +++++++
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts              | 7 +++++++
->  arch/arm64/boot/dts/qcom/sdm845.dtsi                 | 6 +-----
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 7 +++++++
->  5 files changed, 22 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> index 9a4ff57fc877..2db79c1ecdac 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> @@ -165,7 +165,6 @@ panel_in_edp: endpoint {
->  /delete-node/ &venus_mem;
->  /delete-node/ &cdsp_mem;
->  /delete-node/ &cdsp_pas;
-> -/delete-node/ &zap_shader;
->  /delete-node/ &gpu_mem;
->  
->  /* Increase the size from 120 MB to 128 MB */
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index d100f46791a6..6cd9201ffbbd 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -352,6 +352,13 @@ &gcc {
->  			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
->  };
->  
-> +&gpu {
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sdm845/a630_zap.mbn";
-> +	};
-> +};
-> +
->  &pm8998_gpio {
->  	vol_up_pin_a: vol-up-active {
->  		pins = "gpio6";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> index c57548b7b250..09ad37b0dd71 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> @@ -360,6 +360,13 @@ &gcc {
->  			   <GCC_LPASS_SWAY_CLK>;
->  };
->  
-> +&gpu {
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/sdm845/a630_zap.mbn";
-> +	};
-> +};
-> +
->  &i2c10 {
->  	status = "okay";
->  	clock-frequency = <400000>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index ddb1f23c936f..601c57cc9b6d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2804,7 +2804,7 @@ dsi1_phy: dsi-phy@ae96400 {
->  			};
->  		};
->  
-> -		gpu@5000000 {
-> +		gpu: gpu@5000000 {
->  			compatible = "qcom,adreno-630.2", "qcom,adreno";
->  			#stream-id-cells = <16>;
->  
-> @@ -2824,10 +2824,6 @@ gpu@5000000 {
->  
->  			qcom,gmu = <&gmu>;
->  
-> -			zap_shader: zap-shader {
-> -				memory-region = <&gpu_mem>;
-> -			};
-> -
->  			gpu_opp_table: opp-table {
->  				compatible = "operating-points-v2";
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 13dc619687f3..b255be3a4a0a 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -245,6 +245,13 @@ &gcc {
->  			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
->  };
->  
-> +&gpu {
-> +	zap-shader {
-> +		memory-region = <&gpu_mem>;
-> +		firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn";
-> +	};
-> +};
-> +
->  &i2c1 {
->  	status = "okay";
->  	clock-frequency = <400000>;
-> -- 
-> 2.24.1
-> 
+Changes in V3:
+- add Rob's, Florian's and Nicolas' reviewed-by/tested-by
+- adjust binding license
+- make error pointer handling consistent
+
+Changes in V2:
+- rebase on thermal/linux-next
+- convert binding to YAML
+- make AVS RO block a subnode of AVS monitor and access it via syscon
+- drop unnecessary TSENS clock and get the rid of remove callback
+- add Florian's reviewed-by to last/unchanged patch
+
+Stefan Wahren (4):
+  dt-bindings: Add Broadcom AVS RO thermal
+  thermal: Add BCM2711 thermal driver
+  ARM: dts: bcm2711: Enable thermal
+  ARM: configs: Build BCM2711 thermal as module
+
+ .../bindings/thermal/brcm,avs-ro-thermal.yaml      |  45 ++++++++
+ arch/arm/boot/dts/bcm2711.dtsi                     |  12 ++
+ arch/arm/configs/multi_v7_defconfig                |   1 +
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/thermal/broadcom/Kconfig                   |   7 ++
+ drivers/thermal/broadcom/Makefile                  |   1 +
+ drivers/thermal/broadcom/bcm2711_thermal.c         | 123 +++++++++++++++++++++
+ 7 files changed, 190 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+ create mode 100644 drivers/thermal/broadcom/bcm2711_thermal.c
+
+-- 
+2.7.4
+
