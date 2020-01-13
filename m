@@ -2,149 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6139B139C04
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 23:00:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E12A6139C1D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2020 23:03:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728916AbgAMWAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jan 2020 17:00:00 -0500
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:45488 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728733AbgAMWAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 17:00:00 -0500
-Received: by mail-pf1-f193.google.com with SMTP id 2so5508175pfg.12
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2020 14:00:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=FDBSCFeDWTbY58059YufZG1qGkZAqqtwHIzXdBIurps=;
-        b=V41NXNx92G9QE82/gdHR924ckvA7zTp+qtJThQsSIz9mtMXQqqw6+f4jyoq1JY4idd
-         WTmT6EDp+PIaUeLZT7swCYSXt+vED8KssypVQpDcsnUkUaQLW8DP8hfOYGewdCQ7XJom
-         8c3LBlb80ztpXppjm8NPjK4cbCIMK1A5IbLsQ=
+        id S1728952AbgAMWDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jan 2020 17:03:24 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:39958 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728949AbgAMWDW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 17:03:22 -0500
+Received: by mail-oi1-f193.google.com with SMTP id c77so9845898oib.7
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2020 14:03:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=FDBSCFeDWTbY58059YufZG1qGkZAqqtwHIzXdBIurps=;
-        b=k8iIobaejIvgS+mb2b1A01yqfigHg2wzoXbVehKgvkBu9AUZxZ5ieoIvso+Uvmq+ER
-         3K7/pv7oMFgm6DESacVe7IRJ29ZYofRGDNeyjDHrKODfZA5+xzGMm/4sSxgG6acortxE
-         cmU67oDSVYz0KZSoDRIiIkGbatMUg125lRu2j9AlBCUHyoBAitbdYtK9xI7KcB3BZanw
-         lnOP0zdaOmoQkx2wwjZ5TKAFvLb/HuJI4j+nVdSFG3g5OJgp92uk1MoupU9eqbEodykn
-         WKWwRqY+3BzHQzT2ceVH0m5vkoyLngkmQOTZNM2YpgdD65RCEhtOKNZiYQimxlRHXj/m
-         WB6A==
-X-Gm-Message-State: APjAAAWp3gRPbOAqyif/ddLFJ5wC/uAs3rd3BbM4BsbFZ/muBH0wW0FE
-        ri6wwnqvFsvtv4zbkxA/Kh/F6g==
-X-Google-Smtp-Source: APXvYqwBTZWU7x3UKOtRpFfBMLgYzxZkpEU97jGquP31XxAuDz7Rtm2g44M1sjVBdEr3X+k+2XymsQ==
-X-Received: by 2002:a62:f94d:: with SMTP id g13mr21459678pfm.60.1578952799897;
-        Mon, 13 Jan 2020 13:59:59 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
-        by smtp.gmail.com with ESMTPSA id x11sm14772117pfn.53.2020.01.13.13.59.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jan 2020 13:59:59 -0800 (PST)
-Date:   Mon, 13 Jan 2020 13:59:58 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Harigovindan P <harigovi@codeaurora.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        robdclark@gmail.com, seanpaul@chromium.org, sean@poorly.run
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: add sc7180 panel variant
-Message-ID: <20200113215958.GI89495@google.com>
-References: <1578396597-18324-1-git-send-email-harigovi@codeaurora.org>
- <1578396597-18324-2-git-send-email-harigovi@codeaurora.org>
+        bh=TPVDmHPgyswCSzHUpaO4xXgku0uEWmnDxxOITskBC8M=;
+        b=YK6wH77vgs/j8FryEkPEe6teqqSQP6WnsAQup9dIny5OtFIO4Tkn9AcU1Jgo2/Aep0
+         hwFUXlnpvVpSdY0smVY/CWi1sC3QqY6OftIEhn6kWXYbk6Cjrk5oIYxRwdXttJcx5gPa
+         ZpV9CPpi0IrkCqzS0+/mp0YeKIKcOLjjyB5m8y9WgG5VJOVy2GbQv8XTjpc30HbgbKE3
+         KZUvekDYucwnmKn6huEQfI/oD1M8xQiHgakKaXLN1e2czKMmthHuskSDcOcM3qr9kOku
+         eXPqCLaJrAzTYVIJx2GZ13+uZOgDxmVTqPg29T1VYDQ6sB5YdaUjrcNwZZWjEb7k0sMm
+         gYvw==
+X-Gm-Message-State: APjAAAX7FG+b3Iz7ZdsqH9cmqlNMBKjntodypiQH3HTWLKPbN2DlqHjh
+        vymNtelyQdl+9YmMguQQ7Ib0h1U=
+X-Google-Smtp-Source: APXvYqzhYhzYSPEfvbX9Pzh2pcU83cpsWQlSQAd4VLhi+VKTAgK0Fb66Qx1q3G85oFOY/XDU/eBdqg==
+X-Received: by 2002:aca:4a87:: with SMTP id x129mr13899871oia.165.1578953001634;
+        Mon, 13 Jan 2020 14:03:21 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w201sm3954917oif.29.2020.01.13.14.03.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2020 14:03:19 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 22198d
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Mon, 13 Jan 2020 16:03:18 -0600
+Date:   Mon, 13 Jan 2020 16:03:18 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     skomatineni@nvidia.com, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, broonie@kernel.org, lgirdwood@gmail.com,
+        perex@perex.cz, tiwai@suse.com, digetx@gmail.com,
+        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
+        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        pdeschrijver@nvidia.com, pgaikwad@nvidia.com, spujar@nvidia.com,
+        josephl@nvidia.com, daniel.lezcano@linaro.org,
+        mmaddireddy@nvidia.com, markz@nvidia.com,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 03/21] dt-bindings: clock: tegra: Add DT id for OSC
+ clock
+Message-ID: <20200113220318.GA1891@bogus>
+References: <1578457515-3477-1-git-send-email-skomatineni@nvidia.com>
+ <1578457515-3477-4-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1578396597-18324-2-git-send-email-harigovi@codeaurora.org>
+In-Reply-To: <1578457515-3477-4-git-send-email-skomatineni@nvidia.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, Jan 07, 2020 at 04:59:56PM +0530, Harigovindan P wrote:
-> Subject: dt-bindings: display: add sc7180 panel variant
->
-> Add a compatible string to support sc7180 panel version.
-
-The sc7180 is a SoC, I suppose you are referring to the sc7180-idp, a
-board based on this SoC. But even with the correct board name, this
-isn't a good commit message. The board is irrelevant here, the display
-could be used on dozens of other boards.
-
-Apparently the panel is the Visionix RM69299, please use this instead
-of 'sc7180'.
-
-Thanks
-
-Matthias
-
-> Changes in v1:
-> 	-Added a compatible string to support sc7180 panel version.
-> Changes in v2:
-> 	-Removed unwanted properties from description.
-> 	-Creating source files without execute permissions(Rob Herring).
+On Tue, 7 Jan 2020 20:24:57 -0800, Sowjanya Komatineni wrote:
+> OSC is one of the parent for Tegra clocks clk_out_1, clk_out_2, and
+> clk_out_3.
 > 
-> Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
+> This patch adds DT id for OSC clock to allow parent configuration
+> through device tree.
+> 
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
 > ---
->  .../bindings/display/visionox,rm69299.txt          | 48 ++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/visionox,rm69299.txt
+>  include/dt-bindings/clock/tegra114-car.h        | 2 +-
+>  include/dt-bindings/clock/tegra124-car-common.h | 2 +-
+>  include/dt-bindings/clock/tegra210-car.h        | 2 +-
+>  include/dt-bindings/clock/tegra30-car.h         | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/visionox,rm69299.txt b/Documentation/devicetree/bindings/display/visionox,rm69299.txt
-> new file mode 100644
-> index 0000000..d7bbd5f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/visionox,rm69299.txt
-> @@ -0,0 +1,48 @@
-> +Visionox model RM69299 DSI display driver
-> +
-> +The Visionox RM69299 is a generic display driver, currently only configured
-> +for use in the 1080p display on the Qualcomm SC7180 MTP board.
-> +
-> +Required properties:
-> +- compatible: should be "visionox,rm69299-1080p-display"
-> +- vdda-supply: phandle of the regulator that provides the supply voltage
-> +  Power IC supply
-> +- vdd3p3-supply: phandle of the regulator that provides the supply voltage
-> +  Power IC supply
-> +- reset-gpios: phandle of gpio for reset line
-> +  This should be 8mA, gpio can be configured using mux, pinctrl, pinctrl-names
-> +  (active low)
-> +- ports: This device has one video port driven by one DSI. Their connections
-> +  are modeled using the OF graph bindings specified in
-> +  Documentation/devicetree/bindings/graph.txt.
-> +  - port@0: DSI input port driven by master DSI
-> +
-> +Example:
-> +
-> +	dsi@ae94000 {
-> +		panel@0 {
-> +			compatible = "visionox,rm69299-1080p-display";
-> +			reg = <0>;
-> +
-> +			vdda-supply = <&src_pp1800_l8c>;
-> +			vdd3p3-supply = <&src_pp2800_l18a>;
-> +
-> +			pinctrl-names = "default", "suspend";
-> +			pinctrl-0 = <&disp_pins_default>;
-> +			pinctrl-1 = <&disp_pins_default>;
-> +
-> +			reset-gpios = <&pm6150l_gpios 3 0>;
-> +
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				port@0 {
-> +					reg = <0>;
-> +					panel0_in: endpoint {
-> +						remote-endpoint = <&dsi0_out>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +	};
-> -- 
-> 2.7.4
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
