@@ -2,143 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2513013B2A1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 20:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4481913B2D2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 20:20:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728765AbgANTGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 14:06:38 -0500
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:34379 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728872AbgANTGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 14:06:30 -0500
-Received: by mail-pf1-f193.google.com with SMTP id i6so7029030pfc.1;
-        Tue, 14 Jan 2020 11:06:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=pdqFhCoobMXuCQErm2fyAM9nvtAnhN2zKc0BHszTXso=;
-        b=XICSL1Rk08ZtNKUFEan9CneKTurtx+KU4l8I9KYCJJvel3de5/tnLtPzCWmhy5tWuS
-         zVJOubUDyYYgFfZMSuVu6UORRh4R0C8s21pJ1m/QNOMDcN3ZLNKu/6MtF1C9jqskKbOZ
-         zQLTmkbcdraiIGNfhTHDULSOzrM2hc1dNAwqe4eEVeDCY8lkA9HxRZe0yO31aeVjm+oh
-         oi+SZ1Q/rG55ihhOiS8a/ZCTXezKkZLpDbz5NYUpjM3zWRQKgzd88Ppyk0X1fuc5uiLC
-         06SOKTxr+xAuXG8NScl6LMDuQXAeHzzqiG27mfSvgm80c77vroHU+MzrVg/XPZE4V+Ic
-         s1SQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=pdqFhCoobMXuCQErm2fyAM9nvtAnhN2zKc0BHszTXso=;
-        b=f1bZ1wwMLn2pzOe4RhV0TsePdFy+NF4MCUOZN2p8KSiZ6jp1nkpQ5vlXyP95gUBEKr
-         8bMkZc2KotIaZrLUhiZ70Trx8zZbVOKZRXFCm1/3GyUGmvv2rEEUkP8Oq2eZcmmOZEUB
-         L0+BI6G8eXhhL+J7Yecoz1qazp64N8M2K29oqQhoHQZqWvKCKIfRnBbBWLdbgdv1s89+
-         2jrCASlWdiyt5+3g6P4yjCFV1Bpg7+I/3LVzmw9z1cnwzN1n7di50zmusG9iv1AGHk87
-         A878ZP4BNd9CgFrWz/6E3YkamVdvyBkcPPfvI4/jt7Xz0aR0wRxVeRobL7Jlx6w6E9/F
-         OPHg==
-X-Gm-Message-State: APjAAAWLBBgZ2EW2h9qC17ozmZFIs5SE5GoewH6kIpHqR463GtYYRLlr
-        m55QwQ780y7zmIRpmpqeUkN07JRH
-X-Google-Smtp-Source: APXvYqzRroJjj7y1B13WecukIAzkgxjPBRhiKYGRxVC0DQon8cavTK407Wh+9iS54uf7EUBtSdwnPg==
-X-Received: by 2002:aa7:9111:: with SMTP id 17mr27652957pfh.163.1579028789694;
-        Tue, 14 Jan 2020 11:06:29 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id a195sm19284528pfa.120.2020.01.14.11.06.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jan 2020 11:06:29 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-kernel@vger.kernel.org, daniel.lezcano@linaro.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Markus Mayer <mmayer@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM STB AVS TMON
-        DRIVER), Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728734AbgANTU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 14:20:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44612 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726491AbgANTUZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jan 2020 14:20:25 -0500
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 09D9B24679;
+        Tue, 14 Jan 2020 19:20:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579029624;
+        bh=51mPKvKOvFBPcyebnpeFfrpdOAPyvnnFW5SZb3BDz5A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=0AzsTqV+6NRVdOwYlop8UGvirDY6l6CFWTp76WjFI/3G25rUyinXv5ASQPgWsOVJB
+         GomQpKA16rlD6ylSIvLNc5VHnSKssm/NbO/8Yw2Fo/Z0klQ0VVy4HF3/DXH09v5NM9
+         gg5eboqH985MWFANNYfhEI/QvEHQa1j0DAYBFmCs=
+Received: by mail-qt1-f179.google.com with SMTP id t3so13466245qtr.11;
+        Tue, 14 Jan 2020 11:20:24 -0800 (PST)
+X-Gm-Message-State: APjAAAXkfrlErTvvVstfO50qZEx6h/QYWNWp9B5OdmkKFSGrfC3j9/5b
+        VfChq1K3HRDu91ucGLDbwITNQVX6iHQ5mtA3BA==
+X-Google-Smtp-Source: APXvYqxtoC7YzVsJSq0poDkCvJI/CcjPKwVkad6yKqrUxD2hA8j7iTo4qnjLsj9KT03fSLGDVtvDkqcYswDEUHsVCD0=
+X-Received: by 2002:ac8:6747:: with SMTP id n7mr128832qtp.224.1579029623073;
+ Tue, 14 Jan 2020 11:20:23 -0800 (PST)
+MIME-Version: 1.0
+References: <1575649028-10909-1-git-send-email-fabrice.gasnier@st.com>
+ <20191217234345.GA7738@bogus> <cadc76a7-7e9d-1f0a-21fd-2d7942dbe5c9@st.com>
+In-Reply-To: <cadc76a7-7e9d-1f0a-21fd-2d7942dbe5c9@st.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 14 Jan 2020 13:20:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJdw=WzMhp1d9E3131AuyO7in7bgR5X4NM1n7Ox4X0YXw@mail.gmail.com>
+Message-ID: <CAL_JsqJdw=WzMhp1d9E3131AuyO7in7bgR5X4NM1n7Ox4X0YXw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: iio: adc: stm32-adc: convert bindings to json-schema
+To:     Fabrice Gasnier <fabrice.gasnier@st.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-pm@vger.kernel.org (open list:BROADCOM STB AVS TMON DRIVER),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE)
-Subject: [PATCH v3 6/6] thermal: brcmstb_thermal: Register different ops per process
-Date:   Tue, 14 Jan 2020 11:06:07 -0800
-Message-Id: <20200114190607.29339-7-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200114190607.29339-1-f.fainelli@gmail.com>
-References: <20200114190607.29339-1-f.fainelli@gmail.com>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        olivier moysan <olivier.moysan@st.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since we do not have interrupts on BCM7216, we cannot have trip point
-crossing, the thermal subsystem expects us to provide a NULL set_trips
-operation in that case, so make it possible to provide per-process
-thermal_zone_of_device_ops
+On Tue, Jan 14, 2020 at 10:02 AM Fabrice Gasnier <fabrice.gasnier@st.com> wrote:
+>
+> On 12/18/19 12:43 AM, Rob Herring wrote:
+> > On Fri, Dec 06, 2019 at 05:17:08PM +0100, Fabrice Gasnier wrote:
+> >> Convert the STM32 ADC binding to DT schema format using json-schema
+> >>
+> >> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
+> >> ---
+> >> Note: this applies on top of IIO tree currently (iio-for-5.5c).
+> >>
+> >> Changes in V2:
+> >> - Take almost all of Rob suggestions (removed reg generic description,
+> >>   added minItems, maxItems, st,max-clk-rate-hz range, drop some pipes,
+> >>   simplify clock-names, remove unneeded allOfs)
+> >> - For now, keep all in one file despite there are lots of if/thens in the
+> >>   bindings
+> >> ---
+> >>  .../devicetree/bindings/iio/adc/st,stm32-adc.txt   | 149 -------
+> >>  .../devicetree/bindings/iio/adc/st,stm32-adc.yaml  | 454 +++++++++++++++++++++
+> >>  2 files changed, 454 insertions(+), 149 deletions(-)
+> >>  delete mode 100644 Documentation/devicetree/bindings/iio/adc/st,stm32-adc.txt
+> >>  create mode 100644 Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml
+> >
+> >
+>
+>
+> [snip]
+>
+> >> +
+> >> +      st,adc-channels:
+> >> +        description: |
+> >> +          List of single-ended channels muxed for this ADC. It can have up to:
+> >> +            - 16 channels, numbered from 0 to 15 (for in0..in15) on stm32f4
+> >> +            - 20 channels, numbered from 0 to 19 (for in0..in19) on stm32h7 and
+> >> +              stm32mp1.
+> >> +        allOf:
+> >> +          - $ref: /schemas/types.yaml#/definitions/uint32-array
+> >> +
+>
+> [snip]
+>
+> >> +
+> >> +    allOf:
+> >> +      - if:
+> >> +          properties:
+> >> +            compatible:
+> >> +              contains:
+> >> +                const: st,stm32f4-adc
+> >> +
+> >> +        then:
+> >> +          properties:
+> >> +            reg:
+> >> +              enum:
+> >> +                - 0x0
+> >> +                - 0x100
+> >> +                - 0x200
+> >> +
+> >> +            interrupts:
+> >> +              minimum: 0
+> >> +              maximum: 2
+> >> +
+> >> +            assigned-resolution-bits:
+> >> +              enum: [6, 8, 10, 12]
+> >> +              default: 12
+> >> +
+> >> +            st,adc-channels:
+> >> +              minItems: 1
+> >> +              maxItems: 16
+> >> +              minimum: 0
+> >> +              maximum: 15
+> >
+> > You are mixing array and scalar constraints here. You need:
+> >
+> > minItems: 1
+> > maxItems:16
+> > items:
+> >   minimum: 0
+> >   maximum: 15
+> >
+> > Update dtschema. It will now catch this. There's a few others too.
+>
+> Hi Rob,
+>
+> Sorry for the late reply. I updated dtschema. Now it catches it.
+>
+> I've tried your suggestion, but when I test it, I don't get any error on
+> maxItems.
+>
+> In the example: "st,adc-channels = <0>, <1>, ... more than 16 items;"
+>
+> Is it possible I face some other issue with dtschema ?
 
-Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- drivers/thermal/broadcom/brcmstb_thermal.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+The problem is how "<0>, <1>" vs. "<0 1>" gets encoded. While those
+are the same in the dtb, in yaml we have "[[0], [1]]" vs. "[[0, 1]]".
+Making the brackets significant is helpful for some things like
+phandle+args and 'reg' where we have a matrix of values, but for
+arrays it just gets in the way. I think as I suggested is the right
+form for the binding schema, and we need to either decide what's the
+correct way for brackets or improve the tool to accept both ways.
 
-diff --git a/drivers/thermal/broadcom/brcmstb_thermal.c b/drivers/thermal/broadcom/brcmstb_thermal.c
-index 6ded4b9c53be..8df5edef1ded 100644
---- a/drivers/thermal/broadcom/brcmstb_thermal.c
-+++ b/drivers/thermal/broadcom/brcmstb_thermal.c
-@@ -105,6 +105,7 @@ static struct avs_tmon_trip avs_tmon_trips[] = {
- struct brcmstb_thermal_params {
- 	unsigned int offset;
- 	unsigned int mult;
-+	const struct thermal_zone_of_device_ops *of_ops;
- };
- 
- struct brcmstb_thermal_priv {
-@@ -287,19 +288,25 @@ static int brcmstb_set_trips(void *data, int low, int high)
- 	return 0;
- }
- 
--static const struct thermal_zone_of_device_ops of_ops = {
-+static const struct thermal_zone_of_device_ops brcmstb_16nm_of_ops = {
- 	.get_temp	= brcmstb_get_temp,
--	.set_trips	= brcmstb_set_trips,
- };
- 
- static const struct brcmstb_thermal_params brcmstb_16nm_params = {
- 	.offset	= 457829,
- 	.mult	= 557,
-+	.of_ops	= &brcmstb_16nm_of_ops,
-+};
-+
-+static const struct thermal_zone_of_device_ops brcmstb_28nm_of_ops = {
-+	.get_temp	= brcmstb_get_temp,
-+	.set_trips	= brcmstb_set_trips,
- };
- 
- static const struct brcmstb_thermal_params brcmstb_28nm_params = {
- 	.offset	= 410040,
- 	.mult	= 487,
-+	.of_ops	= &brcmstb_28nm_of_ops,
- };
- 
- static const struct of_device_id brcmstb_thermal_id_table[] = {
-@@ -311,6 +318,7 @@ MODULE_DEVICE_TABLE(of, brcmstb_thermal_id_table);
- 
- static int brcmstb_thermal_probe(struct platform_device *pdev)
- {
-+	const struct thermal_zone_of_device_ops *of_ops;
- 	struct thermal_zone_device *thermal;
- 	struct brcmstb_thermal_priv *priv;
- 	struct resource *res;
-@@ -331,9 +339,10 @@ static int brcmstb_thermal_probe(struct platform_device *pdev)
- 
- 	priv->dev = &pdev->dev;
- 	platform_set_drvdata(pdev, priv);
-+	of_ops = priv->temp_params->of_ops;
- 
- 	thermal = devm_thermal_zone_of_sensor_register(&pdev->dev, 0, priv,
--						       &of_ops);
-+						       of_ops);
- 	if (IS_ERR(thermal)) {
- 		ret = PTR_ERR(thermal);
- 		dev_err(&pdev->dev, "could not register sensor: %d\n", ret);
--- 
-2.17.1
-
+Rob
