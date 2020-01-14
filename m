@@ -2,104 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD9313AC01
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 15:13:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35EB413AC0E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 15:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728969AbgANONj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 09:13:39 -0500
-Received: from mail-pj1-f65.google.com ([209.85.216.65]:55625 "EHLO
-        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726197AbgANONj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 09:13:39 -0500
-Received: by mail-pj1-f65.google.com with SMTP id d5so5754641pjz.5;
-        Tue, 14 Jan 2020 06:13:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=RqFXdgT3LlFr0BDIsZ4AkGZfGr6feSH5yxzOu+zCNSA=;
-        b=ijdJg9u0y8HQtUMQC6bTqYlb+yzR+A9CetjNaAiOUJ8y48b2GdY/MmEYcpEvTBchSU
-         QA+02mmmPreon+F8I+rs37vSly1Vj4ushL4+K+Dl5TeUgzWW3EllM5RJiVVHdX3lO8VA
-         BgPZ2FLkKWidqhteoQcwiMx6iD0nY2BPxZDaR4bHH1NvkH6sA8I8aCpfLBmZDoCiSZ10
-         /b/d44sjfOHnproo3KAhstLlbkMKMUUJ2LmgYksPDtLwNQrkKb6O+qXZH4P0q7SN+Pp7
-         7Sg/IzqGl2QRmHXTq/76dOIQHdWJEbm+VSZw+bTTrJDYMrWpT4rnrTNVQfe2yf6enM7R
-         Q2Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RqFXdgT3LlFr0BDIsZ4AkGZfGr6feSH5yxzOu+zCNSA=;
-        b=Ky6UweRvxD8f3RHqC0aZCzsJCscEGmrNxuCG/g8hX7pxJl5bJ2M5Vhx4xZh87hiar2
-         JjvMm71SOSvt0bcoytV97ITJDMJ+ktPb0SIFRo+GsrgXuPCAwUtu3Am/C4q7Jfo9XU1W
-         /VvIbFs7F6dmo+V3wA3HFVhN2X3IMeGa4IGYZScw78dGL+S5W27245rIqFzoCsyOBWUz
-         maIBL97A5i+64JnO7+ptfEL1vMYBRf0eH0Q5SiSnzRJrAr3MrGvtmUUcOspyDyTCcgWN
-         2lFppun1NbVYFN4pH6ZYDz3COkdlMfN/tWZ5J6HauDQEQU4MMNFCKMUla8U8N0tFcWuv
-         QUrQ==
-X-Gm-Message-State: APjAAAVB5AZ8MOgKtaZ2vYf2cAzv7nMLb/sQSUG8bQgJyvZ8qkjW+7DP
-        ZA9lJxT4BTuHI2Eh2eIIiWA=
-X-Google-Smtp-Source: APXvYqxjQGSoPS5oTAT9D0cQglVKshJ9Vv9jKAtTk9hoiRjnujw/stvy9RNQ7AGtuzfCkLCiyrYtQw==
-X-Received: by 2002:a17:90a:2004:: with SMTP id n4mr29363741pjc.20.1579011218933;
-        Tue, 14 Jan 2020 06:13:38 -0800 (PST)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id k10sm13391223pjq.14.2020.01.14.06.13.38
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 14 Jan 2020 06:13:38 -0800 (PST)
-Date:   Tue, 14 Jan 2020 06:13:37 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Beniamin Bia <beniamin.bia@analog.com>
-Cc:     linux-hwmon@vger.kernel.org, Michael.Hennerich@analog.com,
-        linux-kernel@vger.kernel.org, jdelvare@suse.com,
-        mark.rutland@arm.com, lgirdwood@gmail.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, biabeniamin@outlook.com
-Subject: Re: [PATCH v4 3/3] MAINTAINERS: add entry for ADM1177 driver
-Message-ID: <20200114141337.GA28002@roeck-us.net>
-References: <20200114112159.25998-1-beniamin.bia@analog.com>
- <20200114112159.25998-3-beniamin.bia@analog.com>
+        id S1726115AbgANORE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 09:17:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33834 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725994AbgANORE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jan 2020 09:17:04 -0500
+Received: from localhost.localdomain (aaubervilliers-681-1-7-206.w90-88.abo.wanadoo.fr [90.88.129.206])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 20F7D24680;
+        Tue, 14 Jan 2020 14:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579011423;
+        bh=Vs5vp9Q0pO/rYvjiF2G3gSvq89rNmL0cw1LbNBbTuZk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=zAfYuw+DRSckBl1J8CDfyssuIGNNADGPIq+IlafAMdRa9CDb5ylpO4WgVUI0AO0in
+         2pbR/6QA2Pj1MJkrUn/6keNgeNff43d8N3FWlV6rQ4aUzYoVbaCtyO+I/6lYQF2Mk0
+         rq69AeBDAi3s5AA45dz3dOpNSuRUOT61cyjvwzkM=
+From:   Ard Biesheuvel <ardb@kernel.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Ard Biesheuvel <ardb@kernel.org>, jarkko.sakkinen@linux.intel.com,
+        linux-arm-kernel@lists.infradead.org, masahisa.kojima@linaro.org,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
+        peterhuewe@gmx.de, jgg@ziepe.ca
+Subject: [PATCH v2 0/2] synquacer: add TPM support
+Date:   Tue, 14 Jan 2020 15:16:45 +0100
+Message-Id: <20200114141647.109347-1-ardb@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200114112159.25998-3-beniamin.bia@analog.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 14, 2020 at 01:21:59PM +0200, Beniamin Bia wrote:
-> Add Beniamin Bia and Michael Hennerich as a maintainer for ADM1177 ADC.
-> 
-> Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+This adds support for driving the TPM on Socionext SynQuacer platforms
+using the existing driver for a memory mapped TIS frame.
 
-Applied.
+v2:
+- don't use read/write_bytes() to implement read/write16/32 since that uses
+  the wrong address
 
-Thanks,
-Guenter
+Cc: jarkko.sakkinen@linux.intel.com
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: masahisa.kojima@linaro.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-integrity@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: peterhuewe@gmx.de
+Cc: jgg@ziepe.ca
 
-> ---
-> Changes in v4:
-> -nothing changed 
-> 
->  MAINTAINERS | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index bd5847e802de..a71f56d3b891 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -975,6 +975,15 @@ W:	http://ez.analog.com/community/linux-device-drivers
->  F:	drivers/iio/imu/adis16460.c
->  F:	Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
->  
-> +ANALOG DEVICES INC ADM1177 DRIVER
-> +M:	Beniamin Bia <beniamin.bia@analog.com>
-> +M:	Michael Hennerich <Michael.Hennerich@analog.com>
-> +L:	linux-hwmon@vger.kernel.org
-> +W:	http://ez.analog.com/community/linux-device-drivers
-> +S:	Supported
-> +F:	drivers/hwmon/adm1177.c
-> +F:	Documentation/devicetree/bindings/hwmon/adi,adm1177.yaml
-> +
->  ANALOG DEVICES INC ADP5061 DRIVER
->  M:	Stefan Popa <stefan.popa@analog.com>
->  L:	linux-pm@vger.kernel.org
+Ard Biesheuvel (2):
+  dt-bindings: tpm-tis-mmio: add compatible string for SynQuacer TPM
+  tpm: tis: add support for MMIO TPM on SynQuacer
+
+ Documentation/devicetree/bindings/security/tpm/tpm_tis_mmio.txt |  1 +
+ drivers/char/tpm/tpm_tis.c                                      | 50 +++++++++++++++++++-
+ 2 files changed, 49 insertions(+), 2 deletions(-)
+
+-- 
+2.20.1
+
