@@ -2,70 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3549E13B50E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 23:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D295413B548
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 23:25:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728650AbgANWG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 17:06:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45674 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727102AbgANWG0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jan 2020 17:06:26 -0500
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6D6A42467A;
-        Tue, 14 Jan 2020 22:06:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579039585;
-        bh=ak2pDlNLJqO6I6B08zZGpFxARQfKyArhMmTzeALdBzg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cCHYW6a6nJENELdOdK6d5nUAFMYQgVeYuz0JQ2jjuOWRxbT6HzRipISp8KrAwsE/u
-         F/vedVKRrWV1TGVEFP49MpODow/BWFG/HfxVyMOseoLizNfjTCK+IV0hg2gGnBtLiF
-         agiqjC7Y7MER9MoUJUEyXAw7L8s6/5hGa5SBtf1A=
-Received: by mail-qv1-f45.google.com with SMTP id dp13so6443169qvb.7;
-        Tue, 14 Jan 2020 14:06:25 -0800 (PST)
-X-Gm-Message-State: APjAAAUC0xIx0b9UnZe4i1mzE7Endwv1r8JAa+1+RwflJkU+aj0HmUmj
-        lqDi2M+8TCfSYopIYp2tZpI11scoEJ84BBKszw==
-X-Google-Smtp-Source: APXvYqzGWrbxNauf9xa5MkJ+ERHGXWd3WsUXlRzV0Dnb14EolrJehn1vVApCKSXYdX1ws1nunVbJjQJrO0ev1wSrlWM=
-X-Received: by 2002:ad4:450a:: with SMTP id k10mr21746759qvu.136.1579039584558;
- Tue, 14 Jan 2020 14:06:24 -0800 (PST)
+        id S1728587AbgANWZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 17:25:12 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:42275 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727102AbgANWZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 17:25:12 -0500
+Received: by mail-ot1-f68.google.com with SMTP id 66so14262378otd.9
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2020 14:25:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WS8NlkYRgt1yxklwHlCzn8AYd/wck8523N3nH8IJHG4=;
+        b=pdXI78H1nIw01K2gnsOgdA42z/Aotp6pV0ZYgNnj2XPMLIwp5aap8UIVay+kOLMaAH
+         74jPkq03jpYZoq9e4do3/w7nsX5OGkLiZVf116nLjhV8ohUwQlu1KKMD7Z0jWUsvICW7
+         UKlElxJSyoM/QI9rm1z0Z5SIeO6x46FdFklPzHf8PewCjCHEZQWh/tFGnznXmNzLvOy9
+         cHfIF/W23AOaBYy9ETBubk02flemhtnVQ8b7IPzoJ0hWjor+KasOydNkzr89yin2vyjS
+         EZyehRdW+SOvTGBFdFV8BNqDNZoD9P86XgXmIif722Vc8XZZCePVchaQgPrBsdBaf3i2
+         W6bg==
+X-Gm-Message-State: APjAAAWYPC2/3olcDG3IGIOHUArCit0qukw8wfDpPCvHccW/kMF/KuVX
+        V3H7E9lpKsYlDP1uQyYiCvVL2Wc=
+X-Google-Smtp-Source: APXvYqyDwvQajjX6SdBy77+9JL8/istKMfTYwUL4wRZYqyrBzp7vx2JC8/Bp2RcVTsrHrF4Hl+ikPg==
+X-Received: by 2002:a05:6830:138b:: with SMTP id d11mr480072otq.38.1579040711988;
+        Tue, 14 Jan 2020 14:25:11 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w201sm5030057oif.29.2020.01.14.14.25.11
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jan 2020 14:25:11 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 2209ae
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Tue, 14 Jan 2020 16:21:40 -0600
+Date:   Tue, 14 Jan 2020 16:21:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mike Leach <mike.leach@linaro.org>
+Cc:     mike.leach@linaro.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, coresight@lists.linaro.org,
+        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        mathieu.poirier@linaro.org, suzuki.poulose@arm.com,
+        robh+dt@kernel.org, maxime@cerno.tech, liviu.dudau@arm.com,
+        sudeep.holla@arm.com, lorenzo.pieralisi@arm.com, agross@kernel.org,
+        corbet@lwn.net
+Subject: Re: [PATCH v8 05/15] dt-bindings: arm: Adds CoreSight CTI hardware
+ definitions.
+Message-ID: <20200114222140.GA20488@bogus>
+References: <20200113213149.25599-1-mike.leach@linaro.org>
+ <20200113213149.25599-6-mike.leach@linaro.org>
 MIME-Version: 1.0
-References: <20200114213809.27166-1-jbx6244@gmail.com>
-In-Reply-To: <20200114213809.27166-1-jbx6244@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 14 Jan 2020 16:06:13 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+8X0oRykiQOKVyaxis4H0yO=nzUtnFF_BXdwBkuigr7g@mail.gmail.com>
-Message-ID: <CAL_Jsq+8X0oRykiQOKVyaxis4H0yO=nzUtnFF_BXdwBkuigr7g@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 1/3] dt-bindings: mmc: combine common mmc and
- dw-mshc properties
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200113213149.25599-6-mike.leach@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 14, 2020 at 3:38 PM Johan Jonker <jbx6244@gmail.com> wrote:
->
-> Combine the common properties for mmc and dw-mshc in
-> mmc-controller-common.yaml
+On Mon, 13 Jan 2020 21:31:39 +0000, Mike Leach wrote:
+> Adds new coresight-cti.yaml file describing the bindings required to define
+> CTI in the device trees.
+> 
+> Adds an include file to dt-bindings/arm to define constants describing
+> common signal functionality used in CoreSight and generic usage.
+> 
+> Signed-off-by: Mike Leach <mike.leach@linaro.org>
+> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> ---
+>  .../bindings/arm/coresight-cti.yaml           | 336 ++++++++++++++++++
+>  .../devicetree/bindings/arm/coresight.txt     |   7 +
+>  MAINTAINERS                                   |   2 +
+>  include/dt-bindings/arm/coresight-cti-dt.h    |  37 ++
+>  4 files changed, 382 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/coresight-cti.yaml
+>  create mode 100644 include/dt-bindings/arm/coresight-cti-dt.h
+> 
 
-Commit messages should explain the why, not what.
-
-AFAICT, the only reason is to not have a node name of 'mmc'. That's
-entirely the reason why it is defined. Fix your node names to use the
-standard name.
-
-
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
