@@ -2,101 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1919313AD6F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 16:20:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 871B813AD97
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 16:25:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729169AbgANPTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 10:19:37 -0500
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:45467 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729196AbgANPTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 10:19:33 -0500
-Received: by mail-pf1-f196.google.com with SMTP id 2so6714153pfg.12;
-        Tue, 14 Jan 2020 07:19:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ST7QEf8JaPsIhTPBLpP4peL3yXUV3NDdYF9SiuXeCzg=;
-        b=IVlh6j/iSAlzh10qy/FDJ4HvKz7R892wUQuYxOTYHl2N97PS0Wd+wj3Vcue7B+cqjn
-         +GUB4l5bI0/Eq5IssJDljQfcYTJ3oOQj4m33wenYcWvcEGIuzPtWFr+seGkEJtifjYEM
-         OtOSSexK4L4a64yBYbhtlTy6uLShoG5jR7+VC1c4obRovM2+xRUGWGJiw4B/aVCuMioK
-         mNIBgWFyvaKaUu0wWhRdQCyCAl99OH7jU+9lEHb1wEpM2H4qRPUR7G3e13xHve+pUgFB
-         Sr3EsDENkZfV3fAXxfr8EULSslN0/W9x3sjP0V1ghY94OGauXGQdzNXH0qSYZ3oX9qdg
-         SuGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ST7QEf8JaPsIhTPBLpP4peL3yXUV3NDdYF9SiuXeCzg=;
-        b=qKLW8ECzKkm0T5HhzveDbxoxqQapYtT1NroKKsDEy8dr3NtvsorKPe5EX48x/ZUS9h
-         hsNPzPQJ+3UHEsbHL1zFmU82NcSiqVStv2dA65P8VI1wq7X9+BqD5gq6+ZxR1lMu3YLI
-         xlDX25A8tkwHW7SQ4njRtv1xXeO0mgpnnOTZ33abbARS7qJKu6emwma+mqKxe358Bupo
-         E79uj88B4t8P8RKhjlAqukUzkal9MVe8NT89Ypj1P3YeEivZjmlE1C10Y9QmBxk0MJSI
-         feVK/JnP/8KutJVo9DeFaWL+2io7UU6PI9ip3Q9rZN85FSlSO0t1t2Xwn0PHOQauX+YU
-         mBEQ==
-X-Gm-Message-State: APjAAAUQpWjnIAKqPWh+x5CXjlLeboOPA5K+keKeMi3aKYzm8DDSEF/7
-        gZT23zH4vxJxqbhS3MO9EA4=
-X-Google-Smtp-Source: APXvYqwJlfdrCgQOUs+s+KcUfryciwUOYLQN9kEOTk43lgOjAPQX3p1bITQdDG6m0bJ77nBU9isuZw==
-X-Received: by 2002:a65:6914:: with SMTP id s20mr26982174pgq.44.1579015172492;
-        Tue, 14 Jan 2020 07:19:32 -0800 (PST)
-Received: from localhost.localdomain (c-67-165-113-11.hsd1.wa.comcast.net. [67.165.113.11])
-        by smtp.gmail.com with ESMTPSA id 207sm18834425pfu.88.2020.01.14.07.19.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jan 2020 07:19:31 -0800 (PST)
-From:   Andrey Smirnov <andrew.smirnov@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] ARM: dts: vf610-zii-cfu1: Add voltage monitor DT node
-Date:   Tue, 14 Jan 2020 07:19:06 -0800
-Message-Id: <20200114151906.25491-6-andrew.smirnov@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200114151906.25491-1-andrew.smirnov@gmail.com>
-References: <20200114151906.25491-1-andrew.smirnov@gmail.com>
+        id S1728688AbgANPZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 10:25:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43950 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725904AbgANPZq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jan 2020 10:25:46 -0500
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 945E02072B;
+        Tue, 14 Jan 2020 15:25:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579015545;
+        bh=lCzT2r10t8tKjNMq10HvvXZufirJmV3nQEiebEYP3gc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RkN7x9BHeMRrLPT+H/Vs2eAvyxwdMCtxWZmirmotOXrXKM50Xkbz2VUrqG8FcVImK
+         P8szE3NrMlFvQuC5m4VfQX6pJmIKvCFzay0rFPkLwzHVZLgYMzftKk7hUjTc4jYYru
+         GRgHe2lPXAh9kwyaBFQssQ72gTeD94bIFnjasRYo=
+Date:   Tue, 14 Jan 2020 15:25:39 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        robin.murphy@arm.com
+Cc:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, joro@8bytes.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
+        robin.murphy@arm.com, bhelgaas@google.com, eric.auger@redhat.com,
+        jonathan.cameron@huawei.com, zhangfei.gao@linaro.org
+Subject: Re: [PATCH v4 11/13] iommu/arm-smmu-v3: Improve add_device() error
+ handling
+Message-ID: <20200114152538.GB2579@willie-the-truck>
+References: <20191219163033.2608177-1-jean-philippe@linaro.org>
+ <20191219163033.2608177-12-jean-philippe@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191219163033.2608177-12-jean-philippe@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a DT node for various voltage supply rails connected to SoC's ADC
-for voltage monitoring purposes.
+On Thu, Dec 19, 2019 at 05:30:31PM +0100, Jean-Philippe Brucker wrote:
+> Let add_device() clean up after itself. The iommu_bus_init() function
+> does call remove_device() on error, but other sites (e.g. of_iommu) do
+> not.
+> 
+> Don't free level-2 stream tables because we'd have to track if we
+> allocated each of them or if they are used by other endpoints. It's not
+> worth the hassle since they are managed resources.
+> 
+> Reviewed-by: Eric Auger <eric.auger@redhat.com>
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> ---
+>  drivers/iommu/arm-smmu-v3.c | 28 +++++++++++++++++++++-------
+>  1 file changed, 21 insertions(+), 7 deletions(-)
 
-Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
-Cc: Chris Healy <cphealy@gmail.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
----
- arch/arm/boot/dts/vf610-zii-cfu1.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I think this is alright, with one caveat relating to:
 
-diff --git a/arch/arm/boot/dts/vf610-zii-cfu1.dts b/arch/arm/boot/dts/vf610-zii-cfu1.dts
-index 28732249cfc0..ce1920c052fc 100644
---- a/arch/arm/boot/dts/vf610-zii-cfu1.dts
-+++ b/arch/arm/boot/dts/vf610-zii-cfu1.dts
-@@ -71,6 +71,14 @@
- 		los-gpio = <&gpio4 4 GPIO_ACTIVE_HIGH>;
- 		tx-disable-gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
- 	};
-+
-+	supply-voltage-monitor {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 8>, /* 28VDC_IN */
-+			      <&adc0 9>, /* +3.3V    */
-+			      <&adc1 8>, /* VCC_1V5  */
-+			      <&adc1 9>; /* VCC_1V2  */
-+	};
- };
+
+	/*
+	 * We _can_ actually withstand dodgy bus code re-calling add_device()
+	 * without an intervening remove_device()/of_xlate() sequence, but
+	 * we're not going to do so quietly...
+	 */
+	if (WARN_ON_ONCE(fwspec->iommu_priv)) {
+		master = fwspec->iommu_priv;
+		smmu = master->smmu;
+	} ...
+
+
+which may be on shakey ground if the subsequent add_device() call can fail
+and free stuff that the first one allocated. At least, I don't know what
+we're trying to support with this, so it's hard to tell whether or not it
+still works as intended after your change.
+
+How is this supposed to work? I don't recall ever seeing that WARN fire,
+so can we just remove this and bail instead? Robin?
+
+Something like below before your changes...
+
+Will
+
+--->8
+
+diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
+index effe72eb89e7..6ae3df2f3495 100644
+--- a/drivers/iommu/arm-smmu-v3.c
++++ b/drivers/iommu/arm-smmu-v3.c
+@@ -2534,28 +2534,23 @@ static int arm_smmu_add_device(struct device *dev)
  
- &adc0 {
--- 
-2.21.0
-
+ 	if (!fwspec || fwspec->ops != &arm_smmu_ops)
+ 		return -ENODEV;
+-	/*
+-	 * We _can_ actually withstand dodgy bus code re-calling add_device()
+-	 * without an intervening remove_device()/of_xlate() sequence, but
+-	 * we're not going to do so quietly...
+-	 */
+-	if (WARN_ON_ONCE(fwspec->iommu_priv)) {
+-		master = fwspec->iommu_priv;
+-		smmu = master->smmu;
+-	} else {
+-		smmu = arm_smmu_get_by_fwnode(fwspec->iommu_fwnode);
+-		if (!smmu)
+-			return -ENODEV;
+-		master = kzalloc(sizeof(*master), GFP_KERNEL);
+-		if (!master)
+-			return -ENOMEM;
+ 
+-		master->dev = dev;
+-		master->smmu = smmu;
+-		master->sids = fwspec->ids;
+-		master->num_sids = fwspec->num_ids;
+-		fwspec->iommu_priv = master;
+-	}
++	if (WARN_ON_ONCE(fwspec->iommu_priv))
++		return -EBUSY;
++
++	smmu = arm_smmu_get_by_fwnode(fwspec->iommu_fwnode);
++	if (!smmu)
++		return -ENODEV;
++
++	master = kzalloc(sizeof(*master), GFP_KERNEL);
++	if (!master)
++		return -ENOMEM;
++
++	master->dev = dev;
++	master->smmu = smmu;
++	master->sids = fwspec->ids;
++	master->num_sids = fwspec->num_ids;
++	fwspec->iommu_priv = master;
+ 
+ 	/* Check the SIDs are in range of the SMMU and our stream table */
+ 	for (i = 0; i < master->num_sids; i++) {
