@@ -2,120 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3B213B5F1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 00:36:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A515913B601
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 00:41:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728650AbgANXgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 18:36:24 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:34560 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728656AbgANXgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 14 Jan 2020 18:36:24 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1579044983; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=7+8Ma8yfcl2diOB4I5famBBLS13KA3B5gNUsRjC85BE=; b=tgOcFVfA4qpnrmUsjd7xH5z4P2sUDqkFNJB4mR+hv2pzWC+6fi8zNMZkuZqgBPfnIxzU4bee
- /ANYff1hnVWZ6QliXsc4eTr8i9rYf/jcdkimnV358QQjZ/E5unIX9XUNjvHJ43QX+Xz4JgtE
- uqbe9mXmpmFjqEKe7aNS4zTo790=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e1e5076.7fad57bb9960-smtp-out-n02;
- Tue, 14 Jan 2020 23:36:22 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A47C1C4479F; Tue, 14 Jan 2020 23:36:21 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.46.162.237] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: daidavid1)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6722CC433CB;
-        Tue, 14 Jan 2020 23:36:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6722CC433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=daidavid1@codeaurora.org
-Subject: Re: [PATCH v1 0/4] Split SDM845 interconnect nodes and consolidate
- RPMh support
-To:     Evan Green <evgreen@google.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, sboyd@kernel.org,
-        Lina Iyer <ilina@codeaurora.org>,
-        Sean Sweeney <seansw@qti.qualcomm.com>,
-        Alex Elder <elder@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-pm@vger.kernel.org
-References: <1576475925-20601-1-git-send-email-daidavid1@codeaurora.org>
- <CAE=gft6sxsZfvPZZXKqbEMjCH_hGKXp_1MS3qTAz6hmMPfn09A@mail.gmail.com>
-From:   David Dai <daidavid1@codeaurora.org>
-Message-ID: <df9e58ef-7b97-7456-09fb-c13f53207cbb@codeaurora.org>
-Date:   Tue, 14 Jan 2020 15:36:19 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1728896AbgANXjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 18:39:12 -0500
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:51173 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728897AbgANXjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 18:39:12 -0500
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E6C8F886BF;
+        Wed, 15 Jan 2020 12:39:09 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1579045149;
+        bh=AlrvdzgXjpGDa7SNMjyhBnNMn4axze8b5Yq4/Y8xnRk=;
+        h=From:To:Cc:Subject:Date;
+        b=Lg0rW4rlK/jlRXPm8U0gngunNAFrHWqT1ZgaqLyIxfSYRd840vuA5N7RJQWoETPsm
+         4dAkWkj/wWuusOLS6QqgBLWvz+7lHz1mdKKCceXk4f+srRZ1hoWhtyu/t/YzYvQ1Ad
+         Phxy6P7b2+PhhyaUb+SJECL9aqZPAqeVLuP8BuwAhkDUORFNR2cXhv3ZWcMNLmMnmE
+         ajI8lPqwy5TCA6t6Pzv+Y5cIHYN5VSA4+zcjKFS+/7GdAlVk8azyiTwLIhxNhZMn4S
+         +N0z21B/1qQJDlcnYW2mUoFi+c5pag9cAPoKR3vO1m+lamlr/M+Gye3+cQmt0tfvn2
+         CVDBqFmiCkHPg==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5e1e511c0000>; Wed, 15 Jan 2020 12:39:08 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
+        by smtp (Postfix) with ESMTP id 1227613EC73;
+        Wed, 15 Jan 2020 12:39:08 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 5FAEA280071; Wed, 15 Jan 2020 12:39:08 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     anthony.derosa@syscall7.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/2] SPI bus multiplexing
+Date:   Wed, 15 Jan 2020 12:38:54 +1300
+Message-Id: <20200114233857.25933-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <CAE=gft6sxsZfvPZZXKqbEMjCH_hGKXp_1MS3qTAz6hmMPfn09A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Evan,
+This is a revisit of two earlier efforts to add more complex mutliplexing=
+ to
+SPI busses.
 
-On 1/7/2020 3:45 PM, Evan Green wrote:
-> On Sun, Dec 15, 2019 at 9:59 PM David Dai <daidavid1@codeaurora.org> wrote:
->> While there are no current consumers of the SDM845 interconnect device in
->> devicetree, take this opportunity to redefine the interconnect device nodes
->> as the previous definitions of using a single child node under the apps_rsc
->> device did not accurately capture the description of the hardware.
->> The Network-On-Chip (NoC) interconnect devices should be represented in a
->> manner akin to QCS404 platforms[1] where there is a separation of NoC devices
->> and its RPM/RPMh counterparts.
->>
->> The bcm-voter devices are representing the RPMh devices that the interconnect
->> providers need to communicate with and there can be more than one instance of
->> the Bus Clock Manager (BCM) which can live under different instances of Resource
->> State Coordinators (RSC). There are display use cases where consumers may need
->> to target a different bcm-voter (Some display specific RSC) than the default,
->> and there needs to be a way to represent this connection in devicetree.
-> So for my own understanding, the problem here is that things want to
-> vote for interconnect bandwidth within a specific RSC context? Where
-> normally the RSC context is simply "Apps@EL1", we might also have
-> "Apps@EL3" for trustzone, or in the case we're coding for,
-> "display-specific RSC context". I guess this context might stay on
-> even if Apps@EL1 votes are entirely discounted or off?
-That's correct, the state of those votes are tied to the state of that 
-execution environment. So even if the Apps CPU goes into a low power 
-mode, other context specific vote will still stick.
->   So then would
-> there be an additional interconnect provider for "display context RSC"
-> next to apps_bcm_voter? Would that expose all the same nodes as
-> apps_bcm_voter, or a different set of nodes?
+https://patchwork.kernel.org/patch/2706151/
+https://patchwork.kernel.org/patch/10897255/
 
-We trim down the topology to what each execution environment needs, so 
-each EE really only "sees" a subset of the entire SoC's topology. In 
-this specific case, the display context RSC would only expose a small 
-subset of the topology that Apps@EL1 would see.
+This version makes use of the general purpose mux controller which simpli=
+fies
+things greatly.
 
->
-> Assuming it's exposing some of the same nodes as apps_bcm_voter, the
-> other way to do this would be increasing #interconnect-cells, and
-> putting the RSC context there. Did you choose not to go that way
-> because nearly all the clients would end up specifying the same thing
-> of "Apps@EL1"?
-That's correct, the majority of the consumers will stay with default 
-Apps@EL1 context.
+Chris Packham (2):
+  dt-bindings: spi: Document binding for generic SPI multiplexer
+  spi: Add generic SPI multiplexer
 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+ .../devicetree/bindings/spi/spi-mux.yaml      |  82 ++++++++
+ drivers/spi/Kconfig                           |  12 ++
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-mux.c                         | 189 ++++++++++++++++++
+ 4 files changed, 284 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-mux.yaml
+ create mode 100644 drivers/spi/spi-mux.c
+
+--=20
+2.25.0
+
