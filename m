@@ -2,306 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A143B13B5FD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 00:41:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78AE113B609
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 00:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728921AbgANXjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 18:39:12 -0500
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:51181 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728892AbgANXjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 18:39:12 -0500
-Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1F38A891A9;
-        Wed, 15 Jan 2020 12:39:10 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1579045150;
-        bh=2gBER1PvepW7C/LmCCkcdmnlievV9RChs4q6y2glIWI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=ShJCmUzMKbd8oSdsPgEnQ5avBWUFdaVdlM0bBCSYD8lLYOh8r9maUFNpwZptdTGRA
-         TQVKo30T1zJe1QyziXtB1cSFI2DU219HXUlWHe1xxw/O3bMH8A2t49eTpxgnVlMB9T
-         PXNJpm3ssh1xT4JcbIyqNgFPDY14qvm+XQzUwvbeHiFkSSzslJq5fuyQQSGFXGcfX5
-         vA8NpuzlRcoXaiHLepzkDKiC4zDZ5Z06HvasTG1gWShd6Ekku5D+BewIa0K2QQJ3G3
-         v+q3cEVaB4LpNWdrryBqC0imJd1rfAYtcZmNyVCRMdyifBDYjSREUUpOh3+odfZyYH
-         GhhuYtqUP+C7w==
-Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
-        id <B5e1e511d0000>; Wed, 15 Jan 2020 12:39:09 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.20])
-        by smtp (Postfix) with ESMTP id 73FDB13EF62;
-        Wed, 15 Jan 2020 12:39:08 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id C37E7280071; Wed, 15 Jan 2020 12:39:08 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     anthony.derosa@syscall7.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH 2/2] spi: Add generic SPI multiplexer
-Date:   Wed, 15 Jan 2020 12:38:56 +1300
-Message-Id: <20200114233857.25933-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200114233857.25933-1-chris.packham@alliedtelesis.co.nz>
-References: <20200114233857.25933-1-chris.packham@alliedtelesis.co.nz>
+        id S1728890AbgANXlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 18:41:14 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:37183 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728757AbgANXlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 18:41:14 -0500
+Received: by mail-ot1-f67.google.com with SMTP id k14so14466874otn.4
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2020 15:41:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=D7XYS5juFiA+mkmXFcQrSAVcdM9zGgJea2kJ5TJPO6Q=;
+        b=mthuUQjmKfO781Ni68W4gHNV13fDi/p9Bj4WsXt7eE0k0jpgkqGTRm78qTOFICRrkX
+         q7BdogYSguOJiqeLfKGOho68/W4Noo1ztKH/ODTUg9X1HDEwb82eb15jA/4Yw4/yDpK4
+         /ffOO5HmP0fJRZdc++scYgButsVaa95EddErzRsaAWWjJamJ2Vi7j5XVg1o3dbplG4UX
+         zJdcErA5Mi4Lh1bqEa9WsEoOuVxPSEoz2XLHxi5O4iWGXteunKFyZFLXpRySKhKS+EPq
+         myLrACyz3IS7CEGNUqOIhtVxLdUItkB1BWciCg7JtjwPmo7N+o0GHfy6x7dEactd3uQr
+         V+Gw==
+X-Gm-Message-State: APjAAAUJ+aTr7rhhdDdJdzPFGQpGtRw+XHMvcB0DgtiUvGITsq9wkubP
+        DJBgxceeTjnDxdWRZIVwe5opnQA=
+X-Google-Smtp-Source: APXvYqzUYOu6Xbc/z3sLl03l6zN3KE/FLput1UCJ1+5Z2lfEdLXb3yqt3//Updlr7cIJhdJeYJ7ADA==
+X-Received: by 2002:a05:6830:22c6:: with SMTP id q6mr741479otc.244.1579045272918;
+        Tue, 14 Jan 2020 15:41:12 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s6sm138391otd.72.2020.01.14.15.41.11
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jan 2020 15:41:11 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 2209ae
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Tue, 14 Jan 2020 17:41:10 -0600
+Date:   Tue, 14 Jan 2020 17:41:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sandeep Maheswaram <sanm@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: [PATCH v2 3/3] dt-bindings: phy: qcom,qmp: Convert QMP phy
+ bindings to yaml
+Message-ID: <20200114234110.GA24051@bogus>
+References: <1578486581-7540-1-git-send-email-sanm@codeaurora.org>
+ <1578486581-7540-4-git-send-email-sanm@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1578486581-7540-4-git-send-email-sanm@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a SPI device driver that sits in-band and provides a SPI controller
-which supports chip selects via a mux-control. This enables extra SPI
-devices to be connected with limited native chip selects.
+On Wed, Jan 08, 2020 at 05:59:41PM +0530, Sandeep Maheswaram wrote:
+> Convert QMP phy  bindings to DT schema format using json-schema.
+> 
+> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> ---
+>  .../devicetree/bindings/phy/qcom,qmp-phy.yaml      | 201 ++++++++++++++++++
+>  .../devicetree/bindings/phy/qcom-qmp-phy.txt       | 227 ---------------------
+>  2 files changed, 201 insertions(+), 227 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/qcom-qmp-phy.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> new file mode 100644
+> index 0000000..6eb00f5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -0,0 +1,201 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/qcom,qmp-phy.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Qualcomm QMP PHY controller
+> +
+> +maintainers:
+> +  - Manu Gautam <mgautam@codeaurora.org>
+> +
+> +description:
+> +  QMP phy controller supports physical layer functionality for a number of
+> +  controllers on Qualcomm chipsets, such as, PCIe, UFS, and USB.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,ipq8074-qmp-pcie-phy
+> +      - qcom,ipq8074-qmp-pcie-phy
+> +      - qcom,msm8996-qmp-pcie-phy
+> +      - qcom,msm8996-qmp-usb3-phy
+> +      - qcom,msm8998-qmp-usb3-phy
+> +      - qcom,msm8998-qmp-ufs-phy
+> +      - qcom,msm8998-qmp-pcie-phy
+> +      - qcom,sc7180-qmp-usb3-phy
+> +      - qcom,sdm845-qmp-usb3-phy
+> +      - qcom,sdm845-qmp-usb3-uni-phy
+> +      - qcom,sdm845-qmp-ufs-phy
+> +      - qcom,sm8150-qmp-ufs-phy
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description: Address and length of PHY's common serdes block.
+> +      - description: Address and length of the DP_COM control block.
+> +
+> +  reg-names:
+> +    items:
+> +      - const: reg-base
+> +      - const: dp_com
+> +
+> +  "#clock-cells":
+> +     enum: [ 1, 2 ]
+> +
+> +  "#address-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +  "#size-cells":
+> +    enum: [ 1, 2 ]
+> +
+> +  clocks:
+> +    anyOf:
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- drivers/spi/Kconfig   |  12 +++
- drivers/spi/Makefile  |   1 +
- drivers/spi/spi-mux.c | 189 ++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 202 insertions(+)
- create mode 100644 drivers/spi/spi-mux.c
+Should be oneOf rather than anyOf. Did oneOf not work?
 
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 870f7797b56b..90df945490d9 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -880,6 +880,18 @@ config SPI_ZYNQMP_GQSPI
- #
- # Add new SPI master controllers in alphabetical order above this line
- #
-+#
-+
-+comment "SPI Multiplexer support"
-+
-+config SPI_MUX
-+	tristate "SPI multiplexer support"
-+	select MULTIPLEXER
-+	help
-+	  This adds support for SPI multiplexers. Each SPI mux will be
-+	  accessible as a SPI controller, the devices behind the mux will appea=
-r
-+	  to be chip selects on this controller. It is still necessary to
-+	  select one or more specific mux-controller drivers.
-=20
- #
- # There are lots of SPI device types, with sensors and memory
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index bb49c9e6d0a0..5f7593c84210 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_SPI_MASTER)		+=3D spi.o
- obj-$(CONFIG_SPI_MEM)			+=3D spi-mem.o
- obj-$(CONFIG_SPI_SPIDEV)		+=3D spidev.o
- obj-$(CONFIG_SPI_LOOPBACK_TEST)		+=3D spi-loopback-test.o
-+obj-$(CONFIG_SPI_MUX)			+=3D spi-mux.o
-=20
- # SPI master controller drivers (bus)
- obj-$(CONFIG_SPI_ALTERA)		+=3D spi-altera.o
-diff --git a/drivers/spi/spi-mux.c b/drivers/spi/spi-mux.c
-new file mode 100644
-index 000000000000..8481067be5ae
---- /dev/null
-+++ b/drivers/spi/spi-mux.c
-@@ -0,0 +1,189 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * General Purpose SPI multiplexer
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/err.h>
-+#include <linux/slab.h>
-+#include <linux/spi/spi.h>
-+#include <linux/mux/consumer.h>
-+
-+#define SPI_MUX_NO_CS	((unsigned int)-1)
-+
-+/**
-+ * DOC: Driver description
-+ *
-+ * This driver supports a MUX on an SPI bus. This can be useful when you=
- need
-+ * more chip selects than the hardware peripherals support, or than are
-+ * available in a particular board setup.
-+ *
-+ * The driver will create an additional SPI controller. Devices added un=
-der the
-+ * mux will be handled as 'chip selects' on this controller.
-+ */
-+
-+/**
-+ * struct spi_mux_priv - the basic spi_mux structure
-+ * @spi:		pointer to the device struct attached to the parent
-+ *			spi controller
-+ * @current_cs:		The current chip select set in the mux
-+ * @child_mesg_complete: The mux replaces the complete callback in the c=
-hild's
-+ *			message to its own callback; this field is used by the
-+ *			driver to store the child's callback during a transfer
-+ * @child_mesg_context: Used to store the child's context to the callbac=
-k
-+ * @child_mesg_dev:	Used to store the spi_device pointer to the child
-+ * @mux:		mux_control structure used to provide chip selects for
-+ *			downstream spi devices
-+ */
-+struct spi_mux_priv {
-+	struct spi_device	*spi;
-+	unsigned int		current_cs;
-+
-+	void			(*child_mesg_complete)(void *context);
-+	void			*child_mesg_context;
-+	struct spi_device	*child_mesg_dev;
-+	struct mux_control	*mux;
-+};
-+
-+/* should not get called when the parent controller is doing a transfer =
-*/
-+static int spi_mux_select(struct spi_device *spi)
-+{
-+	struct spi_mux_priv *priv =3D spi_controller_get_devdata(spi->controlle=
-r);
-+	int ret =3D 0;
-+
-+	if (priv->current_cs !=3D spi->chip_select) {
-+		dev_dbg(&priv->spi->dev,
-+			"setting up the mux for cs %d\n",
-+			spi->chip_select);
-+
-+		/* copy the child device's settings except for the cs */
-+		priv->spi->max_speed_hz =3D spi->max_speed_hz;
-+		priv->spi->mode =3D spi->mode;
-+		priv->spi->bits_per_word =3D spi->bits_per_word;
-+
-+		ret =3D mux_control_select(priv->mux, spi->chip_select);
-+		if (ret)
-+			return ret;
-+
-+		priv->current_cs =3D spi->chip_select;
-+	}
-+
-+	return ret;
-+}
-+
-+static int spi_mux_setup(struct spi_device *spi)
-+{
-+	struct spi_mux_priv *priv =3D spi_controller_get_devdata(spi->controlle=
-r);
-+
-+	/*
-+	 * can be called multiple times, won't do a valid setup now but we will
-+	 * change the settings when we do a transfer (necessary because we
-+	 * can't predict from which device it will be anyway)
-+	 */
-+	return spi_setup(priv->spi);
-+}
-+
-+static void spi_mux_complete_cb(void *context)
-+{
-+	struct spi_mux_priv *priv =3D (struct spi_mux_priv *)context;
-+	struct spi_controller *ctlr =3D spi_get_drvdata(priv->spi);
-+	struct spi_message *m =3D ctlr->cur_msg;
-+
-+	m->complete =3D priv->child_mesg_complete;
-+	m->context =3D priv->child_mesg_context;
-+	m->spi =3D priv->child_mesg_dev;
-+	spi_finalize_current_message(ctlr);
-+	mux_control_deselect(priv->mux);
-+}
-+
-+static int spi_mux_transfer_one_message(struct spi_controller *ctlr,
-+						struct spi_message *m)
-+{
-+	struct spi_mux_priv *priv =3D spi_controller_get_devdata(ctlr);
-+	struct spi_device *spi =3D m->spi;
-+	int ret;
-+
-+	ret =3D spi_mux_select(spi);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Replace the complete callback, context and spi_device with our own
-+	 * pointers. Save originals
-+	 */
-+	priv->child_mesg_complete =3D m->complete;
-+	priv->child_mesg_context =3D m->context;
-+	priv->child_mesg_dev =3D m->spi;
-+
-+	m->complete =3D spi_mux_complete_cb;
-+	m->context =3D priv;
-+	m->spi =3D priv->spi;
-+
-+	/* do the transfer */
-+	ret =3D spi_async(priv->spi, m);
-+	return ret;
-+}
-+
-+static int spi_mux_probe(struct spi_device *spi)
-+{
-+	struct spi_controller *ctlr;
-+	struct spi_mux_priv *priv;
-+	int ret;
-+
-+	ctlr =3D spi_alloc_master(&spi->dev, sizeof(*priv));
-+	if (!ctlr)
-+		return -ENOMEM;
-+
-+	spi_set_drvdata(spi, ctlr);
-+	priv =3D spi_controller_get_devdata(ctlr);
-+	priv->spi =3D spi;
-+
-+	priv->mux =3D devm_mux_control_get(&spi->dev, NULL);
-+	ret =3D PTR_ERR_OR_ZERO(priv->mux);
-+	if (ret) {
-+		if (ret !=3D -EPROBE_DEFER)
-+			dev_err(&spi->dev, "failed to get control-mux\n");
-+		goto err_put_ctlr;
-+	}
-+
-+	priv->current_cs =3D SPI_MUX_NO_CS;
-+
-+	/* supported modes are the same as our parent's */
-+	ctlr->mode_bits =3D spi->controller->mode_bits;
-+	ctlr->flags =3D spi->controller->flags;
-+	ctlr->transfer_one_message =3D spi_mux_transfer_one_message;
-+	ctlr->setup =3D spi_mux_setup;
-+	ctlr->num_chipselect =3D mux_control_states(priv->mux);
-+	ctlr->bus_num =3D -1;
-+	ctlr->dev.of_node =3D spi->dev.of_node;
-+
-+	ret =3D devm_spi_register_controller(&spi->dev, ctlr);
-+	if (ret)
-+		goto err_put_ctlr;
-+
-+	return ret;
-+
-+err_put_ctlr:
-+	spi_controller_put(ctlr);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id spi_mux_of_match[] =3D {
-+	{ .compatible =3D "spi-mux" },
-+	{ },
-+};
-+
-+static struct spi_driver spi_mux_driver =3D {
-+	.probe  =3D spi_mux_probe,
-+	.driver =3D {
-+		.name   =3D "spi-mux",
-+		.of_match_table =3D spi_mux_of_match,
-+	},
-+};
-+
-+module_spi_driver(spi_mux_driver);
-+
-+MODULE_DESCRIPTION("SPI multiplexer");
-+MODULE_LICENSE("GPL");
---=20
-2.25.0
+> +      - items:
+> +        - description: Phy aux clock.
+> +        - description: Phy config clock.
+> +        - description: 19.2 MHz ref clk.
+> +        - description: Phy common block aux clock.
 
+These should be indented 2 more spaces.
+
+> +      - items:
+> +        - description: Phy aux clock.
+> +        - description: Phy config clock.
+> +        - description: 19.2 MHz ref clk.
+
+This can be dropped if you add 'minItems: 3' to the 1st case.
+
+Then really, you should have an if/then to define which compatibles 
+require 4 items.
+
+> +      - items:
+> +        - description: 19.2 MHz ref clk.
+> +        - description: Phy reference aux clock.
+> +      - items:
+> +        - description: Phy reference aux clock.
+> +
+> +  clock-names:
+> +    anyOf:
+
+oneOf
+
+> +      - items:
+> +        - const: aux
+> +        - const: cfg_ahb
+> +        - const: ref
+> +        - const: com_aux
+
+Indent 2 more...
+
+> +      - items:
+> +        - const: aux
+> +        - const: cfg_ahb
+> +        - const: ref
+> +      - items:
+> +        - const: ref
+> +        - const: ref_aux
+> +      - items:
+> +        - const: ref_aux
+> +
+> +  resets:
+> +    anyOf:
+
+oneOf
+
+> +      - items:
+> +        - description: reset of phy block.
+> +        - description: phy common block reset.
+> +        - description: ahb cfg block reset.
+> +      - items:
+> +        - description: reset of phy block.
+> +        - description: phy common block reset.
+> +      - items:
+> +        - description: ahb cfg block reset.
+> +        - description: PHY reset in the UFS controller.
+> +      - items:
+> +        - description: reset of phy block.
+> +      - items:
+> +        - description: PHY reset in the UFS controller.
+> +
+> +  reset-names:
+> +    anyOf:
+> +      - items:
+> +        - const: phy
+> +        - const: common
+> +        - const: cfg
+> +      - items:
+> +        - const: phy
+> +        - const: common
+> +      - items:
+> +        - const: ahb
+> +        - const: ufsphy
+> +      - items:
+> +        - const: phy
+> +      - items:
+> +        - const: ufsphy
+> +
+> +  vdda-phy-supply:
+> +    description:
+> +        Phandle to a regulator supply to PHY core block.
+> +
+> +  vdda-pll-supply:
+> +    description:
+> +        Phandle to 1.8V regulator supply to PHY refclk pll block.
+> +
+> +  vddp-ref-clk-supply:
+> +    description:
+> +        Phandle to a regulator supply to any specific refclk
+> +        pll block.
+
+You need patternProperties with the child nodes defined.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#clock-cells"
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +  - vdda-phy-supply
+> +  - vdda-pll-supply
+
+Need a 'additionalProperties: false' here.
+
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        anyOf:
+> +          - items:
+> +            - const: qcom,sdm845-qmp-usb3-phy
+> +          - items:
+> +            - const: qcom,sc7180-qmp-usb3-phy
+> +then:
+> +  required:
+> +    - reg-names
+> +
+> +#Required nodes:
+> +#Each device node of QMP phy is required to have as many child nodes as
+> +#the number of lanes the PHY has.
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
+> +    usb_1_qmpphy: phy-wrapper@88e9000 {
+> +        compatible = "qcom,sc7180-qmp-usb3-phy";
+> +        reg = <0 0x088e9000 0 0x18c>,
+> +              <0 0x088e8000 0 0x38>;
+> +        reg-names = "reg-base", "dp_com";
+> +        #clock-cells = <1>;
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+> +                 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
+> +                 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+> +                 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+> +        clock-names = "aux", "cfg_ahb", "ref", "com_aux";
+> +
+> +        resets = <&gcc GCC_USB3_PHY_PRIM_BCR>;
+> +        reset-names = "phy";
+> +
+> +        vdda-phy-supply = <&vreg_l3c_1p2>;
+> +        vdda-pll-supply = <&vreg_l4a_0p8>;
+> +
+> +        usb_1_ssphy: phy@88e9200 {
+> +            reg = <0 0x088e9200 0 0x128>,
+> +                  <0 0x088e9400 0 0x200>,
+> +                  <0 0x088e9c00 0 0x218>,
+> +                  <0 0x088e9600 0 0x128>,
+> +                  <0 0x088e9800 0 0x200>,
+> +                  <0 0x088e9a00 0 0x18>;
+> +            #clock-cells = <0>;
+> +            #phy-cells = <0>;
+> +            clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> +            clock-names = "pipe0";
+> +            clock-output-names = "usb3_phy_pipe_clk_src";
+> +        };
+> +    };
