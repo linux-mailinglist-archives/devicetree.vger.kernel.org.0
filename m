@@ -2,287 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B54413B48C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 22:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 163AF13B4F8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 22:59:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728795AbgANVic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 16:38:32 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38568 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728656AbgANViX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 16:38:23 -0500
-Received: by mail-wm1-f66.google.com with SMTP id u2so15456324wmc.3;
-        Tue, 14 Jan 2020 13:38:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=zMlYSd9gdjSyr+fvrrUx7m71AJzwJ/EGsztEOkjtZkI=;
-        b=QCy/XZq9cb8b44xp0o/+TDC5liA34MFVcL4GpiONMbdM8gdeUSZsH1x+R8ormLx550
-         b5LsP0H9TqQTb81ITLUCQT3cRaSS2LYCgDyDhDihgYwCvhHjGSyfzVPXItD0K94sR8GW
-         gdU5J0pR3jbq7UPdNyP3Q9LqetfUlGG+GU7TVeoIh4dAJ9d1BpvCEi3foRdKsynr/CtE
-         UaBer7XAm6l6X/InpjngAem1ii1m/NTNyMKCUifts1f9l9O/LVJcbGBBaiFPSwSv1Hc3
-         o7xDmMDbxqvgFHQ4FUnTKQf1CCJyP0sjiUxiDMYkxrkN3ZvelR5F+Xns+9xsvDBQIcM8
-         L+GA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=zMlYSd9gdjSyr+fvrrUx7m71AJzwJ/EGsztEOkjtZkI=;
-        b=sE/ewBsUW2NCVjPM2bhbXoYbpkF6wpV8GyT+thOTEU5BXZYExyjXRI70ex9EnmuNka
-         5ZnAJnBhgoaJigqTcPTxcr4dx1hCzhoEfaP1wuwEEhcVX3DjU9+A6U0fAkjM1zGQDEAy
-         irhSfFqnt7pCjRF7H5EZw20XrCC+2BeYIqXN2fqBknoWk3cI9YOKsFab3OOgrdEO99aW
-         r+HnWHaZQLeGhpAEWdwFB3tFj6Od6XaSNGyaogge4YMt4daxvPCMYkxFBZWpibE9gNZj
-         czC39SZA+1CHOIh5Jlcw1uFFT+AdLstBh7yJpT/pR86zVvpBCXDhATdY9FmPq7ylbspY
-         ZS4Q==
-X-Gm-Message-State: APjAAAV2JKPknFCAUOi9l1VtIp3PUNpnbQLRZKoaBtKS3QeQxu8wMJsd
-        R1J/IdLjihhGJqqLz3137SE=
-X-Google-Smtp-Source: APXvYqwzBCnO8hbLw9uOyBWsVUBiO+5uZBrgww1tJVYeE/kYrgQQ5myt1/iRlL4meTPgZzB4RLDuVA==
-X-Received: by 2002:a1c:3c8b:: with SMTP id j133mr29761712wma.66.1579037899924;
-        Tue, 14 Jan 2020 13:38:19 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id w17sm21639511wrt.89.2020.01.14.13.38.18
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 14 Jan 2020 13:38:19 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     ulf.hansson@linaro.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, heiko@sntech.de,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [RFC PATCH v1 3/3] dt-bindings: mmc: convert rockchip dw-mshc bindings to yaml
-Date:   Tue, 14 Jan 2020 22:38:09 +0100
-Message-Id: <20200114213809.27166-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200114213809.27166-1-jbx6244@gmail.com>
-References: <20200114213809.27166-1-jbx6244@gmail.com>
+        id S1728791AbgANV7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 16:59:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33474 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726491AbgANV7b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 14 Jan 2020 16:59:31 -0500
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 81C3024673;
+        Tue, 14 Jan 2020 21:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579039170;
+        bh=zJWCWSOhHDeEqNF2yErLCC2xC0maaTa3qYu5FhuOrh8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MsxBFZ1sSqm0ONGM+VzeO01CT3AFqKClr8dIYzHrYGReVdFEiaOG3tA9Yhj8qpCQo
+         8Wx6wN11xc8saLCW00kPko8DwdFnhakLEL6Szm2xnn26iE1a27+dvTAmLLGopZ8p+1
+         r/tSFPNF8wX/35xMMEMKTzGE1rWGs0AwxAoeBVG8=
+Received: by mail-qv1-f54.google.com with SMTP id dp13so6434035qvb.7;
+        Tue, 14 Jan 2020 13:59:30 -0800 (PST)
+X-Gm-Message-State: APjAAAWlYbidPYhkwxXxU/qv1qPx7n1xbZOFYDTS4/flLtNuKL0qBOJ1
+        7ieAFf82cmyAUACz9OVgt4eBoOJFE7767fSu0g==
+X-Google-Smtp-Source: APXvYqwq7E+CYgVOvhkNu4ZwbkCIUECyJO9AoKk6K3ct3z+22Upakg4Zec8xFRF4mmPeyUbM0xZt2DUav5zMOi1Fn3c=
+X-Received: by 2002:a0c:f6cd:: with SMTP id d13mr22537735qvo.20.1579039169569;
+ Tue, 14 Jan 2020 13:59:29 -0800 (PST)
+MIME-Version: 1.0
+References: <20191127105522.31445-1-miquel.raynal@bootlin.com>
+ <20191127105522.31445-5-miquel.raynal@bootlin.com> <20191209113506.41341ed4@collabora.com>
+ <CAL_JsqJP3-h7bPAommzt7KQKoohZpkk=RMxfN1j3rXbisD4eCA@mail.gmail.com> <20200114191052.0a16d116@xps13>
+In-Reply-To: <20200114191052.0a16d116@xps13>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 14 Jan 2020 15:59:18 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLp6++g9ArSm9guuHeywETanCaLvSKVmV3vV5EYfvUDvg@mail.gmail.com>
+Message-ID: <CAL_JsqLp6++g9ArSm9guuHeywETanCaLvSKVmV3vV5EYfvUDvg@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] mtd: Add driver for concatenating devices
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Boris Brezillon <boris.brezillon@collabora.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Bernhard Frauendienst <kernel@nospam.obeliks.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Rockchip designware mobile storage host controller
-device tree bindings to yaml.
-Add maintainer.
+On Tue, Jan 14, 2020 at 12:11 PM Miquel Raynal
+<miquel.raynal@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> Rob Herring <robh+dt@kernel.org> wrote on Tue, 14 Jan 2020 11:46:18
+> -0600:
+>
+> > On Mon, Dec 9, 2019 at 4:35 AM Boris Brezillon
+> > <boris.brezillon@collabora.com> wrote:
+> > >
+> > > On Wed, 27 Nov 2019 11:55:22 +0100
+> > > Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> > >
+> > > > Introduce a generic way to define concatenated MTD devices. This may
+> > > > be very useful in the case of ie. stacked SPI-NOR. Partitions to
+> > > > concatenate are described in an additional property of the partitions
+> > > > subnode:
+> > > >
+> > > >         flash0 {
+> > > >                 partitions {
+> > > >                         compatible = "fixed-partitions";
+> > > >                         part-concat = <&flash0_part1>, <&flash1_part0>;
+> > > >
+> > > >                       part0@0 {
+> > > >                               label = "part0_0";
+> > > >                               reg = <0x0 0x800000>;
+> > > >                       };
+> > > >
+> > > >                       flash0_part1: part1@800000 {
+> > > >                               label = "part0_1";
+> > > >                               reg = <0x800000 0x800000>;
+> > >
+> > > So, flash0_part1 and flash0_part2 will be created even though the user
+> > > probably doesn't need them?
+> >
+> > I don't follow?
+>
+> Well, one will have to create "fake" partitions in order to concatenate
+> them with this solution, instead of just concatenating the devices (in
+> the case where you want to concatenate the entire devices). But the real
+> debate is below, on the representation.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- .../devicetree/bindings/mmc/rockchip-dw-mshc.txt   |  49 --------
- .../devicetree/bindings/mmc/rockchip-dw-mshc.yaml  | 137 +++++++++++++++++++++
- MAINTAINERS                                        |   1 +
- 3 files changed, 138 insertions(+), 49 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.txt
- create mode 100644 Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+So concatenating multiple devices without partitions defined in DT? To
+support that, then we need to link flash nodes rather than partition
+nodes.
 
-diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.txt
-deleted file mode 100644
-index 6f629b12b..000000000
---- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.txt
-+++ /dev/null
-@@ -1,49 +0,0 @@
--* Rockchip specific extensions to the Synopsys Designware Mobile
--  Storage Host Controller
--
--The Synopsys designware mobile storage host controller is used to interface
--a SoC with storage medium such as eMMC or SD/MMC cards. This file documents
--differences between the core Synopsys dw mshc controller properties described
--by synopsys-dw-mshc.txt and the properties used by the Rockchip specific
--extensions to the Synopsys Designware Mobile Storage Host Controller.
--
--Required Properties:
--
--* compatible: should be
--	- "rockchip,rk2928-dw-mshc": for Rockchip RK2928 and following,
--							before RK3288
--	- "rockchip,rk3288-dw-mshc": for Rockchip RK3288
--	- "rockchip,rv1108-dw-mshc", "rockchip,rk3288-dw-mshc": for Rockchip RV1108
--	- "rockchip,px30-dw-mshc", "rockchip,rk3288-dw-mshc": for Rockchip PX30
--	- "rockchip,rk3036-dw-mshc", "rockchip,rk3288-dw-mshc": for Rockchip RK3036
--	- "rockchip,rk3228-dw-mshc", "rockchip,rk3288-dw-mshc": for Rockchip RK322x
--	- "rockchip,rk3328-dw-mshc", "rockchip,rk3288-dw-mshc": for Rockchip RK3328
--	- "rockchip,rk3368-dw-mshc", "rockchip,rk3288-dw-mshc": for Rockchip RK3368
--	- "rockchip,rk3399-dw-mshc", "rockchip,rk3288-dw-mshc": for Rockchip RK3399
--
--Optional Properties:
--* clocks: from common clock binding: if ciu-drive and ciu-sample are
--  specified in clock-names, should contain handles to these clocks.
--
--* clock-names: Apart from the clock-names described in synopsys-dw-mshc.txt
--  two more clocks "ciu-drive" and "ciu-sample" are supported. They are used
--  to control the clock phases, "ciu-sample" is required for tuning high-
--  speed modes.
--
--* rockchip,default-sample-phase: The default phase to set ciu-sample at
--  probing, low speeds or in case where all phases work at tuning time.
--  If not specified 0 deg will be used.
--
--* rockchip,desired-num-phases: The desired number of times that the host
--  execute tuning when needed. If not specified, the host will do tuning
--  for 360 times, namely tuning for each degree.
--
--Example:
--
--	rkdwmmc0@12200000 {
--		compatible = "rockchip,rk3288-dw-mshc";
--		reg = <0x12200000 0x1000>;
--		interrupts = <0 75 0>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
-diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-new file mode 100644
-index 000000000..da16916b7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-@@ -0,0 +1,137 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/rockchip-dw-mshc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip designware mobile storage host controller device tree bindings
-+
-+description:
-+  Rockchip uses the Synopsys designware mobile storage host controller
-+  to interface a SoC with storage medium such as eMMC or SD/MMC cards.
-+  This file documents the combined properties for
-+  the core Synopsys dw mshc controller that are not already included
-+  in the synopsys-dw-mshc-common.yaml file and the Rockchip specific
-+  extensions.
-+
-+allOf:
-+  - $ref: "synopsys-dw-mshc-common.yaml"
-+
-+maintainers:
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      # for Rockchip PX30
-+      - items:
-+          - const: rockchip,px30-dw-mshc
-+          - const: rockchip,rk3288-dw-mshc
-+      # for Rockchip RK2928 and before RK3288
-+      - const: rockchip,rk2928-dw-mshc
-+      # for Rockchip RK3036
-+      - items:
-+          - const: rockchip,rk3036-dw-mshc
-+          - const: rockchip,rk3288-dw-mshc
-+      # for Rockchip RK322x
-+      - items:
-+          - const: rockchip,rk3228-dw-mshc
-+          - const: rockchip,rk3288-dw-mshc
-+      # for Rockchip RK3288
-+      - const: rockchip,rk3288-dw-mshc
-+      # for Rockchip RK3328
-+      - items:
-+          - const: rockchip,rk3328-dw-mshc
-+          - const: rockchip,rk3288-dw-mshc
-+      # for Rockchip RK3368
-+      - items:
-+          - const: rockchip,rk3368-dw-mshc
-+          - const: rockchip,rk3288-dw-mshc
-+      # for Rockchip RK3399
-+      - items:
-+          - const: rockchip,rk3399-dw-mshc
-+          - const: rockchip,rk3288-dw-mshc
-+      # for Rockchip RV1108
-+      - items:
-+          - const: rockchip,rv1108-dw-mshc
-+          - const: rockchip,rk3288-dw-mshc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 4
-+    description:
-+      Handle to "biu" and "ciu" clocks for the bus interface unit clock and
-+      the card interface unit clock. If "ciu-drive" and "ciu-sample" are
-+      specified in clock-names, it should also contain
-+      handles to these clocks.
-+
-+  clock-names:
-+    oneOf:
-+      - items:
-+        - const: biu
-+        - const: ciu
-+      - items:
-+        - const: biu
-+        - const: ciu
-+        - const: ciu-drive
-+        - const: ciu-sample
-+    description:
-+      Apart from the clock-names "biu" and "ciu" two more clocks
-+      "ciu-drive" and "ciu-sample" are supported. They are used
-+      to control the clock phases, "ciu-sample" is required for tuning
-+      high speed modes.
-+
-+  rockchip,default-sample-phase:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - minimum: 0
-+      - maximum: 360
-+      - default: 0
-+    description:
-+      The default phase to set "ciu-sample" at probing,
-+      low speeds or in case where all phases work at tuning time.
-+      If not specified 0 deg will be used.
-+
-+  rockchip,desired-num-phases:
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - minimum: 0
-+      - maximum: 360
-+      - default: 360
-+    description:
-+      The desired number of times that the host execute tuning when needed.
-+      If not specified, the host will do tuning for 360 times,
-+      namely tuning for each degree.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rk3288-cru.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    sdmmc: dwmmc@ff0c0000 {
-+      compatible = "rockchip,rk3288-dw-mshc";
-+      reg = <0x0 0xff0c0000 0x0 0x4000>;
-+      interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&cru HCLK_SDMMC>, <&cru SCLK_SDMMC>,
-+               <&cru SCLK_SDMMC_DRV>, <&cru SCLK_SDMMC_SAMPLE>;
-+      clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
-+      resets = <&cru SRST_MMC0>;
-+      reset-names = "reset";
-+      fifo-depth = <0x100>;
-+      max-frequency = <150000000>;
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d6ad01d71..1b16c0fdf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2240,6 +2240,7 @@ L:	linux-rockchip@lists.infradead.org
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git
- S:	Maintained
- F:	Documentation/devicetree/bindings/i2c/i2c-rk3x.txt
-+F:	Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
- F:	arch/arm/boot/dts/rk3*
- F:	arch/arm/boot/dts/rv1108*
- F:	arch/arm/mach-rockchip/
--- 
-2.11.0
+> > > >                       };
+> > > >                 };
+> > > >         };
+> > > >
+> > > >         flash1 {
+> > > >                 partitions {
+> > > >                         compatible = "fixed-partitions";
+> > > >
+> > > >                       flash0_part1: part1@0 {
+> > > >                               label = "part1_0";
+> > > >                               reg = <0x0 0x800000>;
+> > > >                       };
+> > > >
+> > > >                       part0@800000 {
+> > > >                               label = "part1_1";
+> > > >                               reg = <0x800000 0x800000>;
+> > > >                       };
+> > > >                 };
+> > > >         };
+> > >
+> > > IMHO this representation is far from intuitive. At first glance it's not
+> > > obvious which partitions are linked together and what's the name of the
+> > > resulting concatenated part. I definitely prefer the solution where we
+> > > have a virtual device describing the concatenation. I also understand
+> > > that this goes against the #1 DT rule: "DT only decribes HW blocks, not
+> > > how they should be used/configured", but maybe we can find a compromise
+> > > here, like moving this description to the /chosen node?
+> > >
+> > > chosen {
+> > >         flash-arrays {
+> > >                 /*
+> > >                  * my-flash-array is the MTD name if label is
+> > >                  * not present.
+> > >                  */
+> > >                 my-flash-array {
+> > >                         /*
+> > >                          * We could have
+> > >                          * compatible = "flash-array";
+> > >                          * but we can also do without it.
+> > >                          */
+> > >                         label = "foo";
+> > >                         flashes = <&flash1 &flash2 ...>;
+> > >                         partitions {
+> > >                                 /* usual partition description. */
+> > >                                 ...
+> > >                         };
+> > >                 };
+> > >         };
+> > > };
+> > >
+> > > Rob, what do you think?
+> >
+> > I don't think chosen is the right place to put all the partition
+> > information. It's not something the bootloader configures.
+> >
+> > This suffers from the same issue I have with the original proposal. It
+> > will not work for existing s/w. There's only 1 logical partition that
+>
+> I don't get why it would not work? Current hardware will just not have
+> the concatenation support, that's all. How is this a problem?
 
+No one has multiple flash devices on any h/w already? If I already
+have a working system that can load and boot a kernel off an MTD
+partition, but could benefit from concatenating other partitions (i.e.
+rootfs), why should I have to modify my bootloader(s)?
+
+> > concatenated. The rest of the partitions shouldn't need any special
+> > handling. So we really only need some way to say 'link these 2
+> > partitions into 1 logical partition'. Though perhaps one could want to
+> > combine any number of physical partitions into logical partitions, but
+> > then none of the proposals could support that. Then again, maybe
+>
+> Yes, the flash-array proposal supports having more than two
+> partitions/devices concatenated, it is also already supported by the
+> driver (you don't care about this, but I do :) ).
+
+I meant for N devices, you'd only have at most N-1 concatenated
+partitions as there are N-1 device boundaries. Whereas you could
+define any partition could be combined with any other number of
+partitions regardless of where they lie. The types of things you can
+do with LVM and disk partitions is what I'm thinking of.
+
+> > that's a userspace problem like with disks.
+>
+> I see one big issue with this solution: what about bootloaders?
+
+Similar to how it works with disks. Bootloaders (at a minimum)
+understand physical partitions. Later stages understand logical
+partitions.
+
+> The root cause for such idea is that, in my case, the 2 MTD devices are
+> too small to contain the images needed to boot. The perfect solution is
+> to merge the two devices virtually in one single device and let U-Boot
+> read it like one.
+
+Got any actual h/w that the flash devices are smaller than a
+kernel+ramdisk yet had the $ and board space to put multiple devices
+down?
+
+What about the stages before u-boot? Assume they all use DT, why
+require adding this support before a stage that actually needs it.
+
+> I need to have the same representation both in U-Boot and Linux, hence
+> a userspace tool and a kernel command line argument do not work, right?
+
+I never said u-boot can't gain support for this, it's just requiring
+it to from the start even if you only wanted to have a concatenated
+partition for your rootfs or non-boot partition. Only the kernel would
+need to understand concatenating partitions vs. every component that
+reads the partitions.
+
+Rob
