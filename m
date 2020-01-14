@@ -2,159 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6204D13A6C6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 11:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E528213A739
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 11:26:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732440AbgANKN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 05:13:29 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:51633 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733177AbgANKN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 05:13:26 -0500
-Received: by mail-wm1-f68.google.com with SMTP id d73so13041821wmd.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2020 02:13:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PVJ9vsBKjNHAquu2wHQplGsVSsF8ZvsB04D/QJeGvO0=;
-        b=QkBD7bGtsftShAVXrNLgP1GUir8zjpVH0BFB90Jq5fahbPDtUfMTZaLzyDbhXOmO2A
-         nmmqavi/LtNmqfhcGG7sHpIdRdVeANyAR8RL4ouV2QsNHaRbPadxRhtHfIck56dD+8uQ
-         amPWIBI+kZVA3StySeTyIOizmVdjxn4elq6Rdd/Vu1fbnzP1X5G5zN3FMNkpg/tfZKNO
-         UGRQ/dsX9XyZDxTxyBVv3AiujdGMR3zooptycedYQPYqK3O/q7SqsUJzB2EFcT7aHdzZ
-         U49U6xkIT+sSUuwO26vUpxKWZ8RlksiqQkZ2jKW9qn3klff/vprVctHRbtLhH98FzmK7
-         a1gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PVJ9vsBKjNHAquu2wHQplGsVSsF8ZvsB04D/QJeGvO0=;
-        b=ovOk/c2ohiRaPASizx8gw9iTexCCVKxK/1yakGPtUOur3giNaxCFJ2DLE9THViHGlB
-         4PdYbQ9gA9U6ovluN5HEu0lmE9EAeaOwodJBUW9zNUNHMvlSShSH1kBb4IRzn7KKvGbV
-         z2p3YVgSpFVSjZB2mn9TJV1RWs1ORNR4qH1zQXHmBQGQslLSekv7nkYTXOckOf7JfJ/m
-         4X2uEnqE0CX0ZIUcpJCepJPPJwDIKE1AcxQzVkK35IKmRSsSIhfmCwy6LaobxTit8OvI
-         2K0T72cwCjaITQyaH1JbEktY8lHu2dSgj0Gf55wKv0uacKyDO+N9vJcorskfGA9Dtmkr
-         0cKw==
-X-Gm-Message-State: APjAAAWal2LjiXEDnmHlIzBd/7e8YRt2hiJ6ckqjIfVJIempnkw7smWt
-        C/PmV2Z9Y5vS4lR3KWDvsEaQG2qh8eaY/HgLJHmXNA==
-X-Google-Smtp-Source: APXvYqxJZ24GiVlk9lUMDjJkGJEI6s3pmAanrQrR6ZjPBl+XBfGQsJAevyPjLoW5Oxheg/hE/D/XAZSaJTq3QWFkOzU=
-X-Received: by 2002:a1c:7205:: with SMTP id n5mr26748340wmc.9.1578996805060;
- Tue, 14 Jan 2020 02:13:25 -0800 (PST)
+        id S1729175AbgANKXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 05:23:30 -0500
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:17092 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729076AbgANKX3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 05:23:29 -0500
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="Claudiu.Beznea@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+  include:servers.mcsv.net include:mktomail.com
+  include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+  envelope-from="Claudiu.Beznea@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: jPx5E3KOkH6mR9ry4o1HzOH9N0C78UV0ceTGbcWjgkVKF9MO2PJ3vWKSOu9WWpalK7v3GbXbBz
+ pV0RXWL01EP480LvcDCgQvvRYWxYbx8nuwhimqI4U+3Kmo2EU+mZJBnZOhqOs3m7ufGLtZf9Sp
+ oXzFEyXNaYsdLk8VE3c+riV2qtQnHkfLy0XvSI/4tYa1lmN34xqYJQ4ZlpsskV922N7HcRjL+F
+ JwAEGwA4F7IwO7V1txO9RwkCtmDdC6J+zfagD/WwMKDw6SmgpG7qY6PQ8xv/eQuM4dWr6zsT7o
+ mhg=
+X-IronPort-AV: E=Sophos;i="5.69,432,1571727600"; 
+   d="scan'208";a="63175793"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Jan 2020 03:23:28 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 14 Jan 2020 03:23:28 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.85.251) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Tue, 14 Jan 2020 03:23:24 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <robh+dt@kernel.org>, <lee.jones@linaro.org>,
+        <mark.rutland@arm.com>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <radu_nicolae.pirea@upb.ro>, <richard.genoud@gmail.com>,
+        <a.zummo@towertech.it>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v3 0/7] add device tree for SAM9X60 SoC and SAM9X60-EK board
+Date:   Tue, 14 Jan 2020 12:23:10 +0200
+Message-ID: <1578997397-23165-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20200114094505.11855-1-ardb@kernel.org> <20200114094505.11855-3-ardb@kernel.org>
-In-Reply-To: <20200114094505.11855-3-ardb@kernel.org>
-From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Date:   Tue, 14 Jan 2020 11:13:13 +0100
-Message-ID: <CAKv+Gu93rePi1MctP9ffr3wT2r-8OCBoO7Pw5ivWOcXgwfS4Hw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] tpm: tis: add support for MMIO TPM on SynQuacer
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Masahisa Kojima <masahisa.kojima@linaro.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-integrity <linux-integrity@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        =?UTF-8?Q?Peter_H=C3=BCwe?= <peterhuewe@gmx.de>,
-        Jason Gunthorpe <jgg@ziepe.ca>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jan 2020 at 10:46, Ard Biesheuvel <ardb@kernel.org> wrote:
->
-> When fitted, the SynQuacer platform exposes its SPI TPM via a MMIO
-> window that is backed by the SPI command sequencer in the SPI bus
-> controller. This arrangement has the limitation that only byte size
-> accesses are supported, and so we'll need to provide a separate set
-> of read and write accessors that take this into account.
->
-> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> ---
->  drivers/char/tpm/tpm_tis.c | 31 ++++++++++++++++++--
->  1 file changed, 29 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/char/tpm/tpm_tis.c b/drivers/char/tpm/tpm_tis.c
-> index e7df342a317d..693e48096035 100644
-> --- a/drivers/char/tpm/tpm_tis.c
-> +++ b/drivers/char/tpm/tpm_tis.c
-> @@ -32,6 +32,7 @@
->
->  struct tpm_info {
->         struct resource res;
-> +       const struct tpm_tis_phy_ops *ops;
->         /* irq > 0 means: use irq $irq;
->          * irq = 0 means: autoprobe for an irq;
->          * irq = -1 means: no irq support
-> @@ -186,6 +187,29 @@ static const struct tpm_tis_phy_ops tpm_tcg = {
->         .write32 = tpm_tcg_write32,
->  };
->
-> +static int tpm_tcg_read16_bw(struct tpm_tis_data *data, u32 addr, u16 *result)
-> +{
-> +       return tpm_tcg_read_bytes(data, addr, 2, (u8 *)result);
-> +}
-> +
-> +static int tpm_tcg_read32_bw(struct tpm_tis_data *data, u32 addr, u32 *result)
-> +{
-> +       return tpm_tcg_read_bytes(data, addr, 4, (u8 *)result);
-> +}
-> +
-> +static int tpm_tcg_write32_bw(struct tpm_tis_data *data, u32 addr, u32 value)
-> +{
-> +       return tpm_tcg_write_bytes(data, addr, 4, (u8 *)&value);
-> +}
-> +
+This series add device tree for SAM9X60 SoC and SAM9X60-EK board.
+Allong with these, there are patches that documents some compatibles
+for SAM9X60's IPs.
 
-These are wrong - I'll need to respin. Apologies for the noise.
+Changes in v3:
+- remove applied patches from series
+- split patch "dt-bindings: atmel-tcb: add microchip,sam9x60-tcb" in two patches:
+	- dt-bindings: atmel-tcb: add microchip,sam9x60-tcb
+	- dt-bindings: atmel-tcb: remove wildcard
+- split patch "dt-bindings: atmel-usart: remove wildcard" in two patches:
+	- dt-bindings: atmel-usart: add microchip,sam9x60-{usart, dbgu}
+	- dt-bindings: atmel-usart: remove wildcard
+  and adapt them as per review comments
+- collect acked-by tags
 
-> +static const struct tpm_tis_phy_ops tpm_tcg_bw = {
-> +       .read_bytes     = tpm_tcg_read_bytes,
-> +       .write_bytes    = tpm_tcg_write_bytes,
-> +       .read16         = tpm_tcg_read16_bw,
-> +       .read32         = tpm_tcg_read32_bw,
-> +       .write32        = tpm_tcg_write32_bw,
-> +};
-> +
->  static int tpm_tis_init(struct device *dev, struct tpm_info *tpm_info)
->  {
->         struct tpm_tis_tcg_phy *phy;
-> @@ -210,7 +234,7 @@ static int tpm_tis_init(struct device *dev, struct tpm_info *tpm_info)
->         if (itpm || is_itpm(ACPI_COMPANION(dev)))
->                 phy->priv.flags |= TPM_TIS_ITPM_WORKAROUND;
->
-> -       return tpm_tis_core_init(dev, &phy->priv, irq, &tpm_tcg,
-> +       return tpm_tis_core_init(dev, &phy->priv, irq, tpm_info->ops,
->                                  ACPI_HANDLE(dev));
->  }
->
-> @@ -219,7 +243,7 @@ static SIMPLE_DEV_PM_OPS(tpm_tis_pm, tpm_pm_suspend, tpm_tis_resume);
->  static int tpm_tis_pnp_init(struct pnp_dev *pnp_dev,
->                             const struct pnp_device_id *pnp_id)
->  {
-> -       struct tpm_info tpm_info = {};
-> +       struct tpm_info tpm_info = { .ops = &tpm_tcg };
->         struct resource *res;
->
->         res = pnp_get_resource(pnp_dev, IORESOURCE_MEM, 0);
-> @@ -295,6 +319,8 @@ static int tpm_tis_plat_probe(struct platform_device *pdev)
->                         tpm_info.irq = 0;
->         }
->
-> +       tpm_info.ops = of_device_get_match_data(&pdev->dev) ?: &tpm_tcg;
-> +
->         return tpm_tis_init(&pdev->dev, &tpm_info);
->  }
->
-> @@ -311,6 +337,7 @@ static int tpm_tis_plat_remove(struct platform_device *pdev)
->  #ifdef CONFIG_OF
->  static const struct of_device_id tis_of_platform_match[] = {
->         {.compatible = "tcg,tpm-tis-mmio"},
-> +       {.compatible = "socionext,synquacer-tpm-mmio", .data = &tpm_tcg_bw},
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, tis_of_platform_match);
-> --
-> 2.20.1
->
+Changes in v2:
+- replace patch "dt-bindings: at_xdmac: add entry for microchip compatibles"
+  by patches:
+	- dt-bindings: at_xdmac: add microchip,sam9x60-dma
+	- dt-bindings: at_xdmac: remove wildcard.
+- replace patch "dt-bindings: atmel-usart: add microchip,<chip>-usart"
+  by patches:
+	- dt-bindings: atmel-usart: add microchip,sam9x60-{usart, dbgu}
+	- dt-bindings: atmel-usart: remove wildcard
+- remove patch "dt-bindings: spi_atmel: add microchip,sam9x60-spi"
+  as it was accepted
+- collect reviewed-by tags
+
+Claudiu Beznea (6):
+  dt-bindings: atmel-tcb: remove wildcard
+  dt-bindings: atmel-tcb: add microchip,sam9x60-tcb
+  dt-bindings: atmel,at91rm9200-rtc: add microchip,sam9x60-rtc
+  dt-bindings: atmel-usart: remove wildcard
+  dt-bindings: atmel-usart: add microchip,sam9x60-{usart, dbgu}
+  ARM: at91/defconfig: enable MMC_SDHCI_OF_AT91 and MICROCHIP_PIT64B
+
+Sandeep Sheriker Mallikarjun (1):
+  ARM: dts: at91: sam9x60: add device tree for soc and board
+
+ .../devicetree/bindings/mfd/atmel-tcb.txt          |   7 +-
+ .../devicetree/bindings/mfd/atmel-usart.txt        |   8 +-
+ .../bindings/rtc/atmel,at91rm9200-rtc.txt          |   3 +-
+ arch/arm/boot/dts/Makefile                         |   2 +
+ arch/arm/boot/dts/at91-sam9x60ek.dts               | 647 +++++++++++++++++++
+ arch/arm/boot/dts/sam9x60.dtsi                     | 691 +++++++++++++++++++++
+ arch/arm/configs/at91_dt_defconfig                 |   4 +
+ 7 files changed, 1355 insertions(+), 7 deletions(-)
+ create mode 100644 arch/arm/boot/dts/at91-sam9x60ek.dts
+ create mode 100644 arch/arm/boot/dts/sam9x60.dtsi
+
+-- 
+2.7.4
+
