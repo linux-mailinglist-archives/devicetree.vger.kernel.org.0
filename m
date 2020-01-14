@@ -2,87 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E674B139D75
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 00:40:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA32E139DE3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 01:16:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728733AbgAMXkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 13 Jan 2020 18:40:23 -0500
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:39660 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729009AbgAMXkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 18:40:23 -0500
-Received: by mail-pf1-f194.google.com with SMTP id q10so5633008pfs.6
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2020 15:40:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=sO+iqS5at4kQoqKYaj93x28+XPq7u/VZF7pgBa0PTKw=;
-        b=Ox+WPUIgcZKuEnZWTkLLPQgzYp0JAP6+RHmNZarXHOR1VEGRUFuB3vTek415XOepq0
-         T1NSsiZB7v7KbLRXYYYv/0yKmrgtGstw2OHUg4uo193MIY3mW8dAuo2BhttsmEdDXsGf
-         hQY1jh58eJp6Zex+n1KUCz+YfneiZYP3+vOcHHdcShOZx9YPW6qyBfEKE4Q7I22oj8SX
-         Ixg+YB3Zxv98M4zeXiWrXtWbgOXkobDXN5OsDDK11D1EdvzjpcfSb4HbnYYcx9lhXceA
-         uZHFuRjkq6c5LEX6Vi3iY9gOP2qzhfbfu16G9H1LoHOT0rLJ6zfFU4XYyn5ed/BPFvX8
-         aKEA==
+        id S1729351AbgANAQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 13 Jan 2020 19:16:31 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:33631 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729342AbgANAQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 13 Jan 2020 19:16:31 -0500
+Received: by mail-oi1-f193.google.com with SMTP id v140so10185056oie.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2020 16:16:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=sO+iqS5at4kQoqKYaj93x28+XPq7u/VZF7pgBa0PTKw=;
-        b=p34Hf35mKX4gq2MY121xzc1roLzgy23islnt4pQPjp7T/ItYfUCUY/HlR74OuYkjyJ
-         mPVibLmk7VgCHZXBUzejoHZduz9pNmFGUJIDAvtGWexiKvwYTqT9JyQWFHhH7/xpQQw4
-         se6S+iqzx1ae7TZExZVcKFTLV9Bbxs7TlI5ISn1hd1cK/GwnAFmS3rJL2uu7O7Y3jUFr
-         d1IhXcuYIZMa+ihXD6kGTsXVNZSQvrWWZ3VVOhWVMiYph3+6ACM1yP6+Fo19I8tBbJIG
-         NYmYB+ZosqhHP2r2Ewfb5SzfeTfi1kJYSytrKqhdqos8JCdbU8MisaXZZMyEqP9qdn0W
-         2fcw==
-X-Gm-Message-State: APjAAAVGBM+Htuif/DbLShfl1wUQafVkZTfDnbCzb4n2tiy3NmylYF5j
-        vpCbEve+kaLWlGm8Uer5Rl81vg==
-X-Google-Smtp-Source: APXvYqxOFnkt4NJld1GAc3enPtDOXFGVXS9iJaH6cGEgh6sJnOSmCeK3VGF0VCf5MdcABcrSc1YLIA==
-X-Received: by 2002:a63:114a:: with SMTP id 10mr23486632pgr.250.1578958822095;
-        Mon, 13 Jan 2020 15:40:22 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id 144sm16256684pfc.124.2020.01.13.15.40.21
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 13 Jan 2020 15:40:21 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jianxin Pan <jianxin.pan@amlogic.com>,
-        linux-amlogic@lists.infradead.org
-Cc:     Jianxin Pan <jianxin.pan@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Subject: Re: [PATCH v5 0/4] arm64: meson: add support for A1 Power Domains
-In-Reply-To: <1573532930-39505-1-git-send-email-jianxin.pan@amlogic.com>
-References: <1573532930-39505-1-git-send-email-jianxin.pan@amlogic.com>
-Date:   Mon, 13 Jan 2020 15:40:21 -0800
-Message-ID: <7h7e1vdixm.fsf@baylibre.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=E6IJAm/G2BZsEtWssBpYlld99L9pgrhy2OUvTYO1Gu4=;
+        b=nHW5uWV7YGJbMmOPWCDr/MywSOuYI5bAdvDfR33wSnLu++1dkPwqzVfKVVopulw8tT
+         AJPy0vntH28RzcssjNE6LFaGEWwGIT5/KKkpXvLJ1vhot0NuOxVThLU5LyEUsP9g/Ov8
+         UxImHUULTvxAmDMc9vZDd4h1BA2FLBTMQXMFY2nicikxJM++4El0P3K83/ZP9xPN8Rd9
+         HV60lXB30poPtUbd1/A6iJQRTRfRgKtPRlGpxI0kcPUsXgXeNJMqjuutM+bajbSvRsw6
+         GX3k2e+DmOGbYUbm9WI8mkzM1aIlVjcwFjwv27PRA9N+j+CLVtokMOU2zDRu2bq1I0wj
+         VUYg==
+X-Gm-Message-State: APjAAAUCUKfCNCS5JKC8PO67s+wLV7nirZ2ul47wg2Rv+9OxGPN4qwbP
+        BLYcxFXAM7FvaiAy34aDF82z94DTrA==
+X-Google-Smtp-Source: APXvYqwcDTFaQ6KTi4EHG4YuQ5DGD1wyefXx1UOdddbHZggi627FUwr4TTCQzYJfBn9GI8NtiTkWjw==
+X-Received: by 2002:aca:4c4f:: with SMTP id z76mr14994407oia.21.1578960990039;
+        Mon, 13 Jan 2020 16:16:30 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f4sm4053719oij.25.2020.01.13.16.16.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2020 16:16:29 -0800 (PST)
+Received: from rob (uid 1000)
+        (envelope-from rob@rob-hp-laptop)
+        id 22198d
+        by rob-hp-laptop (DragonFly Mail Agent v0.11);
+        Mon, 13 Jan 2020 18:16:27 -0600
+Date:   Mon, 13 Jan 2020 18:16:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, vkoul@kernel.org,
+        eugen.hristev@microchip.com, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net, mchehab@kernel.org,
+        lee.jones@linaro.org, radu_nicolae.pirea@upb.ro,
+        richard.genoud@gmail.com, tudor.ambarus@microchip.com,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        wg@grandegger.com, mkl@pengutronix.de, a.zummo@towertech.it,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-can@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: Re: [PATCH v2 06/17] dt-bindings: at91-sama5d2_adc: add
+ microchip,sam9x60-adc
+Message-ID: <20200114001627.GA10411@bogus>
+References: <1578673089-3484-1-git-send-email-claudiu.beznea@microchip.com>
+ <1578673089-3484-7-git-send-email-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1578673089-3484-7-git-send-email-claudiu.beznea@microchip.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jianxin Pan <jianxin.pan@amlogic.com> writes:
+On Fri, 10 Jan 2020 18:17:58 +0200, Claudiu Beznea wrote:
+> Add microchip,sam9x60-adc to DT bindings documentation.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/at91-sama5d2_adc.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-> This patchset introduces a "Secure Power Doamin Controller". In A1/C1, power
-> controller registers such as PWRCTRL_FOCRSTN, PWRCTRL_PWR_OFF, PWRCTRL_MEM_PD
-> and PWRCTRL_ISO_EN, are in the secure domain, and should be accessed from ATF
-> by smc.
->
-> Changes since v4 at [3]:                                                         
->  - add SM_A1_ prefix for PWRC_SET/GET
->  - rename variable and update comments
-
-Thanks for those updates
-
-After the bindings issues are worked out, this is ready for merge.
-
-Kevin
+Acked-by: Rob Herring <robh@kernel.org>
