@@ -2,207 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6912913A1CA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 08:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75FC713A20C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2020 08:26:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729160AbgANHYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 14 Jan 2020 02:24:47 -0500
-Received: from lucky1.263xmail.com ([211.157.147.130]:48156 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729015AbgANHYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 02:24:46 -0500
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 124AC7CF0C;
-        Tue, 14 Jan 2020 15:24:42 +0800 (CST)
-X-MAIL-GRAY: 1
-X-MAIL-DELIVERY: 0
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P5437T140292994864896S1578986620990337_;
-        Tue, 14 Jan 2020 15:24:42 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <f25456ee66a8a74a07826691950c75a3>
-X-RL-SENDER: shawn.lin@rock-chips.com
-X-SENDER: lintao@rock-chips.com
-X-LOGIN-NAME: shawn.lin@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-From:   Shawn Lin <shawn.lin@rock-chips.com>
-To:     Heiko Stuebner <heiko@sntech.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Jingoo Han <jingoohan1@gmail.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, William Wu <william.wu@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH 4/6] dt-bindings: rockchip: Add DesignWare based PCIe controller
-Date:   Tue, 14 Jan 2020 15:22:58 +0800
-Message-Id: <1578986580-71974-5-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1578986580-71974-1-git-send-email-shawn.lin@rock-chips.com>
-References: <1578986580-71974-1-git-send-email-shawn.lin@rock-chips.com>
+        id S1728935AbgANHYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 14 Jan 2020 02:24:31 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:13835 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728868AbgANHYb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 14 Jan 2020 02:24:31 -0500
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e1d6c980000>; Mon, 13 Jan 2020 23:24:09 -0800
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 13 Jan 2020 23:24:28 -0800
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 13 Jan 2020 23:24:28 -0800
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 14 Jan
+ 2020 07:24:28 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Tue, 14 Jan 2020 07:24:28 +0000
+Received: from skomatineni-linux.nvidia.com (Not Verified[10.2.169.242]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5e1d6cab0000>; Mon, 13 Jan 2020 23:24:28 -0800
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <broonie@kernel.org>,
+        <lgirdwood@gmail.com>, <perex@perex.cz>, <tiwai@suse.com>,
+        <digetx@gmail.com>, <mperttunen@nvidia.com>,
+        <gregkh@linuxfoundation.org>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <spujar@nvidia.com>, <josephl@nvidia.com>,
+        <daniel.lezcano@linaro.org>, <mmaddireddy@nvidia.com>,
+        <markz@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v8 00/22] Move PMC clocks into Tegra PMC driver
+Date:   Mon, 13 Jan 2020 23:24:05 -0800
+Message-ID: <1578986667-16041-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
+MIME-Version: 1.0
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1578986649; bh=7WylSY1DJeI83R7D+xmb3QKjNosazZzuiWJshenlt+I=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=LBQ+5gcaD2NYmKbXgoJpeDgkjbBDM6HMLZEWWDyuYbrVILHd0xAnraZipy26XM5vd
+         fH3IDtoSS/azuN2atugVr0QF0PYcHCwTXOZnM8DQJRWYVATBaOYQkHSeNcvwbXxMCq
+         1ya4DGe+XQBWtKIdaMlvfPKcCYvLkDSOQhrPjFh7SlbfsDPmrF3b7RrhCdjy7PFNT0
+         4aF4GBcTxO8AmwVKzHtgG6LPAK2H03Ht7du9xFttrCjRL372mBGbmfjgqDD8ODgfSp
+         hSAxOsFFtmCUKqOu2Sf9b+KCNqQKE+Wi59ygDw+sE5qY0eTogmgy+lmd7zEFvVkur6
+         3jKlViD6M8mmA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Simon Xue <xxm@rock-chips.com>
+This patch series moves Tegra PMC clocks from clock driver to pmc driver
+along with the device trees changes and audio driver which uses one of
+the pmc clock for audio mclk.
 
-Signed-off-by: Simon Xue <xxm@rock-chips.com>
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
----
+Tegra PMC has clk_out_1, clk_out_2, clk_out_3 and blink controls which
+are currently registered by Tegra clock driver using clk_regiser_mux and
+clk_register_gate which performs direct Tegra PMC register access.
 
- .../devicetree/bindings/pci/rockchip-dw-pcie.yaml  | 132 +++++++++++++++++++++
- 1 file changed, 132 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+When Tegra PMC is in secure mode, any access from non-secure world will
+not go through.
 
-diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-new file mode 100644
-index 0000000..c5205f6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-@@ -0,0 +1,132 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: DesignWare based PCIe RC controller on Rockchip SoCs
-+
-+maintainers:
-+        - Shawn Lin <shawn.lin@rock-chips.com>
-+        - Simon Xue <xxm@rock-chips.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk1808-pcie
-+      - snps,dw-pcie
-+
-+  reg:
-+    maxItems: 2
-+
-+  clocks:
-+    items:
-+      - description: High speed clock for PCIe
-+      - description: Low speed clock for PCIe
-+      - description: AHB clock for PCIe
-+      - description: APB clock for PCIe
-+      - description: Auxiliary clock for PCIe
-+
-+  clock-names:
-+    items:
-+      - const: hsclk
-+      - const: lsclk
-+      - const: aclk
-+      - const: pclk
-+      - const: sclk-aux
-+
-+  resets:
-+    items:
-+      - description: PCIe niu high reset line
-+      - description: PCIe niu low reset line
-+      - description: PCIe grf reset line
-+      - description: PCIe control reset line
-+      - description: PCIe control powerup reset line
-+      - description: PCIe control master reset line
-+      - description: PCIe control slave reset line
-+      - description: PCIe control dbi reset line
-+      - description: PCIe control button reset line
-+      - description: PCIe control power engine reset line
-+      - description: PCIe control core reset line
-+      - description: PCIe control non-sticky reset line
-+      - description: PCIe control sticky reset line
-+      - description: PCIe control power reset line
-+      - description: PCIe niu ahb reset line
-+      - description: PCIe niu apb reset line
-+
-+  reset-names:
-+    items:
-+      - const: niu-h
-+      - const: niu-l
-+      - const: grf-p
-+      - const: ctl-p
-+      - const: ctl-powerup
-+      - const: ctl-mst-a
-+      - const: ctl-slv-a
-+      - const: ctl-dbi-a
-+      - const: ctl-button
-+      - const: ctl-pe
-+      - const: ctl-core
-+      - const: ctl-nsticky
-+      - const: ctl-sticky
-+      - const: ctl-pwr
-+      - const: ctl-niu-a
-+      - const: ctl-niu-p
-+
-+  rockchip,usbpciegrf:
-+    items:
-+      - description: The grf for COMBPHY configuration and state registers.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - msi-map
-+  - num-lanes
-+  - phys
-+  - phy-names
-+  - resets
-+  - reset-names
-+  - rockchip,usbpciegrf
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    usb_pcie_grf: syscon@fe040000 {
-+        compatible = "rockchip,usb-pcie-grf", "syscon";
-+        reg = <0x0 0xfe040000 0x0 0x1000>;
-+    };
-+
-+    pcie0: pcie@fc400000 {
-+        compatible = "rockchip,rk1808-pcie", "snps,dw-pcie";
-+        reg = <0x0 0xfc000000 0x0 0x400000>,
-+              <0x0 0xfc400000 0x0 0x10000>;
-+        clocks = <&cru HSCLK_PCIE>, <&cru LSCLK_PCIE>,
-+                 <&cru ACLK_PCIE>, <&cru PCLK_PCIE>,
-+                 <&cru SCLK_PCIE_AUX>;
-+        clock-names = "hsclk", "lsclk",
-+                      "aclk", "pclk",
-+                      "sclk-aux";
-+        msi-map = <0x0 &its 0x0 0x1000>;
-+        num-lanes = <2>;
-+        phys = <&combphy PHY_TYPE_PCIE>;
-+        phy-names = "pcie-phy";
-+        resets = <&cru SRST_PCIE_NIU_H>, <&cru SRST_PCIE_NIU_L>,
-+                 <&cru SRST_PCIEGRF_P>, <&cru SRST_PCIECTL_P>,
-+                 <&cru SRST_PCIECTL_POWERUP>, <&cru SRST_PCIECTL_MST_A>,
-+                 <&cru SRST_PCIECTL_SLV_A>, <&cru SRST_PCIECTL_DBI_A>,
-+                 <&cru SRST_PCIECTL_BUTTON>, <&cru SRST_PCIECTL_PE>,
-+                 <&cru SRST_PCIECTL_CORE>, <&cru SRST_PCIECTL_NSTICKY>,
-+                 <&cru SRST_PCIECTL_STICKY>, <&cru SRST_PCIECTL_PWR>,
-+                 <&cru SRST_PCIE_NIU_A>, <&cru SRST_PCIE_NIU_P>;
-+        reset-names = "niu-h", "niu-l", "grf-p", "ctl-p",
-+                      "ctl-powerup", "ctl-mst-a", "ctl-slv-a",
-+                      "ctl-dbi-a", "ctl-button", "ctl-pe",
-+                      "ctl-core", "ctl-nsticky", "ctl-sticky",
-+                      "ctl-pwr", "ctl-niu-a", "ctl-niu-p";
-+        rockchip,usbpciegrf = <&usb_pcie_grf>;
-+    };
-+
-+...
+This patch series adds these Tegra PMC clocks and blink controls to Tegra
+PMC driver with PMC as clock provider and removes them from Tegra clock
+driver.
+
+PMC clock clk_out_1 is dedicated for audio mclk from Tegra30 thru Tegra210
+and clock driver does inital parent configuration for it and enables them.
+But this clock should be taken care by audio driver as there is no need
+to have this clock pre enabled.
+
+So, this series also includes patch that updates ASoC utils to take
+care of parent configuration for mclk if device tree don't specify
+initial parent configuration using assigned-clock-parents and enable
+audio mclk during utils init.
+
+DTs are also updated to use clk_out_1 as audio mclk rather than extern1.
+
+This series also includes a patch for mclk fallback to extern1 when
+retrieving mclk fails to have this backward compatible of new DT with
+old kernels.
+
+[v8]:	Changes between v7 and v8 are
+	- v7 minor feedback
+
+	- Audio mclk is needed only for audio, but there is some unknown
+	  dependency of audio mclk and suspend-resume on Tegra30 where when
+	  mclk is disable, suspend-resume doesn't work.
+	  So v8 undoes v7 change of mclk enable and disable during machine
+	  startup and shutdown and keeps audio mclk enabled in ASoC driver
+	  tegra_asoc_utils_init.
+
+	- change in the patches order.
+
+	  Note:
+	  - Patches 1 thru 5 are to change CLK_M_DIV clocks to OSC_DIV clocks.
+	    OSC_DIV clocks uses same ID as CLK_M_DIV clocks during the
+	    transition to replace CLK_M_DIV with OSC_DIV.
+	  - Patches 8 and 10 registers pmc clocks as pmc_clk_out_1/2/3, and
+	    pmc_blink to avoid using same clock names as pmc clocks from
+	    tegra_car provider to have them functionally work with all the
+	    transition patches.
+	  - Patch 11 adds audio mclk fallback to extern1 to have new DT work
+	    with old kernels. This patch need to be back-ported.
+	  - Patch 18 adds audio mclk parent configuration when DT doesn't
+	    specify parent configs. This patch retrieves pmc_clk_out_1 as audio
+	    mclk so added this patch after all DT updates to use pmc clocks
+	    from tegra_pmc.
+	  - Patch 19 does audio mclk enable during utils init to have it
+	    enabled all the time.
+	  - Patch 20 and 21 removes PMC clocks from clock driver and their IDs
+	    at the end of PMC clocks transition to tegra_pmc.
+	
+
+[v7]:	Changes between v6 and v7 are
+	- v6 minor feedback
+	- Added DT id for Tegra OSC to use in device tree for pmc clock
+	  parent.
+
+[v6]:	Changes between v5 and v6 are
+	- v5 feedback
+	- Added ASoC machine startup and shutdown callbacks to control audio
+	  mclk enable/disable and removed default mclk enable from clock driver.
+	- Updated tegra_asoc_utils_set_rate to disable mclk only during PLLA
+	  rate change and removed disabling PLLA as its already taken care by
+	  pll clock driver.
+	- Removed tegra_asoc_utils_set_rate call from utils_init as set_rate
+	  is set during machine hw_params and during utils_init mclk is
+	  already in disabled state and this causes warning during mclk disable
+	  in utils_set_rate.
+
+[v5]:	Changes between v4 and v5 are
+	- v4 feedback
+	- updated dt-binding pmc YAML schema with more description on power
+	  gate nodes and pad configuration state nodes.
+	- update tegra_asoc_utils_set_rate to disable audio mclk only if
+	  its in enable state.
+
+[v4]:	Changes between v3 and v4 are
+	- v3 Feedback
+	- Updated clocks clk_m_div2 and clk_m_div4 as osc_div2 and osc_div4.
+	  Tegra don't have clk_m_div2, clk_m_div4 and they should actually
+	  be osc_div2 and osc_div4 clocks from osc pads.
+	- Fixed PMC clock parents to use osc, osc_div2, osc_div4.
+	  This is not a functional bug fix but correction to use proper parent
+	  name.
+	- Register each PMC clock as single clock rather than separate
+	  mux and gate clocks.
+	- Update ASoC utils to use resource managed APIs rather than
+	  using clk_get and clk_put.
+	- Updated device tree and ASoC driver to use clk_out_1 instead of
+	  clk_out_1_mux as PMC clocks are registered as single clock.
+	- Update clock driver init_table to not enable audio related clocks
+	  as ASoC utils will do audio clock enables.
+
+[v3]:	Changes between v2 and v3 are
+	- Removes set parent of clk_out_1_mux to extern1 and enabling
+	  extern1 from the clock driver.
+	- Doesn't enable clk_out_1 and blink by default in pmc driver
+	- Updates ASoC driver to take care of audio mclk parent
+	  configuration incase if device tree don't specify assigned
+	  clock parent properties and enables mclk using both clk_out_1
+	  and extern1.
+	- updates all device trees using extern1 as mclk in sound node
+	  to use clk_out_1 from pmc.
+	- patch for YAML format pmc dt-binding
+	- Includes v2 feedback
+
+[v2]:	Changes between v1 and v2 are
+	- v2 includes patches for adding clk_out_1, clk_out_2, clk_out_3,
+	  blink controls to Tegra PMC driver and removing clk-tegra-pmc.
+	- feedback related to pmc clocks in Tegra PMC driver from v1
+	- Removed patches for WB0 PLLM overrides and PLLE IDDQ PMC programming
+	  by the clock driver using helper functions from Tegra PMC.
+
+ 	  Note:
+	  To use helper functions from PMC driver, PMC early init need to
+	  happen prior to using helper functions and these helper functions are
+	  for PLLM Override and PLLE IDDQ programming in PMC during PLLM/PLLE
+	  clock registration which happen in clock_init prior to Tegra PMC
+	  probe.
+	  Moving PLLM/PLLE clocks registration to happen after Tegra PMC
+	  impacts other clocks EMC, MC and corresponding tegra_emc_init and
+	  tegra_mc_init.
+	  This implementation of configuring PMC registers thru helper
+	  functions in clock driver needs proper changes across PMC, Clock,
+	  EMC and MC inits to have it work across all Tegra platforms.
+
+	  Currently PLLM Override is not enabled in the bootloader so proper
+	  patches for this fix will be taken care separately.
+
+[v1]:	v1 includes patches for below fixes.
+	- adding clk_out_1, clk_out_2, clk_out_3, blink controls to Tegra PMC
+	  driver and removing clk-tegra-pmc.
+	- updated clock provider from tegra_car to pmc in the device tree
+	  tegra210-smaug.dts that uses clk_out_2.
+	- Added helper functions in PMC driver for WB0 PLLM overrides and PLLE
+	  IDDQ programming to use by clock driver and updated clock driver to
+	  use these helper functions and removed direct PMC access from clock
+	  driver and all pmc base address references in clock driver.
+
+Sowjanya Komatineni (22):
+  dt-bindings: clock: tegra: Add IDs for OSC clocks
+  clk: tegra: Add support for OSC_DIV fixed clocks
+  clk: tegra: Add Tegra OSC to clock lookup
+  clk: tegra: Fix Tegra PMC clock out parents
+  clk: tegra: Remove CLK_M_DIV fixed clocks
+  dt-bindings: tegra: Convert Tegra PMC bindings to YAML
+  dt-bindings: soc: tegra-pmc: Add Tegra PMC clock bindings
+  soc: tegra: Add Tegra PMC clocks registration into PMC driver
+  dt-bindings: soc: tegra-pmc: Add id for Tegra PMC 32KHz blink clock
+  soc: tegra: Add support for 32KHz blink clock
+  ASoC: tegra: Add fallback implementation for audio mclk
+  ASoC: tegra: Use device managed resource APIs to get the clock
+  ARM: dts: tegra: Add clock-cells property to pmc
+  arm64: tegra: Add clock-cells property to Tegra PMC node
+  ARM: tegra: Update sound node clocks in device tree
+  arm64: tegra: smaug: Change clk_out_2 provider to pmc
+  ASoC: nau8825: change Tegra clk_out_2 provider to tegra_pmc
+  ASoC: tegra: Add audio mclk parent configuration
+  ASoC: tegra: Enable audio mclk during tegra_asoc_utils_init
+  clk: tegra: Remove tegra_pmc_clk_init along with clk ids
+  dt-bindings: clock: tegra: Remove pmc clock ids from clock dt-bindings
+  clk: tegra: Remove audio clocks configuration from clock driver
+
+ .../bindings/arm/tegra/nvidia,tegra20-pmc.txt      | 300 -----------------
+ .../bindings/arm/tegra/nvidia,tegra20-pmc.yaml     | 354 +++++++++++++++++++++
+ .../devicetree/bindings/sound/nau8825.txt          |   2 +-
+ arch/arm/boot/dts/tegra114-dalmore.dts             |   8 +-
+ arch/arm/boot/dts/tegra114.dtsi                    |   4 +-
+ arch/arm/boot/dts/tegra124-apalis-v1.2.dtsi        |   8 +-
+ arch/arm/boot/dts/tegra124-apalis.dtsi             |   8 +-
+ arch/arm/boot/dts/tegra124-jetson-tk1.dts          |   8 +-
+ arch/arm/boot/dts/tegra124-nyan.dtsi               |   8 +-
+ arch/arm/boot/dts/tegra124-venice2.dts             |   8 +-
+ arch/arm/boot/dts/tegra124.dtsi                    |   4 +-
+ arch/arm/boot/dts/tegra20.dtsi                     |   4 +-
+ arch/arm/boot/dts/tegra30-apalis-v1.1.dtsi         |   8 +-
+ arch/arm/boot/dts/tegra30-apalis.dtsi              |   8 +-
+ arch/arm/boot/dts/tegra30-beaver.dts               |   8 +-
+ arch/arm/boot/dts/tegra30-cardhu.dtsi              |   8 +-
+ arch/arm/boot/dts/tegra30-colibri.dtsi             |   8 +-
+ arch/arm/boot/dts/tegra30.dtsi                     |   4 +-
+ arch/arm64/boot/dts/nvidia/tegra132.dtsi           |   4 +-
+ arch/arm64/boot/dts/nvidia/tegra210-smaug.dts      |   2 +-
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   6 +-
+ drivers/clk/tegra/Makefile                         |   1 -
+ drivers/clk/tegra/clk-id.h                         |  12 +-
+ drivers/clk/tegra/clk-tegra-fixed.c                |  37 ++-
+ drivers/clk/tegra/clk-tegra-pmc.c                  | 122 -------
+ drivers/clk/tegra/clk-tegra114.c                   |  43 +--
+ drivers/clk/tegra/clk-tegra124.c                   |  48 ++-
+ drivers/clk/tegra/clk-tegra20.c                    |   9 +-
+ drivers/clk/tegra/clk-tegra210.c                   |  32 +-
+ drivers/clk/tegra/clk-tegra30.c                    |  33 +-
+ drivers/clk/tegra/clk.h                            |   1 -
+ drivers/soc/tegra/pmc.c                            | 354 +++++++++++++++++++++
+ include/dt-bindings/clock/tegra114-car.h           |  18 +-
+ include/dt-bindings/clock/tegra124-car-common.h    |  18 +-
+ include/dt-bindings/clock/tegra20-car.h            |   2 +-
+ include/dt-bindings/clock/tegra210-car.h           |  18 +-
+ include/dt-bindings/clock/tegra30-car.h            |  18 +-
+ include/dt-bindings/soc/tegra-pmc.h                |  16 +
+ sound/soc/tegra/tegra_alc5632.c                    |   7 +-
+ sound/soc/tegra/tegra_asoc_utils.c                 | 126 ++++----
+ sound/soc/tegra/tegra_asoc_utils.h                 |   1 -
+ sound/soc/tegra/tegra_max98090.c                   |  22 +-
+ sound/soc/tegra/tegra_rt5640.c                     |  22 +-
+ sound/soc/tegra/tegra_rt5677.c                     |   7 +-
+ sound/soc/tegra/tegra_sgtl5000.c                   |   7 +-
+ sound/soc/tegra/tegra_wm8753.c                     |  22 +-
+ sound/soc/tegra/tegra_wm8903.c                     |  22 +-
+ sound/soc/tegra/tegra_wm9712.c                     |   8 +-
+ sound/soc/tegra/trimslice.c                        |  18 +-
+ 49 files changed, 1041 insertions(+), 775 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+ delete mode 100644 drivers/clk/tegra/clk-tegra-pmc.c
+ create mode 100644 include/dt-bindings/soc/tegra-pmc.h
+
 -- 
-1.9.1
-
-
+2.7.4
 
