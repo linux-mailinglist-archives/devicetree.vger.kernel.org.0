@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21AE013CE02
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 21:20:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1730513CDF0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 21:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726220AbgAOUUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 15:20:11 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45927 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726018AbgAOUUK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 15:20:10 -0500
-Received: by mail-ot1-f65.google.com with SMTP id 59so17248705otp.12
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 12:20:10 -0800 (PST)
+        id S1729075AbgAOURD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 15:17:03 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:44036 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726778AbgAOURD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 15:17:03 -0500
+Received: by mail-oi1-f193.google.com with SMTP id d62so16659501oia.11
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 12:17:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:content-language
-         :user-agent;
-        bh=1BVQS3/CT2AwFowBzdJp24DkQzhe3BERjAeXkX0Uz7k=;
-        b=l0+UajL5ZkfgePmaGpr7biMiNxoHhbM0rZk7TfwlJG0s+JmUtu56HROnZcYiKzy+yS
-         2K86JJ1Wn24SoLvhLhuG5A/GX/hGrU3bj/0NBEPLmysubFC187mgSmFZ1fJxja1Hb7DE
-         JqXu4jJhuCNnt02EeDiHPM8RHedEcjBEk9MFKosoO1LB1E48vd74knfyaVTCNPVuNA07
-         DfWuQGKmh8q3C+H1+JY4uNUH0fhB6SJHm9a6yr12xc9j6mnOArNddX5yxRzic9RMnXY6
-         jLtdEkB4XdXB8Ejq/Fg6RmcBPPw+e4mBZmaj8nQ8n8lywhYn5qaUFS4DU/HJLtFyC4er
-         Mq3w==
-X-Gm-Message-State: APjAAAWq6dDBe8yKz7kwBtTxLAR/5Z2G0RCrf78mgSqEgfxiQx+o3D5+
-        VyWnpUI/jfGAVx/y15x1PRHClEs=
-X-Google-Smtp-Source: APXvYqx7sOIyVQPBP4SMGvwv4Lt/bFutpHUj8glbZYP3ElDn3FMyWFykKyBDp8WKa6ZBaUiX8/O3Yw==
-X-Received: by 2002:a05:6830:1016:: with SMTP id a22mr3103561otp.83.1579119609587;
-        Wed, 15 Jan 2020 12:20:09 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2myqp2GrpN0pfUan1rnrXmWGh+MWOgXmKRvJ9E5COqI=;
+        b=aYNH/RWQq0NOB2sUdB89zMkKCbFR86O04syr4KOUFWBvOXv6hJ7OjEcTU8K2XAVM9T
+         HYruNXak4aFpYRt/x6Lx1zknygzGJ4UktS3B+EnIDdHNG2L/ijxDNHbck9hNjZQ/PMXi
+         mT3WMW7H6TH7Vo8oOdqNCfBuNa6AdNx2ZL6ozp/Mj169GunOoz1QLPILoy8ecMdN4iIT
+         ABmQONXmfYMcgiN/owvkaWSZR8J9zBSMjfnZIuLw+l1HSewRC+t8JKAGRmGzN6XammZV
+         gHkuxGsmISH1A5y9+pyjPm4vQznUkqL6h3KVhaE99jJiQSTQs9yrVtav/FHx2k7f+LhR
+         uwtg==
+X-Gm-Message-State: APjAAAXB7LWoL75dr1PS+y+xgIikFF5Zrly+r3JSSTAQedMCypifCURJ
+        EqA5POTja+/T16nv/jYrxQZ06R0=
+X-Google-Smtp-Source: APXvYqz1/oQhawl5LKl/qMARiMJQwxe71uT4xbpYAzSMtVaM16XodK97FvzgH2apmuoR1voaRIuhOQ==
+X-Received: by 2002:aca:b183:: with SMTP id a125mr1317060oif.83.1579119422283;
+        Wed, 15 Jan 2020 12:17:02 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w6sm5940605oih.19.2020.01.15.12.20.08
+        by smtp.gmail.com with ESMTPSA id k17sm6070663oic.45.2020.01.15.12.17.00
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2020 12:20:09 -0800 (PST)
+        Wed, 15 Jan 2020 12:17:01 -0800 (PST)
 Received: from rob (uid 1000)
         (envelope-from rob@rob-hp-laptop)
-        id 220379
+        id 22062a
         by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Wed, 15 Jan 2020 14:16:37 -0600
-Date:   Wed, 15 Jan 2020 14:16:37 -0600
+        Wed, 15 Jan 2020 14:17:00 -0600
+Date:   Wed, 15 Jan 2020 14:17:00 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Shiping Ji <shiping.linux@gmail.com>
-Cc:     Borislav Petkov <bp@alien8.de>, James Morse <james.morse@arm.com>,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        linux-edac@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        sashal@kernel.org, hangl@microsoft.com,
-        Lei Wang <lewan@microsoft.com>, ruizhao@microsoft.com,
-        shji@microsoft.com, Scott Branden <scott.branden@broadcom.com>,
-        Yuqing Shen <yuqing.shen@broadcom.com>, ray.jui@broadcom.com,
-        wangglei@gmail.com
-Subject: Re: [PATCH v9 1/2] dt-bindings: edac: arm-dmc520.txt
-Message-ID: <20200115201637.GA25883@bogus>
-References: <4fbf026a-4878-cd65-55f7-7d992782b331@gmail.com>
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     marcel@holtmann.org, johan.hedberg@gmail.com,
+        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        johan@kernel.org, nsaenzjulienne@suse.de,
+        linux-kernel@vger.kernel.org, khilman@baylibre.com
+Subject: Re: [PATCH v7 1/2] dt-bindings: net: bluetooth: add interrupts
+ properties
+Message-ID: <20200115201700.GA26654@bogus>
+References: <20200115101243.17094-1-glaroque@baylibre.com>
+ <20200115101243.17094-2-glaroque@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4fbf026a-4878-cd65-55f7-7d992782b331@gmail.com>
-Content-Language: en-US
+In-Reply-To: <20200115101243.17094-2-glaroque@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jan 2020 06:32:27 -0800, Shiping Ji wrote:
-> This is the device tree bindings for new EDAC driver dmc520_edac.c.
+On Wed, 15 Jan 2020 11:12:42 +0100, Guillaume La Roque wrote:
+> add interrupts and interrupt-names as optional properties
+> to support host-wakeup by interrupt properties instead of
+> host-wakeup-gpios.
 > 
-> Signed-off-by: Shiping Ji <shiping.linux@gmail.com>
-> Signed-off-by: Lei Wang <leiwang_git@outlook.com>
-> Reviewed-by: James Morse <james.morse@arm.com>
-> 
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 > ---
->      Changes in v9:
->          - Replaced the vendor specific interrupt-config property with interrupt-names
-> 
-> ---
->  .../devicetree/bindings/edac/arm-dmc520.txt   | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/arm-dmc520.txt
+>  .../devicetree/bindings/net/broadcom-bluetooth.txt         | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
