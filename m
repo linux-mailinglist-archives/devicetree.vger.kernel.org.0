@@ -2,126 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A58113C183
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BACE613C168
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:45:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729073AbgAOMqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 07:46:15 -0500
-Received: from michel.telenet-ops.be ([195.130.137.88]:54952 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729153AbgAOMqA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 07:46:00 -0500
-Received: from ramsan ([84.195.182.253])
-        by michel.telenet-ops.be with bizsmtp
-        id qclq2100M5USYZQ06clqYB; Wed, 15 Jan 2020 13:45:58 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iri3S-0003z9-68; Wed, 15 Jan 2020 13:45:50 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1iri3S-00012k-4a; Wed, 15 Jan 2020 13:45:50 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        David Lechner <david@lechnology.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 5/5] drm: tiny: st7735r: Add support for Okaya RH128128T
-Date:   Wed, 15 Jan 2020 13:45:48 +0100
-Message-Id: <20200115124548.3951-6-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200115124548.3951-1-geert+renesas@glider.be>
-References: <20200115124548.3951-1-geert+renesas@glider.be>
+        id S1726310AbgAOMpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 07:45:36 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:37648 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725999AbgAOMpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 07:45:36 -0500
+Received: by mail-lj1-f194.google.com with SMTP id o13so18391153ljg.4;
+        Wed, 15 Jan 2020 04:45:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=XrM75ATOZQXz6SoZn1okjiJgULz2HKkhFLxEF09kY14=;
+        b=i87EVfYpDyR0g6vMWt7prBmZ7KGPMTqtHHGezpq2RddzuyXhi0ONnCPWA7fezCoUQV
+         VU7N1ZWCxkXrrr9TcXBRyjmaz5TaTz7LvISiS0ZbgcTunx8/9OlwORUBamF6uv6PbsN2
+         T6NPLh/VHH1Xh0wqSiYSEQomGsiIXziGgSmVHCM2QyM2OU2lbAqrZbV5JCXBGLwyb/Hi
+         Z9giZcnBQ0ue9dDd/e4HuBc90b4WFvHXe+DeWRWa4flHgYpdFoTmo5pUtdarg9gfq020
+         TF/UD7sAxxckKPY2ArubZVTboAD2Fp5O9bSzHCGzQmNX774KEyA+E5HuvbokiBVC9ffV
+         cKzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
+         :date:message-id:mime-version;
+        bh=XrM75ATOZQXz6SoZn1okjiJgULz2HKkhFLxEF09kY14=;
+        b=C8j0anokDEBwQqoiEYz/ST1yNVULA4s1QqYsUt0bLwPTirqILJ6xpQeagjoDB3TDJt
+         TQr5IWxCtAWxydAZz3jWcVeOxqgxCXj4i/dWKvEDQlPoBpqsP1FkZ8XUxAI/AtsOy50k
+         ogl0r9Bx+fHjbjGJvyqettd7WuGzK32CKM5nWMrUGeyx8Ooh7/FNt+yMfHWB9nyV0j9D
+         aRUCBGGQdHZ5A1dfxwVip2wo01CTbvFSep8lSEufxTJxO6pRo/xGiymGKjWK8q+IEvkt
+         jbaQN1z0bhGBF0i5udWh/tKOiE4YDIo4VqR1Cyex+iv6P9A8MWItW2mCUMA2JNji2ndA
+         83Pg==
+X-Gm-Message-State: APjAAAWAt9l/8ReW9VPl1c8ZMxSoJzi6cHMrOKaJBkAxMtkuUpYfVtIS
+        X22OyCT6yfczhs6x5qpycfOI4PHQnpVvPg==
+X-Google-Smtp-Source: APXvYqz4Bq77weyLue1f/qeW9fizhG9jawwzQWA+qQGOtBhhBta8rZc6D9tMPh5Pw9Z5ftzXbPtDHA==
+X-Received: by 2002:a2e:9015:: with SMTP id h21mr1716057ljg.69.1579092334547;
+        Wed, 15 Jan 2020 04:45:34 -0800 (PST)
+Received: from saruman (88-113-215-33.elisa-laajakaista.fi. [88.113.215.33])
+        by smtp.gmail.com with ESMTPSA id t10sm9100696lji.61.2020.01.15.04.45.32
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 15 Jan 2020 04:45:32 -0800 (PST)
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Hanjie Lin <hanjie.lin@amlogic.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Yue Wang <yue.wang@amlogic.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, Carlo Caione <carlo@caione.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Jian Hu <jian.hu@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+Subject: Re: [PATCH v4 4/6] usb: dwc3: Add Amlogic A1 DWC3 glue
+In-Reply-To: <CAFBinCD0DJgYDhPRHqMQuouq+ZyF6Wg_LkuCMpHj2UG6vvvdbA@mail.gmail.com>
+References: <1578537045-23260-1-git-send-email-hanjie.lin@amlogic.com> <1578537045-23260-5-git-send-email-hanjie.lin@amlogic.com> <87pnfl6rdk.fsf@kernel.org> <CAFBinCD0DJgYDhPRHqMQuouq+ZyF6Wg_LkuCMpHj2UG6vvvdbA@mail.gmail.com>
+Date:   Wed, 15 Jan 2020 14:46:33 +0200
+Message-ID: <87tv4w6g5y.fsf@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Okaya RH128128T display to the st7735r driver on
-DT-enabled systems.
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-The RH128128T is a 128x128 1.44" TFT display driven by a Sitronix
-ST7715R TFT Controller/Driver.  The latter is very similar to the
-ST7735R, and can be handled by the existing st7735r driver.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Split in two patches,
-  - Update Kconfig help text,
-  - Improve file comment header.
----
- drivers/gpu/drm/tiny/Kconfig   | 8 +++++---
- drivers/gpu/drm/tiny/st7735r.c | 9 ++++++++-
- 2 files changed, 13 insertions(+), 4 deletions(-)
+Hi,
 
-diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
-index a46ac284dd5e9211..a8664211123e7025 100644
---- a/drivers/gpu/drm/tiny/Kconfig
-+++ b/drivers/gpu/drm/tiny/Kconfig
-@@ -85,14 +85,16 @@ config TINYDRM_ST7586
- 	  If M is selected the module will be called st7586.
- 
- config TINYDRM_ST7735R
--	tristate "DRM support for Sitronix ST7735R display panels"
-+	tristate "DRM support for Sitronix ST7715R/ST7735R display panels"
- 	depends on DRM && SPI
- 	select DRM_KMS_HELPER
- 	select DRM_KMS_CMA_HELPER
- 	select DRM_MIPI_DBI
- 	select BACKLIGHT_CLASS_DEVICE
- 	help
--	  DRM driver Sitronix ST7735R with one of the following LCDs:
--	  * JD-T18003-T01 1.8" 128x160 TFT
-+	  DRM driver for Sitronix ST7715R/ST7735R with one of the following
-+	  LCDs:
-+	  * Jianda JD-T18003-T01 1.8" 128x160 TFT
-+	  * Okaya RH128128T 1.44" 128x128 TFT
- 
- 	  If M is selected the module will be called st7735r.
-diff --git a/drivers/gpu/drm/tiny/st7735r.c b/drivers/gpu/drm/tiny/st7735r.c
-index a838f237c8d82e3d..32574f1b60716390 100644
---- a/drivers/gpu/drm/tiny/st7735r.c
-+++ b/drivers/gpu/drm/tiny/st7735r.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * DRM driver for Sitronix ST7735R panels
-+ * DRM driver for display panels connected to a Sitronix ST7715R or ST7735R
-+ * display controller in SPI mode.
-  *
-  * Copyright 2017 David Lechner <david@lechnology.com>
-  * Copyright (C) 2019 Glider bvba
-@@ -144,6 +145,11 @@ static const struct st7735r_cfg jd_t18003_t01_cfg = {
- 	.write_only	= true,
- };
- 
-+static const struct st7735r_cfg rh128128t_cfg = {
-+	.mode		= { DRM_SIMPLE_MODE(128, 128, 25, 26) },
-+	.left_offset	= 2,
-+	.top_offset	= 3,
-+	.rgb		= true,
- };
- 
- DEFINE_DRM_GEM_CMA_FOPS(st7735r_fops);
-@@ -163,6 +169,7 @@ static struct drm_driver st7735r_driver = {
- 
- static const struct of_device_id st7735r_of_match[] = {
- 	{ .compatible = "jianda,jd-t18003-t01", .data = &jd_t18003_t01_cfg },
-+	{ .compatible = "okaya,rh128128t", .data = &rh128128t_cfg },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, st7735r_of_match);
--- 
-2.17.1
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> On Wed, Jan 15, 2020 at 9:43 AM Felipe Balbi <balbi@kernel.org> wrote:
+> [...]
+>> > -     priv->clk =3D devm_clk_get(dev, NULL);
+>> > -     if (IS_ERR(priv->clk))
+>> > -             return PTR_ERR(priv->clk);
+>> > +     priv->soc_id =3D (enum meson_soc_id)of_device_get_match_data(&pd=
+ev->dev);
+>> > +
+>> > +     if (priv->soc_id =3D=3D MESON_SOC_G12A) {
+>>
+>> you can use of_device_is_compatible() and get rid of the enumeration you=
+ added.
+> Hanjie switched to a struct (instead of an enum) that is passed as
+> "match data" in v5 [0] of this series
+> personally I prefer what Hanjie has in v5 over
+> of_device_is_compatible() (because that match data pattern is what we
+> also use on other Amlogic drivers)
 
+but you end up duplicating functionality that already exists by means of
+of_device_is_compatible(). Frankly, I don't have a hard opinion about
+this anyway, since it's not touching dwc3 core.
+
+In this case, I'll defer to whatever you guys prefer.
+
+=2D-=20
+balbi
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEElLzh7wn96CXwjh2IzL64meEamQYFAl4fCakACgkQzL64meEa
+mQa9FA/9FlpB8k6FjnAZcPKfZiMTE3FBVk31vXpWrefKTxAZmGAzK2MFwzGVSlK4
+R2wgfY66niKyT1JW/T+/OOPfyyY+gIz0G44zu5qSmYFq/OAVpLSO/ZLw91EPE1yt
+0m7ohRi55RxaWMO3LiTTr4zu7/wSxb3/QP3oAtC1G2PHDXQNzsYp0vMEuH22nS6h
+sXXQlHOxBbqWQSnUXYHv7JLcvK+YC9JGBqnjCbP1XDx7KTYjZdgH2UOzF6G0OWGc
+kk/RVuCB8fobf1rb4VlE9P3iEWtkiTZx73902YRQA1tMs+yRO4BoMLZTUx7VakCz
+as6sTfFDc9trmj/uShxMiMxHpqy80rovEKCR3IxASMMBh3jF3Ohe+ghwLV9Ex+Fi
+yyhJjaBYFI3lkXV4gA11MpJdDbeLn554ivLHrdqIX1tgh7NOPwqULQm/kdX4URbR
+6gKK+Yj2CwuCmDlrfFZZxrQS9pS2xrdykMDW3guZPmeNdgySgtNrQBEIYtxeQw5+
+cjQZ373zf6s6lnZhzspEh2cvGnI0cSrxmvb3TjI2RLFDvjooB8u01fZ1u8O51yPY
+ou1IV/vECiO1z8Fxzf8AVVqBo9GTptvLurAWZoNAzqrbxnC27OkN23i9vXlDwP6d
+Hff4t0AR2FyQD2J/M12Lz9lHyJeECr9+l56tItScfshwp0Dt6bc=
+=a2TN
+-----END PGP SIGNATURE-----
+--=-=-=--
