@@ -2,180 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 430C713C1EE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1F013C230
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 14:03:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729100AbgAOMxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 07:53:46 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:53067 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729057AbgAOMxo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 07:53:44 -0500
-Received: by mail-wm1-f65.google.com with SMTP id p9so17780338wmc.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 04:53:43 -0800 (PST)
+        id S1726187AbgAONCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 08:02:24 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:36255 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726100AbgAONCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 08:02:24 -0500
+Received: by mail-wr1-f66.google.com with SMTP id z3so15673826wru.3;
+        Wed, 15 Jan 2020 05:02:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=63OK7+WV2oSpfMtMv7dHdZjSmylnl4RI0WBIjRtCjGI=;
-        b=rcRSOzLbYMD9O+ISAliDx8MfCABkYI5R5TCmbME5A+HMyM0rj9pis2bt5k2K31Ush7
-         XTRWm+dGRYhisp4xEjHWBRvFocNJu2ERqbdgcL9Rvz+8hIXGrjQMHPwqrEd7BOsWRCfC
-         YLHxO7YHfZs/g0ogm/bk3CFCwm6vV2ACaeGUst6R0+FEeGaYnJ7e5fAqOa0T6GfnVINr
-         A3nev+evbG74sdaffLcpUhvBbE+hxMO4/bKLh6V2wkKSJQhYHzm9aZ+kcTtN0SuETkh5
-         ZaL3HLW68OJmCuxaDSRiCB07t6VeEz+2Nm70rAHxzRxaiEkjv5S9oIwct+NKKTfgdEgX
-         40uQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Dd/fpZjUl0bvpdYK2/HoiWMjO/ltnHe3ct+x9nyIfFk=;
+        b=p3MkQlYTQj+lULTBr6mWn5nKzLDUF5GJ9cat1feO+Q3nCwwmKt7aJRqL3jb8Xypk6t
+         5K3Zyc5pjjBItrPOQkjZpSi+P+SBB6aY9ZSoI7Dkwuczv7HnBk9NKnzWO91rxXupd4A1
+         ucnu3R3CAPXZQAGX0XU+Lt/U7EgARw1EwYbNZ8/cul9gYaEeW00ZQ5+lB3iIFdGO5wa8
+         zg+4xaiTNx+kSKfvHbOTyQhwokkdI1VaCx0nGVZcC6v/EJ3+8Q6YoTiur4K5TW8vWdV3
+         rHxz6NYn2z0u+1WamRmX0on1wJU/FN1ZzovgHY9f4qsArULVd2M/p6dKrDnfrgJFVjdD
+         OKyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=63OK7+WV2oSpfMtMv7dHdZjSmylnl4RI0WBIjRtCjGI=;
-        b=ed1Wu0uBon2XhqjMFZyG+czW9DV9cB8CNWTZy4j2/GRHETGtvDDDTsnctLw5qYQywT
-         4Lxy/a4gIGgsjc8G6YrgrpUXCol6RMegieR5X4m7AXJ2GQssDXuCeWGaovUQqo/5OLd7
-         O4P+opfJOdOCjO93cN7g4Z/ropyQ7Cbz0eyJwt+rz8vVxPIU2k1nFgZVBr1bCAWfoMWE
-         blfW7dZN+xxRwcX9b/HnDFt07XnHYIfzexYHnt3E6mpOAq6zPSGoIHEnjjJhMAPkNoEH
-         9qWvKVteai7/aFSlSS6pOzrgzpz4UQ+A/4JhgVe7h0ObKdOlhVcsTMrUCzvEBlmpxorw
-         rrIg==
-X-Gm-Message-State: APjAAAU80marGevnN/yt8Qqy2eZg9x+0VRhGW3SAH3SnTgM/eYvmJQwZ
-        Tav8xNSsIyiV5R6CXaVUwTkHbA==
-X-Google-Smtp-Source: APXvYqy211rlSGA/7f48UPTxt4qHpuBdCqMG+TrJdyDkgkot1NRkPQy8mZvmt/WlxkEIur07ZirjyA==
-X-Received: by 2002:a7b:c151:: with SMTP id z17mr33478170wmi.137.1579092822380;
-        Wed, 15 Jan 2020 04:53:42 -0800 (PST)
-Received: from localhost.localdomain ([2001:171b:2266:ba60:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id d12sm25196171wrp.62.2020.01.15.04.53.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2020 04:53:41 -0800 (PST)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, will@kernel.org
-Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
-        robin.murphy@arm.com, bhelgaas@google.com, eric.auger@redhat.com,
-        jonathan.cameron@huawei.com, zhangfei.gao@linaro.org
-Subject: [PATCH v5 13/13] iommu/arm-smmu-v3: Add support for PCI PASID
-Date:   Wed, 15 Jan 2020 13:52:39 +0100
-Message-Id: <20200115125239.136759-14-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200115125239.136759-1-jean-philippe@linaro.org>
-References: <20200115125239.136759-1-jean-philippe@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Dd/fpZjUl0bvpdYK2/HoiWMjO/ltnHe3ct+x9nyIfFk=;
+        b=Qj+77oRXMMevL3Un4fornuls6pZkb7eTr3U47+jCbARTgnCziq7E01YplbXNs/1FrL
+         tkC5z/dbnqcdxBJ55WSmkwg0sWAep4lPcyCBcJ1LaOrE35jNzVSEEngmitK0oiq/nv6Y
+         QW8YVXxx8ixvlZVasPcwyBPpODqppdcKLHGCc0GWJpnTQ65tBeq4K24mI1QGRHZT6Fgy
+         KuuPir0tq849TMfZO3GT8oPjqFIJcFzPmDH5w850LlhKMwAvrb9NlbbPJOSIFevN7FE9
+         MVZmBchbEuPHZ5PgXa/3da9+Luf9Z1ZcCJDUxSjWELEs0ZbmB+z+OEygu2d/DpCG7FTb
+         QMew==
+X-Gm-Message-State: APjAAAU7npScLRJawNEYqU0Psjm2GMk2tFr9COrx62EmF2qTW2OZ4Ake
+        dzb6ocvOiTLSiljcmq+Y7VY=
+X-Google-Smtp-Source: APXvYqxcOwmlY+O6QGUZ/kxCeDj2gNn1kTWrnJRjeqw5YwD9D/edsH1lRUE34oPl6X1lmo7nvZDggA==
+X-Received: by 2002:adf:fa12:: with SMTP id m18mr30163062wrr.309.1579093342407;
+        Wed, 15 Jan 2020 05:02:22 -0800 (PST)
+Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id p26sm22390808wmc.24.2020.01.15.05.02.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jan 2020 05:02:21 -0800 (PST)
+Subject: Re: [RFC PATCH v1 1/3] dt-bindings: mmc: combine common mmc and
+ dw-mshc properties
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+References: <20200114213809.27166-1-jbx6244@gmail.com>
+ <CAL_Jsq+8X0oRykiQOKVyaxis4H0yO=nzUtnFF_BXdwBkuigr7g@mail.gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <12bbbdbc-027e-90de-fd57-291013167b06@gmail.com>
+Date:   Wed, 15 Jan 2020 14:02:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+8X0oRykiQOKVyaxis4H0yO=nzUtnFF_BXdwBkuigr7g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable PASID for PCI devices that support it. Initialize PASID early in
-add_device() because it must be enabled before ATS.
+Hi,
 
-Tested-by: Zhangfei Gao <zhangfei.gao@linaro.org>
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
- drivers/iommu/arm-smmu-v3.c | 62 ++++++++++++++++++++++++++++++++++++-
- 1 file changed, 61 insertions(+), 1 deletion(-)
+Thank you for your explanation.
+I was not aware that was playing.
+So now we go from a 'simple' txt to yaml conversion to a complete
+'change your node name first' operation.
+Can you indicate if that common yaml file for dw-mshc and Rockchip
+is still a good idea?
 
-diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
-index b2b7ba9c4e32..f42454512e87 100644
---- a/drivers/iommu/arm-smmu-v3.c
-+++ b/drivers/iommu/arm-smmu-v3.c
-@@ -2634,6 +2634,53 @@ static void arm_smmu_disable_ats(struct arm_smmu_master *master)
- 	atomic_dec(&smmu_domain->nr_ats_masters);
- }
- 
-+static int arm_smmu_enable_pasid(struct arm_smmu_master *master)
-+{
-+	int ret;
-+	int features;
-+	int num_pasids;
-+	struct pci_dev *pdev;
-+
-+	if (!dev_is_pci(master->dev))
-+		return -ENODEV;
-+
-+	pdev = to_pci_dev(master->dev);
-+
-+	features = pci_pasid_features(pdev);
-+	if (features < 0)
-+		return features;
-+
-+	num_pasids = pci_max_pasids(pdev);
-+	if (num_pasids <= 0)
-+		return num_pasids;
-+
-+	ret = pci_enable_pasid(pdev, features);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to enable PASID\n");
-+		return ret;
-+	}
-+
-+	master->ssid_bits = min_t(u8, ilog2(num_pasids),
-+				  master->smmu->ssid_bits);
-+	return 0;
-+}
-+
-+static void arm_smmu_disable_pasid(struct arm_smmu_master *master)
-+{
-+	struct pci_dev *pdev;
-+
-+	if (!dev_is_pci(master->dev))
-+		return;
-+
-+	pdev = to_pci_dev(master->dev);
-+
-+	if (!pdev->pasid_enabled)
-+		return;
-+
-+	master->ssid_bits = 0;
-+	pci_disable_pasid(pdev);
-+}
-+
- static void arm_smmu_detach_dev(struct arm_smmu_master *master)
- {
- 	unsigned long flags;
-@@ -2842,13 +2889,23 @@ static int arm_smmu_add_device(struct device *dev)
- 
- 	master->ssid_bits = min(smmu->ssid_bits, fwspec->num_pasid_bits);
- 
-+	/*
-+	 * Note that PASID must be enabled before, and disabled after ATS:
-+	 * PCI Express Base 4.0r1.0 - 10.5.1.3 ATS Control Register
-+	 *
-+	 *   Behavior is undefined if this bit is Set and the value of the PASID
-+	 *   Enable, Execute Requested Enable, or Privileged Mode Requested bits
-+	 *   are changed.
-+	 */
-+	arm_smmu_enable_pasid(master);
-+
- 	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB))
- 		master->ssid_bits = min_t(u8, master->ssid_bits,
- 					  CTXDESC_LINEAR_CDMAX);
- 
- 	ret = iommu_device_link(&smmu->iommu, dev);
- 	if (ret)
--		goto err_free_master;
-+		goto err_disable_pasid;
- 
- 	group = iommu_group_get_for_dev(dev);
- 	if (IS_ERR(group)) {
-@@ -2861,6 +2918,8 @@ static int arm_smmu_add_device(struct device *dev)
- 
- err_unlink:
- 	iommu_device_unlink(&smmu->iommu, dev);
-+err_disable_pasid:
-+	arm_smmu_disable_pasid(master);
- err_free_master:
- 	kfree(master);
- 	fwspec->iommu_priv = NULL;
-@@ -2881,6 +2940,7 @@ static void arm_smmu_remove_device(struct device *dev)
- 	arm_smmu_detach_dev(master);
- 	iommu_group_remove_device(dev);
- 	iommu_device_unlink(&smmu->iommu, dev);
-+	arm_smmu_disable_pasid(master);
- 	kfree(master);
- 	iommu_fwspec_free(dev);
- }
--- 
-2.24.1
+Thanks
 
+
+On 1/14/20 11:06 PM, Rob Herring wrote:
+> On Tue, Jan 14, 2020 at 3:38 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>> Combine the common properties for mmc and dw-mshc in
+>> mmc-controller-common.yaml
+>
+> Commit messages should explain the why, not what.
+>
+> AFAICT, the only reason is to not have a node name of 'mmc'. That's
+> entirely the reason why it is defined. Fix your node names to use the
+> standard name.
+>
+>
+>
+> Rob
+>
