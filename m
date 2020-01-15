@@ -2,106 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FA2B13CC1D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 19:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D998813CC79
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 19:46:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729052AbgAOSaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 13:30:03 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37817 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729043AbgAOSaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 13:30:03 -0500
-Received: by mail-wm1-f68.google.com with SMTP id f129so1029293wmf.2
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 10:30:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vx9ZI/rGscUUGCBc0iWif4TA6oe6ecIt71Ef+bzf57U=;
-        b=JEN7pX6UGwBqBgRVeU46B89XGheqHUrF69+1A6TQGYjtGYTBLYkKWY2orOVSw8hS/V
-         yx7E/7T+8HwIqvdg6/rD8ch2BDnEbEBkwzGS0jNSiN7xOdZTWJCGNpH00b6FmjajImRM
-         Y0Cq723LUX5rNaaq68rFRJpBzri8ZTJCpfZZXzuZlACIyqy276ntAuLB5rebtF6KpuK0
-         VXsLW7MtFmYWfFQNZ8guFJVTMh0WdkoUrDalt/20pf7BJAKsa7gxBb/6aEtY5v52u+FS
-         rJOoE27gKx2D97bW1kHpVoBosfK/GPlAyGR5lt0nUOtflXGNm7+DRO/mgm/UQ7iD4uHu
-         TMyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vx9ZI/rGscUUGCBc0iWif4TA6oe6ecIt71Ef+bzf57U=;
-        b=S6tju4reM1FAR/lMDXEcq1qI+jGC24W+rKD1nFyiQ5lvqnqx+YwGdU4kHwccoCTrgq
-         m8/oq7zL2r0B95Pr2kqasJEaPSeDDBzUFlnuskKYgiYgzMJyZi+OQhexfXawz4E/Mnbn
-         +hgQSmrNJn+0J6YAYBTRdavmrzrClwQ8JTCXEG1+qq9drNXeik6T8KxX475/4NZkFI1N
-         ycZacrVs3ejhij6ftgeaaglQwCKB7wiXEcrIvi8G5DynSOaUElZKliYLDVRqlDTVTj3Y
-         8A1YyvQUftBfyvwdb6AWBw2tPRc/G9ObseC00Wj3xms8HoktDOsoc7u6mVOtDVDxYeVb
-         PFAw==
-X-Gm-Message-State: APjAAAX7/WatQv5Lf1Jaq+Vi4j7dnzeRZAZOqoNWPiC50UwYJtnE+54P
-        ZtKDeGVEmKtsQSyC0hxOcDD/PQ==
-X-Google-Smtp-Source: APXvYqy8nNtvTuOB8AddkrK/wK0uuvgD1wX9xlx2WFGLj57TQXbAf34VislU15LMhdhXKyk0wQaang==
-X-Received: by 2002:a05:600c:21da:: with SMTP id x26mr1338398wmj.4.1579113001084;
-        Wed, 15 Jan 2020 10:30:01 -0800 (PST)
-Received: from myrica ([2001:171b:2266:ba60:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id u8sm913472wmm.15.2020.01.15.10.29.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2020 10:30:00 -0800 (PST)
-Date:   Wed, 15 Jan 2020 19:29:55 +0100
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, joro@8bytes.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
-        robin.murphy@arm.com, bhelgaas@google.com, eric.auger@redhat.com,
-        jonathan.cameron@huawei.com, zhangfei.gao@linaro.org
-Subject: Re: [PATCH v5 00/13] iommu: Add PASID support to Arm SMMUv3
-Message-ID: <20200115182955.GA152753@myrica>
-References: <20200115125239.136759-1-jean-philippe@linaro.org>
- <20200115164255.GB30746@willie-the-truck>
+        id S1729019AbgAOSqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 13:46:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59462 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729213AbgAOSqN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jan 2020 13:46:13 -0500
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 127D42467E;
+        Wed, 15 Jan 2020 18:46:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579113972;
+        bh=FOsge55tBvLYEwlzzKuLeN6gBOiH1dEahfHM7dijZEw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LSGcEUXbSKsbd9ds0arTnLwToy4tfyimSrxa9soZRGtsja83+M8zMqmVeY0dOO2Rl
+         8lRECXd1A582Qnj3rIZnjFXyMcNjwq1Kj6aEaauB2B2V6oAkYIZkgjs9XjCCdCcFmq
+         5TXRoCz1Ic0gWbSk58JVZMj87o9dkCkGQm7/9txc=
+Received: by mail-qv1-f45.google.com with SMTP id u10so7864922qvi.2;
+        Wed, 15 Jan 2020 10:46:12 -0800 (PST)
+X-Gm-Message-State: APjAAAVgXeigop/mkdmNQzEkUh6PbbA+HeSzwORBc9UVdCV0wdiK3eFP
+        gNR2JEtG5bVZcOu+P9sDLo4u7tchFxAZq7LByw==
+X-Google-Smtp-Source: APXvYqwQhjjzzNFgQnH5Gk5PRAKtRXel22AUyoHHJ3Medi+wBx9id7b4qDaR088fF4MRTSFeU19h0F3baEcf1arCNNo=
+X-Received: by 2002:a0c:f6cd:: with SMTP id d13mr26956612qvo.20.1579113971121;
+ Wed, 15 Jan 2020 10:46:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200115164255.GB30746@willie-the-truck>
+References: <20200114233857.25933-1-chris.packham@alliedtelesis.co.nz> <20200114233857.25933-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20200114233857.25933-2-chris.packham@alliedtelesis.co.nz>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 15 Jan 2020 12:45:59 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+AOiFV4Kcu=r3-kz42ZqSVR_0ZuKtnz8ak_sksW0D0wQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+AOiFV4Kcu=r3-kz42ZqSVR_0ZuKtnz8ak_sksW0D0wQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: spi: Document binding for generic SPI multiplexer
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        anthony.derosa@syscall7.com, linux-spi <linux-spi@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 15, 2020 at 04:42:56PM +0000, Will Deacon wrote:
-> On Wed, Jan 15, 2020 at 01:52:26PM +0100, Jean-Philippe Brucker wrote:
-> > Since v4 [1] I addressed some of Will's comment.
-> 
-> Thanks! I've tentatively managed to queue all of this apart from the last
-> patch, since that relies on some pasid symbols being exported from the PCI
-> core when building the driver as a module with PCI_PASID=y.
-> 
-> Please can you look at the rest of things here?:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-joerg/arm-smmu/updates
+On Tue, Jan 14, 2020 at 5:39 PM Chris Packham
+<chris.packham@alliedtelesis.co.nz> wrote:
+>
+> Add binding documentation for the spi-mux driver. This allows a generic
+> multiplexer to be used to provide access to multiple SPI devices.
+>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>  .../devicetree/bindings/spi/spi-mux.yaml      | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/spi-mux.yaml
 
-Sorry for the delay, I had to rebase and rework the SVA patchset a little
-in order to test. Your changes look good to me and run fine on the
-hisilicon KunPeng920 (although I haven't tried building as a module yet,
-I'll do that next).
+Be sure to run 'make dt_binding_check'.
 
-Thanks,
-Jean
+>
+> diff --git a/Documentation/devicetree/bindings/spi/spi-mux.yaml b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+> new file mode 100644
+> index 000000000000..1026d03a69c7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/spi-mux.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-> 
-> > Still missing and will be submitted as follow-up patches:
-> > * write STE.V with WRITE_ONCE() (patch 7)
-> 
-> I've hacked that one up myself.
-> 
-> > * batch submission of CD invalidation (patch 7)
-> 
-> That can be 5.7 material.
-> 
-> > * Remove WARN_ON_ONCE() in add_device() (patch 13)
-> >   Pending Robin's input.
-> 
-> I've written that one too, but we'll see what Robin says. The question now
-> is which commit do I tag in the branch above :)
-> 
-> Will
+Dual license new bindings please:
+
+(GPL-2.0-only OR BSD-2-Clause)
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/spi-mux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic SPI Multiplexer
+> +
+> +description: |
+> +  This binding describes a SPI bus multiplexer to route the SPI chip select
+> +  signals. This can be used when you need more devices than the SPI controller
+> +  has chip selects available. An example setup is shown in ASCII art; the actual
+> +  setting of the multiplexer to a channel needs to be done by a specific SPI mux
+> +  driver.
+> +
+> +        MOSI /--------------------------------+--------+--------+--------\
+> +        MISO |/------------------------------+|-------+|-------+|-------\|
+> +         SCL ||/----------------------------+||------+||------+||------\||
+> +             |||                            |||      |||      |||      |||
+> +      +------------+                        |||      |||      |||      |||
+> +      | SoC  |||   |                      +-+++-+  +-+++-+  +-+++-+  +-+++-+
+> +      |      |||   |                      | dev |  | dev |  | dev |  | dev |
+> +      |   +--+++-+ | CS-X  +------+\      +--+--+  +--+--+  +--+--+  +--+--+
+> +      |   | SPI  +-|-------+ Mux  |\\   CS-0 |        |        |        |
+> +      |   +------+ |       +--+---+\\\-------/   CS-1 |        |        |
+> +      |            |          |    \\\----------------/   CS-2 |        |
+> +      |   +------+ |          |     \\-------------------------/   CS-3 |
+> +      |   | ?    +-|----------/      \----------------------------------/
+> +      |   +------+ |
+> +      +------------+
+> +
+> +allOf:
+> +  - $ref: "/schemas/spi/spi-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    const: spi-mux
+> +
+> +  mux-control:
+> +    $ref: "/schemas/mux/mux-controller.yaml#"
+
+That file doesn't exist. If it did, it would still be wrong as that
+would be the provider side and this is the client.
+
+The correct name is also 'mux-controls'.
+
+You can assume it has a schema already and you just need to define how
+many entries it has (maxItems: 1).
+
+> +
+> +required:
+> +   - compatible
+> +   - reg
+> +   - spi-max-frequency
+> +   - mux-control
+> +
+> +examples:
+> +   - |
+> +     mux: mux-controller {
+> +       compatible = "gpio-mux";
+> +       #mux-control-cells = <0>;
+> +
+> +       mux-gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+> +     };
+> +
+> +     spi {
+> +       spi-mux {
+
+spi-mux@0
+
+> +         compatible = "spi-mux";
+> +         #address-cells = <1>;
+> +         #size-cells = <0>;
+> +         reg = <0>;
+> +         spi-max-frequency = <100000000>;
+
+I don't think this makes sense here. The mux doesn't really have any
+frequency given the clock and data lines aren't routed thru the mux
+(though maybe that's possible if some isolation is needed).
+
+> +
+> +         mux-control = <&mux>
+> +         mux-control-names = "spi";
+
+Not documented. Drop it as it's not all that useful when there's only 1 entry.
+
+> +
+> +         spi-flash@0 {
+> +           compatible = "jedec,spi-nor";
+> +           #address-cells = <1>;
+> +           #size-cells = <1>;
+> +           reg = <0>;
+> +           spi-max-frequency = <40000000>;
+> +         };
+> +
+> +         spi-device@1 {
+> +           compatible = "spidev";
+
+Not a valid compatible.
+
+> +           reg = <1>;
+> +           spi-max-frequency = <10000000>;
+> +         };
+> +       };
+> +     };
+> --
+> 2.25.0
+>
