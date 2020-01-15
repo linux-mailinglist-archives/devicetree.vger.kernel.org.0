@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C492213BECC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 12:46:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 542F013BEEE
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 12:54:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730088AbgAOLqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 06:46:05 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:43038 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730038AbgAOLqF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 06:46:05 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00FBjtDc039172;
-        Wed, 15 Jan 2020 05:45:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1579088755;
-        bh=XUYcuVswJdw9DYiE9R2CTyQZnrE8jxwn4oUjT5xgvBU=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=e00Ip39t9UvKn0uFQLj1QzkDK4UWory+VRizYB7vvirbIyvHKRrF7q/VYxcX0zNeS
-         QCN24sFTL78RSvqvuGqieie7Ib/4df4pR4c2SU/XrgNCWFbiUenEqzs+fvp6VrtXAR
-         EHYa+Z8TR5WbbqirmipdvP9/i3LyCQk6hLepOE8I=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00FBjttP099738
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 15 Jan 2020 05:45:55 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 15
- Jan 2020 05:45:55 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 15 Jan 2020 05:45:55 -0600
-Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00FBjdgW054185;
-        Wed, 15 Jan 2020 05:45:52 -0600
-From:   Jyri Sarha <jsarha@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
-        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <praneeth@ti.com>,
-        <yamonkar@cadence.com>, <sjakhade@cadence.com>, <sam@ravnborg.org>,
-        <maxime@cerno.tech>
-Subject: [PATCH v6 5/5] MAINTAINERS: add entry for tidss
-Date:   Wed, 15 Jan 2020 13:45:39 +0200
-Message-ID: <36e19f49cd0ea3cc215d30a76273a05aaa07846d.1579086894.git.jsarha@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1579086894.git.jsarha@ti.com>
-References: <cover.1579086894.git.jsarha@ti.com>
+        id S1730221AbgAOLyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 06:54:45 -0500
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:22077 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730150AbgAOLyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 06:54:45 -0500
+Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+  Codrin.Ciubotariu@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Codrin.Ciubotariu@microchip.com";
+  x-sender="Codrin.Ciubotariu@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+  include:servers.mcsv.net include:mktomail.com
+  include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa6.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Codrin.Ciubotariu@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Codrin.Ciubotariu@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: pP7gQZMEpK7mEL9FDGYrQjSlY+YzgyrMlhYrl7RQfNvNfT4iKWfc4z4n2t2+dAeDU8jaQ0p4GJ
+ 8d7ak7P+j5G8v2D4cn5xBMnEyDMcW3Lu352VHlAVYaN/Dtqvysx3+qrriLfYkophv8G9WC25fm
+ 4YJ3zyN4545CJo5oxbbhb5Y+pdN83yE0+rpU4mke+Ka1r9a73GYKx17FFAa8UCS7xdVErSVrwk
+ ir85t39bCC6h0J0nk4+clAq34x3V4xpxHvRDGhjV4a0BOCSwttqfkrQh4QQrdsjWNRY8/Pgy+6
+ /FI=
+X-IronPort-AV: E=Sophos;i="5.70,322,1574146800"; 
+   d="scan'208";a="60862973"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Jan 2020 04:54:40 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 15 Jan 2020 04:54:39 -0700
+Received: from rob-ult-m19940.microchip.com (10.10.85.251) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Wed, 15 Jan 2020 04:54:36 -0700
+From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+To:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <kamel.bouhara@bootlin.com>, <wsa@the-dreams.de>,
+        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <Ludovic.Desroches@microchip.com>, <robh@kernel.org>,
+        <peda@axentia.se>, <linux@armlinux.org.uk>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+Subject: [PATCH v3 0/6] i2c bus recovery for Microchip SoCs
+Date:   Wed, 15 Jan 2020 13:54:16 +0200
+Message-ID: <20200115115422.17097-1-codrin.ciubotariu@microchip.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for tidss DRM driver.
+This patch series introduce the i2c bus recovery mechanism
+for the Microchip SoCs. Some SoCs have hardware support for
+recovery, while for those who don't the i2c-gpio bus recovery
+mechanism is used. Updated the corresponding dts to add i2c
+gpio pinctrl. The bus recovery is configured for the sama5d2/3/4
+xplained and sama5d27 som1 EK boards in dts.
 
-Version history:
+Changes in v3:
+ - addressed list comments:
+  - removed pull-ups from gpios;
+  - removed unused headers from i2c-at91.h;
+  - fixed commit message and subject on patch 3/6;
+  - added received tags;
+ - rebased on top of i2c/for-next;
 
-v2: no change
+Changes in v2:
+ - integrated the HW CLEAR command patch;
+ - call i2c_recover_bus() after an error occurs, if SDA is down;
+ - added i2c gpio pinctrl in sama5d2 xplained and sama5d27 som1 EK
+   boards;
 
-v3: - Move tidss entry after omapdrm
-    - Add "T:     git git://anongit.freedesktop.org/drm/drm-misc"
+Codrin Ciubotariu (1):
+  i2c: at91: Send bus clear command if SDA is down
 
-v4: no change
+Kamel Bouhara (5):
+  dt-bindings: i2c: at91: document optional bus recovery properties
+  i2c: at91: implement i2c bus recovery
+  ARM: at91/dt: sama5d3: add i2c gpio pinctrl
+  ARM: at91/dt: sama5d4: add i2c gpio pinctrl
+  ARM: at91/dt: sama5d2: add i2c gpio pinctrl
 
-v5: no change
+ .../devicetree/bindings/i2c/i2c-at91.txt      |  10 ++
+ arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts     |  33 +++++-
+ arch/arm/boot/dts/at91-sama5d2_xplained.dts   |  33 +++++-
+ arch/arm/boot/dts/sama5d3.dtsi                |  33 +++++-
+ arch/arm/boot/dts/sama5d4.dtsi                |  33 +++++-
+ drivers/i2c/busses/i2c-at91-core.c            |   2 +
+ drivers/i2c/busses/i2c-at91-master.c          | 100 ++++++++++++++++++
+ drivers/i2c/busses/i2c-at91.h                 |  11 +-
+ 8 files changed, 242 insertions(+), 13 deletions(-)
 
-v6: no change
-
-Signed-off-by: Jyri Sarha <jsarha@ti.com>
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 741e3f433f6e..e89fbfb1ce06 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5559,6 +5559,17 @@ S:	Maintained
- F:	drivers/gpu/drm/omapdrm/
- F:	Documentation/devicetree/bindings/display/ti/
- 
-+DRM DRIVERS FOR TI KEYSTONE
-+M:	Jyri Sarha <jsarha@ti.com>
-+M:	Tomi Valkeinen <tomi.valkeinen@ti.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	drivers/gpu/drm/tidss/
-+F:	Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-+T:	git git://anongit.freedesktop.org/drm/drm-misc
-+
- DRM DRIVERS FOR V3D
- M:	Eric Anholt <eric@anholt.net>
- S:	Supported
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.20.1
 
