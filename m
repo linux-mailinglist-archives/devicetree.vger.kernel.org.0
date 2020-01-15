@@ -2,83 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 153E513C8B8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 17:05:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2A4E13C933
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 17:25:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726418AbgAOQF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 11:05:28 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:35989 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726473AbgAOQF1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 11:05:27 -0500
-Received: by mail-oi1-f196.google.com with SMTP id c16so15874031oic.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 08:05:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RUBHE4XJm85NFA8oPl1FMyCsYkpngZCS0u/hs5fFTfs=;
-        b=Ljg7OjjP07ii8BSx3qB30DgjlaojqYboDH3FDOomIfFCjDf3NZ8a5Ge7SToy0cni69
-         S8hnIxS1QRNua6Yko38UKUCKFLboYmKSA+xbU8bxxJTnETt/cD3vuoVFaqDr+OOTSHlw
-         b980u/4HJ17GNkt02edqsIb2HOHHq1AQ6vMHNbNBxc8OUmvfGMgPr2yQxMVM4c1W0HYe
-         8YFJoyFDOwlWBuroIx7Vf513ImVW05tNgst7GItJwdqjebgQZ+N8E1XqITqjBQljVZeb
-         zNe4ethVfFayukH3n0s37U3scVGfQuC3jssuOqHqQqCpg5aylNgnIBE00XGnfC6jwEdF
-         q9Lw==
-X-Gm-Message-State: APjAAAXWfEqsOrZ8UJP4qJhtpEj/q8/KX7xJ42b/+e5xLKf22cOMouL7
-        ifd2+P88UmQ89jvHLqpTost5sIA=
-X-Google-Smtp-Source: APXvYqzDC4D3kTgOpVOD05jgAUduR7m0uP0jbhPDvhi0JixonN+0XALksIzTGOy6Zd+2T+cPtjhGKQ==
-X-Received: by 2002:aca:6545:: with SMTP id j5mr427066oiw.60.1579104326541;
-        Wed, 15 Jan 2020 08:05:26 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r13sm5765807oic.52.2020.01.15.08.05.26
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2020 08:05:26 -0800 (PST)
-Received: from rob (uid 1000)
-        (envelope-from rob@rob-hp-laptop)
-        id 22093b
-        by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Wed, 15 Jan 2020 09:42:50 -0600
-Date:   Wed, 15 Jan 2020 09:42:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, vkoul@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org,
-        srinivas.kandagatla@linaro.org, broonie@kernel.org,
-        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
-        rjones@gateworks.com, marcel.ziswiler@toradex.com,
-        sebastien.szymanski@armadeus.com, aisheng.dong@nxp.com,
-        richard.hu@technexion.com, angus@akkea.ca, cosmin.stoica@nxp.com,
-        l.stach@pengutronix.de, rabeeh@solid-run.com,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com, jun.li@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        Linux-imx@nxp.com
-Subject: Re: [PATCH V2 3/7] dt-bindings: imx-ocotp: Add i.MX8MP compatible
-Message-ID: <20200115154249.GA15419@bogus>
-References: <1578893602-14395-1-git-send-email-Anson.Huang@nxp.com>
- <1578893602-14395-3-git-send-email-Anson.Huang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1578893602-14395-3-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1728927AbgAOQZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 11:25:54 -0500
+Received: from jack.einval.com ([84.45.184.145]:37052 "EHLO mail.einval.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726483AbgAOQZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jan 2020 11:25:54 -0500
+X-Greylist: delayed 1784 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Jan 2020 11:25:53 EST
+Received: from steve by mail.einval.com with local (Exim 4.92)
+        (envelope-from <steve@einval.com>)
+        id 1irl1W-00082F-CF; Wed, 15 Jan 2020 15:56:02 +0000
+From:   Steve McIntyre <steve.mcintyre@linaro.org>
+To:     alexandre.torgue@st.com
+Subject: Re: [RFC PATCH 0/3] Add device tree build information
+In-Reply-To: <20200113181625.3130-1-alexandre.torgue@st.com>
+Cc:     <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, devicetree-compiler@vger.kernel.org
+Message-Id: <E1irl1W-00082F-CF@mail.einval.com>
+Date:   Wed, 15 Jan 2020 15:56:02 +0000
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Jan 2020 13:33:18 +0800, Anson Huang wrote:
-> Add compatible and description for i.MX8MP.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> New patch
-> ---
->  Documentation/devicetree/bindings/nvmem/imx-ocotp.txt | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+Hi Alexandre!
 
-Acked-by: Rob Herring <robh@kernel.org>
+alexandre.torgue@st.com wrote:
+>
+>The goal of this series is to add device tree build information in dtb.
+>This information can be dtb build date, where devicetree files come from,
+>who built the dtb ... Actually, same kind of information that you can find
+>in the Linux banner which is printout during kernel boot. Having the same
+>kind of information for device tree is useful for debugging and maintenance.
+>
+>To achieve that a new option "-B" (using an argument) is added to dtc. 
+>The argument is a file containing a string with build information
+>(e.g., From Linux 5.5.0-rc1 by alex the Mon Jan 13 18:25:38 CET 2020).
+>DTC use it to append dts file with a new string property "Build-info".
+>
+>of/fdt.c is modified to printout "Build-info" property during Kernel boot and 
+>scripts/Makefile.lib is modified to use dtc -B option during kernel make (this
+>last part could be improved for sure).
+>
+>Regards
+>Alex
+>
+>Alexandre Torgue (3):
+>  dtc: Add dtb build information option
+>  of: fdt: print dtb build information
+>  scripts: Use -B dtc option to generate dtb build information.
+>
+> drivers/of/fdt.c           |  9 +++++++
+> scripts/Makefile.lib       | 11 +++++---
+> scripts/dtc/dtc.c          | 55 +++++++++++++++++++++++++++++++++-----
+> scripts/gen_dtb_build_info | 11 ++++++++
+> 4 files changed, 76 insertions(+), 10 deletions(-)
+> create mode 100755 scripts/gen_dtb_build_info
+
+Looks good to me in testing here:
+
+[    0.000000] OF: fdt: From Linux 5.5.0-rc6-00031-g95e20af9fb9c-dirty by stemci01 the Wed 15 Jan 14:33:25 GMT 2020.
+
+Tested-By: Steve McIntyre <steve.mcintyre@linaro.org>
+
+-- 
+Steve McIntyre                                steve.mcintyre@linaro.org
+<http://www.linaro.org/> Linaro.org | Open source software for ARM SoCs
