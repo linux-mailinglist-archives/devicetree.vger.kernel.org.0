@@ -2,148 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6FA13CA69
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 18:10:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 542FA13CA4A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 18:06:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729130AbgAORIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 12:08:09 -0500
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:38839 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728982AbgAORIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 12:08:09 -0500
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 00FGN4i7021584;
-        Wed, 15 Jan 2020 18:23:04 +0200
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id C265E60328; Wed, 15 Jan 2020 18:23:04 +0200 (IST)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        avifishman70@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v1 4/4] spi: npcm-pspi: modify reset support
-Date:   Wed, 15 Jan 2020 18:23:01 +0200
-Message-Id: <20200115162301.235926-5-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200115162301.235926-1-tmaimon77@gmail.com>
-References: <20200115162301.235926-1-tmaimon77@gmail.com>
+        id S1728904AbgAORGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 12:06:37 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:53687 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726587AbgAORGh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 12:06:37 -0500
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1irm7b-0000Jl-E9; Wed, 15 Jan 2020 18:06:23 +0100
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1irm7Z-0005PA-37; Wed, 15 Jan 2020 18:06:21 +0100
+Date:   Wed, 15 Jan 2020 18:06:21 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     mchehab@kernel.org, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, linux-media@vger.kernel.org
+Subject: Re: [PATCH v11 04/15] media: v4l2-fwnode: add initial connector
+ parsing support
+Message-ID: <20200115170621.jszy2p3e4w3b3hpn@pengutronix.de>
+References: <20190930093900.16524-1-m.felsch@pengutronix.de>
+ <20190930093900.16524-5-m.felsch@pengutronix.de>
+ <20191115233439.GB2696@mara.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20191115233439.GB2696@mara.localdomain>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 17:35:42 up 61 days,  7:54, 54 users,  load average: 0.00, 0.01,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify NPCM perphiral SPI reset support from
-direct register access to reset controller support.
+Hi Sakari,
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/spi/spi-npcm-pspi.c | 33 +++++++++++----------------------
- 1 file changed, 11 insertions(+), 22 deletions(-)
+On 19-11-16 01:34, Sakari Ailus wrote:
+> Hi Marco,
+> 
+> On Mon, Sep 30, 2019 at 11:38:49AM +0200, Marco Felsch wrote:
 
-diff --git a/drivers/spi/spi-npcm-pspi.c b/drivers/spi/spi-npcm-pspi.c
-index eac7ba18b4b9..87cd0233c60b 100644
---- a/drivers/spi/spi-npcm-pspi.c
-+++ b/drivers/spi/spi-npcm-pspi.c
-@@ -12,6 +12,7 @@
- #include <linux/spi/spi.h>
- #include <linux/gpio.h>
- #include <linux/of_gpio.h>
-+#include <linux/reset.h>
- 
- #include <asm/unaligned.h>
- 
-@@ -20,7 +21,7 @@
- 
- struct npcm_pspi {
- 	struct completion xfer_done;
--	struct regmap *rst_regmap;
-+	struct reset_control *reset;
- 	struct spi_master *master;
- 	unsigned int tx_bytes;
- 	unsigned int rx_bytes;
-@@ -59,12 +60,6 @@ struct npcm_pspi {
- #define NPCM_PSPI_MIN_CLK_DIVIDER	4
- #define NPCM_PSPI_DEFAULT_CLK		25000000
- 
--/* reset register */
--#define NPCM7XX_IPSRST2_OFFSET	0x24
--
--#define NPCM7XX_PSPI1_RESET	BIT(22)
--#define NPCM7XX_PSPI2_RESET	BIT(23)
--
- static inline unsigned int bytes_per_word(unsigned int bits)
- {
- 	return bits <= 8 ? 1 : 2;
-@@ -293,9 +288,9 @@ static int npcm_pspi_unprepare_transfer_hardware(struct spi_master *master)
- 
- static void npcm_pspi_reset_hw(struct npcm_pspi *priv)
- {
--	regmap_write(priv->rst_regmap, NPCM7XX_IPSRST2_OFFSET,
--		     NPCM7XX_PSPI1_RESET << priv->id);
--	regmap_write(priv->rst_regmap, NPCM7XX_IPSRST2_OFFSET, 0x0);
-+	reset_control_assert(priv->reset);
-+	udelay(5);
-+	reset_control_deassert(priv->reset);
- }
- 
- static irqreturn_t npcm_pspi_handler(int irq, void *dev_id)
-@@ -359,10 +354,6 @@ static int npcm_pspi_probe(struct platform_device *pdev)
- 	if (num_cs < 0)
- 		return num_cs;
- 
--	pdev->id = of_alias_get_id(np, "spi");
--	if (pdev->id < 0)
--		pdev->id = 0;
--
- 	master = spi_alloc_master(&pdev->dev, sizeof(*priv));
- 	if (!master)
- 		return -ENOMEM;
-@@ -372,7 +363,6 @@ static int npcm_pspi_probe(struct platform_device *pdev)
- 	priv = spi_master_get_devdata(master);
- 	priv->master = master;
- 	priv->is_save_param = false;
--	priv->id = pdev->id;
- 
- 	priv->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(priv->base)) {
-@@ -397,11 +387,10 @@ static int npcm_pspi_probe(struct platform_device *pdev)
- 		goto out_disable_clk;
- 	}
- 
--	priv->rst_regmap =
--		syscon_regmap_lookup_by_compatible("nuvoton,npcm750-rst");
--	if (IS_ERR(priv->rst_regmap)) {
--		dev_err(&pdev->dev, "failed to find nuvoton,npcm750-rst\n");
--		return PTR_ERR(priv->rst_regmap);
-+	priv->reset = devm_reset_control_get(&pdev->dev, NULL);
-+	if (IS_ERR(priv->reset)) {
-+		ret = PTR_ERR(priv->reset);
-+		goto out_disable_clk;
- 	}
- 
- 	/* reset SPI-HW block */
-@@ -422,7 +411,7 @@ static int npcm_pspi_probe(struct platform_device *pdev)
- 	master->min_speed_hz = DIV_ROUND_UP(clk_hz, NPCM_PSPI_MAX_CLK_DIVIDER);
- 	master->mode_bits = SPI_CPHA | SPI_CPOL;
- 	master->dev.of_node = pdev->dev.of_node;
--	master->bus_num = pdev->id;
-+	master->bus_num = -1;
- 	master->bits_per_word_mask = SPI_BPW_MASK(8) | SPI_BPW_MASK(16);
- 	master->transfer_one = npcm_pspi_transfer_one;
- 	master->prepare_transfer_hardware =
-@@ -455,7 +444,7 @@ static int npcm_pspi_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto out_disable_clk;
- 
--	pr_info("NPCM Peripheral SPI %d probed\n", pdev->id);
-+	pr_info("NPCM Peripheral SPI %d probed\n", master->bus_num);
- 
- 	return 0;
- 
--- 
-2.22.0
+...
 
+Let me sum up our irc discussion about that kAPI.
+
+Our starting point is a fwnode based subdev which has connectors in
+front of there pins. Connectors are used to limit the subdev to some
+device limits e.g. if the device support only PAL-Input streams and the
+subdev has an buggy autodetect mechanism. In that case the connector can
+be used by the subdev to set the possible TV-Norms to PAL. Currently the
+tvp5150 is the only fwnode based subdev implementing connectors.
+
+Connectors have common and connector specific properties. All current
+provided connectors can be found here:
+Documentation/devicetree/bindings/display/connector/ .
+
+Parsing the properties is common to all _upcoming_ fwnode based subdevs
+so this should be done within the core. So lets move on to the parsing
+helper.
+
+> > +int v4l2_fwnode_connector_alloc_parse(struct fwnode_handle *fwnode,
+> > +				      struct v4l2_fwnode_connector *connector)
+> > +{
+
+This kAPI seems to fit all current use cases. The API is not responsible
+to alloc the 'struct v4l2_fwnode_connector' instead it is only used to
+fill this struct. The given 'struct fwnode_handle' should be the subdev
+local ep-fwnode because the user already has a reference to this ep.
+
+This helper has two use-cases:
+  1) Parsing the connector properties and add the initial (1st) link.
+  2) Add further n-links upon n-calls to an already parsed connector.
+
+Going this way we need to ensure that the caller init the 'struct
+v4l2_fwnode_connector' to '0' before call this helper. This can be
+documented within the kAPI doc.
+
+Regards,
+  Marco
