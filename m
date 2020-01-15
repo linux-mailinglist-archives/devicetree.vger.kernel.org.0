@@ -2,99 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 542FA13CA4A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 18:06:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF8113CAA9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 18:14:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728904AbgAORGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 12:06:37 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:53687 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726587AbgAORGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 12:06:37 -0500
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1irm7b-0000Jl-E9; Wed, 15 Jan 2020 18:06:23 +0100
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1irm7Z-0005PA-37; Wed, 15 Jan 2020 18:06:21 +0100
-Date:   Wed, 15 Jan 2020 18:06:21 +0100
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     mchehab@kernel.org, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, linux-media@vger.kernel.org
-Subject: Re: [PATCH v11 04/15] media: v4l2-fwnode: add initial connector
- parsing support
-Message-ID: <20200115170621.jszy2p3e4w3b3hpn@pengutronix.de>
-References: <20190930093900.16524-1-m.felsch@pengutronix.de>
- <20190930093900.16524-5-m.felsch@pengutronix.de>
- <20191115233439.GB2696@mara.localdomain>
+        id S1729331AbgAOROE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 12:14:04 -0500
+Received: from asavdk4.altibox.net ([109.247.116.15]:56466 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729320AbgAOROE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 12:14:04 -0500
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 7DC9A81200;
+        Wed, 15 Jan 2020 18:14:00 +0100 (CET)
+Date:   Wed, 15 Jan 2020 18:13:58 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Jyri Sarha <jsarha@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        tomi.valkeinen@ti.com, laurent.pinchart@ideasonboard.com,
+        peter.ujfalusi@ti.com, bparrot@ti.com, praneeth@ti.com,
+        yamonkar@cadence.com, sjakhade@cadence.com, maxime@cerno.tech
+Subject: Re: [PATCH v6 4/5] drm/tidss: New driver for TI Keystone platform
+ Display SubSystem
+Message-ID: <20200115171358.GA23015@ravnborg.org>
+References: <cover.1579086894.git.jsarha@ti.com>
+ <66c57bb30685920f040933ada9ccd4f5035d099f.1579086894.git.jsarha@ti.com>
+ <20200115122253.GA22854@ravnborg.org>
+ <848720ca-6062-8314-e874-3a36f8aee1da@ti.com>
+ <20200115144309.GA20850@ravnborg.org>
+ <b4f5d846-aa44-a759-1caa-70244dfabeb3@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20191115233439.GB2696@mara.localdomain>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 17:35:42 up 61 days,  7:54, 54 users,  load average: 0.00, 0.01,
- 0.00
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <b4f5d846-aa44-a759-1caa-70244dfabeb3@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+        a=FBmygEOeIvoNrRZmZRsA:9 a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+Hi Jyri.
 
-On 19-11-16 01:34, Sakari Ailus wrote:
-> Hi Marco,
-> 
-> On Mon, Sep 30, 2019 at 11:38:49AM +0200, Marco Felsch wrote:
+> Well, I'll bite the bullet then, and start mangling the code to the
+> "strict" format.
 
-...
+While touching the code please consider moving all logging
+over to the new drm_{err,warn,info,dbg} functions.
+They give the nice "[drm]" marker.
+And they are a tad shorter as you do not have to dereference ddev->dev
+everywhere.
+And you then also gain support for controlling logging using
+drm.debug=0xxxx, os sysfs too.
 
-Let me sum up our irc discussion about that kAPI.
+See drm_print.h in latest drm_misc_next
 
-Our starting point is a fwnode based subdev which has connectors in
-front of there pins. Connectors are used to limit the subdev to some
-device limits e.g. if the device support only PAL-Input streams and the
-subdev has an buggy autodetect mechanism. In that case the connector can
-be used by the subdev to set the possible TV-Norms to PAL. Currently the
-tvp5150 is the only fwnode based subdev implementing connectors.
+With or without this change you can add my:
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
-Connectors have common and connector specific properties. All current
-provided connectors can be found here:
-Documentation/devicetree/bindings/display/connector/ .
-
-Parsing the properties is common to all _upcoming_ fwnode based subdevs
-so this should be done within the core. So lets move on to the parsing
-helper.
-
-> > +int v4l2_fwnode_connector_alloc_parse(struct fwnode_handle *fwnode,
-> > +				      struct v4l2_fwnode_connector *connector)
-> > +{
-
-This kAPI seems to fit all current use cases. The API is not responsible
-to alloc the 'struct v4l2_fwnode_connector' instead it is only used to
-fill this struct. The given 'struct fwnode_handle' should be the subdev
-local ep-fwnode because the user already has a reference to this ep.
-
-This helper has two use-cases:
-  1) Parsing the connector properties and add the initial (1st) link.
-  2) Add further n-links upon n-calls to an already parsed connector.
-
-Going this way we need to ensure that the caller init the 'struct
-v4l2_fwnode_connector' to '0' before call this helper. This can be
-documented within the kAPI doc.
-
-Regards,
-  Marco
+	Sam
