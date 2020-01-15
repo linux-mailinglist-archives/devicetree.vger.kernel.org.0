@@ -2,94 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FC3913BD28
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 11:12:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ED8213BD68
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 11:29:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729606AbgAOKMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 05:12:52 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:52067 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729742AbgAOKMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 05:12:49 -0500
-Received: by mail-wm1-f68.google.com with SMTP id d73so17166112wmd.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 02:12:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=tXpo5MYGeWvRjvLGBcgNx4X2h+6aZ6zfLICyaTGuIUI=;
-        b=hyEuRy4NBBXv9i1cTbMO4RPHvgNr++QeW3094lGhowrdyRoliaxSjDbZWQctWMoL1G
-         intGa8iv3u+cL72afwfD5VjnxaJZ4nxD8PgZsziSitVrI4arOlLO1wUNkUgvI5FugwZp
-         U/bGsGWeQWKacGmC2TChw7bSuhecxcEzZMeF7ZCcaBGEdwAFHYz5GXRHoaAQ1SFB6fCW
-         sBwzubZ+j4UWbeZEspJVuBLTqTupJerWahoGswge7QsgOUNjyFKKC2w7Nj11gNNOQmmX
-         pItcaVx9bvEA2B6Sr2mD98cFulwS/lO+lvXUR3SC2xtiIhY6PnJalBZ/GSpAezrOHixF
-         Gr4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=tXpo5MYGeWvRjvLGBcgNx4X2h+6aZ6zfLICyaTGuIUI=;
-        b=As45ex7Swaz3ESffbw4BSgQjYcTbsCKnJJWpYrQkeRs+oVEW+Wk6AKiLLIzSv09V/p
-         sVVXZNcRVUp2b3NWHd/jTZgWcwxk3X+CeYMvkSdimUIxKTFE8oAGDszc/IObKc4BT1+q
-         ezPzubDesjP1N8oB7hU6TqKwglHU6K7i8Ysaa5PQa+6hwESm4AkxW40sbNws605Y4k1G
-         dn3ghYvosp8LgvjGd3R1OLz3RohMLNWjKfl0k2ydtV5xrr0UdsevbDXIMZaYjmfZxHoN
-         l7yWVrz51IcqolBDTv4RB56Czknk9SOOTAWyDPIgrRQzzJPVyV7fmw7R/uapKvDx/wDF
-         gSrg==
-X-Gm-Message-State: APjAAAWh1UdNVzQWcT8lcozdeBrqe51Yu0CpkNKQ8fDgn3Y2P3JgeAer
-        Ht/4sLKxlBmFQNZtbDcCUf6fLA==
-X-Google-Smtp-Source: APXvYqyeGSZDmYaqLCKbki2jn7P4jJyKO+UR19mLn+8i1Bj1Dxqrts7BUcZe4EUGD9P9TykOOeh0mQ==
-X-Received: by 2002:a7b:cc98:: with SMTP id p24mr31873993wma.139.1579083167531;
-        Wed, 15 Jan 2020 02:12:47 -0800 (PST)
-Received: from glaroque-ThinkPad-T480.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id g7sm23828223wrq.21.2020.01.15.02.12.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2020 02:12:47 -0800 (PST)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     marcel@holtmann.org, johan.hedberg@gmail.com,
-        devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org
-Cc:     johan@kernel.org, nsaenzjulienne@suse.de,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com
-Subject: [PATCH v7 2/2] bluetooth: hci_bcm: enable IRQ capability from devicetree
-Date:   Wed, 15 Jan 2020 11:12:43 +0100
-Message-Id: <20200115101243.17094-3-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200115101243.17094-1-glaroque@baylibre.com>
-References: <20200115101243.17094-1-glaroque@baylibre.com>
+        id S1729679AbgAOK3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 05:29:16 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:38401 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729639AbgAOK3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 05:29:16 -0500
+X-Originating-IP: 90.65.102.129
+Received: from localhost (lfbn-lyo-1-1670-129.w90-65.abo.wanadoo.fr [90.65.102.129])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 30A0DC0016;
+        Wed, 15 Jan 2020 10:29:12 +0000 (UTC)
+Date:   Wed, 15 Jan 2020 11:29:12 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>
+Cc:     robh+dt@kernel.org, lee.jones@linaro.org, mark.rutland@arm.com,
+        nicolas.ferre@microchip.com, ludovic.desroches@microchip.com,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        a.zummo@towertech.it, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v3 1/7] dt-bindings: atmel-tcb: remove wildcard
+Message-ID: <20200115102912.GB100374@piout.net>
+References: <1578997397-23165-1-git-send-email-claudiu.beznea@microchip.com>
+ <1578997397-23165-2-git-send-email-claudiu.beznea@microchip.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1578997397-23165-2-git-send-email-claudiu.beznea@microchip.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for getting IRQ directly from DT instead of relying on
-converting a GPIO to IRQ. This is needed for platforms with GPIO
-controllers that that do not support gpiod_to_irq().
+On 14/01/2020 12:23:11+0200, Claudiu Beznea wrote:
+> Remove wildcard and use the available compatibles.
+> 
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/atmel-tcb.txt | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+Applied, thanks.
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- drivers/bluetooth/hci_bcm.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
-index 769bb4404bd1..b236cb11c0dc 100644
---- a/drivers/bluetooth/hci_bcm.c
-+++ b/drivers/bluetooth/hci_bcm.c
-@@ -13,6 +13,7 @@
- #include <linux/module.h>
- #include <linux/acpi.h>
- #include <linux/of.h>
-+#include <linux/of_irq.h>
- #include <linux/property.h>
- #include <linux/platform_data/x86/apple.h>
- #include <linux/platform_device.h>
-@@ -1151,6 +1152,8 @@ static int bcm_of_probe(struct bcm_device *bdev)
- 	device_property_read_u32(bdev->dev, "max-speed", &bdev->oper_speed);
- 	device_property_read_u8_array(bdev->dev, "brcm,bt-pcm-int-params",
- 				      bdev->pcm_int_params, 5);
-+	bdev->irq = of_irq_get_byname(bdev->dev->of_node, "host-wakeup");
-+
- 	return 0;
- }
- 
 -- 
-2.17.1
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
