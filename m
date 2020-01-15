@@ -2,133 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BACE613C168
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:45:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 292BF13C19E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:48:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgAOMpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 07:45:36 -0500
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:37648 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbgAOMpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 07:45:36 -0500
-Received: by mail-lj1-f194.google.com with SMTP id o13so18391153ljg.4;
-        Wed, 15 Jan 2020 04:45:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=XrM75ATOZQXz6SoZn1okjiJgULz2HKkhFLxEF09kY14=;
-        b=i87EVfYpDyR0g6vMWt7prBmZ7KGPMTqtHHGezpq2RddzuyXhi0ONnCPWA7fezCoUQV
-         VU7N1ZWCxkXrrr9TcXBRyjmaz5TaTz7LvISiS0ZbgcTunx8/9OlwORUBamF6uv6PbsN2
-         T6NPLh/VHH1Xh0wqSiYSEQomGsiIXziGgSmVHCM2QyM2OU2lbAqrZbV5JCXBGLwyb/Hi
-         Z9giZcnBQ0ue9dDd/e4HuBc90b4WFvHXe+DeWRWa4flHgYpdFoTmo5pUtdarg9gfq020
-         TF/UD7sAxxckKPY2ArubZVTboAD2Fp5O9bSzHCGzQmNX774KEyA+E5HuvbokiBVC9ffV
-         cKzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
-         :date:message-id:mime-version;
-        bh=XrM75ATOZQXz6SoZn1okjiJgULz2HKkhFLxEF09kY14=;
-        b=C8j0anokDEBwQqoiEYz/ST1yNVULA4s1QqYsUt0bLwPTirqILJ6xpQeagjoDB3TDJt
-         TQr5IWxCtAWxydAZz3jWcVeOxqgxCXj4i/dWKvEDQlPoBpqsP1FkZ8XUxAI/AtsOy50k
-         ogl0r9Bx+fHjbjGJvyqettd7WuGzK32CKM5nWMrUGeyx8Ooh7/FNt+yMfHWB9nyV0j9D
-         aRUCBGGQdHZ5A1dfxwVip2wo01CTbvFSep8lSEufxTJxO6pRo/xGiymGKjWK8q+IEvkt
-         jbaQN1z0bhGBF0i5udWh/tKOiE4YDIo4VqR1Cyex+iv6P9A8MWItW2mCUMA2JNji2ndA
-         83Pg==
-X-Gm-Message-State: APjAAAWAt9l/8ReW9VPl1c8ZMxSoJzi6cHMrOKaJBkAxMtkuUpYfVtIS
-        X22OyCT6yfczhs6x5qpycfOI4PHQnpVvPg==
-X-Google-Smtp-Source: APXvYqz4Bq77weyLue1f/qeW9fizhG9jawwzQWA+qQGOtBhhBta8rZc6D9tMPh5Pw9Z5ftzXbPtDHA==
-X-Received: by 2002:a2e:9015:: with SMTP id h21mr1716057ljg.69.1579092334547;
-        Wed, 15 Jan 2020 04:45:34 -0800 (PST)
-Received: from saruman (88-113-215-33.elisa-laajakaista.fi. [88.113.215.33])
-        by smtp.gmail.com with ESMTPSA id t10sm9100696lji.61.2020.01.15.04.45.32
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 15 Jan 2020 04:45:32 -0800 (PST)
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Hanjie Lin <hanjie.lin@amlogic.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Yue Wang <yue.wang@amlogic.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, Carlo Caione <carlo@caione.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Liang Yang <liang.yang@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jian Hu <jian.hu@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>
-Subject: Re: [PATCH v4 4/6] usb: dwc3: Add Amlogic A1 DWC3 glue
-In-Reply-To: <CAFBinCD0DJgYDhPRHqMQuouq+ZyF6Wg_LkuCMpHj2UG6vvvdbA@mail.gmail.com>
-References: <1578537045-23260-1-git-send-email-hanjie.lin@amlogic.com> <1578537045-23260-5-git-send-email-hanjie.lin@amlogic.com> <87pnfl6rdk.fsf@kernel.org> <CAFBinCD0DJgYDhPRHqMQuouq+ZyF6Wg_LkuCMpHj2UG6vvvdbA@mail.gmail.com>
-Date:   Wed, 15 Jan 2020 14:46:33 +0200
-Message-ID: <87tv4w6g5y.fsf@kernel.org>
+        id S1726483AbgAOMsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 07:48:39 -0500
+Received: from mail.skyhub.de ([5.9.137.197]:47136 "EHLO mail.skyhub.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726473AbgAOMsj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 15 Jan 2020 07:48:39 -0500
+Received: from zn.tnic (p200300EC2F0C7700ACD7CA379FB916C9.dip0.t-ipconnect.de [IPv6:2003:ec:2f0c:7700:acd7:ca37:9fb9:16c9])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 7CE251EC02D2;
+        Wed, 15 Jan 2020 13:48:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1579092517;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=RRzDcbrEYO6vPej3CmJAYWJu/0P03k1Uv077MCVlHV4=;
+        b=a/dVzqYYD8DzbPQzyqhPZ1jPExfj8MHtpPTKzMrw2VpflVtiiDPy1AOng2VBEQZoTPpVWE
+        LgAZ/HdZ6SW4Jpp5VT8VTsrcmKcRj8i7Awk9SJNVhPEyQUkjmr9b4Cg1U9EPZdWxFEXiVy
+        enp6KKhmT0Nyu++LB1vBrn6ARK6sDV8=
+Date:   Wed, 15 Jan 2020 13:48:33 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Shiping Ji <shiping.linux@gmail.com>
+Cc:     James Morse <james.morse@arm.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-edac@vger.kernel.org, sashal@kernel.org, hangl@microsoft.com,
+        Lei Wang <lewan@microsoft.com>, ruizhao@microsoft.com,
+        Scott Branden <scott.branden@broadcom.com>,
+        Yuqing Shen <yuqing.shen@broadcom.com>, ray.jui@broadcom.com,
+        wangglei@gmail.com, shji@microsoft.com
+Subject: Re: [PATCH v8 2/2] EDAC: add EDAC driver for DMC520
+Message-ID: <20200115124833.GE20975@zn.tnic>
+References: <0cc7bcfe-0dee-b78a-a0fe-52cc48c00a44@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <0cc7bcfe-0dee-b78a-a0fe-52cc48c00a44@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+On Tue, Jan 14, 2020 at 03:52:23PM -0800, Shiping Ji wrote:
+> New driver supports error detection and correction on the devices with ARM
+> DMC-520 memory controller.
+> 
+> Signed-off-by: Shiping Ji <shiping.linux@gmail.com>
+> Reviewed-by: James Morse <james.morse@arm.com>
 
+I don't think you've understood the whole SOB chain thing yet. Previous
+submissions had
 
-Hi,
+Signed-off-by: Lei Wang <leiwang_git@outlook.com>
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
-> On Wed, Jan 15, 2020 at 9:43 AM Felipe Balbi <balbi@kernel.org> wrote:
-> [...]
->> > -     priv->clk =3D devm_clk_get(dev, NULL);
->> > -     if (IS_ERR(priv->clk))
->> > -             return PTR_ERR(priv->clk);
->> > +     priv->soc_id =3D (enum meson_soc_id)of_device_get_match_data(&pd=
-ev->dev);
->> > +
->> > +     if (priv->soc_id =3D=3D MESON_SOC_G12A) {
->>
->> you can use of_device_is_compatible() and get rid of the enumeration you=
- added.
-> Hanjie switched to a struct (instead of an enum) that is passed as
-> "match data" in v5 [0] of this series
-> personally I prefer what Hanjie has in v5 over
-> of_device_is_compatible() (because that match data pattern is what we
-> also use on other Amlogic drivers)
+and her as author and you've completely removed those and made yourself
+an author because when I apply this patch, it would take the From:
+header from the mail and make it the author.
 
-but you end up duplicating functionality that already exists by means of
-of_device_is_compatible(). Frankly, I don't have a hard opinion about
-this anyway, since it's not touching dwc3 core.
+But you can't simply remove her authorship... you need to read that doc
+again.
 
-In this case, I'll defer to whatever you guys prefer.
+-- 
+Regards/Gruss,
+    Boris.
 
-=2D-=20
-balbi
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEElLzh7wn96CXwjh2IzL64meEamQYFAl4fCakACgkQzL64meEa
-mQa9FA/9FlpB8k6FjnAZcPKfZiMTE3FBVk31vXpWrefKTxAZmGAzK2MFwzGVSlK4
-R2wgfY66niKyT1JW/T+/OOPfyyY+gIz0G44zu5qSmYFq/OAVpLSO/ZLw91EPE1yt
-0m7ohRi55RxaWMO3LiTTr4zu7/wSxb3/QP3oAtC1G2PHDXQNzsYp0vMEuH22nS6h
-sXXQlHOxBbqWQSnUXYHv7JLcvK+YC9JGBqnjCbP1XDx7KTYjZdgH2UOzF6G0OWGc
-kk/RVuCB8fobf1rb4VlE9P3iEWtkiTZx73902YRQA1tMs+yRO4BoMLZTUx7VakCz
-as6sTfFDc9trmj/uShxMiMxHpqy80rovEKCR3IxASMMBh3jF3Ohe+ghwLV9Ex+Fi
-yyhJjaBYFI3lkXV4gA11MpJdDbeLn554ivLHrdqIX1tgh7NOPwqULQm/kdX4URbR
-6gKK+Yj2CwuCmDlrfFZZxrQS9pS2xrdykMDW3guZPmeNdgySgtNrQBEIYtxeQw5+
-cjQZ373zf6s6lnZhzspEh2cvGnI0cSrxmvb3TjI2RLFDvjooB8u01fZ1u8O51yPY
-ou1IV/vECiO1z8Fxzf8AVVqBo9GTptvLurAWZoNAzqrbxnC27OkN23i9vXlDwP6d
-Hff4t0AR2FyQD2J/M12Lz9lHyJeECr9+l56tItScfshwp0Dt6bc=
-=a2TN
------END PGP SIGNATURE-----
---=-=-=--
+https://people.kernel.org/tglx/notes-about-netiquette
