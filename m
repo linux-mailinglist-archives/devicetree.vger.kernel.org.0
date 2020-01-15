@@ -2,88 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C23413BFAE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:15:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0D6613C0B8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:23:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730900AbgAOMP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 07:15:26 -0500
-Received: from mga07.intel.com ([134.134.136.100]:40430 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730613AbgAOMP0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jan 2020 07:15:26 -0500
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Jan 2020 04:15:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,322,1574150400"; 
-   d="scan'208";a="397867590"
-Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.167]) ([10.237.72.167])
-  by orsmga005.jf.intel.com with ESMTP; 15 Jan 2020 04:15:21 -0800
-Subject: Re: [PATCH v4 11/11] mmc: sdhci-omap: Add am335x and am437x specific
- compatibles
-To:     Faiz Abbas <faiz_abbas@ti.com>, linux-omap@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Cc:     kishon@ti.com, mark.rutland@arm.com, robh+dt@kernel.org,
-        ulf.hansson@linaro.org, tony@atomide.com
-References: <20200106110133.13791-1-faiz_abbas@ti.com>
- <20200106110133.13791-12-faiz_abbas@ti.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-Message-ID: <7714819c-f850-082e-6ab4-be1ab3b8a248@intel.com>
-Date:   Wed, 15 Jan 2020 14:14:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        id S1730312AbgAOMXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 07:23:00 -0500
+Received: from asavdk3.altibox.net ([109.247.116.14]:39916 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730283AbgAOMXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 07:23:00 -0500
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id EEAE320366;
+        Wed, 15 Jan 2020 13:22:54 +0100 (CET)
+Date:   Wed, 15 Jan 2020 13:22:53 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Jyri Sarha <jsarha@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        tomi.valkeinen@ti.com, laurent.pinchart@ideasonboard.com,
+        peter.ujfalusi@ti.com, bparrot@ti.com, praneeth@ti.com,
+        yamonkar@cadence.com, sjakhade@cadence.com, maxime@cerno.tech
+Subject: Re: [PATCH v6 4/5] drm/tidss: New driver for TI Keystone platform
+ Display SubSystem
+Message-ID: <20200115122253.GA22854@ravnborg.org>
+References: <cover.1579086894.git.jsarha@ti.com>
+ <66c57bb30685920f040933ada9ccd4f5035d099f.1579086894.git.jsarha@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20200106110133.13791-12-faiz_abbas@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <66c57bb30685920f040933ada9ccd4f5035d099f.1579086894.git.jsarha@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
+        a=WVcRL-gX3Aqz7jTcpKoA:9 a=_aDu49ajq4D_GkOu:21 a=UD8rQldCOfFGNFSc:21
+        a=CjuIK1q_8ugA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/01/20 1:01 pm, Faiz Abbas wrote:
-> Add support for new compatible for TI's am335x and am437x devices.
-> 
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+Hi Jyri.
 
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-
-> ---
->  drivers/mmc/host/sdhci-omap.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+On Wed, Jan 15, 2020 at 01:45:38PM +0200, Jyri Sarha wrote:
+> This patch adds a new DRM driver for Texas Instruments DSS IPs used on
+> Texas Instruments Keystone K2G, AM65x, and J721e SoCs. The new DSS IP is
+> a major change to the older DSS IP versions, which are supported by
+> the omapdrm driver. While on higher level the Keystone DSS resembles
+> the older DSS versions, the registers are completely different and the
+> internal pipelines differ a lot.
 > 
-> diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
-> index 34df30edd450..4d7026daa8cd 100644
-> --- a/drivers/mmc/host/sdhci-omap.c
-> +++ b/drivers/mmc/host/sdhci-omap.c
-> @@ -919,6 +919,14 @@ static const struct sdhci_omap_data k2g_data = {
->  	.offset = 0x200,
->  };
->  
-> +static const struct sdhci_omap_data am335_data = {
-> +	.offset = 0x200,
-> +};
-> +
-> +static const struct sdhci_omap_data am437_data = {
-> +	.offset = 0x200,
-> +};
-> +
->  static const struct sdhci_omap_data dra7_data = {
->  	.offset = 0x200,
->  	.flags	= SDHCI_OMAP_REQUIRE_IODELAY,
-> @@ -927,6 +935,8 @@ static const struct sdhci_omap_data dra7_data = {
->  static const struct of_device_id omap_sdhci_match[] = {
->  	{ .compatible = "ti,dra7-sdhci", .data = &dra7_data },
->  	{ .compatible = "ti,k2g-sdhci", .data = &k2g_data },
-> +	{ .compatible = "ti,am335-sdhci", .data = &am335_data },
-> +	{ .compatible = "ti,am437-sdhci", .data = &am437_data },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, omap_sdhci_match);
+> DSS IP found on K2G is an "ultra-light" version, and has only a single
+> plane and a single output. The K3 DSS IPs are found on AM65x and J721E
+> SoCs. AM65x DSS has two video ports, one full video plane, and another
+> "lite" plane without scaling support. J721E has 4 video ports, 2 video
+> planes and 2 lite planes. AM65x DSS has also an integrated OLDI (LVDS)
+> output.
 > 
+...
+> v6: - Check CTM and gamma support from dispc_features when creating crtc
+>     - Implement CTM support for k2g and fix k3 CTM implementation
+>     - Remove gamma property persistence and always write color properties
+>       in a new modeset
 
+I applied this, just to throw this throgh my build setup.
+
+checkpatch reported:
+total: 0 errors, 45 warnings, 46 checks, 4920 lines checked
+
+- space after cast
+- CamelCase
+- Macro argument
+- length warnings
+- alignment
+
+I would ignore the line length warnings for the coefficients, but fix the
+rest.
+
+	Sam
