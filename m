@@ -2,84 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A4DB13C82B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 16:42:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD02813C855
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 16:50:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729052AbgAOPmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 10:42:44 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45645 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728915AbgAOPmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 10:42:43 -0500
-Received: by mail-oi1-f195.google.com with SMTP id n16so15751397oie.12
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 07:42:43 -0800 (PST)
+        id S1726474AbgAOPuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 10:50:04 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:35989 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726473AbgAOPuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 10:50:03 -0500
+Received: by mail-oi1-f193.google.com with SMTP id c16so15818769oic.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 07:50:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XZ89QzBAoQ2DzrvbjynM5ltUEoPFqx0Q/mdX+QC5z3Y=;
-        b=uFxYiKNgB6K2uCTfnOZ5XTpSNkaZ863k6EDnV1QoNGaITABNTlBeZmnxFoRkFPgcOp
-         5cZw5DFNqZ6YvdFhnvE8Hmi4gHsuEcGizOJQoczt7j7UgAxjfjbLDtDo0IIxhhNSQkZ8
-         Wk9/Km33wJCCCfejFV1LXFXV+5fNy/xBm0TmsWdKNwWCt56sfFqvI6NCICuW6SFYEoNp
-         16a2behgiNmJXYXKfWVrCMdvK5qzw4arsOzuGgpWWyCviTEbcJNkCdnXzDlJmd7N855S
-         hicSUYGeU/QIPRYeF6V6l19VIF4Mpjb9qLUM6XxGA0oI5isgQkAIaTDYikharHT85XzP
-         ihZQ==
-X-Gm-Message-State: APjAAAVwAv4J4gxV1CngAzL2bLMrB+obT2hYU8j9KiijecOOKQ+zllUt
-        lw12gYK3KU9z7V0VQXzhk5tHEMk=
-X-Google-Smtp-Source: APXvYqyJ7BivgmTOo+tTMTaN+PNEv3jqjE9j2HRMi0ocpS8mDJE/NjMHv9bEmAv9aoZcglE+3FwavA==
-X-Received: by 2002:aca:5795:: with SMTP id l143mr303022oib.27.1579102962651;
-        Wed, 15 Jan 2020 07:42:42 -0800 (PST)
+        bh=B7DX59sNSuvGuHSzjzaWJDesXQ6glcdz/pP97LB2HkM=;
+        b=OVS1TWyw+BoLars1kzquwy2skE79N8PIHvHt3XNLRVxphCzbmMgizdYhzt5anU4YBn
+         NSoQnXHO0/hkpTxdwjfUbpCdZp/WvcO3EvIPldv6k5N1m+c8ChrdvHl80duaDBLmCNDI
+         SCa0lmlRJ/MLhzeN2P/8AyrkwyTFRwSo2oZdlMXFgCkrMYHOjUmiq0WdJuzKdMGV3EYx
+         uyaCxYL9iSHliiFR/2hwdQC2BegrB4iX7++EwAmfVSHpD1dWc6WdNRjsFEjkP0EvIONF
+         u7rkAJKLCvWYlH501DJzeWLcXKD7FwD7rM4dggGU/L+BpwSpeQUQWDKNQSAyIEiQTphJ
+         Zecw==
+X-Gm-Message-State: APjAAAWgI2xslzVFZrKX5P98Qz0fvinuKOmRMJpUo7ht7dQS3WIy0rF8
+        Ve5hml3nYKdFVJl6ga2urU0J8WQ=
+X-Google-Smtp-Source: APXvYqwV21oCzLnLW4q3QREHubGwDQXePg1OkgH8Yszcu2psunCS5ydfAKvq3uvSrYSUXVZRG3U3Hw==
+X-Received: by 2002:aca:4ad5:: with SMTP id x204mr319777oia.162.1579103402992;
+        Wed, 15 Jan 2020 07:50:02 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w8sm6587534ote.80.2020.01.15.07.42.41
+        by smtp.gmail.com with ESMTPSA id l23sm6637911otf.23.2020.01.15.07.50.02
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2020 07:42:41 -0800 (PST)
+        Wed, 15 Jan 2020 07:50:02 -0800 (PST)
 Received: from rob (uid 1000)
         (envelope-from rob@rob-hp-laptop)
-        id 22061a
+        id 22040c
         by rob-hp-laptop (DragonFly Mail Agent v0.11);
-        Wed, 15 Jan 2020 09:42:40 -0600
-Date:   Wed, 15 Jan 2020 09:42:40 -0600
+        Wed, 15 Jan 2020 09:43:35 -0600
+Date:   Wed, 15 Jan 2020 09:43:35 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, vkoul@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org,
-        srinivas.kandagatla@linaro.org, broonie@kernel.org,
-        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
-        rjones@gateworks.com, marcel.ziswiler@toradex.com,
-        sebastien.szymanski@armadeus.com, aisheng.dong@nxp.com,
-        richard.hu@technexion.com, angus@akkea.ca, cosmin.stoica@nxp.com,
-        l.stach@pengutronix.de, rabeeh@solid-run.com,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com, jun.li@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mmc@vger.kernel.org, linux-spi@vger.kernel.org,
-        Linux-imx@nxp.com
-Subject: Re: [PATCH V2 2/7] dt-bindings: mmc: fsl-imx-esdhc: add i.MX8MP
- compatible string
-Message-ID: <20200115154240.GA15071@bogus>
+Cc:     mark.rutland@arm.com, vkoul@kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        ulf.hansson@linaro.org, srinivas.kandagatla@linaro.org,
+        broonie@kernel.org, manivannan.sadhasivam@linaro.org,
+        andrew.smirnov@gmail.com, rjones@gateworks.com,
+        marcel.ziswiler@toradex.com, sebastien.szymanski@armadeus.com,
+        aisheng.dong@nxp.com, richard.hu@technexion.com, angus@akkea.ca,
+        cosmin.stoica@nxp.com, l.stach@pengutronix.de,
+        rabeeh@solid-run.com, leonard.crestez@nxp.com,
+        daniel.baluta@nxp.com, jun.li@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-spi@vger.kernel.org, Linux-imx@nxp.com
+Subject: Re: [PATCH V2 4/7] dt-bindings: spi: imx: Add
+ i.MX8MM/i.MX8MN/i.MX8MP compatible
+Message-ID: <20200115154335.GA15650@bogus>
 References: <1578893602-14395-1-git-send-email-Anson.Huang@nxp.com>
- <1578893602-14395-2-git-send-email-Anson.Huang@nxp.com>
+ <1578893602-14395-4-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1578893602-14395-2-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1578893602-14395-4-git-send-email-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 13 Jan 2020 13:33:17 +0800, Anson Huang wrote:
-> Add compatible string for imx8mp
+On Mon, Jan 13, 2020 at 01:33:19PM +0800, Anson Huang wrote:
+> Add compatbile for imx8mm/imx8mn/imx8mp.
+
+checkpatch reports a typo.
+
+Otherwise,
+
+Acked-by: Rob Herring <robh@kernel.org>
+
 > 
 > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 > ---
 > New patch
 > ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-
-Acked-by: Rob Herring <robh@kernel.org>
+> diff --git a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+> index 2d32641..33bc58f 100644
+> --- a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+> +++ b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+> @@ -10,7 +10,10 @@ Required properties:
+>    - "fsl,imx35-cspi" for SPI compatible with the one integrated on i.MX35
+>    - "fsl,imx51-ecspi" for SPI compatible with the one integrated on i.MX51
+>    - "fsl,imx53-ecspi" for SPI compatible with the one integrated on i.MX53 and later Soc
+> -  - "fsl,imx8mq-ecspi" for SPI compatible with the one integrated on i.MX8M
+> +  - "fsl,imx8mq-ecspi" for SPI compatible with the one integrated on i.MX8MQ
+> +  - "fsl,imx8mm-ecspi" for SPI compatible with the one integrated on i.MX8MM
+> +  - "fsl,imx8mn-ecspi" for SPI compatible with the one integrated on i.MX8MN
+> +  - "fsl,imx8mp-ecspi" for SPI compatible with the one integrated on i.MX8MP
+>  - reg : Offset and length of the register set for the device
+>  - interrupts : Should contain CSPI/eCSPI interrupt
+>  - clocks : Clock specifiers for both ipg and per clocks.
+> -- 
+> 2.7.4
+> 
