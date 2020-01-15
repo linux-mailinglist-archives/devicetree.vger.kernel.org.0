@@ -2,141 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D54A13C0C0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:25:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C84713C09F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 13:21:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgAOMY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 07:24:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48456 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726088AbgAOMY4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jan 2020 07:24:56 -0500
-Received: from localhost (unknown [223.226.122.163])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 89A8C207E0;
-        Wed, 15 Jan 2020 12:24:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579091095;
-        bh=ahmB3AGmjfviPDPt7/xzlcU9opl/jgG4htJShn4RCHU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0vD+1T6TFbmLwi41Mk8DctL7OIhqe0KQdMWLSpWDtlMSdJi3XHfQUZjrupUJjDwC0
-         6kFS6WzZAgdrTU0m0auMbhuW+lGpXNuSNICfTLKfGn1en6bTVkuGERtea0KVYi+lMf
-         PHqhrB3PXofPJ54HXd2qi2jYCzxEE3pSmRAkwMEU=
-Date:   Wed, 15 Jan 2020 17:54:40 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        santosh.shilimkar@oracle.com
-Cc:     Sekhar Nori <nsekhar@ti.com>, robh+dt@kernel.org, nm@ti.com,
-        ssantosh@kernel.org, dan.j.williams@intel.com,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        grygorii.strashko@ti.com, lokeshvutla@ti.com, t-kristo@ti.com,
-        tony@atomide.com, j-keerthy@ti.com, vigneshr@ti.com,
-        frowand.list@gmail.com
-Subject: Re: [PATCH v8 02/18] soc: ti: k3: add navss ringacc driver
-Message-ID: <20200115122440.GI2818@vkoul-mobl>
-References: <20191223110458.30766-1-peter.ujfalusi@ti.com>
- <20191223110458.30766-3-peter.ujfalusi@ti.com>
- <6d70686b-a94e-18d1-7b33-ff9df7176089@ti.com>
- <900c2f21-22bf-47f9-5c3c-0a3d95a5d645@oracle.com>
- <ea6a87ae-b978-a786-27eb-db99483a82d9@ti.com>
- <f0230e88-bd9b-cd6d-433d-06d507cafcbd@ti.com>
- <9177657a-71c7-7bd0-a981-3ef1f736d4dc@oracle.com>
- <2c933a6c-37c6-3ef6-7c37-ae36e8c49bf7@ti.com>
+        id S1730223AbgAOMVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 07:21:50 -0500
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:41497 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730258AbgAOMVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 07:21:50 -0500
+X-Originating-IP: 88.190.179.123
+Received: from localhost (unknown [88.190.179.123])
+        (Authenticated sender: repk@triplefau.lt)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 91923C0008;
+        Wed, 15 Jan 2020 12:21:44 +0000 (UTC)
+From:   Remi Pommarel <repk@triplefau.lt>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Yue Wang <yue.wang@Amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>
+Subject: [PATCH v4 0/7] PCI: amlogic: Make PCIe working reliably on AXG platforms
+Date:   Wed, 15 Jan 2020 13:29:01 +0100
+Message-Id: <20200115122908.16954-1-repk@triplefau.lt>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2c933a6c-37c6-3ef6-7c37-ae36e8c49bf7@ti.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-01-20, 11:44, Peter Ujfalusi wrote:
-> 
-> 
-> On 14/01/2020 20.06, santosh.shilimkar@oracle.com wrote:
-> >>>>> Can you please giver your Acked-by for the ringacc patches if they are
-> >>>>> still OK from your point of view as you had offered to take them
-> >>>>> before
-> >>>>> I got comments from Lokesh.
-> >>>>>
-> >>>> Sure. But you really need to split the series so that dma engine and
-> >>>> soc driver patches can be applied independently.
-> >>>
-> >>> The ringacc is a build and runtime dependency for the DMA. I have hoped
-> >>> that all of them can go via DMAengine (hence asking for your ACK on the
-> >>> drivers/soc/ti/ patches) for 5.6.
-> >>>
-> >>>> Can you please do that?
-> >>>
-> >>> This late in the merge window that would really mean that I will miss
-> >>> another release for the KS3 DMA...
-> >>> I can live with that if you can pick the ringacc for 5.6 and if Vinod
-> >>> takes the DMAengine core changes as well.
-> >>>
-> >>> That would leave only the DMA drivers for 5.7 and we can also queue up
-> >>> changes for 5.7 which depends on the DMAengine API (ASoC changes, UART,
-> >>> sa2ul, etc).
-> >>>
-> >>> If they go independently and nothing makes it to 5.6 then 5.8 is the
-> >>> realistic target for the DMA support for the KS3 family of devices...
-> >>
-> >> Thats too many kernel versions to get this important piece in.
-> >>
-> >> Santosh, if you do not have anything else queued up that clashes with
-> >> this, can the whole series be picked up by Vinod with your ack on the
-> >> drivers/soc/ti/ pieces?
-> >>
-> > I would prefer driver patches to go via driver tree.
-> 
-> Not sure what you mean by 'driver patches'...
-> The series to enable DMA support on TI's K3 platform consists:
-> Patch 1-2: Ring Accelerator _driver_ (drivers/soc/ti/)
-> Patch 3-6: DMAengine core patches to add new features needed for k3-udma
-> Patch 7-11: DMA _driver_ patches for K3 (drivers/dma/ti/)
-> 
-> Patch 10 depends on the ringacc and the DMAengine core patches
-> Patch 11 depends on patch 10
-> 
-> I kept it as a single series in hope that they will go via one subsystem
-> tree to avoid build dependency issues and will have a good amount of
-> time in linux-next for testing.
-> 
-> >> Vinod could also perhaps setup an immutable branch based on v5.5-rc1
-> >> with just the drivers/soc/ti parts applied so you can merge that branch
-> >> in case you end up having to send up anything that conflicts.
-> >>
-> > As suggested on other email to Peter, these DMA engine related patches
-> > should be queued up since they don't have any dependency. Based on
-> > the status of that patchset, will take care of pulling in the driver
-> > patches either for this merge window or early part of next merge window.
-> 
-> OK, I'll send the two patch for ringacc as a separate series.
-> 
-> Vinod: Would it be possible for you to pick up the DMAengine core
-> patches (patch 3-6)?
-> The UDMA driver patches have hard dependency on DMAengine core and
-> ringacc, not sure how they are going to go in...
+PCIe device probing failures have been seen on AXG platforms and were due
+to unreliable clock signal output. Setting HHI_MIPI_CNTL0[26] bit in
+MIPI's PHY registers solved the problem. This bit controls band gap
+reference.
 
-Since they have build dependency, the usual method for this is:
+As discussed here [1] one of these shared MIPI/PCIE PHY register bits was
+implemented in the clock driver as CLKID_MIPI_ENABLE. This adds a PHY
+driver to control this bit instead, as well as setting the band gap one
+in order to get reliable PCIE communication.
 
-1. Santosh acks the dependent patches and I will apply the rest (nice
-and simple)
+While at it add another PHY driver to control PCIE only PHY registers,
+making AXG code more similar to G12A platform thus allowing to remove
+some specific platform handling in pci-meson driver.
 
-2. Santosh picks up ring driver patches, provides a signed immutable tag
-which I will pull in and apply the rest, i.e., dmaengine updates and new
-dmaengine driver
+Please note that CLKID_MIPI_ENABLE removable will be done in a different
+serie.
 
-That way we are all okay and changes get merged now.. there is a 3rd
-option
+Changes since v3:
+ - Go back to the shared MIPI/PCIe phy driver solution from v2
+ - Remove syscon usage
+ - Add all dt-bindings documentation
 
-3. Santosh picks ring driver patches, and Vinod picks rest after next
-rc1 (provided they make to linus in merge window)
+Changes since v2:
+ - Remove shared MIPI/PCIE device driver and use syscon to access register
+   in PCIE only driver instead
+ - Include devicetree documentation
 
-I would love to see either 1 or 2 whichever way folks are comfortable
-to deal with :)
+Changes sinve v1:
+ - Move HHI_MIPI_CNTL0 bit control in its own PHY driver
+ - Add a PHY driver for PCIE_PHY registers
+ - Modify pci-meson.c to make use of both PHYs and remove specific
+   handling for AXG and G12A
+
+[1] https://lkml.org/lkml/2019/12/16/119
+
+Remi Pommarel (7):
+  dt-bindings: Add AXG PCIE PHY bindings
+  dt-bindings: Add AXG shared MIPI/PCIE PHY bindings
+  dt-bindings: PCI: meson: Update PCIE bindings documentation
+  arm64: dts: meson-axg: Add PCIE PHY nodes
+  phy: amlogic: Add Amlogic AXG MIPI/PCIE PHY Driver
+  phy: amlogic: Add Amlogic AXG PCIE PHY Driver
+  PCI: amlogic: Use AXG PCIE and shared MIPI/PCIE PHYs
+
+ .../bindings/pci/amlogic,meson-pcie.txt       |  22 +--
+ .../phy/amlogic,meson-axg-mipi-pcie.yaml      |  34 ++++
+ .../bindings/phy/amlogic,meson-axg-pcie.yaml  |  40 ++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  13 ++
+ drivers/pci/controller/dwc/pci-meson.c        | 140 +++++---------
+ drivers/phy/amlogic/Kconfig                   |  22 +++
+ drivers/phy/amlogic/Makefile                  |   2 +
+ drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c | 179 ++++++++++++++++++
+ drivers/phy/amlogic/phy-meson-axg-pcie.c      | 163 ++++++++++++++++
+ 9 files changed, 508 insertions(+), 107 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+ create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
+ create mode 100644 drivers/phy/amlogic/phy-meson-axg-pcie.c
 
 -- 
-~Vinod
+2.24.1
+
