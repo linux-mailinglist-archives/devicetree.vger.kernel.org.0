@@ -2,75 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9092D13C9D8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 17:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41C9013CA51
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 18:07:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728904AbgAOQnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 11:43:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35694 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726483AbgAOQnC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 15 Jan 2020 11:43:02 -0500
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 21A152081E;
-        Wed, 15 Jan 2020 16:42:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579106582;
-        bh=fJApyuntPyejoeMn12vz+APsEX7vQKt1nCchJ8JsFZM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fYFmh46g2DI//JufPVgq0BeHAGjhlNgl4fsN9XiOgjIAh5C+ueN3A2T8ZbKmWXxb6
-         l2TMNhiqS5KrRTt2RqVVniFLr8drjLE29SSrEBJiR0g/pcNzx3Efig1LeBT5aaumqT
-         4V+EC1XPv3qVsagsI/6A7sLA+1pd/hMbsNrLUlY8=
-Date:   Wed, 15 Jan 2020 16:42:56 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, joro@8bytes.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, lenb@kernel.org,
-        robin.murphy@arm.com, bhelgaas@google.com, eric.auger@redhat.com,
-        jonathan.cameron@huawei.com, zhangfei.gao@linaro.org
-Subject: Re: [PATCH v5 00/13] iommu: Add PASID support to Arm SMMUv3
-Message-ID: <20200115164255.GB30746@willie-the-truck>
-References: <20200115125239.136759-1-jean-philippe@linaro.org>
+        id S1728946AbgAORHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 12:07:12 -0500
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:38822 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728928AbgAORHM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 12:07:12 -0500
+X-Greylist: delayed 2606 seconds by postgrey-1.27 at vger.kernel.org; Wed, 15 Jan 2020 12:07:11 EST
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 00FGN3te021572;
+        Wed, 15 Jan 2020 18:23:03 +0200
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id DB60D60328; Wed, 15 Jan 2020 18:23:02 +0200 (IST)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        avifishman70@gmail.com, tali.perry1@gmail.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1 0/4] spi: npcm-pspi: improve preformance modify reset and fix issue
+Date:   Wed, 15 Jan 2020 18:22:57 +0200
+Message-Id: <20200115162301.235926-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200115125239.136759-1-jean-philippe@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 15, 2020 at 01:52:26PM +0100, Jean-Philippe Brucker wrote:
-> Since v4 [1] I addressed some of Will's comment.
+This patch set modify Perphiral SPI NPCM driver as follow:
+	
+	- Improve transfer performance.
+	- Fix 16 bit send and receive support.
+	- Modify dt-binding documentation to support reset controller driver.
+	- Modify reset support to use reset controller driver
+	  NPCM reset driver: https://lkml.org/lkml/2019/11/7/429.
 
-Thanks! I've tentatively managed to queue all of this apart from the last
-patch, since that relies on some pasid symbols being exported from the PCI
-core when building the driver as a module with PCI_PASID=y.
+Tomer Maimon (4):
+  spi: npcm-pspi: fix 16 bit send and receive support
+  spi: npcm-pspi: improve spi transfer performance
+  dt-binding: spi: add NPCM PSPI reset binding
+  spi: npcm-pspi: modify reset support
 
-Please can you look at the rest of things here?:
+ .../bindings/spi/nuvoton,npcm-pspi.txt        | 12 +---
+ drivers/spi/spi-npcm-pspi.c                   | 57 +++++++++----------
+ 2 files changed, 29 insertions(+), 40 deletions(-)
 
-https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-joerg/arm-smmu/updates
+-- 
+2.22.0
 
-> Still missing and will be submitted as follow-up patches:
-> * write STE.V with WRITE_ONCE() (patch 7)
-
-I've hacked that one up myself.
-
-> * batch submission of CD invalidation (patch 7)
-
-That can be 5.7 material.
-
-> * Remove WARN_ON_ONCE() in add_device() (patch 13)
->   Pending Robin's input.
-
-I've written that one too, but we'll see what Robin says. The question now
-is which commit do I tag in the branch above :)
-
-Will
