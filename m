@@ -2,128 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F02213C537
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 15:13:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAEE13C5D8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2020 15:22:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730266AbgAOONh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 15 Jan 2020 09:13:37 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:52047 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730380AbgAOONc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 09:13:32 -0500
-Received: by mail-wm1-f65.google.com with SMTP id d73so10218wmd.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2020 06:13:31 -0800 (PST)
+        id S1729026AbgAOOWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 15 Jan 2020 09:22:50 -0500
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:45459 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729163AbgAOOWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 15 Jan 2020 09:22:50 -0500
+Received: by mail-pf1-f195.google.com with SMTP id 2so8586495pfg.12;
+        Wed, 15 Jan 2020 06:22:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=r9NPS5QGribeTtMFFZTTzMj+ynOYdzhVsWBEen9DiAQ=;
-        b=bgELX9joHOCF4c8wcg5bLvZ9uHtZsi/3FsyK//KbYPrUw6pN7LvXNBNEYrxRO70Rop
-         nn+AUaycmrXtYvRkeR229xqVRDf2p3kJhulb6igviGwnVBB+42wXPIqCsJraKKpEeWJ1
-         CNeSvEpPmTnxXV7Koldzqb7XJl9y2viuiic6LeLAjr+xw2fdEeXszuCLtRfgyLkuHhRt
-         eeMH73fnDAijT9U+X3STFKKzoU1lUx/oEfciCREPiErwhsKX249VKOAmAsMJolHzANSI
-         SdBZfet0PZITXICNmLt778RTkTaL1pspzH57s9CdzN2nlTXpK8PDU5ajo3mSRh7uSy8D
-         LEfw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=b+rUvYWKoAM/J15shsDFhmjGwGV/oW2xVnsU6cgQp8c=;
+        b=RXdYxl4yj15d8nM4oUNWtJTtPn4D+CVTzd1+VXlnlHPIv0eKdF1Gr6cRoFViGnuqtG
+         P9Gqah8qXjt/jMz45RfbxWtipe+Yl2WuZwm+SvCSVvGYAA8ZFHod+uSeTz04J85SAGOL
+         8+o2J3K7VWtzeHz+RU3mgmoxPkhCsY13bYgeZdJ1G2Lc5GXcunGNSNuMZ39fybUp+Svl
+         yzDUL6kS+JGBHYaIKzEpcOqynCIz7nfZ0eW1+S/s0oueWlNvijyRhPxf5gposGQKij9C
+         A1fONnnxe5CY89lkddrMZ23rlVkWJQ9qxzxBT2jCi0v6t3yLMKl4kZg9CW/7NbHBUcm3
+         lmiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=r9NPS5QGribeTtMFFZTTzMj+ynOYdzhVsWBEen9DiAQ=;
-        b=t3Xu2qDmP+PYfPWqSNfPIrYNDNGonvJm6B+BIfw1vC6fAVBMx7hgXofBg3UZiQFje8
-         pEKwzhE51EzC/8AfSptfL2XGrSXxSkUt1sN+t7IugY995wfSxiSv7ShuoBO/HjmGLQYT
-         lybz2pi/GWxbRNYtauc0HX5beMt0ODRH9DkWH3Y9wDTjJ1WMmY+2Tot/cuhQsu7vTsve
-         JINJd2LVqP95bicEJiCriH/xAQmf1JYWcPTzNH5l1Im4heTInrxQobW4iaUD25dyKI4A
-         zefLZh6iAphLldGkfe5gAHAqVtQozUb6FsHViX5THy/3/+HNudynZUIiBDzzkce1XG/2
-         1ulA==
-X-Gm-Message-State: APjAAAUzyRLMgZJ3fyuPFJ2JOzMq56M75lV0U4QTLlVTtbgyARCWvm8V
-        9uA4bFIogavlg3+lyJRrhG+IMA==
-X-Google-Smtp-Source: APXvYqw76gxyIdAYFEPqMKjvpzCtwovsDXs6SfcdlT6dpAzF6V+7DXdlLmrcgH28IHX9zjYJMtFEPg==
-X-Received: by 2002:a7b:cc6a:: with SMTP id n10mr35195527wmj.170.1579097610665;
-        Wed, 15 Jan 2020 06:13:30 -0800 (PST)
-Received: from localhost.localdomain ([176.61.57.127])
-        by smtp.gmail.com with ESMTPSA id m21sm23730720wmi.27.2020.01.15.06.13.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2020 06:13:30 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH 19/19] arm64: dts: qcom: qcs404-evb: Enable primary USB controller
-Date:   Wed, 15 Jan 2020 14:13:33 +0000
-Message-Id: <20200115141333.1222676-20-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200115141333.1222676-1-bryan.odonoghue@linaro.org>
-References: <20200115141333.1222676-1-bryan.odonoghue@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=b+rUvYWKoAM/J15shsDFhmjGwGV/oW2xVnsU6cgQp8c=;
+        b=reuu9udoM2AXrC8XejpFM9sn7ex1SRClst6i6H9Dx2ycer/qyK7gJCjU6T+Ka2Catg
+         G8REDgRatod3CEennn0eDgTUfMMdT73dIHB4tCIW0Oo1Y8KlYHbMRvBahLNeCMTHRlbi
+         dwAIY3ixvoxyAF4NnBs0+jwur3w7J2S6kkV2K9jTCZP+s9jCf16XxWYbhkGN21IGDqx0
+         UX4A6GEFeJ3+dZiJVHlMkmLbKi/S+/DK92Z50AenfKm942NhYhbYmupr0o4yBAssy1Wq
+         qzIxPl5HSz85xXceAnU25sNYSLw8Vk/FBtqnYNf3C8KrDIt8u6ML1R8R72pHt1GD8/2/
+         nNug==
+X-Gm-Message-State: APjAAAXLUSMJqvCqmOpoQIGASvjjHj1eET9vcGCqYdd6EfzMx7U5WqHh
+        Hi3h8olAfiYCiAGFZMQe4X4=
+X-Google-Smtp-Source: APXvYqxfSMJdPWQ1G7Dbhn47HLgrqcYRvd44//y2o3Rii8l5Ly5BE37b6smjsbCl8zU/3lMks2lF9Q==
+X-Received: by 2002:a63:4c4f:: with SMTP id m15mr33194421pgl.346.1579098169273;
+        Wed, 15 Jan 2020 06:22:49 -0800 (PST)
+Received: from ?IPv6:2001:4898:d8:28:acd4:5c73:b928:d080? ([2001:4898:80e8:9:2ce3:5c73:b928:d080])
+        by smtp.gmail.com with ESMTPSA id n24sm22074736pff.12.2020.01.15.06.22.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jan 2020 06:22:48 -0800 (PST)
+Subject: Re: [PATCH v8 2/2] EDAC: add EDAC driver for DMC520
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     James Morse <james.morse@arm.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-edac@vger.kernel.org, sashal@kernel.org, hangl@microsoft.com,
+        Lei Wang <lewan@microsoft.com>, ruizhao@microsoft.com,
+        Scott Branden <scott.branden@broadcom.com>,
+        Yuqing Shen <yuqing.shen@broadcom.com>, ray.jui@broadcom.com,
+        wangglei@gmail.com, shji@microsoft.com
+References: <0cc7bcfe-0dee-b78a-a0fe-52cc48c00a44@gmail.com>
+ <20200115124833.GE20975@zn.tnic>
+From:   Shiping Ji <shiping.linux@gmail.com>
+Message-ID: <78dc4c79-985f-32b9-c8c4-a38aeb64b49d@gmail.com>
+Date:   Wed, 15 Jan 2020 06:22:48 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200115124833.GE20975@zn.tnic>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables the primary USB controller which has
+On 1/15/2020 4:48 AM, Borislav Petkov wrote:
+> On Tue, Jan 14, 2020 at 03:52:23PM -0800, Shiping Ji wrote:
+>> New driver supports error detection and correction on the devices with ARM
+>> DMC-520 memory controller.
+>>
+>> Signed-off-by: Shiping Ji <shiping.linux@gmail.com>
+>> Reviewed-by: James Morse <james.morse@arm.com>
+> 
+> I don't think you've understood the whole SOB chain thing yet. Previous
+> submissions had
+> 
+> Signed-off-by: Lei Wang <leiwang_git@outlook.com>
+> 
+> and her as author and you've completely removed those and made yourself
+> an author because when I apply this patch, it would take the From:
+> header from the mail and make it the author.
+> 
+> But you can't simply remove her authorship... you need to read that doc
+> again.
+> 
 
-- One USB3 SS PHY using gpio-usb-conn
-- One USB2 HS PHY in device mode only and no connector driver
-  associated.
+Sorry about it, my misunderstanding again. I'll submit a new patch shortly.
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 29 ++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 07d6d793a922..a2cbca3a6124 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -329,6 +329,35 @@ &usb2_phy_sec {
- 	status = "okay";
- };
- 
-+&usb3 {
-+	status = "okay";
-+	dwc3@7580000 {
-+		usb-role-switch;
-+		usb_con: gpio_usb_connector {
-+			compatible = "gpio-usb-b-connector";
-+			label = "USB-C";
-+			id-gpio = <&tlmm 116 GPIO_ACTIVE_HIGH>;
-+			vbus-supply = <&usb3_vbus_reg>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&usb3_id_pin>, <&usb3_vbus_pin>;
-+			status = "okay";
-+		};
-+	};
-+};
-+
-+&usb2_phy_prim {
-+	vdd-supply = <&vreg_l4_1p2>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	vdda3p3-supply = <&vreg_l12_3p3>;
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	vdd-supply = <&vreg_l3_1p05>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	status = "okay";
-+};
-+
- &wifi {
- 	status = "okay";
- 	vdd-0.8-cx-mx-supply = <&vreg_l2_1p275>;
 -- 
-2.24.0
-
+Best regards,
+Shiping Ji
