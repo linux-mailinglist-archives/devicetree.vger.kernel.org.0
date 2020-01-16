@@ -2,73 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 177BF13F5BB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:58:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2351113F96F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:25:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390437AbgAPS62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 13:58:28 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38264 "EHLO mail.kernel.org"
+        id S1730996AbgAPTZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 14:25:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35768 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389538AbgAPS62 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 13:58:28 -0500
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        id S1730101AbgAPQwi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 11:52:38 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 83AE121D56;
-        Thu, 16 Jan 2020 18:58:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 20D7E2073A;
+        Thu, 16 Jan 2020 16:52:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579201107;
-        bh=xQHaMmW5+OUanOpzT3F10iGg7VHntvomNgGXkgpU0/4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pW1ad/mr9lv4mjG0KEHhw15B0zLcU7PWxrVIHtozNIlIefsGUj+3aY68lA0al2hhz
-         oWtE//Q1g1pAS6w0SBmCk64FIpGJjxgsQAswNY8yo9mAkJeDp4c/olz+VXoP3Kme05
-         TC1GjKQjhsUfwbm5bhgzsLb7A7y6H9uLiQgNebmM=
-Received: by mail-qk1-f174.google.com with SMTP id a203so20225382qkc.3;
-        Thu, 16 Jan 2020 10:58:27 -0800 (PST)
-X-Gm-Message-State: APjAAAX7EBSkaL+2UN0vHHUSOPaWAykL58uzba7Sdl55VtITmLMHVai7
-        7nddZv4d5aJCXwXX1c7AtfQlKWE22hP4xROPJw==
-X-Google-Smtp-Source: APXvYqz7Jds+/Z0T2jKmrW9vc4gPA0ja7tR3DL5ZNZX7bEiGSGPBQq4mA+KAyBwwQDFM1HxCAgDqUAjb3yEtcnqqaag=
-X-Received: by 2002:a05:620a:1eb:: with SMTP id x11mr35416430qkn.254.1579201106608;
- Thu, 16 Jan 2020 10:58:26 -0800 (PST)
+        s=default; t=1579193557;
+        bh=ih2gnmgItQFLMhY5RSN4tZvX7fs5Sa/mH/Wd0Wfpllc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=nB22gdPyqHxHYRqkwwRIuOmfi9ATMWO0XJZ4d2KcQI+tDdXkO2CmRGlO46ZllRY0W
+         bsUPGuFc16YKEBUIXxMiaKf0sLiQpvAjh9GhBVRIhkR9Ig5Irhi1EDE+lx/eibMmZg
+         eGuYVCt52363fRo9bkJ95xPzkVUIjOhANCvLuFaw=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 103/205] arm64: dts: allwinner: a64: Re-add PMU node
+Date:   Thu, 16 Jan 2020 11:41:18 -0500
+Message-Id: <20200116164300.6705-103-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200116164300.6705-1-sashal@kernel.org>
+References: <20200116164300.6705-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <1579200077-17496-1-git-send-email-stefan.wahren@i2se.com>
-In-Reply-To: <1579200077-17496-1-git-send-email-stefan.wahren@i2se.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 16 Jan 2020 12:58:15 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+51A_wKBzxwihkQd=eo_AEQ-wo4pK_GthO5b8WT=6oKw@mail.gmail.com>
-Message-ID: <CAL_Jsq+51A_wKBzxwihkQd=eo_AEQ-wo4pK_GthO5b8WT=6oKw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: brcm,avs-ro-thermal: Fix binding check issues
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 16, 2020 at 12:42 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
->
-> Drop the reg property since this only necessary for the parent and
-> add the missing thermal-sensor-cells property description.
->
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Fixes: 3d4849897691 ("dt-bindings: Add Broadcom AVS RO thermal")
-> ---
->  .../devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml         | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
+From: Andre Przywara <andre.przywara@arm.com>
 
-Thanks for the quick fix.
+[ Upstream commit 6b832a148717f1718f57805a9a4aa7f092582d15 ]
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+As it was found recently, the Performance Monitoring Unit (PMU) on the
+Allwinner A64 SoC was not generating (the right) interrupts. With the
+SPI numbers from the manual the kernel did not receive any overflow
+interrupts, so perf was not happy at all.
+It turns out that the numbers were just off by 4, so the PMU interrupts
+are from 148 to 151, not from 152 to 155 as the manual describes.
+
+This was found by playing around with U-Boot, which typically does not
+use interrupts, so the GIC is fully available for experimentation:
+With *every* PPI and SPI enabled, an overflowing PMU cycle counter was
+found to set a bit in one of the GICD_ISPENDR registers, with careful
+counting this was determined to be number 148.
+
+Tested with perf record and perf top on a Pine64-LTS. Also tested with
+tasksetting to every core to confirm the assignment between IRQs and
+cores.
+
+This somewhat "revert-fixes" commit ed3e9406bcbc ("arm64: dts: allwinner:
+a64: Drop PMU node").
+
+Fixes: 34a97fcc71c2 ("arm64: dts: allwinner: a64: Add PMU node")
+Fixes: ed3e9406bcbc ("arm64: dts: allwinner: a64: Drop PMU node")
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 70f4cce6be43..ba41c1b85887 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -142,6 +142,15 @@
+ 		clock-output-names = "ext-osc32k";
+ 	};
+ 
++	pmu {
++		compatible = "arm,cortex-a53-pmu";
++		interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
++	};
++
+ 	psci {
+ 		compatible = "arm,psci-0.2";
+ 		method = "smc";
+-- 
+2.20.1
+
