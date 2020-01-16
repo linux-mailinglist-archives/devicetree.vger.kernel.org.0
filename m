@@ -2,100 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D05B713DD94
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 15:38:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 754EA13DDE2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 15:46:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbgAPOiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 09:38:15 -0500
-Received: from foss.arm.com ([217.140.110.172]:50308 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726084AbgAPOiO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 09:38:14 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA8051396;
-        Thu, 16 Jan 2020 06:38:13 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A113C3F718;
-        Thu, 16 Jan 2020 06:38:12 -0800 (PST)
-Date:   Thu, 16 Jan 2020 14:38:09 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-spi@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Icenowy Zheng <icenowy@aosc.xyz>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1727007AbgAPOpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 09:45:40 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:3756 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726370AbgAPOpj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 09:45:39 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00GEc9df028289;
+        Thu, 16 Jan 2020 15:45:31 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=MzhYp1pTTAFs6phM/AXFgfZU+jA+iDcfjidwqVIbTe8=;
+ b=WhGcOXtN3R71jqyfyCDB3m6yNwa2jZZ3phzNCF/y17QbIzICBWF3oHaBxnkBoct+/19W
+ 4btgHF008LAsBx6R4iZ4884x+SwjIQyVOfkuH/Ven0NmkLw7Kn4XdJanId/qgSfD8G4G
+ 37queaoZ/Gh9U4tYV/y/6gwcZTm7x5E4PIwQOHlYDycqeY3uWEL9jWz1BpQmUPujlmej
+ vV4ulYkyEYW4FEOQkPPC/Cj4NfIekfJNvuQ9M8DVGE0gMR8jUx7hbj7In9qAlHJ0Rvkr
+ 0BCZS3l0P0oWlArw3b61RKAx/+H+qAcn3Dpttg2JcnmuQtRTlFUXcCmIseKAYSaGEYNV 9Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2xf78shvbp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 16 Jan 2020 15:45:31 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8E64B10002A;
+        Thu, 16 Jan 2020 15:45:30 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7BC7B2D3798;
+        Thu, 16 Jan 2020 15:45:30 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 16 Jan 2020 15:45:30
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Minas Harutyunyan <hminas@synopsys.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-bindings: spi: sunxi: Document new compatible
- strings
-Message-ID: <20200116143809.123ceee4@donnerap.cambridge.arm.com>
-In-Reply-To: <20200116142301.w2t4o6pg3dapp3g6@gilmour.lan>
-References: <20200116005654.27672-1-andre.przywara@arm.com>
-        <20200116005654.27672-4-andre.przywara@arm.com>
-        <20200116142301.w2t4o6pg3dapp3g6@gilmour.lan>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Amelie Delaunay <amelie.delaunay@st.com>
+Subject: [PATCHv2 0/2] USB DWC2 support for STM32MP15 SoCs USB OTG
+Date:   Thu, 16 Jan 2020 15:45:22 +0100
+Message-ID: <20200116144524.16070-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG5NODE3.st.com (10.75.127.15) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-01-16_04:2020-01-16,2020-01-15 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 16 Jan 2020 15:23:01 +0100
-Maxime Ripard <mripard@kernel.org> wrote:
+Adds support for STM32MP15 SoCs USB OTG HS and FS based on DWC2 IP.
 
-Hi,
+STM32MP15 SoCs embeds a DWC2 IP that can be used in HS or in FS, and
+uses an external Vbus and ID level detection to support OTG operations.
 
-> On Thu, Jan 16, 2020 at 12:56:54AM +0000, Andre Przywara wrote:
-> > The Allwinner H6 SPI controller has advanced features over the H3
-> > version, but remains compatible with it.
-> > Document the usual "specific", "fallback" compatible string pair.
-> > Also add the R40 version while at it.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  .../devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml     | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> > index f36c46d236d7..c19dfbe42d90 100644
-> > --- a/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/allwinner,sun6i-a31-spi.yaml
-> > @@ -18,9 +18,15 @@ properties:
-> >    "#size-cells": true
-> >
-> >    compatible:
-> > -    enum:
-> > -      - allwinner,sun6i-a31-spi
-> > -      - allwinner,sun8i-h3-spi
-> > +    oneOf:
-> > +      - const: allwinner,sun6i-a31-spi
-> > +      - const: allwinner,sun8i-h3-spi
-> > +      - items:
-> > +          - const: allwinner,sun8i-r40-spi
-> > +          - const: allwinner,sun8i-h3-spi
-> > +      - items:
-> > +          - const: allwinner,sun50i-h6-spi
-> > +          - const: allwinner,sun8i-h3-spi  
-> 
-> Having
-> 
-> oneOf:
->   - const: allwinner,sun6i-a31-spi
->   - const: allwinner,sun8i-h3-spi
->   - items:
->     - enum:
->       - allwinner,sun8i-r40-spi
->       - allwinner,sun50i-h6-spi
->     - const: allwinner,sun8i-h3-spi
-> 
-> Will be easier to maintain in the long run
+Amelie Delaunay (2):
+  dt-bindings: usb: dwc2: add support for STM32MP15 SoCs USB OTG HS and
+    FS
+  usb: dwc2: add support for STM32MP15 SoCs USB OTG HS and FS
+---
+Changes in v2:
+- add Minas Acked-by on driver
+- use dwc2.yaml bindings
 
-Ah, nice, I tried something like this, based on the example-schema.yaml file, but the example in there is more verbose, and looked much less readable.
-But your version seems to hit the sweet spot, so I will go with this.
+ .../devicetree/bindings/usb/dwc2.yaml         |  6 ++
+ drivers/usb/dwc2/core.h                       |  8 ++
+ drivers/usb/dwc2/hw.h                         |  8 ++
+ drivers/usb/dwc2/params.c                     | 33 +++++++
+ drivers/usb/dwc2/platform.c                   | 94 ++++++++++++++++++-
+ 5 files changed, 147 insertions(+), 2 deletions(-)
 
-Thanks,
-Andre.
+-- 
+2.17.1
+
