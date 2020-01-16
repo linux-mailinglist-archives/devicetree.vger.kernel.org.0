@@ -2,34 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C19AD13F739
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:10:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1632913F728
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:09:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387845AbgAPRAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:00:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50280 "EHLO mail.kernel.org"
+        id S2387870AbgAPRAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:00:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50596 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387839AbgAPRAb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:00:31 -0500
+        id S2387865AbgAPRAm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:00:42 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3A68E24681;
-        Thu, 16 Jan 2020 17:00:30 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A1A992467C;
+        Thu, 16 Jan 2020 17:00:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579194030;
-        bh=gmmjYdhVeD7er2tUkAkAiRFI6JSPKXZj5K+epVd+gqg=;
+        s=default; t=1579194041;
+        bh=BMgFxducrcVlOag3C3yZ/qE15LkMN0Q7yrMo9NxU0wI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2AbJg6Z/Fv9fQF23X0Z+fBQM2/zqA/G+ScwVg0cZOHzJOcBnCKpZQ3dAMw/RJpOO8
-         Fxu6ZNjjsTAf49+LT6zS8j/shgrI8qRlHwo+5hzKX82jfxTuOw75Fwp77x86qFT8YY
-         OYfJu1+o6lJWi9NBUodIaCDcqM+8Otzjm6DeGjto=
+        b=MFwOUWYJc+1/r92V2MhO2Ip3trQVYuETeq3YFVNAqwUleD9qJp1zvJwwIFZCugjqp
+         X/pHBPTByENxqWCi/XmM0SjNg3WzcOWcAQf3G6YK1qKFLlKZCRXC4Kie4RkEZW9CVG
+         tLvKXj2KfwCVYqiRNjaEkhXabx3iZRDItgSpJCPQ=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Zapolskiy <vz@mleia.com>, Sasha Levin <sashal@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 150/671] ARM: dts: lpc32xx: fix ARM PrimeCell LCD controller clocks property
-Date:   Thu, 16 Jan 2020 11:50:59 -0500
-Message-Id: <20200116165940.10720-33-sashal@kernel.org>
+Cc:     Niklas Cassel <niklas.cassel@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 158/671] arm64: dts: msm8916: remove bogus argument to the cpu clock
+Date:   Thu, 16 Jan 2020 11:51:07 -0500
+Message-Id: <20200116165940.10720-41-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116165940.10720-1-sashal@kernel.org>
 References: <20200116165940.10720-1-sashal@kernel.org>
@@ -42,36 +46,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Zapolskiy <vz@mleia.com>
+From: Niklas Cassel <niklas.cassel@linaro.org>
 
-[ Upstream commit 30fc01bae3cda747e7d9c352b1aa51ca113c8a9d ]
+[ Upstream commit e4f045ef38e61ba37aa4afc916fce4fc1b37aa19 ]
 
-The originally added ARM PrimeCell PL111 clocks property misses
-the required "clcdclk" clock, which is the same as a clock to enable
-the LCD controller on NXP LPC3230 and NXP LPC3250 SoCs.
+The apcs node has #clock-cells = <0>, which means that those who
+references it should specify 0 arguments.
 
-Fixes: 93898eb775e5 ("arm: dts: lpc32xx: add clock properties to device nodes")
-Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
+The apcs reference in the cpu node incorrectly specifies an argument,
+remove this bogus argument.
+
+Fixes: 65afdf458360 ("arm64: dts: qcom: msm8916: Add CPU frequency scaling support")
+Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
+Signed-off-by: Andy Gross <andy.gross@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/lpc32xx.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
-index cfd422e7f774..9ad3df11db0d 100644
---- a/arch/arm/boot/dts/lpc32xx.dtsi
-+++ b/arch/arm/boot/dts/lpc32xx.dtsi
-@@ -142,8 +142,8 @@
- 			compatible = "arm,pl111", "arm,primecell";
- 			reg = <0x31040000 0x1000>;
- 			interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clk LPC32XX_CLK_LCD>;
--			clock-names = "apb_pclk";
-+			clocks = <&clk LPC32XX_CLK_LCD>, <&clk LPC32XX_CLK_LCD>;
-+			clock-names = "clcdclk", "apb_pclk";
- 			status = "disabled";
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 7b32b8990d62..8011e564a234 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -114,7 +114,7 @@
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SPC>;
+-			clocks = <&apcs 0>;
++			clocks = <&apcs>;
+ 			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
  		};
- 
+@@ -126,7 +126,7 @@
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SPC>;
+-			clocks = <&apcs 0>;
++			clocks = <&apcs>;
+ 			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
+ 		};
+@@ -138,7 +138,7 @@
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SPC>;
+-			clocks = <&apcs 0>;
++			clocks = <&apcs>;
+ 			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
+ 		};
+@@ -150,7 +150,7 @@
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 			cpu-idle-states = <&CPU_SPC>;
+-			clocks = <&apcs 0>;
++			clocks = <&apcs>;
+ 			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
+ 		};
 -- 
 2.20.1
 
