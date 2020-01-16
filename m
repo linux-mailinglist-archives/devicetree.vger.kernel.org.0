@@ -2,36 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C749D13E242
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 17:55:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F14313E2E9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 17:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729567AbgAPQzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 11:55:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39988 "EHLO mail.kernel.org"
+        id S2387512AbgAPQ5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 11:57:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44802 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729340AbgAPQzG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 11:55:06 -0500
+        id S2387510AbgAPQ5c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 11:57:32 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 30EAD22522;
-        Thu, 16 Jan 2020 16:55:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EA12D24656;
+        Thu, 16 Jan 2020 16:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579193705;
-        bh=qOQzyhtcbChDzzbv1LEMKJgJf4TpU+N7xoKSA4d6j2I=;
+        s=default; t=1579193852;
+        bh=yYct/yvcXDrlEgA0LcQIaaTkGaXswQCQAppwQZKXnE0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ssqj/+C3XsCKeXSJZFL5dZCVRxBl4O002yKwMlyPAGE2JcnLwz29beJLf0jl1BG1r
-         hTWYoU43jSzS+nIhne2s3SpCIBrfvwpPCZlbtdtjUeu8uI4v72+rV3M6rZMdev5CiH
-         vLijMY7x/JluTOhr/wdEqP2fFT7U553KoJyi8160=
+        b=IfvXmm5gDbIqmNdpdcCtjEDZpFfioCTqpj/iR2eutdW8u50lJggOl18t9O+zRjxGN
+         2bA+kOfjMDZ4ec/5w6BIXaEtNioYrCSiSwxsxdVkvdBkZi9PI0aZI1+vxyNw+HwkaV
+         GUYnfuMXBKiGiyboTaPNmtl4Mi5g/gEaLrgaoC8A=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Peter Rosin <peda@axentia.se>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms+renesas@verge.net.au>,
         Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 002/671] ARM: dts: at91: nattis: set the PRLUD and HIPOW signals low
-Date:   Thu, 16 Jan 2020 11:43:53 -0500
-Message-Id: <20200116165502.8838-2-sashal@kernel.org>
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 103/671] ARM: dts: r8a7743: Remove generic compatible string from iic3
+Date:   Thu, 16 Jan 2020 11:45:34 -0500
+Message-Id: <20200116165502.8838-103-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116165502.8838-1-sashal@kernel.org>
 References: <20200116165502.8838-1-sashal@kernel.org>
@@ -44,44 +45,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peter Rosin <peda@axentia.se>
+From: Biju Das <biju.das@bp.renesas.com>
 
-[ Upstream commit 29feb2c960ab32fc24249443d4434194ce96f083 ]
+[ Upstream commit 072b817589b17660ef19c31d89f7b981dbed3fd2 ]
 
-AT91_PINCTRL_OUTPUT_VAL(0) without AT91_PINCTRL_OUTPUT is a no-op, so
-make sure the pins really output a zero.
+The iic3 block on RZ/G1M does not support automatic transmission, unlike
+other R-Car SoC's. So dropping the compatibility with the generic version.
 
-Fixes: 0e4323899973 ("ARM: dts: at91: add devicetree for the Axentia Nattis with Natte power")
-Signed-off-by: Peter Rosin <peda@axentia.se>
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Fixes: f523405f2a22cc0c307 ("ARM: dts: r8a7743: Add IIC cores to dtsi")
+Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/at91-nattis-2-natte-2.dts | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/r8a7743.dtsi | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/at91-nattis-2-natte-2.dts b/arch/arm/boot/dts/at91-nattis-2-natte-2.dts
-index af9f38456d04..bfa5815a0721 100644
---- a/arch/arm/boot/dts/at91-nattis-2-natte-2.dts
-+++ b/arch/arm/boot/dts/at91-nattis-2-natte-2.dts
-@@ -38,14 +38,16 @@
- 						atmel,pins =
- 							<AT91_PIOA 21
- 							 AT91_PERIPH_GPIO
--							 AT91_PINCTRL_OUTPUT_VAL(0)>;
-+							 (AT91_PINCTRL_OUTPUT |
-+							  AT91_PINCTRL_OUTPUT_VAL(0))>;
- 					};
- 
- 					pinctrl_lcd_hipow0: lcd_hipow0 {
- 						atmel,pins =
- 							<AT91_PIOA 23
- 							 AT91_PERIPH_GPIO
--							 AT91_PINCTRL_OUTPUT_VAL(0)>;
-+							 (AT91_PINCTRL_OUTPUT |
-+							  AT91_PINCTRL_OUTPUT_VAL(0))>;
- 					};
- 				};
- 			};
+diff --git a/arch/arm/boot/dts/r8a7743.dtsi b/arch/arm/boot/dts/r8a7743.dtsi
+index 24715f74ae08..5015e2273d82 100644
+--- a/arch/arm/boot/dts/r8a7743.dtsi
++++ b/arch/arm/boot/dts/r8a7743.dtsi
+@@ -565,9 +565,7 @@
+ 			/* doesn't need pinmux */
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			compatible = "renesas,iic-r8a7743",
+-				     "renesas,rcar-gen2-iic",
+-				     "renesas,rmobile-iic";
++			compatible = "renesas,iic-r8a7743";
+ 			reg = <0 0xe60b0000 0 0x425>;
+ 			interrupts = <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&cpg CPG_MOD 926>;
 -- 
 2.20.1
 
