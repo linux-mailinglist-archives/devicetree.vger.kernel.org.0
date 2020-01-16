@@ -2,286 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DAFDD13D8B7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 12:12:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0649313D8F3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 12:27:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726994AbgAPLLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 06:11:04 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:35097 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726979AbgAPLLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 06:11:03 -0500
-X-Originating-IP: 88.190.179.123
-Received: from localhost (unknown [88.190.179.123])
-        (Authenticated sender: repk@triplefau.lt)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 6F97CE0004;
-        Thu, 16 Jan 2020 11:11:00 +0000 (UTC)
-From:   Remi Pommarel <repk@triplefau.lt>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Yue Wang <yue.wang@Amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        id S1726151AbgAPL1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 06:27:43 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:48494 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725800AbgAPL1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 06:27:43 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00GBRGdj061689;
+        Thu, 16 Jan 2020 05:27:16 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1579174036;
+        bh=myfrgAkACHwJfmdNtMcuEJNJskU9ZB6VVutnIR84JH4=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=nEFmlIIkHRmg720elyKMOm+dhwS+GmQz54J/Pk0oyMkOmh+nf69RXMnk221Fm2/e7
+         NSzzCU2NpIciRM4d5s7zg63jd0GcYITe/s87EiYMWMO+9mg4DS68MEI0wBotVnoNJ0
+         KvXPQQC6+eWZhLjEpa5vffjlE8C0JzoLPGRujhCI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00GBRGVV021247
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 Jan 2020 05:27:16 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 16
+ Jan 2020 05:27:16 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 16 Jan 2020 05:27:15 -0600
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00GBR8Tb095885;
+        Thu, 16 Jan 2020 05:27:11 -0600
+Subject: Re: [PATCH 2/7] dt-bindings: PCI: cadence: Add binding to specify max
+ virtual functions
+To:     Rob Herring <robh@kernel.org>
+CC:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Bjorn Helgaas <bhelgaas@google.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>
-Subject: [PATCH v5 7/7] PCI: amlogic: Use AXG PCIE
-Date:   Thu, 16 Jan 2020 12:18:50 +0100
-Message-Id: <20200116111850.23690-8-repk@triplefau.lt>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200116111850.23690-1-repk@triplefau.lt>
-References: <20200116111850.23690-1-repk@triplefau.lt>
+        Andrew Murray <andrew.murray@arm.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>, <linux-pci@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <linux-doc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20191231113534.30405-1-kishon@ti.com>
+ <20191231113534.30405-3-kishon@ti.com> <20200115014026.GA10726@bogus>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <f0690395-4ce7-df93-e837-670829aafb03@ti.com>
+Date:   Thu, 16 Jan 2020 16:59:20 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200115014026.GA10726@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that PCIE PHY has been introduced for AXG, the whole has_shared_phy
-logic can be mutualized between AXG and G12A platforms.
+Hi Rob,
 
-This new PHY makes use of the optional shared MIPI/PCIE analog PHY
-found on AXG platforms, which need to be used in order to have reliable
-PCIE communications.
+On 15/01/20 7:10 AM, Rob Herring wrote:
+> On Tue, Dec 31, 2019 at 05:05:29PM +0530, Kishon Vijay Abraham I wrote:
+>> Add binding to specify maximum number of virtual functions that can be
+>> associated with each physical function.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  .../devicetree/bindings/pci/cdns,cdns-pcie-ep.txt         | 2 ++
+>>  .../devicetree/bindings/pci/ti,j721e-pci-ep.yaml          | 8 ++++++++
+>>  2 files changed, 10 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
+>> index 4a0475e2ba7e..432578202733 100644
+>> --- a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
+>> +++ b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
+>> @@ -9,6 +9,8 @@ Required properties:
+>>  
+>>  Optional properties:
+>>  - max-functions: Maximum number of functions that can be configured (default 1).
+>> +- max-virtual-functions: Maximum number of virtual functions that can be
+>> +    associated with each physical function.
+>>  - phys: From PHY bindings: List of Generic PHY phandles. One per lane if more
+>>    than one in the list.  If only one PHY listed it must manage all lanes. 
+>>  - phy-names:  List of names to identify the PHY.
+>> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+>> index 4621c62016c7..1d4964ba494f 100644
+>> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml
+>> @@ -61,6 +61,12 @@ properties:
+>>      minimum: 1
+>>      maximum: 6
+>>  
+>> +  max-virtual-functions:
+>> +    minItems: 1
+>> +    maxItems: 6
+> 
+> Is there a PCIe spec limit to number of virtual functions per phy 
+> function? Or 2^32 virtual functions is okay.
 
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
----
- drivers/pci/controller/dwc/pci-meson.c | 116 +++++--------------------
- 1 file changed, 22 insertions(+), 94 deletions(-)
+The PCIe spec provides a 16 bit field to specify number of virtual
+functions in the SR-IOV extended capability.
 
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 3772b02a5c55..3715dceca1bf 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -66,7 +66,6 @@
- #define PORT_CLK_RATE			100000000UL
- #define MAX_PAYLOAD_SIZE		256
- #define MAX_READ_REQ_SIZE		256
--#define MESON_PCIE_PHY_POWERUP		0x1c
- #define PCIE_RESET_DELAY		500
- #define PCIE_SHARED_RESET		1
- #define PCIE_NORMAL_RESET		0
-@@ -81,26 +80,19 @@ enum pcie_data_rate {
- struct meson_pcie_mem_res {
- 	void __iomem *elbi_base;
- 	void __iomem *cfg_base;
--	void __iomem *phy_base;
- };
- 
- struct meson_pcie_clk_res {
- 	struct clk *clk;
--	struct clk *mipi_gate;
- 	struct clk *port_clk;
- 	struct clk *general_clk;
- };
- 
- struct meson_pcie_rc_reset {
--	struct reset_control *phy;
- 	struct reset_control *port;
- 	struct reset_control *apb;
- };
- 
--struct meson_pcie_param {
--	bool has_shared_phy;
--};
--
- struct meson_pcie {
- 	struct dw_pcie pci;
- 	struct meson_pcie_mem_res mem_res;
-@@ -108,7 +100,6 @@ struct meson_pcie {
- 	struct meson_pcie_rc_reset mrst;
- 	struct gpio_desc *reset_gpio;
- 	struct phy *phy;
--	const struct meson_pcie_param *param;
- };
- 
- static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
-@@ -130,13 +121,6 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
- {
- 	struct meson_pcie_rc_reset *mrst = &mp->mrst;
- 
--	if (!mp->param->has_shared_phy) {
--		mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
--		if (IS_ERR(mrst->phy))
--			return PTR_ERR(mrst->phy);
--		reset_control_deassert(mrst->phy);
--	}
--
- 	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
- 	if (IS_ERR(mrst->port))
- 		return PTR_ERR(mrst->port);
-@@ -162,22 +146,6 @@ static void __iomem *meson_pcie_get_mem(struct platform_device *pdev,
- 	return devm_ioremap_resource(dev, res);
- }
- 
--static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
--					       struct meson_pcie *mp,
--					       const char *id)
--{
--	struct device *dev = mp->pci.dev;
--	struct resource *res;
--
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
--	if (!res) {
--		dev_err(dev, "No REG resource %s\n", id);
--		return ERR_PTR(-ENXIO);
--	}
--
--	return devm_ioremap(dev, res->start, resource_size(res));
--}
--
- static int meson_pcie_get_mems(struct platform_device *pdev,
- 			       struct meson_pcie *mp)
- {
-@@ -189,14 +157,6 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
- 	if (IS_ERR(mp->mem_res.cfg_base))
- 		return PTR_ERR(mp->mem_res.cfg_base);
- 
--	/* Meson AXG SoC has two PCI controllers use same phy register */
--	if (!mp->param->has_shared_phy) {
--		mp->mem_res.phy_base =
--			meson_pcie_get_mem_shared(pdev, mp, "phy");
--		if (IS_ERR(mp->mem_res.phy_base))
--			return PTR_ERR(mp->mem_res.phy_base);
--	}
--
- 	return 0;
- }
- 
-@@ -204,37 +164,33 @@ static int meson_pcie_power_on(struct meson_pcie *mp)
- {
- 	int ret = 0;
- 
--	if (mp->param->has_shared_phy) {
--		ret = phy_init(mp->phy);
--		if (ret)
--			return ret;
-+	ret = phy_init(mp->phy);
-+	if (ret)
-+		return ret;
- 
--		ret = phy_power_on(mp->phy);
--		if (ret) {
--			phy_exit(mp->phy);
--			return ret;
--		}
--	} else
--		writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
-+	ret = phy_power_on(mp->phy);
-+	if (ret) {
-+		phy_exit(mp->phy);
-+		return ret;
-+	}
- 
- 	return 0;
- }
- 
-+static void meson_pcie_power_off(struct meson_pcie *mp)
-+{
-+	phy_power_off(mp->phy);
-+	phy_exit(mp->phy);
-+}
-+
- static int meson_pcie_reset(struct meson_pcie *mp)
- {
- 	struct meson_pcie_rc_reset *mrst = &mp->mrst;
- 	int ret = 0;
- 
--	if (mp->param->has_shared_phy) {
--		ret = phy_reset(mp->phy);
--		if (ret)
--			return ret;
--	} else {
--		reset_control_assert(mrst->phy);
--		udelay(PCIE_RESET_DELAY);
--		reset_control_deassert(mrst->phy);
--		udelay(PCIE_RESET_DELAY);
--	}
-+	ret = phy_reset(mp->phy);
-+	if (ret)
-+		return ret;
- 
- 	reset_control_assert(mrst->port);
- 	reset_control_assert(mrst->apb);
-@@ -286,12 +242,6 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
- 	if (IS_ERR(res->port_clk))
- 		return PTR_ERR(res->port_clk);
- 
--	if (!mp->param->has_shared_phy) {
--		res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
--		if (IS_ERR(res->mipi_gate))
--			return PTR_ERR(res->mipi_gate);
--	}
--
- 	res->general_clk = meson_pcie_probe_clock(dev, "general", 0);
- 	if (IS_ERR(res->general_clk))
- 		return PTR_ERR(res->general_clk);
-@@ -562,7 +512,6 @@ static const struct dw_pcie_ops dw_pcie_ops = {
- 
- static int meson_pcie_probe(struct platform_device *pdev)
- {
--	const struct meson_pcie_param *match_data;
- 	struct device *dev = &pdev->dev;
- 	struct dw_pcie *pci;
- 	struct meson_pcie *mp;
-@@ -576,17 +525,10 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
- 
--	match_data = of_device_get_match_data(dev);
--	if (!match_data) {
--		dev_err(dev, "failed to get match data\n");
--		return -ENODEV;
--	}
--	mp->param = match_data;
--
--	if (mp->param->has_shared_phy) {
--		mp->phy = devm_phy_get(dev, "pcie");
--		if (IS_ERR(mp->phy))
--			return PTR_ERR(mp->phy);
-+	mp->phy = devm_phy_get(dev, "pcie");
-+	if (IS_ERR(mp->phy)) {
-+		dev_err(dev, "get phy failed, %ld\n", PTR_ERR(mp->phy));
-+		return PTR_ERR(mp->phy);
- 	}
- 
- 	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-@@ -636,30 +578,16 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 	return 0;
- 
- err_phy:
--	if (mp->param->has_shared_phy) {
--		phy_power_off(mp->phy);
--		phy_exit(mp->phy);
--	}
--
-+	meson_pcie_power_off(mp);
- 	return ret;
- }
- 
--static struct meson_pcie_param meson_pcie_axg_param = {
--	.has_shared_phy = false,
--};
--
--static struct meson_pcie_param meson_pcie_g12a_param = {
--	.has_shared_phy = true,
--};
--
- static const struct of_device_id meson_pcie_of_match[] = {
- 	{
- 		.compatible = "amlogic,axg-pcie",
--		.data = &meson_pcie_axg_param,
- 	},
- 	{
- 		.compatible = "amlogic,g12a-pcie",
--		.data = &meson_pcie_g12a_param,
- 	},
- 	{},
- };
--- 
-2.24.1
 
+> 
+>> +    description: As defined in
+>> +                 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
+> 
+> I suspect this this be a common property.
+
+Right now we don't have common EP property binding across all
+controllers. Maybe should create one?
+
+Thanks
+Kishon
