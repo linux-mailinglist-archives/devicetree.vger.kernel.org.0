@@ -2,175 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF99313FAD6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 21:48:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A766613FB06
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 22:06:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729240AbgAPUsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 15:48:20 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:42058 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726994AbgAPUsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 15:48:20 -0500
-Received: by mail-ot1-f67.google.com with SMTP id 66so20650830otd.9;
-        Thu, 16 Jan 2020 12:48:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=BKpDxkPQvhaYwq0BM0j0+4RX+8L/FqW/tD6hcJ/WZ8Y=;
-        b=ulOidGdKRiRdlY8VOZszJhyjAauTrxAXsdD7IE4cuJrJ30QApKjd0bvId4BtV+JP3p
-         UK4SbWHOqIgCWrxlej3LAP8DDdskftp9FTDtjHt98ieN1anyVCLBv2Ix6d2GChWkxL/t
-         BguuPl2HoetxwtUrcIRYT8SMLu9QM+/Lb9quMWrpMDXRIipIB5bZPBhASej64roO4s31
-         81Yu38XbJ96LgWTI/hq6Fo7DqI+eCLr+J/CerJCYILQasRaVJ1ikJECgdZollcXOS9VU
-         xd4LrQHJDHkCos37jQC1hY9x+lne9zXQxyOynoNq5Avf14doJl+CFCtrQvOU9syb8lxs
-         AyUw==
-X-Gm-Message-State: APjAAAUtsY1rsIF5Qn88rUTH41kodMdWHXq++ACf8NwxWt8CrCuiUqP3
-        VeyLo0eUM4qscGlDjUjS/g==
-X-Google-Smtp-Source: APXvYqwElUK+YujhdGIIl9hNxkKGMyK9dGJUHl9hNmGbi/q+K5ZFvapHlfm9AC50/8wXvJNavkLnjQ==
-X-Received: by 2002:a9d:6e03:: with SMTP id e3mr3614892otr.46.1579207699487;
-        Thu, 16 Jan 2020 12:48:19 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a17sm8039507otp.66.2020.01.16.12.48.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jan 2020 12:48:18 -0800 (PST)
-Received: (nullmailer pid 14099 invoked by uid 1000);
-        Thu, 16 Jan 2020 20:48:17 -0000
-Date:   Thu, 16 Jan 2020 14:48:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jian Hu <jian.hu@amlogic.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Chandle Zou <chandle.zou@amlogic.com>,
-        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/5] dt-bindings: clock: meson: add A1 PLL clock
- controller bindings
-Message-ID: <20200116204817.GA9529@bogus>
-References: <20200116080440.118679-1-jian.hu@amlogic.com>
- <20200116080440.118679-2-jian.hu@amlogic.com>
+        id S2388416AbgAPVGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 16:06:17 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:33974 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727040AbgAPVGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 16:06:17 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00GL64LH086897;
+        Thu, 16 Jan 2020 15:06:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1579208764;
+        bh=Kihek3GVeQ/3lGAf1d3JBSrQsZoXyUUc67GHwTaD20M=;
+        h=From:To:CC:Subject:Date;
+        b=GNYeC7l9I4t6KkxfMT+qpowjDvwyW7REeES+t4vyt2ZT2ApJYWoELIsenYlcdOBQU
+         IlyTgvyXewuqAYP8Keewip/EY2OIfW8x0pOpDV6fVKZnmjCygOqbKAhfD/CKXrBOFN
+         W7OcXs9Vowr14ArzNz1K/CY6HxMgYy1yqhLPb+U8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00GL64A1095172
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 16 Jan 2020 15:06:04 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 16
+ Jan 2020 15:06:03 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 16 Jan 2020 15:06:03 -0600
+Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00GL60iZ107315;
+        Thu, 16 Jan 2020 15:06:00 -0600
+From:   Jyri Sarha <jsarha@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>
+CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
+        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <subhajit_paul@ti.com>,
+        <praneeth@ti.com>, <yamonkar@cadence.com>, <sjakhade@cadence.com>,
+        <sam@ravnborg.org>, <robh+dt@kernel.org>
+Subject: [PATCH v7 0/5] drm/tidss: New driver for TI Keystone platform Display SubSystem
+Date:   Thu, 16 Jan 2020 23:05:55 +0200
+Message-ID: <cover.1579202260.git.jsarha@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200116080440.118679-2-jian.hu@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 16, 2020 at 04:04:36PM +0800, Jian Hu wrote:
-> Add the documentation to support Amlogic A1 PLL clock driver,
-> and add A1 PLL clock controller bindings.
-> 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 54 +++++++++++++++++++
->  include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
->  2 files changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> new file mode 100644
-> index 000000000000..071240b65e70
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/amlogic,a1-pll-clkc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@jian.hu.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,a1-pll-clkc
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
+Changes since v6:
+- Rebase on top of drm-misc-next-2020-01-10
+- Fix all checkpatch.pl -q --emacs --strict --show-types issues
+  - all issues but these have been fixed:
+    - over 80 char lines in scale coefficients found in tidss_scale_coefs.c
+    - Co-developed-by and Signed-off-by: name/email do not match
+    - added, moved or deleted file(s), does MAINTAINERS need updating
+- Add Acked-by: Sam Ravnborg <sam@ravnborg.org> to "drm/tidss: New driver ..."
 
-Not necessary, so drop. Implied by the length of 'items'.
+Changes since v5:
+- Add Add Reviewed-by: from Rob Herring <robh@kernel.org> and
+  Benoit Parrot <bparrot@ti.com> to binding patches
+- Color property changes and fixes to the driver implementation patch
+  - Check CTM and gamma support from dispc_features when creating crtc
+  - Implement CTM support for k2g and fix k3 CTM implementation
+  - Remove gamma property persistence and always write color properties
+    in a new modeset
 
-> +    items:
-> +     - description: input xtal_fixpll
-> +     - description: input xtal_hifipll
-> +
-> +  clock-names:
-> +    maxItems: 2
+Changes since v4:
+- itemize named resource property descriptions in dt binding
+- fix wp to wb in the ti,j721e-dss reg property description
+- remove fifo underflow irq handling, it is not an error and
+  it should be used for debug purposes only
+- memory tuning, prefetch plane fifo up to high-threshold value to
+  minimize possibility of underflows.
 
-Same here.
+Changes since v3:
+- Add descriptions some yaml binding properites
+- Remove redundant minItems directives from yaml bindings
+- Remove ports node from ti,k2g-dss yaml binding
+- no change to MAINTAINERS or to the driver code
 
-> +    items:
-> +      - const: xtal_fixpll
-> +      - const: xtal_hifipll
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clkc_pll: pll-clock-controller@7c80 {
-> +                compatible = "amlogic,a1-pll-clkc";
-> +                reg = <0 0x7c80 0 0x18c>;
-> +                #clock-cells = <1>;
-> +                clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
-> +                         <&clkc_periphs CLKID_XTAL_HIFIPLL>;
+Changes since v2:
+- Add version history to commit messages
+- Fix yaml bindings now that got dt_binding_check dtbs_check working propery
+- Move tidss entry in MAINTAINERS after omapdrm and add "T: git
+  git://anongit.freedesktop.org/drm/drm-misc"
+- no change to driver code
 
-The example will fail to build because these aren't defined.
+Changes since the first version of the patch series [2]:
+- "drm/tidss: New driver for TI Keystone platform Display SubSystem"
+ - rebased on top of drm-next-2019-11-27
+ - sort all include lines in all files
+ - remove all include <drm/drmP.h>
+ - remove select "select VIDEOMODE_HELPERS"
+ - call dispc_vp_setup() later in tidss_crtc_atomic_flush() (there is no
+   to call it in new modeset case as it is also called in vp_enable())
+ - change probe sequence and drm_device allocation (follow example in drm_drv.c)
+ - use __maybe_unused instead of #ifdef for pm functions
+ - remove "struct drm_fbdev_cma *fbdev;" from driver data
+ - check panel connector type before connecting it
+- No change to binding or MAINTAINERS patches
 
-Run 'make dt_binding_check'.
+There was couple of attempts upstream an earlier version of this
+driver about a year ago [1]. Back then I needed to stop my efforts to
+implement support for next Keystone DSS version, so now the driver
+supports three different Keystone DSS version on three different SoCs.
 
-> +                clock-names = "xtal_fixpll", "xtal_hifipll";
-> +    };
-> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
-> new file mode 100644
-> index 000000000000..58eae237e503
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
-> @@ -0,0 +1,16 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef __A1_PLL_CLKC_H
-> +#define __A1_PLL_CLKC_H
-> +
-> +#define CLKID_FIXED_PLL				1
-> +#define CLKID_FCLK_DIV2				6
-> +#define CLKID_FCLK_DIV3				7
-> +#define CLKID_FCLK_DIV5				8
-> +#define CLKID_FCLK_DIV7				9
-> +#define CLKID_HIFI_PLL				10
-> +
-> +#endif /* __A1_PLL_CLKC_H */
-> -- 
-> 2.24.0
-> 
+I am starting the patch series versioning from the beginning because it
+has been over a year since the previous patch set and the structure of
+the driver has evolved quite a bit. However, all the earlier comments
+should be addressed in this series.
+
+[1] https://patchwork.freedesktop.org/series/44947/
+[2] https://lists.freedesktop.org/archives/dri-devel/2019-November/246542.html
+
+Jyri Sarha (5):
+  dt-bindings: display: ti,k2g-dss: Add dt-schema yaml binding
+  dt-bindings: display: ti,am65x-dss: Add dt-schema yaml binding
+  dt-bindings: display: ti,j721e-dss: Add dt-schema yaml binding
+  drm/tidss: New driver for TI Keystone platform Display SubSystem
+  MAINTAINERS: add entry for tidss
+
+ .../bindings/display/ti/ti,am65x-dss.yaml     |  152 +
+ .../bindings/display/ti/ti,j721e-dss.yaml     |  208 ++
+ .../bindings/display/ti/ti,k2g-dss.yaml       |  109 +
+ MAINTAINERS                                   |   11 +
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/tidss/Kconfig                 |   14 +
+ drivers/gpu/drm/tidss/Makefile                |   12 +
+ drivers/gpu/drm/tidss/tidss_crtc.c            |  377 +++
+ drivers/gpu/drm/tidss/tidss_crtc.h            |   46 +
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 2774 +++++++++++++++++
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  132 +
+ drivers/gpu/drm/tidss/tidss_dispc_regs.h      |  243 ++
+ drivers/gpu/drm/tidss/tidss_drv.c             |  285 ++
+ drivers/gpu/drm/tidss/tidss_drv.h             |   39 +
+ drivers/gpu/drm/tidss/tidss_encoder.c         |   88 +
+ drivers/gpu/drm/tidss/tidss_encoder.h         |   17 +
+ drivers/gpu/drm/tidss/tidss_irq.c             |  146 +
+ drivers/gpu/drm/tidss/tidss_irq.h             |   77 +
+ drivers/gpu/drm/tidss/tidss_kms.c             |  249 ++
+ drivers/gpu/drm/tidss/tidss_kms.h             |   15 +
+ drivers/gpu/drm/tidss/tidss_plane.c           |  217 ++
+ drivers/gpu/drm/tidss/tidss_plane.h           |   25 +
+ drivers/gpu/drm/tidss/tidss_scale_coefs.c     |  202 ++
+ drivers/gpu/drm/tidss/tidss_scale_coefs.h     |   22 +
+ 25 files changed, 5463 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
+ create mode 100644 drivers/gpu/drm/tidss/Kconfig
+ create mode 100644 drivers/gpu/drm/tidss/Makefile
+ create mode 100644 drivers/gpu/drm/tidss/tidss_crtc.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_crtc.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_dispc.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_dispc.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_dispc_regs.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_drv.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_drv.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_encoder.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_encoder.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_irq.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_irq.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_kms.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_kms.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_plane.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_plane.h
+ create mode 100644 drivers/gpu/drm/tidss/tidss_scale_coefs.c
+ create mode 100644 drivers/gpu/drm/tidss/tidss_scale_coefs.h
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
