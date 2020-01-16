@@ -2,89 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29D8B13DBDD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 14:30:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C244613DBEE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 14:32:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726406AbgAPNaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 08:30:10 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:42511 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbgAPNaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 08:30:09 -0500
-Received: by mail-wr1-f65.google.com with SMTP id q6so19077572wro.9
-        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2020 05:30:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=UfygWLCc88sFrmjAuQP4lnVDVkzEeKEKCExMy7Eq/+8=;
-        b=GzwI7l0KxNdLEBhVPtsxp6NDNF6oyDOZU/V1cwJ/m/uu9sEBp3vZ4ldtrZCVb0ERBh
-         iwbaZcugXTP0mWMv0dOgFqPd2JJiutwJq1+ULTbIISzgEO/4qp4ZzOKYtKqCq4rX/pDT
-         j2wq96/cmQJ+N1RP+PeoobUfHteJ3tzlsWm8sU/tN3JgyMN0WdafquZ09iYvNFjOEDTI
-         VDrel4eAie8eeD5mEWObhoerl5i3eSPhzwbyrBv2ALLazHOM/hA2e4mwDjCWrjfvoKd+
-         0bL0t1uwtt6rjXCT1BsjScS1CF9qYglzBjWw7WvogsfuPUNh65yLlpyEOQHvmbI1OwKB
-         +/hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=UfygWLCc88sFrmjAuQP4lnVDVkzEeKEKCExMy7Eq/+8=;
-        b=ooRuLDr/Eg92rD0lJhoXmkmNL/3zG3MOLCPIMoOzBMIWdfdU8ri8GoWiOuDAZxo9Ow
-         8LIyZVtkJ8qhuOwJcB/Oj2woqUiejfoTMdoezr259s/rfpXY3ofJmspC7w8sM/uVY/j+
-         GttWylVUVzkn3CTJDsF/Zp5SYhVEOTFk5zKAAoCmacFpFIG6Fjn8bInQmdZWAjwBeaVU
-         mn/GeZCPND5F74cizV8WbGaIGdwMIpZLkp1+9pwr+XnH1XbefZe/smWEYu5SdEsTzdOW
-         AWzJkgXLNLyCYp5a0lY6LXEIMsdGDnJD2O19B2ixqxb6ppEvvnZbAC/OM9dtLzI+k0uo
-         yhSg==
-X-Gm-Message-State: APjAAAXDvxZbyxR3iZfBJhaGBy34093rUP+QiGKKcXS5Nu7WaXzXUhMP
-        brvdNoIRDAnZqCNRQJxfB5mv6w==
-X-Google-Smtp-Source: APXvYqw4hOwN4dRzgFi88DWzyqE+AMTjtps6H/4gHqLpM7K+d0RkUbAC5kLjdkPW3SYP8MBp9FZ5wg==
-X-Received: by 2002:adf:ca07:: with SMTP id o7mr3449919wrh.49.1579181406897;
-        Thu, 16 Jan 2020 05:30:06 -0800 (PST)
-Received: from dell ([2.27.35.221])
-        by smtp.gmail.com with ESMTPSA id q3sm4354613wmc.47.2020.01.16.05.30.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jan 2020 05:30:06 -0800 (PST)
-Date:   Thu, 16 Jan 2020 13:30:25 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com, radu_nicolae.pirea@upb.ro,
-        richard.genoud@gmail.com, a.zummo@towertech.it,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] dt-bindings: atmel-tcb: add microchip,sam9x60-tcb
-Message-ID: <20200116133025.GN325@dell>
-References: <1578997397-23165-1-git-send-email-claudiu.beznea@microchip.com>
- <1578997397-23165-3-git-send-email-claudiu.beznea@microchip.com>
+        id S1727007AbgAPNaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 08:30:30 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:40984 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726362AbgAPNaa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 08:30:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=g1qwtKIRjlBajTodzOst5ddyTTUcuYWbTRPXsMESids=; b=2ECly9xqL7ZjMne7Gw+M+ysy1d
+        /7HZ35Le8voRmEzt+T0tpSwyIwWvia+UREroW3r0qd9euHylc6hvW07tf9i1WAnOMBjG9az1NP8+h
+        jAUuZ5HNpRekdP7lp0ZyAEqbepMWpqGADpnWeBI124VKpmHIdwcsCWDO7eOGAMs9OOrg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
+        (envelope-from <andrew@lunn.ch>)
+        id 1is5EA-00054x-2R; Thu, 16 Jan 2020 14:30:26 +0100
+Date:   Thu, 16 Jan 2020 14:30:26 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        f.fainelli@gmail.com, hkallweit1@gmail.com
+Subject: Re: [PATCH 1/4] net: phy: adin: const-ify static data
+Message-ID: <20200116133026.GB19046@lunn.ch>
+References: <20200116091454.16032-1-alexandru.ardelean@analog.com>
+ <20200116091454.16032-2-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1578997397-23165-3-git-send-email-claudiu.beznea@microchip.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200116091454.16032-2-alexandru.ardelean@analog.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jan 2020, Claudiu Beznea wrote:
-
-> Add microchip,sam9x60-tcb to DT bindings documentation.
+On Thu, Jan 16, 2020 at 11:14:51AM +0200, Alexandru Ardelean wrote:
+> Some bits of static data should have been made const from the start.
+> This change adds the const qualifier where appropriate.
 > 
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> ---
->  Documentation/devicetree/bindings/mfd/atmel-tcb.txt | 1 +
->  1 file changed, 1 insertion(+)
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 
-For my own reference:
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+    Andrew
