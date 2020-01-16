@@ -2,38 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CCB613F7EE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E5713F7F3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:17:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733144AbgAPQ4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 11:56:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41928 "EHLO mail.kernel.org"
+        id S1733164AbgAPQ4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 11:56:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42118 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730591AbgAPQ4A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 11:56:00 -0500
+        id S1731212AbgAPQ4H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 11:56:07 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4E47024686;
-        Thu, 16 Jan 2020 16:55:59 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 708E92467C;
+        Thu, 16 Jan 2020 16:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579193760;
-        bh=XoiEwqxvpeLhk9E4C1EKhmXW0UDLXNfpdqqjLrAjmdE=;
+        s=default; t=1579193766;
+        bh=hNy3boOg+1eisdfY1RLRrbaW7xZyuFkEyITg3X1ViSw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ejLHpXwp46YTrKpYv/kYM6YxKZ2l725kFcD6gJMLEba3p2P4FK7dJBZzpCCr0gVN9
-         pf4o+uv6MnCERgAEeJqPBuqGzy6tRAkE/K/mPvw3y71LjgHElAKgROMwEs4RP5m8Ln
-         ObGPGHVwXWrjK+djzAHqjK7531B9rQRSixPw+XEk=
+        b=yRHKbo4+2MVWl2OmhxQD8t1k8J07ZQb+6u1op+xPU0UIT/dJZFZJLGSWc4Uujhl/Y
+         Vo07d0VySvh/gWt223ueBIkwUFL4IH99bJvcNlXb/wSYLnV9JAowI1h09CAVDfUkUa
+         XymizwCLPbF1rv1LAO5ceTr1oZZvTZLf56V3LhVA=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Phil Elwell <phil@raspberrypi.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 047/671] ARM: dts: bcm283x: Correct mailbox register sizes
-Date:   Thu, 16 Jan 2020 11:44:38 -0500
-Message-Id: <20200116165502.8838-47-sashal@kernel.org>
+        linux-omap@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 051/671] bus: ti-sysc: Add mcasp optional clocks flag
+Date:   Thu, 16 Jan 2020 11:44:42 -0500
+Message-Id: <20200116165502.8838-51-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116165502.8838-1-sashal@kernel.org>
 References: <20200116165502.8838-1-sashal@kernel.org>
@@ -46,35 +45,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Phil Elwell <phil@raspberrypi.org>
+From: Tony Lindgren <tony@atomide.com>
 
-[ Upstream commit 227fa865061470a568858baa404a508f6c030fe4 ]
+[ Upstream commit 2c63a833e4500b341a62bf97e67488909ae12086 ]
 
-The size field in a Device Tree "reg" property is encoded in bytes, not
-words.
+We have OPT_CLKS_NEEDED in legacy platform data, but it's missing
+from the ti-sysc driver for device tree based configuration.
 
-Fixes: 614fa22119d6 ("ARM: dts: bcm2835: Add VCHIQ node to the Raspberry Pi boards. (v3)")
-Signed-off-by: Phil Elwell <phil@raspberrypi.org>
-Acked-by: Stefan Wahren <stefan.wahren@i2se.com>
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+In order to pass OPT_CLKS_NEEDED quirk flag we need to update omap4 module
+data and add a new compatible for dra7 as the module layout is different
+from sysc_regbits_omap4_mcasp.
+
+Fixes: 70a65240efb1 ("bus: ti-sysc: Add register bits for interconnect
+target modules")
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/bcm2835-rpi.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/bus/ti-sysc.txt |  1 +
+ drivers/bus/ti-sysc.c                             | 11 +++++++++++
+ 2 files changed, 12 insertions(+)
 
-diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-index cb2d6d78a7fb..c481eab1bd7c 100644
---- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-@@ -32,7 +32,7 @@
+diff --git a/Documentation/devicetree/bindings/bus/ti-sysc.txt b/Documentation/devicetree/bindings/bus/ti-sysc.txt
+index 91dc2333af01..85a23f551f02 100644
+--- a/Documentation/devicetree/bindings/bus/ti-sysc.txt
++++ b/Documentation/devicetree/bindings/bus/ti-sysc.txt
+@@ -35,6 +35,7 @@ Required standard properties:
+ 		"ti,sysc-omap3-sham"
+ 		"ti,sysc-omap-aes"
+ 		"ti,sysc-mcasp"
++		"ti,sysc-dra7-mcasp"
+ 		"ti,sysc-usb-host-fs"
+ 		"ti,sysc-dra7-mcan"
  
- 		mailbox@7e00b840 {
- 			compatible = "brcm,bcm2835-vchiq";
--			reg = <0x7e00b840 0xf>;
-+			reg = <0x7e00b840 0x3c>;
- 			interrupts = <0 2>;
- 		};
- 	};
+diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
+index b6f63e762021..926c83398b27 100644
+--- a/drivers/bus/ti-sysc.c
++++ b/drivers/bus/ti-sysc.c
+@@ -1593,6 +1593,16 @@ static const struct sysc_regbits sysc_regbits_omap4_mcasp = {
+ static const struct sysc_capabilities sysc_omap4_mcasp = {
+ 	.type = TI_SYSC_OMAP4_MCASP,
+ 	.regbits = &sysc_regbits_omap4_mcasp,
++	.mod_quirks = SYSC_QUIRK_OPT_CLKS_NEEDED,
++};
++
++/*
++ * McASP found on dra7 and later
++ */
++static const struct sysc_capabilities sysc_dra7_mcasp = {
++	.type = TI_SYSC_OMAP4_SIMPLE,
++	.regbits = &sysc_regbits_omap4_simple,
++	.mod_quirks = SYSC_QUIRK_OPT_CLKS_NEEDED,
+ };
+ 
+ /*
+@@ -1821,6 +1831,7 @@ static const struct of_device_id sysc_match[] = {
+ 	{ .compatible = "ti,sysc-omap3-sham", .data = &sysc_omap3_sham, },
+ 	{ .compatible = "ti,sysc-omap-aes", .data = &sysc_omap3_aes, },
+ 	{ .compatible = "ti,sysc-mcasp", .data = &sysc_omap4_mcasp, },
++	{ .compatible = "ti,sysc-dra7-mcasp", .data = &sysc_dra7_mcasp, },
+ 	{ .compatible = "ti,sysc-usb-host-fs",
+ 	  .data = &sysc_omap4_usb_host_fs, },
+ 	{ .compatible = "ti,sysc-dra7-mcan", .data = &sysc_dra7_mcan, },
 -- 
 2.20.1
 
