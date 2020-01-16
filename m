@@ -2,38 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10A2913F546
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C481013F4A3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:53:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389616AbgAPSzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 13:55:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39970 "EHLO mail.kernel.org"
+        id S2389407AbgAPRI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:08:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42010 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388697AbgAPRHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:07:41 -0500
+        id S2389401AbgAPRIZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:08:25 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D95F520663;
-        Thu, 16 Jan 2020 17:07:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BA0452467C;
+        Thu, 16 Jan 2020 17:08:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579194460;
-        bh=GASgO3943XMdqvSE6BOUqLZVlhdNiqCagP6RoEdfFtw=;
+        s=default; t=1579194504;
+        bh=NVqpu03mRv/jTynNlbs4/k3gzf//fvv+yLeGiars7Zg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=cfw/UjWCiAxM/8s2XXp2h5j5zEiM4Wz4xwwuJWIOuzD+2uWjEFotfL9nGyi6964VT
-         xARNbwnvPT7FWvQCL5D1tuFK6C60KakJEqrGPjzmtm/I3Xa93FLBPlvDqDFQwbWi9K
-         i3cTZc97t2PFRBS7A+98n+Zj4Ug43yk9zR3b5cmk=
+        b=S1tiUo6BuKNlaOv+i6NZ/C0LpZ3Ea1ZeLhuYkhsgz3Zwb+LL4+LhTGg3yWylI6zv0
+         iJk+n3vVm+IucOotryow00VHhShpHED3eNV4+fB0FshoD7Op4AolzivO5xvvYpjv6+
+         lF5Ru7zuWcCs3rd2HfNxZMUZGU/3wUQnzkSzaXMc=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 368/671] arm64: dts: meson: libretech-cc: set eMMC as removable
-Date:   Thu, 16 Jan 2020 12:00:06 -0500
-Message-Id: <20200116170509.12787-105-sashal@kernel.org>
+Cc:     Takeshi Kihara <takeshi.kihara.df@renesas.com>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 400/671] arm64: dts: renesas: ebisu: Remove renesas, no-ether-link property
+Date:   Thu, 16 Jan 2020 12:00:38 -0500
+Message-Id: <20200116170509.12787-137-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116170509.12787-1-sashal@kernel.org>
 References: <20200116170509.12787-1-sashal@kernel.org>
@@ -46,35 +44,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+From: Takeshi Kihara <takeshi.kihara.df@renesas.com>
 
-[ Upstream commit 9f72e321d5506fe3e162a6308a4a295d7f10bb5d ]
+[ Upstream commit 90d4fa39d028f2e46c57c3d0e1b759e5287d98b7 ]
 
-The eMMC on this board is add-on module which is not mandatory. Removing
-'non-removable' property should prevent some errors when booting a board
-w/o an eMMC module present.
+It is incorrect to specify the no-ether-link property for the AVB device on
+the Ebisu board. This is because the property should only be used when a
+board does not provide a proper AVB_LINK signal. However, the Ebisu board
+does provide this signal.
 
-Fixes: 72fb2c852188 ("ARM64: dts: meson-gxl-s905x-libretech-cc: fixup board definition")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+As per 87c059e9c39d ("arm64: dts: renesas: salvator-x: Remove renesas,
+no-ether-link property") this fixes a bug:
+
+    Steps to reproduce:
+    - start AVB TX stream (Using aplay via MSE),
+    - disconnect+reconnect the eth cable,
+    - after a reconnection the eth connection goes iteratively up/down
+      without user interaction,
+    - this may heal after some seconds or even stay for minutes.
+
+    As the documentation specifies, the "renesas,no-ether-link" option
+    should be used when a board does not provide a proper AVB_LINK signal.
+    There is no need for this option enabled on RCAR H3/M3 Salvator-X/XS
+    and ULCB starter kits since the AVB_LINK is correctly handled by HW.
+
+    Choosing to keep or remove the "renesas,no-ether-link" option will have
+    impact on the code flow in the following ways:
+    - keeping this option enabled may lead to unexpected behavior since the
+      RX & TX are enabled/disabled directly from adjust_link function
+      without any HW interrogation,
+    - removing this option, the RX & TX will only be enabled/disabled after
+      HW interrogation. The HW check is made through the LMON pin in PSR
+      register which specifies AVB_LINK signal value (0 - at low level;
+      1 - at high level).
+
+    In conclusion, the present change is also a safety improvement because
+    it removes the "renesas,no-ether-link" option leading to a proper way
+    of detecting the link state based on HW interrogation and not on
+    software heuristic.
+
+Fixes: 8441ef643d7d ("arm64: dts: renesas: r8a77990: ebisu: Enable EthernetAVB")
+Signed-off-by: Takeshi Kihara <takeshi.kihara.df@renesas.com>
+[simon: updated changelog]
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 1 -
+ arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index db293440e4ca..daad007fac1f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -256,7 +256,6 @@
- 	cap-mmc-highspeed;
- 	mmc-ddr-3_3v;
- 	max-frequency = <50000000>;
--	non-removable;
- 	disable-wp;
- 
- 	mmc-pwrseq = <&emmc_pwrseq>;
+diff --git a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
+index 2bc3a4884b00..470c2a35a5af 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
+@@ -33,7 +33,6 @@
+ &avb {
+ 	pinctrl-0 = <&avb_pins>;
+ 	pinctrl-names = "default";
+-	renesas,no-ether-link;
+ 	phy-handle = <&phy0>;
+ 	phy-mode = "rgmii-txid";
+ 	status = "okay";
 -- 
 2.20.1
 
