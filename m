@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 698ED13F3FA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 103A613F3F0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:46:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389863AbgAPRKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:10:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47694 "EHLO mail.kernel.org"
+        id S2389876AbgAPRKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:10:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47880 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389249AbgAPRKL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:10:11 -0500
+        id S2389874AbgAPRKO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:10:14 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0EEC52081E;
-        Thu, 16 Jan 2020 17:10:09 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4EF972467E;
+        Thu, 16 Jan 2020 17:10:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579194611;
-        bh=PJJRRjvM01qG8A3jR/oqv9cop8TjjfoNmIAu3nk6O+w=;
+        s=default; t=1579194614;
+        bh=7rQWqqy9vB7cmNBIyVXD5ebsvNXRbNqggHGF1w89Uj8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=xe6Z4lUOjJ2u76kK3VCiCR5eUpQq+xuZ7mLUEoHKaU5afGPrVdNoKr6FwzUxlV5SN
-         38w6RBamJW4gps98uLRlXuD19C9haT3VW1IItoHlB8zEqPl7NOE5Af2eT/5kJpXVsE
-         MOMDdco1sIDEXpGQhZnZmybVAuOm2xfVqVXAm1wE=
+        b=qFX1nVxzB1GdDzOqBcP1Dee2bNRaL++j1QV0/8Z8XcXtQXOQBbdiWiDCWWgWCZPcs
+         AvGOffJlXwonQ06C4jqjRTOL43odLG5y1fQRTb86540ude3jiOYpo4o72qK5RSld92
+         9rhjZW4SUCpRCOLfNhphqSdEIfdf6v9QGfjOPqkI=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+Cc:     Fabrice Gasnier <fabrice.gasnier@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
         Sasha Levin <sashal@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 476/671] arm64: dts: renesas: r8a77995: Fix register range of display node
-Date:   Thu, 16 Jan 2020 12:01:54 -0500
-Message-Id: <20200116170509.12787-213-sashal@kernel.org>
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 478/671] ARM: dts: stm32: add missing vdda-supply to adc on stm32h743i-eval
+Date:   Thu, 16 Jan 2020 12:01:56 -0500
+Message-Id: <20200116170509.12787-215-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116170509.12787-1-sashal@kernel.org>
 References: <20200116170509.12787-1-sashal@kernel.org>
@@ -45,36 +45,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yoshihiro Kaneko <ykaneko0929@gmail.com>
+From: Fabrice Gasnier <fabrice.gasnier@st.com>
 
-[ Upstream commit 56d651e890f3befd616b6962a862f5ffa1a514fa ]
+[ Upstream commit 493e84c5dc4d703d976b5875f5db22dae08a0782 ]
 
-Since the R8A77995 SoC uses DU{0,1}, the range from the base address to
-the 0x4000 address is used.
-This patch fixed it.
+Add missing vdda-supply required by STM32 ADC.
 
-Fixes: 18f1a773e3f9e6d1 ("arm64: dts: renesas: r8a77995: add DU support")
-Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
-Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Fixes: 090992a9ca54 ("ARM: dts: stm32: enable ADC on stm32h743i-eval
+board")
+
+Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
+Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/renesas/r8a77995.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/stm32h743i-eval.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77995.dtsi b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-index fe77bc43c447..fb3ecb2c385d 100644
---- a/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-@@ -938,7 +938,7 @@
+diff --git a/arch/arm/boot/dts/stm32h743i-eval.dts b/arch/arm/boot/dts/stm32h743i-eval.dts
+index 3f8e0c4a998d..5bf64e63cdf3 100644
+--- a/arch/arm/boot/dts/stm32h743i-eval.dts
++++ b/arch/arm/boot/dts/stm32h743i-eval.dts
+@@ -79,6 +79,7 @@
+ };
  
- 		du: display@feb00000 {
- 			compatible = "renesas,du-r8a77995";
--			reg = <0 0xfeb00000 0 0x80000>;
-+			reg = <0 0xfeb00000 0 0x40000>;
- 			interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD 724>,
+ &adc_12 {
++	vdda-supply = <&vdda>;
+ 	vref-supply = <&vdda>;
+ 	status = "okay";
+ 	adc1: adc@0 {
 -- 
 2.20.1
 
