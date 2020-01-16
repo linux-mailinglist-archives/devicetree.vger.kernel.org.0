@@ -2,87 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C813913DEB1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 16:24:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97BA913DEF3
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 16:38:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729012AbgAPPWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 10:22:43 -0500
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:34894 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726778AbgAPPWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 10:22:42 -0500
-Received: by mail-wr1-f68.google.com with SMTP id g17so19540802wro.2;
-        Thu, 16 Jan 2020 07:22:41 -0800 (PST)
+        id S1726933AbgAPPiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 10:38:00 -0500
+Received: from mail-ua1-f65.google.com ([209.85.222.65]:33342 "EHLO
+        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726410AbgAPPiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 10:38:00 -0500
+Received: by mail-ua1-f65.google.com with SMTP id a12so7813292uan.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2020 07:38:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=vZZ9VyOzV34iQ0VxY5F4QTnc79//k1XDbodGn0X9/BI=;
-        b=lzs8yVanbsLsplmx8X5y+FC2PfGxjVxhWovxdAuhr5n1AMnQj6FcgATftk365XldMm
-         Pg6rwZzsLrHwxedRZIpfDWG/kaEmH8p0mtVGeojY0qDZ+y6XV7YD7HJH4dR1T3CBYmMb
-         2tYs6RM1uClP+oESBKqqsYBi0AuGK+VvDstUPSvOSGhh20BlPZLlOLZIOQujpc4oOABC
-         1n18InsiE7iRJBH9QmX9lArDfeWyw+pPptGBBQqd0sROgz27kBLzU3XclzaECs4Zh0US
-         fCgktVQY7pHYg4Gl+nQB1JrW4X5QP68n0p1NKuKLr63K1TdzapLQMdjWztcHHYHWhzVO
-         WYvw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NzUD1zwU0rAYKh4GeaUEkzHO0hgVckdO3UlIrWCkJwk=;
+        b=ckWYYhKcKb2dT7sxw5ofXkMuaW2T6G0oFm+4I1V6e8zX5MefXp/STLeCkdZBNxk9MI
+         neLrSF/Zm+xkeIuUx/p6cIwda217LAvMkqRheBadA9nNimTzyZTSrfmaqOR/CMoqkegg
+         CsFoks/mMk2fK8FTgIa5gL7BHICvFOGcuj+LkBtrD96/RZcjo1sqeEpKX/vgbz5R7ufx
+         y09r1/bp77UukJ7tvo0ZDo19yuZ7IP4uvq8igqiZatyxQjyY5x9Vc5WRgOn1D7EqO6EU
+         xIPvGJt7CgkVt3kAyfGVCrGwBQ1+yzgUzkdriZQppQLw8BZT/wupfBCRLzxV1Kd0utFa
+         0qqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=vZZ9VyOzV34iQ0VxY5F4QTnc79//k1XDbodGn0X9/BI=;
-        b=d9kWdoelTVc4HCL4+H8pSg3wHmUhAOEEnqSMHIke6BlfbN3TjEovtgV+Y1mhqiTlMW
-         QthLJbnP3/RgyFCsJD8fUmYP/kg36S9hUS91vwH9FR1BuuiKR2zLn2qy8D/X6EqSSvDf
-         0Ch7kTtufCCcxPpiFIpTepOUePDkYkxuKU5OfqMqk6uPgaH5tlabuUtzan4CM1zDo5vI
-         w2rXr/5a2n93+H6OrqNVzDs1mib0jmUKByfsBjmzjJh1Vb2ncHm3W3qUWYIW3O01Euu2
-         V0CsmdSWOQ5tZ0IOhtabRiWH+BiecqS6qDef6aFLGTLOLvmDPpy545EFU7kDvZU1OPW6
-         PAyg==
-X-Gm-Message-State: APjAAAVa9FrpEVYC3b2gc+kMfnxB+jJ4AEAx9xSv1YafT4DGoO+fH/L5
-        e8HRZcBCDsrBwtjjMQw1XG0=
-X-Google-Smtp-Source: APXvYqyuFSu4gLbVEvoyKNl3FBhw734PapU1CBJhHea/vYM4blIBscvJQWf3mxNqEwlCKpMp0wwGYg==
-X-Received: by 2002:a5d:4fd0:: with SMTP id h16mr3735432wrw.255.1579188160843;
-        Thu, 16 Jan 2020 07:22:40 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id w8sm18193wmd.2.2020.01.16.07.22.39
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 Jan 2020 07:22:40 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     ulf.hansson@linaro.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, heiko@sntech.de,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v2 3/3] dt-bindings: mmc: rockchip-dw-mshc: add description for rk3308
-Date:   Thu, 16 Jan 2020 16:22:30 +0100
-Message-Id: <20200116152230.29831-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200116152230.29831-1-jbx6244@gmail.com>
-References: <20200116152230.29831-1-jbx6244@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NzUD1zwU0rAYKh4GeaUEkzHO0hgVckdO3UlIrWCkJwk=;
+        b=GI3QDwKhnYnIU+qjV7YHeHGnhHIBbnJkOFNhRFTWcBQ2WXKKYkHszO32sk65A2+vAz
+         cbmfkVImCOreABd9WUhm40zq7giYI4qsveqOElaichvtk+v64CKB00Onv0kU9VjX/Kun
+         OR7REtCt33phrTNc6dt54VBoyn8JvSTBoU9k5Fv0z4AmYv5H9HwK+T9O1tENRku6g+3X
+         EeL2aH9ZPvio2FULNsGs5teagnyyJIDLfwClvE7ePyrKIWKKBP5t+CDClKtkZTelFEFY
+         P319cmZklvJhi8D7FUQZ7baSSfB3Ak6DC7eIRj48SxmtxIktaOc8Og5peGjppC2/pG6J
+         Ep+A==
+X-Gm-Message-State: APjAAAWnbpoJUMzIfGm2w5uyg6kIX9oRVX9XSVoYQpH6U7ntgIQljwaZ
+        AU7ajkVUq1gPVy0Ipx7EKdyTxAIDjpSmJKaIp0E8DA==
+X-Google-Smtp-Source: APXvYqxIHUm57SaE/1DYL+57dh4bMqtXOA4yP6vvoIGdM8To9YtT6rURJfc0cAe4IX6fBKyQ0iXse1GSG+37snCem2w=
+X-Received: by 2002:ab0:5510:: with SMTP id t16mr19495257uaa.15.1579189079583;
+ Thu, 16 Jan 2020 07:37:59 -0800 (PST)
+MIME-Version: 1.0
+References: <1578893602-14395-1-git-send-email-Anson.Huang@nxp.com> <1578893602-14395-2-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1578893602-14395-2-git-send-email-Anson.Huang@nxp.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 16 Jan 2020 16:37:23 +0100
+Message-ID: <CAPDyKFqbWrj5XruJW3ooQSzw51YAg2ukrjdBdkBx1szTU=5DJA@mail.gmail.com>
+Subject: Re: [PATCH V2 2/7] dt-bindings: mmc: fsl-imx-esdhc: add i.MX8MP
+ compatible string
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vinod Koul <vkoul@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        rjones@gateworks.com,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        sebastien.szymanski@armadeus.com,
+        Aisheng Dong <aisheng.dong@nxp.com>, richard.hu@technexion.com,
+        angus@akkea.ca, cosmin.stoica@nxp.com,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rabeeh Khoury <rabeeh@solid-run.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>, jun.li@nxp.com,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dmaengine@vger.kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-spi@vger.kernel.org, dl-linux-imx <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The description below is already in use for rk3308.dtsi,
-but was somehow never added to a document, so add
-"rockchip,rk3308-dw-mshc", "rockchip,rk3288-dw-mshc"
-for mmc nodes on a rk3308 platform to rockchip-dw-mshc.yaml.
+On Mon, 13 Jan 2020 at 06:37, Anson Huang <Anson.Huang@nxp.com> wrote:
+>
+> Add compatible string for imx8mp
+>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Applied for next, thanks!
 
-diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-index 2f70f5ef0..89c3edd6a 100644
---- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-@@ -35,6 +35,8 @@ properties:
-             - rockchip,rk3036-dw-mshc
-             # for Rockchip RK322x
-             - rockchip,rk3228-dw-mshc
-+            # for Rockchip RK3308
-+            - rockchip,rk3308-dw-mshc
-             # for Rockchip RK3328
-             - rockchip,rk3328-dw-mshc
-             # for Rockchip RK3368
--- 
-2.11.0
+Kind regards
+Uffe
 
+
+> ---
+> New patch
+> ---
+>  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+> index 2fb466c..c93643f 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.txt
+> @@ -21,6 +21,7 @@ Required properties:
+>                "fsl,imx8mq-usdhc"
+>                "fsl,imx8mm-usdhc"
+>                "fsl,imx8mn-usdhc"
+> +              "fsl,imx8mp-usdhc"
+>                "fsl,imx8qxp-usdhc"
+>
+>  Optional properties:
+> --
+> 2.7.4
+>
