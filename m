@@ -2,158 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4592D13D3E8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 06:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1910313D3FE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 06:55:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726369AbgAPFuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 00:50:00 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:10025 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726082AbgAPFt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 00:49:59 -0500
-Received: from [10.28.39.79] (10.28.39.79) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 16 Jan
- 2020 13:50:25 +0800
-Subject: Re: [PATCH v5 1/5] dt-bindings: clock: meson: add A1 PLL clock
- controller bindings
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-CC:     Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Chandle Zou <chandle.zou@amlogic.com>,
-        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20191227094606.143637-1-jian.hu@amlogic.com>
- <20191227094606.143637-2-jian.hu@amlogic.com>
- <1jftgnz5k5.fsf@starbuckisacylon.baylibre.com>
-From:   Jian Hu <jian.hu@amlogic.com>
-Message-ID: <cda0451f-a229-b0c1-ddc8-2a9524d7e135@amlogic.com>
-Date:   Thu, 16 Jan 2020 13:50:25 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
+        id S1726988AbgAPFzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 00:55:08 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35675 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726082AbgAPFzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 00:55:07 -0500
+Received: by mail-wr1-f68.google.com with SMTP id g17so17842900wro.2;
+        Wed, 15 Jan 2020 21:55:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NGGRCbRsjloWfYF2cHg3taqwmJTEu8ejz3Fhy/MiNIg=;
+        b=FAPgEX95Okm1PYWx+lYdAYkeQZFYdkQpx4INTn3yuTeEPggTIkb+SSmpiN1DrTzTMR
+         F8YAzV3LpIE8v/+DzLESZGFiolINqohluQXIo5pP4qfGoAv4WuvIl09MTLyH/FgA1uED
+         xrvzH0NNnXsLoP7bi/MMapp889FaW2xsFrvqd9tgZSywMra+//L2O3Mv0Qxb5MadOSHP
+         jz223DZjqzt/Nu4ZBN1vXyCUZyN/lHZMeD3lyK1qC5WaiY3J1zUCz+M5X+Kbrc/ZBLL7
+         l6i3rSH3TITt2pQsDv9MJNDyHG9uJQQzOv14/uixxkDS9KoFz7btgVg7iRx2X6f/H1vU
+         VCaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NGGRCbRsjloWfYF2cHg3taqwmJTEu8ejz3Fhy/MiNIg=;
+        b=mORmB0PJPByy1cqEUlQrchJyP7gFMouicSTjwQ7+t72fWieNmPCMNTNO/5FOBY48/1
+         cYb/l8SlP8TccrcscJNysMyI8LOmsNBP3un3NJlbhDf/Uc/9ivr5FwPTRe5FNQOEDlN0
+         gl4qCFQ7lBxIFRS3G2hGzJr+P6gcC5xmaG8Q/zC+jVcpfdDiIkPK8neFNS7WN0IpRKPU
+         mjb/A3Iu5je8d+0Gc461IgIpNfkLlk1Kj6uJPoghkqIHSLN32cbolktNBVZh6m0bSOlT
+         Z5c3wKAimdus/4mAwAyIlKOjzeCASEtZTj1vIqV48buT8eKv1jm4ly0R1vCezTgc3V6R
+         8Ubg==
+X-Gm-Message-State: APjAAAUdw5UAMXCS4mDDA6WaKx4LubL2MYWVyFP9tuf4gAANyNWgzPL9
+        E0QaedYSHIOi+zAlaMrQ0RJ365RgOe0XMz5n1tQ=
+X-Google-Smtp-Source: APXvYqygaiL9IxcZBDeOlGW0IjTYd9QUt9aNCyzyH/CPff3tMmmEB2RiYIW6FqMd9/9j6NWJe0bNxet3KikGqZP6xRw=
+X-Received: by 2002:adf:d850:: with SMTP id k16mr1193679wrl.96.1579154104574;
+ Wed, 15 Jan 2020 21:55:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1jftgnz5k5.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.28.39.79]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+References: <cover.1569493933.git.shengjiu.wang@nxp.com> <d728f65194e9978cbec4132b522d4fed420d704a.1569493933.git.shengjiu.wang@nxp.com>
+ <CANcMJZBy=yH+4YgZWwphiE-PO6d4hzhFK3XFtpN677ZAv_N4WQ@mail.gmail.com>
+In-Reply-To: <CANcMJZBy=yH+4YgZWwphiE-PO6d4hzhFK3XFtpN677ZAv_N4WQ@mail.gmail.com>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Wed, 15 Jan 2020 21:54:54 -0800
+Message-ID: <CANcMJZCuU_-Xii=YT5Rp5DAyxboptJCrpp51jForuYUpeMuhmQ@mail.gmail.com>
+Subject: Re: [PATCH V6 3/4] ASoC: pcm_dmaengine: Extract snd_dmaengine_pcm_refine_runtime_hwparams
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
+        festevam@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        perex@perex.cz, tiwai@suse.com, alsa-devel@alsa-project.org,
+        linuxppc-dev@lists.ozlabs.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, lars@metafoo.de
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jan 8, 2020 at 8:58 PM John Stultz <john.stultz@linaro.org> wrote:
+> On Thu, Sep 26, 2019 at 6:50 PM Shengjiu Wang <shengjiu.wang@nxp.com> wrote:
+> >
+> > When set the runtime hardware parameters, we may need to query
+> > the capability of DMA to complete the parameters.
+> >
+> > This patch is to Extract this operation from
+> > dmaengine_pcm_set_runtime_hwparams function to a separate function
+> > snd_dmaengine_pcm_refine_runtime_hwparams, that other components
+> > which need this feature can call this function.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > Reviewed-by: Nicolin Chen <nicoleotsuka@gmail.com>
+>
+> As a heads up, this patch seems to be causing a regression on the HiKey board.
+>
+> On boot up I'm seeing:
+> [   17.721424] hi6210_i2s f7118000.i2s: ASoC: can't open component
+> f7118000.i2s: -6
+>
+> And HDMI audio isn't working. With this patch reverted, audio works again.
+>
+>
+> > diff --git a/sound/core/pcm_dmaengine.c b/sound/core/pcm_dmaengine.c
+> > index 89a05926ac73..5749a8a49784 100644
+> > --- a/sound/core/pcm_dmaengine.c
+> > +++ b/sound/core/pcm_dmaengine.c
+> > @@ -369,4 +369,87 @@ int snd_dmaengine_pcm_close_release_chan(struct snd_pcm_substream *substream)
+> ...
+> > +       ret = dma_get_slave_caps(chan, &dma_caps);
+> > +       if (ret == 0) {
+> > +               if (dma_caps.cmd_pause && dma_caps.cmd_resume)
+> > +                       hw->info |= SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME;
+> > +               if (dma_caps.residue_granularity <= DMA_RESIDUE_GRANULARITY_SEGMENT)
+> > +                       hw->info |= SNDRV_PCM_INFO_BATCH;
+> > +
+> > +               if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+> > +                       addr_widths = dma_caps.dst_addr_widths;
+> > +               else
+> > +                       addr_widths = dma_caps.src_addr_widths;
+> > +       }
+>
+> It seems a failing ret from dma_get_slave_caps() here is being returned...
+>
+> > +
+> > +       /*
+> > +        * If SND_DMAENGINE_PCM_DAI_FLAG_PACK is set keep
+> > +        * hw.formats set to 0, meaning no restrictions are in place.
+> > +        * In this case it's the responsibility of the DAI driver to
+> > +        * provide the supported format information.
+> > +        */
+> > +       if (!(dma_data->flags & SND_DMAENGINE_PCM_DAI_FLAG_PACK))
+> > +               /*
+> > +                * Prepare formats mask for valid/allowed sample types. If the
+> > +                * dma does not have support for the given physical word size,
+> > +                * it needs to be masked out so user space can not use the
+> > +                * format which produces corrupted audio.
+> > +                * In case the dma driver does not implement the slave_caps the
+> > +                * default assumption is that it supports 1, 2 and 4 bytes
+> > +                * widths.
+> > +                */
+> > +               for (i = SNDRV_PCM_FORMAT_FIRST; i <= SNDRV_PCM_FORMAT_LAST; i++) {
+> > +                       int bits = snd_pcm_format_physical_width(i);
+> > +
+> > +                       /*
+> > +                        * Enable only samples with DMA supported physical
+> > +                        * widths
+> > +                        */
+> > +                       switch (bits) {
+> > +                       case 8:
+> > +                       case 16:
+> > +                       case 24:
+> > +                       case 32:
+> > +                       case 64:
+> > +                               if (addr_widths & (1 << (bits / 8)))
+> > +                                       hw->formats |= pcm_format_to_bits(i);
+> > +                               break;
+> > +                       default:
+> > +                               /* Unsupported types */
+> > +                               break;
+> > +                       }
+> > +               }
+> > +
+> > +       return ret;
+>
+> ... down here.
+>
+> Where as in the old code...
+>
+> > diff --git a/sound/soc/soc-generic-dmaengine-pcm.c b/sound/soc/soc-generic-dmaengine-pcm.c
+> > index 748f5f641002..b9f147eaf7c4 100644
+> > --- a/sound/soc/soc-generic-dmaengine-pcm.c
+> > +++ b/sound/soc/soc-generic-dmaengine-pcm.c
+>
+> > @@ -145,56 +140,12 @@ static int dmaengine_pcm_set_runtime_hwparams(struct snd_pcm_substream *substrea
+> >         if (pcm->flags & SND_DMAENGINE_PCM_FLAG_NO_RESIDUE)
+> >                 hw.info |= SNDRV_PCM_INFO_BATCH;
+> >
+> > -       ret = dma_get_slave_caps(chan, &dma_caps);
+> > -       if (ret == 0) {
+> > -               if (dma_caps.cmd_pause && dma_caps.cmd_resume)
+> > -                       hw.info |= SNDRV_PCM_INFO_PAUSE | SNDRV_PCM_INFO_RESUME;
+> > -               if (dma_caps.residue_granularity <= DMA_RESIDUE_GRANULARITY_SEGMENT)
+> > -                       hw.info |= SNDRV_PCM_INFO_BATCH;
+> > -
+> > -               if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+> > -                       addr_widths = dma_caps.dst_addr_widths;
+> > -               else
+> > -                       addr_widths = dma_caps.src_addr_widths;
+> > -       }
+>
+> ...the ret from dma_get_slave_caps()  checked above, but is not
+> actually returned.
+>
+> Suggestions on how to sort this out?
 
+Just wanted to check in on this, as I'm still seeing this regression with -rc6.
 
-On 2020/1/10 23:36, Jerome Brunet wrote:
-> 
-> On Fri 27 Dec 2019 at 10:46, Jian Hu <jian.hu@amlogic.com> wrote:
-> 
-> Please read Documentation/devicetree/writing-schema.rst, run the test and
-> make the necessary correction.
-> 
-Yes, I had run the test before sending the V5.
->> Add the documentation to support Amlogic A1 PLL clock driver,
->> and add A1 PLL clock controller bindings.
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 54 +++++++++++++++++++
->>   include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
->>   2 files changed, 70 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->>   create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->> new file mode 100644
->> index 000000000000..7a327bb174b8
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->> @@ -0,0 +1,54 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
->> +
->> +maintainers:
->> +  - Neil Armstrong <narmstrong@baylibre.com>
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +  - Jian Hu <jian.hu@jian.hu.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: amlogic,a1-pll-clkc
->> +
->> +  "#clock-cells":
->> +    const: 1
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +clocks:
->> +  maxItems: 2
->> +  items:
->> +   - description: Input xtal_fixpll
->> +   - description: Input xtal_hifipll
->> +
->> +clock-names:
->> +  maxItems: 2
->> +  items:
->> +     - const: xtal_fixpll
->> +     - const: xtal_hifipll
->> +
->> +required:
->> +  - compatible
->> +  - "#clock-cells"
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    clkc_pll: pll-clock-controller@7c80 {
->> +                compatible = "amlogic,a1-pll-clkc";
->> +                reg = <0 0x7c80 0 0x18c>;
->> +                #clock-cells = <1>;
->> +                clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
->> +                         <&clkc_periphs CLKID_XTAL_HIFIPLL>;
->> +                clock-names = "xtal_fixpll", "xtal_hifipll";
->> +    };
->> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
->> new file mode 100644
->> index 000000000000..58eae237e503
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
->> @@ -0,0 +1,16 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->> +/*
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +#ifndef __A1_PLL_CLKC_H
->> +#define __A1_PLL_CLKC_H
->> +
->> +#define CLKID_FIXED_PLL				1
->> +#define CLKID_FCLK_DIV2				6
->> +#define CLKID_FCLK_DIV3				7
->> +#define CLKID_FCLK_DIV5				8
->> +#define CLKID_FCLK_DIV7				9
->> +#define CLKID_HIFI_PLL				10
->> +
->> +#endif /* __A1_PLL_CLKC_H */
-> 
-> .
-> 
+thanks
+-john
