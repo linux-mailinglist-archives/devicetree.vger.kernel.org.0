@@ -2,39 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD1D13F2F3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10BAF13F26F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:35:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390453AbgAPRMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:12:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54742 "EHLO mail.kernel.org"
+        id S2436825AbgAPSfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 13:35:20 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59028 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390385AbgAPRMS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:12:18 -0500
+        id S2391767AbgAPRY2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:24:28 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6AB5624693;
-        Thu, 16 Jan 2020 17:12:17 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 692452467E;
+        Thu, 16 Jan 2020 17:24:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579194738;
-        bh=JbhHvwluzNTzu0cHNddlm1QyR+Us984VFcXgucFJLGI=;
+        s=default; t=1579195468;
+        bh=X6mlH1vtnpIndQAgdl1cIHRneesGicSpCNswQ/zA+oI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tBiGRjiJ7Ql15kN3URloY/+GokUaUJ1DVXquTZlCw5yq8mLQtkJONALntKieRSGWR
-         66rg9BM296Ea/3yYKE/qjFNOgynvsMIoMbeYUuDe1oBzEnUjObZIlEMKei109wqbXo
-         sWH3QFw/BIahaBbEJnz7T0f5SavMRDNPbgqN/kNI=
+        b=DdUuQuMRQdInCsjzw05++xoMPHJU8T0OVBw4u0xv1sYxo7l8g/0ojn+ALD26JWbEa
+         GOoIvPh+AkaUXM5xUv/Ze6rxOKoxT6RhU8WXBSwh8kbXidqtAn4Qjq/5ilo4UHc1uG
+         sI9UtjN6E7unXEz+Gunpxo4ER9CizOukWQL9eLQ4=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Dan Carpenter <dan.carpenter@oracle.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 569/671] of: mdio: Fix a signedness bug in of_phy_get_and_connect()
-Date:   Thu, 16 Jan 2020 12:03:27 -0500
-Message-Id: <20200116170509.12787-306-sashal@kernel.org>
+Cc:     Vladimir Zapolskiy <vz@mleia.com>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.14 075/371] ARM: dts: lpc32xx: add required clocks property to keypad device node
+Date:   Thu, 16 Jan 2020 12:19:07 -0500
+Message-Id: <20200116172403.18149-18-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200116170509.12787-1-sashal@kernel.org>
-References: <20200116170509.12787-1-sashal@kernel.org>
+In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
+References: <20200116172403.18149-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,34 +42,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dan Carpenter <dan.carpenter@oracle.com>
+From: Vladimir Zapolskiy <vz@mleia.com>
 
-[ Upstream commit d7eb651212fdbafa82d485d8e76095ac3b14c193 ]
+[ Upstream commit 3e88bc38b9f6fe4b69cecf81badd3c19fde97f97 ]
 
-The "iface" variable is an enum and in this context GCC treats it as
-an unsigned int so the error handling is never triggered.
+NXP LPC32xx keypad controller requires a clock property to be defined.
 
-Fixes: b78624125304 ("of_mdio: Abstract a general interface for phy connect")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
+The change fixes the driver initialization problem:
+
+  lpc32xx_keys 40050000.key: failed to get clock
+  lpc32xx_keys: probe of 40050000.key failed with error -2
+
+Fixes: 93898eb775e5 ("arm: dts: lpc32xx: add clock properties to device nodes")
+Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/of/of_mdio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/lpc32xx.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/of/of_mdio.c b/drivers/of/of_mdio.c
-index 5ad1342f5682..7d2bc22680d9 100644
---- a/drivers/of/of_mdio.c
-+++ b/drivers/of/of_mdio.c
-@@ -370,7 +370,7 @@ struct phy_device *of_phy_get_and_connect(struct net_device *dev,
- 	int ret;
- 
- 	iface = of_get_phy_mode(np);
--	if (iface < 0)
-+	if ((int)iface < 0)
- 		return NULL;
- 	if (of_phy_is_fixed_link(np)) {
- 		ret = of_phy_register_fixed_link(np);
+diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+index d077bd2b9583..2ca881055ef0 100644
+--- a/arch/arm/boot/dts/lpc32xx.dtsi
++++ b/arch/arm/boot/dts/lpc32xx.dtsi
+@@ -462,6 +462,7 @@
+ 			key: key@40050000 {
+ 				compatible = "nxp,lpc3220-key";
+ 				reg = <0x40050000 0x1000>;
++				clocks = <&clk LPC32XX_CLK_KEY>;
+ 				interrupts = <54 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+ 			};
 -- 
 2.20.1
 
