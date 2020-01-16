@@ -2,104 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2899C13F98F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F4713FA0F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730562AbgAPTcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 14:32:36 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:46527 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729010AbgAPTcg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 14:32:36 -0500
-Received: by mail-ot1-f67.google.com with SMTP id r9so20455882otp.13;
-        Thu, 16 Jan 2020 11:32:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RxlCLhbJ67g6d1Lku8kWlZFcusZ3prtEclwXhvs0VlY=;
-        b=tAnVKUpgHckYnGCCnQWqILjEdY0RI6BOO9IJNLf4J6r64Tiyv1gMcP3dLdxnmAyrgw
-         IhbBgjuQfoOUsh4EbdGYeZWnNKqrIhijx7VUQtpmPJOECJPZz1x22dJMJQiWDy0ikm/0
-         7tq5JAFrwCYv+zbIiLs3ZAyOEdvMKPxzhkfC3Ok6qoPy3nofuBGMOTyfXszB0SYeV7Pn
-         DUV1hnqS6ikgyKSCy0UzFNuFvIV4oQT/Rzj6H6MpXnRN7ObR2ECmLg8Zt0lcuQch/JN6
-         7OKsEytWDpNhYAQ6UBC2qQU8ya2n4gpMK9EO/3Db6sFWkR2o5VO8iUjlPTIDU4/tys33
-         fFsg==
-X-Gm-Message-State: APjAAAXF3QRGqkKhC8cz9MSCVWRWjGor7Lk+lAylDyM2mcBWOsPo2THW
-        mW/KD+4x3+5P4GrqGWuARg==
-X-Google-Smtp-Source: APXvYqyxmgpxwTv05e9N4FFkdBsR/fQwNWrywFKB3CnoSsw+nSs2rDzXaBnZeNuZ8C1h8ax5pKA9vQ==
-X-Received: by 2002:a9d:7090:: with SMTP id l16mr3443912otj.187.1579203154757;
-        Thu, 16 Jan 2020 11:32:34 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 101sm8049386otj.55.2020.01.16.11.32.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jan 2020 11:32:34 -0800 (PST)
-Received: (nullmailer pid 6992 invoked by uid 1000);
-        Thu, 16 Jan 2020 19:32:33 -0000
-Date:   Thu, 16 Jan 2020 13:32:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
-        bjorn.andersson@linaro.org, linux-kernel@vger.kernel.org,
-        Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>,
-        Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH 04/19] dt-bindings: Add Qualcomm USB SuperSpeed PHY
- bindings
-Message-ID: <20200116193233.GA5583@bogus>
-References: <20200115141333.1222676-1-bryan.odonoghue@linaro.org>
- <20200115141333.1222676-5-bryan.odonoghue@linaro.org>
+        id S1729011AbgAPT4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 14:56:09 -0500
+Received: from mx2.freebsd.org ([96.47.72.81]:49356 "EHLO mx2.freebsd.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726925AbgAPT4I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 14:56:08 -0500
+X-Greylist: delayed 537 seconds by postgrey-1.27 at vger.kernel.org; Thu, 16 Jan 2020 14:56:08 EST
+Received: from mx1.freebsd.org (mx1.freebsd.org [96.47.72.80])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client CN "mx1.freebsd.org", Issuer "Let's Encrypt Authority X3" (verified OK))
+        by mx2.freebsd.org (Postfix) with ESMTPS id 0976F8BD3A;
+        Thu, 16 Jan 2020 19:47:11 +0000 (UTC)
+        (envelope-from manu@freebsd.org)
+Received: from smtp.freebsd.org (smtp.freebsd.org [96.47.72.83])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         server-signature RSA-PSS (4096 bits)
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "smtp.freebsd.org", Issuer "Let's Encrypt Authority X3" (verified OK))
+        by mx1.freebsd.org (Postfix) with ESMTPS id 47zF8G5gxgz4Ty1;
+        Thu, 16 Jan 2020 19:47:10 +0000 (UTC)
+        (envelope-from manu@freebsd.org)
+Received: from localhost.localdomain (lfbn-idf2-1-1164-130.w90-92.abo.wanadoo.fr [90.92.223.130])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: manu)
+        by smtp.freebsd.org (Postfix) with ESMTPSA id D90D249FE;
+        Thu, 16 Jan 2020 19:47:09 +0000 (UTC)
+        (envelope-from manu@freebsd.org)
+From:   Emmanuel Vadot <manu@freebsd.org>
+To:     mripard@kernel.org, wens@csie.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Emmanuel Vadot <manu@freebsd.org>
+Subject: [PATCH] arm64: dts: allwinner: a64: Add gpio bank supply for A64-Olinuxino
+Date:   Thu, 16 Jan 2020 20:46:58 +0100
+Message-Id: <20200116194658.78893-1-manu@freebsd.org>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200115141333.1222676-5-bryan.odonoghue@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jan 2020 14:13:18 +0000, Bryan O'Donoghue wrote:
-> From: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> 
-> Binding description for Qualcomm's Synopsys 1.0.0 SuperSpeed phy
-> controller embedded in QCS404.
-> 
-> Based on Sriharsha Allenki's <sallenki@codeaurora.org> original
-> definitions.
-> 
-> [bod: converted to yaml format]
-> 
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Cc: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../devicetree/bindings/qcom,usb-ss.yaml      | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/qcom,usb-ss.yaml
-> 
+Add the regulators for each bank on this boards.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Emmanuel Vadot <manu@freebsd.org>
+---
+ .../boot/dts/allwinner/sun50i-a64-olinuxino.dts   | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-warning: no schema found in file: Documentation/devicetree/bindings/qcom,usb-ss.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/qcom,usb-ss.yaml: ignoring, error parsing file
-Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
-Documentation/devicetree/bindings/qcom,usb-ss.yaml:  while scanning a plain scalar
-  in "<unicode string>", line 61, column 11
-found a tab character that violates indentation
-  in "<unicode string>", line 62, column 1
-Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/qcom,usb-ss.example.dts' failed
-make[1]: *** [Documentation/devicetree/bindings/qcom,usb-ss.example.dts] Error 1
-Makefile:1263: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
+index 01a9a52edae4..1a25abf6065c 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-olinuxino.dts
+@@ -163,6 +163,17 @@ &ohci1 {
+ 	status = "okay";
+ };
+ 
++&pio {
++	vcc-pa-supply = <&reg_dcdc1>;
++	vcc-pb-supply = <&reg_dcdc1>;
++	vcc-pc-supply = <&reg_dcdc1>;
++	vcc-pd-supply = <&reg_dcdc1>;
++	vcc-pe-supply = <&reg_aldo1>;
++	vcc-pf-supply = <&reg_dcdc1>;
++	vcc-pg-supply = <&reg_dldo4>;
++	vcc-ph-supply = <&reg_dcdc1>;
++};
++
+ &r_rsb {
+ 	status = "okay";
+ 
+@@ -175,6 +186,10 @@ axp803: pmic@3a3 {
+ 	};
+ };
+ 
++&r_pio {
++	vcc-pl-supply = <&reg_aldo2>;
++};
++
+ #include "axp803.dtsi"
+ 
+ &ac_power_supply {
+-- 
+2.24.1
 
-See https://patchwork.ozlabs.org/patch/1223564
-Please check and re-submit.
