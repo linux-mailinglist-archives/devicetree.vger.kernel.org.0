@@ -2,84 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BCFD13E2CD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 17:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D25C13E107
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 17:47:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733278AbgAPQ5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 11:57:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45266 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387544AbgAPQ5r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 11:57:47 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7113121D56;
-        Thu, 16 Jan 2020 16:57:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579193866;
-        bh=fwthBG7OPOBCy/tV4b+0DKeAil7BDEj8I5zpXVs/SZM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2dgpnEv0B8LZ+htCJjmls5koZV/N+3kVf3mgVajhcXwOkR00ELgSzZnFyNzdSBFYp
-         /Anl0MSOj0mii4TMLg+QEkszIXW5JTbo8q3CNsUS+2k9sgzY483+WKuJzQCvxwFOV5
-         oaCbB1EbRttQZxgr4NAUcThcqNkQJr4cFyO1LDbM=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Loic Poulain <loic.poulain@linaro.org>,
-        Manabu Igusa <migusa@arrowjapan.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <andy.gross@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 112/671] arm64: dts: apq8016-sbc: Increase load on l11 for SDCARD
-Date:   Thu, 16 Jan 2020 11:45:43 -0500
-Message-Id: <20200116165502.8838-112-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200116165502.8838-1-sashal@kernel.org>
-References: <20200116165502.8838-1-sashal@kernel.org>
+        id S1729400AbgAPQrR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Jan 2020 11:47:17 -0500
+Received: from mailoutvs28.siol.net ([185.57.226.219]:60633 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729878AbgAPQrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 11:47:16 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id 3256D522C71;
+        Thu, 16 Jan 2020 17:47:13 +0100 (CET)
+X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id yW5AjuuxMjwE; Thu, 16 Jan 2020 17:47:12 +0100 (CET)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id C28C9523561;
+        Thu, 16 Jan 2020 17:47:12 +0100 (CET)
+Received: from jernej-laptop.localnet (cpe-194-152-20-232.static.triera.net [194.152.20.232])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 66D88522C71;
+        Thu, 16 Jan 2020 17:47:12 +0100 (CET)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Use internal oscillator
+Date:   Thu, 16 Jan 2020 17:47:12 +0100
+Message-ID: <20509747.EfDdHjke4D@jernej-laptop>
+In-Reply-To: <20200116080652.mp5z7dtrtj3nyhpq@gilmour.lan>
+References: <20200113180720.77461-1-jernej.skrabec@siol.net> <20200116080652.mp5z7dtrtj3nyhpq@gilmour.lan>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Loic Poulain <loic.poulain@linaro.org>
+Hi!
 
-[ Upstream commit af61bef513ba179559e56908b8c465e587bc3890 ]
+Dne četrtek, 16. januar 2020 ob 09:06:52 CET je Maxime Ripard napisal(a):
+> Hi Jernej,
+> 
+> On Mon, Jan 13, 2020 at 07:07:20PM +0100, Jernej Skrabec wrote:
+> > Tanix TX6 doesn't have external 32 kHz oscillator, so switch RTC clock
+> > to internal one.
+> > 
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > ---
+> > 
+> > While this patch gives one possible solution, I mainly want to start
+> > discussion why Allwinner SoC dtsi reference external 32 kHz crystal
+> > although some boards don't have it. My proposal would be to make clock
+> > property optional, based on the fact if external crystal is present or
+> > not. However, I'm not sure if that is possible at this point or not.
+> 
+> It's probably a bit of a dumb question but.. are you sure the crystal
+> is missing?
 
-In the same way as for msm8974-hammerhead, l11 load, used for SDCARD
-VMMC, needs to be increased in order to prevent any voltage drop issues
-(due to limited current) happening with some SDCARDS or during specific
-operations (e.g. write).
+Although I don't have schematic, I'm pretty sure. Without this patch or one at 
+[1], RTC gives a lot of errors in dmesg. I think that unpopulated XC2 pads 
+near SoC (see [2]) are probably reserved for crystal.
 
-Tested on Dragonboard-410c and DART-SD410 boards.
+With patch in [1], which enables automatic switching in case of error, I saw 
+that on this box RTC always switched to internal RC.
 
-Fixes: 4c7d53d16d77 (arm64: dts: apq8016-sbc: add regulators support)
-Reported-by: Manabu Igusa <migusa@arrowjapan.com>
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Andy Gross <andy.gross@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+> 
+> The H6 datasheet mentions that the 32kHz crystal needs to be there,
+> and it's part of the power sequence, so I'd expect all boards to have
+> it.
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-index 78ce3979ef09..f38b815e696d 100644
---- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-+++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
-@@ -630,6 +630,8 @@
- 	l11 {
- 		regulator-min-microvolt = <1750000>;
- 		regulator-max-microvolt = <3337000>;
-+		regulator-allow-set-load;
-+		regulator-system-load = <200000>;
- 	};
- 
- 	l12 {
--- 
-2.20.1
+Can you be more specific where it is stated that crystal is mandatory? 
+
+Note that schematic of some boards, like OrangePi PC2 (H5) or OrangePi Zero 
+(H3) don't even have 32K crystal in them.
+
+> 
+> > Driver also considers missing clock property as deprecated (old DT) [1],
+> > so this might complicate things even further.
+> > 
+> > What do you think?
+> 
+> I'm pretty sure (but that would need to be checked) that we never got
+> a node without the clocks property on the H6. If that's the case, then
+> we can add a check on the compatible.
+
+Yes, that would be nice solution. I can work something out if you agree that 
+this is the way.
+
+> 
+> > Best regards,
+> > Jernej
+> > 
+> > [1]
+> > https://elixir.bootlin.com/linux/latest/source/drivers/rtc/rtc-sun6i.c#L2
+> > 63> 
+> >  arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> > b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts index
+> > 83e6cb0e59ce..af3aebda47bb 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+> > @@ -91,6 +91,12 @@ &r_ir {
+> > 
+> >  	status = "okay";
+> >  
+> >  };
+> > 
+> > +/* This board doesn't have external 32 kHz crystal. */
+> > +&rtc {
+> > +	assigned-clocks = <&rtc 0>;
+> > +	assigned-clock-parents = <&rtc 2>;
+> > +};
+> > +
+> 
+> This should be dealt with in the driver however.
+
+Sure, it is something to start discussion, I don't like tackling clocks in DT 
+either.
+
+Best regards,
+Jernej
+
+[1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Allwinner/
+devices/H6/patches/linux/15-RTC-workaround.patch
+[2] http://linux-sunxi.org/images/2/2e/Tanix_tx6_pcb_top.png
+
+
+
 
