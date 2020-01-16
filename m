@@ -2,35 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D0813F7DE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:17:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CCB613F7EE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 20:17:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733078AbgAPQzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 11:55:37 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41046 "EHLO mail.kernel.org"
+        id S1733144AbgAPQ4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 11:56:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41928 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733073AbgAPQzh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 11:55:37 -0500
+        id S1730591AbgAPQ4A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 11:56:00 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A787D214AF;
-        Thu, 16 Jan 2020 16:55:35 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4E47024686;
+        Thu, 16 Jan 2020 16:55:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579193736;
-        bh=pe9gi9seQl7hcW9P43+6bjO+7AKVzu18za24nVIwzT4=;
+        s=default; t=1579193760;
+        bh=XoiEwqxvpeLhk9E4C1EKhmXW0UDLXNfpdqqjLrAjmdE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iCvTdUf1f5/rwoQlS+84xfCo1D18fieMfjhijJJGVWcW6Jd8cM1thiWv0a200kPam
-         /ZX9vAXXf+wbHUklEjNL5sBygk2y46e6yCFjTayhb0YO1uWxRYXk7ooyhp8sXGvIh2
-         fC33AezEgTMba1UG0pPtKvL/92QhId7PeJ4vlQTA=
+        b=ejLHpXwp46YTrKpYv/kYM6YxKZ2l725kFcD6gJMLEba3p2P4FK7dJBZzpCCr0gVN9
+         pf4o+uv6MnCERgAEeJqPBuqGzy6tRAkE/K/mPvw3y71LjgHElAKgROMwEs4RP5m8Ln
+         ObGPGHVwXWrjK+djzAHqjK7531B9rQRSixPw+XEk=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 028/671] of: Fix property name in of_node_get_device_type
-Date:   Thu, 16 Jan 2020 11:44:19 -0500
-Message-Id: <20200116165502.8838-28-sashal@kernel.org>
+Cc:     Phil Elwell <phil@raspberrypi.org>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.19 047/671] ARM: dts: bcm283x: Correct mailbox register sizes
+Date:   Thu, 16 Jan 2020 11:44:38 -0500
+Message-Id: <20200116165502.8838-47-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116165502.8838-1-sashal@kernel.org>
 References: <20200116165502.8838-1-sashal@kernel.org>
@@ -43,36 +46,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rob Herring <robh@kernel.org>
+From: Phil Elwell <phil@raspberrypi.org>
 
-[ Upstream commit 5d5a0ab1a7918fce5ca5c0fb1871a3e2000f85de ]
+[ Upstream commit 227fa865061470a568858baa404a508f6c030fe4 ]
 
-Commit 0413bedabc88 ("of: Add device_type access helper functions")
-added a new helper not yet used in preparation for some treewide clean
-up of accesses to 'device_type' properties. Unfortunately, there's an
-error and 'type' was used for the property name. Fix this.
+The size field in a Device Tree "reg" property is encoded in bytes, not
+words.
 
-Fixes: 0413bedabc88 ("of: Add device_type access helper functions")
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
+Fixes: 614fa22119d6 ("ARM: dts: bcm2835: Add VCHIQ node to the Raspberry Pi boards. (v3)")
+Signed-off-by: Phil Elwell <phil@raspberrypi.org>
+Acked-by: Stefan Wahren <stefan.wahren@i2se.com>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- include/linux/of.h | 2 +-
+ arch/arm/boot/dts/bcm2835-rpi.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index d5a863c1ee39..dac0201eacef 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1001,7 +1001,7 @@ static inline struct device_node *of_find_matching_node(
+diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
+index cb2d6d78a7fb..c481eab1bd7c 100644
+--- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
++++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
+@@ -32,7 +32,7 @@
  
- static inline const char *of_node_get_device_type(const struct device_node *np)
- {
--	return of_get_property(np, "type", NULL);
-+	return of_get_property(np, "device_type", NULL);
- }
- 
- static inline bool of_node_is_type(const struct device_node *np, const char *type)
+ 		mailbox@7e00b840 {
+ 			compatible = "brcm,bcm2835-vchiq";
+-			reg = <0x7e00b840 0xf>;
++			reg = <0x7e00b840 0x3c>;
+ 			interrupts = <0 2>;
+ 		};
+ 	};
 -- 
 2.20.1
 
