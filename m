@@ -2,42 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C52F13E857
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:32:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A62A113E902
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:36:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730692AbgAPRbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:31:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44316 "EHLO mail.kernel.org"
+        id S2404993AbgAPRfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:35:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49996 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390807AbgAPRbN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:31:13 -0500
+        id S2405175AbgAPRfi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:35:38 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 839C4246C0;
-        Thu, 16 Jan 2020 17:31:11 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B33F524713;
+        Thu, 16 Jan 2020 17:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579195872;
-        bh=pMzsxZqL7mnzlJsR54Z8Dv3VsMGRuTgcj/xJQ/YELWk=;
+        s=default; t=1579196137;
+        bh=yYjslUzdQq5c4r2jXilrCHJJ5+e34/2YaR56bnYZSbM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Sj2PiqCUnFAnaunOeAvrjdGOv/aNSN6N9Uy6Y0FHf542k3fAKAZKf+DQ8nAzTsyFl
-         XlG3yf8s0v1D6VgWTPu/yd633jhCL7C9rUbQ2Gu4TShSDnS5OGkc/9fJNNH2WEOZbN
-         p6s85df7rCTlmkMIefgC66SP5ayItDHrE9ckpQtI=
+        b=JNFCoOx3gimaLILzzwwQnqCP/ObIMzZaqbLQ8mfIJP3AkfltIc5e9n9RYg3458sOA
+         DfhYaNQAL58mqbKofD8ArGLPLS5C2didkCPhKx9i1ROy4iA3e9bTqz4FvL5xqz7PxT
+         nuMw6DoLcXNBV8kjxUkcgo84GJLtMTSnSgqIbF18=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 367/371] Revert "arm64: dts: juno: add dma-ranges property"
-Date:   Thu, 16 Jan 2020 12:23:59 -0500
-Message-Id: <20200116172403.18149-310-sashal@kernel.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Manabu Igusa <migusa@arrowjapan.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.9 039/251] arm64: dts: apq8016-sbc: Increase load on l11 for SDCARD
+Date:   Thu, 16 Jan 2020 12:31:13 -0500
+Message-Id: <20200116173445.21385-39-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
-References: <20200116172403.18149-1-sashal@kernel.org>
+In-Reply-To: <20200116173445.21385-1-sashal@kernel.org>
+References: <20200116173445.21385-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -47,59 +46,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sudeep Holla <sudeep.holla@arm.com>
+From: Loic Poulain <loic.poulain@linaro.org>
 
-[ Upstream commit 54fb3fe0f211d4729a2551cf9497bd612189af9d ]
+[ Upstream commit af61bef513ba179559e56908b8c465e587bc3890 ]
 
-This reverts commit 193d00a2b35ee3353813b4006a18131122087205.
+In the same way as for msm8974-hammerhead, l11 load, used for SDCARD
+VMMC, needs to be increased in order to prevent any voltage drop issues
+(due to limited current) happening with some SDCARDS or during specific
+operations (e.g. write).
 
-Commit 951d48855d86 ("of: Make of_dma_get_range() work on bus nodes")
-reworked the logic such that of_dma_get_range() works correctly
-starting from a bus node containing "dma-ranges".
+Tested on Dragonboard-410c and DART-SD410 boards.
 
-Since on Juno we don't have a SoC level bus node and "dma-ranges" is
-present only in the root node, we get the following error:
-
-OF: translation of DMA address(0) to CPU address failed node(/sram@2e000000)
-OF: translation of DMA address(0) to CPU address failed node(/uart@7ff80000)
-...
-OF: translation of DMA address(0) to CPU address failed node(/mhu@2b1f0000)
-OF: translation of DMA address(0) to CPU address failed node(/iommu@2b600000)
-OF: translation of DMA address(0) to CPU address failed node(/iommu@2b600000)
-OF: translation of DMA address(0) to CPU address failed node(/iommu@2b600000)
-
-So let's fix it by dropping the "dma-ranges" property for now. This
-should be fine since it doesn't represent any kind of device-visible
-restriction; it was only there for completeness, and we've since given
-in to the assumption that missing "dma-ranges" implies a 1:1 mapping
-anyway.
-
-We can add it later with a proper SoC bus node and moving all the
-devices that belong there along with the "dma-ranges" if required.
-
-Fixes: 193d00a2b35e ("arm64: dts: juno: add dma-ranges property")
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Acked-by: Robin Murphy <robin.murphy@arm.com>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+Fixes: 4c7d53d16d77 (arm64: dts: apq8016-sbc: add regulators support)
+Reported-by: Manabu Igusa <migusa@arrowjapan.com>
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Andy Gross <andy.gross@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/arm/juno-base.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/arm/juno-base.dtsi b/arch/arm64/boot/dts/arm/juno-base.dtsi
-index f165f04db0c9..13ee8ffa9bbf 100644
---- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-@@ -5,7 +5,6 @@
- 	/*
- 	 *  Devices shared by all Juno boards
- 	 */
--	dma-ranges = <0 0 0 0 0x100 0>;
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+index 601be6127628..948efff7d830 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+@@ -355,6 +355,8 @@
+ 	l11 {
+ 		regulator-min-microvolt = <1750000>;
+ 		regulator-max-microvolt = <3337000>;
++		regulator-allow-set-load;
++		regulator-system-load = <200000>;
+ 	};
  
- 	memtimer: timer@2a810000 {
- 		compatible = "arm,armv7-timer-mem";
+ 	l12 {
 -- 
 2.20.1
 
