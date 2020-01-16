@@ -2,131 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B73B13E8AE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3721913EAEA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:47:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404418AbgAPRdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:33:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47422 "EHLO mail.kernel.org"
+        id S2406856AbgAPRq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:46:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40244 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387875AbgAPRdl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:33:41 -0500
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        id S2406849AbgAPRq6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:46:58 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 45613246D8;
-        Thu, 16 Jan 2020 17:33:40 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 199C4246B4;
+        Thu, 16 Jan 2020 17:46:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579196020;
-        bh=2G0Ng8OaQXY0myuwsXjYgysTnAkfNx4yCUXz8txEl2Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vd/D2dqhVkk/59pyEhm3YzDslAjdxWxnY8HVcflYPu9BYi5M2fluN/7qGED+/2x3q
-         FEqZtepLYPcur1TFx9cTTrpOQa+XAOiY74agLTBgaVPlHxKEc6VLGwSnfUWyzBngsS
-         F0k9PXMbe2fYpxERpAz/dVRnYfE/ibbxVX1YntZ8=
-Received: by mail-qk1-f169.google.com with SMTP id c16so19884519qko.6;
-        Thu, 16 Jan 2020 09:33:40 -0800 (PST)
-X-Gm-Message-State: APjAAAUNxCmxqLox94WRRfH/E86xRM0pSnahAV7aZPnShduhjumT/Wlp
-        QHvV2DP36Mt2igFg2cUNIBEyOcduN1K1WlvP1g==
-X-Google-Smtp-Source: APXvYqzp8zTCERQIV+x1zdU2FH8qa9LdLhrgMgX7M1lyS8XHlvveUMh4kI3m0RFeC5HMz+WfbUraLiUXsMQZdBiBvTg=
-X-Received: by 2002:a05:620a:135b:: with SMTP id c27mr31335279qkl.119.1579196019371;
- Thu, 16 Jan 2020 09:33:39 -0800 (PST)
+        s=default; t=1579196818;
+        bh=sgOoolRsRLW4pkiLoqF6nOV5AmgG6FrkopMUr9rx9Co=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=w4VxprzXG/WNk5RZUe3kH+jrFaf8PC3DF/4xhUebXipGKO9a0etkRf7XVmj0FCFr3
+         NcJTJ3/bP03e71RWNYl1O7+0tCgZTHAoNjwlsyaL4uq14tWgPFIALb75SvjQi2MvFJ
+         qilX860Bpzotg6M1pi44nAb1hc+8DdDn9erDbiqw=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.4 173/174] arm64: dts: juno: Fix UART frequency
+Date:   Thu, 16 Jan 2020 12:42:50 -0500
+Message-Id: <20200116174251.24326-173-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200116174251.24326-1-sashal@kernel.org>
+References: <20200116174251.24326-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <1578941778-23321-1-git-send-email-stefan.wahren@i2se.com> <1578941778-23321-2-git-send-email-stefan.wahren@i2se.com>
-In-Reply-To: <1578941778-23321-2-git-send-email-stefan.wahren@i2se.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 16 Jan 2020 11:33:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+w0KGE-=XkAwpdqh67pH=V34ETCy8X92L_u1=_8xuKCg@mail.gmail.com>
-Message-ID: <CAL_Jsq+w0KGE-=XkAwpdqh67pH=V34ETCy8X92L_u1=_8xuKCg@mail.gmail.com>
-Subject: Re: [PATCH V5 1/4] dt-bindings: Add Broadcom AVS RO thermal
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 13, 2020 at 12:56 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
->
-> Since the BCM2711 doesn't have a AVS TMON block, the thermal information
-> must be retrieved from the AVS ring oscillator block. This block is part
-> of the AVS monitor which contains a bunch of raw sensors.
->
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> ---
->  .../bindings/thermal/brcm,avs-ro-thermal.yaml      | 45 ++++++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+From: Andre Przywara <andre.przywara@arm.com>
 
-The example fails 'make dt_binding_check':
+[ Upstream commit 39a1a8941b27c37f79508426e27a2ec29829d66c ]
 
-/builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.example.dt.yaml:
-thermal: 'reg' is a required property
+Older versions of the Juno *SoC* TRM [1] recommended that the UART clock
+source should be 7.2738 MHz, whereas the *system* TRM [2] stated a more
+correct value of 7.3728 MHz. Somehow the wrong value managed to end up in
+our DT.
 
-> diff --git a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
-> new file mode 100644
-> index 0000000..98e7b57
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/brcm,avs-ro-thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom AVS ring oscillator thermal
-> +
-> +maintainers:
-> +  - Stefan Wahren <wahrenst@gmx.net>
-> +
-> +description: |+
-> +  The thermal node should be the child of a syscon node with the
-> +  required property:
-> +
-> +  - compatible: Should be one of the following:
-> +                "brcm,bcm2711-avs-monitor", "syscon", "simple-mfd"
-> +
-> +  Refer to the the bindings described in
-> +  Documentation/devicetree/bindings/mfd/syscon.txt
-> +
-> +properties:
-> +  compatible:
-> +    const: brcm,bcm2711-thermal
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +        avs-monitor@7d5d2000 {
-> +                compatible = "brcm,bcm2711-avs-monitor",
-> +                             "syscon", "simple-mfd";
-> +                reg = <0x7d5d2000 0xf00>;
-> +
-> +                thermal: thermal {
-> +                        compatible = "brcm,bcm2711-thermal";
-> +                        #thermal-sensor-cells = <0>;
+Doing a prime factorisation, a modulo divide by 115200 and trying
+to buy a 7.2738 MHz crystal at your favourite electronics dealer suggest
+that the old value was actually a typo. The actual UART clock is driven
+by a PLL, configured via a parameter in some board.txt file in the
+firmware, which reads 7.37 MHz (sic!).
 
-Also this is not documented. That's not caught because
-'additionalProperties: false' is also needed.
+Fix this to correct the baud rate divisor calculation on the Juno board.
 
-Rob
+[1] http://infocenter.arm.com/help/topic/com.arm.doc.ddi0515b.b/DDI0515B_b_juno_arm_development_platform_soc_trm.pdf
+[2] http://infocenter.arm.com/help/topic/com.arm.doc.100113_0000_07_en/arm_versatile_express_juno_development_platform_(v2m_juno)_technical_reference_manual_100113_0000_07_en.pdf
+
+Fixes: 71f867ec130e ("arm64: Add Juno board device tree.")
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
+Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/arm/juno-clocks.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/arm/juno-clocks.dtsi b/arch/arm64/boot/dts/arm/juno-clocks.dtsi
+index 25352ed943e6..00bcbf7688c7 100644
+--- a/arch/arm64/boot/dts/arm/juno-clocks.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-clocks.dtsi
+@@ -8,10 +8,10 @@
+  */
+ 
+ 	/* SoC fixed clocks */
+-	soc_uartclk: refclk7273800hz {
++	soc_uartclk: refclk7372800hz {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+-		clock-frequency = <7273800>;
++		clock-frequency = <7372800>;
+ 		clock-output-names = "juno:uartclk";
+ 	};
+ 
+-- 
+2.20.1
+
