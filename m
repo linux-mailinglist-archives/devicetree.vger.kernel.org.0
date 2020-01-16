@@ -2,89 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC6B13E638
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2F213E73C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390556AbgAPRTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:19:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46116 "EHLO mail.kernel.org"
+        id S2403763AbgAPRYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:24:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59082 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390022AbgAPRSa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:18:30 -0500
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        id S2391770AbgAPRYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:24:30 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CBBB9246CC;
-        Thu, 16 Jan 2020 17:18:29 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8E5E424683;
+        Thu, 16 Jan 2020 17:24:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579195109;
-        bh=yeSp0fGwJ/dgY0fFHiYhsov/EbuVK+ryQi59MzAqvno=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qN99BKR4uuYvaV0p7EkeJpD0n1G7OxycmMcmdYmyiwnqsT3GBQWRzT3SZeWjAUYn7
-         53YsrY1f4tOvKorJAq2KHbUBpxpwMPWFai4XnmBwLslwSXR201rnGSwV/ZRtnEoIJB
-         Ue/ErdA7tyXwktsjcmnKzM04KsD+AiEsFYg8kEIs=
-Received: by mail-qk1-f171.google.com with SMTP id d71so19861933qkc.0;
-        Thu, 16 Jan 2020 09:18:29 -0800 (PST)
-X-Gm-Message-State: APjAAAVTmKll/6bSKHZ5sqCaw3eQYKGmUEvxd7ZsGCLeeBnoZdIbr499
-        wrRZxDVWMH2/V1kfjqix5+W0/FIp5W7KR7wiwA==
-X-Google-Smtp-Source: APXvYqwFGJOr8mcO10BEbC3XUTOrgXEnY5Gd03lvreXKQUpv+wwI5MMwTMEmeMNDEkHT1VsOrGSSi3n3CwzN8ewQfCQ=
-X-Received: by 2002:a37:85c4:: with SMTP id h187mr34765113qkd.223.1579195108958;
- Thu, 16 Jan 2020 09:18:28 -0800 (PST)
+        s=default; t=1579195469;
+        bh=f35ub2WSKi3z3HhdB+AJpKr5b+ByzQjqTniM2ad0uN0=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=uoPO/9fXGoD9CJr3+YQOihtopIpxNOQDbGQTxStVs6bDWYU9ZbGfLsXCi17cjUtFH
+         5nP0pF61nJ3OtMvexvT90i8rBwzmI2mz07o1bmedeGLTiTFl6t1q12z4YhL6SdXHWD
+         NK86eWmFr+ZuKvZKAWUIPy1ElwRm3ZHUGYAijzXI=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Vladimir Zapolskiy <vz@mleia.com>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.14 076/371] ARM: dts: lpc32xx: reparent keypad controller to SIC1
+Date:   Thu, 16 Jan 2020 12:19:08 -0500
+Message-Id: <20200116172403.18149-19-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
+References: <20200116172403.18149-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <20191219145843.3823-1-jbx6244@gmail.com> <20191228093059.2817-1-jbx6244@gmail.com>
- <20200104215524.GA28188@bogus> <CAPDyKFp5BvA7tKpBUh-bpn5X4xvg8b9HuMO7+fZVJEp78=ToRw@mail.gmail.com>
-In-Reply-To: <CAPDyKFp5BvA7tKpBUh-bpn5X4xvg8b9HuMO7+fZVJEp78=ToRw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 16 Jan 2020 11:18:17 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+9w2wjwoOfnnKUBk9kOkZFcU6aWwyaw05ye-p3_WDcaQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+9w2wjwoOfnnKUBk9kOkZFcU6aWwyaw05ye-p3_WDcaQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: remove identical phrase in
- disable-wp text
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jan 16, 2020 at 5:17 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Sat, 4 Jan 2020 at 22:55, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Sat, 28 Dec 2019 10:30:58 +0100, Johan Jonker wrote:
-> > > There are two identical phrases in the disable-wp text,
-> > > so remove one of them.
-> > >
-> > > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 3 +--
-> > >  1 file changed, 1 insertion(+), 2 deletions(-)
-> > >
-> >
-> > Applied, thanks.
-> >
-> > Rob
->
-> Rob,
->
-> Normally I pick up the DT doc changes for mmc whenever you have acked
-> them (at least more non-trivial changes). I regards to the
-> mmc-controller.yaml file, I have no queued changes in my tree for this
-> cycle so this should be fine in regards to conflicts.
->
-> Going forward, do you prefer to pick the DT doc changes for mmc, or
-> can I consider this as a single occasion thingy?
+From: Vladimir Zapolskiy <vz@mleia.com>
 
-I usually only pick up small changes if they are a binding only series
-and if they haven't been picked up already.
+[ Upstream commit 489261c45f0ebbc1c2813f337bbdf858267f5033 ]
 
-Though I've been picking up a few schema conversions primarily so I
-can check that they validate. Hopefully that's temporary.
+After switching to a new interrupt controller scheme by separating SIC1
+and SIC2 from MIC interrupt controller just one SoC keypad controller
+was not taken into account, fix it now:
 
-Rob
+  WARNING: CPU: 0 PID: 1 at kernel/irq/irqdomain.c:524 irq_domain_associate+0x50/0x1b0
+  error: hwirq 0x36 is too large for interrupt-controller@40008000
+  ...
+  lpc32xx_keys 40050000.key: failed to get platform irq
+  lpc32xx_keys: probe of 40050000.key failed with error -22
+
+Fixes: 9b8ad3fb81ae ("ARM: dts: lpc32xx: reparent SIC1 and SIC2 interrupts from MIC")
+Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/lpc32xx.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+index 2ca881055ef0..9f9386c926d1 100644
+--- a/arch/arm/boot/dts/lpc32xx.dtsi
++++ b/arch/arm/boot/dts/lpc32xx.dtsi
+@@ -463,7 +463,8 @@
+ 				compatible = "nxp,lpc3220-key";
+ 				reg = <0x40050000 0x1000>;
+ 				clocks = <&clk LPC32XX_CLK_KEY>;
+-				interrupts = <54 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-parent = <&sic1>;
++				interrupts = <22 IRQ_TYPE_LEVEL_HIGH>;
+ 				status = "disabled";
+ 			};
+ 
+-- 
+2.20.1
+
