@@ -2,138 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D25C13E107
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 17:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1384C13E32B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:00:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729400AbgAPQrR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 16 Jan 2020 11:47:17 -0500
-Received: from mailoutvs28.siol.net ([185.57.226.219]:60633 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729878AbgAPQrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 11:47:16 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id 3256D522C71;
-        Thu, 16 Jan 2020 17:47:13 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id yW5AjuuxMjwE; Thu, 16 Jan 2020 17:47:12 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id C28C9523561;
-        Thu, 16 Jan 2020 17:47:12 +0100 (CET)
-Received: from jernej-laptop.localnet (cpe-194-152-20-232.static.triera.net [194.152.20.232])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Postfix) with ESMTPA id 66D88522C71;
-        Thu, 16 Jan 2020 17:47:12 +0100 (CET)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Use internal oscillator
-Date:   Thu, 16 Jan 2020 17:47:12 +0100
-Message-ID: <20509747.EfDdHjke4D@jernej-laptop>
-In-Reply-To: <20200116080652.mp5z7dtrtj3nyhpq@gilmour.lan>
-References: <20200113180720.77461-1-jernej.skrabec@siol.net> <20200116080652.mp5z7dtrtj3nyhpq@gilmour.lan>
+        id S1729521AbgAPRAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:00:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50316 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387847AbgAPRAc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:00:32 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4984C21D56;
+        Thu, 16 Jan 2020 17:00:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1579194032;
+        bh=6Ug92YadfEZxVr0FlvxM6ejPmYEO8+O6flfaEHVSANM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=n5KE6iQYgCQbYSXgX/M6CalYswcD/lgI3R0RbSs+ppcTISRNPQUgSRzylDLbIkFzL
+         6n+szvxBfwY8MMesK1uIdLWxAzBXhvHAJHcEx+JGAdC2/xUW7E0VoJ5VjzfWPYXF5u
+         I+jYtLSknQgIN/V+1WQV81aW4ROjXHwK0hQmxa1M=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Vladimir Zapolskiy <vz@mleia.com>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 151/671] ARM: dts: lpc32xx: phy3250: fix SD card regulator voltage
+Date:   Thu, 16 Jan 2020 11:51:00 -0500
+Message-Id: <20200116165940.10720-34-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200116165940.10720-1-sashal@kernel.org>
+References: <20200116165940.10720-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+From: Vladimir Zapolskiy <vz@mleia.com>
 
-Dne četrtek, 16. januar 2020 ob 09:06:52 CET je Maxime Ripard napisal(a):
-> Hi Jernej,
-> 
-> On Mon, Jan 13, 2020 at 07:07:20PM +0100, Jernej Skrabec wrote:
-> > Tanix TX6 doesn't have external 32 kHz oscillator, so switch RTC clock
-> > to internal one.
-> > 
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > ---
-> > 
-> > While this patch gives one possible solution, I mainly want to start
-> > discussion why Allwinner SoC dtsi reference external 32 kHz crystal
-> > although some boards don't have it. My proposal would be to make clock
-> > property optional, based on the fact if external crystal is present or
-> > not. However, I'm not sure if that is possible at this point or not.
-> 
-> It's probably a bit of a dumb question but.. are you sure the crystal
-> is missing?
+[ Upstream commit dc141b99fc36cf910a1d8d5ee30f43f2442fd1bd ]
 
-Although I don't have schematic, I'm pretty sure. Without this patch or one at 
-[1], RTC gives a lot of errors in dmesg. I think that unpopulated XC2 pads 
-near SoC (see [2]) are probably reserved for crystal.
+The fixed voltage regulator on Phytec phyCORE-LPC3250 board, which
+supplies SD/MMC card's power, has a constant output voltage level
+of either 3.15V or 3.3V, the actual value depends on JP4 position,
+the power rail is referenced as VCC_SDIO in the board hardware manual.
 
-With patch in [1], which enables automatic switching in case of error, I saw 
-that on this box RTC always switched to internal RC.
+Fixes: d06670e96267 ("arm: dts: phy3250: add SD fixed regulator")
+Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/lpc3250-phy3250.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 
-> The H6 datasheet mentions that the 32kHz crystal needs to be there,
-> and it's part of the power sequence, so I'd expect all boards to have
-> it.
-
-Can you be more specific where it is stated that crystal is mandatory? 
-
-Note that schematic of some boards, like OrangePi PC2 (H5) or OrangePi Zero 
-(H3) don't even have 32K crystal in them.
-
-> 
-> > Driver also considers missing clock property as deprecated (old DT) [1],
-> > so this might complicate things even further.
-> > 
-> > What do you think?
-> 
-> I'm pretty sure (but that would need to be checked) that we never got
-> a node without the clocks property on the H6. If that's the case, then
-> we can add a check on the compatible.
-
-Yes, that would be nice solution. I can work something out if you agree that 
-this is the way.
-
-> 
-> > Best regards,
-> > Jernej
-> > 
-> > [1]
-> > https://elixir.bootlin.com/linux/latest/source/drivers/rtc/rtc-sun6i.c#L2
-> > 63> 
-> >  arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-> > b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts index
-> > 83e6cb0e59ce..af3aebda47bb 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-> > @@ -91,6 +91,12 @@ &r_ir {
-> > 
-> >  	status = "okay";
-> >  
-> >  };
-> > 
-> > +/* This board doesn't have external 32 kHz crystal. */
-> > +&rtc {
-> > +	assigned-clocks = <&rtc 0>;
-> > +	assigned-clock-parents = <&rtc 2>;
-> > +};
-> > +
-> 
-> This should be dealt with in the driver however.
-
-Sure, it is something to start discussion, I don't like tackling clocks in DT 
-either.
-
-Best regards,
-Jernej
-
-[1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Allwinner/
-devices/H6/patches/linux/15-RTC-workaround.patch
-[2] http://linux-sunxi.org/images/2/2e/Tanix_tx6_pcb_top.png
-
-
-
+diff --git a/arch/arm/boot/dts/lpc3250-phy3250.dts b/arch/arm/boot/dts/lpc3250-phy3250.dts
+index 1e1c2f517a82..ffcf78631b22 100644
+--- a/arch/arm/boot/dts/lpc3250-phy3250.dts
++++ b/arch/arm/boot/dts/lpc3250-phy3250.dts
+@@ -49,8 +49,8 @@
+ 		sd_reg: regulator@2 {
+ 			compatible = "regulator-fixed";
+ 			regulator-name = "sd_reg";
+-			regulator-min-microvolt = <1800000>;
+-			regulator-max-microvolt = <1800000>;
++			regulator-min-microvolt = <3300000>;
++			regulator-max-microvolt = <3300000>;
+ 			gpio = <&gpio 5 5 0>;
+ 			enable-active-high;
+ 		};
+-- 
+2.20.1
 
