@@ -2,34 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1384C13E32B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB47B13E3B0
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:03:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729521AbgAPRAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:00:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50316 "EHLO mail.kernel.org"
+        id S2388551AbgAPRDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:03:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56892 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387847AbgAPRAc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:00:32 -0500
+        id S2388549AbgAPRDE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:03:04 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4984C21D56;
-        Thu, 16 Jan 2020 17:00:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 463FC2081E;
+        Thu, 16 Jan 2020 17:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579194032;
-        bh=6Ug92YadfEZxVr0FlvxM6ejPmYEO8+O6flfaEHVSANM=;
+        s=default; t=1579194184;
+        bh=hvOdQB70oGW+4a2MHmKuuy0kxWnbE2x6B9yaIRDsp8c=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=n5KE6iQYgCQbYSXgX/M6CalYswcD/lgI3R0RbSs+ppcTISRNPQUgSRzylDLbIkFzL
-         6n+szvxBfwY8MMesK1uIdLWxAzBXhvHAJHcEx+JGAdC2/xUW7E0VoJ5VjzfWPYXF5u
-         I+jYtLSknQgIN/V+1WQV81aW4ROjXHwK0hQmxa1M=
+        b=hXqJfpznLtDTyZ01bR0X8dUC7qzKYHF1wS/PU1B/PdrwnzQWo+83RhXU+yXGVXL+8
+         +2pyAAp/oRLzImjzTcmvLo5lIzCVxVcr8owQU38Du0JpT4u8vs/ejqwd6GT6Qrh+tW
+         sd2PBPj7cdwGTIbsE6S5OAYxrgOc5zak5Pq7y4aY=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Zapolskiy <vz@mleia.com>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 151/671] ARM: dts: lpc32xx: phy3250: fix SD card regulator voltage
-Date:   Thu, 16 Jan 2020 11:51:00 -0500
-Message-Id: <20200116165940.10720-34-sashal@kernel.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.19 257/671] ARM: dts: sun8i: a33: Reintroduce default pinctrl muxing
+Date:   Thu, 16 Jan 2020 11:52:46 -0500
+Message-Id: <20200116165940.10720-140-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116165940.10720-1-sashal@kernel.org>
 References: <20200116165940.10720-1-sashal@kernel.org>
@@ -42,37 +43,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Zapolskiy <vz@mleia.com>
+From: Maxime Ripard <maxime.ripard@bootlin.com>
 
-[ Upstream commit dc141b99fc36cf910a1d8d5ee30f43f2442fd1bd ]
+[ Upstream commit fa44328f4eb0b762a1fcb148809068e9646e7156 ]
 
-The fixed voltage regulator on Phytec phyCORE-LPC3250 board, which
-supplies SD/MMC card's power, has a constant output voltage level
-of either 3.15V or 3.3V, the actual value depends on JP4 position,
-the power rail is referenced as VCC_SDIO in the board hardware manual.
+Commit d02752149759 ("ARM: dts: sun8i-a23-a33: Move NAND controller device
+node to sort by address") moved the NAND controller node around, but
+dropped the default muxing in the process.
 
-Fixes: d06670e96267 ("arm: dts: phy3250: add SD fixed regulator")
-Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
+Reintroduce it.
+
+Fixes: d02752149759 ("ARM: dts: sun8i-a23-a33: Move NAND controller device node to sort by address")
+Acked-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/lpc3250-phy3250.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/sun8i-a23-a33.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm/boot/dts/lpc3250-phy3250.dts b/arch/arm/boot/dts/lpc3250-phy3250.dts
-index 1e1c2f517a82..ffcf78631b22 100644
---- a/arch/arm/boot/dts/lpc3250-phy3250.dts
-+++ b/arch/arm/boot/dts/lpc3250-phy3250.dts
-@@ -49,8 +49,8 @@
- 		sd_reg: regulator@2 {
- 			compatible = "regulator-fixed";
- 			regulator-name = "sd_reg";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
- 			gpio = <&gpio 5 5 0>;
- 			enable-active-high;
- 		};
+diff --git a/arch/arm/boot/dts/sun8i-a23-a33.dtsi b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
+index a272a69519a2..1efad1a6bcfd 100644
+--- a/arch/arm/boot/dts/sun8i-a23-a33.dtsi
++++ b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
+@@ -163,6 +163,8 @@
+ 			clock-names = "ahb", "mod";
+ 			resets = <&ccu RST_BUS_NAND>;
+ 			reset-names = "ahb";
++			pinctrl-names = "default";
++			pinctrl-0 = <&nand_pins &nand_pins_cs0 &nand_pins_rb0>;
+ 			status = "disabled";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
 -- 
 2.20.1
 
