@@ -2,91 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D3713D8CB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 12:17:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E718F13D89F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 12:10:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726100AbgAPLRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 06:17:10 -0500
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:35751 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbgAPLRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 06:17:09 -0500
-Received: by mail-ua1-f66.google.com with SMTP id y23so7485046ual.2
-        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2020 03:17:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=F7tUdno7ArtPSiaOPdMNn5wVN9V2qtibzn63/OmNwzM=;
-        b=lwcdtRWLk0imKl7E0r3n6TJW8xeDU1FBZjrxdwbB1j1Ol8VLI6md87iF6Ei32CqstB
-         iZsxa6IJPvBFh4/KZIDh7uRZ4kCTldU8Hs1BMoPEFCwDTo7QdO9PKkKKeMCczAi+zG/4
-         JZfYXGg313YN4TZwuOTHONOstMiYv8zbow0CFVohUQbrYitLoSQqIkeDcuxGp6qNSXRF
-         MSkysZR6XwblHa8eMmPSQT/qJd8xv8W9O4E2ppMNt4Lo0lJZCGfmkzvlu2IAtDMnEnbB
-         1QjcmJa6xjbZVSVMx8kwvXsDZZBH7G6592G8of/U/0t0mCjvPQm1g4udNBlpI6gURr5r
-         am4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F7tUdno7ArtPSiaOPdMNn5wVN9V2qtibzn63/OmNwzM=;
-        b=cgE9L1pDXMnn/wssSWx0LH12LcVWFkS/Mr72u/j0NtwrFne0GINVn8l0XG+5qV8dF7
-         t2ketaGNwCzPHoK9YW/YEpfoUKuCGcf2/SHi2X/TG3ulbA6v3F8j2qx72sn8j7AIlUPO
-         JmTwf1BwcrX4+Q4BWGWGMTUaKkZgVNPsdA7mOKw+fqnZBZSt1DEyG0bRQ/wHjp0U5DYB
-         O1aoVznB11SRviBW9agA6Mj3k/kGFkxleq22iAH1zVjrZReMMEkHm7QRbmzDsOf7WeEH
-         lAEkJ5qlvuSEzHBiQ1VVJ9Dqj3rPck3XVpls9zDWDsgJ3kHRv4Kf0el4Wzk2UchAqbsB
-         hoLg==
-X-Gm-Message-State: APjAAAV+sAtO08ExTTEq6mBv9W4cjvCwG83z32u2e1gqXPf9XO0UiCoL
-        p1yhFfl80ES0BA0aiE+CyEwDWsePcdApgH0Y107MpQ==
-X-Google-Smtp-Source: APXvYqyiD7on53LJXj+IvnXLqg0ezI6WrramGC7O26YFNv+/TCtHx+KoDKnYfKLOvap+43EPQJV5R5WFI/gCOGKBRMA=
-X-Received: by 2002:ab0:20a:: with SMTP id 10mr17143795uas.19.1579173428886;
- Thu, 16 Jan 2020 03:17:08 -0800 (PST)
+        id S1726084AbgAPLKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 06:10:30 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:52725 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726045AbgAPLKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 06:10:30 -0500
+X-Originating-IP: 88.190.179.123
+Received: from localhost (unknown [88.190.179.123])
+        (Authenticated sender: repk@triplefau.lt)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 03BA0240004;
+        Thu, 16 Jan 2020 11:10:26 +0000 (UTC)
+From:   Remi Pommarel <repk@triplefau.lt>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Yue Wang <yue.wang@Amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>
+Subject: [PATCH v5 0/7] PCI: amlogic: Make PCIe working reliably on AXG platforms
+Date:   Thu, 16 Jan 2020 12:18:43 +0100
+Message-Id: <20200116111850.23690-1-repk@triplefau.lt>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-References: <20191219145843.3823-1-jbx6244@gmail.com> <20191228093059.2817-1-jbx6244@gmail.com>
- <20200104215524.GA28188@bogus>
-In-Reply-To: <20200104215524.GA28188@bogus>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 16 Jan 2020 12:16:32 +0100
-Message-ID: <CAPDyKFp5BvA7tKpBUh-bpn5X4xvg8b9HuMO7+fZVJEp78=ToRw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: remove identical phrase in
- disable-wp text
-To:     Rob Herring <robh@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 4 Jan 2020 at 22:55, Rob Herring <robh@kernel.org> wrote:
->
-> On Sat, 28 Dec 2019 10:30:58 +0100, Johan Jonker wrote:
-> > There are two identical phrases in the disable-wp text,
-> > so remove one of them.
-> >
-> > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 3 +--
-> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> >
->
-> Applied, thanks.
->
-> Rob
+PCIe device probing failures have been seen on AXG platforms and were
+due to unreliable clock signal output. Setting HHI_MIPI_CNTL0[26] bit
+in MIPI's PHY registers solved the problem. This bit controls band gap
+reference.
 
-Rob,
+As discussed here [1] one of these shared MIPI/PCIE analog PHY register
+bits was implemented in the clock driver as CLKID_MIPI_ENABLE. This adds
+a PHY driver to control this bit instead, as well as setting the band
+gap one in order to get reliable PCIE communication.
 
-Normally I pick up the DT doc changes for mmc whenever you have acked
-them (at least more non-trivial changes). I regards to the
-mmc-controller.yaml file, I have no queued changes in my tree for this
-cycle so this should be fine in regards to conflicts.
+While at it add another PHY driver to control PCIE only PHY registers,
+making AXG code more similar to G12A platform thus allowing to remove
+some specific platform handling in pci-meson driver.
 
-Going forward, do you prefer to pick the DT doc changes for mmc, or
-can I consider this as a single occasion thingy?
+Please note that CLKID_MIPI_ENABLE removable will be done in a different
+serie.
 
-Kind regards
-Uffe
+Changes since v4:
+ - Rename the shared MIPI/PCIe PHY to analog
+ - Chain the MIPI/PCIe PHY to the PCIe one
+
+Changes since v3:
+ - Go back to the shared MIPI/PCIe phy driver solution from v2
+ - Remove syscon usage
+ - Add all dt-bindings documentation
+
+Changes since v2:
+ - Remove shared MIPI/PCIE device driver and use syscon to access register
+   in PCIE only driver instead
+ - Include devicetree documentation
+
+Changes sinve v1:
+ - Move HHI_MIPI_CNTL0 bit control in its own PHY driver
+ - Add a PHY driver for PCIE_PHY registers
+ - Modify pci-meson.c to make use of both PHYs and remove specific
+   handling for AXG and G12A
+
+[1] https://lkml.org/lkml/2019/12/16/119
+
+Remi Pommarel (7):
+  dt-bindings: Add AXG PCIE PHY bindings
+  dt-bindings: Add AXG shared MIPI/PCIE analog PHY bindings
+  dt-bindings: PCI: meson: Update PCIE bindings documentation
+  arm64: dts: meson-axg: Add PCIE PHY nodes
+  phy: amlogic: Add Amlogic AXG MIPI/PCIE analog PHY Driver
+  phy: amlogic: Add Amlogic AXG PCIE PHY Driver
+  PCI: amlogic: Use AXG PCIE
+
+ .../bindings/pci/amlogic,meson-pcie.txt       |  22 +-
+ .../amlogic,meson-axg-mipi-pcie-analog.yaml   |  33 +++
+ .../bindings/phy/amlogic,meson-axg-pcie.yaml  |  48 +++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  16 ++
+ drivers/pci/controller/dwc/pci-meson.c        | 116 ++---------
+ drivers/phy/amlogic/Kconfig                   |  22 ++
+ drivers/phy/amlogic/Makefile                  |  12 +-
+ .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 188 +++++++++++++++++
+ drivers/phy/amlogic/phy-meson-axg-pcie.c      | 192 ++++++++++++++++++
+ 9 files changed, 537 insertions(+), 112 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+ create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
+ create mode 100644 drivers/phy/amlogic/phy-meson-axg-pcie.c
+
+-- 
+2.24.1
+
