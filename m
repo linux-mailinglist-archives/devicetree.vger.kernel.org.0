@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 656B613D4FE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 08:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FFFD13D519
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 08:37:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730088AbgAPH24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 02:28:56 -0500
-Received: from helcar.hmeau.com ([216.24.177.18]:39920 "EHLO deadmen.hmeau.com"
+        id S1726535AbgAPHh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 02:37:29 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:60414 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729431AbgAPH24 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 02:28:56 -0500
-Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
-        by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
-        id 1irzaA-0005XF-Nt; Thu, 16 Jan 2020 15:28:46 +0800
-Received: from herbert by gondobar with local (Exim 4.89)
-        (envelope-from <herbert@gondor.apana.org.au>)
-        id 1irza8-0000ma-LU; Thu, 16 Jan 2020 15:28:44 +0800
-Date:   Thu, 16 Jan 2020 15:28:44 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
+        id S1726160AbgAPHh3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 02:37:29 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 84649200668;
+        Thu, 16 Jan 2020 08:37:27 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 73C4B200659;
+        Thu, 16 Jan 2020 08:37:27 +0100 (CET)
+Received: from fsr-ub1864-014.ea.freescale.net (fsr-ub1864-014.ea.freescale.net [10.171.95.219])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id C4D792047A;
+        Thu, 16 Jan 2020 08:37:26 +0100 (CET)
+From:   =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Abel Vesa <abel.vesa@nxp.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Aymen Sghaier <aymen.sghaier@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] crypto: caam - add support for i.MX8M Nano
-Message-ID: <20200116072844.5n6o47fnio7q534v@gondor.apana.org.au>
-References: <20200106200154.30643-1-horia.geanta@nxp.com>
+        Anson Huang <Anson.Huang@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] clk: imx8mn: add snvs clock
+Date:   Thu, 16 Jan 2020 09:37:15 +0200
+Message-Id: <20200116073718.4475-1-horia.geanta@nxp.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200106200154.30643-1-horia.geanta@nxp.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 06, 2020 at 10:01:53PM +0200, Horia Geantă wrote:
-> Add support for the crypto engine used in i.mx8mn (i.MX 8M "Nano"),
-> which is very similar to the one used in i.mx8mq, i.mx8mm.
-> 
-> Since the clocks are identical for all members of i.MX 8M family,
-> simplify the SoC <--> clock array mapping table.
-> 
-> Signed-off-by: Horia Geantă <horia.geanta@nxp.com>
-> ---
->  drivers/crypto/caam/ctrl.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+v2: add commmit message for trivial patch 1/3
 
-Patch applied.  Thanks.
+This patch set adds the clock for snvs module on imx8mn.
+DT bindings, clk driver are updated accordingly.
+DT for imx8mn (snvs-rtc-lp node) is also updated.
+
+Horia Geantă (3):
+  dt-bindings: clock: imx8mn: add SNVS clock
+  clk: imx8mn: add SNVS clock to clock tree
+  arm64: dts: imx8mn: add clock for snvs rtc node
+
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 1 +
+ drivers/clk/imx/clk-imx8mn.c              | 1 +
+ include/dt-bindings/clock/imx8mn-clock.h  | 4 +++-
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.17.1
+
