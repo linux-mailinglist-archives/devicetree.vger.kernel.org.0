@@ -2,161 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2590513F1A9
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:31:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 645C513F383
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:44:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403876AbgAPS3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 13:29:50 -0500
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2277 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388537AbgAPS3s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 13:29:48 -0500
-Received: from LHREML710-CAH.china.huawei.com (unknown [172.18.7.106])
-        by Forcepoint Email with ESMTP id E89599E2EB67A39F47B4;
-        Thu, 16 Jan 2020 18:29:45 +0000 (GMT)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- LHREML710-CAH.china.huawei.com (10.201.108.33) with Microsoft SMTP Server
- (TLS) id 14.3.408.0; Thu, 16 Jan 2020 18:29:45 +0000
-Received: from localhost (10.202.226.57) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
- 2020 18:29:45 +0000
-Date:   Thu, 16 Jan 2020 18:29:43 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-CC:     "Bia, Beniamin" <Beniamin.Bia@analog.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "biabeniamin@outlook.com" <biabeniamin@outlook.com>
-Subject: Re: [PATCH 1/3] iio: amplifiers: hmc425a: Add support for HMC425A
- step attenuator with gpio interface
-Message-ID: <20200116182943.000000de@Huawei.com>
-In-Reply-To: <5925b4f1d47306ec4376a296a1146ff024239044.camel@analog.com>
-References: <20200113141555.16117-1-beniamin.bia@analog.com>
-        <5ae63616-5749-da51-b0b2-85cdcaa948f3@metafoo.de>
-        <5925b4f1d47306ec4376a296a1146ff024239044.camel@analog.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.57]
-X-ClientProxiedBy: lhreml733-chm.china.huawei.com (10.201.108.84) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+        id S2390316AbgAPSmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 13:42:19 -0500
+Received: from mout.kundenserver.de ([212.227.17.13]:38257 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390300AbgAPSmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 13:42:18 -0500
+Received: from localhost.localdomain ([37.4.249.101]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1Mleo0-1jIw7L3qrK-00ioZF; Thu, 16 Jan 2020 19:41:50 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH] dt-bindings: brcm,avs-ro-thermal: Fix binding check issues
+Date:   Thu, 16 Jan 2020 19:41:17 +0100
+Message-Id: <1579200077-17496-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:+sPxTCFhphlG3yB/Vx1rT4zv4v7XQNBXEsZUG8nOQTMLN/8oNU1
+ cIQrMr4QLHa06BxUeULkTm8FrfWFhdn3mPaqN4tH3TBTXUdVufXlCUcTyj/PHhw6sgBcMTA
+ mZx6vCFItqhZnVkuio0WoafXGl9Rs68tikhSvXXdLUXjSDmuepTiEJYCEWJUZh7wwxSA0wr
+ w0LTrbo+7cE9tmdYbr1wQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+jcCjposBx0=:yyC7jsIe/of8jUKuHeITgu
+ aXK8OBpK/gxv+jhxC/xLDqrj+EQsV55PYLfzhgtNyOzU8bAqhW2KJj69StMrp/PPIExIcljYA
+ /NKnN584ptFLAUPLEZIJhzRTWYKErS7Qyy11PUlxJlAGWN4d9xpyU78LaeZIkzENnShU5gFP2
+ ABEV0+TqsHRWN9wRs4hW5b5Vr5JTsDMk59PpXMryJlxq1pAd+jXXbkAisQA0p692SObeeE2ZA
+ JCgwNiSoVO65Embq7fzXx206TuS1T6Ni1qYLdcnz2t6d540k0EX4Uznciz+quVmEOFIwpEje4
+ 5HYf1zDbeXdiQD2lElEQx3kiPDJIv3zUpGbvlEhG1aTm5yGYU+/gq3VrmhWHBIqRWVyyU8lqE
+ CKux+OgG9+C0CW/Ubh4Q6DJk0SDf+snQVYqBDj/i08YTK7XT9lB5YDbnLUF4+LMOF90pH2n4k
+ 5SJCuvNRluII63acZiMwR2R8JtD4MV1YcH+2saetnTwzVlOiwxrzjX8hF6fiOGJFS1Zq02HlD
+ 7AR7JfLd8mpG+8d/Fo+ysomcsyOekC72hYrcpXKCCEezDML1QXz+kyjpOUKBjtmbs7z/EEhZH
+ s0cZo5ImMqzAznfg55k0Dr9DqsEq27GiVRU2n3mjX3n2Zcn+FZWW8vZCIfFs6zpQn6dIKv1vN
+ dZbtEiCoNjvSG24HGs0lICT3VZrlSIkN073iDLF1p4ylHpgTeiX0fO+qo+9ccGUyW2sSa3PIV
+ a15ftUAtAGstL4K/uJ9V4E2VyDuLC3ZGp+FvsQrocWUUkI+lzqnEPEiY0oHcsFfers/JbzOSm
+ ygFJhwQotapC0SFx5vQjLaJboailcGKVIn9VXiHryFv8+GfLX4xyDm0LI+cjiAT7tiRmn8zFa
+ +cHIfWHSP0PRHTBAuWw3BAY62wsz7dl4364I1V+cs=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jan 2020 07:27:08 +0000
-"Ardelean, Alexandru" <alexandru.Ardelean@analog.com> wrote:
+Drop the reg property since this only necessary for the parent and
+add the missing thermal-sensor-cells property description.
 
-> On Mon, 2020-01-13 at 21:57 +0100, Lars-Peter Clausen wrote:
-> > [External]
-> > 
-> > On 1/13/20 3:15 PM, Beniamin Bia wrote:
-> > [...]  
-> > > +static int hmc425a_write(struct iio_dev *indio_dev, u32 value)
-> > > +{
-> > > +	struct hmc425a_state *st = iio_priv(indio_dev);
-> > > +	int i, *values;
-> > > +
-> > > +	values = kmalloc_array(st->chip_info->num_gpios, sizeof(int),
-> > > +			       GFP_KERNEL);
-> > > +	if (!values)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	for (i = 0; i < st->chip_info->num_gpios; i++)
-> > > +		values[i] = (value >> i) & 1;
-> > > +
-> > > +	gpiod_set_array_value_cansleep(st->gpios->ndescs, st->gpios->desc,
-> > > +				       values);  
-> > 
-> > This API got changed a while ago in upstream, see
-> > https://github.com/analogdevicesinc/linux/commit/b9762bebc6332b40c33e03dea03e30fa12d9e3ed
-> >   
-> > > +	kfree(values);
-> > > +	return 0;
-> > > +}  
-> > [...]  
-> > > +static int hmc425a_probe(struct platform_device *pdev)
-> > > +{  
-> > [...]  
-> > > +
-> > > +	platform_set_drvdata(pdev, indio_dev);  
-> > 
-> > drvdata is never accessed, no need to set it.
-> >   
-> > > +	mutex_init(&st->lock);
-> > > +
-> > > +	indio_dev->dev.parent = &pdev->dev;
-> > > +	indio_dev->name = np->name;  
-> > 
-> > I know ADI likes to do this in its non upstream drivers, but the above
-> > is not IIO ABI compliant. The name is supposed to identify the type of
-> > the device, which means for this driver should be static "hmc425a".
-> > Maybe consider adding a field to the hmc425a_chip_info for this.  
-> 
-> We've actually [recently] had a discussion about this internally regarding
-> the 'indio_dev->name'.
-> 
-> Maybe it's a good time to ask here (now).
-> A lot of our userspace stuff have been searching IIO devices via the 'name'
-> field in sysfs, which is the name assigned here.
-> That creates a problem when you have multiple devices with the same driver.
-> Which is why, one 
-> 
-> So, then some questions would be:
-> Is a searching for IIO devices [in userspace] based on IIO device-name not
-> recommended? If not, what would be? Or what would be a better idea?
-> 
-> The ABI reads [hopefully I pulled up the right field]:
-> What:           /sys/bus/iio/devices/iio:deviceX/name
-> KernelVersion:  2.6.35
-> Contact:        linux-iio@vger.kernel.org
-> Description:
->                 Description of the physical chip / device for device X.
->                 Typically a part number.
-> 
-> The text in description is a bit open to interpretation, so I can't make an
-> assessment of what is correct.
-> In case there was a discussion about this, sorry for repeating some things
-> now.
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Fixes: 3d4849897691 ("dt-bindings: Add Broadcom AVS RO thermal")
+---
+ .../devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml         | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-So I can speak to the 'intent' of that documentation.  It's meant to be the part
-number.
-
-Now, we have recently added
-indio_dev->label which is retrieved from generic device tree property 'label'
-to solve the problem of multiple devices of the same type (note that
-driver but different device shouldn't matter as name reflects the part number
-not the driver).  It lets you provide any name you like the DT blob.
-
-I appreciate this is a 'new' feature and so a bit of a problem for old userspace.
-
-For a long time I pushed back against this because it's easy to tell which device
-is which, just look at the parent.  I got convinced in the end that sometimes
-that answer isn't very user friendly :)
-
-Jonathan
-
-
-> 
-> 
-> >   
-> > > +	indio_dev->info = &hmc425a_info;
-> > > +	indio_dev->modes = INDIO_DIRECT_MODE;
-> > > +
-> > > +	return devm_iio_device_register(&pdev->dev, indio_dev);
-> > > +}  
-
+diff --git a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+index 98e7b57..d9fdf48 100644
+--- a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+@@ -23,12 +23,15 @@ properties:
+   compatible:
+     const: brcm,bcm2711-thermal
+ 
+-  reg:
+-    maxItems: 1
++  # See ./thermal.txt for details
++  "#thermal-sensor-cells":
++    const: 0
+ 
+ required:
+   - compatible
+-  - reg
++  - '#thermal-sensor-cells'
++
++additionalProperties: false
+ 
+ examples:
+   - |
+-- 
+2.7.4
 
