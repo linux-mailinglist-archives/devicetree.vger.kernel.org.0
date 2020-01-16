@@ -2,38 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D6DA13F4DB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED42213F487
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:50:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389607AbgAPSwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 13:52:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42278 "EHLO mail.kernel.org"
+        id S2389566AbgAPRJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:09:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43952 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389424AbgAPRIa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:08:30 -0500
+        id S2388255AbgAPRJB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:09:01 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F05BA21D56;
-        Thu, 16 Jan 2020 17:08:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2334C2192A;
+        Thu, 16 Jan 2020 17:09:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579194510;
-        bh=vfF6f5qFBpWrlErlaHJrIdGtbl0HGlLI/J4HrYXA4vI=;
+        s=default; t=1579194541;
+        bh=Nj6XKZCEDxGaXQwinQLQ2eXpL34/hG9ANdGyJ2pmAbE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=wWFMUkkqH9zIp7zewbfJC3ylawusw4CmwValZ+rzoTZBLS0WHzFeQJ/EVosp10rYn
-         j2aS/bXyWSV4/t30UPIk6t2+jNDHJ5Qs+jPBJXkQNtg2dwiwEdtEI0dvtdW8Rwk9Rv
-         i9dACDiN+/2FN316LLcMYqhoN+sSMey44BKXuS58=
+        b=jHuT7nlb+bZjAcA83Lp4WdzTSY9ABMLEFOk9j24pyRCMDkwFXBbjxt+VjaNCsKuBM
+         1X2upgN3c0140osOHm5e/5ElfWt998xOYaIC/VPohYJnKd1BnX9B+hY7d6MMJ89Q6Q
+         /J21zszYgn8gOCJrHfJbcKvK5xj6KcmyTNRe17mE=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 404/671] arm64: dts: meson-gxm-khadas-vim2: fix Bluetooth support
-Date:   Thu, 16 Jan 2020 12:00:42 -0500
-Message-Id: <20200116170509.12787-141-sashal@kernel.org>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 427/671] ARM: dts: iwg20d-q7-common: Fix SDHI1 VccQ regularor
+Date:   Thu, 16 Jan 2020 12:01:05 -0500
+Message-Id: <20200116170509.12787-164-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116170509.12787-1-sashal@kernel.org>
 References: <20200116170509.12787-1-sashal@kernel.org>
@@ -46,51 +44,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Hewitt <christianshewitt@gmail.com>
+From: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-[ Upstream commit 33344e2111a3a07097a66f339ad213b047ccdfd2 ]
+[ Upstream commit d211650a87edc7f4130651c0ccbc0a4583fd72d3 ]
 
-- Remove serial1 alias
-- Add support for uart_A rts/cts
-- Add bluetooth uart_A subnode qith shutdown gpio
+SDR50 isn't working anymore because the GPIO regulator
+driver is using descriptors since
+commit d6cd33ad7102 ("regulator: gpio: Convert to use descriptors")
+which in turn causes the system to use the polarity of the
+GPIOs (as specified in the DT) for selecting the states,
+but the polarity specified in the DT is wrong.
+This patch fixes the regulator DT definition, and that fixes
+SDR50.
 
-Fixes: b8b74dda3908 ("ARM64: dts: meson-gxm: Add support for Khadas VIM2")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+Fixes: 029efb3a03c5 ("ARM: dts: iwg20d-q7: Add SDHI1 support")
+Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/iwg20d-q7-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index bfd3a510ff16..785240733d94 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -18,7 +18,6 @@
+diff --git a/arch/arm/boot/dts/iwg20d-q7-common.dtsi b/arch/arm/boot/dts/iwg20d-q7-common.dtsi
+index 5cae74eb6cdd..a2c9a1e88c1a 100644
+--- a/arch/arm/boot/dts/iwg20d-q7-common.dtsi
++++ b/arch/arm/boot/dts/iwg20d-q7-common.dtsi
+@@ -87,7 +87,7 @@
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <3300000>;
  
- 	aliases {
- 		serial0 = &uart_AO;
--		serial1 = &uart_A;
- 		serial2 = &uart_AO_B;
- 	};
- 
-@@ -407,8 +406,14 @@
- /* This one is connected to the Bluetooth module */
- &uart_A {
- 	status = "okay";
--	pinctrl-0 = <&uart_a_pins>;
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
- 	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- /* This is brought out on the Linux_RX (18) and Linux_TX (19) pins: */
+-		gpios = <&gpio2 30 GPIO_ACTIVE_LOW>;
++		gpios = <&gpio2 30 GPIO_ACTIVE_HIGH>;
+ 		gpios-states = <1>;
+ 		states = <3300000 1
+ 			  1800000 0>;
 -- 
 2.20.1
 
