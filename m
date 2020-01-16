@@ -2,196 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0950B13F064
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D3213F0B1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:23:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390696AbgAPSV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 13:21:28 -0500
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2276 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2390150AbgAPSV1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 13:21:27 -0500
-Received: from lhreml706-cah.china.huawei.com (unknown [172.18.7.108])
-        by Forcepoint Email with ESMTP id D3F0F750A9DB34BAEAB1;
-        Thu, 16 Jan 2020 18:21:25 +0000 (GMT)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- lhreml706-cah.china.huawei.com (10.201.108.47) with Microsoft SMTP Server
- (TLS) id 14.3.408.0; Thu, 16 Jan 2020 18:21:25 +0000
-Received: from localhost (10.202.226.57) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 16 Jan
- 2020 18:21:25 +0000
-Date:   Thu, 16 Jan 2020 18:21:24 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Matt Ranostay <matt.ranostay@konsulko.com>
-CC:     <linux-iio@vger.kernel.org>, <jic23@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] dt-bindings: iio: chemical: consolidate
- atlas-sensor docs
-Message-ID: <20200116182124.00006e19@Huawei.com>
-In-Reply-To: <20200114022348.8676-4-matt.ranostay@konsulko.com>
-References: <20200114022348.8676-1-matt.ranostay@konsulko.com>
-        <20200114022348.8676-4-matt.ranostay@konsulko.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.57]
-X-ClientProxiedBy: lhreml733-chm.china.huawei.com (10.201.108.84) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+        id S2392073AbgAPSXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 13:23:24 -0500
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:37642 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405291AbgAPSXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 13:23:23 -0500
+Received: by mail-wm1-f68.google.com with SMTP id f129so4859287wmf.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2020 10:23:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=bKzyTMx/EE6hYfa6xT4QOtv7PoRTzC4cnmE6saFEzZ8=;
+        b=XS5Gnet0V1x9yQqCMC2ffevRg1STQIoU0YZrQ0LLNDqr8VKtEDV2LmxCv8U5G1IlH0
+         LiJ0b9/G4Ce9rw04C7dbsDRgIXk09Mf4S1ETN8x9ktGh8+GEv4VvQdxqt4Kz62fDOMrv
+         vigDSD76YL/ic+myUUSEDRW2X7g/qP/gFEvkA8jUwZnKOcRq7XtYtTaBmDbBpxtnPoqT
+         UKK75TwQfc1HzNnj1SX6SeV2C/VAUzmbZbSxt8acPzT6nkctmkFHffvi/botExJI/1k7
+         kOXozBk422Ly/CezpH8RyWit2nLwtj2PKoKMSWO9L/l9FhB30au1JF5tYzP3s7M7KoBn
+         R/Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=bKzyTMx/EE6hYfa6xT4QOtv7PoRTzC4cnmE6saFEzZ8=;
+        b=iRNJPTTd9BzfVvSmWkmbImHZojKX2plQzB4TfYnVqEhb5wlEQAZ7UQwkBzxXOLgZIz
+         H1QCZlyIn3dmZeq6A+hchB2SVG7HxZkhDI6BBKRHNKnkJP+29lmpqyie3uPAIIAC1f7f
+         IlOacTHP19JyA39yqwif2tZHpQkoaToDbYGEiEnpopK+UIYUV8cZ7OQHaf3G+C5OC6Vu
+         2PAKSRNlM5p1dMPxM2E0QDj835W675ZT2AcvAanBiOKt0NM5v0/QG5ONVl077qCQbxgM
+         j3cDW2h8FxVZIJ6McnBt97d8jkDMUZ5Gvoy8kh4pg5escB6B/Lj25I5Se53Y0wSUH59P
+         3zYQ==
+X-Gm-Message-State: APjAAAX+/eYOC0NyXQipuXEr/HX7G9QutE+w/D3U/sei995udNad34bI
+        1AC8SP7tgpgznzEhzodWX936rg==
+X-Google-Smtp-Source: APXvYqxsdQKMHzHde+rNzloenzO/Yx4EXE3hDkjCTmoJvF84QCCFWJ1LmS1W89NN6PHrcRYRQq2ymg==
+X-Received: by 2002:a05:600c:48a:: with SMTP id d10mr315293wme.87.1579199000823;
+        Thu, 16 Jan 2020 10:23:20 -0800 (PST)
+Received: from mai.imgcgcw.net ([2a01:e34:ed2f:f020:6c63:1b50:1156:7f0f])
+        by smtp.gmail.com with ESMTPSA id b137sm1087920wme.26.2020.01.16.10.23.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jan 2020 10:23:20 -0800 (PST)
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     tglx@linutronix.de
+Cc:     linux-kernel@vger.kernel.org, Biju Das <biju.das@bp.renesas.com>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH 03/17] dt-bindings: timer: renesas, cmt: Document r8a774b1 CMT support
+Date:   Thu, 16 Jan 2020 19:22:50 +0100
+Message-Id: <20200116182304.4926-3-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200116182304.4926-1-daniel.lezcano@linaro.org>
+References: <74bf7170-401f-2962-ea5a-1e21431a9349@linaro.org>
+ <20200116182304.4926-1-daniel.lezcano@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 14 Jan 2020 04:23:48 +0200
-Matt Ranostay <matt.ranostay@konsulko.com> wrote:
+From: Biju Das <biju.das@bp.renesas.com>
 
-> Since Atlas Scientific device support only varies from the compatible
-> string is ideal all the respective docs are merged into a single doc
-> named atlas,sensor.txt
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Matt Ranostay <matt.ranostay@konsulko.com>
+Document SoC specific bindings for RZ/G2N (r8a774b1) SoC.
 
-No chance of a yaml conversion whilst you are at it?
+Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Link: https://lore.kernel.org/r/1570104229-59144-1-git-send-email-biju.das@bp.renesas.com
+---
+ Documentation/devicetree/bindings/timer/renesas,cmt.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Maybe dt maintainers will take the view this is step in the right direction and
-let this go, but I will want an Ack for that.
-
-> ---
->  .../bindings/iio/chemical/atlas,ec-sm.txt     | 21 ------------
->  .../bindings/iio/chemical/atlas,orp-sm.txt    | 21 ------------
->  .../bindings/iio/chemical/atlas,ph-sm.txt     | 21 ------------
->  .../bindings/iio/chemical/atlas,sensor.txt    | 34 +++++++++++++++++++
->  4 files changed, 34 insertions(+), 63 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/atlas,ec-sm.txt
->  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/atlas,orp-sm.txt
->  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/atlas,ph-sm.txt
->  create mode 100644 Documentation/devicetree/bindings/iio/chemical/atlas,sensor.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/chemical/atlas,ec-sm.txt b/Documentation/devicetree/bindings/iio/chemical/atlas,ec-sm.txt
-> deleted file mode 100644
-> index f4320595b851..000000000000
-> --- a/Documentation/devicetree/bindings/iio/chemical/atlas,ec-sm.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -* Atlas Scientific EC-SM OEM sensor
-> -
-> -http://www.atlas-scientific.com/_files/_datasheets/_oem/EC_oem_datasheet.pdf
-> -
-> -Required properties:
-> -
-> -  - compatible: must be "atlas,ec-sm"
-> -  - reg: the I2C address of the sensor
-> -  - interrupts: the sole interrupt generated by the device
-> -
-> -  Refer to interrupt-controller/interrupts.txt for generic interrupt client
-> -  node bindings.
-> -
-> -Example:
-> -
-> -atlas@64 {
-> -	compatible = "atlas,ec-sm";
-> -	reg = <0x64>;
-> -	interrupt-parent = <&gpio1>;
-> -	interrupts = <16 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/iio/chemical/atlas,orp-sm.txt b/Documentation/devicetree/bindings/iio/chemical/atlas,orp-sm.txt
-> deleted file mode 100644
-> index af1f5a9aa4da..000000000000
-> --- a/Documentation/devicetree/bindings/iio/chemical/atlas,orp-sm.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -* Atlas Scientific ORP-SM OEM sensor
-> -
-> -https://www.atlas-scientific.com/_files/_datasheets/_oem/ORP_oem_datasheet.pdf
-> -
-> -Required properties:
-> -
-> -  - compatible: must be "atlas,orp-sm"
-> -  - reg: the I2C address of the sensor
-> -  - interrupts: the sole interrupt generated by the device
-> -
-> -  Refer to interrupt-controller/interrupts.txt for generic interrupt client
-> -  node bindings.
-> -
-> -Example:
-> -
-> -atlas@66 {
-> -	compatible = "atlas,orp-sm";
-> -	reg = <0x66>;
-> -	interrupt-parent = <&gpio1>;
-> -	interrupts = <16 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/iio/chemical/atlas,ph-sm.txt b/Documentation/devicetree/bindings/iio/chemical/atlas,ph-sm.txt
-> deleted file mode 100644
-> index 79d90f060327..000000000000
-> --- a/Documentation/devicetree/bindings/iio/chemical/atlas,ph-sm.txt
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -* Atlas Scientific pH-SM OEM sensor
-> -
-> -http://www.atlas-scientific.com/_files/_datasheets/_oem/pH_oem_datasheet.pdf
-> -
-> -Required properties:
-> -
-> -  - compatible: must be "atlas,ph-sm"
-> -  - reg: the I2C address of the sensor
-> -  - interrupts: the sole interrupt generated by the device
-> -
-> -  Refer to interrupt-controller/interrupts.txt for generic interrupt client
-> -  node bindings.
-> -
-> -Example:
-> -
-> -atlas@65 {
-> -	compatible = "atlas,ph-sm";
-> -	reg = <0x65>;
-> -	interrupt-parent = <&gpio1>;
-> -	interrupts = <16 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.txt b/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.txt
-> new file mode 100644
-> index 000000000000..518327dc71e2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/chemical/atlas,sensor.txt
-> @@ -0,0 +1,34 @@
-> +* Atlas Scientific OEM sensors
-> +
-> +Datasheets:
-> +
-> +  http://www.atlas-scientific.com/_files/_datasheets/_oem/DO_oem_datasheet.pdf
-> +  http://www.atlas-scientific.com/_files/_datasheets/_oem/EC_oem_datasheet.pdf
-> +  http://www.atlas-scientific.com/_files/_datasheets/_oem/ORP_oem_datasheet.pdf
-> +  http://www.atlas-scientific.com/_files/_datasheets/_oem/pH_oem_datasheet.pdf
-> +
-> +Required properties:
-> +
-> +  - compatible: must be one of :
-> +	"atlas,do-sm",
-> +	"atlas,ec-sm",
-> +	"atlas,orp-sm",
-> +	"atlas,ph-sm"
-> +
-> +  - reg: the I2C address of the sensor
-> +
-> +Optional properties:
-> +
-> +  - interrupts: the sole interrupt generated by the device
-> +
-> +  Refer to interrupt-controller/interrupts.txt for generic interrupt client
-> +  node bindings.
-> +
-> +Example:
-> +
-> +atlas@66 {
-> +	compatible = "atlas,orp-sm";
-> +	reg = <0x66>;
-> +	interrupt-parent = <&gpio1>;
-> +	interrupts = <16 2>;
-> +};
-
+diff --git a/Documentation/devicetree/bindings/timer/renesas,cmt.txt b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
+index a444cfc5852a..a747fabab7d3 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,cmt.txt
++++ b/Documentation/devicetree/bindings/timer/renesas,cmt.txt
+@@ -29,6 +29,8 @@ Required Properties:
+     - "renesas,r8a77470-cmt1" for the 48-bit CMT1 device included in r8a77470.
+     - "renesas,r8a774a1-cmt0" for the 32-bit CMT0 device included in r8a774a1.
+     - "renesas,r8a774a1-cmt1" for the 48-bit CMT devices included in r8a774a1.
++    - "renesas,r8a774b1-cmt0" for the 32-bit CMT0 device included in r8a774b1.
++    - "renesas,r8a774b1-cmt1" for the 48-bit CMT devices included in r8a774b1.
+     - "renesas,r8a774c0-cmt0" for the 32-bit CMT0 device included in r8a774c0.
+     - "renesas,r8a774c0-cmt1" for the 48-bit CMT devices included in r8a774c0.
+     - "renesas,r8a7790-cmt0" for the 32-bit CMT0 device included in r8a7790.
+-- 
+2.17.1
 
