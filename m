@@ -2,231 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82A1013D869
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 11:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0D3713D8CB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 12:17:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725999AbgAPK4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 05:56:14 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:15408 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725800AbgAPK4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 05:56:14 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00GArDEK015410;
-        Thu, 16 Jan 2020 11:53:13 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=FJhGdmI22PlzIP0rf9aoCbEMHmoRGzoHUIfTd1NB+Ks=;
- b=Ezra2HVMwUC9n9znb9TonHuOKEUJsV4SDn2frdUGkV2KoNpH/1QyyHziJFWEiJ8G7tJv
- nkovaGWcA3TcFzRUvsMxM81PT5hRu/yLtxy+c/Iu4I3um8I2qIs4Tyspfa5wTPKHNQSZ
- DTygHpKi40Y9SQ1+i5Ke5XZNcM8bARRrwF3Hu3DkpT2iecSvFg2HdcHmww7dQNfHIaMm
- xsveDYg4ZyeiyA8iIMW+dWhYgT6E3fx8KormqVZByu5aLdm7i3dlyUmrRtjbR6u6OCVW
- eU5djocsKhmTqZbvmG+nFEb9uaAQfzSgQJS3HgRefyBj1O/0ZdqddoeOZdvDkfRZgakI uw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xf77b8k1y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 16 Jan 2020 11:53:13 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 37F3A10002A;
-        Thu, 16 Jan 2020 11:53:11 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A6C5A2AD9ED;
-        Thu, 16 Jan 2020 11:53:11 +0100 (CET)
-Received: from localhost (10.75.127.46) by SFHDAG6NODE2.st.com (10.75.127.17)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 16 Jan 2020 11:53:11
- +0100
-From:   Olivier Moysan <olivier.moysan@st.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>, <alsa-devel@alsa-project.org>,
-        <robh@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <olivier.moysan@st.com>
-Subject: [PATCH v2] ASoC: dt-bindings: stm32: convert spdfirx to json-schema
-Date:   Thu, 16 Jan 2020 11:52:44 +0100
-Message-ID: <20200116105244.13485-1-olivier.moysan@st.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726100AbgAPLRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 06:17:10 -0500
+Received: from mail-ua1-f66.google.com ([209.85.222.66]:35751 "EHLO
+        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725999AbgAPLRJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 06:17:09 -0500
+Received: by mail-ua1-f66.google.com with SMTP id y23so7485046ual.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2020 03:17:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=F7tUdno7ArtPSiaOPdMNn5wVN9V2qtibzn63/OmNwzM=;
+        b=lwcdtRWLk0imKl7E0r3n6TJW8xeDU1FBZjrxdwbB1j1Ol8VLI6md87iF6Ei32CqstB
+         iZsxa6IJPvBFh4/KZIDh7uRZ4kCTldU8Hs1BMoPEFCwDTo7QdO9PKkKKeMCczAi+zG/4
+         JZfYXGg313YN4TZwuOTHONOstMiYv8zbow0CFVohUQbrYitLoSQqIkeDcuxGp6qNSXRF
+         MSkysZR6XwblHa8eMmPSQT/qJd8xv8W9O4E2ppMNt4Lo0lJZCGfmkzvlu2IAtDMnEnbB
+         1QjcmJa6xjbZVSVMx8kwvXsDZZBH7G6592G8of/U/0t0mCjvPQm1g4udNBlpI6gURr5r
+         am4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=F7tUdno7ArtPSiaOPdMNn5wVN9V2qtibzn63/OmNwzM=;
+        b=cgE9L1pDXMnn/wssSWx0LH12LcVWFkS/Mr72u/j0NtwrFne0GINVn8l0XG+5qV8dF7
+         t2ketaGNwCzPHoK9YW/YEpfoUKuCGcf2/SHi2X/TG3ulbA6v3F8j2qx72sn8j7AIlUPO
+         JmTwf1BwcrX4+Q4BWGWGMTUaKkZgVNPsdA7mOKw+fqnZBZSt1DEyG0bRQ/wHjp0U5DYB
+         O1aoVznB11SRviBW9agA6Mj3k/kGFkxleq22iAH1zVjrZReMMEkHm7QRbmzDsOf7WeEH
+         lAEkJ5qlvuSEzHBiQ1VVJ9Dqj3rPck3XVpls9zDWDsgJ3kHRv4Kf0el4Wzk2UchAqbsB
+         hoLg==
+X-Gm-Message-State: APjAAAV+sAtO08ExTTEq6mBv9W4cjvCwG83z32u2e1gqXPf9XO0UiCoL
+        p1yhFfl80ES0BA0aiE+CyEwDWsePcdApgH0Y107MpQ==
+X-Google-Smtp-Source: APXvYqyiD7on53LJXj+IvnXLqg0ezI6WrramGC7O26YFNv+/TCtHx+KoDKnYfKLOvap+43EPQJV5R5WFI/gCOGKBRMA=
+X-Received: by 2002:ab0:20a:: with SMTP id 10mr17143795uas.19.1579173428886;
+ Thu, 16 Jan 2020 03:17:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG5NODE1.st.com (10.75.127.13) To SFHDAG6NODE2.st.com
- (10.75.127.17)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-16_03:2020-01-16,2020-01-15 signatures=0
+References: <20191219145843.3823-1-jbx6244@gmail.com> <20191228093059.2817-1-jbx6244@gmail.com>
+ <20200104215524.GA28188@bogus>
+In-Reply-To: <20200104215524.GA28188@bogus>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 16 Jan 2020 12:16:32 +0100
+Message-ID: <CAPDyKFp5BvA7tKpBUh-bpn5X4xvg8b9HuMO7+fZVJEp78=ToRw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: remove identical phrase in
+ disable-wp text
+To:     Rob Herring <robh@kernel.org>
+Cc:     Johan Jonker <jbx6244@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the STM32 SPDIFRX bindings to DT schema format using json-schema.
+On Sat, 4 Jan 2020 at 22:55, Rob Herring <robh@kernel.org> wrote:
+>
+> On Sat, 28 Dec 2019 10:30:58 +0100, Johan Jonker wrote:
+> > There are two identical phrases in the disable-wp text,
+> > so remove one of them.
+> >
+> > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+>
+> Applied, thanks.
+>
+> Rob
 
-Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
----
-Changes in v2:
-- Add "additionalProperties: false"
-- Also change minItems to 2 for dmas property, as both DMAs are required.
----
- .../bindings/sound/st,stm32-spdifrx.txt       | 56 -------------
- .../bindings/sound/st,stm32-spdifrx.yaml      | 84 +++++++++++++++++++
- 2 files changed, 84 insertions(+), 56 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/st,stm32-spdifrx.txt
- create mode 100644 Documentation/devicetree/bindings/sound/st,stm32-spdifrx.yaml
+Rob,
 
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-spdifrx.txt b/Documentation/devicetree/bindings/sound/st,stm32-spdifrx.txt
-deleted file mode 100644
-index 33826f2459fa..000000000000
---- a/Documentation/devicetree/bindings/sound/st,stm32-spdifrx.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--STMicroelectronics STM32 S/PDIF receiver (SPDIFRX).
--
--The SPDIFRX peripheral, is designed to receive an S/PDIF flow compliant with
--IEC-60958 and IEC-61937.
--
--Required properties:
--  - compatible: should be "st,stm32h7-spdifrx"
--  - reg: cpu DAI IP base address and size
--  - clocks: must contain an entry for kclk (used as S/PDIF signal reference)
--  - clock-names: must contain "kclk"
--  - interrupts: cpu DAI interrupt line
--  - dmas: DMA specifiers for audio data DMA and iec control flow DMA
--    See STM32 DMA bindings, Documentation/devicetree/bindings/dma/stm32-dma.txt
--  - dma-names: two dmas have to be defined, "rx" and "rx-ctrl"
--
--Optional properties:
--  - resets: Reference to a reset controller asserting the SPDIFRX
--
--The device node should contain one 'port' child node with one child 'endpoint'
--node, according to the bindings defined in Documentation/devicetree/bindings/
--graph.txt.
--
--Example:
--spdifrx: spdifrx@40004000 {
--	compatible = "st,stm32h7-spdifrx";
--	reg = <0x40004000 0x400>;
--	clocks = <&rcc SPDIFRX_CK>;
--	clock-names = "kclk";
--	interrupts = <97>;
--	dmas = <&dmamux1 2 93 0x400 0x0>,
--	       <&dmamux1 3 94 0x400 0x0>;
--	dma-names = "rx", "rx-ctrl";
--	pinctrl-0 = <&spdifrx_pins>;
--	pinctrl-names = "default";
--
--	spdifrx_port: port {
--		cpu_endpoint: endpoint {
--			remote-endpoint = <&codec_endpoint>;
--		};
--	};
--};
--
--spdif_in: spdif-in {
--	compatible = "linux,spdif-dir";
--
--	codec_port: port {
--		codec_endpoint: endpoint {
--			remote-endpoint = <&cpu_endpoint>;
--		};
--	};
--};
--
--soundcard {
--	compatible = "audio-graph-card";
--	dais = <&spdifrx_port>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/st,stm32-spdifrx.yaml b/Documentation/devicetree/bindings/sound/st,stm32-spdifrx.yaml
-new file mode 100644
-index 000000000000..e19313e7a552
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/st,stm32-spdifrx.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/st,stm32-spdifrx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STM32 S/PDIF receiver (SPDIFRX)
-+
-+maintainers:
-+  - Olivier Moysan <olivier.moysan@st.com>
-+
-+description: |
-+  The SPDIFRX peripheral, is designed to receive an S/PDIF flow compliant with
-+  IEC-60958 and IEC-61937.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - st,stm32h7-spdifrx
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: kclk
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    description: |
-+      Two DMA channel specifiers are requested:
-+      - audio data capture DMA
-+      - IEC status bits capture DMA
-+      See STM32 DMA bindings /bindings/dma/stm32-dma.txt.
-+    minItems: 2
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: rx-ctrl
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - "#sound-dai-cells"
-+  - reg
-+  - clocks
-+  - clock-names
-+  - interrupts
-+  - dmas
-+  - dma-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    spdifrx: spdifrx@40004000 {
-+        compatible = "st,stm32h7-spdifrx";
-+        #sound-dai-cells = <0>;
-+        reg = <0x40004000 0x400>;
-+        clocks = <&rcc SPDIF_K>;
-+        clock-names = "kclk";
-+        interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-+        dmas = <&dmamux1 2 93 0x400 0x0>,
-+               <&dmamux1 3 94 0x400 0x0>;
-+        dma-names = "rx", "rx-ctrl";
-+        pinctrl-0 = <&spdifrx_pins>;
-+        pinctrl-names = "default";
-+    };
-+
-+...
--- 
-2.17.1
+Normally I pick up the DT doc changes for mmc whenever you have acked
+them (at least more non-trivial changes). I regards to the
+mmc-controller.yaml file, I have no queued changes in my tree for this
+cycle so this should be fine in regards to conflicts.
 
+Going forward, do you prefer to pick the DT doc changes for mmc, or
+can I consider this as a single occasion thingy?
+
+Kind regards
+Uffe
