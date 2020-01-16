@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F32A913E539
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FC5013E6E5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 18:22:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390773AbgAPRNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 12:13:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58816 "EHLO mail.kernel.org"
+        id S1729992AbgAPRWX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 12:22:23 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58982 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390088AbgAPRNd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:13:33 -0500
+        id S1733197AbgAPRNf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:13:35 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 727A520684;
-        Thu, 16 Jan 2020 17:13:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 14A16246AF;
+        Thu, 16 Jan 2020 17:13:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579194812;
-        bh=MxaV68l1iyvzUPYvUZ38+nAcxYoouadMP8paClzaSmI=;
+        s=default; t=1579194815;
+        bh=ndOS0f4Dtb1ODMTqk6eVUDdez0LhtfKzKRVYAhh27OU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XRQ3P7mQD+mHeVOy7N9ZWTvOyrtYy6g7+uTucAWUKIPZxuBlkxOkFb+ZuXlSwaKKx
-         i/VApS6SKn5ZtKP2KN0aw/2yoGjUoL1u7H/lXEhY8/pvBIwuEnZrOMsLsDhhHEn6ws
-         lpi/xWB+kCV81cZH+s703rlz33B12Z3nUsIlviVY=
+        b=eSZ4ys/iSvhKhx4jwv5ZwHy4yLgWuUQV20tb1Vv2dyMzMfilqVjdAoNMkLZHGtJ7O
+         EPa3DCFje15QHQrXBfXBZkZK+qka0yMFLj/DTlfLVOgYsCj+Sq7e+StakX6dlRSXtV
+         NMrxldOIaNjq/hSN/5wTp1pJnRS9q+DZF2/+zDvo=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 619/671] arm64: dts: meson-gxl-s905x-khadas-vim: fix gpio-keys-polled node
-Date:   Thu, 16 Jan 2020 12:04:17 -0500
-Message-Id: <20200116170509.12787-356-sashal@kernel.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 621/671] arm64: dts: apq8096-db820c: Increase load on l21 for SDCARD
+Date:   Thu, 16 Jan 2020 12:04:19 -0500
+Message-Id: <20200116170509.12787-358-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116170509.12787-1-sashal@kernel.org>
 References: <20200116170509.12787-1-sashal@kernel.org>
@@ -45,42 +44,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Hewitt <christianshewitt@gmail.com>
+From: Loic Poulain <loic.poulain@linaro.org>
 
-[ Upstream commit d5f6fa904ecbadbb8e9fa6302b0fc165bec0559a ]
+[ Upstream commit e38161bd325ea541ef2f258d8e28281077dde524 ]
 
-Fix DTC warnings:
+In the same way as for msm8974-hammerhead, l21 load, used for SDCARD
+VMMC, needs to be increased in order to prevent any voltage drop issues
+(due to limited current) happening with some SDCARDS or during specific
+operations (e.g. write).
 
-arch/arm/dts/meson-gxl-s905x-khadas-vim.dtb: Warning (avoid_unnecessary_addr_size):
-   /gpio-keys-polled: unnecessary #address-cells/#size-cells
-      without "ranges" or child "reg" property
-
-Fixes: e15d2774b8c0 ("ARM64: dts: meson-gxl: add support for the Khadas VIM board")
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Fixes: 660a9763c6a9 (arm64: dts: qcom: db820c: Add pm8994 regulator node)
+Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-index a589547fc6e3..062e12aa4677 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts
-@@ -33,11 +33,9 @@
- 
- 	gpio-keys-polled {
- 		compatible = "gpio-keys-polled";
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		poll-interval = <100>;
- 
--		button@0 {
-+		power-button {
- 			label = "power";
- 			linux,code = <KEY_POWER>;
- 			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+index 0ef90c6554a9..9b41d77aa39b 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+@@ -580,6 +580,8 @@
+ 				l21 {
+ 					regulator-min-microvolt = <2950000>;
+ 					regulator-max-microvolt = <2950000>;
++					regulator-allow-set-load;
++					regulator-system-load = <200000>;
+ 				};
+ 				l22 {
+ 					regulator-min-microvolt = <3300000>;
 -- 
 2.20.1
 
