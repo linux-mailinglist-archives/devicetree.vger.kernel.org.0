@@ -2,34 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1021613F260
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:35:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 305CB13F19F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:31:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391666AbgAPSev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 13:34:51 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59298 "EHLO mail.kernel.org"
+        id S2390801AbgAPS3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 13:29:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34188 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729635AbgAPRYd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 16 Jan 2020 12:24:33 -0500
+        id S2391692AbgAPRZ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 12:25:57 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DE12224684;
-        Thu, 16 Jan 2020 17:24:31 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 470262081E;
+        Thu, 16 Jan 2020 17:25:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579195473;
-        bh=UvvU2ACvuYDR0k0CFkDRQnXCIO/igM/KM/2IdQE1i8c=;
+        s=default; t=1579195557;
+        bh=gRRExTBOxk0GsxlIZLGBj4g129fbjoNxN9f9p6V1jf4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mtrupOC15eWroqE8Gz4QSAL5gbfI8ogpc1G2NToM9ow2/F0XgH7TApXU/FPg2h7Kr
-         aCPCK4+7NGxC3R4z802LHK7OyK9xD28ssjuUQktCKjvzqJhUJ7ZHwggclxNMIHBIWO
-         dq9u29cWahlRy+kt4hdHcblgAad1L1C7ZYQFueDQ=
+        b=lIw9quMUrsYu60LMElBVp9AFIOVhfzd5qKA+hmmkqFG2OPqT08eV2iOKiF2Iy6M8w
+         7XwX+RzyIFjXAsmW6Fy4rGOWjt4anyLdcspXhYPiHfYWTwuhLV7b5WqJJOl/JtrsPP
+         f81Y9/ocjBneqNobVbNXGQNoEqhWQCRI9csIClq4=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Zapolskiy <vz@mleia.com>, Sasha Levin <sashal@kernel.org>,
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 079/371] ARM: dts: lpc32xx: phy3250: fix SD card regulator voltage
-Date:   Thu, 16 Jan 2020 12:19:11 -0500
-Message-Id: <20200116172403.18149-22-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 145/371] arm64: dts: allwinner: a64: Add missing PIO clocks
+Date:   Thu, 16 Jan 2020 12:20:17 -0500
+Message-Id: <20200116172403.18149-88-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200116172403.18149-1-sashal@kernel.org>
 References: <20200116172403.18149-1-sashal@kernel.org>
@@ -42,37 +43,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Zapolskiy <vz@mleia.com>
+From: Maxime Ripard <maxime.ripard@bootlin.com>
 
-[ Upstream commit dc141b99fc36cf910a1d8d5ee30f43f2442fd1bd ]
+[ Upstream commit 562bf19611c000cb7219431c3cc78aa60c2b371e ]
 
-The fixed voltage regulator on Phytec phyCORE-LPC3250 board, which
-supplies SD/MMC card's power, has a constant output voltage level
-of either 3.15V or 3.3V, the actual value depends on JP4 position,
-the power rail is referenced as VCC_SDIO in the board hardware manual.
+The pinctrl binding mandates that we have the three clocks fed into the PIO
+described.
 
-Fixes: d06670e96267 ("arm: dts: phy3250: add SD fixed regulator")
-Signed-off-by: Vladimir Zapolskiy <vz@mleia.com>
+Even though the old case is still supported for backward compatibility, we
+should update our DTs to fix this.
+
+Fixes: 6bc37fac30cf ("arm64: dts: add Allwinner A64 SoC .dtsi")
+Acked-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/lpc3250-phy3250.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/lpc3250-phy3250.dts b/arch/arm/boot/dts/lpc3250-phy3250.dts
-index b7bd3a110a8d..dd0bdf765599 100644
---- a/arch/arm/boot/dts/lpc3250-phy3250.dts
-+++ b/arch/arm/boot/dts/lpc3250-phy3250.dts
-@@ -49,8 +49,8 @@
- 		sd_reg: regulator@2 {
- 			compatible = "regulator-fixed";
- 			regulator-name = "sd_reg";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3300000>;
- 			gpio = <&gpio 5 5 0>;
- 			enable-active-high;
- 		};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+index 8c8db1b057df..788a6f8c5994 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
+@@ -274,7 +274,8 @@
+ 			interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
+ 				     <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&ccu 58>;
++			clocks = <&ccu 58>, <&osc24M>, <&rtc 0>;
++			clock-names = "apb", "hosc", "losc";
+ 			gpio-controller;
+ 			#gpio-cells = <3>;
+ 			interrupt-controller;
 -- 
 2.20.1
 
