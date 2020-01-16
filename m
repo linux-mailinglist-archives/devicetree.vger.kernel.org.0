@@ -2,91 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 645C513F383
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:44:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2CF413F4DE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2020 19:53:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390316AbgAPSmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 16 Jan 2020 13:42:19 -0500
-Received: from mout.kundenserver.de ([212.227.17.13]:38257 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390300AbgAPSmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 16 Jan 2020 13:42:18 -0500
-Received: from localhost.localdomain ([37.4.249.101]) by
- mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1Mleo0-1jIw7L3qrK-00ioZF; Thu, 16 Jan 2020 19:41:50 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH] dt-bindings: brcm,avs-ro-thermal: Fix binding check issues
-Date:   Thu, 16 Jan 2020 19:41:17 +0100
-Message-Id: <1579200077-17496-1-git-send-email-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.7.4
-X-Provags-ID: V03:K1:+sPxTCFhphlG3yB/Vx1rT4zv4v7XQNBXEsZUG8nOQTMLN/8oNU1
- cIQrMr4QLHa06BxUeULkTm8FrfWFhdn3mPaqN4tH3TBTXUdVufXlCUcTyj/PHhw6sgBcMTA
- mZx6vCFItqhZnVkuio0WoafXGl9Rs68tikhSvXXdLUXjSDmuepTiEJYCEWJUZh7wwxSA0wr
- w0LTrbo+7cE9tmdYbr1wQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:+jcCjposBx0=:yyC7jsIe/of8jUKuHeITgu
- aXK8OBpK/gxv+jhxC/xLDqrj+EQsV55PYLfzhgtNyOzU8bAqhW2KJj69StMrp/PPIExIcljYA
- /NKnN584ptFLAUPLEZIJhzRTWYKErS7Qyy11PUlxJlAGWN4d9xpyU78LaeZIkzENnShU5gFP2
- ABEV0+TqsHRWN9wRs4hW5b5Vr5JTsDMk59PpXMryJlxq1pAd+jXXbkAisQA0p692SObeeE2ZA
- JCgwNiSoVO65Embq7fzXx206TuS1T6Ni1qYLdcnz2t6d540k0EX4Uznciz+quVmEOFIwpEje4
- 5HYf1zDbeXdiQD2lElEQx3kiPDJIv3zUpGbvlEhG1aTm5yGYU+/gq3VrmhWHBIqRWVyyU8lqE
- CKux+OgG9+C0CW/Ubh4Q6DJk0SDf+snQVYqBDj/i08YTK7XT9lB5YDbnLUF4+LMOF90pH2n4k
- 5SJCuvNRluII63acZiMwR2R8JtD4MV1YcH+2saetnTwzVlOiwxrzjX8hF6fiOGJFS1Zq02HlD
- 7AR7JfLd8mpG+8d/Fo+ysomcsyOekC72hYrcpXKCCEezDML1QXz+kyjpOUKBjtmbs7z/EEhZH
- s0cZo5ImMqzAznfg55k0Dr9DqsEq27GiVRU2n3mjX3n2Zcn+FZWW8vZCIfFs6zpQn6dIKv1vN
- dZbtEiCoNjvSG24HGs0lICT3VZrlSIkN073iDLF1p4ylHpgTeiX0fO+qo+9ccGUyW2sSa3PIV
- a15ftUAtAGstL4K/uJ9V4E2VyDuLC3ZGp+FvsQrocWUUkI+lzqnEPEiY0oHcsFfers/JbzOSm
- ygFJhwQotapC0SFx5vQjLaJboailcGKVIn9VXiHryFv8+GfLX4xyDm0LI+cjiAT7tiRmn8zFa
- +cHIfWHSP0PRHTBAuWw3BAY62wsz7dl4364I1V+cs=
+        id S2437089AbgAPSwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 16 Jan 2020 13:52:21 -0500
+Received: from muru.com ([72.249.23.125]:51316 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389427AbgAPSwV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 16 Jan 2020 13:52:21 -0500
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 8115980FC;
+        Thu, 16 Jan 2020 18:53:02 +0000 (UTC)
+Date:   Thu, 16 Jan 2020 10:52:17 -0800
+From:   Tony Lindgren <tony@atomide.com>
+To:     kbuild test robot <lkp@intel.com>
+Cc:     kbuild-all@lists.01.org, linux-omap@vger.kernel.org,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Matthijs van Duin <matthijsvanduin@gmail.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Tero Kristo <t-kristo@ti.com>
+Subject: Re: [PATCH] ARM: dts: Configure omap5 AESS
+Message-ID: <20200116185217.GU5885@atomide.com>
+References: <20200114150937.18304-1-tony@atomide.com>
+ <202001162346.4yVlrA8l%lkp@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202001162346.4yVlrA8l%lkp@intel.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the reg property since this only necessary for the parent and
-add the missing thermal-sensor-cells property description.
+* kbuild test robot <lkp@intel.com> [200116 15:55]:
+> Hi Tony,
+> 
+> I love your patch! Yet something to improve:
+> 
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on omap/for-next balbi-usb/next v5.5-rc6 next-20200115]
+> [if your patch is applied to the wrong git tree, please drop us a note to help
+> improve the system. BTW, we also suggest to use '--base' option to specify the
+> base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Tony-Lindgren/ARM-dts-Configure-omap5-AESS/20200115-114737
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> config: arm-defconfig (attached as .config)
+> compiler: arm-linux-gnueabi-gcc (GCC) 7.5.0
+> reproduce:
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # save the attached .config to linux build tree
+>         GCC_VERSION=7.5.0 make.cross ARCH=arm 
+> 
+> If you fix the issue, kindly add following tag
+> Reported-by: kbuild test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+> >> Error: arch/arm/boot/dts/omap5-l4-abe.dtsi:447.27-28 syntax error
+>    FATAL ERROR: Unable to parse input tree
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-Fixes: 3d4849897691 ("dt-bindings: Add Broadcom AVS RO thermal")
----
- .../devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml         | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+This patch has a dependency to a clock related patch as described in the
+original patch email so this error can be ignored.
 
-diff --git a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
-index 98e7b57..d9fdf48 100644
---- a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
-@@ -23,12 +23,15 @@ properties:
-   compatible:
-     const: brcm,bcm2711-thermal
- 
--  reg:
--    maxItems: 1
-+  # See ./thermal.txt for details
-+  "#thermal-sensor-cells":
-+    const: 0
- 
- required:
-   - compatible
--  - reg
-+  - '#thermal-sensor-cells'
-+
-+additionalProperties: false
- 
- examples:
-   - |
--- 
-2.7.4
+Regards,
+
+Tony
 
