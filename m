@@ -2,147 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4E701410E7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2020 19:39:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DE621410F0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2020 19:40:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726897AbgAQSjF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jan 2020 13:39:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57822 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726603AbgAQSjF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Jan 2020 13:39:05 -0500
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C5B122072B;
-        Fri, 17 Jan 2020 18:39:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579286344;
-        bh=6rm5uepdIyjw+aZoxr4SzBFKL0Tg5MKu9jhMt9uBjGk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mWzHbgtEjfc9srjAIxQV6fbaWdY6wToG6L4lKDAdWOKc8scRm4r13SqQpktEw0axz
-         xxGlxYZFS6YL+bi0X/wE/Hw/Ns1pw1l4zJbygQhCfBsGRgt/kWhVj33wMHi+AzumNR
-         IrpnQ4XJpt9NhT2AC/ztRfkeRDYphvHxlvRf6zyc=
-Date:   Fri, 17 Jan 2020 19:39:01 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Use internal
- oscillator
-Message-ID: <20200117183901.lkieha3hu6nz2hoj@gilmour.lan>
-References: <20200113180720.77461-1-jernej.skrabec@siol.net>
- <20200116080652.mp5z7dtrtj3nyhpq@gilmour.lan>
- <20509747.EfDdHjke4D@jernej-laptop>
+        id S1728600AbgAQSkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jan 2020 13:40:46 -0500
+Received: from mail-pj1-f51.google.com ([209.85.216.51]:37131 "EHLO
+        mail-pj1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726603AbgAQSkq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jan 2020 13:40:46 -0500
+Received: by mail-pj1-f51.google.com with SMTP id m13so3704283pjb.2
+        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2020 10:40:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=37VhHEnLonN3VBsLsaexRstzJMU5ZwdhXQzpJqxZdAA=;
+        b=YTeCeDAD0If4aSccR5cTds2h0Yofh+0CNZ4E7wDWzSQkKcMRd/QWfXzRdg1IS42f7V
+         m0EBXwyXXQo8s7bIMsXlTdYoWIG7GLhk96dUC2bDfP65JZhCgT1ygmmwWI8bLdUQyNCT
+         ZRTqSzUjekwxPx4cRXeokBf/YCMMc0yRHZGeE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=37VhHEnLonN3VBsLsaexRstzJMU5ZwdhXQzpJqxZdAA=;
+        b=lDwWO47QbuKZlmANVn8qYBcxb+++zW4zDU43V6iWPpFzlQwuobGq+wf79uSIjhXZwy
+         Rk5qOLxIkREzt+sMVjGkdbBKTcDmNbYg8hXY19ef64q2K5/+TXjn1o1SP2+xV4nbvTUf
+         BlP5+eDy+C7gVUT6/52Vo/WhHkq+wRIwAq0KmKZ8vyVLxCJfFvXk2MYAT6T7KmCW/IkP
+         YDJ/NjBLTUFhIubQ16jozAN1QJEmCNpeuwIwrG/qFOzqwkbnbt6Osf6WX819uk14+udv
+         ETS5mpssceMCVpkCPqQBegJGk+5QYPx7GYhwqfvW7PVMsCANMsUoASing0Wrqb9Adjmg
+         0MKA==
+X-Gm-Message-State: APjAAAV+XRkPpp/zzt8dNAkK0RTOva+OMMVO8wHeP5HG94YT6iGD6b89
+        HraIeJmO6P6kYdPc9WyjOfbifw==
+X-Google-Smtp-Source: APXvYqz+czzaPdAmyGQUR55S9FX37E6K9gEke+j/f0s3Lhfqy3SMOuqamUcKKsfBRMHOdguyuYNe+A==
+X-Received: by 2002:a17:90a:3763:: with SMTP id u90mr7340800pjb.107.1579286445966;
+        Fri, 17 Jan 2020 10:40:45 -0800 (PST)
+Received: from [10.136.13.65] ([192.19.228.250])
+        by smtp.gmail.com with ESMTPSA id a9sm29830335pfn.38.2020.01.17.10.40.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Jan 2020 10:40:45 -0800 (PST)
+Subject: Re: [PATCH v9 2/2] EDAC: add EDAC driver for DMC520
+To:     Shiping Ji <shiping.linux@gmail.com>,
+        Borislav Petkov <bp@alien8.de>
+Cc:     James Morse <james.morse@arm.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>, linux-edac@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        sashal@kernel.org, hangl@microsoft.com,
+        Lei Wang <lewan@microsoft.com>, shji@microsoft.com,
+        ruizhao@microsoft.com, Yuqing Shen <yuqing.shen@broadcom.com>,
+        ray.jui@broadcom.com, wangglei@gmail.com
+References: <6a462190-0af2-094a-daa8-f480d54a1fbf@gmail.com>
+ <20200117001843.GJ27148@zn.tnic>
+ <d5989a4c-8173-2f03-7d20-6fdd32d19591@gmail.com>
+From:   Scott Branden <scott.branden@broadcom.com>
+Message-ID: <1577ee39-2587-4d61-bbfc-a043e201c15a@broadcom.com>
+Date:   Fri, 17 Jan 2020 10:40:42 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pymbu5lgw5irb6p6"
-Content-Disposition: inline
-In-Reply-To: <20509747.EfDdHjke4D@jernej-laptop>
+In-Reply-To: <d5989a4c-8173-2f03-7d20-6fdd32d19591@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pymbu5lgw5irb6p6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Thu, Jan 16, 2020 at 05:47:12PM +0100, Jernej =C5=A0krabec wrote:
-> Dne =C4=8Detrtek, 16. januar 2020 ob 09:06:52 CET je Maxime Ripard napisa=
-l(a):
-> > Hi Jernej,
-> >
-> > On Mon, Jan 13, 2020 at 07:07:20PM +0100, Jernej Skrabec wrote:
-> > > Tanix TX6 doesn't have external 32 kHz oscillator, so switch RTC clock
-> > > to internal one.
-> > >
-> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > ---
-> > >
-> > > While this patch gives one possible solution, I mainly want to start
-> > > discussion why Allwinner SoC dtsi reference external 32 kHz crystal
-> > > although some boards don't have it. My proposal would be to make clock
-> > > property optional, based on the fact if external crystal is present or
-> > > not. However, I'm not sure if that is possible at this point or not.
-> >
-> > It's probably a bit of a dumb question but.. are you sure the crystal
-> > is missing?
+On 2020-01-17 10:31 a.m., Shiping Ji wrote:
 >
-> Although I don't have schematic, I'm pretty sure. Without this patch or o=
-ne at
-> [1], RTC gives a lot of errors in dmesg. I think that unpopulated XC2 pads
-> near SoC (see [2]) are probably reserved for crystal.
+>>> +		if (irq >= 0) {
+>>> +			ret = devm_request_irq(&pdev->dev, irq,
+>>> +							dmc520_isr, IRQF_SHARED,
+>>> +							dev_name(&pdev->dev), mci);
+>> Align arguments on the opening brace.
+> I'm not sure how this can be done perfectly with tabs only :)
+tabs are used first, followed by however may spaces (less than 8) needed 
+to lineup at the end.
 >
-> With patch in [1], which enables automatic switching in case of error, I =
-saw
-> that on this box RTC always switched to internal RC.
+> All other comments have been addressed in the next patch, many thanks!
 >
-> >
-> > The H6 datasheet mentions that the 32kHz crystal needs to be there,
-> > and it's part of the power sequence, so I'd expect all boards to have
-> > it.
->
-> Can you be more specific where it is stated that crystal is mandatory?
 
-I was mostly referring to the power sequence mentionned in the H6
-Datasheet (not the user manual, the smaller one).
-
-https://linux-sunxi.org/images/5/5c/Allwinner_H6_V200_Datasheet_V1.1.pdf
-
-Page 74
-
-> Note that schematic of some boards, like OrangePi PC2 (H5) or OrangePi Ze=
-ro
-> (H3) don't even have 32K crystal in them.
-
-And we can't use the compatible for these..
-
-> >
-> > > Driver also considers missing clock property as deprecated (old DT) [=
-1],
-> > > so this might complicate things even further.
-> > >
-> > > What do you think?
-> >
-> > I'm pretty sure (but that would need to be checked) that we never got
-> > a node without the clocks property on the H6. If that's the case, then
-> > we can add a check on the compatible.
->
-> Yes, that would be nice solution. I can work something out if you agree t=
-hat
-> this is the way.
-
-So if we want to have something that works for the H3 too, then I
-guess we need to revert the patch that switches the 32kHz clock source
-to the external one all the time, and do it only if we have a clock
-provided.
-
-If we don't, we would run from the internal oscillator (which would
-work for both the H3 and H6 boards you have I guess?) and if we do we
-will still use the better, more accurate, clock.
-
-That would change a bit the behaviour of the old DTs again and revert
-to the old behaviour we had, but we didn't hear anything the first
-time we did, so I wouldn't be overly concerned.
-
-Does that make sense?
-Maxime
-
---pymbu5lgw5irb6p6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXiH/RQAKCRDj7w1vZxhR
-xbfcAP9i1ZlK+Y2jyWhOcBVCr7LdqTqBFTaqpH+3E3F0/+TWaAD/bYjxs8/lrxo+
-1KQCUUoscHHEne5JK4ivcaQbvqiZ4gw=
-=bHvI
------END PGP SIGNATURE-----
-
---pymbu5lgw5irb6p6--
