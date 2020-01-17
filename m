@@ -2,110 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6B9D14095C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2020 12:58:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9EE21409B3
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2020 13:26:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726958AbgAQL6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jan 2020 06:58:43 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:28377 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726785AbgAQL6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 17 Jan 2020 06:58:43 -0500
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
-  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Claudiu.Beznea@microchip.com";
-  x-sender="Claudiu.Beznea@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
-  include:servers.mcsv.net include:mktomail.com
-  include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
-  envelope-from="Claudiu.Beznea@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: yc1ayAgkLGo9iy/xu8fjy78eHGoqCRKIHuSEbluMLdLmvA9VpukdSsXV7JB/ySxTPvRtFNKMiL
- 6qBgXmIRNB62mNlaFY2N3p2neo1f4Hd9DQXyQo+S0H26s++9WYdhEv3nr1AAgSxkjDvdPn9pJg
- u3Nu7IzSqiOFT/Q9+m7rMZwwNyjBm+lRULJb1KJ42aTRRR7ij+WJjIgmmOgoJqHLSr2uunufH+
- mHRvZPAbNZ4oTW4ZgHMRZXixw2Lh/NcDxCas7+pq8JQV15thqQyCujcxwZf3WmFv9PE6qk1OEW
- wqY=
-X-IronPort-AV: E=Sophos;i="5.70,330,1574146800"; 
-   d="scan'208";a="61130333"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Jan 2020 04:58:42 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 17 Jan 2020 04:58:42 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.85.251) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Fri, 17 Jan 2020 04:58:39 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <radu_nicolae.pirea@upb.ro>, <richard.genoud@gmail.com>,
-        <lee.jones@linaro.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v5 2/2] dt-bindings: atmel-usart: add microchip,sam9x60-{usart, dbgu}
-Date:   Fri, 17 Jan 2020 13:58:29 +0200
-Message-ID: <1579262309-6542-3-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1579262309-6542-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1579262309-6542-1-git-send-email-claudiu.beznea@microchip.com>
+        id S1726982AbgAQM0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jan 2020 07:26:50 -0500
+Received: from ozlabs.org ([203.11.71.1]:48903 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726812AbgAQM0t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Jan 2020 07:26:49 -0500
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 47zgKd6pB0z9sRR; Fri, 17 Jan 2020 23:26:45 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1579264005;
+        bh=kurz+DTGyHKCLIvcZzXDHOZM5UqyeQHKPspRA/gpp50=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TKh3IrbQ1yepznLeAk1CcT3rhzHe3vmWKwn5CHGDbZGSnZjOTHAcU9RLfsarsrxcI
+         XfLCeX1zS2KhCU3GeA29/mdbe6L1IRTa8TPIubPcGpbTjFZkAV1EncUmATkK/PoSYI
+         ks4QUlFQDk+0W6JDU6EZ5mFNC2Q6DQgx3ZaNAevI=
+Date:   Fri, 17 Jan 2020 19:09:37 +1000
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Alexandre Torgue <alexandre.torgue@st.com>
+Cc:     robh+dt@kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>, sjg@chromium.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+        Steve McIntyre <steve.mcintyre@linaro.org>
+Subject: Re: [RFC PATCH 1/3] dtc: Add dtb build information option
+Message-ID: <20200117090937.GU54439@umbus>
+References: <20200113181625.3130-1-alexandre.torgue@st.com>
+ <20200113181625.3130-2-alexandre.torgue@st.com>
+ <20200116005741.GB54439@umbus>
+ <d2594b79-a45d-dcac-3642-90016a1408b8@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="E75mJrUy8lRi9cGN"
+Content-Disposition: inline
+In-Reply-To: <d2594b79-a45d-dcac-3642-90016a1408b8@st.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add microchip,sam9x60-usart and add microchip,sam9x60-dbgu to DT
-bindings documentation.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
----
+--E75mJrUy8lRi9cGN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Lee,
+On Thu, Jan 16, 2020 at 09:58:23AM +0100, Alexandre Torgue wrote:
+> Hi David
+>=20
+> On 1/16/20 1:57 AM, David Gibson wrote:
+> > On Mon, Jan 13, 2020 at 07:16:23PM +0100, Alexandre Torgue wrote:
+> > > This commit adds the possibility to add build information for a DTB.
+> > > Build information can be: build date, DTS version, "who built the DTB"
+> > > (same kind of information that we get in Linux with the Linux banner).
+> > >=20
+> > > To do this, an extra option "-B" using an information file as argument
+> > > has been added. If this option is used, input device tree is appended=
+ with
+> > > a new string property "Build-info". This property is built with infor=
+mation
+> > > found in information file given as argument. This file has to be gene=
+rated
+> > > by user and shouldn't exceed 256 bytes.
+> > >=20
+> > > Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+> >=20
+> > At the very least, this patch of the series will need to be sent to
+> > upstream dtc first.
+>=20
+> Ok sorry. I thought that sending all the series would give more
+> information.
 
-Between version 3 (that you Acked-for-MFD-by) and this one, there is a
-new line introduced in this patch:
+That's fair enough, but in order to merge, you'll need to post against
+upstream dtc.
 
-+       - "microchip,sam9x60-usart"
+> > I'm also not terribly clear on what you're trying to accomplish here,
+> > and why it's useful.
+>=20
+> Let's take Kernel boot at example (but could be extend to other DTB "user=
+s"
+> like U-Boot). When Linux kernel booting we get a log that gives useful
+> information about kernel image: source version, build date, people who bu=
+ilt
+> the kernel image, compiler version. This information is useful for debug =
+and
+> support. The aim is to get same kind of information but for the DTB.
+>=20
+> > Since you're doing this specifically for use with dtbs built in the
+> > kernel build, could you just use a:
+> > 	Build-info =3D /incbin/ "build-info.txt";
+> > in each of the in-kernel .dts files?
+>=20
+> My first idea was to not modify all existing .dts files. Adding an extra
+> option in dtc is (for me) the softer way to do it. I mean, compile
+> information should come through compiler without modify .dts files outside
+> from dtc. In this way it will be easy to everybody using dtc (inside our
+> outside Linux tree) to add dtb build info (even if they don't how to writ=
+e a
+> dts file).
 
-I kept your Acked-for-MFD-by in this version (with the extra line).
-Tell me if you consider otherwise.
+But you're not really having this information coming from the
+compiler.  Instead you're adding a compiler option that just force
+includes another file into the generated tree, and it's up to your
+build scripts to put something useful into that file.
 
-Thank you,
-Claudiu Beznea
+I don't really see that as preferable to modifying the .dts files.
 
- Documentation/devicetree/bindings/mfd/atmel-usart.txt | 2 ++
- 1 file changed, 2 insertions(+)
+I also dislike the fact that the option as proposed is much more
+general than the name suggests, but also very similar too, but much
+more specific than the existing /incbin/ option.
 
-diff --git a/Documentation/devicetree/bindings/mfd/atmel-usart.txt b/Documentation/devicetree/bindings/mfd/atmel-usart.txt
-index 614a14b5d205..a09133066aff 100644
---- a/Documentation/devicetree/bindings/mfd/atmel-usart.txt
-+++ b/Documentation/devicetree/bindings/mfd/atmel-usart.txt
-@@ -4,8 +4,10 @@ Required properties for USART:
- - compatible: Should be one of the following:
- 	- "atmel,at91rm9200-usart"
- 	- "atmel,at91sam9260-usart"
-+	- "microchip,sam9x60-usart"
- 	- "atmel,at91rm9200-dbgu", "atmel,at91rm9200-usart"
- 	- "atmel,at91sam9260-dbgu", "atmel,at91sam9260-usart"
-+	- "microchip,sam9x60-dbgu", "microchip,sam9x60-usart"
- - reg: Should contain registers location and length
- - interrupts: Should contain interrupt
- - clock-names: tuple listing input clock names.
--- 
-2.7.4
+What might be better would be to have a dtc option which force appends
+an extra .dts to the mail .dts compiled.  You can then put an overlay
+template in that file, something like:
 
+&{/} {
+	linux,build-info =3D /incbin/ "build-info.txt;
+}
+
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
+
+--E75mJrUy8lRi9cGN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAl4hec4ACgkQbDjKyiDZ
+s5JBkBAAqIBfwpRffu5P/FrP1ByZCpvCoDk8mmoWaN0k75RnPYkHuEoyj3NkVzv4
+mpJ0+e5m8yGrrMollgWKrUT3qojPVUYuu/ztkx9nspAa5M2pFiM4P1dLt4n/CVoA
+qdw/cHhCI1yQ4ws22P5mcw+rdJBegrdJgJNr14VqAy8uZsU8ANoNkmVIkAZO78kY
+41Og23xr20h2UDj4is4aUwKRs5n9eSDFv8DWruoQQxgXUkaGlAsJKeCLfRkmuJ81
+UnHq6Zkil0ueCvTJSmekz6dV29ius+uoAKZFWp6qMzUmVe4+amR3y1M0dLYXZjhU
+SkeudGQVEakWnnQ/3YXKD170eRnbBEFD/d0V377Ns6BOApI+YD77KRyMKw+fMoGB
+pK0HAxHf/rFIGke5H+dRJ+yGikPFKUuCuEvBoOB1/nAtj6aSR/HXqzGed0RQUvc5
+D6kvvILwsLry55n4IDsmI+AUzTvRJwcOTmQ47BGAKmwoNaJbNoO55uXzpR5euSjG
++yQKirwMsQKXSM3HOx6D+nHpMKxBxPCN0m8s1+5/mJeFvrL3II3jouko+tDsx84A
+7rbEEmBil4ggTtv5LOPJCX6v2Ps8WbsWfiOAkP3JqlT+RaGKA8kOo7VrwLoZWprj
+NmCxLe1tG5MP8UM7NJvbf0dMoV5/pdfYEp1AiSH5dhAgsunnGas=
+=HQxc
+-----END PGP SIGNATURE-----
+
+--E75mJrUy8lRi9cGN--
