@@ -2,92 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 229AB141127
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2020 19:54:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6BA141148
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2020 19:58:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727115AbgAQSx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 17 Jan 2020 13:53:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47520 "EHLO mail.kernel.org"
+        id S1729547AbgAQS5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 17 Jan 2020 13:57:39 -0500
+Received: from mail.skyhub.de ([5.9.137.197]:46150 "EHLO mail.skyhub.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726897AbgAQSx7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 17 Jan 2020 13:53:59 -0500
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        id S1726761AbgAQS5i (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 17 Jan 2020 13:57:38 -0500
+Received: from zn.tnic (p200300EC2F08DC00F542D1B17E7E874A.dip0.t-ipconnect.de [IPv6:2003:ec:2f08:dc00:f542:d1b1:7e7e:874a])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A857D20748;
-        Fri, 17 Jan 2020 18:53:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579287238;
-        bh=Ggs4OoJBCkjO8db/zcQts4isiDP4L4RjiRCqQPSG+Do=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ckG2ELRNQQm99wQbw8vq+wWoAinNuDS1uWRMdwoY5ePHou+8BHw2vcCMGKAUN8cnt
-         ikesXAuWEmHyUoev/Hc57X+zKChsZEh63Awa/wgJpxIhjGk0jINT32oVj2AD4iR5S0
-         DS12dDaoxUdkAKnoTs+vFOzj/HyePGibWABa1HNY=
-Date:   Fri, 17 Jan 2020 19:53:55 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Icenowy Zheng <icenowy@aosc.io>, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-sunxi@googlegroups.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/5] Add support for Pine64 PineTab
-Message-ID: <20200117185355.wmu3so53whvtbnhx@gilmour.lan>
-References: <20200116033636.512461-1-icenowy@aosc.io>
- <20200117185012.GC14298@ravnborg.org>
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 6C3C51EC03F6;
+        Fri, 17 Jan 2020 19:57:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1579287456;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=POACTC6mnXGZzWfF2psU4bC7N5ybL/xYN8K9pQsvVts=;
+        b=lrxsDNeSB5hwOaA/GXovvrEqZLuVO5W8q7BY0QoRbSkqI2RGheQfmBDQNi3UOIogUbpyeM
+        T7keG914fxIfQL+BXDEuL67l42JbLj2ap3zDL6j9RsG11MjWArU7OV6BrUdzpGRA8LRsuD
+        A0xX62R8W6mQ31PFYXaaLyXx+A+0V90=
+Date:   Fri, 17 Jan 2020 19:57:28 +0100
+From:   Borislav Petkov <bp@alien8.de>
+To:     Shiping Ji <shiping.linux@gmail.com>
+Cc:     James Morse <james.morse@arm.com>, robh+dt@kernel.org,
+        mark.rutland@arm.com, devicetree@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>, linux-edac@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        sashal@kernel.org, hangl@microsoft.com,
+        Lei Wang <lewan@microsoft.com>, shji@microsoft.com,
+        ruizhao@microsoft.com, Scott Branden <scott.branden@broadcom.com>,
+        Yuqing Shen <yuqing.shen@broadcom.com>, ray.jui@broadcom.com,
+        wangglei@gmail.com
+Subject: Re: [PATCH v9 2/2] EDAC: add EDAC driver for DMC520
+Message-ID: <20200117185728.GC31472@zn.tnic>
+References: <6a462190-0af2-094a-daa8-f480d54a1fbf@gmail.com>
+ <20200117001843.GJ27148@zn.tnic>
+ <d5989a4c-8173-2f03-7d20-6fdd32d19591@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="p4f53y6km3ucx2zs"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200117185012.GC14298@ravnborg.org>
+In-Reply-To: <d5989a4c-8173-2f03-7d20-6fdd32d19591@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jan 17, 2020 at 10:31:18AM -0800, Shiping Ji wrote:
+> This is to protect concurrent writes to the mci->error_desc as
+> suggested by James when reviewing the patch v3.
 
---p4f53y6km3ucx2zs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Please comment that in the structure definition so that it is clear what
+it is for.
 
-On Fri, Jan 17, 2020 at 07:50:12PM +0100, Sam Ravnborg wrote:
-> Hi Icenowy
->
-> On Thu, Jan 16, 2020 at 11:36:31AM +0800, Icenowy Zheng wrote:
-> > This patchset tries to add support for the PineTab tablet from Pine64.
-> >
-> > As it uses a specific MIPI-DSI panel, the support of the panel should be
-> > introduced first, with its DT binding.
-> >
-> > Then a device tree is added. Compared to v1 of the patchset, the
-> > accelerometer support is temporarily removed because a DT binding is
-> > lacked (although a proper driver exists).
-> >
-> > Icenowy Zheng (5):
-> >   dt-bindings: vendor-prefix: add Shenzhen Feixin Photoelectics Co., Ltd
-> >   dt-bindings: panel: add Feixin K101 IM2BA02 MIPI-DSI panel
-> >   drm/panel: Add Feixin K101 IM2BA02 panel
-> >   dt-bindings: arm: sunxi: add binding for PineTab tablet
-> >   arm64: dts: allwinner: a64: add support for PineTab
->
-> Thanks for the updates.
-> I have applied the first three patches to drm-misc-next.
-> The remaining two patches shall most likely go in via another tree.
+> I'm trying to find a good scheme to make them shorter, at the moment
+> they are named according to the TRM.
 
-queued the last two for 5.7, thanks!
-Maxime
+Yeah, keeping it the same as the documentation is also a good idea. I
+leave it up to you to decide as you'll be staring at that code when bugs
+happen. :)
 
---p4f53y6km3ucx2zs
-Content-Type: application/pgp-signature; name="signature.asc"
+> I'm not sure how this can be done perfectly with tabs only :)
 
------BEGIN PGP SIGNATURE-----
+Who says you should use only tabs? :-)
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXiICwwAKCRDj7w1vZxhR
-xZQcAQCabPKDVEHD7EEKVMSsoVVvXNcUSRxlLRN7UZEzxKP8/QD/TvXs63UOJH6/
-6zRTD2fYEmgvB1Cr3YJC7JpuiB5qbgE=
-=a6tO
------END PGP SIGNATURE-----
+> All other comments have been addressed in the next patch, many thanks!
 
---p4f53y6km3ucx2zs--
+Thanks too.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
