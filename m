@@ -2,131 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE43142037
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2020 22:38:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E43BC142041
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2020 22:41:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728900AbgASViY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jan 2020 16:38:24 -0500
-Received: from asavdk4.altibox.net ([109.247.116.15]:44552 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727556AbgASViY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jan 2020 16:38:24 -0500
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 95E5780402;
-        Sun, 19 Jan 2020 22:38:17 +0100 (CET)
-Date:   Sun, 19 Jan 2020 22:38:16 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Cc:     "robh@kernel.org" <robh@kernel.org>,
-        "info@logictechno.com" <info@logictechno.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "j.bauer@endrich.com" <j.bauer@endrich.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>
-Subject: Re: [PATCH v2 3/3] dt-bindings: display: panel: add bindings for
- logic technologies displays
-Message-ID: <20200119213815.GA3363@ravnborg.org>
-References: <20191027142609.12754-1-marcel@ziswiler.com>
- <20191027142609.12754-3-marcel@ziswiler.com>
- <20191030142835.GA31293@bogus>
- <db84ef6c90a9f327bc32c4948109c759b572a2af.camel@toradex.com>
+        id S1728863AbgASVlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jan 2020 16:41:52 -0500
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:40643 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728827AbgASVlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jan 2020 16:41:51 -0500
+Received: by mail-ua1-f68.google.com with SMTP id z24so10815899uam.7
+        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2020 13:41:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=/o+CA7VDRA7UR3HGeT8+/tYzwEnOXwq5B8ZHP2/HeYc=;
+        b=li9xAWhjBjM8hHe2zqa1Kb42re3GfpnpdfqQtDevzcVODTTFaKE1UX0uJpWB6hkIp7
+         yTA6rbamjgq3ypCDAPqhs/qQg4ymhcBUuJt42OPFLJc5lFhLeUrheg5pp71CY7W7j13s
+         H5OqKDE2nZEjEt3V7CAQ2vTnwLVp7j7INF0zLZ0WOLnyqTrH1Hsw8hW0mB/F9nAiF2O3
+         gy4kks/IQwCtDyGU6lgty16Ywdc4Xfemgn+IT0JUJOHgx7XDU5aTL+BKLO1gkfUaFsw9
+         28kNL8LdT27tvjHNR9LV+GkxNL9uuzEUMveMDMizqubobETk/+LKaGL1fLim+VC0qjKU
+         zS6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=/o+CA7VDRA7UR3HGeT8+/tYzwEnOXwq5B8ZHP2/HeYc=;
+        b=SygqrgVv6N7cNHq1XO53+qNtbHp8GEXWfR7DjnY5dPTVkXJUF/3fc1kIuI3m/Qipyi
+         gL/Tv/Tac9w2q4Voe5RQyiSV2MHjCLpz+3KCqQph8CAyr8fqkotftEsEJqGKOWIicQ2e
+         MH9GP8/IdVuva4ANHlQeRGzJZUOs9eAzvceuf3l9diJDOkXJrdktEw2eoa50np7zq3vv
+         w+lZ2B7csxZGdas92OGHetmcb+jzBdJPufsbpoHxNYzDK7SJXSftaJCO//U+EAicvt9m
+         rgv1i//b30xHySoBCKvdv/jy0eT2QOyFzE/qrzNll7R9RG+bIv++j0gok7Ew7xF750D8
+         LtKg==
+X-Gm-Message-State: APjAAAXliUCd9vGPkRCidYpGzqzAvzxzfmSTpjHpQJwAOp7OEtONMuKW
+        aCK8YgqCaCdJlePVGEZyR24NuNq2ow8hbAASeAI=
+X-Google-Smtp-Source: APXvYqzKhevFzvqKo+mXOlnlxdHw+K28hVa2SKAyHFgf5GApXalRv+ehbxEvn0v29jbpzwzJZN9qvlwgAFTOLZ8BbgM=
+X-Received: by 2002:ab0:32ce:: with SMTP id f14mr26632505uao.54.1579470110848;
+ Sun, 19 Jan 2020 13:41:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <db84ef6c90a9f327bc32c4948109c759b572a2af.camel@toradex.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=m8ToADvmAAAA:8
-        a=k76NmfXvAAAA:8 a=mQzObvnkkXBxZI0lgikA:9 a=jNJEgBlmj-K6qGMv:21
-        a=WmImvuMBWUKtNAjK:21 a=CjuIK1q_8ugA:10 a=kCrBFHLFDAq2jDEeoMj9:22
-        a=xklTzJp5TIrWR6y8xC-k:22
+Received: by 2002:ab0:60c2:0:0:0:0:0 with HTTP; Sun, 19 Jan 2020 13:41:50
+ -0800 (PST)
+Reply-To: favordens@email.com
+From:   Favor Desmond <jerrylawson206@gmail.com>
+Date:   Sun, 19 Jan 2020 21:41:50 +0000
+Message-ID: <CAAy7SGVh48L4zd5X+LuJxDvxxKurcyKEqE+6LH-w4V=xdrnh-Q@mail.gmail.com>
+Subject: HELLO
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marcel.
-
-On Sun, Jan 19, 2020 at 09:25:02PM +0000, Marcel Ziswiler wrote:
-> Sorry, just noticed that this has not gone through yet.
-> 
-> On Wed, 2019-10-30 at 09:28 -0500, Rob Herring wrote:
-> > On Sun, Oct 27, 2019 at 03:26:09PM +0100, Marcel Ziswiler wrote:
-> > > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > > 
-> > > Add bindings for the following 3 previously added display panels
-> > > manufactured by Logic Technologies Limited:
-> > > 
-> > > - LT161010-2NHC e.g. as found in the Toradex Capacitive Touch
-> > > Display
-> > > 7" Parallel [1]
-> > > - LT161010-2NHR e.g. as found in the Toradex Resistive Touch
-> > > Display 7"
-> > > Parallel [2]
-> > > - LT170410-2WHC e.g. as found in the Toradex Capacitive Touch
-> > > Display
-> > > 10.1" LVDS [3]
-> > > 
-> > > Those panels may also be distributed by Endrich Bauelemente
-> > > Vertriebs
-> > > GmbH [4].
-> > > 
-> > > [1] 
-> > > https://docs.toradex.com/104497-7-inch-parallel-capacitive-touch-display-800x480-datasheet.pdf
-> > > [2] 
-> > > https://docs.toradex.com/104498-7-inch-parallel-resistive-touch-display-800x480.pdf
-> > > [3] 
-> > > https://docs.toradex.com/105952-10-1-inch-lvds-capacitive-touch-display-1280x800-datasheet.pdf
-> > > [4] 
-> > > https://www.endrich.com/isi50_isi30_tft-displays/lt170410-1whc_isi30
-> > > 
-> > > Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > > 
-> > > ---
-> > > 
-> > > Changes in v2:
-> > > - New patch adding display panel bindings as well as suggested by
-> > > Rob.
-> > > 
-> > >  .../panel/logictechno,lt161010-2nhc.yaml      | 44
-> > > +++++++++++++++++++
-> > >  .../panel/logictechno,lt161010-2nhr.yaml      | 44
-> > > +++++++++++++++++++
-> > >  .../panel/logictechno,lt170410-2whc.yaml      | 44
-> > > +++++++++++++++++++
-> > >  3 files changed, 132 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/display/panel/logictechno,lt16101
-> > > 0-2nhc.yaml
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/display/panel/logictechno,lt16101
-> > > 0-2nhr.yaml
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/display/panel/logictechno,lt17041
-> > > 0-2whc.yaml
-> > 
-> > I would just put these into 1 document as the compatible is the only 
-> > difference.
-> 
-> No, not quite just the compatible are different as the first and last
-> panel feature capacitive touch while the middle one is resistive and
-> the first two panels are parallel RGB ones while the last one is an
-> LVDS panel.
-
-We have recently introduced panel-simple.yaml.
-This is for dumb panels - where some of your panels could be candidates.
-Please see the file in drm-misc-next, which is also where we will apply
-you patch in the end.
-So base the patch on drm-misc-next so we do not get conflicts when applying.
-
-	Sam
+Hello Dear
+Greetings to you,I am Favor Desmond from Ivory coast currently living
+in  Togo Republic,I would like to know you more, so that i can tell
+you little amount myself and my photo, email address is
+favordens@email.com
+Thanks
+Favor
