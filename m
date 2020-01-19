@@ -2,87 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4B65141D92
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2020 12:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D798141DFD
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2020 14:13:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726775AbgASLaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jan 2020 06:30:01 -0500
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:44829 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726744AbgASLaB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jan 2020 06:30:01 -0500
-Received: by mail-pl1-f196.google.com with SMTP id d9so133980plo.11;
-        Sun, 19 Jan 2020 03:30:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=MGnExAerV3JssOOZACwzhm+zW2U1SumUHkN5NAnxS0Q=;
-        b=hwr9gpqQT3P2kQsR8YXzNLRLMkzjUx23Hx54nrlDIGbMd46ssImw5RROfQO85tnsV/
-         DIg591x/HIQrI730wfPYKOOnOLO0sMRHbW+MUkfBEqQgwlu4vaugQfP0mAdshEcX+0ur
-         UaDCBwxFFLDsmSPLB4GGTyiFWVe+ZFJxqOPSX1097YQ8X6IHSm/C1KJfgNq/FgEKux+y
-         //oELbxGNGdGy/wlr0ofLPKoXWa6Pbq9nATbCV+oaxqqrbVwf107uJpwwlqtNbFFANqj
-         mlTf3vOltWXMBuwPrFqx13N3FVISOUXg7WMy6dTlI0Qvxq7KmvZmzccU1zkcNjaGVPg8
-         jcJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=MGnExAerV3JssOOZACwzhm+zW2U1SumUHkN5NAnxS0Q=;
-        b=FAmevLVgbl36VlVMsVC5eNX9Meg4jcTyKpI6/VadcG+rZiswJ7rv/49mKcXXu5t4Gy
-         asTK9AphjHteWt8llnsgwS/tIsLS6OigqXnYhm/cCwntlH+eOyJI2P/ZAPiEU38m25d+
-         3/Hmp6t2eNAPssX1yKzTbh4QmI7LKN3naLKEKmjswZTUhitunGsDEMlJrBPPUA1F4sKj
-         1s26z2XmD9883Z2U0t5ioAC+zhydArUZnHYnZveGks/VBL59jX6KWJ4KGPlcSzFPt9bR
-         YYHWV1jDIl19baW82iYBPNRhyI9N4PH/i6VZ7mIbIIPhBLZwh9Iy+M2oEKJlt5i9A4uI
-         DwAA==
-X-Gm-Message-State: APjAAAXRc8crRmy+WT71MhDiZA4FlOaHzt28hzv3re1fQNCatKHbi16C
-        3DABunnR4N0XXqqdhTAYGPg=
-X-Google-Smtp-Source: APXvYqzo++TpbfuUhlZ+uPgXY1tOjvMFpk1EWs5JAEdEXQOU62JdFbFh330RKhYkRdgyT8MuteUKqQ==
-X-Received: by 2002:a17:902:9005:: with SMTP id a5mr4915526plp.338.1579433400536;
-        Sun, 19 Jan 2020 03:30:00 -0800 (PST)
-Received: from localhost.localdomain ([219.91.191.70])
-        by smtp.gmail.com with ESMTPSA id q10sm36496600pfn.5.2020.01.19.03.29.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Sun, 19 Jan 2020 03:29:59 -0800 (PST)
-From:   Raag Jadav <raagjadav@gmail.com>
-To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Raag Jadav <raagjadav@gmail.com>
-Subject: [PATCH] ARM: dts: am43x-epos-evm: set data pin directions for spi0 and spi1
-Date:   Sun, 19 Jan 2020 16:58:59 +0530
-Message-Id: <1579433339-10663-1-git-send-email-raagjadav@gmail.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726861AbgASNNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jan 2020 08:13:44 -0500
+Received: from mail25.static.mailgun.info ([104.130.122.25]:58430 "EHLO
+        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726798AbgASNNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 19 Jan 2020 08:13:41 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1579439621; h=Message-Id: Date: Subject: To: From: Sender;
+ bh=FmJHa2FasAfuTkbac3HOfTDpK2WgWNjbFpSdx7jBY20=; b=sNPXIceI2tSVVnT1x53mdWUPEf84w0jQIxMVtvRDrIJjQW2QnV4bVdd8AU26+zZ40lpy0Rdf
+ kPGhCTDNwfBaXnxGsSBuK3PpdXYo57ORHqQlu+8Ba0uUluNt+nz1DQ/1qmxNPxE0nHtpQYqT
+ 70sb6hhq2Rs4WsO8uz2NXO+LIII=
+X-Mailgun-Sending-Ip: 104.130.122.25
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e245602.7f1f8224ff80-smtp-out-n02;
+ Sun, 19 Jan 2020 13:13:38 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9FFB2C4479C; Sun, 19 Jan 2020 13:13:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from srichara1-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sricharan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C75F6C43383;
+        Sun, 19 Jan 2020 13:13:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C75F6C43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=sricharan@codeaurora.org
+From:   Sricharan R <sricharan@codeaurora.org>
+To:     agross@kernel.org, devicetree@vger.kernel.org,
+        linus.walleij@linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-soc@vger.kernel.org,
+        robh+dt@kernel.org, sivaprak@codeaurora.org,
+        sricharan@codeaurora.org
+Subject: [PATCH V6 0/5] Add minimal boot support for IPQ6018
+Date:   Sun, 19 Jan 2020 18:43:16 +0530
+Message-Id: <1579439601-14810-1-git-send-email-sricharan@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set d0 and d1 pin directions for spi0 and spi1 as per their pinmux.
+The IPQ6018 is Qualcomm\u2019s 802.11ax SoC for Routers,
+Gateways and Access Points.
 
-Signed-off-by: Raag Jadav <raagjadav@gmail.com>
----
- arch/arm/boot/dts/am43x-epos-evm.dts | 2 ++
- 1 file changed, 2 insertions(+)
+This series adds minimal board boot support for ipq6018-cp01 board.
 
-diff --git a/arch/arm/boot/dts/am43x-epos-evm.dts b/arch/arm/boot/dts/am43x-epos-evm.dts
-index 078cb47..a6fbc08 100644
---- a/arch/arm/boot/dts/am43x-epos-evm.dts
-+++ b/arch/arm/boot/dts/am43x-epos-evm.dts
-@@ -848,6 +848,7 @@
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&spi0_pins_default>;
- 	pinctrl-1 = <&spi0_pins_sleep>;
-+	ti,pindir-d0-out-d1-in = <1>;
- };
- 
- &spi1 {
-@@ -855,6 +856,7 @@
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&spi1_pins_default>;
- 	pinctrl-1 = <&spi1_pins_sleep>;
-+	ti,pindir-d0-out-d1-in = <1>;
- };
- 
- &usb2_phy1 {
+[V6]
+ * Addressed more review comments on pinctrl bindings from Rob.
+ * Patch 4 arm64: dts: Add ipq6018 SoC and CP01 board support has build
+   dependency with,
+	https://lkml.org/lkml/2020/1/9/84
+[V5]
+ * Addressed review comments in pinctrl bindings from Rob.
+ * Ran make dt_binding_check with modified patch.
+ * Added fixed rate clocks in gcc clock controller node.
+ * Patch 4 arm64: dts: Add ipq6018 SoC and CP01 board support has build
+   dependency with,
+        https://lkml.org/lkml/2020/1/9/84
+[v4]
+ * Addressed review comments in pinctrl bindings from Rob.
+ * Ran make dt_binding_check and no issues was reported.
+ * Deleted absahu email id from patch 4, since its bouncing now.
+ * Patch 4 arm64: dts: Add ipq6018 SoC and CP01 board support has build
+   dependency with,
+	https://lkml.org/lkml/2020/1/9/84
+
+[V3]
+ * Removed clock driver and bindings from this patch series, and added them
+   as a different series.
+ * Removed qpic_padN from pinctrl driver.
+ * Addressed review comments in dts, and added the remaining fixed clocks their
+ * Fixed review comments in pinctrl bindings
+
+[v2]
+ * Splitted dt bindings  and driver into different patches. Added missing bindings
+   and some style changes.
+ * Added ipq6018 schema
+ * Addressed review comments for gcc clock bindings.
+ * Removed all clk critical flags, removed 1/1 factor clocks, moved to new
+   way of specifying clk parents, and addressed other review comments.
+ * Sorted nodes based on address, name, label. Removed unused clock nodes,
+   Addressed other review comments.
+
+Sricharan R (5):
+  dt-bindings: pinctrl: qcom: Add ipq6018 pinctrl bindings
+  pinctrl: qcom: Add ipq6018 pinctrl driver
+  dt-bindings: qcom: Add ipq6018 bindings
+  arm64: dts: Add ipq6018 SoC and CP01 board support
+  arm64: defconfig: Enable qcom ipq6018 clock and pinctrl
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    8 +
+ .../bindings/pinctrl/qcom,ipq6018-pinctrl.yaml     |  174 +++
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts       |   30 +
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  263 +++++
+ arch/arm64/configs/defconfig                       |    3 +
+ drivers/pinctrl/qcom/Kconfig                       |   10 +
+ drivers/pinctrl/qcom/Makefile                      |    1 +
+ drivers/pinctrl/qcom/pinctrl-ipq6018.c             | 1107 ++++++++++++++++++++
+ 9 files changed, 1597 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq6018.dtsi
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq6018.c
+
 -- 
-2.7.4
-
+1.9.1
