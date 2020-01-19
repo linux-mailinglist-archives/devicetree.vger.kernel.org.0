@@ -2,86 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D61D8141A60
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2020 00:09:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7BBC141B45
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2020 03:54:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727465AbgARXJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 18 Jan 2020 18:09:02 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:47033 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727028AbgARXI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jan 2020 18:08:59 -0500
-Received: by mail-wr1-f65.google.com with SMTP id z7so25940278wrl.13;
-        Sat, 18 Jan 2020 15:08:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=zieK1rZ40R+8dR9w9wxIfPfmZcLHznAHvHJSGV+7afI=;
-        b=WcOPjCFxbQWN8I82H5+ql2IT5LtNNZEE54Ef1UQEznrAlFFQXvjOAAp7l95UefDFNS
-         sM8rfr3puhtQih9QwjB8lgLbpQW+1pl84qKR1dtOyHoj80fgXj14bSdwyBPtD4nCBgAu
-         r4JKfQzwqy/2UdJotQ4fW8GH+X3hrxLYIAmUk8XmbYO67tu4LW/XAwM3qUfWN6L4jWVi
-         uLNlfl1Bqm7jOCu8h76EFoIQkUw8VSsfYlFjJ8qj0gZ+6vmWVgbnVEB+ZG5tk2ovR5AQ
-         VWv4+iOzUpx7qNTcWQhFq02mgr0DZvKT89oxZ7tRKJ8XbA8m5m/BtpgAU6aHzrPrFkiy
-         Lmgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=zieK1rZ40R+8dR9w9wxIfPfmZcLHznAHvHJSGV+7afI=;
-        b=k9d05YY1R+Oldzoj5eAqKOugxY398vK0rMbavKOAOFs8lpfQQNpbIPNmFcQFDzSJ7V
-         rQ+yQxoX2BEqmbnmDnTSJYbmB/sNeq27Wgbq3h6A6M/iFSafVXGdC0eneZVgHhudhUkh
-         MYFKhsmhI/WPIaqNBS8Pw6i1bS8bldAz2i+Gd67G2r49+CU+EvYHYR1B6AjQSRw/7R+z
-         41ziMIvxpqQ/Ziwo3EeylGUszVYDknaNNoLzdt7AlqVTmcth0tRU5lyDA1JHoYCJ4EGS
-         f4iLkqn0qnDCiBlVqi2eLxuCq4Nsvy13qCEK9LE4o05bm/73DH/jeoO6iG9AxaKTpMeG
-         y2og==
-X-Gm-Message-State: APjAAAWoTNxOuD18BenqFzpJCmzu1R9A6NoyqaFpHA6L639QcjTb8sfV
-        +IJtCfpnQP/Ord4mzYba5mM=
-X-Google-Smtp-Source: APXvYqwUVkfqKTEe+IdcTJGpN/Oh1StsZugRXWPB63ViZ0Prt/rRHknvczy59Jrcs1kniRrGyk/cBw==
-X-Received: by 2002:a5d:46c7:: with SMTP id g7mr10351910wrs.11.1579388937355;
-        Sat, 18 Jan 2020 15:08:57 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id x16sm5746408wmk.35.2020.01.18.15.08.56
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 18 Jan 2020 15:08:56 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     broonie@kernel.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, heiko@sntech.de,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v1 3/3] dt-bindings: spi: spi-rockchip: add description for rk3328
-Date:   Sun, 19 Jan 2020 00:08:48 +0100
-Message-Id: <20200118230848.15326-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200118230848.15326-1-jbx6244@gmail.com>
-References: <20200118230848.15326-1-jbx6244@gmail.com>
+        id S1727766AbgASCyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 18 Jan 2020 21:54:21 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:18424 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727573AbgASCyV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 18 Jan 2020 21:54:21 -0500
+Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Sun, 19 Jan
+ 2020 10:54:47 +0800
+Subject: Re: [PATCH v6 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
+ DWC3 Glue Bindings
+To:     Rob Herring <robh@kernel.org>
+CC:     Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Yue Wang <yue.wang@amlogic.com>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Carlo Caione <carlo@caione.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Liang Yang <liang.yang@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Jian Hu <jian.hu@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+References: <1579220504-110067-1-git-send-email-hanjie.lin@amlogic.com>
+ <1579220504-110067-3-git-send-email-hanjie.lin@amlogic.com>
+ <20200117163219.GA25603@bogus>
+From:   Hanjie Lin <hanjie.lin@amlogic.com>
+Message-ID: <12c5287e-61af-0712-ae5b-019b8495055b@amlogic.com>
+Date:   Sun, 19 Jan 2020 10:54:46 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
+MIME-Version: 1.0
+In-Reply-To: <20200117163219.GA25603@bogus>
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.38.198]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The description below is already in use for rk3328.dtsi,
-but was somehow never added to a document, so add
-"rockchip,rk3328-spi", "rockchip,rk3066-spi"
-for spi nodes on a rk3328 platform to spi-rockchip.yaml.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-index 24d9567a6..27b2d1df9 100644
---- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-@@ -30,6 +30,7 @@ properties:
-             - rockchip,rk3188-spi  #for rk3188 SoCs.
-             - rockchip,rk3288-spi  #for rk3288 SoCs.
-             - rockchip,rk3308-spi  #for rk3308 SoCs.
-+            - rockchip,rk3328-spi  #for rk3328 SoCs.
-             - rockchip,rk3368-spi  #for rk3368 SoCs.
-             - rockchip,rk3399-spi  #for rk3399 SoCs.
-           - const: rockchip,rk3066-spi
--- 
-2.11.0
+On 2020/1/18 0:32, Rob Herring wrote:
+> On Fri, 17 Jan 2020 08:21:40 +0800, Hanjie Lin wrote:
+>> The Amlogic A1 SoC Family embeds 1 USB Controllers:
+>>  - a DWC3 IP configured as Host for USB2 and USB3
+>>
+>> A glue connects the controllers to the USB2 PHY of A1 SoC.
+>>
+>> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+>> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+>> ---
+>>  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 38 ++++++++++++++++++++--
+>>  1 file changed, 35 insertions(+), 3 deletions(-)
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml:  while parsing a block mapping
+>   in "<unicode string>", line 107, column 7
+> did not find expected key
+>   in "<unicode string>", line 111, column 8
+> Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dts' failed
+> make[1]: *** [Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.example.dts] Error 1
+> Makefile:1263: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
+> 
+> See https://patchwork.ozlabs.org/patch/1224563
+> Please check and re-submit.
+> 
+> .
+> 
 
+Hi Rob,
+
+Sorry, I missed a blank and didn't notice it.
+I will fix it in next version, and also pay more attentions to these problems later.
+
+Thanks,
+Hanjie 
