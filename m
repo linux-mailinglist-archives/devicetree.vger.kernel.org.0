@@ -2,56 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 001ED143A01
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2020 10:55:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A207F143A2D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2020 11:01:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729027AbgAUJyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jan 2020 04:54:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57344 "EHLO mail.kernel.org"
+        id S1728831AbgAUKBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jan 2020 05:01:31 -0500
+Received: from mx2.suse.de ([195.135.220.15]:50962 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728797AbgAUJyx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jan 2020 04:54:53 -0500
-Received: from localhost (unknown [171.76.119.14])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B208220882;
-        Tue, 21 Jan 2020 09:54:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579600492;
-        bh=rbea3hv11DlqYc6PEcYoLoQf6fMfbqdEMMWQJJW3TgQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0xAmqxRj+RetoAUEJP3t6n2Ogtr8hDOLi9wYGdGYDtY1xSZevRo2kK8srjK8JCGPp
-         4jjkTh7ladGxJdiGrXtbCrxJi5SPntce8i5VUoDlSGE4pts5WplrWkJT6X2/n+JIsg
-         sennGoB3u2lTPDEqXICGQYOJu8/Y8JtCr7w66ieI=
-Date:   Tue, 21 Jan 2020 15:24:48 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Venkata Narendra Kumar Gutta <vnkgutta@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, psodagud@codeaurora.org,
-        tsoni@codeaurora.org, jshriram@codeaurora.org, tdas@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/7] clk: qcom: rpmh: Add support for RPMH clocks on
- SM8250
-Message-ID: <20200121095448.GL2841@vkoul-mobl>
-References: <1579217994-22219-1-git-send-email-vnkgutta@codeaurora.org>
- <1579217994-22219-3-git-send-email-vnkgutta@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1579217994-22219-3-git-send-email-vnkgutta@codeaurora.org>
+        id S1728803AbgAUKBb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 21 Jan 2020 05:01:31 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id D01F9AD3A;
+        Tue, 21 Jan 2020 10:01:29 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <C00VV4QDHC2Q.20QYUR6KOPB8G@pride>
+Date:   Mon, 20 Jan 2020 21:01:23 +0100
+Cc:     "Mark Rutland" <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        <bcm-kernel-feedback-list@broadcom.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rpi-kernel@lists.infradead.org>
+Subject: Re: [PATCH] ARM: dts: bcm2711: Use bcm2711 compatible for sdhci
+From:   "Nicolas Saenz Julienne" <nsaenzjulienne@suse.de>
+To:     "Stephen Brennan" <stephen@brennan.io>
+Message-Id: <C00VWYLKZXHQ.2H1VAQ79Y4KCC@linux-9qgx>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-01-20, 15:39, Venkata Narendra Kumar Gutta wrote:
-> From: Taniya Das <tdas@codeaurora.org>
-> 
-> Add support for RPMH clocks on SM8250.
+Hi Stephen,
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+On Mon Jan 20, 2020 at 11:59 AM, Stephen Brennan wrote:
+> Hi Nicolas,
+>
+> You're right, this patch doesn't work (it doesn't even touch the correct
+> device tree node). My bad.
+>
+> > Your UHS class 1 card should work out of the box using the current
+> > kernel version.
+>
+> I've been debugging an issue (reproduced on today's linux-next) in which
+> my
+> UHS class 1 card's partitions don't show up in `/dev`. For example, if I
+> do
+> `ls /dev | grep mmc`, I get just one result, "mmcblk1". I thought my
+> patch
+> fixed the issue, but it turns out that the issue is sporadic: on some
+> boots, the issue manifests. On others, the partitions appear in /dev as
+> normal. When I tested this patch, the issue had sporadically
+> disappeared,
+> leading me to believe the patch was effective.
 
--- 
-~Vinod
+Have you been playing with different device-trees? notably with the
+Raspberry Pi foundation ones. Your mmc numbers could change, which might
+be confusing.
+
+If 100% sure it's failing, i.e. nothing happens for the mmc device after
+seeing:
+
+	mmc1: SDHCI controller on fe340000.emmc2 [fe340000.emmc2] using ADMA
+
+I suggest enabling some extra debug options. Build the kernel with
+DYNAMIC_DEBUG enabled and add dyndbg=3D"module sdhci +mfp; module mmc_core
++mfp" to your kernel command line. It'll be extremely verbose for the
+working case, but we can compare both and try to find something fishy.
+
+Note that I use two UHS class 1 cards myself without issue.
+
+> Sorry for the noise!
+
+On the contrary, the more we are the better :)
+
+Regards,
+Nicolas
