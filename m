@@ -2,163 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73220142228
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 04:49:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B5F14224E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 05:10:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729152AbgATDtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 19 Jan 2020 22:49:49 -0500
-Received: from mail-sz.amlogic.com ([211.162.65.117]:13027 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729015AbgATDtt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jan 2020 22:49:49 -0500
-Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 20 Jan 2020
- 11:50:11 +0800
-From:   Jian Hu <jian.hu@amlogic.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-CC:     Jian Hu <jian.hu@amlogic.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Chandle Zou <chandle.zou@amlogic.com>,
-        <linux-clk@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v7 2/5] clk: meson: add support for A1 PLL clock ops
-Date:   Mon, 20 Jan 2020 11:49:34 +0800
-Message-ID: <20200120034937.128600-3-jian.hu@amlogic.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200120034937.128600-1-jian.hu@amlogic.com>
-References: <20200120034937.128600-1-jian.hu@amlogic.com>
+        id S1729030AbgATEKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 19 Jan 2020 23:10:34 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:14260 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729011AbgATEKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 19 Jan 2020 23:10:34 -0500
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e25282b0000>; Sun, 19 Jan 2020 20:10:19 -0800
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Sun, 19 Jan 2020 20:10:33 -0800
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Sun, 19 Jan 2020 20:10:33 -0800
+Received: from [10.24.44.92] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 20 Jan
+ 2020 04:10:27 +0000
+Subject: Re: [PATCH v8 19/22] ASoC: tegra: Enable audio mclk during
+ tegra_asoc_utils_init
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <broonie@kernel.org>, <lgirdwood@gmail.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <mperttunen@nvidia.com>,
+        <gregkh@linuxfoundation.org>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <josephl@nvidia.com>, <daniel.lezcano@linaro.org>,
+        <mmaddireddy@nvidia.com>, <markz@nvidia.com>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <1578986667-16041-1-git-send-email-skomatineni@nvidia.com>
+ <1578986667-16041-20-git-send-email-skomatineni@nvidia.com>
+ <3a8e609a-58aa-d2c1-c140-e1f0127dd53b@gmail.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <64027c16-763b-350f-9975-4f9727450ae9@nvidia.com>
+Date:   Mon, 20 Jan 2020 09:40:24 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.25]
+In-Reply-To: <3a8e609a-58aa-d2c1-c140-e1f0127dd53b@gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-GB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1579493419; bh=LVcMB3ge8cxlkdETYViqbJ2t8Kv4AW9iqdQrzlTvyQ4=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=iVMvQ/GHwoYfJZCPQ+vfHZvajRdgNH3N3AA+xRp0Br6PsCeoA7sxms8dI7wZrWU+U
+         SB6t+Y6MFfa4GNTpcGvJw3/TCuxs3xGN5CkY50ZEAYZuMPeL082aJP3eaDFUH13+Yl
+         P9+U4/RdMEL7APAZIcc9cATRX8Agar+eK5Re3Roj5pl9Ac/p6aMQbBJFW3keF+wIrQ
+         PaD9rQfMjWYbvXalxk4wWncuLiZrNvk0WU9ZbEM25WBnAknbxOihvyELwUQQqQXYC7
+         AX2WC/lqmQUkczXTax1vpGyi4wIgc0vLxtGd7YsE3hlLufIGthDCAtMEr+6Bbrp6AR
+         Z93pwiOgSDXaw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compared with the previous SoCs, self-adaption current module
-is newly added for A1, and there is no reset parm except the
-fixed pll. In A1 PLL, the PLL enable sequence is different, using
-the new power-on sequence to enable the PLL.
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/clk-pll.c | 47 +++++++++++++++++++++++++++++++------
- drivers/clk/meson/clk-pll.h |  2 ++
- 2 files changed, 42 insertions(+), 7 deletions(-)
+On 1/19/2020 8:44 PM, Dmitry Osipenko wrote:
+> External email: Use caution opening links or attachments
+>
+>
+> 14.01.2020 10:24, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> Tegra PMC clock clk_out_1 is dedicated for audio mclk from Tegra30
+>> through Tegra210 and currently Tegra clock driver keeps the audio
+>> mclk enabled.
+>>
+>> With the move of PMC clocks from clock driver into pmc driver,
+>> audio mclk enable from clock driver is removed and this should be
+>> taken care by the audio driver.
+>>
+>> tegra_asoc_utils_init calls tegra_asoc_utils_set_rate and audio mclk
+>> rate configuration is not needed during init and set_rate is actually
+>> done during hw_params callback.
+>>
+>> So, this patch removes tegra_asoc_utils_set_rate call and just leaves
+>> the audio mclk enabled.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   sound/soc/tegra/tegra_asoc_utils.c | 11 +++++++++--
+>>   1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/sound/soc/tegra/tegra_asoc_utils.c b/sound/soc/tegra/tegra_=
+asoc_utils.c
+>> index 1dce5ad6e665..99584970f5f4 100644
+>> --- a/sound/soc/tegra/tegra_asoc_utils.c
+>> +++ b/sound/soc/tegra/tegra_asoc_utils.c
+>> @@ -216,9 +216,16 @@ int tegra_asoc_utils_init(struct tegra_asoc_utils_d=
+ata *data,
+>>                data->clk_cdev1 =3D clk_out_1;
+>>        }
+>>
+>> -     ret =3D tegra_asoc_utils_set_rate(data, 44100, 256 * 44100);
+>> -     if (ret)
+>> +     /*
+>> +      * FIXME: There is some unknown dependency between audio mclk disa=
+ble
+>> +      * and suspend-resume functionality on Tegra30, although audio mcl=
+k is
+>> +      * only needed for audio.
+>> +      */
+>> +     ret =3D clk_prepare_enable(data->clk_cdev1);
+>> +     if (ret) {
+>> +             dev_err(data->dev, "Can't enable cdev1: %d\n", ret);
+>>                return ret;
+>> +     }
+>>
+>>        return 0;
+>>   }
+>>
+> Shouldn't the clock be disabled on driver's removal?
 
-diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
-index ddb1e5634739..10926291440f 100644
---- a/drivers/clk/meson/clk-pll.c
-+++ b/drivers/clk/meson/clk-pll.c
-@@ -283,10 +283,14 @@ static void meson_clk_pll_init(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
- 	if (pll->init_count) {
--		meson_parm_write(clk->map, &pll->rst, 1);
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 1);
-+
- 		regmap_multi_reg_write(clk->map, pll->init_regs,
- 				       pll->init_count);
--		meson_parm_write(clk->map, &pll->rst, 0);
-+
-+		if (MESON_PARM_APPLICABLE(&pll->rst))
-+			meson_parm_write(clk->map, &pll->rst, 0);
- 	}
- }
- 
-@@ -295,8 +299,11 @@ static int meson_clk_pll_is_enabled(struct clk_hw *hw)
- 	struct clk_regmap *clk = to_clk_regmap(hw);
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
--	if (meson_parm_read(clk->map, &pll->rst) ||
--	    !meson_parm_read(clk->map, &pll->en) ||
-+	if (MESON_PARM_APPLICABLE(&pll->rst) &&
-+	    meson_parm_read(clk->map, &pll->rst))
-+		return 0;
-+
-+	if (!meson_parm_read(clk->map, &pll->en) ||
- 	    !meson_parm_read(clk->map, &pll->l))
- 		return 0;
- 
-@@ -323,13 +330,34 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
- 		return 0;
- 
- 	/* Make sure the pll is in reset */
--	meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 1);
- 
- 	/* Enable the pll */
- 	meson_parm_write(clk->map, &pll->en, 1);
- 
- 	/* Take the pll out reset */
--	meson_parm_write(clk->map, &pll->rst, 0);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 0);
-+
-+	/*
-+	 * Compared with the previous SoCs, self-adaption current module
-+	 * is newly added for A1, keep the new power-on sequence to enable the
-+	 * PLL. The sequence is:
-+	 * 1. enable the pll, delay for 10us
-+	 * 2. enable the pll self-adaption current module, delay for 40us
-+	 * 3. enable the lock detect module
-+	 */
-+	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
-+		udelay(10);
-+		meson_parm_write(clk->map, &pll->current_en, 1);
-+		udelay(40);
-+	};
-+
-+	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
-+		meson_parm_write(clk->map, &pll->l_detect, 1);
-+		meson_parm_write(clk->map, &pll->l_detect, 0);
-+	}
- 
- 	if (meson_clk_pll_wait_lock(hw))
- 		return -EIO;
-@@ -343,10 +371,15 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
- 	struct meson_clk_pll_data *pll = meson_clk_pll_data(clk);
- 
- 	/* Put the pll is in reset */
--	meson_parm_write(clk->map, &pll->rst, 1);
-+	if (MESON_PARM_APPLICABLE(&pll->rst))
-+		meson_parm_write(clk->map, &pll->rst, 1);
- 
- 	/* Disable the pll */
- 	meson_parm_write(clk->map, &pll->en, 0);
-+
-+	/* Disable PLL internal self-adaption current module */
-+	if (MESON_PARM_APPLICABLE(&pll->current_en))
-+		meson_parm_write(clk->map, &pll->current_en, 0);
- }
- 
- static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
-index 367efd0f6410..a2228c0fdce5 100644
---- a/drivers/clk/meson/clk-pll.h
-+++ b/drivers/clk/meson/clk-pll.h
-@@ -36,6 +36,8 @@ struct meson_clk_pll_data {
- 	struct parm frac;
- 	struct parm l;
- 	struct parm rst;
-+	struct parm current_en;
-+	struct parm l_detect;
- 	const struct reg_sequence *init_regs;
- 	unsigned int init_count;
- 	const struct pll_params_table *table;
--- 
-2.24.0
+I am not sure if we really need to do in this series as it does not=20
+change the behavior from what was there earlier. Also there is already a=20
+FIXME item here and we end up adding clock disable in remove() path of=20
+multiple drivers, which is going to be removed once we address FIXME.
 
