@@ -2,184 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A27AA1424B0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 09:02:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E03561424B9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 09:02:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726650AbgATIB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jan 2020 03:01:57 -0500
-Received: from mout.perfora.net ([74.208.4.197]:36105 "EHLO mout.perfora.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726417AbgATIB5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 20 Jan 2020 03:01:57 -0500
-Received: from marcel-nb-toradex-int.toradex.int ([31.10.206.124]) by
- mrelay.perfora.net (mreueus001 [74.208.5.2]) with ESMTPSA (Nemesis) id
- 0Ma46L-1jCLDy1EsB-00Lp2H; Mon, 20 Jan 2020 09:01:13 +0100
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, info@logictechno.com,
-        j.bauer@endrich.com, Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>
-Subject: [PATCH v4 3/3] drm/panel: simple: add display timings for logic technologies displays
-Date:   Mon, 20 Jan 2020 09:01:00 +0100
-Message-Id: <20200120080100.170294-3-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200120080100.170294-1-marcel@ziswiler.com>
-References: <20200120080100.170294-1-marcel@ziswiler.com>
+        id S1726465AbgATICK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jan 2020 03:02:10 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:36473 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726951AbgATICJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 03:02:09 -0500
+Received: by mail-wr1-f66.google.com with SMTP id z3so28441004wru.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2020 00:02:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=e6dkf7g0PlBYzajwREklnNmjXK94Sc+HZYUhtk+5LdM=;
+        b=jN6OaO3LImWPZHkie+o9NYbPcksaQwt6VefqX5klIn/3qVibfBq4ZSEimQWad5KD+6
+         L0xrCWnJoG/MuPnZsGfzr3bRE8XHIIM+vG0z47GvgrzqTDe482Jya/1aN0fr8MXvzsfO
+         OMt4ZrLpJH5Aex8tX99XrKSqUlXB8vtEyX4armTD5fYVwYEDuuyDE6cC31BSsDiVpRx0
+         HFTAplyQVE8ZvEYKS256eR3a15jU3780jrVE9yTXKAIcDSt4x2w5mcmTEX0Oed7S78No
+         mjPQ9/Zflrzc4wIpTuWX3ckETiSe6kHu6B3SPHw8Uy37A6oJCAy3mNL9IqadAXQ+A69u
+         BbOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=e6dkf7g0PlBYzajwREklnNmjXK94Sc+HZYUhtk+5LdM=;
+        b=h3WqHYXXBYZ3gh7nup3VvNsnqQqP/xKVipc1dH4AqPazbweUNqzd9DFJ59Fz7sh646
+         VjVVlMalqwFuLKA/RAlKVBDjP33lo4hjUh0HYsnCzORyNNTOBjX9alrew56U/zlgvJ5U
+         9HZNrujW4rjJq1HyV5kns/6f0Y0F8UbVvH6NGJuRHK6gzx/RGaTb1qgG/nDOXplmvgg4
+         qzCqzfuMJ1MQX+wy/rVPZ+FOqjFBvU0hF0P7dQzVU+rujUvQ7MYfA9FQkxFS34vsUoVK
+         tPopjl96eTBSbehxFWZEqr16wpbe+VeyNpM6yMBVWrCe03LxyYbaMS/FK8UZ4nMtGp3A
+         2W3A==
+X-Gm-Message-State: APjAAAWEnLbTPvlTh4cF9yLglgjeFrmf5NSkcQo2WkAIInDeTbv/bcgA
+        sSKsNm8ctxDHa05scCzwyufxTg==
+X-Google-Smtp-Source: APXvYqzcaJJackorcPd9DC4Xa5AIzUt/tljBZ9+GLzsPMBa1EJ3AAs42EkOtT5IjuvRGZDmfO5jhmQ==
+X-Received: by 2002:a5d:4692:: with SMTP id u18mr16874910wrq.206.1579507326451;
+        Mon, 20 Jan 2020 00:02:06 -0800 (PST)
+Received: from dell ([2.27.35.227])
+        by smtp.gmail.com with ESMTPSA id f16sm46604581wrm.65.2020.01.20.00.02.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2020 00:02:05 -0800 (PST)
+Date:   Mon, 20 Jan 2020 08:02:20 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+        "dmurphy@ti.com" <dmurphy@ti.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "pavel@ucw.cz" <pavel@ucw.cz>,
+        "broonie@kernel.org" <broonie@kernel.org>
+Subject: Re: [PATCH v10 11/13] gpio: bd71828: Initial support for ROHM
+ BD71828 PMIC GPIOs
+Message-ID: <20200120080220.GQ15507@dell>
+References: <cover.1579249511.git.matti.vaittinen@fi.rohmeurope.com>
+ <c8ed62a1efa0c6fde93a8a08fe6bc74a450a34f3.1579249511.git.matti.vaittinen@fi.rohmeurope.com>
+ <20200117102127.GD15507@dell>
+ <9f405dfc4c7e56e32f4eb2f9cb6e87c05aea1ac9.camel@fi.rohmeurope.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:anI6rwLomoZdt5T5jBL59aV9NQScit0zPIbdt/SagbVH1Gala22
- j+W2jRkUjmcptZDJwQ57IQS6Z6wWSGXjVbvOtb/XqVE23fdMiywzHNUxaDQh43ZGRxZ3NIW
- ZV2ryo/9Ln3um+V+FXj+jpePnDWkrJ7cZMYez+UmxDt6i3nRfp8JooFqbfc9URLUaY5qsBG
- TGPnZdWfOqvnQIqoUfiUA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:wsN8s4dxJzk=:nTvDYien5G49OQ8P021V0L
- wtbCUrqEbUU3GoqHgMr1pa49CaIDT26aWsFKQCQo9N/qTczcOUDBEhtxHIpNrqO3TNe5Sj6qS
- A31cnoHf7ohYuBntgUeBmY1pftnRP/vhbIaXBzXUvQRTGkRuhxfjSP6ZNlYccBk7Eh1L0XoQC
- zZ7H5UWcH+8UoOpnwq3A2GUbOzHp1Ui0HrS1Tu3se1BByv/Z8rr4U2g+fiQZrGlFdNYOn3kK7
- OOFS2lMRMI3/PycO+Hl74lYs9ECctDWtA7YwHpSBac65KSnv61zo7DF+uiagjz69PhTuGcFX0
- +cRlxLrTVGppqLbyeofx1CQWO5NHum0oz6Amijka63a/egATDzivKmkfR0Y7OHfFerty7unDk
- Qkyk58VoRTX2ZRzw+K/KVTbsF5nB5ZT4Ey3lbdgxouhPPn+ofx7ah9FyQ/+n4SAJkuauyBrGX
- HLcX/cSB03vZIJ4dWhEibILqwdXInfCMOBcx/JTXuF84LNf/0TeEEHDvwTarnoATQIlnn25s3
- c+f0FXxMhmCl2lCEIfZwK6LR+sQ3o4enjQrigMZNcAhFVR+qYTUB0q++bGqor3r0ygQ8VY6AV
- +ac/CvAnMpOus/BBw5NhrSwJvKpA3m5z9rjpVtlqxrFegfT/U5ZHVdeiwww3IsvPBj/noXfhN
- DohfL19afL7LuMA6/Vq8gWICP3M8cBBF014He4W6P2DWv4xHKiTaBQ94dQ3RP+BSS+9JLkDlv
- d5KiNDesnB/18CwwSLmiMBjR/OtigoW05HoNIJ4twAnaaLdFD66T7Fli9q1XOkM05PHL3F65k
- nT679afWJxp4sjNsQO+dCypv0sGROKF+KusQjl80O8Vo65Bv2trtSGqxoVw4Rtq+htn9tEudV
- hsTSpvbnh+lGmzaKcP1g==
+In-Reply-To: <9f405dfc4c7e56e32f4eb2f9cb6e87c05aea1ac9.camel@fi.rohmeurope.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+On Mon, 20 Jan 2020, Vaittinen, Matti wrote:
 
-Add display timings for the following 3 display panels manufactured by
-Logic Technologies Limited:
+> Hello,
+> 
+> On Fri, 2020-01-17 at 10:21 +0000, Lee Jones wrote:
+> > On Fri, 17 Jan 2020, Matti Vaittinen wrote:
+> > 
+> > > ROHM BD71828 PMIC contains 4 pins which can be configured by OTP
+> > > to be used for general purposes. First 3 can be used as outputs
+> > > and 4.th pin can be used as input. Allow them to be controlled
+> > > via GPIO framework.
+> > > 
+> > > The driver assumes all of the pins are configured as GPIOs and
+> > > trusts that the reserved pins in other OTP configurations are
+> > > excluded from control using "gpio-reserved-ranges" device tree
+> > > property (or left untouched by GPIO users).
+> > > 
+> > > Typical use for 4.th pin (input) is to use it as HALL sensor
+> > > input so that this pin state is toggled when HALL sensor detects
+> > > LID position change (from close to open or open to close). PMIC
+> > > HW implements some extra logic which allows PMIC to power-up the
+> > > system when this pin is toggled. Please see the data sheet for
+> > > details of GPIO options which can be selected by OTP settings.
+> > > 
+> > > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> > > Reviewed-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > 
+> > Linus, Is that an Ack?
+> I have always thought that reviewed-by implies that reviewer is Ok with
+> the patch (imples Ack). Maybe I have mistaken?
 
-- LT161010-2NHC e.g. as found in the Toradex Capacitive Touch Display
-  7" Parallel [1]
-- LT161010-2NHR e.g. as found in the Toradex Resistive Touch Display 7"
-  Parallel [2]
-- LT170410-2WHC e.g. as found in the Toradex Capacitive Touch Display
-  10.1" LVDS [3]
+I would rather not assume.
 
-Those panels may also be distributed by Endrich Bauelemente Vertriebs
-GmbH [4].
-
-[1] https://docs.toradex.com/104497-7-inch-parallel-capacitive-touch-display-800x480-datasheet.pdf
-[2] https://docs.toradex.com/104498-7-inch-parallel-resistive-touch-display-800x480.pdf
-[3] https://docs.toradex.com/105952-10-1-inch-lvds-capacitive-touch-display-1280x800-datasheet.pdf
-[4] https://www.endrich.com/isi50_isi30_tft-displays/lt170410-1whc_isi30
-
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Reviewed-by: Philippe Schenker <philippe.schenker@toradex.com>
-
----
-
-Changes in v4:
-- Added recently made mandatory connector_type information as pointed
-  out by Sam.
-
-Changes in v3:
-- Fix typo in pixelclock frequency for lt170410_2whc as recently
-  discovered by Philippe.
-
-Changes in v2:
-- Added Philippe's reviewed-by.
-
- drivers/gpu/drm/panel/panel-simple.c | 67 ++++++++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index d6f77bc494c7..a0dd84e11db7 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2107,6 +2107,64 @@ static const struct panel_desc lg_lp129qe = {
- 	},
- };
- 
-+static const struct display_timing logictechno_lt161010_2nh_timing = {
-+	.pixelclock = { 26400000, 33300000, 46800000 },
-+	.hactive = { 800, 800, 800 },
-+	.hfront_porch = { 16, 210, 354 },
-+	.hback_porch = { 46, 46, 46 },
-+	.hsync_len = { 1, 20, 40 },
-+	.vactive = { 480, 480, 480 },
-+	.vfront_porch = { 7, 22, 147 },
-+	.vback_porch = { 23, 23, 23 },
-+	.vsync_len = { 1, 10, 20 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-+		 DISPLAY_FLAGS_SYNC_POSEDGE,
-+};
-+
-+static const struct panel_desc logictechno_lt161010_2nh = {
-+	.timings = &logictechno_lt161010_2nh_timing,
-+	.num_timings = 1,
-+	.size = {
-+		.width = 154,
-+		.height = 86,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
-+		     DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-+		     DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
-+static const struct display_timing logictechno_lt170410_2whc_timing = {
-+	.pixelclock = { 68900000, 71100000, 73400000 },
-+	.hactive = { 1280, 1280, 1280 },
-+	.hfront_porch = { 23, 60, 71 },
-+	.hback_porch = { 23, 60, 71 },
-+	.hsync_len = { 15, 40, 47 },
-+	.vactive = { 800, 800, 800 },
-+	.vfront_porch = { 5, 7, 10 },
-+	.vback_porch = { 5, 7, 10 },
-+	.vsync_len = { 6, 9, 12 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE |
-+		 DISPLAY_FLAGS_SYNC_POSEDGE,
-+};
-+
-+static const struct panel_desc logictechno_lt170410_2whc = {
-+	.timings = &logictechno_lt170410_2whc_timing,
-+	.num_timings = 1,
-+	.size = {
-+		.width = 217,
-+		.height = 136,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
-+		     DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
-+		     DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct drm_display_mode mitsubishi_aa070mc01_mode = {
- 	.clock = 30400,
- 	.hdisplay = 800,
-@@ -3417,6 +3475,15 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "logicpd,type28",
- 		.data = &logicpd_type_28,
-+	}, {
-+		.compatible = "logictechno,lt161010-2nhc",
-+		.data = &logictechno_lt161010_2nh,
-+	}, {
-+		.compatible = "logictechno,lt161010-2nhr",
-+		.data = &logictechno_lt161010_2nh,
-+	}, {
-+		.compatible = "logictechno,lt170410-2whc",
-+		.data = &logictechno_lt170410_2whc,
- 	}, {
- 		.compatible = "mitsubishi,aa070mc01-ca1",
- 		.data = &mitsubishi_aa070mc01,
 -- 
-2.24.1
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
