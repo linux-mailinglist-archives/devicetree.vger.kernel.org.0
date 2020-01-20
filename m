@@ -2,143 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1E001424A2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 09:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 299A71424BD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 09:03:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbgATIAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jan 2020 03:00:12 -0500
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:39935 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726584AbgATIAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 03:00:11 -0500
-Received: by mail-wr1-f68.google.com with SMTP id y11so28407746wrt.6
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2020 00:00:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=MfuL6BqlY9EL8BEnsX5fv65JIP4/kcoSTzU2TVafC8o=;
-        b=Ji5Kp3qac5rK+dk4oGVu9H0nQJK5nlx5Me5oL81WYCb2zGtZN/vSxMGDE447PZ/OZf
-         IbG1E3IjKMV/eULv6j2e0s0zo3/ppkcIzDeWkq+H2Uajzh4IV4AjNDdgbu32OhARhgBg
-         ETztA5v3PPPQjWUi8iBDs7PpyOZBXG5tY3TOLF2fUSLPRpWHsbH8G4yzxdblUiLephEk
-         6UfSPyLHcK1c8V//Jt1d6rz49Va596DpnssENjQRUGE98dBIDCvxYkfeoOpyGWUwiPFY
-         8CrzGUYqj+KSQf7N+DddgMCKdu1U6GWOfnbHZtCZVrwMKyLs+GnUGA4r71mBPJ/r5nIU
-         Po5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=MfuL6BqlY9EL8BEnsX5fv65JIP4/kcoSTzU2TVafC8o=;
-        b=jGLMA7RbOYYSgvG8bzjO/fROV3imXtnPhnkZxHoxAnDgHiYnc6CzQqEVNGujGH58r5
-         2xitsC10b8/qJSMXLmOhqavGSbHNJFLiKGfAkUWt6vpfpezCQygR34x6OCfAiaW9Ma37
-         a92l7ekwHyq9VvkwUTAcR3FWtsQSW+Sqnd6r2737VN/66qGh3d43RNyjhLCWjRAifKMe
-         4EqmJMlzxfeRrpGVkCxPB8ZWoG1g/tV3M0eQUXfMLNwuEWyNKDysulrAhqXPNA+D1BSt
-         Pp5VZaB64TU8nSSbD0qgm7OyAHek7gomEaN+2cvvRzCp9oOk8HX3QA4Ev01R+f8LesaA
-         aMig==
-X-Gm-Message-State: APjAAAXkvwt2nxpJAx+/HzQdUnCqGZJ0tDVKOTusUsN+oJ2mqAathq2L
-        T5CSaL3/A/NaEXvvximLZex2WA==
-X-Google-Smtp-Source: APXvYqz2ucJXStRlD+7VmrbMk5Dz+tYnaocAv6Y/icPKXH/Bi2LQWUG43izVO8TogblaWw+PjwIbeA==
-X-Received: by 2002:a5d:6ac3:: with SMTP id u3mr17556499wrw.25.1579507209626;
-        Mon, 20 Jan 2020 00:00:09 -0800 (PST)
-Received: from dell ([2.27.35.227])
-        by smtp.gmail.com with ESMTPSA id x132sm7469683wmg.0.2020.01.20.00.00.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2020 00:00:08 -0800 (PST)
-Date:   Mon, 20 Jan 2020 08:00:25 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "knaack.h@gmx.de" <knaack.h@gmx.de>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-Subject: Re: [PATCH v4 2/7] mfd: Add support for Azoteq
- IQS620A/621/622/624/625
-Message-ID: <20200120080025.GP15507@dell>
-References: <1579228475-6681-1-git-send-email-jeff@labundy.com>
- <1579228475-6681-3-git-send-email-jeff@labundy.com>
- <20200117132143.GK15507@dell>
- <20200120042303.GC28865@labundy.com>
+        id S1726874AbgATICP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jan 2020 03:02:15 -0500
+Received: from mout.perfora.net ([74.208.4.194]:56535 "EHLO mout.perfora.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726951AbgATICO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 20 Jan 2020 03:02:14 -0500
+Received: from marcel-nb-toradex-int.toradex.int ([31.10.206.124]) by
+ mrelay.perfora.net (mreueus001 [74.208.5.2]) with ESMTPSA (Nemesis) id
+ 0M5O2r-1jq3lT27Bf-00zXV3; Mon, 20 Jan 2020 09:01:08 +0100
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, info@logictechno.com,
+        j.bauer@endrich.com, Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh@kernel.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: [PATCH v4 1/3] dt-bindings: add vendor prefix for logic technologies limited
+Date:   Mon, 20 Jan 2020 09:00:58 +0100
+Message-Id: <20200120080100.170294-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200120042303.GC28865@labundy.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:cz02pypmXVVY9XStb0HoEZkx90vTXXjTAnxUxTCC/wEc/muxf/f
+ AJAG1HLkGWz4YsSAlYrIu4ElEUR7z6r56s8TmO19+3b292a/Pvewx3QCaEwdvzQc0CLRHe4
+ OqTco8zERosmNtc6+SbmNbaZkLKw6XbpvXA0JyizMUYY/nDnwx2XRR+m+uDdshsF9ZECjyU
+ BxGjZgn7K+Nc5XiuUk6pg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:lpKVWY8NVCU=:A8i+IMii7mHWnzZPyIhoTq
+ 60gLU+m3boGJcEechrLIBb6UWPHspULkn7x1DyF0jIIcxKMnH31oINGHoP5kKk4F3c1Pklk8Q
+ LoKGfl4XRa6lQDpPS2yEy1cI77IGIXxyYERX8yWGGoxKKgEXHgcrdjPPzhEZJs0IQIh9mVx0L
+ IRNII7qpfWA1IlZqWv+TFRAzZY2rCzbIC3UJbRh7AyxGCSTJnIPAivMQ35GDtroj4BoOBTWxP
+ LwvmHp47lcMsIIXMD15ERoqZ8w7Zc8vNkfYYg7g5A8s6Dwsm3k5+ckSTZvxCSNZPK7KafdQrr
+ OjeK8Ex5WxGAoozdtY6ClPSgnmPVhfaPxFSPAX3dR6ULUW80sF/vfj6AwR/ARSO5pYSHv6utJ
+ 2PBIqOg5m2kg7xzquw+onkTgX/mAEZ0J4ho8SNmKz6yNh4vh8m0gcbRw2rvjVXnjhSJVq0FOo
+ 2nKj9fdEEwqrQWQiqFriDcnzwoKCt6uKqmPcvjiQCm4rbp278N6DjOcV6Sfrk76d0HKwYUgP4
+ LjQD7u2ohhTHTcSTUcP7wXy/NVm4xAzcG9LttYD2u5Go+t2cmXOeAIyS01kDdHj0s+WhVNeAd
+ yx0e3dH4uTplhsJElQob3FFNhjuOkB28K7AjhmUP6jXHa64NyvTNDyhBeOtZrUuo3LfwOViPc
+ og00QIEt7EDT/g34nQFqCVBsgyO2bMbeP1g4LaW59D3qZdgPOAOazg4WXtRKxAVROPs5oWxKw
+ x1JD/EAxyqoO/SvT59u7OcXM/FiBJu0DrgtX3LmusJ6IoYFcbysaRzgr2X5+GdoR/BVJ+5pku
+ 6Ziny4Kvc3Vg4AS4NXk35tHbCu12jxW/GkucotLLK/DC/uDCVx7tRkFs/rE5dWLSyqtk9Xtt9
+ lXvFVLCWTNMUtElXqFjA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Jan 2020, Jeff LaBundy wrote:
-> On Fri, Jan 17, 2020 at 01:21:43PM +0000, Lee Jones wrote:
-> > On Fri, 17 Jan 2020, Jeff LaBundy wrote:
-> > 
-> > > This patch adds core support for the Azoteq IQS620A, IQS621, IQS622,
-> > > IQS624 and IQS625 multi-function sensors.
-> > > 
-> > > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
-> > > ---
-> > > Changes in v4:
-> > >   - None
-> > > 
-> > > Changes in v3:
-> > >   - None
-> > > 
-> > > Changes in v2:
-> > >   - Merged 'Copyright' and 'Author' lines into one in introductory comments
-> > >   - Replaced 'error' with 'ret' throughout
-> > >   - Updated iqs62x_dev_init to account for 4/8/16-MHz clock divider in start-up
-> > >     delays and replaced ATI timeout routine with regmap_read_poll_timeout
-> > >   - Added an error message to iqs62x_irq in case device status fails to be read
-> > >   - Replaced sw_num member of iqs62x_core with a local variable in iqs62x_probe
-> > >     as the former was unused anywhere else
-> > >   - Added comments throughout iqs62x_probe to clarify how devices are matched
-> > >     based on the presence of calibration data
-> > >   - Inverted the product and software number comparison logic in iqs62x_probe
-> > >     to avoid an else...continue branch
-> > >   - Changed iqs62x_probe from .probe callback to .probe_new callback, thereby
-> > >     eliminating the otherwise unused iqs62x_id array
-> > >   - Moved iqs62x_suspend and iqs62x_resume below iqs62x_remove
-> > >   - Eliminated tabbed alignment of regmap_config and i2c_driver struct members
-> > >   - Added register definitions for register addresses used in iqs621_cal_regs,
-> > >     iqs620at_cal_regs and iqs62x_devs arrays
-> > >   - Removed of_compatible string from IQS622 mfd_cell struct as its proximity
-> > >     (now ambient light) sensing functionality need not be represented using a
-> > >     child node
-> > >   - Dissolved union in iqs62x_event_data to allow simultaneous use of ir_flags
-> > >     and als_flags
-> > >   - Removed temp_flags member of iqs62x_event_data, IQS62X_EVENT_TEMP register
-> > >     enumeration and IQS62X_EVENT_UI_HI/LO from iqs620a_event_regs (thereby re-
-> > >     ducing IQS62X_EVENT_SIZE to 10) as they were unused
-> > > 
-> > >  drivers/mfd/Kconfig         |  13 +
-> > >  drivers/mfd/Makefile        |   3 +
-> > >  drivers/mfd/iqs62x-core.c   | 639 ++++++++++++++++++++++++++++++++++++++++++++
-> > >  drivers/mfd/iqs62x-tables.c | 438 ++++++++++++++++++++++++++++++
-> > >  include/linux/mfd/iqs62x.h  | 146 ++++++++++
-> > >  5 files changed, 1239 insertions(+)
-> > >  create mode 100644 drivers/mfd/iqs62x-core.c
-> > >  create mode 100644 drivers/mfd/iqs62x-tables.c
-> > >  create mode 100644 include/linux/mfd/iqs62x.h
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-In future, could you trim all unnecessary parts of the review,
-snipping out all of the parts you agree with, leaving only the
-contentious context please?  It saves an awful lot of scrolling on
-behalf of the reader/reviewer.  Thanks.
+Add vendor prefix for Logic Technologies Limited [1] which is a Chinese
+display manufacturer e.g. distributed by German Endrich Bauelemente
+Vertriebs GmbH [2].
 
+[1] https://logictechno.com/contact-us/
+[2] https://www.endrich.com/isi50_isi30_tft-displays/lt170410-1whc_isi30
+
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Reviewed-by: Philippe Schenker <philippe.schenker@toradex.com>
+Acked-by: Rob Herring <robh@kernel.org>
+
+---
+
+Changes in v4: None
+Changes in v3: None
+Changes in v2:
+- Added Philippe's reviewed-by.
+- Added Rob's acked-by.
+
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f9b84f24a382..ac4804d0a991 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -549,6 +549,8 @@ patternProperties:
+     description: Linear Technology Corporation
+   "^logicpd,.*":
+     description: Logic PD, Inc.
++  "^logictechno,.*":
++    description: Logic Technologies Limited
+   "^longcheer,.*":
+     description: Longcheer Technology (Shanghai) Co., Ltd.
+   "^lsi,.*":
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.24.1
+
