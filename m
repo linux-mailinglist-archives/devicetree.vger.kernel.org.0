@@ -2,276 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E441142E57
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 16:06:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F78142ECD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 16:32:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729145AbgATPGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jan 2020 10:06:11 -0500
-Received: from mail-wm1-f46.google.com ([209.85.128.46]:52572 "EHLO
-        mail-wm1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728760AbgATPGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 10:06:10 -0500
-Received: by mail-wm1-f46.google.com with SMTP id p9so14850666wmc.2;
-        Mon, 20 Jan 2020 07:06:08 -0800 (PST)
+        id S1726901AbgATPcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jan 2020 10:32:53 -0500
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:45858 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726642AbgATPcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 10:32:52 -0500
+Received: by mail-ed1-f68.google.com with SMTP id v28so29818241edw.12;
+        Mon, 20 Jan 2020 07:32:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=jjkGrI+KVfcJfDj45xmGl/4VyHE7c0jJdesecDITtMQ=;
-        b=o3KHWKszdd1iAZneRvzPpeI2u5VXTQ1l3jTkHGTYDQzgBi3EAMILsXWMQ3mnATqaKN
-         g7eji2Z58pjJVCm7B5zdbnQ/T2h1tOHPJf24rrMGTn176om2tyGNKLmllro9W/2ziQ85
-         FlrcUGN/gBQxcEbCF/TF1cayKntGOUrcvurb7n7HveeNGQfdzhvRtfYvAwdKC8UdbLn5
-         5J3tSlmauU9X7F758V+nH9NNqzYENcTEl35Q/WtxXxSFWGMrPMiWHASEKCHvudGKEjwK
-         Hw6hISxl1jppgpDfiKYnMfws1pRpfW1sBfx2R7PWdtfsWo/WtV8sL3P8Pg9lbglFCOJj
-         /bBQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OOCggNlyS9YgNLOjDZC4k2CQrj3lgyEzbj3H+eP3SQE=;
+        b=dfMihwdTWj/I8wOKg2Rs9iY5ghrDiTIiktCY71UOSpkgssYifYXSdlBSd609/u9xjS
+         Ds5XiFhFGB5p8GMBSwQ9bZKjmlihWm66nuZmyaaMpi/JL+tME+w0seGaOeRaOg9fGaqW
+         94iTMGe9++uLByUGQzUl2nIquM6MJ3tOFOHU9AlgX6/x2YRYSS2ZN+8HJc6IX1rzz/Iu
+         FzdPETX1u4WE+J3M79HpiN/eryDdkm9hcvES6+9e4RNHGYM+kUdJv7BSLmmmTHJf9ANN
+         VZUv8VfYfOyFBDcmIMWV7byCSHZ/pKFimZbXmL5h2ueObDPJ8/ZoVK+OC77fg6HNkbd0
+         E+7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jjkGrI+KVfcJfDj45xmGl/4VyHE7c0jJdesecDITtMQ=;
-        b=QLoVQxxJh8CCW3/aOWxoOSidk5h8hEjtaKzty1fLkBFeGaPUp/M7OfrRN2gDo7kgkF
-         D4bU6ofbkegfwA3CnbDXRCarjeoM8j+KLDBPFltqgpb9ueYE/TmNjNSthnEqLaKpuWWf
-         NeZW5uSezOH+rtQ20RVYGdbhJHNIHRckKmXaul9VlZQdysb/aAByoQijP2GS6RD/wUXk
-         RlCxjkYwQlvBvLtaaI8PAMlWkK9YbKVyK2Fudl9OqvORSwH5WG2p9d1Fovk22Ej5MOPG
-         BI09SnJF0UwgqAPsGBJg/n2DbOU4hDGMS+RRbjSMB4jNwNa7P5TdF5QJoP92mfsM1PFF
-         FjCA==
-X-Gm-Message-State: APjAAAXQ9shqYRDshGmd3TRAwNj25T2A0//Oh13KwST6kcpWwifFApI0
-        DfUfaJ9Qo6KlpsWdfvtK9wM=
-X-Google-Smtp-Source: APXvYqw37KVItciqP7tMFoIrM44uXFC+XSmPrp/svB2B5OpO/wQn8XHFOIcrG40/GA6Q2IPA9mu9og==
-X-Received: by 2002:a1c:f31a:: with SMTP id q26mr19050683wmq.142.1579532767691;
-        Mon, 20 Jan 2020 07:06:07 -0800 (PST)
-Received: from localhost (p2E5BEF3F.dip0.t-ipconnect.de. [46.91.239.63])
-        by smtp.gmail.com with ESMTPSA id d14sm51139253wru.9.2020.01.20.07.06.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2020 07:06:06 -0800 (PST)
-Date:   Mon, 20 Jan 2020 16:06:05 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RFC 2/2] dt-bindings: firmware: tegra186-bpmp: Document
- interconnects property
-Message-ID: <20200120150605.GA712203@ulmo>
-References: <20200114181519.3402385-1-thierry.reding@gmail.com>
- <20200114181519.3402385-2-thierry.reding@gmail.com>
- <7aefac6c-092c-b5a6-2fa6-e283d2147fc3@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OOCggNlyS9YgNLOjDZC4k2CQrj3lgyEzbj3H+eP3SQE=;
+        b=qQ5b+yjmAR3V6I6tzHB1GXQWoTcGTsYYTjrPZ5Qx0ktr7+NQ56sPUB649MADnsVbTj
+         l5uVfR58jX5WfynbYHUoWPp4NK2Tae3bLyAhH0zWhiqdYYFCX+WuprRg50R3bfJ6mASx
+         1rNmwKSH+sxx/4ugY7uxp8peXvOpmDHXmsqCDQ+Ot+5ucLvfGOAq4STuhHlaMt1P+qRT
+         kLXfxHBPnyPjYLx+QH7S3Q0fu/ibi6RWur/PGpTFRMe3yOoYcOHfnDVVFj3mj6jJKB2G
+         8js3aVh/uGT4hYDI6PXhGd9VA4b9M+latJ1Y40N3i9EaR0Vxvm3Vo2WlmsfaYTs8VpuX
+         DPdA==
+X-Gm-Message-State: APjAAAUss5OQji2wzM5yxyhbF5Xi9cuHCHRI8+nPNf1VX41dYATfIY+0
+        bRwVphJKEhtAFqVZQtUEeXWZo52M
+X-Google-Smtp-Source: APXvYqxjYvtLuxzmFSvORJMHr9PS1DmMWSmU08ILsHKVYQCqsxBngzG4LUM4tpU9XK2ZYIqVfQd7Bg==
+X-Received: by 2002:a17:906:948e:: with SMTP id t14mr20975740ejx.123.1579534370408;
+        Mon, 20 Jan 2020 07:32:50 -0800 (PST)
+Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
+        by smtp.googlemail.com with ESMTPSA id z10sm1121714ejn.16.2020.01.20.07.32.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jan 2020 07:32:49 -0800 (PST)
+Subject: Re: [PATCH v8 19/22] ASoC: tegra: Enable audio mclk during
+ tegra_asoc_utils_init
+To:     Sameer Pujar <spujar@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, broonie@kernel.org,
+        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        mperttunen@nvidia.com, gregkh@linuxfoundation.org,
+        sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, josephl@nvidia.com,
+        daniel.lezcano@linaro.org, mmaddireddy@nvidia.com,
+        markz@nvidia.com, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1578986667-16041-1-git-send-email-skomatineni@nvidia.com>
+ <1578986667-16041-20-git-send-email-skomatineni@nvidia.com>
+ <3a8e609a-58aa-d2c1-c140-e1f0127dd53b@gmail.com>
+ <64027c16-763b-350f-9975-4f9727450ae9@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <0b13d21c-1daf-4e9d-f2c2-e78a3b8935f2@gmail.com>
+Date:   Mon, 20 Jan 2020 18:32:45 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3V7upXqbjpZ4EhLz"
-Content-Disposition: inline
-In-Reply-To: <7aefac6c-092c-b5a6-2fa6-e283d2147fc3@linaro.org>
-User-Agent: Mutt/1.13.1 (2019-12-14)
+In-Reply-To: <64027c16-763b-350f-9975-4f9727450ae9@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+20.01.2020 07:10, Sameer Pujar пишет:
+> 
+> On 1/19/2020 8:44 PM, Dmitry Osipenko wrote:
+>> External email: Use caution opening links or attachments
+>>
+>>
+>> 14.01.2020 10:24, Sowjanya Komatineni пишет:
+>>> Tegra PMC clock clk_out_1 is dedicated for audio mclk from Tegra30
+>>> through Tegra210 and currently Tegra clock driver keeps the audio
+>>> mclk enabled.
+>>>
+>>> With the move of PMC clocks from clock driver into pmc driver,
+>>> audio mclk enable from clock driver is removed and this should be
+>>> taken care by the audio driver.
+>>>
+>>> tegra_asoc_utils_init calls tegra_asoc_utils_set_rate and audio mclk
+>>> rate configuration is not needed during init and set_rate is actually
+>>> done during hw_params callback.
+>>>
+>>> So, this patch removes tegra_asoc_utils_set_rate call and just leaves
+>>> the audio mclk enabled.
+>>>
+>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>> ---
+>>>   sound/soc/tegra/tegra_asoc_utils.c | 11 +++++++++--
+>>>   1 file changed, 9 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/sound/soc/tegra/tegra_asoc_utils.c
+>>> b/sound/soc/tegra/tegra_asoc_utils.c
+>>> index 1dce5ad6e665..99584970f5f4 100644
+>>> --- a/sound/soc/tegra/tegra_asoc_utils.c
+>>> +++ b/sound/soc/tegra/tegra_asoc_utils.c
+>>> @@ -216,9 +216,16 @@ int tegra_asoc_utils_init(struct
+>>> tegra_asoc_utils_data *data,
+>>>                data->clk_cdev1 = clk_out_1;
+>>>        }
+>>>
+>>> -     ret = tegra_asoc_utils_set_rate(data, 44100, 256 * 44100);
+>>> -     if (ret)
+>>> +     /*
+>>> +      * FIXME: There is some unknown dependency between audio mclk
+>>> disable
+>>> +      * and suspend-resume functionality on Tegra30, although audio
+>>> mclk is
+>>> +      * only needed for audio.
+>>> +      */
+>>> +     ret = clk_prepare_enable(data->clk_cdev1);
+>>> +     if (ret) {
+>>> +             dev_err(data->dev, "Can't enable cdev1: %d\n", ret);
+>>>                return ret;
+>>> +     }
+>>>
+>>>        return 0;
+>>>   }
+>>>
+>> Shouldn't the clock be disabled on driver's removal?
+> 
+> I am not sure if we really need to do in this series as it does not
+> change the behavior from what was there earlier. Also there is already a
+> FIXME item here and we end up adding clock disable in remove() path of
+> multiple drivers, which is going to be removed once we address FIXME.
+> 
 
---3V7upXqbjpZ4EhLz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Well, perhaps this is indeed good enough for the time being.
 
-On Fri, Jan 17, 2020 at 05:23:43PM +0200, Georgi Djakov wrote:
-> Hi Thierry,
->=20
-> Thanks for the patch!
->=20
-> On 1/14/20 20:15, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Document the interconnects property that is used to describe the paths
-> > from and to system memory from and to the BPMP.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> > Rob, Georgi,
-> >=20
-> > after the initial RFC that I did for adding interconnect properties on
-> > Tegra, I realized that the description wasn't complete. This is an
-> > attempt at a more accurate description, but unfortunately I'm not sure
-> > if it's even correct in terms of the interconnect bindings.
-> >=20
-> > The problem here is that on Tegra, each device has multiple paths to
-> > system memory, and I have no good idea on what to pick as the default.
-> > They are all basically the same path, but each provides extra controls
-> > to configure the "interconnect".
->=20
-> Are these multiple paths between a device and system memory used simultan=
-eously
-> for load-balancing, or who makes the decision about which path would be u=
-sed?
+BTW, I didn't spot any suspend-resume problems using v8.
 
-It varies. The vast majority of these paths are read/write pairs, which
-can be configured separately. There are also cases where multiple paths
-are used for load-balancing and I don't think there's any direct
-software control over which path will be used.
-
-A third class is where you have one device, but two read/write pairs,
-one which is tied to a microcontroller that's part of the device, and
-another read/write pair that is used for DMA to/from the device.
-
-Often in the latter case, the microcontroller memory client interfaces
-will be used by the microcontroller to read firmware and once the micro-
-controller has booted up, the DMA memory client interfaces will be used
-to read/write system memory with bulk data (like frame buffers, etc.).
-
-> Is this based on the client/stream ID that you mentioned previously?
-
-These are now all what's call memory client IDs, which identify the
-corresponding interface to the memory controller. Stream IDs are
-slightly higher-level and typically identify the "module" that uses
-the SMMU. Generally a stream ID is mapped to one or more memory client
-IDs.
-
-> Looking at the the binding below, it seems to me like there are different
-> master/slave pairs between MC and EMC and each link is used for
-> unidirectional traffic only. In terms of the interconnect API, both read
-> and write paths have the same direction.
-
-I'm not sure I understand what you mean by this last sentence. Are you
-saying that each path in terms of the interconnect API is a always a
-bidirectional link?
-
-> Is the EMC really an interconnect provider or is it just a slave port? Can
-> we scale both EMC and MC independently?
-
-The EMC is the only one where we can scale the frequency, but the MC has
-various knobs that can be used to fine-tune arbitration, set maximum
-latency, etc.
-
-I vaguely recall Dmitry mentioning that the EMC in early generations of
-Tegra used to have controls for individual memory clients, but I don't
-see that in more recent generations.
-
-Thierry
-
-> > Any ideas on how to resolve this? Let me know if the DT bindings and
-> > example don't make things clear enough.
-> >=20
-> > Thierry
-> >=20
-> >  .../firmware/nvidia,tegra186-bpmp.yaml        | 59 +++++++++++++++++++
-> >  1 file changed, 59 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186=
--bpmp.yaml b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpm=
-p.yaml
-> > index dabf1c1aec2f..d40fcd836e90 100644
-> > --- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.y=
-aml
-> > @@ -43,6 +43,24 @@ properties:
-> >        - enum:
-> >            - nvidia,tegra186-bpmp
-> > =20
-> > +  interconnects:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    description: A list of phandle and specifier pairs that describe t=
-he
-> > +      interconnect paths to and from the BPMP.
-> > +
-> > +  interconnect-names:
-> > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> > +    description: One string for each pair of phandle and specifier in =
-the
-> > +      "interconnects" property.
-> > +    # XXX We need at least one of these to be named dma-mem so that th=
-e core
-> > +    # will set the DMA mask based on the DMA parent, but all of these =
-go to
-> > +    # system memory eventually.
-> > +    items:
-> > +      - const: dma-mem
-> > +      - const: dma-mem
-> > +      - const: dma-mem
-> > +      - const: dma-mem
-> > +
-> >    iommus:
-> >      $ref: /schemas/types.yaml#/definitions/phandle-array
-> >      description: |
-> > @@ -152,8 +170,43 @@ additionalProperties: false
-> > =20
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/clock/tegra186-clock.h>
-> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >      #include <dt-bindings/mailbox/tegra186-hsp.h>
-> > +    #include <dt-bindings/memory/tegra186-mc.h>
-> > +
-> > +    mc: memory-controller@2c00000 {
-> > +        compatible =3D "nvidia,tegra186-mc";
-> > +        reg =3D <0x02c00000 0xb0000>;
-> > +        interrupts =3D <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> > +        status =3D "disabled";
-> > +
-> > +        #interconnect-cells =3D <1>;
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
-> > +
-> > +        ranges =3D <0x02c00000 0x0 0x02c00000 0x0 0xb0000>;
-> > +
-> > +        /*
-> > +         * Memory clients have access to all 40 bits that the memory
-> > +         * controller can address.
-> > +         */
-> > +        dma-ranges =3D <0x0 0x0 0x0 0x100 0x0>;
-> > +
-> > +        #memory-controller-cells =3D <0>;
-> > +
-> > +        emc: external-memory-controller@2c60000 {
-> > +            compatible =3D "nvidia,tegra186-emc";
-> > +            reg =3D <0x0 0x02c60000 0x0 0x50000>;
-> > +            interrupts =3D <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-> > +            clocks =3D <&bpmp TEGRA186_CLK_EMC>;
-> > +            clock-names =3D "emc";
-> > +
-> > +            #interconnect-cells =3D <0>;
-> > +
-> > +            nvidia,bpmp =3D <&bpmp>;
-> > +        };
-> > +    };
-> > =20
-> >      hsp_top0: hsp@3c00000 {
-> >          compatible =3D "nvidia,tegra186-hsp";
-> > @@ -187,6 +240,12 @@ examples:
-> > =20
-> >      bpmp {
-> >          compatible =3D "nvidia,tegra186-bpmp";
-> > +        interconnects =3D <&emc &mc TEGRA186_MEMORY_CLIENT_BPMPR>,
-> > +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPW &emc>,
-> > +                        <&emc &mc TEGRA186_MEMORY_CLIENT_BPMPDMAR>,
-> > +                        <&mc TEGRA186_MEMORY_CLIENT_BPMPDMAW &emc>;
-> > +        interconnect-names =3D "dma-mem", "dma-mem", "dma-mem", "dma-m=
-em";
-> > +
-> >          iommus =3D <&smmu TEGRA186_SID_BPMP>;
-> >          mboxes =3D <&hsp_top0 TEGRA_HSP_MBOX_TYPE_DB TEGRA_HSP_DB_MAST=
-ER_BPMP>;
-> >          shmem =3D <&cpu_bpmp_tx &cpu_bpmp_rx>;
-> >=20
-
---3V7upXqbjpZ4EhLz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl4lwdsACgkQ3SOs138+
-s6Hdgg/+PAPsRJzrmRnjHtctC9WCw3qssBToHFiLFo2ggkiMJ/C7xDYSV6oP3Ntr
-45st7Nu+TjphUW4BmDROUA+0YN4pUikmwmiCwm4Xr0xx2Og4pYc1SjChC3+/Cj2+
-IO3bPBlLzorH36dL2vNiEF8ZemsdCHSBQKdJQ8tohuTYEEf/OcXvPbXo8F9/WMJj
-REfgg4sJaGFt+1O7ESJhAvSQuLQ+8mva5Nm7CVqbi2tYb5w1Tzo6seM7mBtmUWdL
-jDr5yYC4pqJcJF0gZ0Y7Bz6IIhwepKfer2LQDW87/8cy7/kAUEezI7Es9SEq0t6G
-SjMAU39bSNe9jHpCg9hKu1NIQC4W6ItZlZG42nkxgLpLPlIddzArRdb+IhSV4xFb
-bpvOLEa+4dktjtUHZ2S2dJMSNKb3X13MAQ031eYRHC8eZJeA4+fCVGlGrTUygt4W
-3CMOrx6Kk2z+Qj4OXZWbvK1Xo1XetN50BEfewrQG8HI4Pd2IDskRHXdpCkCMMVee
-B8vzmRQf5lNoaeQsy6T+zr3SMd+HXBYxNgDOpO3D9NFlpV4jPu0I4PJIQMLpde87
-cl1PS0uh5Bq+Owpda22WIqSUczCLIFNjegUxzbgZQULa76vOXiOTr3iAOVNUwk1X
-18Caf9PG1LWpiWGoxdFFOQt/fRRgIHnhHY6flotcZcjqbtrcouM=
-=GEA6
------END PGP SIGNATURE-----
-
---3V7upXqbjpZ4EhLz--
+Tested-by: Dmitry Osipenko <digetx@gmail.com>
+Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
