@@ -2,128 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63868142FC4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 17:31:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6318E14302A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 17:45:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729287AbgATQbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jan 2020 11:31:13 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:50737 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729619AbgATQbM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 11:31:12 -0500
-Received: by mail-wm1-f66.google.com with SMTP id a5so225377wmb.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2020 08:31:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+TYQNQQWESi4gKsyKl1vTO3f1E3mp/r/avow7BgHKMw=;
-        b=KUCP0iXOMGojck9VBZNBRw2+JiHPhupKrykVLxkHtgMaLvcQ6j/cd2QGNjZwrezEMr
-         2mUA4Fb0Fywh1IJdvlfUEfxBlnLmifohbs5MyR0IJ+S3V2kQWnfnURxjV4+Famsdnehm
-         lHruyqX+VNc9hSsgiDFLLo55zf+KeMkCVdhf3jwd6tGd+aHKnw0DuhukfF8OVTZ4k6Ay
-         7Af1bhjBthkJHBjjI7pTNswel5U/eeNGXu/cCwEhNvRNx2IDx9k98nNWOBzNxCDzojNp
-         nvWMTt/V3BaJm8T+4B68QHz0V1QFuG6r/Jb6fJpLbxoMFybkuE4gtCR7mcxSTv0D7DI6
-         7yAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+TYQNQQWESi4gKsyKl1vTO3f1E3mp/r/avow7BgHKMw=;
-        b=rfSOyeJWQZGbuBABRBt0hyFyTvO4ZFA1hPQxb4yQWMn40omNw1EoFb/m8CsUg17ZEd
-         SOwO6g8EuxSuFEJXSjEx0nCIZYGk6eCHoCffMtQzwSLOt9mb+9VEP+mdACq6Py038TdL
-         Izo2rAJ5acCdMEQtvNQIb3OrH1Rnwg7NsFYIZqXEhXg4xTWCHSCNVwVmHgMCREFa4xC3
-         E0Qgt255QfgHS4pR58AUMTw4IjZBkSMq0KExuh942uvRxWuyTbLtvz1oB9xFWjaBI2VR
-         YYTVq5JH05WqcGmVJuvhyX7fFd+mmOUfBSxzJgzjtv8rKhmuxD5NiB9IGTI6CEftACyN
-         10zw==
-X-Gm-Message-State: APjAAAXmegCxWEkbv5qaNLvtjkYred+bait9K/dZVdAWFvrPoPopR36p
-        /79LHfTUqPEpmmEmrhie2ce1PrKn94M=
-X-Google-Smtp-Source: APXvYqx3mix0N3OSlbE724dBiszE0bIOQv9oqIWm0r574xwA6rZwDk5D5jD9j19ft4X5DAoq7PfbbA==
-X-Received: by 2002:a05:600c:2c01:: with SMTP id q1mr142132wmg.179.1579537869792;
-        Mon, 20 Jan 2020 08:31:09 -0800 (PST)
-Received: from localhost.localdomain ([176.61.57.127])
-        by smtp.gmail.com with ESMTPSA id p26sm22631756wmc.24.2020.01.20.08.31.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2020 08:31:09 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v2 19/19] arm64: dts: qcom: qcs404-evb: Enable primary USB controller
-Date:   Mon, 20 Jan 2020 16:31:16 +0000
-Message-Id: <20200120163116.1197682-20-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200120163116.1197682-1-bryan.odonoghue@linaro.org>
-References: <20200120163116.1197682-1-bryan.odonoghue@linaro.org>
+        id S1726982AbgATQoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jan 2020 11:44:54 -0500
+Received: from mout.kundenserver.de ([212.227.126.133]:54743 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726897AbgATQoy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 11:44:54 -0500
+Received: from localhost ([217.91.205.33]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1MfYc4-1jZDRL25RA-00g3Dd; Mon, 20 Jan 2020 17:44:35 +0100
+Date:   Mon, 20 Jan 2020 17:44:34 +0100
+From:   Andreas Klinger <ak@it-klinger.de>
+To:     jic23@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
+        rpi-receiver@htl-steyr.ac.at, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] iio: srf04: add support for power management
+Message-ID: <20200120164433.GA8702@arbad>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:gWvLycNxUPsrfbKQlc543piJ9HSAtVHQVSZDVqfMQ5233yg18uB
+ YycTa9XcrDLFra4aaZEPuVfq5Um/1CTNOoKrhTE4OP36JNNPMfA+B/mHkKSDTOMlRKSpyDh
+ QTIYf85itUhYwCyr5k5FvNIRR+1UNWJfFnvWrzDSzaC1mpgMH9KUW77g2px1gMJ/zV1uwia
+ jPjEkCO2BFZaO0tdX1ZqA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:1DmxnLrgqy0=:mMbAxVGX4GDdscZIyZiVO4
+ U3LwVClaeAEyH5SFz4Tnnp179vVlTXXfF45o5rmfKf9c+DCaJNamOnNEkrOHqYd8DZ73RwCRz
+ EbOvrP5GYCBIkbGlzrPi7swKZGj28YXqPRBkP2tNkBotlURYcgk5SdVUY09OqUuU3UCw/Yegn
+ 8EOOOE9KaVDK1o01PzQX4zjSv+xQmFlkcu/zHLB1Ze6As+aM++BJNgzIwqCu8gdAIOMZxofjr
+ DwxBEZrq6j35636mdqPueHgVfSR6ZPbhJrQbWzD/wy6VdbbDIEFQ8qNENCkZ5tgw5dlum5EL3
+ 0hMpm35061JMN7UAFL5z+bq63UduB2zuyEbPSYEqMRsF2/fSRrW2B4Ef/O6g4GNdH1X/7B8/Z
+ JAcLC8Y7nHlypedR5RxVi47MtUl8EZld8HfKJhMRMQz6crZKFtmRBPONdqIefWj6ZaNizUU6x
+ OA7X7uia6YcW0P8NIVRkpntkY2oaUTXYbX7WSLvVJKwc7+6cD9tLfSsyH2dQrLTW+lSi89KX/
+ KCgKJ9+8UUN+WBrXBnk72ftd2gOYsKIv58J1YVaAdvqB+S47SH00AF2smY/cjqXc87sRDIxNm
+ D130Pr/GuZIBaPBuX46suADzZiYRHA9GwVdZviUH1qN5+SaPV1FpnFF45ASql5kQ1E6wf6kOG
+ 40oVtOc3ImiTiCsLpt93/CpGisgWQSovEzUaN1jJjHAawNh6bxVFOEKXf4viRkrEy762jTtbd
+ 8FCBvwRFOFf6dCyP7aDxKKI0SBLvjKTp3IP2DtB3TfHW9x2BLY93D+7iqjc/uuEkNeH2utJ7L
+ mx1dGu3crSHQx+/CqrnjZyovHjSqkT/aCLVbC3u5+HY1B9JoMT4ur9UUuDp3bxbkgHNmeeSt1
+ zyVN5Cc75wCvTtzS6niw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables the primary USB controller which has
+This patchset adds support for power management for the srf04 iio driver.
+It was suggested by Franz for the purpose of saving energy on battery driven
+vehicles.
 
-- One USB3 SS PHY using gpio-usb-conn
-- One USB2 HS PHY in device mode only and no connector driver
-  associated.
+Changes in v3:
+Thanks to Jonathan for reviewing:
+- drop CONFIG_PM
+- use __maybe_unused for suspend and resume functions
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 29 ++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+Changes in v2:
+Thanks to Rob for pointing out some improvements in dt-binding:
+ - add minimum, maximum and default value for startup-time-ms
+ - drop schema reference
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 07d6d793a922..a2cbca3a6124 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -329,6 +329,35 @@ &usb2_phy_sec {
- 	status = "okay";
- };
- 
-+&usb3 {
-+	status = "okay";
-+	dwc3@7580000 {
-+		usb-role-switch;
-+		usb_con: gpio_usb_connector {
-+			compatible = "gpio-usb-b-connector";
-+			label = "USB-C";
-+			id-gpio = <&tlmm 116 GPIO_ACTIVE_HIGH>;
-+			vbus-supply = <&usb3_vbus_reg>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&usb3_id_pin>, <&usb3_vbus_pin>;
-+			status = "okay";
-+		};
-+	};
-+};
-+
-+&usb2_phy_prim {
-+	vdd-supply = <&vreg_l4_1p2>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	vdda3p3-supply = <&vreg_l12_3p3>;
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	vdd-supply = <&vreg_l3_1p05>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	status = "okay";
-+};
-+
- &wifi {
- 	status = "okay";
- 	vdd-0.8-cx-mx-supply = <&vreg_l2_1p275>;
+Andreas Klinger (2):
+  dt-bindings: devantech-srf04.yaml: add pm feature
+  iio: srf04: add power management feature
+
+ .../iio/proximity/devantech-srf04.yaml        | 18 ++++
+ drivers/iio/proximity/srf04.c                 | 96 ++++++++++++++++++-
+ 2 files changed, 113 insertions(+), 1 deletion(-)
+
 -- 
-2.25.0
-
+2.20.1
