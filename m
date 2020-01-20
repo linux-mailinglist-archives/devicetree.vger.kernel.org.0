@@ -2,127 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E03561424B9
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 09:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFEE51424D8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 09:16:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726465AbgATICK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jan 2020 03:02:10 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:36473 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726951AbgATICJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 03:02:09 -0500
-Received: by mail-wr1-f66.google.com with SMTP id z3so28441004wru.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2020 00:02:07 -0800 (PST)
+        id S1726148AbgATIQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jan 2020 03:16:39 -0500
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:36383 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726075AbgATIQi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 03:16:38 -0500
+Received: by mail-lf1-f67.google.com with SMTP id f24so2205899lfh.3
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2020 00:16:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=e6dkf7g0PlBYzajwREklnNmjXK94Sc+HZYUhtk+5LdM=;
-        b=jN6OaO3LImWPZHkie+o9NYbPcksaQwt6VefqX5klIn/3qVibfBq4ZSEimQWad5KD+6
-         L0xrCWnJoG/MuPnZsGfzr3bRE8XHIIM+vG0z47GvgrzqTDe482Jya/1aN0fr8MXvzsfO
-         OMt4ZrLpJH5Aex8tX99XrKSqUlXB8vtEyX4armTD5fYVwYEDuuyDE6cC31BSsDiVpRx0
-         HFTAplyQVE8ZvEYKS256eR3a15jU3780jrVE9yTXKAIcDSt4x2w5mcmTEX0Oed7S78No
-         mjPQ9/Zflrzc4wIpTuWX3ckETiSe6kHu6B3SPHw8Uy37A6oJCAy3mNL9IqadAXQ+A69u
-         BbOg==
+        h=from:to:cc:subject:date:message-id;
+        bh=32qSjrlmgTQ7SJtLpH0BG/gMi8aameyFBWW4CPPRTsg=;
+        b=i64XnSVKIi3G41VBkcx/pnISdsA3nAP2SEa2eiFheZ6KWEi17hD3aQe3UqwsQCKqWN
+         fPvtvQwDFHZePoznFlOCTq7eureO8pOGpcuwVlR1yEiS3H2zuF6K4VrhIMcOQMhRoUgY
+         +571jPkmOQpS+NMtWQQZo9YLYzXxvw26V6SErsvmf/JPFbRZ2q8nWGX9cNBY18/pe6gE
+         8Ulda7zDN9tMREZ/+SEZtYABCNmR3QrIR7rW2rvCTd9u8CPP7V6lGAwjz+eyT4noyz7s
+         sY3gPnCu/3tDRv8iKfpYNp1Kfz4ft+IQl8z+2Zwlo9gNMtZD1belAT3JAEOk1BCDKYAQ
+         U4TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=e6dkf7g0PlBYzajwREklnNmjXK94Sc+HZYUhtk+5LdM=;
-        b=h3WqHYXXBYZ3gh7nup3VvNsnqQqP/xKVipc1dH4AqPazbweUNqzd9DFJ59Fz7sh646
-         VjVVlMalqwFuLKA/RAlKVBDjP33lo4hjUh0HYsnCzORyNNTOBjX9alrew56U/zlgvJ5U
-         9HZNrujW4rjJq1HyV5kns/6f0Y0F8UbVvH6NGJuRHK6gzx/RGaTb1qgG/nDOXplmvgg4
-         qzCqzfuMJ1MQX+wy/rVPZ+FOqjFBvU0hF0P7dQzVU+rujUvQ7MYfA9FQkxFS34vsUoVK
-         tPopjl96eTBSbehxFWZEqr16wpbe+VeyNpM6yMBVWrCe03LxyYbaMS/FK8UZ4nMtGp3A
-         2W3A==
-X-Gm-Message-State: APjAAAWEnLbTPvlTh4cF9yLglgjeFrmf5NSkcQo2WkAIInDeTbv/bcgA
-        sSKsNm8ctxDHa05scCzwyufxTg==
-X-Google-Smtp-Source: APXvYqzcaJJackorcPd9DC4Xa5AIzUt/tljBZ9+GLzsPMBa1EJ3AAs42EkOtT5IjuvRGZDmfO5jhmQ==
-X-Received: by 2002:a5d:4692:: with SMTP id u18mr16874910wrq.206.1579507326451;
-        Mon, 20 Jan 2020 00:02:06 -0800 (PST)
-Received: from dell ([2.27.35.227])
-        by smtp.gmail.com with ESMTPSA id f16sm46604581wrm.65.2020.01.20.00.02.05
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=32qSjrlmgTQ7SJtLpH0BG/gMi8aameyFBWW4CPPRTsg=;
+        b=Cd9tJ5TnFB/eTqvq7D3zgokFSkoJiqpIS2oEevy4rz5qbQUdWL+Z/a0cS0+PnP44Vv
+         +IrU4irv9p9AOA/MQNoW9Jb0pbbGSMF3koT+UfQxRnEJSD5GYSMxdkVhPXw7n578YE1h
+         a7HWzL+F3EIJebXFvZ/F50DsL3M2WPzanjb0dB87xhNEqCmYclDhHSp1+y7egRUqq624
+         U51o+s8MCfAQO+4hrqYwva957BwpW9GRlDeZc5NTP2B8+FKOiRg//jTO/nnKNopDKjfc
+         wly+FPHJZXp+pdrJLo6Iedu6P9JiKZKwSFzho/6r10EaSqOUdu2zpqIw198fZXVO0br4
+         xc+Q==
+X-Gm-Message-State: APjAAAWcHLLP54+deVVxxxu/oUO7Gvx6gyE+VTbop640O0jhX3xu7Pp+
+        NWd8oZMBwZxOGguo8B8+99Xcxg==
+X-Google-Smtp-Source: APXvYqwhwOCZnRex8L/j8NGhZuDJGjm6ZYIGT9mZDPghbEIMlrcb+roier0byMNeGE/1ALC9USVoZQ==
+X-Received: by 2002:a19:9d5:: with SMTP id 204mr3931489lfj.120.1579508196781;
+        Mon, 20 Jan 2020 00:16:36 -0800 (PST)
+Received: from localhost.localdomain (95-28-65-22.broadband.corbina.ru. [95.28.65.22])
+        by smtp.googlemail.com with ESMTPSA id m21sm16261977lfh.53.2020.01.20.00.16.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2020 00:02:05 -0800 (PST)
-Date:   Mon, 20 Jan 2020 08:02:20 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-        "dmurphy@ti.com" <dmurphy@ti.com>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "jacek.anaszewski@gmail.com" <jacek.anaszewski@gmail.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "bgolaszewski@baylibre.com" <bgolaszewski@baylibre.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "pavel@ucw.cz" <pavel@ucw.cz>,
-        "broonie@kernel.org" <broonie@kernel.org>
-Subject: Re: [PATCH v10 11/13] gpio: bd71828: Initial support for ROHM
- BD71828 PMIC GPIOs
-Message-ID: <20200120080220.GQ15507@dell>
-References: <cover.1579249511.git.matti.vaittinen@fi.rohmeurope.com>
- <c8ed62a1efa0c6fde93a8a08fe6bc74a450a34f3.1579249511.git.matti.vaittinen@fi.rohmeurope.com>
- <20200117102127.GD15507@dell>
- <9f405dfc4c7e56e32f4eb2f9cb6e87c05aea1ac9.camel@fi.rohmeurope.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9f405dfc4c7e56e32f4eb2f9cb6e87c05aea1ac9.camel@fi.rohmeurope.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Mon, 20 Jan 2020 00:16:35 -0800 (PST)
+From:   Andrey Konovalov <andrey.konovalov@linaro.org>
+To:     mchehab@kernel.org, robh+dt@kernel.org
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@iki.fi, peter.griffin@linaro.org,
+        dave.stevenson@raspberrypi.com, ezequiel@collabora.com,
+        Andrey Konovalov <andrey.konovalov@linaro.org>
+Subject: [PATCH v4 0/2] Add IMX219 CMOS image sensor support
+Date:   Mon, 20 Jan 2020 11:15:56 +0300
+Message-Id: <20200120081558.25258-1-andrey.konovalov@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 20 Jan 2020, Vaittinen, Matti wrote:
+This patchset adds support for IMX219 CMOS image sensor from Sony.
+Sony IMX219 is an 8MPix, 1/4.0-inch CMOS active pixel digital image sensor
+with an active array size of 3280H x 2464V. It is programmable through
+I2C interface. Image data are sent through MIPI CSI-2, which can be configured
+as either 2 or 4 data lanes, but this driver currently only supports 2 lanes.
+The currently supported resolutions are 3280x2464 @ 15fps, 1920x1080 @ 30fps
+(cropped FOV), and 1640x1232 (2x2 binned) @ 30fps.
 
-> Hello,
-> 
-> On Fri, 2020-01-17 at 10:21 +0000, Lee Jones wrote:
-> > On Fri, 17 Jan 2020, Matti Vaittinen wrote:
-> > 
-> > > ROHM BD71828 PMIC contains 4 pins which can be configured by OTP
-> > > to be used for general purposes. First 3 can be used as outputs
-> > > and 4.th pin can be used as input. Allow them to be controlled
-> > > via GPIO framework.
-> > > 
-> > > The driver assumes all of the pins are configured as GPIOs and
-> > > trusts that the reserved pins in other OTP configurations are
-> > > excluded from control using "gpio-reserved-ranges" device tree
-> > > property (or left untouched by GPIO users).
-> > > 
-> > > Typical use for 4.th pin (input) is to use it as HALL sensor
-> > > input so that this pin state is toggled when HALL sensor detects
-> > > LID position change (from close to open or open to close). PMIC
-> > > HW implements some extra logic which allows PMIC to power-up the
-> > > system when this pin is toggled. Please see the data sheet for
-> > > details of GPIO options which can be selected by OTP settings.
-> > > 
-> > > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > > Reviewed-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > 
-> > Linus, Is that an Ack?
-> I have always thought that reviewed-by implies that reviewer is Ok with
-> the patch (imples Ack). Maybe I have mistaken?
+The driver has been tested with Raspberry Pi Camera Module v2 connected to
+Raspberry Pi Zero W.
 
-I would rather not assume.
+Changes since v3 [1]:
+
+dt-bindings:
+  - "link-frequencies" property added
+
+imx219 sensor driver:
+  - "depends on MEDIA_CAMERA_SUPPORT" removed from the Kconfig as all the
+    sensor drivers are under "if MEDIA_CAMERA_SUPPORT" now
+  - in imx219_get_pad_format(), when 'which' argument is V4L2_SUBDEV_FORMAT_TRY
+    update the code field in v4l2_mbus_framefmt structure, as the format code
+    could change due to vflip or hflip
+  - in imx219_power_on(), the delay after de-asserting the reset is changed
+    (reduced from 10 mS to 6.2 mS) to fit the startup timings better. Also
+    switched from using msleep() to usleep_range(), as otherwise the change
+    from 10 mS to 6.2 mS wouldn't have an effect (see
+    https://www.kernel.org/doc/Documentation/timers/timers-howto.txt).
+    Added the comment which explains how the value of the delay was calculated,
+    and why it is fixed value
+  - empty lines added before "return x;" statements
+  - in imx219_get_regulators() "int i;" changed to "unsigned int i;"
+  - the 'dev' field dropped from struct imx219
+  - the link frequencies check is added. As the current driver supports only
+    single link frequency, the check just compares the link-frequency in DT to
+    the predefined value.
+    To be able to read link-frequencies from the DT, call to
+    v4l2_fwnode_endpoint_parse() was replaced with call to
+    v4l2_fwnode_endpoint_alloc_parse(), and the code was rearranged:
+    imx219_check_hwcfg() was introduced, and 'ep' field was removed from imx219
+    structure, as the parsed DT endpoint info is not used outside
+    imx219_check_hwcfg()
+  - in imx219_remove(), the code was added to power off the sensor in the case
+    when runtime PM is disabled
+  - 'probe_new' is used instead of 'probe'
+
+Thanks,
+Andrey
+
+[1] https://patchwork.kernel.org/cover/11328425/
+
+
+Andrey Konovalov (1):
+  dt-bindings: media: i2c: Add IMX219 CMOS sensor binding
+
+Dave Stevenson (1):
+  media: i2c: Add driver for Sony IMX219 sensor
+
+ .../devicetree/bindings/media/i2c/imx219.yaml |  114 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   11 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/imx219.c                    | 1312 +++++++++++++++++
+ 5 files changed, 1446 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/imx219.yaml
+ create mode 100644 drivers/media/i2c/imx219.c
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.17.1
+
