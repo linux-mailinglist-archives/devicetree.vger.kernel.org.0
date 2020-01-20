@@ -2,107 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D68B3143337
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 22:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE72F143389
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 22:55:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726586AbgATVCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jan 2020 16:02:51 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:51170 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727101AbgATVCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 16:02:50 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00KL2gGd087409;
-        Mon, 20 Jan 2020 15:02:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1579554163;
-        bh=tc/nNYBdxoNbru9sN4KFT+Bvl79DZ5zz3QJTcBh3ppQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=QPOlVcz1xV7+oGsHRK8UMIqM+g1YzVAn5/sn6aC5xg352EsbwszL88n6v2TDYJ4E9
-         LzCsWXpkpyUq869XCs0gkNnRkHwrrLmFEbz/eEhnLzPWqToe0EvqgNtCXRl80bZ7lr
-         SBPvTih36EOrLEst0RFgvmasLt+tGjCA9gqimDDk=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00KL2gfj021828
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 20 Jan 2020 15:02:42 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 20
- Jan 2020 15:02:41 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 20 Jan 2020 15:02:41 -0600
-Received: from jadmar.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00KL2PYc079658;
-        Mon, 20 Jan 2020 15:02:39 -0600
-From:   Jyri Sarha <jsarha@ti.com>
-To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>
-CC:     <tomi.valkeinen@ti.com>, <laurent.pinchart@ideasonboard.com>,
-        <peter.ujfalusi@ti.com>, <bparrot@ti.com>, <subhajit_paul@ti.com>,
-        <praneeth@ti.com>, <yamonkar@cadence.com>, <sjakhade@cadence.com>,
-        <sam@ravnborg.org>, <jsarha@ti.com>
-Subject: [PATCH v8 5/5] MAINTAINERS: add entry for tidss
-Date:   Mon, 20 Jan 2020 23:02:24 +0200
-Message-ID: <c74bab67540cf4345916999b518018e02085631c.1579553817.git.jsarha@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1579553817.git.jsarha@ti.com>
-References: <cover.1579553817.git.jsarha@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726874AbgATVzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jan 2020 16:55:17 -0500
+Received: from outgoing11.flk.host-h.net ([188.40.208.241]:60969 "EHLO
+        outgoing11.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726752AbgATVzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 16:55:16 -0500
+X-Greylist: delayed 7787 seconds by postgrey-1.27 at vger.kernel.org; Mon, 20 Jan 2020 16:55:16 EST
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+        by antispam3-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1itczG-0000cv-RT; Mon, 20 Jan 2020 21:45:27 +0200
+Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
+        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1itczD-0004Hk-Es; Mon, 20 Jan 2020 21:45:23 +0200
+From:   Justin Swartz <justin.swartz@risingedge.co.za>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 4/4] ARM: dts: rockchip: add rga to rk3229-xms6
+Date:   Mon, 20 Jan 2020 19:41:57 +0000
+Message-Id: <20200120194158.25357-4-justin.swartz@risingedge.co.za>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20200120194158.25357-1-justin.swartz@risingedge.co.za>
+References: <20200120194158.25357-1-justin.swartz@risingedge.co.za>
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-Originating-IP: 188.40.1.173
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.03)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0fKZ8wcD78QFAaYhvfMzLIKpSDasLI4SayDByyq9LIhVeWb5TMLTma+i
+ 4jOGzZGfZETNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
+ mAX8Bxy/iUu0ThNZg0jxJtcVJProrT987X1VDPOqN+OoDzRTdku7DidYUZdNf38Sp7Of4wP429AA
+ f49baR+f3He7jw4SoVhmTJ/3eP9ORQWVx8ds1M4qmk3/bYr2p8zbg4Paoa3pNVQ0zl7t/+UfQLYB
+ qEPnp1U88kqVD8AM2G81dFO0E3gi+MOI1foZYzDggRXhpvoPtF3cVkniFXU3qJSqpdJudO6+rkiw
+ E5i8Wl78Q18OeOfsy4h7jF1Uv9lnibl3vcBqVmvQB4A18afb/FOITJmxBc0QX+fY5eUpAVXirbLu
+ Jjy3NtnGWLbnBGfrUBEXB2fYGLNieGQuoHtJvp0r29Rf3ZjFwL+MhHEWw/0qBlNDp8uABz3dkWV+
+ ttWGem52QLIiDo2hv5/Q58JTycYLFeAN4+MGwnsp7SkU6CLbyF0Zq4b1/7rjUzETJrWks4pbbQJq
+ 6gWopI3ep45X19ZysgQ+31LcAX8eoFXAhohfegXGH2GIVQVglJFbK771YV8YbC29CtmpcTqTfSIf
+ CWq9oj7OiT8GwpAriB+3/81I3rvR8KJ2fK9jiDYgijyqqY0rATpzHKGfmtNsYTr4SmDZ/bGW8xZC
+ RRs6ZD24UhFcZZEpLhnBCwImTQNvxaLyCc35VA7RvW/HGiGqxL09Cymermt8NAa/gGopT3kKfO4C
+ gvcKmV0o9jYzsFpuc43pp/LzIs3ornuRuAAdgrkq+6l7ZLNYJcf7Z6PCydDzoYZgInuDxgFOs7AZ
+ TwbwMaed1BaNkB2/QnXFItfl/CWjT+yf5NxUSmxyzYlBxqy338NrFoXSENXH6UXfnav35JPA4YfM
+ 6tBkXsqvKY6zoLLTPpuFqUUQz+mM8JAD4ECWNo09vb0YLIRnK477e9Xake5PIWKjIXX7qe2zOXoS
+ fozs0E8f2AsASs7mWOF+2zisWBpVRcW84PzgOLDW9zuKlWbjO41FyBEqIaDudcVplPE6wCr6GXU1
+ lCw88ijyus1sGnWknJqS8gGhNQxpB5P3qu7c1xMljx2PG/R+pKBSKy8hXOgvE1zSS7XUhkYEQYeb
+ 3jR5NeVaJQBh0uawl0Cg8j+knAzOA9mmoJvkuhKHiekUuskYaI6ERCKp8gXWqnT9kLHhStr5fiGK
+ 7KncpWELuTEvuGslKTrRIXcXpFg5ivY=
+X-Report-Abuse-To: spam@antispammaster.host-h.net
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for tidss DRM driver.
+Enable RGA for Mecer Xtreme Mini S6.
 
-Version history:
-
-v2: no change
-
-v3: - Move tidss entry after omapdrm
-    - Add "T:     git git://anongit.freedesktop.org/drm/drm-misc"
-
-v4: no change
-
-v5: no change
-
-v6: no change
-
-v7: no change
-
-v8: - Add Reviewed-by: Benoit Parrot <bparrot@ti.com>
-
-Signed-off-by: Jyri Sarha <jsarha@ti.com>
-Reviewed-by: Benoit Parrot <bparrot@ti.com>
+Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
 ---
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm/boot/dts/rk3229-xms6.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index aa9add598b7d..d8f65dc1dde8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5630,6 +5630,17 @@ S:	Maintained
- F:	drivers/gpu/drm/omapdrm/
- F:	Documentation/devicetree/bindings/display/ti/
+diff --git a/arch/arm/boot/dts/rk3229-xms6.dts b/arch/arm/boot/dts/rk3229-xms6.dts
+index 679fc2b00..894f64a4a 100644
+--- a/arch/arm/boot/dts/rk3229-xms6.dts
++++ b/arch/arm/boot/dts/rk3229-xms6.dts
+@@ -202,6 +202,10 @@
+ 	status = "okay";
+ };
  
-+DRM DRIVERS FOR TI KEYSTONE
-+M:	Jyri Sarha <jsarha@ti.com>
-+M:	Tomi Valkeinen <tomi.valkeinen@ti.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+F:	drivers/gpu/drm/tidss/
-+F:	Documentation/devicetree/bindings/display/ti/ti,k2g-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-+F:	Documentation/devicetree/bindings/display/ti/ti,j721e-dss.yaml
-+T:	git git://anongit.freedesktop.org/drm/drm-misc
++&rga {
++	status = "okay";
++};
 +
- DRM DRIVERS FOR V3D
- M:	Eric Anholt <eric@anholt.net>
- S:	Supported
+ &sdmmc {
+ 	cap-mmc-highspeed;
+ 	disable-wp;
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.11.0
 
