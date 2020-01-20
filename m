@@ -2,196 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E7E51432D4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 21:19:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04C9A143316
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2020 21:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726954AbgATUTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 20 Jan 2020 15:19:49 -0500
-Received: from mail-pj1-f65.google.com ([209.85.216.65]:39326 "EHLO
-        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726586AbgATUTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 15:19:49 -0500
-Received: by mail-pj1-f65.google.com with SMTP id e11so274189pjt.4
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2020 12:19:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=4uQ0Ytid32n2WyL1url/nvWMiyBpJsDojy+EoEWTFX0=;
-        b=eqP/QxolKj6Uv5xr++tkXwMv1BV+g6AOzK2xxloYJ4edQpyRVZ1o2LmMmrxhscHCrY
-         OLHLondggt0qHrOa+1VREJ1wK4LFxwB1hCNTcD+PvqYu9/Qm9tJgyYrMHRbXpxfCdKW5
-         czcqZO7BFtnV3FS47FUF05El1g2sVX8jn0axKG5/X0oZZmcjDvrEyORgECZI480GVPa+
-         io18qGjj+o4Wv137kbtnQu2AAir8xTjbcyt7k9nGeA2H6d+bgWK30SesLsCHOglJ7eVL
-         hNlU/CLDyu7WvA6RiNOjJtB4Dj5FnizX5ZRdMMplGTdwnz4jx3Udhaua8b8R+t7TfG2B
-         hXqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=4uQ0Ytid32n2WyL1url/nvWMiyBpJsDojy+EoEWTFX0=;
-        b=Wt4PUJdrL/EkeuQvx6FOgNyabqHj/RFQNC5r520II7szI89Jy4xLa0T8sokueDzPY1
-         QNpGdNYYj/nMeAfU3nZnl9NRwQb1hSt8XaSRElQOA+DwAKQUAVBFIZhm/CXQiNP2XYdX
-         /FFJf7LGEJCJztV5F0WL5K3NiT12+ztw9ZS+Gi8yxlB07jnJyLCpqaXWcm7T1bkmJ0rn
-         7DKP6wifUq8FDe7xar3GPX9NJvB07hJwlSUdvIY6PjYgCFtIbvsLNKWsdooSIEfVEO4f
-         wsmZzlgX8fwB1dbA3D6I9kEgDtBSZWIb37v4ivg9tW0ECXyB0qM6yzL/CuxP6lveuPRy
-         XdJg==
-X-Gm-Message-State: APjAAAXayfiVUveO3t2ZcuZmWamq/lAgU9CSwQf6QLRZ4pLUYxscgKMs
-        Ub/hgRe2NOPosVbSuTUjt3ulpw==
-X-Google-Smtp-Source: APXvYqxy/23Osmk/G5dCHhfefOJ2GrkrW6Jne/rwJJ6c7uF3c2qAIs18uzVYxqXuFDzdxsCM3ols/w==
-X-Received: by 2002:a17:902:d68e:: with SMTP id v14mr1619827ply.36.1579551587827;
-        Mon, 20 Jan 2020 12:19:47 -0800 (PST)
-Received: from yoga (wsip-184-181-24-67.sd.sd.cox.net. [184.181.24.67])
-        by smtp.gmail.com with ESMTPSA id w20sm40393776pfi.86.2020.01.20.12.19.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2020 12:19:47 -0800 (PST)
-Date:   Mon, 20 Jan 2020 12:19:44 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, od@zcrc.me,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] remoteproc: Add prepare/unprepare callbacks
-Message-ID: <20200120201944.GO1511@yoga>
-References: <20191210164014.50739-1-paul@crapouillou.net>
- <20191210164014.50739-3-paul@crapouillou.net>
- <20191221202039.GG549437@yoga>
- <1579122951.3.2@crapouillou.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1579122951.3.2@crapouillou.net>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+        id S1726607AbgATUxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 20 Jan 2020 15:53:43 -0500
+Received: from outgoing18.flk.host-h.net ([197.242.87.52]:45779 "EHLO
+        outgoing18.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726586AbgATUxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 20 Jan 2020 15:53:42 -0500
+X-Greylist: delayed 4094 seconds by postgrey-1.27 at vger.kernel.org; Mon, 20 Jan 2020 15:53:42 EST
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+        by antispam5-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1itczF-00045Z-9N; Mon, 20 Jan 2020 21:45:25 +0200
+Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
+        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1itczA-0004Hk-RM; Mon, 20 Jan 2020 21:45:20 +0200
+From:   Justin Swartz <justin.swartz@risingedge.co.za>
+To:     Jacob Chen <jacob-chen@iotwrt.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/4] [media] dt-bindings: Add rk3228 to the Rockchip RGA binding doc
+Date:   Mon, 20 Jan 2020 19:41:55 +0000
+Message-Id: <20200120194158.25357-2-justin.swartz@risingedge.co.za>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20200120194158.25357-1-justin.swartz@risingedge.co.za>
+References: <20200120194158.25357-1-justin.swartz@risingedge.co.za>
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-Originating-IP: 188.40.1.173
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.02)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0Xm17NJf4el5vffImWwWrhCpSDasLI4SayDByyq9LIhVjN6Oe0bZSj7x
+ nWUgTBxzfkTNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
+ mAX8Bxy/iUu0ThNZg0h/RxVysY5Ye6+GGw0VqdJD7ren9RtRNyYim5e3GD8LGfWrcbYvelpuN/Pk
+ qhBpvAyWwieZyauFYqHkIbFa+ipF21HJWO60ZqrvKy/1AXUV5oXt6ymoFHaG7BQtEYvFCSrK5j1T
+ Po5/LpleUgQM5/MAHmDvzkMd4joYqrUfcPIQdUYI3fUXyt8g6v09xrG7vu/fdUS1M5thdxxsnOTC
+ rRmvZNXA7urqkuRkjn1fyteVYP+HXs9CMbFn9vCz9Z+lGmDQvQDDheqH4lBQpR0ziVlLWDAC1vRC
+ hq319+C3vxdCgsyStZRkQwmoMeUp+gQglixgZmTW6H0Uo/QzUeaLOBvNEC1g+U1SXfUhLsTk5wUY
+ WaWokZC3JOaEfAcg3rPhhfeK9cZ48uDEoRc5vgP+N4akg5nlaTNYebWa2W6GbNvgwptlhJrsz+8j
+ XuMdjIbLZhwoK/VzePATsXS/rFxRypFKMiPLyoQzvILSDO18VtgBXbQkUN2dXl9fJsQYqiZZBuHY
+ Ta6/LJzl4pg0ZC9q5gYH7EOMauBWC98ol0xUHcbfIJ9ZJ7PpnPxGejDS+HAMyOjpxOsB8gG0slV7
+ ra6jI4BS3XLmxFz+88FWeB7miCnFrS+xkiYMmdOwRIKnLhTyDa49KiI6ApkBL1M2pjeIsNv0i2bz
+ nHJ53CHS5fL+CC61pH+Mdi8KDLlrJjQEyoQkvVqjwoXSktopqY7X3mJE1vuavCrJPmnnTHzVkpyb
+ MK7ZTZV8hN6hngxqNW/p6/rAjB3Bo9WPi4IE45J8SMIBWsA7tm+5pSj1YjV94R3x16NaT9yCB/zW
+ LYsk4/ealtlYzK51KubfNuS9lgsouDG6gpp8iIlTfpXH3eJ/htNFsfRJIIsn2dSUfOon4SSOHnp1
+ et/MPu6LuWW8C6xs4jnP0QXTijBi5PZExX8sQXRK2Ohd4N83CNy2/HP4CS/B6ymwJqdrYqktDHCy
+ f2KOgPWiC6z4HnV1R/vfaN0C4C3KdSxIKbHYhXQwhXELIBZC+BuxdgK5cVvzDCtuQClUbi7eRJvI
+ 01OLeFH4QvqpC2nLfIqdZUeVlVebzZqu+9TcX2V266qVhLwCLj5UzlqDZIb7xEp3klSpLYn5Sshm
+ tRDo/ib6qUd+ON9Iwv3fqFcmzUrJkUoL/PyVSe2/DDFq5n7HBuKWYRb2mL6sFaAAW2m3yODQWZ6C
+ UzN46xT2FnDD31r1QFs2yPRk3H1E4ANRdN1BlPI5cpunCmbc5xpJVMDSneyWOiQlotRPFwUdX67F
+ 3JAjgow=
+X-Report-Abuse-To: spam@antispammaster.host-h.net
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 15 Jan 13:15 PST 2020, Paul Cercueil wrote:
+Add "rockchip,rk3228-rga" to the list of acceptable values for
+the "compatible" property.
 
-> Hi Bjorn,
-> 
-> 
-> Le sam., déc. 21, 2019 at 12:20, Bjorn Andersson
-> <bjorn.andersson@linaro.org> a écrit :
-> > On Tue 10 Dec 08:40 PST 2019, Paul Cercueil wrote:
-> > 
-> > >  The .prepare() callback is called before the firmware is loaded to
-> > >  memory. This is useful for instance in the case where some setup is
-> > >  required for the memory to be accessible.
-> > > 
-> > 
-> > Would it make sense to somehow tie this prepare/unprepare to the actual
-> > struct rproc_mem_entry that needs the resource enabled?
-> 
-> Do you need such granularity?
-> 
+Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+---
+ Documentation/devicetree/bindings/media/rockchip-rga.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-I don't have such needs, but given some of the memory structure that
-Suman and Loic has been talking about I would expect that such need
-exists.
+diff --git a/Documentation/devicetree/bindings/media/rockchip-rga.txt b/Documentation/devicetree/bindings/media/rockchip-rga.txt
+index fd5276abf..9bac1782d 100644
+--- a/Documentation/devicetree/bindings/media/rockchip-rga.txt
++++ b/Documentation/devicetree/bindings/media/rockchip-rga.txt
+@@ -6,6 +6,7 @@ BitBLT, alpha blending and image blur/sharpness.
+ 
+ Required properties:
+ - compatible: value should be one of the following
++		"rockchip,rk3228-rga";
+ 		"rockchip,rk3288-rga";
+ 		"rockchip,rk3399-rga";
+ 
+-- 
+2.11.0
 
-> In my case, the three memories need the same clock to be enabled.
-> 
-
-But we can update your driver to associate your one clock with the
-memory objects if/when we end up implementing this later.
-
-Regards,
-Bjorn
-
-> -Paul
-> 
-> 
-> > 
-> > >  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> > >  ---
-> > > 
-> > >  Notes:
-> > >      v2-v4: No change
-> > > 
-> > >   drivers/remoteproc/remoteproc_core.c | 16 +++++++++++++++-
-> > >   include/linux/remoteproc.h           |  4 ++++
-> > >   2 files changed, 19 insertions(+), 1 deletion(-)
-> > > 
-> > >  diff --git a/drivers/remoteproc/remoteproc_core.c
-> > > b/drivers/remoteproc/remoteproc_core.c
-> > >  index 0a9fc7fdd1c3..3ea5f675a148 100644
-> > >  --- a/drivers/remoteproc/remoteproc_core.c
-> > >  +++ b/drivers/remoteproc/remoteproc_core.c
-> > >  @@ -1299,11 +1299,19 @@ static int rproc_start(struct rproc *rproc,
-> > > const struct firmware *fw)
-> > >   	struct device *dev = &rproc->dev;
-> > >   	int ret;
-> > > 
-> > >  +	if (rproc->ops->prepare) {
-> > >  +		ret = rproc->ops->prepare(rproc);
-> > >  +		if (ret) {
-> > >  +			dev_err(dev, "Failed to prepare rproc: %d\n", ret);
-> > >  +			return ret;
-> > >  +		}
-> > >  +	}
-> > >  +
-> > >   	/* load the ELF segments to memory */
-> > >   	ret = rproc_load_segments(rproc, fw);
-> > >   	if (ret) {
-> > >   		dev_err(dev, "Failed to load program segments: %d\n", ret);
-> > >  -		return ret;
-> > >  +		goto unprepare_rproc;
-> > >   	}
-> > > 
-> > >   	/*
-> > >  @@ -1354,6 +1362,9 @@ static int rproc_start(struct rproc *rproc,
-> > > const struct firmware *fw)
-> > >   	rproc_unprepare_subdevices(rproc);
-> > >   reset_table_ptr:
-> > >   	rproc->table_ptr = rproc->cached_table;
-> > >  +unprepare_rproc:
-> > >  +	if (rproc->ops->unprepare)
-> > >  +		rproc->ops->unprepare(rproc);
-> > > 
-> > >   	return ret;
-> > >   }
-> > >  @@ -1483,6 +1494,9 @@ static int rproc_stop(struct rproc *rproc,
-> > > bool crashed)
-> > > 
-> > >   	rproc->state = RPROC_OFFLINE;
-> > > 
-> > >  +	if (rproc->ops->unprepare)
-> > >  +		rproc->ops->unprepare(rproc);
-> > >  +
-> > >   	dev_info(dev, "stopped remote processor %s\n", rproc->name);
-> > > 
-> > >   	return 0;
-> > >  diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-> > >  index 5f201f0c86c3..a6272d1ba384 100644
-> > >  --- a/include/linux/remoteproc.h
-> > >  +++ b/include/linux/remoteproc.h
-> > >  @@ -355,6 +355,8 @@ enum rsc_handling_status {
-> > > 
-> > >   /**
-> > >    * struct rproc_ops - platform-specific device handlers
-> > >  + * @prepare:	prepare the device for power up (before the firmware
-> > > is loaded)
-> > >  + * @unprepare:	unprepare the device after it is stopped
-> > >    * @start:	power on the device and boot it
-> > >    * @stop:	power off the device
-> > >    * @kick:	kick a virtqueue (virtqueue id given as a parameter)
-> > >  @@ -371,6 +373,8 @@ enum rsc_handling_status {
-> > >    * @get_boot_addr:	get boot address to entry point specified in
-> > > firmware
-> > >    */
-> > >   struct rproc_ops {
-> > >  +	int (*prepare)(struct rproc *rproc);
-> > >  +	void (*unprepare)(struct rproc *rproc);
-> > >   	int (*start)(struct rproc *rproc);
-> > >   	int (*stop)(struct rproc *rproc);
-> > >   	void (*kick)(struct rproc *rproc, int vqid);
-> > >  --
-> > >  2.24.0
-> > > 
-> 
-> 
