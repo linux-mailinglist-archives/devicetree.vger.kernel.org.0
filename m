@@ -2,109 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2A161443C1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2020 18:57:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F8A1443D3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2020 19:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729081AbgAUR5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jan 2020 12:57:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60552 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728186AbgAUR5c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jan 2020 12:57:32 -0500
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9A9A24655;
-        Tue, 21 Jan 2020 17:57:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579629451;
-        bh=N1ByJboh9etCauJIpBnoIxPYjFw6LrjcIDQeMUgD/0I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qos0rbbiJj3cgXk//m1aSZmk9oIDKZ3rgaN9BM/PN8+gxyZACjeaa5Ix+gapZTu8s
-         4+pFOS1KisXJErzfyisirnX3Ov1ARIfrRxu4xSpB8HtWo1JfgXPjDoSgECUcbHgOZR
-         6Ico5ulbmJ/LWoXHPQ/RQZty0L1Am9v9kwbBmP+E=
-Received: by mail-qk1-f181.google.com with SMTP id q15so2884562qke.9;
-        Tue, 21 Jan 2020 09:57:30 -0800 (PST)
-X-Gm-Message-State: APjAAAWPLZmVxVL/uvk0TPHPwCUhHlE5jVhpOpeXv+wFR7iCLEDr+spY
-        vw5yAAqb6L96aT36J01AJ6rgM4acrNNwFDwzbw==
-X-Google-Smtp-Source: APXvYqyRmUYoX+Rv5wUpjNRs1vQFxqO3DHQ3ad4AHZ0Q+B/L9k1IDRQlZN802njJ44dzDDj2PCkQc+TLozLvMqX3he8=
-X-Received: by 2002:a05:620a:135b:: with SMTP id c27mr5347069qkl.119.1579629450069;
- Tue, 21 Jan 2020 09:57:30 -0800 (PST)
-MIME-Version: 1.0
-References: <20200108111830.8482-1-rogerq@ti.com> <20200108111830.8482-3-rogerq@ti.com>
- <20200115014724.GA20772@bogus> <1c55f0a8-99e3-934f-e8b8-d090df06a12e@ti.com>
-In-Reply-To: <1c55f0a8-99e3-934f-e8b8-d090df06a12e@ti.com>
+        id S1729180AbgAUSAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jan 2020 13:00:32 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:44903 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728829AbgAUSAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jan 2020 13:00:32 -0500
+Received: by mail-oi1-f196.google.com with SMTP id d62so3396803oia.11;
+        Tue, 21 Jan 2020 10:00:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=SoGNpAAYd8DkgVCg9hs0SkAVcBA4n3ThwNDs+CIvNyk=;
+        b=t+ezNWbDC5rg1Nq+ExG1kGjBJcafOCVblECPp0CIoK76CAGe8Eh6yi0npLrNWcDY8+
+         oJgsLkJpwJLYOM7Y2B9fqbA4D1T651YKEeKvT1kkTUcM7uHyGHr8mxWz7VCQAT4ycPMb
+         wJA2MAVJE2Vx6fgsFnsp2yIKTbMzQCSaibqT7uqb12udcksObCTNCLpdHUbXH0C0bgQK
+         jFlavRPNv43pVt/j2Xx9eOAmYbjEdiqORWFA3XLLWtadvIhMsttw3BwrjE2Yzg1UnScY
+         0Jgni9ixVNGXfVn9Z4utvb9ekvJ5Y9Kov0+qUvab/TF6Duuse+eNdotZ/e6TKzFwsPJP
+         qN4Q==
+X-Gm-Message-State: APjAAAUYzYZkibj7sBeXwWMPsCoys4N5XcPDaKMugGvx+zMSiYcA4GHt
+        ghdPtagfJ29TPp6roAC2fg==
+X-Google-Smtp-Source: APXvYqxV/jfzDtlEscsmucJbThOSjtw0N+fNnRo93t5V2zWaWVxVOSgi81r7XVL1s+pZoFyxAk9rlg==
+X-Received: by 2002:aca:e146:: with SMTP id y67mr3739978oig.93.1579629631200;
+        Tue, 21 Jan 2020 10:00:31 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s83sm12139907oif.33.2020.01.21.10.00.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jan 2020 10:00:30 -0800 (PST)
+Received: (nullmailer pid 362 invoked by uid 1000);
+        Tue, 21 Jan 2020 18:00:29 -0000
+Date:   Tue, 21 Jan 2020 12:00:29 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 21 Jan 2020 11:57:18 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLfJDN2LnqWHehFiM-SQyeqQAk2wjoKRbBiPy4tc5OkMQ@mail.gmail.com>
-Message-ID: <CAL_JsqLfJDN2LnqWHehFiM-SQyeqQAk2wjoKRbBiPy4tc5OkMQ@mail.gmail.com>
-Subject: Re: [PATCH 2/5] arm64: dts: ti: k3-j721e-main: Add serdes_ln_ctrl
- node to select SERDES lane mux
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Roger Quadros <rogerq@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        Nishanth Menon <nm@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Vignesh R <vigneshr@ti.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Logan Shaw <logan.shaw@alliedtelesis.co.nz>
+Cc:     linux@roeck-us.net, jdelvare@suse.com, robh+dt@kernel.org,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Joshua.Scott@alliedtelesis.co.nz,
+        Chris.Packham@alliedtelesis.co.nz, logan.shaw@alliedtelesis.co.nz
+Subject: Re: [PATCH v4 2/2] hwmon: (adt7475) Added attenuator bypass support
+Message-ID: <20200121180029.GA32498@bogus>
+References: <20200120001703.9927-1-logan.shaw@alliedtelesis.co.nz>
+ <20200120001703.9927-3-logan.shaw@alliedtelesis.co.nz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200120001703.9927-3-logan.shaw@alliedtelesis.co.nz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 20, 2020 at 11:10 PM Kishon Vijay Abraham I <kishon@ti.com> wrote:
->
-> Hi Rob,
->
-> On 15/01/20 7:17 AM, Rob Herring wrote:
-> > On Wed, Jan 08, 2020 at 01:18:27PM +0200, Roger Quadros wrote:
-> >> From: Kishon Vijay Abraham I <kishon@ti.com>
-> >>
-> >> Add serdes_ln_ctrl node used for selecting SERDES lane mux.
-> >>
-> >> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> >> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
-> >> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> >> ---
-> >>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 26 +++++++++++
-> >>  include/dt-bindings/mux/mux-j721e-wiz.h   | 53 +++++++++++++++++++++++
-> >>  2 files changed, 79 insertions(+)
-> >>  create mode 100644 include/dt-bindings/mux/mux-j721e-wiz.h
-> >>
-> >> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> >> index 24cb78db28e4..6741c1e67f50 100644
-> >> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> >> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> >> @@ -5,6 +5,8 @@
-> >>   * Copyright (C) 2016-2019 Texas Instruments Incorporated - http://www.ti.com/
-> >>   */
-> >>  #include <dt-bindings/phy/phy.h>
-> >> +#include <dt-bindings/mux/mux.h>
-> >> +#include <dt-bindings/mux/mux-j721e-wiz.h>
-> >>
-> >>  &cbass_main {
-> >>      msmc_ram: sram@70000000 {
-> >> @@ -19,6 +21,30 @@
-> >>              };
-> >>      };
-> >>
-> >> +    scm_conf: scm_conf@100000 {
-> >
-> > Don't use '_' in node names.
->
-> Okay.
-> >
-> >> +            compatible = "syscon", "simple-mfd";
-> >
-> > Needs a specific compatible especially since the child node doesn't have
-> > one.
->
-> Child node has "mmio-mux" as compatible no? Are you referring to
-> something else here?
+On Mon, 20 Jan 2020 13:17:03 +1300, Logan Shaw wrote:
+> 
+> Added a new file documenting the adt7475 devicetree and added the four
+> new properties to it.
+> 
+> Signed-off-by: Logan Shaw <logan.shaw@alliedtelesis.co.nz>
+> ---
+> ---
+>  .../devicetree/bindings/hwmon/adt7475.yaml    | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adt7475.yaml
+> 
 
-I'm referring to exactly what I quoted, but that's also a generic
-compatible, so you'd never be able to match any of this block to a
-specific driver or handle any quirks.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Rob
+Documentation/devicetree/bindings/hwmon/adt7475.example.dts:19.11-24: Warning (reg_format): /example-0/hwmon@2e:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/hwmon/adt7475.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/hwmon/adt7475.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/hwmon/adt7475.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+
+See https://patchwork.ozlabs.org/patch/1225573
+Please check and re-submit.
