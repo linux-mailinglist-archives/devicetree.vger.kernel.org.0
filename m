@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0945114392A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2020 10:10:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E7E143943
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2020 10:17:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727969AbgAUJK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jan 2020 04:10:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:60972 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729165AbgAUJK3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 21 Jan 2020 04:10:29 -0500
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 76AE320882;
-        Tue, 21 Jan 2020 09:10:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579597828;
-        bh=oS2a0PPe6kpJPi7wDz0yMJ3mDjuHWrwzkwKrrR93Xr4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oFz9va9wlhCk5yN2JM6uwXVmE5ZUaPoSTQHNcRAe3qJjq79P9eXtNvwvbardESNFt
-         Y+1AVBzXwwnt80j5FRRCSBycIoiTNaXHNAntaM4g8iUR55LHYvVHWp0v9WGrHVoPue
-         vvHJ80G/cxYcaV6guJb4n+rabSaTDP6cSwvcB/6A=
-Date:   Tue, 21 Jan 2020 10:10:26 +0100
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Emmanuel Vadot <manu@freebsd.org>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: allwinner: a64: Add gpio bank supply for
- A64-Olinuxino
-Message-ID: <20200121091026.qfj2fv47f24wt2tp@gilmour.lan>
-References: <20200118152459.17199-1-manu@FreeBSD.Org>
+        id S1729107AbgAUJQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jan 2020 04:16:52 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:42442 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725789AbgAUJQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jan 2020 04:16:52 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 6CDDB1C036D; Tue, 21 Jan 2020 10:16:50 +0100 (CET)
+Date:   Tue, 21 Jan 2020 10:16:49 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     linux-omap@vger.kernel.org,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Merlijn Wajer <merlijn@wizzup.org>
+Subject: Re: [PATCH] ARM: dts: motorola-cpcap-mapphone: Configure calibration
+ interrupt
+Message-ID: <20200121091649.GA6934@amd>
+References: <20200119194501.17125-1-tony@atomide.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2qkyp7mkzww2atmw"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="/04w6evG8XlLl3ft"
 Content-Disposition: inline
-In-Reply-To: <20200118152459.17199-1-manu@FreeBSD.Org>
+In-Reply-To: <20200119194501.17125-1-tony@atomide.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2qkyp7mkzww2atmw
+--/04w6evG8XlLl3ft
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Sun 2020-01-19 11:45:01, Tony Lindgren wrote:
+> We added coulomb counter calibration support With commit 0cb90f071f73
+> ("power: supply: cpcap-battery: Add basic coulomb counter calibrate
+> support"), but we also need to configure the related interrupt.
+>=20
+> Without the interrupt calibration happens based on a timeout after two
+> seconds, with the interrupt the calibration just gets done a bit faster.
+>=20
+> Cc: Merlijn Wajer <merlijn@wizzup.org>
 
-On Sat, Jan 18, 2020 at 04:24:59PM +0100, Emmanuel Vadot wrote:
-> From: Emmanuel Vadot <manu@freebsd.org>
->
-> Add the regulators for each bank on this boards.
-> For VCC-PL only add a comment on what regulator is used. We cannot add
-> the property without causing a circular dependency as the PL pins are
-> used to talk to the PMIC.
->
-> Signed-off-by: Emmanuel Vadot <manu@freebsd.org>
+Acked-by: Pavel Machek <pavel@ucw.cz>
 
-It seems that you sent it twice?
+Not for stable.
 
-I applied the second. It was not applying properly though, make sure
-to base your patches on next.
+									Pavel
+								=09
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
 
-Maxime
-
---2qkyp7mkzww2atmw
+--/04w6evG8XlLl3ft
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXibAAgAKCRDj7w1vZxhR
-xTKtAQCXbI0+R1FPufKESo54exnXgFUfT1peFCWKaDwD+UdsIgD/aaiSWB+xMRBa
-tZKKbksmnRwe+WWrnbIGWf1XgYjtnAc=
-=UeLO
+iEYEARECAAYFAl4mwYEACgkQMOfwapXb+vKqOgCgvto+aTKjcR8Gywm33f1WWaJ7
+p0QAoJuwuy2F8RuJIOhzUXq9BFuWSZqZ
+=Qn6E
 -----END PGP SIGNATURE-----
 
---2qkyp7mkzww2atmw--
+--/04w6evG8XlLl3ft--
