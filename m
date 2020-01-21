@@ -2,171 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B721448E3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 01:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC828144961
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 02:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727969AbgAVA0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 21 Jan 2020 19:26:51 -0500
-Received: from mail-qt1-f194.google.com ([209.85.160.194]:41552 "EHLO
-        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726876AbgAVA0v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jan 2020 19:26:51 -0500
-Received: by mail-qt1-f194.google.com with SMTP id k40so4274971qtk.8;
-        Tue, 21 Jan 2020 16:26:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=UwmgdlKgjHnFDwXPHQDLPIyA4oIjjd9BxxZ8z8xhCpA=;
-        b=eCc0tJA5csuUZzPSGPdjWmMJX0rRaY8x9WRKXujplY35imBuATdPOK5iz8g1Nsg5FH
-         ecVDPh3N20JD8aMFdZ2cIYpQHV5ER8GjbJ0Sba7wV3YjJhCTFkF0V8B/evkJfxeHEkJY
-         vWsTo+LO6vMvczAfqBQyp81H/80DDDo7xQEYM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=UwmgdlKgjHnFDwXPHQDLPIyA4oIjjd9BxxZ8z8xhCpA=;
-        b=CBF3w8lBUj8enOxOffbVplppU2NT4Hr63eaWRQOyrimvw0hZYmnDqQokgDkrfr8fOc
-         KqFILyD+gG01+RrgeR4Y3xhxWz9TCjoOhZ7VlwuLqephtfVB6wePCI0oitEAjaCD0n9n
-         1GCODJEoEkOhbsCRxcEg+PBazlLajCBQ5j7dwqxsAaMhibouF9qV3g4fIYoANyS5NDZD
-         RBfOiLK2qfImTZqZA06EeyNfgtcF2wtpykxS4TRRiCTZ9IYEWbYIst9mqtFGxa3r8uyg
-         oPqPO2Y0W0D5DEsA9pOnVEWqMA78EsFcJfm+UHUKYW47GHVBd8B3vigPbNb7hVbL4gIo
-         Trjg==
-X-Gm-Message-State: APjAAAUZPF0EYt/Y2e31h76sf/pJEYRINZQNWHEz5WmoxxRJEaXXtufE
-        PZ5NpSiG6AFa27w7mlttvTwtOYf/SpvwpO2g2zg=
-X-Google-Smtp-Source: APXvYqwN5FQEcVX8mIhlSegiZeaAu5eJlYidrimv8ngT4f5S3vD71f0OFT/wRQkS6eo1g8RNHSwolhJUcxduZ04xsww=
-X-Received: by 2002:ac8:1ac1:: with SMTP id h1mr820343qtk.255.1579652810173;
- Tue, 21 Jan 2020 16:26:50 -0800 (PST)
+        id S1728899AbgAVBjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 21 Jan 2020 20:39:04 -0500
+Received: from mailgate.kemenperin.go.id ([202.47.80.81]:60988 "EHLO
+        mailgate.kemenperin.go.id" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728816AbgAVBjE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 21 Jan 2020 20:39:04 -0500
+X-Greylist: delayed 5042 seconds by postgrey-1.27 at vger.kernel.org; Tue, 21 Jan 2020 20:39:02 EST
+Received: from localhost (localhost [127.0.0.1])
+        by mailgate.kemenperin.go.id (Postfix) with ESMTP id 95B7A37C9CEB;
+        Wed, 22 Jan 2020 06:35:42 +0700 (WIB)
+Received: from mailgate.kemenperin.go.id ([127.0.0.1])
+        by localhost (mailgate.kemenperin.go.id [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id W1wGCAJS55PN; Wed, 22 Jan 2020 06:35:42 +0700 (WIB)
+Received: from mailgate.kemenperin.go.id (localhost [127.0.0.1])
+        by mailgate.kemenperin.go.id (Postfix) with ESMTPS id E496337C9CE6;
+        Wed, 22 Jan 2020 06:35:41 +0700 (WIB)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mailgate.kemenperin.go.id E496337C9CE6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kemenperin.go.id;
+        s=3298A942-BBC6-11E3-B333-483736368EC2; t=1579649742;
+        bh=eYxQJRJrNPyhiqg6z5wfwZK2i8CHaHeftan+sX+epAo=;
+        h=Date:From:Message-ID:MIME-Version;
+        b=MVgkq6UdriZppCzcU2FAFiwvV70IgN79wHp4AEA/rFa0oXqrO/s3fKBgDg056FNDy
+         +jGLVI6ZuY8saWcAc3AawN2zwELcYKu+91y+fBVHqoLTN0+SVZi1dn032dqCjyDm6n
+         gZ3VCPi+v5PpcOkaRM5T4UmWTPXF7I/ww5p5K/g4=
+Received: from mailgate.kemenperin.go.id (mailgate.kemenperin.go.id [10.1.0.89])
+        by mailgate.kemenperin.go.id (Postfix) with ESMTP id 536E137C9CDC;
+        Wed, 22 Jan 2020 06:35:39 +0700 (WIB)
+Date:   Wed, 22 Jan 2020 06:35:39 +0700 (WIB)
+From:   Trust Online Credit Bvba <fitra-a@kemenperin.go.id>
+Reply-To: "info@trustonlinecreditbvba.com" <info@trustonlinecreditbvba.com>
+Message-ID: <379578002.236514.1579649739307.JavaMail.zimbra@kemenperin.go.id>
+Subject: lening
 MIME-Version: 1.0
-References: <1577350475-127530-1-git-send-email-pengms1@lenovo.com>
- <CACPK8XeY5dPHtRfFD55dLVHT0SF1gJEVf1DixsbJKpciLP2s5Q@mail.gmail.com> <85dc718f42f54d40ad50853c047ec3ae@lenovo.com>
-In-Reply-To: <85dc718f42f54d40ad50853c047ec3ae@lenovo.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 22 Jan 2020 00:26:38 +0000
-Message-ID: <CACPK8XctO0SraKF_0Z40S_bBjz_ooQacpej3tMxwTq6XD90DGg@mail.gmail.com>
-Subject: Re: [External] Re: [PATCH v1 1/1] ARM: dts: aspeed: update Hr855xg2
- device tree
-To:     Andrew MS1 Peng <pengms1@lenovo.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Derek Lin23 <dlin23@lenovo.com>,
-        Harry Sung1 <hsung1@lenovo.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [10.1.0.89]
+Thread-Index: vqZJCh33jWlgOkqyPMV4IJ5G4Q15MA==
+Thread-Topic: lening
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 9 Jan 2020 at 08:07, Andrew MS1 Peng <pengms1@lenovo.com> wrote:
->
-> Hi Joel,
->
-> Please help to check below my comments. Thanks.
->
-> Regards,
-> Andrew Peng
->
-> > -----=E9=82=AE=E4=BB=B6=E5=8E=9F=E4=BB=B6-----
-> > =E5=8F=91=E4=BB=B6=E4=BA=BA: Joel Stanley <joel@jms.id.au>
-> > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2020=E5=B9=B41=E6=9C=886=E6=97=A5=
- 14:48
-> > =E6=94=B6=E4=BB=B6=E4=BA=BA: Andrew MS1 Peng <pengms1@lenovo.com>
-> > =E6=8A=84=E9=80=81: Rob Herring <robh+dt@kernel.org>; Mark Rutland
-> > <mark.rutland@arm.com>; Andrew Jeffery <andrew@aj.id.au>; devicetree
-> > <devicetree@vger.kernel.org>; Linux ARM
-> > <linux-arm-kernel@lists.infradead.org>; linux-aspeed
-> > <linux-aspeed@lists.ozlabs.org>; Linux Kernel Mailing List
-> > <linux-kernel@vger.kernel.org>; Benjamin Fair <benjaminfair@google.com>=
-;
-> > OpenBMC Maillist <openbmc@lists.ozlabs.org>; Derek Lin23
-> > <dlin23@lenovo.com>; Yonghui YH21 Liu <liuyh21@lenovo.com>
-> > =E4=B8=BB=E9=A2=98: [External] Re: [PATCH v1 1/1] ARM: dts: aspeed: upd=
-ate Hr855xg2
-> > device tree
-> >
-> > On Thu, 26 Dec 2019 at 08:54, Andrew Peng <pengms1@lenovo.com> wrote:
-> > >
-> >
-> > When you have a list of things like below, it's sometimes a good hint t=
-hat you
-> > should be sending one patch for each bullet point. This makes it easier=
- to
-> > review.
-> >
->
-> Should I separate below changes to six patches for next patch version?
-> For example: [PATCH v2 0/5]  [PATCH v2 1/5] ...etc
+Goedendag,
 
-It's up to you.
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Het is ons een genoegen om u te schrijven me=
+t betrekking tot het verstrekken van leningen per postadvertentie. Trust On=
+line Credit Bvba, wij werken onder een korte, duidelijke en begrijpelijke v=
+oorwaarden Wij verstrekken leningen tegen een lage rente Gewoonlijk van 1% =
+tot 3,5%. Uw specifieke tarief wordt u voorafgaand aan goedkeuring duidelij=
+k gemaakt.
 
-I do not require it.
+Merk op dat dit aanbod is voor serieus ingestelde personen, bedrijven en be=
+drijven. Ontvang uw lening om uw financi=C3=ABle problemen op te lossen, zo=
+als rekeningen afbetalen, nieuwe bedrijven oprichten, oude bedrijven opnieu=
+w vestigen.
 
->
-> > > Update i2c aliases.
-> > > Change flash_memory mapping address and size.
-> > > Add in a gpio-keys section.
-> > > Enable vhub, vuart, spi1 and spi2.
-> > > Add raa228006, ir38164 and sn1701022 hwmon sensors.
-> > > Remove some unuse gpio from gpio section.
-> >
-> > unused?
-> >
->
-> It was my mistake, the correct sentence should be "Remove gpio from gpio =
-section since it controlled by user space."
->
-> > >
-> > > Signed-off-by: Andrew Peng <pengms1@lenovo.com>
-> > > Signed-off-by: Derek Lin <dlin23@lenovo.com>
-> > > Signed-off-by: Yonghui Liu <liuyh21@lenovo.com>
-> >
-> > I got two copies of this. I think they are the same.
-> >
->
-> I apologize to send twice.
->
-> > > ---
-> > > v1: initial version
-> > >
-> > >  arch/arm/boot/dts/aspeed-bmc-lenovo-hr855xg2.dts | 557
-> > > ++++++++++++++++-------
-> > >  1 file changed, 382 insertions(+), 175 deletions(-)
-> > >
-> > > diff --git a/arch/arm/boot/dts/aspeed-bmc-lenovo-hr855xg2.dts
-> > > b/arch/arm/boot/dts/aspeed-bmc-lenovo-hr855xg2.dts
-> > > index 8193fad..e1386d4 100644
-> > > --- a/arch/arm/boot/dts/aspeed-bmc-lenovo-hr855xg2.dts
-> > > +++ b/arch/arm/boot/dts/aspeed-bmc-lenovo-hr855xg2.dts
-> > > @@ -15,14 +15,21 @@
-> > >         compatible =3D "lenovo,hr855xg2-bmc", "aspeed,ast2500";
-> > >
-> >
-> > > -               flash_memory: region@98000000 {
-> > > +               flash_memory: region@9EFF0000 {
-> > >                         no-map;
-> > > -                       reg =3D <0x98000000 0x00100000>; /* 1M */
-> > > +                       reg =3D <0x9EFF0000 0x00010000>; /* 64K */
-> >
-> > Do you really use 64K here, or was this a workaround for the lpc-ctlr d=
-river
-> > requiring a memory region?
-> >
->
-> We reserve 64K for L2A In-Band Firmware Update (phosphor-ipmi-flash).
+ge=C3=AFnteresseerde personen, bedrijven en bedrijven moeten contact met on=
+s opnemen via dit e-mailadres: info@trustonlinecreditbvba.com
 
-Okay, thanks for clarifying.
+Laat deze kans niet voorbijgaan. Krijg uw lening om uw financi=C3=ABle prob=
+lemen op te lossen. Als u ge=C3=AFnteresseerd bent in onze lening, vult u d=
+it leningsaanvraagformulier onmiddellijk in.
 
-I am happy with rest of your responses. Please send v2 with these things fi=
-xed.
+Jullie namen:
+Benodigde leningbedrag:
+Looptijd:
+Bezetting:
+Doel:
+Lening rente:
 
-Cheers,
-
-Joel
+Wij wachten op uw snelle reactie
+Ronny
