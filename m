@@ -2,401 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 241FA14528F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 11:26:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB2E145316
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 11:47:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729505AbgAVK0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 05:26:18 -0500
-Received: from smtp-fw-2101.amazon.com ([72.21.196.25]:27474 "EHLO
-        smtp-fw-2101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728931AbgAVK0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 05:26:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1579688777; x=1611224777;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=EPizAQO93EJTplAs1NARRik68b25j20hVby84Fp7Yew=;
-  b=aUxW6658BFDISC3ayKBoae5cw9CeI8Ag2LqVjNRa3FS3pldHq3NDUJz8
-   SRKDKNAA1N/QJf2XW48Ap2HiIJvWCyv+0LyOiVdAwoDKMe/I3aBq/Kl7f
-   nAgAdrBz8pLqHvwaC7L/eavnJOrc8QDW+Xaih1UVAhdYo1mt65H7l65b/
-   s=;
-IronPort-SDR: 79WZOkfsfX+CkuUkGhamkNX7H4Xt9lsoOMQTQ05UCDbybjtGAxSCa3t0yxEhOca6tC5DvEFhwW
- VvrxSg8p+CYg==
-X-IronPort-AV: E=Sophos;i="5.70,349,1574121600"; 
-   d="scan'208";a="13656338"
-Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-1a-7d76a15f.us-east-1.amazon.com) ([10.43.8.2])
-  by smtp-border-fw-out-2101.iad2.amazon.com with ESMTP; 22 Jan 2020 10:26:13 +0000
-Received: from EX13MTAUEA002.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1a-7d76a15f.us-east-1.amazon.com (Postfix) with ESMTPS id 014EBA29D0;
-        Wed, 22 Jan 2020 10:26:07 +0000 (UTC)
-Received: from EX13D19EUB003.ant.amazon.com (10.43.166.69) by
- EX13MTAUEA002.ant.amazon.com (10.43.61.77) with Microsoft SMTP Server (TLS)
- id 15.0.1236.3; Wed, 22 Jan 2020 10:26:07 +0000
-Received: from u8a88181e7b2355.ant.amazon.com (10.43.161.78) by
- EX13D19EUB003.ant.amazon.com (10.43.166.69) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 22 Jan 2020 10:25:56 +0000
-From:   Hanna Hawa <hhhawa@amazon.com>
-To:     <bp@alien8.de>, <mchehab@kernel.org>, <tony.luck@intel.com>,
-        <james.morse@arm.com>, <rrichter@marvell.com>, <hhhawa@amazon.com>,
-        <robh+dt@kernel.org>, <frowand.list@gmail.com>,
-        <davem@davemloft.net>, <gregkh@linuxfoundation.org>,
-        <Jonathan.Cameron@huawei.com>, <arnd@arndb.de>
-CC:     <linux-kernel@vger.kernel.org>, <linux-edac@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <dwmw@amazon.co.uk>,
-        <benh@amazon.com>, <ronenk@amazon.com>, <talel@amazon.com>,
-        <jonnyc@amazon.com>, <hanochu@amazon.com>, <barakw@amazon.com>
-Subject: [PATCH v8 3/3] edac: Add support for Amazon's Annapurna Labs L2 EDAC
-Date:   Wed, 22 Jan 2020 12:25:13 +0200
-Message-ID: <20200122102513.31132-4-hhhawa@amazon.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200122102513.31132-1-hhhawa@amazon.com>
-References: <20200122102513.31132-1-hhhawa@amazon.com>
+        id S1729212AbgAVKrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 05:47:15 -0500
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:2414 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1729049AbgAVKpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Jan 2020 05:45:38 -0500
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00MAisss016512;
+        Wed, 22 Jan 2020 02:45:26 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=proofpoint;
+ bh=y1kqsuYzbdxg3KZETBS7aGnf9p+p3rm9WsYiQeiOKG8=;
+ b=DUpEDcut4KPv6KhrRV/qXSYJQaVoI1WVFyEAv5cw3RMRIHhirExwECgiHl/ULldInwFF
+ turPwQyc8ZGUpTKA26HTrs05/rbqbQdp1DAbbFr9eM9QEQMlwEQgc9dfqW8WZ7BJtl4t
+ o4cp69hLYDLpYIKh8oiFD/Se5aupzjZGXO/Gh/zAcJ7TtPZCL0rZkXdzv9+EawPot8EJ
+ bfLbo7Tj7EsO7u5jfY0KR7HuCP3GMNjHK0fOZPdv8o68ijajKXokbvzinzJFzI9qh5VU
+ lBj6rjDr9+OBmf8O6gb7XF3vkJjKK6cpcTNjp7tgLIXUkOnax+TwcRFdMxL+u33tXdrS Pw== 
+Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2169.outbound.protection.outlook.com [104.47.59.169])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 2xkxg3vssh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 22 Jan 2020 02:45:26 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nSDzaXW9s577DNOhkFiqMAiZStvLeTFg4mOrkvXRvJVjkYavAMrZi+o1LhE/F4iBT6J/0TngVumxDVfVQ1YVKA9LrYm1w/WxTpWk8NEIgmG2obWw8xW8KSbaEE5Lvp73I415fAwqcOBb1tT7YpxJIjlfOvwi+6RuJg4aAU8DZYSGWmhuUm1MzH59RtPWO0UbIAE0+FjlXWgARRIlIKi4Pexm8xGcWZWoeAX/j3bxTH7bMtfP01PLZMbSVYKTdCdAsrgzaj48bhmv5nHPicmhEwxroSfKUZl2Gj2HIM+eWus8BpcZucYJFzRvMePwYjtAqT1NKyb6QqQjgejACHzuzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y1kqsuYzbdxg3KZETBS7aGnf9p+p3rm9WsYiQeiOKG8=;
+ b=N5EXKdmE3Qm/JiMmARromE8UGtYswY5DAVbSi7EMqQOO7vhNYPpXUhh1Ku8sXjwahTdgBscwkjGtfrulkeIpTmEONLWtdopHJ3PjvW+/Zc7l1gxUK9pidEuNCOZnEOYq5OhsP9Mw+mfceRF+x+q2V4be6sccaUjlOUvufLurF0Pf1kH9xI+YeYpUX0r9bzggZEGntRpUqjAsYM734grbyDqMhGoRlT/4KWNvfzkv1iiI7lEUuZgtbYOZZqpydG5/H/W6/rXczG36Byj7/j1rDV8X/a3JKl4/7+L5HaQ5EgYjn5gG8X2IQs4+nkb27Ics8eIeKBHzaHcRXUvmvqE6qg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 158.140.1.28) smtp.rcpttodomain=ti.com smtp.mailfrom=cadence.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=cadence.com; dkim=none
+ (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y1kqsuYzbdxg3KZETBS7aGnf9p+p3rm9WsYiQeiOKG8=;
+ b=Qp6d6UpNg0lCrPnzkw7FgK5RjzEbCUWSLvIzkcdp4S/jcq27dGoy9Jg4ePNPG91l03WQ7tL1tSLiv4o1quVwyWrYCrViJPl+NK3clUWNO+xDOOxnBMthqix6Dqsa8uHa1ug8P8mXxP5hMYwqfM1PIlEQLPw65dYGqmNFC3A6CDo=
+Received: from DM5PR07CA0078.namprd07.prod.outlook.com (2603:10b6:4:ad::43) by
+ BL0PR07MB5458.namprd07.prod.outlook.com (2603:10b6:208:83::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2644.20; Wed, 22 Jan 2020 10:45:23 +0000
+Received: from DM6NAM12FT046.eop-nam12.prod.protection.outlook.com
+ (2a01:111:f400:fe59::207) by DM5PR07CA0078.outlook.office365.com
+ (2603:10b6:4:ad::43) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.18 via Frontend
+ Transport; Wed, 22 Jan 2020 10:45:23 +0000
+Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
+ 158.140.1.28 as permitted sender) receiver=protection.outlook.com;
+ client-ip=158.140.1.28; helo=sjmaillnx1.cadence.com;
+Received: from sjmaillnx1.cadence.com (158.140.1.28) by
+ DM6NAM12FT046.mail.protection.outlook.com (10.13.178.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2665.6 via Frontend Transport; Wed, 22 Jan 2020 10:45:23 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by sjmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id 00MAjKB9001726
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Wed, 22 Jan 2020 02:45:21 -0800
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3; Wed, 22 Jan 2020 11:45:19 +0100
+Received: from vleu-orange.cadence.com (10.160.88.83) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3 via Frontend Transport; Wed, 22 Jan 2020 11:45:19 +0100
+Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
+        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 00MAjJQA007234;
+        Wed, 22 Jan 2020 11:45:19 +0100
+Received: (from yamonkar@localhost)
+        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 00MAjIRD007232;
+        Wed, 22 Jan 2020 11:45:18 +0100
+From:   Yuti Amonkar <yamonkar@cadence.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <kishon@ti.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <maxime@cerno.tech>
+CC:     <jsarha@ti.com>, <tomi.valkeinen@ti.com>, <praneeth@ti.com>,
+        <mparab@cadence.com>, <sjakhade@cadence.com>,
+        <yamonkar@cadence.com>
+Subject: [PATCH v3 00/14] PHY: Update Cadence Torrent PHY driver with reconfiguration
+Date:   Wed, 22 Jan 2020 11:45:04 +0100
+Message-ID: <1579689918-7181-1-git-send-email-yamonkar@cadence.com>
+X-Mailer: git-send-email 2.4.5
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.43.161.78]
-X-ClientProxiedBy: EX13D28UWB004.ant.amazon.com (10.43.161.56) To
- EX13D19EUB003.ant.amazon.com (10.43.166.69)
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:158.140.1.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(376002)(39860400002)(136003)(396003)(199004)(189003)(36092001)(8936002)(336012)(2906002)(478600001)(15650500001)(186003)(7636002)(26005)(19627235002)(4326008)(5660300002)(36756003)(70586007)(70206006)(42186006)(6666004)(316002)(356004)(54906003)(2616005)(966005)(426003)(26826003)(110136005)(107886003)(86362001)(246002)(8676002);DIR:OUT;SFP:1101;SCL:1;SRVR:BL0PR07MB5458;H:sjmaillnx1.cadence.com;FPR:;SPF:Pass;LANG:en;PTR:corp.cadence.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d65ecc9e-18fa-4c24-fb5e-08d79f282f45
+X-MS-TrafficTypeDiagnostic: BL0PR07MB5458:
+X-Microsoft-Antispam-PRVS: <BL0PR07MB54589A7640C86323261CBFDDD20C0@BL0PR07MB5458.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Forefront-PRVS: 029097202E
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mRXy74N+pWPct+701gGcpFcis9WoaOMnJlrYze8Nypsq8KzmXL72h2O4R7MXuPDkZw9HtpznUYGtOUou/jYKXDjcRlUDsoJ8hI9V+Omh/a0aLMduvObAxMSvPrgLlIzCTE7zZ2PfiizKhb4HtlZG3tkGZ2GAFDLsAvTd3PI2tCmCoIdgg9azJIQVfrRijAie8MNmfXJCO1Apkhwo5TntyTWDXJYWYskGoPp1ihRWiSOietQ6i31e9u/3P5sJybgra6PNO1rW+bgmiV47ROsuQGiFAWL0Td1rdrUwe+hXAbtIM8LSNx9ebkmADrm1AHcWI3fJ0Gm5yQltgcOV1rRQT+yhSRZNUuFNxXkRY2OQrxK3T6/Xbjpvj/MBmEnvY6MaACCujdobJbGNLUXEQrGFwTGc2yqsW7ly3aDGYGTavZ2PpCuoFmFLH6AQycl1g59AW9Rzfr9xwnVyZoHSWVezH0CmlpgfACziFv1d9cp3YwxE7xVON7PP2F9bUCo42AR3XcX0msNAOMiSoTlo6N6v2H4CPVw51hSpQhZdNTALvoE=
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2020 10:45:23.5738
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d65ecc9e-18fa-4c24-fb5e-08d79f282f45
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.28];Helo=[sjmaillnx1.cadence.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR07MB5458
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-01-17_05:2020-01-16,2020-01-17 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 phishscore=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 spamscore=0 malwarescore=0
+ clxscore=1011 mlxlogscore=999 mlxscore=0 lowpriorityscore=0 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1910280000 definitions=main-2001220098
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds support for Amazon's Annapurna Labs L2 EDAC driver to detect and
-report L2 errors.
+This patch series applies to the Cadence SD0801 PHY driver.
+Cadence SD0801 PHY is also known as Torrent PHY. Torrent PHY
+is a multiprotocol PHY supporting PHY configurations including
+Display Port, USB and PCIe.
 
-Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
----
- MAINTAINERS               |   5 +
- drivers/edac/Kconfig      |   8 ++
- drivers/edac/Makefile     |   1 +
- drivers/edac/al_l2_edac.c | 270 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 284 insertions(+)
- create mode 100644 drivers/edac/al_l2_edac.c
+This patch series converts SD0801 PHY driver for DisplayPort into a
+generic Torrent PHY driver, updates DisplayPort functionality with
+reconfiguration support and finally adds platform dependent initialization
+for TI J7 SoCs.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a36c31c94521..746bc124d2fb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -762,6 +762,11 @@ M:	Hanna Hawa <hhhawa@amazon.com>
- S:	Maintained
- F:	drivers/edac/al_l1_edac.c
- 
-+AMAZON ANNAPURNA LABS L2 EDAC
-+M:	Hanna Hawa <hhhawa@amazon.com>
-+S:	Maintained
-+F:	drivers/edac/al_l2_edac.c
-+
- AMAZON ANNAPURNA LABS THERMAL MMIO DRIVER
- M:	Talel Shenhar <talel@amazon.com>
- S:	Maintained
-diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index 64621e4f3a6f..077a9ef428ad 100644
---- a/drivers/edac/Kconfig
-+++ b/drivers/edac/Kconfig
-@@ -82,6 +82,14 @@ config EDAC_AL_L1
- 	  for Amazon's Annapurna Labs SoCs.
- 	  This driver detects errors of L1 caches.
- 
-+config EDAC_AL_L2
-+	tristate "Amazon's Annapurna Labs L2 EDAC"
-+	depends on (ARM64 && ARCH_ALPINE) || COMPILE_TEST
-+	help
-+	  Support for L2 error detection and correction
-+	  for Amazon's Annapurna Labs SoCs.
-+	  This driver detects errors of L2 caches.
-+
- config EDAC_AMD64
- 	tristate "AMD64 (Opteron, Athlon64)"
- 	depends on AMD_NB && EDAC_DECODE_MCE
-diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-index 7d67433b683a..ae48f8fccec3 100644
---- a/drivers/edac/Makefile
-+++ b/drivers/edac/Makefile
-@@ -23,6 +23,7 @@ edac_mce_amd-y				:= mce_amd.o
- obj-$(CONFIG_EDAC_DECODE_MCE)		+= edac_mce_amd.o
- 
- obj-$(CONFIG_EDAC_AL_L1)		+= al_l1_edac.o
-+obj-$(CONFIG_EDAC_AL_L2)		+= al_l2_edac.o
- obj-$(CONFIG_EDAC_AMD76X)		+= amd76x_edac.o
- obj-$(CONFIG_EDAC_CPC925)		+= cpc925_edac.o
- obj-$(CONFIG_EDAC_I5000)		+= i5000_edac.o
-diff --git a/drivers/edac/al_l2_edac.c b/drivers/edac/al_l2_edac.c
-new file mode 100644
-index 000000000000..147094efb6fd
---- /dev/null
-+++ b/drivers/edac/al_l2_edac.c
-@@ -0,0 +1,270 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-+ */
-+
-+#include <asm/sysreg.h>
-+#include <linux/bitfield.h>
-+#include <linux/cpumask.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/smp.h>
-+
-+#include "edac_device.h"
-+#include "edac_module.h"
-+
-+#define DRV_NAME				"al_l2_edac"
-+
-+/* Same bit assignments of L2MERRSR_EL1 in ARM CA57/CA72 */
-+#define ARM_CA57_L2MERRSR_EL1			sys_reg(3, 1, 15, 2, 3)
-+#define ARM_CA57_L2MERRSR_RAMID			GENMASK(30, 24)
-+#define  ARM_CA57_L2_TAG_RAM			0x10
-+#define  ARM_CA57_L2_DATA_RAM			0x11
-+#define  ARM_CA57_L2_SNOOP_RAM			0x12
-+#define  ARM_CA57_L2_DIRTY_RAM			0x14
-+#define  ARM_CA57_L2_INC_PF_RAM			0x18
-+#define ARM_CA57_L2MERRSR_VALID			BIT(31)
-+#define ARM_CA57_L2MERRSR_REPEAT		GENMASK_ULL(39, 32)
-+#define ARM_CA57_L2MERRSR_OTHER			GENMASK_ULL(47, 40)
-+#define ARM_CA57_L2MERRSR_FATAL			BIT_ULL(63)
-+
-+#define AL_L2_EDAC_MSG_MAX			256
-+
-+struct al_l2_cache {
-+	cpumask_t cluster_cpus;
-+	struct list_head list_node;
-+	struct device_node *of_node;
-+};
-+
-+struct al_l2_edac {
-+	struct list_head l2_caches;
-+	spinlock_t lock;
-+};
-+
-+static void al_l2_edac_l2merrsr_read_status(void *arg)
-+{
-+	struct edac_device_ctl_info *edac_dev = arg;
-+	struct al_l2_edac *al_l2 = edac_dev->pvt_info;
-+	int cpu, space, count;
-+	u32 ramid, repeat, other, fatal;
-+	u64 val;
-+	char msg[AL_L2_EDAC_MSG_MAX];
-+	char *p;
-+
-+	val = read_sysreg_s(ARM_CA57_L2MERRSR_EL1);
-+	if (!(FIELD_GET(ARM_CA57_L2MERRSR_VALID, val)))
-+		return;
-+
-+	write_sysreg_s(0, ARM_CA57_L2MERRSR_EL1);
-+
-+	cpu = smp_processor_id();
-+	ramid = FIELD_GET(ARM_CA57_L2MERRSR_RAMID, val);
-+	repeat = FIELD_GET(ARM_CA57_L2MERRSR_REPEAT, val);
-+	other = FIELD_GET(ARM_CA57_L2MERRSR_OTHER, val);
-+	fatal = FIELD_GET(ARM_CA57_L2MERRSR_FATAL, val);
-+
-+	space = sizeof(msg);
-+	p = msg;
-+	count = scnprintf(p, space, "CPU%d L2 %serror detected", cpu,
-+			  (fatal) ? "Fatal " : "");
-+	p += count;
-+	space -= count;
-+
-+	switch (ramid) {
-+	case ARM_CA57_L2_TAG_RAM:
-+		count = scnprintf(p, space, " RAMID='L2 Tag RAM'");
-+		break;
-+	case ARM_CA57_L2_DATA_RAM:
-+		count = scnprintf(p, space, " RAMID='L2 Data RAM'");
-+		break;
-+	case ARM_CA57_L2_SNOOP_RAM:
-+		count = scnprintf(p, space, " RAMID='L2 Snoop Tag RAM'");
-+		break;
-+	case ARM_CA57_L2_DIRTY_RAM:
-+		count = scnprintf(p, space, " RAMID='L2 Dirty RAM'");
-+		break;
-+	case ARM_CA57_L2_INC_PF_RAM:
-+		count = scnprintf(p, space, " RAMID='L2 internal metadata'");
-+		break;
-+	default:
-+		count = scnprintf(p, space, " RAMID='unknown'");
-+		break;
-+	}
-+
-+	p += count;
-+	space -= count;
-+
-+	count = scnprintf(p, space,
-+			  " repeat=%d, other=%d (L2MERRSR_EL1=0x%llx)",
-+			  repeat, other, val);
-+
-+	spin_lock(&al_l2->lock);
-+	if (fatal)
-+		edac_device_handle_ue_count(edac_dev, repeat, 0, 0, msg);
-+	else
-+		edac_device_handle_ce_count(edac_dev, repeat, 0, 0, msg);
-+	spin_unlock(&al_l2->lock);
-+}
-+
-+static void al_l2_edac_check(struct edac_device_ctl_info *edac_dev)
-+{
-+	struct al_l2_edac *al_l2 = edac_dev->pvt_info;
-+	struct al_l2_cache *l2_cache;
-+
-+	list_for_each_entry(l2_cache, &al_l2->l2_caches, list_node)
-+		smp_call_function_any(&l2_cache->cluster_cpus,
-+				      al_l2_edac_l2merrsr_read_status,
-+				      edac_dev, 1);
-+}
-+
-+static int al_l2_edac_probe(struct platform_device *pdev)
-+{
-+	struct edac_device_ctl_info *edac_dev;
-+	struct al_l2_edac *al_l2;
-+	struct al_l2_cache *l2_cache;
-+	struct device *dev = &pdev->dev;
-+	int ret, i;
-+
-+	edac_dev = edac_device_alloc_ctl_info(sizeof(*al_l2), DRV_NAME, 1, "L",
-+					      1, 2, NULL, 0,
-+					      edac_device_alloc_index());
-+	if (!edac_dev)
-+		return -ENOMEM;
-+
-+	al_l2 = edac_dev->pvt_info;
-+	edac_dev->edac_check = al_l2_edac_check;
-+	edac_dev->dev = dev;
-+	edac_dev->mod_name = DRV_NAME;
-+	edac_dev->dev_name = dev_name(dev);
-+	edac_dev->ctl_name = "L2_cache";
-+	platform_set_drvdata(pdev, edac_dev);
-+
-+	spin_lock_init(&al_l2->lock);
-+	INIT_LIST_HEAD(&al_l2->l2_caches);
-+
-+	for_each_possible_cpu(i) {
-+		struct device_node *cpu;
-+		struct device_node *cpu_cache;
-+		bool found = false;
-+
-+		cpu = of_get_cpu_node(i, NULL);
-+		if (!cpu)
-+			continue;
-+
-+		cpu_cache = of_find_next_cache_node(cpu);
-+		list_for_each_entry(l2_cache, &al_l2->l2_caches, list_node) {
-+			if (l2_cache->of_node == cpu_cache) {
-+				found = true;
-+				break;
-+			}
-+		}
-+
-+		if (found) {
-+			cpumask_set_cpu(i, &l2_cache->cluster_cpus);
-+			of_node_put(cpu_cache);
-+		} else {
-+			l2_cache = devm_kzalloc(dev, sizeof(*l2_cache),
-+						GFP_KERNEL);
-+			l2_cache->of_node = cpu_cache;
-+			list_add(&l2_cache->list_node, &al_l2->l2_caches);
-+			cpumask_set_cpu(i, &l2_cache->cluster_cpus);
-+		}
-+
-+		of_node_put(cpu);
-+	}
-+
-+	list_for_each_entry(l2_cache, &al_l2->l2_caches, list_node)
-+		of_node_put(l2_cache->of_node);
-+
-+	if (list_empty(&al_l2->l2_caches)) {
-+		dev_err(dev, "L2 Cache list is empty for EDAC device\n");
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+	ret = edac_device_add_device(edac_dev);
-+	if (ret)
-+		goto err;
-+
-+	return 0;
-+
-+err:
-+	dev_err(dev, "Failed to add L2 edac device (%d)\n", ret);
-+	edac_device_free_ctl_info(edac_dev);
-+
-+	return ret;
-+}
-+
-+static int al_l2_edac_remove(struct platform_device *pdev)
-+{
-+	struct edac_device_ctl_info *edac_dev = platform_get_drvdata(pdev);
-+
-+	edac_device_del_device(edac_dev->dev);
-+	edac_device_free_ctl_info(edac_dev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id al_l2_edac_of_match[] = {
-+	/*
-+	 * "al,alpine-v2", and "amazon,al-alpine-v3" are machine compatible
-+	 * strings which have Cortex-A57/A72 configured with this support,
-+	 * and access to L2MERRSR_EL1 register is enabled in firmware.
-+	 */
-+	{ .compatible = "al,alpine-v2" },
-+	{ .compatible = "amazon,al-alpine-v3" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, al_l2_edac_of_match);
-+
-+static struct platform_driver al_l2_edac_driver = {
-+	.probe = al_l2_edac_probe,
-+	.remove = al_l2_edac_remove,
-+	.driver = {
-+		.name = DRV_NAME,
-+	},
-+};
-+
-+static struct platform_device *edac_l2_device;
-+
-+static int __init al_l2_init(void)
-+{
-+	struct device_node *root;
-+	int ret;
-+
-+	root = of_find_node_by_path("/");
-+	if (!root) {
-+		pr_debug("Can't find root node!\n");
-+		return 0;
-+	}
-+
-+	if (!of_match_node(al_l2_edac_of_match, root))
-+		return 0;
-+
-+	ret = platform_driver_register(&al_l2_edac_driver);
-+	if (ret) {
-+		pr_err("Failed to register %s (%d)\n", DRV_NAME, ret);
-+		return ret;
-+	}
-+
-+	edac_l2_device = platform_device_register_simple(DRV_NAME, -1, NULL, 0);
-+	if (IS_ERR(edac_l2_device)) {
-+		pr_err("Failed to register EDAC AL L2 platform device\n");
-+		return PTR_ERR(edac_l2_device);
-+	}
-+
-+	return 0;
-+}
-+
-+static void __exit al_l2_exit(void)
-+{
-+	platform_device_unregister(edac_l2_device);
-+	platform_driver_unregister(&al_l2_edac_driver);
-+}
-+
-+late_initcall(al_l2_init);
-+module_exit(al_l2_exit);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Hanna Hawa <hhhawa@amazon.com>");
-+MODULE_DESCRIPTION("Amazon's Annapurna Lab's L2 EDAC Driver");
+The patch series has following patches which applies the changes
+in the below sequence
+1. 001-dt-bindings-phy-Convert-Cadence-MHDP-PHY-bindings-to-YAML
+This patch converts the MHDP PHY device tree bindings to yaml schemas
+2. 002-phy-cadence-dp-Rename-to-phy-Cadence-Torrent
+Rename Cadence DP PHY driver from phy-cadence-dp to phy-cadence-torrent
+3. 003-phy-cadence-torrent-Adopt-Torrent-nomenclature
+Update private data structures, module descriptions and functions prefix to Torrent
+4. 004-phy-cadence-torrent-Add-wrapper-for-PHY-register-access
+Add a wrapper function to write Torrent PHY registers to improve code readability.
+5. 005-phy-cadence-torrent-Add-wrapper-for-DPTX-register-access
+Add wrapper functions to read, write DisplayPort specific PHY registers to improve code
+readability.
+6. 006-phy-cadence-torrent-Refactor-code-for-reusability
+Add separate function to set different power state values.
+Use of uniform polling timeout value. Check return values of functions for error handling.
+7. 007-phy-cadence-torrent-Add-19.2-MHz-reference-clock-support
+Add configuration functions for 19.2 MHz reference clock support. Add register configurations
+for SSC support.
+8. 008-phy-cadence-torrent-Implement-phy-configure-APIs
+Add PHY configuration APIs for link rate, number of lanes, voltage swing and pre-emphasis values.
+9. 009-phy-cadence-torrent-Use-regmap-to-read-and-write-Torrent-PHY-registers 
+Use regmap for accessing Torrent PHY registers. Update register offsets. Abstract address
+calculation using regmap APIs.
+10. 010-phy: cadence-torrent-Use-regmap-to-read-and-write-DPTX-PHY-registers
+Use regmap to read and write DPTX specific PHY registers.
+11. 011-dt-bindings-phy-phy-cadence-torrent-Add-platform-dependent-compatible-string
+Add a new compatible string used for TI SoCs using Torrent PHY.
+12. 012-phy-cadence-torrent-Add-platform-dependent-initialization-structure
+Add platform dependent initialization data for Torrent PHY used in TI's J721E SoC.
+13. 013-phy-cadence-torrent-dt-bindings-Add-subnode-bindings. 
+Add sub-node bindings.
+14. 014-phy: cadence-torrent-Add-support-for-subnode-bindings
+Implement single link subnode support to the phy driver.
+
+Version History:
+
+v3:
+- Removed "Add clock binding" patch from the series and merged it with
+  "Convert-Cadence-MHDP-PHY-bindings-to-YAML" patch.
+- Added reset and reset-names properties to YAML file.
+- Updated dptx_phy reg entry as optional in YAML.
+- Renamed reg-names from sd0801_phy to torrent_phy.
+- Added subnode property for each group of PHY lanes based on PHY
+  type to the YAML. Renamed num_lanes and max_bit_rate to cdns,num-lanes 
+  and cdns,max-bit-rate and moved it to subnode properties. 
+- Added cdns,phy-type property in subnode. Currently cdns,phy-type supports only
+  PHY_TYPE_DP.
+- Added subnode instance structure to the driver in reference to the dts change.
+- Updated functions to read properties from child node instead of parent node.
+- Added num_lanes as argument to the cdns_torrent_dp_run function.
+
+v2:
+- Remove patch [1] from this series and send for a separate review.
+- Use enum in compatible property of YAML file.
+- Remove quotes in clock-names property "refclk" -> refclk in YAML file.
+- Add reg-names property to YAML file
+- Add additionalProperties:false to YAML file.
+- No change in the driver code.
+
+This patch series is dependent on PHY DisplayPort configuration patch [1].
+
+[1]
+
+https://lkml.org/lkml/2020/1/6/279
+
+Swapnil Jakhade (11):
+  phy: cadence-torrent: Adopt Torrent nomenclature
+  phy: cadence-torrent: Add wrapper for PHY register access
+  phy: cadence-torrent: Add wrapper for DPTX register access
+  phy: cadence-torrent: Refactor code for reusability
+  phy: cadence-torrent: Add 19.2 MHz reference clock support
+  phy: cadence-torrent: Implement PHY configure APIs
+  phy: cadence-torrent: Use regmap to read and write Torrent PHY
+    registers
+  phy: cadence-torrent: Use regmap to read and write DPTX PHY registers
+  phy: cadence-torrent: Add platform dependent initialization structure
+  dt-bindings: phy: phy-cadence-torrent: Add subnode bindings.
+  phy: cadence-torrent: Add support for subnode bindings
+
+Yuti Amonkar (3):
+  dt-bindings: phy: Convert Cadence MHDP PHY bindings to YAML.
+  phy: cadence-dp: Rename to phy-cadence-torrent
+  dt-bindings: phy: phy-cadence-torrent: Add platform dependent
+    compatible string
+
+ .../devicetree/bindings/phy/phy-cadence-dp.txt     |   30 -
+ .../bindings/phy/phy-cadence-torrent.yaml          |  140 ++
+ drivers/phy/cadence/Kconfig                        |    6 +-
+ drivers/phy/cadence/Makefile                       |    2 +-
+ drivers/phy/cadence/phy-cadence-dp.c               |  541 ------
+ drivers/phy/cadence/phy-cadence-torrent.c          | 1945 ++++++++++++++++++++
+ 6 files changed, 2089 insertions(+), 575 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-dp.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+ delete mode 100644 drivers/phy/cadence/phy-cadence-dp.c
+ create mode 100644 drivers/phy/cadence/phy-cadence-torrent.c
+
 -- 
-2.17.1
+2.4.5
 
