@@ -2,94 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF941455F6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 14:35:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB54814561A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 14:35:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729122AbgAVNSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 08:18:16 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:33688 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729113AbgAVNSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Jan 2020 08:18:15 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00MD1uDQ000326;
-        Wed, 22 Jan 2020 08:18:04 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2xkytaanr6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 22 Jan 2020 08:18:03 -0500
-Received: from SCSQMBX11.ad.analog.com (scsqmbx11.ad.analog.com [10.77.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 00MDI2vv056044
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Wed, 22 Jan 2020 08:18:02 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Wed, 22 Jan
- 2020 05:18:00 -0800
-Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Wed, 22 Jan 2020 08:18:00 -0500
-Received: from saturn.ad.analog.com ([10.48.65.124])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 00MDHqPr026060;
-        Wed, 22 Jan 2020 08:17:57 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <ekigwana@gmail.com>, <jic23@kernel.org>, <lars@metafoo.de>,
-        <robh+dt@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v2 3/3] MAINTAINERS: add entry for ADF4360 PLL driver
-Date:   Wed, 22 Jan 2020 15:20:04 +0200
-Message-ID: <20200122132004.4621-3-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200122132004.4621-1-alexandru.ardelean@analog.com>
-References: <20200122132004.4621-1-alexandru.ardelean@analog.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-17_05:2020-01-16,2020-01-17 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 phishscore=0 mlxlogscore=995 mlxscore=0 suspectscore=0
- impostorscore=0 spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1910280000 definitions=main-2001220119
+        id S1727141AbgAVNUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 08:20:47 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:41664 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730037AbgAVNUq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Jan 2020 08:20:46 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7F4091A3D33;
+        Wed, 22 Jan 2020 14:20:44 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 735911A294D;
+        Wed, 22 Jan 2020 14:20:44 +0100 (CET)
+Received: from fsr-fed2164-101.ea.freescale.net (fsr-fed2164-101.ea.freescale.net [10.171.82.91])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 2DD5420364;
+        Wed, 22 Jan 2020 14:20:44 +0100 (CET)
+From:   Madalin Bucur <madalin.bucur@oss.nxp.com>
+To:     davem@davemloft.net, netdev@vger.kernel.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>
+Subject: [PATCH net 0/3] net: fsl/fman: address erratum A011043
+Date:   Wed, 22 Jan 2020 15:20:26 +0200
+Message-Id: <1579699229-5948-1-git-send-email-madalin.bucur@oss.nxp.com>
+X-Mailer: git-send-email 2.1.0
+Content-Type: text/plain; charset="us-ascii"
+Reply-to: madalin.bucur@oss.nxp.com
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Edward Kigwana <ekigwana@gmail.com>
+This addresses a HW erratum on some QorIQ DPAA devices.
 
-Add entry in the MAINTAINERS file for the ADF4360 PLL driver.
+MDIO reads to internal PCS registers may result in having
+the MDIO_CFG[MDIO_RD_ER] bit set, even when there is no
+error and read data (MDIO_DATA[MDIO_DATA]) is correct.
+Software may get false read error when reading internal
+PCS registers through MDIO. As a workaround, all internal
+MDIO accesses should ignore the MDIO_CFG[MDIO_RD_ER] bit.
+When the issue was present, one could see such errors
+during boot:
 
-Signed-off-by: Edward Kigwana <ekigwana@gmail.com>
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+  mdio_bus ffe4e5000: Error while reading PHY0 reg at 3.3
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e699fe378e71..d7a404084ad9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -462,6 +462,14 @@ ADDRESS SPACE LAYOUT RANDOMIZATION (ASLR)
- M:	Jiri Kosina <jikos@kernel.org>
- S:	Maintained
- 
-+ADF4360 PLL DRIVER
-+M:	Edward Kigwana <ekigwana@gmail.com>
-+W:	http://ez.analog.com/community/linux-device-drivers
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/frequency/adi,adf4360.yaml
-+F:	drivers/iio/frequency/adf4360.c
-+
- ADF7242 IEEE 802.15.4 RADIO DRIVER
- M:	Michael Hennerich <michael.hennerich@analog.com>
- W:	https://wiki.analog.com/ADF7242
+Madalin Bucur (3):
+  dt-bindings: net: add fsl,erratum-a011043
+  powerpc/fsl/dts: add fsl,erratum-a011043
+  net/fsl: treat fsl,erratum-a011043
+
+ Documentation/devicetree/bindings/net/fsl-fman.txt          | 13 +++++++++++++
+ .../boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi       |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi          |  1 +
+ .../boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi       |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi          |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi          |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi          |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi           |  1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi           |  1 +
+ drivers/net/ethernet/freescale/xgmac_mdio.c                 |  7 ++++++-
+ 20 files changed, 37 insertions(+), 1 deletion(-)
+
 -- 
-2.20.1
+2.1.0
 
