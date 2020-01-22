@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71950145BF7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 19:57:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A44C145BF1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 19:57:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729247AbgAVS5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 13:57:15 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:42015 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729212AbgAVS4b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 13:56:31 -0500
-Received: by mail-wr1-f66.google.com with SMTP id q6so210361wro.9
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 10:56:29 -0800 (PST)
+        id S1729262AbgAVS5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 13:57:12 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:40486 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729238AbgAVS4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 13:56:32 -0500
+Received: by mail-wr1-f65.google.com with SMTP id c14so223309wrn.7
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 10:56:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yws95nmaJZSmNzRJG51ZJDH/5MHh+qOjv+20GRqLWDg=;
-        b=vZnJ4iPZ59f0fnLvjpTpglKMUam+smVSpL1yV9BVjGNp6xiw4sx/uUHhWvtctLMXJq
-         faBo50ev/bAB6ZtNDkCBWjgbRXNkNi2BULhkrwOmOyczwzccOu0x5Q03ZjXbgJFPNyEE
-         ZpqJ+yKC4e8QgTAEvj8KMhqJV2EGSQ/kTx1j2nBjQ7t2mtBiWHsA7D+3VLdMnGjOg4MC
-         eg0DSKsDgowfnYpnqmFWwNBlBbmUZzFFLcP97i4uTxqbVAzaZ19C25G4FylUZ/XCRjb9
-         /Cmm4WneylhMLASeHCaQBlfKuBRxFrxXlkaEk70iRB/yd6/9Dd7NeTJmy/lUn3MV0g3P
-         JO/Q==
+        bh=ounN3zi0imbgKpbsfEs2C8qMeNLcd0eRtq+ghfuGYQw=;
+        b=hHIUKPms2Gxr0V+3L/ZF3HJb9w2oVNp5EgDWIC7gsrYlPERcRHqCoZ1dZ5JdhJs07r
+         oXO6wEx6t33p2A5jOUxBlq6CD2+nQra2xdKLPgNwzzeK7cBPOJfS2akX2158/0FguTqh
+         jdFel6dG9s+pnjLNFqcTKJ/eRfW7CrrfmxP19U9QtbifQH2hxN4X/XmRCEWHtGMZuhZi
+         ptd3XBGMyOo25zSLBHnGh/PsfvzvMwciiqLDTMdLAdqTcqICb/ZV9o3qvYk11YkAKdoI
+         46XTTmrOXKZ+6BQyqjvKIvsWVKMB0J9aadrDeDirOxS4ZVHEFUqFJZ1jp06wRa9kthTr
+         Vaow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yws95nmaJZSmNzRJG51ZJDH/5MHh+qOjv+20GRqLWDg=;
-        b=IfuRzftBYtIQyNxx5IW3DCTKvspmOihKY2bPecDeUo6Z2uWA1qCGYtmRuSBWubPqWx
-         gpyPzSoitQfSUYgefQjKKNBEnqky0NsnA7gaR/EefJRFcZQCbp0jb0yLRaXnTWVg44lU
-         3U/isp6j7BZC9Kyu3Ra5bNLlkar5dJmjbkrFL5swEFhJ1eKRWdrSoMHw8ROgwH6nydSW
-         P6hn4Gq284dcbhMaaqjOAHCm1geDbEWaVHbnZvts/2F2nH9XxCbVcfF7IOFit3lTgDoQ
-         ch8zNTilhnpp5CzsT67MQpodyNlgFc5qjopHhWoIu95L6q0GGV8TuaUi3pPB19fBetg6
-         hOWA==
-X-Gm-Message-State: APjAAAVVC5yDxiCm4FPTrrYf5CjLTi2pjGA03w7smmVc4DSJGE3UjxOs
-        CVK1xyKtncqWN7o0iL57E6cLaQ==
-X-Google-Smtp-Source: APXvYqwMR3wvYTUmeAvdj4H6+sCYEjV4Z7c6gYmKvbiOaaunUeGRjD8Nbs4wkgIMKzYOJrV1UsNviA==
-X-Received: by 2002:a5d:50d2:: with SMTP id f18mr12507414wrt.366.1579719389239;
-        Wed, 22 Jan 2020 10:56:29 -0800 (PST)
+        bh=ounN3zi0imbgKpbsfEs2C8qMeNLcd0eRtq+ghfuGYQw=;
+        b=jrFt/E+cr3/VPLyC9Un7t/snaFziGGWMk5mg5EnFVhDkJLOiJbGMk78MTywK/W2zgi
+         kMUTMAUNl7rsSbcB7WSsUB/KNQ3TXCG61YXw3qOknRrhwPiKBeX0qruJQsc+BFRQZjPs
+         1+xtlMAe/J1C37lGLsckzLJw6zwL+uy78eYzEjAROjOiEt88DKjOrjXnTOuXRvWj/XkF
+         IeZjw9/OxYR91u/B7TLM7sbfQFDbT7p7u6IpGCcG3FeFyGYbGeU2WMgL9QFYJOVHXuUs
+         xXJ90tRwoF3Z0DRmBFLRF53XkvCiWbRu7yAPPYAH7WM9XXLMyLil8fFCGlByQIeW5/X0
+         6QDQ==
+X-Gm-Message-State: APjAAAUojOdL8G5J87OhWoiEHfOSIiK1xu0GfbLxqE/EHRIRObGIj/ZC
+        5lf6ul28TAkQNqWxcz5BtC3O0A==
+X-Google-Smtp-Source: APXvYqy156Ycx8aSYgl72eE6NVySJt+/Cj+i1oQ3QTGvgPcSTND7ZMiN2qzDHOTYeYEjbSgcDADDCg==
+X-Received: by 2002:adf:ec0d:: with SMTP id x13mr12681783wrn.400.1579719390270;
+        Wed, 22 Jan 2020 10:56:30 -0800 (PST)
 Received: from localhost.localdomain ([176.61.57.127])
-        by smtp.gmail.com with ESMTPSA id q15sm58590390wrr.11.2020.01.22.10.56.28
+        by smtp.gmail.com with ESMTPSA id q15sm58590390wrr.11.2020.01.22.10.56.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2020 10:56:28 -0800 (PST)
+        Wed, 22 Jan 2020 10:56:29 -0800 (PST)
 From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
         gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
@@ -53,9 +53,9 @@ Cc:     linux-kernel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v3 13/19] arm64: dts: qcom: qcs404-evb: Define VBUS detect pin
-Date:   Wed, 22 Jan 2020 18:56:04 +0000
-Message-Id: <20200122185610.131930-14-bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 14/19] arm64: dts: qcom: qcs404-evb: Define VBUS boost pin
+Date:   Wed, 22 Jan 2020 18:56:05 +0000
+Message-Id: <20200122185610.131930-15-bryan.odonoghue@linaro.org>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200122185610.131930-1-bryan.odonoghue@linaro.org>
 References: <20200122185610.131930-1-bryan.odonoghue@linaro.org>
@@ -66,8 +66,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VBUS present/absent is presented to the SoC via a GPIO on the EVB. Define
-the pin mapping for later use by gpio-usb-conn.
+An external regulator is used to trigger VBUS on/off via GPIO. This patch
+defines the relevant GPIO in the EVB dts.
 
 Cc: Andy Gross <agross@kernel.org>
 Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
@@ -78,41 +78,28 @@ Cc: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 501a7330dbc8..6d53dc342f97 100644
+index 6d53dc342f97..b6147b5ab5cb 100644
 --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
 +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -4,6 +4,8 @@
- #include <dt-bindings/gpio/gpio.h>
- #include "qcs404.dtsi"
- #include "pms405.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- 
- / {
- 	aliases {
-@@ -270,6 +272,18 @@ rclk {
- 	};
+@@ -273,6 +273,14 @@ rclk {
  };
  
-+&pms405_gpios {
-+	usb3_vbus_pin: usb3-vbus-pin {
+ &pms405_gpios {
++	usb_vbus_boost_pin: usb-vbus-boost-pin {
 +		pinconf {
-+			pins = "gpio12";
++			pins = "gpio3";
 +			function = PMIC_GPIO_FUNC_NORMAL;
-+			input-enable;
-+			bias-pull-down;
++			output-low;
 +			power-source = <1>;
 +		};
 +	};
-+};
-+
- &wifi {
- 	status = "okay";
- 	vdd-0.8-cx-mx-supply = <&vreg_l2_1p275>;
+ 	usb3_vbus_pin: usb3-vbus-pin {
+ 		pinconf {
+ 			pins = "gpio12";
 -- 
 2.25.0
 
