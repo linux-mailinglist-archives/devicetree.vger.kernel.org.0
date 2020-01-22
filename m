@@ -2,87 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7974145EBE
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 23:46:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75CAF145ED4
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 23:57:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726204AbgAVWqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 17:46:08 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:40070 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725989AbgAVWqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 17:46:08 -0500
-Received: by mail-wr1-f65.google.com with SMTP id c14so921300wrn.7;
-        Wed, 22 Jan 2020 14:46:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=pWxnPQXLd+Q1xr02wkxqUJDAE8DS8+PwJcPiG+afbrk=;
-        b=I0fdhWiB41zdWDXu3XXbsSFAdjgrRW152IEIC/13IrtPI/utS9IBzUHxzsWQOORADu
-         FNJW2ywG6LfuQ+Iw432bFzTM0OP/gSZYvZ+C8KnxErBOlO72oom9mSqUgI3f4YHYoc6J
-         LKXwOuZAQ5jbFfmWCZIUackWR4dboT1eVR/58v1aASUJf+XrWCTiEtwxglbS5fanZAsB
-         iHERNVZ5WU73kN0JJJDx8D9o1Mphl/ZyZshW3I2FFCzTbFNSZujINWTwOgsqgukTrGWw
-         Ugs/edLPj9isfGj1bH39KXgbt8fAzVlmlAYGVFe6g9ydc2nqidgPuylBwQksmZxPXWaM
-         8mKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=pWxnPQXLd+Q1xr02wkxqUJDAE8DS8+PwJcPiG+afbrk=;
-        b=ARnYrcL2oy53srfBhD3m1udEnaGb/ZRt2M0X6aHM8O2iP37jzGC+8txjU8dREB2+gn
-         R1UnErbx6imqMYyY1kdUqmv7td7VAI4eMqpDkZxlz7+OUa4lKRXUmFxXCYImhe2XXL1V
-         f08dqrAfSLoBqFaFXXdXTutdXcLXeUjBl9WzXZ7dE3VVIH/l8ImTciWzKGRqVshJv5qD
-         1eWzXNArRPfHAyNq7wZWHc1rjl8Qs4HD7+w8HEexUgBEUZ6e8m3g8GI+zuAI1xOonbN2
-         Zc6mZpDl8ceslcbode0PNzDF+YWD2Vkll6K+Q/hjtsryr4yTW8u4yWJbt4QUNW+SI8tU
-         GVMw==
-X-Gm-Message-State: APjAAAUzvhs2xY9IT2jRFnYzCVG1BQLJTujLHppMu8xZsAJ0+9TOxVI8
-        aVWBrLBoMY5QLSYPkPc0MTg=
-X-Google-Smtp-Source: APXvYqzB0krEdYHfsT/a9zb3dXi65M8ljwfJsmqQQOo0r/RttSk83FS5IrLrFgtXh1DnTPNL1Rj7WQ==
-X-Received: by 2002:adf:fa43:: with SMTP id y3mr13505642wrr.65.1579733166449;
-        Wed, 22 Jan 2020 14:46:06 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id f1sm342559wro.85.2020.01.22.14.46.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 22 Jan 2020 14:46:06 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     broonie@kernel.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, heiko@sntech.de,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] dt-bindings: spi: spi-rockchip: add description for rk3328
-Date:   Wed, 22 Jan 2020 23:45:55 +0100
-Message-Id: <20200122224555.6845-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200122224555.6845-1-jbx6244@gmail.com>
-References: <20200122224555.6845-1-jbx6244@gmail.com>
+        id S1726004AbgAVW5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 17:57:02 -0500
+Received: from mail25.static.mailgun.info ([104.130.122.25]:18027 "EHLO
+        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725884AbgAVW5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Jan 2020 17:57:01 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1579733820; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=6Q/w18BMl3i2dx6uQiAibJyd6QCMOZQF1sn6sEp4QGs=;
+ b=ogr2HarqSxYqEvO7krzqXXkkw4gZZlJs3Dy8nWflkqkDRyAEHOCZtXA4ManKkuTPu8HdLgG3
+ kJK4F2srg5VYA5CMVy5bWZ56ySLCEzGS8XW9pSWKbSJy25TiP1LCleM7UbhbqQ91oDS7xnbu
+ XVVPWevg1AwCbQZSptktRMsWvIg=
+X-Mailgun-Sending-Ip: 104.130.122.25
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e28d33b.7fb4aaa301b8-smtp-out-n01;
+ Wed, 22 Jan 2020 22:56:59 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id EDEE5C447A1; Wed, 22 Jan 2020 22:56:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rishabhb)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id EE3ADC433CB;
+        Wed, 22 Jan 2020 22:56:56 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 22 Jan 2020 14:56:56 -0800
+From:   rishabhb@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: Re: [PATCH v2 2/8] remoteproc: qcom: Introduce driver to store pil
+ info in IMEM
+In-Reply-To: <20191227053215.423811-3-bjorn.andersson@linaro.org>
+References: <20191227053215.423811-1-bjorn.andersson@linaro.org>
+ <20191227053215.423811-3-bjorn.andersson@linaro.org>
+Message-ID: <60c10082ba90fbba0f056df8575d205f@codeaurora.org>
+X-Sender: rishabhb@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The description below is already in use for rk3328.dtsi,
-but was somehow never added to a document, so add
-"rockchip,rk3328-spi", "rockchip,rk3066-spi"
-for spi nodes on a rk3328 platform to spi-rockchip.yaml.
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-index a797a4748..5e0fab1bc 100644
---- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-@@ -30,6 +30,7 @@ properties:
-             - rockchip,rk3188-spi  #for rk3188 SoCs.
-             - rockchip,rk3288-spi  #for rk3288 SoCs.
-             - rockchip,rk3308-spi  #for rk3308 SoCs.
-+            - rockchip,rk3328-spi  #for rk3328 SoCs.
-             - rockchip,rk3368-spi  #for rk3368 SoCs.
-             - rockchip,rk3399-spi  #for rk3399 SoCs.
-           - const: rockchip,rk3066-spi
--- 
-2.11.0
-
+On 2019-12-26 21:32, Bjorn Andersson wrote:
+> A region in IMEM is used to communicate load addresses of remoteproc to
+> post mortem debug tools. Implement a driver that can be used to store
+> this information in order to enable these tools to process collected
+> ramdumps.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Changes since v1:
+> - Added helper to probe defer clients
+> - Fixed logical bug in slot scan
+> - Added SPDX header in header file
+> 
+>  drivers/remoteproc/Kconfig         |   3 +
+>  drivers/remoteproc/Makefile        |   1 +
+>  drivers/remoteproc/qcom_pil_info.c | 150 +++++++++++++++++++++++++++++
+>  drivers/remoteproc/qcom_pil_info.h |   8 ++
+>  4 files changed, 162 insertions(+)
+>  create mode 100644 drivers/remoteproc/qcom_pil_info.c
+>  create mode 100644 drivers/remoteproc/qcom_pil_info.h
+> 
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 94afdde4bc9f..0798602e355a 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -85,6 +85,9 @@ config KEYSTONE_REMOTEPROC
+>  	  It's safe to say N here if you're not interested in the Keystone
+>  	  DSPs or just want to use a bare minimum kernel.
+> 
+> +config QCOM_PIL_INFO
+> +	tristate
+> +
+>  config QCOM_RPROC_COMMON
+>  	tristate
+> 
+> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> index 00f09e658cb3..c1b46e9033cb 100644
+> --- a/drivers/remoteproc/Makefile
+> +++ b/drivers/remoteproc/Makefile
+> @@ -14,6 +14,7 @@ obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
+>  obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
+>  obj-$(CONFIG_DA8XX_REMOTEPROC)		+= da8xx_remoteproc.o
+>  obj-$(CONFIG_KEYSTONE_REMOTEPROC)	+= keystone_remoteproc.o
+> +obj-$(CONFIG_QCOM_PIL_INFO)		+= qcom_pil_info.o
+>  obj-$(CONFIG_QCOM_RPROC_COMMON)		+= qcom_common.o
+>  obj-$(CONFIG_QCOM_Q6V5_COMMON)		+= qcom_q6v5.o
+>  obj-$(CONFIG_QCOM_Q6V5_ADSP)		+= qcom_q6v5_adsp.o
+> diff --git a/drivers/remoteproc/qcom_pil_info.c
+> b/drivers/remoteproc/qcom_pil_info.c
+> new file mode 100644
+> index 000000000000..b0897ae9eae5
+> --- /dev/null
+> +++ b/drivers/remoteproc/qcom_pil_info.c
+> @@ -0,0 +1,150 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2019 Linaro Ltd.
+> + */
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/slab.h>
+> +
+> +struct pil_reloc_entry {
+> +	char name[8];
+> +	__le64 base;
+> +	__le32 size;
+> +} __packed;
+> +
+> +#define PIL_INFO_SIZE	200
+> +#define PIL_INFO_ENTRIES (PIL_INFO_SIZE / sizeof(struct 
+> pil_reloc_entry))
+> +
+> +struct pil_reloc {
+> +	struct device *dev;
+> +	struct regmap *map;
+> +	u32 offset;
+> +	int val_bytes;
+> +
+> +	struct pil_reloc_entry entries[PIL_INFO_ENTRIES];
+> +};
+> +
+> +static struct pil_reloc *_reloc;
+> +static DEFINE_MUTEX(reloc_mutex);
+> +
+> +/**
+> + * qcom_pil_info_store() - store PIL information of image in IMEM
+> + * @image:	name of the image
+> + * @base:	base address of the loaded image
+> + * @size:	size of the loaded image
+> + */
+> +void qcom_pil_info_store(const char *image, phys_addr_t base, size_t 
+> size)
+> +{
+> +	struct pil_reloc_entry *entry;
+> +	int idx = -1;
+> +	int i;
+> +
+> +	mutex_lock(&reloc_mutex);
+> +	if (!_reloc)
+> +		goto unlock;
+> +
+> +	for (i = 0; i < PIL_INFO_ENTRIES; i++) {
+> +		if (!_reloc->entries[i].name[0]) {
+> +			if (idx == -1)
+> +				idx = i;
+> +			continue;
+> +		}
+> +
+> +		if (!strncmp(_reloc->entries[i].name, image, 8)) {
+> +			idx = i;
+> +			goto found;
+> +		}
+> +	}
+> +
+> +	if (idx == -1) {
+> +		dev_warn(_reloc->dev, "insufficient PIL info slots\n");
+> +		goto unlock;
+> +	}
+> +
+> +found:
+> +	entry = &_reloc->entries[idx];
+> +	stracpy(entry->name, image);
+> +	entry->base = base;
+> +	entry->size = size;
+> +
+> +	regmap_bulk_write(_reloc->map, _reloc->offset + idx * sizeof(*entry),
+> +			  entry, sizeof(*entry) / _reloc->val_bytes);
+> +
+> +unlock:
+> +	mutex_unlock(&reloc_mutex);
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_pil_info_store);
+> +
+> +/**
+> + * qcom_pil_info_available() - query if the pil info is probed
+> + *
+> + * Return: boolean indicating if the pil info device is probed
+> + */
+> +bool qcom_pil_info_available(void)
+> +{
+> +	return !!_reloc;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_pil_info_available);
+> +
+> +static int pil_reloc_probe(struct platform_device *pdev)
+> +{
+> +	struct pil_reloc *reloc;
+> +
+> +	reloc = devm_kzalloc(&pdev->dev, sizeof(*reloc), GFP_KERNEL);
+> +	if (!reloc)
+> +		return -ENOMEM;
+> +
+> +	reloc->dev = &pdev->dev;
+> +	reloc->map = syscon_node_to_regmap(pdev->dev.parent->of_node);
+If there are multiple entries like "pil-reloc" in the imem node
+mapping the entire imem multiple times may not work. Is there a way
+we can somehow just iomap the required region for pil?
+> +	if (IS_ERR(reloc->map))
+> +		return PTR_ERR(reloc->map);
+> +
+> +	if (of_property_read_u32(pdev->dev.of_node, "offset", 
+> &reloc->offset))
+> +		return -EINVAL;
+> +
+> +	reloc->val_bytes = regmap_get_val_bytes(reloc->map);
+> +	if (reloc->val_bytes < 0)
+> +		return -EINVAL;
+> +
+> +	regmap_bulk_write(reloc->map, reloc->offset, reloc->entries,
+> +			  sizeof(reloc->entries) / reloc->val_bytes);
+> +
+> +	mutex_lock(&reloc_mutex);
+> +	_reloc = reloc;
+> +	mutex_unlock(&reloc_mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pil_reloc_remove(struct platform_device *pdev)
+> +{
+> +	mutex_lock(&reloc_mutex);
+> +	_reloc = NULL;
+> +	mutex_unlock(&reloc_mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id pil_reloc_of_match[] = {
+> +	{ .compatible = "qcom,pil-reloc-info" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, pil_reloc_of_match);
+> +
+> +static struct platform_driver pil_reloc_driver = {
+> +	.probe = pil_reloc_probe,
+> +	.remove = pil_reloc_remove,
+> +	.driver = {
+> +		.name = "qcom-pil-reloc-info",
+> +		.of_match_table = pil_reloc_of_match,
+> +	},
+> +};
+> +module_platform_driver(pil_reloc_driver);
+> +
+> +MODULE_DESCRIPTION("Qualcomm PIL relocation info");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/remoteproc/qcom_pil_info.h
+> b/drivers/remoteproc/qcom_pil_info.h
+> new file mode 100644
+> index 000000000000..0372602fae1d
+> --- /dev/null
+> +++ b/drivers/remoteproc/qcom_pil_info.h
+> @@ -0,0 +1,8 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __QCOM_PIL_INFO_H__
+> +#define __QCOM_PIL_INFO_H__
+> +
+> +void qcom_pil_info_store(const char *image, phys_addr_t base, size_t 
+> size);
+> +bool qcom_pil_info_available(void);
+> +
+> +#endif
