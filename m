@@ -2,227 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 414D11451C5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 10:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B59145215
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 11:05:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731131AbgAVJ4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 04:56:17 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:9594 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730926AbgAVJ4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Jan 2020 04:56:16 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00M9sCjs016045;
-        Wed, 22 Jan 2020 10:56:02 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=4Zw+r/mcuIQdGav3Gfbbdj8AtLqPaIWXCkURYNpxfY4=;
- b=jovkYIDF5w42n6yi9h5hqtYgncgDMBFtXMDqDAKoZWG5gk/amI0xeFx7zKKaAPavLGPY
- gMivTPoH9IuaAbh3JiNmEZqJssrE7n5YFraGuy0ba9BerZGNMtHUZUAm+9MBUQG6rUrc
- CDo+9y6I4cdzx6ANYGq17BBoPsDIokpN261FYFrEa9XEJE3aBM39ULnvYZP6fMdaUH6U
- U7d0zD8bFb//IRQ4P8aeIR9F7uw+IfrQeTCqdJbDDWibfoBld5i6OWBtR7PK8FMZM49j
- MMg4y/F6i5SJGsyowSHfr9vVd968H25TOrPPQtYTbPPPcBanpAnFpKc2lpfGCZyw3u2t Nw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xkr1e3rmt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 22 Jan 2020 10:56:02 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D2B6A100034;
-        Wed, 22 Jan 2020 10:56:01 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C61982AD14D;
-        Wed, 22 Jan 2020 10:56:01 +0100 (CET)
-Received: from localhost (10.75.127.46) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 22 Jan 2020 10:56:01
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <alexandre.torgue@st.com>
-CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <fabrice.gasnier@st.com>,
-        <erwan.leray@st.com>, Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH v2 2/2] dt-bindings: serial: Convert STM32 UART to json-schema
-Date:   Wed, 22 Jan 2020 10:55:58 +0100
-Message-ID: <20200122095558.22553-3-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200122095558.22553-1-benjamin.gaignard@st.com>
-References: <20200122095558.22553-1-benjamin.gaignard@st.com>
+        id S1729353AbgAVKE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 05:04:56 -0500
+Received: from mail-wm1-f51.google.com ([209.85.128.51]:55169 "EHLO
+        mail-wm1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726204AbgAVKE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 05:04:56 -0500
+Received: by mail-wm1-f51.google.com with SMTP id b19so6145092wmj.4
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 02:04:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xr55sisUQJBKj6Q4LrYEYaq2XUN1tVNpifr1uUk54Rc=;
+        b=2SpclnwqwF+ZtOGLn5/Pzqi457wTIzOMugjwrvqe2e6PJR797j6ImTx5WFNp7pJf+D
+         0oCYEuyjwuXAOyrBfb48iDlGtYXJ9iOcGW5YYffBgwRYC3gqYgczwyagZCk8Du3/RZRe
+         sVU4/NdlRN4MU59vussJBc4x1Wxp+5eXR12w1xgIxs+sZbBjapfCxeJOd659ECntnogA
+         u8/25V+tAYwHIh2eXheHPeMrHlgoEqotUdWOHcpexUj1fjvxMfVZXxE0C6H+AXpm4AWf
+         83HNZuCMrZVH9ziWGen75wPXIo5Zg+UUTeq6R7TbJBbiJ4BcYL5FzY3amnjSAs80R+iQ
+         ONPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xr55sisUQJBKj6Q4LrYEYaq2XUN1tVNpifr1uUk54Rc=;
+        b=PQiVk+UvyqTDQv99fgab+AWWbBEoKPXgmwNMUXzak4ptG7GBeFgfGBXj1y5y6XU0JQ
+         LaYOb4iLOHEKE8CYDdBlHDLOhlD6EqNX/yaLVnmScIsReOMkQ9oNxexDVTpnWVFlCHTp
+         D0x2AfkfJERVBiOEg/B94QH38zYcwtK9Y/cBuvJl8nsnIseH48mJLUBTsDeXD83APVlc
+         sJthMslGopVrfXfWrn4JnPg7zHw2qBZBzyzFdgeibNW/sbLuSRxPbWUiGfb6z5kZOULH
+         xJjh3UknatA87eRVzSEx0u9znKEfTVAXPspcH4N3rxhCsn/U0O8rCTOOKmkQ5ab4Js6G
+         BIBA==
+X-Gm-Message-State: APjAAAUgkIQIRpA6jzET39K8LUun5ymllB+BxXG+zA3PmtrHaHzA/jKQ
+        3fXyFOLZrS+RxO8TdsQUwg3ttQ==
+X-Google-Smtp-Source: APXvYqxz2tZXmYV+E9Ld+AOXUw6DT+T8VYNXacbGMy0FhKPCjM0ksmIp44lJOlHnO0vFIuRXZGibVg==
+X-Received: by 2002:a1c:3b0a:: with SMTP id i10mr2197195wma.177.1579687494505;
+        Wed, 22 Jan 2020 02:04:54 -0800 (PST)
+Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id l3sm52237648wrt.29.2020.01.22.02.04.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2020 02:04:53 -0800 (PST)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>, linux-clk@vger.kernel.org
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] clk: meson: gxbb: audio clock updates
+Date:   Wed, 22 Jan 2020 11:04:48 +0100
+Message-Id: <20200122100451.2443153-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-17_05:2020-01-16,2020-01-17 signatures=0
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert STM32 UART bindings to json-schema.
+This patcheset provides updates related to the audio peripheral clocks
+It adds the peripheral clock required by the internal audio dac
+and reorganize the AIU clocks into a hierarchy to better reflect the
+behavior of the SoC.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- .../devicetree/bindings/serial/st,stm32-uart.yaml  | 80 ++++++++++++++++++++++
- .../devicetree/bindings/serial/st,stm32-usart.txt  | 57 ---------------
- 2 files changed, 80 insertions(+), 57 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
- delete mode 100644 Documentation/devicetree/bindings/serial/st,stm32-usart.txt
+Jerome Brunet (3):
+  dt-bindings: clk: meson: add the gxl internal dac gate
+  clk: meson: gxbb: add the gxl internal dac gate
+  clk: meson: gxbb: set audio output clock hierarchy
 
-diff --git a/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-new file mode 100644
-index 000000000000..238c44192d31
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/st,stm32-uart.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/st,stm32-uart.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+maintainers:
-+  - Erwan Le Ray <erwan.leray@st.com>
-+
-+title: STMicroelectronics STM32 USART bindings
-+
-+allOf:
-+  - $ref: rs485.yaml
-+
-+properties:
-+  compatible:
-+    enum:
-+      - st,stm32-uart
-+      - st,stm32f7-uart
-+      - st,stm32h7-uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  label:
-+    description: label associated with this uart
-+
-+  st,hw-flow-ctrl:
-+    description: enable hardware flow control
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+  dmas:
-+    minItems: 1
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      enum: [ rx, tx ]
-+    minItems: 1
-+    maxItems: 2
-+
-+  wakeup-source: true
-+
-+  rs485-rts-delay: true
-+  rs485-rts-active-low: true
-+  linux,rs485-enabled-at-boot-time: true
-+  rs485-rx-during-tx: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    usart1: serial@40011000 {
-+      compatible = "st,stm32-uart";
-+      reg = <0x40011000 0x400>;
-+      interrupts = <37>;
-+      clocks = <&rcc 0 164>;
-+      dmas = <&dma2 2 4 0x414 0x0>,
-+             <&dma2 7 4 0x414 0x0>;
-+      dma-names = "rx", "tx";
-+      rs485-rts-active-low;
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/serial/st,stm32-usart.txt b/Documentation/devicetree/bindings/serial/st,stm32-usart.txt
-deleted file mode 100644
-index 8620f7fcbd50..000000000000
---- a/Documentation/devicetree/bindings/serial/st,stm32-usart.txt
-+++ /dev/null
-@@ -1,57 +0,0 @@
--* STMicroelectronics STM32 USART
--
--Required properties:
--- compatible: can be either:
--  - "st,stm32-uart",
--  - "st,stm32f7-uart",
--  - "st,stm32h7-uart".
--  depending is compatible with stm32(f4), stm32f7 or stm32h7.
--- reg: The address and length of the peripheral registers space
--- interrupts:
--  - The interrupt line for the USART instance,
--  - An optional wake-up interrupt.
--- clocks: The input clock of the USART instance
--
--Optional properties:
--- resets: Must contain the phandle to the reset controller.
--- pinctrl: The reference on the pins configuration
--- st,hw-flow-ctrl: bool flag to enable hardware flow control.
--- rs485-rts-delay, rs485-rx-during-tx, rs485-rts-active-low,
--  linux,rs485-enabled-at-boot-time: see rs485.txt.
--- dmas: phandle(s) to DMA controller node(s). Refer to stm32-dma.txt
--- dma-names: "rx" and/or "tx"
--- wakeup-source: bool flag to indicate this device has wakeup capabilities
--- interrupt-names, if optional wake-up interrupt is used, should be:
--  - "event": the name for the interrupt line of the USART instance
--  - "wakeup" the name for the optional wake-up interrupt
--
--
--Examples:
--usart4: serial@40004c00 {
--	compatible = "st,stm32-uart";
--	reg = <0x40004c00 0x400>;
--	interrupts = <52>;
--	clocks = <&clk_pclk1>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_usart4>;
--};
--
--usart2: serial@40004400 {
--	compatible = "st,stm32-uart";
--	reg = <0x40004400 0x400>;
--	interrupts = <38>;
--	clocks = <&clk_pclk1>;
--	st,hw-flow-ctrl;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_usart2 &pinctrl_usart2_rtscts>;
--};
--
--usart1: serial@40011000 {
--	compatible = "st,stm32-uart";
--	reg = <0x40011000 0x400>;
--	interrupts = <37>;
--	clocks = <&rcc 0 164>;
--	dmas = <&dma2 2 4 0x414 0x0>,
--	       <&dma2 7 4 0x414 0x0>;
--	dma-names = "rx", "tx";
--};
+ drivers/clk/meson/gxbb.c              | 21 +++++++++++++--------
+ drivers/clk/meson/gxbb.h              |  2 +-
+ include/dt-bindings/clock/gxbb-clkc.h |  1 +
+ 3 files changed, 15 insertions(+), 9 deletions(-)
+
 -- 
-2.15.0
+2.24.1
 
