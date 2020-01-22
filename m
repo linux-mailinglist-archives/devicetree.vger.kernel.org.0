@@ -2,125 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A111F1458E2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 16:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29A37145947
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 17:05:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726442AbgAVPiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 10:38:17 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:56346 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726049AbgAVPiM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 10:38:12 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00MFc6A4077656;
-        Wed, 22 Jan 2020 09:38:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1579707486;
-        bh=olm+bSOr7+k/3oDNurxPY/t/nOe+OgFg1ZjDwTThz2I=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=R4wu5V7sTjUeS0eKpzr8qTvO3zI8TKwnXu43UW918mryMDQEA7WQ5XUzXHdexQIun
-         yWqLeXRLrhie0gY1pkPndYezIDVxaaWTWBF4m4sc+/Ugut0A1Jc3BOIcVOBXR3jClK
-         ahmN55X+B/NBwEcL25zSLgr96sXObub426ZXTYgA=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00MFc6jX058017;
-        Wed, 22 Jan 2020 09:38:06 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 22
- Jan 2020 09:38:06 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 22 Jan 2020 09:38:06 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00MFc6Q3019489;
-        Wed, 22 Jan 2020 09:38:06 -0600
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
-        <bunk@kernel.org>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH net-next 2/2] net: phy: DP83822: Add support for additional DP83825 devices
-Date:   Wed, 22 Jan 2020 09:34:55 -0600
-Message-ID: <20200122153455.8777-3-dmurphy@ti.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200122153455.8777-1-dmurphy@ti.com>
-References: <20200122153455.8777-1-dmurphy@ti.com>
+        id S1725827AbgAVQFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 11:05:11 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38462 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbgAVQFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 11:05:11 -0500
+Received: by mail-ot1-f67.google.com with SMTP id z9so6737530oth.5;
+        Wed, 22 Jan 2020 08:05:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=P2nj0uogA4rRFo/vGoXxjKcugggOl6yz11QVdYb92dk=;
+        b=lwokpF4JznkK26ipODTjAU7+/O8YsBCwvPebE6+L/MWB9YqjCH/ZG4CQnNZ5JDcJEA
+         hvS26MnopWPH81M4O9D3NZSoZJxXLygls1Cc3Tfy9vCamcL4byVCmtBdWq1VCXSCQwqY
+         lHVRDcNdJaxsoAf3DNgMxfiJxO/HPUUL4VCoJzF5nw1neho5qxKUaDPd1HlqCOVrje2M
+         2kFQ4CcsqvtuYQd3TqcjGRBMuj/9RjTEvmJfi0C8AVD0GiL/cn73yRvedPvDK6HJ5NBE
+         guEdJbw+VYxBPPObkYuDK6Fkw0a8iW+VKq86cZEcdK19JbW9JcmvCno3Fk/Upo7wgaVm
+         2ulg==
+X-Gm-Message-State: APjAAAW0S1SO5wNBoSSU80Qym5l2+YcHdT0ewUcCpCDyvMRyzKFiyICz
+        la2i+TdS+0QK1BSBt+MjPQ==
+X-Google-Smtp-Source: APXvYqyrhkKZuH0Rsv16TrhCL+xfS8KG9mD/Inml67F3FVNPVpf7HCEz4as/foIuTdlUwhiChYJj8g==
+X-Received: by 2002:a9d:60c4:: with SMTP id b4mr8167324otk.166.1579709110222;
+        Wed, 22 Jan 2020 08:05:10 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a19sm14764576oto.60.2020.01.22.08.05.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2020 08:05:09 -0800 (PST)
+Received: (nullmailer pid 9378 invoked by uid 1000);
+        Wed, 22 Jan 2020 16:05:08 -0000
+Date:   Wed, 22 Jan 2020 10:05:08 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        heiko@sntech.de, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: convert synopsys dw-mshc
+ bindings to yaml
+Message-ID: <20200122160508.GA9316@bogus>
+References: <20200116152230.29831-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200116152230.29831-1-jbx6244@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PHY IDs for the DP83825CS, DP83825CM and the DP83825S devices to the
-DP83822 driver.
+On Thu, 16 Jan 2020 16:22:28 +0100, Johan Jonker wrote:
+> Current dts files with 'dwmmc' nodes are manually verified.
+> In order to automate this process synopsys-dw-mshc.txt
+> has to be converted to yaml. In the new setup
+> synopsys-dw-mshc.yaml will inherit properties from
+> mmc-controller.yaml and synopsys-dw-mshc-common.yaml.
+> 'dwmmc' will no longer be a valid name for a node and
+> should be changed to 'mmc'.
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  .../bindings/mmc/synopsys-dw-mshc-common.yaml      |  68 ++++++++++
+>  .../devicetree/bindings/mmc/synopsys-dw-mshc.txt   | 141 ---------------------
+>  .../devicetree/bindings/mmc/synopsys-dw-mshc.yaml  |  70 ++++++++++
+>  3 files changed, 138 insertions(+), 141 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/synopsys-dw-mshc-common.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+> 
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- drivers/net/phy/Kconfig   |  3 ++-
- drivers/net/phy/dp83822.c | 12 ++++++++++--
- 2 files changed, 12 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-index cc677ddd2719..71fc778ce398 100644
---- a/drivers/net/phy/Kconfig
-+++ b/drivers/net/phy/Kconfig
-@@ -348,7 +348,8 @@ config DAVICOM_PHY
- config DP83822_PHY
- 	tristate "Texas Instruments DP83822/825/826 PHYs"
- 	---help---
--	  Supports the DP83822, DP83825I, DP83826C and DP83826NC PHYs.
-+	  Supports the DP83822, DP83825I, DP83825CM, DP83825CS, DP83825S,
-+	  DP83826C and DP83826NC PHYs.
- 
- config DP83TC811_PHY
- 	tristate "Texas Instruments DP83TC811 PHY"
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index 5159b28baa0f..fe9aa3ad52a7 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -1,6 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
--/*
-- * Driver for the Texas Instruments DP83822 PHY
-+/* Driver for the Texas Instruments DP83822, DP83825 and DP83826 PHYs.
-  *
-  * Copyright (C) 2017 Texas Instruments Inc.
-  */
-@@ -15,7 +14,10 @@
- #include <linux/netdevice.h>
- 
- #define DP83822_PHY_ID	        0x2000a240
-+#define DP83825S_PHY_ID		0x2000a140
- #define DP83825I_PHY_ID		0x2000a150
-+#define DP83825CM_PHY_ID	0x2000a160
-+#define DP83825CS_PHY_ID	0x2000a170
- #define DP83826C_PHY_ID		0x2000a130
- #define DP83826NC_PHY_ID	0x2000a110
- 
-@@ -323,6 +325,9 @@ static struct phy_driver dp83822_driver[] = {
- 	DP83822_PHY_DRIVER(DP83825I_PHY_ID, "TI DP83825I"),
- 	DP83822_PHY_DRIVER(DP83826C_PHY_ID, "TI DP83826C"),
- 	DP83822_PHY_DRIVER(DP83826NC_PHY_ID, "TI DP83826NC"),
-+	DP83822_PHY_DRIVER(DP83825S_PHY_ID, "TI DP83825S"),
-+	DP83822_PHY_DRIVER(DP83825CM_PHY_ID, "TI DP83825M"),
-+	DP83822_PHY_DRIVER(DP83825CS_PHY_ID, "TI DP83825CS"),
- };
- module_phy_driver(dp83822_driver);
- 
-@@ -331,6 +336,9 @@ static struct mdio_device_id __maybe_unused dp83822_tbl[] = {
- 	{ DP83825I_PHY_ID, 0xfffffff0 },
- 	{ DP83826C_PHY_ID, 0xfffffff0 },
- 	{ DP83826NC_PHY_ID, 0xfffffff0 },
-+	{ DP83825S_PHY_ID, 0xfffffff0 },
-+	{ DP83825CM_PHY_ID, 0xfffffff0 },
-+	{ DP83825CS_PHY_ID, 0xfffffff0 },
- 	{ },
- };
- MODULE_DEVICE_TABLE(mdio, dp83822_tbl);
--- 
-2.25.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
