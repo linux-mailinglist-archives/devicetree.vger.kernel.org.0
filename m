@@ -2,119 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6868A14547F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 13:44:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 585E6145552
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 14:25:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728916AbgAVMoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 07:44:23 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:35799 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726204AbgAVMoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 22 Jan 2020 07:44:23 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 32F022210C;
-        Wed, 22 Jan 2020 07:44:22 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Wed, 22 Jan 2020 07:44:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=DgDfB/hFawptN
-        HZCJCX81NZTCohtpfH3MNlMAuDUEKQ=; b=Z150IZz4hGxFI+wykeLAdtxo6Ddhh
-        M5CEhCxbhrM6s1zLBcLKX4zrHzyR5SvMeKGWkLD0C5U9n1GbkuEqB2bbiy6F8OwY
-        D2DIqIs1eWDAAYp2R2p7zaW0LWvJ/8Hpdk2OJCnT79mIcVD8TCQNhV3EdF7YjVnU
-        JeF3ezdmTudepbEVQSU7n3KbqBL30cRXwAEWjNsO5x3oT3iEElqa4cfpuz5yLtIO
-        1DgHiFWhlmkf11wJq67887YYwj6FSoC22wZGhHO6eLKA57oBBJ9ireorTAlhzFwP
-        qQUUQLSFD19mpOijSi48wPfonjwW73B0/fLh2hwFCSwodBIncXyK94o4w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=DgDfB/hFawptNHZCJCX81NZTCohtpfH3MNlMAuDUEKQ=; b=uIJmzyUa
-        RE9JexdjY8rNY+OywLWfPi+Btfh9wrOSpkwEYAdS1B4p9nlRHbR9REQO390Fxq99
-        N85270eEsfyTjOaD8Wi6ZF9duoVL7fVik9PSWkufAla7NQy4OmygVs2RTrprkyAu
-        xlqOGiLQDFD52Z1Ue2DjzcskgQtGPj/W8v191zcN4R++AgdPAUADY2ThS2q9RaOw
-        WESteeGKFoDwvOw7Ksac0rZkwwvvmMSXE3HEmNF9eDcylXPGcD8Ib41zN4HeRA/h
-        ikLkkzFvxX343kT8hlQ57UQ80lBxr4yfcUbBPTNIVK2kysoWTJGnQzJ8666NxlRN
-        xflNW4FH/kDNOw==
-X-ME-Sender: <xms:pkMoXsgmaEntAfh5bt3y9RNcH2GQPGtm2bJXMEn6rJlyi3ZefsM_Gg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrvddtgdegtdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
-    ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhl
-    fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:pkMoXgeBJlM_AwBrZzpAzASI1RIobCbRh1SDGEVQlg2fxoqzSfJngg>
-    <xmx:pkMoXnlNsIv4Xw5BkS6qkAp1XenVe6ShGFcICk0NrERExSAk0dOz7g>
-    <xmx:pkMoXhuZZFTZr9WamAWErzchlz0e16zNWF29DGXsPT0dwEzoTB-6GQ>
-    <xmx:pkMoXjx2A9AcYRe7KcLGl_O3InAxIgOXTbnqQ0z_1JeHdQR96hrC2w>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id DCBDF3060CBE;
-        Wed, 22 Jan 2020 07:44:21 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Joerg Roedel <joro@8bytes.org>, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH 3/3] arm64: dts: allwinner: h6: Add IOMMU
-Date:   Wed, 22 Jan 2020 13:44:09 +0100
-Message-Id: <54e22e25c2c13cb1b73cc7ecb645b5d62f325b63.1579696927.git-series.maxime@cerno.tech>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <cover.b2a9e1507135d81e726fcbb65137665a7f0ab74f.1579696927.git-series.maxime@cerno.tech>
-References: <cover.b2a9e1507135d81e726fcbb65137665a7f0ab74f.1579696927.git-series.maxime@cerno.tech>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1730103AbgAVNUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 08:20:55 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:41734 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729130AbgAVNUy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 22 Jan 2020 08:20:54 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D1D8E1A3D6C;
+        Wed, 22 Jan 2020 14:20:52 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C4F751A294D;
+        Wed, 22 Jan 2020 14:20:52 +0100 (CET)
+Received: from fsr-fed2164-101.ea.freescale.net (fsr-fed2164-101.ea.freescale.net [10.171.82.91])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 82EED205CD;
+        Wed, 22 Jan 2020 14:20:52 +0100 (CET)
+From:   Madalin Bucur <madalin.bucur@oss.nxp.com>
+To:     davem@davemloft.net, netdev@vger.kernel.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>
+Subject: [PATCH net 2/3] powerpc/fsl/dts: add fsl,erratum-a011043
+Date:   Wed, 22 Jan 2020 15:20:28 +0200
+Message-Id: <1579699229-5948-3-git-send-email-madalin.bucur@oss.nxp.com>
+X-Mailer: git-send-email 2.1.0
+In-Reply-To: <1579699229-5948-1-git-send-email-madalin.bucur@oss.nxp.com>
+References: <1579699229-5948-1-git-send-email-madalin.bucur@oss.nxp.com>
+Content-Type: text/plain; charset="us-ascii"
+Reply-to: madalin.bucur@oss.nxp.com
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have a driver for the IOMMU, let's start using it.
+Add fsl,erratum-a011043 to internal MDIO buses.
+Software may get false read error when reading internal
+PCS registers through MDIO. As a workaround, all internal
+MDIO accesses should ignore the MDIO_CFG[MDIO_RD_ER] bit.
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi             | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi             | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi             | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi             | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi              | 1 +
+ arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi              | 1 +
+ 18 files changed, 18 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index 29824081b43b..8608bcf1c52c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -53,6 +53,7 @@
- 	de: display-engine {
- 		compatible = "allwinner,sun50i-h6-display-engine";
- 		allwinner,pipelines = <&mixer0>;
-+		iommus = <&iommu 0>;
- 		status = "disabled";
- 	};
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi
+index e1a961f05dcd..baa0c503e741 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi
+@@ -63,6 +63,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe1000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
  
-@@ -122,6 +123,7 @@
- 				clock-names = "bus",
- 					      "mod";
- 				resets = <&display_clocks RST_MIXER0>;
-+				iommus = <&iommu 0>;
+ 		pcsphy0: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi
+index c288f3c6c637..93095600e808 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi
+@@ -60,6 +60,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xf1000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
  
- 				ports {
- 					#address-cells = <1>;
-@@ -345,6 +347,15 @@
- 			#interrupt-cells = <3>;
- 		};
+ 		pcsphy6: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi
+index 94f3e7175012..ff4bd38f0645 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi
+@@ -63,6 +63,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe3000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
  
-+		iommu: iommu@30f0000 {
-+			compatible = "allwinner,sun50i-h6-iommu";
-+			reg = <0x030f0000 0x10000>;
-+			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_IOMMU>;
-+			resets = <&ccu RST_BUS_IOMMU>;
-+			#iommu-cells = <1>;
-+		};
-+
- 		mmc0: mmc@4020000 {
- 			compatible = "allwinner,sun50i-h6-mmc",
- 				     "allwinner,sun50i-a64-mmc";
+ 		pcsphy1: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi
+index 94a76982d214..1fa38ed6f59e 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi
+@@ -60,6 +60,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xf3000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy7: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi
+index b5ff5f71c6b8..a8cc9780c0c4 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi
+@@ -59,6 +59,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe1000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy0: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi
+index ee44182c6348..8b8bd70c9382 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi
+@@ -59,6 +59,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe3000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy1: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi
+index f05f0d775039..619c880b54d8 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi
+@@ -59,6 +59,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe5000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy2: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi
+index a9114ec51075..d7ebb73a400d 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi
+@@ -59,6 +59,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe7000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy3: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi
+index 44dd00ac7367..b151d696a069 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi
+@@ -59,6 +59,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe9000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy4: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi
+index 5b1b84b58602..adc0ae0013a3 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi
+@@ -59,6 +59,7 @@ fman@400000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xeb000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy5: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi
+index 0e1daaef9e74..435047e0e250 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi
+@@ -60,6 +60,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xf1000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy14: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi
+index 68c5ef779266..c098657cca0a 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi
+@@ -60,6 +60,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xf3000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy15: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi
+index 605363cc1117..9d06824815f3 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi
+@@ -59,6 +59,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe1000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy8: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi
+index 1955dfa13634..70e947730c4b 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi
+@@ -59,6 +59,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe3000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy9: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi
+index 2c1476454ee0..ad96e6529595 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi
+@@ -59,6 +59,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe5000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy10: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi
+index b8b541ff5fb0..034bc4b71f7a 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi
+@@ -59,6 +59,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe7000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy11: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi
+index 4b2cfddd1b15..93ca23d82b39 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi
+@@ -59,6 +59,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xe9000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy12: ethernet-phy@0 {
+ 			reg = <0x0>;
+diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi
+index 0a52ddf7cc17..23b3117a2fd2 100644
+--- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi
++++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi
+@@ -59,6 +59,7 @@ fman@500000 {
+ 		#size-cells = <0>;
+ 		compatible = "fsl,fman-memac-mdio", "fsl,fman-xmdio";
+ 		reg = <0xeb000 0x1000>;
++		fsl,erratum-a011043; /* must ignore read errors */
+ 
+ 		pcsphy13: ethernet-phy@0 {
+ 			reg = <0x0>;
 -- 
-git-series 0.9.1
+2.1.0
+
