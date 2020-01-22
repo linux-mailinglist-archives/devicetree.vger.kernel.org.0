@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 950D114538B
+	by mail.lfdr.de (Postfix) with ESMTP id 18A7014538A
 	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 12:17:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728939AbgAVLRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 06:17:13 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:60026 "EHLO
+        id S1728901AbgAVLRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 06:17:12 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59892 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728811AbgAVLRM (ORCPT
+        with ESMTP id S1728939AbgAVLRM (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 06:17:12 -0500
 Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id DEFC229389D;
-        Wed, 22 Jan 2020 11:17:10 +0000 (GMT)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6ABB82938C3;
+        Wed, 22 Jan 2020 11:17:11 +0000 (GMT)
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Lucas Stach <l.stach@pengutronix.de>,
@@ -35,10 +35,11 @@ Cc:     Lucas Stach <l.stach@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v7 10/12] drm/bridge: panel: Propage bus format/flags
-Date:   Wed, 22 Jan 2020 12:16:58 +0100
-Message-Id: <20200122111700.1924960-11-boris.brezillon@collabora.com>
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v7 11/12] drm/panel: simple: Fix the lt089ac29000 bus_format
+Date:   Wed, 22 Jan 2020 12:16:59 +0100
+Message-Id: <20200122111700.1924960-12-boris.brezillon@collabora.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200122111700.1924960-1-boris.brezillon@collabora.com>
 References: <20200122111700.1924960-1-boris.brezillon@collabora.com>
@@ -49,41 +50,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-So that the previous bridge element in the chain knows which input
-format the panel bridge expects.
+The lt089ac29000 panel is an LVDS panel, not a DPI one. Fix the
+definition to reflect this fact.
 
 Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
 Changes in v7:
-* Set atomic state hooks explicitly
-
-Changes in v3:
-* Adjust things to match the new bus-format negotiation approach
-* Use drm_atomic_helper_bridge_propagate_bus_fmt
-* Don't implement ->atomic_check() (the core now takes care of bus
-  flags propagation)
-
-Changes in v2:
-* Adjust things to match the new bus-format negotiation approach
+* New patch
 ---
- drivers/gpu/drm/bridge/panel.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/panel/panel-simple.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
-index f66777e24968..dcc72bd7df30 100644
---- a/drivers/gpu/drm/bridge/panel.c
-+++ b/drivers/gpu/drm/bridge/panel.c
-@@ -127,6 +127,10 @@ static const struct drm_bridge_funcs panel_bridge_bridge_funcs = {
- 	.enable = panel_bridge_enable,
- 	.disable = panel_bridge_disable,
- 	.post_disable = panel_bridge_post_disable,
-+	.atomic_reset = drm_atomic_helper_bridge_reset,
-+	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-+	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-+	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index d6f77bc494c7..1a8293a6c6ca 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -3050,7 +3050,7 @@ static const struct panel_desc toshiba_lt089ac29000 = {
+ 		.width = 194,
+ 		.height = 116,
+ 	},
+-	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,
+ 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
+ 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
  };
- 
- /**
 -- 
 2.24.1
 
