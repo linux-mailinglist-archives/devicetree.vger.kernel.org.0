@@ -2,85 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D025145755
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 15:00:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEAD1457BE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 15:25:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728792AbgAVOAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 09:00:23 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:45822 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728205AbgAVOAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 09:00:22 -0500
-Received: by mail-wr1-f66.google.com with SMTP id j42so7329724wrj.12;
-        Wed, 22 Jan 2020 06:00:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=S37mEzjCuwUx3aUpRGSkg86M1G/8BxlVxMLDTrBU45Q=;
-        b=gKeNkdhQteJze3+inzS/DmFaXeftA2GIDDb5gWL2wbUMDsgt9u0CKsv3dVmRkjfA2b
-         rsZ0D44FZ5gBrRpFWM+jBXNdPD7q8HdQX7+TuqboIOU+GyYeB+d28926IQKuIcnXX5Ht
-         NCnX2AAsEhIYtVW0eVl6rp+3aGTD3/6dzfsRMLOCr7wMjaFl3jpAO8xLEYNXzqgrIcEt
-         vEK7ER5Jb48mcyFMnMnzsZWxMktW3qLkSgmbciwTuufiD1P2FaaYIGPkWLuq2biBh6FV
-         6Xs1pj4JkDWGEoLCU+hPia4ytI4SO61Y0mNVyzQKM4HHwzhXoocRM7OjLIwxRAedsiP5
-         +EGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=S37mEzjCuwUx3aUpRGSkg86M1G/8BxlVxMLDTrBU45Q=;
-        b=pfud9V33xMOzFX/IXvEphtPPYBmJbg3998P77/H+cqd5AHlRrkFSd2gH/u+hU/RQy6
-         //NQRm9etPTMfc6o+NIMMAXCtxdZOEHAuRxFP8gfyuYZi2suHAwS1W6KVt5ky3yPOeai
-         dn+hE7GSFgi/+ogSscd5sRReKMScLijGLhqDsooi7b5R1QCNJRqpVL8QeKLMEqrBQvh7
-         MRA1wIU2KJZg+/99JM110Kly5dZIUWaizUe1V/jNMIYKxDT0GDI75+9IJGWq5shsEI5c
-         nHkrXD3RiGnB1csGh6bD5KKqg+CcE9NYHZoDkI07THXgNtlFUn3xt2jLVs+ptofeiU2r
-         vctA==
-X-Gm-Message-State: APjAAAWoIaR+FYPr0OSNrM5lA7KrbLO0aHHlb+XLJXx9sYl3c3I+q1TP
-        bq+MoOe0+al4J8gFj+0yvPY=
-X-Google-Smtp-Source: APXvYqxy7k3w+Ry+EG/OXolbGJ7YMhHfWHqAGRBmrzdj+tQhUspgDtyTLtuwJscjM4rMsMprG13zFg==
-X-Received: by 2002:adf:b64b:: with SMTP id i11mr11998529wre.58.1579701621000;
-        Wed, 22 Jan 2020 06:00:21 -0800 (PST)
-Received: from localhost.localdomain (p5DCFF1C1.dip0.t-ipconnect.de. [93.207.241.193])
-        by smtp.gmail.com with ESMTPSA id g2sm57388270wrw.76.2020.01.22.06.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2020 06:00:20 -0800 (PST)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
-        davem@davemloft.net, mchehab+samsung@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] MAINTAINERS: Add entry for mp5416 PMIC driver
-Date:   Wed, 22 Jan 2020 14:59:58 +0100
-Message-Id: <20200122135958.13663-4-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200122135958.13663-1-sravanhome@gmail.com>
-References: <20200122135958.13663-1-sravanhome@gmail.com>
+        id S1728139AbgAVOYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 09:24:46 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48308 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725870AbgAVOYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 09:24:46 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00MEOP0r055902;
+        Wed, 22 Jan 2020 08:24:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1579703065;
+        bh=Nyeylm0gjyF8o7Phqcn3fOc+DFddhIjGH+F7kSw4Lxg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=jTtwl3ElWLdUdI1gTZc++aUq5A9xlOe5EM4OjtymNBKOa3QO7666qZx5evq/fIx2k
+         58i4Geij6YHdXaYYBXpJVykvDwniOqsKy0ZsDUS62emfFuZ+9eci0/G2t7B4Ou9Qlo
+         AXShmCpKqH/cNTyxaSvQy4DqzcSjFsmiXxyy/3Yw=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00MEOPV9065269
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Jan 2020 08:24:25 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 22
+ Jan 2020 08:24:25 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 22 Jan 2020 08:24:25 -0600
+Received: from [172.24.145.246] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00MEOIIo016493;
+        Wed, 22 Jan 2020 08:24:19 -0600
+Subject: Re: [PATCH 1/3] dt-bindings: net: can: m_can: Add Documentation for
+ stb-gpios
+To:     Dan Murphy <dmurphy@ti.com>, Faiz Abbas <faiz_abbas@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-can@vger.kernel.org>
+CC:     <catalin.marinas@arm.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <davem@davemloft.net>, <mkl@pengutronix.de>,
+        <wg@grandegger.com>, <sriram.dash@samsung.com>, <nm@ti.com>,
+        <t-kristo@ti.com>
+References: <20200122080310.24653-1-faiz_abbas@ti.com>
+ <20200122080310.24653-2-faiz_abbas@ti.com>
+ <c3b0eeb8-bd78-aa96-4783-62dc93f03bfe@ti.com>
+From:   Sekhar Nori <nsekhar@ti.com>
+Message-ID: <8fc7c343-267d-c91c-0381-60990cfc35e8@ti.com>
+Date:   Wed, 22 Jan 2020 19:54:18 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <c3b0eeb8-bd78-aa96-4783-62dc93f03bfe@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mp5416 PMIC driver.
+On 22/01/20 7:05 PM, Dan Murphy wrote:
+> Faiz
+> 
+> On 1/22/20 2:03 AM, Faiz Abbas wrote:
+>> The CAN transceiver on some boards has an STB pin which is
+>> used to control its standby mode. Add an optional property
+>> stb-gpios to toggle the same.
+>>
+>> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+>> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+>> ---
+>>   Documentation/devicetree/bindings/net/can/m_can.txt | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/can/m_can.txt
+>> b/Documentation/devicetree/bindings/net/can/m_can.txt
+>> index ed614383af9c..cc8ba3f7a2aa 100644
+>> --- a/Documentation/devicetree/bindings/net/can/m_can.txt
+>> +++ b/Documentation/devicetree/bindings/net/can/m_can.txt
+>> @@ -48,6 +48,8 @@ Optional Subnode:
+>>                 that can be used for CAN/CAN-FD modes. See
+>>                
+>> Documentation/devicetree/bindings/net/can/can-transceiver.txt
+>>                 for details.
+>> +stb-gpios        : gpio node to toggle the STB (standby) signal on
+>> the transceiver
+>> +
+> 
+> The m_can.txt is for the m_can framework.  If this is specific to the
+> platform then it really does not belong here.
+> 
+> If the platform has specific nodes then maybe we need a
+> m_can_platform.txt binding for specific platform nodes.  But I leave
+> that decision to Rob.
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Since this is transceiver enable, should this not be in
+Documentation/devicetree/bindings/net/can/can-transceiver.txt?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9aa438cb9836..e575029f5b89 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11240,7 +11240,9 @@ F:	drivers/tty/mxser.*
- MONOLITHIC POWER SYSTEM PMIC DRIVER
- M:	Saravanan Sekar <sravanhome@gmail.com>
- S:	Maintained
-+F:	Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
- F:	Documentation/devicetree/bindings/regulator/mpq7920.yaml
-+F:	drivers/regulator/mp5416.c
- F:	drivers/regulator/mpq7920.c
- F:	drivers/regulator/mpq7920.h
- 
--- 
-2.17.1
-
+Thanks,
+Sekhar
