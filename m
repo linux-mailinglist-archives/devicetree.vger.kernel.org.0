@@ -2,108 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5AB14538C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 12:17:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5039D1453EC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 12:39:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728811AbgAVLRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 06:17:14 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59886 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726094AbgAVLRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 06:17:13 -0500
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 03B2929389E;
-        Wed, 22 Jan 2020 11:17:11 +0000 (GMT)
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Chris Healy <cphealy@gmail.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v7 12/12] ARM: dts: imx: imx51-zii-rdu1: Fix the display pipeline definition
-Date:   Wed, 22 Jan 2020 12:17:00 +0100
-Message-Id: <20200122111700.1924960-13-boris.brezillon@collabora.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200122111700.1924960-1-boris.brezillon@collabora.com>
-References: <20200122111700.1924960-1-boris.brezillon@collabora.com>
+        id S1726191AbgAVLjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 06:39:16 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34236 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726094AbgAVLjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 06:39:16 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00MBd9u6025782;
+        Wed, 22 Jan 2020 05:39:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1579693149;
+        bh=HvPGELjrP56iYK9ROZqp0RxXKPmPMfECw6+E+vPm6Y8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=C1Ag+u56cn27rvzG6aLZZqBkw2qAnedvArKU7bGUsiXg6R5qJG+mIlVpFeImopdmF
+         hubbYlaY+7hkLSHCg9tt8yUYOa25W12t72/I/idM6Ht4NIY7YHeOHWZIgzjjD/Gd7b
+         5zbK8vntoZi+9N36xWe5F7VTKHJd0Wp5dfuTow+M=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00MBd9hv089272
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Jan 2020 05:39:09 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 22
+ Jan 2020 05:39:08 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 22 Jan 2020 05:39:08 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00MBd6Di039187;
+        Wed, 22 Jan 2020 05:39:07 -0600
+Subject: Re: [PATCH v2 1/9] arm64: dts: ti: k3-am65-main: Correct main NAVSS
+ representation
+To:     Lokesh Vutla <lokeshvutla@ti.com>, <t-kristo@ti.com>, <nm@ti.com>
+CC:     <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200122082621.4974-1-peter.ujfalusi@ti.com>
+ <20200122082621.4974-2-peter.ujfalusi@ti.com>
+ <600df214-620b-fa41-82ef-01132d9bdfae@ti.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <04a1bb97-f308-f866-ad4f-907cd7fb3515@ti.com>
+Date:   Wed, 22 Jan 2020 13:39:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <600df214-620b-fa41-82ef-01132d9bdfae@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current definition does not represent the exact display pipeline we
-have on the board: the LVDS panel is actually connected through a
-parallel -> LVDS bridge. Let's fix that so the driver can select the
-proper bus format on the CRTC end.
 
-Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
----
-Changes in v7:
-* None
----
- arch/arm/boot/dts/imx51-zii-rdu1.dts | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx51-zii-rdu1.dts b/arch/arm/boot/dts/imx51-zii-rdu1.dts
-index 3596060f52e7..3fb84ea7f993 100644
---- a/arch/arm/boot/dts/imx51-zii-rdu1.dts
-+++ b/arch/arm/boot/dts/imx51-zii-rdu1.dts
-@@ -95,6 +95,28 @@ port@1 {
- 			reg = <1>;
- 
- 			display_out: endpoint {
-+				remote-endpoint = <&lvds_encoder_in>;
-+			};
-+		};
-+	};
-+
-+	lvds-encoder {
-+		compatible = "lvds-encoder";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			bus-width = <24>;
-+			lvds_encoder_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			data-mapping = "jeida-24";
-+			lvds_encoder_out: endpoint {
- 				remote-endpoint = <&panel_in>;
- 			};
- 		};
-@@ -110,7 +132,7 @@ panel {
- 
- 		port {
- 			panel_in: endpoint {
--				remote-endpoint = <&display_out>;
-+				remote-endpoint = <&lvds_encoder_out>;
- 			};
- 		};
- 	};
--- 
-2.24.1
+On 22/01/2020 13.03, Lokesh Vutla wrote:
+> 
+> 
+> On 22/01/20 1:56 PM, Peter Ujfalusi wrote:
+>> NAVSS is a subsystem containing different IPs, it is not really a bus.
+>> Change the compatible from "simple-bus" to "simple-mfd" to reflect that.
+>>
+>> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>> index efb24579922c..e40f7acbec42 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>> @@ -385,8 +385,8 @@ intr_main_gpio: interrupt-controller0 {
+>>  		ti,sci-rm-range-girq = <0x1>;
+>>  	};
+>>  
+>> -	cbass_main_navss: interconnect0 {
+>> -		compatible = "simple-bus";
+>> +	cbass_main_navss: navss@30800000 {
+> 
+> This introduces below dtc warning when built with W=1
+> 
+> arch/arm64/boot/dts/ti/k3-am65-main.dtsi:388.35-530.4: Warning
+> (unit_address_vs_reg): /interconnect@100000/navss@30800000: node has a unit
+> name, but no reg property
 
+Interesting, the example in
+Documentation/devicetree/bindings/dma/ti/k3-udma.yaml
+
+is basically the same and dt_binding_check is happy about it:
+DTC     Documentation/devicetree/bindings/dma/ti/k3-udma.example.dt.yaml
+CHECK   Documentation/devicetree/bindings/dma/ti/k3-udma.example.dt.yaml
+
+but it screamed when I had the simple-bus in there (copied from the
+existing dtsi file).
+
+The node name for simple-bus _must_ be
+'^(bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+
+I would not use any of these to NAVSS node...
+
+> this is representing cbass inside main_navss, just like cbass_main. You can drop
+> this patch and the similar mcu version.
+
+According to Documentation/devicetree/bindings/mfd/mfd.txt:
+- compatible : "simple-mfd" - this signifies that the operating system
+  should consider all subnodes of the MFD device as separate devices
+  akin to how "simple-bus" indicates when to see subnodes as children
+  for a simple memory-mapped bus.
+
+NAVSS is falling into simple-mfd as the devices under it are independent
+devices.
+
+> 
+> Thanks and regards,
+> Lokesh
+> 
+>> +		compatible = "simple-mfd";
+>>  		#address-cells = <2>;
+>>  		#size-cells = <2>;
+>>  		ranges;
+>>
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
