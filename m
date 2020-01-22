@@ -2,81 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7CCD144E25
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 10:01:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C656C144E72
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 10:15:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725911AbgAVJBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 04:01:08 -0500
-Received: from mail-io1-f68.google.com ([209.85.166.68]:40289 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725862AbgAVJBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 04:01:08 -0500
-Received: by mail-io1-f68.google.com with SMTP id x1so5868833iop.7
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 01:01:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=1OTCzRuZLXKgKtG0YjZ5OtZ6bjyEuVtHenJ+Tqkqok8=;
-        b=tqniE19L6R3ML/7Cd3JElxB5MxCjT2Zg1dveWz35gbd3Wu/oaXeJ+J6NycKWfRCMYy
-         A1y0TpVV6pIztVv1hrBKHeDT7iZ6NCPhrA+l/bD+jfW+wrd8V7oLonJ3UfkEF4IYIto6
-         YmYExi55Rz5W3PorxtXWM7ezJ36usZ3NxGUwg4M50zEzCHd7kaOrARtfg/kRSrm3qf0s
-         4bWBP4LODIlMAYI4+3+EiQwa9hCayzsyaioYw60kzzFH/Asd/D1EWyXRh0MyqjqShPvw
-         Z+brvzsFgEZlFs2JdEU2uT38cXEREiEnTdFar6O3qgjJAvFLDziLoeEGmsfRe1k/YdQd
-         BYeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=1OTCzRuZLXKgKtG0YjZ5OtZ6bjyEuVtHenJ+Tqkqok8=;
-        b=hIb0fpvVsasw0vUiC9DB345lXnGmnUYBp6E5y40vAgw4++kBhKu9/Y+H+ZWBW/V0Nm
-         xidXDpBtnen4DZ/+8o9hHmrCkE3v2cCvSUUBTAiwsbGa0yGYbSGg6NV53U6/mAJG8fOu
-         sJlYLyohVjPYxQFonXHilLVsjCC6MMOgv5bne+Re9OY26wNVVqhE6/tBAR5RZIyPrRAy
-         8skr9Wq/oJfNFQptqP5vRr6swbq0HBeBIF0rLaluYeAi0S2Zcv++3Vin8/uw+ATSivHA
-         6Cz8PUeqrbD4qO2mKgW02xsYw5wSxwISDd2YhDu8bw09mdy7Eq6oQYGDAGkx2Z0qJomV
-         ytAQ==
-X-Gm-Message-State: APjAAAWNYBSprr7B0rBCgUkhboVNI0NzDub6j2AKFI/hhnTc0TggKw8M
-        NXRPqvl/awdJ9wWcfsOUgc398l/cLngNwitDAbI=
-X-Google-Smtp-Source: APXvYqx/zl2pHpriDeKXqc9w4LW31G9bJtUSiR60ycROy40nGAxcepRjp/i5ylv06+gtlqXNLsj7aymenD+cN6I1Qu8=
-X-Received: by 2002:a5d:8b83:: with SMTP id p3mr5755050iol.97.1579683667187;
- Wed, 22 Jan 2020 01:01:07 -0800 (PST)
+        id S1726077AbgAVJPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 04:15:45 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:42224 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725911AbgAVJPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 04:15:44 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00M9FMLM122955;
+        Wed, 22 Jan 2020 03:15:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1579684522;
+        bh=p6TXy9D8Jj5ZMAsUl92rse85KpLnXYI0D7il7xeObjo=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=uBtieWXwbpXSnRK/R3juokz75ZF07c3mFcuNzH5xfgGKpgBJPYDmetcojC/2gI9gN
+         0VOEXTfL2++aG1uTJbYPyywW3QlkZZVZYsgZZaJUD4mknt6vWvHEYL0OY/TgmX2SW2
+         Ngi7YqDlsI0/rO0y0n5xfRIm29JqCAdjoS1cC6wk=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00M9FM9x030906;
+        Wed, 22 Jan 2020 03:15:22 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 22
+ Jan 2020 03:15:22 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 22 Jan 2020 03:15:22 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00M9FJa9046831;
+        Wed, 22 Jan 2020 03:15:19 -0600
+Subject: Re: [PATCH 2/2] drm/bridge: Add tc358768 driver
+To:     Andrzej Hajda <a.hajda@samsung.com>, <airlied@linux.ie>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <narmstrong@baylibre.com>
+CC:     <tomi.valkeinen@ti.com>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@siol.net>
+References: <20191217101506.18910-1-peter.ujfalusi@ti.com>
+ <CGME20191217101520epcas1p4a2bdee0cab0c11670b74fbe9e9397835@epcas1p4.samsung.com>
+ <20191217101506.18910-3-peter.ujfalusi@ti.com>
+ <35d664fe-8091-2744-abf2-69828ebf1148@samsung.com>
+ <14306079-500d-09ca-df94-4cf72c43f858@ti.com>
+ <cdc941c5-681f-962b-7f99-ebfda6aaaa91@samsung.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <e8774c16-c34c-adf8-fee5-17323dcd95bf@ti.com>
+Date:   Wed, 22 Jan 2020 11:16:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Received: by 2002:a02:cace:0:0:0:0:0 with HTTP; Wed, 22 Jan 2020 01:01:06
- -0800 (PST)
-Reply-To: aishagaddafi969@aol.com
-From:   AISHA GADDAFI <julebongo10@gmail.com>
-Date:   Wed, 22 Jan 2020 01:01:06 -0800
-Message-ID: <CALSL=tZVd0WBNm01xQwamwmPc-9taMURANadeus5Z0+5-pgJcw@mail.gmail.com>
-Subject: Dear Friend (Assalamu Alaikum),
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <cdc941c5-681f-962b-7f99-ebfda6aaaa91@samsung.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Dear Friend (Assalamu Alaikum),
+Hi Andrzej,
 
-I came across your e-mail contact prior a private search while in need of
-your assistance. My name is Aisha  Al-Qaddafi a single Mother and a Widow
-with three Children. I am the only biological Daughter of late Libyan
-President (Late Colonel Muammar Gaddafi).
+On 22/01/2020 10.46, Andrzej Hajda wrote:
+>>>> +struct tc358768_priv {
+>>>> +	struct device *dev;
+>>>> +	struct regmap *regmap;
+>>>> +	struct gpio_desc *reset_gpio;
+>>>> +	struct regulator_bulk_data supplies[ARRAY_SIZE(tc358768_supplies)];
+>>>> +	struct clk *refclk;
+>>>> +
+>>>> +	struct mipi_dsi_host dsi_host;
+>>>> +	struct drm_bridge bridge;
+>>>> +	struct tc358768_dsi_output output;
+>>>
+>>> Since tc358768_dsi_output is used only here, you can define it here as
+>>> well, up to you.
+>> I think I have done it like this to avoid thinking about prefixes for
+>> what is under the tc358768_dsi_output.
+>> I'll take a look if it will look better unpacked here.
+> 
+> I though rather about in-place anonymous struct definition:
+> 
+> +    struct tc358768_dsi_output {
+> +        struct mipi_dsi_device *dev;
+> +        struct drm_panel *panel;
+> +        struct drm_bridge *bridge;
+> +    } output;
+> 
+> But, as I said - up to you.
 
-I have investment funds worth Twenty Seven Million Five Hundred Thousand
-United State Dollar ($27.500.000.00 ) and i need a trusted investment
-Manager/Partner because of my current refugee status, however, I am
-interested in you for investment project assistance in your country, may be
-from there, we can build business relationship in the nearest future.
+I see. I think I will keep how it was. They are in proximity, so easy to
+check.
 
-I am willing to negotiate investment/business profit sharing ratio with you
-base on the future investment earning profits.
+>>>> +
+>>>> +	refclk = clk_get_rate(priv->refclk);
+>>>> +
+>>>> +	best_diff = UINT_MAX;
+>>>> +	best_pll = 0;
+>>>> +	best_prd = 0;
+>>>> +	best_fbd = 0;
+>>>> +
+>>>> +	for (prd = 0; prd < 16; ++prd) {
+>>>> +		u32 divisor = (prd + 1) * (1 << frs);
+>>>> +		u32 fbd;
+>>>> +
+>>>> +		for (fbd = 0; fbd < 512; ++fbd) {
+>>>> +			u32 pll, diff;
+>>>> +
+>>>> +			pll = (u32)div_u64((u64)refclk * (fbd + 1), divisor);
+>>>> +
+>>>> +			if (pll >= max_pll || pll < min_pll)
+>>>> +				continue;
+>>>> +
+>>>> +			diff = max(pll, target_pll) - min(pll, target_pll);
+>>>> +
+>>>> +			if (diff < best_diff) {
+>>>> +				best_diff = diff;
+>>>> +				best_pll = pll;
+>>>> +				best_prd = prd;
+>>>> +				best_fbd = fbd;
+>>>> +			}
+>>>> +
+>>>> +			if (best_diff == 0)
+>>>> +				break;
+>>>> +		}
+>>>> +
+>>>> +		if (best_diff == 0)
+>>>> +			break;
+>>> why another check here?
+>> To break out from the top for() loop also in case exact match has been
+>> found.
+> 
+> 
+> Ahh, OK. So maybe you should put "if (diff == 0) goto found" inside "if
+> (diff < best_diff)" block, in such case goto is not considered harmful
+> :), and is more readable.
 
-If you are willing to handle this project on my behalf kindly reply urgent
-to enable me provide you more information about the investment funds.
+Exactly my thoughts ;)
 
-Your Urgent Reply Will Be Appreciated. write me at this email address(
-aishagaddafi969@aol.com ) for further discussion.
+- Péter
 
-Best Regards
-Mrs Aisha Al-Qaddafi
-Reply to: aishagaddafi969@aol.com
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
