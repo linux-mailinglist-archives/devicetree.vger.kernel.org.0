@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5306145217
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 11:05:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57C8214520D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 11:05:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729465AbgAVKFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 05:05:07 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:51917 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726605AbgAVKE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 05:04:58 -0500
-Received: by mail-wm1-f67.google.com with SMTP id t23so2518220wmi.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 02:04:57 -0800 (PST)
+        id S1729384AbgAVKFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 05:05:00 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44166 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729188AbgAVKE7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 05:04:59 -0500
+Received: by mail-wr1-f67.google.com with SMTP id q10so6542229wrm.11
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 02:04:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=syU5/1zsk41J9XenYExkcSrSf1m75wNu2Uxs4S6RkBs=;
-        b=TyTQ1Gmd71wvmjv/+74mGmrCiZ9C/3z1DIhBcwGsT4wOpNk3c9j3RmUkn/5S2OEmdX
-         mn3gnUi3moCZvi0AQzLrek4FMn1ZXHqqeq61v1Ir7gV+o/bRfu/KNw62LBaFK6pZqjQE
-         1cjNz6d+C0kUyauNMUcIjtX1oVOYvMTJlNy5RDNDQnspoHV3cc5dHU/r82VR/citD3rC
-         eFDhRlYZxmMVWEealCj8PDi4LD+5ydSXAWcS07QbeTnnwjY01VW0P6G0DDYL+fyUAWXY
-         i4OJW/Y6aBeg7EZ+uB1jed/lYXR1OH6a46ihmTvQmrq1l34r5USIN4sr9o9Ihv+4E3K9
-         saEg==
+        bh=7EsxL6C1QaWZO5YV1g8AfkfzamDmOw7cbiAGc+fHfTo=;
+        b=o+3Vk0s0yRvbDk8FGNIcjD0ORinjobLcUwca5TOaa+Vk2NK2aV+GJ635Er+i1meq7S
+         TjCN+8tS0B0GLMnT6e0GHQf9GMn3LTjXXFKTuUx0YmwRzXbVFH+z5qGOlUsnAYyjWLKN
+         OoCPuaZXdglUSc5SQh6JGLv9Gi0+Kp8RCiZ7WB7GJDZvAGZAIJdNAspnUPnHbwEGhtwT
+         XkIlUUqCZOxGDCenbZYb2MTEraNK0XvWLV6KO1ZmPgOFDsJyP8PdsOPTam/klQLBpeiT
+         D17kQKvx4F/Ow/KnUVrBSkM9cpFiuAe7HyFUGWJlC3pCuItMO/03wjcv+nYBBp78L0ya
+         wIYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=syU5/1zsk41J9XenYExkcSrSf1m75wNu2Uxs4S6RkBs=;
-        b=uR8jN0wmqTAMQGy6aR+rHxGpOqkHQI8O0s6nK5C/EbN0Kx3oLbqiHeLYPjDr42EzHI
-         RcQoDVwYH7EAFGjCOVA1RfCbsXpqhtczaz6kVhDJ26LirovZClsxdQ59mpXkm3dER407
-         3sc3koCCkmkS11uUevTssaq5LFLNMv50vxe1tbW4hXrE7S/h3AwXWcYnyY5J3ozCXvTI
-         Tu04ILBiytYCU5xzPTngaKFijfRyfPGozCewmifHHl26zOPRvKqkQNOMjt7mhbFMc5kg
-         Q0P/t66TzNX8MhX1zWhCneHh3h06uOIeXs7y85v1+S2UTwMMEk1f9SjwGoLk/MAtC7CU
-         azPw==
-X-Gm-Message-State: APjAAAWr+cv9ZGk9368793JM6xLG22LKzZpnbKH/PIBEnI+bI6voL50U
-        FqW92ZX86Te2gE2Dr30svI9bxA==
-X-Google-Smtp-Source: APXvYqyIn4WjUP6H8iMUfBYz19dJwcFjkd+OuUywWtqSbuXPCcYhZDLdw3dWOmUzestdyp3FZqtlPA==
-X-Received: by 2002:a1c:3dc3:: with SMTP id k186mr2176455wma.95.1579687496806;
-        Wed, 22 Jan 2020 02:04:56 -0800 (PST)
+        bh=7EsxL6C1QaWZO5YV1g8AfkfzamDmOw7cbiAGc+fHfTo=;
+        b=owar8AgaYQc9U/8d+VQAEypS0bTdrmRjC9szlVBHSPwT5ly2Mx16HeNjmIG1rhBMEh
+         HUWzunqLNJWk/4cpJ9ydXe7KRIzFWWcsuwAYMPy7pM8euHqUhCxcJl2tkAkQUFA1eQ36
+         pKfJ4MQO4ivtE3vlTltoyHvwTetZGk0gIqu+NY2tYaxfkhqvSpcoZDqqKbrRH+J8AKuA
+         79WreO2Lss0MjjsSQQ9NIR7CCPwyhdXqHh/NYFBJ4GMdv07SJLPFtoPnX7yZ06tT5Hib
+         YzgU7izcs2GtnwllKamuAmFFzwBm1A2fUE7FWvJxU0Jc+Z5lZHGA4FeJYYkUY7jcPuP8
+         GhVQ==
+X-Gm-Message-State: APjAAAUG32AFU6isIQqKh9UWMi3NqFGber5trKMrrfC9PFmDs9WVP8Mo
+        MOdLwxut6W3QkcjBxD6yOTGsCg==
+X-Google-Smtp-Source: APXvYqzf8R/tcxr8h0NkYRv9GZBG8hmVDFPP208Nms6g3AWJ3OacQIHJO+ph/Msiq4KQd8Zgbp/rFA==
+X-Received: by 2002:a5d:4d0e:: with SMTP id z14mr10414650wrt.208.1579687497726;
+        Wed, 22 Jan 2020 02:04:57 -0800 (PST)
 Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id l3sm52237648wrt.29.2020.01.22.02.04.55
+        by smtp.googlemail.com with ESMTPSA id l3sm52237648wrt.29.2020.01.22.02.04.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2020 02:04:56 -0800 (PST)
+        Wed, 22 Jan 2020 02:04:57 -0800 (PST)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Neil Armstrong <narmstrong@baylibre.com>, linux-clk@vger.kernel.org
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] clk: meson: gxbb: add the gxl internal dac gate
-Date:   Wed, 22 Jan 2020 11:04:50 +0100
-Message-Id: <20200122100451.2443153-3-jbrunet@baylibre.com>
+Subject: [PATCH 3/3] clk: meson: gxbb: set audio output clock hierarchy
+Date:   Wed, 22 Jan 2020 11:04:51 +0100
+Message-Id: <20200122100451.2443153-4-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200122100451.2443153-1-jbrunet@baylibre.com>
 References: <20200122100451.2443153-1-jbrunet@baylibre.com>
@@ -64,55 +64,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the ACODEC clock gate to the gxl clk controller driver
+The aiu devices peripheral clocks needs the aiu and aiu_glue clocks to
+operate. Reflect this hierarchy in the gxbb clock tree.
 
+Fixes: 738f66d3211d ("clk: gxbb: add AmLogic GXBB clk controller driver")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/gxbb.c | 3 +++
- drivers/clk/meson/gxbb.h | 2 +-
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ drivers/clk/meson/gxbb.c | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 1f9c056e684c..47916c4f1700 100644
+index 47916c4f1700..5fd6a574f8c3 100644
 --- a/drivers/clk/meson/gxbb.c
 +++ b/drivers/clk/meson/gxbb.c
-@@ -2613,6 +2613,7 @@ static MESON_GATE(gxbb_assist_misc, HHI_GCLK_MPEG0, 23);
- static MESON_GATE(gxbb_emmc_a, HHI_GCLK_MPEG0, 24);
- static MESON_GATE(gxbb_emmc_b, HHI_GCLK_MPEG0, 25);
- static MESON_GATE(gxbb_emmc_c, HHI_GCLK_MPEG0, 26);
-+static MESON_GATE(gxl_acodec, HHI_GCLK_MPEG0, 28);
- static MESON_GATE(gxbb_spi, HHI_GCLK_MPEG0, 30);
- 
+@@ -2619,14 +2619,6 @@ static MESON_GATE(gxbb_spi, HHI_GCLK_MPEG0, 30);
  static MESON_GATE(gxbb_i2s_spdif, HHI_GCLK_MPEG1, 2);
-@@ -3100,6 +3101,7 @@ static struct clk_hw_onecell_data gxl_hw_onecell_data = {
- 		[CLKID_HDMI_SEL]	    = &gxbb_hdmi_sel.hw,
- 		[CLKID_HDMI_DIV]	    = &gxbb_hdmi_div.hw,
- 		[CLKID_HDMI]		    = &gxbb_hdmi.hw,
-+		[CLKID_ACODEC]		    = &gxl_acodec.hw,
- 		[NR_CLKS]		    = NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -3491,6 +3493,7 @@ static struct clk_regmap *const gxl_clk_regmaps[] = {
- 	&gxl_hdmi_pll_od,
- 	&gxl_hdmi_pll_od2,
- 	&gxl_hdmi_pll_dco,
-+	&gxl_acodec,
- };
+ static MESON_GATE(gxbb_eth, HHI_GCLK_MPEG1, 3);
+ static MESON_GATE(gxbb_demux, HHI_GCLK_MPEG1, 4);
+-static MESON_GATE(gxbb_aiu_glue, HHI_GCLK_MPEG1, 6);
+-static MESON_GATE(gxbb_iec958, HHI_GCLK_MPEG1, 7);
+-static MESON_GATE(gxbb_i2s_out, HHI_GCLK_MPEG1, 8);
+-static MESON_GATE(gxbb_amclk, HHI_GCLK_MPEG1, 9);
+-static MESON_GATE(gxbb_aififo2, HHI_GCLK_MPEG1, 10);
+-static MESON_GATE(gxbb_mixer, HHI_GCLK_MPEG1, 11);
+-static MESON_GATE(gxbb_mixer_iface, HHI_GCLK_MPEG1, 12);
+-static MESON_GATE(gxbb_adc, HHI_GCLK_MPEG1, 13);
+ static MESON_GATE(gxbb_blkmv, HHI_GCLK_MPEG1, 14);
+ static MESON_GATE(gxbb_aiu, HHI_GCLK_MPEG1, 15);
+ static MESON_GATE(gxbb_uart1, HHI_GCLK_MPEG1, 16);
+@@ -2681,6 +2673,16 @@ static MESON_GATE(gxbb_ao_ahb_bus, HHI_GCLK_AO, 2);
+ static MESON_GATE(gxbb_ao_iface, HHI_GCLK_AO, 3);
+ static MESON_GATE(gxbb_ao_i2c, HHI_GCLK_AO, 4);
  
- static const struct meson_eeclkc_data gxbb_clkc_data = {
-diff --git a/drivers/clk/meson/gxbb.h b/drivers/clk/meson/gxbb.h
-index b53584fe66cf..1ee8cb7e2f5a 100644
---- a/drivers/clk/meson/gxbb.h
-+++ b/drivers/clk/meson/gxbb.h
-@@ -188,7 +188,7 @@
- #define CLKID_HDMI_SEL		  203
- #define CLKID_HDMI_DIV		  204
++/* AIU gates */
++static MESON_PCLK(gxbb_aiu_glue, HHI_GCLK_MPEG1, 6, &gxbb_aiu.hw);
++static MESON_PCLK(gxbb_iec958, HHI_GCLK_MPEG1, 7, &gxbb_aiu_glue.hw);
++static MESON_PCLK(gxbb_i2s_out, HHI_GCLK_MPEG1, 8, &gxbb_aiu_glue.hw);
++static MESON_PCLK(gxbb_amclk, HHI_GCLK_MPEG1, 9, &gxbb_aiu_glue.hw);
++static MESON_PCLK(gxbb_aififo2, HHI_GCLK_MPEG1, 10, &gxbb_aiu_glue.hw);
++static MESON_PCLK(gxbb_mixer, HHI_GCLK_MPEG1, 11, &gxbb_aiu_glue.hw);
++static MESON_PCLK(gxbb_mixer_iface, HHI_GCLK_MPEG1, 12, &gxbb_aiu_glue.hw);
++static MESON_PCLK(gxbb_adc, HHI_GCLK_MPEG1, 13, &gxbb_aiu_glue.hw);
++
+ /* Array of all clocks provided by this provider */
  
--#define NR_CLKS			  206
-+#define NR_CLKS			  207
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/gxbb-clkc.h>
+ static struct clk_hw_onecell_data gxbb_hw_onecell_data = {
 -- 
 2.24.1
 
