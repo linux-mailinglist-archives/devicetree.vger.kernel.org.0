@@ -2,126 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C81D314587D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 16:13:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3DD41458E5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 16:38:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725989AbgAVPNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 10:13:37 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34336 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725911AbgAVPNh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 10:13:37 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dafna)
-        with ESMTPSA id 58A6B26067C
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-To:     devicetree@vger.kernel.org
-Cc:     myungjoo.ham@samsung.com, cw00.choi@samsung.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, bleung@chromium.org,
-        enric.balletbo@collabora.com, groeck@chromium.org,
-        linux-kernel@vger.kernel.org, dafna.hirschfeld@collabora.com,
-        helen.koike@collabora.com, ezequiel@collabora.com,
-        kernel@collabora.com, dafna3@gmail.com
-Subject: [PATCH] dt-bindings: convert extcon-usbc-cros-ec.txt extcon-usbc-cros-ec.yaml
-Date:   Wed, 22 Jan 2020 16:13:13 +0100
-Message-Id: <20200122151313.11782-1-dafna.hirschfeld@collabora.com>
-X-Mailer: git-send-email 2.17.1
+        id S1727453AbgAVPiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 10:38:23 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:34142 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725802AbgAVPiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 10:38:12 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00MFc64N053401;
+        Wed, 22 Jan 2020 09:38:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1579707486;
+        bh=gptPn5JV0Z9r0tllS+JsI3igBFadtomuQS48o3mt75o=;
+        h=From:To:CC:Subject:Date;
+        b=MRr4wQvgeZTvo2zA937SdJ4I1Rur0kKWbAWWDJ3f6R/JFCcVzuxCbGjCOZQFS73pW
+         DJdRitcbHxA8oE8VptSWWfqdMSbAzzGMojvXpUHEizqf+jx7IKWQht3O0pdXxUiZO8
+         lkC1/nxYoXf2Y9UNSFK3weA+dOFh4sCwYPbqEKJw=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00MFc65d108189
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 22 Jan 2020 09:38:06 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 22
+ Jan 2020 09:38:05 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 22 Jan 2020 09:38:05 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00MFc5EU062026;
+        Wed, 22 Jan 2020 09:38:05 -0600
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <andrew@lunn.ch>, <f.fainelli@gmail.com>, <hkallweit1@gmail.com>,
+        <bunk@kernel.org>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH net-next 0/2] Add PHY IDs for DP83825/6
+Date:   Wed, 22 Jan 2020 09:34:53 -0600
+Message-ID: <20200122153455.8777-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.25.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-convert the binding file extcon-usbc-cros-ec.txt to yaml format
-This was tested and verified on ARM with:
-make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
+Hello
 
-Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
----
- .../bindings/extcon/extcon-usbc-cros-ec.txt   | 24 -----------
- .../bindings/extcon/extcon-usbc-cros-ec.yaml  | 42 +++++++++++++++++++
- 2 files changed, 42 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt
- create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
+Adding new PHY IDs for the DP83825 and DP83826 TI Ethernet PHYs to the DP83822
+PHY driver.
 
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt b/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt
-deleted file mode 100644
-index 8e8625c00dfa..000000000000
---- a/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--ChromeOS EC USB Type-C cable and accessories detection
--
--On ChromeOS systems with USB Type C ports, the ChromeOS Embedded Controller is
--able to detect the state of external accessories such as display adapters
--or USB devices when said accessories are attached or detached.
--
--The node for this device must be under a cros-ec node like google,cros-ec-spi
--or google,cros-ec-i2c.
--
--Required properties:
--- compatible:		Should be "google,extcon-usbc-cros-ec".
--- google,usb-port-id:	Specifies the USB port ID to use.
--
--Example:
--	cros-ec@0 {
--		compatible = "google,cros-ec-i2c";
--
--		...
--
--		extcon {
--			compatible = "google,extcon-usbc-cros-ec";
--			google,usb-port-id = <0>;
--		};
--	}
-diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml b/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-new file mode 100644
-index 000000000000..78779831282a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/extcon/extcon-usbc-cros-ec.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ChromeOS EC USB Type-C cable and accessories detection
-+
-+maintainers:
-+  - MyungJoo Ham <myungjoo.ham@samsung.com>
-+  - Chanwoo Choi <cw00.choi@samsung.com>
-+
-+description: |
-+  On ChromeOS systems with USB Type C ports, the ChromeOS Embedded Controller is
-+  able to detect the state of external accessories such as display adapters
-+  or USB devices when said accessories are attached or detached.
-+  The node for this device must be under a cros-ec node like google,cros-ec-spi
-+  or google,cros-ec-i2c.
-+
-+properties:
-+  compatible:
-+    const: google,extcon-usbc-cros-ec
-+
-+  google,usb-port-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      the port id
-+required:
-+  - compatible
-+  - google,usb-port-id
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    cros-ec@0 {
-+        compatible = "google,cros-ec-i2c";
-+        extcon {
-+            compatible = "google,extcon-usbc-cros-ec";
-+            google,usb-port-id = <0>;
-+        };
-+    };
+Dan
+
+Dan Murphy (2):
+  phy: dp83826: Add phy IDs for DP83826N and 826NC
+  net: phy: DP83822: Add support for additional DP83825 devices
+
+ drivers/net/phy/Kconfig   |  5 +++--
+ drivers/net/phy/dp83822.c | 18 ++++++++++++++++--
+ 2 files changed, 19 insertions(+), 4 deletions(-)
+
 -- 
-2.17.1
+2.25.0
 
