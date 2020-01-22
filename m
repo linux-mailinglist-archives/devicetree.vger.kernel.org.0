@@ -2,192 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A021145B93
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 19:28:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DB3A145C1B
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2020 19:58:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728765AbgAVS2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 22 Jan 2020 13:28:18 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:37440 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725884AbgAVS2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 13:28:15 -0500
-Received: by mail-oi1-f195.google.com with SMTP id z64so343792oia.4
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 10:28:14 -0800 (PST)
+        id S1728709AbgAVS5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 22 Jan 2020 13:57:55 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:33467 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726584AbgAVS4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 22 Jan 2020 13:56:17 -0500
+Received: by mail-wr1-f68.google.com with SMTP id b6so275974wrq.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2020 10:56:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/nmCPb+XXCVt5KhfGb/8H7zZgYObjRj8769ul8BOa2o=;
-        b=hdEtixhHfOZuWMp0/X6AY8Ms4a/2ls0PXttrGni4Z/DBE8LLDiXkABZ0PJ58/gV3Au
-         /H0Vjqh2uiHmAwmKNvHB15NHTXKz5eQ1qKrd9tYQvGzi+a+kjDkILD3xOWwcjoG5Zn2F
-         mUSZ7B5yHXHdC3euPJ5fOXA1O6ILZ8Qvf4v3/TSKND60QxAmvIE2w2uLIquwDjxWPZD7
-         9AIp/qQcEJDRQPYzU5F/lhOgJCi5Lc7w4EQjdRgCfEGDu0m/mgZAzQO3fcY9AQ0+NpXA
-         H6wwuQKh5/qXBUB4sW5JgHSqkbsChQBpEsh+TgajyWylfp6QxvaI213QqIEgTYUE6kES
-         GgkQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=nTFFco0gWzvhgT9KdZyGts1IZHmn3ADc6A60yVAjcjA=;
+        b=ZjOwjoD/cbr8k9Xxhx4R424gVxquYdps7mK8cA1ImTsO9C/5XEoHLhc9oIJ/0NnwfN
+         wTt7x7B690bbXFdBMyaS/sTUbZwa5ltfOsqNamE2j3oBHYZ4dUxK92M5BusLEuIwL1hn
+         2O4zsqmdan6atXOV5E5zNZ/72+vXJ89uljeEARootP88cc+OnUdItnegGSiUJgdj4hPG
+         YznZ2+lqLOPUGKHreflRZP44P2b7YDP01rysqoosjBNm5d2ooZc0mOU3mzJuh+qKR/a4
+         cZPDWHgboh+qq2kumSFMh9wbqtf8083/kgpHYGDmSFUaz3A4ry0eDY8GPwTajiGH46Ss
+         pJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/nmCPb+XXCVt5KhfGb/8H7zZgYObjRj8769ul8BOa2o=;
-        b=nlithPMFhQ9MVaQdUkJsCeMuIa1SdEuCCNa3Uq8NuDaueMRgZxqycnN1s+nUdxbDY3
-         3xG3g2AjIl93mjhwJ4nIv4OehWPzp7lpLvOaasEAe72VDOk0cbkFdzMu03Ox5b7TDQBE
-         W9+ITKXGYYOPi+itIkAfA9aamn3ZMAnIlzmizJzJwyFLg78SzyfV666dzrGIm72WOdrL
-         joUHBiZ/G8dZCauynMZ6l9TXNxvv362ZHHgsiFalXSlgM0ppi7EB4yzyEAFjT6e13jmk
-         qhiGRNsL8gdT8MiRrjEG4/hsssGnWvyqqrMFG0/ttU0OLLEwiolK007Y4UvhdpBpyqEk
-         A0yg==
-X-Gm-Message-State: APjAAAVBki/mCOf1B/Nlx0wphfgm1TDWdyHNTQ+snejxu7SMQ2cUgMRd
-        VD2HG6Sz1JnJUfROVzaKX+/3JjSS10ppsY4yiBXq1Q==
-X-Google-Smtp-Source: APXvYqzSW3nTaM3W/BugRvoJ65EPdnrE0AXnH4fjjOZ+G8Qyw5uBexwDzoPs/jd+hW+LN2XWrUZOYIeT7Ac7gpkLWDE=
-X-Received: by 2002:aca:c551:: with SMTP id v78mr7775111oif.161.1579717694073;
- Wed, 22 Jan 2020 10:28:14 -0800 (PST)
-MIME-Version: 1.0
-References: <20191212014233.32799-1-john.stultz@linaro.org>
- <20191212014233.32799-8-john.stultz@linaro.org> <20191218163738.GA12358@bogus>
- <CALAqxLU=KPJoPKHP14BWcLYJdBoK8DC5+7hRtqCvE2-HZHWxZA@mail.gmail.com> <CAL_Jsq+9uSMfpQZxmfJX4Y4R_xwkK413SqNZ3x6XpKpMvWA56Q@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+9uSMfpQZxmfJX4Y4R_xwkK413SqNZ3x6XpKpMvWA56Q@mail.gmail.com>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Wed, 22 Jan 2020 10:28:03 -0800
-Message-ID: <CALAqxLVgyyDmoKAxrKp-GvkBZ4hfbMgEBThPeVmJ7EZ6GzLjFw@mail.gmail.com>
-Subject: Re: [PATCH v7 7/8] dt-bindings: misc: Add bindings for HiSilicon usb
- hub and data role switch functionality on HiKey960
-To:     Rob Herring <robh@kernel.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>, Yu Chen <chenyu56@huawei.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=nTFFco0gWzvhgT9KdZyGts1IZHmn3ADc6A60yVAjcjA=;
+        b=D4uMgKnV6fWEwBfO6Cy4RAXUqorAeiK7xybBoTbFxShL8i7vQ8NfypapWh+EbzHWyI
+         DxaGKisQ/U/khq1jFxiXgcC/F2IrQ1/RfBCqNYW7Aew5uZwvm3H8CJWCIc5FUQ7nkrNz
+         g1PWzbIWRXiiUsMXYqshBkIKsPk1bRtGsfkN+mnQekZMZTVY1H31G2dvH4srk1Cjar7Q
+         vIT+Px5ME/2Y65DZnC1vZc3Bx4Dygp8RNyASBrdUDJMn8HccbSH94c6gQ3J2PQmmWLrm
+         C9K76xAtaRrFIXX6YQK7+RZMkXAotcZKGdwOYhNck0S5JdN0IFcx9Uj6Lylfg6ybFv2Q
+         nVeA==
+X-Gm-Message-State: APjAAAWXxasPtr1MXvNyHQ3Db4z5kFWhtG0cySExTT573idJiDvWyznb
+        tRzHwAhXOHfyrXvGEFnFRovGCg==
+X-Google-Smtp-Source: APXvYqwVhDR6TNqyPyw33lUIfgRMKQbwdR7UjTpAY2sMV4OM0YaexsUdbeSvGVxj8DKbPYlm+ZHB1A==
+X-Received: by 2002:adf:ce87:: with SMTP id r7mr12595169wrn.245.1579719375614;
+        Wed, 22 Jan 2020 10:56:15 -0800 (PST)
+Received: from localhost.localdomain ([176.61.57.127])
+        by smtp.gmail.com with ESMTPSA id q15sm58590390wrr.11.2020.01.22.10.56.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2020 10:56:15 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-kernel@vger.kernel.org,
+        Sriharsha Allenki <sallenki@codeaurora.org>,
+        Anu Ramanathan <anur@codeaurora.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        ShuFan Lee <shufan_lee@richtek.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Guillaume Gardet <Guillaume.Gardet@arm.com>,
-        Jack Pham <jackp@codeaurora.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>,
+        devicetree@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 02/19] dt-bindings: phy: Add Qualcomm Synopsys Hi-Speed USB PHY binding
+Date:   Wed, 22 Jan 2020 18:55:53 +0000
+Message-Id: <20200122185610.131930-3-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200122185610.131930-1-bryan.odonoghue@linaro.org>
+References: <20200122185610.131930-1-bryan.odonoghue@linaro.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(Sorry for the slow reply. The holidays and other priorities struck
-and I'm only now just getting back to this!)
+From: Sriharsha Allenki <sallenki@codeaurora.org>
 
-On Wed, Dec 18, 2019 at 11:57 AM Rob Herring <robh@kernel.org> wrote:
-> On Wed, Dec 18, 2019 at 11:21 AM John Stultz <john.stultz@linaro.org> wrote:
-> > On Wed, Dec 18, 2019 at 8:37 AM Rob Herring <robh@kernel.org> wrote:
-> > > As a whole this is HiSilicon specific, but really it is not. It's really
-> > > just a hub, a mux, and connectors for which we have bindings for. I
-> > > think you need to model the actual hub in DT. We have 2 ways already to
-> > > describe hubs in DT: a I2C device or USB device.
-> > >
-> > > AIUI, the board looks something like this:
-> > >
-> > > ctrl -> mux --> hub -> type-a connector
-> > >             +-> type-c connector
-> > >
-> > > If the hub I2C is not used, then you could do something like this:
-> > >
-> > > ctrl {
-> > >     mux-controls = <&usb_gpio_mux>;
-> > >     connector@0 {
-> > >         // type C connector binding
-> > >     };
-> > >     hub@1 {
-> > >         // USB device binding
-> > >     };
-> > > };
-> >
-> > I can't say I totally grok all this, but I'll go digging to try to
-> > better understand it.
-> > I don't believe there is any I2C involved here, so I'll try the
-> > approach you outline above.
->
-> Well, it is there in the schematics.
+Adds bindings for QCS404 USB PHY supporting Low-Speed, Full-Speed and
+Hi-Speed USB connectivity on Qualcomm chipsets.
 
-Fair point. Though at least for the USB5734 hub, I don't believe we've
-made use of the i2c on it (at least that I can see).  From the
-existing driver, the control is basically just 3 GPIOs:  type-c power,
-hub power, and the mux/switch.
+[bod: Converted to YAML. Changed name dropping snps, 28nm components]
 
-Trying to get my head around your suggestion:
-ctrl {
-    mux-controls = <&usb_gpio_mux>;
-    connector@0 {
-        // type C connector binding
-    };
-    hub@1 {
-        // USB device binding
-    };
-};
+Signed-off-by: Sriharsha Allenki <sallenki@codeaurora.org>
+Signed-off-by: Anu Ramanathan <anur@codeaurora.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Kishon Vijay Abraham I <kishon@ti.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../bindings/phy/qcom,qcs404-usb-hs.yaml      | 77 +++++++++++++++++++
+ 1 file changed, 77 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml
 
-The usb_gpio_mux would be the gpio mux switch.
+diff --git a/Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml b/Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml
+new file mode 100644
+index 000000000000..d71beb822ae2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/qcom,qcs404-usb-hs.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Synopsys QCS-404 High-Speed PHY
++
++maintainers:
++  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
++
++description: |
++  Qualcomm QCS-404 Low-Speed, Full-Speed, Hi-Speed USB PHY
++
++properties:
++  compatible:
++    enum:
++      - qcom,qcs404-usb-hsphy
++
++  reg:
++    maxItems: 1
++    description: USB PHY base address and length of the register map.
++
++  "#phy-cells":
++    const: 0
++    description: Should be 0. See phy/phy-bindings.txt for details.
++
++  clocks:
++    minItems: 3
++    maxItems: 3
++    description: phandles to rpmcc ref clock, PHY AHB clock, rentention clock.
++
++  clock-names:
++    items:
++      - const: ref
++      - const: phy
++      - const: sleep
++
++  resets:
++    items:
++      - description: PHY core reset
++      - description: POR reset
++
++  reset-names:
++    items:
++      - const: phy
++      - const: por
++
++  vdd-supply:
++    maxItems: 1
++    description: phandle to the regulator VDD supply node.
++
++  vdda1p8-supply:
++    maxItems: 1
++    description: phandle to the regulator 1.8V supply node.
++
++  vdda3p3-supply:
++    maxItems: 1
++    description: phandle to the regulator 3.3V supply node.
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-qcs404.h>
++    #include <dt-bindings/clock/qcom,rpmcc.h>
++    usb2_phy_prim: phy@7a000 {
++        compatible = "qcom,qcs404-usb-hsphy";
++        reg = <0x0007a000 0x200>;
++        #phy-cells = <0>;
++        clocks = <&rpmcc RPM_SMD_LN_BB_CLK>,
++                 <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
++                 <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
++        clock-names = "ref", "phy", "sleep";
++        resets = <&gcc GCC_USB_HS_PHY_CFG_AHB_BCR>,
++                 <&gcc GCC_USB2A_PHY_BCR>;
++        reset-names = "phy", "por";
++    };
++...
+-- 
+2.25.0
 
-For the "type C connector binding", that would probably be the rt1711h
-type-c chip.
-
-For the "USB device binding" that would be a yet to be implemented
-USB5734 hub driver, I'm guessing?
-
-Though I'm not sure I understand how the hub driver gets a signal to
-power-on/power-off its gpio-regulator from the mux state?  I'm maybe
-still missing some details on the mux infrastructure.
-
-> > > The only new bindings you really need are adding 'mux-controls' to the
-> > > USB host controller and the hub binding (we already have a few).
-
-So this is a little confusing to me. Why is the host controller
-involved?  It seems to me all of this is down-stream of the
-controller, and it's just taking whatever the switch gives it.
-
-I think the switch needs to be signalled from the rt1711h type-c
-connector (when it detects the cable and determines the role). That
-said, I'm not sure how it would think to control the mux in that case
-(as that's pretty special case for this specific hardware). That's why
-we're using the role notifier intermediary trick in the current code.
-
-So I guess we could still have the roll notifier intermediary driver
-which then controls the mux?
-
-I know that's more a driver implementation detail and not really
-hardware description, :) but I'm just trying to figure out how it's
-going to come together and actually work.
-
-> > Is the idea to extend the rt1711h and
-> > dwc3 drivers further to support the mux/hub bit (this part is fairly
-> > foggy to me), completely removing the need for the misc driver?
->
-> I imagine that you need some driver to determine the state of the mux.
-> Perhaps a usb-mux driver which is instantiated by the host controller
-> driver when it sees a mux-controls property. Sorry, haven't looked at
-> the driver side of this at all.
->
-> > I did take an attempt at something similar with an earlier iteration
-> > of the patch set, where I was trying to move the vbus-gpio as a
-> > gpio-regulator to be controlled by the rt1711h/tpcm core, but that
-> > approach didn't work properly and Hans suggested I just go back to the
-> > approach submitted here:
-> >   https://lkml.org/lkml/2019/10/22/42
->
-> I don't see why that would matter. If you need to sense the Vbus
-> state, then you do need a GPIO typically. But for an enable line, it's
-> just another level of abstraction.
-
-My concern is that I suspect the issue we had then was that the order
-and the timing that we switch the 3 GPIOs ends up being important. In
-the current implementation we can adjust them linearly together, where
-as when I took a stab at having the vbus gpio was modeled as a
-regulator and controlled independently by the rt1711h, the typec state
-machine would get confused as I'm guessing the mux/switch wasn't where
-it expected it to be when it wanted to change the state of the type-c
-vbus.
-
-Thoughts?
-
-Thanks again for the review and feedback. And sorry to let so much
-time (and mental context) pass.
--john
