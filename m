@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A79B414650B
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE7014650A
 	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2020 10:53:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727296AbgAWJxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726227AbgAWJxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 23 Jan 2020 04:53:41 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:43904 "EHLO
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:43932 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728799AbgAWJxl (ORCPT
+        with ESMTP id S1728827AbgAWJxl (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jan 2020 04:53:41 -0500
 Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D6D40293CA2;
-        Thu, 23 Jan 2020 09:53:38 +0000 (GMT)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 70F26293CFD;
+        Thu, 23 Jan 2020 09:53:39 +0000 (GMT)
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Lucas Stach <l.stach@pengutronix.de>,
@@ -36,9 +36,9 @@ Cc:     Lucas Stach <l.stach@pengutronix.de>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, intel-gfx-trybot@lists.freedesktop.org,
         Boris Brezillon <boris.brezillon@collabora.com>
-Subject: [PATCH v8 03/12] drm/rcar-du: Plug atomic state hooks to the default implementation
-Date:   Thu, 23 Jan 2020 10:53:24 +0100
-Message-Id: <20200123095333.2085810-4-boris.brezillon@collabora.com>
+Subject: [PATCH v8 04/12] drm/bridge: analogix: Plug atomic state hooks to the default implementation
+Date:   Thu, 23 Jan 2020 10:53:25 +0100
+Message-Id: <20200123095333.2085810-5-boris.brezillon@collabora.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200123095333.2085810-1-boris.brezillon@collabora.com>
 References: <20200123095333.2085810-1-boris.brezillon@collabora.com>
@@ -57,23 +57,23 @@ Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
 Changes in v7:
 * New patch
 ---
- drivers/gpu/drm/rcar-du/rcar_lvds.c | 3 +++
+ drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-index 961519ce6634..06432c881e07 100644
---- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
-+++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-@@ -684,6 +684,9 @@ static void rcar_lvds_detach(struct drm_bridge *bridge)
- static const struct drm_bridge_funcs rcar_lvds_bridge_ops = {
- 	.attach = rcar_lvds_attach,
- 	.detach = rcar_lvds_detach,
+diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+index 6fab71985cd4..dfb59a5fefea 100644
+--- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
++++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+@@ -1570,6 +1570,9 @@ static void analogix_dp_bridge_mode_set(struct drm_bridge *bridge,
+ }
+ 
+ static const struct drm_bridge_funcs analogix_dp_bridge_funcs = {
 +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
 +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
 +	.atomic_reset = drm_atomic_helper_bridge_reset,
- 	.atomic_enable = rcar_lvds_atomic_enable,
- 	.atomic_disable = rcar_lvds_atomic_disable,
- 	.mode_fixup = rcar_lvds_mode_fixup,
+ 	.atomic_pre_enable = analogix_dp_bridge_atomic_pre_enable,
+ 	.atomic_enable = analogix_dp_bridge_atomic_enable,
+ 	.atomic_disable = analogix_dp_bridge_atomic_disable,
 -- 
 2.24.1
 
