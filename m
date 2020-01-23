@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CEA7E1464E1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2020 10:51:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6328D1464F7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2020 10:51:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728139AbgAWJvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jan 2020 04:51:17 -0500
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:33270 "EHLO
+        id S1726181AbgAWJvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jan 2020 04:51:42 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35804 "EHLO
         mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727264AbgAWJvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jan 2020 04:51:16 -0500
-Received: by mail-wr1-f68.google.com with SMTP id b6so2369914wrq.0
-        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2020 01:51:14 -0800 (PST)
+        with ESMTP id S1726099AbgAWJvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jan 2020 04:51:19 -0500
+Received: by mail-wr1-f68.google.com with SMTP id g17so2342728wro.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2020 01:51:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:autocrypt:organization:message-id
          :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Qu4I3AVgny6e+kBg6XVbE5DiJ/kTZqGcxHAYvR7aT6U=;
-        b=sFQpUvrx5L4D+rzNcZfUze1u/tH/03hiIHgZ0SdTYE+q1hllX6GhLIkYLiiNfidK7n
-         vCRxhozaQBZsogs0Yo1kKeW3VbbGs57p4nUFIBrWcUy29R7XoAC/LnIlnXANW78CWM8C
-         Us750OWnHxU1PSSn1SATPLvQIFdxS8sZP6xSYIA1UXEnhJGlXzbuV2YndiyoDX0aQlmm
-         Lo2Na4agvcnopWq1il+lPhpQknOBBOO91oBJOkyB2OulrzkBJxPbydMbStTLCRtE6ZS/
-         NTzXGepgCl3Hc++M+md+PWIh69uHx50XKh1u66XNf74EltAkZ8ylIoDB3CACAd44JvWY
-         VKzQ==
+        bh=IL15pRU9pFPgz6S6Tf7uhh3iwf+4kU+o6fQpOFHsq5Q=;
+        b=Zs7/UVvf2IkrzBlosC4cjUUZhiO3Fdjkl90Zs9Gt4vVXIY0+sCmE14mQK4brxCJ1vr
+         lUfMrobrtE59nuM8Dac3pEa+G894wORGOO15xB7DhWQ3T9FZvVrifRCRJsLPUW9CgbgU
+         IhlwUfpLq3rEZragtyyTXDTCZzgA92NWCCOWNpMd2cy8HB+dd9hBoi/DEOg8Jyb+dsd3
+         9LNBzoY2env+HpPLBfpNg8Cjrddck1/fzrfXo8JSEBvbY2kMArMDmmw9LbLvXsFhqJew
+         eKJzcn5e59jh4srLzU6KtUUkap3RncAlKDaq1e0ODiQ7lgk+86eo79n83bHID+vZt7rs
+         Tgfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=Qu4I3AVgny6e+kBg6XVbE5DiJ/kTZqGcxHAYvR7aT6U=;
-        b=rzajV+JbU0xWWkOfdmJfGygcT/SBffXxvubPlHo+p3U67k0GHsMqdhodILAKhI6hlQ
-         rK+5Tn67hN0vNt6p91sLtM05DvBSVed9+fx6vse4gXI80j6NIVcewCXpuZHgLIImeDc3
-         MNzaCJZrPzDMq+zWjKmmzeNlzIXumioxu3wsNTHtEWgm3e1OFpD8/aJDEjiecq7Nu30L
-         69+r0PnSLYFl6DSjZjg49SFoOjMNbec4hsJKfiYK6mYHzwsiimuSO3f4PVjeKeeszki8
-         OjPi4Z2jbJ8uHrpJiOgRlBTa/KrhUPm2nJjUSTpOCEnuhv5eQgQL8d6zmTBFtM74Y5B8
-         lAOw==
-X-Gm-Message-State: APjAAAW+DJ1QSRzOSWGTyBgf119S7AeYNjnl87+zthzXtCvisT9/LIj6
-        9+6Ge21ZYuXn2PxEqxxIl9aAwan9dJ+rVw==
-X-Google-Smtp-Source: APXvYqwx+BqSMunwvzabpXTxh5Mw1w3Y++TMveiGQeOhfp5cv1eX4zRuI8Nax5avc3cm4cW/TEfd6w==
-X-Received: by 2002:adf:ebd0:: with SMTP id v16mr15654244wrn.146.1579773073506;
-        Thu, 23 Jan 2020 01:51:13 -0800 (PST)
+        bh=IL15pRU9pFPgz6S6Tf7uhh3iwf+4kU+o6fQpOFHsq5Q=;
+        b=Ad1Nd+kE48aSmVaXH1BPBpgoXVXaYgrnF1Vjkbs4jm/KcEs0QElAT94rN6ofIXpx5O
+         GV/TVs+DLgFRvlu1aZ4WUm2/TJj6CaQ7gOvjku3pWl7j3Jf1/JQOT9KC8vaYZ9NHTvTb
+         sSQR+zJBLL/B7tgEJwxp0pBa4Hxn0FlWOpQK81iHxg77wNuXmdQOO7EXjFn+YFnRVX+6
+         KWi0mGiocCDRp93rrxSlWxus9lRgwz+UlG9vjMf+SAbnQvRf8eV23tLVHakqpcbMvcO5
+         voCZOuneoT6avHKpHbnovLxZkecJLQ1YqaU+jNkDPwrEz5pjyZbYKNtGOjT7DkZsToS8
+         3xRQ==
+X-Gm-Message-State: APjAAAVStkVn4Rsa3F/vipDkjZvOhPTim4tx59l+ublMkYVTr7md0Rb/
+        G/VgJKX9v2T5UYBjF9mwzaOc8w==
+X-Google-Smtp-Source: APXvYqws0wuB0YrfK5tNuJ8KF0E7NpTeEXybHdH9RubT/0dKVHKDma2ewhI8Jx7Fh8LQ3yrvM7/IRw==
+X-Received: by 2002:a05:6000:1187:: with SMTP id g7mr16701836wrx.109.1579773076516;
+        Thu, 23 Jan 2020 01:51:16 -0800 (PST)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id x18sm2314251wrr.75.2020.01.23.01.51.12
+        by smtp.gmail.com with ESMTPSA id b68sm2039078wme.6.2020.01.23.01.51.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jan 2020 01:51:13 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: reset: meson: add gxl internal dac reset
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
+        Thu, 23 Jan 2020 01:51:15 -0800 (PST)
+Subject: Re: [PATCH 1/3] dt-bindings: clk: meson: add the gxl internal dac
+ gate
+To:     Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org
 Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20200122092526.2436421-1-jbrunet@baylibre.com>
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200122100451.2443153-1-jbrunet@baylibre.com>
+ <20200122100451.2443153-2-jbrunet@baylibre.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -104,12 +105,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <541757d2-8bf3-95b3-1838-d06ee145509c@baylibre.com>
-Date:   Thu, 23 Jan 2020 10:51:12 +0100
+Message-ID: <8231eb08-06c9-7acd-317d-61ecf2a55ca2@baylibre.com>
+Date:   Thu, 23 Jan 2020 10:51:15 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <20200122092526.2436421-1-jbrunet@baylibre.com>
+In-Reply-To: <20200122100451.2443153-2-jbrunet@baylibre.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -118,27 +119,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/01/2020 10:25, Jerome Brunet wrote:
-> Add the reset line of the internal DAC found on the amlogic gxl SoC family
+On 22/01/2020 11:04, Jerome Brunet wrote:
+> Add the gxl ACODEC clock id to the gxbb clock controller bindings
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  include/dt-bindings/reset/amlogic,meson-gxbb-reset.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  include/dt-bindings/clock/gxbb-clkc.h | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h b/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
-> index ea5058618863..883bfd3bcbad 100644
-> --- a/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
-> +++ b/include/dt-bindings/reset/amlogic,meson-gxbb-reset.h
-> @@ -69,7 +69,7 @@
->  #define RESET_SYS_CPU_L2		58
->  #define RESET_SYS_CPU_P			59
->  #define RESET_SYS_CPU_MBIST		60
-> -/*					61	*/
-> +#define RESET_ACODEC			61
->  /*					62	*/
->  /*					63	*/
->  /*	RESET2					*/
+> diff --git a/include/dt-bindings/clock/gxbb-clkc.h b/include/dt-bindings/clock/gxbb-clkc.h
+> index db0763e96173..4073eb7a9da1 100644
+> --- a/include/dt-bindings/clock/gxbb-clkc.h
+> +++ b/include/dt-bindings/clock/gxbb-clkc.h
+> @@ -146,5 +146,6 @@
+>  #define CLKID_CTS_VDAC		201
+>  #define CLKID_HDMI_TX		202
+>  #define CLKID_HDMI		205
+> +#define CLKID_ACODEC		206
+>  
+>  #endif /* __GXBB_CLKC_H */
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
