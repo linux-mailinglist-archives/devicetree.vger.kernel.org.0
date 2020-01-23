@@ -2,128 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93240146E07
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2020 17:13:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7E0146EA5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2020 17:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729149AbgAWQNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jan 2020 11:13:46 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:21436 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728904AbgAWQNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 23 Jan 2020 11:13:34 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00NGCWjG000791;
-        Thu, 23 Jan 2020 17:13:21 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=r3vNXV7b+XrJKd7/p9M1rRMOLGGdPoVfCZx0V4W3LUk=;
- b=VL6jKtfywj8paeFx3J9hWpblaWrpB1T87ekB+Lq/z/uNa7oPtCL01o6L0JXyIDEpW7ko
- Jo8SPZb5EuUXtKWOEmY6VDvoFNe9JkYlY9pX66Ac/9hTMasOa9Q/Ch1m7zHgc7Xuwr+Y
- wdYeqGSTOKV5ssYnkRoofy8jBHrKQDMORBaqvqBffpD2/Pr618JIx3MDzdzLzc21etDN
- LMyLaH8kuasjA1M/77n+iZMkLKtK3rzWqDmiJNYVnhqz4chxo9LtC7ynAzQWs2GRLt+W
- xBZhogJcT7YWSqk+TgNq/nG4+Vr2KFe2ezaPTSnE2Cu7xo6Hq6z6VS89xD0n8+g0hlvZ EA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xkr1ebaym-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 23 Jan 2020 17:13:20 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8C64F10003B;
-        Thu, 23 Jan 2020 17:13:18 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7A9A72BC7D5;
-        Thu, 23 Jan 2020 17:13:18 +0100 (CET)
-Received: from localhost (10.75.127.51) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 23 Jan 2020 17:13:17
- +0100
-From:   Alain Volmat <alain.volmat@st.com>
-To:     <wsa@the-dreams.de>, <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <pierre-yves.mordret@st.com>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <fabrice.gasnier@st.com>,
-        <alain.volmat@st.com>
-Subject: [PATCH 5/5] ARM: dts: stm32: add Fast Mode Plus info in I2C nodes of stm32mp151
-Date:   Thu, 23 Jan 2020 17:12:50 +0100
-Message-ID: <1579795970-22319-6-git-send-email-alain.volmat@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1579795970-22319-1-git-send-email-alain.volmat@st.com>
-References: <1579795970-22319-1-git-send-email-alain.volmat@st.com>
+        id S1728708AbgAWQre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jan 2020 11:47:34 -0500
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:43594 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727847AbgAWQrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jan 2020 11:47:33 -0500
+Received: by mail-pg1-f193.google.com with SMTP id u131so1639534pgc.10;
+        Thu, 23 Jan 2020 08:47:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=BnpsU6StHPAIstw2JpFgpCJVlQcTQuWju7U53QdQrnE=;
+        b=Fr/exgfHRSXeszkt7vWrJOJ2Sw6g4HEa60n79E5aaUrt2D0zH2kfcXLFqICWsIkP5D
+         oRLAm1xSKgGmjiJRhHXMuegRtQjWKeLbgTItkAbxAwOAIAqT01xhXE6TJrd+lD7Gb1Qh
+         zlQzNJqTpuk7YODsJHjQRvJkPCjskaxSdiklkNq3MHY1QrIY+fE1naLNaspl7L6q70qD
+         0iJwLjy0+NfIXYXXyEyQGytMxG2A+TQuuTbh8oWhfi6U40S+0OX1v2cYtCYEi50BxkDs
+         sPP7VvBVMZLcMDMf3gX3t5rMzqRX8JjXBi7MbpuIV47/6VDhP2atBOcpsLoqfbAs528b
+         Yvow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=BnpsU6StHPAIstw2JpFgpCJVlQcTQuWju7U53QdQrnE=;
+        b=ei5R/39zXl8HKDTZdQEEDhfFn0MSFV83uRpbWuwdvxhtSR+GJX8oFq30q6VxIlw6Cf
+         w3tJkWYk95q0cFeuoTlqlFub2cHf1xgi794f/GVhq7QvUzmhGF6u6kmFnIvI1vu9KkdY
+         DXv55EFow6WqP5Ypit23vk78FjjF60Uxls8jy6Taf3kkzCnk4D+OuBcahdWjGWoCe9Vg
+         PZzQ7j7jXlFimHq7HhZsAD7iEup1vVEgDXEIp1DwtPmEXu+QR5EKa0D4PrsNQThzbRHD
+         xcJ5/pbElgomT5I1dVij2h7dnY4nXGLBDsjJCADMDA8YsJyhTfhtxM+31Ic+xjWJKG/g
+         24Fg==
+X-Gm-Message-State: APjAAAUDqBgJGRyTuX482fWw6OGTRX7Sj+HXmte8aGUNtsw1jXhA04eV
+        n7nBJO07vhnGx7oi6qoeqmc=
+X-Google-Smtp-Source: APXvYqyzFRPW1W5MSOcz5elsS1/zgpJTEP1GHlsITj9vbpwWAg1eKE9Kf6/CCL4dmRPBHY1JfBp41g==
+X-Received: by 2002:aa7:9aa5:: with SMTP id x5mr8259716pfi.131.1579798052959;
+        Thu, 23 Jan 2020 08:47:32 -0800 (PST)
+Received: from ?IPv6:2001:4898:d8:28:140e:bf9b:65a6:dd72? ([2001:4898:80e8:8:941d:bf9b:65a6:dd72])
+        by smtp.gmail.com with ESMTPSA id d4sm3421232pjz.12.2020.01.23.08.47.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2020 08:47:32 -0800 (PST)
+Subject: Re: [PATCH v10 1/2] dt-bindings: edac: dmc-520.yaml
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     James Morse <james.morse@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, hangl@microsoft.com,
+        Lei Wang <lewan@microsoft.com>, ruizhao@microsoft.com,
+        shji@microsoft.com, Scott Branden <scott.branden@broadcom.com>,
+        Yuqing Shen <yuqing.shen@broadcom.com>
+References: <09a2fe69-842f-01cf-1cfa-d5fc639b158a@gmail.com>
+ <20200123082322.GB10328@zn.tnic>
+From:   Shiping Ji <shiping.linux@gmail.com>
+Message-ID: <4165bb52-6dda-60e9-c248-428822167476@gmail.com>
+Date:   Thu, 23 Jan 2020 08:47:31 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG8NODE1.st.com (10.75.127.22) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-23_08:2020-01-23,2020-01-23 signatures=0
+In-Reply-To: <20200123082322.GB10328@zn.tnic>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the syscfg-fmp property in each i2c node in order to allow
-Fast Mode Plus speed if clock-frequency >= 1MHz is indicated.
+On 1/23/2020 12:23 AM, Borislav Petkov wrote:
+> On Wed, Jan 22, 2020 at 04:31:07PM -0800, Shiping Ji wrote:
+>> This is the device tree bindings for new EDAC driver dmc520_edac.c.
+>>
+>> From: Lei Wang <leiwang_git@outlook.com>
+>>
+>> Signed-off-by: Lei Wang <leiwang_git@outlook.com>
+>> Signed-off-by: Shiping Ji <shiping.linux@gmail.com>
+>> Reviewed-by: James Morse <james.morse@arm.com>
+>>
+>> ---
+>>      Changes in v10:
+>>          - Convert to the YAML format for binding description
+> 
+> So you've changed this patch considerably. If you do so, you cannot keep
+> Reviewed-by tags.
+> 
+> Also, AFAICT, you've written a completely *new* patch which would mean
+> that this time you're the author. Correct?
+> 
+> If so, you don't need to keep Lei's From.
 
-Signed-off-by: Alain Volmat <alain.volmat@st.com>
----
- arch/arm/boot/dts/stm32mp151.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+Boris, we'd still like to keep her as the author since this patch is just updating to a new documentation format where the content being documented was still designed by Lei. I hope this is OK.
 
-diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-index 2dbf32ca9b36..ecd0a932aa78 100644
---- a/arch/arm/boot/dts/stm32mp151.dtsi
-+++ b/arch/arm/boot/dts/stm32mp151.dtsi
-@@ -483,6 +483,7 @@
- 			resets = <&rcc I2C1_R>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			st,syscfg-fmp = <&syscfg 0x4 0x1>;
- 			wakeup-source;
- 			status = "disabled";
- 		};
-@@ -497,6 +498,7 @@
- 			resets = <&rcc I2C2_R>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			st,syscfg-fmp = <&syscfg 0x4 0x2>;
- 			wakeup-source;
- 			status = "disabled";
- 		};
-@@ -511,6 +513,7 @@
- 			resets = <&rcc I2C3_R>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			st,syscfg-fmp = <&syscfg 0x4 0x4>;
- 			wakeup-source;
- 			status = "disabled";
- 		};
-@@ -525,6 +528,7 @@
- 			resets = <&rcc I2C5_R>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			st,syscfg-fmp = <&syscfg 0x4 0x10>;
- 			wakeup-source;
- 			status = "disabled";
- 		};
-@@ -1477,6 +1481,7 @@
- 			resets = <&rcc I2C4_R>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			st,syscfg-fmp = <&syscfg 0x4 0x8>;
- 			wakeup-source;
- 			status = "disabled";
- 		};
-@@ -1513,6 +1518,7 @@
- 			resets = <&rcc I2C6_R>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			st,syscfg-fmp = <&syscfg 0x4 0x20>;
- 			wakeup-source;
- 			status = "disabled";
- 		};
+> In any case, please take some time to read this:
+> 
+> https://www.kernel.org/doc/html/latest/process/index.html
+> 
+> It is a lot so do concentrate on the whole process, i.e., this:
+> 
+> https://www.kernel.org/doc/html/latest/process/development-process.html
+> 
+> so that you have a basic idea.
+> 
+> If you have questions, I'm sure Sasha would be willing to answer them
+> even if he's away now.
+
+Thanks! I'll certainly read this.
+
 -- 
-2.7.4
-
+Best regards,
+Shiping Ji
