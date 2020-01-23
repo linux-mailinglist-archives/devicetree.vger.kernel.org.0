@@ -2,287 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C46B31474B6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 00:22:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34CC11474DD
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 00:37:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729999AbgAWXWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 23 Jan 2020 18:22:39 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:50579 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729982AbgAWXWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jan 2020 18:22:39 -0500
-X-Originating-IP: 88.190.179.123
-Received: from localhost (unknown [88.190.179.123])
-        (Authenticated sender: repk@triplefau.lt)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 82D4DE0006;
-        Thu, 23 Jan 2020 23:22:35 +0000 (UTC)
-From:   Remi Pommarel <repk@triplefau.lt>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Yue Wang <yue.wang@Amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        Remi Pommarel <repk@triplefau.lt>
-Subject: [PATCH v6 7/7] PCI: amlogic: Use AXG PCIE
-Date:   Fri, 24 Jan 2020 00:29:43 +0100
-Message-Id: <20200123232943.10229-8-repk@triplefau.lt>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200123232943.10229-1-repk@triplefau.lt>
-References: <20200123232943.10229-1-repk@triplefau.lt>
+        id S1729476AbgAWXh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 23 Jan 2020 18:37:26 -0500
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:44047 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729288AbgAWXh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 23 Jan 2020 18:37:26 -0500
+Received: by mail-pf1-f195.google.com with SMTP id 62so158666pfu.11;
+        Thu, 23 Jan 2020 15:37:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=AnAOgh110uKPc3d8VRtFP1cCUwjRHhenRNDU4AcKph8=;
+        b=K1vPMQgl/Yg+46UKknCjnjFG34twgu8GDgt+p5hRGEbg5j/8DXs0FedhC0j4h/53Vm
+         r9HDbAatrCio+h9dR8/itKPROddqjz+l6/cpJlJ/goja6xaF7PmSF4k4BdfTSMXkjGwm
+         3NMFtEPenDER9X7HM9w0a7sNEurnEcSojTlKBN87DC/te47lDw/wkZCSrTC05QP/p8yW
+         lD7eEh5qASYejJRLu4FS16CYrMRG/ymjIXPwtgTBkXVk/McJ/67jK8v6sNX82eahfReq
+         Vm1eFyHtM9MKOCDVW76a9jtDg9qEeWKR5XoAhdqnAeBNbZ0rY5g053dolcKC2yoQCc3l
+         ejaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=AnAOgh110uKPc3d8VRtFP1cCUwjRHhenRNDU4AcKph8=;
+        b=FxLMByBWZ/rdQHQp+9go9qsQRE5PluTWQhEZffT6a8t5djHXUpYx+tE6R1wuG3LKCk
+         xK37ZgNp9V8mXIwgpUZrG8cLotiTgJKRWz3cXWXMW2uZrZ0rteCfrQsZ5XPXL9yhmwcr
+         yrtojXMKrkZ3kVj2uSg8Q5+QSnZ5C2eyhSNYGOxWNN79R8zQQq0OeqHI64FbElZ0IP06
+         KD/5DOmmQU35BiO5H1pjmEMFlKfXxNhEVjJ3dZnld5YpKAaIolUvzv+DrwXpAC7Pd1Ud
+         SQ7yFebalpVIGOgCg5rkHIcmbuPyVRKYcKevz5/DFD0NYJSNwdhebfyBPUPY6m8YhDCg
+         PW3g==
+X-Gm-Message-State: APjAAAV/9cq2Y6Pk8td5YqVIBtJzMu4Giu4bZrkHsH+4vp7p/CxlNxoN
+        ZjZdlupTL/zmm3Heax8Jml6+Nwey
+X-Google-Smtp-Source: APXvYqx2Oz2x7aK2w2WY7H8GZslB2DP/lDmHVrC4VNx9P3gFaCAHqPF3LBhJCNPpT/oPHOgxMJR+ow==
+X-Received: by 2002:a63:2e07:: with SMTP id u7mr877200pgu.295.1579822645505;
+        Thu, 23 Jan 2020 15:37:25 -0800 (PST)
+Received: from ?IPv6:2001:4898:d8:28:140e:bf9b:65a6:dd72? ([2001:4898:80e8:0:9425:bf9b:65a6:dd72])
+        by smtp.gmail.com with ESMTPSA id z30sm4042494pfq.154.2020.01.23.15.37.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2020 15:37:24 -0800 (PST)
+Subject: Re: [PATCH v10 1/2] dt-bindings: edac: dmc-520.yaml
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Borislav Petkov <bp@alien8.de>, James Morse <james.morse@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, hangl@microsoft.com,
+        Lei Wang <lewan@microsoft.com>, ruizhao@microsoft.com,
+        shji@microsoft.com, Scott Branden <scott.branden@broadcom.com>,
+        Yuqing Shen <yuqing.shen@broadcom.com>
+References: <09a2fe69-842f-01cf-1cfa-d5fc639b158a@gmail.com>
+ <CAL_Jsq+1S=mOS0-eb0=ibSn81ReDmDjrA9=bHpKC16w8B6Aq3Q@mail.gmail.com>
+From:   Shiping Ji <shiping.linux@gmail.com>
+Message-ID: <e0bab7de-1308-409c-febc-608a812592e3@gmail.com>
+Date:   Thu, 23 Jan 2020 15:37:22 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+1S=mOS0-eb0=ibSn81ReDmDjrA9=bHpKC16w8B6Aq3Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that PCIE PHY has been introduced for AXG, the whole has_shared_phy
-logic can be mutualized between AXG and G12A platforms.
+On 1/23/2020 5:44 AM, Rob Herring wrote:
 
-This new PHY makes use of the shared MIPI/PCIE analog PHY found on AXG
-platforms, which need to be used in order to have reliable PCIE
-communications.
+> Run 'make dt_binding_check' as that would have caught this issue on the example.
 
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
----
- drivers/pci/controller/dwc/pci-meson.c | 116 +++++--------------------
- 1 file changed, 22 insertions(+), 94 deletions(-)
+Eventually I have the dtc with yaml output built and resolved issues reported by "make dt_binding_check". Shall I submit a new v11 patch for the dt-bindings only or I should add driver code patch into v11 too?
 
-diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-index 3772b02a5c55..3715dceca1bf 100644
---- a/drivers/pci/controller/dwc/pci-meson.c
-+++ b/drivers/pci/controller/dwc/pci-meson.c
-@@ -66,7 +66,6 @@
- #define PORT_CLK_RATE			100000000UL
- #define MAX_PAYLOAD_SIZE		256
- #define MAX_READ_REQ_SIZE		256
--#define MESON_PCIE_PHY_POWERUP		0x1c
- #define PCIE_RESET_DELAY		500
- #define PCIE_SHARED_RESET		1
- #define PCIE_NORMAL_RESET		0
-@@ -81,26 +80,19 @@ enum pcie_data_rate {
- struct meson_pcie_mem_res {
- 	void __iomem *elbi_base;
- 	void __iomem *cfg_base;
--	void __iomem *phy_base;
- };
- 
- struct meson_pcie_clk_res {
- 	struct clk *clk;
--	struct clk *mipi_gate;
- 	struct clk *port_clk;
- 	struct clk *general_clk;
- };
- 
- struct meson_pcie_rc_reset {
--	struct reset_control *phy;
- 	struct reset_control *port;
- 	struct reset_control *apb;
- };
- 
--struct meson_pcie_param {
--	bool has_shared_phy;
--};
--
- struct meson_pcie {
- 	struct dw_pcie pci;
- 	struct meson_pcie_mem_res mem_res;
-@@ -108,7 +100,6 @@ struct meson_pcie {
- 	struct meson_pcie_rc_reset mrst;
- 	struct gpio_desc *reset_gpio;
- 	struct phy *phy;
--	const struct meson_pcie_param *param;
- };
- 
- static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
-@@ -130,13 +121,6 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
- {
- 	struct meson_pcie_rc_reset *mrst = &mp->mrst;
- 
--	if (!mp->param->has_shared_phy) {
--		mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
--		if (IS_ERR(mrst->phy))
--			return PTR_ERR(mrst->phy);
--		reset_control_deassert(mrst->phy);
--	}
--
- 	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
- 	if (IS_ERR(mrst->port))
- 		return PTR_ERR(mrst->port);
-@@ -162,22 +146,6 @@ static void __iomem *meson_pcie_get_mem(struct platform_device *pdev,
- 	return devm_ioremap_resource(dev, res);
- }
- 
--static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
--					       struct meson_pcie *mp,
--					       const char *id)
--{
--	struct device *dev = mp->pci.dev;
--	struct resource *res;
--
--	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
--	if (!res) {
--		dev_err(dev, "No REG resource %s\n", id);
--		return ERR_PTR(-ENXIO);
--	}
--
--	return devm_ioremap(dev, res->start, resource_size(res));
--}
--
- static int meson_pcie_get_mems(struct platform_device *pdev,
- 			       struct meson_pcie *mp)
- {
-@@ -189,14 +157,6 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
- 	if (IS_ERR(mp->mem_res.cfg_base))
- 		return PTR_ERR(mp->mem_res.cfg_base);
- 
--	/* Meson AXG SoC has two PCI controllers use same phy register */
--	if (!mp->param->has_shared_phy) {
--		mp->mem_res.phy_base =
--			meson_pcie_get_mem_shared(pdev, mp, "phy");
--		if (IS_ERR(mp->mem_res.phy_base))
--			return PTR_ERR(mp->mem_res.phy_base);
--	}
--
- 	return 0;
- }
- 
-@@ -204,37 +164,33 @@ static int meson_pcie_power_on(struct meson_pcie *mp)
- {
- 	int ret = 0;
- 
--	if (mp->param->has_shared_phy) {
--		ret = phy_init(mp->phy);
--		if (ret)
--			return ret;
-+	ret = phy_init(mp->phy);
-+	if (ret)
-+		return ret;
- 
--		ret = phy_power_on(mp->phy);
--		if (ret) {
--			phy_exit(mp->phy);
--			return ret;
--		}
--	} else
--		writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
-+	ret = phy_power_on(mp->phy);
-+	if (ret) {
-+		phy_exit(mp->phy);
-+		return ret;
-+	}
- 
- 	return 0;
- }
- 
-+static void meson_pcie_power_off(struct meson_pcie *mp)
-+{
-+	phy_power_off(mp->phy);
-+	phy_exit(mp->phy);
-+}
-+
- static int meson_pcie_reset(struct meson_pcie *mp)
- {
- 	struct meson_pcie_rc_reset *mrst = &mp->mrst;
- 	int ret = 0;
- 
--	if (mp->param->has_shared_phy) {
--		ret = phy_reset(mp->phy);
--		if (ret)
--			return ret;
--	} else {
--		reset_control_assert(mrst->phy);
--		udelay(PCIE_RESET_DELAY);
--		reset_control_deassert(mrst->phy);
--		udelay(PCIE_RESET_DELAY);
--	}
-+	ret = phy_reset(mp->phy);
-+	if (ret)
-+		return ret;
- 
- 	reset_control_assert(mrst->port);
- 	reset_control_assert(mrst->apb);
-@@ -286,12 +242,6 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
- 	if (IS_ERR(res->port_clk))
- 		return PTR_ERR(res->port_clk);
- 
--	if (!mp->param->has_shared_phy) {
--		res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
--		if (IS_ERR(res->mipi_gate))
--			return PTR_ERR(res->mipi_gate);
--	}
--
- 	res->general_clk = meson_pcie_probe_clock(dev, "general", 0);
- 	if (IS_ERR(res->general_clk))
- 		return PTR_ERR(res->general_clk);
-@@ -562,7 +512,6 @@ static const struct dw_pcie_ops dw_pcie_ops = {
- 
- static int meson_pcie_probe(struct platform_device *pdev)
- {
--	const struct meson_pcie_param *match_data;
- 	struct device *dev = &pdev->dev;
- 	struct dw_pcie *pci;
- 	struct meson_pcie *mp;
-@@ -576,17 +525,10 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 	pci->dev = dev;
- 	pci->ops = &dw_pcie_ops;
- 
--	match_data = of_device_get_match_data(dev);
--	if (!match_data) {
--		dev_err(dev, "failed to get match data\n");
--		return -ENODEV;
--	}
--	mp->param = match_data;
--
--	if (mp->param->has_shared_phy) {
--		mp->phy = devm_phy_get(dev, "pcie");
--		if (IS_ERR(mp->phy))
--			return PTR_ERR(mp->phy);
-+	mp->phy = devm_phy_get(dev, "pcie");
-+	if (IS_ERR(mp->phy)) {
-+		dev_err(dev, "get phy failed, %ld\n", PTR_ERR(mp->phy));
-+		return PTR_ERR(mp->phy);
- 	}
- 
- 	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-@@ -636,30 +578,16 @@ static int meson_pcie_probe(struct platform_device *pdev)
- 	return 0;
- 
- err_phy:
--	if (mp->param->has_shared_phy) {
--		phy_power_off(mp->phy);
--		phy_exit(mp->phy);
--	}
--
-+	meson_pcie_power_off(mp);
- 	return ret;
- }
- 
--static struct meson_pcie_param meson_pcie_axg_param = {
--	.has_shared_phy = false,
--};
--
--static struct meson_pcie_param meson_pcie_g12a_param = {
--	.has_shared_phy = true,
--};
--
- static const struct of_device_id meson_pcie_of_match[] = {
- 	{
- 		.compatible = "amlogic,axg-pcie",
--		.data = &meson_pcie_axg_param,
- 	},
- 	{
- 		.compatible = "amlogic,g12a-pcie",
--		.data = &meson_pcie_g12a_param,
- 	},
- 	{},
- };
+Thanks!
+
 -- 
-2.24.1
-
+Best regards,
+Shiping Ji
