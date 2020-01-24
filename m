@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92DE714913D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 23:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20EDD149124
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 23:43:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387417AbgAXWnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jan 2020 17:43:19 -0500
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:44293 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387406AbgAXWnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jan 2020 17:43:19 -0500
-Received: by mail-pg1-f195.google.com with SMTP id x7so1839935pgl.11
-        for <devicetree@vger.kernel.org>; Fri, 24 Jan 2020 14:43:19 -0800 (PST)
+        id S2387425AbgAXWnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jan 2020 17:43:21 -0500
+Received: from mail-pf1-f174.google.com ([209.85.210.174]:35936 "EHLO
+        mail-pf1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387424AbgAXWnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jan 2020 17:43:20 -0500
+Received: by mail-pf1-f174.google.com with SMTP id w2so1806650pfd.3
+        for <devicetree@vger.kernel.org>; Fri, 24 Jan 2020 14:43:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=LCy4d/uPw5BLn8Wtp8APLodtLD4pO2HOn2Pu/h6vPEQ=;
-        b=H5M3q6aWRWGz+DPDkuDKKDp9JmGrdLbld1dKDiQUVp3fn2wQvRevBwkem3NygaawT/
-         eRqCOrI1rSecV50Rs2vF8UXdyTv1JEJ7vAaCBQYa2uM9shXTNvrJdFW2lmTnxJhaDWot
-         dLWxiqt3t4KkiP56kPl5Abs3KcMMZPahXAbfo=
+        bh=fR36UAT87Z0TKgzJqLSUdRVGW5KC0xvFs4pz6EoaSEs=;
+        b=W+AWfGtYERngYx58+JdIqakd2DAkpetfVaeID9hwBCBbON7jnjF1idcPZDN1OLhN3w
+         622xZcGgQxsvPHvZRkgWq4dOLsTOXwAZNJpdMf7SjRPUPWSR5XzyvfIPtF37IF8PcLyF
+         eG2poAj44PWrspC186mA54CivpdLZzf8SEW8k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=LCy4d/uPw5BLn8Wtp8APLodtLD4pO2HOn2Pu/h6vPEQ=;
-        b=oxGZqBc9HHZYoA9MkRKdFCZhNpjKIBIuUJcEcWj3aB/WfUFHeLLe04enVAoSRPCvSt
-         dTbsEtb6yL8tPuzpqVfz9SDiuZ4kmkCg5TOT19Sftu8+Qhy2WclXVQKDaNC0jDXXt+Z/
-         6UUl6Mf4Tmvg2oA76z5/Gjw8XKmRW+Koa+BWLEn7z2+DksaHMxrPlTm0vTuvzyuvKLZt
-         W4Mp+kADyowHCde6cBCWw8oZJxifH6tAYc0wefa2qc7CjFVYPH3yTSyDq17t1mg8OXFL
-         0KXpp8Cdmn2pW7TojI9ADUH/9S44n5z3P/5KlbsgFipYgAQmGgvk1V2+DXx9x6kodX3W
-         0eEg==
-X-Gm-Message-State: APjAAAV/+ja6YrcA/6u4iL8/kPtLq3AvyTPOws/j5tLJtcb1SjQRKqk9
-        SzVzuA+fbWXIN8SwIgJJmTwxQA==
-X-Google-Smtp-Source: APXvYqwqOj229OreenHXwJi4oidfVVbTHzeOfUUBBvLdizzGOX34wX6hYI9c93bqiOm2N75XvR3FNg==
-X-Received: by 2002:a63:5818:: with SMTP id m24mr6680605pgb.358.1579905799008;
-        Fri, 24 Jan 2020 14:43:19 -0800 (PST)
+        bh=fR36UAT87Z0TKgzJqLSUdRVGW5KC0xvFs4pz6EoaSEs=;
+        b=UmgM7PCnFpZ3Gf5Fc3OoJe796eQbXtnMVnE8ocVh7ZmV3RR4DTyCnPsx3k/R9JMbtB
+         kw1Lw0Wk3mncnLsG467Npt5yOjyfQWr1dBzELBvvaZwZMmRWczFQyVnr6ujwv6azmRwZ
+         MsUJzAbozaPy5MpwK4uZzR3WyMnwgg7PDoq1ww9VYiemI4rjV4GzQC8xR3IUQKFkRrYg
+         KHRQFuwl1maJ7kD+BtXr5KQXBh0ori1WrPMvomajGG3eYE9YrilnVu254d15QgsRkY4h
+         PEsCYgPZqeXKKyDer5I7c55i5I5fDxRjB9tV4tzwx1BqYxj8MDJI/pznHkZFpS9aviJb
+         POIw==
+X-Gm-Message-State: APjAAAVLnAUlo+GHX1Okyyq/9nb8A3Rvr+jaINdAmTR6Y5upKyJFreqR
+        XQkTtIkJyKTEwIPgbSYuwFwIuQ==
+X-Google-Smtp-Source: APXvYqzQWhWF4MQsZ7Z+9Immx0ruH/IjtEERzHTTTIJYCcURTdVPjfvN5BCLXulZMP1xLv21An1JIQ==
+X-Received: by 2002:a63:1a19:: with SMTP id a25mr6709867pga.447.1579905800195;
+        Fri, 24 Jan 2020 14:43:20 -0800 (PST)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id o2sm7690948pjo.26.2020.01.24.14.43.18
+        by smtp.gmail.com with ESMTPSA id o2sm7690948pjo.26.2020.01.24.14.43.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 24 Jan 2020 14:43:18 -0800 (PST)
+        Fri, 24 Jan 2020 14:43:19 -0800 (PST)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -51,10 +51,11 @@ Cc:     Jeffrey Hugo <jhugo@codeaurora.org>,
         mka@chromium.org, kalyan_t@codeaurora.org,
         Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
         hoegsberg@chromium.org, Douglas Anderson <dianders@chromium.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 03/10] arm64: dts: qcom: sdm845: Add the missing clocks on the dispcc
-Date:   Fri, 24 Jan 2020 14:42:18 -0800
-Message-Id: <20200124144154.v2.3.Ie80fa74e1774f4317d80d70d30ef4b78f16cc8df@changeid>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 04/10] dt-bindings: clock: Fix qcom,gpucc bindings for sdm845/sc7180/msm8998
+Date:   Fri, 24 Jan 2020 14:42:19 -0800
+Message-Id: <20200124144154.v2.4.I513cd73b16665065ae6c22cf594d8b543745e28c@changeid>
 X-Mailer: git-send-email 2.25.0.341.g760bfbb309-goog
 In-Reply-To: <20200124224225.22547-1-dianders@chromium.org>
 References: <20200124224225.22547-1-dianders@chromium.org>
@@ -65,50 +66,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We're transitioning over to requiring the Qualcomm Display Clock
-Controller to specify all the input clocks.  Let's add them for
-sdm845.
+The qcom,dispcc bindings had a few problems with them:
 
-NOTES:
-- Until the Linux driver for sdm845's dispcc is updated, these clocks
-  will not actually be used in Linux.  It will continue to use global
-  clock names to match things up.
-- Although the clocks from the DP PHY are required, the DP PHY isn't
-  represented in the dts yet.  Apparently the magic for this is just
-  to use <0>.
+1. When things were converted to yaml the name of the "gpll0 main"
+   clock got changed from "gpll0" to "gpll0_main".  Change it back.
 
+2. The bindings are written so that new boards don't have to specify
+   all the clocks.  That doesn't really make sense.  Make it so that
+   on new boards all 3 clocks are required.
+
+This also updates the example to be sc7180 and use symbolic names for
+clock indicies.
+
+NOTE: It seems that we can only make things _more_ restrictive in the
+per-SoC overrides for minItems/maxItems.  ...so by default we start
+out with a loose min=2, max=3 (implicit).  Then we restrict msm8998 to
+exactly 2 and everything else to exactly 3.
+
+Fixes: 5c6f3a36b913 ("dt-bindings: clock: Add YAML schemas for the QCOM GPUCC clock bindings")
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 ---
 
 Changes in v2:
-- Patch ("arm64: dts: qcom: sdm845: Add...dispcc") new for v2.
+- Patch ("dt-bindings: clock: Fix qcom,gpucc...") new for v2.
 
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../devicetree/bindings/clock/qcom,gpucc.yaml | 42 ++++++++++++++-----
+ 1 file changed, 31 insertions(+), 11 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index d42302b8889b..01354533a61b 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2933,6 +2933,18 @@ opp-200000000 {
- 		dispcc: clock-controller@af00000 {
- 			compatible = "qcom,sdm845-dispcc";
- 			reg = <0 0x0af00000 0 0x10000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
-+				 <&dsi0_phy 0>,
-+				 <&dsi0_phy 1>,
-+				 <&dsi1_phy 0>,
-+				 <&dsi1_phy 1>,
-+				 <0>,
-+				 <0>;
-+			clock-names = "xo", "gpll0",
-+				      "dsi0_phy_pll_byte", "dsi0_phy_pll_pixel",
-+				      "dsi1_phy_pll_byte", "dsi1_phy_pll_pixel",
-+				      "dp_phy_pll_link", "dp_phy_pll_vco_div";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
- 			#power-domain-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+index 622845aa643f..64cf3c450325 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,gpucc.yaml
+@@ -21,19 +21,17 @@ properties:
+       - qcom,sdm845-gpucc
+ 
+   clocks:
+-    minItems: 1
+-    maxItems: 3
++    minItems: 2
+     items:
+       - description: Board XO source
+-      - description: GPLL0 main branch source from GCC(gcc_gpu_gpll0_clk_src)
+-      - description: GPLL0 div branch source from GCC(gcc_gpu_gpll0_div_clk_src)
++      - description: GPLL0 main branch source (gcc_gpu_gpll0_clk_src)
++      - description: GPLL0 div branch source (gcc_gpu_gpll0_div_clk_src)
+ 
+   clock-names:
+-    minItems: 1
+-    maxItems: 3
++    minItems: 2
+     items:
+       - const: xo
+-      - const: gpll0_main
++      - const: gpll0
+       - const: gpll0_div
+ 
+   '#clock-cells':
+@@ -57,16 +55,38 @@ required:
+   - '#reset-cells'
+   - '#power-domain-cells'
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        const: qcom,msm8998-gpucc
++then:
++  properties:
++    clocks:
++      maxItems: 2
++    clock-names:
++      maxItems: 2
++else:
++  properties:
++    clocks:
++      minItems: 3
++    clock-names:
++      minItems: 3
++
+ examples:
+   # Example of GPUCC with clock node properties for SDM845:
+   - |
++    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
++    #include <dt-bindings/clock/qcom,rpmh.h>
+     clock-controller@5090000 {
+       compatible = "qcom,sdm845-gpucc";
+-      reg = <0x5090000 0x9000>;
+-      clocks = <&rpmhcc 0>, <&gcc 31>, <&gcc 32>;
+-      clock-names = "xo", "gpll0_main", "gpll0_div";
++      reg = <0 0x05090000 0 0x9000>;
++      clocks = <&rpmhcc RPMH_CXO_CLK>,
++         <&gcc GCC_GPU_GPLL0_CLK_SRC>,
++         <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
++      clock-names = "xo", "gpll0", "gpll0_div";
+       #clock-cells = <1>;
+       #reset-cells = <1>;
+       #power-domain-cells = <1>;
+-     };
++    };
+ ...
 -- 
 2.25.0.341.g760bfbb309-goog
 
