@@ -2,83 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 887991491CE
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2020 00:21:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40B041491E5
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2020 00:21:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387604AbgAXXUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jan 2020 18:20:49 -0500
-Received: from mailoutvs60.siol.net ([185.57.226.251]:37475 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2387594AbgAXXUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jan 2020 18:20:48 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTP id ED3885228F3;
-        Sat, 25 Jan 2020 00:20:44 +0100 (CET)
-X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 7dL3LSThwaQe; Sat, 25 Jan 2020 00:20:44 +0100 (CET)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTPS id A74745228F8;
-        Sat, 25 Jan 2020 00:20:44 +0100 (CET)
-Received: from localhost.localdomain (cpe-194-152-20-232.static.triera.net [194.152.20.232])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Zimbra) with ESMTPSA id 538075228F3;
-        Sat, 25 Jan 2020 00:20:42 +0100 (CET)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        hverkuil-cisco@xs4all.nl, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH 8/8] arm64: dts: allwinner: a64: add node for rotation core
-Date:   Sat, 25 Jan 2020 00:20:14 +0100
-Message-Id: <20200124232014.574989-9-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200124232014.574989-1-jernej.skrabec@siol.net>
-References: <20200124232014.574989-1-jernej.skrabec@siol.net>
+        id S2387661AbgAXXVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jan 2020 18:21:33 -0500
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:38277 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387660AbgAXXV3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jan 2020 18:21:29 -0500
+Received: by mail-vs1-f65.google.com with SMTP id r18so2337429vso.5
+        for <devicetree@vger.kernel.org>; Fri, 24 Jan 2020 15:21:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SRJ461+G7MgpwUQU9s+T4wtNvR/tD3NyDdbo7eqA7AI=;
+        b=eZcDQrVRmmgUua8irA6uwUmZChO1NI87dboSLB2KeMzZ7JR5gsRbghI4LgN0exPQaG
+         wHHGvu0c0RiHR1HnL/WKGm1NRBd7MGYwLUPDYXttvh8VvVu0+YYWqCxhGxwiU7uPt9Jy
+         3VN3tqCAta+mZolHhOTXrqvhq69f6dnCWbGt0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SRJ461+G7MgpwUQU9s+T4wtNvR/tD3NyDdbo7eqA7AI=;
+        b=GBciZyLmjk9SiwqdNQ+IcDV0hGDAU3zv20AlQG8TgKiSpA8fNda3FKeUqSrEorCf7C
+         0Ei+pxM4CEVTjxLnBk8P9KoKx0lK+bGqEbsRIv/vcedzygdj1AtRJ8HA1mSlzSddaQDp
+         L+wmr7fhXXt7XmLjQSfu65Je/vS//L8t99H/DqeoZ78A/CGcRMePCb0gvAc6ZGW/pY1Y
+         gb5LmfIX4YrMDfFSHMPGzKHjr/eKk4Us8bsOoj7xhwHeKFYzx9GmwiqO0WofeWXccIxb
+         B2BDhZXfDdKXf3NjsiPDUaDUkATYudqVy3ASW/WdL8EHz96h5v8IZ6pHRwGV0EU9pAm2
+         myZw==
+X-Gm-Message-State: APjAAAXOBHbwYtMgtN8//LV0XX0eGCMeL83aVDGM68Y7W+OsMDmariCW
+        J5wh/WIRJYdSDoeGrQ3HGoRPkdqApCA=
+X-Google-Smtp-Source: APXvYqzp5RToTGiuoEHP4UgbMt/n4xMdTUv/F3d2kod1PzUbm7viiwOU4atI3AGz5qOpy/9W0uhhJg==
+X-Received: by 2002:a67:6842:: with SMTP id d63mr3960256vsc.171.1579908087684;
+        Fri, 24 Jan 2020 15:21:27 -0800 (PST)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id k6sm1738393vsc.26.2020.01.24.15.21.26
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jan 2020 15:21:26 -0800 (PST)
+Received: by mail-vs1-f42.google.com with SMTP id n27so2357422vsa.0
+        for <devicetree@vger.kernel.org>; Fri, 24 Jan 2020 15:21:26 -0800 (PST)
+X-Received: by 2002:a05:6102:2d8:: with SMTP id h24mr4063725vsh.169.1579908086214;
+ Fri, 24 Jan 2020 15:21:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <1579867572-17188-1-git-send-email-harigovi@codeaurora.org>
+In-Reply-To: <1579867572-17188-1-git-send-email-harigovi@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 24 Jan 2020 15:21:14 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=WKVGq+x1XFvZQvBcKVPdcVxQWJJmsqpAxY3t4dorvMYg@mail.gmail.com>
+Message-ID: <CAD=FV=WKVGq+x1XFvZQvBcKVPdcVxQWJJmsqpAxY3t4dorvMYg@mail.gmail.com>
+Subject: Re: [v3] arm64: dts: sc7180: add display dt nodes
+To:     Harigovindan P <harigovi@codeaurora.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        kalyan_t@codeaurora.org, nganji@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner A64 contains rotation core compatible to A83T.
+Hi,
 
-Add a node for it.
+On Fri, Jan 24, 2020 at 4:07 AM Harigovindan P <harigovi@codeaurora.org> wrote:
+>
+> Add display, DSI hardware DT nodes for sc7180.
+>
+> Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
+> ---
+>
+> Changes in v1:
+>         -Added display DT nodes for sc7180
+> Changes in v2:
+>         -Renamed node names
+>         -Corrected code alignments
+>         -Removed extra new line
+>         -Added DISP AHB clock for register access
+>         under display_subsystem node for global settings
+> Changes in v3:
+>         -Modified node names
+>         -Modified hard coded values
+>         -Removed mdss reg entry
+>
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts |  58 +++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi    | 124 ++++++++++++++++++++++++++++++++
+>  2 files changed, 182 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> index 388f50a..c77aab7 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+> @@ -7,6 +7,7 @@
+>
+>  /dts-v1/;
+>
+> +#include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include "sc7180.dtsi"
+>  #include "pm6150.dtsi"
+> @@ -232,6 +233,50 @@
+>         };
+>  };
+>
+> +&dsi_controller {
+> +       status = "okay";
+> +
+> +       vdda-supply = <&vreg_l3c_1p2>;
+> +
+> +       panel@0 {
+> +               compatible = "visionox,rm69299-1080p-display";
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+I don't think the bindings for this panel have landed anywhere, have
+they?  Maybe keep the IDP patch separate from the main sc7180 patch so
+that we can land the main sc7180 patch even if the idp patch isn't
+quite ready?  ...and maybe ping whoever is supposed to add support for
+this panel to tell them to get working on it.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/b=
-oot/dts/allwinner/sun50i-a64.dtsi
-index baa6f08dc108..fd6ed305c14c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -274,6 +274,18 @@ display_clocks: clock@0 {
- 				#reset-cells =3D <1>;
- 			};
-=20
-+			rotate: rotate@20000 {
-+				compatible =3D "allwinner,sun50i-a64-de2-rotate",
-+					     "allwinner,sun8i-a83t-de2-rotate";
-+				reg =3D <0x20000 0x10000>;
-+				interrupts =3D <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks =3D <&display_clocks CLK_BUS_ROT>,
-+					 <&display_clocks CLK_ROT>;
-+				clock-names =3D "bus",
-+					      "mod";
-+				resets =3D <&display_clocks RST_ROT>;
-+			};
-+
- 			mixer0: mixer@100000 {
- 				compatible =3D "allwinner,sun50i-a64-de2-mixer-0";
- 				reg =3D <0x100000 0x100000>;
---=20
-2.25.0
 
+> +               reg = <0>;
+> +
+> +               vdda-supply = <&vreg_l8c_1p8>;
+> +               vdd3p3-supply = <&vreg_l18a_2p8>;
+> +
+> +               pinctrl-names = "default", "suspend";
+> +               pinctrl-0 = <&disp_pins_default>;
+> +               pinctrl-1 = <&disp_pins_default>;
+> +
+> +               reset-gpios = <&pm6150l_gpio 3 GPIO_ACTIVE_HIGH>;
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       port@0 {
+> +                               reg = <0>;
+> +                               panel0_in: endpoint {
+> +                                       remote-endpoint = <&dsi0_out>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +
+> +       ports {
+> +               port@1 {
+> +                       endpoint {
+> +                               remote-endpoint = <&panel0_in>;
+> +                               data-lanes = <0 1 2 3>;
+> +                       };
+> +               };
+> +       };
+> +};
+> +
+> +&dsi_phy {
+> +       status = "okay";
+
+The above doesn't do anything because the dsi_phy you add to
+sc7180.dtsi doesn't have a
+  status = "disabled";
+
+...but probably it (and most of the other components that you're
+adding) should.  The idea is that if it ever makes sense that a board
+might be built with this SoC but _not_ hook up a given component that
+it should start out "disabled" in the main SoC dtsi file.
+
+> +};
+> +
+>  &qspi {
+>         status = "okay";
+>         pinctrl-names = "default";
+> @@ -289,6 +334,19 @@
+>
+>  /* PINCTRL - additions to nodes defined in sc7180.dtsi */
+>
+> +&pm6150l_gpio {
+> +       disp_pins {
+> +               disp_pins_default: disp_pins_default{
+
+As Bjorn mentioned, node name should use "-" instead of "_".  Also add
+a space before your "{"
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 3bc3f64..3ebc45b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -1184,6 +1184,130 @@
+>                         #power-domain-cells = <1>;
+>                 };
+>
+> +               mdss: display_subsystem@ae00000 {
+> +                       compatible = "qcom,sc7180-mdss";
+> +                       reg = <0 0x0ae00000 0 0x1000>;
+> +                       reg-names = "mdss";
+> +
+> +                       power-domains = <&dispcc MDSS_GDSC>;
+
+You definitely can't land your patch until the "dispcc" node is added,
+but it's not.  You should be mentioning somewhere (after the cut?)
+that you depend on the series to add dispcc.
+
+...speaking of which, I just posted up a v2 of that.  See:
+
+https://lore.kernel.org/r/20200124144154.v2.10.I1a4b93fb005791e29a9dcf288fc8bd459a555a59@changeid
+
+...speaking of which, can you please change your patch to replace the
+bogus <0> in the dispcc for the DSI PHY, providing the clocks for
+"dsi_phy_pll_byte" and "dsi_phy_pll_pixel"?  See
+<https://crrev.com/c/2017974/3>
+
+
+> +
+> +                       clocks = <&gcc GCC_DISP_AHB_CLK>,
+> +                                <&gcc GCC_DISP_HF_AXI_CLK>,
+> +                                <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +                                <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> +                       clock-names = "iface", "gcc_bus", "ahb", "core";
+> +
+> +                       assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> +                       assigned-clock-rates = <300000000>;
+> +
+> +                       interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-controller;
+> +                       #interrupt-cells = <1>;
+> +
+> +                       iommus = <&apps_smmu 0x800 0x2>;
+> +
+> +                       #address-cells = <2>;
+> +                       #size-cells = <2>;
+> +                       ranges;
+> +
+> +                       mdp: display_controller@ae01000 {
+
+Did you test this?  As far I can tell this change between v2 and v3
+broke things because the node name "mdp" is magic.  In
+"drivers/gpu/drm/msm/msm_drv.c" you can find the function:
+
+static int compare_name_mdp(struct device *dev, void *data)
+{
+  return (strstr(dev_name(dev), "mdp") != NULL);
+}
+
+...so unless that function changes your device tree won't work.  Maybe
+Bjorn can comment since I think he's the one that suggested you change
+this, but IMO change it back to "mdp@ae01000" for now and then start a
+separate patch series about transitioning this if people still want
+it.  See <https://crrev.com/c/2020395/1>.
+
+-Doug
