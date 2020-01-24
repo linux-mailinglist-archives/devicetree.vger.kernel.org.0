@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74947148707
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 15:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B30F9148836
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 15:28:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404700AbgAXOUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jan 2020 09:20:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41202 "EHLO mail.kernel.org"
+        id S2390461AbgAXO1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jan 2020 09:27:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43036 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404184AbgAXOUR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jan 2020 09:20:17 -0500
+        id S2387426AbgAXOVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Jan 2020 09:21:22 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D8C1821734;
-        Fri, 24 Jan 2020 14:20:15 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5CC762087E;
+        Fri, 24 Jan 2020 14:21:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579875616;
+        s=default; t=1579875682;
         bh=qrQvkU+aV1DaKdMny9iBbnqh9o3QeD2Mk64oFml+xUo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=aKUW1Cv+jxlMgr9ObMMHkjAKMQmnySWZBwy83oq212DMoV0wqiOF0f9eywCxmOqLz
-         j3i7jeGfZ1X9fWnVaujOWaIq95X0NQRI9kyHZR20QFDMwBXg61YlC8fW0o1XiRCfUh
-         AWd94AVu9AuVegrfK7OV6qB7LTqp3SVHSxbh0KyQ=
+        b=BpJWH2AqDy/5YbiNFI6su06fOu2g6qrUwc02pwfgqHF19dI6DJKqQ2m58MPJomWqW
+         ffdigt5EVV/ywKdy4ZPxO5gHMuQ41yEDoDg3HiPFLw/OTSwYCGs2t1iXjkqbVX0q+A
+         1HgY+pN5WD1xpLL1GzNWC9O5p9nGI/vETtr866DE=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         Kevin Hilman <khilman@baylibre.com>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 03/56] dt-bindings: reset: meson8b: fix duplicate reset IDs
-Date:   Fri, 24 Jan 2020 09:19:19 -0500
-Message-Id: <20200124142012.29752-3-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 02/32] dt-bindings: reset: meson8b: fix duplicate reset IDs
+Date:   Fri, 24 Jan 2020 09:20:49 -0500
+Message-Id: <20200124142119.30484-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200124142012.29752-1-sashal@kernel.org>
-References: <20200124142012.29752-1-sashal@kernel.org>
+In-Reply-To: <20200124142119.30484-1-sashal@kernel.org>
+References: <20200124142119.30484-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
