@@ -2,38 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 855011488E3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 15:32:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 175241488B2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 15:31:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391696AbgAXOb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jan 2020 09:31:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41462 "EHLO mail.kernel.org"
+        id S2404923AbgAXOUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jan 2020 09:20:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41752 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730086AbgAXOUZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jan 2020 09:20:25 -0500
+        id S2392149AbgAXOUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Jan 2020 09:20:35 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DFFD024682;
-        Fri, 24 Jan 2020 14:20:23 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 62FE121569;
+        Fri, 24 Jan 2020 14:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579875625;
-        bh=Rw6tVfC2c6QLdOPEUQ6KBAa5nQZ0ZZvMUWY3ziIiaFo=;
+        s=default; t=1579875635;
+        bh=yYkdvZfWRqRnTJkQxbICX9j233kcKaHvQHhe2M4H1gs=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=lWohjO3Cb/KydxuMy3cmZPxOMFTeC04Nnr7YAxFdHeTSx3wgQ5LkHcztgfvkCtIiv
-         NdUPS3NWFTquMzdscfuNVUcEWh5LX9r0THnP5B5RCHLFoB9h2FsWFd1y/RD1TgibCv
-         JspS53O/zXK8tLnGJqd5AtZog9fqxTCvInBx7X7M=
+        b=V7Fcwnh6bn+jPMi0/5RlL7+UG9/V9gqq4m1tRjrAa5JfwoLRDO9krM7JQb2xGtLqA
+         sXKq0sb/MWAeK1AEhkABI5kGovc6CkoCd+CPhlkbACNWlsW2pAH/Ju1Zp4efQQcI48
+         Fsd5h8GFAwC8/5jRUR4bjxcqIuompgMo+TCdbqaY=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Fabio Estevam <festevam@gmail.com>,
-        Ludwig Zenz <lzenz@dh-electronics.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 10/56] ARM: dts: imx6q-dhcom: Fix SGTL5000 VDDIO regulator connection
-Date:   Fri, 24 Jan 2020 09:19:26 -0500
-Message-Id: <20200124142012.29752-10-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 19/56] ARM: dts: imx7: Fix Toradex Colibri iMX7S 256MB NAND flash support
+Date:   Fri, 24 Jan 2020 09:19:35 -0500
+Message-Id: <20200124142012.29752-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200124142012.29752-1-sashal@kernel.org>
 References: <20200124142012.29752-1-sashal@kernel.org>
@@ -46,38 +44,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Vasut <marex@denx.de>
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-[ Upstream commit fe6a6689d1815b63528796886853890d8ee7f021 ]
+[ Upstream commit 4b0b97e651ecf29f20248420b52b6864fbd40bc2 ]
 
-The SGTL5000 VDDIO is connected to the PMIC SW2 output, not to
-a fixed 3V3 rail. Describe this correctly in the DT.
+Turns out when introducing the eMMC version the gpmi node required for
+NAND flash support got enabled exclusively on Colibri iMX7D 512MB.
 
-Fixes: 52c7a088badd ("ARM: dts: imx6q: Add support for the DHCOM iMX6 SoM and PDK2")
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Ludwig Zenz <lzenz@dh-electronics.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-To: linux-arm-kernel@lists.infradead.org
+Fixes: f928a4a377e4 ("ARM: dts: imx7: add Toradex Colibri iMX7D 1GB (eMMC) support")
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6q-dhcom-pdk2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/imx7s-colibri.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6q-dhcom-pdk2.dts b/arch/arm/boot/dts/imx6q-dhcom-pdk2.dts
-index 9c61e3be2d9a3..1c46df6827f50 100644
---- a/arch/arm/boot/dts/imx6q-dhcom-pdk2.dts
-+++ b/arch/arm/boot/dts/imx6q-dhcom-pdk2.dts
-@@ -55,7 +55,7 @@
- 		#sound-dai-cells = <0>;
- 		clocks = <&clk_ext_audio_codec>;
- 		VDDA-supply = <&reg_3p3v>;
--		VDDIO-supply = <&reg_3p3v>;
-+		VDDIO-supply = <&sw2_reg>;
+diff --git a/arch/arm/boot/dts/imx7s-colibri.dtsi b/arch/arm/boot/dts/imx7s-colibri.dtsi
+index 1fb1ec5d3d707..6d16e32aed899 100644
+--- a/arch/arm/boot/dts/imx7s-colibri.dtsi
++++ b/arch/arm/boot/dts/imx7s-colibri.dtsi
+@@ -49,3 +49,7 @@
+ 		reg = <0x80000000 0x10000000>;
  	};
  };
- 
++
++&gpmi {
++	status = "okay";
++};
 -- 
 2.20.1
 
