@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E701486D9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 15:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74947148707
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 15:20:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390187AbgAXOSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jan 2020 09:18:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38878 "EHLO mail.kernel.org"
+        id S2404700AbgAXOUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jan 2020 09:20:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41202 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403796AbgAXOSy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 24 Jan 2020 09:18:54 -0500
+        id S2404184AbgAXOUR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 24 Jan 2020 09:20:17 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 52F702467F;
-        Fri, 24 Jan 2020 14:18:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D8C1821734;
+        Fri, 24 Jan 2020 14:20:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1579875534;
-        bh=DQJTMTJ1h1GWsR0/XHAdmkje0pVuVeFEUGMSPLzpH3k=;
+        s=default; t=1579875616;
+        bh=qrQvkU+aV1DaKdMny9iBbnqh9o3QeD2Mk64oFml+xUo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vfNjrm44AgHK1KpHY2ZIn6twjeT8/SUp2T1JFXIWfr9oRwXIyFbHqgvmmvA0JxJE4
-         aj0AqwewlUfVupa3UJXxFEI/ol3kQ9MBKVxsSKZBvqyjs9ZmySFU0bwsIE6Q8AxGZD
-         tNILNTD0cN3rjjkzct0EfeqJfzJgWIKZFXwfIYfc=
+        b=aKUW1Cv+jxlMgr9ObMMHkjAKMQmnySWZBwy83oq212DMoV0wqiOF0f9eywCxmOqLz
+         j3i7jeGfZ1X9fWnVaujOWaIq95X0NQRI9kyHZR20QFDMwBXg61YlC8fW0o1XiRCfUh
+         AWd94AVu9AuVegrfK7OV6qB7LTqp3SVHSxbh0KyQ=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Anson Huang <Anson.Huang@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 031/107] ARM: dts: imx6qdl-sabresd: Remove incorrect power supply assignment
-Date:   Fri, 24 Jan 2020 09:17:01 -0500
-Message-Id: <20200124141817.28793-31-sashal@kernel.org>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.19 03/56] dt-bindings: reset: meson8b: fix duplicate reset IDs
+Date:   Fri, 24 Jan 2020 09:19:19 -0500
+Message-Id: <20200124142012.29752-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200124141817.28793-1-sashal@kernel.org>
-References: <20200124141817.28793-1-sashal@kernel.org>
+In-Reply-To: <20200124142012.29752-1-sashal@kernel.org>
+References: <20200124142012.29752-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -43,41 +44,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[ Upstream commit 4521de30fbb3f5be0db58de93582ebce72c9d44f ]
+[ Upstream commit 4881873f4cc1460f63d85fa81363d56be328ccdc ]
 
-The vdd3p0 LDO's input should be from external USB VBUS directly, NOT
-PMIC's power supply, the vdd3p0 LDO's target output voltage can be
-controlled by SW, and it requires input voltage to be high enough, with
-incorrect power supply assigned, if the power supply's voltage is lower
-than the LDO target output voltage, it will return fail and skip the LDO
-voltage adjustment, so remove the power supply assignment for vdd3p0 to
-avoid such scenario.
+According to the public S805 datasheet the RESET2 register uses the
+following bits for the PIC_DC, PSC and NAND reset lines:
+- PIC_DC is at bit 3 (meaning: RESET_VD_RMEM + 3)
+- PSC is at bit 4 (meaning: RESET_VD_RMEM + 4)
+- NAND is at bit 5 (meaning: RESET_VD_RMEM + 4)
 
-Fixes: 93385546ba36 ("ARM: dts: imx6qdl-sabresd: Assign corresponding power supply for LDOs")
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Update the reset IDs of these three reset lines so they don't conflict
+with PIC_DC and map to the actual hardware reset lines.
+
+Fixes: 79795e20a184eb ("dt-bindings: reset: Add bindings for the Meson SoC Reset Controller")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6qdl-sabresd.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+ include/dt-bindings/reset/amlogic,meson8b-reset.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
-index 71ca76a5e4a51..fe59dde41b649 100644
---- a/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-sabresd.dtsi
-@@ -749,10 +749,6 @@
- 	vin-supply = <&vgen5_reg>;
- };
- 
--&reg_vdd3p0 {
--	vin-supply = <&sw2_reg>;
--};
--
- &reg_vdd2p5 {
- 	vin-supply = <&vgen5_reg>;
- };
+diff --git a/include/dt-bindings/reset/amlogic,meson8b-reset.h b/include/dt-bindings/reset/amlogic,meson8b-reset.h
+index 614aff2c7affe..a03e86fe2c570 100644
+--- a/include/dt-bindings/reset/amlogic,meson8b-reset.h
++++ b/include/dt-bindings/reset/amlogic,meson8b-reset.h
+@@ -95,9 +95,9 @@
+ #define RESET_VD_RMEM			64
+ #define RESET_AUDIN			65
+ #define RESET_DBLK			66
+-#define RESET_PIC_DC			66
+-#define RESET_PSC			66
+-#define RESET_NAND			66
++#define RESET_PIC_DC			67
++#define RESET_PSC			68
++#define RESET_NAND			69
+ #define RESET_GE2D			70
+ #define RESET_PARSER_REG		71
+ #define RESET_PARSER_FETCH		72
 -- 
 2.20.1
 
