@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A51214839A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 12:37:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D913148335
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2020 12:34:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387669AbgAXLhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 24 Jan 2020 06:37:35 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:49162 "EHLO
+        id S2391832AbgAXLdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 24 Jan 2020 06:33:04 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:49200 "EHLO
         lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404431AbgAXLc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jan 2020 06:32:26 -0500
+        with ESMTP id S2388159AbgAXLdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 24 Jan 2020 06:33:03 -0500
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00OBWNEE042050;
-        Fri, 24 Jan 2020 05:32:23 -0600
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00OBWtri042094;
+        Fri, 24 Jan 2020 05:32:55 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1579865543;
-        bh=UIHuy/MWjXgfz5O1NZVKDjd//Yhws3+i5WP1cnU1b7w=;
+        s=ti-com-17Q1; t=1579865575;
+        bh=c8f7d0QFL08xNSoD/1DZYVvClgyENpiDhzqCItQ9mFs=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=DrXgy2oe0n7cJlR1oU4k1x9RB0p5+P4HV4+XXZTgGThy0mQY5kmh2t1y3O4bXkhMB
-         TuztgQA7V7l6uXEtUGTlIdWduf3VcHejGlwM3vGkIsD1x44glvpbPRxRJLdnugUIyY
-         uN72q3VvmGo9HKDQAEJ00g28Pta1UoHqP/wb8VUs=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00OBWNkM127450
+        b=modb9885HvyjGetaE6PWy8EkNHP1tLV7mEeoDXo3Q0Dfd1sSkEt9rw/5Xs2iztVxG
+         veV0SIuzJBowghsAJj5sEcnIxBCzvE66BFQSN+6pov1hmMw5QSF7D0ccHbEz0RQflj
+         l52eU8Pmj4oONlgIpzC/eOyCIeLlz20SFD3Lg0/U=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00OBWtRY127768
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 24 Jan 2020 05:32:23 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 24 Jan 2020 05:32:55 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 24
- Jan 2020 05:32:22 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ Jan 2020 05:32:53 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Fri, 24 Jan 2020 05:32:22 -0600
+ Frontend Transport; Fri, 24 Jan 2020 05:32:53 -0600
 Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00OBWJff098690;
-        Fri, 24 Jan 2020 05:32:20 -0600
-Subject: Re: [Patch v4 09/10] arm64: dts: k3-am65-main Add CAL node
-To:     Benoit Parrot <bparrot@ti.com>, Tony Lindgren <tony@atomide.com>,
-        <linux-omap@vger.kernel.org>, <linux-clk@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20191211140558.10407-1-bparrot@ti.com>
- <20191211140558.10407-10-bparrot@ti.com>
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00OBWpEk091417;
+        Fri, 24 Jan 2020 05:32:51 -0600
+Subject: Re: [PATCH v3 0/9] arm64: dts: ti: UDMAP and McASP support
+To:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>, <nm@ti.com>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20200123114528.26552-1-peter.ujfalusi@ti.com>
+ <7a34dbfa-426d-061e-cbf6-3da1d8bada65@ti.com>
 From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <dd203eea-f467-07a0-c578-cc6eeb512032@ti.com>
-Date:   Fri, 24 Jan 2020 13:32:19 +0200
+Message-ID: <14b395ad-122a-3331-5b89-b6f8708bc00e@ti.com>
+Date:   Fri, 24 Jan 2020 13:32:50 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <20191211140558.10407-10-bparrot@ti.com>
+In-Reply-To: <7a34dbfa-426d-061e-cbf6-3da1d8bada65@ti.com>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -59,52 +60,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/2019 16:05, Benoit Parrot wrote:
-> Add CAL dtsi node for AM654 device. Including proper power-domains and
-> clock properties.
+On 23/01/2020 14:35, Lokesh Vutla wrote:
 > 
-> Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> 
+> On 23/01/20 5:15 PM, Peter Ujfalusi wrote:
+>> Hi,
+>>
+>> Changes since v2:
+>> - Correct unit addresses for the McASP nodes
+>> - Remove unit address and label for MAIN and MCU NAVSS
+>>
+>> Changes since v1:
+>> - rebased on ti-k3-next
+>> - Corrected j721e mcu_udma node: s/udmap/dma-controller
+>> - Moved the two McASP node patch at the end of the series
+>>
+>> The ringacc and UDMA documentation and drivers are in next-20200122.
+>>
+>> While adding the DMA support I have noticed few issues which is also fixed by
+>> this series.
+> 
+> 
+> Entire series looks good to me.
+> 
+> Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
 
-Queued this and patch #10 up for 5.6, thanks.
+Queued the whole series towards 5.6, thanks.
 
 -Tero
 
-> ---
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 22 ++++++++++++++++++++++
->   1 file changed, 22 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> index efb24579922c..551adcefcc83 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-> @@ -624,4 +624,26 @@
->   		dma-coherent;
->   		interrupts = <GIC_SPI 355 IRQ_TYPE_EDGE_RISING>;
->   	};
-> +
-> +	cal: cal@6f03000 {
-> +		compatible = "ti,am654-cal";
-> +		reg = <0x0 0x06f03000 0x0 0x400>,
-> +		      <0x0 0x06f03800 0x0 0x40>;
-> +		reg-names = "cal_top",
-> +			    "cal_rx_core0";
-> +		interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
-> +		ti,camerrx-control = <&scm_conf 0x40c0>;
-> +		clock-names = "fck";
-> +		clocks = <&k3_clks 2 0>;
-> +		power-domains = <&k3_pds 2 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			csi2_0: port@0 {
-> +				reg = <0>;
-> +			};
-> +		};
-> +	};
->   };
-> 
+>>
+>> Tero: I have included the McASP nodes as well to have examples for other
+>> peripherals on how he binding should be used.
+>> The patches for the McASP driver is not in next, but they are only internal
+>> driver changes (and Kconfig), not adding new DT dependencies.
+>> Since the McASP is disabled in SoC dtsi due to board level configuration needs
+>> it is not going to erroneously probe drivers.
+>>
+>> It is up to you if you pick them or not, but I believe they serve a safe and
+>> nice example how the dma binding should be used for UDMA.
+>>
+>> Regards,
+>> Peter
+>> ---
+>> Peter Ujfalusi (9):
+>>    arm64: dts: ti: k3-am65-main: Correct main NAVSS representation
+>>    arm64: dts: ti: k3-am65-main: Move secure proxy under cbass_main_navss
+>>    arm64: dts: ti: k3-am65: DMA support
+>>    arm64: dts: ti: k3-j721e: Correct the address for MAIN NAVSS
+>>    arm64: dts: ti: k3-j721e-main: Correct main NAVSS representation
+>>    arm64: dts: ti: k3-j721e-main: Move secure proxy and smmu under
+>>      main_navss
+>>    arm64: dts: ti: k3-j721e: DMA support
+>>    arm64: dts: ti: k3-am654-main: Add McASP nodes
+>>    arm64: dts: ti: k3-j721e-main: Add McASP nodes
+>>
+>>   arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 122 ++++++-
+>>   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       |  46 +++
+>>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 313 ++++++++++++++++--
+>>   .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  45 +++
+>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   2 +-
+>>   5 files changed, 491 insertions(+), 37 deletions(-)
+>>
 
 --
 Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
