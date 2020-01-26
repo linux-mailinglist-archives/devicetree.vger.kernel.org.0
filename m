@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A429149A49
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2020 11:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2D09149A21
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2020 11:36:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726571AbgAZK5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jan 2020 05:57:23 -0500
-Received: from mail25.static.mailgun.info ([104.130.122.25]:38307 "EHLO
-        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726436AbgAZK5X (ORCPT
+        id S1729107AbgAZKgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jan 2020 05:36:23 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:56067 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726571AbgAZKgX (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 26 Jan 2020 05:57:23 -0500
+        Sun, 26 Jan 2020 05:36:23 -0500
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1580036242; h=Date: Message-Id: Cc: To: References:
+ s=smtp; t=1580034983; h=Date: Message-Id: Cc: To: References:
  In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
  Content-Type: Sender; bh=0ODxYEpthZoVUaWLihId/bFGPfX3PA2tr9ipVMmLvpw=;
- b=HzTup8fXIBhiAcq/x5PRGZREuTP2gIFMxLZ4C/iyZt9mxvbYMNCnDtWfbm7kZDO12kOBtU3Z
- YMOWFbs1T8kX62y9WCxp/OlIejjj6NN3Hq5dZLeaRBzCvY85Dg945aJRgKo3NnA4tigKkosu
- I9WDV3QGhGiRSiVzEeEqi/M/C9A=
-X-Mailgun-Sending-Ip: 104.130.122.25
+ b=wRGqMTL9vRp9y33G8X5vWYxwiuMQFBSONpgriDscSOv55RWDThcMnd3wNBtd86dhrEYLugyP
+ D85/klOM4u/MfpuAJsV6qLqO6PpLEcISw6o2zqQWdD9MTdhNoDsZ76HDWYPHMsUsgLGUqa7w
+ CrteiEwfKWQTjn1+ddEinUMfg2U=
+X-Mailgun-Sending-Ip: 104.130.122.26
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
  by mxa.mailgun.org with ESMTP id 5e2d6912.7fe6e1c59d18-smtp-out-n02;
