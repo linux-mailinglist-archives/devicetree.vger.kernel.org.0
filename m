@@ -2,109 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 285CF149AED
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2020 15:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C002149B3F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2020 16:05:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387469AbgAZOJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 26 Jan 2020 09:09:40 -0500
-Received: from mail-yb1-f196.google.com ([209.85.219.196]:34608 "EHLO
-        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387465AbgAZOJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jan 2020 09:09:39 -0500
-Received: by mail-yb1-f196.google.com with SMTP id w17so3652548ybm.1;
-        Sun, 26 Jan 2020 06:09:39 -0800 (PST)
+        id S1725838AbgAZPFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 26 Jan 2020 10:05:55 -0500
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:39498 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725944AbgAZPFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 26 Jan 2020 10:05:55 -0500
+Received: by mail-lf1-f68.google.com with SMTP id t23so4406863lfk.6
+        for <devicetree@vger.kernel.org>; Sun, 26 Jan 2020 07:05:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0waTrM+p0MNxst8w9Z5JQMayoehG4IUq+pQpCkmEaO8=;
-        b=Y/whYoNP5vb88jRBSS1HcGmlCT6z7yURB0WKKZu9ViIR1Ye/BPkoagOfjw6OfNzaL3
-         KhDtMjA0we0C62kLbl1CANuDAOtxC0LVFs2YF3I7W37x6F9kH8nID3XO6uy3MyBKepyS
-         cuXXX4qPn9UXTvCW5NoalPXUv+8DMHnDaH8Gg8/WyEnaLJJYbVf7yfqZEiJXsR1J+Np5
-         d0Vht7U4UMe5Sku2R58lebhMMFygcxKzke537fW7C3GrfWnhgxGpk1tARgl9vty8d/gn
-         SGbEwJ8jx1lodEuq07i//FH9+0vdgpLG6s/Cc3CNs2TQr7nIS5edeOo8FIVf0QZz6o6D
-         Pqwg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+RHTE3nUb5dfPevjsWD1iLezxvXfZXjeHjK9RsRGLMU=;
+        b=nDfWJs/DHHcdQ78FJWwCKFIzFckSaf1JdgHXG5c7veYmpNleLMzAsxp/rn7tJm2ie0
+         jPy9ku4xKj2itbbOvHvrL3Eals8SMZid0kjvrKqqmWta8yrp0gqYHJLpJfHAlXKz2wLZ
+         jE/qtnjDfClb8o7nXGHdDlA/TrRkaWJTRIlHQkXRlIFN0M717I91I80niUr2dSNp6xOr
+         2QhncGWKA5zlg/gnzjxSvHB7gHFxSSOnSywbbcNdRa8fC1aBEV/KC13Vqjnc4AZUFjeK
+         XKQCEqBny+RWYvLEhDphLTrh2uJSpfEP+eFO3/67apS44GOLjlHd3pCRdPArvjFVCLpq
+         icPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0waTrM+p0MNxst8w9Z5JQMayoehG4IUq+pQpCkmEaO8=;
-        b=NbugRJ9o5YODt2ZAxIPCYd7u5uypkg+C6ZdChtFVdGF6/WrbdfocSu8u+3y1D+ssXW
-         1CIgn/IiKRK2DczRsxVu3A1t9BgnxIZ1lq2hgZHz/QR/QaJ8jd9iMKJZ290uTLkdGVqj
-         KtgmwY8HHPhilwvrLln4zzSzYyjPMPBOqSYJCMAXlBD93vbzXHWREtjeocmwsVH2WGoe
-         cqn0W0goTnUnB4gt4Dj0Zh2TFmAygcOGMuWMpqR9paZBjWeRaCYO5l0MPmC9HK2+kShP
-         ZGeyUYQsm3tLNTVWpVHoeH5KzhdA7r6pnNAQ2ghP1544MuSY4nLmJV/NWaWDPQ7WX2ng
-         YcQg==
-X-Gm-Message-State: APjAAAVvV/7pgouBayDxoFgItxkR1EmQxprzLZlJGlzgn04NksHS5JPV
-        IGCx2bE0j5Vv1eG4gn13CDKzOmHB90A=
-X-Google-Smtp-Source: APXvYqzlMdUSQYdwJJeaz15msbfWK+Z3P5aEgzbxzTYJ+IDLEk+5tn/w/276UKI8pyR+W6+/cki/aQ==
-X-Received: by 2002:a25:d1c9:: with SMTP id i192mr9426559ybg.493.1580047778366;
-        Sun, 26 Jan 2020 06:09:38 -0800 (PST)
-Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id a12sm5237214ywa.95.2020.01.26.06.09.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+RHTE3nUb5dfPevjsWD1iLezxvXfZXjeHjK9RsRGLMU=;
+        b=HDeF5Xs3ge/H3jwhj5/T/u0Vpkx5aI5q+Z4tKKEuZQBlUKYdWrWvtps/D0GqptlqwV
+         /nyKTn3dRQKCtYPuMXjS1Se7qEYhxYfe19AXZqNNiOEUlw86peZkHScc3e88W5oZvvUc
+         fA9Twlg2LJGJbsVmJj306hzBsKIM3ykFhOUf4rT4u38mHSWkqdOTotpXnhYQywJGfm4z
+         K3c3HqAsNMG8yj6dv8mpeP2Xa/4BAks6u50oMWslddnsHQeZSGz4ihtggjcqf9avw38J
+         FSrd+s1l93iizqBPH0rdCzwnIrQHiUZWfbOPJnfIo9LbUqxSJLvxKEd9mZNlhBFANXI6
+         v2ow==
+X-Gm-Message-State: APjAAAUivLcnZKIjsbz/KjuAhit5LIJPHo/x04LNvV1MfvdKtF+ha2y+
+        9T4q43h2UtDz2g86716e0iTLQw==
+X-Google-Smtp-Source: APXvYqxg6PLPDQ9mjIyqvHGAgo2AyQkQ7ZmShfE1zgLEnjgc2RLw7tCmB4qFkRsL6xY6Kn/2LN7/xA==
+X-Received: by 2002:a19:3f51:: with SMTP id m78mr5726542lfa.70.1580051152251;
+        Sun, 26 Jan 2020 07:05:52 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-5ac9225c.014-348-6c756e10.bbcust.telenor.se. [92.34.201.90])
+        by smtp.gmail.com with ESMTPSA id l12sm6635870lji.52.2020.01.26.07.05.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jan 2020 06:09:37 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-spi@vger.kernel.org
-Cc:     han.xu@nxp.com, Adam Ford <aford173@gmail.com>,
-        Yogesh Gaur <yogeshgaur.83@gmail.com>,
-        Ashish Kumar <ashish.kumar@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] arm64: dts: enable fspi in imx8mm dts
-Date:   Sun, 26 Jan 2020 08:09:12 -0600
-Message-Id: <20200126140913.2139260-5-aford173@gmail.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200126140913.2139260-1-aford173@gmail.com>
-References: <20200126140913.2139260-1-aford173@gmail.com>
+        Sun, 26 Jan 2020 07:05:51 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-input@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Minkyu Kang <mk7.kang@samsung.com>,
+        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH 1/2 v6] iio: light: Add DT bindings for GP2AP002
+Date:   Sun, 26 Jan 2020 16:05:47 +0100
+Message-Id: <20200126150548.9168-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pull in upstream patch from NXP repo to:
-enable fspi in imx8mm DT file
+This adds device tree bindings for the GP2AP002 light
+and proximity sensor.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Signed-off-by: Han Xu <han.xu@nxp.com>
+As with other early proximity sensors (~2010) the light
+sensor and proximity sensors were combined into a single
+component.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 1e5e11592f7b..679769fe6cab 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -558,7 +558,21 @@ aips3: bus@30800000 {
- 			compatible = "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--			ranges = <0x30800000 0x30800000 0x400000>;
-+			ranges = <0x30800000 0x30800000 0x400000>,
-+				 <0x8000000 0x8000000 0x10000000>;
+Cc: Stephan Gerhold <stephan@gerhold.net>
+Cc: Minkyu Kang <mk7.kang@samsung.com>
+Cc: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+Cc: Jonathan Bakker <xc-racer2@live.ca>
+Cc: Oskar Andero <oskar.andero@gmail.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v5->v6:
+- Resending with v6 of the driver.
+ChangeLog v4->v5:
+- Collected Rob's Reviewed-by tag.
+ChangeLog v3->v4:
+- Resend with the changes in the main patch.
+ChangeLog v1->v3:
+- Drop the maxitems on the supplies, it is already 1
+- Drop quotes around "alsout"
+- Limit the sharp hysteresis to 8 bits as it should be
+- Use /bits/ 8 in the example so it is correct
+---
+ .../bindings/iio/light/sharp,gp2ap002.yaml    | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml b/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
+new file mode 100644
+index 000000000000..12aa16f24772
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/sharp,gp2ap002.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			flexspi: spi@30bb0000 {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				compatible = "nxp,imx8mm-fspi";
-+				reg = <0x30bb0000 0x10000>, <0x8000000 0x10000000>;
-+				reg-names = "fspi_base", "fspi_mmap";
-+				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MM_CLK_QSPI_ROOT>,
-+					 <&clk IMX8MM_CLK_QSPI_ROOT>;
-+				clock-names = "fspi", "fspi_en";
-+				status = "disabled";
-+			};
- 
- 			ecspi1: spi@30820000 {
- 				compatible = "fsl,imx8mm-ecspi", "fsl,imx51-ecspi";
++title: Sharp GP2AP002A00F and GP2AP002S00F proximity and ambient light sensors
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  Proximity and ambient light sensor with IR LED for the proximity
++  sensing and an analog output for light intensity. The ambient light
++  sensor output is not available on the GP2AP002S00F variant.
++
++properties:
++  compatible:
++    enum:
++      - sharp,gp2ap002a00f
++      - sharp,gp2ap002s00f
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: an interrupt for proximity, usually a GPIO line
++
++  vdd-supply:
++    description: VDD power supply a phandle to a regulator
++
++  vio-supply:
++    description: VIO power supply a phandle to a regulator
++
++  io-channels:
++    maxItems: 1
++    description: ALSOUT ADC channel to read the ambient light
++
++  io-channel-names:
++    const: alsout
++
++  sharp,proximity-far-hysteresis:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description: |
++      Hysteresis setting for "far" object detection, this setting is
++      device-unique and adjust the optical setting for proximity detection
++      of a "far away" object in front of the sensor.
++
++  sharp,proximity-close-hysteresis:
++    $ref: /schemas/types.yaml#/definitions/uint8
++    description: |
++      Hysteresis setting for "close" object detection, this setting is
++      device-unique and adjust the optical setting for proximity detection
++      of a "close" object in front of the sensor.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - sharp,proximity-far-hysteresis
++  - sharp,proximity-close-hysteresis
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      light-sensor@44 {
++        compatible = "sharp,gp2ap002a00f";
++        reg = <0x44>;
++        interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
++        vdd-supply = <&vdd_regulator>;
++        vio-supply = <&vio_regulator>;
++        io-channels = <&adc_channel>;
++        io-channel-names = "alsout";
++        sharp,proximity-far-hysteresis = /bits/ 8 <0x2f>;
++        sharp,proximity-close-hysteresis = /bits/ 8 <0x0f>;
++      };
++    };
++
++...
 -- 
-2.24.0
+2.21.1
 
