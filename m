@@ -2,389 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A89C14A360
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 12:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A11E014A3B5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 13:21:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729607AbgA0L7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jan 2020 06:59:04 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54392 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728981AbgA0L7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 06:59:03 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00RBwiRo123300;
-        Mon, 27 Jan 2020 05:58:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1580126324;
-        bh=1ThGnVGaiS9FqKbQRBbN7fWA13r28BPDHjVEcw0Z3u4=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=Koj0B4JTVblvPK6h3noaSsmrJKSnatoASovXFWGWzR3hzVQx77d7uOkjmjurja4r5
-         jphtj3vP42Ahxb5X33yHZ0ZbslbrxqFSw58HCmT7TcsK7fp70v8bt7K/dzUi/APQuH
-         8KaXStaCo6+MmNqZ9pmJmIM2Ii/FwDSyJf4A4/n0=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00RBwiLq101922
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 27 Jan 2020 05:58:44 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 27
- Jan 2020 05:58:44 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 27 Jan 2020 05:58:44 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00RBwfvq056961;
-        Mon, 27 Jan 2020 05:58:41 -0600
-Subject: Re: [PATCH v3 2/2] drm/bridge: Add tc358768 driver
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <a.hajda@samsung.com>,
-        <narmstrong@baylibre.com>
-CC:     <tomi.valkeinen@ti.com>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-        <jernej.skrabec@siol.net>
-References: <20200127105634.7638-1-peter.ujfalusi@ti.com>
- <20200127105634.7638-3-peter.ujfalusi@ti.com>
-Message-ID: <27c29a4e-4207-d07b-ec25-902596f9d7b6@ti.com>
-Date:   Mon, 27 Jan 2020 13:59:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1730568AbgA0MVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jan 2020 07:21:21 -0500
+Received: from mail-wm1-f41.google.com ([209.85.128.41]:36143 "EHLO
+        mail-wm1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730392AbgA0MVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 07:21:21 -0500
+Received: by mail-wm1-f41.google.com with SMTP id p17so6825273wma.1;
+        Mon, 27 Jan 2020 04:21:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=jfdmZBVSX19FEw5yOEkD12e0Hmklt63OBqY1Uq1ogjM=;
+        b=Etag/tQWSZzjwp7fErrnD47npD+xrFY7eRvMGXjgmRcpA5GJ+SAKJg5zrQZpDzsq6z
+         lnodclySYNJKWWHmzpWPnwhBOJUfCMZNpMfSqNu6ieg03jQQgJ/xdp6rNb/joJNezWIe
+         a/32S/Hod/rQZ1/FxVK8t5bcyIXr+1TndFmIvYQYQjkyrHRkuG5H4D2LyNr8qMqHVIxo
+         DaghnUQ7Md+yHyiiquj/UZ9nKyHfvIrJPK+MSpkr55zZ3ixEEaPPEiJ54zsnlgXarrw4
+         RUy0ZDa3ayfyw+Ru7aLDMbKNL22hLIqwAftW2RAPW55R4ydLBMK0QV8sPwXZJNsAgkNi
+         gf2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jfdmZBVSX19FEw5yOEkD12e0Hmklt63OBqY1Uq1ogjM=;
+        b=QVOpfMFgCwkapFHMUFUmz3yao1IpNxCist/vaPGRIWx8powg347q22e76cA8t8F3nN
+         j20Cd00lQMrWlVszexA6ckPS9MaS7+p2wfKDV8X78Khu8Pt0VR1pp3X3m6dh601tzvVM
+         tZHRTWvckAUlLxJ3Vz+uevGb1JZuDAoSqus6INgfWPNbl2NkGel5t1MuIpUAY4SirKk2
+         Ox8lYlQIbeQ/QQcoYSuPdItKrb7EBJ9rchJMwH3LPpplJLf2ny1RGu9sVq4OMsXGGp4L
+         q7ETQXOcxjnFZrAmEXTutbJVM47h5GPNhcpsdcFLcDYbqD44MeSo45vyrhDlEjxAfifw
+         nBUw==
+X-Gm-Message-State: APjAAAWJIvxC6bjfBJVUrFP62DjZ8Jnac+tCFz2rEHJW7V4OyMkguayq
+        SuzUkXUmvbV3bD+5gSxz3iWK64Er
+X-Google-Smtp-Source: APXvYqyiM/PxVXRFr0gtTSlefJaemdd7mmRPyWmc0/TExQwi1WuKYndfyX0meYAG8OLuUUKzVeLsnw==
+X-Received: by 2002:a05:600c:cd:: with SMTP id u13mr13241426wmm.24.1580127678588;
+        Mon, 27 Jan 2020 04:21:18 -0800 (PST)
+Received: from localhost (p2E5BEF3F.dip0.t-ipconnect.de. [46.91.239.63])
+        by smtp.gmail.com with ESMTPSA id f1sm18118801wmc.45.2020.01.27.04.21.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jan 2020 04:21:17 -0800 (PST)
+Date:   Mon, 27 Jan 2020 13:21:15 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC 2/2] dt-bindings: firmware: tegra186-bpmp: Document
+ interconnects property
+Message-ID: <20200127122115.GA2117209@ulmo>
+References: <20200114181519.3402385-1-thierry.reding@gmail.com>
+ <20200114181519.3402385-2-thierry.reding@gmail.com>
+ <7aefac6c-092c-b5a6-2fa6-e283d2147fc3@linaro.org>
+ <20200120150605.GA712203@ulmo>
+ <57c37b3c-1473-d444-db59-8c6650241188@gmail.com>
+ <20200121141027.GE899558@ulmo>
+ <83d94918-bc01-131b-924c-9750767d3b29@linaro.org>
+ <20200121155432.GA912205@ulmo>
+ <ffc22502-0e7e-522c-543d-0e74cc25f4b1@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200127105634.7638-3-peter.ujfalusi@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="CE+1k2dSO48ffgeK"
+Content-Disposition: inline
+In-Reply-To: <ffc22502-0e7e-522c-543d-0e74cc25f4b1@gmail.com>
+User-Agent: Mutt/1.13.1 (2019-12-14)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--CE+1k2dSO48ffgeK
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 27/01/2020 12.56, Peter Ujfalusi wrote:
-> Add basic support for the Toshiba TC358768 RGB to DSI bridge.
-> Not all the features of the TC358768 is implemented by the initial driver:
-> MIPI_DSI_MODE_VIDEO and MIPI_DSI_FMT_RGB888 is only supported and tested.
-> 
-> Only write is implemented for mipi_dsi_host_ops.transfer.
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> ---
->  drivers/gpu/drm/bridge/Kconfig    |   10 +
->  drivers/gpu/drm/bridge/Makefile   |    1 +
->  drivers/gpu/drm/bridge/tc358768.c | 1040 +++++++++++++++++++++++++++++
->  3 files changed, 1051 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/tc358768.c
-> 
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index 0b9ca5862455..3fef3513bdd0 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -122,6 +122,16 @@ config DRM_TOSHIBA_TC358767
->  	---help---
->  	  Toshiba TC358767 eDP bridge chip driver.
->  
-> +config DRM_TOSHIBA_TC358768
-> +	tristate "Toshiba TC358768 MIPI DSI bridge"
-> +	depends on OF
-> +	select DRM_KMS_HELPER
-> +	select REGMAP_I2C
-> +	select DRM_PANEL
-> +	select DRM_MIPI_DSI
-> +	help
-> +	  Toshiba TC358768AXBG/TC358778XBG DSI bridge chip driver.
-> +
->  config DRM_TI_TFP410
->  	tristate "TI TFP410 DVI/HDMI bridge"
->  	depends on OF
-> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> index cd16ce830270..06fc265de0ef 100644
-> --- a/drivers/gpu/drm/bridge/Makefile
-> +++ b/drivers/gpu/drm/bridge/Makefile
-> @@ -11,6 +11,7 @@ obj-$(CONFIG_DRM_SII9234) += sii9234.o
->  obj-$(CONFIG_DRM_THINE_THC63LVD1024) += thc63lvd1024.o
->  obj-$(CONFIG_DRM_TOSHIBA_TC358764) += tc358764.o
->  obj-$(CONFIG_DRM_TOSHIBA_TC358767) += tc358767.o
-> +obj-$(CONFIG_DRM_TOSHIBA_TC358768) += tc358768.o
->  obj-$(CONFIG_DRM_I2C_ADV7511) += adv7511/
->  obj-$(CONFIG_DRM_TI_SN65DSI86) += ti-sn65dsi86.o
->  obj-$(CONFIG_DRM_TI_TFP410) += ti-tfp410.o
-> diff --git a/drivers/gpu/drm/bridge/tc358768.c b/drivers/gpu/drm/bridge/tc358768.c
-> new file mode 100644
-> index 000000000000..244309c1112e
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/tc358768.c
-> @@ -0,0 +1,1040 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *  Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com
-> + *  Author: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/slab.h>
-> +
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_crtc_helper.h>
-> +#include <drm/drm_drv.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_panel.h>
-> +#include <video/mipi_display.h>
-> +#include <video/videomode.h>
-> +
-> +/* Global (16-bit addressable) */
-> +#define TC358768_CHIPID			0x0000
-> +#define TC358768_SYSCTL			0x0002
-> +#define TC358768_CONFCTL		0x0004
-> +#define TC358768_VSDLY			0x0006
-> +#define TC358768_DATAFMT		0x0008
-> +#define TC358768_GPIOEN			0x000E
-> +#define TC358768_GPIODIR		0x0010
-> +#define TC358768_GPIOIN			0x0012
-> +#define TC358768_GPIOOUT		0x0014
-> +#define TC358768_PLLCTL0		0x0016
-> +#define TC358768_PLLCTL1		0x0018
-> +#define TC358768_CMDBYTE		0x0022
-> +#define TC358768_PP_MISC		0x0032
-> +#define TC358768_DSITX_DT		0x0050
-> +#define TC358768_FIFOSTATUS		0x00F8
-> +
-> +/* Debug (16-bit addressable) */
-> +#define TC358768_VBUFCTRL		0x00E0
-> +#define TC358768_DBG_WIDTH		0x00E2
-> +#define TC358768_DBG_VBLANK		0x00E4
-> +#define TC358768_DBG_DATA		0x00E8
-> +
-> +/* TX PHY (32-bit addressable) */
-> +#define TC358768_CLW_DPHYCONTTX		0x0100
-> +#define TC358768_D0W_DPHYCONTTX		0x0104
-> +#define TC358768_D1W_DPHYCONTTX		0x0108
-> +#define TC358768_D2W_DPHYCONTTX		0x010C
-> +#define TC358768_D3W_DPHYCONTTX		0x0110
-> +#define TC358768_CLW_CNTRL		0x0140
-> +#define TC358768_D0W_CNTRL		0x0144
-> +#define TC358768_D1W_CNTRL		0x0148
-> +#define TC358768_D2W_CNTRL		0x014C
-> +#define TC358768_D3W_CNTRL		0x0150
-> +
-> +/* TX PPI (32-bit addressable) */
-> +#define TC358768_STARTCNTRL		0x0204
-> +#define TC358768_DSITXSTATUS		0x0208
-> +#define TC358768_LINEINITCNT		0x0210
-> +#define TC358768_LPTXTIMECNT		0x0214
-> +#define TC358768_TCLK_HEADERCNT		0x0218
-> +#define TC358768_TCLK_TRAILCNT		0x021C
-> +#define TC358768_THS_HEADERCNT		0x0220
-> +#define TC358768_TWAKEUP		0x0224
-> +#define TC358768_TCLK_POSTCNT		0x0228
-> +#define TC358768_THS_TRAILCNT		0x022C
-> +#define TC358768_HSTXVREGCNT		0x0230
-> +#define TC358768_HSTXVREGEN		0x0234
-> +#define TC358768_TXOPTIONCNTRL		0x0238
-> +#define TC358768_BTACNTRL1		0x023C
-> +
-> +/* TX CTRL (32-bit addressable) */
-> +#define TC358768_DSI_CONTROL		0x040C
-> +#define TC358768_DSI_STATUS		0x0410
-> +#define TC358768_DSI_INT		0x0414
-> +#define TC358768_DSI_INT_ENA		0x0418
-> +#define TC358768_DSICMD_RDFIFO		0x0430
-> +#define TC358768_DSI_ACKERR		0x0434
-> +#define TC358768_DSI_ACKERR_INTENA	0x0438
-> +#define TC358768_DSI_ACKERR_HALT	0x043c
-> +#define TC358768_DSI_RXERR		0x0440
-> +#define TC358768_DSI_RXERR_INTENA	0x0444
-> +#define TC358768_DSI_RXERR_HALT		0x0448
-> +#define TC358768_DSI_ERR		0x044C
-> +#define TC358768_DSI_ERR_INTENA		0x0450
-> +#define TC358768_DSI_ERR_HALT		0x0454
-> +#define TC358768_DSI_CONFW		0x0500
-> +#define TC358768_DSI_LPCMD		0x0500
-> +#define TC358768_DSI_RESET		0x0504
-> +#define TC358768_DSI_INT_CLR		0x050C
-> +#define TC358768_DSI_START		0x0518
-> +
-> +/* DSITX CTRL (16-bit addressable) */
-> +#define TC358768_DSICMD_TX		0x0600
-> +#define TC358768_DSICMD_TYPE		0x0602
-> +#define TC358768_DSICMD_WC		0x0604
-> +#define TC358768_DSICMD_WD0		0x0610
-> +#define TC358768_DSICMD_WD1		0x0612
-> +#define TC358768_DSICMD_WD2		0x0614
-> +#define TC358768_DSICMD_WD3		0x0616
-> +#define TC358768_DSI_EVENT		0x0620
-> +#define TC358768_DSI_VSW		0x0622
-> +#define TC358768_DSI_VBPR		0x0624
-> +#define TC358768_DSI_VACT		0x0626
-> +#define TC358768_DSI_HSW		0x0628
-> +#define TC358768_DSI_HBPR		0x062A
-> +#define TC358768_DSI_HACT		0x062C
-> +
-> +/* TC358768_DSI_CONTROL (0x040C) register */
-> +#define TC358768_DSI_CONTROL_DIS_MODE	BIT(15)
-> +#define TC358768_DSI_CONTROL_TXMD	BIT(7)
-> +#define TC358768_DSI_CONTROL_HSCKMD	BIT(5)
-> +#define TC358768_DSI_CONTROL_EOTDIS	BIT(0)
-> +
-> +/* TC358768_DSI_CONFW (0x0500) register */
-> +#define TC358768_DSI_CONFW_MODE_SET	(5 << 29)
-> +#define TC358768_DSI_CONFW_MODE_CLR	(6 << 29)
-> +#define TC358768_DSI_CONFW_ADDR_DSI_CONTROL	(0x3 << 24)
-> +
-> +static const char * const tc358768_supplies[] = {
-> +	"vddc", "vddmipi", "vddio"
-> +};
-> +
-> +struct tc358768_dsi_output {
-> +	struct mipi_dsi_device *dev;
-> +	struct drm_panel *panel;
-> +	struct drm_bridge *bridge;
-> +};
-> +
-> +struct tc358768_priv {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	struct gpio_desc *reset_gpio;
-> +	struct regulator_bulk_data supplies[ARRAY_SIZE(tc358768_supplies)];
-> +	struct clk *refclk;
-> +	int enabled;
-> +	int error;
-> +
-> +	struct mipi_dsi_host dsi_host;
-> +	struct drm_bridge bridge;
-> +	struct tc358768_dsi_output output;
-> +
-> +	u32 pd_lines; /* number of Parallel Port Input Data Lines */
-> +	u32 dsi_lanes; /* number of DSI Lanes */
-> +
-> +	/* Parameters for PLL programming */
-> +	u32 fbd;	/* PLL feedback divider */
-> +	u32 prd;	/* PLL input divider */
-> +	u32 frs;	/* PLL Freqency range for HSCK (post divider) */
-> +
-> +	u32 dsiclk;	/* pll_clk / 2 */
-> +};
-> +
-> +static inline struct tc358768_priv *dsi_host_to_tc358768(struct mipi_dsi_host
-> +							 *host)
-> +{
-> +	return container_of(host, struct tc358768_priv, dsi_host);
-> +}
-> +
-> +static inline struct tc358768_priv *bridge_to_tc358768(struct drm_bridge
-> +						       *bridge)
-> +{
-> +	return container_of(bridge, struct tc358768_priv, bridge);
-> +}
-> +
-> +static int tc358768_clear_error(struct tc358768_priv *priv)
-> +{
-> +	int ret = priv->error;
-> +
-> +	priv->error = 0;
-> +	return ret;
-> +}
-> +
-> +static void tc358768_write(struct tc358768_priv *priv, u32 reg, u32 val)
-> +{
-> +	size_t count = 2;
-> +
-> +	if (priv->error)
-> +		return;
-> +
-> +	/* 16-bit register? */
-> +	if (reg < 0x100 || reg >= 0x600)
-> +		count = 1;
-> +
-> +	priv->error = regmap_bulk_write(priv->regmap, reg, &val, count);
-> +}
-> +
-> +static void tc358768_read(struct tc358768_priv *priv, u32 reg, u32 *val)
-> +{
-> +	size_t count = 2;
-> +
-> +	if (priv->error)
-> +		return;
-> +
-> +	/* 16-bit register? */
-> +	if (reg < 0x100 || reg >= 0x600) {
-> +		*val = 0;
-> +		count = 1;
-> +	}
-> +
-> +	priv->error = regmap_bulk_read(priv->regmap, reg, val, count);
-> +}
-> +
-> +static void tc358768_update_bits(struct tc358768_priv *priv, u32 reg, u32 mask,
-> +				 u32 val)
-> +{
-> +	u32 tmp, orig;
-> +
-> +	tc358768_read(priv, reg, &orig);
-> +	tmp = orig & ~mask;
-> +	tmp |= val & mask;
-> +	if (tmp != orig)
-> +		tc358768_write(priv, reg, tmp);
-> +}
-> +
-> +static int tc358768_sw_reset(struct tc358768_priv *priv)
-> +{
-> +	/* Assert Reset */
-> +	tc358768_write(priv, TC358768_SYSCTL, 1);
-> +	/* Release Reset, Exit Sleep */
-> +	tc358768_write(priv, TC358768_SYSCTL, 0);
-> +
-> +	return tc358768_clear_error(priv);
-> +}
-> +
-> +static void tc358768_hw_enable(struct tc358768_priv *priv)
-> +{
-> +	int ret;
-> +
-> +	if (priv->enabled++ > 0)
-> +		return;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(priv->supplies), priv->supplies);
-> +	if (ret < 0)
-> +		dev_err(priv->dev, "error enabling regulators (%d)\n", ret);
-> +
-> +	if (priv->reset_gpio)
-> +		usleep_range(200, 300);
-> +
-> +	/*
-> +	 * The RESX is active low (GPIO_ACTIVE_LOW).
-> +	 * DEASSERT (value = 0) the reset_gpio to enable the chip
-> +	 */
-> +	gpiod_set_value_cansleep(priv->reset_gpio, 0);
-> +
-> +	/* wait for encoder clocks to stabilize */
-> +	usleep_range(1000, 2000);
-> +}
-> +
-> +static void tc358768_hw_disable(struct tc358768_priv *priv)
-> +{
-> +	int ret;
-> +
-> +	if (--priv->enabled != 0)
+On Tue, Jan 21, 2020 at 11:12:11PM +0300, Dmitry Osipenko wrote:
+> 21.01.2020 18:54, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > On Tue, Jan 21, 2020 at 05:18:43PM +0200, Georgi Djakov wrote:
+> >> On 1/21/20 16:10, Thierry Reding wrote:
+[...]
+> >>> I'm not sure if that TEGRA_ICC_EMEM makes a lot of sense. It's always
+> >>> going to be the same and it's arbitrarily defined, so it's effectively
+> >>> useless. But other than that it looks good.
+> >>
+> >> Well, in most cases the target would be the EMEM, so that's fine. I ha=
+ve seen
+> >> that other vendors that may have an additional internal memory, especi=
+ally
+> >> dedicated to some DSPs and in such cases the bandwidth needs are diffe=
+rent for
+> >> the two paths (to internal memory and DDR).
+> >=20
+> > Most chips have a small internal memory that can be used, though it
+> > seldomly is. However, in that case I would expect the target to be a
+> > completely different device, so it'd look more like this:
+> >=20
+> > 	interconnects =3D <&mc TEGRA186_MEMORY_CLIENT_BPMPR &iram>,
+> > 			...;
+> >=20
+> > I don't think EMEM has any "downstream" other than external memory.
+>=20
+> The node ID should be mandatory in terms of interconnect, even if it's a
+> single node. EMC (provider) !=3D EMEM (endpoint).
 
-I should be doing:
-	if (!priv->enabled || --priv->enabled != 0)
+I don't understand why. An ID only makes sense if you've got multiple
+endpoints. For example, a regulator is a provider with a single endpoint
+so we don't specify an ID.
 
-to avoid going negative on the enabled, which could happen I think if an
-enable path fails and later the bridge is disabled.
+By its very definition an ID is used to identify something and we use it
+with a phandle to create a unique pair that identifies a resource within
+whatever the phandle represents, with the goal to differentiate it from
+other resources within the same provider. However, if there's only one
+such resource, the ID becomes redundant because the phandle without an
+ID is already unique and there's no need to differentiate with an extra
+ID.
 
-- Péter
+Thierry
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+--CE+1k2dSO48ffgeK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIyBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl4u1bYACgkQ3SOs138+
+s6Gc9Q/xAbTzlbVUZDwoUkdCgx0LHuENIKE8SYi31wA3sfDcgTLs0sSih/Esx8cQ
+FsHqpY2r+loug6SkIWG0nlZOiXEUmms/Em5r0oahW9lLMcP+Y5OpzJN4BTPZHoOM
+uEHXdbJRs+NDdM6AUNpXbamcdvMST1DXpigjCkxTfFmGQQzrDrugSQvGpRtaO/WE
+yYxxrxnzfUFhv8FVDtXlxS0KI5yb2TJmdI80abFfKV/sshPFH9tIeEDIwdKDRbUx
+GuOYXFKBrK8S3A0PxJwlUJQa3yxc4700nnMdK4vUDNKtSTCfs2UB2vktYkJ+QpsR
+24lKzwqeBG+XLJMAm6cOzmrSyiX72Iuw73qth8orFuZXeBWqQixN/fdTFoMXv9AY
+dNo+190g0DXIGIrMayljP7R7oBI3NlnKYbc80DwjzdSf10KaXFjgYr1FONy84j7Y
+hKLeN7NuDK+LliNBa/W6/s7YApcQf99RnuzaG3sBrIdDrQuvA/ldk8giCD71qO4+
+ypE1ZyI6ec0a7Az0Xgsj/oW/HApiPcUs3f/rlv6cSTxb4+KtFvUmrkf6jaopmOxY
+mL556GqiwB7h434VdAt7tLQdDflmDno8wIzxljL1slPllsjyhpQo1kyXZsrG6mMc
+elQn4W7wy1O9AG6iIiCiXnnAyYEiNbDqaHaJTGFRjCFWrz3mXA==
+=MdJR
+-----END PGP SIGNATURE-----
+
+--CE+1k2dSO48ffgeK--
