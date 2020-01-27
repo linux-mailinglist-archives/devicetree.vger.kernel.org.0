@@ -2,188 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F175414A944
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 18:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A77D314A991
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 19:15:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725955AbgA0Rxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jan 2020 12:53:37 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:46964 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725828AbgA0Rxg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 12:53:36 -0500
-Received: by mail-ot1-f66.google.com with SMTP id g64so9228083otb.13;
-        Mon, 27 Jan 2020 09:53:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ZwdeJdNohgFWX1mFD2UjbBw/HXmaaN29rT20q0J8HBI=;
-        b=o7j6tNstDjVdxALJYsnH829D1SY/1ZujhSjShSls0By67cFDORF72V233vGpe0KGnc
-         1dS1EM+OdQJ0v2dG1AGYAZcfFdJbsvaLGTagtCoBGmTMvr/CmRsezXuEAywfckMRcjZ8
-         yhkwkWiIPRS6qmu0pFb4nXSxMZkh5of+HCIXBfY+pKb2vMjMgES+/y9xHukxI2ADOM7R
-         BwvE85tbvy6KoFn74oPf3u9CSPVTZrYeNK1rA3PF2yHH43zyPmyKzVymlJfqd4gVfRPT
-         8PJfw1SI5eQptPK+KQO02v4eq6/3O5UfYsuN6kieOA5vWXzAac0FcnX61Ev6adFoHVWR
-         g4mw==
-X-Gm-Message-State: APjAAAWErxZASChI2BlTdkuLPtz3kxihB/7j3VyXuPKq507h83vy3PNo
-        nfK7XHvoRz1qhv9Ao736PBoaCns=
-X-Google-Smtp-Source: APXvYqwdUCJv6mpkyNlq5MZ9t+xypOOB3E8o5xFdi8iB2ko7UaxiRDFXUY5FgcV40zfXH9dcLvJ12Q==
-X-Received: by 2002:a9d:53c2:: with SMTP id i2mr12346342oth.43.1580147616069;
-        Mon, 27 Jan 2020 09:53:36 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n64sm4379460otn.35.2020.01.27.09.53.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2020 09:53:35 -0800 (PST)
-Received: (nullmailer pid 30258 invoked by uid 1000);
-        Mon, 27 Jan 2020 17:53:34 -0000
-Date:   Mon, 27 Jan 2020 11:53:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
-        bjorn.andersson@linaro.org, linux-kernel@vger.kernel.org,
-        Sriharsha Allenki <sallenki@codeaurora.org>,
-        Anu Ramanathan <anur@codeaurora.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 02/19] dt-bindings: phy: Add Qualcomm Synopsys
- Hi-Speed USB PHY binding
-Message-ID: <20200127175334.GA12315@bogus>
-References: <20200122185610.131930-1-bryan.odonoghue@linaro.org>
- <20200122185610.131930-3-bryan.odonoghue@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200122185610.131930-3-bryan.odonoghue@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1725845AbgA0SPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jan 2020 13:15:48 -0500
+Received: from mout.kundenserver.de ([212.227.126.133]:42579 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725893AbgA0SPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 13:15:48 -0500
+Received: from localhost.localdomain ([37.4.249.152]) by
+ mrelayeu.kundenserver.de (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1Mvs2R-1jlEAl0Ixr-00suja; Mon, 27 Jan 2020 19:15:40 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [RFC PATCH 0/4] pinctrl: bcm2835: Add support for all BCM2711 GPIOs
+Date:   Mon, 27 Jan 2020 19:15:04 +0100
+Message-Id: <1580148908-4863-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:yg/rb5wFqWdXj81dOcYj28x9Nt0riCHuDWx9306t0g0mf3IueD2
+ uizd9G/+uVDXYWmIGnORMVPQmXYPlJXE9Wf+2H9FqFAmDXZewNCVUYtJhIpAxL3wwzisGXn
+ m5pWiDAL5AFhnCxhXNMHoKtYE0xDj0Yb4ewhQ02Zij986KKCtKd6zffB0ebGiWzGbLHw7Au
+ 2IVOQAFWeuXw2VtlMpHqQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:aKF8x4iqoY0=:9uBiIsisJ6lNO1jewQmFmR
+ L5YZJPkXOqZn2cu9arXDiuLsXqQpWc8sa44MTl611OCZgD1nQQ2znlss/ub+ooNaDDdtUSok8
+ BvBk9BTkVoRSvLwvkwS04p325ncEk8w39vHXwAq4uyG+B+o+wXuS8Qd1u78j7d+89WywSQ2gk
+ A8wLmmZ9cIyS0d436/S7rxxK+OR6BIbJ2bOi0JCbW4vzBAkdQzsvGqY51bbEMNB9ZptSpJ9Ws
+ RcNjs+ILuQy0pcBit8vCxAeiO86FrayGXp9CVMucwIPVqoz8UwJFHZQjHiK6xsfiJaeX6Yioo
+ jra/rbGmAPhtpn5oYdzjPr/SzTtFQNgW4eYtNS/SzXchPkqZwmavTMrV+8drNfH7fhT/Od9tP
+ G6kCVIqgec1rpwy/g09DjkcBqifzgr6vKnXPd5ILGDMG5vpGwvZkAm0XFnrGwxYa/cfOEuLeh
+ QXJasanJHX4AmSGOWbdEUqslUeKyhzoBCBG6dAOkKK/n2jyThf5ON+lfRUPY2PZHvuGqctFTN
+ jZsxE2B2ARlFjsNNezJQD1+3K5WGocqKkHJWmurhW3IgLwq8UzKmMPs/FGIWbFKOhJmprrp4R
+ OiXIAQhjHvvkdmwlGzb7mYDsrPLVkNTQ1ASSWkIQvs2it7dRlVXNIoUtTG3y/ekAlr+6P9jId
+ hxU9yUu47d4QwbA0hLDd6pPbWO4MiT+6faut/LySNrn1UjsH8wADsraNamTjy26aHW6vDzwt7
+ xacbJod8O+urUArV0jkO9/dUXzvv4Xl2oWWCJilgc4vVOknZqIYCAPvW3nAJ2GGl6RGlaF55r
+ hGSXgYkdGDByZTZUCymfE8iMGn+a7kDyxqGFR4p3gqnVrKZCYFTsJfY/H2AwFuFCKE9Rp5T
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 22, 2020 at 06:55:53PM +0000, Bryan O'Donoghue wrote:
-> From: Sriharsha Allenki <sallenki@codeaurora.org>
-> 
-> Adds bindings for QCS404 USB PHY supporting Low-Speed, Full-Speed and
-> Hi-Speed USB connectivity on Qualcomm chipsets.
-> 
-> [bod: Converted to YAML. Changed name dropping snps, 28nm components]
-> 
-> Signed-off-by: Sriharsha Allenki <sallenki@codeaurora.org>
-> Signed-off-by: Anu Ramanathan <anur@codeaurora.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/phy/qcom,qcs404-usb-hs.yaml      | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml b/Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml
-> new file mode 100644
-> index 000000000000..d71beb822ae2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qcs404-usb-hs.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/qcom,qcs404-usb-hs.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm Synopsys QCS-404 High-Speed PHY
-> +
-> +maintainers:
-> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> +
-> +description: |
-> +  Qualcomm QCS-404 Low-Speed, Full-Speed, Hi-Speed USB PHY
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,qcs404-usb-hsphy
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: USB PHY base address and length of the register map.
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +    description: Should be 0. See phy/phy-bindings.txt for details.
-> +
-> +  clocks:
-> +    minItems: 3
-> +    maxItems: 3
-> +    description: phandles to rpmcc ref clock, PHY AHB clock, rentention clock.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ref
-> +      - const: phy
-> +      - const: sleep
-> +
-> +  resets:
-> +    items:
-> +      - description: PHY core reset
-> +      - description: POR reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: phy
-> +      - const: por
-> +
-> +  vdd-supply:
-> +    maxItems: 1
+The BCM2711 supports 58 GPIOs [1] by using the existing BCM2835 GPIO registers
+completely. So there is no need to change the binding.
 
-Supplies are always 1 entry, so drop this.
+Patch 1 and 2 prepare the pinctrl driver to be extended to 58 GPIOs in Patch 3.
+I didn't want to squash them in order to make review as easy as possible.
+The final patch 4 assigns all SoC GPIOs a label as we already did for
+the older Raspberry Pi boards.
 
-> +    description: phandle to the regulator VDD supply node.
-> +
-> +  vdda1p8-supply:
-> +    maxItems: 1
-> +    description: phandle to the regulator 1.8V supply node.
-> +
-> +  vdda3p3-supply:
-> +    maxItems: 1
-> +    description: phandle to the regulator 3.3V supply node.
+[1] - https://github.com/raspberrypi/linux/issues/3101#issuecomment-573092294
 
-No required properties?
+Stefan Wahren (4):
+  pinctrl: bcm2835: Drop unused define
+  pinctrl: bcm2835: Refactor platform data
+  pinctrl: bcm2835: Add support for all GPIOs on BCM2711
+  ARM: dts: bcm2711-rpi-4-b: Add SoC GPIO labels
 
-Add:
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts |  74 ++++++++++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm2835.c | 106 ++++++++++++++++++++++++++--------
+ 2 files changed, 156 insertions(+), 24 deletions(-)
 
-additionalProperties: false
+-- 
+2.7.4
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-qcs404.h>
-> +    #include <dt-bindings/clock/qcom,rpmcc.h>
-> +    usb2_phy_prim: phy@7a000 {
-> +        compatible = "qcom,qcs404-usb-hsphy";
-> +        reg = <0x0007a000 0x200>;
-> +        #phy-cells = <0>;
-> +        clocks = <&rpmcc RPM_SMD_LN_BB_CLK>,
-> +                 <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
-> +                 <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
-> +        clock-names = "ref", "phy", "sleep";
-> +        resets = <&gcc GCC_USB_HS_PHY_CFG_AHB_BCR>,
-> +                 <&gcc GCC_USB2A_PHY_BCR>;
-> +        reset-names = "phy", "por";
-> +    };
-> +...
-> -- 
-> 2.25.0
-> 
