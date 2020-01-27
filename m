@@ -2,89 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFD114A801
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 17:25:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C912914A7FD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 17:25:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727046AbgA0QZm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jan 2020 11:25:42 -0500
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:46431 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726240AbgA0QZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 11:25:41 -0500
-Received: by mail-pg1-f196.google.com with SMTP id z124so5374780pgb.13
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2020 08:25:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AETTwMBW1K6QIrQVON3rToRwyIKW9SZw4dAWXXfxxIQ=;
-        b=SSPGMkhcg/9PUEynqidYuSP3yImPLsIF0VEkjnYfGxegxHZYeafBU/aC87Hn79uJC9
-         EBVXL8aVbo+SfESMN5nfxwDx102EQIGK/SYxSIzGYcn3sBiIo8fGtdst1wuCOuOR0RXI
-         jKkgzLl91xKXawlXJkk/ZclgLnsYths3wEGQ8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AETTwMBW1K6QIrQVON3rToRwyIKW9SZw4dAWXXfxxIQ=;
-        b=cAB/A5kqrdQL8RVn5kcYH8iDNKRuCs/C85x8ywCd1xSMNRKNPJNI/E/9Mxu5JH1yZa
-         PVPg5/89iH4j9OrjOI3dupOCtG1o8bm+ROtj22nFObiyXAcxOuzZuAX4y3F8TRqWNEbn
-         q7xNsU4ngVFInYNkNbmIaC6gZYhWzvUxzrMhTAjlKlAckSTLbwOqvf0dj56k6HK+A9aB
-         SgB9ZuMCbgsPjJISIiU81zb/KVSxykOc39jGqiYEky78WAlIVJXOUgZa5DjzIcRf9iHe
-         CUlCwUXZ5xVwpulXUV3n0keF2L6v1X2Ijjv+QA6C9NFa8WjOldw2yy7QSfYdsT9ze0Vc
-         cweg==
-X-Gm-Message-State: APjAAAUQ7JEggpbiXBhginrGVX1ugyNR9ByIgLEjQd15EWmZMC6qvtUw
-        O3xZeK8v7LgMg+e6Me2IHcCsmw==
-X-Google-Smtp-Source: APXvYqxlebiuUFEHjfubvnlKDauUXcLhX/iKJ6unhIbyMgvVa8vTxmVSqa4anG4aFFAUBvpxV2N5AQ==
-X-Received: by 2002:a63:3196:: with SMTP id x144mr19921682pgx.319.1580142341192;
-        Mon, 27 Jan 2020 08:25:41 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id r14sm16133264pfh.10.2020.01.27.08.25.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2020 08:25:40 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <andy.gross@linaro.org>
-Cc:     mka@chromium.org, vbadigan@codeaurora.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH] arm64: dts: qcom: qcs404: Fix sdhci compat string
-Date:   Mon, 27 Jan 2020 08:23:48 -0800
-Message-Id: <20200127082331.1.I402470e4a162d69fde47ee2ea708b15bde9751f9@changeid>
-X-Mailer: git-send-email 2.25.0.341.g760bfbb309-goog
+        id S1726205AbgA0QZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jan 2020 11:25:33 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:33646 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726101AbgA0QZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 11:25:33 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 4B80F29146A
+Subject: Re: [PATCH v3] dt-bindings: mfd: Convert ChromeOS EC bindings to
+ json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ikjoon Jang <ikjn@chromium.org>, devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Nicolas Boitchat <drinkcat@chromium.org>,
+        linux-input@vger.kernel.org
+References: <20200114021934.178057-1-ikjn@chromium.org>
+ <20200121074727.35893-1-ikjn@chromium.org>
+ <6739cc32-9beb-ac0a-f500-db2d70bb8e22@collabora.com>
+ <20200127161206.GB30843@bogus>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <ef653218-4a59-73e1-186e-9b62b8ed6dae@collabora.com>
+Date:   Mon, 27 Jan 2020 17:25:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200127161206.GB30843@bogus>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per the bindings, the SDHCI controller should have a SoC-specific
-compatible string in addition to the generic version-based one.  Add
-it.
+Hi Rob,
 
-Fixes: 7241ab944da3 ("arm64: dts: qcom: qcs404: Add sdcc1 node")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+On 27/1/20 17:12, Rob Herring wrote:
+> On Mon, Jan 27, 2020 at 04:57:13PM +0100, Enric Balletbo i Serra wrote:
+>> Hi Ikjoon,
+>>
+>> On 21/1/20 8:47, Ikjoon Jang wrote:
+>>> Convert the ChromeOS EC bindings to json-schema.
+>>>
+>>> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+>>> ---
+>>> v3: node name changed in rpmsg example
+>>> v2: cleanup description, fix typos, remove LPC, add add RPMSG example
+>>> ---
+>>>  .../devicetree/bindings/mfd/cros-ec.txt       |  76 ------------
+>>>  .../devicetree/bindings/mfd/cros-ec.yaml      | 111 ++++++++++++++++++
+>>>  2 files changed, 111 insertions(+), 76 deletions(-)
+>>>  delete mode 100644 Documentation/devicetree/bindings/mfd/cros-ec.txt
+>>>  create mode 100644 Documentation/devicetree/bindings/mfd/cros-ec.yaml
+>>>
+>>
+>> Still in mfd directory, this is not a MFD driver, please move to chrome/cros-ec.yaml
+> 
+> Please don't. Looks to me like the chrome EC has multiple functions and 
+> is a device.
+> 
 
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This binding is part of the Chrome EC core and we explicitly moved all this out
+from mfd subsytem in the past because wasn't really fit as mfd driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 4ee1e3d5f123..1eea06435779 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -685,7 +685,7 @@ pcie_phy: phy@7786000 {
- 		};
- 
- 		sdcc1: sdcc@7804000 {
--			compatible = "qcom,sdhci-msm-v5";
-+			compatible = "qcom,qcs404-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x07804000 0x1000>, <0x7805000 0x1000>;
- 			reg-names = "hc_mem", "cmdq_mem";
- 
--- 
-2.25.0.341.g760bfbb309-goog
+We still have one device driver (cros_ec_dev) in mfd, this is the one that
+instantiates all the subdevices but the above binding is not related to this
+one. All the core/bus part is in platform/chrome, looks to me more coherent have
+the binding accordingly.
 
+Anyway I'll let you the final decision, nothing that worries me too much.
+
+Thanks,
+ Enric
+
+> Bindings directories are often 1:1 with kernel driver directories, but 
+> not always.
+> 
+> Rob
+> 
