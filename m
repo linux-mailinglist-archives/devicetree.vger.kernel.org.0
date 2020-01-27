@@ -2,108 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A04314A583
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 14:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D314714A5AD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 15:06:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728604AbgA0N4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jan 2020 08:56:25 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52510 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726303AbgA0N4Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 27 Jan 2020 08:56:24 -0500
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3E581214DB;
-        Mon, 27 Jan 2020 13:56:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1580133384;
-        bh=KFdI1sxRWI/2dtuDU11fPSoWr08vmKPYeU9ITQQ9ZIk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hmMAFYI47H7UB2oHw1uvUHdzYfFag5mnHsqxphBqSAxmL8StKnfVnAzwCDe4jPdp3
-         eqZQu1TiReU0t6WKHz5YGXumNxqwetImsY2BOuCRhbQmigjuJt81RO/vExa54m1UBV
-         vI60xLhAVYD+SkZmse5ohM2knL1HLrJnKq5Mi6vM=
-Received: by mail-qk1-f181.google.com with SMTP id s187so9624210qke.8;
-        Mon, 27 Jan 2020 05:56:24 -0800 (PST)
-X-Gm-Message-State: APjAAAXJYQKGdvoU9TnNbjpEA5ETMbElJnFqQloj6plmHCw4tUcNmRmn
-        K3yHW0hcxaFf0gtgVSkGTZw+3dqL0+lrOhoyWw==
-X-Google-Smtp-Source: APXvYqzIhu1/LOnm7n6ODE3yUi0ivUKcaHREkhij1unVeO3mXUrUJz8/Fh93k2W+bAJvuLutueErXRU/tajZTDUPFs8=
-X-Received: by 2002:ae9:f205:: with SMTP id m5mr16781000qkg.152.1580133383359;
- Mon, 27 Jan 2020 05:56:23 -0800 (PST)
-MIME-Version: 1.0
-References: <20200123012317.14808-1-chris.packham@alliedtelesis.co.nz>
- <20200123012317.14808-2-chris.packham@alliedtelesis.co.nz>
- <CAL_JsqLvM34WSBE29beBgJj0jLA6P_UwQUbTuEQcYJgrkg3v1A@mail.gmail.com> <651803fbdea412ecde7cd352b080d41d9f0a2a33.camel@alliedtelesis.co.nz>
-In-Reply-To: <651803fbdea412ecde7cd352b080d41d9f0a2a33.camel@alliedtelesis.co.nz>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 27 Jan 2020 07:56:11 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJHYwH28jkg4h0GivOz=GywxFkGpxLywt9HEqKy3pdVRQ@mail.gmail.com>
-Message-ID: <CAL_JsqJHYwH28jkg4h0GivOz=GywxFkGpxLywt9HEqKy3pdVRQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Document binding for generic SPI multiplexer
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726339AbgA0OGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jan 2020 09:06:53 -0500
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:46704 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726029AbgA0OGw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 09:06:52 -0500
+Received: by mail-pg1-f194.google.com with SMTP id z124so5186977pgb.13
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2020 06:06:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=UR3h5nrfJHdQliakSZtipAYKwFl6uOKWlJ6IfQvABM0=;
+        b=L12qN+kJLWkPwQhT4M3TBYMoUEmBbJ6U2VAEvfffXWHocq74miL+za2/eE1qEUW3wf
+         2xg8zF0C64LG80ND9N8KNIWHhiACitzw/CgcJEDu1c3tEgRqrGMy4slGg5+5xBabi3hn
+         ob9EBJSYyw4VK9pBxV9rEFYFoCErnOA1OMNNAozzbhmYpGoq9WiZwEyHsI72W5/9RMZ+
+         SIBPYqQiZImwJVENcm/f5aDysYzGmbQ29oAitztenbceLza2PGuekU5WdKGsVAe6TFQA
+         zyZNIXBPv2HpfpYt1MVjsvp3NikHaJ0vmczXmHzZYBfJybn97Dy2IwkNapNGnKZFwEfa
+         EE2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=UR3h5nrfJHdQliakSZtipAYKwFl6uOKWlJ6IfQvABM0=;
+        b=fgVVfj0SDcXZwQneVyOzrZpUNkFxy2rlUaIMGJmptCQi0txTkd41XKSbUYTWBg5jm9
+         BdUgV0WrYXTBCr3dzGuN0s7MF03nQ4WxNurA2UNSQwarPKp5NGMODOnUMviYwVAjjUQ3
+         1NZpULzhwHl4kS4i3BQvugLBNCZsz/fx9P2abU/sGFdvMJizYSnpWcyvpSfZkXso9PYh
+         YChysHKY0PPjjHwOvHaAFzbicHcjPyOoIiJP1QcIebmMdGLkuypL+9encxWQMHWwa0im
+         UVIQMUfDcDhsKvTZ7j32ZDZNFWDH1/Ix4yKzXAh7/1R0TszpjPCGp4UxmJhaiBHM5JC+
+         H9Cw==
+X-Gm-Message-State: APjAAAWN5iHdPuRd48UsGO8c7D9Ha70Afu21SCda6ax/Dma1tLQ5u1PV
+        stCIdcIZj6yQ9osNfPRvCAg=
+X-Google-Smtp-Source: APXvYqzYXpmMd8tKKyZVc2br06gRBHFtpr+30z5ChUnFVkz8Nrrz3j36MshggXJp4KbyXxZhfMlS5Q==
+X-Received: by 2002:a63:6c82:: with SMTP id h124mr19563264pgc.328.1580134012093;
+        Mon, 27 Jan 2020 06:06:52 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:d809:ffa6:583:2633:933c:f34d])
+        by smtp.gmail.com with ESMTPSA id q4sm12779225pfs.65.2020.01.27.06.06.50
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 27 Jan 2020 06:06:51 -0800 (PST)
+From:   Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
+To:     noralf@tronnes.org, Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
+Subject: [PATCH v3 0/3] Support for tft displays based on ilitek,ili9486
+Date:   Mon, 27 Jan 2020 19:36:44 +0530
+Message-Id: <cover.1580133211.git.kamlesh.gurudasani@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 26, 2020 at 2:24 PM Chris Packham
-<Chris.Packham@alliedtelesis.co.nz> wrote:
->
-> On Thu, 2020-01-23 at 07:51 -0600, Rob Herring wrote:
-> > On Wed, Jan 22, 2020 at 7:24 PM Chris Packham
-> > <chris.packham@alliedtelesis.co.nz> wrote:
-> > >
-> > > Add binding documentation for the spi-mux driver. This allows a generic
-> > > multiplexer to be used to provide access to multiple SPI devices.
-> > >
-> > > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> > > ---
-> > >
-> > > Notes:
-> > >     Changes in v2:
-> > >     - update license
-> > >     - make dt_binding_check clean
-> >
-> > Sure about that?
-> >
->
-> I was when I wrote that, but now I think I need to consult my spell
-> book.
->
-> It appears the incantation I should be using is
->
->   make ARCH=arm defconfig
->   make ARCH=arm dt_binding_check \
->      DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/spi-mux.yaml
+The goal of this series is to get the displays based on ilitek,ili9486 
+working.
+Ozzmaker, Piscreen and waveshare,rpi-lcd-35 are such displays.
 
-Note that you need to run this also without DT_SCHEMA_FILES set so the
-example is checked against all schema. With that, the 'spi' node is
-going to need #address-cells and #size-cells.
+v2 changes:
+* Changing file from txt to yaml format
+* removed ilitek,ili9486 from compatible string
+* assignment of dbi_command before registration
+* made dc and reset gpio compulsory
+* typos and unwanted comments removed
+* changed the name of function which were display specific
+* arranged the Makefile entries in alphabetical order
 
->
-> I can see the simple failures (not sure how I missed them). But one
-> that remains is:
->
-> Warning (spi_bus_bridge): /example-0/spi/spi-mux@0: node name for SPI
-> buses should be 'spi'
->
-> I could fix that by having
->
->  spi {
->     spi@0 {
->        compatible = "spi-mux";
->     };
->  };
->
-> Is that what we want? Or should I be adding awareness of spi-muxes to
-> dtc?
+v3 changes:
+* added vendor prefix patch to this series instead of seperate patch
 
-We should probably relax dtc, but for now I'd just use 'spi'.
+Kamlesh Gurudasani (3):
+  dt-bindings: add vendor prefix for OzzMaker and Waveshare Electronics
+  dt-bindings: add binding for tft displays based on ilitek,ili9486
+  drm/tinydrm: add support for tft displays based on ilitek,ili9486
 
-Rob
+ .../bindings/display/ilitek,ili9486.yaml           |  79 ++++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   4 +
+ MAINTAINERS                                        |   7 +
+ drivers/gpu/drm/tiny/Kconfig                       |  14 +
+ drivers/gpu/drm/tiny/Makefile                      |   1 +
+ drivers/gpu/drm/tiny/ili9486.c                     | 283 +++++++++++++++++++++
+ 6 files changed, 388 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
+ create mode 100644 drivers/gpu/drm/tiny/ili9486.c
+
+-- 
+2.7.4
+
