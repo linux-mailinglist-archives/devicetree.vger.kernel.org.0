@@ -2,131 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B0F5B14A20E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 11:34:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5622114A255
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 11:56:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729299AbgA0Ke6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jan 2020 05:34:58 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:57404 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729213AbgA0Ke6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 05:34:58 -0500
-Received: from localhost.localdomain (p200300CB87166A002102C4F03A4721D7.dip0.t-ipconnect.de [IPv6:2003:cb:8716:6a00:2102:c4f0:3a47:21d7])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E246C292E13;
-        Mon, 27 Jan 2020 10:34:55 +0000 (GMT)
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-To:     linux-pwm@vger.kernel.org
-Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org, mark.rutland@arm.com, bleung@chromium.org,
-        enric.balletbo@collabora.com, groeck@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dafna.hirschfeld@collabora.com, helen.koike@collabora.com,
-        ezequiel@collabora.com, kernel@collabora.com, dafna3@gmail.com
-Subject: [PATCH] dt-bindings: convert google,cros-ec-pwm.txt to yaml format
-Date:   Mon, 27 Jan 2020 11:34:41 +0100
-Message-Id: <20200127103441.4618-1-dafna.hirschfeld@collabora.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726079AbgA0K4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jan 2020 05:56:12 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55590 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730129AbgA0K4M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 05:56:12 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00RAtrIj121310;
+        Mon, 27 Jan 2020 04:55:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1580122553;
+        bh=TrRlOwLc/tdMiEvgIjVuZLGeEAB4WdRX1AogQQheS8A=;
+        h=From:To:CC:Subject:Date;
+        b=YKz8X54PMvkl6NmNNnRwgUQQDfm1ZzIkhsYMMrNLt9BF4gpk1qOlRqt6wdD1PUE5d
+         9yjhK0dQk396EzPq8jcf1uO+0DafyjiJyERCpK97Frx8ZqCj4GlNwl+vRYUQaLoYyB
+         P9xHMywnXERuBISBNp/K2MxDMsvyZe2/jm95Zxx0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00RAtrX6044123
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 27 Jan 2020 04:55:53 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 27
+ Jan 2020 04:55:51 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 27 Jan 2020 04:55:51 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00RAtmOY079625;
+        Mon, 27 Jan 2020 04:55:48 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <a.hajda@samsung.com>,
+        <narmstrong@baylibre.com>
+CC:     <tomi.valkeinen@ti.com>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@siol.net>
+Subject: [PATCH v3 0/2] drm/bridge: Support for Toshiba tc358768 RGB to DSI bridge
+Date:   Mon, 27 Jan 2020 12:56:32 +0200
+Message-ID: <20200127105634.7638-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the binding file google,cros-ec-pwm.txt to yaml format.
+Hi,
 
-This was tested and verified on ARM64 with:
+Changes since v2:
+- Implement pre_enable and post_disbale callbacks and move code from enable and
+  disable callbacks.
+- hw_enable/disable is removed from tc358768_dsi_host_transfer()
+- Defines for DSI_CONFW accesses
+- breakout from the loops  (the check for it) is moved one level up in
+  tc358768_calc_pll()
 
-make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
-make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+Changes since v1:
+DT bindings document:
+- Removed MaxItems for the regulators
+- additionalProperties: false added to port@1
 
-Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Driver:
+- Year is now 2020
+- Includes shorted
+- The three letter members of the private struct documented 0 they are named as
+  in the datasheet
+- Error handling for the IO functions is following what sil-sii8620.c does
+- regmap regcache is disabled along with refcache_sync() and volatile callback
+  for regmap
+- The hw enable and disable functions got separated
+- Taken the suggested simplifactions from Andrzej for tc358768_calc_pll() and
+  tc358768_dsi_host_transfer()
+- The driver no longer stores the drm_display_mode, it relies on
+  priv->bridge.encoder->crtc->state->adjusted_mode where it needs it
+- tc358768_calc_pll() can be used for verification only to not modify the state
+- refcounting added for hw enable state as a dsi transfer was shutting down the
+  bridge when it was already enabled.
+
+Tested on top of drm-next + LED backlight patches + DT patches on dra7-evm with
+osd101t2045 (panel-simple) and osd101t2587 panel drivers.
+
+Cover letter from v1:
+TC358768 is a parallel RGB to MIPI DSI bridge.
+
+The initial driver supports MIPI_DSI_MODE_VIDEO, MIPI_DSI_FMT_RGB888 and
+only write is implemented for mipi_dsi_host_ops.transfer due to lack of hardware
+where other modes can be tested.
+
+Regards,
+Peter
 ---
- .../bindings/pwm/google,cros-ec-pwm.txt       | 23 -----------
- .../bindings/pwm/google,cros-ec-pwm.yaml      | 40 +++++++++++++++++++
- 2 files changed, 40 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.txt
- create mode 100644 Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
+Peter Ujfalusi (2):
+  dt-bindings: display: bridge: Add documentation for Toshiba tc358768
+  drm/bridge: Add tc358768 driver
 
-diff --git a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.txt b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.txt
-deleted file mode 100644
-index 472bd46ab5a4..000000000000
---- a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--* PWM controlled by ChromeOS EC
--
--Google's ChromeOS EC PWM is a simple PWM attached to the Embedded Controller
--(EC) and controlled via a host-command interface.
--
--An EC PWM node should be only found as a sub-node of the EC node (see
--Documentation/devicetree/bindings/mfd/cros-ec.txt).
--
--Required properties:
--- compatible: Must contain "google,cros-ec-pwm"
--- #pwm-cells: Should be 1. The cell specifies the PWM index.
--
--Example:
--	cros-ec@0 {
--		compatible = "google,cros-ec-spi";
--
--		...
--
--		cros_ec_pwm: ec-pwm {
--			compatible = "google,cros-ec-pwm";
--			#pwm-cells = <1>;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
-new file mode 100644
-index 000000000000..24c217b76580
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/google,cros-ec-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: PWM controlled by ChromeOS EC
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - '"Uwe Kleine-König" <u.kleine-koenig@pengutronix.de>'
-+
-+description: |
-+  Google's ChromeOS EC PWM is a simple PWM attached to the Embedded Controller
-+  (EC) and controlled via a host-command interface.
-+  An EC PWM node should be only found as a sub-node of the EC node (see
-+  Documentation/devicetree/bindings/mfd/cros-ec.txt).
-+
-+properties:
-+  compatible:
-+    const: google,cros-ec-pwm
-+  "#pwm-cells":
-+    description: The cell specifies the PWM index.
-+    const: 1
-+
-+required:
-+  - compatible
-+  - '#pwm-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    cros-ec@0 {
-+        compatible = "google,cros-ec-spi";
-+        cros_ec_pwm: ec-pwm {
-+            compatible = "google,cros-ec-pwm";
-+            #pwm-cells = <1>;
-+        };
-+    };
+ .../display/bridge/toshiba,tc358768.yaml      |  158 +++
+ drivers/gpu/drm/bridge/Kconfig                |   10 +
+ drivers/gpu/drm/bridge/Makefile               |    1 +
+ drivers/gpu/drm/bridge/tc358768.c             | 1040 +++++++++++++++++
+ 4 files changed, 1209 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+ create mode 100644 drivers/gpu/drm/bridge/tc358768.c
+
 -- 
-2.17.1
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
