@@ -2,107 +2,434 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43AE214A5F9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 15:26:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81ACD14A600
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2020 15:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727235AbgA0O0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 27 Jan 2020 09:26:24 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41721 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725828AbgA0O0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 09:26:24 -0500
-Received: by mail-ot1-f66.google.com with SMTP id r27so8481740otc.8;
-        Mon, 27 Jan 2020 06:26:24 -0800 (PST)
+        id S1729113AbgA0O0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 27 Jan 2020 09:26:54 -0500
+Received: from mail-pj1-f65.google.com ([209.85.216.65]:55077 "EHLO
+        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727235AbgA0O0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 27 Jan 2020 09:26:54 -0500
+Received: by mail-pj1-f65.google.com with SMTP id dw13so2560614pjb.4
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2020 06:26:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=SnyVsHYvDZZlyfR2Lo3NHwFwiEMiQSlX7ld3n3BKoJE=;
+        b=pkTn7F3PFczgNQdkYE1LP6aSjWB8HcMJaPIKgDMF89vqO3edPw1xQjtNCG3k8N4v72
+         YLgODRiSNe+/srMxZ3ptuaxtZgywbZuHzIUJ5zQ0az6M3d85RLUHj+36fySXEb0knbX4
+         wfyaROW0kUEeZo7YBk7xZzA55VKYvIXLnsYsH6DpH92pfeQrcrxkfwx/6/3U6H7sj2fe
+         0JN4En5/z3fchaZz5B6+p/QUptaAVlPbu9NJN9CpNUDy/75WZELQWkq45AbnxACUj9a8
+         FLAZa7if6Q9nJm/ZOmAWCnsR92IGys01C56Be2yuW5n6v+aWM1xqFfCHjeTefH25sl80
+         R3ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=Nxt//FHypijseal0ghIbraBsi2lnDnz+2r9nMCuOYJI=;
-        b=eZAPI5FnyZz44CPp9IGSQEvBWwCn4DXi/Guo5baZ6bhVjt3fMCNXuA0yI4ATjE3iOF
-         3JHzBL1/mRiXV167pLJR7kcRza4t3Kga6EOUX7lygX3pqtpzmcVDUXpTyRyPij/U6wgl
-         nofLvaxUBmmpHNLerroiPVg+6gka9k/87YklZ1HJ35zSZL3zf84mSwCJzeu9Z4Cd25oD
-         fRFfj/JsO9CGTL59ZlYE1noNwg+/8OfSokTfah+Nez4wV0sk9p/swDNIaZuzuL1yUGlz
-         9gJ5MVy5EvrZe9QcoQqFDzEFmJJOgoh7MXQuBfcNv/bfX/t1IvMDzvReTkVlkvipE4z+
-         CPDA==
-X-Gm-Message-State: APjAAAVQf7mrKRbOgOROMG32VePv32vgJ7BmvnFlv7Re/q4oPR+kS0Gm
-        YRJF2wsT0n9gmPUsYY+MdQ==
-X-Google-Smtp-Source: APXvYqyBPH3RWTQHiqmN/lkBJBZUFhrE+9jZVDWpGBXqHJYibAu4HcUdQ/ttp2aqxhjJ+ejTuvj9gg==
-X-Received: by 2002:a9d:2028:: with SMTP id n37mr13077692ota.127.1580135183616;
-        Mon, 27 Jan 2020 06:26:23 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t7sm2606437oth.79.2020.01.27.06.26.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2020 06:26:22 -0800 (PST)
-Received: (nullmailer pid 29798 invoked by uid 1000);
-        Mon, 27 Jan 2020 14:26:20 -0000
-Date:   Mon, 27 Jan 2020 08:26:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        paul.burton@mips.com, paulburton@kernel.org, jhogan@kernel.org,
-        tglx@linutronix.de, daniel.lezcano@linaro.org, shawnguo@kernel.org,
-        mark.rutland@arm.com, syq@debian.org, ralf@linux-mips.org,
-        miquel.raynal@bootlin.com, keescook@chromium.org,
-        ebiederm@xmission.com, krzk@kernel.org, geert+renesas@glider.be,
-        paul@crapouillou.net, prasannatsmkumar@gmail.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com,
-        mturquette@baylibre.com, sboyd@kernel.org, chenhc@lemote.com,
-        jiaxun.yang@flygoat.com, paul@boddie.org.uk, hns@goldelico.com,
-        mips-creator-ci20-dev@googlegroups.com, rick.tyliu@ingenic.com
-Subject: Re: [PATCH v3 3/6] dt-bindings: MIPS: Document Ingenic SoCs binding.
-Message-ID: <20200127142620.GA29108@bogus>
-References: <1579867508-81499-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1579867508-81499-5-git-send-email-zhouyanjie@wanyeetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1579867508-81499-5-git-send-email-zhouyanjie@wanyeetech.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=SnyVsHYvDZZlyfR2Lo3NHwFwiEMiQSlX7ld3n3BKoJE=;
+        b=E212wpe00TVjPrDfqNhuGJV1CmURh4jItS8xZjWei7cmoF3Wp+BCGXMTLZYo8aNgnH
+         J3D6bCOOlhqkjbko2UcD1DtrlBudjbJcfhb7d+vhMNzpw0qjieiCu8Nt25hvSIcsH5IR
+         hpHHSZWmoVHdzS8/JyP2Idex5MfDGtKsk/QP2X4P7lq3fTW54peM3X6O05/4hRYUnuoH
+         R2fgWeh5DWVsa8w1jMnrbiUJa7uXrROGLtJPo/7bNycyK1QFNBaP7AEUjIl+1nRqKYML
+         STDLAzWF92NvcPd59vOryVD6pxp9+1fBg9Npu9vI7F3i4XXh+dTBp8OxvDK7bVDVTcvg
+         sm5g==
+X-Gm-Message-State: APjAAAUnm9izJR/uLNTNKMFRNMQqABWRhE9krpD4e0C9w9N58JWpH2bC
+        I4nrfBxmhnH5CJNSRaTpJ0g=
+X-Google-Smtp-Source: APXvYqzNZ/11otfbjwrLbw/32y5NBtmVWjY7cwgrQgS9avAkqZ48ccdI9cufAkSigg/QCPEJZqB/Zw==
+X-Received: by 2002:a17:90a:bd89:: with SMTP id z9mr10308865pjr.13.1580135213482;
+        Mon, 27 Jan 2020 06:26:53 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:d809:ffa6:583:2633:933c:f34d])
+        by smtp.gmail.com with ESMTPSA id m22sm17260975pgn.8.2020.01.27.06.26.51
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 27 Jan 2020 06:26:53 -0800 (PST)
+From:   Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
+To:     noralf@tronnes.org, Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
+Subject: [PATCH v4 3/3] drm/tinydrm: add support for tft displays based on ilitek,ili9486
+Date:   Mon, 27 Jan 2020 19:56:46 +0530
+Message-Id: <eb5672abbdb89d7018793c76d7193bfb78a2ea88.1580134320.git.kamlesh.gurudasani@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <cover.1580134320.git.kamlesh.gurudasani@gmail.com>
+References: <cover.1580134320.git.kamlesh.gurudasani@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Jan 2020 20:05:05 +0800, =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= wrote:
-> Document the available properties for the SoC root node and the
-> CPU nodes of the devicetree for the Ingenic XBurst SoCs.
-> 
-> Tested-by: H. Nikolaus Schaller <hns@goldelico.com>
-> Tested-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
-> 
-> Notes:
->     v1->v2:
->     Change the two Document from txt to yaml.
->     
->     v2->v3:
->     Fix formatting errors.
-> 
->  .../bindings/mips/ingenic/ingenic,cpu.yaml         | 53 ++++++++++++++++++++++
->  .../bindings/mips/ingenic/ingenic,soc,yaml         | 35 ++++++++++++++
->  2 files changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
->  create mode 100644 Documentation/devicetree/bindings/mips/ingenic/ingenic,soc,yaml
-> 
+This adds support fot ilitek,ili9486 based displays with shift register
+in front of controller.
+Ozzmaker,Piscreen and Waveshare,rpi-lcd-35 are such displays.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Signed-off-by: Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
+---
 
-warning: no schema found in file: Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml: ignoring, error in schema: properties: compatible: oneOf: 0
-Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml: properties:compatible:oneOf:0: 'ingenic,xburst' is not of type 'object', 'boolean'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml: properties:compatible:oneOf:1: 'ingenic,xburst2' is not of type 'object', 'boolean'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml: Additional properties are not allowed ('Example' was unexpected)
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.yaml: Additional properties are not allowed ('Example' was unexpected)
-Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.example.dts' failed
-make[1]: *** [Documentation/devicetree/bindings/mips/ingenic/ingenic,cpu.example.dts] Error 1
-Makefile:1263: recipe for target 'dt_binding_check' failed
-make: *** [dt_binding_check] Error 2
+v2 changes:
+* assignment of dbi_command before registration
+* made dc and reset gpio compulsory
+* typos and unwanted comments removed
+* changed the name of function which were display specific
+* arranged the Makefile entries in alphabetical order
 
-See https://patchwork.ozlabs.org/patch/1228796
-Please check and re-submit.
+v3 changes:
+* no changes
+
+v4 changes:
+* no changes
+---
+ MAINTAINERS                    |   7 +
+ drivers/gpu/drm/tiny/Kconfig   |  14 ++
+ drivers/gpu/drm/tiny/Makefile  |   1 +
+ drivers/gpu/drm/tiny/ili9486.c | 283 +++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 305 insertions(+)
+ create mode 100644 drivers/gpu/drm/tiny/ili9486.c
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 16423f5..30dd396 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -5233,6 +5233,13 @@ S:	Maintained
+ F:	drivers/gpu/drm/tiny/ili9225.c
+ F:	Documentation/devicetree/bindings/display/ilitek,ili9225.txt
+ 
++DRM DRIVER FOR ILITEK ILI9486 PANELS
++M:	Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
++T:	git git://anongit.freedesktop.org/drm/drm-misc
++S:	Maintained
++F:	drivers/gpu/drm/tiny/ili9486.c
++F:	Documentation/devicetree/bindings/display/ilitek,ili9486.yaml
++
+ DRM DRIVER FOR HX8357D PANELS
+ M:	Eric Anholt <eric@anholt.net>
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
+diff --git a/drivers/gpu/drm/tiny/Kconfig b/drivers/gpu/drm/tiny/Kconfig
+index a866421..4160e74 100644
+--- a/drivers/gpu/drm/tiny/Kconfig
++++ b/drivers/gpu/drm/tiny/Kconfig
+@@ -47,6 +47,20 @@ config TINYDRM_ILI9341
+ 
+ 	  If M is selected the module will be called ili9341.
+ 
++config TINYDRM_ILI9486
++	tristate "DRM support for ILI9486 display panels"
++	depends on DRM && SPI
++	select DRM_KMS_HELPER
++	select DRM_KMS_CMA_HELPER
++	select DRM_MIPI_DBI
++	select BACKLIGHT_CLASS_DEVICE
++	help
++	  DRM driver for the following Ilitek ILI9486 panels:
++	  * PISCREEN 3.5" 320x480 TFT (Ozzmaker 3.5")
++	  * RPILCD 3.5" 320x480 TFT (Waveshare 3.5")
++
++	  If M is selected the module will be called ili9486.
++
+ config TINYDRM_MI0283QT
+ 	tristate "DRM support for MI0283QT"
+ 	depends on DRM && SPI
+diff --git a/drivers/gpu/drm/tiny/Makefile b/drivers/gpu/drm/tiny/Makefile
+index 896cf31..c96ceee 100644
+--- a/drivers/gpu/drm/tiny/Makefile
++++ b/drivers/gpu/drm/tiny/Makefile
+@@ -4,6 +4,7 @@ obj-$(CONFIG_DRM_GM12U320)		+= gm12u320.o
+ obj-$(CONFIG_TINYDRM_HX8357D)		+= hx8357d.o
+ obj-$(CONFIG_TINYDRM_ILI9225)		+= ili9225.o
+ obj-$(CONFIG_TINYDRM_ILI9341)		+= ili9341.o
++obj-$(CONFIG_TINYDRM_ILI9486)		+= ili9486.o
+ obj-$(CONFIG_TINYDRM_MI0283QT)		+= mi0283qt.o
+ obj-$(CONFIG_TINYDRM_REPAPER)		+= repaper.o
+ obj-$(CONFIG_TINYDRM_ST7586)		+= st7586.o
+diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili9486.c
+new file mode 100644
+index 0000000..e960b16
+--- /dev/null
++++ b/drivers/gpu/drm/tiny/ili9486.c
+@@ -0,0 +1,283 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * DRM driver for Ilitek ILI9486 panels
++ *
++ * Copyright 2020 Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
++ */
++
++#include <linux/backlight.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/module.h>
++#include <linux/property.h>
++#include <linux/spi/spi.h>
++#include <video/mipi_display.h>
++
++#include <drm/drm_atomic_helper.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_fb_helper.h>
++#include <drm/drm_gem_cma_helper.h>
++#include <drm/drm_gem_framebuffer_helper.h>
++#include <drm/drm_mipi_dbi.h>
++#include <drm/drm_modeset_helper.h>
++
++#define ILI9486_ITFCTR1         0xb0
++#define ILI9486_PWCTRL1         0xc2
++#define ILI9486_VMCTRL1         0xc5
++#define ILI9486_PGAMCTRL        0xe0
++#define ILI9486_NGAMCTRL        0xe1
++#define ILI9486_DGAMCTRL        0xe2
++#define ILI9486_MADCTL_BGR      BIT(3)
++#define ILI9486_MADCTL_MV       BIT(5)
++#define ILI9486_MADCTL_MX       BIT(6)
++#define ILI9486_MADCTL_MY       BIT(7)
++
++/*
++ * The PiScreen/waveshare rpi-lcd-35 has a SPI to 16-bit parallel bus converter
++ * in front of the  display controller. This means that 8-bit values have to be
++ * transferred as 16-bit.
++ */
++static int waveshare_command(struct mipi_dbi *mipi, u8 *cmd, u8 *par, size_t num)
++{
++	struct spi_device *spi = mipi->spi;
++	void *data = par;
++	u32 speed_hz;
++	int i, ret;
++	u16 *buf;
++
++	buf = kmalloc(32 * sizeof(u16), GFP_KERNEL);
++	if (!buf)
++		return -ENOMEM;
++
++	/*
++	 * The displays are Raspberry Pi HATs and connected to the 8-bit only
++	 * SPI controller, so 16-bit command and parameters need byte swapping
++	 * before being transferred as 8-bit on the big endian SPI bus.
++	 * Pixel data bytes have already been swapped before this function is
++	 * called.
++	 */
++	buf[0] = cpu_to_be16(*cmd);
++	gpiod_set_value_cansleep(mipi->dc, 0);
++	speed_hz = mipi_dbi_spi_cmd_max_speed(spi, 2);
++	ret = mipi_dbi_spi_transfer(spi, speed_hz, 8, buf, 2);
++	if (ret || !num)
++		goto free;
++
++	/* 8-bit configuration data, not 16-bit pixel data */
++	if (num <= 32) {
++		for (i = 0; i < num; i++)
++			buf[i] = cpu_to_be16(par[i]);
++		num *= 2;
++		speed_hz = mipi_dbi_spi_cmd_max_speed(spi, num);
++		data = buf;
++	}
++
++	gpiod_set_value_cansleep(mipi->dc, 1);
++	ret = mipi_dbi_spi_transfer(spi, speed_hz, 8, data, num);
++ free:
++	kfree(buf);
++
++	return ret;
++}
++
++static void waveshare_enable(struct drm_simple_display_pipe *pipe,
++			   struct drm_crtc_state *crtc_state,
++			   struct drm_plane_state *plane_state)
++{
++	struct mipi_dbi_dev *dbidev = drm_to_mipi_dbi_dev(pipe->crtc.dev);
++	struct mipi_dbi *dbi = &dbidev->dbi;
++	u8 addr_mode;
++	int ret, idx;
++
++	if (!drm_dev_enter(pipe->crtc.dev, &idx))
++		return;
++
++	DRM_DEBUG_KMS("\n");
++
++	ret = mipi_dbi_poweron_conditional_reset(dbidev);
++	if (ret < 0)
++		goto out_exit;
++	if (ret == 1)
++		goto out_enable;
++
++	mipi_dbi_command(dbi, ILI9486_ITFCTR1);
++	mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
++	msleep(250);
++
++	mipi_dbi_command(dbi, MIPI_DCS_SET_PIXEL_FORMAT, 0x55);
++
++	mipi_dbi_command(dbi, ILI9486_PWCTRL1, 0x44);
++
++	mipi_dbi_command(dbi, ILI9486_VMCTRL1, 0x00, 0x00, 0x00, 0x00);
++
++	mipi_dbi_command(dbi, ILI9486_PGAMCTRL,
++			 0x0F, 0x1F, 0x1C, 0x0C, 0x0F, 0x08, 0x48, 0x98,
++			 0x37, 0x0A, 0x13, 0x04, 0x11, 0x0D, 0x0);
++	mipi_dbi_command(dbi, ILI9486_NGAMCTRL,
++			 0x0F, 0x32, 0x2E, 0x0B, 0x0D, 0x05, 0x47, 0x75,
++			 0x37, 0x06, 0x10, 0x03, 0x24, 0x20, 0x00);
++	mipi_dbi_command(dbi, ILI9486_DGAMCTRL,
++			 0x0F, 0x32, 0x2E, 0x0B, 0x0D, 0x05, 0x47, 0x75,
++			 0x37, 0x06, 0x10, 0x03, 0x24, 0x20, 0x00);
++
++	mipi_dbi_command(dbi, MIPI_DCS_SET_DISPLAY_ON);
++	msleep(100);
++
++ out_enable:
++	switch (dbidev->rotation) {
++	case 90:
++		addr_mode = ILI9486_MADCTL_MY;
++		break;
++	case 180:
++		addr_mode = ILI9486_MADCTL_MV;
++		break;
++	case 270:
++		addr_mode = ILI9486_MADCTL_MX;
++		break;
++	default:
++		addr_mode = ILI9486_MADCTL_MV | ILI9486_MADCTL_MY |
++			ILI9486_MADCTL_MX;
++		break;
++	}
++	addr_mode |= ILI9486_MADCTL_BGR;
++	mipi_dbi_command(dbi, MIPI_DCS_SET_ADDRESS_MODE, addr_mode);
++	mipi_dbi_enable_flush(dbidev, crtc_state, plane_state);
++ out_exit:
++	drm_dev_exit(idx);
++}
++
++static const struct drm_simple_display_pipe_funcs waveshare_pipe_funcs = {
++	.enable = waveshare_enable,
++	.disable = mipi_dbi_pipe_disable,
++	.update = mipi_dbi_pipe_update,
++	.prepare_fb = drm_gem_fb_simple_display_pipe_prepare_fb,
++};
++
++static const struct drm_display_mode waveshare_mode = {
++	DRM_SIMPLE_MODE(480, 320, 73, 49),
++};
++
++DEFINE_DRM_GEM_CMA_FOPS(ili9486_fops);
++
++static struct drm_driver ili9486_driver = {
++	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
++	.fops			= &ili9486_fops,
++	.release		= mipi_dbi_release,
++	DRM_GEM_CMA_VMAP_DRIVER_OPS,
++	.debugfs_init		= mipi_dbi_debugfs_init,
++	.name			= "ili9486",
++	.desc			= "Ilitek ILI9486",
++	.date			= "20200118",
++	.major			= 1,
++	.minor			= 0,
++};
++
++static const struct of_device_id ili9486_of_match[] = {
++	{ .compatible = "waveshare,rpi-lcd-35" },
++	{ .compatible = "ozzmaker,piscreen" },
++	{},
++};
++MODULE_DEVICE_TABLE(of, ili9486_of_match);
++
++static const struct spi_device_id ili9486_id[] = {
++	{ "ili9486", 0 },
++	{ }
++};
++MODULE_DEVICE_TABLE(spi, ili9486_id);
++
++static int ili9486_probe(struct spi_device *spi)
++{
++	struct device *dev = &spi->dev;
++	struct mipi_dbi_dev *dbidev;
++	struct drm_device *drm;
++	struct mipi_dbi *dbi;
++	struct gpio_desc *dc;
++	u32 rotation = 0;
++	int ret;
++
++	dbidev = kzalloc(sizeof(*dbidev), GFP_KERNEL);
++	if (!dbidev)
++		return -ENOMEM;
++
++	dbi = &dbidev->dbi;
++	drm = &dbidev->drm;
++	ret = devm_drm_dev_init(dev, drm, &ili9486_driver);
++	if (ret) {
++		kfree(dbidev);
++		return ret;
++	}
++
++	drm_mode_config_init(drm);
++
++	dbi->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(dbi->reset)) {
++		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
++		return PTR_ERR(dbi->reset);
++	}
++
++	dc = devm_gpiod_get(dev, "dc", GPIOD_OUT_LOW);
++	if (IS_ERR(dc)) {
++		DRM_DEV_ERROR(dev, "Failed to get gpio 'dc'\n");
++		return PTR_ERR(dc);
++	}
++
++	dbidev->backlight = devm_of_find_backlight(dev);
++	if (IS_ERR(dbidev->backlight))
++		return PTR_ERR(dbidev->backlight);
++
++	device_property_read_u32(dev, "rotation", &rotation);
++
++	ret = mipi_dbi_spi_init(spi, dbi, dc);
++	if (ret)
++		return ret;
++
++	dbi->command = waveshare_command;
++	dbi->read_commands = NULL;
++
++	ret = mipi_dbi_dev_init(dbidev, &waveshare_pipe_funcs, &waveshare_mode, rotation);
++	if (ret)
++		return ret;
++
++	drm_mode_config_reset(drm);
++
++	ret = drm_dev_register(drm, 0);
++	if (ret)
++		return ret;
++
++	spi_set_drvdata(spi, drm);
++
++	drm_fbdev_generic_setup(drm, 0);
++
++	return 0;
++}
++
++static int ili9486_remove(struct spi_device *spi)
++{
++	struct drm_device *drm = spi_get_drvdata(spi);
++
++	drm_dev_unplug(drm);
++	drm_atomic_helper_shutdown(drm);
++
++	return 0;
++}
++
++static void ili9486_shutdown(struct spi_device *spi)
++{
++	drm_atomic_helper_shutdown(spi_get_drvdata(spi));
++}
++
++static struct spi_driver ili9486_spi_driver = {
++	.driver = {
++		.name = "ili9486",
++		.of_match_table = ili9486_of_match,
++	},
++	.id_table = ili9486_id,
++	.probe = ili9486_probe,
++	.remove = ili9486_remove,
++	.shutdown = ili9486_shutdown,
++};
++module_spi_driver(ili9486_spi_driver);
++
++MODULE_DESCRIPTION("Ilitek ILI9486 DRM driver");
++MODULE_AUTHOR("Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>");
++MODULE_LICENSE("GPL");
+-- 
+2.7.4
+
