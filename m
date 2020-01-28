@@ -2,107 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40AD114B2A7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 11:34:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B631914B2FD
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 11:49:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726063AbgA1KeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jan 2020 05:34:03 -0500
-Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:30986 "EHLO
-        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725901AbgA1KeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jan 2020 05:34:02 -0500
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 28 Jan 2020 16:03:59 +0530
-Received: from pillair-linux.qualcomm.com ([10.204.116.193])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 28 Jan 2020 16:03:50 +0530
-Received: by pillair-linux.qualcomm.com (Postfix, from userid 452944)
-        id 65A5D392C; Tue, 28 Jan 2020 16:03:48 +0530 (IST)
-From:   Rakesh Pillai <pillair@codeaurora.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Rakesh Pillai <pillair@codeaurora.org>
-Subject: [PATCH v4] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module device node
-Date:   Tue, 28 Jan 2020 16:03:37 +0530
-Message-Id: <1580207617-818-1-git-send-email-pillair@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S1725903AbgA1Kt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jan 2020 05:49:58 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:18568 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725901AbgA1Kt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jan 2020 05:49:58 -0500
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e3011c20000>; Tue, 28 Jan 2020 02:49:38 -0800
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 28 Jan 2020 02:49:57 -0800
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 28 Jan 2020 02:49:57 -0800
+Received: from [10.24.44.92] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 28 Jan
+ 2020 10:49:52 +0000
+CC:     <spujar@nvidia.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>, <mkumard@nvidia.com>,
+        <viswanathl@nvidia.com>, <rlokhande@nvidia.com>,
+        <dramesh@nvidia.com>, <atalambedu@nvidia.com>
+Subject: Re: [PATCH 0/9] add ASoC components for AHUB
+To:     <perex@perex.cz>, <tiwai@suse.com>, <robh+dt@kernel.org>
+References: <1579530198-13431-1-git-send-email-spujar@nvidia.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <81db77b5-a65a-eafe-d42d-947c38ea1d3c@nvidia.com>
+Date:   Tue, 28 Jan 2020 16:19:49 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+In-Reply-To: <1579530198-13431-1-git-send-email-spujar@nvidia.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1580208578; bh=YJZpPWHErsEBxHrNnw+7ltmiDCP3p5OqwD9FoVMZl8s=;
+        h=X-PGP-Universal:CC:Subject:To:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=GGRf+pJA/37DUqeFZZ+QEJAPVLUqv0jNTBrKfmNf2YcNL+Plv90d/EUA2GyQ0WlkJ
+         2gBm2anH62Us1wy83XjvFWA3paGGD6+vvwTYy3ob0Z3lDvUzYXJgpi76hGZdstJLNY
+         TlKFdvAWxlEzRTniUUxcuCSqS5zxSpeb8YyacEN/j5YP6An8on6/mGvET9KigdUUuP
+         q4BJMP7gjbjFaBCIZpzBYvrVmW7vz50OVO0ESrYLWAa7y/spVPoDWQEnIyTNI5Kj2U
+         SWRXxbY3aplmFUi1+S/Q68oq281voufJaXEz3W7MYJgp4ADF6IIawhM3N3zf5eXnld
+         gn9sOBGfTPjnA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device node for the ath10k SNOC platform driver probe
-and add resources required for WCN3990 on sc7180 soc.
 
-Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180-idp.dts |  5 +++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi    | 28 ++++++++++++++++++++++++++++
- 2 files changed, 33 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 189254f..151b489 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -248,6 +248,11 @@
- 	status = "okay";
- };
- 
-+&wifi {
-+	status = "okay";
-+	qcom,msa-fixed-perm;
-+};
-+
- /* PINCTRL - additions to nodes defined in sc7180.dtsi */
- 
- &qup_i2c2_default {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 666e9b9..7efb97f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -42,6 +42,12 @@
- 			compatible = "qcom,cmd-db";
- 			no-map;
- 		};
-+
-+		wlan_fw_mem: memory@93900000 {
-+			compatible = "removed-dma-pool";
-+			no-map;
-+			reg = <0 0x93900000 0 0x200000>;
-+		};
- 	};
- 
- 	cpus {
-@@ -1119,6 +1125,28 @@
- 				#clock-cells = <1>;
- 			};
- 		};
-+
-+		wifi: wifi@18800000 {
-+			compatible = "qcom,wcn3990-wifi";
-+			reg = <0 0x18800000 0 0x800000>;
-+			reg-names = "membase";
-+			iommus = <&apps_smmu 0xC0 0x1>;
-+			interrupts =
-+				<GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH /* CE0 */ >,
-+				<GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH /* CE1 */ >,
-+				<GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH /* CE2 */ >,
-+				<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH /* CE3 */ >,
-+				<GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH /* CE4 */ >,
-+				<GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH /* CE5 */ >,
-+				<GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH /* CE6 */ >,
-+				<GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH /* CE7 */ >,
-+				<GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH /* CE8 */ >,
-+				<GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH /* CE9 */ >,
-+				<GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH /* CE10 */>,
-+				<GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH /* CE11 */>;
-+			memory-region = <&wlan_fw_mem>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	timer {
--- 
-2.7.4
+On 1/20/2020 7:53 PM, Sameer Pujar wrote:
+> Overview
+> ========
+> The Audio Hub (AHUB) is part of the Audio Processing Engine (APE) which
+> comprises a collection of hardware accelerators for audio pre-processing
+> and post-processing. It also includes a programmable full crossbar for
+> routing audio data across these accelerators.
+>
+> This series exposes some of these below mentioned HW devices as ASoC
+> components for Tegra platforms from Tegra210 onwards.
+>   * ADMAIF : The interface between ADMA and AHUB
+>   * XBAR   : Crossbar for routing audio samples across various modules
+>   * I2S    : Inter-IC Sound Controller
+>   * DMIC   : Digital Microphone
+>   * DSPK   : Digital Speaker
+>
+> Following is the summary of current series.
+>   1. Add YAML DT binding documentation for above mentioned modules.
+>   2. ACIF programming is same for Tegra generations and hence it is moved
+>      to a common file.
+>   3. Add ASoC driver components for each of the above modules.
+>   4. Add DT entries for above components for Tegra210, Tegra186 and
+>      Tegra194.
+>   5. Enable these components for Jetson-Tx1, Jetson-Tx2 and
+>      Jetson-Xavier.
+>
+> Machine driver series will be sent separately.
+>
+> Sameer Pujar (9):
+>    dt-bindings: sound: tegra: add DT binding for AHUB
+>    ASoC: tegra: add support for CIF programming
+>    ASoC: tegra: add Tegra210 based DMIC driver
+>    ASoC: tegra: add Tegra210 based I2S driver
+>    ASoC: tegra: add Tegra210 based AHUB driver
+>    ASoC: tegra: add Tegra186 based DSPK driver
+>    ASoC: tegra: add Tegra210 based ADMAIF driver
+>    arm64: tegra: add AHUB components for few Tegra chips
+>    arm64: tegra: enable AHUB modules for few Tegra chips
+
+If any comments on the series, please let me know.
+I am planning to publish v2 based on the discussion we had in v1.
+
+Thanks,
+Sameer.
+>
+>   .../bindings/sound/nvidia,tegra186-dspk.yaml       | 105 +++
+>   .../bindings/sound/nvidia,tegra210-admaif.yaml     | 165 ++++
+>   .../bindings/sound/nvidia,tegra210-ahub.yaml       | 130 +++
+>   .../bindings/sound/nvidia,tegra210-dmic.yaml       | 105 +++
+>   .../bindings/sound/nvidia,tegra210-i2s.yaml        | 112 +++
+>   arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts |  48 ++
+>   arch/arm64/boot/dts/nvidia/tegra186.dtsi           | 231 ++++-
+>   arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts |  36 +
+>   arch/arm64/boot/dts/nvidia/tegra194.dtsi           | 239 +++++-
+>   arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts |  40 +
+>   arch/arm64/boot/dts/nvidia/tegra210.dtsi           | 145 ++++
+>   sound/soc/tegra/Kconfig                            |  56 ++
+>   sound/soc/tegra/Makefile                           |  12 +
+>   sound/soc/tegra/tegra186_dspk.c                    | 516 +++++++++++
+>   sound/soc/tegra/tegra186_dspk.h                    |  73 ++
+>   sound/soc/tegra/tegra210_admaif.c                  | 896 ++++++++++++++++++++
+>   sound/soc/tegra/tegra210_admaif.h                  | 164 ++++
+>   sound/soc/tegra/tegra210_ahub.c                    | 667 +++++++++++++++
+>   sound/soc/tegra/tegra210_ahub.h                    | 125 +++
+>   sound/soc/tegra/tegra210_dmic.c                    | 522 ++++++++++++
+>   sound/soc/tegra/tegra210_dmic.h                    |  85 ++
+>   sound/soc/tegra/tegra210_i2s.c                     | 941 +++++++++++++++++++++
+>   sound/soc/tegra/tegra210_i2s.h                     | 132 +++
+>   sound/soc/tegra/tegra30_ahub.c                     |  94 +-
+>   sound/soc/tegra/tegra30_ahub.h                     | 129 ---
+>   sound/soc/tegra/tegra30_i2s.c                      |  35 +-
+>   sound/soc/tegra/tegra30_i2s.h                      |   7 -
+>   sound/soc/tegra/tegra_cif.c                        |  34 +
+>   sound/soc/tegra/tegra_cif.h                        |  50 ++
+>   sound/soc/tegra/tegra_pcm.c                        | 224 ++++-
+>   sound/soc/tegra/tegra_pcm.h                        |  23 +-
+>   31 files changed, 5897 insertions(+), 244 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml
+>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
+>   create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
+>   create mode 100644 sound/soc/tegra/tegra186_dspk.c
+>   create mode 100644 sound/soc/tegra/tegra186_dspk.h
+>   create mode 100644 sound/soc/tegra/tegra210_admaif.c
+>   create mode 100644 sound/soc/tegra/tegra210_admaif.h
+>   create mode 100644 sound/soc/tegra/tegra210_ahub.c
+>   create mode 100644 sound/soc/tegra/tegra210_ahub.h
+>   create mode 100644 sound/soc/tegra/tegra210_dmic.c
+>   create mode 100644 sound/soc/tegra/tegra210_dmic.h
+>   create mode 100644 sound/soc/tegra/tegra210_i2s.c
+>   create mode 100644 sound/soc/tegra/tegra210_i2s.h
+>   create mode 100644 sound/soc/tegra/tegra_cif.c
+>   create mode 100644 sound/soc/tegra/tegra_cif.h
+>
 
