@@ -2,702 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B19714BF41
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 19:10:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2750F14BF12
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 19:02:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726830AbgA1SKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jan 2020 13:10:08 -0500
-Received: from [65.157.77.67] ([65.157.77.67]:62510 "HELO ubuntu.localdomain"
-        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with SMTP
-        id S1726521AbgA1SKG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jan 2020 13:10:06 -0500
-Received: by ubuntu.localdomain (Postfix, from userid 1000)
-        id 5E65D465317; Tue, 28 Jan 2020 11:00:37 -0700 (MST)
-From:   Mike Jones <michael-a1.jones@analog.com>
-To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     linux@roeck-us.net, jdelvare@suse.com, robh+dt@kernel.org,
-        corbet@lwn.net, Mike Jones <michael-a1.jones@analog.com>
-Subject: [PATCH 3/3] hwmon: (pmbus/ltc2978): add support for more parts.
-Date:   Tue, 28 Jan 2020 11:00:00 -0700
-Message-Id: <1580234400-2829-3-git-send-email-michael-a1.jones@analog.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1580234400-2829-1-git-send-email-michael-a1.jones@analog.com>
-References: <1580234400-2829-1-git-send-email-michael-a1.jones@analog.com>
+        id S1726613AbgA1SCT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jan 2020 13:02:19 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:51299 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726066AbgA1SCT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jan 2020 13:02:19 -0500
+Received: by mail-wm1-f65.google.com with SMTP id t23so3546696wmi.1;
+        Tue, 28 Jan 2020 10:02:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=VC3TO5/0Tj7TYkQFu/49yUTn5mFLsk+gjlGItx13KFE=;
+        b=pe4J1sCdY1ENOKFA2YazUE4nljYGxGj4AIrMeHPN54rZ+4dYm98NYvolDe8TLNiIV4
+         mRKgzJpyRJj4Asx2rcYtkdmBzH8R18f5kR5kBkARWBi+QBnrPkZXq3dHz061WT6KXHqg
+         6urlbWQaVjaOLILmvZ4fciKDcaxji/lMIWzTAxnrTQTPUkNjWYz3iuNH8q/0oM3CY7g2
+         UVSHQEYmA90GcfxvbyF0Lg7YWYkCYYx1t58XyjvuDMc2ahsx+CQ6UJdz0M31xZBAxJ/A
+         N9wH5bp9vdWfLMNU6JkeYjaz9WEzsYK6SZ19ezK15ldstFn+bO8js4m4wQcrTN4ZuvGd
+         deRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=VC3TO5/0Tj7TYkQFu/49yUTn5mFLsk+gjlGItx13KFE=;
+        b=P2YpBctGx6qiAPV0qXEwIbRMk4LSmQSfkjP09QKave8VRAtFDYE81dM379eY2QqsI8
+         0z/1vahugP3u4bVG12Q+MJQ1OQTX4tLrwI3NQiVnGe+b8X9/XZ3L5Iiv0bK2P/+HoZS0
+         /N8H0mFUlq/4Tc6PDe0bxJ2KCoholkr/40blB6/iYybJ7UOr0EnT2Wqm0Of4BPg9qRmO
+         LHiqMPVAfPRS7t2m3Xvja4e0asmyBKhyhfMQDLgjSUzOmO1/M5UBorpqbrXdp1ermaY6
+         D3G2Vh4jbeDxc4qK+ufNBujNKsZLFgJsYGjuyf4v7f3OX6ZtJ+1gaoAeBZUhOvVu74fb
+         eiuQ==
+X-Gm-Message-State: APjAAAXrJLqu0FWN/Su41uhjaUGbm3K9ccJ8wq+ozbHY61zoZ6/Duqdm
+        78OFekUv2tFB79mBDC/2bd0=
+X-Google-Smtp-Source: APXvYqxGDhnLvh5HcR0xAD8xuIpSXXgYAsf69YCj8ezpImos1V7vsvlZ0Jr3q5UES7ix6j+0QgLvyQ==
+X-Received: by 2002:a05:600c:22d3:: with SMTP id 19mr6264071wmg.20.1580234535590;
+        Tue, 28 Jan 2020 10:02:15 -0800 (PST)
+Received: from localhost (p2E5BEF3F.dip0.t-ipconnect.de. [46.91.239.63])
+        by smtp.gmail.com with ESMTPSA id d10sm27037095wrw.64.2020.01.28.10.02.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jan 2020 10:02:14 -0800 (PST)
+Date:   Tue, 28 Jan 2020 19:02:13 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Nagarjuna Kristam <nkristam@nvidia.com>
+Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, jonathanh@nvidia.com,
+        mark.rutland@arm.com, robh+dt@kernel.org, kishon@ti.com,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [Patch V3 10/18] usb: gadget: tegra-xudc: Add usb-phy support
+Message-ID: <20200128180213.GH2293590@ulmo>
+References: <1577704195-2535-1-git-send-email-nkristam@nvidia.com>
+ <1577704195-2535-11-git-send-email-nkristam@nvidia.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wayzTnRSUXKNfBqd"
+Content-Disposition: inline
+In-Reply-To: <1577704195-2535-11-git-send-email-nkristam@nvidia.com>
+User-Agent: Mutt/1.13.1 (2019-12-14)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LTC2972, LTC2979, LTC3884, LTC3889, LTC7880, LTM4664, LTM4677,
-LTM4678, LTM4680, LTM4700.
 
-Signed-off-by: Mike Jones <michael-a1.jones@analog.com>
----
- .../devicetree/bindings/hwmon/ltc2978.txt          |  22 ++-
- Documentation/hwmon/ltc2978.rst                    | 164 ++++++++++++++++-----
- drivers/hwmon/pmbus/Kconfig                        |  11 +-
- drivers/hwmon/pmbus/ltc2978.c                      |  92 +++++++++++-
- 4 files changed, 238 insertions(+), 51 deletions(-)
+--wayzTnRSUXKNfBqd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ltc2978.txt b/Documentation/devicetree/bindings/hwmon/ltc2978.txt
-index b428a70..4e7f621 100644
---- a/Documentation/devicetree/bindings/hwmon/ltc2978.txt
-+++ b/Documentation/devicetree/bindings/hwmon/ltc2978.txt
-@@ -2,20 +2,30 @@ ltc2978
- 
- Required properties:
- - compatible: should contain one of:
-+  * "lltc,ltc2972"
-   * "lltc,ltc2974"
-   * "lltc,ltc2975"
-   * "lltc,ltc2977"
-   * "lltc,ltc2978"
-+  * "lltc,ltc2979"
-   * "lltc,ltc2980"
-   * "lltc,ltc3880"
-   * "lltc,ltc3882"
-   * "lltc,ltc3883"
-+  * "lltc,ltc3884"
-   * "lltc,ltc3886"
-   * "lltc,ltc3887"
-+  * "lltc,ltc3889"
-+  * "lltc,ltc7880"
-   * "lltc,ltm2987"
-+  * "lltc,ltm4664"
-   * "lltc,ltm4675"
-   * "lltc,ltm4676"
-+  * "lltc,ltm4677"
-+  * "lltc,ltm4678"
-+  * "lltc,ltm4680"
-   * "lltc,ltm4686"
-+  * "lltc,ltm4700"
- - reg: I2C slave address
- 
- Optional properties:
-@@ -25,13 +35,17 @@ Optional properties:
-   standard binding for regulators; see regulator.txt.
- 
- Valid names of regulators depend on number of supplies supported per device:
-+  * ltc2972 vout0 - vout1
-   * ltc2974, ltc2975 : vout0 - vout3
--  * ltc2977, ltc2980, ltm2987 : vout0 - vout7
-+  * ltc2977, ltc2979, ltc2980, ltm2987 : vout0 - vout7
-   * ltc2978 : vout0 - vout7
--  * ltc3880, ltc3882, ltc3886 : vout0 - vout1
-+  * ltc3880, ltc3882, ltc3884, ltc3886, ltc3887, ltc3889 : vout0 - vout1
-+  * ltc7880 : vout0 - vout1
-   * ltc3883 : vout0
--  * ltm4676 : vout0 - vout1
--  * ltm4686 : vout0 - vout1
-+  * ltm4664 : vout0 - vout1
-+  * ltm4675, ltm4676, ltm4677, ltm4678 : vout0 - vout1
-+  * ltm4680, ltm4686 : vout0 - vout1
-+  * ltm4700 : vout0 - vout1
- 
- Example:
- ltc2978@5e {
-diff --git a/Documentation/hwmon/ltc2978.rst b/Documentation/hwmon/ltc2978.rst
-index 42fd841..58838d4 100644
---- a/Documentation/hwmon/ltc2978.rst
-+++ b/Documentation/hwmon/ltc2978.rst
-@@ -3,6 +3,14 @@ Kernel driver ltc2978
- 
- Supported chips:
- 
-+  * Linear Technology LTC2972
-+
-+    Prefix: 'ltc2972'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltc2972.html
-+
-   * Linear Technology LTC2974
- 
-     Prefix: 'ltc2974'
-@@ -37,6 +45,14 @@ Supported chips:
- 
- 	       https://www.analog.com/en/products/ltc2978a
- 
-+  * Linear Technology LTC2979
-+
-+    Prefix: 'ltc2979'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltc2979
-+
-   * Linear Technology LTC2980
- 
-     Prefix: 'ltc2980'
-@@ -69,6 +85,14 @@ Supported chips:
- 
-     Datasheet: https://www.analog.com/en/products/ltc3883
- 
-+  * Linear Technology LTC3884
-+
-+    Prefix: 'ltc3884'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltc3884
-+
-   * Linear Technology LTC3886
- 
-     Prefix: 'ltc3886'
-@@ -85,6 +109,22 @@ Supported chips:
- 
-     Datasheet: https://www.analog.com/en/products/ltc3887
- 
-+  * Linear Technology LTC3889
-+
-+    Prefix: 'ltc3889'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltc3889
-+
-+  * Linear Technology LTC7880
-+
-+    Prefix: 'ltc7880'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltc7880
-+
-   * Linear Technology LTM2987
- 
-     Prefix: 'ltm2987'
-@@ -93,7 +133,15 @@ Supported chips:
- 
-     Datasheet: https://www.analog.com/en/products/ltm2987
- 
--  * Linear Technology LTM4675
-+  * Linear Technology LTM4644
-+
-+    Prefix: 'ltm4644'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltm4644
-+
-+   * Linear Technology LTM4675
- 
-     Prefix: 'ltm4675'
- 
-@@ -109,6 +157,30 @@ Supported chips:
- 
-     Datasheet: https://www.analog.com/en/products/ltm4676
- 
-+  * Linear Technology LTM4677
-+
-+    Prefix: 'ltm4677'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltm4677
-+
-+  * Linear Technology LTM4678
-+
-+    Prefix: 'ltm4678'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: https://www.analog.com/en/products/ltm4678
-+
-+  * Analog Devices LTM4680
-+
-+    Prefix: 'ltm4680'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: http://www.analog.com/ltm4680
-+
-   * Analog Devices LTM4686
- 
-     Prefix: 'ltm4686'
-@@ -117,6 +189,15 @@ Supported chips:
- 
-     Datasheet: http://www.analog.com/ltm4686
- 
-+  * Analog Devices LTM4700
-+
-+    Prefix: 'ltm4700'
-+
-+    Addresses scanned: -
-+
-+    Datasheet: http://www.analog.com/ltm4700
-+
-+
- 
- Author: Guenter Roeck <linux@roeck-us.net>
- 
-@@ -166,13 +247,13 @@ in1_min			Minimum input voltage.
- 
- in1_max			Maximum input voltage.
- 
--			LTC2974, LTC2975, LTC2977, LTC2980, LTC2978, and
--			LTM2987 only.
-+			LTC2974, LTC2975, LTC2977, LTC2980, LTC2978,
-+      LTC2979 and LTM2987 only.
- 
- in1_lcrit		Critical minimum input voltage.
- 
--			LTC2974, LTC2975, LTC2977, LTC2980, LTC2978, and
--			LTM2987 only.
-+			LTC2972, LTC2974, LTC2975, LTC2977, LTC2980, LTC2978,
-+      LTC2979 and LTM2987 only.
- 
- in1_crit		Critical maximum input voltage.
- 
-@@ -180,17 +261,17 @@ in1_min_alarm		Input voltage low alarm.
- 
- in1_max_alarm		Input voltage high alarm.
- 
--			LTC2974, LTC2975, LTC2977, LTC2980, LTC2978, and
--			LTM2987 only.
-+			LTC2972, LTC2974, LTC2975, LTC2977, LTC2980, LTC2978,
-+      LTC2979 and LTM2987 only.
- in1_lcrit_alarm		Input voltage critical low alarm.
- 
--			LTC2974, LTC2975, LTC2977, LTC2980, LTC2978, and
--			LTM2987 only.
-+			LTC2972, LTC2974, LTC2975, LTC2977, LTC2980, LTC2978,
-+      LTC2979 and LTM2987 only.
- in1_crit_alarm		Input voltage critical high alarm.
- 
- in1_lowest		Lowest input voltage.
- 
--			LTC2974, LTC2975, LTC2977, LTC2980, LTC2978, and
-+			LTC2972, LTC2974, LTC2975, LTC2977, LTC2980, LTC2978, and
- 			LTM2987 only.
- in1_highest		Highest input voltage.
- 
-@@ -198,11 +279,13 @@ in1_reset_history	Reset input voltage history.
- 
- in[N]_label		"vout[1-8]".
- 
-+      - LTC2972: N=2-3
- 			- LTC2974, LTC2975: N=2-5
--			- LTC2977, LTC2980, LTM2987: N=2-9
-+			- LTC2977, LTC2979, LTC2980, LTM2987: N=2-9
- 			- LTC2978: N=2-9
--			- LTC3880, LTC3882, LTC23886 LTC3887, LTM4675, LTM4676:
--			  N=2-3
-+			- LTC3880, LTC3882, LTC3884, LTC23886 LTC3887, LTC3889,
-+        LTC7880, LTM4644, LTM4675, LTM4676, LTM4677, LTM4678,
-+        LTM4680, LTM4700: N=2-3
- 			- LTC3883: N=2
- 
- in[N]_input		Measured output voltage.
-@@ -226,7 +309,7 @@ in[N]_crit_alarm	Output voltage critical high alarm.
- in[N]_lowest		Lowest output voltage.
- 
- 
--			LTC2974, LTC2975,and LTC2978 only.
-+			LTC2972, LTC2974, LTC2975,and LTC2978 only.
- 
- in[N]_highest		Highest output voltage.
- 
-@@ -234,20 +317,24 @@ in[N]_reset_history	Reset output voltage history.
- 
- temp[N]_input		Measured temperature.
- 
-+      - On LTC2972, temp[1-2] report external temperatures,
-+        and temp 3 reports the chip temperature.
- 			- On LTC2974 and LTC2975, temp[1-4] report external
- 			  temperatures, and temp5 reports the chip temperature.
--			- On LTC2977, LTC2980, LTC2978, and LTM2987, only one
--			  temperature measurement is supported and reports
--			  the chip temperature.
--			- On LTC3880, LTC3882, LTC3887, LTM4675, and LTM4676,
--			  temp1 and temp2 report external temperatures, and
--			  temp3 reports the chip temperature.
-+			- On LTC2977, LTC2979, LTC2980, LTC2978, and LTM2987,
-+        only one temperature measurement is supported and
-+        reports the chip temperature.
-+			- On LTC3880, LTC3882, LTC3886, LTC3887, LTC3889,
-+        LTM4664, LTM4675, LTM4676, LTM4677, LTM4678, LTM4680,
-+        and LTM4700, temp1 and temp2 report external
-+        temperatures, and temp3 reports the chip temperature.
- 			- On LTC3883, temp1 reports an external temperature,
- 			  and temp2 reports the chip temperature.
- 
- temp[N]_min		Mimimum temperature.
- 
--			LTC2974, LCT2977, LTM2980, LTC2978, and LTM2987 only.
-+			LTC2972, LTC2974, LCT2977, LTM2980, LTC2978,
-+      LTC2979, and LTM2987 only.
- 
- temp[N]_max		Maximum temperature.
- 
-@@ -257,8 +344,8 @@ temp[N]_crit		Critical high temperature.
- 
- temp[N]_min_alarm	Temperature low alarm.
- 
--			LTC2974, LTC2975, LTC2977, LTM2980, LTC2978, and
--			LTM2987 only.
-+			LTC2972, LTC2974, LTC2975, LTC2977, LTM2980, LTC2978,
-+      LTC2979, and LTM2987 only.
- 
- temp[N]_max_alarm	Temperature high alarm.
- 
-@@ -269,8 +356,8 @@ temp[N]_crit_alarm	Temperature critical high alarm.
- 
- temp[N]_lowest		Lowest measured temperature.
- 
--			- LTC2974, LTC2975, LTC2977, LTM2980, LTC2978, and
--			  LTM2987 only.
-+			- LTC2972, LTC2974, LTC2975, LTC2977, LTM2980, LTC2978,
-+        LTC2979, and LTM2987 only.
- 			- Not supported for chip temperature sensor on LTC2974
- 			  and LTC2975.
- 
-@@ -290,19 +377,22 @@ power1_input		Measured input power.
- 
- power[N]_label		"pout[1-4]".
- 
-+      - LTC2972: N=1-2
- 			- LTC2974, LTC2975: N=1-4
--			- LTC2977, LTC2980, LTM2987: Not supported
-+			- LTC2977, LTC2979, LTC2980, LTM2987: Not supported
- 			- LTC2978: Not supported
--			- LTC3880, LTC3882, LTC3886, LTC3887, LTM4675, LTM4676:
--			  N=1-2
-+			- LTC3880, LTC3882, LTC3884, LTC3886, LTC3887, LTC3889,
-+        LTM4664, LTM4675, LTM4676, LTM4677, LTM4678, LTM4680,
-+        LTM4700: N=1-2
- 			- LTC3883: N=2
- 
- power[N]_input		Measured output power.
- 
- curr1_label		"iin".
- 
--			LTC3880, LTC3883, LTC3886, LTC3887, LTM4675,
--			and LTM4676 only.
-+			LTC3880, LTC3883, LTC3884, LTC3886, LTC3887, LTC3889,
-+      LTM4644, LTM4675, LTM4676, LTM4677, LTM4678, LTM4680,
-+      and LTM4700 only.
- 
- curr1_input		Measured input current.
- 
-@@ -320,11 +410,13 @@ curr1_reset_history	Reset input current history.
- 
- curr[N]_label		"iout[1-4]".
- 
-+      - LTC2972: N-1-2
- 			- LTC2974, LTC2975: N=1-4
--			- LTC2977, LTC2980, LTM2987: not supported
-+			- LTC2977, LTC2979, LTC2980, LTM2987: not supported
- 			- LTC2978: not supported
--			- LTC3880, LTC3882, LTC3886, LTC3887, LTM4675, LTM4676:
--			  N=2-3
-+			- LTC3880, LTC3882, LTC3884, LTC3886, LTC3887, LTC3889,
-+        LTM4664, LTM4675, LTM4676, LTM4677, LTM4678, LTM4680,
-+        LTM4700: N=2-3
- 			- LTC3883: N=2
- 
- curr[N]_input		Measured output current.
-@@ -335,7 +427,7 @@ curr[N]_crit		Critical high output current.
- 
- curr[N]_lcrit		Critical low output current.
- 
--			LTC2974 and LTC2975 only.
-+			LTC2972, LTC2974 and LTC2975 only.
- 
- curr[N]_max_alarm	Output current high alarm.
- 
-@@ -343,11 +435,11 @@ curr[N]_crit_alarm	Output current critical high alarm.
- 
- curr[N]_lcrit_alarm	Output current critical low alarm.
- 
--			LTC2974 and LTC2975 only.
-+			LTC2972, LTC2974 and LTC2975 only.
- 
- curr[N]_lowest		Lowest output current.
- 
--			LTC2974 and LTC2975 only.
-+			LTC2972, LTC2974 and LTC2975 only.
- 
- curr[N]_highest		Highest output current.
- 
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index 5985997..92f26f3 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -113,8 +113,8 @@ config SENSORS_LTC2978
- 	tristate "Linear Technologies LTC2978 and compatibles"
- 	help
- 	  If you say yes here you get hardware monitoring support for Linear
--	  Technology LTC2974, LTC2975, LTC2977, LTC2978, LTC2980, LTC3880,
--	  LTC3883, LTC3886, LTC3887, LTCM2987, LTM4675, and LTM4676.
-+	  Technology LTC2972, LTC2974, LTC2975, LTC2977, LTC2978, LTC2979,
-+	  LTC2980, and LTM2987.
- 
- 	  This driver can also be built as a module. If so, the module will
- 	  be called ltc2978.
-@@ -123,9 +123,10 @@ config SENSORS_LTC2978_REGULATOR
- 	bool "Regulator support for LTC2978 and compatibles"
- 	depends on SENSORS_LTC2978 && REGULATOR
- 	help
--	  If you say yes here you get regulator support for Linear
--	  Technology LTC2974, LTC2977, LTC2978, LTC3880, LTC3883, LTM4676
--	  and LTM4686.
-+	  If you say yes here you get regulator support for Linear Technology
-+	  LTC3880, LTC3883, LTC3884, LTC3886, LTC3887, LTC3889, LTC7880, 
-+	  LTM4644, LTM4675, LTM4676, LTM4677, LTM4678, LTM4680, LTM4686, 
-+	  and LTM4700.
- 
- config SENSORS_LTC3815
- 	tristate "Linear Technologies LTC3815"
-diff --git a/drivers/hwmon/pmbus/ltc2978.c b/drivers/hwmon/pmbus/ltc2978.c
-index a91ed01..8f619d0 100644
---- a/drivers/hwmon/pmbus/ltc2978.c
-+++ b/drivers/hwmon/pmbus/ltc2978.c
-@@ -19,8 +19,10 @@
- #include <linux/regulator/driver.h>
- #include "pmbus.h"
- 
--enum chips { ltc2974, ltc2975, ltc2977, ltc2978, ltc2980, ltc3880, ltc3882,
--	ltc3883, ltc3886, ltc3887, ltm2987, ltm4675, ltm4676, ltm4686 };
-+enum chips { ltc2972, ltc2974, ltc2975, ltc2977, ltc2978, ltc2979, ltc2980, /* Managers */
-+	ltc3880, ltc3882, ltc3883, ltc3884, ltc3886, ltc3887, ltc3889, ltc7880, /* Controllers */
-+	ltm2987, ltm4664, ltm4675, ltm4676, ltm4677, ltm4678, ltm4680, ltm4686, ltm4700 /* Modules */
-+};
- 
- /* Common for all chips */
- #define LTC2978_MFR_VOUT_PEAK		0xdd
-@@ -43,9 +45,10 @@ enum chips { ltc2974, ltc2975, ltc2977, ltc2978, ltc2980, ltc3880, ltc3882,
- #define LTC3880_MFR_CLEAR_PEAKS		0xe3
- #define LTC3880_MFR_TEMPERATURE2_PEAK	0xf4
- 
--/* LTC3883 and LTC3886 only */
-+/* LTC3883, LTC3884, LTC3886, LTC3889 and LTC7880 only */
- #define LTC3883_MFR_IIN_PEAK		0xe1
- 
-+
- /* LTC2975 only */
- #define LTC2975_MFR_IIN_PEAK		0xc4
- #define LTC2975_MFR_IIN_MIN		0xc5
-@@ -54,27 +57,41 @@ enum chips { ltc2974, ltc2975, ltc2977, ltc2978, ltc2980, ltc3880, ltc3882,
- 
- #define LTC2978_ID_MASK			0xfff0
- 
-+#define LTC2972_ID			0x0310
- #define LTC2974_ID			0x0210
- #define LTC2975_ID			0x0220
- #define LTC2977_ID			0x0130
- #define LTC2978_ID_REV1			0x0110	/* Early revision */
- #define LTC2978_ID_REV2			0x0120
-+#define LTC2979_ID_A			0x8060
-+#define LTC2979_ID_B			0x8070
- #define LTC2980_ID_A			0x8030	/* A/B for two die IDs */
- #define LTC2980_ID_B			0x8040
- #define LTC3880_ID			0x4020
- #define LTC3882_ID			0x4200
- #define LTC3882_ID_D1			0x4240	/* Dash 1 */
- #define LTC3883_ID			0x4300
-+#define LTC3884_ID			0x4C00
- #define LTC3886_ID			0x4600
- #define LTC3887_ID			0x4700
- #define LTM2987_ID_A			0x8010	/* A/B for two die IDs */
- #define LTM2987_ID_B			0x8020
-+#define LTC3889_ID			0x4900
-+#define LTC7880_ID			0x49E0
-+#define LTM4664_ID			0x4120
- #define LTM4675_ID			0x47a0
- #define LTM4676_ID_REV1			0x4400
- #define LTM4676_ID_REV2			0x4480
- #define LTM4676A_ID			0x47e0
-+#define LTM4677_ID_REV1			0x47B0
-+#define LTM4677_ID_REV2			0x47D0
-+#define LTM4678_ID_REV1			0x4100
-+#define LTM4678_ID_REV2			0x4110
-+#define LTM4680_ID			0x4140
- #define LTM4686_ID			0x4770
-+#define LTM4700_ID			0x4130
- 
-+#define LTC2972_NUM_PAGES		2
- #define LTC2974_NUM_PAGES		4
- #define LTC2978_NUM_PAGES		8
- #define LTC3880_NUM_PAGES		2
-@@ -492,20 +509,30 @@ static int ltc2978_write_word_data(struct i2c_client *client, int page,
- }
- 
- static const struct i2c_device_id ltc2978_id[] = {
-+	{"ltc2972", ltc2972},
- 	{"ltc2974", ltc2974},
- 	{"ltc2975", ltc2975},
- 	{"ltc2977", ltc2977},
- 	{"ltc2978", ltc2978},
-+	{"ltc2979", ltc2979},
- 	{"ltc2980", ltc2980},
- 	{"ltc3880", ltc3880},
- 	{"ltc3882", ltc3882},
- 	{"ltc3883", ltc3883},
-+	{"ltc3884", ltc3884},
- 	{"ltc3886", ltc3886},
- 	{"ltc3887", ltc3887},
-+	{"ltc3889", ltc3889},
-+	{"ltc7880", ltc7880},
- 	{"ltm2987", ltm2987},
-+	{"ltm4664", ltm4664},
- 	{"ltm4675", ltm4675},
- 	{"ltm4676", ltm4676},
-+	{"ltm4677", ltm4677},
-+	{"ltm4678", ltm4678},
-+	{"ltm4680", ltm4680},
- 	{"ltm4686", ltm4686},
-+	{"ltm4700", ltm4700},
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, ltc2978_id);
-@@ -555,7 +582,9 @@ static int ltc2978_get_id(struct i2c_client *client)
- 
- 	chip_id &= LTC2978_ID_MASK;
- 
--	if (chip_id == LTC2974_ID)
-+	if (chip_id == LTC2972_ID)
-+		return ltc2972;
-+	else if (chip_id == LTC2974_ID)
- 		return ltc2974;
- 	else if (chip_id == LTC2975_ID)
- 		return ltc2975;
-@@ -563,6 +592,8 @@ static int ltc2978_get_id(struct i2c_client *client)
- 		return ltc2977;
- 	else if (chip_id == LTC2978_ID_REV1 || chip_id == LTC2978_ID_REV2)
- 		return ltc2978;
-+	else if (chip_id == LTC2979_ID_A || chip_id == LTC2979_ID_B)
-+		return ltc2979;
- 	else if (chip_id == LTC2980_ID_A || chip_id == LTC2980_ID_B)
- 		return ltc2980;
- 	else if (chip_id == LTC3880_ID)
-@@ -571,19 +602,34 @@ static int ltc2978_get_id(struct i2c_client *client)
- 		return ltc3882;
- 	else if (chip_id == LTC3883_ID)
- 		return ltc3883;
-+	else if (chip_id == LTC3884_ID)
-+		return ltc3884;
- 	else if (chip_id == LTC3886_ID)
- 		return ltc3886;
- 	else if (chip_id == LTC3887_ID)
- 		return ltc3887;
-+	else if (chip_id == LTC3889_ID)
-+		return ltc3889;
-+	else if (chip_id == LTC7880_ID)
-+		return ltc7880;
- 	else if (chip_id == LTM2987_ID_A || chip_id == LTM2987_ID_B)
- 		return ltm2987;
-+	else if (chip_id == LTM4664_ID)
-+		return ltm4664;
- 	else if (chip_id == LTM4675_ID)
- 		return ltm4675;
--	else if (chip_id == LTM4676_ID_REV1 || chip_id == LTM4676_ID_REV2 ||
--		 chip_id == LTM4676A_ID)
-+	else if (chip_id == LTM4676_ID_REV1 || chip_id == LTM4676_ID_REV2 || chip_id == LTM4676A_ID)
- 		return ltm4676;
-+	else if (chip_id == LTM4677_ID_REV1 || chip_id == LTM4677_ID_REV2)
-+		return ltm4677;
-+	else if (chip_id == LTM4678_ID_REV1 || chip_id == LTM4678_ID_REV2)
-+		return ltm4678;
-+	else if (chip_id == LTM4680_ID)
-+		return ltm4680;
- 	else if (chip_id == LTM4686_ID)
- 		return ltm4686;
-+	else if (chip_id == LTM4700_ID)
-+		return ltm4700;
- 
- 	dev_err(&client->dev, "Unsupported chip ID 0x%x\n", chip_id);
- 	return -ENODEV;
-@@ -637,6 +683,19 @@ static int ltc2978_probe(struct i2c_client *client,
- 	data->temp2_max = 0x7c00;
- 
- 	switch (data->id) {
-+	case ltc2972:
-+		info->read_word_data = ltc2975_read_word_data;
-+		info->pages = LTC2972_NUM_PAGES;
-+		info->func[0] = PMBUS_HAVE_IIN | PMBUS_HAVE_PIN
-+		  | PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT
-+		  | PMBUS_HAVE_TEMP2;
-+		for (i = 0; i < info->pages; i++) {
-+			info->func[i] |= PMBUS_HAVE_VOUT
-+			  | PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_POUT
-+			  | PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP
-+			  | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT;
-+		}
-+		break;	
- 	case ltc2974:
- 		info->read_word_data = ltc2974_read_word_data;
- 		info->pages = LTC2974_NUM_PAGES;
-@@ -662,8 +721,10 @@ static int ltc2978_probe(struct i2c_client *client,
- 			  | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT;
- 		}
- 		break;
-+
- 	case ltc2977:
- 	case ltc2978:
-+	case ltc2979:
- 	case ltc2980:
- 	case ltm2987:
- 		info->read_word_data = ltc2978_read_word_data;
-@@ -680,6 +741,7 @@ static int ltc2978_probe(struct i2c_client *client,
- 	case ltc3887:
- 	case ltm4675:
- 	case ltm4676:
-+	case ltm4677:
- 	case ltm4686:
- 		data->features |= FEAT_CLEAR_PEAKS | FEAT_NEEDS_POLLING;
- 		info->read_word_data = ltc3880_read_word_data;
-@@ -721,7 +783,14 @@ static int ltc2978_probe(struct i2c_client *client,
- 		  | PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | PMBUS_HAVE_TEMP
- 		  | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_STATUS_TEMP;
- 		break;
-+	case ltc3884:
- 	case ltc3886:
-+	case ltc3889:
-+	case ltc7880:
-+	case ltm4664:
-+	case ltm4678:
-+	case ltm4680:
-+	case ltm4700:
- 		data->features |= FEAT_CLEAR_PEAKS | FEAT_NEEDS_POLLING;
- 		info->read_word_data = ltc3883_read_word_data;
- 		info->pages = LTC3880_NUM_PAGES;
-@@ -752,22 +821,33 @@ static int ltc2978_probe(struct i2c_client *client,
- 	return pmbus_do_probe(client, id, info);
- }
- 
-+
- #ifdef CONFIG_OF
- static const struct of_device_id ltc2978_of_match[] = {
-+	{ .compatible = "lltc,ltc2972" },
- 	{ .compatible = "lltc,ltc2974" },
- 	{ .compatible = "lltc,ltc2975" },
- 	{ .compatible = "lltc,ltc2977" },
- 	{ .compatible = "lltc,ltc2978" },
-+	{ .compatible = "lltc,ltc2979" },
- 	{ .compatible = "lltc,ltc2980" },
- 	{ .compatible = "lltc,ltc3880" },
- 	{ .compatible = "lltc,ltc3882" },
- 	{ .compatible = "lltc,ltc3883" },
-+	{ .compatible = "lltc,ltc3884" },
- 	{ .compatible = "lltc,ltc3886" },
- 	{ .compatible = "lltc,ltc3887" },
-+	{ .compatible = "lltc,ltc3889" },
-+	{ .compatible = "lltc,ltc7880" },
- 	{ .compatible = "lltc,ltm2987" },
-+	{ .compatible = "lltc,ltm4664" },
- 	{ .compatible = "lltc,ltm4675" },
- 	{ .compatible = "lltc,ltm4676" },
-+	{ .compatible = "lltc,ltm4677" },
-+	{ .compatible = "lltc,ltm4678" },
-+	{ .compatible = "lltc,ltm4680" },
- 	{ .compatible = "lltc,ltm4686" },
-+	{ .compatible = "lltc,ltm4700" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ltc2978_of_match);
--- 
-2.7.4
+On Mon, Dec 30, 2019 at 04:39:47PM +0530, Nagarjuna Kristam wrote:
+> usb-phy is used to get notified on the USB role changes. Get usb-phy from
+> the utmi phy.
 
+s/utmi phy/UTMI PHY/
+
+>=20
+> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
+> ---
+> V2-V3:
+>  - No changes in this version
+> ---
+>  drivers/usb/gadget/udc/tegra-xudc.c | 39 +++++++++++++++++++++++++++++++=
+++----
+>  1 file changed, 35 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/usb/gadget/udc/tegra-xudc.c b/drivers/usb/gadget/udc=
+/tegra-xudc.c
+> index 6ddb974..0f27d57 100644
+> --- a/drivers/usb/gadget/udc/tegra-xudc.c
+> +++ b/drivers/usb/gadget/udc/tegra-xudc.c
+> @@ -26,7 +26,9 @@
+>  #include <linux/reset.h>
+>  #include <linux/usb/ch9.h>
+>  #include <linux/usb/gadget.h>
+> +#include <linux/usb/otg.h>
+>  #include <linux/usb/role.h>
+> +#include <linux/usb/phy.h>
+>  #include <linux/workqueue.h>
+> =20
+>  /* XUSB_DEV registers */
+> @@ -488,6 +490,9 @@ struct tegra_xudc {
+>  	bool suspended;
+>  	bool powergated;
+> =20
+> +	struct usb_phy *usbphy;
+> +	struct notifier_block vbus_nb;
+> +
+>  	struct completion disconnect_complete;
+> =20
+>  	bool selfpowered;
+> @@ -678,7 +683,22 @@ static void tegra_xudc_usb_role_sw_work(struct work_=
+struct *work)
+>  		tegra_xudc_device_mode_on(xudc);
+>  	else
+>  		tegra_xudc_device_mode_off(xudc);
+> +}
+> +
+> +static int tegra_xudc_vbus_notifier(struct notifier_block *nb,
+> +					 unsigned long action, void *data)
+> +{
+> +	struct tegra_xudc *xudc =3D container_of(nb, struct tegra_xudc,
+> +					       vbus_nb);
+> +
+> +	dev_dbg(xudc->dev, "%s action is %ld\n", __func__, action);
+
+I'd add the parentheses here, too. Maybe also a colon:
+
+	"%s(): action is %ld\n"
+
+> +
+> +	xudc->role =3D (enum usb_role)action;
+> =20
+> +	if (!xudc->suspended)
+> +		schedule_work(&xudc->usb_role_sw_work);
+> +
+> +	return NOTIFY_OK;
+>  }
+> =20
+>  static void tegra_xudc_plc_reset_work(struct work_struct *work)
+> @@ -1949,6 +1969,9 @@ static int tegra_xudc_gadget_start(struct usb_gadge=
+t *gadget,
+>  		xudc_writel(xudc, val, CTRL);
+>  	}
+> =20
+> +	if (xudc->usbphy)
+> +		otg_set_peripheral(xudc->usbphy->otg, gadget);
+> +
+>  	xudc->driver =3D driver;
+>  unlock:
+>  	dev_dbg(xudc->dev, "%s: ret value is %d", __func__, ret);
+> @@ -1969,6 +1992,9 @@ static int tegra_xudc_gadget_stop(struct usb_gadget=
+ *gadget)
+> =20
+>  	spin_lock_irqsave(&xudc->lock, flags);
+> =20
+> +	if (xudc->usbphy)
+> +		otg_set_peripheral(xudc->usbphy->otg, NULL);
+> +
+>  	val =3D xudc_readl(xudc, CTRL);
+>  	val &=3D ~(CTRL_IE | CTRL_ENABLE);
+>  	xudc_writel(xudc, val, CTRL);
+> @@ -3573,10 +3599,15 @@ static int tegra_xudc_probe(struct platform_devic=
+e *pdev)
+>  	INIT_DELAYED_WORK(&xudc->port_reset_war_work,
+>  				tegra_xudc_port_reset_war_work);
+> =20
+> -	/* Set the mode as device mode and this keeps phy always ON */
+> -	dev_info(xudc->dev, "Set usb role to device mode always");
+
+This obsoletes my comment in the previous patch, but maybe consider not
+adding it in the first place.
+
+> -	xudc->role =3D USB_ROLE_DEVICE;
+> -	schedule_work(&xudc->usb_role_sw_work);
+> +	xudc->vbus_nb.notifier_call =3D tegra_xudc_vbus_notifier;
+> +	xudc->usbphy =3D devm_usb_get_phy_by_node(xudc->dev,
+> +						xudc->utmi_phy->dev.of_node,
+> +						&xudc->vbus_nb);
+> +	if (IS_ERR(xudc->usbphy)) {
+> +		err =3D PTR_ERR(xudc->usbphy);
+> +		dev_err(xudc->dev, "failed to get usbphy phy: %d\n", err);
+
+I'd make this: "failed to get USB PHY: %d\n", which is easier to read
+than the above.
+
+Thierry
+
+> +		goto free_eps;
+> +	}
+> =20
+>  	pm_runtime_enable(&pdev->dev);
+> =20
+> --=20
+> 2.7.4
+>=20
+
+--wayzTnRSUXKNfBqd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl4wdyQACgkQ3SOs138+
+s6GaCRAAmrVKiyZCDWEDR3PdiJ3VE3YYPM3f58d1P0nRXp+vOyC4M7UXVag34+20
+x4xZcLy48iV594Y+LDJ+2PW1rgkUrcTQD7ml5giSYU0FBwVsnlqThgamxakxoKVG
+ifAVmyPeX0okwcIz3+5I/FGWUyiOhWFZmXxsIep5Qc6OjyyiSfS1W6xTJ8y+c4D0
+yc0NHJbFzRbQE3H8FlZQxIK07YBbIQ9puTsuxFywHFhaodYc4ZMynTCXuzRWVyzD
+1T4GRYQtarwzvMmzZOP5XxhAF2YXdAv3LoFf+5SKemNpr2vt7+wbPFK+uUFNQRE0
+vRrcpDp+Dqc8t6Orz5RR8w5l3R/hjTIV/rsU4hASAw3Sz/YSRZs3Xuc9/z0XdBC/
+AGKIIWbx45Twte0tGFqqcekRY7EhI7jfSF/Qd9FEP/xK07yc+uHAw2ezF+FbVJlE
+zmSI8ZAcTawjaxPB9GPT/Y1NqJzKkc+fmH7DbeVJJ4db/17pED4uf9qjuS4qhVG7
+1au429N1SZB/QQAmIbiuaE53xEnsP1WRrUAu8aJZaJpMFg7U1JSj8rKIRQ6kUq3O
+cDvczjGJO9YWWeEF4uazbiR/x/MNovWGl4o8Yv/4tG6jL3fPjVZalIZzp39dwv0e
+ovsEes/Q3vzrXMZwk+tdFRmNwiWDkjymzi1Q2zO/rBKhi/PKQHw=
+=QHyJ
+-----END PGP SIGNATURE-----
+
+--wayzTnRSUXKNfBqd--
