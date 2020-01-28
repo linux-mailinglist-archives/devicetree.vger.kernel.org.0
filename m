@@ -2,104 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B3C14B538
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 14:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44E5C14B52F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 14:37:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726182AbgA1Njj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jan 2020 08:39:39 -0500
-Received: from ip-78-45-52-129.net.upcbroadband.cz ([78.45.52.129]:39202 "EHLO
-        ixit.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725997AbgA1Njj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jan 2020 08:39:39 -0500
-X-Greylist: delayed 492 seconds by postgrey-1.27 at vger.kernel.org; Tue, 28 Jan 2020 08:39:38 EST
-Received: from localhost.localdomain (227.146.230.94.awnet.cz [94.230.146.227])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 31541251E8;
-        Tue, 28 Jan 2020 14:32:21 +0100 (CET)
-From:   David Heidelberg <david@ixit.cz>
-To:     linux-iio@vger.kernel.org
-Cc:     David Heidelberg <david@ixit.cz>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/7] dt-bindings: iio: light: add support for Dyna-Image AL3010
-Date:   Tue, 28 Jan 2020 14:30:47 +0100
-Message-Id: <20200128133052.201587-3-david@ixit.cz>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200128133052.201587-1-david@ixit.cz>
-References: <20200128133052.201587-1-david@ixit.cz>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1725997AbgA1NhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jan 2020 08:37:23 -0500
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:65165 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725974AbgA1NhX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Jan 2020 08:37:23 -0500
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 28 Jan 2020 19:07:19 +0530
+Received: from harigovi-linux.qualcomm.com ([10.204.66.157])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 28 Jan 2020 19:06:58 +0530
+Received: by harigovi-linux.qualcomm.com (Postfix, from userid 2332695)
+        id 3F74E282F; Tue, 28 Jan 2020 19:06:58 +0530 (IST)
+From:   Harigovindan P <harigovi@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Harigovindan P <harigovi@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        kalyan_t@codeaurora.org, nganji@codeaurora.org
+Subject: [v1] arm64: dts: sc7180: add dsi controller and phy entries for idp dts
+Date:   Tue, 28 Jan 2020 19:06:57 +0530
+Message-Id: <1580218617-30293-1-git-send-email-harigovi@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Dyna-Image AL3010 is a 16-bit digital ambient light sensor which
-provides a multiple gain function with linear response over a dynamic
-range 1216/4863/19452/77806.
+Adding dsi controller and phy entries for idp dt.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
 ---
- .../devicetree/bindings/iio/light/al3010.yaml | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/light/al3010.yaml
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts | 56 +++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/light/al3010.yaml b/Documentation/devicetree/bindings/iio/light/al3010.yaml
-new file mode 100644
-index 000000000000..9cd1f34a6d63
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/light/al3010.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: (GPL-2.0-only)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/light/al3010.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+index 388f50a..9f42367 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+@@ -7,6 +7,7 @@
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sc7180.dtsi"
+ #include "pm6150.dtsi"
+@@ -232,6 +233,50 @@
+ 	};
+ };
+ 
++&dsi_controller {
++	status = "okay";
 +
-+title: Dyna-Image AL3010 sensor
++	vdda-supply = <&vreg_l3c_1p2>;
 +
-+maintainers:
-+  - David Heidelberg <david@ixit.cz>
++	panel@0 {
++		compatible = "visionox,rm69299-1080p-display";
++		reg = <0>;
 +
-+properties:
-+  compatible:
-+    const: dynaimage,al3010
++		vdda-supply = <&vreg_l8c_1p8>;
++		vdd3p3-supply = <&vreg_l18a_2p8>;
 +
-+  reg:
-+    maxItems: 1
++		pinctrl-names = "default", "suspend";
++		pinctrl-0 = <&disp_pins_default>;
++		pinctrl-1 = <&disp_pins_default>;
 +
-+  interrupts:
-+    maxItems: 1
++		reset-gpios = <&pm6150l_gpio 3 GPIO_ACTIVE_HIGH>;
 +
-+  vdd-supply:
-+    description: Regulator that provides power to the sensor
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			port@0 {
++				reg = <0>;
++				panel0_in: endpoint {
++					remote-endpoint = <&dsi0_out>;
++				};
++			};
++		};
++	};
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupt
-+  - vdd-supply
++	ports {
++		port@1 {
++			endpoint {
++				remote-endpoint = <&panel0_in>;
++				data-lanes = <0 1 2 3>;
++			};
++		};
++	};
++};
 +
-+examples:
-+  - |
-+    i2c {
-+        al3010@1c {
-+            compatible = "dynaimage,al3010";
-+            reg = <0x1c>;
-+            vdd-supply = <&vdd_reg>;
-+            interrupts = <0 99 4>;
-+        };
-+    };
++&dsi_phy {
++	status = "okay";
++};
++
+ &qspi {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+@@ -289,6 +334,17 @@
+ 
+ /* PINCTRL - additions to nodes defined in sc7180.dtsi */
+ 
++&pm6150l_gpio {
++	disp_pins_default: disp-pins-default{
++		pins = "gpio3";
++		function = "func1";
++		qcom,drive-strength = <2>;
++		power-source = <0>;
++		bias-disable;
++		output-low;
++	};
++};
++
+ &qspi_clk {
+ 	pinconf {
+ 		pins = "gpio63";
 -- 
-2.25.0
+2.7.4
 
