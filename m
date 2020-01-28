@@ -2,139 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F23A14B263
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 11:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D3C14B255
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 11:13:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726096AbgA1KPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jan 2020 05:15:47 -0500
-Received: from mx2.suse.de ([195.135.220.15]:34474 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725901AbgA1KPr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jan 2020 05:15:47 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id C63F4AEE0;
-        Tue, 28 Jan 2020 10:15:44 +0000 (UTC)
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <1580148908-4863-5-git-send-email-stefan.wahren@i2se.com>
-Date:   Tue, 28 Jan 2020 11:05:22 +0100
-Cc:     <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        <devicetree@vger.kernel.org>,
-        "Stefan Wahren" <stefan.wahren@i2se.com>
-Subject: Re: [RFC PATCH 4/4] ARM: dts: bcm2711-rpi-4-b: Add SoC GPIO labels
-From:   "Nicolas Saenz Julienne" <nsaenzjulienne@suse.de>
-To:     "Stefan Wahren" <stefan.wahren@i2se.com>,
-        "Florian Fainelli" <f.fainelli@gmail.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Ray Jui" <rjui@broadcom.com>,
-        "Scott Branden" <sbranden@broadcom.com>
-Message-Id: <C07C8Z5BBTXF.1BE33YFX2000I@linux-9qgx>
+        id S1725901AbgA1KNi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jan 2020 05:13:38 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:48280 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725882AbgA1KNh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 28 Jan 2020 05:13:37 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00SADID0118110;
+        Tue, 28 Jan 2020 04:13:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1580206398;
+        bh=+C6eAOrqKoHaKj+enDAIeqTSENNe2U0bzKRvVZeWNHA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=dQIiCreocT+01MqIJWtH6uYJvxVSEgMvgkg3OYg3HkzsmI0GycsfMv4V4JLyaWwMO
+         l8Lz+WJ/GsmUPkZIh7qQ7bBhrrR8dT/W7ux6sAlBO30UdaB1SkJZMPZpacKLPU03F+
+         erZLFbYbpVVmFIPD5qEC2hNeHNE/DdBzEpwTwDtM=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00SADIvw127549
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 28 Jan 2020 04:13:18 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 28
+ Jan 2020 04:13:17 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 28 Jan 2020 04:13:17 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00SADEG4107748;
+        Tue, 28 Jan 2020 04:13:15 -0600
+Subject: Re: [PATCH v3 1/2] dt-bindings: display: bridge: Add documentation
+ for Toshiba tc358768
+To:     Rob Herring <robh@kernel.org>
+CC:     <airlied@linux.ie>, <daniel@ffwll.ch>, <mark.rutland@arm.com>,
+        <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
+        <tomi.valkeinen@ti.com>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@siol.net>
+References: <20200127105634.7638-1-peter.ujfalusi@ti.com>
+ <20200127105634.7638-2-peter.ujfalusi@ti.com> <20200127184939.GA4237@bogus>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <17fbdcd2-48fa-1b09-683d-cef7e1e40046@ti.com>
+Date:   Tue, 28 Jan 2020 12:14:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <20200127184939.GA4237@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon Jan 27, 2020 at 7:15 PM, Stefan Wahren wrote:
-> This adds the labels for all the SoC GPIOs on the Raspberry Pi 4.
->
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> ---
-> arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 74
-> +++++++++++++++++++++++++++++++++++
-> 1 file changed, 74 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> index 1b5a835..6607e2e 100644
-> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-> @@ -71,6 +71,80 @@
-> };
-> };
-> =20
-> +&gpio {
-> + /*
-> + * Parts taken from rpi_SCH_4b_4p0_reduced.pdf and
-> + * the official GPU firmware DT blob.
-> + *
-> + * Legend:
-> + * "NC" =3D not connected (no rail from the SoC)
+Hi Rob,
 
-You could drop this comment as there are no NC uses.
+On 27/01/2020 20.49, Rob Herring wrote:
+> On Mon, Jan 27, 2020 at 12:56:33PM +0200, Peter Ujfalusi wrote:
+>> TC358768/TC358778 is a Parallel RGB to MIPI DSI bridge.
+>>
+>> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>> ---
+>>  .../display/bridge/toshiba,tc358768.yaml      | 158 ++++++++++++++++++
+>>  1 file changed, 158 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+>> new file mode 100644
+>> index 000000000000..8dd8cca39a77
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358768.yaml
+>> +examples:
+>> +  - |
+>> +    i2c1 {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+>> +      dsi_bridge: tc358768@0e {
+> 
+> Generic node names and no leading 0s:
+> 
+> dsi-bridge@e
 
-> + * "FOO" =3D GPIO line named "FOO" on the schematic
-> + * "FOO_N" =3D GPIO line named "FOO" on schematic, active low
-> + */
-> + gpio-line-names =3D "ID_SDA",
-> + "ID_SCL",
-> + "SDA1",
-> + "SCL1",
-> + "GPIO_GCLK",
-> + "GPIO5",
-> + "GPIO6",
-> + "SPI_CE1_N",
-> + "SPI_CE0_N",
-> + "SPI_MISO",
-> + "SPI_MOSI",
-> + "SPI_SCLK",
-> + "GPIO12",
-> + "GPIO13",
-> + /* Serial port */
-> + "TXD1",
-> + "RXD1",
-> + "GPIO16",
-> + "GPIO17",
-> + "GPIO18",
-> + "GPIO19",
-> + "GPIO20",
-> + "GPIO21",
-> + "GPIO22",
-> + "GPIO23",
-> + "GPIO24",
-> + "GPIO25",
-> + "GPIO26",
-> + "GPIO27",
-> + "RGMII_MDIO",
-> + "RGMIO_MDC",
-> + /* Used by BT module */
-> + "CTS0",
-> + "RTS0",
-> + "TXD0",
-> + "RXD0",
-> + /* Used by Wifi */
-> + "SD1_CLK",
-> + "SD1_CMD",
-> + "SD1_DATA0",
-> + "SD1_DATA1",
-> + "SD1_DATA2",
-> + "SD1_DATA3",
-> + /* Shared with SPI flash */
-> + "PWM0_MISO",
-> + "PWM1_MOSI",
-> + "STATUS_LED_G_CLK",
-> + "SPIFLASH_CE_N",
-> + "SDA0",
-> + "SCL0",
-> + "RGMII_RXCLK",
-> + "RGMII_RXCTL",
-> + "RGMII_RXD0",
-> + "RGMII_RXD1",
-> + "RGMII_RXD2",
-> + "RGMII_RXD3",
-> + "RGMII_TXCLK",
-> + "RGMII_TXCTL",
-> + "RGMII_TXD0",
-> + "RGMII_TXD1",
-> + "RGMII_TXD2",
-> + "RGMII_TXD3";
-> +};
-> +
-> &pwm1 {
-> pinctrl-names =3D "default";
-> pinctrl-0 =3D <&pwm1_0_gpio40 &pwm1_1_gpio41>;
-> --
-> 2.7.4
+Right, I'll correct it.
 
+>> +        compatible = "toshiba,tc358768";
+>> +        reg = <0x0e>;
+>> +
+>> +        clocks = <&tc358768_refclk>;
+>> +        clock-names = "refclk";
+>> +
+>> +        /* GPIO line is inverted before going to the bridge */
+>> +        reset-gpios = <&pcf_display_board 0 1 /* GPIO_ACTIVE_LOW */>;
+> 
+> You just need to add the include for the define to work.
+
+You are right, it compiles fine with the include added.
+
+Thank you,
+- Péter
+
+>> +
+>> +        vddc-supply = <&v1_2d>;
+>> +        vddmipi-supply = <&v1_2d>;
+>> +        vddio-supply = <&v3_3d>;
+>> +
+>> +        dsi_bridge_ports: ports {
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +
+>> +          port@0 {
+>> +            reg = <0>;
+>> +            rgb_in: endpoint {
+>> +              remote-endpoint = <&dpi_out>;
+>> +              data-lines = <24>;
+>> +            };
+>> +          };
+>> +
+>> +          port@1 {
+>> +            reg = <1>;
+>> +            dsi_out: endpoint {
+>> +              remote-endpoint = <&lcd_in>;
+>> +            };
+>> +          };
+>> +        };
+>> +      };
+>> +    };
+>> +    
+>> -- 
+>> Peter
+>>
+>> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+>> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+>>
+
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
