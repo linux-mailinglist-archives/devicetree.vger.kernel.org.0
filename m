@@ -2,127 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5260014B160
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 10:07:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA9F714B18C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 10:10:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726190AbgA1JHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jan 2020 04:07:02 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:8774 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726066AbgA1JHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jan 2020 04:07:01 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00S93bqm014416;
-        Tue, 28 Jan 2020 10:06:51 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=QftCa2QNdW6rIV5je6s8Ii1o876osqtCa/ZGy3adzdg=;
- b=eylPeeVdxuO9MnFZu/EcJ2OZ/Jg63rvH+r7WaNa4/LIMc7dfZPaI9ZjE5xptrko2FKGT
- jQUxz995mhMnB4biA4RSOVNOE0u6BlYQkudc7ZxLuMBTYmhMb49lLudfQKz818XvOSSV
- YoOX163GH5KX6wQfvgA4Fh+/2uMh7LyzjIis6AhDY+15AWcHayRqPSVxMKfgxFHB2TAM
- ZgF3FjtqXsXQ2SMN2bUKSfTlKxzI1+QtJTqT6KDVxlabrP+FDkOC+f9iLJsNFXOSJJ1L
- RX27JHa6CMm8oopWpK858mPeSCzvD3d/xw7omSgl8H7OpVQtnNW15bSLyUxyZCGM8T0W oA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xrbpaw4ta-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 28 Jan 2020 10:06:51 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 616A710005A;
-        Tue, 28 Jan 2020 10:06:49 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 536E1212A3A;
-        Tue, 28 Jan 2020 10:06:49 +0100 (CET)
-Received: from localhost (10.75.127.45) by SFHDAG6NODE1.st.com (10.75.127.16)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 28 Jan 2020 10:06:48
- +0100
-From:   Ludovic Barre <ludovic.barre@st.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Ludovic Barre <ludovic.barre@st.com>
-Subject: [PATCH V2 9/9] mmc: mmci: add sdmmc variant revision 2.0
-Date:   Tue, 28 Jan 2020 10:06:36 +0100
-Message-ID: <20200128090636.13689-10-ludovic.barre@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200128090636.13689-1-ludovic.barre@st.com>
-References: <20200128090636.13689-1-ludovic.barre@st.com>
+        id S1725914AbgA1JKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jan 2020 04:10:33 -0500
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2314 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725848AbgA1JKd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 28 Jan 2020 04:10:33 -0500
+Received: from LHREML711-CAH.china.huawei.com (unknown [172.18.7.107])
+        by Forcepoint Email with ESMTP id 0892BE338C1271D8C824;
+        Tue, 28 Jan 2020 09:10:31 +0000 (GMT)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ LHREML711-CAH.china.huawei.com (10.201.108.34) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Tue, 28 Jan 2020 09:10:14 +0000
+Received: from localhost (10.202.226.57) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 28 Jan
+ 2020 09:10:13 +0000
+Date:   Tue, 28 Jan 2020 09:10:01 +0000
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Jeff LaBundy <jeff@labundy.com>
+CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "knaack.h@gmx.de" <knaack.h@gmx.de>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+Subject: Re: [PATCH v4 5/7] iio: temperature: Add support for Azoteq
+ IQS620AT temperature sensor
+Message-ID: <20200128091001.00001e1d@Huawei.com>
+In-Reply-To: <20200122032821.GA29969@labundy.com>
+References: <1579228475-6681-1-git-send-email-jeff@labundy.com>
+        <1579228475-6681-6-git-send-email-jeff@labundy.com>
+        <20200122032821.GA29969@labundy.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-01-28_02:2020-01-24,2020-01-28 signatures=0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.226.57]
+X-ClientProxiedBy: lhreml724-chm.china.huawei.com (10.201.108.75) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a sdmmc variant revision 2.0.
-This revision is backward compatible with 1.1, and adds dma
-link list support.
+On Wed, 22 Jan 2020 03:28:28 +0000
+Jeff LaBundy <jeff@labundy.com> wrote:
 
-Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
----
- drivers/mmc/host/mmci.c | 30 ++++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+> Hi Jonathan,
+> 
+> I just wanted to give a heads up that I'm making a couple of very minor
+> changes to the lot of IIO patches in this series in response to changes
+> to include/linux/mfd/iqs62x.h for v5, namely:
+> 
+> - Replaced iqs62x->map with iqs62x->regmap
+> - Dropped #defines for platform_driver name and alias in favor of the
+>   actual string names (e.g. IQS620_DRV_NAME_TEMP --> "iqs620at-temp")
+> 
+> For small changes like these, I plan to retain your Reviewed-by trailer
+> when I send out v5 even though the file would have changed slightly. If
+> you would prefer I let you re-review first, please let me know.
 
-diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
-index 24e630183ed4..a774c329c212 100644
---- a/drivers/mmc/host/mmci.c
-+++ b/drivers/mmc/host/mmci.c
-@@ -275,6 +275,31 @@ static struct variant_data variant_stm32_sdmmc = {
- 	.init			= sdmmc_variant_init,
- };
- 
-+static struct variant_data variant_stm32_sdmmcv2 = {
-+	.fifosize		= 16 * 4,
-+	.fifohalfsize		= 8 * 4,
-+	.f_max			= 208000000,
-+	.stm32_clkdiv		= true,
-+	.cmdreg_cpsm_enable	= MCI_CPSM_STM32_ENABLE,
-+	.cmdreg_lrsp_crc	= MCI_CPSM_STM32_LRSP_CRC,
-+	.cmdreg_srsp_crc	= MCI_CPSM_STM32_SRSP_CRC,
-+	.cmdreg_srsp		= MCI_CPSM_STM32_SRSP,
-+	.cmdreg_stop		= MCI_CPSM_STM32_CMDSTOP,
-+	.data_cmd_enable	= MCI_CPSM_STM32_CMDTRANS,
-+	.irq_pio_mask		= MCI_IRQ_PIO_STM32_MASK,
-+	.datactrl_first		= true,
-+	.datacnt_useless	= true,
-+	.datalength_bits	= 25,
-+	.datactrl_blocksz	= 14,
-+	.datactrl_any_blocksz	= true,
-+	.stm32_idmabsize_mask	= GENMASK(16, 5),
-+	.dma_lli		= true,
-+	.busy_timeout		= true,
-+	.busy_detect_flag	= MCI_STM32_BUSYD0,
-+	.busy_detect_mask	= MCI_STM32_BUSYD0ENDMASK,
-+	.init			= sdmmc_variant_init,
-+};
-+
- static struct variant_data variant_qcom = {
- 	.fifosize		= 16 * 4,
- 	.fifohalfsize		= 8 * 4,
-@@ -2343,6 +2368,11 @@ static const struct amba_id mmci_ids[] = {
- 		.mask	= 0xf0ffffff,
- 		.data	= &variant_stm32_sdmmc,
- 	},
-+	{
-+		.id     = 0x00253180,
-+		.mask	= 0xf0ffffff,
-+		.data	= &variant_stm32_sdmmcv2,
-+	},
- 	/* Qualcomm variants */
- 	{
- 		.id     = 0x00051180,
--- 
-2.17.1
+I'm fine with you keeping it.  Thanks for checking though.
+
+Jonathan
+> 
+> On Thu, Jan 16, 2020 at 08:36:08PM -0600, Jeff LaBundy wrote:
+> > This patch adds support for the Azoteq IQS620AT temperature sensor,
+> > capable of reporting its absolute die temperature.
+> > 
+> > Signed-off-by: Jeff LaBundy <jeff@labundy.com>
+> > Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > ---
+> > Changes in v4:
+> >   - None
+> > 
+> > Changes in v3:
+> >   - Added Reviewed-by trailer
+> > 
+> > Changes in v2:
+> >   - Moved the driver from hwmon to iio
+> >   - Merged 'Copyright' and 'Author' lines into one in introductory comments
+> >   - Replaced 'error' with 'ret' throughout
+> >   - Eliminated tabbed alignment of platform_driver struct members
+> >   - Changed Kconfig "depends on" logic to MFD_IQS62X || COMPILE_TEST
+> > 
+> >  drivers/iio/temperature/Kconfig         | 10 ++++
+> >  drivers/iio/temperature/Makefile        |  1 +
+> >  drivers/iio/temperature/iqs620at-temp.c | 97 +++++++++++++++++++++++++++++++++
+> >  3 files changed, 108 insertions(+)
+> >  create mode 100644 drivers/iio/temperature/iqs620at-temp.c
+> >   
+> 
+> Kind regards,
+> Jeff LaBundy
+
 
