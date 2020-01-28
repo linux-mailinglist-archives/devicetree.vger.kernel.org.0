@@ -2,151 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66EA814BCE9
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 16:35:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F05A14BCF6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2020 16:38:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726697AbgA1Pfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 28 Jan 2020 10:35:31 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:60132 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726437AbgA1Pfb (ORCPT
+        id S1726829AbgA1Pin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 28 Jan 2020 10:38:43 -0500
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1491 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726708AbgA1Pij (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 28 Jan 2020 10:35:31 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1580225730; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: Cc: To: From: Date: Sender;
- bh=OAcEYdNBjmrheJryVcIbMHDRSTe55eH2xPjNsqjLvVM=; b=Pw/BfUjPH8T1Q3KyARBtSpffhInjN20LkTbe08/RxpEbgJN9bOynNG8lbRw1wV42206AmGYp
- BkWDvNEWQFA9XiJ/mMw3kzVxHTIMZoMrmaHWow3dU1AAMgYrCMLcTsH6tqi20YB0VVb4t8Vb
- v7hExEdyj4xajHFeg0935lGKQeM=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e3054c0.7f93edef7a40-smtp-out-n02;
- Tue, 28 Jan 2020 15:35:28 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id DD647C4479C; Tue, 28 Jan 2020 15:35:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jcrouse)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 592F1C43383;
-        Tue, 28 Jan 2020 15:35:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 592F1C43383
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jcrouse@codeaurora.org
-Date:   Tue, 28 Jan 2020 08:35:24 -0700
-From:   Jordan Crouse <jcrouse@codeaurora.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Sharat Masetty <smasetty@codeaurora.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, dri-devel@freedesktop.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Clark <robdclark@chromium.org>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sc7180: Add A618 gpu dt blob
-Message-ID: <20200128153524.GA30489@jcrouse1-lnx.qualcomm.com>
-Mail-Followup-To: Doug Anderson <dianders@chromium.org>,
-        Sharat Masetty <smasetty@codeaurora.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        dri-devel@freedesktop.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Clark <robdclark@chromium.org>
-References: <1580117390-6057-1-git-send-email-smasetty@codeaurora.org>
- <CAD=FV=VFVC6XJ=OXJCSd2_oij5vggKnTedGP0Gj4KHC50QH0SQ@mail.gmail.com>
+        Tue, 28 Jan 2020 10:38:39 -0500
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 00SFX6td021997;
+        Tue, 28 Jan 2020 16:38:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=mizgnvruNb3pP6RjBqNnV58jqve6OZmR65T5OWriiZI=;
+ b=dXSOaGJtRyoHa5muquJxJJeTJ+6Z3QybKURz6IzRIHfROdSwNRT85M0xTkzJWDr5xtUH
+ LpPpvCPDfhxAk7nMZxy1Cl9HBS/3p7kf9vqOdqPONkK9nfHNuqIoM8Uri9FHPofsHImm
+ 1knkNG43iserOUngjyUNGGgKj7DTCssR6WJJ+rrOvqwNREbaHMySpF6jT/vUuxW3YHDr
+ CxMeOx3tzn3okOAzfHurTMesa0/jsONnRykE05rrXWUR4XlT2z5+YD2aW9WAIk3fgQ2Q
+ nlCVIpniqp6KXjM96/dVisVgCU/k1ZP+q/jtmgH0AF9HnzJFR2iM/NNpFdNyNXmRUI6h 9g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2xrcaxxmdb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 28 Jan 2020 16:38:21 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5D10E10002A;
+        Tue, 28 Jan 2020 16:38:19 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1F86B2BF9CF;
+        Tue, 28 Jan 2020 16:38:19 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Tue, 28 Jan 2020 16:38:18
+ +0100
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <broonie@kernel.org>, <robh@kernel.org>, <arnd@arndb.de>,
+        <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
+        <fabio.estevam@nxp.com>, <sudeep.holla@arm.com>, <lkml@metux.net>
+CC:     <loic.pallardy@st.com>, <gregkh@linuxfoundation.org>,
+        <linux-kernel@vger.kernel.org>, <linux-imx@nxp.com>,
+        <kernel@pengutronix.de>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <system-dt@lists.openampproject.org>,
+        <stefano.stabellini@xilinx.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH v2 0/7] Introduce bus firewall controller framework
+Date:   Tue, 28 Jan 2020 16:37:59 +0100
+Message-ID: <20200128153806.7780-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=VFVC6XJ=OXJCSd2_oij5vggKnTedGP0Gj4KHC50QH0SQ@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-01-28_05:2020-01-28,2020-01-28 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 27, 2020 at 02:29:53PM -0800, Doug Anderson wrote:
-> Hi,
-> 
-> On Mon, Jan 27, 2020 at 1:30 AM Sharat Masetty <smasetty@codeaurora.org> wrote:
-> >
-> > This patch adds the required dt nodes and properties
-> > to enabled A618 GPU.
-> >
-> > Signed-off-by: Sharat Masetty <smasetty@codeaurora.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 103 +++++++++++++++++++++++++++++++++++
-> >  1 file changed, 103 insertions(+)
-> 
-> Note that +Matthias Kaehlcke commented on v1 your patch:
-> 
-> https://lore.kernel.org/r/20191204220033.GH228856@google.com/
-> 
-> ...so he should have been CCed on v2.  I would also note that some of
-> the comments below are echos of what Matthias already said in the
-> previous version but just weren't addressed.
-> 
-> 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > index b859431..277d84d 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > @@ -7,6 +7,7 @@
-> >
-> >  #include <dt-bindings/clock/qcom,gcc-sc7180.h>
-> >  #include <dt-bindings/clock/qcom,rpmh.h>
-> > +#include <dt-bindings/clock/qcom,gpucc-sc7180.h>
-> 
-> Header files should be sorted alphabetically.  ...or, even better,
-> base your patch atop mine:
-> 
-> https://lore.kernel.org/r/20200124144154.v2.10.I1a4b93fb005791e29a9dcf288fc8bd459a555a59@changeid/
-> 
-> ...which adds the gpucc header file so you don't have to.  ...and when
-> you do so, email out a Reviewed-by and/or Tested-by for my patch.  ;-)
-> 
-> 
-> >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >  #include <dt-bindings/interconnect/qcom,sc7180.h>
-> >  #include <dt-bindings/phy/phy-qcom-qusb2.h>
-> > @@ -1619,6 +1620,108 @@
-> >                         #interconnect-cells = <1>;
-> >                         qcom,bcm-voters = <&apps_bcm_voter>;
-> >                 };
-> > +
-> > +               gpu: gpu@5000000 {
-> > +                       compatible = "qcom,adreno-618.0", "qcom,adreno";
-> 
-> Though it's not controversial, please send a patch to:
-> 
-> Documentation/devicetree/bindings/display/msm/gmu.txt
-> 
-> ...to add 'qcom,adreno-618.0', like:
-> 
->     for example:
->       "qcom,adreno-gmu-618.0", "qcom,adreno-gmu"
->       "qcom,adreno-gmu-630.2", "qcom,adreno-gmu"
-> 
-> Probably as part of this you will be asked to convert this file to
-> yaml.  IMO we don't need to block landing this patch on the effort to
-> convert it to yaml, but you should still work on it.  ...or maybe
-> Jordan wants to work on it?
+Bus firewall framework aims to provide a kernel API to set the configuration
+of the harware blocks in charge of busses access control.
 
-I'll toss it on my to-do list. There always seems to be something more urgent
-but I should just bite the bullet and get it done.
+Framework architecture is inspirated by pinctrl framework:
+- a default configuration could be applied before bind the driver.
+  If a configuration could not be applied the driver is not bind
+  to avoid doing accesses on prohibited regions.
+- configurations could be apllied dynamically by drivers.
+- device node provides the bus firewall configurations.
 
-Jordan
+An example of bus firewall controller is STM32 ETZPC hardware block
+which got 3 possible configurations:
+- trust: hardware blocks are only accessible by software running on trust
+  zone (i.e op-tee firmware).
+- non-secure: hardware blocks are accessible by non-secure software (i.e.
+  linux kernel).
+- coprocessor: hardware blocks are only accessible by the coprocessor.
+Up to 94 hardware blocks of the soc could be managed by ETZPC.
+
+At least two other hardware blocks can take benefits of this:
+- ARM TZC-400: http://infocenter.arm.com/help/topic/com.arm.doc.100325_0001_02_en/arm_corelink_tzc400_trustzone_address_space_controller_trm_100325_0001_02_en.pdf
+  which is able to manage up to 8 regions in address space.
+- IMX Ressource Domain Controller (RDC): supports four domains and up to eight regions 
+
+Version 2 has been rebased on top of v5.5
+- Change framework name to "firewall" because the targeted hardware block
+  are acting like firewall on the busses.
+- Mark Brown had reviewed the previous version but it was on kernel 5.1 and I change
+  the name framework so I have decided to remove it.
+- Use yaml file to describe the bindings
+
+Benjamin
+
+Benjamin Gaignard (7):
+  dt-bindings: bus: Add firewall bindings
+  bus: Introduce firewall controller framework
+  base: Add calls to firewall controller
+  dt-bindings: bus: Add STM32 ETZPC firewall controller
+  bus: firewall: Add driver for STM32 ETZPC controller
+  ARM: dts: stm32: Add firewall node for stm32mp157 SoC
+  ARM: dts: stm32: enable firewall controller node on stm32mp157c-ed1
+
+ .../bindings/bus/firewall/firewall-consumer.yaml   |  25 ++
+ .../bindings/bus/firewall/firewall-provider.yaml   |  18 ++
+ .../bindings/bus/firewall/st,stm32-etzpc.yaml      |  41 ++++
+ arch/arm/boot/dts/stm32mp157c-ev1.dts              |   2 +
+ arch/arm/boot/dts/stm32mp157c.dtsi                 |   7 +
+ drivers/base/dd.c                                  |   9 +
+ drivers/bus/Kconfig                                |   2 +
+ drivers/bus/Makefile                               |   2 +
+ drivers/bus/firewall/Kconfig                       |  14 ++
+ drivers/bus/firewall/Makefile                      |   2 +
+ drivers/bus/firewall/firewall.c                    | 264 +++++++++++++++++++++
+ drivers/bus/firewall/stm32-etzpc.c                 | 140 +++++++++++
+ include/dt-bindings/bus/firewall/stm32-etzpc.h     |  90 +++++++
+ include/linux/firewall.h                           |  70 ++++++
+ 14 files changed, 686 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/bus/firewall/firewall-consumer.yaml
+ create mode 100644 Documentation/devicetree/bindings/bus/firewall/firewall-provider.yaml
+ create mode 100644 Documentation/devicetree/bindings/bus/firewall/st,stm32-etzpc.yaml
+ create mode 100644 drivers/bus/firewall/Kconfig
+ create mode 100644 drivers/bus/firewall/Makefile
+ create mode 100644 drivers/bus/firewall/firewall.c
+ create mode 100644 drivers/bus/firewall/stm32-etzpc.c
+ create mode 100644 include/dt-bindings/bus/firewall/stm32-etzpc.h
+ create mode 100644 include/linux/firewall.h
 
 -- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.15.0
+
