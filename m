@@ -2,110 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F8D214C967
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2020 12:17:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7587914C970
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2020 12:18:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726224AbgA2LRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jan 2020 06:17:21 -0500
-Received: from foss.arm.com ([217.140.110.172]:39618 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726067AbgA2LRV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Jan 2020 06:17:21 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 469C71FB;
-        Wed, 29 Jan 2020 03:17:20 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5D9D33F67D;
-        Wed, 29 Jan 2020 03:17:19 -0800 (PST)
-Date:   Wed, 29 Jan 2020 11:17:17 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        Loic PALLARDY <loic.pallardy@st.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "system-dt@lists.openampproject.org" 
-        <system-dt@lists.openampproject.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lkml@metux.net" <lkml@metux.net>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
-        "stefano.stabellini@xilinx.com" <stefano.stabellini@xilinx.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/7] bus: Introduce firewall controller framework
-Message-ID: <20200129111717.GA3928@sirena.org.uk>
-Mail-Followup-To: Greg KH <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        Loic PALLARDY <loic.pallardy@st.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "system-dt@lists.openampproject.org" <system-dt@lists.openampproject.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lkml@metux.net" <lkml@metux.net>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
-        "stefano.stabellini@xilinx.com" <stefano.stabellini@xilinx.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20200128153806.7780-1-benjamin.gaignard@st.com>
- <20200128153806.7780-3-benjamin.gaignard@st.com>
- <20200128155243.GC3438643@kroah.com>
- <0dd9dc95-1329-0ad4-d03d-99899ea4f574@st.com>
- <20200128165712.GA3667596@kroah.com>
- <62b38576-0e1a-e30e-a954-a8b6a7d8d897@st.com>
- <CACRpkdY427EzpAt7f5wwqHpRS_SHM8Fvm+cFrwY8op0E_J+D9Q@mail.gmail.com>
- <20200129095240.GA3852081@kroah.com>
+        id S1726128AbgA2LSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jan 2020 06:18:49 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:37093 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726091AbgA2LSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 29 Jan 2020 06:18:49 -0500
+Received: by mail-wr1-f67.google.com with SMTP id w15so19758461wru.4
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2020 03:18:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=WdEwvXuf/f1ew5arKRFGjQIWnawCPhuYtVKO7QPsc9Y=;
+        b=Sw3HgBhFTNZBQ36hs9fAypBBY7Fa4Sh5OhqWXeKEPKx1kmSDHDG26lN9LA8NuPw2qF
+         p1DHCrsJ8EOijNoxlSKupI7Zxp/jNH8T5E9VvGgDRaqOitPqAwUS74HmiAa2e9jQLPbv
+         89Du9baS80tY7ud1v+dhJl/UHWfb1rsw6BinQLgP7jPdxm3FsWERhB7LLxEIdmcc48pv
+         IvpJw07fjov6WMjVtkzx0qF2RvIxiyEMBsvtYuAZEu6G6dxXDSHBPJDgjeuZ9nxRC4Vq
+         xKwuGm14d1NEDJdCQHvkh2GjoQQsU1G/gsuEuT6g11JkYEZpLnLFNMDd8mOBL+N7a+4f
+         yEnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=WdEwvXuf/f1ew5arKRFGjQIWnawCPhuYtVKO7QPsc9Y=;
+        b=Fv1/dyDrj8GA6REBxogdqzL0UesUKY1Y+QixM7aU8dbCsp9Elf5h/LcKwRjQnOqBna
+         Npdo9iKF2i47FVmhcy7BNukON3FvpXmd0FpcC98xE9X5/dbkYzUIXbQEfua/pAuJi6x/
+         9L7czguWZea6N63Tk0qpOIPcMiNfhCLCI3c8Mg5kx2I4w3HJ0tUpK2EJ0xi/THYztI5U
+         R+7tBuxnGA7yLDR+biDB54l7AB8NO+wg+dNpN9O+AMNEC0eazILzzdNlC/vFjwCN0hc4
+         KdQcQkZ+zeeUnxwzuDIet1EVJjz3k1z/O1pOPoNKwGzifPNaHKTH+/u2Kv2x591B20n8
+         SHsQ==
+X-Gm-Message-State: APjAAAX4XXSF3bYLwjFM10O3X9dZ9C41s9s4c2971ZLhEyyDkg9GAzOc
+        JtnLtvOTGRYRi+Euy9OJsK446w==
+X-Google-Smtp-Source: APXvYqyMoIcsyaEqYxxW6ffIc7cM/EHFn0b6ThBfRh9LHZ4nCf4C8TEqE1Hf1HzIgoqg9YnSyuDr8A==
+X-Received: by 2002:adf:a109:: with SMTP id o9mr35424484wro.189.1580296726681;
+        Wed, 29 Jan 2020 03:18:46 -0800 (PST)
+Received: from dell ([2.27.35.227])
+        by smtp.gmail.com with ESMTPSA id b17sm2448180wrx.15.2020.01.29.03.18.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2020 03:18:45 -0800 (PST)
+Date:   Wed, 29 Jan 2020 11:18:58 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     broonie@kernel.org, linus.walleij@linaro.org, robh@kernel.org,
+        vinod.koul@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        spapothi@codeaurora.org, bgoswami@codeaurora.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v6 02/11] mfd: wcd934x: add support to wcd9340/wcd9341
+ codec
+Message-ID: <20200129111858.GC3548@dell>
+References: <20191219103153.14875-1-srinivas.kandagatla@linaro.org>
+ <20191219103153.14875-3-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="OXfL5xGRrasGEqWY"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200129095240.GA3852081@kroah.com>
-X-Cookie: Chocolate chip.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20191219103153.14875-3-srinivas.kandagatla@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 19 Dec 2019, Srinivas Kandagatla wrote:
 
---OXfL5xGRrasGEqWY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> Qualcomm WCD9340/WCD9341 Codec is a standalone Hi-Fi audio codec IC.
+> 
+> This codec has integrated SoundWire controller, pin controller and
+> interrupt controller.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> ---
+>  drivers/mfd/Kconfig                   |  12 +
+>  drivers/mfd/Makefile                  |   1 +
+>  drivers/mfd/wcd934x.c                 | 306 +++++++++++++++
+>  include/linux/mfd/wcd934x/registers.h | 531 ++++++++++++++++++++++++++
+>  include/linux/mfd/wcd934x/wcd934x.h   |  31 ++
+>  5 files changed, 881 insertions(+)
+>  create mode 100644 drivers/mfd/wcd934x.c
+>  create mode 100644 include/linux/mfd/wcd934x/registers.h
+>  create mode 100644 include/linux/mfd/wcd934x/wcd934x.h
 
-On Wed, Jan 29, 2020 at 10:52:40AM +0100, Greg KH wrote:
+Applied, thanks.
 
-> It just needs to be part of the bus logic for the specific bus that this
-> "firewall" is on.  Just like we do the same thing for USB or thunderbolt
-> devices.  Put this in the bus-specific code please.
-
-I'd expect that this is going to affect at least platform and AMBA
-buses.
-
---OXfL5xGRrasGEqWY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl4xaboACgkQJNaLcl1U
-h9AXbAf+KRZCtLfkXYUWRgFwJkclHlVSyIoUud3CsqCBy5e60mmmGtO/XARpZkDm
-riG9GS1aF/2cXrFRpsaj0g9dkUsAhVJPddW/L9xvVP8od3iKT1XRTgLdVaMWZlt+
-P8gZ0SdSe7IR2Oedeb3pB8BAAnHLbHroB7PUwxr6/3yVk5XO1JHVh9nD3nHiY8av
-VVliKZLOA+nzN7BjsD5uoQeM1wLp7pBNjXdsJXAgwkTYhKQTZCcJvPpz0G/tjF4P
-C3l51yXi2jBlsWIChml2OMfEgtTGHQONR2+nXzQ7+gb2z/g0AgjngOBjtbO2B7sM
-C33w5SPMmYSvIHOUKPSFodAeeFr1Kg==
-=oi89
------END PGP SIGNATURE-----
-
---OXfL5xGRrasGEqWY--
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
