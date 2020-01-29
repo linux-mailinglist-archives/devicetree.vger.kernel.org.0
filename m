@@ -2,197 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 318E014C60A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2020 06:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B12514C61B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2020 06:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725816AbgA2Fqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 29 Jan 2020 00:46:42 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:50140 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725934AbgA2Fqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 29 Jan 2020 00:46:42 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1580276801; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
- To: From: Sender; bh=Uia7eHgmOQeOEXkeVdlnBpq8/eBlSOChehhm3LLPNcE=; b=fDMDy6S7fx+y30zheYqszf6o3M5+Eau5NtEx7ZNzB+lg/zw6K3ThZTBrQhlNe1rTcBIy+H3u
- DFFvNJAlBUVyULQLf73+J3ZI4YUd8nd7iV72Niw00wkelQaC9nyqvK6a41qrwaNiLDFwuXuW
- COkK/iKNwnCafTlfhXQ+dUa7awM=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e311c40.7fec0ed46148-smtp-out-n01;
- Wed, 29 Jan 2020 05:46:40 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 27812C4479C; Wed, 29 Jan 2020 05:46:39 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.5 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_DBL_ABUSE_MALW autolearn=no autolearn_force=no version=3.4.0
-Received: from Pillair (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        id S1726020AbgA2FtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 29 Jan 2020 00:49:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56886 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725966AbgA2FtO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 29 Jan 2020 00:49:14 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A407AC43383;
-        Wed, 29 Jan 2020 05:46:36 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A407AC43383
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=pillair@codeaurora.org
-From:   <pillair@codeaurora.org>
-To:     "'Matthias Kaehlcke'" <mka@chromium.org>
-Cc:     <devicetree@vger.kernel.org>,
+        by mail.kernel.org (Postfix) with ESMTPSA id 28E652071E;
+        Wed, 29 Jan 2020 05:49:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1580276953;
+        bh=EOmr9+h3FKBEr7USHJlKgjOW/DsS8L2m+JUzkoI+K9I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=yQi8yP6OcruU4bHYp0E9eoPEgHZ3TU7AtcIgQASns0fNUpt/byNWEaOlTuAxs9dCL
+         TrKfCNjj1fsqL+VBT1VOWhuHhz175FI99WPMO4yMEbENMUG3U2qBNUzlrqWKGUiQ3x
+         4Xfe2+zN93ruTPYDEQAZmubinav4wtaImlY+rOv8=
+Date:   Wed, 29 Jan 2020 06:49:09 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Benjamin GAIGNARD <benjamin.gaignard@st.com>
+Cc:     "broonie@kernel.org" <broonie@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "lkml@metux.net" <lkml@metux.net>,
+        Loic PALLARDY <loic.pallardy@st.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <1580207617-818-1-git-send-email-pillair@codeaurora.org> <20200128192027.GB46072@google.com>
-In-Reply-To: <20200128192027.GB46072@google.com>
-Subject: RE: [PATCH v4] arm64: dts: qcom: sc7180: Add WCN3990 WLAN module device node
-Date:   Wed, 29 Jan 2020 11:16:32 +0530
-Message-ID: <000601d5d667$78f056d0$6ad10470$@codeaurora.org>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "system-dt@lists.openampproject.org" 
+        <system-dt@lists.openampproject.org>,
+        "stefano.stabellini@xilinx.com" <stefano.stabellini@xilinx.com>
+Subject: Re: [PATCH v2 2/7] bus: Introduce firewall controller framework
+Message-ID: <20200129054909.GB3765925@kroah.com>
+References: <20200128153806.7780-1-benjamin.gaignard@st.com>
+ <20200128153806.7780-3-benjamin.gaignard@st.com>
+ <20200128155243.GC3438643@kroah.com>
+ <0dd9dc95-1329-0ad4-d03d-99899ea4f574@st.com>
+ <20200128165712.GA3667596@kroah.com>
+ <62b38576-0e1a-e30e-a954-a8b6a7d8d897@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJpUoH9UNBKfyz7+S0TRz+kcMMVewHZ23B3pstalZA=
-Content-Language: en-us
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <62b38576-0e1a-e30e-a954-a8b6a7d8d897@st.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matthias,
-
-Please find my replies inline.
-
-
-> -----Original Message-----
-> From: Matthias Kaehlcke <mka@chromium.org>
-> Sent: Wednesday, January 29, 2020 12:50 AM
-> To: Rakesh Pillai <pillair@codeaurora.org>
-> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; =
-linux-
-> kernel@vger.kernel.org; linux-arm-msm@vger.kernel.org
-> Subject: Re: [PATCH v4] arm64: dts: qcom: sc7180: Add WCN3990 WLAN
-> module device node
->=20
-> Hi Rakesh,
->=20
-> On Tue, Jan 28, 2020 at 04:03:37PM +0530, Rakesh Pillai wrote:
-> > Add device node for the ath10k SNOC platform driver probe
-> > and add resources required for WCN3990 on sc7180 soc.
+On Tue, Jan 28, 2020 at 08:29:45PM +0000, Benjamin GAIGNARD wrote:
+> 
+> On 1/28/20 5:57 PM, Greg KH wrote:
+> > On Tue, Jan 28, 2020 at 04:41:29PM +0000, Benjamin GAIGNARD wrote:
+> >> On 1/28/20 4:52 PM, Greg KH wrote:
+> >>> On Tue, Jan 28, 2020 at 04:38:01PM +0100, Benjamin Gaignard wrote:
+> >>>> The goal of this framework is to offer an interface for the
+> >>>> hardware blocks controlling bus accesses rights.
+> >>>>
+> >>>> Bus firewall controllers are typically used to control if a
+> >>>> hardware block can perform read or write operations on bus.
+> >>> So put this in the bus-specific code that controls the bus that these
+> >>> devices live on.  Why put it in the driver core when this is only on one
+> >>> "bus" (i.e. the catch-all-and-a-bag-of-chips platform bus)?
+> >> It is really similar to what pin controller does, configuring an
+> >> hardware block given DT information.
+> > Great, then use that instead :)
+> I think that Linus W. will complain if I do that :)
 > >
-> > Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc7180-idp.dts |  5 +++++
-> >  arch/arm64/boot/dts/qcom/sc7180.dtsi    | 28
-> ++++++++++++++++++++++++++++
-> >  2 files changed, 33 insertions(+)
+> >> I could argue that firewalls are not bus themselves they only interact
+> >> with it.
+> > They live on a bus, and do so in bus-specific ways, right?
 > >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> > index 189254f..151b489 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> > @@ -248,6 +248,11 @@
-> >  	status =3D "okay";
-> >  };
+> >> Bus firewalls exist on other SoC, I hope some others could be added in
+> >> this framework. ETZPC is only the first.
+> > Then put it on the bus it lives on, and the bus that the drivers for
+> > that device are being controlled with.  That sounds like the sane place
+> > to do so, right?
+> 
+> If that means that all drivers have to be modified it will be 
+> problematic because not all
+> 
+> are specifics to the SoC.
+
+That's fine, we have loads of drivers that work on different types of
+busses.
+
+Or, if this really is the "platform bus" then use that.  (which is what
+I was hinting at all along but no one seems to realize that, should have
+been more obvious...)
+
+> >>> And really, this should just be a totally new bus type, right?  And any
+> >>> devices on this bus should be changed to be on this new bus, and the
+> >>> drivers changed to support them, instead of trying to overload the
+> >>> platform bus with more stuff.
+> >> I have tried to use the bus notifier to avoid to add this code at probe
+> >> time but without success:
+> >>
+> >> https://lkml.org/lkml/2018/2/27/300
+> > Almost 2 years ago?  I can't remember something written 1 week ago...
 > >
-> > +&wifi {
-> > +	status =3D "okay";
-> > +	qcom,msa-fixed-perm;
-> > +};
-> > +
-> >  /* PINCTRL - additions to nodes defined in sc7180.dtsi */
+> > Yes, don't abuse the notifier chain.  I hate that thing as it is.
 > >
-> >  &qup_i2c2_default {
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > index 666e9b9..7efb97f 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > @@ -42,6 +42,12 @@
-> >  			compatible =3D "qcom,cmd-db";
-> >  			no-map;
-> >  		};
-> > +
-> > +		wlan_fw_mem: memory@93900000 {
-> > +			compatible =3D "removed-dma-pool";
-> > +			no-map;
-> > +			reg =3D <0 0x93900000 0 0x200000>;
-> > +		};
-> >  	};
->=20
-> This part doesn't apply cleanly on qcom/for-next, looks like you have =
-to
-> rebase.
+> >> I have also tried to disable the nodes at runtime and Mark Rutland
+> >> explain me why it was wrong.
+> > The bus controller should do this, right?  Why not just do it there?
+> 
+> The bus controller is a different hardware block.
 
-[Rakesh]: let me rebase it and send out the next version.
+Of course it is, but it controls a bus, and there are devices on that
+bus, right?  Don't circumvent things please.
 
->=20
-> >  	cpus {
-> > @@ -1119,6 +1125,28 @@
-> >  				#clock-cells =3D <1>;
-> >  			};
-> >  		};
-> > +
-> > +		wifi: wifi@18800000 {
->=20
-> You added this node at the end of the file, outside of the 'soc' node.
-> It should be inside the 'soc' node, the sub-nodes are ordered by =
-address,
-> so (currently) this node should be inserted after 'cpufreq@18323000'.
-
-[Rakesh] Will update this in the next patchset. (Possibly this was =
-caused due to rebase conflicts)
-
-
->=20
-> > +			compatible =3D "qcom,wcn3990-wifi";
-> > +			reg =3D <0 0x18800000 0 0x800000>;
-> > +			reg-names =3D "membase";
-> > +			iommus =3D <&apps_smmu 0xC0 0x1>;
->=20
-> nit: the convention is to use lowercase characters for hex adresses.
-
-[Rakesh]: Will change it.
-
->=20
-> > +			interrupts =3D
-> > +				<GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH /* CE0
-> */ >,
-> > +				<GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH /* CE1
-> */ >,
-> > +				<GIC_SPI 416 IRQ_TYPE_LEVEL_HIGH /* CE2
-> */ >,
-> > +				<GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH /* CE3
-> */ >,
-> > +				<GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH /* CE4
-> */ >,
-> > +				<GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH /* CE5
-> */ >,
-> > +				<GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH /* CE6
-> */ >,
-> > +				<GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH /* CE7
-> */ >,
-> > +				<GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH /* CE8
-> */ >,
-> > +				<GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH /* CE9
-> */ >,
-> > +				<GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH /* CE10
-> */>,
-> > +				<GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH /* CE11
-> */>;
->=20
-> not sure these 'CEx' comments after each interrupt add much value. =
-What
-> does
-> 'CE' stand for in the first place?
-
-[Rakesh]:   CE stands for Copy engine. These are the copy engine =
-interrupts, hence the comments.
-
->=20
-> Thanks
->=20
-> Matthias
+greg k-h
