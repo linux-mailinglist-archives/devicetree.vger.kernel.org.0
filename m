@@ -2,113 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AEB3F14DFA3
-	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2020 18:09:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF26B14DFE4
+	for <lists+devicetree@lfdr.de>; Thu, 30 Jan 2020 18:27:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727158AbgA3RJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 30 Jan 2020 12:09:49 -0500
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:41341 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726514AbgA3RJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 30 Jan 2020 12:09:49 -0500
-Received: by mail-ed1-f65.google.com with SMTP id c26so4595747eds.8;
-        Thu, 30 Jan 2020 09:09:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=yel/LjQW25KcQEFu+jzZC73Egkh1tqmmLbvqWmoKP8c=;
-        b=McU784o+BlKHiU8m5vavNqQyA3oFBpzOf3HlAuCMmdNFGz14lvO6yRPhgp4Ds4XVp6
-         xpAvGZTEv5SCKQaFFrYwvi75BMEkZDA8i++ymWsMVkOxfW8HgsbWyQQk17cRno5N8yNy
-         +eIYCA09AdUds5GQp5XlCVuz/67NmydI1ExgXMUGQFlMcp5FGKG/ZtrQ/KCpvil1xyVO
-         0ksORwuZ0HqRtD5JoqebvM+XYG3wA0+1+jUB9RegC363PKmF5T0++3mtERGo7eQT9ejz
-         sToBBqbfHIJj1AGeYQFSLG+RrdNaGhNET4V1YnbxG1yRxsjjVFAvJtCdYFhJBthvZJ94
-         0Fog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=yel/LjQW25KcQEFu+jzZC73Egkh1tqmmLbvqWmoKP8c=;
-        b=CAa92roEjYmgqg66N4WE3LAaPk5wQY0zB6/F1GK1ZhZk93hgfiB0/r48Sg+CjZu9kZ
-         5IdnQfdEccqqr6skQEnxAlmQjxPLa9B4tlWTOONzHSnYhZPFTSc1WfbvqsXDL2FSyhdV
-         PI+1V5W4UrXr5UWqg/OcpytpAB4ACGW8R0k/Fg/BD4tvuTEtrud/H0A7IriqqoWmnzYe
-         UK6E/zGHLdI36ntO4UCFp5mb/7gzKtn9Fv3Y5y3MVVhxbDEvzL7sCj+J0+9BV8Egct81
-         GtjJjxDLDGCMNbvfwzGJSV/rrduElCrSQUhyaxUlTbJwxtAP3/9umR+ZIErMAfTpsA89
-         4DFw==
-X-Gm-Message-State: APjAAAWPwKA2Oj2RtAP9szB5oWIqonHxiv8B6GptEXqJ2UfPjjZbf3TO
-        BGq4dfkkyDcQC9iwuwzDFyI=
-X-Google-Smtp-Source: APXvYqwq3GK/kZ6ctkM0oUPdYfKKLpmFsfdQxaEw47STW+5vOHF65mQWT7BC3nPoioz0sKAOgdJxuA==
-X-Received: by 2002:a05:6402:168c:: with SMTP id a12mr4871067edv.43.1580404185669;
-        Thu, 30 Jan 2020 09:09:45 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id u9sm493512edt.91.2020.01.30.09.09.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jan 2020 09:09:44 -0800 (PST)
-Subject: Re: [PATCH v2 5/9] ASoC: tegra: add Tegra210 based AHUB driver
-To:     Sameer Pujar <spujar@nvidia.com>, perex@perex.cz, tiwai@suse.com,
-        robh+dt@kernel.org
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
-        mkumard@nvidia.com, viswanathl@nvidia.com, rlokhande@nvidia.com,
-        dramesh@nvidia.com, atalambedu@nvidia.com
-References: <1580380422-3431-1-git-send-email-spujar@nvidia.com>
- <1580380422-3431-6-git-send-email-spujar@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <bd802f93-dd03-f39d-86e1-39f8571bbbb0@gmail.com>
-Date:   Thu, 30 Jan 2020 20:09:41 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        id S1726514AbgA3R1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 30 Jan 2020 12:27:23 -0500
+Received: from mxa2.seznam.cz ([77.75.76.90]:51316 "EHLO mxa2.seznam.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727489AbgA3R1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 30 Jan 2020 12:27:23 -0500
+Received: from email.seznam.cz
+        by email-smtpc15a.ng.seznam.cz (email-smtpc15a.ng.seznam.cz [10.23.11.195])
+        id 58bdb51903b3e17059147947;
+        Thu, 30 Jan 2020 18:27:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1580405239; bh=2nleulkEI2ScTi+li6MZ2I7MWAzQbblG7BXMZTMIK2U=;
+        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:MIME-Version:
+         Content-Transfer-Encoding;
+        b=CqOopzMB/tz6VOWOZXJ959NdDbkx3Y96wOKDETJP05KJaT+AQVTYT63WKC0X0VC4b
+         pxuZlwovxtnJSFthfXaTen3Bh2Hc3ApvnJpPDO3eT+FSi378lbPJgpH80fzwbXO8kD
+         ixb4Mc7t/yZMoP4Zb9MPuGY2TPXX0dq9voVWD9S8=
+Received: from localhost.localdomain (212.69.128.228 [212.69.128.228])
+        by email-relay12.ng.seznam.cz (Seznam SMTPD 1.3.108) with ESMTP;
+        Thu, 30 Jan 2020 18:14:12 +0100 (CET)  
+From:   michael.srba@seznam.cz
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Michael Srba <Michael.Srba@seznam.cz>
+Subject: [PATCH v2 1/2] dt-bindings: display/panel: add bindings for S6E88A0-AMS452EF01
+Date:   Thu, 30 Jan 2020 18:11:27 +0100
+Message-Id: <20200130171128.29251-1-michael.srba@seznam.cz>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <1580380422-3431-6-git-send-email-spujar@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-30.01.2020 13:33, Sameer Pujar пишет:
-...
-> +	ret = devm_snd_soc_register_component(&pdev->dev,
-> +					      ahub->soc_data->cmpnt_drv,
-> +					      ahub->soc_data->dai_drv,
-> +					      ahub->soc_data->num_dais);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "failed to register component, err: %d\n",
-> +			ret);
-> +		return ret;
-> +	}
-In the the patch #4 ("ASoC: tegra: add Tegra210 based I2S driver") I see
-the following:
+From: Michael Srba <Michael.Srba@seznam.cz>
 
-	ret = devm_snd_soc_register_component(dev, &tegra210_i2s_cmpnt,
-					tegra210_i2s_dais,
-					ARRAY_SIZE(tegra210_i2s_dais));
-	if (ret != 0) {
-		dev_err(dev, "can't register I2S component, err: %d\n", ret);
-		return ret;
-	}
+This patch adds dts bindings for Samsung AMS452EF01 AMOLED panel, which makes
+use of their S6E88A0 controller.
 
-Please be consistent in regards to errors checking. The correct variant
-should be: if (ret != 0). Usually error codes are a negative value, but
-it is much safer to check whether value isn't 0 in all cases where
-positive value isn't expected to happen.
+Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+---
+Hi,
+Thanks for the review. I believe I've fixed everything, and I tested that 
+I get image on drm-next with these patches applied.
 
-I'd also recommend to rename all "ret" variables to "err" everywhere in
-the code where returned value is used only for errors checking. This
-will make code more explicit, and hence, easier to read and follow.
+Changes since v1: use yaml format for the binding
+---
+ .../panel/samsung,s6e88a0-ams452ef01.yaml     | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml
 
-So, it will be nicer to write it as:
+diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml
+new file mode 100644
+index 000000000000..3d9b480ec706
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams452ef01.yaml
+@@ -0,0 +1,49 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sony,acx424akp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung AMS452EF01 AMOLED panel with S6E88A0 video mode DSI controller
++
++maintainers:
++  - Michael Srba <Michael.Srba@seznam.cz>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: samsung,s6e88a0-ams452ef01
++  reg: true
++  reset-gpios: true
++  vdd3-supply:
++     description: core voltage supply
++  vci-supply:
++     description: voltage supply for analog circuits
++  enforce-video-mode: true
++
++required:
++  - compatible
++  - reg
++  - vdd3-supply
++  - vci-supply
++  - reset-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    panel@0 {
++		reg = <0>;
++
++		compatible = "samsung,s6e88a0-ams452ef01";
++
++		vdd3-supply = <&pm8916_l17>;
++		vci-supply = <&reg_vlcd_vci>;
++		reset-gpios = <&msmgpio 25 GPIO_ACTIVE_HIGH>;
++	};
++
++...
+-- 
+2.24.0
 
-	err = devm_snd_soc_register_component(&pdev->dev,
-					ahub->soc_data->cmpnt_drv,
-					ahub->soc_data->dai_drv,
-					ahub->soc_data->num_dais);
-	if (err) {
-		dev_err(&pdev->dev, "failed to register component: %d\n", err);
-		return err;
-	}
