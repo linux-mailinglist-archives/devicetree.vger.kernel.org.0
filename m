@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E7014F171
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2020 18:41:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B032A14F173
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2020 18:41:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727093AbgAaRlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jan 2020 12:41:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50642 "EHLO mail.kernel.org"
+        id S1727095AbgAaRlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jan 2020 12:41:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50838 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726749AbgAaRlL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Jan 2020 12:41:11 -0500
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        id S1726749AbgAaRlP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 31 Jan 2020 12:41:15 -0500
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D639F22522
-        for <devicetree@vger.kernel.org>; Fri, 31 Jan 2020 17:41:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B71132253D
+        for <devicetree@vger.kernel.org>; Fri, 31 Jan 2020 17:41:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1580492471;
-        bh=j9L7YS1IMIUGvccZ1rHyQK+UVEwcZiYe0s6TbTpWVhY=;
+        s=default; t=1580492474;
+        bh=Vc4SiOJHxWuzUZxXFKK57A91sKVKRu2n+XwrsjrC9cY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Gx7l5bnlji7EjZCMKzo5sJTAnC0ZbVzJDWJ05Hj8lgPMhgeKFWWq9mRKriCS4n8Qr
-         oevClOc1Olg5m73sbKsISlWUbu+/sGeDeQlnPH9X2rbDwE27SXltHsxNUxJo50r5n2
-         Cv+B/OgjoSsnx0l8vVo6+lGlxeXFHluvx2KtPRV0=
-Received: by mail-qk1-f180.google.com with SMTP id g195so7298741qke.13
-        for <devicetree@vger.kernel.org>; Fri, 31 Jan 2020 09:41:10 -0800 (PST)
-X-Gm-Message-State: APjAAAU0+vfOJsY+Bd8V2NRKkjFWUnu9TLrZ+feA3VwNp4N3lBwp1/yA
-        f/H5wkidogcevth5BMN8i1XOlMC77IiAQgMu6A==
-X-Google-Smtp-Source: APXvYqzcPXwNiM+WNCqBCrr2x5w5fdp61dkW1RPVkzEgStdAcfM6ZkFVm5E4Ii+5LeuvmrEOYFBEWfJnzrVzsu+chtk=
-X-Received: by 2002:a05:620a:9c7:: with SMTP id y7mr11820586qky.393.1580492470023;
- Fri, 31 Jan 2020 09:41:10 -0800 (PST)
+        b=l5D6OfKKUgkBuUel5VMLzQsE61+ur26x2amPU4jozcTqHtvSg614PueqSBBoPmro6
+         c42mgQCWp54qTYHARHr2sg9yvPNxKzBIo57B3CJlqmtn2kHGsRZo1BGRZsGKHLPuba
+         X2N/FYY8tKGHYjsG/TXkTzwMpbRJVtyssk1gcU7c=
+Received: by mail-qv1-f54.google.com with SMTP id y2so3598761qvu.13
+        for <devicetree@vger.kernel.org>; Fri, 31 Jan 2020 09:41:14 -0800 (PST)
+X-Gm-Message-State: APjAAAWRvvhnwbYmtHsoBgS2IWvsz/R8tv6tyPYDmEzZI2WtephLKakw
+        MuTrIiHzEQRPsnjTuoQZVXCrqtXTd1T2k6M/7w==
+X-Google-Smtp-Source: APXvYqymOXuPQlCKGanKbWjWi5whel3UBjEZf1RL275OqNT9/9EQXyLkDL8EqglFNzzDWhiObUdqxzRS8fg/R1CrqIo=
+X-Received: by 2002:a0c:f68f:: with SMTP id p15mr11119378qvn.79.1580492473869;
+ Fri, 31 Jan 2020 09:41:13 -0800 (PST)
 MIME-Version: 1.0
-References: <20200125203454.7450-1-sam@ravnborg.org> <20200125203454.7450-3-sam@ravnborg.org>
-In-Reply-To: <20200125203454.7450-3-sam@ravnborg.org>
+References: <20200125203454.7450-1-sam@ravnborg.org> <20200125203454.7450-2-sam@ravnborg.org>
+In-Reply-To: <20200125203454.7450-2-sam@ravnborg.org>
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 31 Jan 2020 11:40:57 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKgWaqJCxtsD02DsTu=p=Q2=ZzWNZ5bf_atmbbD9N6JQQ@mail.gmail.com>
-Message-ID: <CAL_JsqKgWaqJCxtsD02DsTu=p=Q2=ZzWNZ5bf_atmbbD9N6JQQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: convert display-timings to
- DT schema
+Date:   Fri, 31 Jan 2020 11:41:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKcbZ2y0kqSsxc4CV27S-Wk+D0RYuVYr_MbQ6_Xex4K9A@mail.gmail.com>
+Message-ID: <CAL_JsqKcbZ2y0kqSsxc4CV27S-Wk+D0RYuVYr_MbQ6_Xex4K9A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: add panel-timing.yaml
 To:     Sam Ravnborg <sam@ravnborg.org>
 Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
         devicetree@vger.kernel.org,
@@ -57,70 +56,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sat, Jan 25, 2020 at 2:35 PM Sam Ravnborg <sam@ravnborg.org> wrote:
 >
-> Add display-timings.yaml - that references panel-timings.yaml.
-> display-timings.yaml will be used for display bindings
-> when they are converted to meta-schema format.
+> Add meta-schema variant of panel-timing and
+> reference it from panel-common.yaml.
 >
-> For now the old display-timing.txt points to the new
-> display-timings.yaml - and all users are left as-is.
+> Part of this came form other files with other
+> licenses - original commits:
+>
+> cc3f414cf2e4 ("video: add of helper for display timings/videomode")
+> 86f46565dff3 ("dt-bindings: display: display-timing: Add property to configure sync drive edge")
+> 9cad9c95d7e8 ("Documentation: DocBook DRM framework documentation")
+>
+> The original authors acked the license change to:
+> (GPL-2.0-only OR BSD-2-Clause)
 >
 > v2:
->   - Updated native-mode description
+>   - Got OK from original authors for re-license
+>     Huge thanks for the quick replies!
+>   - Typo fixes (Oleksandr)
+>   - Drop -array variant when not needed (Maxime)
+>   - Replace oneOf:... with enum (Maxime)
+>   - Drop type from clock-frequency (Rob)
+>   - Drop "|" when not needed (Rob)
 >
 > Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Acked-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
 > Cc: Rob Herring <robh@kernel.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Cc: Thierry Reding <thierry.reding@gmail.com>
 > Cc: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
 > Cc: devicetree@vger.kernel.org
 > ---
->  .../bindings/display/panel/display-timing.txt | 124 +-----------------
->  .../display/panel/display-timings.yaml        |  68 ++++++++++
->  2 files changed, 69 insertions(+), 123 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/display-timings.yaml
-
-
-> diff --git a/Documentation/devicetree/bindings/display/panel/display-timings.yaml b/Documentation/devicetree/bindings/display/panel/display-timings.yaml
-> new file mode 100644
-> index 000000000000..508302cd307a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/display-timings.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/display-timings.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: display timing bindings
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> +  - Sam Ravnborg <sam@ravnborg.org>
-> +
-> +properties:
-> +  $nodename:
-> +    const: display-timings
-> +
-> +  native-mode:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      The default dispaly timing is the one specified as native-mode.
-> +      If no native-mode is specified then the first node is assume the
-> +      native mode.
-> +
-> +patternProperties:
-> +  "^timing.*$":
-
-'.*$' can be omitted.
-
-Probably should have a 'type: object' here too.
-
-With that,
+>  .../bindings/display/panel/panel-common.yaml  |   7 +-
+>  .../bindings/display/panel/panel-timing.yaml  | 227 ++++++++++++++++++
+>  2 files changed, 230 insertions(+), 4 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-timing.yaml
 
 Reviewed-by: Rob Herring <robh@kernel.org>
-
-
-> +    allOf:
-> +      - $ref: panel-timing.yaml#
