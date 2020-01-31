@@ -2,106 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5886514E8FC
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2020 07:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76FCC14E9B7
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2020 09:47:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728035AbgAaG46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jan 2020 01:56:58 -0500
-Received: from sauhun.de ([88.99.104.3]:56920 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726127AbgAaG46 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 31 Jan 2020 01:56:58 -0500
-Received: from localhost (p54B333AF.dip0.t-ipconnect.de [84.179.51.175])
-        by pokefinder.org (Postfix) with ESMTPSA id 721C42C0830;
-        Fri, 31 Jan 2020 07:56:55 +0100 (CET)
-Date:   Fri, 31 Jan 2020 07:56:55 +0100
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Alain Volmat <alain.volmat@st.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        pierre-yves.mordret@st.com, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@st.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@st.com
-Subject: Re: [PATCH 5/6] i2c: i2c-stm32f7: allow controller to be
- wakeup-source
-Message-ID: <20200131065654.GB1028@ninjato>
-References: <1578317314-17197-1-git-send-email-alain.volmat@st.com>
- <1578317314-17197-6-git-send-email-alain.volmat@st.com>
- <20200130083927.GH2208@ninjato>
+        id S1728196AbgAaIrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jan 2020 03:47:07 -0500
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:36816 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728099AbgAaIrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jan 2020 03:47:07 -0500
+Received: by mail-wm1-f68.google.com with SMTP id p17so7733339wma.1;
+        Fri, 31 Jan 2020 00:47:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2EkrQbHmytM/4HBLq09Tk0mO3BlMQ43f4QPGQu2sSZ8=;
+        b=jdiYd+Pm+gm3OHGwtuxPRtDq5+uCjJlscbOd31mfYKHMvn4SC6ZI8HDlN8IUKpc4K7
+         D8Li0YbHvxD7baWQVj1Y3E5PqYOwnM8Fy7BSmdIoEyntHjwXmfJD0yzLeOJy57jDDsrr
+         kArFdVyw6vuHfaTY3rAXSTtmgCKSRDXfjwyVi8FgJ3tsVFe+RtBKgr6XuJxTC5doUKMI
+         ni5U1didi/5H+VybrtUREuYwaAfJiKquG2N82QOqCEByBb/LljCsas4zOG3m9at1e6el
+         YFskvKaajUJrt/EoaSHsyCOejF5oIciCMaDsUsThXANYvNlFVJYqJ8P676Lqjz66bQO3
+         T9TQ==
+X-Gm-Message-State: APjAAAUii7HxqaFTS8HJYo8klPeMyvmAeNBfbprKeV0NDXLzgI/ks/bA
+        xAoIcwwMmKZT4WiVn7Z+L9uT4AuyOuU=
+X-Google-Smtp-Source: APXvYqwu9LmExa87URoYI/cO7DwIY7BOw5a3ckxOgqG1pCcQbtNOFFpvqIq7xQjjsS1gxQqpBgRCJg==
+X-Received: by 2002:a1c:1f56:: with SMTP id f83mr10564641wmf.93.1580460110332;
+        Fri, 31 Jan 2020 00:41:50 -0800 (PST)
+Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
+        by smtp.gmail.com with ESMTPSA id x7sm11034302wrq.41.2020.01.31.00.41.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 31 Jan 2020 00:41:49 -0800 (PST)
+From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
+        Ilya Ledvich <ilya@compulab.co.il>,
+        Igor Grinberg <grinberg@compulab.co.il>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 01/12] ARM: dts: imx7d: cl-som-imx7 imx7d-sbc-imx7: move USB
+Date:   Fri, 31 Jan 2020 08:36:27 +0000
+Message-Id: <20200131083638.6118-1-git@andred.net>
+X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kORqDWCi7qDJ0mEj"
-Content-Disposition: inline
-In-Reply-To: <20200130083927.GH2208@ninjato>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Whether and which USB port is enabled and how they
+are powered is a function of the carrier board, not
+of the SoM. Different carrier boards can have different
+ports enabled / wired up, and power them differently;
+so this should really move into the respective DTS.
 
---kORqDWCi7qDJ0mEj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Do so and update the USB power supply to reflect
+the actual situation on the sbc-imx7 carrier board.
 
-On Thu, Jan 30, 2020 at 09:39:27AM +0100, Wolfram Sang wrote:
-> On Mon, Jan 06, 2020 at 02:28:33PM +0100, Alain Volmat wrote:
-> > Allow the i2c-stm32f7 controller to become a wakeup-source
-> > of the system. In such case, when a slave is registered to the
-> > I2C controller, receiving a I2C message targeting that registered
-> > slave address wakes up the suspended system.
-> >=20
-> > In order to be able to wake-up, the I2C controller DT node
-> > must have the property wakeup-source defined and a slave
-> > must be registered.
-> >=20
-> > Signed-off-by: Alain Volmat <alain.volmat@st.com>
->=20
-> Applied to for-next, thanks!
+Signed-off-by: André Draszik <git@andred.net>
+Cc: Ilya Ledvich <ilya@compulab.co.il>
+Cc: Igor Grinberg <grinberg@compulab.co.il>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 24 ------------------------
+ arch/arm/boot/dts/imx7d-sbc-imx7.dts    | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 24 deletions(-)
 
-And I will drop it again because buildbot rightfully complains:
+diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+index 7646284e13a7..0d962e9fe83a 100644
+--- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
++++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+@@ -22,15 +22,6 @@
+ 		device_type = "memory";
+ 		reg = <0x80000000 0x10000000>; /* 256 MB - minimal configuration */
+ 	};
+-
+-	reg_usb_otg1_vbus: regulator-vbus {
+-		compatible = "regulator-fixed";
+-		regulator-name = "usb_otg1_vbus";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		gpio = <&gpio1 5 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-	};
+ };
+ 
+ &cpu0 {
+@@ -195,13 +186,6 @@
+ 	status = "okay";
+ };
+ 
+-&usbotg1 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_usbotg1>;
+-	vbus-supply = <&reg_usb_otg1_vbus>;
+-	status = "okay";
+-};
+-
+ &usdhc3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc3>;
+@@ -280,11 +264,3 @@
+ 		>;
+ 	};
+ };
+-
+-&iomuxc_lpsr {
+-	pinctrl_usbotg1: usbotg1grp {
+-		fsl,pins = <
+-			MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5	0x14 /* OTG PWREN */
+-		>;
+-	};
+-};
+diff --git a/arch/arm/boot/dts/imx7d-sbc-imx7.dts b/arch/arm/boot/dts/imx7d-sbc-imx7.dts
+index f8a868552707..aab646903de3 100644
+--- a/arch/arm/boot/dts/imx7d-sbc-imx7.dts
++++ b/arch/arm/boot/dts/imx7d-sbc-imx7.dts
+@@ -15,6 +15,14 @@
+ / {
+ 	model = "CompuLab SBC-iMX7";
+ 	compatible = "compulab,sbc-imx7", "compulab,cl-som-imx7", "fsl,imx7d";
++
++	reg_usb_vbus: regulator-usb-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "usb_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
+ };
+ 
+ &usdhc1 {
+@@ -26,6 +34,11 @@
+ 	status = "okay";
+ };
+ 
++&&usbotg1 {
++	vbus-supply = <&reg_usb_vbus>;
++	status = "okay";
++};
++
+ &iomuxc {
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+-- 
+2.23.0.rc1
 
-
-> Reported-by: kbuild test robot <lkp@intel.com>
->=20
-> All errors (new ones prefixed by >>):
->=20
->    drivers/i2c/busses/i2c-stm32f7.c: In function 'stm32f7_i2c_suspend':
-> >> drivers/i2c/busses/i2c-stm32f7.c:2199:44: error: 'struct dev_pm_info' =
-has no member named 'wakeup_path'
->      if (!device_may_wakeup(dev) && !dev->power.wakeup_path) {
->                                                ^
->    drivers/i2c/busses/i2c-stm32f7.c: In function 'stm32f7_i2c_resume':
->    drivers/i2c/busses/i2c-stm32f7.c:2218:44: error: 'struct dev_pm_info' =
-has no member named 'wakeup_path'
->      if (!device_may_wakeup(dev) && !dev->power.wakeup_path) {
->                                                ^
-
-wakeup_path is only there if CONFIG_PM. Please fix and send a new
-version.
-
-
---kORqDWCi7qDJ0mEj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl4zz7YACgkQFA3kzBSg
-KbaWShAAsD5Gaj6lEFcuVH415Va4PzT6S2H3CUZIfq7iTBdNKWV8nvABcAaS18FA
-WY9qmpili5WRVugYU+1X4rxzEnSPiO6Sx5s9HGZHPefRlr2B99BknwPRCRkwWb6g
-vGNROAZh+qQuTayJ2UH33dSGtjXQ09KH4uDrIeRBoxWRuOlhxOe1FBmwudzEC4UM
-g3nCUq94rccym19fNkWxATy1RCwd2LZF4RRjj2CQLW+o41hUa/Vtb953oxjKPZHo
-p6lNncLSls4myb0yyqLEfnyFgOaopM7kOaTsgZAElto7WptLPtrcv0M6pCuZGeQx
-jFEqtZqSGNQsnlv4kZIei/Cnwp/zP1wgsHblLH20w1AuKAwq0G91kysEIH6OYak/
-HUL09BSJ25ZVEKDOonq/bIVPlxSvO5C0SYkq+YjgY5ojSCWWLF8ThkUCayynCEu1
-qsLn6oY7bB/8qqpiqPb+rx6M5ZuLLz3RKQmv28WuV2Oyl/KPgjtBXQ4KDG8l5fxI
-bUGHLyMdiyGFoK64lppvjAWp3WSsN8IvcVfRrl7HfTgZ+iGONbCs+ZYVQ9Y3i1gw
-APQl4R/vack7OumxG6wFjRvEpPDfwDvaR6A4yxpi62mp+YwP9NZ93pduvhqrF/DB
-XMvJqyy4aMLZFDC1ioWldHX8FuFEXLqc2BULX/o0S92ZKSRYVc4=
-=wM4/
------END PGP SIGNATURE-----
-
---kORqDWCi7qDJ0mEj--
