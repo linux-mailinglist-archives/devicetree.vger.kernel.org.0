@@ -2,103 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F00BC14F13D
-	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2020 18:25:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E75D614F14B
+	for <lists+devicetree@lfdr.de>; Fri, 31 Jan 2020 18:31:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726725AbgAaRZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 31 Jan 2020 12:25:10 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:58522 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726139AbgAaRZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jan 2020 12:25:10 -0500
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 0AED626D809;
-        Fri, 31 Jan 2020 17:25:08 +0000 (GMT)
-Date:   Fri, 31 Jan 2020 18:25:05 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Chris Healy <cphealy@gmail.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        kernel@collabora.com, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, intel-gfx-trybot@lists.freedesktop.org
-Subject: Re: [PATCH v10 10/12] drm/bridge: panel: Propage bus format/flags
-Message-ID: <20200131182505.51366470@collabora.com>
-In-Reply-To: <20200128135514.108171-11-boris.brezillon@collabora.com>
-References: <20200128135514.108171-1-boris.brezillon@collabora.com>
-        <20200128135514.108171-11-boris.brezillon@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726989AbgAaRbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 31 Jan 2020 12:31:11 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:55844 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726139AbgAaRbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 31 Jan 2020 12:31:11 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00VHV36s087335;
+        Fri, 31 Jan 2020 11:31:03 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1580491863;
+        bh=Gt5dd7XOIRcUxh6uvWBlZM+92xMNDI0LZYHC+I8v0Yc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=M4gREsBxtBTZzWFlbEJzezhFWLdaORzgSPq+7+d08L2iDdkdonMyzrF2XDxXWcq1J
+         VbBBh3wXz0AWxkGag23GOKlr3Vhig1fvjsTxg3qL7Py70/JONWvb19yxwkvMIxrlgo
+         phE5EXxmjYPV3AQPHMi7GieUayWb+rNJ8uaLJ8bg=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00VHV3HD096950
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 31 Jan 2020 11:31:03 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 31
+ Jan 2020 11:31:03 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 31 Jan 2020 11:31:03 -0600
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00VHV3pe063654;
+        Fri, 31 Jan 2020 11:31:03 -0600
+Subject: Re: [PATCH v2] can: tcan4x5x: Turn on the power before parsing the
+ config
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     <linux-can@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20191210163204.28225-1-dmurphy@ti.com>
+ <4a2e80f0-13c5-df7b-65af-25f86ca48f2a@pengutronix.de>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <db84cce8-925e-0b31-e196-6543359e6ea5@ti.com>
+Date:   Fri, 31 Jan 2020 11:27:44 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <4a2e80f0-13c5-df7b-65af-25f86ca48f2a@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-And the typo (Propage -> Propagate) is still there :-(. Fixing it right
-now so I don't forget.
+Marc
 
-On Tue, 28 Jan 2020 14:55:12 +0100
-Boris Brezillon <boris.brezillon@collabora.com> wrote:
+On 1/2/20 6:38 AM, Marc Kleine-Budde wrote:
+> On 12/10/19 5:32 PM, Dan Murphy wrote:
+>> The parse config function now performs action on the device either
+>> reading or writing and a reset.  If the regulator is managed it needs
+>> to be turned on.  So turn on the regulator if available if the parsing
+>> fails then turn off the regulator.
+> Another BTW:
+> Consider converting the switching of the vsup to runtime_pm.
+>
+> Yet another one:
+> Why do you disable the clocks in the error path of tcan4x5x_can_probe(),
+> but never enable them?
+>
+>> out_clk:
+>> 	if (!IS_ERR(mcan_class->cclk)) {
+>> 		clk_disable_unprepare(mcan_class->cclk);
+>> 		clk_disable_unprepare(mcan_class->hclk);
+>> 	}
+> - please move the clock handling from the m_can.c to the individual
+>    driver
+> - please move the clock handling to runtime_pm in the individual driver
+> - remove the obsolete m_can_class_get_clocks()
+> - make runtime_pm mandatory
+>
+> regards,
+> Marc
+>
+I have separate the clock calls into pm runtime calls and moved the 
+clock init into the respective children of the framework.
 
-> So that the previous bridge element in the chain knows which input
-> format the panel bridge expects.
-> 
-> v10:
-> * Add changelog to the commit message
-> 
-> v8 -> v9:
-> * No changes
-> 
-> v7:
-> * Set atomic state hooks explicitly
-> 
-> v4 -> v6:
-> * Not part of the series
-> 
-> v3:
-> * Adjust things to match the new bus-format negotiation approach
-> * Use drm_atomic_helper_bridge_propagate_bus_fmt
-> * Don't implement ->atomic_check() (the core now takes care of bus
->   flags propagation)
-> 
-> v2:
-> * Adjust things to match the new bus-format negotiation approach
-> 
-> Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-> ---
->  drivers/gpu/drm/bridge/panel.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/panel.c
-> index f66777e24968..dcc72bd7df30 100644
-> --- a/drivers/gpu/drm/bridge/panel.c
-> +++ b/drivers/gpu/drm/bridge/panel.c
-> @@ -127,6 +127,10 @@ static const struct drm_bridge_funcs panel_bridge_bridge_funcs = {
->  	.enable = panel_bridge_enable,
->  	.disable = panel_bridge_disable,
->  	.post_disable = panel_bridge_post_disable,
-> +	.atomic_reset = drm_atomic_helper_bridge_reset,
-> +	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
-> +	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
-> +	.atomic_get_input_bus_fmts = drm_atomic_helper_bridge_propagate_bus_fmt,
->  };
->  
->  /**
+Did you want me to submit 1 patch with all the changes or would you like 
+3 separate patches?  First 2 patches will abstract the clocks away into 
+the children and the 3rd patch would be to remove the clocks API from 
+the framework
+
+Dan
 
