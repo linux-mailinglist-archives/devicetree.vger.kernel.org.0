@@ -2,147 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4316614FF51
-	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2020 22:19:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C63114FF66
+	for <lists+devicetree@lfdr.de>; Sun,  2 Feb 2020 22:30:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727265AbgBBVTT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Feb 2020 16:19:19 -0500
-Received: from mail-pl1-f172.google.com ([209.85.214.172]:45162 "EHLO
-        mail-pl1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727258AbgBBVTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Feb 2020 16:19:18 -0500
-Received: by mail-pl1-f172.google.com with SMTP id b22so5007061pls.12;
-        Sun, 02 Feb 2020 13:19:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ipAhlw5WrsUU5opUi6Qmf1XgM2Fq+bPWZGrkUnEi1PQ=;
-        b=jqlUNlkwxxWhM/E6FJwjoqn00hnGheJApKd3G3+IRHM2eTahOI3CAScHOb2kDB+3Ak
-         aeEiR6zOkAlIqpG4ZROtszwHLfARNMD2bY/5M16B5hRHb0Svkuw3/loLSaWAZiV/gOM7
-         aGzJQrQgGmc8dNQLpxltgheHhJQAEhHcZsAR0qjZXEGRLSOFVIhejChQaGgjt3p29oaQ
-         PKikzKKUHAcdJj/buattmAQ/SNCSUvC2TflHD0IzbC7jPwrnE4EHW4CCfCyOTdK/9ybr
-         Fat0CcweqkaKbdDcHwo6hWs1NYjyshBqzt7NcgWnt0cq3IyubvJOEobHt3AHmVE742NZ
-         uJXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ipAhlw5WrsUU5opUi6Qmf1XgM2Fq+bPWZGrkUnEi1PQ=;
-        b=s01beADt2qqSnp2//0xG5Dn9HBwMbx+4mXwrgiz157G4moD85+s2eOiyDZFmI/YPE1
-         IhhIPhguGvnC4RHieTWuvVKXa9zR0xWFoNEK4sRJ3t5lLIIAHLaF9/S5QZd35juRcRI2
-         R73/1FFsc0p15LvG+fX4GzI+IJWbAaAal6QYxz//xA781Judca5cc5keu9clPQ5bkKuL
-         tLMrk9DUswg0Yi7UaJpsHA0nT+6NPHRUpfugPSldJy8549vkGn//t+dzHMI/OtuHYdPX
-         sFpiahE78lDjvS6UUnWC7PY2Zn2At+kMmJSVZ5Mn1iISmG/5y3d4eSfKcQM0VYkWQyux
-         iZbQ==
-X-Gm-Message-State: APjAAAWteGQh/NKBPGHMBWTLVvUgws4YpNbNQtASB9gFZW2b0tO/V0D5
-        vLvRn+7cSMKjnTqw89imVEAvFO3K
-X-Google-Smtp-Source: APXvYqzleHkzLuuK6EbthbsR8W7Ckozvij4yX5QVnZMianpMTeoYoP7+KcICZDn/XgokllSTiDsNzw==
-X-Received: by 2002:a17:902:9a08:: with SMTP id v8mr19262721plp.251.1580678357623;
-        Sun, 02 Feb 2020 13:19:17 -0800 (PST)
-Received: from localhost.localdomain (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
-        by smtp.gmail.com with ESMTPSA id y24sm8755639pge.72.2020.02.02.13.19.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Feb 2020 13:19:17 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-arm-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727084AbgBBVag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Feb 2020 16:30:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39642 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726967AbgBBVaf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 2 Feb 2020 16:30:35 -0500
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D2233206D3;
+        Sun,  2 Feb 2020 21:30:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1580679035;
+        bh=VdLRZqk+H3Imny+gDyGky1KRiuixaXactoYWKmUoh0k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=l8A0C0boYECZuWi3ryOaAWOo7tY5wsYjR1HQs2PalQtNLCujhArePN57Z8RR9tOkN
+         mLMCmWNaNoPwSmPHXDSX52r3b6biDPr0+IuIStzPAaN9bhCGiTEgqTTruf1yFA94+C
+         Dv6pJCnrS/Wx+KZG9gpN1Fw/jbiLh9gi3sef5IH8=
+Received: by mail-qv1-f43.google.com with SMTP id g6so5930617qvy.5;
+        Sun, 02 Feb 2020 13:30:34 -0800 (PST)
+X-Gm-Message-State: APjAAAUwsO49H4vmgFIfasWT5O8IKPHhd1XOmCNCd1WyOKD221tpx5Bp
+        PXyHM0kbtJw6iiVBbAKqCcj0zJjwhcP5G9XMTA==
+X-Google-Smtp-Source: APXvYqx1g5mqdVF98VrntlFMyPTLWRw5bRqj5c9aFp97VOvISBeqahu7q9Dw2HqrEwhBmqSByPbrJtBbgAmwZhOSOrs=
+X-Received: by 2002:a0c:f68f:: with SMTP id p15mr19826919qvn.79.1580679033968;
+ Sun, 02 Feb 2020 13:30:33 -0800 (PST)
+MIME-Version: 1.0
+References: <20200202211827.27682-1-f.fainelli@gmail.com> <20200202211827.27682-11-f.fainelli@gmail.com>
+In-Reply-To: <20200202211827.27682-11-f.fainelli@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Sun, 2 Feb 2020 21:30:20 +0000
+X-Gmail-Original-Message-ID: <CAL_JsqJDoOFQTRDAeugcv6vPaM6qRbJ5B3-pjZZC+nn=q-ex6Q@mail.gmail.com>
+Message-ID: <CAL_JsqJDoOFQTRDAeugcv6vPaM6qRbJ5B3-pjZZC+nn=q-ex6Q@mail.gmail.com>
+Subject: Re: [PATCH 10/12] dt-bindings: arm: bcm: Convert Vulcan to YAML
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-arm-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Mark Rutland <mark.rutland@arm.com>,
         Ray Jui <rjui@broadcom.com>,
         Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM IPROC ARM
-        ARCHITECTURE), Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Sugaya Taichi <sugaya.taichi@socionext.com>,
         Olof Johansson <olof@lixom.net>,
         Andrew Jeffery <andrew@aj.id.au>,
         Lubomir Rintel <lkundrak@v3.sk>,
         Maxime Ripard <mripard@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM IPROC ARM
-        ARCHITECTURE), linux-kernel@vger.kernel.org (open list),
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE)
-Subject: [PATCH 12/12] dt-bindings: arm: bcm: Convert BCM2835 firmware binding to YAML
-Date:   Sun,  2 Feb 2020 13:18:27 -0800
-Message-Id: <20200202211827.27682-13-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200202211827.27682-1-f.fainelli@gmail.com>
-References: <20200202211827.27682-1-f.fainelli@gmail.com>
+        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Raspberry Pi BCM2835 firmware binding document to YAML.
-Verified with dt_binding_check and dtbs_check.
+On Sun, Feb 2, 2020 at 9:19 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+> Update Vulcan SoC family binding document for boards/SoCs to use YAML.
+> Verified with dt_binding_check and dtbs_check.
+>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>  .../bindings/arm/bcm/brcm,vulcan-soc.txt      | 10 --------
+>  .../bindings/arm/bcm/brcm,vulcan-soc.yaml     | 24 +++++++++++++++++++
+>  2 files changed, 24 insertions(+), 10 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.txt b/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.txt
+> deleted file mode 100644
+> index 223ed3471c08..000000000000
+> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.txt
+> +++ /dev/null
+> @@ -1,10 +0,0 @@
+> -Broadcom Vulcan device tree bindings
+> -------------------------------------
+> -
+> -Boards with Broadcom Vulcan shall have the following root property:
+> -
+> -Broadcom Vulcan Evaluation Board:
+> -  compatible = "brcm,vulcan-eval", "brcm,vulcan-soc";
+> -
+> -Generic Vulcan board:
+> -  compatible = "brcm,vulcan-soc";
+> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml
+> new file mode 100644
+> index 000000000000..0bfb45457150
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml
+> @@ -0,0 +1,24 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/bcm/brcm,vulcan-soc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom Vulcan device tree bindings
+> +
+> +maintainers:
+> +  - Robert Richter <rrichter@marvell.com>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: Northstar2 based boards
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- .../arm/bcm/raspberrypi,bcm2835-firmware.txt  | 14 --------
- .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 33 +++++++++++++++++++
- 2 files changed, 33 insertions(+), 14 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.txt
- create mode 100644 Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
+Copy-n-paste?
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.txt b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.txt
-deleted file mode 100644
-index 6824b3180ffb..000000000000
---- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.txt
-+++ /dev/null
-@@ -1,14 +0,0 @@
--Raspberry Pi VideoCore firmware driver
--
--Required properties:
--
--- compatible:		Should be "raspberrypi,bcm2835-firmware"
--- mboxes:		Phandle to the firmware device's Mailbox.
--			  (See: ../mailbox/mailbox.txt for more information)
--
--Example:
--
--firmware {
--	compatible = "raspberrypi,bcm2835-firmware";
--	mboxes = <&mailbox>;
--};
-diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-new file mode 100644
-index 000000000000..4ccbe3bf616c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
-@@ -0,0 +1,33 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Raspberry Pi VideoCore firmware driver
-+
-+maintainers:
-+  - Eric Anholt <eric@anholt.net>
-+  - Stefan Wahren <wahrenst@gmx.net>
-+
-+properties:
-+  compatible:
-+    const: raspberrypi,bcm2835-firmware simple-bus
-+
-+  mboxes:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: |
-+      Phandle to the firmware device's Mailbox.
-+      (See: ../mailbox/mailbox.txt for more information)
-+
-+required:
-+  - compatible
-+  - mboxes
-+
-+examples:
-+  - |
-+    firmware {
-+        compatible = "raspberrypi,bcm2835-firmware";
-+        mboxes = <&mailbox>;
-+    };
-+...
--- 
-2.17.1
-
+> +        items:
+> +          - enum:
+> +              - brcm,vulcan-eval
+> +              - cavium,thunderx2-cn9900
+> +          - const: brcm,vulcan-soc
+> +
+> +...
+> --
+> 2.17.1
+>
