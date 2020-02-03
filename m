@@ -2,133 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 580A4150938
-	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2020 16:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A4E0150A1B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Feb 2020 16:45:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728687AbgBCPK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Feb 2020 10:10:28 -0500
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:36316 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727988AbgBCPK1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Feb 2020 10:10:27 -0500
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 013F9JW7001610;
-        Mon, 3 Feb 2020 17:09:19 +0200
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id BB3D46032F; Mon,  3 Feb 2020 17:09:19 +0200 (IST)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     jic23@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        avifishman70@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, joel@jms.id.au
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2 2/2] iio: adc: modify NPCM reset support
-Date:   Mon,  3 Feb 2020 17:09:17 +0200
-Message-Id: <20200203150917.176391-2-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200203150917.176391-1-tmaimon77@gmail.com>
-References: <20200203150917.176391-1-tmaimon77@gmail.com>
+        id S1727473AbgBCPpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Feb 2020 10:45:46 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:39034 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727445AbgBCPpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Feb 2020 10:45:46 -0500
+Received: by mail-wm1-f67.google.com with SMTP id c84so17742716wme.4;
+        Mon, 03 Feb 2020 07:45:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=i4K3Yw7s0/p2VRy7WZBsheWIHTlpjbUAlC7ufzYvY3E=;
+        b=IFt/XXLiqicBQoa2VVsY2BEXae2S3ppvHQGnwWW4zbDJUSmd6V7DJgTBJEcnc5Mx6D
+         k2AwTvXtNTSZda/ydjjw5pQuOutuFKPygg9vnn9V/UzlUjh2le7HmATnoMcHAxg/ytcM
+         8TOOapqWR1EyTXN9qHW2R0NANSL2WBt00LsGcEwP0AkA4O2fW4+zdk8eW0wGbwfAWbzd
+         jl0/fGqo1crLmzCpR5DfGT8/gMSgIKqfpEFKYwYzqS8xZQGIp331mYyMFrB4P8loTbwt
+         l/MqO8TC0D9t+MVeH2MQwt103geK0hinF+HnAiMmIBzOPVJCUQZJCv8Y3177NhOEdL9o
+         hcbA==
+X-Gm-Message-State: APjAAAVDDtVNyqCVZd3+xm5SK8CZfX/57XYOAvKdQLJOOKz2YcitW3BL
+        jtr/wdCfYTkFPdBQe5a5ng==
+X-Google-Smtp-Source: APXvYqzUC53KksT1fJG8MNOZOKWNr3IVl/W0eL/KQgTAaS4Tm5DvJl1BsknoQ94mvSkDJuxs3SUf1Q==
+X-Received: by 2002:a1c:5441:: with SMTP id p1mr31595887wmi.161.1580744744243;
+        Mon, 03 Feb 2020 07:45:44 -0800 (PST)
+Received: from rob-hp-laptop ([212.187.182.163])
+        by smtp.gmail.com with ESMTPSA id f189sm25558921wmf.16.2020.02.03.07.45.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Feb 2020 07:45:43 -0800 (PST)
+Received: (nullmailer pid 17059 invoked by uid 1000);
+        Mon, 03 Feb 2020 15:45:42 -0000
+Date:   Mon, 3 Feb 2020 15:45:42 +0000
+From:   Rob Herring <robh@kernel.org>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        mark.rutland@arm.com, heiko@sntech.de,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        shawn.lin@rock-chips.com, yifeng.zhao@rock-chips.com
+Subject: Re: [RFC PATCH v2 01/10] dt-bindings: mtd: add rockchip nand
+ controller bindings
+Message-ID: <20200203154542.GA27866@bogus>
+References: <20200124163001.28910-1-jbx6244@gmail.com>
+ <20200124163001.28910-2-jbx6244@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200124163001.28910-2-jbx6244@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify NPCM ADC reset support from
-direct register access to reset controller support.
+On Fri, Jan 24, 2020 at 05:29:52PM +0100, Johan Jonker wrote:
+> Add the Rockchip NAND controller bindings.
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> ---
+>  .../bindings/mtd/rockchip,nand-controller.yaml     | 92 ++++++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml b/Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
+> new file mode 100644
+> index 000000000..5c725f972
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/rockchip,nand-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip NAND Controller Device Tree Bindings
+> +
+> +allOf:
+> +  - $ref: "nand-controller.yaml#"
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,px30-nand-controller
+> +      - rockchip,rk3066-nand-controller
+> +      - rockchip,rk3228-nand-controller
+> +      - rockchip,rk3288-nand-controller
+> +      - rockchip,rk3308-nand-controller
+> +      - rockchip,rk3368-nand-controller
+> +      - rockchip,rv1108-nand-controller
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: hclk_nandc
+> +      - const: clk_nandc
+> +
+> +patternProperties:
+> +  "^nand@[a-f0-9]+$":
+> +    type: object
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 3
+> +
+> +      nand-is-boot-medium: true
+> +
+> +      rockchip,idb-res-blk-num:
 
-please make sure to modify NPCM adc device tree
-parameters as described at nuvoton,npcm-adc.txt
-document for using this change.
+What is idb? Rather than define, maybe just 'rockchip,boot-blks'?
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/iio/adc/npcm_adc.c | 30 +++++++++---------------------
- 1 file changed, 9 insertions(+), 21 deletions(-)
+> +        minimum: 2
 
-diff --git a/drivers/iio/adc/npcm_adc.c b/drivers/iio/adc/npcm_adc.c
-index a6170a37ebe8..83bad2d5575d 100644
---- a/drivers/iio/adc/npcm_adc.c
-+++ b/drivers/iio/adc/npcm_adc.c
-@@ -14,6 +14,7 @@
- #include <linux/regulator/consumer.h>
- #include <linux/spinlock.h>
- #include <linux/uaccess.h>
-+#include <linux/reset.h>
- 
- struct npcm_adc {
- 	bool int_status;
-@@ -23,13 +24,9 @@ struct npcm_adc {
- 	struct clk *adc_clk;
- 	wait_queue_head_t wq;
- 	struct regulator *vref;
--	struct regmap *rst_regmap;
-+	struct reset_control *reset;
- };
- 
--/* NPCM7xx reset module */
--#define NPCM7XX_IPSRST1_OFFSET		0x020
--#define NPCM7XX_IPSRST1_ADC_RST		BIT(27)
--
- /* ADC registers */
- #define NPCM_ADCCON	 0x00
- #define NPCM_ADCDATA	 0x04
-@@ -106,13 +103,11 @@ static int npcm_adc_read(struct npcm_adc *info, int *val, u8 channel)
- 					       msecs_to_jiffies(10));
- 	if (ret == 0) {
- 		regtemp = ioread32(info->regs + NPCM_ADCCON);
--		if ((regtemp & NPCM_ADCCON_ADC_CONV) && info->rst_regmap) {
-+		if (regtemp & NPCM_ADCCON_ADC_CONV) {
- 			/* if conversion failed - reset ADC module */
--			regmap_write(info->rst_regmap, NPCM7XX_IPSRST1_OFFSET,
--				     NPCM7XX_IPSRST1_ADC_RST);
-+			reset_control_assert(info->reset);
- 			msleep(100);
--			regmap_write(info->rst_regmap, NPCM7XX_IPSRST1_OFFSET,
--				     0x0);
-+			reset_control_deassert(info->reset);
- 			msleep(100);
- 
- 			/* Enable ADC and start conversion module */
-@@ -186,7 +181,6 @@ static int npcm_adc_probe(struct platform_device *pdev)
- 	struct npcm_adc *info;
- 	struct iio_dev *indio_dev;
- 	struct device *dev = &pdev->dev;
--	struct device_node *np = pdev->dev.of_node;
- 
- 	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*info));
- 	if (!indio_dev)
-@@ -199,6 +193,10 @@ static int npcm_adc_probe(struct platform_device *pdev)
- 	if (IS_ERR(info->regs))
- 		return PTR_ERR(info->regs);
- 
-+	info->reset = devm_reset_control_get(&pdev->dev, NULL);
-+	if (IS_ERR(info->reset))
-+		return PTR_ERR(info->reset);
-+
- 	info->adc_clk = devm_clk_get(&pdev->dev, NULL);
- 	if (IS_ERR(info->adc_clk)) {
- 		dev_warn(&pdev->dev, "ADC clock failed: can't read clk\n");
-@@ -211,16 +209,6 @@ static int npcm_adc_probe(struct platform_device *pdev)
- 	div = div >> NPCM_ADCCON_DIV_SHIFT;
- 	info->adc_sample_hz = clk_get_rate(info->adc_clk) / ((div + 1) * 2);
- 
--	if (of_device_is_compatible(np, "nuvoton,npcm750-adc")) {
--		info->rst_regmap = syscon_regmap_lookup_by_compatible
--			("nuvoton,npcm750-rst");
--		if (IS_ERR(info->rst_regmap)) {
--			dev_err(&pdev->dev, "Failed to find nuvoton,npcm750-rst\n");
--			ret = PTR_ERR(info->rst_regmap);
--			goto err_disable_clk;
--		}
--	}
--
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq <= 0) {
- 		ret = -EINVAL;
--- 
-2.22.0
+is there a max?
 
+> +        default: 16
+> +        allOf:
+> +        - $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          For legacy devices where the bootrom can only handle 24 bit BCH/ECC.
+> +          If specified it indicates the number of erase blocks in use by
+> +          the bootloader that need a lower BCH/ECC setting.
+> +          Only used in combination with 'nand-is-boot-medium'.
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rk3188-cru-common.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    nandc: nand-controller@10500000 {
+> +      compatible = "rockchip,rk3066-nand-controller";
+> +      reg = <0x10500000 0x4000>;
+> +      interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+> +      clocks = <&cru HCLK_NANDC0>;
+> +      clock-names = "hclk_nandc";
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      nand@0 {
+> +        reg = <0>;
+> +        nand-is-boot-medium;
+> +      };
+> +    };
+> +
+> +...
+> -- 
+> 2.11.0
+> 
