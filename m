@@ -2,382 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4965151C9D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2020 15:52:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F835151CF4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2020 16:10:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727385AbgBDOwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Feb 2020 09:52:35 -0500
-Received: from rtits2.realtek.com ([211.75.126.72]:39792 "EHLO
-        rtits2.realtek.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727276AbgBDOwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Feb 2020 09:52:34 -0500
-Authenticated-By: 
-X-SpamFilter-By: BOX Solutions SpamTrap 5.62 with qID 014EqDGC008037, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (RTEXMB06.realtek.com.tw[172.21.6.99])
-        by rtits2.realtek.com.tw (8.15.2/2.57/5.78) with ESMTPS id 014EqDGC008037
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 4 Feb 2020 22:52:13 +0800
-Received: from RTEXMB03.realtek.com.tw (172.21.6.96) by
- RTEXMB06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 4 Feb 2020 22:52:13 +0800
-Received: from RTEXMB05.realtek.com.tw (172.21.6.98) by
- RTEXMB03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 4 Feb 2020 22:52:12 +0800
-Received: from james-BS01.localdomain (172.21.190.33) by
- RTEXMB01.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server id
- 15.1.1779.2 via Frontend Transport; Tue, 4 Feb 2020 22:52:12 +0800
-From:   James Tai <james.tai@realtek.com>
-To:     <linux-realtek-soc@lists.infradead.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        id S1727290AbgBDPK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Feb 2020 10:10:26 -0500
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:41447 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727297AbgBDPK0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Feb 2020 10:10:26 -0500
+Received: by mail-lf1-f65.google.com with SMTP id m30so12418852lfp.8;
+        Tue, 04 Feb 2020 07:10:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=bOyXqJTMJpGxnWbJ6CKeee1fvpUr341gEX8SV5oQQCU=;
+        b=O1TlePiADJbKYBupj2fnfW870fVe17j9u063poPBQPqY7ir3uqzJOTSVXiaYkEIbWP
+         1MVljGSK/AFYpXl7E7f3FAWhegZUGafflyTuItUYgLOC5JmkEr1goIJSu/98JbxklCIU
+         BBXE2nyWTgglSSx2CCIHoYxG68uXWpXMMRz7PK8ymhKkJ3KGM4ObMtVN75Sh9rjzWeyx
+         gtwVNVbvVzGV8FbTEbADzpBz9sovCKWn/5QJOWW4m9/mx9zNMFr/zJL5lDTjeuz75jZv
+         DH51aD5OQ/bxcHxp+T/aeSnrU2mefIaZFUZzytVopmFdEDtXoOc1vphdLSJ9jKL6Tye/
+         xN+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bOyXqJTMJpGxnWbJ6CKeee1fvpUr341gEX8SV5oQQCU=;
+        b=YvqrmvzQ4v4ZalKnZywmK2F1h8k0NeDzF/+1oaIEeU5kxjJNFwh8lywKI2ebH+TUqd
+         0kpfOmw+yxv9Bu/cHdQi2oYc4v6IS31vXunO5/hz5bBd2IKTk8/o7dKwN30qJs8Goc+Z
+         /xwHZej4pdni5WJJugnnx/dp5TdLbZDEEC2yQzt+dRpwjFrxzKW0alKjq5pDo/F0KQJ0
+         3QSz+RrI/34X32524cctOSmaFIsC+cN60PL5LqCnJzLNWwZ3znpoYDHajGfry5te82da
+         mMnCjj9Q+klIdjuXCwbu2m5eOUUP0IW1vR0ixc9YnSFHw2wz7qqc5SXaDKmNgNIvleK2
+         tINQ==
+X-Gm-Message-State: APjAAAUcnU/7oEAKMFfh9uzFSdAkQn9ZXvDqiEPG1TtDkI9OJ1dmWc01
+        Ct4DaPm95WI8qEM0JVM6zz1YbtHQ
+X-Google-Smtp-Source: APXvYqwwbabdhnCboq2+5Sp2du8E38mwDuKCHSWZXOTDF1Yt+bgOaUDExFDy6Q2DRXDV8qm2fFAHuQ==
+X-Received: by 2002:a19:cc07:: with SMTP id c7mr15243564lfg.177.1580829023688;
+        Tue, 04 Feb 2020 07:10:23 -0800 (PST)
+Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
+        by smtp.googlemail.com with ESMTPSA id i4sm13804144lji.0.2020.02.04.07.10.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Feb 2020 07:10:23 -0800 (PST)
+Subject: Re: [PATCH v4 2/7] dt-bindings: iio: light: add support for
+ Dyna-Image AL3010
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        David Heidelberg <david@ixit.cz>
+Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH v3 2/2] arm64: dts: realtek: Add RTD1319 SoC and Realtek PymParticle EVB
-Date:   Tue, 4 Feb 2020 22:52:07 +0800
-Message-ID: <20200204145207.28622-3-james.tai@realtek.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200204145207.28622-1-james.tai@realtek.com>
-References: <20200204145207.28622-1-james.tai@realtek.com>
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20200204093031.616409-1-david@ixit.cz>
+ <20200204093031.616409-3-david@ixit.cz> <20200204095257.GA23609@qmqm.qmqm.pl>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <193d39c7-a89b-17ee-1f8f-a6f6fbf6485c@gmail.com>
+Date:   Tue, 4 Feb 2020 18:10:20 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
+In-Reply-To: <20200204095257.GA23609@qmqm.qmqm.pl>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Trees for Realtek RTD1319 SoC family, RTD1319 SoC and
-Realtek PymParticle EVB.
+04.02.2020 12:52, Michał Mirosław пишет:
+> On Tue, Feb 04, 2020 at 10:30:30AM +0100, David Heidelberg wrote:
+>> The Dyna-Image AL3010 is a 16-bit digital ambient light sensor which
+>> provides a multiple gain function with linear response over a dynamic
+>> range 1216/4863/19452/77806.
+> [...]
+>> +properties:
+>> +  compatible:
+>> +    const: dynaimage,al3010
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  vdd-supply:
+>> +    description: Regulator that provides power to the sensor
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - vdd-supply
+> 
+> Regulator and interrupt should be optional.
 
-Signed-off-by: James Tai <james.tai@realtek.com>
----
- v2 -> v3:
- * Add virtual maintenance interrupt for architecture timer
- * Correct the GIC redistributor address range
-
- v1 -> v2:
- * Reserve the boot ROM address
- * Reserve boot loader address
- * Reserve audio/video FW address
- * Reserve RPC and ring buffer address
- * Reserve TEE address
- * Support 1 GiB RAM by default
- * Reduce rbus range to 2 MiB
- * Apply the syscon for ISO,MISC,CRT,SB2,SCPU_WRAPPER
- * Adjust compatible strings order in document
-
- arch/arm64/boot/dts/realtek/Makefile          |   2 +
- .../boot/dts/realtek/rtd1319-pymparticle.dts  |  43 ++++
- arch/arm64/boot/dts/realtek/rtd1319.dtsi      |  12 +
- arch/arm64/boot/dts/realtek/rtd13xx.dtsi      | 213 ++++++++++++++++++
- 4 files changed, 270 insertions(+)
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
- create mode 100644 arch/arm64/boot/dts/realtek/rtd1319.dtsi
- create mode 100644 arch/arm64/boot/dts/realtek/rtd13xx.dtsi
-
-diff --git a/arch/arm64/boot/dts/realtek/Makefile b/arch/arm64/boot/dts/realtek/Makefile
-index ef8d8fcbaa05..c0ae96f324eb 100644
---- a/arch/arm64/boot/dts/realtek/Makefile
-+++ b/arch/arm64/boot/dts/realtek/Makefile
-@@ -9,6 +9,8 @@ dtb-$(CONFIG_ARCH_REALTEK) += rtd1295-zidoo-x9s.dtb
- 
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1296-ds418.dtb
- 
-+dtb-$(CONFIG_ARCH_REALTEK) += rtd1319-pymparticle.dtb
-+
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-bpi-m4.dtb
- dtb-$(CONFIG_ARCH_REALTEK) += rtd1395-lionskin.dtb
- 
-diff --git a/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts b/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
-new file mode 100644
-index 000000000000..2a36d220fef6
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1319-pymparticle.dts
-@@ -0,0 +1,43 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Copyright (c) 2019 Realtek Semiconductor Corp.
-+ */
-+
-+/dts-v1/;
-+
-+#include "rtd1319.dtsi"
-+
-+/ {
-+	compatible = "realtek,pymparticle", "realtek,rtd1319";
-+	model = "Realtek PymParticle EVB";
-+
-+	memory@2e000 {
-+		device_type = "memory";
-+		reg = <0x2e000 0x3ffd2000>; /* boot ROM to 1 GiB or 2 GiB */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:460800n8";
-+	};
-+
-+	aliases {
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+	};
-+};
-+
-+/* debug console (J1) */
-+&uart0 {
-+	status = "okay";
-+};
-+
-+/* M.2 slot (CON8) */
-+&uart1 {
-+	status = "disabled";
-+};
-+
-+/* GPIO connector (T1) */
-+&uart2 {
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd1319.dtsi b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
-new file mode 100644
-index 000000000000..1dcee00009cd
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd1319.dtsi
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Realtek RTD1319 SoC
-+ *
-+ * Copyright (c) 2019 Realtek Semiconductor Corp.
-+ */
-+
-+#include "rtd13xx.dtsi"
-+
-+/ {
-+	compatible = "realtek,rtd1319";
-+};
-diff --git a/arch/arm64/boot/dts/realtek/rtd13xx.dtsi b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
-new file mode 100644
-index 000000000000..f6d73f18345d
---- /dev/null
-+++ b/arch/arm64/boot/dts/realtek/rtd13xx.dtsi
-@@ -0,0 +1,213 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
-+/*
-+ * Realtek RTD13xx SoC family
-+ *
-+ * Copyright (c) 2019 Realtek Semiconductor Corp.
-+ */
-+
-+/memreserve/	0x0000000000000000 0x000000000002e000; /* Boot ROM */
-+/memreserve/	0x000000000002e000 0x0000000000100000; /* Boot loader */
-+/memreserve/	0x000000000f400000 0x0000000000500000; /* Video FW */
-+/memreserve/	0x000000000f900000 0x0000000000500000; /* Audio FW */
-+/memreserve/	0x0000000010000000 0x0000000000014000; /* Audio FW RAM */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		rpc_comm: rpc@3f000 {
-+			reg = <0x3f000 0x1000>;
-+		};
-+
-+		rpc_ringbuf: rpc@1ffe000 {
-+			reg = <0x1ffe000 0x4000>;
-+		};
-+
-+		tee: tee@10100000 {
-+			reg = <0x10100000 0xf00000>;
-+			no-map;
-+		};
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x100>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x200>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x300>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		l2: l2-cache {
-+			compatible = "cache";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-+			     <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	arm_pmu: pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	osc27M: osc {
-+		compatible = "fixed-clock";
-+		clock-frequency = <27000000>;
-+		clock-output-names = "osc27M";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x00000000 0x00000000 0x0002e000>, /* boot ROM */
-+			 <0xff100000 0xff100000 0x00200000>, /* GIC */
-+			 <0x98000000 0x98000000 0x00200000>; /* rbus */
-+
-+		rbus: bus@98000000 {
-+			compatible = "simple-bus";
-+			reg = <0x98000000 0x200000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x98000000 0x200000>;
-+
-+			crt: syscon@0 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x0 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x0 0x1000>;
-+			};
-+
-+			iso: syscon@7000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x7000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x7000 0x1000>;
-+			};
-+
-+			sb2: syscon@1a000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x1a000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1a000 0x1000>;
-+			};
-+
-+			misc: syscon@1b000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x1b000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1b000 0x1000>;
-+			};
-+
-+			scpu_wrapper: syscon@1d000 {
-+				compatible = "syscon", "simple-mfd";
-+				reg = <0x1d000 0x1000>;
-+				reg-io-width = <4>;
-+				#address-cells = <1>;
-+				#size-cells = <1>;
-+				ranges = <0x0 0x1d000 0x1000>;
-+			};
-+		};
-+
-+		gic: interrupt-controller@ff100000 {
-+			compatible = "arm,gic-v3";
-+			reg = <0xff100000 0x10000>,
-+			      <0xff140000 0x80000>;
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			#interrupt-cells = <3>;
-+		};
-+	};
-+};
-+
-+&iso {
-+	uart0: serial0@800 {
-+		compatible = "snps,dw-apb-uart";
-+		reg = <0x800 0x400>;
-+		reg-shift = <2>;
-+		reg-io-width = <4>;
-+		interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-frequency = <432000000>;
-+		status = "disabled";
-+	};
-+};
-+
-+&misc {
-+	uart1: serial1@200 {
-+		compatible = "snps,dw-apb-uart";
-+		reg = <0x200 0x400>;
-+		reg-shift = <2>;
-+		reg-io-width = <4>;
-+		interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-frequency = <432000000>;
-+		status = "disabled";
-+	};
-+
-+	uart2: serial2@400 {
-+		compatible = "snps,dw-apb-uart";
-+		reg = <0x400 0x400>;
-+		reg-shift = <2>;
-+		reg-io-width = <4>;
-+		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+		clock-frequency = <432000000>;
-+		status = "disabled";
-+	};
-+};
--- 
-2.25.0
-
+Indeed, that's a good correction +1
