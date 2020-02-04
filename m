@@ -2,85 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9986151933
-	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2020 12:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D221151941
+	for <lists+devicetree@lfdr.de>; Tue,  4 Feb 2020 12:07:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726741AbgBDLEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Feb 2020 06:04:35 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:53941 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727105AbgBDLEe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Feb 2020 06:04:34 -0500
-Received: by mail-wm1-f66.google.com with SMTP id s10so2781941wmh.3;
-        Tue, 04 Feb 2020 03:04:33 -0800 (PST)
+        id S1726887AbgBDLH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Feb 2020 06:07:57 -0500
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:38305 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726741AbgBDLH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Feb 2020 06:07:57 -0500
+Received: by mail-pg1-f193.google.com with SMTP id a33so9490085pgm.5;
+        Tue, 04 Feb 2020 03:07:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=4+g0N6gzVeEl4yKKtr7DaOYgSBwbg66P5K7+2h8eZ3U=;
-        b=Bkjh2whshwyX+9ww3JgctLgPWqxctG6mWNr4VpvSa+UMIt1QEyTfvhh8aP7wtqPtKV
-         5uS6EOjQyBK1eTQGojdTyErWUyw/MHnDXUsfIqVsaSZD0HzhCM9wsG2x3UDjd6qy2bIu
-         FP/GOfSTz7xsgR2U4pxl/1Xw7GwGiFTB2yx4C70JRRSIxQHdX5fZLbsubm9V9QuPsYOy
-         bhTjnjwbiwjjF2yv+cyhUBxVnqfHHFEKaOUxlYo1o2PRvgpHTnvTpHt9uYebRDT+ByiV
-         2qS5LwsgTMqJuFTH54piSRQCsKnlGjGkg/I2ifB95+TR7OUC5tYRSCjQnVgRqv8xLZK7
-         GsAg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ESHQtDlIcqtlfd+NGPSAxf7TiL0GDSX0Vx2MqLzOZw8=;
+        b=CRyxYkhua7wqf0UmXQPzq2KQXbrAz9m4mVtTNrv2cRwBLNqziFULS+46m1H0OU+DOt
+         5YZK19o0bVR+jIfRuIK2NuRu5lObnKIwqtXBvtR5LxB0dUzWVBkCmDqdD5a6Xc2ZdyeD
+         v2zSLltYTJSJsfDfYJgJURvpv809LiznmqL5dwlmSLA51wqDruR/vYMNvo7Wp3vjSODC
+         5UutoOkZ1X1hveYWu3qzbSsII+qkXVidqTt1mxtYyW+fEyOBPhkq+CA+2lQlgFfwVm1P
+         BeNQIVmNeLSHwVS9Qc8moooCkvdI6MK3rJJ3Jp55ofZ/L996+QKK7WvlUrqm2x/wHiwM
+         nw4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=4+g0N6gzVeEl4yKKtr7DaOYgSBwbg66P5K7+2h8eZ3U=;
-        b=aWbJEySzRVkJiAB7b9tvS3XmEXDJj8DSKK0vTZr1I8YhTdT5mXzQ3nebvij3HOXnZq
-         r7uAto+hpar/LS0bzyGwaA0uR/czS8f0cVe/7kLq9Z9eu8KoVXrpx2YLRgGPrRIzuWWo
-         stdUhxXdf1O0LXPSRstiDFZQmA3qGDjCYxgg2qLHQkDfUlNrQxWLqsdcA529ONH4e6Td
-         26w8M+49A7v5XozpgBthbu9eOyTDdq3cFA/Gl1SftirWWfTWzV4QXBLJ6htJbXpFCPlW
-         waotOfeAR3fmFXL0cWF1QASTwwjjnEmT1nRum9E/+xT/0YKu223kvl5rSwwLhGnwTNQt
-         IjcA==
-X-Gm-Message-State: APjAAAU7p70u4kge6F2RFaCnA55HhF8HM9peDXnkN+LJKpTK1WrTVLYr
-        5ezCAQQ0sjWvPtux7bWw8Qo=
-X-Google-Smtp-Source: APXvYqxFFZrD7uKkUyynjgFT4D2bRFWf3GWSrZ2zBWqqKJNYxWrpOO9sBtGCln+zh3lNXbRdk3R1ag==
-X-Received: by 2002:a7b:c416:: with SMTP id k22mr5530974wmi.10.1580814272806;
-        Tue, 04 Feb 2020 03:04:32 -0800 (PST)
-Received: from localhost.localdomain (p5B3F65E4.dip0.t-ipconnect.de. [91.63.101.228])
-        by smtp.gmail.com with ESMTPSA id y185sm3476935wmg.2.2020.02.04.03.04.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Feb 2020 03:04:32 -0800 (PST)
-From:   Saravanan Sekar <sravanhome@gmail.com>
-To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
-        davem@davemloft.net, mchehab+samsung@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entry for mp5416 PMIC driver
-Date:   Tue,  4 Feb 2020 12:04:19 +0100
-Message-Id: <20200204110419.25933-4-sravanhome@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200204110419.25933-1-sravanhome@gmail.com>
-References: <20200204110419.25933-1-sravanhome@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ESHQtDlIcqtlfd+NGPSAxf7TiL0GDSX0Vx2MqLzOZw8=;
+        b=FDh28kNJtC3AkLraELOeYNqOzFWDVcZAt9bpGz+HrQoN6NASpexAKYzxYiqC/6gLpb
+         ZMuKuzHzWBpYh3khgh+LpcyksyyeJha4W//i8UboRiVSkcSI8149GGfm9Fl0Q4+UzJLW
+         r8cLUVtP+xhTgwDtkNRR3me0DcgKTKcN3vroJym8BxXwJPwJsrN6ul5AZTqedNlWdNCY
+         7IpvXaGRLupHJZ9uOeLnc0jninXtq5RRhxnMUyPwcprBAtx8X8L1jb3jbflG52yC4+mj
+         tILyoqeSbyYpqB7HYW4g8w3jj9cTGT+HcE8TMStgltWMECKwu/Jvvqfrozg+bNwFKa9+
+         HDyw==
+X-Gm-Message-State: APjAAAXKyArdZ710P0YljW/JsiI3fE9Ift+sMIWRRX4fUJN9tHvEHGcp
+        tF/N0XRjs9aBQ3xojwR5xHBaaju04keZ52tJtLzi8TjqBdk=
+X-Google-Smtp-Source: APXvYqyPQ+yETkyt1/TkchmZ3n6Rdzgwtsf/ny9fnoHapXSiK5r4dCz5U/ntSbFw4vm7r9QH01Z0RYz3v7l6Imiw3FU=
+X-Received: by 2002:a65:4685:: with SMTP id h5mr32173510pgr.203.1580814476576;
+ Tue, 04 Feb 2020 03:07:56 -0800 (PST)
+MIME-Version: 1.0
+References: <20200131023433.12133-1-chris.packham@alliedtelesis.co.nz>
+ <20200131023433.12133-3-chris.packham@alliedtelesis.co.nz>
+ <CAHp75VfT=KNM6J1bP5cPsLw7Z776opcB9Kf6qhNCZukY-7g=pQ@mail.gmail.com> <86509a5e6656c4f560ee6f6514ab00a232994957.camel@alliedtelesis.co.nz>
+In-Reply-To: <86509a5e6656c4f560ee6f6514ab00a232994957.camel@alliedtelesis.co.nz>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 4 Feb 2020 13:07:48 +0200
+Message-ID: <CAHp75VdRYDrTeBy9+TbbE8y3jt_Fntr6fnXon3CuqCZFYQ7Maw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] spi: Add generic SPI multiplexer
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Monolithic Power Systems mp5416 PMIC driver.
+On Mon, Feb 3, 2020 at 11:12 PM Chris Packham
+<Chris.Packham@alliedtelesis.co.nz> wrote:
+> On Mon, 2020-02-03 at 11:50 +0200, Andy Shevchenko wrote:
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
----
- MAINTAINERS | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d6d838c52cc5..57f029f89811 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11280,7 +11280,8 @@ F:	drivers/tty/mxser.*
- MONOLITHIC POWER SYSTEM PMIC DRIVER
- M:	Saravanan Sekar <sravanhome@gmail.com>
- S:	Maintained
--F:	Documentation/devicetree/bindings/regulator/mpq7920.yaml
-+F:	Documentation/devicetree/bindings/regulator/mps,mp*.yaml
-+F:	drivers/regulator/mp5416.c
- F:	drivers/regulator/mpq7920.c
- F:	drivers/regulator/mpq7920.h
- 
+> > > +       priv->mux = devm_mux_control_get(&spi->dev, NULL);
+> > > +       ret = PTR_ERR_OR_ZERO(priv->mux);
+> >
+> > This is a bit complicated.
+> >
+> > > +       if (ret) {
+> >
+> > Why not simple do
+> >
+> >   if (IS_ERR(priv->mux)) {
+> >     ret = PTR_ERR(...);
+> >     ...
+> >   }
+> >
+> > ?
+>
+> I've had other maintainers/reviewers suggest the opposite for patches
+> I've submitted to other subsystems which is why I went with
+> PTR_ERR_OR_ZERO. It also works well with the goto err_put_ctlr; which
+> needs ret to be set. It's not exactly a common pattern in the spi code
+> so I'd be happy to go the other way if that's the desired convention
+> for spi.
+
+Either way is the same amount of lines. The slight difference, that we
+don't check for 0. Can you check if generated code is different in
+these cases?
+
 -- 
-2.17.1
-
+With Best Regards,
+Andy Shevchenko
