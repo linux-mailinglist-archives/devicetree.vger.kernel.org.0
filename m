@@ -2,88 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0731538F6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2020 20:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD3F61538FD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2020 20:23:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727532AbgBETVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Feb 2020 14:21:51 -0500
-Received: from mail-vk1-f195.google.com ([209.85.221.195]:36742 "EHLO
-        mail-vk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727116AbgBETVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Feb 2020 14:21:50 -0500
-Received: by mail-vk1-f195.google.com with SMTP id i4so895691vkc.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2020 11:21:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iKWhr/qeopXFJ+ock8a5scgNwm8h5rGNiI2lQhosRco=;
-        b=d+Lea2T1FikkJSXKbyM1VkmMu7+6OK51opstzFjKZqfVTWGc0HJyavyLb+VPLonbdH
-         XamEHLtjdwui0xj8WnEoC7whi/BeT3DvPVSnA1XJbAN0mMEripODaa76GX6Q5KujvPEs
-         uxYN8bYLDYx5xjHsKtyyQHKN8OKwwXdxQ/T74=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iKWhr/qeopXFJ+ock8a5scgNwm8h5rGNiI2lQhosRco=;
-        b=IPYmCZRsZxNVp34Vh28DT6jo1WDMMdumUTpJsXIeFzS/I26wcylO9GcuRmUcAbEZrW
-         58DDSGbsukTEvE/w79Y2r9vkiW/sUGak558t8Ub5DWc386Ip0/GINUqh1Eme+zNjDmZh
-         ThdWFJE6x0PvKfoiwYnxLU8MEEUvxE4OoTw76UZumi4JoN0fG5TkAyfGYUrKcPkwAVlv
-         YvCd4SAbhK4IJNgS6IqzCITi0wrzU0VAL+mkVn4PN5gO0E0JUb86inUayCY9yQBFU4QC
-         fKkSFBXHmHyowrOhQA4CXJX3D5MF4hdaFdB+KUR+0dkwLON3BrczcuaE/Qhc3jNN78kV
-         0yZQ==
-X-Gm-Message-State: APjAAAUkDert8+HRw31+BZUpxWapcAdpOzF5J9L9wW+I1UotLmVh0A2q
-        vmjRgzbZTXTORVSLpJHRZABDS/SJuA8=
-X-Google-Smtp-Source: APXvYqzpUQw5wCp+ksATC2StFVRzHW+u1JO4rGFPEt8OfqsUdfpn8Kz1uA43DX3Nt1YqluuHvzRCZg==
-X-Received: by 2002:a1f:7d43:: with SMTP id y64mr2674516vkc.15.1580930507033;
-        Wed, 05 Feb 2020 11:21:47 -0800 (PST)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id d8sm180970uan.13.2020.02.05.11.21.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Feb 2020 11:21:46 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id x18so2120097vsq.4
-        for <devicetree@vger.kernel.org>; Wed, 05 Feb 2020 11:21:46 -0800 (PST)
-X-Received: by 2002:a67:fbcb:: with SMTP id o11mr22314847vsr.109.1580930506045;
- Wed, 05 Feb 2020 11:21:46 -0800 (PST)
+        id S1727085AbgBETXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Feb 2020 14:23:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40122 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727116AbgBETXh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 5 Feb 2020 14:23:37 -0500
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 923B72072B;
+        Wed,  5 Feb 2020 19:23:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1580930616;
+        bh=u2UIn7F+9QuQQyPEXQ+hPn66a/4sZE4MOJ97XcYdzrk=;
+        h=In-Reply-To:References:Cc:From:Subject:To:Date:From;
+        b=FJ1MCrdI1mNYYExkWaWxASa0jTixCeY/Myz3thcYyCHss/2HeB2LIsFuRuo85/Sq0
+         FbLViC0gDI/PdgSxcZ5MoGJs8Lmds4CDdW/uQDh9SgP0GHbeDXsNxrTb/ewB8IhVtG
+         YGammme3f5t04VhnbQIWlQN/gEsvdWSdR4E1knPs=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <1580886097-6312-1-git-send-email-smasetty@codeaurora.org> <1580886097-6312-2-git-send-email-smasetty@codeaurora.org>
-In-Reply-To: <1580886097-6312-2-git-send-email-smasetty@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 5 Feb 2020 11:21:35 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VeMaKq3KR=t7dbG+VyVs5DS=gHasSdJQSqNQreTUoZig@mail.gmail.com>
-Message-ID: <CAD=FV=VeMaKq3KR=t7dbG+VyVs5DS=gHasSdJQSqNQreTUoZig@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: clk: qcom: Add support for GPU GX GDSCR
-To:     Sharat Masetty <smasetty@codeaurora.org>
-Cc:     freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, dri-devel@freedesktop.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jordan Crouse <jcrouse@codeaurora.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Taniya Das <tdas@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1580235801-4129-2-git-send-email-skomatineni@nvidia.com>
+References: <1580235801-4129-1-git-send-email-skomatineni@nvidia.com> <1580235801-4129-2-git-send-email-skomatineni@nvidia.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [RFC PATCH v1 1/5] dt-bindings: clock: tegra: Add clk id for CSI TPG clock
+To:     frankc@nvidia.com, hverkuil@xs4all.nl, jonathanh@nvidia.com,
+        skomatineni@nvidia.com, thierry.reding@gmail.com
+User-Agent: alot/0.8.1
+Date:   Wed, 05 Feb 2020 11:23:35 -0800
+Message-Id: <20200205192336.923B72072B@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Quoting Sowjanya Komatineni (2020-01-28 10:23:17)
+> Tegra210 uses PLLD out internally for CSI TPG.
+>=20
+> This patch adds clk id for this CSI TPG clock from PLLD.
+>=20
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
 
-On Tue, Feb 4, 2020 at 11:01 PM Sharat Masetty <smasetty@codeaurora.org> wrote:
->
-> From: Taniya Das <tdas@codeaurora.org>
->
-> In the cases where the GPU SW requires to use the GX GDSCR add
-> support for the same.
->
-> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
-Since you are re-posting Taniya's patch you need to add your own
-Signed-off-by as per kernel policy.
-
-Other than the SoB issue:
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
