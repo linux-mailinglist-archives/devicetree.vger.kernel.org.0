@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEFEE1536FC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2020 18:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF57C153703
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2020 18:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726957AbgBERsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Feb 2020 12:48:33 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:36589 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726822AbgBERsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Feb 2020 12:48:32 -0500
-Received: by mail-wr1-f66.google.com with SMTP id z3so3847835wru.3;
-        Wed, 05 Feb 2020 09:48:31 -0800 (PST)
+        id S1727081AbgBERtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Feb 2020 12:49:15 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:36816 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726957AbgBERtO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Feb 2020 12:49:14 -0500
+Received: by mail-wm1-f67.google.com with SMTP id p17so3905744wma.1;
+        Wed, 05 Feb 2020 09:49:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:content-language
-         :user-agent;
-        bh=Ux3DGzV35dAceVNHrHJKtHoyHks4VBOBKylo/BD3j8A=;
-        b=DkfkhCUQJrmGX5V3JIOOSr6LWxJ1zQ/4xCeP6hEV8W73GivRsJdvgwDmpIhVE2maFl
-         AoKnXz6XQaztWKLcuZ5APUZqmWExmm1CNBAImbAedj97ugtamOnmabzKEV9E9GcjVFTq
-         9LEVItT0WHX/dkaDnGxGYa3zwOod3zbOruhkW3I5auKjOfuHfbS4kKy/4y48OwgStCFN
-         Jwz8QRorMN7f7u6IiRqnHRVHKGqngzy5CAtWnjYWAprb/QIYDYR5fsQ9v+6zqKtvESzV
-         vJwiAeY4HJucafCb3AyRCyD7/oTZZZgg5r9jDyQX7IQJxGeYUxGFevZ+HEH6X4Ewd/99
-         +QyA==
-X-Gm-Message-State: APjAAAWgbNt5A3Z35CoG56eUI/zaHfxnZd7bJzBC39PGWwaPf/k68eq2
-        J1boJG/8eoZsaWZ5ytnpvg==
-X-Google-Smtp-Source: APXvYqyjCgMXX07vCklzfGwfuVFLf+VA2qWHi/2w8y238KZGaDM7SrZW2WawDJsygiDUkK+5I/A/1g==
-X-Received: by 2002:adf:dd51:: with SMTP id u17mr28737729wrm.290.1580924911012;
-        Wed, 05 Feb 2020 09:48:31 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=p7yEieln0jae2eT2M/0er6+kV9NoBt/oQX2qMjPZJ/Q=;
+        b=Vkg6rWGzIbo2Rb2+JwVkfGipK8LcEPHzzweKLy1UXhfWkt8taI12ZVYMyTHw+Sx+az
+         kcscyMSDyzCHgo4BUNWLRs86WOl6RgWT34GUkdXYQGODl/n3wAaUub8205qukgpfLsZ1
+         xe2wRUc+sQeZxWzHwuoWzmy5aOLhKBwVaBZc0XEFzxJ955Xd9BR+T1N/PnK3nCojidQB
+         7WamhChOj+p15UVuKr3l7i2HpFr4EPCNfajws4S12LjtXVZYUlXDZECdFPItenZcJEZ7
+         rYSqfJVCKMCK15gCn+dfah65C1xoq/ZMssX4T4LK4qAivMVTycBUHt1BMKsXaVZPoziH
+         RgPQ==
+X-Gm-Message-State: APjAAAW7L6wkzm46TYRgKxfgZZvJA1AEaIa4GMAFUEGffr7mKHvLE9gO
+        G2VWjf1j6RHg9eoEweColw==
+X-Google-Smtp-Source: APXvYqxrkccvNl9da8AtZiLVomEnf+cjr97jeYk9zDCvBB4OzibTwGtQk0HvdayBC/CQAVvY6ffffQ==
+X-Received: by 2002:a05:600c:20c6:: with SMTP id y6mr6912417wmm.95.1580924952525;
+        Wed, 05 Feb 2020 09:49:12 -0800 (PST)
 Received: from rob-hp-laptop ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id b18sm695624wru.50.2020.02.05.09.48.29
+        by smtp.gmail.com with ESMTPSA id s1sm695548wro.66.2020.02.05.09.49.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Feb 2020 09:48:30 -0800 (PST)
-Received: (nullmailer pid 28035 invoked by uid 1000);
-        Wed, 05 Feb 2020 17:48:29 -0000
-Date:   Wed, 5 Feb 2020 17:48:29 +0000
+        Wed, 05 Feb 2020 09:49:11 -0800 (PST)
+Received: (nullmailer pid 29276 invoked by uid 1000);
+        Wed, 05 Feb 2020 17:49:10 -0000
+Date:   Wed, 5 Feb 2020 17:49:10 +0000
 From:   Rob Herring <robh@kernel.org>
-To:     Shiping Ji <shiping.linux@gmail.com>
-Cc:     Borislav Petkov <bp@alien8.de>, James Morse <james.morse@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, hangl@microsoft.com,
-        ruizhao@microsoft.com, Lei Wang <lewan@microsoft.com>,
-        Scott Branden <scott.branden@broadcom.com>,
-        Yuqing Shen <yuqing.shen@broadcom.com>
-Subject: Re: [PATCH v11 1/2] dt-bindings: edac: dmc-520.yaml
-Message-ID: <20200205174829.GA27969@bogus>
-References: <5354a9c3-5b5a-486a-9d19-fa9be169faef@gmail.com>
+To:     Tamizh Chelvam <tamizhr@codeaurora.org>
+Cc:     ath10k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org,
+        Tamizh Chelvam <tamizhr@codeaurora.org>
+Subject: Re: [PATCHv2 1/2] dt-bindings: ath10k: Add new dt entries to
+ identify coex support
+Message-ID: <20200205174910.GA29218@bogus>
+References: <1580152736-18654-1-git-send-email-tamizhr@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5354a9c3-5b5a-486a-9d19-fa9be169faef@gmail.com>
-Content-Language: en-US
+In-Reply-To: <1580152736-18654-1-git-send-email-tamizhr@codeaurora.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 27 Jan 2020 08:23:08 -0800, Shiping Ji wrote:
-> This is the device tree bindings for new EDAC driver dmc520_edac.c.
+On Tue, 28 Jan 2020 00:48:55 +0530, Tamizh Chelvam wrote:
+> This adds new dt entries qcom,coexist-support and qcom,coexist-gpio-pin
+> which will be used by ath10k driver to identify coex support
+> of a hardware and notify wifi firmware the gpio pin number.
+> This pin number information is needed for the hardware QCA4019.
 > 
-> From: Lei Wang <leiwang_git@outlook.com>
-> 
-> Signed-off-by: Lei Wang <leiwang_git@outlook.com>
-> Signed-off-by: Shiping Ji <shiping.linux@gmail.com>
-> Reviewed-by: James Morse <james.morse@arm.com>
-> 
+> Signed-off-by: Tamizh Chelvam <tamizhr@codeaurora.org>
 > ---
->      Changes in v11:
->          - Fix issues reported by make dt_binding_check
-> 
-> ---
->  .../devicetree/bindings/edac/dmc-520.yaml     | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/dmc-520.yaml
+>  Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
