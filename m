@@ -2,179 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF94F152699
-	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2020 08:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D3C3152730
+	for <lists+devicetree@lfdr.de>; Wed,  5 Feb 2020 08:49:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727982AbgBEHCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Feb 2020 02:02:05 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:34774 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727956AbgBEHCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Feb 2020 02:02:04 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1580886124; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=yCDeCdgKA3IXNoyqrtgJmGy4KgKCgByY8yGLh4PgpZg=; b=K+sNEX44F9VKaV08ekYi6aZt4/PKf8iej+pOo/NbemWRwi9wI4ltxhXfvESN4RV30S+td2gz
- McHLNtWJpXdE74rKSIrNAn8PSJk49mipDjDlypcXT27Q28WYBRhTZrStJyVoWxaDQB6B2UNI
- BgiwkXrYx5roMHCX53lRN28l+24=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e3a6868.7ff88db7a9d0-smtp-out-n03;
- Wed, 05 Feb 2020 07:02:00 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2017DC447A5; Wed,  5 Feb 2020 07:02:00 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from smasetty-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: smasetty)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 129F6C433CB;
-        Wed,  5 Feb 2020 07:01:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 129F6C433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=smasetty@codeaurora.org
-From:   Sharat Masetty <smasetty@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        jcrouse@codeaurora.org, mka@chromium.org, dianders@chromium.org,
-        Sharat Masetty <smasetty@codeaurora.org>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sc7180: Add A618 gpu dt blob
-Date:   Wed,  5 Feb 2020 12:31:37 +0530
-Message-Id: <1580886097-6312-4-git-send-email-smasetty@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1580886097-6312-1-git-send-email-smasetty@codeaurora.org>
-References: <1580886097-6312-1-git-send-email-smasetty@codeaurora.org>
+        id S1726236AbgBEHtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Feb 2020 02:49:13 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:60285 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725875AbgBEHtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Feb 2020 02:49:13 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 06AD66FE9;
+        Wed,  5 Feb 2020 02:49:12 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 05 Feb 2020 02:49:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=klnBhs3icmG873ARFeW0I55GIqv
+        Bct2WyDKkuastGyo=; b=jwf+Qbf1/dIOpQQPu6d5faHN3Z6Nv1tEzdcooIugMth
+        1avbUSzp56VsATlVcfZS4dAfADLi8S4qu/j6jsF7Zb43cVOD/zjIJ3rKAaFIlmjB
+        7yE7GKchPOAUw0QAFwXscVn+R8J2xLbSw7mplWO8w4ODugAY/eFEXTmjQSSJi4ir
+        R9t3n1+ga5wKgN9dhZgGpA6b1V6S7sRBSRDrbcekZNERahh5kTneYXC1+53SrlBR
+        CRlpAJyACUCokmEmQu0RB1gZMl0bdoaYrgIyGVYUP3rfWImjHA/PkRsPAy54uDag
+        OSYkxhZNlFbdzy0ABW3VgifxRNK0MfSIkN7mbZQWoBw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=klnBhs
+        3icmG873ARFeW0I55GIqvBct2WyDKkuastGyo=; b=dJvD9bNDzk98V5EJjwjbLX
+        z/jqP7Y8Z4SGado2htR38gfwWtfB9jHHAJyZUvdd0l0Dlaqa5LLY0f6iBDWHqqv2
+        ZNZYOuzMod1M5vjBbNjUMnRFqDstAwnK2wROivOVgyeFNznPTGjfLQpOnHgMhnUS
+        +OF/Tuv3B1coSez3a2FM5b3Cd4RpOwct9mAwc0vI/2j8N1LnPPGKP6tiZdnKH8ES
+        Fn4sbCYM/59xrLrRM19pVhPfW0SNHTM98Qfsz1QrTlhXQUfi52jJEjMBmPtZ1liZ
+        XY4yB1hJI/5z0WqqB8wXyh0fLFto0jqby/jBpmSn3AeQf1kjohNqzDOdKjZIf4AQ
+        ==
+X-ME-Sender: <xms:dnM6XpEULNBgxpV7IuDuGHtWsEwpv4vI8j1lg3kb7G6-VzY-QfuY1g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrhedtgdduudehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecukfhppeeltd
+    drkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
+    lhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:dnM6Xgt0evq26rLEpnUD07S8oq9BA9S2eDUWqQfmW-FOGo1hdY6UIQ>
+    <xmx:dnM6XsmFFPc77gnLfW67-HeRJd-hfQfxPxgdwgEK943FmGAu-CUh8A>
+    <xmx:dnM6XgyfuUHKvwyo9-Cc9FXCActuE6qPfkDXSLBnQUqpNXYS5VaHBA>
+    <xmx:d3M6XvKw6IGTWtKFAkvMrL3VaXUa2KseZuISM1x1FzF4V0ahHgfzzQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 3FBB33280059;
+        Wed,  5 Feb 2020 02:49:10 -0500 (EST)
+Date:   Wed, 5 Feb 2020 08:49:08 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Sugaya Taichi <sugaya.taichi@socionext.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Joel Stanley <joel@jms.id.au>,
+        Vinod Koul <vkoul@kernel.org>,
+        "james.tai" <james.tai@realtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 11/12] dt-bindings: arm: Document Broadcom SoCs
+ 'secondary-boot-reg'
+Message-ID: <20200205074908.kwtqadfcwo2mtefk@gilmour.lan>
+References: <20200204235552.7466-1-f.fainelli@gmail.com>
+ <20200204235552.7466-12-f.fainelli@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wa2xbnbegqf4phpr"
+Content-Disposition: inline
+In-Reply-To: <20200204235552.7466-12-f.fainelli@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the required dt nodes and properties
-to enabled A618 GPU.
 
-Signed-off-by: Sharat Masetty <smasetty@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 102 +++++++++++++++++++++++++++++++++++
- 1 file changed, 102 insertions(+)
+--wa2xbnbegqf4phpr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index f3fcc5c..63fff15 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -1043,6 +1043,108 @@
- 			};
- 		};
- 
-+		gpu: gpu@5000000 {
-+			compatible = "qcom,adreno-618.0", "qcom,adreno";
-+			#stream-id-cells = <16>;
-+			reg = <0 0x05000000 0 0x40000>, <0 0x0509e000 0 0x1000>,
-+				<0 0x05061000 0 0x800>;
-+			reg-names = "kgsl_3d0_reg_memory", "cx_mem", "cx_dbgc";
-+			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-+			iommus = <&adreno_smmu 0>;
-+			operating-points-v2 = <&gpu_opp_table>;
-+			qcom,gmu = <&gmu>;
-+
-+			gpu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-800000000 {
-+					opp-hz = /bits/ 64 <800000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-+				};
-+
-+				opp-650000000 {
-+					opp-hz = /bits/ 64 <650000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+				};
-+
-+				opp-565000000 {
-+					opp-hz = /bits/ 64 <565000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-+				};
-+
-+				opp-430000000 {
-+					opp-hz = /bits/ 64 <430000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+				};
-+
-+				opp-355000000 {
-+					opp-hz = /bits/ 64 <355000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+				};
-+
-+				opp-267000000 {
-+					opp-hz = /bits/ 64 <267000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+				};
-+
-+				opp-180000000 {
-+					opp-hz = /bits/ 64 <180000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+				};
-+			};
-+		};
-+
-+		adreno_smmu: iommu@5040000 {
-+			compatible = "qcom,sc7180-smmu-v2", "qcom,smmu-v2";
-+			reg = <0 0x05040000 0 0x10000>;
-+			#iommu-cells = <1>;
-+			#global-interrupts = <2>;
-+			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
-+					<GIC_SPI 364 IRQ_TYPE_EDGE_RISING>,
-+					<GIC_SPI 365 IRQ_TYPE_EDGE_RISING>,
-+					<GIC_SPI 366 IRQ_TYPE_EDGE_RISING>,
-+					<GIC_SPI 367 IRQ_TYPE_EDGE_RISING>,
-+					<GIC_SPI 368 IRQ_TYPE_EDGE_RISING>,
-+					<GIC_SPI 369 IRQ_TYPE_EDGE_RISING>,
-+					<GIC_SPI 370 IRQ_TYPE_EDGE_RISING>,
-+					<GIC_SPI 371 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-+				<&gcc GCC_GPU_CFG_AHB_CLK>,
-+				<&gcc GCC_DDRSS_GPU_AXI_CLK>;
-+
-+			clock-names = "bus", "iface", "mem_iface_clk";
-+			power-domains = <&gpucc CX_GDSC>;
-+		};
-+
-+		gmu: gmu@506a000 {
-+			compatible="qcom,adreno-gmu-618.0", "qcom,adreno-gmu";
-+			reg = <0 0x0506a000 0 0x31000>, <0 0x0b290000 0 0x10000>,
-+				<0 0x0b490000 0 0x10000>;
-+			reg-names = "gmu", "gmu_pdc", "gmu_pdc_seq";
-+			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH>,
-+				   <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "hfi", "gmu";
-+			clocks = <&gpucc GPU_CC_CX_GMU_CLK>,
-+			       <&gpucc GPU_CC_CXO_CLK>,
-+			       <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-+			       <&gcc GCC_GPU_MEMNOC_GFX_CLK>;
-+			clock-names = "gmu", "cxo", "axi", "memnoc";
-+			power-domains = <&gpucc CX_GDSC>, <&gpucc GX_GDSC>;
-+			power-domain-names = "cx", "gx";
-+			iommus = <&adreno_smmu 5>;
-+			operating-points-v2 = <&gmu_opp_table>;
-+
-+			gmu_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-200000000 {
-+					opp-hz = /bits/ 64 <200000000>;
-+					opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+				};
-+			};
-+		};
-+
- 		gpucc: clock-controller@5090000 {
- 			compatible = "qcom,sc7180-gpucc";
- 			reg = <0 0x05090000 0 0x9000>;
--- 
-1.9.1
+On Tue, Feb 04, 2020 at 03:55:51PM -0800, Florian Fainelli wrote:
+> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> index c23c24ff7575..d7b181a44789 100644
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -272,6 +272,39 @@ properties:
+>        While optional, it is the preferred way to get access to
+>        the cpu-core power-domains.
+>
+> +  secondary-boot-reg:
+> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> +    description: |
+> +      Required for systems that have an "enable-method" property value of
+> +      "brcm,bcm11351-cpu-method", "brcm,bcm23550" or "brcm,bcm-nsp-smp".
+> +
+> +      This includes the following SoCs: |
+> +      BCM11130, BCM11140, BCM11351, BCM28145, BCM28155, BCM21664, BCM23550
+> +      BCM58522, BCM58525, BCM58535, BCM58622, BCM58623, BCM58625, BCM88312
+> +
+> +      The secondary-boot-reg property is a u32 value that specifies the
+> +      physical address of the register used to request the ROM holding pen
+> +      code release a secondary CPU. The value written to the register is
+> +      formed by encoding the target CPU id into the low bits of the
+> +      physical start address it should jump to.
+> +
+> +if:
+> +  # If the enable-method property contains one of those values
+> +  properties:
+> +    enable-method:
+> +      contains:
+> +        enum:
+> +          - brcm,bcm11351-cpu-method
+> +          - brcm,bcm23550
+> +          - brcm,bcm-nsp-smp
+> +  # and if enable-method is present
+
+Those comments were purely for the explanation, but you can keep them
+I guess :)
+
+Regardless on whether or not you keep them, for the whole series
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Maxime
+
+--wa2xbnbegqf4phpr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXjpzdAAKCRDj7w1vZxhR
+xUq2AQDV+M4Nkim7RmuY3y8QYuA2P6xeHBu487XApQ5G8aH+fwEAlmF1WVwn93es
+CiiM9/4giVvGZGr3rNoZg/tgdu0GZQs=
+=+UYd
+-----END PGP SIGNATURE-----
+
+--wa2xbnbegqf4phpr--
