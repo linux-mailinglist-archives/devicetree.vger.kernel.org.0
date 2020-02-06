@@ -2,163 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F034E1544FE
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 14:34:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72A4154500
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 14:34:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728022AbgBFNeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 08:34:22 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:43448 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728019AbgBFNeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 08:34:15 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 016DX36v016463;
-        Thu, 6 Feb 2020 14:33:54 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=uw83YHkEimIhhPOEeMx2nLPySoUUuETqUW2sGayUiPM=;
- b=0z00dx/CAms+OVIefxU9IODEGW7IBlVO6dXKyAw4L/yLkKeQ/hJo5Bn7vm+yIETHS+ST
- Z/ZMksUD2k4oCF6k6wpCzzGT4Yo181tnKQLXcIs0+gsL8ts5zpyb3uqM022YIXveWptK
- 9eai6YcIuHVvrFSm/w/g4sTHyOunPGXwytXayPEeC8R281Ixo3wfC2qmuea6f+dulzRb
- l4eWNPRc65ES71CgyoRxtRfK4mQL7HYi80QaZCK4M5Xd2daUZdyCsYvlrGsIG7MBvvmJ
- LM4zNz8uzt5hj2ZBxPZOdycdiKuBHXKjm3Ag6I2O2wcA/xQbFJGmoWHD3qXK1yXL+XCw 0Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2xyhku156e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Feb 2020 14:33:53 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E536E10003B;
-        Thu,  6 Feb 2020 14:33:51 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D75B72BC7DB;
-        Thu,  6 Feb 2020 14:33:51 +0100 (CET)
-Received: from localhost (10.75.127.48) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 6 Feb 2020 14:33:51
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <thierry.reding@gmail.com>, <sam@ravnborg.org>, <airlied@linux.ie>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <philippe.cornu@st.com>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH v4 3/3] dt-bindings: panel: Convert orisetech,otm8009a to json-schema
-Date:   Thu, 6 Feb 2020 14:33:44 +0100
-Message-ID: <20200206133344.724-4-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200206133344.724-1-benjamin.gaignard@st.com>
-References: <20200206133344.724-1-benjamin.gaignard@st.com>
+        id S1728111AbgBFNeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 08:34:25 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:42554 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728108AbgBFNeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 08:34:24 -0500
+Received: by mail-ed1-f65.google.com with SMTP id e10so5923857edv.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2020 05:34:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=jzrZ30MJAfGBLNaIb1wGwJ1t7d2ttoz+dRkCOoNYXW8=;
+        b=tMnv5xGwkIxdMY3hjEXcE6KH3UBzkTJjEgXerlSMpu2CcD5P4bJg/ADPWxdCd8+v8Z
+         aSi05SeQxJ1Bfl2EHrXy5t7Hj73i1c6TeTCtWEY4vmgS/6SbGLSSIhA4aaF9XJhv7xBw
+         lG4hHbBzcbUui2rhk0JmJWsr1XszXMdDe4v6iWROG84Q5uPS7+IrS9KRanem8LaT9OeO
+         bdumfSajIugcG6UMAlMczgtgjU3+GaKZBD6Np2JawomLW3qklc6ZFwvx9KP4NbNSmYd+
+         KhFF9hlRecwkv2zXkz9H/x1tQ5e2CrdpOrDHMlWj6ziJ8u15CPCffEgkfkVY7BQduQdN
+         GKRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=jzrZ30MJAfGBLNaIb1wGwJ1t7d2ttoz+dRkCOoNYXW8=;
+        b=VovdH4kW6U4LS4M9LaYZbf79X0TawD5o/hl6h0ETNavPSoAV+AUZu3aWUqV55T85Eb
+         jnh88Mu6hGq6ipl8NkZqwZ/eoqn0VSnJXeTk+mBVl3XrG2HrmA3J5hN7kfad8ttX9suM
+         Vl0VibPu5z5cG12tafsOmxdyQUya24KFQz7mCD/TCFLBlrlN4uI4Erw16RgiFyjt91g4
+         DWBLiauYeln2z0KTkAPmbDWNWlYtwg3QAiPiunAHgIIWUoPh05l/M8niavObdOyxs2zT
+         OMznesQrdJK8lKRpmNRO1qxkz33dJYCvwK+HypCwqkvRWoBewfJJExzHzlRrVlA9/yNF
+         y4iQ==
+X-Gm-Message-State: APjAAAV6FJkKjr33XCANvzbEPmnOtHKaSCdCD01Ag41lIOpg6xy9WQNW
+        DqeIV3bBkO3Ab497EOngkTIdOoeifMNKiA/N3bA=
+X-Google-Smtp-Source: APXvYqxETZJ+e3ZVTwIMQ5ptldoUeuom14aANGF3AndjrW5ix84Wfq4+A78UPaLGNzcIOavYcMzcDdPOdRFL1Fe1xkg=
+X-Received: by 2002:a50:9fab:: with SMTP id c40mr2879132edf.15.1580996062555;
+ Thu, 06 Feb 2020 05:34:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG7NODE2.st.com (10.75.127.20) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-02-06_01:2020-02-06,2020-02-06 signatures=0
+Received: by 2002:a05:6402:22dc:0:0:0:0 with HTTP; Thu, 6 Feb 2020 05:34:22
+ -0800 (PST)
+Reply-To: eco.bank1204@gmail.com
+From:   "MS. MARYANNA B. THOMASON" <eco.bank1204@gmail.com>
+Date:   Thu, 6 Feb 2020 14:34:22 +0100
+Message-ID: <CAOE+jADr-ryPXPMftAbYrUe08+S7unt7HpXJqGQmTokvNXegrQ@mail.gmail.com>
+Subject: Contact Federal Reserve Bank New York to receive your inheritance
+ contract payment (US$12.8M)
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert orisetech,otm8009a to json-schema.
+Attention Fund Beneficiary,
+Contact Federal Reserve Bank New York to receive your inheritance
+contract payment  (US$12.8M)
+Payment Release Instruction from US department of Homeland Security New York.
+Contact Federal Reserve Bank New York to receive your inheritance
+contract payment  (US$12.8M) deposited this morning in your favor.
+Contact Person, Dr. Jerome H. Powell.
+CEO Director, Federal Reserve Bank New York
+Email: reservebank.ny93@gmail.com
+Telephone- (917) 983-4846)
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- .../bindings/display/panel/orisetech,otm8009a.txt  | 23 ----------
- .../bindings/display/panel/orisetech,otm8009a.yaml | 53 ++++++++++++++++++++++
- 2 files changed, 53 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.txt
- create mode 100644 Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.txt b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.txt
-deleted file mode 100644
-index 203b03eefb68..000000000000
---- a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--Orise Tech OTM8009A 3.97" 480x800 TFT LCD panel (MIPI-DSI video mode)
--
--The Orise Tech OTM8009A is a 3.97" 480x800 TFT LCD panel connected using
--a MIPI-DSI video interface. Its backlight is managed through the DSI link.
--
--Required properties:
--  - compatible: "orisetech,otm8009a"
--  - reg: the virtual channel number of a DSI peripheral
--
--Optional properties:
--  - reset-gpios: a GPIO spec for the reset pin (active low).
--  - power-supply: phandle of the regulator that provides the supply voltage.
--
--Example:
--&dsi {
--	...
--	panel@0 {
--		compatible = "orisetech,otm8009a";
--		reg = <0>;
--		reset-gpios = <&gpioh 7 GPIO_ACTIVE_LOW>;
--		power-supply = <&v1v8>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-new file mode 100644
-index 000000000000..6e6ac995c27b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/orisetech,otm8009a.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Orise Tech OTM8009A 3.97" 480x800 TFT LCD panel (MIPI-DSI video mode)
-+
-+maintainers:
-+  - Philippe CORNU <philippe.cornu@st.com>
-+
-+description: |
-+             The Orise Tech OTM8009A is a 3.97" 480x800 TFT LCD panel connected using
-+             a MIPI-DSI video interface. Its backlight is managed through the DSI link.
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+
-+  compatible:
-+    const: orisetech,otm8009a
-+
-+  reg:
-+    maxItems: 1
-+    description: DSI virtual channel
-+
-+  enable-gpios: true
-+  port: true
-+  power-supply: true
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    dsi@0 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      panel@0 {
-+        compatible = "orisetech,otm8009a";
-+        reg = <0>;
-+        reset-gpios = <&gpiof 15 0>;
-+        power-supply = <&v1v8>;
-+      };
-+    };
-+...
-+
--- 
-2.15.0
-
+Note.I have paid the deposit and insurance fee for you,but only money
+you are required to send to the bank is $US25.00,your processing funds
+transfer fee only to enable them release your funds to you today.
+Thank you for your anticipated co-operation.
+TREAT AS URGENT.
+Mr.Richard Longhair
+DIRECTOR OF FUNDS CLEARANCE UNIT
