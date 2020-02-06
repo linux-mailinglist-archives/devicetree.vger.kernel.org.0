@@ -2,96 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A11BE154723
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 16:10:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81EF71547E7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 16:24:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727593AbgBFPKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 10:10:13 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:39270 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727578AbgBFPKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 10:10:13 -0500
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 016F0MvL011983;
-        Thu, 6 Feb 2020 10:09:53 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2xyhm94w1k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Feb 2020 10:09:52 -0500
-Received: from SCSQMBX10.ad.analog.com (scsqmbx10.ad.analog.com [10.77.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 016F9pB6017037
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Thu, 6 Feb 2020 10:09:51 -0500
-Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Thu, 6 Feb 2020
- 07:09:49 -0800
-Received: from zeus.spd.analog.com (10.64.82.11) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Thu, 6 Feb 2020 07:09:49 -0800
-Received: from ben-Latitude-E6540.ad.analog.com ([10.48.65.231])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 016F9VRa021605;
-        Thu, 6 Feb 2020 10:09:45 -0500
-From:   Beniamin Bia <beniamin.bia@analog.com>
-To:     <jic23@kernel.org>
-CC:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <pmeerw@pmeerw.net>, <linux-iio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <biabeniamin@outlook.com>,
-        <knaack.h@gmx.de>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        Beniamin Bia <beniamin.bia@analog.com>
-Subject: [PATCH v5 5/5] MAINTAINERS: add entry for hmc425a driver.
-Date:   Thu, 6 Feb 2020 17:11:49 +0200
-Message-ID: <20200206151149.32122-5-beniamin.bia@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200206151149.32122-1-beniamin.bia@analog.com>
-References: <20200206151149.32122-1-beniamin.bia@analog.com>
+        id S1727502AbgBFPYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 10:24:08 -0500
+Received: from mail-eopbgr80053.outbound.protection.outlook.com ([40.107.8.53]:15398
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727325AbgBFPYI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Feb 2020 10:24:08 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NPqFtkhpIGfC5P9fyPma03EteonMuqNrmP1tG7sOucoytF5PBmmWsgUSY49QChnrnNA2ajIw6uGGOp22igXStg/zTJHh83TpWnVZpoikPyxcs/dSMd8SZzBwCOFEEIVcwirLlPDro9iRvw3rtffUxTqwuz3SQ14tntGeKOelMMvlbfvO3lyq40O2MtfWdVT0mkGr4AmLMhVNECUfwgLfxrnLC08jnvuwbvo1z/pRHF4xcBWgsOg7ZYGgsOUySF937hgshbeJIRondw0jwWVlqoOxGeibP4gkCbb50kBMzsWDpCD7SAGMUfp0gMXH8Ckv2tYgTdNzN+R3vcJjRhkcVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VzzJX5wHn99Aaj+fNZlFofq9bdvra+Vzbf0T29LQPpM=;
+ b=kunAFWF0ZNF9R+OUCxuP+I+trosqQnHmTxey6iJ0kM9VUKyD0xx/XeEnKp4vIljTAYKfttf83xsyU8wIDfr6vPnyVLbJCtJOxigC1Lym+U1e35Rw6lQTWnLFr4rn4M6R1BWyYsfBikTStmSB+oBh1lt6jE+9kVpM0uPq25KZtdZhlKAXjtSwA5V05cNGaoQEM8/O5C2mTztiWTBHPx3L4Zp30xl5GX9diNd7CxqcrRju5hKDZluIo/aQbH4yNLs4nXL8EMs2Cb+WfgEUHOIR+gzy/TRHpYQ9cUWouFSjCYqNsP2YtQvkVXPDe0+iac6SHK/41pZ0PXcL0+k4b+yjnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kococonnector.com; dmarc=pass action=none
+ header.from=kococonnector.com; dkim=pass header.d=kococonnector.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=KoCoConnector.onmicrosoft.com; s=selector2-KoCoConnector-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VzzJX5wHn99Aaj+fNZlFofq9bdvra+Vzbf0T29LQPpM=;
+ b=EicbclfAzB8FzNKxRDArExsoGcJsIt+yqdN2JqqdaoFkRmKuhXu1oj6rbx5tF3LSgiXOXae0dKMFOWzBcd465rUofQX5l6G/qLJNS2Q5LtZuBHDi7L0fKuaQJ5wjBZ2XYKRAxwuSGXYh4BdoX3lu4X8d+XgTl+/F2N+cxLy6Uqs=
+Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com (10.170.212.23) by
+ DB6PR0902MB1847.eurprd09.prod.outlook.com (10.171.76.139) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2707.23; Thu, 6 Feb 2020 15:24:04 +0000
+Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com
+ ([fe80::406b:dddb:f0d2:7ea7]) by DB6PR0902MB2072.eurprd09.prod.outlook.com
+ ([fe80::406b:dddb:f0d2:7ea7%7]) with mapi id 15.20.2686.035; Thu, 6 Feb 2020
+ 15:24:04 +0000
+Received: from localhost (193.47.161.132) by GV0P278CA0029.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:28::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend Transport; Thu, 6 Feb 2020 15:24:03 +0000
+From:   Oliver Graute <oliver.graute@kococonnector.com>
+To:     "aisheng.dong@nxp.com" <aisheng.dong@nxp.com>
+CC:     "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "peng.fan@nxp.com" <peng.fan@nxp.com>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [RFC 0/5] arm64: dts: imx8qm: enable sata on imx8qm based board
+Thread-Topic: [RFC 0/5] arm64: dts: imx8qm: enable sata on imx8qm based board
+Thread-Index: AQHV3QF2KkUyDNPMQU6sTRVuZgujtA==
+Date:   Thu, 6 Feb 2020 15:24:03 +0000
+Message-ID: <20200206152222.31095-1-oliver.graute@kococonnector.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: GV0P278CA0029.CHEP278.PROD.OUTLOOK.COM
+ (2603:10a6:710:28::16) To DB6PR0902MB2072.eurprd09.prod.outlook.com
+ (2603:10a6:6:8::23)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=oliver.graute@kococonnector.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.17.1
+x-originating-ip: [193.47.161.132]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f24c63ba-d28f-4487-4505-08d7ab18995e
+x-ms-traffictypediagnostic: DB6PR0902MB1847:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6PR0902MB18479CCFCD54565080F7369FEB1D0@DB6PR0902MB1847.eurprd09.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 0305463112
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(39830400003)(346002)(376002)(136003)(366004)(199004)(189003)(508600001)(4326008)(64756008)(186003)(5660300002)(2906002)(6486002)(66446008)(6916009)(81166006)(81156014)(966005)(44832011)(16526019)(956004)(2616005)(26005)(66556008)(4744005)(66946007)(66476007)(54906003)(7416002)(6496006)(8676002)(52116002)(86362001)(36756003)(8936002)(71200400001)(1076003)(316002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB6PR0902MB1847;H:DB6PR0902MB2072.eurprd09.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: kococonnector.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kDed0v5xpOZzOXEPtBoCRxqUd4xQP9n8Hpxb/aZQ9Vjmd1poQTTvpMs+AViJEW9Ua2VsBoPGde73DlnoekjWNUlkgNKjklSPetp50+ucuul3Mc5zTe+E+7pIfe8kg2WCV2KRQ0qU37Cq/ItSZMz5F733w/zj1Lcx46ZOpsqc4CW9nuo3KOYgMR90kaoMGpvShtAT13SxrpS5AWeznIUlVitlRT0+6eHVo5W6m4hI3f3fVDRgtNtLRp7MfLaX8EhdiI5p1Px7dnvvO8HRZM/Fj+wlCXS1YLipr24f4RsQQLIRQPbIahhzeXlXwvjJEUbnPM4RdTqgfCUtI/b/7Ycl62kQrszeEvJiycE1oukBgcMmKeFYWgFOHZF3M9GcS2EbQyHBJBAiFeBfQ8VX/zO02uH6AhDYsE7Xwe1/S8KSLaXkT4+IC9G7Wqrpd6HKHS47/cgf2F9qYTsgSzfh+dlg8dv2TI6aC7rg/B5TFbttypbWJDNnvn7WEOzTMSbydUdU4j5UGPTHEn3QXgFnZWvRGCkve63FmX5fF5JFafE5T6CfwVRQR38kAiF037kB+yiB
+x-ms-exchange-antispam-messagedata: Yodpkq0+qFy9G3KyEA7qgur3vW6zQstqyKb4gAzJ3h2ZG/i9fg7KsJ5W1IKf195XgpwZcl1d/I+tqjs1j7DKfeHzVxqN5X7By2rSomigGY8nGY1JHw/gGirjWrIS1NB+sW79hHqe20VOeITFjVMeAw==
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-02-06_01:2020-02-06,2020-02-06 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 priorityscore=1501 impostorscore=0
- malwarescore=0 suspectscore=1 bulkscore=0 adultscore=0 spamscore=0
- mlxscore=0 mlxlogscore=961 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2002060114
+X-OriginatorOrg: kococonnector.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f24c63ba-d28f-4487-4505-08d7ab18995e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2020 15:24:03.8910
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 59845429-0644-4099-bd7e-17fba65a2f2b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tYG+r0qLR2P6tAAb8AYaYVLxL2Qq1wNGhf7L+leJXjxR3uCoLKvLVsEk2h8NvscVyCu0Q5wpcrMi039f2H3R7Ub946vnlDw+etzqGnLmQQI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0902MB1847
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Beniamin Bia and Michael Hennerich as maintainers for HMC425A
-attenuator.
+This patch series tries to enable the sata interface on a imx8qm based boar=
+d.
+I'm not sure howto do the sata clocking right. Maybe some can comment on th=
+at.
 
-Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
----
-Changes in v5:
--parse_maintainers runned
+The patches are based on-top of these clock patches.
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+https://patchwork.kernel.org/patch/11248235/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e699fe378e71..12e39dc0dc93 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1063,6 +1063,15 @@ F:	drivers/iio/adc/ltc249*
- X:	drivers/iio/*/adjd*
- F:	drivers/staging/iio/*/ad*
- 
-+ANALOG DEVICES INC HMC425A DRIVER
-+M:	Beniamin Bia <beniamin.bia@analog.com>
-+M:	Michael Hennerich <michael.hennerich@analog.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Supported
-+W:	http://ez.analog.com/community/linux-device-drivers
-+F:	Documentation/devicetree/bindings/iio/amplifiers/adi,hmc425a.yaml
-+F:	drivers/iio/amplifiers/hmc425a.c
-+
- ANALOGBITS PLL LIBRARIES
- M:	Paul Walmsley <paul.walmsley@sifive.com>
- S:	Supported
--- 
+Oliver Graute (5):
+  arm64: dts: imx8qm: Add HSIO Subsystem node
+  arm64: dts: imx8qm: added System MMU
+  arm64: dts: imx8qm: added sata node
+  arm64: dts: imx8qm: added pinctrl for pciea
+  arm64: dts: imx8qm-rom7720: added sata node
+
+ .../boot/dts/freescale/imx8qm-rom7720-a1.dts  | 14 ++++++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi     | 45 +++++++++++++++++++
+ 2 files changed, 59 insertions(+)
+
+--=20
 2.17.1
 
