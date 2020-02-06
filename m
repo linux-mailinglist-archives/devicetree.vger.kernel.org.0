@@ -2,78 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CD11154D1A
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 21:45:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98A4F154D49
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 21:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727842AbgBFUpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 15:45:31 -0500
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:41883 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727830AbgBFUpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 15:45:31 -0500
-Received: by mail-pf1-f193.google.com with SMTP id j9so43715pfa.8;
-        Thu, 06 Feb 2020 12:45:30 -0800 (PST)
+        id S1728191AbgBFUqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 15:46:18 -0500
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:45183 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728172AbgBFUqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 15:46:15 -0500
+Received: by mail-pl1-f194.google.com with SMTP id b22so24455pls.12;
+        Thu, 06 Feb 2020 12:46:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=H2tVfCzm70bqHn3/yPEccEJKGtHclRembq2rrvGRktQ=;
-        b=XY1pBze54J/QBb4LhkW8czLaW4xkUbA5SCHEGNX7oFg+QNH7lR8hvWoHCtk/wbd3YV
-         wz3+4hJiMfkzmkAGUPUIjBOGUYQgUVBnD7wslIboqFWTICWgGX7Gh36/RLaIE4KEUMP3
-         n97BM74kRojMHdeoVHZ7IAMlEc6QozDWRGg98Bz6Qg14zInZFbg0s9Q7JX7yfa61dJ1D
-         38Hw4DAWDD3VpaKZNLGdO0gSJdVih3BNrJ8U6msEL50C6lKeifwTp1CKqR46DDhs6ZI5
-         VVvLo+3i+xBhZVATvNESwPnpwGdEccF89APE6TkLC0Pv4qBn/iC/gfktSkr10MG5mlQf
-         tXgg==
-X-Gm-Message-State: APjAAAUplqFfEEJLKo/JrXvb9IOfFxHqiZSAGeyXW2dyTXuVbxjHrGV1
-        TnhRaPA9KAITXnvYYXbeWQ==
-X-Google-Smtp-Source: APXvYqwfL4vZeTOwGsr6xUGNFEjJf8dH67j94K/HXOdtctgmKZDpYGF4Hd+jwY8XeBUB/qLzc7l6kg==
-X-Received: by 2002:a62:c583:: with SMTP id j125mr6195854pfg.27.1581021930368;
-        Thu, 06 Feb 2020 12:45:30 -0800 (PST)
+        bh=l5FvaNiAtzMYswvlFr6v0YaM1iOHco5V/a0AR5TCzVA=;
+        b=MBoLmzT3ZZzQt+/uPW8SzAM3Q59ulAD7xZSAaN2ynAgX18hbbzn7hiwp1Sd/Pko9je
+         2WyNbPKxWlw+4aiMnDRqCkxFueVvgEjF+S/BfJsDOSDG0CmhIUsEZjH8U7p4iIcQPWQ2
+         Qkmb9hUQIRBW7nhGtRgCJ1QVoVS4QfyEqIpnWZ0q44TLq4UW2sTzF8C4Xls4He66UbBv
+         kdzUwM82PglsKIvSEdCOXEe+ObDJ0kzRO0n2rQ8cnkgIdkpiBW7I9VAAconAhlQTMies
+         YxkS0f/fBhm1u6r/3ukPoeGgttOYgqM0NpOD5GB1K7A+Mx8f/vHnSBc1vWd4ORLv38qw
+         M7Kw==
+X-Gm-Message-State: APjAAAUwDPmf7fkXpgWjgdadkbZ53m7zJmoul2jGa4WdTatLXWR3K2UT
+        zIDDSequ6RgqjcIyfBOKfg==
+X-Google-Smtp-Source: APXvYqwvDRaorolz00MleJCnJNgdTgpyUgIq0k/Rh07UG3JXyWjdd+l7GKasnxQgNLs9FQRIpoGJVQ==
+X-Received: by 2002:a17:902:8d91:: with SMTP id v17mr5698026plo.53.1581021974341;
+        Thu, 06 Feb 2020 12:46:14 -0800 (PST)
 Received: from rob-hp-laptop (63-158-47-182.dia.static.qwest.net. [63.158.47.182])
-        by smtp.gmail.com with ESMTPSA id b1sm282011pfp.44.2020.02.06.12.45.28
+        by smtp.gmail.com with ESMTPSA id u7sm265881pfh.128.2020.02.06.12.46.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Feb 2020 12:45:29 -0800 (PST)
-Received: (nullmailer pid 28991 invoked by uid 1000);
-        Thu, 06 Feb 2020 17:22:58 -0000
-Date:   Thu, 6 Feb 2020 17:22:58 +0000
+        Thu, 06 Feb 2020 12:46:13 -0800 (PST)
+Received: (nullmailer pid 32672 invoked by uid 1000);
+        Thu, 06 Feb 2020 17:24:52 -0000
+Date:   Thu, 6 Feb 2020 17:24:52 +0000
 From:   Rob Herring <robh@kernel.org>
-To:     Louis Kuo <louis.kuo@mediatek.com>
-Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
-        tfiga@chromium.org, keiichiw@chromium.org, matthias.bgg@gmail.com,
-        mchehab@kernel.org, yuzhao@chromium.org, zwisler@chromium.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        frederic.chen@mediatek.com, Jerry-ch.Chen@mediatek.com,
-        jungo.lin@mediatek.com, Rynn.Wu@mediatek.com,
-        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH V5 2/3] dt-bindings: mt8183: Add sensor interface
- dt-bindings
-Message-ID: <20200206172258.GA19946@bogus>
-References: <20200129081650.8027-1-louis.kuo@mediatek.com>
- <20200129081650.8027-3-louis.kuo@mediatek.com>
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>
+Cc:     l.stach@pengutronix.de, linux+etnaviv@armlinux.org.uk,
+        christian.gmeiner@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com, maxime@cerno.tech,
+        etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        philippe.cornu@st.com, pierre-yves.mordret@st.com,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: Re: [PATCH v3] dt-bindings: display: Convert etnaviv to json-schema
+Message-ID: <20200206172452.GA32579@bogus>
+References: <20200129085613.3036-1-benjamin.gaignard@st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200129081650.8027-3-louis.kuo@mediatek.com>
+In-Reply-To: <20200129085613.3036-1-benjamin.gaignard@st.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 29, 2020 at 04:16:49PM +0800, Louis Kuo wrote:
-> This patch adds the DT binding documentation for the sensor interface
-> module in Mediatek SoCs.
+On Wed, 29 Jan 2020 09:56:13 +0100, Benjamin Gaignard wrote:
+> Convert etnaviv bindings to yaml format.
+> Move bindings file from display to gpu folder.
 > 
-> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
 > ---
->  .../bindings/media/mediatek-seninf.txt        | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek-seninf.txt
+> version 3:
+> - describe clock-names as enum to allow all possible mix
+> 
+> version 2:
+> - move bindings file from display to gpu folder
+>  .../bindings/display/etnaviv/etnaviv-drm.txt       | 36 -----------
+>  .../devicetree/bindings/gpu/vivante,gc.yaml        | 69 ++++++++++++++++++++++
+>  2 files changed, 69 insertions(+), 36 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpu/vivante,gc.yaml
+> 
 
-Bindings have moved to DT schema. Please convert this to a schema.
+Applied, thanks.
 
-Sorry to ask for this on a v5, but I don't recall seeing an earlier 
-version recently.
+Rob
