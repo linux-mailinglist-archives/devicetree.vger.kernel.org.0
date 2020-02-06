@@ -2,123 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F8515470F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 16:07:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA3F15472D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 16:10:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727599AbgBFPHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 10:07:00 -0500
-Received: from mail-pf1-f179.google.com ([209.85.210.179]:41291 "EHLO
-        mail-pf1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727309AbgBFPHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 10:07:00 -0500
-Received: by mail-pf1-f179.google.com with SMTP id j9so3253718pfa.8;
-        Thu, 06 Feb 2020 07:07:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=G8bcinAwhlUKAuE74TFdnn/03DR7H2/LoI5cBt5NR84=;
-        b=sqz+EvUcpfmT6rf/EBl88O6Ils/FJVBwNArhARJV7LalyCl5HbAxm2ZsP0Qnit07l9
-         /rLBxD05vpp8K3bzE0hpMYt+SyECbwEq8ELSYMkL6IQIH2fpmit36gwiO3r2ex7wZYnL
-         DHxheh+mwtykjEITCAuaOqUskn9Ss+tav3dPc6R5+YITB3K7WHnPsdaLYFlZB0vJfmYe
-         6NW+7Hb2ZSnH6bgHuFXHi6p/o/c7anudMMvO1tVgWL1hnDeckvBzRkV4G3ndmI5XoMu6
-         DUcsn1a8AVC8N63bcvxPVKgGCpXQGcatVszjmQyftkf8JkcPgVwO9dAutXrSBV7u0PZ2
-         wRoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=G8bcinAwhlUKAuE74TFdnn/03DR7H2/LoI5cBt5NR84=;
-        b=hv5lUMc9knSYpaWKTaUsQ+b+DnX+EBxcGbqc6DYbxb6Bw1FN8gQYvkdocuQqTD/5el
-         5AFi0Bp1LAP5lug8FKihxp96hAMBhOHog3zrmM1EN+L9MHnQB/mZpF8DE0/QsxZipSm+
-         dynqnKbfgZdRZt1xAtY9eB5VfVGxFCV3h2cwCAvm3WmPoWwZziuLP7mjmzmnzeU5VtUa
-         UacyhOsJpcY6e5zOlsiUJgG/IFNoe0id1KciMJvnA9QVwR9PHRTqcdjj3NWcJ5OqzsYE
-         qvr7OULF33YkGYPgGkmS/ZFg84eYkH7SmI6eziX4G7oGjakCiLciqDTKk95e5/SxUW1i
-         QPpw==
-X-Gm-Message-State: APjAAAWQIkhlwG62fbjAXSo6Y5OhpRew6uS86sSmo2H9MfsUhuCFMH8Q
-        LAGXf7B539rNSUItBPm3tunSLEeC3JI=
-X-Google-Smtp-Source: APXvYqwamc8plCqTbprXCkhunsgWbC5c2htmzmXJcs4Y2ZztW1yziXirU+hE91UkVfIygEy4UV/NzA==
-X-Received: by 2002:a63:3154:: with SMTP id x81mr4200126pgx.32.1581001619559;
-        Thu, 06 Feb 2020 07:06:59 -0800 (PST)
-Received: from localhost.localdomain ([2001:19f0:7001:2668:5400:1ff:fe62:2bbd])
-        by smtp.gmail.com with ESMTPSA id 64sm3748157pfd.48.2020.02.06.07.06.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Feb 2020 07:06:59 -0800 (PST)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-spi@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Chuanhong Guo <gch981213@gmail.com>
-Subject: [PATCH v2 2/2] dt-binding: spi: add bindings for spi-ar934x
-Date:   Thu,  6 Feb 2020 23:06:26 +0800
-Message-Id: <20200206150626.708649-3-gch981213@gmail.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200206150626.708649-1-gch981213@gmail.com>
-References: <20200206150626.708649-1-gch981213@gmail.com>
+        id S1727727AbgBFPKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 10:10:37 -0500
+Received: from smtp.gentoo.org ([140.211.166.183]:55950 "EHLO smtp.gentoo.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727723AbgBFPKg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Feb 2020 10:10:36 -0500
+Received: from alexis.zapto.org (85-171-52-99.rev.numericable.fr [85.171.52.99])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: aballier)
+        by smtp.gentoo.org (Postfix) with ESMTPSA id F291C34E821;
+        Thu,  6 Feb 2020 15:10:33 +0000 (UTC)
+From:   Alexis Ballier <aballier@gentoo.org>
+Cc:     Alexis Ballier <aballier@gentoo.org>, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: rockchip: rk3399-orangepi: Add ethernet phy.
+Date:   Thu,  6 Feb 2020 16:10:24 +0100
+Message-Id: <20200206151025.3813-1-aballier@gentoo.org>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for SPI controller in Qualcomm Atheros
-AR934x/QCA95xx SoCs.
+Enables INTB.
+The wiring is the same as the nanopi4, so this is heavily based on:
+- [1a4e6203f0c] arm64: dts: rockchip: Add nanopi4 ethernet phy
+- [bc43cee88aa] arm64: dts: rockchip: Update nanopi4 phy reset properties
+by Robin Murphy.
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+Signed-off-by: Alexis Ballier <aballier@gentoo.org>
+Cc: devicetree@vger.kernel.org
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Robin Murphy <robin.murphy@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
 ---
-Changes since v1: none
- .../bindings/spi/qca,ar934x-spi.yaml          | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/spi/qca,ar934x-spi.yaml
+ .../boot/dts/rockchip/rk3399-orangepi.dts     | 31 ++++++++++++++++---
+ 1 file changed, 27 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/qca,ar934x-spi.yaml b/Documentation/devicetree/bindings/spi/qca,ar934x-spi.yaml
-new file mode 100644
-index 000000000000..8f0c520a571c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/qca,ar934x-spi.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/qca,ar934x-spi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+index 9c659f3115c8..1767015e684c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+@@ -202,14 +202,27 @@ &gmac {
+ 	clock_in_out = "input";
+ 	phy-supply = <&vcc3v3_s3>;
+ 	phy-mode = "rgmii";
++	phy-handle = <&rtl8211e>;
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&rgmii_pins>;
+-	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+-	snps,reset-active-low;
+-	snps,reset-delays-us = <0 10000 50000>;
++	pinctrl-0 = <&rgmii_pins>, <&phy_intb>, <&phy_rstb>;
+ 	tx_delay = <0x28>;
+ 	rx_delay = <0x11>;
+ 	status = "okay";
 +
-+title: Qualcomm Atheros AR934x/QCA95xx SoC SPI controller
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+maintainers:
-+  - Chuanhong Guo <gch981213@gmail.com>
++		rtl8211e: phy@1 {
++			reg = <1>;
++			interrupt-parent = <&gpio3>;
++			interrupts = <RK_PB2 IRQ_TYPE_LEVEL_LOW>;
++			reset-assert-us = <10000>;
++			reset-deassert-us = <30000>;
++			reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++		};
++	};
+ };
+ 
+ &gpu {
+@@ -537,6 +550,16 @@ pwr_btn: pwr-btn {
+ 		};
+ 	};
+ 
++	phy {
++		phy_intb: phy-intb {
++			rockchip,pins = <3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
 +
-+allOf:
-+  - $ref: spi-controller.yaml#
++		phy_rstb: phy-rstb {
++			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
 +
-+properties:
-+  compatible:
-+    const: qca,ar934x-spi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+examples:
-+  - |
-+    spi: spi@1f000000 {
-+        compatible = "qca,ar934x-spi";
-+        reg = <0x1f000000 0x1c>;
-+        clocks = <&pll ATH79_CLK_AHB>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
+ 	pmic {
+ 		pmic_int_l: pmic-int-l {
+ 			rockchip,pins =
 -- 
-2.24.1
+2.25.0
 
