@@ -2,102 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C15B915431D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 12:32:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D4B315432C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 12:33:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727456AbgBFLcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 06:32:02 -0500
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57854 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726687AbgBFLcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 06:32:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=hrTSSwMgoFoMei/rf3tc5ugittY+LPAKG0LZTWUMR7g=; b=pd56uw8NC6/BFBMhBtaEJvydQ
-        5Bio+S9nX8+kpyRLN2wNDHgl7u3HPW+9R/5Jf1cdAg6BJbvBpniTX+ea9eBx6+GZ3/Gk3MlDYkGmL
-        D7HODD27TVSW6Hdt/3L3KkAq9zv/XW78yNcwqzlQubh/K3Xj+n/UgKQAKZOs2rq8knJWQ=;
-Received: from fw-tnat-cam3.arm.com ([217.140.106.51] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1izfO2-0001Um-CW; Thu, 06 Feb 2020 11:31:58 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 138DDD01D7F; Thu,  6 Feb 2020 11:31:58 +0000 (GMT)
-Date:   Thu, 6 Feb 2020 11:31:58 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Chuanhong Guo <gch981213@gmail.com>
-Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1727456AbgBFLdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 06:33:41 -0500
+Received: from Galois.linutronix.de ([193.142.43.55]:37583 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727390AbgBFLdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 06:33:41 -0500
+Received: from [5.158.153.53] (helo=adam.lab.linutronix.de)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA1:256)
+        (Exim 4.80)
+        (envelope-from <bage@linutronix.de>)
+        id 1izfPe-0001yw-MJ; Thu, 06 Feb 2020 12:33:38 +0100
+From:   bage@linutronix.de
+To:     devicetree@vger.kernel.org
+Cc:     Bastian Germann <bage@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH resend 1/2] spi: add driver for ar934x spi controller
-Message-ID: <20200206113158.GK3897@sirena.org.uk>
-References: <20200206084443.209719-1-gch981213@gmail.com>
- <20200206084443.209719-2-gch981213@gmail.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH 0/5] dts: Add Linutronix Testbox
+Date:   Thu,  6 Feb 2020 12:33:22 +0100
+Message-Id: <20200206113328.7296-1-bage@linutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZuCi2HMIMuKavysU"
-Content-Disposition: inline
-In-Reply-To: <20200206084443.209719-2-gch981213@gmail.com>
-X-Cookie: Programming is an unnatural act.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-Linutronix-Spam-Score: -1.0
+X-Linutronix-Spam-Level: -
+X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Bastian Germann <bage@linutronix.de>
 
---ZuCi2HMIMuKavysU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The Testbox board is an open hardware enhancement for the Lamobo R1 router
+board.  The Testbox board is used in the CI-RT project to manage devices
+under test (https://ci-rt.linutronix.de).
 
-On Thu, Feb 06, 2020 at 04:44:42PM +0800, Chuanhong Guo wrote:
+This series adds the device tree for that board and the nececessary
+bindings.
 
-This looks good, just a couple of comments below:
+Bastian Germann (5):
+  dt-bindings: Add vendor prefix lx for Linutronix
+  dt-bindings: arm: sunxi: Add Linutronix Testbox
+  ARM: dts: sun7i: lamobo-r1: Use SPDX identifier
+  ARM: dts: sun7i: lamobo-r1: Split out commons
+  ARM: dts: sun7i: Add Linutronix Testbox v2 board
 
-> --- /dev/null
-> +++ b/drivers/spi/spi-ar934x.c
-> @@ -0,0 +1,230 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * SPI controller driver for Qualcomm Atheros AR934x/QCA95xx SoCs
+ .../devicetree/bindings/arm/sunxi.yaml        |   6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/sun7i-a20-lamobo-r1-common.dtsi  | 271 ++++++++++++++++
+ arch/arm/boot/dts/sun7i-a20-lamobo-r1.dts     | 303 +-----------------
+ arch/arm/boot/dts/sun7i-a20-lx-testbox-v2.dts |  65 ++++
+ 6 files changed, 347 insertions(+), 301 deletions(-)
+ create mode 100644 arch/arm/boot/dts/sun7i-a20-lamobo-r1-common.dtsi
+ create mode 100644 arch/arm/boot/dts/sun7i-a20-lx-testbox-v2.dts
 
-Please make the entire comment block a C++ one so things look
-more intentional.
+-- 
+2.20.1
 
-> +static int ar934x_spi_transfer_one(struct spi_controller *master,
-> +				   struct spi_message *m)
-> +{
-> +	struct ar934x_spi *sp = spi_controller_get_devdata(master);
-> +	struct spi_transfer *t = NULL;
-
-...
-
-> +
-> +	m->actual_length = 0;
-> +	list_for_each_entry(t, &m->transfers, transfer_list) {
-
-It looks like this could just be a transfer_one() operation
-instead of transfer_one_message() (which is what this is in spite
-of the name)?  There's nothing custom outside this loop that I
-can see.
-
---ZuCi2HMIMuKavysU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl47+S0ACgkQJNaLcl1U
-h9A2fQf/ZhyF5Pv32BHd7AWFpCiVV/G4v29FwEuOkbTrG3BmW2HxkCyTST0d68BN
-8n/GcOWe+yTfE9lJdSUo1yWNsqX2vT0ELdqTZOsu2Jwor6fKUVbHEqmS7hxIBdyM
-LtvvOQZQtCr1j4pIeW0iHEfpdhtsZOuZB9BeHG2BwDBnmfeWDWMyQ3JH9yY1YAry
-Iuza2QcHqVU+1Y6beD5OCv0YAtUqNuqmKRYBpFFCbmh88/469Fg2lMwCThrtLq17
-XvmVQm2nA36vLtBsix4ioL4WJTw+KMne9/G8U6tRaWh3AUwdnZM5N4XezHagYWx/
-0oAHkWZVNxNokjlNLImALrBWyfphfQ==
-=9gDh
------END PGP SIGNATURE-----
-
---ZuCi2HMIMuKavysU--
