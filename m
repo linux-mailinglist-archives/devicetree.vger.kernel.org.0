@@ -2,29 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60888154329
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 12:33:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F138615432E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 12:33:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727060AbgBFLdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 06:33:42 -0500
-Received: from Galois.linutronix.de ([193.142.43.55]:37589 "EHLO
+        id S1727527AbgBFLdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 06:33:46 -0500
+Received: from Galois.linutronix.de ([193.142.43.55]:37605 "EHLO
         Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727440AbgBFLdl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 06:33:41 -0500
+        with ESMTP id S1727390AbgBFLdq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 06:33:46 -0500
 Received: from [5.158.153.53] (helo=adam.lab.linutronix.de)
         by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA1:256)
         (Exim 4.80)
         (envelope-from <bage@linutronix.de>)
-        id 1izfPf-0001yw-KZ; Thu, 06 Feb 2020 12:33:39 +0100
+        id 1izfPg-0001yw-3i; Thu, 06 Feb 2020 12:33:40 +0100
 From:   bage@linutronix.de
 To:     devicetree@vger.kernel.org
 Cc:     Bastian Germann <bage@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH 2/5] dt-bindings: arm: sunxi: Add Linutronix Testbox
-Date:   Thu,  6 Feb 2020 12:33:24 +0100
-Message-Id: <20200206113328.7296-3-bage@linutronix.de>
+        Maxime Ripard <mripard@kernel.org>,
+        Benedikt Spranger <b.spranger@linutronix.de>,
+        Jelle de Jong <jelledejong@powercraft.nl>,
+        linux-spdx@vger.kernel.org
+Subject: [PATCH 3/5] ARM: dts: sun7i: lamobo-r1: Use SPDX identifier
+Date:   Thu,  6 Feb 2020 12:33:25 +0100
+Message-Id: <20200206113328.7296-4-bage@linutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200206113328.7296-1-bage@linutronix.de>
 References: <20200206113328.7296-1-bage@linutronix.de>
@@ -40,30 +43,70 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bastian Germann <bage@linutronix.de>
 
-Add device tree bindings for the newly added Linutronix Testbox board.
+Adopt the SPDX license identifier.
 
+The 2nd license text is specified by SPDX as MIT.  So the identifier has
+to be (GPL-2.0-or-later OR MIT).  SPDX's X11 has an additional advertising
+clause.
+
+Co-developed-by: Benedikt Spranger <b.spranger@linutronix.de>
+Signed-off-by: Benedikt Spranger <b.spranger@linutronix.de>
 Signed-off-by: Bastian Germann <bage@linutronix.de>
+Cc: Jelle de Jong <jelledejong@powercraft.nl>
+Cc: linux-spdx@vger.kernel.org
 ---
- Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/sun7i-a20-lamobo-r1.dts | 39 +----------------------
+ 1 file changed, 1 insertion(+), 38 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index cffe8bb0bad1..5ee10e3f84c8 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -384,6 +384,12 @@ properties:
-           - const: linksprite,pcduino3-nano
-           - const: allwinner,sun7i-a20
+diff --git a/arch/arm/boot/dts/sun7i-a20-lamobo-r1.dts b/arch/arm/boot/dts/sun7i-a20-lamobo-r1.dts
+index 17fa8901fc00..37cbd78ea07c 100644
+--- a/arch/arm/boot/dts/sun7i-a20-lamobo-r1.dts
++++ b/arch/arm/boot/dts/sun7i-a20-lamobo-r1.dts
+@@ -1,43 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
+ /*
+  * Copyright 2015 Jelle de Jong <jelledejong@powercraft.nl>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
  
-+      - description: Linutronix Testbox v2
-+        items:
-+          - const: lx,testbox-v2
-+          - const: lamobo,lamobo-r1
-+          - const: allwinner,sun7i-a20
-+
-       - description: HAOYU Electronics Marsboard A10
-         items:
-           - const: haoyu,a10-marsboard
+ /dts-v1/;
 -- 
 2.20.1
 
