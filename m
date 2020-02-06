@@ -2,91 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6380E1545E3
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 15:15:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC79154624
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 15:29:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727511AbgBFOPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 09:15:48 -0500
-Received: from foss.arm.com ([217.140.110.172]:59140 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727481AbgBFOPs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Feb 2020 09:15:48 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CA60E30E;
-        Thu,  6 Feb 2020 06:15:47 -0800 (PST)
-Received: from [10.37.12.48] (unknown [10.37.12.48])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9B1CF3F52E;
-        Thu,  6 Feb 2020 06:15:44 -0800 (PST)
-Subject: Re: [PATCH 3/3] ARM: exynos_defconfig: Enable Energy Model framework
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     kgene@kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
-        Chanwoo Choi <cw00.choi@samsung.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com,
-        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
-        <b.zolnierkie@samsung.com>, dietmar.eggemann@arm.com
-References: <20200127215453.15144-1-lukasz.luba@arm.com>
- <20200127215453.15144-4-lukasz.luba@arm.com>
- <CAJKOXPeA=_3zPx6Aq3CAUi7JsXr9AigWGWCTNWo_jkm=oVWe_g@mail.gmail.com>
- <db3f2554-288d-81ab-2373-1447367ba673@arm.com>
- <20200131204118.GA27284@kozik-lap>
- <c54e252d-dc55-5fa3-f97f-643d7efbfdc1@arm.com>
- <CAJKOXPfTjdtNMx=+dPVcQ53RiXx0y-r=KXBRhzA4jS77SHxciQ@mail.gmail.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <f304f978-be07-7944-e47e-e5eaac9cb907@arm.com>
-Date:   Thu, 6 Feb 2020 14:15:42 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727825AbgBFO3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 09:29:18 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:14371 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726765AbgBFO3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 09:29:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1580999352;
+        s=strato-dkim-0002; d=xenosoft.de;
+        h=In-Reply-To:Date:Message-ID:From:References:Cc:To:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=m8YS/QWbAuZBVFtsr7hO2HWlKHxq+32ds22S6vZN0aA=;
+        b=MMJWRxMh6w08cNpQE/KwR0w8XR3oHhN/B90wsVFBhEP+nBNStmZLfGJzu0UhhN7Ge0
+        iAsAm6H9+z7MTHFVjFckOHyaWfBVhHDckrGGTr36z3M5qtjz7DMicTcAcaEOCwW9lrDi
+        qNObG1hnJCTryl00I90pbnbBUj5o++X/w5QnMAsvQuCMcmZnfE2Lvhu1q44hMazQDuPM
+        pYoPWne6GS33PNOoTVHU36MoVuqo+14s9ce+wH8qhslqSjFGyl3vJbaWWQB3oJY/fZyW
+        OFBgGY3QnTxT+fmmgHZQ7OEPg7G4xSyDNThhDssyxAqJSplQyStWdCoRw6DM/ekboBrx
+        Y64g==
+X-RZG-AUTH: ":L2QefEenb+UdBJSdRCXu93KJ1bmSGnhMdmOod1DhGM4l4Hio94KKxRySfLxnHfJ+Dkjp5DdBJSrwuuqxvPhaLukTGHvIso26evMpB0Xs05Kjiw=="
+X-RZG-CLASS-ID: mo00
+Received: from [IPv6:2a02:8109:89c0:ebfc:9861:356d:d6ca:1eb6]
+        by smtp.strato.de (RZmta 46.1.12 AUTH)
+        with ESMTPSA id 40bcf3w16ESKZZ7
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Thu, 6 Feb 2020 15:28:20 +0100 (CET)
+Subject: Re: Latest Git kernel: avahi-daemon[2410]: ioctl(): Inappropriate
+ ioctl for device
+To:     Michael Ellerman <mpe@ellerman.id.au>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Christophe Leroy <christophe.leroy@c-s.fr>,
+        DTML <devicetree@vger.kernel.org>,
+        Darren Stevens <darren@stevens-zone.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@ozlabs.org, "contact@a-eon.com" <contact@a-eon.com>,
+        "R.T.Dickinson" <rtd2@xtra.co.nz>, Christoph Hellwig <hch@lst.de>,
+        mad skateman <madskateman@gmail.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+References: <20200203095325.24c3ab1c@cakuba.hsd1.ca.comcast.net>
+ <C11859E1-BE71-494F-81E2-9B27E27E60EE@xenosoft.de>
+ <87tv441gg1.fsf@mpe.ellerman.id.au>
+From:   Christian Zigotzky <chzigotzky@xenosoft.de>
+Message-ID: <f438e4ed-7746-1d80-6d72-455281884a1e@xenosoft.de>
+Date:   Thu, 6 Feb 2020 15:28:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPfTjdtNMx=+dPVcQ53RiXx0y-r=KXBRhzA4jS77SHxciQ@mail.gmail.com>
+In-Reply-To: <87tv441gg1.fsf@mpe.ellerman.id.au>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Language: de-DE
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 06 February 2020 at 05:35 am, Michael Ellerman wrote:
+> Christian Zigotzky <chzigotzky@xenosoft.de> writes:
+>> Kernel 5.5 PowerPC is also affected.
+> I don't know what you mean by that. What sha are you talking about?
+>
+> I have a system with avahi running and everything's fine.
+>
+>    # grep use- /etc/avahi/avahi-daemon.conf
+>    use-ipv4=yes
+>    use-ipv6=yes
+>    
+>    # systemctl status -l --no-pager avahi-daemon
+>    ● avahi-daemon.service - Avahi mDNS/DNS-SD Stack
+>       Loaded: loaded (/lib/systemd/system/avahi-daemon.service; enabled; vendor preset: enabled)
+>       Active: active (running) since Thu 2020-02-06 14:55:34 AEDT; 38min ago
+>     Main PID: 1884 (avahi-daemon)
+>       Status: "avahi-daemon 0.7 starting up."
+>       CGroup: /system.slice/avahi-daemon.service
+>               ├─1884 avahi-daemon: running [mpe-ubuntu-le.local]
+>               └─1888 avahi-daemon: chroot helper
+>    
+>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address record for fe80::5054:ff:fe66:2a19 on eth0.*.
+>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address record for 10.61.141.81 on eth0.IPv4.
+>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address record for ::1 on lo.*.
+>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address record for 127.0.0.1 on lo.IPv4.
+>    Feb 06 14:55:34 mpe-ubuntu-le systemd[1]: Started Avahi mDNS/DNS-SD Stack.
+>    Feb 06 14:55:35 mpe-ubuntu-le avahi-daemon[1884]: Server startup complete. Host name is mpe-ubuntu-le.local. Local service cookie is 3972418141.
+>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Leaving mDNS multicast group on interface eth0.IPv6 with address fe80::5054:ff:fe66:2a19.
+>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Joining mDNS multicast group on interface eth0.IPv6 with address fd69:d75f:b8b5:61:5054:ff:fe66:2a19.
+>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Registering new address record for fd69:d75f:b8b5:61:5054:ff:fe66:2a19 on eth0.*.
+>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Withdrawing address record for fe80::5054:ff:fe66:2a19 on eth0.
+>    
+>    # uname -r
+>    5.5.0-gcc-8.2.0
+>
+>
+> The key question is what ioctl is it complaining about. You should be
+> able to find that via strace.
+>
+> cheers
+>
+Hello Michael,
 
+Sorry it isn't true that the kernel 5.5 is also affected. A Power Mac G5 
+user told me that but this isn't correct. I compiled and tested the 
+stable kernel 5.5.1 and 5.5.2 today and both kernels don't have the 
+issue with the avahi daemon.
+Could you please also test the latest Git kernel?
 
-On 2/6/20 12:59 PM, Krzysztof Kozlowski wrote:
-> On Wed, 5 Feb 2020 at 13:49, Lukasz Luba <lukasz.luba@arm.com> wrote:
->>>> As mentioned in response to patch 1/3. The fist patch would create MC
->>>> domain, something different than Energy Model or EAS. The decisions in
->>>> the scheduler would be different.
->>>>
->>>> I can merge 1/3 and 3/3 if you like, though.
->>>
->>> I understand now that their independent. Still, they are part of one
->>> goal to tune the scheduler for Exynos platform. Splitting these looks
->>> too much, like enabling multiple drivers one after another.
->>>
->>> However if you provide numbers for each of cases (before patches, multi
->>> core scheduler, energy model with DTS), then I see benefit of splitting
->>> it.  Each commit would have its own rationale.  I am not sure if it is
->>> worth such investigation - that's just defconfig... distros might ignore
->>> it anyway.
->>
->> Good point, and I agree that it would require more investigation, for
->> which unfortunately I don't have currently spare cycles.
->>
->> Should I merge patch 1/3 and 3/3 and send the v2 with a cover letter
->> which would have the test results?
-> 
-> Yes, let's do this way.
+strace /usr/sbin/avahi-daemon
 
-Thank you, I will send the v2 then.
+...
+poll([{fd=4, events=POLLIN}, {fd=16, events=POLLIN}, {fd=15, 
+events=POLLIN}, {fd=14, events=POLLIN}, {fd=13, events=POLLIN}, {fd=12, 
+events=POLLIN}, {fd=11, events=POLLIN}, {fd=10, events=POLLIN}, {fd=9, 
+events=POLLIN}, {fd=8, events=POLLIN}, {fd=6, events=POLLIN}], 11, 65) = 
+2 ([{fd=12, revents=POLLIN}, {fd=9, revents=POLLIN}])
+ioctl(12, FIONREAD, 0xffba6f24)         = -1 ENOTTY (Inappropriate ioctl 
+for device)
+write(2, "ioctl(): Inappropriate ioctl for"..., 39ioctl(): Inappropriate 
+ioctl for device) = 39
+write(2, "\n", 1
+)                       = 1
+...
 
-Regards,
-Lukasz
-
-> 
-> Thanks for working on this!
-> 
-> Best regards,
-> Krzysztof
-> 
+Thanks,
+Christian
