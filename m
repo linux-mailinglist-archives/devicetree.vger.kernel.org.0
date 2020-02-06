@@ -2,152 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7CD715432B
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 12:33:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0966B154343
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 12:40:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727516AbgBFLdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 06:33:43 -0500
-Received: from Galois.linutronix.de ([193.142.43.55]:37600 "EHLO
-        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727440AbgBFLdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 06:33:43 -0500
-Received: from [5.158.153.53] (helo=adam.lab.linutronix.de)
-        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA1:256)
-        (Exim 4.80)
-        (envelope-from <bage@linutronix.de>)
-        id 1izfPg-0001yw-VP; Thu, 06 Feb 2020 12:33:41 +0100
-From:   bage@linutronix.de
-To:     devicetree@vger.kernel.org
-Cc:     Bastian Germann <bage@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benedikt Spranger <b.spranger@linutronix.de>
-Subject: [PATCH 5/5] ARM: dts: sun7i: Add Linutronix Testbox v2 board
-Date:   Thu,  6 Feb 2020 12:33:27 +0100
-Message-Id: <20200206113328.7296-6-bage@linutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200206113328.7296-1-bage@linutronix.de>
-References: <20200206113328.7296-1-bage@linutronix.de>
+        id S1727555AbgBFLki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 06:40:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34604 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726687AbgBFLki (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 6 Feb 2020 06:40:38 -0500
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F1660214AF;
+        Thu,  6 Feb 2020 11:40:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1580989237;
+        bh=A3b9tUzaOsGv1NT9DORNJCp04+OBPFpX1hxspkG6mMs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=YVrxdhhiv3fiSit4eVNEijuXpbQ2beULya0+7piOcX6KneZm6LciBbp4C7o+qfDiv
+         6+nS8MhVQc4nkzd8jh8dFgXURqdRVMxYuBk2mwXn8kCIDzM8nAOqPXWWNi1S+JgjsM
+         wP4PrHfoLIiUfR9/2yUubZ6+F54E+36fsUxvOb+I=
+Date:   Thu, 6 Feb 2020 11:40:31 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, joel@jms.id.au, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v2 2/2] iio: adc: modify NPCM reset support
+Message-ID: <20200206114031.0f31538b@archlinux>
+In-Reply-To: <20200203150917.176391-2-tmaimon77@gmail.com>
+References: <20200203150917.176391-1-tmaimon77@gmail.com>
+        <20200203150917.176391-2-tmaimon77@gmail.com>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Linutronix-Spam-Score: -1.0
-X-Linutronix-Spam-Level: -
-X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bastian Germann <bage@linutronix.de>
+On Mon,  3 Feb 2020 17:09:17 +0200
+Tomer Maimon <tmaimon77@gmail.com> wrote:
 
-The Testbox board is an open hardware enhancement for the Lamobo R1 router
-board.  The Testbox board is used in the CI-RT project to manage devices
-under test (https://ci-rt.linutronix.de).
+> Modify NPCM ADC reset support from
+> direct register access to reset controller support.
+> 
+> please make sure to modify NPCM adc device tree
+> parameters as described at nuvoton,npcm-adc.txt
+> document for using this change.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 
-The hardware project is located at https://github.com/ci-rt/testbox-shield
+Applied.  I added a note for anyone browsing the tree in future
+to say that we know this is a breaking change, but in this case
+close ecosystem etc so it's fine..
 
-The Testbox v2 expands the Lamobo R1 router board with
-- a power supply,
-- a CAN bus PHY,
-- a power control,
-- a relay,
-- a I2C EEPROM,
-- a secure key storage (ATECC608a) and
-- two RS232 compliant serial ports.
+I don't want others to point at your patch when I tell them no
+for similar changes in more generic parts!
 
-Co-developed-by: Benedikt Spranger <b.spranger@linutronix.de>
-Signed-off-by: Benedikt Spranger <b.spranger@linutronix.de>
-Signed-off-by: Bastian Germann <bage@linutronix.de>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- arch/arm/boot/dts/sun7i-a20-lx-testbox-v2.dts | 65 +++++++++++++++++++
- 2 files changed, 66 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun7i-a20-lx-testbox-v2.dts
+Thanks,
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 08011dc8c7a6..383541842695 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1069,6 +1069,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
- 	sun7i-a20-i12-tvbox.dtb \
- 	sun7i-a20-icnova-swac.dtb \
- 	sun7i-a20-lamobo-r1.dtb \
-+	sun7i-a20-lx-testbox-v2.dtb \
- 	sun7i-a20-m3.dtb \
- 	sun7i-a20-mk808c.dtb \
- 	sun7i-a20-olimex-som-evb.dtb \
-diff --git a/arch/arm/boot/dts/sun7i-a20-lx-testbox-v2.dts b/arch/arm/boot/dts/sun7i-a20-lx-testbox-v2.dts
-new file mode 100644
-index 000000000000..3b91fb026a92
---- /dev/null
-+++ b/arch/arm/boot/dts/sun7i-a20-lx-testbox-v2.dts
-@@ -0,0 +1,65 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright 2020 Linutronix GmbH
-+ * Author: Benedikt Spranger <b.spranger@linutronix.de>
-+ */
-+
-+/dts-v1/;
-+#include "sun7i-a20-lamobo-r1-common.dtsi"
-+
-+/ {
-+	model = "Lamobo R1";
-+	compatible = "lx,testbox-v2", "lamobo,lamobo-r1", "allwinner,sun7i-a20";
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&led_pins_lamobo_r1>;
-+
-+		led-green {
-+			label = "lamobo_r1:green:usr";
-+			gpios = <&pio 7 24 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-opto1 {
-+			label = "lamobo_r1:opto:powerswitch";
-+			gpios = <&pio 7 3 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-opto2 {
-+			label = "lamobo_r1:opto:relay";
-+			gpios = <&pio 7 5 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	eeprom: eeprom@50 {
-+		compatible = "atmel,24c08";
-+		reg = <0x50>;
-+		status = "okay";
-+	};
-+
-+	atecc508a@60 {
-+		compatible = "atmel,atecc508a";
-+		reg = <0x60>;
-+	};
-+};
-+
-+&pio {
-+	led_pins_lamobo_r1: led-pins {
-+		pins = "PH3", "PH5", "PH24";
-+		function = "gpio_out";
-+		drive-strength = <40>;
-+		bias-disable;
-+	};
-+};
-+
-+&can0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&can_ph_pins>;
-+	status = "okay";
-+};
--- 
-2.20.1
+Jonathan
+
+> ---
+>  drivers/iio/adc/npcm_adc.c | 30 +++++++++---------------------
+>  1 file changed, 9 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/npcm_adc.c b/drivers/iio/adc/npcm_adc.c
+> index a6170a37ebe8..83bad2d5575d 100644
+> --- a/drivers/iio/adc/npcm_adc.c
+> +++ b/drivers/iio/adc/npcm_adc.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/spinlock.h>
+>  #include <linux/uaccess.h>
+> +#include <linux/reset.h>
+>  
+>  struct npcm_adc {
+>  	bool int_status;
+> @@ -23,13 +24,9 @@ struct npcm_adc {
+>  	struct clk *adc_clk;
+>  	wait_queue_head_t wq;
+>  	struct regulator *vref;
+> -	struct regmap *rst_regmap;
+> +	struct reset_control *reset;
+>  };
+>  
+> -/* NPCM7xx reset module */
+> -#define NPCM7XX_IPSRST1_OFFSET		0x020
+> -#define NPCM7XX_IPSRST1_ADC_RST		BIT(27)
+> -
+>  /* ADC registers */
+>  #define NPCM_ADCCON	 0x00
+>  #define NPCM_ADCDATA	 0x04
+> @@ -106,13 +103,11 @@ static int npcm_adc_read(struct npcm_adc *info, int *val, u8 channel)
+>  					       msecs_to_jiffies(10));
+>  	if (ret == 0) {
+>  		regtemp = ioread32(info->regs + NPCM_ADCCON);
+> -		if ((regtemp & NPCM_ADCCON_ADC_CONV) && info->rst_regmap) {
+> +		if (regtemp & NPCM_ADCCON_ADC_CONV) {
+>  			/* if conversion failed - reset ADC module */
+> -			regmap_write(info->rst_regmap, NPCM7XX_IPSRST1_OFFSET,
+> -				     NPCM7XX_IPSRST1_ADC_RST);
+> +			reset_control_assert(info->reset);
+>  			msleep(100);
+> -			regmap_write(info->rst_regmap, NPCM7XX_IPSRST1_OFFSET,
+> -				     0x0);
+> +			reset_control_deassert(info->reset);
+>  			msleep(100);
+>  
+>  			/* Enable ADC and start conversion module */
+> @@ -186,7 +181,6 @@ static int npcm_adc_probe(struct platform_device *pdev)
+>  	struct npcm_adc *info;
+>  	struct iio_dev *indio_dev;
+>  	struct device *dev = &pdev->dev;
+> -	struct device_node *np = pdev->dev.of_node;
+>  
+>  	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*info));
+>  	if (!indio_dev)
+> @@ -199,6 +193,10 @@ static int npcm_adc_probe(struct platform_device *pdev)
+>  	if (IS_ERR(info->regs))
+>  		return PTR_ERR(info->regs);
+>  
+> +	info->reset = devm_reset_control_get(&pdev->dev, NULL);
+> +	if (IS_ERR(info->reset))
+> +		return PTR_ERR(info->reset);
+> +
+>  	info->adc_clk = devm_clk_get(&pdev->dev, NULL);
+>  	if (IS_ERR(info->adc_clk)) {
+>  		dev_warn(&pdev->dev, "ADC clock failed: can't read clk\n");
+> @@ -211,16 +209,6 @@ static int npcm_adc_probe(struct platform_device *pdev)
+>  	div = div >> NPCM_ADCCON_DIV_SHIFT;
+>  	info->adc_sample_hz = clk_get_rate(info->adc_clk) / ((div + 1) * 2);
+>  
+> -	if (of_device_is_compatible(np, "nuvoton,npcm750-adc")) {
+> -		info->rst_regmap = syscon_regmap_lookup_by_compatible
+> -			("nuvoton,npcm750-rst");
+> -		if (IS_ERR(info->rst_regmap)) {
+> -			dev_err(&pdev->dev, "Failed to find nuvoton,npcm750-rst\n");
+> -			ret = PTR_ERR(info->rst_regmap);
+> -			goto err_disable_clk;
+> -		}
+> -	}
+> -
+>  	irq = platform_get_irq(pdev, 0);
+>  	if (irq <= 0) {
+>  		ret = -EINVAL;
 
