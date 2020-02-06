@@ -2,104 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39DBD154D68
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 21:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A52154D8E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 21:55:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728114AbgBFUqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 15:46:02 -0500
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:42186 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728096AbgBFUp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 15:45:57 -0500
-Received: by mail-pg1-f195.google.com with SMTP id w21so3340533pgl.9;
-        Thu, 06 Feb 2020 12:45:57 -0800 (PST)
+        id S1727698AbgBFUzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 15:55:13 -0500
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:37310 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727526AbgBFUzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 15:55:13 -0500
+Received: by mail-pl1-f194.google.com with SMTP id c23so49911plz.4;
+        Thu, 06 Feb 2020 12:55:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TDSSUXzp+jY2mafKrqhbmPqt3x8XToH1UVPF0nShXrw=;
-        b=UuvbW5AxB50syt66YGG0LQZddxQqanSBCtgSiAHBmGkAI5bcaxo7KjeTTId976R7rQ
-         +ZpTCBN8h8aHEkmd2eEHNXfn0sDitDTlUbETD7as6pBBhJOnxOnHticK+jLU+/hqHbJ+
-         wOIGsnPNA98HUDhTd7FfaT/Qd8+SQBtEChgyHv82ZV1ooeHPFkLX+w4VRfq4JhcMjFdC
-         JcKuZ2H2cdzBj4yB/Kj4o/Fd50CGD9mhscGQyuRmsi57hHmz0lXU0lJ9fUkVnqjGn60z
-         sPsPi18eVR+IiPGkjPE4ACXn9+cfuoY/bZwbEeeL0otABiX7V9VCNVZj09hOwwyoOirj
-         3liQ==
-X-Gm-Message-State: APjAAAU9lqQhycR+fKj5WhcpZ4TAKTn/q9YxdG7PLqgiqWGctlUEKZbP
-        Fo+LOLWd/Iuxwqgktm5gmQ==
-X-Google-Smtp-Source: APXvYqyKjJUU76EY2SMDKH/N4kc6OvY/ZOAHowg2c6/pV5A8+7AkkIOuBxeq4e48NlDl4hjXDTlmrA==
-X-Received: by 2002:a63:ed14:: with SMTP id d20mr5610058pgi.267.1581021956822;
-        Thu, 06 Feb 2020 12:45:56 -0800 (PST)
+        bh=OuAJn7WSGOIJnnpXDg8F5nxy89HqURtzW0F35vLyP6A=;
+        b=FzWp6iBriEPNqRB5Iitby5FzCV3Ku0KzsKMIQ/GEllF+sgTn351+cqyRP0D4gS/xo9
+         Wa1R1H8B9E49euVqnHGruK6dyYouy/8LbpYW+PFunZ4q1yfrulno9BR6jWgCJuiigWdi
+         pAk0+ImGZ+SfMaGgr0MrweMfgM5TuBYnUIWHDJ80pr2ngh11nFyfnJEjqZwVASjfNYRs
+         qd2Co0e0eE+Ec4ynHZm0YVFCYzVItwrU/9wtRaX6m1SZR1m7IB/VgjKLOGgLs/xPmUkq
+         2jtgo4+XFIxLcr9S68I56bnnJ9QbIun5z7aF9LyOqdW1GGoK8USCSW5SG3g7geJ3F2YD
+         1CKg==
+X-Gm-Message-State: APjAAAVHwTYGCb1a6wr5mp0ImSjFqXXJ3hCgZQKKdbLjNrMDT1iCY+qS
+        SRr/ovPyCBx1udbte+Fz/A==
+X-Google-Smtp-Source: APXvYqwzww5ASCKOY9x4mLqTAZ3M1++KPHZ1rFjTTY7Y/4cZkAbzX+uP/eMMe0O5j9mSg67KwQHQbA==
+X-Received: by 2002:a17:902:b210:: with SMTP id t16mr5822035plr.65.1581022512276;
+        Thu, 06 Feb 2020 12:55:12 -0800 (PST)
 Received: from rob-hp-laptop (63-158-47-182.dia.static.qwest.net. [63.158.47.182])
-        by smtp.gmail.com with ESMTPSA id x12sm287256pfr.47.2020.02.06.12.45.54
+        by smtp.gmail.com with ESMTPSA id c74sm294768pfb.135.2020.02.06.12.55.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Feb 2020 12:45:56 -0800 (PST)
-Received: (nullmailer pid 13377 invoked by uid 1000);
-        Thu, 06 Feb 2020 19:24:37 -0000
-Date:   Thu, 6 Feb 2020 19:24:37 +0000
+        Thu, 06 Feb 2020 12:55:11 -0800 (PST)
+Received: (nullmailer pid 14236 invoked by uid 1000);
+        Thu, 06 Feb 2020 20:55:07 -0000
+Date:   Thu, 6 Feb 2020 13:55:07 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Sugaya Taichi <sugaya.taichi@socionext.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Arnd Bergmann <arnd@arndb.de>, Joel Stanley <joel@jms.id.au>,
-        Maxime Ripard <mripard@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        "james.tai" <james.tai@realtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 00/12] dt-bindings: arm: bcm: Convert boards to YAML
-Message-ID: <20200206192437.GB30325@bogus>
-References: <20200204235552.7466-1-f.fainelli@gmail.com>
+To:     Yuti Amonkar <yamonkar@cadence.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kishon@ti.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        maxime@cerno.tech, jsarha@ti.com, tomi.valkeinen@ti.com,
+        praneeth@ti.com, mparab@cadence.com, sjakhade@cadence.com,
+        yamonkar@cadence.com
+Subject: Re: [PATCH v4 02/13] dt-bindings: phy: Add Cadence MHDP PHY bindings
+ in YAML format.
+Message-ID: <20200206205507.GA13685@bogus>
+References: <1580969461-16981-1-git-send-email-yamonkar@cadence.com>
+ <1580969461-16981-3-git-send-email-yamonkar@cadence.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200204235552.7466-1-f.fainelli@gmail.com>
+In-Reply-To: <1580969461-16981-3-git-send-email-yamonkar@cadence.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 04, 2020 at 03:55:40PM -0800, Florian Fainelli wrote:
-> Hi Rob, Maxime,
+On Thu, 6 Feb 2020 07:10:50 +0100, Yuti Amonkar wrote:
+> - Add Cadence MHDP PHY bindings in YAML format.
+> - Add Torrent PHY reference clock bindings.
+> - Add sub-node bindings for each group of PHY lanes based on PHY type.
+>   Each sub-node includes properties such as master lane number, link reset,
+>   phy type, number of lanes etc.
+> - Add reset support including PHY reset and individual lane reset.
+> - Add a new compatible string used for TI SoCs using Torrent PHY.
+> This will not affect ABI as the driver has never been functional,
+> and therefore do not exist in any active use case.
 > 
-> This patch series converts most files under D/dt-bindings/arm/bcm/ with
-> the exception of bcm63138 and brcmstb to the YAML format. Those two may
-> be split accordingly later on since document not just the root node.
+> Signed-off-by: Yuti Amonkar <yamonkar@cadence.com>
+> ---
+>  .../bindings/phy/phy-cadence-torrent.yaml     | 143 ++++++++++++++++++
+>  1 file changed, 143 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
 > 
-> Changes in v2:
-> 
-> - fixed typo in Vulcan binding
-> - simplified how SoC compatible strings are specified
-> - fixed filename in bcm2835 firmware binding
-> - added 'secondary-boot-reg' constraint
-> 
-> 
-> Florian Fainelli (12):
->   dt-bindings: arm: bcm: Convert Cygnus to YAML
->   dt-bindings: arm: bcm: Convert Hurricane 2 to YAML
->   dt-bindings: arm: bcm: Convert Northstar Plus to YAML
->   dt-bindings: arm: bcm: Convert Northstar 2 to YAML
->   dt-bindings: arm: bcm: Convert Stingray to YAML
->   dt-bindings: arm: bcm: Convert BCM21664 to YAML
->   dt-bindings: arm: bcm: Convert BCM23550 to YAML
->   dt-bindings: arm: bcm: Convert BCM4708 to YAML
->   dt-bindings: arm: bcm: Convert BCM11351 to YAML
->   dt-bindings: arm: bcm: Convert Vulcan to YAML
->   dt-bindings: arm: Document Broadcom SoCs 'secondary-boot-reg'
 
-For all the above,
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
+Error: Documentation/devicetree/bindings/phy/phy-cadence-torrent.example.dts:33.42-43 syntax error
+FATAL ERROR: Unable to parse input tree
+scripts/Makefile.lib:300: recipe for target 'Documentation/devicetree/bindings/phy/phy-cadence-torrent.example.dt.yaml' failed
+make[1]: *** [Documentation/devicetree/bindings/phy/phy-cadence-torrent.example.dt.yaml] Error 1
+Makefile:1263: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
->   dt-bindings: arm: bcm: Convert BCM2835 firmware binding to YAML
-> 
+See https://patchwork.ozlabs.org/patch/1234141
+Please check and re-submit.
