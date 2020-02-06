@@ -2,152 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF55153DE5
-	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 05:35:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A76B153E87
+	for <lists+devicetree@lfdr.de>; Thu,  6 Feb 2020 07:12:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727762AbgBFEfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Feb 2020 23:35:19 -0500
-Received: from ozlabs.org ([203.11.71.1]:36391 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726687AbgBFEfT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 5 Feb 2020 23:35:19 -0500
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 48ClwM2XjNz9s29;
-        Thu,  6 Feb 2020 15:35:14 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
-        s=201909; t=1580963716;
-        bh=59zFNalJmp/WvnEScCF3ArwVDsj2RfvIy0ivPyUHgHA=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=Whkwu/LRfqatjhKrdPr0f6xAsscgI2GAcwnucCINarqZf1GbbRhy7k46Mc95LWSxm
-         qrw0UUlfp3K2Y5GLbLZ5L6O2QFWD7qzytCKVyZlR99x5BsGuSsWxCI9EU07mIe+fQb
-         bpSF1e9l2lrORXLJK8P2vkZRljA3gDojwjw/eKNOTAuvcg6gBadUo2Tj+HPeTgRAob
-         FvYXHJbaAlsaWTzMt2Bo8615d2IFgJ8jDochbh0K3L2rvqFAY6nExHRirdN9p2hfiK
-         s7nrhSFtwublQSzPKXjUpdIVC2rn+cSC8CoTDJ4i41+Ptpg2R3Em4zZ6IoRxHwp7bN
-         rB/awUKLetxHQ==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Christian Zigotzky <chzigotzky@xenosoft.de>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Christophe Leroy <christophe.leroy@c-s.fr>,
-        DTML <devicetree@vger.kernel.org>,
-        Darren Stevens <darren@stevens-zone.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@ozlabs.org, "contact\@a-eon.com" <contact@a-eon.com>,
-        "R.T.Dickinson" <rtd2@xtra.co.nz>, Christoph Hellwig <hch@lst.de>,
-        mad skateman <madskateman@gmail.com>,
-        "netdev\@vger.kernel.org" <netdev@vger.kernel.org>
-Subject: Re: Latest Git kernel: avahi-daemon[2410]: ioctl(): Inappropriate ioctl for device
-In-Reply-To: <C11859E1-BE71-494F-81E2-9B27E27E60EE@xenosoft.de>
-References: <20200203095325.24c3ab1c@cakuba.hsd1.ca.comcast.net> <C11859E1-BE71-494F-81E2-9B27E27E60EE@xenosoft.de>
-Date:   Thu, 06 Feb 2020 15:35:10 +1100
-Message-ID: <87tv441gg1.fsf@mpe.ellerman.id.au>
+        id S1726778AbgBFGLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 01:11:25 -0500
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:1184 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725809AbgBFGLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 01:11:24 -0500
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01669Ba2015932;
+        Wed, 5 Feb 2020 22:11:14 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=proofpoint;
+ bh=1L1lPHWngfNOZB7Ymix8XhOm1MlmRT1GZmmUptZM7LE=;
+ b=sw9yRna2wo2cj/KwEEBFIS3FLmmbUE5SXExtSFfA3DIxqph/VLGF+Yo7zYBWpjUdBFKv
+ FsC4HMOOh/dgXpfSwzGoMy69jtffgzrKeXEjES0IjUQ2KSQJAZttiz4JHeP7LtdKLsr1
+ Vv45IXPIxbi9CuofqkywzzUvMr7KLj8nhZDONGFmrNk+88MD9SfY7b7RKt2PNfLNyZZx
+ NT3F9vx3GN1QTBArxgbE/J8OKievHWkQps8Lnv2q26ThlleRbZ+mpjwk84ThrPOYzcLZ
+ jvjqRQ+rIzEJrqQE2XTGKlJdnEPPYgT9UvQpsy9I2uF47ClBv83NNvHBmJi6kTLHwhhF Sg== 
+Received: from nam04-bn3-obe.outbound.protection.outlook.com (mail-bn3nam04lp2051.outbound.protection.outlook.com [104.47.46.51])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 2xyhkunran-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 05 Feb 2020 22:11:14 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kFJdAhHYzwQNygPyPPVfUj5kSTa7EhHrYCuFQH6S1SzFnPR3EazgV8zQcNEdGvitU2fvgm+IW0oi43/kTa6P25uy86GE6Jhvkfs2fEriKKdnlUXAw2prDU/MV8097ii9mu9T3MP3ignmkQZCs91rytA7fQYF4fmQqcxhNdNMSIPZCixlS43cSJ9F6vhXsbZTSMip7n9DE2Trnc5MCIaaeOqucKE9obP2u/RpOGph5FmRpuQnJoTy9OBkrzcaazHYR0UveAW0seTZDoK0eABN90rLvK7xkawiUqNploHzguSaSSdfNPcLaZtYPHEpvbsTG4C+EtPxVgjEE/PkyUXGeg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1L1lPHWngfNOZB7Ymix8XhOm1MlmRT1GZmmUptZM7LE=;
+ b=X1fuN4by08ra6fSEbf6Fc2RCIG3sSKRlgF2emwUviIIUk1Q1pFKFuKdc4QXcWYqwgmAq/B+vAaBgYUi0aKz5EAq7bCRiUjyhbwneSIuXsDcWKBWKdKZKy8dbsvKaCmY1c49h8Gvzyhz63kWDSYlYht0wadNSe+Nzc4TgyZ3EzgYvr5S0YccTssnGZntQsA/R4JXOf8rvJ83HiSKK+WirK1A6gAX00IFi4uv05STbBg2DwTJGDfQ1bjM8XlQpIT6ImUd3wokuWzTFBHRp6D0P3bynhBQAGO3Ara99j2wlnYyqY9iXhgUlmNx3yfAAa35sbqpfbNmcWVk7LlUNVd6t7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 64.207.220.243) smtp.rcpttodomain=ti.com smtp.mailfrom=cadence.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=cadence.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1L1lPHWngfNOZB7Ymix8XhOm1MlmRT1GZmmUptZM7LE=;
+ b=tQ2XdMmxq1ZkGgL0qUubxw/ScZKqnCVPfvjNtxDXi32lsvN1lat8+OX/ytqPrRwg5JQsvqij8cMEtN6D1OeQ9imzVlwMFp/JQa9MbWAluc0fGOBzk73S3uMs2bnUahphhhlzxy+lHhXlBOadRkrRpOcbbLoBATn6bbIOS6c+LmY=
+Received: from CH2PR07CA0007.namprd07.prod.outlook.com (2603:10b6:610:20::20)
+ by MN2PR07MB6013.namprd07.prod.outlook.com (2603:10b6:208:ac::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.29; Thu, 6 Feb
+ 2020 06:11:12 +0000
+Received: from MW2NAM12FT023.eop-nam12.prod.protection.outlook.com
+ (2a01:111:f400:fe5a::205) by CH2PR07CA0007.outlook.office365.com
+ (2603:10b6:610:20::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
+ Transport; Thu, 6 Feb 2020 06:11:12 +0000
+Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
+ 64.207.220.243 as permitted sender) receiver=protection.outlook.com;
+ client-ip=64.207.220.243; helo=wcmailrelayl01.cadence.com;
+Received: from wcmailrelayl01.cadence.com (64.207.220.243) by
+ MW2NAM12FT023.mail.protection.outlook.com (10.13.180.90) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2729.10 via Frontend Transport; Thu, 6 Feb 2020 06:11:11 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by wcmailrelayl01.cadence.com (8.14.7/8.14.4) with ESMTP id 0166B5F2174490
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK);
+        Wed, 5 Feb 2020 22:11:10 -0800
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3; Thu, 6 Feb 2020 07:11:03 +0100
+Received: from vleu-orange.cadence.com (10.160.88.83) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3 via Frontend Transport; Thu, 6 Feb 2020 07:11:03 +0100
+Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
+        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 0166B2QJ017021;
+        Thu, 6 Feb 2020 07:11:02 +0100
+Received: (from yamonkar@localhost)
+        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 0166B18p017020;
+        Thu, 6 Feb 2020 07:11:01 +0100
+From:   Yuti Amonkar <yamonkar@cadence.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <kishon@ti.com>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <maxime@cerno.tech>
+CC:     <jsarha@ti.com>, <tomi.valkeinen@ti.com>, <praneeth@ti.com>,
+        <mparab@cadence.com>, <sjakhade@cadence.com>,
+        <yamonkar@cadence.com>
+Subject: [PATCH v4 00/13] PHY: Update Cadence Torrent PHY driver with reconfiguration
+Date:   Thu, 6 Feb 2020 07:10:48 +0100
+Message-ID: <1580969461-16981-1-git-send-email-yamonkar@cadence.com>
+X-Mailer: git-send-email 2.4.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:64.207.220.243;IPV:;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(396003)(39860400002)(136003)(376002)(346002)(199004)(36092001)(189003)(426003)(86362001)(336012)(478600001)(15650500001)(107886003)(5660300002)(70586007)(19627235002)(2906002)(2616005)(70206006)(8676002)(81156014)(81166006)(36756003)(4326008)(26005)(316002)(110136005)(36906005)(54906003)(8936002)(186003)(6666004)(356004)(42186006)(966005);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR07MB6013;H:wcmailrelayl01.cadence.com;FPR:;SPF:Pass;LANG:en;PTR:unused.mynethost.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: eb8af484-8032-4700-f5a8-08d7aacb5d4f
+X-MS-TrafficTypeDiagnostic: MN2PR07MB6013:
+X-Microsoft-Antispam-PRVS: <MN2PR07MB6013409FD4F5325173542A54D21D0@MN2PR07MB6013.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-Forefront-PRVS: 0305463112
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uF1hTsfZ0NQ+1mIa4AeCarIJUu7t/G6BvtW68tV7jeFZKXIBIyuFNrwyqxo1pgjwgsAaSRiqIb4AKuO6GqDeQ8bSpLy58O3RyXF0pdd5MRaP4Eq/A62AncauKgneNyPFtux6bHP5m9XvB1oPN9RhrlakK5LLT7rgNpwjV0bcT3F4AKqGrfles4X7rk0l3RQLO78S7Z4B1YE2xkzrCRG5FMsr8SczwWK9xuNHNZG0KX+rKHD5QwcW854/xcTJ2Y4dA42dZ/XViA3hYZq3atIzn8Shms7xVzvmISjkayoGwtgbKDBeycEt6cc+06N3xu9eZ1XgVdu6LMZUX8xkecK7KxaUbeJTxHH7lCqR2BBKsKsmM/WeG120r/ZApNK6WDZXEinoDZWu0iCtBoLSPbWhl24pVRvc03Jm17G/dC/GawJ7HCztdICQ0JCKWiaGqV9F6WOzywT//QTMO8j/qI3yzNC9u8OysEumnenXHPhgQsfYFkqzFkc4FYINYb8+ZTNIXBEX7b60KB05+P56b+oTzi0J0h9BktZtnKixX68BWmj3xlOqdvrphK0kFtEjQ1T9vpE08Stwda8ZKg1FQZCqEg==
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2020 06:11:11.6259
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb8af484-8032-4700-f5a8-08d7aacb5d4f
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[64.207.220.243];Helo=[wcmailrelayl01.cadence.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR07MB6013
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-05_06:2020-02-04,2020-02-05 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 impostorscore=0 bulkscore=0
+ priorityscore=1501 phishscore=0 mlxlogscore=999 clxscore=1015 adultscore=0
+ spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2001150001 definitions=main-2002060048
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Zigotzky <chzigotzky@xenosoft.de> writes:
-> Kernel 5.5 PowerPC is also affected.
+This patch series applies to the Cadence SD0801 PHY driver.
+Cadence SD0801 PHY is also known as Torrent PHY. Torrent PHY
+is a multiprotocol PHY supporting PHY configurations including
+Display Port, USB and PCIe.
 
-I don't know what you mean by that. What sha are you talking about?
+This patch series converts SD0801 PHY driver for DisplayPort into a
+generic Torrent PHY driver, updates DisplayPort functionality with
+reconfiguration support and finally adds platform dependent initialization
+for TI J7 SoCs.
 
-I have a system with avahi running and everything's fine.
+The patch series has following patches which applies the changes
+in the below sequence
+1. 001-dt-bindings-phy-Remove-Cadence-MHDP-PHY-dt-binding
+This patch removes the MHDP PHY binding.
+2. 002-dt-bindings-phy-Add-Cadence-MHDP-PHY-bindings-in-YAML-format.
+This patch converts the MHDP PHY device tree bindings to yaml schemas
+3. 003-phy-cadence-dp-Rename-to-phy-Cadence-Torrent
+Rename Cadence DP PHY driver from phy-cadence-dp to phy-cadence-torrent
+4. 004-phy-cadence-torrent-Adopt-Torrent-nomenclature
+Update private data structures, module descriptions and functions prefix to Torrent
+5. 005-phy-cadence-torrent-Add-wrapper-for-PHY-register-access
+Add a wrapper function to write Torrent PHY registers to improve code readability.
+6. 006-phy-cadence-torrent-Add-wrapper-for-DPTX-register-access
+Add wrapper functions to read, write DisplayPort specific PHY registers to improve code
+readability.
+7. 007-phy-cadence-torrent-Refactor-code-for-reusability
+Add separate function to set different power state values.
+Use of uniform polling timeout value. Check return values of functions for error handling.
+8. 008-phy-cadence-torrent-Add-19.2-MHz-reference-clock-support
+Add configuration functions for 19.2 MHz reference clock support. Add register configurations
+for SSC support.
+9. 009-phy-cadence-torrent-Implement-phy-configure-APIs
+Add PHY configuration APIs for link rate, number of lanes, voltage swing and pre-emphasis values.
+10. 010-phy-cadence-torrent-Use-regmap-to-read-and-write-Torrent-PHY-registers 
+Use regmap for accessing Torrent PHY registers. Update register offsets. Abstract address
+calculation using regmap APIs.
+11. 011-phy: cadence-torrent-Use-regmap-to-read-and-write-DPTX-PHY-registers
+Use regmap to read and write DPTX specific PHY registers.
+12. 012-phy-cadence-torrent-Add-platform-dependent-initialization-structure
+Add platform dependent initialization data for Torrent PHY used in TI's J721E SoC.
+13. 013-phy: cadence-torrent-Add-support-for-subnode-bindings
+Implement single link subnode support to the phy driver.
 
-  # grep use- /etc/avahi/avahi-daemon.conf=20
-  use-ipv4=3Dyes
-  use-ipv6=3Dyes
-=20=20
-  # systemctl status -l --no-pager avahi-daemon
-  =E2=97=8F avahi-daemon.service - Avahi mDNS/DNS-SD Stack
-     Loaded: loaded (/lib/systemd/system/avahi-daemon.service; enabled; ven=
-dor preset: enabled)
-     Active: active (running) since Thu 2020-02-06 14:55:34 AEDT; 38min ago
-   Main PID: 1884 (avahi-daemon)
-     Status: "avahi-daemon 0.7 starting up."
-     CGroup: /system.slice/avahi-daemon.service
-             =E2=94=9C=E2=94=801884 avahi-daemon: running [mpe-ubuntu-le.lo=
-cal]
-             =E2=94=94=E2=94=801888 avahi-daemon: chroot helper
-=20=20
-  Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address=
- record for fe80::5054:ff:fe66:2a19 on eth0.*.
-  Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address=
- record for 10.61.141.81 on eth0.IPv4.
-  Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address=
- record for ::1 on lo.*.
-  Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new address=
- record for 127.0.0.1 on lo.IPv4.
-  Feb 06 14:55:34 mpe-ubuntu-le systemd[1]: Started Avahi mDNS/DNS-SD Stack.
-  Feb 06 14:55:35 mpe-ubuntu-le avahi-daemon[1884]: Server startup complete=
-. Host name is mpe-ubuntu-le.local. Local service cookie is 3972418141.
-  Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Leaving mDNS multicast =
-group on interface eth0.IPv6 with address fe80::5054:ff:fe66:2a19.
-  Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Joining mDNS multicast =
-group on interface eth0.IPv6 with address fd69:d75f:b8b5:61:5054:ff:fe66:2a=
-19.
-  Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Registering new address=
- record for fd69:d75f:b8b5:61:5054:ff:fe66:2a19 on eth0.*.
-  Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Withdrawing address rec=
-ord for fe80::5054:ff:fe66:2a19 on eth0.
-=20=20
-  # uname -r
-  5.5.0-gcc-8.2.0
+Version History:
+
+v4:
+- Add separate patch to remove old binding.
+- Add new patch to add new binding in YAML format.
+- Squashed "dt-bindings: phy: phy-cadence-torrent: Add platform dependent
+  compatible string" with "dt-bindings: phy: Add Cadence MHDP PHY bindings
+  in YAML format".
+- Added SPDX dual license tag to YAML bindings.
+- Updated resets property description and removed reset-names
+  property.
+- Added enum to cdns,phy-type property adding all the currently
+  known phy-type values.
+- Updated the child node resets property to support one reset
+  per lane.
+- Added default values for cdns,num-lanes and cdns,max-bit-rate properties.
 
 
-The key question is what ioctl is it complaining about. You should be
-able to find that via strace.
+v3:
+- Removed "Add clock binding" patch from the series and merged it with
+  "Convert-Cadence-MHDP-PHY-bindings-to-YAML" patch.
+- Added reset and reset-names properties to YAML file.
+- Updated dptx_phy reg entry as optional in YAML.
+- Renamed reg-names from sd0801_phy to torrent_phy.
+- Added subnode property for each group of PHY lanes based on PHY
+  type to the YAML. Renamed num_lanes and max_bit_rate to cdns,num-lanes
+  and cdns,max-bit-rate and moved it to subnode properties.
+- Added cdns,phy-type property in subnode. Currently cdns,phy-type supports only
+  PHY_TYPE_DP.
+- Added subnode instance structure to the driver in reference to the dts change.
+- Updated functions to read properties from child node instead of parent node.
+- Added num_lanes as argument to the cdns_torrent_dp_run function.
 
-cheers
+v2:
+- Remove patch [1] from this series and send for a separate review.
+- Use enum in compatible property of YAML file.
+- Remove quotes in clock-names property "refclk" -> refclk in YAML file.
+- Add reg-names property to YAML file
+- Add additionalProperties:false to YAML file.
+- No change in the driver code.
 
-> Christian Zigotzky wrote:
->
-> Hi All,
->
-> The issue with the avahi-daemon still exist in the latest Git kernel. It'=
-s a PowerPC issue. I compiled the latest Git kernel on a PC today and there=
- aren't any issues with the avahi daemon. Another Power Mac user reported t=
-he same issue on his G5. I tested with the AmigaOne X1000 and X5000 in the =
-last days.
->
-> I bisected today but I think the result isn't correct because it found th=
-e other problem with ordering of PCSCSI definition in esp_rev enum. I don't=
- know how to bisect if there is another issue at the same time. Maybe "git =
-bisect skip"?
->
-> 2086faae3c55a652cfbd369e18ecdb703aacc493 is the first bad commit
-> commit 2086faae3c55a652cfbd369e18ecdb703aacc493
-> Author: Kars de Jong <jongk@linux-m68k.org>
-> Date:   Tue Nov 19 21:20:20 2019 +0100
->
->     scsi: esp_scsi: Correct ordering of PCSCSI definition in esp_rev enum
->
->     The order of the definitions in the esp_rev enum is important. The va=
-lues
->     are used in comparisons for chip features.
->
->     Add a comment to the enum explaining this.
->
->     Also, the actual values for the enum fields are irrelevant, so remove=
- the
->     explicit values (suggested by Geert Uytterhoeven). This makes adding =
-a new
->     field in the middle of the enum easier.
->
->     Finally, move the PCSCSI definition to the right place in the enum. I=
-n its
->     previous location, at the end of the enum, the wrong values are writt=
-en to
->     the CONFIG3 register when used with FAST-SCSI targets.
->
->     Link: https://lore.kernel.org/r/20191119202021.28720-2-jongk@linux-m6=
-8k.org
->     Signed-off-by: Kars de Jong <jongk@linux-m68k.org>
->     Signed-off-by: Martin K. Petersen <martin.petersen@oracle.com>
->
-> :040000 040000 cdc128596e33fb60406b5de9b17b79623c187c1a 48ceab06439f95285=
-e8b30181e75f9a68c25fcb5 M    drivers
+This patch series is dependent on PHY DisplayPort configuration patch [1].
+
+[1]
+
+https://lkml.org/lkml/2020/1/6/279
+
+Swapnil Jakhade (10):
+  phy: cadence-torrent: Adopt Torrent nomenclature
+  phy: cadence-torrent: Add wrapper for PHY register access
+  phy: cadence-torrent: Add wrapper for DPTX register access
+  phy: cadence-torrent: Refactor code for reusability
+  phy: cadence-torrent: Add 19.2 MHz reference clock support
+  phy: cadence-torrent: Implement PHY configure APIs
+  phy: cadence-torrent: Use regmap to read and write Torrent PHY
+    registers
+  phy: cadence-torrent: Use regmap to read and write DPTX PHY registers
+  phy: cadence-torrent: Add platform dependent initialization structure
+  phy: cadence-torrent: Add support for subnode bindings
+
+Yuti Amonkar (3):
+  dt-bindings: phy: Remove Cadence MHDP PHY dt binding
+  dt-bindings: phy: Add Cadence MHDP PHY bindings in YAML format.
+  phy: cadence-dp: Rename to phy-cadence-torrent
+
+ .../bindings/phy/phy-cadence-dp.txt           |   30 -
+ .../bindings/phy/phy-cadence-torrent.yaml     |  143 ++
+ drivers/phy/cadence/Kconfig                   |    6 +-
+ drivers/phy/cadence/Makefile                  |    2 +-
+ drivers/phy/cadence/phy-cadence-dp.c          |  541 -----
+ drivers/phy/cadence/phy-cadence-torrent.c     | 1944 +++++++++++++++++
+ 6 files changed, 2091 insertions(+), 575 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-dp.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+ delete mode 100644 drivers/phy/cadence/phy-cadence-dp.c
+ create mode 100644 drivers/phy/cadence/phy-cadence-torrent.c
+
+-- 
+2.20.1
+
