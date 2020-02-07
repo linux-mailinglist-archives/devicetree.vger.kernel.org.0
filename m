@@ -2,47 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D31E4155593
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 11:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D09E01555A3
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 11:27:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726942AbgBGKYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Feb 2020 05:24:52 -0500
-Received: from sonic315-15.consmr.mail.bf2.yahoo.com ([74.6.134.125]:34378
-        "EHLO sonic315-15.consmr.mail.bf2.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726674AbgBGKYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 05:24:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1581071090; bh=YooljpITC31Cc9KXMfJzAPmr/1tCBEdX27fhfqn54Fs=; h=Date:From:Reply-To:Subject:References:From:Subject; b=JEO50I3/Q5RA/T5H96ZzdRYrpf8JgpQo/ApI754tNYp+EPMCSMlaZG1UzafDPhYz7yom6LcHks+Lbn9SE2bDUt4RZxIORFG4gCtloa9oOCls/VXsr3QUkUwkFvlVFpZpZa2+qnry1wgRjKMV7W+Sc4KnN3ye7LSgytB6SlfjkGN7QO5wjZt+rweOqeqPDBL4nyUTHBg83HBQOniUSTttzxB6dHcHG/QtNTIeomznMqr6tfyu4Lko9bMnoB2mXOSCs4cHSR1MtIN2SHGWxsCUdHrkulygMVSk1LU+rxVDGwayTq5KFnn/BhNJn29SKFIjWkltzDw0alcPdz7/V8jOZA==
-X-YMail-OSG: 8ECSvHAVM1nJpR9mzvMPpinfcJwSF5Q1MJ5ogw15cQ5Rs_9U8kZzU9PxlIOXzqw
- vGK4z7HejZd5CtdsBXlJD6OILssbdCt9ZTLwmymZ_9Oh3qW1j5JKlgw1ytBOI0odZnetkpjqNJjg
- .BlV3Xo_OwcMtwJ3DOcVOrfYF0kD9igUISVl_3MNZHLTiQ_fF_ZQmAzjXCijSjaereKpXSbX.rWM
- nE4pHvzUDvpeUG.cYrXb4fhFEJupwLkgWUJxQJybeaaDJeJPnfZgHq2bryIMYCcsw8sWiq7H.qr1
- vuEXo8y538eUaUsErabpIFaasRyVz2sNG1eg64oflnVzUfkekr.Sh6LlsP8mT1bGpkjfhZXcTJAv
- 7qrxKESMG86ReqC1ki9VP8A7TxGWXDRvh09C00itkJcC3mnYVUIMKwr4CnyW1XSHAc5.F7_4HjhK
- dtYTj_XeeJX8o8dJLLIHfw1L9TtT2o5SZjTe4Ei12Z9zkit2kELuai1R73HvvbimpcVWbOnVP2bx
- SixMRisGRv1GYqM6tLHKVQah3RtzDAHOBs.FBQkb6HaIUfA3gvHozpU25UF42DLy7lESMqxA8uwi
- FSPCYapNYtc8DstMcZ9bCvyOuDYWcSNvkyMB2GGcNPcBfB1hyYtUDeAodE6IGS4dWb5eIuhKE3Iv
- YlQjGuAeiGsEtaPz4PLXIL5w9dXpmNMWOSADjQDflzDdWGYlsyzwXGSGBs8Bf9cFbVzS13vECG39
- .ZJizl4SNJbxxw6HG.B.Th.Kn.Cx1TGGQEl_WgAd_7EvMZg7_fJvA5TRlrT7_A94mFGrx_FEm7om
- qjKXDLgd.wc8bILP.asPAKnNW0iHp1jcWBbf8mF0AWyjccOo6RrMUQGkVF.hUJXc9aNnnVHNSh1W
- hG8DPEJAjC5zkrd0Jr9YkYZk3IYsxJ6Cr9n9hj_m5xHYe2W9Frujeg0a6xqYDP3kE09C66FkPt7F
- pepssPP0UmHXlokwzQ5D2nc_ba1phri4v4M3MycyGnAQgXjdHuxzju5fTYqLnP4kMp.lFvMAfydG
- n0Ud5v1C9W_lk_ORx7MfytntbrDNbxZrHnRgRfexMTmz_ySUwVpIIQoUL4lCQQdUGWMqkR9kP_dg
- bNK6JMH2MOT7W.fXAFfrpboa6sIjMJ7.4ucq23wYs.sTYNoqR2YWAwmV2V3LsqPBPiA870k_oXCr
- 6uULBV.DXeM6hnD90KYYdHClWDEYFhwqq3nC7idf.gQKZQTvcejVmmwKjXTncL_s0kxuiVCn8lPL
- gMKDbAiyo4z8Bq1QfwuZbCZXOBzPwPcMl4Y62nO7r4Y_C7Gb8x8xx1q0GYyPpPR4W_Why17ovnwf
- 7Ww--
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic315.consmr.mail.bf2.yahoo.com with HTTP; Fri, 7 Feb 2020 10:24:50 +0000
-Date:   Fri, 7 Feb 2020 10:24:47 +0000 (UTC)
-From:   Lisa Williams <ah6149133@gmail.com>
-Reply-To: lisawilliams00357@yahoo.com
-Message-ID: <965253263.559988.1581071087660@mail.yahoo.com>
-Subject: Hello
+        id S1726899AbgBGK14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Feb 2020 05:27:56 -0500
+Received: from mail25.static.mailgun.info ([104.130.122.25]:54549 "EHLO
+        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726827AbgBGK14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 05:27:56 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1581071275; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=SXtKwR+Qh4XdJBE5iN9hKj4xfIJl9gq5XMMKEVbj36E=; b=RrUF7JI3v4GIQ3eEv0lfsui/zvxpboylk5Ru0ehvNPSWL0kDMzf7nVFw+RH3fS2gWM0GJhDt
+ RsXBS4sfPhS3LsUKFbRzU1lQolBsZvDIHAMbXEtA6vVmESqmRWoqzR2mSenQefGGKM2C5iH4
+ U5JEH642Z7qLkToEwIonGdBW8es=
+X-Mailgun-Sending-Ip: 104.130.122.25
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e3d3ba9.7f531d0fc298-smtp-out-n03;
+ Fri, 07 Feb 2020 10:27:53 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 224F0C4479C; Fri,  7 Feb 2020 10:27:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.206.28.9] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4EDA4C433CB;
+        Fri,  7 Feb 2020 10:27:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4EDA4C433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: Add YAML schemas for the QCOM
+ MSS clock bindings
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        robh@kernel.org, robh+dt@kernel.org,
+        linux-kernel-owner@vger.kernel.org
+References: <1580357923-19783-1-git-send-email-tdas@codeaurora.org>
+ <1580357923-19783-2-git-send-email-tdas@codeaurora.org>
+ <8d29b13e5444676df46b2479a1f48e36@codeaurora.org>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <ca500b7e-2a58-8e72-255c-8a5c68cfaed4@codeaurora.org>
+Date:   Fri, 7 Feb 2020 15:57:45 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-References: <965253263.559988.1581071087660.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.15185 YMailNodin Mozilla/5.0 (Windows NT 6.1; rv:72.0) Gecko/20100101 Firefox/72.0
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <8d29b13e5444676df46b2479a1f48e36@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -50,11 +70,106 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-Hi Dear,
+On 2/7/2020 12:57 PM, Sibi Sankar wrote:
+> Hey Taniya,
+> 
+> On 2020-01-30 09:48, Taniya Das wrote:
+>> The Modem Subsystem clock provider have a bunch of generic properties
+>> that are needed in a device tree. Add a YAML schemas for those.
+>>
+>> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+>> ---
+>>  .../devicetree/bindings/clock/qcom,mss.yaml        | 58 
+>> ++++++++++++++++++++++
+>>  1 file changed, 58 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,mss.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,mss.yaml
+>> b/Documentation/devicetree/bindings/clock/qcom,mss.yaml
+>> new file mode 100644
+>> index 0000000..ebb04e1
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,mss.yaml
+>> @@ -0,0 +1,58 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/bindings/clock/qcom,mss.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Modem Clock Controller Binding
+>> +
+>> +maintainers:
+>> +  - Taniya Das <tdas@codeaurora.org>
+>> +
+>> +description: |
+>> +  Qualcomm modem clock control module which supports the clocks.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +       - qcom,sc7180-mss
+>> +
+>> +  clocks:
+>> +    minItems: 1
+>> +    maxItems: 3
+>> +    items:
+>> +      - description: gcc_mss_mfab_axi clock from GCC
+>> +      - description: gcc_mss_nav_axi clock from GCC
+> 
+> we don't seem to be referencing the
+> mss_mfab_axi and mss_nav_axi in the
+> mss clk driver though, do we really
+> need them in bindings? If we dont
+> can we drop the clock-names as well.
+> 
 
-I was just going through the Internet search when I found your email address, I want to make a new and special friend, so I decided to contact you to see how we can make it work out if we can. Please I wish you will have the desire with me so that we can get to know each other better and see what happens in future.
+They are linked as parent for the clocks. So we need them.
++			.parent_data = &(const struct clk_parent_data){
++				.fw_name = "gcc_mss_nav_axi_clk",
++			},
 
-My name is Lisa Williams, I am an American, but presently I live in the UK, I will be glad to see your reply for us to know each other better to exchange pictures and details about us
+>> +      - description: gcc_mss_cfg_ahb clock from GCC
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: gcc_mss_mfab_axis_clk
+>> +      - const: gcc_mss_nav_axi_clk
+>> +      - const: cfg_clk
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - '#clock-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  # Example of MSS with clock nodes properties for SC7180:
+>> +  - |
+>> +    clock-controller@41a8000 {
+>> +      compatible = "qcom,sc7180-mss";
+>> +      reg = <0x041a8000 0x8000>;
+>> +      clocks = <&gcc 126>, <&gcc 127>, <&gcc 125>;
+>> +      clock-names = "gcc_mss_mfab_axis_clk", "gcc_mss_nav_axi_clk", 
+>> "cfg_clk";
+>> +      #clock-cells = <1>;
+>> +    };
+>> +...
+>> -- 
+>> Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+>> of the Code Aurora Forum, hosted by the  Linux Foundation.
+> 
 
-Yours
-Lisa
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
+
+--
