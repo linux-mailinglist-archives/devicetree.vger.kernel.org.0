@@ -2,168 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 34F32154FF0
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 02:15:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD625155036
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 02:59:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726838AbgBGBPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 20:15:22 -0500
-Received: from mx.socionext.com ([202.248.49.38]:2700 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726778AbgBGBPV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 6 Feb 2020 20:15:21 -0500
-Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 07 Feb 2020 10:15:20 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 3B949180237;
-        Fri,  7 Feb 2020 10:15:20 +0900 (JST)
-Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Fri, 7 Feb 2020 10:15:20 +0900
-Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
-        by iyokan.css.socionext.com (Postfix) with ESMTP id B18EA40365;
-        Fri,  7 Feb 2020 10:15:19 +0900 (JST)
-Received: from [10.213.132.48] (unknown [10.213.132.48])
-        by yuzu.css.socionext.com (Postfix) with ESMTP id 780A3120133;
-        Fri,  7 Feb 2020 10:15:19 +0900 (JST)
-Date:   Fri, 07 Feb 2020 10:15:19 +0900
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: dmaengine: Add UniPhier external DMA controller bindings
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
-In-Reply-To: <20200206175458.GA12845@bogus>
-References: <1580362048-28455-2-git-send-email-hayashi.kunihiko@socionext.com> <20200206175458.GA12845@bogus>
-Message-Id: <20200207101519.6F78.4A936039@socionext.com>
+        id S1727786AbgBGB7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 20:59:46 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:33183 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727658AbgBGB71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 20:59:27 -0500
+Received: by mail-wr1-f65.google.com with SMTP id u6so814661wrt.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2020 17:59:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=9jS7AtcyDtrs+6cLov2M3M67k09AnqIN5nOTMIVW4oM=;
+        b=cECIe0oEpjgrfZenchpr/nmBzPOn+eYNXiy0l7qbN3n2TMZX/vu69dPpi1iE7W9gBW
+         qAzVBODZkrShoafoIjj1HbBcMyTaTcdIu0ZDWB+XY/KCB8lVJHccnYG0QLuPtht8yHYd
+         ZhGe3shE/0GSXLRy5gytZT1lHXE97fYCIZZpRwISsWiwbXScsbfPD6azBBTWqupi2/L+
+         jqQGqfhrB2nmZhtEIQU3m7ki5NGQCIPBiVYLoSjp/01jbeK6/BHXLzqpRmqWJ3Mh0AWI
+         b7yo2yH4lI9OxAqRxDhJAe55PculLwXvvkq0XrTIOHhFV+ach+PwMfHHSbgauJOZgNvN
+         D05Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=9jS7AtcyDtrs+6cLov2M3M67k09AnqIN5nOTMIVW4oM=;
+        b=JmzDlwKFC/4CI1PzeSYePDRdHkMU8KjhZIAMqJZEbFnqJ98HX9CT02oKa09MY+CD3d
+         Ii91fGWbw5aqS0u8V3rOPvncRsURRTKCYyqLl2FoBejJ0uaSgXPXpL0pm2JsM7Sygj6E
+         hQCQ6dhUk6Ou312InZtSfx19qcc7+qRNhsUDEQ3MToVQulsx2NrfcBQ9Ibbmf2R1cIrd
+         ufY8/79B9K12srQjpX2mkofxdbkxVkZQd7EFBPWKD8e6nXA2de4NlY3OYj+QX3BV1eju
+         g5c1Qm7xOtTcYa/o56v3TcRXYO5OxXrvedKswP9Df7DmWGYEULGU6lujCn6Frv6dfEGc
+         9Y4Q==
+X-Gm-Message-State: APjAAAVdnv2mQFdHOsGxjrsDHirGdr1+riLE0EtDMVzBCib+50l7bLyZ
+        2WM/qAlpQE7pKcHwPS8NNqmUqw==
+X-Google-Smtp-Source: APXvYqzldi+Z4ZyAjpU8OhOMfMELRM+JGwgNdPz+pcqWOZDtCNlrHg6vraP4JfE8C9T7fsIyN0UKIw==
+X-Received: by 2002:a5d:4a84:: with SMTP id o4mr1219921wrq.396.1581040764626;
+        Thu, 06 Feb 2020 17:59:24 -0800 (PST)
+Received: from localhost.localdomain ([176.61.57.127])
+        by smtp.gmail.com with ESMTPSA id a62sm1490095wmh.33.2020.02.06.17.59.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Feb 2020 17:59:24 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-kernel@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: [PATCH v4 14/18] arm64: dts: qcom: qcs404-evb: Define USB ID pin
+Date:   Fri,  7 Feb 2020 01:59:03 +0000
+Message-Id: <20200207015907.242991-15-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200207015907.242991-1-bryan.odonoghue@linaro.org>
+References: <20200207015907.242991-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Becky! ver. 2.70 [ja]
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The USB ID pin is used to tell if a system is a Host or a Device. For our
+purposes we will bind this pin into gpio-usb-conn later.
 
-Thank you for reviewing.
-Your comments are helpful as I'm not familiar with the new bindings yet.
+For now define the pin with its pinmux.
 
-On Thu, 6 Feb 2020 17:54:58 +0000 <robh@kernel.org> wrote:
-
-> On Thu, Jan 30, 2020 at 02:27:27PM +0900, Kunihiko Hayashi wrote:
-> > Add devicetree binding documentation for external DMA controller
-> > implemented on Socionext UniPhier SoCs.
-> > 
-> > Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> > ---
-> >  .../bindings/dma/socionext,uniphier-xdmac.yaml     | 57 ++++++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml b/Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml
-> > new file mode 100644
-> > index 00000000..32abf18
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> 
-> Dual license new bindings:
-> 
-> (GPL-2.0-only OR BSD-2-Clause)
-
-I'll replace with it.
-
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/dma/socionext,uniphier-xdmac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Socionext UniPhier external DMA controller
-> > +
-> > +description: |
-> > +  This describes the devicetree bindings for an external DMA engine to perform
-> > +  memory-to-memory or peripheral-to-memory data transfer capable of supporting
-> > +  16 channels, implemented in Socionext UniPhier SoCs.
-> > +
-> > +maintainers:
-> > +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> > +
-> > +allOf:
-> > +  - $ref: "dma-controller.yaml#"
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: socionext,uniphier-xdmac
-> 
-> You can drop 'items' for a single item.
-
-I see.
-I found some documents didn't have expression for a compatible string.
-
-> > +
-> > +  reg:
-> > +    minItems: 1
-> > +    maxItems: 2
-> 
-> You need to say what each entry is:
-> 
-> items:
->   - description: ...
->   - description: ...
-
-Surely there must be descriotions here.
-
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  "#dma-cells":
-> > +    const: 2
-> > +    description: |
-> > +      DMA request from clients consists of 2 cells:
-> > +        1. Channel index
-> > +        2. Transfer request factor number, If no transfer factor, use 0.
-> > +           The number is SoC-specific, and this should be specified with
-> > +           relation to the device to use the DMA controller.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - "#dma-cells"
-> 
-> Add:
-> 
-> additionalProperties: false
-
-I'll add it.
-
-> > +
-> > +examples:
-> > +  - |
-> > +    xdmac: dma-controller@5fc10000 {
-> > +        compatible = "socionext,uniphier-xdmac";
-> > +        reg = <0x5fc10000 0x1000>, <0x5fc20000 0x800>;
-> > +        interrupts = <0 188 4>;
-> > +        #dma-cells = <2>;
-> > +        dma-channels = <16>;
-> 
-> Not documented. You need at least 'dma-channels: true' to indicate 
-> you're using this. But you should be able to have some constraints such 
-> as 'maximum: 16'.
-
-I forgot to document 'dma-channels'. I'll add it.
-
-Thank you,
-
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
-Best Regards,
-Kunihiko Hayashi
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+index b6147b5ab5cb..abfb2a9a37e9 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+@@ -270,6 +270,20 @@ rclk {
+ 			bias-pull-down;
+ 		};
+ 	};
++
++	usb3_id_pin: usb3-id-pin {
++		pinmux {
++			pins = "gpio116";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio116";
++			drive-strength = <2>;
++			bias-pull-up;
++			input-enable;
++		};
++	};
+ };
+ 
+ &pms405_gpios {
+-- 
+2.25.0
 
