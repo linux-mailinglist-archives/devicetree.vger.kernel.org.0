@@ -2,209 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8256156046
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 21:58:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 912F215608E
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 22:12:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727538AbgBGU6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Feb 2020 15:58:45 -0500
-Received: from mail.serbinski.com ([162.218.126.2]:46960 "EHLO
-        mail.serbinski.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727071AbgBGU6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 15:58:44 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mail.serbinski.com (Postfix) with ESMTP id 53BA1D00725;
-        Fri,  7 Feb 2020 20:50:42 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at serbinski.com
-Received: from mail.serbinski.com ([127.0.0.1])
-        by localhost (mail.serbinski.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Wy_gu-ayd8MR; Fri,  7 Feb 2020 15:50:34 -0500 (EST)
-Received: from anet (ipagstaticip-7ac5353e-e7de-3a0d-ff65-4540e9bc137f.sdsl.bell.ca [142.112.15.192])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mail.serbinski.com (Postfix) with ESMTPSA id 135DFD00716;
-        Fri,  7 Feb 2020 15:50:28 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.serbinski.com 135DFD00716
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=serbinski.com;
-        s=default; t=1581108628;
-        bh=K2MdRRtZpB4Txo2PfziKzlrlKIrsC2ebzByAwXpZmVk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2smk52nQv3+OTl3zpA97hLFp9Fba8Ay/u/4sP4/D3VrcWlKlOZ+tnUOAMETCd3m2V
-         Pd12mwqhEn1Ri/o1P2FuW64VysYKAXnq4yFuQ2w8TQ3gdZJYpqoZd5BxTmhD2+bXFM
-         /9+l6xqTRyCZusnujvfxQg5JA7UZ6l45YxWqNLwQ=
-From:   Adam Serbinski <adam@serbinski.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        id S1727071AbgBGVMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Feb 2020 16:12:51 -0500
+Received: from cable.insite.cz ([84.242.75.189]:56877 "EHLO cable.insite.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726947AbgBGVMv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 7 Feb 2020 16:12:51 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by cable.insite.cz (Postfix) with ESMTP id D29A2A1A40B05;
+        Fri,  7 Feb 2020 22:12:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
+        t=1581109966; bh=vjLjZRimaLLdXirEYigexl5ECe4JAQKBxtDHAHr0fkA=;
+        h=From:Subject:To:Date:From;
+        b=EM3+GpOBcRrrMKJJbXiJt8IVWUvAiBlP8bptXOGVKEfmcpVYbgThkCAKNDryo3QFx
+         prx5MEXezvSbsrjqiqIeEGmhJDVFfWwEUMrbkBqHdKrPBBn6oTkrQ8xKiHZuRtwnTd
+         zMw6zQ7RD9KKz0RNHiiH08yGyNIUFOlnfyZp/xhw=
+Received: from cable.insite.cz ([84.242.75.189])
+        by localhost (server.insite.cz [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 4OWGe8gPi5rn; Fri,  7 Feb 2020 22:12:41 +0100 (CET)
+Received: from [192.168.105.151] (ip28.insite.cz [81.0.237.28])
+        (Authenticated sender: pavel)
+        by cable.insite.cz (Postfix) with ESMTPSA id 656E4A1A40B08;
+        Fri,  7 Feb 2020 22:12:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
+        t=1581109961; bh=vjLjZRimaLLdXirEYigexl5ECe4JAQKBxtDHAHr0fkA=;
+        h=From:Subject:To:Date:From;
+        b=ZV4WN0uTlKZ3FOmRERUXyVtK5rWH45ea/8XfajTHqwoM5MFOWHQaQ5+5cXbTunXgn
+         K4+pfL3kHfdoTSeOI2OqbXYHpY0U5RXAY1e7tG3sWR77oRuzRnJUNuAX3tF8jpZ7Tx
+         Byf5kL4eVaEid9g+bRVAGfT5mg0BuKCdpqh+IQsk=
+From:   Pavel Hofman <pavel.hofman@ivitera.com>
+Subject: [PATCH] ARM: dts: bcm283x: increase dwc2's RX FIFO size
+To:     Minas Harutyunyan <hminas@synopsys.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Adam Serbinski <adam@serbinski.com>,
-        Andy Gross <agross@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Patrick Lai <plai@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 8/8] ASoC: qcom: apq8096: add kcontrols to set PCM rate
-Date:   Fri,  7 Feb 2020 15:50:13 -0500
-Message-Id: <20200207205013.12274-9-adam@serbinski.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200207205013.12274-1-adam@serbinski.com>
-References: <20200207205013.12274-1-adam@serbinski.com>
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org
+Message-ID: <22beb919-a3c6-33c0-8d3f-070061a6c853@ivitera.com>
+Date:   Fri, 7 Feb 2020 22:12:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=iso-8859-2
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This makes it possible for the backend sample rate to be
-set to 8000 or 16000 Hz, depending on the needs of the HFP
-call being set up.
+The previous version of the dwc2 overlay set the RX FIFO size to
+256 4-byte words. This is not enough for 1024 bytes of the largest
+isochronous high speed packet allowed, because it doesn't take into
+account extra space needed by dwc2.
 
-Signed-off-by: Adam Serbinski <adam@serbinski.com>
-CC: Andy Gross <agross@kernel.org>
-CC: Mark Rutland <mark.rutland@arm.com>
-CC: Liam Girdwood <lgirdwood@gmail.com>
-CC: Patrick Lai <plai@codeaurora.org>
-CC: Banajit Goswami <bgoswami@codeaurora.org>
-CC: Jaroslav Kysela <perex@perex.cz>
-CC: Takashi Iwai <tiwai@suse.com>
-CC: alsa-devel@alsa-project.org
-CC: linux-arm-msm@vger.kernel.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
+Below is a detailed calculation which arises from dwc2 documentation:
+
+* RAM for SETUP Packets: 4 * n + 6 locations in Scatter/Gather DMA mode
+and 5 * n+8 locations in Slave and Buffer DMA mode must be reserved in
+the RxFIFO to receive up to n SETUP packets on control endpoints, where n
+is the number of control endpoints the device controller supports.
+
+bcm283x: 5*n+8. The Broadcom core has 1 control EP (n=1), so 13 locations
+
+* One location for Global OUT NAK
+
+bcm283x: 1 location
+
+* Status information is written to the FIFO along with each received
+packet. Therefore, a minimum space of (Largest Packet Size / 4) + 1 must
+be allotted to receive packets. If a high-bandwidth endpoint is enabled,
+or multiple isochronous endpoints are enabled, then at least two (Largest
+Packet Size / 4) + 1 spaces must be allotted to receive back-to-back
+packets. Typically, two (Largest Packet Size / 4) + 1 spaces are
+recommended so that when the previous packet is being transferred to AHB,
+the USB can receive the subsequent packet. If AHB latency is high, you
+must allocate enough space to receive multiple packets. This is critical
+to prevent dropping of any isochronous packets.
+
+bcm283x: (1024/4) +1 = 257 locations. For MC >1: 2 * 257 = 514 locations
+
+* Along with last packet of each endpoint, transfer complete status
+information is also pushed in to the FIFO.
+
+bcm283x: The core should have 5 IN and 5 OUT EP's.
+1 location for each EP - 10 locations.
+
+It's for the case when all EPs are simultaneously completing transfers.
+
+* An additional location for EPDisable status for each endpoint is
+also required.
+
+bcm283x: 1 location for each EP - 10 EP's - 10 locations
+It's for case if EP simultaneously disabled.
+
+* Typically, two locations for each OUT endpoint is recommended.
+
+bcm283x: 5*2 = 10 locations
+
+Total: 13 + 1 + 257 + 10 +10 + 10 = 301 locations
+
+Safer is 301 + 257 (for MC>1) = 558 locations.
+
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+Signed-off-by: Pavel Hofman <pavel.hofman@ivitera.com>
 ---
- sound/soc/qcom/apq8096.c | 92 +++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 90 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi        | 2 +-
+ arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/qcom/apq8096.c b/sound/soc/qcom/apq8096.c
-index 1edcaa15234f..882f2c456321 100644
---- a/sound/soc/qcom/apq8096.c
-+++ b/sound/soc/qcom/apq8096.c
-@@ -16,6 +16,9 @@
- #define MI2S_BCLK_RATE			1536000
- #define PCM_BCLK_RATE			1024000
- 
-+static int pri_pcm_sample_rate = 16000;
-+static int quat_pcm_sample_rate = 16000;
-+
- static int msm_snd_hw_params(struct snd_pcm_substream *substream,
- 			     struct snd_pcm_hw_params *params)
- {
-@@ -33,10 +36,15 @@ static int msm_snd_hw_params(struct snd_pcm_substream *substream,
- 	switch (cpu_dai->id) {
- 	case PRIMARY_PCM_RX:
- 	case PRIMARY_PCM_TX:
-+		rate->min = pri_pcm_sample_rate;
-+		rate->max = pri_pcm_sample_rate;
-+		channels->min = 1;
-+		channels->max = 1;
-+		break;
- 	case QUATERNARY_PCM_RX:
- 	case QUATERNARY_PCM_TX:
--		rate->min = 16000;
--		rate->max = 16000;
-+		rate->min = quat_pcm_sample_rate;
-+		rate->max = quat_pcm_sample_rate;
- 		channels->min = 1;
- 		channels->max = 1;
- 		break;
-@@ -121,6 +129,83 @@ static struct snd_soc_ops apq8096_ops = {
- 	.startup = msm_snd_startup,
+diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
+b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
+index e2fd961..20322de 100644
+--- a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
++++ b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ &usb {
+ 	dr_mode = "otg";
+-	g-rx-fifo-size = <256>;
++	g-rx-fifo-size = <558>;
+ 	g-np-tx-fifo-size = <32>;
+ 	/*
+ 	 * According to dwc2 the sum of all device EP
+diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+index 0ff0e9e..1409d1b 100644
+--- a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
++++ b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ &usb {
+ 	dr_mode = "peripheral";
+-	g-rx-fifo-size = <256>;
++	g-rx-fifo-size = <558>;
+ 	g-np-tx-fifo-size = <32>;
+ 	g-tx-fifo-size = <256 256 512 512 512 768 768>;
  };
- 
-+static char const *pcm_sample_rate_text[] = {"8 kHz", "16 kHz"};
-+static const struct soc_enum pcm_snd_enum =
-+		SOC_ENUM_SINGLE_EXT(2, pcm_sample_rate_text);
-+
-+static int get_sample_rate_idx(int sample_rate)
-+{
-+	int sample_rate_idx = 0;
-+
-+	switch (sample_rate) {
-+	case 8000:
-+		sample_rate_idx = 0;
-+		break;
-+	case 16000:
-+	default:
-+		sample_rate_idx = 1;
-+		break;
-+	}
-+
-+	return sample_rate_idx;
-+}
-+
-+static int pri_pcm_sample_rate_get(struct snd_kcontrol *kcontrol,
-+				   struct snd_ctl_elem_value *ucontrol)
-+{
-+	ucontrol->value.integer.value[0] =
-+		get_sample_rate_idx(pri_pcm_sample_rate);
-+	return 0;
-+}
-+
-+static int quat_pcm_sample_rate_get(struct snd_kcontrol *kcontrol,
-+				    struct snd_ctl_elem_value *ucontrol)
-+{
-+	ucontrol->value.integer.value[0] =
-+		get_sample_rate_idx(quat_pcm_sample_rate);
-+	return 0;
-+}
-+
-+static int get_sample_rate(int idx)
-+{
-+	int sample_rate_val = 0;
-+
-+	switch (idx) {
-+	case 0:
-+		sample_rate_val = 8000;
-+		break;
-+	case 1:
-+	default:
-+		sample_rate_val = 16000;
-+		break;
-+	}
-+
-+	return sample_rate_val;
-+}
-+
-+static int pri_pcm_sample_rate_put(struct snd_kcontrol *kcontrol,
-+				   struct snd_ctl_elem_value *ucontrol)
-+{
-+	pri_pcm_sample_rate =
-+		get_sample_rate(ucontrol->value.integer.value[0]);
-+	return 0;
-+}
-+
-+static int quat_pcm_sample_rate_put(struct snd_kcontrol *kcontrol,
-+				    struct snd_ctl_elem_value *ucontrol)
-+{
-+	quat_pcm_sample_rate =
-+		get_sample_rate(ucontrol->value.integer.value[0]);
-+	return 0;
-+}
-+
-+static const struct snd_kcontrol_new card_controls[] = {
-+	SOC_ENUM_EXT("PRI_PCM SampleRate", pcm_snd_enum,
-+		     pri_pcm_sample_rate_get, pri_pcm_sample_rate_put),
-+	SOC_ENUM_EXT("QUAT_PCM SampleRate", pcm_snd_enum,
-+		     quat_pcm_sample_rate_get, quat_pcm_sample_rate_put),
-+};
-+
- static int apq8096_init(struct snd_soc_pcm_runtime *rtd)
- {
- 	struct snd_soc_dai *codec_dai = rtd->codec_dai;
-@@ -182,6 +267,9 @@ static int apq8096_platform_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_card_register;
- 
-+	snd_soc_add_card_controls(card, card_controls,
-+				  ARRAY_SIZE(card_controls));
-+
- 	return 0;
- 
- err_card_register:
 -- 
-2.21.1
+1.9.1
+
 
