@@ -2,89 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B86155DE7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 19:25:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 114E8155F6D
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 21:19:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727005AbgBGSZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Feb 2020 13:25:45 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:43568 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726951AbgBGSZp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 13:25:45 -0500
-Received: by mail-ed1-f67.google.com with SMTP id dc19so503672edb.10;
-        Fri, 07 Feb 2020 10:25:44 -0800 (PST)
+        id S1727471AbgBGUS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Feb 2020 15:18:28 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:56058 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727289AbgBGUQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 15:16:55 -0500
+Received: by mail-wm1-f67.google.com with SMTP id q9so3800008wmj.5
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2020 12:16:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GMiZo8m6MVwteC6MTZZKLG6FimFuIinamHp+P+KB9FQ=;
-        b=mUjft++CBTt8AY80NHTjS5UiGF6uZzqJ3gy2o49fQU4PnoKfCu4IEwEQYdrXH+5XwP
-         u7E2bN4mIOO/YZ88FwT0gmMwwabzhE7a96vAcQL+umRxmXlh3M0oaN7oJ7xyUF73rE5h
-         nv0jIE5TZldSEs8X3pEHGG2LTUmmur5JgSsOT+YG5QAHKCqDtRPSQzmV2cSnHIumhhqw
-         w1Gi2F4uIp4EItav1Verw+mqidD9pAf63TpEU45IFe0QxS7GyilJwXuZU/UX2/cvTE7X
-         xT2eyZ3xEEpSiQyz/wfIXlcITyW250WsMg9Z9y/fgsnSYbmmaWC32pmooOM/yu5rQgNq
-         C86g==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=x0ouoTkt3Ut5OXKfPgK1h53EOxbNSeKO18hqFnETzgE=;
+        b=BXvL6v4hMOC7x++ZN5yMVrtE9ujn0JPoGpuLk6QG+yC0sNaC7gtdbyZytGDafzHVRx
+         Fp2ocFDsP6wFv31pAb/qHueuz4wtJQOvdmv53+XC8K4l4lPYPUD7rMr0ZSA5suaEE3Gk
+         6nHc0O+/Tr5aJISguSs7CbpdqQiuh2U7z5eRBbeUKNmCBpnmA4nFcD9NIBlMl5TrDZ9U
+         huODxDj5gnpHZM3SWAV7u4pVAcmWxkTuHNMnXQs+dsvianX92twgFIivjLl9Hz+/6x5o
+         Xs64ks29yuk3jAZ06N9/XChgpmr83NswIBYcOi8y8a8hDbhR1GX1BI+pOug0QoBsNG4v
+         dQWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GMiZo8m6MVwteC6MTZZKLG6FimFuIinamHp+P+KB9FQ=;
-        b=fc3U7a5Tzkg3d6lV0BIgVrRl9nI4WKpy8fN+BNQW2LDhwMNPb9NiL8WeK3X1ueSXR7
-         xR5LQ30kCda7Od4J5O2633QM4c9rbHceL2A9BgprLkTtyk4ngFxI57NgEillU1KXBEIM
-         +Z1MQUbtu0nR/1+xGMys97IbaD0zybu8ZRU+mRUs7ESFbf25Dr5787QIFVo2M7KWi0KI
-         +7oqb1JRLNGIndClGn8thcrL59nlWksC/Yrdjea5YMVYje8ZDzheoB0eM4zl15Nww+KE
-         zmKPYOqDlcJ58TcHQafrn03K4gbQ4gt+LlqVEM0W8JiCNq6WjVq0DvTApHhp//yRLDZ4
-         CS/Q==
-X-Gm-Message-State: APjAAAU6+VFIet2HJap8mAXDivL6f3b5FXMuBx9Se8Aus0m+lxiRRZa+
-        13E2kOO9AyPJ3YI5qJELQiA=
-X-Google-Smtp-Source: APXvYqw49WYYptXF2zK5xUtZHkEq6r6YXGLC4FRv/vjzsmj8o/wuALuNtCAWaKdWWXv/Vj7W5EaEaQ==
-X-Received: by 2002:aa7:c71a:: with SMTP id i26mr203017edq.300.1581099943747;
-        Fri, 07 Feb 2020 10:25:43 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id e24sm208276edy.93.2020.02.07.10.25.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Feb 2020 10:25:43 -0800 (PST)
-Subject: Re: [PATCH v2 0/9] add ASoC components for AHUB
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     perex@perex.cz, tiwai@suse.com, robh+dt@kernel.org,
-        broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
-        mkumard@nvidia.com, viswanathl@nvidia.com, rlokhande@nvidia.com,
-        dramesh@nvidia.com, atalambedu@nvidia.com
-References: <1580380422-3431-1-git-send-email-spujar@nvidia.com>
- <fcab0af1-fe84-6028-701b-ab101feaa8de@gmail.com>
- <d17b2654-a888-8251-468d-12ef1451cd4b@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <40a4d544-7c33-3f28-0b9c-384bc9fe3b53@gmail.com>
-Date:   Fri, 7 Feb 2020 21:25:41 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=x0ouoTkt3Ut5OXKfPgK1h53EOxbNSeKO18hqFnETzgE=;
+        b=pncjGPVrtW7IYQsm1+XQjDp/KN/T5uuEL2LqqsuT2/4uabkP4ln6OmEUbh5qKD0g+9
+         BpTSYPyWOQC1B18s81zUFrKsaGf8N2kDYtBg9NPoWnDVMGJ+HpU2wKmz/1Y0hVKhtc5Z
+         t+G/F87s3hQ26NbJyLNsE3VhO3j8n1SMSHH7yVy/6fE3uVzkNdQRNZfD7/zrTTDdWIgA
+         RoCpFiOSexuWMSfJKuzRidokqDZCKYmL2rteRKnRLDl3Id74b5aoMZ3DZ9doyTzGze1v
+         CXZrpIKHcqRzr/9WOtS7L2/HJBm/WGEicHld8xymGkJrMFaMD0ZTIGdmkKobJn7ohkVc
+         dMWg==
+X-Gm-Message-State: APjAAAWKZnqwaQsIg0fZpZQGJWh9k84ms7KhheoGa7Td0cvqfYkEmxJL
+        J9eAPjr69ZjQOF+py5UsJY0qEQ==
+X-Google-Smtp-Source: APXvYqyJD/NRyMB2FjDdtwT91pc641XPkVwLZDc8wgrhS29BXNgLE2WfI8dtQTN8/ADCgWXoyzkaFw==
+X-Received: by 2002:a7b:cbc9:: with SMTP id n9mr21797wmi.89.1581106612060;
+        Fri, 07 Feb 2020 12:16:52 -0800 (PST)
+Received: from localhost.localdomain ([176.61.57.127])
+        by smtp.gmail.com with ESMTPSA id h2sm5018542wrt.45.2020.02.07.12.16.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Feb 2020 12:16:51 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
+        bjorn.andersson@linaro.org, robh@kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Sriharsha Allenki <sallenki@codeaurora.org>,
+        Anu Ramanathan <anur@codeaurora.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>,
+        devicetree@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v5 02/18] dt-bindings: phy: Add Qualcomm Synopsys Hi-Speed USB PHY binding
+Date:   Fri,  7 Feb 2020 20:16:38 +0000
+Message-Id: <20200207201654.641525-3-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200207201654.641525-1-bryan.odonoghue@linaro.org>
+References: <20200207201654.641525-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <d17b2654-a888-8251-468d-12ef1451cd4b@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-07.02.2020 14:30, Sameer Pujar пишет:
-> 
-> 
-> On 2/6/2020 11:06 PM, Dmitry Osipenko wrote:
->> External email: Use caution opening links or attachments
->>
->>
->> 30.01.2020 13:33, Sameer Pujar пишет:
->> ...
->>>   sound/soc/tegra/Kconfig                            |  56 ++
->> Probably won't hurt to enable the new drivers in the
->> arch/arm64/configs/defconfig?
-> 
-> Do you mean, if drivers can be enabled?
+From: Sriharsha Allenki <sallenki@codeaurora.org>
 
-Yes, I mean to enable them in the default kernel configuration.
+Adds bindings for Qualcomm's 28 nm USB PHY supporting Low-Speed, Full-Speed
+and Hi-Speed USB connectivity on Qualcomm chipsets.
+
+[bod: Converted to YAML. Changed name dropping snps, 28nm components]
+
+Signed-off-by: Sriharsha Allenki <sallenki@codeaurora.org>
+Signed-off-by: Anu Ramanathan <anur@codeaurora.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Kishon Vijay Abraham I <kishon@ti.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../bindings/phy/qcom,usb-hs-28nm.yaml        | 90 +++++++++++++++++++
+ 1 file changed, 90 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
+
+diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
+new file mode 100644
+index 000000000000..ca6a0836b53c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/qcom,usb-hs-28nm.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Synopsys DesignWare Core 28nm High-Speed PHY
++
++maintainers:
++  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
++
++description: |
++  Qualcomm Low-Speed, Full-Speed, Hi-Speed 28nm USB PHY
++
++properties:
++  compatible:
++    enum:
++      - qcom,usb-hs-28nm-femtophy
++
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 0
++
++  clocks:
++    items:
++      - description: rpmcc ref clock
++      - description: PHY AHB clock
++      - description: Rentention clock
++
++  clock-names:
++    items:
++      - const: ref
++      - const: ahb
++      - const: sleep
++
++  resets:
++    items:
++      - description: PHY core reset
++      - description: POR reset
++
++  reset-names:
++    items:
++      - const: phy
++      - const: por
++
++  vdd-supply:
++    description: phandle to the regulator VDD supply node.
++
++  vdda1p8-supply:
++    description: phandle to the regulator 1.8V supply node.
++
++  vdda3p3-supply:
++    description: phandle to the regulator 3.3V supply node.
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - vdd-supply
++  - vdda1p8-supply
++  - vdda3p3-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-qcs404.h>
++    #include <dt-bindings/clock/qcom,rpmcc.h>
++    usb2_phy_prim: phy@7a000 {
++        compatible = "qcom,usb-hs-28nm-femtophy";
++        reg = <0x0007a000 0x200>;
++        #phy-cells = <0>;
++        clocks = <&rpmcc RPM_SMD_LN_BB_CLK>,
++                 <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
++                 <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
++        clock-names = "ref", "ahb", "sleep";
++        resets = <&gcc GCC_USB_HS_PHY_CFG_AHB_BCR>,
++                 <&gcc GCC_USB2A_PHY_BCR>;
++        reset-names = "phy", "por";
++        vdd-supply = <&vreg_l4_1p2>;
++        vdda1p8-supply = <&vreg_l5_1p8>;
++        vdda3p3-supply = <&vreg_l12_3p3>;
++    };
++...
+-- 
+2.25.0
+
