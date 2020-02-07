@@ -2,146 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B204155F38
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 21:17:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09835155F6F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 21:19:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727522AbgBGUR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Feb 2020 15:17:27 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46008 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727752AbgBGURM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 15:17:12 -0500
-Received: by mail-wr1-f67.google.com with SMTP id a6so336880wrx.12
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2020 12:17:11 -0800 (PST)
+        id S1727031AbgBGUSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Feb 2020 15:18:42 -0500
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:40764 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727492AbgBGUSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 15:18:42 -0500
+Received: by mail-pf1-f196.google.com with SMTP id q8so333801pfh.7
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2020 12:18:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dlgrD1ImLwD8i7swr2073g2/em63RPZPKMG2q6/uiVU=;
-        b=Ru4R36kTtWo7RY+7R96hpnx7U4sdZ95e5vrc2PCKal3y0Pmq4XW9r1cPh45LLKmIxo
-         C9UQwp4tsILXsP4T9ciEBiAiwfQnimN93bMsJvhBV6cotvScHBlACyorUxuCYt8OQvtb
-         ho4AJOdsTlUWoBADTDM8dT0pYigB3GbSjdYuHtBFQn9ZlcekMaqop8GeZfDQMoxADijn
-         1l1ZKQ6CW5pcRcyktTZCc1baIkfH1NALgUFdTi3rb+eqvvE8ST3KeQfksZolPsL7hXyx
-         EAOdixPfG4ktmNqWkwhtktkVDdU9zW2237aa5qctzskVtU7kaZ041+JTMO1OkqHJrn+X
-         hcBw==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=8cDRXBFOpE9J1p6S5H+HXSQg9q3m7pUJ3iUuQ5MPcDc=;
+        b=ivuPf8a+VQ7ts4QWZEasa2IZ9M6uEU3dgsXgUf73LTH8asREriEDnowsBZ2pC+bgSm
+         lzOBlRRIwt5v2QzqbRWnupl/eDOwLTj9noKeZMj+xwNqQddEauf1Xib25hWdR3r+5yi5
+         oPseJqGpz1IRjduQZnFdytdSC8NKL1H0bhJGs9GD0Yn6r3oLKXXekgE6AQO3kF6E8oAs
+         DG3k6NEnKTpegA8Ql2ou/D6mQtnqAlYrQNWIpu8Bxdn3kI0iqZ1uw0VugvX3SvdUJwUH
+         LmQlIYUor7oK3p5WlEYER2JRLHyNaxAHCcdzpks00SMjQRiaTMp5xcZ/JYcyBJV773xT
+         gTWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dlgrD1ImLwD8i7swr2073g2/em63RPZPKMG2q6/uiVU=;
-        b=CSJoagAD38Uf/7RMRYcFMNAmAiLbNhZx4Oz0h129AG7K7Xqfj25iSCGkFQkAnozbJe
-         RUtcEp3WhbdtT8F9h4OK/FtpVQpp52eiy6EKuUg30EGN5kL2nZqgfLX7eBj3SzezSIH7
-         PQ2oNsadtd/pPhpl2eUrLvxIOQAcg5r30t1h2fqIrbqKxk9hMfCO2lTUopSAeQ7o3bb8
-         Renah5QXdMaVnMizfDo5POtjGEDucJSawXftmkCF213S+eJiAY7MLIW0zzWCALqfhv/d
-         8xH0K09vwbLH6y+tX3dquNULHb3+oM9UjfT107TwJaSHPezs4bDK660ojSsZX4vwrmrF
-         B3Fg==
-X-Gm-Message-State: APjAAAWsI+XwfO2/7LcWsda7Rh4077UPORrluOtMT8cY6mrTh8HKunrf
-        R21bJUjfITbiJCv8I/8SDeCTIw==
-X-Google-Smtp-Source: APXvYqzE9BTTrq21fdw8OjnE89OQse/v2jVi476ojGDmrV4TRcoetaQFboSU5vlQ6uS2bchtechMiA==
-X-Received: by 2002:adf:f802:: with SMTP id s2mr758230wrp.201.1581106630760;
-        Fri, 07 Feb 2020 12:17:10 -0800 (PST)
-Received: from localhost.localdomain ([176.61.57.127])
-        by smtp.gmail.com with ESMTPSA id h2sm5018542wrt.45.2020.02.07.12.17.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Feb 2020 12:17:10 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
-        bjorn.andersson@linaro.org, robh@kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v5 18/18] arm64: dts: qcom: qcs404-evb: Enable USB controllers
-Date:   Fri,  7 Feb 2020 20:16:54 +0000
-Message-Id: <20200207201654.641525-19-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200207201654.641525-1-bryan.odonoghue@linaro.org>
-References: <20200207201654.641525-1-bryan.odonoghue@linaro.org>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=8cDRXBFOpE9J1p6S5H+HXSQg9q3m7pUJ3iUuQ5MPcDc=;
+        b=nI8fHda7lUyCxDNP8NLAKCIIe/73oAMFx5DE62otzY8qXnhC/sfu9LRURRNrF1Vx/X
+         VksOfjYEZeobtpoVluXJMjEdWzFOFx778WpbzT5etOI4ycCg2MVm3hOktnm+mMjgiThr
+         4DrlP2EJnW20Ib1qn2V5prQhsm3L2kyDP8DBCwraE/mRK2dli5CkmtD6NloDB8YWTCyT
+         E/HvRjondhZH2udrTgxLKnVxCaA/mirb7aYqhr8iyUluPolx3QCZOa6OqZRf93Gs+4qo
+         GIefwqLQ2e+42OX7J9uZjSl+9BO/xINs4Vwa8QZlIrhXF1OIMzEucs15gokyWr9ffEYa
+         MNzA==
+X-Gm-Message-State: APjAAAUQVls5aICmN8xZFLBpAyk5OdVbuaQoXhgV7ikiMCsh0gRrVDzi
+        Vi9VNctJu6L+oIW8Jo6Cgrw0F/psd5E+JFS9Tlg=
+X-Google-Smtp-Source: APXvYqwFJpkrQkBKjTNCtluLGSByUbZzPfcDQqm5f5tsKNwwkZaq4svlOZT253bf+X+7a0wiDwJ+vHizu8Lhvdl1LoI=
+X-Received: by 2002:a63:7e58:: with SMTP id o24mr939627pgn.214.1581106721873;
+ Fri, 07 Feb 2020 12:18:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a17:90a:3846:0:0:0:0 with HTTP; Fri, 7 Feb 2020 12:18:41
+ -0800 (PST)
+Reply-To: auch197722@gmail.com
+From:   "Mr. Theophilus Odadudu" <bukahenry10@gmail.com>
+Date:   Fri, 7 Feb 2020 15:18:41 -0500
+Message-ID: <CAEzczGJ9f9MvNKr7unVQJLzqv6Ki9oVjiaZ7_7Sj9OEdbq4OjQ@mail.gmail.com>
+Subject: LETTER OF INQUIRY
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables the primary and secondary USB controllers on the
-qcs404-evb.
+Good Day,
 
-Primary:
-The primary USB controller has
+I work as a clerk in a Bank here in Nigeria, I have a very
+confidential Business Proposition for you. There is a said amount of
+money floating in the bank unclaimed, belonging to the bank Foreign
+customer who die with his family in the Ethiopian Airline crash of
+March 11, 2019.
 
-- One USB3 SS PHY using gpio-usb-conn
-- One USB2 HS PHY in device mode only and no connector driver
-  associated.
+I seek your good collaboration to move the fund for our benefit. we
+have agreed that 40% be yours once you help claim.
 
-Secondary:
-The second DWC3 controller which has one USB Hi-Speed PHY attached to it.
+Do get back to with 1) Your Full Name: (2) Residential Address: (3)
+Phone, Mobile  (4) Scan Copy of Your ID. to apply for claims of the
+funds.
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 40 ++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 0fff50f755ef..4045d3000da6 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -318,6 +318,46 @@ pinconf {
- 	};
- };
- 
-+&usb2 {
-+	status = "okay";
-+};
-+
-+&usb2_phy_sec {
-+	vdd-supply = <&vreg_l4_1p2>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	vdda3p3-supply = <&vreg_l12_3p3>;
-+	status = "okay";
-+};
-+
-+&usb3 {
-+	status = "okay";
-+	dwc3@7580000 {
-+		usb-role-switch;
-+		usb_con: connector {
-+			compatible = "gpio-usb-b-connector";
-+			label = "USB-C";
-+			id-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
-+			vbus-supply = <&usb3_vbus_reg>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&usb3_id_pin>, <&usb3_vbus_pin>;
-+			status = "okay";
-+		};
-+	};
-+};
-+
-+&usb2_phy_prim {
-+	vdd-supply = <&vreg_l4_1p2>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	vdda3p3-supply = <&vreg_l12_3p3>;
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	vdd-supply = <&vreg_l3_1p05>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	status = "okay";
-+};
-+
- &wifi {
- 	status = "okay";
- 	vdd-0.8-cx-mx-supply = <&vreg_l2_1p275>;
--- 
-2.25.0
-
+Regards
+Theophilus Odadudu
