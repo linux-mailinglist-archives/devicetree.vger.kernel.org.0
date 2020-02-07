@@ -2,72 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09835155F6F
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 21:19:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61BC2155FAA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 21:38:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727031AbgBGUSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Feb 2020 15:18:42 -0500
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:40764 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727492AbgBGUSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 15:18:42 -0500
-Received: by mail-pf1-f196.google.com with SMTP id q8so333801pfh.7
-        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2020 12:18:42 -0800 (PST)
+        id S1727113AbgBGUiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Feb 2020 15:38:04 -0500
+Received: from mail-pj1-f49.google.com ([209.85.216.49]:35698 "EHLO
+        mail-pj1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727005AbgBGUiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Feb 2020 15:38:04 -0500
+Received: by mail-pj1-f49.google.com with SMTP id q39so1408843pjc.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Feb 2020 12:38:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=8cDRXBFOpE9J1p6S5H+HXSQg9q3m7pUJ3iUuQ5MPcDc=;
-        b=ivuPf8a+VQ7ts4QWZEasa2IZ9M6uEU3dgsXgUf73LTH8asREriEDnowsBZ2pC+bgSm
-         lzOBlRRIwt5v2QzqbRWnupl/eDOwLTj9noKeZMj+xwNqQddEauf1Xib25hWdR3r+5yi5
-         oPseJqGpz1IRjduQZnFdytdSC8NKL1H0bhJGs9GD0Yn6r3oLKXXekgE6AQO3kF6E8oAs
-         DG3k6NEnKTpegA8Ql2ou/D6mQtnqAlYrQNWIpu8Bxdn3kI0iqZ1uw0VugvX3SvdUJwUH
-         LmQlIYUor7oK3p5WlEYER2JRLHyNaxAHCcdzpks00SMjQRiaTMp5xcZ/JYcyBJV773xT
-         gTWg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ifCbiBJDktUTJhTkv9KSAGNf4cll4FIlR1vlR2WCup0=;
+        b=ebfLute2BqyBNSLfR3/rTFEZ9Lk6VvKLon7hSktz5FbtUuroU4kw1HVg918t1ASWc7
+         1VrAUpvhGqVUYciYlLyARi5kCxpQc5AN4QdSH3i2LH/WX+U2wnm3531IFn0HB6HT+769
+         49PmXTNWg0jrtAg0Z34mvxgtr9Tqt3IDQac9k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=8cDRXBFOpE9J1p6S5H+HXSQg9q3m7pUJ3iUuQ5MPcDc=;
-        b=nI8fHda7lUyCxDNP8NLAKCIIe/73oAMFx5DE62otzY8qXnhC/sfu9LRURRNrF1Vx/X
-         VksOfjYEZeobtpoVluXJMjEdWzFOFx778WpbzT5etOI4ycCg2MVm3hOktnm+mMjgiThr
-         4DrlP2EJnW20Ib1qn2V5prQhsm3L2kyDP8DBCwraE/mRK2dli5CkmtD6NloDB8YWTCyT
-         E/HvRjondhZH2udrTgxLKnVxCaA/mirb7aYqhr8iyUluPolx3QCZOa6OqZRf93Gs+4qo
-         GIefwqLQ2e+42OX7J9uZjSl+9BO/xINs4Vwa8QZlIrhXF1OIMzEucs15gokyWr9ffEYa
-         MNzA==
-X-Gm-Message-State: APjAAAUQVls5aICmN8xZFLBpAyk5OdVbuaQoXhgV7ikiMCsh0gRrVDzi
-        Vi9VNctJu6L+oIW8Jo6Cgrw0F/psd5E+JFS9Tlg=
-X-Google-Smtp-Source: APXvYqwFJpkrQkBKjTNCtluLGSByUbZzPfcDQqm5f5tsKNwwkZaq4svlOZT253bf+X+7a0wiDwJ+vHizu8Lhvdl1LoI=
-X-Received: by 2002:a63:7e58:: with SMTP id o24mr939627pgn.214.1581106721873;
- Fri, 07 Feb 2020 12:18:41 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ifCbiBJDktUTJhTkv9KSAGNf4cll4FIlR1vlR2WCup0=;
+        b=jwTDj5Pxc5N184wktJykw1u/HsMXo2M7VlFVXb1IuIS0TUvQRDlp0iRjTiZ3BKrrKM
+         7IyVsn+MW0QUzqoYuwmjjDJfBN+8PUtKy5qmFdfo4SRlBF5788LQJDWAqqomOYvITRBn
+         eiJbKCLhOlcJhV9t4LzN5Evfh2iOUypfTyvfpmiiPv/ZQ9FR6oPz26UGMLRxK/faxX4w
+         43cUZXQzMcY6isSQZ5WlLikL4DMHFbRgD3xfEaYvZKn8H6/uVSGdTQSzZyoeQ9hBKDOi
+         X7PoeCmNHuO0UDm+p5QgxXJaFFJFCVMj87RTF43e+Gj/w5h0rSwWDqnGbz7AqinAXCHy
+         OIog==
+X-Gm-Message-State: APjAAAVzn1WRNvsnqz1m2EdYNMvaLZTaLzu6z8iVAK7fY9fhztsVGaLq
+        CPOH+BJdo6KdeeCza7E+m0F3LQ==
+X-Google-Smtp-Source: APXvYqzk42NKqsohxngK4S9f5vG7B8djpKPCB3LdmBDlJ8WzumloON87AggSCNxJk0WZvSKUC0oGcg==
+X-Received: by 2002:a17:90b:3115:: with SMTP id gc21mr5649351pjb.54.1581107882002;
+        Fri, 07 Feb 2020 12:38:02 -0800 (PST)
+Received: from pmalani2.mtv.corp.google.com ([2620:15c:202:201:172e:4646:c089:ce59])
+        by smtp.gmail.com with ESMTPSA id 4sm4051001pfn.90.2020.02.07.12.38.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Feb 2020 12:38:01 -0800 (PST)
+From:   Prashant Malani <pmalani@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     heikki.krogerus@intel.com, enric.balletbo@collabora.com,
+        bleung@chromium.org, Prashant Malani <pmalani@chromium.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), Guenter Roeck <groeck@chromium.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 0/4] platform/chrome: Add Type C connector class driver
+Date:   Fri,  7 Feb 2020 12:37:42 -0800
+Message-Id: <20200207203752.209296-1-pmalani@chromium.org>
+X-Mailer: git-send-email 2.25.0.341.g760bfbb309-goog
 MIME-Version: 1.0
-Received: by 2002:a17:90a:3846:0:0:0:0 with HTTP; Fri, 7 Feb 2020 12:18:41
- -0800 (PST)
-Reply-To: auch197722@gmail.com
-From:   "Mr. Theophilus Odadudu" <bukahenry10@gmail.com>
-Date:   Fri, 7 Feb 2020 15:18:41 -0500
-Message-ID: <CAEzczGJ9f9MvNKr7unVQJLzqv6Ki9oVjiaZ7_7Sj9OEdbq4OjQ@mail.gmail.com>
-Subject: LETTER OF INQUIRY
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good Day,
+The following series introduces a Type C port driver for Chrome OS devices
+that have an EC (Embedded Controller). It derives port information from
+ACPI or DT entries. This patch series adds basic support, including
+registering ports, and setting certain basic attributes.
 
-I work as a clerk in a Bank here in Nigeria, I have a very
-confidential Business Proposition for you. There is a said amount of
-money floating in the bank unclaimed, belonging to the bank Foreign
-customer who die with his family in the Ethiopian Airline crash of
-March 11, 2019.
+v1: https://lkml.org/lkml/2020/2/5/676
 
-I seek your good collaboration to move the fund for our benefit. we
-have agreed that 40% be yours once you help claim.
+Changes in v2:
+- Added DT bindings entry in Documentation.
+- Fixed minor comments in cros_ec_typec.c driver file.
+- Incorporated get_num_ports() code into probe() function.
 
-Do get back to with 1) Your Full Name: (2) Residential Address: (3)
-Phone, Mobile  (4) Scan Copy of Your ID. to apply for claims of the
-funds.
+Prashant Malani (4):
+  dt-bindings: Add cros-ec Type C port driver
+  platform/chrome: Add Type C connector class driver
+  platform/chrome: typec: Get PD_CONTROL cmd version
+  platform/chrome: typec: Update port info from EC
 
-Regards
-Theophilus Odadudu
+ .../bindings/chrome/google,cros-ec-typec.yaml |  77 ++++
+ drivers/platform/chrome/Kconfig               |  11 +
+ drivers/platform/chrome/Makefile              |   1 +
+ drivers/platform/chrome/cros_ec_typec.c       | 337 ++++++++++++++++++
+ 4 files changed, 426 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
+ create mode 100644 drivers/platform/chrome/cros_ec_typec.c
+
+-- 
+2.25.0.341.g760bfbb309-goog
+
