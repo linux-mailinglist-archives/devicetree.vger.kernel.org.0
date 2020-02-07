@@ -2,108 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66437155043
-	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 03:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A578155070
+	for <lists+devicetree@lfdr.de>; Fri,  7 Feb 2020 03:04:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727678AbgBGB7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Feb 2020 20:59:46 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:33430 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727669AbgBGB71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 20:59:27 -0500
-Received: by mail-wm1-f68.google.com with SMTP id m10so2123431wmc.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2020 17:59:26 -0800 (PST)
+        id S1727003AbgBGCES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Feb 2020 21:04:18 -0500
+Received: from mail-qv1-f65.google.com ([209.85.219.65]:42851 "EHLO
+        mail-qv1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726956AbgBGCES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Feb 2020 21:04:18 -0500
+Received: by mail-qv1-f65.google.com with SMTP id dc14so272890qvb.9
+        for <devicetree@vger.kernel.org>; Thu, 06 Feb 2020 18:04:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4Kx77RkRZ6BLkxPPbqLY1opgnPyzoSH+OO3s+PAvU9w=;
-        b=AfenHCvMQ7EQykW+PXRtakMMVfMZNbR2flNXrUZqeSJsEWinzpKqMDZzjGPWumbA/y
-         FoUBsjOWXnEdIM4piKlnOf+4jzEeoFITkIv89WNh9mj84nXwT9HMowLvjPoMBTZTVW5s
-         S2vVPteAhCMHLXqHonIA2H+BSiJa6sNjxIyoAp7ox9qahIEZdRqqMaM/V/P+Qs/KbgM5
-         XEzLd7Ygn/rN5hommxp8DmQxu4z6QcwkFvUyNEIem4FEJEetKCmWWDi08BVW8q605rPi
-         HEFGUPWpHTjld5KF14QSKC0y/ZJ5Sy5t9CXX9a4HgytC70PJAnwWVNLslH4e7nntSNKk
-         pkMw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=f/k2mGN9MY7NNfoOb4gMqNsjIZIFXh28kOhlDVSQmA0=;
+        b=n54HafII/Lex3YLQXDbmveG7TRPxgfQUwWoNXykBlSczgnFnbEiABU6Nlwne2EnVqZ
+         BLZNg9eH05yf+6HnfQFJWO3Ox35KsJoJtLmFEwLlc7LmqfuMonfkWKrE2MVp0ijf+rlC
+         pgFHFzmYKEZYMyZMpnzqCt5JXY3Du2ndL/p2s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4Kx77RkRZ6BLkxPPbqLY1opgnPyzoSH+OO3s+PAvU9w=;
-        b=BTH4E4H7vw1FUTpaiP1+7S/cSOToyXWeqraio5qrkqELOjPX1EgUbzzyLg9b1VgF5Y
-         cz/HUzbO6i+14DjUBCn94gwTZu53jiZHaZKUlRAQIxHkwdtzK17aBSZjTPuKnp1EAezh
-         TEr+CFOm0WynzK958Fvo4VdujyHr+cagum9CkNaHQPwljpYeUqC+lz9a6miGx6WaB8Mb
-         Lu7/ukRxHxsKd/m+dHF5RAuXYHkGAiQ98joTjrjHWdoCerm5BGFG/W5qpFxjRGyfd6D7
-         aoJVord5YM94+J7XKyTXrOMTcnhkJTSKD57S54hMSgNuPHQ2b+PU1t1Q6v0pBkgeoRr/
-         muXg==
-X-Gm-Message-State: APjAAAXve1SL5qMHhaJ8z443gp7ai9F62vgCVpEb2DK8hIEI4F/5k3dx
-        tLoenOrE7kEwQIc3Qfef6fNgvA==
-X-Google-Smtp-Source: APXvYqwdpE4xr5cnlVFTBvq32+zu+QuVclYrJLX4nilOR/tnwMIXlHi4IHGlSMIhWiGHGvJs+sqdRg==
-X-Received: by 2002:a7b:cf39:: with SMTP id m25mr962289wmg.146.1581040765884;
-        Thu, 06 Feb 2020 17:59:25 -0800 (PST)
-Received: from localhost.localdomain ([176.61.57.127])
-        by smtp.gmail.com with ESMTPSA id a62sm1490095wmh.33.2020.02.06.17.59.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Feb 2020 17:59:25 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v4 15/18] arm64: dts: qcom: qcs404-evb: Describe external VBUS regulator
-Date:   Fri,  7 Feb 2020 01:59:04 +0000
-Message-Id: <20200207015907.242991-16-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200207015907.242991-1-bryan.odonoghue@linaro.org>
-References: <20200207015907.242991-1-bryan.odonoghue@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=f/k2mGN9MY7NNfoOb4gMqNsjIZIFXh28kOhlDVSQmA0=;
+        b=fr411P74IsNPzMoYxXrsmCI3apCS1qsnMGolwgpuCZG2dWt5PeJy8glkEoMxpk1Ox/
+         tT5M/Xx4wLiUUrFPbRb4Wk2RCZ1WNb+xlzKUbRK7e9aWtuG4Dl6aLu9Toa09TkrkRpkI
+         swV6wEC6ScO220ZnQbOfMDgwCwKCxH70A0t/t7ZI1UvUCelb9j5Xc9VqhyPm0haLP6Lc
+         r78b/bKCbhqDuCjuzWExa0gliNQxHhmwzKOkaNr0My9hob9k2KhJwV6IZZ9B3KmHQplQ
+         xYG5kpuztHzqCv4VfZUwSdOjyvdj6IiPafMDhLeO0LyOqAzE8dixbKf32CUaaSIdW9gv
+         xSAw==
+X-Gm-Message-State: APjAAAVRog9Pl8YI0Mu47VI92gj2k9iNiseK55xFrMXel3I2pJkMM1/0
+        mL8ShnBnkvHhBmki4JbPBztPF0nkDvLGMD12um0DBw==
+X-Google-Smtp-Source: APXvYqy6BPTxmJROJmd8xpRbLnJsPInZlt9zqkAt5bAH9XGkXglHOonteC+kQPoH8wbuH3FDnIt6xkHqcmjd+EAPUBo=
+X-Received: by 2002:ad4:5a48:: with SMTP id ej8mr4977078qvb.187.1581041055375;
+ Thu, 06 Feb 2020 18:04:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200108052337.65916-1-drinkcat@chromium.org> <20200108052337.65916-6-drinkcat@chromium.org>
+ <b58a8cf9-3275-cf89-6dff-596aceeb8000@arm.com> <CANMq1KBcNr=1_poBHrA_SDo_h-5i3e5TMqASEVaDj5LevsRcOQ@mail.gmail.com>
+ <CAPDyKFr4Vz1ihuFQNnhDLEnOs=BZ1n2wzw3CATgPcDXs9g54uA@mail.gmail.com>
+In-Reply-To: <CAPDyKFr4Vz1ihuFQNnhDLEnOs=BZ1n2wzw3CATgPcDXs9g54uA@mail.gmail.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Fri, 7 Feb 2020 10:04:04 +0800
+Message-ID: <CANMq1KBCd0wNgVAxAzxBwafHoafPExz07wKFhEWQFViAc0LL1Q@mail.gmail.com>
+Subject: Re: [PATCH v2 5/7] drm/panfrost: Add support for multiple power
+ domain support
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Steven Price <steven.price@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        David Airlie <airlied@linux.ie>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Mark Brown <broonie@kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VBUS is supplied by an external regulator controlled by a GPIO pin. This
-patch models the regulator as regulator-usb3-vbus.
+Hi Ulf,
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On Mon, Jan 27, 2020 at 3:55 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Fri, 10 Jan 2020 at 02:53, Nicolas Boichat <drinkcat@chromium.org> wro=
+te:
+> >
+> > +Ulf to keep me honest on the power domains
+> >
+> > On Thu, Jan 9, 2020 at 10:08 PM Steven Price <steven.price@arm.com> wro=
+te:
+> > >
+> > > On 08/01/2020 05:23, Nicolas Boichat wrote:
+> > > > When there is a single power domain per device, the core will
+> > > > ensure the power domains are all switched on.
+> > > >
+> > > > However, when there are multiple ones, as in MT8183 Bifrost GPU,
+> > > > we need to handle them in driver code.
+> > > >
+> > > >
+> > > > Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> > > > ---
+> > > >
+> > > > The downstream driver we use on chromeos-4.19 currently uses 2
+> > > > additional devices in device tree to accomodate for this [1], but
+> > > > I believe this solution is cleaner.
+> > >
+> > > I'm not sure what is best, but it seems odd to encode this into the P=
+anfrost driver itself - it doesn't have any knowledge of what to do with th=
+ese power domains. The naming of the domains looks suspiciously like someon=
+e thought that e.g. only half of the cores could be powered, but it doesn't=
+ look like that was implemented in the chromeos driver linked and anyway th=
+at is *meant* to be automatic in the hardware! (I.e. if you only power up o=
+ne cores in one core stack then the PDC should only enable the power domain=
+ for that set of cores).
+> >
+> > This is actually implemented in the Chrome OS driver [1]. IMHO power
+> > domains are a bit confusing [2]:
+> >  i. If there's only 1 power domain in the device, then the core takes
+> > care of power on the domain (based on pm_runtime)
+> >  ii. If there's more than 1 power domain, then the device needs to
+> > link the domains manually.
+> >
+> > So the Chrome OS [1] driver takes approach (i), by creating 3 devices,
+> > each with 1 power domain that is switched on/off automatically using
+> > pm_runtime.
+> >
+> > This patch takes approach (ii) with device links to handle the extra do=
+mains.
+> >
+> > I believe the latter is more upstream-friendly, but, as always,
+> > suggestions welcome.
+>
+> Apologies for the late reply. A few comments below.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index abfb2a9a37e9..01ef59e8e5b7 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -33,6 +33,18 @@ vdd_esmps3_3p3: vdd-esmps3-3p3-regulator {
- 		regulator-max-microvolt = <3300000>;
- 		regulator-always-on;
- 	};
-+
-+	usb3_vbus_reg: regulator-usb3-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VBUS_BOOST_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&pms405_gpios 3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_vbus_boost_pin>;
-+		vin-supply = <&vph_pwr>;
-+		enable-active-high;
-+	};
- };
- 
- &blsp1_uart3 {
--- 
-2.25.0
+No worries, than for the helpful reply!
 
+> If the device is partitioned across multiple PM domains (it may need
+> several power rails), then that should be described with the "multi PM
+> domain" approach in the DTS. As in (ii).
+>
+> Using "device links" is however optional, as it may depend on the use
+> case. If all multiple PM domains needs to be powered on/off together,
+> then it's certainly recommended to use device links.
+
+That's the case here, there's no support for turning on/off the
+domains individually.
+
+> However, if the PM domains can be powered on/off independently (one
+> can be on while another is off), then it's probably easier to operate
+> directly with runtime PM, on the returned struct *device from
+> dev_pm_domain_attach_by_id().
+>
+> Also note, there is dev_pm_domain_attach_by_name(), which allows us to
+> specify a name for the PM domain in the DTS, rather than using an
+> index. This may be more future proof to use.
+
+Agree, probably better to have actual names than just "counting" the
+number of domains like I do, especially as we have a compatible struct
+anyway. I'll update the patch.
+
+> [...]
+>
+> Hope this helps.
+>
+> Kind regards
+> Uffe
