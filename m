@@ -2,172 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93BA815643B
-	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2020 13:36:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F7B15645C
+	for <lists+devicetree@lfdr.de>; Sat,  8 Feb 2020 14:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727175AbgBHMgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Feb 2020 07:36:47 -0500
-Received: from bilbo.ozlabs.org ([203.11.71.1]:38003 "EHLO ozlabs.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727118AbgBHMgq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 8 Feb 2020 07:36:46 -0500
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 48FBVx05h8z9sPJ;
-        Sat,  8 Feb 2020 23:36:39 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
-        s=201909; t=1581165403;
-        bh=TIsBMikK22tP+iVnpNdBWnTezaZnCH4QX2IsCZvPKH0=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=RJe6RTnIjucqdrkV1R47EoAVUruFQ21tuPJZRji3dj8PHMoMeJiDFBH0WcpE8OUbv
-         wpxfqHmP9Qs1/IiKuxPCsx1YBPpZqRbXqhf6QRPj+YAkH9ema/+g9Er8KctHpzCEyY
-         f6Md2+myTJ+qW6Z1mSKpjdBC0zGiAwTmcznmdNbMYECjAsN046hiVhJqXQ/WF24sgQ
-         LSZX0tqiMWziqXP2NqBYLSDWl1iLv2W9qhHcynY7KxySG9dRjatXwJvBLJ/m8dg5Dg
-         khxlrwC15v3zsNVTHLkC2MFi7tkjVcEkUM4y5V5GR/7bzpA5BvdqRvcEc85KgRLZif
-         mZk9CrM9j07sA==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Christian Zigotzky <chzigotzky@xenosoft.de>,
-        Jakub Kicinski <kuba@kernel.org>
-Cc:     Christophe Leroy <christophe.leroy@c-s.fr>,
-        DTML <devicetree@vger.kernel.org>,
-        Darren Stevens <darren@stevens-zone.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@ozlabs.org, "contact\@a-eon.com" <contact@a-eon.com>,
-        "R.T.Dickinson" <rtd2@xtra.co.nz>, Christoph Hellwig <hch@lst.de>,
-        mad skateman <madskateman@gmail.com>,
-        "netdev\@vger.kernel.org" <netdev@vger.kernel.org>
-Subject: Re: Latest Git kernel: avahi-daemon[2410]: ioctl(): Inappropriate ioctl for device
-In-Reply-To: <f438e4ed-7746-1d80-6d72-455281884a1e@xenosoft.de>
-References: <20200203095325.24c3ab1c@cakuba.hsd1.ca.comcast.net> <C11859E1-BE71-494F-81E2-9B27E27E60EE@xenosoft.de> <87tv441gg1.fsf@mpe.ellerman.id.au> <f438e4ed-7746-1d80-6d72-455281884a1e@xenosoft.de>
-Date:   Sat, 08 Feb 2020 23:36:34 +1100
-Message-ID: <87imkh1cj1.fsf@mpe.ellerman.id.au>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+        id S1727154AbgBHNDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Feb 2020 08:03:34 -0500
+Received: from mout.kundenserver.de ([217.72.192.75]:36035 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727129AbgBHNDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Feb 2020 08:03:33 -0500
+Received: from localhost.localdomain ([37.4.249.150]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MZk1p-1j3Sio3D9j-00WpfZ; Sat, 08 Feb 2020 14:03:17 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH 0/4] pinctrl: bcm2835: Add support for all BCM2711 GPIOs
+Date:   Sat,  8 Feb 2020 14:02:51 +0100
+Message-Id: <1581166975-22949-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:icI8YXP26Zm+jBjOn2iPvYMPgU0dU1i3GPi3xK6L9n7Yvhg1ZFl
+ 2ZXJjVg90vdegqoIZVCbPcf+ByYk0vLlEF8GeQl2Agc8+wOd1AgKlUtzLgFzmsS0odZe677
+ OGXXBRKaldCx8rstZO4BRwxB6xoXpOxgQv5tPOPSenhIhwh5SFXnq6EMC4jYIYWQZCBC3CW
+ yYqrjHKPVENorBY1SlBXA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:9x5HXLGv2j8=:QGeYjIQhpdk9eJVt857SY1
+ lvvRiYKmpxh7u+Zy5EW8Fq04xcZhkaLQEB+Mkmw3SRc1L4qMTGIzf6/DzNieXG3pjIZImbOJj
+ DPK55L3eAGE9R5iPpqR7SBOpkgDigDpEv8BRePytI2ex9CmrciCcyD+R/uTEjNHs3QF1820E1
+ lnPNfK2XzruBVTHfPTiXG/ji9i3ZqUJyd/sdE9SrXvA6BOQpp5xdOeNUi39i3vtXuBu1GJZv4
+ O3GOGJj5FllwnRmYsBjMP/RCF9I6z6ey0TvWh86Tr/Xi+ApwSGI08fc3kFR/m12WQfGQyqUSa
+ A9Guj4iMDzlt/B3ynBuL4Vw38KMlKSzttEAmm8kvwbWR+zlw4su0lg8XU96ZuEupA18CKIS3w
+ LbjSllhtjDE9u736WYEo2haGVAOoY2cTa4CKBYKiz+DPaOMGu1HHd8aapMLypFZHYgr+2Y6ju
+ TDMNV4qE4PH5WgJCgOogP50NXfJIDirKCDhq1RZi3j5l7KZN+uwO50GBnlfgZsCU4hKprin6z
+ uY0oOol0j7fFu6Ezk+1ZTMyCCxmaski+vcLUaeaHyBBk6Ac4em/OpnzuQOxhFl3b7X3eMCPcR
+ TkiDjE46juSuJtMn1ebMjS3OG54CRImI8iBE7FUVe15MwtwNk1QNozunxuj564a/aOmdAbYzo
+ NkK7ViN1FgIaWR1yXjjl70EzqixlbBOfAyipDjq/Ip1ZPCOvEqfi3RFhBQVG1H+yJ3HHts0do
+ Pef5uy0sXFzIzkJUHWSmCv3ex5zPSEPlMum3As1YPrD0aFyDOjQoa7TLn3lAWtXxasaMKYCM6
+ EFwLIndM/0GQic3NXe631UiV+4anz45dHcjRVBbx2m84DwyYh7b9/LW6w9vNDIu9/TEhUxY
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Zigotzky <chzigotzky@xenosoft.de> writes:
-> On 06 February 2020 at 05:35 am, Michael Ellerman wrote:
->> Christian Zigotzky <chzigotzky@xenosoft.de> writes:
->>> Kernel 5.5 PowerPC is also affected.
->> I don't know what you mean by that. What sha are you talking about?
->>
->> I have a system with avahi running and everything's fine.
->>
->>    # grep use- /etc/avahi/avahi-daemon.conf
->>    use-ipv4=3Dyes
->>    use-ipv6=3Dyes
->>=20=20=20=20
->>    # systemctl status -l --no-pager avahi-daemon
->>    =E2=97=8F avahi-daemon.service - Avahi mDNS/DNS-SD Stack
->>       Loaded: loaded (/lib/systemd/system/avahi-daemon.service; enabled;=
- vendor preset: enabled)
->>       Active: active (running) since Thu 2020-02-06 14:55:34 AEDT; 38min=
- ago
->>     Main PID: 1884 (avahi-daemon)
->>       Status: "avahi-daemon 0.7 starting up."
->>       CGroup: /system.slice/avahi-daemon.service
->>               =E2=94=9C=E2=94=801884 avahi-daemon: running [mpe-ubuntu-l=
-e.local]
->>               =E2=94=94=E2=94=801888 avahi-daemon: chroot helper
->>=20=20=20=20
->>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new add=
-ress record for fe80::5054:ff:fe66:2a19 on eth0.*.
->>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new add=
-ress record for 10.61.141.81 on eth0.IPv4.
->>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new add=
-ress record for ::1 on lo.*.
->>    Feb 06 14:55:34 mpe-ubuntu-le avahi-daemon[1884]: Registering new add=
-ress record for 127.0.0.1 on lo.IPv4.
->>    Feb 06 14:55:34 mpe-ubuntu-le systemd[1]: Started Avahi mDNS/DNS-SD S=
-tack.
->>    Feb 06 14:55:35 mpe-ubuntu-le avahi-daemon[1884]: Server startup comp=
-lete. Host name is mpe-ubuntu-le.local. Local service cookie is 3972418141.
->>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Leaving mDNS multic=
-ast group on interface eth0.IPv6 with address fe80::5054:ff:fe66:2a19.
->>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Joining mDNS multic=
-ast group on interface eth0.IPv6 with address fd69:d75f:b8b5:61:5054:ff:fe6=
-6:2a19.
->>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Registering new add=
-ress record for fd69:d75f:b8b5:61:5054:ff:fe66:2a19 on eth0.*.
->>    Feb 06 14:55:38 mpe-ubuntu-le avahi-daemon[1884]: Withdrawing address=
- record for fe80::5054:ff:fe66:2a19 on eth0.
->>=20=20=20=20
->>    # uname -r
->>    5.5.0-gcc-8.2.0
->>
->>
->> The key question is what ioctl is it complaining about. You should be
->> able to find that via strace.
->>
->> cheers
->>
-> Hello Michael,
->
-> Sorry it isn't true that the kernel 5.5 is also affected. A Power Mac G5=
-=20
-> user told me that but this isn't correct. I compiled and tested the=20
-> stable kernel 5.5.1 and 5.5.2 today and both kernels don't have the=20
-> issue with the avahi daemon.
+The BCM2711 supports 58 GPIOs [1] by using the existing BCM2835 GPIO registers
+completely. So there is no need to change the binding.
 
-OK good to know.
+Patch 1 and 2 prepare the pinctrl driver to be extended to 58 GPIOs in Patch 3.
+I didn't want to squash them in order to make review as easy as possible.
+The final patch 4 assigns all SoC GPIOs a label as we already did for
+the older Raspberry Pi boards.
 
-> Could you please also test the latest Git kernel?
+Changes since RFC:
+- avoid using memcpy as suggested by Nicolas
+- drop unused entry from GPIO label legend
 
-That's literally all I ever do.
+[1] - https://github.com/raspberrypi/linux/issues/3101#issuecomment-573092294
 
-The problem here is you didn't tell me you were running a big endian
-distro, which uses compat mode.
+Stefan Wahren (4):
+  pinctrl: bcm2835: Drop unused define
+  pinctrl: bcm2835: Refactor platform data
+  pinctrl: bcm2835: Add support for all GPIOs on BCM2711
+  ARM: dts: bcm2711-rpi-4-b: Add SoC GPIO labels
 
-In hindsight I should have thought of that.
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts |  73 +++++++++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-bcm2835.c | 106 ++++++++++++++++++++++++++--------
+ 2 files changed, 155 insertions(+), 24 deletions(-)
 
-Now that I know that, I can reproduce the bug:
+-- 
+2.7.4
 
-  Feb 08 23:31:12 mpe-ubuntu-be avahi-daemon[24819]: ioctl(): Inappropriate=
- ioctl for device
-  Feb 08 23:31:12 mpe-ubuntu-be avahi-daemon[24819]: ioctl(): Inappropriate=
- ioctl for device
-  Feb 08 23:31:12 mpe-ubuntu-be avahi-daemon[24819]: ioctl(): Inappropriate=
- ioctl for device
-  Feb 08 23:31:12 mpe-ubuntu-be avahi-daemon[24819]: ioctl(): Inappropriate=
- ioctl for device
-
-
-But it seems you've already identified the problem commit, thanks for
-bisecting.
-
-I'm sure Arnd will be able to fix it now that you've identified the
-problematic commit.
-
-cheers
-
-
-> strace /usr/sbin/avahi-daemon
->
-> ...
-> poll([{fd=3D4, events=3DPOLLIN}, {fd=3D16, events=3DPOLLIN}, {fd=3D15,=20
-> events=3DPOLLIN}, {fd=3D14, events=3DPOLLIN}, {fd=3D13, events=3DPOLLIN},=
- {fd=3D12,=20
-> events=3DPOLLIN}, {fd=3D11, events=3DPOLLIN}, {fd=3D10, events=3DPOLLIN},=
- {fd=3D9,=20
-> events=3DPOLLIN}, {fd=3D8, events=3DPOLLIN}, {fd=3D6, events=3DPOLLIN}], =
-11, 65) =3D=20
-> 2 ([{fd=3D12, revents=3DPOLLIN}, {fd=3D9, revents=3DPOLLIN}])
-> ioctl(12, FIONREAD, 0xffba6f24)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 =3D -1 ENOTTY (Inappropriate ioctl=20
-> for device)
-> write(2, "ioctl(): Inappropriate ioctl for"..., 39ioctl(): Inappropriate=
-=20
-> ioctl for device) =3D 39
-> write(2, "\n", 1
-> )=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D 1
-> ...
->
-> Thanks,
-> Christian
