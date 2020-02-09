@@ -2,39 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49622156AF8
-	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2020 16:27:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0B5156B25
+	for <lists+devicetree@lfdr.de>; Sun,  9 Feb 2020 16:48:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727661AbgBIP1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Feb 2020 10:27:52 -0500
-Received: from mail.z3ntu.xyz ([128.199.32.197]:51030 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727514AbgBIP1w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 9 Feb 2020 10:27:52 -0500
-X-Greylist: delayed 444 seconds by postgrey-1.27 at vger.kernel.org; Sun, 09 Feb 2020 10:27:50 EST
-Received: from localhost.localdomain (80-110-126-226.cgn.dynamic.surfer.at [80.110.126.226])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 00E4DC1E6F;
-        Sun,  9 Feb 2020 15:20:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1581261625; bh=yU5+GbnKv24kCO8ScL2Ee8KtKAa6j8RtJf1mj6xw9tg=;
-        h=From:To:Cc:Subject:Date;
-        b=nvy5+HxvKgqPca59Ke/8b/MWJn6wdmZNuW45zMihRHDSVzKrRr2l7eisM5GsOaD6m
-         h3YslYNtbyNyGdKHI5KohpQqil8G+WKNwaACejW/ZdfmXxJqlj8WrS9HXD1H55Tqls
-         YtlyPJ8e8vq6Yj6WEp8fk16RMKBsLcbj9q/w+KRA=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-input@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, Luca Weiss <luca@z3ntu.xyz>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1727875AbgBIPsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Feb 2020 10:48:32 -0500
+Received: from mail.serbinski.com ([162.218.126.2]:32884 "EHLO
+        mail.serbinski.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727828AbgBIPsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Feb 2020 10:48:30 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mail.serbinski.com (Postfix) with ESMTP id 861D7D00700;
+        Sun,  9 Feb 2020 15:48:29 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at serbinski.com
+Received: from mail.serbinski.com ([127.0.0.1])
+        by localhost (mail.serbinski.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id lcSDXKU_nL2R; Sun,  9 Feb 2020 10:48:23 -0500 (EST)
+Received: from anet (23-233-80-73.cpe.pppoe.ca [23.233.80.73])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mail.serbinski.com (Postfix) with ESMTPSA id D36A2D00716;
+        Sun,  9 Feb 2020 10:48:09 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.serbinski.com D36A2D00716
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=serbinski.com;
+        s=default; t=1581263289;
+        bh=+zB4LnN9LLpPdhU7E7/M9daLcjy7QRsA3nLhYSVC610=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=lnVf5zihzXXmqGAdeUCWgq53i5PiqyLPm1d4RtuXtQ2fYNZ0W9+yuDbaaVxcns6nO
+         H6f/mlBFE6sn5DoBh25bAHN/BPZrlzhq7aHNnw9M85EXayD/sUNVxysoAffz9o+GGc
+         dp+uvPpBThdF5kEtzk33qDa30Skas0vaaxANHxdI=
+From:   Adam Serbinski <adam@serbinski.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Adam Serbinski <adam@serbinski.com>,
+        Andy Gross <agross@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sven Van Asbroeck <thesven73@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] Input: ili210x - add ili2120 support
-Date:   Sun,  9 Feb 2020 16:19:03 +0100
-Message-Id: <20200209151904.661210-1-luca@z3ntu.xyz>
-X-Mailer: git-send-email 2.25.0
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Patrick Lai <plai@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/8] ASoC: qdsp6: db820c: Add support for external and bluetooth audio
+Date:   Sun,  9 Feb 2020 10:47:40 -0500
+Message-Id: <20200209154748.3015-1-adam@serbinski.com>
+X-Mailer: git-send-email 2.21.1
+In-Reply-To: <20200207205013.12274-1-adam@serbinski.com>
+References: <20200207205013.12274-1-adam@serbinski.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -42,91 +59,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the Ilitek ili2120 touchscreen found in the
-Fairphone 2 smartphone.
+Changes from V1:
 
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
-Changes from v1:
-- Rebase on master, adjust for upstream changes
+	Rename patch:
+		from: dts: msm8996/db820c: enable primary pcm and quaternary i2s
+		to: dts: qcom: db820c: Enable primary PCM and quaternary I2S
 
- .../bindings/input/ilitek,ili2xxx.txt         |  3 +-
- drivers/input/touchscreen/ili210x.c           | 32 +++++++++++++++++++
- 2 files changed, 34 insertions(+), 1 deletion(-)
+CC: Andy Gross <agross@kernel.org>
+CC: Mark Rutland <mark.rutland@arm.com>
+CC: Liam Girdwood <lgirdwood@gmail.com>
+CC: Patrick Lai <plai@codeaurora.org>
+CC: Banajit Goswami <bgoswami@codeaurora.org>
+CC: Jaroslav Kysela <perex@perex.cz>
+CC: Takashi Iwai <tiwai@suse.com>
+CC: alsa-devel@alsa-project.org
+CC: linux-arm-msm@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
 
-diff --git a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt b/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
-index dc194b2c151a..cdcaa3f52d25 100644
---- a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
-+++ b/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
-@@ -1,9 +1,10 @@
--Ilitek ILI210x/ILI2117/ILI251x touchscreen controller
-+Ilitek ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller
- 
- Required properties:
- - compatible:
-     ilitek,ili210x for ILI210x
-     ilitek,ili2117 for ILI2117
-+    ilitek,ili2120 for ILI2120
-     ilitek,ili251x for ILI251x
- 
- - reg: The I2C address of the device
-diff --git a/drivers/input/touchscreen/ili210x.c b/drivers/input/touchscreen/ili210x.c
-index 84bf51d79888..199cf3daec10 100644
---- a/drivers/input/touchscreen/ili210x.c
-+++ b/drivers/input/touchscreen/ili210x.c
-@@ -167,6 +167,36 @@ static const struct ili2xxx_chip ili211x_chip = {
- 	.resolution		= 2048,
- };
- 
-+static bool ili212x_touchdata_to_coords(const u8 *touchdata,
-+					unsigned int finger,
-+					unsigned int *x, unsigned int *y)
-+{
-+	u16 val;
-+
-+	val = get_unaligned_be16(touchdata + 3 + (finger * 5) + 0);
-+	if (!(val & BIT(15)))	/* Touch indication */
-+		return false;
-+
-+	*x = val & 0x3fff;
-+	*y = get_unaligned_be16(touchdata + 3 + (finger * 5) + 2);
-+
-+	return true;
-+}
-+
-+static bool ili212x_check_continue_polling(const u8 *data, bool touch)
-+{
-+	return touch;
-+}
-+
-+static const struct ili2xxx_chip ili212x_chip = {
-+	.read_reg		= ili210x_read_reg,
-+	.get_touch_data		= ili210x_read_touch_data,
-+	.parse_touch_data	= ili212x_touchdata_to_coords,
-+	.continue_polling	= ili212x_check_continue_polling,
-+	.max_touches		= 10,
-+	.has_calibrate_reg	= true,
-+};
-+
- static int ili251x_read_reg(struct i2c_client *client,
- 			    u8 reg, void *buf, size_t len)
- {
-@@ -447,6 +477,7 @@ static int ili210x_i2c_probe(struct i2c_client *client,
- static const struct i2c_device_id ili210x_i2c_id[] = {
- 	{ "ili210x", (long)&ili210x_chip },
- 	{ "ili2117", (long)&ili211x_chip },
-+	{ "ili2120", (long)&ili212x_chip },
- 	{ "ili251x", (long)&ili251x_chip },
- 	{ }
- };
-@@ -455,6 +486,7 @@ MODULE_DEVICE_TABLE(i2c, ili210x_i2c_id);
- static const struct of_device_id ili210x_dt_ids[] = {
- 	{ .compatible = "ilitek,ili210x", .data = &ili210x_chip },
- 	{ .compatible = "ilitek,ili2117", .data = &ili211x_chip },
-+	{ .compatible = "ilitek,ili2120", .data = &ili212x_chip },
- 	{ .compatible = "ilitek,ili251x", .data = &ili251x_chip },
- 	{ }
- };
+Adam Serbinski (8):
+  ASoC: qdsp6: dt-bindings: Add q6afe pcm dt binding
+  ASoC: qdsp6: q6afe: add support to pcm ports
+  ASoC: qdsp6: q6afe-dai: add support to pcm port dais
+  ASoC: qdsp6: q6routing: add pcm port routing
+  ASoC: qcom: apq8096: add support for primary and quaternary I2S/PCM
+  ASoC: qcom/common: Use snd-soc-dummy-dai when codec is not specified
+  arm64: dts: qcom: db820c: Enable primary PCM and quaternary I2S
+  ASoC: qcom: apq8096: add kcontrols to set PCM rate
+
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 113 +++++++++
+ arch/arm64/boot/dts/qcom/msm8996-pins.dtsi   | 162 ++++++++++++
+ include/dt-bindings/sound/qcom,q6afe.h       |   8 +
+ sound/soc/qcom/apq8096.c                     | 172 +++++++++++--
+ sound/soc/qcom/common.c                      |  22 +-
+ sound/soc/qcom/qdsp6/q6afe-dai.c             | 198 ++++++++++++++-
+ sound/soc/qcom/qdsp6/q6afe.c                 | 246 +++++++++++++++++++
+ sound/soc/qcom/qdsp6/q6afe.h                 |   9 +-
+ sound/soc/qcom/qdsp6/q6routing.c             |  44 ++++
+ 9 files changed, 953 insertions(+), 21 deletions(-)
+
 -- 
-2.25.0
+2.21.1
 
