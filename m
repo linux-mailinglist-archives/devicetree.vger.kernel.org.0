@@ -2,56 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17CEE158039
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 17:55:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81E441580C2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 18:11:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727898AbgBJQzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 11:55:00 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:50447 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727431AbgBJQzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 11:55:00 -0500
-X-Originating-IP: 90.65.102.129
-Received: from localhost (lfbn-lyo-1-1670-129.w90-65.abo.wanadoo.fr [90.65.102.129])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 4AE06E0005;
-        Mon, 10 Feb 2020 16:54:56 +0000 (UTC)
-Date:   Mon, 10 Feb 2020 17:54:56 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>
-Subject: Re: [PATCH] arm: at91: dts: Kill off "simple-panel" compatibles
-Message-ID: <20200210165456.GD3878@piout.net>
-References: <20200117230845.25190-1-robh@kernel.org>
+        id S1728147AbgBJRKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 12:10:08 -0500
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:36755 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727536AbgBJRKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 12:10:08 -0500
+X-Greylist: delayed 2425 seconds by postgrey-1.27 at vger.kernel.org; Mon, 10 Feb 2020 12:09:57 EST
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 01AGSn2X011282;
+        Mon, 10 Feb 2020 18:28:49 +0200
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
+        id 612B76032E; Mon, 10 Feb 2020 18:28:49 +0200 (IST)
+From:   amirmizi6@gmail.com
+To:     Eyal.Cohen@nuvoton.com, jarkko.sakkinen@linux.intel.com,
+        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
+        jgg@ziepe.ca, arnd@arndb.de, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
+        Amir Mizinski <amirmizi6@gmail.com>
+Subject: [PATCH v3 0/7] add tpm i2c ptp driver
+Date:   Mon, 10 Feb 2020 18:28:31 +0200
+Message-Id: <20200210162838.173903-1-amirmizi6@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200117230845.25190-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/01/2020 17:08:45-0600, Rob Herring wrote:
-> "simple-panel" is a Linux driver and has never been an accepted upstream
-> compatible string, so remove it.
-> 
-> Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/arm/boot/dts/at91-dvk_su60_somc_lcm.dtsi | 2 +-
->  arch/arm/boot/dts/at91-sama5d4_ma5d4evk.dts   | 2 +-
->  arch/arm/boot/dts/at91sam9n12ek.dts           | 2 +-
->  arch/arm/boot/dts/at91sam9x5dm.dtsi           | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
-> 
-Applied, thanks.
+From: Amir Mizinski <amirmizi6@gmail.com>
+
+This patch set adds support for TPM devices that implement the I2C.
+Interface defined by TCG PTP specification:
+https://trustedcomputinggroup.org/wp-content/uploads/TCG_PC_Client_Platform_TPM_Profile_PTP_2.0_r1.03_v22.pdf
+
+The driver was tested on Raspberry-Pie 3, using Nuvoton NPCT75X TPM.
+
+Interrupts are not implemented yet, preparing it for the next patch.
+This patch is based on initial work by oshri Alkoby, Alexander Steffen and Christophe Ricard
+
+Addressed comments from:
+ - Jarkko Sakkinen: https://patchwork.kernel.org/patch/11236257/
+ - Rob Herring: https://patchwork.kernel.org/patch/11236253/
+
+Changes since version 1:
+-"char:tpm:Add check_data handle to tpm_tis_phy_ops in order to check data integrity"
+        - Fixed and extended commit description.
+        - Fixed an issue regarding handling max retries.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options":
+        -Converted "tpm_tis_i2c.txt" to "tpm-tis-i2c.yaml".
+        - Renamed "tpm_tis-i2c" to "tpm-tis-i2c".
+        - Removed interrupts properties.
+-"char: tpm: add tpm_tis_i2c driver"
+        - Replaced "tpm_tis-i2c" with "tpm-tis-i2c" in "tpm_tis_i2c.c".
+
+
+Changes since version 2:
+- Added 2 new commits with improvements suggested by Benoit Houyere.
+        -"Fix expected bit handling  and send all bytes in one shot without last byte in exception"
+        -"Handle an exeption for TPM Firmware Update mode."
+- Updated patch to latest v5.5
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        - Added "interrupts" and "crc-checksum" to properties.
+        - Updated binding description and commit info.
+-"char: tpm: add tpm_tis_i2c driver" (suggested by Benoit Houyere)
+        - Added repeat I2C frame after NACK.
+        - Checksum I2C feature activation in DTS file configuration.
+
+Amir Mizinski (7):
+  char: tpm: Make implementation of read16 read32 write32 optional
+  char: tpm: Add check_data handle to tpm_tis_phy_ops in order to check
+    data integrity
+  char: tpm: rewrite "tpm_tis_req_canceled()"
+  char: tpm: Fix expected bit handling and send all bytes in one shot
+    without last byte in exception
+  tpm: Handle an exception for TPM Firmware Update mode.
+  dt-bindings: tpm: Add YAML schema for TPM TIS I2C options
+  char: tpm: add tpm_tis_i2c driver
+
+ .../bindings/security/tpm/tpm-tis-i2c.yaml         |  43 +++
+ drivers/char/tpm/Kconfig                           |  12 +
+ drivers/char/tpm/Makefile                          |   1 +
+ drivers/char/tpm/tpm2-cmd.c                        |   4 +
+ drivers/char/tpm/tpm_tis_core.c                    | 182 ++++++-------
+ drivers/char/tpm/tpm_tis_core.h                    |  41 ++-
+ drivers/char/tpm/tpm_tis_i2c.c                     | 292 +++++++++++++++++++++
+ drivers/char/tpm/tpm_tis_spi.c                     |  41 ---
+ include/linux/tpm.h                                |   1 +
+ 9 files changed, 482 insertions(+), 135 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+ create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.7.4
+
