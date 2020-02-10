@@ -2,101 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AD51157378
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 12:31:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8134A15737D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 12:31:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727429AbgBJLbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 06:31:04 -0500
-Received: from mail-eopbgr1400138.outbound.protection.outlook.com ([40.107.140.138]:34715
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726796AbgBJLbE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Feb 2020 06:31:04 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CZdREvM/sZT8/lxmrWJrGibiPt4D9n31EbQFABu80E2AoCVghDm0SzSlpICZfHyj3ei2oFwvMTtiaLu3QGsfvtfkgrEH5T4la4yWh8CKYseXH6kw80pGYQDxVa/U8kHRfJLZi8yhnjLvZOv327lWGtIZCTMXFmIJbirgisqYuxIhVWTzoq/5DJV0iadLlr3W/eQZTLKS0hTEsYWbiOfbV9Unr0Tsjzim8WF02iuXiUOR9QCDo8T2XRGuRffIyqcU3x4FaN1Z/9wa8P73yGM7A56HCGSVmELB2FndiC0n/YzqeTO3KszdIldi/ylBn+rtUYMfH8+561rL/dP5n7mWyQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KUbVSEzUGj+Dac+fCZTB1uTFN0J7IC/+NfNwk4ecQ8E=;
- b=atcsCOr1wZJvYbXH8VXhAUBNw2l3cBuBC2FDVeDuV/ZFrkX+QbCfjQu6K6v9CUBxIDbWkN6T0ck87CC+WTvZmbD7mOzlf9pnoSG6a7r+FyOirV+1Vt27/DezDoQgyGU+VLokMfJdbVQqc4jGDblet9SaO2yc+oKkKPb1lA+VFmn4xt0SP9zesRu4djJie8fi9s2BQLkBIkcWxjIb9e/OY8VYtbql8KSzcwyl31eyLx/7VZGoOMWoVVftRb3VJ5jD1n6LjhcEDnVIq/GWcBwjtMcPTETpg1ORFFrMJ0v0VQRlsK+AUwCf99aV1p64hcBBdx5UGfaLobZV5Pmy0NMzdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KUbVSEzUGj+Dac+fCZTB1uTFN0J7IC/+NfNwk4ecQ8E=;
- b=VKWjTPso+YIbnCOjhpM/RtQk5QM/OL8EhrCsZkVRuTIRee/7EbKOA8HhBkUu/bmIX5trLYHEZ1EjuzwF75X0YdcPox1DdipYq32ejUe3dClR6gKIO1vBp0c51G/+oo//g5eQbJBEwc2h7pMDTLugNMMpMVsWOQMmd5oKpPT8AEM=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1609.jpnprd01.prod.outlook.com (52.133.163.17) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2707.21; Mon, 10 Feb 2020 11:31:00 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::8870:97e4:a63c:67ea]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::8870:97e4:a63c:67ea%7]) with mapi id 15.20.2707.028; Mon, 10 Feb 2020
- 11:31:00 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] ARM: dts: r7s72100: Add SPIBSC clocks
-Thread-Topic: [PATCH] ARM: dts: r7s72100: Add SPIBSC clocks
-Thread-Index: AQHV3dN9T9Vt0u1WzECd32yImKJz2agUGE0AgAA2ZKA=
-Date:   Mon, 10 Feb 2020 11:31:00 +0000
-Message-ID: <TY1PR01MB1562D7E98F1200B868A91F928A190@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20200207162704.18914-1-chris.brandt@renesas.com>
- <CAMuHMdXdgcs0pgmeVR+DW_oxsUcR159i-=ZL+LLoqpQoAvq6fA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXdgcs0pgmeVR+DW_oxsUcR159i-=ZL+LLoqpQoAvq6fA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcY2JyYW5kdDAxXGFwcGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEyOWUzNWJcbXNnc1xtc2ctY2ZmZDdjOTYtNGJmOC0xMWVhLWFhNWItOTRlNmY3Njc5M2FlXGFtZS10ZXN0XGNmZmQ3Yzk4LTRiZjgtMTFlYS1hYTViLTk0ZTZmNzY3OTNhZWJvZHkudHh0IiBzej0iNTEwIiB0PSIxMzIyNTgwNzg2MTIzNTM3MzgiIGg9IjhkMEJHeWg4bWttVXlseWZObk8ra2RRU2syRT0iIGlkPSIiIGJsPSIwIiBibz0iMSIvPjwvbWV0YT4=
-x-dg-rorf: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 7861042a-e960-4963-7f5e-08d7ae1cb4a6
-x-ms-traffictypediagnostic: TY1PR01MB1609:
-x-microsoft-antispam-prvs: <TY1PR01MB16098A99913F68AFE426DA9C8A190@TY1PR01MB1609.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 03094A4065
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(366004)(39860400002)(396003)(136003)(376002)(189003)(199004)(8676002)(316002)(186003)(26005)(4326008)(8936002)(55016002)(9686003)(81166006)(81156014)(54906003)(6506007)(76116006)(478600001)(7696005)(86362001)(2906002)(71200400001)(52536014)(66476007)(66556008)(64756008)(66946007)(66446008)(5660300002)(4744005)(6916009)(33656002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1609;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: yDfRFcvipQLRsSmKoPVk7dXlJiV0nXozNxtNTL9AO1qKFMyrbnzsmtA5vSKY+AVcxFoTL575WBZwm/pPjlu7oGiTjBzX/Oqj5H9a83ZVX+N91bBa8lHXdME7qGyTZFy4fR9UOp2v4BOKB5HZZMfQVNigK9AHG3GrUKLqnxqo+EAKD5lq0aBxpkd7hvIXaxZ6FEtrQWVedJZjVf3B7Hk6C9B9huwclv8M6ctsjCC4f1mHxDy0VAW1hYy+aUH5P8tSqpZKA+U55T28LydOHkmt59Vst0D1eD31NbwDalDm9RcdsQDUicVbfOrjaEBcArJLrKSUPPp48VfjAN4ByHWhNWGeVJbi+lSKuGb2BTEQlWXbFE12ecViHA8ZOaRoLUu5CwfevMpqmEpcdUIae1uWnIGcSxD8M9rZdZO6QjAyuKFTrhJsed7CSAelhXLQ2s3o
-x-ms-exchange-antispam-messagedata: Cu55gHSCf8UAMLWzVra+s3kRVp3+283LU4QmfkHkaWzeT7GDU4LlWrGc/3D2kXFwBeKhiBvZxCqhVCVCaeFoTOCQZHiaIba3RiOeQ8mdtc+1InsqE/ub+kQZrATJcTQzy9v0oVTBAMQUZU7A3N6tsw==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726796AbgBJLbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 06:31:34 -0500
+Received: from foss.arm.com ([217.140.110.172]:59008 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726792AbgBJLbe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Feb 2020 06:31:34 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4E3AB1FB;
+        Mon, 10 Feb 2020 03:31:33 -0800 (PST)
+Received: from [10.1.195.32] (e112269-lin.cambridge.arm.com [10.1.195.32])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3A7BA3F6CF;
+        Mon, 10 Feb 2020 03:31:31 -0800 (PST)
+Subject: Re: [PATCH v4 4/7] drm/panfrost: Add support for multiple regulators
+To:     Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <Mark.Rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "hsinyi@chromium.org" <hsinyi@chromium.org>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>
+References: <20200207052627.130118-1-drinkcat@chromium.org>
+ <20200207052627.130118-5-drinkcat@chromium.org>
+From:   Steven Price <steven.price@arm.com>
+Message-ID: <df99cedb-4c2c-b8b8-14e6-d7b8d8fe351a@arm.com>
+Date:   Mon, 10 Feb 2020 11:31:29 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7861042a-e960-4963-7f5e-08d7ae1cb4a6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2020 11:31:00.7473
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Cli0qaAemJIlfQpYowQL5F4C8ipRBqvzinG0vbkZep8iP+nFQGNroSbrBR1cRM9u7LyoZC/TCfJYGlUYbdkbfK1dS5uFN47kFqPLHgK1Wcc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1609
+In-Reply-To: <20200207052627.130118-5-drinkcat@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNCk9uIE1vbiwgRmViIDEwLCAyMDIwLCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
-dGU6DQo+IEhvd2V2ZXIsIEkgYmVsaWV2ZSBJIGNhbm5vdCBxdWV1ZSB0aGlzIGluIHJlbmVzYXMt
-ZGV2ZWwgeWV0LCBhcyB0byBhdm9pZA0KPiBhIHJlZ3Jlc3Npb24sIHRoZSBmbGFzaCBub2RlIGlu
-IHI3czcyMTAwLWdyLXBlYWNoLmR0cyBzaG91bGQgZ2Fpbg0KPiBhcHByb3ByaWF0ZSBjbG9jayBh
-bmQgcG93ZXItZG9tYWlucyBwcm9wZXJ0aWVzLg0KPiBBbmQgdG8gYXZvaWQgYmlzZWN0aW9uIGlz
-c3VlcywgdGhhdCBzaG91bGQgYmUgY29tYmluZWQgd2l0aCB0aGlzIHBhdGNoLA0KPiByaWdodD8N
-Cg0KQXJlIHlvdSBzYXlpbmcgYSBwYXRjaCBzZXJpZXM/IE9yIDEgcGF0Y2ggdGhhdCBlZGl0cyBi
-b3RoIGZpbGVzPw0KDQpUaGFua3MsDQpDaHJpcw0KDQo=
+On 07/02/2020 05:26, Nicolas Boichat wrote:
+> Some GPUs, namely, the bifrost/g72 part on MT8183, have a second
+> regulator for their SRAM, let's add support for that.
+> 
+> We extend the framework in a generic manner so that we could
+> support more than 2 regulators, if required.
+> 
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+
+Reviewed-by: Steven Price <steven.price@arm.com>
+
+Thanks,
+
+Steve
+
+> 
+> ---
+> 
+> v4:
+>  - nits: Run through latest version of checkpatch:
+>    - Use WARN instead of BUG_ON.
+>    - Drop braces in single expression for loop.
+>    - *comp not * comp
+> v3:
+>  - Make this more generic, by allowing any number of regulators
+>    (in practice we fix the maximum number of regulators to 2, but
+>    this could be increased easily).
+>  - We only probe the second regulator if the device tree matching
+>    data asks for it.
+>  - I couldn't find a way to detect the number of regulators in the
+>    device tree, if we wanted to refuse to probe the device if there
+>    are too many regulators, which might be required for safety, see
+>    the thread on v2 [1].
+>  - The discussion also included the idea of a separate device tree
+>    entry for a "soft PDC", or at least a separate driver. I'm not
+>    sure to understand the full picture, and how different vendors
+>    implement this, so I'm still integrating everything in the main
+>    driver. I'd be happy to try to make mt8183 fit into such a
+>    framework after it's created, but I don't think I'm best placed
+>    to implement (and again, the main purpose of this was to test
+>    if the binding is correct).
+> 
+> [1] https://patchwork.kernel.org/patch/11322839/
+> 
+>  drivers/gpu/drm/panfrost/panfrost_device.c | 26 +++++++++++++-------
+>  drivers/gpu/drm/panfrost/panfrost_device.h | 15 +++++++++++-
+>  drivers/gpu/drm/panfrost/panfrost_drv.c    | 28 +++++++++++++++-------
+>  3 files changed, 51 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.c b/drivers/gpu/drm/panfrost/panfrost_device.c
+> index 238fb6d54df4732..3720d50f6d9f965 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_device.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_device.c
+> @@ -87,18 +87,27 @@ static void panfrost_clk_fini(struct panfrost_device *pfdev)
+>  
+>  static int panfrost_regulator_init(struct panfrost_device *pfdev)
+>  {
+> -	int ret;
+> +	int ret, i;
+>  
+> -	pfdev->regulator = devm_regulator_get(pfdev->dev, "mali");
+> -	if (IS_ERR(pfdev->regulator)) {
+> -		ret = PTR_ERR(pfdev->regulator);
+> -		dev_err(pfdev->dev, "failed to get regulator: %d\n", ret);
+> +	if (WARN(pfdev->comp->num_supplies > ARRAY_SIZE(pfdev->regulators),
+> +			"Too many supplies in compatible structure.\n"))
+> +		return -EINVAL;
+> +
+> +	for (i = 0; i < pfdev->comp->num_supplies; i++)
+> +		pfdev->regulators[i].supply = pfdev->comp->supply_names[i];
+> +
+> +	ret = devm_regulator_bulk_get(pfdev->dev,
+> +				      pfdev->comp->num_supplies,
+> +				      pfdev->regulators);
+> +	if (ret < 0) {
+> +		dev_err(pfdev->dev, "failed to get regulators: %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> -	ret = regulator_enable(pfdev->regulator);
+> +	ret = regulator_bulk_enable(pfdev->comp->num_supplies,
+> +				    pfdev->regulators);
+>  	if (ret < 0) {
+> -		dev_err(pfdev->dev, "failed to enable regulator: %d\n", ret);
+> +		dev_err(pfdev->dev, "failed to enable regulators: %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> @@ -107,7 +116,8 @@ static int panfrost_regulator_init(struct panfrost_device *pfdev)
+>  
+>  static void panfrost_regulator_fini(struct panfrost_device *pfdev)
+>  {
+> -	regulator_disable(pfdev->regulator);
+> +	regulator_bulk_disable(pfdev->comp->num_supplies,
+> +			pfdev->regulators);
+>  }
+>  
+>  int panfrost_device_init(struct panfrost_device *pfdev)
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
+> index 06713811b92cdf7..c9468bc5573ac9d 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_device.h
+> +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
+> @@ -7,6 +7,7 @@
+>  
+>  #include <linux/atomic.h>
+>  #include <linux/io-pgtable.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/spinlock.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_mm.h>
+> @@ -19,6 +20,7 @@ struct panfrost_job;
+>  struct panfrost_perfcnt;
+>  
+>  #define NUM_JOB_SLOTS 3
+> +#define MAX_REGULATORS 2
+>  
+>  struct panfrost_features {
+>  	u16 id;
+> @@ -51,6 +53,16 @@ struct panfrost_features {
+>  	unsigned long hw_issues[64 / BITS_PER_LONG];
+>  };
+>  
+> +/*
+> + * Features that cannot be automatically detected and need matching using the
+> + * compatible string, typically SoC-specific.
+> + */
+> +struct panfrost_compatible {
+> +	/* Supplies count and names. */
+> +	int num_supplies;
+> +	const char * const *supply_names;
+> +};
+> +
+>  struct panfrost_device {
+>  	struct device *dev;
+>  	struct drm_device *ddev;
+> @@ -59,10 +71,11 @@ struct panfrost_device {
+>  	void __iomem *iomem;
+>  	struct clk *clock;
+>  	struct clk *bus_clock;
+> -	struct regulator *regulator;
+> +	struct regulator_bulk_data regulators[MAX_REGULATORS];
+>  	struct reset_control *rstc;
+>  
+>  	struct panfrost_features features;
+> +	const struct panfrost_compatible *comp;
+>  
+>  	spinlock_t as_lock;
+>  	unsigned long as_in_use_mask;
+> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> index b7a618db3ee223e..4d08507526239f2 100644
+> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
+> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
+> @@ -584,6 +584,10 @@ static int panfrost_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, pfdev);
+>  
+> +	pfdev->comp = of_device_get_match_data(&pdev->dev);
+> +	if (!pfdev->comp)
+> +		return -ENODEV;
+> +
+>  	/* Allocate and initialze the DRM device. */
+>  	ddev = drm_dev_alloc(&panfrost_drm_driver, &pdev->dev);
+>  	if (IS_ERR(ddev))
+> @@ -655,16 +659,22 @@ static int panfrost_remove(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +const char * const default_supplies[] = { "mali" };
+> +static const struct panfrost_compatible default_data = {
+> +	.num_supplies = ARRAY_SIZE(default_supplies),
+> +	.supply_names = default_supplies,
+> +};
+> +
+>  static const struct of_device_id dt_match[] = {
+> -	{ .compatible = "arm,mali-t604" },
+> -	{ .compatible = "arm,mali-t624" },
+> -	{ .compatible = "arm,mali-t628" },
+> -	{ .compatible = "arm,mali-t720" },
+> -	{ .compatible = "arm,mali-t760" },
+> -	{ .compatible = "arm,mali-t820" },
+> -	{ .compatible = "arm,mali-t830" },
+> -	{ .compatible = "arm,mali-t860" },
+> -	{ .compatible = "arm,mali-t880" },
+> +	{ .compatible = "arm,mali-t604", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t624", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t628", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t720", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t760", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t820", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t830", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t860", .data = &default_data, },
+> +	{ .compatible = "arm,mali-t880", .data = &default_data, },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, dt_match);
+> 
+
