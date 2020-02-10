@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DD0A157C54
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 14:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5CDA157CA2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 14:45:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729827AbgBJNgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 08:36:44 -0500
-Received: from foss.arm.com ([217.140.110.172]:33856 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729618AbgBJNgj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Feb 2020 08:36:39 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BAAE41FB;
-        Mon, 10 Feb 2020 05:36:38 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3FC653F68E;
-        Mon, 10 Feb 2020 05:36:38 -0800 (PST)
-Date:   Mon, 10 Feb 2020 13:36:36 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Adam Serbinski <adam@serbinski.com>
-Cc:     Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Patrick Lai <plai@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 8/8] ASoC: qcom: apq8096: add kcontrols to set PCM rate
-Message-ID: <20200210133636.GJ7685@sirena.org.uk>
-References: <20200207205013.12274-1-adam@serbinski.com>
- <20200209154748.3015-1-adam@serbinski.com>
- <20200209154748.3015-9-adam@serbinski.com>
+        id S1728924AbgBJNnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 08:43:49 -0500
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:53893 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727369AbgBJNnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Feb 2020 08:43:45 -0500
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01ADebXV018034;
+        Mon, 10 Feb 2020 14:43:33 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=FrkdY4tsBuYMECkQYYjvl6NPFI1bBJ0eMZYUwhekgN0=;
+ b=Qfl9XKphuwdpR0VNKmRuSOgtxYn9wMCbnLJSQgpPl1AK4Q3itqA89ehMhj7K/LFH1jAg
+ VNq3bfVCjCGIKp6yraLBzpnNdhB4Gs2T/uvF49ivJpGvRmeDHxga5gnYZOC8ngh3RCZK
+ wkKy3UxGJjmXRLg7P7I5rVjgMrNRfvqCUbjyTW2DKJGkVR60hyZ81Y8zpItbLxuwMa6N
+ 7s3znNKiRvlalB7VLV8kyzKyrsD1bI+PwJTAtUsyggcfhN/dmehv/4t88xvc34rIBYYR
+ WfbAlbZIGdwF1PO4GC+FgDfsYMwxiQPUO0Esa3jcB3CKPDG46lHofM9gf6guFtmuv75R Nw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2y1urgt43c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Feb 2020 14:43:33 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E85D410002A;
+        Mon, 10 Feb 2020 14:43:32 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B91572AD24B;
+        Mon, 10 Feb 2020 14:43:32 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 10 Feb 2020 14:43:32
+ +0100
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH] ARM: dts: stm32: Correct stmfx node name on stm32746g-eval board
+Date:   Mon, 10 Feb 2020 14:43:30 +0100
+Message-ID: <20200210134331.14039-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wRtZRu2mMGBZ6YQ7"
-Content-Disposition: inline
-In-Reply-To: <20200209154748.3015-9-adam@serbinski.com>
-X-Cookie: Avoid gunfire in the bathroom tonight.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-10_04:2020-02-10,2020-02-10 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Change stmfx node name to fit with yaml requirements.
 
---wRtZRu2mMGBZ6YQ7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+---
+ arch/arm/boot/dts/stm32746g-eval.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Sun, Feb 09, 2020 at 10:47:48AM -0500, Adam Serbinski wrote:
-> This makes it possible for the backend sample rate to be
-> set to 8000 or 16000 Hz, depending on the needs of the HFP
-> call being set up.
+diff --git a/arch/arm/boot/dts/stm32746g-eval.dts b/arch/arm/boot/dts/stm32746g-eval.dts
+index fcc804e3c158..4ea3f98dd275 100644
+--- a/arch/arm/boot/dts/stm32746g-eval.dts
++++ b/arch/arm/boot/dts/stm32746g-eval.dts
+@@ -165,7 +165,7 @@
+ 		interrupts = <8 IRQ_TYPE_EDGE_RISING>;
+ 		interrupt-parent = <&gpioi>;
+ 
+-		stmfx_pinctrl: stmfx-pin-controller {
++		stmfx_pinctrl: pinctrl {
+ 			compatible = "st,stmfx-0300-pinctrl";
+ 			gpio-controller;
+ 			#gpio-cells = <2>;
+-- 
+2.15.0
 
-This would seem like an excellent thing to put in the driver for the
-baseband or bluetooth.
-
---wRtZRu2mMGBZ6YQ7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5BXGQACgkQJNaLcl1U
-h9AaBgf/S2n2UV3JEObzW9MyD7j/N5w4SvGvTVxS91cgeKu1rLXmmHjuWYZSkaf3
-F5GLSWxp+xnfPHW3I1PioBN+E7uXVrbl4yioIysIumaqNFaSEfLvtmGZwCqY0jsd
-n8bC+RS7QHYba/2TIGEBgKM2EsXYq+wzmbkh3Yck0VsV6N1JdXtqppOkL9uaLfU1
-QesTdj6bYw+Ul7pRm4/whPeJP+Qot4l/Yc0vM1waMQ4/YCgWzPwH4/+lbO1hoZou
-fe6kJPWTXV0sCG71B7xIeGnUnsrI53fPAk0ojiFY4EOvEGdFN7yvgMnjsn8cSsBY
-9IE7v0TTt++29YGCUuAYhGAFqAw/2Q==
-=LG8v
------END PGP SIGNATURE-----
-
---wRtZRu2mMGBZ6YQ7--
