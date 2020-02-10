@@ -2,86 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11DBA15850D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 22:40:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31D15158571
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 23:23:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727598AbgBJVkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 16:40:18 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:37171 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727600AbgBJVkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 16:40:18 -0500
-Received: by mail-wm1-f67.google.com with SMTP id a6so969007wme.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2020 13:40:17 -0800 (PST)
+        id S1727505AbgBJWXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 17:23:47 -0500
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:40668 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727254AbgBJWXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 17:23:47 -0500
+Received: by mail-qk1-f193.google.com with SMTP id b7so8238641qkl.7;
+        Mon, 10 Feb 2020 14:23:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=SCiRbjJzZzwrllYyfm6P2Mav2in2VZ7vyAfMSm3q4rc=;
-        b=gFdoLe7zW3MzhxuT/BRGf8IFSl2qk9HwrXAz4eHkASYgHa1YIVtZBeDmPtVMCtHeNv
-         fKIWXhICFvM1YHmYoq0KJv4wI0rwtVNK3Us+gAGivIh3w1dvBt6jBYWC/1xLf+Y3q3Ws
-         2kd2nVlYxkNbqDDYNMEZFDdt/id6ZeUBG35a2MDxwtwjL00cZoQrF1QhTHzIMpoJeZei
-         WFwaOpiso6d9BCnytx05rJIoCarFATvyc6sEVm/QrAsQc5uxo2OLdwHd6iwJ7zbJn50x
-         eMbggHJMDWvQkauMpLGUY/KFc89zr77k8PbN1CNzRbzfO/Q5AVEVTLK/OwxVFF2tXv0O
-         EFjw==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vtc2iHO5ssqdQWlZbYpNOYjs7NPN+OkfmGi7EwW4+Cw=;
+        b=FgTcvQWWhvbFryDssRGO6xJWs5roRRi7pj6F2lGuCKhoWUJC2n4I/mNnRGIzEc6x2M
+         MCO3afKZAmymUbSJ2kjINRtbtbNYPLzRMEdJr84duHUQVo5bbZdX2AUMkzTP62MUYXOs
+         JNgdEotYxbmqZrmJZZVFIxEo1beFo2EvE52vI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=SCiRbjJzZzwrllYyfm6P2Mav2in2VZ7vyAfMSm3q4rc=;
-        b=FN+4nOhGT8r9cPHt5ErbIuj/6Usn+VbMX11nQexmEYpXgZZf4hry+yzZXK68A38u9l
-         OgBv7WCrobdrsAf0GapQiBrsUMhPG1wlLCvcSBK7gOCDzP9ZYYkVKAGBJ6u2zTwDpZIs
-         0VbNvMrdXEYTPH+mdXUl4wBFnIBnFVj+11qMt+c4ZSof98tj88O4/dyT5rmfoQXArSeF
-         4uBUTYEWPXHRqKLTfPcMdKzyO2g3xiWG5HDSaPPCA6a/eN/8+1nRR7JWZneIEfuN+Emd
-         1IrJ+3/hhGrS2mL+fXW3OGvE+j0u+6jcNBOIK1gYgowr3vBXmecI+Zz4a5Xz9Hp3quZx
-         bXuA==
-X-Gm-Message-State: APjAAAVRq7Q7Mi4QpjXssDtTlvESU83yTjt9xcdxHNNkKfr9tkdWNqtZ
-        nMGpg8+/Mo4qGOtoa+QL+8bzjA==
-X-Google-Smtp-Source: APXvYqwQ/YYU75x4QkwRfXeToVq56G39tKupvt9fLKoHnEygZ9u9x+PZB6YHn9wuXHgKPAYc4sSLUA==
-X-Received: by 2002:a1c:7203:: with SMTP id n3mr969416wmc.119.1581370815993;
-        Mon, 10 Feb 2020 13:40:15 -0800 (PST)
-Received: from linaro.org ([2a00:23c5:6815:3901:a1cf:b00b:5683:ed40])
-        by smtp.gmail.com with ESMTPSA id u14sm2118582wrm.51.2020.02.10.13.40.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2020 13:40:15 -0800 (PST)
-From:   Mike Leach <mike.leach@linaro.org>
-To:     mike.leach@linaro.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, coresight@lists.linaro.org,
-        linux-doc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, mathieu.poirier@linaro.org,
-        suzuki.poulose@arm.com, robh+dt@kernel.org, maxime@cerno.tech,
-        liviu.dudau@arm.com, sudeep.holla@arm.com,
-        lorenzo.pieralisi@arm.com, agross@kernel.org, corbet@lwn.net
-Subject: [PATCH v9 15/15] Update MAINTAINERS to add reviewer for CoreSight.
-Date:   Mon, 10 Feb 2020 21:39:24 +0000
-Message-Id: <20200210213924.20037-16-mike.leach@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200210213924.20037-1-mike.leach@linaro.org>
-References: <20200210213924.20037-1-mike.leach@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vtc2iHO5ssqdQWlZbYpNOYjs7NPN+OkfmGi7EwW4+Cw=;
+        b=q6tgNJVeXgqLTnC2lHJD43SVtJ3h4tRJSXajgbwbOgLIka6RzrkxJCbUq26qBnaNlg
+         tHLuxRawLcEwWXzVCRPfG+bScKuAhdMMX6FRPGBA1wiSp0vPyz2QcjNhJ4OrFmxP4chp
+         OkgICTQ/vlv4g9eThCGauTHXBp87S8LWCgXNx4c3Nplh2Dec07lQzEGu8iDMWJkzLuzz
+         gQO+IIdZshizPRgUs6NCmXXPIvBd9dLARPy5YtivjO/bfvY4Uo15wQf9K7yhXYantZxe
+         89z0tTgpBslUTt/4RvCWWIo+quIK3txOB5F7AG1OQirwy0VTiKbwQrqpYn+vJjIomuoK
+         LsGg==
+X-Gm-Message-State: APjAAAUogSL+JOxsDB8H9LNLwA88UiCqp62FGKVoiSEbNKqEVuvpZREQ
+        mxOeIuR3sG4feQAp9CFW22GLSGAcmoXRyD3RADQ=
+X-Google-Smtp-Source: APXvYqyZdGpzcKUOEIzHRw7qYRL07DZQdkQJ0/5JSAwE0jE+HVmYKoptJ7wpd88HybHU1+QIrsDGwQWL0h/VjAghNpo=
+X-Received: by 2002:a37:c07:: with SMTP id 7mr107082qkm.414.1581373426189;
+ Mon, 10 Feb 2020 14:23:46 -0800 (PST)
+MIME-Version: 1.0
+References: <20200130214626.2863329-1-vijaykhemka@fb.com>
+In-Reply-To: <20200130214626.2863329-1-vijaykhemka@fb.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 10 Feb 2020 22:23:34 +0000
+Message-ID: <CACPK8Xfo1NcNmORHtpfDQzYQrLV0B=6+_nUtPftiHQoT6GrpPA@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: aspeed: tiogapass: Add IPMB device
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Vijay Khemka <vijaykhemka@fb.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sai Dasari <sdasari@fb.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added myself as a designated reviewer for the CoreSight infrastructure
-at the request of Mathieu Poirier.
+Hi Rob,
 
-Signed-off-by: Mike Leach <mike.leach@linaro.org>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+On Thu, 30 Jan 2020 at 21:46, Vijay Khemka <vijaykhemka@fb.com> wrote:
+>
+> Adding IPMB devices for facebook tiogapass platform.
+>
+> Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+> index fb7f034d5db2..1cb5b9bf468f 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+> @@ -5,6 +5,7 @@
+>
+>  #include "aspeed-g5.dtsi"
+>  #include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/i2c/i2c.h>
+>
+>  / {
+>         model = "Facebook TiogaPass BMC";
+> @@ -428,6 +429,12 @@
+>  &i2c4 {
+>         status = "okay";
+>         // BMC Debug Header
+> +       multi-master;
+> +       ipmb0@10 {
+> +               compatible = "ipmb-dev";
+> +               reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 20a6557f157b..dc9e9776c001 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1676,6 +1676,7 @@ F:	arch/arm/mach-ep93xx/micro9.c
- ARM/CORESIGHT FRAMEWORK AND DRIVERS
- M:	Mathieu Poirier <mathieu.poirier@linaro.org>
- R:	Suzuki K Poulose <suzuki.poulose@arm.com>
-+R:	Mike Leach <mike.leach@linaro.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	drivers/hwtracing/coresight/*
--- 
-2.17.1
+This causes dtc to warn:
 
+../arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts:521.11-525.4:
+Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@380/ipmb0@10: I2C
+bus unit address format error, expected "40000010"
+../arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts:523.3-30:
+Warning (i2c_bus_reg): /ahb/apb/bus@1e78a000/i2c-bus@380/ipmb0@10:reg:
+I2C address must be less than 10-bits, got "0x40000010"
+
+The bindings mention:
+
+ Another flag is I2C_OWN_SLAVE_ADDRESS to mark addresses on which we listen to
+be devices ourselves.
+
+include/dt-bindings/i2c/i2c.h:#define I2C_OWN_SLAVE_ADDRESS     (1 << 30)
+
+It appears dtc needs to be fixed to not warn when seeing this value in
+an i2c reg node?
+
+Cheers,
+
+Joel
+
+
+
+> +               i2c-protocol;
+> +       };
+>  };
+>
+>  &i2c5 {
+> @@ -509,6 +516,12 @@
+>  &i2c9 {
+>         status = "okay";
+>         //USB Debug Connector
+> +       multi-master;
+> +       ipmb0@10 {
+> +               compatible = "ipmb-dev";
+> +               reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
+> +               i2c-protocol;
+> +       };
+>  };
+>
+>  &pwm_tacho {
+> --
+> 2.17.1
+>
