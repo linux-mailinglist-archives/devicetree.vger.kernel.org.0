@@ -2,154 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF4D1581AA
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 18:49:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 937D71581B2
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 18:50:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727056AbgBJRtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 12:49:40 -0500
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:33975 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727003AbgBJRtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 12:49:40 -0500
-Received: by mail-vs1-f66.google.com with SMTP id g15so4737737vsf.1
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2020 09:49:38 -0800 (PST)
+        id S1727548AbgBJRuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 12:50:37 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:35731 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727507AbgBJRuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 12:50:37 -0500
+Received: by mail-oi1-f176.google.com with SMTP id b18so10042397oie.2
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2020 09:50:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/jOz9D1OkZvcqdZyOY6mXklx7SmskxabXR6YSkl7lkk=;
-        b=iuoXF5spBCzwt9gZYU5z+rgSWG1JCXbT6h0ByYtuED8LuMAd4/HGkib5WlZgt/7i9U
-         7q05cz0GAK+hsLGFfuBUWQOTZ6i768GlleT//AR3gkC9LMA5HftOnVNnkMt3hLJ0AlKH
-         rzAePrzCeuNvsClhAXqPjLWeBysoVkh6BwyBo=
+        d=kopismobile-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:mime-version;
+        bh=S6SvASRcIaU3c6voKXFvpN53oiJE43umJl9q4lSt+3w=;
+        b=T341g6JG+IqhQaUpmTDNvVBv+3nJQh9QwjUxk6sGSuhMqggoqubn1ZBCg5LOeJONlv
+         DaPR96Y/Ti2uYapl9ETvVQPyAcNs7HNGCGvopnnXTUjZkQ1RyXvxToxuP4rFTQpteXx1
+         CSJyV6N4hEBwFckdBRt1a3QzCwcJv8cArdqJ5OwuWIjsWbaTbxYVkM4UfXw5W48P5dZ4
+         rF4xuj3yFsHRt9gOAkwhuzvwaFlUYs0oovpxuDySp82n22fWTqzSKqYdRtlcy9z7bKmq
+         sCYjw2mJgduWa6tDzxMQ2BKV+Ny2eQG6k58RbSa/NDjGhSjEDtmUZ4IHfPxB7MN1iP/K
+         fPXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/jOz9D1OkZvcqdZyOY6mXklx7SmskxabXR6YSkl7lkk=;
-        b=QLm1kVrd5kMJbk4OjTQBOZNGnVQrEaUtsNJ8B78t0+FMvrRV6ZvanZZEigVEbju++K
-         3Jz7udAIkUp3jujA7+U+TEttS0E5B0YA5PmvUtq8FqaZShiQWN50dBEc1D7dAN9BAyxa
-         5C8DbpgodU4b7qZBkGiW14Q+jD4k+vyZp4p0FC9ZiLWNlxW/APJrx+1vRX8FGeHBlryf
-         lKkJ2apNkZYLNalK7fxxjXmkLBDPypCc+oaKaBI4Tko7arnMD/Ot8BJI4PQlRFOM7bnw
-         KmbrZfyE95SxjXvYKcF+oJsp7b93pnGzlHASwEZlqHgrpY5q5ixZZL/n2r5HEkEDyFS5
-         YfRg==
-X-Gm-Message-State: APjAAAUfr+8sP8eG8t/JE1aNpUawWATTEbGt8D2FTIoRHoGwZnpMhoee
-        N8MLsFfCaMabwAcseVDMAYahuLYVZLU=
-X-Google-Smtp-Source: APXvYqxVmzzgWGXflX0DM/UBFso3fc7HszqnKJxdykD0iMJOiSeGFlj39KQ1VkClreSNSOVd65FWWQ==
-X-Received: by 2002:a67:2c15:: with SMTP id s21mr7073634vss.104.1581356977396;
-        Mon, 10 Feb 2020 09:49:37 -0800 (PST)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id f9sm336110vkl.21.2020.02.10.09.49.36
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Feb 2020 09:49:36 -0800 (PST)
-Received: by mail-vs1-f42.google.com with SMTP id p14so4711848vsq.6
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2020 09:49:36 -0800 (PST)
-X-Received: by 2002:a67:e342:: with SMTP id s2mr7152359vsm.198.1581356975599;
- Mon, 10 Feb 2020 09:49:35 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version;
+        bh=S6SvASRcIaU3c6voKXFvpN53oiJE43umJl9q4lSt+3w=;
+        b=YNoDTD7MWIVof+eKhj59W12I26HyIW9uhJzAwsIfoZLsfZ8yAJxuhg5rGdFmcLlxeu
+         QVgY/LEzd2iGKpU8feh/NLck4GsvqybKEixY0560ERQCV/uVGHOj0oXx/kpTPj2QYKVg
+         yMQPFc4z4mAYaNsG1CErhglH+hzNcUPx9mqkFHO5/13MRnqPX9v+53BjDtmY/deur6Id
+         5XPQcvi9YmI2UmYNO+7blMJm46exIyasIIt1TqZrilAYSsC8cPy2/Jjot096lpkXiiaH
+         0VThGKSZUCPpfepIzKShJUsTkj44oOe68oqezwkUryqKAduIN8auI8HhvljLqMcYVMTH
+         yCwQ==
+X-Gm-Message-State: APjAAAU++IaHwSwaRhRqumIL/uHJvUqZH22LkUppreUqRodI4XwgrHai
+        OET5S8mL/ke/4/KwImrFra5e/+MmKgAJTArCFxxtd4BvJSxDPh5Uy3h2ddq9aauqEpA42Boqizz
+        e2NmyHaIoYWLMtVQ=
+X-Google-Smtp-Source: APXvYqxcsq1u/5/cf9x3mTnx/Jw3eCJvrkfl9Vk7DMM0AoEc3N5neHU0T7A844bvvfLIlhjiQsQByA==
+X-Received: by 2002:a54:4086:: with SMTP id i6mr146527oii.65.1581357036394;
+        Mon, 10 Feb 2020 09:50:36 -0800 (PST)
+Received: from farregard-ubuntu.kopismobile.org (c-73-177-17-21.hsd1.ms.comcast.net. [73.177.17.21])
+        by smtp.gmail.com with ESMTPSA id r205sm293189oih.54.2020.02.10.09.50.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2020 09:50:36 -0800 (PST)
+From:   George Hilliard <ghilliard@kopismobile.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] Implement support for inverted serial TX/RX on i.MX
+Date:   Mon, 10 Feb 2020 11:49:40 -0600
+Message-Id: <20200210174942.14182-1-ghilliard@kopismobile.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-References: <1581307266-26989-1-git-send-email-tdas@codeaurora.org> <1581307266-26989-2-git-send-email-tdas@codeaurora.org>
-In-Reply-To: <1581307266-26989-2-git-send-email-tdas@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 10 Feb 2020 09:49:24 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VqRAVZ19gSbtxbmdRCBbPRr+CMxWVR29diWtfX5mL3jw@mail.gmail.com>
-Message-ID: <CAD=FV=VqRAVZ19gSbtxbmdRCBbPRr+CMxWVR29diWtfX5mL3jw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] clk: qcom: gpucc: Add support for GX GDSC for SC7180
-To:     Taniya Das <tdas@codeaurora.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="US-ASCII"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Sun, Feb 9, 2020 at 8:01 PM Taniya Das <tdas@codeaurora.org> wrote:
->
-> Most of the time the CPU should not be touching the GX domain on the
-> GPU except for a very special use case when the CPU needs to force the
-> GX headswitch off. Add the GX domain for that use case.  As part of
-> this add a dummy enable function for the GX gdsc to simulate success
-> so that the pm_runtime reference counting is correct.  This matches
-> what was done in sdm845 in commit 85a3d920d30a ("clk: qcom: Add a
-> dummy enable function for GX gdsc").
->
-> Signed-off-by: Taniya Das <tdas@codeaurora.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-For future reference, if you have someone's tag in your commit message
-it's nice to CC them on the email.
+This peripheral has dedicated control bits that flip input/output
+signals before handing them off to the OS.  This is useful on my
+hardware because the UART is connected to an RS-422 transceiver with the
++/- pins hooked up backward.  Instead of a hack flipping all the bits
+before sending them, the hardware can do it for free.
 
 
-> ---
->  drivers/clk/qcom/gpucc-sc7180.c | 37 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->
-> diff --git a/drivers/clk/qcom/gpucc-sc7180.c b/drivers/clk/qcom/gpucc-sc7180.c
-> index a96c0b9..7b656b6 100644
-> --- a/drivers/clk/qcom/gpucc-sc7180.c
-> +++ b/drivers/clk/qcom/gpucc-sc7180.c
-> @@ -170,8 +170,45 @@ static struct gdsc cx_gdsc = {
->         .flags = VOTABLE,
->  };
->
-> +/*
-> + * On SC7180 the GPU GX domain is *almost* entirely controlled by the GMU
-> + * running in the CX domain so the CPU doesn't need to know anything about the
-> + * GX domain EXCEPT....
-> + *
-> + * Hardware constraints dictate that the GX be powered down before the CX. If
-> + * the GMU crashes it could leave the GX on. In order to successfully bring back
-> + * the device the CPU needs to disable the GX headswitch. There being no sane
-> + * way to reach in and touch that register from deep inside the GPU driver we
-> + * need to set up the infrastructure to be able to ensure that the GPU can
-> + * ensure that the GX is off during this super special case. We do this by
-> + * defining a GX gdsc with a dummy enable function and a "default" disable
-> + * function.
-> + *
-> + * This allows us to attach with genpd_dev_pm_attach_by_name() in the GPU
-> + * driver. During power up, nothing will happen from the CPU (and the GMU will
-> + * power up normally but during power down this will ensure that the GX domain
-> + * is *really* off - this gives us a semi standard way of doing what we need.
-> + */
-> +static int gx_gdsc_enable(struct generic_pm_domain *domain)
-> +{
-> +       /* Do nothing but give genpd the impression that we were successful */
-> +       return 0;
-> +}
-> +
-> +static struct gdsc gx_gdsc = {
-> +       .gdscr = 0x100c,
-> +       .clamp_io_ctrl = 0x1508,
-> +       .pd = {
-> +               .name = "gx_gdsc",
-> +               .power_on = gx_gdsc_enable,
-> +       },
-> +       .pwrsts = PWRSTS_OFF_ON,
-> +       .flags = CLAMP_IO,
 
-In my previous reply [1], I asked about these flags and if it was
-intentional that they were different from sdm845.  I did see a private
-response, but no public one.  In the future note that it's good to
-reply publicly so everyone understands what happened.  In this case, I
-was told "the GDSC's on 845 and SC7180 are different and hence the
-change in flags is expected".  That answers my question and thus I'm
-fine with my tag being here.  It also looks like you took my other
-review feedback on v1, which is nice.
-
-
--Doug
-
-
-[1] https://lore.kernel.org/r/CAD=FV=V6yM7UJwu0ZLPCqmDgV9FS4=g+wcLg0TV51b72zvWT9Q@mail.gmail.com
+-- 
+CONFIDENTIALITY NOTICE: This email and any attachments are for the sole use 
+of the intended recipient and may contain material that is proprietary, 
+confidential, privileged or otherwise legally protected or restricted under 
+applicable government laws. Any review, disclosure, distributing or other 
+use without expressed permission of the sender is strictly prohibited. If 
+you are not the intended recipient, please contact the sender and delete 
+all copies without reading, printing, or saving.
