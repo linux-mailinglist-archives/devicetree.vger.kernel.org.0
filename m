@@ -2,59 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A094158318
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 19:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5C3158324
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 19:59:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727522AbgBJS6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 13:58:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34870 "EHLO mail.kernel.org"
+        id S1727581AbgBJS7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 13:59:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35902 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727121AbgBJS6X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Feb 2020 13:58:23 -0500
-Received: from localhost (unknown [104.132.1.111])
+        id S1727331AbgBJS7g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Feb 2020 13:59:36 -0500
+Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 475222085B;
-        Mon, 10 Feb 2020 18:58:22 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1D5792085B;
+        Mon, 10 Feb 2020 18:59:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581361102;
-        bh=XhsDSqmZAV5GAixCR38jksBySp8eRi3o9QvzAGZo0T0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fIxlTXuChg1UrtQ3SPibVHWtPQcF/pz1KL2gIKL6c98MEEg8ZkvufcuMOuVVYDIu7
-         Y+Ark2JbEzwEmEDSqMSUsX17i4mlOva9YAwF//tnPztNFiCI1Wr3cWXUivWLPRB3/H
-         Bi6rOloB/jdx2IepZVYCBFyvlbcpd42Sy5XwxzfE=
-Date:   Mon, 10 Feb 2020 10:58:21 -0800
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     thierry.reding@gmail.com, robh@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        felipe.balbi@linux.intel.com
-Subject: Re: [PATCH v1] dt-binding: usb: add "super-speed-plus"
-Message-ID: <20200210185821.GA1057764@kroah.com>
-References: <20200113060046.14448-1-jckuo@nvidia.com>
+        s=default; t=1581361175;
+        bh=6Fuu2gVWcWeVQb3DllydwL2YvE/R2OLUSoeNrJD6TuM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=cfaj5AfOXOxZ5wPsCw89VjpremlGDQ4RprFcdgRuw7UL9dYPF6iFlvco1LjxLAjdq
+         JfAgOg1oSxwkLUYXg0FA+lJxpcglS5L9+v0ID2XvQRnDOri5CtyvkmzaYtrwfjrq08
+         Zg0HjZ2OerZ0ozMMiYHFFKGq0uUHM2Pxs1rVqUAU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200113060046.14448-1-jckuo@nvidia.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200207044425.32398-3-vigneshr@ti.com>
+References: <20200207044425.32398-1-vigneshr@ti.com> <20200207044425.32398-3-vigneshr@ti.com>
+Subject: Re: [PATCH v2 2/2] clk: keystone: Add new driver to handle syscon based clocks
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <t-kristo@ti.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+Date:   Mon, 10 Feb 2020 10:59:34 -0800
+Message-ID: <158136117429.94449.12421902020705390139@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jan 13, 2020 at 02:00:46PM +0800, JC Kuo wrote:
-> This commit adds "super-speed-plus" to valid argument list of
-> "maximum-speed" property.
-> 
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/usb/generic.txt | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+Quoting Vignesh Raghavendra (2020-02-06 20:44:25)
+> diff --git a/drivers/clk/keystone/Kconfig b/drivers/clk/keystone/Kconfig
+> index 38aeefb1e808..69ca3db1a99e 100644
+> --- a/drivers/clk/keystone/Kconfig
+> +++ b/drivers/clk/keystone/Kconfig
+> @@ -26,3 +26,11 @@ config TI_SCI_CLK_PROBE_FROM_FW
+>           This is mostly only useful for debugging purposes, and will
+>           increase the boot time of the device. If you want the clocks pr=
+obed
+>           from firmware, say Y. Otherwise, say N.
+> +
+> +config TI_SYSCON_CLK
+> +       tristate "Syscon based clock driver for K2/K3 SoCs"
+> +       depends on (ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST) && OF
+> +       default (ARCH_KEYSTONE || ARCH_K3)
 
-What ever happened to this?  Did the DT developers see it?
+Drop parenthesis. It's not useful. Also, not sure why OF is a build
+dependency. Please drop it.
 
-I suggest resending please so it gets into their queue to review.
+	depends on ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
+	default ARCH_KEYSTONE || ARCH_K3
 
-thanks,
+> +       help
+> +         This adds clock driver support for syscon based gate
+> +         clocks on TI's K2 and K3 SoCs.
+> diff --git a/drivers/clk/keystone/Makefile b/drivers/clk/keystone/Makefile
+> index d044de6f965c..0e426e648f7c 100644
+> --- a/drivers/clk/keystone/Makefile
+> +++ b/drivers/clk/keystone/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_COMMON_CLK_KEYSTONE)      +=3D pll.o gate.o
+>  obj-$(CONFIG_TI_SCI_CLK)               +=3D sci-clk.o
+> +obj-$(CONFIG_TI_SYSCON_CLK)            +=3D syscon-clk.o
+> diff --git a/drivers/clk/keystone/syscon-clk.c b/drivers/clk/keystone/sys=
+con-clk.c
+> new file mode 100644
+> index 000000000000..42e7416371ff
+> --- /dev/null
+> +++ b/drivers/clk/keystone/syscon-clk.c
+> @@ -0,0 +1,177 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com/
+> +//
 
-greg k-h
+These last three comment lines should be normal kernel style. /* */
+
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/clk.h>
+
+Is this used?
+
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+
+Hopefully these two includes aren't needed.
+
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+[...]
+> +
+> +static int ti_syscon_gate_clk_probe(struct platform_device *pdev)
+> +{
+> +       const struct ti_syscon_gate_clk_data *data, *p;
+> +       struct clk_hw_onecell_data *hw_data;
+> +       struct device *dev =3D &pdev->dev;
+> +       struct regmap *regmap;
+> +       int num_clks =3D 0;
+
+Please don't initialize here.
+
+> +       int i;
+> +
+> +       data =3D of_device_get_match_data(dev);
+
+Use device_get_match_data() instead?
+
+> +       if (!data)
+> +               return -EINVAL;
+> +
+> +       regmap =3D syscon_regmap_lookup_by_phandle(dev->of_node,
+> +                                                "ti,tbclk-syscon");
+> +       if (IS_ERR(regmap)) {
+> +               if (PTR_ERR(regmap) =3D=3D -EPROBE_DEFER)
+> +                       return -EPROBE_DEFER;
+> +               dev_err(dev, "failed to find parent regmap\n");
+> +               return PTR_ERR(regmap);
+> +       }
+> +
+> +       for (p =3D data; p->name; p++)
+
+Initialize num_clks here so we know it's a loop that's counting.
+
+> +               num_clks++;
+> +
+> +       hw_data =3D devm_kzalloc(dev, struct_size(hw_data, hws, num_clks),
+> +                              GFP_KERNEL);
+> +       if (!hw_data)
+> +               return -ENOMEM;
+> +
+> +       hw_data->num =3D num_clks;
+> +
+> +       for (i =3D 0; i < num_clks; i++) {
+> +               hw_data->hws[i] =3D ti_syscon_gate_clk_register(dev, regm=
+ap,
+> +                                                             &data[i]);
+> +               if (IS_ERR(hw_data->hws[i]))
+> +                       dev_err(dev, "failed to register %s",
+
+Add a newline?
+
+> +                               data[i].name);
+
+And we don't fail? So it really isn't a problem? Maybe dev_warn()
+instead?
+
+> +       }
+> +
+> +       return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +                                          hw_data);
+> +}
+> +
+> +#define TI_SYSCON_CLK_GATE(_name, _offset, _bit_idx)   \
+> +       {                                               \
+> +               .name =3D _name,                          \
+> +               .offset =3D (_offset),                    \
+> +               .bit_idx =3D (_bit_idx),                  \
+> +       }
+> +
+> +static const struct ti_syscon_gate_clk_data am654_clk_data[] =3D {
+> +       TI_SYSCON_CLK_GATE("ehrpwm_tbclk0", 0x0, 0),
+> +       TI_SYSCON_CLK_GATE("ehrpwm_tbclk1", 0x4, 0),
+> +       TI_SYSCON_CLK_GATE("ehrpwm_tbclk2", 0x8, 0),
+> +       TI_SYSCON_CLK_GATE("ehrpwm_tbclk3", 0xc, 0),
+> +       TI_SYSCON_CLK_GATE("ehrpwm_tbclk4", 0x10, 0),
+> +       TI_SYSCON_CLK_GATE("ehrpwm_tbclk5", 0x14, 0),
+> +       { /* Sentinel */ },
+> +};
+> +
+> +static const struct of_device_id ti_syscon_gate_clk_ids[] =3D {
+> +       {
+> +               .compatible =3D "ti,am654-ehrpwm-tbclk",
+> +               .data =3D &am654_clk_data,
+> +       },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, ti_syscon_gate_clk_ids);
+> +
+> +static struct platform_driver ti_syscon_gate_clk_driver =3D {
+> +       .probe =3D ti_syscon_gate_clk_probe,
+> +       .driver =3D {
+> +               .name =3D "ti-syscon-gate-clk",
+> +               .of_match_table =3D ti_syscon_gate_clk_ids,
+> +       },
+> +};
+> +
+
+Nitpick: Drop the newline.
+
+> +module_platform_driver(ti_syscon_gate_clk_driver);
+> +
