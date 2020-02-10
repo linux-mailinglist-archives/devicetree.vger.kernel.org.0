@@ -2,192 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41560157797
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 14:02:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2B1D157BAF
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 14:32:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730434AbgBJNBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 08:01:01 -0500
-Received: from mailgate1.rohmeurope.com ([178.15.145.194]:43158 "EHLO
-        mailgate1.rohmeurope.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729836AbgBJNBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 08:01:00 -0500
-X-AuditID: c0a8fbf4-263ff70000001e6c-80-5e4154095e9f
-Received: from smtp.reu.rohmeu.com (will-cas001.reu.rohmeu.com [192.168.251.177])
-        by mailgate1.rohmeurope.com (Symantec Messaging Gateway) with SMTP id CB.59.07788.904514E5; Mon, 10 Feb 2020 14:00:57 +0100 (CET)
-Received: from WILL-MAIL001.REu.RohmEu.com ([fe80::2915:304f:d22c:c6ba]) by
- WILL-CAS001.REu.RohmEu.com ([fe80::d57e:33d0:7a5d:f0a6%16]) with mapi id
- 14.03.0439.000; Mon, 10 Feb 2020 14:00:45 +0100
-From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-To:     "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>
-CC:     "broonie@kernel.org" <broonie@kernel.org>,
-        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "Laine, Markus" <Markus.Laine@fi.rohmeurope.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "sre@kernel.org" <sre@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [RFC PATCH 1/3] dt_bindings: ROHM BD99954 Charger
-Thread-Topic: [RFC PATCH 1/3] dt_bindings: ROHM BD99954 Charger
-Thread-Index: AQHV4AtGFPiZltGtqU2YXMRYBxAc1KgUU2qA
-Date:   Mon, 10 Feb 2020 13:00:44 +0000
-Message-ID: <fbbacf0597222443941ac1736fbf6de4dccd6d70.camel@fi.rohmeurope.com>
-References: <cover.1581327762.git.matti.vaittinen@fi.rohmeurope.com>
-         <fc866eb870e1980fd2a5cd37cf02cde5e8fb3d06.1581327762.git.matti.vaittinen@fi.rohmeurope.com>
-In-Reply-To: <fc866eb870e1980fd2a5cd37cf02cde5e8fb3d06.1581327762.git.matti.vaittinen@fi.rohmeurope.com>
-Accept-Language: en-US, de-DE
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [213.255.186.46]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <191E7B9C72D93445AA1A37CEEB47B441@de.rohmeurope.com>
-Content-Transfer-Encoding: base64
+        id S1731544AbgBJNbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 08:31:46 -0500
+Received: from foss.arm.com ([217.140.110.172]:33622 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729392AbgBJNbq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Feb 2020 08:31:46 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C1FB71FB;
+        Mon, 10 Feb 2020 05:31:45 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 467A93F68E;
+        Mon, 10 Feb 2020 05:31:45 -0800 (PST)
+Date:   Mon, 10 Feb 2020 13:31:43 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Adam Serbinski <adam@serbinski.com>
+Cc:     Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Patrick Lai <plai@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/8] ASoC: qdsp6: q6afe: add support to pcm ports
+Message-ID: <20200210133143.GG7685@sirena.org.uk>
+References: <20200207205013.12274-1-adam@serbinski.com>
+ <20200209154748.3015-1-adam@serbinski.com>
+ <20200209154748.3015-3-adam@serbinski.com>
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprAJsWRmVeSWpSXmKPExsVyYMXvjbqcIY5xBv9Pm1lMffiEzWL+kXOs
-        FlP+LGeyuLxrDpvF594jjBZLr19kspiz9ASLReveI+wWp3eXOHB6rJm3htFj56y77B6bVnWy
-        edy5tofN4/MmuQDWKG6bpMSSsuDM9Dx9uwTujHPvSwqueVfMbNnE3sB4x7OLkZNDQsBEYm3r
-        ctYuRi4OIYGrjBJ/v21gg3BOMErc+9PJ3MXIwcEmYCPRdZMdxBQRsJTYeFEQpIRZoI1F4vrV
-        v8wgg4QF7CRufJ0MZosI2EtsvXeWHcI2kph84SMriM0ioCpx7Nl1FhCbV8BPYuuWdqhdixkl
-        Fm+8ANbAKZAhcf3oS7BBjAKyEp0N75hAbGYBcYlNz76zQlwtILFkz3lmCFtU4uXjf1BxJYm9
-        Px+ygBzKLKApsX6XPoTpINHf5AcxRVFiSvdDdogTBCVOznzCMoFRbBaSBbMQmmchNM9C0jwL
-        SfMCRtZVjBK5iZk56YklqYZ6RamlekX5GblAKjk/dxMjJG6/7GD8f8jzECMTB+MhRkkOJiVR
-        3iWBjnFCfEn5KZUZicUZ8UWlOanFhxglOJiVRHgtpYFyvCmJlVWpRfkwKWkOFiVxXvWHE2OF
-        BEB2ZaemFqQWwWRlODiUJHjXBgE1ChalpqdWpGXmlCCkmTg4QYZzSYkUp+alpBYllpZkxIMS
-        R3wxMHWApHiA9joGg+wtLkjMBYpCtJ5iNOSY8HLuImaOzXOXAskjIFKIJS8/L1VKnLcZZJ8A
-        SENGaR7culeM4hyMSsK8/0Fe5AEmc7hpr4AWMQEtum7iALKoJBEhJdXAaLfoueWx+wFKp22f
-        siYUPFihqBW/U3P547n6JTMUio5vmvLL3S7ISlEo/NqCuS3hB8NMPuZ+470oPe+9X57b2jxu
-        tz0bmU5mdpZmS86rlN7RvdqgZ9aE9z/PLIt6fGDh4RSBvGf8+y78cazNaWq9udBEktmzSS5m
-        vUKiW8peluiDLD7PNhaFKLEUZyQaajEXFScCADXCefSjAwAA
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JkW1gnuWHDypiMFO"
+Content-Disposition: inline
+In-Reply-To: <20200209154748.3015-3-adam@serbinski.com>
+X-Cookie: Avoid gunfire in the bathroom tonight.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiBNb24sIDIwMjAtMDItMTAgYXQgMTQ6MTEgKzAyMDAsIE1hdHRpIFZhaXR0aW5lbiB3cm90
-ZToNCj4gVGhlIFJPSE0gQkQ5OTk1NCBpcyBhIEJhdHRlcnkgTWFuYWdlbWVudCBMU0kgZm9yIDEt
-NCBjZWxsIExpdGhpdW0tSW9uDQo+IHNlY29uZGFyeSBiYXR0ZXJ5LiBJbnRlbmRlZCB0byBiZSB1
-c2VkIGluIHNwYWNlLWNvbnN0cmFpbnQgZXF1aXBtZW50DQo+IHN1Y2gNCj4gYXMgTG93IHByb2Zp
-bGUgTm90ZWJvb2sgUEMsIFRhYmxldHMgYW5kIG90aGVyIGFwcGxpY2F0aW9ucy4gQkQ5OTk1NA0K
-PiBwcm92aWRlcyBhIER1YWwtc291cmNlIEJhdHRlcnkgQ2hhcmdlciwgdHdvIHBvcnQgQkMxLjIg
-ZGV0ZWN0aW9uIGFuZA0KPiBhDQo+IEJhdHRlcnkgTW9uaXRvci4NCj4gDQo+IERvY3VtZW50IHRo
-ZSBEVCBiaW5kaW5ncyBmb3IgQkQ5OTk1NA0KPiANCj4gU2lnbmVkLW9mZi1ieTogTWF0dGkgVmFp
-dHRpbmVuIDxtYXR0aS52YWl0dGluZW5AZmkucm9obWV1cm9wZS5jb20+DQo+IC0tLQ0KPiBJIHRo
-aW5rIHRoZXNlIHByb3BlcnRpZXMgY291bGQgcHJvYmFibHkgYmUgZ2VuZXJpYyBhbmQgbm90DQo+
-IHZlbmRvciBzcGVjaWZpYywgcmlnaHQ/IElmIHNvLCB0aGVuIEkgY291bGQgdHJ5IGFkZGluZyBw
-YXJzZXINCj4gZnVuY3Rpb24ocykgZm9yIHRoZW0gaW4gcG93ZXIvc3VwcGx5IGZyYW1ld29yay4g
-SG93IGRvIHlvdQ0KPiBndXlzIHNlZSB0aGlzPw0KDQpTb3JyeSBmb2xrcy4gSSB3YXNuJ3QgcmVh
-ZGluZyBleGlzdGluZyBkb2NzIGNhcmVmdWxseSBlbm91Z2guIEkgc2tpcHBlZA0KYmF0dGVyeS50
-eHQgYXMgSSB3YXMgZG9pbmcgZHJpdmVyIGZvciBjaGFyZ2VyLi4uIEkgc2hvdWxkJ3ZlIHVuZGVy
-c3Rvb2QNCnRoYXQgbWFueSBvZiB0aGUgbGltaXRzIGhlcmUgY29tZSBmcm9tIGJhdHRlcnkgcHJv
-cGVydGllcyA6Lw0KDQpTbyByaWdodCBhZnRlciBzZW5kaW5nIHRoaXMgb3V0IEkgaGl0IHRoZSBi
-YXR0cnkudHh0IGJpbmRpbmcgZG9jIGFuZA0KZm9sbG93aW5nIG5vdGUgaW4gcG93ZXJfc3VwcGx5
-X2NsYXNzLnJzdDoNCg0KIkRyaXZlcnMgc2hvdWxkIGNhbGwgcG93ZXJfc3VwcGx5X2dldF9iYXR0
-ZXJ5X2luZm8oKSB0byBvYnRhaW4gYmF0dGVyeQ0KY2hhcmFjdGVyaXN0aWNzIGZyb20gYSBkZXZp
-Y2V0cmVlIGJhdHRlcnkgbm9kZSwgZGVmaW5lZCBpbiB0aGluayB0aGVyZQ0KbXVzdCBiZSBxdWl0
-ZSBhIGZldyBleGFtcGxlcyBvZiB0aGF0IGluLXRyZWUgdG9vLiANCkRvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9wb3dlci9zdXBwbHkvYmF0dGVyeS50eHQiDQoNCkl0IHNlZW1zIHdl
-IGFscmVhZHkgaGF2ZSBidW5jaCBvZiBjb21tb24gYmluZGluZ3MgYW5kIHRoZSBoZWxwZXIuIEkn
-ZA0KYmV0dGVyIHN0dWR5IHRoZSBjaGFyZ2luZyBwcm9wZXJ0aWVzIGZyb20gYmF0dGVyeS50eHQg
-YW5kIHJlLXVzZSB0aG9zZQ0KSSBjYW4gcmUtdXNlLiBJIHN0aWxsIHNlZSBjb3VwbGUgb2YgdGhp
-bmdzIHdlIG1pZ2h0IHdhbnQgdG8gYWRkPw0KDQooTXkgbmV3IGd1ZXNzIGZvciAidGhlIGNvcnJl
-ZWN0IHRoaW5nIHRvIGRvIiBpcyB0aGF0IHRoZSBjaGFyZ2luZw0KY3VycmVudHMgYW5kIHZvbHRh
-Z2VzIHNob3VsZCBiZSBnaXZlbiBpbiBhIGJhdHRlcnkgbm9kZS4gVGhlIGRyaXZlcg0Kc2hvdWxk
-IHRoZW4gdXNlIHBvd2VyX3N1cHBseV9nZXRfYmF0dGVyeV9pbmZvKCkgdG8gZXh0cmFjdCB0aGlz
-DQppbmZvcm1hdGlvbiAtIG1ha2VzIHNlbnNlLiBJbnB1dCBjdXJyZW50IGxpbWl0cyBhcmUgc3Rp
-bGwgZGlmZmVyZW50DQp0aGluZykNCg0KPiANCj4gIC4uLi9iaW5kaW5ncy9wb3dlci9zdXBwbHkv
-cm9obSxiZERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wDQo+IG93ZXIvc3VwcGx5
-L2JhdHRlcnkudHh0Ljk5OTV4LnlhbWwgICB8IDExOCArKysrKysrKysrKysrKysrKysNCj4gIDEg
-ZmlsZSBjaGFuZ2VkLCAxMTggaW5zZXJ0aW9ucygrKQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+
-IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wb3dlci9zdXBwbHkvcm9obSxiZDk5
-OTV4LnlhbWwNCj4gDQo+IGRpZmYgLS1naXQNCj4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
-YmluZGluZ3MvcG93ZXIvc3VwcGx5L3JvaG0sYmQ5OTk1eC55YW1sDQo+IGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bvd2VyL3N1cHBseS9yb2htLGJkOTk5NXgueWFtbA0KPiBu
-ZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwMDAwMDAuLmJhOWZlMWRjM2YyZg0K
-PiAtLS0gL2Rldi9udWxsDQo+ICsrKw0KPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9wb3dlci9zdXBwbHkvcm9obSxiZDk5OTV4LnlhbWwNCj4gQEAgLTAsMCArMSwxMTggQEAN
-Cj4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1
-c2UNCj4gKyVZQU1MIDEuMg0KPiArLS0tDQo+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9z
-Y2hlbWFzL3Bvd2VyL3N1cHBseS9yb2htLGJkOTk5NXgueWFtbCMNCj4gKyRzY2hlbWE6IGh0dHA6
-Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiArDQo+ICt0aXRsZTog
-Uk9ITSBCRDk5OTU0IEJhdHRlcnkgY2hhcmdlciBkcml2ZXINCj4gKw0KPiArbWFpbnRhaW5lcnM6
-DQo+ICsgIC0gTWF0dGkgVmFpdHRpbmVuIDxtYXR0aS52YWl0dGluZW5AZmkucm9obWV1cm9wZS5j
-b20+DQo+ICsgIC0gTWFya3VzIExhaW5lIDxtYXJrdXMubGFpbmVAZmkucm9obWV1cm9wZS5jb20+
-DQo+ICsgIC0gTWlra28gTXV0YW5lbiA8bWlra28ubXV0YW5lbkBmaS5yb2htZXVyb3BlLmNvbT4N
-Cj4gKw0KPiArZGVzY3JpcHRpb246IHwNCj4gKyAgVGhlIFJPSE0gQkQ5OTk1NCBpcyBhIEJhdHRl
-cnkgTWFuYWdlbWVudCBMU0kgZm9yIDEtNCBjZWxsIExpdGhpdW0tDQo+IElvbg0KPiArICBzZWNv
-bmRhcnkgYmF0dGVyeSBpbnRlbmRlZCB0byBiZSB1c2VkIGluIHNwYWNlLWNvbnN0cmFpbnQNCj4g
-ZXF1aXBtZW50IHN1Y2gNCj4gKyAgYXMgTG93IHByb2ZpbGUgTm90ZWJvb2sgUEMsIFRhYmxldHMg
-YW5kIG90aGVyIGFwcGxpY2F0aW9ucy4NCj4gQkQ5OTk1NA0KPiArICBwcm92aWRlcyBhIER1YWwt
-c291cmNlIEJhdHRlcnkgQ2hhcmdlciwgdHdvIHBvcnQgQkMxLjIgZGV0ZWN0aW9uDQo+IGFuZCBh
-DQo+ICsgIEJhdHRlcnkgTW9uaXRvci4NCj4gKw0KPiArcHJvcGVydGllczoNCj4gKyAgY29tcGF0
-aWJsZToNCj4gKyAgICBjb25zdDogcm9obSxiZDk5OTV4LWNoYXJnZXINCj4gKw0KPiArICByb2ht
-LHZidXMtaW5wdXQtY3VycmVudC1saW1pdC1taWNyb2FtcDoNCj4gKyAgICBkZXNjcmlwdGlvbjoN
-Cj4gKyAgICAgIHN5c3RlbSBzcGVjaWZpYyBWQlVTIGlucHV0IGN1cnJlbnQgbGltaXQgKGluIG1p
-Y3JvYW1wcykuDQo+ICsgICAgbWluaW11bTogMzIwMDANCj4gKyAgICBtYXhpbXVtOiAxNjM1MjAw
-MA0KPiArICAgIG11bHRpcGxlT2Y6IDMyMDAwDQo+ICsNCj4gKyAgcm9obSx2Y2MtaW5wdXQtY3Vy
-cmVudC1saW1pdC1taWNyb2FtcDoNCj4gKyAgICBkZXNjcmlwdGlvbjoNCj4gKyAgICAgIHN5c3Rl
-bSBzcGVjaWZpYyBWQ0MvVkFDUCBpbnB1dCBjdXJyZW50IGxpbWl0IChpbiBtaWNyb2FtcHMpLg0K
-PiArICAgIG1pbmltdW06IDMyMDAwDQo+ICsgICAgbWF4aW11bTogMTYzNTIwMDANCj4gKyAgICBt
-dWx0aXBsZU9mOiAzMjAwMA0KDQpJIHRoaW5rIHRoZXNlIGlucHV0IGN1cnJlbnQgbGltaXRzIChp
-bnB1dCBmb3IgY2hhcmdlcikgY2FuJ3QgYmUgaW4NCmJhdHRlcnkgbm9kZS4gVGhlc2UgYXJlIHN5
-c3RlbS9jaGFyZ2VyIGxpbWl0cywgcmlnaHQ/DQoNCj4gKyAgcm9obSx0cmlja2xlLWNoYXJnaW5n
-LWN1cnJlbnQtbWljcm9hbXA6DQpJIHRoaW5rIHRoaXMgc2hvdWxkIGJlIHJlcGxhY2VkIGJ5IHBy
-ZWNoYXJnZS1jdXJyZW50LW1pY3JvYW1wOg0KDQo+ICsgICAgZGVzY3JpcHRpb246DQo+ICsgICAg
-ICBiYXR0ZXJ5IHNwZWNpZmljIHZhbHVlIGZvciB0cmlja2xlLWNoYXJnaW5nIGN1cnJlbnQuDQo+
-ICsgICAgbWluaW11bTogNjQwMDANCj4gKyAgICBtYXhpbXVtOiAxMDI0MDAwDQo+ICsgICAgbXVs
-dGlwbGVPZjogNjQwMDANCj4gKw0KPiArICByb2htLHByZS1jaGFyZ2luZy1jdXJyZW50LW1pY3Jv
-YW1wOg0KVGhpcyBzaG91bGQgYmUgcmVwbGFjZWQgYnkgY29uc3RhbnQtY2hhcmdlLWN1cnJlbnQt
-bWF4LW1pY3JvYW1wOg0KDQo+ICsgICAgZGVzY3JpcHRpb246DQo+ICsgICAgICBiYXR0ZXJ5IHNw
-ZWNpZmljIHZhbHVlIGZvciBwcmUtY2hhcmdpbmcgY3VycmVudC4NCj4gKyAgICBtaW5pbXVtOiA2
-NDAwMA0KPiArICAgIG1heGltdW06IDEwMjQwMDANCj4gKyAgICBtdWx0aXBsZU9mOiA2NDAwMA0K
-PiArDQo+ICsgIHJvaG0sZmFzdC1jaGFyZ2luZy1yZWd1bGF0aW9uLW1pY3Jvdm9sdDoNClRoaXMg
-c2hvdWxkIGJlIHJlcGxhY2VkIGJ5IGNvbnN0YW50LWNoYXJnZS12b2x0YWdlLW1heC1taWNyb3Zv
-bHQ6DQoNCj4gKyAgICBkZXNjcmlwdGlvbjoNCj4gKyAgICAgIGJhdHRlcnkvc3lzdGVtIHNwZWNp
-ZmljIHVwcGVyIGxpbWl0IGZvciBiYXR0cnkvc3lzdGVtIHZvbHRhZ2UuDQo+ICsgICAgbWluaW11
-bTogMjU2MDAwMA0KPiArICAgIG1heGltdW06IDE5MjAwMDAwDQo+ICsgICAgbXVsdGlwbGVPZjog
-MTYwMDANCj4gKw0KPiArICByb2htLHZzeXMtcmVndWxhdGlvbi1taWNyb3ZvbHQ6DQo+ICsgICAg
-ZGVzY3JpcHRpb246DQo+ICsgICAgICBzeXN0ZW0gc3BlY2lmaWMgbG93ZXIgbGltaXQgZm9yIHN5
-c3RlbSB2b2x0YWdlLg0KPiArICAgIG1pbmltdW06IDI1NjAwMDANCj4gKyAgICBtYXhpbXVtOiAx
-OTIwMDAwMA0KPiArICAgIG11bHRpcGxlT2Y6IDY0MDAwDQo+ICsNCj4gKyAgcm9obSxwcmUtY2hh
-cmdlLXZvbHRhZ2UtdGhyZXNob2xkLW1pY3Jvdm9sdDoNCj4gKyAgICBkZXNjcmlwdGlvbjoNCj4g
-KyAgICAgIHZvbHRhZ2UgbGltaXQgZm9yIGNoYW5naW5nIGZyb20gdHJpY2tsZSB0byBwcmUtY2hh
-cmdpbmcuDQpDYW4gd2UgdXNlIHZvbHRhZ2UtbWluLWRlc2lnbi1taWNyb3ZvbHQ6IGZvciB0aGlz
-IG9yIGludmVudCBhIG5ldyBvbmU/DQoNCj4gKyAgICBtaW5pbXVtOiAyMDQ4MDAwDQo+ICsgICAg
-bWF4aW11bTogMTkyMDAwMDANCj4gKyAgICBtdWx0aXBsZU9mOiA2NDAwMA0KPiArDQo+ICsgIHJv
-aG0scmUtY2hhcmdlLWJhdHRlcnktdm9sdGFnZS1taWNyb3ZvbHQ6DQo+ICsgICAgZGVzY3JpcHRp
-b246DQo+ICsgICAgICB2b2x0YWdlIGxpbWl0IGZvciBhdXRvbWF0aWNhbGx5IHJlLXN0YXJ0aW5n
-IHRoZSBiYXR0ZXJ5IA0KSSBkb24ndCBzZWUgYSBtYXRjaCBmb3IgdGhpcyBlaXRoZXIuDQoNCj4g
-Y2hhcmdpbmcuDQo+ICsgICAgbWluaW11bTogMjU2MDAwMA0KPiArICAgIG1heGltdW06IDE5MjAw
-MDAwDQo+ICsgICAgbXVsdGlwbGVPZjogMTYwMDANCj4gKw0KPiArICByb2htLGJhdHRlcnktb3Zl
-ci12b2x0YWdlLXRocmVzaG9sZC1taWNyb3ZvbHQ6DQo+ICsgICAgZGVzY3JpcHRpb246DQo+ICsg
-ICAgICB2b2x0YWdlIGxpbWl0IGZvciBkZXRlY3RpbmcgYmF0dGVyeSBvdmVyIHZvbHRhZ2UuDQpB
-bmQgdGhpcyBpcyBhbHNvIHNvbWV0aGluZyB3ZSBtaWdodCB3YW50IHRvIGFkZD8NCg0KPiArICAg
-IG1pbmltdW06IDI1NjAwMDANCj4gKyAgICBtYXhpbXVtOiAxOTIwMDAwMA0KPiArICAgIG11bHRp
-cGxlT2Y6IDE2MDAwDQo+ICsNCj4gK3JlcXVpcmVkOg0KPiArICAtIGNvbXBhdGlibGUNCj4gKyAg
-LSByb2htLHZidXMtaW5wdXQtY3VycmVudC1saW1pdC1taWNyb2FtcA0KPiArICAtIHJvaG0sdmNj
-LWlucHV0LWN1cnJlbnQtbGltaXQtbWljcm9hbXANCj4gKyAgLSByb2htLHRyaWNrbGUtY2hhcmdp
-bmctY3VycmVudC1taWNyb2FtcA0KPiArICAtIHJvaG0scHJlLWNoYXJnaW5nLWN1cnJlbnQtbWlj
-cm9hbXANCj4gKyAgLSByb2htLGZhc3QtY2hhcmdpbmctcmVndWxhdGlvbi1taWNyb3ZvbHQNCj4g
-KyAgLSByb2htLHZzeXMtcmVndWxhdGlvbi1taWNyb3ZvbHQNCj4gKyAgLSByb2htLHByZS1jaGFy
-Z2Utdm9sdGFnZS10aHJlc2hvbGQtbWljcm92b2x0DQo+ICsgIC0gcm9obSxyZS1jaGFyZ2UtYmF0
-dGVyeS12b2x0YWdlLW1pY3Jvdm9sdA0KPiArICAtIHJvaG0sYmF0dGVyeS1vdmVyLXZvbHRhZ2Ut
-dGhyZXNob2xkLW1pY3Jvdm9sdA0KPiArDQo+ICtleGFtcGxlczoNCj4gKyAgLSB8DQo+ICsgICAg
-aTJjIHsNCj4gKyAgICAgICAgY2hhcmdlckA5IHsNCj4gKyAgICAgICAgICAgIGNvbXBhdGlibGUg
-PSAicm9obSxiZDk5OTV4LWNoYXJnZXIiOw0KPiArICAgICAgICAgICAgcmVnID0gPDB4OT47DQo+
-ICsgICAgICAgICAgICBpbnRlcnJ1cHQtcGFyZW50ID0gPCZncGlvMT47DQo+ICsgICAgICAgICAg
-ICBpbnRlcnJ1cHRzID0gPDI5IDg+Ow0KPiArICAgICAgICAgICAgcm9obSx2c3lzLXJlZ3VsYXRp
-b24tbWljcm92b2x0ID0gPDg5NjAwMDA+Ow0KPiArICAgICAgICAgICAgcm9obSx2YnVzLWlucHV0
-LWN1cnJlbnQtbGltaXQtbWljcm9hbXAgPSA8MTQ3MjAwMD47DQo+ICsgICAgICAgICAgICByb2ht
-LHZjYy1pbnB1dC1jdXJyZW50LWxpbWl0LW1pY3JvYW1wID0gPDE0NzIwMDA+Ow0KPiArICAgICAg
-ICAgICAgcm9obSx0cmlja2xlLWNoYXJnaW5nLWN1cnJlbnQtbWljcm9hbXAgPSA8MjU2MDAwPjsN
-Cj4gKyAgICAgICAgICAgIHJvaG0scHJlLWNoYXJnaW5nLWN1cnJlbnQtbWljcm9hbXAgPSA8MjU2
-MDAwPjsNCj4gKyAgICAgICAgICAgIHJvaG0sZmFzdC1jaGFyZ2luZy1yZWd1bGF0aW9uLW1pY3Jv
-dm9sdCA9IDw4NDAwMDAwPjsNCj4gKyAgICAgICAgICAgIHJvaG0scHJlLWNoYXJnZS12b2x0YWdl
-LXRocmVzaG9sZC1taWNyb3ZvbHQgPSA8MjA0ODAwMD47DQo+ICsgICAgICAgICAgICByb2htLHJl
-LWNoYXJnZS1iYXR0ZXJ5LXZvbHRhZ2UtbWljcm92b2x0ID0gPDgxMTIwMDA+Ow0KPiArICAgICAg
-ICAgICAgcm9obSxiYXR0ZXJ5LW92ZXItdm9sdGFnZS10aHJlc2hvbGQtbWljcm92b2x0ID0NCj4g
-PDg5MTIwMDA+Ow0KPiArICAgICAgICB9Ow0KPiArICAgIH07DQo+IC0tIA0KPiAyLjIxLjANCj4g
-DQo+IA0KDQo=
+
+--JkW1gnuWHDypiMFO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Feb 09, 2020 at 10:47:42AM -0500, Adam Serbinski wrote:
+
+> =20
+> +#define AFE_API_VERSION_PCM_CONFIG	0x1
+> +/* Enumeration for the auxiliary PCM synchronization signal
+> + * provided by an external source.
+> + */
+> +
+> +#define AFE_PORT_PCM_SYNC_SRC_EXTERNAL 0x0
+> +/*	Enumeration for the auxiliary PCM synchronization signal
+> + * provided by an internal source.
+> + */
+
+This is a *weird* commenting style for these #defines and it's not
+consistent within the block, I'm seeing at least 3 different styles.
+
+> +/*  Payload of the #AFE_PARAM_ID_PCM_CONFIG command's
+> + * (PCM configuration parameter).
+> + */
+> +
+> +struct afe_param_id_pcm_cfg {
+
+Similar weird commenting here, please follow coding-style.rst.
+
+> +	switch (cfg->fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> +	case SND_SOC_DAIFMT_CBS_CFS:
+> +		pcfg->pcm_cfg.sync_src =3D AFE_PORT_PCM_SYNC_SRC_INTERNAL;
+> +		break;
+> +	case SND_SOC_DAIFMT_CBM_CFM:
+> +		/* CPU is slave */
+> +		pcfg->pcm_cfg.sync_src =3D AFE_PORT_PCM_SYNC_SRC_EXTERNAL;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+
+Why is this not returning an error on unsupported values?
+
+> +
+> +	switch (cfg->sample_rate) {
+> +	case 8000:
+> +		pcfg->pcm_cfg.frame_setting =3D AFE_PORT_PCM_BITS_PER_FRAME_128;
+> +		break;
+> +	case 16000:
+> +		pcfg->pcm_cfg.frame_setting =3D AFE_PORT_PCM_BITS_PER_FRAME_64;
+> +		break;
+> +	}
+
+Same here.
+
+--JkW1gnuWHDypiMFO
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5BWz8ACgkQJNaLcl1U
+h9COgAf/dQvwNK7v2nSAj2+698541KzAw+rU1oHMPrfL47b7+8WMLtY8dn2B7TiM
+1dBCzYpTotvmbnXSoGQMztG89ws70Csele03jew7S8MfRuwnrbAEbp3mR8KW+ylI
+GkjNxUGHH97SWdkJ92q3bH4wkRJVAtS6nAudxv7So3vi1WNmGGLgwCODlKzLII1j
+7mmUkvhMwjqGBxqOrIifT7yTlnqCZyIHKqUQk7xIPO+on5jZ0QVvB9HZ5xISM1HV
+/3it4Gmoc3P5bGf+N9Y0UF3Bc11Wgaq7+XXSMccyUv7Ze5h3ZtTGUidbeWsYNfGf
+vBl163xXITHNtKVJSYgNX1CAKUV9OQ==
+=kiNx
+-----END PGP SIGNATURE-----
+
+--JkW1gnuWHDypiMFO--
