@@ -2,146 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D981573F7
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 13:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27328157434
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 13:11:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727789AbgBJMHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 07:07:45 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45340 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727778AbgBJMHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 07:07:44 -0500
-Received: by mail-wr1-f65.google.com with SMTP id g3so6266890wrs.12
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2020 04:07:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dlgrD1ImLwD8i7swr2073g2/em63RPZPKMG2q6/uiVU=;
-        b=uUWsD3xXPNWZCRZzUdS2YN/EuB9ZtVVSLw6IxS8dRj1eSMq7dCiwtNaRO+3bT5nc+D
-         VghAfZAv1tc8NYEvA4SjVupe3sQsVYzxaOi+k8q1lKOMZzSF5tGH6QGGiXWc/t+BAEBD
-         18koliwiRZIaIF6BamDEYehIJHr/8LNtGVTkC3nuWVTMroC3pz/I2CUuVfEPopMQDDTH
-         pQ4RIcaVXpcuLU3PcoHXlBuAEhkF79HpHzioumIlF4YrwZ3BoF+9L3aOGftaH5kKHKVo
-         CfO5vp7Mmuf6KzjbAvH7O6Owyj/owr3ggtFigip/ke8qLI/W6F6O78AlDfTzGozIfff/
-         HrVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dlgrD1ImLwD8i7swr2073g2/em63RPZPKMG2q6/uiVU=;
-        b=sZ1YJJjegYlCb698cRUINmd59oU1ocRZ18W/VM9BvoP0rL1ufysTNgqanJTipFNzvg
-         KOUNl2aoT7dDo8K6U0jbPFxKr0LiI4nlbuY/V5idzqxyTOL/Kn3zLbaYHI5gw8MkovXJ
-         Ql+HZqOKgVG92YmDeKm0Gynav+je+M8GlOekCUttijEJPWl9ah3RPER2pCzeVLDlvbT5
-         RbG7kpXYfWD1/fVtZPXo7u69/YN8Plrg42gUTg4WVz8zW980UvSzU3oK0POu15C8W7La
-         afegMhcuk8Td5/NGS/5wsQ1ihn8G0t/KUaUFVnPafrMngtCWi8OL2COnqNcWShjV3AML
-         9RFw==
-X-Gm-Message-State: APjAAAWfW9oLV4M7IoLxCXZ1XjNk2ApzYdo3QdoJbWN3LCYWE7KNgoE8
-        oY8/uzIJfcOJ5Rt9KokUundxOg==
-X-Google-Smtp-Source: APXvYqwTicbL22mHDUW1ie+v1PtpkNYflJpxuGDJn6zmsXhpmjJ4NFJzieYb8MQk8zXmSUJGKLMw9A==
-X-Received: by 2002:adf:f10b:: with SMTP id r11mr1633083wro.307.1581336462595;
-        Mon, 10 Feb 2020 04:07:42 -0800 (PST)
-Received: from localhost.localdomain ([176.61.57.127])
-        by smtp.gmail.com with ESMTPSA id i204sm293124wma.44.2020.02.10.04.07.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Feb 2020 04:07:42 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        gregkh@linuxfoundation.org, jackp@codeaurora.org, balbi@kernel.org,
-        bjorn.andersson@linaro.org, robh@kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH v6 18/18] arm64: dts: qcom: qcs404-evb: Enable USB controllers
-Date:   Mon, 10 Feb 2020 12:07:23 +0000
-Message-Id: <20200210120723.91794-19-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200210120723.91794-1-bryan.odonoghue@linaro.org>
-References: <20200210120723.91794-1-bryan.odonoghue@linaro.org>
+        id S1727662AbgBJMKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 07:10:00 -0500
+Received: from mx2.suse.de ([195.135.220.15]:56040 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726846AbgBJMKA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Feb 2020 07:10:00 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id 04D39AB87;
+        Mon, 10 Feb 2020 12:09:56 +0000 (UTC)
+Message-ID: <2bd9936d106948210b7a34c8060600572318600c.camel@suse.de>
+Subject: Re: [PATCH] dt-bindings: rng: Convert BCM2835 to DT schema
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     =?ISO-8859-1?Q?N=EDcolas?= "F. R. A. Prado" 
+        <nfraprado@protonmail.com>, devicetree@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-crypto@vger.kernel.org, Matt Mackall <mpm@selenic.com>,
+        linux-rpi-kernel@lists.infradead.org
+Date:   Mon, 10 Feb 2020 13:09:54 +0100
+In-Reply-To: <20200207231347.2908737-1-nfraprado@protonmail.com>
+References: <20200207231347.2908737-1-nfraprado@protonmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-zCBFPwRk+DMEN1eeas6c"
+User-Agent: Evolution 3.34.3 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables the primary and secondary USB controllers on the
-qcs404-evb.
 
-Primary:
-The primary USB controller has
+--=-zCBFPwRk+DMEN1eeas6c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-- One USB3 SS PHY using gpio-usb-conn
-- One USB2 HS PHY in device mode only and no connector driver
-  associated.
+On Fri, 2020-02-07 at 23:14 +0000, N=C3=ADcolas F. R. A. Prado wrote:
+> Convert BCM2835/6368 Random number generator bindings to DT schema.
+>=20
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@protonmail.com>
+> ---
 
-Secondary:
-The second DWC3 controller which has one USB Hi-Speed PHY attached to it.
+Reviewed-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 
-Cc: Andy Gross <agross@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: linux-arm-msm@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 40 ++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+Thanks!
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 0fff50f755ef..4045d3000da6 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -318,6 +318,46 @@ pinconf {
- 	};
- };
- 
-+&usb2 {
-+	status = "okay";
-+};
-+
-+&usb2_phy_sec {
-+	vdd-supply = <&vreg_l4_1p2>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	vdda3p3-supply = <&vreg_l12_3p3>;
-+	status = "okay";
-+};
-+
-+&usb3 {
-+	status = "okay";
-+	dwc3@7580000 {
-+		usb-role-switch;
-+		usb_con: connector {
-+			compatible = "gpio-usb-b-connector";
-+			label = "USB-C";
-+			id-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
-+			vbus-supply = <&usb3_vbus_reg>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&usb3_id_pin>, <&usb3_vbus_pin>;
-+			status = "okay";
-+		};
-+	};
-+};
-+
-+&usb2_phy_prim {
-+	vdd-supply = <&vreg_l4_1p2>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	vdda3p3-supply = <&vreg_l12_3p3>;
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	vdd-supply = <&vreg_l3_1p05>;
-+	vdda1p8-supply = <&vreg_l5_1p8>;
-+	status = "okay";
-+};
-+
- &wifi {
- 	status = "okay";
- 	vdd-0.8-cx-mx-supply = <&vreg_l2_1p275>;
--- 
-2.25.0
+> Hi,
+> wasn't really clear to me who to add as maintainer for this dt-binding.
+> The three names added here as maintainers were based on the get_maintaine=
+r
+> script and on previous commits on this file.
+> Please tell me whether these are the right maintainers for this file or n=
+ot.
+
+Looks OK to me. When in doubt I just trust get_maintainer, never failed me =
+so
+far.
+
+> This patch was tested with:
+> make ARCH=3Darm
+> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> dt_binding_check
+> make ARCH=3Darm
+> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> dtbs_check
+>=20
+> Thanks,
+> N=C3=ADcolas
+>=20
+>  .../devicetree/bindings/rng/brcm,bcm2835.txt  | 40 ------------
+>  .../devicetree/bindings/rng/brcm,bcm2835.yaml | 61 +++++++++++++++++++
+>  2 files changed, 61 insertions(+), 40 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rng/brcm,bcm2835.tx=
+t
+>  create mode 100644 Documentation/devicetree/bindings/rng/brcm,bcm2835.ya=
+ml
+>=20
+> diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm2835.txt
+> b/Documentation/devicetree/bindings/rng/brcm,bcm2835.txt
+> deleted file mode 100644
+> index aaac7975f61c..000000000000
+> --- a/Documentation/devicetree/bindings/rng/brcm,bcm2835.txt
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -BCM2835/6368 Random number generator
+> -
+> -Required properties:
+> -
+> -- compatible : should be one of
+> -	"brcm,bcm2835-rng"
+> -	"brcm,bcm-nsp-rng"
+> -	"brcm,bcm5301x-rng" or
+> -	"brcm,bcm6368-rng"
+> -- reg : Specifies base physical address and size of the registers.
+> -
+> -Optional properties:
+> -
+> -- clocks : phandle to clock-controller plus clock-specifier pair
+> -- clock-names : "ipsec" as a clock name
+> -
+> -Optional properties:
+> -
+> -- interrupts: specify the interrupt for the RNG block
+> -
+> -Example:
+> -
+> -rng {
+> -	compatible =3D "brcm,bcm2835-rng";
+> -	reg =3D <0x7e104000 0x10>;
+> -	interrupts =3D <2 29>;
+> -};
+> -
+> -rng@18033000 {
+> -	compatible =3D "brcm,bcm-nsp-rng";
+> -	reg =3D <0x18033000 0x14>;
+> -};
+> -
+> -random: rng@10004180 {
+> -	compatible =3D "brcm,bcm6368-rng";
+> -	reg =3D <0x10004180 0x14>;
+> -
+> -	clocks =3D <&periph_clk 18>;
+> -	clock-names =3D "ipsec";
+> -};
+> diff --git a/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> new file mode 100644
+> index 000000000000..b1621031721e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rng/brcm,bcm2835.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rng/brcm,bcm2835.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BCM2835/6368 Random number generator
+> +
+> +maintainers:
+> +  - Stefan Wahren <stefan.wahren@i2se.com>
+> +  - Florian Fainelli <f.fainelli@gmail.com>
+> +  - Herbert Xu <herbert@gondor.apana.org.au>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,bcm2835-rng
+> +      - brcm,bcm-nsp-rng
+> +      - brcm,bcm5301x-rng
+> +      - brcm,bcm6368-rng
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: phandle to clock-controller plus clock-specifier pair
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: ipsec
+> +
+> +  interrupts:
+> +    description: specify the interrupt for the RNG block
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    rng {
+> +        compatible =3D "brcm,bcm2835-rng";
+> +        reg =3D <0x7e104000 0x10>;
+> +        interrupts =3D <2 29>;
+> +    };
+> +
+> +  - |
+> +    rng@18033000 {
+> +        compatible =3D "brcm,bcm-nsp-rng";
+> +        reg =3D <0x18033000 0x14>;
+> +    };
+> +
+> +  - |
+> +    random: rng@10004180 {
+> +        compatible =3D "brcm,bcm6368-rng";
+> +        reg =3D <0x10004180 0x14>;
+> +
+> +        clocks =3D <&periph_clk 18>;
+> +        clock-names =3D "ipsec";
+> +    };
+
+
+--=-zCBFPwRk+DMEN1eeas6c
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl5BSBIACgkQlfZmHno8
+x/538Af9E4Fj5GNcVUndgLxJI32oW02ih5MIyieex2uP1j3je0U/0mUmRyfYHTzE
+VoXDjFd07nq4I+qcNBMCCm/EoZVmhTcYzOwgwkYGpnffvb1y+2xNx0FN0yYJFMAF
+aZKfwp/s5DFeNxJyowh/ejeHQyRZh5lbUrlg4Dhu5f2wJ9pnUzbkQn4qMGmJ5tcJ
+l+HYDtp5LRNdLwgjaI8kPeTHU403RO20ASLGW8XBL12/Rc2MvOj18OcURS+SlB0J
+/eyvAoeVkeB9RBAzpg0LpsC8kF506li/telVa1zKbyFKycY0JoQZP0VvfNUVSjVX
+0bfhLaOaOSn8PWfr8Jwfkko+ZmhI4Q==
+=+aAd
+-----END PGP SIGNATURE-----
+
+--=-zCBFPwRk+DMEN1eeas6c--
 
