@@ -2,110 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A2DB15809D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 18:09:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9F721580FC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 18:11:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727932AbgBJRJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 12:09:03 -0500
-Received: from mail-io1-f67.google.com ([209.85.166.67]:35733 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727587AbgBJRJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 12:09:03 -0500
-Received: by mail-io1-f67.google.com with SMTP id h8so8419053iob.2;
-        Mon, 10 Feb 2020 09:09:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=J7TMYFnb5/RylQGjk6pwzyOMg8V/VoQJOxgPOgvp4TQ=;
-        b=qkseAph0tr0+SBm6cWzFPpfeUipxzvfJYFreIZj2Jc+t+btZhb30Pnb9mpex9HMBQg
-         s+lqIIVdZp6P2b3ej3X+DSvXo9boYOAwkuRDpXFDFmb+unXmhjjzgsHiz5svYX4DA8zg
-         SjCbWxPPQUcXM8nbqah4fNmVOA1FdsMC0BHByvTzA51IJ0YsIIyEGfx+O//kXPUerzEf
-         EIqa1QT6+2UztMHYkEf0K83GPRPas7oB/Uhs8YQQ0TBkd7fhYDVMJEhC8GzWTYLDhGGL
-         QLCgft+GLsJlvjVkAelArQw8+7x4nxey6QHvnSH8+g5esCnP3XRGogXyLcpGt3tjBarC
-         7LFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=J7TMYFnb5/RylQGjk6pwzyOMg8V/VoQJOxgPOgvp4TQ=;
-        b=HbK6sNOsBdvCXbutCPso6ePzZKeHduhFjPs6xbfXB5WYtyUdNVqsd2H2BKAHvX2o62
-         FUuXFyeq9vB671F9wXympEUV0uf0MwV2wc0h9Ekv/WLMJQMhgg3fLfLZ5ZCbbYnAiu1a
-         pqfuJ/QdO7ZMjWpWxjl+N8ra7wXLlnNUEjv9+lA2Zv8zKhyWU1/+OZ0krmF/QTK8sYcI
-         mKlbSgIp5P1r6Fqq7BGonYzjnU/slNTqcqpusXJ5gi67EL4zDxHUoHgOAx8QDMtDfhO0
-         6ITs1HZ6Dbqeu/uv1bvdc+YDzzAypGria53eyypSEcsljgQRTjwZZiIihf6qemCmoNmN
-         MTeQ==
-X-Gm-Message-State: APjAAAWTg9YzNVqKgopNS2hXbZnbggWJxYu29NV5Px3800xMSmqY/NOM
-        JMvzkg8x3wCq/RLQjoyDtUTIPd97MwG/AVGsB1c=
-X-Google-Smtp-Source: APXvYqyDx6797nOWepvliuKmQFE1G8xSfLPt0573SCGJDKIhe8kTAtSqJjvSkmUZPLV3kuczOpS2tsqodoJhp8fk1gs=
-X-Received: by 2002:a6b:b48e:: with SMTP id d136mr9655577iof.243.1581354542360;
- Mon, 10 Feb 2020 09:09:02 -0800 (PST)
-MIME-Version: 1.0
-References: <20200210105108.1128-1-linux.amoon@gmail.com> <20200210135612.GB2163@pi3>
-In-Reply-To: <20200210135612.GB2163@pi3>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Mon, 10 Feb 2020 22:38:52 +0530
-Message-ID: <CANAwSgT9aq123H-pO2u6iN2E8towsWUFcWDsA9TbVqP30j=10w@mail.gmail.com>
-Subject: Re: [PATCHv3 0/3] Add support for suspend clk for Exynos5422 SoC
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Linux USB Mailing List <linux-usb@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728091AbgBJRLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 12:11:00 -0500
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:43208 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727872AbgBJRK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 10 Feb 2020 12:10:59 -0500
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01AH9GmH007379;
+        Mon, 10 Feb 2020 12:10:23 -0500
+Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2y1u2dy35m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Feb 2020 12:10:23 -0500
+Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
+        by ppma03wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id 01AH5dYv016782;
+        Mon, 10 Feb 2020 17:10:21 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+        by ppma03wdc.us.ibm.com with ESMTP id 2y1mm63n74-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 10 Feb 2020 17:10:21 +0000
+Received: from b03ledav003.gho.boulder.ibm.com (b03ledav003.gho.boulder.ibm.com [9.17.130.234])
+        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 01AHAL8X59244978
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 10 Feb 2020 17:10:21 GMT
+Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id E51266A058;
+        Mon, 10 Feb 2020 17:10:20 +0000 (GMT)
+Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 4CF706A057;
+        Mon, 10 Feb 2020 17:10:20 +0000 (GMT)
+Received: from [9.41.103.158] (unknown [9.41.103.158])
+        by b03ledav003.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Mon, 10 Feb 2020 17:10:20 +0000 (GMT)
+Subject: Re: [PATCH v6 06/12] soc: aspeed: Add XDMA Engine Driver
+To:     Arnd Bergmann <arnd@arndb.de>, Eddie James <eajames@linux.ibm.com>
+Cc:     linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        linux-samsung-soc@vger.kernel.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+References: <1579123790-6894-1-git-send-email-eajames@linux.ibm.com>
+ <1579123790-6894-7-git-send-email-eajames@linux.ibm.com>
+ <CAK8P3a3HsdpLz0aDGem1BrQsNo2mEJOnOsLcKFcLjaERx9dhGg@mail.gmail.com>
+From:   Eddie James <eajames@linux.vnet.ibm.com>
+Message-ID: <1a303336-9ffb-353f-efe3-7d45ed114fd0@linux.vnet.ibm.com>
+Date:   Mon, 10 Feb 2020 11:10:19 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
+MIME-Version: 1.0
+In-Reply-To: <CAK8P3a3HsdpLz0aDGem1BrQsNo2mEJOnOsLcKFcLjaERx9dhGg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-10_06:2020-02-10,2020-02-10 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 malwarescore=0 adultscore=0 mlxlogscore=999 bulkscore=0
+ spamscore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0 suspectscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2001150001 definitions=main-2002100129
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-On Mon, 10 Feb 2020 at 19:26, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 2/10/20 10:35 AM, Arnd Bergmann wrote:
+> On Wed, Jan 15, 2020 at 10:31 PM Eddie James <eajames@linux.ibm.com> wrote:
+>> The XDMA engine embedded in the AST2500 and AST2600 SOCs performs PCI
+>> DMA operations between the SOC (acting as a BMC) and a host processor
+>> in a server.
+>>
+>> This commit adds a driver to control the XDMA engine and adds functions
+>> to initialize the hardware and memory and start DMA operations.
+>>
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> Hi Eddie,
 >
-> On Mon, Feb 10, 2020 at 10:51:05AM +0000, Anand Moon wrote:
-> > Long time ago I tried to add suspend clk for dwc3 phy
-> > which was wrong appoch, see below.
-> >
-> > [0] https://lore.kernel.org/patchwork/patch/837635/
-> > [1] https://lore.kernel.org/patchwork/patch/837636/
-> >
+> I'm missing the bigger picture in the description here, how does this fit into
+> the PCIe endpoint framework and the dmaengine subsystem?
+
+
+Hi,
+
+It doesn't fit into the PCIe endpoint framework. The XDMA engine 
+abstracts all the PCIe details away so the BMC cannot configure any of 
+the things the PCIe endpoint exposes.
+
+It also doesn't fit into the dmaengine subsystem due to the restriction 
+on the ast2500 (and maybe the ast2600) that the XDMA engine can only 
+access certain areas of physical memory. Also problematic would be 
+pausing/resuming/terminating transfers because the XDMA engine can't do 
+those things.
+
+
 >
+> Does the AST2500 show up as a PCIe device in the host, or do you just
+> inject DMAs into the host and hope that bypasses the IOMMU?
+> If it shows up as an endpoint, how does the endpoint driver link into the
+> dma driver?
 
-Thanks for your review comments.
 
-> You ignored parts of my review from these previous patches. I asked for
-> describing WHY are you doing this and WHAT problem are you trying to
-> solve. I asked for this multiple times. Unfortunately I cannot find the
-> answers to my questions in this patchset...
+The AST2500 and AST2600 have two PCIe devices on them, so these will 
+show up on the host if the BMC enables both of them. Either or both can 
+also be disabled and therefore will not show up. On the host side, in 
+order to receive DMA transfers, its simply a matter of registering a PCI 
+device driver and allocating some coherent DMA.... Not sure about the 
+details of endpoints/dma client driver?
+
+
+Hopefully this answers your questions. Thanks,
+
+Eddie
+
+
 >
-> Best regards,
-> Krzysztof
-
-I dont know how to resolve this issue, but I want to re-post
-some of my changes back for review. let me try again.
-
-My future goal is to add #power-domain for FSYS and FSYS2
-which I am trying to resolve some issue.
-Also add run-time power management for USB3 drivers.
-
-Here is the clk diagram for FSYS clk as per Exynos5422 user manual.
-[0] https://imgur.com/gallery/zAiBoyh
-
-As per the USB 3.0 Architecture T I.
-
-2.13.1 PHY Power Management
-The SS PHY has power states P0, P1, P2, and P3, corresponding to the
-SS LPM states of U0, U1, U2,and U3. In the P3 state,SS PHY does not drive
-the default functional clock,instead, the *susp_clk* is used in its place.
-
-So enable the suspend clk help control the power management
-states for the DWC3 controller.
-
--Anand
+>       Arnd
