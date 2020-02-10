@@ -2,332 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5807A157499
-	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 13:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2CA215789C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Feb 2020 14:09:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727529AbgBJMbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 07:31:55 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38396 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727008AbgBJMbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 07:31:55 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01ACVkMq023220;
-        Mon, 10 Feb 2020 06:31:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1581337906;
-        bh=8UKzchovWQsic5D+IhNkKAsu3YPA30ZLZgLl2grTVhY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ww2oRgASEWczpC2P1dADxThAu8oEuj+OwFnLu6ZfLXEHyRvTgBAI+/+OP7RdlNbOp
-         c4DWuxR2LQCS1TsfriEAzcrSl5XaIuM0BsAIPbwJXseH5S7X8dGIJbuApoDe20iHGi
-         Lo/mlljbb+KUClnx2/XVLYSl73xSNEZJdhHfaylY=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01ACVk7o082926
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 10 Feb 2020 06:31:46 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 10
- Feb 2020 06:31:46 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 10 Feb 2020 06:31:46 -0600
-Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01ACVaEZ129098;
-        Mon, 10 Feb 2020 06:31:43 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tom Joseph <tjoseph@cadence.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>
-CC:     Mark Rutland <mark.rutland@arm.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [PATCH 2/2] dt-bindings: PCI: Convert PCIe Host/Endpoint in Cadence platform to DT schema
-Date:   Mon, 10 Feb 2020 18:05:07 +0530
-Message-ID: <20200210123507.9491-3-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200210123507.9491-1-kishon@ti.com>
-References: <20200210123507.9491-1-kishon@ti.com>
+        id S1730850AbgBJNI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 08:08:58 -0500
+Received: from pbmsgap01.intersil.com ([192.157.179.201]:36142 "EHLO
+        pbmsgap01.intersil.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728726AbgBJNI5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 08:08:57 -0500
+X-Greylist: delayed 2191 seconds by postgrey-1.27 at vger.kernel.org; Mon, 10 Feb 2020 08:08:57 EST
+Received: from pps.filterd (pbmsgap01.intersil.com [127.0.0.1])
+        by pbmsgap01.intersil.com (8.16.0.27/8.16.0.27) with SMTP id 01ACWEVe027172;
+        Mon, 10 Feb 2020 07:32:14 -0500
+Received: from pbmxdp03.intersil.corp (pbmxdp03.pb.intersil.com [132.158.200.224])
+        by pbmsgap01.intersil.com with ESMTP id 2y1sd3h009-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Mon, 10 Feb 2020 07:32:14 -0500
+Received: from pbmxdp02.intersil.corp (132.158.200.223) by
+ pbmxdp03.intersil.corp (132.158.200.224) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.1531.3; Mon, 10 Feb 2020 07:32:12 -0500
+Received: from localhost.localdomain (132.158.202.108) by
+ pbmxdp02.intersil.corp (132.158.200.223) with Microsoft SMTP Server id
+ 15.1.1531.3 via Frontend Transport; Mon, 10 Feb 2020 07:32:12 -0500
+From:   Chris Brandt <chris.brandt@renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <devicetree@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
+        "Chris Brandt" <chris.brandt@renesas.com>
+Subject: [PATCH v2] ARM: dts: r7s72100: Add SPIBSC clocks
+Date:   Mon, 10 Feb 2020 07:31:53 -0500
+Message-ID: <20200210123153.8257-1-chris.brandt@renesas.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2020-02-10_02:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=junk_notspam policy=junk score=0 suspectscore=2 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-2002050000 definitions=main-2002100098
+X-Proofpoint-Spam-Reason: mlx
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include Cadence core DT schema and define the Cadence platform DT schema
-for both Host and Endpoint mode. Note: The Cadence core DT schema could
-be included for other platforms using Cadence PCIe core.
+Add clocks for SPIBSC blocks.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+Also modify the flash node for the GR-PEACH board at the same time
+because now that the SPIBSC clock is identified, if it is not used
+by any driver, it will be turned off at the end of kernel boot.
+That would not work out so well for an XIP system such as GR-PEACH.
+
+Signed-off-by: Chris Brandt <chris.brandt@renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- .../bindings/pci/cdns,cdns-pcie-ep.txt        | 27 -------
- .../bindings/pci/cdns,cdns-pcie-ep.yaml       | 48 ++++++++++++
- .../bindings/pci/cdns,cdns-pcie-host.txt      | 66 ----------------
- .../bindings/pci/cdns,cdns-pcie-host.yaml     | 76 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 5 files changed, 125 insertions(+), 94 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
- create mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt
- create mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
+v2:
+ - Modified flash node for GR-PEACH board
+---
+ arch/arm/boot/dts/r7s72100-gr-peach.dts | 3 +++
+ arch/arm/boot/dts/r7s72100.dtsi         | 5 +++--
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
-deleted file mode 100644
-index 4a0475e2ba7e..000000000000
---- a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--* Cadence PCIe endpoint controller
--
--Required properties:
--- compatible: Should contain "cdns,cdns-pcie-ep" to identify the IP used.
--- reg: Should contain the controller register base address and AXI interface
--  region base address respectively.
--- reg-names: Must be "reg" and "mem" respectively.
--- cdns,max-outbound-regions: Set to maximum number of outbound regions
--
--Optional properties:
--- max-functions: Maximum number of functions that can be configured (default 1).
--- phys: From PHY bindings: List of Generic PHY phandles. One per lane if more
--  than one in the list.  If only one PHY listed it must manage all lanes. 
--- phy-names:  List of names to identify the PHY.
--
--Example:
--
--pcie@fc000000 {
--	compatible = "cdns,cdns-pcie-ep";
--	reg = <0x0 0xfc000000 0x0 0x01000000>,
--	      <0x0 0x80000000 0x0 0x40000000>;
--	reg-names = "reg", "mem";
--	cdns,max-outbound-regions = <16>;
--	max-functions = /bits/ 8 <8>;
--	phys = <&ep_phy0 &ep_phy1>;
--	phy-names = "pcie-lane0","pcie-lane1";
--};
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml
-new file mode 100644
-index 000000000000..016c374cf125
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/cdns,cdns-pcie-ep.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cadence PCIe EP Controller
-+
-+maintainers:
-+  - Tom Joseph <tjoseph@cadence.com>
-+
-+allOf:
-+  - $ref: "cdns-pcie-ep.yaml#"
-+
-+properties:
-+  compatible:
-+    const: cdns,cdns-pcie-ep
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: mem
-+
-+required:
-+  - reg
-+  - reg-names
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie@fc000000 {
-+                compatible = "cdns,cdns-pcie-ep";
-+                reg = <0x0 0xfc000000 0x0 0x01000000>,
-+                      <0x0 0x80000000 0x0 0x40000000>;
-+                reg-names = "reg", "mem";
-+                cdns,max-outbound-regions = <16>;
-+                max-functions = /bits/ 8 <8>;
-+                phys = <&pcie_phy0>;
-+                phy-names = "pcie-phy";
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt
-deleted file mode 100644
-index 91de69c713a9..000000000000
---- a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt
-+++ /dev/null
-@@ -1,66 +0,0 @@
--* Cadence PCIe host controller
--
--This PCIe controller inherits the base properties defined in
--host-generic-pci.txt.
--
--Required properties:
--- compatible: Should contain "cdns,cdns-pcie-host" to identify the IP used.
--- reg: Should contain the controller register base address, PCIe configuration
--  window base address, and AXI interface region base address respectively.
--- reg-names: Must be "reg", "cfg" and "mem" respectively.
--- #address-cells: Set to <3>
--- #size-cells: Set to <2>
--- device_type: Set to "pci"
--- ranges: Ranges for the PCI memory and I/O regions
--- #interrupt-cells: Set to <1>
--- interrupt-map-mask and interrupt-map: Standard PCI properties to define the
--  mapping of the PCIe interface to interrupt numbers.
--
--Optional properties:
--- cdns,max-outbound-regions: Set to maximum number of outbound regions
--  (default 32)
--- cdns,no-bar-match-nbits: Set into the no BAR match register to configure the
--  number of least significant bits kept during inbound (PCIe -> AXI) address
--  translations (default 32)
--- vendor-id: The PCI vendor ID (16 bits, default is design dependent)
--- device-id: The PCI device ID (16 bits, default is design dependent)
--- phys: From PHY bindings: List of Generic PHY phandles. One per lane if more
--  than one in the list.  If only one PHY listed it must manage all lanes. 
--- phy-names:  List of names to identify the PHY.
--
--Example:
--
--pcie@fb000000 {
--	compatible = "cdns,cdns-pcie-host";
--	device_type = "pci";
--	#address-cells = <3>;
--	#size-cells = <2>;
--	bus-range = <0x0 0xff>;
--	linux,pci-domain = <0>;
--	cdns,max-outbound-regions = <16>;
--	cdns,no-bar-match-nbits = <32>;
--	vendor-id = /bits/ 16 <0x17cd>;
--	device-id = /bits/ 16 <0x0200>;
--
--	reg = <0x0 0xfb000000  0x0 0x01000000>,
--	      <0x0 0x41000000  0x0 0x00001000>,
--	      <0x0 0x40000000  0x0 0x04000000>;
--	reg-names = "reg", "cfg", "mem";
--
--	ranges = <0x02000000 0x0 0x42000000  0x0 0x42000000  0x0 0x1000000>,
--		 <0x01000000 0x0 0x43000000  0x0 0x43000000  0x0 0x0010000>;
--
--	#interrupt-cells = <0x1>;
--
--	interrupt-map = <0x0 0x0 0x0  0x1  &gic  0x0 0x0 0x0 14 0x1
--			 0x0 0x0 0x0  0x2  &gic  0x0 0x0 0x0 15 0x1
--			 0x0 0x0 0x0  0x3  &gic  0x0 0x0 0x0 16 0x1
--			 0x0 0x0 0x0  0x4  &gic  0x0 0x0 0x0 17 0x1>;
--
--	interrupt-map-mask = <0x0 0x0 0x0  0x7>;
--
--	msi-parent = <&its_pci>;
--
--	phys = <&pcie_phy0>;
--	phy-names = "pcie-phy";
--};
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
-new file mode 100644
-index 000000000000..2f605297f862
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/cdns,cdns-pcie-host.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cadence PCIe host controller
-+
-+maintainers:
-+  - Tom Joseph <tjoseph@cadence.com>
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+  - $ref: "cdns-pcie-host.yaml#"
-+
-+properties:
-+  compatible:
-+    const: cdns,cdns-pcie-host
-+
-+  reg:
-+    maxItems: 3
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: cfg
-+      - const: mem
-+
-+  msi-parent: true
-+
-+required:
-+  - reg
-+  - reg-names
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie@fb000000 {
-+            compatible = "cdns,cdns-pcie-host";
-+            device_type = "pci";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            bus-range = <0x0 0xff>;
-+            linux,pci-domain = <0>;
-+            cdns,max-outbound-regions = <16>;
-+            cdns,no-bar-match-nbits = <32>;
-+            vendor-id = /bits/ 16 <0x17cd>;
-+            device-id = /bits/ 16 <0x0200>;
-+
-+            reg = <0x0 0xfb000000  0x0 0x01000000>,
-+                  <0x0 0x41000000  0x0 0x00001000>,
-+                  <0x0 0x40000000  0x0 0x04000000>;
-+            reg-names = "reg", "cfg", "mem";
-+
-+            ranges = <0x02000000 0x0 0x42000000  0x0 0x42000000  0x0 0x1000000>,
-+                     <0x01000000 0x0 0x43000000  0x0 0x43000000  0x0 0x0010000>;
-+
-+            #interrupt-cells = <0x1>;
-+
-+            interrupt-map = <0x0 0x0 0x0  0x1  &gic  0x0 0x0 0x0 14 0x1>,
-+                 <0x0 0x0 0x0  0x2  &gic  0x0 0x0 0x0 15 0x1>,
-+                 <0x0 0x0 0x0  0x3  &gic  0x0 0x0 0x0 16 0x1>,
-+                 <0x0 0x0 0x0  0x4  &gic  0x0 0x0 0x0 17 0x1>;
-+
-+            interrupt-map-mask = <0x0 0x0 0x0  0x7>;
-+
-+            msi-parent = <&its_pci>;
-+
-+            phys = <&pcie_phy0>;
-+            phy-names = "pcie-phy";
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 38fe2f3f7b6f..e0402e001edd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12739,7 +12739,7 @@ PCI DRIVER FOR CADENCE PCIE IP
- M:	Tom Joseph <tjoseph@cadence.com>
- L:	linux-pci@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/pci/cdns,*.txt
-+F:	Documentation/devicetree/bindings/pci/cdns,*
- F:	drivers/pci/controller/pcie-cadence*
+diff --git a/arch/arm/boot/dts/r7s72100-gr-peach.dts b/arch/arm/boot/dts/r7s72100-gr-peach.dts
+index fe1a4aa4d7cb..2562cc9b5356 100644
+--- a/arch/arm/boot/dts/r7s72100-gr-peach.dts
++++ b/arch/arm/boot/dts/r7s72100-gr-peach.dts
+@@ -41,6 +41,9 @@ flash@18000000 {
+ 		bank-width = <4>;
+ 		device-width = <1>;
  
- PCI DRIVER FOR FREESCALE LAYERSCAPE
++		clocks = <&mstp9_clks R7S72100_CLK_SPIBSC0>;
++		power-domains = <&cpg_clocks>;
++
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 
+diff --git a/arch/arm/boot/dts/r7s72100.dtsi b/arch/arm/boot/dts/r7s72100.dtsi
+index 75b2796ebfca..0a567d8ebc66 100644
+--- a/arch/arm/boot/dts/r7s72100.dtsi
++++ b/arch/arm/boot/dts/r7s72100.dtsi
+@@ -467,11 +467,12 @@ mstp9_clks: mstp9_clks@fcfe0438 {
+ 			#clock-cells = <1>;
+ 			compatible = "renesas,r7s72100-mstp-clocks", "renesas,cpg-mstp-clocks";
+ 			reg = <0xfcfe0438 4>;
+-			clocks = <&p0_clk>, <&p0_clk>, <&p0_clk>, <&p0_clk>;
++			clocks = <&p0_clk>, <&p0_clk>, <&p0_clk>, <&p0_clk>, <&b_clk>, <&b_clk>;
+ 			clock-indices = <
+ 				R7S72100_CLK_I2C0 R7S72100_CLK_I2C1 R7S72100_CLK_I2C2 R7S72100_CLK_I2C3
++				R7S72100_CLK_SPIBSC0 R7S72100_CLK_SPIBSC1
+ 			>;
+-			clock-output-names = "i2c0", "i2c1", "i2c2", "i2c3";
++			clock-output-names = "i2c0", "i2c1", "i2c2", "i2c3", "spibsc0", "spibsc1";
+ 		};
+ 
+ 		mstp10_clks: mstp10_clks@fcfe043c {
 -- 
-2.17.1
+2.24.1
 
