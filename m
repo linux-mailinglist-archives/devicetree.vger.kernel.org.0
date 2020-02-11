@@ -2,102 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D9461585E0
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 00:03:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F38D6158711
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 01:52:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727431AbgBJXD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 18:03:28 -0500
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:44246 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727116AbgBJXD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 18:03:27 -0500
-Received: by mail-ua1-f66.google.com with SMTP id a33so3208031uad.11
-        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2020 15:03:25 -0800 (PST)
+        id S1727530AbgBKAwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 19:52:09 -0500
+Received: from mail-pj1-f67.google.com ([209.85.216.67]:36111 "EHLO
+        mail-pj1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727516AbgBKAwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Feb 2020 19:52:09 -0500
+Received: by mail-pj1-f67.google.com with SMTP id gv17so499951pjb.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Feb 2020 16:52:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kopismobile-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=C5GirwcztmRlUAA0zFH9GkeX/YNV47Vk7xovWQjcsTY=;
-        b=D7vSbXJxmKpoKBCAAK55xYF8eqhBrw3wAteKEisjIrQkuumQVXm46U5FQoTIP8m8sJ
-         maC5ZLvIq+hHU6qbmJGiZay/kSprgTDYblgyFEYE51dM4TI30gJbdTq0chKAld1iNdUc
-         a/jMcz7MxDhJWsd3h/ZRfOznhs+62V/LuU3k5Gj0Oo66AHTJlLckUw6gyykOBNk3ERY+
-         qdRnZFHn6iQcFWhb51+haHsaeu2nQ12NJJRBoOsm8dhqL583CjPXkw14hVyVKt1H9n7s
-         TsQeffn1ldnNKqSlLAugEV1foFJyKWdgLmXU+OhQOlMEZxhz2gUc5mDQnomIBvq7+R01
-         SsQw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0qshz8xwSd4T4FUHpWJz/DB4ZEip4P7ef+7ElzXa5GA=;
+        b=mIaz93TXepkqADCr5HGIgvgmepWNBxiGh2cT3pj61KSGgQW4osPx7h0OabLbTDSe7K
+         YmMV2F50gE0XtqHWjzv4pvWu3Xmd9MiRMTe99E/KoJB2UIz+EQ77PUpC3IbBtTW4ccPA
+         a5k/IDorLbzGz0sOyTBsk2HscLeGnFzH3TRo0433XtLuKvH2jvQm1VpkY37+yltgOlnc
+         2YCwaa6g3XY+aVkDZKfP0Twz1duHOnMYfIfVZkYeiZaJSD4gUwsOO2bzZHKcu3FpjV9B
+         fXLhju52XtNPzmk7xQZxc57v5N71m+CN6/AZB+QogB4SiZHLY5VA1Ko06nfX5QOPbGqR
+         oCIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=C5GirwcztmRlUAA0zFH9GkeX/YNV47Vk7xovWQjcsTY=;
-        b=pzf6tQjo1rGsaOaG1WwUH4/e+fvG1Bq/u0L+AsIqD0cA8TpsmwroDelOAnv7fyVNl5
-         M6/nv59Mmd1mERv/AIWkggQDN0OleHNbu7L6TZERgDGMkcZW0NYO2hfpdr8hmnhx0mla
-         Cn5j6zuMTH+eMxSBvQJiG8UxyKXvz8/twE6oewFqRv336/YNAFtBoHODeKso4Rkqewnt
-         u4NHM9PnYpj4YXUBxNSo2rnyhZZC/sD/GBlOe/oXeoYq3Pf3vuzpuNwNbmk97D2G6pUk
-         d7kowVzT0TJt0b3qgIjzGcn839U93QdZfmV6WVB2/VStpAw8HyvJ3T3uz1+HzCxSNT0K
-         4nMA==
-X-Gm-Message-State: APjAAAXR8eAo5l/FgxWNmi2VGYan+kaa9tne7Lj/f+Fr9gQX5qO8suZX
-        lz+H0XwGWtWaq7UnE7oCVgOa2deZJQdFl9dMQtQdpg==
-X-Google-Smtp-Source: APXvYqz8+e2ip6ZtrEun+w0dwbFruG/3SV4gKsgrTeTbWL9Cev9v+ynnw9Kx2crTWX4m8j/kdmt0RgrTYXdipLo/dTo=
-X-Received: by 2002:ab0:21cc:: with SMTP id u12mr31230uan.55.1581375805214;
- Mon, 10 Feb 2020 15:03:25 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0qshz8xwSd4T4FUHpWJz/DB4ZEip4P7ef+7ElzXa5GA=;
+        b=n+lc/elF/lwzDvq/0oPOeTTpsKMnAF0jtwH3zhmxnzm8gllGig75ZT9+SXn1XGybEN
+         uT1uzRttwHAylZCq/rLEHYqyIjCNl2InJEl3EGG/C5UJ+5kbmNS3f5ZGCIaCKnoWLOhw
+         dxyjrV6RAcelyGlHuF0O4ail8v7IGNty4/SvBEloq5YKZZrIj5TnJBn+3egvxHYV2hA+
+         uJ7oznS2GXg7u05UxBBrF7aUSzfpza0SE3PfX6V+9dvHDZDTmu4U8iZtu9TvwBl3Vaxp
+         dupDZt6ppSifK6VDIMMv+6msk40S+KK+pdhaCiK16g6/i1Yd5+ZWmWb1A3yvCB+fenVW
+         fK7Q==
+X-Gm-Message-State: APjAAAUlN1iKjrBwKN1vNsLXW4MGsdo2v3bMHxxGjIvc06ndS1lqqAVn
+        kBl8NNH3D2wRyllJY/sLzTOYZA==
+X-Google-Smtp-Source: APXvYqxRJngePboQPpSuuFdNF1/zNebVt2MFq5knTCNVk1TYpTs72imk/T9Sgld8ACAq3hmBxXEBOw==
+X-Received: by 2002:a17:902:9b93:: with SMTP id y19mr15434992plp.89.1581382328743;
+        Mon, 10 Feb 2020 16:52:08 -0800 (PST)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id q21sm1538480pff.105.2020.02.10.16.52.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2020 16:52:08 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rishabh Bhatnagar <rishabhb@codeaurora.org>
+Subject: [PATCH v3 0/8] remoteproc: qcom: post mortem debug support
+Date:   Mon, 10 Feb 2020 16:50:51 -0800
+Message-Id: <20200211005059.1377279-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-References: <20200210192949.7338-1-ghilliard@kopismobile.com>
- <20200210192949.7338-3-ghilliard@kopismobile.com> <20200210205003.x7xduj3avwjhimjm@pengutronix.de>
-In-Reply-To: <20200210205003.x7xduj3avwjhimjm@pengutronix.de>
-From:   George Hilliard <ghilliard@kopismobile.com>
-Date:   Mon, 10 Feb 2020 17:03:14 -0600
-Message-ID: <CALM8J=dZjK9C+-yMOC_DKp+6m2MaKJsNXaz_+enDVtkgj32U+A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] tty: imx serial: Implement support for reversing
- TX and RX polarity
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        kernel@pengutronix.de, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 10, 2020 at 2:50 PM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> Hello George,
->
-> On Mon, Feb 10, 2020 at 01:29:49PM -0600, George Hilliard wrote:
-> > @@ -1390,6 +1392,8 @@ static int imx_uart_startup(struct uart_port *por=
-t)
-> >       ucr4 =3D imx_uart_readl(sport, UCR4) & ~UCR4_OREN;
-> >       if (!sport->dma_is_enabled)
-> >               ucr4 |=3D UCR4_OREN;
-> > +     if (sport->inverted_rx)
-> > +             ucr4 |=3D UCR4_INVR;
->
-> You fail to clear this bit if .inverted_rx is false.
+The following series introduces two components that aids in post mortem
+debugging of Qualcomm systems. The first part is used to store information
+about loaded images in IMEM, for post mortem tools to know where the kernel
+loaded the remoteproc firmware. The second part invokes a stop operation on the
+remoteprocs during a kernel panic, in order to trigger them to flush caches
+etc.
 
-I believe this is taken care of by the SRST asserted slightly above
-this - UCR* is reset by this. I see that this reset is also done in the
-imx_uart_flush_buffer() implementation, but as I understand it, this
-is a cleanup method that doesn't reconfigure much of the peripheral.
+Bjorn Andersson (8):
+  dt-bindings: remoteproc: Add Qualcomm PIL info binding
+  remoteproc: qcom: Introduce driver to store pil info in IMEM
+  remoteproc: qcom: Update IMEM PIL info on load
+  arm64: dts: qcom: qcs404: Add IMEM and PIL info region
+  arm64: dts: qcom: sdm845: Add IMEM and PIL info region
+  remoteproc: Introduce "panic" callback in ops
+  remoteproc: qcom: q6v5: Add common panic handler
+  remoteproc: qcom: Introduce panic handler for PAS and ADSP
 
-> >       imx_uart_writel(sport, ucr4, UCR4);
-> >
-> >       ucr2 =3D imx_uart_readl(sport, UCR2) & ~UCR2_ATEN;
-> > @@ -1404,19 +1408,17 @@ static int imx_uart_startup(struct uart_port *p=
-ort)
-> >               ucr2 &=3D ~UCR2_RTSEN;
-> >       imx_uart_writel(sport, ucr2, UCR2);
-> >
-> > +     ucr3 =3D imx_uart_readl(sport, UCR3);
-> > +     if (sport->inverted_tx)
-> > +             ucr3 |=3D UCR3_INVT;
->
-> Also I think setting this bit here is a bit late because UCR2_TXEN was
-> already set so changing UCR3_INVT probably results in a spike?!
+ .../bindings/remoteproc/qcom,pil-info.yaml    |  42 +++++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  13 ++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  13 ++
+ drivers/remoteproc/Kconfig                    |   6 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/qcom_pil_info.c            | 168 ++++++++++++++++++
+ drivers/remoteproc/qcom_pil_info.h            |   8 +
+ drivers/remoteproc/qcom_q6v5.c                |  20 +++
+ drivers/remoteproc/qcom_q6v5.h                |   1 +
+ drivers/remoteproc/qcom_q6v5_adsp.c           |  27 ++-
+ drivers/remoteproc/qcom_q6v5_mss.c            |   6 +
+ drivers/remoteproc/qcom_q6v5_pas.c            |  26 ++-
+ drivers/remoteproc/qcom_wcnss.c               |  17 +-
+ drivers/remoteproc/remoteproc_core.c          |  46 +++++
+ include/linux/remoteproc.h                    |   3 +
+ 15 files changed, 388 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,pil-info.yaml
+ create mode 100644 drivers/remoteproc/qcom_pil_info.c
+ create mode 100644 drivers/remoteproc/qcom_pil_info.h
 
-Good point here; this should indeed be done before TX start.
+-- 
+2.24.0
 
-George
