@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E7D159965
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 20:06:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D747159973
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 20:12:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730842AbgBKTGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Feb 2020 14:06:17 -0500
-Received: from foss.arm.com ([217.140.110.172]:52708 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728503AbgBKTGR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Feb 2020 14:06:17 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 447741FB;
-        Tue, 11 Feb 2020 11:06:16 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BD8913F68F;
-        Tue, 11 Feb 2020 11:06:15 -0800 (PST)
-Date:   Tue, 11 Feb 2020 19:06:14 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, mikko.mutanen@fi.rohmeurope.com,
-        markus.laine@fi.rohmeurope.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
+        id S1729802AbgBKTMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Feb 2020 14:12:44 -0500
+Received: from ip-78-45-52-129.net.upcbroadband.cz ([78.45.52.129]:53636 "EHLO
+        ixit.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729547AbgBKTMo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Feb 2020 14:12:44 -0500
+Received: from localhost.localdomain (227.146.230.94.awnet.cz [94.230.146.227])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 60E0F2517B;
+        Tue, 11 Feb 2020 20:12:40 +0100 (CET)
+From:   David Heidelberg <david@ixit.cz>
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/3] power: (regmap:) Add linear_range helper
-Message-ID: <20200211190614.GP4543@sirena.org.uk>
-References: <cover.1581327762.git.matti.vaittinen@fi.rohmeurope.com>
- <20b107ac6e40206b82d014a145abe0569d7a6f81.1581327762.git.matti.vaittinen@fi.rohmeurope.com>
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     David Heidelberg <david@ixit.cz>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v5 0/7] iio: light: AL3010 introduction
+Date:   Tue, 11 Feb 2020 20:11:54 +0100
+Message-Id: <20200211191201.1049902-1-david@ixit.cz>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ftQmbtOmUf2cr8rB"
-Content-Disposition: inline
-In-Reply-To: <20b107ac6e40206b82d014a145abe0569d7a6f81.1581327762.git.matti.vaittinen@fi.rohmeurope.com>
-X-Cookie: Hire the morally handicapped.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These patches implement support for simple iio light sensor AL3010 and
+also improves and align formating of AL3320a which is origin of al3010
+driver.
 
---ftQmbtOmUf2cr8rB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+AL3010 is used in many devices, mostly tegra2/3 based.
+This effort is aimed for reducing number of out-of-tree patches for
+tegra tablets and phones.
 
-On Mon, Feb 10, 2020 at 02:13:13PM +0200, Matti Vaittinen wrote:
+This sensor is tested on Nexus 7 (2012, grouper/tilapia).
 
-> Provide a linear_range helper which can do conversion from user value
-> to register value 'selector'.
+David Heidelberg (7):
+  dt-bindings: iio: light: add support for Dyna-Image AL3320A
+  dt-bindings: iio: light: add support for Dyna-Image AL3010
+  iio: light: al3320a slightly improve code formatting
+  iio: light: add Dyna-Image AL3010 driver
+  iio: light: al3320a implement suspend support
+  iio: light: al3320a implement devm_add_action_or_reset
+  iio: light: al3320a allow module autoload and polish
 
-> Mark, this is loosely bound to register handling... Do you think
-> the regmap could host these helpers?
+ .../devicetree/bindings/iio/light/al3010.yaml |  43 ++++
+ .../bindings/iio/light/al3320a.yaml           |  43 ++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ drivers/iio/light/Kconfig                     |  10 +
+ drivers/iio/light/Makefile                    |   1 +
+ drivers/iio/light/al3010.c                    | 240 ++++++++++++++++++
+ drivers/iio/light/al3320a.c                   |  72 ++++--
+ 7 files changed, 394 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/al3010.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/light/al3320a.yaml
+ create mode 100644 drivers/iio/light/al3010.c
 
-There's no real tie to regmap here, something like this could quite
-happily be used by memory mapped devices where regmap has limited uses
-and would be a lot to pull in.  A separate library would probably make
-more sense.  Not sure how many users there would be outside of power
-related stuff, I don't recall seeing the pattern elsewhere.
+-- 
+2.25.0
 
-Note also that we already have quite extensive helpers for this sort of
-stuff in the regulator API which I sense may have been involved in this
-implementation and to an extent in ALSA which takes a different approach
-with TLVs since it baked selectors directly into the ABI.
-
---ftQmbtOmUf2cr8rB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5C+yUACgkQJNaLcl1U
-h9BvKAf/RRzCbi0uxTdR1wgKG+fIeGPs3TkKagNkbWs4xD+Ppm3RpSu7lGNVDe2P
-pNzxz4qP/9Q46Dm6iRplC5CsAARbYKjkflALvQ1TvuZB+vss5jc/9ARdOeKpRuhJ
-T9kFP6CfRPh5JgDPwqqk/lUhe9fe5Ta26uoegdG9wZsn8J/vW5pnY7EDUkV4axPt
-43zEvmzeyYnSBMARnvl9jdj4ysDEh6YpGy/lKGV9wvUMN8JmwtuEqbXgrtrVFzBd
-dS12KPckixezMm7VwMrcZ9ain+W5knJt1yh/fjnBCqjd73rsWvsD8ijNNn7U0wPR
-NdkkyrqpvCiXu7Om10I9uS2DhFOfYg==
-=hzV/
------END PGP SIGNATURE-----
-
---ftQmbtOmUf2cr8rB--
