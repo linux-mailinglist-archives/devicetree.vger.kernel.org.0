@@ -2,33 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 187E71593D6
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 16:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 266F61593DC
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 16:52:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729714AbgBKPv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 11 Feb 2020 10:51:27 -0500
-Received: from foss.arm.com ([217.140.110.172]:48814 "EHLO foss.arm.com"
+        id S1728288AbgBKPvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 11 Feb 2020 10:51:42 -0500
+Received: from foss.arm.com ([217.140.110.172]:48880 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727838AbgBKPv1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 11 Feb 2020 10:51:27 -0500
+        id S1730453AbgBKPvm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 11 Feb 2020 10:51:42 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 006651045;
-        Tue, 11 Feb 2020 07:51:27 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8139430E;
+        Tue, 11 Feb 2020 07:51:41 -0800 (PST)
 Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 79A833F68E;
-        Tue, 11 Feb 2020 07:51:26 -0800 (PST)
-Date:   Tue, 11 Feb 2020 15:51:25 +0000
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D52893F68E;
+        Tue, 11 Feb 2020 07:51:40 -0800 (PST)
+Date:   Tue, 11 Feb 2020 15:51:39 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Saravanan Sekar <sravanhome@gmail.com>
-Cc:     broonie@kernel.org, davem@davemloft.net,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        Jonathan.Cameron@huawei.com, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        mark.rutland@arm.com, mchehab+samsung@kernel.org,
-        robh+dt@kernel.org, sravanhome@gmail.com
-Subject: Applied "dt-bindings: regulator: add document bindings for mp5416" to the regulator tree
-In-Reply-To: <20200204110419.25933-2-sravanhome@gmail.com>
-Message-Id: <applied-20200204110419.25933-2-sravanhome@gmail.com>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     aisheng.dong@nxp.com, andrew.smirnov@gmail.com, angus@akkea.ca,
+        broonie@kernel.org, cosmin.stoica@nxp.com, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        gary.bisson@boundarydevices.com, jun.li@nxp.com,
+        kernel@pengutronix.de, leonard.crestez@nxp.com,
+        linux-arm-kernel@lists.infradead.org, Linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        l.stach@pengutronix.de, manivannan.sadhasivam@linaro.org,
+        marcel.ziswiler@toradex.com, Mark Brown <broonie@kernel.org>,
+        mark.rutland@arm.com, pramod.kumar_1@nxp.com, rabeeh@solid-run.com,
+        rjones@gateworks.com, robh+dt@kernel.org,
+        Rob Herring <robh@kernel.org>,
+        sebastien.szymanski@armadeus.com, s.hauer@pengutronix.de,
+        shawnguo@kernel.org
+Subject: Applied "dt-bindings: spi: imx: Add i.MX8MM/i.MX8MN/i.MX8MP compatible" to the spi tree
+In-Reply-To: <1581425307-18567-1-git-send-email-Anson.Huang@nxp.com>
+Message-Id: <applied-1581425307-18567-1-git-send-email-Anson.Huang@nxp.com>
 X-Patchwork-Hint: ignore
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -37,11 +45,11 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   dt-bindings: regulator: add document bindings for mp5416
+   dt-bindings: spi: imx: Add i.MX8MM/i.MX8MN/i.MX8MP compatible
 
-has been applied to the regulator tree at
+has been applied to the spi tree at
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.7
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.7
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
@@ -62,106 +70,37 @@ to this mail.
 Thanks,
 Mark
 
-From 65c38513528ffe673a0a9568593b475b16a7031c Mon Sep 17 00:00:00 2001
-From: Saravanan Sekar <sravanhome@gmail.com>
-Date: Tue, 4 Feb 2020 12:04:17 +0100
-Subject: [PATCH] dt-bindings: regulator: add document bindings for mp5416
+From 1565e8e8ef0bbccabf62152b93c6505b8041b1e5 Mon Sep 17 00:00:00 2001
+From: Anson Huang <Anson.Huang@nxp.com>
+Date: Tue, 11 Feb 2020 20:48:24 +0800
+Subject: [PATCH] dt-bindings: spi: imx: Add i.MX8MM/i.MX8MN/i.MX8MP compatible
 
-Add device tree binding information for mp5416 regulator driver.
+Add compatible for imx8mm/imx8mn/imx8mp.
 
-Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/r/20200204110419.25933-2-sravanhome@gmail.com
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/1581425307-18567-1-git-send-email-Anson.Huang@nxp.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- .../bindings/regulator/mps,mp5416.yaml        | 78 +++++++++++++++++++
- 1 file changed, 78 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
+ Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml b/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
-new file mode 100644
-index 000000000000..f0acce2029fd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/mps,mp5416.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/mps,mp5416.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Monolithic Power System MP5416 PMIC
-+
-+maintainers:
-+  - Saravanan Sekar <sravanhome@gmail.com>
-+
-+properties:
-+  $nodename:
-+    pattern: "^pmic@[0-9a-f]{1,2}$"
-+  compatible:
-+    enum:
-+      - mps,mp5416
-+
-+  reg:
-+    maxItems: 1
-+
-+  regulators:
-+    type: object
-+    description: |
-+      list of regulators provided by this controller, must be named
-+      after their hardware counterparts BUCK[1-4] and LDO[1-4]
-+
-+    patternProperties:
-+      "^buck[1-4]$":
-+        allOf:
-+          - $ref: "regulator.yaml#"
-+        type: object
-+
-+      "^ldo[1-4]$":
-+        allOf:
-+          - $ref: "regulator.yaml#"
-+        type: object
-+
-+    additionalProperties: false
-+  additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@69 {
-+          compatible = "mps,mp5416";
-+          reg = <0x69>;
-+
-+          regulators {
-+
-+            buck1 {
-+             regulator-name = "buck1";
-+             regulator-min-microvolt = <600000>;
-+             regulator-max-microvolt = <2187500>;
-+             regulator-min-microamp  = <3800000>;
-+             regulator-max-microamp  = <6800000>;
-+             regulator-boot-on;
-+            };
-+
-+            ldo2 {
-+             regulator-name = "ldo2";
-+             regulator-min-microvolt = <800000>;
-+             regulator-max-microvolt = <3975000>;
-+            };
-+         };
-+       };
-+     };
-+...
+diff --git a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+index 2d3264140cc5..33bc58f4cf4b 100644
+--- a/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
++++ b/Documentation/devicetree/bindings/spi/fsl-imx-cspi.txt
+@@ -10,7 +10,10 @@ Required properties:
+   - "fsl,imx35-cspi" for SPI compatible with the one integrated on i.MX35
+   - "fsl,imx51-ecspi" for SPI compatible with the one integrated on i.MX51
+   - "fsl,imx53-ecspi" for SPI compatible with the one integrated on i.MX53 and later Soc
+-  - "fsl,imx8mq-ecspi" for SPI compatible with the one integrated on i.MX8M
++  - "fsl,imx8mq-ecspi" for SPI compatible with the one integrated on i.MX8MQ
++  - "fsl,imx8mm-ecspi" for SPI compatible with the one integrated on i.MX8MM
++  - "fsl,imx8mn-ecspi" for SPI compatible with the one integrated on i.MX8MN
++  - "fsl,imx8mp-ecspi" for SPI compatible with the one integrated on i.MX8MP
+ - reg : Offset and length of the register set for the device
+ - interrupts : Should contain CSPI/eCSPI interrupt
+ - clocks : Clock specifiers for both ipg and per clocks.
 -- 
 2.20.1
 
