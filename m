@@ -2,103 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 859B9158860
-	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 03:44:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5494E15886D
+	for <lists+devicetree@lfdr.de>; Tue, 11 Feb 2020 03:51:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727918AbgBKCn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Feb 2020 21:43:28 -0500
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.2]:36438 "EHLO
-        mail1.bemta25.messagelabs.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727747AbgBKCn1 (ORCPT
+        id S1727858AbgBKCvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Feb 2020 21:51:03 -0500
+Received: from mail25.static.mailgun.info ([104.130.122.25]:46183 "EHLO
+        mail25.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727836AbgBKCvD (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 10 Feb 2020 21:43:27 -0500
-Received: from [100.112.192.239] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-2.bemta.az-a.eu-west-1.aws.symcld.net id B5/1B-51549-AC4124E5; Tue, 11 Feb 2020 02:43:22 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRWlGSWpSXmKPExsVy8MN7Xd1TIk5
-  xBm9ec1jMOd/CYjH/yDlWi8OLXjBaNC9ez2Zx/+tRRoubn76xWlzeNYfNon3jbFaLpdcvMlm8
-  /9TJZNG69wi7xf89O9gtfu6ax2Jxe+JkRgc+jzXz1jB6bFl5k8lj56y77B6bVnWyedy5tofNY
-  //cNewe/X8NPD5vkgvgiGLNzEvKr0hgzTi46ztLwQuOiivNJxgbGA+wdTFycQgJrGWUWH7zMF
-  MXIyeQUynxd9odRhCbV8BUYsnujawgNpuAjsSjmevBalgEVCUuTvwFFhcWcJD4eWwxO8ggEYG
-  TzBKd976ygDjMAtMYJfZ8PMwMMUlQ4uTMJywgNrOAhMTBFy+YIbZpSZxbs4pxAiP3LCRls5CU
-  LWBkWsVonlSUmZ5RkpuYmaNraGCga2hopGtoaaRrYq6XWKWbqJdaqlueWlyia6iXWF6sV1yZm
-  5yTopeXWrKJERj0KQUH9Hcw/lrzXu8QoyQHk5Io74bDjnFCfEn5KZUZicUZ8UWlOanFhxhlOD
-  iUJHivCTvFCQkWpaanVqRl5gAjECYtwcGjJMLrCpLmLS5IzC3OTIdInWLU5bj+fu9SZiGWvPy
-  8VClx3okgRQIgRRmleXAjYMngEqOslDAvIwMDgxBPQWpRbmYJqvwrRnEORiVhXl+QKTyZeSVw
-  m14BHcEEdMR1EweQI0oSEVJSDUzV7lMZw6e0e1TNuR530IHNdrGCrvKLQ9ckzE0nbQs89a9nx
-  maNa6bnzvMydDX/0Enx3BNqJeBRU/17yZaiSKf4+ffv3L34ae9Ohy5jW/FHqjapvusPLZT0zZ
-  BUUyt0ftdv0R/h2PP8r1J9mZXd1s/c+3ek7f2+b+c9vkVvDR/J71/d621ilBrsGlXjssRC8oz
-  Npnd8rOeuHBN80CrZGGfkubeW899d3emWfGqrXlbr9Ez56avZmH1A8+q3RSLXFoXE7N711mvd
-  kYqQGxdFDra6bTu69kVpYv4Oc7GW6qvV0Zt3yFmX7rSe+GGz8/w5+muZXkV8kMi+X5WU2TrN8
-  Vwr548FfX03QnQcltyMPqXEUpyRaKjFXFScCABS5bYCgQMAAA==
-X-Env-Sender: roy.im.opensource@diasemi.com
-X-Msg-Ref: server-15.tower-262.messagelabs.com!1581389001!1529582!2
-X-Originating-IP: [193.240.239.45]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.44.25; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 6598 invoked from network); 11 Feb 2020 02:43:22 -0000
-Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
-  by server-15.tower-262.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 11 Feb 2020 02:43:22 -0000
-Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
- NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
- 14.3.468.0; Tue, 11 Feb 2020 03:43:20 +0100
-Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
- 24D7413F671; Tue, 11 Feb 2020 11:43:19 +0900 (KST)
-Message-ID: <cover.1581383604.git.Roy.Im@diasemi.com>
-From:   Roy Im <roy.im.opensource@diasemi.com>
-Date:   Tue, 11 Feb 2020 10:13:24 +0900
-Subject: [RESEND PATCH V8 0/3]  da7280: haptic driver submission
-To:     "David S. Miller" <davem@davemloft.net>,
-        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        Mon, 10 Feb 2020 21:51:03 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1581389462; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=DwinruQUTHVtb433tEVtKSujUuJq0mr9jS6Gc9Jj1Ik=; b=rw9bjGqn+AodRX6+M2IE7HvNyfNU2a4dd5qel93jBLPTpiB0iWFpu3pySRlDh59cF3ji199c
+ H1zeNfftKfiHjC7KopSKJiGc1AGD+y/+G2T2NwigQHYTy0saegGUGNRbzuqgpGamVaiup/iS
+ 6hQ2FV2wGylaLS3i6cLg2KIj5fI=
+X-Mailgun-Sending-Ip: 104.130.122.25
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e421696.7fa215564b90-smtp-out-n01;
+ Tue, 11 Feb 2020 02:51:02 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DC8E7C4479D; Tue, 11 Feb 2020 02:51:00 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.206.28.9] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4AE8FC43383;
+        Tue, 11 Feb 2020 02:50:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4AE8FC43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+Subject: Re: [PATCH v2 2/2] clk: qcom: gpucc: Add support for GX GDSC for
+ SC7180
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Support Opensource <support.opensource@diasemi.com>,
-        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
+        David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+References: <1581307266-26989-1-git-send-email-tdas@codeaurora.org>
+ <1581307266-26989-2-git-send-email-tdas@codeaurora.org>
+ <CAD=FV=VqRAVZ19gSbtxbmdRCBbPRr+CMxWVR29diWtfX5mL3jw@mail.gmail.com>
+From:   Taniya Das <tdas@codeaurora.org>
+Message-ID: <9ac184a0-03a7-1354-1f18-890f3b66cdcb@codeaurora.org>
+Date:   Tue, 11 Feb 2020 08:20:53 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <CAD=FV=VqRAVZ19gSbtxbmdRCBbPRr+CMxWVR29diWtfX5mL3jw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the Dialog DA7280 Haptic driver IC.
+Hi Doug,
 
-In this patch set the following is provided:
+On 2/10/2020 11:19 PM, Doug Anderson wrote:
+> Hi,
+> 
+> On Sun, Feb 9, 2020 at 8:01 PM Taniya Das <tdas@codeaurora.org> wrote:
+>>
+>> Most of the time the CPU should not be touching the GX domain on the
+>> GPU except for a very special use case when the CPU needs to force the
+>> GX headswitch off. Add the GX domain for that use case.  As part of
+>> this add a dummy enable function for the GX gdsc to simulate success
+>> so that the pm_runtime reference counting is correct.  This matches
+>> what was done in sdm845 in commit 85a3d920d30a ("clk: qcom: Add a
+>> dummy enable function for GX gdsc").
+>>
+>> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> 
+> For future reference, if you have someone's tag in your commit message
+> it's nice to CC them on the email.
+> 
+> 
 
-[PATCH V8 1/3] MAINTAINERS file update for DA7280
-[PATCH V8 2/3] DA7280 DT Binding
-[PATCH V8 3/3] DA7280 Driver
+My bad my miss.
 
-This patch applies against linux-next and v5.5
+>> ---
+>>   drivers/clk/qcom/gpucc-sc7180.c | 37 +++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 37 insertions(+)
+>>
+>> diff --git a/drivers/clk/qcom/gpucc-sc7180.c b/drivers/clk/qcom/gpucc-sc7180.c
+>> index a96c0b9..7b656b6 100644
+>> --- a/drivers/clk/qcom/gpucc-sc7180.c
+>> +++ b/drivers/clk/qcom/gpucc-sc7180.c
+>> @@ -170,8 +170,45 @@ static struct gdsc cx_gdsc = {
+>>          .flags = VOTABLE,
+>>   };
+>>
+>> +/*
+>> + * On SC7180 the GPU GX domain is *almost* entirely controlled by the GMU
+>> + * running in the CX domain so the CPU doesn't need to know anything about the
+>> + * GX domain EXCEPT....
+>> + *
+>> + * Hardware constraints dictate that the GX be powered down before the CX. If
+>> + * the GMU crashes it could leave the GX on. In order to successfully bring back
+>> + * the device the CPU needs to disable the GX headswitch. There being no sane
+>> + * way to reach in and touch that register from deep inside the GPU driver we
+>> + * need to set up the infrastructure to be able to ensure that the GPU can
+>> + * ensure that the GX is off during this super special case. We do this by
+>> + * defining a GX gdsc with a dummy enable function and a "default" disable
+>> + * function.
+>> + *
+>> + * This allows us to attach with genpd_dev_pm_attach_by_name() in the GPU
+>> + * driver. During power up, nothing will happen from the CPU (and the GMU will
+>> + * power up normally but during power down this will ensure that the GX domain
+>> + * is *really* off - this gives us a semi standard way of doing what we need.
+>> + */
+>> +static int gx_gdsc_enable(struct generic_pm_domain *domain)
+>> +{
+>> +       /* Do nothing but give genpd the impression that we were successful */
+>> +       return 0;
+>> +}
+>> +
+>> +static struct gdsc gx_gdsc = {
+>> +       .gdscr = 0x100c,
+>> +       .clamp_io_ctrl = 0x1508,
+>> +       .pd = {
+>> +               .name = "gx_gdsc",
+>> +               .power_on = gx_gdsc_enable,
+>> +       },
+>> +       .pwrsts = PWRSTS_OFF_ON,
+>> +       .flags = CLAMP_IO,
+> 
+> In my previous reply [1], I asked about these flags and if it was
+> intentional that they were different from sdm845.  I did see a private
+> response, but no public one.  In the future note that it's good to
+> reply publicly so everyone understands what happened.  In this case, I
+> was told "the GDSC's on 845 and SC7180 are different and hence the
+> change in flags is expected".  That answers my question and thus I'm
+> fine with my tag being here.  It also looks like you took my other
+> review feedback on v1, which is nice.
+> 
+> 
+> -Doug
+> 
 
-Thank you,
-Roy Im, Dialog Semiconductor Ltd.
+I am unable to respond to the other thread, thus we put out the reply.
 
-Roy Im (3):
-  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
-  dt-bindings: input: Add document bindings for DA7280
-  Input: new da7280 haptic driver
-
- .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
- MAINTAINERS                                        |    2 +
- drivers/input/misc/Kconfig                         |   13 +
- drivers/input/misc/Makefile                        |    1 +
- drivers/input/misc/da7280.c                        | 1688 ++++++++++++++++++++
- drivers/input/misc/da7280.h                        |  412 +++++
- 6 files changed, 2225 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
- create mode 100644 drivers/input/misc/da7280.c
- create mode 100644 drivers/input/misc/da7280.h
+> 
+> [1] https://lore.kernel.org/r/CAD=FV=V6yM7UJwu0ZLPCqmDgV9FS4=g+wcLg0TV51b72zvWT9Q@mail.gmail.com
+> 
 
 -- 
-end-of-patch for RESEND PATCH V8
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation.
 
+--
