@@ -2,135 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FF6615B288
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 22:13:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB23F15B333
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 22:57:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729102AbgBLVNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Feb 2020 16:13:25 -0500
-Received: from mga05.intel.com ([192.55.52.43]:60665 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727420AbgBLVNZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Feb 2020 16:13:25 -0500
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 12 Feb 2020 13:13:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,434,1574150400"; 
-   d="scan'208";a="432449589"
-Received: from wendeand-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.252.52.16])
-  by fmsmga005.fm.intel.com with ESMTP; 12 Feb 2020 13:13:20 -0800
-Received: by kekkonen.fi.intel.com (Postfix, from userid 1000)
-        id 0320921D13; Wed, 12 Feb 2020 23:13:17 +0200 (EET)
-Date:   Wed, 12 Feb 2020 23:13:17 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Cc:     Helen Koike <helen.koike@collabora.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        eddie.cai.linux@gmail.com, mchehab@kernel.org, heiko@sntech.de,
-        jacob2.chen@rock-chips.com, jeffy.chen@rock-chips.com,
-        zyc@rock-chips.com, linux-kernel@vger.kernel.org,
-        tfiga@chromium.org, hans.verkuil@cisco.com,
-        laurent.pinchart@ideasonboard.com, kernel@collabora.com,
-        ezequiel@collabora.com, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, zhengsq@rock-chips.com,
-        Jacob Chen <cc@rock-chips.com>,
-        Allon Huang <allon.huang@rock-chips.com>,
-        Dafna Hirschfeld <dafna3@gmail.com>
-Subject: Re: [PATCH v8 05/14] media: rkisp1: add Rockchip ISP1 subdev driver
-Message-ID: <20200212211317.GD3087@kekkonen.localdomain>
-References: <20190730184256.30338-1-helen.koike@collabora.com>
- <20190730184256.30338-6-helen.koike@collabora.com>
- <20190808091406.GQ21370@paasikivi.fi.intel.com>
- <da6c1d01-e3f6-ad73-db55-145d7832a665@collabora.com>
- <20190815082422.GM6133@paasikivi.fi.intel.com>
- <20190815131748.GS6133@paasikivi.fi.intel.com>
- <78856358-1afd-31a7-86dd-22f7d6d7fb05@collabora.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <78856358-1afd-31a7-86dd-22f7d6d7fb05@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1729054AbgBLV51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Feb 2020 16:57:27 -0500
+Received: from mail-pj1-f65.google.com ([209.85.216.65]:50911 "EHLO
+        mail-pj1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727791AbgBLV51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Feb 2020 16:57:27 -0500
+Received: by mail-pj1-f65.google.com with SMTP id r67so1449921pjb.0;
+        Wed, 12 Feb 2020 13:57:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=fnUhPBKcSJIh4dSE9ZDVA1HmaYlN0KtrojiReV2ykb0=;
+        b=cu2HVdgFsneUjNAodwp0mnQFtoeN6mjv2Ze87w4aV7ChgNbJ8jExut24J2vW66PS6T
+         koVG7aLqf7ULojlqtp726KnUimqivbcuoUV9NtssprL5ko3YprdPY5xvqnlkTdPaIU/r
+         8sM5Sd0Qpm6pjQxOwAl9BQbYkjdRX7X68XoEgg8aDvvtGHrTBoVcR05S8hcmY3wT23FZ
+         T4Q3nCX9mPO7fNbwnOSAJqdM8mt/maw+2dkLhWpkNJSgWQaOGZTea+Jlfky6SrNUIQ4k
+         1gqChzMwo5bt8sp/VLS/L4gnilV6Mhufl+oV3miS3u82WSBHBCTpb3KSoBpHxOn28S+A
+         2UwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=fnUhPBKcSJIh4dSE9ZDVA1HmaYlN0KtrojiReV2ykb0=;
+        b=LUNAjQn7kxW/oM/CWKbvsctCcnlup/2QXdaFm/96dFVK0Tect7Y8q1ShhuctNriuad
+         uDYiNKhwlgbybZDkyH2zo6UDr7pinw56KYt8Tpuy4+VC0h0m5XnD8Z1gQAXQhu5hP+3p
+         eRfnnVr+e+EmJaaaHLIswDP8caWlaBprkfTD7/VT8mZ3t77oOqtSKdWxlkB2AdmMPXvr
+         Pb4WdpPvl4rsXTpAlmtL99QZdf/veaAtoDcrs+23cyD+KVt/4BJ373Be8qra5Os8a/Bv
+         WTWdONnZyhZ+FvIb4GldTTbBAe1KMxEZK2gFCIqi7jd9LPH1vJXw2NRhDGcgqrD68GO8
+         Npfg==
+X-Gm-Message-State: APjAAAXItVH4eh7If3DSdsY8HG9prW7VymCJkvdIo/JTgtKw5xsiLXEw
+        Js7AkRB7Fw3u4aqz26j3zpg=
+X-Google-Smtp-Source: APXvYqyH1U4B5ayiip+FCyTBRMApO8id3his1NPhWKEoZ9RMaWpVNfNcOs6FCRURmy4EYX2Y/41kVw==
+X-Received: by 2002:a17:90a:fe02:: with SMTP id ck2mr1313325pjb.10.1581544646327;
+        Wed, 12 Feb 2020 13:57:26 -0800 (PST)
+Received: from taoren-ubuntu-R90MNF91.thefacebook.com ([2620:10d:c090:200::3:533f])
+        by smtp.gmail.com with ESMTPSA id r6sm214431pfh.91.2020.02.12.13.57.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2020 13:57:25 -0800 (PST)
+From:   rentao.bupt@gmail.com
+To:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Colin Ian King <colin.king@canonical.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        taoren@fb.com
+Cc:     Tao Ren <rentao.bupt@gmail.com>
+Subject: [PATCH v2 0/5] aspeed-g6: enable usb support
+Date:   Wed, 12 Feb 2020 13:57:12 -0800
+Message-Id: <20200212215717.9474-1-rentao.bupt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dafna,
+From: Tao Ren <rentao.bupt@gmail.com>
 
-Apologies for the late reply. I learned the mail had got lost due to mail
-server issues.
+The patch series aims at enabling USB Host and Gadget support on AST2600
+platforms.
 
-On Fri, Jan 31, 2020 at 08:38:34PM +0100, Dafna Hirschfeld wrote:
-> Hi,
-> I (Dafna Hirschfeld) will work in following months with Helen Koike to fix the issues
-> in the TODO file of this driver: drivers/staging/media/rkisp1/TODO
-> 
-> On 15.08.19 15:17, Sakari Ailus wrote:
-> > On Thu, Aug 15, 2019 at 11:24:22AM +0300, Sakari Ailus wrote:
-> > > Hi Helen,
-> > > 
-> > > On Wed, Aug 14, 2019 at 09:58:05PM -0300, Helen Koike wrote:
-> > > 
-> > > ...
-> > > 
-> > > > > > +static int rkisp1_isp_sd_set_fmt(struct v4l2_subdev *sd,
-> > > > > > +				 struct v4l2_subdev_pad_config *cfg,
-> > > > > > +				 struct v4l2_subdev_format *fmt)
-> > > > > > +{
-> > > > > > +	struct rkisp1_device *isp_dev = sd_to_isp_dev(sd);
-> > > > > > +	struct rkisp1_isp_subdev *isp_sd = &isp_dev->isp_sdev;
-> > > > > > +	struct v4l2_mbus_framefmt *mf = &fmt->format;
-> > > > > > +
-> > > > > 
-> > > > > Note that for sub-device nodes, the driver is itself responsible for
-> > > > > serialising the access to its data structures.
-> > > > 
-> > > > But looking at subdev_do_ioctl_lock(), it seems that it serializes the
-> > > > ioctl calls for subdevs, no? Or I'm misunderstanding something (which is
-> > > > most probably) ?
-> > > 
-> > > Good question. I had missed this change --- subdev_do_ioctl_lock() is
-> > > relatively new. But setting that lock is still not possible as the struct
-> 
-> 'the struct' - do you mean the 'vdev' struct allocated in
-> 'v4l2_device_register_subdev_nodes' ?
+Patch #1 replaces hardcoded vhub port/endpoint number with device tree
+properties, so that it's more convenient to add support for ast2600-vhub
+which provides more downstream ports and endpoints.
 
-Yes.
+Patch #2 and #3 add vhub port/endpoint properties into aspeed-g4 and
+aspeed-g5 dtsi.
 
-> 
-> > > is allocated in the framework and the device is registered before the
-> 
-> > > driver gets hold of it. It's a good idea to provide the same serialisation
-> > > for subdevs as well.
-> > > 
-> > > I'll get back to this later.
-> > 
-> > The main reason is actually that these ops are also called through the
-> > sub-device kAPI, not only through the uAPI, and the locks are only taken
-> > through the calls via uAPI.
-> 
-> actually it seems that although 'subdev_do_ioctl_lock' exit, I wonder if
-> any subdevice uses that vdev->lock in  subdev_do_ioctl_lock.
-> It is not initialized in v4l2_device_register_subdev_nodes where the vdev is allocated
-> and I wonder if any subdevice actually initialize it somewhere else. For example it is null in this
-> driver and in vimc.
+Patch #4 enables ast2600 support in aspeed-vhub usb gadget driver.
 
-It needs to be set before the video device is registered, so indeed, it
-seems no driver can make use it.
+Patch #5 adds USB devices and according pin groups in aspeed-g6 dtsi.
 
-> 
-> > 
-> > So adding the locks to uAPI calls alone would not address the issue.
-> 
-> What I can do is add a mutex to every struct of a subdevice and lock it
-> at the beginning of each subdevice operation.
-> Is this an acceptable solution?
+The patch series is sanity tested on AST2520 (Yamp) BMC and AST2600-A0
+eval board:
+  - AST2520: created 5 gadget devices with 15 endpoints, and all of them
+    can be enumerated from usb-host side.
+  - AST2600: created 7 gadget devices with 20 endpoints, and all of them
+    can be enumerated from usb-host side.
 
-Please do. That's what other drivers do at the moment as well.
+Tao Ren (5):
+  usb: gadget: aspeed: read vhub properties from device tree
+  ARM: dts: aspeed-g4: add vhub port and endpoint properties
+  ARM: dts: aspeed-g5: add vhub port and endpoint properties
+  usb: gadget: aspeed: add ast2600 vhub support
+  ARM: dts: aspeed-g6: add usb functions
+
+ arch/arm/boot/dts/aspeed-g4.dtsi           |  2 +
+ arch/arm/boot/dts/aspeed-g5.dtsi           |  2 +
+ arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi   | 25 ++++++++
+ arch/arm/boot/dts/aspeed-g6.dtsi           | 45 ++++++++++++++
+ drivers/usb/gadget/udc/aspeed-vhub/Kconfig |  4 +-
+ drivers/usb/gadget/udc/aspeed-vhub/core.c  | 71 ++++++++++++++--------
+ drivers/usb/gadget/udc/aspeed-vhub/dev.c   | 30 ++++++---
+ drivers/usb/gadget/udc/aspeed-vhub/epn.c   |  4 +-
+ drivers/usb/gadget/udc/aspeed-vhub/hub.c   | 26 +++++---
+ drivers/usb/gadget/udc/aspeed-vhub/vhub.h  | 23 +++----
+ 10 files changed, 170 insertions(+), 62 deletions(-)
 
 -- 
-Kind regards,
+2.17.1
 
-Sakari Ailus
