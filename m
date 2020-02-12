@@ -2,149 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F78915AD7F
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 17:36:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4246C15ADB2
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 17:51:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728690AbgBLQfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Feb 2020 11:35:55 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:38831 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728575AbgBLQfz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Feb 2020 11:35:55 -0500
-Received: by mail-ot1-f65.google.com with SMTP id z9so2534242oth.5
-        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2020 08:35:55 -0800 (PST)
+        id S1727600AbgBLQvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Feb 2020 11:51:23 -0500
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:36245 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727264AbgBLQvX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Feb 2020 11:51:23 -0500
+Received: by mail-wm1-f68.google.com with SMTP id p17so3339508wma.1
+        for <devicetree@vger.kernel.org>; Wed, 12 Feb 2020 08:51:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kopismobile-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tY7FM+YqUS7N2tNsyLMK7x5uFSGC0ioulbSnD6rcjEg=;
-        b=BWrwfjKX4OmgBlSq1N2hFgW9Yy/rb0UJaINhspqVJEfz5VfaKjRNKTf3hclkA0sNph
-         /0dYfmCUUfuXtYwzs/jcRLInMp6NHZChrb+5c8ZBwGb+ehHNpdRXbPFdFf97MsER/aBZ
-         w9/H9WsK57gpj55vIKkxyFpaVNVmyF9ONmQSWcdFoLDVy0oHbKMgPefn3eExj5ykCR3b
-         ImbIee5/wdzn8s7SswBiUYJTwh/Ag0yHtxy0InHxguKOA919MKMremkKVQPWRj02HUp+
-         BhlECMOKSzGTc5nsvw5Z4yzd/Q9vNZ1O9CAaWALLSUEZON4W8LRjD9K1+Xn0rVkw5P4z
-         Rn8g==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=jcwPPW7Ev1718UkfNVS1QPUEtrgq4T5wb5lfvsIk75g=;
+        b=pI/Uj+NgpJWyw/bZYwtPk+y/p3f+bjnqhsf8M+jreGoDwlvfSIp0kKgJ/NXDiB6E89
+         Bu9Xt2W8awx7LY82+2OPhr5WoA6TZ7m1QAofSx6SSBeKEES0V3LOdiJWuon4eSRA8ADW
+         teK/s6epYxohcYgvuHxiVdLZffI/QEUeA7dGy9191u8cCLVFHNOpSmcRj+kTazI4NAe/
+         //1Q/7Xved6L7E2FLtgkbvg7BX+x1xil6Mo4LJY3SZWEvHX+wN/kdQtdXgCEpHMKjqul
+         nTxLeGpGB4fxtrRa/ZxNDNeHreeN+1U2KzTXNocgLX1hRKRcNATOiTZ+Aw9PB7cKaa+u
+         HI5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tY7FM+YqUS7N2tNsyLMK7x5uFSGC0ioulbSnD6rcjEg=;
-        b=KgbC0q5MRk60dikGNHvDZrcjA7IwewepAqv3JgUWavpmFqkJaxhc5670T5JY4qzUy0
-         N6nv24sI9yFfDX+ZcvBDnrVdqUu/TnmBiEeFW/jKIQaS3jzLd0KHFRPKwen/4+RiAlab
-         W1Wuag6BFHGOg72rbVqzVEq63UnPxKR2LYSeSqMhqwsatJEJ/zTQmrs9o9maYG+dPpvD
-         LZmHtvP3JwX81knnZ2PGfSeoBRwUwSPFBiKpf2rcC8B5vtGRAflfWZ87vvNXrS0lahL7
-         5s4sgnTQsMNRnWGTBmP9ek7CwwlrUZfziKNduoOoTH4AMj5yBPWRUrg3C9cANYlG31sS
-         6H1A==
-X-Gm-Message-State: APjAAAUJAmANyhuOkB+TlFah4usa3rtWEcVIisrwmfiQG7mokqmX7RFn
-        2o21sbN83OhPCL+6ba7AzmTVMg==
-X-Google-Smtp-Source: APXvYqy2lwhBxBYy5tU3gd4qcznyANtPRwbQkRXqeIfmvAUYGs0MvBHz5kTUBQ3grn9T5/EGMx/Wqw==
-X-Received: by 2002:a9d:5786:: with SMTP id q6mr9558964oth.164.1581525355005;
-        Wed, 12 Feb 2020 08:35:55 -0800 (PST)
-Received: from farregard-ubuntu.kopismobile.org (c-73-177-17-21.hsd1.ms.comcast.net. [73.177.17.21])
-        by smtp.gmail.com with ESMTPSA id q22sm321034otf.17.2020.02.12.08.35.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2020 08:35:54 -0800 (PST)
-From:   George Hilliard <ghilliard@kopismobile.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     George Hilliard <ghilliard@kopismobile.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de
-Subject: [PATCH v3 2/2] tty: imx serial: Implement support for reversing TX and RX polarity
-Date:   Wed, 12 Feb 2020 10:35:38 -0600
-Message-Id: <20200212163538.3006-3-ghilliard@kopismobile.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200212163538.3006-1-ghilliard@kopismobile.com>
-References: <20200212163538.3006-1-ghilliard@kopismobile.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=jcwPPW7Ev1718UkfNVS1QPUEtrgq4T5wb5lfvsIk75g=;
+        b=QJzToFl4aOBU6N4PcIu+r4656NNauKL5KqCNdAK/zIT89r5lPK+N0uDXwhXkxF14Ru
+         dKNFBf+c/pOwszL74QaePy4sS3eiOkzU05g70i3cmWyvDhViy7caQoqOWYTp1pZqUylO
+         shye9B3FFxrGGMhW53fp4xnyRuloRPOKMzWhtTFRyqFsGNVDOGClwElfGEBt9oCZniZH
+         NcNvYSwbHzlGMKPWZhi7H1IZ8wI8TNwI2v9VpMb4yD4r0wICLvFcbJ6TOli0A8Z5zZz5
+         pAR3mNAy1Xi3E14oeoROvj4X47l5bkXnvDDuQJjp3W1/vZJ8eNmaB97xu/iPmcqwTB4i
+         JaNw==
+X-Gm-Message-State: APjAAAVs0y8gmGt8CB33mR01+DZ4cMtBnVM1QM/fxbGL3q1AWU2WbGWd
+        wZCk/cw5LdMcB5yyfj2TI3ip3g==
+X-Google-Smtp-Source: APXvYqy/kKObZd2NSS6kusayeRjgm+RKUhmrp/l8q6AIlEspwd/NpCOmscu5Kd/J+WQB2skteKA6PQ==
+X-Received: by 2002:a1c:113:: with SMTP id 19mr14147384wmb.95.1581526280567;
+        Wed, 12 Feb 2020 08:51:20 -0800 (PST)
+Received: from linaro.org (14.red-88-14-208.dynamicip.rima-tde.net. [88.14.208.14])
+        by smtp.gmail.com with ESMTPSA id a184sm1365854wmf.29.2020.02.12.08.51.18
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 12 Feb 2020 08:51:19 -0800 (PST)
+Date:   Wed, 12 Feb 2020 17:51:16 +0100
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     Benjamin Gaignard <benjamin.gaignard@st.com>
+Cc:     tglx@linutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com,
+        linux@armlinux.org.uk, p.paillet@st.com, linus.walleij@linaro.org,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, fabrice.gasnier@st.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: mfd: Document STM32 low power
+ clkevent bindings
+Message-ID: <20200212165116.GA2949@linaro.org>
+References: <20200128120702.26166-1-benjamin.gaignard@st.com>
+ <20200128120702.26166-2-benjamin.gaignard@st.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200128120702.26166-2-benjamin.gaignard@st.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The peripheral has support for inverting its input and/or output
-signals.  This is useful if the hardware flips polarity of the
-peripheral's signal, such as swapped +/- pins on an RS-422 transceiver,
-or an inverting level shifter.  Add support for these control registers
-via the device tree binding.
+On Tue, Jan 28, 2020 at 01:07:01PM +0100, Benjamin Gaignard wrote:
+> Add a subnode to STM low power timer bindings to support clkevent driver
 
-Signed-off-by: George Hilliard <ghilliard@kopismobile.com>
----
-v1..v2: Remove confidentiality spam
-v2..v3: Set *and* clear register, and do it before TX enable
+clkevent is Linux specific.
 
- drivers/tty/serial/imx.c | 28 +++++++++++++++++++++++-----
- 1 file changed, 23 insertions(+), 5 deletions(-)
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+> ---
+>  .../devicetree/bindings/mfd/st,stm32-lptimer.yaml          | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml b/Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml
+> index 1a4cc5f3fb33..535e0b40cdf9 100644
+> --- a/Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml
+> @@ -81,6 +81,16 @@ patternProperties:
+>      required:
+>        - compatible
+>  
+> +  clkevent:
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: st,stm32-clkevent-lp
+> +
+> +    required:
+> +      - compatible
+> +
+>  required:
+>    - "#address-cells"
+>    - "#size-cells"
+> @@ -115,6 +125,10 @@ examples:
+>        counter {
+>          compatible = "st,stm32-lptimer-counter";
+>        };
+> +
+> +      clkevent {
+> +        compatible = "st,stm32-clkevent-lp";
+> +      };
+>      };
+>  
+>  ...
+> -- 
+> 2.15.0
+> 
 
-diff --git a/drivers/tty/serial/imx.c b/drivers/tty/serial/imx.c
-index 0c6c63166250..205627bcad66 100644
---- a/drivers/tty/serial/imx.c
-+++ b/drivers/tty/serial/imx.c
-@@ -195,6 +195,8 @@ struct imx_port {
- 	unsigned int		have_rtscts:1;
- 	unsigned int		have_rtsgpio:1;
- 	unsigned int		dte_mode:1;
-+	unsigned int		inverted_tx:1;
-+	unsigned int		inverted_rx:1;
- 	struct clk		*clk_ipg;
- 	struct clk		*clk_per;
- 	const struct imx_uart_data *devdata;
-@@ -1335,7 +1337,7 @@ static int imx_uart_startup(struct uart_port *port)
- 	int retval, i;
- 	unsigned long flags;
- 	int dma_is_inited = 0;
--	u32 ucr1, ucr2, ucr4;
-+	u32 ucr1, ucr2, ucr3, ucr4;
- 
- 	retval = clk_prepare_enable(sport->clk_per);
- 	if (retval)
-@@ -1390,8 +1392,22 @@ static int imx_uart_startup(struct uart_port *port)
- 	ucr4 = imx_uart_readl(sport, UCR4) & ~UCR4_OREN;
- 	if (!sport->dma_is_enabled)
- 		ucr4 |= UCR4_OREN;
-+	if (sport->inverted_rx)
-+		ucr4 |= UCR4_INVR;
-+	else
-+		ucr4 &= ~UCR4_INVR;
- 	imx_uart_writel(sport, ucr4, UCR4);
- 
-+	/*
-+	 * configure tx polarity before enabling tx
-+	 */
-+	ucr3 = imx_uart_readl(sport, UCR3);
-+	if (sport->inverted_tx)
-+		ucr3 |= UCR3_INVT;
-+	else
-+		ucr3 &= ~UCR3_INVT;
-+	imx_uart_writel(sport, ucr3, UCR3);
-+
- 	ucr2 = imx_uart_readl(sport, UCR2) & ~UCR2_ATEN;
- 	ucr2 |= (UCR2_RXEN | UCR2_TXEN);
- 	if (!sport->have_rtscts)
-@@ -1405,10 +1421,6 @@ static int imx_uart_startup(struct uart_port *port)
- 	imx_uart_writel(sport, ucr2, UCR2);
- 
- 	if (!imx_uart_is_imx1(sport)) {
--		u32 ucr3;
--
--		ucr3 = imx_uart_readl(sport, UCR3);
--
- 		ucr3 |= UCR3_DTRDEN | UCR3_RI | UCR3_DCD;
- 
- 		if (sport->dte_mode)
-@@ -2184,6 +2196,12 @@ static int imx_uart_probe_dt(struct imx_port *sport,
- 	if (of_get_property(np, "rts-gpios", NULL))
- 		sport->have_rtsgpio = 1;
- 
-+	if (of_get_property(np, "fsl,inverted-tx", NULL))
-+		sport->inverted_tx = 1;
-+
-+	if (of_get_property(np, "fsl,inverted-rx", NULL))
-+		sport->inverted_rx = 1;
-+
- 	return 0;
- }
- #else
 -- 
-2.25.0
 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
