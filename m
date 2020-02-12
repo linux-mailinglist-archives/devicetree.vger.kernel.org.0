@@ -2,85 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 386E315A6BF
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 11:44:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A586915A6D6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 11:45:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728168AbgBLKoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Feb 2020 05:44:09 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:36235 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728105AbgBLKoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Feb 2020 05:44:04 -0500
-Received: by mail-lj1-f193.google.com with SMTP id r19so1747701ljg.3;
-        Wed, 12 Feb 2020 02:44:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iKlCRyIiMtnqAsTUzds53Dv6bIjyCavUz2JwE+5Q86U=;
-        b=q5HVRDWhwRbnE9XD+o+E9xAjOAPh7hQLfxuR2Q8IDVZ9T4TM1epaVOtVyrlu8rGABh
-         yFqCmc8lkO7Cafl/HYhWllqXiIuLapsvVAQnGGQcjsqxaammtQ08szh/unYlYUU7/aVn
-         5Y3eK5B2eLMSiN4yawADQadAg6x+qVO8ETp7np/hh4aiE/y3aTnL30BjSCFWlOM0LEUK
-         td2zjvNBwoIws7FJZtQbuHZF0cSwe9TfZs+qsUqy1+gm8TKYyrBdhoddFPoiOZyROZAx
-         4AUMHjV+kM0rXe59nSsEt0+w7iLyrsNYMIQHQxtbyBaexbKAv1lDD0w6rEbSKtyjKUtE
-         Q1MQ==
-X-Gm-Message-State: APjAAAXdH6yUdrcRJ+JyB2DNrRd0fEFCMh+e7/up4E+c/raNqoNUtsR8
-        KlNzXbkgf21uto2iOoHGwE3mfSN2
-X-Google-Smtp-Source: APXvYqw7J+T5Ysy2HXL8fB1EY4rHD15OKtFOpMRNPxVKAu0ydkSwOONjjAYScm3qUiyiEjWtrDI6RA==
-X-Received: by 2002:a2e:9e03:: with SMTP id e3mr7402721ljk.186.1581504241717;
-        Wed, 12 Feb 2020 02:44:01 -0800 (PST)
-Received: from xi.terra (c-12aae455.07-184-6d6c6d4.bbcust.telenor.se. [85.228.170.18])
-        by smtp.gmail.com with ESMTPSA id a8sm13450ljn.74.2020.02.12.02.43.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 12 Feb 2020 02:43:59 -0800 (PST)
-Received: from johan by xi.terra with local (Exim 4.92.3)
-        (envelope-from <johan@xi.terra>)
-        id 1j1pUs-0005Cc-An; Wed, 12 Feb 2020 11:43:58 +0100
-From:   Johan Hovold <johan@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Barry Song <Baohua.Song@csr.com>,
-        Johan Hovold <johan@kernel.org>, Dongli Li <Kasin.Li@csr.com>
-Subject: [PATCH 3/3] ARM: dts: atlas7: fix space in g2d compatible string
-Date:   Wed, 12 Feb 2020 11:43:48 +0100
-Message-Id: <20200212104348.19940-4-johan@kernel.org>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200212104348.19940-1-johan@kernel.org>
-References: <20200212104348.19940-1-johan@kernel.org>
+        id S1727535AbgBLKp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Feb 2020 05:45:57 -0500
+Received: from mx2.suse.de ([195.135.220.15]:60826 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727906AbgBLKp4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 12 Feb 2020 05:45:56 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id A44FFAE65;
+        Wed, 12 Feb 2020 10:45:54 +0000 (UTC)
+Subject: Re: [PATCH v2 3/3] dt-bindings: hwlock: Document A64 hwspinlock
+ bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     mripard@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, wens@csie.org, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20200211122624.16484-1-nborisov@suse.com>
+ <20200211122624.16484-4-nborisov@suse.com> <20200212020023.GA16678@bogus>
+From:   Nikolay Borisov <nborisov@suse.com>
+Autocrypt: addr=nborisov@suse.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <6c64a6f2-21ca-e476-a79e-8fca65c08875@suse.com>
+Date:   Wed, 12 Feb 2020 12:45:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
+In-Reply-To: <20200212020023.GA16678@bogus>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Drop the space between manufacturer and model in the SiRF compatible
-string in the g2d node so that it matches the recommended format.
 
-Note that there are no in-kernel drivers that use this compatible and
-it is not present in any binding.
 
-Fixes: d9615f8bf5d9 ("ARM: dts: atlas7: add lost G2D node")
-Cc: Dongli Li <Kasin.Li@csr.com>
-Cc: Barry Song <Baohua.Song@csr.com>
-Signed-off-by: Johan Hovold <johan@kernel.org>
----
- arch/arm/boot/dts/atlas7.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 12.02.20 г. 4:00 ч., Rob Herring wrote:
+> On Tue, 11 Feb 2020 14:26:24 +0200, Nikolay Borisov wrote:
+>> Add binding for the hwspinlock found on Allwinner A64 SoC.
+>>
+>> Signed-off-by: Nikolay Borisov <nborisov@suse.com>
+>> ---
+>>  .../allwinner,sun50i-a64-hwspinlock.yaml      | 47 +++++++++++++++++++
+>>  1 file changed, 47 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/hwlock/allwinner,sun50i-a64-hwspinlock.yaml
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
+> Error: Documentation/devicetree/bindings/hwlock/allwinner,sun50i-a64-hwspinlock.example.dts:21.28-29 syntax error
+> FATAL ERROR: Unable to parse input tree
+> scripts/Makefile.lib:300: recipe for target 'Documentation/devicetree/bindings/hwlock/allwinner,sun50i-a64-hwspinlock.example.dt.yaml' failed
+> make[1]: *** [Documentation/devicetree/bindings/hwlock/allwinner,sun50i-a64-hwspinlock.example.dt.yaml] Error 1
+> Makefile:1263: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
+> 
+> See https://patchwork.ozlabs.org/patch/1236266
+> Please check and re-submit.
+> 
 
-diff --git a/arch/arm/boot/dts/atlas7.dtsi b/arch/arm/boot/dts/atlas7.dtsi
-index f1e8c772a59e..c3104b85813b 100644
---- a/arch/arm/boot/dts/atlas7.dtsi
-+++ b/arch/arm/boot/dts/atlas7.dtsi
-@@ -1930,7 +1930,7 @@ lvds@10e10000 {
- 				resets = <&car 29>;
- 			};
- 			g2d@17010000 {
--				compatible = "sirf, atlas7-g2d";
-+				compatible = "sirf,atlas7-g2d";
- 				reg = <0x17010000 0x10000>;
- 				interrupts = <0 61 0>;
- 				clocks = <&car 104>;
--- 
-2.24.1
+I'm not able to build this schema at all:
+
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- allmodconfig
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/hwlock/allwinner,sun50i-a64-hwspinlock.yaml
+
+This results in a allwinner,sun50i-a64-hwspinlock.example.dts 
+file and: 
+
+
+make[1]: *** No rule to make target 'Documentation/devicetree/bindings/hwlock/allwinner,sun50i-a64-hwspinlock.example.dt.yaml', needed by '__build'.  Stop.
+Makefile:1263: recipe for target 'dt_binding_check' failed
 
