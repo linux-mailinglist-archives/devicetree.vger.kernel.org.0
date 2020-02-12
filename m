@@ -2,59 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 514B615A622
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 11:19:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA23415A58D
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 11:02:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727007AbgBLKTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Feb 2020 05:19:31 -0500
-Received: from fw.difson.gob.mx ([200.38.154.174]:56664 "EHLO
-        mail.difson.gob.mx" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725887AbgBLKTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Feb 2020 05:19:31 -0500
-X-Greylist: delayed 1538 seconds by postgrey-1.27 at vger.kernel.org; Wed, 12 Feb 2020 05:19:30 EST
-Received: from localhost (localhost [127.0.0.1])
-        by mail.difson.gob.mx (Postfix) with ESMTP id 7CE39322820;
-        Wed, 12 Feb 2020 02:45:49 -0700 (MST)
-Received: from mail.difson.gob.mx ([127.0.0.1])
-        by localhost (mail.difson.gob.mx [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id KIQ5dGjAn_co; Wed, 12 Feb 2020 02:45:48 -0700 (MST)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.difson.gob.mx (Postfix) with ESMTP id 07C9A322827;
-        Wed, 12 Feb 2020 02:45:38 -0700 (MST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.difson.gob.mx 07C9A322827
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=difson.gob.mx;
-        s=D7CA4582-F2E2-11E6-8966-AB4C44A37E80; t=1581500739;
-        bh=zI5MTMWZOlxtiunPusKdidxivWrdVtbxAb/b19Fq+v8=;
-        h=Date:From:Message-ID:MIME-Version;
-        b=ZM8BqJh1ya8r2066UzY9oWOkFf/idO1jjJFlKRu7+HGkvad/c5Q1qufOu8TBc3P/n
-         G+iP5GtuJiKrqxxeSc8SLbLf+YNk45V2TuRad5zjN0dFghxUPKPk9gnu12PQaPw1CJ
-         qa5b8UFS/8Y3dBciRRdqApy51dj6UIzNmfbniNG0=
-X-Virus-Scanned: amavisd-new at difson.gob.mx
-Received: from mail.difson.gob.mx ([127.0.0.1])
-        by localhost (mail.difson.gob.mx [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 72svdOYOYoF4; Wed, 12 Feb 2020 02:45:36 -0700 (MST)
-Received: from mail.difson.gob.mx (mail.difson.gob.mx [10.0.0.28])
-        by mail.difson.gob.mx (Postfix) with ESMTP id 5AFE6322781;
-        Wed, 12 Feb 2020 02:45:05 -0700 (MST)
-Date:   Wed, 12 Feb 2020 02:45:05 -0700 (MST)
-From:   Friedrich And Annand Mayrhofer <rossy.kuroda@difson.gob.mx>
-Reply-To: Friedrich And Annand Mayrhofer <friedricmayrhofer8@gmail.com>
-Message-ID: <1592670824.42177.1581500705059.JavaMail.zimbra@difson.gob.mx>
-Subject: Did You Get My Message This Time?
+        id S1728846AbgBLKCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Feb 2020 05:02:00 -0500
+Received: from Galois.linutronix.de ([193.142.43.55]:48062 "EHLO
+        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728832AbgBLKCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 12 Feb 2020 05:02:00 -0500
+Received: from [5.158.153.52] (helo=mitra)
+        by Galois.linutronix.de with esmtpsa (TLS1.2:RSA_AES_256_CBC_SHA1:256)
+        (Exim 4.80)
+        (envelope-from <b.spranger@linutronix.de>)
+        id 1j1oqE-0001Fd-LT; Wed, 12 Feb 2020 11:01:58 +0100
+Date:   Wed, 12 Feb 2020 11:01:50 +0100
+From:   Benedikt Spranger <b.spranger@linutronix.de>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     bage@linutronix.de, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 4/5] ARM: dts: sun7i: lamobo-r1: Split out commons
+Message-ID: <20200212110150.2f09d7bf@mitra>
+In-Reply-To: <20200210074525.xloszrupb37gcl6p@gilmour.lan>
+References: <20200206113328.7296-1-bage@linutronix.de>
+        <20200206113328.7296-5-bage@linutronix.de>
+        <20200210074525.xloszrupb37gcl6p@gilmour.lan>
+Organization: Linutronix GmbH
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.12_GA_3803 (zclient/8.8.12_GA_3803)
-Thread-Index: NZB7S0GrQt5C0occRzgssOs7TegpiA==
-Thread-Topic: Did You Get My Message This Time?
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; boundary="Sig_//F7VZjI5cOjdfRPQJhU+G+9";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--Sig_//F7VZjI5cOjdfRPQJhU+G+9
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, 10 Feb 2020 08:45:25 +0100
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-This is the second time i am sending you this mail.I, Friedrich Mayrhofer Donate $ 1,000,000.00 to You, Email Me personally for more details
-.Regards.
-Friedrich Mayrhofer
+> Looking at the board, it looks like it's just a daughter board to the
+> lamobo-r1?
+It is a daughter board.
+=20
+> If so, you can just include its DTS directly, there's no need to
+> create a DTSI (an overlay is an option as well).
+Weighing up to include a DTS and overriding nodes versus splitting
+out the commons into a DTSI let to the latter:
+
+Overriding DTB nodes is a mess since it makes it unnessesarily complex
+to understand what happens and is hard to debug. I spend quite some
+time of my life to get a clou, why a DTB of a board is messed up and
+why changes got lost. Including DTS files is a matter of taste and none
+of my flavors.
+
+Overlay would be an option, if there is a way to load the overlay
+without touching the bootloader or during kexec.
+
+Regards
+    Benedikt Spranger
+
+--Sig_//F7VZjI5cOjdfRPQJhU+G+9
+Content-Type: application/pgp-signature
+Content-Description: Digitale Signatur von OpenPGP
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEAqI1USXos6PVrEqYjSQ2tYFsrE4FAl5DzQ4ACgkQjSQ2tYFs
+rE7F0xAAkmKpqavwXysXpFqtV94q6Cp00+mhKzW0X8PZnkw+bM4PQw2FqD9UVhft
+h6+/hIKs2sEb2bWx+RaupcthyGRjGTUq3PtO3619yMvG6Y+fUfIWDEmTMr1XnQaL
+xmr98oXzlsgCLVfpfdSxsQ+ri8QQWx+TXBC34Qm9uFWY6B9JARhQ9BHvIcTfcZqr
+Jhyk6dZnuzX/RnkyyYwh/kcpHF97Xn4G2X4yxZoYf7zj5L2wPYbBMtbPckWG9eQB
+H/CqeO615mmIAEWptzvBS9mB93wEeOeZ8Mkab2ty2nRczFkXphyQ2JE2Wta2Q9fx
+deFzv/SNMmQ5i9ILHpIrXSM3b+DVWmVBEl89ZBELAXhV9PRZqbfxxlNTFBs65EIz
+sVJk+FR73tsh6j6T2iSoLD4CYxZzQWsxbSwGVgLvmT1RKrnNJhNMidcqzGXTNTh3
+b9ed+xIMpbdPRioq9yUWV9zPDJpKM3pQWKIkn/Z/Aa1gnwnT4wvH6rPBjgVunKH6
+m59TMXJbfEUjzEJiwqJ107l6bNijzE9twu0EXbR5d/1pQGjUfxtvEQKTxZyYi8td
+LK8rXHOX7KbRI43voTa6VVzfrnM5T6W2h9pVR3UEC5JNpWyyWesZJEgjDUGMzCiw
+MhFU86jfHNN7F8rUqmz1HpqHpSiQsFPC6CvEMyunuVnJ8wbHDHA=
+=mXzV
+-----END PGP SIGNATURE-----
+
+--Sig_//F7VZjI5cOjdfRPQJhU+G+9--
