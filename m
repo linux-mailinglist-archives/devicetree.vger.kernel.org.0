@@ -2,101 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D78515AC72
-	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 16:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5F6815ACF6
+	for <lists+devicetree@lfdr.de>; Wed, 12 Feb 2020 17:16:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728646AbgBLPyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 12 Feb 2020 10:54:44 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:42290 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727458AbgBLPyo (ORCPT
+        id S1727054AbgBLQQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 12 Feb 2020 11:16:20 -0500
+Received: from mail27.static.mailgun.info ([104.130.122.27]:47864 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726728AbgBLQQU (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 12 Feb 2020 10:54:44 -0500
+        Wed, 12 Feb 2020 11:16:20 -0500
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1581522883; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=5GXYmuEvVBgrpfgyHmVLvKxCJbgXZCJNez/OEN+oLSs=; b=kvSUNg+nvKju4c+Q6KrClvqbYpFxpC3BgTtB2vDBlDftihOM5H7F9QCTkmGJZ6eEktnmDU7S
- T/NMsBquYASR9IBNeSfB2cSiYldgyUitQrJJC0cKeaBUElnYT8u3xpochzKXiRBHybwoSFxE
- K8gPUZiAcSXZ00GVXgLOoxSj9hU=
-X-Mailgun-Sending-Ip: 104.130.122.26
+ s=smtp; t=1581524180; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=foQgFeAktbx/iw/W8qYYRatgWy+DUe0kTzSO8cPTnW4=;
+ b=qUqU8StpDJcgi+y1w9mwCNvCMh5oXJtxGdAPnknN9tDHJSlG2qe6to0LnQqh2DBxkCmWjHpf
+ Ul7h9S0a3r8gDm0Lk4Fj8xAbm61+qoPbM0t6LYam64SfhKNGUQwZf8WBhiqeHa3+hKICOqTK
+ BEE2RGyFsEAk/V3qv5Too6yUlaM=
+X-Mailgun-Sending-Ip: 104.130.122.27
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e441fb6.7ff518051768-smtp-out-n03;
- Wed, 12 Feb 2020 15:54:30 -0000 (UTC)
+ by mxa.mailgun.org with ESMTP id 5e4424d3.7f389c135730-smtp-out-n02;
+ Wed, 12 Feb 2020 16:16:19 -0000 (UTC)
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8043EC4479D; Wed, 12 Feb 2020 15:54:30 +0000 (UTC)
+        id 6377CC447A0; Wed, 12 Feb 2020 16:16:19 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from bgodavar-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+X-Spam-Status: No, score=0.5 required=2.0 tests=ALL_TRUSTED,MISSING_DATE,
+        MISSING_MID,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: bgodavar)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A1EE1C43383;
-        Wed, 12 Feb 2020 15:54:26 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A1EE1C43383
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7E16CC43383;
+        Wed, 12 Feb 2020 16:16:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7E16CC43383
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=bgodavar@codeaurora.org
-From:   Balakrishna Godavarthi <bgodavar@codeaurora.org>
-To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     mka@chromium.org, agross@kernel.org, bjorn.andersson@linaro.org,
-        hemantg@codeaurora.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        gubbaven@codeaurora.org,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>
-Subject: [PATCH v2] arm64: dts: qcom: sc7180: Add node for bluetooth soc wcn3990
-Date:   Wed, 12 Feb 2020 21:24:19 +0530
-Message-Id: <20200212155419.20741-1-bgodavar@codeaurora.org>
-X-Mailer: git-send-email 2.22.0
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v3 1/2] DTS: bindings: wl1251: mark ti,
+ power-gpio as optional
+From:   Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <d34183026b1a46a082f73ab3d0888c92cf6286ec.1580068813.git.hns@goldelico.com>
+References: <d34183026b1a46a082f73ab3d0888c92cf6286ec.1580068813.git.hns@goldelico.com>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alexios Zavras <alexios.zavras@intel.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+User-Agent: pwcli/0.0.0-git (https://github.com/kvalo/pwcli/) Python/2.7.12
+Message-Id: <20200212161619.6377CC447A0@smtp.codeaurora.org>
+Date:   Wed, 12 Feb 2020 16:16:19 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bluetooth SoC node for SC7180 IDP board.
+"H. Nikolaus Schaller" <hns@goldelico.com> wrote:
 
-Signed-off-by: Balakrishna Godavarthi <bgodavar@codeaurora.org>
----
-v2:
-  * updated commit text
-  * removed status form dts node
----
- arch/arm64/boot/dts/qcom/sc7180-idp.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> It is now only useful for SPI interface.
+> Power control of SDIO mode is done through mmc core.
+> 
+> Suggested by: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-index 388f50ad4fde..7a50a439b6f3 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-@@ -19,6 +19,7 @@
- 	aliases {
- 		hsuart0 = &uart3;
- 		serial0 = &uart8;
-+		bluetooth0 = &bluetooth;
- 	};
- 
- 	chosen {
-@@ -256,6 +257,16 @@
- 
- &uart3 {
- 	status = "okay";
-+
-+	bluetooth: wcn3990-bt {
-+		compatible = "qcom,wcn3990-bt";
-+		vddio-supply = <&vreg_l10a_1p8>;
-+		vddxo-supply = <&vreg_l1c_1p8>;
-+		vddrf-supply = <&vreg_l2c_1p3>;
-+		vddch0-supply = <&vreg_l10c_3p3>;
-+		max-speed = <3200000>;
-+		clocks = <&rpmhcc RPMH_RF_CLK2>;
-+	};
- };
- 
- &uart8 {
+2 patches applied to wireless-drivers-next.git, thanks.
+
+57f0a29c3e08 DTS: bindings: wl1251: mark ti,power-gpio as optional
+346bdd8e979d wl1251: remove ti,power-gpio for SDIO mode
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+https://patchwork.kernel.org/patch/11351957/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
