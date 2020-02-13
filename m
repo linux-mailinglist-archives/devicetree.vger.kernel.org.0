@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2785E15C8C0
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 17:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA1A15C8CE
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 17:52:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728371AbgBMQwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Feb 2020 11:52:18 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:33172 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728333AbgBMQwR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 11:52:17 -0500
-Received: by mail-wm1-f68.google.com with SMTP id m10so153187wmc.0
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2020 08:52:16 -0800 (PST)
+        id S1728311AbgBMQwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Feb 2020 11:52:19 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:42981 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728316AbgBMQwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 11:52:19 -0500
+Received: by mail-wr1-f67.google.com with SMTP id k11so7539644wrd.9
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2020 08:52:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=WDMFZWW+h59RhGdVycD2Uyjz5YXns4ww4oPwlirB1xs=;
-        b=RU6hP0YaDVyg76DpwMt8+kokjDNdYK4t+fP1NMy86wohTGSpgKGZzXz22INLcb/uTG
-         SulDKPmxKjSDX9mM1ObcytxPc9qSyfmoSueNx1WrVr+i2pcQ0/1MH6MfZipjLCRNhZ4R
-         QAAwV9AK52wzbuAFhJ4wwljXxMGU1D8fjkRr3xz5yGktVvdi91XDhvfsXom1xAiav9Ca
-         9EsxU47a4H/ESMgWlgX459A9KaDdxI8GrFEiHciqdGPUqbJk6r0x0gm/NOt1/yOdfV8m
-         TYI4DrH7cKX39puiAtvbmBg0t24nmt6J4GV1r4c9AeQkOhtGKMzU9MsecC3L+ojmCMyI
-         c2Dg==
+        bh=UJQuvs9RpncXIyFZgaHy4qfH2MXeX4KRcKSd32KW02I=;
+        b=FRxKsOeYxspq/g5ZXQF5hEOTsVmnm1UDJ/kf7q2GeDWRw12p5AWgkElZS1ols7kw+s
+         dzR64m9v0kLvMIAf98898PxAp+rZRaCMiXSRy4brZInJjJ6/VxxLBWM/9lwa8d1fjk3H
+         yrBRTY7uPwUlO475tyPxQAhFP+xtWiu24oAsL9T1/3ejakQNp4NhRXjorbqBjDQvC2x+
+         umWUy9HFmYG09ozyz8p/qxPi9s9GL84tQk3qVBpVhVK7pttVl9Or84knSQx1xMAHhIfz
+         CLWA+FU1t1lS2HAZfQlHELEJoCgFDSyhJVnwQLLH58Q5mnxUj/vQkHn9bAHIS8WU9hNU
+         k79w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=WDMFZWW+h59RhGdVycD2Uyjz5YXns4ww4oPwlirB1xs=;
-        b=SYzEkjZ5azMxKlezlE7vklnK4WnjDShqYSBNEgCGzKZbuztEPcIdWs7EPNMV7bhl5q
-         oPZcqtmje0tim+bTg4q1WefGM/A3sBibYFGMwq3CqhsIJfbEFAxVaDnHGBt/inrfeCCC
-         YEsIBDE5DdiJyU4vuqkNnK1RKkMSxbexqu1OXJKwGj/hnrlF+rDCw0nOP7lVbzDiz7jf
-         xi1e2TNWOPwBcCCdubdHmVuF2d78BS4nvhaYf7xnOru8RFCBTVqguhCqxdGLUi9v4++u
-         LrxcOr07T1qmfEHDswdQCa+1fePdfOo5VcJrUt8YKDIta53hEtiHDsNoxRFM5JQMuzPJ
-         gd0Q==
-X-Gm-Message-State: APjAAAUVU+7kRetWBFNVBhKug6l/LZt9SXC5/iAhetXd4vcyrw+ZZhCS
-        BZ/DghkEtZFC5JfzBp4Tj4bRSg==
-X-Google-Smtp-Source: APXvYqyTnYcfWPm44mmD/6D5Wm+c5cA7JDMBagRyfl9k+jEqNIeMmPTzO2182wwz9XUN7ktGp7/pbQ==
-X-Received: by 2002:a1c:7d8b:: with SMTP id y133mr6917432wmc.165.1581612735514;
-        Thu, 13 Feb 2020 08:52:15 -0800 (PST)
+        bh=UJQuvs9RpncXIyFZgaHy4qfH2MXeX4KRcKSd32KW02I=;
+        b=FkgJtb+vxSfjnk2azo+9RY+BBVr08+DlWL1AoOTHeXOpP6wLd2OQHUwwr10+h6Wvn6
+         F/5l7HtRc5r+2870hsq0G6xCf0sq2Yh3xaWtbVVMTlr6RjuVRab7LA1UqZCnb3eN5wUV
+         jSz3hQPtbN3ASg3MbIwU4auX5YLX+psaEk2I8vtwOccjAuAJcwSGmesaDr0X2tB8fFgA
+         ZG5aJAsDxldzSS7+Ylygbgb2nLZ74UXz3n/5chsl2WprMSBZ9sJHUx1sZsbrW7kqcX5n
+         9dgHx/DsWnWF+STfp/qWNQWYjfkFh6V7oYrDr0o78KPAeopDLgOK5pjIfAeVlyMahyed
+         Uv7Q==
+X-Gm-Message-State: APjAAAXNGsRhcVuNqHS5ibZu5+gO+iLMNgLhrUbS/uTwfHyGdxjM50BB
+        ztJ4TBuTveE4Znrjgg7HRdi2Fg==
+X-Google-Smtp-Source: APXvYqzeNhwO1ySgCH6GebdW+o3FuDqODOSO5w28TGumAGZvm+dXwumkzW+9YyKVQhWGqXpnMT98kw==
+X-Received: by 2002:a5d:4b8f:: with SMTP id b15mr22595338wrt.100.1581612736660;
+        Thu, 13 Feb 2020 08:52:16 -0800 (PST)
 Received: from localhost.localdomain ([2001:171b:2276:930:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id y6sm3484807wrl.17.2020.02.13.08.52.14
+        by smtp.gmail.com with ESMTPSA id y6sm3484807wrl.17.2020.02.13.08.52.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2020 08:52:15 -0800 (PST)
+        Thu, 13 Feb 2020 08:52:16 -0800 (PST)
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
 To:     bhelgaas@google.com, will@kernel.org, robh+dt@kernel.org,
         lorenzo.pieralisi@arm.com, joro@8bytes.org,
@@ -55,9 +55,9 @@ Cc:     corbet@lwn.net, mark.rutland@arm.com, liviu.dudau@arm.com,
         sudeep.holla@arm.com, guohanjun@huawei.com, rjw@rjwysocki.net,
         lenb@kernel.org, robin.murphy@arm.com, dwmw2@infradead.org,
         amurray@thegoodpenguin.co.uk, frowand.list@gmail.com
-Subject: [PATCH 10/11] arm64: dts: fast models: Enable PCIe ATS for Base RevC FVP
-Date:   Thu, 13 Feb 2020 17:50:48 +0100
-Message-Id: <20200213165049.508908-11-jean-philippe@linaro.org>
+Subject: [PATCH 11/11] Documentation: Generalize the "pci=noats" boot parameter
+Date:   Thu, 13 Feb 2020 17:50:49 +0100
+Message-Id: <20200213165049.508908-12-jean-philippe@linaro.org>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200213165049.508908-1-jean-philippe@linaro.org>
 References: <20200213165049.508908-1-jean-philippe@linaro.org>
@@ -68,29 +68,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Declare that the host controller supports ATS, so the OS can enable it
-for ATS-capable PCIe endpoints.
+The "pci=noats" kernel parameter disables PCIe ATS globally, and affects
+any ATS-capable IOMMU driver. So rather than adding Arm SMMUv3, which
+recently gained ATS support, to the list of relevant build options,
+simplify the noats description.
 
 Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 ---
-All endpoints support ATS provided they have the ats_supported=1 model
-parameter. "lspci -vv" shows whether ATS is supported and enabled.
----
- arch/arm64/boot/dts/arm/fvp-base-revc.dts | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/admin-guide/kernel-parameters.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-index 62ab0d54ff71..6e5bb7bcb4b3 100644
---- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-+++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
-@@ -170,6 +170,7 @@ pci: pci@40000000 {
- 		iommu-map = <0x0 &smmu 0x0 0x10000>;
- 
- 		dma-coherent;
-+		ats-supported;
- 	};
- 
- 	smmu: smmu@2b400000 {
+diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+index dbc22d684627..e5fa8d057a3c 100644
+--- a/Documentation/admin-guide/kernel-parameters.txt
++++ b/Documentation/admin-guide/kernel-parameters.txt
+@@ -3606,8 +3606,8 @@
+ 				on: Turn realloc on
+ 		realloc		same as realloc=on
+ 		noari		do not use PCIe ARI.
+-		noats		[PCIE, Intel-IOMMU, AMD-IOMMU]
+-				do not use PCIe ATS (and IOMMU device IOTLB).
++		noats		[PCIE] Do not use PCIe ATS (and IOMMU device
++				IOTLB).
+ 		pcie_scan_all	Scan all possible PCIe devices.  Otherwise we
+ 				only look for one device below a PCIe downstream
+ 				port.
 -- 
 2.25.0
 
