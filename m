@@ -2,97 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BA1A15C8CE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 17:52:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A36015C94D
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 18:18:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728311AbgBMQwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Feb 2020 11:52:19 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:42981 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728316AbgBMQwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 11:52:19 -0500
-Received: by mail-wr1-f67.google.com with SMTP id k11so7539644wrd.9
-        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2020 08:52:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UJQuvs9RpncXIyFZgaHy4qfH2MXeX4KRcKSd32KW02I=;
-        b=FRxKsOeYxspq/g5ZXQF5hEOTsVmnm1UDJ/kf7q2GeDWRw12p5AWgkElZS1ols7kw+s
-         dzR64m9v0kLvMIAf98898PxAp+rZRaCMiXSRy4brZInJjJ6/VxxLBWM/9lwa8d1fjk3H
-         yrBRTY7uPwUlO475tyPxQAhFP+xtWiu24oAsL9T1/3ejakQNp4NhRXjorbqBjDQvC2x+
-         umWUy9HFmYG09ozyz8p/qxPi9s9GL84tQk3qVBpVhVK7pttVl9Or84knSQx1xMAHhIfz
-         CLWA+FU1t1lS2HAZfQlHELEJoCgFDSyhJVnwQLLH58Q5mnxUj/vQkHn9bAHIS8WU9hNU
-         k79w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UJQuvs9RpncXIyFZgaHy4qfH2MXeX4KRcKSd32KW02I=;
-        b=FkgJtb+vxSfjnk2azo+9RY+BBVr08+DlWL1AoOTHeXOpP6wLd2OQHUwwr10+h6Wvn6
-         F/5l7HtRc5r+2870hsq0G6xCf0sq2Yh3xaWtbVVMTlr6RjuVRab7LA1UqZCnb3eN5wUV
-         jSz3hQPtbN3ASg3MbIwU4auX5YLX+psaEk2I8vtwOccjAuAJcwSGmesaDr0X2tB8fFgA
-         ZG5aJAsDxldzSS7+Ylygbgb2nLZ74UXz3n/5chsl2WprMSBZ9sJHUx1sZsbrW7kqcX5n
-         9dgHx/DsWnWF+STfp/qWNQWYjfkFh6V7oYrDr0o78KPAeopDLgOK5pjIfAeVlyMahyed
-         Uv7Q==
-X-Gm-Message-State: APjAAAXNGsRhcVuNqHS5ibZu5+gO+iLMNgLhrUbS/uTwfHyGdxjM50BB
-        ztJ4TBuTveE4Znrjgg7HRdi2Fg==
-X-Google-Smtp-Source: APXvYqzeNhwO1ySgCH6GebdW+o3FuDqODOSO5w28TGumAGZvm+dXwumkzW+9YyKVQhWGqXpnMT98kw==
-X-Received: by 2002:a5d:4b8f:: with SMTP id b15mr22595338wrt.100.1581612736660;
-        Thu, 13 Feb 2020 08:52:16 -0800 (PST)
-Received: from localhost.localdomain ([2001:171b:2276:930:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id y6sm3484807wrl.17.2020.02.13.08.52.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2020 08:52:16 -0800 (PST)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     bhelgaas@google.com, will@kernel.org, robh+dt@kernel.org,
-        lorenzo.pieralisi@arm.com, joro@8bytes.org,
-        baolu.lu@linux.intel.com, linux-doc@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        iommu@lists.linux-foundation.org
-Cc:     corbet@lwn.net, mark.rutland@arm.com, liviu.dudau@arm.com,
-        sudeep.holla@arm.com, guohanjun@huawei.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, dwmw2@infradead.org,
-        amurray@thegoodpenguin.co.uk, frowand.list@gmail.com
-Subject: [PATCH 11/11] Documentation: Generalize the "pci=noats" boot parameter
-Date:   Thu, 13 Feb 2020 17:50:49 +0100
-Message-Id: <20200213165049.508908-12-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200213165049.508908-1-jean-philippe@linaro.org>
-References: <20200213165049.508908-1-jean-philippe@linaro.org>
+        id S1728350AbgBMRSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Feb 2020 12:18:33 -0500
+Received: from foss.arm.com ([217.140.110.172]:51294 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727781AbgBMRSd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Feb 2020 12:18:33 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9CDC6328;
+        Thu, 13 Feb 2020 09:18:32 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 204453F6CF;
+        Thu, 13 Feb 2020 09:18:31 -0800 (PST)
+Date:   Thu, 13 Feb 2020 17:18:30 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 1/9] ASoC: core: allow a dt node to provide several
+ components
+Message-ID: <20200213171830.GH4333@sirena.org.uk>
+References: <20200213155159.3235792-1-jbrunet@baylibre.com>
+ <20200213155159.3235792-2-jbrunet@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="LZFKeWUZP29EKQNE"
+Content-Disposition: inline
+In-Reply-To: <20200213155159.3235792-2-jbrunet@baylibre.com>
+X-Cookie: Academicians care, that's who.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "pci=noats" kernel parameter disables PCIe ATS globally, and affects
-any ATS-capable IOMMU driver. So rather than adding Arm SMMUv3, which
-recently gained ATS support, to the list of relevant build options,
-simplify the noats description.
 
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
- Documentation/admin-guide/kernel-parameters.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+--LZFKeWUZP29EKQNE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index dbc22d684627..e5fa8d057a3c 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -3606,8 +3606,8 @@
- 				on: Turn realloc on
- 		realloc		same as realloc=on
- 		noari		do not use PCIe ARI.
--		noats		[PCIE, Intel-IOMMU, AMD-IOMMU]
--				do not use PCIe ATS (and IOMMU device IOTLB).
-+		noats		[PCIE] Do not use PCIe ATS (and IOMMU device
-+				IOTLB).
- 		pcie_scan_all	Scan all possible PCIe devices.  Otherwise we
- 				only look for one device below a PCIe downstream
- 				port.
--- 
-2.25.0
+On Thu, Feb 13, 2020 at 04:51:51PM +0100, Jerome Brunet wrote:
 
+> At the moment, querying the dai_name will stop of the first component
+> matching the dt node. This does not allow a device (single dt node) to
+> provide several ASoC components which could then be used through DT.
+
+> This change let the search go on if the xlate function of the component
+> returns an error, giving the possibility to another component to match
+> and return the dai_name.
+
+My first question here would be why you'd want to do that rather than
+combine everything into a single component since the hardware seems to
+be doing that anyway.  Hopefully the rest of the series will answer this
+but it'd be good in the changelog here.
+
+--LZFKeWUZP29EKQNE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5FhOUACgkQJNaLcl1U
+h9CqPgf+L/Xt6fytZ8T0Qto2jS45qM+J0JJtBuwbWI1qn00Rangat1H8RPcg9vlo
+3gwlnj9jjdCCvGNB3+ECaCtCeh5QihLVZXSs8qXYIZF502avt/atdjVBfK7XT5jb
+uKjjMM+fn5wwvTfZsi3OOxXtUMbpSkuDJ82c8zFDgQBss4F7T94Lq3Qzw5f6Bvub
+/m1zvfVuh4LiTa7HADtrrD9Az0o9gO/Ielc0xH0mHydZtuv4qIMOxPQXwT/14tU1
+hLQwfy9VkkBfA0xuKKVJ0vjyWhi7A0SdE6RdbR9D0QUSBuSD2iPV28XaJD+jFwX3
+k0q3tgreqtSmKkmnySuAGJ+wTQIzVg==
+=Cn3Z
+-----END PGP SIGNATURE-----
+
+--LZFKeWUZP29EKQNE--
