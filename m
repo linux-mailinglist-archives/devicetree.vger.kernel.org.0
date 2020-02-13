@@ -2,115 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E697F15CA53
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 19:27:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E159D15CAA4
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 19:46:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727705AbgBMS1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Feb 2020 13:27:00 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39828 "EHLO mail.kernel.org"
+        id S1727781AbgBMSq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Feb 2020 13:46:28 -0500
+Received: from foss.arm.com ([217.140.110.172]:52204 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725781AbgBMS1A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Feb 2020 13:27:00 -0500
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7E991222C2;
-        Thu, 13 Feb 2020 18:26:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581618419;
-        bh=Tgkvt23nlRf0XRm+t9xKVRBeZnNy7mLvrbdLPrq1dno=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bz+2U90q4xyRoqgdjfbIX6rHvFOv6QdyFS6R6dKIw0F240hKve4cOqhYLU6RzTo0/
-         xYdsNw0MvvYnOGpW6fTmgezOVEAz5tB7pLxYFgxHqnypwKMrBJCb0typQTORRXWsQ1
-         h3oFcMDISvLmyBj62uGuw7KgJxdfMKD092DRS7Qc=
-Received: by mail-qk1-f171.google.com with SMTP id h4so6675378qkm.0;
-        Thu, 13 Feb 2020 10:26:59 -0800 (PST)
-X-Gm-Message-State: APjAAAUgAbpss0fNhG8qSnBl1pnJO0Al7CI4TIfyc5jCiJvb43UwLgmT
-        AohdDweq6JgpMao3YinTOyzOOUGSQftkNYm0/Q==
-X-Google-Smtp-Source: APXvYqydhKuBg+/ZrL4Cf+7gEQaOWH7r03zYxO/RkcD73vQs6Tc8XsgSRSpX2/PYrxCooFDmMvbFm0IEPx+1x/u9y3A=
-X-Received: by 2002:a37:85c4:: with SMTP id h187mr17247898qkd.223.1581618418620;
- Thu, 13 Feb 2020 10:26:58 -0800 (PST)
-MIME-Version: 1.0
-References: <20200213165049.508908-1-jean-philippe@linaro.org> <20200213165049.508908-4-jean-philippe@linaro.org>
-In-Reply-To: <20200213165049.508908-4-jean-philippe@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 13 Feb 2020 12:26:46 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKZP9u7bFsVT=5TzqmnHWm_bvH39ffkbN3q9-k32ynVig@mail.gmail.com>
-Message-ID: <CAL_JsqKZP9u7bFsVT=5TzqmnHWm_bvH39ffkbN3q9-k32ynVig@mail.gmail.com>
-Subject: Re: [PATCH 03/11] PCI: OF: Check whether the host bridge supports ATS
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, Will Deacon <will@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Lu Baolu <baolu.lu@linux.intel.com>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
+        id S1727725AbgBMSq1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Feb 2020 13:46:27 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0F84B328;
+        Thu, 13 Feb 2020 10:46:27 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 842C93F68E;
+        Thu, 13 Feb 2020 10:46:26 -0800 (PST)
+Date:   Thu, 13 Feb 2020 18:46:25 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        linux-spi <linux-spi@vger.kernel.org>, Han Xu <han.xu@nxp.com>,
+        Yogesh Gaur <yogeshgaur.83@gmail.com>,
+        Ashish Kumar <ashish.kumar@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Len Brown <lenb@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH V2 2/5] spi: fspi: dynamically alloc AHB memory
+Message-ID: <20200213184624.GK4333@sirena.org.uk>
+References: <20200202125950.1825013-1-aford173@gmail.com>
+ <20200202125950.1825013-2-aford173@gmail.com>
+ <CAOMZO5D3emrAk84wDS04qJC-3AyvFnqodhoMsXO-ukHnYsU+PQ@mail.gmail.com>
+ <CAHCN7xJyZRwJhnWW2mAbOeGyrMsB7Au_e6AvwiNmNS8gFUfSyw@mail.gmail.com>
+ <20200212120753.GF4028@sirena.org.uk>
+ <CAHCN7x+5bACfYVX49Lib+fmNq-dEOkcyi0gXt7rtYxrGaYbH1Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Ah40dssYA/cDqAW1"
+Content-Disposition: inline
+In-Reply-To: <CAHCN7x+5bACfYVX49Lib+fmNq-dEOkcyi0gXt7rtYxrGaYbH1Q@mail.gmail.com>
+X-Cookie: Academicians care, that's who.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 13, 2020 at 10:52 AM Jean-Philippe Brucker
-<jean-philippe@linaro.org> wrote:
->
-> Copy the ats-supported flag into the pci_host_bridge structure.
->
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> ---
->  drivers/pci/controller/pci-host-common.c | 1 +
->  drivers/pci/of.c                         | 9 +++++++++
->  include/linux/of_pci.h                   | 3 +++
->  3 files changed, 13 insertions(+)
->
-> diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
-> index 250a3fc80ec6..a6ac927be291 100644
-> --- a/drivers/pci/controller/pci-host-common.c
-> +++ b/drivers/pci/controller/pci-host-common.c
-> @@ -92,6 +92,7 @@ int pci_host_common_probe(struct platform_device *pdev,
->                 return ret;
->         }
->
-> +       of_pci_host_check_ats(bridge);
->         platform_set_drvdata(pdev, bridge->bus);
->         return 0;
->  }
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index 81ceeaa6f1d5..4b8a877f1e9f 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -576,6 +576,15 @@ int pci_parse_request_of_pci_ranges(struct device *dev,
->  }
->  EXPORT_SYMBOL_GPL(pci_parse_request_of_pci_ranges);
->
-> +void of_pci_host_check_ats(struct pci_host_bridge *bridge)
-> +{
-> +       struct device_node *np = bridge->bus->dev.of_node;
-> +
-> +       if (!np)
-> +               return;
-> +
-> +       bridge->ats_supported = of_property_read_bool(np, "ats-supported");
-> +}
 
-Not really any point in a common function if we expect this to be only
-for ECAM hosts which it seems to be based on the binding.
+--Ah40dssYA/cDqAW1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Otherwise, needs an export if not.
+On Wed, Feb 12, 2020 at 07:08:49AM -0600, Adam Ford wrote:
 
-Rob
+> The original author was copied on the initial commit.  I literally
+> generated the patch from NXP's branch,  added my notes, and pushed
+> them to the mailing lists after testing them on the  the Linux master
+> branch.   I am a bit disappointed that NXP's author hasn't responded
+> to any of the comments or feedback.  NXP knows their hardware and
+
+Bear in mind that it's been the spring festival and there's been quite a
+bit of delay in getting back to work in China resulting from coronavirus
+stuff so hopefully it's just a delay in replying.
+
+--Ah40dssYA/cDqAW1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5FmYAACgkQJNaLcl1U
+h9BIJQf/YCuS+PbvoZjpzEq+oZbCnmY0R0BkFrp7Sc1PV9zHgjKqGmQAr9RVSeSI
+kfalZEPSUkUEpxgouX+I3VVvKPpQhDEhj46+y+IXYWH/Y0QA58bDv7ctWOhIBn+Q
+vW7iTl/+CHsJdTptylbI5K0TiVP3D5wDGbiym/rvAjIGpe7FXzd9WUteXNKeLJMy
+QmhJg6z+gAVwf/mYiyM03MRx1Gn1c5C/cMkan6s189g77et3avP4nEfKb6UyApgi
+FY+BqvQCyBK7OSErmJ7H+NpqM9Rq0b7xJLknFwbfOLTpqvG8iRhGzvQyNg3uPAqt
+aAm0o3dppPZAbuc4HFV4OF5n2YoGBA==
+=r4u7
+-----END PGP SIGNATURE-----
+
+--Ah40dssYA/cDqAW1--
