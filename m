@@ -2,130 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB17415BF56
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 14:29:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D3515BF61
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 14:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729674AbgBMN3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Feb 2020 08:29:04 -0500
-Received: from mail-il1-f193.google.com ([209.85.166.193]:36765 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729588AbgBMN3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 08:29:04 -0500
-Received: by mail-il1-f193.google.com with SMTP id b15so4965045iln.3;
-        Thu, 13 Feb 2020 05:29:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yfE2W5LQkoH0UQl9XbqZm7z7YZPx+sJdXqj0cViMT9Y=;
-        b=qDPTDEy3Wwk4R4THsiNOjtlrg7zGYl9R2KtnB0Vy98kGWf8Mhue5K04gGadiYjOhJA
-         OECkjl7zgSyVTM5gbskiMbTETf+UpRizBu2GA90YYSh00wtnIubUwZNgzlLyxqv322Nt
-         2O4mOsjv3IVl5zqbDSjloBWSQzh/bXytjQEREZD1k1BtwrCRwdKPHywgcR/kymjYz59I
-         mB1xQVs4tye3cty8HbTxBWFkIilCgdhCURMlPWiJaeR6bR5PO3GCSLb2zqbTt5BJv3Dp
-         +Ednjlh1F9uwLcHkarMO30YaCVIN2e+VuOjGcWVFhpclKZrMSP6uuyRaTcFcRftXeUCz
-         BdFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yfE2W5LQkoH0UQl9XbqZm7z7YZPx+sJdXqj0cViMT9Y=;
-        b=tRBtgux72wOdWQ1xpKox7kyk9mAWBzo8/izwxkRwcCoPtXRoc9m+/uyEPQlMoJQUWD
-         qOlhW2u72qzU9xeUx7abYVMxpI4hYjQwwRUHOZKH3hNQf5PeR9GxwfKDyzhJRRhADSjq
-         fj7i/9BSQrCkXlVcijnhB8q1YRDoyP0VR0uT6SmUmJplH0kkj+8PY2JPsJ3vnH1HT2gr
-         as0P4DLnJmE9EiU0DBR6tCH+6l1C4gYkZfqfTtDXGLpxcNjf+2iwoDc2+WVgFDaV8zwB
-         shXCDRwaRmvedrXfLoPQ+C7n7sulR+v0YHPJbyPjQVTmlSXQ61S3GFSiL8WoM4PX7Nzl
-         pIiw==
-X-Gm-Message-State: APjAAAVN3xWlbBAszULQOMgcJD0jdkjmzyJaxISgdHBOPO18U7VEEXYx
-        w5vnHFp6n80CL50sTzw9njx5pxhh8ike7sYgx/A=
-X-Google-Smtp-Source: APXvYqyZADe9aFJTPHWo+2m+qnyTFGMvRJstebqLC899Zq0rrvQgRDaG+VSSVPANdZD+NvJ4x3Rs9wqKM+CNDfEx+4Y=
-X-Received: by 2002:a92:5d92:: with SMTP id e18mr15908939ilg.75.1581600543378;
- Thu, 13 Feb 2020 05:29:03 -0800 (PST)
-MIME-Version: 1.0
-References: <20200212120237.1332-1-linux.amoon@gmail.com> <20200213101744.GA11087@kozik-lap>
-In-Reply-To: <20200213101744.GA11087@kozik-lap>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Thu, 13 Feb 2020 18:58:51 +0530
-Message-ID: <CANAwSgR+PFiE0=FEhDY__FDx+470pe0OsbUXcSG64JDuG++ccQ@mail.gmail.com>
-Subject: Re: [PATCHv1 0/2] Add FSYS2 power domain for MMC driver
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1729948AbgBMNb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Feb 2020 08:31:59 -0500
+Received: from foss.arm.com ([217.140.110.172]:46636 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729901AbgBMNb7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 13 Feb 2020 08:31:59 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 77F861FB;
+        Thu, 13 Feb 2020 05:31:58 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E74B73F6CF;
+        Thu, 13 Feb 2020 05:31:57 -0800 (PST)
+Date:   Thu, 13 Feb 2020 13:31:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Jaroslav Kysela <perex@perex.cz>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Liam Girdwood <lgirdwood@gmail.com>, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, stable@vger.kernel.org,
+        Takashi Iwai <tiwai@suse.com>
+Subject: Applied "ASoC: codec2codec: avoid invalid/double-free of pcm runtime" to the asoc tree
+In-Reply-To: <20200213061147.29386-2-samuel@sholland.org>
+Message-Id: <applied-20200213061147.29386-2-samuel@sholland.org>
+X-Patchwork-Hint: ignore
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-hi Krzysztof,
+The patch
 
-On Thu, 13 Feb 2020 at 15:47, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Wed, Feb 12, 2020 at 12:02:35PM +0000, Anand Moon wrote:
-> > This patches add the power domain for MMC driver,
-> > but somehow the suspend/resume feature is broken
-> > so any input on how to fix this.
->
-> I think S2R was working on XU3-family after Marek's fixes, so you mean
-> that these patches break it?
->
-Yes I my testing mmc driver failed to come up after suspend.
+   ASoC: codec2codec: avoid invalid/double-free of pcm runtime
 
-But I see below in power domain, Just to confirm.
-#  cat /sys/kernel/debug/pm_genpd/pm_genpd_summary
-domain                          status          slaves
-    /device                                             runtime status
-----------------------------------------------------------------------
-CAM                             off-0
-FSYS2                           on
-    /devices/platform/soc/10010000.clock-controller/exynos5-subcmu.6.auto
- active
-    /devices/platform/soc/12200000.mmc                  active
-    /devices/platform/soc/12220000.mmc                  active
+has been applied to the asoc tree at
 
-# powerdebug -d
-FSYS2:
-current_state: on
-active_time: 29016991 ms
-total_idle_time: 4037 ms
-Idle States:
-             State            Time
-             S0               4037
-Devices:
-         /devices/platform/soc/10010000.clock-controller/exynos5-subcmu.6.auto
-         /devices/platform/soc/12200000.mmc
-         /devices/platform/soc/12220000.mmc
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.6
 
-> Best regards,
-> Krzysztof
->
->
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
--Anand
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> >
-> > Also on similar lines I tried to add power domain
-> > FSYS for usb3 and usb2 nodes but this time
-> > it failed to load the kernel, so how can I reslove
-> > this issue.
-> >
-> > -Anand
-> >
-> > Anand Moon (2):
-> >   ARM: dts: exynos: Add FSYS2 power domain to Exynos542x
-> >   clk: samsung: exynos542x: Move FSYS2 subsystem clocks to its sub-CMU
-> >
-> >  arch/arm/boot/dts/exynos5420.dtsi    | 10 ++++++++++
-> >  drivers/clk/samsung/clk-exynos5420.c | 24 +++++++++++++++++++++---
-> >  2 files changed, 31 insertions(+), 3 deletions(-)
-> >
-> > --
-> > 2.25.0
-> >
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From b6570fdb96edf45bcf71884bd2644bd73d348d1a Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel@sholland.org>
+Date: Thu, 13 Feb 2020 00:11:44 -0600
+Subject: [PATCH] ASoC: codec2codec: avoid invalid/double-free of pcm runtime
+
+The PCM runtime was freed during PMU in the case that the event hook
+encountered an error. However, it is also unconditionally freed during
+PMD. Avoid a double-free by dropping the call to kfree in the PMU hook.
+
+Fixes: a72706ed8208 ("ASoC: codec2codec: remove ephemeral variables")
+Cc: stable@vger.kernel.org
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+Link: https://lore.kernel.org/r/20200213061147.29386-2-samuel@sholland.org
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/soc-dapm.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
+index bc20ad9abf8b..8b24396675ec 100644
+--- a/sound/soc/soc-dapm.c
++++ b/sound/soc/soc-dapm.c
+@@ -3916,9 +3916,6 @@ snd_soc_dai_link_event_pre_pmu(struct snd_soc_dapm_widget *w,
+ 	runtime->rate = params_rate(params);
+ 
+ out:
+-	if (ret < 0)
+-		kfree(runtime);
+-
+ 	kfree(params);
+ 	return ret;
+ }
+-- 
+2.20.1
+
