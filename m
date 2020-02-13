@@ -2,88 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1300415C3AB
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 16:44:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAF4815C509
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 16:54:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728360AbgBMPn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Feb 2020 10:43:26 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:44807 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727707AbgBMPnU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 10:43:20 -0500
-Received: by mail-ed1-f67.google.com with SMTP id g19so7309976eds.11;
-        Thu, 13 Feb 2020 07:43:18 -0800 (PST)
+        id S1729182AbgBMPwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Feb 2020 10:52:50 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:35762 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729877AbgBMPwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 10:52:09 -0500
+Received: by mail-wr1-f67.google.com with SMTP id w12so7304226wrt.2
+        for <devicetree@vger.kernel.org>; Thu, 13 Feb 2020 07:52:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qRSNHxPBZ1IexXWr4sAA9opPLPtOEFKsiR173BgPSbE=;
+        b=rmDCMt8johXf39HuPfvbW10KGlsza5f82dM90WRh/o8esX8OkRNxItKTtPH80Aw7PK
+         w6hwn7YXoxCrjoydoLYw8KB+l8rFn0HuY1RWsVR55UzJk4jRrYmR0OqOv9+dllAqoqYI
+         IUfZtCwBYWOyibEPrFjbOgM10K11SHeVgTIQpGfnGO+gTk83bitTdzbao0Hgi3r5l3QQ
+         a1WcFJOjDtt1x0Fyxqw2UUXZYfxowjJxu3tleaFrPidLlZzONnLFrhPM+kmdV1h3aYm0
+         VscLAall4oZEcfJFTKX3LM8+AuGIbObycMU9LRQADS9nEzZrQVzTo3ETriJPaan58JVT
+         NeFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xWjlmZnVBt/ZlK8vapzAQmz9T3RLkyLlYRSHtgLmYd4=;
-        b=CzVCjzh+FuyLd7kL9fHAM6HRWMCvbGLuy7tvQittfhNBsrvqkFhGl6KgQ5tZ/XHVRF
-         HzNqMi5hUxJ933xS2w0oPK0P8yhpl+z4E9+4s17hzVt9HHHlux49i8ES/aaensIlKhs0
-         6jYGbOCkFjtIuUZiuXJLY5A7J3FNXm1kEcPPkI42XF99GfmyRLCKtmIBlrw3rdhCj0Pi
-         6OQIkDwFcJ33Jsx6EF4xAhKX6W3nNlmuVRSpYpxjuSFRnTengdFqMrncA9FrWDxITuBg
-         5kyS2mSAaT0qzZgX1eW/+I372xPPrJFiwVKoHULommFOlPsbNmC1VIP6tyNCoZH/wjiW
-         wJtA==
-X-Gm-Message-State: APjAAAWEaGsk8ekv2+QI2i/4BWG9nbNEpROqM8sI0EKLSf2NcG3spr6E
-        63om7lV5GmPlYQhi0DdJDL4=
-X-Google-Smtp-Source: APXvYqxC6vfH1GEp1GXd5aDVxuhj2SoNdVlypepsj2HdRdhqBL5BWW5qSOnvNylv+AF9dT1OutTu0w==
-X-Received: by 2002:a50:9b03:: with SMTP id o3mr16345398edi.371.1581608597930;
-        Thu, 13 Feb 2020 07:43:17 -0800 (PST)
-Received: from kozik-lap ([194.230.155.125])
-        by smtp.googlemail.com with ESMTPSA id w18sm293112eja.57.2020.02.13.07.43.16
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 13 Feb 2020 07:43:17 -0800 (PST)
-Date:   Thu, 13 Feb 2020 16:43:14 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCHv1 0/2] Add FSYS2 power domain for MMC driver
-Message-ID: <20200213154314.GA7215@kozik-lap>
-References: <20200212120237.1332-1-linux.amoon@gmail.com>
- <20200213101744.GA11087@kozik-lap>
- <CANAwSgR+PFiE0=FEhDY__FDx+470pe0OsbUXcSG64JDuG++ccQ@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qRSNHxPBZ1IexXWr4sAA9opPLPtOEFKsiR173BgPSbE=;
+        b=YQV0pMZAdlyil812HtndRF4OMEki+XZef+Faa7nu24SN3mJgJYXostgOAO/q37PYgP
+         rQj0aFBw08bhxc93GaglbrlklxOPeLRP1YZQ0NgEQ9Xx2CbMZBLBp6F/lBgZdf6Xcb2f
+         tZFIXa4ZOgzl/MzAj5U0vX5fnU6Ghp6gDM8zFaFeeHAvTKbXFFAjWvT1gkR08rIF0DCA
+         OMahrHWUFKoUj9YH3YF6ARJvpa5X3RES672u+duBUyCeEKF5Ahv05fiZTIu0hPXltQ0c
+         iBz4tPTeeJJV2aXY4rgknxmfP2R97htKgnlqXEoSbVQmsq++A7Zu4M4nI8Q5YugJi774
+         PYvQ==
+X-Gm-Message-State: APjAAAWQceSn5MLdVP6IaG7bzlCJtsviHd207rUof2wYktHc34ExqjsN
+        lWAqfyJXw5Ds5V7agNI56ORGVg==
+X-Google-Smtp-Source: APXvYqzaEZ72W0WraKrTyInOswcFFpztUeMtekBYMK7/Qvo39kr8aI6aa2+adZuUr6wwgRuldPDSzw==
+X-Received: by 2002:adf:dd51:: with SMTP id u17mr21617587wrm.290.1581609127423;
+        Thu, 13 Feb 2020 07:52:07 -0800 (PST)
+Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id e1sm3319814wrt.84.2020.02.13.07.52.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 13 Feb 2020 07:52:06 -0800 (PST)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 0/9] ASoC: meson: gx: add audio output support
+Date:   Thu, 13 Feb 2020 16:51:50 +0100
+Message-Id: <20200213155159.3235792-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CANAwSgR+PFiE0=FEhDY__FDx+470pe0OsbUXcSG64JDuG++ccQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 13, 2020 at 06:58:51PM +0530, Anand Moon wrote:
-> hi Krzysztof,
-> 
-> On Thu, 13 Feb 2020 at 15:47, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On Wed, Feb 12, 2020 at 12:02:35PM +0000, Anand Moon wrote:
-> > > This patches add the power domain for MMC driver,
-> > > but somehow the suspend/resume feature is broken
-> > > so any input on how to fix this.
-> >
-> > I think S2R was working on XU3-family after Marek's fixes, so you mean
-> > that these patches break it?
-> >
-> Yes I my testing mmc driver failed to come up after suspend.
+This patchset adds support for the i2s and spdif audio outputs of the
+amlogic GX SoC family, such the S905, S905X/D, S912 and S805X. These SoCs
+are used by a fair amount of boards actively maintained upstream.
 
-Patches breaking systems should be clearly marked as work in progress,
-e.g.  by using RFC instead of PATCH in the title.
+This was tested on:
+ * amlogic s912 q200
+ * libretech s805x-ac (frite)
+ * libretech s905x-cc (potato)
+ * libretech s905d-pc (tartiflette)
 
-This patchset cannot be applied.
+This could also possibly support meson8 32bits SoCs but I have not tested
+it myself and it could require some further tweaks.
 
-You probably have to figure out some missing dependencies, e.g. in
-clocks/power domains/pinctrl.
+The audio subsystem found on these SoCs has now been dropped in the newer
+designs. All recent SoCs families (like g12a and sm1) derive from the AXG
+audio architecture.
 
-Best regards,
-Krzysztof
+Jerome Brunet (9):
+  ASoC: core: allow a dt node to provide several components
+  ASoC: meson: g12a: extract codec-to-codec utils
+  ASoC: meson: aiu: add audio output dt-bindings
+  ASoC: meson: aiu: add i2s and spdif support
+  ASoC: meson: aiu: add hdmi codec control support
+  ASoC: meson: aiu: add internal dac codec control support
+  ASoC: meson: axg: extract sound card utils
+  ASoC: meson: gx: add sound card dt-binding documentation
+  ASoC: meson: gx: add sound card support
+
+ .../bindings/sound/amlogic,aiu.yaml           | 111 +++++
+ .../bindings/sound/amlogic,gx-sound-card.yaml | 113 +++++
+ include/dt-bindings/sound/meson-aiu.h         |  18 +
+ sound/soc/meson/Kconfig                       |  24 ++
+ sound/soc/meson/Makefile                      |  15 +
+ sound/soc/meson/aiu-acodec-ctrl.c             | 205 +++++++++
+ sound/soc/meson/aiu-codec-ctrl.c              | 152 +++++++
+ sound/soc/meson/aiu-encoder-i2s.c             | 324 ++++++++++++++
+ sound/soc/meson/aiu-encoder-spdif.c           | 209 +++++++++
+ sound/soc/meson/aiu-fifo-i2s.c                | 153 +++++++
+ sound/soc/meson/aiu-fifo-spdif.c              | 186 ++++++++
+ sound/soc/meson/aiu-fifo.c                    | 223 ++++++++++
+ sound/soc/meson/aiu-fifo.h                    |  50 +++
+ sound/soc/meson/aiu.c                         | 390 +++++++++++++++++
+ sound/soc/meson/aiu.h                         |  91 ++++
+ sound/soc/meson/axg-card.c                    | 403 ++----------------
+ sound/soc/meson/g12a-tohdmitx.c               | 219 ++--------
+ sound/soc/meson/gx-card.c                     | 141 ++++++
+ sound/soc/meson/meson-card-utils.c            | 385 +++++++++++++++++
+ sound/soc/meson/meson-card.h                  |  55 +++
+ sound/soc/meson/meson-codec-glue.c            | 149 +++++++
+ sound/soc/meson/meson-codec-glue.h            |  32 ++
+ sound/soc/soc-core.c                          |   8 +
+ 23 files changed, 3104 insertions(+), 552 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,aiu.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,gx-sound-card.yaml
+ create mode 100644 include/dt-bindings/sound/meson-aiu.h
+ create mode 100644 sound/soc/meson/aiu-acodec-ctrl.c
+ create mode 100644 sound/soc/meson/aiu-codec-ctrl.c
+ create mode 100644 sound/soc/meson/aiu-encoder-i2s.c
+ create mode 100644 sound/soc/meson/aiu-encoder-spdif.c
+ create mode 100644 sound/soc/meson/aiu-fifo-i2s.c
+ create mode 100644 sound/soc/meson/aiu-fifo-spdif.c
+ create mode 100644 sound/soc/meson/aiu-fifo.c
+ create mode 100644 sound/soc/meson/aiu-fifo.h
+ create mode 100644 sound/soc/meson/aiu.c
+ create mode 100644 sound/soc/meson/aiu.h
+ create mode 100644 sound/soc/meson/gx-card.c
+ create mode 100644 sound/soc/meson/meson-card-utils.c
+ create mode 100644 sound/soc/meson/meson-card.h
+ create mode 100644 sound/soc/meson/meson-codec-glue.c
+ create mode 100644 sound/soc/meson/meson-codec-glue.h
+
+-- 
+2.24.1
 
