@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B2B15BCBE
-	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 11:25:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BD6215BCD2
+	for <lists+devicetree@lfdr.de>; Thu, 13 Feb 2020 11:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729857AbgBMKZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Feb 2020 05:25:25 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:52122 "EHLO
+        id S1729428AbgBMKaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Feb 2020 05:30:22 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:52688 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729428AbgBMKZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 05:25:24 -0500
+        with ESMTP id S1726232AbgBMKaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 05:30:22 -0500
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01DAPB3E099914;
-        Thu, 13 Feb 2020 04:25:11 -0600
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01DAU0ic101320;
+        Thu, 13 Feb 2020 04:30:00 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1581589511;
-        bh=+unXCk8A5r6KU7kkOzeZMjstWbcfdR0j0YYalxxT81I=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ghp65lZZu/fBQYU+wktY/aTEG7gRbCdx6bHwHoe75obTGzqSbLcClno0SlSL60vjO
-         KzIWPUGe3isK703/oidZrkFIY61l2Ph/KxCiamZDd82n8ZYgd7YppHsskYPHFgVAUp
-         mL3SZKdAqgcCeDiilUlr9IhAlq1RV1tZg804Es5I=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01DAPB5S074749
+        s=ti-com-17Q1; t=1581589800;
+        bh=R98a9SMu5+eMeNYgNMcwCYKDHkQAW3h7Sh9JpzS1HH8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=pYQ3iGUH3kWGYdlbtTIeH6xKsUJ2vKa/0sh3w2A3E1yz1TXlfOISpy3LatJUQl+PQ
+         lOQqMo4Md4ocehc24lodfZaIYJFDj34XxSmimIqJMzx1djMbTBFP1lK0R3KHYlKfTV
+         igt6A/JYGWI5AqysnGY1FmESBIP3eyRtRuCAnD0s=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01DAU0F1080260
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 13 Feb 2020 04:25:11 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 13 Feb 2020 04:30:00 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 13
- Feb 2020 04:25:11 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2020 04:29:59 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Thu, 13 Feb 2020 04:25:11 -0600
-Received: from a0393675ula.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01DAOqpb011317;
-        Thu, 13 Feb 2020 04:25:08 -0600
-From:   Keerthy <j-keerthy@ti.com>
-To:     <rui.zhang@intel.com>, <robh+dt@kernel.org>,
-        <daniel.lezcano@linaro.org>
-CC:     <j-keerthy@ti.com>, <amit.kucheria@verdurent.com>,
-        <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <mark.rutland@arm.com>
-Subject: [PATCH 4/4] arm64: dts: ti: am6: Add VTM node
-Date:   Thu, 13 Feb 2020 15:54:40 +0530
-Message-ID: <20200213102440.20539-5-j-keerthy@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200213102440.20539-1-j-keerthy@ti.com>
-References: <20200213102440.20539-1-j-keerthy@ti.com>
+ Frontend Transport; Thu, 13 Feb 2020 04:29:59 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01DATtZs019005;
+        Thu, 13 Feb 2020 04:29:56 -0600
+Subject: Re: [PATCH v5 3/3] drm: bridge: cdns-mhdp: add j721e wrapper
+To:     Yuti Amonkar <yamonkar@cadence.com>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <maxime@cerno.tech>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <mark.rutland@arm.com>, <a.hajda@samsung.com>,
+        <narmstrong@baylibre.com>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>
+CC:     <praneeth@ti.com>, <jsarha@ti.com>, <mparab@cadence.com>,
+        <sjakhade@cadence.com>
+References: <1581481604-24499-1-git-send-email-yamonkar@cadence.com>
+ <1581481604-24499-4-git-send-email-yamonkar@cadence.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <42a2db9b-b1ad-55be-5631-669b6bfae9a7@ti.com>
+Date:   Thu, 13 Feb 2020 12:29:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <1581481604-24499-4-git-send-email-yamonkar@cadence.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VTM stands for voltage and thermal management. Add the vtm node and
-the associated thermal zones on the SoC.
+On 12/02/2020 06:26, Yuti Amonkar wrote:
+> Add j721e wrapper for mhdp, which sets up the clock and data muxes.
+> 
+> Signed-off-by: Yuti Amonkar <yamonkar@cadence.com>
+> Signed-off-by: Jyri Sarha <jsarha@ti.com>
+> ---
+>   drivers/gpu/drm/bridge/Kconfig           | 12 ++++
+>   drivers/gpu/drm/bridge/Makefile          |  3 +
+>   drivers/gpu/drm/bridge/cdns-mhdp-core.c  | 14 +++++
+>   drivers/gpu/drm/bridge/cdns-mhdp-core.h  |  1 +
+>   drivers/gpu/drm/bridge/cdns-mhdp-j721e.c | 79 ++++++++++++++++++++++++
+>   drivers/gpu/drm/bridge/cdns-mhdp-j721e.h | 55 +++++++++++++++++
+>   6 files changed, 164 insertions(+)
+>   create mode 100644 drivers/gpu/drm/bridge/cdns-mhdp-j721e.c
+>   create mode 100644 drivers/gpu/drm/bridge/cdns-mhdp-j721e.h
 
-Signed-off-by: Keerthy <j-keerthy@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-index f4227e2743f2..9c5e77d1b9e7 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi
-@@ -89,4 +89,15 @@
- 		clocks = <&k3_clks 59 0>;
- 		clock-names = "gpio";
- 	};
-+
-+	wkup_vtm0: wkup_vtm0@42050000 {
-+		compatible = "ti,am654-vtm";
-+		reg = <0x42050000 0x25c>;
-+		power-domains = <&k3_pds 80 TI_SCI_PD_EXCLUSIVE>;
-+		#thermal-sensor-cells = <1>;
-+	};
-+
-+	thermal_zones: thermal-zones {
-+		#include "am654-industrial-thermal.dtsi"
-+	};
- };
+  Tomi
+
 -- 
-2.17.1
-
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
