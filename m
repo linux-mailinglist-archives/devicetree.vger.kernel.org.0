@@ -2,93 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B268815D819
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 14:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FD5B15D828
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 14:14:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729316AbgBNNOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 08:14:04 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:40369 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729311AbgBNNOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 08:14:03 -0500
-Received: by mail-wm1-f66.google.com with SMTP id t14so10558813wmi.5
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 05:14:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=i72FvbEWLa3zDSTR6a7Xw5ZV70drp4oYObx4m5ZAKZw=;
-        b=CGm10tVlypJ+HwiqhcWlQuWRUF0hlJcMq8xVEJ/eDxvmAEJlr2zYS4wpbPjcqL+U93
-         IhxLuUYVG+v8BsfHZZcmwHPgSKW3F1HmDtVGCG+xnCaht38WxONG0t4dR9tdd7byyR17
-         idJtcPQU6ggpfUipTMm8XhXRfGt63U7vymlcpzZ+mWw1XOmcUqqCj3QjmUjeFxoMCa9p
-         vFo3+ZbDa/KqK5nsz2gi6H171NGwxr6GSIBNX3lJUicDseGgghPJUkbtw0b/4wl7WvYp
-         +LpnDDehRSkXeApfKWk6+WBIxPM8oXcB1uc0NJqotUalwHIaV7UDpcf+UJ3rL6IIFuDO
-         i5JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=i72FvbEWLa3zDSTR6a7Xw5ZV70drp4oYObx4m5ZAKZw=;
-        b=lVwhpuUI9jGTZMH+Gc5pKuMuQ3FEGQf7g0KDMOB3paAY/8rVstMMcewaWeXI109SVq
-         k0epLbOxeIGEFbdwiwJ/DImk6TTjK1lstPT5uI8n0KYnUsvXtTie/c9KxLG27zV8FCjh
-         4YFEU/mxKQnokTACs7PYnwhPLgAxAEZ7R4FBWvDXENy/axLI8rZBguez0qDJrSpuhUu8
-         cYtckjrFQh9i1jPUfjVm/vcF3HuL2iNgiJQn5ADyN8LBbFKcG7bXYVG3q3orbDf12/qM
-         4LSBUbiyg0+19qN07OnfEx2Emg7u1ZWZWVTt0UNK6elj0YAAjY20uyrWf5zchbMcqVh5
-         ZF7Q==
-X-Gm-Message-State: APjAAAXCUe5ciQf5n0fEpiGYf4ehnbZbekSn6jvaXTAkwhJI+7l0BkNR
-        +3T0vGcYL2HGCkJP04CaxF6i5w==
-X-Google-Smtp-Source: APXvYqzUVheOHVBk+bnulr6p/1Aot7pY9Y1/9GteYZ9lCoDqBaU0C2n0XPV3QxsnBugGDKHbDB89JA==
-X-Received: by 2002:a7b:c14e:: with SMTP id z14mr4621941wmi.58.1581686040170;
-        Fri, 14 Feb 2020 05:14:00 -0800 (PST)
-Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id w7sm6760792wmi.9.2020.02.14.05.13.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2020 05:13:59 -0800 (PST)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        kbuild test robot <lkp@intel.com>
-Subject: [PATCH 5/5] ASoC: meson: codec-glue: fix pcm format cast warning
-Date:   Fri, 14 Feb 2020 14:13:50 +0100
-Message-Id: <20200214131350.337968-6-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200214131350.337968-1-jbrunet@baylibre.com>
-References: <20200214131350.337968-1-jbrunet@baylibre.com>
+        id S1729371AbgBNNOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 08:14:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46994 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729229AbgBNNOh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 08:14:37 -0500
+Received: from localhost (unknown [106.201.58.38])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9644F2086A;
+        Fri, 14 Feb 2020 13:14:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1581686076;
+        bh=VOWkhA1sc+eqIqzIPtB4Bs3LA4z7Q7k58kMbeIZ5+Fw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V/rzqzEnI02r6b6vlmGE0HWdbptf900L7HcvnPygtD8T3ExIzPLgpaeoT5SQ3UZoh
+         phWkpSR3fosETus8KmLMGGCOoGP29bCAsWxzYyLmuQPyfk1QJ8KCQLmKreSATILvMc
+         cGv6hi+pq1HmuPVV5xHcFEbNSvY7tgUbjBNPDXAI=
+Date:   Fri, 14 Feb 2020 18:44:29 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, jshriram@codeaurora.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
+        mturquette@baylibre.com, psodagud@codeaurora.org,
+        robh+dt@kernel.org, tdas@codeaurora.org, tsoni@codeaurora.org,
+        vnkgutta@codeaurora.org
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: sm8250: Add sm8250 dts file
+Message-ID: <20200214131429.GW2618@vkoul-mobl>
+References: <1579905147-12142-1-git-send-email-vnkgutta@codeaurora.org>
+ <1579905147-12142-8-git-send-email-vnkgutta@codeaurora.org>
+ <20200205194750.464C020730@mail.kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200205194750.464C020730@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clarify the cast of snd_pcm_format_t and fix the sparse warning:
-restricted snd_pcm_format_t degrades to integer
+On 05-02-20, 11:47, Stephen Boyd wrote:
 
-Fixes: 9c29fd9bdf92 ("ASoC: meson: g12a: extract codec-to-codec utils")
-Reported-by: kbuild test robot <lkp@intel.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/meson-codec-glue.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> > +               CPU7: cpu@700 {
+> > +                       device_type = "cpu";
+> > +                       compatible = "qcom,kryo485";
+> > +                       reg = <0x0 0x700>;
+> > +                       enable-method = "psci";
+> > +                       next-level-cache = <&L2_700>;
+> > +                       L2_700: l2-cache {
+> > +                             compatible = "cache";
+> > +                             next-level-cache = <&L3_0>;
+> > +                       };
+> > +               };
+> > +       };
+> > +
+> > +       firmware: firmware {
+> 
+> Does this need a label?
 
-diff --git a/sound/soc/meson/meson-codec-glue.c b/sound/soc/meson/meson-codec-glue.c
-index 97bbc967e176..524a33472337 100644
---- a/sound/soc/meson/meson-codec-glue.c
-+++ b/sound/soc/meson/meson-codec-glue.c
-@@ -74,7 +74,7 @@ int meson_codec_glue_input_hw_params(struct snd_pcm_substream *substream,
- 	data->params.rates = snd_pcm_rate_to_rate_bit(params_rate(params));
- 	data->params.rate_min = params_rate(params);
- 	data->params.rate_max = params_rate(params);
--	data->params.formats = 1 << params_format(params);
-+	data->params.formats = 1ULL << (__force int) params_format(params);
- 	data->params.channels_min = params_channels(params);
- 	data->params.channels_max = params_channels(params);
- 	data->params.sig_bits = dai->driver->playback.sig_bits;
+Nope, removed
+
+> > +       soc: soc@0 {
+> > +               #address-cells = <2>;
+> > +               #size-cells = <2>;
+> > +               ranges = <0 0 0 0 0x10 0>;
+> > +               dma-ranges = <0 0 0 0 0x10 0>;
+> > +               compatible = "simple-bus";
+> > +
+> > +               gcc: clock-controller@100000 {
+> > +                       compatible = "qcom,gcc-sm8250";
+> > +                       reg = <0x0 0x00100000 0x0 0x1f0000>;
+> > +                       #clock-cells = <1>;
+> > +                       #reset-cells = <1>;
+> > +                       #power-domain-cells = <1>;
+> > +                       clock-names = "bi_tcxo",
+> > +                                       "sleep_clk";
+> 
+> Weird tabbign here.
+
+Fixed this and rest of them
+
+> > +                       #interrupt-cells = <2>;
+> > +                       interrupt-parent = <&intc>;
+> > +                       interrupt-controller;
+> > +               };
+> > +
+> > +               spmi_bus: qcom,spmi@c440000 {
+> 
+> Node name should be 'spmi'.
+
+Yup, changed
+
+> > +
+> > +                       rpmhcc: clock-controller {
+> > +                               compatible = "qcom,sm8250-rpmh-clk";
+> > +                               #clock-cells = <1>;
+> > +                               clock-names = "xo";
+> > +                               clocks = <&xo_board>;
+> > +                       };
+> > +               };
+> > +
+> > +               tcsr_mutex_regs: syscon@1f40000 {
+> > +                       compatible = "syscon";
+> > +                       reg = <0x0 0x01f40000 0x0 0x40000>;
+> > +               };
+> > +
+> > +               timer@17c20000 {
+> 
+> Doug fixed these in another thread to use offset. Run dt_bindings_check
+> and see how it fails.
+
+will do
+
+> 
+> > +                       #address-cells = <2>;
+> > +                       #size-cells = <2>;
+> > +                       ranges;
+> > +                       compatible = "arm,armv7-timer-mem";
+> > +                       reg = <0x0 0x17c20000 0x0 0x1000>;
+> > +                       clock-frequency = <19200000>;
+> 
+> Remove this. Firmware should set it up properly.
+
+Sure
+
 -- 
-2.24.1
-
+~Vinod
