@@ -2,140 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5987215DB3E
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 16:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CFB415DCE3
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 16:56:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728791AbgBNPoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 10:44:10 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:35693 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728529AbgBNPoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 10:44:10 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 40E905CD1;
-        Fri, 14 Feb 2020 10:44:09 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Fri, 14 Feb 2020 10:44:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=n5v7Ksf5fN+HGYZQY4Cr6/EpGn+
-        eFDk1rQovPH6zOQU=; b=k+dQmLVjp1h/yH4XaeEmVKsC8XumRaOXMNNVI1cAaOI
-        uVDVHEwtAtIDB4hEB2Popc9ifkFA4dteIs/9nbd2RMvo40dmSBxaFJzbS+oa2gvW
-        7UiMSSe3GRgN91WEOuZ6Xz9JOuPKjWENc3xQhOTaGEIlG/JKPEEvce0/PSa9Eg9P
-        O4uPJ7DbxXrCAyoMzCNYRZO8sxDihm+p5fR5SjPWlLvhicYiCuTjqMxjBxNJBOeN
-        viet7Cgi18ytKXsrZpVm+6cl79xYBiZ57o/axsPEEOTmJs+RWgOzXir+7xOV9XL0
-        scedVSGvykOerXakEMOaA3/iYkZ+vGvH/XMiIQOwTJQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=n5v7Ks
-        f5fN+HGYZQY4Cr6/EpGn+eFDk1rQovPH6zOQU=; b=rIA7N4TgCEXQwu43DKUW2L
-        W4++wGCiAERQclPw/7jCi/4LxxIpBDbsWUhz2Bf8azP+AUkSt+9Y3xQrHditj2pQ
-        uAJrx0xSRzp+moxYhgCPi8D5/kJkviLEKLScvhUZrcOZ8zad3RruSLo+pyGynmkH
-        u1ZfpsDKfPiBPiUaZXP4e9TvxR5yqgXJ9Md4+LyRp06TP/5nd/l9IAkhw52WJEyw
-        2Z56cPbIW+XbzKpfH3Sqe3ukv8ojpGkZEgiF9oWYLOrs6rdAPPPV1LdD6Aeu/Cr/
-        PAOS9R1KQPhuUa614o9nCmt6ln5+zBK2QcmBLuh2pEV9kxoPyZB2mOSb1a54KT1Q
-        ==
-X-ME-Sender: <xms:R8BGXrT0Z-LrkYPf54YX95PM3kh0W0mk0CCcITPa8_Hvzi8QGsl8PQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrjedtgdekudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
-    ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
-    fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:R8BGXvvKwDo-3MEP4nIBCAsXoc1LBpljPg3kX3YUlAGQpXApwUL41g>
-    <xmx:R8BGXkNWpig5YSHaEkc9zD-IcbYVcAO5yuZtUUlZ-m-b46PgjX2C8Q>
-    <xmx:R8BGXijZhTpEesb32RwtqSX5HFkfNgzcVCAKoNw5nw-6SvAFI5TOVA>
-    <xmx:ScBGXphAPunMvxwS9HvlUFBGO3sk2OaMZiwuMs5fA-XN0hEjfpHlVw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 20A1530606E9;
-        Fri, 14 Feb 2020 10:44:07 -0500 (EST)
-Date:   Fri, 14 Feb 2020 16:44:05 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: sun4i-tcon: Add LVDS Dual Link
- property
-Message-ID: <20200214154405.f5zuicm6uhhiczfs@gilmour.lan>
-References: <20200214123244.109300-1-maxime@cerno.tech>
- <20200214131025.GI4831@pendragon.ideasonboard.com>
+        id S1731818AbgBNP4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 10:56:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37540 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731815AbgBNP4E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 10:56:04 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E9AB424649;
+        Fri, 14 Feb 2020 15:56:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1581695763;
+        bh=kpIYvkygOL80jCOC4mTASNNjnr+Ez++17Cyd5v07r7w=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ne4BY4JFRI82kwc/XqNJjA2AEeRSxy8v3YsWGYPATAFDIYpyNmegotNSYxXz8c9Bh
+         gIcTOzoC9aeyYug3xDHRHmv79nuGrO6mMTksEQyytkq8xdjj/LseZdN5WgYIVxcYdn
+         s2rLEhm9AtqGJiNwM4u/k9REO7vhdN4aYxpHHa9s=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.5 331/542] arm64: dts: rockchip: add reg property to brcmf sub-nodes
+Date:   Fri, 14 Feb 2020 10:45:23 -0500
+Message-Id: <20200214154854.6746-331-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200214154854.6746-1-sashal@kernel.org>
+References: <20200214154854.6746-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ocew46sopze2pn2e"
-Content-Disposition: inline
-In-Reply-To: <20200214131025.GI4831@pendragon.ideasonboard.com>
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Johan Jonker <jbx6244@gmail.com>
 
---ocew46sopze2pn2e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[ Upstream commit 96ff264bccb22175bbe2185a1eb5204ca3c5f03f ]
 
-Hi Laurent,
+An experimental test with the command below gives this error:
+rk3399-firefly.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-orangepi.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-khadas-edge.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-khadas-edge-captain.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+rk3399-khadas-edge-v.dt.yaml: dwmmc@fe310000: wifi@1:
+'reg' is a required property
+So fix this by adding a reg property to the brcmf sub node.
+Also add #address-cells and #size-cells to prevent more warnings.
 
-On Fri, Feb 14, 2020 at 03:10:25PM +0200, Laurent Pinchart wrote:
-> Hi Maxime,
->
-> Thank you for the patch.
->
-> On Fri, Feb 14, 2020 at 01:32:43PM +0100, Maxime Ripard wrote:
-> > SoCs that have multiple TCONs can use the two set of pins on the first TCON
-> > to drive a dual-link display. Add a property to enable the dual link.
-> >
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >  .../bindings/display/allwinner,sun4i-a10-tcon.yaml         | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-> > index 86ad617d2327..aa6dd8409dbc 100644
-> > --- a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-> > +++ b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-> > @@ -105,6 +105,13 @@ properties:
-> >          - const: edp
-> >          - const: lvds
-> >
-> > +  allwinner,lvds-dual-link:
-> > +    type: boolean
-> > +    description: |
-> > +      On a SoC with two TCON with LVDS support, the first TCON can
-> > +      operate over both pins sets to output in a dual-link setup. This
-> > +      will be triggered by setting this property.
->
-> Could you maybe provide an example of how this property is supposed to
-> be used ? I'm especially wondering what ports are used in that case and
-> how they're connected.
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
 
-It's pretty trivial to support, it's only a property to set on the
-encoder node itself.
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+Link: https://lore.kernel.org/r/20200110142128.13522-1-jbx6244@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 3 +++
+ arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 3 +++
+ arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 3 +++
+ 3 files changed, 9 insertions(+)
 
-I'm not really sure what you meant by your question with the ports
-though :/
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
+index c706db0ee9ec6..76f5db696009b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
+@@ -669,9 +669,12 @@
+ 	vqmmc-supply = &vcc1v8_s3;	/* IO line */
+ 	vmmc-supply = &vcc_sdio;	/* card's power */
+ 
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	brcmf: wifi@1 {
++		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+index 4944d78a0a1cb..e87a04477440e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+@@ -654,9 +654,12 @@
+ 	sd-uhs-sdr104;
+ 	vqmmc-supply = <&vcc1v8_s3>;
+ 	vmmc-supply = <&vccio_sd>;
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	brcmf: wifi@1 {
++		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+index 0541dfce924d6..9c659f3115c88 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
+@@ -648,9 +648,12 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
+ 	sd-uhs-sdr104;
++	#address-cells = <1>;
++	#size-cells = <0>;
+ 	status = "okay";
+ 
+ 	brcmf: wifi@1 {
++		reg = <1>;
+ 		compatible = "brcm,bcm4329-fmac";
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
+-- 
+2.20.1
 
-Maxime
-
---ocew46sopze2pn2e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXkbARQAKCRDj7w1vZxhR
-xWgZAQCoX6IPh3nfofCSZf7uxIEwmYH/acb4D64t70G8fNoW4AEA0scufZoOcED6
-nd6GkciRxgxAXhF3LhkXYBnzHA7tnQY=
-=1YtU
------END PGP SIGNATURE-----
-
---ocew46sopze2pn2e--
