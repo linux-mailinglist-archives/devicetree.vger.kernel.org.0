@@ -2,95 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A8C315EE90
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:41:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E8515F2A4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 19:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389411AbgBNRla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 12:41:30 -0500
-Received: from userp2120.oracle.com ([156.151.31.85]:49318 "EHLO
-        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390130AbgBNRl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 12:41:29 -0500
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
-        by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01EHdOCr069590;
-        Fri, 14 Feb 2020 17:41:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=KmIo45/8rqTg+TK1KulK6p+LZsxnvdRAU4LsG4AGcFA=;
- b=yewe0/WD7pxSXUGJYSzccmoQh5jmPWdrnBPN2j2OMmFa1XrlxWAKzUpMdDrgq8Es6qRS
- mIRAS3dyhyMiRtdb0Zl7lqaMNMgIvXcwNc4+/OH1Hl6Tt/vpCj3cx9XUZQ1PPhpb6LCW
- vWBC/SL3ljjb5zcjXEw7d7n0kqk1dRbeCx/Ky67WK3zPD8LK7agSdjsWLeeFn7NaTkyI
- rmTpv1xqDamLAF4+zoDr17fSTtEbRJRY904qqbURjWa/P+dp3JOeE0ZVhvnFHs0FaipU
- vgp5xwHmPMLNM82Yfhkj/dyWGQLBLaTeigtWj9ux1XOk2mxpssdAqs8mxhWlTC8G2GES Lg== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by userp2120.oracle.com with ESMTP id 2y2p3t2q6h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 14 Feb 2020 17:41:02 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01EHbIHs132568;
-        Fri, 14 Feb 2020 17:41:02 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by userp3020.oracle.com with ESMTP id 2y4k9mwvdy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 14 Feb 2020 17:41:02 +0000
-Received: from abhmp0003.oracle.com (abhmp0003.oracle.com [141.146.116.9])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 01EHews6020773;
-        Fri, 14 Feb 2020 17:40:58 GMT
-Received: from [10.209.227.41] (/10.209.227.41)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Fri, 14 Feb 2020 09:40:58 -0800
-Subject: Re: [PATCH resend 0/2] dts: keystone-k2g-evm: Display support
-To:     Jyri Sarha <jsarha@ti.com>, dri-devel@lists.freedesktop.org,
-        ssantosh@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     tomi.valkeinen@ti.com, laurent.pinchart@ideasonboard.com,
-        peter.ujfalusi@ti.com, bparrot@ti.com, praneeth@ti.com,
-        robh+dt@kernel.org, mark.rutland@arm.com
-References: <cover.1581671951.git.jsarha@ti.com>
-From:   santosh.shilimkar@oracle.com
-Organization: Oracle Corporation
-Message-ID: <6749076a-cbc1-d8e2-bc35-2e2a9ad80a6d@oracle.com>
-Date:   Fri, 14 Feb 2020 09:40:55 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
- Gecko/20100101 Thunderbird/60.7.2
+        id S1730382AbgBNPuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 10:50:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54034 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730375AbgBNPuK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 10:50:10 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8F60824691;
+        Fri, 14 Feb 2020 15:50:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1581695409;
+        bh=OHflqUrzlm8/xx/dM//1K4Fu0XHAEpTzk5pVqK1KuwU=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=pMmuEBmu0BG4wZHgr3zBeANTv3Qfx1WAkF5JXC1qO/7wInl5427zFGC1/LjQdpcUH
+         MR/+w+v0N/F1/iIQsnS+9qm8f3wWhkHFQMCuldkoc2U1YGa1/dQXze2DXQbvJFP0aB
+         M1m4Vx7OD+zP62Y+bqPNpm2eQgcDT19K82shQs+0=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Baruch Siach <baruch@tkos.co.il>,
+        Denis Odintsov <d.odintsov@traviangames.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.5 057/542] arm64: dts: marvell: clearfog-gt-8k: fix switch cpu port node
+Date:   Fri, 14 Feb 2020 10:40:49 -0500
+Message-Id: <20200214154854.6746-57-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200214154854.6746-1-sashal@kernel.org>
+References: <20200214154854.6746-1-sashal@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <cover.1581671951.git.jsarha@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9531 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 suspectscore=0 spamscore=0
- adultscore=0 bulkscore=0 phishscore=0 malwarescore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
- definitions=main-2002140133
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9531 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxscore=0 malwarescore=0
- suspectscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1011
- impostorscore=0 lowpriorityscore=0 phishscore=0 adultscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
- definitions=main-2002140133
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/20 1:22 AM, Jyri Sarha wrote:
-> Resend because the earlier recipient list was wrong.
-> 
-> Now that drm/tidss is queued for mainline, lets add display support for
-> k2g-evm. There is no hurry since tidss is out only in v5.7, but it
-> should not harm to have the dts changes in place before that.
-> 
-> Jyri Sarha (2):
->    ARM: dts: keystone-k2g: Add DSS node
->    ARM: dts: keystone-k2g-evm: add HDMI video support
-> 
->   arch/arm/boot/dts/keystone-k2g-evm.dts | 101 +++++++++++++++++++++++++
->   arch/arm/boot/dts/keystone-k2g.dtsi    |  22 ++++++
->   2 files changed, 123 insertions(+)
-> 
-Ok. Will add this to the next queue.
+From: Baruch Siach <baruch@tkos.co.il>
 
-Regards,
-Santosh
+[ Upstream commit 62bba54d99407aedfe9b0a02e72e23c06e2b0116 ]
+
+Explicitly set the switch cpu (upstream) port phy-mode and managed
+properties. This fixes the Marvell 88E6141 switch serdes configuration
+with the recently enabled phylink layer.
+
+Fixes: a6120833272c ("arm64: dts: add support for SolidRun Clearfog GT 8K")
+Reported-by: Denis Odintsov <d.odintsov@traviangames.com>
+Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+index bd881497b8729..a211a046b2f2f 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+@@ -408,6 +408,8 @@
+ 				reg = <5>;
+ 				label = "cpu";
+ 				ethernet = <&cp1_eth2>;
++				phy-mode = "2500base-x";
++				managed = "in-band-status";
+ 			};
+ 		};
+ 
+-- 
+2.20.1
+
