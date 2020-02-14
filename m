@@ -2,144 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4AF415D652
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 12:10:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA76015D6C0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 12:46:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729149AbgBNLKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 06:10:44 -0500
-Received: from Galois.linutronix.de ([193.142.43.55]:54333 "EHLO
-        Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729020AbgBNLKn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 06:10:43 -0500
-Received: from [5.158.153.55] (helo=adam.guests.linutronix.de)
-        by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA1:256)
-        (Exim 4.80)
-        (envelope-from <bage@linutronix.de>)
-        id 1j2Yrp-00043V-Kf; Fri, 14 Feb 2020 12:10:41 +0100
-From:   bage@linutronix.de
-To:     devicetree@vger.kernel.org
-Cc:     Bastian Germann <bage@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728691AbgBNLqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 06:46:32 -0500
+Received: from mail27.static.mailgun.info ([104.130.122.27]:43850 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727835AbgBNLqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 06:46:31 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1581680791; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=9jTfW1XPQOwc4d0N/VsPbHurk/PVtrMK9dryJbaZjb4=; b=skmTZ6djYhsyHGL6Dk72v5nwcsRvVGOsnMIARO4Enyk/DhtNHeUcP/opbhYpjjdqyGbhRhBi
+ RYXUeFKNi1yuz5djWfb5ovcRIp3Ibax511OQttiSgyZ/5lGTh3wifkd+YKzdq3LZu/+YwI+u
+ bsA37HfQWELLzBbNlQ1/V+9asHY=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e468896.7efdb8b75ab0-smtp-out-n01;
+ Fri, 14 Feb 2020 11:46:30 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6B1FCC447A0; Fri, 14 Feb 2020 11:46:29 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from vbadigan-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: vbadigan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B3352C433A2;
+        Fri, 14 Feb 2020 11:46:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B3352C433A2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=vbadigan@codeaurora.org
+From:   Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org
+Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
+        sayalil@codeaurora.org, cang@codeaurora.org,
+        rampraka@codeaurora.org, dianders@google.com,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benedikt Spranger <b.spranger@linutronix.de>
-Subject: [PATCH v2 3/3] ARM: dts: sun7i: Add Linutronix Testbox v2 board
-Date:   Fri, 14 Feb 2020 12:10:03 +0100
-Message-Id: <20200214111003.11115-4-bage@linutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200214111003.11115-1-bage@linutronix.de>
-References: <20200206113328.7296-1-bage@linutronix.de>
- <20200214111003.11115-1-bage@linutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Linutronix-Spam-Score: -1.0
-X-Linutronix-Spam-Level: -
-X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required,  ALL_TRUSTED=-1,SHORTCIRCUIT=-0.0001
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH V2] dt-bindings: mmc: sdhci-msm: Add CQE reg map
+Date:   Fri, 14 Feb 2020 17:15:52 +0530
+Message-Id: <1581680753-9067-1-git-send-email-vbadigan@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1581434955-11087-1-git-send-email-vbadigan@codeaurora.org>
+References: <1581434955-11087-1-git-send-email-vbadigan@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bastian Germann <bage@linutronix.de>
+CQE feature has been enabled on sdhci-msm. Add CQE reg map
+that needs to be supplied for supporting CQE feature.
 
-The Testbox board is an open hardware enhancement for the Lamobo R1 router
-board.  The Testbox board is used in the CI-RT project to manage devices
-under test (https://ci-rt.linutronix.de).
-
-The hardware project is located at https://github.com/ci-rt/testbox-shield
-
-The Testbox v2 expands the Lamobo R1 router board with
-- a power supply,
-- a CAN bus PHY,
-- a power control,
-- a relay,
-- an I2C EEPROM,
-- a secure key storage (ATECC608a) and
-- two RS232 compliant serial ports.
-
-Co-developed-by: Benedikt Spranger <b.spranger@linutronix.de>
-Signed-off-by: Benedikt Spranger <b.spranger@linutronix.de>
-Signed-off-by: Bastian Germann <bage@linutronix.de>
+Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
 ---
- arch/arm/boot/dts/Makefile                    |  1 +
- .../dts/sun7i-a20-linutronix-testbox-v2.dts   | 56 +++++++++++++++++++
- 2 files changed, 57 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun7i-a20-linutronix-testbox-v2.dts
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index d6546d2676b9..e9ddca2946ce 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1086,6 +1086,7 @@ dtb-$(CONFIG_MACH_SUN7I) += \
- 	sun7i-a20-i12-tvbox.dtb \
- 	sun7i-a20-icnova-swac.dtb \
- 	sun7i-a20-lamobo-r1.dtb \
-+	sun7i-a20-linutronix-testbox-v2.dtb \
- 	sun7i-a20-m3.dtb \
- 	sun7i-a20-mk808c.dtb \
- 	sun7i-a20-olimex-som-evb.dtb \
-diff --git a/arch/arm/boot/dts/sun7i-a20-linutronix-testbox-v2.dts b/arch/arm/boot/dts/sun7i-a20-linutronix-testbox-v2.dts
-new file mode 100644
-index 000000000000..685874d44e35
---- /dev/null
-+++ b/arch/arm/boot/dts/sun7i-a20-linutronix-testbox-v2.dts
-@@ -0,0 +1,56 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright 2020 Linutronix GmbH
-+ * Author: Benedikt Spranger <b.spranger@linutronix.de>
-+ */
-+
-+/dts-v1/;
-+#include "sun7i-a20-lamobo-r1.dts"
-+
-+/ {
-+	model = "Lamobo R1";
-+	compatible = "linutronix,testbox-v2", "lamobo,lamobo-r1", "allwinner,sun7i-a20";
-+
-+	leds {
-+		led-opto1 {
-+			label = "lamobo_r1:opto:powerswitch";
-+			gpios = <&pio 7 3 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-opto2 {
-+			label = "lamobo_r1:opto:relay";
-+			gpios = <&pio 7 5 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	eeprom: eeprom@50 {
-+		compatible = "atmel,24c08";
-+		reg = <0x50>;
-+		status = "okay";
-+	};
-+
-+	atecc508a@60 {
-+		compatible = "atmel,atecc508a";
-+		reg = <0x60>;
-+	};
-+};
-+
-+&pio {
-+	led_pins_lamobo_r1: led-pins {
-+		pins = "PH3", "PH5", "PH24";
-+		function = "gpio_out";
-+		drive-strength = <40>;
-+		bias-disable;
-+	};
-+};
-+
-+&can0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&can_ph_pins>;
-+	status = "okay";
-+};
+Changes since V1:
+	- Updated description for more clarity & Fixed typos.
+---
+ Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+index 7ee639b..ad0ee83 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+@@ -26,7 +26,13 @@ Required properties:
+ 
+ - reg: Base address and length of the register in the following order:
+ 	- Host controller register map (required)
+-	- SD Core register map (required for msm-v4 and below)
++	- SD Core register map (required for controllers earlier than msm-v5)
++	- CQE register map (Optional, CQE support is present on SDHC instance meant
++	                    for eMMC and version v4.2 and above)
++- reg-names: When CQE register map is supplied, below reg-names are required
++	- "hc_mem" for Host controller register map
++	- "core_mem" for SD core register map
++	- "cqhci_mem" for CQE register map
+ - interrupts: Should contain an interrupt-specifiers for the interrupts:
+ 	- Host controller interrupt (required)
+ - pinctrl-names: Should contain only one value - "default".
 -- 
-2.20.1
-
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc., is a member of Code Aurora Forum, a Linux Foundation Collaborative Project
