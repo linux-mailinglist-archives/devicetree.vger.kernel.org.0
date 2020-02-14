@@ -2,54 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 159AD15D0AB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 04:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BFF815D113
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 05:33:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728523AbgBNDkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 13 Feb 2020 22:40:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50390 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728052AbgBNDkI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 13 Feb 2020 22:40:08 -0500
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1877D206ED;
-        Fri, 14 Feb 2020 03:40:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581651607;
-        bh=I0SXNiBQ/dripHcfy1hs98Y2yp5mekzCc8CsjZHMorE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wsBFkoUyopb2IzuOGEMS+azX9KztOzdQ1MH2po6DGegBegDhUCpGl01XzC2Fn0wJI
-         JtEhGZuV27oje32ofd3z8Xe4Tqsyu/eYjFSrqrI+N6Jzirw/lSjtAmjUAlS04Vyxlt
-         4nhdVGKlvPZYd+11f9gG9JDmo2la7hNvwX+qUhkg=
-Date:   Fri, 14 Feb 2020 11:40:02 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Yangbo Lu <yangbo.lu@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH] arm64: dts: ls1088a: support eMMC HS200 speed mode for
- RDB board
-Message-ID: <20200214034001.GR22842@dragon>
-References: <20200204040928.32320-1-yangbo.lu@nxp.com>
+        id S1728685AbgBNEdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 13 Feb 2020 23:33:33 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:4306 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728239AbgBNEdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 13 Feb 2020 23:33:33 -0500
+X-UUID: 3042e2da5e7c484c98e0979874365b81-20200214
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=sOXRtKwjw1Ahc1rly56OaA1QzNe/iiZaYY1UpQs1y/g=;
+        b=VIEAdEWKZU2dx2qC57jM/2WPVYo4Anw0ZUKG0nHAyWMs3TzyRnnamaYz1t8Up7eUUroJETTcTOFyN72sq5MECl2fhjQLbNq66jITeAIN74dRFwFzUdOKbtDkD93FvbezvOxxQIH0U4y4zu4DzcgKtCfyDsoTJyB3+3UA8MRmtNE=;
+X-UUID: 3042e2da5e7c484c98e0979874365b81-20200214
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 471597843; Fri, 14 Feb 2020 12:33:28 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 14 Feb 2020 12:33:56 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 14 Feb 2020 12:33:18 +0800
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>
+Subject: [PATCH 0/3] Remove atomic_exec
+Date:   Fri, 14 Feb 2020 12:33:22 +0800
+Message-ID: <20200214043325.16618-1-bibby.hsieh@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200204040928.32320-1-yangbo.lu@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 04, 2020 at 12:09:28PM +0800, Yangbo Lu wrote:
-> This patch is to add eMMC HS200 speed mode support on ls1088ardb
-> whose controller and peripheral circut support such capability.
-> And clocks dts property is needed for driver to get peripheral
-> clock value used for this speed mode.
-> 
-> Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
+VGhlIGF0b21pY19leGVjIHdhcyBkZXNpZ25lZCBmb3IgcHJvY2Vzc2luZyBjb250aW51b3VzDQpw
+YWNrZXRzIG9mIGNvbW1hbmRzIGluIGF0b21pYyB3YXkgZm9yIE1lZGlhdGVrIERSTSBkcml2ZXIu
+DQoNCkFmdGVyIHdlIGltcGxlbWVudCBmbHVzaCBmdW5jdGlvbiwgTWVkaWF0ZWsgRFJNIGRyaXZl
+cg0KZG9lc24ndCBuZWVkIGF0b21pY19leGVjLCB0aGUgcHJpbWFyeSBjb25jZXB0IGlzIHRvIGxl
+dA0KTWVkaWF0ZWsgRFJNIGRyaXZlciBjYW4gbWFrZSBzdXJlIHByZXZpb3VzIG1lc3NhZ2UgZG9u
+ZSBvcg0KYmUgYWJvcnRlZCAoaWYgdGhlIG1lc3NhZ2UgaGFzIG5vdCBzdGFydGVkIHlldCkgYmVm
+b3JlIHRoZXkNCnNlbmQgbmV4dCBtZXNzYWdlLg0KDQpCaWJieSBIc2llaCAoMyk6DQogIG1haWxi
+b3g6IG1lZGlhdGVrOiBpbXBsZW1lbnQgZmx1c2ggZnVuY3Rpb24NCiAgbWFpbGJveDogbWVkaWF0
+ZWs6IHJlbW92ZSBpbXBsZW1lbnRhdGlvbiByZWxhdGVkIHRvIGF0b21pY19leGVjDQogIGR0LWJp
+bmRpbmc6IGdjZTogcmVtb3ZlIGF0b21pY19leGVjIGluIG1ib3hlcyBwcm9wZXJ0eQ0KDQogLi4u
+L2RldmljZXRyZWUvYmluZGluZ3MvbWFpbGJveC9tdGstZ2NlLnR4dCAgIHwgIDEwICstDQogZHJp
+dmVycy9tYWlsYm94L210ay1jbWRxLW1haWxib3guYyAgICAgICAgICAgIHwgMTI2ICsrKysrKysr
+LS0tLS0tLS0tLQ0KIDIgZmlsZXMgY2hhbmdlZCwgNjAgaW5zZXJ0aW9ucygrKSwgNzYgZGVsZXRp
+b25zKC0pDQoNCi0tIA0KMi4xOC4wDQo=
 
-Applied, thanks.
