@@ -2,90 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECB0315E960
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:07:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40B1A15EB38
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392390AbgBNQOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 11:14:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44576 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392383AbgBNQOr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 11:14:47 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 336E7246D2;
-        Fri, 14 Feb 2020 16:14:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581696887;
-        bh=XqHntQ68nAA1PkhJZLhzZ1cKTnOr9ceFKNXlAqKnqBA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Nhaf9M8LDFS7Qv3pR2bbTeWyzFwwV7IJnBWGCtQPu/p2cW4MX/OM7Kpnow/9aRFL9
-         GjIQpRJDy1iLAUdjSCP8qshobUJ+BmRnpySzKlUCg2xhqvmxuU2o6Npe2Da6jwxlFe
-         MdI4LkYgogoYQ5SzbvMo9er+8o9HU43e7YWGOHbg=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 140/252] ARM: dts: stm32: Add power-supply for DSI panel on stm32f469-disco
-Date:   Fri, 14 Feb 2020 11:09:55 -0500
-Message-Id: <20200214161147.15842-140-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200214161147.15842-1-sashal@kernel.org>
-References: <20200214161147.15842-1-sashal@kernel.org>
+        id S2391618AbgBNQKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 11:10:45 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:35138 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391572AbgBNQKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 11:10:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1581696638;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=ZPKJi9DpktAlJ6/TPMniw8POBwTJ4LOZk0WaWGAQMpk=;
+        b=K/NEapG6OwX2fYjxumsHooW6mv71uv28Ih34WLaJTmFCd2AdnmipCe09aBxcjFcx7J
+        96N58/ep9EvH1ZqVUh+8rNXYh1hcMAxeNI3+lJPGcsEA/VxisI3J7VO3xN9g90Lkcaa6
+        rn3QoUJ3X6QNFb+ROYrD3GZMljljrU7JWMUfDX2gi2DRp23AglcKPg3SMBLFp1sJdgXA
+        LADu/oov94tKN4JxHBMYe6jAjoWDP3BnHFar2jrKSi4YvEaWBJwv+C2hTiv3MTlUbroe
+        L3tcdf/XErG6goXBjoR9zAdS//IfC9WlRgWiZJe6Q5n37zhhodHOEKPnf5GYjD33iPI3
+        ovxg==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UNf2M7OMfsfQx3"
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+        by smtp.strato.de (RZmta 46.1.12 DYNA|AUTH)
+        with ESMTPSA id U06217w1EGAPFkv
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Fri, 14 Feb 2020 17:10:25 +0100 (CET)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     Paul Boddie <paul@boddie.org.uk>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Andi Kleen <ak@linux.intel.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Kees Cook <keescook@chromium.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Subject: [PATCH v2 00/12] MIPS: Fixes and improvements for CI20 board (JZ4780)
+Date:   Fri, 14 Feb 2020 17:10:12 +0100
+Message-Id: <cover.1581696624.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Benjamin Gaignard <benjamin.gaignard@st.com>
+V2:
+* dropped "net: davicom: dm9000: allow to pass MAC address through mac_addr module parameter"
+  from this series because it goes through the netdev tree
+  (suggested by Andrew Lunn <andrew@lunn.ch>)
+* added a "fixes:" for "MIPS: DTS: CI20: fix PMU definitions for ACT8600"
+  and "MIPS: DTS: CI20: fix interrupt for pcf8563 RTC"
+  (suggested by Andreas Kemnade <andreas@kemnade.info>)
+* "i2c: jz4780: silence log flood on txabrt" dropped because it is
+  replaced by a new version in v5.6 by Wolfram Sang <wsa@the-dreams.de>
 
-[ Upstream commit 0ff15a86d0c5a3f004fee2e92d65b88e56a3bc58 ]
+PATCH V1 2020-02-11 22:41:43:
+This patch set provides several improvements for the CI20 board:
 
-Add a fixed regulator and use it as power supply for DSI panel.
+* suppress warnings from i2c if device is not responding
+* make ingenic-drm found through DT
+* allow davicom dm9000 ethernet controller to use MAC address provided by U-Boot
+* fix #include in jz4780.dtsi
+* configure for loadable kernel modules
+* add DTS for IR sensor and SW1 button
+* configure so that LEDs, IR sensor, SW1 button have drivers
+* fix DTS for ACT8600 PMU and configure driver
+* fix interrupt of nxp,pcf8563
 
-Fixes: 18c8866266 ("ARM: dts: stm32: Add display support on stm32f469-disco")
+There is another patch set in our queue to add HDMI support on top of this work.
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/stm32f469-disco.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 
-diff --git a/arch/arm/boot/dts/stm32f469-disco.dts b/arch/arm/boot/dts/stm32f469-disco.dts
-index 3ee768cb86fc9..eea979ef5512f 100644
---- a/arch/arm/boot/dts/stm32f469-disco.dts
-+++ b/arch/arm/boot/dts/stm32f469-disco.dts
-@@ -75,6 +75,13 @@
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
-+	vdd_dsi: vdd-dsi {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_dsi";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	soc {
- 		dma-ranges = <0xc0000000 0x0 0x10000000>;
- 	};
-@@ -154,6 +161,7 @@
- 		compatible = "orisetech,otm8009a";
- 		reg = <0>; /* dsi virtual channel (0..3) */
- 		reset-gpios = <&gpioh 7 GPIO_ACTIVE_LOW>;
-+		power-supply = <&vdd_dsi>;
- 		status = "okay";
- 
- 		port {
+
+Alex Smith (1):
+  MIPS: DTS: CI20: add DT node for IR sensor
+
+H. Nikolaus Schaller (11):
+  drm: ingenic-drm: add MODULE_DEVICE_TABLE
+  MIPS: DTS: jz4780: add #includes for irq.h and gpio.h
+  MIPS: CI20: defconfig: configure for supporting modules
+  MIPS: CI20: defconfig: compile leds-gpio driver into the kernel and
+    configure for LED triggers
+  MIPS: DTS: CI20: fix PMU definitions for ACT8600
+  MIPS: CI20: defconfig: configure CONFIG_REGULATOR_ACT8865 for PMU
+  MIPS: DTS: CI20: give eth0_power a defined voltage.
+  MIPS: CI20: defconfig: compile gpio-ir driver
+  MIPS: DTS: CI20: add DT node for SW1 as Enter button
+  MIPS: CI20: defconfig: configure for CONFIG_KEYBOARD_GPIO=m
+  MIPS: DTS: CI20: fix interrupt for pcf8563 RTC
+
+ arch/mips/boot/dts/ingenic/ci20.dts    | 71 ++++++++++++++++++++------
+ arch/mips/boot/dts/ingenic/jz4780.dtsi |  2 +
+ arch/mips/configs/ci20_defconfig       | 21 ++++++++
+ drivers/gpu/drm/ingenic/ingenic-drm.c  |  2 +
+ 4 files changed, 80 insertions(+), 16 deletions(-)
+
 -- 
-2.20.1
+2.23.0
 
