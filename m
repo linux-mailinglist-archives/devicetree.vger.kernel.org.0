@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 890D715EB40
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F114715EB34
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391646AbgBNQKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 11:10:52 -0500
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.124]:36123 "EHLO
+        id S2389150AbgBNRTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 12:19:15 -0500
+Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.124]:19639 "EHLO
         mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391603AbgBNQKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 11:10:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1581696641;
+        with ESMTP id S2391607AbgBNQKx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 11:10:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1581696642;
         s=strato-dkim-0002; d=goldelico.com;
         h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
         X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=dZbZVnixfoO3ZI6/71WGGwComZxww6jvUSKhufZA4ck=;
-        b=qqR6ysT+tq1UT58oNVjbDZpcqqp4orVxHFkTflGkO6wVlP2TF8HBx3xLLUY3bhtLQo
-        Zscr3oXH0pD+M2EfKPS1MjtQePLHWDOWYVVASGDKS3niSsnUb9UyAcjrRXhNbSDoJQdv
-        Pqwf/Q6uVedE0GNIa/xpsFUm7LplgyJ/PPmIqR2+KX572aecjXdFyP3SFNiMsTQ3p4ex
-        dtaZQdLF38e6Mt9wnNbPEczKaVy92a86kYG5Gq369btAC/7XNMJ112HZVE/ICcEVqYyd
-        sZ7Wvn0tad/24RcZaduQXZP1DHSZsbVgsrp70V2vDuAu/OQjVTbO4gmM8YXXrLZF3Jqz
-        r3/g==
+        bh=3oO7x2A3vdUHmUPMqDNJJ9DsdN1nPGYoXmW4gDFFS+k=;
+        b=DPm2fp5U1fSACRGiAgOjmYWs7+jNqufvSiK2JUET9VWvfbKBXUFnSFfk+CQdH5v8kS
+        sfxtQ7ne5Mg9dh6kacDYiRNiDY1D40MAx4Bv2eXxTZLRkS1wkXoTFEKMdfs4OmbOMwgJ
+        CZQy0eIldUQPPsN2UyMYS2coPHDQF0T+cIgnksQHuGnYVZxMDWG4JzyROEfxCDjkoWzd
+        OydLAWUqPizxg7CiHF9x4FbCi65mK4FgjAYmDgKw3K/tTw1/1fSCK436IasMtR0dMhiy
+        T7ZKmek8AivltBVTZ1bL+5mabQuODbeV9VZh/LCXn7LWIUSdafwWz26d2lHmEYiCiWwg
+        tZRg==
 X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UNf2M7OMfsfQx3"
 X-RZG-CLASS-ID: mo00
 Received: from iMac.fritz.box
         by smtp.strato.de (RZmta 46.1.12 DYNA|AUTH)
-        with ESMTPSA id U06217w1EGAWFl5
+        with ESMTPSA id U06217w1EGAXFl7
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
         (Client did not present a certificate);
-        Fri, 14 Feb 2020 17:10:32 +0100 (CET)
+        Fri, 14 Feb 2020 17:10:33 +0100 (CET)
 From:   "H. Nikolaus Schaller" <hns@goldelico.com>
 To:     Paul Boddie <paul@boddie.org.uk>,
         Paul Cercueil <paul@crapouillou.net>,
@@ -46,9 +46,9 @@ To:     Paul Boddie <paul@boddie.org.uk>,
 Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
         linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
         letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Subject: [PATCH v2 10/12] MIPS: DTS: CI20: add DT node for SW1 as Enter button
-Date:   Fri, 14 Feb 2020 17:10:22 +0100
-Message-Id: <c3ee5a9d9831c291cff3762c01a6f3d8665745d2.1581696624.git.hns@goldelico.com>
+Subject: [PATCH v2 12/12] MIPS: DTS: CI20: fix interrupt for pcf8563 RTC
+Date:   Fri, 14 Feb 2020 17:10:24 +0100
+Message-Id: <42aed0c7c063fa6c289fcbf361645056e15f513c.1581696624.git.hns@goldelico.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <cover.1581696624.git.hns@goldelico.com>
 References: <cover.1581696624.git.hns@goldelico.com>
@@ -59,46 +59,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SW1 button can be used as a simple one-button keyboard
-and is connected to PD17.
+Interrupts should not be specified by interrupt line but by
+gpio parent and reference.
 
-Note: SW1 has a second meaning to change the boot sequence
-when pressed while powering on.
-
+Fixes: 73f2b940474d ("MIPS: CI20: DTS: Add I2C nodes")
 Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 ---
- arch/mips/boot/dts/ingenic/ci20.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/mips/boot/dts/ingenic/ci20.dts | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-index b4a820313992..8f9d182566db 100644
+index 8f9d182566db..4bacefa2cfce 100644
 --- a/arch/mips/boot/dts/ingenic/ci20.dts
 +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-@@ -4,6 +4,7 @@
- #include "jz4780.dtsi"
- #include <dt-bindings/clock/ingenic,tcu.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
- 
- / {
- 	compatible = "img,ci20", "ingenic,jz4780";
-@@ -25,6 +26,17 @@
- 		       0x30000000 0x30000000>;
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
+@@ -298,7 +298,9 @@ Optional input supply properties:
+ 		rtc@51 {
+ 			compatible = "nxp,pcf8563";
+ 			reg = <0x51>;
+-			interrupts = <110>;
 +
-+		sw1 {
-+			label = "ci20:sw1";
-+			linux,code = <KEY_ENTER>;
-+			gpios = <&gpd 17 GPIO_ACTIVE_HIGH>;
-+			wakeup-source;
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
++			interrupt-parent = <&gpf>;
++			interrupts = <30 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ };
  
 -- 
 2.23.0
