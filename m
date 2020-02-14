@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A056415D81D
+	by mail.lfdr.de (Postfix) with ESMTP id 2AA7D15D81C
 	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 14:14:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729341AbgBNNOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 08:14:11 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:34603 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729256AbgBNNOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 08:14:00 -0500
-Received: by mail-wr1-f66.google.com with SMTP id n10so8917997wrm.1
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 05:13:58 -0800 (PST)
+        id S1729339AbgBNNOK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 08:14:10 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:34878 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729296AbgBNNOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 08:14:01 -0500
+Received: by mail-wm1-f67.google.com with SMTP id b17so10585741wmb.0
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 05:13:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=vuwuzpsX5RzClpZoSCXE8jPlP14S0+i5Nh9kd/OQAlU=;
-        b=TSTqqQMFRXUb+avCLPyEtyy/SXMFgBkz3pOzmJbAzGCp49zkBAxH+R1F/rhbnNxTFD
-         Lk+85ejQ9VGaB7p/I4fQH7B7SdZAVt7MLVbNYuC7JYW+x61DQrc2AWz8LSevDK05D5eM
-         HcrXJxXWzTXuLSNhEvuWHScbTYgK6y1xzaKe5Lcg9UBtw6PwP9hs115Own9COoQ83NFd
-         Ywc8T0gKKEGTgQ/6RHwKCvpXT0LlDeHmBbnWaLQQ+hrEcvsTBE7pSSdiTIZhk4an+wBg
-         3pSd5O99tNdGusYKMLiX2H6bckHhb5Oj10pHRP/mJwt2i895/6nWHO18IV24BQyvxVdJ
-         /THg==
+        bh=R5hDX2fKXXUqTN4gPhmTaSqEJNj3ED130xdKjaE+HMU=;
+        b=crz6YhDtrV4g8O0/zuiDTYuG8zBCm32KRjK1pD7VSdJPhUVaoAYvLpqkt3v7PIzjH3
+         obkCAkhtBFnXK0ExU10NKjBrPtLnGlHTsfOGNOgSjcQhRYEOeRtAg1kX/YRO+Cpa9CLE
+         SyXdc2npbGM93qpvkjgJrD/mv/tT2utWUvKQKBvK9rmNbTqeXFFI5Ah27zYZyLJdsPlH
+         abrWcUMYrrH+AJtI+u6RxalK5ymeul/ch5gXVOK15AQlgMEAY5XYjtclqy18QKxpgTHN
+         EzYMvc6y+368tLzlLAASePwT+nXO3iliU+BhwY4QgFIoei+DzzeE7FcVSYd8tUstN+zy
+         snGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=vuwuzpsX5RzClpZoSCXE8jPlP14S0+i5Nh9kd/OQAlU=;
-        b=jyyYhWo/rgjiQhRpXPmuK+ArrvdN4g35j3aA3tck8YmSlq5HkjDk7VGCbDsKFf1rSG
-         rd0ERhS6Hpl7HIyYWgd9X0zFWiXjCruakZ9Vb1/VyQpUGir0G5080D+sSe/AFy2GlTv1
-         fY6PedtBrKQBg50iCHxopnSx1efc5tuTnZUBhrzP44Q+besS+VuOKd0cH75vibd/iE4K
-         MEMKw3YmCZVqFfEhRRLqnYcW/RcXUbgAZnmy/ewczLbywYuCmU9Zv6qg5vhVUVIGcckM
-         Kej6KV3QvxL+yV/Mn+fIjWwFNLR78dLMwphLztFCmra2RpEDry8nOnk7LM8v8dSN067m
-         UCaA==
-X-Gm-Message-State: APjAAAUJPbyJuQKAyDJEwOy/UtGsiELZ5D4dQt6xgmc1WDu7YW85eMQb
-        nbaIyYkiL/Lud6dGt3eAyO32kA==
-X-Google-Smtp-Source: APXvYqxMHOnNCwLIWDmiOvwhVwAWtwAZf5cc+Xtor4Tr9qkozMweqEkbj+d370UvqeuQ9mcLgqpjyA==
-X-Received: by 2002:a5d:5088:: with SMTP id a8mr3985658wrt.162.1581686037685;
-        Fri, 14 Feb 2020 05:13:57 -0800 (PST)
+        bh=R5hDX2fKXXUqTN4gPhmTaSqEJNj3ED130xdKjaE+HMU=;
+        b=riiXTPrNEYkZajH6t1c402hXgQTsrGjSbK2A2qvTxY+H97m2fkMhag51cNs0WjbS5h
+         fZDAwfjPXln9sSuY9aS+LP1TdUcgHl3bjJ5MH2+A3TB48r4Xk+5cg4OQ330lvH1ANVU4
+         c/VaoANE5qlat2/24V9zlQ3oODzLk4NbEP/W/0lhEnl9HAScL7ZfwZyCR337Rt9MbtzB
+         yeqm/k2oHNpf1kAWyMP/crBKUTzdrB9mh62rlUYgp9QiCSRq/9sh0VWk/K6ATpPwuAbo
+         sqEtUOL8eFGYBmFL10NrYmUFy2w17jOzdcBXDipnbiZMxwNi7a3u3Z1PdAHnd/ntMbyE
+         1nMA==
+X-Gm-Message-State: APjAAAWJEEY9vqc40KC8djYmi84JT8A+LSDHg75pi24GtcpfkEgvqllV
+        K/WCVouk/TZIGROKRh1tB/FcBw==
+X-Google-Smtp-Source: APXvYqwgaIoCglawV5EQ+iFySvSsaN3OWiu9vP82DWE/KGYV9dscwOSz5sA+BE7GOlaYfgmLrE+ljA==
+X-Received: by 2002:a1c:4c13:: with SMTP id z19mr4579049wmf.75.1581686038936;
+        Fri, 14 Feb 2020 05:13:58 -0800 (PST)
 Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id w7sm6760792wmi.9.2020.02.14.05.13.56
+        by smtp.googlemail.com with ESMTPSA id w7sm6760792wmi.9.2020.02.14.05.13.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2020 05:13:57 -0800 (PST)
+        Fri, 14 Feb 2020 05:13:58 -0800 (PST)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        kbuild test robot <lkp@intel.com>
-Subject: [PATCH 3/5] ASoC: meson: aiu: fix irq registration
-Date:   Fri, 14 Feb 2020 14:13:48 +0100
-Message-Id: <20200214131350.337968-4-jbrunet@baylibre.com>
+        Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 4/5] ASoC: meson: aiu: fix acodec dai input name init
+Date:   Fri, 14 Feb 2020 14:13:49 +0100
+Message-Id: <20200214131350.337968-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200214131350.337968-1-jbrunet@baylibre.com>
 References: <20200214131350.337968-1-jbrunet@baylibre.com>
@@ -66,57 +65,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The aiu stored the irq in an unsigned integer which may have discarded an
-error returned by platform_get_irq_byname(). This is incorrect and should
-have been a signed integer.
+Remove the double initialization of the dai input name as reported by
+sparse.
 
-Also drop the irq error traces from the probe function as this is already
-done by platform_get_irq_byname().
-
-Fixes: 6ae9ca9ce986 ("ASoC: meson: aiu: add i2s and spdif support")
-Reported-by: kbuild test robot <lkp@intel.com>
+Fixes: 65816025d461 ("ASoC: meson: aiu: add internal dac codec control support")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/aiu.c | 8 ++------
- sound/soc/meson/aiu.h | 2 +-
- 2 files changed, 3 insertions(+), 7 deletions(-)
+ sound/soc/meson/aiu-acodec-ctrl.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/sound/soc/meson/aiu.c b/sound/soc/meson/aiu.c
-index de678a9d5cab..34b40b8b8299 100644
---- a/sound/soc/meson/aiu.c
-+++ b/sound/soc/meson/aiu.c
-@@ -314,16 +314,12 @@ static int aiu_probe(struct platform_device *pdev)
- 	}
+diff --git a/sound/soc/meson/aiu-acodec-ctrl.c b/sound/soc/meson/aiu-acodec-ctrl.c
+index 12d8a4d351a1..b8e88b1a4fc8 100644
+--- a/sound/soc/meson/aiu-acodec-ctrl.c
++++ b/sound/soc/meson/aiu-acodec-ctrl.c
+@@ -128,7 +128,6 @@ static const struct snd_soc_dai_ops aiu_acodec_ctrl_output_ops = {
  
- 	aiu->i2s.irq = platform_get_irq_byname(pdev, "i2s");
--	if (aiu->i2s.irq < 0) {
--		dev_err(dev, "Can't get i2s irq\n");
-+	if (aiu->i2s.irq < 0)
- 		return aiu->i2s.irq;
--	}
- 
- 	aiu->spdif.irq = platform_get_irq_byname(pdev, "spdif");
--	if (aiu->spdif.irq < 0) {
--		dev_err(dev, "Can't get spdif irq\n");
-+	if (aiu->spdif.irq < 0)
- 		return aiu->spdif.irq;
--	}
- 
- 	ret = aiu_clk_get(dev);
- 	if (ret)
-diff --git a/sound/soc/meson/aiu.h b/sound/soc/meson/aiu.h
-index a65a576e3400..097c26de7b7c 100644
---- a/sound/soc/meson/aiu.h
-+++ b/sound/soc/meson/aiu.h
-@@ -26,7 +26,7 @@ enum aiu_clk_ids {
- struct aiu_interface {
- 	struct clk_bulk_data *clks;
- 	unsigned int clk_num;
--	unsigned int irq;
-+	int irq;
- };
- 
- struct aiu {
+ #define AIU_ACODEC_INPUT(xname) {				\
+ 	.name = "ACODEC CTRL " xname,				\
+-	.name = xname,						\
+ 	.playback = AIU_ACODEC_STREAM(xname, "Playback", 8),	\
+ 	.ops = &aiu_acodec_ctrl_input_ops,			\
+ 	.probe = meson_codec_glue_input_dai_probe,		\
 -- 
 2.24.1
 
