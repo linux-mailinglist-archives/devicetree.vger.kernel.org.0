@@ -2,82 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8627A15F13C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 19:03:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F0315F18C
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 19:03:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387867AbgBNP4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 10:56:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38386 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387858AbgBNP4d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 10:56:33 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3147B24654;
-        Fri, 14 Feb 2020 15:56:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581695792;
-        bh=3wGW2BrunnOgr3U/ABE1pDq4qPc9Y4WepmDP45PXgNs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MNc/SvIhgdJ2jd1P2vPZh7PXLAPS+QejE4UNR8kaNkyGSPXqSTaHIuV06sgzEon9i
-         8cnYtf+ylw//A/vwcDSeeEa4kdj3oHiXHJjSDw9Y4P/wMD+tL8T1Hul0KqRSYH4a91
-         4q2FF1AsrU5IpnBpqiKPQMcpTOp5w8wgdMN2NYCg=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Reto Schneider <reto.schneider@husqvarnagroup.com>,
-        Stefan Roese <sr@denx.de>, Paul Burton <paul.burton@mips.com>,
-        Paul Burton <paulburton@kernel.org>,
-        linux-mips@vger.kernel.org, Sasha Levin <sashal@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.5 354/542] MIPS: ralink: dts: gardena_smart_gateway_mt7688: Limit UART1
-Date:   Fri, 14 Feb 2020 10:45:46 -0500
-Message-Id: <20200214154854.6746-354-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200214154854.6746-1-sashal@kernel.org>
-References: <20200214154854.6746-1-sashal@kernel.org>
+        id S2389661AbgBNSDm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 13:03:42 -0500
+Received: from out28-50.mail.aliyun.com ([115.124.28.50]:43659 "EHLO
+        out28-50.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731643AbgBNSDl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 13:03:41 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.4276498|-1;CH=green;DM=CONTINUE|CONTINUE|true|0.0431547-0.00657629-0.950269;DS=CONTINUE|ham_system_inform|0.0811337-0.248353-0.670513;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03268;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=27;RT=27;SR=0;TI=SMTPD_---.GoAKeCh_1581703384;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.GoAKeCh_1581703384)
+          by smtp.aliyun-inc.com(10.147.42.253);
+          Sat, 15 Feb 2020 02:03:20 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, paul@crapouillou.net,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, ralf@linux-mips.org, paulburton@kernel.org,
+        jiaxun.yang@flygoat.com, chenhc@lemote.com, allison@lohutok.net,
+        tglx@linutronix.de, daniel.lezcano@linaro.org,
+        geert+renesas@glider.be, krzk@kernel.org, keescook@chromium.org,
+        ebiederm@xmission.com, miquel.raynal@bootlin.com,
+        paul@boddie.org.uk, hns@goldelico.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com, mips-creator-ci20-dev@googlegroups.com,
+        1326991897@qq.com
+Subject: Introduce SMP support for CI20 (based on JZ4780) v4.
+Date:   Sat, 15 Feb 2020 02:02:33 +0800
+Message-Id: <1581703360-112557-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Reto Schneider <reto.schneider@husqvarnagroup.com>
-
-[ Upstream commit e8c192011c920517e5578d51c7aff0ecadd25de3 ]
-
-The radio module asserts CTS when its RX buffer has 10 bytes left.
-Putting just 8 instead of 16 bytes into the UART1 TX buffer on the Linux
-side ensures to not overflow the RX buffer on the radio module side.
-
-Signed-off-by: Reto Schneider <reto.schneider@husqvarnagroup.com>
-Signed-off-by: Stefan Roese <sr@denx.de>
-Cc: Paul Burton <paul.burton@mips.com>
-Signed-off-by: Paul Burton <paulburton@kernel.org>
-Cc: linux-mips@vger.kernel.org
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts b/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts
-index aa5caaa311047..aad9a8a8669b4 100644
---- a/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts
-+++ b/arch/mips/boot/dts/ralink/gardena_smart_gateway_mt7688.dts
-@@ -177,6 +177,9 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinmux_i2s_gpio>;		/* GPIO0..3 */
- 
-+	fifo-size = <8>;
-+	tx-threshold = <8>;
-+
- 	rts-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
- 	cts-gpios = <&gpio 2 GPIO_ACTIVE_LOW>;
- };
--- 
-2.20.1
+Introduce SMP support for MIPS Creator CI20, which is
+based on Ingenic JZ4780 SoC.
 
