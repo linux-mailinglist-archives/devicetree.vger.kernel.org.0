@@ -2,36 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CFB415DCE3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 16:56:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 556FF15DD46
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 16:58:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731818AbgBNP4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 10:56:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37540 "EHLO mail.kernel.org"
+        id S2388228AbgBNP51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 10:57:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40360 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731815AbgBNP4E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 10:56:04 -0500
+        id S2388222AbgBNP51 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 10:57:27 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9AB424649;
-        Fri, 14 Feb 2020 15:56:02 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EB82C2082F;
+        Fri, 14 Feb 2020 15:57:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581695763;
-        bh=kpIYvkygOL80jCOC4mTASNNjnr+Ez++17Cyd5v07r7w=;
+        s=default; t=1581695846;
+        bh=PDMV9NL7oAVwioQiltJHDGJGsryMCmbpfpVrnmp6Hao=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ne4BY4JFRI82kwc/XqNJjA2AEeRSxy8v3YsWGYPATAFDIYpyNmegotNSYxXz8c9Bh
-         gIcTOzoC9aeyYug3xDHRHmv79nuGrO6mMTksEQyytkq8xdjj/LseZdN5WgYIVxcYdn
-         s2rLEhm9AtqGJiNwM4u/k9REO7vhdN4aYxpHHa9s=
+        b=2p5i7w7c2YaKsI71BdmHflW3wW8lxNNAqQvxrx3UxzbdVl5MamQODjsZ6IX/g+2ZN
+         Wl6JeiuWTwz1mMWAOi9IHycbAPOyydaHNZV/WQEW44yf/3FC9Oq4GkTfDNVOYn77Ko
+         tB5lj+y8cHf/w1HyusJACwag49MVlD2g6mKWPdAE=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.5 331/542] arm64: dts: rockchip: add reg property to brcmf sub-nodes
-Date:   Fri, 14 Feb 2020 10:45:23 -0500
-Message-Id: <20200214154854.6746-331-sashal@kernel.org>
+Cc:     Lokesh Vutla <lokeshvutla@ti.com>, Suman Anna <s-anna@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.5 396/542] arm64: dts: ti: k3-j721e-main: Add missing power-domains for smmu
+Date:   Fri, 14 Feb 2020 10:46:28 -0500
+Message-Id: <20200214154854.6746-396-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214154854.6746-1-sashal@kernel.org>
 References: <20200214154854.6746-1-sashal@kernel.org>
@@ -44,88 +43,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Johan Jonker <jbx6244@gmail.com>
+From: Lokesh Vutla <lokeshvutla@ti.com>
 
-[ Upstream commit 96ff264bccb22175bbe2185a1eb5204ca3c5f03f ]
+[ Upstream commit 3f03a58b25753843ce9e4511e9e246c51bd11011 ]
 
-An experimental test with the command below gives this error:
-rk3399-firefly.dt.yaml: dwmmc@fe310000: wifi@1:
-'reg' is a required property
-rk3399-orangepi.dt.yaml: dwmmc@fe310000: wifi@1:
-'reg' is a required property
-rk3399-khadas-edge.dt.yaml: dwmmc@fe310000: wifi@1:
-'reg' is a required property
-rk3399-khadas-edge-captain.dt.yaml: dwmmc@fe310000: wifi@1:
-'reg' is a required property
-rk3399-khadas-edge-v.dt.yaml: dwmmc@fe310000: wifi@1:
-'reg' is a required property
-So fix this by adding a reg property to the brcmf sub node.
-Also add #address-cells and #size-cells to prevent more warnings.
+Add power-domains entry for smmu, so that the it is accessible as long
+as the driver is active. Without this device shutdown is throwing the
+below warning:
+"[   44.736348] arm-smmu-v3 36600000.smmu: failed to clear cr0"
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-Link: https://lore.kernel.org/r/20200110142128.13522-1-jbx6244@gmail.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Reported-by: Suman Anna <s-anna@ti.com>
+Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+Signed-off-by: Tero Kristo <t-kristo@ti.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-firefly.dts      | 3 +++
- arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 3 +++
- arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts     | 3 +++
- 3 files changed, 9 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-index c706db0ee9ec6..76f5db696009b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-firefly.dts
-@@ -669,9 +669,12 @@
- 	vqmmc-supply = &vcc1v8_s3;	/* IO line */
- 	vmmc-supply = &vcc_sdio;	/* card's power */
- 
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	brcmf: wifi@1 {
-+		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-index 4944d78a0a1cb..e87a04477440e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-@@ -654,9 +654,12 @@
- 	sd-uhs-sdr104;
- 	vqmmc-supply = <&vcc1v8_s3>;
- 	vmmc-supply = <&vccio_sd>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	brcmf: wifi@1 {
-+		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-index 0541dfce924d6..9c659f3115c88 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts
-@@ -648,9 +648,12 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
- 	sd-uhs-sdr104;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 	status = "okay";
- 
- 	brcmf: wifi@1 {
-+		reg = <1>;
- 		compatible = "brcm,bcm4329-fmac";
- 		interrupt-parent = <&gpio0>;
- 		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 1e4c2b78d66d6..68d478af7a3e6 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -43,6 +43,7 @@
+ 	smmu0: smmu@36600000 {
+ 		compatible = "arm,smmu-v3";
+ 		reg = <0x0 0x36600000 0x0 0x100000>;
++		power-domains = <&k3_pds 229 TI_SCI_PD_EXCLUSIVE>;
+ 		interrupt-parent = <&gic500>;
+ 		interrupts = <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
+ 			     <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>;
 -- 
 2.20.1
 
