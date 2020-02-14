@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9101C15D60C
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 11:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCA1B15D610
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 11:51:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728890AbgBNKu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 05:50:29 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:36628 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729153AbgBNKu3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 05:50:29 -0500
-Received: by mail-lj1-f193.google.com with SMTP id r19so10205777ljg.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 02:50:26 -0800 (PST)
+        id S1728890AbgBNKvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 05:51:13 -0500
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:37461 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729149AbgBNKvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 05:51:13 -0500
+Received: by mail-lf1-f67.google.com with SMTP id b15so6472596lfc.4
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 02:51:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=WIA3W+3A4bSWg6/IXoCcQhYlPTEIwMnLSptSvMwiM4Y=;
-        b=spKYlIRdf+1AzjlULsr1Z7JsO/k4DXYBqXtiI9UhHW5I+O5U2cbOqdiXr86g2K0FBA
-         IFImVz8Pdr3K7+sZCx4rsqvUG4DsXUPf/lUySjxQCnPmaQYNnBvtZWRRGpNYNlE0XXPq
-         RDVjPpqykFUvf6ifUff5qiqD0z1i4NkWGEZJAMvwgKuRowW7Qdr5GqxmagGhGrOhWQvP
-         2De4n4B6OFX2i66uchc5Qph/AhFcOMu1bldmnQrlFuTtyWcmgZ0yGUhikyAmCvhLTMQd
-         VlXhFojj0gwuFnBagb+1E11Bme0qW5eFBBWU4u5gEY/dbY0egq/PD/vqwsORgogtR4rf
-         nwUg==
+        bh=CR6bHnHZoiHbW3grDbPXu+tcCdPNxFUy7DMGVKDxrdU=;
+        b=ZB/WaJEEHKN4vlxH4Q77+OOPAi+yH8uvWMar/Wo92sc05nEqDy1nHiHv81sCC4R5HR
+         zTc4dktstCFOctS7NkFCXjG+Ipo/IDcXN9dbAhdXA+B2L199AvWrW6QOtw8hJOD90GWm
+         F1Q/Jj6J4kTXfQoaifWXQg25FyCdxlrApHVxhQ+t3RBpoNRuL8PfBf7DEe1OUc/5qAi9
+         Ah5TKSHu2uHQjeQJyaw1GaOiOWzQ3ogpcfBf4wBNsZG/Wfe0llzLv5cMm0evS8OofkAo
+         ud43w92m7GJDNyF7Lhn70lpUJLD4Gd11c5o0rSba9R9yAHy/hlq9rFPX7p4Zfnzd7K8o
+         EhXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=WIA3W+3A4bSWg6/IXoCcQhYlPTEIwMnLSptSvMwiM4Y=;
-        b=fM34acINHKNr+qafG7jTj2S6mkCVCAlu0+1YjS2P6GdigQO9GTNyQNpRnT58u9BJ0+
-         HbrSEhMA7r/HqeCWm3Z/vmhTMcoQd37CEQOAkHK5QFglrtHYwQauQr+lk4TLwYd0xxJ4
-         rwC29EOw7BjuRji3360KWLsMeIE5T7a+O91gvL6eIb2ig3QHXG4acSrIFhLkyLfYF7BD
-         Ycm+vFBoGHAeLGf2Aigi+hUr8lYvTrAolyADDRl0G4vsY+5bGLyIyjUhlQF9sUjot6Es
-         rSp8+UomhuAqRMh9SiPkkdjfV6dAFI5BCrj3x2tNkBJ4sxlc2W3Z/I6WY8SkFqfICkFa
-         ixhQ==
-X-Gm-Message-State: APjAAAVP7L21WVJ7+Hp5JsPvRGGSjfuf3EWV9U3IhKuUxtihJscAvU1P
-        6JT6TXYzJob/u87rprR+eiAqn3+gujNshrJ82h3iug==
-X-Google-Smtp-Source: APXvYqyUZX06D7qDW1NxJWCMFUDXVgahKBLV8X2RzIk+Kuc0X/81i7YmxoaF+EMxTrfncBCFTDLL6rSLbe74lmM8mf0=
-X-Received: by 2002:a2e:b6ce:: with SMTP id m14mr1604098ljo.99.1581677425697;
- Fri, 14 Feb 2020 02:50:25 -0800 (PST)
+        bh=CR6bHnHZoiHbW3grDbPXu+tcCdPNxFUy7DMGVKDxrdU=;
+        b=LFq9PwCrj6Uq7MRPC5v15xvI4Is99JcHSlo5yVRKypgNZAv2t1FinQVJ9Y9CxM3iCP
+         G4sxV2p3ajCMMIftwbGrhY2mYr4kFsPkq7MTTziJWn4iB8PgMYOFgOKgmuc+Ai8Dkm0E
+         x9sAaZqIYJGfvyn8SmKoocClpIcjmTXRw2kbcVvSjtWNtUKcJgewmJGKbXyhPATswWjg
+         HAZRx9DBCY6PGCLyXciyg7Ob/g1Jq2He7UWJ/DGW/18A8XqaH/D+tl7oAHG/TWETsduz
+         Mr3A23OnrgBAYzGcSRvw7fj2bBIwfOR/zp+J2mFkMnvHCvksRQ/jZCrj3SH/LR1tkqge
+         +fTg==
+X-Gm-Message-State: APjAAAUhA38Uu6F0J2cd3JTNtqe+iJAsH7yAHzXtBirY22Xw+KWNCs7J
+        R56dCz5zYjKJq6qsJQysFDh59epvFqu3fVZR4N3/mLixuDM=
+X-Google-Smtp-Source: APXvYqxkkMaDIwfsdOgCTxqXpmc37h41kvnDJyCa02wuDmWXS8mAwsvAa4bQZ7hGMY56bSP/KNt/TUd5+tIUbXiS0ig=
+X-Received: by 2002:a19:dc14:: with SMTP id t20mr1374192lfg.47.1581677469885;
+ Fri, 14 Feb 2020 02:51:09 -0800 (PST)
 MIME-Version: 1.0
-References: <1581166975-22949-1-git-send-email-stefan.wahren@i2se.com> <1581166975-22949-4-git-send-email-stefan.wahren@i2se.com>
-In-Reply-To: <1581166975-22949-4-git-send-email-stefan.wahren@i2se.com>
+References: <1581166975-22949-1-git-send-email-stefan.wahren@i2se.com> <1581166975-22949-5-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <1581166975-22949-5-git-send-email-stefan.wahren@i2se.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 14 Feb 2020 11:50:14 +0100
-Message-ID: <CACRpkdb1NBEj5iebtim6_z7866B_bQAZS4J4fsOupusehHUO0Q@mail.gmail.com>
-Subject: Re: [PATCH 3/4] pinctrl: bcm2835: Add support for all GPIOs on BCM2711
+Date:   Fri, 14 Feb 2020 11:50:59 +0100
+Message-ID: <CACRpkda1M_B9VXjsTPmcR3zG=xS0uVQMPPYJ5H-BAj3=fQk4eA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] ARM: dts: bcm2711-rpi-4-b: Add SoC GPIO labels
 To:     Stefan Wahren <stefan.wahren@i2se.com>
 Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -65,11 +65,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sat, Feb 8, 2020 at 2:03 PM Stefan Wahren <stefan.wahren@i2se.com> wrote:
 
-> The BCM2711 supports 58 GPIOs. So extend pinctrl and GPIOs accordingly.
+> This adds the labels for all the SoC GPIOs on the Raspberry Pi 4.
 >
 > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 
-Patch applied with Nicolas' review tag!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Please funnel this through the ARM SoC tree.
 
 Yours,
 Linus Walleij
