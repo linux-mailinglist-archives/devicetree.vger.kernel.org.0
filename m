@@ -2,37 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D1E615F30B
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 19:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73E2B15F315
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 19:21:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731014AbgBNPwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 10:52:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59030 "EHLO mail.kernel.org"
+        id S1731079AbgBNPwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 10:52:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59852 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731004AbgBNPwg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 10:52:36 -0500
+        id S1730505AbgBNPwx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 10:52:53 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1BCB3222C4;
-        Fri, 14 Feb 2020 15:52:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 739392468D;
+        Fri, 14 Feb 2020 15:52:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581695556;
-        bh=j27L0uvNh+GXvHJve/VVwZnTA0Mp4pOfRumbA87sMpU=;
+        s=default; t=1581695572;
+        bh=xn0c89TUYb91GwJwguGAuyRfda2/y67RUJKduA4/pk4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FF9XzIWHUnA8agRrkfyTnfPw0vDGyC+/EycHYZva1W55qQAI+addpJZfhhcBVfYJV
-         OfAxyW1ZlDpvwEUrgzUtyFETVoTJLyCP5W920R4opCiWpKEQFjD7VMyBB77badTSAY
-         SLu15OBE9RD7iH4QHtpMbWXa9aJt41Q8H88YrSu4=
+        b=ttkySf0izKySq5C7/9J2gyjSefSppV+ZPPSCO9lJJeB1TBR8lLbTrhPhMb+EUvHXV
+         epu9RVHhTGNRXeRG4ljtgzNCFvJ0rpTh/isMVWrpGg8pc4G8fSzKWokNhTQ7FeuaCe
+         LTfGnY2QYMVc0UuRrac+QG+irbmlENvMgFoYYYdg=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.5 170/542] arm64: dts: rockchip: Fix NanoPC-T4 cooling maps
-Date:   Fri, 14 Feb 2020 10:42:42 -0500
-Message-Id: <20200214154854.6746-170-sashal@kernel.org>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.5 183/542] arm64: dts: allwinner: H6: Add PMU mode
+Date:   Fri, 14 Feb 2020 10:42:55 -0500
+Message-Id: <20200214154854.6746-183-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214154854.6746-1-sashal@kernel.org>
 References: <20200214154854.6746-1-sashal@kernel.org>
@@ -45,64 +44,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Robin Murphy <robin.murphy@arm.com>
+From: Andre Przywara <andre.przywara@arm.com>
 
-[ Upstream commit a793e19c15f25a126138ac4ae9facf9204754af3 ]
+[ Upstream commit 7aa9b9eb7d6a8fde7acbe0446444f7e3fae1fe3b ]
 
-Although it appeared to follow logically from the bindings, apparently
-the thermal framework can't properly cope with a single cooling device
-being shared between multiple maps. The CPU zone is probably easier to
-overheat, so remove the references to the (optional) fan from the GPU
-cooling zone to avoid things getting confused. Hopefully GPU-intensive
-tasks will leak enough heat across to the CPU zone to still hit the
-fan trips before reaching critical GPU temperatures.
+Add the Performance Monitoring Unit (PMU) device tree node to the H6
+.dtsi, which tells DT users which interrupts are triggered by PMU
+overflow events on each core. The numbers come from the manual and have
+been checked in U-Boot and with perf in Linux.
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-Link: https://lore.kernel.org/r/5bb39f3115df1a487d717d3ae87e523b03749379.1573908197.git.robin.murphy@arm.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Tested with perf record and taskset on a Pine H64.
+
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../boot/dts/rockchip/rk3399-nanopc-t4.dts    | 27 -------------------
- 1 file changed, 27 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
-index 2a127985ab171..d3ed8e5e770f1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopc-t4.dts
-@@ -94,33 +94,6 @@
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+index 29824081b43b0..24ffe2dcbddbf 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+@@ -70,6 +70,16 @@
+ 		clock-output-names = "ext_osc32k";
  	};
- };
  
--&gpu_thermal {
--	trips {
--		gpu_warm: gpu_warm {
--			temperature = <55000>;
--			hysteresis = <2000>;
--			type = "active";
--		};
--
--		gpu_hot: gpu_hot {
--			temperature = <65000>;
--			hysteresis = <2000>;
--			type = "active";
--		};
--	};
--	cooling-maps {
--		map1 {
--			trip = <&gpu_warm>;
--			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
--		};
--
--		map2 {
--			trip = <&gpu_hot>;
--			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
--		};
--	};
--};
--
- &pinctrl {
- 	ir {
- 		ir_rx: ir-rx {
++	pmu {
++		compatible = "arm,cortex-a53-pmu",
++			     "arm,armv8-pmuv3";
++		interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
++	};
++
+ 	psci {
+ 		compatible = "arm,psci-0.2";
+ 		method = "smc";
 -- 
 2.20.1
 
