@@ -2,87 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9850B15D565
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 11:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B5615D587
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 11:26:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729043AbgBNKUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 05:20:11 -0500
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:36568 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729070AbgBNKUI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 05:20:08 -0500
-Received: by mail-lj1-f194.google.com with SMTP id r19so10106716ljg.3
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 02:20:06 -0800 (PST)
+        id S1729070AbgBNK0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 05:26:24 -0500
+Received: from mail-vk1-f195.google.com ([209.85.221.195]:45715 "EHLO
+        mail-vk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729014AbgBNK0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 05:26:24 -0500
+Received: by mail-vk1-f195.google.com with SMTP id g7so2442445vkl.12
+        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 02:26:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=a84WNLM8wHkd5zEtxHoEDgoCVKtrYjUViLHMY7hthbM=;
-        b=Gj6tG+Qt7ycjUY4Q2ZAXyamt4t4+IDdww3s8W9LBz0qskerpmAwDH4ozKfHDaq9+3B
-         OawNf6cyiZJ4cMn5p8gXDPXDqWERgdiSM4tHnRLkyR1BUTncMg0AiBKlUIaPCigS/w+I
-         hHKj4YQAuRVNwLKDQMYcjNrsrORFZTl2NSe3GktvgggquQuVYglQ5uJOIzdg0855ye+C
-         6uwaU4LtSMjMvgAJUzlgFZBaaBewg04d5gKNDb91yAuw834QulLqP095JhQvZkZMzb4Q
-         LdxB4L75YeD1jYbj+FRGGS3MFhhk6pwX/YoqCFfWzKu8x9R/PPKVWxQx7lYFPIbCtrq7
-         Zx/w==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=dqrYZSt3ZzCEf3sv3kbhvQH1vrCHLK2VEYIZeuAGKtg=;
+        b=X5270aqh9yoEdFp0E9LUAxv9ILfiyiKLsnduOiuh5NDldaMKA/ZjQ36OVubXrzPBh5
+         wG6EyuQ8z+NutaiOxk+xcZsc1fs9pnJS+awlz5S/8HggQS+mSWsphw5MGHaO/DFRSSLg
+         jtGr5xMXoRTJB231x5PbK1oiwa9jWFiRL6XNRGfIbW42C8QW813Ck2PHg7WIjLObMgAw
+         yJEjp7DrDhVSDv61ibn/FPFCZb3992cIY9o137pEtSKHiWYxv/m5/zXsHdcfFukU+bMX
+         /W2qJSEWrTjnKS64HNGRVekgPGo7zDtbhq9fFU+PDx/7GQTVn7jtsYOnD8xCnDSWBMAc
+         deBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=a84WNLM8wHkd5zEtxHoEDgoCVKtrYjUViLHMY7hthbM=;
-        b=L9YoZ6apX8a7Wdci8c1JngX7e2tySi/HYD8h+aBOWPhMRvoWNBquu8G563dN3J3Mn/
-         WPXjsBo3DH8VkEapNlXcEIjLyx8P2RmQTXMZaEeyTGWKj8ya3RQhU8bLEuhUIx9nCDcv
-         G734BXZlY6C08x4hMvDSfQXr184IxAggLX59blCDDWCUXTf3lxRgUkxbEOx3TMIUFtMT
-         NbTqKoGkpuJyTIjcCDLgPIlBS3rV5QwuH9Ld5Ve6Nrj5Tkln3djj9Dt+QXbpXQn9iHxz
-         me9Jluz0fNd6+J/T3ApQuhd9J7H8PEyQ5wORpWX8+p5UshK8F5zkc0VVxNV4+3qAUZnj
-         2hRg==
-X-Gm-Message-State: APjAAAX3Y1Y7uPuThN4owEgMOxwd5ECP/5BAiDeVpFyIXr+/R0AVGEWq
-        yrOxHzP9ldleGZWHm+MjlvGNxe0kCvi7/1PSsd7xVg==
-X-Google-Smtp-Source: APXvYqxqN7AMNMFOzd2fYojplBnENxRnOLrJhK/Z0n4uE8TLS7K1XSLI5bd514akMiltxuCr4HE2d8mGerIytGW52qo=
-X-Received: by 2002:a2e:b6ce:: with SMTP id m14mr1526961ljo.99.1581675606201;
- Fri, 14 Feb 2020 02:20:06 -0800 (PST)
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=dqrYZSt3ZzCEf3sv3kbhvQH1vrCHLK2VEYIZeuAGKtg=;
+        b=n6SK/t0E1e3ekuBHFQKHnABuAzk41/7RA1/UNbakkYSgyIwLLVfim6v57DU0bZb8aR
+         cg93I/qtM0nyhZJvhYPvjC45T2TL91rhtlLDp5FE0t+ernNnQk4CimutAI7HDZbn0M5L
+         qlE5ZMwENjNBqdZyiIv/iuLFkSUNyoeGwBzYEERsGVaO6fF1HqoQaM17D5fkDGK1fwtP
+         rU2RRJadI+RevBOBRTmxRzYJyU9vLvzvGXOe4wVsAIr3T4ZOuapENv6/h3m3ggOjdYQv
+         o7yEIyX7nAdJJ2t2vtXvE1hJF7i954EPUn1+yh9plmuFv7byE5b1kOFe06210xwPJmfh
+         vfcw==
+X-Gm-Message-State: APjAAAVejKbsMrJUNVEomxTR6H3rETO41JkCquBHkeBtUGzYpbAqf7bL
+        lequ4a/vyiFxEH32y+GHBFuf9EIJu/C5ZprOLCM=
+X-Google-Smtp-Source: APXvYqwzGzFogTDoX5oqb68BeUiR5UiT3zh0/wnaz6ZEHM8zG3tOGub6Nc/tT5nnwtIe1uqcCKWRreO42QdQqwmEly8=
+X-Received: by 2002:a05:6122:1185:: with SMTP id x5mr1264074vkn.38.1581675983517;
+ Fri, 14 Feb 2020 02:26:23 -0800 (PST)
 MIME-Version: 1.0
-References: <1579439601-14810-1-git-send-email-sricharan@codeaurora.org>
-In-Reply-To: <1579439601-14810-1-git-send-email-sricharan@codeaurora.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 14 Feb 2020 11:19:55 +0100
-Message-ID: <CACRpkdZ1G-Rks+-JrY-bN6A1YpQGqRBoDKS5kYn9BfdWqYjXSQ@mail.gmail.com>
-Subject: Re: [PATCH V6 0/5] Add minimal boot support for IPQ6018
-To:     Sricharan R <sricharan@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, sivaprak@codeaurora.org
+Reply-To: mrs.zaina14@gmail.com
+Received: by 2002:ab0:2906:0:0:0:0:0 with HTTP; Fri, 14 Feb 2020 02:26:23
+ -0800 (PST)
+From:   "Mr.Zainab Ahmed" <mrs.zaina14@gmail.com>
+Date:   Fri, 14 Feb 2020 02:26:23 -0800
+X-Google-Sender-Auth: oRJB_wlB6qV-poGukp_vicvkBTQ
+Message-ID: <CAF7czdpdQzg4c-r=Q3WZJAML-ucRn13tg9YqjyTN38+d8q2MHQ@mail.gmail.com>
+Subject: Hello My Dear Friend
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jan 19, 2020 at 2:13 PM Sricharan R <sricharan@codeaurora.org> wrote:
+My name is Mr.Zainab Ahmed; I got your address in Burkina Faso chamber
+of commerce through details. I need your urgent assistance in
+Transferring the sum of (15.5000,000)Million Dollars fund which
+Belongs to our deceased customer who died in A plane crash, since the
+Death of this our customer the money has been in our bank without
+Claim. I want to release the money to you as the deceased NEXT OF KIN
+For the benefit of both of us. By indicating your interest I will send
+you the full details on how the business will be executed. I need to
+Hear from you urgent so that I will give you more information
+regarding this transaction.
 
-> The IPQ6018 is Qualcomm\u2019s 802.11ax SoC for Routers,
-> Gateways and Access Points.
->
-> This series adds minimal board boot support for ipq6018-cp01 board.
->
-> [V6]
->  * Addressed more review comments on pinctrl bindings from Rob.
->  * Patch 4 arm64: dts: Add ipq6018 SoC and CP01 board support has build
->    dependency with,
->         https://lkml.org/lkml/2020/1/9/84
+Waiting for your urgent response so that we will starts immediately.
 
-I have applied patches 1 & 2 and the remaining patches can be
-applied to the ARM SoC-relavent tree (Bjorn can handle this I think?)
-
-I am sorry it didn't make it into v5.6, this is caused by the bottleneck
-for YAML schema review, we would appreciate more people
-participating in writing and reviewing new schemas, we are currently
-in a bit of learning phase.
-
-Yours,
-Linus Walleij
+Thanks,
+Mr.Zainab Ahmed,
