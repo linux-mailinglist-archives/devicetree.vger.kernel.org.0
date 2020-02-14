@@ -2,141 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9163415E8AA
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:02:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC10A15EAB0
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392438AbgBNQQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 11:16:15 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46926 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403832AbgBNQQN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 11:16:13 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S2404543AbgBNRPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 12:15:42 -0500
+Received: from asavdk4.altibox.net ([109.247.116.15]:34566 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391923AbgBNQMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 11:12:07 -0500
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 559042467D;
-        Fri, 14 Feb 2020 16:16:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581696972;
-        bh=rWXbwbRAZonVyOwllnzP9TFQ4vkrdB9BcqX/125Xjik=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=e0exXlpXlONcPFvXJAUNgnxFQkREUKO/hWyO3PEuj6a7pWFmdb1AXteFsgBSIKYjM
-         K8RRRtmt1u0vdWKjcTTjjCZrvwyKYd3NM19CEbVDAaWGBSV+rrmaR66MBLuJoYndYo
-         SzCb5U2gUTRGZKEpkZlp+ih5/WkBU1vaEE2yaP6o=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Tero Kristo <t-kristo@ti.com>, Benoit Parrot <bparrot@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 210/252] ARM: dts: am43xx: add support for clkout1 clock
-Date:   Fri, 14 Feb 2020 11:11:05 -0500
-Message-Id: <20200214161147.15842-210-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200214161147.15842-1-sashal@kernel.org>
-References: <20200214161147.15842-1-sashal@kernel.org>
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 34CB980477;
+        Fri, 14 Feb 2020 17:11:58 +0100 (CET)
+Date:   Fri, 14 Feb 2020 17:11:56 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: panel: lvds: Add properties for clock
+ and data polarities
+Message-ID: <20200214161156.GA18287@ravnborg.org>
+References: <cover.b12a054012ce067fa2094894147f953ab816d8d0.1581682983.git-series.maxime@cerno.tech>
+ <620a740cec4186177ce346b092d4ba451e1420dc.1581682983.git-series.maxime@cerno.tech>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <620a740cec4186177ce346b092d4ba451e1420dc.1581682983.git-series.maxime@cerno.tech>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
+        a=Tpc6Fu3lJ6wmHEW927AA:9 a=CjuIK1q_8ugA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tero Kristo <t-kristo@ti.com>
+Hi Maxime.
 
-[ Upstream commit 01053dadb79d63b65f7b353e68b4b6ccf4effedb ]
+On Fri, Feb 14, 2020 at 01:24:39PM +0100, Maxime Ripard wrote:
+> Some LVDS encoders can support multiple polarities on the data and
+> clock lanes, and similarly some panels require a given polarity on
+> their inputs. Add a property on the panel to configure the encoder
+> properly.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
-clkout1 clock node and its generation tree was missing. Add this based
-on the data on TRM and PRCM functional spec.
+Not a fan of this binding...
+In display-timing.txt we have a specification/description of
+the panel-timing node.
 
-commit 664ae1ab2536 ("ARM: dts: am43xx: add clkctrl nodes") effectively
-reverted this commit 8010f13a40d3 ("ARM: dts: am43xx: add support for
-clkout1 clock") which is needed for the ov2659 camera sensor clock
-definition hence it is being re-applied here.
+The panel-timing node already include information such as:
+- hsync-active:
+- vsync-active:
+- de-active:
+- pixelclk-active:
+- syncclk-active:
 
-Note that because of the current dts node name dependency for mapping to
-clock domain, we must still use "clkout1-*ck" naming instead of generic
-"clock@" naming for the node. And because of this, it's probably best to
-apply the dts node addition together along with the other clock changes.
+But clock-active-low and data-active-low refer to the bus
+more than an individual timing.
+So maybe OK not to have it in a panel-timing node.
+But then it would IMO be better to include
+this in the display-timing node - so we make
+this available and standard for all users of the
+display-timing node.
 
-Fixes: 664ae1ab2536 ("ARM: dts: am43xx: add clkctrl nodes")
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
-Tested-by: Benoit Parrot <bparrot@ti.com>
-Acked-by: Tony Lindgren <tony@atomide.com>
-Signed-off-by: Benoit Parrot <bparrot@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/am43xx-clocks.dtsi | 54 ++++++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
+I will dig up my patchset to make proper bindings for panel-timing and
+display-timing this weeked and resend them.
+Then we can discuss if this goes on top or this is specific for the
+lvds binding.
 
-diff --git a/arch/arm/boot/dts/am43xx-clocks.dtsi b/arch/arm/boot/dts/am43xx-clocks.dtsi
-index a7037a4b4fd48..ce3c4196f173c 100644
---- a/arch/arm/boot/dts/am43xx-clocks.dtsi
-+++ b/arch/arm/boot/dts/am43xx-clocks.dtsi
-@@ -707,6 +707,60 @@
- 		ti,bit-shift = <8>;
- 		reg = <0x2a48>;
- 	};
-+
-+	clkout1_osc_div_ck: clkout1-osc-div-ck {
-+		#clock-cells = <0>;
-+		compatible = "ti,divider-clock";
-+		clocks = <&sys_clkin_ck>;
-+		ti,bit-shift = <20>;
-+		ti,max-div = <4>;
-+		reg = <0x4100>;
-+	};
-+
-+	clkout1_src2_mux_ck: clkout1-src2-mux-ck {
-+		#clock-cells = <0>;
-+		compatible = "ti,mux-clock";
-+		clocks = <&clk_rc32k_ck>, <&sysclk_div>, <&dpll_ddr_m2_ck>,
-+			 <&dpll_per_m2_ck>, <&dpll_disp_m2_ck>,
-+			 <&dpll_mpu_m2_ck>;
-+		reg = <0x4100>;
-+	};
-+
-+	clkout1_src2_pre_div_ck: clkout1-src2-pre-div-ck {
-+		#clock-cells = <0>;
-+		compatible = "ti,divider-clock";
-+		clocks = <&clkout1_src2_mux_ck>;
-+		ti,bit-shift = <4>;
-+		ti,max-div = <8>;
-+		reg = <0x4100>;
-+	};
-+
-+	clkout1_src2_post_div_ck: clkout1-src2-post-div-ck {
-+		#clock-cells = <0>;
-+		compatible = "ti,divider-clock";
-+		clocks = <&clkout1_src2_pre_div_ck>;
-+		ti,bit-shift = <8>;
-+		ti,max-div = <32>;
-+		ti,index-power-of-two;
-+		reg = <0x4100>;
-+	};
-+
-+	clkout1_mux_ck: clkout1-mux-ck {
-+		#clock-cells = <0>;
-+		compatible = "ti,mux-clock";
-+		clocks = <&clkout1_osc_div_ck>, <&clk_rc32k_ck>,
-+			 <&clkout1_src2_post_div_ck>, <&dpll_extdev_m2_ck>;
-+		ti,bit-shift = <16>;
-+		reg = <0x4100>;
-+	};
-+
-+	clkout1_ck: clkout1-ck {
-+		#clock-cells = <0>;
-+		compatible = "ti,gate-clock";
-+		clocks = <&clkout1_mux_ck>;
-+		ti,bit-shift = <23>;
-+		reg = <0x4100>;
-+	};
- };
- 
- &prcm {
--- 
-2.20.1
 
+> ---
+>  Documentation/devicetree/bindings/display/panel/lvds.yaml | 10 ++++++++-
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> index d0083301acbe..4a1111a1ab38 100644
+> --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> @@ -90,6 +90,16 @@ properties:
+>        CTL2: Data Enable
+>        CTL3: 0
+>  
+> +  clock-active-low:
+> +    type: boolean
+> +    description: >
+
+Should this be "|" and not ">"?
+Did this pass dt_binding_check?
+
+> +      If set, reverse the clock polarity on the clock lane.
+This text could be a bit more specific. If this is set then
+what?
+And it seems strange that a clock is active low.
+For a clock we often talk about raising or falling edge.
+
+> +
+> +  data-active-low:
+> +    type: boolean
+> +    description: >
+Same comment with ">"
+
+> +      If set, reverse the bit polarity on all data lanes.
+Same comment about a more explicit description.
+
+
+	Sam
+
+
+>    data-mirror:
+>      type: boolean
+>      description:
+> -- 
+> git-series 0.9.1
