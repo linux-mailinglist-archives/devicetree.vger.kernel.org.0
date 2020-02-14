@@ -2,39 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EAB3415E172
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 17:18:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD2EC15E1B7
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 17:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404849AbgBNQSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 11:18:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51528 "EHLO mail.kernel.org"
+        id S2405084AbgBNQT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 11:19:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53164 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404622AbgBNQSq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 11:18:46 -0500
+        id S2404888AbgBNQTy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 11:19:54 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B5C4624709;
-        Fri, 14 Feb 2020 16:18:44 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 79B002470C;
+        Fri, 14 Feb 2020 16:19:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581697125;
-        bh=MAyEDk49P2Uh6U18iHPC9skH7iaZ47xAh4eHPg1oWV0=;
+        s=default; t=1581697194;
+        bh=J+cD7ae9Q47vSdnutjU4ymEVk+kSRaBnycI4ag1zGXM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=0r058QjYg4v8Kx6BKzzEGJ3rGX0QlW4E0bmSG9Ai2dD4Bvrz3Y/2LYmT+u8NIr+3H
-         htyuaJ4BTYxQIYzYd0GkfXzffQP67+uXviLHD9GQEMOKlDfmBR7KPED1kERVXNy2An
-         m/QuH77PRDftx+ePP4YQSF/vqxRS0TiyW1cVOTtg=
+        b=quTDitaODj0PksUQ4AcmsF8v4eLeuZCKDHfBQLkUoJzFzf1NaZQrt8IcIYnvDDkHN
+         DEZYHokdWGPqFgYp+toMowLlqa9uLf2gaJgmzyNq5S76o6yN0p3VxNO5iJlozrtV7X
+         AfLK7NScQFpdK0vHxdZ5KQpseyvWVdcF0E3cMWyw=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 070/186] ARM: dts: imx6: rdu2: Disable WP for USDHC2 and USDHC3
-Date:   Fri, 14 Feb 2020 11:15:19 -0500
-Message-Id: <20200214161715.18113-70-sashal@kernel.org>
+Cc:     Jose Abreu <Jose.Abreu@synopsys.com>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@synopsys.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-snps-arc@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.14 123/186] ARC: [plat-axs10x]: Add missing multicast filter number to GMAC node
+Date:   Fri, 14 Feb 2020 11:16:12 -0500
+Message-Id: <20200214161715.18113-123-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214161715.18113-1-sashal@kernel.org>
 References: <20200214161715.18113-1-sashal@kernel.org>
@@ -47,67 +45,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrey Smirnov <andrew.smirnov@gmail.com>
+From: Jose Abreu <Jose.Abreu@synopsys.com>
 
-[ Upstream commit cd58a174e58649426fb43d7456e5f7d7eab58af1 ]
+[ Upstream commit 7980dff398f86a618f502378fa27cf7e77449afa ]
 
-RDU2 production units come with resistor connecting WP pin to
-correpsonding GPIO DNPed for both SD card slots. Drop any WP related
-configuration and mark both slots with "disable-wp".
+Add a missing property to GMAC node so that multicast filtering works
+correctly.
 
-Reported-by: Chris Healy <cphealy@gmail.com>
-Reviewed-by: Chris Healy <cphealy@gmail.com>
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-Signed-off-by: Andrey Smirnov <andrew.smirnov@gmail.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Fixes: 556cc1c5f528 ("ARC: [axs101] Add support for AXS101 SDP (software development platform)")
+Acked-by: Alexey Brodkin <abrodkin@synopsys.com>
+Signed-off-by: Jose Abreu <Jose.Abreu@synopsys.com>
+Signed-off-by: Vineet Gupta <vgupta@synopsys.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ arch/arc/boot/dts/axs10x_mb.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-index 849eb3443cde2..719e63092c2ea 100644
---- a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-@@ -587,7 +587,7 @@
- 	pinctrl-0 = <&pinctrl_usdhc2>;
- 	bus-width = <4>;
- 	cd-gpios = <&gpio2 2 GPIO_ACTIVE_LOW>;
--	wp-gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
-+	disable-wp;
- 	vmmc-supply = <&reg_3p3v_sd>;
- 	vqmmc-supply = <&reg_3p3v>;
- 	status = "okay";
-@@ -598,7 +598,7 @@
- 	pinctrl-0 = <&pinctrl_usdhc3>;
- 	bus-width = <4>;
- 	cd-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
--	wp-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
-+	disable-wp;
- 	vmmc-supply = <&reg_3p3v_sd>;
- 	vqmmc-supply = <&reg_3p3v>;
- 	status = "okay";
-@@ -1001,7 +1001,6 @@
- 			MX6QDL_PAD_SD2_DAT1__SD2_DATA1		0x17059
- 			MX6QDL_PAD_SD2_DAT2__SD2_DATA2		0x17059
- 			MX6QDL_PAD_SD2_DAT3__SD2_DATA3		0x17059
--			MX6QDL_PAD_NANDF_D3__GPIO2_IO03		0x40010040
- 			MX6QDL_PAD_NANDF_D2__GPIO2_IO02		0x40010040
- 		>;
- 	};
-@@ -1014,7 +1013,6 @@
- 			MX6QDL_PAD_SD3_DAT1__SD3_DATA1		0x17059
- 			MX6QDL_PAD_SD3_DAT2__SD3_DATA2		0x17059
- 			MX6QDL_PAD_SD3_DAT3__SD3_DATA3		0x17059
--			MX6QDL_PAD_NANDF_D1__GPIO2_IO01		0x40010040
- 			MX6QDL_PAD_NANDF_D0__GPIO2_IO00		0x40010040
- 
- 		>;
+diff --git a/arch/arc/boot/dts/axs10x_mb.dtsi b/arch/arc/boot/dts/axs10x_mb.dtsi
+index e114000a84f56..d825b9dbae5de 100644
+--- a/arch/arc/boot/dts/axs10x_mb.dtsi
++++ b/arch/arc/boot/dts/axs10x_mb.dtsi
+@@ -70,6 +70,7 @@
+ 			interrupt-names = "macirq";
+ 			phy-mode = "rgmii";
+ 			snps,pbl = < 32 >;
++			snps,multicast-filter-bins = <256>;
+ 			clocks = <&apbclk>;
+ 			clock-names = "stmmaceth";
+ 			max-speed = <100>;
 -- 
 2.20.1
 
