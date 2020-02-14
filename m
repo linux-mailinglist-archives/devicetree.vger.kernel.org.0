@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F39A15ECEB
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A9015ECE4
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:31:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390346AbgBNRa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 12:30:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58884 "EHLO mail.kernel.org"
+        id S2391636AbgBNRaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 12:30:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59082 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390684AbgBNQH3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 11:07:29 -0500
+        id S2390712AbgBNQHg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 11:07:36 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8E9882067D;
-        Fri, 14 Feb 2020 16:07:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8677A2467E;
+        Fri, 14 Feb 2020 16:07:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581696448;
-        bh=881Yyyw2fSkV4kx7RDvxnSQOK+0PXzO6EwfTy9I53jY=;
+        s=default; t=1581696455;
+        bh=ScsIUI1jhlemcbd0HtcfRdTTAt1Fs26SJj8CgwW/VZ0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RHzB4mgipQqKwlB+7U1nXrag9mVvvuSxz6gXOX+RnAIWpJQYIHCp2AbianxX5kyM6
-         rCnwCtfRjqE7vi/lb0Sa2jW1kBjbFhbk/T2nRDzuBU50ySyxR99XX7Vi+XtiLlapyT
-         87zf+i9uhNB3XGapONTqE+7LXCmtmi2c7EDkwvfI=
+        b=0duWHp31wHHiK4aOtyfGzLjxVAfWqWjBQwV0MKt0QOknjdZKnEBN14zdLeBCMPGDf
+         vJ6/qhtvfmbEIcazs0AStyaTbA8kUE5AeyMOCZrwU2lt7dZS0AxuQMB98b3Q798BPP
+         JeSqWPht4usZMhfii9qaYK0/LQk+xgfCTw81gPrs=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 262/459] ARM: dts: meson8b: use the actual frequency for the GPU's 364MHz OPP
-Date:   Fri, 14 Feb 2020 10:58:32 -0500
-Message-Id: <20200214160149.11681-262-sashal@kernel.org>
+Cc:     Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 267/459] ARM: dts: stm32: Add power-supply for DSI panel on stm32f469-disco
+Date:   Fri, 14 Feb 2020 10:58:37 -0500
+Message-Id: <20200214160149.11681-267-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214160149.11681-1-sashal@kernel.org>
 References: <20200214160149.11681-1-sashal@kernel.org>
@@ -45,40 +45,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+From: Benjamin Gaignard <benjamin.gaignard@st.com>
 
-[ Upstream commit c3dd3315ab58b2cfa1916df55b0d0f9fbd94266f ]
+[ Upstream commit 0ff15a86d0c5a3f004fee2e92d65b88e56a3bc58 ]
 
-The clock setup on Meson8 cannot achieve a Mali frequency of exactly
-182.15MHz. The vendor driver uses "FCLK_DIV7 / 1" for this frequency,
-which translates to 2550MHz / 7 / 1 = 364285714Hz.
-Update the GPU operating point to that specific frequency to not confuse
-myself when comparing the frequency from the .dts with the actual clock
-rate on the system.
+Add a fixed regulator and use it as power supply for DSI panel.
 
-Fixes: c3ea80b6138cae ("ARM: dts: meson8b: add the Mali-450 MP2 GPU")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+Fixes: 18c8866266 ("ARM: dts: stm32: Add display support on stm32f469-disco")
+
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/stm32f469-disco.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 099bf8e711c94..1e8c5d7bc824a 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -125,8 +125,8 @@
- 			opp-hz = /bits/ 64 <255000000>;
- 			opp-microvolt = <1100000>;
- 		};
--		opp-364300000 {
--			opp-hz = /bits/ 64 <364300000>;
-+		opp-364285714 {
-+			opp-hz = /bits/ 64 <364285714>;
- 			opp-microvolt = <1100000>;
- 		};
- 		opp-425000000 {
+diff --git a/arch/arm/boot/dts/stm32f469-disco.dts b/arch/arm/boot/dts/stm32f469-disco.dts
+index a3ff04940aec1..c6dc6d1a051b0 100644
+--- a/arch/arm/boot/dts/stm32f469-disco.dts
++++ b/arch/arm/boot/dts/stm32f469-disco.dts
+@@ -76,6 +76,13 @@
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+ 
++	vdd_dsi: vdd-dsi {
++		compatible = "regulator-fixed";
++		regulator-name = "vdd_dsi";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
+ 	soc {
+ 		dma-ranges = <0xc0000000 0x0 0x10000000>;
+ 	};
+@@ -155,6 +162,7 @@
+ 		compatible = "orisetech,otm8009a";
+ 		reg = <0>; /* dsi virtual channel (0..3) */
+ 		reset-gpios = <&gpioh 7 GPIO_ACTIVE_LOW>;
++		power-supply = <&vdd_dsi>;
+ 		status = "okay";
+ 
+ 		port {
 -- 
 2.20.1
 
