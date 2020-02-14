@@ -2,86 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3570915D3C1
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 09:25:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C161C15D3C9
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 09:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728926AbgBNIZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 03:25:43 -0500
-Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:45299 "EHLO
-        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725938AbgBNIZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 03:25:42 -0500
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 14 Feb 2020 13:55:35 +0530
-Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 14 Feb 2020 13:55:08 +0530
-Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
-        id DAA8225C0; Fri, 14 Feb 2020 13:55:06 +0530 (IST)
-From:   Sandeep Maheswaram <sanm@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1728332AbgBNI01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 03:26:27 -0500
+Received: from xavier.telenet-ops.be ([195.130.132.52]:54184 "EHLO
+        xavier.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726004AbgBNI01 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 03:26:27 -0500
+Received: from ramsan ([84.195.182.253])
+        by xavier.telenet-ops.be with bizsmtp
+        id 2YSQ2200V5USYZQ01YSQXn; Fri, 14 Feb 2020 09:26:25 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1j2WIq-0005Cj-Es; Fri, 14 Feb 2020 09:26:24 +0100
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1j2WIq-0001Hf-Bu; Fri, 14 Feb 2020 09:26:24 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Chandana Kishori Chiluveru <cchiluve@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-Subject: [PATCH v5 3/3] arm64: dts: sdm845: Add interconnect properties for USB
-Date:   Fri, 14 Feb 2020 13:54:44 +0530
-Message-Id: <1581668684-4182-4-git-send-email-sanm@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1581668684-4182-1-git-send-email-sanm@codeaurora.org>
-References: <1581668684-4182-1-git-send-email-sanm@codeaurora.org>
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v5] dt-bindings: display: renesas: du: Document optional reset properties
+Date:   Fri, 14 Feb 2020 09:26:23 +0100
+Message-Id: <20200214082623.4893-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate USB DT nodes with interconnect properties.
+Document the optional properties for describing module resets, to
+support resetting display channels on R-Car Gen2 and Gen3.
 
-Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Who's taking this kind of patches?
+V1 was submmitted in March 2017.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index ae7d661..6b59f42 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2563,6 +2563,12 @@
+v5:
+  - Rebase on top of renesas,cmms and renesas,vsps patches,
+
+v4:
+  - Use "All but R8A7779" instead of "R8A779[0123456]", to reduce future
+    churn,
+
+v3:
+  - Add Acked-by,
+  - Drop LVDS resets, as LVDS is now covered by a separate binding,
+  - Update the example.
+
+v2:
+  - s/phandles/phandle/.
+---
+ .../devicetree/bindings/display/renesas,du.txt         | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/renesas,du.txt b/Documentation/devicetree/bindings/display/renesas,du.txt
+index eb4ae41fe41f83c7..51cd4d1627703a15 100644
+--- a/Documentation/devicetree/bindings/display/renesas,du.txt
++++ b/Documentation/devicetree/bindings/display/renesas,du.txt
+@@ -50,6 +50,14 @@ Required Properties:
+     VSP instance that serves the DU channel, and the channel index identifies
+     the LIF instance in that VSP.
  
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
-+			interconnects = <&aggre2_noc MASTER_USB3_0
-+					 &mem_noc SLAVE_EBI1>,
-+					<&gladiator_noc MASTER_APPSS_PROC
-+					 &config_noc SLAVE_USB3_0>;
-+			interconnect-names = "usb-ddr", "apps-usb";
++Optional properties:
++  - resets: A list of phandle + reset-specifier pairs, one for each entry in
++    the reset-names property.
++  - reset-names: Names of the resets. This property is model-dependent.
++    - All but R8A7779 use one reset for a group of one or more successive
++      channels. The resets must be named "du.x" with "x" being the numerical
++      index of the lowest channel in the group.
 +
- 			usb_1_dwc3: dwc3@a600000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a600000 0 0xcd00>;
-@@ -2607,6 +2613,12 @@
+ Required nodes:
  
- 			resets = <&gcc GCC_USB30_SEC_BCR>;
+ The connections to the DU output video ports are modeled using the OF graph
+@@ -96,6 +104,8 @@ Example: R8A7795 (R-Car H3) ES2.0 DU
+ 			 <&cpg CPG_MOD 722>,
+ 			 <&cpg CPG_MOD 721>;
+ 		clock-names = "du.0", "du.1", "du.2", "du.3";
++		resets = <&cpg 724>, <&cpg 722>;
++		reset-names = "du.0", "du.2";
+ 		renesas,cmms = <&cmm0>, <&cmm1>, <&cmm2>, <&cmm3>;
+ 		renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>, <&vspd0 1>;
  
-+			interconnects = <&aggre2_noc MASTER_USB3_1
-+					 &mem_noc SLAVE_EBI1>,
-+					<&gladiator_noc MASTER_APPSS_PROC
-+					 &config_noc SLAVE_USB3_1>;
-+			interconnect-names = "usb-ddr", "apps-usb";
-+
- 			usb_2_dwc3: dwc3@a800000 {
- 				compatible = "snps,dwc3";
- 				reg = <0 0x0a800000 0 0xcd00>;
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.17.1
 
