@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CDF2015F251
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 19:09:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 231D615F241
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 19:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731459AbgBNPyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 10:54:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34126 "EHLO mail.kernel.org"
+        id S2389326AbgBNSIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 13:08:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34266 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731456AbgBNPyP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 10:54:15 -0500
+        id S1729684AbgBNPyV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 10:54:21 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9A4E024686;
-        Fri, 14 Feb 2020 15:54:14 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0B36424681;
+        Fri, 14 Feb 2020 15:54:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581695655;
-        bh=O223LQV9enNAUAJH8Cah5pckGd311AgxJ5giEGsj2OE=;
+        s=default; t=1581695660;
+        bh=Z6d6zi/9ewk2kMFLw5AZmpLrk8BYR4zguQyQmM1H/aw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=xDJhl8tTcKLMGsLwPvR8+1CTEGnnR0P9wAwYLYHQk96v8LnsWL03UHFOWx8NsoQWw
-         0aS55xgIsLAQb3L1GhRBCFQ/U6WMICSW4d/Y1Wnuw/g9ii31rLDPW1x7CFljpVb9x/
-         lQ4NFReW21Q1AA1813+yINa7SPcm/kRPXOBXr2kg=
+        b=jvFgRvO151sL7hPiY4rmAHqjatTYv8d47xQCnA4hQSxXCZXPNoWNmzCLkI7CWoCxL
+         sKWF8MnsKqW63bf94BKq3WEL10xU4mmUv/QaiNXY7G1zoU527wXm67ryk6OKo7P1Fi
+         7cEJOIWKrN+V79+GYso8LZtdMUgNViKIz/zLEEdg=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 247/542] arm64: dts: renesas: r8a77990: ebisu: Remove clkout-lr-synchronous from sound
-Date:   Fri, 14 Feb 2020 10:43:59 -0500
-Message-Id: <20200214154854.6746-247-sashal@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.5 251/542] arm64: dts: qcom: db845c: Enable ath10k 8bit host-cap quirk
+Date:   Fri, 14 Feb 2020 10:44:03 -0500
+Message-Id: <20200214154854.6746-251-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214154854.6746-1-sashal@kernel.org>
 References: <20200214154854.6746-1-sashal@kernel.org>
@@ -44,37 +44,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-[ Upstream commit bf2b74ce9b33a2edd6ba1930ce60a71830790910 ]
+[ Upstream commit 2e198c395a084ff3015d71896e35de049c40e3a4 ]
 
-rcar_sound doesn't support clkout-lr-synchronous in upstream.
-It was supported under out-of-tree rcar_sound.
-upstream rcar_sound is supporting
-	- clkout-lr-synchronous
-	+ clkout-lr-asynchronous
+The WiFi firmware used on db845c implements the 8bit host-capability
+message, so enable the quirk for this.
 
-Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Link: https://lore.kernel.org/r/87mubt3tux.wl-kuninori.morimoto.gx@renesas.com
-Fixes: 56629fcba94c698d ("arm64: dts: renesas: ebisu: Enable Audio")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Link: https://lore.kernel.org/r/20191113232245.4039932-1-bjorn.andersson@linaro.org
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-index b38f9d442fc08..e6d700f8c1948 100644
---- a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-@@ -636,7 +636,6 @@
- 	/* audio_clkout0/1/2/3 */
- 	#clock-cells = <1>;
- 	clock-frequency = <12288000 11289600>;
--	clkout-lr-synchronous;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index d100f46791a62..912ba745c0fc9 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -529,6 +529,8 @@
+ 	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
+ 	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
+ 	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
++
++	qcom,snoc-host-cap-8bit-quirk;
+ };
  
- 	status = "okay";
- 
+ /* PINCTRL - additions to nodes defined in sdm845.dtsi */
 -- 
 2.20.1
 
