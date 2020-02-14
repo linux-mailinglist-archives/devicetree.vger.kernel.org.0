@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6078815EECE
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:43:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D5615EDEE
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:37:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389593AbgBNRnS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 12:43:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50198 "EHLO mail.kernel.org"
+        id S2390080AbgBNQFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 11:05:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54322 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389581AbgBNQDQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 11:03:16 -0500
+        id S2389171AbgBNQFH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 11:05:07 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 20FD724686;
-        Fri, 14 Feb 2020 16:03:15 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E6BA224676;
+        Fri, 14 Feb 2020 16:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581696196;
-        bh=8LejdIoIXZMOUABhucZnQy6clJGTMw5d0X03JVnOjpw=;
+        s=default; t=1581696306;
+        bh=P6ka74hq+S9cWlwpKuE4fkuQlUl5IcnNTOP1eCnSy9s=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TfZAPIlfJO0MAWiuTQph2TXzcdOzFXlC6seE4LqMX4DNgWwqnLu0tXs4/bLKgMbTK
-         wYHCn+0DXKTtygM5/lLNV3acB0lLESK/ZCnlidsX9gXmNhp8O+l1B5oKJaDzTDbN6k
-         Y0M6SdgUTq1yRtiUUceD3eFEM2uo2TQ8K7vVmpp4=
+        b=Eb+Ff3wQgUGP5N42xGIwwpD0vUqzOJGilk1xMCHIEzhR9lW9TjUX7BTV+iUNkBYvE
+         ShE9q5WZ5ylKj/UWMU/ZS45KzgebjzibH2JcDjTAUKmTQG5Bz6TGAadkD6gAVe7lgj
+         hOutLUc8FUQTkv4F5j/wpJthnkItInhj73UY8Md4=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Beniamin Bia <beniamin.bia@analog.com>,
-        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
-        linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 063/459] dt-bindings: iio: adc: ad7606: Fix wrong maxItems value
-Date:   Fri, 14 Feb 2020 10:55:13 -0500
-Message-Id: <20200214160149.11681-63-sashal@kernel.org>
+Cc:     Russell King <rmk+kernel@armlinux.org.uk>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.4 150/459] arm64: dts: uDPU: fix broken ethernet
+Date:   Fri, 14 Feb 2020 10:56:40 -0500
+Message-Id: <20200214160149.11681-150-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214160149.11681-1-sashal@kernel.org>
 References: <20200214160149.11681-1-sashal@kernel.org>
@@ -44,48 +44,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Beniamin Bia <beniamin.bia@analog.com>
+From: Russell King <rmk+kernel@armlinux.org.uk>
 
-[ Upstream commit a6c4f77cb3b11f81077b53c4a38f21b92d41f21e ]
+[ Upstream commit 1eebac0240580b531954b02c05068051df41142a ]
 
-This patch set the correct value for oversampling maxItems. In the
-original example, appears 3 items for oversampling while the maxItems
-is set to 1, this patch fixes those issues.
+The uDPU uses both ethernet controllers, which ties up COMPHY 0 for
+eth1 and COMPHY 1 for eth0, with no USB3 comphy.  The addition of
+COMPHY support made the kernel override the setup by the boot loader
+breaking this platform by assuming that COMPHY 0 was always used for
+USB3.  Delete the USB3 COMPHY definition at platform level, and add
+phy specifications for the ethernet channels.
 
-Fixes: 416f882c3b40 ("dt-bindings: iio: adc: Migrate AD7606 documentation to yaml")
-Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
+Fixes: bd3d25b07342 ("arm64: dts: marvell: armada-37xx: link USB hosts with their PHYs")
+Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-index cc544fdc38bea..bc8aed17800d3 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
-@@ -85,7 +85,7 @@ properties:
-       Must be the device tree identifier of the over-sampling
-       mode pins. As the line is active high, it should be marked
-       GPIO_ACTIVE_HIGH.
--    maxItems: 1
-+    maxItems: 3
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+index bd4aab6092e0f..e31813a4f9722 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-uDPU.dts
+@@ -143,6 +143,7 @@
+ 	phy-mode = "sgmii";
+ 	status = "okay";
+ 	managed = "in-band-status";
++	phys = <&comphy1 0>;
+ 	sfp = <&sfp_eth0>;
+ };
  
-   adi,sw-mode:
-     description:
-@@ -128,9 +128,9 @@ examples:
-                 adi,conversion-start-gpios = <&gpio 17 GPIO_ACTIVE_HIGH>;
-                 reset-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
-                 adi,first-data-gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
--                adi,oversampling-ratio-gpios = <&gpio 18 GPIO_ACTIVE_HIGH
--                                                &gpio 23 GPIO_ACTIVE_HIGH
--                                                &gpio 26 GPIO_ACTIVE_HIGH>;
-+                adi,oversampling-ratio-gpios = <&gpio 18 GPIO_ACTIVE_HIGH>,
-+                                               <&gpio 23 GPIO_ACTIVE_HIGH>,
-+                                               <&gpio 26 GPIO_ACTIVE_HIGH>;
-                 standby-gpios = <&gpio 24 GPIO_ACTIVE_LOW>;
-                 adi,sw-mode;
-         };
+@@ -150,11 +151,14 @@
+ 	phy-mode = "sgmii";
+ 	status = "okay";
+ 	managed = "in-band-status";
++	phys = <&comphy0 1>;
+ 	sfp = <&sfp_eth1>;
+ };
+ 
+ &usb3 {
+ 	status = "okay";
++	phys = <&usb2_utmi_otg_phy>;
++	phy-names = "usb2-utmi-otg-phy";
+ };
+ 
+ &uart0 {
 -- 
 2.20.1
 
