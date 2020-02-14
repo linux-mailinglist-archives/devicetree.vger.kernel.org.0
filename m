@@ -2,41 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F22E815E706
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 17:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C087015E563
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 17:42:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405040AbgBNQTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 11:19:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52852 "EHLO mail.kernel.org"
+        id S2405461AbgBNQW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 11:22:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57996 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405037AbgBNQTl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 11:19:41 -0500
+        id S2391318AbgBNQW3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 11:22:29 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D22BA24706;
-        Fri, 14 Feb 2020 16:19:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 92BC3246D9;
+        Fri, 14 Feb 2020 16:22:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581697180;
-        bh=60wDpPFn61IGgirDpObDN+GtIav6ew+mgPwLMFb64XY=;
+        s=default; t=1581697348;
+        bh=lteqolzuU+UzVOoAG+rTJZd2wFSneRZ0L8io3FLpjn8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DEnMXb+e638ZwfYjul/wdRjG4PGQJuJD33fjJdHuWob+60Ft0LhXb/r98gpuULyHK
-         ukpfjZY1gJ1EQtcba6mKc1MHF/jGU71qSOdeDLUvTDPTxiijzpfDuCXK5fWvzIQFov
-         BgfQQzBg0mIILzCx2FFYJj9YrHsM0wNhySxMFidU=
+        b=1d889S5LbhArjuFejkXrS0IdWABDxHZEn40Jor0ycZY0UHPY83BfOQHkYnmZRD5cU
+         0H6V6VsI+xrVE0hDY2ajvbwN+Wgl7It7OSfedm50gEHB2kgmbOqpAAIUCfDKaQlYGw
+         x2jPHp6KWfFlYIN61uuBJwixgzxv0oH4r6P2Ykyo=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        =?UTF-8?q?Karl=20Rudb=C3=A6k=20Olsen?= <karl@micro-technic.com>,
-        Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 112/186] ARM: dts: at91: sama5d3: define clock rate range for tcb1
-Date:   Fri, 14 Feb 2020 11:16:01 -0500
-Message-Id: <20200214161715.18113-112-sashal@kernel.org>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.9 052/141] arm: dts: allwinner: H3: Add PMU node
+Date:   Fri, 14 Feb 2020 11:19:52 -0500
+Message-Id: <20200214162122.19794-52-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200214161715.18113-1-sashal@kernel.org>
-References: <20200214161715.18113-1-sashal@kernel.org>
+In-Reply-To: <20200214162122.19794-1-sashal@kernel.org>
+References: <20200214162122.19794-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -45,34 +44,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+From: Andre Przywara <andre.przywara@arm.com>
 
-[ Upstream commit a7e0f3fc01df4b1b7077df777c37feae8c9e8b6d ]
+[ Upstream commit 0388a110747bec0c9d9de995842bb2a03a26aae1 ]
 
-The clock rate range for the TCB1 clock is missing. define it in the device
-tree.
+Add the Performance Monitoring Unit (PMU) device tree node to the H3
+.dtsi, which tells DT users which interrupts are triggered by PMU
+overflow events on each core. The numbers come from the manual and have
+been checked in U-Boot and with perf in Linux.
 
-Reported-by: Karl Rudbæk Olsen <karl@micro-technic.com>
-Fixes: d2e8190b7916 ("ARM: at91/dt: define sama5d3 clocks")
-Link: https://lore.kernel.org/r/20200110172007.1253659-2-alexandre.belloni@bootlin.com
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Tested with perf record and taskset on an OrangePi Zero.
+
+Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/sama5d3_tcb1.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/sun8i-h3.dtsi | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sama5d3_tcb1.dtsi b/arch/arm/boot/dts/sama5d3_tcb1.dtsi
-index 801f9745e82f1..b80dbc45a3c20 100644
---- a/arch/arm/boot/dts/sama5d3_tcb1.dtsi
-+++ b/arch/arm/boot/dts/sama5d3_tcb1.dtsi
-@@ -23,6 +23,7 @@
- 					tcb1_clk: tcb1_clk {
- 						#clock-cells = <0>;
- 						reg = <27>;
-+						atmel,clk-output-range = <0 166000000>;
- 					};
- 				};
- 			};
+diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
+index f4ba088b225ed..08d65f252e172 100644
+--- a/arch/arm/boot/dts/sun8i-h3.dtsi
++++ b/arch/arm/boot/dts/sun8i-h3.dtsi
+@@ -60,25 +60,34 @@
+ 			reg = <0>;
+ 		};
+ 
+-		cpu@1 {
++		cpu1: cpu@1 {
+ 			compatible = "arm,cortex-a7";
+ 			device_type = "cpu";
+ 			reg = <1>;
+ 		};
+ 
+-		cpu@2 {
++		cpu2: cpu@2 {
+ 			compatible = "arm,cortex-a7";
+ 			device_type = "cpu";
+ 			reg = <2>;
+ 		};
+ 
+-		cpu@3 {
++		cpu3: cpu@3 {
+ 			compatible = "arm,cortex-a7";
+ 			device_type = "cpu";
+ 			reg = <3>;
+ 		};
+ 	};
+ 
++	pmu {
++		compatible = "arm,cortex-a7-pmu";
++		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
++			     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
++	};
++
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+ 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
 -- 
 2.20.1
 
