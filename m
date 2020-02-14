@@ -2,39 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A3D315E3E3
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 17:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00AB315E3EF
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 17:33:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406118AbgBNQZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 11:25:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35152 "EHLO mail.kernel.org"
+        id S2406873AbgBNQcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 11:32:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35560 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2406113AbgBNQZ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 11:25:29 -0500
+        id S2391544AbgBNQZn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 11:25:43 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DA80D247C6;
-        Fri, 14 Feb 2020 16:25:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B7DC724771;
+        Fri, 14 Feb 2020 16:25:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581697528;
-        bh=U1hQYGmbYZuTgXI+foOvWiI4DWlD9KQ+H4SpRNWnz5A=;
+        s=default; t=1581697541;
+        bh=+u5EBL3a4w2Coezj5q3yDAcoTg6wJonyuoR5mXT3+vQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TiwaU/S7dmHZvF2zMUIDu+QYTxtgxUzW6por9NN8DCA32eV5K9ZhPjU+c6hlZDLLR
-         zx+Jb+E89v6iflpp2HsK0+YUOuvlhqnyCXIEXMcr0RAsfPXazWQVqSNdW6EWh95yVF
-         oK22fLiF4rcjdf+E3QHss5ScPSrb2wElP6MmqmcE=
+        b=Jpqy5PstxlO9neLioTI66bpyhTyViICnrJWWPYWe3hRgiYHqACvUjwT/+2cnqcEwg
+         +HefZjNWO4fnF8B5zfCHO9KmpqKFkv7gt5HAkYGZszE3698MUaAZBWdgQ+40NgTcvr
+         pF9HhVSI0jCc8cKzz6DnBe6u0vbHsABTeeoXHQ3Q=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        =?UTF-8?q?Karl=20Rudb=C3=A6k=20Olsen?= <karl@micro-technic.com>,
         Sasha Levin <sashal@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 051/100] ARM: dts: r8a7779: Add device node for ARM global timer
-Date:   Fri, 14 Feb 2020 11:23:35 -0500
-Message-Id: <20200214162425.21071-51-sashal@kernel.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.4 061/100] ARM: dts: at91: sama5d3: fix maximum peripheral clock rates
+Date:   Fri, 14 Feb 2020 11:23:45 -0500
+Message-Id: <20200214162425.21071-61-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214162425.21071-1-sashal@kernel.org>
 References: <20200214162425.21071-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -43,42 +45,176 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Geert Uytterhoeven <geert+renesas@glider.be>
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-[ Upstream commit 8443ffd1bbd5be74e9b12db234746d12e8ea93e2 ]
+[ Upstream commit ee0aa926ddb0bd8ba59e33e3803b3b5804e3f5da ]
 
-Add a device node for the global timer, which is part of the Cortex-A9
-MPCore.
+Currently the maximum rate for peripheral clock is calculated based on a
+typical 133MHz MCK. The maximum frequency is defined in the datasheet as a
+ratio to MCK. Some sama5d3 platforms are using a 166MHz MCK. Update the
+device trees to match the maximum rate based on 166MHz.
 
-The global timer can serve as an accurate (4 ns) clock source for
-scheduling and delay loops.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Link: https://lore.kernel.org/r/20191211135222.26770-4-geert+renesas@glider.be
+Reported-by: Karl Rudbæk Olsen <karl@micro-technic.com>
+Fixes: d2e8190b7916 ("ARM: at91/dt: define sama5d3 clocks")
+Link: https://lore.kernel.org/r/20200110172007.1253659-1-alexandre.belloni@bootlin.com
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/r8a7779.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm/boot/dts/sama5d3.dtsi      | 28 ++++++++++++++--------------
+ arch/arm/boot/dts/sama5d3_can.dtsi  |  4 ++--
+ arch/arm/boot/dts/sama5d3_uart.dtsi |  4 ++--
+ 3 files changed, 18 insertions(+), 18 deletions(-)
 
-diff --git a/arch/arm/boot/dts/r8a7779.dtsi b/arch/arm/boot/dts/r8a7779.dtsi
-index 6afa909865b52..8636e2321ab71 100644
---- a/arch/arm/boot/dts/r8a7779.dtsi
-+++ b/arch/arm/boot/dts/r8a7779.dtsi
-@@ -63,6 +63,14 @@
- 		      <0xf0000100 0x100>;
- 	};
+diff --git a/arch/arm/boot/dts/sama5d3.dtsi b/arch/arm/boot/dts/sama5d3.dtsi
+index a53279160f983..6b1894400ccca 100644
+--- a/arch/arm/boot/dts/sama5d3.dtsi
++++ b/arch/arm/boot/dts/sama5d3.dtsi
+@@ -1106,49 +1106,49 @@
+ 					usart0_clk: usart0_clk {
+ 						#clock-cells = <0>;
+ 						reg = <12>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
  
-+	timer@f0000200 {
-+		compatible = "arm,cortex-a9-global-timer";
-+		reg = <0xf0000200 0x100>;
-+		interrupts = <GIC_PPI 11
-+			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_EDGE_RISING)>;
-+		clocks = <&cpg_clocks R8A7779_CLK_ZS>;
-+	};
-+
- 	timer@f0000600 {
- 		compatible = "arm,cortex-a9-twd-timer";
- 		reg = <0xf0000600 0x20>;
+ 					usart1_clk: usart1_clk {
+ 						#clock-cells = <0>;
+ 						reg = <13>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					usart2_clk: usart2_clk {
+ 						#clock-cells = <0>;
+ 						reg = <14>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					usart3_clk: usart3_clk {
+ 						#clock-cells = <0>;
+ 						reg = <15>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					uart0_clk: uart0_clk {
+ 						#clock-cells = <0>;
+ 						reg = <16>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					twi0_clk: twi0_clk {
+ 						reg = <18>;
+ 						#clock-cells = <0>;
+-						atmel,clk-output-range = <0 16625000>;
++						atmel,clk-output-range = <0 41500000>;
+ 					};
+ 
+ 					twi1_clk: twi1_clk {
+ 						#clock-cells = <0>;
+ 						reg = <19>;
+-						atmel,clk-output-range = <0 16625000>;
++						atmel,clk-output-range = <0 41500000>;
+ 					};
+ 
+ 					twi2_clk: twi2_clk {
+ 						#clock-cells = <0>;
+ 						reg = <20>;
+-						atmel,clk-output-range = <0 16625000>;
++						atmel,clk-output-range = <0 41500000>;
+ 					};
+ 
+ 					mci0_clk: mci0_clk {
+@@ -1164,19 +1164,19 @@
+ 					spi0_clk: spi0_clk {
+ 						#clock-cells = <0>;
+ 						reg = <24>;
+-						atmel,clk-output-range = <0 133000000>;
++						atmel,clk-output-range = <0 166000000>;
+ 					};
+ 
+ 					spi1_clk: spi1_clk {
+ 						#clock-cells = <0>;
+ 						reg = <25>;
+-						atmel,clk-output-range = <0 133000000>;
++						atmel,clk-output-range = <0 166000000>;
+ 					};
+ 
+ 					tcb0_clk: tcb0_clk {
+ 						#clock-cells = <0>;
+ 						reg = <26>;
+-						atmel,clk-output-range = <0 133000000>;
++						atmel,clk-output-range = <0 166000000>;
+ 					};
+ 
+ 					pwm_clk: pwm_clk {
+@@ -1187,7 +1187,7 @@
+ 					adc_clk: adc_clk {
+ 						#clock-cells = <0>;
+ 						reg = <29>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					dma0_clk: dma0_clk {
+@@ -1218,13 +1218,13 @@
+ 					ssc0_clk: ssc0_clk {
+ 						#clock-cells = <0>;
+ 						reg = <38>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					ssc1_clk: ssc1_clk {
+ 						#clock-cells = <0>;
+ 						reg = <39>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					sha_clk: sha_clk {
+diff --git a/arch/arm/boot/dts/sama5d3_can.dtsi b/arch/arm/boot/dts/sama5d3_can.dtsi
+index c5a3772741bf6..0fac79f75c06c 100644
+--- a/arch/arm/boot/dts/sama5d3_can.dtsi
++++ b/arch/arm/boot/dts/sama5d3_can.dtsi
+@@ -37,13 +37,13 @@
+ 					can0_clk: can0_clk {
+ 						#clock-cells = <0>;
+ 						reg = <40>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					can1_clk: can1_clk {
+ 						#clock-cells = <0>;
+ 						reg = <41>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 				};
+ 			};
+diff --git a/arch/arm/boot/dts/sama5d3_uart.dtsi b/arch/arm/boot/dts/sama5d3_uart.dtsi
+index 2511d748867bd..71818c7bfb673 100644
+--- a/arch/arm/boot/dts/sama5d3_uart.dtsi
++++ b/arch/arm/boot/dts/sama5d3_uart.dtsi
+@@ -42,13 +42,13 @@
+ 					uart0_clk: uart0_clk {
+ 						#clock-cells = <0>;
+ 						reg = <16>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 
+ 					uart1_clk: uart1_clk {
+ 						#clock-cells = <0>;
+ 						reg = <17>;
+-						atmel,clk-output-range = <0 66000000>;
++						atmel,clk-output-range = <0 83000000>;
+ 					};
+ 				};
+ 			};
 -- 
 2.20.1
 
