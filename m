@@ -2,87 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F114715EB34
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9163415E8AA
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 18:02:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389150AbgBNRTP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 12:19:15 -0500
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.124]:19639 "EHLO
-        mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391607AbgBNQKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 11:10:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1581696642;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=3oO7x2A3vdUHmUPMqDNJJ9DsdN1nPGYoXmW4gDFFS+k=;
-        b=DPm2fp5U1fSACRGiAgOjmYWs7+jNqufvSiK2JUET9VWvfbKBXUFnSFfk+CQdH5v8kS
-        sfxtQ7ne5Mg9dh6kacDYiRNiDY1D40MAx4Bv2eXxTZLRkS1wkXoTFEKMdfs4OmbOMwgJ
-        CZQy0eIldUQPPsN2UyMYS2coPHDQF0T+cIgnksQHuGnYVZxMDWG4JzyROEfxCDjkoWzd
-        OydLAWUqPizxg7CiHF9x4FbCi65mK4FgjAYmDgKw3K/tTw1/1fSCK436IasMtR0dMhiy
-        T7ZKmek8AivltBVTZ1bL+5mabQuODbeV9VZh/LCXn7LWIUSdafwWz26d2lHmEYiCiWwg
-        tZRg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UNf2M7OMfsfQx3"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 46.1.12 DYNA|AUTH)
-        with ESMTPSA id U06217w1EGAXFl7
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Fri, 14 Feb 2020 17:10:33 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Boddie <paul@boddie.org.uk>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Andi Kleen <ak@linux.intel.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Kees Cook <keescook@chromium.org>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Subject: [PATCH v2 12/12] MIPS: DTS: CI20: fix interrupt for pcf8563 RTC
-Date:   Fri, 14 Feb 2020 17:10:24 +0100
-Message-Id: <42aed0c7c063fa6c289fcbf361645056e15f513c.1581696624.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <cover.1581696624.git.hns@goldelico.com>
-References: <cover.1581696624.git.hns@goldelico.com>
+        id S2392438AbgBNQQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 11:16:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46926 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2403832AbgBNQQN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 14 Feb 2020 11:16:13 -0500
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 559042467D;
+        Fri, 14 Feb 2020 16:16:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1581696972;
+        bh=rWXbwbRAZonVyOwllnzP9TFQ4vkrdB9BcqX/125Xjik=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=e0exXlpXlONcPFvXJAUNgnxFQkREUKO/hWyO3PEuj6a7pWFmdb1AXteFsgBSIKYjM
+         K8RRRtmt1u0vdWKjcTTjjCZrvwyKYd3NM19CEbVDAaWGBSV+rrmaR66MBLuJoYndYo
+         SzCb5U2gUTRGZKEpkZlp+ih5/WkBU1vaEE2yaP6o=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Tero Kristo <t-kristo@ti.com>, Benoit Parrot <bparrot@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 210/252] ARM: dts: am43xx: add support for clkout1 clock
+Date:   Fri, 14 Feb 2020 11:11:05 -0500
+Message-Id: <20200214161147.15842-210-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200214161147.15842-1-sashal@kernel.org>
+References: <20200214161147.15842-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Interrupts should not be specified by interrupt line but by
-gpio parent and reference.
+From: Tero Kristo <t-kristo@ti.com>
 
-Fixes: 73f2b940474d ("MIPS: CI20: DTS: Add I2C nodes")
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+[ Upstream commit 01053dadb79d63b65f7b353e68b4b6ccf4effedb ]
+
+clkout1 clock node and its generation tree was missing. Add this based
+on the data on TRM and PRCM functional spec.
+
+commit 664ae1ab2536 ("ARM: dts: am43xx: add clkctrl nodes") effectively
+reverted this commit 8010f13a40d3 ("ARM: dts: am43xx: add support for
+clkout1 clock") which is needed for the ov2659 camera sensor clock
+definition hence it is being re-applied here.
+
+Note that because of the current dts node name dependency for mapping to
+clock domain, we must still use "clkout1-*ck" naming instead of generic
+"clock@" naming for the node. And because of this, it's probably best to
+apply the dts node addition together along with the other clock changes.
+
+Fixes: 664ae1ab2536 ("ARM: dts: am43xx: add clkctrl nodes")
+Signed-off-by: Tero Kristo <t-kristo@ti.com>
+Tested-by: Benoit Parrot <bparrot@ti.com>
+Acked-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Benoit Parrot <bparrot@ti.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/mips/boot/dts/ingenic/ci20.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/am43xx-clocks.dtsi | 54 ++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-index 8f9d182566db..4bacefa2cfce 100644
---- a/arch/mips/boot/dts/ingenic/ci20.dts
-+++ b/arch/mips/boot/dts/ingenic/ci20.dts
-@@ -298,7 +298,9 @@ Optional input supply properties:
- 		rtc@51 {
- 			compatible = "nxp,pcf8563";
- 			reg = <0x51>;
--			interrupts = <110>;
+diff --git a/arch/arm/boot/dts/am43xx-clocks.dtsi b/arch/arm/boot/dts/am43xx-clocks.dtsi
+index a7037a4b4fd48..ce3c4196f173c 100644
+--- a/arch/arm/boot/dts/am43xx-clocks.dtsi
++++ b/arch/arm/boot/dts/am43xx-clocks.dtsi
+@@ -707,6 +707,60 @@
+ 		ti,bit-shift = <8>;
+ 		reg = <0x2a48>;
+ 	};
 +
-+			interrupt-parent = <&gpf>;
-+			interrupts = <30 IRQ_TYPE_LEVEL_LOW>;
- 		};
++	clkout1_osc_div_ck: clkout1-osc-div-ck {
++		#clock-cells = <0>;
++		compatible = "ti,divider-clock";
++		clocks = <&sys_clkin_ck>;
++		ti,bit-shift = <20>;
++		ti,max-div = <4>;
++		reg = <0x4100>;
++	};
++
++	clkout1_src2_mux_ck: clkout1-src2-mux-ck {
++		#clock-cells = <0>;
++		compatible = "ti,mux-clock";
++		clocks = <&clk_rc32k_ck>, <&sysclk_div>, <&dpll_ddr_m2_ck>,
++			 <&dpll_per_m2_ck>, <&dpll_disp_m2_ck>,
++			 <&dpll_mpu_m2_ck>;
++		reg = <0x4100>;
++	};
++
++	clkout1_src2_pre_div_ck: clkout1-src2-pre-div-ck {
++		#clock-cells = <0>;
++		compatible = "ti,divider-clock";
++		clocks = <&clkout1_src2_mux_ck>;
++		ti,bit-shift = <4>;
++		ti,max-div = <8>;
++		reg = <0x4100>;
++	};
++
++	clkout1_src2_post_div_ck: clkout1-src2-post-div-ck {
++		#clock-cells = <0>;
++		compatible = "ti,divider-clock";
++		clocks = <&clkout1_src2_pre_div_ck>;
++		ti,bit-shift = <8>;
++		ti,max-div = <32>;
++		ti,index-power-of-two;
++		reg = <0x4100>;
++	};
++
++	clkout1_mux_ck: clkout1-mux-ck {
++		#clock-cells = <0>;
++		compatible = "ti,mux-clock";
++		clocks = <&clkout1_osc_div_ck>, <&clk_rc32k_ck>,
++			 <&clkout1_src2_post_div_ck>, <&dpll_extdev_m2_ck>;
++		ti,bit-shift = <16>;
++		reg = <0x4100>;
++	};
++
++	clkout1_ck: clkout1-ck {
++		#clock-cells = <0>;
++		compatible = "ti,gate-clock";
++		clocks = <&clkout1_mux_ck>;
++		ti,bit-shift = <23>;
++		reg = <0x4100>;
++	};
  };
  
+ &prcm {
 -- 
-2.23.0
+2.20.1
 
