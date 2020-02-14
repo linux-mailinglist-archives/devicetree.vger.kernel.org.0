@@ -2,76 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 556FF15DD46
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 16:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8CCD15DBC8
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 16:51:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388228AbgBNP51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 10:57:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40360 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388222AbgBNP51 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 14 Feb 2020 10:57:27 -0500
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EB82C2082F;
-        Fri, 14 Feb 2020 15:57:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581695846;
-        bh=PDMV9NL7oAVwioQiltJHDGJGsryMCmbpfpVrnmp6Hao=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2p5i7w7c2YaKsI71BdmHflW3wW8lxNNAqQvxrx3UxzbdVl5MamQODjsZ6IX/g+2ZN
-         Wl6JeiuWTwz1mMWAOi9IHycbAPOyydaHNZV/WQEW44yf/3FC9Oq4GkTfDNVOYn77Ko
-         tB5lj+y8cHf/w1HyusJACwag49MVlD2g6mKWPdAE=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Lokesh Vutla <lokeshvutla@ti.com>, Suman Anna <s-anna@ti.com>,
-        Tero Kristo <t-kristo@ti.com>, Sasha Levin <sashal@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 396/542] arm64: dts: ti: k3-j721e-main: Add missing power-domains for smmu
-Date:   Fri, 14 Feb 2020 10:46:28 -0500
-Message-Id: <20200214154854.6746-396-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200214154854.6746-1-sashal@kernel.org>
-References: <20200214154854.6746-1-sashal@kernel.org>
+        id S1730407AbgBNPuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 10:50:15 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:39766 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730395AbgBNPuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 10:50:13 -0500
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 07FB3504;
+        Fri, 14 Feb 2020 16:50:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1581695411;
+        bh=6e+7bDY3r6ByJjLewqsOYs1CXdUi6zcETKuRnQBHL7k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tENrtjOXqdlpx50ctrWpO/Dg2MQeaiNWYQhupv8mEaBBfuywVE7lM/FfglyaNbuGc
+         bqwnwcNiyyIwiokEJPu650Sqy1LRLG4LvdFZALYdyQjxrFFVykTAW4mJ6sKQjl4GW7
+         4ymkm46zbNfqTCj1z6HEcTHGVv+ea4AC1zuuIq/Q=
+Date:   Fri, 14 Feb 2020 17:49:53 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: sun4i-tcon: Add LVDS Dual Link
+ property
+Message-ID: <20200214154953.GJ4831@pendragon.ideasonboard.com>
+References: <20200214123244.109300-1-maxime@cerno.tech>
+ <20200214131025.GI4831@pendragon.ideasonboard.com>
+ <20200214154405.f5zuicm6uhhiczfs@gilmour.lan>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200214154405.f5zuicm6uhhiczfs@gilmour.lan>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lokesh Vutla <lokeshvutla@ti.com>
+Hi Maxime,
 
-[ Upstream commit 3f03a58b25753843ce9e4511e9e246c51bd11011 ]
+On Fri, Feb 14, 2020 at 04:44:05PM +0100, Maxime Ripard wrote:
+> On Fri, Feb 14, 2020 at 03:10:25PM +0200, Laurent Pinchart wrote:
+> > On Fri, Feb 14, 2020 at 01:32:43PM +0100, Maxime Ripard wrote:
+> > > SoCs that have multiple TCONs can use the two set of pins on the first TCON
+> > > to drive a dual-link display. Add a property to enable the dual link.
+> > >
+> > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > > ---
+> > >  .../bindings/display/allwinner,sun4i-a10-tcon.yaml         | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
+> > > index 86ad617d2327..aa6dd8409dbc 100644
+> > > --- a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
+> > > @@ -105,6 +105,13 @@ properties:
+> > >          - const: edp
+> > >          - const: lvds
+> > >
+> > > +  allwinner,lvds-dual-link:
+> > > +    type: boolean
+> > > +    description: |
+> > > +      On a SoC with two TCON with LVDS support, the first TCON can
+> > > +      operate over both pins sets to output in a dual-link setup. This
+> > > +      will be triggered by setting this property.
+> >
+> > Could you maybe provide an example of how this property is supposed to
+> > be used ? I'm especially wondering what ports are used in that case and
+> > how they're connected.
+> 
+> It's pretty trivial to support, it's only a property to set on the
+> encoder node itself.
+> 
+> I'm not really sure what you meant by your question with the ports
+> though :/
 
-Add power-domains entry for smmu, so that the it is accessible as long
-as the driver is active. Without this device shutdown is throwing the
-below warning:
-"[   44.736348] arm-smmu-v3 36600000.smmu: failed to clear cr0"
+I assume that, in the single-link case, you have two TCON instances that
+operate independently, each of them with one port that models an LVDS
+connection to a panel. In the dual-link mode, how does that look like ?
+Does the TCON instance that operate in dual-link mode have two ports in
+DT ? There are two physical ports, so I think it makes sense to always
+have two ports in DT. That's what we're doing for the LVDS encoders on
+R-Car Gen3, in order to specify in DT which LVDS input of the dual-link
+panel is connected to which LVDS output of the SoC. That allows
+configuring the LVDS encoder to send the even and odd pixels on the
+right port.
 
-Reported-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 1e4c2b78d66d6..68d478af7a3e6 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -43,6 +43,7 @@
- 	smmu0: smmu@36600000 {
- 		compatible = "arm,smmu-v3";
- 		reg = <0x0 0x36600000 0x0 0x100000>;
-+		power-domains = <&k3_pds 229 TI_SCI_PD_EXCLUSIVE>;
- 		interrupt-parent = <&gic500>;
- 		interrupts = <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
- 			     <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>;
 -- 
-2.20.1
+Regards,
 
+Laurent Pinchart
