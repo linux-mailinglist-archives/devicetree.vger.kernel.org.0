@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B05D915F6AF
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 20:18:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67C6915F6C6
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 20:25:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387445AbgBNTSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 14 Feb 2020 14:18:13 -0500
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:39609 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387603AbgBNTSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 14:18:13 -0500
-Received: by mail-wm1-f65.google.com with SMTP id c84so11874113wme.4
-        for <devicetree@vger.kernel.org>; Fri, 14 Feb 2020 11:18:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=alfJFtHKJM/Uyz0gLDfPfrM5tSB9dNPsAfTb3Z88wWA=;
-        b=LJSwO27g2GKc2awVc8VpB/xF0Y1TAHxkCB4lDDP5c+PfqZJYx6jpTfHi5IdhIIoBXj
-         oDxysBiJQlYIG4LVMpFi32QleK68KJw7uIvfB7WADBx5So/a68VG/D9GkxVu7gLulsl7
-         ky/fP98MM+iOVubCw6s0W7wXuPWuX5/TTMHCZaoSq2eULAY6A8ytrfdkM1dH7uaSJVw8
-         NLHfP8Dl+U3cQuQKfUjuk5VfFRf0uL3ZbyyzIm9MfzpXLBFmqVLKUS+DJCrM7HCRupBi
-         rN9uchVRidbMX9t+Z9QMvjJNZMGDAdwNZzpy54SjraFBCj31MjiFOVjQKOpfm4W+DchM
-         K0pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=alfJFtHKJM/Uyz0gLDfPfrM5tSB9dNPsAfTb3Z88wWA=;
-        b=RmdF66sbAq1lbYxlMmISt0wycGWBweC0JQ5iK+grrV/vGXmvoMB85X5lC+U0d/PIeC
-         7POHxVq7LclFaXKz1Gdskxyq6Vhdqf44C35NoLvozSXeyAp+vn9cZiWOiD5aqCQAQwvA
-         VJAQ0sdsahFLZQGG4pODaicNV7mgnbvF6tK6BPDaOlsgzLF1VMfo+ZvrGeCgZLYmv3xm
-         Z0NKCFwWEu6P8dWlxT97p6WH36wQGqlwJYIF0eKuDX16WLYhdAAYSmFwexyiqflhm46v
-         BCKySJumr10rRj6hyDsalbjAi/U17+hSBURB2REDYAGEaz3nu/BrfY5QU7B9UvXndPLw
-         xpTA==
-X-Gm-Message-State: APjAAAWQN2Z8lpHC+XyCI/VQtTlPCNy6F0UPuPbh+DMtsEVqVPwBR/h9
-        f9j8qIHEh3vfVZBhagRan9raIk8NMxc=
-X-Google-Smtp-Source: APXvYqzyucT7GHVeUgi+5TIyBryVhiWXBuXBSMxGy6Ld77Vtz6UEawy6ZwoJS89byCYQ4btqYCjn0g==
-X-Received: by 2002:a1c:3d46:: with SMTP id k67mr6370811wma.171.1581707890051;
-        Fri, 14 Feb 2020 11:18:10 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id c9sm8045588wrq.44.2020.02.14.11.18.08
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 14 Feb 2020 11:18:09 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Guillaume La Roque <glaroque@baylibre.com>,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: meson-sm1-sei610: add missing interrupt-names
-In-Reply-To: <42e82841-067d-245b-6196-183503da389b@baylibre.com>
-References: <20200117133423.22602-1-glaroque@baylibre.com> <42e82841-067d-245b-6196-183503da389b@baylibre.com>
-Date:   Fri, 14 Feb 2020 11:18:06 -0800
-Message-ID: <7h8sl5asgh.fsf@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+        id S2388367AbgBNTYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 14 Feb 2020 14:24:54 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:30923 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387596AbgBNTYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 14:24:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1581708292;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=e3Rzzpo7xk9J4ECQBBols/BtjcoyLgBQyjDXgkqJ5t4=;
+        b=HyTL905JWDg18FcLUhGZaD6IAYx04+ukXS4utjVBqPnjC+/y79E4ifypPUQuC9Bx+J
+        70AhaGRU6tBq7262beAjkmzKV0nEsRlMOOL4WgsZfylOHSLC3hj1wemzoj3vcmX0PPMT
+        Z6M9I3s7ymOR1k2zv0mVcmEca3yrYb1iyIVGMjh8XuzoI26NkVceyQXM2Xim92CAKi6t
+        PBavVX7si71PWyZ8yeb5/hp/dxdY4M6tbOK837ixoa5qrj+VTdi2+wlFLlKwXq8LYQ5R
+        bE8/TKuudjGDy/h/7ZA8nJL7gW8obHPn6oxFcxIPayh8TPds7YLQHr9dgjWSZ7MKJdUF
+        wFpw==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGH/PuwDOspHA="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 46.1.12 DYNA|AUTH)
+        with ESMTPSA id U06217w1EJOlGBd
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Fri, 14 Feb 2020 20:24:47 +0100 (CET)
+Content-Type: text/plain; charset=iso-8859-1
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: [PATCH v2 01/12] drm: ingenic-drm: add MODULE_DEVICE_TABLE
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <1581707177.3.6@crapouillou.net>
+Date:   Fri, 14 Feb 2020 20:24:45 +0100
+Cc:     Paul Boddie <paul@boddie.org.uk>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andi Kleen <ak@linux.intel.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Kees Cook <keescook@chromium.org>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, letux-kernel@openphoenux.org,
+        kernel@pyra-handheld.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B5B39A33-B8C4-4503-91CB-BFB344558B5D@goldelico.com>
+References: <cover.1581696624.git.hns@goldelico.com> <1b5475c88032b3851c6d33443e688b432af42a9f.1581696624.git.hns@goldelico.com> <1581707177.3.6@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> On 17/01/2020 14:34, Guillaume La Roque wrote:
->> add missing "host-wakeup interrupt names
->> 
->> Fixes: 30388cc07572 ("arm64: dts: meson-sm1-sei610: add gpio bluetooth interrupt")
->> 
->> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> Am 14.02.2020 um 20:06 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+> Hi Nikolaus,
+>=20
+> Please rebase this patch on top of drm-misc-next and send it apart - =
+it should go through the DRM tree.
+>=20
+>=20
+> Le ven., f=E9vr. 14, 2020 at 17:10, H. Nikolaus Schaller =
+<hns@goldelico.com> a =E9crit :
+>> Add MODULE_DEVICE_TABLE so that the driver can load by
+>> matching the device tree if compiled as module.
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 >> ---
->>  arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
->> index a8bb3fa9fec9..cb1b48f5b8b1 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
->> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
->> @@ -593,6 +593,7 @@
->>  		compatible = "brcm,bcm43438-bt";
->>  		interrupt-parent = <&gpio_intc>;
->>  		interrupts = <95 IRQ_TYPE_LEVEL_HIGH>;
->> +		interrupt-names = "host-wakeup";
->>  		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
->>  		max-speed = <2000000>;
->>  		clocks = <&wifi32k>;
->> 
->
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+>> drivers/gpu/drm/ingenic/ingenic-drm.c | 2 ++
+>> 1 file changed, 2 insertions(+)
+>> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm.c =
+b/drivers/gpu/drm/ingenic/ingenic-drm.c
+>> index 6d47ef7b148c..d8617096dd8e 100644
+>> --- a/drivers/gpu/drm/ingenic/ingenic-drm.c
+>> +++ b/drivers/gpu/drm/ingenic/ingenic-drm.c
+>> @@ -844,6 +844,8 @@ static const struct of_device_id =
+ingenic_drm_of_match[] =3D {
+>> 	{ /* sentinel */ },
+>> };
+>> +MODULE_DEVICE_TABLE(of, ingenic_drm_of_match);
+>=20
+> Also please remove the blank line above MODULE_DEVICE_TABLE.
+>=20
+> Cheers,
+> -Paul
 
-Queued as a fix for v5.6-rc1.
+Ok.
 
-Thanks,
+BR and thanks,
+Nikolaus
 
-Kevin
+>=20
+>> +
+>> static struct platform_driver ingenic_drm_driver =3D {
+>> 	.driver =3D {
+>> 		.name =3D "ingenic-drm",
+>> --
+>> 2.23.0
+>=20
+>=20
+
