@@ -2,30 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F2B015D651
-	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 12:10:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCB6C15D650
+	for <lists+devicetree@lfdr.de>; Fri, 14 Feb 2020 12:10:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728522AbgBNLKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1729089AbgBNLKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 14 Feb 2020 06:10:43 -0500
-Received: from Galois.linutronix.de ([193.142.43.55]:54328 "EHLO
+Received: from Galois.linutronix.de ([193.142.43.55]:54330 "EHLO
         Galois.linutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729089AbgBNLKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 06:10:42 -0500
+        with ESMTP id S1729149AbgBNLKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 14 Feb 2020 06:10:43 -0500
 Received: from [5.158.153.55] (helo=adam.guests.linutronix.de)
         by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA1:256)
         (Exim 4.80)
         (envelope-from <bage@linutronix.de>)
-        id 1j2Yro-00043V-Lg; Fri, 14 Feb 2020 12:10:40 +0100
+        id 1j2Yrp-00043V-2u; Fri, 14 Feb 2020 12:10:41 +0100
 From:   bage@linutronix.de
 To:     devicetree@vger.kernel.org
 Cc:     Bastian Germann <bage@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Benedikt Spranger <b.spranger@linutronix.de>
-Subject: [PATCH v2 1/3] dt-bindings: Add vendor prefix for Linutronix
-Date:   Fri, 14 Feb 2020 12:10:01 +0100
-Message-Id: <20200214111003.11115-2-bage@linutronix.de>
+        Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH v2 2/3] dt-bindings: arm: sunxi: Add Linutronix Testbox
+Date:   Fri, 14 Feb 2020 12:10:02 +0100
+Message-Id: <20200214111003.11115-3-bage@linutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200214111003.11115-1-bage@linutronix.de>
 References: <20200206113328.7296-1-bage@linutronix.de>
@@ -42,29 +41,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bastian Germann <bage@linutronix.de>
 
-Add a vendor prefix for Linutronix GmbH.
-Website: https://linutronix.de/
+Add device tree bindings for the newly added Linutronix Testbox board.
 
-Co-developed-by: Benedikt Spranger <b.spranger@linutronix.de>
-Signed-off-by: Benedikt Spranger <b.spranger@linutronix.de>
 Signed-off-by: Bastian Germann <bage@linutronix.de>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/sunxi.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 9e67944bec9c..8d4462f85a00 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -545,6 +545,8 @@ patternProperties:
-     description: LinkSprite Technologies, Inc.
-   "^linksys,.*":
-     description: Belkin International, Inc. (Linksys)
-+  "^linutronix,.*":
-+    description: Linutronix GmbH
-   "^linux,.*":
-     description: Linux-specific binding
-   "^linx,.*":
+diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
+index 327ce6730823..71f0b1ae2805 100644
+--- a/Documentation/devicetree/bindings/arm/sunxi.yaml
++++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+@@ -394,6 +394,12 @@ properties:
+           - const: linksprite,pcduino3-nano
+           - const: allwinner,sun7i-a20
+ 
++      - description: Linutronix Testbox v2
++        items:
++          - const: linutronix,testbox-v2
++          - const: lamobo,lamobo-r1
++          - const: allwinner,sun7i-a20
++
+       - description: HAOYU Electronics Marsboard A10
+         items:
+           - const: haoyu,a10-marsboard
 -- 
 2.20.1
 
