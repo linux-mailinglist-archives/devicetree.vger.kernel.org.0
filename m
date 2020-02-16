@@ -2,106 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 840F81603F4
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 13:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F269B160402
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 13:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728086AbgBPMLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Feb 2020 07:11:16 -0500
-Received: from out28-221.mail.aliyun.com ([115.124.28.221]:47643 "EHLO
-        out28-221.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728054AbgBPMLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Feb 2020 07:11:16 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.08225468|-1;CH=green;DM=CONTINUE|CONTINUE|true|0.254805-0.0044276-0.740768;DS=CONTINUE|ham_regular_dialog|0.0390826-0.000668241-0.960249;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03301;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=11;RT=11;SR=0;TI=SMTPD_---.Gof3ya4_1581855051;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Gof3ya4_1581855051)
-          by smtp.aliyun-inc.com(10.147.42.22);
-          Sun, 16 Feb 2020 20:11:00 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     linux-mips@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        paul@crapouillou.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        ralf@linux-mips.org, paulburton@kernel.org,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com,
-        dongsheng.qiu@ingenic.com
-Subject: [PATCH] MIPS: X1000: Fix clock of watchdog node.
-Date:   Sun, 16 Feb 2020 20:10:28 +0800
-Message-Id: <1581855028-25552-3-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1581855028-25552-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1581855028-25552-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S1728043AbgBPM0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Feb 2020 07:26:11 -0500
+Received: from mail-qv1-f67.google.com ([209.85.219.67]:44438 "EHLO
+        mail-qv1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728009AbgBPM0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Feb 2020 07:26:10 -0500
+Received: by mail-qv1-f67.google.com with SMTP id n8so6391180qvg.11
+        for <devicetree@vger.kernel.org>; Sun, 16 Feb 2020 04:26:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=massaru-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=VT1MCH4MKCO4J3DHnKFfEi79z1Rcq0/doyUc8eW1WIg=;
+        b=I00CfkrKUYn4kwX92cS4aOemYsVO0HeOkBlsnww/ARt0TyMdfV704tvXZVmr3y135v
+         7B7maPUxqjxk+NHzmqU66HaLmGnu+AXFTYRCRj45wg4EP6XkbcY38Oc5FVMyW4l3qXzA
+         IfU/ip8psn47Zfilc8NstPx42Upvfo/Js4+kT6liQSnLJU0xU+rlYrmuG/9mLtGtuS0z
+         xGF4IGVo+iQ1rYzKzgXKkeZ7W4vU07B8Xqs4IjtXSIB8sfMthR4J7LYBjh4UI1UA6Llq
+         8h3OBLZNTMoualUfMGR4K8xQF4T0pePBDInffZ60+bHGE+GpfDb8VX6vpgF0wMxifs2C
+         r6yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=VT1MCH4MKCO4J3DHnKFfEi79z1Rcq0/doyUc8eW1WIg=;
+        b=ozjlP4lA22/pmFT08lx0XdrwyeVDVcOnP7n4dwp+yl0Uj7xedbwVRX4/1i4zxAsI8n
+         AoNhbTB1y/KnqaCTLe4ggS9zwdVw4Y0e9XLMI/TLMMxCCD4y2nGDybE3i2z5/OU0uzCi
+         XMCENUVT+BqXmfhC1k4quaXpk0J6ZMz9eyPq0knnc/mm/imDi92CRSSkqnudiruFUUbS
+         AFQiMX81CV5g4gwBWc0/TtKfFBzW8ONUfGdKgxXOa8pgjDrkUMDgPe3lEYxpMg2DBsN0
+         /DLwiKTgHEGQg6yy49kZTJY2aw4THQxZFb7r1xoGUkQkNoUlOfuu5nFwxWVKCnKVwzsH
+         VorQ==
+X-Gm-Message-State: APjAAAUnJFXxw2RUOSa1krvYRmMaH2oGxY4jWbYOqyUQNSm7tjM1uOV9
+        8f2G1fAMBi/2kzsVsJBPPFwysw==
+X-Google-Smtp-Source: APXvYqwsIZcqP8uoonoK8c9iwZkXabkXrwTYXi6aH0V8kn6Aef+nS0HXqu2sxB1kxJx6l9vufQT11g==
+X-Received: by 2002:a05:6214:1750:: with SMTP id dc16mr9131678qvb.47.1581855969601;
+        Sun, 16 Feb 2020 04:26:09 -0800 (PST)
+Received: from localhost.localdomain ([179.159.237.245])
+        by smtp.gmail.com with ESMTPSA id r6sm7011857qtm.63.2020.02.16.04.26.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 16 Feb 2020 04:26:09 -0800 (PST)
+From:   Vitor Massaru Iha <vitor@massaru.org>
+To:     robh+dt@kernel.org
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        festevam@gmail.com, s.hauer@pengutronix.de,
+        linux-kernel@vger.kernel.org,
+        Alifer Moraes <alifer.wsdm@gmail.com>, marco.franchi@nxp.com,
+        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: imx8mq-phanbell: Add support for ethernet
+Date:   Sun, 16 Feb 2020 09:26:03 -0300
+Message-Id: <20200216122603.8164-1-vitor@massaru.org>
+X-Mailer: git-send-email 2.21.1
+In-Reply-To: <20200211134828.138-1-alifer.wsdm@gmail.com>
+References: <20200211134828.138-1-alifer.wsdm@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The devicetree ABI was broken on purpose by commit 6d532143c915
-("watchdog: jz4740: Use regmap provided by TCU driver"), and
-commit 1d9c30745455 ("watchdog: jz4740: Use WDT clock provided
-by TCU driver"). The commit message of the latter explains why the ABI
-was broken.
-
-However, the current devicetree files were not updated to the new ABI
-described in Documentation/devicetree/bindings/timer/ingenic,tcu.txt,
-so the watchdog driver would not probe.
-
-Fix this problem by updating the clock of watchdog node from
-"&cgu X1000_CLK_RTCLK" to "&tcu TCU_CLK_WDT" to comply with the new
-ABI.
-
-Fixes: 7a16ccd300c2 ("[v8,1/4] MIPS: Ingenic: Add Ingenic X1000
-support.").
-
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
- arch/mips/boot/dts/ingenic/x1000.dtsi | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
-
-diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi b/arch/mips/boot/dts/ingenic/x1000.dtsi
-index 4994c69..147f7d5 100644
---- a/arch/mips/boot/dts/ingenic/x1000.dtsi
-+++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
-@@ -1,4 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
-+#include <dt-bindings/clock/ingenic,tcu.h>
- #include <dt-bindings/clock/x1000-cgu.h>
- #include <dt-bindings/dma/x1000-dma.h>
- 
-@@ -72,7 +73,7 @@
- 			compatible = "ingenic,x1000-watchdog", "ingenic,jz4780-watchdog";
- 			reg = <0x0 0x10>;
- 
--			clocks = <&cgu X1000_CLK_RTCLK>;
-+			clocks = <&tcu TCU_CLK_WDT>;
- 			clock-names = "wdt";
- 		};
- 	};
-@@ -158,7 +159,6 @@
- 	i2c0: i2c-controller@10050000 {
- 		compatible = "ingenic,x1000-i2c";
- 		reg = <0x10050000 0x1000>;
--
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-@@ -173,7 +173,6 @@
- 	i2c1: i2c-controller@10051000 {
- 		compatible = "ingenic,x1000-i2c";
- 		reg = <0x10051000 0x1000>;
--
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-@@ -188,7 +187,6 @@
- 	i2c2: i2c-controller@10052000 {
- 		compatible = "ingenic,x1000-i2c";
- 		reg = <0x10052000 0x1000>;
--
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--- 
-2.7.4
-
+Tested on Coral Dev board.
