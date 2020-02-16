@@ -2,123 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11018160235
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 07:17:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06BD1160350
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 11:04:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726671AbgBPGRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Feb 2020 01:17:35 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:24753 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726240AbgBPGRe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Feb 2020 01:17:34 -0500
-X-UUID: 21c3a803d46c493da4a58f3adc385172-20200216
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=JPuHBETG3svatvxI3nD/Ybp2rxLQs4/ldc9/9myf3bI=;
-        b=crfKbZOlnza0mEndUlFq3Zbw1Ru+mADT2MBmcQSpbjIlJn6bKP3/qzt0n/rMLM2jK5N35qpwroR5g5/B3div1/infV0riRgz4Jny/dUdWH/6S0WlHVQ3LFlMecOM1TKPeGHHUz+8vREhLCRzFZ4bOwibihNuiPOaCNQo22Fm0/c=;
-X-UUID: 21c3a803d46c493da4a58f3adc385172-20200216
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <argus.lin@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1724447480; Sun, 16 Feb 2020 14:17:29 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Sun, 16 Feb 2020 14:16:20 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sun, 16 Feb 2020 14:17:19 +0800
-From:   Argus Lin <argus.lin@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        id S1726142AbgBPKEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Feb 2020 05:04:35 -0500
+Received: from foss.arm.com ([217.140.110.172]:52964 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726020AbgBPKEf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 Feb 2020 05:04:35 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7E78030E;
+        Sun, 16 Feb 2020 02:04:34 -0800 (PST)
+Received: from ssg-dev-vb.kfn.arm.com (unknown [10.50.4.137])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 559553F68F;
+        Sun, 16 Feb 2020 02:04:30 -0800 (PST)
+From:   Hadar Gat <hadar.gat@arm.com>
+To:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>
-CC:     Chenglin Xu <chenglin.xu@mediatek.com>, <argus.lin@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        <wsd_upstream@mediatek.com>, <henryc.chen@mediatek.com>,
-        <flora.fu@mediatek.com>, Chen Zhong <chen.zhong@mediatek.com>,
-        Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Subject: [PATCH v2 3/3] soc: mediatek: pwrap: add support for MT6359 PMIC
-Date:   Sun, 16 Feb 2020 14:17:23 +0800
-Message-ID: <1581833843-4485-4-git-send-email-argus.lin@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1581833843-4485-1-git-send-email-argus.lin@mediatek.com>
-References: <1581833843-4485-1-git-send-email-argus.lin@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Zaibo Xu <xuzaibo@huawei.com>,
+        Weili Qian <qianweili@huawei.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Gilad Ben-Yossef <gilad@benyossef.com>,
+        Ofir Drang <ofir.drang@arm.com>, Hadar Gat <hadar.gat@arm.com>
+Subject: [PATCH v4 0/3] hw_random: introduce Arm CryptoCell TRNG driver
+Date:   Sun, 16 Feb 2020 12:04:07 +0200
+Message-Id: <1581847450-22924-1-git-send-email-hadar.gat@arm.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TVQ2MzU5IGlzIGEgbmV3IHBvd2VyIG1hbmFnZW1lbnQgSUMgYW5kIGl0IGlzIHVzZWQgZm9yDQpN
-VDY3NzkgU29Dcy4gVG8gZGVmaW5lIG10NjM1OV9yZWdzIGZvciBwbWljIHJlZ2lzdGVyIG1hcHBp
-bmcNCmFuZCBwbWljX210NjM1OSBmb3IgYWNjZXNzaW5nIHJlZ2lzdGVyLg0KDQpTaWduZWQtb2Zm
-LWJ5OiBBcmd1cyBMaW4gPGFyZ3VzLmxpbkBtZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL3Nv
-Yy9tZWRpYXRlay9tdGstcG1pYy13cmFwLmMgfCA3MSArKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysNCiAxIGZpbGUgY2hhbmdlZCwgNzEgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtaWMtd3JhcC5jIGIvZHJpdmVycy9zb2Mv
-bWVkaWF0ZWsvbXRrLXBtaWMtd3JhcC5jDQppbmRleCAxZjgxODlhLi41ZDM0ZThiIDEwMDY0NA0K
-LS0tIGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtaWMtd3JhcC5jDQorKysgYi9kcml2ZXJz
-L3NvYy9tZWRpYXRlay9tdGstcG1pYy13cmFwLmMNCkBAIC0xMTEsNiArMTExLDI4IEBAIGVudW0g
-ZGV3X3JlZ3Mgew0KIAlQV1JBUF9SR19TUElfQ09OMTMsDQogCVBXUkFQX1NQSVNMVl9LRVksDQoN
-CisJLyogTVQ2MzU5IG9ubHkgcmVncyAqLw0KKwlQV1JBUF9ERVdfQ1JDX1NXUlNULA0KKwlQV1JB
-UF9ERVdfUkdfRU5fUkVDT1JELA0KKwlQV1JBUF9ERVdfUkVDT1JEX0NNRDAsDQorCVBXUkFQX0RF
-V19SRUNPUkRfQ01EMSwNCisJUFdSQVBfREVXX1JFQ09SRF9DTUQyLA0KKwlQV1JBUF9ERVdfUkVD
-T1JEX0NNRDMsDQorCVBXUkFQX0RFV19SRUNPUkRfQ01ENCwNCisJUFdSQVBfREVXX1JFQ09SRF9D
-TUQ1LA0KKwlQV1JBUF9ERVdfUkVDT1JEX1dEQVRBMCwNCisJUFdSQVBfREVXX1JFQ09SRF9XREFU
-QTEsDQorCVBXUkFQX0RFV19SRUNPUkRfV0RBVEEyLA0KKwlQV1JBUF9ERVdfUkVDT1JEX1dEQVRB
-MywNCisJUFdSQVBfREVXX1JFQ09SRF9XREFUQTQsDQorCVBXUkFQX0RFV19SRUNPUkRfV0RBVEE1
-LA0KKwlQV1JBUF9ERVdfUkdfQUREUl9UQVJHRVQsDQorCVBXUkFQX0RFV19SR19BRERSX01BU0ss
-DQorCVBXUkFQX0RFV19SR19XREFUQV9UQVJHRVQsDQorCVBXUkFQX0RFV19SR19XREFUQV9NQVNL
-LA0KKwlQV1JBUF9ERVdfUkdfU1BJX1JFQ09SRF9DTFIsDQorCVBXUkFQX0RFV19SR19DTURfQUxF
-UlRfQ0xSLA0KKw0KIAkvKiBNVDYzOTcgb25seSByZWdzICovDQogCVBXUkFQX0RFV19FVkVOVF9P
-VVRfRU4sDQogCVBXUkFQX0RFV19FVkVOVF9TUkNfRU4sDQpAQCAtMTk3LDYgKzIxOSw0MiBAQCBl
-bnVtIGRld19yZWdzIHsNCiAJW1BXUkFQX1NQSVNMVl9LRVldID0JCTB4MDQ0YSwNCiB9Ow0KDQor
-c3RhdGljIGNvbnN0IHUzMiBtdDYzNTlfcmVnc1tdID0gew0KKwlbUFdSQVBfREVXX1JHX0VOX1JF
-Q09SRF0gPQkweDA0MGEsDQorCVtQV1JBUF9ERVdfRElPX0VOXSA9CQkweDA0MGMsDQorCVtQV1JB
-UF9ERVdfUkVBRF9URVNUXSA9CQkweDA0MGUsDQorCVtQV1JBUF9ERVdfV1JJVEVfVEVTVF0gPQkw
-eDA0MTAsDQorCVtQV1JBUF9ERVdfQ1JDX1NXUlNUXSA9CQkweDA0MTIsDQorCVtQV1JBUF9ERVdf
-Q1JDX0VOXSA9CQkweDA0MTQsDQorCVtQV1JBUF9ERVdfQ1JDX1ZBTF0gPQkJMHgwNDE2LA0KKwlb
-UFdSQVBfREVXX0NJUEhFUl9LRVlfU0VMXSA9CTB4MDQxOCwNCisJW1BXUkFQX0RFV19DSVBIRVJf
-SVZfU0VMXSA9CTB4MDQxYSwNCisJW1BXUkFQX0RFV19DSVBIRVJfRU5dID0JCTB4MDQxYywNCisJ
-W1BXUkFQX0RFV19DSVBIRVJfUkRZXSA9CTB4MDQxZSwNCisJW1BXUkFQX0RFV19DSVBIRVJfTU9E
-RV0gPQkweDA0MjAsDQorCVtQV1JBUF9ERVdfQ0lQSEVSX1NXUlNUXSA9CTB4MDQyMiwNCisJW1BX
-UkFQX0RFV19SRERNWV9OT10gPQkJMHgwNDI0LA0KKwlbUFdSQVBfREVXX1JFQ09SRF9DTUQwXSA9
-CTB4MDQyOCwNCisJW1BXUkFQX0RFV19SRUNPUkRfQ01EMV0gPQkweDA0MmEsDQorCVtQV1JBUF9E
-RVdfUkVDT1JEX0NNRDJdID0JMHgwNDJjLA0KKwlbUFdSQVBfREVXX1JFQ09SRF9DTUQzXSA9CTB4
-MDQyZSwNCisJW1BXUkFQX0RFV19SRUNPUkRfQ01ENF0gPQkweDA0MzAsDQorCVtQV1JBUF9ERVdf
-UkVDT1JEX0NNRDVdID0JMHgwNDMyLA0KKwlbUFdSQVBfREVXX1JFQ09SRF9XREFUQTBdID0JMHgw
-NDM0LA0KKwlbUFdSQVBfREVXX1JFQ09SRF9XREFUQTFdID0JMHgwNDM2LA0KKwlbUFdSQVBfREVX
-X1JFQ09SRF9XREFUQTJdID0JMHgwNDM4LA0KKwlbUFdSQVBfREVXX1JFQ09SRF9XREFUQTNdID0J
-MHgwNDNhLA0KKwlbUFdSQVBfREVXX1JFQ09SRF9XREFUQTRdID0JMHgwNDNjLA0KKwlbUFdSQVBf
-REVXX1JFQ09SRF9XREFUQTVdID0JMHgwNDNlLA0KKwlbUFdSQVBfREVXX1JHX0FERFJfVEFSR0VU
-XSA9CTB4MDQ0MCwNCisJW1BXUkFQX0RFV19SR19BRERSX01BU0tdID0JMHgwNDQyLA0KKwlbUFdS
-QVBfREVXX1JHX1dEQVRBX1RBUkdFVF0gPQkweDA0NDQsDQorCVtQV1JBUF9ERVdfUkdfV0RBVEFf
-TUFTS10gPQkweDA0NDYsDQorCVtQV1JBUF9ERVdfUkdfU1BJX1JFQ09SRF9DTFJdID0JMHgwNDQ4
-LA0KKwlbUFdSQVBfREVXX1JHX0NNRF9BTEVSVF9DTFJdID0JMHgwNDQ4LA0KKwlbUFdSQVBfU1BJ
-U0xWX0tFWV0gPQkJMHgwNDRhLA0KK307DQorDQogc3RhdGljIGNvbnN0IHUzMiBtdDYzOTdfcmVn
-c1tdID0gew0KIAlbUFdSQVBfREVXX0JBU0VdID0JCTB4YmMwMCwNCiAJW1BXUkFQX0RFV19FVkVO
-VF9PVVRfRU5dID0JMHhiYzAwLA0KQEAgLTk3Nyw2ICsxMDM1LDcgQEAgZW51bSBwbWljX3R5cGUg
-ew0KIAlQTUlDX01UNjM1MSwNCiAJUE1JQ19NVDYzNTcsDQogCVBNSUNfTVQ2MzU4LA0KKwlQTUlD
-X01UNjM1OSwNCiAJUE1JQ19NVDYzODAsDQogCVBNSUNfTVQ2Mzk3LA0KIH07DQpAQCAtMTc1Miw2
-ICsxODExLDE1IEBAIHN0YXRpYyBpcnFyZXR1cm5fdCBwd3JhcF9pbnRlcnJ1cHQoaW50IGlycW5v
-LCB2b2lkICpkZXZfaWQpDQogCS5wd3JhcF93cml0ZSA9IHB3cmFwX3dyaXRlMTYsDQogfTsNCg0K
-K3N0YXRpYyBjb25zdCBzdHJ1Y3QgcHdyYXBfc2x2X3R5cGUgcG1pY19tdDYzNTkgPSB7DQorCS5k
-ZXdfcmVncyA9IG10NjM1OV9yZWdzLA0KKwkudHlwZSA9IFBNSUNfTVQ2MzU5LA0KKwkucmVnbWFw
-ID0gJnB3cmFwX3JlZ21hcF9jb25maWcxNiwNCisJLmNhcHMgPSBQV1JBUF9TTFZfQ0FQX0RVQUxJ
-TywNCisJLnB3cmFwX3JlYWQgPSBwd3JhcF9yZWFkMTYsDQorCS5wd3JhcF93cml0ZSA9IHB3cmFw
-X3dyaXRlMTYsDQorfTsNCisNCiBzdGF0aWMgY29uc3Qgc3RydWN0IHB3cmFwX3Nsdl90eXBlIHBt
-aWNfbXQ2MzgwID0gew0KIAkuZGV3X3JlZ3MgPSBOVUxMLA0KIAkudHlwZSA9IFBNSUNfTVQ2Mzgw
-LA0KQEAgLTE3ODUsNiArMTg1Myw5IEBAIHN0YXRpYyBpcnFyZXR1cm5fdCBwd3JhcF9pbnRlcnJ1
-cHQoaW50IGlycW5vLCB2b2lkICpkZXZfaWQpDQogCQkuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxt
-dDYzNTgiLA0KIAkJLmRhdGEgPSAmcG1pY19tdDYzNTgsDQogCX0sIHsNCisJCS5jb21wYXRpYmxl
-ID0gIm1lZGlhdGVrLG10NjM1OSIsDQorCQkuZGF0YSA9ICZwbWljX210NjM1OSwNCisJfSwgew0K
-IAkJLyogVGhlIE1UNjM4MCBQTUlDIG9ubHkgaW1wbGVtZW50cyBhIHJlZ3VsYXRvciwgc28gd2Ug
-YmluZCBpdA0KIAkJICogZGlyZWN0bHkgaW5zdGVhZCBvZiB1c2luZyBhIE1GRC4NCiAJCSAqLw0K
-LS0NCjEuOC4xLjEuZGlydHkNCg==
+The Arm CryptoCell is a hardware security engine.
+This patch introduces driver for its TRNG (True Random Number Generator)
+engine.
+
+v4 changes: update arm-cctrng.yaml to conform with json-schema standard.
+
+v3 change: removed few unneeded "#ifdef CONFIG_PM" from the code.
+
+v2 changes: fixed 'make dt_bnding_check' errors.
+
+Hadar Gat (3):
+  dt-bindings: add device tree binding for Arm CryptoCell trng engine
+  hw_random: cctrng: introduce Arm CryptoCell driver
+  MAINTAINERS: add HG as cctrng maintainer
+
+ .../devicetree/bindings/rng/arm-cctrng.yaml        |  50 ++
+ MAINTAINERS                                        |   9 +
+ drivers/char/hw_random/Kconfig                     |  12 +
+ drivers/char/hw_random/Makefile                    |   1 +
+ drivers/char/hw_random/cctrng.c                    | 767 +++++++++++++++++++++
+ drivers/char/hw_random/cctrng.h                    |  69 ++
+ 6 files changed, 908 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rng/arm-cctrng.yaml
+ create mode 100644 drivers/char/hw_random/cctrng.c
+ create mode 100644 drivers/char/hw_random/cctrng.h
+
+-- 
+2.7.4
 
