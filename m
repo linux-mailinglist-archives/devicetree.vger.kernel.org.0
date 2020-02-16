@@ -2,163 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 332321603C5
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 12:03:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABFD11603FB
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 13:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728003AbgBPLDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Feb 2020 06:03:50 -0500
-Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:36309 "EHLO
-        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727943AbgBPLDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 Feb 2020 06:03:49 -0500
-Received: from [192.168.2.10] ([46.9.235.248])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id 3HiAjTYo48i433HiEjTw5k; Sun, 16 Feb 2020 12:03:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
-        t=1581851027; bh=+aNvZy8aD/dcufEoPL+QDCX1KUO9B+3y0UVN4XJ/BNQ=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=tG0FT+xfYdW0/2XYT7hVpBBOwF/S9gdqIqgXu6cT52AYwsza6QFT51iH/4rNT2grj
-         st7dy2JhlO0230j85OYjIYSkA0KVaxZwkiasrq2ekaDgeRZGMTBa3tFqSVLSkXqIoC
-         gT1l4SuGRrJPPM5j+obCTz0NJcpOsfYIfcWc3dsI+H/fmfeOjFg/4CGUVAlZT5yGiF
-         juIEPI4l+ah5KbdKk2ZT4RJEQzv2OkNR4YKWddUaV4d5WPCkmkBVMgKZNgg1SxMGC9
-         GyIPc1mUjpKIUzx+CATaPTjvZfXpWGv9N/vPaLAF+qOxnTfe/2Ny6Mi2G3sohYGARp
-         ToXlJFItC93eA==
-Subject: Re: [RFC PATCH v3 4/6] media: tegra: Add Tegra210 Video input driver
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, frankc@nvidia.com,
-        helen.koike@collabora.com, sboyd@kernel.org
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1581704608-31219-1-git-send-email-skomatineni@nvidia.com>
- <1581704608-31219-5-git-send-email-skomatineni@nvidia.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <30e417ba-84e1-63d2-de74-22cfe859bddb@xs4all.nl>
-Date:   Sun, 16 Feb 2020 12:03:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1728011AbgBPMUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Feb 2020 07:20:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54612 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726651AbgBPMUT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 Feb 2020 07:20:19 -0500
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C246E2084E;
+        Sun, 16 Feb 2020 12:20:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1581855618;
+        bh=PHE098dmEFXu6oYKRN+BUb6ZDWnNqCSxtkdjvGF2pTo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rLB4k6d5m716NQ/OnptZFHwuDttAwPI5QM5iXZt/PFVxpU9IuVtZr1BpdVnH+/2S/
+         fCGJbSX4O4LkA5jjwca8DDCoj4/edZOOOW9vL2KcChpkh/W9ahYgUb8Pf7bhDifY3l
+         GzmT3SHkFhHgNH3Q7kf3XpjCLyXkZjJ1LKc+bHhw=
+Date:   Sun, 16 Feb 2020 08:21:11 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Benjamin GAIGNARD <benjamin.gaignard@st.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Grant Likely <grant.likely@arm.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        Loic PALLARDY <loic.pallardy@st.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "system-dt@lists.openampproject.org" 
+        <system-dt@lists.openampproject.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "lkml@metux.net" <lkml@metux.net>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
+        "stefano.stabellini@xilinx.com" <stefano.stabellini@xilinx.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/7] bus: Introduce firewall controller framework
+Message-ID: <20200216072111.GA14598@kroah.com>
+References: <20200128165712.GA3667596@kroah.com>
+ <62b38576-0e1a-e30e-a954-a8b6a7d8d897@st.com>
+ <CACRpkdY427EzpAt7f5wwqHpRS_SHM8Fvm+cFrwY8op0E_J+D9Q@mail.gmail.com>
+ <20200129095240.GA3852081@kroah.com>
+ <20200129111717.GA3928@sirena.org.uk>
+ <0b109c05-24cf-a1c4-6072-9af8a61f45b2@st.com>
+ <20200131090650.GA2267325@kroah.com>
+ <CACRpkdajhivkOkZ63v-hr7+6ObhTffYOx5uZP0P-MYvuVnyweA@mail.gmail.com>
+ <20200214214051.GA4192967@kroah.com>
+ <409eb745-aab2-86a7-bd3a-9e8e05bed057@st.com>
 MIME-Version: 1.0
-In-Reply-To: <1581704608-31219-5-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfEHJX4QNbEtlvlNbNh8D9iO53jn6o9B1tz9SAXEUfYWVqgJik08fvS124TIyTWQBoLaKpXZ0bVjkYd3BRCoYngir51sZDOisiV6vHpCxBuwe2+L8gB2p
- Rrj4kheVXgwW827H19M6HXaKoYc1oPrQTmNocNbL+LZgzAiWqYPg2eUh1aZ1FOu4C9XODs010r7nD+ORs7A4wMmF4mn3GrHMVdXelHGLyNVEg/G0aVT7laGv
- dcOyIIYkKccKcHVjcqu/PQocZYWFIoq8pIXnDOd9pfvce8fO8ohgsBo6hW5UBhKY+Re5NO4YWo+CtFdXNHb/Bt6ta8FJ5H9nS1FCh+7Sl1uRqQPnvjqUctdV
- e0CuselYWW5y2mK98CFVvvwE9bbV5mIvdVBLL+vKS9CHf8zrcKBUIZGk6zRHFKCXQKvZrQVJqNXzhjePMZ+PSjTc8C3NRALovcYGxuLXqfpfzqbNvmLjPDsK
- mYOHLcPs2HzlS2ErtSTGeEj/hC/u0gzlCVCvENfz85CSFHBVoiY9piFIdpAH7b207JXd7eKpUW+S9wei
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <409eb745-aab2-86a7-bd3a-9e8e05bed057@st.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/14/20 7:23 PM, Sowjanya Komatineni wrote:
-> Tegra210 contains a powerful Video Input (VI) hardware controller
-> which can support up to 6 MIPI CSI camera sensors.
+On Sat, Feb 15, 2020 at 12:41:07PM +0000, Benjamin GAIGNARD wrote:
 > 
-> Each Tegra CSI port can be one-to-one mapped to VI channel and can
-> capture from an external camera sensor connected to CSI or from
-> built-in test pattern generator.
+> On 2/14/20 10:40 PM, Greg KH wrote:
+> > On Fri, Feb 14, 2020 at 05:05:07PM +0100, Linus Walleij wrote:
+> >> On Fri, Jan 31, 2020 at 10:06 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+> >>
+> >>> Why do people want to abuse the platform bus so much?  If a device is on
+> >>> a bus that can have such a controller, then it is on a real bus, use it!
+> >> I'm not saying it is a good thing, but the reason why it is (ab)used so
+> >> much can be found in:
+> >> drivers/of/platform.c
+> >>
+> >> TL;DR: struct platform_device is the Device McDeviceFace and
+> >> platform bus the Bus McBusFace used by the device tree parser since
+> >> it is slightly to completely unaware of what devices it is actually
+> >> spawning.
+> > <snip>
+> >
+> > Yeah, great explaination, and I understand.  DT stuff really is ok to be
+> > on a platform bus, as that's what almost all of them are.
+> >
+> > But, when you try to start messing around with things like this
+> > "firewall" says it is doing, it's then obvious that this really isn't a
+> > DT like thing, but rather you do have a bus involved with a controller
+> > so that should be used instead.
 > 
-> Tegra210 supports built-in test pattern generator from CSI to VI.
+> Ok but how put in place a new bus while keeping the devices on platform
+> bus to avoid changing all the drivers ?
+
+You don't, you put them all on your real bus, as that is what you now
+have.
+
+> > Or just filter away the DT stuff so that the kernel never even sees
+> > those devices, which might just be simplest :)
 > 
-> This patch adds a V4L2 media controller and capture driver support
-> for Tegra210 built-in CSI to VI test pattern generator.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/staging/media/Kconfig              |    2 +
->  drivers/staging/media/Makefile             |    1 +
->  drivers/staging/media/tegra/Kconfig        |   10 +
->  drivers/staging/media/tegra/Makefile       |    8 +
->  drivers/staging/media/tegra/TODO           |   10 +
->  drivers/staging/media/tegra/tegra-common.h |  239 +++++++
->  drivers/staging/media/tegra/tegra-csi.c    |  374 ++++++++++
->  drivers/staging/media/tegra/tegra-csi.h    |  115 ++++
->  drivers/staging/media/tegra/tegra-vi.c     | 1019 ++++++++++++++++++++++++++++
->  drivers/staging/media/tegra/tegra-vi.h     |   79 +++
->  drivers/staging/media/tegra/tegra-video.c  |  118 ++++
->  drivers/staging/media/tegra/tegra-video.h  |   32 +
->  drivers/staging/media/tegra/tegra210.c     |  767 +++++++++++++++++++++
->  drivers/staging/media/tegra/tegra210.h     |  190 ++++++
->  14 files changed, 2964 insertions(+)
->  create mode 100644 drivers/staging/media/tegra/Kconfig
->  create mode 100644 drivers/staging/media/tegra/Makefile
->  create mode 100644 drivers/staging/media/tegra/TODO
->  create mode 100644 drivers/staging/media/tegra/tegra-common.h
->  create mode 100644 drivers/staging/media/tegra/tegra-csi.c
->  create mode 100644 drivers/staging/media/tegra/tegra-csi.h
->  create mode 100644 drivers/staging/media/tegra/tegra-vi.c
->  create mode 100644 drivers/staging/media/tegra/tegra-vi.h
->  create mode 100644 drivers/staging/media/tegra/tegra-video.c
->  create mode 100644 drivers/staging/media/tegra/tegra-video.h
->  create mode 100644 drivers/staging/media/tegra/tegra210.c
->  create mode 100644 drivers/staging/media/tegra/tegra210.h
-> 
+> yes but we lost the possibility to change the firewall configuration at
+> run time. I do expect to be able to describe in the DT firewall configuration
+> and to use them at run time. That could allow, for example, to handover
+> a HW block to the coprocessor when the main core is going to be suspended
+> to save power.
 
-<snip>
+Then use a real bus :)
 
-> +/*
-> + * videobuf2 queue operations
-> + */
-> +static int tegra_channel_queue_setup(struct vb2_queue *vq,
-> +				     unsigned int *nbuffers,
-> +				     unsigned int *nplanes,
-> +				     unsigned int sizes[],
-> +				     struct device *alloc_devs[])
-> +{
-> +	struct tegra_vi_channel *chan = vb2_get_drv_priv(vq);
-> +
-> +	if (*nplanes)
-> +		return sizes[0] < chan->format.sizeimage ? -EINVAL : 0;
-> +
-> +	*nplanes = 1;
-> +	sizes[0] = chan->format.sizeimage;
-> +	alloc_devs[0] = chan->vi->dev;
-> +
-> +	/*
-> +	 * allocate min 3 buffers in queue to avoid race between DMA
-> +	 * writes and userspace reads.
-> +	 */
-> +	if (*nbuffers < 3)
-> +		*nbuffers = 3;
+thanks,
 
-First of all, don't check this here, instead set the struct vb2_queue field
-'min_buffers_needed' to 3 instead.
-
-But the reason given for this check is peculiar: there should not be any
-race at all. Usually the reason for requiring a specific minimum number of
-buffers is that the DMA engine needs at least 2 buffers before it can start
-streaming: it can't give back a buffer to userspace (vb2_buffer_done())
-unless there is a second buffer it can start to capture to next. So for many
-DMA implementations you need a minimum of 2 buffers: two buffers for the
-DMA engine, one buffer being processed by userspace.
-
-If the driver is starved of buffers it will typically keep capturing to
-the last buffer until a new buffer is queued.
-
-In any case, once the driver releases a buffer via vb2_buffer_done() the
-buffer memory is no longer owned by the driver.
-
-To be precise, buffer ownership is as follows:
-
-userspace -> VIDIOC_QBUF -> vb2 -> buf_queue -> driver -> vb2_buffer_done() -> vb2 -> VIDIOC_DQBUF -> userspace
-
-(vb2 == videobuf2 framework)
-
-Note that vb2 never touches the buffer memory.
-
-So if you get a race condition in this driver, then there is something
-strange going on. It looks like vb2_buffer_done() is called while DMA is
-still ongoing, or because the driver really needs to keep one buffer
-available at all times.
-
-Regards,
-
-	Hans
-
-> +
-> +	return 0;
-> +}
+greg k-h
