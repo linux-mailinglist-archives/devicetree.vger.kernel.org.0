@@ -2,114 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFD11603FB
-	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 13:20:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0668E1603F0
+	for <lists+devicetree@lfdr.de>; Sun, 16 Feb 2020 13:11:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728011AbgBPMUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Feb 2020 07:20:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54612 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726651AbgBPMUT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 Feb 2020 07:20:19 -0500
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C246E2084E;
-        Sun, 16 Feb 2020 12:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1581855618;
-        bh=PHE098dmEFXu6oYKRN+BUb6ZDWnNqCSxtkdjvGF2pTo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rLB4k6d5m716NQ/OnptZFHwuDttAwPI5QM5iXZt/PFVxpU9IuVtZr1BpdVnH+/2S/
-         fCGJbSX4O4LkA5jjwca8DDCoj4/edZOOOW9vL2KcChpkh/W9ahYgUb8Pf7bhDifY3l
-         GzmT3SHkFhHgNH3Q7kf3XpjCLyXkZjJ1LKc+bHhw=
-Date:   Sun, 16 Feb 2020 08:21:11 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Benjamin GAIGNARD <benjamin.gaignard@st.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Grant Likely <grant.likely@arm.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        Loic PALLARDY <loic.pallardy@st.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "system-dt@lists.openampproject.org" 
-        <system-dt@lists.openampproject.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lkml@metux.net" <lkml@metux.net>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
-        "stefano.stabellini@xilinx.com" <stefano.stabellini@xilinx.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/7] bus: Introduce firewall controller framework
-Message-ID: <20200216072111.GA14598@kroah.com>
-References: <20200128165712.GA3667596@kroah.com>
- <62b38576-0e1a-e30e-a954-a8b6a7d8d897@st.com>
- <CACRpkdY427EzpAt7f5wwqHpRS_SHM8Fvm+cFrwY8op0E_J+D9Q@mail.gmail.com>
- <20200129095240.GA3852081@kroah.com>
- <20200129111717.GA3928@sirena.org.uk>
- <0b109c05-24cf-a1c4-6072-9af8a61f45b2@st.com>
- <20200131090650.GA2267325@kroah.com>
- <CACRpkdajhivkOkZ63v-hr7+6ObhTffYOx5uZP0P-MYvuVnyweA@mail.gmail.com>
- <20200214214051.GA4192967@kroah.com>
- <409eb745-aab2-86a7-bd3a-9e8e05bed057@st.com>
+        id S1728059AbgBPMLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Feb 2020 07:11:09 -0500
+Received: from out28-172.mail.aliyun.com ([115.124.28.172]:42102 "EHLO
+        out28-172.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728086AbgBPMLI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Feb 2020 07:11:08 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3967156|-1;CH=green;DM=CONTINUE|CONTINUE|true|0.793557-0.007287-0.199156;DS=CONTINUE|ham_regular_dialog|0.119179-0.00746845-0.873353;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03312;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=11;RT=11;SR=0;TI=SMTPD_---.Gof3ya4_1581855051;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Gof3ya4_1581855051)
+          by smtp.aliyun-inc.com(10.147.42.22);
+          Sun, 16 Feb 2020 20:10:58 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        paul@crapouillou.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        ralf@linux-mips.org, paulburton@kernel.org,
+        sernia.zhou@foxmail.com, zhenwenjin@gmail.com,
+        dongsheng.qiu@ingenic.com
+Subject: Fix clock of X1000 watchdog node.
+Date:   Sun, 16 Feb 2020 20:10:26 +0800
+Message-Id: <1581855028-25552-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <409eb745-aab2-86a7-bd3a-9e8e05bed057@st.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 15, 2020 at 12:41:07PM +0000, Benjamin GAIGNARD wrote:
-> 
-> On 2/14/20 10:40 PM, Greg KH wrote:
-> > On Fri, Feb 14, 2020 at 05:05:07PM +0100, Linus Walleij wrote:
-> >> On Fri, Jan 31, 2020 at 10:06 AM Greg KH <gregkh@linuxfoundation.org> wrote:
-> >>
-> >>> Why do people want to abuse the platform bus so much?  If a device is on
-> >>> a bus that can have such a controller, then it is on a real bus, use it!
-> >> I'm not saying it is a good thing, but the reason why it is (ab)used so
-> >> much can be found in:
-> >> drivers/of/platform.c
-> >>
-> >> TL;DR: struct platform_device is the Device McDeviceFace and
-> >> platform bus the Bus McBusFace used by the device tree parser since
-> >> it is slightly to completely unaware of what devices it is actually
-> >> spawning.
-> > <snip>
-> >
-> > Yeah, great explaination, and I understand.  DT stuff really is ok to be
-> > on a platform bus, as that's what almost all of them are.
-> >
-> > But, when you try to start messing around with things like this
-> > "firewall" says it is doing, it's then obvious that this really isn't a
-> > DT like thing, but rather you do have a bus involved with a controller
-> > so that should be used instead.
-> 
-> Ok but how put in place a new bus while keeping the devices on platform
-> bus to avoid changing all the drivers ?
+Fix clock of Ingenic X1000's watchdog node.
 
-You don't, you put them all on your real bus, as that is what you now
-have.
-
-> > Or just filter away the DT stuff so that the kernel never even sees
-> > those devices, which might just be simplest :)
-> 
-> yes but we lost the possibility to change the firewall configuration at
-> run time. I do expect to be able to describe in the DT firewall configuration
-> and to use them at run time. That could allow, for example, to handover
-> a HW block to the coprocessor when the main core is going to be suspended
-> to save power.
-
-Then use a real bus :)
-
-thanks,
-
-greg k-h
