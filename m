@@ -2,243 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D96A161014
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 11:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ADE59161048
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 11:42:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729271AbgBQKar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 05:30:47 -0500
-Received: from mailout1.samsung.com ([203.254.224.24]:31768 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728956AbgBQKar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 05:30:47 -0500
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20200217103044epoutp016ec5f501a367b4fd434cea45c0543af4~0Kee70Ahl0852808528epoutp01R
-        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2020 10:30:44 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20200217103044epoutp016ec5f501a367b4fd434cea45c0543af4~0Kee70Ahl0852808528epoutp01R
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1581935444;
-        bh=ok8t0QdvH7qfzEnAkZnpXw8pVEVjZqhNypJEm+sb/n4=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=QLq6KXnI1hAF0m0Kk8LZDvz/9PrENMXD3K78VIq0iZqcYBhPwpjEkOsmumvpA6ERp
-         yxex3FEgCkWUZTqgufu2BXQNCSFbKz1t9rUECk7BrTH7OM/rePEMIZTZ8Dwg4ikTcg
-         R364hqhshY8SN1CnwZD7WLVWrUDUnCbPFuTWKWFA=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20200217103043epcas1p216ba466affb25f0e308e316d11fc5758~0Ked883Pw2223622236epcas1p2I;
-        Mon, 17 Feb 2020 10:30:43 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.40.153]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 48LgHN0sz8zMqYkb; Mon, 17 Feb
-        2020 10:30:40 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-        66.03.51241.05B6A4E5; Mon, 17 Feb 2020 19:30:40 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-        20200217103039epcas1p476015a1db4eef89cffde9711260369f9~0KeaWoS5b2166621666epcas1p4-;
-        Mon, 17 Feb 2020 10:30:39 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200217103039epsmtrp123c5c5a84eb1aa0934ac2df5d8074d82~0KeaTIGml0839908399epsmtrp1N;
-        Mon, 17 Feb 2020 10:30:39 +0000 (GMT)
-X-AuditID: b6c32a39-163ff7000001c829-f2-5e4a6b50e24b
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        AA.E5.06569.F4B6A4E5; Mon, 17 Feb 2020 19:30:39 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200217103039epsmtip2cae87a1ca501eca058d7510fd7b7e399~0KeaGTJmy3000030000epsmtip2j;
-        Mon, 17 Feb 2020 10:30:39 +0000 (GMT)
-Subject: Re: [PATCH v4] dt-bindings: extcon: usbc-cros-ec: convert
- extcon-usbc-cros-ec.txt to yaml format
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        devicetree@vger.kernel.org
-Cc:     myungjoo.ham@samsung.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        bleung@chromium.org, enric.balletbo@collabora.com,
-        groeck@chromium.org, linux-kernel@vger.kernel.org,
-        helen.koike@collabora.com, ezequiel@collabora.com,
-        kernel@collabora.com, dafna3@gmail.com
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <a1bc262f-d8af-9590-105b-1db0b16f2861@samsung.com>
-Date:   Mon, 17 Feb 2020 19:38:46 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        id S1729305AbgBQKmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 05:42:20 -0500
+Received: from mail27.static.mailgun.info ([104.130.122.27]:17460 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725972AbgBQKmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Feb 2020 05:42:19 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1581936138; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=9eyK9s5QcOQNlzTcBcw9+PasjfwqMuF96kLGC5PXg0c=;
+ b=W+p2Kez5aXY3qC1/b6JIGmQDRQfBOBLDg6EV+7NrffT8kVmu1NAUnm+HRo/qzeHjSbeZWNsU
+ Olc8EKjYq2KtyHpZyJTndOjgNMt05BLNF1Y3aZkOGuYNSPmLbeBzHvZN7du2JLiF4w8997HE
+ 5DxyglYH4zsZdc0d/wQifRB4FaQ=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e4a6dfe.7f32ddc08ea0-smtp-out-n03;
+ Mon, 17 Feb 2020 10:42:06 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0FD30C4479F; Mon, 17 Feb 2020 10:42:05 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: harigovi)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D7EABC43383;
+        Mon, 17 Feb 2020 10:42:03 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200213123934.10841-1-dafna.hirschfeld@collabora.com>
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHJsWRmVeSWpSXmKPExsWy7bCmrm5AtlecwamtrBbTn1xmsTi57g2L
-        xYUVN5gt5h85x2qx5vYhRoudG76wW5x6tYzZ4lT3O3aLzed6WC0u75rDZrH0+kUmi9uNK9gs
-        WvceYXfg9Vgzbw2jx+yGiyweO+4uYfTYOesuu8emVZ1sHn1bVjF6fN4kF8AelW2TkZqYklqk
-        kJqXnJ+SmZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA3SukkJZYk4pUCggsbhY
-        Sd/Opii/tCRVISO/uMRWKbUgJafAskCvODG3uDQvXS85P9fK0MDAyBSoMCE7Y83rT6wFX1Qr
-        pk9LbmDcItfFyMkhIWAicf1HL1sXIxeHkMAORon3Rz4yQzifGCUO9Dxkh3C+MUpcfLSaCaZl
-        4fqDLBCJvYwSL9e9ZoJw3jNKXDh1ng2kSlggW6L3xFUwW0QgWGLanr+sIEXMAr1MEgffXmQE
-        SbAJaEnsf3EDrIhfQFHi6o/HYHFeATuJTc93MIPYLAKqEicfvQGzRQXCJE5ua4GqEZQ4OfMJ
-        C4jNKeAiMX/WfzCbWUBc4taT+UwQtrzE9rdzwB6SENjELvHm4AWoH1wk+i61sEDYwhKvjm9h
-        h7ClJF72t0HZ1RIrTx5hg2juYJTYsv8CK0TCWGL/0slAgziANmhKrN+lDxFWlNj5ey4jxGI+
-        iXdfe1hBSiQEeCU62oQgSpQlLj+4C3WCpMTi9k62CYxKs5C8MwvJC7OQvDALYdkCRpZVjGKp
-        BcW56anFhgWmyNG9iRGclrUsdzAeO+dziFGAg1GJh/dFoGecEGtiWXFl7iFGCQ5mJRFeb3Gv
-        OCHelMTKqtSi/Pii0pzU4kOMpsDQnsgsJZqcD8wZeSXxhqZGxsbGFiaGZqaGhkrivA8jNeOE
-        BNITS1KzU1MLUotg+pg4OKUaGP2s7mw/9LbMUW2Du/zcmkP8H/Rdrl1Me8w3Q/ZGnd4veTvJ
-        4L3xXwPCnMp2bqj+Ur3v/R/h5R3f1Pf+uslx9AV/4YZZ141qRUuqLx67/Sj8K+8cV86eOarS
-        h34c37A58sRdWVFWlaLVcom2fcmpNmW9/185bFvYXnJavHZ1ulHY0a659Q2bo5VYijMSDbWY
-        i4oTASwwhFfhAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsWy7bCSvK5/tlecwZLPohbTn1xmsTi57g2L
-        xYUVN5gt5h85x2qx5vYhRoudG76wW5x6tYzZ4lT3O3aLzed6WC0u75rDZrH0+kUmi9uNK9gs
-        WvceYXfg9Vgzbw2jx+yGiyweO+4uYfTYOesuu8emVZ1sHn1bVjF6fN4kF8AexWWTkpqTWZZa
-        pG+XwJWx5vUn1oIvqhXTpyU3MG6R62Lk5JAQMJFYuP4gSxcjF4eQwG5GiU8fv7JAJCQlpl08
-        ytzFyAFkC0scPlwMUfOWUWLfpzZ2kBphgWyJ3hNX2UBsEYFgiVd72sAGMQv0Mkk8br7KDNEx
-        nVFi+vmXTCBVbAJaEvtf3ADr4BdQlLj64zEjiM0rYCex6fkOZhCbRUBV4uSjN2C2qECYxM4l
-        j5kgagQlTs58AnYdp4CLxPxZ/8FsZgF1iT/zLjFD2OISt57MZ4Kw5SW2v53DPIFReBaS9llI
-        WmYhaZmFpGUBI8sqRsnUguLc9NxiwwKjvNRyveLE3OLSvHS95PzcTYzg+NTS2sF44kT8IUYB
-        DkYlHl6HEM84IdbEsuLK3EOMEhzMSiK83uJecUK8KYmVValF+fFFpTmpxYcYpTlYlMR55fOP
-        RQoJpCeWpGanphakFsFkmTg4pRoY5bj9ows+rak6f/vA4pw7Gc7P19kdbI2c+F184emtLzN2
-        Cv9yrovK4MmdF/bWLXu59Oa3QjtnLunxsl06Ozb0/6nNQYbfP+2yfnB76e/zB/UaDT49SspZ
-        dHDjSu6q2a+OS6744ncpt2RW8dJvutezWu6+OTmlvc/s5qUbikapX6XD1kyMN3SxPKXEUpyR
-        aKjFXFScCABgb6HJywIAAA==
-X-CMS-MailID: 20200217103039epcas1p476015a1db4eef89cffde9711260369f9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20200213123953epcas1p45c39830a9ec6bd535f5370702f603806
-References: <CGME20200213123953epcas1p45c39830a9ec6bd535f5370702f603806@epcas1p4.samsung.com>
-        <20200213123934.10841-1-dafna.hirschfeld@collabora.com>
+Date:   Mon, 17 Feb 2020 16:12:03 +0530
+From:   harigovi@codeaurora.org
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        lkml <linux-kernel@vger.kernel.org>, nganji@codeaurora.org,
+        Sean Paul <seanpaul@chromium.org>,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Subject: Re: [Freedreno] [v1] drm/msm/dsi/pll: call vco set rate explicitly
+In-Reply-To: <CAF6AEGv2Ymn+4uDXsO2-P+HR9dpOotB=NRMSEsBu8_uOCJ2vBQ@mail.gmail.com>
+References: <1580980321-19256-1-git-send-email-harigovi@codeaurora.org>
+ <CAOCk7Nr9n-xLtWq=LEM-QFhJcY+QOuzazsoi-yjErA9od2Jwmw@mail.gmail.com>
+ <2f5abc857910f70faa119fea5bda81d7@codeaurora.org>
+ <CAOCk7NoCH9p9gOd7as=ty-EMeerAAhQtKZa8f2wZrDeV2LtGrw@mail.gmail.com>
+ <1d201377996e16ce25acb640867e1214@codeaurora.org>
+ <CAF6AEGu8265DWN-XABwR1N-124m1j=EkgeNDEWZ16TVpSCZSZw@mail.gmail.com>
+ <CAOCk7NrH6hWiHL29_DozXcXrXhkCaZ6LTCtJUrvqtXc=nQuLrg@mail.gmail.com>
+ <CAF6AEGvLOWKVCjjmqranEi9TKOpMM+BPK199wQ7f=Ez491uhcA@mail.gmail.com>
+ <CAOCk7NrifMkwartV4rj_v_V4=EHeSkmb28tdBUrxoPHVSX5G5Q@mail.gmail.com>
+ <CAF6AEGv2Ymn+4uDXsO2-P+HR9dpOotB=NRMSEsBu8_uOCJ2vBQ@mail.gmail.com>
+Message-ID: <500fec9adf6c8f8102d0e92535166007@codeaurora.org>
+X-Sender: harigovi@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/13/20 9:39 PM, Dafna Hirschfeld wrote:
-> convert the binding file extcon-usbc-cros-ec.txt to
-> yaml format extcon-usbc-cros-ec.yaml
+On 2020-02-12 10:40, Rob Clark wrote:
+> On Tue, Feb 11, 2020 at 8:05 PM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> 
+> wrote:
+>> 
+>> On Tue, Feb 11, 2020 at 5:28 PM Rob Clark <robdclark@gmail.com> wrote:
+>> >
+>> > On Tue, Feb 11, 2020 at 7:59 AM Jeffrey Hugo <jeffrey.l.hugo@gmail.com> wrote:
+>> > >
+>> > > On Tue, Feb 11, 2020 at 8:44 AM Rob Clark <robdclark@gmail.com> wrote:
+>> > > >
+>> > > > On Mon, Feb 10, 2020 at 9:58 PM <harigovi@codeaurora.org> wrote:
+>> > > > >
+>> > > > > On 2020-02-07 19:40, Jeffrey Hugo wrote:
+>> > > > > > On Fri, Feb 7, 2020 at 5:38 AM <harigovi@codeaurora.org> wrote:
+>> > > > > >>
+>> > > > > >> On 2020-02-06 20:29, Jeffrey Hugo wrote:
+>> > > > > >> > On Thu, Feb 6, 2020 at 2:13 AM Harigovindan P <harigovi@codeaurora.org>
+>> > > > > >> > wrote:
+>> > > > > >> >>
+>> > > > > >> >> For a given byte clock, if VCO recalc value is exactly same as
+>> > > > > >> >> vco set rate value, vco_set_rate does not get called assuming
+>> > > > > >> >> VCO is already set to required value. But Due to GDSC toggle,
+>> > > > > >> >> VCO values are erased in the HW. To make sure VCO is programmed
+>> > > > > >> >> correctly, we forcefully call set_rate from vco_prepare.
+>> > > > > >> >
+>> > > > > >> > Is this specific to certain SoCs? I don't think I've observed this.
+>> > > > > >>
+>> > > > > >> As far as Qualcomm SOCs are concerned, since pll is analog and the
+>> > > > > >> value
+>> > > > > >> is directly read from hardware if we get recalc value same as set rate
+>> > > > > >> value, the vco_set_rate will not be invoked. We checked in our idp
+>> > > > > >> device which has the same SOC but it works there since the rates are
+>> > > > > >> different.
+>> > > > > >
+>> > > > > > This doesn't seem to be an answer to my question.  What Qualcomm SoCs
+>> > > > > > does this issue apply to?  Everything implementing the 10nm pll?  One
+>> > > > > > specific SoC?  I don't believe I've seen this on MSM8998, nor SDM845,
+>> > > > > > so I'm interested to know what is the actual impact here.  I don't see
+>> > > > > > an "IDP" SoC in the IP catalog, so I really have no idea what you are
+>> > > > > > referring to.
+>> > > > >
+>> > > > >
+>> > > > > This is not 10nm specific. It is applicable for other nms also.
+>> > > > > Its specific to the frequency being set. If vco_recalc returns the same
+>> > > > > value as being set by vco_set_rate,
+>> > > > > vco_set_rate will not be invoked second time onwards.
+>> > > > >
+>> > > > > For example: Lets take below devices:
+>> > > > >
+>> > > > > Cheza is based on SDM845 which is 10nm only.
+>> > > > > Clk frequency:206016
+>> > > > > dsi_pll_10nm_vco_set_rate - DSI PLL0 rate=1236096000
+>> > > > > dsi_pll_10nm_vco_recalc_rate - DSI PLL0 returning vco rate = 1236095947
+>> > > > >
+>> > > > > Trogdor is based on sc7180 which is also 10nm.
+>> > > > > Clk frequency:69300
+>> > > > > dsi_pll_10nm_vco_set_rate - DSI PLL0 rate=1663200000
+>> > > > > dsi_pll_10nm_vco_recalc_rate - DSI PLL0 returning vco rate = 1663200000
+>> > > > >
+>> > > > > In same trogdor device, we slightly changed the clock frequency and the
+>> > > > > values actually differ which will not cause any issue.
+>> > > > > Clk frequency:69310
+>> > > > > dsi_pll_10nm_vco_set_rate - DSI PLL0 rate=1663440000
+>> > > > > dsi_pll_10nm_vco_recalc_rate - DSI PLL0 returning vco rate = 1663439941
+>> > > >
+>> > > >
+>> > > > tbh, loosing state when power is off is kind of the behavior that I'd
+>> > > > expect.  It kinda makes me wonder if things are not getting powered
+>> > > > off all the way on some SoCs?
+>> > > >
+>> > > > jhugo, are you worried that this patch will cause problems on other
+>> > > > users of the 10nm pll?
+>> > >
+>> > > Essentially yes.  Conceptually it doesn't seem like this change should
+>> > > cause any harm, however -
+>> > >
+>> > > This sounds like we are trying to work around the clk framework, which
+>> > > seems wrong.  It feels like we should be able to set a clk flag for
+>> > > this and make the framework deal with it.
+>> > >
+>> > > Also, this fix is 10nm specific, yet this issue affects all
+>> > > implementations?  Seems like this should perhaps be in common code so
+>> > > that we don't need to play whack-a-mole by fixing every implementation
+>> > > piecemeal.
+>> > >
+>> > > Finally, the PLLs are notorious for not taking a configuration unless
+>> > > they are running.  I admit, I haven't looked at this patch in detail
+>> > > to determine if that is the case here, but there doesn't seem to be
+>> > > any indication from the commit test or a comment that doing so is
+>> > > actually valid in all cases.
+>> >
+>> > I'm not obviously seeing a clk-provider flag for this.. although I
+>> > won't claim to be a clk expert so maybe I'm looking for the wrong
+>> > thing..
+>> >
+>> > On a more practical level, I'd kinda like to get some sort of fix for
+>> > v5.6, as currently suspend/resume doesn't work (or at least the
+>> > display does not survive) on trogdor, which is a bit annoying.  It
+>> > sounds a bit like cheza was just getting lucky (because of rate
+>> > rounding?)  I'm not sure if it is the same situation on other sdm850
+>> > devices (yoga c630) or sdm835 devices (are they using the 10mm pll as
+>> > well?).
+>> 
+>> sdm835 is the first implementation of the 10nm PLL.  Pretty much
+>> everything after (including sdm845/850) also uses the 10nm PLL.
+>> 
+>> >  I will confess to not really testing s/r on the yoga c630,
+>> > although maybe someone else has (Bjorn?).
+>> >
+>> > Possibly this should be pushed up to the clk framework, although not
+>> > sure if it has a good way to realize the clk provider has lost power?
+>> > But that sounds like a better thing for v5.7 than v5.6-rc fixes.. ofc
+>> > if there is a better way that I'm not seeing, I'm all ears.
+>> 
+>> There is a suspend/resume sequence in the HPG where VCO isn't lost,
+>> but that assumes the GDSC isn't turned off.  If GDSC is turned off,
+>> then we need to go through the entire power-up sequence again.  Feels
+>> like this should be plumbed into runtime PM based on the
+>> suspend/resume usecase, but that's probably more complicated then this
+>> change.
 > 
-> This was tested and verified on ARM with:
-> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-> make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
+> since gdsc is modelled as genpd, that seems to (afaict) happen all
+> outside the scope of what the driver knows about.. (but I may be
+> overlooking something)
 > 
-> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> ---
-> Changes since v1:
-> 1 - changing the license to (GPL-2.0-only OR BSD-2-Clause)
-> 2 - changing the maintainers
-> 3 - changing the google,usb-port-id property to have minimum 0 and maximum 255
+>> Looking at the HPG for the power up sequence, it seems like we should
+>> be setting the bias in the middle of the dsi_pll_commit(), so the
+>> order of operations is slight off, however I somewhat doubt that will
+>> have a meaningful impact and it does seem like this change is in line
+>> with the spirit of the HPG.
+>> 
+>> It wasn't clear to me from the commit message what usecase triggered
+>> this.  You've made it clear that its suspend/resume (it would be good
+>> if that was mentioned) and that its impacting an actual target.  To
+>> me, the current description seemed more theoretical and didn't
+>> describe the impact that was being addressed.  Overall, it really
+>> didn't answer the "why should I care if I have this change" question.
+>> 
+>> Right now, I think my concerns are cosmetic, therefore I don't have
+>> reservations about it being picked up.  If you like:
+>> 
+>> Reviewed-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
 > 
-> Changes since v2:
-> 1 - Changing the patch subject to start with "dt-bindings: extcon: usbc-cros-ec:"
-> 2 - In the example, adding a parent isp node, a reg field to cros-ec@0
-> and adding nodes 'extcon0/1' instead of one node 'extcon'.
 > 
-> Changes since v3:
-> in the example, changing the node isp1 to spi0
+> hmm, yeah, I guess the commit msg didn't really make that clear.. at
+> any rate, I want to see a clean solution pursued in the long run, but
+> in the short term I also want to get things working (at least if it
+> doesn't break any other users).  So I don't want to land this patch at
+> the expense of follow-up for a cleaner solution.. but like I said, I
+> would like to get s/r working for now.  So I guess I'd like to see
+> some commitment from the display team to follow-up to improve this in
+> the next cycle.  And suggestions welcome about how the clk framework
+> could make this easier.
 > 
->  .../bindings/extcon/extcon-usbc-cros-ec.txt   | 24 --------
->  .../bindings/extcon/extcon-usbc-cros-ec.yaml  | 56 +++++++++++++++++++
->  2 files changed, 56 insertions(+), 24 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt
->  create mode 100644 Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt b/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt
-> deleted file mode 100644
-> index 8e8625c00dfa..000000000000
-> --- a/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -ChromeOS EC USB Type-C cable and accessories detection
-> -
-> -On ChromeOS systems with USB Type C ports, the ChromeOS Embedded Controller is
-> -able to detect the state of external accessories such as display adapters
-> -or USB devices when said accessories are attached or detached.
-> -
-> -The node for this device must be under a cros-ec node like google,cros-ec-spi
-> -or google,cros-ec-i2c.
-> -
-> -Required properties:
-> -- compatible:		Should be "google,extcon-usbc-cros-ec".
-> -- google,usb-port-id:	Specifies the USB port ID to use.
-> -
-> -Example:
-> -	cros-ec@0 {
-> -		compatible = "google,cros-ec-i2c";
-> -
-> -		...
-> -
-> -		extcon {
-> -			compatible = "google,extcon-usbc-cros-ec";
-> -			google,usb-port-id = <0>;
-> -		};
-> -	}
-> diff --git a/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml b/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-> new file mode 100644
-> index 000000000000..9c5849b341ea
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: https://protect2.fireeye.com/url?k=d3c63a24-8e5dc647-d3c7b16b-0cc47a31cdbc-e8d8e2b7806aed8e&u=http://devicetree.org/schemas/extcon/extcon-usbc-cros-ec.yaml#
-> +$schema: https://protect2.fireeye.com/url?k=04f78247-596c7e24-04f60908-0cc47a31cdbc-1b9a3937c161a4b6&u=http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ChromeOS EC USB Type-C cable and accessories detection
-> +
-> +maintainers:
-> +  - Benson Leung <bleung@chromium.org>
-> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> +
-> +description: |
-> +  On ChromeOS systems with USB Type C ports, the ChromeOS Embedded Controller is
-> +  able to detect the state of external accessories such as display adapters
-> +  or USB devices when said accessories are attached or detached.
-> +  The node for this device must be under a cros-ec node like google,cros-ec-spi
-> +  or google,cros-ec-i2c.
-> +
-> +properties:
-> +  compatible:
-> +    const: google,extcon-usbc-cros-ec
-> +
-> +  google,usb-port-id:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: the port id
-> +    minimum: 0
-> +    maximum: 255
-> +
-> +required:
-> +  - compatible
-> +  - google,usb-port-id
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        cros-ec@0 {
-> +            compatible = "google,cros-ec-spi";
-> +            reg = <0>;
-> +
-> +            usbc_extcon0: extcon0 {
-> +                compatible = "google,extcon-usbc-cros-ec";
-> +                google,usb-port-id = <0>;
-> +            };
-> +
-> +            usbc_extcon1: extcon1 {
-> +                compatible = "google,extcon-usbc-cros-ec";
-> +                google,usb-port-id = <1>;
-> +            };
-> +        };
-> +    };
-> 
+> BR,
+> -R
 
-Applied it. Thanks.
+we had an initial discussion with the clock team, currently there is no 
+ready made clock provider flag to help in the above scenario.
+however we are planning to have further discussions for a cleaner fix, 
+can we open a new issue to track the discussions and design and close 
+the current one ?
 
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+
+
