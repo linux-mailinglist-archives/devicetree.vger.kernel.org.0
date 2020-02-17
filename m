@@ -2,44 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C4D1617DA
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 17:26:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56FE41617F5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 17:31:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728463AbgBQQ0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 11:26:54 -0500
-Received: from foss.arm.com ([217.140.110.172]:38182 "EHLO foss.arm.com"
+        id S1728852AbgBQQbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 11:31:55 -0500
+Received: from foss.arm.com ([217.140.110.172]:38272 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727922AbgBQQ0y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Feb 2020 11:26:54 -0500
+        id S1727922AbgBQQbz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Feb 2020 11:31:55 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3729C30E;
-        Mon, 17 Feb 2020 08:26:54 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5ECE130E;
+        Mon, 17 Feb 2020 08:31:54 -0800 (PST)
 Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD9143F68F;
-        Mon, 17 Feb 2020 08:26:53 -0800 (PST)
-Date:   Mon, 17 Feb 2020 16:26:52 +0000
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D4AD13F68F;
+        Mon, 17 Feb 2020 08:31:53 -0800 (PST)
+Date:   Mon, 17 Feb 2020 16:31:52 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        =?iso-8859-1?Q?Myl=E8ne?= Josserand 
-        <mylene.josserand@free-electrons.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 00/34] sun8i-codec fixes and new features
-Message-ID: <20200217162652.GO9304@sirena.org.uk>
-References: <20200217064250.15516-1-samuel@sholland.org>
+To:     Akash Asthana <akashast@codeaurora.org>
+Cc:     gregkh@linuxfoundation.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, wsa@the-dreams.de,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, mka@chromium.org,
+        dianders@chromium.org
+Subject: Re: [PATCH 4/6] spi: spi-geni-qcom: Add interconnect support
+Message-ID: <20200217163152.GQ9304@sirena.org.uk>
+References: <1581946205-27189-1-git-send-email-akashast@codeaurora.org>
+ <1581946205-27189-5-git-send-email-akashast@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jozmn01XJZjDjM3N"
+        protocol="application/pgp-signature"; boundary="9+VnUxDxRuy97YQ+"
 Content-Disposition: inline
-In-Reply-To: <20200217064250.15516-1-samuel@sholland.org>
+In-Reply-To: <1581946205-27189-5-git-send-email-akashast@codeaurora.org>
 X-Cookie: There was a phone call for you.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
@@ -48,47 +45,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---jozmn01XJZjDjM3N
+--9+VnUxDxRuy97YQ+
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Feb 17, 2020 at 12:42:16AM -0600, Samuel Holland wrote:
+On Mon, Feb 17, 2020 at 07:00:03PM +0530, Akash Asthana wrote:
+> Get the interconnect paths for SPI based Serial Engine device
+> and vote according to the current bus speed of the driver.
 
-> There are several trivial fixes in here, and there are several commits
-> that just add new features without changing any existing behavior, but
-> there is enough changing that I thought it would be best to send the
-> whole thing as an RFC. I'm more than happy to reorganize this into one
-> or several patchsets in future revisions. It doesn't have to all go in
-> at once.
+Acked-by: Mark Brown <broonie@kernel.org>
 
-This could definitely use being both split up and reordered, it's a 34
-patch series as things stand which is just far too big and I don't
-understand the ordering within the series - there's a mix of fixes,
-cleanups and new features which should come in that order but don't.
-This makes it difficult to get a handle on what's going on because what
-the series is doing jumps about a lot.  There's also a lot of overuse of
-fixes tags and stable tags which also makes things less clear.  I'd
-suggest first sending all the clear fixes as a separate series with the
-cleanups and new functionality separate.
-
-With regard to the ABI breaks they *may* be OK for mainline if we're
-confident that there's not going to be anyone broken by them but we
-should be looking to maintain compatibility if we can even if that's the
-case.
-
---jozmn01XJZjDjM3N
+--9+VnUxDxRuy97YQ+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5KvssACgkQJNaLcl1U
-h9AFkAf+PTXKlVW0kwCz5ifw7rANYaEVuHbffAG8xTZ4xnAb6OOQp6nrRyjbeCh+
-CVeQiWco9iMv0s3ViZrPNRu0cAY0q5yT9/3PtcSUnf9kdZU0j2NGgVcd8M1r36nG
-rqo32+9t3pM7PVuMFxprSYIWowjL4imVnijbUr4HKqMfgcSv11/A8/vrgeFDVw7s
-iaICzpZ7eEo7wz23UocFb3ZTLamvSqlUen7jJj8l2KlMZute7NlbH9WOZVV7KHoE
-i/eafDrmflwnVDqYffboBROuzLF3fBWbcvyBHsqt9ox5N4YIv9+IBp9u1JORKCPX
-tAZBXTMe3EN10DSbE3X0iXvk+gwzRw==
-=106H
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5Kv/cACgkQJNaLcl1U
+h9C0DAf/ZL04JTosjXBLegMQrmn9rjYoKyenucR6bwhVK2SMK73TkxGKO7vjD/vN
+it0Qg/z04vrqX/4Z6Nfbcmt0Y7T8RGK9YxWMGU7mVyup19Dqm0wYFc5qkBV2h3DY
+k9/tUYoYmc6hddevcpgWwG38oU0eJJ9UoWVWvkOfCXK4VmjYnyxdUTcG4oRfDUFZ
+rTjQlYIfYaqZJebjxTYB6cst1z2cvQ3ccOIYLH5PM5Z9V5BUx7mqz6ZsXQ/8qWZG
+mVsA6RTuTPKlRsa3Fw++Y6QSIO4r4wLH96Z2JA7Dl8wVzofTtbrSFuel93qWz0Ny
+e/uNxPQ+GY/Nx19wFOrfJ1ErkNi0pg==
+=f/E0
 -----END PGP SIGNATURE-----
 
---jozmn01XJZjDjM3N--
+--9+VnUxDxRuy97YQ+--
