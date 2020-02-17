@@ -2,123 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B295160DAF
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 09:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86B28160DCD
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 09:51:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728433AbgBQImJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 03:42:09 -0500
-Received: from mail-wr1-f50.google.com ([209.85.221.50]:41483 "EHLO
-        mail-wr1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728412AbgBQImJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 03:42:09 -0500
-Received: by mail-wr1-f50.google.com with SMTP id c9so18573751wrw.8;
-        Mon, 17 Feb 2020 00:42:07 -0800 (PST)
+        id S1728520AbgBQIvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 03:51:41 -0500
+Received: from mail-io1-f65.google.com ([209.85.166.65]:39678 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728217AbgBQIvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 03:51:41 -0500
+Received: by mail-io1-f65.google.com with SMTP id c16so17582228ioh.6;
+        Mon, 17 Feb 2020 00:51:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=XTVDtlDujS1FexCccIJjlqSnMh0JRNPhJT+VsfXONDc=;
-        b=sTHs6PzD94xlIbp3EVV+xtr05qjRE4Sw20sk2G9/YIsN5t2TpPXC1FueyYwxZZP7kM
-         sYJpQU2zChQtOmhNlAWabN8HDbFDSz9t5852gn1XxNjTSA9Pq50p8Os1oquNMCAeAupp
-         hnVYRB8h3cZax5X7CvBk3gXW22nL89Pxr/raUFZEhOO7akEQH4BnKpCFs+paA8g9LdDz
-         eay5WNYbQcK5pj1ncoj/F7A4SwMqe6RhSKeajg38/Rc6+B7kRxaO+tmT+XsAkBnrBgRo
-         2KwIJWkxkpP+ZJCkxDKZd7tsdsw7d7ks5Wr/cA0/V9W2nM4knY6HTMC76YQCS4m6GG1v
-         IiQQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uHHGohWk9p+/nxk2GPpS7E9E1pqxMJMjyjsNhyVbaiU=;
+        b=FykBzbYJMaN5c0YR2MF11eN63iW/0xfMqkMCO+S5HgLkR7Obiw/ot8yvZ0h49GIxZL
+         S2+l6ayaFj2+5LRym2fXDwxpcqjaElQsUS/UwVeCnhxxXm8EUvPBt6YOb/PtxvOtG0Ny
+         kD0XSHCBlYjcdIV+RbJcHbc6cEEgyGr/F4IZxKK1SNSk0PaWVCtgUP+EUXvPSgFYlTnC
+         Zj30ph73zv2TbaGG1B2sygm90a1s0C5lJlJoNhibYSHoPJSkbE0Xi9OGa13S6xfzY87b
+         HUOk4REAF/Nrz6QKXPhgktczj9FXPVYlo+bSXu/p3aohZPrYogUJznmim5SX21H6LjMm
+         kn4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XTVDtlDujS1FexCccIJjlqSnMh0JRNPhJT+VsfXONDc=;
-        b=Yr4n9E8VhGHjRG1FWwaPDJoXO4ya2J6wmq7cyoXeMR04NegyN5ZKzm8MuNvVpf4K+H
-         3QWr4qB5ds2tSshqcbP2NGMO2XAovwpMKM13CuFYjmQ5bt0K10HmxQuK7e4WjqS08un7
-         hewAc9l0K4sRtUrJLN5KwlAsLf8c69v5MoyLG5ylN4A3tmJxQrU2jLJDHyc2IDph+Lec
-         4CTU5pjOz7X/r3TAdLNNg2n5pt/noK/C/hvExDNRItuL71oUZNuTP+Sts9ydVykp0FAI
-         v1VZBtclhY0dQEOb6ao/Wyf6uNZ8mz+L3MNcDK6CR+fN+JuicdZ8enwrzDUIQ1zkkh/k
-         22hg==
-X-Gm-Message-State: APjAAAWlc+di49kpR3bT8EYXR+D7JVW8PicARPQlYG8ZcEjWD83DOFKk
-        HhqnpRHVdrcaJT/OUoSATXY=
-X-Google-Smtp-Source: APXvYqzve2rIx2O5ybG8NSz8n8PvsLzpsq6vRL0tqM5ln98sZ1CnO5T5RP5nBuAteSbvdajZ8j21Yg==
-X-Received: by 2002:a5d:6445:: with SMTP id d5mr20487035wrw.244.1581928926906;
-        Mon, 17 Feb 2020 00:42:06 -0800 (PST)
-Received: from localhost (p2E5BEF3F.dip0.t-ipconnect.de. [46.91.239.63])
-        by smtp.gmail.com with ESMTPSA id h205sm20110939wmf.25.2020.02.17.00.42.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Feb 2020 00:42:05 -0800 (PST)
-Date:   Mon, 17 Feb 2020 09:42:04 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Nagarjuna Kristam <nkristam@nvidia.com>
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org, jonathanh@nvidia.com,
-        mark.rutland@arm.com, robh+dt@kernel.org, kishon@ti.com,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [Patch V5 12/21] usb: gadget: tegra-xudc: support multiple
- device modes
-Message-ID: <20200217084204.GI1339021@ulmo>
-References: <1581322307-11140-1-git-send-email-nkristam@nvidia.com>
- <1581322307-11140-13-git-send-email-nkristam@nvidia.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uHHGohWk9p+/nxk2GPpS7E9E1pqxMJMjyjsNhyVbaiU=;
+        b=ZOkJPxZFKE83ZyGiuRoQPlHaqryz3TIWVKcVqBphPtLIKYF8ubisHoBN+d1qaW9rpC
+         g76//XJ8vvHqikkwQxAbMtbDVsts5Ecibp9b9fAXgeSl3xbLZtwD7OPPstS+s/qFDi5P
+         I0KoS1sCjPqmqTaj3mDqKZjm+YdCE2cMCqBk/I6UXwtXI9Xs80VrweSBnrFp6zFJyzwy
+         DxPEG7ZGPxKO7hxVa2XOT/C6ddnZCH3DPUymJvknsicGEIs3kMLu+5xJsmWKXOvixcKE
+         lI/1P/huP99xyMsS+AL3zwfH4lv6OY06i7O8CU9XCdOkFkR4feFtcdpO9noDpaFg5pvr
+         XjGA==
+X-Gm-Message-State: APjAAAUgY1Cvo5ogopojFesFrduXcnEpRcRWaYRhwzGNkePMK5J1P6ms
+        EPFuV5jWVz1XEzlKEB7dq9u4ZSLZwnoHNJKlilA=
+X-Google-Smtp-Source: APXvYqy5Ao2fzvMvprdx/tvfqqCXbZoPO8C3N/gOUkzZph4zPWsllY1/gyAqJmaFDd+k4b6XjT7ZZp9Nv1LrIGgjhzQ=
+X-Received: by 2002:a5e:aa18:: with SMTP id s24mr10775126ioe.221.1581929499729;
+ Mon, 17 Feb 2020 00:51:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4BlIp4fARb6QCoOq"
-Content-Disposition: inline
-In-Reply-To: <1581322307-11140-13-git-send-email-nkristam@nvidia.com>
-User-Agent: Mutt/1.13.1 (2019-12-14)
+References: <20200216173446.1823-1-linux.amoon@gmail.com> <20200216173446.1823-4-linux.amoon@gmail.com>
+ <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 17 Feb 2020 14:21:29 +0530
+Message-ID: <CANAwSgRurj6Mfkqq6OfW_ZORCj_UhQN24kx-tj+sUWfuqn_uoQ@mail.gmail.com>
+Subject: Re: [PATCHv1 3/3] clk: meson: g12a: set cpu clock divider flags too CLK_IS_CRITICAL
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jerome,
 
---4BlIp4fARb6QCoOq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for your review comments.
 
-On Mon, Feb 10, 2020 at 01:41:38PM +0530, Nagarjuna Kristam wrote:
-> This change supports limited multiple device modes by:
-> - At most 4 ports contains OTG/Device capability.
-> - One port run as device mode at a time.
->=20
-> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
-> ---
-> V5:
->  - No changes.
-> ---
-> V4:
->  - Replaced current_phy_index usage with curr_*phy pointers.
->  - Used unsigned int instead of int wherever needed.
-> ---
-> V3:
->  - No changes in this version
-> ---
-> V2:
->  - Updated err variable on failure to get usbphy.
->  - Corrected identation after tegra_xudc_phy_get API call in tegra_xudc_p=
-robe.
-> ---
->  drivers/usb/gadget/udc/tegra-xudc.c | 217 ++++++++++++++++++++++++++----=
-------
->  1 file changed, 160 insertions(+), 57 deletions(-)
+On Mon, 17 Feb 2020 at 13:32, Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Sun 16 Feb 2020 at 18:34, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> > Odroid N2 would fail to boot using microSD unless we set
+> > cpu freq clk divider flags to CLK_IS_CRITICAL to avoid stalling of
+> > cpu when booting, most likely because of PWM module linked to
+>
+> Where did you see a PWM ?
+>
+> > the CPU for DVFS is getting disabled in between the late_init call,
+>
+> between the late_init call and what ?
+>
+> > so gaiting the clock source shuts down the power to the codes.
+>
+> what code ?
+>
+> > Setting clk divider flags to CLK_IS_CRITICAL help resolve the issue.
+> >
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> >
+> > Following Neil's suggestion, I have prepared this patch.
+> > https://patchwork.kernel.org/patch/11177441/#22964889
+> > ---
+> >  drivers/clk/meson/g12a.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> > index d2760a021301..accae3695fe5 100644
+> > --- a/drivers/clk/meson/g12a.c
+> > +++ b/drivers/clk/meson/g12a.c
+> > @@ -283,6 +283,7 @@ static struct clk_fixed_factor g12a_fclk_div2_div = {
+> >               .ops = &clk_fixed_factor_ops,
+> >               .parent_hws = (const struct clk_hw *[]) { &g12a_fixed_pll.hw },
+> >               .num_parents = 1,
+> > +             .flags = CLK_IS_CRITICAL,
+>
+> This makes no sense for because:
+> * This clock cannot gate and none of its parents can either. IOW, the
+> output of this clock is never disabled.
+> * I cannot guess the relation between fdiv2 and the commit description
+>
+> >       },
+> >  };
+> >
+> > @@ -681,7 +682,7 @@ static struct clk_regmap g12b_cpub_clk = {
+> >                       &g12a_sys_pll.hw
+> >               },
+> >               .num_parents = 2,
+> > -             .flags = CLK_SET_RATE_PARENT,
+> > +             .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+>
+> Why not. Neil what do you think of this ?
+> If nothing is claiming this clock and enabling it then I suppose it
+> could make sense.
+>
+>
+> >       },
+> >  };
+>
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Sorry for the noise, I should not have send this patch in first place.
 
---4BlIp4fARb6QCoOq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl5KUdwACgkQ3SOs138+
-s6FBTA/+OuSS68PjmW2Sn16CEA8GKImQt3M9/ZedBYhHI270QC4KXSO2Piz2+TMG
-gX6/mSb8T492DXnHvpH7f4QV9BbSptNXWb6tNLfTf/AYWi++vG19RtswQQaZT1z+
-OfWyHZJh/BwEolaYJ295QjD6ovpWRhXtg7di/fdyCIoYFrZN7lAw5ongGvFsa3bB
-mC2kZ1NKMNHFJJ0/n3/M7OVQffMUJh/18fXC0gaGgwYBoL71VpCSY0ICH4OxQopx
-D3J9uCiDc6/NOu/52TLWQh+tUPMW1784C2orAWqMn8fWT5DGOph2NPVm5H3rw+Rq
-ub0gAyDRQGs+A4e2bieY5Pd36vtempIkZilZfeH3OmFFeB1ieOfrqxxy2eafxRhy
-QdUro9WP9dhFxVZoxjNCtkWP8whnuGC5wx0FC7vTTBllxBYaxGDrrZyRTtM/H4uh
-0V+KWu5hPjH1qsV2OAlqHMlIm0nPcUp794oq24ggLPvwg8YYOtnvd5VyHmmYzUpG
-QzoByNWJgop9VdmTm7dXm6rpbEoHoeq70lxY1tVxbdUzwmqtKte2FiGNf2VkY4jQ
-nUkSGU4C8yQGHdg+pumAz96wVJOALHPj/iCQBsSbWbnflwAzl0nAX59HLN/mbFg5
-9PY+8EZs1cQL5JobE8GHUcesdF7tYUQ2dy8sJqJPqIDy/fTVh6Y=
-=hIOY
------END PGP SIGNATURE-----
-
---4BlIp4fARb6QCoOq--
+-Anand
