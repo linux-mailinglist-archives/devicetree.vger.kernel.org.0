@@ -2,105 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D30F161517
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 15:51:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A8D161532
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 15:54:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729225AbgBQOvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 09:51:51 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:40502 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728375AbgBQOvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 09:51:51 -0500
-Received: by mail-lj1-f195.google.com with SMTP id n18so19171286ljo.7;
-        Mon, 17 Feb 2020 06:51:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UzdcYM1FH1U80h/QefOyZ2VNdrfjLgVyGyfCOH6iHYc=;
-        b=RM/KkU8l9yevhB+6g9xchiXuY75DbXFZ2r8l2ZHEt1x7XSmWHYYfTVn5UbMxm39oM2
-         UE+C9oHKYZ0Si8oJxZUZ8ON0LMB13aUX1fxKpucut+6AagIMRQUF5Bpv44zYI06Blnks
-         bGtuE0Nfyq1jOr6eqDceXbOYsdd4TOwhuu1YQdR2uB9WNTTRsvJ0S08eyfCkE2u/YpjL
-         SBjXTfUoxGugQbrL01BsNlQ5GRn0O2eG3Cjjed4aZz6rL0MY1WPZtZMKAwO3iisdBQP+
-         x3yf0GnV4zxvLokWE5KfrpXaHYpNDsEL6syORMoFv2y3co2iBkTjMv6ieqwOT5TZf9Pt
-         wjSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UzdcYM1FH1U80h/QefOyZ2VNdrfjLgVyGyfCOH6iHYc=;
-        b=Ynmj9rNbrLMhqEtpDO4iGQ3V1BnqImBJTDjrJqJwsLYpgvd4Ozn52pf/3zxNY0d1Tz
-         0q+t5a9kRicplOloy+dvDI2uB1I8Lgk+urwAxFlDfb/5hPg9WEPmehWnjoGGIeGs6Jlr
-         h4TtV/NlY+4QhZJwGM7rC7v5bn5qo7SMmEQjNsig2qG+RDnfVRzz3DKlD4TcWuoWrS8a
-         hntFJwE9IPvUfEy99ECp/TjzmAwQI0EIrtE27hunj/gxJzmm2AGo6c5aDkS8CpqZXuuA
-         cW3TKA6stncZ6wlJEYCeggRYYzr01hDNIO7s+bs4kZVwmQaExcXMKRwfIaolNBQJlqRr
-         +9CQ==
-X-Gm-Message-State: APjAAAVc5iHq7h8n7MLtsv33snx6SBTH7iNbMQl83+uGns1DRDRa6KV1
-        7L0LrgLHXrN4v4bMgfSybbMVplZ3
-X-Google-Smtp-Source: APXvYqwCI3HPBjE7bzB7TxAfVjglLjP+BEr9pUeKJEdvUcghKDvYOtxJaaJ5Vhx4VtyKXPTQXGwlDA==
-X-Received: by 2002:a2e:300e:: with SMTP id w14mr10139193ljw.222.1581951106760;
-        Mon, 17 Feb 2020 06:51:46 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id m11sm500750lfj.42.2020.02.17.06.51.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2020 06:51:46 -0800 (PST)
-Subject: Re: [PATCH v8 11/22] ASoC: tegra: Add fallback implementation for
- audio mclk
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     jonathanh@nvidia.com, broonie@kernel.org, lgirdwood@gmail.com,
-        perex@perex.cz, tiwai@suse.com, mperttunen@nvidia.com,
-        gregkh@linuxfoundation.org, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, pdeschrijver@nvidia.com, pgaikwad@nvidia.com,
-        spujar@nvidia.com, josephl@nvidia.com, daniel.lezcano@linaro.org,
-        mmaddireddy@nvidia.com, markz@nvidia.com,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1578986667-16041-1-git-send-email-skomatineni@nvidia.com>
- <1578986667-16041-12-git-send-email-skomatineni@nvidia.com>
- <20200217094020.GM1339021@ulmo>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <072c8e53-58fa-4e14-2106-00a5226a230f@gmail.com>
-Date:   Mon, 17 Feb 2020 17:51:44 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        id S1729040AbgBQOyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 09:54:33 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:45908 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728493AbgBQOyd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 09:54:33 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01HEsH8g091985;
+        Mon, 17 Feb 2020 08:54:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1581951257;
+        bh=hivdJ0fnZ4rVAgUWz1wM3Qim6SdfBZhG+2ODcnkvf8A=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=kjOOjmKE5WKr7Q+WomhbkilFhfbQbi1UCxae3dwSbg9IwuEa1U8mtcsnm/L6pnrQY
+         9Xc0rznLTR4SdipgBX03d7H7b6cD/BpN8cnQfjlU1VkXgiqHW4OsMaQX8aXki2T3o8
+         Foo1xcB2hN/Jx1dKoi4JlxbGI+h0vs7wdO6oYP1E=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01HEsHFP028996
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 17 Feb 2020 08:54:17 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 17
+ Feb 2020 08:54:16 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 17 Feb 2020 08:54:16 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01HEsDaJ057000;
+        Mon, 17 Feb 2020 08:54:14 -0600
+Subject: Re: dma_mask limited to 32-bits with OF platform device
+To:     Christoph Hellwig <hch@lst.de>, Robin Murphy <robin.murphy@arm.com>
+CC:     Roger Quadros <rogerq@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        "Nori, Sekhar" <nsekhar@ti.com>, "Anna, Suman" <s-anna@ti.com>,
+        <stefan.wahren@i2se.com>, <afaerber@suse.de>, <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>
+References: <c1c75923-3094-d3fc-fe8e-ee44f17b1a0a@ti.com>
+ <3a91f306-f544-a63c-dfe2-7eae7b32bcca@arm.com>
+ <56314192-f3c6-70c5-6b9a-3d580311c326@ti.com>
+ <9bd83815-6f54-2efb-9398-42064f73ab1c@arm.com>
+ <20200217132133.GA27134@lst.de>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <848c4cab-ad96-9c42-b15b-eaffee7f3f8f@ti.com>
+Date:   Mon, 17 Feb 2020 16:54:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200217094020.GM1339021@ulmo>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20200217132133.GA27134@lst.de>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-17.02.2020 12:40, Thierry Reding пишет:
-> On Mon, Jan 13, 2020 at 11:24:16PM -0800, Sowjanya Komatineni wrote:
->> mclk is from clk_out_1 which is part of Tegra PMC block and pmc clocks
->> are moved to Tegra PMC driver with pmc as clock provider and using pmc
->> clock ids.
->>
->> New device tree uses clk_out_1 from pmc clock provider as audio mclk.
->>
->> So, this patch adds implementation for mclk fallback to extern1 when
->> retrieving mclk returns -ENOENT to be backward compatible of new device
->> tree with older kernels.
->>
->> Fixes: 110147c8c513 ("ASoC: tegra: always use clk_get() in utility code")
->>
->> Tested-by: Dmitry Osipenko <digetx@gmail.com>
->> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>  sound/soc/tegra/tegra_asoc_utils.c | 18 +++++++++++++++---
->>  1 file changed, 15 insertions(+), 3 deletions(-)
-> 
-> There's some inconsistent spelling of PMC in the above, but other than
-> that:
-> 
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> 
+Christoph,
 
-Seems you missed my point.. this patch doesn't work at all, and thus, it
-should be dropped.
+On 17/02/2020 15.21, Christoph Hellwig wrote:
+> Roger,
+> 
+> can you try the branch below and check if that helps?
+> 
+>     git://git.infradead.org/users/hch/misc.git arm-dma-bus-limit
+> 
+> Gitweb:
+> 
+>     http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/arm-dma-bus-limit
+
+I'll test them on k2 tomorrow ;)
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
