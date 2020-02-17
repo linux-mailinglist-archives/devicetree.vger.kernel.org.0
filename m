@@ -2,34 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36656160875
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 04:07:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6A6A1608C5
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 04:26:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726591AbgBQDH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Feb 2020 22:07:26 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:53954 "EHLO inva021.nxp.com"
+        id S1727685AbgBQD0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Feb 2020 22:26:36 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:48928 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726498AbgBQDH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 16 Feb 2020 22:07:26 -0500
+        id S1726742AbgBQD0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 Feb 2020 22:26:36 -0500
 Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6A4F8200776;
-        Mon, 17 Feb 2020 04:07:24 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3AE5C201E36;
+        Mon, 17 Feb 2020 04:26:34 +0100 (CET)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C9E74201DC3;
-        Mon, 17 Feb 2020 04:07:17 +0100 (CET)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 72A7D200EBF;
+        Mon, 17 Feb 2020 04:26:24 +0100 (CET)
 Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AE17C402A7;
-        Mon, 17 Feb 2020 11:07:09 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        mripard@kernel.org, leonard.crestez@nxp.com, abel.vesa@nxp.com,
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AC27F402A7;
+        Mon, 17 Feb 2020 11:26:12 +0800 (SGT)
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Anson.Huang@nxp.com, leonard.crestez@nxp.com,
+        daniel.baluta@nxp.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
+        fugang.duan@nxp.com, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH] clk: imx8mn: Fix incorrect clock defines
-Date:   Mon, 17 Feb 2020 11:01:35 +0800
-Message-Id: <1581908495-11746-1-git-send-email-Anson.Huang@nxp.com>
+        linux-kernel@vger.kernel.org,
+        Joakim Zhang <qiangqing.zhang@nxp.com>
+Subject: [PATCH 0/7] Add FlexCAN support on i.MX8QXP
+Date:   Mon, 17 Feb 2020 11:19:14 +0800
+Message-Id: <1581909561-12058-1-git-send-email-qiangqing.zhang@nxp.com>
 X-Mailer: git-send-email 2.7.4
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
@@ -37,30 +40,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IMX8MN_CLK_I2C4 and IMX8MN_CLK_UART1's index definitions are incorrect,
-fix them.
+Add FlexCAN support on i.MX8QXP.
 
-Fixes: 1e80936a42e1 ("dt-bindings: imx: Add clock binding doc for i.MX8MN")
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- include/dt-bindings/clock/imx8mn-clock.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Joakim Zhang (7):
+  firmware: imx: scu-pd: add power domain for I2C and INTMUX in CM40 SS
+  clk: imx8: Add SCU and LPCG clocks for I2C in CM40 SS
+  bindings: clock: imx8qxp: add "fsl,imx8qxp-lpcg-cm40" compatible
+    string
+  clk: imx: imx8qxp: Enable SCU and LPCG clocks for I2C in CM40 SS
+  arch: arm64: dts: imx8qxp: add device node for I2C and INTMUX in CM40
+    SS
+  clk: imx: imx8qxp: add LPCG clock for FlexCAN in ADMA SS
+  arch: arm64: dts: imx8qxp: add device node for CAN in ADMA SS
 
-diff --git a/include/dt-bindings/clock/imx8mn-clock.h b/include/dt-bindings/clock/imx8mn-clock.h
-index 0f2b842..65ac6eb6 100644
---- a/include/dt-bindings/clock/imx8mn-clock.h
-+++ b/include/dt-bindings/clock/imx8mn-clock.h
-@@ -122,8 +122,8 @@
- #define IMX8MN_CLK_I2C1				105
- #define IMX8MN_CLK_I2C2				106
- #define IMX8MN_CLK_I2C3				107
--#define IMX8MN_CLK_I2C4				118
--#define IMX8MN_CLK_UART1			119
-+#define IMX8MN_CLK_I2C4				108
-+#define IMX8MN_CLK_UART1			109
- #define IMX8MN_CLK_UART2			110
- #define IMX8MN_CLK_UART3			111
- #define IMX8MN_CLK_UART4			112
+ .../bindings/clock/imx8qxp-lpcg.txt           |   1 +
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  74 ++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 106 ++++++++++++++++++
+ drivers/clk/imx/clk-imx8qxp-lpcg.c            |  15 +++
+ drivers/clk/imx/clk-imx8qxp-lpcg.h            |   3 +
+ drivers/clk/imx/clk-imx8qxp.c                 |   4 +
+ drivers/firmware/imx/scu-pd.c                 |   4 +
+ include/dt-bindings/clock/imx8-clock.h        |  13 ++-
+ 8 files changed, 219 insertions(+), 1 deletion(-)
+
 -- 
-2.7.4
+2.17.1
 
