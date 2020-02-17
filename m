@@ -2,149 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E0E16135D
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 14:30:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47BA8161368
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 14:30:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728575AbgBQNaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 08:30:16 -0500
-Received: from mail-il1-f193.google.com ([209.85.166.193]:41720 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727089AbgBQNaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 08:30:16 -0500
-Received: by mail-il1-f193.google.com with SMTP id f10so14217437ils.8;
-        Mon, 17 Feb 2020 05:30:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oKZige4m/AoNTTthLZdSUaeHyHzQ4UT6ng0N8s0kzVk=;
-        b=McIHR4HqYVgFbC6brytrdSkaOQ3tJKrEhWb45DEuUAYXqoA+IO8qwVbx2KpqFr9DUb
-         o6njCVJFfIXDCRBfv711DuWgjJphYFThWmvOv9evpZ3TsdOV/Rk1ZPIqXxZLs6Sainmc
-         S1zxOVLhQRiOwSH1GMfEcsuD2KtXgUMJrRMViVoq/UZL0HZt6ERELVgYoFml+6uggMFX
-         cGLzk6Weomiv0gAG8h5grNeHOOHNF15TVuokP0GoIDIxVc+bnGX1DzNdMRar+5yqfEM3
-         hAyOKF3b1iCXri88ClHayFeOvwp5Xp3aYia+cJ90T4xMdC1SDfrtBTehcKf/VtSEzeK+
-         LQjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oKZige4m/AoNTTthLZdSUaeHyHzQ4UT6ng0N8s0kzVk=;
-        b=oIZqnHx1fIU+6fY18zzifRFeJ/BZ68kZCa7SuKd3aZBWxmd4psvlmt72o+4cP3GmCT
-         FWCNkAEPVpnDh/3ghoAfPceiBCay3iq6IaIMySMcJztQdNiaFWK+sB8l5bdpqwLsQ9+r
-         A36EsXlEE8DU3w+x9yZE2tUkb3Q2eJ5KOk5vV/VBKMCjss60fciMzBx5pk/atwlBoVnz
-         i1aXx6Q6QM3wZup0GnpSTM85mFytq6MgQTBlBK36Z69M67O4M3yXTgNyRo8bI6wyMFRm
-         xeVVQ2+2dPmDZYyBq1dNR3rF+Jl11sqIG3aIbVYCYokR9LQUfjUZNdfZZeiw8ziV0brE
-         d7Ww==
-X-Gm-Message-State: APjAAAUifIlLy4phR3wlBwdvFy54gijNJXuX7y3COCU3sToiu8obnPPc
-        UXhWxw4qJqRjlwDaKwYLaKb7rEl6F5OJ8t9ZFiI=
-X-Google-Smtp-Source: APXvYqz/hD3abK5iZXSi3wPYlOwN8FrT1CFYkRgJTPJUClxe+fHEd7f1yn8unX05mzbhhqRWfk9p5Hb28CxRNQtgwpQ=
-X-Received: by 2002:a92:85c1:: with SMTP id f184mr14075867ilh.221.1581946214224;
- Mon, 17 Feb 2020 05:30:14 -0800 (PST)
-MIME-Version: 1.0
-References: <20200216173446.1823-1-linux.amoon@gmail.com> <20200216173446.1823-4-linux.amoon@gmail.com>
- <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Mon, 17 Feb 2020 19:00:04 +0530
-Message-ID: <CANAwSgSaQgU=H3h0S9deT11HA8z9R=Fhy5Kawii9tSBxKf2Wgw@mail.gmail.com>
-Subject: Re: [PATCHv1 3/3] clk: meson: g12a: set cpu clock divider flags too CLK_IS_CRITICAL
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1728764AbgBQNas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 08:30:48 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:14357 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728712AbgBQNas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Feb 2020 08:30:48 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1581946248; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=Z5/MTeBK1zupTFMk9qwaVYa801gbbRa24zyXNMFfhXw=; b=crwcAUNEeTs3vaeHH6cPJtjnoLtOzBbRlOqYirfe3vOET73F7+cOWhvpM2wOlMrmfWEqV1B7
+ e2HFrRcIWHmHhqdm6nIPFvXRsiCFZ44zogpI5u5AiCqt+88dpGQifzjV8JsPCUjgaVkUQd3l
+ IpZ7n0pqDLY6AEXBDGiCDpWomfE=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e4a9578.7f29dfd51500-smtp-out-n03;
+ Mon, 17 Feb 2020 13:30:32 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 21684C4479D; Mon, 17 Feb 2020 13:30:31 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from akashast-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akashast)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id DC83BC447AA;
+        Mon, 17 Feb 2020 13:30:24 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DC83BC447AA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akashast@codeaurora.org
+From:   Akash Asthana <akashast@codeaurora.org>
+To:     gregkh@linuxfoundation.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, wsa@the-dreams.de, broonie@kernel.org,
+        mark.rutland@arm.com, robh+dt@kernel.org
+Cc:     linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, mka@chromium.org,
+        dianders@chromium.org, Akash Asthana <akashast@codeaurora.org>
+Subject: [PATCH 0/6] Add interconnect support to UART, I2C, SPI and QSPI
+Date:   Mon, 17 Feb 2020 18:59:59 +0530
+Message-Id: <1581946205-27189-1-git-send-email-akashast@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeronme,
+dt-binding patch for UART, I2C and SPI.
+ - https://patchwork.kernel.org/patch/11385965/ [Convert QUP bindings
+	to YAML and add ICC, pin swap doc]
 
-Thanks for your  review comments.
-On Mon, 17 Feb 2020 at 13:32, Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> On Sun 16 Feb 2020 at 18:34, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> > Odroid N2 would fail to boot using microSD unless we set
-> > cpu freq clk divider flags to CLK_IS_CRITICAL to avoid stalling of
-> > cpu when booting, most likely because of PWM module linked to
->
-> Where did you see a PWM ?
->
-> > the CPU for DVFS is getting disabled in between the late_init call,
->
-> between the late_init call and what ?
->
-> > so gaiting the clock source shuts down the power to the codes.
->
-> what code ?
->
-Sorry, I was really upset about my self.
-I tried to improvise this commit message based on previous mails.
-sorry about that.
+dt-binding patch for QSPI.
+ - https://patchwork.kernel.org/cover/11386003/ [Convert QSPI binding
+	to YAML and add interconnect doc]
 
-> > Setting clk divider flags to CLK_IS_CRITICAL help resolve the issue.
-> >
-> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > Cc: Jerome Brunet <jbrunet@baylibre.com>
-> > Cc: Neil Armstrong <narmstrong@baylibre.com>
-> > Suggested-by: Neil Armstrong <narmstrong@baylibre.com>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > ---
-> >
-> > Following Neil's suggestion, I have prepared this patch.
-> > https://patchwork.kernel.org/patch/11177441/#22964889
-> > ---
-> >  drivers/clk/meson/g12a.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> > index d2760a021301..accae3695fe5 100644
-> > --- a/drivers/clk/meson/g12a.c
-> > +++ b/drivers/clk/meson/g12a.c
-> > @@ -283,6 +283,7 @@ static struct clk_fixed_factor g12a_fclk_div2_div = {
-> >               .ops = &clk_fixed_factor_ops,
-> >               .parent_hws = (const struct clk_hw *[]) { &g12a_fixed_pll.hw },
-> >               .num_parents = 1,
-> > +             .flags = CLK_IS_CRITICAL,
->
-> This makes no sense for because:
-> * This clock cannot gate and none of its parents can either. IOW, the
-> output of this clock is never disabled.
-> * I cannot guess the relation between fdiv2 and the commit description
->
+Akash Asthana (6):
+  soc: qcom: geni: Support for ICC voting
+  tty: serial: qcom_geni_serial: Add interconnect support
+  i2c: i2c-qcom-geni: Add interconnect support
+  spi: spi-geni-qcom: Add interconnect support
+  spi: spi-qcom-qspi: Add interconnect support
+  arm64: dts: sc7180: Add interconnect for QUP and QSPI
 
-Ok I check this code changes is not needed for this fix.
+ arch/arm64/boot/dts/qcom/sc7180.dtsi  | 199 ++++++++++++++++++++++++++++++++++
+ drivers/i2c/busses/i2c-qcom-geni.c    |  84 +++++++++++++-
+ drivers/spi/spi-geni-qcom.c           |  65 ++++++++++-
+ drivers/spi/spi-qcom-qspi.c           |  38 ++++++-
+ drivers/tty/serial/qcom_geni_serial.c |  84 ++++++++++++--
+ include/linux/qcom-geni-se.h          |  31 ++++++
+ 6 files changed, 481 insertions(+), 20 deletions(-)
 
-> >       },
-> >  };
-> >
-> > @@ -681,7 +682,7 @@ static struct clk_regmap g12b_cpub_clk = {
-> >                       &g12a_sys_pll.hw
-> >               },
-> >               .num_parents = 2,
-> > -             .flags = CLK_SET_RATE_PARENT,
-> > +             .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
->
-> Why not. Neil what do you think of this ?
-> If nothing is claiming this clock and enabling it then I suppose it
-> could make sense.
->
-I would like core developers to handle this.
-Sorry for the noise.
-
--Anand
->
-> >       },
-> >  };
->
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
