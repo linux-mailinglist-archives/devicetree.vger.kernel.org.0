@@ -2,93 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A860C161856
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 17:56:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43CE7161888
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 18:09:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728814AbgBQQzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 11:55:39 -0500
-Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.101]:17082 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728810AbgBQQzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 11:55:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1581958537;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=ex+tP/S3jJM/1n8mzovxtL99ooZIHpji+z8Ck9o3ixM=;
-        b=BC+LE7ZCAZveaAFoluYtb4Q3baSJX5raqCmebCJfRBHA81Z4xWBNhmHNxuV2VQu8bL
-        CbVTsOFh1QY3fPDznpjmCjYpCDgD9bUeYeSKH2usPSqUxVXxBGll/970irVOG4zJwp+i
-        +SbJTRRl3DtHb/O7qFqHzqvKUWrL25BxTzyJSdie3DuzgiVPZShzG3mHNEywGrhhjeyo
-        M2HitpNrNCb702vgmy7KhTo5XW2iJh+eC9nvxsCuPo+NZNvTemC/NSiMpMskc+tyGr3I
-        8POIbz/SSwrHFSYXBF9h8/oLSyxqpYu5AmF56RFJP6rWVPxGsZkmvZyVd2Pk47hh4WMd
-        fbhA==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXL8GTnsvhg="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 46.1.12 DYNA|AUTH)
-        with ESMTPSA id U06217w1HGtYOqv
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Mon, 17 Feb 2020 17:55:34 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     PrasannaKumar Muralidharan <prasannatsmkumar@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Mathieu Malaterre <malat@debian.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Andi Kleen <ak@linux.intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com
-Subject: [RFC v4 6/6] MIPS: DTS: CI20: make DM9000 Ethernet controller use NVMEM to find the default MAC address
-Date:   Mon, 17 Feb 2020 17:55:30 +0100
-Message-Id: <1c124c43c0cd96274cb0386d68aa01ad8ef8b2cb.1581958529.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <cover.1581958529.git.hns@goldelico.com>
-References: <cover.1581958529.git.hns@goldelico.com>
+        id S1727976AbgBQRJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 12:09:03 -0500
+Received: from foss.arm.com ([217.140.110.172]:38890 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727601AbgBQRJD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Feb 2020 12:09:03 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 42A111FB;
+        Mon, 17 Feb 2020 09:09:03 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BAC023F68F;
+        Mon, 17 Feb 2020 09:09:02 -0800 (PST)
+Date:   Mon, 17 Feb 2020 17:09:01 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        vigneshr@ti.com, mark.rutland@arm.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, dan.carpenter@oracle.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+Subject: Re: [PATCH v9 2/2] spi: cadence-quadpsi: Add support for the Cadence
+ QSPI controller
+Message-ID: <20200217170901.GS9304@sirena.org.uk>
+References: <20200214114618.29704-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200214114618.29704-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200214130952.GI4827@sirena.org.uk>
+ <3530edcd-eb67-8ea5-0fce-89c83400441c@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="D+M1YvVlDncl3vD5"
+Content-Disposition: inline
+In-Reply-To: <3530edcd-eb67-8ea5-0fce-89c83400441c@linux.intel.com>
+X-Cookie: There was a phone call for you.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a unique MAC address programmed into the eFuses
-of the JZ4780 chip in the CI20 factory. By using this
-for initializing the DM9000 Ethernet controller, every
-CI20 board has an individual - but stable - MAC address
-and DHCP can assign stable IP addresses.
 
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- arch/mips/boot/dts/ingenic/ci20.dts | 3 +++
- 1 file changed, 3 insertions(+)
+--D+M1YvVlDncl3vD5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
-index 37b93166bf22..6dc1f9eeff00 100644
---- a/arch/mips/boot/dts/ingenic/ci20.dts
-+++ b/arch/mips/boot/dts/ingenic/ci20.dts
-@@ -355,6 +355,9 @@
- 
- 		interrupt-parent = <&gpe>;
- 		interrupts = <19 4>;
-+
-+		nvmem-cells = <&eth0_addr>;
-+		nvmem-cell-names = "mac-address";
- 	};
- };
- 
--- 
-2.23.0
+On Mon, Feb 17, 2020 at 05:18:10PM +0800, Ramuthevar, Vadivel MuruganX wrote:
+> On 14/2/2020 9:09 PM, Mark Brown wrote:
 
+> > This will unconditionally handle the interrupt regardless of if the
+> > hardware was actually flagging an interrupt which will break shared
+> > interrupts and the fault handling code in genirq.
+
+> Yes, you're correct, it doesn't check unconditionally, will update the
+> INT flag in the INT_STATUS register after successful completion of
+> read/write operation.
+> but in this case it is dedicated to qspi-interrupt,not shared with any other
+> HW/SW interrupts.
+
+Currently, on the system you're looking at.  Given that this is already
+a widely reused IP there's no guarantee that this will always be the
+case, and like I say even without sharing it also defeats the fault
+handling code.
+
+--D+M1YvVlDncl3vD5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5KyKwACgkQJNaLcl1U
+h9BRpQf7BBpw3svFemJ2cWh6h1EFnHHkZ/ZLCnfay3PkV8NcIfAhsFPqR7cppyO+
+fd1j9FJjXESo+VN3avFmvA6owvPQOQ/nSxaW+i1a1/w8lx3hLfOaPfk7srq86rmE
+wCWC6/JPdc3pGsez/Eps2ToT36hUWQQPKI5Af2hIbVJyC0BdbM4o6tA1HP0yzP5m
++ORv/DNeldo4WO2Vg6kQeSwOp8KPFNc8rwMYszVKuLMP35B+1yBS1/wqOibqd7D0
+TtxA4X9VwLAN4uxa8QHrjyXKUZBH5w9WCebCV4OdjWlBYiwM8jK3hWqYQ1DeQqjM
+/0Eg90UbfBNrqThe8eoiX1tuUwgT0w==
+=xyLf
+-----END PGP SIGNATURE-----
+
+--D+M1YvVlDncl3vD5--
