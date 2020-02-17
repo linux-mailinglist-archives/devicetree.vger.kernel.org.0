@@ -2,332 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B80F71610BD
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 12:12:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69F561610F0
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 12:18:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729332AbgBQLMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 06:12:00 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:47274 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728708AbgBQLMA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 06:12:00 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01HBBrQs065816;
-        Mon, 17 Feb 2020 05:11:53 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1581937913;
-        bh=WPk75aH8sYjcdIhOGh7wrqoGA4wLjj2n6sRFu+GJUZA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Qe03eJMOMQ7T3mI5KFiEq0Ny6skGlqB6G8OLg3bjK15XqsAEbQtLefTY0Mdj8PjaK
-         ArjGLzMDcRwQSCrJlZLkykmEYe55m/FBlvpGqn6iQZLlMK44x87Ej/tlsTeYWSAxvK
-         DwZ+eyki+cm3nTGDWXwfo1j4Xrq7UpgQXKuSk4c0=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01HBBrgM097225
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 17 Feb 2020 05:11:53 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 17
- Feb 2020 05:11:53 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 17 Feb 2020 05:11:53 -0600
-Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01HBBhYM030042;
-        Mon, 17 Feb 2020 05:11:50 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tom Joseph <tjoseph@cadence.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Andrew Murray <amurray@thegoodpenguin.co.uk>
-CC:     Mark Rutland <mark.rutland@arm.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [PATCH v2 2/2] dt-bindings: PCI: Convert PCIe Host/Endpoint in Cadence platform to DT schema
-Date:   Mon, 17 Feb 2020 16:45:19 +0530
-Message-ID: <20200217111519.29163-3-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200217111519.29163-1-kishon@ti.com>
-References: <20200217111519.29163-1-kishon@ti.com>
+        id S1728737AbgBQLSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 06:18:43 -0500
+Received: from mail-eopbgr70041.outbound.protection.outlook.com ([40.107.7.41]:4603
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728152AbgBQLSn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Feb 2020 06:18:43 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GNzxC1jl82yagyEgRSKvc43z2nvMe+GejuFwqV9YelLKnhb6+uDglVouFyEnGyBSJX0EiNms+IJzClB5bp9PtqzU7d/BtEwxz0BIHmQgeMvOxJZPl9x9Z8rkijoTOn1yebt0D1vRwcjwC2MQL/mqL215kdRRVgI8tWEzJmWpu3PQVAkSKlxqB1iynAzCWPqkLQtai8hF56bvgx83otKP3DfWvHpn5FpMqMv7IEfvxDtSFdNRrjBiYzhQ9+8apHUeI4b5oQUDFvV/USHPo9khHacLm8rJ3WSiaHYDPqgPG50EKMQho6gf23XuZoD10s51vXqLdUJ7ZIwpVz3Jg0AdEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C9IRT0C7aY0aUFAJ3B6bMGu3gol6GqC+/KhOXcSYskE=;
+ b=dx6K1ou0Cg+goAb3yAxhCGzj7Q26u/1nY1uduoBqwE247w82U804EhDZ6IyCE0vp2WfjiFPpFLoOVvL/rCe8liI5tBUX7ggK4MiqTeu5WB1HkGVJXCF9oGMvp147Pjbhu49IvlSCfEdDoEIMm0JD8+Mg6t2m6MKO60mUqcP2Y6jEL82qWs+AqejCU5cMdoT36hCDIhGV00MFLAK1KbDsw/s/T22oWSTYWyM6wAlMvKreBC59c43CWPHr0bTVm3cnnubmrbLk8WNKOnsnc1z81cNtQcjuMjuz1G2NCf7C3c37ph1FqxQiOSAHvNOuAoympMTX1tknXXfKHB0b9fvx5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=C9IRT0C7aY0aUFAJ3B6bMGu3gol6GqC+/KhOXcSYskE=;
+ b=lrBkXujsAKYQSPyCWk1hSDciwkY924jBHy6PuPI96Zrszc0H9EQU/iOMPBoCf7yGG30ElcZf2TCD/rhO8EpMoSjRjJnwUFQ1PK00wZ6jwmjjeojLfgfirLGT2+kHI9+OhyBV3PVOSoWq43si4MT+tX+lT5mefVY9ECn47vjTvNg=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3659.eurprd04.prod.outlook.com (52.134.66.160) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2707.21; Mon, 17 Feb 2020 11:18:38 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::e44d:fa34:a0af:d96]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::e44d:fa34:a0af:d96%5]) with mapi id 15.20.2729.028; Mon, 17 Feb 2020
+ 11:18:38 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= 
+        <u.kleine-koenig@pengutronix.de>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V3 2/7] ARM: dts: imx6sx: Add missing UART RTS/CTS pins
+ mux
+Thread-Topic: [PATCH V3 2/7] ARM: dts: imx6sx: Add missing UART RTS/CTS pins
+ mux
+Thread-Index: AQHV5XXXj4PCuaVf3E2fPk4xLzrhHagfJFmAgAAYTmA=
+Date:   Mon, 17 Feb 2020 11:18:38 +0000
+Message-ID: <DB3PR0402MB39167B32B8C713AC410D811DF5160@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <1581931886-12173-1-git-send-email-Anson.Huang@nxp.com>
+ <1581931886-12173-2-git-send-email-Anson.Huang@nxp.com>
+ <20200217095007.sn7hqbqoqcv75ic3@pengutronix.de>
+In-Reply-To: <20200217095007.sn7hqbqoqcv75ic3@pengutronix.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [220.161.57.125]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 170cae05-957b-4870-8340-08d7b39b22f4
+x-ms-traffictypediagnostic: DB3PR0402MB3659:|DB3PR0402MB3659:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB3PR0402MB3659724A0A003F79F1530672F5160@DB3PR0402MB3659.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1060;
+x-forefront-prvs: 0316567485
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(366004)(39860400002)(396003)(346002)(376002)(189003)(199004)(76116006)(66446008)(66476007)(66946007)(64756008)(66556008)(7416002)(55016002)(4326008)(9686003)(4744005)(478600001)(8936002)(6916009)(54906003)(66574012)(2906002)(26005)(186003)(44832011)(6506007)(33656002)(316002)(5660300002)(8676002)(81156014)(71200400001)(81166006)(86362001)(52536014)(7696005)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3659;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 54DNpiQEK4PiTsU+S4A2cErLAbv2tgIjfZBnl1qzrwg7VJHx6PuF4tLpG3PE1KudcUUxM8ZwYQ2x1KrYTaF1hTWjXqLe/DrBv82z71s1KxPbGwxM2ar04zzdtnvp+jmvAwWcQ446vHgFbZAwRKC1Gck0vD3Bce0ZY0JB7ixCib5j/YyAmwqJCVWu19GRvgs3g9xUo6R/fPt5bhQyVQSm3evL1+TjUdzf2EVj7hGnizZGZ7BDGrfQx9bg+jEUiqEK+OKHSt+KvWQx06Ezb62eMznsO0/gsHYBPMYy59GJOtbD7/TAkH6J8E4jCDDedmz7nEkgmCjR0RZPw2D3i6UqbmhEwyS2Je/PQ99XNuXKuVuPt20BrSEWF2gES3EnEDV/bFa2rHIN3tqkAUsXd7VanTmQXABpLXnYaMFQLodrJAauMytGkQhyB8L8o/p9zazENrDgEoHnvOjVOrRFLIuGy2xKNs3GewGapQikr+rIaJ0XaS22wzX04SIJCPZkIcrQ
+x-ms-exchange-antispam-messagedata: MJKoVNgh4t7qwplO0DeED4ddOlXIPabTTQwwlxlw7W93zLsoRHzjM42F9X2k9HrPmpdCCvUL7NkG6V2ehl0sqMXejhV+mEmxbN6M4jHPMHLlfBwjfc4E8ROUTBAsgRpPvoxBkm7+Z6X0AVBcdevM/g==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 170cae05-957b-4870-8340-08d7b39b22f4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2020 11:18:38.2847
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uzhUuiEyRH+UQCoEJaHFS0VEAz6xVMKk54pY/vjei4rtzxVq59mCf3SPRxWxJiGFkjUC7q6H1cEN7MFxfqnHPw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3659
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include Cadence core DT schema and define the Cadence platform DT schema
-for both Host and Endpoint mode. Note: The Cadence core DT schema could
-be included for other platforms using Cadence PCIe core.
-
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- .../bindings/pci/cdns,cdns-pcie-ep.txt        | 27 -------
- .../bindings/pci/cdns,cdns-pcie-ep.yaml       | 48 ++++++++++++
- .../bindings/pci/cdns,cdns-pcie-host.txt      | 66 ----------------
- .../bindings/pci/cdns,cdns-pcie-host.yaml     | 76 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 5 files changed, 125 insertions(+), 94 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
- create mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt
- create mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
-
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
-deleted file mode 100644
-index 4a0475e2ba7e..000000000000
---- a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--* Cadence PCIe endpoint controller
--
--Required properties:
--- compatible: Should contain "cdns,cdns-pcie-ep" to identify the IP used.
--- reg: Should contain the controller register base address and AXI interface
--  region base address respectively.
--- reg-names: Must be "reg" and "mem" respectively.
--- cdns,max-outbound-regions: Set to maximum number of outbound regions
--
--Optional properties:
--- max-functions: Maximum number of functions that can be configured (default 1).
--- phys: From PHY bindings: List of Generic PHY phandles. One per lane if more
--  than one in the list.  If only one PHY listed it must manage all lanes. 
--- phy-names:  List of names to identify the PHY.
--
--Example:
--
--pcie@fc000000 {
--	compatible = "cdns,cdns-pcie-ep";
--	reg = <0x0 0xfc000000 0x0 0x01000000>,
--	      <0x0 0x80000000 0x0 0x40000000>;
--	reg-names = "reg", "mem";
--	cdns,max-outbound-regions = <16>;
--	max-functions = /bits/ 8 <8>;
--	phys = <&ep_phy0 &ep_phy1>;
--	phy-names = "pcie-lane0","pcie-lane1";
--};
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml
-new file mode 100644
-index 000000000000..be7009dd190c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/cdns,cdns-pcie-ep.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cadence PCIe EP Controller
-+
-+maintainers:
-+  - Tom Joseph <tjoseph@cadence.com>
-+
-+allOf:
-+  - $ref: "cdns-pcie-ep.yaml#"
-+
-+properties:
-+  compatible:
-+    const: cdns,cdns-pcie-ep
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: mem
-+
-+required:
-+  - reg
-+  - reg-names
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie-ep@fc000000 {
-+                compatible = "cdns,cdns-pcie-ep";
-+                reg = <0x0 0xfc000000 0x0 0x01000000>,
-+                      <0x0 0x80000000 0x0 0x40000000>;
-+                reg-names = "reg", "mem";
-+                cdns,max-outbound-regions = <16>;
-+                max-functions = /bits/ 8 <8>;
-+                phys = <&pcie_phy0>;
-+                phy-names = "pcie-phy";
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt
-deleted file mode 100644
-index 91de69c713a9..000000000000
---- a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt
-+++ /dev/null
-@@ -1,66 +0,0 @@
--* Cadence PCIe host controller
--
--This PCIe controller inherits the base properties defined in
--host-generic-pci.txt.
--
--Required properties:
--- compatible: Should contain "cdns,cdns-pcie-host" to identify the IP used.
--- reg: Should contain the controller register base address, PCIe configuration
--  window base address, and AXI interface region base address respectively.
--- reg-names: Must be "reg", "cfg" and "mem" respectively.
--- #address-cells: Set to <3>
--- #size-cells: Set to <2>
--- device_type: Set to "pci"
--- ranges: Ranges for the PCI memory and I/O regions
--- #interrupt-cells: Set to <1>
--- interrupt-map-mask and interrupt-map: Standard PCI properties to define the
--  mapping of the PCIe interface to interrupt numbers.
--
--Optional properties:
--- cdns,max-outbound-regions: Set to maximum number of outbound regions
--  (default 32)
--- cdns,no-bar-match-nbits: Set into the no BAR match register to configure the
--  number of least significant bits kept during inbound (PCIe -> AXI) address
--  translations (default 32)
--- vendor-id: The PCI vendor ID (16 bits, default is design dependent)
--- device-id: The PCI device ID (16 bits, default is design dependent)
--- phys: From PHY bindings: List of Generic PHY phandles. One per lane if more
--  than one in the list.  If only one PHY listed it must manage all lanes. 
--- phy-names:  List of names to identify the PHY.
--
--Example:
--
--pcie@fb000000 {
--	compatible = "cdns,cdns-pcie-host";
--	device_type = "pci";
--	#address-cells = <3>;
--	#size-cells = <2>;
--	bus-range = <0x0 0xff>;
--	linux,pci-domain = <0>;
--	cdns,max-outbound-regions = <16>;
--	cdns,no-bar-match-nbits = <32>;
--	vendor-id = /bits/ 16 <0x17cd>;
--	device-id = /bits/ 16 <0x0200>;
--
--	reg = <0x0 0xfb000000  0x0 0x01000000>,
--	      <0x0 0x41000000  0x0 0x00001000>,
--	      <0x0 0x40000000  0x0 0x04000000>;
--	reg-names = "reg", "cfg", "mem";
--
--	ranges = <0x02000000 0x0 0x42000000  0x0 0x42000000  0x0 0x1000000>,
--		 <0x01000000 0x0 0x43000000  0x0 0x43000000  0x0 0x0010000>;
--
--	#interrupt-cells = <0x1>;
--
--	interrupt-map = <0x0 0x0 0x0  0x1  &gic  0x0 0x0 0x0 14 0x1
--			 0x0 0x0 0x0  0x2  &gic  0x0 0x0 0x0 15 0x1
--			 0x0 0x0 0x0  0x3  &gic  0x0 0x0 0x0 16 0x1
--			 0x0 0x0 0x0  0x4  &gic  0x0 0x0 0x0 17 0x1>;
--
--	interrupt-map-mask = <0x0 0x0 0x0  0x7>;
--
--	msi-parent = <&its_pci>;
--
--	phys = <&pcie_phy0>;
--	phy-names = "pcie-phy";
--};
-diff --git a/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
-new file mode 100644
-index 000000000000..2f605297f862
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/cdns,cdns-pcie-host.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cadence PCIe host controller
-+
-+maintainers:
-+  - Tom Joseph <tjoseph@cadence.com>
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+  - $ref: "cdns-pcie-host.yaml#"
-+
-+properties:
-+  compatible:
-+    const: cdns,cdns-pcie-host
-+
-+  reg:
-+    maxItems: 3
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: cfg
-+      - const: mem
-+
-+  msi-parent: true
-+
-+required:
-+  - reg
-+  - reg-names
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie@fb000000 {
-+            compatible = "cdns,cdns-pcie-host";
-+            device_type = "pci";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            bus-range = <0x0 0xff>;
-+            linux,pci-domain = <0>;
-+            cdns,max-outbound-regions = <16>;
-+            cdns,no-bar-match-nbits = <32>;
-+            vendor-id = /bits/ 16 <0x17cd>;
-+            device-id = /bits/ 16 <0x0200>;
-+
-+            reg = <0x0 0xfb000000  0x0 0x01000000>,
-+                  <0x0 0x41000000  0x0 0x00001000>,
-+                  <0x0 0x40000000  0x0 0x04000000>;
-+            reg-names = "reg", "cfg", "mem";
-+
-+            ranges = <0x02000000 0x0 0x42000000  0x0 0x42000000  0x0 0x1000000>,
-+                     <0x01000000 0x0 0x43000000  0x0 0x43000000  0x0 0x0010000>;
-+
-+            #interrupt-cells = <0x1>;
-+
-+            interrupt-map = <0x0 0x0 0x0  0x1  &gic  0x0 0x0 0x0 14 0x1>,
-+                 <0x0 0x0 0x0  0x2  &gic  0x0 0x0 0x0 15 0x1>,
-+                 <0x0 0x0 0x0  0x3  &gic  0x0 0x0 0x0 16 0x1>,
-+                 <0x0 0x0 0x0  0x4  &gic  0x0 0x0 0x0 17 0x1>;
-+
-+            interrupt-map-mask = <0x0 0x0 0x0  0x7>;
-+
-+            msi-parent = <&its_pci>;
-+
-+            phys = <&pcie_phy0>;
-+            phy-names = "pcie-phy";
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 38fe2f3f7b6f..e0402e001edd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12739,7 +12739,7 @@ PCI DRIVER FOR CADENCE PCIE IP
- M:	Tom Joseph <tjoseph@cadence.com>
- L:	linux-pci@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/pci/cdns,*.txt
-+F:	Documentation/devicetree/bindings/pci/cdns,*
- F:	drivers/pci/controller/pcie-cadence*
- 
- PCI DRIVER FOR FREESCALE LAYERSCAPE
--- 
-2.17.1
-
+SGksIFV3ZQ0KDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggVjMgMi83XSBBUk06IGR0czogaW14NnN4
+OiBBZGQgbWlzc2luZyBVQVJUIFJUUy9DVFMNCj4gcGlucyBtdXgNCj4gDQo+IE9uIE1vbiwgRmVi
+IDE3LCAyMDIwIGF0IDA1OjMxOjIxUE0gKzA4MDAsIEFuc29uIEh1YW5nIHdyb3RlOg0KPiA+IFNv
+bWUgb2YgVUFSVCBSVFMvQ1RTIHBpbnMnIERDRS9EVEUgbXV4IGZ1bmN0aW9uIGFyZSBtaXNzaW5n
+LCBhZGQgdGhlbS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEFuc29uIEh1YW5nIDxBbnNvbi5I
+dWFuZ0BueHAuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBVd2UgS2xlaW5lLUvmnppuaWcgPHUua2xl
+aW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4NCj4gDQo+IEh1aCwgdGhpcyBpcyBub3QgaG93IEkg
+d3JvdGUgbXkgbmFtZSA6LSkNCg0KU29ycnksIGxvb2tzIGxpa2UgdGhlICJmZW5jIiBpcyBpbmNv
+cnJlY3QgYmVjYXVzZSBvbmUgY2hhcmFjdGVyIG9mIHlvdXIgbmFtZSwgSQ0Kd2lsbCByZXNlbmQg
+dGhlIHBhdGNoIHdpdGggY29ycmVjdCBuYW1lLg0KDQpUaGFua3MsDQpBbnNvbi4NCg==
