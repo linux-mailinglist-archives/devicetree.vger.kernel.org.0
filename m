@@ -2,93 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5472C16079C
-	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 02:15:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36656160875
+	for <lists+devicetree@lfdr.de>; Mon, 17 Feb 2020 04:07:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726222AbgBQBPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 16 Feb 2020 20:15:54 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:56056 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726183AbgBQBPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 16 Feb 2020 20:15:54 -0500
-X-UUID: 58ba2fca33f14c9791cf60f1413a63f1-20200217
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=udU/3e9H9cGpZ7qWkk4wYru8GgYPMObjkY0Yy3r1L74=;
-        b=mgKM+8Nwn5zTb+/rSNb5iz+ExOM4Sc8MJzwPOEl9Zm6o724DKBP/zA1xoJZiHL8YDpP6WEh3nDoNYG3A98KErmjV79kxkXk2ic/+xGEQid62GraYImiua/s7hbcxQZMmDCcEhbSqFxp1+sYvJe5XBz2/Jf5E7vi6ycpB47HVuBk=;
-X-UUID: 58ba2fca33f14c9791cf60f1413a63f1-20200217
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 689842576; Mon, 17 Feb 2020 09:15:48 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 17 Feb 2020 09:14:16 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 17 Feb 2020 09:15:24 +0800
-Message-ID: <1581902146.28283.0.camel@mtksdaap41>
-Subject: Re: [PATCH 2/2] iommu/mediatek: add support for MT8167
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Fabien Parent <fparent@baylibre.com>,
-        Yong Wu <yong.wu@mediatek.com>
-CC:     <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <mark.rutland@arm.com>,
-        <matthias.bgg@gmail.com>, <joro@8bytes.org>, <robh+dt@kernel.org>
-Date:   Mon, 17 Feb 2020 09:15:46 +0800
-In-Reply-To: <20200103162632.109553-2-fparent@baylibre.com>
-References: <20200103162632.109553-1-fparent@baylibre.com>
-         <20200103162632.109553-2-fparent@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-TM-SNTS-SMTP: 1FF58C5F95081E4197AD9A1E11E99E371D55C8CC78938A0A06E74C41163DCFFC2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1726591AbgBQDH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 16 Feb 2020 22:07:26 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:53954 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726498AbgBQDH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 16 Feb 2020 22:07:26 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6A4F8200776;
+        Mon, 17 Feb 2020 04:07:24 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C9E74201DC3;
+        Mon, 17 Feb 2020 04:07:17 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AE17C402A7;
+        Mon, 17 Feb 2020 11:07:09 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        mripard@kernel.org, leonard.crestez@nxp.com, abel.vesa@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] clk: imx8mn: Fix incorrect clock defines
+Date:   Mon, 17 Feb 2020 11:01:35 +0800
+Message-Id: <1581908495-11746-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-K1lvbmcuV3UuDQoNCk9uIEZyaSwgMjAyMC0wMS0wMyBhdCAxNzoyNiArMDEwMCwgRmFiaWVuIFBh
-cmVudCB3cm90ZToNCj4gQWRkIHN1cHBvcnQgZm9yIHRoZSBJT01NVSBvbiBNVDgxNjcNCj4gDQo+
-IFNpZ25lZC1vZmYtYnk6IEZhYmllbiBQYXJlbnQgPGZwYXJlbnRAYmF5bGlicmUuY29tPg0KPiAt
-LS0NCj4gIGRyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmMgfCAxMSArKysrKysrKysrLQ0KPiAgZHJp
-dmVycy9pb21tdS9tdGtfaW9tbXUuaCB8ICAxICsNCj4gIDIgZmlsZXMgY2hhbmdlZCwgMTEgaW5z
-ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaW9t
-bXUvbXRrX2lvbW11LmMgYi9kcml2ZXJzL2lvbW11L210a19pb21tdS5jDQo+IGluZGV4IDZmYzFm
-NWVjZjkxZS4uNWZjNjE3OGE4MmRjIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2lvbW11L210a19p
-b21tdS5jDQo+ICsrKyBiL2RyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmMNCj4gQEAgLTU2OSw3ICs1
-NjksOCBAQCBzdGF0aWMgaW50IG10a19pb21tdV9od19pbml0KGNvbnN0IHN0cnVjdCBtdGtfaW9t
-bXVfZGF0YSAqZGF0YSkNCj4gIAkJRl9JTlRfUFJFVEVUQ0hfVFJBTlNBVElPTl9GSUZPX0ZBVUxU
-Ow0KPiAgCXdyaXRlbF9yZWxheGVkKHJlZ3ZhbCwgZGF0YS0+YmFzZSArIFJFR19NTVVfSU5UX01B
-SU5fQ09OVFJPTCk7DQo+ICANCj4gLQlpZiAoZGF0YS0+cGxhdF9kYXRhLT5tNHVfcGxhdCA9PSBN
-NFVfTVQ4MTczKQ0KPiArCWlmIChkYXRhLT5wbGF0X2RhdGEtPm00dV9wbGF0ID09IE00VV9NVDgx
-NzMgfHwNCj4gKwkgICAgZGF0YS0+cGxhdF9kYXRhLT5tNHVfcGxhdCA9PSBNNFVfTVQ4MTY3KQ0K
-PiAgCQlyZWd2YWwgPSAoZGF0YS0+cHJvdGVjdF9iYXNlID4+IDEpIHwgKGRhdGEtPmVuYWJsZV80
-R0IgPDwgMzEpOw0KPiAgCWVsc2UNCj4gIAkJcmVndmFsID0gbG93ZXJfMzJfYml0cyhkYXRhLT5w
-cm90ZWN0X2Jhc2UpIHwNCj4gQEAgLTc4Miw2ICs3ODMsMTMgQEAgc3RhdGljIGNvbnN0IHN0cnVj
-dCBtdGtfaW9tbXVfcGxhdF9kYXRhIG10MjcxMl9kYXRhID0gew0KPiAgCS5sYXJiaWRfcmVtYXAg
-PSB7MCwgMSwgMiwgMywgNCwgNSwgNiwgNywgOCwgOX0sDQo+ICB9Ow0KPiAgDQo+ICtzdGF0aWMg
-Y29uc3Qgc3RydWN0IG10a19pb21tdV9wbGF0X2RhdGEgbXQ4MTY3X2RhdGEgPSB7DQo+ICsJLm00
-dV9wbGF0ICAgICA9IE00VV9NVDgxNjcsDQo+ICsJLmhhc180Z2JfbW9kZSA9IHRydWUsDQo+ICsJ
-LnJlc2V0X2F4aSAgICA9IHRydWUsDQo+ICsJLmxhcmJpZF9yZW1hcCA9IHswLCAxLCAyLCAzLCA0
-LCA1fSwgLyogTGluZWFyIG1hcHBpbmcuICovDQo+ICt9Ow0KPiArDQo+ICBzdGF0aWMgY29uc3Qg
-c3RydWN0IG10a19pb21tdV9wbGF0X2RhdGEgbXQ4MTczX2RhdGEgPSB7DQo+ICAJLm00dV9wbGF0
-ICAgICA9IE00VV9NVDgxNzMsDQo+ICAJLmhhc180Z2JfbW9kZSA9IHRydWUsDQo+IEBAIC03OTgs
-NiArODA2LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfaW9tbXVfcGxhdF9kYXRhIG10ODE4
-M19kYXRhID0gew0KPiAgDQo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdGtf
-aW9tbXVfb2ZfaWRzW10gPSB7DQo+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDI3MTIt
-bTR1IiwgLmRhdGEgPSAmbXQyNzEyX2RhdGF9LA0KPiArCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0
-ZWssbXQ4MTY3LW00dSIsIC5kYXRhID0gJm10ODE2N19kYXRhfSwNCj4gIAl7IC5jb21wYXRpYmxl
-ID0gIm1lZGlhdGVrLG10ODE3My1tNHUiLCAuZGF0YSA9ICZtdDgxNzNfZGF0YX0sDQo+ICAJeyAu
-Y29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtbTR1IiwgLmRhdGEgPSAmbXQ4MTgzX2RhdGF9
-LA0KPiAgCXt9DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2lvbW11L210a19pb21tdS5oIGIvZHJp
-dmVycy9pb21tdS9tdGtfaW9tbXUuaA0KPiBpbmRleCBlYTk0OWEzMjRlMzMuLmNiOGZkNTk3MGNk
-NCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuaA0KPiArKysgYi9kcml2
-ZXJzL2lvbW11L210a19pb21tdS5oDQo+IEBAIC0zMCw2ICszMCw3IEBAIHN0cnVjdCBtdGtfaW9t
-bXVfc3VzcGVuZF9yZWcgew0KPiAgZW51bSBtdGtfaW9tbXVfcGxhdCB7DQo+ICAJTTRVX01UMjcw
-MSwNCj4gIAlNNFVfTVQyNzEyLA0KPiArCU00VV9NVDgxNjcsDQo+ICAJTTRVX01UODE3MywNCj4g
-IAlNNFVfTVQ4MTgzLA0KPiAgfTsNCg0K
+IMX8MN_CLK_I2C4 and IMX8MN_CLK_UART1's index definitions are incorrect,
+fix them.
+
+Fixes: 1e80936a42e1 ("dt-bindings: imx: Add clock binding doc for i.MX8MN")
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ include/dt-bindings/clock/imx8mn-clock.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/dt-bindings/clock/imx8mn-clock.h b/include/dt-bindings/clock/imx8mn-clock.h
+index 0f2b842..65ac6eb6 100644
+--- a/include/dt-bindings/clock/imx8mn-clock.h
++++ b/include/dt-bindings/clock/imx8mn-clock.h
+@@ -122,8 +122,8 @@
+ #define IMX8MN_CLK_I2C1				105
+ #define IMX8MN_CLK_I2C2				106
+ #define IMX8MN_CLK_I2C3				107
+-#define IMX8MN_CLK_I2C4				118
+-#define IMX8MN_CLK_UART1			119
++#define IMX8MN_CLK_I2C4				108
++#define IMX8MN_CLK_UART1			109
+ #define IMX8MN_CLK_UART2			110
+ #define IMX8MN_CLK_UART3			111
+ #define IMX8MN_CLK_UART4			112
+-- 
+2.7.4
 
