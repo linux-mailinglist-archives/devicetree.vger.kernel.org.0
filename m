@@ -2,89 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 551F8162687
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 13:56:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F35071626AD
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 14:01:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726399AbgBRMz7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Feb 2020 07:55:59 -0500
-Received: from foss.arm.com ([217.140.110.172]:51652 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726043AbgBRMz7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Feb 2020 07:55:59 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 316511FB;
-        Tue, 18 Feb 2020 04:55:59 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A616F3F703;
-        Tue, 18 Feb 2020 04:55:58 -0800 (PST)
-Date:   Tue, 18 Feb 2020 12:55:57 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Chuanhong Guo <gch981213@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] rewrite mtk-quadspi spi-nor driver with spi-mem
-Message-ID: <20200218125557.GD4232@sirena.org.uk>
-References: <20200215065826.739102-1-gch981213@gmail.com>
+        id S1726713AbgBRNBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Feb 2020 08:01:39 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:17357 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726648AbgBRNBj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Feb 2020 08:01:39 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1582030898; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=zg7uOTNhl06Of6m/IGJ2JX7YMKlvKHRPMgNieOllFHI=; b=UhzB7IdKSTCAfuc1hXRSgf+fHCwOndprN4kUVlBLJ5dlpZI3hN5BBSuemFTML2ERK1Bv1oZB
+ rjMFo7pYa12zlzUvGWKCjJ9wZ89ASl1lcpJWRBCgkoMa4bycdcBZcJ7p5S0QK9xtgQwbvIZW
+ WuJenTVopZ7l27BrcYS1U4u6q5Q=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e4be00f.7fec514f6ce0-smtp-out-n01;
+ Tue, 18 Feb 2020 13:01:03 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D22AFC4479C; Tue, 18 Feb 2020 13:01:01 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.204.79.138] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akdwived)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B5EF1C43383;
+        Tue, 18 Feb 2020 13:00:57 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B5EF1C43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=akdwived@codeaurora.org
+Subject: Re: [PATCH v4 2/2] Embedded USB Debugger (EUD) driver
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ckadabi@codeaurora.org, tsoni@codeaurora.org,
+        bryanh@codeaurora.org, psodagud@codeaurora.org,
+        rnayak@codeaurora.org, satyap@codeaurora.org,
+        pheragu@codeaurora.org
+References: <1580445811-15948-1-git-send-email-akdwived@codeaurora.org>
+ <1580445811-15948-3-git-send-email-akdwived@codeaurora.org>
+ <20200203193533.GL3948@builder>
+ <5808f959-f0fc-85be-4bfa-980b5311adeb@codeaurora.org>
+ <20200218033542.GY955802@ripper>
+From:   "Dwivedi, Avaneesh Kumar (avani)" <akdwived@codeaurora.org>
+Message-ID: <6df14d5f-dbc7-22eb-e4b2-ac5973f6424f@codeaurora.org>
+Date:   Tue, 18 Feb 2020 18:30:26 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/3yNEOqWowh/8j+e"
-Content-Disposition: inline
-In-Reply-To: <20200215065826.739102-1-gch981213@gmail.com>
-X-Cookie: No alcohol, dogs or horses.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200218033542.GY955802@ripper>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---/3yNEOqWowh/8j+e
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 2/18/2020 9:05 AM, Bjorn Andersson wrote:
+> On Sun 16 Feb 06:14 PST 2020, Dwivedi, Avaneesh Kumar (avani) wrote:
+>
+>> Thank you very much Bjorn for your comments, will address them and post
+>> latest patchset soon.
+>>
+>> On 2/4/2020 1:05 AM, Bjorn Andersson wrote:
+>>> On Thu 30 Jan 20:43 PST 2020, Avaneesh Kumar Dwivedi wrote:
+> [..]
+>>>> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+>>>> index d0a73e7..6b7c9d0 100644
+>>>> --- a/drivers/soc/qcom/Kconfig
+>>>> +++ b/drivers/soc/qcom/Kconfig
+>>>> @@ -202,4 +202,16 @@ config QCOM_APR
+>>>>    	  application processor and QDSP6. APR is
+>>>>    	  used by audio driver to configure QDSP6
+>>>>    	  ASM, ADM and AFE modules.
+>>>> +
+>>>> +config QCOM_EUD
+>>> Please aim for keeping the sort order in this file (ignore QCOM_APR
+>>> which obviously is in the wrong place)
+>> Please help to elaborate more, do you mean adding configs in alphabetical
+>> order?
+> Yes, we want to maintain alphabetical sort order of the config options
+> in the Kconfig file. Unfortunately I must have missed this as I picked
+> up QCOM_APR - hence my ask to add you entry further up, even if the
+> order isn't perfect...
+Ok
+>
+>>>> +       tristate "QTI Embedded USB Debugger (EUD)"
+>>>> +       depends on ARCH_QCOM
+>>>> +       help
+>>>> +         The Embedded USB Debugger (EUD) driver is a driver for the
+>>>> +         control peripheral which waits on events like USB attach/detach
+>>>> +         and charger enable/disable. The control peripheral further helps
+>>>> +         support the USB-based debug and trace capabilities.
+>>>> +         This module enables support for Qualcomm Technologies, Inc.
+>>>> +         Embedded USB Debugger (EUD).
+>>>> +         If unsure, say N.
+>>>>    endmenu
+> [..]
+>>>> +static ssize_t enable_store(struct device *dev,
+>>>> +				struct device_attribute *attr,
+>>>> +				const char *buf, size_t count)
+>>>> +{
+>>>> +	struct eud_chip *chip = dev_get_drvdata(dev);
+>>>> +	int enable = 0;
+>>> You shouldn't need to initialize this as you're checking the return
+>>> value of sscanf().
+>> OK
+>>>> +	int ret = 0;
+>>>> +
+>>>> +	if (sscanf(buf, "%du", &enable) != 1)
+>>>> +		return -EINVAL;
+>>>> +
+>>>> +	if (enable == EUD_ENABLE_CMD)
+>>>> +		ret = enable_eud(chip);
+>>> If ret is !0 you should probably return that, rather than count...
+>> ok
+>>>> +	else if (enable == EUD_DISABLE_CMD)
+>>>> +		disable_eud(chip);
+>>>> +	if (!ret)
+>>> ...and then you don't need this check, or initialize ret to 0 above.
+>> ok
+>>>> +		chip->enable = enable;
+>>> So if I write 42 to "enable" nothing will change in the hardware, but
+>>> chip->enable will be 42...
+>> will change enable struct member to bool?
+> The problem I meant was hat if buf is "42", then you will hit the
+> following code path:
+>
+> int ret = 0;
+> sscanf(buf, "%du", &enable);
+> chip->enable = 42;
+>
+> As enable isn't 1 or 0, neither conditional path is taken, but you still
+> store the value in chip->enable.
+>
+> Changing enable to bool won't change this problem, adding an else and
+> returning -EINVAL; would.
+ok.
+>>>> +	return count;
+>>>> +}
+>>>> +
+>>>> +static DEVICE_ATTR_RW(enable);
+> [..]
+>>>> +static int msm_eud_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +	struct eud_chip *chip;
+>>>> +	struct resource *res;
+>>>> +	int ret;
+>>>> +
+>>>> +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+>>>> +	if (!chip)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	chip->dev = &pdev->dev;
+>>>> +	platform_set_drvdata(pdev, chip);
+>>>> +
+>>>> +	chip->extcon = devm_extcon_dev_allocate(&pdev->dev, eud_extcon_cable);
+>>> Aren't we moving away from extcon in favor of the usb role switching
+>>> thing?
+>> i could see that usb role switch has been implemented for c type connector
+>> and that connector is modeled as child of usb controller, but EUD is not a
+>> true connector, it intercepts PHY signals and reroute it to USB controller
+>> as per EUD Command issued by debug appliaction
+>>
+>> i am not sure if i need to implement EUD DT node as child of usb controller,
+>> if i do so, as per my understanding EUD driver need to set USB controller
+>> mode(host or device mode) by calling usb role switch API's, please let me
+>> know if my understanding is correct?
+>>
+> I don't know how to properly represent this, but I would like the USB
+> guys to chime in before merging something.
 
-On Sat, Feb 15, 2020 at 02:58:24PM +0800, Chuanhong Guo wrote:
+I will check with USB folks if they can give their opinion.
 
-> To keep patchset small for easier reviewing, there will be 3 patchsets
-> including this one.
-> 1. add the new driver, which is this patchset.
-> 2. update existing dts for the new driver:
->    spi-max-frequency is missing in current mtk-quadspi binding. Old
->    driver parses child node manually so it doesn't need this, but
->    new spi-mem driver is probed via spi subsystem which requires the
->    presence of spi-max-frequency. Since this doesn't break old driver
->    support, I'll send this separately as a standalone patch.
+based on that will proceed.
 
-This is an ABI break so you shouldn't be doing this, if the existing
-binding works it should continue to work.
+>
+>>>> +	if (IS_ERR(chip->extcon))
+>>>> +		return PTR_ERR(chip->extcon);
+>>>> +
+> [..]
+>>>> +static const struct of_device_id msm_eud_dt_match[] = {
+>>>> +	{.compatible = "qcom,msm-eud"},
+>>> Is this the one and only, past and future, version of the EUD hardware
+>>> block? Or do we need this compatible to be more specific?
+>> EUD h/w  IP is Qualcomm IP, As of now this is only hw IP available, if
+>> future version of EUD IP comes, we can modify and add support then?
+> You can add additional compatibles, but you can't change this one as
+> existing devicetree files must continue to function.
+>
+> If you have a number of platforms that works with this very same
+> implementation then you could make the binding require a specific
+> platform and qcom,msm-eud (although qcom,eud should be enough?) and then
+> keep the implementation as is.
+>
+> I.e. dt would say:
+> 	compatible = "qcom,sc7180-eud", "qcom,eud";
+>
+> And driver would match on the latter only, for now.
+Ok.
+>
+> Regards,
+> Bjorn
 
-> 3. removing the old driver. I'll create this commit after 1 and 2 are
->    applied to avoid possible rebasing due to any changes in the old
->    driver.
-
-This isn't great as it means we have a period with two drivers for the
-same thing in tree which is at best going to be confusing.  There's no
-advantage to splitting this out.
-
---/3yNEOqWowh/8j+e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5L3twACgkQJNaLcl1U
-h9CQ0Af/bCSGtGQh9O/SezBLGjZ59DSJjcG/kJ2CB/e5Ub3WkveUKq3prcIpbWRZ
-j7LZ1+3P0+IQJC2b4wWFTf6xOOoucP4Qb1qVBc1HyBt9SrqrrZ3SdEXzhbsYJ1Zq
-tLGrQ37qdRhfSpspLm1N3FN+EBZuVW3tYPclxUjkHTE50mu0wmMAk4OXtrbyBKp7
-H046klgqVPBXzTlP8mFTtp0/E/hYhrBUTqcEcUBTAw3nCMBMiVxUjdxRx+tB41CR
-TBBlM9+VwbxRbrzZC9IL5S+l+Bi9EW2axbZ2zFG7vOTc+AoCIT/PxwyZBshr8Xoh
-A7hM2b6D+BSbpRcPwjpZLi3E11d0ug==
-=CyQ7
------END PGP SIGNATURE-----
-
---/3yNEOqWowh/8j+e--
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project.
