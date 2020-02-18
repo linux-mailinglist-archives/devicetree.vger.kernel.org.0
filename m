@@ -2,139 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 890F3162C25
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 18:15:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34E42162C88
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 18:20:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727932AbgBRROf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Feb 2020 12:14:35 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:33737 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727875AbgBRROe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Feb 2020 12:14:34 -0500
-Received: from mwalle01.sab.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S1726539AbgBRRUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Feb 2020 12:20:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45638 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726415AbgBRRUK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Feb 2020 12:20:10 -0500
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id DE21623D06;
-        Tue, 18 Feb 2020 18:14:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1582046071;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=OXgmkwBe7DwnhUeIreA0ttrwVjYja06p6FlV/rhJKqk=;
-        b=W1F6C5neEJoDK3sAJ3pc9pIEkKrKYg1nqZTLfOSMt7m6Zjmp4L0yCv7uSB1OqvaOhqRLdm
-        PlFAlNH9of9ZZy6Wn6U3pay488h8FVFENksfsu/sXpkmOZU1AAG5PAj0I4rDX8SqLDPqXS
-        Ak6yMISOie1SsWMqMuBE4lBHfJRvYzc=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v2 2/2] arm64: dts: ls1028a: add missing SPI nodes
-Date:   Tue, 18 Feb 2020 18:14:18 +0100
-Message-Id: <20200218171418.18297-2-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200218171418.18297-1-michael@walle.cc>
-References: <20200218171418.18297-1-michael@walle.cc>
+        by mail.kernel.org (Postfix) with ESMTPSA id 2AA1D20801;
+        Tue, 18 Feb 2020 17:20:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582046409;
+        bh=1/QcFFVdy6vaYY3yC/qBVxENZ9VWu8BQUFNLPDxdkwc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FUdza3Rmbg/mS79PNLWd5ZIzn/9300o9tKNwbcJP/mcDcJzUXNmpPjr3jh0X1zJQY
+         2DeI3v9A8QBOH7SD92VtvtrHYPjrF3geQHcK40Qmlnhfnh4LVkrgJXeC+f0XbtauyE
+         Egn9ZDEQtvitjwxDPEpQNg8nsuu31Fls/i5PJ22g=
+Date:   Tue, 18 Feb 2020 17:20:00 +0000
+From:   Will Deacon <will@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        soc@kernel.org, Andre Przywara <andre.przywara@arm.com>,
+        Robert Richter <rrichter@marvell.com>,
+        Jon Loeliger <jdl@jdl.com>, Alexander Graf <graf@amazon.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Mark Langsdorf <mlangsdo@redhat.com>,
+        Alex Williamson <alex.williamson@redhat.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Cornelia Huck <cohuck@redhat.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eric Auger <eric.auger@redhat.com>,
+        iommu@lists.linux-foundation.org,
+        James Morse <james.morse@arm.com>,
+        Jens Axboe <axboe@kernel.dk>, Joerg Roedel <joro@8bytes.org>,
+        kvm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-edac@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        netdev@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Subject: Re: [RFC PATCH 06/11] iommu: arm-smmu: Remove Calxeda secure mode
+ quirk
+Message-ID: <20200218172000.GF1133@willie-the-truck>
+References: <20200218171321.30990-1-robh@kernel.org>
+ <20200218171321.30990-7-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: ++++++
-X-Spam-Level: ******
-X-Rspamd-Server: web
-X-Spam-Status: Yes, score=6.40
-X-Spam-Score: 6.40
-X-Rspamd-Queue-Id: DE21623D06
-X-Spamd-Result: default: False [6.40 / 15.00];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         NEURAL_SPAM(0.00)[0.482];
-         DKIM_SIGNED(0.00)[];
-         DBL_PROHIBIT(0.00)[0.32.167.96:email,0.32.50.48:email,0.32.89.64:email,0.32.11.32:email];
-         RCPT_COUNT_SEVEN(0.00)[8];
-         MID_CONTAINS_FROM(1.00)[];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:12941, ipnet:213.135.0.0/19, country:DE];
-         SUSPICIOUS_RECIPS(1.50)[]
-X-Spam: Yes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200218171321.30990-7-robh@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LS1028A has three (dual) SPI controller. These are compatible with
-the ones from the LS1021A. Add the nodes.
+On Tue, Feb 18, 2020 at 11:13:16AM -0600, Rob Herring wrote:
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: iommu@lists.linux-foundation.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> Do not apply yet.
 
-The third controller was tested on a custom board.
+Pleeeeease? ;)
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-changes since v1:
- - add "fsl,ls1028a-dspi" compatible string
+>  drivers/iommu/arm-smmu-impl.c | 43 -----------------------------------
+>  1 file changed, 43 deletions(-)
 
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
+Yes, I'm happy to get rid of this. Sadly, I don't think we can remove
+anything from 'struct arm_smmu_impl' because most implementations fall
+just short of perfect.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 0bf375ec959b..ef1e3867b3fb 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -290,6 +290,45 @@
- 			status = "disabled";
- 		};
- 
-+		dspi0: spi@2100000 {
-+			compatible = "fsl,ls1028a-dspi", "fsl,ls1021a-v1.0-dspi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0x2100000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "dspi";
-+			clocks = <&clockgen 4 1>;
-+			spi-num-chipselects = <4>;
-+			little-endian;
-+			status = "disabled";
-+		};
-+
-+		dspi1: spi@2110000 {
-+			compatible = "fsl,ls1028a-dspi", "fsl,ls1021a-v1.0-dspi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0x2110000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "dspi";
-+			clocks = <&clockgen 4 1>;
-+			spi-num-chipselects = <4>;
-+			little-endian;
-+			status = "disabled";
-+		};
-+
-+		dspi2: spi@2120000 {
-+			compatible = "fsl,ls1028a-dspi", "fsl,ls1021a-v1.0-dspi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x0 0x2120000 0x0 0x10000>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "dspi";
-+			clocks = <&clockgen 4 1>;
-+			spi-num-chipselects = <3>;
-+			little-endian;
-+			status = "disabled";
-+		};
-+
- 		esdhc: mmc@2140000 {
- 			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
- 			reg = <0x0 0x2140000 0x0 0x10000>;
--- 
-2.20.1
+Anyway, let me know when I can push the button and I'll queue this in
+the arm-smmu tree.
 
+Cheers,
+
+Will
