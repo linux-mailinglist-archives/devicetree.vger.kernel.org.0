@@ -2,62 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03650162345
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 10:19:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A6831623B5
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 10:44:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726415AbgBRJTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Feb 2020 04:19:44 -0500
-Received: from sonic303-1.consmr.mail.bf2.yahoo.com ([74.6.131.40]:46579 "EHLO
-        sonic303-1.consmr.mail.bf2.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726293AbgBRJTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Feb 2020 04:19:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1582017583; bh=zI0m+DRhZDm01EKX+YHsQU600DuE8AwybL7Vu4lblwE=; h=Date:From:Reply-To:Subject:References:From:Subject; b=WCeUcvxPv7HA7K1ovvf3JlKld3493p6qqc3TRHYkfViq6YHVnLYJW5ALCf0ecpNw+QsvHCWsTgwBBt1ZkopGxcauB8n3EApOi8Cuc+zY0aCIqoc7P+KsjvnHPkdGCtcjzfyg+LgQUj1Z0y2yZsaCBi3fNptjfek/IJrZRlp6zFI2jKYXL6F3LMRxSs6yiz9VS6yMXts2CjBt1dJyiWVifCwYyQYYnxiz9f373BNHTBO+JyJCKR2NkMK2B+24VZ2WJVRM8oMSUSOj3pz4lozwyorcnmuGc0sg/ecbdKHG3AiAXXCXDL1Xp5gPSg2FysrPHM8/w1LRpMvlkB0jy2ZQbg==
-X-YMail-OSG: x_HpDTcVM1nP8xZQGvn8ikNc0e_O4z3sshuUuSfvSQEVaaEy172EheL18kLRl1o
- ZB_xUnvIVM9J9NswspUzZU5JojO1TqQizGFS35HJZCdk7Rko_kWAeSDDao.TIvGcttu1SLAzacKX
- 5b0AQSVZIFrDN5Tt7Se2IbU0o0IJtl5HagMc92ScIJl84f0qFlhNtyuELYyo9Y_IWjTXhTfRnir4
- Y7p6kFUyRWlJ1EkTw49GO_EIwIyeeKNAO0scWRP28OuBZ4PrD_YFL6GurFCRL20j6JbQGwVW1_9L
- SCBLx8qE4ZjaM5Mu7V26T_HTbX7aZhybIAyIgabTvtJ.E7EnnaZL829_Duwg6Fo.0A5vKLQZXTfT
- SZ6JFmhT6YvNspT0BCyAdTIUBgc8l4EKUlu5_NlAmvmJVNPALQ7lBFaU5dUWkU3eCUPEShGFivGV
- 1tRyd7fS4MCQGt6WdWbAvUZxg.ppWv5wWBEdu2VEAaiHKL7_cTgn6DFnEOqTlM4pPASwM5si1TDQ
- A9d2MpMKbhG2GRGiWxuImJ_Lvsytns6ZaaaCoEiFM8kSPPuu8Cngg6uigmmvXcxr7i5S_fbQS_YT
- PwzbNbx1iT.W.Ulvzo.vX5GgunmLkvD6pSRndqnxBEA_XGmHLxRwst00TvmcCaC.Uio.OZDDY7f2
- 7o7woF0o1cOW8vepHp2PCuxC.vpjvNwu2kz.aKah1oFSbk_w.NgMrooZ3Fg1D94cc1MD7SvtYdoZ
- QoI8z1QyIgbenZdEO9fOPeL.P.sGechbWXfOhOx7EK_t_pxJTpelqUplm30nM5u.2oT24bsMXcA3
- GCJWgKxcZ6GIR.5yDQBM04A1U_VBt_ruov9ZLOzefSP7qeCEnE5wVIEOQRaub8UsOkrZxHc4MLJl
- jvWR.Rqt_C20z_lebl8RED..KU09b9.m7I3xTRczta6SNdCdkLq1O98UQVIlPzlaHKCrkXt666oy
- vUEQSGQx3FzSyImRyMT0Y7My0KOCCtzu0vpkqD_6QWh2.QeyEPQsqIkkqJsGP3VitB87H4zDkhQ1
- 4JGqw_V3HT9UWHryWpN_aXc1dZL7Kw75uxDS2aUQKJakRKlJgxUwu8SQX6XfkhbS1PgsBVMnISt8
- _ZL0cH2maT0njvR9Lh6TLw7IF_HZTTXC9HZE2TrgoaO3jx4SIT7i3TBA.A72Dmf_eYKb17_GFrmS
- AAIPlkKqesIcwa.lq6RADG5XDE63iOfutGc08ZCBoJEcuS6j3oVJXPqArhSKIi.7Eu0YPYEDUM16
- xcF2UJOH1qYxIcvJjDM_w_hOOu7RJfmAtZHnVmMN2a1bYjX2744NzbhJWEBhG.EBUMG4FyKH3l.E
- -
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic303.consmr.mail.bf2.yahoo.com with HTTP; Tue, 18 Feb 2020 09:19:43 +0000
-Date:   Tue, 18 Feb 2020 09:19:38 +0000 (UTC)
-From:   Lisa Williams <lw3628517@gmail.com>
-Reply-To: lisawilam@yahoo.com
-Message-ID: <421324845.3198794.1582017578698@mail.yahoo.com>
-Subject: Hi Dear
+        id S1726312AbgBRJn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Feb 2020 04:43:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46038 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726199AbgBRJn7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 18 Feb 2020 04:43:59 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A37B7206E2;
+        Tue, 18 Feb 2020 09:43:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582019038;
+        bh=glEd8LJg33O82qVtAetCni+HqVd9K5Kd0qvxg1Lw4x4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BnC8as/2IqxRU9Yof3Riunpd5ghLEMkDOCHPGVqmZ92/AY3wlU0/16p4BSv3F/2P3
+         jZ0OwMQ+mStgxWyfe79suW0thBq9gNYEgONjCXPQKAtG9hNsK/5rVxLXcxWyEUlkOS
+         qeALyMVj3ieInr8CvOc2QiBSjnZ3iKyF6ieeZkEk=
+Date:   Tue, 18 Feb 2020 17:43:52 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com,
+        devicetree@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH V3 RESEND 1/7] ARM: dts: imx6sx: Improve UART pins macro
+ defines
+Message-ID: <20200218094351.GE6075@dragon>
+References: <1581938021-16259-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-References: <421324845.3198794.1582017578698.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.15199 YMailNodin Mozilla/5.0 (Windows NT 6.1; rv:72.0) Gecko/20100101 Firefox/72.0
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1581938021-16259-1-git-send-email-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Feb 17, 2020 at 07:13:35PM +0800, Anson Huang wrote:
+> Add DCE/DTE to UART pins macro defines to distinguish the
+> DCE and DTE functions, keep old defines at the end of file
+> for some time to make it backward compatible.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-
-Hi Dear,
-
- How are you doing hope you are fine and OK?
-
-I was just going through the Internet search when I found your email address, I want to make a new and special friend, so I decided to contact you to see how we can make it work out if we can. Please I wish you will have the desire with me so that we can get to know each other better and see what happens in future.
-
-My name is Lisa Williams, I am an American, but presently I live in the UK, I will be glad to see your reply for us to know each other better to exchange pictures and details about us.
-
-Yours
-Lisa
+Applied all, thanks.
