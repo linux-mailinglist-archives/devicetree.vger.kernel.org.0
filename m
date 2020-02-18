@@ -2,109 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A2F161EB8
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 02:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C7A161F2A
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 04:04:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726108AbgBRBzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 20:55:06 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:46325 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726171AbgBRBzG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Feb 2020 20:55:06 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id C6BE96244;
-        Mon, 17 Feb 2020 20:55:05 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Mon, 17 Feb 2020 20:55:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=e
-        YnIVvK0q9JrGCRBjZx29b4zt5fQgH9zuyMH2krGX/Q=; b=fey7V7774/zbe/0yv
-        b3XBejwmgGycVWMsDRgzIdvJyKIIot5v/YayVFxJYkAWynzfkZZi7c40XaSHH679
-        kEvUyvFr19eynPZ3uqtY/C5F9R1YLjOqSSuSKOuxLcqi3Tlf/ydffffSZPDDTOdJ
-        hbQDU+pkgxYGXNPb4M8PGqc13sEKgPyz6hdZfv49e7ZWbiNkDKDqQHd0vQ7F8JVJ
-        LLoP2AFIT8uE69d6ozHP7gFbENWz2QM6LVBfWhnlYwPI1boJCNIdz5/HoArm18E0
-        aWlAzmLQ/5zjeZMnLx5ly377rusi7rPSQET/6IDgclbcb5CIm1WuBBw29bVLarYr
-        6uQIQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=eYnIVvK0q9JrGCRBjZx29b4zt5fQgH9zuyMH2krGX
-        /Q=; b=2Z0CbNrXiu1UkDc7K9uMUkCp+5FJWshYrl+YnFiUKBX8LCjzt4JrlkqPV
-        U1itbYE8ERgzokozGP4ZXvoJX1QYKHlYLfQtYUMyBgb9Kw2doshmw5mPP9KECg7f
-        J9OctR7gPuxWGXEtHMEiE2MDtEaqx0a1h3roC/ZJnqqGMHJv+uZXv3RWBU6XkC0Q
-        sA/29i59E0IopUJvuXr/l7nGL4JSn5XxOeN1+9G+deKW+hKcg5RCBecaO/vmMTEB
-        2deM4Dh3BN7uUW/yccDWq9wxSGwJSlrSbLPrvwtKUtXiH3JujWd2BEiHXWSRKNM1
-        +rBq+KlB1mgHQccXLH8/s+V19aHEw==
-X-ME-Sender: <xms:-ENLXp_TURkjTpR1RT4Js6KNp2HxmdctwrZOvbRh59H5JkMNlTgarw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrjeejgdeflecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucfkph
-    epjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghr
-    rghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:-ENLXh_qsOVkH-W6KKjsXtdJDWnLWtdjRV58uk-Od9QiX8xVGA4WLg>
-    <xmx:-ENLXiB26jZx2AygWC6W1A_zibyhp3hQLRerTwEkV7Uicc3MmsDqTA>
-    <xmx:-ENLXhwVdLwMfn9aPDPiaGXaT7cdsrumBN7K00Ou3C36KXtZg8Qkcw>
-    <xmx:-UNLXl4A6RAavdbkjdnZFSp2Jwo4x64JEHr3dc0qO6XsEBP8mGyEzw>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id EBF8B3060C28;
-        Mon, 17 Feb 2020 20:55:03 -0500 (EST)
-Subject: Re: [RFC PATCH 10/34] ASoC: sun8i-codec: Advertise only
- hardware-supported rates
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20200217064250.15516-1-samuel@sholland.org>
- <20200217064250.15516-11-samuel@sholland.org>
- <20200217153023.GL9304@sirena.org.uk>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <810f4889-d3ad-3b26-201c-0a237222c06c@sholland.org>
-Date:   Mon, 17 Feb 2020 19:55:03 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        id S1726298AbgBRDEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 22:04:06 -0500
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:42599 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726245AbgBRDEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 22:04:06 -0500
+Received: by mail-pf1-f193.google.com with SMTP id 4so9877701pfz.9
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2020 19:04:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Nal0vSzhjUSXQw3+qOaARWHAXZZO2AG5fTqWso3rl90=;
+        b=rqM9lTbWSK9RFXvsnXFktoJg33+bNVjzY48a7L97Xs3MMA9r7tjsSNF6bUPtXYgt+B
+         CKV/AxGQBAXG2LXYcc0uqXhMGV2MGB8B/9Rf2R9sFLneI7/DQgHZ0i8mRabQbSEwG7n7
+         2S3WhLg+oYRcA3lONEvY7P0UfLWAwrlq73hWe12O7aGx13kOvV1/XBimMwL3+1D/QzPY
+         0aidEeMR5dA83cEi39H2tVZAS29/EENQUKIdMYSCz5QVY+PHuR3UH0HQGeNEL7K3WYpP
+         YviElr5VQ2xssxGHZrfBMXqgCcFGSwlmpqnW2ENjNH84GNWbhCsuiNfSxL8zlATJCMjN
+         BOkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Nal0vSzhjUSXQw3+qOaARWHAXZZO2AG5fTqWso3rl90=;
+        b=J1gFWHHBLYVUONgfPLwY9+GWLX7eC7qYwSJjowjN2DYFh3qEqidAZGGpM8xNFvu6I3
+         FDGF4vuOQDc7CpnWAfmn1vfouIT73+sdJ3ZpQNWDYj3gMhsSkB2xbMyP3rqjquzLMny1
+         9YHt83u3jSAn2IG3Z4wyv6F/GPkOAv6/NhlZJzY5uX4mH5rc3McFD4KTqK9DOVrXCPwW
+         R06j6wIz6bgQPn/TlYX7GQsBXj4IMlHG6OLJDE+bUdsV39xtUjEnTgWf1m3d5XTeGUoq
+         yUvSbPf+rXR+gecCV39XdeH7ng15ZLsZvNT3gHVFpPmMs/EcycEPyZI42FhxWE26Uykb
+         NNoA==
+X-Gm-Message-State: APjAAAX//AE+q/VgeMMZZ+t/b+Ju5IVkgGLo521erGZo7hC1Wg8Q2j36
+        dBN4DlPZUyVZ/LFbthb2BFBnzQ==
+X-Google-Smtp-Source: APXvYqzs4TcpmPL75g6Tz+Iv5FmPwMFXlHkNOa2hgrWXMyxEyi4CmkdcaWQDyM+DbzzxqPiDO9dtqQ==
+X-Received: by 2002:a63:ba03:: with SMTP id k3mr21562028pgf.52.1581995045220;
+        Mon, 17 Feb 2020 19:04:05 -0800 (PST)
+Received: from ripper (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id h3sm792028pjs.0.2020.02.17.19.04.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2020 19:04:04 -0800 (PST)
+Date:   Mon, 17 Feb 2020 19:03:10 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Akash Asthana <akashast@codeaurora.org>
+Cc:     gregkh@linuxfoundation.org, agross@kernel.org, wsa@the-dreams.de,
+        broonie@kernel.org, mark.rutland@arm.com, robh+dt@kernel.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, mka@chromium.org,
+        dianders@chromium.org
+Subject: Re: [PATCH 1/6] soc: qcom: geni: Support for ICC voting
+Message-ID: <20200218030310.GV955802@ripper>
+References: <1581946205-27189-1-git-send-email-akashast@codeaurora.org>
+ <1581946205-27189-2-git-send-email-akashast@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20200217153023.GL9304@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1581946205-27189-2-git-send-email-akashast@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/17/20 9:30 AM, Mark Brown wrote:
-> On Mon, Feb 17, 2020 at 12:42:26AM -0600, Samuel Holland wrote:
->> The hardware does not support 64kHz, 88.2kHz, or 176.4kHz sample rates,
->> so the driver should not advertise them. The hardware can handle two
->> additional non-standard sample rates: 12kHz and 24kHz, so declare
->> support for them via SNDRV_PCM_RATE_KNOT.
->>
->> Cc: stable@kernel.org
->> Fixes: 36c684936fae ("ASoC: Add sun8i digital audio codec")
->> Fixes: eda85d1fee05 ("ASoC: sun8i-codec: Add ADC support for a33")
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
+On Mon 17 Feb 05:30 PST 2020, Akash Asthana wrote:
+
+> Add necessary enums, macros and structure variables to support ICC BW
+> voting from individual SE drivers.
 > 
-> The new sample rates are new functionality, they are definitely not
-> stable material.   For the sample rates you are removing do we
-> understand why they were added - do they work for people, are they
-> perhaps supported for some users and not others for example?
+> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+> ---
+>  include/linux/qcom-geni-se.h | 31 +++++++++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
+> diff --git a/include/linux/qcom-geni-se.h b/include/linux/qcom-geni-se.h
+> index dd46494..b0adbfb 100644
+> --- a/include/linux/qcom-geni-se.h
+> +++ b/include/linux/qcom-geni-se.h
+> @@ -6,6 +6,8 @@
+>  #ifndef _LINUX_QCOM_GENI_SE
+>  #define _LINUX_QCOM_GENI_SE
+>  
+> +#include <linux/interconnect.h>
+> +
+>  /* Transfer mode supported by GENI Serial Engines */
+>  enum geni_se_xfer_mode {
+>  	GENI_SE_INVALID,
+> @@ -22,6 +24,13 @@ enum geni_se_protocol_type {
+>  	GENI_SE_I3C,
+>  };
+>  
+> +/* Interconnect paths for GENI */
+> +enum geni_se_icc_path {
+> +	GENI_TO_CORE,
+> +	CPU_TO_GENI,
+> +	GENI_TO_DDR
+> +};
+> +
+>  struct geni_wrapper;
+>  struct clk;
+>  
+> @@ -33,6 +42,13 @@ struct clk;
+>   * @clk:		Handle to the core serial engine clock
+>   * @num_clk_levels:	Number of valid clock levels in clk_perf_tbl
+>   * @clk_perf_tbl:	Table of clock frequency input to serial engine clock
+> + * @icc_path:		Array of interconnect path handles
+> + * @avg_bw_core:	Average bus bandwidth value for QUP core 2x clock
+> + * @peak_bw_core:	Peak bus bandwidth value for QUP core 2x clock
+> + * @avg_bw_cpu:		Average bus bandwidth value for CPU
+> + * @peak_bw_cpu:	Peak bus bandwidth value for CPU
+> + * @avg_bw_ddr:		Average bus bandwidth value for DDR
+> + * @peak_bw_ddr:	Peak bus bandwidth value for DDR
+>   */
+>  struct geni_se {
+>  	void __iomem *base;
+> @@ -41,6 +57,13 @@ struct geni_se {
+>  	struct clk *clk;
+>  	unsigned int num_clk_levels;
+>  	unsigned long *clk_perf_tbl;
+> +	struct icc_path *icc_path[3];
 
-I do not know why they were added, but the sample rates I removed do not work
-today, for anyone.
+In all cases you refer to icc_path[IDENIFIER], so just give the three
+paths individual members and drop the enum above.
 
-The sample rate must be programmed into the hardware, and the removed sample
-rates do not map to one of the possible register values, so
-sun8i_codec_get_hw_rate(), and thus hw_params, will return -EINVAL if one of
-them is used.
+Reards,
+Bjorn
+
+> +	unsigned int avg_bw_core;
+> +	unsigned int peak_bw_core;
+> +	unsigned int avg_bw_cpu;
+> +	unsigned int peak_bw_cpu;
+> +	unsigned int avg_bw_ddr;
+> +	unsigned int peak_bw_ddr;
+>  };
+>  
+>  /* Common SE registers */
+> @@ -229,6 +252,14 @@ struct geni_se {
+>  #define GENI_SE_VERSION_MINOR(ver) ((ver & HW_VER_MINOR_MASK) >> HW_VER_MINOR_SHFT)
+>  #define GENI_SE_VERSION_STEP(ver) (ver & HW_VER_STEP_MASK)
+>  
+> +/* Core 2X clock frequency to BCM threshold mapping */
+> +#define CORE_2X_19_2_MHZ		960
+> +#define CORE_2X_50_MHZ			2500
+> +#define CORE_2X_100_MHZ			5000
+> +#define CORE_2X_150_MHZ			7500
+> +#define CORE_2X_200_MHZ			10000
+> +#define CORE_2X_236_MHZ			16383
+> +
+>  #if IS_ENABLED(CONFIG_QCOM_GENI_SE)
+>  
+>  u32 geni_se_get_qup_hw_version(struct geni_se *se);
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
