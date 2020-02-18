@@ -2,107 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EBD5161E9E
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 02:44:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9BED161EC8
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 02:58:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726256AbgBRBow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 20:44:52 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:44041 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726107AbgBRBow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Feb 2020 20:44:52 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CC3CE6CB1;
-        Mon, 17 Feb 2020 20:44:51 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Mon, 17 Feb 2020 20:44:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=k
-        tP0xjLMEYow5iCaqBZHaqnwO8wceFlWoz7H7k4O0xM=; b=CSF1Iph5pp4vOyZeL
-        LGmqeplv+4ylrO/x70YmMfcWggiReinVQ3yb90y947u4uncH8wP66FQrAaIcXRY1
-        niPYqALKjfxthOU5BoK3N8KCBjjEuXdNrNJ7CUOHgax/mKCY4VtH/c4x8pwI+VEb
-        IOj6YcK3bGb0rkkL1NWBTFZ4KveA1N6Nl35GVlfRj8ZOldCctkvhwFPSb6xgbdcN
-        QaHgqAFk6QId33dp/3boQGeRuOJwmrDz8ZGi847KuAFi6n+d3jbq1VWOFcItMV/5
-        Wfvy7PvqW7M4nmqo8D5rqxadkZ8ek2LnfVL0Wl0TvfAPB9rPZyLYitdcs6zKOadG
-        kYaCg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=ktP0xjLMEYow5iCaqBZHaqnwO8wceFlWoz7H7k4O0
-        xM=; b=GVNTuwA5FHJB7rHrw/IlqU+ChDQVJwnXfOBzXIcglBuetJUkEzMBtyCk/
-        hSLS6RKANUBT8bIibhU+2mhlyVHauVATvTEcxtN1UJxjZnYDpxMvVSyFjWraokB/
-        Fduimjg06dChp9OeyqHfs/y38GTafH39Q6SNmaWmBJDb0jkMGYp+utesivcrRBre
-        imap9PkskDGb6Ot6RDo4ZjlvNC50W21naaSXfh227bNdhH/sxpiQBSw6mPdE16sZ
-        urL/zNgWFKYok8BYY+KH/O4jik7JjrDJjy3Wmp1Gp/6+KjhrSGv5ExrkT9GcmxRd
-        wKPT+SrqFtqxpXVjOgvVioDlp/49g==
-X-ME-Sender: <xms:kkFLXpFVoqimNSYPZ9i_OtN7A_2b2eQVo-jr8hcxqeEe16FtTMEE1w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrjeejgdefjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucfkph
-    epjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghr
-    rghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:kkFLXp_ry0IomhF9gV77h-FQeJdENobIvLxdsoVEfGSdcG5fNB-KhA>
-    <xmx:kkFLXlmj-llT9aC3l-_jsDWxPiPcgd_2vWob-w5npInW2CvSx2JfBA>
-    <xmx:kkFLXs-b9KWeuSg9QslXBZhqkMGigL59cx7ZIhKs2042twxghnhAhA>
-    <xmx:k0FLXoVLLKcqDWrf4DXnoRpIvRmxqIcjWWh3soQfruWpxMbN4fCH7A>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 219B33060C28;
-        Mon, 17 Feb 2020 20:44:50 -0500 (EST)
-Subject: Re: [RFC PATCH 08/34] ASoC: sun8i-codec: Fix direction of AIF1
- outputs
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        =?UTF-8?Q?Myl=c3=a8ne_Josserand?= 
-        <mylene.josserand@free-electrons.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        id S1726171AbgBRB6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 20:58:25 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:39868 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726140AbgBRB6Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 17 Feb 2020 20:58:25 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id CC4B5202EF5;
+        Tue, 18 Feb 2020 02:58:23 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7C9C6202EE6;
+        Tue, 18 Feb 2020 02:58:17 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3B86D40245;
+        Tue, 18 Feb 2020 09:58:09 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        abel.vesa@nxp.com, leonard.crestez@nxp.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, stable@kernel.org
-References: <20200217064250.15516-1-samuel@sholland.org>
- <20200217064250.15516-9-samuel@sholland.org>
- <20200217150935.GJ9304@sirena.org.uk>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <7108ff30-df7e-09bd-f895-2768347d45ba@sholland.org>
-Date:   Mon, 17 Feb 2020 19:44:49 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-MIME-Version: 1.0
-In-Reply-To: <20200217150935.GJ9304@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] arm64: dts: imx8mn-ddr4-evk: Adjust 1.2GHz OPP voltage to OD mode
+Date:   Tue, 18 Feb 2020 09:52:32 +0800
+Message-Id: <1581990752-10219-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/17/20 9:09 AM, Mark Brown wrote:
-> On Mon, Feb 17, 2020 at 12:42:24AM -0600, Samuel Holland wrote:
->> The naming convention for AIFs in this codec is to call the "DAC" the
->> path from the AIF into the codec, and the ADC the path from the codec
->> back to the AIF, regardless of if there is any analog path involved.
-> 
-> This renames widgets but does not update any DAPM routes from those
-> widgets which will break things if this patch is applied.
+According to latest datasheet Rev.0, 10/2019, there is restriction
+as below:
 
-This commit doesn't change the widget name, only the widget type. My commit
-message did not make that clear.
+"If VDD_SOC/GPU/DDR = 0.95V, then VDD_ARM must be >= 0.95V."
 
->> Cc: stable@kernel.org
-> 
-> Why is this suitable for stable?  It's a random textual cleanup.
+As by default SoC is running at OD mode(VDD_SOC = 0.95V), so
+VDD_ARM 1.2GHz OPP's voltage should be increased to 0.95V.
 
-This was one of the first patches I wrote. Now that I understand DAPM better, I
-realize that it has no functional impact, and this shouldn't go to stable.
-(snd_soc_dapm_aif_in and snd_soc_dapm_aif_out are handled exactly the same, so
-fixing the widget type is, as you say, just a textual cleanup.)
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+index 2497eeb..7a61a1a 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+@@ -13,6 +13,12 @@
+ 	compatible = "fsl,imx8mn-ddr4-evk", "fsl,imx8mn";
+ };
+ 
++&a53_opp_table {
++	opp-1200000000 {
++		opp-microvolt = <950000>;
++	};
++};
++
+ &A53_0 {
+ 	cpu-supply = <&buck2_reg>;
+ };
+-- 
+2.7.4
+
