@@ -2,112 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F559161F6A
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 04:17:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AE5C161F7C
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 04:19:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726245AbgBRDRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 17 Feb 2020 22:17:52 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:33963 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726237AbgBRDRw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 17 Feb 2020 22:17:52 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 30F0976A3;
-        Mon, 17 Feb 2020 22:17:51 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Mon, 17 Feb 2020 22:17:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=h
-        UYsN1IRDrlEB0uxQHQLvlcqoA9TjcxIRinpfgTMp/0=; b=XXy/h+U7Wwb/BSG4D
-        c8PjcyCWsIk1Rd13jAQgegM4xS8fOuN1ov2gdbsDYSNy3PXrinTXzEOlNIhWl+ob
-        un5b2GXDYVNl64Es23moKifHR0MjNBL4v6MDG8FZjg1duzgXsFucD+vnBtPBt94n
-        M23cQMMLEkEA56G5wdrGE+8j9aOQvlwEhEpXWRDcbFazgRv7rdVNtpZRGslF4Myl
-        yiUTFrCsXYN4NNYqiukFm/vDMQPOJSsVrrhiQAIuB7xoS5xoVlcwJJSzwgQp/jrv
-        0m3iLuLz8I1cXPCal4cRao6mDzDr6xbFA1id3ARsf8XfgJzXAG/Eh84sb5khKF+B
-        VCSQA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=hUYsN1IRDrlEB0uxQHQLvlcqoA9TjcxIRinpfgTMp
-        /0=; b=38X4/aeX+nSPkX0b9fiZoBrJWYH9eI9uEF8FN1BFksP9/rsJem6MHsxSL
-        F8x7GQC9eeREFWkrrAhSSA1+HBkfTV6QzlZcF9639EN/cf4hSqb2UxMEVKCShgR6
-        UXAYdctO48dhTuc7WK+4KGofzFNe4IeeOI6S014tAwc+pRm4dZp1rKp7sh0JkcBA
-        KhJjV6/E7dID+oIovF2K5iaby8ulG42ufVYy7h8aJxOEgXFbbP8o5zGOx+fBCOYU
-        cCUkMsaAAFgzgTVYmM6ST/TCviNXMJl07IynIwg8gjLw5gPb8fXzmd5VC0uNoPOT
-        UoI89h1udYGvevalQVArvAU8Tmz2A==
-X-ME-Sender: <xms:XFdLXht9B8Qf5zYb3xiI2zwpmUFEzQ_AwfRipbb5OJYd8IQsFTwoJQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrjeejgdehiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefuvfhfhffkffgfgggjtgfgsehtjeertddtfeejnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucfkph
-    epjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghr
-    rghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:XFdLXq48HAIvPM1mp-Ncum_3QC8Cp3v8gEMTmhYP55RjHEsWhLQDFA>
-    <xmx:XFdLXlcm-eHBGK7WMd39T5ufO0O9TzhXWHtvO1vX4jErP67b6qZD9g>
-    <xmx:XFdLXvxjh1FuEw3fH6fVfDNKP9bo31pdbQrXgSY48QANmUqSTf0-JA>
-    <xmx:X1dLXnbMkM62scKMPNlWn66hA7xHTC3iHvsuvMuZo9ZB_dbfbk1tYg>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 96BD13060BD1;
-        Mon, 17 Feb 2020 22:17:47 -0500 (EST)
-Subject: Re: [RFC PATCH 01/34] ASoC: dt-bindings: Add a separate compatible
- for the A64 codec
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Ondrej Jirman <megous@megous.com>
-References: <20200217064250.15516-1-samuel@sholland.org>
- <20200217064250.15516-2-samuel@sholland.org>
- <CAGb2v670SH1Ra26eKgOhLYAeRTV719a3TDAfCyMr49bKU8Z=PA@mail.gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <dab9cbc2-c0ad-4f12-e792-a900c13f083f@sholland.org>
-Date:   Mon, 17 Feb 2020 21:17:47 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        id S1726477AbgBRDTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 17 Feb 2020 22:19:25 -0500
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:36864 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726346AbgBRDTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 17 Feb 2020 22:19:25 -0500
+Received: by mail-pf1-f194.google.com with SMTP id p14so9909363pfn.4
+        for <devicetree@vger.kernel.org>; Mon, 17 Feb 2020 19:19:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BjESBNNd4zA4/xXm+Fx/7whm6bU5Bz00evekQd0atG0=;
+        b=dPNOklRfcHZVXvg7ClWdTf50p7mBZKJAOS/1kBxt364yg0SJ9NR2pVzUhYQuie/Vhb
+         mMRua+uI+pbN+WPIdh+Sp/JKzbQwQLrs9Jtmznr471cIt8KfuuFsaGh2Gy2t0OS/5MI9
+         GmmZaMoaQ6ayO1vMiuBacWdRTEHEfEsjEktWphi9e+nTd8RtfLmsxK3SN1sQg+eHMq/D
+         bx4wl0/OdxKOkFPybOPCCuqlMZJQCovzuLYDT5vsmpJbFgIfr53TcRdhQkTmunM9b088
+         WJB9Sd0BOYjxO1iOl71fPb6cCIGNn0KD0MoMnnBDIvAbMnHa5BWc7ROU1gsbb92mq4Ar
+         vzRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BjESBNNd4zA4/xXm+Fx/7whm6bU5Bz00evekQd0atG0=;
+        b=hn51eUG4aX5TI/0b+or/X5lLsZj/XWETX9vMSUBuCt+e42HtitX9FGI5VfJVHtjkmR
+         7zy1y9TzBinYJAh1+Y36y3m0phJkHUjfCoMHlJM/XMP5Dd8lSLLrySUrgdO5kjrFmfC8
+         RM28U3s6u7ixXy2ySOMdfGosoFQxkDAJO6ghSAFyNbIu4vO05xLeCdQRhRmvtYHMx9LG
+         zCKh86Et3Gm+nB4uhIiSOtPn04q4X6GWCu14mpxR4Dfi5OScQ3oQF3Lc5Qy8P0PIb2AV
+         7SIo+cn3a/DFaHVa9Rnsw04paN9QjpejG4bSPigrKdpzl4qoqhdtaOrCpaFQ1U4aMSBj
+         XQ+A==
+X-Gm-Message-State: APjAAAXJFcdqQ3foQJl6TqUdNkqdbl4m/19BN9h9IFahyw8sDo3TOlNs
+        hzU52+A4dIERfdSB432XGNnhug==
+X-Google-Smtp-Source: APXvYqxYWtCDEG+AexP7+FJdG6S5k/Ny4QSg9Cetbw2G9McmCV5S+hbhBPCqRdjRY+7F1vGcUuaOLA==
+X-Received: by 2002:a63:8b44:: with SMTP id j65mr20230161pge.272.1581995964276;
+        Mon, 17 Feb 2020 19:19:24 -0800 (PST)
+Received: from ripper (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id t28sm1773258pfq.122.2020.02.17.19.19.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Feb 2020 19:19:23 -0800 (PST)
+Date:   Mon, 17 Feb 2020 19:18:30 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Akash Asthana <akashast@codeaurora.org>
+Cc:     gregkh@linuxfoundation.org, agross@kernel.org, wsa@the-dreams.de,
+        broonie@kernel.org, mark.rutland@arm.com, robh+dt@kernel.org,
+        linux-i2c@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, swboyd@chromium.org,
+        mgautam@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-serial@vger.kernel.org, mka@chromium.org,
+        dianders@chromium.org
+Subject: Re: [PATCH 6/6] arm64: dts: sc7180: Add interconnect for QUP and QSPI
+Message-ID: <20200218031830.GX955802@ripper>
+References: <1581946205-27189-1-git-send-email-akashast@codeaurora.org>
+ <1581946205-27189-7-git-send-email-akashast@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <CAGb2v670SH1Ra26eKgOhLYAeRTV719a3TDAfCyMr49bKU8Z=PA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1581946205-27189-7-git-send-email-akashast@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/17/20 3:49 AM, Chen-Yu Tsai wrote:
-> On Mon, Feb 17, 2020 at 2:42 PM Samuel Holland <samuel@sholland.org> wrote:
->>
->> The digital codec in the A64 is largely compatible with the one in the
->> A33, with two changes:
->>  - It is missing some muxing options for AIF1/2/3 (not currently
->>    supported by the driver)
+On Mon 17 Feb 05:30 PST 2020, Akash Asthana wrote:
+
+> Add interconnect ports for GENI QUPs and QSPI to set bus capabilities.
 > 
-> Is this at the pinctrl level or mixer level? If it's at the pinctrl level
-> then it's out of the scope of this driver/binding. It could very well have
-> those signals, just that they aren't routed outside the SoC.
+> Signed-off-by: Akash Asthana <akashast@codeaurora.org>
+> ---
+> Note:
+>  - This patch depends on series https://patchwork.kernel.org/cover/11313817/
+>    [Add SC7180 interconnect provider driver]. It won't compile without that.
+> 
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 199 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 199 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index cc5a94f..04569c9 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -352,6 +352,14 @@
+>  				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
+>  				#address-cells = <1>;
+>  				#size-cells = <0>;
+> +				interconnects = <&qup_virt MASTER_QUP_CORE_0
+> +						&qup_virt SLAVE_QUP_CORE_0>,
+> +						<&gem_noc MASTER_APPSS_PROC
+> +						&config_noc SLAVE_QUP_0>,
+> +						<&aggre1_noc MASTER_QUP_0
+> +						&mc_virt SLAVE_EBI1>;
 
-This is in reference to the muxes shown at the top of the A33 diagram, above the
-I2S/PCM interfaces. These appear to map to bits 0-6 of AIF3_SGP_CTRL, which are
-marked as reserved on the A64 and the AC100.
+Please ignore the 80-char "limit" and write this as:
+				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt SLAVE_QUP_CORE_0>,
+						<&gem_noc ...>,
+						<&aggre1_noc ...>;
 
-Comparing the three datasheets in a bit more detail (but by no means exhaustively):
- - The A64 has a second DRC block, unlike the A33 and AC100.
- - The jack detection registers (0x310-0x318) are present on the A64
-   and AC100, but undocumented/missing on the A33.
-
-So there are enough differences to warrant a new compatible, but since none of
-the unique functionality is used by the driver (even after this series), a
-fallback should work.
+Regards,
+Bjorn
