@@ -2,108 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4635316279C
-	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 15:03:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2046916282E
+	for <lists+devicetree@lfdr.de>; Tue, 18 Feb 2020 15:31:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726659AbgBROD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 18 Feb 2020 09:03:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49390 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726571AbgBROD3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 18 Feb 2020 09:03:29 -0500
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DF93521D56;
-        Tue, 18 Feb 2020 14:03:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1582034608;
-        bh=WDPWzQ9h06fO5BvQ/cXq3ZJUz8r0IeTu9pkb16Fh47I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oY5ZNRvQUQobu6kwPBPXoeC4/aFklIPIxJEKQEkk5wrPQbRZpOGXG0U4gmWYVbgtT
-         QtWPNy+TOXKQk5xZK2/a1f2C63V1n+33kEeDkBtOEswxONkG7TxrnewcMK1qJR7tqz
-         pwWOx6TCOCeNyx1NyJvhUQip4UA0gxC8KgQBoYrA=
-Received: by mail-lj1-f177.google.com with SMTP id q8so23022913ljj.11;
-        Tue, 18 Feb 2020 06:03:27 -0800 (PST)
-X-Gm-Message-State: APjAAAVK0TQeFKpiBD0WJhohrLEVvIw8Z4utm2aYtIdwIFI5kXdU9/Em
-        Vu5eVhWOhxPVhxbTR7MGGfXkUUMf/m0ux9zFbX4=
-X-Google-Smtp-Source: APXvYqyu3tqs7d1o1hFLIjDMvfhUSPaiuzZqw9hBKx+J7cxJ471R62AqtfhLJ1T448/LUKRaWkGxI1cFe0kSw+ndYy8=
-X-Received: by 2002:a2e:9c85:: with SMTP id x5mr13224473lji.50.1582034605913;
- Tue, 18 Feb 2020 06:03:25 -0800 (PST)
+        id S1726569AbgBROb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 18 Feb 2020 09:31:27 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50142 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726116AbgBROb1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 18 Feb 2020 09:31:27 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01IEVL7d078364;
+        Tue, 18 Feb 2020 08:31:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1582036281;
+        bh=82b+GU41j6/ZUJlCKcQWhnK8ypPA4+6ZqSrNcaCLVjI=;
+        h=From:To:CC:Subject:Date;
+        b=b2pdloQ7Oy5dzKqhKxVB+Ai2KlO0KfgQ246uuv69Q5YSJlX9WnIzYZZAiH5xhuwij
+         SQfNOWG1PR0DOYU6qh/V70wxru0id4y2KrtyJNDn48Kw78dpc86Spag7zxtSyMnGmK
+         V18i8z3+4aVWoM6oK1L+PNsu/RREl9I4lSeJL36M=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01IEVK1R108705
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 18 Feb 2020 08:31:21 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 18
+ Feb 2020 08:31:20 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 18 Feb 2020 08:31:20 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01IEVHXJ098737;
+        Tue, 18 Feb 2020 08:31:18 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <vkoul@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <dmaengine@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dan.j.williams@intel.com>, <grygorii.strashko@ti.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH 0/2] dmaengine: ti: k3-udma: Support for per channel atype
+Date:   Tue, 18 Feb 2020 16:31:24 +0200
+Message-ID: <20200218143126.11361-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-References: <CA+G9fYsxGkwOQYhuxwOZMwJi=1v4qc+cZ8PZgV6MczFNjo84HQ@mail.gmail.com>
- <20200213151540.GA3502153@kroah.com>
-In-Reply-To: <20200213151540.GA3502153@kroah.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 18 Feb 2020 15:03:14 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPew3gu8=vTPUZB7mk5L08WRdWWYcJQtkG3YgohzDhRkVA@mail.gmail.com>
-Message-ID: <CAJKOXPew3gu8=vTPUZB7mk5L08WRdWWYcJQtkG3YgohzDhRkVA@mail.gmail.com>
-Subject: Re: stable-rc 5.4: arm64 make dtbs failed
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        linux- stable <stable@vger.kernel.org>,
-        lkft-triage@lists.linaro.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, agross@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Feb 2020 at 16:16, Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
->
-> On Thu, Feb 13, 2020 at 08:38:07PM +0530, Naresh Kamboju wrote:
-> > # make -sk KBUILD_BUILD_USER=TuxBuild -C/linux ARCH=arm64
-> > CROSS_COMPILE=aarch64-linux-gnu- HOSTCC=gcc CC="sccache
-> > aarch64-linux-gnu-gcc" O=build dtbs
-> >
-> >
-> > ../arch/arm64/boot/dts/exynos/exynos5433.dtsi:254.3-29: Warning
-> > (reg_format): /gpu@14ac0000:reg: property has invalid length (8 bytes)
-> > (#address-cells == 2, #size-cells == 2)
-> > arch/arm64/boot/dts/exynos/exynos5433-tm2.dtb: Warning
-> > (pci_device_bus_num): Failed prerequisite 'reg_format'
-> > arch/arm64/boot/dts/exynos/exynos5433-tm2.dtb: Warning (i2c_bus_reg):
-> > Failed prerequisite 'reg_format'
-> > arch/arm64/boot/dts/exynos/exynos5433-tm2.dtb: Warning (spi_bus_reg):
-> > Failed prerequisite 'reg_format'
-> > ../arch/arm64/boot/dts/exynos/exynos5433.dtsi:254.3-29: Warning
-> > (reg_format): /gpu@14ac0000:reg: property has invalid length (8 bytes)
-> > (#address-cells == 2, #size-cells == 2)
-> > arch/arm64/boot/dts/exynos/exynos5433-tm2e.dtb: Warning
-> > (pci_device_bus_num): Failed prerequisite 'reg_format'
-> > arch/arm64/boot/dts/exynos/exynos5433-tm2e.dtb: Warning (i2c_bus_reg):
-> > Failed prerequisite 'reg_format'
-> > arch/arm64/boot/dts/exynos/exynos5433-tm2e.dtb: Warning (spi_bus_reg):
-> > Failed prerequisite 'reg_format'
-> > ../arch/arm64/boot/dts/exynos/exynos7.dtsi:83.3-29: Warning
-> > (reg_format): /gpu@14ac0000:reg: property has invalid length (8 bytes)
-> > (#address-cells == 2, #size-cells == 2)
-> > arch/arm64/boot/dts/exynos/exynos7-espresso.dtb: Warning
-> > (pci_device_bus_num): Failed prerequisite 'reg_format'
-> > arch/arm64/boot/dts/exynos/exynos7-espresso.dtb: Warning
-> > (i2c_bus_reg): Failed prerequisite 'reg_format'
-> > arch/arm64/boot/dts/exynos/exynos7-espresso.dtb: Warning
-> > (spi_bus_reg): Failed prerequisite 'reg_format'
-> > ../arch/arm64/boot/dts/qcom/msm8998-mtp.dtsi:10.10-13.4: ERROR
-> > (path_references): /aliases: Reference to non-existent node or label
-> > "blsp1_uart3"
->
-> Thanks for the notice, I'll go drop the offending patch.
+Hi,
 
-The backport is needed but the prerequisites are missing for v5.3 and newer:
-   Cc: <stable@vger.kernel.org> # 5.3.x: 72ddcf6aa224 arm64: dts:
-exynos: Move GPU under /soc node for Exynos5433
-   Cc: <stable@vger.kernel.org> # 5.3.x: ede87c3a2bdb arm64: dts:
-exynos: Move GPU under /soc node for Exynos7
+The series is on top of the 5.6 update patches:
+https://lore.kernel.org/lkml/20200214091441.27535-1-peter.ujfalusi@ti.com/
 
-Best regards,
-Krzysztof
+UDMA channels have ATYPE property which tells UDMA on how to treat the pointers
+within descriptors (and TRs).
+The ATYPE defined for j721e are:
+0: pointers are physical addresses (no translation)
+1: pointers are intermediate addresses (PVU)
+2: pointers are virtual addresses (SMMU)
+
+When Linux is booting within a virtualized environment channels must have the
+ATYPE configured correctly to be able to access memory (ATYPE == 0 is not
+allowed).
+The ATYPE can be different for channels and their ATYPE depends on which
+endpoint they are servicing, but it is not hardwired.
+
+In order to be able to tell the driver the ATYPE for the channel we need to
+extend the dma-cells in case the device is going to be used in virtualized
+setup.
+
+Non virtualized setups can still use dma-cells == 1.
+
+If dma-cells == 2, then the UDMA node must have ti,udma-atype property which
+is used for non slave channels (where no DT binding is exist for a channel).
+
+Regards,
+Peter
+---
+Peter Ujfalusi (2):
+  dt-bindings: dma: ti: k3-udma: Update for atype support
+    (virtualization)
+  dmaengine: ti: k3-udma: Implement support for atype (for
+    virtualization)
+
+ .../devicetree/bindings/dma/ti/k3-udma.yaml   | 19 ++++++-
+ drivers/dma/ti/k3-udma-glue.c                 | 18 ++++++-
+ drivers/dma/ti/k3-udma.c                      | 50 ++++++++++++++++---
+ 3 files changed, 76 insertions(+), 11 deletions(-)
+
+-- 
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
