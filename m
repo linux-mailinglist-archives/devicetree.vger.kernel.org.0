@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E25C1649DB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 17:18:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8978164A01
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 17:20:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727193AbgBSQSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 11:18:09 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:41007 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726767AbgBSQSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 11:18:07 -0500
-Received: by mail-lj1-f193.google.com with SMTP id h23so969387ljc.8
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 08:18:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FNIeeJsk5kS+/MNQiQBqWzPS8Hc6Zxgn+ktiCE+t/lw=;
-        b=aBSVx+8CRkbeLq8O0iXiBkO3p/l/2sIBUrlpB4EZuNuT794r8Cky2bj3/mLP0o7NIS
-         t/GNOUwYKG7SQqJfmMyOIODB4SVZwBWdaW9mb3hZ6Srj/mWOGa/M76b219nt+ofWdnnz
-         l8YoS6J9OAzKBUPte8XoLiVAUwfYiH/Ybme6CmKM/fQloZCg1BCBSS1hxbo5vt94wYDF
-         wi0lsZTkHc4CxlUSjQEAAHGk4WXxigdfP+E8YPreaG8pIZD1OgoOeZ6z+OFiOUIlR2sq
-         aKrNjvjgJmzQgu652ErrkkNmpNN4hy84IYrGAJbCTvvw7HmFg55X4aNgWUq3fQSVFT5l
-         NHxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FNIeeJsk5kS+/MNQiQBqWzPS8Hc6Zxgn+ktiCE+t/lw=;
-        b=c7DOxrvKekfm6usz3MwVYZ8U1ZJsVBXfeZPVF2oV8VQTMaz+TOUTMWnHwPXb0FNxm9
-         lI/ohh7r3JSyJXJpe8YllM15NDGCzz+qZ9hOGeI/UnS3zIoXrpMglAz1iABICrX2sRWR
-         JqQqf37VkRf1p97lVhZKszRiE2k4WUat/MhLFvQBxCIvcaV+Df5ebRI2IBOi6yM+hiki
-         HckkyT/WQFlpCYwdVH8QlkbMt/i9aJHw/MX8TobCtiMH3Msr5FbmCOOh4PEG1+7Em/ky
-         6bkDJ4d0KQejZLQfz8I1IzRDIK6HPjI+WIygsR3NicDl6eWXkL6m2NyzxYXZ5vBZUbrD
-         +2eQ==
-X-Gm-Message-State: APjAAAWR66dcN5dNp3YAr53ZaA44MtGd1VWYubKdpFpiLgiG7yC17iDQ
-        UIyJDy4OisoHbdbRUYiQFFO+uDVxLzR17/GvVEueQw==
-X-Google-Smtp-Source: APXvYqz5+N8/IcBMuJha1sjwR5W6tlYYD0yG0sdk9Zg5a202hQT2/SIsxkI/6w5AHuyFS6gous52gqNq9cvuBXJcR+0=
-X-Received: by 2002:a2e:7d0c:: with SMTP id y12mr17031085ljc.39.1582129086032;
- Wed, 19 Feb 2020 08:18:06 -0800 (PST)
+        id S1726652AbgBSQUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 11:20:03 -0500
+Received: from foss.arm.com ([217.140.110.172]:52188 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726528AbgBSQUD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Feb 2020 11:20:03 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 732EB1FB;
+        Wed, 19 Feb 2020 08:20:02 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EB43A3F703;
+        Wed, 19 Feb 2020 08:20:01 -0800 (PST)
+Date:   Wed, 19 Feb 2020 16:20:00 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH v2 2/2] ASoC: meson: add t9015 internal DAC driver
+Message-ID: <20200219162000.GF4488@sirena.org.uk>
+References: <20200219161625.1078051-1-jbrunet@baylibre.com>
+ <20200219161625.1078051-3-jbrunet@baylibre.com>
 MIME-Version: 1.0
-References: <20200108104746.1765-1-m.felsch@pengutronix.de>
- <20200108104746.1765-4-m.felsch@pengutronix.de> <AM6PR10MB2263733CA8E02F39A647258D80310@AM6PR10MB2263.EURPRD10.PROD.OUTLOOK.COM>
- <20200218110712.7wllleu2w5myphyb@pengutronix.de>
-In-Reply-To: <20200218110712.7wllleu2w5myphyb@pengutronix.de>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 19 Feb 2020 17:17:55 +0100
-Message-ID: <CACRpkda94cDdDuuJE+j6-d=TcwyqQV6Ey+26oHM2TT06Rhxj8Q@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] pinctrl: da9062: add driver support
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Support Opensource <Support.Opensource@diasemi.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8TaQrIeukR7mmbKf"
+Content-Disposition: inline
+In-Reply-To: <20200219161625.1078051-3-jbrunet@baylibre.com>
+X-Cookie: FORTH IF HONK THEN
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 18, 2020 at 12:07 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
 
-> gentle ping. The mfd-code and the dt-bindings are landed in 5.6-rc1 but
-> this patch is missing.
+--8TaQrIeukR7mmbKf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Patch applied for v5.7.
+On Wed, Feb 19, 2020 at 05:16:25PM +0100, Jerome Brunet wrote:
 
-Yours,
-Linus Walleij
+> +	SOC_SINGLE("Playback Mute Switch", VOL_CTRL1, DAC_SOFT_MUTE, 1, 0),
+> +	SOC_DOUBLE_TLV("Playback Volume", VOL_CTRL1, DACL_VC, DACR_VC,
+> +		       0xff, 0, dac_vol_tlv),
+
+Sorry, that should just be plain "Playback Switch" - this can be used by
+applications to present a combined mute/volume control together with the
+Volume control (though as in this case there's no per-channel control it
+is possible some applications will struggle with that).
+
+--8TaQrIeukR7mmbKf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5NYC8ACgkQJNaLcl1U
+h9CDuQf/fGT0VVRm9yQYse0qUFwaPpa/Nb3byf+rdC0Bisg4EtnyYM2uHFn0C1Mg
+PEDPJX9wIjjelZpQn6pNnQjo5jcZvbnoUK4ok+t+L2+wn0qS1u9sdZHqDO0/85tB
+vLFJutTkhsVu/0Ky+ejH12I+uJqIcSrWHxLdWfhOpXYoqFe+C3Jzr8WlhijxnlaR
+GW5b0bdf3lS4LDOYTDCHKnPXX6PiTf80RHHqoF5ZS/JyH5E1zob3FGPSzoo/8RIN
+PG/sz5w9+YJvlPHomclX1ZyMG+pnw3AdOrvtlvfkjiui7OPe8u/Z7BEoSVbKSxEF
+T2IfZRw1euojF6XagOVhMMpiBoShKg==
+=DBLh
+-----END PGP SIGNATURE-----
+
+--8TaQrIeukR7mmbKf--
