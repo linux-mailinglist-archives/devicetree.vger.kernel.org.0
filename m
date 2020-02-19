@@ -2,89 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC9E16443F
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 13:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D177D164433
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 13:28:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727620AbgBSM30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 07:29:26 -0500
-Received: from atl4mhfb03.myregisteredsite.com ([209.17.115.119]:60648 "EHLO
-        atl4mhfb03.myregisteredsite.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726491AbgBSM30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Feb 2020 07:29:26 -0500
-X-Greylist: delayed 512 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 Feb 2020 07:29:25 EST
-Received: from atl4mhob15.registeredsite.com (atl4mhob15.registeredsite.com [209.17.115.53])
-        by atl4mhfb03.myregisteredsite.com (8.14.4/8.14.4) with ESMTP id 01JCKqUq002336
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 07:20:52 -0500
-Received: from mailpod.hostingplatform.com (atl4qobmail02pod0.registeredsite.com [10.30.71.204])
-        by atl4mhob15.registeredsite.com (8.14.4/8.14.4) with ESMTP id 01JCKoeZ030201
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 07:20:51 -0500
-Received: (qmail 9089 invoked by uid 0); 19 Feb 2020 12:20:50 -0000
-X-TCPREMOTEIP: 81.173.50.109
-X-Authenticated-UID: mike@milosoftware.com
-Received: from unknown (HELO mikebuntu.TOPIC.LOCAL) (mike@milosoftware.com@81.173.50.109)
-  by 0 with ESMTPA; 19 Feb 2020 12:20:50 -0000
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-To:     robh+dt@kernel.org, michal.simek@xilinx.com, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-Cc:     m.tretter@pengutronix.de, nava.manne@xilinx.com,
-        rajan.vaja@xilinx.com, manish.narani@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mike Looijmans <mike.looijmans@topic.nl>
-Subject: [PATCH] devicetree: zynqmp.dtsi: Add bootmode selection support
-Date:   Wed, 19 Feb 2020 13:20:36 +0100
-Message-Id: <20200219122036.24575-1-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.17.1
+        id S1726725AbgBSM2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 07:28:50 -0500
+Received: from mail-mw2nam12on2081.outbound.protection.outlook.com ([40.107.244.81]:38650
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726491AbgBSM2u (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Feb 2020 07:28:50 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eDKwHAOkR+LJg2dSDMNF3Hn7O4/wqqrh8nlp5yLr71ZzYzcOOffiio5JbZKyPv54SA5hDXnZRzJ7ANGyAjRK1dKe7Up/LJkcrcGd4oaSnKVnHS9kvbUoFpINLuKqI40z/jrYIcsGFSTM++7dnI/D5pUWHkgnj4In3hme6a9OkSs9cnAucOUJXdkPcRK8IA2Y/dZh8/p5jgPv8ZGugAWHxiTaeiKs44EAhpFWxrKi2ds5OfIO3Dp35MJga3YG5IsTX61/6JsWOznV87qlUc0BtNKJDefFmzEFjlJXmU+MALJxHkF2XzVwK6KnWTq3rogJaY14Pb0OKrH97znQKn1LsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E58wuQu/fKXuTAg0heh2qA0UF98tN3F9EFXdgWH5mOc=;
+ b=XnC54JcX+dBL4RUms/uK6Dclr72IlwxVEleBDfjGeJg2fLKdxFAr+G7mz3jlznjrXbdpm9oOLEZLpQ7zUOajAWgavRfAXb07bMX8qA+i8nGaXx+Hs0xoxEanpUz4fBYH9aJjaPVEcCAdBWyf1X9CF3cyVrxsNBwU4A/H3H++q8FeWOz3T3Ec5hnsYAtkyYRBfwBEp0NFj0aBZnCo65Q7w4GFc9YB0q2E7oZG7wGYaN7zzm/pUfkCfeuD84cP3xK25jfnntlmP3+QeA2XWzDolVlEuNjKSzIH+d5tKmHkyURNzI9USWCVfvM4rAfwUKEgMk5MBh9TCUWQ0lz5j4XadQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E58wuQu/fKXuTAg0heh2qA0UF98tN3F9EFXdgWH5mOc=;
+ b=S8PEUFSCRgBUFZPn+VcViIP6eYLa8xaiJVI77BinbSHfuEh36yylvEoycw2EFVwIiCY2ZMZ66lQ52EXoui+6zset3pi2c2s59D0cDAFdkOSQOo/DmCY9fQpvBn95aRRm/geB3BWsKcDH+d5F7GttWOr9m7aJl+GK0Q95jJTOtJ0=
+Received: from MWHPR02CA0010.namprd02.prod.outlook.com (2603:10b6:300:4b::20)
+ by BYAPR02MB5125.namprd02.prod.outlook.com (2603:10b6:a03:67::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2729.24; Wed, 19 Feb
+ 2020 12:28:47 +0000
+Received: from BL2NAM02FT060.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e46::206) by MWHPR02CA0010.outlook.office365.com
+ (2603:10b6:300:4b::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.18 via Frontend
+ Transport; Wed, 19 Feb 2020 12:28:46 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ BL2NAM02FT060.mail.protection.outlook.com (10.152.76.124) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2729.22
+ via Frontend Transport; Wed, 19 Feb 2020 12:28:46 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <manish.narani@xilinx.com>)
+        id 1j4OT7-0006bu-PM; Wed, 19 Feb 2020 04:28:45 -0800
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <manish.narani@xilinx.com>)
+        id 1j4OT2-00064S-Lk; Wed, 19 Feb 2020 04:28:40 -0800
+Received: from xsj-pvapsmtp01 (xsj-smtp.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id 01JCSdA1016691;
+        Wed, 19 Feb 2020 04:28:39 -0800
+Received: from [172.23.64.106] (helo=xhdvnc125.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <mnarani@xilinx.com>)
+        id 1j4OT1-00064F-2Q; Wed, 19 Feb 2020 04:28:39 -0800
+Received: by xhdvnc125.xilinx.com (Postfix, from userid 16987)
+        id 419FE1211E6; Wed, 19 Feb 2020 17:58:38 +0530 (IST)
+From:   Manish Narani <manish.narani@xilinx.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        michal.simek@xilinx.com, adrian.hunter@intel.com
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        git@xilinx.com, Manish Narani <manish.narani@xilinx.com>
+Subject: [PATCH 0/2] Add support for Xilinx Versal SDHCI in Arasan driver
+Date:   Wed, 19 Feb 2020 17:58:31 +0530
+Message-Id: <1582115313-115667-1-git-send-email-manish.narani@xilinx.com>
+X-Mailer: git-send-email 2.1.1
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(39860400002)(396003)(376002)(136003)(189003)(199004)(6666004)(356004)(81156014)(2616005)(8676002)(70586007)(4744005)(81166006)(316002)(186003)(4326008)(36756003)(44832011)(426003)(70206006)(5660300002)(8936002)(26005)(6266002)(336012)(107886003)(2906002)(478600001)(42186006);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR02MB5125;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: b5ce6b66-751b-43cf-a295-08d7b537440f
+X-MS-TrafficTypeDiagnostic: BYAPR02MB5125:
+X-Microsoft-Antispam-PRVS: <BYAPR02MB5125BF2ABB8D9E8E5215FB48C1100@BYAPR02MB5125.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
+X-Forefront-PRVS: 0318501FAE
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: MRDCwsPLHXh7wmv9/C3lafIJal37aXotrPbphuVfqbxqxuCZ+F4bP6uddneRCkRxCR9MyF1DGtZKO+/cgIX6ApMMPPNblcz/QbnftSeonkkDQHR2vn8UGTxfMRbAiLSWFKW/t51uf23leNs2WvcdqYZmaNrfPeN3AFG1jLcKdzSn64I88id77K1b6cxTpxWXYopmsVi2j38vdQ8xwbxDH/iaL8j+x/UUmD5VdC3idFEuwTHThSaMVYJGB2EwsOiUQgp69XOLHkSBuKkoYVAIR537nmag62nO9ts5YB61ltE1hJwC2X9BvABImggLs0l7G0T+/fh3A5YafyaQI6DC5AhFYsaIJ9CRdVHA3PTWaUVUXJ7SKZfJl2KErEtSVuPHPB3DvbJ0DSacJICvrXG0eGdtfYz7R2cBqDAdF5ptfFWmspNuDJKuIXpI9TNeeQUJ
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2020 12:28:46.4187
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5ce6b66-751b-43cf-a295-08d7b537440f
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5125
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bootmode override support for ZynqMP devices. Allows one to select
-a boot device by running "reboot qspi32" for example. Activate config
-item CONFIG_SYSCON_REBOOT_MODE to make this work.
+This patch series includes:
+ -> Document the Xilinx Versal SD controller
+ -> Add support for Versal SD Tap Delays
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Manish Narani (2):
+  dt-bindings: mmc: arasan: Document 'xlnx,versal-8.9a' controller
+  sdhci: arasan: Add support for Versal Tap Delays
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 26d926eb1431..4c38d77ecbba 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -246,6 +246,30 @@
- 			};
- 		};
- 
-+		/* Clock and Reset control registers for LPD */
-+		lpd_apb: apb@ff5e0000 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0x0 0xff5e0000 0x0 0x400>;
-+			reboot-mode {
-+				compatible = "syscon-reboot-mode";
-+				offset = <0x200>;
-+				mask = <0xf100>;
-+				/* Bit(8) is the "force user" bit */
-+				mode-normal = <0x0000>;
-+				mode-psjtag = <0x0100>;
-+				mode-qspi24 = <0x1100>;
-+				mode-qspi32 = <0x2100>;
-+				mode-sd0    = <0x3100>;
-+				mode-nand   = <0x4100>;
-+				mode-sd1    = <0x6100>;
-+				mode-emmc   = <0x6100>;
-+				mode-usb0   = <0x7100>;
-+				mode-pjtag0 = <0x8100>;
-+				mode-pjtag1 = <0x9100>;
-+				mode-sd1ls  = <0xe100>;
-+			};
-+		};
-+
- 		/* GDMA */
- 		fpd_dma_chan1: dma@fd500000 {
- 			status = "disabled";
+ .../devicetree/bindings/mmc/arasan,sdhci.txt  |  15 ++
+ drivers/mmc/host/sdhci-of-arasan.c            | 176 +++++++++++++++++-
+ 2 files changed, 189 insertions(+), 2 deletions(-)
+
 -- 
 2.17.1
 
