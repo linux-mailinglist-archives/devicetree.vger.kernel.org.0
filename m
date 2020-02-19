@@ -2,74 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E1F6163DAF
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 08:34:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C45163DF2
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 08:40:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727581AbgBSHef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 02:34:35 -0500
-Received: from [167.172.186.51] ([167.172.186.51]:35192 "EHLO shell.v3.sk"
-        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726824AbgBSHeI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Feb 2020 02:34:08 -0500
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id DD9B2DFCA2;
-        Wed, 19 Feb 2020 07:34:22 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id TklClGzdHZXb; Wed, 19 Feb 2020 07:34:19 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 2A517E0052;
-        Wed, 19 Feb 2020 07:34:18 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id gaoAiPHX0KQk; Wed, 19 Feb 2020 07:34:16 +0000 (UTC)
-Received: from furthur.lan (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 6BB55E007F;
-        Wed, 19 Feb 2020 07:34:16 +0000 (UTC)
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lubomir Rintel <lkundrak@v3.sk>
-Subject: [PATCH 10/10] ARM: dts: mmp3: Use the MMP3 compatible string for /clocks
-Date:   Wed, 19 Feb 2020 08:33:53 +0100
-Message-Id: <20200219073353.184336-11-lkundrak@v3.sk>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200219073353.184336-1-lkundrak@v3.sk>
-References: <20200219073353.184336-1-lkundrak@v3.sk>
+        id S1726779AbgBSHkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 02:40:32 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42636 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726617AbgBSHkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 02:40:32 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01J7eCE9039727;
+        Wed, 19 Feb 2020 01:40:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1582098012;
+        bh=VaG7B2bGbHNlAfHLv9Ip0v42uYVXRIDKNvFcIuScbYw=;
+        h=From:Subject:To:CC:References:Date:In-Reply-To;
+        b=q9i5Ygiz8OfuCBFhUGMe5KWJiArr5HftFtDaiDyPd8HHxDwgKm72sQr0xugcN/br8
+         ps8KUzpV5mUHKnGTRgSx3FzpCJRLcRtGfWmCiikxWPp2LM0OfZq+DSMBfjubxPSH27
+         ql4N0DeM6myYiGZ/U4xofSz7POyS03Ap7TYflsUU=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01J7eCWc120603
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 19 Feb 2020 01:40:12 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 19
+ Feb 2020 01:40:11 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 19 Feb 2020 01:40:11 -0600
+Received: from [10.24.69.174] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01J7e8tQ093251;
+        Wed, 19 Feb 2020 01:40:08 -0600
+From:   Keerthy <j-keerthy@ti.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: thermal: k3: Add VTM bindings
+ documentation
+To:     Rob Herring <robh@kernel.org>
+CC:     <rui.zhang@intel.com>, <robh+dt@kernel.org>,
+        <daniel.lezcano@linaro.org>, <amit.kucheria@verdurent.com>,
+        <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <mark.rutland@arm.com>
+References: <20200214063443.23589-1-j-keerthy@ti.com>
+ <20200214063443.23589-2-j-keerthy@ti.com> <20200218202048.GA32279@bogus>
+Message-ID: <6895cf5e-9195-c914-f4ce-a83f36027dbf@ti.com>
+Date:   Wed, 19 Feb 2020 13:10:13 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200218202048.GA32279@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clocks are in fact slightly different on MMP3. In particular, PLL2 is
-fixed to a different frequency, there's an extra PLL3, and the GPU
-clocks are configured differently.
 
-Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
----
- arch/arm/boot/dts/mmp3.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/mmp3.dtsi b/arch/arm/boot/dts/mmp3.dtsi
-index 59a108e49b41e..3e28f0dc9df41 100644
---- a/arch/arm/boot/dts/mmp3.dtsi
-+++ b/arch/arm/boot/dts/mmp3.dtsi
-@@ -531,7 +531,7 @@ l2: l2-cache-controller@d0020000 {
- 		};
-=20
- 		soc_clocks: clocks@d4050000 {
--			compatible =3D "marvell,mmp2-clock";
-+			compatible =3D "marvell,mmp3-clock";
- 			reg =3D <0xd4050000 0x1000>,
- 			      <0xd4282800 0x400>,
- 			      <0xd4015000 0x1000>;
---=20
-2.24.1
+On 19/02/20 1:50 am, Rob Herring wrote:
+> On Fri, 14 Feb 2020 12:04:40 +0530, Keerthy wrote:
+>> Add VTM bindings documentation. In the Voltage Thermal
+>> Management Module(VTM), K3 AM654 supplies a voltage
+>> reference and a temperature sensor feature that are gathered in the band
+>> gap voltage and temperature sensor (VBGAPTS) module. The band
+>> gap provides current and voltage reference for its internal
+>> circuits and other analog IP blocks. The analog-to-digital
+>> converter (ADC) produces an output value that is proportional
+>> to the silicon temperature.
+>>
+>> Signed-off-by: Keerthy <j-keerthy@ti.com>
+>> ---
+>>
+>> Changes in v2:
+>>
+>>    * Fixed make dt_binding_check errors.
+>>
+>>   .../bindings/thermal/ti,am654-thermal.yaml    | 57 +++++++++++++++++++
+>>   1 file changed, 57 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/thermal/ti,am654-thermal.yaml
+>>
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
+> Error: Documentation/devicetree/bindings/thermal/ti,am654-thermal.example.dts:21.41-42 syntax error
+> FATAL ERROR: Unable to parse input tree
+> scripts/Makefile.lib:300: recipe for target 'Documentation/devicetree/bindings/thermal/ti,am654-thermal.example.dt.yaml' failed
+> make[1]: *** [Documentation/devicetree/bindings/thermal/ti,am654-thermal.example.dt.yaml] Error 1
+> Makefile:1263: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
+> 
+> See https://patchwork.ozlabs.org/patch/1237882
+> Please check and re-submit.
 
+Rob,
+
+I am using:
+
+Tree: https//github.com/devicetree-org/dt-schema.git
+branch: master
+
+I have make dt_binding_check working for 
+Documentation/devicetree/bindings/thermal/ti,am654-thermal.example.dt.yaml
+
+Documentation/devicetree/bindings/thermal/ti,am654-thermal.example.dts
+is created without any errors :
+
+https://pastebin.ubuntu.com/p/6MkMbKPpbY/
+
+I did not see any errors as the other files erred out.
+
+Today i tried with DT_SCHEMA_FILES option and then finally reproduced 
+the errors. It is a bit confusing for the first time users.
+
+Now i have it compiled without any errors.
+
+Posting v3 in a bit.
+
+- Keerthy
+
+
+> 
