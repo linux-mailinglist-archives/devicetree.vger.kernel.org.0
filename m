@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83372164128
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 11:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2118164132
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 11:05:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726495AbgBSKD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 05:03:59 -0500
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:41187 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726450AbgBSKD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 05:03:59 -0500
-Received: by mail-lf1-f67.google.com with SMTP id m30so16921831lfp.8
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 02:03:57 -0800 (PST)
+        id S1726610AbgBSKFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 05:05:51 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:44208 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726453AbgBSKFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 05:05:51 -0500
+Received: by mail-lj1-f194.google.com with SMTP id q8so26334537ljj.11
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 02:05:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=9ex0WUr4F2ykNAf/zHRS2tfhIPnCxChpfveEhtUGkE0=;
-        b=C2uNySUwOeXYR/vew7ZZjkCVofjMXMj+nLEIq58Zg1YK8jCxDkcDmp2/mbQMJm83G/
-         piahvjEDPIwTmNhg28Yc1I5G6tVoQLboIm6/4xfUCiN50EfXiA910XCSUINyvei67vrq
-         y3N0YOB6uW7YRBGHRbkBMXQetSjWXJoNzWiUPCjt4VLmRAHR+1OdoSKrSjxqRDTmak72
-         sUPMZ/PFGqMUrjBwnjThdNLGZaDcjkKs+2q1a9fHefyCo5lpvvfyFskYskw/RuvqClBz
-         +XA8btAavsQ0y3+04JkqrR/w0y9nfgzE3uEEdZPZNLvVwpLXsZu6C7WyUIEyAo6auMRu
-         tiWQ==
+        b=zHgvSM9CWvZNU8ODajadg6jZoZu9I9pM8v7X+PLxpLoQTcpd+p86aAb+pT1GJ8O8kr
+         jnMRWQ7KF/kcg7+AR7mMs4lKVphHwGUEW1O6yoZAzyDuhv5B+zaJAH4bbIBCXYOjMHZ0
+         AZakDmJDFII1L8ZG8fgsa+wFYd4mxhLOfqvjNDYTgJ8MoGJh0uHLCv9T7EWJd4Ea0da1
+         Xwxpp14HJvQlCmD0eiDMsgmfoQiZVqdoyPyzHCNUUzFQWp+VyQrP3UmnOLQyVGRfZabR
+         hwR7w+TxFgAEOm5BfYx5pToPWIB8UpW4txFgfhwj5V9R2aqGTT0d0fLKP89aJ2ukZkQt
+         1zSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=9ex0WUr4F2ykNAf/zHRS2tfhIPnCxChpfveEhtUGkE0=;
-        b=Ftxu2LIuMJI/es46PifsJdBJG0F8zd29SVl76M5T7uESFNfV7JmKT8sZmsjWS0oA1K
-         D84RRjZ7I3YbjyoXW8Xd+Ihr1T8SiKqMKKtca7TzswKExYXO/y7DeHkR3xDX7Gpftu0+
-         vqLcdGuuB6QEEit5BtbhwbeEs3pSRYSwP6olQpDt2eH9R4H/Gai4YH9nbw0XpyCTYqmr
-         z9/rJtnjuBSqNU7FBem52kDc5Q946SHkFD07ObGN/HDKlTIhRhkAXKArfPjvV1JoG/jB
-         eNflC5wJmOJElPVy+DXlvnKLaw9S2b5S76fzgvukm4aH1yiTQCdSHZqJe2KHtKhbEE8k
-         1+9Q==
-X-Gm-Message-State: APjAAAXE+KYAb518jILCKV8BT6vIlFuZhnlKCBr9iYDcphvkF0MrrYw7
-        Hotsd3s+b+rMoYc+eNZmG1k/bQ==
-X-Google-Smtp-Source: APXvYqzuj2PjMvzj7EzYtgRASEpJMDNCrByBqcjlHrIBICaGty2X3Tjzk6HvHNW1CVKmSUN9qM4gwg==
-X-Received: by 2002:a19:c3c2:: with SMTP id t185mr13021040lff.56.1582106636682;
-        Wed, 19 Feb 2020 02:03:56 -0800 (PST)
+        b=NB+vAD4cjoIL+XGwn8aNhcgtmpRFh15dtX0j1iy1MtH6trdP+OOF4nCGBdlEP2Uoar
+         XcKFTo7vDEV/Z165e4Ni49EXxZYwviJbN/xSuVtLdSSFALQeLr8juyvHxxl5pcO6eSys
+         I5NXeERJGp2Y/VAhTqkYPbghzal4N4p/n/BkV8vbHt0g2x/i8L5SqSwN9r2Tqx6YzNnn
+         1tm6YFmVU01hUAoZB1kK0AY2+Kha/sXf2BtanC6RUfc9PPJOj9X2EKOPbygWCDT2sB5F
+         2W6cgV9ueSG4c3res221qR4zY9kf259lTOAonhP4A7LuCdHINmwl4KKqREcQ9+vZSEFb
+         x5eg==
+X-Gm-Message-State: APjAAAVG5e/2N6YUNyZ4+7H4B/gFmhGY5HhKMhT85ev8/YHqW+UJmg+2
+        WZ5zBvyoM5pppoV5TGIHZnUG8g==
+X-Google-Smtp-Source: APXvYqwaCKy7oDhbeUTUddmog8SqP+85G8xRkYZCus5ifHqXA/JQPPz7quKLDtwjJrb8W/sW1ted5A==
+X-Received: by 2002:a2e:9b12:: with SMTP id u18mr15590604lji.274.1582106748043;
+        Wed, 19 Feb 2020 02:05:48 -0800 (PST)
 Received: from genomnajs.ideon.se ([85.235.10.227])
-        by smtp.gmail.com with ESMTPSA id n1sm918913lfq.16.2020.02.19.02.03.55
+        by smtp.gmail.com with ESMTPSA id r2sm1079982lff.63.2020.02.19.02.05.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2020 02:03:55 -0800 (PST)
+        Wed, 19 Feb 2020 02:05:47 -0800 (PST)
 From:   Linus Walleij <linus.walleij@linaro.org>
 To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@codeaurora.org>
+        Stephen Boyd <sboyd@kernel.org>
 Cc:     linux-clk@vger.kernel.org,
         Linus Walleij <linus.walleij@linaro.org>,
         devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
 Subject: [PATCH 1/3 v2] dt-bindings: clock: Create YAML schema for ICST clocks
-Date:   Wed, 19 Feb 2020 11:03:44 +0100
-Message-Id: <20200219100346.78227-1-linus.walleij@linaro.org>
+Date:   Wed, 19 Feb 2020 11:05:41 +0100
+Message-Id: <20200219100543.78424-1-linus.walleij@linaro.org>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
