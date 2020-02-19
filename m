@@ -2,73 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AABDE16485D
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 16:19:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E8D164877
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 16:25:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726683AbgBSPTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 10:19:46 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:42082 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726634AbgBSPTq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 10:19:46 -0500
-Received: by mail-ot1-f66.google.com with SMTP id 66so451537otd.9;
-        Wed, 19 Feb 2020 07:19:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=x+3HypG8MPZlCVq8NF/1pnld6WhQ7Qev4G7MICGX0f8=;
-        b=WSaMJJsP7rWhOWay5xlXBaHJD5L2LWXd7q6zIfYxVPr+BohbJON0l6FvuSQQvgakrN
-         IYLs7SORO34or30OlLxvWzYqjxVOLG9r+U0pO3DqGjzRCE713O6h3JDQGyNNXn/fFM7z
-         9sH06QnpbTtuu9fFZhn+C6rEMy2GKZ0y+AaFagDtXcdjYFvFZJbP0h3vYDR006tRqWTh
-         0yca4e/c4fomNmRKbIP75dLvphR05eT80vcpk8DAGGce8SpjeYoVNqWtbm2+r2v6n6cg
-         j2WrHfmGRMKi62j9j/Cku0fuJOJM9TmwQ/ko3T6xHgFr0M8f3n2SStgvCiFspvHDneYH
-         Tl3Q==
-X-Gm-Message-State: APjAAAVfwkPkQpvL84xB1P+YmjncbYQBk/t8V1/KSlR6IQpfLY2GaIR6
-        ZenwlxMDzce/THBeTUdDVg==
-X-Google-Smtp-Source: APXvYqw7Q2E+ee6dnEwhNr85ShyimLpqfNxeaNDxSohaDwUzJ4J+PAU14izexHidqelCTonX3S8O6Q==
-X-Received: by 2002:a9d:ec7:: with SMTP id 65mr20412335otj.309.1582125585559;
-        Wed, 19 Feb 2020 07:19:45 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 67sm62827oid.30.2020.02.19.07.19.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2020 07:19:45 -0800 (PST)
-Received: (nullmailer pid 9942 invoked by uid 1000);
-        Wed, 19 Feb 2020 15:19:44 -0000
-Date:   Wed, 19 Feb 2020 09:19:44 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Henry Shen <henry.shen@alliedtelesis.co.nz>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        guillaume.ligneul@gmail.com, jdelvare@suse.com, linux@roeck-us.net,
-        trivial@kernel.org, venture@google.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Henry Shen <henry.shen@alliedtelesis.co.nz>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add TI LM73 as a trivial device
-Message-ID: <20200219151944.GA9881@bogus>
-References: <20200212030615.28537-1-henry.shen@alliedtelesis.co.nz>
- <20200212030615.28537-2-henry.shen@alliedtelesis.co.nz>
+        id S1727046AbgBSPZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 10:25:38 -0500
+Received: from foss.arm.com ([217.140.110.172]:51174 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727036AbgBSPZh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Feb 2020 10:25:37 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ADCFCFEC;
+        Wed, 19 Feb 2020 07:25:36 -0800 (PST)
+Received: from [10.1.196.37] (e121345-lin.cambridge.arm.com [10.1.196.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 71F343F68F;
+        Wed, 19 Feb 2020 07:25:30 -0800 (PST)
+Subject: Re: dma_mask limited to 32-bits with OF platform device
+To:     Roger Quadros <rogerq@ti.com>, Rob Herring <robh+dt@kernel.org>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        "Nori, Sekhar" <nsekhar@ti.com>, "Anna, Suman" <s-anna@ti.com>,
+        Stefan Wahren <stefan.wahren@i2se.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+References: <c1c75923-3094-d3fc-fe8e-ee44f17b1a0a@ti.com>
+ <3a91f306-f544-a63c-dfe2-7eae7b32bcca@arm.com>
+ <56314192-f3c6-70c5-6b9a-3d580311c326@ti.com>
+ <9bd83815-6f54-2efb-9398-42064f73ab1c@arm.com>
+ <20200217132133.GA27134@lst.de> <b3c56884-128e-a7e1-2e09-0e8de3c3512d@ti.com>
+ <CAL_JsqLxECRKWG3SoORADtZ-gVbqCHyx9mhGzrCPO+X=--w8AQ@mail.gmail.com>
+ <15d0ac5f-4919-5852-cd95-93c24d8bdbb9@ti.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <827fa19d-1990-16bc-33f5-fc82ac0d4a8a@arm.com>
+Date:   Wed, 19 Feb 2020 15:25:29 +0000
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200212030615.28537-2-henry.shen@alliedtelesis.co.nz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <15d0ac5f-4919-5852-cd95-93c24d8bdbb9@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Feb 2020 16:06:14 +1300, Henry Shen wrote:
+On 19/02/2020 2:29 pm, Roger Quadros wrote:
+> Rob,
 > 
-> The Texas Instruments LM73 is a digital temperature sensor with 2-wire
-> interface. Add LM73 as a trivial device.
+> On 18/02/2020 19:22, Rob Herring wrote:
+>> On Tue, Feb 18, 2020 at 2:28 AM Roger Quadros <rogerq@ti.com> wrote:
+>>>
+>>> Chrishtoph,
+>>>
+>>> The branch works fine for SATA on DRA7 with CONFIG_LPAE once I
+>>> have the below DT fix.
+>>>
+>>> Do you intend to send these fixes to -stable?
+>>>
+>>> ------------------------- arch/arm/boot/dts/dra7.dtsi 
+>>> -------------------------
+>>> index d78b684e7fca..853ecf3cfb37 100644
+>>> @@ -645,6 +645,8 @@
+>>>                  sata: sata@4a141100 {
+>>>                          compatible = "snps,dwc-ahci";
+>>>                          reg = <0x4a140000 0x1100>, <0x4a141100 0x7>;
+>>> +                       #size-cells = <2>;
+>>> +                       dma-ranges = <0x00000000 0x00000000 0x1 
+>>> 0x00000000>;
+>>
+>> dma-ranges should be in the parent (bus) node, not the device node.
 > 
-> Signed-off-by: Henry Shen <henry.shen@alliedtelesis.co.nz>
-> ---
-> Changes in v2:
-> - add missing sign-off
+> I didn't understand why.
 > 
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> There are many devices on the parent bus node and all devices might not 
+> have the 32-bit DMA limit
+> the SATA controller has.
 > 
+> SATA controller is the bus master and the ATA devices are children of 
+> the SATA controller.
 
-Acked-by: Rob Herring <robh@kernel.org>
+But SATA is not a memory-mapped bus - in the context of MMIO, the AHCI 
+is the bus-master device, not a bridge or level of interconnect. The 
+DeviceTree spec[1] clearly defines dma-ranges as an address translation 
+between a "parent bus" and a "child bus".
+
+If in the worst case this address-limited interconnect really only 
+exists between the AHCI's master interface and everything else in the 
+system, then you'll have to describe it explicitly to meet DT's 
+expectation of a "bus" (e.g. [2]). Yes, it's a bit clunky, but any 
+scheme has its edge cases.
+
+>  From Documentation/devicetree/booting-without-of.txt
+> 
+> * DMA Bus master
+> Optional property:
+> - dma-ranges: <prop-encoded-array> encoded as arbitrary number of 
+> triplets of
+>          (child-bus-address, parent-bus-address, length). Each triplet 
+> specified
+>          describes a contiguous DMA address range.
+>          The dma-ranges property is used to describe the direct memory 
+> access (DMA)
+>          structure of a memory-mapped bus whose device tree parent can 
+> be accessed
+>          from DMA operations originating from the bus. It provides a 
+> means of
+>          defining a mapping or translation between the physical address 
+> space of
+>          the bus and the physical address space of the parent of the bus.
+>          (for more information see the Devicetree Specification)
+> 
+> * DMA Bus child
+> Optional property:
+> - dma-ranges: <empty> value. if present - It means that DMA addresses
+>          translation has to be enabled for this device.
+
+Disregarding that this was apparently never in ePAPR, so not 
+grandfathered in to DTSpec, and effectively nobody ever has actually 
+followed it (oh, if only...), note "<empty>" - that still doesn't imply 
+that a *non-empty* dma-ranges would be valid on device nodes.
+
+Robin.
+
+[1] https://www.devicetree.org/specifications/
+[2] 
+https://lore.kernel.org/lkml/20181010120737.30300-20-laurentiu.tudor@nxp.com/
