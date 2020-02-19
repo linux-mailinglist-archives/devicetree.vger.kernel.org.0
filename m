@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A172616526B
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 23:22:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4BA4165275
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 23:24:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727291AbgBSWWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 17:22:45 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44570 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727163AbgBSWWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 17:22:45 -0500
-Received: by mail-ot1-f68.google.com with SMTP id h9so1739340otj.11;
-        Wed, 19 Feb 2020 14:22:44 -0800 (PST)
+        id S1727462AbgBSWY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 17:24:57 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:34831 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727163AbgBSWY5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 17:24:57 -0500
+Received: by mail-oi1-f193.google.com with SMTP id b18so25521148oie.2;
+        Wed, 19 Feb 2020 14:24:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:content-language
-         :user-agent;
-        bh=2sNkfWb3pfIlKB+u9ML9Dfe9kkvuZVvEoC0qldkLHAg=;
-        b=oI3LdgTZBAJbQgzfbrh4jTDKwNRaJ6x5WDlckhG0M57gmhBR4ogEv5qXAgi4XhHKxe
-         Z7H4wc+z7ePJJBwNwyjlt9k9g6+cIGwoQiTVamuKNUm7rUN3TBDpNO6gWSVrPZmG5Ise
-         NSsJxZfbv17rlM2dGLTaLoMWOiXB1g8g4kC9gzQYOZfrE57dSdiRhpOD2pX/SV5vWmc6
-         ghbxwGNViCEQ5asJBbCaB6Jmt1HVLgolwJKBqKLl2nyxFmkPi3Lli5qDOh89l9dY37QL
-         kyFjteZf/Eo9a3fGNl6BB5CYsdsLIViCPfxud22jKbmdiuEZivGAV2UOb9Lt5U0m4uXP
-         oNMg==
-X-Gm-Message-State: APjAAAW5OWsqL7P0FZ/igQ39CQhsDjMkJQpm39aqeU2zKTwyrCVaeyHk
-        QWgmf5JrlHT2mntkF4gW7g==
-X-Google-Smtp-Source: APXvYqz7rt85MIurXjJi9Zhc8regbA3GAy27xdpXY9iVID53QfHaCOnwuA5h4zSXeZvXkfnK6tcwTQ==
-X-Received: by 2002:a9d:6e02:: with SMTP id e2mr22323857otr.194.1582150964507;
-        Wed, 19 Feb 2020 14:22:44 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=bw/arhxO0zD6uxPv9B55JT/z9CSekm6k6Bmp/kVtLV0=;
+        b=iDoyGV5c0sHKnm8fR8KkHHXF/ntWO0w46zg5ISA1UjqFbYZT6PWEJgNscnK/WbzFiq
+         zST2+piKM7q4lOxSJE3idurDkXnWN9cSm6HbTejthJM8QihAnSXj8sXAo7xbKMTtaAS7
+         R+WoTJmlNxUJkgnSnwOknoV1cqtrkw7YI9ZMijGBZoRy9hvljRb3nHsjSnn0202Hxko5
+         ctpdzYwDrwk5IAm+qS6+AOz7vbKP3Y95XtDb/Qv/Y2j1gvtcBF4uxDIfF+BjDYotZnno
+         20hfTkJf79AF5oeNR9v6EGFKZ/8u7aOzMtdKfUJeOVRhd5US+KM0S1fes2AIirl+AuPS
+         hjwQ==
+X-Gm-Message-State: APjAAAUGzG6jwCLUc/rfUKD8lpIHVFw6wRIecqwf7YvXqQxbHcZIFltT
+        MvGzhud4J5MSdT4SGnsLUg==
+X-Google-Smtp-Source: APXvYqzZzuIwDzmzfqhTKUe49az+Etwqyco/nG1nDw+t4D7VEkxMrWlgNAsahLPneOunxOSWnXEiHQ==
+X-Received: by 2002:aca:d903:: with SMTP id q3mr6124909oig.12.1582151096719;
+        Wed, 19 Feb 2020 14:24:56 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n16sm382938otk.25.2020.02.19.14.22.43
+        by smtp.gmail.com with ESMTPSA id l80sm428436oib.37.2020.02.19.14.24.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2020 14:22:43 -0800 (PST)
-Received: (nullmailer pid 13215 invoked by uid 1000);
-        Wed, 19 Feb 2020 22:22:42 -0000
-Date:   Wed, 19 Feb 2020 16:22:42 -0600
+        Wed, 19 Feb 2020 14:24:56 -0800 (PST)
+Received: (nullmailer pid 16262 invoked by uid 1000);
+        Wed, 19 Feb 2020 22:24:54 -0000
+Date:   Wed, 19 Feb 2020 16:24:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Oliver Graute <oliver.graute@kococonnector.com>
-Cc:     "aisheng.dong@nxp.com" <aisheng.dong@nxp.com>,
-        "fabio.estevam@nxp.com" <fabio.estevam@nxp.com>,
-        "peng.fan@nxp.com" <peng.fan@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1] dt-bindings: arm64: imx: Add board binding for
- i.MX8QM MEK  Board
-Message-ID: <20200219222242.GA13182@bogus>
-References: <20200213144451.31455-1-oliver.graute@kococonnector.com>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     bhelgaas@google.com, will@kernel.org, robh+dt@kernel.org,
+        lorenzo.pieralisi@arm.com, joro@8bytes.org,
+        baolu.lu@linux.intel.com, linux-doc@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        iommu@lists.linux-foundation.org, corbet@lwn.net,
+        mark.rutland@arm.com, liviu.dudau@arm.com, sudeep.holla@arm.com,
+        guohanjun@huawei.com, rjw@rjwysocki.net, lenb@kernel.org,
+        robin.murphy@arm.com, dwmw2@infradead.org,
+        amurray@thegoodpenguin.co.uk, frowand.list@gmail.com
+Subject: Re: [PATCH 01/11] dt-bindings: PCI: generic: Add ats-supported
+ property
+Message-ID: <20200219222454.GA16221@bogus>
+References: <20200213165049.508908-1-jean-philippe@linaro.org>
+ <20200213165049.508908-2-jean-philippe@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200213144451.31455-1-oliver.graute@kococonnector.com>
-Content-Language: en-US
+In-Reply-To: <20200213165049.508908-2-jean-philippe@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 13 Feb 2020 14:46:05 +0000, Oliver Graute wrote:
+On Thu, 13 Feb 2020 17:50:39 +0100, Jean-Philippe Brucker wrote:
+> Add a way for firmware to tell the OS that ATS is supported by the PCI
+> root complex. An endpoint with ATS enabled may send Translation Requests
+> and Translated Memory Requests, which look just like Normal Memory
+> Requests with a non-zero AT field. So a root controller that ignores the
+> AT field may simply forward the request to the IOMMU as a Normal Memory
+> Request, which could end badly. In any case, the endpoint will be
+> unusable.
 > 
-> Add board binding for i.MX8QM MEK Board
+> The ats-supported property allows the OS to only enable ATS in endpoints
+> if the root controller can handle ATS requests. Only add the property to
+> pcie-host-ecam-generic for the moment. For non-generic root controllers,
+> availability of ATS can be inferred from the compatible string.
 > 
-> Signed-off-by: Oliver Graute <oliver.graute@kococonnector.com>
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 > ---
-> 
->  this patch should belong to this series:
-> 
->  https://patchwork.kernel.org/patch/10824573/
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 6 ++++++
 >  1 file changed, 6 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
