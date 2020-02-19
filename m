@@ -2,66 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 138E716487E
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 16:26:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AFD6164883
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 16:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726797AbgBSP0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 10:26:24 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:53892 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726613AbgBSP0Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Feb 2020 10:26:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=cYDobEu6rKQswzuKoGHjv5OS328UTQI3LLUGuR+DB4M=; b=bQCfHoSfaVstAxfgjAottRCrX0
-        FRjenW1dHoU1vnePbgNfmtIIwyiVb+4IYOwYXrPYIv8XtWDWltthYjdcf7slZG5Si/cU1ij8w1r1N
-        OnpWzaO2+P3qiGIoOq++8lonSiL7BH+lxCEn1IuIjYaqMTs/d2LqVUmy0TEBVGJ9A0eA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
-        (envelope-from <andrew@lunn.ch>)
-        id 1j4REs-00010w-My; Wed, 19 Feb 2020 16:26:14 +0100
-Date:   Wed, 19 Feb 2020 16:26:14 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, davem@davemloft.net,
-        netdev@vger.kernel.org, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 net-next/devicetree 2/5] net: dsa: felix: Use
- PHY_INTERFACE_MODE_INTERNAL instead of GMII
-Message-ID: <20200219152614.GB3281@lunn.ch>
-References: <20200219151259.14273-1-olteanv@gmail.com>
- <20200219151259.14273-3-olteanv@gmail.com>
+        id S1726701AbgBSP1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 10:27:16 -0500
+Received: from mail-wr1-f54.google.com ([209.85.221.54]:42479 "EHLO
+        mail-wr1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726613AbgBSP1Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 10:27:16 -0500
+Received: by mail-wr1-f54.google.com with SMTP id k11so997671wrd.9
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 07:27:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=xr4KCy9LjDDC7/U990Djpkp9h3+bHMJP/CuHnuQdnQo=;
+        b=qLusgcn5KbYtblag3ItTqC/KfOT7gzpTagmfjrK72YZF2YtNKk3oZEojedbhvN+otQ
+         NEw7qy5LvmAR9XYW/jvQ7BZup7ygvcw9HJGfzOe2jjfV3JjpMms5H1AQH9OFclJqgTuS
+         uLKOer0DPMTVNsYuCC8CMbDhrv2Yt2TU+K14mhJTBIVNS9Sgu/AzaY7NEIm0yZK5c5dI
+         y7LmmO8BuUCbitrvTF3q6PsbBkNkDXMFCW8Bc/F0qZb2yJex04sRccZWuXsWVFAxyjQ+
+         31i/D8+L5aA1lXOsIVSGa3AuErQys1+UHlCv2IFT4kJ4ICrkBI5uiDC2hVNEkZuDCdgX
+         u88g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=xr4KCy9LjDDC7/U990Djpkp9h3+bHMJP/CuHnuQdnQo=;
+        b=dGylQnNrUE0aG4VFqtclyYpTaobcD8fzD759pGL4MpLmQbTtLcbr1pLit3NUM/0dp1
+         GNUJYvOXrD1PWY8E0tAKaJ9nPc4sHpSzrZOkY/mrR9f/ki1ibG1dXhgyxui7TPdJXR0T
+         rs70XaMtBlkW8vZJUz9RKwYfH20Q6/T8wFZD+FIjG6w9bQ/IOh5/C5aJhzHdCWP7ZD9T
+         EYEMUVAAGjBKr6bE0OKBu60uxgq/3ylcWmmpyR7DPD3Bh984R/bNFaZi8GjBPY9R5A5N
+         l1Js3OsjTr+VuiF2nDnecUCvasaea5UGx+ktjj/JRy29+I9ivb1n37xvAL1jFwl8pTVj
+         A0ww==
+X-Gm-Message-State: APjAAAVZkGeS/Rj4vEvk65fc9YUZJs6n360v7oqOBlDA27lcvxXNmzOK
+        L4FzFnSF41vCyDtaWQ6TK3J0bA==
+X-Google-Smtp-Source: APXvYqwYyZmGAEcdumWTLBen7hSlFvchvYN2atMg/kgjiqNCGQr0Y4/R6fWnH8UUM7Wz8uv/QQZF1A==
+X-Received: by 2002:adf:e50f:: with SMTP id j15mr36883719wrm.356.1582126033825;
+        Wed, 19 Feb 2020 07:27:13 -0800 (PST)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.gmail.com with ESMTPSA id t81sm241883wmg.6.2020.02.19.07.27.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2020 07:27:13 -0800 (PST)
+References: <20200219133646.1035506-1-jbrunet@baylibre.com> <20200219133646.1035506-3-jbrunet@baylibre.com> <20200219145500.GC4488@sirena.org.uk>
+User-agent: mu4e 1.3.3; emacs 26.3
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 2/2] ASoC: meson: add t9015 internal DAC driver
+In-reply-to: <20200219145500.GC4488@sirena.org.uk>
+Date:   Wed, 19 Feb 2020 16:27:12 +0100
+Message-ID: <1ja75ey4vj.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200219151259.14273-3-olteanv@gmail.com>
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 19, 2020 at 05:12:56PM +0200, Vladimir Oltean wrote:
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> 
-> phy-mode = "gmii" is confusing because it may mean that the port
-> supports the 8-bit-wide parallel data interface pinout, which it
-> doesn't.
-> 
-> It may also be confusing because one of the "gmii" internal ports is
-> actually overclocked to run at 2.5Gbps (even though, yes, as far as the
-> switch MAC is concerned, it still thinks it's gigabit).
-> 
-> So use the phy-mode = "internal" property to describe the internal ports
-> inside the NXP LS1028A chip (the ones facing the ENETC). The change
-> should be fine, because the device tree bindings document is yet to be
-> introduced, and there are no stable DT blobs in use.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Wed 19 Feb 2020 at 15:55, Mark Brown <broonie@kernel.org> wrote:
 
-    Andrew
+>> +	/* Channel Src */
+>> +	SOC_ENUM("Right DAC Source", dacr_in_enum),
+>> +	SOC_ENUM("Left DAC Source",  dacl_in_enum),
+>
+> Ideally these would be moved into DAPM (using an AIF_IN widget for the
+> DAI).
+
+I can (I initially did) but I don't think it is worth it.
+
+I would split Playback into 2 AIF for Left and Right, then add a mux to
+select one them if front of both DAC. It will had 4 widgets and 6 routes
+but it won't allow turn anything on or off. There is no PM improvement.
+
+Do you still want me to change this ?
