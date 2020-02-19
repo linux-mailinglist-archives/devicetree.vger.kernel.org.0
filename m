@@ -2,70 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 821031643DB
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 13:06:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BC9E16443F
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 13:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726617AbgBSMGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 07:06:14 -0500
-Received: from foss.arm.com ([217.140.110.172]:47502 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726495AbgBSMGO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Feb 2020 07:06:14 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6B9731B;
-        Wed, 19 Feb 2020 04:06:13 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6A28E3F6CF;
-        Wed, 19 Feb 2020 04:06:13 -0800 (PST)
-Date:   Wed, 19 Feb 2020 12:06:11 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     lgirdwood@gmail.com, heiko@sntech.de, alsa-devel@alsa-project.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, pgwipeout@gmail.com
-Subject: Re: [PATCH v2 2/3] ASoC: rockchip: Make RK3328 GPIO_MUTE control
- explicit
-Message-ID: <20200219120611.GB4488@sirena.org.uk>
-References: <cover.1581376744.git.robin.murphy@arm.com>
- <5bc383ed1832f0f5d1dcb3c97ad92fd68e5217e3.1581376744.git.robin.murphy@arm.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yNb1oOkm5a9FJOVX"
-Content-Disposition: inline
-In-Reply-To: <5bc383ed1832f0f5d1dcb3c97ad92fd68e5217e3.1581376744.git.robin.murphy@arm.com>
-X-Cookie: FORTH IF HONK THEN
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727620AbgBSM30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 07:29:26 -0500
+Received: from atl4mhfb03.myregisteredsite.com ([209.17.115.119]:60648 "EHLO
+        atl4mhfb03.myregisteredsite.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726491AbgBSM30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Feb 2020 07:29:26 -0500
+X-Greylist: delayed 512 seconds by postgrey-1.27 at vger.kernel.org; Wed, 19 Feb 2020 07:29:25 EST
+Received: from atl4mhob15.registeredsite.com (atl4mhob15.registeredsite.com [209.17.115.53])
+        by atl4mhfb03.myregisteredsite.com (8.14.4/8.14.4) with ESMTP id 01JCKqUq002336
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 07:20:52 -0500
+Received: from mailpod.hostingplatform.com (atl4qobmail02pod0.registeredsite.com [10.30.71.204])
+        by atl4mhob15.registeredsite.com (8.14.4/8.14.4) with ESMTP id 01JCKoeZ030201
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL)
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 07:20:51 -0500
+Received: (qmail 9089 invoked by uid 0); 19 Feb 2020 12:20:50 -0000
+X-TCPREMOTEIP: 81.173.50.109
+X-Authenticated-UID: mike@milosoftware.com
+Received: from unknown (HELO mikebuntu.TOPIC.LOCAL) (mike@milosoftware.com@81.173.50.109)
+  by 0 with ESMTPA; 19 Feb 2020 12:20:50 -0000
+From:   Mike Looijmans <mike.looijmans@topic.nl>
+To:     robh+dt@kernel.org, michal.simek@xilinx.com, mark.rutland@arm.com,
+        devicetree@vger.kernel.org
+Cc:     m.tretter@pengutronix.de, nava.manne@xilinx.com,
+        rajan.vaja@xilinx.com, manish.narani@xilinx.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mike Looijmans <mike.looijmans@topic.nl>
+Subject: [PATCH] devicetree: zynqmp.dtsi: Add bootmode selection support
+Date:   Wed, 19 Feb 2020 13:20:36 +0100
+Message-Id: <20200219122036.24575-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add bootmode override support for ZynqMP devices. Allows one to select
+a boot device by running "reboot qspi32" for example. Activate config
+item CONFIG_SYSCON_REBOOT_MODE to make this work.
 
---yNb1oOkm5a9FJOVX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+---
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-On Tue, Feb 18, 2020 at 09:31:59PM +0000, Robin Murphy wrote:
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 26d926eb1431..4c38d77ecbba 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -246,6 +246,30 @@
+ 			};
+ 		};
+ 
++		/* Clock and Reset control registers for LPD */
++		lpd_apb: apb@ff5e0000 {
++			compatible = "syscon", "simple-mfd";
++			reg = <0x0 0xff5e0000 0x0 0x400>;
++			reboot-mode {
++				compatible = "syscon-reboot-mode";
++				offset = <0x200>;
++				mask = <0xf100>;
++				/* Bit(8) is the "force user" bit */
++				mode-normal = <0x0000>;
++				mode-psjtag = <0x0100>;
++				mode-qspi24 = <0x1100>;
++				mode-qspi32 = <0x2100>;
++				mode-sd0    = <0x3100>;
++				mode-nand   = <0x4100>;
++				mode-sd1    = <0x6100>;
++				mode-emmc   = <0x6100>;
++				mode-usb0   = <0x7100>;
++				mode-pjtag0 = <0x8100>;
++				mode-pjtag1 = <0x9100>;
++				mode-sd1ls  = <0xe100>;
++			};
++		};
++
+ 		/* GDMA */
+ 		fpd_dma_chan1: dma@fd500000 {
+ 			status = "disabled";
+-- 
+2.17.1
 
->  - add fallback case to avoid possible Rock64 regressions
-
-This should really have been called out in the changelog, were I reading
-this cold I might've stopped at the changelog and said you needed to
-keep the ABI stable for old boards.
-
---yNb1oOkm5a9FJOVX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5NJLMACgkQJNaLcl1U
-h9A6EQf+M4FxgJh7NoGwjteEBX6uwLvxHTrgo0677EFqqDjc/b5TNCDU720Q7dbi
-Mead2pPB06lQOHGO2piOu+A55lWuHX17hfnh9t1AECnZmZDQv/kTgZ/qb/yYU02d
-rJLGP0+Uy8bYU3SAzIGZyC0RJ3MydsaHp5/w3qXNiTQ/RB90k4CkqeYpCw0uT9yX
-8fgIUqUdiOgOvGjDn91teqXcoAjIU7VXfvz6yijqhqNynx1ybjgXklR1TJ2S2bZc
-kY35dvMUXpVraf/NcNJMYZVBaMRHMqj7LmRGUUAcVZZ982bWNAXx1FOPzY19ri6v
-NZyWPTowIagAhp65YyKen9nUh3a4sA==
-=Inf+
------END PGP SIGNATURE-----
-
---yNb1oOkm5a9FJOVX--
