@@ -2,178 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45C591648E8
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 16:41:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0D41648FE
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 16:44:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726680AbgBSPlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 10:41:51 -0500
-Received: from laurent.telenet-ops.be ([195.130.137.89]:52714 "EHLO
-        laurent.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726593AbgBSPlv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 10:41:51 -0500
-Received: from ramsan ([84.195.182.253])
-        by laurent.telenet-ops.be with bizsmtp
-        id 4fhn2200J5USYZQ01fhn68; Wed, 19 Feb 2020 16:41:48 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j4RTv-0004PG-Qu; Wed, 19 Feb 2020 16:41:47 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j4RTv-0002vr-PH; Wed, 19 Feb 2020 16:41:47 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: ata: rcar-sata: Convert to json-schema
-Date:   Wed, 19 Feb 2020 16:41:46 +0100
-Message-Id: <20200219154146.11230-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        id S1726604AbgBSPo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 10:44:27 -0500
+Received: from foss.arm.com ([217.140.110.172]:51514 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726523AbgBSPo1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 19 Feb 2020 10:44:27 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2D0061FB;
+        Wed, 19 Feb 2020 07:44:27 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A5C233F68F;
+        Wed, 19 Feb 2020 07:44:26 -0800 (PST)
+Date:   Wed, 19 Feb 2020 15:44:25 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH 2/2] ASoC: meson: add t9015 internal DAC driver
+Message-ID: <20200219154425.GD4488@sirena.org.uk>
+References: <20200219133646.1035506-1-jbrunet@baylibre.com>
+ <20200219133646.1035506-3-jbrunet@baylibre.com>
+ <20200219145500.GC4488@sirena.org.uk>
+ <1ja75ey4vj.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JwB53PgKC5A7+0Ej"
+Content-Disposition: inline
+In-Reply-To: <1ja75ey4vj.fsf@starbuckisacylon.baylibre.com>
+X-Cookie: FORTH IF HONK THEN
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Renesas R-Car Serial-ATA Device Tree binding documentation
-to json-schema.
 
-While at it:
-  - Remove the deprecated "renesas,rcar-sata" compatible value,
-  - Add "iommus", "power-domains", and "resets" properties,
-  - Update the example.
+--JwB53PgKC5A7+0Ej
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Not having to care about the deprecated value simplifies the
-jscon-schema.
----
- .../bindings/ata/renesas,rcar-sata.yaml       | 71 +++++++++++++++++++
- .../devicetree/bindings/ata/sata_rcar.txt     | 36 ----------
- 2 files changed, 71 insertions(+), 36 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
- delete mode 100644 Documentation/devicetree/bindings/ata/sata_rcar.txt
+On Wed, Feb 19, 2020 at 04:27:12PM +0100, Jerome Brunet wrote:
+> On Wed 19 Feb 2020 at 15:55, Mark Brown <broonie@kernel.org> wrote:
 
-diff --git a/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-new file mode 100644
-index 0000000000000000..7b69831060d8b9c5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml
-@@ -0,0 +1,71 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/ata/renesas,rcar-sata.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Renesas R-Car Serial-ATA Interface
-+
-+maintainers:
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,sata-r8a7779      # R-Car H1
-+      - items:
-+          - enum:
-+              - renesas,sata-r8a7790-es1  # R-Car H2 ES1
-+              - renesas,sata-r8a7790      # R-Car H2 other than ES1
-+              - renesas,sata-r8a7791      # R-Car M2-W
-+              - renesas,sata-r8a7793      # R-Car M2-N
-+          - const: renesas,rcar-gen2-sata # generic R-Car Gen2
-+      - items:
-+          - enum:
-+              - renesas,sata-r8a774b1     # RZ/G2N
-+              - renesas,sata-r8a7795      # R-Car H3
-+              - renesas,sata-r8a77965     # R-Car M3-N
-+          - const: renesas,rcar-gen3-sata # generic R-Car Gen3 or RZ/G2
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  iommus:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7791-cpg-mssr.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a7791-sysc.h>
-+
-+    sata@ee300000 {
-+            compatible = "renesas,sata-r8a7791", "renesas,rcar-gen2-sata";
-+            reg = <0xee300000 0x200000>;
-+            interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&cpg CPG_MOD 815>;
-+            power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
-+            resets = <&cpg 815>;
-+    };
-diff --git a/Documentation/devicetree/bindings/ata/sata_rcar.txt b/Documentation/devicetree/bindings/ata/sata_rcar.txt
-deleted file mode 100644
-index a2fbdc91570d0f7c..0000000000000000
---- a/Documentation/devicetree/bindings/ata/sata_rcar.txt
-+++ /dev/null
-@@ -1,36 +0,0 @@
--* Renesas R-Car SATA
--
--Required properties:
--- compatible		: should contain one or more of the following:
--			  - "renesas,sata-r8a774b1" for RZ/G2N
--			  - "renesas,sata-r8a7779" for R-Car H1
--			  - "renesas,sata-r8a7790-es1" for R-Car H2 ES1
--			  - "renesas,sata-r8a7790" for R-Car H2 other than ES1
--			  - "renesas,sata-r8a7791" for R-Car M2-W
--			  - "renesas,sata-r8a7793" for R-Car M2-N
--			  - "renesas,sata-r8a7795" for R-Car H3
--			  - "renesas,sata-r8a77965" for R-Car M3-N
--			  - "renesas,rcar-gen2-sata" for a generic R-Car Gen2
--			     compatible device
--			  - "renesas,rcar-gen3-sata" for a generic R-Car Gen3 or
--			     RZ/G2 compatible device
--			  - "renesas,rcar-sata" is deprecated
--
--			  When compatible with the generic version nodes
--			  must list the SoC-specific version corresponding
--			  to the platform first followed by the generic
--			  version.
--
--- reg			: address and length of the SATA registers;
--- interrupts		: must consist of one interrupt specifier.
--- clocks		: must contain a reference to the functional clock.
--
--Example:
--
--sata0: sata@ee300000 {
--	compatible = "renesas,sata-r8a7791", "renesas,rcar-gen2-sata";
--	reg = <0 0xee300000 0 0x2000>;
--	interrupt-parent = <&gic>;
--	interrupts = <0 105 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&mstp8_clks R8A7791_CLK_SATA0>;
--};
--- 
-2.17.1
+> >> +	/* Channel Src */
+> >> +	SOC_ENUM("Right DAC Source", dacr_in_enum),
+> >> +	SOC_ENUM("Left DAC Source",  dacl_in_enum),
 
+> > Ideally these would be moved into DAPM (using an AIF_IN widget for the
+> > DAI).
+
+> I can (I initially did) but I don't think it is worth it.
+
+> I would split Playback into 2 AIF for Left and Right, then add a mux to
+> select one them if front of both DAC. It will had 4 widgets and 6 routes
+> but it won't allow turn anything on or off. There is no PM improvement.
+
+> Do you still want me to change this ?
+
+It can help us track things like external amps connected to the DACs,
+especially when we manage to get to the point of tracking individual
+audio streams over DAI links.
+
+--JwB53PgKC5A7+0Ej
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5NV9gACgkQJNaLcl1U
+h9B1bggAg2Hke5eWreSl3h32yjHnSqSd3PP0FGDmBKiB8wwIidEnFIVCpcMesE/D
+a6aM9T+fI+H0uiiAhroMreYDklRU+cJaTcDHBfEHMiTB7p8WPTUiGjUz8ZwqbmTM
+rn93VmzRm+hGQj9oj6QGxUxpXQ2j3UKh/iXEa/SItvNP7/cGs/mPjpFZ5PLJjSvO
+2glHbvcvqLgm54cNrHsC/Wx4LbpVMznw1dXRXNkzi4sWgcpBNwVm6Rph32EijKuE
+W4klrGqOa2Oj0ha5e97b+cZbTONpIPgVrDfegcbcPf+EHsYevSyPS4Pzdk0mGNXI
+36fS/u8fbsdVLyq3L89UxhOXP6vvMw==
+=bIhx
+-----END PGP SIGNATURE-----
+
+--JwB53PgKC5A7+0Ej--
