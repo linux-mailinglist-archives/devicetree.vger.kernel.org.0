@@ -2,95 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87D84163FD7
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 09:58:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBB15163FF8
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 10:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726265AbgBSI6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 03:58:42 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36197 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726202AbgBSI6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 03:58:42 -0500
-Received: by mail-wm1-f67.google.com with SMTP id p17so5835522wma.1
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 00:58:41 -0800 (PST)
+        id S1726265AbgBSJHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 04:07:13 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:44358 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726163AbgBSJHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 04:07:13 -0500
+Received: by mail-ot1-f67.google.com with SMTP id h9so22384661otj.11;
+        Wed, 19 Feb 2020 01:07:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=zdxUWMWXTEs/zs0LJh1bxLoOHpDg1k5nkLimqXptzik=;
-        b=gakJGSlfyhoGxBxE5gzJWtNNI6sjibrl3uduJk0it9nnXsPTsL/yVcjKLPM9JpAjB4
-         hRZ+zkD3i0UWCNqW8JtaM9jld/sydW+zXCryxsUE8ho3l9L3WcVGZQ7tV5708SSsY2PK
-         sfVBZg23FOOm05Al/FOi+ufpKbw0GzDzIREw9gpJBZEDURMMD/p/JduUB6yAZczAaByZ
-         u3BhqEm4KuArJ7ZluB2YDgiOwbq+zwSM7QsjO5pHxMCnWJ6odeilRG1eyDs5XOc0DoBK
-         BCt837j3E6xH2mJ4pFsivqq4EeBo1e7y4U/QLUUKNQBm9TAVHdUVn8Ea3o13z72NT6iS
-         VjCw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hl9R42S7bTmTIImSyFBNArkLnawsxqytbv3I5jer4iE=;
+        b=XwnW4WNhvn8JGvbdWoY7h4s3J9zIhVUWIk9heioPvbq/FxrffWd1t6dLCIQSjYfwps
+         SBSwawhTSiUw5UEU0m4jchppkrSpXXRgSDXT84Brg5JQg0XZbUWhvnLkAidZSr+beN7D
+         Dv1TjI6UmRs1GjZE2LaBCmoWAZVdPHTrEwoKM0k9vyRI1Avn+zIO+EF3ulIvlpqHw479
+         F2m/agZ1clfz1bpokaCGjmvVI+Tih4XM+li1o/gG0o/WiDoMBarpoP9Vm7EICL9mVaGg
+         +fmatW0lJPsQPnyHwIwyoGswfjj3TxNOV4c1OPY1PC36OyMuSDDGzdhoJt1n+ije6i7h
+         ilew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=zdxUWMWXTEs/zs0LJh1bxLoOHpDg1k5nkLimqXptzik=;
-        b=BIyMCsopAld3gaGga2rQJkwkrqz/HdA7lwZ/XQpDoqFRFMq8Qu+5PjaeqQ6Xi1tHOg
-         aNLUG8dbibDAlgKrvOM0BB0hQzOoD7bEf5H9SkViII1BOdnL4hgo9OlHZrVkXWjW7Kme
-         xfWS1REtxFSvi61rhIeGFkrGqKR6Fv9VUYluDNRFSsrJg32hhwI9pOwIr6yk7ohxtsDo
-         Ibvby/EMN214mZvVR/52aGKNt/DOQs/YYaM8Jymugvho5/dlx4HItyHpTe+UqIgv3VPy
-         qrQ8YIE2PHz6Bwa5NPksnNUQoHVnbdqoAqBDMoB3t/SQa+e78lJsI82286kgmWyhc69x
-         Q80w==
-X-Gm-Message-State: APjAAAVoDcW21pk3FE4pEX/+o39iBzApxKMJSmFhowyztrZDRlP1GnYf
-        iOkOgt4ta3PVe7+BaUgA8lsrrOP6FFJVRA6hKwo=
-X-Google-Smtp-Source: APXvYqzRktGvI6LVzFprTUG6z94vo0L22lPess/h6iDXZYdkIGoAKAYQNW0jcH0/HyoDkrsWp+jb17zedyxUrC4g9+8=
-X-Received: by 2002:a1c:a553:: with SMTP id o80mr8456695wme.94.1582102720807;
- Wed, 19 Feb 2020 00:58:40 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hl9R42S7bTmTIImSyFBNArkLnawsxqytbv3I5jer4iE=;
+        b=UUnRQMKMVzKVE1+6nAtS+Atl9SPTjdBBWGkGlLWYZZITry6iWqdYFuyfvAp1EqqBF3
+         P+Op8mFhArK9TgkLR6zQ12hNystynDxEtpjM9pZI+wHnHbpmGf/s51hUZ+Ism8q932IX
+         cX6SoNwlokjogPxr/MeYkYBUZtR9JfmMg6qCqylVPL0iwmmi+Ia7PNirhrQS92szviUY
+         BY3SctepMmvqpf0rnJt0htx4pk0mXKINUGollX9JcofLGCgjCPX9Zv6nFydH8iGhErEZ
+         6IXxCyVveSk53k9Rkkb1Lwuy1t6w964h5ehdd+GXzVQwLDguMCbycuHpQwPRH+9CjCs9
+         Jv8g==
+X-Gm-Message-State: APjAAAXK1Ln6o8IAdvShk2WlDYEFdM55wQKADJNCL5AA3qWKzNmQ7o9D
+        yjyFP0dMKlsB8BOA9dyS4yipc1/Fn2HYkyBACkk=
+X-Google-Smtp-Source: APXvYqxHKoYOKLSVj2I0oZVyHx/701r0aK9W1LUqkpwYs0YWVF09ezzLoeZkXL7bRk/YGzWf/TnmQEwIspJzwjO/ZWo=
+X-Received: by 2002:a9d:d06:: with SMTP id 6mr19535224oti.176.1582103232048;
+ Wed, 19 Feb 2020 01:07:12 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a5d:4e12:0:0:0:0:0 with HTTP; Wed, 19 Feb 2020 00:58:40
- -0800 (PST)
-Reply-To: ayishagddafio@mail.ru
-From:   AISHA GADDAFI <mrabdoutoure@gmail.com>
-Date:   Wed, 19 Feb 2020 00:58:40 -0800
-Message-ID: <CANku-e=5mMRnF0CLm++ety1_G+aT5_MzkU908zimJG5e=Xp1Fg@mail.gmail.com>
-Subject: Lieber Freund (Assalamu Alaikum),?
-To:     undisclosed-recipients:;
+References: <20200208183641.6674-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200212140127.GA127398@google.com>
+In-Reply-To: <20200212140127.GA127398@google.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 19 Feb 2020 09:06:45 +0000
+Message-ID: <CA+V-a8sBPT-RLvzRFFFwbNghD9X26P5qPntoUvgNHQ6_eUzQBg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/6] PCI: rcar: Preparation for adding endpoint support
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Andrew Murray <andrew.murray@arm.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        LAK <linux-arm-kernel@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Lieber Freund (Assalamu Alaikum),
+Hi Bjorn,
 
-Ich bin vor einer privaten Suche auf Ihren E-Mail-Kontakt gesto=C3=9Fen
-Ihre Hilfe. Mein Name ist Aisha Al-Qaddafi, eine alleinerziehende
-Mutter und eine Witwe
-mit drei Kindern. Ich bin die einzige leibliche Tochter des Sp=C3=A4tlibysc=
-hen
-Pr=C3=A4sident (verstorbener Oberst Muammar Gaddafi).
+Thank you for the review.
 
-Ich habe Investmentfonds im Wert von siebenundzwanzig Millionen
-f=C3=BCnfhunderttausend
-United State Dollar ($ 27.500.000.00) und ich brauche eine
-vertrauensw=C3=BCrdige Investition
-Manager / Partner aufgrund meines aktuellen Fl=C3=BCchtlingsstatus bin ich =
-jedoch
-M=C3=B6glicherweise interessieren Sie sich f=C3=BCr die Unterst=C3=BCtzung =
-von
-Investitionsprojekten in Ihrem Land
-Von dort aus k=C3=B6nnen wir in naher Zukunft Gesch=C3=A4ftsbeziehungen auf=
-bauen.
+On Wed, Feb 12, 2020 at 2:01 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> To make the changelog from "git log --oneline" read nicely, the
+> subject should begin with a verb, e.g.,
+>
+>   PCI: rcar: Move shareable code to a common file
+>
+> On Sat, Feb 08, 2020 at 06:36:36PM +0000, Lad Prabhakar wrote:
+> > Prepare for adding endpoint support to rcar controller, there are no
+> > functional changes with this patch, a common file is created so that
+> > it can be shared with endpoint driver.
+>
+> This commit log doesn't tell us what this patch does.  "Prepare"
+> conveys no real information.  It's a giant patch and it's difficult
+> to verify that there's no functional change.
+>
+> I *think* what you did was move most of the #defines from pcie-rcar.c
+> to pcie-rcar.h and most of the code from pcie-rcar.c to
+> pcie-rcar-host.c.  And in both case, these were strict *moves* without
+> any changes.  If that's the case, please say that explicitly in the
+> commit log.
+>
+> That's good; thanks for making this a separate patch so it's not
+> mingled with real changes.
+>
+Agreed I shall split this patch further more, first patch just
+renaming the file from
+pcie-rcar.c to pcie-rcar-host.c along with Makefile/Kconfig/defconfig
+changes and
+the second patch pulling out common code that shall be share between
+two drivers.
+This shall make it more easier to review.
 
-Ich bin bereit, mit Ihnen =C3=BCber das Verh=C3=A4ltnis zwischen Investitio=
-n und
-Unternehmensgewinn zu verhandeln
-Basis f=C3=BCr die zuk=C3=BCnftige Investition Gewinne zu erzielen.
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  arch/arm64/configs/defconfig            |    2 +-
+> >  drivers/pci/controller/Kconfig          |    4 +-
+> >  drivers/pci/controller/Makefile         |    2 +-
+> >  drivers/pci/controller/pcie-rcar-host.c | 1044 ++++++++++++++++++++++++++
+> >  drivers/pci/controller/pcie-rcar.c      | 1229 ++-----------------------------
+> >  drivers/pci/controller/pcie-rcar.h      |  126 ++++
+> >  6 files changed, 1227 insertions(+), 1180 deletions(-)
+> >  create mode 100644 drivers/pci/controller/pcie-rcar-host.c
+> >  create mode 100644 drivers/pci/controller/pcie-rcar.h
+> >
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index b2f6673..8a1f51d 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -182,7 +182,7 @@ CONFIG_HOTPLUG_PCI=y
+> >  CONFIG_HOTPLUG_PCI_ACPI=y
+> >  CONFIG_PCI_AARDVARK=y
+> >  CONFIG_PCI_TEGRA=y
+> > -CONFIG_PCIE_RCAR=y
+> > +CONFIG_PCIE_RCAR_HOST=y
+> >  CONFIG_PCI_HOST_GENERIC=y
+> >  CONFIG_PCI_XGENE=y
+> >  CONFIG_PCIE_ALTERA=y
+> > diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
+> > index f84e5ff..94bb5e9 100644
+> > --- a/drivers/pci/controller/Kconfig
+> > +++ b/drivers/pci/controller/Kconfig
+> > @@ -54,12 +54,12 @@ config PCI_RCAR_GEN2
+> >         There are 3 internal PCI controllers available with a single
+> >         built-in EHCI/OHCI host controller present on each one.
+> >
+> > -config PCIE_RCAR
+> > +config PCIE_RCAR_HOST
+>
+> The config symbol change should be mentioned in the commit log.  In
+> general we try to avoid changing config symbols because it's likely to
+> confuse people who keep their .config and update their kernel.  But I
+> guess your audience is probably pretty small.
+>
+I shall mention it in my commit message.
 
-Wenn Sie bereit sind, dieses Projekt in meinem Namen zu bearbeiten,
-antworten Sie bitte dringend
-Damit ich Ihnen mehr Informationen =C3=BCber die Investmentfonds geben kann=
-.
+> >       bool "Renesas R-Car PCIe controller"
+>
+> The description needs to be updated, too.  This is what people will
+> see in menuconfig.
+>
+I shall update it accordingly.
 
-Ihre dringende Antwort wird gesch=C3=A4tzt. schreibe mir an diese email adr=
-esse (
-ayishagddafio@mail.ru ) zur weiteren Diskussion.
+> >       depends on ARCH_RENESAS || COMPILE_TEST
+> >       depends on PCI_MSI_IRQ_DOMAIN
+> >       help
+> > -       Say Y here if you want PCIe controller support on R-Car SoCs.
+> > +       Say Y here if you want PCIe controller support on R-Car SoCs in host mode.
+>
+> Wrap this so it fits in 80 columns like the rest of the file.
+>
+Will fix that.
 
-Freundliche Gr=C3=BC=C3=9Fe
-Frau Aisha Al-Qaddafi
+Cheers,
+--Prabhakar Lad
+
+> Bjorn
