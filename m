@@ -2,72 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 202AC165021
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 21:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F2016502D
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 21:42:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726980AbgBSUhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 15:37:09 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:47008 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726875AbgBSUhJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 15:37:09 -0500
-Received: by mail-ot1-f67.google.com with SMTP id g64so1451156otb.13;
-        Wed, 19 Feb 2020 12:37:09 -0800 (PST)
+        id S1727274AbgBSUm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 15:42:29 -0500
+Received: from mail-il1-f193.google.com ([209.85.166.193]:42542 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726645AbgBSUm3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 15:42:29 -0500
+Received: by mail-il1-f193.google.com with SMTP id x2so12950779ila.9;
+        Wed, 19 Feb 2020 12:42:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=xMDNRqXigFwE5mAPTxNYoRMwFlx8Rk5qiR4uZXsscw4=;
+        b=qfNCQIIH2j6wCkLKQ2mqWetFZntTRzqNjtBUM8anjzkPqf4Ynd0oWZWBb6hyrQPdCF
+         uN3+mto+zq5HiY0xnelQ4PTO7z5fp0Jptf5qhcMwXW26QHdu1ppBMrN3gLdBGvkz9+7T
+         uRGr6xPSZ2CPQYBvje7dwuPnzGTMvObbihSz3JgDRUVY/mlY9r1FmcAbwILshnrGxHoV
+         YQ7XIWi0j7DxuapC2Mxf0BgFsQfhqPDfPdS4oL0kZVxd1wsk1YdXR26HaffZljlbj16u
+         HGigXFMIMG0GQvDQ1WBnBaABCa1Y1CGM0wnxF/ut7KE88BxGE0dzo71L5H0o2zyYBRH3
+         /9hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+AqBZPuPGulRkYz04Uc64jE9ynggKm16TfsBQmv6si8=;
-        b=CEg+BlVEh9dYIPwKJWs+ttEvRohpkE1HMDS4Q95tY7gIlTz83NwDboDW53LBvE9Sd8
-         11edFp88mH5I5WBOhWywxG5L7HYZo0xlAY51bGKs/WyBRbrzLOQ+PlqTOPwHVHBQwJ5P
-         Mbnx5abAI6Cq5/FK8qr8kFS95lfg93CbIPLVWJB5L/Q+tnyaJZiMBQ2OKh7taYXv+wfh
-         SF/kHRPFDlWXztjFdxAYmwT7JMVBpzYpAzwmSwpmxLroPg45P/HqhkGHKVbWmEtCuYFZ
-         VViwe80012V2IiHWIkJsvcgBTPP23Afb+r/Lwk/LeqysBk2s52Y6QHSx8Zax1TMv3ahe
-         asRA==
-X-Gm-Message-State: APjAAAW88zuMnPsKRIj/F6BJfCjzbrIIgIY9MzM+Isb8NLUQScd4cHNN
-        iA+x2qhYaQD+nuX+ir0oWOUVwO7aLQ==
-X-Google-Smtp-Source: APXvYqwXHqdPF0eGfWGHZFMcj2qYo0Y8tJNnbLJqbB+BFR7YXs5aR7a2j8huyc4ZAUmLqR7q9DjA/w==
-X-Received: by 2002:a9d:67d7:: with SMTP id c23mr21034247otn.262.1582144628599;
-        Wed, 19 Feb 2020 12:37:08 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n17sm282683otq.46.2020.02.19.12.37.07
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=xMDNRqXigFwE5mAPTxNYoRMwFlx8Rk5qiR4uZXsscw4=;
+        b=Zqt/maHMHrjlYLj1DRb19O1RYnSCUOdo3R2aXSoZCT5MXyulP0P0zJ520p03SI93zB
+         4c1gbX+96TVxfwSc+eCB7op+bO4hX8MkLc23BMyvDGLj6cT2ABvk5gP2ze9vkA8o84pc
+         qlvUIC1JGYyvH+wWAuHF66sDurWk12X7eQJOTqyyodH4h/cJMaAOtl6/KoqqovisZY5J
+         Qwb2aHbz0ZKzV5h//F+yS/T9KD7WYKcKnhUhR8A2MWTcqhbIjwJyw4KYdbOB7icguLX+
+         /8R5EGpf2lUTeyvvuQuZ2j17NF4DiKbun46KJfvLEZz7xVubiNP6Y2hKl6gxA7nqePxP
+         TOrw==
+X-Gm-Message-State: APjAAAUJJnuAe+hG2YWkwPSuXHZqmhMEpYKy0Fv0jqdflwRmrrcIUYLx
+        7vXKtrI3jdjnUoajnrq4M0Q=
+X-Google-Smtp-Source: APXvYqxamlA1ssz9lk4Vdd4EvOofQze/gD2b+EfZA1Xkq+0ovJF0gt8l+vaKreCew2We51oCAM8OcA==
+X-Received: by 2002:a92:35c9:: with SMTP id c70mr26726162ilf.79.1582144947299;
+        Wed, 19 Feb 2020 12:42:27 -0800 (PST)
+Received: from OLA-8C37N23.ad.garmin.com ([204.77.163.55])
+        by smtp.gmail.com with ESMTPSA id l81sm305023ild.87.2020.02.19.12.42.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2020 12:37:07 -0800 (PST)
-Received: (nullmailer pid 27543 invoked by uid 1000);
-        Wed, 19 Feb 2020 20:37:06 -0000
-Date:   Wed, 19 Feb 2020 14:37:06 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, broonie@kernel.org,
-        alsa-devel@alsa-project.org, lgirdwood@gmail.com, perex@perex.cz,
-        tiwai@suse.com, mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: fsl_easrc: Add document for
- EASRC
-Message-ID: <20200219203706.GA25618@bogus>
-References: <cover.1582007379.git.shengjiu.wang@nxp.com>
- <a02af544c73914fe3a5ab2f35eb237ef68ee29e7.1582007379.git.shengjiu.wang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a02af544c73914fe3a5ab2f35eb237ef68ee29e7.1582007379.git.shengjiu.wang@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Wed, 19 Feb 2020 12:42:26 -0800 (PST)
+From:   Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Joshua Watt <JPEWhacker@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH] ARM: dts: rockchip: Keep rk3288-tinker SD card IO powered during reboot
+Date:   Wed, 19 Feb 2020 14:42:20 -0600
+Message-Id: <20200219204224.34154-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 18, 2020 at 02:39:36PM +0800, Shengjiu Wang wrote:
-> EASRC (Enhanced Asynchronous Sample Rate Converter) is a new
-> IP module found on i.MX8MN.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,easrc.txt   | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,easrc.txt
+IO voltage regulator for the SD card must be kept on all the time,
+otherwise when the board reboots the SD card can't be read by the
+bootloader.
 
-Bindings are now in DT schema format. See 
-Documentation/devicetree/writing-schema.rst.
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ arch/arm/boot/dts/rk3288-tinker.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
+index 312582c1bd37..acfaa12ec239 100644
+--- a/arch/arm/boot/dts/rk3288-tinker.dtsi
++++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
+@@ -276,6 +276,7 @@
+ 			};
+ 
+ 			vccio_sd: LDO_REG5 {
++				regulator-always-on;
+ 				regulator-boot-on;
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+-- 
+2.17.1
 
