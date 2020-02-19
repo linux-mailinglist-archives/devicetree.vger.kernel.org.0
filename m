@@ -2,83 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 065E81651A2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 22:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EF3A1651B9
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 22:36:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727649AbgBSVdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 16:33:15 -0500
-Received: from mail27.static.mailgun.info ([104.130.122.27]:64729 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727429AbgBSVdP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Feb 2020 16:33:15 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1582147994; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=FNc3ciCRQ3MW3zYHSCJZEO99ElwwHxEZQHD1BF08YYw=; b=HPQxMRkMK6PTNvubY6POSEYfj8g+8lh/zHy7edPtZy670y4u9k2a+STMXBpmPpuAF48S3eWd
- AlZZl2B0z4thM9MRY2swoyXo1U6dOMFKfOM15eNyBV4YNqhhT3aHCf8sRy+8ZsaRN7uwPI7x
- Z2v0rte7xiPi5v4W5l8R9ZyDmFE=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e4da993.7fb5ee1ab8f0-smtp-out-n01;
- Wed, 19 Feb 2020 21:33:07 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 80BB8C447A2; Wed, 19 Feb 2020 21:33:07 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: jcrouse)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 78C33C43383;
-        Wed, 19 Feb 2020 21:33:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 78C33C43383
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jcrouse@codeaurora.org
-From:   Jordan Crouse <jcrouse@codeaurora.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     John Stultz <john.stultz@linaro.org>, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH v1 3/4] arm64: dts: sdm845: Set the virtual address range for GMU allocations
-Date:   Wed, 19 Feb 2020 14:32:57 -0700
-Message-Id: <1582147978-31475-4-git-send-email-jcrouse@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1582147978-31475-1-git-send-email-jcrouse@codeaurora.org>
-References: <1582147978-31475-1-git-send-email-jcrouse@codeaurora.org>
+        id S1727291AbgBSVg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 16:36:57 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:36164 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726645AbgBSVg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 16:36:57 -0500
+Received: by mail-oi1-f193.google.com with SMTP id c16so25388236oic.3;
+        Wed, 19 Feb 2020 13:36:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DuxIjKakUovTLWJrrUy0F4nZWjjNRF7r2EzINrOf4VY=;
+        b=WFnj8wcK2eJUrrcffgSbAbUaJmMo0hIvmQBKS6hYhbtdPspLvhRy4oypUjEzYDYdIK
+         rV3SKnBnTC7q6rSAAyXuWrGMjZTUuQSJtZxl9CUvGhMV4jH2KmfePB43pNRzLxpO5bEq
+         FqDaXGdYYjJiXlRh/tpRlYC+/tvj6ThIlWNAP8amBFEAtsh0Gyga4zDKSn7QYf4A7hQ1
+         9qGzanL5Yxn6zdHknzITGlGx5Ok0c1wpbmm+A8lRfy6VnHPPV1swY46VzYCGklw+XWpq
+         UowhmPdRpJnJ/YEQTscTsf8Tm8J38aKx2PhWw99Hm0WZAp9qzzkRM2bpKl4aoEyictmt
+         qO7g==
+X-Gm-Message-State: APjAAAXrjjihOQhe789sq2V4o7nurKj8SNAVRQz3BSPVTxYsgDawFbqm
+        i5VLCYg9bQjiHE6L6fWsvg==
+X-Google-Smtp-Source: APXvYqzr/vS7d9QJGh+dXQuTXIewzPQA3FFO3+dnNCb8cuSi1tgLl4sdiFnz8tCgRMksqfyJUey8Rg==
+X-Received: by 2002:aca:100e:: with SMTP id 14mr6121071oiq.88.1582148216399;
+        Wed, 19 Feb 2020 13:36:56 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p65sm380817oif.47.2020.02.19.13.36.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2020 13:36:55 -0800 (PST)
+Received: (nullmailer pid 13132 invoked by uid 1000);
+        Wed, 19 Feb 2020 21:36:55 -0000
+Date:   Wed, 19 Feb 2020 15:36:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Add fsl,ls1028a-dspi compatible
+Message-ID: <20200219213655.GA13076@bogus>
+References: <20200218171418.18297-1-michael@walle.cc>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200218171418.18297-1-michael@walle.cc>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GMU DMA allocations need to be mapped between 0x60000000 and 0x80000000 in
-the GMU virtual address space. Specify the dma-range so the iova allocator
-does the right thing.
+On Tue, 18 Feb 2020 18:14:17 +0100, Michael Walle wrote:
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+> changes since v1:
+>  - none, this is a new patch
+> 
+>  Documentation/devicetree/bindings/spi/spi-fsl-dspi.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: Jordan Crouse <jcrouse@codeaurora.org>
----
-
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index d42302b..3c766423 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2911,6 +2911,8 @@
- 					<&gpucc GPU_GX_GDSC>;
- 			power-domain-names = "cx", "gx";
- 
-+			dma-ranges = <0 0x60000000 0 0x60000000 0 0x20000000>;
-+
- 			iommus = <&adreno_smmu 5>;
- 
- 			operating-points-v2 = <&gmu_opp_table>;
--- 
-2.7.4
+Acked-by: Rob Herring <robh@kernel.org>
