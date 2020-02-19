@@ -2,85 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF0F163FA2
-	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 09:49:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D84163FD7
+	for <lists+devicetree@lfdr.de>; Wed, 19 Feb 2020 09:58:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726265AbgBSItj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 03:49:39 -0500
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:47052 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726469AbgBSItj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 03:49:39 -0500
-Received: by mail-wr1-f68.google.com with SMTP id z7so27130751wrl.13
-        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 00:49:37 -0800 (PST)
+        id S1726265AbgBSI6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 03:58:42 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:36197 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726202AbgBSI6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 03:58:42 -0500
+Received: by mail-wm1-f67.google.com with SMTP id p17so5835522wma.1
+        for <devicetree@vger.kernel.org>; Wed, 19 Feb 2020 00:58:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=T0eSzODQf+W38t9LTsDjuyIfyjBdakLnggT4q7x4oTI=;
-        b=eOn683oVvXQjTuyoamRMS/6txb2X4yR16EEMZ9wVMGf4xEdGnJkpV3Q6ie2ZEl/C28
-         aqFEyKPyaeDAM3wsKZ1HWD/4Aljt7OYsHjKwQ+PeZQll8xYrdenp9m/Hn+tK14yIngoY
-         Vp/OOH9NofYie7bvqYGp8+xDWUbQGfgczsAZlN6CdRZgyX+bPcQjDRGFAzI6ASS2rEE1
-         EeMXt2Da63BkeiGRRnplzXzP63wUU1NkfIByK6Oe77zIxOkrVbc3EGhEC689+8VR3EcK
-         LXsEZKNFn8trGzlk5jTTQXlgkYzohPXr+5vaARlgXr4B1fiuScgNBsq4MCJNOkAMEpHy
-         snbw==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=zdxUWMWXTEs/zs0LJh1bxLoOHpDg1k5nkLimqXptzik=;
+        b=gakJGSlfyhoGxBxE5gzJWtNNI6sjibrl3uduJk0it9nnXsPTsL/yVcjKLPM9JpAjB4
+         hRZ+zkD3i0UWCNqW8JtaM9jld/sydW+zXCryxsUE8ho3l9L3WcVGZQ7tV5708SSsY2PK
+         sfVBZg23FOOm05Al/FOi+ufpKbw0GzDzIREw9gpJBZEDURMMD/p/JduUB6yAZczAaByZ
+         u3BhqEm4KuArJ7ZluB2YDgiOwbq+zwSM7QsjO5pHxMCnWJ6odeilRG1eyDs5XOc0DoBK
+         BCt837j3E6xH2mJ4pFsivqq4EeBo1e7y4U/QLUUKNQBm9TAVHdUVn8Ea3o13z72NT6iS
+         VjCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=T0eSzODQf+W38t9LTsDjuyIfyjBdakLnggT4q7x4oTI=;
-        b=QH9fOPWEfTFBwce+C52s5pGy7X2pT0wBxUcdShkhwfnZH+tWO3KREsl2ahhyb7lZm2
-         JRlg7/5Qt61dKgmmCiOu9wZP2LQtDFw+gfehmyHf9RzegHwAdpo/RYCGr1OyfCI7tTFO
-         8GuiTEZW2SB6dZ1xHezL/MYDHRkE0FvXH/PhKBSZ3+nnUv2W1XRpPIrrplr7sdLV31yP
-         55sUu+EevU6IxRHs/Ij3O9tK9UdbRLByL5+y40sqvGKVQW7E6UhbrJ8UCXQUzrn8/PcL
-         P4ctN+CVV/u1erTYc6xRbm1x8FKmY7kGnSSQkRcD09eYaVzYSCc97A02Nwatg10WBe3j
-         eVKA==
-X-Gm-Message-State: APjAAAW8a3MK1ED9OO6UZzJ6ANYVATeQ9wHxI+uO08w1PCQJxORI2ug3
-        yZUpdQoLl4u7bszdogxH30tUtw==
-X-Google-Smtp-Source: APXvYqxKOdAjnfvM0EHcdkIDQwsjh0sXPwUv9bmf16zBUM96R+Up461G6B7gxLGGvU8J8Ah1WJf02A==
-X-Received: by 2002:a5d:534b:: with SMTP id t11mr34170279wrv.120.1582102177029;
-        Wed, 19 Feb 2020 00:49:37 -0800 (PST)
-Received: from bender.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id t13sm2021673wrw.19.2020.02.19.00.49.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 19 Feb 2020 00:49:36 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     jbrunet@baylibre.com, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: clk: g12a-clkc: add SPICC SCLK Source clock IDs
-Date:   Wed, 19 Feb 2020 09:49:27 +0100
-Message-Id: <20200219084928.28707-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200219084928.28707-1-narmstrong@baylibre.com>
-References: <20200219084928.28707-1-narmstrong@baylibre.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=zdxUWMWXTEs/zs0LJh1bxLoOHpDg1k5nkLimqXptzik=;
+        b=BIyMCsopAld3gaGga2rQJkwkrqz/HdA7lwZ/XQpDoqFRFMq8Qu+5PjaeqQ6Xi1tHOg
+         aNLUG8dbibDAlgKrvOM0BB0hQzOoD7bEf5H9SkViII1BOdnL4hgo9OlHZrVkXWjW7Kme
+         xfWS1REtxFSvi61rhIeGFkrGqKR6Fv9VUYluDNRFSsrJg32hhwI9pOwIr6yk7ohxtsDo
+         Ibvby/EMN214mZvVR/52aGKNt/DOQs/YYaM8Jymugvho5/dlx4HItyHpTe+UqIgv3VPy
+         qrQ8YIE2PHz6Bwa5NPksnNUQoHVnbdqoAqBDMoB3t/SQa+e78lJsI82286kgmWyhc69x
+         Q80w==
+X-Gm-Message-State: APjAAAVoDcW21pk3FE4pEX/+o39iBzApxKMJSmFhowyztrZDRlP1GnYf
+        iOkOgt4ta3PVe7+BaUgA8lsrrOP6FFJVRA6hKwo=
+X-Google-Smtp-Source: APXvYqzRktGvI6LVzFprTUG6z94vo0L22lPess/h6iDXZYdkIGoAKAYQNW0jcH0/HyoDkrsWp+jb17zedyxUrC4g9+8=
+X-Received: by 2002:a1c:a553:: with SMTP id o80mr8456695wme.94.1582102720807;
+ Wed, 19 Feb 2020 00:58:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a5d:4e12:0:0:0:0:0 with HTTP; Wed, 19 Feb 2020 00:58:40
+ -0800 (PST)
+Reply-To: ayishagddafio@mail.ru
+From:   AISHA GADDAFI <mrabdoutoure@gmail.com>
+Date:   Wed, 19 Feb 2020 00:58:40 -0800
+Message-ID: <CANku-e=5mMRnF0CLm++ety1_G+aT5_MzkU908zimJG5e=Xp1Fg@mail.gmail.com>
+Subject: Lieber Freund (Assalamu Alaikum),?
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock ids used by the SPICC Controllers of the G12A and compatible SoCs
+--=20
+Lieber Freund (Assalamu Alaikum),
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- include/dt-bindings/clock/g12a-clkc.h | 2 ++
- 1 file changed, 2 insertions(+)
+Ich bin vor einer privaten Suche auf Ihren E-Mail-Kontakt gesto=C3=9Fen
+Ihre Hilfe. Mein Name ist Aisha Al-Qaddafi, eine alleinerziehende
+Mutter und eine Witwe
+mit drei Kindern. Ich bin die einzige leibliche Tochter des Sp=C3=A4tlibysc=
+hen
+Pr=C3=A4sident (verstorbener Oberst Muammar Gaddafi).
 
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index 0837c1a7ae49..b0d65d73db96 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -143,5 +143,7 @@
- #define CLKID_CPU1_CLK				253
- #define CLKID_CPU2_CLK				254
- #define CLKID_CPU3_CLK				255
-+#define CLKID_SPICC0_SCLK			258
-+#define CLKID_SPICC1_SCLK			261
- 
- #endif /* __G12A_CLKC_H */
--- 
-2.22.0
+Ich habe Investmentfonds im Wert von siebenundzwanzig Millionen
+f=C3=BCnfhunderttausend
+United State Dollar ($ 27.500.000.00) und ich brauche eine
+vertrauensw=C3=BCrdige Investition
+Manager / Partner aufgrund meines aktuellen Fl=C3=BCchtlingsstatus bin ich =
+jedoch
+M=C3=B6glicherweise interessieren Sie sich f=C3=BCr die Unterst=C3=BCtzung =
+von
+Investitionsprojekten in Ihrem Land
+Von dort aus k=C3=B6nnen wir in naher Zukunft Gesch=C3=A4ftsbeziehungen auf=
+bauen.
 
+Ich bin bereit, mit Ihnen =C3=BCber das Verh=C3=A4ltnis zwischen Investitio=
+n und
+Unternehmensgewinn zu verhandeln
+Basis f=C3=BCr die zuk=C3=BCnftige Investition Gewinne zu erzielen.
+
+Wenn Sie bereit sind, dieses Projekt in meinem Namen zu bearbeiten,
+antworten Sie bitte dringend
+Damit ich Ihnen mehr Informationen =C3=BCber die Investmentfonds geben kann=
+.
+
+Ihre dringende Antwort wird gesch=C3=A4tzt. schreibe mir an diese email adr=
+esse (
+ayishagddafio@mail.ru ) zur weiteren Diskussion.
+
+Freundliche Gr=C3=BC=C3=9Fe
+Frau Aisha Al-Qaddafi
