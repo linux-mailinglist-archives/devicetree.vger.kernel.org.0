@@ -2,232 +2,363 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA94166239
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 17:21:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E6B166286
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 17:26:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728090AbgBTQVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Feb 2020 11:21:10 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:1264 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbgBTQVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Feb 2020 11:21:10 -0500
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5e4eb1e70001>; Thu, 20 Feb 2020 08:20:56 -0800
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Thu, 20 Feb 2020 08:21:09 -0800
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Thu, 20 Feb 2020 08:21:09 -0800
-Received: from [10.2.163.58] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 20 Feb
- 2020 16:21:09 +0000
-Subject: Re: [RFC PATCH v3 4/6] media: tegra: Add Tegra210 Video input driver
-To:     Hans Verkuil <hverkuil@xs4all.nl>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <frankc@nvidia.com>,
-        <helen.koike@collabora.com>, <sboyd@kernel.org>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1581704608-31219-1-git-send-email-skomatineni@nvidia.com>
- <1581704608-31219-5-git-send-email-skomatineni@nvidia.com>
- <30e417ba-84e1-63d2-de74-22cfe859bddb@xs4all.nl>
- <920b4276-b2ca-646c-a21b-ca0b9bacf471@nvidia.com>
- <6bb124db-681c-55c1-e328-6e1f766a8bb3@nvidia.com>
- <0f84d37c-105f-8de6-c922-186d2f9ea156@nvidia.com>
- <44fc39f4-8e9f-bcab-8642-fe1cb332016a@xs4all.nl>
- <fb5f1566-9347-8f34-ada0-15c831cbc394@nvidia.com>
- <87c1c97d-abd7-8ca5-0709-d7c64a7d7b39@nvidia.com>
- <32ebc124-cb2d-f545-a5a0-d71192af8219@nvidia.com>
- <d1505a3b-92e0-4f98-1882-c56bdab7e2f6@xs4all.nl>
- <fc7b975a-dffa-4826-7ae5-40abb1f16b3d@nvidia.com>
- <3adacc07-7e3a-2d06-8d18-003b004ede17@nvidia.com>
- <dae3a6dd-f7ab-5e0f-08a9-2b0be4c68fe1@xs4all.nl>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <d896e74c-01f1-d164-7fd4-6d1fd29aaadc@nvidia.com>
-Date:   Thu, 20 Feb 2020 08:21:17 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1728629AbgBTQZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Feb 2020 11:25:54 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:6730 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728484AbgBTQZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Feb 2020 11:25:53 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01KGCSmP001645;
+        Thu, 20 Feb 2020 17:22:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=nTDlVJH/Y3ujsg5OIDFpnBgY6+HvDT4YZaEntj70+n8=;
+ b=UqPUQmDklrDwskJiqXMiQcq8Z/Y0byQSCsp5IXd+E4qHXr2m7kxsaQZeE9O3HzWZKVaI
+ Scmuf4iwlb1lNsK5fQLc+TdK9DiJCaZNqd6RrpB6jdQhld3F1Ahf4vR3Oqi0lJqwph9Y
+ Hbbg6SgJWF9Nc2OBw6bJUFeXfbbdDtTj15JbDrJVrsfP0Wej3rbVQMR6g+iwoPdwUxW3
+ iCXGp7lYFgKjg0X1526H1GQzYN8+X/fPDeoa5xYbHEZARHPXp0d+Fyz2PlsjsuyMDiyY
+ INWDVBgIIbwj6ZFTCujjtp7s1ZYIrfATurVnYDwz1MmmEdPkxJt4a6EzTo8s5Xltl7A8 Pw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2y8ub5t6b1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 20 Feb 2020 17:22:51 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CE07610003B;
+        Thu, 20 Feb 2020 17:22:48 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9D1A12C1597;
+        Thu, 20 Feb 2020 17:22:48 +0100 (CET)
+Received: from localhost (10.75.127.45) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 20 Feb 2020 17:22:47
+ +0100
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.co>, <alexandre.torgue@st.com>,
+        <linus.walleij@linaro.org>, <amelie.delaunay@st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH v3] dt-bindings: mfd: Convert stmfx bindings to json-schema
+Date:   Thu, 20 Feb 2020 17:22:46 +0100
+Message-ID: <20200220162246.8334-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-In-Reply-To: <dae3a6dd-f7ab-5e0f-08a9-2b0be4c68fe1@xs4all.nl>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1582215656; bh=W210gPNlC05Dr5SlJsLETmz5i6QrFId9t+sJFnKyOXc=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=hOsLejPrXAzVhx4ATQzE29xGcs1aR/D+MMjtWRm6NyiN3SPJmJAe/0nehv43mLvyS
-         6ahZDk5QcwfqTCAlYw7+Vu6kI/tl8Cwtb6T+qDU459/8J5RkI8aJQmKZkjGnDitUlO
-         qZ6v7MS4B0MztsYDcvtn/3jz5JPIahchx8HZLypPdV3+h6Zz1ubNGIY7UpLzP56WvC
-         8voSVAQuzTmOHorrZcQEFKDs/Vr0kT82mjM3jDHDDcWC7476L4UQoQCoVR/Z2+jEkl
-         uhbfssS9ZViNB3lLMPlK15LHgl0fWDJW543tkkbvyKyqjJgj1DuNSYAyMIG5KdVl6q
-         kvnkXm8dOvKVQ==
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG5NODE1.st.com (10.75.127.13) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-20_04:2020-02-19,2020-02-20 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert stmfx bindings to json-schema
 
-On 2/20/20 1:29 AM, Hans Verkuil wrote:
-> External email: Use caution opening links or attachments
->
->
-> On 2/20/20 1:09 AM, Sowjanya Komatineni wrote:
->>> Thanks Hans. Probably dma address is not aligned properly. Will check.
->>
->> I see this time repro happened right on power up during 1st run of
->> compliance test and it shows kernel write to read-only error right
->> during vb2_core_qbuf -> buf_prepare.
->>
->> it happened after buffers allocation and during pre-queuing of buffers
->> right before starting 1st stream on power up.
->>
->> Hi Thierry,
->>
->> Currently tegra vi driver don't use iommu. Could this be some issue with
->> contig allocation as iommu is not being used?
-> Nothing to do with that. The root cause is that struct tegra_channel_buff=
-er
-> must start with struct vb2_v4l2_buffer since that's what vb2 assumes. Ins=
-tead
-> it starts with 'chan'. The really surprising thing is that this didn't ca=
-use
-> more problems sooner.
->
-> The patch below fixes this KASAN error. Whether it also fixes the origina=
-l
-> error you found is something you need to test, but I think that's very li=
-kely.
->
-> Regards,
->
->          Hans
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+---
+ .../devicetree/bindings/mfd/st,stmfx.yaml          | 124 +++++++++++++++++++++
+ Documentation/devicetree/bindings/mfd/stmfx.txt    |  28 -----
+ .../devicetree/bindings/pinctrl/pinctrl-stmfx.txt  | 116 -------------------
+ 3 files changed, 124 insertions(+), 144 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/st,stmfx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/stmfx.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-stmfx.txt
 
-right, missed to notice. Thanks a lot hans. I think this fixes the error=20
-I am seeing too.
+diff --git a/Documentation/devicetree/bindings/mfd/st,stmfx.yaml b/Documentation/devicetree/bindings/mfd/st,stmfx.yaml
+new file mode 100644
+index 000000000000..0ce56a0da553
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/st,stmfx.yaml
+@@ -0,0 +1,124 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/st,stmfx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: STMicroelectonics Multi-Function eXpander (STMFX) bindings
++
++description: ST Multi-Function eXpander (STMFX) is a slave controller using I2C for
++               communication with the main MCU. Its main features are GPIO expansion,
++               main MCU IDD measurement (IDD is the amount of current that flows
++               through VDD) and resistive touchscreen controller.
++
++maintainers:
++  - Amelie Delaunay <amelie.delaunay@st.com>
++
++properties:
++  compatible:
++    const: st,stmfx-0300
++
++  reg:
++    enum: [ 0x42, 0x43 ]
++
++  interrupts:
++    maxItems: 1
++
++  drive-open-drain: true
++
++  vdd-supply:
++    maxItems: 1
++
++  pinctrl:
++    type: object
++
++    properties:
++      compatible:
++        const: st,stmfx-0300-pinctrl
++
++      "#gpio-cells":
++        const: 2
++
++      "#interrupt-cells":
++        const: 2
++
++      gpio-controller: true
++
++      interrupt-controller: true
++
++      gpio-ranges:
++        description: if all STMFX pins[24:0] are available (no other STMFX function in use),
++                     you should use gpio-ranges = <&stmfx_pinctrl 0 0 24>;
++                     if agpio[3:0] are not available (STMFX Touchscreen function in use),
++                     you should use gpio-ranges = <&stmfx_pinctrl 0 0 16>, <&stmfx_pinctrl 20 20 4>;
++                     if agpio[7:4] are not available (STMFX IDD function in use),
++                     you should use gpio-ranges = <&stmfx_pinctrl 0 0 20>;
++        maxItems: 1
++
++    patternProperties:
++      "^[a-zA-Z]*-pins$":
++        type: object
++
++        allOf:
++          - $ref: ../pinctrl/pinmux-node.yaml
++
++        properties:
++          pins: true
++          bias-disable: true
++          bias-pull-up: true
++          bias-pull-pin-default: true
++          bias-pull-down: true
++          drive-open-drain: true
++          drive-push-pull: true
++          output-high: true
++          output-low: true
++
++      additionalProperties: false
++
++    additionalProperties: false
++
++    required:
++      - compatible
++      - "#gpio-cells"
++      - "#interrupt-cells"
++      - gpio-controller
++      - interrupt-controller
++      - gpio-ranges
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    i2c@0 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      stmfx@42 {
++        compatible = "st,stmfx-0300";
++        reg = <0x42>;
++        interrupts = <8 IRQ_TYPE_EDGE_RISING>;
++        interrupt-parent = <&gpioi>;
++        vdd-supply = <&v3v3>;
++
++        stmfx_pinctrl: pinctrl {
++          compatible = "st,stmfx-0300-pinctrl";
++          #gpio-cells = <2>;
++          #interrupt-cells = <2>;
++          gpio-controller;
++          interrupt-controller;
++          gpio-ranges = <&stmfx_pinctrl 0 0 24>;
++
++          joystick_pins: joystick-pins {
++            pins = "gpio0", "gpio1", "gpio2", "gpio3", "gpio4";
++            drive-push-pull;
++            bias-pull-up;
++          };
++        };
++      };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mfd/stmfx.txt b/Documentation/devicetree/bindings/mfd/stmfx.txt
+deleted file mode 100644
+index f0c2f7fcf5c7..000000000000
+--- a/Documentation/devicetree/bindings/mfd/stmfx.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-STMicroelectonics Multi-Function eXpander (STMFX) Core bindings
+-
+-ST Multi-Function eXpander (STMFX) is a slave controller using I2C for
+-communication with the main MCU. Its main features are GPIO expansion, main
+-MCU IDD measurement (IDD is the amount of current that flows through VDD) and
+-resistive touchscreen controller.
+-
+-Required properties:
+-- compatible: should be "st,stmfx-0300".
+-- reg: I2C slave address of the device.
+-- interrupts: interrupt specifier triggered by MFX_IRQ_OUT signal.
+-  Please refer to ../interrupt-controller/interrupt.txt
+-
+-Optional properties:
+-- drive-open-drain: configure MFX_IRQ_OUT as open drain.
+-- vdd-supply: phandle of the regulator supplying STMFX.
+-
+-Example:
+-
+-	stmfx: stmfx@42 {
+-		compatible = "st,stmfx-0300";
+-		reg = <0x42>;
+-		interrupts = <8 IRQ_TYPE_EDGE_RISING>;
+-		interrupt-parent = <&gpioi>;
+-		vdd-supply = <&v3v3>;
+-	};
+-
+-Please refer to ../pinctrl/pinctrl-stmfx.txt for STMFX GPIO expander function bindings.
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-stmfx.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-stmfx.txt
+deleted file mode 100644
+index c1b4c1819b84..000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-stmfx.txt
++++ /dev/null
+@@ -1,116 +0,0 @@
+-STMicroelectronics Multi-Function eXpander (STMFX) GPIO expander bindings
+-
+-ST Multi-Function eXpander (STMFX) offers up to 24 GPIOs expansion.
+-Please refer to ../mfd/stmfx.txt for STMFX Core bindings.
+-
+-Required properties:
+-- compatible: should be "st,stmfx-0300-pinctrl".
+-- #gpio-cells: should be <2>, the first cell is the GPIO number and the second
+-  cell is the gpio flags in accordance with <dt-bindings/gpio/gpio.h>.
+-- gpio-controller: marks the device as a GPIO controller.
+-- #interrupt-cells: should be <2>, the first cell is the GPIO number and the
+-  second cell is the interrupt flags in accordance with
+-  <dt-bindings/interrupt-controller/irq.h>.
+-- interrupt-controller: marks the device as an interrupt controller.
+-- gpio-ranges: specifies the mapping between gpio controller and pin
+-  controller pins. Check "Concerning gpio-ranges property" below.
+-Please refer to ../gpio/gpio.txt.
+-
+-Please refer to pinctrl-bindings.txt for pin configuration.
+-
+-Required properties for pin configuration sub-nodes:
+-- pins: list of pins to which the configuration applies.
+-
+-Optional properties for pin configuration sub-nodes (pinconf-generic ones):
+-- bias-disable: disable any bias on the pin.
+-- bias-pull-up: the pin will be pulled up.
+-- bias-pull-pin-default: use the pin-default pull state.
+-- bias-pull-down: the pin will be pulled down.
+-- drive-open-drain: the pin will be driven with open drain.
+-- drive-push-pull: the pin will be driven actively high and low.
+-- output-high: the pin will be configured as an output driving high level.
+-- output-low: the pin will be configured as an output driving low level.
+-
+-Note that STMFX pins[15:0] are called "gpio[15:0]", and STMFX pins[23:16] are
+-called "agpio[7:0]". Example, to refer to pin 18 of STMFX, use "agpio2".
+-
+-Concerning gpio-ranges property:
+-- if all STMFX pins[24:0] are available (no other STMFX function in use), you
+-  should use gpio-ranges = <&stmfx_pinctrl 0 0 24>;
+-- if agpio[3:0] are not available (STMFX Touchscreen function in use), you
+-  should use gpio-ranges = <&stmfx_pinctrl 0 0 16>, <&stmfx_pinctrl 20 20 4>;
+-- if agpio[7:4] are not available (STMFX IDD function in use), you
+-  should use gpio-ranges = <&stmfx_pinctrl 0 0 20>;
+-
+-
+-Example:
+-
+-	stmfx: stmfx@42 {
+-		...
+-
+-		stmfx_pinctrl: stmfx-pin-controller {
+-			compatible = "st,stmfx-0300-pinctrl";
+-			#gpio-cells = <2>;
+-			#interrupt-cells = <2>;
+-			gpio-controller;
+-			interrupt-controller;
+-			gpio-ranges = <&stmfx_pinctrl 0 0 24>;
+-
+-			joystick_pins: joystick {
+-				pins = "gpio0", "gpio1", "gpio2", "gpio3", "gpio4";
+-				drive-push-pull;
+-				bias-pull-up;
+-			};
+-		};
+-	};
+-
+-Example of STMFX GPIO consumers:
+-
+-	joystick {
+-		compatible = "gpio-keys";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		pinctrl-0 = <&joystick_pins>;
+-		pinctrl-names = "default";
+-		button-0 {
+-			label = "JoySel";
+-			linux,code = <KEY_ENTER>;
+-			interrupt-parent = <&stmfx_pinctrl>;
+-			interrupts = <0 IRQ_TYPE_EDGE_RISING>;
+-		};
+-		button-1 {
+-			label = "JoyDown";
+-			linux,code = <KEY_DOWN>;
+-			interrupt-parent = <&stmfx_pinctrl>;
+-			interrupts = <1 IRQ_TYPE_EDGE_RISING>;
+-		};
+-		button-2 {
+-			label = "JoyLeft";
+-			linux,code = <KEY_LEFT>;
+-			interrupt-parent = <&stmfx_pinctrl>;
+-			interrupts = <2 IRQ_TYPE_EDGE_RISING>;
+-		};
+-		button-3 {
+-			label = "JoyRight";
+-			linux,code = <KEY_RIGHT>;
+-			interrupt-parent = <&stmfx_pinctrl>;
+-			interrupts = <3 IRQ_TYPE_EDGE_RISING>;
+-		};
+-		button-4 {
+-			label = "JoyUp";
+-			linux,code = <KEY_UP>;
+-			interrupt-parent = <&stmfx_pinctrl>;
+-			interrupts = <4 IRQ_TYPE_EDGE_RISING>;
+-		};
+-	};
+-
+-	leds {
+-		compatible = "gpio-leds";
+-		orange {
+-			gpios = <&stmfx_pinctrl 17 1>;
+-		};
+-
+-		blue {
+-			gpios = <&stmfx_pinctrl 19 1>;
+-		};
+-	}
+-- 
+2.15.0
 
-Will fix and test...
-
->
-> diff --git a/drivers/staging/media/tegra/tegra-common.h b/drivers/staging=
-/media/tegra/tegra-common.h
-> index 79ec550c6f27..3980a8759e68 100644
-> --- a/drivers/staging/media/tegra/tegra-common.h
-> +++ b/drivers/staging/media/tegra/tegra-common.h
-> @@ -221,9 +221,9 @@ struct tegra_vi_channel {
->    * @mw_ack_sp_thresh: MW_ACK_DONE syncpoint threshold
->    */
->   struct tegra_channel_buffer {
-> -       struct tegra_vi_channel *chan;
->          struct vb2_v4l2_buffer buf;
->          struct list_head queue;
-> +       struct tegra_vi_channel *chan;
->          dma_addr_t addr;
->          u32 mw_ack_sp_thresh;
->   };
->
->
->>
->> [=C2=A0=C2=A0 54.041421]=C2=A0 tegra_channel_buffer_prepare+0x34/0x88
->> [=C2=A0=C2=A0 54.047666]=C2=A0 __buf_prepare+0x1c4/0x230
->> [=C2=A0=C2=A0 54.052094]=C2=A0 vb2_core_qbuf+0x454/0x508
->> [=C2=A0=C2=A0 54.056434]=C2=A0 __vb2_init_fileio+0x1f8/0x2b8
->> [=C2=A0=C2=A0 54.060519]=C2=A0 __vb2_perform_fileio+0x5a0/0x6b8
->> [=C2=A0=C2=A0 54.064864]=C2=A0 vb2_read+0x10/0x18
->> [=C2=A0=C2=A0 54.067996]=C2=A0 vb2_fop_read+0xb0/0xf8
->> [=C2=A0=C2=A0 54.071475]=C2=A0 v4l2_read+0x74/0xb8
->> [=C2=A0=C2=A0 54.074697]=C2=A0 __vfs_read+0x18/0x40
->> [=C2=A0=C2=A0 54.078003]=C2=A0 vfs_read+0x98/0x168
->> [=C2=A0=C2=A0 54.081222]=C2=A0 ksys_read+0x64/0xf0
->> [=C2=A0=C2=A0 54.084439]=C2=A0 __arm64_sys_read+0x14/0x20
->> [=C2=A0=C2=A0 54.088268]=C2=A0 el0_svc_common.constprop.2+0xb0/0x168
->> [=C2=A0=C2=A0 54.093047]=C2=A0 do_el0_svc_compat+0x18/0x38
->> [=C2=A0=C2=A0 54.096961]=C2=A0 el0_sync_compat_handler+0x13c/0x194
->> [=C2=A0=C2=A0 54.101565]=C2=A0 el0_sync_compat+0x144/0x180
->> [=C2=A0=C2=A0 54.105478] Code: b9407802 eb02007f 540001e8 b9007404 (f81f=
-8001)
->> [=C2=A0=C2=A0 54.111559] ---[ end trace 7fbb77a9700492f1 ]---
->>
->>>>> [=C2=A0=C2=A0 41.222012] Mem abort info:
->>>>> [=C2=A0=C2=A0 41.224807]=C2=A0=C2=A0 ESR =3D 0x9600004f
->>>>> [=C2=A0=C2=A0 41.227852]=C2=A0=C2=A0 EC =3D 0x25: DABT (current EL), =
-IL =3D 32 bits
->>>>> [=C2=A0=C2=A0 41.233160]=C2=A0=C2=A0 SET =3D 0, FnV =3D 0
->>>>> [=C2=A0=C2=A0 41.236204]=C2=A0=C2=A0 EA =3D 0, S1PTW =3D 0
->>>>> [=C2=A0=C2=A0 41.239344] Data abort info:
->>>>> [=C2=A0=C2=A0 41.242225]=C2=A0=C2=A0 ISV =3D 0, ISS =3D 0x0000004f
->>>>> [=C2=A0=C2=A0 41.246058]=C2=A0=C2=A0 CM =3D 0, WnR =3D 1
->>>>> [=C2=A0=C2=A0 41.249026] swapper pgtable: 4k pages, 48-bit VAs,
->>>>> pgdp=3D0000000081498000
->>>>> [=C2=A0=C2=A0 41.255733] [ffff0000f5c3fff8] pgd=3D000000017f1f8003,
->>>>> pud=3D000000017ec06003, pmd=3D000000017ea57003, pte=3D0060000175c3f79=
-3
->>>>> [=C2=A0=C2=A0 41.266345] Internal error: Oops: 9600004f [#1] PREEMPT =
-SMP
->>>>> [=C2=A0=C2=A0 41.271905] Modules linked in: panel_simple tegra_drm
->>>>> snd_hda_codec_hdmi snd_hda_tegra crct10dif_ce snd_hda_codec cec
->>>>> drm_kms_helper snd_hda_core lp855x_bl drm pwm_tegra ip_tables x_table=
-s
->>>>> ipv6 nf_defrag_ipv6
->>>>> [=C2=A0=C2=A0 41.290401] CPU: 3 PID: 532 Comm: v4l2-compliance Tainte=
-d: G
->>>>> W         5.6.0-rc1-00035-g6a105c1c479a-dirty #1
->>>>> [=C2=A0=C2=A0 41.300902] Hardware name: NVIDIA Jetson TX1 Developer K=
-it (DT)
->>>>> [=C2=A0=C2=A0 41.306807] pstate: 60000005 (nZCv daif -PAN -UAO)
->>>>> [=C2=A0=C2=A0 41.311593] pc : tegra_channel_buffer_prepare+0x34/0x88
->>>>> [=C2=A0=C2=A0 41.316807] lr : __buf_prepare+0x1c4/0x230
->>>>> [=C2=A0=C2=A0 41.320891] sp : ffff800011f5baa0
->>>>> [=C2=A0=C2=A0 41.324195] x29: ffff800011f5baa0 x28: ffff0000f58cc100
->>>>> [=C2=A0=C2=A0 41.329494] x27: ffff800011f5bc58 x26: ffff80001100b780
->>>>> [=C2=A0=C2=A0 41.334792] x25: ffff0000f81f1608 x24: ffff0000f7be7c00
->>>>> [=C2=A0=C2=A0 41.340091] x23: 00000000c058565d x22: 0000000000000000
->>>>> [=C2=A0=C2=A0 41.345390] x21: ffff0000f81f16e8 x20: 0000000000000000
->>>>> [=C2=A0=C2=A0 41.350688] x19: ffff0000f5c40000 x18: 0000000000000000
->>>>> [=C2=A0=C2=A0 41.355986] x17: 0000000000000000 x16: 0000000000000000
->>>>> [=C2=A0=C2=A0 41.361285] x15: ffff0000f8553800 x14: 0000000000000000
->>>>> [=C2=A0=C2=A0 41.366583] x13: 003f480000000000 x12: 003f500000000000
->>>>> [=C2=A0=C2=A0 41.371881] x11: 0000000100000000 x10: 0000000000000000
->>>>> [=C2=A0=C2=A0 41.377180] x9 : 0000000000000000 x8 : ffff0000f5c40258
->>>>> [=C2=A0=C2=A0 41.382478] x7 : 0000000000000030 x6 : 0000000000000001
->>>>> [=C2=A0=C2=A0 41.387776] x5 : 0000000000000000 x4 : 00000000003f4800
->>>>> [=C2=A0=C2=A0 41.393074] x3 : 00000000003f4800 x2 : 00000000003f4800
->>>>> [=C2=A0=C2=A0 41.398373] x1 : ffff0000f81f1080 x0 : ffff0000f5c40000
->>>>> [=C2=A0=C2=A0 41.403671] Call trace:
->>>>> [=C2=A0=C2=A0 41.406109]=C2=A0 tegra_channel_buffer_prepare+0x34/0x88
->>>>> [=C2=A0=C2=A0 41.410974]=C2=A0 __buf_prepare+0x1c4/0x230
->>>>> [=C2=A0=C2=A0 41.414713]=C2=A0 vb2_core_prepare_buf+0x94/0x110
->>>>> [=C2=A0=C2=A0 41.418971]=C2=A0 vb2_prepare_buf+0x74/0xa8
->>>>> [=C2=A0=C2=A0 41.422710]=C2=A0 vb2_ioctl_prepare_buf+0x54/0x60
->>>>> [=C2=A0=C2=A0 41.426970]=C2=A0 v4l_prepare_buf+0x44/0x58
->>>>> [=C2=A0=C2=A0 41.430707]=C2=A0 __video_do_ioctl+0x228/0x3e8
->>>>> [=C2=A0=C2=A0 41.434705]=C2=A0 video_usercopy+0x1cc/0x4d0
->>>>> [=C2=A0=C2=A0 41.438531]=C2=A0 video_ioctl2+0x14/0x20
->>>>> [=C2=A0=C2=A0 41.442010]=C2=A0 v4l2_ioctl+0x44/0x68
->>>>> [=C2=A0=C2=A0 41.445316]=C2=A0 v4l2_compat_ioctl32+0x21c/0x1420
->>>>> [=C2=A0=C2=A0 41.449665]=C2=A0 __arm64_compat_sys_ioctl+0xc8/0x108
->>>>> [=C2=A0=C2=A0 41.454273]=C2=A0 el0_svc_common.constprop.2+0xb0/0x168
->>>>> [=C2=A0=C2=A0 41.459051]=C2=A0 do_el0_svc_compat+0x18/0x38
->>>>> [=C2=A0=C2=A0 41.462964]=C2=A0 el0_sync_compat_handler+0x13c/0x194
->>>>> [=C2=A0=C2=A0 41.467570]=C2=A0 el0_sync_compat+0x144/0x180
->>>>> [=C2=A0=C2=A0 41.471483] Code: b9407802 eb02007f 540001e8 b9007404 (f=
-81f8001)
->>>>> [=C2=A0=C2=A0 41.477563] ---[ end trace 051c84051f60870a ]---
->>>>>
->>>>>>>>>>> With using minimum 3 buffers, this issue doesnt happen at all
->>>>>>>>>>> from
->>>>>>>>>>> almost 72 hours of testing.
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> Will try with setting vb2 queue field min_buffers_needed as 3
->>>>>>>>>>> instead
->>>>>>>>>>> of adding check in queue setup.
->>>>>>>>>>>
->>>>>>>>>>>>> +
->>>>>>>>>>>>> +     return 0;
->>>>>>>>>>>>> +}
