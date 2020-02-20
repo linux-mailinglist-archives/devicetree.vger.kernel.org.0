@@ -2,114 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 218E4166F72
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 07:08:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30190166FD8
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 07:50:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726315AbgBUGIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 01:08:48 -0500
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:34584 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725800AbgBUGIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 01:08:48 -0500
-Received: by mail-lf1-f66.google.com with SMTP id l18so632033lfc.1;
-        Thu, 20 Feb 2020 22:08:47 -0800 (PST)
+        id S1726224AbgBUGuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 01:50:15 -0500
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:33342 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726201AbgBUGuO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 01:50:14 -0500
+Received: by mail-wm1-f66.google.com with SMTP id m10so4443755wmc.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2020 22:50:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1vjAsiVJu0Xf8moFlCsGCMAJaKUjfw7ZDgAxe/OTIBI=;
-        b=bmK1U1D9Co0bNdjfb+Z8qyJSGQPOYJ/YlJsmmQjLdyG+mc3GEI8QcnmDPDClvjSrlV
-         qIWAZdaZF9lG5TNbsWT2bUyhgKw03sCn86fEovTL6AO3LS25lrytfgvN1zI8vyn0kOPb
-         F8IDkLuzkoq82LcLcxsx2xVx+xR+cGhfPIfNtErtqS1DAQP3ZPS7bkMiVK/sJ0IdsE3R
-         ZZWOWzcyi73Wrv6dC1C/aJ7D+J/C9dy7sXF2KgZymprTP95BFiXvVGsUUPa5dcf1AhHR
-         Yvo8pvgGZ4VmWvRRHjEtHKND73qL9kig8EMj8GZ6KWa4ra1qyQILj/zoueL3KoKwMuHN
-         EZTg==
+        h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+         :user-agent;
+        bh=q61/N6jKzSDGt/dt2Ij4V86BCpsgubUQTNr9KPnbsfA=;
+        b=VzXfMrb9VSxxxrTJ5DDpS1xdw0dsZ3h+H5ZwFs9uigBL9YpFt0PFhdr3SG3lZ+hF7Q
+         Gm/KInKtrOYR51jFwrjfeMxvPtSXPOVGtYZGXsxTAJoT3fhttjsQdAJNkWjBFqJuqzhk
+         7odQ6VLtaVDtHK5Zqt45oi8BKD0XLZoXyON7wer0RfUMNVXnJjx/DHDGjMach0Ar6nBP
+         qeapLe03hmprJaKD4rfHRQIQRlx1a1es69I4nvOSgqGGNObe6LZ83WBcbd2EA5q9j/0h
+         rs/XY11RvXFxQwhdws8EjTVo0BDLdjtC8kPB3iG28X8ILnPe4HeYCf3cm+bwcJNm6IAh
+         9fpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1vjAsiVJu0Xf8moFlCsGCMAJaKUjfw7ZDgAxe/OTIBI=;
-        b=F7Yp6VjP6rY+A5YXTcCoqs7ZCB10AqxSttEJtpw+z1WgtG3Y9Vu/xJJafpCt8wj66D
-         znGTd2jFhGSV4bhW7aLlUSqGX3TnWLZtelo69gaP0wS+736KKiHkjDGs3K+DshwnTc7e
-         0uGQOcGOJ8tFmy33/jHw1SiC5pkpYHl+KpijskBU0YRBwo1ixLbhqwROEge3bpmQnVh6
-         h0MY6Vn7f3SXmIMj7Wl9kHMLyJKFTYQFdzO8ORbGFKdtEEueWgkxLgQzXKzEdYtIPLqZ
-         IpO5JznVhyO1eIsrdBq3je7HVXxd8gTTuee94GQumCrNvIkhcGQDNFyg7nTqPgiqjhIs
-         OWCg==
-X-Gm-Message-State: APjAAAXaLUXVyBElW4RLg+tTCN9YyhoNoE5uuCnx5ol7m02VvE7p4kkc
-        0nVRgPRaxkJguFVn6jIa6Jg=
-X-Google-Smtp-Source: APXvYqzDj/Q/sNBvdjs+fIyINcfoBTt6Aby1wfLyTGnlgZfFHhDa0HRT97+rsnLll7pN6lDNn26++Q==
-X-Received: by 2002:a19:6509:: with SMTP id z9mr18447794lfb.97.1582265326236;
-        Thu, 20 Feb 2020 22:08:46 -0800 (PST)
-Received: from [192.168.2.145] (79-139-233-37.dynamic.spd-mgts.ru. [79.139.233.37])
-        by smtp.googlemail.com with ESMTPSA id a10sm970539lfr.94.2020.02.20.22.08.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Feb 2020 22:08:45 -0800 (PST)
-Subject: Re: [PATCH v3 07/10] ASoC: tegra: add Tegra210 based ADMAIF driver
-To:     Sameer Pujar <spujar@nvidia.com>, perex@perex.cz, tiwai@suse.com,
-        robh+dt@kernel.org
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
-        mkumard@nvidia.com, viswanathl@nvidia.com, rlokhande@nvidia.com,
-        dramesh@nvidia.com, atalambedu@nvidia.com
-References: <1582180492-25297-1-git-send-email-spujar@nvidia.com>
- <1582180492-25297-8-git-send-email-spujar@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <e6114203-57d1-bc74-f786-c2246ccb4341@gmail.com>
-Date:   Fri, 21 Feb 2020 09:08:44 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=q61/N6jKzSDGt/dt2Ij4V86BCpsgubUQTNr9KPnbsfA=;
+        b=toPSgRhwDGeKRdRox5NDsvXSsiKmUJm9ToqWYdkrzpCOwVnBBsi89o369OIkfpYe52
+         ZoPvhr/xcLDKIlM7U4prN7bANvvxuaDuuCHga0Ec76xy7fHJmSoOkDVvuN4nUWAt+531
+         6jOw/+Vu51svT+Fw4b/gVBIvFqB9wI18eKvfLkhZ6JvPA4RUcemLLT+h1lKeIlXCWbEf
+         882EqoZL3JtQsU5UnW2btMjec99waME6LU0i2obNxigf//JaCAuptwBOzEeY9CoZwDHj
+         uMaaIM1fmSI4YTAFMibxS8x5p3oS/EKGlCP38GMIoR68JHiWJRUaxK0MKQE5fZrjMS7u
+         +MXA==
+X-Gm-Message-State: APjAAAXX1OjwVLV97Ttcwq2LVA2BqTmDW+/9/xbECS8tEBjBwE5rYXvV
+        LF5HgjZSO5Rr/hh3KhPFn0s=
+X-Google-Smtp-Source: APXvYqzEZJwZsv9NAveAC2FjcWcHpl771MrGsbDrYjQQgJbqUJeWLRf2jv4lld17Hkk9bm6M9EG3Ag==
+X-Received: by 2002:a7b:c152:: with SMTP id z18mr1742573wmi.70.1582267812932;
+        Thu, 20 Feb 2020 22:50:12 -0800 (PST)
+Received: from localhost ([193.47.161.132])
+        by smtp.gmail.com with ESMTPSA id h205sm2551959wmf.25.2020.02.20.22.50.11
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 20 Feb 2020 22:50:12 -0800 (PST)
+Date:   Thu, 20 Feb 2020 17:04:41 +0100
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     aisheng.dong@nxp.com
+Cc:     peng.fan@nxp.com, festevam@gmail.com, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, Anson.Huang@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: RFC: imx8: imx8qm with LCD Panel on lpspi
+Message-ID: <20200220160441.GC31464@optiplex>
 MIME-Version: 1.0
-In-Reply-To: <1582180492-25297-8-git-send-email-spujar@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-20.02.2020 09:34, Sameer Pujar пишет:
-> ADMAIF is the interface between ADMA and AHUB. Each ADMA channel that
-> sends/receives data to/from AHUB must intreface through an ADMAIF channel.
-> ADMA channel sending data to AHUB pairs with an ADMAIF Tx channel and
-> similarly ADMA channel receiving data from AHUB pairs with an ADMAIF Rx
-> channel. Buffer size is configuranle for each ADMAIF channel, but currently
-> SW uses default values.
-> 
-> This patch registers ADMAIF driver with ASoC framework. The component
-> driver exposes DAPM widgets, routes and kcontrols for the device. The DAI
-> driver exposes ADMAIF interfaces, which can be used to connect different
-> components in the ASoC layer. Makefile and Kconfig support is added to
-> allow to build the driver. The ADMAIF device can be enabled in the DT via
-> "nvidia,tegra210-admaif" compatible binding.
-> 
-> Tegra PCM driver is updated to expose required PCM interfaces and
-> snd_pcm_ops callbacks.
-> 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
-...
-> +int tegra_pcm_construct(struct snd_soc_component *component,
-> +			struct snd_soc_pcm_runtime *rtd);
-> +void tegra_pcm_destruct(struct snd_soc_component *component,
-> +			struct snd_pcm *pcm);
-> +int tegra_pcm_open(struct snd_soc_component *component,
-> +		   struct snd_pcm_substream *substream);
-> +int tegra_pcm_close(struct snd_soc_component *component,
-> +		    struct snd_pcm_substream *substream);
-> +int tegra_pcm_hw_params(struct snd_soc_component *component,
-> +			struct snd_pcm_substream *substream,
-> +			struct snd_pcm_hw_params *params);
-> +int tegra_pcm_hw_free(struct snd_soc_component *component,
-> +		      struct snd_pcm_substream *substream);
-> +int tegra_pcm_mmap(struct snd_soc_component *component,
-> +		   struct snd_pcm_substream *substream,
-> +		   struct vm_area_struct *vma);
+Hello Aisheng,
 
-> +int tegra_pcm_trigger(struct snd_soc_component *component,
-> +		      struct snd_pcm_substream *substream, int cmd);
+I try to get a LCD Panel working with the imx8qm. The Panel is connected
+to lpspi. But I'am not sure if I handle the imx8qm clocking the right
+way. Should I use the imx7ul compatible or the imx8qxp compatible? Which
+clock defines should I use for the SPI1 Clk?
 
-Looks like this function doesn't exist.
+Best Regards,
+
+Oliver
+
+
+	lpspi1: lpspi@5a010000 {
+		compatible = "fsl,imx7ulp-spi";
+		/* compatible = "fsl,imx8qxp-spi"; */
+		reg = <0x0 0x5a010000 0x0 0x10000>;
+		interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-parent = <&gic>;
+		clocks = <&clk IMX_ADMA_SPI1_CLK>,
+		         <&clk IMX_IMG_IPG_CLK>;
+		clock-names = "per", "ipg";
+		assigned-clocks = <&clk IMX_ADMA_SPI1_CLK>;
+		assigned-clock-rates = <20000000>;
+		status = "disabled";
+	};
+
+&lpspi1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	fsl,spi-num-chipselects = <1>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_lpspi1 &pinctrl_lpspi1_cs>;
+	cs-gpios = <&lsio_gpio3 24 GPIO_ACTIVE_LOW>;
+	status = "okay";
+
+	panel@0 {
+		compatible = "sitronix,st7789v";
+		reg = <0>;
+
+		/* reset-gpios = <&lsio_gpio3 11 GPIO_ACTIVE_LOW>; */
+
+		backlight = <&lvds_backlight1>;
+		spi-max-frequency = <30000000>;
+		spi-cpol;
+		spi-cpha;
+
+		port {
+			panel_input: endpoint {
+				remote-endpoint = <&tcon0_out_panel>;
+			};
+		};
+
+	};
+};
