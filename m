@@ -2,428 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43631166467
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 18:23:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A7B16647C
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 18:24:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728942AbgBTRWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Feb 2020 12:22:21 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:48878 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728926AbgBTRWU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Feb 2020 12:22:20 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 93ECD295293
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, ck.hu@mediatek.com,
-        p.zabel@pengutronix.de, airlied@linux.ie, mturquette@baylibre.com,
-        sboyd@kernel.org, ulrich.hecht+renesas@gmail.com,
-        laurent.pinchart@ideasonboard.com
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>, rdunlap@infradead.org,
-        dri-devel@lists.freedesktop.org, Weiyi Lu <weiyi.lu@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        linux-clk@vger.kernel.org,
-        Collabora Kernel ML <kernel@collabora.com>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        Allison Randal <allison@lohutok.net>,
-        Thomas Gleixner <tglx@linutronix.de>, wens@csie.org,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        sean.wang@mediatek.com, frank-w@public-files.de,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        linux-mediatek@lists.infradead.org, hsinyi@chromium.org,
-        Matthias Brugger <mbrugger@suse.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Richard Fontana <rfontana@redhat.com>,
-        linux-kernel@vger.kernel.org, matthias.bgg@kernel.org,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH v8 6/6] clk/drm: mediatek: Fix mediatek-drm device probing
-Date:   Thu, 20 Feb 2020 18:21:47 +0100
-Message-Id: <20200220172147.919996-7-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200220172147.919996-1-enric.balletbo@collabora.com>
-References: <20200220172147.919996-1-enric.balletbo@collabora.com>
+        id S1728715AbgBTRXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Feb 2020 12:23:54 -0500
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:32833 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728237AbgBTRXy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Feb 2020 12:23:54 -0500
+Received: by mail-wm1-f68.google.com with SMTP id m10so3294223wmc.0
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2020 09:23:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thegoodpenguin-co-uk.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=DP+WeV+eCsLNcM+0j7VvT82QxXGphPuPG6yUJrTyu2U=;
+        b=R78Qigu18fQdSDHxyFt+gW5wubpXXtRHLj65ytZxFXLLy3m/Co+0ptUws9rqJFpJTg
+         5+KMf7B15USerdDLnaoM9irKTCXrd4+J95sO5zPCYQiTRs1Gx8H+H+x3G2CiCAvuyJu5
+         /U/9vm5hgp+xuWqrMkrMZg0yyxMQOx5fXOOBCnAmpu0LyPxTUnE7Woy2rl4jTb9Ms9hr
+         BzKxrwajcq3cp0lXRn35Sj3uf/H+DPPJh2HtZNdDHWmp+kfRaedRNapGWL/oRqlgLd9B
+         vgTlVOzYwGfyHr6qIwYaKx8aSkCjt4Qex3WgH9VjUUnUTQGJ47QI/fkm1+Agh9LLL/qK
+         l0SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DP+WeV+eCsLNcM+0j7VvT82QxXGphPuPG6yUJrTyu2U=;
+        b=Ayg4qbz1jyRvAxrMp7Pl0A0Z4w5NUWrt6Kjvfq9w3bcmbgKJcZG/58UMNuzDBxvYkM
+         mwTjTWxl2ATVi3tWI415IHAq9Oiz6Un0kCEYTdo2EeMQ2B9bekWMhsYwgfPlbAthwpDa
+         C7RlkANsGwypNvDt2Z2aB+OROPxazGA6FSbloOAc7o25CKQwg7reeBJL83nM6IrAPycW
+         RoSw/dF5QPo7t1WqzT7hk21BZqtZSxesNEJRxm5JFcBp3aAZe9QnWechQlgDY8ic6rTm
+         DydJh3xjK7yQR+kp2fy/OpRahfB2RhoJJJpadbzeqh4ALBt5zHveiECuTV+4M3tGdp0B
+         EhiA==
+X-Gm-Message-State: APjAAAVyPHGcdGRdvix6uw4Sp90Eip+jBp9thDf9rO1d+eIssB3gkVk7
+        px2E3m28B18zvOF7iTFf8vMm6w==
+X-Google-Smtp-Source: APXvYqwoOtD3d5ksvVjxWcwZ0/DxwY7u+cyjGgOanzGPTjCQXXfMerwF375wbaNtGgrElDDsrXncyg==
+X-Received: by 2002:a1c:b789:: with SMTP id h131mr5560317wmf.148.1582219430876;
+        Thu, 20 Feb 2020 09:23:50 -0800 (PST)
+Received: from big-machine ([2a00:23c5:dd80:8400:98d8:49e6:cdcc:25df])
+        by smtp.gmail.com with ESMTPSA id c77sm5261153wmd.12.2020.02.20.09.23.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2020 09:23:50 -0800 (PST)
+Date:   Thu, 20 Feb 2020 17:23:48 +0000
+From:   Andrew Murray <amurray@thegoodpenguin.co.uk>
+To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
+Cc:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhelgaas@google.com, robh+dt@kernel.org, andrew.murray@arm.com,
+        arnd@arndb.de, mark.rutland@arm.com, l.subrahmanya@mobiveil.co.in,
+        shawnguo@kernel.org, m.karthikeyan@mobiveil.co.in,
+        leoyang.li@nxp.com, lorenzo.pieralisi@arm.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, Mingkai.Hu@nxp.com,
+        Minghuan.Lian@nxp.com, Xiaowei.Bao@nxp.com
+Subject: Re: [PATCHv10 03/13] PCI: mobiveil: Collect the interrupt related
+ operations into a function
+Message-ID: <20200220172348.GF19388@big-machine>
+References: <20200213040644.45858-1-Zhiqiang.Hou@nxp.com>
+ <20200213040644.45858-4-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200213040644.45858-4-Zhiqiang.Hou@nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the actual implementation the same compatible string
-"mediatek,<chip>-mmsys" is used to bind the clock drivers
-(drivers/clk/mediatek) as well as to the gpu driver
-(drivers/gpu/drm/mediatek/mtk_drm_drv.c). This ends with the problem
-that the only probed driver is the clock driver and there is no display
-at all.
+On Thu, Feb 13, 2020 at 12:06:34PM +0800, Zhiqiang Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> Collect the interrupt initialization related operations into
+> a new function such that it is more readable.
+> 
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 
-In any case having the same compatible string for two drivers is not
-correct and should be fixed. To fix this, and maintain backward
-compatibility, we can consider that the clk-<chip>-mm driver is the
-top-level entry point for the MMSYS subsystem, so is not a pure clock
-controller but a system controller, and the drm driver is instantiated
-by that MMSYS driver.
+Reviewed-by: Andrew Murray <amurray@thegoodpenguin.co.uk>
 
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
-
-Changes in v8:
-- New patch introduced in this series.
-
-Changes in v7: None
-
- drivers/clk/mediatek/clk-mt2701-mm.c   |  30 ++++++++
- drivers/clk/mediatek/clk-mt2712-mm.c   |  44 +++++++++++
- drivers/clk/mediatek/clk-mt8173-mm.c   |  35 +++++++++
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 102 ++-----------------------
- 4 files changed, 115 insertions(+), 96 deletions(-)
-
-diff --git a/drivers/clk/mediatek/clk-mt2701-mm.c b/drivers/clk/mediatek/clk-mt2701-mm.c
-index 054b597d4a73..b1281680d5bf 100644
---- a/drivers/clk/mediatek/clk-mt2701-mm.c
-+++ b/drivers/clk/mediatek/clk-mt2701-mm.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/clk-provider.h>
-+#include <linux/platform_data/mtk_mmsys.h>
- #include <linux/platform_device.h>
- 
- #include "clk-mtk.h"
-@@ -79,6 +80,27 @@ static const struct mtk_gate mm_clks[] = {
- 	GATE_DISP1(CLK_MM_TVE_FMM, "mm_tve_fmm", "mm_sel", 14),
- };
- 
-+static const enum mtk_ddp_comp_id mt2701_mtk_ddp_main[] = {
-+	DDP_COMPONENT_OVL0,
-+	DDP_COMPONENT_RDMA0,
-+	DDP_COMPONENT_COLOR0,
-+	DDP_COMPONENT_BLS,
-+	DDP_COMPONENT_DSI0,
-+};
-+
-+static const enum mtk_ddp_comp_id mt2701_mtk_ddp_ext[] = {
-+	DDP_COMPONENT_RDMA1,
-+	DDP_COMPONENT_DPI0,
-+};
-+
-+static struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
-+	.main_path = mt2701_mtk_ddp_main,
-+	.main_len = ARRAY_SIZE(mt2701_mtk_ddp_main),
-+	.ext_path = mt2701_mtk_ddp_ext,
-+	.ext_len = ARRAY_SIZE(mt2701_mtk_ddp_ext),
-+	.shadow_register = true,
-+};
-+
- static const struct of_device_id of_match_clk_mt2701_mm[] = {
- 	{ .compatible = "mediatek,mt2701-mmsys", },
- 	{}
-@@ -87,6 +109,7 @@ static const struct of_device_id of_match_clk_mt2701_mm[] = {
- static int clk_mt2701_mm_probe(struct platform_device *pdev)
- {
- 	struct clk_onecell_data *clk_data;
-+	struct platform_device *drm;
- 	int r;
- 	struct device_node *node = pdev->dev.of_node;
- 
-@@ -101,6 +124,13 @@ static int clk_mt2701_mm_probe(struct platform_device *pdev)
- 			"could not register clock provider: %s: %d\n",
- 			pdev->name, r);
- 
-+	platform_set_drvdata(pdev, &mt2701_mmsys_driver_data);
-+
-+	drm = platform_device_register_data(&pdev->dev, "mediatek-drm",
-+					    PLATFORM_DEVID_NONE, NULL, 0);
-+	if (IS_ERR(drm))
-+		return PTR_ERR(drm);
-+
- 	return r;
- }
- 
-diff --git a/drivers/clk/mediatek/clk-mt2712-mm.c b/drivers/clk/mediatek/clk-mt2712-mm.c
-index 1c5948be35f3..0ae971783997 100644
---- a/drivers/clk/mediatek/clk-mt2712-mm.c
-+++ b/drivers/clk/mediatek/clk-mt2712-mm.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/clk-provider.h>
-+#include <linux/platform_data/mtk_mmsys.h>
- #include <linux/platform_device.h>
- 
- #include "clk-mtk.h"
-@@ -126,9 +127,45 @@ static const struct mtk_gate mm_clks[] = {
- 	GATE_MM2(CLK_MM_DSI3_DIGITAL, "mm_dsi3_digital", "dsi1_lntc", 6),
- };
- 
-+static const enum mtk_ddp_comp_id mt2712_mtk_ddp_main[] = {
-+	DDP_COMPONENT_OVL0,
-+	DDP_COMPONENT_COLOR0,
-+	DDP_COMPONENT_AAL0,
-+	DDP_COMPONENT_OD0,
-+	DDP_COMPONENT_RDMA0,
-+	DDP_COMPONENT_DPI0,
-+	DDP_COMPONENT_PWM0,
-+};
-+
-+static const enum mtk_ddp_comp_id mt2712_mtk_ddp_ext[] = {
-+	DDP_COMPONENT_OVL1,
-+	DDP_COMPONENT_COLOR1,
-+	DDP_COMPONENT_AAL1,
-+	DDP_COMPONENT_OD1,
-+	DDP_COMPONENT_RDMA1,
-+	DDP_COMPONENT_DPI1,
-+	DDP_COMPONENT_PWM1,
-+};
-+
-+static const enum mtk_ddp_comp_id mt2712_mtk_ddp_third[] = {
-+	DDP_COMPONENT_RDMA2,
-+	DDP_COMPONENT_DSI3,
-+	DDP_COMPONENT_PWM2,
-+};
-+
-+static struct mtk_mmsys_driver_data mt2712_mmsys_driver_data = {
-+	.main_path = mt2712_mtk_ddp_main,
-+	.main_len = ARRAY_SIZE(mt2712_mtk_ddp_main),
-+	.ext_path = mt2712_mtk_ddp_ext,
-+	.ext_len = ARRAY_SIZE(mt2712_mtk_ddp_ext),
-+	.third_path = mt2712_mtk_ddp_third,
-+	.third_len = ARRAY_SIZE(mt2712_mtk_ddp_third),
-+};
-+
- static int clk_mt2712_mm_probe(struct platform_device *pdev)
- {
- 	struct clk_onecell_data *clk_data;
-+	struct platform_device *drm;
- 	int r;
- 	struct device_node *node = pdev->dev.of_node;
- 
-@@ -143,6 +180,13 @@ static int clk_mt2712_mm_probe(struct platform_device *pdev)
- 		pr_err("%s(): could not register clock provider: %d\n",
- 			__func__, r);
- 
-+	platform_set_drvdata(pdev, &mt2712_mmsys_driver_data);
-+
-+	drm = platform_device_register_data(&pdev->dev, "mediatek-drm",
-+					    PLATFORM_DEVID_NONE, NULL, 0);
-+	if (IS_ERR(drm))
-+		return PTR_ERR(drm);
-+
- 	return r;
- }
- 
-diff --git a/drivers/clk/mediatek/clk-mt8173-mm.c b/drivers/clk/mediatek/clk-mt8173-mm.c
-index 83884fd5a750..9136c7f543f1 100644
---- a/drivers/clk/mediatek/clk-mt8173-mm.c
-+++ b/drivers/clk/mediatek/clk-mt8173-mm.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/clk-provider.h>
-+#include <linux/platform_data/mtk_mmsys.h>
- #include <linux/platform_device.h>
- 
- #include "clk-mtk.h"
-@@ -99,10 +100,37 @@ static const struct mtk_gate mm_clks[] = {
- 	GATE_MM1(CLK_MM_HDMI_HDCP24M, "mm_hdmi_hdcp24m", "hdcp_24m_sel", 20),
- };
- 
-+static const enum mtk_ddp_comp_id mt8173_mtk_ddp_main[] = {
-+	DDP_COMPONENT_OVL0,
-+	DDP_COMPONENT_COLOR0,
-+	DDP_COMPONENT_AAL0,
-+	DDP_COMPONENT_OD0,
-+	DDP_COMPONENT_RDMA0,
-+	DDP_COMPONENT_UFOE,
-+	DDP_COMPONENT_DSI0,
-+	DDP_COMPONENT_PWM0,
-+};
-+
-+static const enum mtk_ddp_comp_id mt8173_mtk_ddp_ext[] = {
-+	DDP_COMPONENT_OVL1,
-+	DDP_COMPONENT_COLOR1,
-+	DDP_COMPONENT_GAMMA,
-+	DDP_COMPONENT_RDMA1,
-+	DDP_COMPONENT_DPI0,
-+};
-+
-+static struct mtk_mmsys_driver_data mt8173_mmsys_driver_data = {
-+	.main_path = mt8173_mtk_ddp_main,
-+	.main_len = ARRAY_SIZE(mt8173_mtk_ddp_main),
-+	.ext_path = mt8173_mtk_ddp_ext,
-+	.ext_len = ARRAY_SIZE(mt8173_mtk_ddp_ext),
-+};
-+
- static int clk_mt8173_mm_probe(struct platform_device *pdev)
- {
- 	struct device_node *node = pdev->dev.of_node;
- 	struct clk_onecell_data *clk_data;
-+	struct platform_device *drm;
- 	int ret;
- 
- 	clk_data = mtk_alloc_clk_data(CLK_MM_NR_CLK);
-@@ -118,6 +146,13 @@ static int clk_mt8173_mm_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	platform_set_drvdata(pdev, &mt8173_mmsys_driver_data);
-+
-+	drm = platform_device_register_data(&pdev->dev, "mediatek-drm",
-+					    PLATFORM_DEVID_NONE, NULL, 0);
-+	if (IS_ERR(drm))
-+		return PTR_ERR(drm);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index b68837ea02b3..5b60f6b7d710 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -61,88 +61,6 @@ static const struct drm_mode_config_funcs mtk_drm_mode_config_funcs = {
- 	.atomic_commit = drm_atomic_helper_commit,
- };
- 
--static const enum mtk_ddp_comp_id mt2701_mtk_ddp_main[] = {
--	DDP_COMPONENT_OVL0,
--	DDP_COMPONENT_RDMA0,
--	DDP_COMPONENT_COLOR0,
--	DDP_COMPONENT_BLS,
--	DDP_COMPONENT_DSI0,
--};
--
--static const enum mtk_ddp_comp_id mt2701_mtk_ddp_ext[] = {
--	DDP_COMPONENT_RDMA1,
--	DDP_COMPONENT_DPI0,
--};
--
--static const enum mtk_ddp_comp_id mt2712_mtk_ddp_main[] = {
--	DDP_COMPONENT_OVL0,
--	DDP_COMPONENT_COLOR0,
--	DDP_COMPONENT_AAL0,
--	DDP_COMPONENT_OD0,
--	DDP_COMPONENT_RDMA0,
--	DDP_COMPONENT_DPI0,
--	DDP_COMPONENT_PWM0,
--};
--
--static const enum mtk_ddp_comp_id mt2712_mtk_ddp_ext[] = {
--	DDP_COMPONENT_OVL1,
--	DDP_COMPONENT_COLOR1,
--	DDP_COMPONENT_AAL1,
--	DDP_COMPONENT_OD1,
--	DDP_COMPONENT_RDMA1,
--	DDP_COMPONENT_DPI1,
--	DDP_COMPONENT_PWM1,
--};
--
--static const enum mtk_ddp_comp_id mt2712_mtk_ddp_third[] = {
--	DDP_COMPONENT_RDMA2,
--	DDP_COMPONENT_DSI3,
--	DDP_COMPONENT_PWM2,
--};
--
--static const enum mtk_ddp_comp_id mt8173_mtk_ddp_main[] = {
--	DDP_COMPONENT_OVL0,
--	DDP_COMPONENT_COLOR0,
--	DDP_COMPONENT_AAL0,
--	DDP_COMPONENT_OD0,
--	DDP_COMPONENT_RDMA0,
--	DDP_COMPONENT_UFOE,
--	DDP_COMPONENT_DSI0,
--	DDP_COMPONENT_PWM0,
--};
--
--static const enum mtk_ddp_comp_id mt8173_mtk_ddp_ext[] = {
--	DDP_COMPONENT_OVL1,
--	DDP_COMPONENT_COLOR1,
--	DDP_COMPONENT_GAMMA,
--	DDP_COMPONENT_RDMA1,
--	DDP_COMPONENT_DPI0,
--};
--
--static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
--	.main_path = mt2701_mtk_ddp_main,
--	.main_len = ARRAY_SIZE(mt2701_mtk_ddp_main),
--	.ext_path = mt2701_mtk_ddp_ext,
--	.ext_len = ARRAY_SIZE(mt2701_mtk_ddp_ext),
--	.shadow_register = true,
--};
--
--static const struct mtk_mmsys_driver_data mt2712_mmsys_driver_data = {
--	.main_path = mt2712_mtk_ddp_main,
--	.main_len = ARRAY_SIZE(mt2712_mtk_ddp_main),
--	.ext_path = mt2712_mtk_ddp_ext,
--	.ext_len = ARRAY_SIZE(mt2712_mtk_ddp_ext),
--	.third_path = mt2712_mtk_ddp_third,
--	.third_len = ARRAY_SIZE(mt2712_mtk_ddp_third),
--};
--
--static const struct mtk_mmsys_driver_data mt8173_mmsys_driver_data = {
--	.main_path = mt8173_mtk_ddp_main,
--	.main_len = ARRAY_SIZE(mt8173_mtk_ddp_main),
--	.ext_path = mt8173_mtk_ddp_ext,
--	.ext_len = ARRAY_SIZE(mt8173_mtk_ddp_ext),
--};
--
- static int mtk_drm_kms_init(struct drm_device *drm)
- {
- 	struct mtk_drm_private *private = drm->dev_private;
-@@ -425,6 +343,7 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- static int mtk_drm_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	struct device_node *phandle = dev->parent->of_node;
- 	struct mtk_drm_private *private;
- 	struct device_node *node;
- 	struct component_match *match = NULL;
-@@ -435,14 +354,16 @@ static int mtk_drm_probe(struct platform_device *pdev)
- 	if (!private)
- 		return -ENOMEM;
- 
--	private->data = of_device_get_match_data(dev);
-+	private->data = dev_get_drvdata(dev->parent);
-+	if (!private->data)
-+		return -ENODEV;
- 
--	private->config_regs = syscon_node_to_regmap(dev->of_node);
-+	private->config_regs = syscon_node_to_regmap(phandle);
- 	if (IS_ERR(private->config_regs))
- 		return PTR_ERR(private->config_regs);
- 
- 	/* Iterate over sibling DISP function blocks */
--	for_each_child_of_node(dev->of_node->parent, node) {
-+	for_each_child_of_node(phandle->parent, node) {
- 		const struct of_device_id *of_id;
- 		enum mtk_ddp_comp_type comp_type;
- 		int comp_id;
-@@ -576,22 +497,11 @@ static int mtk_drm_sys_resume(struct device *dev)
- static SIMPLE_DEV_PM_OPS(mtk_drm_pm_ops, mtk_drm_sys_suspend,
- 			 mtk_drm_sys_resume);
- 
--static const struct of_device_id mtk_drm_of_ids[] = {
--	{ .compatible = "mediatek,mt2701-mmsys",
--	  .data = &mt2701_mmsys_driver_data},
--	{ .compatible = "mediatek,mt2712-mmsys",
--	  .data = &mt2712_mmsys_driver_data},
--	{ .compatible = "mediatek,mt8173-mmsys",
--	  .data = &mt8173_mmsys_driver_data},
--	{ }
--};
--
- static struct platform_driver mtk_drm_platform_driver = {
- 	.probe	= mtk_drm_probe,
- 	.remove	= mtk_drm_remove,
- 	.driver	= {
- 		.name	= "mediatek-drm",
--		.of_match_table = mtk_drm_of_ids,
- 		.pm     = &mtk_drm_pm_ops,
- 	},
- };
--- 
-2.25.0
-
+> ---
+> V10:
+>  - Refined the subject and change log.
+> 
+>  drivers/pci/controller/pcie-mobiveil.c | 65 +++++++++++++++++---------
+>  1 file changed, 42 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
+> index 01df04ea5b48..9449528bb14f 100644
+> --- a/drivers/pci/controller/pcie-mobiveil.c
+> +++ b/drivers/pci/controller/pcie-mobiveil.c
+> @@ -454,12 +454,6 @@ static int mobiveil_pcie_parse_dt(struct mobiveil_pcie *pcie)
+>  		return PTR_ERR(pcie->csr_axi_slave_base);
+>  	pcie->pcie_reg_base = res->start;
+>  
+> -	/* map MSI config resource */
+> -	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "apb_csr");
+> -	pcie->apb_csr_base = devm_pci_remap_cfg_resource(dev, res);
+> -	if (IS_ERR(pcie->apb_csr_base))
+> -		return PTR_ERR(pcie->apb_csr_base);
+> -
+>  	/* read the number of windows requested */
+>  	if (of_property_read_u32(node, "apio-wins", &pcie->apio_wins))
+>  		pcie->apio_wins = MAX_PIO_WINDOWS;
+> @@ -467,12 +461,6 @@ static int mobiveil_pcie_parse_dt(struct mobiveil_pcie *pcie)
+>  	if (of_property_read_u32(node, "ppio-wins", &pcie->ppio_wins))
+>  		pcie->ppio_wins = MAX_PIO_WINDOWS;
+>  
+> -	rp->irq = platform_get_irq(pdev, 0);
+> -	if (rp->irq <= 0) {
+> -		dev_err(dev, "failed to map IRQ: %d\n", rp->irq);
+> -		return -ENODEV;
+> -	}
+> -
+>  	return 0;
+>  }
+>  
+> @@ -618,9 +606,6 @@ static int mobiveil_host_init(struct mobiveil_pcie *pcie)
+>  	pab_ctrl |= (1 << AMBA_PIO_ENABLE_SHIFT) | (1 << PEX_PIO_ENABLE_SHIFT);
+>  	mobiveil_csr_writel(pcie, pab_ctrl, PAB_CTRL);
+>  
+> -	mobiveil_csr_writel(pcie, (PAB_INTP_INTX_MASK | PAB_INTP_MSI_MASK),
+> -			    PAB_INTP_AMBA_MISC_ENB);
+> -
+>  	/*
+>  	 * program PIO Enable Bit to 1 and Config Window Enable Bit to 1 in
+>  	 * PAB_AXI_PIO_CTRL Register
+> @@ -670,9 +655,6 @@ static int mobiveil_host_init(struct mobiveil_pcie *pcie)
+>  	value |= (PCI_CLASS_BRIDGE_PCI << 16);
+>  	mobiveil_csr_writel(pcie, value, PAB_INTP_AXI_PIO_CLASS);
+>  
+> -	/* setup MSI hardware registers */
+> -	mobiveil_pcie_enable_msi(pcie);
+> -
+>  	return 0;
+>  }
+>  
+> @@ -873,6 +855,46 @@ static int mobiveil_pcie_init_irq_domain(struct mobiveil_pcie *pcie)
+>  	return 0;
+>  }
+>  
+> +static int mobiveil_pcie_interrupt_init(struct mobiveil_pcie *pcie)
+> +{
+> +	struct platform_device *pdev = pcie->pdev;
+> +	struct device *dev = &pdev->dev;
+> +	struct mobiveil_root_port *rp = &pcie->rp;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	/* map MSI config resource */
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "apb_csr");
+> +	pcie->apb_csr_base = devm_pci_remap_cfg_resource(dev, res);
+> +	if (IS_ERR(pcie->apb_csr_base))
+> +		return PTR_ERR(pcie->apb_csr_base);
+> +
+> +	/* setup MSI hardware registers */
+> +	mobiveil_pcie_enable_msi(pcie);
+> +
+> +	rp->irq = platform_get_irq(pdev, 0);
+> +	if (rp->irq <= 0) {
+> +		dev_err(dev, "failed to map IRQ: %d\n", rp->irq);
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* initialize the IRQ domains */
+> +	ret = mobiveil_pcie_init_irq_domain(pcie);
+> +	if (ret) {
+> +		dev_err(dev, "Failed creating IRQ Domain\n");
+> +		return ret;
+> +	}
+> +
+> +	irq_set_chained_handler_and_data(rp->irq, mobiveil_pcie_isr, pcie);
+> +
+> +	/* Enable interrupts */
+> +	mobiveil_csr_writel(pcie, (PAB_INTP_INTX_MASK | PAB_INTP_MSI_MASK),
+> +			    PAB_INTP_AMBA_MISC_ENB);
+> +
+> +
+> +	return 0;
+> +}
+> +
+>  static int mobiveil_pcie_host_probe(struct mobiveil_pcie *pcie)
+>  {
+>  	struct mobiveil_root_port *rp = &pcie->rp;
+> @@ -906,15 +928,12 @@ static int mobiveil_pcie_host_probe(struct mobiveil_pcie *pcie)
+>  		return ret;
+>  	}
+>  
+> -	/* initialize the IRQ domains */
+> -	ret = mobiveil_pcie_init_irq_domain(pcie);
+> +	ret = mobiveil_pcie_interrupt_init(pcie);
+>  	if (ret) {
+> -		dev_err(dev, "Failed creating IRQ Domain\n");
+> +		dev_err(dev, "Interrupt init failed\n");
+>  		return ret;
+>  	}
+>  
+> -	irq_set_chained_handler_and_data(rp->irq, mobiveil_pcie_isr, pcie);
+> -
+>  	/* Initialize bridge */
+>  	bridge->dev.parent = dev;
+>  	bridge->sysdata = pcie;
+> -- 
+> 2.17.1
+> 
