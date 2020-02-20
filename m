@@ -2,243 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99F17165E0F
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 14:02:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56D36165EC1
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 14:28:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727967AbgBTNCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Feb 2020 08:02:04 -0500
-Received: from michel.telenet-ops.be ([195.130.137.88]:34990 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727943AbgBTNCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Feb 2020 08:02:01 -0500
-Received: from ramsan ([84.195.182.253])
-        by michel.telenet-ops.be with bizsmtp
-        id 511u220025USYZQ0611udK; Thu, 20 Feb 2020 14:01:58 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j4lSj-000567-W6; Thu, 20 Feb 2020 14:01:53 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j4lSj-0007Lt-Ug; Thu, 20 Feb 2020 14:01:53 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2 2/2] gpio: of: Add DT overlay support for GPIO hogs
-Date:   Thu, 20 Feb 2020 14:01:49 +0100
-Message-Id: <20200220130149.26283-3-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200220130149.26283-1-geert+renesas@glider.be>
-References: <20200220130149.26283-1-geert+renesas@glider.be>
+        id S1728234AbgBTN15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Feb 2020 08:27:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56366 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726959AbgBTN14 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Feb 2020 08:27:56 -0500
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CD720222C4;
+        Thu, 20 Feb 2020 13:27:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582205275;
+        bh=LRERjOY5swhgYq3TNDFqarey7d7DB+nwUJMGhi6oW7I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ETWCB9au7GNELIvo2IGphOuMC7YLOuI9PCos8dfJeskBQpqRE9gfhSM/3dYm1hNfQ
+         2+spmMhLjQy3O803GwZkQTSPkJ/g6oQqkLq/GAlXUOKsIRrlaqsih03lVpecyg5ceO
+         j/kEiaLM42UzlHx+s3/fjdb6NH2uMpau8TVCPWH8=
+Received: by mail-qk1-f175.google.com with SMTP id a141so3490257qkg.6;
+        Thu, 20 Feb 2020 05:27:55 -0800 (PST)
+X-Gm-Message-State: APjAAAU5VN/68yT5A8b4H5dbRWFBnXY/ikAo3Cd0y05KAxgUxwkzjSGF
+        VImFrswwT63uTmoCc5MGXDmeSIVwTMTqqd3fMg==
+X-Google-Smtp-Source: APXvYqxZVZomqdZk3IaaKKbZU5jEWBttIla8w6bWDNkZ/rJVdlHm/dja7DRh0sdZhj/Rpu1qHX+SAaGxb8OtZWG18r4=
+X-Received: by 2002:a37:6457:: with SMTP id y84mr28648400qkb.254.1582205274941;
+ Thu, 20 Feb 2020 05:27:54 -0800 (PST)
+MIME-Version: 1.0
+References: <1579087831-94965-1-git-send-email-jianxin.pan@amlogic.com> <1579087831-94965-3-git-send-email-jianxin.pan@amlogic.com>
+In-Reply-To: <1579087831-94965-3-git-send-email-jianxin.pan@amlogic.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 20 Feb 2020 07:27:43 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJwYChw_S4anOPGhH4r3uwD9SVCnRqa_5BwRvwVicjwrg@mail.gmail.com>
+Message-ID: <CAL_JsqJwYChw_S4anOPGhH4r3uwD9SVCnRqa_5BwRvwVicjwrg@mail.gmail.com>
+Subject: Re: [PATCH v6 2/4] dt-bindings: power: add Amlogic secure power
+ domains bindings
+To:     Jianxin Pan <jianxin.pan@amlogic.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As GPIO hogs are configured at GPIO controller initialization time,
-adding/removing GPIO hogs in DT overlays does not work.
+On Wed, Jan 15, 2020 at 5:30 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+>
+> Add the bindings for the Amlogic Secure power domains, controlling the
+> secure power domains.
+>
+> The bindings targets the Amlogic A1 and C1 compatible SoCs, in which the
+> power domain registers are in secure world.
+>
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     | 40 ++++++++++++++++++++++
+>  include/dt-bindings/power/meson-a1-power.h         | 32 +++++++++++++++++
+>  2 files changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+>  create mode 100644 include/dt-bindings/power/meson-a1-power.h
+>
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> new file mode 100644
+> index 00000000..af32209
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +# Copyright (c) 2019 Amlogic, Inc
+> +# Author: Jianxin Pan <jianxin.pan@amlogic.com>
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson Secure Power Domains
+> +
+> +maintainers:
+> +  - Jianxin Pan <jianxin.pan@amlogic.com>
+> +
+> +description: |+
+> +  Secure Power Domains used in Meson A1/C1 SoCs, and should be the child node
+> +  of secure-monitor.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson-a1-pwrc
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#power-domain-cells"
+> +
+> +examples:
+> +  - |
+> +    secure-monitor {
+> +        compatible = "amlogic,meson-gxbb-sm";
+> +
+> +        pwrc: power-controller {
+> +            compatible = "amlogic,meson-a1-pwrc";
+> +            #power-domain-cells = <1>;
+> +        };
+> +    }
 
-Add support for GPIO hogs described in DT overlays by registering an OF
-reconfiguration notifier, to handle the addition and removal of GPIO hog
-subnodes to/from a GPIO controller device node.
+Missing ';':
 
-Note that when a GPIO hog device node is being removed, its "gpios"
-properties is no longer available, so we have to keep track of which
-node a hog belongs to, which is done by adding a pointer to the hog's
-device node to struct gpio_desc.
+Error: Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.example.dts:27.5-6
+syntax error
+FATAL ERROR: Unable to parse input tree
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2:
-  - Drop RFC state,
-  - Document that modifying existing gpio-hog nodes is not supported.
----
- drivers/gpio/gpiolib-of.c | 90 +++++++++++++++++++++++++++++++++++++++
- drivers/gpio/gpiolib-of.h |  2 +
- drivers/gpio/gpiolib.c    | 14 ++++--
- drivers/gpio/gpiolib.h    |  3 ++
- 4 files changed, 106 insertions(+), 3 deletions(-)
+Please fix this as linux-next is now failing dt_binding_check.
 
-diff --git a/drivers/gpio/gpiolib-of.c b/drivers/gpio/gpiolib-of.c
-index 2b47f93886075294..ccc449df3792ae97 100644
---- a/drivers/gpio/gpiolib-of.c
-+++ b/drivers/gpio/gpiolib-of.c
-@@ -628,6 +628,10 @@ static int of_gpiochip_add_hog(struct gpio_chip *chip, struct device_node *hog)
- 		ret = gpiod_hog(desc, name, lflags, dflags);
- 		if (ret < 0)
- 			return ret;
-+
-+#ifdef CONFIG_OF_DYNAMIC
-+		desc->hog = hog;
-+#endif
- 	}
- 
- 	return 0;
-@@ -655,11 +659,97 @@ static int of_gpiochip_scan_gpios(struct gpio_chip *chip)
- 			of_node_put(np);
- 			return ret;
- 		}
-+
-+		of_node_set_flag(np, OF_POPULATED);
- 	}
- 
- 	return 0;
- }
- 
-+#ifdef CONFIG_OF_DYNAMIC
-+/**
-+ * of_gpiochip_remove_hog - Remove all hogs in a hog device node
-+ * @chip:	gpio chip to act on
-+ * @hog:	device node describing the hogs
-+ */
-+static void of_gpiochip_remove_hog(struct gpio_chip *chip,
-+				   struct device_node *hog)
-+{
-+	struct gpio_desc *descs = chip->gpiodev->descs;
-+	unsigned int i;
-+
-+	for (i = 0; i < chip->ngpio; i++) {
-+		if (test_bit(FLAG_IS_HOGGED, &descs[i].flags) &&
-+		    descs[i].hog == hog)
-+			gpiochip_free_own_desc(&descs[i]);
-+	}
-+}
-+
-+static int of_gpiochip_match_node(struct gpio_chip *chip, void *data)
-+{
-+	return chip->gpiodev->dev.of_node == data;
-+}
-+
-+static struct gpio_chip *of_find_gpiochip_by_node(struct device_node *np)
-+{
-+	return gpiochip_find(np, of_gpiochip_match_node);
-+}
-+
-+static int of_gpio_notify(struct notifier_block *nb, unsigned long action,
-+			  void *arg)
-+{
-+	struct of_reconfig_data *rd = arg;
-+	struct gpio_chip *chip;
-+	int ret;
-+
-+	/*
-+	 * This only supports adding and removing complete gpio-hog nodes.
-+	 * Modifying an existing gpio-hog node is not supported (except for
-+	 * changing its "status" property, which is treated the same as
-+	 * addition/removal).
-+	 */
-+	switch (of_reconfig_get_state_change(action, arg)) {
-+	case OF_RECONFIG_CHANGE_ADD:
-+		if (!of_property_read_bool(rd->dn, "gpio-hog"))
-+			return NOTIFY_OK;	/* not for us */
-+
-+		if (of_node_test_and_set_flag(rd->dn, OF_POPULATED))
-+			return NOTIFY_OK;
-+
-+		chip = of_find_gpiochip_by_node(rd->dn->parent);
-+		if (chip == NULL)
-+			return NOTIFY_OK;	/* not for us */
-+
-+		ret = of_gpiochip_add_hog(chip, rd->dn);
-+		if (ret < 0) {
-+			pr_err("%s: failed to add hogs for %pOF\n", __func__,
-+			       rd->dn);
-+			of_node_clear_flag(rd->dn, OF_POPULATED);
-+			return notifier_from_errno(ret);
-+		}
-+		break;
-+
-+	case OF_RECONFIG_CHANGE_REMOVE:
-+		if (!of_node_check_flag(rd->dn, OF_POPULATED))
-+			return NOTIFY_OK;	/* already depopulated */
-+
-+		chip = of_find_gpiochip_by_node(rd->dn->parent);
-+		if (chip == NULL)
-+			return NOTIFY_OK;	/* not for us */
-+
-+		of_gpiochip_remove_hog(chip, rd->dn);
-+		of_node_clear_flag(rd->dn, OF_POPULATED);
-+		break;
-+	}
-+
-+	return NOTIFY_OK;
-+}
-+
-+struct notifier_block gpio_of_notifier = {
-+	.notifier_call = of_gpio_notify,
-+};
-+#endif /* CONFIG_OF_DYNAMIC */
-+
- /**
-  * of_gpio_simple_xlate - translate gpiospec to the GPIO number and flags
-  * @gc:		pointer to the gpio_chip structure
-diff --git a/drivers/gpio/gpiolib-of.h b/drivers/gpio/gpiolib-of.h
-index 9768831b1fe2f25b..ed26664f153782fc 100644
---- a/drivers/gpio/gpiolib-of.h
-+++ b/drivers/gpio/gpiolib-of.h
-@@ -35,4 +35,6 @@ static inline bool of_gpio_need_valid_mask(const struct gpio_chip *gc)
- }
- #endif /* CONFIG_OF_GPIO */
- 
-+extern struct notifier_block gpio_of_notifier;
-+
- #endif /* GPIOLIB_OF_H */
-diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
-index 56de871060ea211e..6f312220fe80acaf 100644
---- a/drivers/gpio/gpiolib.c
-+++ b/drivers/gpio/gpiolib.c
-@@ -2925,6 +2925,9 @@ static bool gpiod_free_commit(struct gpio_desc *desc)
- 		clear_bit(FLAG_PULL_DOWN, &desc->flags);
- 		clear_bit(FLAG_BIAS_DISABLE, &desc->flags);
- 		clear_bit(FLAG_IS_HOGGED, &desc->flags);
-+#ifdef CONFIG_OF_DYNAMIC
-+		desc->hog = NULL;
-+#endif
- 		ret = true;
- 	}
- 
-@@ -5126,10 +5129,15 @@ static int __init gpiolib_dev_init(void)
- 	if (ret < 0) {
- 		pr_err("gpiolib: failed to allocate char dev region\n");
- 		bus_unregister(&gpio_bus_type);
--	} else {
--		gpiolib_initialized = true;
--		gpiochip_setup_devs();
-+		return ret;
- 	}
-+
-+	gpiolib_initialized = true;
-+	gpiochip_setup_devs();
-+
-+	if (IS_ENABLED(CONFIG_OF_DYNAMIC))
-+		WARN_ON(of_reconfig_notifier_register(&gpio_of_notifier));
-+
- 	return ret;
- }
- core_initcall(gpiolib_dev_init);
-diff --git a/drivers/gpio/gpiolib.h b/drivers/gpio/gpiolib.h
-index 3e0aab2945d82974..18c75e83fd7679ec 100644
---- a/drivers/gpio/gpiolib.h
-+++ b/drivers/gpio/gpiolib.h
-@@ -119,6 +119,9 @@ struct gpio_desc {
- 	const char		*label;
- 	/* Name of the GPIO */
- 	const char		*name;
-+#ifdef CONFIG_OF_DYNAMIC
-+	struct device_node	*hog;
-+#endif
- };
- 
- int gpiod_request(struct gpio_desc *desc, const char *label);
--- 
-2.17.1
-
+Rob
