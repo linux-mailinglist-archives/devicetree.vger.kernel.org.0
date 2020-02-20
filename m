@@ -2,95 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CD8A1658F2
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 09:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4539D16590E
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 09:23:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726541AbgBTIMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Feb 2020 03:12:49 -0500
-Received: from mail27.static.mailgun.info ([104.130.122.27]:25481 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726501AbgBTIMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 20 Feb 2020 03:12:48 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1582186368; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=KSFN05C5NtOXiH34t8XT3SiOfyQlUfmASjWs5M6ZyJ8=; b=dprqJhzDJHNtVdAC+h3sV+Dh7xIVLk11YMUOkz9JQ5zK1YDDRWPc12ZAh+6dxsUi+6413Shd
- Lz5See+awMUDkoC3jqNeW5A0H2XFpLVMDLxy+lyrbTAeJ6WD5RCitvD5lY1qYXV+rHKJbzL2
- nYr4FUW4j6gs7PskSLlSZWaCInQ=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e4e3f76.7fb80366bca8-smtp-out-n03;
- Thu, 20 Feb 2020 08:12:38 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E059BC43383; Thu, 20 Feb 2020 08:12:38 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from smasetty-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: smasetty)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2FDB8C4479F;
-        Thu, 20 Feb 2020 08:12:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2FDB8C4479F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=smasetty@codeaurora.org
-From:   Sharat Masetty <smasetty@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        jcrouse@codeaurora.org, mka@chromium.org, dianders@chromium.org,
-        Sharat Masetty <smasetty@codeaurora.org>
-Subject: [PATCH] dt-bindings: arm-smmu: update the list of clocks
-Date:   Thu, 20 Feb 2020 13:42:22 +0530
-Message-Id: <1582186342-3484-2-git-send-email-smasetty@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1582186342-3484-1-git-send-email-smasetty@codeaurora.org>
-References: <1582186342-3484-1-git-send-email-smasetty@codeaurora.org>
+        id S1726759AbgBTIXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Feb 2020 03:23:39 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:51576 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726637AbgBTIXj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 20 Feb 2020 03:23:39 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7F3EF1A5385;
+        Thu, 20 Feb 2020 09:23:37 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 441491A531C;
+        Thu, 20 Feb 2020 09:23:22 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id CE272402ED;
+        Thu, 20 Feb 2020 16:23:08 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amit.kucheria@verdurent.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org, leonard.crestez@nxp.com, daniel.baluta@nxp.com,
+        shengjiu.wang@nxp.com, peng.fan@nxp.com, ping.bai@nxp.com,
+        jun.li@nxp.com, bjorn.andersson@linaro.org, olof@lixom.net,
+        vkoul@kernel.org, dinguyen@kernel.org,
+        marcin.juszkiewicz@linaro.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH RESEND 1/4] dt-bindings: thermal: imx8mm-thermal: Add binding doc for i.MX8MM
+Date:   Thu, 20 Feb 2020 16:17:23 +0800
+Message-Id: <1582186646-22096-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a clock definition needed for powering on the GPU TBUs
-and the GPU TCU.
+Add thermal binding doc for Freescale's i.MX8MM Thermal Monitoring Unit.
 
-Signed-off-by: Sharat Masetty <smasetty@codeaurora.org>
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ .../devicetree/bindings/thermal/imx8mm-thermal.txt        | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 6515dbe..235c0df 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -28,6 +28,7 @@ properties:
-           - enum:
-               - qcom,msm8996-smmu-v2
-               - qcom,msm8998-smmu-v2
-+              - qcom,sc7180-smmu-v2
-               - qcom,sdm845-smmu-v2
-           - const: qcom,smmu-v2
+diff --git a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt
+new file mode 100644
+index 0000000..d09ae82
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.txt
+@@ -0,0 +1,15 @@
++* Thermal Monitoring Unit (TMU) on Freescale i.MX8MM SoC
++
++Required properties:
++- compatible : Must be "fsl,imx8mm-tmu".
++- reg : Address range of TMU registers.
++- clocks : TMU's clock source.
++- #thermal-sensor-cells : Should be 0. See ./thermal.txt for a description.
++
++Example:
++tmu: tmu@30260000 {
++	compatible = "fsl,imx8mm-tmu";
++	reg = <0x30260000 0x10000>;
++	clocks = <&clk IMX8MM_CLK_TMU_ROOT>;
++	#thermal-sensor-cells = <0>;
++};
+-- 
+2.7.4
 
-@@ -116,6 +117,7 @@ properties:
-     items:
-       - const: bus
-       - const: iface
-+      - const: mem_iface_clk
-
-   clocks:
-     items:
-@@ -123,6 +125,7 @@ properties:
-           smmu ptw
-       - description: interface clock required to access smmu's registers
-           through the TCU's programming interface.
-+      - description: core clock required for the GPU SMMU TBUs and the GPU TCU
-
-   power-domains:
-     maxItems: 1
---
-1.9.1
