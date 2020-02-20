@@ -2,117 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A07416541E
-	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 02:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF80165446
+	for <lists+devicetree@lfdr.de>; Thu, 20 Feb 2020 02:31:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727778AbgBTBRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 19 Feb 2020 20:17:02 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:55708 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727742AbgBTBRB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 19 Feb 2020 20:17:01 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 80E03204C98;
-        Thu, 20 Feb 2020 02:16:59 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3D5AD2048FC;
-        Thu, 20 Feb 2020 02:16:43 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 1AE25402E0;
-        Thu, 20 Feb 2020 09:16:19 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, amit.kucheria@verdurent.com,
-        aisheng.dong@nxp.com, linux@roeck-us.net,
-        srinivas.kandagatla@linaro.org, krzk@kernel.org,
-        fugang.duan@nxp.com, peng.fan@nxp.com, daniel.baluta@nxp.com,
-        bjorn.andersson@linaro.org, olof@lixom.net, dinguyen@kernel.org,
-        leonard.crestez@nxp.com, marcin.juszkiewicz@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V15 RESEND 5/5] arm64: dts: imx: add i.MX8QXP thermal support
-Date:   Thu, 20 Feb 2020 09:10:28 +0800
-Message-Id: <1582161028-2844-5-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1582161028-2844-1-git-send-email-Anson.Huang@nxp.com>
-References: <1582161028-2844-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727662AbgBTBbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 19 Feb 2020 20:31:16 -0500
+Received: from mail-pj1-f66.google.com ([209.85.216.66]:39040 "EHLO
+        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726962AbgBTBbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 19 Feb 2020 20:31:15 -0500
+Received: by mail-pj1-f66.google.com with SMTP id e9so170006pjr.4;
+        Wed, 19 Feb 2020 17:31:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=szYg2AQsd4vPQUXlNOTQeaWlhRWbCJD6D1ASNIe6NPQ=;
+        b=YnmfKpLlHDFp/4r9dbH9mYpcYtDzQkvfjIBwgZOS2FTAVbZEvFLZJV5cYEjVMHryDD
+         ZinziWcgxAtkfqZWej/jlk7ErptUcF9zL/uzSUXVV0X8Y/ituH3Puhd62Y94Aby9OSkG
+         3UbWxTFpyekwXSZdOygXreubDyUmc65byNxSAW4/uIxvOjBoGj1tmYLH0V8Xds/Gg/TB
+         wiCCGBqvOvG9wBmmK/W8WPoO9RMwtjz/i6JLUr2rGsuV4PSe0tqMxW13nlDTwF5PGwPY
+         melwQyeC74boGcoqQU9vlVMFYWCOnAYj9pFLH6QPl1xq/lpWe0zHUKeugY3TkPMfI2ps
+         bZng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=szYg2AQsd4vPQUXlNOTQeaWlhRWbCJD6D1ASNIe6NPQ=;
+        b=e1AKUOUZx1wX7n0+5hRqARI9gKqpzdiJYqLZJxkyf6ssdXZOpvJVdzPLwxvo38p4Yr
+         Om0ZuVBlKaRi+z3DSUjgr2f5bzXbqkJzONEWIGxJHngrCWv1ofZrkGG86GPQYAOBTmyn
+         c0Mp9aI28rf8NveDkN7xB61Irjxg/EPdD2iKkpAltdWSXfJnMlLH9PqyNIGXCB70bWnK
+         sw7LJ0HUIFwopgfft53j8yfu6Qo7tukcQGubhe3W5yko+d7QQC8Ci1JnPu0Y0RI5Ix+R
+         ICWNUDoy8ZUkUFGILYQ2bvEzTRb1cRNChp1nXUKYeeVhFXTKXw6506x8QZRwaUyw6pxA
+         GSNw==
+X-Gm-Message-State: APjAAAUDBcEFPQgFi2TNL5aARp7qYr3d2184atYrgvRqGW6Jaq0cL6vB
+        VhZeRRD9Bide4+tK6dCInLI=
+X-Google-Smtp-Source: APXvYqyzmgvxyBGFHEKtfmbVHh4nsUmpCnOiJOLklUkLLXD00WNKvL2PU2ls8e+TkkBLFHlsbUTTpw==
+X-Received: by 2002:a17:90a:b318:: with SMTP id d24mr687568pjr.142.1582162274835;
+        Wed, 19 Feb 2020 17:31:14 -0800 (PST)
+Received: from taoren-ubuntuvm (c-24-4-25-55.hsd1.ca.comcast.net. [24.4.25.55])
+        by smtp.gmail.com with ESMTPSA id u13sm957679pjn.29.2020.02.19.17.31.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 19 Feb 2020 17:31:14 -0800 (PST)
+Date:   Wed, 19 Feb 2020 17:31:04 -0800
+From:   Tao Ren <rentao.bupt@gmail.com>
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Colin King <colin.king@canonical.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Tao Ren <taoren@fb.com>
+Subject: Re: [PATCH v3 0/5] aspeed-g6: enable usb support
+Message-ID: <20200220013103.GA4830@taoren-ubuntuvm>
+References: <20200218031315.562-1-rentao.bupt@gmail.com>
+ <5d295199-d0d7-4d58-be29-4621738d7f28@www.fastmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5d295199-d0d7-4d58-be29-4621738d7f28@www.fastmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add i.MX8QXP CPU thermal zone support.
+On Thu, Feb 20, 2020 at 10:55:10AM +1030, Andrew Jeffery wrote:
+> 
+> 
+> On Tue, 18 Feb 2020, at 13:43, rentao.bupt@gmail.com wrote:
+> > From: Tao Ren <rentao.bupt@gmail.com>
+> > 
+> > The patch series aims at enabling USB Host and Gadget support on AST2600
+> > platforms.
+> > 
+> > Patch #1 replaces hardcoded vhub port/endpoint number with device tree
+> > properties, so that it's more convenient to add support for ast2600-vhub
+> > which provides more downstream ports and endpoints.
+> 
+> Ah, something I should have mentioned on the previous series is you'll need
+> to update the binding documentation with the new properties.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No change.
----
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 36 ++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+Looks like we don't have dt binding documentation for this driver. I will add
+the document in my 2nd patch set "allow to customize vhub device IDs/strings"
+so all the new dt properties are included in the doc.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index fb5f752..0a14fe4 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/pinctrl/pads-imx8qxp.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -189,6 +190,11 @@
- 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
- 			timeout-sec = <60>;
- 		};
-+
-+		tsens: thermal-sensor {
-+			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
-+			#thermal-sensor-cells = <1>;
-+		};
- 	};
- 
- 	timer {
-@@ -586,4 +592,34 @@
- 			#clock-cells = <1>;
- 		};
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		cpu-thermal0 {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tsens IMX_SC_R_SYSTEM>;
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <107000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+				cpu_crit0: trip1 {
-+					temperature = <127000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert0>;
-+					cooling-device =
-+						<&A35_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A35_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
- };
--- 
-2.7.4
+> > 
+> > Patch #2 enables ast2600 support in aspeed-vhub usb gadget driver.
+> 
+> Also need to add the 2600 support to the dt binding document.
+> 
+> Looks good to me otherwise.
+> 
+> Andrew
 
+Thanks again for the quick review, Andrew.
+
+
+Cheers,
+
+Tao
