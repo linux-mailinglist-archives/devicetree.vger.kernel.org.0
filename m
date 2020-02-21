@@ -2,72 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2BAD1682BC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 17:05:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 251AB1682CF
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 17:08:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728130AbgBUQFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 11:05:06 -0500
-Received: from foss.arm.com ([217.140.110.172]:42548 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729196AbgBUQFF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Feb 2020 11:05:05 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 76A5F30E;
-        Fri, 21 Feb 2020 08:05:05 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id AA0933F68F;
-        Fri, 21 Feb 2020 08:05:04 -0800 (PST)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     will@kernel.org, catalin.marinas@arm.com, mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] arm64: perf: Support new DT compatibles
-Date:   Fri, 21 Feb 2020 16:04:58 +0000
-Message-Id: <6dbd695863346bda1e5d2133643ffade6227bd9a.1582300927.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.23.0.dirty
-In-Reply-To: <cover.1582300927.git.robin.murphy@arm.com>
-References: <cover.1582300927.git.robin.murphy@arm.com>
+        id S1728312AbgBUQIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 11:08:40 -0500
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:46889 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728130AbgBUQIk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 11:08:40 -0500
+Received: by mail-lj1-f196.google.com with SMTP id x14so2687113ljd.13
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 08:08:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RkTsQTvfjgOEGdlDXKGCeeZxoa04rIy9ygJ3R4JduGw=;
+        b=Yl4rYrff+zKVIc9yoeCBgHu0Hr6Lxdr2Dk+weltYHKGkpqyZwgJl2IO1NgO2i0vT/E
+         99a5A1dgaz45Pjo84/pcasIWbjqjIkhY03aq+EbKkljQaPvu53PSnv8MEzWd5lTXHMO6
+         ILy1pKyOIN8MEJYzd46PlFensSAb/peD4Pyzc4ZoFZxBo5atPVjDya8qF0JhhOx/I9uH
+         H4VTjhsow4h49cwt3AvmwmV5/jMHvdy9OPRNCwK3mPh3pTOogHt5J/wFCgkfN4Z6so40
+         qDYMC5mecGJY7L2h7znzdfQ3Jzp5HE4zgleSo1s22yfX5NZQo5mSlGfgtS+JqaLjPGOy
+         +whQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RkTsQTvfjgOEGdlDXKGCeeZxoa04rIy9ygJ3R4JduGw=;
+        b=HKuibbxRfpIODjA49uirUBUgnASNQr/NEdf0KqdosHVxF3NvcuQ8en2DwxHdygbLS9
+         V1acc7zPhteS+n/1GCRIG/ZFYGKjJmZ2b70i6mrDBmv0S6vlbrJDI0dT6jogDspejsb3
+         61WgeNppoPYA8JotEDp+v3eTqqXzu1rvXYeFP/eyaU57XkPATMdXTvKtBWn0YTAAdQ7D
+         G6agdPhOaigEzzSxGuMp/UHAKH2Ux4Cl4Xau1eJ3Jo8tubRkHyRP5qWyB7jVXH4brIx1
+         rzxwjww5oEzktRtQwlqSlk7ckWcwvauRE4F2uI43v3XF7jOABvjtLXd3QUlCv6BCMy1R
+         W4kg==
+X-Gm-Message-State: APjAAAWuGdzm+eKl0nJjGGRGztkudW8I1biU6Uxj8/qlD3Pf2C3jcvbH
+        nCRckFbQ87ki4bGWaog9MnQ8oGam91zYVeHqzFoGIA==
+X-Google-Smtp-Source: APXvYqzjBTruiUzyd12hI2oewAEFW5wvp0x48B+Xz9xN6AHcyQ7rQQbPBXV6MVxQYYXX7uV28p+joU8wSXIlz+RTL/U=
+X-Received: by 2002:a2e:7d0c:: with SMTP id y12mr23390889ljc.39.1582301318561;
+ Fri, 21 Feb 2020 08:08:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200220130149.26283-1-geert+renesas@glider.be> <20200220130149.26283-2-geert+renesas@glider.be>
+In-Reply-To: <20200220130149.26283-2-geert+renesas@glider.be>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 21 Feb 2020 17:08:27 +0100
+Message-ID: <CACRpkdbgsR1n1qj3HmQWcEjeDdN85N1Mw8kLOUAeDjESW36MDg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] gpio: of: Extract of_gpiochip_add_hog()
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for matching the new PMUs. For now, this just wires them up
-as generic PMUv3 such that people writing DTs for new SoCs can do the
-right thing, and at least have architectural and raw events be usable.
-We can come back and fill in event maps for sysfs and/or perf tools at
-a later date.
+On Thu, Feb 20, 2020 at 2:01 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- arch/arm64/kernel/perf_event.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> Extract the code to add all GPIO hogs of a gpio-hog node into its own
+> function, so it can be reused.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - No changes.
 
-diff --git a/arch/arm64/kernel/perf_event.c b/arch/arm64/kernel/perf_event.c
-index e40b65645c86..28ce582e049e 100644
---- a/arch/arm64/kernel/perf_event.c
-+++ b/arch/arm64/kernel/perf_event.c
-@@ -1105,11 +1105,19 @@ static int armv8_vulcan_pmu_init(struct arm_pmu *cpu_pmu)
- 
- static const struct of_device_id armv8_pmu_of_device_ids[] = {
- 	{.compatible = "arm,armv8-pmuv3",	.data = armv8_pmuv3_init},
-+	{.compatible = "arm,cortex-a34-pmu",	.data = armv8_pmuv3_init},
- 	{.compatible = "arm,cortex-a35-pmu",	.data = armv8_a35_pmu_init},
- 	{.compatible = "arm,cortex-a53-pmu",	.data = armv8_a53_pmu_init},
-+	{.compatible = "arm,cortex-a55-pmu",	.data = armv8_pmuv3_init},
- 	{.compatible = "arm,cortex-a57-pmu",	.data = armv8_a57_pmu_init},
-+	{.compatible = "arm,cortex-a65-pmu",	.data = armv8_pmuv3_init},
- 	{.compatible = "arm,cortex-a72-pmu",	.data = armv8_a72_pmu_init},
- 	{.compatible = "arm,cortex-a73-pmu",	.data = armv8_a73_pmu_init},
-+	{.compatible = "arm,cortex-a75-pmu",	.data = armv8_pmuv3_init},
-+	{.compatible = "arm,cortex-a76-pmu",	.data = armv8_pmuv3_init},
-+	{.compatible = "arm,cortex-a77-pmu",	.data = armv8_pmuv3_init},
-+	{.compatible = "arm,neoverse-e1-pmu",	.data = armv8_pmuv3_init},
-+	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_pmuv3_init},
- 	{.compatible = "cavium,thunder-pmu",	.data = armv8_thunder_pmu_init},
- 	{.compatible = "brcm,vulcan-pmu",	.data = armv8_vulcan_pmu_init},
- 	{},
--- 
-2.23.0.dirty
+Patch applied with Frank's Review tag.
 
+Yours,
+Linus Walleij
