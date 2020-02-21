@@ -2,110 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F13C8167C4E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 12:38:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1E91167C46
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 12:37:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726989AbgBULiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 06:38:11 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:45637 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726410AbgBULiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 06:38:11 -0500
-X-UUID: 930a4b4ddf6244fcb9076d480a603978-20200221
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=EXe7y+o2d7iRqWPavTvifj5buUeUDoNRZjUZQ38OTRs=;
-        b=NnLryxhD7hWPE9mnEDLPB+C6iqEmL1G+JR2DwT07Nw1nOSILg87GT0/B0GrXYFVumR4I65f9HxR45hlIJo8mVE1YvLeV6cN1ExpxJ7lUiBRh6RQznltIlwnCEroWVAvUNgToKHH+RdMh/hQt9/bhWiy7SUVZklEzzBLQj/RwaeI=;
-X-UUID: 930a4b4ddf6244fcb9076d480a603978-20200221
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1200173710; Fri, 21 Feb 2020 19:28:39 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33DR.mediatek.inc
- (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 21 Feb
- 2020 19:24:02 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1395.4 via Frontend Transport; Fri, 21 Feb 2020 19:27:37 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1727213AbgBULhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 06:37:41 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:57218 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726976AbgBULhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 06:37:41 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id C43CB278760
+Subject: Re: [PATCH v8 0/6] arm/arm64: mediatek: Fix mmsys device probing
+To:     CK Hu <ck.hu@mediatek.com>, Matthias Brugger <mbrugger@suse.com>
+Cc:     mark.rutland@arm.com, Kate Stewart <kstewart@linuxfoundation.org>,
+        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>, airlied@linux.ie,
+        mturquette@baylibre.com, dri-devel@lists.freedesktop.org,
+        Richard Fontana <rfontana@redhat.com>,
+        laurent.pinchart@ideasonboard.com, ulrich.hecht+renesas@gmail.com,
+        Collabora Kernel ML <kernel@collabora.com>,
+        linux-clk@vger.kernel.org, Nicolas Boichat <drinkcat@chromium.org>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, wens@csie.org,
+        Allison Randal <allison@lohutok.net>,
+        mtk01761 <wendell.lin@mediatek.com>,
+        Owen Chen <owen.chen@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        p.zabel@pengutronix.de, frank-w@public-files.de,
+        Seiya Wang <seiya.wang@mediatek.com>, sean.wang@mediatek.com,
+        Houlong Wei <houlong.wei@mediatek.com>, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org, hsinyi@chromium.org,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
-        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v6 4/4] drm/mediatek: set dpi pin mode to gpio low to avoid leakage current
-Date:   Fri, 21 Feb 2020 19:28:28 +0800
-Message-ID: <20200221112828.55837-5-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200221112828.55837-1-jitao.shi@mediatek.com>
-References: <20200221112828.55837-1-jitao.shi@mediatek.com>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>, sboyd@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        rdunlap@infradead.org, linux-kernel@vger.kernel.org,
+        Daniel Vetter <daniel@ffwll.ch>, matthias.bgg@kernel.org
+References: <20200220172147.919996-1-enric.balletbo@collabora.com>
+ <1582259996.1846.7.camel@mtksdaap41>
+ <7a87b486-1622-7f27-f5af-427b94a14c00@collabora.com>
+ <1582277229.25992.9.camel@mtksdaap41>
+ <1393a8c5-065f-cccb-2563-8b159c951d4b@suse.com>
+ <1582283518.5889.10.camel@mtksdaap41>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <6deab0a4-44a6-a15f-ac01-374f818b267c@collabora.com>
+Date:   Fri, 21 Feb 2020 12:37:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 9A8E6822595FF18CCA96293E9D8AAB0CAD367449040DC0B45EFD2AD7116372492000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <1582283518.5889.10.camel@mtksdaap41>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UHVsbCBkcGkgcGlucyBsb3cgd2hlbiBkcGkgaGFzIG5vdGhpbmcgdG8gZGlzcGxheS4gQW92aWQg
-bGVha2FnZQ0KY3VycmVudCBmcm9tIHNvbWUgZHBpIHBpbnMgKEhzeW5jIFZzeW5jIERFIC4uLiAp
-Lg0KDQpTb21lIGNoaXBzIGhhdmUgZHBpIHBpbnMsIGJ1dCB0aGVyZSBhcmUgc29tZSBjaGlwIGRv
-bid0IGhhdmUgcGlucy4NClNvIHRoaXMgZnVuY3Rpb24gaXMgY29udHJvbGxlZCBieSBkZXZpY2Ug
-dHJlZS4NCg0KU2lnbmVkLW9mZi1ieTogSml0YW8gU2hpIDxqaXRhby5zaGlAbWVkaWF0ZWsuY29t
-Pg0KLS0tDQogZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcGkuYyB8IDM3ICsrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCAzNyBpbnNlcnRpb25zKCsp
-DQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jIGIvZHJp
-dmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcGkuYw0KaW5kZXggZTFhMzMyNTRkZmJlLi40MTcx
-MmU1YTcyMWEgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5j
-DQorKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jDQpAQCAtMTAsNyArMTAs
-OSBAQA0KICNpbmNsdWRlIDxsaW51eC9rZXJuZWwuaD4NCiAjaW5jbHVkZSA8bGludXgvb2YuaD4N
-CiAjaW5jbHVkZSA8bGludXgvb2ZfZGV2aWNlLmg+DQorI2luY2x1ZGUgPGxpbnV4L29mX2dwaW8u
-aD4NCiAjaW5jbHVkZSA8bGludXgvb2ZfZ3JhcGguaD4NCisjaW5jbHVkZSA8bGludXgvcGluY3Ry
-bC9jb25zdW1lci5oPg0KICNpbmNsdWRlIDxsaW51eC9wbGF0Zm9ybV9kZXZpY2UuaD4NCiAjaW5j
-bHVkZSA8bGludXgvdHlwZXMuaD4NCiANCkBAIC03NCw4ICs3NiwxMiBAQCBzdHJ1Y3QgbXRrX2Rw
-aSB7DQogCWVudW0gbXRrX2RwaV9vdXRfeWNfbWFwIHljX21hcDsNCiAJZW51bSBtdGtfZHBpX291
-dF9iaXRfbnVtIGJpdF9udW07DQogCWVudW0gbXRrX2RwaV9vdXRfY2hhbm5lbF9zd2FwIGNoYW5u
-ZWxfc3dhcDsNCisJc3RydWN0IHBpbmN0cmwgKnBpbmN0cmw7DQorCXN0cnVjdCBwaW5jdHJsX3N0
-YXRlICpwaW5zX2dwaW87DQorCXN0cnVjdCBwaW5jdHJsX3N0YXRlICpwaW5zX2RwaTsNCiAJaW50
-IHJlZmNvdW50Ow0KIAlib29sIGR1YWxfZWRnZTsNCisJYm9vbCBkcGlfcGluX2N0cmw7DQogfTsN
-CiANCiBzdGF0aWMgaW5saW5lIHN0cnVjdCBtdGtfZHBpICptdGtfZHBpX2Zyb21fZW5jb2Rlcihz
-dHJ1Y3QgZHJtX2VuY29kZXIgKmUpDQpAQCAtMzg3LDYgKzM5Myw5IEBAIHN0YXRpYyB2b2lkIG10
-a19kcGlfcG93ZXJfb2ZmKHN0cnVjdCBtdGtfZHBpICpkcGkpDQogCWlmICgtLWRwaS0+cmVmY291
-bnQgIT0gMCkNCiAJCXJldHVybjsNCiANCisJaWYgKGRwaS0+ZHBpX3Bpbl9jdHJsKQ0KKwkJcGlu
-Y3RybF9zZWxlY3Rfc3RhdGUoZHBpLT5waW5jdHJsLCBkcGktPnBpbnNfZ3Bpbyk7DQorDQogCW10
-a19kcGlfZGlzYWJsZShkcGkpOw0KIAljbGtfZGlzYWJsZV91bnByZXBhcmUoZHBpLT5waXhlbF9j
-bGspOw0KIAljbGtfZGlzYWJsZV91bnByZXBhcmUoZHBpLT5lbmdpbmVfY2xrKTsNCkBAIC00MTEs
-NiArNDIwLDkgQEAgc3RhdGljIGludCBtdGtfZHBpX3Bvd2VyX29uKHN0cnVjdCBtdGtfZHBpICpk
-cGkpDQogCQlnb3RvIGVycl9waXhlbDsNCiAJfQ0KIA0KKwlpZiAoZHBpLT5kcGlfcGluX2N0cmwp
-DQorCQlwaW5jdHJsX3NlbGVjdF9zdGF0ZShkcGktPnBpbmN0cmwsIGRwaS0+cGluc19kcGkpOw0K
-Kw0KIAltdGtfZHBpX2VuYWJsZShkcGkpOw0KIAlyZXR1cm4gMDsNCiANCkBAIC03MTYsNiArNzI4
-LDMxIEBAIHN0YXRpYyBpbnQgbXRrX2RwaV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpw
-ZGV2KQ0KIAlkcGktPmRldiA9IGRldjsNCiAJZHBpLT5jb25mID0gKHN0cnVjdCBtdGtfZHBpX2Nv
-bmYgKilvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEoZGV2KTsNCiAJZHBpLT5kdWFsX2VkZ2UgPSBv
-Zl9wcm9wZXJ0eV9yZWFkX2Jvb2woZGV2LT5vZl9ub2RlLCAiZHBpX2R1YWxfZWRnZSIpOw0KKwlk
-cGktPmRwaV9waW5fY3RybCA9IG9mX3Byb3BlcnR5X3JlYWRfYm9vbChkZXYtPm9mX25vZGUsDQor
-CQkJCQkJICAiZHBpX3Bpbl9tb2RlX3N3YXAiKTsNCisNCisJaWYgKGRwaS0+ZHBpX3Bpbl9jdHJs
-KSB7DQorCQlkcGktPnBpbmN0cmwgPSBkZXZtX3BpbmN0cmxfZ2V0KCZwZGV2LT5kZXYpOw0KKwkJ
-aWYgKElTX0VSUihkcGktPnBpbmN0cmwpKSB7DQorCQkJZGV2X2VycigmcGRldi0+ZGV2LCAiQ2Fu
-bm90IGZpbmQgcGluY3RybCFcbiIpOw0KKwkJCXJldHVybiBQVFJfRVJSKGRwaS0+cGluY3RybCk7
-DQorCQl9DQorDQorCQlkcGktPnBpbnNfZ3BpbyA9IHBpbmN0cmxfbG9va3VwX3N0YXRlKGRwaS0+
-cGluY3RybCwNCisJCQkJCQkgICAgICAiZ3Bpb21vZGUiKTsNCisJCWlmIChJU19FUlIoZHBpLT5w
-aW5zX2dwaW8pKSB7DQorCQkJZGV2X2VycigmcGRldi0+ZGV2LCAiQ2Fubm90IGZpbmQgcGluY3Ry
-bCBncGlvbW9kZSFcbiIpOw0KKwkJCXJldHVybiBQVFJfRVJSKGRwaS0+cGluc19ncGlvKTsNCisJ
-CX0NCisNCisJCXBpbmN0cmxfc2VsZWN0X3N0YXRlKGRwaS0+cGluY3RybCwgZHBpLT5waW5zX2dw
-aW8pOw0KKw0KKwkJZHBpLT5waW5zX2RwaSA9IHBpbmN0cmxfbG9va3VwX3N0YXRlKGRwaS0+cGlu
-Y3RybCwgImRwaW1vZGUiKTsNCisJCWlmIChJU19FUlIoZHBpLT5waW5zX2RwaSkpIHsNCisJCQlk
-ZXZfZXJyKCZwZGV2LT5kZXYsICJDYW5ub3QgZmluZCBwaW5jdHJsIGRwaW1vZGUhXG4iKTsNCisJ
-CQlyZXR1cm4gUFRSX0VSUihkcGktPnBpbnNfZHBpKTsNCisJCX0NCisJfQ0KIA0KIAltZW0gPSBw
-bGF0Zm9ybV9nZXRfcmVzb3VyY2UocGRldiwgSU9SRVNPVVJDRV9NRU0sIDApOw0KIAlkcGktPnJl
-Z3MgPSBkZXZtX2lvcmVtYXBfcmVzb3VyY2UoZGV2LCBtZW0pOw0KLS0gDQoyLjIxLjANCg==
+Hi CK and Matthias,
 
+On 21/2/20 12:11, CK Hu wrote:
+> Hi, Matthias:
+> 
+> On Fri, 2020-02-21 at 11:24 +0100, Matthias Brugger wrote:
+>>
+>> On 21/02/2020 10:27, CK Hu wrote:
+>>> Hi, Enric:
+>>>
+>>> On Fri, 2020-02-21 at 09:56 +0100, Enric Balletbo i Serra wrote:
+>>>> Hi CK,
+>>>>
+>>>> Thanks for your quick answer.
+>>>>
+>>>> On 21/2/20 5:39, CK Hu wrote:
+>>>>> Hi, Enric:
+>>>>>
+>>>>> On Thu, 2020-02-20 at 18:21 +0100, Enric Balletbo i Serra wrote:
+>>>>>> Dear all,
+>>>>>>
+>>>>>> Those patches are intended to solve an old standing issue on some
+>>>>>> Mediatek devices (mt8173, mt2701 and mt2712) in a slightly different way
+>>>>>> to the precedent series.
+>>>>>>
+>>>>>> Up to now both drivers, clock and drm are probed with the same device tree
+>>>>>> compatible. But only the first driver get probed, which in effect breaks
+>>>>>> graphics on those devices.
+>>>>>>
+>>>>>> The version eight of the series tries to solve the problem with a
+>>>>>> different approach than the previous series but similar to how is solved
+>>>>>> on other Mediatek devices.
+>>>>>>
+>>>>>> The MMSYS (Multimedia subsystem) in Mediatek SoCs has some registers to
+>>>>>> control clock gates (which is used in the clk driver) and some registers
+>>>>>> to set the routing and enable the differnet blocks of the display
+>>>>>> and MDP (Media Data Path) subsystem. On this series the clk driver is
+>>>>>> not a pure clock controller but a system controller that can provide
+>>>>>> access to the shared registers between the different drivers that need
+>>>>>> it (mediatek-drm and mediatek-mdp). And the biggest change is, that in
+>>>>>> this version, clk driver is the entry point (parent) which will trigger
+>>>>>> the probe of the corresponding mediatek-drm driver and pass its MMSYS
+>>>>>> platform data for display configuration.
+>>>>>
+>>>>> When mmsys is a system controller, I prefer to place mmsys in
+>>>>> drivers/soc/mediatek, and it share registers for clock, display, and mdp
+>>>>> driver. This means the probe function is placed in
+>>>>> drivers/soc/mediatek ,its display clock function, mdp clock function are
+>>>>> placed in drivers/clk, display routing are placed in drivers/gpu/drm,
+>>>>> and mdp routing are placed in dirvers/video.
+>>>>>
+>>>>
+>>>> I understand what you mean but I am not sure this makes the code clearer and
+>>>> useful. The driver in drivers/soc/mediatek will be a simple dummy implementation
+>>>> of a "simple-mfd" device (a driver that simply matches with
+>>>> "mediatek,mt8173-mmsys" and instantiates the "clk-mt8173-mm" and the
+>>>> "mediatek-drm" driver (note that mediatek-mdp" is already instantiated via
+>>>> device-tree).
+>>>>
+>>>
+>>> It's clear that mmsys is neither a pure clock controller nor a pure
+>>> routing controller for display and mdp. 
+>>>
+>>>> It'd be nice had a proper device-tree with a "simple-mfd" for mmsys from the
+>>>> beginning representing how really hardwware is, but I think that, change this
+>>>> now, will break backward compatibility.
+>>>
+>>> Maybe this is a solution. Current device tree would work only on old
+>>> kernel version with a bug, so this mean there is no any device tree
+>>> works on kernel version without bug. Why do we compatible with such
+>>> device tree?
+>>>
+>>
+
+So the only reason why current DT worked at some point is because there was a
+kernel bug?
+
+If that's the case I think we shouldn't worry about break DT compatibility (I'm
+sorry for those that having a buggy kernel makes display working)
+
+>> The idea behind this is, that the device-tree could be passed by some boot
+>> firmware, so that the OS do not care about it. For this we need a stable DTS as
+>> otherwise newer kernel with older FW would break.
+>>
+>> DTS is supposed to be just a different description of the HW like ACPI. So it
+>> has to be compatible (newer kernel with older DTS and if possible vice versa).
+> 
+> In my view, there is no FW (except some bug-inside FW) which works on
+> this dts, so this dts is in a initial state. I think the compatibility
+> is based on that dts correctly describe the HW. If we find this dts does
+> not correctly describe the HW and it's in a initial state, should we
+> still make it compatible?
+> 
+
+In this case I think we don't need to worry about buggy kernels, the only thing
+that we need to take in consideration is that mmsys is instantiated on both (the
+old DT and the new DT), we shouldn't expect display working (because never
+worked, right?)
+
+With that in mind, I agree that is a good opportunity to fix properly the HW
+topology.
+
+What thing that worries me is that I see this pattern on all Mediatek SoCs, does
+this mean that display was never well supported for Mediatek SoCs?
+
+Thanks.
+
+> If you have better solution, just let's forget this.
+> 
+> Regards,
+> CK
+> 
+>>
+>> Regards,
+>> Matthias
+>>
+>>> Regards,
+>>> CK
+>>>
+>>>>
+>>>> IMHO I think that considering the clk driver as entry point is fine, but this is
+>>>> something that the clock maintainers should decide.
+>>>>
+>>>> Also note that this is not only a MT8173 problem I am seeing the same problem on
+>>>> all other Mediatek SoCs.
+>>>>
+>>>> Thanks.
+>>>>
+>>>>> Regards,
+>>>>> CK
+>>>>>
+>>>>>>
+>>>>>> All this series was tested on the Acer R13 Chromebook only.
+>>>>>>
+>>>>>> For reference, here are the links to the old discussions:
+>>>>>>
+>>>>>> * v7: https://patchwork.kernel.org/project/linux-mediatek/list/?series=241217
+>>>>>> * v6: https://patchwork.kernel.org/project/linux-mediatek/list/?series=213219
+>>>>>> * v5: https://patchwork.kernel.org/project/linux-mediatek/list/?series=44063
+>>>>>> * v4:
+>>>>>>   * https://patchwork.kernel.org/patch/10530871/
+>>>>>>   * https://patchwork.kernel.org/patch/10530883/
+>>>>>>   * https://patchwork.kernel.org/patch/10530885/
+>>>>>>   * https://patchwork.kernel.org/patch/10530911/
+>>>>>>   * https://patchwork.kernel.org/patch/10530913/
+>>>>>> * v3:
+>>>>>>   * https://patchwork.kernel.org/patch/10367857/
+>>>>>>   * https://patchwork.kernel.org/patch/10367861/
+>>>>>>   * https://patchwork.kernel.org/patch/10367877/
+>>>>>>   * https://patchwork.kernel.org/patch/10367875/
+>>>>>>   * https://patchwork.kernel.org/patch/10367885/
+>>>>>>   * https://patchwork.kernel.org/patch/10367883/
+>>>>>>   * https://patchwork.kernel.org/patch/10367889/
+>>>>>>   * https://patchwork.kernel.org/patch/10367907/
+>>>>>>   * https://patchwork.kernel.org/patch/10367909/
+>>>>>>   * https://patchwork.kernel.org/patch/10367905/
+>>>>>> * v2: No relevant discussion, see v3
+>>>>>> * v1:
+>>>>>>   * https://patchwork.kernel.org/patch/10016497/
+>>>>>>   * https://patchwork.kernel.org/patch/10016499/
+>>>>>>   * https://patchwork.kernel.org/patch/10016505/
+>>>>>>   * https://patchwork.kernel.org/patch/10016507/
+>>>>>>
+>>>>>> Best regards,
+>>>>>>  Enric
+>>>>>>
+>>>>>> Changes in v8:
+>>>>>> - Be a builtin_platform_driver like other mediatek mmsys drivers.
+>>>>>> - New patches introduced in this series.
+>>>>>>
+>>>>>> Changes in v7:
+>>>>>> - Add R-by from CK
+>>>>>> - Add R-by from CK
+>>>>>> - Fix check of return value of of_clk_get
+>>>>>> - Fix identation
+>>>>>> - Free clk_data->clks as well
+>>>>>> - Get rid of private data structure
+>>>>>>
+>>>>>> Enric Balletbo i Serra (2):
+>>>>>>   drm/mediatek: Move MMSYS configuration to include/linux/platform_data
+>>>>>>   clk/drm: mediatek: Fix mediatek-drm device probing
+>>>>>>
+>>>>>> Matthias Brugger (4):
+>>>>>>   drm/mediatek: Use regmap for register access
+>>>>>>   drm/mediatek: Omit warning on probe defers
+>>>>>>   media: mtk-mdp: Check return value of of_clk_get
+>>>>>>   clk: mediatek: mt8173: Switch MMSYS to platform driver
+>>>>>>
+>>>>>>  drivers/clk/mediatek/Kconfig                  |   6 +
+>>>>>>  drivers/clk/mediatek/Makefile                 |   1 +
+>>>>>>  drivers/clk/mediatek/clk-mt2701-mm.c          |  30 +++
+>>>>>>  drivers/clk/mediatek/clk-mt2712-mm.c          |  44 +++++
+>>>>>>  drivers/clk/mediatek/clk-mt8173-mm.c          | 172 ++++++++++++++++++
+>>>>>>  drivers/clk/mediatek/clk-mt8173.c             | 104 -----------
+>>>>>>  drivers/gpu/drm/mediatek/mtk_disp_color.c     |   5 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |   5 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |   5 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_dpi.c            |  12 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c       |   4 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_drm_ddp.c        |  53 +++---
+>>>>>>  drivers/gpu/drm/mediatek/mtk_drm_ddp.h        |   4 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |  56 +-----
+>>>>>>  drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 113 +-----------
+>>>>>>  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |  13 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_dsi.c            |   8 +-
+>>>>>>  drivers/gpu/drm/mediatek/mtk_hdmi.c           |   4 +-
+>>>>>>  drivers/media/platform/mtk-mdp/mtk_mdp_comp.c |   6 +
+>>>>>>  include/linux/platform_data/mtk_mmsys.h       |  73 ++++++++
+>>>>>>  20 files changed, 401 insertions(+), 317 deletions(-)
+>>>>>>  create mode 100644 drivers/clk/mediatek/clk-mt8173-mm.c
+>>>>>>  create mode 100644 include/linux/platform_data/mtk_mmsys.h
+>>>>>>
+>>>>>
+>>>>
+>>>> _______________________________________________
+>>>> Linux-mediatek mailing list
+>>>> Linux-mediatek@lists.infradead.org
+>>>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>>>
+>>
+>> _______________________________________________
+>> Linux-mediatek mailing list
+>> Linux-mediatek@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> 
