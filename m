@@ -2,172 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF52A166E94
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 05:40:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64393166EC5
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 06:13:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729576AbgBUEkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Feb 2020 23:40:07 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:54134 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729229AbgBUEkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Feb 2020 23:40:07 -0500
-X-UUID: e13c9e81f83840d8976ee203bb4026c7-20200221
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=c6LxKOrtf7zqmWMQ6HOJ1i4yDenxu3IQklK++RZdHNY=;
-        b=rATm3auciYfKwqBo300ayxZ+epaBIPidFLEOlYR9R+lDw3Sp+wVUGJfQ/SnMCJj2IlLlRrnfPhygOlPO76AN/7FP6irXcAVyfhVWuWJj5+EoGJyr4O+QUJUqF41kXVEViY6blmVtLf130JmWPN0aA6yAcj65lUJZjI08MHLM4xs=;
-X-UUID: e13c9e81f83840d8976ee203bb4026c7-20200221
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1525354134; Fri, 21 Feb 2020 12:39:57 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 21 Feb 2020 12:39:09 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 21 Feb 2020 12:40:26 +0800
-Message-ID: <1582259996.1846.7.camel@mtksdaap41>
-Subject: Re: [PATCH v8 0/6] arm/arm64: mediatek: Fix mmsys device probing
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <p.zabel@pengutronix.de>, <airlied@linux.ie>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <ulrich.hecht+renesas@gmail.com>,
-        <laurent.pinchart@ideasonboard.com>,
-        "Mauro Carvalho Chehab" <mchehab@kernel.org>,
-        <rdunlap@infradead.org>, <dri-devel@lists.freedesktop.org>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        "Seiya Wang" <seiya.wang@mediatek.com>,
-        <linux-clk@vger.kernel.org>,
-        "Collabora Kernel ML" <kernel@collabora.com>,
-        mtk01761 <wendell.lin@mediatek.com>,
+        id S1726913AbgBUFNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 00:13:08 -0500
+Received: from sender3-op-o12.zoho.com.cn ([124.251.121.243]:17829 "EHLO
+        sender3-op-o12.zoho.com.cn" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726018AbgBUFNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Feb 2020 00:13:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1582261877;
+        s=mail; d=flygoat.com; i=jiaxun.yang@flygoat.com;
+        h=From:To:Cc:Message-ID:Subject:Date:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type;
+        bh=Zwak+14vxTQxpI/oqSCGQRy9pzxcLmzzY9YKu6pI278=;
+        b=MjOKNoONT0wzE4dvZI1TzXxgkf7HU1ZBuhS92Sq7saGa/rIkCE4RIRtkGCaLzk0X
+        5ng8uMaIOFUT7Q3rBfLAYDCCjvmpbk6s4gbH0JQzeZ+IhGmIcS1WiSv6BqRv/9TYecR
+        WKr6EU63f4dje8YHsiOXNpDpsME5waTibZJDyT90=
+Received: from localhost.localdomain (39.155.141.144 [39.155.141.144]) by mx.zoho.com.cn
+        with SMTPS id 1582261873629371.4099508698182; Fri, 21 Feb 2020 13:11:13 +0800 (CST)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Huacai Chen <chenhc@lemote.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Allison Randal <allison@lohutok.net>,
-        Thomas Gleixner <tglx@linutronix.de>, <wens@csie.org>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <sean.wang@mediatek.com>, <frank-w@public-files.de>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        Matthias Brugger <mbrugger@suse.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Richard Fontana <rfontana@redhat.com>,
-        <linux-kernel@vger.kernel.org>, <matthias.bgg@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Fabien Parent <fparent@baylibre.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Nicolas Boichat" <drinkcat@chromium.org>,
-        Owen Chen <owen.chen@mediatek.com>
-Date:   Fri, 21 Feb 2020 12:39:56 +0800
-In-Reply-To: <20200220172147.919996-1-enric.balletbo@collabora.com>
-References: <20200220172147.919996-1-enric.balletbo@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Message-ID: <20200221050942.507775-1-jiaxun.yang@flygoat.com>
+Subject: [PATCH v4 00/10] Modernize Loongson64 Machine v4
+Date:   Fri, 21 Feb 2020 13:09:15 +0800
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
+References: 
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
+X-ZohoCNMailClient: External
+Content-Type: text/plain; charset=utf8
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEVucmljOg0KDQpPbiBUaHUsIDIwMjAtMDItMjAgYXQgMTg6MjEgKzAxMDAsIEVucmljIEJh
-bGxldGJvIGkgU2VycmEgd3JvdGU6DQo+IERlYXIgYWxsLA0KPiANCj4gVGhvc2UgcGF0Y2hlcyBh
-cmUgaW50ZW5kZWQgdG8gc29sdmUgYW4gb2xkIHN0YW5kaW5nIGlzc3VlIG9uIHNvbWUNCj4gTWVk
-aWF0ZWsgZGV2aWNlcyAobXQ4MTczLCBtdDI3MDEgYW5kIG10MjcxMikgaW4gYSBzbGlnaHRseSBk
-aWZmZXJlbnQgd2F5DQo+IHRvIHRoZSBwcmVjZWRlbnQgc2VyaWVzLg0KPiANCj4gVXAgdG8gbm93
-IGJvdGggZHJpdmVycywgY2xvY2sgYW5kIGRybSBhcmUgcHJvYmVkIHdpdGggdGhlIHNhbWUgZGV2
-aWNlIHRyZWUNCj4gY29tcGF0aWJsZS4gQnV0IG9ubHkgdGhlIGZpcnN0IGRyaXZlciBnZXQgcHJv
-YmVkLCB3aGljaCBpbiBlZmZlY3QgYnJlYWtzDQo+IGdyYXBoaWNzIG9uIHRob3NlIGRldmljZXMu
-DQo+IA0KPiBUaGUgdmVyc2lvbiBlaWdodCBvZiB0aGUgc2VyaWVzIHRyaWVzIHRvIHNvbHZlIHRo
-ZSBwcm9ibGVtIHdpdGggYQ0KPiBkaWZmZXJlbnQgYXBwcm9hY2ggdGhhbiB0aGUgcHJldmlvdXMg
-c2VyaWVzIGJ1dCBzaW1pbGFyIHRvIGhvdyBpcyBzb2x2ZWQNCj4gb24gb3RoZXIgTWVkaWF0ZWsg
-ZGV2aWNlcy4NCj4gDQo+IFRoZSBNTVNZUyAoTXVsdGltZWRpYSBzdWJzeXN0ZW0pIGluIE1lZGlh
-dGVrIFNvQ3MgaGFzIHNvbWUgcmVnaXN0ZXJzIHRvDQo+IGNvbnRyb2wgY2xvY2sgZ2F0ZXMgKHdo
-aWNoIGlzIHVzZWQgaW4gdGhlIGNsayBkcml2ZXIpIGFuZCBzb21lIHJlZ2lzdGVycw0KPiB0byBz
-ZXQgdGhlIHJvdXRpbmcgYW5kIGVuYWJsZSB0aGUgZGlmZmVybmV0IGJsb2NrcyBvZiB0aGUgZGlz
-cGxheQ0KPiBhbmQgTURQIChNZWRpYSBEYXRhIFBhdGgpIHN1YnN5c3RlbS4gT24gdGhpcyBzZXJp
-ZXMgdGhlIGNsayBkcml2ZXIgaXMNCj4gbm90IGEgcHVyZSBjbG9jayBjb250cm9sbGVyIGJ1dCBh
-IHN5c3RlbSBjb250cm9sbGVyIHRoYXQgY2FuIHByb3ZpZGUNCj4gYWNjZXNzIHRvIHRoZSBzaGFy
-ZWQgcmVnaXN0ZXJzIGJldHdlZW4gdGhlIGRpZmZlcmVudCBkcml2ZXJzIHRoYXQgbmVlZA0KPiBp
-dCAobWVkaWF0ZWstZHJtIGFuZCBtZWRpYXRlay1tZHApLiBBbmQgdGhlIGJpZ2dlc3QgY2hhbmdl
-IGlzLCB0aGF0IGluDQo+IHRoaXMgdmVyc2lvbiwgY2xrIGRyaXZlciBpcyB0aGUgZW50cnkgcG9p
-bnQgKHBhcmVudCkgd2hpY2ggd2lsbCB0cmlnZ2VyDQo+IHRoZSBwcm9iZSBvZiB0aGUgY29ycmVz
-cG9uZGluZyBtZWRpYXRlay1kcm0gZHJpdmVyIGFuZCBwYXNzIGl0cyBNTVNZUw0KPiBwbGF0Zm9y
-bSBkYXRhIGZvciBkaXNwbGF5IGNvbmZpZ3VyYXRpb24uDQoNCldoZW4gbW1zeXMgaXMgYSBzeXN0
-ZW0gY29udHJvbGxlciwgSSBwcmVmZXIgdG8gcGxhY2UgbW1zeXMgaW4NCmRyaXZlcnMvc29jL21l
-ZGlhdGVrLCBhbmQgaXQgc2hhcmUgcmVnaXN0ZXJzIGZvciBjbG9jaywgZGlzcGxheSwgYW5kIG1k
-cA0KZHJpdmVyLiBUaGlzIG1lYW5zIHRoZSBwcm9iZSBmdW5jdGlvbiBpcyBwbGFjZWQgaW4NCmRy
-aXZlcnMvc29jL21lZGlhdGVrICxpdHMgZGlzcGxheSBjbG9jayBmdW5jdGlvbiwgbWRwIGNsb2Nr
-IGZ1bmN0aW9uIGFyZQ0KcGxhY2VkIGluIGRyaXZlcnMvY2xrLCBkaXNwbGF5IHJvdXRpbmcgYXJl
-IHBsYWNlZCBpbiBkcml2ZXJzL2dwdS9kcm0sDQphbmQgbWRwIHJvdXRpbmcgYXJlIHBsYWNlZCBp
-biBkaXJ2ZXJzL3ZpZGVvLg0KDQpSZWdhcmRzLA0KQ0sNCg0KPiANCj4gQWxsIHRoaXMgc2VyaWVz
-IHdhcyB0ZXN0ZWQgb24gdGhlIEFjZXIgUjEzIENocm9tZWJvb2sgb25seS4NCj4gDQo+IEZvciBy
-ZWZlcmVuY2UsIGhlcmUgYXJlIHRoZSBsaW5rcyB0byB0aGUgb2xkIGRpc2N1c3Npb25zOg0KPiAN
-Cj4gKiB2NzogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlh
-dGVrL2xpc3QvP3Nlcmllcz0yNDEyMTcNCj4gKiB2NjogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVs
-Lm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlhdGVrL2xpc3QvP3Nlcmllcz0yMTMyMTkNCj4gKiB2NTog
-aHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LW1lZGlhdGVrL2xpc3Qv
-P3Nlcmllcz00NDA2Mw0KPiAqIHY0Og0KPiAgICogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9y
-Zy9wYXRjaC8xMDUzMDg3MS8NCj4gICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0
-Y2gvMTA1MzA4ODMvDQo+ICAgKiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEw
-NTMwODg1Lw0KPiAgICogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMDUzMDkx
-MS8NCj4gICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTA1MzA5MTMvDQo+
-ICogdjM6DQo+ICAgKiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEwMzY3ODU3
-Lw0KPiAgICogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMDM2Nzg2MS8NCj4g
-ICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTAzNjc4NzcvDQo+ICAgKiBo
-dHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEwMzY3ODc1Lw0KPiAgICogaHR0cHM6
-Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMDM2Nzg4NS8NCj4gICAqIGh0dHBzOi8vcGF0
-Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTAzNjc4ODMvDQo+ICAgKiBodHRwczovL3BhdGNod29y
-ay5rZXJuZWwub3JnL3BhdGNoLzEwMzY3ODg5Lw0KPiAgICogaHR0cHM6Ly9wYXRjaHdvcmsua2Vy
-bmVsLm9yZy9wYXRjaC8xMDM2NzkwNy8NCj4gICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5v
-cmcvcGF0Y2gvMTAzNjc5MDkvDQo+ICAgKiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Bh
-dGNoLzEwMzY3OTA1Lw0KPiAqIHYyOiBObyByZWxldmFudCBkaXNjdXNzaW9uLCBzZWUgdjMNCj4g
-KiB2MToNCj4gICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTAwMTY0OTcv
-DQo+ICAgKiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEwMDE2NDk5Lw0KPiAg
-ICogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMDAxNjUwNS8NCj4gICAqIGh0
-dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTAwMTY1MDcvDQo+IA0KPiBCZXN0IHJl
-Z2FyZHMsDQo+ICBFbnJpYw0KPiANCj4gQ2hhbmdlcyBpbiB2ODoNCj4gLSBCZSBhIGJ1aWx0aW5f
-cGxhdGZvcm1fZHJpdmVyIGxpa2Ugb3RoZXIgbWVkaWF0ZWsgbW1zeXMgZHJpdmVycy4NCj4gLSBO
-ZXcgcGF0Y2hlcyBpbnRyb2R1Y2VkIGluIHRoaXMgc2VyaWVzLg0KPiANCj4gQ2hhbmdlcyBpbiB2
-NzoNCj4gLSBBZGQgUi1ieSBmcm9tIENLDQo+IC0gQWRkIFItYnkgZnJvbSBDSw0KPiAtIEZpeCBj
-aGVjayBvZiByZXR1cm4gdmFsdWUgb2Ygb2ZfY2xrX2dldA0KPiAtIEZpeCBpZGVudGF0aW9uDQo+
-IC0gRnJlZSBjbGtfZGF0YS0+Y2xrcyBhcyB3ZWxsDQo+IC0gR2V0IHJpZCBvZiBwcml2YXRlIGRh
-dGEgc3RydWN0dXJlDQo+IA0KPiBFbnJpYyBCYWxsZXRibyBpIFNlcnJhICgyKToNCj4gICBkcm0v
-bWVkaWF0ZWs6IE1vdmUgTU1TWVMgY29uZmlndXJhdGlvbiB0byBpbmNsdWRlL2xpbnV4L3BsYXRm
-b3JtX2RhdGENCj4gICBjbGsvZHJtOiBtZWRpYXRlazogRml4IG1lZGlhdGVrLWRybSBkZXZpY2Ug
-cHJvYmluZw0KPiANCj4gTWF0dGhpYXMgQnJ1Z2dlciAoNCk6DQo+ICAgZHJtL21lZGlhdGVrOiBV
-c2UgcmVnbWFwIGZvciByZWdpc3RlciBhY2Nlc3MNCj4gICBkcm0vbWVkaWF0ZWs6IE9taXQgd2Fy
-bmluZyBvbiBwcm9iZSBkZWZlcnMNCj4gICBtZWRpYTogbXRrLW1kcDogQ2hlY2sgcmV0dXJuIHZh
-bHVlIG9mIG9mX2Nsa19nZXQNCj4gICBjbGs6IG1lZGlhdGVrOiBtdDgxNzM6IFN3aXRjaCBNTVNZ
-UyB0byBwbGF0Zm9ybSBkcml2ZXINCj4gDQo+ICBkcml2ZXJzL2Nsay9tZWRpYXRlay9LY29uZmln
-ICAgICAgICAgICAgICAgICAgfCAgIDYgKw0KPiAgZHJpdmVycy9jbGsvbWVkaWF0ZWsvTWFrZWZp
-bGUgICAgICAgICAgICAgICAgIHwgICAxICsNCj4gIGRyaXZlcnMvY2xrL21lZGlhdGVrL2Nsay1t
-dDI3MDEtbW0uYyAgICAgICAgICB8ICAzMCArKysNCj4gIGRyaXZlcnMvY2xrL21lZGlhdGVrL2Ns
-ay1tdDI3MTItbW0uYyAgICAgICAgICB8ICA0NCArKysrKw0KPiAgZHJpdmVycy9jbGsvbWVkaWF0
-ZWsvY2xrLW10ODE3My1tbS5jICAgICAgICAgIHwgMTcyICsrKysrKysrKysrKysrKysrKw0KPiAg
-ZHJpdmVycy9jbGsvbWVkaWF0ZWsvY2xrLW10ODE3My5jICAgICAgICAgICAgIHwgMTA0IC0tLS0t
-LS0tLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3BfY29sb3IuYyAgICAg
-fCAgIDUgKy0NCj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9vdmwuYyAgICAg
-ICB8ICAgNSArLQ0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX3JkbWEuYyAg
-ICAgIHwgICA1ICstDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jICAgICAg
-ICAgICAgfCAgMTIgKy0NCj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2NydGMu
-YyAgICAgICB8ICAgNCArLQ0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZGRw
-LmMgICAgICAgIHwgIDUzICsrKy0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19k
-cm1fZGRwLmggICAgICAgIHwgICA0ICstDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
-X2RybV9kZHBfY29tcC5oICAgfCAgNTYgKy0tLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0
-ZWsvbXRrX2RybV9kcnYuYyAgICAgICAgfCAxMTMgKy0tLS0tLS0tLS0tDQo+ICBkcml2ZXJzL2dw
-dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kcnYuaCAgICAgICAgfCAgMTMgKy0NCj4gIGRyaXZlcnMv
-Z3B1L2RybS9tZWRpYXRlay9tdGtfZHNpLmMgICAgICAgICAgICB8ICAgOCArLQ0KPiAgZHJpdmVy
-cy9ncHUvZHJtL21lZGlhdGVrL210a19oZG1pLmMgICAgICAgICAgIHwgICA0ICstDQo+ICBkcml2
-ZXJzL21lZGlhL3BsYXRmb3JtL210ay1tZHAvbXRrX21kcF9jb21wLmMgfCAgIDYgKw0KPiAgaW5j
-bHVkZS9saW51eC9wbGF0Zm9ybV9kYXRhL210a19tbXN5cy5oICAgICAgIHwgIDczICsrKysrKysr
-DQo+ICAyMCBmaWxlcyBjaGFuZ2VkLCA0MDEgaW5zZXJ0aW9ucygrKSwgMzE3IGRlbGV0aW9ucygt
-KQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvY2xrL21lZGlhdGVrL2Nsay1tdDgxNzMt
-bW0uYw0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvbGludXgvcGxhdGZvcm1fZGF0YS9t
-dGtfbW1zeXMuaA0KPiANCg0K
+Loongson have a long history of contributing their code to mainline kernel.
+However, it seems like recent years, they are focusing on maintain a kernel=
+ by themselves
+rather than contribute there code to the community.
+
+Kernel is progress rapidly too. Their code slept in mainline for a long per=
+oid without proper
+maintainance and became outdated.
+
+This patchset brings modern DeviceTree and irqchip support to the Loongson6=
+4 machine, and leaves
+Loongson 2e/f alone since they are too legacy to touch.
+
+PCI and some legacy I/O device will be converted later, together with LS7A =
+PCH support.
+
+v1:
+- dt-bindings fixup according to Rob's comments
+- irqchip fixup according to Marc's comments
+- ls3-iointc: Make Core&IP map per-IRQ
+- Regenerate kconfigs
+- Typo & style improvements
+
+v2:
+- dt-bindings: Fix IOINTC, collect Rob's review tag
+- dtbs: Drop CPU Node, merge different ways according to Huacai and Paul's =
+comments
+
+v3:
+- Split code have been merged
+- Fix IOINTC binding to allow map any child IRQ to and parent
+- Convert "HTINTC" into "HTPIC", which mixed HT vectors processing and i825=
+9
+- Naming style fix according to Huacai's suggestions
+
+v4:
+- More naming related fixes
+
+Jiaxun Yang (10):
+  irqchip: Add driver for Loongson I/O Local Interrupt Controller
+  dt-bindings: interrupt-controller: Add Loongson LIOINTC
+  irqchip: Add driver for Loongson-3 HyperTransport PIC controller
+  dt-bindings: interrupt-controller: Add Loongson-3 HTPIC
+  irqchip: mips-cpu: Convert to simple domain
+  MIPS: Loongson64: Drop legacy IRQ code
+  dt-bindings: mips: Add loongson boards
+  MIPS: Loongson64: Add generic dts
+  MIPS: Loongson64: Load built-in dtbs
+  MIPS: Loongson64: Move MIPS_CPU_IRQ_BASE
+
+ .../interrupt-controller/loongson,htpic.yaml  |  59 +++
+ .../loongson,liointc.yaml                     |  93 +++++
+ .../bindings/mips/loongson/devices.yaml       |  29 ++
+ arch/mips/Kconfig                             |   6 +-
+ arch/mips/boot/dts/Makefile                   |   1 +
+ arch/mips/boot/dts/loongson/Makefile          |   4 +
+ .../boot/dts/loongson/loongson3-package.dtsi  |  62 ++++
+ .../dts/loongson/loongson3_4core_rs780e.dts   |  25 ++
+ .../dts/loongson/loongson3_8core_rs780e.dts   |  25 ++
+ arch/mips/boot/dts/loongson/rs780e-pch.dtsi   |  26 ++
+ arch/mips/include/asm/i8259.h                 |   1 +
+ .../include/asm/mach-loongson64/boot_param.h  |   2 +
+ .../asm/mach-loongson64/builtin_dtbs.h        |  13 +
+ arch/mips/include/asm/mach-loongson64/irq.h   |  31 +-
+ .../include/asm/mach-loongson64/loongson.h    |   1 +
+ arch/mips/loongson64/Makefile                 |   2 +-
+ arch/mips/loongson64/env.c                    |  23 ++
+ arch/mips/loongson64/init.c                   |   6 +
+ arch/mips/loongson64/irq.c                    | 162 ---------
+ arch/mips/loongson64/setup.c                  |  16 +
+ arch/mips/loongson64/smp.c                    |  28 +-
+ drivers/irqchip/Kconfig                       |  19 +
+ drivers/irqchip/Makefile                      |   2 +
+ drivers/irqchip/irq-i8259.c                   |   6 +-
+ drivers/irqchip/irq-loongson-htpic.c          | 146 ++++++++
+ drivers/irqchip/irq-loongson-liointc.c        | 338 ++++++++++++++++++
+ drivers/irqchip/irq-mips-cpu.c                |   2 +-
+ 27 files changed, 912 insertions(+), 216 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
+loongson,htpic.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/=
+loongson,liointc.yaml
+ create mode 100644 Documentation/devicetree/bindings/mips/loongson/devices=
+.yaml
+ create mode 100644 arch/mips/boot/dts/loongson/Makefile
+ create mode 100644 arch/mips/boot/dts/loongson/loongson3-package.dtsi
+ create mode 100644 arch/mips/boot/dts/loongson/loongson3_4core_rs780e.dts
+ create mode 100644 arch/mips/boot/dts/loongson/loongson3_8core_rs780e.dts
+ create mode 100644 arch/mips/boot/dts/loongson/rs780e-pch.dtsi
+ create mode 100644 arch/mips/include/asm/mach-loongson64/builtin_dtbs.h
+ delete mode 100644 arch/mips/loongson64/irq.c
+ create mode 100644 drivers/irqchip/irq-loongson-htpic.c
+ create mode 100644 drivers/irqchip/irq-loongson-liointc.c
+
+--=20
+2.25.0
+
 
