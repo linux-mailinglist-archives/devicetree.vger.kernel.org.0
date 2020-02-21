@@ -2,98 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A1FE167D27
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 13:12:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08C6E167D2A
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 13:12:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726909AbgBUMMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 07:12:02 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:39196 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727448AbgBUMMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 07:12:01 -0500
-Received: by mail-wr1-f65.google.com with SMTP id y11so1781770wrt.6
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 04:12:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hS96wgt/ER0zqCa5SCOVpu61bVnBbfmDRQTyUX2IrAg=;
-        b=CS/oR3ABVm90GOGwxlesbU5UaRDqDi4937vJIZTYLNgqFuONm21aZHfScF1yfn5sAO
-         xdxwA0HkcqUqTryI/sndrYYXkvoPVOAFhEEC3AzBENzt3TA3GfZ5pbXcjskloGHkCTpZ
-         a77kpInQpoS3R/nE1wh7iy1tE7R+PB8uZsyNSP/TNDZLndcmcCGV83fW63VZdCSbFDkb
-         dGQ/VBQeP6CBnmYAGuZN5H+5VLNTKx9sdLzMAjP/uMS0dgHQej5Z7MhJVnrhhgiIJJ78
-         QTReeJZnSZTQJRREy+l5X1Q9RwN4MNBQQw37iC78fTKYq6khyXtgU9FsErbddnK5PQ2+
-         ZUUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hS96wgt/ER0zqCa5SCOVpu61bVnBbfmDRQTyUX2IrAg=;
-        b=mUAQE+pVjDU7s5t9REod3RiF2vfhjbqggEFEk9KcGEzjxFYveq1Z28EEKogvWa7bD6
-         oqSDmiSHZJod95FalQgrmpDfw1RuVjYQ9Xcc+9UG4UPFUWTcOSXdVZu58J+Gyoeo8qHg
-         KUm5Ar1rHO/JsarM+VHRQgGr8NGrxG3I+aWxe9vsc79gNdcTc6lmfI0ltHgNNp5u9xpm
-         whbRosvPfjxV9vxD3lPdcQheMjr3qoYc1oOqrxWDu4T+2qSXp4s735+150exMJVGTwnZ
-         c+8Izz13rxbLqjwVCD1zn2p3eVQxFwAE6QoPM3rBgD2p/stZa+Hs26997FjEy+hSxN2i
-         nQkA==
-X-Gm-Message-State: APjAAAVKPIIYeCSnlPoIwUat+sHbbOuL2I4gxk2X4BKMifPUAbhhrPeu
-        cQ3eAtUIsQE9qOgbjjfS/1h5+g==
-X-Google-Smtp-Source: APXvYqwYh4N7wz2XscGcCwMNShVzzwC6C2HoeJjKHoDg8DxmO/DkVmrmpDieYviHEdy0nbFzFz8hSg==
-X-Received: by 2002:a05:6000:108b:: with SMTP id y11mr49634195wrw.187.1582287119261;
-        Fri, 21 Feb 2020 04:11:59 -0800 (PST)
-Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id w22sm3553127wmk.34.2020.02.21.04.11.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2020 04:11:58 -0800 (PST)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] ASoC: meson: g12a: add tohdmitx reset
-Date:   Fri, 21 Feb 2020 13:11:46 +0100
-Message-Id: <20200221121146.1498427-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.24.1
-MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+        id S1726395AbgBUMMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 07:12:24 -0500
+Received: from andre.telenet-ops.be ([195.130.132.53]:56088 "EHLO
+        andre.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726976AbgBUMMY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 07:12:24 -0500
+Received: from ramsan ([84.195.182.253])
+        by andre.telenet-ops.be with bizsmtp
+        id 5QCN220025USYZQ01QCNoP; Fri, 21 Feb 2020 13:12:22 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1j57AM-000234-23; Fri, 21 Feb 2020 13:12:22 +0100
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1j57AL-00089X-W9; Fri, 21 Feb 2020 13:12:22 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: power: apmu: Convert to json-schema
+Date:   Fri, 21 Feb 2020 13:12:21 +0100
+Message-Id: <20200221121221.31298-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reset the g12a hdmi codec glue on probe. This ensure a sane startup state.
+Convert the Renesas Advanced Power Management Unit Device Tree binding
+documentation to json-schema.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- sound/soc/meson/g12a-tohdmitx.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../bindings/power/renesas,apmu.txt           | 35 ------------
+ .../bindings/power/renesas,apmu.yaml          | 55 +++++++++++++++++++
+ 2 files changed, 55 insertions(+), 35 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/renesas,apmu.txt
+ create mode 100644 Documentation/devicetree/bindings/power/renesas,apmu.yaml
 
-diff --git a/sound/soc/meson/g12a-tohdmitx.c b/sound/soc/meson/g12a-tohdmitx.c
-index f8853f2fba08..9b2b59536ced 100644
---- a/sound/soc/meson/g12a-tohdmitx.c
-+++ b/sound/soc/meson/g12a-tohdmitx.c
-@@ -8,6 +8,7 @@
- #include <linux/module.h>
- #include <sound/pcm_params.h>
- #include <linux/regmap.h>
-+#include <linux/reset.h>
- #include <sound/soc.h>
- #include <sound/soc-dai.h>
- 
-@@ -245,6 +246,11 @@ static int g12a_tohdmitx_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	void __iomem *regs;
- 	struct regmap *map;
-+	int ret;
+diff --git a/Documentation/devicetree/bindings/power/renesas,apmu.txt b/Documentation/devicetree/bindings/power/renesas,apmu.txt
+deleted file mode 100644
+index 5f24586c8cf33fcf..0000000000000000
+--- a/Documentation/devicetree/bindings/power/renesas,apmu.txt
++++ /dev/null
+@@ -1,35 +0,0 @@
+-DT bindings for the Renesas Advanced Power Management Unit
+-
+-Renesas R-Car and RZ/G1 SoCs utilize one or more APMU hardware units
+-for CPU core power domain control including SMP boot and CPU Hotplug.
+-
+-Required properties:
+-
+-- compatible: Should be "renesas,<soctype>-apmu", "renesas,apmu" as fallback.
+-	      Examples with soctypes are:
+-		- "renesas,r8a7743-apmu" (RZ/G1M)
+-		- "renesas,r8a7744-apmu" (RZ/G1N)
+-		- "renesas,r8a7745-apmu" (RZ/G1E)
+-		- "renesas,r8a77470-apmu" (RZ/G1C)
+-		- "renesas,r8a7790-apmu" (R-Car H2)
+-		- "renesas,r8a7791-apmu" (R-Car M2-W)
+-		- "renesas,r8a7792-apmu" (R-Car V2H)
+-		- "renesas,r8a7793-apmu" (R-Car M2-N)
+-		- "renesas,r8a7794-apmu" (R-Car E2)
+-
+-- reg: Base address and length of the I/O registers used by the APMU.
+-
+-- cpus: This node contains a list of CPU cores, which should match the order
+-  of CPU cores used by the WUPCR and PSTR registers in the Advanced Power
+-  Management Unit section of the device's datasheet.
+-
+-
+-Example:
+-
+-This shows the r8a7791 APMU that can control CPU0 and CPU1.
+-
+-	apmu@e6152000 {
+-		compatible = "renesas,r8a7791-apmu", "renesas,apmu";
+-		reg = <0 0xe6152000 0 0x188>;
+-		cpus = <&cpu0 &cpu1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/power/renesas,apmu.yaml b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
+new file mode 100644
+index 0000000000000000..09328d311d16422f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/renesas,apmu.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+	ret = device_reset(dev);
-+	if (ret)
-+		return ret;
- 
- 	regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(regs))
++title: DT bindings for the Renesas Advanced Power Management Unit
++
++maintainers:
++  - Geert Uytterhoeven <geert+renesas@glider.be>
++  - Magnus Damm <magnus.damm@gmail.com>
++
++description:
++  Renesas R-Car Gen2 and RZ/G1 SoCs utilize one or more APMU hardware units for
++  CPU core power domain control including SMP boot and CPU Hotplug.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - renesas,r8a7743-apmu  # RZ/G1M
++          - renesas,r8a7744-apmu  # RZ/G1N
++          - renesas,r8a7745-apmu  # RZ/G1E
++          - renesas,r8a77470-apmu # RZ/G1C
++          - renesas,r8a7790-apmu  # R-Car H2
++          - renesas,r8a7791-apmu  # R-Car M2-W
++          - renesas,r8a7792-apmu  # R-Car V2H
++          - renesas,r8a7793-apmu  # R-Car M2-N
++          - renesas,r8a7794-apmu  # R-Car E2
++      - const: renesas,apmu
++
++  reg:
++    maxItems: 1
++
++  cpus:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: |
++      Array of phandles pointing to CPU cores, which should match the order of
++      CPU cores used by the WUPCR and PSTR registers in the Advanced Power
++      Management Unit section of the device's datasheet.
++
++required:
++  - compatible
++  - reg
++  - cpus
++
++additionalProperties: false
++
++examples:
++  - |
++    apmu@e6152000 {
++            compatible = "renesas,r8a7791-apmu", "renesas,apmu";
++            reg = <0xe6152000 0x188>;
++            cpus = <&cpu0 &cpu1>;
++    };
 -- 
-2.24.1
+2.17.1
 
