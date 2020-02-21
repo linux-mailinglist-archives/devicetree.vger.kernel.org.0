@@ -2,99 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C51168305
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 17:15:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 441B316833E
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 17:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729481AbgBUQOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 11:14:50 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:9560 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729454AbgBUQOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Feb 2020 11:14:50 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01LGE9ZJ009872;
-        Fri, 21 Feb 2020 17:14:27 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=j0cy0mKA7cM8Tk6Z9M9zdWvIoHNs4Pm0R3aUHtmCHIs=;
- b=Y2zDz/hsRrUDG815gVDc1oEZ8UmjKwq9y+nocwidSm+jGXAmlrXRPQKP3u5Fqz0eKtZ1
- kFSmzIASg8pgLFehDf2/NpiSxvIh8K95JsjR7xRA/Uu1RPtgVH4VRSNtigVVE0c+Zkqa
- v0XPiPVVvfLqUI/kv8Ikm4illMval7rbA+qi8vndSUi2riaIjAoZAdytnwUPRVnhu2sK
- 5Vci8VOIPZS8vjVyWW9VoQijdzNtk9JKfZQHxKgz+/fy2W1Qy3rtxQfxVlj3ZS9BOvID
- oRfoO/pPLH7pJQafI22gjJKq6gYoqlBMaexIhwWyachx4E0XCZCGVEP0hlDFgEJlQZgg aA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2y8ub0g6bu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 21 Feb 2020 17:14:27 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5570710003A;
-        Fri, 21 Feb 2020 17:14:23 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 477C62BE258;
-        Fri, 21 Feb 2020 17:14:23 +0100 (CET)
-Received: from localhost (10.75.127.49) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 21 Feb 2020 17:14:22
- +0100
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-To:     <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        <david@gibson.dropbear.id.au>, <sjg@chromium.org>
-CC:     <devicetree@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-kernel@vger.kernel.org>, <linux-kbuild@vger.kernel.org>,
-        <devicetree-compiler@vger.kernel.org>, Ian Lepore <ian@freebsd.org>
-Subject: [RFC PATCH v2 4/4] script: make automatic dtb build info generation
-Date:   Fri, 21 Feb 2020 17:14:18 +0100
-Message-ID: <20200221161418.20225-5-alexandre.torgue@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200221161418.20225-1-alexandre.torgue@st.com>
-References: <20200221161418.20225-1-alexandre.torgue@st.com>
+        id S1725947AbgBUQ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 11:26:57 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35478 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726342AbgBUQ05 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Feb 2020 11:26:57 -0500
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7022F208E4
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 16:26:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582302416;
+        bh=t1V43wNRmlXXbwHM5UCwthYHCaU8uRTSqTXicUUb1OA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nDNTY3NxX7sVLdRIdt3YPByd9Kv7CBWyk5mK1+pILwo8B/tIagUKlZB2GyeE65jg7
+         qKK/qvZs6rVBVnfHKWFiaAWtbzhYCyxkcY6pzo6HGUKrpiDlaQQPJNCo6V4TrOiA7P
+         fzA4sFEipaf1po4oM4UyDnGBcLq3/XPdySgDs+9Y=
+Received: by mail-qt1-f172.google.com with SMTP id d9so1643721qte.12
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 08:26:56 -0800 (PST)
+X-Gm-Message-State: APjAAAWjYXExb4zoSuPFVx+rm3UgS+O0/nVOiNrst5O8KoUE3jeNvxqW
+        UWPeUUPnrqdEeZMLDm9KSfg3fN6pwJ7mHjLQRA==
+X-Google-Smtp-Source: APXvYqy3IJCfMKCYhwtA6Nh648QtdiZGkAdnsHguH4t6HAx9AAKqow0Va6pQMhbNm4jzkgv6vsm3zB5p0PonBGVLLc4=
+X-Received: by 2002:ac8:1415:: with SMTP id k21mr33281075qtj.300.1582302415519;
+ Fri, 21 Feb 2020 08:26:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-02-21_05:2020-02-21,2020-02-21 signatures=0
+References: <cover.1582300927.git.robin.murphy@arm.com> <3954ca0b86641e5e6a1935886df6658b9305ec4a.1582300927.git.robin.murphy@arm.com>
+In-Reply-To: <3954ca0b86641e5e6a1935886df6658b9305ec4a.1582300927.git.robin.murphy@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 21 Feb 2020 10:26:42 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKgz7N=nsA=TgJx=G9Zad77s39gyd3fwJV71-hdqokQpg@mail.gmail.com>
+Message-ID: <CAL_JsqKgz7N=nsA=TgJx=G9Zad77s39gyd3fwJV71-hdqokQpg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: ARM: Add recent Cortex/Neoverse PMUs
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Append each "xxx.dtb.dts.tmp" file with "build-info" entry during dtb
-build. It allows to get build information (date, source version, ...)
-for each device tree without modify them manually.
+On Fri, Feb 21, 2020 at 10:05 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> Add new PMU definitions to correspond with the CPU bindings.
+>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/pmu.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/pmu.yaml b/Documentation/devicetree/bindings/arm/pmu.yaml
+> index 52ae094ce330..cc52195d0e9e 100644
+> --- a/Documentation/devicetree/bindings/arm/pmu.yaml
+> +++ b/Documentation/devicetree/bindings/arm/pmu.yaml
+> @@ -21,11 +21,20 @@ properties:
+>        - enum:
+>            - apm,potenza-pmu
+>            - arm,armv8-pmuv3
+> +          - arm,neoverse-n1-pmu
+> +          - arm,neoverse-e1-pmu
 
-Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+We've managed to do some interesting sorting here. Oh well.
 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index a5af84ef4ffc..f084e78267b2 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -289,6 +289,7 @@ quiet_cmd_dtc = DTC     $@
- cmd_dtc = mkdir -p $(dir ${dtc-tmp}) ; \
- 	$(DTB_GEN_INFO) $(src) ; \
- 	$(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
-+	$(DTB_GEN_INFO) $(src) $(dtc-tmp) ; \
- 	$(DTC) -O $(2) -o $@ -b 0 \
- 		$(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
- 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
-diff --git a/scripts/gen_dtb_build_info.sh b/scripts/gen_dtb_build_info.sh
-index 0cd8bd98e410..72f31e386787 100755
---- a/scripts/gen_dtb_build_info.sh
-+++ b/scripts/gen_dtb_build_info.sh
-@@ -6,5 +6,7 @@ set -o nounset
- DTB_DIR=$1
- DTB_COMPILE_BY=$(whoami | sed 's/\\/\\\\/')
- DTB_INFO="From Linux $KERNELRELEASE by $DTB_COMPILE_BY the $(date).\0"
-+DTS_FILE=$2
- 
--printf "$DTB_INFO" > "$DTB_DIR/dtb-build.txt"
-+printf "$DTB_INFO" > "arch/arm/boot/dts/dtb-build.txt"
-+echo "&{/} {build-info = /incbin/(\"dtb-build.txt\");};" >> $DTS_FILE
--- 
-2.17.1
+I'll take patches 1 and 2.
 
+> +          - arm,cortex-a77-pmu
+> +          - arm,cortex-a76-pmu
+> +          - arm,cortex-a75-pmu
+>            - arm,cortex-a73-pmu
+>            - arm,cortex-a72-pmu
+> +          - arm,cortex-a65-pmu
+>            - arm,cortex-a57-pmu
+> +          - arm,cortex-a55-pmu
+>            - arm,cortex-a53-pmu
+>            - arm,cortex-a35-pmu
+> +          - arm,cortex-a34-pmu
+> +          - arm,cortex-a32-pmu
+>            - arm,cortex-a17-pmu
+>            - arm,cortex-a15-pmu
+>            - arm,cortex-a12-pmu
+> --
+> 2.23.0.dirty
+>
