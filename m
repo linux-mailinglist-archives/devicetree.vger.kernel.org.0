@@ -2,150 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E68A167D57
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 13:21:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54227167D68
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 13:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727686AbgBUMVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 07:21:45 -0500
-Received: from albert.telenet-ops.be ([195.130.137.90]:39796 "EHLO
-        albert.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbgBUMVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 07:21:45 -0500
-Received: from ramsan ([84.195.182.253])
-        by albert.telenet-ops.be with bizsmtp
-        id 5QMi2200D5USYZQ06QMinh; Fri, 21 Feb 2020 13:21:42 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j57JO-0002E9-7I; Fri, 21 Feb 2020 13:21:42 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j57JO-0008LS-5n; Fri, 21 Feb 2020 13:21:42 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Marcus Wolf <linux@Wolf-Entwicklungen.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 3/3] staging: pi433: overlay: Convert to sugar syntax
-Date:   Fri, 21 Feb 2020 13:21:33 +0100
-Message-Id: <20200221122133.32024-4-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200221122133.32024-1-geert+renesas@glider.be>
-References: <20200221122133.32024-1-geert+renesas@glider.be>
+        id S1728086AbgBUMWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 07:22:52 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:44648 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727928AbgBUMWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 07:22:50 -0500
+Received: by mail-wr1-f66.google.com with SMTP id m16so1801420wrx.11
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 04:22:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/BYedZ4pOByhHvdhuJN4fjl+rXQW3qUeEEUr/kFsWVU=;
+        b=Hzswd1IEpFgBP9efY9SXOGNd64ap93yVYNG4hX5JRFgq6BqQLP6NMpaXnrsS4yshJr
+         d/cfs5VudtvLHi7xt1YxbKlxcbTdIfYFPDd4pbfMC10jwUIEmdupU+I/U319Ue7iQcHZ
+         zTXIEVK1lyRXExDAjWQpCwqdmy+CthZHkPEpn4TuEfRuqoQKL9020Dy69beWpRhBEMDG
+         8U/JBaYO045Zy7LLbkTq6YQzTkojCkI+UcobfIiQBV7lKe5KUl9fL9wvZZ7TQmI6OSzr
+         iPqtJ7k1iNdxG0deDdtmqbUqZrShsZSA6X2Hra92Yigm2T2ltYn6+y7wvAEIK4FZhoRo
+         QZlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/BYedZ4pOByhHvdhuJN4fjl+rXQW3qUeEEUr/kFsWVU=;
+        b=ntQ+KOwrkaP5H2hk2WTD55L6KaEfnCCk+Rvsm4zSsfvH9VEyGhuq3vDfAPUl/B9U2d
+         9br/tCkFujhy7jLf0Ao6OpXqQN0//jKEMsZLLZ9x2zh7EjRYDHZxnC6GkqApWUbMb0oi
+         otOK7QeLsO6l0hL6vL/yKjMBxgYp7v7tU8xPvEb1IXAbG10uUf2vRejM6S5ZH9WyEuTf
+         MMUrNGwLC7rpHXNcgyTgBTAMp7atjNJ/6HCFx72JoILqqWo/n+Fo2f7BD917SggosjMV
+         wnGERd2q0m+JI9xX7UlJ5T2qGxRbiQ1BTYJ6xXAubcOYgK6sMSPQfzuHm1uHNIWoamNk
+         nPZA==
+X-Gm-Message-State: APjAAAVvyHLCsWsFhPKYOIF2uKlfG5IcMCzcmQGCM0PHWzULlGNcI3k8
+        fZdhxFMZ1avmeSHEEFvmrdqAQzPDUZA=
+X-Google-Smtp-Source: APXvYqzmjIqVT9st1OIarukP3BJalnkRPkvKDXMRg5ZK7MmjuG/5QwKMBZb6+Mmv5heghIB9nKAzwA==
+X-Received: by 2002:adf:fd8d:: with SMTP id d13mr49039936wrr.208.1582287768611;
+        Fri, 21 Feb 2020 04:22:48 -0800 (PST)
+Received: from starbuck.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id p26sm3454653wmc.24.2020.02.21.04.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2020 04:22:47 -0800 (PST)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 0/3] ASoC: meson: g12a: add internal audio DAC support
+Date:   Fri, 21 Feb 2020 13:22:39 +0100
+Message-Id: <20200221122242.1500093-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.24.1
+MIME-Version: 1.0
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using overlay sugar syntax makes the DTS overlay files easier to read
-(and write).
+Like the gxl, the Amlogic g12a and sm1 SoC families have a t9015 internal
+audio DAC. On these more recent SoCs, any of the 3 TDM outputs can be
+routed to the internal DAC. This routing is done by a small glue device
+called 'toacodec'. This patchset adds support for it.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Why are there two separate fragments for spi0? Can't they be combined?
-Why do you need the spidev@1 entry?
----
- .../devicetree/pi433-overlay.dts              | 79 ++++++++-----------
- 1 file changed, 35 insertions(+), 44 deletions(-)
+Jerome Brunet (3):
+  ASoC: meson: g12a: add toacodec dt-binding documentation
+  ASoC: meson: g12a: add internal DAC glue driver
+  ASoC: meson: axg-card: add toacodec support
 
-diff --git a/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts b/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts
-index b584180d78d019aa..096137fcd5cc0131 100644
---- a/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts
-+++ b/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts
-@@ -4,54 +4,45 @@
- 
- / {
- 	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
-+};
-+
-+&spi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	spidev@0{
-+		reg = <0>;
-+		status = "disabled";
-+	};
- 
--	fragment@0 {
--		target = <&spi0>;
--		__overlay__ {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			status = "okay";
--
--			spidev@0{
--				reg = <0>;
--				status = "disabled";
--			};
--
--			spidev@1{
--				reg = <1>;
--				status = "disabled";
--			};
--		};
-+	spidev@1{
-+		reg = <1>;
-+		status = "disabled";
- 	};
-+};
- 
--	fragment@1 {
--		target = <&gpio>;
--		__overlay__ {
--			pi433_pins: pi433_pins {
--				brcm,pins = <7 25 24>;
--				brcm,function = <0 0 0>; // in in in
--			};
--		};
-+&gpio {
-+	pi433_pins: pi433_pins {
-+		brcm,pins = <7 25 24>;
-+		brcm,function = <0 0 0>; // in in in
- 	};
-+};
- 
--	fragment@2 {
--		target = <&spi0>;
--		__overlay__ {
--			#address-cells = <1>;
--			#size-cells = <0>;
--			status = "okay";
--
--			pi433: pi433@0 {
--				compatible = "Smarthome-Wolf,pi433";
--				reg = <0>;
--				spi-max-frequency = <10000000>;
--				status = "okay";
--
--				pinctrl-0 = <&pi433_pins>;
--				DIO0-gpio = <&gpio 24 0>;
--				DIO1-gpio = <&gpio 25 0>;
--				DIO2-gpio = <&gpio  7 0>;
--			};
--		};
-+&spi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	pi433: pi433@0 {
-+		compatible = "Smarthome-Wolf,pi433";
-+		reg = <0>;
-+		spi-max-frequency = <10000000>;
-+		status = "okay";
-+
-+		pinctrl-0 = <&pi433_pins>;
-+		DIO0-gpio = <&gpio 24 0>;
-+		DIO1-gpio = <&gpio 25 0>;
-+		DIO2-gpio = <&gpio  7 0>;
- 	};
- };
+ .../bindings/sound/amlogic,g12a-toacodec.yaml |  51 ++++
+ .../dt-bindings/sound/meson-g12a-toacodec.h   |  10 +
+ sound/soc/meson/Kconfig                       |   9 +
+ sound/soc/meson/Makefile                      |   2 +
+ sound/soc/meson/axg-card.c                    |   3 +-
+ sound/soc/meson/g12a-toacodec.c               | 240 ++++++++++++++++++
+ 6 files changed, 314 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+ create mode 100644 include/dt-bindings/sound/meson-g12a-toacodec.h
+ create mode 100644 sound/soc/meson/g12a-toacodec.c
+
 -- 
-2.17.1
+2.24.1
 
