@@ -2,101 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E37A316755B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 09:31:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00EB61678A7
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 09:50:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388233AbgBUIZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 03:25:36 -0500
-Received: from mail1.bemta25.messagelabs.com ([195.245.230.66]:58144 "EHLO
-        mail1.bemta25.messagelabs.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388779AbgBUIZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Feb 2020 03:25:17 -0500
-Received: from [100.112.198.146] (using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256 bits))
-        by server-2.bemta.az-b.eu-west-1.aws.symcld.net id 97/DA-44550-AE39F4E5; Fri, 21 Feb 2020 08:25:14 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRWlGSWpSXmKPExsVy8MN7Xd1Xk/3
-  jDKZtlbKYc76FxWL+kXOsFocXvWC0aF68ns3i/tejjBY3P31jtbi8aw6bRfvG2awWS69fZLJ4
-  /6mTyaJ17xF2i/97drBb/Nw1j8Xi9sTJjA58HmvmrWH02LLyJpPHzll32T02repk87hzbQ+bx
-  /65a9g9+v8aeHzeJBfAEcWamZeUX5HAmrHoRTdzwQf2isuXJrI3ML5m7WLk4hASWMsosXvZLe
-  YuRg4gp1Ji3k2hLkZODl4BU4ndX6+wgthsAjoSj2auZwKxWQRUJQ49v84CYgsLWEpsabnHCDJ
-  HROAks0Tnva8sIA6zwDRGiT0fDzNDTBKUODnzCVgHs4CExMEXL8DiQgJaEufWrGKcwMg9C0nZ
-  LCRlCxiZVjFaJBVlpmeU5CZm5ugaGhjoGhoa6RpamukaGpvrJVbpJumlluqWpxaX6BrqJZYX6
-  xVX5ibnpOjlpZZsYgQGfUrBkc4djL/XvNc7xCjJwaQkyqvY5x8nxJeUn1KZkVicEV9UmpNafI
-  hRhoNDSYL32QSgnGBRanpqRVpmDjACYdISHDxKIryOvUBp3uKCxNzizHSI1ClGXY7r7/cuZRZ
-  iycvPS5US522dBFQkAFKUUZoHNwKWDC4xykoJ8zIyMDAI8RSkFuVmlqDKv2IU52BUEub9MRFo
-  Ck9mXgncpldARzABHfFe2AfkiJJEhJRUA1MHn8fM4xI328QO6/TO+z+zM9DHfsV1yxWzNuTPW
-  84i9yKj9PIckZfsm0+k8/98e9n1lIrTOpm64AO7rHiff2s2u724Qv+jYc7sgpCOmzw341/L+E
-  zpEkx0da57Uzj/RHHMVtVmabZewX0+cmp/s79MYZ1kFbl+pYeFbMOFnub6yVlm0xZL26jlizI
-  4lc77/mMbU2tZ7ayF1hPvmyV9ieBTkbF9x5+vGOIwYY9jkrlPZm7hhLYbkTO1Tje8a51fMmeu
-  8DulS/1VPE3196dPDmKKF/fu/fkwV6BOYoHQ2zTfHfyGjHPZ41JZO4IMSnZuso3ZsEnnf7be6
-  u4JGx+sic1ckstybGPWn5ee2QHflViKMxINtZiLihMBB91GJ4EDAAA=
-X-Env-Sender: roy.im.opensource@diasemi.com
-X-Msg-Ref: server-15.tower-288.messagelabs.com!1582273513!731327!2
-X-Originating-IP: [193.240.239.45]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.44.25; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 22386 invoked from network); 21 Feb 2020 08:25:14 -0000
-Received: from unknown (HELO NB-EX-CASHUB01.diasemi.com) (193.240.239.45)
-  by server-15.tower-288.messagelabs.com with ECDHE-RSA-AES256-SHA384 encrypted SMTP; 21 Feb 2020 08:25:14 -0000
-Received: from krsrvapps-03.diasemi.com (10.95.17.51) by
- NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
- 14.3.468.0; Fri, 21 Feb 2020 09:25:13 +0100
-Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
- 7701813F671; Fri, 21 Feb 2020 17:25:11 +0900 (KST)
-Message-ID: <cover.1582270025.git.Roy.Im@diasemi.com>
-From:   Roy Im <roy.im.opensource@diasemi.com>
-Date:   Fri, 21 Feb 2020 16:27:05 +0900
-Subject: [PATCH V9 0/3]  da7280: haptic driver submission
-To:     "David S. Miller" <davem@davemloft.net>,
-        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
+        id S1730201AbgBUIty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 03:49:54 -0500
+Received: from mx.socionext.com ([202.248.49.38]:50873 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727993AbgBUHoa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Feb 2020 02:44:30 -0500
+Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 21 Feb 2020 16:44:28 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id BE6F5603AB;
+        Fri, 21 Feb 2020 16:44:28 +0900 (JST)
+Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Fri, 21 Feb 2020 16:44:28 +0900
+Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
+        by iyokan.css.socionext.com (Postfix) with ESMTP id 4FCED403B2;
+        Fri, 21 Feb 2020 16:44:28 +0900 (JST)
+Received: from [10.213.132.48] (unknown [10.213.132.48])
+        by yuzu.css.socionext.com (Postfix) with ESMTP id 1AC8E12047F;
+        Fri, 21 Feb 2020 16:44:28 +0900 (JST)
+Date:   Fri, 21 Feb 2020 16:44:28 +0900
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Support Opensource <support.opensource@diasemi.com>,
-        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v4 0/2] dmaengine: Add UniPhier XDMAC driver
+Cc:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+In-Reply-To: <1582270646-29161-1-git-send-email-hayashi.kunihiko@socionext.com>
+References: <1582270646-29161-1-git-send-email-hayashi.kunihiko@socionext.com>
+Message-Id: <20200221164427.32C3.4A936039@socionext.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Becky! ver. 2.70 [ja]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the Dialog DA7280 Haptic driver IC.
+Sorry for my mistake in this v4.
 
-In this patch set the following is provided:
+I'll resend it.
 
-[PATCH V9 1/3] MAINTAINERS file update for DA7280
-[PATCH V9 2/3] DA7280 DT Binding
-[PATCH V9 3/3] DA7280 Driver
+On Fri, 21 Feb 2020 16:37:24 +0900 <hayashi.kunihiko@socionext.com> wrote:
 
-This patch applies against linux-next and v5.5
+> Add support for UniPhier external DMA controller (XDMAC), that is
+> implemented in Pro4, Pro5, PXs2, LD11, LD20 and PXs3 SoCs.
+> 
+> Changes since v3:
+> - dt-bindings: Fix typo
+> 
+> Changes since v2:
+> - dt-bindings: Fix SPDX and some properties
+> - Fix iteration count calculation for memcpy
+> - Replace zero-length array with flexible-array member in struct
+>   uniphier_xdmac_device.
+> 
+> Changes since v1:
+> - dt-bindings: Rewrite with DT schema.
+> - Change return type of uniphier_xdmac_chan_init() to void,
+>   and remove error return in probe.
+> 
+> Kunihiko Hayashi (2):
+>   dt-bindings: dmaengine: Add UniPhier external DMA controller bindings
+>   dmaengine: uniphier-xdmac: Add UniPhier external DMA controller driver
+> 
+>  .../bindings/dma/socionext,uniphier-xdmac.yaml     |  63 +++
+>  drivers/dma/Kconfig                                |  11 +
+>  drivers/dma/Makefile                               |   1 +
+>  drivers/dma/uniphier-xdmac.c                       | 611 +++++++++++++++++++++
+>  4 files changed, 686 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/socionext,uniphier-xdmac.yaml
+>  create mode 100644 drivers/dma/uniphier-xdmac.c
+> 
+> -- 
+> 2.7.4
 
-Thank you,
-Roy Im, Dialog Semiconductor Ltd.
-
-Roy Im (3):
-  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
-  dt-bindings: input: Add document bindings for DA7280
-  Input: new da7280 haptic driver
-
- .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
- MAINTAINERS                                        |    2 +
- drivers/input/misc/Kconfig                         |   13 +
- drivers/input/misc/Makefile                        |    1 +
- drivers/input/misc/da7280.c                        | 1880 ++++++++++++++++++++
- 5 files changed, 2005 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
- create mode 100644 drivers/input/misc/da7280.c
-
--- 
-end-of-patch for PATCH V9
+---
+Best Regards,
+Kunihiko Hayashi
 
