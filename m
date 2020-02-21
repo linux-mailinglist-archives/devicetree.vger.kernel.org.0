@@ -2,89 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C81741679FA
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 10:54:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42775167A1D
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 11:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728235AbgBUJya (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 04:54:30 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:47055 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727036AbgBUJya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 04:54:30 -0500
-Received: by mail-ot1-f67.google.com with SMTP id g64so1441453otb.13;
-        Fri, 21 Feb 2020 01:54:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6KWuWbwpy5eV1ugbAOKbTPCDhSjq5tBX3gsYSurm6FU=;
-        b=BHOVmoTR9eeC3nzMH+otKaox1Nsqffd4TPTvM59LzjCUZnf5MhN+F1U27K6CNOdZJW
-         a3PdOHHdyIDj/v+YPzj7Pl36hL/YaqWvIbhOb5JFw5vJZqLlxQAypr1n608CMU1Ou4QP
-         n7xupIXb4wCxi9t0O/tl8XotO0ZV8dfPGrc1oRjrjL7donyMaiFJYYCbdKnWtlFZVi66
-         vz8mjy5Ju4bBJtHRefQl/vGdU0DjA39PYeXDZ1Pm+1a4cBIam7qSl4Q6xpb85vZpBzLq
-         K8KCA+nacJfMpfCghzrVYqtetZvMBIutRVG13LgDMlbJw93hPVFBQ57IefCsi+VEWQJG
-         w6cw==
-X-Gm-Message-State: APjAAAXHAGtY9nt89wBBaG79rn9vI67xyUt8bgJeZagkx049k39o73Nq
-        eygf0CzKK4gckASVJ2WWY2cfcYAC6n1ypKoeMnU=
-X-Google-Smtp-Source: APXvYqyhskulP9XNKEDIW8WGFVwSFpIZubz6Szsv+4aJV+5XVybq6Gl2c8lJKMieOTMpUoN9JopRyDO5qSQyZQelS5w=
-X-Received: by 2002:a9d:dc1:: with SMTP id 59mr27510706ots.250.1582278869027;
- Fri, 21 Feb 2020 01:54:29 -0800 (PST)
+        id S1727150AbgBUKEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 05:04:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47530 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727142AbgBUKEY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Feb 2020 05:04:24 -0500
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E29F1207FD;
+        Fri, 21 Feb 2020 10:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582279463;
+        bh=gIRnGOsuqmY14jjFPSkmlspi6zf1wl5xnVR/YigaeDw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=lWdXrZIPtsnUs//sRLW2Lv2YXcEd/vBPHbnEbeRufppB6CLTw2uOxBWS4YD6sTTOw
+         A/xXL+GkXyVXV6czbFchqmcVDHSNFpnU256uw3KrALn/7OHJVigXETggnq0yFKEQwX
+         bp4P71PZo1vzPayUhWZh8pG8KEjeoWEPWdlK4FxE=
+Date:   Fri, 21 Feb 2020 10:04:19 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-iio@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH] dt-bindings: iio: adc: max1363 etc i2c ADC binding
+ conversion
+Message-ID: <20200221100419.79900070@archlinux>
+In-Reply-To: <20200219221005.GA22158@bogus>
+References: <20200208172312.467454-1-jic23@kernel.org>
+        <20200219221005.GA22158@bogus>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20200220172403.26062-1-wsa+renesas@sang-engineering.com> <20200220172403.26062-6-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20200220172403.26062-6-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 21 Feb 2020 10:54:18 +0100
-Message-ID: <CAMuHMdXy=B6ZjC=X12yeOjSfr5-Z6HNL4vp0vQciMsW31i-CPw@mail.gmail.com>
-Subject: Re: [RFC PATCH 5/7] i2c: of: error message unification
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        linux-i3c@lists.infradead.org,
-        Kieran Bingham <kieran@ksquared.org.uk>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On Wed, 19 Feb 2020 16:10:05 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-Thanks for your patch!
+> On Sat, Feb 08, 2020 at 05:23:12PM +0000, jic23@kernel.org wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > 
+> > Split the binding in two to reflect the threshold monitor capabilities
+> > and hence interrupts vs the more straight forward parts that
+> > don't have this facility.
+> > 
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/max1363.txt   | 63 ---------------
+> >  .../bindings/iio/adc/maxim,max1238.yaml       | 76 +++++++++++++++++++
+> >  .../bindings/iio/adc/maxim,max1363.yaml       | 50 ++++++++++++
+> >  3 files changed, 126 insertions(+), 63 deletions(-)  
+> 
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - maxim,max1361,  
+> 
+> Dangling comma.
+> 
+> Otherwise,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-On Thu, Feb 20, 2020 at 6:26 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> - don't prefix the device if %pOF is provided. That information is
->   enough.
+Fixed up and applied.  Thanks Rob
 
-While that information is sufficient to identify the device, using a mix
-of dev_*() and pr_*("... %pOF...") makes it harder to grep for relevant
-information in the kernel log.  Hence I'm not convinced this is an
-improvement.
+Jonathan
 
-> - move the prefix to pr_fmt
-> - change prefix from "of_i2c" to "i2c_of" because the code was moved
->   out of the of-domain long ago
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> 
+> > +      - maxim,max1362
+> > +      - maxim,max1363
+> > +      - maxim,max1364  
+> 
 
-Nevertheless:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
