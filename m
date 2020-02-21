@@ -2,155 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E790166FB6
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 07:41:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F11E166FDC
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 07:51:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726224AbgBUGlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 01:41:50 -0500
-Received: from conssluserg-04.nifty.com ([210.131.2.83]:44021 "EHLO
-        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726045AbgBUGlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 01:41:50 -0500
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48]) (authenticated)
-        by conssluserg-04.nifty.com with ESMTP id 01L6fOtD002177;
-        Fri, 21 Feb 2020 15:41:25 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com 01L6fOtD002177
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1582267285;
-        bh=w9qQFtOkV425rrij+z9xWleLToj7ihi//PoOcVDN2Ls=;
-        h=From:Date:Subject:To:Cc:From;
-        b=EmYHYFjxJeWWjuE7FpRIcMpVpbQvYa1azVujiZpRCPSsyY35BcDmkIm6LuFWO7LcC
-         quQEOk/Xtic26YqcHn3Cq1abtW3zfwR/SVViwXi0dDjkOGrGdjh31hDSxgMbECUPJu
-         Y0hjbsmhVLbjvw3wXRR4jroZ/0wt4KcEJtO5T98t5qWueJKOnxZP0N/73Dp3La8Kni
-         CF1ajTgMlpDvjwbBXI9iQsGIgWMU3k74egfDmlG1gTirzv03lbmOxjWWn8xEiNQPrL
-         7wgEpfQKHtoYHGBWJZ64zvG2edbyRtEuMFua2NLVbAJsB4I4SpwMVTJWxSXPwDqF88
-         c5ZSz/hYUYN+g==
-X-Nifty-SrcIP: [209.85.217.48]
-Received: by mail-vs1-f48.google.com with SMTP id p6so561576vsj.11;
-        Thu, 20 Feb 2020 22:41:25 -0800 (PST)
-X-Gm-Message-State: APjAAAXmOB3023VSu11MbMsXkEZ8wfmiV131CyhJMk9kxQSkir8locVM
-        BmejnN+4CwCFoIxzKFqwdYN1ZXt5JbDrqtUpLe0=
-X-Google-Smtp-Source: APXvYqxlurREctTusUbI4NfwEoWK1BdgrIss1QRpDZcokNud451FRNaB4WBxWTzCUckU19r/OoH75MaXPz0bIJE05q4=
-X-Received: by 2002:a67:fa4b:: with SMTP id j11mr19540806vsq.155.1582267284130;
- Thu, 20 Feb 2020 22:41:24 -0800 (PST)
+        id S1726325AbgBUGvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 01:51:48 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:60483 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726100AbgBUGvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 01:51:48 -0500
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1j52A2-00025k-KS; Fri, 21 Feb 2020 07:51:42 +0100
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1j52A0-0001pi-RL; Fri, 21 Feb 2020 07:51:40 +0100
+Date:   Fri, 21 Feb 2020 07:51:40 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     peng.fan@nxp.com
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/9] remoteproc: imx_rproc: support i.MX8/8M/7ULP
+Message-ID: <20200221065140.mn4wxk5c2xayqwan@pengutronix.de>
+References: <1582097265-20170-1-git-send-email-peng.fan@nxp.com>
 MIME-Version: 1.0
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Fri, 21 Feb 2020 15:40:48 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASS5CCLi=7LNBHqHgdtaYgAFkcgTGYvmGds7y8cnWzBMw@mail.gmail.com>
-Message-ID: <CAK7LNASS5CCLi=7LNBHqHgdtaYgAFkcgTGYvmGds7y8cnWzBMw@mail.gmail.com>
-Subject: Some questions about DT-schema
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        DTML <devicetree@vger.kernel.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="r3mvuywgdhewmqq6"
+Content-Disposition: inline
+In-Reply-To: <1582097265-20170-1-git-send-email-peng.fan@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:49:19 up 97 days, 22:07, 121 users,  load average: 0.00, 0.05,
+ 0.07
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Q1] Order of reset-names, clock-names, etc.
 
-I have nodes that describe multiple reset lines:
+--r3mvuywgdhewmqq6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It looks like this:
+Hi Peng,
 
-    reset-names = "host", "bridge";
-    resets = <&rst 0>, <&rst 1>;
+i can't apply your patches on kernel master HEAD. Do I need some
+extras?
 
+Please add me to CC for this driver next time.
 
-I looks into some existing schema files
-to figure out how to describe this.
+On Wed, Feb 19, 2020 at 03:27:36PM +0800, peng.fan@nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>=20
+> This patchset aim to replace NXP vendor imx_rpmsg.c driver.
+>=20
+> This patchset is tested with Loic PALLARDY's patch
+> "remoteproc: add support for co-processor loaded and booted before kernel"
+> https://patchwork.kernel.org/patch/11265869/,
+> and inspried from st's remoteproc early boot support.
+> Since Loic's patch is still under review, just expect your comments :)
+>=20
+> Patch [1,2]/9: dt-bindings convert to json and new SoC support
+> Patch 3/9: skip firmware load when recovery. To i.MX8, firmware is not
+>            handled by Linux.
+>=20
+> Patch [4-9]/9: i.MX specific part to support rpmsg/virtio with mbox.
+>       because NXP release image not have resoure table, so add resource
+>       table in dts
+>=20
+> My test dts diff for i.MX8QXP MEK, but I have tested this patchset
+> for i.MX8QXP MEK, i.MX8MM EVK, i.MX7ULP EVK:
+>=20
+> +
+> +	imx8x-cm4 {
+> +		compatible =3D "fsl,imx8qxp-cm4";
+> +		rsrc-table =3D <
+> +			0x1 0x2 0x0 0x0 0x18 0x5c
+> +			3
+> +			/*fw_rsc_vdev*/
+> +			7 0 1 0 0 0x200
+> +			/*fw_rsc_vdev_vring*/
+> +			0x90000000 4096 256 1 0
+> +			0x90008000 4096 256 2 0
+> +			3
+> +			/*fw_rsc_vdev*/
+> +			7 1 1 0 0 0x200
+> +			/*fw_rsc_vdev_vring*/
+> +			0x90010000 4096 256 1 0
+> +			0x90018000 4096 256 2 0
+> +		>;
+> +		early-booted;
+> +		mbox-names =3D "tx", "rx", "rxdb";
+> +		mboxes =3D <&lsio_mu5 0 1
+> +			  &lsio_mu5 1 1
+> +			  &lsio_mu5 3 1>;
+> +		mub-partition =3D <3>;
+> +		memory-region =3D <&vdev0vring0>, <&vdev0vring1>, <&vdev0buffer>,
+> +				<&vdev1vring0>, <&vdev1vring1>, <&vdev0buffer>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells =3D <2>;
+> +		#size-cells =3D <2>;
+> +		ranges;
+> +
+> +		vdev0vring0: vdev0vring0@90000000 {
+> +                       compatible =3D "shared-dma-pool";
+> +			reg =3D <0 0x90000000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring1: vdev0vring1@90008000 {
+> +                       compatible =3D "shared-dma-pool";
+> +			reg =3D <0 0x90008000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev1vring0: vdev1vring0@90010000 {
+> +                       compatible =3D "shared-dma-pool";
+> +			reg =3D <0 0x90010000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev1vring1: vdev1vring1@90018000 {
+> +                       compatible =3D "shared-dma-pool";
+> +			reg =3D <0 0x90018000 0 0x8000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0buffer: vdev0buffer {
+> +                       compatible =3D "shared-dma-pool";
+> +			reg =3D <0 0x90400000 0 0x100000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+>=20
+> Peng Fan (9):
+>   dt-bindings: remoteproc: Convert imx-rproc to json-schema
+>   dt-bindings: remoteproc: imx-rproc: support i.MX[8,8M,7ULP]
+>   remoteproc: add support to skip firmware load when recovery
+>   remoteproc: imx_rproc: surport early booted remote processor
+>   remoteproc: imx_rproc: parse early-booted property
+>   remoteproc: imx_proc: enable virtio/mailbox
+>   remoteproc: imx_rproc: add i.MX8QM/QXP
+>   remoteproc: imx_rproc: support i.MX7ULP
+>   remoteproc: imx_rproc: add i.MX8MM support
+>=20
+>  .../devicetree/bindings/remoteproc/imx-rproc.txt   |  33 --
+>  .../devicetree/bindings/remoteproc/imx-rproc.yaml  |  95 +++++
+>  drivers/remoteproc/imx_rproc.c                     | 455 +++++++++++++++=
+++++--
+>  drivers/remoteproc/remoteproc_core.c               |  19 +-
+>  include/linux/remoteproc.h                         |   1 +
+>  5 files changed, 531 insertions(+), 72 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rpro=
+c.txt
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/imx-rpro=
+c.yaml
+>=20
+> --=20
+> 2.16.4
+>=20
+>=20
+>=20
 
-We typically do this.
+--=20
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
-reset-names:
-  - items:
-    - const: host
-    - const: bridge
+--r3mvuywgdhewmqq6
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-Since 'items' checks each item against the corresponding index,
-it is order-sensitive.
+iQIzBAABCAAdFiEERBNZvwSgvmcMY/T74omh9DUaUbMFAl5PffgACgkQ4omh9DUa
+UbMWkA//dIL2GgJzXR5afPwRrdvi0TCi5UXzzaX2RR4Up15wPHZC+lNzmH5yOBo+
+lDWxKth8CuPMk26g7x+WkrIZvJM8Hbdk/0Y1csnEWTt7IMf4o+FHec5XoJ8WCIIw
+ZEBSbytGL2AIfZCAUJ9J2PK64ZHW37HMgeI5S2t92wn7bV49OPEmR77vzevLZM/y
+FBORX6zWFKvWgXj0ulMaGU6q8/67ZSjoAqcyDkCMMhF7AQplT3yyy1FAgNKNFy5p
+N+W60csZiCMQHza7jYQmovsv2tgBSEYxCYmw2BYglQTDeTK9dolDTlJ+rCQNWR8u
+7Mzj+PUX/jyeHZBSQ9Irkg+sHgbzjsPVkb8+U5DOpHa6IBi3oV6aKkwFGp/agfhd
+7ZVI1bk02clGnM14/AypY1zogzHwo2CkMMXN0bOXFre72YMdNGLo42Op7Cq3tJ+N
+lejlAFc71+/DBjBxwSbUpuXqKt4TAZX8MD5vPmryEcFMPlSMdyftOQ6r7hhx/vNZ
+Svg8RI21V7HBsNfB3NlcqTjDXBK/cCVrgOSzzR3FDLq2EkmIBDvx4jHdteTwrsJO
+S1Mc2C3c1o1/WUnJAjyuuK/pl2wT4vrE5eaom9REedveO0BI8azwfzcfy8bxg5ei
+Xkc3/us2iWNeux1/x/V9wlrfcV4kpHnKtkDfvZP4vx5iSH0q2ak=
+=KJgP
+-----END PGP SIGNATURE-----
 
-
-So, the following DT passes the schema.
-
-    reset-names = "host", "bridge";
-    resets = <&rst 0>, <&rst 1>;
-
-
-However, the following DT fails in the schema checking.
-
-    reset-names = "bridge", "host";
-    resets = <&rst 1>, <&rst 0>;
-
-The latter is as correct as the former,
-and should work equivalently.
-
-If we are always required to write the "host", "bridge", in this order,
-there is no point of 'reset-names'.
-So, this is a restriction we should not impose.
-
-
-So, if we want to accept both cases,
-we need to write like this:
-
-reset-names:
-  - oneOf:
-    - items:
-      - const: host
-      - const: bridge
-    - items:
-      - const: bridge
-      - const: host
-
-
-If we have 3 reset singles, we end up with listing 6 patterns.
-Is there a good way to describe this?
-
-Or, the policy is,
-there is only one way to do one thing ?
-
-
-[Q2] Tupling reg, range, etc.
-
-In the context of dt-schema,
-'reg' is essentially, array of array,
-and it is important to how you tuple values.
-
-    reg = <1 2>, <3 4>;
-
-    reg = <1>, <2>, <3>, <4>;
-
-    reg = <1 2 3 4>;
-
-All of the three are compiled into the equivalent DTB,
-but in the context of schema checking,
-the number of items is, 2, 4, 1, respectively.
-
-So, we need to care about tuple values correctly
-based on #address-cells and #size-cells.
-
-
-In some DT, I previously wrote ranges like this
-
-   ranges = <1 0x00000000 0x42000000 0x02000000,
-             5 0x00000000 0x46000000 0x01000000>;
-
-But, now probably more correct way is:
-
-   ranges = <1 0x00000000 0x42000000 0x02000000>,
-            <5 0x00000000 0x46000000 0x01000000>;
-
-
-This is a new restriction, and it also means
-we cannot perform schema checking against
-dis-assembled DT  (dtb->dts).
-
-Is this correct?
-
-
--- 
-Best Regards
-Masahiro Yamada
+--r3mvuywgdhewmqq6--
