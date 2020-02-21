@@ -2,230 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FABB166CBC
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 03:15:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 597CA166CDA
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 03:23:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729222AbgBUCPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 20 Feb 2020 21:15:01 -0500
-Received: from conuserg-09.nifty.com ([210.131.2.76]:52381 "EHLO
-        conuserg-09.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729027AbgBUCPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Feb 2020 21:15:01 -0500
-Received: from localhost.localdomain (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp [153.142.97.92]) (authenticated)
-        by conuserg-09.nifty.com with ESMTP id 01L2EQ0T006571;
-        Fri, 21 Feb 2020 11:14:26 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-09.nifty.com 01L2EQ0T006571
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1582251267;
-        bh=nhUaYgDkD6DXIYyAxnxU4xube6qtkglOc80oVkt1PIk=;
-        h=From:To:Cc:Subject:Date:From;
-        b=W79fBiY0/kNsekXh7d3jt4wdtM4zpP4ruH15pDBZlx3da9ZBKFCKS744d1KELnA/H
-         LIH8BHQUmHV4O3Le4aykxUkyocZBkjtgszlCfVNXhD1chNTl/LUCMBauekkIxIVClM
-         tI16W1g3xGNZnv8wSCoDDl2uYWQpeZVpVOMryFyS1VFDITkXoHX4iQ1nb+Lc++XQLu
-         2LixvbQbRKjd7AIiRdPqFCOZcCebIu+gzDyxRhlOdaZJ03kPkxSB/ZjwxUbbARb9SK
-         vUFXmcBvYAbA3K51PKg9plRznRd1KfgsnxgKusZBhkr7I09AH6+Zqwc3FczC5oZpbY
-         ehE17aOEaKxHg==
-X-Nifty-SrcIP: [153.142.97.92]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        id S1729576AbgBUCXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 20 Feb 2020 21:23:17 -0500
+Received: from mail-il1-f193.google.com ([209.85.166.193]:35175 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729222AbgBUCXR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 20 Feb 2020 21:23:17 -0500
+Received: by mail-il1-f193.google.com with SMTP id g12so441297ild.2
+        for <devicetree@vger.kernel.org>; Thu, 20 Feb 2020 18:23:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1r4Guz/pyXp2FmGJuccB7640iKmbat2fCQTpns04iQA=;
+        b=Lkna8bgrY1wIa2D6YpzLy0LrWfgzvaUEsUsl3en59bAJAaA2vZ9VPIKQlDXtm+3+2+
+         9pdBEzbHik3jHDJbH4uFvxBtmgF8H1fX2vh7XTfL3CQHeRV+r5yUeRR6SesXPJidAZxW
+         qE20XApR58nXLCYXwc7cWM3YGLzFqizc+vgPA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1r4Guz/pyXp2FmGJuccB7640iKmbat2fCQTpns04iQA=;
+        b=U7Ux9K1bhP7aANVvKjbXF5XTUZF8+JrN3w50o2J8PCtZKIp0WCZP5kUIn+RQp8ebk9
+         Xe3c4YapZCl2joBSILElFPwS2XmteSH3KBfHlEUf8ZEqQdBlA8NSAM/GcBwoQlrdOS6d
+         rbrebBwk/KUdwmKKe87xQPy/TqNm2KI4c0JhYAmurJztmBEEYE9SXP5R2AKf1dyj6AYp
+         CNLZP6qXO7/rOgtP3uOxdLFBYNEfmxshaBdoLVAXsdZ1Kl/p2PVND1JWariJbrKJej0X
+         X2JL0rH3GDFuHF9zxfx3FHSh5H59BkLisr545cj3PTRyqcrMNlyrXbivjO5ZErTicjXi
+         phmQ==
+X-Gm-Message-State: APjAAAUrzdowqsnRNIQJyHJcoydpa5bpamJ/gjLIC7Lg/ukNONYFl94f
+        G3RauKwSkc6zjgx0yDWmGFE/yladfxpD0ZI2dSXAIg==
+X-Google-Smtp-Source: APXvYqyrSLErmbSrh9z11lK8TdqiabptjiOsG76i8R6M6oB7VpHn99tIgFQZTTtENubg4nsK88nil5eScTiP60KPOrA=
+X-Received: by 2002:a92:af8e:: with SMTP id v14mr32001179ill.150.1582251795343;
+ Thu, 20 Feb 2020 18:23:15 -0800 (PST)
+MIME-Version: 1.0
+References: <20200210063523.133333-1-hsinyi@chromium.org> <20200210063523.133333-4-hsinyi@chromium.org>
+ <bbc75f19-0581-c902-a455-13157d66d72f@gmail.com>
+In-Reply-To: <bbc75f19-0581-c902-a455-13157d66d72f@gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Fri, 21 Feb 2020 10:22:49 +0800
+Message-ID: <CAJMQK-iR4YHdgKfXGiM-gLVo7535KMaZobk=j4whF2g-xJ11DA@mail.gmail.com>
+Subject: Re: [PATCH v7 3/5] arm64: dts: mt8173: fix unit name warnings
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: bus: Convert UniPhier System Bus to json-schema
-Date:   Fri, 21 Feb 2020 11:14:24 +0900
-Message-Id: <20200221021424.20414-1-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Daniel Kurtz <djkurtz@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the UniPhier System Bus controller binding to DT schema format.
+On Fri, Feb 21, 2020 at 6:17 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+>
+>
+>
+> On 10/02/2020 07:35, Hsin-Yi Wang wrote:
+> > Fixing several unit name warnings:
+> >
+> > Warning (unit_address_vs_reg): /oscillator@0: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /oscillator@1: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /oscillator@2: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /thermal-zones/cpu_thermal/trips/trip-point@0: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /thermal-zones/cpu_thermal/trips/trip-point@1: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /thermal-zones/cpu_thermal/trips/cpu_crit@0: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /thermal-zones/cpu_thermal/cooling-maps/map@0: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /thermal-zones/cpu_thermal/cooling-maps/map@1: node has a unit name, but no reg property
+> > Warning (unit_address_vs_reg): /reserved-memory/vpu_dma_mem_region: node has a reg or ranges property, but no unit name
+> > Warning (simple_bus_reg): /soc/pinctrl@10005000: simple-bus unit address format error, expected "1000b000"
+> > Warning (simple_bus_reg): /soc/interrupt-controller@10220000: simple-bus unit address format error, expected "10221000"
+> > Warning (alias_paths): /aliases: aliases property name must include only lowercase and '-'
+> >
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > ---
+> >  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 38 ++++++++++++------------
+> >  1 file changed, 19 insertions(+), 19 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> > index 790cd64aa447..2b7f566fb407 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> > @@ -42,14 +42,14 @@ aliases {
+> >               dpi0 = &dpi0;
+> >               dsi0 = &dsi0;
+> >               dsi1 = &dsi1;
+> > -             mdp_rdma0 = &mdp_rdma0;
+> > -             mdp_rdma1 = &mdp_rdma1;
+> > -             mdp_rsz0 = &mdp_rsz0;
+> > -             mdp_rsz1 = &mdp_rsz1;
+> > -             mdp_rsz2 = &mdp_rsz2;
+> > -             mdp_wdma0 = &mdp_wdma0;
+> > -             mdp_wrot0 = &mdp_wrot0;
+> > -             mdp_wrot1 = &mdp_wrot1;
+> > +             mdp-rdma0 = &mdp_rdma0;
+> > +             mdp-rdma1 = &mdp_rdma1;
+> > +             mdp-rsz0 = &mdp_rsz0;
+> > +             mdp-rsz1 = &mdp_rsz1;
+> > +             mdp-rsz2 = &mdp_rsz2;
+> > +             mdp-wdma0 = &mdp_wdma0;
+> > +             mdp-wrot0 = &mdp_wrot0;
+> > +             mdp-wrot1 = &mdp_wrot1;
+>
+> Won't we need to update the mdp driver as well, as it uses of_alias_get_id()?
+>
+It's fixed in the fifth patch
+https://patchwork.kernel.org/patch/11372623/
 
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
----
-
- .../bus/socionext,uniphier-system-bus.yaml    | 96 +++++++++++++++++++
- .../bindings/bus/uniphier-system-bus.txt      | 66 -------------
- 2 files changed, 96 insertions(+), 66 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml
- delete mode 100644 Documentation/devicetree/bindings/bus/uniphier-system-bus.txt
-
-diff --git a/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml b/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml
-new file mode 100644
-index 000000000000..ada3b1266c08
---- /dev/null
-+++ b/Documentation/devicetree/bindings/bus/socionext,uniphier-system-bus.yaml
-@@ -0,0 +1,96 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bus/socionext,uniphier-system-bus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: UniPhier System Bus
-+
-+description: |
-+  The UniPhier System Bus is an external bus that connects on-board devices to
-+  the UniPhier SoC. It is a simple (semi-)parallel bus with address, data, and
-+  some control signals. It supports up to 8 banks (chip selects).
-+
-+  Before any access to the bus, the bus controller must be configured; the bus
-+  controller registers provide the control for the translation from the offset
-+  within each bank to the CPU-viewed address. The needed setup includes the
-+  base address, the size of each bank. Optionally, some timing parameters can
-+  be optimized for faster bus access.
-+
-+maintainers:
-+  - Masahiro Yamada <yamada.masahiro@socionext.com>
-+
-+properties:
-+  compatible:
-+    const: socionext,uniphier-system-bus
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    description: |
-+      The first cell is the bank number (chip select).
-+      The second cell is the address offset within the bank.
-+    const: 2
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges:
-+    description: |
-+      Provide address translation from the System Bus to the parent bus.
-+
-+      Note:
-+      The address region(s) that can be assigned for the System Bus is
-+      implementation defined. Some SoCs can use 0x00000000-0x0fffffff and
-+      0x40000000-0x4fffffff, while other SoCs only 0x40000000-0x4fffffff.
-+      There might be additional limitations depending on SoCs and the boot mode.
-+      The address translation is arbitrary as long as the banks are assigned in
-+      the supported address space with the required alignment and they do not
-+      overlap one another.
-+
-+      For example, it is possible to map:
-+        bank 0 to 0x42000000-0x43ffffff, bank 5 to 0x46000000-0x46ffffff
-+      It is also possible to map:
-+        bank 0 to 0x48000000-0x49ffffff, bank 5 to 0x44000000-0x44ffffff
-+      There is no reason to stick to a particular translation mapping, but the
-+      "ranges" property should provide a "reasonable" default that is known to
-+      work. The software should initialize the bus controller according to it.
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+  - ranges
-+
-+examples:
-+  - |
-+    // In this example,
-+    // - the Ethernet device is connected at the offset 0x01f00000 of CS1 and
-+    //   mapped to 0x43f00000 of the parent bus.
-+    // - the UART device is connected at the offset 0x00200000 of CS5 and
-+    //   mapped to 0x46200000 of the parent bus.
-+
-+    system-bus {
-+        compatible = "socionext,uniphier-system-bus";
-+        reg = <0x58c00000 0x400>;
-+        #address-cells = <2>;
-+        #size-cells = <1>;
-+        ranges = <1 0x00000000 0x42000000 0x02000000>,
-+                 <5 0x00000000 0x46000000 0x01000000>;
-+
-+        ethernet@1,01f00000 {
-+            compatible = "smsc,lan9115";
-+            reg = <1 0x01f00000 0x1000>;
-+            interrupts = <0 48 4>
-+            phy-mode = "mii";
-+        };
-+
-+        uart@5,00200000 {
-+            compatible = "ns16550a";
-+            reg = <5 0x00200000 0x20>;
-+            interrupts = <0 49 4>
-+            clock-frequency = <12288000>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/bus/uniphier-system-bus.txt b/Documentation/devicetree/bindings/bus/uniphier-system-bus.txt
-deleted file mode 100644
-index 68ef80afff16..000000000000
---- a/Documentation/devicetree/bindings/bus/uniphier-system-bus.txt
-+++ /dev/null
-@@ -1,66 +0,0 @@
--UniPhier System Bus
--
--The UniPhier System Bus is an external bus that connects on-board devices to
--the UniPhier SoC.  It is a simple (semi-)parallel bus with address, data, and
--some control signals.  It supports up to 8 banks (chip selects).
--
--Before any access to the bus, the bus controller must be configured; the bus
--controller registers provide the control for the translation from the offset
--within each bank to the CPU-viewed address.  The needed setup includes the base
--address, the size of each bank.  Optionally, some timing parameters can be
--optimized for faster bus access.
--
--Required properties:
--- compatible: should be "socionext,uniphier-system-bus".
--- reg: offset and length of the register set for the bus controller device.
--- #address-cells: should be 2.  The first cell is the bank number (chip select).
--  The second cell is the address offset within the bank.
--- #size-cells: should be 1.
--- ranges: should provide a proper address translation from the System Bus to
--  the parent bus.
--
--Note:
--The address region(s) that can be assigned for the System Bus is implementation
--defined.  Some SoCs can use 0x00000000-0x0fffffff and 0x40000000-0x4fffffff,
--while other SoCs can only use 0x40000000-0x4fffffff.  There might be additional
--limitations depending on SoCs and the boot mode.  The address translation is
--arbitrary as long as the banks are assigned in the supported address space with
--the required alignment and they do not overlap one another.
--For example, it is possible to map:
--  bank 0 to 0x42000000-0x43ffffff, bank 5 to 0x46000000-0x46ffffff
--It is also possible to map:
--  bank 0 to 0x48000000-0x49ffffff, bank 5 to 0x44000000-0x44ffffff
--There is no reason to stick to a particular translation mapping, but the
--"ranges" property should provide a "reasonable" default that is known to work.
--The software should initialize the bus controller according to it.
--
--Example:
--
--	system-bus {
--		compatible = "socionext,uniphier-system-bus";
--		reg = <0x58c00000 0x400>;
--		#address-cells = <2>;
--		#size-cells = <1>;
--		ranges = <1 0x00000000 0x42000000 0x02000000
--			  5 0x00000000 0x46000000 0x01000000>;
--
--		ethernet@1,01f00000 {
--			compatible = "smsc,lan9115";
--			reg = <1 0x01f00000 0x1000>;
--			interrupts = <0 48 4>
--			phy-mode = "mii";
--		};
--
--		uart@5,00200000 {
--			compatible = "ns16550a";
--			reg = <5 0x00200000 0x20>;
--			interrupts = <0 49 4>
--			clock-frequency = <12288000>;
--		};
--	};
--
--In this example,
-- - the Ethernet device is connected at the offset 0x01f00000 of CS1 and
--   mapped to 0x43f00000 of the parent bus.
-- - the UART device is connected at the offset 0x00200000 of CS5 and
--   mapped to 0x46200000 of the parent bus.
--- 
-2.17.1
-
+> >               serial0 = &uart0;
+> >               serial1 = &uart1;
+> >               serial2 = &uart2;
+> > @@ -246,21 +246,21 @@ psci {
+> >               cpu_on        = <0x84000003>;
+> >       };
+> >
+> > -     clk26m: oscillator@0 {
+> > +     clk26m: oscillator0 {
+> >               compatible = "fixed-clock";
+> >               #clock-cells = <0>;
+> >               clock-frequency = <26000000>;
+> >               clock-output-names = "clk26m";
+> >       };
+> >
+> > -     clk32k: oscillator@1 {
+> > +     clk32k: oscillator1 {
+> >               compatible = "fixed-clock";
+> >               #clock-cells = <0>;
+> >               clock-frequency = <32000>;
+> >               clock-output-names = "clk32k";
+> >       };
+> >
+> > -     cpum_ck: oscillator@2 {
+> > +     cpum_ck: oscillator2 {
+> >               compatible = "fixed-clock";
+> >               #clock-cells = <0>;
+> >               clock-frequency = <0>;
+> > @@ -276,19 +276,19 @@ cpu_thermal: cpu_thermal {
+> >                       sustainable-power = <1500>; /* milliwatts */
+> >
+> >                       trips {
+> > -                             threshold: trip-point@0 {
+> > +                             threshold: trip-point0 {
+> >                                       temperature = <68000>;
+> >                                       hysteresis = <2000>;
+> >                                       type = "passive";
+> >                               };
+> >
+> > -                             target: trip-point@1 {
+> > +                             target: trip-point1 {
+> >                                       temperature = <85000>;
+> >                                       hysteresis = <2000>;
+> >                                       type = "passive";
+> >                               };
+> >
+> > -                             cpu_crit: cpu_crit@0 {
+> > +                             cpu_crit: cpu_crit0 {
+> >                                       temperature = <115000>;
+> >                                       hysteresis = <2000>;
+> >                                       type = "critical";
+> > @@ -296,13 +296,13 @@ cpu_crit: cpu_crit@0 {
+> >                       };
+> >
+> >                       cooling-maps {
+> > -                             map@0 {
+> > +                             map0 {
+> >                                       trip = <&target>;
+> >                                       cooling-device = <&cpu0 0 0>,
+> >                                                        <&cpu1 0 0>;
+> >                                       contribution = <3072>;
+> >                               };
+> > -                             map@1 {
+> > +                             map1 {
+> >                                       trip = <&target>;
+> >                                       cooling-device = <&cpu2 0 0>,
+> >                                                        <&cpu3 0 0>;
+> > @@ -316,7 +316,7 @@ reserved-memory {
+> >               #address-cells = <2>;
+> >               #size-cells = <2>;
+> >               ranges;
+> > -             vpu_dma_reserved: vpu_dma_mem_region {
+> > +             vpu_dma_reserved: vpu_dma_mem_region@b7000000 {
+> >                       compatible = "shared-dma-pool";
+> >                       reg = <0 0xb7000000 0 0x500000>;
+> >                       alignment = <0x1000>;
+> > @@ -368,7 +368,7 @@ syscfg_pctl_a: syscfg_pctl_a@10005000 {
+> >                       reg = <0 0x10005000 0 0x1000>;
+> >               };
+> >
+> > -             pio: pinctrl@10005000 {
+> > +             pio: pinctrl@1000b000 {
+> >                       compatible = "mediatek,mt8173-pinctrl";
+> >                       reg = <0 0x1000b000 0 0x1000>;
+> >                       mediatek,pctl-regmap = <&syscfg_pctl_a>;
+> > @@ -575,7 +575,7 @@ mipi_tx1: mipi-dphy@10216000 {
+> >                       status = "disabled";
+> >               };
+> >
+> > -             gic: interrupt-controller@10220000 {
+> > +             gic: interrupt-controller@10221000 {
+> >                       compatible = "arm,gic-400";
+> >                       #interrupt-cells = <3>;
+> >                       interrupt-parent = <&gic>;
+> >
