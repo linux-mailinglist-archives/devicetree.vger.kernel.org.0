@@ -2,109 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00640168009
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 15:21:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48D23168039
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 15:31:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728842AbgBUOVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 09:21:10 -0500
-Received: from foss.arm.com ([217.140.110.172]:40420 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727851AbgBUOVJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Feb 2020 09:21:09 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7BD8130E;
-        Fri, 21 Feb 2020 06:21:09 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E6AD83F703;
-        Fri, 21 Feb 2020 06:21:08 -0800 (PST)
-Date:   Fri, 21 Feb 2020 14:21:07 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     alsa-devel@alsa-project.org, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        =?UTF-8?q?Myl=C3=A8ne=20Josserand?= 
-        <mylene.josserand@free-electrons.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>
-Subject: Applied "ASoC: sun8i-codec: Remove unused dev from codec struct" to the asoc tree
-In-Reply-To: <20200217064250.15516-5-samuel@sholland.org>
-Message-Id: <applied-20200217064250.15516-5-samuel@sholland.org>
-X-Patchwork-Hint: ignore
+        id S1728643AbgBUObM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 09:31:12 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:13884 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728068AbgBUObM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 09:31:12 -0500
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e4fe9660000>; Fri, 21 Feb 2020 06:29:58 -0800
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Fri, 21 Feb 2020 06:31:11 -0800
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Fri, 21 Feb 2020 06:31:11 -0800
+Received: from [10.21.133.51] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 21 Feb
+ 2020 14:31:07 +0000
+Subject: Re: [PATCH v3 03/10] ASoC: tegra: add Tegra210 based DMIC driver
+To:     Mark Brown <broonie@kernel.org>, Sameer Pujar <spujar@nvidia.com>
+CC:     <perex@perex.cz>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <lgirdwood@gmail.com>, <thierry.reding@gmail.com>,
+        <digetx@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sharadg@nvidia.com>,
+        <mkumard@nvidia.com>, <viswanathl@nvidia.com>,
+        <rlokhande@nvidia.com>, <dramesh@nvidia.com>,
+        <atalambedu@nvidia.com>
+References: <1582180492-25297-1-git-send-email-spujar@nvidia.com>
+ <1582180492-25297-4-git-send-email-spujar@nvidia.com>
+ <20200221130005.GD5546@sirena.org.uk>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <316ce0d5-318d-0533-ef06-bd7e8672f893@nvidia.com>
+Date:   Fri, 21 Feb 2020 14:31:05 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+In-Reply-To: <20200221130005.GD5546@sirena.org.uk>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1582295398; bh=Ii2FU53gxBnbRqvrbMjLj3GOVXtejYjy/v1iyuD+MP8=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=goEbRFoIBBxyJcX7uUg+O3y3ialsPS2BhhIdSG+PMqy/jzg3qcJr4jSjnDUgktNhN
+         0HMt1u0Cou33Sg1w5vG96Apvi3i59DVCCWQeADi8BdBRjSFldcGhf5GaoowpbRlB7B
+         azp2fKoZ9qBcj1jefWii8s+8RcbMoYb+xU7R9Ar7+7GEZvg7nFo9/shcynm4qCbilI
+         qhrgOd5wYI/zvViDPhH3Z2p5q+9BtUiOXig8mubW93E4mG+bgZ+x50yA7pf6I5dwoZ
+         UKElyundJcSXSPGoORNjZV80p/NtA/NXJAuJ6RcnDVttOH9FCrSmo4LtzD76ANi36x
+         jI7K6IoobDD8A==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
 
-   ASoC: sun8i-codec: Remove unused dev from codec struct
+On 21/02/2020 13:00, Mark Brown wrote:
+> On Thu, Feb 20, 2020 at 12:04:45PM +0530, Sameer Pujar wrote:
+> 
+>> +++ b/sound/soc/tegra/tegra210_dmic.c
+>> @@ -0,0 +1,515 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * tegra210_dmic.c - Tegra210 DMIC driver
+>> + *
+>> + * Copyright (c) 2020 NVIDIA CORPORATION.  All rights reserved.
+> 
+> Please make the entire comment a C++ one so things look more
+> intentional.
+> 
+>> +	/* Below enables all filters - DCR, LP and SC */
+>> +	{ TEGRA210_DMIC_DBG_CTRL, 0xe },
+> 
+> So this isn't the hardware default?
+> 
+>> +	srate = params_rate(params);
+>> +	if (dmic->srate_override)
+>> +		srate = dmic->srate_override;
+> 
+> How does this work for userspace?  If we just ignore the sample rate we
+> were asked for I'd expect that the application would get upset.
 
-has been applied to the asoc tree at
+Tegra has a hardware sample rate converter (though driver not yet
+upstream or part of this initial series) and if using the sample-rate
+converter, then the actual rate captured by the DMIC interface could be
+different from the resulting sample-rate.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.7
+So we want a way to indicate to the DMIC it is capturing at rate X,
+while the resulting sample-rate is Y.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+I am not sure if there is a better way to do this? Ideally, the DMIC
+would query the rate from the upstream MUX it is connected to, but I am
+not sure if there is a way to do that. So right now it is a manual
+process and the user has to configure these which are not ideal.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Cheers
+Jon
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 150cbf8e66ec86966c13fd7a0e3de8813bca03d8 Mon Sep 17 00:00:00 2001
-From: Samuel Holland <samuel@sholland.org>
-Date: Mon, 17 Feb 2020 00:42:20 -0600
-Subject: [PATCH] ASoC: sun8i-codec: Remove unused dev from codec struct
-
-This field is not used anywhere in the driver, so remove it.
-
-Fixes: 36c684936fae ("ASoC: Add sun8i digital audio codec")
-Signed-off-by: Samuel Holland <samuel@sholland.org>
-Acked-by: Chen-Yu Tsai <wens@csie.org>
-Link: https://lore.kernel.org/r/20200217064250.15516-5-samuel@sholland.org
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/sunxi/sun8i-codec.c | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/sound/soc/sunxi/sun8i-codec.c b/sound/soc/sunxi/sun8i-codec.c
-index 55798bc8eae2..41471bd01042 100644
---- a/sound/soc/sunxi/sun8i-codec.c
-+++ b/sound/soc/sunxi/sun8i-codec.c
-@@ -85,7 +85,6 @@
- #define SUN8I_AIF1CLK_CTRL_AIF1_BCLK_DIV_MASK	GENMASK(12, 9)
- 
- struct sun8i_codec {
--	struct device	*dev;
- 	struct regmap	*regmap;
- 	struct clk	*clk_module;
- 	struct clk	*clk_bus;
-@@ -541,8 +540,6 @@ static int sun8i_codec_probe(struct platform_device *pdev)
- 	if (!scodec)
- 		return -ENOMEM;
- 
--	scodec->dev = &pdev->dev;
--
- 	scodec->clk_module = devm_clk_get(&pdev->dev, "mod");
- 	if (IS_ERR(scodec->clk_module)) {
- 		dev_err(&pdev->dev, "Failed to get the module clock\n");
 -- 
-2.20.1
-
+nvpublic
