@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D64D116808F
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 15:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C460216809B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 15:45:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728910AbgBUOoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 09:44:00 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:42590 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728837AbgBUOoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 09:44:00 -0500
-Received: by mail-lj1-f193.google.com with SMTP id d10so2421575ljl.9
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 06:43:59 -0800 (PST)
+        id S1728436AbgBUOpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 09:45:08 -0500
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:40938 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728798AbgBUOpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 09:45:08 -0500
+Received: by mail-lj1-f195.google.com with SMTP id n18so2436682ljo.7
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 06:45:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=zxyoG6nAOs3iDcNS4Z1SWTTrzy8IIEIHsRCmOX+8xu8=;
-        b=inQU1TfpUZ0CBu0amQil1sCPaEvQ1X8UG63hrSvoCXKC9OkJUw4NMr6UZu1quhG+L9
-         m8YCxsLYKkVSCb89IEHwGlTUj0tH/crnSogq6yuDyx0qPbP6ihLIMc/zM/wz7Jd5bfZX
-         xqdCioCkyRNOG+0cX3werPRMLlItgEq+fIuGgib/XzcQgBpWVVecshjDu2aNJLc1l4yi
-         TTCnHBUb9eqLDB5NnruRQGWv0DiUiWCHYv1y6fdAC6syv9Ba0POKaArPytKmQVSZhyHN
-         9/f92rq53NN4462mByG3m2loQLus9vC/HY17sDr+Eczq05z38i4HtQGxUAhrVtZtf5sz
-         50tA==
+        bh=D7H0nLZLfPLMvCph5hwyr9duK+xVs3IbYudoH06c9do=;
+        b=ZmmmuWIiC4m3STzQoVx5OWjfevcGXgj2dE2igO0Gwa28aZUoG6DI+0TmuYyHUEbKzu
+         8Q0GomIcIIjcm+iWqGbPQznhzi51NLQkazdcpPB22p5nEFzNklowRDH1tz98tvinRyus
+         JVJctZIvlJKR2qmTy19dI7mojx6df5HmJP2I1xiGALmaOWqG9/NXYRnkKNzlb+/eNaFS
+         aJAWXlnWIk2/P+Yl+ejHtRvnAXRAWQjE2DSv3WG8sqjHHXbOq8cUH9Huyux8lvHqOl35
+         stzBHXSqZFzKSVtnAvkIrQI8XKHEPQUBEeWlg5dGdsBb5H1IzhSyFkSgI2gmPTo82n+9
+         EVmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=zxyoG6nAOs3iDcNS4Z1SWTTrzy8IIEIHsRCmOX+8xu8=;
-        b=R5uRgVk5/1S+adGV/B9tYCVyPgvbmRul2Ld8jCfCfl8a+4/Lwm2Wz5FryewIdJ5k8F
-         9ufV7IFVHe5Zo8k6boe3E9if1yXlg6ZpHiD/DAkqmpZ79fcp3neMzWxychYnjyYNldg6
-         ZYW1imVTmLdSGGxggeeR2+ZhWHG7Ps63GH72J2xQ07loMskytIWwiOPCTSUpMDMX1bXf
-         qFraKBwx1GzrR+QM6ipNZWtorS7IwXF311K3gUQsri2zxpMl/qwovK5ICTycolDzD0Tk
-         I3SusAQvS4b8EKudL8+pzNMxhhKQHzvpvRMNzoWGPFyRG4oK6kHv4Wktpc27bWu5W7cL
-         BRAg==
-X-Gm-Message-State: APjAAAV/V3yGNFxcuTkb1PGn0XXJaVHgGofn9LplzY2rZ269RoLU5gtz
-        SyZPQ6hVMyzupiR5a5i54pbd/8i68NmSXYZaSIP1Jg==
-X-Google-Smtp-Source: APXvYqyb3t85xjKPwhD4gyHOTimxwHuO6OJKXBDhsaLSjnAYbEB8tiQngZaDfestVaUMXo0GwsmKGj6lvPD5AwNsoeE=
-X-Received: by 2002:a2e:7d0c:: with SMTP id y12mr23189523ljc.39.1582296238375;
- Fri, 21 Feb 2020 06:43:58 -0800 (PST)
+        bh=D7H0nLZLfPLMvCph5hwyr9duK+xVs3IbYudoH06c9do=;
+        b=nxVJEOtw97g7JSlGZVFd8VsvKniAyGw7HX7bWshyarRF1kZaeDLrDCHH+VQXdY/v2o
+         ld2GrqNbM4w5o/7M3KsAiLTZYbpY5jeUZc/en3OvJTS1uvg84rBQYmn6PfBPIQHZuqN9
+         nOoJJe8bf8ketND09I2AnsaOifHbWl5sxWXXfKw+/3HVa/+zc4Q+95lWb+wD7rm/ysNY
+         qQT8G6MgwLP5fFGYH492I+IMSiHEKEG5EQGqfChYytJDGvGAyTFiNob985JkFV5UY/OJ
+         277b1tPXFzT2nCNS+G/j+rD0yqPfMnuWAgMM7PTJBVm9nQmah1y8ZUlq+U0gbRv48CJt
+         iJbg==
+X-Gm-Message-State: APjAAAVw3BVCiCnHXmbS5XDipELZvvQCWV7mxexvNwP8T/iEsC4IRCFG
+        A/gwZ51lim82+5WpjBahtA5XC8a7ki3+A14FzMHW5w==
+X-Google-Smtp-Source: APXvYqyH1op228/uT3a0GVKtys5dZFCvQZ6VFBF+qI9pOeMLciTXqxLF8hf209U+UX9YSS8Q0rsF52Fv3M5LlI7ewKY=
+X-Received: by 2002:a2e:9013:: with SMTP id h19mr23015684ljg.223.1582296306067;
+ Fri, 21 Feb 2020 06:45:06 -0800 (PST)
 MIME-Version: 1.0
-References: <1582012300-30260-1-git-send-email-Anson.Huang@nxp.com> <1582012300-30260-2-git-send-email-Anson.Huang@nxp.com>
-In-Reply-To: <1582012300-30260-2-git-send-email-Anson.Huang@nxp.com>
+References: <1582012300-30260-1-git-send-email-Anson.Huang@nxp.com> <1582012300-30260-3-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <1582012300-30260-3-git-send-email-Anson.Huang@nxp.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 21 Feb 2020 15:43:47 +0100
-Message-ID: <CACRpkdYuC4iiuKrRWnH6Rrr_AV+F54_AT9X9BdktPaaie5zy3w@mail.gmail.com>
-Subject: Re: [PATCH V4 2/4] dt-bindings: pinctrl: Convert i.MX8MM to json-schema
+Date:   Fri, 21 Feb 2020 15:44:55 +0100
+Message-ID: <CACRpkdaCC5-GWKyeoa8yS9JgHRvW_+AdqTYxy902TC48pMzXdg@mail.gmail.com>
+Subject: Re: [PATCH V4 3/4] dt-bindings: pinctrl: Convert i.MX8MN to json-schema
 To:     Anson Huang <Anson.Huang@nxp.com>
 Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
@@ -70,7 +70,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue, Feb 18, 2020 at 8:57 AM Anson Huang <Anson.Huang@nxp.com> wrote:
 
-> Convert the i.MX8MM pinctrl binding to DT schema format using json-schema
+> Convert the i.MX8MN pinctrl binding to DT schema format using json-schema
 >
 > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 > ---
