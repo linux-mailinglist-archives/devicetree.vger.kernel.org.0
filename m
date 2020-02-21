@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 142AF167D58
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 13:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA21167D56
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 13:21:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726989AbgBUMVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 07:21:45 -0500
-Received: from laurent.telenet-ops.be ([195.130.137.89]:46400 "EHLO
-        laurent.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727470AbgBUMVp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 07:21:45 -0500
+        id S1727720AbgBUMVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 07:21:44 -0500
+Received: from michel.telenet-ops.be ([195.130.137.88]:41530 "EHLO
+        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727683AbgBUMVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 07:21:44 -0500
 Received: from ramsan ([84.195.182.253])
-        by laurent.telenet-ops.be with bizsmtp
-        id 5QMi220035USYZQ01QMiBN; Fri, 21 Feb 2020 13:21:42 +0100
+        by michel.telenet-ops.be with bizsmtp
+        id 5QMi2200C5USYZQ06QMiA0; Fri, 21 Feb 2020 13:21:42 +0100
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan with esmtp (Exim 4.90_1)
         (envelope-from <geert@linux-m68k.org>)
-        id 1j57JO-0002E3-5F; Fri, 21 Feb 2020 13:21:42 +0100
+        id 1j57JO-0002E7-6D; Fri, 21 Feb 2020 13:21:42 +0100
 Received: from geert by rox.of.borg with local (Exim 4.90_1)
         (envelope-from <geert@linux-m68k.org>)
-        id 1j57JO-0008LM-3j; Fri, 21 Feb 2020 13:21:42 +0100
+        id 1j57JO-0008LO-4p; Fri, 21 Feb 2020 13:21:42 +0100
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
 To:     Marcus Wolf <linux@Wolf-Entwicklungen.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -30,9 +30,9 @@ To:     Marcus Wolf <linux@Wolf-Entwicklungen.de>,
         Mark Rutland <mark.rutland@arm.com>
 Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 1/3] staging: pi433: overlay: Fix Broadcom vendor prefix
-Date:   Fri, 21 Feb 2020 13:21:31 +0100
-Message-Id: <20200221122133.32024-2-geert+renesas@glider.be>
+Subject: [PATCH 2/3] staging: pi433: overlay: Fix reg-related warnings
+Date:   Fri, 21 Feb 2020 13:21:32 +0100
+Message-Id: <20200221122133.32024-3-geert+renesas@glider.be>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200221122133.32024-1-geert+renesas@glider.be>
 References: <20200221122133.32024-1-geert+renesas@glider.be>
@@ -41,35 +41,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-checkpatch.pl says:
+When running "scripts/dtc/dtc -@ -I dts -O dtb -o pi433-overlay.dtbo.1
+drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts":
 
-    WARNING: DT compatible string "bcm,bcm2708" appears un-documented -- check ./Documentation/devicetree/bindings/
+    drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts:13.12-15.6: Warning (unit_address_vs_reg): /fragment@0/__overlay__/spidev@0: node has a unit name, but no reg property
+    drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts:17.12-19.6: Warning (unit_address_vs_reg): /fragment@0/__overlay__/spidev@1: node has a unit name, but no reg property
 
-The vendor prefix of Broadcom Corporation is "brcm", not "bcm".
+Add the missing "reg" properties to fix this.
+
+    drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts:14.5-15: Warning (reg_format): /fragment@0/__overlay__/spidev@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+    drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts:19.5-15: Warning (reg_format): /fragment@0/__overlay__/spidev@1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+
+Add the missing "#{address,size}-cells" to fix this.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
-Why do you need these 3 compatible values at the root of the overlay,
-not referencing the actual root of the machine's DT?
-Does the Raspbian overlay manager use this to check if the overlay is
-applicable to the machine it is running on?
----
- .../staging/pi433/Documentation/devicetree/pi433-overlay.dts    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../staging/pi433/Documentation/devicetree/pi433-overlay.dts  | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts b/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts
-index 61fad96818c28c5d..dfc9f974ac24ecc1 100644
+index dfc9f974ac24ecc1..b584180d78d019aa 100644
 --- a/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts
 +++ b/drivers/staging/pi433/Documentation/devicetree/pi433-overlay.dts
-@@ -3,7 +3,7 @@
- /plugin/;
- 
- / {
--	compatible = "bcm,bcm2835", "bcm,bcm2708", "bcm,bcm2709";
-+	compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
- 
+@@ -8,13 +8,17 @@
  	fragment@0 {
  		target = <&spi0>;
+ 		__overlay__ {
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 			status = "okay";
+ 
+ 			spidev@0{
++				reg = <0>;
+ 				status = "disabled";
+ 			};
+ 
+ 			spidev@1{
++				reg = <1>;
+ 				status = "disabled";
+ 			};
+ 		};
 -- 
 2.17.1
 
