@@ -2,144 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0481167E9B
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 14:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D1A6167EA3
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 14:31:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728375AbgBUN3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 08:29:38 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:39533 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728255AbgBUN3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 08:29:37 -0500
-Received: by mail-wr1-f66.google.com with SMTP id y11so2077107wrt.6;
-        Fri, 21 Feb 2020 05:29:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=kGlgDo9M9XGHB0o0rwRFWRiv//bvSK3bYB5+0sd515M=;
-        b=dktp3WIZYxljosWl/N7+aNj0PVy8ipvMQAriSCCnpFrElA4gwCfPQxZGp+21YScCEx
-         xlqCE84EJKbJcc/r+yFzKP2ZoXHa8iTQ8AMGo9TxolR8njR+cWtvH2U14R+epE2bOo8D
-         gZtc/2xYWjXH7eUo/IRk6XcwLycWoVE9fA10JliR9278tEkVRMcK6kn5cUD81rE3bi3h
-         PJTywOJes8pKwfndZflffgyzBnHH+6eQKKZUm5+hWLqYDtw3OjvLlupOtfBou0THOSP4
-         IUvRM8iF0mhO/STzV90f50nESnOM0dzIuGh/TGEh3WnSmmqRGh9aBig4r5Yv2ABluun/
-         ojKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=kGlgDo9M9XGHB0o0rwRFWRiv//bvSK3bYB5+0sd515M=;
-        b=F1aW9e4isABiXzlVZGl8ee1zJGBe0DepWNlpfU7LjM/zrSopT1AmncvBsnrKNyI7Lu
-         gdtuDrx48mmCK83N6BuHOtqMlLGoBaGJZdodgZlOpd96ubuCCPZ7UkMLmCABjpgjjD7m
-         KI49DqxV7YR0JBLx8hFjApWP4CB45te6LEseHbkTkpaQZLKBHmc6apagqRvD56GEAu0u
-         cCP0fCSmT3waLPA2pZYXKDQ52ZN2iH85bUUHUW6iai7gr2ubL7wv3LKXKzyGBETJU+OT
-         TrInT0lm581lExE56QyWbh1pIOkNj9ttchf/D0ufD+zi1PFI3g9EATWamzdSmOileZ1Y
-         qIYg==
-X-Gm-Message-State: APjAAAUaKTblzRcFk5FdAZDZx4nokrXdADtiyhm4wPK3d0UA7paGdOBN
-        ViGVfSecZd/EWPDdEKBqnGc=
-X-Google-Smtp-Source: APXvYqz68j2XrpShir0+OUe+uyLOCXmz4RlALj+fnMj6xsUiTLw8BzSmMUr34KGBTqAqNt0uxpRxIg==
-X-Received: by 2002:adf:f586:: with SMTP id f6mr46834031wro.46.1582291774763;
-        Fri, 21 Feb 2020 05:29:34 -0800 (PST)
-Received: from Ansuel-XPS.localdomain (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.googlemail.com with ESMTPSA id h5sm4172178wmf.8.2020.02.21.05.29.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2020 05:29:34 -0800 (PST)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] Documentation: devictree: Add ipq806x mdio bindings
-Date:   Fri, 21 Feb 2020 14:28:32 +0100
-Message-Id: <20200221132834.20719-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200221132834.20719-1-ansuelsmth@gmail.com>
-References: <20200221132834.20719-1-ansuelsmth@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+        id S1727161AbgBUNbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 08:31:16 -0500
+Received: from foss.arm.com ([217.140.110.172]:39412 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727053AbgBUNbQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Feb 2020 08:31:16 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BFFD330E;
+        Fri, 21 Feb 2020 05:31:15 -0800 (PST)
+Received: from localhost (unknown [10.37.6.21])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 383B83F703;
+        Fri, 21 Feb 2020 05:31:15 -0800 (PST)
+Date:   Fri, 21 Feb 2020 13:31:13 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+Subject: Applied "ASoC: meson: g12a: add tohdmitx reset" to the asoc tree
+In-Reply-To:  <20200221121146.1498427-1-jbrunet@baylibre.com>
+Message-Id:  <applied-20200221121146.1498427-1-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentations for ipq806x mdio driver.
+The patch
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+   ASoC: meson: g12a: add tohdmitx reset
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 22946f37557e27697aabc8e4f62642bfe4a17fd8 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Fri, 21 Feb 2020 13:11:46 +0100
+Subject: [PATCH] ASoC: meson: g12a: add tohdmitx reset
+
+Reset the g12a hdmi codec glue on probe. This ensure a sane startup state.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Link: https://lore.kernel.org/r/20200221121146.1498427-1-jbrunet@baylibre.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- .../bindings/net/qcom,ipq8064-mdio.yaml       | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/qcom,ipq8064-mdio.yaml
+ sound/soc/meson/g12a-tohdmitx.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ipq8064-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq8064-mdio.yaml
-new file mode 100644
-index 000000000000..d2254a5ff2ad
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/qcom,ipq8064-mdio.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/qcom,ipq8064-mdio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/sound/soc/meson/g12a-tohdmitx.c b/sound/soc/meson/g12a-tohdmitx.c
+index 9cfbd343a00c..8a0db28a6a40 100644
+--- a/sound/soc/meson/g12a-tohdmitx.c
++++ b/sound/soc/meson/g12a-tohdmitx.c
+@@ -8,6 +8,7 @@
+ #include <linux/module.h>
+ #include <sound/pcm_params.h>
+ #include <linux/regmap.h>
++#include <linux/reset.h>
+ #include <sound/soc.h>
+ #include <sound/soc-dai.h>
+ 
+@@ -378,6 +379,11 @@ static int g12a_tohdmitx_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	void __iomem *regs;
+ 	struct regmap *map;
++	int ret;
 +
-+title: Qualcomm ipq806x MDIO bus controller
-+
-+maintainers:
-+  - Ansuel Smith <ansuelsmth@gmail.com>
-+
-+description: |+
-+  The ipq806x soc have a MDIO dedicated controller that is
-+  used to comunicate with the gmac phy conntected.
-+  Child nodes of this MDIO bus controller node are standard
-+  Ethernet PHY device nodes as described in
-+  Documentation/devicetree/bindings/net/phy.txt
-+
-+allOf:
-+  - $ref: "mdio.yaml#"
-+
-+properties:
-+  compatible:
-+    const: qcom,ipq8064-mdio
-+  reg:
-+    maxItems: 1
-+    description: address and length of the register set for the device
-+  clocks:
-+    maxItems: 1
-+    description: A reference to the clock supplying the MDIO bus controller
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+examples:
-+  - |
-+    mdio0: mdio@37000000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        compatible = "qcom,ipq8064-mdio", "syscon";
-+        reg = <0x37000000 0x200000>;
-+        resets = <&gcc GMAC_CORE1_RESET>;
-+        reset-names = "stmmaceth";
-+        clocks = <&gcc GMAC_CORE1_CLK>;
-+
-+        switch@10 {
-+            compatible = "qca,qca8337";
-+            ...
-+        }
-+    };
++	ret = device_reset(dev);
++	if (ret)
++		return ret;
+ 
+ 	regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(regs))
 -- 
-2.25.0
+2.20.1
 
