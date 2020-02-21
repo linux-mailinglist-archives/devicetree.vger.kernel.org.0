@@ -2,207 +2,335 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B935D16795E
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 10:27:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F35F916797B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 10:35:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727867AbgBUJ1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 04:27:20 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:19675 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726853AbgBUJ1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 04:27:19 -0500
-X-UUID: 38f491a289a34d71a6578ab7c82cb42a-20200221
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xtQVmXJH4GNtdqJc6//nA3nfWidVuWpS9hv2OZGn7I4=;
-        b=Z22Ylokvgnb5mQAbC5uzOOjkFyVjnRLONGCj/MjLm5uE7uNgxKkcidqA5JFqr9//3uDFJitPn211/tgiB4jDIgJJMLX2nK3hqJqyTqXFtU6XaljmnL70/HBSKyyHAHQKDzh31AcfSce2PaNbeOR5CEAQfo6xl0Cn/hwbO3cndWQ=;
-X-UUID: 38f491a289a34d71a6578ab7c82cb42a-20200221
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1067637433; Fri, 21 Feb 2020 17:27:11 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 21 Feb 2020 17:25:22 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 21 Feb 2020 17:27:39 +0800
-Message-ID: <1582277229.25992.9.camel@mtksdaap41>
-Subject: Re: [PATCH v8 0/6] arm/arm64: mediatek: Fix mmsys device probing
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-CC:     <mark.rutland@arm.com>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        <airlied@linux.ie>, <mturquette@baylibre.com>,
-        <dri-devel@lists.freedesktop.org>,
-        Richard Fontana <rfontana@redhat.com>,
-        <laurent.pinchart@ideasonboard.com>,
-        <ulrich.hecht+renesas@gmail.com>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        <linux-clk@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, <wens@csie.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        mtk01761 <wendell.lin@mediatek.com>,
-        Owen Chen <owen.chen@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>, <frank-w@public-files.de>,
-        Seiya Wang <seiya.wang@mediatek.com>, <sean.wang@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>, <robh+dt@kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <hsinyi@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Allison Randal <allison@lohutok.net>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Fabien Parent <fparent@baylibre.com>, <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <rdunlap@infradead.org>, <linux-kernel@vger.kernel.org>,
-        <p.zabel@pengutronix.de>, <matthias.bgg@kernel.org>
-Date:   Fri, 21 Feb 2020 17:27:09 +0800
-In-Reply-To: <7a87b486-1622-7f27-f5af-427b94a14c00@collabora.com>
-References: <20200220172147.919996-1-enric.balletbo@collabora.com>
-         <1582259996.1846.7.camel@mtksdaap41>
-         <7a87b486-1622-7f27-f5af-427b94a14c00@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S1727939AbgBUJf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 04:35:27 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:35879 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726984AbgBUJf0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Feb 2020 04:35:26 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1582277726; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=zvao9QwjNuld6femRd5qmfHH4dLsz5VX2JdoSaRTyBQ=; b=ZlyHKW3r9J8f6X/ENLjSoxoMW4PU9drMNsZ4eYR1UpoCokSHQzNXm1xVmAfA7jdBKrWk9gkd
+ le4Gc5Ef2HgSuI1FDVSkGitJWkhm89W6ULNXmQKWqoWzyT57gxbM89m1LyE/WGlhVM1jAoeV
+ cLHgUZOiLqXfNu7qVia36cJ7fUc=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e4fa45d.7f03a33227d8-smtp-out-n03;
+ Fri, 21 Feb 2020 09:35:25 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7058EC4479F; Fri, 21 Feb 2020 09:35:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from okukatla1-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 11D9FC43383;
+        Fri, 21 Feb 2020 09:35:18 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 11D9FC43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=okukatla@codeaurora.org
+From:   Odelu Kukatla <okukatla@codeaurora.org>
+To:     georgi.djakov@linaro.org, daidavid1@codeaurora.org,
+        bjorn.andersson@linaro.org, evgreen@google.com,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     sboyd@kernel.org, ilina@codeaurora.org, seansw@qti.qualcomm.com,
+        elder@linaro.org, linux-arm-msm-owner@vger.kernel.org,
+        Odelu Kukatla <okukatla@codeaurora.org>
+Subject: [V3, 1/3] dt-bindings: interconnect: Add Qualcomm SC7180 DT bindings
+Date:   Fri, 21 Feb 2020 15:00:48 +0530
+Message-Id: <1582277450-27382-2-git-send-email-okukatla@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1582277450-27382-1-git-send-email-okukatla@codeaurora.org>
+References: <1582277450-27382-1-git-send-email-okukatla@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEVucmljOg0KDQpPbiBGcmksIDIwMjAtMDItMjEgYXQgMDk6NTYgKzAxMDAsIEVucmljIEJh
-bGxldGJvIGkgU2VycmEgd3JvdGU6DQo+IEhpIENLLA0KPiANCj4gVGhhbmtzIGZvciB5b3VyIHF1
-aWNrIGFuc3dlci4NCj4gDQo+IE9uIDIxLzIvMjAgNTozOSwgQ0sgSHUgd3JvdGU6DQo+ID4gSGks
-IEVucmljOg0KPiA+IA0KPiA+IE9uIFRodSwgMjAyMC0wMi0yMCBhdCAxODoyMSArMDEwMCwgRW5y
-aWMgQmFsbGV0Ym8gaSBTZXJyYSB3cm90ZToNCj4gPj4gRGVhciBhbGwsDQo+ID4+DQo+ID4+IFRo
-b3NlIHBhdGNoZXMgYXJlIGludGVuZGVkIHRvIHNvbHZlIGFuIG9sZCBzdGFuZGluZyBpc3N1ZSBv
-biBzb21lDQo+ID4+IE1lZGlhdGVrIGRldmljZXMgKG10ODE3MywgbXQyNzAxIGFuZCBtdDI3MTIp
-IGluIGEgc2xpZ2h0bHkgZGlmZmVyZW50IHdheQ0KPiA+PiB0byB0aGUgcHJlY2VkZW50IHNlcmll
-cy4NCj4gPj4NCj4gPj4gVXAgdG8gbm93IGJvdGggZHJpdmVycywgY2xvY2sgYW5kIGRybSBhcmUg
-cHJvYmVkIHdpdGggdGhlIHNhbWUgZGV2aWNlIHRyZWUNCj4gPj4gY29tcGF0aWJsZS4gQnV0IG9u
-bHkgdGhlIGZpcnN0IGRyaXZlciBnZXQgcHJvYmVkLCB3aGljaCBpbiBlZmZlY3QgYnJlYWtzDQo+
-ID4+IGdyYXBoaWNzIG9uIHRob3NlIGRldmljZXMuDQo+ID4+DQo+ID4+IFRoZSB2ZXJzaW9uIGVp
-Z2h0IG9mIHRoZSBzZXJpZXMgdHJpZXMgdG8gc29sdmUgdGhlIHByb2JsZW0gd2l0aCBhDQo+ID4+
-IGRpZmZlcmVudCBhcHByb2FjaCB0aGFuIHRoZSBwcmV2aW91cyBzZXJpZXMgYnV0IHNpbWlsYXIg
-dG8gaG93IGlzIHNvbHZlZA0KPiA+PiBvbiBvdGhlciBNZWRpYXRlayBkZXZpY2VzLg0KPiA+Pg0K
-PiA+PiBUaGUgTU1TWVMgKE11bHRpbWVkaWEgc3Vic3lzdGVtKSBpbiBNZWRpYXRlayBTb0NzIGhh
-cyBzb21lIHJlZ2lzdGVycyB0bw0KPiA+PiBjb250cm9sIGNsb2NrIGdhdGVzICh3aGljaCBpcyB1
-c2VkIGluIHRoZSBjbGsgZHJpdmVyKSBhbmQgc29tZSByZWdpc3RlcnMNCj4gPj4gdG8gc2V0IHRo
-ZSByb3V0aW5nIGFuZCBlbmFibGUgdGhlIGRpZmZlcm5ldCBibG9ja3Mgb2YgdGhlIGRpc3BsYXkN
-Cj4gPj4gYW5kIE1EUCAoTWVkaWEgRGF0YSBQYXRoKSBzdWJzeXN0ZW0uIE9uIHRoaXMgc2VyaWVz
-IHRoZSBjbGsgZHJpdmVyIGlzDQo+ID4+IG5vdCBhIHB1cmUgY2xvY2sgY29udHJvbGxlciBidXQg
-YSBzeXN0ZW0gY29udHJvbGxlciB0aGF0IGNhbiBwcm92aWRlDQo+ID4+IGFjY2VzcyB0byB0aGUg
-c2hhcmVkIHJlZ2lzdGVycyBiZXR3ZWVuIHRoZSBkaWZmZXJlbnQgZHJpdmVycyB0aGF0IG5lZWQN
-Cj4gPj4gaXQgKG1lZGlhdGVrLWRybSBhbmQgbWVkaWF0ZWstbWRwKS4gQW5kIHRoZSBiaWdnZXN0
-IGNoYW5nZSBpcywgdGhhdCBpbg0KPiA+PiB0aGlzIHZlcnNpb24sIGNsayBkcml2ZXIgaXMgdGhl
-IGVudHJ5IHBvaW50IChwYXJlbnQpIHdoaWNoIHdpbGwgdHJpZ2dlcg0KPiA+PiB0aGUgcHJvYmUg
-b2YgdGhlIGNvcnJlc3BvbmRpbmcgbWVkaWF0ZWstZHJtIGRyaXZlciBhbmQgcGFzcyBpdHMgTU1T
-WVMNCj4gPj4gcGxhdGZvcm0gZGF0YSBmb3IgZGlzcGxheSBjb25maWd1cmF0aW9uLg0KPiA+IA0K
-PiA+IFdoZW4gbW1zeXMgaXMgYSBzeXN0ZW0gY29udHJvbGxlciwgSSBwcmVmZXIgdG8gcGxhY2Ug
-bW1zeXMgaW4NCj4gPiBkcml2ZXJzL3NvYy9tZWRpYXRlaywgYW5kIGl0IHNoYXJlIHJlZ2lzdGVy
-cyBmb3IgY2xvY2ssIGRpc3BsYXksIGFuZCBtZHANCj4gPiBkcml2ZXIuIFRoaXMgbWVhbnMgdGhl
-IHByb2JlIGZ1bmN0aW9uIGlzIHBsYWNlZCBpbg0KPiA+IGRyaXZlcnMvc29jL21lZGlhdGVrICxp
-dHMgZGlzcGxheSBjbG9jayBmdW5jdGlvbiwgbWRwIGNsb2NrIGZ1bmN0aW9uIGFyZQ0KPiA+IHBs
-YWNlZCBpbiBkcml2ZXJzL2NsaywgZGlzcGxheSByb3V0aW5nIGFyZSBwbGFjZWQgaW4gZHJpdmVy
-cy9ncHUvZHJtLA0KPiA+IGFuZCBtZHAgcm91dGluZyBhcmUgcGxhY2VkIGluIGRpcnZlcnMvdmlk
-ZW8uDQo+ID4gDQo+IA0KPiBJIHVuZGVyc3RhbmQgd2hhdCB5b3UgbWVhbiBidXQgSSBhbSBub3Qg
-c3VyZSB0aGlzIG1ha2VzIHRoZSBjb2RlIGNsZWFyZXIgYW5kDQo+IHVzZWZ1bC4gVGhlIGRyaXZl
-ciBpbiBkcml2ZXJzL3NvYy9tZWRpYXRlayB3aWxsIGJlIGEgc2ltcGxlIGR1bW15IGltcGxlbWVu
-dGF0aW9uDQo+IG9mIGEgInNpbXBsZS1tZmQiIGRldmljZSAoYSBkcml2ZXIgdGhhdCBzaW1wbHkg
-bWF0Y2hlcyB3aXRoDQo+ICJtZWRpYXRlayxtdDgxNzMtbW1zeXMiIGFuZCBpbnN0YW50aWF0ZXMg
-dGhlICJjbGstbXQ4MTczLW1tIiBhbmQgdGhlDQo+ICJtZWRpYXRlay1kcm0iIGRyaXZlciAobm90
-ZSB0aGF0IG1lZGlhdGVrLW1kcCIgaXMgYWxyZWFkeSBpbnN0YW50aWF0ZWQgdmlhDQo+IGRldmlj
-ZS10cmVlKS4NCj4gDQoNCkl0J3MgY2xlYXIgdGhhdCBtbXN5cyBpcyBuZWl0aGVyIGEgcHVyZSBj
-bG9jayBjb250cm9sbGVyIG5vciBhIHB1cmUNCnJvdXRpbmcgY29udHJvbGxlciBmb3IgZGlzcGxh
-eSBhbmQgbWRwLiANCg0KPiBJdCdkIGJlIG5pY2UgaGFkIGEgcHJvcGVyIGRldmljZS10cmVlIHdp
-dGggYSAic2ltcGxlLW1mZCIgZm9yIG1tc3lzIGZyb20gdGhlDQo+IGJlZ2lubmluZyByZXByZXNl
-bnRpbmcgaG93IHJlYWxseSBoYXJkd3dhcmUgaXMsIGJ1dCBJIHRoaW5rIHRoYXQsIGNoYW5nZSB0
-aGlzDQo+IG5vdywgd2lsbCBicmVhayBiYWNrd2FyZCBjb21wYXRpYmlsaXR5Lg0KDQpNYXliZSB0
-aGlzIGlzIGEgc29sdXRpb24uIEN1cnJlbnQgZGV2aWNlIHRyZWUgd291bGQgd29yayBvbmx5IG9u
-IG9sZA0Ka2VybmVsIHZlcnNpb24gd2l0aCBhIGJ1Zywgc28gdGhpcyBtZWFuIHRoZXJlIGlzIG5v
-IGFueSBkZXZpY2UgdHJlZQ0Kd29ya3Mgb24ga2VybmVsIHZlcnNpb24gd2l0aG91dCBidWcuIFdo
-eSBkbyB3ZSBjb21wYXRpYmxlIHdpdGggc3VjaA0KZGV2aWNlIHRyZWU/DQoNClJlZ2FyZHMsDQpD
-Sw0KDQo+IA0KPiBJTUhPIEkgdGhpbmsgdGhhdCBjb25zaWRlcmluZyB0aGUgY2xrIGRyaXZlciBh
-cyBlbnRyeSBwb2ludCBpcyBmaW5lLCBidXQgdGhpcyBpcw0KPiBzb21ldGhpbmcgdGhhdCB0aGUg
-Y2xvY2sgbWFpbnRhaW5lcnMgc2hvdWxkIGRlY2lkZS4NCj4gDQo+IEFsc28gbm90ZSB0aGF0IHRo
-aXMgaXMgbm90IG9ubHkgYSBNVDgxNzMgcHJvYmxlbSBJIGFtIHNlZWluZyB0aGUgc2FtZSBwcm9i
-bGVtIG9uDQo+IGFsbCBvdGhlciBNZWRpYXRlayBTb0NzLg0KPiANCj4gVGhhbmtzLg0KPiANCj4g
-PiBSZWdhcmRzLA0KPiA+IENLDQo+ID4gDQo+ID4+DQo+ID4+IEFsbCB0aGlzIHNlcmllcyB3YXMg
-dGVzdGVkIG9uIHRoZSBBY2VyIFIxMyBDaHJvbWVib29rIG9ubHkuDQo+ID4+DQo+ID4+IEZvciBy
-ZWZlcmVuY2UsIGhlcmUgYXJlIHRoZSBsaW5rcyB0byB0aGUgb2xkIGRpc2N1c3Npb25zOg0KPiA+
-Pg0KPiA+PiAqIHY3OiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgt
-bWVkaWF0ZWsvbGlzdC8/c2VyaWVzPTI0MTIxNw0KPiA+PiAqIHY2OiBodHRwczovL3BhdGNod29y
-ay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvbGlzdC8/c2VyaWVzPTIxMzIxOQ0K
-PiA+PiAqIHY1OiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVk
-aWF0ZWsvbGlzdC8/c2VyaWVzPTQ0MDYzDQo+ID4+ICogdjQ6DQo+ID4+ICAgKiBodHRwczovL3Bh
-dGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEwNTMwODcxLw0KPiA+PiAgICogaHR0cHM6Ly9wYXRj
-aHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMDUzMDg4My8NCj4gPj4gICAqIGh0dHBzOi8vcGF0Y2h3
-b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTA1MzA4ODUvDQo+ID4+ICAgKiBodHRwczovL3BhdGNod29y
-ay5rZXJuZWwub3JnL3BhdGNoLzEwNTMwOTExLw0KPiA+PiAgICogaHR0cHM6Ly9wYXRjaHdvcmsu
-a2VybmVsLm9yZy9wYXRjaC8xMDUzMDkxMy8NCj4gPj4gKiB2MzoNCj4gPj4gICAqIGh0dHBzOi8v
-cGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTAzNjc4NTcvDQo+ID4+ICAgKiBodHRwczovL3Bh
-dGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEwMzY3ODYxLw0KPiA+PiAgICogaHR0cHM6Ly9wYXRj
-aHdvcmsua2VybmVsLm9yZy9wYXRjaC8xMDM2Nzg3Ny8NCj4gPj4gICAqIGh0dHBzOi8vcGF0Y2h3
-b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTAzNjc4NzUvDQo+ID4+ICAgKiBodHRwczovL3BhdGNod29y
-ay5rZXJuZWwub3JnL3BhdGNoLzEwMzY3ODg1Lw0KPiA+PiAgICogaHR0cHM6Ly9wYXRjaHdvcmsu
-a2VybmVsLm9yZy9wYXRjaC8xMDM2Nzg4My8NCj4gPj4gICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtl
-cm5lbC5vcmcvcGF0Y2gvMTAzNjc4ODkvDQo+ID4+ICAgKiBodHRwczovL3BhdGNod29yay5rZXJu
-ZWwub3JnL3BhdGNoLzEwMzY3OTA3Lw0KPiA+PiAgICogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVs
-Lm9yZy9wYXRjaC8xMDM2NzkwOS8NCj4gPj4gICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5v
-cmcvcGF0Y2gvMTAzNjc5MDUvDQo+ID4+ICogdjI6IE5vIHJlbGV2YW50IGRpc2N1c3Npb24sIHNl
-ZSB2Mw0KPiA+PiAqIHYxOg0KPiA+PiAgICogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9w
-YXRjaC8xMDAxNjQ5Ny8NCj4gPj4gICAqIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0
-Y2gvMTAwMTY0OTkvDQo+ID4+ICAgKiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNo
-LzEwMDE2NTA1Lw0KPiA+PiAgICogaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC8x
-MDAxNjUwNy8NCj4gPj4NCj4gPj4gQmVzdCByZWdhcmRzLA0KPiA+PiAgRW5yaWMNCj4gPj4NCj4g
-Pj4gQ2hhbmdlcyBpbiB2ODoNCj4gPj4gLSBCZSBhIGJ1aWx0aW5fcGxhdGZvcm1fZHJpdmVyIGxp
-a2Ugb3RoZXIgbWVkaWF0ZWsgbW1zeXMgZHJpdmVycy4NCj4gPj4gLSBOZXcgcGF0Y2hlcyBpbnRy
-b2R1Y2VkIGluIHRoaXMgc2VyaWVzLg0KPiA+Pg0KPiA+PiBDaGFuZ2VzIGluIHY3Og0KPiA+PiAt
-IEFkZCBSLWJ5IGZyb20gQ0sNCj4gPj4gLSBBZGQgUi1ieSBmcm9tIENLDQo+ID4+IC0gRml4IGNo
-ZWNrIG9mIHJldHVybiB2YWx1ZSBvZiBvZl9jbGtfZ2V0DQo+ID4+IC0gRml4IGlkZW50YXRpb24N
-Cj4gPj4gLSBGcmVlIGNsa19kYXRhLT5jbGtzIGFzIHdlbGwNCj4gPj4gLSBHZXQgcmlkIG9mIHBy
-aXZhdGUgZGF0YSBzdHJ1Y3R1cmUNCj4gPj4NCj4gPj4gRW5yaWMgQmFsbGV0Ym8gaSBTZXJyYSAo
-Mik6DQo+ID4+ICAgZHJtL21lZGlhdGVrOiBNb3ZlIE1NU1lTIGNvbmZpZ3VyYXRpb24gdG8gaW5j
-bHVkZS9saW51eC9wbGF0Zm9ybV9kYXRhDQo+ID4+ICAgY2xrL2RybTogbWVkaWF0ZWs6IEZpeCBt
-ZWRpYXRlay1kcm0gZGV2aWNlIHByb2JpbmcNCj4gPj4NCj4gPj4gTWF0dGhpYXMgQnJ1Z2dlciAo
-NCk6DQo+ID4+ICAgZHJtL21lZGlhdGVrOiBVc2UgcmVnbWFwIGZvciByZWdpc3RlciBhY2Nlc3MN
-Cj4gPj4gICBkcm0vbWVkaWF0ZWs6IE9taXQgd2FybmluZyBvbiBwcm9iZSBkZWZlcnMNCj4gPj4g
-ICBtZWRpYTogbXRrLW1kcDogQ2hlY2sgcmV0dXJuIHZhbHVlIG9mIG9mX2Nsa19nZXQNCj4gPj4g
-ICBjbGs6IG1lZGlhdGVrOiBtdDgxNzM6IFN3aXRjaCBNTVNZUyB0byBwbGF0Zm9ybSBkcml2ZXIN
-Cj4gPj4NCj4gPj4gIGRyaXZlcnMvY2xrL21lZGlhdGVrL0tjb25maWcgICAgICAgICAgICAgICAg
-ICB8ICAgNiArDQo+ID4+ICBkcml2ZXJzL2Nsay9tZWRpYXRlay9NYWtlZmlsZSAgICAgICAgICAg
-ICAgICAgfCAgIDEgKw0KPiA+PiAgZHJpdmVycy9jbGsvbWVkaWF0ZWsvY2xrLW10MjcwMS1tbS5j
-ICAgICAgICAgIHwgIDMwICsrKw0KPiA+PiAgZHJpdmVycy9jbGsvbWVkaWF0ZWsvY2xrLW10Mjcx
-Mi1tbS5jICAgICAgICAgIHwgIDQ0ICsrKysrDQo+ID4+ICBkcml2ZXJzL2Nsay9tZWRpYXRlay9j
-bGstbXQ4MTczLW1tLmMgICAgICAgICAgfCAxNzIgKysrKysrKysrKysrKysrKysrDQo+ID4+ICBk
-cml2ZXJzL2Nsay9tZWRpYXRlay9jbGstbXQ4MTczLmMgICAgICAgICAgICAgfCAxMDQgLS0tLS0t
-LS0tLS0NCj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9jb2xvci5jICAg
-ICB8ICAgNSArLQ0KPiA+PiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX292bC5j
-ICAgICAgIHwgICA1ICstDQo+ID4+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2Rpc3Bf
-cmRtYS5jICAgICAgfCAgIDUgKy0NCj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtf
-ZHBpLmMgICAgICAgICAgICB8ICAxMiArLQ0KPiA+PiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVr
-L210a19kcm1fY3J0Yy5jICAgICAgIHwgICA0ICstDQo+ID4+ICBkcml2ZXJzL2dwdS9kcm0vbWVk
-aWF0ZWsvbXRrX2RybV9kZHAuYyAgICAgICAgfCAgNTMgKysrLS0tDQo+ID4+ICBkcml2ZXJzL2dw
-dS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kZHAuaCAgICAgICAgfCAgIDQgKy0NCj4gPj4gIGRyaXZl
-cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2RkcF9jb21wLmggICB8ICA1NiArLS0tLS0NCj4g
-Pj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2Rydi5jICAgICAgICB8IDExMyAr
-LS0tLS0tLS0tLS0NCj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHJtX2Rydi5o
-ICAgICAgICB8ICAxMyArLQ0KPiA+PiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kc2ku
-YyAgICAgICAgICAgIHwgICA4ICstDQo+ID4+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRr
-X2hkbWkuYyAgICAgICAgICAgfCAgIDQgKy0NCj4gPj4gIGRyaXZlcnMvbWVkaWEvcGxhdGZvcm0v
-bXRrLW1kcC9tdGtfbWRwX2NvbXAuYyB8ICAgNiArDQo+ID4+ICBpbmNsdWRlL2xpbnV4L3BsYXRm
-b3JtX2RhdGEvbXRrX21tc3lzLmggICAgICAgfCAgNzMgKysrKysrKysNCj4gPj4gIDIwIGZpbGVz
-IGNoYW5nZWQsIDQwMSBpbnNlcnRpb25zKCspLCAzMTcgZGVsZXRpb25zKC0pDQo+ID4+ICBjcmVh
-dGUgbW9kZSAxMDA2NDQgZHJpdmVycy9jbGsvbWVkaWF0ZWsvY2xrLW10ODE3My1tbS5jDQo+ID4+
-ICBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9saW51eC9wbGF0Zm9ybV9kYXRhL210a19tbXN5
-cy5oDQo+ID4+DQo+ID4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXw0KPiBMaW51eC1tZWRpYXRlayBtYWlsaW5nIGxpc3QNCj4gTGludXgtbWVk
-aWF0ZWtAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiBodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2xpbnV4LW1lZGlhdGVrDQoNCg==
+The Qualcomm SC7180 platform has several bus fabrics that could be
+controlled and tuned dynamically according to the bandwidth demand.
 
+Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/interconnect/qcom,sc7180.yaml         |  85 +++++++++++
+ include/dt-bindings/interconnect/qcom,sc7180.h     | 161 +++++++++++++++++++++
+ 2 files changed, 246 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
+ create mode 100644 include/dt-bindings/interconnect/qcom,sc7180.h
+
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
+new file mode 100644
+index 0000000..2cb7d4e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interconnect/qcom,sc7180.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interconnect/qcom,sc7180.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title:  Qualcomm SC7180 Network-On-Chip Interconnect
++
++maintainers:
++  - Georgi Djakov <georgi.djakov@linaro.org>
++
++description: |
++   SC7180 interconnect providers support system bandwidth requirements through
++   RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
++   able to communicate with the BCM through the Resource State Coordinator (RSC)
++   associated with each execution environment. Provider nodes must point to at
++   least one RPMh device child node pertaining to their RSC and each provider
++   can map to multiple RPMh resources.
++
++properties:
++  reg:
++    maxItems: 1
++
++  compatible:
++    enum:
++      - qcom,sc7180-aggre1-noc
++      - qcom,sc7180-aggre2-noc
++      - qcom,sc7180-camnoc-virt
++      - qcom,sc7180-compute-noc
++      - qcom,sc7180-config-noc
++      - qcom,sc7180-dc-noc
++      - qcom,sc7180-gem-noc
++      - qcom,sc7180-ipa-virt
++      - qcom,sc7180-mc-virt
++      - qcom,sc7180-mmss-noc
++      - qcom,sc7180-npu-noc
++      - qcom,sc7180-qup-virt
++      - qcom,sc7180-system-noc
++
++  '#interconnect-cells':
++    const: 1
++
++  qcom,bcm-voters:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: |
++      List of phandles to qcom,bcm-voter nodes that are required by
++      this interconnect to send RPMh commands.
++
++  qcom,bcm-voter-names:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description: |
++      Names for each of the qcom,bcm-voters specified.
++
++required:
++  - compatible
++  - reg
++  - '#interconnect-cells'
++  - qcom,bcm-voters
++
++additionalProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/interconnect/qcom,sc7180.h>
++
++      config_noc: interconnect@1500000 {
++            compatible = "qcom,sc7180-config-noc";
++            reg = <0 0x01500000 0 0x28000>;
++            #interconnect-cells = <1>;
++            qcom,bcm-voters = <&apps_bcm_voter>;
++      };
++
++      system_noc: interconnect@1620000 {
++            compatible = "qcom,sc7180-system-noc";
++            reg = <0 0x01620000 0 0x17080>;
++            #interconnect-cells = <1>;
++            qcom,bcm-voters = <&apps_bcm_voter>;
++      };
++
++      mmss_noc: interconnect@1740000 {
++            compatible = "qcom,sc7180-mmss-noc";
++            reg = <0 0x01740000 0 0x1c100>;
++            #interconnect-cells = <1>;
++            qcom,bcm-voters = <&apps_bcm_voter>;
++      };
+diff --git a/include/dt-bindings/interconnect/qcom,sc7180.h b/include/dt-bindings/interconnect/qcom,sc7180.h
+new file mode 100644
+index 0000000..f9970f6
+--- /dev/null
++++ b/include/dt-bindings/interconnect/qcom,sc7180.h
+@@ -0,0 +1,161 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Qualcomm SC7180 interconnect IDs
++ *
++ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
++ */
++
++#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_SC7180_H
++#define __DT_BINDINGS_INTERCONNECT_QCOM_SC7180_H
++
++#define MASTER_A1NOC_CFG			0
++#define MASTER_QSPI			1
++#define MASTER_QUP_0			2
++#define MASTER_SDCC_2			3
++#define MASTER_EMMC			4
++#define MASTER_UFS_MEM			5
++#define SLAVE_A1NOC_SNOC			6
++#define SLAVE_SERVICE_A1NOC			7
++
++#define MASTER_A2NOC_CFG			0
++#define MASTER_QDSS_BAM			1
++#define MASTER_QUP_1			2
++#define MASTER_USB3			3
++#define MASTER_CRYPTO			4
++#define MASTER_IPA			5
++#define MASTER_QDSS_ETR			6
++#define SLAVE_A2NOC_SNOC			7
++#define SLAVE_SERVICE_A2NOC			8
++
++#define MASTER_CAMNOC_HF0_UNCOMP			0
++#define MASTER_CAMNOC_HF1_UNCOMP			1
++#define MASTER_CAMNOC_SF_UNCOMP			2
++#define SLAVE_CAMNOC_UNCOMP			3
++
++#define MASTER_NPU			0
++#define MASTER_NPU_PROC			1
++#define SLAVE_CDSP_GEM_NOC			2
++
++#define MASTER_SNOC_CNOC			0
++#define MASTER_QDSS_DAP			1
++#define SLAVE_A1NOC_CFG			2
++#define SLAVE_A2NOC_CFG			3
++#define SLAVE_AHB2PHY_SOUTH			4
++#define SLAVE_AHB2PHY_CENTER			5
++#define SLAVE_AOP			6
++#define SLAVE_AOSS			7
++#define SLAVE_BOOT_ROM			8
++#define SLAVE_CAMERA_CFG				9
++#define SLAVE_CAMERA_NRT_THROTTLE_CFG			10
++#define SLAVE_CAMERA_RT_THROTTLE_CFG			11
++#define SLAVE_CLK_CTL			12
++#define SLAVE_RBCPR_CX_CFG			13
++#define SLAVE_RBCPR_MX_CFG			14
++#define SLAVE_CRYPTO_0_CFG			15
++#define SLAVE_DCC_CFG			16
++#define SLAVE_CNOC_DDRSS			17
++#define SLAVE_DISPLAY_CFG			18
++#define SLAVE_DISPLAY_RT_THROTTLE_CFG			19
++#define SLAVE_DISPLAY_THROTTLE_CFG			20
++#define SLAVE_EMMC_CFG			21
++#define SLAVE_GLM					22
++#define SLAVE_GFX3D_CFG			23
++#define SLAVE_IMEM_CFG			24
++#define SLAVE_IPA_CFG			25
++#define SLAVE_CNOC_MNOC_CFG			26
++#define SLAVE_CNOC_MSS			27
++#define SLAVE_NPU_CFG			28
++#define SLAVE_NPU_DMA_BWMON_CFG			29
++#define SLAVE_NPU_PROC_BWMON_CFG			30
++#define SLAVE_PDM			31
++#define SLAVE_PIMEM_CFG			32
++#define SLAVE_PRNG			33
++#define SLAVE_QDSS_CFG			34
++#define SLAVE_QM_CFG			35
++#define SLAVE_QM_MPU_CFG			36
++#define SLAVE_QSPI_0			37
++#define SLAVE_QUP_0			38
++#define SLAVE_QUP_1			39
++#define SLAVE_SDCC_2			40
++#define SLAVE_SECURITY			41
++#define SLAVE_SNOC_CFG			42
++#define SLAVE_TCSR			43
++#define SLAVE_TLMM_WEST			44
++#define SLAVE_TLMM_NORTH			45
++#define SLAVE_TLMM_SOUTH			46
++#define SLAVE_UFS_MEM_CFG			47
++#define SLAVE_USB3			48
++#define SLAVE_VENUS_CFG			49
++#define SLAVE_VENUS_THROTTLE_CFG			50
++#define SLAVE_VSENSE_CTRL_CFG			51
++#define SLAVE_SERVICE_CNOC			52
++
++#define MASTER_CNOC_DC_NOC			0
++#define SLAVE_GEM_NOC_CFG			1
++#define SLAVE_LLCC_CFG			2
++
++#define MASTER_APPSS_PROC		0
++#define MASTER_SYS_TCU			1
++#define MASTER_GEM_NOC_CFG			2
++#define MASTER_COMPUTE_NOC			3
++#define MASTER_MNOC_HF_MEM_NOC			4
++#define MASTER_MNOC_SF_MEM_NOC			5
++#define MASTER_SNOC_GC_MEM_NOC			6
++#define MASTER_SNOC_SF_MEM_NOC			7
++#define MASTER_GFX3D			8
++#define SLAVE_MSS_PROC_MS_MPU_CFG			9
++#define SLAVE_GEM_NOC_SNOC			10
++#define SLAVE_LLCC			11
++#define SLAVE_SERVICE_GEM_NOC			12
++
++#define MASTER_IPA_CORE			0
++#define SLAVE_IPA_CORE			1
++
++#define MASTER_LLCC			0
++#define SLAVE_EBI1			1
++
++#define MASTER_CNOC_MNOC_CFG			0
++#define MASTER_CAMNOC_HF0			1
++#define MASTER_CAMNOC_HF1			2
++#define MASTER_CAMNOC_SF			3
++#define MASTER_MDP0			4
++#define MASTER_ROTATOR			5
++#define MASTER_VIDEO_P0			6
++#define MASTER_VIDEO_PROC			7
++#define SLAVE_MNOC_HF_MEM_NOC			8
++#define SLAVE_MNOC_SF_MEM_NOC			9
++#define SLAVE_SERVICE_MNOC			10
++
++#define MASTER_NPU_SYS			0
++#define MASTER_NPU_NOC_CFG			1
++#define SLAVE_NPU_CAL_DP0			2
++#define SLAVE_NPU_CP			3
++#define SLAVE_NPU_INT_DMA_BWMON_CFG			4
++#define SLAVE_NPU_DPM			5
++#define SLAVE_ISENSE_CFG			6
++#define SLAVE_NPU_LLM_CFG			7
++#define SLAVE_NPU_TCM			8
++#define SLAVE_NPU_COMPUTE_NOC			9
++#define SLAVE_SERVICE_NPU_NOC			10
++
++#define MASTER_QUP_CORE_0			0
++#define MASTER_QUP_CORE_1			1
++#define SLAVE_QUP_CORE_0			2
++#define SLAVE_QUP_CORE_1			3
++
++#define MASTER_SNOC_CFG			0
++#define MASTER_A1NOC_SNOC			1
++#define MASTER_A2NOC_SNOC			2
++#define MASTER_GEM_NOC_SNOC			3
++#define MASTER_PIMEM			4
++#define SLAVE_APPSS			5
++#define SLAVE_SNOC_CNOC			6
++#define SLAVE_SNOC_GEM_NOC_GC			7
++#define SLAVE_SNOC_GEM_NOC_SF			8
++#define SLAVE_IMEM			9
++#define SLAVE_PIMEM			10
++#define SLAVE_SERVICE_SNOC			11
++#define SLAVE_QDSS_STM			12
++#define SLAVE_TCU			13
++
++#endif
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
