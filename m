@@ -2,208 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28E15167985
-	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 10:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A533316796B
+	for <lists+devicetree@lfdr.de>; Fri, 21 Feb 2020 10:32:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727152AbgBUJgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 04:36:16 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:52621 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728077AbgBUJgQ (ORCPT
+        id S1727802AbgBUJca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 04:32:30 -0500
+Received: from mail27.static.mailgun.info ([104.130.122.27]:49740 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727733AbgBUJc3 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Feb 2020 04:36:16 -0500
+        Fri, 21 Feb 2020 04:32:29 -0500
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1582277775; h=References: In-Reply-To: Message-Id: Date:
+ s=smtp; t=1582277549; h=References: In-Reply-To: Message-Id: Date:
  Subject: Cc: To: From: Sender;
- bh=dlszzUGlv2unK5PKobKXkEQRus5tUEcWTbP60Jg5+dM=; b=GBOiX8PtxJPKJS6/ygYnfeMSNQgU1aLrofEjJfAQx9UCC8dTWe2ASvcYobdDQ8H/DISUXVFh
- w64+w+MI4ZWZhJasiyHWyJ8h48W0OEgGJNfaBZMeBAiNFHBmwNhqDol9eNjBJ37q3m/JqFkB
- B8mFHVxJAJ4804BzLcKNtzlAVj4=
-X-Mailgun-Sending-Ip: 104.130.122.26
+ bh=k1WLiAIP+Ma8dQvf0FPWqzXKeJ/V2NYVN0QX4/5QH1Y=; b=JG9hhOJwoOmUVdA4QDL6OvwLzD9reNB46rNR5qAD6LAGIr7RISRMQNIZVLmAss169D4K3xlc
+ LNRlm8njmwnUAvpIUWShDBlsrSt7Ej+OZ3kLa+gOA0nP6U3+gRnvJinp11BK3MzS5gRz9UWF
+ 8CrqcoLm+ScEWFDOV9rxmXzhQ2s=
+X-Mailgun-Sending-Ip: 104.130.122.27
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e4fa47a.7f0e2a30e8b8-smtp-out-n03;
- Fri, 21 Feb 2020 09:35:54 -0000 (UTC)
+ by mxa.mailgun.org with ESMTP id 5e4fa3a4.7fcf2602a848-smtp-out-n02;
+ Fri, 21 Feb 2020 09:32:20 -0000 (UTC)
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 919A5C4479C; Fri, 21 Feb 2020 09:35:53 +0000 (UTC)
+        id D2CD1C433A2; Fri, 21 Feb 2020 09:32:20 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
         URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from okukatla1-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+Received: from mkshah-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: okukatla)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E2C3C447A0;
-        Fri, 21 Feb 2020 09:35:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1E2C3C447A0
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 859CEC4479D;
+        Fri, 21 Feb 2020 09:32:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 859CEC4479D
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=okukatla@codeaurora.org
-From:   Odelu Kukatla <okukatla@codeaurora.org>
-To:     georgi.djakov@linaro.org, daidavid1@codeaurora.org,
-        bjorn.andersson@linaro.org, evgreen@google.com,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     sboyd@kernel.org, ilina@codeaurora.org, seansw@qti.qualcomm.com,
-        elder@linaro.org, linux-pm@vger.kernel.org,
-        linux-arm-msm-owner@vger.kernel.org,
-        Odelu Kukatla <okukatla@codeaurora.org>
-Subject: [V3, 3/3] dt-bindings: interconnect: Add Qualcomm SC7180 DT bindings
-Date:   Fri, 21 Feb 2020 15:00:50 +0530
-Message-Id: <1582277450-27382-4-git-send-email-okukatla@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1582277450-27382-1-git-send-email-okukatla@codeaurora.org>
-References: <1582277450-27382-1-git-send-email-okukatla@codeaurora.org>
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
+From:   Maulik Shah <mkshah@codeaurora.org>
+To:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, rnayak@codeaurora.org,
+        ilina@codeaurora.org, lsrao@codeaurora.org,
+        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
+Subject: [PATCH v6 1/3] arm64: dts: qcom: sc7180: Add cpuidle low power states
+Date:   Fri, 21 Feb 2020 15:02:05 +0530
+Message-Id: <1582277527-19638-2-git-send-email-mkshah@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1582277527-19638-1-git-send-email-mkshah@codeaurora.org>
+References: <1582277527-19638-1-git-send-email-mkshah@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm SC7180 platform has several bus fabrics that could be
-controlled and tuned dynamically according to the bandwidth demand.
+Add device bindings for cpuidle states for cpu devices.
 
-Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
 ---
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 95 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 95 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 78 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 78 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index cc5a94f..3e28f34 100644
+index cc5a94f..2941a7e 100644
 --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -748,6 +748,69 @@
+@@ -86,6 +86,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++					   &LITTLE_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_0>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+@@ -103,6 +106,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x100>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++					   &LITTLE_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_100>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+@@ -117,6 +123,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x200>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++					   &LITTLE_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_200>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+@@ -131,6 +140,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x300>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++					   &LITTLE_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_300>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+@@ -145,6 +157,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x400>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++					   &LITTLE_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_400>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+@@ -159,6 +174,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x500>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
++					   &LITTLE_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_500>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+@@ -173,6 +191,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x600>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&BIG_CPU_SLEEP_0
++					   &BIG_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_600>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+@@ -187,6 +208,9 @@
+ 			compatible = "arm,armv8";
+ 			reg = <0x0 0x700>;
+ 			enable-method = "psci";
++			cpu-idle-states = <&BIG_CPU_SLEEP_0
++					   &BIG_CPU_SLEEP_1
++					   &CLUSTER_SLEEP_0>;
+ 			next-level-cache = <&L2_700>;
+ 			#cooling-cells = <2>;
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+@@ -195,6 +219,60 @@
+ 				next-level-cache = <&L3_0>;
  			};
  		};
- 
-+		config_noc: interconnect@1500000 {
-+			compatible = "qcom,sc7180-config-noc";
-+			reg = <0 0x01500000 0 0x28000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
 +
-+		system_noc: interconnect@1620000 {
-+			compatible = "qcom,sc7180-system-noc";
-+			reg = <0 0x01620000 0 0x17080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
++		idle-states {
++			entry-method = "psci";
 +
-+		mc_virt: interconnect@1638000 {
-+			compatible = "qcom,sc7180-mc-virt";
-+			reg = <0 0x01638000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		qup_virt: interconnect@1650000 {
-+			compatible = "qcom,sc7180-qup-virt";
-+			reg = <0 0x01650000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre1_noc: interconnect@16e0000 {
-+			compatible = "qcom,sc7180-aggre1-noc";
-+			reg = <0 0x016e0000 0 0x15080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		aggre2_noc: interconnect@1705000 {
-+			compatible = "qcom,sc7180-aggre2-noc";
-+			reg = <0 0x01705000 0 0x9000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		compute_noc: interconnect@170e000 {
-+			compatible = "qcom,sc7180-compute-noc";
-+			reg = <0 0x0170e000 0 0x6000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		mmss_noc: interconnect@1740000 {
-+			compatible = "qcom,sc7180-mmss-noc";
-+			reg = <0 0x01740000 0 0x1c100>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		ipa_virt: interconnect@1e00000 {
-+			compatible = "qcom,sc7180-ipa-virt";
-+			reg = <0 0x01e00000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		tcsr_mutex_regs: syscon@1f40000 {
- 			compatible = "syscon";
- 			reg = <0 0x01f40000 0 0x40000>;
-@@ -1103,6 +1166,13 @@
- 			};
- 		};
- 
-+		dc_noc: interconnect@9160000 {
-+			compatible = "qcom,sc7180-dc-noc";
-+			reg = <0 0x09160000 0 0x03200>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		system-cache-controller@9200000 {
- 			compatible = "qcom,sc7180-llcc";
- 			reg = <0 0x09200000 0 0x200000>, <0 0x09600000 0 0x50000>;
-@@ -1110,6 +1180,20 @@
- 			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		gem_noc: interconnect@9680000 {
-+			compatible = "qcom,sc7180-gem-noc";
-+			reg = <0 0x09680000 0 0x3e200>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
-+		npu_noc: interconnect@9990000 {
-+			compatible = "qcom,sc7180-npu-noc";
-+			reg = <0 0x09990000 0 0x1600>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		usb_1: usb@a6f8800 {
- 			compatible = "qcom,sc7180-dwc3", "qcom,dwc3";
- 			reg = <0 0x0a6f8800 0 0x400>;
-@@ -1154,6 +1238,13 @@
- 			};
- 		};
- 
-+		camnoc_virt: interconnect@ac00000 {
-+			compatible = "qcom,sc7180-camnoc-virt";
-+			reg = <0 0x0ac00000 0 0x1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voters = <&apps_bcm_voter>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,sc7180-pdc", "qcom,pdc";
- 			reg = <0 0x0b220000 0 0x30000>;
-@@ -1481,6 +1572,10 @@
- 					};
- 				};
- 			};
-+
-+			apps_bcm_voter: bcm_voter {
-+				compatible = "qcom,bcm-voter";
++			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "little-power-down";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <549>;
++				exit-latency-us = <901>;
++				min-residency-us = <1774>;
++				local-timer-stop;
 +			};
- 		};
++
++			LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
++				compatible = "arm,idle-state";
++				idle-state-name = "little-rail-power-down";
++				arm,psci-suspend-param = <0x40000004>;
++				entry-latency-us = <702>;
++				exit-latency-us = <915>;
++				min-residency-us = <4001>;
++				local-timer-stop;
++			};
++
++			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "big-power-down";
++				arm,psci-suspend-param = <0x40000003>;
++				entry-latency-us = <523>;
++				exit-latency-us = <1244>;
++				min-residency-us = <2207>;
++				local-timer-stop;
++			};
++
++			BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
++				compatible = "arm,idle-state";
++				idle-state-name = "big-rail-power-down";
++				arm,psci-suspend-param = <0x40000004>;
++				entry-latency-us = <526>;
++				exit-latency-us = <1854>;
++				min-residency-us = <5555>;
++				local-timer-stop;
++			};
++
++			CLUSTER_SLEEP_0: cluster-sleep-0 {
++				compatible = "arm,idle-state";
++				idle-state-name = "cluster-power-down";
++				arm,psci-suspend-param = <0x40003444>;
++				entry-latency-us = <3263>;
++				exit-latency-us = <6562>;
++				min-residency-us = <9926>;
++				local-timer-stop;
++			};
++		};
+ 	};
  
- 		cpufreq_hw: cpufreq@18323000 {
+ 	memory@80000000 {
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
