@@ -2,131 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 426EC169148
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 19:30:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F6F3169170
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 20:05:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726856AbgBVSaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Feb 2020 13:30:17 -0500
-Received: from mail-pj1-f74.google.com ([209.85.216.74]:35873 "EHLO
-        mail-pj1-f74.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726550AbgBVSaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Feb 2020 13:30:16 -0500
-Received: by mail-pj1-f74.google.com with SMTP id m61so2987640pjb.1
-        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2020 10:30:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=LqkliWMqkbYqRIuupuOLJ6kzkCRKDL/XTv8pUZxzvKQ=;
-        b=PgQzLg8qKzkyhPyxTmoaNbnjNiSyl7EAdKe9zlgr7TFwxMb8ScYriPIQUviohO4BSk
-         nUR9tkQzOmQFjuXA1r1vnn/cKgcN9herEGiD+8RcQ5/kjryJFb1QCWQB68vGKhtmmgH/
-         sDAHhKQrgYrgoL3KjmL3XDRC4b/vmMsjwr48xg6ZF82kNigCID53t8L0ht6mg+ro4qoc
-         /WfCokur3PuPbHVzNIO3SE6niOinINt9R1b06lNInZVj1C5XUBd+v9ygMq3wQe/e/6p8
-         8E+UZTx4ZMxQKRikHlAw/aYtrrZSsf7C++C1js0gybHMgS+8OWKW7jMi9NcWaOXrRPaX
-         3bcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=LqkliWMqkbYqRIuupuOLJ6kzkCRKDL/XTv8pUZxzvKQ=;
-        b=gm2qCuSZ6BTB/V2oX86urnIlPiu/nRPFAkKSexNZdQntftYI75DqB6HPlYn31Im8uN
-         2aeZl+2tuQkEHf7DossUH8JESkuYqy3018sK5QFMSp3pEUJY033PT8HAe7WbKmfCUR31
-         dMaW9EBYUuyS4ngfdFNWOLopFAnIa34Wz+Qc5KQcn2oO6M/NLuGvlMOUXZT2fgw6RGp6
-         POvqv7if8FP0C7HAdYio8/zICWu0SDQw4QpxFnw88BwjTKNHZN6ScdHC/HmmMrnN3owf
-         L/n7SqzhZP5t7hvZ+E6jF+deXISX53Cf6zVnIwUviY5C0DsMaQNA5c7qY8PSLJpz/j6A
-         3YlQ==
-X-Gm-Message-State: APjAAAWhogsSJVE+uqNwHHjBE0RbecH8jqhrDIdonq55sEng7lG9V/Hr
-        EIImrAn36915wLdu2mqSQTiDPtSuYhA=
-X-Google-Smtp-Source: APXvYqzQdQgHQ6fWCJuIXWIAgYGxlrY2CrH849Fe3I+ATdbmceKERzMpxkHMUK63twO0nuNjfUKmQrh7v4U=
-X-Received: by 2002:a63:120f:: with SMTP id h15mr46221489pgl.235.1582396216132;
- Sat, 22 Feb 2020 10:30:16 -0800 (PST)
-Date:   Sat, 22 Feb 2020 10:30:10 -0800
-In-Reply-To: <20200222183010.197844-1-adelva@google.com>
-Message-Id: <20200222183010.197844-2-adelva@google.com>
-Mime-Version: 1.0
-References: <20200222183010.197844-1-adelva@google.com>
-X-Mailer: git-send-email 2.25.0.265.gbab2e86ba0-goog
-Subject: [PATCH 2/2] dt-bindings: pmem-region: Document memory-region
-From:   Alistair Delva <adelva@google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Kenny Root <kroot@google.com>,
-        "Oliver O'Halloran" <oohall@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Vishal Verma <vishal.l.verma@intel.com>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Ira Weiny <ira.weiny@intel.com>, devicetree@vger.kernel.org,
-        linux-nvdimm@lists.01.org, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1727103AbgBVTFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Feb 2020 14:05:07 -0500
+Received: from conuserg-09.nifty.com ([210.131.2.76]:23007 "EHLO
+        conuserg-09.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726817AbgBVTEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Feb 2020 14:04:55 -0500
+Received: from grover.flets-west.jp (softbank126093102113.bbtec.net [126.93.102.113]) (authenticated)
+        by conuserg-09.nifty.com with ESMTP id 01MJ4cZ3012807;
+        Sun, 23 Feb 2020 04:04:38 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-09.nifty.com 01MJ4cZ3012807
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1582398279;
+        bh=OAJy6pWrxR7lNpcqlMigyzZQUmooD1dwjoIE2utcEN8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fs8OZ1BpLTf9CvWG/+boO5Xwn0uv7awOShJbmu6/QPDxlfFug5xTxVenYrtEs15im
+         Z/iIfq+RtfKavg5Ng97XjyMDv3APCdbaTgcBKPJW3EF9pf2ZVAlBNdeOZ3brvI724a
+         q74/+opbx6TRgHCbtO5go/1E0JDtH56ZEPk/EcH4iQ7Lw/wtEy2RvX3Xj0x5dhH8zv
+         DZamwd2FHJhk6Ylc9rRWCfnSOCN6OsZYxKoboUagaT9+nJ/QZgBvk/wJ7ScKr9hkq7
+         XWv/ttvnN2MQG/Kh7Uo1xFFOKA2yqevSF87IAjfTSkAUvOb/pUo76gHb+4QOsbAgg1
+         0uN4HhOlYyo3g==
+X-Nifty-SrcIP: [126.93.102.113]
+From:   Masahiro Yamada <masahiroy@kernel.org>
+To:     linux-kbuild@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/5] kbuild: fix DT binding schema rule to detect command line changes
+Date:   Sun, 23 Feb 2020 04:04:31 +0900
+Message-Id: <20200222190435.11767-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kenny Root <kroot@google.com>
+This if_change_rule is not working; it cannot detect any command line
+changes.
 
-Add documentation and example for memory-region in pmem.
+The reason is because cmd-check in scripts/Kbuild.include compares
+$(cmd_$@) and $(cmd_$1), but cmd_dtc_dt_yaml does not exist here.
 
-Signed-off-by: Kenny Root <kroot@google.com>
-Signed-off-by: Alistair Delva <adelva@google.com>
-Cc: "Oliver O'Halloran" <oohall@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Dan Williams <dan.j.williams@intel.com>
-Cc: Vishal Verma <vishal.l.verma@intel.com>
-Cc: Dave Jiang <dave.jiang@intel.com>
-Cc: Ira Weiny <ira.weiny@intel.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-nvdimm@lists.01.org
-Cc: kernel-team@android.com
+For if_change_rule to work properly, the stem part of cmd_* and rule_*
+must match. Because this cmd_and_fixdep invokes cmd_dtc, this rule must
+be named rule_dtc.
+
+Fixes: 4f0e3a57d6eb ("kbuild: Add support for DT binding schema checks")
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 ---
- .../devicetree/bindings/pmem/pmem-region.txt  | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pmem/pmem-region.txt b/Documentation/devicetree/bindings/pmem/pmem-region.txt
-index 5cfa4f016a00..851ffa71967e 100644
---- a/Documentation/devicetree/bindings/pmem/pmem-region.txt
-+++ b/Documentation/devicetree/bindings/pmem/pmem-region.txt
-@@ -29,6 +29,18 @@ Required properties:
- 		in a separate device node. Having multiple address ranges in a
- 		node implies no special relationship between the two ranges.
+ scripts/Makefile.lib | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+index bae62549e3d2..64b938c10039 100644
+--- a/scripts/Makefile.lib
++++ b/scripts/Makefile.lib
+@@ -302,13 +302,13 @@ DT_TMP_SCHEMA := $(objtree)/$(DT_BINDING_DIR)/processed-schema.yaml
+ quiet_cmd_dtb_check =	CHECK   $@
+       cmd_dtb_check =	$(DT_CHECKER) -u $(srctree)/$(DT_BINDING_DIR) -p $(DT_TMP_SCHEMA) $@ ;
  
-+		This property may be replaced or supplemented with a
-+		memory-region property. Only one of reg or memory-region
-+		properties is required.
-+
-+	- memory-region:
-+		Reference to the reserved memory node. The reserved memory
-+		node should be defined as per the bindings in
-+		reserved-memory.txt
-+
-+		This property may be replaced or supplemented with a reg
-+		property. Only one of reg or memory-region is required.
-+
- Optional properties:
- 	- Any relevant NUMA assocativity properties for the target platform.
+-define rule_dtc_dt_yaml
++define rule_dtc
+ 	$(call cmd_and_fixdep,dtc,yaml)
+ 	$(call cmd,dtb_check)
+ endef
  
-@@ -63,3 +75,21 @@ Examples:
- 		volatile;
- 	};
+ $(obj)/%.dt.yaml: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
+-	$(call if_changed_rule,dtc_dt_yaml)
++	$(call if_changed_rule,dtc)
  
-+
-+	/*
-+	 * This example uses a reserved-memory entry instead of
-+	 * specifying the memory region directly in the node.
-+	 */
-+
-+	reserved-memory {
-+		pmem_1: pmem@5000 {
-+			no-map;
-+			reg = <0x00005000 0x00001000>;
-+		};
-+	};
-+
-+	pmem@1 {
-+		compatible = "pmem-region";
-+		memory-region = <&pmem_1>;
-+	};
-+
+ dtc-tmp = $(subst $(comma),_,$(dot-target).dts.tmp)
+ 
 -- 
-2.25.0.265.gbab2e86ba0-goog
+2.17.1
 
