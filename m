@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A846168BB3
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 02:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA5DE168BB8
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 02:41:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727957AbgBVBky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 20:40:54 -0500
-Received: from mail-pf1-f201.google.com ([209.85.210.201]:36807 "EHLO
-        mail-pf1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727954AbgBVBkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 20:40:52 -0500
-Received: by mail-pf1-f201.google.com with SMTP id 6so2349927pfv.3
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 17:40:52 -0800 (PST)
+        id S1727984AbgBVBk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 20:40:58 -0500
+Received: from mail-pj1-f73.google.com ([209.85.216.73]:39352 "EHLO
+        mail-pj1-f73.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727994AbgBVBk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 20:40:57 -0500
+Received: by mail-pj1-f73.google.com with SMTP id kx17so2018006pjb.4
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 17:40:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=KcPp0gP7GELHPbQmhvOuNvrhkif2qUrzumcvFBDOK9U=;
-        b=tiWAct/lW1qWhKwT1NraZmKOl/hogEF7BkErGRXVit1viyco6ajvbC9mz3kiFMua6i
-         TXNq2t+i0wPehD/a08VL1JQQH9Rnr9VR2NEKeEmZ8FLJhmSFDZ0rVirUFv3+tELLG6Gp
-         1Odhw8Q7qlUlkq1pZqeqAMwP3dTqnrHwG/aPULh9Zktd5pHO30UGcf0fGZWZPZ85s0Y6
-         g5vruuy+o5NmhnAq1Bi7z5UhTM9KxLDhHYWDSFQ31yZ5D0g/dNjltCGyIjGVEk50kOv0
-         /sABPtof6x7ACZaNTuqAWywFBrRPUIP1zVHm1SpMLSbhEsUJQJhGbghszJjbeEqYP4d+
-         zPkg==
+        bh=dLJUCpK8J7QSv9pjJWTn5rjODL1aEvnJG2mu5Q6XKZg=;
+        b=e/G2izCtRWiEex8vSlfihQZwWbRD38v38ILG4l4r0PBFW4nViuSsYy2XUvAta7Lg+H
+         iwqAKMJhoSdeJvTXWCRNXcpv/oibXCTVqKiCZAtcZ/10EL22JqVpY311ZGjdWeCZ6TWl
+         8dyvPrRs3TcgxxUs+km0ytcbrL8LP1G4CqJEc+oX/d3UX0nhbrwIbgTzLHjrUY9Qv0iT
+         vMKmD8aus0eCRycaqJkgLLOPimbsn9TPbDIsjZfKcyaWKw7f7WfeukqDuKNG4mncrK8V
+         XMYT45YusmnMzgHTM21b3xNOrzprNYN46RRF/MK+TTqfmcgndJlUtph86LKTOtFenFaQ
+         uNyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=KcPp0gP7GELHPbQmhvOuNvrhkif2qUrzumcvFBDOK9U=;
-        b=LEk/C4zj5hl6YQQfIUoTZWTbAmZlu4Rlw1l/QbueogcW5Faily/PwD9sHdwksDba2X
-         XnQgj0EK092t3vR3P3nOhW1WzdreFjpkos1y3A+i1titqsB6bnoo0ixlYy0Ne7kGs2MQ
-         2Qm2K6OjrNRnXBKq0LwOOo6m7LtXbJ7DcgmyJtUjXqjOtJtbl9+jcHRFgC2rGH36yokV
-         CCO2D6yPlyqS5ypqFqT3fP7heEXyvjUJunzqZd2wuKY/V/U6DXmrhu4l4pIHHewTj0E7
-         xw0zYPrvcYXbiGqCA8uor6wh/1bZBMQfrSVQSrgfqx0QrAzKEtt6sSGt1eKAGEX5yC+D
-         n0ng==
-X-Gm-Message-State: APjAAAX3Bco+gOlhhWrwXM+S3c5RmUNF0nBUJ3I9D/4ANYsz4G/bQ+rN
-        +ZTbkV5Iu85SU8YojRBakNFvI3IGiN68ItA=
-X-Google-Smtp-Source: APXvYqzPdWRjgeOkhSTiaxyK4n8nsnHWWk0aEfT3lTbN5PVbLfvLNibYxGOnd/zAFy69mSlFb3/Z8610AQaog60=
-X-Received: by 2002:a63:ec49:: with SMTP id r9mr41310425pgj.445.1582335652146;
- Fri, 21 Feb 2020 17:40:52 -0800 (PST)
-Date:   Fri, 21 Feb 2020 17:40:36 -0800
+        bh=dLJUCpK8J7QSv9pjJWTn5rjODL1aEvnJG2mu5Q6XKZg=;
+        b=I8Rsa5VpgINpAgYyhp2k09Gw7CCF0jGfHJZWarIe8UsllAYkIn/UDdoNEfXjudhj0w
+         uqvbu1oC5J6FNhYqQKquwWnThNCVTqH6SYEIy4CHN8Qq0IPtWQwPcZCuVxcEsAG/k7Jt
+         FbblE4u9Ku1zd4oOMZh5W7nlV1bVxm660r6AW2kIOu+aQhjo/fRtRZCZdeSloMDmIZrf
+         7tNW1+WLrDxFgRCIcWDY5d6nTq2LK418h+hW34e+SGuBMDwtZVF5jGTPddo0btiNrWPX
+         dR+jQi9JTW3sZVD2z2BFFXvAAK/VzzwQ9xIub7gOU7mYGqf454AeTwcsuUfUxybTVAtu
+         vw9w==
+X-Gm-Message-State: APjAAAVWz+9cxMn66Ie9a5YliIy1ag6qhtuSXLBst82Vg2iXG2bb5ilI
+        rDfV5s+pdygucTEYm34nwlGJFul/TwdygQs=
+X-Google-Smtp-Source: APXvYqzesfXR7lGxs6e5jxSQUmuI+4SNQj8u282WnFoEoOOntmofH4HAOCXHvIB2dz4XXYHvKMvIdKicGMtW4q8=
+X-Received: by 2002:a63:be48:: with SMTP id g8mr42416014pgo.23.1582335655195;
+ Fri, 21 Feb 2020 17:40:55 -0800 (PST)
+Date:   Fri, 21 Feb 2020 17:40:37 -0800
 In-Reply-To: <20200222014038.180923-1-saravanak@google.com>
-Message-Id: <20200222014038.180923-4-saravanak@google.com>
+Message-Id: <20200222014038.180923-5-saravanak@google.com>
 Mime-Version: 1.0
 References: <20200222014038.180923-1-saravanak@google.com>
 X-Mailer: git-send-email 2.25.0.265.gbab2e86ba0-goog
-Subject: [PATCH v1 3/5] efi/arm: Start using fw_devlink_get_flags()
+Subject: [PATCH v1 4/5] of: property: Start using fw_devlink_get_flags()
 From:   Saravana Kannan <saravanak@google.com>
 To:     Jonathan Corbet <corbet@lwn.net>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -71,22 +71,22 @@ firmware. So, use that.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/firmware/efi/arm-init.c | 2 +-
+ drivers/of/property.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/efi/arm-init.c b/drivers/firmware/efi/arm-init.c
-index d99f5b0c8a09..6703bedfa9e1 100644
---- a/drivers/firmware/efi/arm-init.c
-+++ b/drivers/firmware/efi/arm-init.c
-@@ -349,7 +349,7 @@ static int efifb_add_links(const struct fwnode_handle *fwnode,
- 	 * If this fails, retrying this function at a later point won't
- 	 * change anything. So, don't return an error after this.
- 	 */
--	if (!device_link_add(dev, sup_dev, 0))
-+	if (!device_link_add(dev, sup_dev, fw_devlink_get_flags()))
- 		dev_warn(dev, "device_link_add() failed\n");
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index e851c57a15b0..15fc9315f1a7 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1262,7 +1262,7 @@ static int of_link_property(struct device *dev, struct device_node *con_np,
+ 	u32 dl_flags;
  
- 	put_device(sup_dev);
+ 	if (dev->of_node == con_np)
+-		dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
++		dl_flags = fw_devlink_get_flags();
+ 	else
+ 		dl_flags = DL_FLAG_SYNC_STATE_ONLY;
+ 
 -- 
 2.25.0.265.gbab2e86ba0-goog
 
