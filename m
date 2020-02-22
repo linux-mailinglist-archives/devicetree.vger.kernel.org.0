@@ -2,89 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 608BB168A94
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 00:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FFBE168ADC
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 01:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729309AbgBUX47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 18:56:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34584 "EHLO mail.kernel.org"
+        id S1726701AbgBVAPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 19:15:12 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:38572 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726802AbgBUX47 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 21 Feb 2020 18:56:59 -0500
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 92CFD2068F;
-        Fri, 21 Feb 2020 23:56:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1582329418;
-        bh=fk/YQP5SqHC5/xALq1lEjx5wBLsm/IH4cAaLZzmHAPg=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=AEHESv3Zesc1BEyLLdYIsRbTzzExMjve9OEYjVQMyIhVZhH4lGOD//LeI/S+b+VQX
-         /MHAgApH+QG36Lfy+/CQkiGw0yjV/FQqDmEjY4xULd/u3JDq/8L1W42uHRAT8klh/b
-         UPgH6+KFUtvVb+Ur/DIW4UQSvxquZUGJN2IAI4ek=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200221222711.15973-1-robh@kernel.org>
-References: <20200221222711.15973-1-robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Fix dtc warnings in examples
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Vinod Koul <vkoul@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Date:   Fri, 21 Feb 2020 15:56:57 -0800
-Message-ID: <158232941781.258574.300391553464223520@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+        id S1726613AbgBVAPL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 21 Feb 2020 19:15:11 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7AA602084BB;
+        Sat, 22 Feb 2020 01:15:09 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6661F200E2F;
+        Sat, 22 Feb 2020 01:14:53 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DA4A5402B0;
+        Sat, 22 Feb 2020 08:14:39 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, amit.kucheria@verdurent.com,
+        aisheng.dong@nxp.com, linux@roeck-us.net,
+        srinivas.kandagatla@linaro.org, krzk@kernel.org,
+        fugang.duan@nxp.com, peng.fan@nxp.com, daniel.baluta@nxp.com,
+        bjorn.andersson@linaro.org, olof@lixom.net, dinguyen@kernel.org,
+        leonard.crestez@nxp.com, marcin.juszkiewicz@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V16 1/5] dt-bindings: fsl: scu: add thermal binding
+Date:   Sat, 22 Feb 2020 08:08:48 +0800
+Message-Id: <1582330132-13461-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2020-02-21 14:27:10)
-> Fix all the warnings in the DT binding schema examples when built with
-> 'W=3D1'. This is in preparation to make that the default for examples.
->=20
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Alexandre Torgue <alexandre.torgue@st.com>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Kukjin Kim <kgene@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../clock/allwinner,sun4i-a10-osc-clk.yaml         |  2 +-
->  .../bindings/clock/allwinner,sun9i-a80-gt-clk.yaml |  2 +-
+NXP i.MX8QXP is an ARMv8 SoC with a Cortex-M4 core inside as
+system controller, the system controller is in charge of system
+power, clock and thermal sensors etc. management, Linux kernel
+has to communicate with system controller via MU (message unit)
+IPC to get temperature from thermal sensors, this patch adds
+binding doc for i.MX system controller thermal driver.
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+---
+No change.
+---
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt        | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index e07735a8..7f42cc3 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -166,6 +166,17 @@ Required properties:
+               followed by "fsl,imx-sc-key";
+ - linux,keycodes: See Documentation/devicetree/bindings/input/keys.txt
+ 
++Thermal bindings based on SCU Message Protocol
++------------------------------------------------------------
++
++Required properties:
++- compatible:			Should be :
++				  "fsl,imx8qxp-sc-thermal"
++				followed by "fsl,imx-sc-thermal";
++
++- #thermal-sensor-cells:	See Documentation/devicetree/bindings/thermal/thermal.txt
++				for a description.
++
+ Example (imx8qxp):
+ -------------
+ aliases {
+@@ -238,6 +249,11 @@ firmware {
+ 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
+ 			timeout-sec = <60>;
+ 		};
++
++		tsens: thermal-sensor {
++			compatible = "fsl,imx8qxp-sc-thermal", "fsl,imx-sc-thermal";
++			#thermal-sensor-cells = <1>;
++		};
+ 	};
+ };
+ 
+-- 
+2.7.4
+
