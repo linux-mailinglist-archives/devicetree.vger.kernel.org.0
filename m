@@ -2,82 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 85721168EE9
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 13:40:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C5C168F12
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 14:20:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727030AbgBVMkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Feb 2020 07:40:09 -0500
-Received: from sauhun.de ([88.99.104.3]:53676 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726839AbgBVMkI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Feb 2020 07:40:08 -0500
-Received: from localhost (p5486C6B7.dip0.t-ipconnect.de [84.134.198.183])
-        by pokefinder.org (Postfix) with ESMTPSA id 291152C07F9;
-        Sat, 22 Feb 2020 13:40:02 +0100 (CET)
-Date:   Sat, 22 Feb 2020 13:40:01 +0100
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Alain Volmat <alain.volmat@st.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        pierre-yves.mordret@st.com, mcoquelin.stm32@gmail.com,
-        alexandre.torgue@st.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        fabrice.gasnier@st.com
-Subject: Re: [PATCH 3/5] i2c: i2c-stm32f7: add a new st,stm32mp15-i2c
- compatible
-Message-ID: <20200222124001.GH1716@kunai>
-References: <1579795970-22319-1-git-send-email-alain.volmat@st.com>
- <1579795970-22319-4-git-send-email-alain.volmat@st.com>
+        id S1726883AbgBVNUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Feb 2020 08:20:00 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:37605 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726839AbgBVNUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Feb 2020 08:20:00 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 76409230E1;
+        Sat, 22 Feb 2020 14:19:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1582377597;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PflziWWXiKohVr7J/dPsgitwa5siLhHLOsrVLro5scE=;
+        b=pbjwEldcNAGilr2/TDnDGnXIvqKiZgrPi0/vQHx7dcls5Gp/xYMX4nW2wQZ4IKY2cYV5XR
+        VrwTjzlTOgDJ3uXQuWUWo0YeLBokBJ6+9vs/9zRj28a6yj4bZXKlYc6uhtizwrC9BDcsso
+        ax63FT5E9w/xVSPK/P0LRTf+PglPByQ=
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="KscVNZbUup0vZz0f"
-Content-Disposition: inline
-In-Reply-To: <1579795970-22319-4-git-send-email-alain.volmat@st.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sat, 22 Feb 2020 14:19:57 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        netdev <netdev@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>
+Subject: Re: [PATCH v2 net-next/devicetree 4/5] arm64: dts: fsl: ls1028a: add
+ node for Felix switch
+In-Reply-To: <CA+h21hpCBjo18zHc-SvMj5Y=C+e=rna5MUgp7SW1u0btma+wfg@mail.gmail.com>
+References: <20200219151259.14273-5-olteanv@gmail.com>
+ <20200222113829.32431-1-michael@walle.cc>
+ <CA+h21hpCBjo18zHc-SvMj5Y=C+e=rna5MUgp7SW1u0btma+wfg@mail.gmail.com>
+Message-ID: <c02160323fafd2ec621561e7e527de45@walle.cc>
+X-Sender: michael@walle.cc
+User-Agent: Roundcube Webmail/1.3.10
+X-Spamd-Bar: /
+X-Spam-Status: No, score=-0.10
+X-Rspamd-Server: web
+X-Spam-Score: -0.10
+X-Rspamd-Queue-Id: 76409230E1
+X-Spamd-Result: default: False [-0.10 / 15.00];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         FREEMAIL_ENVRCPT(0.00)[gmail.com];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DKIM_SIGNED(0.00)[];
+         DBL_PROHIBIT(0.00)[0.0.0.0:email,0.0.0.4:email];
+         RCPT_COUNT_SEVEN(0.00)[11];
+         NEURAL_HAM(-0.00)[-0.674];
+         FREEMAIL_TO(0.00)[gmail.com];
+         RCVD_COUNT_ZERO(0.00)[0];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,vger.kernel.org,gmail.com,arm.com,kernel.org];
+         MID_RHS_MATCH_FROM(0.00)[]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Vladimir,
 
---KscVNZbUup0vZz0f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Am 2020-02-22 13:25, schrieb Vladimir Oltean:
+> Hi Michael,
+> 
+> On Sat, 22 Feb 2020 at 13:38, Michael Walle <michael@walle.cc> wrote:
+>> 
+>> Hi,
+>> 
+> 
+>> > +
+>> > +                     enetc_port2: ethernet@0,2 {
+>> > +                             compatible = "fsl,enetc";
+>> > +                             reg = <0x000200 0 0 0 0>;
+>> > +                             phy-mode = "gmii";
+>> Can we disable this port by default in this dtsi? As mentioned in the 
+>> other
+>> mail, I'd prefer to have all ports disabled because it doesn't make 
+>> sense
+>> to have this port while having all the external ports disabled.
+>> 
+> 
+> Ok. What would you want to happen with the "ethernet" property? Do you
+> want the board dts to set that too?
 
-On Thu, Jan 23, 2020 at 05:12:48PM +0100, Alain Volmat wrote:
-> Add a new stm32mp15 specific compatible to handle FastMode+
-> registers handling which is different on the stm32mp15 compared
-> to the stm32f7 or stm32h7.
-> Indeed, on the stm32mp15, the FastMode+ set and clear registers
-> are separated while on the other platforms (F7 or H7) the control
-> is done in a unique register.
->=20
-> Signed-off-by: Alain Volmat <alain.volmat@st.com>
-
-Looks good (patch 2 as well). You'd only need to adapt the naming if you
-change the naming in patch 1, obviously.
+That's something I've also thought about. And now that you've mention
+this, I think it makes more sense to have that in the board too. Because
+if you have the freedom to use either eno2/swp4 or eno3/swp5, then if I
+choose the second one I'd have to delete the ethernet property from the
+first, correct? I actually thought about adding the ethernet property
+to both; but (1) I don't know if that is even possible (given that one
+is always disabled) and (2) if one want to use the second port as an
+additional link to the switch you'd have to remove the ethernet property
+on that port. correct?
 
 
---KscVNZbUup0vZz0f
-Content-Type: application/pgp-signature; name="signature.asc"
+>> > +                                     /* Internal port with DSA tagging */
+>> > +                                     mscc_felix_port4: port@4 {
+>> > +                                             reg = <4>;
+>> > +                                             phy-mode = "internal";
+>> > +                                             ethernet = <&enetc_port2>;
+>> Likewise, I'd prefer to have this disabled.
+>> 
+> 
+> Ok.
+> 
+>> > +                     enetc_port3: ethernet@0,6 {
+>> > +                             compatible = "fsl,enetc";
+>> > +                             reg = <0x000600 0 0 0 0>;
+>> > +                             status = "disabled";
+>> > +                             phy-mode = "gmii";
+>> shouldn't the status be after the phy-mode property?
+> 
+> Why?
 
------BEGIN PGP SIGNATURE-----
+I thought that would be a rule. I just had a quick look on some other 
+device
+trees before and they all has the status property as the last property 
+(before
+any subnodes). I might be mistaken. If so, you could do it for 
+consistency
+reasons ;) all status property in the ls1028a.dtsi are the last ones.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl5RISEACgkQFA3kzBSg
-KbaaDw//TvaXXxfk/UfcOGsDNuLxbiqLPHG3i6DtQPijfEd93ekH6LKIwE5kpDV2
-pbsCUtpHku3mQvQyPScHSdgyMyqbd31mwDSB8waFOfG4SuNDDJXxqo5GltD62/8w
-HSBfAAvF4TM58QMDIaDYokrUhVZm5BJ/Cofv2z4+jBx4uRBWC829pmxvuf/sHWbo
-gti4PZZLQRMbBs6i9/7ShPsLmn4NffZ6+U2GDyVl11EmYdhOP0fMVFPgnbS/0Z7C
-/xfuMFs5Cu3wyq1oHNF0//SurRD4b1YfENh87h+cjYElICT5EUZ+Yv65TPTE4Xpf
-lWUGKKVcJ6nGoYOLCJOz1YoG/cRUtxSG+RCQXVAkwyHuoswOl8UrWyPUuuOh51xf
-AvrobB4WbHE3Z0KtGryxl3q2XEnoA5XHQTl8vOKiPfJTQYsRTb300Oh1Ym25E2H1
-Oj3iUlI2EL2VC+hleMywRQgXZLtGyNL2C2xphOmASWRBC2zVVGcrfr8eaA5V+5AU
-LvFKZPIjVaLa8suLgoxqatPo7d52ZskkXpzOtKOLp5joFYxjaNxjJDRLmlGCaa4g
-EcErYOqMz3SJQuV8jyG+zNrmzZh8/1oQx6u7hkKzU2c0XaPCJhtjv8dXpMYS0Eqf
-eP6JDxzkRYh4GT2xc2GwLpEL9Ysy31G1yw2RhKurA6rRGHJpkMo=
-=epcM
------END PGP SIGNATURE-----
-
---KscVNZbUup0vZz0f--
+-michael
