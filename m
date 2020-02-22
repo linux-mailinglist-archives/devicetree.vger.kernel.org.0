@@ -2,97 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10803168CED
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 07:45:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC97168D3E
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 08:37:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726917AbgBVGp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Feb 2020 01:45:29 -0500
-Received: from conuserg-07.nifty.com ([210.131.2.74]:58837 "EHLO
-        conuserg-07.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726706AbgBVGp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Feb 2020 01:45:29 -0500
-Received: from grover.flets-west.jp (softbank126093102113.bbtec.net [126.93.102.113]) (authenticated)
-        by conuserg-07.nifty.com with ESMTP id 01M6ik5S005982;
-        Sat, 22 Feb 2020 15:44:49 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-07.nifty.com 01M6ik5S005982
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1582353889;
-        bh=QqGyHAeO/ubqw+w/CGTT6IeJ8TCbUiUiGrqEMAfnxi0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LTJLxviy0//6PBFHicl9ayUMniCHU2eba/TlzDSH/zXskm74nbSi1qOoY6VLNBwC5
-         PFSgmku0BNeEYOan3HeY85X6gzU5RDQB+r8yI9WhgOWObiAduIm0p2aTzccXu2iQaJ
-         ycyLpUJU3lX2eCWq8USB9t8glHCDvU1QzoMusnYu27k8Vzqjr5YmGCET9prTxaNIqy
-         75X2fETzshvUHcqwFzPtZH82kORGdkSnWztOoc4FLiYIAD26PuhtI2ioQ9MePOb+9T
-         NzL/ryQ88XD7hI2j5Ug4sC7QRRfhfNrCCBjg4d2534VNax99fPk+DJFKrnVKR1Ltzq
-         Wcne4+TPzZ2bA==
-X-Nifty-SrcIP: [126.93.102.113]
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, masahiroy@kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH 4/4] arm64: dts: uniphier: rename aidet node names to follow json-schema
-Date:   Sat, 22 Feb 2020 15:44:45 +0900
-Message-Id: <20200222064445.14903-4-yamada.masahiro@socionext.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200222064445.14903-1-yamada.masahiro@socionext.com>
-References: <20200222064445.14903-1-yamada.masahiro@socionext.com>
+        id S1727206AbgBVHhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Feb 2020 02:37:45 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58342 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726726AbgBVHhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 Feb 2020 02:37:45 -0500
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 51912208C4
+        for <devicetree@vger.kernel.org>; Sat, 22 Feb 2020 07:37:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582357064;
+        bh=wwlcvLyUUjq+aCUhLUkAhHiYjSH4uxAtpnE4vgF+h+s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Sde1d7C2Mjm5LUHGg8qaINBz5JTdkBfBVrrLfsWGpon33qFPiE/ee/UOtpXKaJU6b
+         JUmiiHm+dNfZJAYZYLPWDvCawpz4J8r21Z4cdbveVj32CVYxIg6nmgLiidgfRSy4eU
+         0giwVyyBDBzF7qhezjrG2J6RzGKmKwFQqALnjHkg=
+Received: by mail-wm1-f43.google.com with SMTP id t14so4200578wmi.5
+        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 23:37:44 -0800 (PST)
+X-Gm-Message-State: APjAAAUMqpNcxgtAlA7602UQVfazlV2dqfolWp1lFiLDziYpNflpW0DQ
+        wwOkiVGc/7ffT/MUd1HgpuVhdetStJX0c4zOb6MnHw==
+X-Google-Smtp-Source: APXvYqzLEqjaOCEz1rffDgh/i9rxHLaVrhkmq+aVjKgFm+xgANVXwtlOL9ob2zJTeWHA7/jtQHU14ap2WODxfLZ++eY=
+X-Received: by 2002:a7b:c4cc:: with SMTP id g12mr9246324wmk.68.1582357062812;
+ Fri, 21 Feb 2020 23:37:42 -0800 (PST)
+MIME-Version: 1.0
+References: <20200222014038.180923-1-saravanak@google.com> <20200222014038.180923-4-saravanak@google.com>
+In-Reply-To: <20200222014038.180923-4-saravanak@google.com>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Sat, 22 Feb 2020 08:37:31 +0100
+X-Gmail-Original-Message-ID: <CAKv+Gu8GtHQpFGM5U61uH86dnesnaVCkvqrPA6Y8wv4qRc8V4A@mail.gmail.com>
+Message-ID: <CAKv+Gu8GtHQpFGM5U61uH86dnesnaVCkvqrPA6Y8wv4qRc8V4A@mail.gmail.com>
+Subject: Re: [PATCH v1 3/5] efi/arm: Start using fw_devlink_get_flags()
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Len Brown <lenb@kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the standard nodename pattern "^interrupt-controller(@[0-9a-f,]+)*$"
-defined in schemas/interrupt-controller.yaml of dt-schema.
+On Sat, 22 Feb 2020 at 02:40, Saravana Kannan <saravanak@google.com> wrote:
+>
+> The fw_devlink_get_flags() provides the right flags to use when creating
+> mandatory device links derived from information provided by the
+> firmware. So, use that.
+>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
 
-Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
----
+Acked-by: Ard Biesheuvel <ardb@kernel.org>
 
- arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi | 2 +-
- arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi | 2 +-
- arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-index 7510db465f33..2e53daca9f5c 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-@@ -566,7 +566,7 @@
- 			};
- 		};
- 
--		aidet: aidet@5fc20000 {
-+		aidet: interrupt-controller@5fc20000 {
- 			compatible = "socionext,uniphier-ld11-aidet";
- 			reg = <0x5fc20000 0x200>;
- 			interrupt-controller;
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-index 8d360c5cc32b..be984200a70e 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-@@ -664,7 +664,7 @@
- 			};
- 		};
- 
--		aidet: aidet@5fc20000 {
-+		aidet: interrupt-controller@5fc20000 {
- 			compatible = "socionext,uniphier-ld20-aidet";
- 			reg = <0x5fc20000 0x200>;
- 			interrupt-controller;
-diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-index d51b0735917c..994fea7b12c1 100644
---- a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-+++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-@@ -462,7 +462,7 @@
- 			};
- 		};
- 
--		aidet: aidet@5fc20000 {
-+		aidet: interrupt-controller@5fc20000 {
- 			compatible = "socionext,uniphier-pxs3-aidet";
- 			reg = <0x5fc20000 0x200>;
- 			interrupt-controller;
--- 
-2.17.1
-
+>  drivers/firmware/efi/arm-init.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/firmware/efi/arm-init.c b/drivers/firmware/efi/arm-init.c
+> index d99f5b0c8a09..6703bedfa9e1 100644
+> --- a/drivers/firmware/efi/arm-init.c
+> +++ b/drivers/firmware/efi/arm-init.c
+> @@ -349,7 +349,7 @@ static int efifb_add_links(const struct fwnode_handle *fwnode,
+>          * If this fails, retrying this function at a later point won't
+>          * change anything. So, don't return an error after this.
+>          */
+> -       if (!device_link_add(dev, sup_dev, 0))
+> +       if (!device_link_add(dev, sup_dev, fw_devlink_get_flags()))
+>                 dev_warn(dev, "device_link_add() failed\n");
+>
+>         put_device(sup_dev);
+> --
+> 2.25.0.265.gbab2e86ba0-goog
+>
