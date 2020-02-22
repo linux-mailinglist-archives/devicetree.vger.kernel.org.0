@@ -2,115 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 681FB168BAE
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 02:41:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E92BD168C3E
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 05:01:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728003AbgBVBlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 21 Feb 2020 20:41:00 -0500
-Received: from mail-pg1-f201.google.com ([209.85.215.201]:46014 "EHLO
-        mail-pg1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728010AbgBVBk7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 20:40:59 -0500
-Received: by mail-pg1-f201.google.com with SMTP id c2so2125697pga.12
-        for <devicetree@vger.kernel.org>; Fri, 21 Feb 2020 17:40:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=KJExBCe79TvbDWBtLAIAPlDU0zRERHckO2kWsYTv978=;
-        b=Q+ZW5zteZDu1FNYEMvKTjgWjf9TVSuk16yWcCy2JweJvkq+lTHDxx786967t+KpMC4
-         WrYcOnyyCjG511w+00j/x8XY7e26b2TsnE4kgWSZWOu2mqXMNa4nKltDIZEpyts40fte
-         lFqRTRmjS84KOl/C+eXYSKbGlWvz3Gd//g5GAHgn0aO4ANiawlYoLTBfCMF4SiV0na5K
-         le4v19xzzHsWvOo6HvWOoFfzUVYAS9DL8Q/vlnOOT1FwrUxBu+HkYHMl42BYYcyqchtQ
-         ViLRU0kcaRQfGqeLQ4KYUhyqKl7rdiLM2cX6tOiClI1uGnFefdSz/2HsMYabeyxF/Who
-         Bv0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=KJExBCe79TvbDWBtLAIAPlDU0zRERHckO2kWsYTv978=;
-        b=grXw7HaSxAEzNvjofrGTqXGsNijqkOxWUVsI7sh6QzHaq+ZdoAZim4luQlnNcmas96
-         anDkxrxFVCD4I4i4jwCofeVR+VIJyBas4Z7x4WYYRNUrxaN3b2nSeDXV706OMatnytZO
-         /4k9SWK6PW5yOtDJQM9X4Ilg4PH0e7oSbnhVLfdgxGufBoFFSbK1kkfbY4dmZqDy1dX5
-         sUCMI2X4HWaYvwi/nhzdNYFik/vaUYD4cZiqcCN2DaGTF4mV6Kv/MsBtaSvXoRG99G5z
-         cBkhHq1nxL1MWhKr8XEJQm9EsuIhvFkbeWvG0NxOyvQbEXqcF8sXVBlqpCGgzK9ud7BT
-         HokQ==
-X-Gm-Message-State: APjAAAXgVtfP6tLsVjURVVc48b69jdhj16e1uEOGMoCa/A+wJdmf74Gl
-        PZpIhFEXyJ3KzlBGe8iD0dDpICk1irfPzxU=
-X-Google-Smtp-Source: APXvYqzeslKuPNzcFs1IbK32oZCNMmy4nVP9Y84HztkmAh6Tdl4LyaoiuujEisOnVrevdJg+wGWCL5JtzXjW6PI=
-X-Received: by 2002:a63:4804:: with SMTP id v4mr40448137pga.373.1582335658427;
- Fri, 21 Feb 2020 17:40:58 -0800 (PST)
-Date:   Fri, 21 Feb 2020 17:40:38 -0800
-In-Reply-To: <20200222014038.180923-1-saravanak@google.com>
-Message-Id: <20200222014038.180923-6-saravanak@google.com>
-Mime-Version: 1.0
-References: <20200222014038.180923-1-saravanak@google.com>
-X-Mailer: git-send-email 2.25.0.265.gbab2e86ba0-goog
-Subject: [PATCH v1 5/5] of: property: Delete of_devlink kernel commandline option
-From:   Saravana Kannan <saravanak@google.com>
-To:     Jonathan Corbet <corbet@lwn.net>,
+        id S1726328AbgBVEBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 21 Feb 2020 23:01:03 -0500
+Received: from mail-sz.amlogic.com ([211.162.65.117]:57549 "EHLO
+        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbgBVEBD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 21 Feb 2020 23:01:03 -0500
+Received: from [10.28.90.152] (10.28.90.152) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Sat, 22 Feb 2020
+ 12:01:26 +0800
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add arm,smc-wdt watchdog
+ arm,smc-wdt compatible
+To:     Julius Werner <jwerner@chromium.org>
+CC:     Evan Benn <evanbenn@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Len Brown <lenb@kernel.org>
-Cc:     Saravana Kannan <saravanak@google.com>, kernel-team@android.com,
-        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-efi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-watchdog@vger.kernel.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Yonghui Yu <yonghui.yu@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+References: <20200214062637.216209-1-evanbenn@chromium.org>
+ <20200214172512.1.I02ebc5b8743b1a71e0e15f68ea77e506d4e6f840@changeid>
+ <20200219223046.GA16537@bogus>
+ <CAODwPW8JspiUtyU4CC95w9rbNRyUF-Aeb9TuPm1PzmP6u=y1EA@mail.gmail.com>
+ <20200219232005.GA9737@roeck-us.net>
+ <CAKz_xw2hvHL=a4s37dmuCTWDbxefQFR3rfcaNiWYJY4T+jqabA@mail.gmail.com>
+ <e42320b8-266f-0b0e-b20b-b72228510e81@amlogic.com>
+ <CAODwPW94KX46PzSrf_uuEFPKudXor=26d=g3Qta5veRfxmMDUA@mail.gmail.com>
+From:   Xingyu Chen <xingyu.chen@amlogic.com>
+Message-ID: <1326f594-3cfd-c03d-4f2c-50eeb75724b2@amlogic.com>
+Date:   Sat, 22 Feb 2020 12:01:24 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
+MIME-Version: 1.0
+In-Reply-To: <CAODwPW94KX46PzSrf_uuEFPKudXor=26d=g3Qta5veRfxmMDUA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [10.28.90.152]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the addition of fw_devlink kernel commandline option, of_devlink is
-redundant and not useful anymore. So, delete it.
+Hi, Julius
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- Documentation/admin-guide/kernel-parameters.txt | 6 ------
- drivers/of/property.c                           | 6 ------
- 2 files changed, 12 deletions(-)
+On 2020/2/22 3:41, Julius Werner wrote:
+>> Because the ATF does not define standard wdt index, each vendor defines
+>> its own index.
+>> So I don't think that the current driver[0] can fully cover my usecases.
+> I think the best way to solve this would be to put the SMC function ID
+> as another field into the device tree, so that multiple vendors could
+> share the same driver even if their firmware interface uses a
+> different SMC. But they still have to implement the same API for that
+> SMC, of course, not sure if the Meson driver is suitable for that (but
+> if it is then I think merging those drivers would be a good idea).
+The SMC function ID may be solved by the DTS, but the wdt indexs(Eg: 
+SMCWD_INFO) are also different
+for each vendor. The imx_sc_wdt.c is also use the SMC to operate the 
+WDT, but the wdt indexs(Eg: IMX_SIP_TIMER_START_WDOG)
+are different from ours. IMO, If the ATF can implement a common hal 
+interface and index for watchdog, then writing a
+common smc wdt driver will be easier to compatible with all vendors.
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 29985152b66d..6692b2aa6140 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -3299,12 +3299,6 @@
- 			This can be set from sysctl after boot.
- 			See Documentation/admin-guide/sysctl/vm.rst for details.
- 
--	of_devlink	[OF, KNL] Create device links between consumer and
--			supplier devices by scanning the devictree to infer the
--			consumer/supplier relationships.  A consumer device
--			will not be probed until all the supplier devices have
--			probed successfully.
--
- 	ohci1394_dma=early	[HW] enable debugging via the ohci1394 driver.
- 			See Documentation/debugging-via-ohci1394.txt for more
- 			info.
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 15fc9315f1a7..f104f15b57fb 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1299,15 +1299,9 @@ static int of_link_to_suppliers(struct device *dev,
- 	return ret;
- }
- 
--static bool of_devlink;
--core_param(of_devlink, of_devlink, bool, 0);
--
- static int of_fwnode_add_links(const struct fwnode_handle *fwnode,
- 			       struct device *dev)
- {
--	if (!of_devlink)
--		return 0;
--
- 	if (unlikely(!is_of_node(fwnode)))
- 		return 0;
- 
--- 
-2.25.0.265.gbab2e86ba0-goog
-
+Best Regards
+>
+> .
