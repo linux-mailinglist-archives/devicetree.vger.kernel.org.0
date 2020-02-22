@@ -2,132 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B9EF616916C
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 20:05:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A298169196
+	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 20:45:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbgBVTFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Feb 2020 14:05:00 -0500
-Received: from conuserg-09.nifty.com ([210.131.2.76]:23060 "EHLO
-        conuserg-09.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727025AbgBVTE7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Feb 2020 14:04:59 -0500
-Received: from grover.flets-west.jp (softbank126093102113.bbtec.net [126.93.102.113]) (authenticated)
-        by conuserg-09.nifty.com with ESMTP id 01MJ4cZ7012807;
-        Sun, 23 Feb 2020 04:04:41 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-09.nifty.com 01MJ4cZ7012807
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1582398282;
-        bh=+FVDFnLL298bgalkTSawbKe4OXpVDH31Bj+BPaPEFT0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=d1YL5vpg+R4/voPIKhG+mWqnSEUKdufZNN0UNuCAAm8dpbCqJSOy/yk+uniwbGZde
-         Zy4blMojdzY32BqtqKd472LQgDCHCVMxUJrtcmiw4HB5zaDErCtBwe0cp4TF1Bv31Y
-         TIKeYB95nt9lvjql7zAiJfFHq/Mam7jkWIEDZW8GfjN88zg6XXHjqKzVBucrFcaiFE
-         r+UHfUZTNejNJyLEm0XQUarXL+XCimhiHljnzeFo8kXDT0b6T2Ffl0QN1NOgseidug
-         /qdPCR4hOUviBa4AyuU/orL15EtJKshu7dqttMQy80bZG+5X9KzIOU16dp+QWKzoRk
-         TGs6ABxjpYl2g==
-X-Nifty-SrcIP: [126.93.102.113]
-From:   Masahiro Yamada <masahiroy@kernel.org>
-To:     linux-kbuild@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] kbuild: allow to run dt_binding_check and dtbs_check in a single command
-Date:   Sun, 23 Feb 2020 04:04:35 +0900
-Message-Id: <20200222190435.11767-5-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200222190435.11767-1-masahiroy@kernel.org>
-References: <20200222190435.11767-1-masahiroy@kernel.org>
+        id S1726758AbgBVTpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Feb 2020 14:45:13 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55716 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726550AbgBVTpN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 Feb 2020 14:45:13 -0500
+Subject: Re: [GIT PULL] Devicetree fixes for v5.6, part 2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582400713;
+        bh=e/wizAP3md2y/e0mJQfbbdsgCpx0aiSivl+PEsy+vb4=;
+        h=From:In-Reply-To:References:Date:To:Cc:From;
+        b=TXUFT5yn5Ya8VCXEEwecYn2bpRrhPOkLQZLxq+OX5XeAs4dNpFS2CXXSiOVDmfyYU
+         psEe3heig237tD9ykAfxZiczGB3r+49Y0E3s0YHEzihdwBxspzGYJPj1yi56ExnYAO
+         nLfCaS7iCeApIAo0k/WIn9NDhGFi2VfOG5gPDr28=
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20200221215503.GA26346@bogus>
+References: <20200221215503.GA26346@bogus>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20200221215503.GA26346@bogus>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+ tags/devicetree-fixes-for-5.6-2
+X-PR-Tracked-Commit-Id: 854bdbae9058bcf09b0add70b6047bc9ca776de2
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: fea630215a9e767fd3917b2cb09ec3ded58f88a2
+Message-Id: <158240071306.14316.13731618209914121479.pr-tracker-bot@kernel.org>
+Date:   Sat, 22 Feb 2020 19:45:13 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit 93512dad334d ("dt-bindings: Improve validation build error
-handling"), 'make dtbs_check' does not validate the schema fully.
+The pull request you sent on Fri, 21 Feb 2020 15:55:03 -0600:
 
-If you want to check everything, you need to run two commands.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.6-2
 
-  $ make ARCH=arm dt_binding_check
-  $ make ARCH=arm dtbs_check
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/fea630215a9e767fd3917b2cb09ec3ded58f88a2
 
-You cannot do:
+Thank you!
 
-  $ make ARCH=arm dt_binding_check dtbs_check
-
-Because CHECK_DTBS is set, dt-doc-validate and dt-extract-example
-are skipped.
-
-Making it work will be useful for schema writers.
-
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
----
-
- Documentation/devicetree/bindings/Makefile  | 6 ++----
- Documentation/devicetree/writing-schema.rst | 4 ++++
- Makefile                                    | 8 +++++---
- 3 files changed, 11 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 646cb3525373..6efa2094b95e 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -25,10 +25,8 @@ DT_DOCS = $(shell \
- 
- DT_SCHEMA_FILES ?= $(addprefix $(src)/,$(DT_DOCS))
- 
--ifeq ($(CHECK_DTBS),)
--extra-y += $(patsubst $(src)/%.yaml,%.example.dts, $(DT_SCHEMA_FILES))
--extra-y += $(patsubst $(src)/%.yaml,%.example.dt.yaml, $(DT_SCHEMA_FILES))
--endif
-+extra-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dts, $(DT_SCHEMA_FILES))
-+extra-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dt.yaml, $(DT_SCHEMA_FILES))
- 
- $(obj)/$(DT_TMP_SCHEMA): $(DT_SCHEMA_FILES) FORCE
- 	$(call if_changed,mk_schema)
-diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
-index 7635ab230456..220cf464ed77 100644
---- a/Documentation/devicetree/writing-schema.rst
-+++ b/Documentation/devicetree/writing-schema.rst
-@@ -147,6 +147,10 @@ Note that ``dtbs_check`` will skip any binding schema files with errors. It is
- necessary to use ``dt_binding_check`` to get all the validation errors in the
- binding schema files.
- 
-+It is possible to run both in a single command::
-+
-+    make dt_binding_check dtbs_check
-+
- It is also possible to run checks with a single schema file by setting the
- ``DT_SCHEMA_FILES`` variable to a specific schema file.
- 
-diff --git a/Makefile b/Makefile
-index 83f9b8f6fbaf..59dd768a1c1e 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1243,7 +1243,7 @@ dtbs dtbs_check: include/config/kernel.release scripts_dtc
- 	$(Q)$(MAKE) $(build)=$(dtstree)
- 
- dtbs_check: export CHECK_DTBS=1
--dtbs_check: dt_binding_check
-+dtbs_check: __dt_binding_check
- 
- dtbs_install:
- 	$(Q)$(MAKE) $(dtbinst)=$(dtstree)
-@@ -1258,8 +1258,10 @@ PHONY += scripts_dtc
- scripts_dtc: scripts_basic
- 	$(Q)$(MAKE) $(build)=scripts/dtc
- 
--PHONY += dt_binding_check
--dt_binding_check: scripts_dtc
-+PHONY += dt_binding_check __dt_binding_check
-+dt_binding_check: export CHECK_DT_BINDING=y
-+dt_binding_check: __dt_binding_check
-+__dt_binding_check: scripts_dtc
- 	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
- 
- # ---------------------------------------------------------------------------
 -- 
-2.17.1
-
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/prtracker
