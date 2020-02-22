@@ -2,37 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73F7F169218
-	for <lists+devicetree@lfdr.de>; Sat, 22 Feb 2020 23:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5041E169234
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2020 00:14:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726853AbgBVWb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Feb 2020 17:31:59 -0500
-Received: from vps.xff.cz ([195.181.215.36]:33652 "EHLO vps.xff.cz"
+        id S1727004AbgBVXOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Feb 2020 18:14:34 -0500
+Received: from vps.xff.cz ([195.181.215.36]:33960 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726865AbgBVWb7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Feb 2020 17:31:59 -0500
+        id S1726855AbgBVXOd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 Feb 2020 18:14:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1582410717; bh=JXyUwfOt5qQZMrdIu4ex8maESbx2epZpUJC0gC9L4w4=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=AUYJNq8I8IHJuRrgU97v7kcLO4ytgLad+vrkMhZa1fJO9jjlC+X/sS6h3G5NFAgFg
-         4sOA6z6mAqm85JzyZElUYrIjUnGeXw8fkXPK16MAdCnbXudapqntos2Mb4FYL9aItt
-         3YUU54zQa0yTtHBfR8mlfZRX4t7AhE8SHY6zL6bk=
+        t=1582413271; bh=O+L3Dgir8ylc0hRKhh+YvNvVJjhY/rU659XZD2GVYnY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=fCtF4hhmMcBT3t3pgLRjHBXlVS22ppcJg2B6akTO8amSo0XYfOoIBYZvmUnQ9kXk2
+         Z13/B3H07CMJb+3mz8qmpzNj4dRSfc4AGdUmb3rTIfhf3MCpnlrLYtKYCrB7XdSC8j
+         QfzFykHW+lf7whEzPV56NJ5N/20/re4ljiLnX5+U=
 From:   Ondrej Jirman <megous@megous.com>
-To:     linux-sunxi@googlegroups.com, Maxime Ripard <mripard@kernel.org>,
+To:     linux-sunxi@googlegroups.com,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>
 Cc:     Ondrej Jirman <megous@megous.com>,
-        Tomas Novotny <tomas@novotny.cz>,
-        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner
-        sunXi SoC support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 4/4] ARM: dts: sun8i-a83t-tbs-a711: Drop superfluous dr_mode
-Date:   Sat, 22 Feb 2020 23:31:54 +0100
-Message-Id: <20200222223154.221632-5-megous@megous.com>
-In-Reply-To: <20200222223154.221632-1-megous@megous.com>
-References: <20200222223154.221632-1-megous@megous.com>
+        Luca Weiss <luca@z3ntu.xyz>, Tomas Novotny <tomas@novotny.cz>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/4] Add support for vibrator motor for TBS A711 Tablet
+Date:   Sun, 23 Feb 2020 00:14:24 +0100
+Message-Id: <20200222231428.233621-1-megous@megous.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -40,25 +38,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Property dr_mode = "otg" is the default in sun8i-a83t.dtsi
+The tablet has a vibrator. Expose it via input subsystem (EV_FF).
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
----
- arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts | 1 -
- 1 file changed, 1 deletion(-)
+Please take a look.
 
-diff --git a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts b/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-index 32fa64a44d8b4..267653775203e 100644
---- a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-+++ b/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-@@ -490,7 +490,6 @@ gnss {
- };
- 
- &usb_otg {
--	dr_mode = "otg";
- 	status = "okay";
- };
- 
+thank you and regards,
+  Ondrej Jirman
+
+Ondrej Jirman (4):
+  dt-bindings: input: gpio-vibrator: Don't require enable-gpios
+  input: gpio-vibra: Allow to use vcc-supply alone to control the
+    vibrator
+  ARM: dts: sun8i-a83t-tbs-a711: Add support for the vibrator motor
+  ARM: dts: sun8i-a83t-tbs-a711: Increase voltage on the vibrator
+
+ .../devicetree/bindings/input/gpio-vibrator.yaml         | 1 -
+ arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts                | 9 +++++++--
+ drivers/input/misc/gpio-vibra.c                          | 3 ++-
+ 3 files changed, 9 insertions(+), 4 deletions(-)
+
 -- 
 2.25.1
 
