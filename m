@@ -2,341 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C0E8416957C
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2020 04:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B623169587
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2020 04:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727159AbgBWDQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Feb 2020 22:16:20 -0500
-Received: from vps.xff.cz ([195.181.215.36]:36916 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727168AbgBWDQU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Feb 2020 22:16:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1582427777; bh=6j0DxbJ/V8IgRplqMfc5J/OcLS7lseeEJ0/xhXqA518=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=ij3YSJNVl2Kwdb4KXuHt4M1Mo1dqGLuitZ/A6Xgr/T+IeMBFT6Vcacv9PBjodzmIY
-         VDHLk2JDXf8c1GhPWGWUchZFVkXS9dCkJgB1CYpwWbe7CrKXvOVkEY6aQtLwGR7Kc3
-         5i4DpQIwVIPFK6CgQdzxUs44t5Y0ZTqxu2hRhqf0=
-From:   Ondrej Jirman <megous@megous.com>
-To:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     Ondrej Jirman <megous@megous.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Sunil Mohan Adapa <sunil@medhas.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: sun5i: Add PocketBook Touch Lux 3 support
-Date:   Sun, 23 Feb 2020 04:16:14 +0100
-Message-Id: <20200223031614.515563-4-megous@megous.com>
-In-Reply-To: <20200223031614.515563-1-megous@megous.com>
-References: <20200223031614.515563-1-megous@megous.com>
+        id S1727261AbgBWDX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Feb 2020 22:23:29 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:33335 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727093AbgBWDX3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 22 Feb 2020 22:23:29 -0500
+Received: by mail-ed1-f65.google.com with SMTP id r21so7587898edq.0;
+        Sat, 22 Feb 2020 19:23:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RS1myGQD4/DxcloU05LYheuFzcmTnlxgIJwQU+BLqtY=;
+        b=MxI8FM2mm+dZFcmAVdQO8Lq728djsVIYKYj7ANjU90WqVOBTJUKEuJwApjk4ipExGp
+         BRtNw9htGZS6Xi6xW/NHAqV8YmipiBlXN86fD2TH7xJn8PfIaCQdTRpET0hQ+Y3fPSy2
+         v+9+pk2ht3ZRZGc10pKqqdCls0whoBut4YgxlQxTIqPhd2M3VoDsfCXkcijUmkRsJ1lL
+         Logq8Ao1iLpnhCezCzLvMWoo1uXLjDJIJBaDZxt3aSje0K3XEA/9HGmW7g27Bby+r5YO
+         kkkAdaKAlvNolD8Si0Vt6e/6lGGlAx6uh490F2vUkh6sS05MxXzYrQQuFDL7OBhCr/aq
+         07Jg==
+X-Gm-Message-State: APjAAAXnOCoZjXaSYij8JYRIUKgCFCqGbena04Y7KJK68/lry33+9/LV
+        XKxQfKunGFhjP82OfvhwJvWtg+OAlS4=
+X-Google-Smtp-Source: APXvYqwi+kjImUdTL0vzD3gf5zEKNMyj3eI9Fvxf+6hnbmTWovDebi924u/JV7IqYEuNJF+bBAMT7w==
+X-Received: by 2002:aa7:cf81:: with SMTP id z1mr40883593edx.234.1582428207299;
+        Sat, 22 Feb 2020 19:23:27 -0800 (PST)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
+        by smtp.gmail.com with ESMTPSA id n11sm594532eje.86.2020.02.22.19.23.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Feb 2020 19:23:26 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id g3so6334598wrs.12;
+        Sat, 22 Feb 2020 19:23:25 -0800 (PST)
+X-Received: by 2002:a5d:484f:: with SMTP id n15mr57653500wrs.365.1582428205416;
+ Sat, 22 Feb 2020 19:23:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20191020134229.1216351-3-megous@megous.com> <20191110124355.1569-1-rikard.falkeborn@gmail.com>
+In-Reply-To: <20191110124355.1569-1-rikard.falkeborn@gmail.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Sun, 23 Feb 2020 11:23:15 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67piSbdmDPOU_w3QterPRk7iFnrMAZe05O5ypwraohssQ@mail.gmail.com>
+Message-ID: <CAGb2v67piSbdmDPOU_w3QterPRk7iFnrMAZe05O5ypwraohssQ@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v2 RESEND] phy: allwinner: Fix GENMASK misuse
+To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>
+Cc:     linux-usb <linux-usb@vger.kernel.org>,
+        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Icenowy Zheng <icenowy@aosc.io>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-What works:
+On Sun, Feb 23, 2020 at 7:42 AM Ondrej Jirman <megous@megous.com> wrote:
+>
+> From: Rikard Falkeborn <rikard.falkeborn@gmail.com>
+>
+> Arguments are supposed to be ordered high then low.
+>
+> Fixes: a228890f9458 ("phy: allwinner: add phy driver for USB3 PHY on Allwinner H6 SoC")
+> Signed-off-by: Rikard Falkeborn <rikard.falkeborn@gmail.com>
+> Tested-by: Ondrej Jirman <megous@megous.com>
+> Signed-off-by: Ondrej Jirman <megous@megous.com>
 
-- Serial console
-- mmc0, mmc2 (both microSD card slots on the board)
-- All buttons (gpio and lradc based)
-- Power LED
-- PMIC
-- RTC
-- USB OTG/gadgets mode
-- Realtek USB WiFi
-- Display backlight
-- eInk display SPI NOR flash memory
+Acked-by: Chen-Yu Tsai <wens@csie.org>
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/sun5i-a13-pocketbook-touch-lux-3.dts  | 257 ++++++++++++++++++
- 2 files changed, 258 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun5i-a13-pocketbook-touch-lux-3.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index d6546d2676b9d..ef732a31e4352 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1056,6 +1056,7 @@ dtb-$(CONFIG_MACH_SUN5I) += \
- 	sun5i-a13-licheepi-one.dtb \
- 	sun5i-a13-olinuxino.dtb \
- 	sun5i-a13-olinuxino-micro.dtb \
-+	sun5i-a13-pocketbook-touch-lux-3.dtb \
- 	sun5i-a13-q8-tablet.dtb \
- 	sun5i-a13-utoo-p66.dtb \
- 	sun5i-gr8-chip-pro.dtb \
-diff --git a/arch/arm/boot/dts/sun5i-a13-pocketbook-touch-lux-3.dts b/arch/arm/boot/dts/sun5i-a13-pocketbook-touch-lux-3.dts
-new file mode 100644
-index 0000000000000..e9ef97c9c893b
---- /dev/null
-+++ b/arch/arm/boot/dts/sun5i-a13-pocketbook-touch-lux-3.dts
-@@ -0,0 +1,257 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright 2019 Ondrej Jirman <megous@megous.com>
-+ */
-+
-+/dts-v1/;
-+#include "sun5i-a13.dtsi"
-+#include "sunxi-common-regulators.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/ {
-+	model = "PocketBook Touch Lux 3";
-+	compatible = "pocketbook,touch-lux-3", "allwinner,sun5i-a13";
-+
-+	aliases {
-+		serial0 = &uart1;
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
-+	};
-+
-+	backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-+		enable-gpios = <&pio 1 4 GPIO_ACTIVE_HIGH>; /* PB4 */
-+		brightness-levels = <0 10 20 30 40 50 60 70 80 90 100>;
-+		default-brightness-level = <8>;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		power {
-+			gpios = <&pio 4 8 GPIO_ACTIVE_LOW>; /* PE8 */
-+			default-state = "on";
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+		label = "GPIO Keys";
-+
-+		key-right {
-+			label = "Right";
-+			linux,code = <KEY_RIGHT>;
-+			gpios = <&pio 6 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PG9 */
-+		};
-+
-+		key-left {
-+			label = "Left";
-+			linux,code = <KEY_LEFT>;
-+			gpios = <&pio 6 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PG10 */
-+		};
-+	};
-+
-+	reg_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd-1v8-nor-ctp";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&pio 2 15 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_1v8_nor: regulator-nor {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd-nor";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&pio 2 14 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&reg_1v8>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1v8_ctp: regulator-ctp {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd-ctp";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&pio 2 13 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply = <&reg_1v8>;
-+	};
-+
-+	reg_3v3_mmc0: regulator-mmc0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd-mmc0";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&pio 4 4 GPIO_ACTIVE_LOW>; /* PE4 */
-+		vin-supply = <&reg_vcc3v3>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&reg_dcdc2>;
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	axp209: pmic@34 {
-+		reg = <0x34>;
-+		interrupts = <0>;
-+	};
-+};
-+
-+#include "axp209.dtsi"
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	pcf8563: rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	/* Touchpanel is connected here. */
-+};
-+
-+&lradc {
-+	vref-supply = <&reg_ldo2>;
-+	status = "okay";
-+
-+	button-200 {
-+		label = "Home";
-+		linux,code = <KEY_HOME>;
-+		channel = <0>;
-+		voltage = <200000>;
-+	};
-+
-+	button-400 {
-+		label = "Menu";
-+		linux,code = <KEY_MENU>;
-+		channel = <0>;
-+		voltage = <400000>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply = <&reg_3v3_mmc0>;
-+	bus-width = <4>;
-+	cd-gpios = <&pio 6 0 GPIO_ACTIVE_LOW>; /* PG0 */
-+	status = "okay";
-+};
-+
-+&mmc2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc2_4bit_pc_pins>;
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&ohci0 {
-+	status = "okay";
-+};
-+
-+&otg_sram {
-+	status = "okay";
-+};
-+
-+&pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwm0_pin>;
-+	status = "okay";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1000000>;
-+	regulator-max-microvolt = <1400000>;
-+	regulator-name = "vdd-cpu";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1200000>;
-+	regulator-max-microvolt = <1200000>;
-+	regulator-name = "vdd-int-pll";
-+};
-+
-+&reg_ldo1 {
-+	regulator-name = "vdd-rtc";
-+};
-+
-+&reg_ldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "avcc";
-+};
-+
-+&reg_ldo3 {
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vcc-wifi";
-+	/* We need this otherwise the LDO3 would overload */
-+	regulator-soft-start;
-+	regulator-ramp-delay = <1600>;
-+};
-+
-+&spi2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi2_pe_pins>, <&spi2_cs0_pe_pin>;
-+	status = "okay";
-+
-+	epd_flash: flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "macronix,mx25u4033", "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <4000000>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pg_pins>;
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&battery_power_supply {
-+	status = "okay";
-+};
-+
-+&usb_power_supply {
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb1_vbus-supply = <&reg_ldo3>;
-+	status = "okay";
-+};
--- 
-2.25.1
-
+> ---
+> v1->v2: Add fixes tax. Add Ondrejs Tested-by. No functional change.
+>
+> This was last sent in Nov last year. I'm resending, because it probably
+> got forgotten. The only change is adding my SoB, which I understand is
+> required for the sender of the patch.
+>
+>  drivers/phy/allwinner/phy-sun50i-usb3.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/phy/allwinner/phy-sun50i-usb3.c b/drivers/phy/allwinner/phy-sun50i-usb3.c
+> index 1169f3e83a6f..b1c04f71a31d 100644
+> --- a/drivers/phy/allwinner/phy-sun50i-usb3.c
+> +++ b/drivers/phy/allwinner/phy-sun50i-usb3.c
+> @@ -49,7 +49,7 @@
+>  #define SUNXI_LOS_BIAS(n)              ((n) << 3)
+>  #define SUNXI_LOS_BIAS_MASK            GENMASK(5, 3)
+>  #define SUNXI_TXVBOOSTLVL(n)           ((n) << 0)
+> -#define SUNXI_TXVBOOSTLVL_MASK         GENMASK(0, 2)
+> +#define SUNXI_TXVBOOSTLVL_MASK         GENMASK(2, 0)
+>
+>  struct sun50i_usb3_phy {
+>         struct phy *phy;
+> --
+> 2.24.0
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>
+> --
+> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20191110124355.1569-1-rikard.falkeborn%40gmail.com.
