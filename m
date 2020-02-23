@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97F8E169330
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2020 03:21:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4FBF169457
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2020 03:30:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727718AbgBWCVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 22 Feb 2020 21:21:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50266 "EHLO mail.kernel.org"
+        id S1728877AbgBWCXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 22 Feb 2020 21:23:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53634 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727708AbgBWCVp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 22 Feb 2020 21:21:45 -0500
+        id S1728864AbgBWCXy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 22 Feb 2020 21:23:54 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AD362214DB;
-        Sun, 23 Feb 2020 02:21:44 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C259D24676;
+        Sun, 23 Feb 2020 02:23:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1582424505;
-        bh=b0T7XcKyF7fdfoO4CCzBX1iv4p+VefjFERsskt64TYA=;
+        s=default; t=1582424633;
+        bh=SPgzoJBpWxhqKj4AqAQmm2VU7/zyGbEZx9wPtWTH1TE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=i77Vk/J7TDJqXKm6002HID74eMcTfYAZSaWrtUgisXwgqrP7uaWz+jsZd1UfIdSuY
-         qVGo6Vda6oDP2e/05DGGsRZGdZNb8ewq5oAlwSNhKimgt/Lm1KkstX7O9aYljVb0+O
-         upakQSOxY5hobZaEu1y+Wx4hIC5hzRD/tCgjuNn0=
+        b=vJEFHdwU75onJziJNCZUFpWgTw4oOK0Q7EJY4fZXmaQ9fVFTzIWV/dlx8fDFtbu08
+         /IDEh0FLVeYOMjSbtGZOIqGYIX6vaNqB2MaVmx6YBY30pu5+xvoM7retYPtYQ683hN
+         YU4a7yaDOPo9z12LkBVzFpRh/5LfPdhDUug3yJWA=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
         Patrice Chotard <patrice.chotard@st.com>,
         Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.5 21/58] ARM: dts: sti: fixup sound frame-inversion for stihxxx-b2120.dtsi
-Date:   Sat, 22 Feb 2020 21:20:42 -0500
-Message-Id: <20200223022119.707-21-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 11/25] ARM: dts: sti: fixup sound frame-inversion for stihxxx-b2120.dtsi
+Date:   Sat, 22 Feb 2020 21:23:25 -0500
+Message-Id: <20200223022339.1885-11-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200223022119.707-1-sashal@kernel.org>
-References: <20200223022119.707-1-sashal@kernel.org>
+In-Reply-To: <20200223022339.1885-1-sashal@kernel.org>
+References: <20200223022339.1885-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -60,10 +60,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/stihxxx-b2120.dtsi b/arch/arm/boot/dts/stihxxx-b2120.dtsi
-index 60e11045ad762..d051f080e52ec 100644
+index 4dedfcb0fcb30..ac42d3c6bda0b 100644
 --- a/arch/arm/boot/dts/stihxxx-b2120.dtsi
 +++ b/arch/arm/boot/dts/stihxxx-b2120.dtsi
-@@ -46,7 +46,7 @@
+@@ -45,7 +45,7 @@
  			/* DAC */
  			format = "i2s";
  			mclk-fs = <256>;
