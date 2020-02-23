@@ -2,171 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5457D169A0C
-	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2020 21:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD064169A5F
+	for <lists+devicetree@lfdr.de>; Sun, 23 Feb 2020 23:01:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727247AbgBWUre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Feb 2020 15:47:34 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:54749 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727238AbgBWUrd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Feb 2020 15:47:33 -0500
-Received: by mail-wm1-f67.google.com with SMTP id z12so3809615wmi.4;
-        Sun, 23 Feb 2020 12:47:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=nlEamf3Bb75llXd1Mhw/lOhQJYbINGDlRtFSVygDuDU=;
-        b=gon4KZhzPKlehdd0aPjjxxDnjn7tFM/owUqv/JfmkGPd6K0fNde3p7dUyOImYCLoh+
-         c6nmG5tT4DpwnqSgHS75lzDybHm/p1TshgeQOt0cjnQZLav6IcfBjjw9A+Gz6D9Z0W6A
-         bSaLikGpID0JGmsAvtl2atuaOZPZCkRe4GJxT27Eg+eUL84g53pmb8+d5nMTy+pRsQBw
-         u6zOTnAysaALtKAZINy2yup3zcdwu+0QT8jeGEU9/m/qu1CFLn0j64iMwsXKuioQBMR9
-         97+Z8nZuOjaLC2SuIfOoCW2tTK/imCMEvZ/Fute2lvMU7bxKGxEhE60gpM12cHMZ5SgP
-         NV4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=nlEamf3Bb75llXd1Mhw/lOhQJYbINGDlRtFSVygDuDU=;
-        b=cJ9Z0mAW8AsNmOdVmvh8hTOn6m50O66Kau+miiYhffWqI4sx2r48+5ayCGrsIP73Et
-         d3b2ltVqVFOXqVEq64ahkigOCgL6vTghgbon9feLewROupusiXe0UZuPmuMRxWSMoz3j
-         lca6T3R6Xzy9bPsF/QCw9aiNCuJHqH4WL4jCHqE2fMXCMVVEw9Ws0eKEd0nuhvzpgnaq
-         FkuGzHOXno54bySXO0q95knXdmu0CV897OA7v4XKNFrcYcRTqV0EfSruZyxdW7FTyOt7
-         TiAmQw97vVUX45XURWnp+MYMsPBLyDw4Bzh924oHYsu43AdGBbn0sSELI4hDI58P7XYI
-         qzDg==
-X-Gm-Message-State: APjAAAUX++RTXfT0gmgz4I5FKyxRmJ7xZzFNmHtVRPkWr73d/fHEqglN
-        btpJD3LdwQqwEHfhXtdusbM=
-X-Google-Smtp-Source: APXvYqz/cf1PBssq3BPpoP9LiziohZ60js7tzpnfBEbSAsDu30hCL3wVYhOkSpBgx2WVvxjB0CNi1g==
-X-Received: by 2002:a1c:4c8:: with SMTP id 191mr17418212wme.148.1582490850929;
-        Sun, 23 Feb 2020 12:47:30 -0800 (PST)
-Received: from localhost.localdomain ([79.115.60.40])
-        by smtp.gmail.com with ESMTPSA id z8sm14817927wrq.22.2020.02.23.12.47.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 23 Feb 2020 12:47:30 -0800 (PST)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        alexandru.marginean@nxp.com, claudiu.manoil@nxp.com,
-        michael@walle.cc, davem@davemloft.net, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 devicetree 6/6] arm64: dts: fsl: ls1028a: enable switch PHYs on RDB
-Date:   Sun, 23 Feb 2020 22:47:16 +0200
-Message-Id: <20200223204716.26170-7-olteanv@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200223204716.26170-1-olteanv@gmail.com>
-References: <20200223204716.26170-1-olteanv@gmail.com>
+        id S1727158AbgBWWBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Feb 2020 17:01:25 -0500
+Received: from ozlabs.org ([203.11.71.1]:35501 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726302AbgBWWBZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 23 Feb 2020 17:01:25 -0500
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 48QfKZ3rhhz9sR4; Mon, 24 Feb 2020 09:01:22 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1582495282;
+        bh=offKD/tuqL/DSDa2v25Jc0IM7BprqmjMf6LCeNiIZbE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LwL/iptBEMCarj+f3q8Os3B2TZTfsaK9r0ubJJ13bhD5UKGSewVyTATKgRL6ybTw6
+         TZ6r3y3evxFJ2T7GHqr77PmlzWNZc74Q2JYKrMRZpOZtmz7niIl6Ti9OpZmYSBayjZ
+         TBuqRBuLuno8PmSPypNw+iutg3ImuBykUAEZ9CMI=
+Date:   Mon, 24 Feb 2020 08:59:36 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Alexandre Torgue <alexandre.torgue@st.com>, robh+dt@kernel.org,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>, sjg@chromium.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-kbuild@vger.kernel.org, devicetree-compiler@vger.kernel.org,
+        Ian Lepore <ian@freebsd.org>
+Subject: Re: [RFC PATCH v2 1/4] scripts: Add script to generate dtb build
+ information
+Message-ID: <20200223215936.GB1751@umbus.fritz.box>
+References: <20200221161418.20225-1-alexandre.torgue@st.com>
+ <20200221161418.20225-2-alexandre.torgue@st.com>
+ <592e41a4-6115-474e-b6ce-eeb82f858a78@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="LZvS9be/3tNcYl/X"
+Content-Disposition: inline
+In-Reply-To: <592e41a4-6115-474e-b6ce-eeb82f858a78@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Claudiu Manoil <claudiu.manoil@nxp.com>
 
-Link the switch PHY nodes to the central MDIO controller PCIe endpoint
-node on LS1028A (implemented as PF3) so that PHYs are accessible via
-MDIO.
+--LZvS9be/3tNcYl/X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Enable SGMII AN on the Felix PCS by telling PHYLINK that the VSC8514
-quad PHY is capable of in-band-status.
+On Fri, Feb 21, 2020 at 11:52:34AM -0600, Frank Rowand wrote:
+> On 2/21/20 10:14 AM, Alexandre Torgue wrote:
+> > This commit adds a new script to create a file (in dts file directory) =
+with
+> > some information (date, Linux version, user). This file could then be u=
+sed
+> > to populate "build-info" property in every dts file that would use this
+> > build information:
+> >=20
+> > Example:
+> >=20
+> > / {
+> > 	...
+> > 	build-info =3D /incbin/("dtb-build.txt");
+>=20
+> s/.txt/.dtsi/
 
-The PHYs are used in poll mode due to an issue with the interrupt line
-on current revisions of the LS1028A-RDB board.
+I don't think that makes sense.  This is an /incbin/ not an /include/
+so the text file is *not* dts information.
 
-Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
-Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
-Changes in v3:
-- Set and enable the CPU port and DSA master from the board-specific
-  fsl-ls1028a-rdb.dts.
-- Move the "status" property to last.
+> and same wherever the file name is used.
+>=20
+>=20
+> > 	...
+> > };
+> >=20
+> > Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
+> >=20
+> > diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+> > index bae62549e3d2..a5af84ef4ffc 100644
+> > --- a/scripts/Makefile.lib
+> > +++ b/scripts/Makefile.lib
+> > @@ -246,6 +246,7 @@ quiet_cmd_gzip =3D GZIP    $@
+> >  # DTC
+> >  # --------------------------------------------------------------------=
+-------
+> >  DTC ?=3D $(objtree)/scripts/dtc/dtc
+> > +DTB_GEN_INFO ?=3D $(objtree)/scripts/gen_dtb_build_info.sh
+> > =20
+> >  # Disable noisy checks by default
+> >  ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
+> > @@ -286,6 +287,7 @@ $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
+> > =20
+> >  quiet_cmd_dtc =3D DTC     $@
+> >  cmd_dtc =3D mkdir -p $(dir ${dtc-tmp}) ; \
+> > +	$(DTB_GEN_INFO) $(src) ; \
+> >  	$(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< =
+; \
+> >  	$(DTC) -O $(2) -o $@ -b 0 \
+> >  		$(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
+> > diff --git a/scripts/gen_dtb_build_info.sh b/scripts/gen_dtb_build_info=
+=2Esh
+> > new file mode 100755
+> > index 000000000000..0cd8bd98e410
+> > --- /dev/null
+> > +++ b/scripts/gen_dtb_build_info.sh
+> > @@ -0,0 +1,10 @@
+> > +#!/bin/bash
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +
+> > +set -o nounset
+> > +
+> > +DTB_DIR=3D$1
+> > +DTB_COMPILE_BY=3D$(whoami | sed 's/\\/\\\\/')
+> > +DTB_INFO=3D"From Linux $KERNELRELEASE by $DTB_COMPILE_BY the $(date).\=
+0"
+>=20
+> I would remove the filler words "From", "by", "the", and the trailing
+> period ('.').
+>=20
+> <bikeshed>
+> You might consider using a format more like the Linux
+> kernel version line, which puts parenthesis around the
+> compiled by info.
+> </bikeshed>
+>=20
+> -Frank
+>=20
+> > +
+> > +printf "$DTB_INFO" > "$DTB_DIR/dtb-build.txt"
+> >=20
+>=20
 
-Changes in v2:
-None.
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
 
- .../boot/dts/freescale/fsl-ls1028a-rdb.dts    | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
+--LZvS9be/3tNcYl/X
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index 14efe3b06042..6d05b76c2c7a 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -177,6 +177,25 @@
- 	status = "okay";
- };
- 
-+&enetc_mdio_pf3 {
-+	/* VSC8514 QSGMII quad PHY */
-+	qsgmii_phy0: ethernet-phy@10 {
-+		reg = <0x10>;
-+	};
-+
-+	qsgmii_phy1: ethernet-phy@11 {
-+		reg = <0x11>;
-+	};
-+
-+	qsgmii_phy2: ethernet-phy@12 {
-+		reg = <0x12>;
-+	};
-+
-+	qsgmii_phy3: ethernet-phy@13 {
-+		reg = <0x13>;
-+	};
-+};
-+
- &enetc_port0 {
- 	phy-handle = <&sgmii_phy0>;
- 	phy-connection-type = "sgmii";
-@@ -191,6 +210,47 @@
- 	};
- };
- 
-+&enetc_port2 {
-+	status = "okay";
-+};
-+
-+&mscc_felix_port0 {
-+	label = "swp0";
-+	managed = "in-band-status";
-+	phy-handle = <&qsgmii_phy0>;
-+	phy-mode = "qsgmii";
-+	status = "okay";
-+};
-+
-+&mscc_felix_port1 {
-+	label = "swp1";
-+	managed = "in-band-status";
-+	phy-handle = <&qsgmii_phy1>;
-+	phy-mode = "qsgmii";
-+	status = "okay";
-+};
-+
-+&mscc_felix_port2 {
-+	label = "swp2";
-+	managed = "in-band-status";
-+	phy-handle = <&qsgmii_phy2>;
-+	phy-mode = "qsgmii";
-+	status = "okay";
-+};
-+
-+&mscc_felix_port3 {
-+	label = "swp3";
-+	managed = "in-band-status";
-+	phy-handle = <&qsgmii_phy3>;
-+	phy-mode = "qsgmii";
-+	status = "okay";
-+};
-+
-+&mscc_felix_port4 {
-+	ethernet = <&enetc_port2>;
-+	status = "okay";
-+};
-+
- &sai4 {
- 	status = "okay";
- };
--- 
-2.17.1
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAl5S9cMACgkQbDjKyiDZ
+s5L+uA/+Ijah4iblw6QeplPNZ0j5P3vPdvAPrnFrpiCY6faeGB25BQpakMQSxYd7
+AUVpiyiW7OO5Re1VP7+A7M3RIeR2ZN8Yl7dQsb2Evpbs4cB4LyRfmZCLUebEkUuY
+lOSjFCIwLrM7InrWM2cS3Xim0i5jC9m1SB7TKAG+VQCT+ahF3rHSfoqKDADyoEov
+M6zVCPvPCnw8UF8JsciD3vn1ehO8MFNWDPxJmVl+FqXGn/woSD6CXqMRFOhkMILe
+qIThs0v1fGeKAKZgNnzfblAT8MHwOWIEq/uCDKktxsEFXe0Htb5m7O+jblm2jAyE
+XviDax1jJkzAn8LcJaguDZhekE5AbG4cimW2NV9Y4qYDqcKrUKxJlZxNC+7rAypV
+nlry93xwydvEHISHa2AB7zHOM0BTYlRBOYQRmFrwZO1uc9h4MV2K1P5LAtxRki/h
+gXnKoekE8bkqs6/9P0bTRQ9PpyKs/sYZpUcZmzezuwkopRjHLv1ohlJj/x6dZb9w
+X+FkHVdFs0cREO9nGTUeCvm/rfe+ntpnJzG9iBkOwIj1XVZQQu19CXBYoSAP5uX+
+vsxZH83B//jEMEj/oMYgdFbKxZqxoaFwJxBMRZSHFEHAQ9h+wCQS/tXmHqXvPTWJ
+ds7GSr5+Cv03afxPFENdyX69B1a3YFGT2qDKgln3YuRVs8Ww5no=
+=v1oI
+-----END PGP SIGNATURE-----
+
+--LZvS9be/3tNcYl/X--
