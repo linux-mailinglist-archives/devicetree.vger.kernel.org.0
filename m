@@ -2,160 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 126A316ADFA
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 18:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D30F916AE12
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 18:52:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727299AbgBXRsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 12:48:38 -0500
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:43699 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727259AbgBXRsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 12:48:38 -0500
-Received: by mail-ed1-f65.google.com with SMTP id dc19so12892926edb.10;
-        Mon, 24 Feb 2020 09:48:36 -0800 (PST)
+        id S1727926AbgBXRwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 12:52:45 -0500
+Received: from mail-mw2nam10on2048.outbound.protection.outlook.com ([40.107.94.48]:34978
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727883AbgBXRwp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Feb 2020 12:52:45 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TZApe+1DUC6JB4zBCfDq/FX/U3bX1odAxZ5Zlz7K3LTVZOQrCDEIbRJ5LU1CIn2fdjAlNqjBrRHt6ZQur8+XsVKORpt2TWKrPMrTPePNG5K9FsY1iuT0+P+VTKA6j+W1FPS9MIxjut9VehrmQqzuwXJdGKhlMANmocWGj1+iT9gsk50JG4frdJdHIuaKIZsYqgq6yw/fi/OeUlnzoYHs4JWv8rUk/V+5RPbqgGGMq0rxMQO2ZFIDOnmIxgaUZdHLNWQcieHpkYRWxbVJz857PETg/Feub0J7Ln/jVS8b8q6TChuE2IM5OBnCN4femXvoF2Ggw1Uzl+XCIg7OYrZ82Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=venyR6vZWrgCT4es/xxKiuvmhiuCwrOOCN7yCb3dZJ0=;
+ b=kWF8/ymMjyzStmEi9WEX8aQ+CSnJRkyvjJoPhjCeJEOCQXrmkjWHjMJ4GW1sG9FM03iFvb6q6o4wjGJUtvvZ5jy76uTpGNhUaTU1nFVgKiRZ2NmCDS1zVShNMRAMQUPKQN/Ye5Hs6esCf1D5IJNb0vJq4quhYXJ3StS7AXRHRXhpKIXqACoOksmxWiqaaX6KYRENCpVSTmJo1I6RIbZnur9icaA5ONwc91JY10z3dbNeh3jugL+UkZWTEXsq7b8n870+ijdYF4bLt5w09wLoS1WUvTaFYsNQ3Pufezk9vc0Q7fbtlYH73nNoNBMWHGgdYt0TadwuHZCGFhz5YddgzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Z+KZXMS6j42BojKvkiav0VXiRWw9IxLJElIvzW43DQY=;
-        b=aVGCobCqf2sWOQzEqSAW4JCob1J7OcSBugENcmhWXqcxmbGYgDGSNfhSXqmI+CwcC3
-         8MFcWUm1lUF2elGspd9V4ho3/PSJyrbxne/tvLbSSuquR4g9E3ewd2pYFCr+sjfVY4Or
-         RKikPQnAVCt8I5bsPK3oBfqDpfAAo4pH3PDDQQjlbitXoGI2VKApwyBl8vJRBDTeGkf3
-         eREbdkPlC9V4DF34hslgPZHOGiGK76X6sDpIAibkbtEyvemgIY1SuRDFT9eJFQ3oK4Aw
-         AThy3HQjCuUhBNXF+ONKGv1OapczKnW2nBMe+xE5S57PiH8SVB1Vd3OjL5CrADQPInLp
-         s7cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Z+KZXMS6j42BojKvkiav0VXiRWw9IxLJElIvzW43DQY=;
-        b=eKdiYkXQCgpbZCwVcuM/mU7Q8EMbSiRw2BBbvkz14O4hqnO0FmsVaQUPWfGGl/3pwm
-         X7kAbtFk87kAEmdaIM+/JxhrUt1pSOTlFOg4Bg9sQCymlrBY8mw9oxyWsaPLfUs15fiC
-         FmdVCZgSYe4yRVHZ4dF8C6B088o8RMGBuXt9UxtfER7bWBwE1vxtyrPNz3Oahw/0A2K2
-         qEH+4LwfbcMNviLf/3XCUTpRaFKabFQxMU0oyX1Bn0YpYZfB3+6zaDqSzJ+xEBOZ1npx
-         nDvspfIbVmihsKKFQqffgX0WIyjNYZ/TQ//Llh9Hneqd3MboPh5JfWJbzxJ+z9BY8IlE
-         fkKg==
-X-Gm-Message-State: APjAAAUK4QUD5IEX+yfYPPPNQU3SSKShVl24r2ksFSjhtFGOCj09qCgJ
-        edobAN7mCtOIzcMyRMW5tpAji9Yi
-X-Google-Smtp-Source: APXvYqz7i5Pc/5H53tWitQMIaIwBEIzHzproXsr4EugsBJJuMu/ktD2Wu69Zq4vnQ09DUeWodGqgSw==
-X-Received: by 2002:a50:875c:: with SMTP id 28mr48180095edv.271.1582566515662;
-        Mon, 24 Feb 2020 09:48:35 -0800 (PST)
-Received: from [10.67.50.18] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id f13sm1016733edq.26.2020.02.24.09.48.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Feb 2020 09:48:34 -0800 (PST)
-Subject: Re: [PATCH 02/89] dt-bindings: i2c: brcmstb: Add BCM2711 BSC/AUTO-I2C
- binding
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Eric Anholt <eric@anholt.net>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rpi-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa@the-dreams.de>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.6c896ace9a5a7840e9cec008b553cbb004ca1f91.1582533919.git-series.maxime@cerno.tech>
- <9e427ff22fa40b7146b44aee6468559499deb1f1.1582533919.git-series.maxime@cerno.tech>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- G10n8gCguORqNGMsVRxrlLs7/himep7MrCc=
-Message-ID: <fb3e10e0-9d87-66c0-ad4c-fa8474f6fac0@gmail.com>
-Date:   Mon, 24 Feb 2020 09:48:17 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=venyR6vZWrgCT4es/xxKiuvmhiuCwrOOCN7yCb3dZJ0=;
+ b=sAVWJpSeUFp1s9jJwjDGoyWlES5zxqwoSmuMrSgHdMZWjm2ezOkfxpabbCn3fz6IsEzOhUMDlHcDcp4fAEkkWsF+jKhyvQIILgfaiWjSfHaSBRQZ4E9MQdKjXL424ZX+Tdvf/l5RFgwQ8vE9Y8/yRBZCJJ3a9/x8mOMWU9Ayc8g=
+Received: from CY4PR02CA0040.namprd02.prod.outlook.com (2603:10b6:903:117::26)
+ by DM6PR02MB5628.namprd02.prod.outlook.com (2603:10b6:5:76::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.21; Mon, 24 Feb
+ 2020 17:52:41 +0000
+Received: from SN1NAM02FT040.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::203) by CY4PR02CA0040.outlook.office365.com
+ (2603:10b6:903:117::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.18 via Frontend
+ Transport; Mon, 24 Feb 2020 17:52:41 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ SN1NAM02FT040.mail.protection.outlook.com (10.152.72.195) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2750.18
+ via Frontend Transport; Mon, 24 Feb 2020 17:52:41 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
+        (envelope-from <ben.levinsky@xilinx.com>)
+        id 1j6HuK-0006VE-O0; Mon, 24 Feb 2020 09:52:40 -0800
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <ben.levinsky@xilinx.com>)
+        id 1j6HuF-0007aa-Ki; Mon, 24 Feb 2020 09:52:35 -0800
+Received: from xsj-pvapsmtp01 (maildrop.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id 01OHqVrA001811;
+        Mon, 24 Feb 2020 09:52:31 -0800
+Received: from [172.19.2.206] (helo=xsjblevinsk50.xilinx.com)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <ben.levinsky@xilinx.com>)
+        id 1j6HuB-0007aE-H1; Mon, 24 Feb 2020 09:52:31 -0800
+From:   Ben Levinsky <ben.levinsky@xilinx.com>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        michal.simek@xilinx.com, jollys@xilinx.com, rajan.vaja@xilinx.com,
+        robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] remoteproc: Add zynqmp_r5 driver
+Date:   Mon, 24 Feb 2020 09:52:26 -0800
+Message-Id: <1582566751-13118-1-git-send-email-ben.levinsky@xilinx.com>
+X-Mailer: git-send-email 2.7.4
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.83;IPV:;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(189003)(199004)(336012)(7696005)(186003)(81166006)(8676002)(8936002)(2906002)(5660300002)(426003)(81156014)(4326008)(26005)(9786002)(498600001)(70206006)(44832011)(70586007)(2616005)(36756003)(6666004)(356004);DIR:OUT;SFP:1101;SCL:1;SRVR:DM6PR02MB5628;H:xsj-pvapsmtpgw01;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-83.xilinx.com;MX:1;A:1;
 MIME-Version: 1.0
-In-Reply-To: <9e427ff22fa40b7146b44aee6468559499deb1f1.1582533919.git-series.maxime@cerno.tech>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: de16fee8-3cac-4fe9-b845-08d7b9525817
+X-MS-TrafficTypeDiagnostic: DM6PR02MB5628:
+X-Microsoft-Antispam-PRVS: <DM6PR02MB5628B44EE871996F43B5484AB5EC0@DM6PR02MB5628.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-Forefront-PRVS: 032334F434
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: h4HZ7EHKxSu3mmWJRZLp2zFoHzPa3dAMnyfUNhUv0DhVbGisQIQEZtSsNlKw3NHjvhMUfphyzzLxgVpAyAULzoli38zljBQTqHPQ8cjyioConW2PBlPqwa8QFD1vwXVbKcp7zgY/A4c/tUngCPtDvDP8fWMuYfmdsx/YYgMfWJA/D+ppLnNvrkQfRIy2tvWfrQ12q+P7KsTHfTrlbpvU4O548j6vAcUp6lwg79sxUc4U+Nc63der8+oOEqxFY2krCIWrLY1DwGrrWJWJF74thrVlAu3Jj3FSFrkgTVZEYL9rH7MmZqnnqQnYLs2e4kGGiXsmkXpSIeETTYe5esUva6fZgsEvcCUngQhP4aBvgx6PC+O9ZLf9nypMjjT2/X9pP2m4zJCFKUVuwJIbgkTlMAoqHXwmWOI0NGdXzMm1AWzZA3BBynJ61SwNylwtLl/w
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2020 17:52:41.1439
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: de16fee8-3cac-4fe9-b845-08d7b9525817
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5628
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/24/20 1:06 AM, Maxime Ripard wrote:
-> The HDMI blocks in the BCM2771 have an i2c controller to retrieve the
-> EDID. This block is split into two parts, the BSC and the AUTO_I2C,
-> lying in two separate register areas.
-> 
-> The AUTO_I2C block has a mailbox-like interface and will take away the
-> BSC control from the CPU if enabled. However, the BSC is the actually
-> the same controller than the one supported by the brcmstb driver, and
-> the AUTO_I2C doesn't really bring any immediate benefit.
-> 
-> We can model it in the DT as a single device with two register range,
-> which will allow us to use or or the other in the driver without
-> changing anything in the DT.
-> 
-> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Wolfram Sang <wsa@the-dreams.de>
-> Cc: bcm-kernel-feedback-list@broadcom.com
-> Cc: linux-i2c@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+There are Cortex-R5 processors on Xilinx ZynqMP UltraScale+
+MPSoC.
+This patch is to add an Xilinx ZynqMP R5 remoteproc driver to
+enable Linux kernel to bringup R5, and enable communication
+between Linux kernel and R5.
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+Ben Levinsky (3):
+  firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+    configuration.
+  firmware: xilinx: Add shutdown/wakeup APIs
+  firmware: xilinx: Add zynqmp_get_node_status API
+
+Jason Wu (2):
+  dt-bindings: remoteproc: Add documentation for ZynqMP R5 rproc
+    bindings
+  remoteproc: Add initial zynqmp R5 remoteproc driver
+
+ .../remoteproc/xilinx,zynqmp-r5-remoteproc.txt     | 135 +++
+ drivers/firmware/xilinx/zynqmp.c                   |  81 ++
+ drivers/remoteproc/Kconfig                         |  10 +
+ drivers/remoteproc/Makefile                        |   1 +
+ drivers/remoteproc/zynqmp_r5_remoteproc.c          | 913 +++++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h               |  30 +
+ 6 files changed, 1170 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.txt
+ create mode 100644 drivers/remoteproc/zynqmp_r5_remoteproc.c
+
 -- 
-Florian
+2.7.4
+
