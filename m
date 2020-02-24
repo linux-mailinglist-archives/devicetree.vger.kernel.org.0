@@ -2,104 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE7316A2F1
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 10:46:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C99B16A3B7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 11:17:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbgBXJqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 04:46:22 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:62083 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726628AbgBXJqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 04:46:22 -0500
-X-UUID: 15efe623feed440a82ff83e29f541fd1-20200224
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=JJObHOiFNWZrMDB8kq3sMti+Ri6V2M0iYaOtSYj8HuU=;
-        b=hr23lqTthINWXnyqH4FlJZ93clckrD8c2YBD5KQCbAwl1+cMWaGGMF3XqR8jIgyEIQ4ESiynsunRR/peYZmkPZvdQevHMU7s9jWu3khE9ievaw3b0LSAgAFiNMwlYyn3V3uCt9CB5Zq/z+Frm0e33tQA2eZvSaA7HFGoVNyfd2Y=;
-X-UUID: 15efe623feed440a82ff83e29f541fd1-20200224
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <xia.jiang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 81929236; Mon, 24 Feb 2020 17:46:15 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs07n2.mediatek.inc
- (172.21.101.141) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 24 Feb
- 2020 17:45:26 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 24 Feb 2020 17:44:58 +0800
-Message-ID: <1582537569.859.14.camel@mhfsdcap03>
-Subject: Re: [PATCH v6 1/5] media: platform: Fix jpeg dec driver bug and
- improve code quality
-From:   Xia Jiang <xia.jiang@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Rick Chang <rick.chang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        <srv_heupstream@mediatek.com>
-Date:   Mon, 24 Feb 2020 17:46:09 +0800
-In-Reply-To: <20200214093506.GA193786@chromium.org>
-References: <20200121095320.32258-1-xia.jiang@mediatek.com>
-         <20200121095320.32258-2-xia.jiang@mediatek.com>
-         <20200214093506.GA193786@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727193AbgBXKRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 05:17:42 -0500
+Received: from mail-io1-f65.google.com ([209.85.166.65]:35825 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726509AbgBXKRl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 05:17:41 -0500
+Received: by mail-io1-f65.google.com with SMTP id h8so9710668iob.2;
+        Mon, 24 Feb 2020 02:17:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7tqgnHB78w+khquGpyEPrfbvz14CK0FBf/BfCrVKj88=;
+        b=WixG3cAlWOKVA4zty0GxO81FbCDDDdvXcsrqJIiNoeOazlCyYJhLt//qepqkHWRO+i
+         au8MthJG6xQCVYimonXq9J9UTkxQXTdXeNwnnCFAHRTYFa09tVbWDVrszuNNcd48xy79
+         M4607MnC3gbpRzJcoaCojUBEi5DyF0la38CNAh+2NTCj+lJ+103ixbRogzGDVh1V4uM+
+         9+r0ecBMS49H+uLc6Edb//J6Pj451lLdugtqNKHmng3AISj9RlOqV9UNxLAUgRxMb2bU
+         xkN1jLWgnF70i9ajrtqOS07p8Qzum6J0p4vXRWAInArvAziclsYDozRZmKb9k128O5se
+         MvGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7tqgnHB78w+khquGpyEPrfbvz14CK0FBf/BfCrVKj88=;
+        b=bNCcRnyk0ujTkRi2WuPJz7sNGdZZG0zY6b+6BGuH4xxPhTJfA2j2xTPii2Kd4u0vBW
+         hi3WluAjkHiTJss3qZgsR+Y/ewSQo4NOJqVXIItrowhQYIzYXqcWnQjAGxAN2Phinklf
+         3lDY8TR7myuisQMogyMh8HTrNdV3igzF9yKsU+Fq2TvuFo5xI1Q013MB9lIOLcLOZ1sL
+         V1Phs4BUjpb5f2LZ1Gt48r5onmtZifjFrnbjD+gjpA2qagsEBLIETnpK9jFmYn4xDKH7
+         hovnof7K9GcE87cKFy+p54Pgdg3Z6yN6EC7QPaddqpl+Ctm9c7/jN8UpG5cPwfUCCIYv
+         l4eA==
+X-Gm-Message-State: APjAAAXMeEpHKkSsCme3RTY8j+illlWR1z9/MgOnFC8TWcpaCb5J9lUR
+        CfT863YF02NMdAMMVJWy17PUKdXPYN1uD2iRniDsIILt
+X-Google-Smtp-Source: APXvYqwPv4BN9QmonBXFEkWlD/VhU4fuL8hHLJ8UwrlbVXmch79Uws0KccS8fO8B/i+cYv9Wj4Xn1YJ0Kro0+Mktymw=
+X-Received: by 2002:a6b:b48e:: with SMTP id d136mr50065897iof.243.1582539460606;
+ Mon, 24 Feb 2020 02:17:40 -0800 (PST)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20200216173446.1823-1-linux.amoon@gmail.com> <20200216173446.1823-4-linux.amoon@gmail.com>
+ <1jmu9hzlo2.fsf@starbuckisacylon.baylibre.com> <CANAwSgSaQgU=H3h0S9deT11HA8z9R=Fhy5Kawii9tSBxKf2Wgw@mail.gmail.com>
+ <CAFBinCCSosE1XfwbKZOR9G+DVYg8zFcKShmTNWUhh1e8W0VoAQ@mail.gmail.com>
+ <CANAwSgRZy1K0GZq30cEoH2KiJfjX-5LvkMy79ZeM_aSEyrkD+g@mail.gmail.com> <1jo8togwmi.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jo8togwmi.fsf@starbuckisacylon.baylibre.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 24 Feb 2020 15:47:29 +0530
+Message-ID: <CANAwSgSKUEJEe_H6XnKmHZNtB549jLau=TY00jzCHAC8zb_7oA@mail.gmail.com>
+Subject: Re: [PATCHv1 3/3] clk: meson: g12a: set cpu clock divider flags too CLK_IS_CRITICAL
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTAyLTE0IGF0IDE4OjM1ICswOTAwLCBUb21hc3ogRmlnYSB3cm90ZToNCj4g
-SGkgWGlhLA0KPiANCj4gT24gVHVlLCBKYW4gMjEsIDIwMjAgYXQgMDU6NTM6MTdQTSArMDgwMCwg
-WGlhIEppYW5nIHdyb3RlOg0KPiA+IEZpeCB2NGwyLWNvbXBsaWFuY2UgdGVzdCBidWcgYW5kIGlt
-cHJvdmUgY29kZSBxdWFsaXR5IG9mIGpwZWcgZGVjb2RlDQo+ID4gZHJpdmVyLCBiZWNhdXNlIHRo
-ZSBqcGVnIGVuY29kZSBkcml2ZXIgd2lsbCBiYXNlIG9uIGl0Lg0KPiA+IA0KPiA+IFNpZ25lZC1v
-ZmYtYnk6IFhpYSBKaWFuZyA8eGlhLmppYW5nQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiB2
-NjogYWxpZ25tZW50ICdNVEtfSlBFR19EQ1RTSVpFJyBtYXRjaCBvcGVuIHBhcmVudGhlc2lzLg0K
-PiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICANCj4gPiB2NTog
-VXNlIGNsYW1wKCl0byByZXBsYWNlIG10a19qcGVnX2JvdW5kX2FsaWduX2ltYWdlKCkgYW5kIHJv
-dW5kX3VwKCkNCj4gPiAgICAgdG8gcmVwbGFjZSBtdGtfanBlZ19hbGlnbigpLg0KPiA+ICAgICBH
-ZXQgY29ycmVjdCBjb21wb3NlIHZhbHVlIGluIG10a19qcGVnX3NlbGVjdGlvbigpLg0KPiA+ICAg
-ICBDYW5jZWwgc3BpbiBsb2NrIGFuZCB1bmxvY2sgb3BlcmF0aW9uIGluIGRldmljZSBydW4gZnVu
-Y3Rpb24uDQo+ID4gICAgIENoYW5nZSByZWdpc3RlciBvZmZzZXQgaGV4IG51bWJlcmFscyBmcm9t
-IHVwZXJjYXNlIHRvIGxvd2VyY2FzZS4NCj4gPiANCj4gPiB2NDogbmV3IGFkZCBwYXRjaCBmb3Ig
-djRsMi1jb21wbGlhbmNlIHRlc3QgYnVnIGZpeC4NCj4gDQo+IFRoYW5rcyBmb3IgdGhlIHBhdGNo
-LiBUaGUgY2hhbmdlcyBsb29rIGdvb2QgdG8gbWUsIGJ1dCBlYWNoIG9mIHRoZQ0KPiB1bnJlbGF0
-ZWQgY2hhbmdlcyBzaG91bGQgYmUgc3BsaXQgaW50byBpdHMgb3duIHBhdGNoLCB3aXRoIHByb3Bl
-cg0KPiBleHBsYW5hdGlvbiBpbiBpdHMgY29tbWl0IG1lc3NhZ2UuIEVzcGVjaWFsbHkgdGhlIG9u
-ZXMgdGhhdCBpbnRyb2R1Y2UNCj4gYmVoYXZpb3IgY2hhbmdlcywgc3VjaCBhcyB0aGUgU19TRUxF
-Q1RJT04gb3IgbG9ja2luZyBjaGFuZ2UuDQo+IA0KPiBBbHNvIHBsZWFzZSBzZWUgb25lIGNvbW1l
-bnQgaW5saW5lLg0KPiANCj4gW3NuaXBdDQo+IA0KPiA+IEBAIC04MDEsNyArNzc4LDYgQEAgc3Rh
-dGljIHZvaWQgbXRrX2pwZWdfZGV2aWNlX3J1bih2b2lkICpwcml2KQ0KPiA+ICAJc3RydWN0IG10
-a19qcGVnX2RldiAqanBlZyA9IGN0eC0+anBlZzsNCj4gPiAgCXN0cnVjdCB2YjJfdjRsMl9idWZm
-ZXIgKnNyY19idWYsICpkc3RfYnVmOw0KPiA+ICAJZW51bSB2YjJfYnVmZmVyX3N0YXRlIGJ1Zl9z
-dGF0ZSA9IFZCMl9CVUZfU1RBVEVfRVJST1I7DQo+ID4gLQl1bnNpZ25lZCBsb25nIGZsYWdzOw0K
-PiA+ICAJc3RydWN0IG10a19qcGVnX3NyY19idWYgKmpwZWdfc3JjX2J1ZjsNCj4gPiAgCXN0cnVj
-dCBtdGtfanBlZ19icyBiczsNCj4gPiAgCXN0cnVjdCBtdGtfanBlZ19mYiBmYjsNCj4gPiBAQCAt
-ODI5LDEzICs4MDUsMTEgQEAgc3RhdGljIHZvaWQgbXRrX2pwZWdfZGV2aWNlX3J1bih2b2lkICpw
-cml2KQ0KPiA+ICAJaWYgKG10a19qcGVnX3NldF9kZWNfZHN0KGN0eCwgJmpwZWdfc3JjX2J1Zi0+
-ZGVjX3BhcmFtLCAmZHN0X2J1Zi0+dmIyX2J1ZiwgJmZiKSkNCj4gPiAgCQlnb3RvIGRlY19lbmQ7
-DQo+ID4gIA0KPiA+IC0Jc3Bpbl9sb2NrX2lycXNhdmUoJmpwZWctPmh3X2xvY2ssIGZsYWdzKTsN
-Cj4gDQo+IFdoeSBpcyBpdCBzYWZlIHRvIHJlbW92ZSB0aGUgbG9ja2luZyBoZXJlPw0KRGVhciBU
-b21hc3osDQoNCkkgd2lsbCBzcGxpdCB1bnJlbGF0ZWQgY2hhbmdlcyBpbnRvIGRpZmZlcmVudCBw
-YXRjaGVzLg0KDQpNeSBvcGluaW9uIGFib3V0IHJlbW92ZSBsb2NraW5nIGlzIGZvbGxvd2luZyhh
-ZnRlciBkZWVwIHRoaW5raW5nKToNCg0KVGhlIGRldmljZV9ydW4gZnVuY3Rpb24gY2FuIGJlIG9u
-bHkgY2FsbGVkIG9uY2UgZm9yIG9uZSBpbnN0YW5jZS4NCkZvciBtdWx0aS1pbnN0YW5jZSxpcyB0
-aGVyZSBhbnkgcG9zc3NpYmlsaXR5IG9mIGh3IG92ZXJyaWRlIGlmIHJlbW92aW5nIGxvY2tpbmc/
-SSB0aGluayBzby4NCldoYXQgYWJvdXQgeW91ciBmdXJ0aGVyIG9waW5pb24/DQoNCkJlc3QgUmVn
-YXJkcywNClhpYSBKaWFuZw0KPiA+ICAJbXRrX2pwZWdfZGVjX3Jlc2V0KGpwZWctPmRlY19yZWdf
-YmFzZSk7DQo+ID4gIAltdGtfanBlZ19kZWNfc2V0X2NvbmZpZyhqcGVnLT5kZWNfcmVnX2Jhc2Us
-DQo+ID4gIAkJCQkmanBlZ19zcmNfYnVmLT5kZWNfcGFyYW0sICZicywgJmZiKTsNCj4gPiAgDQo+
-ID4gIAltdGtfanBlZ19kZWNfc3RhcnQoanBlZy0+ZGVjX3JlZ19iYXNlKTsNCj4gPiAtCXNwaW5f
-dW5sb2NrX2lycXJlc3RvcmUoJmpwZWctPmh3X2xvY2ssIGZsYWdzKTsNCj4gPiAgCXJldHVybjsN
-Cj4gPiAgDQo+ID4gIGRlY19lbmQ6DQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IFRvbWFzeg0KPiAN
-Cg0K
+Hi  Jerome,
 
+On Mon, 24 Feb 2020 at 15:01, Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+>
+> On Sun 23 Feb 2020 at 14:34, Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> > Hi Martin / Jerome / Neil,
+> >
+> > On Fri, 21 Feb 2020 at 02:45, Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> >>
+> >> Hi Anand,
+> >>
+> >> On Mon, Feb 17, 2020 at 2:30 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> >> [...]
+> >> > > > @@ -681,7 +682,7 @@ static struct clk_regmap g12b_cpub_clk = {
+> >> > > >                       &g12a_sys_pll.hw
+> >> > > >               },
+> >> > > >               .num_parents = 2,
+> >> > > > -             .flags = CLK_SET_RATE_PARENT,
+> >> > > > +             .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> >> > >
+> >> > > Why not. Neil what do you think of this ?
+> >> > > If nothing is claiming this clock and enabling it then I suppose it
+> >> > > could make sense.
+> >> > >
+> >> > I would like core developers to handle this.
+> >> > Sorry for the noise.
+> >> can you please resend this patch with only the change to g12b_cpub_clk?
+> >> I have no G12B board myself so it would be great if you could take care of this!
+> >>
+> >>
+> >> Martin
+> >
+> > Thanks, yes I will try again, but I have a question.
+> >
+> > On eMMC module  *cpub_clk* is not getting enabled, see below is
+> > clk_summay of eMMC.
+>
+> I'm sorry but I don't understand the link between the cpu clock of the
+> second cluster and MMC.
+>
+> > [...]
+> >           fclk_div2_div               1        1        0   999999985
+> >         0     0  50000
+> >              fclk_div2                2        2        0   999999985
+> >         0     0  50000
+> >                 ff3f0000.ethernet#m250_sel       1        1        0
+> > 999999985          0     0  50000
+> >                    ff3f0000.ethernet#m250_div       1        1
+> > 0   249999997          0     0  50000
+> >                       ff3f0000.ethernet#fixed_div2       1        1
+> >     0   124999998          0     0  50000
+> >                          ff3f0000.ethernet#rgmii_tx_en       1
+> > 1        0   124999998          0     0  50000
+> >                 ffe07000.mmc#mux       1        1        0   999999985
+> >          0     0  50000
+> >                    ffe07000.mmc#div       1        1        0
+> > 199999997          0     0  50000
+> >                 cpub_clk_dyn1_sel       0        0        0
+> > 999999985          0     0  50000
+> >                    cpub_clk_dyn1       0        0        0   999999985
+> >          0     0  50000
+> >                       cpub_clk_dyn       0        0        0
+> > 999999985          0     0  50000
+> >                          cpub_clk       0        0        0
+> > 999999985          0     0  50000
+> >                             cpub_clk_div8       0        0        0
+> > 124999998          0     0  50000
+> >                             cpub_clk_div7       0        0        0
+> > 142857140          0     0  50000
+> >                             cpub_clk_div6       0        0        0
+> > 166666664          0     0  50000
+> >                                cpub_clk_trace_sel       0        0
+> >    0   166666664          0     0  50000
+> >                                   cpub_clk_trace       0        0
+> >   0   166666664          0     0  50000
+> >                             cpub_clk_div5       0        0        0
+> > 199999997          0     0  50000
+> >                                cpub_clk_apb_sel       0        0
+> >  0   199999997          0     0  50000
+> >                                   cpub_clk_apb       0        0
+> > 0   199999997          0     0  50000
+> >                             cpub_clk_div4       0        0        0
+> > 249999996          0     0  50000
+> >                             cpub_clk_div3       0        0        0
+> > 333333328          0     0  50000
+> >                                cpub_clk_atb_sel       0        0
+> >  0   333333328          0     0  50000
+> >                                   cpub_clk_atb       0        0
+> > 0   333333328          0     0  50000
+> >                             cpub_clk_div2       0        0        0
+> > 499999992          0     0  50000
+> >                                cpub_clk_axi_sel       0        0
+> >  0   499999992          0     0  50000
+> >                                   cpub_clk_axi       0        0
+> > 0   499999992          0     0  50000
+> >                             cpub_clk_div16_en       0        0
+> > 0   999999985          0     0  50000
+> >                                cpub_clk_div16       0        0
+> > 0    62499999          0     0  50000
+>
+> I can't read that.
+>
+> >
+> > After enable *cpub_clk* flags with
+> > .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> > this clk is enabled on microSD card see clk_summary below.
+>
+> Again, I don't get the relationship between cpub and sdcard (or eMMC)
+>
+
+Yes their is not relation with the cpub and sdcard and eMMC,
+I understood  that cpub_clk is not getting enable which is causing
+the staling at booting using sdcard.
+
+sorry about this logs.
+
+> > [...]
+> >          fclk_div2_div               1        1        0   999999985
+> >        0     0  50000
+> >              fclk_div2                3        3        0   999999985
+> >         0     0  50000
+> >                 ff3f0000.ethernet#m250_sel       1        1        0
+> > 999999985          0     0  50000
+> >                    ff3f0000.ethernet#m250_div       1        1
+> > 0   249999997          0     0  50000
+> >                       ff3f0000.ethernet#fixed_div2       1        1
+> >     0   124999998          0     0  50000
+> >                          ff3f0000.ethernet#rgmii_tx_en       1
+> > 1        0   124999998          0     0  50000
+> >                 ffe05000.sd#mux       1        1        0   999999985
+> >         0     0  50000
+> >                    ffe05000.sd#div       1        1        0
+> > 50000000          0     0  50000
+> >                 cpub_clk_dyn1_sel       1        1        0
+> > 999999985          0     0  50000
+> >                    cpub_clk_dyn1       1        1        0   999999985
+> >          0     0  50000
+> >                       cpub_clk_dyn       1        1        0
+> > 999999985          0     0  50000
+> >                          cpub_clk       1        1        0
+> > 999999985          0     0  50000
+> >                             cpub_clk_div8       0        0        0
+> > 124999998          0     0  50000
+> >                             cpub_clk_div7       0        0        0
+> > 142857140          0     0  50000
+> >                             cpub_clk_div6       0        0        0
+> > 166666664          0     0  50000
+> >                                cpub_clk_trace_sel       0        0
+> >    0   166666664          0     0  50000
+> >                                   cpub_clk_trace       0        0
+> >   0   166666664          0     0  50000
+> >                             cpub_clk_div5       0        0        0
+> > 199999997          0     0  50000
+> >                                cpub_clk_apb_sel       0        0
+> >  0   199999997          0     0  50000
+> >                                   cpub_clk_apb       0        0
+> > 0   199999997          0     0  50000
+> >                             cpub_clk_div4       0        0        0
+> > 249999996          0     0  50000
+> >                             cpub_clk_div3       0        0        0
+> > 333333328          0     0  50000
+> >                                cpub_clk_atb_sel       0        0
+> >  0   333333328          0     0  50000
+> >                                   cpub_clk_atb       0        0
+> > 0   333333328          0     0  50000
+> >                             cpub_clk_div2       0        0        0
+> > 499999992          0     0  50000
+> >                                cpub_clk_axi_sel       0        0
+> >  0   499999992          0     0  50000
+> >                                   cpub_clk_axi       0        0
+> > 0   499999992          0     0  50000
+> >                             cpub_clk_div16_en       0        0
+> > 0   999999985          0     0  50000
+> >                                cpub_clk_div16       0        0
+> > 0    62499999          0     0  50000
+> >                    cpub_clk_dyn1_div       0        0        0
+> > 999999985          0     0  50000
+> >
+> > Is this correct approach to set the flags to enable *cpub_clk*.
+> > .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> >
+> > What I meant is their *Dyn_enable[26]* field for enable/disable for
+> > HHI_SYS_CPU_CLK_CNTL0 and HHI_SYS_CPUB_CLK_CNTL clk controller.
+> > in the S922X datasheets which could help resolve this issue.
+> > Any thought on this.
+>
+> I sorry but I'm just lost. I don't understand anything above so I can't
+> comment.
+
+I am not able to express my self clearly,
+I will try to submit the patch by enable cpub_clk with following flags.
+
+ .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+
+-Anand
