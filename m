@@ -2,148 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EABA416AB15
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 17:14:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E03AC16AB38
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 17:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728028AbgBXQNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 11:13:39 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:40799 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727874AbgBXQNi (ORCPT
+        id S1727576AbgBXQUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 11:20:43 -0500
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:45024 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727378AbgBXQUn (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Feb 2020 11:13:38 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 394406D98;
-        Mon, 24 Feb 2020 11:13:37 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Mon, 24 Feb 2020 11:13:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=q96RioY8BsR7brS2orsnP3F5i2+
-        XuFH0NxA6g4n1MCU=; b=SIibQvtYJJh2Z2bUPQ48iYczwowW5hI6SjxL8fF0bXz
-        F6AAgLsYlkg+gV2inWgm6U4JrwoJneHW5GivyL7tcsyi2+iXFvq0VTTLs5xeoUgh
-        ailh6Dh9OgE3NXpemYsA856ULtNHOBA5acxXqzJfut03zx5YYgJTlFvmqocFSm3S
-        uJTJ6RFp+UzBUlV15JegYoCOiVnU76HPRuXAZBKJXLfT66Gaag2X7UhrutopD+4o
-        J6u8IPjcO2UCX7Ssannt2obo0P/00Y+jZTUfXYh0oh2HFgUL1CZZRXMX8wGeqVBr
-        NFop4LE991CuM0p9dy59PrxKZT318SOVSDUVp9BIV2A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=q96Rio
-        Y8BsR7brS2orsnP3F5i2+XuFH0NxA6g4n1MCU=; b=D0LBK/mU6zq4aSxI3aFkS+
-        cJyPXCWrMTo9T8gFaOcdnYJCNVHBUyfo7V+mcvrGl+6EdlAYCWQy4fCUhjJnhg6I
-        nm3WXkZdFcH0J6juNF5pAr6xqrXJbmulOGhrau7eI8FqLkV4EyI03yIuZ1pKV81H
-        Tc2MvzW+yh6ChrTjwiUyEI3RrnGuM33b3LQQgtgg7EvUz7IHnFl2mXgiHpH5F6C5
-        kiXIgSUXPLi/e2gq1bCFeC1lBt0VG2ZQHMUCR2yTK0lsv3Zdrx2J+9rVY+aZ9ZvE
-        1Oa1xwNu5NYgJltfSMKIfVyYl4Mx+5fecqGx20Zqgm145hD5bJqdIS26aicBnN6A
-        ==
-X-ME-Sender: <xms:K_ZTXkUHZiy6j97bmy8d0Os2zHpOjxeK2KImr6kSrVri8LZVlSmlvA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrledtgdekiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
-    epmhgvghhouhhsrdgtohhmnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgv
-    rhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnh
-    hordhtvggthh
-X-ME-Proxy: <xmx:K_ZTXkRPO4_FWkOhOcK2nQxPBWEYRmY-26Ox5oXgsE0HYez1wQJw_w>
-    <xmx:K_ZTXk3ZnICLKmJW8vVOJQaPyH2Q0TFjVX5J6euuKA3NGhsPf6IFEw>
-    <xmx:K_ZTXseLHSN4asOJKE6unoum5NglQFv8lGw0n_gfai21t__grIUP2Q>
-    <xmx:MfZTXssX3z2zJY4pHhinKCkREtdRqWuWVnrYW0oW6ONYFwu01yOVjg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id ACEC33060F9B;
-        Mon, 24 Feb 2020 11:13:31 -0500 (EST)
-Date:   Mon, 24 Feb 2020 17:13:30 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     linux-sunxi@googlegroups.com,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Luca Weiss <luca@z3ntu.xyz>, Tomas Novotny <tomas@novotny.cz>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/4] ARM: dts: sun8i-a83t-tbs-a711: Add support for the
- vibrator motor
-Message-ID: <20200224161330.4att6sleqm3al47f@gilmour.lan>
-References: <20200222231428.233621-1-megous@megous.com>
- <20200222231428.233621-4-megous@megous.com>
- <20200224091059.lljffogofbexhudt@gilmour.lan>
- <20200224141437.opcsfhozfppulu4g@core.my.home>
+        Mon, 24 Feb 2020 11:20:43 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01OGCfam007873;
+        Mon, 24 Feb 2020 17:20:28 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=WOrB9zjTn0T7PtrYAJ4aCW7Dq+zTAEPFOtROr7XMOzo=;
+ b=IkyaGR4EFtaiGt7dPLgTYVNiT5WVp0abgnGKHqvs5vb7jFPFo9CCfx7MR6GyWcYI94Pp
+ vDjJlFTZxwfD7MgR7i+gIVXHFor29lRKAnyWX72QDjXyARdthSLlyUVR7OhnZdcm96nU
+ gTLUdZkFVPS5qIqh+Kj+IHMY/TYLweul/f3DeoUbZbvsSXdVHpxWJe+L39GKH8vDCd5E
+ jedIymmRP6bmhuo8z2+i2nkgF/8fGKuf3BH/8v2ZEcTYD0xQr72wxqPTBx6HiIdZArCU
+ J864vOCt2r1/Ct0L3qydZ6kIHJVk9s2gQc3505UGe7Onar2sg6qbeYX9cf1t0eD9ltPv Lw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2yatn5ts7a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 24 Feb 2020 17:20:28 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D7BD410002A;
+        Mon, 24 Feb 2020 17:20:23 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C73DE2A7B2C;
+        Mon, 24 Feb 2020 17:20:23 +0100 (CET)
+Received: from lmecxl0923.lme.st.com (10.75.127.45) by SFHDAG6NODE1.st.com
+ (10.75.127.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 24 Feb
+ 2020 17:20:23 +0100
+Subject: Re: [PATCH V2 0/9] mmc: mmci: sdmmc: add sdr104 support
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20200128090636.13689-1-ludovic.barre@st.com>
+ <CAPDyKFr+7SvRasPPjFDA2kwG0ERS-Qp3FGbVbRGLrscz5N=L2g@mail.gmail.com>
+From:   Ludovic BARRE <ludovic.barre@st.com>
+Message-ID: <86464a0a-d830-465e-b35b-8dd2e766db70@st.com>
+Date:   Mon, 24 Feb 2020 17:20:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zp4wvrz5w52hdyou"
-Content-Disposition: inline
-In-Reply-To: <20200224141437.opcsfhozfppulu4g@core.my.home>
+In-Reply-To: <CAPDyKFr+7SvRasPPjFDA2kwG0ERS-Qp3FGbVbRGLrscz5N=L2g@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG5NODE3.st.com (10.75.127.15) To SFHDAG6NODE1.st.com
+ (10.75.127.16)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-24_04:2020-02-21,2020-02-24 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+hi Ulf
 
---zp4wvrz5w52hdyou
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Le 2/19/20 à 11:28 AM, Ulf Hansson a écrit :
+> On Tue, 28 Jan 2020 at 10:06, Ludovic Barre <ludovic.barre@st.com> wrote:
+>>
+>> To support the sdr104 mode, sdmmc variant needs:
+>> -Hardware delay block support for sdmmc variant
+>>   with tuning procedure
+>> -Voltage switch callbacks
+>> -sdmmc revision 2.0
+>>
+>> V2:
+>> -regroup host->mmc_ops & mmc->ops assignment
+>> -add timeout define
+>> -rename prep_volt_switch to pre_sig_volt_switch
+>> -rename volt_switch to post_sig_volt_switch
+>> -add 'why' comment for "mmc: mmci: add volt_switch callbacks"
+>>
+>> Ludovic Barre (9):
+>>    mmc: mmci: sdmmc: replace sg_dma_xxx macros
+>>    mmc: mmci: sdmmc: rename sdmmc_priv struct to sdmmc_idma
+>>    mmc: mmci: add a reference at mmc_host_ops in mmci struct
+>>    mmc: mmci: add private pointer for variant
+>>    dt-bindings: mmc: mmci: add delay block base register for sdmmc
+>>    mmc: mmci: sdmmc: add execute tuning with delay block
+>>    mmc: mmci: add volt_switch callbacks
+>>    mmc: mmci: sdmmc: add voltage switch functions
+>>    mmc: mmci: add sdmmc variant revision 2.0
+>>
+>>   .../devicetree/bindings/mmc/mmci.txt          |   2 +
+>>   drivers/mmc/host/mmci.c                       |  42 +++-
+>>   drivers/mmc/host/mmci.h                       |   8 +
+>>   drivers/mmc/host/mmci_stm32_sdmmc.c           | 204 +++++++++++++++++-
+>>   4 files changed, 248 insertions(+), 8 deletions(-)
+>>
+>> --
+>> 2.17.1
+>>
+> 
+> Applied for next, thanks!
 
-On Mon, Feb 24, 2020 at 03:14:37PM +0100, Ond=C5=99ej Jirman wrote:
-> Hello,
->
-> On Mon, Feb 24, 2020 at 10:10:59AM +0100, Maxime Ripard wrote:
-> > Hi,
-> >
-> > On Sun, Feb 23, 2020 at 12:14:27AM +0100, Ondrej Jirman wrote:
-> > > The board has a vibrator mottor. Hook it to the input subsystem.
-> > >
-> > > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > > ---
-> > >  arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts b/arch/arm/boo=
-t/dts/sun8i-a83t-tbs-a711.dts
-> > > index 2fd31a0a0b344..a22920275e99b 100644
-> > > --- a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-> > > +++ b/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-> > > @@ -99,6 +99,11 @@ panel_input: endpoint {
-> > >  		};
-> > >  	};
-> > >
-> > > +	vibrator {
-> > > +		compatible =3D "gpio-vibrator";
-> > > +		vcc-supply =3D <&reg_ldo_io1>;
-> > > +	};
-> > > +
-> >
-> > LDO IO1 can also be muxed in as a GPIO iirc, why did you choose the
-> > regulator instead?
->
-> According to the specification, LDO needs to be enabled (value 0b11)
-> to achieve the specified max driving current of 150mA:
->
->   https://megous.com/dl/tmp/92b7d9d94820c3ba.png
->
-> Otherwise the chip is probably just using the regular CMOS logic output
-> (typically limited to around 20-35mA, but not specified in this datasheet=
-),
-> which would be probably overdriven, if we try to drive the motor with it.
->
-> And since we're driving a motor directly, the more the better.
+thanks Ulf.
 
-Ok, that works for me then. This is typically the kind of things that
-should be in your commit log though, since it's basically the
-motivation for doing what you're doing in your patches.
+> 
+> I took the liberty to do minor amendments to some of the changelogs,
+> but in particular I have change some of prefixes for the commit
+> message headers into "mmc: mmci_sdmmc:".
 
-Maxime
+Ok, I use this prefixe for next commit.
 
---zp4wvrz5w52hdyou
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Please tell, if there is anything that you want me to update.
 
------BEGIN PGP SIGNATURE-----
+I tested your next branch, and it's ok for me.
+sdmmc upstream is almost finished, I just some recent fixes to send.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXlP2KgAKCRDj7w1vZxhR
-xcqcAQCXerWJNQWeY178xiMvfPAmMNbC8H5ZByXeaxC/SXh6uwD+IosF9jDvAZpG
-y+FKGGhJKhcy68xqvVnjrDUxrAJjKg4=
-=Cv2A
------END PGP SIGNATURE-----
-
---zp4wvrz5w52hdyou--
+> 
+> Kind regards
+> Uffe
+> 
