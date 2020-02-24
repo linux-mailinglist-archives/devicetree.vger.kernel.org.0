@@ -2,93 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C853616A6AF
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 13:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B92B16A6E4
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 14:08:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727461AbgBXM7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 07:59:48 -0500
-Received: from vps.xff.cz ([195.181.215.36]:56912 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727501AbgBXM7s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Feb 2020 07:59:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1582549185; bh=9fyMxLMlwNi2Pk+BMp46DoE3AKNIuGLa/wjI2H1/1TI=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=ReGabWjx50JtBWZQvXOEPZalcv6O4nOrPEOA0yDYfRykQcuZ3agnsQV5wgtsd6W4n
-         yr1RWff/zDZU/rJ9AOp3C5rmlya4/6RRiVFTVr0OB/lw8G8mIBPKbgQXFCBpoiysjw
-         yzyyjqY5Fxsqg1cDwZhOnyUI+uM9SHFXIx4UYacg=
-Date:   Mon, 24 Feb 2020 13:59:45 +0100
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Georgii Staroselskii <georgii.staroselskii@emlid.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Martijn Braam <martijn@brixit.nl>, Luca Weiss <luca@z3ntu.xyz>,
-        Bhushan Shah <bshah@kde.org>, Icenowy Zheng <icenowy@aosc.io>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: sun50i-a64: Add i2c2 pins
-Message-ID: <20200224125945.dyl7reaqqiqds4ee@core.my.home>
-Mail-Followup-To: Maxime Ripard <maxime@cerno.tech>,
-        linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Mark Rutland <mark.rutland@arm.com>,
-        Corentin Labbe <clabbe@baylibre.com>,
-        Georgii Staroselskii <georgii.staroselskii@emlid.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Martijn Braam <martijn@brixit.nl>, Luca Weiss <luca@z3ntu.xyz>,
-        Bhushan Shah <bshah@kde.org>, Icenowy Zheng <icenowy@aosc.io>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20200223172916.843379-1-megous@megous.com>
- <20200223172916.843379-2-megous@megous.com>
- <20200224110100.acwln7zv3j5y67b2@gilmour.lan>
+        id S1727637AbgBXNIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 08:08:12 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37492 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727329AbgBXNIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 08:08:10 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01OD7CsK028839;
+        Mon, 24 Feb 2020 07:07:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1582549632;
+        bh=Tx9NLTynxh7HMA5VHJWXsAof1AdXnE/KAs53Nqq7E70=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=J8OaXTwY6rJidCznLf2G/vSUju+4HU3kRW0QV+CMkL2fpPxI5mFwt5l1u7GY1i0cK
+         fhdwF15G4WtYxb0NBQQmKRDL/VCrdAXaZORkAKh4uNPMzhrjf4desB5yiRBKSQYI5e
+         lr23otClWqEaN2djtLEvvM3O3oRjPmZTJi+w6edQ=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01OD7CFB102821
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 24 Feb 2020 07:07:12 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 24
+ Feb 2020 07:07:11 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 24 Feb 2020 07:07:12 -0600
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01OD7B3m002482;
+        Mon, 24 Feb 2020 07:07:11 -0600
+Subject: Re: [PATCH 2/7] docs: dt: fix several broken references due to
+ renames
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>
+CC:     Jonathan Corbet <corbet@lwn.net>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Stuart Yoder <stuyoder@gmail.com>,
+        Laurentiu Tudor <laurentiu.tudor@nxp.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-leds@vger.kernel.org>, <linux-aspeed@lists.ozlabs.org>,
+        <openbmc@lists.ozlabs.org>, <linux-gpio@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-pm@vger.kernel.org>
+References: <cover.1582361737.git.mchehab+huawei@kernel.org>
+ <83c5df4acbbe0fa55a1d58d4c4a435b51cd2a7ad.1582361737.git.mchehab+huawei@kernel.org>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <e9ae8125-3f8f-5f8c-c19c-34ac1bb5c982@ti.com>
+Date:   Mon, 24 Feb 2020 07:02:01 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200224110100.acwln7zv3j5y67b2@gilmour.lan>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+In-Reply-To: <83c5df4acbbe0fa55a1d58d4c4a435b51cd2a7ad.1582361737.git.mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 24, 2020 at 12:01:00PM +0100, Maxime Ripard wrote:
-> On Sun, Feb 23, 2020 at 06:29:14PM +0100, Ondrej Jirman wrote:
-> > PinePhone needs I2C2 pins description. Add it.
-> >
-> > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > ---
-> >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > index 862b47dc9dc90..0fdf5f400d743 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> > @@ -671,6 +671,11 @@ i2c1_pins: i2c1-pins {
-> >  				function = "i2c1";
-> >  			};
-> >
-> > +			i2c2_pins: i2c2-pins {
-> > +				pins = "PE14", "PE15";
-> > +				function = "i2c2";
-> > +			};
-> > +
-> 
-> Setting it as the default muxing for i2c2 would be great
+Mauro
 
-Right, I checked the datasheet and it looks like this is the only pins where
-i2c2 can be muxed to.
+On 2/22/20 3:00 AM, Mauro Carvalho Chehab wrote:
+> Several DT references got broken due to txt->yaml conversion.
+>
+> Those are auto-fixed by running:
+>
+> 	scripts/documentation-file-ref-check --fix
+>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/arm/arm,scmi.txt        | 2 +-
+>   Documentation/devicetree/bindings/arm/arm,scpi.txt        | 2 +-
+>   .../devicetree/bindings/arm/bcm/brcm,bcm63138.txt         | 2 +-
+>   .../devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt  | 2 +-
+>   .../devicetree/bindings/arm/msm/qcom,idle-state.txt       | 2 +-
+>   Documentation/devicetree/bindings/arm/omap/mpu.txt        | 2 +-
+>   Documentation/devicetree/bindings/arm/psci.yaml           | 2 +-
+>   .../devicetree/bindings/clock/qcom,gcc-apq8064.yaml       | 2 +-
+>   .../devicetree/bindings/display/tilcdc/tilcdc.txt         | 2 +-
+>   Documentation/devicetree/bindings/leds/common.yaml        | 2 +-
 
-I will change it.
+For LEDs
 
-regards,
-	o.
-
-> Maxime
+Reviewed-by: Dan Murphy <dmurphy@ti.com>
 
 
