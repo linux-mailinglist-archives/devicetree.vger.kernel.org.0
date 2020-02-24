@@ -2,100 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83CE916A559
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 12:44:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F085716A575
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 12:46:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727308AbgBXLoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 06:44:09 -0500
-Received: from foss.arm.com ([217.140.110.172]:35786 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727275AbgBXLoJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Feb 2020 06:44:09 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9580A30E;
-        Mon, 24 Feb 2020 03:44:08 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E92EF3F703;
-        Mon, 24 Feb 2020 03:44:07 -0800 (PST)
-Date:   Mon, 24 Feb 2020 11:44:06 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Sameer Pujar <spujar@nvidia.com>, perex@perex.cz, tiwai@suse.com,
-        robh+dt@kernel.org, lgirdwood@gmail.com, thierry.reding@gmail.com,
-        digetx@gmail.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com,
-        mkumard@nvidia.com, viswanathl@nvidia.com, rlokhande@nvidia.com,
-        dramesh@nvidia.com, atalambedu@nvidia.com
-Subject: Re: [PATCH v3 03/10] ASoC: tegra: add Tegra210 based DMIC driver
-Message-ID: <20200224114406.GB6215@sirena.org.uk>
-References: <1582180492-25297-1-git-send-email-spujar@nvidia.com>
- <1582180492-25297-4-git-send-email-spujar@nvidia.com>
- <20200221130005.GD5546@sirena.org.uk>
- <316ce0d5-318d-0533-ef06-bd7e8672f893@nvidia.com>
- <20200221165535.GG5546@sirena.org.uk>
- <47f94534-e997-d56c-5793-ae832fb2add4@nvidia.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="LpQ9ahxlCli8rRTG"
-Content-Disposition: inline
-In-Reply-To: <47f94534-e997-d56c-5793-ae832fb2add4@nvidia.com>
-X-Cookie: How you look depends on where you go.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727662AbgBXLqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 06:46:44 -0500
+Received: from mail27.static.mailgun.info ([104.130.122.27]:18413 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727318AbgBXLqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Feb 2020 06:46:43 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1582544803; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=RQyNQ3DFWtlsQXD4V++chr0ZTqGNZET5yxGQsVzgceo=; b=IYYHtx4HRv0jxoTXuHO1zqgAp0bHy2AhOQJKWAixhw2tK8DeqboirrecZ95PK0bqn19c0kpR
+ zF4eEGcAxtG+yOTKF6TpyM8UPami1a3YRHWXNjY2N3N9GLxJsLQxS9lnB8oID07MKzcMVk0o
+ hdpofe/xF0mh1w+VWUbchgRj0w0=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e53b7a1.7f963daa67a0-smtp-out-n01;
+ Mon, 24 Feb 2020 11:46:41 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 475DDC4479D; Mon, 24 Feb 2020 11:46:41 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.0
+Received: from vbadigan-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: vbadigan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3C3B6C43383;
+        Mon, 24 Feb 2020 11:46:37 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3C3B6C43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=vbadigan@codeaurora.org
+From:   Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: [PATCH V2] dt-bindings: mmc: sdhci-msm: Add CQE reg map
+Date:   Mon, 24 Feb 2020 17:14:43 +0530
+Message-Id: <1582544683-9505-1-git-send-email-vbadigan@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1581434955-11087-1-git-send-email-vbadigan@codeaurora.org>
+References: <1581434955-11087-1-git-send-email-vbadigan@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+CQE feature has been enabled on sdhci-msm. Add CQE reg map
+and reg names that need to be supplied for supporting CQE feature.
 
---LpQ9ahxlCli8rRTG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+---
 
-On Mon, Feb 24, 2020 at 11:28:57AM +0000, Jon Hunter wrote:
-> On 21/02/2020 16:55, Mark Brown wrote:
+Changes since V1:
+	- Dropped _mem suffix to reg names.
+---
+ Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-> > The ideal thing in a component model would be to represent those sample
-> > rate convertors directly to usrspace so the routing and rewriting is
-> > explicit.
-
-> I assume that it would be OK for the sample rate converter itself to
-> expose mixer controls to configure its input and output rates so the
-> user could configure as needed?
-
-I don't think so, I'd not expect the individual drivers to be doing
-anything user visible here - if we know what a digital transformation
-looks like the framework should be offering anything that's needed to
-users (and hiding controls that don't have any practical control in a
-given system).
-
-> > Is there any *need* for these to be user configurable?  What's normally
-> > happening at the minute is that either the external DAIs are fixed
-> > configuration and the DSP just converts everything or there's no format
-> > conversion done and things get passed through.
-
-> I can see that in most cases there are a finite set of configurations
-> that the end user may use. However, we would like to make the
-> configuration flexible as possible and this also allow us to test lots
-> of different configurations for verification purposes as well.
-
-Internal testing often requires things that can't be exposed to users,
-the extreme examples are things like battery chargers with health and
-safety issues if the full range of control is available.
-
---LpQ9ahxlCli8rRTG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5TtwUACgkQJNaLcl1U
-h9Crqgf/ZrHdav/H3sg+ks8XPns3tfhmaN7zdKxLkEl7rclyGrxXkz0hGGNflA0b
-ZmCq+byMf1McM1Ay4GqHsIP6kYxwqqZzKPpoV1tOZRHrH85RoI3qrofsZAuEYGMP
-KZ36BR55I1oIZXa6NxuOM/Fdrg4hcNanuK43zaXWS9mM3UweiIlXCmvBiWZR4koK
-dArroM9BXo7ZXuWWVbhmAfnu6Mi/ZUk3uGauKjlP1Odo7N9B4aRvhV686h3Baaq1
-zeLawuT/y9N6G623+AkUKTuuEUfLfk/fhE16y2SsrCxgxrRvBqKDNZLjO9YkiiD9
-vcfUOJKsjpBy/LOF4JV2iwHc5xC+wA==
-=rFOB
------END PGP SIGNATURE-----
-
---LpQ9ahxlCli8rRTG--
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+index 7ee639b..5445931 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+@@ -26,7 +26,13 @@ Required properties:
+ 
+ - reg: Base address and length of the register in the following order:
+ 	- Host controller register map (required)
+-	- SD Core register map (required for msm-v4 and below)
++	- SD Core register map (required for controllers earlier than msm-v5)
++	- CQE register map (Optional, CQE support is present on SDHC instance meant
++	                    for eMMC and version v4.2 and above)
++- reg-names: When CQE register map is supplied, below reg-names are required
++	- "hc" for Host controller register map
++	- "core" for SD core register map
++	- "cqhci" for CQE register map
+ - interrupts: Should contain an interrupt-specifiers for the interrupts:
+ 	- Host controller interrupt (required)
+ - pinctrl-names: Should contain only one value - "default".
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc., is a member of Code Aurora Forum, a Linux Foundation Collaborative Project
