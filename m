@@ -2,217 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A536F16A6E2
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 14:08:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F1C016A6C1
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 14:05:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726778AbgBXNIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 08:08:10 -0500
-Received: from us-smtp-2.mimecast.com ([207.211.31.81]:40591 "EHLO
-        us-smtp-delivery-1.mimecast.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727637AbgBXNIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Feb 2020 08:08:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1582549689;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8hYIHZTnTP03p6Yp4LlShbTvxf4UyOXsFmmyMPgeaYI=;
-        b=PeZsOULCBaD9siVgXr284be6+3VvYNW+f0LSsyQjxFL9dYWz6H9GI29mRRnMhoWyYChi0u
-        hwJw5rwPWaWy8agwP8ZlrjIWTcNbjm8Rjy0cy0NfzO2wZnppENQiPtr2+bO90PTtnNann6
-        sJL9kDHhAua1U60MIHn+Drh2UqpStvI=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-463-1KFA4pPFOt-nSzxZ1v6H2w-1; Mon, 24 Feb 2020 08:08:01 -0500
-X-MC-Unique: 1KFA4pPFOt-nSzxZ1v6H2w-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A47AB107ACCA;
-        Mon, 24 Feb 2020 13:07:55 +0000 (UTC)
-Received: from [10.36.116.59] (ovpn-116-59.ams2.redhat.com [10.36.116.59])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id BF3FB909E9;
-        Mon, 24 Feb 2020 13:07:44 +0000 (UTC)
-Subject: Re: [RFC PATCH 01/11] vfio: Remove Calxeda XGMAC reset driver
-To:     Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, Andre Przywara <andre.przywara@arm.com>,
-        Robert Richter <rrichter@marvell.com>,
-        Jon Loeliger <jdl@jdl.com>, Alexander Graf <graf@amazon.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Mark Langsdorf <mlangsdo@redhat.com>
-Cc:     Alex Williamson <alex.williamson@redhat.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Cornelia Huck <cohuck@redhat.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        James Morse <james.morse@arm.com>,
-        Jens Axboe <axboe@kernel.dk>, Joerg Roedel <joro@8bytes.org>,
-        kvm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-edac@vger.kernel.org, linux-ide@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        netdev@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Will Deacon <will@kernel.org>
-References: <20200218171321.30990-1-robh@kernel.org>
- <20200218171321.30990-2-robh@kernel.org>
-From:   Auger Eric <eric.auger@redhat.com>
-Message-ID: <23fda074-149e-9c77-5eee-4d6b591a6ebf@redhat.com>
-Date:   Mon, 24 Feb 2020 14:07:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+        id S1727357AbgBXNFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 08:05:33 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59064 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727429AbgBXNFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 08:05:33 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01OD5QSX086053;
+        Mon, 24 Feb 2020 07:05:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1582549526;
+        bh=SYBU5pE8qnsxWqM4agBgkitC2zqD/Vs7Rlu+vfpZ/Ho=;
+        h=From:To:CC:Subject:Date;
+        b=qaXmMS83KZP/tQwPkjqI+cxGanvDxPNW5OPXVqIlt3rIKoW/oLGjdfE8zSCwiGXyJ
+         zMx6Pwgmz8SHLEQEiO/ReNuzlX0G3vpR8rT3VI7d0CcGPTTfm5s1DdQFJKlC2QHfFO
+         tvyr/eoFJlcKfrWpoo367AhsiuXndgqbB8gRuTGY=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01OD5Q6L109411;
+        Mon, 24 Feb 2020 07:05:26 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 24
+ Feb 2020 07:05:25 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 24 Feb 2020 07:05:25 -0600
+Received: from a0393678ub.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01OD5M7N017839;
+        Mon, 24 Feb 2020 07:05:23 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Subject: [PATCH v3 0/4] dt-bindings: Convert Cadence PCIe RC/EP to DT Schema
+Date:   Mon, 24 Feb 2020 18:39:01 +0530
+Message-ID: <20200224130905.952-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20200218171321.30990-2-robh@kernel.org>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Alex,
+Cadence PCIe IP is used by multiple SoC vendors (e.g. TI). Cadence
+themselves have a validation platform for validating the PCIe IP which
+is already in the upstream kernel. Right now the binding only exists for
+Cadence platform and this will result in adding redundant binding schema
+for any platform using Cadence PCIe core.
 
-On 2/18/20 6:13 PM, Rob Herring wrote:
-> Cc: Eric Auger <eric.auger@redhat.com>
-> Cc: Alex Williamson <alex.williamson@redhat.com>
-> Cc: Cornelia Huck <cohuck@redhat.com>
-> Cc: kvm@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Do not apply yet.
-> 
->  drivers/vfio/platform/reset/Kconfig           |  8 --
->  drivers/vfio/platform/reset/Makefile          |  2 -
->  .../reset/vfio_platform_calxedaxgmac.c        | 74 -------------------
->  3 files changed, 84 deletions(-)
->  delete mode 100644 drivers/vfio/platform/reset/vfio_platform_calxedaxgmac.c
-> 
-> diff --git a/drivers/vfio/platform/reset/Kconfig b/drivers/vfio/platform/reset/Kconfig
-> index 1edbe9ee7356..3668d1d92909 100644
-> --- a/drivers/vfio/platform/reset/Kconfig
-> +++ b/drivers/vfio/platform/reset/Kconfig
-> @@ -1,12 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> -config VFIO_PLATFORM_CALXEDAXGMAC_RESET
-> -	tristate "VFIO support for calxeda xgmac reset"
-> -	depends on VFIO_PLATFORM
-> -	help
-> -	  Enables the VFIO platform driver to handle reset for Calxeda xgmac
-> -
-> -	  If you don't know what to do here, say N.
-> -
->  config VFIO_PLATFORM_AMDXGBE_RESET
->  	tristate "VFIO support for AMD XGBE reset"
->  	depends on VFIO_PLATFORM
-> diff --git a/drivers/vfio/platform/reset/Makefile b/drivers/vfio/platform/reset/Makefile
-> index 7294c5ea122e..be7960ce5dbc 100644
-> --- a/drivers/vfio/platform/reset/Makefile
-> +++ b/drivers/vfio/platform/reset/Makefile
-> @@ -1,7 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -vfio-platform-calxedaxgmac-y := vfio_platform_calxedaxgmac.o
->  vfio-platform-amdxgbe-y := vfio_platform_amdxgbe.o
-> 
-> -obj-$(CONFIG_VFIO_PLATFORM_CALXEDAXGMAC_RESET) += vfio-platform-calxedaxgmac.o
->  obj-$(CONFIG_VFIO_PLATFORM_AMDXGBE_RESET) += vfio-platform-amdxgbe.o
->  obj-$(CONFIG_VFIO_PLATFORM_BCMFLEXRM_RESET) += vfio_platform_bcmflexrm.o
-> diff --git a/drivers/vfio/platform/reset/vfio_platform_calxedaxgmac.c b/drivers/vfio/platform/reset/vfio_platform_calxedaxgmac.c
-> deleted file mode 100644
-> index 09a9453b75c5..000000000000
-> --- a/drivers/vfio/platform/reset/vfio_platform_calxedaxgmac.c
-> +++ /dev/null
-> @@ -1,74 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0-only
-> -/*
-> - * VFIO platform driver specialized for Calxeda xgmac reset
-> - * reset code is inherited from calxeda xgmac native driver
-> - *
-> - * Copyright 2010-2011 Calxeda, Inc.
-> - * Copyright (c) 2015 Linaro Ltd.
-> - *              www.linaro.org
-> - */
-> -
-> -#include <linux/module.h>
-> -#include <linux/kernel.h>
-> -#include <linux/init.h>
-> -#include <linux/io.h>
-> -
-> -#include "../vfio_platform_private.h"
-> -
-> -#define DRIVER_VERSION  "0.1"
-> -#define DRIVER_AUTHOR   "Eric Auger <eric.auger@linaro.org>"
-> -#define DRIVER_DESC     "Reset support for Calxeda xgmac vfio platform device"
-> -
-> -/* XGMAC Register definitions */
-> -#define XGMAC_CONTROL           0x00000000      /* MAC Configuration */
-> -
-> -/* DMA Control and Status Registers */
-> -#define XGMAC_DMA_CONTROL       0x00000f18      /* Ctrl (Operational Mode) */
-> -#define XGMAC_DMA_INTR_ENA      0x00000f1c      /* Interrupt Enable */
-> -
-> -/* DMA Control registe defines */
-> -#define DMA_CONTROL_ST          0x00002000      /* Start/Stop Transmission */
-> -#define DMA_CONTROL_SR          0x00000002      /* Start/Stop Receive */
-> -
-> -/* Common MAC defines */
-> -#define MAC_ENABLE_TX           0x00000008      /* Transmitter Enable */
-> -#define MAC_ENABLE_RX           0x00000004      /* Receiver Enable */
-> -
-> -static inline void xgmac_mac_disable(void __iomem *ioaddr)
-> -{
-> -	u32 value = readl(ioaddr + XGMAC_DMA_CONTROL);
-> -
-> -	value &= ~(DMA_CONTROL_ST | DMA_CONTROL_SR);
-> -	writel(value, ioaddr + XGMAC_DMA_CONTROL);
-> -
-> -	value = readl(ioaddr + XGMAC_CONTROL);
-> -	value &= ~(MAC_ENABLE_TX | MAC_ENABLE_RX);
-> -	writel(value, ioaddr + XGMAC_CONTROL);
-> -}
-> -
-> -static int vfio_platform_calxedaxgmac_reset(struct vfio_platform_device *vdev)
-> -{
-> -	struct vfio_platform_region *reg = &vdev->regions[0];
-> -
-> -	if (!reg->ioaddr) {
-> -		reg->ioaddr =
-> -			ioremap(reg->addr, reg->size);
-> -		if (!reg->ioaddr)
-> -			return -ENOMEM;
-> -	}
-> -
-> -	/* disable IRQ */
-> -	writel(0, reg->ioaddr + XGMAC_DMA_INTR_ENA);
-> -
-> -	/* Disable the MAC core */
-> -	xgmac_mac_disable(reg->ioaddr);
-> -
-> -	return 0;
-> -}
-> -
-> -module_vfio_reset_handler("calxeda,hb-xgmac", vfio_platform_calxedaxgmac_reset);
-> -
-> -MODULE_VERSION(DRIVER_VERSION);
-> -MODULE_LICENSE("GPL v2");
-> -MODULE_AUTHOR(DRIVER_AUTHOR);
-> -MODULE_DESCRIPTION(DRIVER_DESC);
-> --
-> 2.20.1
-> 
-I do not have access to this HW anymore and I use Seattle to test
-vfio-platform. So
+This series:
+1) Create cdns-pcie.yaml which includes properties that are applicable
+   to both host mode and endpoint mode of Cadence PCIe core.
+2) Create cdns-pcie-host.yaml to include properties that are specific to
+   host mode of Cadence PCIe core. cdns-pcie-host.yaml will include
+   cdns-pcie.yaml.
+3) Create cdns-pcie-ep.yaml to include properties that are specific to
+   endpoint mode of Cadence PCIe core. cdns-pcie-ep.yaml will include
+   cdns-pcie.yaml.
+4) Remove cdns,cdns-pcie-ep.txt and cdns,cdns-pcie-host.txt which had
+   the binding for Cadence "platform" and add cdns,cdns-pcie-host.yaml
+   and cdns,cdns-pcie-ep.yaml schema for Cadence Platform. The schema
+   for Cadence platform then includes schema for Cadence PCIe core.
 
-Acked-by: Eric Auger <eric.auger@redhat.com>
+Changes from v2:
+*) Created "pci-ep.yaml" for common endpoint controller bindings
+*) Deprecate "cdns,max-outbound-regions" and "cdns,no-bar-match-nbits"
+   binding
 
-Thanks
+Changes from v1:
+*) Fix maximum values of num-lanes and cdns,no-bar-match-nbits
+*) Fix example DT node for PCIe Endpoint.
 
-Eric
+Ref: Patches to convert Cadence driver to library
+     https://lkml.org/lkml/2019/11/11/317
+
+Some of this was initially part of [1], but to accelerate it getting
+into upstream, sending this as a separate series.
+
+[1] -> http://lore.kernel.org/r/20200106102058.19183-1-kishon@ti.com
+
+Kishon Vijay Abraham I (4):
+  dt-bindings: PCI: Add PCI Endpoint Controller Schema
+  dt-bindings: PCI: cadence: Add PCIe RC/EP DT schema for Cadence PCIe
+  dt-bindings: PCI: Convert PCIe Host/Endpoint in Cadence platform to DT
+    schema
+  dt-bindings: PCI: cadence: Deprecate inbound/outbound specific
+    bindings
+
+ .../bindings/pci/cdns,cdns-pcie-ep.txt        | 27 -------
+ .../bindings/pci/cdns,cdns-pcie-ep.yaml       | 49 ++++++++++++
+ .../bindings/pci/cdns,cdns-pcie-host.txt      | 66 ----------------
+ .../bindings/pci/cdns,cdns-pcie-host.yaml     | 75 +++++++++++++++++++
+ .../bindings/pci/cdns-pcie-host.yaml          | 28 +++++++
+ .../devicetree/bindings/pci/cdns-pcie.yaml    | 32 ++++++++
+ .../devicetree/bindings/pci/pci-ep.yaml       | 41 ++++++++++
+ MAINTAINERS                                   |  2 +-
+ 8 files changed, 226 insertions(+), 94 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-ep.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/cdns,cdns-pcie-host.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/cdns-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/pci-ep.yaml
+
+-- 
+2.17.1
 
