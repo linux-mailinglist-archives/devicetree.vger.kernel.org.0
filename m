@@ -2,55 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC0A916B4EC
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 00:12:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A64C416B56A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 00:27:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728262AbgBXXMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 18:12:32 -0500
-Received: from shards.monkeyblade.net ([23.128.96.9]:39902 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728235AbgBXXMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 18:12:31 -0500
-Received: from localhost (unknown [50.226.181.18])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 926D01241F153;
-        Mon, 24 Feb 2020 15:12:30 -0800 (PST)
-Date:   Mon, 24 Feb 2020 15:12:25 -0800 (PST)
-Message-Id: <20200224.151225.1263267218414504053.davem@davemloft.net>
-To:     olteanv@gmail.com
-Cc:     netdev@vger.kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        alexandru.marginean@nxp.com, claudiu.manoil@nxp.com,
-        michael@walle.cc, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 net-next 0/2] Remainder for "DT bindings for Felix
- DSA switch on LS1028A"
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <20200224121534.29679-1-olteanv@gmail.com>
-References: <20200224121534.29679-1-olteanv@gmail.com>
-X-Mailer: Mew version 6.8 on Emacs 26.3
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 24 Feb 2020 15:12:31 -0800 (PST)
+        id S1728523AbgBXX1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 18:27:05 -0500
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:50284 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727976AbgBXX1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 18:27:03 -0500
+Received: by mail-wm1-f66.google.com with SMTP id a5so1111953wmb.0;
+        Mon, 24 Feb 2020 15:27:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=8NVlvzE3Tm6P+gLHVWoR+a8t0nwDLWG0p5mfxUKacM8=;
+        b=RsqzdoQe89nHPyKET3qT33aLg5yAxbgQswsmIDvzPvSW7D6bHtfMRpm0nbYYuP4Gtt
+         B9UsEgE7n86ChF4Dm6CIHlaSOhB5/4iMGOzhwM49ofX6YupnwF+7Qvhl4TF4+CiJr4S4
+         gLAuRlDJS6BS6BWZVUrvXnLV2pIPM2RinXRL5M1SyZqy5zoNxw4qPmPH1IXpoy0Avgcd
+         JMoKZKKULwgWohALQ2Y4RnbO6yAUZ6ozphw0I7QDihAmUW7SiDK56UfXHlbjAOsdsiuF
+         ipYwR+jDXaNnHyRfHBAu5Hs5SLJZaactWOr2h572/bjV0WUAH+P8DGZ6D9Y0pXgz8coa
+         rg6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=8NVlvzE3Tm6P+gLHVWoR+a8t0nwDLWG0p5mfxUKacM8=;
+        b=D5iotJNP3zLFJQ0xnxCNUUm7xYMcO2lssrHNCDQhO1+7gW6DYeSVdIX1Mb7fN+IF9G
+         xIJ9xXeLNUvJkXSe1089NcnaxRPXhE8aVRtkMBTgYvaeDeAQqorB98bmRoN4JVPVDIAO
+         ix5Ty7O0kIejFyiddP+5y4qaZZv+RwAt+v7BxeMPTb/+wjVBNk2R044Et9/2+q4ZTRA4
+         uX7NEODcmFEfSCEh1+l6VEx9DibUxo1+EHlnK2DiwjGm3VkL2EfJzYjM9Y7/0EFz5+de
+         gSGZKDsSDyZ564H2uAtsZgdsCUwNp8DAx1w/Az150yjRV48TyKzGi+G+3SlfymZ8e0sJ
+         n5yA==
+X-Gm-Message-State: APjAAAVkd/hCDxzYCr35S+rQ0kEcHpDkhj3ZPHMxU2Pk5FtOTEITfkax
+        JRm99z97G+MXFJwVKAjeeYo=
+X-Google-Smtp-Source: APXvYqwLkmHUUFun+m9+BvTzVsQnD+kGQ4DuAT8WzcyXQYxIMaZPQS9XVg5KG8cUpMT9brJIkdK1/w==
+X-Received: by 2002:a1c:a952:: with SMTP id s79mr1369235wme.83.1582586820935;
+        Mon, 24 Feb 2020 15:27:00 -0800 (PST)
+Received: from buildbot.home (217-149-167-12.nat.highway.telekom.at. [217.149.167.12])
+        by smtp.googlemail.com with ESMTPSA id g25sm1971099wmh.3.2020.02.24.15.26.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Feb 2020 15:27:00 -0800 (PST)
+From:   Franz Forstmayr <forstmayr.franz@gmail.com>
+To:     forstmayr.franz@gmail.com
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: hwmon: Add compatible for ti,ina260
+Date:   Tue, 25 Feb 2020 00:26:45 +0100
+Message-Id: <20200224232647.29213-1-forstmayr.franz@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <olteanv@gmail.com>
-Date: Mon, 24 Feb 2020 14:15:32 +0200
+Add initial support for power/current monitor INA260
 
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> 
-> This series is the remainder of patchset [0] which has been merged
-> through Shawn Guo's devicetree tree.
-> 
-> It contains changes to the PHY mode validation in the Felix driver
-> ("gmii" to "internal") and the documentation for the DT bindings.
-> 
-> [0]: https://patchwork.ozlabs.org/cover/1242716/
+Signed-off-by: Franz Forstmayr <forstmayr.franz@gmail.com>
+---
+ Documentation/devicetree/bindings/hwmon/ina2xx.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Series applied, thanks.
+diff --git a/Documentation/devicetree/bindings/hwmon/ina2xx.txt b/Documentation/devicetree/bindings/hwmon/ina2xx.txt
+index 02af0d94e921..92983a224109 100644
+--- a/Documentation/devicetree/bindings/hwmon/ina2xx.txt
++++ b/Documentation/devicetree/bindings/hwmon/ina2xx.txt
+@@ -8,6 +8,7 @@ Required properties:
+ 	- "ti,ina226" for ina226
+ 	- "ti,ina230" for ina230
+ 	- "ti,ina231" for ina231
++	- "ti,ina260" for ina260
+ - reg: I2C address
+ 
+ Optional properties:
+-- 
+2.17.1
+
