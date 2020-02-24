@@ -2,124 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C879F16A13B
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 10:11:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21CC716A1B7
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 10:17:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727910AbgBXJLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 04:11:17 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:36727 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727794AbgBXJLD (ORCPT
+        id S1727187AbgBXJRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 04:17:53 -0500
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:53897 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727183AbgBXJRw (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Feb 2020 04:11:03 -0500
+        Mon, 24 Feb 2020 04:17:52 -0500
 Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 34D407698;
-        Mon, 24 Feb 2020 04:11:02 -0500 (EST)
+        by mailnew.nyi.internal (Postfix) with ESMTP id C28BD92C;
+        Mon, 24 Feb 2020 04:17:51 -0500 (EST)
 Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Mon, 24 Feb 2020 04:11:02 -0500
+  by compute3.internal (MEProxy); Mon, 24 Feb 2020 04:17:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=P6NSWkrKZ4ycnvFOSuy67yShL4e
-        kMBsFHiAL05968xc=; b=lZ4OE2YE954qYDC16RXXOtM/qnFZraFfeQ0BPlrNAQt
-        GXa5BRrgjuoMXO09Hj3a+SRn3OWbiJfp1i7iHeX49HvPtvYKGj2ka60gIk6QygsS
-        xOedDCFBmF5v3PSXS+L3NxwVtIqE9RznUlMhphBxtmlaexBZKMCsLbsXEtmnyWFY
-        pEHkRiCnYtzef/iZ9FYqOK2PmauywfwotGSDS2ZUzSt7Y+pIb5q+qAQYlq5a9+4S
-        4EP5CiPaANupbgvtbAquupThLnPHIfavvUMjae8bB/oPE3uGTWNm4571hPnqzcdV
-        tIp44pxnFoVzlNbG6lpp5aNwDIpEsxcIGB/g47CMCuw==
+        :content-type:in-reply-to; s=fm2; bh=bhiSTGzIzLvbB70YLw0z3IoRroB
+        BdxIBBUPukc//z2k=; b=jYHVCyH8g9nqg/zYl17i16JkenbWeSe4RJkFKb5s81Z
+        lH8dlS5LH0iiSiwf1Dil+3Wdq41wqQAjumX1SANJ+ZSpkZLPSTwFODD512b9bIru
+        HMHmPInAWxKK127YRej+6Ky0Z2TqJLcGUynBj8JbOepWU2Ogot2FK3iBUfAOKj66
+        SV7FxmM+DknYeeen3vd+jPRNF8RCiMoHtHQKHTfmaugKh6t1zwzhGMaLHD9X+hUT
+        eYeWJQ2e7jAM9Ao5HHsYVYKbMzEzSN4mRAfmko31Of2LrRTJMAMZ9uoXtAxN7drN
+        m6Hr+xSjN6rotrtKY+iKzXdjLryPlKGg3ROYJeR+qhg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=P6NSWk
-        rKZ4ycnvFOSuy67yShL4ekMBsFHiAL05968xc=; b=r57KjA79/p5plmAAJXNv/J
-        hnoNbfH/Fm5PIKdb1WwapcoQy4JZwmrTAKiYdDrU1xmPe7YO7cg67fWW48x/8Fg0
-        W26pjrXMh+5qpMVxoKbHogk903GtPfV8zMhdIYPCRS2I4WRgLVL9zN0dmtKVcK+i
-        +nFZkhg/lAgAR/F4y/hcFeDm10hT/erEAES/h79aAY8bMLzzV6UcDsBWX01txzKi
-        9J3KqrQ01PWX26AWkYE4nz7E7TgV/YUQHv3e2RlERTMoj0olsRWysMp3i+g4zilC
-        ikqMBqw87Ow0nRPMkSim4j0vTFLFbDC0hjG/xkHYH/Scm6XVExWWXkLkrNQgbz8w
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=bhiSTG
+        zIzLvbB70YLw0z3IoRroBBdxIBBUPukc//z2k=; b=gkNme53XO+FnuMGD8Ajsen
+        /9f0CKLdSml0Y1r6i0seq9WSo43MENIWClY7dNhuG6we46yxlOuau0jl73CWIfl/
+        g79Op6PIhyeNbj9bsZUH0S+3IUPy+UpDm8ZefiK9RDAeobAl5koep2KY9IcYZPJ+
+        OKIszKZa1WQKtw8x8sJBdsowYoKfiOeKoKXVs00KgQmGWfh/YNtRHqOGx6l40ezE
+        rh3MBXbLIpUtaXo8Un3hQ3vi35JxZlW3WXbL2/1CMq09ItaewYjFJVibOue3yEx3
+        qBdaQPgaSwOhNIHPpz8apDtyO8XuOoHRk94t2kRnY+N42/Iw4y/4TXdt1FULr4zQ
         ==
-X-ME-Sender: <xms:JJNTXoeASscD0ZE79XXdYIUaj_4HERRURm8t60DN_w_LZdOkXgefiQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrledtucetufdoteggodetrfdotffvucfrrh
-    hofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgenuceurghi
-    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
-    epfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhmvgcutfhi
-    phgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecukfhppeeltddrkeelrd
-    eikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
-    mhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:JJNTXluWuPtuGN1waXd_JiswnG4e7u-fVcy7PczKJAgHSvNxt3tqQg>
-    <xmx:JJNTXv_wMhB5XVyVpuBZBac9XmYEjBsod6Y6Tlf2Dk6TfKZoM0gR_w>
-    <xmx:JJNTXo1zXyyBSNGeEc12xnIp9_AK21g3yWfN8SJAGvtSF8hQMAa4Sg>
-    <xmx:JpNTXugmknZ6EKgtv52oiyQ9y3cZAT18nBrpAmieETp8hBTU8RsCag>
+X-ME-Sender: <xms:vJRTXgIgw2wDuExCBeq6zdnhZF0iVR25zGUAXlo9VZ8AJGw5A-BPlA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrledtgddtvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucfkphepledtrd
+    ekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+    fhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:vJRTXsjsjhxeKwrQoPnm5rtwyOjVeOWKkCFVbnaoOWCYD6bqStpCIg>
+    <xmx:vJRTXlISsoyDpUvoYYqQ4RqyeogTyqkTf0ESLoCmNbeDLxaPCi3BAg>
+    <xmx:vJRTXriNFGtQk4Q4cFjrmLG2ImZp8EbwrKF7HR8sjf0tPVgzIjJ6jw>
+    <xmx:v5RTXkHlYQmCvoFng4iAFMxRUoATVKEp-SGW7cxOLkO_bgZUzcQmGA>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 421BA328005A;
-        Mon, 24 Feb 2020 04:11:00 -0500 (EST)
-Date:   Mon, 24 Feb 2020 10:10:59 +0100
+        by mail.messagingengine.com (Postfix) with ESMTPA id 901E8328005D;
+        Mon, 24 Feb 2020 04:17:48 -0500 (EST)
+Date:   Mon, 24 Feb 2020 10:17:47 +0100
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Ondrej Jirman <megous@megous.com>
-Cc:     linux-sunxi@googlegroups.com,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+Cc:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Luca Weiss <luca@z3ntu.xyz>, Tomas Novotny <tomas@novotny.cz>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/4] ARM: dts: sun8i-a83t-tbs-a711: Add support for the
- vibrator motor
-Message-ID: <20200224091059.lljffogofbexhudt@gilmour.lan>
-References: <20200222231428.233621-1-megous@megous.com>
- <20200222231428.233621-4-megous@megous.com>
+        Corentin Labbe <clabbe@baylibre.com>,
+        Sunil Mohan Adapa <sunil@medhas.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add prefix for
+ PocketBook International SA
+Message-ID: <20200224091747.zwnvzosdb34tg5de@gilmour.lan>
+References: <20200223031614.515563-1-megous@megous.com>
+ <20200223031614.515563-2-megous@megous.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="rf2uuzktvcqtstk3"
+        protocol="application/pgp-signature"; boundary="s3lc6so7ejypionk"
 Content-Disposition: inline
-In-Reply-To: <20200222231428.233621-4-megous@megous.com>
+In-Reply-To: <20200223031614.515563-2-megous@megous.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---rf2uuzktvcqtstk3
+--s3lc6so7ejypionk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Hi,
-
-On Sun, Feb 23, 2020 at 12:14:27AM +0100, Ondrej Jirman wrote:
-> The board has a vibrator mottor. Hook it to the input subsystem.
+On Sun, Feb 23, 2020 at 04:16:12AM +0100, Ondrej Jirman wrote:
+> Call it "pocketbook".
 >
 > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
->  arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts b/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-> index 2fd31a0a0b344..a22920275e99b 100644
-> --- a/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-> +++ b/arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts
-> @@ -99,6 +99,11 @@ panel_input: endpoint {
->  		};
->  	};
->
-> +	vibrator {
-> +		compatible = "gpio-vibrator";
-> +		vcc-supply = <&reg_ldo_io1>;
-> +	};
-> +
 
-LDO IO1 can also be muxed in as a GPIO iirc, why did you choose the
-regulator instead?
 
+Acked-by: Maxime Ripard <mripard@kernel.org>
+
+Thanks!
 Maxime
 
---rf2uuzktvcqtstk3
+--s3lc6so7ejypionk
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXlOTIwAKCRDj7w1vZxhR
-xVFTAQDQJHOWWsog4Y0l4mRxEOjNKPwakKZYlCWd4M50UL9jDAEArb1p2WwTIOaO
-jt5TR3xH+He9Bb3uaRGhWtWZpIcV9Aw=
-=/rlr
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXlOUuwAKCRDj7w1vZxhR
+xa3PAQD5b10L3aKPDDSM7Tfa1QeBY1g2L8BN+Yd10w4ekayS7wD8Ckd8fS7y2r27
+5U3OK2rz8CdHy416LnVeOyTtiJosogA=
+=ux3c
 -----END PGP SIGNATURE-----
 
---rf2uuzktvcqtstk3--
+--s3lc6so7ejypionk--
