@@ -2,158 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6566D169B88
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 01:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 130EA169BB9
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 02:18:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727159AbgBXA53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 23 Feb 2020 19:57:29 -0500
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:41657 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727151AbgBXA52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Feb 2020 19:57:28 -0500
-Received: by mail-pf1-f194.google.com with SMTP id j9so4453506pfa.8;
-        Sun, 23 Feb 2020 16:57:28 -0800 (PST)
+        id S1727187AbgBXBS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 23 Feb 2020 20:18:58 -0500
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:40602 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727167AbgBXBS6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 23 Feb 2020 20:18:58 -0500
+Received: by mail-pg1-f195.google.com with SMTP id z7so4250436pgk.7
+        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2020 17:18:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Aysh99lYJb0QB28h4UkvEdDsB5SZxGmd9sP09+ztSKE=;
-        b=gySB25DcqzWbfLwJ7ohcOp1/pIixZ1PNNyctooFBRKlDqn6YlsTfvTZo9ANX9C63O0
-         fbABfRUPdqH1LAQxZvdk13lKjGiFuxPOaqgwStuTHzVpKEh19g2ODfg5VmQ20OM7iC7i
-         VrQOJF8f7OLHc/apkdxzyw3/peC+a6zRJVPZ6287K8lmOt2Ja5dK6Apb1PSNBYOtb9VR
-         TK+zj8BnTM0AoPFZiMBXMXH0Gg0aLSOLfo20RJuruUDUZv62cV8nWB57XSgRvKzlFbdS
-         rXEHJU7MBwk1KCHO4SMmCuqCeMHIzVMeuk1Y+a7L1u7TVsVnEibSj1K2kO6tEdABop/n
-         s3NQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zT10dhFzTQfQk4qZLNGzW74d8YteQDI8/eIgEFfv+OM=;
+        b=n8isivMfbvLTUE8W5OF33bsEQHbC9GWAfYDMGxgEsCd67xnLu5gDVB9DXvZR6Rsx1O
+         55Mu59uQZ9ycLOFST2i7wZ7g5Hz2Km/BWEoh8CuZd9UfD8ypdnoG0zR2phZcKA7ScuyY
+         3/UoFGfVGlgcXlM70PiZd0OSnnRxK7cvW1Uw4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Aysh99lYJb0QB28h4UkvEdDsB5SZxGmd9sP09+ztSKE=;
-        b=GbRkf5gWlSzA6Kr9MD96t+i8WtI3tQ0VPSJtuA8HrETpXVZsicQ0w/22o7RnRxop21
-         gSyioII9p5s8q7c+extJtSr6viDGo725LQ6rrXQygiVZTWD3LdLK0NHqChUXhAQej8b2
-         W6HsjUPdYwayX79iEhfB/wqvHn07ULKRJNeTNIuFJfQDa8kyu3UjvSW3MYt9DM9fG0x9
-         xz2QKLzVADhYAEhZd6fzrocs2tB9a9ujzpKdjpbGeg+zHOwU17glO6i86cPNmUCbQhWA
-         cVI/bsgbcOH77XY/aCDNolOvrdR+6qFvrQ3zV26MaEMEyGjJTO5/9yW4/fc7bxEDiQOh
-         lijA==
-X-Gm-Message-State: APjAAAVaZrfJWI3UcCqYKl3sYzgameceee2N6CVfRnaXy/fOmChC1DIV
-        dtizDZiTPNfKNt70BM393mc=
-X-Google-Smtp-Source: APXvYqyTUJlxELEbxm86weJqlQilHU3okCeuY1dsnmFf6p7qnYUJjYoigi4EfsVi3ANhXRQyh/xkjA==
-X-Received: by 2002:aa7:95a3:: with SMTP id a3mr23494287pfk.193.1582505847947;
-        Sun, 23 Feb 2020 16:57:27 -0800 (PST)
-Received: from [192.168.1.56] ([173.195.191.75])
-        by smtp.gmail.com with ESMTPSA id s125sm10165591pgc.53.2020.02.23.16.57.26
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 23 Feb 2020 16:57:27 -0800 (PST)
-Subject: Re: [RFC PATCH v2 1/4] scripts: Add script to generate dtb build
- information
-To:     David Gibson <david@gibson.dropbear.id.au>
-Cc:     Alexandre Torgue <alexandre.torgue@st.com>, robh+dt@kernel.org,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>, sjg@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-kbuild@vger.kernel.org, devicetree-compiler@vger.kernel.org,
-        Ian Lepore <ian@freebsd.org>
-References: <20200221161418.20225-1-alexandre.torgue@st.com>
- <20200221161418.20225-2-alexandre.torgue@st.com>
- <592e41a4-6115-474e-b6ce-eeb82f858a78@gmail.com>
- <20200223215936.GB1751@umbus.fritz.box>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <9e77ace1-6821-1094-85e0-a68228b2609d@gmail.com>
-Date:   Sun, 23 Feb 2020 18:57:25 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zT10dhFzTQfQk4qZLNGzW74d8YteQDI8/eIgEFfv+OM=;
+        b=dASTcjOn0mjc/2ectxYAddyMAl17NQbsvdjmymnRhM2S132egHviiOX/uBQ7E/S7Ky
+         nJ3CFRlG/cbSWf98fcw56EkkAIeazsOLXOWqQB85BVBQwyco3wlW8s0+eLAFZT7tCfjH
+         d/iVT0Sg7OY1aMW48d+W+FEDRD89nVHo19Yq3HNEOxVWyRZCAxtqU81zcNF0t5wMWoTK
+         0aeNIYn+XSmCAU4URddkT/XztFMjk5NOf6YrJdZMCHevA8Cl/z6KIlTcu5+Muei1Duhh
+         BchBT8SUl3YxnT/I0A5fBUXg8m0zlrrOfdQCUg5IKYzQrKdbffYLJfB7jm/t80r2PjQj
+         SBtw==
+X-Gm-Message-State: APjAAAUzthcyE9kUqiNJL/luPXFOW6Md6aBo6EAeFpD20czPy2fQFX82
+        yuokG1wqXX1MVfCqge5mX5TOAcjhWJy2aA==
+X-Google-Smtp-Source: APXvYqx9UHYEkJPSozrRHLjxQr35exznoN/y90RQUV7PTu9EUqqiaGx5x7QZTKecywt4McSGOEMrjg==
+X-Received: by 2002:a63:1a50:: with SMTP id a16mr49365222pgm.389.1582507135940;
+        Sun, 23 Feb 2020 17:18:55 -0800 (PST)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com. [209.85.214.169])
+        by smtp.gmail.com with ESMTPSA id v29sm3026344pgc.72.2020.02.23.17.18.55
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 23 Feb 2020 17:18:55 -0800 (PST)
+Received: by mail-pl1-f169.google.com with SMTP id t6so3364451plj.5
+        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2020 17:18:55 -0800 (PST)
+X-Received: by 2002:a1f:add3:: with SMTP id w202mr22215488vke.30.1582506662987;
+ Sun, 23 Feb 2020 17:11:02 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20200223215936.GB1751@umbus.fritz.box>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200214062637.216209-1-evanbenn@chromium.org>
+ <20200214172512.1.I02ebc5b8743b1a71e0e15f68ea77e506d4e6f840@changeid>
+ <20200219223046.GA16537@bogus> <CAODwPW8JspiUtyU4CC95w9rbNRyUF-Aeb9TuPm1PzmP6u=y1EA@mail.gmail.com>
+ <20200219232005.GA9737@roeck-us.net> <CAKz_xw2hvHL=a4s37dmuCTWDbxefQFR3rfcaNiWYJY4T+jqabA@mail.gmail.com>
+ <e42320b8-266f-0b0e-b20b-b72228510e81@amlogic.com> <CAODwPW94KX46PzSrf_uuEFPKudXor=26d=g3Qta5veRfxmMDUA@mail.gmail.com>
+ <1326f594-3cfd-c03d-4f2c-50eeb75724b2@amlogic.com>
+In-Reply-To: <1326f594-3cfd-c03d-4f2c-50eeb75724b2@amlogic.com>
+From:   Evan Benn <evanbenn@chromium.org>
+Date:   Mon, 24 Feb 2020 12:10:37 +1100
+X-Gmail-Original-Message-ID: <CAKz_xw3z7uXtK1SQKYLu_oP3GmqKR7RXvWj2b1cfyZO-Q-ZxQw@mail.gmail.com>
+Message-ID: <CAKz_xw3z7uXtK1SQKYLu_oP3GmqKR7RXvWj2b1cfyZO-Q-ZxQw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add arm,smc-wdt watchdog
+ arm,smc-wdt compatible
+To:     Xingyu Chen <xingyu.chen@amlogic.com>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-watchdog@vger.kernel.org,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Yonghui Yu <yonghui.yu@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/23/20 3:59 PM, David Gibson wrote:
-> On Fri, Feb 21, 2020 at 11:52:34AM -0600, Frank Rowand wrote:
->> On 2/21/20 10:14 AM, Alexandre Torgue wrote:
->>> This commit adds a new script to create a file (in dts file directory) with
->>> some information (date, Linux version, user). This file could then be used
->>> to populate "build-info" property in every dts file that would use this
->>> build information:
->>>
->>> Example:
->>>
->>> / {
->>> 	...
->>> 	build-info = /incbin/("dtb-build.txt");
->>
->> s/.txt/.dtsi/
-> 
-> I don't think that makes sense.  This is an /incbin/ not an /include/
-> so the text file is *not* dts information.
+Hello,
 
-You are right, thanks for catching that.
+I think the intention is that this driver talks to a 'standard' arm
+smc firmware watchdog call:
 
--Frank
+https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405
 
-> 
->> and same wherever the file name is used.
->>
->>
->>> 	...
->>> };
->>>
->>> Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
->>>
->>> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
->>> index bae62549e3d2..a5af84ef4ffc 100644
->>> --- a/scripts/Makefile.lib
->>> +++ b/scripts/Makefile.lib
->>> @@ -246,6 +246,7 @@ quiet_cmd_gzip = GZIP    $@
->>>  # DTC
->>>  # ---------------------------------------------------------------------------
->>>  DTC ?= $(objtree)/scripts/dtc/dtc
->>> +DTB_GEN_INFO ?= $(objtree)/scripts/gen_dtb_build_info.sh
->>>  
->>>  # Disable noisy checks by default
->>>  ifeq ($(findstring 1,$(KBUILD_EXTRA_WARN)),)
->>> @@ -286,6 +287,7 @@ $(obj)/%.dtb.S: $(obj)/%.dtb FORCE
->>>  
->>>  quiet_cmd_dtc = DTC     $@
->>>  cmd_dtc = mkdir -p $(dir ${dtc-tmp}) ; \
->>> +	$(DTB_GEN_INFO) $(src) ; \
->>>  	$(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ; \
->>>  	$(DTC) -O $(2) -o $@ -b 0 \
->>>  		$(addprefix -i,$(dir $<) $(DTC_INCLUDE)) $(DTC_FLAGS) \
->>> diff --git a/scripts/gen_dtb_build_info.sh b/scripts/gen_dtb_build_info.sh
->>> new file mode 100755
->>> index 000000000000..0cd8bd98e410
->>> --- /dev/null
->>> +++ b/scripts/gen_dtb_build_info.sh
->>> @@ -0,0 +1,10 @@
->>> +#!/bin/bash
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +
->>> +set -o nounset
->>> +
->>> +DTB_DIR=$1
->>> +DTB_COMPILE_BY=$(whoami | sed 's/\\/\\\\/')
->>> +DTB_INFO="From Linux $KERNELRELEASE by $DTB_COMPILE_BY the $(date).\0"
->>
->> I would remove the filler words "From", "by", "the", and the trailing
->> period ('.').
->>
->> <bikeshed>
->> You might consider using a format more like the Linux
->> kernel version line, which puts parenthesis around the
->> compiled by info.
->> </bikeshed>
->>
->> -Frank
->>
->>> +
->>> +printf "$DTB_INFO" > "$DTB_DIR/dtb-build.txt"
->>>
->>
-> 
+Each device could re-implement that ATF driver to talk to the specific hardware,
+and could perhaps use a custom SMCWD_FUNC_ID, defined in the dts.
 
+The goal was to provide an ATF patch and linux driver patch that would
+be generic. But the above ATF patch
+is only for mt8173. Right now it just specifies an interface. It has
+less functionality than your meson driver Xingyu.
+If it is not suitable, that is fine.
+
+The above ATF patch is deployed on oak, elm, and hana mt8173
+chromebook devices, this driver is intended to support those devices.
+
+Evan
+
+
+On Sat, Feb 22, 2020 at 3:01 PM Xingyu Chen <xingyu.chen@amlogic.com> wrote:
+>
+> Hi, Julius
+>
+> On 2020/2/22 3:41, Julius Werner wrote:
+> >> Because the ATF does not define standard wdt index, each vendor defines
+> >> its own index.
+> >> So I don't think that the current driver[0] can fully cover my usecases.
+> > I think the best way to solve this would be to put the SMC function ID
+> > as another field into the device tree, so that multiple vendors could
+> > share the same driver even if their firmware interface uses a
+> > different SMC. But they still have to implement the same API for that
+> > SMC, of course, not sure if the Meson driver is suitable for that (but
+> > if it is then I think merging those drivers would be a good idea).
+> The SMC function ID may be solved by the DTS, but the wdt indexs(Eg:
+> SMCWD_INFO) are also different
+> for each vendor. The imx_sc_wdt.c is also use the SMC to operate the
+> WDT, but the wdt indexs(Eg: IMX_SIP_TIMER_START_WDOG)
+> are different from ours. IMO, If the ATF can implement a common hal
+> interface and index for watchdog, then writing a
+> common smc wdt driver will be easier to compatible with all vendors.
+>
+> Best Regards
+> >
+> > .
