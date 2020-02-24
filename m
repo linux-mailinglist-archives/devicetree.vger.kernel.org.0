@@ -2,108 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 712E0169E95
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 07:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BEA1169E79
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 07:32:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727170AbgBXGl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 01:41:28 -0500
-Received: from olimex.com ([184.105.72.32]:58112 "EHLO olimex.com"
+        id S1726709AbgBXGcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 01:32:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60790 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726452AbgBXGl2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 24 Feb 2020 01:41:28 -0500
-X-Greylist: delayed 609 seconds by postgrey-1.27 at vger.kernel.org; Mon, 24 Feb 2020 01:41:28 EST
-Received: from 94.155.250.134 ([94.155.250.134])
-        by olimex.com with ESMTPSA (ECDHE-RSA-AES128-GCM-SHA256:TLSv1.2:Kx=ECDH:Au=RSA:Enc=AESGCM(128):Mac=AEAD) (SMTP-AUTH username stefan@olimex.com, mechanism PLAIN)
-        for <devicetree@vger.kernel.org>; Sun, 23 Feb 2020 22:31:11 -0800
-Subject: Re: [linux-sunxi] Re: [PATCH 0/4] Add support for charger LED for
- AXP813 and TBS A711 Tablet
-To:     linux-sunxi@googlegroups.com,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20200223131435.681620-1-megous@megous.com>
- <20200223132730.6g7tnm2f263oubhv@core.my.home>
- <20200223133517.hfqrg5dta2xk4zj3@core.my.home>
-From:   Stefan Mavrodiev <stefan@olimex.com>
-Message-ID: <1464324b-2b69-c20e-4af8-f32ae5451ea6@olimex.com>
-Date:   Mon, 24 Feb 2020 08:31:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        id S1726452AbgBXGcD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Feb 2020 01:32:03 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7022620661;
+        Mon, 24 Feb 2020 06:32:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582525922;
+        bh=lsTwl9vRBan5+sk+4nn1qk4oJxnJ4hd8BTwTqpN2bu8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GXEQEFbiD+UBqdNCHrJ5H/CXSOJ333ITUFcRoHCZVDWP3sbX1i742u682YY/KiBXW
+         Y8bWl3nJiquNJgIeoxbzq0LAi3lmc9xvt7Ucztyai3w58JjOjR2jIRLYqiP79e2kJN
+         ohn66lWlUvpC5gk43iboC7KGLhQIFow90zd6SuL4=
+Date:   Mon, 24 Feb 2020 14:31:55 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, davem@davemloft.net,
+        netdev@vger.kernel.org, andrew@lunn.ch, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 net-next/devicetree 0/5] DT bindings for Felix DSA
+ switch on LS1028A
+Message-ID: <20200224063154.GK27688@dragon>
+References: <20200219151259.14273-1-olteanv@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200223133517.hfqrg5dta2xk4zj3@core.my.home>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200219151259.14273-1-olteanv@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Feb 19, 2020 at 05:12:54PM +0200, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> This series officializes the device tree bindings for the embedded
+> Ethernet switch on NXP LS1028A (and for the reference design board).
+> The driver has been in the tree since v5.4-rc6.
+> 
+> As per feedback received in v1, I've changed the DT bindings for the
+> internal ports from "gmii" to "internal". So I would like the entire
+> series to be merged through a single tree, be it net-next or devicetree.
 
-On 2/23/20 3:35 PM, Ondřej Jirman wrote:
-> On Sun, Feb 23, 2020 at 02:27:30PM +0100, megous hlavni wrote:
->> On Sun, Feb 23, 2020 at 02:14:31PM +0100, megous hlavni wrote:
->>> The tablet has a charger LED exposed on the top. This LED is controlled
->>> by AXP813 PMIC. Add support for enabling the LED and using it either
->>> for charging indication (handled by PMIC automatically) or for other uses
->>> via user control.
->> Dang, I just noticed someone sent a similar driver recently, although I had this
->> one prepared for quite some time (since 2017) in my tree. I guess I should have
->> sent it earlier.
->>
->> Please ignore.
-> Though the meaning of "recently" is a bit relative. The other work was sent in
-> a year ago. Here's a reference:
->
->    https://lore.kernel.org/patchwork/cover/1042764/
+Will applying the patches via different trees as normal cause any
+issue like build breakage or regression on either tree?  Otherwise, I do
+not see the series needs to go in through a single tree.
 
-Hi,
+Shawn
 
-I'm the author of the 'other' work. I don't know the full story here, 
-but I don't
-mind someone else submitting this patch as his.
-
-When I submitted the last patch, there was the proposal to use the 
-ledtrig-pattern instead
-of sysfs entries. Also AXP209 has inverted CTRL bit.
-
-Please read the the 'other' discussion.
-
-Best regards,
-Stefan Mavrodiev
-
->
->> regards,
->> 	o.
->>
->>
->>> Please take a look.
->>>
->>> thank you and regards,
->>>    Ondrej Jirman
->>>
->>> Ondrej Jirman (4):
->>>    dt-bindings: leds: Add a binding for AXP813 charger led
->>>    leds: axp20x: Support charger LED on AXP20x like PMICs
->>>    ARM: dts: axp813: Add charger LED
->>>    ARM: dts: sun8i-a83t-tbs-a711: Enable charging LED
->>>
->>>   .../devicetree/bindings/leds/leds-axp20x.yaml |  24 ++
->>>   arch/arm/boot/dts/axp81x.dtsi                 |   5 +
->>>   arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts     |   4 +
->>>   drivers/leds/Kconfig                          |   7 +
->>>   drivers/leds/Makefile                         |   1 +
->>>   drivers/leds/leds-axp20x.c                    | 240 ++++++++++++++++++
->>>   drivers/mfd/axp20x.c                          |   3 +
->>>   7 files changed, 284 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/leds/leds-axp20x.yaml
->>>   create mode 100644 drivers/leds/leds-axp20x.c
->>>
->>> -- 
->>> 2.25.1
->>>
+> If this happens, I would like the other maintainer to acknowledge this
+> fact and the patches themselves. Thanks.
+> 
+> Claudiu Manoil (2):
+>   arm64: dts: fsl: ls1028a: add node for Felix switch
+>   arm64: dts: fsl: ls1028a: enable switch PHYs on RDB
+> 
+> Vladimir Oltean (3):
+>   arm64: dts: fsl: ls1028a: delete extraneous #interrupt-cells for ENETC
+>     RCIE
+>   net: dsa: felix: Use PHY_INTERFACE_MODE_INTERNAL instead of GMII
+>   dt-bindings: net: dsa: ocelot: document the vsc9959 core
+> 
+>  .../devicetree/bindings/net/dsa/ocelot.txt    | 96 +++++++++++++++++++
+>  .../boot/dts/freescale/fsl-ls1028a-rdb.dts    | 51 ++++++++++
+>  .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 85 +++++++++++++++-
+>  drivers/net/dsa/ocelot/felix.c                |  3 +-
+>  drivers/net/dsa/ocelot/felix_vsc9959.c        |  3 +-
+>  5 files changed, 232 insertions(+), 6 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/ocelot.txt
+> 
+> -- 
+> 2.17.1
+> 
