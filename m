@@ -2,113 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9AF416A072
-	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 09:51:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64AFE16A0B5
+	for <lists+devicetree@lfdr.de>; Mon, 24 Feb 2020 09:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726509AbgBXIvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 24 Feb 2020 03:51:52 -0500
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:39865 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726452AbgBXIvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 24 Feb 2020 03:51:51 -0500
-Received: by mail-ed1-f66.google.com with SMTP id m13so10969006edb.6;
-        Mon, 24 Feb 2020 00:51:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GFzRwB7BBf5XP5+OFLKMdHWONCapTDpeZv+928ShWX4=;
-        b=SSfMJFQXTZjxh7uG1r9983G2qntKODxS60oAWXylxplre7Ls1BUJi3hiqsApgfGHiC
-         Qs1AYwO10Pw1W9CZHeeoPn/m3VVS6ysb9cD9HYwP42cu0EGIPuaZbODmJ5vgnT9v8/5p
-         ZiNGVE2dPLy2uJqbKs0HCV1ujQzo39hQRLWtiYb+xv9HdGUu2SG2dG3YDRtLCzITungk
-         aVYRzqL63xqOTK6WiUeTYe3GHhj43WsvzDCrAMr3Z+rb47+fleOBRALKv9Yr+lrxFuIV
-         yuQTAk/BKVfnzF2lLeWK3tjvogP0rC1E8NRTZvnlBmKLDoD5wTUQqKSHnjFOMLeGD5qL
-         hG4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GFzRwB7BBf5XP5+OFLKMdHWONCapTDpeZv+928ShWX4=;
-        b=ap0Kj+/RAdL4l9iUhbhqhOSDlf0WJBG37g5PF2wrnf8io0I5oaIQLLVa1ROOTdZf19
-         97eXRbaYnHsrSaKYrPwTlJrMdY4wuIMaI84A4AhA78nEUmGh3U75ISefL9guG0FLD9am
-         /10U56PAftEIxizPg3FzRxWeNs+8zd1tg4tiwfiFVqjvkrpNng6FCT7Foc/v06Rl8dSd
-         hq9raIeLumznXSAqYUOxHGg6wl0m1hi5LqFnrVEDErIJpRKX9Wt0sd17h8KGrL1tohji
-         joLMahu5CnCS+MT84iub3bdJK5akERQwfcvidnQl5xVl4zqF7hL5LyS0TFURQL4EItrb
-         Dn7g==
-X-Gm-Message-State: APjAAAXGQblh28Yx5f1hn1RKq/hjO6r3CkjYFqOhHVlMnjfS6hrRIgjf
-        /m8cZna+vH/CIp3WDh2Ja4UcpXfHHeScL/D8y1E=
-X-Google-Smtp-Source: APXvYqwoC1uyDhQknoARKL/WBeS6z2D7bovskBXRovKJrr7Ac9B22XojgLAAz1U59AyAVHl9V72z9MHNP47liscy5yE=
-X-Received: by 2002:a17:907:2636:: with SMTP id aq22mr29749373ejc.176.1582534309832;
- Mon, 24 Feb 2020 00:51:49 -0800 (PST)
+        id S1727382AbgBXIxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 24 Feb 2020 03:53:30 -0500
+Received: from mail-am6eur05on2078.outbound.protection.outlook.com ([40.107.22.78]:27942
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727348AbgBXIx3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 24 Feb 2020 03:53:29 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ne7teBaqIlrdQPDd9JaxmSXOsDVZRsBAL0GTTkRispZx44zZ+WRaqCScM3Hike5mI49A82m5aGGMZbWa6X2mkN/BjGpHJX0+dlvB+fNZoekcIUn9lzpEuMAcCsLJVdmBINKL3heJb5MA9N+Z7cwB4dnYygMgSNHYanR+Va23CdZOWVxhxpScgVVkBoAkkX9UKFxS52ITtlZxNHXwHJJFUfyFULHH3WUx8tph/lZAwBVL6pUZZ2uBMM3Nx6sBwR2CEktTuxj9csXXv1ppm5uUoLBmZOlEAWwYnSYBEF4ipxOAnhn9uJfp0RHaYnqCwxK2gvreX0yRDOO7rzV6iomOFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=39ZpzOZDMlgUHdjcgSEY5oRnIiqbOuAoG3PMp076Lbo=;
+ b=htuiyNYNHpTpzxWdK5Tv/DiygHEXSAg/coJ6lYwIKQ6sU4yokFfYKMdBjvBiRFzBPjRvXjMurnY1VmNdUKyAeZhi9O59s/sH251ykc8pbySRS3W1wog6wsIiF60+EDBIUb/fNrDXibH+Nwpd6V2ihZPglqQV4idjE3giq3PaGYZA9rOxTQQSG/Hz2YqFii4vFiDnTmoFgeWDIXPWMAARPPrc84Ts3epKmR/dL9iS59m/x8OW4mghxNqYEWQXhmByhPY5OZcAIRSmwyoxbwOgfRpTln7BQVegoCXTUDeAtVLlNtHyY3P9mXuwonyv2Ih8lPHStjJ9kaoUTVksVHQ91w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=39ZpzOZDMlgUHdjcgSEY5oRnIiqbOuAoG3PMp076Lbo=;
+ b=qxmS1PNMCHIJEN5frCv5iP7B7297bi+IDREMXDkkBM3DyES3JBZnycp0BfGQ0PbH12nkUI94hm43h+4tAL+wmW2qVEiHoOChY50KUywjsVXVoEEwWAd3JXiy+4oGwJSiihs4Y9Rh6jzogDwqAbbTfskZBcM9ocd50dY1w5/2+YQ=
+Received: from VE1PR04MB6479.eurprd04.prod.outlook.com (20.179.232.225) by
+ VE1PR04MB6606.eurprd04.prod.outlook.com (20.179.235.138) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2750.18; Mon, 24 Feb 2020 08:53:26 +0000
+Received: from VE1PR04MB6479.eurprd04.prod.outlook.com
+ ([fe80::2075:2c31:f78a:23a4]) by VE1PR04MB6479.eurprd04.prod.outlook.com
+ ([fe80::2075:2c31:f78a:23a4%5]) with mapi id 15.20.2729.033; Mon, 24 Feb 2020
+ 08:53:25 +0000
+From:   "S.j. Wang" <shengjiu.wang@nxp.com>
+To:     Nicolin Chen <nicoleotsuka@gmail.com>
+CC:     "timur@kernel.org" <timur@kernel.org>,
+        "Xiubo.Lee@gmail.com" <Xiubo.Lee@gmail.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] ASoC: fsl_easrc: Add EASRC ASoC CPU DAI and
+ platform drivers
+Thread-Topic: [PATCH v2 3/3] ASoC: fsl_easrc: Add EASRC ASoC CPU DAI and
+ platform drivers
+Thread-Index: AdXq7zKbRo5k9O0MQoSy/99vj57qYQ==
+Date:   Mon, 24 Feb 2020 08:53:25 +0000
+Message-ID: <VE1PR04MB6479BCA376502F6F1251602BE3EC0@VE1PR04MB6479.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=shengjiu.wang@nxp.com; 
+x-originating-ip: [101.86.209.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 1e08fdfd-4cb4-4e99-3420-08d7b90702b9
+x-ms-traffictypediagnostic: VE1PR04MB6606:
+x-microsoft-antispam-prvs: <VE1PR04MB66060C1F0041F6A9ADD08884E3EC0@VE1PR04MB6606.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 032334F434
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(346002)(376002)(396003)(366004)(136003)(199004)(189003)(9686003)(186003)(6916009)(316002)(7696005)(76116006)(33656002)(478600001)(55016002)(6506007)(26005)(81166006)(81156014)(5660300002)(2906002)(66946007)(66446008)(8676002)(64756008)(66476007)(66556008)(71200400001)(52536014)(54906003)(4326008)(86362001)(8936002)(7416002);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6606;H:VE1PR04MB6479.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: o3WWhM5TJLrHi8gznmjIIIzZGx/b7VImqyt4nB4PcK+IaUgb0NNapjhMX5NAkDCrKnFkhJmpFsL/AcabJVEFo3Ys/7rL3gx+ydIAV/RPUqYrXkKlp1NappXM6nXGmDK4pHd4xfPyBBMK9KTF+Kjq0n9UFvuPe1JMBmYq25iTh8l3h7p94x1Q77TpVXQrX1C4XxkLzJO5NzQhBiyAhRVd+UvexgnjPXeiuj0PCmgSraIbXs4F8NWg2MSgRmoaE7858ovNREUjwRvnn9su6Ti1By1pbt7nRl66gHoraJRjMwvSSPShWNjWjxu/GUefpdt3N39gwDzBjgjcEvcKCFQ0aP9uMrCaw1MkyvfTktxfYYN5YBrkLZlIfysoXOCTNmm6WLTp8mm+IRoE4q2EeHssmrJgitFP7TVxWO1F921x3L6EujGEix7OcGCnAG5Dn6jJ
+x-ms-exchange-antispam-messagedata: fPiDTjYFKXg/lfnBsTO3GteZXyVRssejJyoDRenaez1X/YyWKTPQrjkzR6KKazjbJM+/kk9VK0/0UWk3JDNxuceiN66P6ZGXwyIuslwmUoCXdprrZegm2CuPWEe6XKak4QbH6G80hkUthaoUnaZEkg==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20200219151259.14273-1-olteanv@gmail.com> <20200224063154.GK27688@dragon>
- <CA+h21hok4V_-uarhnyBkdXqnwRdXpgRJWLSvuuVn8K3VRMtrcA@mail.gmail.com>
- <20200224084826.GE27688@dragon> <CA+h21hop_veYT7Ru6os2iqPV_tO+6vkZPo6sqgVf9GcNAsjWuw@mail.gmail.com>
-In-Reply-To: <CA+h21hop_veYT7Ru6os2iqPV_tO+6vkZPo6sqgVf9GcNAsjWuw@mail.gmail.com>
-From:   Vladimir Oltean <olteanv@gmail.com>
-Date:   Mon, 24 Feb 2020 10:51:39 +0200
-Message-ID: <CA+h21hr_VpU1yMNat7M=J35cQ__LB69YNvXXsuxg+t4zQS4WkA@mail.gmail.com>
-Subject: Re: [PATCH v2 net-next/devicetree 0/5] DT bindings for Felix DSA
- switch on LS1028A
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        netdev <netdev@vger.kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e08fdfd-4cb4-4e99-3420-08d7b90702b9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2020 08:53:25.6346
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: k/pYfVM/+CVio65/5mb01LolyoelAriE93P4OgG3QKflkvmLzB7fC2LWyjezZpiu41FMFEEnD9ZLVh0k86TM/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6606
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Feb 2020 at 10:50, Vladimir Oltean <olteanv@gmail.com> wrote:
->
-> On Mon, 24 Feb 2020 at 10:48, Shawn Guo <shawnguo@kernel.org> wrote:
-> >
-> > On Mon, Feb 24, 2020 at 09:59:53AM +0200, Vladimir Oltean wrote:
-> > > Hi Shawn,
-> > >
-> > > On Mon, 24 Feb 2020 at 08:32, Shawn Guo <shawnguo@kernel.org> wrote:
-> > > >
-> > > > On Wed, Feb 19, 2020 at 05:12:54PM +0200, Vladimir Oltean wrote:
-> > > > > From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> > > > >
-> > > > > As per feedback received in v1, I've changed the DT bindings for the
-> > > > > internal ports from "gmii" to "internal". So I would like the entire
-> > > > > series to be merged through a single tree, be it net-next or devicetree.
-> > > >
-> > > > Will applying the patches via different trees as normal cause any
-> > > > issue like build breakage or regression on either tree?  Otherwise, I do
-> > > > not see the series needs to go in through a single tree.
-> > > >
-> > > > Shawn
-> > > >
-> > >
-> > > No, the point is that I've made some changes in the device tree
-> > > bindings validation in the driver, which make the driver without those
-> > > changes incompatible with the bindings themselves that I'm
-> > > introducing. So I would like the driver to be operational on the
-> > > actual commit that introduces the bindings, at least in your tree. I
-> > > don't expect merge conflicts to occur in that area of the code.
-> >
-> > The dt-bindings patch is supposed to go through subsystem tree together
-> > with driver changes by nature.  That said, patch #1 and #2 are for
-> > David, and I will pick up the rest (DTS ones).
-> >
-> > Shawn
->
-> Ok, any further comments on the series or should I respin after your
-> feedback regarding the commit message prefix and the status =
-> "disabled" ordering?
->
-> -Vladimir
+Hi
 
-By the way all your comments have been on v2 and I've sent v3 already.
-So this series is superseded.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > ---
+> >  sound/soc/fsl/Kconfig           |   10 +
+> >  sound/soc/fsl/Makefile          |    2 +
+> >  sound/soc/fsl/fsl_asrc_common.h |    1 +
+> >  sound/soc/fsl/fsl_easrc.c       | 2265 +++++++++++++++++++++++++++++++
+> >  sound/soc/fsl/fsl_easrc.h       |  668 +++++++++
+> >  sound/soc/fsl/fsl_easrc_dma.c   |  440 ++++++
+>=20
+> I see a 90% similarity between fsl_asrc_dma and fsl_easrc_dma files.
+> Would it be possible reuse the existing code? Could share structures from
+> my point of view, just like it reuses "enum asrc_pair_index", I know
+> differentiating "pair" and "context" is a big point here though.
+>=20
+> A possible quick solution for that, off the top of my head, could be:
+>=20
+> 1) in fsl_asrc_common.h
+>=20
+>         struct fsl_asrc {
+>                 ....
+>         };
+>=20
+>         struct fsl_asrc_pair {
+>                 ....
+>         };
+>=20
+> 2) in fsl_easrc.h
+>=20
+>         /* Renaming shared structures */
+>         #define fsl_easrc fsl_asrc
+>         #define fsl_easrc_context fsl_asrc_pair
+>=20
+> May be a good idea to see if others have some opinion too.
+>=20
 
-Regards,
--Vladimir
+We need to modify the fsl_asrc and fsl_asrc_pair, let them
+To be used by both driver,  also we need to put the specific
+Definition for each module to same struct, right?
+
+>=20
+> > +static const struct regmap_config fsl_easrc_regmap_config =3D {
+> > +     .readable_reg =3D fsl_easrc_readable_reg,
+> > +     .volatile_reg =3D fsl_easrc_volatile_reg,
+> > +     .writeable_reg =3D fsl_easrc_writeable_reg,
+>=20
+> Can we use regmap_range and regmap_access_table?
+>=20
+
+Can the regmap_range support discontinuous registers?  The
+reg_stride =3D 4.
+
+Best regards
+Wang shengjiu
+
