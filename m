@@ -2,84 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A43E16EA95
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 16:53:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8C316EA78
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 16:49:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730736AbgBYPxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 10:53:10 -0500
-Received: from guitar.tcltek.co.il ([192.115.133.116]:48852 "EHLO
-        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730309AbgBYPxK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Feb 2020 10:53:10 -0500
-X-Greylist: delayed 586 seconds by postgrey-1.27 at vger.kernel.org; Tue, 25 Feb 2020 10:53:10 EST
-Received: from sapphire.tkos.co.il (unknown [192.168.100.188])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1731073AbgBYPtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 10:49:05 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:62505 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730340AbgBYPtF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Feb 2020 10:49:05 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1582645744; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=K8JRAAUqIiBv8eRLCyrJkO1Q8E5vnb4MRUaWxR0NqEE=;
+ b=GSHezwUoFQorBOgeqTx+9MFmfkMe8t5YNyhz2e75V+j63OOMdwie8NNaImr0O+KRNbcSJ0Zg
+ 41+IwpJKXeD0nKiGdQzkTn5lRm7m3S+RbmiPekYtzDHdoCdaNlKVFAEzyj0qPYdJNC9aKL1R
+ +JREIVG0ByNNwctXQN9p1PnOEso=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e5541ea.7fb06ae4d810-smtp-out-n01;
+ Tue, 25 Feb 2020 15:48:58 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E4F34C447A2; Tue, 25 Feb 2020 15:48:57 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mx.tkos.co.il (Postfix) with ESMTPS id E92B9440869;
-        Tue, 25 Feb 2020 17:43:21 +0200 (IST)
-Date:   Tue, 25 Feb 2020 17:43:20 +0200
-From:   Baruch Siach <baruch@tkos.co.il>
-To:     Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 52814C447A0;
+        Tue, 25 Feb 2020 15:48:57 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 25 Feb 2020 21:18:57 +0530
+From:   okukatla@codeaurora.org
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     georgi.djakov@linaro.org, daidavid1@codeaurora.org,
+        bjorn.andersson@linaro.org, evgreen@google.com,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: clearfog-gt-8k: set gigabit PHY reset
- deassert delay
-Message-ID: <20200225154320.rvmidavleu7ar4km@sapphire.tkos.co.il>
-References: <E1j6YeG-00026g-08@rmk-PC.armlinux.org.uk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <E1j6YeG-00026g-08@rmk-PC.armlinux.org.uk>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@kernel.org,
+        ilina@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+Subject: Re: [V3, 3/3] dt-bindings: interconnect: Add Qualcomm SC7180 DT
+ bindings
+In-Reply-To: <20200221194012.GF24720@google.com>
+References: <1582277450-27382-1-git-send-email-okukatla@codeaurora.org>
+ <1582277450-27382-4-git-send-email-okukatla@codeaurora.org>
+ <20200221194012.GF24720@google.com>
+Message-ID: <3baf11a2cbdb649d6e850aa15665d28f@codeaurora.org>
+X-Sender: okukatla@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
-
-On Tue, Feb 25, 2020 at 11:45:12AM +0000, Russell King wrote:
-> If the mv88e6xxx DSA driver is built as a module, it causes the
-> ethernet driver to re-probe when it's loaded. This in turn causes
-> the gigabit PHY to be momentarily reset and reprogrammed. However,
-> we attempt to reprogram the PHY immediately after deasserting reset,
-> and the PHY ignores the writes.
+On 2020-02-22 01:10, Matthias Kaehlcke wrote:
+> Hi Odelu,
 > 
-> This results in the PHY operating in the wrong mode, and the copper
-> link states down.
+>> Subject: dt-bindings: interconnect: Add Qualcomm SC7180 DT bindings
 > 
-> Set a reset deassert delay of 10ms for the gigabit PHY to avoid this.
+> This patch doesn't add a binding, but DT entries for SC7180.
 > 
-> Fixes: babc5544c293 ("arm64: dts: clearfog-gt-8k: 1G eth PHY reset signal")
-> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+> The subject of v2 was "arm64: dts: sc7180: Add interconnect provider
+> DT nodes", please go back to that or something similar.
 
-Acked-by: Baruch Siach <baruch@tkos.co.il>
-
-Thanks,
-baruch
-
-> ---
->  arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-> index bd881497b872..dc531d136273 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-> @@ -367,6 +367,7 @@
->  		pinctrl-0 = <&cp0_copper_eth_phy_reset>;
->  		reset-gpios = <&cp0_gpio2 11 GPIO_ACTIVE_LOW>;
->  		reset-assert-us = <10000>;
-> +		reset-deassert-us = <10000>;
->  	};
->  
->  	switch0: switch0@4 {
-
--- 
-     http://baruch.siach.name/blog/                  ~. .~   Tk Open Systems
-=}------------------------------------------------ooO--U--Ooo------------{=
-   - baruch@tkos.co.il - tel: +972.2.679.5364, http://www.tkos.co.il -
+Thanks for the review!
+Noticed this later, i will address this in next patch.
