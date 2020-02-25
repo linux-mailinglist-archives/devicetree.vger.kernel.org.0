@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B64F16EA2E
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 16:33:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A43E16EA95
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 16:53:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731113AbgBYPdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 10:33:12 -0500
-Received: from foss.arm.com ([217.140.110.172]:52226 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731106AbgBYPdM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Feb 2020 10:33:12 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9253F1FB;
-        Tue, 25 Feb 2020 07:33:11 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1317C3F703;
-        Tue, 25 Feb 2020 07:33:10 -0800 (PST)
-Date:   Tue, 25 Feb 2020 15:33:09 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "rafael@kernel.org" <rafael@kernel.org>,
-        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "sre@kernel.org" <sre@kernel.org>,
-        "Laine, Markus" <Markus.Laine@fi.rohmeurope.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>
-Subject: Re: [RFC PATCH v3 5/8] regulator: use linear_ranges helper
-Message-ID: <20200225153309.GE4633@sirena.org.uk>
-References: <cover.1582182989.git.matti.vaittinen@fi.rohmeurope.com>
- <ba2eb2d7363b386136a546a769a6e2d077558094.1582182989.git.matti.vaittinen@fi.rohmeurope.com>
- <20200224115751.GE6215@sirena.org.uk>
- <d5e63ea6935991d855e2ae12915b3b4614e8f3aa.camel@fi.rohmeurope.com>
+        id S1730736AbgBYPxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 10:53:10 -0500
+Received: from guitar.tcltek.co.il ([192.115.133.116]:48852 "EHLO
+        mx.tkos.co.il" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730309AbgBYPxK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Feb 2020 10:53:10 -0500
+X-Greylist: delayed 586 seconds by postgrey-1.27 at vger.kernel.org; Tue, 25 Feb 2020 10:53:10 EST
+Received: from sapphire.tkos.co.il (unknown [192.168.100.188])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.tkos.co.il (Postfix) with ESMTPS id E92B9440869;
+        Tue, 25 Feb 2020 17:43:21 +0200 (IST)
+Date:   Tue, 25 Feb 2020 17:43:20 +0200
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: clearfog-gt-8k: set gigabit PHY reset
+ deassert delay
+Message-ID: <20200225154320.rvmidavleu7ar4km@sapphire.tkos.co.il>
+References: <E1j6YeG-00026g-08@rmk-PC.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="PGNNI9BzQDUtgA2J"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d5e63ea6935991d855e2ae12915b3b4614e8f3aa.camel@fi.rohmeurope.com>
-X-Cookie: Booths for two or more.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <E1j6YeG-00026g-08@rmk-PC.armlinux.org.uk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Russell,
 
---PGNNI9BzQDUtgA2J
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Tue, Feb 25, 2020 at 11:45:12AM +0000, Russell King wrote:
+> If the mv88e6xxx DSA driver is built as a module, it causes the
+> ethernet driver to re-probe when it's loaded. This in turn causes
+> the gigabit PHY to be momentarily reset and reprogrammed. However,
+> we attempt to reprogram the PHY immediately after deasserting reset,
+> and the PHY ignores the writes.
+> 
+> This results in the PHY operating in the wrong mode, and the copper
+> link states down.
+> 
+> Set a reset deassert delay of 10ms for the gigabit PHY to avoid this.
+> 
+> Fixes: babc5544c293 ("arm64: dts: clearfog-gt-8k: 1G eth PHY reset signal")
+> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
 
-On Tue, Feb 25, 2020 at 06:23:31AM +0000, Vaittinen, Matti wrote:
+Acked-by: Baruch Siach <baruch@tkos.co.il>
 
-> Only change required on individual regulator drivers should be renaming
-> the struct regulator_linear_range to linear_range. Rest of the changes
-> should be internal to regulator framework, right?
+Thanks,
+baruch
 
-Right, it's that type replacement that should be done atomically.
+> ---
+>  arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+> index bd881497b872..dc531d136273 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+> @@ -367,6 +367,7 @@
+>  		pinctrl-0 = <&cp0_copper_eth_phy_reset>;
+>  		reset-gpios = <&cp0_gpio2 11 GPIO_ACTIVE_LOW>;
+>  		reset-assert-us = <10000>;
+> +		reset-deassert-us = <10000>;
+>  	};
+>  
+>  	switch0: switch0@4 {
 
---PGNNI9BzQDUtgA2J
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5VPjQACgkQJNaLcl1U
-h9DV+Af/YLPOCGPhEgq/4DLBacyUVBBMzshszyl+1OhweGApumy620sSGDV2XqMt
-et1IK21GhwqVae3/qawujyX3lsyQX8lX/w17bHzr5MLEemCDvUp4luJaIlRKZS2p
-5h0Qbt0ioaL7RDQ3+a/YtXgZqIR6EKGWUtIdW4wUk4K2VF1+9xUqvQNVeDFjxoUr
-S9IBP/rMQJS3pgn0R1EtSZmFqqb7BBi+Cl1k/Qkbw5Ym/PukYHzFbnJXxTyxlrBX
-OSbUPWd5YlhaGXcm+95hkzePuUbEiJBGUrAwwqSRCeTpzcIseDa0YtzMWUu+aP7/
-vYpzdbT1DjswwI6XKO/JfgD0kKhmhw==
-=fCzU
------END PGP SIGNATURE-----
-
---PGNNI9BzQDUtgA2J--
+-- 
+     http://baruch.siach.name/blog/                  ~. .~   Tk Open Systems
+=}------------------------------------------------ooO--U--Ooo------------{=
+   - baruch@tkos.co.il - tel: +972.2.679.5364, http://www.tkos.co.il -
