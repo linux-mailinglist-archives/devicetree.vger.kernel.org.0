@@ -2,85 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F32216F075
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 21:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA65E16F0DC
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 22:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729747AbgBYUq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 15:46:59 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:46448 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729686AbgBYUq6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 15:46:58 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01PKkvSX029881;
-        Tue, 25 Feb 2020 14:46:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1582663617;
-        bh=roR2+dI29hDxJzMZw9KmRKSOVmd/g4KDiOfEovDX9Vo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=D0DMqq/eS8hhg8G+zHRglKv2TXg+P6vEX0L1dpjF36rIlkAMcMqXAvmYnlSjDA7g9
-         T1x/g4v+LdWk9FsOiyHuUczzA9xzrek9gLvwWwzRtPEo9nDkmjQCmjtl0ytp3i7H3Q
-         KAYAyy0vSWC4aDPuwwRsXoBczbOgKk2j9K4lptno=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01PKkvJh023151
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Feb 2020 14:46:57 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 25
- Feb 2020 14:46:56 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 25 Feb 2020 14:46:56 -0600
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01PKkuLL059202;
-        Tue, 25 Feb 2020 14:46:56 -0600
-Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 01PKkuCh025494;
-        Tue, 25 Feb 2020 14:46:56 -0600
-From:   Suman Anna <s-anna@ti.com>
-To:     Tony Lindgren <tony@atomide.com>
-CC:     Roger Quadros <rogerq@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        <linux-omap@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 12/12] ARM: dts: am437x-idk: Enable PRU-ICSS interconnect node
-Date:   Tue, 25 Feb 2020 14:46:49 -0600
-Message-ID: <20200225204649.28220-13-s-anna@ti.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20200225204649.28220-1-s-anna@ti.com>
-References: <20200225204649.28220-1-s-anna@ti.com>
+        id S1726953AbgBYVIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 16:08:32 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38254 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726125AbgBYVIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 16:08:32 -0500
+Received: by mail-ot1-f68.google.com with SMTP id z9so894279oth.5;
+        Tue, 25 Feb 2020 13:08:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YcXK2d/HNObTwr0I3OOYmF2ixmUF+zbcJyMaSLcYMLI=;
+        b=K/eLoDPIfmh/Ql/YsDqioYbvcmUyXbe0gXafPjbcgXbyRTVWE+XvjWfW6ZB6FN3IWx
+         NWCQSzqwKcev6H4XM1fOB6hVkDyPJ73H8tsz5gzkYZg/t5nXD8hEaWRa7hBayrv/qR+1
+         WTZVADyEetn1Y7I8G1tZ2HcgiAo6HKGYHjrdmSEzpTYedmVD4QYygibh06cp+1URJ1+S
+         dRidn6mBpFV11Y0WB7lAg23h9MHZdlHhTQELiOick45sZHk7eXnh9g1w+L/jq2LrOOzC
+         K0yh06l5OrJbbQclp/gHpxOpzP+GkcttRxSELO3OffIdeHd4JmXRIugzRp4ACYddQuqU
+         HoEw==
+X-Gm-Message-State: APjAAAVZQ7kPFfUMYd7NKlmi+oXK8ESMGnSW5Hux2iCKc/nrR2ANu/xt
+        7oNn1m9of1ZX6zLQ//oZmlLX0pw=
+X-Google-Smtp-Source: APXvYqwKnMmf0Icu7p/ThX9TbfyLhc/rH2s+Hnl3NlaO+1ryh7LNYdLP1osM+tNj+tl8U5W0+UOwQQ==
+X-Received: by 2002:a9d:7c81:: with SMTP id q1mr408456otn.112.1582664911711;
+        Tue, 25 Feb 2020 13:08:31 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h15sm6095843otq.67.2020.02.25.13.08.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2020 13:08:31 -0800 (PST)
+Received: (nullmailer pid 31660 invoked by uid 1000);
+        Tue, 25 Feb 2020 21:08:30 -0000
+Date:   Tue, 25 Feb 2020 15:08:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Isaac J. Manjarres" <isaacm@codeaurora.org>
+Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
+        Patrick Daly <pdaly@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        lmark@codeaurora.org, pratikp@codeaurora.org,
+        kernel-team@android.com,
+        "Isaac J. Manjarres" <isaacm@codeaurora.org>
+Subject: Re: [PATCH] of: of_reserved_mem: Increase limit on number of
+ reserved regions
+Message-ID: <20200225210830.GA31602@bogus>
+References: <1582567352-4664-1-git-send-email-isaacm@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1582567352-4664-1-git-send-email-isaacm@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM437x IDK EVM board uses a AM437x SoC that supports two PRU-ICSS
-instances. The PRU-ICSS target module node was left in disabled state
-in the base am4372.dtsi file. Enable the PRU-ICSS target module node
-on this board.
+On Mon, 24 Feb 2020 10:02:32 -0800, "Isaac J. Manjarres" wrote:
+> From: Patrick Daly <pdaly@codeaurora.org>
+> 
+> Certain SoCs need to support a large amount of reserved memory
+> regions. For example, Qualcomm's SM8150 SoC requires that 20
+> regions of memory be reserved for a variety of reasons (e.g.
+> loading a peripheral subsystem's firmware image into a
+> particular space).
+> 
+> When adding more reserved memory regions to cater to different
+> usecases, the remaining number of reserved memory regions--12
+> to be exact--becomes too small. Thus, double the existing
+> limit of reserved memory regions.
+> 
+> Signed-off-by: Patrick Daly <pdaly@codeaurora.org>
+> Signed-off-by: Isaac J. Manjarres <isaacm@codeaurora.org>
+> ---
+>  drivers/of/of_reserved_mem.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm/boot/dts/am437x-idk-evm.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Applied, thanks.
 
-diff --git a/arch/arm/boot/dts/am437x-idk-evm.dts b/arch/arm/boot/dts/am437x-idk-evm.dts
-index f3ced6df0c9b..380fbb52ebd4 100644
---- a/arch/arm/boot/dts/am437x-idk-evm.dts
-+++ b/arch/arm/boot/dts/am437x-idk-evm.dts
-@@ -534,3 +534,7 @@
- 		opp-suspend;
- 	};
- };
-+
-+&pruss_tm {
-+	status = "okay";
-+};
--- 
-2.23.0
-
+Rob
