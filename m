@@ -2,111 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16E7D16BCEE
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 10:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47DAF16BD27
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 10:19:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729614AbgBYJFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 04:05:09 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:54119 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729153AbgBYJFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Feb 2020 04:05:09 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id CEA3722085;
-        Tue, 25 Feb 2020 04:05:07 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Tue, 25 Feb 2020 04:05:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm2; bh=hKt9OOfB9XeD3ZLSEgsAq6xaJ/6
-        rxoPVZNvP3Ww5CRw=; b=aF6UJQFgDWDX+W6sZ6uarr50+bF/ndtyBmSx9iedziC
-        QMoILY2bSbT+Pyatw/rSDIE9wGNOhjNSp6OMcDIqRKSbfpuA9fdhpJOrIot/fHvl
-        d7R8b4yFQsu6DIK/SdQVZ+vc710I7aZ9GRqm3sIL4+u4rtVdRYnaaVLWqh50Qzft
-        VxRIHd4TYkAnaiybjvRKCBcU//kcMWfCWlhU0lc/CLzhN4ofa+G9bD6BQYZ17cs/
-        Ck04yDs/1QhySXrwNdSTin6ao8SVJrH0Bzfl7CGbfgHFjGelcs3yTA6As+1g0wA3
-        bqn5+fUdsgDGpbwGdgK8r9OdVFs4KrB8PvHfIC/g+xA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=hKt9OO
-        fB9XeD3ZLSEgsAq6xaJ/6rxoPVZNvP3Ww5CRw=; b=OQfE9EZS6U5GwpmMsz2WTQ
-        HBZ+eikiYPUFE0eJiEERN/Tux0JUueQw0YlqKxtGVsgRzbNlPN9Swo68DVtdojAh
-        HLX1Q1YenlnHHaP4b+7IOR5C6GbKTkJNuQjOaMvI63vkT/O0SWLq78oQvD4rNWOK
-        LyG07ViY3+Ya7S/aywwDDcPQdN0FYwRcLN7obt9ORk1qLyQtu8b9yx/ynbd0ZDGv
-        T1oRgl0MiLD3Nb0OOmylJQ18txU3hwVcyP/D3F0LMZKlBls1qLA7cbkGL32mUJK0
-        qR6CXWIoP8sqcw3IpOXI0TauIeJXRETCgLfze0fS1RyPH9oEFHiUKW5by+XUnFjw
-        ==
-X-ME-Sender: <xms:Q-NUXhdSGO21088RZoqhnwU-N9Z2TZhsRXqtw8gl1QaKUpR-l8P7Kg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrledugdduvdekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecukfhppeeltd
-    drkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenucfrrghrrghmpehmrghi
-    lhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:Q-NUXjeTdA0LaTk9oFS3bfmdqTPNIZI6_h763JfXq3VkckM7WeMVFw>
-    <xmx:Q-NUXlgFRaFwZf9-FscMZvjqZAtCQNqeuHpo6xzEfNZl8-k1t6Y9dg>
-    <xmx:Q-NUXvRfT_njXx0BBTIHubCLo8Yxw_TGcbjiI_eVw5Gc6TtURtrwQg>
-    <xmx:Q-NUXpvbwx2KCPU45bA4GJylYdbpbnMCtciTsU6k9hu3iaqB39F-RQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 5F6BE3280065;
-        Tue, 25 Feb 2020 04:05:07 -0500 (EST)
-Date:   Tue, 25 Feb 2020 10:05:06 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Ondrej Jirman <megous@megous.com>
-Cc:     linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
+        id S1726916AbgBYJTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 04:19:00 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:37599 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726867AbgBYJS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 04:18:59 -0500
+Received: by mail-wm1-f67.google.com with SMTP id a6so2315764wme.2;
+        Tue, 25 Feb 2020 01:18:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=zhzQt0v4AKydtv7tO0DiTIl7lsQ5dKu2Jl12PT3jBCs=;
+        b=YKjocvhq/JnPNg/hrU12NGFQsRbbx7F9fqnV7iEKGczlPz+xGVDSI1H7+/DYyEXYVL
+         lyHCEqTmK4supfVMUGuWZ1Vk2Zbi9GlkxybRlucE0owRgxWc6DKkOHPbiQCrbYE9cf9k
+         +FftO2Bl5//6vKIztfTIKgnqWq35ipFj8C+yafT3e91VPDEAzS+hGgaPUBNR8vBdy3hd
+         2tuDdsobqNoBwnsNE6fDlKUBV2WFJL6PerFZJvn1zAxcL1WeLOaiGK4FqW2S0FAFBHyY
+         QRhPiclu2MOHbBDc/CzPL0588YYJhyVIdB+WFlzdezZT6rDcddRuScv/mn5cKepB0FrK
+         2hTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=zhzQt0v4AKydtv7tO0DiTIl7lsQ5dKu2Jl12PT3jBCs=;
+        b=B7/pndAGKI/+JACKMDBxA+uOzLzMuT2BnMoZuiJP0asUDGPG+ZXzskqdkSMbRyHL+7
+         FjB+STmvAuiveYrwqj6taBy4gxZgls03GpYCyABLyov031BQ8gon2oji5oY6Bc39voui
+         M8SpAn0yfh3YzNXGRkBPShZDZ28YotUMtOh/xmRMvdrTZphKN48ci7p2xGZLi5WXB3GN
+         i6mWWXl9lrKR/AN1hh+fTihAMu/22+oF6VcFqcaE91k45joCP20MUEVclF4lP5yqaEOe
+         Q+3yt2Pbk5iw1k7DQBhtbgQQcAXaoK0tL3SBNj8WfDzapL7ePvHPfGYl2Bz87ZulYkcK
+         +egw==
+X-Gm-Message-State: APjAAAUUBYPaoRqiYjqraxrXPnp4f3Adi2K8nZVY3WU6R3tMB0REbDwF
+        fnxmUmmT0nEZ+qeS18A7ACw=
+X-Google-Smtp-Source: APXvYqxoTOz26NdCMff5T3MAlktiniBZ3mI/36yXLv7IUZvGJmyvjDRu/tlExPeR3EkpU4HpBpM+fg==
+X-Received: by 2002:a1c:451:: with SMTP id 78mr3980607wme.125.1582622336447;
+        Tue, 25 Feb 2020 01:18:56 -0800 (PST)
+Received: from localhost ([193.47.161.132])
+        by smtp.gmail.com with ESMTPSA id p12sm23271786wrx.10.2020.02.25.01.18.55
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 25 Feb 2020 01:18:55 -0800 (PST)
+Date:   Tue, 25 Feb 2020 10:07:55 +0100
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Allwinner sunXi SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] ARM: dts: sun8i-a83t: Add thermal trip points/cooling
- maps
-Message-ID: <20200225090506.4fnylq56bscuhtf3@gilmour.lan>
-References: <20200224165417.334617-1-megous@megous.com>
+        devicetree@vger.kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, Rob Herring <robh+dt@kernel.org>,
+        linux-imx@nxp.com, kernel@pengutronix.de, fabio.estevam@nxp.com,
+        shawnguo@kernel.org, linux-clk@vger.kernel.org, peng.fan@nxp.com
+Subject: Re: [PATCH RESEND v3 14/15] arm64: dts: imx: add imx8qm mek support
+Message-ID: <20200225090755.GA17799@optiplex>
+References: <1573994635-14479-1-git-send-email-aisheng.dong@nxp.com>
+ <1573994635-14479-15-git-send-email-aisheng.dong@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="vwpjjsjg2oauasuz"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200224165417.334617-1-megous@megous.com>
+In-Reply-To: <1573994635-14479-15-git-send-email-aisheng.dong@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 17/11/19, Dong Aisheng wrote:
+> The i.MX8QuadMax is a Dual (2x) Cortex-A72 and Quad (4x) Cortex-A53
+> proccessor with powerful graphic and multimedia features.
+> This patch adds i.MX8QuadMax MEK board support.
+> 
+> Note that MX8QM needs a special workaround for TLB flush due to a SoC
+> errata, otherwise there may be random crash if enable both clusters of
+> A72 and A53. As the errata workaround is still not in mainline, so we
+> disable A72 cluster first for MX8QM MEK.
 
---vwpjjsjg2oauasuz
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+can you point me to the errata workaround patch for the MMU/TLB Coherency
+issue? I observe the same issue here with another imx8qm board.
 
-On Mon, Feb 24, 2020 at 05:54:17PM +0100, Ondrej Jirman wrote:
-> This enables passive cooling by down-regulating CPU voltage
-> and frequency.
->
-> For the trip points, I used values from the BSP code directly.
->
-> The critical trip point value is 30=B0C above the maximum recommended
-> ambient temperature (70=B0C) for the SoC from the datasheet, so there's
-> some headroom even at such a high ambient temperature.
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
+Best Regards,
 
-Applied, thanks!
-Maxime
-
---vwpjjsjg2oauasuz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXlTjQgAKCRDj7w1vZxhR
-xYalAP9vnW4VdHS9SOdq6rECbAh1zFYhmhM1JDb6JlXtDGMdNwEAvKgrrmVt/jfK
-sa2LzjhCPTU65QA8na0nLnyQC3clbwM=
-=gevU
------END PGP SIGNATURE-----
-
---vwpjjsjg2oauasuz--
+Oliver
