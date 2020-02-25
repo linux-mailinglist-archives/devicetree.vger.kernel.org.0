@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D24216BC1B
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 09:46:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B869016BC22
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 09:46:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729866AbgBYIqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 03:46:36 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:44149 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729393AbgBYIqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 03:46:35 -0500
-Received: by mail-lj1-f195.google.com with SMTP id q8so13049139ljj.11
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 00:46:34 -0800 (PST)
+        id S1729491AbgBYIqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 03:46:53 -0500
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:41803 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729607AbgBYIqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 03:46:53 -0500
+Received: by mail-lf1-f66.google.com with SMTP id y17so6004604lfe.8
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 00:46:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=antmicro.com; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=mU4JnOUOVxqxZ36QdYJ5U3KLqP1IM5LUm7cfygDKacI=;
-        b=l2AwvKtt7YhgpVdY6QmP0Rf1NjNk7T4OVJIkhMNiJyRLund6iPDmdMy9keVPMcYtAS
-         NAvVn16fpHqaTIhjXwzvUoeyX1j6wDwuI9bunUCXUJvmnQr7gs6mrz0Tc5ajJAp7JW1k
-         tGf874bnYurX9Kc8ITGWK31xjYmv6JTytrQtE=
+        bh=9Q26y6k84gThGD9CxGLIQPfQ8ikXiupLsGZ4lp4CB8w=;
+        b=kpRNGoARmWU8XjGCP2z9Fam8yf6dnxqylyxgXgR+Nvn0OW9mFVKL30hlcW4N+wVax5
+         LIbcqc+Gu8RthM4IkBiUZ35D3fylMlgXFFcvE7/jfD1P+ErCL2v6Ldwqj3nfUDy0Owg0
+         56GPonBX61WmQMxQnag2YyqwQ2+TBeZ2hNDZg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=mU4JnOUOVxqxZ36QdYJ5U3KLqP1IM5LUm7cfygDKacI=;
-        b=dcUql5LptwB738RIrtD+GaV/gZOT13cH9vc1dUKj4rUBI70sVz7SlXEUKJzWHp1tqT
-         Pq3igLOUu05XVOh1AA0m2wXtQ6NCZcb7e0XCAASZwHn0CkP3bKIzS3FxicG/w7O7ooBT
-         Y5U+d8b1uR7foVaGa0+CK9J2SON+p2jFw7x8n1sGKr4JInyVMe6NoE2zjsHUHb+CDIZO
-         /eS1xZkSDwxEzm+ktbMzPMOF0BaOVu/4kM8aJar+/n5BKbNfSeklY+j0oukawrOMXFPb
-         oiSl/0wQ3C3Iz4KApbwtbYP+ByD8u+ejzpguaokxDyxDh+12b+0QfPQSkA1fsWxXKb/h
-         px8A==
-X-Gm-Message-State: APjAAAVsjrGTDj+b0trJoNODpw4eY5UXHRKPzF8hrcER9wj/fO9OewIJ
-        IV30t5+VuZktaDvxJKiVOiV5VA==
-X-Google-Smtp-Source: APXvYqwmGHxprXso3OM+eG1dgajWRSODUWYeOuWKpRznqafT7X3t8pIBTwo1iSirn0AvR5QNiy34WA==
-X-Received: by 2002:a2e:9b95:: with SMTP id z21mr32851409lji.291.1582620393600;
-        Tue, 25 Feb 2020 00:46:33 -0800 (PST)
+        bh=9Q26y6k84gThGD9CxGLIQPfQ8ikXiupLsGZ4lp4CB8w=;
+        b=k/0woo1yz8yvzX6agKhMfqgE67yTdtydnOlCNbvB/QcFb9gWTlkSxsCsWm7vxcz/5S
+         7aGfVX3go8t0AGWbak/nJ1Cri7Xjk7K6tKi19udN1NJ7LxoM4Wsqn1F2H1v7+DpYcc9M
+         0IRmVJ/ROiIDvz76kajMLR1GmuU7bHoyC1vCL223LWN3CjTH37nWX+L/EMa1FVGq55Uv
+         C/GwyLfCINwWBW/gVj3qMR7Pom60XqPRUq9Mngt873J9+h8JXYv/OGSPviSoTJ1Dan8y
+         YF8Y+ksWHwBElrHuZW7nUI7sMM27qL223Ojm0oZv0N6zkqO2V2eNcjHwkXO0hjkoS+Wl
+         oFLg==
+X-Gm-Message-State: APjAAAU92sH8nFg8d1xXKvjpyMMMFGJ2BGg3EOGulu6tVwFABgjDtxB7
+        cswy2n2sKNoijDHxNjYFxKynnQ==
+X-Google-Smtp-Source: APXvYqzvYs+hLaAs0izcAja0Yg3oxr7AuA/zxEsLqTC9Lha97ddDLSPwJXo8+dQtSGCs/HcWBKD0VQ==
+X-Received: by 2002:ac2:4a62:: with SMTP id q2mr11390516lfp.82.1582620410425;
+        Tue, 25 Feb 2020 00:46:50 -0800 (PST)
 Received: from localhost.localdomain (d79-196.icpnet.pl. [77.65.79.196])
-        by smtp.gmail.com with ESMTPSA id g78sm3410189lfd.21.2020.02.25.00.46.32
+        by smtp.gmail.com with ESMTPSA id e25sm7260951ljp.97.2020.02.25.00.46.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2020 00:46:32 -0800 (PST)
-Date:   Tue, 25 Feb 2020 09:46:28 +0100
+        Tue, 25 Feb 2020 00:46:49 -0800 (PST)
+Date:   Tue, 25 Feb 2020 09:46:45 +0100
 From:   Mateusz Holenko <mholenko@antmicro.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -65,8 +65,9 @@ Cc:     Stafford Horne <shorne@gmail.com>,
         Icenowy Zheng <icenowy@aosc.io>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/5] dt-bindings: vendor: add vendor prefix for LiteX
-Message-ID: <20200225094437.4170502-1-mholenko@antmicro.com>
+Subject: [PATCH v3 2/5] dt-bindings: soc: document LiteX SoC Controller
+ bindings
+Message-ID: <20200225094437.4170502-2-mholenko@antmicro.com>
 References: <20200225094437.4170502-0-mholenko@antmicro.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -77,37 +78,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Filip Kokosinski <fkokosinski@antmicro.com>
+From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
 
-Add vendor prefix for LiteX SoC builder.
+Add documentation for LiteX SoC Controller bindings.
 
-Signed-off-by: Filip Kokosinski <fkokosinski@antmicro.com>
+Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
 Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
 
 Notes:
-    Changes in v3:
-    - added Acked-by tag
-    
-    No changes in v2.
+    This commit has been introduced in v3 of the patchset.
 
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../soc/litex/litex,soc_controller.yaml       | 46 +++++++++++++++++++
+ MAINTAINERS                                   |  6 +++
+ 2 files changed, 52 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 9e67944bec9c..d9107f0fed2e 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -549,6 +549,8 @@ patternProperties:
-     description: Linux-specific binding
-   "^linx,.*":
-     description: Linx Technologies
-+  "^litex,.*":
-+    description: LiteX SoC builder
-   "^lltc,.*":
-     description: Linear Technology Corporation
-   "^logicpd,.*":
+diff --git a/Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml b/Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml
+new file mode 100644
+index 000000000000..039894265319
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml
+@@ -0,0 +1,46 @@
++PDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/litex/litex,soc_controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LiteX SoC Controller driver
++
++description: |
++  This is the SoC Controller driver for the LiteX SoC Builder.
++  It's purpose is to verify LiteX CSR (Control&Status Register) access
++  operations and provide function for other drivers to read/write CSRs
++  and to check if those accessors are ready to use.
++
++maintainers:
++  - Karol Gugala <kgugala@antmicro.com>
++  - Mateusz Holenko <mholenko@antmicro.com>
++
++properties:
++  compatible:
++    const: litex,soc_controller
++
++  reg:
++    description: Base address and length of the register space
++
++  status:
++    description: |
++      disables or enables node
++
++    const: "okay"
++
++required:
++  - compatible
++  - reg
++  - status
++
++examples:
++  - |
++
++  soc_ctrl0: soc_controller@f0000000 {
++			compatible = "litex,soc_controller";
++			reg = <0x0 0xf0000000 0x0 0xC>;
++			status = "okay";
++  };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4beb8dc4c7eb..ec925c081dd2 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9725,6 +9725,12 @@ L:	kunit-dev@googlegroups.com
+ S:	Maintained
+ F:	lib/list-test.c
+ 
++LITEX PLATFORM
++M:	Karol Gugala <kgugala@antmicro.com>
++M:	Mateusz Holenko <mholenko@antmicro.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/*/litex,*.yaml
++
+ LIVE PATCHING
+ M:	Josh Poimboeuf <jpoimboe@redhat.com>
+ M:	Jiri Kosina <jikos@kernel.org>
 -- 
 2.25.0
 
