@@ -2,139 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E0A016EAF3
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 17:12:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8163316EB15
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 17:16:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731204AbgBYQMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 11:12:18 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:39694 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731152AbgBYQMM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 11:12:12 -0500
-Received: by mail-wr1-f67.google.com with SMTP id y17so6593339wrn.6;
-        Tue, 25 Feb 2020 08:12:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PehnyNjd4V5FhnMmSN6y9oe+uTRnJaBKHZh2ORrfGyg=;
-        b=gPQa0Z4JPLDPGFO8t30CmgnRqeUMugK4I5dLRkwKFRy9tZizE6o7L/Ha0Cs4tJhxBx
-         UtIlgSwDoke78zcgfFzRvQRD/qHFuXCBq6GCR0VYqjzjZo04+e2uB2gQXfJrJR56Ngyw
-         wngWh7dQJ09gFe41rAAtUbcOvMBQ9J+VGSoeCQXqqLa7ZIETW5NIQPe5qdfGyyEevDSw
-         bR8I1pB71H73c1V+5XmcwOjtbqhZAUHVMllolzC2iW0D9sgei93FwY6q0CnYDvblVU6z
-         LEXME1OFFfI73nRau5ELAwvicIZ976ltSfp4g/D5aohDUq+4eDt/y1K2uE0arHMXLj2Q
-         xt+w==
-X-Gm-Message-State: APjAAAXutaii6yCyAIxY0hEz35TkX47kZWg+It/POlp1eBpSxOMCxczm
-        7oJD/buNUnkonPuJwZTNVcPjHToG+/U=
-X-Google-Smtp-Source: APXvYqxfwPA8/K18hEK9dZ/LbLLqMQ/rHwxFMS0s62Mkl/7CuOWqsdN/CRTQmIRNx5EexFElK7Lrzg==
-X-Received: by 2002:adf:cd11:: with SMTP id w17mr77166388wrm.66.1582647129944;
-        Tue, 25 Feb 2020 08:12:09 -0800 (PST)
-Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
-        by smtp.gmail.com with ESMTPSA id h10sm4757339wml.18.2020.02.25.08.12.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2020 08:12:09 -0800 (PST)
-From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
-        =?UTF-8?q?Horia=20Geant=C4=83?= <horia.geanta@nxp.com>,
-        Aymen Sghaier <aymen.sghaier@nxp.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
+        id S1728515AbgBYQQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 11:16:01 -0500
+Received: from bombadil.infradead.org ([198.137.202.133]:50922 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728051AbgBYQQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 11:16:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=KJ1E/IKL8/N0iOQYE5NPhqXs5/0FveqGImaznQIglos=; b=Gl9kLKaEkQylYsxWgr3khdKcrX
+        34YYPKX7ymbat5fWlSXvuB/MSBAcx11UasM94v9O0vI1rNBxCt0wTSGqWy1407vR7witvvIIUgbFr
+        G3AVPbDtpS7+k8GRDBmHoti3VR64XDYIMH2HfSxzVsurLVARvXBIoOAcSBF5xCFZ7Bz5WkkYCv9e3
+        KlLQg7TnRIpaT5APRPi6eMvwmCPLRyNvOoQVuihpZ0DCenzZ63A7G2mkHRPDeyx/BG7xyDR31GUaX
+        Lq74JtPFF+uHyTZiZouQ6OM8cNwykLEFbXO+TnVWF0IIzI2YjUSaIuNKiVeu0eDFWmssUnES3bX0y
+        6tI4e0AA==;
+Received: from [2601:1c0:6280:3f0:897c:6038:c71d:ecac]
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1j6csK-0000YT-0G; Tue, 25 Feb 2020 16:16:00 +0000
+Subject: Re: [PATCH v3 3/5] drivers/soc/litex: add LiteX SoC Controller driver
+To:     Mateusz Holenko <mholenko@antmicro.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Cc:     Stafford Horne <shorne@gmail.com>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org
-Subject: [PATCH v2 6/6] Input: snvs_pwrkey - only IRQ_HANDLED for our own events
-Date:   Tue, 25 Feb 2020 16:12:01 +0000
-Message-Id: <20200225161201.1975-6-git@andred.net>
-X-Mailer: git-send-email 2.23.0.rc1
-In-Reply-To: <20200225161201.1975-1-git@andred.net>
-References: <20200225161201.1975-1-git@andred.net>
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-kernel@vger.kernel.org
+References: <20200225094437.4170502-0-mholenko@antmicro.com>
+ <20200225094437.4170502-3-mholenko@antmicro.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <291b0a18-2b50-515e-d6f8-31f766dbe567@infradead.org>
+Date:   Tue, 25 Feb 2020 08:15:57 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200225094437.4170502-3-mholenko@antmicro.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The snvs_pwrkey shares the SNVS LPSR status register with the snvs_rtc.
+On 2/25/20 12:46 AM, Mateusz Holenko wrote:
+> diff --git a/drivers/soc/litex/Kconfig b/drivers/soc/litex/Kconfig
+> new file mode 100644
+> index 000000000000..22c78cda0b83
+> --- /dev/null
+> +++ b/drivers/soc/litex/Kconfig
+> @@ -0,0 +1,14 @@
+> +# SPDX-License_Identifier: GPL-2.0
+> +
+> +menu "Enable LiteX SoC Builder specific drivers"
+> +
+> +config LITEX_SOC_CONTROLLER
+> +	tristate "Enable LiteX SoC Controller driver"
+> +	help
+> +	This option enables the SoC Controller Driver which verifies
+> +	LiteX CSR access and provides common litex_get_reg/litex_set_reg
+> +	accessors.
+> +	All drivers that use functions from litex.h must depend on
+> +	LITEX_SOC_CONTROLLER
 
-This driver here should only return IRQ_HANDLED if the status register
-indicates that the event we're handling in the irq handler was genuinely
-intended for this driver. Otheriwse the interrupt subsystem will
-assume the interrupt was handled successfully even though it wasn't
-at all.
+Hi,
+Please indent the help text with 2 additional spaces, as explained in the
+coding-style.rst file:
 
-Signed-off-by: André Draszik <git@andred.net>
-Cc: "Horia Geantă" <horia.geanta@nxp.com>
-Cc: Aymen Sghaier <aymen.sghaier@nxp.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Anson Huang <Anson.Huang@nxp.com>
-Cc: Robin Gong <yibin.gong@nxp.com>
-Cc: linux-crypto@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-input@vger.kernel.org
+10) Kconfig configuration files
+-------------------------------
 
----
-v2:
-* no changes
----
- drivers/input/keyboard/snvs_pwrkey.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+For all of the Kconfig* configuration files throughout the source tree,
+the indentation is somewhat different.  Lines under a ``config`` definition
+are indented with one tab, while help text is indented an additional two
+spaces.  Example::
 
-diff --git a/drivers/input/keyboard/snvs_pwrkey.c b/drivers/input/keyboard/snvs_pwrkey.c
-index 382d2ae82c9b..980867886b34 100644
---- a/drivers/input/keyboard/snvs_pwrkey.c
-+++ b/drivers/input/keyboard/snvs_pwrkey.c
-@@ -82,7 +82,9 @@ static irqreturn_t imx_snvs_pwrkey_interrupt(int irq, void *dev_id)
- 	clk_enable(pdata->clk);
- 
- 	regmap_read(pdata->snvs, SNVS_LPSR_REG, &lp_status);
--	if (lp_status & SNVS_LPSR_SPO) {
-+	lp_status &= SNVS_LPSR_SPO;
-+
-+	if (lp_status) {
- 		if (pdata->minor_rev == 0) {
- 			/*
- 			 * The first generation i.MX[6|7] SoCs only send an
-@@ -98,14 +100,14 @@ static irqreturn_t imx_snvs_pwrkey_interrupt(int irq, void *dev_id)
- 			mod_timer(&pdata->check_timer,
- 			          jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
- 		}
--	}
- 
--	/* clear SPO status */
--	regmap_write(pdata->snvs, SNVS_LPSR_REG, SNVS_LPSR_SPO);
-+		/* clear SPO status */
-+		regmap_write(pdata->snvs, SNVS_LPSR_REG, SNVS_LPSR_SPO);
-+	}
- 
- 	clk_disable(pdata->clk);
- 
--	return IRQ_HANDLED;
-+	return lp_status ? IRQ_HANDLED : IRQ_NONE;
- }
- 
- static void imx_snvs_pwrkey_act(void *pdata)
+  config AUDIT
+	bool "Auditing support"
+	depends on NET
+	help
+	  Enable auditing infrastructure that can be used with another
+	  kernel subsystem, such as SELinux (which requires this for
+	  logging of avc messages output).  Does not do system-call
+	  auditing without CONFIG_AUDITSYSCALL.
+
+> +
+> +endmenu
+
+and then end the last line of the help text with a period ('.').
+
+thanks.
+
 -- 
-2.23.0.rc1
+~Randy
 
