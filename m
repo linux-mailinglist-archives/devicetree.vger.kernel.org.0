@@ -2,116 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3008B16BF56
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 12:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C0916BF9A
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 12:30:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729065AbgBYLKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 06:10:36 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41717 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728975AbgBYLKg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 06:10:36 -0500
-Received: by mail-ot1-f66.google.com with SMTP id r27so11682922otc.8;
-        Tue, 25 Feb 2020 03:10:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ShF1rKEK1sHJi4bV5AliSANHk/vwDEu/sJwUMKOAytQ=;
-        b=Fg/TotUMSk7QXSXk+m98jtZD8Vl88pH3O57RgFun3g3aQJMM/bL9DlHkQdMlJ9HsCa
-         uPYtx9Foya/owzzapQlN7pr197BYCoNKd16yA+RHpmlBkcktnWzag9cHY3YtVtxHAgAc
-         2rXfvh9zkT25B4TsF5SxJyV7FsfG1gi+cuE8L2g43agkEq3NF/ylGx+Au152O0Qe2LYF
-         s0BDRGCjA+OIh6EwzWlA3V7ffdNlN185/fEiDBN3yAKTFvRYPUN2XsLwgn+p4Wwqz+Js
-         loTuNRZC4vD3E/tM8XzHpIDdwza9ArLxAftRJec3h8/oJ+1b95Vai7VMbko07NYYMKll
-         2GaQ==
-X-Gm-Message-State: APjAAAW4WTp5KG4Fx4NqLybVelarfBNATrKDg82H3+YEuyV687HgRoX2
-        +ovl9/N2K+u+JyReD/mppCbzFF9gpVV0oeD6ZP4=
-X-Google-Smtp-Source: APXvYqxrMaSMRykUQR0d01z8RXFwEIAPMGRIumb8H1Es0tsGNPGUfg1hHfXUZPkQRkGTPUS0CeT4/nilPWSHjFSskVc=
-X-Received: by 2002:a9d:dc1:: with SMTP id 59mr44161260ots.250.1582629035571;
- Tue, 25 Feb 2020 03:10:35 -0800 (PST)
+        id S1729206AbgBYLaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 06:30:12 -0500
+Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:17430 "EHLO
+        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729296AbgBYLaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 06:30:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1582630211; x=1614166211;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=F6J0f5QaF/SjK4oeY+JWx0EZF6vBtVVKsTgfqWyLaj8=;
+  b=L65wrXfLdQlh+2ny3ve0qCt6C7vwQLaEmt6aZoRPZl1zZnOM+fDdw1lE
+   sPFKUgCW0hgC0/0HJnAh0AopYhgUVthlWo5GcTh+X+l6+JaJErgyjlicJ
+   uiYw2BAsTz4UWuE5MGnwb6DzDxDJo6wGc7bbS7phODi1KyTGSQ+79IlmY
+   g=;
+IronPort-SDR: 2cN/vl9BK+ohQRJrzGlpG1Mfsj8IXVkgBjhfK4pS/wkh1Ju7udxQwKR3b+c+UL5PBRwnqGURWN
+ ybU5FrppDe8w==
+X-IronPort-AV: E=Sophos;i="5.70,483,1574121600"; 
+   d="scan'208";a="18467363"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1a-821c648d.us-east-1.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 25 Feb 2020 11:29:59 +0000
+Received: from EX13MTAUEA002.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
+        by email-inbound-relay-1a-821c648d.us-east-1.amazon.com (Postfix) with ESMTPS id 3C9F6A24C6;
+        Tue, 25 Feb 2020 11:29:54 +0000 (UTC)
+Received: from EX13D19EUB003.ant.amazon.com (10.43.166.69) by
+ EX13MTAUEA002.ant.amazon.com (10.43.61.77) with Microsoft SMTP Server (TLS)
+ id 15.0.1236.3; Tue, 25 Feb 2020 11:29:54 +0000
+Received: from u8a88181e7b2355.ant.amazon.com (10.43.162.50) by
+ EX13D19EUB003.ant.amazon.com (10.43.166.69) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Tue, 25 Feb 2020 11:29:45 +0000
+From:   Hanna Hawa <hhhawa@amazon.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <tsahee@annapurnalabs.com>, <antoine.tenart@bootlin.com>,
+        <hhhawa@amazon.com>, <mchehab+samsung@kernel.org>,
+        <davem@davemloft.net>, <gregkh@linuxfoundation.org>,
+        <Jonathan.Cameron@huawei.com>, <tglx@linutronix.de>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <dwmw@amazon.co.uk>,
+        <benh@amazon.com>, <ronenk@amazon.com>, <talel@amazon.com>,
+        <jonnyc@amazon.com>, <hanochu@amazon.com>, <eitan@amazon.com>
+Subject: [PATCH v4 0/6] Amazon's Annapurna Labs Alpine v3 device-tree
+Date:   Tue, 25 Feb 2020 13:29:20 +0200
+Message-ID: <20200225112926.16518-1-hhhawa@amazon.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20200225104223.30891-1-luca@lucaceresoli.net>
-In-Reply-To: <20200225104223.30891-1-luca@lucaceresoli.net>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 25 Feb 2020 12:10:24 +0100
-Message-ID: <CAMuHMdVuk_BcFH16eBQYeQxREAF9VPz+R_sBKQpG0jQ8JDLn0w@mail.gmail.com>
-Subject: Re: [DT-OVERLAY PATCH] of: overlay: print the offending node name on
- fixup failure
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.43.162.50]
+X-ClientProxiedBy: EX13D02UWB002.ant.amazon.com (10.43.161.160) To
+ EX13D19EUB003.ant.amazon.com (10.43.166.69)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+This series organize the Amazon's Annapurna Labs Alpine device tree
+bindings, device tree folder and adds new device tree for Alpine v3.
 
-On Tue, Feb 25, 2020 at 11:42 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
-> When a DT overlay has a fixup node that is not present in the base DT
-> __symbols__, this error is printed:
->
->   OF: resolver: overlay phandle fixup failed: -22
->   create_overlay: Failed to create overlay (err=-22)
->
-> which does not help much in finding the node that caused the problem.
->
-> Add a debug print with the name of the fixup node that caused the
-> error. The new output is:
->
->   OF: resolver: node gpio9 not found in base DT, fixup failed
->   OF: resolver: overlay phandle fixup failed: -22
->   create_overlay: Failed to create overlay (err=-22)
->
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+Changes since v3:
+-----------------
+- rebased and retested for tag Linux 5.6-rc2
 
-Thanks for your patch!
+Changes since v2:
+-----------------
+- Move up a level for DT node without mmio regs.
+- Drop device_type from serial@fd883000 node.
+- Minor change name of PCIe node to: pcie@fbd00000
 
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Changes since v1:
+-----------------
+- Rename al,alpine DT binding to amazon,alpine
+- Rename al folder to be amazon
+- Update maintainers of amazon,alpine DT
+- Add missing alpine-v2 DT binding
+- Fix yaml schemas for alpine-v3-evp.dts:
+	- #size-cells:0:0: 0 is not one of [1, 2]
+	- arch-timer: interrupts: [[1, 13, 8, 1, 14, 8, 1, 11, 8, 1, 10,
+	8]] is too short
+- Change compatible string of alpine-v3-evp to amazon,al
 
-> NOTE: this patch is not for mainline!
+Hanna Hawa (5):
+  dt-bindings: arm: amazon: rename al,alpine DT binding to amazon,al
+  arm64: dts: amazon: rename al folder to be amazon
+  dt-bindings: arm: amazon: update maintainers of amazon,al DT bindings
+  dt-bindings: arm: amazon: add missing alpine-v2 DT binding
+  dt-bindings: arm: amazon: add Amazon Annapurna Labs Alpine V3
 
-Why not?
+Ronen Krupnik (1):
+  arm64: dts: amazon: add Amazon's Annapurna Labs Alpine v3 support
 
-> It applies on top of the runtime overlay patches at
-> git://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git on
-> branch topic/overlays, currently based on v5.6-rc1. This looked like the
-> most up-to-date version of the overlay patches. Should there be a better
-> place, please let me know.
-
-Topic/overlays does not contain any changes to drivers/of/resolver.c,
-so this patch is applicable to mainline, too.
-
-> --- a/drivers/of/resolver.c
-> +++ b/drivers/of/resolver.c
-> @@ -321,8 +321,11 @@ int of_resolve_phandles(struct device_node *overlay)
->
->                 err = of_property_read_string(tree_symbols,
->                                 prop->name, &refpath);
-> -               if (err)
-> +               if (err) {
-> +                       pr_err("node %s not found in base DT, fixup failed",
-> +                              prop->name);
->                         goto out;
-> +               }
->
->                 refnode = of_find_node_by_path(refpath);
->                 if (!refnode) {
-
-Probably you want to print a helpful message here, too?
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../devicetree/bindings/arm/al,alpine.yaml    |  21 -
+ .../devicetree/bindings/arm/amazon,al.yaml    |  33 ++
+ MAINTAINERS                                   |   2 +-
+ arch/arm64/boot/dts/Makefile                  |   2 +-
+ arch/arm64/boot/dts/{al => amazon}/Makefile   |   1 +
+ .../boot/dts/{al => amazon}/alpine-v2-evp.dts |   0
+ .../boot/dts/{al => amazon}/alpine-v2.dtsi    |   0
+ arch/arm64/boot/dts/amazon/alpine-v3-evp.dts  |  23 ++
+ arch/arm64/boot/dts/amazon/alpine-v3.dtsi     | 371 ++++++++++++++++++
+ 9 files changed, 430 insertions(+), 23 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/al,alpine.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/amazon,al.yaml
+ rename arch/arm64/boot/dts/{al => amazon}/Makefile (64%)
+ rename arch/arm64/boot/dts/{al => amazon}/alpine-v2-evp.dts (100%)
+ rename arch/arm64/boot/dts/{al => amazon}/alpine-v2.dtsi (100%)
+ create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3-evp.dts
+ create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3.dtsi
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
