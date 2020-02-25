@@ -2,122 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09AFF16ED41
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 18:57:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78AED16ED8C
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 19:11:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730222AbgBYR51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 12:57:27 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:57954 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728367AbgBYR51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 12:57:27 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01PHvO6g118931;
-        Tue, 25 Feb 2020 11:57:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1582653444;
-        bh=hQ2uIHjwpTtJd56UjDVGgdNIbg9rWSbDzA/3T4wHuB8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=iE2Ub7TW60Al9VxN8PEadGgbs5BBH9yGJa7MegH5Qx4FJn8tZ+fJ+KIhL50zhnSqp
-         TVeEewZXmOJYdpnNqpQPU5dWX5HtjPpkHU92DLqdf/Bv4FEh73liimeyZS4WRU5Bk0
-         SLRTI1dad94YiPWDWopxLLimPJzzIlPcfeRV3D+0=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01PHvOFv026587
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Feb 2020 11:57:24 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 25
- Feb 2020 11:57:23 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 25 Feb 2020 11:57:23 -0600
-Received: from [158.218.117.45] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01PHvNdn070866;
-        Tue, 25 Feb 2020 11:57:23 -0600
-Subject: Re: [for-next PATCH 1/5] phy: ti: gmii-sel: simplify config
- dependencies between net drivers and gmii phy
-To:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        "David S. Miller" <davem@davemloft.net>
-CC:     <netdev@vger.kernel.org>, Sekhar Nori <nsekhar@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20200222120358.10003-1-grygorii.strashko@ti.com>
- <20200222120358.10003-2-grygorii.strashko@ti.com>
-From:   Murali Karicheri <m-karicheri2@ti.com>
-Message-ID: <78f6521a-d44b-b0b9-8dcf-4b1dc1446946@ti.com>
-Date:   Tue, 25 Feb 2020 13:04:34 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.7.0
+        id S1728476AbgBYSLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 13:11:16 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:42537 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728367AbgBYSLQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 13:11:16 -0500
+Received: by mail-ot1-f65.google.com with SMTP id 66so375902otd.9
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 10:11:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=kLYxrjCSIrvwr8R9F0r9sUCzkoOdlkpR4nvrMhQsxSk=;
+        b=M8AbAX5WG0ESWTw8JOBDnAtW4NXa3JkYQg/HmpGz0V6uvW+X4GKtV6QtBXDUCiTmwR
+         Lwa494nduEhPSC6U1jpw5+1McpYVh0ws+4ufqWuJr+YBQGLUW5y0/kOw5W65Lk+7462E
+         4/HLKnU9au8NRdiijrQ9+fPmdavcp10BnADx+t/q5Zue8yLXdGzCJctV7lPvlVIp23bI
+         RJ3gu/Xeb66lRc88xerQ6vzW5RWOuCUh1EZPp2RJJntopTvO4n0aYqn/mbczONUMTign
+         bwU3iISjxlLf5vdzuvyThQ+UVL1dx/0bxIEctEpMdY593T6SSe5mNBZBIWcE5ykhd/bF
+         I6Ng==
+X-Gm-Message-State: APjAAAUhROsjNnnGmkDia00jcYR0zvURnpC1Qg+NIeVHaUeTVjW0g1PI
+        nh4I9dm2B1F4WKoMo0g1Iw==
+X-Google-Smtp-Source: APXvYqyc+26w8sK7Uzc0BxJvFH3kWVvKtOCAA09eVdjhDvUtHWVC6pi5Gw40zaZKtvYwrirh3AJMjA==
+X-Received: by 2002:a9d:7410:: with SMTP id n16mr47046974otk.23.1582654275254;
+        Tue, 25 Feb 2020 10:11:15 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 32sm5906620ott.38.2020.02.25.10.11.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2020 10:11:14 -0800 (PST)
+Received: (nullmailer pid 26920 invoked by uid 1000);
+        Tue, 25 Feb 2020 18:11:14 -0000
+Date:   Tue, 25 Feb 2020 12:11:14 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH 1/2 v2] bus: Add DT bindings for Integrator/AP logic
+ modules
+Message-ID: <20200225181114.GA16296@bogus>
+References: <20200219150833.126058-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20200222120358.10003-2-grygorii.strashko@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200219150833.126058-1-linus.walleij@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Grygorii,
-
-On 02/22/2020 07:03 AM, Grygorii Strashko wrote:
-> The phy-gmii-sel can be only autoselacted in Kconfig and now the pretty
-s/autoselacted/auto selected
-> complex Kconfig dependencies are defined for phy-gmii-sel driver, which
-> also need to be updated every time phy-gmii-sel is re-used for any new
-> networking driver.
+On Wed, Feb 19, 2020 at 04:08:33PM +0100, Linus Walleij wrote:
+> This adds YAML device tree bindings for the Integrator/AP
+> logic modules. These are plug-in tiles used typically for
+> FPGA prototyping.
 > 
-> Simplify Kconfig definotion for phy-gmii-sel PHY driver - drop all
-
-s/definotion/definition
-
-> depndencies and from networking drivers and rely on using 'imply imply
-
-s/depndencies/dependencies
-
-> PHY_TI_GMII_SEL' in Kconfig definotions for networking drivers instead.
-> 
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->   drivers/net/ethernet/ti/Kconfig | 1 +
->   drivers/phy/ti/Kconfig          | 3 ---
->   2 files changed, 1 insertion(+), 3 deletions(-)
+> ChangeLog v1->v2:
+> - Fix Logical->Logic spelling error
+> - Set generic names for bus and serial
+> - Just map the addresses 1:1 and use empty ranges, as the
+>   LM's don't really translate the address.
+> - Provide proper DMA ranges: the LM modules see the RAM at
+>   the system-wide alias @80000000 rather than 1:1.
+> - Drop the reg from the bus node (we just need the ranges)
+> - Make the regexp for the bus node such that @address is
+>   optional, as we don't require any reg on the node
+> ---
+>  .../bindings/bus/arm,integrator-ap-lm.yaml    | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/arm,integrator-ap-lm.yaml
 > 
-> diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/Kconfig
-> index bf98e0fa7d8b..8a6ca16eee3b 100644
-> --- a/drivers/net/ethernet/ti/Kconfig
-> +++ b/drivers/net/ethernet/ti/Kconfig
-> @@ -53,6 +53,7 @@ config TI_CPSW
->   	select MFD_SYSCON
->   	select PAGE_POOL
->   	select REGMAP
-> +	imply PHY_TI_GMII_SEL
->   	---help---
->   	  This driver supports TI's CPSW Ethernet Switch.
->   
-> diff --git a/drivers/phy/ti/Kconfig b/drivers/phy/ti/Kconfig
-> index 6dbe9d0b9ff3..15a3bcf32308 100644
-> --- a/drivers/phy/ti/Kconfig
-> +++ b/drivers/phy/ti/Kconfig
-> @@ -106,11 +106,8 @@ config TWL4030_USB
->   
->   config PHY_TI_GMII_SEL
->   	tristate
-> -	default y if TI_CPSW=y || TI_CPSW_SWITCHDEV=y
-> -	depends on TI_CPSW || TI_CPSW_SWITCHDEV || COMPILE_TEST
->   	select GENERIC_PHY
->   	select REGMAP
-> -	default m
->   	help
->   	  This driver supports configuring of the TI CPSW Port mode depending on
->   	  the Ethernet PHY connected to the CPSW Port.
-> 
+> diff --git a/Documentation/devicetree/bindings/bus/arm,integrator-ap-lm.yaml b/Documentation/devicetree/bindings/bus/arm,integrator-ap-lm.yaml
+> new file mode 100644
+> index 000000000000..5db5267410a6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/arm,integrator-ap-lm.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/arm,integrator-ap-lm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Integrator/AP Logic Module extension bus
+> +
+> +maintainers:
+> +  - Linus Walleij <linusw@kernel.org>
+> +
+> +description: The Integrator/AP is a prototyping platform and as such has a
+> +  site for stacking up to four logic modules (LM) designed specifically for
+> +  use with this platform. A special system controller register can be read to
+> +  determine if a logic module is connected at index 0, 1, 2 or 3. The logic
+> +  module connector is described in this binding. The logic modules per se
+> +  then have their own specific per-module bindings and they will be described
+> +  as subnodes under this logic module extension bus.
+> +
+> +properties:
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  compatible:
+> +    items:
+> +      - const: arm,integrator-ap-lm
+> +
+> +  ranges: true
+> +  dma-ranges: true
+> +
+> +patternProperties:
+> +  "^bus(@[0-9a-f]*)?$":
+> +    description: Nodes on the Logic Module bus represent logic modules
+> +      and are named with bus. The first module is at 0xc0000000, the second
+> +      at 0xd0000000 and so on until the top of the memory of the system at
+> +      0xffffffff. All information about the memory used by the module is
+> +      in ranges and dma-ranges.
+> +    type: object
+> +
+> +    required:
+> +      - compatible
+> +
+> +required:
+> +  - compatible
+> +
+> +examples:
+> +  - |
+> +    bus@c0000000 {
+> +      compatible = "arm,integrator-ap-lm";
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      ranges;
 
--- 
-Murali Karicheri
-Texas Instruments
+ranges = <0xc0000000 0xc0000000 0x10000000>;
+
+Because you have a unit-address.
+
+> +      dma-ranges;
+> +
+> +      bus {
+
+bus@c0000000
+
+Though, now I'm wondering this shouldn't just be 1 level with:
+
+compatible = "arm,integrator-ap-lm", "simple-bus";
+
+> +        compatible = "simple-bus";
+> +        ranges = <0x00000000 0xc0000000 0x10000000>;
+> +        /* The Logic Modules sees the Core Module 0 RAM @80000000 */
+> +        dma-ranges = <0x00000000 0x80000000 0x10000000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        serial@00100000 {
+
+Drop leading 0s.
+
+> +          compatible = "arm,pl011", "arm,primecell";
+> +          reg = <0x00100000 0x1000>;
+> +          interrupts-extended = <&impd1_vic 1>;
+> +        };
+> +
+> +        impd1_vic: interrupt-controller@03000000 {
+
+Drop leading 0s.
+
+Try 'make W=1 dt_binding_check' as that will warn on all these things.
+
+> +          compatible = "arm,pl192-vic";
+> +          interrupt-controller;
+> +          #interrupt-cells = <1>;
+> +          reg = <0x03000000 0x1000>;
+> +          valid-mask = <0x00000bff>;
+> +          interrupts-extended = <&pic 9>;
+> +        };
+> +      };
+> +    };
+> +
+> +additionalProperties: false
+> -- 
+> 2.24.1
+> 
