@@ -2,73 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 433D316ED48
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 18:58:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09AFF16ED41
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 18:57:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730174AbgBYR6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 12:58:04 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:38317 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729536AbgBYR6D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 12:58:03 -0500
-Received: by mail-ot1-f67.google.com with SMTP id z9so360582oth.5;
-        Tue, 25 Feb 2020 09:58:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8GwTzddrLu/wUsAnxNvKRBKqXG7o72fYpPpNcXHr19E=;
-        b=ajEf5W+nHQHEO30OrPLyA821vOv2CcsaxFZZBl5NxHZ0Ev/z3kVmuA+D3B/S19N55F
-         hqIOj+kiRpdZ8gB9fSe6NrYEauxmffxc77LT5Au/6MqeXEpHiSfIN66HRYQYeurHhsP+
-         zkKwFjSGwLLwZe9u/aRjU58SiMW+MyHnbwwfTFlrYnRpiJyHCLJ7I/6cI+gNCQ4DHMka
-         TJUNFr8ZnwHJuduI+QqZL40K03u6I+pkM1fq085as7x0IKTO6Qv2umZ5grgW0vUm0nU+
-         gPyqZfM0Sb9sJV3JSKn+Ax0sUNa2ZZ/um0xTmc7ERhyKs+I7Joa5/GSFDQu/t6F4KWNv
-         HdPg==
-X-Gm-Message-State: APjAAAVm/P9sCpbY2wK/RVEUYq64ZnyJQgkhiUg15KZNyL/TWFpnbalM
-        h/tPB79YrBJIx6oyf1uW2g==
-X-Google-Smtp-Source: APXvYqyqIOkEAcKJ5+8hpXXY05G/dthQhXpUBc1sdkuly+kiJaFQmDzPObHMm6N2y/PtDm8/3bQW7Q==
-X-Received: by 2002:a05:6830:1149:: with SMTP id x9mr46722989otq.156.1582653483133;
-        Tue, 25 Feb 2020 09:58:03 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y6sm5900513oti.44.2020.02.25.09.58.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2020 09:58:02 -0800 (PST)
-Received: (nullmailer pid 7499 invoked by uid 1000);
-        Tue, 25 Feb 2020 17:58:01 -0000
-Date:   Tue, 25 Feb 2020 11:58:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        Anson.Huang@nxp.com, leonard.crestez@nxp.com,
-        daniel.baluta@nxp.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        fugang.duan@nxp.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Joakim Zhang <qiangqing.zhang@nxp.com>
-Subject: Re: [PATCH 3/7] bindings: clock: imx8qxp: add
- "fsl,imx8qxp-lpcg-cm40" compatible string
-Message-ID: <20200225175801.GA7447@bogus>
-References: <1581909561-12058-1-git-send-email-qiangqing.zhang@nxp.com>
- <1581909561-12058-4-git-send-email-qiangqing.zhang@nxp.com>
+        id S1730222AbgBYR51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 12:57:27 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:57954 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728367AbgBYR51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 12:57:27 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01PHvO6g118931;
+        Tue, 25 Feb 2020 11:57:24 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1582653444;
+        bh=hQ2uIHjwpTtJd56UjDVGgdNIbg9rWSbDzA/3T4wHuB8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=iE2Ub7TW60Al9VxN8PEadGgbs5BBH9yGJa7MegH5Qx4FJn8tZ+fJ+KIhL50zhnSqp
+         TVeEewZXmOJYdpnNqpQPU5dWX5HtjPpkHU92DLqdf/Bv4FEh73liimeyZS4WRU5Bk0
+         SLRTI1dad94YiPWDWopxLLimPJzzIlPcfeRV3D+0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01PHvOFv026587
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Feb 2020 11:57:24 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 25
+ Feb 2020 11:57:23 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 25 Feb 2020 11:57:23 -0600
+Received: from [158.218.117.45] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01PHvNdn070866;
+        Tue, 25 Feb 2020 11:57:23 -0600
+Subject: Re: [for-next PATCH 1/5] phy: ti: gmii-sel: simplify config
+ dependencies between net drivers and gmii phy
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        "David S. Miller" <davem@davemloft.net>
+CC:     <netdev@vger.kernel.org>, Sekhar Nori <nsekhar@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20200222120358.10003-1-grygorii.strashko@ti.com>
+ <20200222120358.10003-2-grygorii.strashko@ti.com>
+From:   Murali Karicheri <m-karicheri2@ti.com>
+Message-ID: <78f6521a-d44b-b0b9-8dcf-4b1dc1446946@ti.com>
+Date:   Tue, 25 Feb 2020 13:04:34 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1581909561-12058-4-git-send-email-qiangqing.zhang@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200222120358.10003-2-grygorii.strashko@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Feb 2020 11:19:17 +0800, Joakim Zhang wrote:
-> Add "fsl,imx8qxp-lpcg-cm40" compatible string.
+Hi Grygorii,
+
+On 02/22/2020 07:03 AM, Grygorii Strashko wrote:
+> The phy-gmii-sel can be only autoselacted in Kconfig and now the pretty
+s/autoselacted/auto selected
+> complex Kconfig dependencies are defined for phy-gmii-sel driver, which
+> also need to be updated every time phy-gmii-sel is re-used for any new
+> networking driver.
 > 
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> Simplify Kconfig definotion for phy-gmii-sel PHY driver - drop all
+
+s/definotion/definition
+
+> depndencies and from networking drivers and rely on using 'imply imply
+
+s/depndencies/dependencies
+
+> PHY_TI_GMII_SEL' in Kconfig definotions for networking drivers instead.
+> 
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
 > ---
->  Documentation/devicetree/bindings/clock/imx8qxp-lpcg.txt | 1 +
->  1 file changed, 1 insertion(+)
+>   drivers/net/ethernet/ti/Kconfig | 1 +
+>   drivers/phy/ti/Kconfig          | 3 ---
+>   2 files changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/ti/Kconfig b/drivers/net/ethernet/ti/Kconfig
+> index bf98e0fa7d8b..8a6ca16eee3b 100644
+> --- a/drivers/net/ethernet/ti/Kconfig
+> +++ b/drivers/net/ethernet/ti/Kconfig
+> @@ -53,6 +53,7 @@ config TI_CPSW
+>   	select MFD_SYSCON
+>   	select PAGE_POOL
+>   	select REGMAP
+> +	imply PHY_TI_GMII_SEL
+>   	---help---
+>   	  This driver supports TI's CPSW Ethernet Switch.
+>   
+> diff --git a/drivers/phy/ti/Kconfig b/drivers/phy/ti/Kconfig
+> index 6dbe9d0b9ff3..15a3bcf32308 100644
+> --- a/drivers/phy/ti/Kconfig
+> +++ b/drivers/phy/ti/Kconfig
+> @@ -106,11 +106,8 @@ config TWL4030_USB
+>   
+>   config PHY_TI_GMII_SEL
+>   	tristate
+> -	default y if TI_CPSW=y || TI_CPSW_SWITCHDEV=y
+> -	depends on TI_CPSW || TI_CPSW_SWITCHDEV || COMPILE_TEST
+>   	select GENERIC_PHY
+>   	select REGMAP
+> -	default m
+>   	help
+>   	  This driver supports configuring of the TI CPSW Port mode depending on
+>   	  the Ethernet PHY connected to the CPSW Port.
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+-- 
+Murali Karicheri
+Texas Instruments
