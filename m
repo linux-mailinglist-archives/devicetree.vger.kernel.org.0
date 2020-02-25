@@ -2,146 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC8E16BD15
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 10:14:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C734616BD33
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 10:24:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726916AbgBYJOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 04:14:00 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37018 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726867AbgBYJN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 04:13:59 -0500
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D636828FF0F;
-        Tue, 25 Feb 2020 09:13:56 +0000 (GMT)
-Date:   Tue, 25 Feb 2020 10:13:54 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        intel-gfx-trybot@lists.freedesktop.org, kernel@collabora.com,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Chris Healy <cphealy@gmail.com>
-Subject: Re: [PATCH v10 09/12] dt-bindings: display: bridge: lvds-codec: Add
- new bus-width prop
-Message-ID: <20200225101354.5f621ccb@collabora.com>
-In-Reply-To: <20200224223139.GA29578@pendragon.ideasonboard.com>
-References: <20200128135514.108171-1-boris.brezillon@collabora.com>
-        <20200128135514.108171-10-boris.brezillon@collabora.com>
-        <20200224223139.GA29578@pendragon.ideasonboard.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1729913AbgBYJYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 04:24:50 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:41163 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726764AbgBYJYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 04:24:50 -0500
+Received: by mail-wr1-f66.google.com with SMTP id v4so934149wrs.8
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 01:24:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=f/BcuFESeD0nxQhG6MiD0u6r1X/PnHdRmEXqrbWhTtE=;
+        b=zl3vF2DlbSqx5eFLLSUdDjI9EBwAJZ4gdDoR9UGpSvUPJOfbkv3eJR3zZrLTOKMU5r
+         D1kDFHHNnWKKqrQV7qph5B4gnUnW3MYHNVP9WtLrfnDrCUvQMjwl171h+LwnhrjjAhUL
+         ZdjznstMqGMEo0r7R+ZMNgE9YsZkix386pUoowGHr7Xeuj/plf1j8rEUOxYGQi94ARnr
+         /AuqGhdu0td5MoZWNt7hEUNQw/YJTSVuPHT+6d5f6XwTZqTqrzty29h/tWMUE+qOVNNo
+         O5UynFhd8cMEe83OPT8ZfIyYc0CAYZv4eLxgs1/afMqrI4bm73/HwhckO87ueeMlK+p9
+         B/0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=f/BcuFESeD0nxQhG6MiD0u6r1X/PnHdRmEXqrbWhTtE=;
+        b=U8Mx816MqvII9L2mm9yP1YDnq7tCGj1ltBqelDFR6QN1KZsIyg7G3YuYDEo34l0oZP
+         mGxMurUgnvPq63GzOFfDl99MH0m8CQf+4nQC2GiyVSyPRXNygG8D4b+d/fwPrljyg6Ve
+         5bMhDGa4u5WAUJ+af6bLWGWVg+6Hvt8cvICjO4oyHmuSDIuem+rmKBmv7kcKq+fldbCE
+         6+7+B3kbJMseFh2/iXJJN44HM9TgyOTYi1gxkAg/SQ7S2ZYSz63YSY0aYbB85N2o45ay
+         cXNz9Nk1048IKKZFfiiMmNMaWS4DXUBaBvlg9QmpveLiS8Ao2mX6AE2404HftfdT+7at
+         wjpA==
+X-Gm-Message-State: APjAAAWmfT1q1P4YRiSEwVG/I7V0ZuUcNuWQfU1CegC5LPtsDaz79GYT
+        WgX5FEEcDqm/P22ZH+LH95IeyQ==
+X-Google-Smtp-Source: APXvYqzEBhx+1qou+rx6ieuBuVr+WsrtZbhL85bwQfWbU5iCMd2zUrtZQURsgfjNBpo6KHXv5wrHgA==
+X-Received: by 2002:adf:9cca:: with SMTP id h10mr1745887wre.390.1582622687476;
+        Tue, 25 Feb 2020 01:24:47 -0800 (PST)
+Received: from myrica ([2001:171b:c9a8:fbc0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id k16sm23442823wru.0.2020.02.25.01.24.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2020 01:24:46 -0800 (PST)
+Date:   Tue, 25 Feb 2020 10:24:39 +0100
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     Jason Gunthorpe <jgg@ziepe.ca>
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-mm@kvack.org, joro@8bytes.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, catalin.marinas@arm.com, will@kernel.org,
+        robin.murphy@arm.com, kevin.tian@intel.com,
+        baolu.lu@linux.intel.com, Jonathan.Cameron@huawei.com,
+        jacob.jun.pan@linux.intel.com, christian.koenig@amd.com,
+        yi.l.liu@intel.com, zhangfei.gao@linaro.org,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Dimitri Sivanich <sivanich@sgi.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v4 01/26] mm/mmu_notifiers: pass private data down to
+ alloc_notifier()
+Message-ID: <20200225092439.GB375953@myrica>
+References: <20200224182401.353359-1-jean-philippe@linaro.org>
+ <20200224182401.353359-2-jean-philippe@linaro.org>
+ <20200224190056.GT31668@ziepe.ca>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200224190056.GT31668@ziepe.ca>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Feb 2020 00:31:39 +0200
-Laurent Pinchart <laurent.pinchart@ideasonboard.com> wrote:
-
-> Hi Boris,
+On Mon, Feb 24, 2020 at 03:00:56PM -0400, Jason Gunthorpe wrote:
+> On Mon, Feb 24, 2020 at 07:23:36PM +0100, Jean-Philippe Brucker wrote:
+> > The new allocation scheme introduced by 2c7933f53f6b ("mm/mmu_notifiers:
+> > add a get/put scheme for the registration") provides a convenient way
+> > for users to attach notifier data to an mm. However, it would be even
+> > better to create this notifier data atomically.
+> > 
+> > Since the alloc_notifier() callback only takes an mm argument at the
+> > moment, some users have to perform the allocation in two times.
+> > alloc_notifier() initially creates an incomplete structure, which is
+> > then finalized using more context once mmu_notifier_get() returns. This
+> > second step requires carrying an initialization lock in the notifier
+> > data and playing dirty tricks to order memory accesses against live
+> > invalidation.
 > 
-> Thank you for the patch.
+> This was the intended pattern. Tthere shouldn't be an real issue as
+> there shouldn't be any data on which to invalidate, ie the later patch
+> does:
 > 
-> On Tue, Jan 28, 2020 at 02:55:11PM +0100, Boris Brezillon wrote:
-> > Add the bus-width property to describe the input bus format.
-> > 
-> > v10:
-> > * Add changelog to the commit message
-> > * Add Rob's R-b
-> > 
-> > v8 -> v9:
-> > * No changes
-> > 
-> > v7:
-> > * Rebase on top of lvds-codec changes
-> > * Drop the data-mapping property
-> > 
-> > v4 -> v6:
-> > * Not part of the series
-> > 
-> > v3:
-> > * New patch
-> > 
-> > Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../devicetree/bindings/display/bridge/lvds-codec.yaml    | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > index 8f373029f5d2..7c4e42f4de61 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
-> > @@ -55,6 +55,14 @@ properties:
-> >          description: |
-> >            For LVDS encoders, port 0 is the parallel input
-> >            For LVDS decoders, port 0 is the LVDS input
-> > +        properties:
-> > +          bus-width:
-> > +            allOf:
-> > +              - $ref: /schemas/types.yaml#/definitions/uint32
-> > +              - enum: [18, 24]
-> > +              - default: 24
-> > +          description:
-> > +            Number of data lines used to transmit the RGB data.  
+> +       list_for_each_entry_rcu(bond, &io_mm->devices, mm_head)
 > 
-> This is a bit unclear. First of all, depending on whether the node is an
-> LVDS encoder or decoder, port@0 is either a parallel input or an LVDS
-> input. The property mentiones RGB data, does it mean it apply to LVDS
-> encoders only ? Or should it be in port@1 for LVDS decoders ?
+> And that list is empty post-allocation, so no 'dirty tricks' required.
 
-Right, I only considered the encoder case here. For the decoder case, we
-don't need a bus-width prop yet, as the bus format output is currently
-enforced by the bus format input of the next component in the chain
-(panel/next-bridge), but that might change if we start dealing with
-panel/bridges supporting several input formats and expecting the LVDS
-encoder/decoder to select one. What we do need for the decoder case
-though, is a data-mapping prop, otherwise this LVDS bridge exposes a
-FIXED in-format and the previous element in the chain has to use its
-'default' output format (which might not be appropriate).
+Before introducing this patch I had the following code:
 
-Maybe we should go for Sam's approach and expose a data-mapping prop
-on both ends of the bridge (that implies describing RGB/DPI bus width
-using the data-mapping prop), this way we wouldn't have to distinguish
-the encoder/decoder case.
++	list_for_each_entry_rcu(bond, &io_mm->devices, mm_head) {
++		/*
++		 * To ensure that we observe the initialization of io_mm fields
++		 * by io_mm_finalize() before the registration of this bond to
++		 * the list by io_mm_attach(), introduce an address dependency
++		 * between bond and io_mm. It pairs with the smp_store_release()
++		 * from list_add_rcu().
++		 */
++		io_mm = rcu_dereference(bond->io_mm);
++		io_mm->ops->invalidate(bond->sva.dev, io_mm->pasid, io_mm->ctx,
++				       start, end - start);
++	}
+
+(1) io_mm_get() would obtain an empty io_mm from iommu_notifier_get().
+(2) then io_mm_finalize() would initialize io_mm->ops, io_mm->ctx, etc.
+(3) finally io_mm_attach() would add the bond to io_mm->devices.
+
+Since the above code can run before (2) it needs to observe valid
+io_mm->ctx, io_mm->ops initialized by (2) after obtaining the bond
+initialized by (3). Which I believe requires the address dependency from
+the rcu_dereference() above or some stronger barrier to pair with the
+list_add_rcu(). If io_mm->ctx and io_mm->ops are already valid before the
+mmu notifier is published, then we don't need that stuff.
+
+That's the main reason I would have liked moving everything to
+alloc_notifier(), the locking below isn't a big deal.
+
+> The other op callback is release, which also cannot be called as the
+> caller must hold a mmget to establish the notifier.
+> 
+> So just use the locking that already exists. There is one function
+> that calls io_mm_get() which immediately calls io_mm_attach, which
+> immediately grabs the global iommu_sva_lock.
+> 
+> Thus init the pasid for the first time under that lock and everything
+> is fine.
+
+I agree with this, can't remember why I used a separate lock for
+initialization rather than reusing iommu_sva_lock.
+
+Thanks,
+Jean
 
 > 
-> Then, I'm not sure what the property describes. Is it the number of data
-> lanes that the chip has ? Or the number of lanes routed on the board ?
-
-It's the number of lanes routed on the board. I'll clarify that.
-
-> Should it be specified only if the number of lanes on the board is
-> different than the maximum number of lanes of the hardware ?
-
-You mean default number of lanes (24)? Well, I guess defining it
-explicitly is not a bad thing, so, even if the default is already 24,
-I don't see a problem setting bus-width = <24>. Actually, maybe that's
-even better if we force new users to explicitly define the number of
-lanes exposed on the DPI interface, but we definitely need this default
-value if we want to keep things backward compatible. Not sure how to
-express that (it's not mandatory, it's not optional, it's recommended
-:-)).
-
-> A more
-> detailed description is needed.
+> There is nothing inherently wrong with the approach in this patch, but
+> it seems unneeded in this case..
 > 
-> Updating the example would also be useful.
-
-I can do that too.
+> Jason
