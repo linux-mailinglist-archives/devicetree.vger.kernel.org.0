@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 256F016BB04
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 08:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C88DB16BB0B
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 08:41:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729644AbgBYHl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 02:41:26 -0500
-Received: from esa4.microchip.iphmx.com ([68.232.154.123]:27339 "EHLO
-        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729640AbgBYHlZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 02:41:25 -0500
-Received-SPF: Pass (esa4.microchip.iphmx.com: domain of
+        id S1729657AbgBYHla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 02:41:30 -0500
+Received: from esa1.microchip.iphmx.com ([68.232.147.91]:25139 "EHLO
+        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729655AbgBYHl3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 02:41:29 -0500
+Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
   Ajay.Kathat@microchip.com designates 198.175.253.82 as
   permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
   envelope-from="Ajay.Kathat@microchip.com";
   x-sender="Ajay.Kathat@microchip.com"; x-conformance=spf_only;
   x-record-type="v=spf1"; x-record-text="v=spf1 mx
   a:ushub1.microchip.com a:smtpout.microchip.com
   -exists:%{i}.spf.microchip.iphmx.com include:servers.mcsv.net
   include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa4.microchip.iphmx.com: no sender
+Received-SPF: None (esa1.microchip.iphmx.com: no sender
   authenticity information available from domain of
   postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
   envelope-from="Ajay.Kathat@microchip.com";
   x-sender="postmaster@email.microchip.com";
   x-conformance=spf_only
-Authentication-Results: esa4.microchip.iphmx.com; spf=Pass smtp.mailfrom=Ajay.Kathat@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: QMpwc14y91RW0YrKxSSKSmjuK/3zsBeKmGlfInSggfZqiP2VeBCvRHh06DvHRi1lLTrSydjd06
- F/8+Wl4cGDVm92PdmHZfJWgkSFwzZh+qoBpT5gqzIVrK7khngF8tXItEiVTZ0F4oYfqQNjHUAo
- IDI/tVeZrZSYCoYhfNNzpm4NziPvrdqR+8+RGr/h3ZPuRTVtOvw6VtwUP3lmJBi8PtQ9zF6YLZ
- P8nEGHGlmGQlWL86MxE4Cvsy7QRcHLXZTJv3qOt42MtenIiAmcfvXuTABZWhZMdfDjYENLMay/
- tD8=
+Authentication-Results: esa1.microchip.iphmx.com; spf=Pass smtp.mailfrom=Ajay.Kathat@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: cJfQvJ4hXM0+iyHiFBZxIFDO4qk1mQFVg4RCkYBQ6oJW74JgsKZv/uM7Be+XblJOLDi8qb7qvp
+ 2ympQrz1iqQC38g/S1br0wcCixfok47LhnOAVYepZRNZfQQyAiazoHbPDiicMUU71h38tAC/jo
+ D4y+Ig0VjvGznwv4ifgmnQkTY1uJsCAXfprhaiM/M/THrMj5oTrKhG7rm2Fq5qz5pMjVfrp155
+ 5g8HKm5gobb+lVUZsNWVU4agvUYlHZeV9WxZ1UiNZIAIo7x4USrQ64E+fEN1Vv95IyHEbOT1mH
+ iTU=
 X-IronPort-AV: E=Sophos;i="5.70,483,1574146800"; 
-   d="scan'208";a="65241154"
+   d="scan'208";a="69675649"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Feb 2020 00:41:24 -0700
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Feb 2020 00:41:25 -0700
 Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 25 Feb 2020 00:41:32 -0700
+ 15.1.1713.5; Tue, 25 Feb 2020 00:41:33 -0700
 Received: from NAM02-BL2-obe.outbound.protection.outlook.com (10.10.215.89) by
  email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5 via Frontend
- Transport; Tue, 25 Feb 2020 00:41:17 -0700
+ Transport; Tue, 25 Feb 2020 00:41:18 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Zjp5vsRAHP4pf3Cxftg9XuJkPEP9OEQ8GEisrOHACP08S816i0iQ7YnMapfxJZFUZSMvCeMYkJUZptApfrfSOLAUvLp/hcDXXJBsqyH5PqJJT3zPoo23cC0nOzRityf8AieirsE8B4isOeiRFstzBEVIT6LxpKlWbOtzSKBNY3qyH0fZm7bdTs7IXARYAJl/UkU4m0T+Buo2xehenmPyR0ygS++s/rtTlTO5BiHplyNej+NZjqu0EWLigWIFirFev4BGxoPW9KanRKPOglNeLYQ2ad2817ico9SoC4neMEO9nbYtMM2srIBmR1n2sg6UYGHxSovZBGwLR6GK3cN2Rw==
+ b=bV4XOXbyIEIatN3nMbPFcVfmynNn8Cjmh762KX1tU0VmeSMkO6abXW6aGz2Wbi268OCVI/1D67jvkl6tOFv32ByePQGczZ6CZfoyiCXL7lQHXTS9OI4L3LsyUO/mAZ3rkyoO5c1ZAFNtGwmB9oyt5gbmS12hrMMvZEeomMA5N1psz2MEXSKcpzZJMk+NxRtptx8c3hAgOht5OzHLKu5k+XzQp+w+MRHx82hwwuMPPzo2Ij0kpU2mDBN6p2Z7PKRoMvs9x1XAHblavAMYM4E5/4SpHEPYNo1HxSFKtwlK8e3v+pwG6GhnXam9cnrETkZNjuTyuw0Wfa6Y/gJNRKwCPA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6VCCAjLlHZpgaDwGevFyCYBEocjz2NqxutWYXwKrJUw=;
- b=jrqXBDF2jYxG4UHMDb+TnwBVeLr0QcN9DbxWOhif7UCOR+G6NupvW9neyLTwbYZi9KSVfSI8swu5Gtla/bX8ZUe/Hc4qq3AexfcEBRjJ+8VTkJiVqGekya2AK8CqzhceAZ7qvME1/OgOW/HlYyVAbEC+dX5SGqgbv+nyJ31kJJJwNOXqSUV8SC5lFZYanCgGgRdsyBVuoneo8aR8kpo4qF+EyJe67gYFatiSzlshBjyHsvJZFEiykoTVcwe6dUfygigPZ/ESdy/MJanoJY7fGhG+W1yhNimzr5u3jkm+wGA+/4F/6IiBYPpiVP18V91CecDnAHSnaGIteJn+f31nEA==
+ bh=MbDujH185wChq8QX/moSUQB5eB5hG5vaJemsoHQdD5k=;
+ b=CCuAQ1cUC555xyc9YzfXXFK7yWyospWlrylb88bBByHSg6ZkJXPKatfbxbhGUVfFmoN4EJ1xfC6gOEttTC6qxMTuTgiH3H9PeYH2YxfyK46rdRZ7NF+a0Sl8XebTaTzmuq/+OYR5JermMMrPJ6vLWuZFsJGywBzUpEuQoFagd5c2vQkBlOMKVtlyPio02TEkBEtVTHM6YBUBMJy4y1e2sxkmPMCYZBjuO8flGiREG3tt9a+3qbY4cPFY75Ll3P37UyZWjLhqPv04DFTxjhp94T8ZWDuKo25xY01MgmFYsaslCh/IcVHcLOHYnBam8TfvRkzsmxnwBIgGB+LymkRQBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=microchip.com; dmarc=pass action=none
  header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
@@ -60,17 +60,17 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=microchiptechnology.onmicrosoft.com;
  s=selector2-microchiptechnology-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6VCCAjLlHZpgaDwGevFyCYBEocjz2NqxutWYXwKrJUw=;
- b=vuvU+A74mRCljdDMmTKu/eNwx6yLxnlF07GS07j11vRKZuHAvXnbik0S4hFABe5k1bk/qfMKo29evEYzD8kfJhd6sgsOs8yNiA0VM7iPR3A8XBBWGx+MjV5+Ihlf5476V4DAnm3altzpaSb06nh4q3/xij/liHWleUxjI/r8KQM=
+ bh=MbDujH185wChq8QX/moSUQB5eB5hG5vaJemsoHQdD5k=;
+ b=fN/uoEj2vf/0DmnpfbxL6tvyZAyrYxIqwPQ5lg3GvZ/Dv7Cb8s7tqhXMbU7HknKIveUiKibX5pBKa0e95sL/5njjFdRve//eJhQZiegPdyI5W23a6L2Vfltw4UDcEFpYOCuA5shMERewd/NGoIyLJoxyIJwv/Ol9G9syYJ6yRgA=
 Received: from BN6PR11MB3985.namprd11.prod.outlook.com (2603:10b6:405:7b::14)
  by BN6PR11MB4162.namprd11.prod.outlook.com (2603:10b6:405:84::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.21; Tue, 25 Feb
- 2020 07:41:20 +0000
+ 2020 07:41:21 +0000
 Received: from BN6PR11MB3985.namprd11.prod.outlook.com
  ([fe80::ec62:e7fd:f17c:dfd4]) by BN6PR11MB3985.namprd11.prod.outlook.com
  ([fe80::ec62:e7fd:f17c:dfd4%3]) with mapi id 15.20.2750.021; Tue, 25 Feb 2020
- 07:41:20 +0000
+ 07:41:21 +0000
 From:   <Ajay.Kathat@microchip.com>
 To:     <linux-wireless@vger.kernel.org>
 CC:     <devel@driverdev.osuosl.org>, <devicetree@vger.kernel.org>,
@@ -78,11 +78,12 @@ CC:     <devel@driverdev.osuosl.org>, <devicetree@vger.kernel.org>,
         <Adham.Abozaeid@microchip.com>, <Nicolas.Ferre@microchip.com>,
         <Claudiu.Beznea@microchip.com>, <Venkateswara.Kaja@microchip.com>,
         <Ajay.Kathat@microchip.com>
-Subject: [PATCH v3 15/18] wilc1000: add fw.h
-Thread-Topic: [PATCH v3 15/18] wilc1000: add fw.h
-Thread-Index: AQHV6673pH2UemBWH0Sw01hHX7BiiQ==
-Date:   Tue, 25 Feb 2020 07:41:19 +0000
-Message-ID: <20200225074105.7740-16-ajay.kathat@microchip.com>
+Subject: [PATCH v3 17/18] dt: bindings: net: add microchip,wilc1000,spi.yaml
+Thread-Topic: [PATCH v3 17/18] dt: bindings: net: add
+ microchip,wilc1000,spi.yaml
+Thread-Index: AQHV6674+23AU/64g0SDUHlH3hVCyg==
+Date:   Tue, 25 Feb 2020 07:41:20 +0000
+Message-ID: <20200225074105.7740-18-ajay.kathat@microchip.com>
 References: <20200225074105.7740-1-ajay.kathat@microchip.com>
 In-Reply-To: <20200225074105.7740-1-ajay.kathat@microchip.com>
 Accept-Language: en-US
@@ -92,29 +93,29 @@ X-MS-TNEF-Correlator:
 x-mailer: git-send-email 2.17.1
 x-originating-ip: [121.244.27.38]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 93d323cf-65b5-4df0-3cdf-08d7b9c61ad5
+x-ms-office365-filtering-correlation-id: 59dc1c45-048b-4b98-fb75-08d7b9c61b8e
 x-ms-traffictypediagnostic: BN6PR11MB4162:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN6PR11MB416214ECB6ECF0039F1A679AE3ED0@BN6PR11MB4162.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:361;
+x-microsoft-antispam-prvs: <BN6PR11MB4162D0F48674CAE09B191F38E3ED0@BN6PR11MB4162.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
 x-forefront-prvs: 0324C2C0E2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(366004)(136003)(376002)(39860400002)(346002)(199004)(189003)(81156014)(2616005)(8676002)(186003)(6512007)(6486002)(5660300002)(26005)(81166006)(8936002)(6506007)(54906003)(66476007)(66446008)(66556008)(316002)(86362001)(4326008)(71200400001)(66946007)(6916009)(2906002)(76116006)(64756008)(478600001)(91956017)(1076003)(36756003)(107886003);DIR:OUT;SFP:1101;SCL:1;SRVR:BN6PR11MB4162;H:BN6PR11MB3985.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(366004)(136003)(376002)(39860400002)(346002)(199004)(189003)(81156014)(2616005)(8676002)(186003)(6512007)(6486002)(5660300002)(26005)(81166006)(8936002)(6506007)(54906003)(66476007)(66446008)(66556008)(316002)(966005)(86362001)(4326008)(71200400001)(66946007)(6916009)(2906002)(76116006)(64756008)(478600001)(91956017)(1076003)(36756003)(107886003)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:BN6PR11MB4162;H:BN6PR11MB3985.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
 received-spf: None (protection.outlook.com: microchip.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2kdqtFNXFa3yrXNPUd7LtyhK4hkozYKoXAPr6VGI11C+o+6jViTCwVt3CTh4FB29k9ZaeGu9wJKaZFxIxRy8B9sK3XCgBVonFwhsfQ2AFO3Hi2mx7mUsJrMNiHt/yu6vAQ+73Srk87rkwAftvAK0+MroCn6CCY0DQ/r93tL0wv/qVsXYLoUqSOJTZmBJsw9r62lp2MLu4NN7ykVoUh8gQ+065MW3AhuELkmPIrA4JMeB7V2Vc2N75HsVtpjZD6YFOom2G4R/Q5XxDuNer0ms9StlEDtnRcbytCM1BfpxdTkRdIusY9vubSnE744/iQMtxdUG6Pndvu259Y/Hkn25sZrZxCanMPGaSTFwCmJlX8YLv2R77wZcH7sUN49jwqPxH7Eh6DtnJ6ZN+6EU8e6qmehP77bkmGduU4xYY/DU9T1VkIV11GJKWKWJNj/YORq3
-x-ms-exchange-antispam-messagedata: K5fDxbnC7mrNE1Dv2SovcgQr6UfB9DIDLOh7RSuHYNRojHdTtAGTji7SWuLNbbczmyRz7lB5Kqgjb9fJuo6ocH87BsXSF8nx/FJPXrQAnFRofDCMJXawkuTtgcazdORdmyMYPoQtItrcqvTkvXspXg==
+x-microsoft-antispam-message-info: +0mX4ABW4xILGo6xfH8EN3UhRll6j1mT4rvDarvCRAs8cGYDN+FQu3Fd+dwcu2xj+gOGWNqeqROh6pGjr2RUFUYCYcwfTDsGZxrSsR4Ns2+UHx+UYT5joebDlHJAaVfn4qJZwfb5meojrXbg7h7SocS8wv9ZjWC0VvEETHI3lr08tsEYtxaOKUvnXtihnaPfx9jv+wS3xkDWtCQJLiadZxb0gWzimGyGeUhJLGDc5DY9GLNap+xNphZ+R1iwAZTCY+QlHn0+XPmBdwFO+0NC4TEJmpm2JuT8HP/czQjnau7p1hH2mmHUZVFPvaqs2RMXIbePlPpT+P+8qnZ4v1Qn4SRRsTE4bYkIX6bGGa5CuDi0lqZcJ7UC8VvlmvFxlK53p3xxVZtCeTtcjXrNjQKrrm4O2ZPneZJ7SU4cs7m2YPenHcnEFFMVUSHyVjggxQYXc43eIWU6BBXz+bCj6cSVkewLvLb8oVrhjbN8G2YsIgAVqUazK5uPm5w8h8tfCF6vNdYjFA2r4hGUM9557/JG8lIqmto5MMx1hvyDhpKndlmXqIUlEWxxO9Ju+AEf1vfG
+x-ms-exchange-antispam-messagedata: lESX6Nxs+EyyWUjIu5ss4fWVLtAS2KHVaAz+AucjhPidwPukTQt/W9Uk8fy+FyIT4BCnmf0QT3XyEhCDKJWe4kUquSK5nT2+51LBkGOJJA1H4QQ4OC5MCQda/9kMb+n8ChvSFipuMBe8NRD5LrPTuQ==
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93d323cf-65b5-4df0-3cdf-08d7b9c61ad5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2020 07:41:19.2714
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59dc1c45-048b-4b98-fb75-08d7b9c61b8e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2020 07:41:20.4098
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: S0Wa2zveTywUrXhk0pPs/PzwKw9EBozWJQsIpYW+oIPKbQ6qdEVgyT/ujc/V9P5KQ1mYRXmOoyVzEmQky9dW2P3//psgrGD5pw4dFMgtNJU=
+X-MS-Exchange-CrossTenant-userprincipalname: bt8qmIseJucrvPk94vIcmsdfOlaJtKwmx6OXKKV97hFebWFRa0kaTnG/xH0CYFYz6B0sJNuOAdYNu8b7x+45/2VwUETvzFnEYB+A7N/5UAo=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB4162
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -123,141 +124,87 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Ajay Singh <ajay.kathat@microchip.com>
 
-Moved 'drivers/staging/wilc1000/fw.h' to
-'drivers/net/wireless/microchip/wilc1000/fw.h'.
+Moved '/drivers/staging/wilc1000//microchip,wilc1000,spi.yaml' to
+'Documentation/devicetree/bindings/net/wireless/microchip,wilc1000,spi.yaml=
+'.
 
 Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
 ---
- drivers/net/wireless/microchip/wilc1000/fw.h | 119 +++++++++++++++++++
- 1 file changed, 119 insertions(+)
- create mode 100644 drivers/net/wireless/microchip/wilc1000/fw.h
+ .../net/wireless/microchip,wilc1000,spi.yaml  | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/microchi=
+p,wilc1000,spi.yaml
 
-diff --git a/drivers/net/wireless/microchip/wilc1000/fw.h b/drivers/net/wir=
-eless/microchip/wilc1000/fw.h
+diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1=
+000,spi.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wil=
+c1000,spi.yaml
 new file mode 100644
-index 000000000000..a76e1dea4345
+index 000000000000..cc8ed64ce627
 --- /dev/null
-+++ b/drivers/net/wireless/microchip/wilc1000/fw.h
-@@ -0,0 +1,119 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2012 - 2018 Microchip Technology Inc., and its subsidiari=
-es.
-+ * All rights reserved.
-+ */
++++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000,spi=
+.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/wireless/microchip,wilc1000,spi.yam=
+l#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#ifndef WILC_FW_H
-+#define WILC_FW_H
++title: Microchip WILC wireless SPI devicetree bindings
 +
-+#include <linux/ieee80211.h>
++maintainers:
++  - Adham Abozaeid <adham.abozaeid@microchip.com>
++  - Ajay Singh <ajay.kathat@microchip.com>
 +
-+#define WILC_MAX_NUM_STA			9
-+#define WILC_MAX_RATES_SUPPORTED		12
-+#define WILC_MAX_NUM_PMKIDS			16
-+#define WILC_MAX_NUM_SCANNED_CH			14
++description:
++  The wilc1000 chips can be connected via SPI. This document describes
++  the binding for the SPI connected module.
 +
-+struct wilc_assoc_resp {
-+	__le16 capab_info;
-+	__le16 status_code;
-+	__le16 aid;
-+} __packed;
++properties:
++  compatible:
++    const: microchip,wilc1000-spi
 +
-+struct wilc_pmkid {
-+	u8 bssid[ETH_ALEN];
-+	u8 pmkid[WLAN_PMKID_LEN];
-+} __packed;
++  spi-max-frequency:
++    description: Maximum SPI clocking speed of device in Hz.
++    maxItems: 1
 +
-+struct wilc_pmkid_attr {
-+	u8 numpmkid;
-+	struct wilc_pmkid pmkidlist[WILC_MAX_NUM_PMKIDS];
-+} __packed;
++  reg:
++    description: Chip select address of device.
++    maxItems: 1
 +
-+struct wilc_reg_frame {
-+	u8 reg;
-+	u8 reg_id;
-+	__le16 frame_type;
-+} __packed;
++  irq-gpios:
++    description: The GPIO phandle connect to a host IRQ.
++    maxItems: 1
 +
-+struct wilc_drv_handler {
-+	__le32 handler;
-+	u8 mode;
-+} __packed;
++  clocks:
++    description: phandle to the clock connected on rtc clock line.
++    maxItems: 1
 +
-+struct wilc_wep_key {
-+	u8 index;
-+	u8 key_len;
-+	u8 key[0];
-+} __packed;
++required:
++  - compatible
++  - spi-max-frequency
++  - reg
++  - irq-gpios
 +
-+struct wilc_sta_wpa_ptk {
-+	u8 mac_addr[ETH_ALEN];
-+	u8 key_len;
-+	u8 key[0];
-+} __packed;
-+
-+struct wilc_ap_wpa_ptk {
-+	u8 mac_addr[ETH_ALEN];
-+	u8 index;
-+	u8 key_len;
-+	u8 key[0];
-+} __packed;
-+
-+struct wilc_gtk_key {
-+	u8 mac_addr[ETH_ALEN];
-+	u8 rsc[8];
-+	u8 index;
-+	u8 key_len;
-+	u8 key[0];
-+} __packed;
-+
-+struct wilc_op_mode {
-+	__le32 mode;
-+} __packed;
-+
-+struct wilc_noa_opp_enable {
-+	u8 ct_window;
-+	u8 cnt;
-+	__le32 duration;
-+	__le32 interval;
-+	__le32 start_time;
-+} __packed;
-+
-+struct wilc_noa_opp_disable {
-+	u8 cnt;
-+	__le32 duration;
-+	__le32 interval;
-+	__le32 start_time;
-+} __packed;
-+
-+struct wilc_join_bss_param {
-+	char ssid[IEEE80211_MAX_SSID_LEN];
-+	u8 ssid_terminator;
-+	u8 bss_type;
-+	u8 ch;
-+	__le16 cap_info;
-+	u8 sa[ETH_ALEN];
-+	u8 bssid[ETH_ALEN];
-+	__le16 beacon_period;
-+	u8 dtim_period;
-+	u8 supp_rates[WILC_MAX_RATES_SUPPORTED + 1];
-+	u8 wmm_cap;
-+	u8 uapsd_cap;
-+	u8 ht_capable;
-+	u8 rsn_found;
-+	u8 rsn_grp_policy;
-+	u8 mode_802_11i;
-+	u8 p_suites[3];
-+	u8 akm_suites[3];
-+	u8 rsn_cap[2];
-+	u8 noa_enabled;
-+	__le32 tsf_lo;
-+	u8 idx;
-+	u8 opp_enabled;
-+	union {
-+		struct wilc_noa_opp_disable opp_dis;
-+		struct wilc_noa_opp_enable opp_en;
-+	};
-+} __packed;
-+#endif
++examples:
++  - |
++    spi1: spi@fc018000 {
++      #address-cells =3D <1>;
++      #size-cells =3D <0>;
++      cs-gpios =3D <&pioB 21 0>;
++      status =3D "okay";
++      wilc_spi@0 {
++        compatible =3D "microchip,wilc1000-spi";
++        spi-max-frequency =3D <48000000>;
++        reg =3D <0>;
++        irq-gpios =3D <&pioC 27 0>;
++        clocks =3D <&pck1>;
++        clock-names =3D "rtc_clk";
++        assigned-clocks =3D <&pck1>;
++        assigned-clock-rates =3D <32768>;
++        status =3D "okay";
++      };
++    };
 --=20
 2.24.0
