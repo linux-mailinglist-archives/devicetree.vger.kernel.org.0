@@ -2,108 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3893D16BFE2
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 12:48:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B49516C005
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 12:54:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725788AbgBYLsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 06:48:12 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:26576 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729238AbgBYLsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 06:48:12 -0500
-X-UUID: d9ced703390543988f50e94f16744d79-20200225
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=npWCMlNAf6vwIc/DWpZvRQRY1F0x8+HE51QC285Pl4k=;
-        b=sqtDg3L3d40I5ysaNjB/+IPIkuekGFW5XjScZ51fpjx34sqx67jL48MWXKvq2ftr1kzHIih4HiOkmdyAQ+AD+3tfEsnGnss+U0xwu2wNlfIQIdVSlLe/EOULTHRNtwojCXpjyntQj/Br22CGGMBt56sULrTRSvevaI2TNdh9e88=;
-X-UUID: d9ced703390543988f50e94f16744d79-20200225
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 492554429; Tue, 25 Feb 2020 19:47:42 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
- (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 25 Feb
- 2020 19:46:21 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1395.4 via Frontend Transport; Tue, 25 Feb 2020 19:46:21 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
-        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v2 4/4] drm/mediatek: config mipitx impedance with calibration data
-Date:   Tue, 25 Feb 2020 19:47:30 +0800
-Message-ID: <20200225114730.124939-5-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200225114730.124939-1-jitao.shi@mediatek.com>
-References: <20200225114730.124939-1-jitao.shi@mediatek.com>
+        id S1729760AbgBYLy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 06:54:56 -0500
+Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:43273 "EHLO
+        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726587AbgBYLy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Feb 2020 06:54:56 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.west.internal (Postfix) with ESMTP id 30432F54;
+        Tue, 25 Feb 2020 06:54:52 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 25 Feb 2020 06:54:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=lvoHNJn8/1mSkGt8qSqiHAjZPp5
+        MXiSJe0WVvgh674k=; b=MH3zs33PkZK6hswA21Dh+lxvYjqD2cRCABhSTrTGzKq
+        7Yq+LL7WkqAeiHocCtgr/B9ISD85nutz4uIvbhm/OtQPGTvdmMB8OY+F/FpVR67+
+        bmQ9egDc6yPAy2JqiBbpt/TtFq3IWBmqqktjv4ObRIbCd4+ETbNRn3ewPDyMj+D+
+        mRKFaklJeU9SgHavwBHFXLMPLBCkoiZNzpJgw3B0JYrJaASxdAlblPV6Cuaznj7T
+        yAVC53IRBbagYtkfhuOL7MZ08l3ckTglxth/ucvwS9X8zAjOHvpzuDQuuYYmuF2R
+        eWBW9MQWOxOm2GLuALoM4OXqGxiRsl/89d3/CHXcUzA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=lvoHNJ
+        n8/1mSkGt8qSqiHAjZPp5MXiSJe0WVvgh674k=; b=gU4w4TPVvpxwey1c97+EwV
+        jxXGojUFb7MQ5kYvuflkhiMb6eGifIL859TBvb6VhFfdh6qZJaHhHtgAFdfPfJvu
+        tyVizHBpwQHYJtmQh5+yzLqbb+C8CrqfCwtpyGAd+EEfBnPLPLvpStVc2X8q0Hbh
+        P32YBN4XrUaf0RM4zVSjAlXydbymlC0l1tfwOiRntv6/JOiLANNNG0wAFSdxrkO9
+        dxooq9HA94Ud0PQqWfxqeBtG5OlR3vpfUqSqWrbsLWlzI2+5zCmZaMn43x3SaEh4
+        KQYwzFbG7B10vxDWzSlQ9VlAf1h41qih7tKBrhtoq0j/H7sAJWw7Q/Wz/3sJu+TA
+        ==
+X-ME-Sender: <xms:CgtVXn1Q3KK04CS1Whc9ICLs9NtDPY7RQ1A1AoDex1Ag6ey8S5LLdg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrledvgdefvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
+    epohiilhgrsghsrdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgv
+    rhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnh
+    hordhtvggthh
+X-ME-Proxy: <xmx:CgtVXivf9h2Utp-X-BX46SHe91Ue4VA3H040s4oWhKRJTiS-9acP8w>
+    <xmx:CgtVXuQMYjgP5h0rveXOxa1Bcl-hQtRXhqKdNvmSqWj9H1o6bZrgSQ>
+    <xmx:CgtVXmvrEZFXawthdB6Ix2x5ZG80bObg6oK75zjLvwYlL5IIjt9Tzw>
+    <xmx:CwtVXnw8qLT5g_iw5cSYbkYF2aN_9D9RkvLZyZ-BGGPh-C7ny7DwTZFMmyk>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id C32F0328005D;
+        Tue, 25 Feb 2020 06:54:49 -0500 (EST)
+Date:   Tue, 25 Feb 2020 12:54:47 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>, dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 29/89] dt-bindings: display: Convert VC4 bindings to
+ schemas
+Message-ID: <20200225115447.yntzkh3vfnw67ial@gilmour.lan>
+References: <cover.6c896ace9a5a7840e9cec008b553cbb004ca1f91.1582533919.git-series.maxime@cerno.tech>
+ <bf8aa2deea50cc3599caeb9ed1a07556353415df.1582533919.git-series.maxime@cerno.tech>
+ <20200224184107.GA4189@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 6F969946ABC898804BBD49EE55557D86239B839BC7C2780C891C258D70C73D2C2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wp3itnu4schr4cfa"
+Content-Disposition: inline
+In-Reply-To: <20200224184107.GA4189@bogus>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-UmVhZCBjYWxpYnJhdGlvbiBkYXRhIGZyb20gbnZtZW0sIGFuZCBjb25maWcgbWlwaXR4IGltcGVk
-YW5jZSB3aXRoDQpjYWxpYnJhdGlvbiBkYXRhIHRvIG1ha2Ugc3VyZSB0aGVpciBpbXBlZGFuY2Ug
-YXJlIDEwMG9obS4NCg0KU2lnbmVkLW9mZi1ieTogSml0YW8gU2hpIDxqaXRhby5zaGlAbWVkaWF0
-ZWsuY29tPg0KLS0tDQogZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19tdDgxODNfbWlwaV90
-eC5jIHwgNTcgKysrKysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCA1NyBpbnNlcnRp
-b25zKCspDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX210ODE4
-M19taXBpX3R4LmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX210ODE4M19taXBpX3R4
-LmMNCmluZGV4IDEyNGZkZjk1ZjFlNS4uODc4ZmVlYjdhYzZjIDEwMDY0NA0KLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL21lZGlhdGVrL210a19tdDgxODNfbWlwaV90eC5jDQorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vbWVkaWF0ZWsvbXRrX210ODE4M19taXBpX3R4LmMNCkBAIC01LDYgKzUsOCBAQA0KICAq
-Lw0KIA0KICNpbmNsdWRlICJtdGtfbWlwaV90eC5oIg0KKyNpbmNsdWRlIDxsaW51eC9udm1lbS1j
-b25zdW1lci5oPg0KKyNpbmNsdWRlIDxsaW51eC9zbGFiLmg+DQogDQogI2RlZmluZSBNSVBJVFhf
-TEFORV9DT04JCTB4MDAwYw0KICNkZWZpbmUgUkdfRFNJX0NQSFlfVDFEUlZfRU4JCUJJVCgwKQ0K
-QEAgLTI4LDYgKzMwLDcgQEANCiAjZGVmaW5lIE1JUElUWF9QTExfQ09ONAkJMHgwMDNjDQogI2Rl
-ZmluZSBSR19EU0lfUExMX0lCSUFTCQkoMyA8PCAxMCkNCiANCisjZGVmaW5lIE1JUElUWF9EMlBf
-UlRDT0RFCTB4MDEwMA0KICNkZWZpbmUgTUlQSVRYX0QyX1NXX0NUTF9FTgkweDAxNDQNCiAjZGVm
-aW5lIE1JUElUWF9EMF9TV19DVExfRU4JMHgwMjQ0DQogI2RlZmluZSBNSVBJVFhfQ0tfQ0tNT0RF
-X0VOCTB4MDMyOA0KQEAgLTEwOCw2ICsxMTEsNTggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBjbGtf
-b3BzIG10a19taXBpX3R4X3BsbF9vcHMgPSB7DQogCS5yZWNhbGNfcmF0ZSA9IG10a19taXBpX3R4
-X3BsbF9yZWNhbGNfcmF0ZSwNCiB9Ow0KIA0KK3N0YXRpYyB2b2lkIG10a19taXBpX3R4X2NvbmZp
-Z19jYWxpYnJhdGlvbl9kYXRhKHN0cnVjdCBtdGtfbWlwaV90eCAqbWlwaV90eCkNCit7DQorCXUz
-MiAqYnVmOw0KKwl1MzIgcnRfY29kZVs1XTsNCisJaW50IGksIGo7DQorCXN0cnVjdCBudm1lbV9j
-ZWxsICpjZWxsOw0KKwlzdHJ1Y3QgZGV2aWNlICpkZXYgPSBtaXBpX3R4LT5kZXY7DQorCXNpemVf
-dCBsZW47DQorDQorCWNlbGwgPSBudm1lbV9jZWxsX2dldChkZXYsICJjYWxpYnJhdGlvbi1kYXRh
-Iik7DQorCWlmIChJU19FUlIoY2VsbCkpIHsNCisJCWRldl9pbmZvKGRldiwgIm52bWVtX2NlbGxf
-Z2V0IGZhaWxcbiIpOw0KKwkJcmV0dXJuOw0KKwl9DQorDQorCWJ1ZiA9ICh1MzIgKiludm1lbV9j
-ZWxsX3JlYWQoY2VsbCwgJmxlbik7DQorDQorCW52bWVtX2NlbGxfcHV0KGNlbGwpOw0KKw0KKwlp
-ZiAoSVNfRVJSKGJ1ZikpIHsNCisJCWRldl9pbmZvKGRldiwgImNhbid0IGdldCBkYXRhXG4iKTsN
-CisJCXJldHVybjsNCisJfQ0KKw0KKwlpZiAobGVuIDwgMyAqIHNpemVvZih1MzIpKSB7DQorCQlk
-ZXZfaW5mbyhkZXYsICJpbnZhbGlkIGNhbGlicmF0aW9uIGRhdGFcbiIpOw0KKwkJa2ZyZWUoYnVm
-KTsNCisJCXJldHVybjsNCisJfQ0KKw0KKwlydF9jb2RlWzBdID0gKChidWZbMF0gPj4gNiAmIDB4
-MWYpIDw8IDUpIHwgKGJ1ZlswXSA+PiAxMSAmIDB4MWYpOw0KKwlydF9jb2RlWzFdID0gKChidWZb
-MV0gPj4gMjcgJiAweDFmKSA8PCA1KSB8IChidWZbMF0gPj4gMSAmIDB4MWYpOw0KKwlydF9jb2Rl
-WzJdID0gKChidWZbMV0gPj4gMTcgJiAweDFmKSA8PCA1KSB8IChidWZbMV0gPj4gMjIgJiAweDFm
-KTsNCisJcnRfY29kZVszXSA9ICgoYnVmWzFdID4+IDcgJiAweDFmKSA8PCA1KSB8IChidWZbMV0g
-Pj4gMTIgJiAweDFmKTsNCisJcnRfY29kZVs0XSA9ICgoYnVmWzJdID4+IDI3ICYgMHgxZikgPDwg
-NSkgfCAoYnVmWzFdID4+IDIgJiAweDFmKTsNCisNCisJZm9yIChpID0gMDsgaSA8IDU7IGkrKykg
-ew0KKwkJaWYgKChydF9jb2RlW2ldICYgMHgxZikgPT0gMCkNCisJCQlydF9jb2RlW2ldIHw9IDB4
-MTA7DQorDQorCQlpZiAoKHJ0X2NvZGVbaV0gPj4gNSAmIDB4MWYpID09IDApDQorCQkJcnRfY29k
-ZVtpXSB8PSAweDEwIDw8IDU7DQorDQorCQlmb3IgKGogPSAwOyBqIDwgMTA7IGorKykNCisJCQlt
-dGtfbWlwaV90eF91cGRhdGVfYml0cyhtaXBpX3R4LA0KKwkJCQlNSVBJVFhfRDJQX1JUQ09ERSAq
-IChpICsgMSkgKyBqICogNCwNCisJCQkJMSwgcnRfY29kZVtpXSA+PiBqICYgMSk7DQorCX0NCisN
-CisJa2ZyZWUoYnVmKTsNCit9DQorDQogc3RhdGljIHZvaWQgbXRrX21pcGlfdHhfcG93ZXJfb25f
-c2lnbmFsKHN0cnVjdCBwaHkgKnBoeSkNCiB7DQogCXN0cnVjdCBtdGtfbWlwaV90eCAqbWlwaV90
-eCA9IHBoeV9nZXRfZHJ2ZGF0YShwaHkpOw0KQEAgLTEzMCw2ICsxODUsOCBAQCBzdGF0aWMgdm9p
-ZCBtdGtfbWlwaV90eF9wb3dlcl9vbl9zaWduYWwoc3RydWN0IHBoeSAqcGh5KQ0KIAkJCQlSR19E
-U0lfSFNUWF9MRE9fUkVGX1NFTCwNCiAJCQkJbWlwaV90eC0+bWlwaXR4X2RyaXZlIDw8IDYpOw0K
-IA0KKwltdGtfbWlwaV90eF9jb25maWdfY2FsaWJyYXRpb25fZGF0YShtaXBpX3R4KTsNCisNCiAJ
-bXRrX21pcGlfdHhfc2V0X2JpdHMobWlwaV90eCwgTUlQSVRYX0NLX0NLTU9ERV9FTiwgRFNJX0NL
-X0NLTU9ERV9FTik7DQogfQ0KIA0KLS0gDQoyLjIxLjANCg==
 
+--wp3itnu4schr4cfa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Rob,
+
+On Mon, Feb 24, 2020 at 12:41:07PM -0600, Rob Herring wrote:
+> On Mon, 24 Feb 2020 10:06:31 +0100, Maxime Ripard wrote:
+> > The BCM283x SoCs have a display pipeline composed of several controllers
+> > with device tree bindings that are supported by Linux.
+> >
+> > Now that we have the DT validation in place, let's split into separate
+> > files and convert the device tree bindings for those controllers to
+> > schemas.
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >  Documentation/devicetree/bindings/display/brcm,bcm-vc4.txt              | 174 +------------------------------------------------------------------------
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml         |  66 +++++++++++++++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-dsi0.yaml        |  73 ++++++++++++++++++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-hdmi.yaml        |  75 +++++++++++++++++++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml         |  37 +++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml |  40 +++++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-txp.yaml         |  37 +++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-v3d.yaml         |  42 +++++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml         |  34 ++++++++++++++-
+> >  Documentation/devicetree/bindings/display/brcm,bcm2835-vec.yaml         |  44 ++++++++++++++++++-
+> >  MAINTAINERS                                                             |   2 +-
+> >  11 files changed, 449 insertions(+), 175 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/display/brcm,bcm-vc4.txt
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-dpi.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-dsi0.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-hdmi.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-pixelvalve0.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-txp.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-v3d.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-vc4.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/display/brcm,bcm2835-vec.yaml
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> warning: no schema found in file: Documentation/devicetree/bindings/display/brcm,bcm2835-dsi0.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/brcm,bcm2835-dsi0.yaml: ignoring, error in schema: properties
+> Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/brcm,bcm2835-dsi0.yaml: properties: '#clock-cells' is a dependency of 'clock-output-names'
+> Documentation/devicetree/bindings/Makefile:12: recipe for target 'Documentation/devicetree/bindings/display/brcm,bcm2835-dsi0.example.dts' failed
+> make[1]: *** [Documentation/devicetree/bindings/display/brcm,bcm2835-dsi0.example.dts] Error 1
+> Makefile:1263: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
+>
+> See https://patchwork.ozlabs.org/patch/1242907
+> Please check and re-submit.
+
+Yeah, that was fixed in patch 31 ("dt-bindings: display: vc4: dsi: Add
+missing clock properties"). I'm not quite sure what the preferred
+approach here would be: I did a conversion as is of the binding, and
+then fixed it, or do you prefer having it all in the same patch?
+
+Maxime
+
+--wp3itnu4schr4cfa
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXlULBwAKCRDj7w1vZxhR
+xdnfAP9sNPtWNQ6W0xCqTbTlfp9MnBZuqQzk+Z/xn3MFn69Q4QD9E4K0DZnqtYy5
+BaU9UsY7nt+gVJzpuPEq8oP11EYmNgc=
+=j/4G
+-----END PGP SIGNATURE-----
+
+--wp3itnu4schr4cfa--
