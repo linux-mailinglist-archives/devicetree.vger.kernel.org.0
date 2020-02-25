@@ -2,131 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 066CD16ED2C
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 18:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1C4D16ED44
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 18:57:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731388AbgBYRyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 12:54:09 -0500
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:45486 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730864AbgBYRyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 12:54:09 -0500
-Received: by mail-pg1-f194.google.com with SMTP id r77so3851306pgr.12
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 09:54:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=EGHWPlxApQjuktMa4xDP9Q063H+hJfu1b6AJ+NVENyk=;
-        b=mopFLxsWbeU0/yL28BByX3Qmrqu4/lNA+fcgdrQ0c38OZPHrInJHNTj2WYC/ILCWI3
-         rXsIHYNPOo1xWFMGo7b/0CEJyDfVXjQ/OF3IJs1bd8q8HuaPPs18JlBn3fRBNx7jqN5f
-         fC8vxPOg23B/AWvtJ+Qf4eNAws51cK2BgiyA2EA5uI5P3NgCw0Wv9hQUdeTRc3PUrZ0V
-         hRk0YjbtV5tCBvV82AvEH/9gQey8wstJTVxNI3gzLRzj7PSSlwWMWxLKk9pa39J5/c6r
-         JpjLoP7WYSaFE7JvzH24FqeckT308GZ6KURzKIQEE9oy3BJrKRDDhYmWeLqZFBVK+T/2
-         mbng==
+        id S1730792AbgBYR5i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 12:57:38 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:35893 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728367AbgBYR5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 12:57:37 -0500
+Received: by mail-ot1-f67.google.com with SMTP id j20so371568otq.3;
+        Tue, 25 Feb 2020 09:57:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=EGHWPlxApQjuktMa4xDP9Q063H+hJfu1b6AJ+NVENyk=;
-        b=GBA0xQyluYWwg76wFMBYkrm65fCjil4+5KxbCSYk9Z3S97so1jIDGeZDZs1gNDIW0j
-         kS0zSGZXbuVA/0SNZR7oVmcR35FUYsaTCqJxQ8H8m9xa6vgzgtRNbl7NSIJnHBndPlKO
-         8Z4VYWTOfTCeUaqGjUpDe8x7+y75jwOkwyxM3k8Yg9nwPNB0uzun/0FEWYn9NtFD9/Hg
-         BIsHiLUtZuE+sanaaK5VwCs4MXe1cQuEYpGRJN7apJ6iL9SEqy0KUKZ/aucN8Uej07ac
-         7r9UMTB3czSED/GvH3IetQ5oohmcottqSdrZx9tSiSXY1MngcXXG5qKDKAG5u07FuLoU
-         1Utw==
-X-Gm-Message-State: APjAAAXX6zeoP6hBAFF1QODACrNqkdkaoJk3c33qP58JrFgn7bpne95r
-        sCNSAz1gl8eb5rOa0kKmfOnKKg==
-X-Google-Smtp-Source: APXvYqzHMYAmH1VGS/4L4IKuT3hh7pV1x1nh2bDeq23It8zTwLG0Ky2zYk/YSXEkpzQl6uUTVp43bQ==
-X-Received: by 2002:a63:2b0a:: with SMTP id r10mr12434661pgr.213.1582653248359;
-        Tue, 25 Feb 2020 09:54:08 -0800 (PST)
-Received: from localhost.localdomain ([2601:1c2:680:1319:692:26ff:feda:3a81])
-        by smtp.gmail.com with ESMTPSA id v8sm18013291pgt.52.2020.02.25.09.54.04
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=122VamsU2CoI60mTYn2qsd+kIcsNIFVhMCViO2v3gAk=;
+        b=fikrckJzIOm+2fBphtK8tDs13AaqRDplWbRlfp0ZUf9dc9pOwtDDljuE7L3B55F6dF
+         GoNHVYIDc9ROQLEgAVXuFsa3XPMTfO8sIZc9PEV5gfy6XnvvDApF6mSD1p5t8p2LQO27
+         XF6yEE1JEgOh44NW5ujASEpuvU5XMRmJrHQvmT6bTwKibwFAqaC2aHP3ZuXfbCFI/4et
+         +EjVGwXeF6MAorJT5B1dXR1ct+SmVoEnssysMgUs+ucRKHcCGkw/nyakb8hc7/fVO9/v
+         yNtvfLnPuNGqM5sqkLTFWof76QWvg5jJjGGyAimyw5I4YCIykHrzwiZ97YOfMQn+Zfp0
+         550Q==
+X-Gm-Message-State: APjAAAWFfEKwHhcj5mt2uFEsSCO/ChQA2lzOyGB/ozTdSBvnk0IXtHXp
+        +ltvtYy+TivyPMjeF0XiQA==
+X-Google-Smtp-Source: APXvYqwr8YyrYpTEaCbgBtAfIoyDJZUv/EYMnIH/R2mEqcnJjcRa6HdAJAElyOXU7kIpiPtypH3jXg==
+X-Received: by 2002:a9d:6c8d:: with SMTP id c13mr46458916otr.277.1582653456886;
+        Tue, 25 Feb 2020 09:57:36 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i20sm5930770otp.14.2020.02.25.09.57.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2020 09:54:07 -0800 (PST)
-From:   John Stultz <john.stultz@linaro.org>
-To:     lkml <linux-kernel@vger.kernel.org>
-Cc:     John Stultz <john.stultz@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        ShuFan Lee <shufan_lee@richtek.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Yu Chen <chenyu56@huawei.com>, Felipe Balbi <balbi@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Guillaume Gardet <Guillaume.Gardet@arm.com>,
-        Jack Pham <jackp@codeaurora.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v8 6/6] usb: dwc3: Rework resets initialization to be more flexible
-Date:   Tue, 25 Feb 2020 17:53:04 +0000
-Message-Id: <20200225175304.36406-7-john.stultz@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200225175304.36406-1-john.stultz@linaro.org>
-References: <20200225175304.36406-1-john.stultz@linaro.org>
+        Tue, 25 Feb 2020 09:57:36 -0800 (PST)
+Received: (nullmailer pid 6790 invoked by uid 1000);
+        Tue, 25 Feb 2020 17:57:35 -0000
+Date:   Tue, 25 Feb 2020 11:57:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, mark.rutland@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, Anson.Huang@nxp.com,
+        leonard.crestez@nxp.com, daniel.baluta@nxp.com,
+        aisheng.dong@nxp.com, peng.fan@nxp.com, fugang.duan@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/7] clk: imx8: Add SCU and LPCG clocks for I2C in CM40 SS
+Message-ID: <20200225175735.GA5232@bogus>
+References: <1581909561-12058-1-git-send-email-qiangqing.zhang@nxp.com>
+ <1581909561-12058-3-git-send-email-qiangqing.zhang@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1581909561-12058-3-git-send-email-qiangqing.zhang@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dwc3 core binding specifies one reset.
+On Mon, Feb 17, 2020 at 11:19:16AM +0800, Joakim Zhang wrote:
+> Add SCU and LPCG clocks for I2C in CM40 SS.
+> 
+> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> ---
+>  include/dt-bindings/clock/imx8-clock.h | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/clock/imx8-clock.h b/include/dt-bindings/clock/imx8-clock.h
+> index 673a8c662340..84a442be700f 100644
+> --- a/include/dt-bindings/clock/imx8-clock.h
+> +++ b/include/dt-bindings/clock/imx8-clock.h
+> @@ -131,7 +131,12 @@
+>  #define IMX_ADMA_PWM_CLK				188
+>  #define IMX_ADMA_LCD_CLK				189
+>  
+> -#define IMX_SCU_CLK_END					190
+> +/* CM40 SS */
+> +#define IMX_CM40_IPG_CLK				200
+> +#define IMX_CM40_I2C_CLK				205
+> +
+> +#define IMX_SCU_CLK_END					220
 
-However some variants of the hardware may have more. Previously
-this was handled by using the dwc3-of-simple glue driver, but
-that resulted in a proliferation of bindings for for every
-variant, when the only difference was the clocks and resets
-lists.
+Why are you skipping numbers?
 
-So this patch reworks the reading of the resets to fetch all the
-resets specified in the dts together.
-
-This patch was recommended by Rob Herring <robh@kernel.org>
-as an alternative to creating multiple bindings for each variant
-of hardware.
-
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-CC: ShuFan Lee <shufan_lee@richtek.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc: Yu Chen <chenyu56@huawei.com>
-Cc: Felipe Balbi <balbi@kernel.org>
-Cc: Hans de Goede <hdegoede@redhat.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Jun Li <lijun.kernel@gmail.com>
-Cc: Valentin Schneider <valentin.schneider@arm.com>
-Cc: Guillaume Gardet <Guillaume.Gardet@arm.com>
-Cc: Jack Pham <jackp@codeaurora.org>
-Cc: linux-usb@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: John Stultz <john.stultz@linaro.org>
----
-v3: Rework dwc3 core rather then adding another dwc-of-simple
-    binding.
-v6: Re-introduce this patch, on Rob's suggestion
----
- drivers/usb/dwc3/core.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index ba21af5c1204..2afcc04da338 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -1465,7 +1465,7 @@ static int dwc3_probe(struct platform_device *pdev)
- 
- 	dwc3_get_properties(dwc);
- 
--	dwc->reset = devm_reset_control_get_optional_shared(dev, NULL);
-+	dwc->reset = devm_reset_control_array_get(dev, true, true);
- 	if (IS_ERR(dwc->reset))
- 		return PTR_ERR(dwc->reset);
- 
--- 
-2.17.1
-
+> +
+>  
+>  /* LPCG clocks */
+>  
+> @@ -290,4 +295,10 @@
+>  
+>  #define IMX_ADMA_LPCG_CLK_END				45
+>  
+> +/* CM40 SS LPCG */
+> +#define IMX_CM40_LPCG_I2C_IPG_CLK			0
+> +#define IMX_CM40_LPCG_I2C_CLK				1
+> +
+> +#define IMX_CM40_LPCG_CLK_END				2
+> +
+>  #endif /* __DT_BINDINGS_CLOCK_IMX_H */
+> -- 
+> 2.17.1
+> 
