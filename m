@@ -2,101 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D4716C195
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 14:02:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D28DB16C250
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 14:29:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729870AbgBYNCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 08:02:14 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:42012 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729179AbgBYNCO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 08:02:14 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01PD1pN4052659;
-        Tue, 25 Feb 2020 07:01:51 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1582635711;
-        bh=oXx7cuB8ADrmQ3vOUgyN9ou7IhxwTR3y4ztgLQsmi6c=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ByaN7ylnnHP1DrKCw/8xkcyNg8CLYK2IQXegD0Klr8ETbKC/0oU1LFFJX/9mGFS3J
-         Q5rQVBPXdvAcP5/RWgJTkIm/J4D0StamwNuvv6JfSWV/5G0qrZSeXfUuO3pHk30T/8
-         ZsbbhuU1ABVMArXDiDH//ZijNO9MIHEgTEpkFhZg=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01PD1pB2107735
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 25 Feb 2020 07:01:51 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 25
- Feb 2020 07:01:50 -0600
-Received: from localhost.localdomain (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 25 Feb 2020 07:01:50 -0600
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 01PD1o78075900;
-        Tue, 25 Feb 2020 07:01:50 -0600
-Subject: Re: [PATCH 3/4] ARM: dts: axp813: Add charger LED
-To:     Ondrej Jirman <megous@megous.com>, <linux-sunxi@googlegroups.com>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Lee Jones <lee.jones@linaro.org>, <linux-leds@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20200223131435.681620-1-megous@megous.com>
- <20200223131435.681620-4-megous@megous.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <3d7c078b-362d-6eab-0915-8079768a729e@ti.com>
-Date:   Tue, 25 Feb 2020 06:56:39 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        id S1729411AbgBYN3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 08:29:33 -0500
+Received: from mail-il1-f194.google.com ([209.85.166.194]:33146 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725788AbgBYN3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 08:29:32 -0500
+Received: by mail-il1-f194.google.com with SMTP id s18so10806865iln.0
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 05:29:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5lF3WK73j83uTzBWoCX+piYUTJ8gjsoXLtNVHKHOJEo=;
+        b=ZudqYNc9t8VwUeyXbtkRxh8lHGluXfeSSnakCvOJToZqfk4qvsQlCH5HWcFuWFaSJY
+         QB0PCG/XOyXPyQzeJHM6qIGzZi2oGpf+T97sLBaopJqBANRWwXaPjcIp/Fh94UXWk4DZ
+         sshe0t0+EG3dY58wRPsK1EuCjFaqqHhU0tt7iB5CsWLuOQ49+uOjOskk4sjR4OxMIur/
+         MKWF9WdCxtizbtfQDGIcdnMbfhkt8mdYuUEmEUNYxpNc7LYbHwwN5tNm4e9xGy3CYiAy
+         ajPAYcgwY/Yqa3nYUAUYEPRogUsvKrTaTjbCNmdLs39GyxALyDALM/WWMTelf0psha2Z
+         EnUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5lF3WK73j83uTzBWoCX+piYUTJ8gjsoXLtNVHKHOJEo=;
+        b=Nt2GKPYXgDq6NueMx2Aazwn7bAhoTgY/w5DKmiZK5zmigRwnZK9C7joIhpj1rzosU2
+         /X0POgMvfEkL4VIe9DUGKRtwbLLTZ+9loiIsGvY+e8RyjESYChnREvzf8aIq+Wm32Ee2
+         jzG8tfJCovgh+90Mj75kJ6O8hKch/6wwPRCwlKMVy9GB1eTI2OHOVtqTKH6zWCsFz65m
+         ZULngevRVR/YfNDYsHNPUYlwfo3cWQYG9xqCrXUb6LXGUMpjPnUAdzijZ6cjEePrWh17
+         /fW8jqdhrry7b6MBT/QGOn2kfXJv97h0P/Bxnb82t9UbcuovgNTxNeh6RAOUUTVYJ2lt
+         r4EQ==
+X-Gm-Message-State: APjAAAW+lnJCCfEolYnkozmO5ia6L8Fb7pAvXmMYEUlQ9zsJXky/mfcc
+        M0r+6OptpctGaiU6e6nKpyERFBACxaY5z1au8sSFUTq8
+X-Google-Smtp-Source: APXvYqxRLwQApYXLXAJc3nFCmhsetmCMQtqeunUdez14f4lqjAVrvxj3k8VFZFvSyQxmInPtjkQ93a/MwESfN08c7uk=
+X-Received: by 2002:a92:9cc6:: with SMTP id x67mr68531411ill.31.1582637370664;
+ Tue, 25 Feb 2020 05:29:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20200223131435.681620-4-megous@megous.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1582480985-6773-1-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <1582480985-6773-1-git-send-email-stefan.wahren@i2se.com>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Tue, 25 Feb 2020 13:29:19 +0000
+Message-ID: <CALeDE9P3ksuvLeiki5HSnAjQTs4tM_bhspB-ktMWiy85SZocSg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: bcm283x: Add missing properties to the PWR LED
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ondrej
-
-On 2/23/20 7:14 AM, Ondrej Jirman wrote:
-> PMIC supports charging status indication via a LED. Add support
-> for it.
+> This adds the missing properties to the PWR LED for the RPi 3 & 4 boards,
+> which are already set for the other boards. Without them we will lose
+> the LED state after suspend.
 >
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
+> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+Tested-by: Peter Robinson <pbrobinson@gmail.com>
+
+Tested on a 3B+ and a 4B. On a related note it seems that the original
+RPi3B is missing the pwr led entry altogether, is that expected given
+that at least the 2, other 3 models have the entry?
+
+Peter
+
 > ---
->   arch/arm/boot/dts/axp81x.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
+>  arch/arm/boot/dts/bcm2711-rpi-4-b.dts      | 2 ++
+>  arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts | 2 ++
+>  arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts | 2 ++
+>  3 files changed, 6 insertions(+)
 >
-> diff --git a/arch/arm/boot/dts/axp81x.dtsi b/arch/arm/boot/dts/axp81x.dtsi
-> index 1dfeeceabf4c3..00b092f94433d 100644
-> --- a/arch/arm/boot/dts/axp81x.dtsi
-> +++ b/arch/arm/boot/dts/axp81x.dtsi
-> @@ -175,4 +175,9 @@ reg_drivevbus: drivevbus {
->   	usb_power_supply: usb-power-supply {
->   		compatible = "x-powers,axp813-usb-power-supply";
->   	};
-> +
-> +	charger_led: charger-led {
-> +		compatible = "x-powers,axp813-charger-led";
-> +		status = "disabled";
-
-As I commented before you need to add function and color to this node 
-and read it from the driver.  Or you can add them to the over ride for 
-the specific use case.
-
-Another question is is this LED only used for charging or can it be 
-multi purpose?
-
-Dan
-
-
-> +	};
->   };
+> diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> index cb33852..f242834 100644
+> --- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> +++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
+> @@ -31,6 +31,8 @@
+>                 pwr {
+>                         label = "PWR";
+>                         gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+> +                       default-state = "keep";
+> +                       linux,default-trigger = "default-on";
+>                 };
+>         };
+>
+> diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
+> index 66ab35e..28be033 100644
+> --- a/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
+> +++ b/arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dts
+> @@ -26,6 +26,8 @@
+>                 pwr {
+>                         label = "PWR";
+>                         gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+> +                       default-state = "keep";
+> +                       linux,default-trigger = "default-on";
+>                 };
+>         };
+>  };
+> diff --git a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
+> index 74ed6d0..3734314 100644
+> --- a/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
+> +++ b/arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dts
+> @@ -27,6 +27,8 @@
+>                 pwr {
+>                         label = "PWR";
+>                         gpios = <&expgpio 2 GPIO_ACTIVE_LOW>;
+> +                       default-state = "keep";
+> +                       linux,default-trigger = "default-on";
+>                 };
+>         };
+>
+> --
+> 2.7.4
+>
+>
+> _______________________________________________
+> linux-rpi-kernel mailing list
+> linux-rpi-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rpi-kernel
