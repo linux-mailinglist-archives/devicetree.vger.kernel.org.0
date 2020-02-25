@@ -2,84 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47DAF16BD27
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 10:19:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC9EA16BD0E
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 10:11:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726916AbgBYJTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 04:19:00 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:37599 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726867AbgBYJS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 04:18:59 -0500
-Received: by mail-wm1-f67.google.com with SMTP id a6so2315764wme.2;
-        Tue, 25 Feb 2020 01:18:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=zhzQt0v4AKydtv7tO0DiTIl7lsQ5dKu2Jl12PT3jBCs=;
-        b=YKjocvhq/JnPNg/hrU12NGFQsRbbx7F9fqnV7iEKGczlPz+xGVDSI1H7+/DYyEXYVL
-         lyHCEqTmK4supfVMUGuWZ1Vk2Zbi9GlkxybRlucE0owRgxWc6DKkOHPbiQCrbYE9cf9k
-         +FftO2Bl5//6vKIztfTIKgnqWq35ipFj8C+yafT3e91VPDEAzS+hGgaPUBNR8vBdy3hd
-         2tuDdsobqNoBwnsNE6fDlKUBV2WFJL6PerFZJvn1zAxcL1WeLOaiGK4FqW2S0FAFBHyY
-         QRhPiclu2MOHbBDc/CzPL0588YYJhyVIdB+WFlzdezZT6rDcddRuScv/mn5cKepB0FrK
-         2hTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zhzQt0v4AKydtv7tO0DiTIl7lsQ5dKu2Jl12PT3jBCs=;
-        b=B7/pndAGKI/+JACKMDBxA+uOzLzMuT2BnMoZuiJP0asUDGPG+ZXzskqdkSMbRyHL+7
-         FjB+STmvAuiveYrwqj6taBy4gxZgls03GpYCyABLyov031BQ8gon2oji5oY6Bc39voui
-         M8SpAn0yfh3YzNXGRkBPShZDZ28YotUMtOh/xmRMvdrTZphKN48ci7p2xGZLi5WXB3GN
-         i6mWWXl9lrKR/AN1hh+fTihAMu/22+oF6VcFqcaE91k45joCP20MUEVclF4lP5yqaEOe
-         Q+3yt2Pbk5iw1k7DQBhtbgQQcAXaoK0tL3SBNj8WfDzapL7ePvHPfGYl2Bz87ZulYkcK
-         +egw==
-X-Gm-Message-State: APjAAAUUBYPaoRqiYjqraxrXPnp4f3Adi2K8nZVY3WU6R3tMB0REbDwF
-        fnxmUmmT0nEZ+qeS18A7ACw=
-X-Google-Smtp-Source: APXvYqxoTOz26NdCMff5T3MAlktiniBZ3mI/36yXLv7IUZvGJmyvjDRu/tlExPeR3EkpU4HpBpM+fg==
-X-Received: by 2002:a1c:451:: with SMTP id 78mr3980607wme.125.1582622336447;
-        Tue, 25 Feb 2020 01:18:56 -0800 (PST)
-Received: from localhost ([193.47.161.132])
-        by smtp.gmail.com with ESMTPSA id p12sm23271786wrx.10.2020.02.25.01.18.55
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 25 Feb 2020 01:18:55 -0800 (PST)
-Date:   Tue, 25 Feb 2020 10:07:55 +0100
-From:   Oliver Graute <oliver.graute@gmail.com>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
+        id S1729895AbgBYJLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 04:11:01 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:53333 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726867AbgBYJLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 25 Feb 2020 04:11:01 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 0BAF57BFE;
+        Tue, 25 Feb 2020 04:11:00 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 25 Feb 2020 04:11:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm2; bh=2vqTwRAj8rKUQI5FEi3ykYXRB1k
+        4zegHIlQuKg4fomE=; b=gkTk2rb6Z/D8ORisKTkhB1y+SH06kgCf5Pq2c476/O9
+        IyltflJ/+Dq1fp8678f7e0wjFdNroQdoEQfkWrZ7jkhee54vE0VgFRSGgVwZNWK/
+        hYA8P/IBn2LNbe/E/VjX+XE1jz62u6aNeki0I314o2eF08T3uzJXuFZ1ZzPnrkB1
+        NlxT0bqCry1qAf1Sn39Na0uag9CHe2raGK8OSdHZeRuYpC6yjm4FwLo+mOluDtdW
+        afnbMbWMf4sFzgZFB4lmqKlsFRkVgrqpotkYUAh/zF8Ddj5EBxHnYhwXjsGHHZr2
+        +cZvHITZW2+R3OddfyYrAaoPGZ3AClo39aO+q0Q/EKg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=2vqTwR
+        Aj8rKUQI5FEi3ykYXRB1k4zegHIlQuKg4fomE=; b=NMiDvNMajHaTcmhNhHJDRJ
+        LxoRolymMSLrRfnC6Zfe/tdjtSgorGcRt1KUNOWEg4u15nFEsCcFtE4ewc3ogqL/
+        /YYDfhOep/u7JiXTdaCLcXTZQR3JN/kegTt1PRz/EYH+DkX3DkTcRaaAxj0oCT5G
+        sJulfl9NbYp35pwmTNBMdN1TpxWWN/K36nu9tJ9XJWBPfZs0HoaR9MACuL60h+7G
+        Wm3f8epOGNHXg0IRoulAKrt0c3sZpHM9rpcJm5gjSbP0K9ym3e58a0ySCOqymwz1
+        h90IrxnC5daRJ707E3rPtzRO3VF5wOdicWVwDQbJF/y4Os0VMUmbGCqZPM4V6G+g
+        ==
+X-ME-Sender: <xms:oeRUXrAI_D5lMyeQrh8Y3PI5agSSN74a1OXVEw6YYsKhXaM1zzQ5zQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrledvgddtudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucffohhmrghinh
+    epuggvvhhitggvthhrvggvrdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecuvehl
+    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvse
+    gtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:oeRUXpPp_tWwjZ5pBvF__9IjfA7_SYFMb_fJkhiPTMNqcPYv5Z1Vyg>
+    <xmx:oeRUXoyVlVMIhiKZ2a7RhVmWsEvryuZPI8XFgXhn9RlgLUovu5sL2A>
+    <xmx:oeRUXsf5xQiPAdVua7pKGb6rMMxFptU4NPlbe0O8ISHJTfAaJfrrjg>
+    <xmx:pORUXsDYLuWCdLiFjcC3j_NZSInmV5T-JKOadfkUFxS16bPHqlZLdw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id BE2CB328005D;
+        Tue, 25 Feb 2020 04:10:56 -0500 (EST)
+Date:   Tue, 25 Feb 2020 10:10:55 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Mateusz Holenko <mholenko@antmicro.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, sboyd@kernel.org,
-        mturquette@baylibre.com, Rob Herring <robh+dt@kernel.org>,
-        linux-imx@nxp.com, kernel@pengutronix.de, fabio.estevam@nxp.com,
-        shawnguo@kernel.org, linux-clk@vger.kernel.org, peng.fan@nxp.com
-Subject: Re: [PATCH RESEND v3 14/15] arm64: dts: imx: add imx8qm mek support
-Message-ID: <20200225090755.GA17799@optiplex>
-References: <1573994635-14479-1-git-send-email-aisheng.dong@nxp.com>
- <1573994635-14479-15-git-send-email-aisheng.dong@nxp.com>
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, Stafford Horne <shorne@gmail.com>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: soc: document LiteX SoC Controller
+ bindings
+Message-ID: <20200225091055.ubm5r3p6r4ydchyh@gilmour.lan>
+References: <20200225094437.4170502-0-mholenko@antmicro.com>
+ <20200225094437.4170502-2-mholenko@antmicro.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7qlwsrkwbcxhj43j"
 Content-Disposition: inline
-In-Reply-To: <1573994635-14479-15-git-send-email-aisheng.dong@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200225094437.4170502-2-mholenko@antmicro.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/19, Dong Aisheng wrote:
-> The i.MX8QuadMax is a Dual (2x) Cortex-A72 and Quad (4x) Cortex-A53
-> proccessor with powerful graphic and multimedia features.
-> This patch adds i.MX8QuadMax MEK board support.
-> 
-> Note that MX8QM needs a special workaround for TLB flush due to a SoC
-> errata, otherwise there may be random crash if enable both clusters of
-> A72 and A53. As the errata workaround is still not in mainline, so we
-> disable A72 cluster first for MX8QM MEK.
 
-can you point me to the errata workaround patch for the MMU/TLB Coherency
-issue? I observe the same issue here with another imx8qm board.
+--7qlwsrkwbcxhj43j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best Regards,
+Hi Mateusz,
 
-Oliver
+On Tue, Feb 25, 2020 at 09:46:45AM +0100, Mateusz Holenko wrote:
+> From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+>
+> Add documentation for LiteX SoC Controller bindings.
+>
+> Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> ---
+>
+> Notes:
+>     This commit has been introduced in v3 of the patchset.
+>
+>  .../soc/litex/litex,soc_controller.yaml       | 46 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml b/Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml
+> new file mode 100644
+> index 000000000000..039894265319
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/litex/litex,soc_controller.yaml
+> @@ -0,0 +1,46 @@
+> +PDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/litex/litex,soc_controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LiteX SoC Controller driver
+> +
+> +description: |
+> +  This is the SoC Controller driver for the LiteX SoC Builder.
+> +  It's purpose is to verify LiteX CSR (Control&Status Register) access
+> +  operations and provide function for other drivers to read/write CSRs
+> +  and to check if those accessors are ready to use.
+> +
+> +maintainers:
+> +  - Karol Gugala <kgugala@antmicro.com>
+> +  - Mateusz Holenko <mholenko@antmicro.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: litex,soc_controller
+
+Usually compatible will use dash as separators, not underscores.
+
+> +  reg:
+> +    description: Base address and length of the register space
+
+This is usually removed since it's what's expected from the property
+anyway. However, what you should really test for in the number of
+address/size couples being set, and you can do that using maxItems: 1
+
+> +  status:
+> +    description: |
+> +      disables or enables node
+> +
+> +    const: "okay"
+
+This is added automatically by the tooling, so you can leave it out.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - status
+
+And in general, status is not required. Leaving status out is
+equivalent to status = "okay"
+
+> +examples:
+> +  - |
+> +
+> +  soc_ctrl0: soc_controller@f0000000 {
+> +			compatible = "litex,soc_controller";
+> +			reg = <0x0 0xf0000000 0x0 0xC>;
+> +			status = "okay";
+> +  };
+
+The indentation looks weird here?
+
+Maxime
+
+--7qlwsrkwbcxhj43j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXlTknwAKCRDj7w1vZxhR
+xTU6AQD8Cy+uoGwSrrpsJlekRlGK1bt9y8kmOWrOWFI/wEg4sgEA1FuWrfWI4m9J
+4Mg4k4q9o4wFx3JoZnsWCNziqQYXugU=
+=agyM
+-----END PGP SIGNATURE-----
+
+--7qlwsrkwbcxhj43j--
