@@ -2,226 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8767216C120
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 13:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F075316C182
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 13:59:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729525AbgBYMlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 07:41:31 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:41408 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729773AbgBYMla (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 25 Feb 2020 07:41:30 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01PCX1ED022375;
-        Tue, 25 Feb 2020 07:41:12 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2yb23aghvx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 25 Feb 2020 07:41:12 -0500
-Received: from ASHBMBX8.ad.analog.com (ashbmbx8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 01PCfBGW016750
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 25 Feb 2020 07:41:11 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Tue, 25 Feb
- 2020 07:41:10 -0500
-Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Tue, 25 Feb 2020 07:41:10 -0500
-Received: from nsa.sphairon.box ([10.44.3.59])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 01PCev8e005013;
-        Tue, 25 Feb 2020 07:41:07 -0500
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: [PATCH 5/5] dt-bindings: iio: Add adis16475 documentation
-Date:   Tue, 25 Feb 2020 13:41:52 +0100
-Message-ID: <20200225124152.270914-6-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200225124152.270914-1-nuno.sa@analog.com>
-References: <20200225124152.270914-1-nuno.sa@analog.com>
+        id S1729155AbgBYM76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 07:59:58 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:42812 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725788AbgBYM75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 07:59:57 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01PCxAnF093127;
+        Tue, 25 Feb 2020 06:59:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1582635550;
+        bh=bGd3RwTb8H7E4eSTshWOunqzeFmHbDqIl5e7AKSC+qs=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=qNjJXWqdoFq/wxtuIspMCurSNiSRATI1lIuaQjqMZsBM9mAkDReAJ76hOeKKA/Lno
+         s3f8tA9Om4DIAC5peWhP2A5156hlLLADMDknhQPhleYRFMMlicTbU44BY1n4NDMxDH
+         +gnbiYR+8FLJo36k+mttZ8lwqK8c+nA1GeBLX/VI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01PCxALl095593
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 25 Feb 2020 06:59:10 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 25
+ Feb 2020 06:59:10 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 25 Feb 2020 06:59:09 -0600
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01PCx9lL033752;
+        Tue, 25 Feb 2020 06:59:09 -0600
+Subject: Re: [PATCH 2/4] leds: axp20x: Support charger LED on AXP20x like
+ PMICs
+To:     Ondrej Jirman <megous@megous.com>, <linux-sunxi@googlegroups.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Lee Jones <lee.jones@linaro.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200223131435.681620-1-megous@megous.com>
+ <20200223131435.681620-3-megous@megous.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <7f8a74e1-28ad-1b27-b491-9bd70f0c4e61@ti.com>
+Date:   Tue, 25 Feb 2020 06:53:58 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-02-25_03:2020-02-21,2020-02-25 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 clxscore=1015 impostorscore=0 mlxlogscore=999 adultscore=0
- mlxscore=0 bulkscore=0 priorityscore=1501 suspectscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2002250100
+In-Reply-To: <20200223131435.681620-3-megous@megous.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the ADIS16475 device devicetree bindings.
+Ondrej
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- .../bindings/iio/imu/adi,adis16475.yaml       | 130 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 131 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
+On 2/23/20 7:14 AM, Ondrej Jirman wrote:
+> There is single LED that can be turned on and off by the user, or set to
+> be controlled by the charger in 2 different modes.
+>
+> The driver initializes the LED to be controlled by the charger, but
+> allows to switch it to user control, and change the mode of charging
+> indication via a sysfs.
+>
+> The driver was developed on AXP813, but should work on other PMICs like
+> that without changes.
+>
+> Signed-off-by: Ondrej Jirman <megous@megous.com>
+> ---
+>   drivers/leds/Kconfig       |   7 ++
+>   drivers/leds/Makefile      |   1 +
+>   drivers/leds/leds-axp20x.c | 240 +++++++++++++++++++++++++++++++++++++
+>   drivers/mfd/axp20x.c       |   3 +
+>   4 files changed, 251 insertions(+)
+>   create mode 100644 drivers/leds/leds-axp20x.c
+>
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index d82f1dea37111..80a3f31f6f4c3 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -846,6 +846,13 @@ config LEDS_TPS6105X
+>   	  It is a single boost converter primarily for white LEDs and
+>   	  audio amplifiers.
+>   
+> +config LEDS_AXP20X
+> +	tristate "Charger LED support for AXP20X-like PMICs (AXP813, ...)"
+> +	depends on LEDS_CLASS && MFD_AXP20X
+> +	help
+> +	  This option enables support for on-chip LED driver on
+> +	  AXP20X-like PMICs.
+> +
+>   comment "LED Triggers"
+>   source "drivers/leds/trigger/Kconfig"
+>   
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index d7e1107753fb1..80ea1bc4744b0 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -86,6 +86,7 @@ obj-$(CONFIG_LEDS_TI_LMU_COMMON)	+= leds-ti-lmu-common.o
+>   obj-$(CONFIG_LEDS_LM3697)		+= leds-lm3697.o
+>   obj-$(CONFIG_LEDS_LM36274)		+= leds-lm36274.o
+>   obj-$(CONFIG_LEDS_TPS6105X)		+= leds-tps6105x.o
+> +obj-$(CONFIG_LEDS_AXP20X)		+= leds-axp20x.o
+>   
+>   # LED SPI Drivers
+>   obj-$(CONFIG_LEDS_CR0014114)		+= leds-cr0014114.o
+> diff --git a/drivers/leds/leds-axp20x.c b/drivers/leds/leds-axp20x.c
+> new file mode 100644
+> index 0000000000000..e6c9853b84d52
+> --- /dev/null
+> +++ b/drivers/leds/leds-axp20x.c
+> @@ -0,0 +1,240 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * LED Driver for X-Powers AXP813 PMIC and similar.
+> + *
+> + * Copyright(c) 2020 Ondrej Jirman <megous@megous.com>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/kernel.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/leds.h>
+> +#include <linux/slab.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/mfd/axp20x.h>
+> +
+> +#define AXP20X_CHGLED_CTRL_MASK		BIT(3)
+> +#define AXP20X_CHGLED_CTRL_CHARGER	BIT(3)
+> +#define AXP20X_CHGLED_CTRL_USER		0
+> +
+> +#define AXP20X_CHRG_CTRL2_MODE		BIT(4)
+> +
+> +#define AXP20X_CHGLED_USER_STATE_MASK		GENMASK(5, 4)
+> +#define AXP20X_CHGLED_USER_STATE_OFF		(0 << 4)
+> +#define AXP20X_CHGLED_USER_STATE_BLINK_SLOW	(1 << 4)
+> +#define AXP20X_CHGLED_USER_STATE_BLINK_FAST	(2 << 4)
+> +#define AXP20X_CHGLED_USER_STATE_ON		(3 << 4)
+> +
+> +struct axp20x_led {
+> +	struct led_classdev cdev;
+> +	struct regmap *regmap;
+> +};
+> +
+> +static int axp20x_led_set(struct led_classdev *led_cdev,
+> +			   enum led_brightness value)
+> +{
+> +	struct axp20x_led *led =
+> +			container_of(led_cdev, struct axp20x_led, cdev);
+> +	unsigned int val;
+> +
+> +	val = value == LED_OFF ? AXP20X_CHGLED_USER_STATE_OFF :
+> +		AXP20X_CHGLED_USER_STATE_ON;
+> +
+> +	return regmap_update_bits(led->regmap, AXP20X_OFF_CTRL,
+> +				  AXP20X_CHGLED_USER_STATE_MASK, val);
+> +
+> +}
+> +
+> +static ssize_t charger_control_show(struct device *dev,
+> +				    struct device_attribute *attr, char *buf)
+> +{
+> +	struct led_classdev *led_cdev = dev_get_drvdata(dev);
+> +	struct axp20x_led *led =
+> +		container_of(led_cdev, struct axp20x_led, cdev);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(led->regmap, AXP20X_OFF_CTRL, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return scnprintf(buf, PAGE_SIZE, "%u\n",
+> +			 val & AXP20X_CHGLED_CTRL_MASK ? 1 : 0);
+> +}
+> +
+> +static ssize_t charger_control_store(struct device *dev,
+> +				     struct device_attribute *attr,
+> +				     const char *buf, size_t len)
+> +{
+> +	struct led_classdev *led_cdev = dev_get_drvdata(dev);
+> +	struct axp20x_led *led =
+> +			container_of(led_cdev, struct axp20x_led, cdev);
+> +	bool status;
+> +	int ret;
+> +
+> +	ret = kstrtobool(buf, &status);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(led->regmap, AXP20X_OFF_CTRL,
+> +				 AXP20X_CHGLED_CTRL_MASK,
+> +				 status ? AXP20X_CHGLED_CTRL_CHARGER :
+> +				 AXP20X_CHGLED_CTRL_USER);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return len;
+> +}
+> +
+> +static ssize_t charger_mode_show(struct device *dev,
+> +				 struct device_attribute *attr, char *buf)
+> +{
+> +	struct led_classdev *led_cdev = dev_get_drvdata(dev);
+> +	struct axp20x_led *led =
+> +		container_of(led_cdev, struct axp20x_led, cdev);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	ret = regmap_read(led->regmap, AXP20X_CHRG_CTRL2, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return scnprintf(buf, PAGE_SIZE, "%u\n",
+> +			 val & AXP20X_CHRG_CTRL2_MODE ? 1 : 0);
+> +}
+> +
+> +static ssize_t charger_mode_store(struct device *dev,
+> +				  struct device_attribute *attr,
+> +				  const char *buf, size_t len)
+> +{
+> +	struct led_classdev *led_cdev = dev_get_drvdata(dev);
+> +	struct axp20x_led *led =
+> +		container_of(led_cdev, struct axp20x_led, cdev);
+> +	unsigned int mode;
+> +	int ret;
+> +
+> +	ret = kstrtouint(buf, 0, &mode);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (mode > 1)
+> +		return -ERANGE;
+> +
+> +	ret = regmap_update_bits(led->regmap, AXP20X_CHRG_CTRL2,
+> +				 AXP20X_CHRG_CTRL2_MODE,
+> +				 mode ? AXP20X_CHRG_CTRL2_MODE : 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return len;
+> +}
+> +
+> +static DEVICE_ATTR_RW(charger_control);
+> +static DEVICE_ATTR_RW(charger_mode);
+> +
+> +static struct attribute *axp20x_led_attrs[] = {
+> +	&dev_attr_charger_control.attr,
+> +	&dev_attr_charger_mode.attr,
+> +	NULL,
+> +};
+> +
+> +ATTRIBUTE_GROUPS(axp20x_led);
+> +
+> +static int axp20x_led_probe(struct platform_device *pdev)
+> +{
+> +	struct axp20x_dev *axp20x;
+> +	struct axp20x_led *led;
+> +	int ret;
+> +
+> +	if (!of_device_is_available(pdev->dev.of_node))
+> +		return -ENODEV;
+> +
+> +	axp20x = dev_get_drvdata(pdev->dev.parent);
+> +	if (!axp20x)
+> +		return -EINVAL;
+> +
+> +	led = devm_kzalloc(&pdev->dev,
+> +			   sizeof(struct axp20x_led),
+> +			   GFP_KERNEL);
+> +	if (!led)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, led);
+> +
+> +	led->regmap = axp20x->regmap;
+> +
+> +	led->cdev.name = "axp20x-chgarger-led";
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-new file mode 100644
-index 000000000000..c0f2146e000c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
-@@ -0,0 +1,130 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/imu/adi,adis16475.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADIS16475 and similar IMUs
-+
-+maintainers:
-+  - Nuno Sá <nuno.sa@analog.com>
-+
-+description: |
-+  Analog Devices ADIS16475 and similar IMUs
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADIS16475.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adis16475-1
-+      - adi,adis16475-2
-+      - adi,adis16475-3
-+      - adi,adis16477-1
-+      - adi,adis16477-2
-+      - adi,adis16477-3
-+      - adi,adis16470
-+      - adi,adis16465-1
-+      - adi,adis16465-2
-+      - adi,adis16465-3
-+      - adi,adis16467-1
-+      - adi,adis16467-2
-+      - adi,adis16467-3
-+      - adi,adis16500
-+      - adi,adis16505-1
-+      - adi,adis16505-2
-+      - adi,adis16505-3
-+      - adi,adis16507-1
-+      - adi,adis16507-2
-+      - adi,adis16507-3
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-+  spi-max-frequency:
-+    maximum: 2000000
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    oneOf:
-+      - const: sync
-+      - const: direct-sync
-+      - const: pulse-sync
-+      - const: scaled-sync
-+
-+  reset-gpios:
-+    description:
-+      Must be the device tree identifier of the RESET pin. If specified,
-+      it will be asserted during driver probe. As the line is active low,
-+      it should be marked GPIO_ACTIVE_LOW.
-+    maxItems: 1
-+
-+  adi,scaled-output-hz:
-+    description:
-+      This property must be present if the clock mode is scaled-sync through
-+      clock-names property. In this mode, the input clock can have a range
-+      of 1Hz to 128HZ which must be scaled to originate an allowable sample
-+      rate. This property specifies that rate.
-+    minimum: 1900
-+    maximum: 2100
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - spi-cpha
-+  - spi-cpol
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - adi,adis16500
-+          - adi,adis16505-1
-+          - adi,adis16505-2
-+          - adi,adis16505-3
-+          - adi,adis16507-1
-+          - adi,adis16507-2
-+          - adi,adis16507-3
-+
-+then:
-+  properties:
-+    clock-names:
-+      oneOf:
-+        - const: sync
-+        - const: direct-sync
-+        - const: scaled-sync
-+
-+    adi,burst32-enable:
-+      description:
-+        Enable burst32 mode. In this mode, a burst reading contains calibrated
-+        gyroscope and accelerometer data in 32-bit format.
-+      type: boolean
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            adis16475: adis16475-3@0 {
-+                    compatible = "adi,adis16475-3";
-+                    reg = <0>;
-+                    spi-cpha;
-+                    spi-cpol;
-+                    spi-max-frequency = <2000000>;
-+                    interrupts = <4 IRQ_TYPE_EDGE_RISING>;
-+                    interrupt-parent = <&gpio>;
-+            };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f11262f1f3bb..f8ccc92ab378 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1015,6 +1015,7 @@ W:	http://ez.analog.com/community/linux-device-drivers
- S:	Supported
- F:	drivers/iio/imu/adis16475.c
- F:	Documentation/ABI/testing/sysfs-bus-iio-imu-adis16475
-+F:	Documentation/devicetree/bindings/iio/imu/adi,adis16475.yaml
- 
- ANALOG DEVICES INC ADM1177 DRIVER
- M:	Beniamin Bia <beniamin.bia@analog.com>
--- 
-2.25.1
 
+This does not follow the LED device naming convention please refer to 
+the leds-class.rst document
+
+https://elixir.bootlin.com/linux/latest/source/Documentation/leds/leds-class.rst
+
+Dan
