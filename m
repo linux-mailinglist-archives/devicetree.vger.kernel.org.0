@@ -2,78 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB89216C020
-	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 12:59:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1D8116C038
+	for <lists+devicetree@lfdr.de>; Tue, 25 Feb 2020 13:06:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726587AbgBYL77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 06:59:59 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:35585 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725851AbgBYL76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 06:59:58 -0500
-Received: by mail-wr1-f65.google.com with SMTP id w12so14412653wrt.2
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 03:59:57 -0800 (PST)
+        id S1730392AbgBYMGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 07:06:54 -0500
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:42638 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729417AbgBYMGy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 07:06:54 -0500
+Received: by mail-lf1-f68.google.com with SMTP id 83so9555417lfh.9
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 04:06:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=bZwPA3RGwD8pU8aBxNxgLZ7Z78acc8f6Au1L1blgYZs=;
-        b=dX/ZN1HzkxZPY1NX4ZAtgGd68Mnq263aRYROem/uXngnsAZHsx/g3N/h8PCMehOGgE
-         yOfa0BxsirDCMXFq5TtMSRtJ8hXa94fa9rnXMWP64KCj7E+Z/pFAeA5U5VfLiBJPsWyU
-         LARa0bkZAdow5IsHKCkIRDxF+oi5U350IVuZB1LNF8WzHB45VPET6NJGzHlbmuNv0aPT
-         co4lLdqnG7gTn40udPPTOdB3hIihGQjjPX5eHBHWKmNtgHbDOXw7TIQYq50tnDLx4GCt
-         ce72r1NuxIiuzH7UKUOsaj+eHH8uGvtyR6IRZnyi2ZUbU/J6Njvdy/T0ZwhUNkXa2ufF
-         Yg9Q==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qL37Y4QwC2H5BVQcBjGxnhk5Q0ixQAlzjLOKjSRSjzg=;
+        b=sAPoYCpPeqNu1VtPX1gXiQd8dXC9Ud2kT4nsPsqkPjP3zT0K32Y/IeK8JfXh4BF3lr
+         jkwYdlfWZcPTDjrbWeWEh40nPgt+T4+MmNrd5i4YpaaUuJbjXprQyie7WiLLWVLFI612
+         vbcV8uCfmIUI7JIY0nhk7p2ChzdllK/kao+L+oCjBRyTGOTcX9bAcO4OVnYTeHRis5oB
+         ELDgUbJn4tdo9imAGxWaOWsdEsvshYK0XFKDf36phutEiWJda7cdLhBXYMFC1WeE8PbK
+         rCZH4JLpQY/MDgFCrCAY8ibiVOREbl4XByl7pwe4wXdFMsCecj5eoeq/tSHCk4PmtLSK
+         q0eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=bZwPA3RGwD8pU8aBxNxgLZ7Z78acc8f6Au1L1blgYZs=;
-        b=KIPM9wjnFqeV6UB5XmjGdc9ecSufJ3qI1twyeODWvP/E7i8fYXyUQnHYLuSIXdeu1F
-         v0HRgSBz3IKBGCCUh5v/oBs6XwQyFWEuvKBqPB4piWC4VySK0iiGcBxWzwtw03Mz6yTo
-         LJLI/z29u0HZJchFfgYcKD4782lgqpPrwE6x68eOyvedhhfUcPwvedMXVuzQ8Wpr/+vc
-         deueKIBiG8nboqwl34HmJd5iKgKizQiAGBUoITqgRbsWuPINV9EPTOqFaRX7Gk9ZyKSi
-         s5fFdPkSgn4TNWB7ucRETR7RKo/XPAoq4NdRaerSOgZuIeYfQUc8CK/fNEy1C0ztl86s
-         x+mg==
-X-Gm-Message-State: APjAAAUmsi4evXuLDBfS3Q5p+EyDZP2Juv6OW27NfDMo+vKwXW3XhYAl
-        SWrMKzj8DMEOY/SArjfaoEmkI/AvHStzAA2lUGw=
-X-Google-Smtp-Source: APXvYqwFXBHdLkW37PIK3LqKoox7yY3fY9/IdcGrvC4t8zLGv/FxmSlU729xELqxcLbGQldi/TK3pZzDNwMm694pnmw=
-X-Received: by 2002:adf:fcc4:: with SMTP id f4mr76357166wrs.247.1582631996933;
- Tue, 25 Feb 2020 03:59:56 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qL37Y4QwC2H5BVQcBjGxnhk5Q0ixQAlzjLOKjSRSjzg=;
+        b=d5dwma7TPbOgOcIac+2XvVeQPPGHO6vDT+j0yYtrGvTbcfNlgAR+ZHqQ4pPcq7s2zJ
+         WWOeXLmY0pyU6yP+KDvEEVX2qUdN/iPaJ/kYO+etP2zn6WohcLhJ/LFP473f6xTgBGkJ
+         pZD+OWzBJhaiNBGCpAmWYU1O2DPzx+wsKgXGR3qyBeboaqMGJ6Bm3yU2lRZpZEYFQM2g
+         O5P5e9hUwUpz2lU0aVMwP5uf/Rvs9PpA9VupKrWgFx8SD6+iPlIuOhLa50N75IOW+Gxf
+         SPnHj7PgkDBUqEBMJpRm+Qyin8fRZghOsSxTeYazhfmXCi5IP3p4t7E53oKdVoBR+g99
+         GOvA==
+X-Gm-Message-State: APjAAAVCcf6ExTn5zoHwPq0TS4BOepzcNEmIbTQIJzubcYwEAlcZVoo4
+        nXpyDYA4d2C6ktczXDG/D6pOQvkZafvk4+6Rr2FKKQ==
+X-Google-Smtp-Source: APXvYqx4hD9HaTlSuNdaASWszKdhnnTGw4UdpRdVSDuvLrBOJV88/DSZ6LkAIwOgsPHB/a0L3ZRa+lZx6hi8twr3z8I=
+X-Received: by 2002:ac2:5a05:: with SMTP id q5mr6326196lfn.143.1582632411863;
+ Tue, 25 Feb 2020 04:06:51 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a5d:4b82:0:0:0:0:0 with HTTP; Tue, 25 Feb 2020 03:59:56
- -0800 (PST)
-From:   "fedmfiinance10@gmail.com" <fedmfiinance10@gmail.com>
-Date:   Tue, 25 Feb 2020 11:59:56 +0000
-Message-ID: <CAHbjaFCfkC+SBwu-hcmDHmiZ-QTg1=fOrP2iiubKsC5Aex7C5w@mail.gmail.com>
-Subject: Prompt reply would be greatly appreciated
-To:     undisclosed-recipients:;
+References: <cover.1582615616.git.amit.kucheria@linaro.org>
+ <0f506cfdd8eb9d50b5eb43c9dca510284ac8ded1.1582615616.git.amit.kucheria@linaro.org>
+ <20200225101614.GN2618@vkoul-mobl>
+In-Reply-To: <20200225101614.GN2618@vkoul-mobl>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Tue, 25 Feb 2020 17:36:40 +0530
+Message-ID: <CAP245DUh2zZA=pfhoYswuffdR1_p72QR73SdWJCH8w8XySFpvg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: thermal: tsens: Make dtbs_check pass
+ for sc7180 tsens
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        sivaa@codeaurora.org, Andy Gross <agross@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RE: LOAN FACILITY
+On Tue, Feb 25, 2020 at 3:46 PM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> On 25-02-20, 13:01, Amit Kucheria wrote:
+> > Fixes the following warnings:
+> > builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
+> > thermal-sensor@c263000: compatible: ['qcom,sc7180-tsens',
+> > 'qcom,tsens-v2'] is not valid under any of the given schemas (Possible
+> > causes of the failure):
+> > builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
+> > thermal-sensor@c263000: compatible:0: 'qcom,sc7180-tsens' is not one of
+> > ['qcom,msm8916-tsens', 'qcom,msm8974-tsens']
+> > builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
+> > thermal-sensor@c263000: compatible:0: 'qcom,sc7180-tsens' is not one of
+> > ['qcom,msm8976-tsens', 'qcom,qcs404-tsens']
+> > builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
+> > thermal-sensor@c263000: compatible:0: 'qcom,sc7180-tsens' is not one of
+> > ['qcom,msm8996-tsens', 'qcom,msm8998-tsens', 'qcom,sdm845-tsens']
+> > builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
+> > thermal-sensor@c263000: compatible:1: 'qcom,tsens-v0_1' was expected
+> > builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
+> > thermal-sensor@c263000: compatible:1: 'qcom,tsens-v1' was expected
+>
+> I think the patch title should be "add qcom,sc7180-tsens to  qcom-tsens.yaml"
+>
+> and it would be great to see explanation on how adding it fixes these
+> warns.
 
-Have you been trying to obtain a Loan from any of the Banks or Loan
-Companies and they have refused to grant you Loan due to bad credit?.
-We have Loan facility at a low Interest Rate of 3% annually for a
-duration of 15 years with 24 months moratorium period.
+Agreed. I'll send out a new version with the commit messages fixed.
 
-The categories of Loan facility offered include but not limited to:
-Business Loan, Personal Loan, Company Loan, Mortgage Loan, Debt
-consolidation and financial funding for both turnkey and mega projects
-etc.
+> Relooking at series I think this applies to rest of the series too :)
+>
 
-Should you find this interesting, kindly get in touch with your
-business plan for details, terms and conditions and share your
-WhatsApp line for easy communication.
-
-Prompt reply would be greatly appreciated
-
-Best Regards,
-Mr. Shabab Isaac
-CONSULTANTS OF FINANCIAL SERVICES LIMITED
-57 Frederick Road, Sutton, Surrey,
-SM1 2HP United Kingdom
-Company number: 08898840
-Phone: +44-7452379198  / WhatsApp: +44-7978379923
+Thanks for the review.
