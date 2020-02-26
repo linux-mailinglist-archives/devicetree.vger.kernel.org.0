@@ -2,205 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1843E16F93C
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 09:11:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA17F16F94A
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 09:12:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727463AbgBZILA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Feb 2020 03:11:00 -0500
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:39869 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727576AbgBZIKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 03:10:50 -0500
-Received: by mail-pf1-f193.google.com with SMTP id 84so1058287pfy.6;
-        Wed, 26 Feb 2020 00:10:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1/9ulr35We1VvK4OKOtO+SeDdjZAIuN626KlRGL51e8=;
-        b=Uj9USULV1YhIjRQTGet+GBQYuuhLAkRgQq5aOXkZU55ZeXZOwYCvjYC0XTbkwI02vn
-         nMqNb637FbLBsLL+0OixEVNpFP/WYWrCLF5zLIEBTSZkXEK2J8hPyn24masq/KXBnUXK
-         1WpXqTxgjbgl1eq/uxSXJMuc6aResWHy1sQuEaEYBEWdEyvPqtQts5z5Su639wYEgo9n
-         wE96FuZQY46tDJyTJqt+ZJrzDYNCNenLNiqWFwxe/zxWzBuM58iQ9ur+6Ym5ldZxRpj8
-         JJ2JlN+8/BPq8Wk9S0SAMAUumaOifHahGje65ULSbNA6Krngc4WuiBgliS4rekKjbPPq
-         Xcow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1/9ulr35We1VvK4OKOtO+SeDdjZAIuN626KlRGL51e8=;
-        b=FYSyEY5DB830VSGRY1uFHmk/+/dh6jT2NcyPwm/Xwb3wGKRWYGdlUUkrpUZq49x9KB
-         A15A3fGw1f7jcztTo+RO9PkdMtL6udJqTLJQEz/6azYWhr3FVjUU6EsZ8hc78rQToDKY
-         G2T94F3TWTOIUWxtMrrj0KmOZtkza7gBdFBLtHowFqeeGoxESXxdy+nDXQ0Sd8+3H8Et
-         F2LjDNMAClvClQLTIbFYV94i0AV8aE0/KUg1vN1crWqkVFX9fp6Qc8ak2QmXVHdWUGDw
-         XDYh7A7CI6cUtT5abGeav2E6Wpr+FLzMofzAuHPF1SSUZRTDli0KiTYFLBKpUId0BOmj
-         8/4g==
-X-Gm-Message-State: APjAAAWOaxOHGsq3TdbF2AOdQr9vSN5UivHkB0jp36DLnVJbdD4I+HlL
-        8xfOFAbEv2L9zlZMaTKhPQc=
-X-Google-Smtp-Source: APXvYqwdqfkaKNsVj/z20Fl00qUooa5Fc8g4w6gy6KhAC3QgiEMz+qOhI4aMxTYoHDNd7Lx/skz8fQ==
-X-Received: by 2002:a62:1883:: with SMTP id 125mr3012096pfy.166.1582704649041;
-        Wed, 26 Feb 2020 00:10:49 -0800 (PST)
-Received: from anarsoul-thinkpad.lan (216-71-213-236.dyn.novuscom.net. [216.71.213.236])
-        by smtp.gmail.com with ESMTPSA id v7sm1679230pfn.61.2020.02.26.00.10.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2020 00:10:48 -0800 (PST)
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727483AbgBZILz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Feb 2020 03:11:55 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:3030 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727591AbgBZILz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 03:11:55 -0500
+X-UUID: 2c6a18f2fbf34161a63d93c2b0500c6a-20200226
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=nmvexf8wPTTC/sBsarWrbzfbzx8vw18pW+m/9vRVm3Y=;
+        b=P0FLNMHf4yn6FR6P5s1ZeaR744SGgTubTHcQzl0GEYbpR6PO/qJTh9OTj24ZK/ruVMHWfnP5IvBrEzgmWdj2kSLdiaywyt2mnoYZtFce2toxlE5mhgaJpheM6QkyZ/jAmBi+jDc149WS7Odv/ebWMapqcdtgLhjz505Kbis4Cys=;
+X-UUID: 2c6a18f2fbf34161a63d93c2b0500c6a-20200226
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1278026201; Wed, 26 Feb 2020 16:11:49 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 26 Feb 2020 16:09:46 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 26 Feb 2020 16:11:47 +0800
+Message-ID: <1582704699.11957.0.camel@mtksdaap41>
+Subject: Re: [PATCH v9 3/5] dt-bindings: display: mediatek: dpi sample data
+ in dual edge support
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Torsten Duwe <duwe@suse.de>, Icenowy Zheng <icenowy@aosc.io>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Mark Brown <broonie@kernel.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Samuel Holland <samuel@sholland.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>
-Subject: [PATCH v2 6/6] arm64: allwinner: a64: enable LCD-related hardware for Pinebook
-Date:   Wed, 26 Feb 2020 00:10:11 -0800
-Message-Id: <20200226081011.1347245-7-anarsoul@gmail.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200226081011.1347245-1-anarsoul@gmail.com>
-References: <20200226081011.1347245-1-anarsoul@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
+        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
+        <bibby.hsieh@mediatek.com>, <stonea168@163.com>,
+        <huijuan.xie@mediatek.com>
+Date:   Wed, 26 Feb 2020 16:11:39 +0800
+In-Reply-To: <20200226053238.31646-4-jitao.shi@mediatek.com>
+References: <20200226053238.31646-1-jitao.shi@mediatek.com>
+         <20200226053238.31646-4-jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Icenowy Zheng <icenowy@aosc.io>
-
-Pinebook has an ANX6345 bridge connected to the RGB666 LCD output and
-eDP panel input. The bridge is controlled via I2C that's connected to
-R_I2C bus.
-
-Enable all this hardware in device tree.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
----
- .../dts/allwinner/sun50i-a64-pinebook.dts     | 61 ++++++++++++++++++-
- 1 file changed, 60 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-index c06c540e6c08..0033f6a43d98 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts
-@@ -48,6 +48,18 @@ lid_switch {
- 		};
- 	};
- 
-+	panel_edp: panel-edp {
-+		compatible = "neweast,wjfh116008a";
-+		backlight = <&backlight>;
-+		power-supply = <&reg_dc1sw>;
-+
-+		port {
-+			panel_edp_in: endpoint {
-+				remote-endpoint = <&anx6345_out_edp>;
-+			};
-+		};
-+	};
-+
- 	reg_vbklt: vbklt {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vbklt";
-@@ -109,6 +121,10 @@ &dai {
- 	status = "okay";
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	phys = <&usbphy 0>;
- 	phy-names = "usb";
-@@ -119,6 +135,10 @@ &ehci1 {
- 	status = "okay";
- };
- 
-+&mixer0 {
-+	status = "okay";
-+};
-+
- &mmc0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc0_pins>;
-@@ -177,12 +197,38 @@ &pwm {
- 	status = "okay";
- };
- 
--/* The ANX6345 eDP-bridge is on r_i2c */
- &r_i2c {
- 	clock-frequency = <100000>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&r_i2c_pl89_pins>;
- 	status = "okay";
-+
-+	anx6345: anx6345@38 {
-+		compatible = "analogix,anx6345";
-+		reg = <0x38>;
-+		reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
-+		dvdd25-supply = <&reg_dldo2>;
-+		dvdd12-supply = <&reg_fldo1>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			anx6345_in: port@0 {
-+				reg = <0>;
-+				anx6345_in_tcon0: endpoint {
-+					remote-endpoint = <&tcon0_out_anx6345>;
-+				};
-+			};
-+
-+			anx6345_out: port@1 {
-+				reg = <1>;
-+				anx6345_out_edp: endpoint {
-+					remote-endpoint = <&panel_edp_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &r_pio {
-@@ -357,6 +403,19 @@ &sound {
- 			"MIC2", "Internal Microphone Right";
- };
- 
-+&tcon0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&lcd_rgb666_pins>;
-+
-+	status = "okay";
-+};
-+
-+&tcon0_out {
-+	tcon0_out_anx6345: endpoint {
-+		remote-endpoint = <&anx6345_in_tcon0>;
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pb_pins>;
--- 
-2.25.0
+SGksIEppdGFvOg0KDQpPbiBXZWQsIDIwMjAtMDItMjYgYXQgMTM6MzIgKzA4MDAsIEppdGFvIFNo
+aSB3cm90ZToNCj4gQWRkIHByb3BlcnR5ICJwY2xrLXNhbXBsZSIgdG8gY29uZmlnIHRoZSBkcGkg
+c2FtcGxlIG9uIGZhbGxpbmcgKDApLA0KPiByaXNpbmcgKDEpLCBib3RoIGZhbGxpbmcgYW5kIHJp
+c2luZyAoMikuDQo+IA0KDQpSZXZpZXdlZC1ieTogQ0sgSHUgPGNrLmh1QG1lZGlhdGVrLmNvbT4N
+Cg0KPiBTaWduZWQtb2ZmLWJ5OiBKaXRhbyBTaGkgPGppdGFvLnNoaUBtZWRpYXRlay5jb20+DQo+
+IC0tLQ0KPiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRl
+ayxkcGkudHh0ICAgICAgIHwgMiArKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygr
+KQ0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
+aXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRwaS50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkcGkudHh0DQo+IGluZGV4IGE3
+YjFiOGJmYjY1ZS4uNDI5OWFhMWFkZjQ1IDEwMDY0NA0KPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkcGkudHh0DQo+ICsr
+KyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21l
+ZGlhdGVrLGRwaS50eHQNCj4gQEAgLTIwLDYgKzIwLDcgQEAgUmVxdWlyZWQgcHJvcGVydGllczoN
+Cj4gIE9wdGlvbmFsIHByb3BlcnRpZXM6DQo+ICAtIHBpbmN0cmwtbmFtZXM6IENvbnRhaW4gImdw
+aW9tb2RlIiBhbmQgImRwaW1vZGUiLg0KPiAgICBwaW5jdHJsLW5hbWVzIHNlZSBEb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGluY3RybHBpbmN0cmwtYmluZGluZ3MudHh0DQo+ICst
+IHBjbGstc2FtcGxlOiByZWZlciBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVk
+aWEvdmlkZW8taW50ZXJmYWNlcy50eHQuDQo+ICANCj4gIEV4YW1wbGU6DQo+ICANCj4gQEAgLTM3
+LDYgKzM4LDcgQEAgZHBpMDogZHBpQDE0MDFkMDAwIHsNCj4gIA0KPiAgCXBvcnQgew0KPiAgCQlk
+cGkwX291dDogZW5kcG9pbnQgew0KPiArCQkJcGNsay1zYW1wbGUgPSAwOw0KPiAgCQkJcmVtb3Rl
+LWVuZHBvaW50ID0gPCZoZG1pMF9pbj47DQo+ICAJCX07DQo+ICAJfTsNCg0K
 
