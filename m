@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 06DCF16F93E
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 09:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CD1C16F936
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 09:11:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727247AbgBZILH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Feb 2020 03:11:07 -0500
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:32927 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727341AbgBZIKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 03:10:45 -0500
-Received: by mail-pl1-f196.google.com with SMTP id ay11so998179plb.0;
-        Wed, 26 Feb 2020 00:10:44 -0800 (PST)
+        id S1727517AbgBZIKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Feb 2020 03:10:48 -0500
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:32927 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727486AbgBZIKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 03:10:46 -0500
+Received: by mail-pl1-f193.google.com with SMTP id ay11so998206plb.0;
+        Wed, 26 Feb 2020 00:10:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=bV3ZvEYwFOIunmpWLGzAgCdGTlK6S+EV6uVEHB+FGxY=;
-        b=Q0cii6N45xFi8jvZk47bAoc1Nxu6hFKn2R/6gr1ZfjKbVoDJZ64PKB8Z3UWgfpC96z
-         m858biDFlV7/4mo1LjVTUmbbBHm1yKrJnJ3uLVZBlEdyOFSDznZRxrzu6B/mSXoBfdGU
-         mlGpBVLSLPU/z8ykPcedU1XFyCgTRivYgIcpSqG+QITc7/eIRdzyugFFz9Yzl27ql70w
-         8AlOefrAt/HgAlO+4L6JoXtZp+YN7BobPP6qXr0OfqH/1PLZecbnI0vC7uItRmmZkPfN
-         j7AsPd8mIOV8s5KgCaaK+xwtreytUn7QQZvq+Frfrl0pLWndKlgav8D5uWnV85pooXdR
-         SCgg==
+        bh=vEnVySXBYfW3b1su9MemqgqPSinDbCdHAw5n+ZVHXKA=;
+        b=ZqFr2XdedoNMMzSdc2eWipJbPoWCSoIWOaxz1zsBu+w5FRw0nlJVp7B9aMcVR/ECrM
+         fWpYYrpUhtSvO1rGsvHH3i7x8JxpD2QgM4DK0weubmj2twGyNSOa9Gvtg6KWDj0oARIV
+         ossJG+QlPSs1QhoRE2faVAv1lrRd7/LwUBqX6m+LwRkGl9SmUJ5qeccTbXxGKO/jke+J
+         hejsi+GJu4wBCG1LLI2Rb9i3hLwtSZ88dY/P2BygJXrOuCX1Xh6+4AO3P044cgvoby3X
+         oVgYppEgNor2/7HskWoAIOtOe2teNJqCPhYgfnRcBTVY+U0Ce7WQEZmjOKtWi3whIYeH
+         uQBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=bV3ZvEYwFOIunmpWLGzAgCdGTlK6S+EV6uVEHB+FGxY=;
-        b=UQ0vly5+p5p/CtZZNJNPlOQp0h5KWCGnkr6InfWVzCoVUavCO7uPVgYeAuNKxzqBz2
-         x6JX99GOENLOe2jV14TTOurmSsalEyOCO4p3Ocd+1ebigUsTuU9Amh4cHPUrBdqYKJTl
-         JNoNRSlxp+JQe83eH1OBbXUnVWQNOO+ekRLd2OLg6DTEiYtwTrKrewPPluMG0pJkYI6D
-         kpZ+VA3IK/9JpeAALPgmxEjbMSAy4ICiOApGMTugah+U7YyTas9wjwDTlyl5yee6w5EX
-         TbPNAVqZHa78VAG5/LSQ73kZplyDrg9SQ2cKxVnLqSWDPaGKkMARxjL+oKnlNHayklpc
-         PXXA==
-X-Gm-Message-State: APjAAAWWafXaVCqsgcXdVroOf90ghNGa+lKmrwn7PrLs7ZeW/Mklo+R2
-        2Z7WIAYBqXNeA8C68ruDN6U=
-X-Google-Smtp-Source: APXvYqwzmN2dNDKDPwprqjYoy3wHRxeIo1QTGdy8Nrs8WKG2CT6K8e2fuBfcpdmu4anfHjvkmdpjJQ==
-X-Received: by 2002:a17:902:6184:: with SMTP id u4mr2301682plj.216.1582704644297;
-        Wed, 26 Feb 2020 00:10:44 -0800 (PST)
+        bh=vEnVySXBYfW3b1su9MemqgqPSinDbCdHAw5n+ZVHXKA=;
+        b=KmHwCHBk99hld3fSlUuy58HxpU0gcIIwApW6mU45Jsurl1nWFKFCltChBOzWrA7hKl
+         eMf6zlllvv6Q2T1xCwChQOAwEvrzYjcuXINe808cY1T6i7LSyhqNlcndyLyHr6R4pVTh
+         5rScNPFlP2OSBM/UJQCY0OFtLtHf0swWOjA5lpxj0oNXtaJ7KGgWQe9v3jSDX/TrixSh
+         Jb+pvOc1z4QZeUJ5f7CyMPEV7Ptf3DswpXTF5bNiiwGiOfEXtRaB9rXgaaM3e5v372Sa
+         F8IKnNq81NeGqkepk60Nb55OjPFfmPx5BZfJda08xBGMpx6YCPAT2NZt0/F03ZDnOn6E
+         O87A==
+X-Gm-Message-State: APjAAAWGDeR58vza/uv2zcdMZ9/eXXnY0On6NNPJrzh6rZc1iEqC1GW7
+        6icpq/KDs62zyw6/mphO+YU=
+X-Google-Smtp-Source: APXvYqySsTMpSDO1lKEob5Z3qPaMibUnculbDtGi+2b/LHKNJPcUDEb49L+OdYHplPurgC0YCZJGNA==
+X-Received: by 2002:a17:90a:32e4:: with SMTP id l91mr3675046pjb.23.1582704645464;
+        Wed, 26 Feb 2020 00:10:45 -0800 (PST)
 Received: from anarsoul-thinkpad.lan (216-71-213-236.dyn.novuscom.net. [216.71.213.236])
-        by smtp.gmail.com with ESMTPSA id v7sm1679230pfn.61.2020.02.26.00.10.43
+        by smtp.gmail.com with ESMTPSA id v7sm1679230pfn.61.2020.02.26.00.10.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2020 00:10:43 -0800 (PST)
+        Wed, 26 Feb 2020 00:10:44 -0800 (PST)
 From:   Vasily Khoruzhick <anarsoul@gmail.com>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -66,11 +66,10 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
         Samuel Holland <samuel@sholland.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v2 2/6] drm/bridge: anx6345: don't print error message if regulator is not ready
-Date:   Wed, 26 Feb 2020 00:10:07 -0800
-Message-Id: <20200226081011.1347245-3-anarsoul@gmail.com>
+Cc:     Vasily Khoruzhick <anarsoul@gmail.com>
+Subject: [PATCH v2 3/6] dt-bindings: Add Guangdong Neweast Optoelectronics CO. LTD vendor prefix
+Date:   Wed, 26 Feb 2020 00:10:08 -0800
+Message-Id: <20200226081011.1347245-4-anarsoul@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200226081011.1347245-1-anarsoul@gmail.com>
 References: <20200226081011.1347245-1-anarsoul@gmail.com>
@@ -81,40 +80,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We don't want to print scary message if devm_regulator_get() returns
--EPROBE_DEFER
+Add vendor prefix for Guangdong Neweast Optoelectronics CO. LTD
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
 ---
- drivers/gpu/drm/bridge/analogix/analogix-anx6345.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-index 0d8d083b0207..0bf81b9b5faa 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix-anx6345.c
-@@ -714,14 +714,18 @@ static int anx6345_i2c_probe(struct i2c_client *client,
- 	/* 1.2V digital core power regulator  */
- 	anx6345->dvdd12 = devm_regulator_get(dev, "dvdd12");
- 	if (IS_ERR(anx6345->dvdd12)) {
--		DRM_ERROR("dvdd12-supply not found\n");
-+		if (PTR_ERR(anx6345->dvdd12) != -EPROBE_DEFER)
-+			DRM_ERROR("Failed to get dvdd12 supply (%ld)\n",
-+				  PTR_ERR(anx6345->dvdd12));
- 		return PTR_ERR(anx6345->dvdd12);
- 	}
- 
- 	/* 2.5V digital core power regulator  */
- 	anx6345->dvdd25 = devm_regulator_get(dev, "dvdd25");
- 	if (IS_ERR(anx6345->dvdd25)) {
--		DRM_ERROR("dvdd25-supply not found\n");
-+		if (PTR_ERR(anx6345->dvdd25) != -EPROBE_DEFER)
-+			DRM_ERROR("Failed to get dvdd25 supply (%ld)\n",
-+				  PTR_ERR(anx6345->dvdd25));
- 		return PTR_ERR(anx6345->dvdd25);
- 	}
- 
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 6456a6dfd83d..5dfbad67aa81 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -661,6 +661,8 @@ patternProperties:
+     description: Netron DY
+   "^netxeon,.*":
+     description: Shenzhen Netxeon Technology CO., LTD
++  "^neweast,.*":
++    description: Guangdong Neweast Optoelectronics CO., LTD
+   "^nexbox,.*":
+     description: Nexbox
+   "^nextthing,.*":
 -- 
 2.25.0
 
