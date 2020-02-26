@@ -2,86 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC8E116FDDB
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 12:36:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1891216FDF3
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 12:38:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728201AbgBZLgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Feb 2020 06:36:13 -0500
-Received: from foss.arm.com ([217.140.110.172]:34498 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728071AbgBZLgM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 26 Feb 2020 06:36:12 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2680D1FB;
-        Wed, 26 Feb 2020 03:36:12 -0800 (PST)
-Received: from localhost (unknown [10.37.6.21])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9DDD73FA00;
-        Wed, 26 Feb 2020 03:36:11 -0800 (PST)
-Date:   Wed, 26 Feb 2020 11:36:10 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Chuanhong Guo <gch981213@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-mediatek@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        id S1727785AbgBZLiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Feb 2020 06:38:20 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:34811 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726440AbgBZLiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 06:38:18 -0500
+Received: by mail-wm1-f67.google.com with SMTP id i10so3259704wmd.1
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2020 03:38:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=mQFv2ptApTIAiUn/IDnNgZylYWpvb4JaReKMP2qGRB8=;
+        b=TSDY4K1jK4zC8azCDNMC5WXyxnatPyfc/pal1j+EIbnQKW2zaRx9qYncNZj9heQkOO
+         JPA+Ec8cjsQg6KPJTGTR298QW22hIk2vO2pSGBmthLDnIMXTxfy4D5uUGGeH/dYYm0ud
+         eMcAg3Bu9XFBTe55fTumqTQ3Wa7el+GPollNpMOMT2TW/Qvto6SaX5A8pyz9WNbivBlr
+         vFofurtnEsP0LMC65L6LOWe/25tOhrBG5tmt7XQ1Q7ePkCKHLhS3dVhxEPoemgBU+6FQ
+         hgqDhOq0ydIzX+XqKIKeRoM+qkoUsa9SbbsP/GG/pObX16rdcmO2HtjTUv2aTs5/gHkc
+         +VXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=mQFv2ptApTIAiUn/IDnNgZylYWpvb4JaReKMP2qGRB8=;
+        b=JMqkhKjRw0d5iPWZ6yisEJuCkqG4oprrt3qQJ83i6wxm+7IwVtc60qFnSv0pO1cNFC
+         WxpuNtO+k2i0MrOOUIl5DFkd63AFN22mU46+t6wZf42c3LdoMHt1gFq2ELDCLT2W94kJ
+         /sz4xYBzlXbdOht/3QZxxmnx/b66/BREUJix6L0S6o3jX5ykH4M+0Q7GN1NbHKh9dTGe
+         6dw0J03iLeddcK4lKZqeXOdT3SQKJBGAw8f8SQuY+YInuos8q8ivKlAzaCIDh6zRng5b
+         c2ipKUHdVbAeSf6jtdGV10T7dsSocIBuQsVAqsYBIuTNaJO8sikGc1axDxtQPOgaQKz1
+         4Vmw==
+X-Gm-Message-State: APjAAAXoryRtOEAkvWiyQJgouShooWsprHzZibp2D4zkrdBVWFupqA4N
+        0ho3rchPANmH0FVkr8xuUPcqmw==
+X-Google-Smtp-Source: APXvYqyak90IvO19aKLILtWxBiJdRlI2XwGyaViPcGIDLyWqQbmhah1/I7K4BB75W9pOuWCAz2jGYQ==
+X-Received: by 2002:a7b:c416:: with SMTP id k22mr5369132wmi.25.1582717095791;
+        Wed, 26 Feb 2020 03:38:15 -0800 (PST)
+Received: from dell ([2.31.163.122])
+        by smtp.gmail.com with ESMTPSA id h13sm3391406wrw.54.2020.02.26.03.38.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Feb 2020 03:38:14 -0800 (PST)
+Date:   Wed, 26 Feb 2020 11:38:46 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Adrian Panella <ianchi74@outlook.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/2] rewrite mtk-quadspi spi-nor driver with spi-mem
-Message-ID: <20200226113610.GD4136@sirena.org.uk>
-References: <20200215065826.739102-1-gch981213@gmail.com>
- <20200218125557.GD4232@sirena.org.uk>
- <CAJsYDVL03KJv7eewGekBPCfpbOuTX0tJ6qZaydvJnBDzZ5vEwg@mail.gmail.com>
- <20200225173137.GA31830@bogus>
- <CAJsYDVKqcd-ytLLf5zKqs8DfjPAa5ELCX53OiPDAi-tDnLd=Eg@mail.gmail.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] regulator: add smb208 support
+Message-ID: <20200226113846.GM3494@dell>
+References: <20200219163711.479-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ylS2wUBXLOxYXZFQ"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAJsYDVKqcd-ytLLf5zKqs8DfjPAa5ELCX53OiPDAi-tDnLd=Eg@mail.gmail.com>
-X-Cookie: May all your PUSHes be POPped.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200219163711.479-1-ansuelsmth@gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 19 Feb 2020, Ansuel Smith wrote:
 
---ylS2wUBXLOxYXZFQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> Smb208 regulators are used on some ipq806x soc.
+> Add support for it to make it avaiable on some routers
+> that use it.
+> 
+> Signed-off-by: Adrian Panella <ianchi74@outlook.com>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom-rpm.txt | 4 ++++
 
-On Wed, Feb 26, 2020 at 09:31:33AM +0800, Chuanhong Guo wrote:
-> On Wed, Feb 26, 2020 at 1:31 AM Rob Herring <robh@kernel.org> wrote:
+Acked-by: Lee Jones <lee.jones@linaro.org>
 
-> > You should should really only need 'spi-max-frequency' if the max freq
-> > is less than the minimum of the host and device max freq.
+>  drivers/regulator/qcom_rpm-regulator.c             | 9 +++++++++
+>  2 files changed, 13 insertions(+)
 
-> But current spi framework forces that a "spi-max-frequency" property
-> is present. [0]
-> Should we patch spi framework then?
-
-That's one option, yes.  As far as I can tell the bindings have always
-required an explicit frequency specified in the bindings but I've no
-idea why.
-
---ylS2wUBXLOxYXZFQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl5WWCkACgkQJNaLcl1U
-h9CC6gf+JGnksoKyOcf+87xz30r83FSXTXHP5TSv0S1iEPWe7PYG3vPRv0NdFdq2
-95nsCYkfFdyrl8ayy/LjsXvZMbZPUv2oDhJGdq11H7EX3/DrKCTcChXdkzpD64NG
-dlKWpB6xvJ6Ka/g9VowGe+WcTwrhQBQByb45Z0EkTZxQ+YScJHQkJy8HZXQKf85E
-IAW7t7mcHtmmIXmJB7yHHE3exT6cOcDurwuz6QOJ+w3YwNYNO2HcR5ZS0T1IjPe4
-WgWVxid2OxLorFCxu8dUxxsq29uDD49lP/kfbyVYkND761fTbk2idLN94r6vvCyx
-6PNQ3DIDylR48WUdePXdGADNjXBUog==
-=d0oJ
------END PGP SIGNATURE-----
-
---ylS2wUBXLOxYXZFQ--
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
