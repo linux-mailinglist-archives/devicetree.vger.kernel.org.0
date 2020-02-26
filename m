@@ -2,172 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2B37170B75
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 23:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CB7C170B6F
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 23:23:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727916AbgBZWXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Feb 2020 17:23:36 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36667 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727921AbgBZWXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 17:23:35 -0500
-Received: by mail-oi1-f194.google.com with SMTP id c16so1247150oic.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2020 14:23:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kopismobile-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RPLfgfdP5zDOulU8s7N5lsoQDkFKIGOev+f922eUscI=;
-        b=uVeg5G1oZk8D+V3xTFMCuz0ISw7HSSPLIO9RnG0sxM5HfLO1nPXP46ax+z/+FI7qXl
-         bTBQbT+cYD1ne0Wbp142uSnJwocWbS/j0WNuSwlpAes0dQFpsjnUR+wEPlzw5bUH1Kyr
-         /UcS1dG3UxfpKzaGAA3asPOj5d3lvLDUZ+i0IECC9ejPxVxbu79lJfakZUPI3c5zCnS1
-         55/5t9b8YO1LZDrGc/3hhy/Mm/iEWvVArkD7IpwrDTeS76P69/71McudmB2afGXOVz/o
-         1uJGqD7XoxbSh341c04Eb/q5me1MgpMPvtjD57SbCtrqJIil2DG6W23xo2792Ac1rvKJ
-         q95Q==
+        id S1727802AbgBZWXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Feb 2020 17:23:32 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:36679 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727736AbgBZWXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 17:23:32 -0500
+Received: by mail-ot1-f68.google.com with SMTP id j20so1047250otq.3;
+        Wed, 26 Feb 2020 14:23:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RPLfgfdP5zDOulU8s7N5lsoQDkFKIGOev+f922eUscI=;
-        b=JtZCTMRySRjsH8oeosjDxSu+T7yRgmiRY48DikvYDpCD7WMjolIuxh6EDSkmOiEGQX
-         DpXbPs07eXWJdmzBFDfbQCJGg6CH7uDKizfb1A1z6IUCJPYK3wblehDYjwztmh0qNf29
-         C1vK80QY3+s61Hfj4MEmIdw7jgJ1VEqyJMcOyr1siauRtmu1dS71LIvCpsIIR9QHtTFQ
-         bC4sGYNLIGi2KqdTUY+lPM+wJZOv8EOpXzPIOKrZQufcwriYZesDL8NZ/3F2Piq3lPql
-         zzpbCAI/8L8nUbhIAx0+jwl56C2YzDXlwmjqJ75RwoFFZesGN7S3j+xtFyZenn9ajzYl
-         6CTQ==
-X-Gm-Message-State: APjAAAWCsDAG8UWLLfupbzVGQFaFdASa4Bl7SKL4NZO4dARJZCTrsXss
-        ZvRCBEQuJq9l8d1DXkUJuU8cyw==
-X-Google-Smtp-Source: APXvYqzlndpuMjmqMjgCbmm5ty+ZIZelNp+YfcHV5dOWWBU2XRmTDq8hpb+DH6jAcKC1fLxAe/BpqA==
-X-Received: by 2002:aca:55cc:: with SMTP id j195mr1049707oib.22.1582755814597;
-        Wed, 26 Feb 2020 14:23:34 -0800 (PST)
-Received: from farregard-ubuntu.kopismobile.org (c-73-177-17-21.hsd1.ms.comcast.net. [73.177.17.21])
-        by smtp.gmail.com with ESMTPSA id z21sm1237614oto.52.2020.02.26.14.23.33
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=9/KR8/ro7ANRurfSfz9QDDSqoIKmisafRnjItkiqO1U=;
+        b=E0KQnAPlQ4Ou8K8JODSGbFeMdPRlSRn/4oRFkG3yY8Nm12sj0GNS/OcqcvQpHW9KGw
+         t4xT1+XJ/ynY14Bp3CEAIpgXrrMpFxQHhqAHTOsrDFnpI7mm2vnYDwH9qKJR1/NzuXO3
+         H3JBmUsIQc4jxo4zJlMHTkiXrJjZh7d3+hyIwzK8wS2X9qCyERL5SbMGnl/iPkCDv1EQ
+         rAMtXXcbcHqutb+PbaD/+Ra1BKrzt80kglMIhnb56IzH2Dc0TanEIVWpoNRHJrUO2BrW
+         puXyFPM3U3/D6UKtg6gTJ5MWEBCa3Q6Dwyyp9AAA751k3AzPJoF2XVLLotgyk82l1ak0
+         VU8A==
+X-Gm-Message-State: APjAAAWTWKopRrgzYu2HZOk4qkyorWU1E/3x87CVNauhxgCOisJvNYmi
+        xig3i/C3U2CZ41PyfTzYbA==
+X-Google-Smtp-Source: APXvYqxQoc+Y2Yxgre6xns0v4FBKE/B92IK5PIDzgAyBU4JtbAuTWwoJBOY8QPJnsvQfCddn4rj14g==
+X-Received: by 2002:a9d:2dea:: with SMTP id g97mr841706otb.33.1582755811422;
+        Wed, 26 Feb 2020 14:23:31 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a30sm1226839otc.79.2020.02.26.14.23.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2020 14:23:34 -0800 (PST)
-From:   George Hilliard <ghilliard@kopismobile.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     George Hilliard <ghilliard@kopismobile.com>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de
-Subject: [PATCH v4 2/2] tty: imx serial: Implement support for reversing TX and RX polarity
-Date:   Wed, 26 Feb 2020 16:23:19 -0600
-Message-Id: <20200226222319.18383-3-ghilliard@kopismobile.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200226222319.18383-1-ghilliard@kopismobile.com>
-References: <20200226222319.18383-1-ghilliard@kopismobile.com>
+        Wed, 26 Feb 2020 14:23:30 -0800 (PST)
+Received: (nullmailer pid 9442 invoked by uid 1000);
+        Wed, 26 Feb 2020 22:23:30 -0000
+Date:   Wed, 26 Feb 2020 16:23:30 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        adamboardman@gmail.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 1/4] dt-bindings: i2c: Document I2C controller binding
+ for MT6797 SoC
+Message-ID: <20200226222330.GA9392@bogus>
+References: <20200222162444.11590-1-manivannan.sadhasivam@linaro.org>
+ <20200222162444.11590-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200222162444.11590-2-manivannan.sadhasivam@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The peripheral has support for inverting its input and/or output
-signals.  This is useful if the hardware flips polarity of the
-peripheral's signal, such as swapped +/- pins on an RS-422 transceiver,
-or an inverting level shifter.  Add support for these control registers
-via the device tree binding.
+On Sat, 22 Feb 2020 21:54:41 +0530, Manivannan Sadhasivam wrote:
+> I2C controller driver for MT6577 SoC is reused for MT6797 SoC. Hence,
+> document that in DT binding.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-As part of this change, make the writes of the various registers more
-uniform by moving the UCR3 block up near the other registers' blocks,
-since the INVT bit must be set before enabling the peripheral.
-
-Signed-off-by: George Hilliard <ghilliard@kopismobile.com>
----
-v1..v2: Remove confidentiality spam
-v2..v3: Set *and* clear register, and do it before TX enable
-v3..v4: Clean up bit manipulation; move UCR3 block so it's written once
-
- drivers/tty/serial/imx.c | 44 +++++++++++++++++++++++++---------------
- 1 file changed, 28 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/tty/serial/imx.c b/drivers/tty/serial/imx.c
-index 0c6c63166250..81a981849a4b 100644
---- a/drivers/tty/serial/imx.c
-+++ b/drivers/tty/serial/imx.c
-@@ -195,6 +195,8 @@ struct imx_port {
- 	unsigned int		have_rtscts:1;
- 	unsigned int		have_rtsgpio:1;
- 	unsigned int		dte_mode:1;
-+	unsigned int		inverted_tx:1;
-+	unsigned int		inverted_rx:1;
- 	struct clk		*clk_ipg;
- 	struct clk		*clk_per;
- 	const struct imx_uart_data *devdata;
-@@ -1335,7 +1337,7 @@ static int imx_uart_startup(struct uart_port *port)
- 	int retval, i;
- 	unsigned long flags;
- 	int dma_is_inited = 0;
--	u32 ucr1, ucr2, ucr4;
-+	u32 ucr1, ucr2, ucr3, ucr4;
- 
- 	retval = clk_prepare_enable(sport->clk_per);
- 	if (retval)
-@@ -1387,11 +1389,29 @@ static int imx_uart_startup(struct uart_port *port)
- 
- 	imx_uart_writel(sport, ucr1, UCR1);
- 
--	ucr4 = imx_uart_readl(sport, UCR4) & ~UCR4_OREN;
-+	ucr4 = imx_uart_readl(sport, UCR4) & ~(UCR4_OREN | UCR4_INVR);
- 	if (!sport->dma_is_enabled)
- 		ucr4 |= UCR4_OREN;
-+	if (sport->inverted_rx)
-+		ucr4 |= UCR4_INVR;
- 	imx_uart_writel(sport, ucr4, UCR4);
- 
-+	ucr3 = imx_uart_readl(sport, UCR3) & ~UCR3_INVT;
-+	/*
-+	 * configure tx polarity before enabling tx
-+	 */
-+	if (sport->inverted_tx)
-+		ucr3 |= UCR3_INVT;
-+
-+	if (!imx_uart_is_imx1(sport)) {
-+		ucr3 |= UCR3_DTRDEN | UCR3_RI | UCR3_DCD;
-+
-+		if (sport->dte_mode)
-+			/* disable broken interrupts */
-+			ucr3 &= ~(UCR3_RI | UCR3_DCD);
-+	}
-+	imx_uart_writel(sport, ucr3, UCR3);
-+
- 	ucr2 = imx_uart_readl(sport, UCR2) & ~UCR2_ATEN;
- 	ucr2 |= (UCR2_RXEN | UCR2_TXEN);
- 	if (!sport->have_rtscts)
-@@ -1404,20 +1424,6 @@ static int imx_uart_startup(struct uart_port *port)
- 		ucr2 &= ~UCR2_RTSEN;
- 	imx_uart_writel(sport, ucr2, UCR2);
- 
--	if (!imx_uart_is_imx1(sport)) {
--		u32 ucr3;
--
--		ucr3 = imx_uart_readl(sport, UCR3);
--
--		ucr3 |= UCR3_DTRDEN | UCR3_RI | UCR3_DCD;
--
--		if (sport->dte_mode)
--			/* disable broken interrupts */
--			ucr3 &= ~(UCR3_RI | UCR3_DCD);
--
--		imx_uart_writel(sport, ucr3, UCR3);
--	}
--
- 	/*
- 	 * Enable modem status interrupts
- 	 */
-@@ -2184,6 +2190,12 @@ static int imx_uart_probe_dt(struct imx_port *sport,
- 	if (of_get_property(np, "rts-gpios", NULL))
- 		sport->have_rtsgpio = 1;
- 
-+	if (of_get_property(np, "fsl,inverted-tx", NULL))
-+		sport->inverted_tx = 1;
-+
-+	if (of_get_property(np, "fsl,inverted-rx", NULL))
-+		sport->inverted_rx = 1;
-+
- 	return 0;
- }
- #else
--- 
-2.25.0
-
+Acked-by: Rob Herring <robh@kernel.org>
