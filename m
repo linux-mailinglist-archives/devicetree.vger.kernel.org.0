@@ -2,68 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EFD1170157
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 15:38:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBEE170169
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 15:41:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727714AbgBZOil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Feb 2020 09:38:41 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:54485 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727322AbgBZOil (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 09:38:41 -0500
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1j6xpb-0000a8-Ci; Wed, 26 Feb 2020 15:38:35 +0100
-Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1j6xpa-0001GH-HZ; Wed, 26 Feb 2020 15:38:34 +0100
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-To:     linux-stm32@st-md-mailman.stormreply.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@st.com
-Cc:     kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: arm: stm32: document lxa,stm32mp157c-mc1 compatible
-Date:   Wed, 26 Feb 2020 15:38:25 +0100
-Message-Id: <20200226143826.1146-3-a.fatoum@pengutronix.de>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200226143826.1146-1-a.fatoum@pengutronix.de>
-References: <20200226143826.1146-1-a.fatoum@pengutronix.de>
+        id S1727362AbgBZOls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Feb 2020 09:41:48 -0500
+Received: from mga09.intel.com ([134.134.136.24]:15113 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726974AbgBZOls (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 26 Feb 2020 09:41:48 -0500
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Feb 2020 06:41:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,488,1574150400"; 
+   d="scan'208";a="350403644"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga001.fm.intel.com with ESMTP; 26 Feb 2020 06:41:45 -0800
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1j6xsh-004wzF-3T; Wed, 26 Feb 2020 16:41:47 +0200
+Date:   Wed, 26 Feb 2020 16:41:47 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kishon@ti.com, robh@kernel.org, cheol.yong.kim@intel.com,
+        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com,
+        yixin.zhu@intel.com
+Subject: Re: [PATCH v3 3/3] phy: intel: Add driver support for Combophy
+Message-ID: <20200226144147.GQ10400@smile.fi.intel.com>
+References: <cover.1582709320.git.eswara.kota@linux.intel.com>
+ <48dbbe705a1f22fb9e088827ca0be149e8fbcd85.1582709320.git.eswara.kota@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: afa@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48dbbe705a1f22fb9e088827ca0be149e8fbcd85.1582709320.git.eswara.kota@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the STM32MP157 based Linux Automation MC-1 device tree
-compatible.
+On Wed, Feb 26, 2020 at 06:09:53PM +0800, Dilip Kota wrote:
+> Combophy subsystem provides PHYs for various
+> controllers like PCIe, SATA and EMAC.
 
-Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
----
- Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Thanks for an update, my comments below.
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-index 1fcf306bd2d1..71ea3f04ab9c 100644
---- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-+++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-@@ -38,6 +38,7 @@ properties:
-       - items:
-           - enum:
-               - arrow,stm32mp157a-avenger96 # Avenger96
-+              - lxa,stm32mp157c-mc1
-               - st,stm32mp157c-ed1
-               - st,stm32mp157a-dk1
-               - st,stm32mp157c-dk2
+...
+
+> +config PHY_INTEL_COMBO
+> +	bool "Intel Combo PHY driver"
+
+> +	depends on OF && HAS_IOMEM && (X86 || COMPILE_TEST)
+
+I guess it would be better to have like this:
+
+	depends on X86 || COMPILE_TEST
+	depends on OF && HAS_IOMEM
+
+But do you still have a dependency to OF?
+
+> +	select MFD_SYSCON
+> +	select GENERIC_PHY
+> +	select REGMAP
+
+...
+
+> + * Copyright (C) 2019 Intel Corporation.
+
+2019-2020
+
+...
+
+> +static const unsigned long intel_iphy_clk_rates[] = {
+> +	CLK_100MHZ, CLK_156_25MHZ, CLK_100MHZ
+
+It's good to have comma at the end since this might potentially be extended in
+the future.
+
+> +};
+> +
+> +enum {
+> +	PHY_0,
+> +	PHY_1,
+
+> +	PHY_MAX_NUM,
+
+But here we don't need it since it's a terminator line.
+Ditto for the rest of enumerators with a terminator / max entry.
+
+> +};
+
+...
+
+> +/*
+> + * Clock register bitfields to enable clocks
+> + * for ComboPhy according to the mode
+
+For multi-line comments use proper English punctuation.
+
+> + */
+
+...
+
+> +static int intel_cbphy_pcie_refclk_cfg(struct intel_cbphy_iphy *iphy, bool set)
+> +{
+> +	struct intel_combo_phy *cbphy = iphy->parent;
+> +	u32 mask = BIT(cbphy->id * 2 + iphy->id);
+
+> +	const u32 pad_dis_cfg_off = 0x174;
+
+This has to be defined in the top.
+
+> +	u32 val;
+> +
+> +	/* Register: 0 is enable, 1 is disable */
+> +	val = set ? 0 : mask;
+> +
+> +	return regmap_update_bits(cbphy->syscfg, pad_dis_cfg_off, mask, val);
+> +}
+
+...
+
+> +	ret = phy_cfg(sphy);
+> +
+> +	return ret;
+
+	return phy_cfg();
+
+...
+
+> +	/*
+> +	 * No way to identify gen1/2/3/4 for mppla and mpplb, just delay
+> +	 * for stable plla(gen1/gen2) or pllb(gen3/gen4)
+> +	 */
+
+Use proper abbreviation rules, i.e. capitalize appropriately. (I think at least
+PLL is quite common way to do it, the rest depends to the documentation / your
+intentions).
+
+
+...
+
+> +	ret = reset_control_assert(iphy->app_rst);
+> +	if (ret) {
+> +		dev_err(dev, "PHY(%u:%u) core assert failed!\n",
+> +			COMBO_PHY_ID(iphy), PHY_ID(iphy));
+> +		return ret;
+> +	}
+> +
+> +	ret = intel_cbphy_iphy_enable(iphy, false);
+> +	if (ret) {
+> +		dev_err(dev, "Failed disabling Phy core\n");
+
+Phy -> PHY for sake of the consistency
+
+> +		return ret;
+> +	}
+
+...
+
+> +	/* Wait RX adaptation to finish */
+> +	ret = readl_poll_timeout(cr_base + CR_ADDR(PCS_XF_RX_ADAPT_ACK, id),
+> +				 val, val & RX_ADAPT_ACK_BIT, 10, 5000);
+> +	if (ret)
+> +		dev_err(dev, "RX Adaptation failed!\n");
+> +	else
+
+> +		dev_info(dev, "RX Adaptation success!\n");
+
+Sounds more likely like dev_dbg().
+
+...
+
+> +static int intel_cbphy_iphy_dt_parse(struct intel_combo_phy *cbphy,
+
+dt -> fwnode
+Ditto for other similar function names.
+
+> +				     struct fwnode_handle *fwnode, int idx)
+> +{
+
+> +	dev = get_dev_from_fwnode(fwnode);
+
+I don't see where you drop reference count to the struct device object.
+
+> +}
+
+...
+
+> +	if (!iphy0->enable && !iphy1->enable) {
+
+	if (!(iphy0->enable || iphy1->enable)) {
+
+?
+
+> +		dev_err(cbphy->dev, "CBPHY%u both PHY disabled!\n", cbphy->id);
+
+> +		return -EINVAL;
+
+-ENODEV ?
+
+> +	}
+> +
+> +	if (cbphy->aggr_mode == PHY_DL_MODE &&
+> +	    (!iphy0->enable || !iphy1->enable)) {
+
+	if (cbphy->aggr_mode == PHY_DL_MODE && !(iphy0->enable && iphy1->enable)) {
+
+?
+
+> +		dev_err(cbphy->dev,
+> +			"Dual lane mode but lane0: %s, lane1: %s\n",
+> +			iphy0->enable ? "on" : "off",
+> +			iphy1->enable ? "on" : "off");
+> +		return -EINVAL;
+> +	}
+
+...
+
+> +	struct fwnode_reference_args ref;
+> +	struct device *dev = cbphy->dev;
+> +	struct fwnode_handle *fwnode;
+> +	struct platform_device *pdev;
+> +	int i, ret;
+> +	u32 prop;
+
+I guess the following would be better:
+
+	struct device *dev = cbphy->dev;
+	struct platform_device *pdev = to_platform_device(dev);
+	struct fwnode_handle *fwnode = dev_fwnode(dev);
+	struct fwnode_reference_args ref;
+	int i, ret;
+	u32 prop;
+
+> +	pdev = to_platform_device(dev);
+
+See above.
+
+> +	fwnode = dev_fwnode(dev);
+
+See above.
+
+> +	ret = fwnode_property_read_u32_array(fwnode, "intel,phy-mode", &prop, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (prop >= PHY_MAX_MODE) {
+> +		dev_err(dev, "Invalid phy mode: %u\n", prop);
+> +		return -EINVAL;
+> +	}
+> +
+> +	cbphy->phy_mode = prop;
+
+I don't see why you need temporary variable at all?
+
+
+...
+
+> +	i = 0;
+> +	fwnode_for_each_available_child_node(dev_fwnode(dev), fwnode) {
+
+> +		if (i >= PHY_MAX_NUM) {
+> +			fwnode_handle_put(fwnode);
+> +			dev_err(dev, "Error: DT child number larger than %d\n",
+> +				PHY_MAX_NUM);
+> +			return -EINVAL;
+> +		}
+
+Logically this part is better to put after i++; line...
+
+> +		ret = intel_cbphy_iphy_dt_parse(cbphy, fwnode, i);
+> +		if (ret) {
+> +			fwnode_handle_put(fwnode);
+> +			return ret;
+> +		}
+> +
+
+> +		i++;
+
+...here.
+
+> +	}
+> +
+> +	return intel_cbphy_dt_sanity_check(cbphy);
+> +}
+
+...
+
+> +	.init =		intel_cbphy_init,
+> +	.exit =		intel_cbphy_exit,
+> +	.calibrate =	intel_cbphy_calibrate,
+> +	.owner =	THIS_MODULE,
+
+Usual way is to format by =, i.e.
+
+	.init		= intel_cbphy_init,
+	.exit		= intel_cbphy_exit,
+	.calibrate	= intel_cbphy_calibrate,
+	.owner		= THIS_MODULE,
+
+...
+
+> +	for (i = 0; i < PHY_MAX_NUM; i++) {
+> +		iphy = &cbphy->iphy[i];
+
+> +		if (iphy->enable) {
+
+		if (!iphy->enable)
+			continue;
+
+?
+
+> +			ret = intel_cbphy_iphy_create(iphy);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+
+...
+
+> +	platform_set_drvdata(pdev, cbphy);
+
+I guess it makes sense a bit later to do...
+
+> +	ret = intel_cbphy_dt_parse(cbphy);
+> +	if (ret)
+> +		return ret;
+
+...here?
+
+> +
+> +	return intel_cbphy_create(cbphy);
+
 -- 
-2.25.0
+With Best Regards,
+Andy Shevchenko
+
 
