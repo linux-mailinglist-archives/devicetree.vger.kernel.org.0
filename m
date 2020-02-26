@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECAB316FE6A
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 12:58:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60DA616FE75
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 12:58:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbgBZL6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Feb 2020 06:58:15 -0500
-Received: from mail-pj1-f42.google.com ([209.85.216.42]:53697 "EHLO
-        mail-pj1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726272AbgBZL6O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 06:58:14 -0500
-Received: by mail-pj1-f42.google.com with SMTP id n96so1164996pjc.3
-        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2020 03:58:14 -0800 (PST)
+        id S1726897AbgBZL6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Feb 2020 06:58:30 -0500
+Received: from mail-pg1-f174.google.com ([209.85.215.174]:40245 "EHLO
+        mail-pg1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726408AbgBZL6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 06:58:30 -0500
+Received: by mail-pg1-f174.google.com with SMTP id t24so1192374pgj.7
+        for <devicetree@vger.kernel.org>; Wed, 26 Feb 2020 03:58:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=L0WGdBs/BRtkbt1VGWWlFtU3iVs0rs7BsxsJ0Z9JuEQ=;
-        b=YCRaNKiqn8A6Ik8MNA4or/RUYmxDGYg7Azq43QnTOJb072o2gSUC84849DJoU7dHOm
-         WfN5tLjxAyIX09+yR7aMwjmJPfKFFRYkysEP9rvaOAKIqEhnbhyaq1Z/vowEHjvHhaGC
-         t4VtIAfon1DKKlndFkHRz4m+MBoI9oxe2bED6/awfDrQirFtVq2cy/poGHivHfOl+2Nj
-         jYXyRc8CIAWZT8qRg8D7axN1a5+BZQQjz1gpfenmbd8S6vrSioPC11UFutbt2XMaG4Eh
-         TYwAGwwQwOdcVjeXjJm/0Kp8E+uuZ6Niau/yZhrVhWSllyjvtz4+aI2sA85AenDAQUjQ
-         /WkQ==
+        bh=WPkKnyITMi7kXeWtbSlS/aIAUZOsi+vJbY5BLkxXdmQ=;
+        b=q7BXho3MER91BYoSM7ZxFTBBAxzMlvZ1q0Yk47po4Wvj0Cc0eLOaKYVMV8Q6cpMIok
+         TpQLs6TP1k05LIhzfvVfjkslkrwRBJAVpOVwgb8t40/2LzR4ZilDjPK79QbyBBHerIY3
+         bpDv/smKFTaeQs0mooDMzL9vThHb579io6ZQOJgFMuk+Zh0zCraepLQR0U/Sc0vmGsJg
+         wiI1BWsWa3uiJTdaVF4pTcaC87NCa1MadgXGqtVjqxhuZjXBq2lWRVrwWwFLgwEZb8Wl
+         50Pkbmq2MyHPWYk5X48YJUkDiQiv6VAdLHpp8Xqi4b4O5N6+F5mIxf2sH9R+lCxOY2IX
+         tKZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=L0WGdBs/BRtkbt1VGWWlFtU3iVs0rs7BsxsJ0Z9JuEQ=;
-        b=cIB4qyItjVRyGLwj5GCjm8ghcuF6eF6AlVKxSns6knQKN6UtP0AP5mmb/fRxRXiwfc
-         WhW/qOAnKc+zdjv7O7heUPPQF6betRTSlVRgNrfjdb62LYmsLUtOI8Iz+cKp8DTz4mOq
-         1c9ndz4vho27MzVJeBx2wrq65Cym7XATSz6+uOvg/nrL+xQ1OQSVN8Shk9wQLUDXHTPE
-         3KYKqJjqFqqhxK9NZ6ty1/BQjZeXFy+HCveuYUzcXgtOa1+OhqZSbjO7IuPXDoyIXqSR
-         nfTkY0NOA0iCj+fGOs5qdtkJ9XWNxvcPNrIczphbYG7J8RGO55ll6z5erVGPJL/4Ooca
-         JbSQ==
-X-Gm-Message-State: APjAAAXMZC7NjQuwvC8l6WBxnPJY3A3Zgu9SfpWKXXWpzb3clIP9RESu
-        lO6CXoGUb1tR5KAxdpcKtwQNzQ==
-X-Google-Smtp-Source: APXvYqyx1/PM5idU+c0uhvRnjfHFpRh/gIAwi9fme8XqqGmGzyeCZiRiVeTdSTowiPjOjVGSFItaxQ==
-X-Received: by 2002:a17:90a:a406:: with SMTP id y6mr4996011pjp.115.1582718293538;
-        Wed, 26 Feb 2020 03:58:13 -0800 (PST)
+        bh=WPkKnyITMi7kXeWtbSlS/aIAUZOsi+vJbY5BLkxXdmQ=;
+        b=J3yqhWIfXIfoHW6V2QVHP1Kl/klCkArk7akOH9+lWssq8GkFUTuLalyrdGOCNEmnsV
+         EAnTAFaUVRCYnF+KAM0metWr+fXjbnrANvVPSahFYje3mYxTf1shCvu1AU29vepquME1
+         +B9XXm3PRigZSgrL/tz2Px+0SiKasesH5BMHK2MP9nhKuk0sxdkbM8LLS9uINdK7Cc9i
+         7UUK8OMfeOm1hKZboCahdfnUmcAO0w6aMzkIhkJ2C3wa84icpvvso8KeKbo5n2MwN7XE
+         TqQVgYWyy3P1fE+C3Rt/fy9uPNeuYs6VWivCxP+xeLj7NYLdlLZbVtYcRYHI99vfBJ37
+         baqg==
+X-Gm-Message-State: APjAAAXAUJl0nP2Uc4B3BeUv2eYj7X0u1IsDsknE4dZhSBd65tqXZ8h/
+        uGVtlBvIEAvpub+Y0ULw5Z+/pkhFJ8k=
+X-Google-Smtp-Source: APXvYqyAwBWs2W6AYgIUWs8Q01aW/TGfyDQTaU/xJ9kSZLluYVEiiIouadrDmBlXt/kqoSH0iXbiQg==
+X-Received: by 2002:a63:8148:: with SMTP id t69mr802349pgd.187.1582718309433;
+        Wed, 26 Feb 2020 03:58:29 -0800 (PST)
 Received: from localhost ([2401:4900:1b38:7f42:3530:df3:7e53:a029])
-        by smtp.gmail.com with ESMTPSA id s206sm2946912pfs.100.2020.02.26.03.58.11
+        by smtp.gmail.com with ESMTPSA id z4sm2612966pfn.42.2020.02.26.03.58.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 26 Feb 2020 03:58:12 -0800 (PST)
+        Wed, 26 Feb 2020 03:58:28 -0800 (PST)
 From:   Amit Kucheria <amit.kucheria@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         vkoul@kernel.org, daniel.lezcano@linaro.org,
         bjorn.andersson@linaro.org, sivaa@codeaurora.org,
         Andy Gross <agross@kernel.org>, Zhang Rui <rui.zhang@intel.com>
-Cc:     Amit Kucheria <amit.kucheria@verdurent.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 1/3] dt-bindings: thermal: tsens: Add entry for sc7180 tsens to binding
-Date:   Wed, 26 Feb 2020 15:01:11 +0530
-Message-Id: <8309e39737c480b0835454cbc6db345c5a27ecd4.1582705101.git.amit.kucheria@linaro.org>
+Cc:     devicetree@vger.kernel.org
+Subject: [PATCH v3 2/3] dt-bindings: thermal: tsens: Add qcom,tsens-v0_1 to msm8916.dtsi compatible
+Date:   Wed, 26 Feb 2020 15:01:12 +0530
+Message-Id: <ab6a982bd9bcbc76262cd9ca5dd6ea10cf45b8a1.1582705101.git.amit.kucheria@linaro.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1582705101.git.amit.kucheria@linaro.org>
 References: <cover.1582705101.git.amit.kucheria@linaro.org>
@@ -67,63 +66,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 The qcom-tsens binding requires a SoC-specific and a TSENS
 family-specific binding to be specified in the compatible string.
 
-Since qcom,sc7180-tsens is not listed in the YAML binding, we see the
-following warnings in 'make dtbs_check'. Fix them.
+Since them family-specific binding is not listed in the .dtsi file, we
+see the following warnings in 'make dtbs_check'. Fix them.
 
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c263000: compatible: ['qcom,sc7180-tsens',
-'qcom,tsens-v2'] is not valid under any of the given schemas (Possible
-causes of the failure):
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c263000: compatible:0: 'qcom,sc7180-tsens' is not one of
-['qcom,msm8916-tsens', 'qcom,msm8974-tsens']
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c263000: compatible:0: 'qcom,sc7180-tsens' is not one of
+/home/amit/work/builds/build-aarch64/arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml:
+thermal-sensor@4a9000: compatible: ['qcom,msm8916-tsens'] is not valid
+under any of the given schemas (Possible causes of the failure):
+/home/amit/work/builds/build-aarch64/arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml:
+thermal-sensor@4a9000: compatible: ['qcom,msm8916-tsens'] is too short
+/home/amit/work/builds/build-aarch64/arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml:
+thermal-sensor@4a9000: compatible:0: 'qcom,msm8916-tsens' is not one of
 ['qcom,msm8976-tsens', 'qcom,qcs404-tsens']
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c263000: compatible:0: 'qcom,sc7180-tsens' is not one of
+/home/amit/work/builds/build-aarch64/arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml:
+thermal-sensor@4a9000: compatible:0: 'qcom,msm8916-tsens' is not one of
 ['qcom,msm8996-tsens', 'qcom,msm8998-tsens', 'qcom,sdm845-tsens']
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c263000: compatible:1: 'qcom,tsens-v0_1' was expected
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c263000: compatible:1: 'qcom,tsens-v1' was expected
-
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c265000: compatible: ['qcom,sc7180-tsens',
-'qcom,tsens-v2'] is not valid under any of the given schemas (Possible
-causes of the failure):
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c265000: compatible:0: 'qcom,sc7180-tsens' is not one of
-['qcom,msm8916-tsens', 'qcom,msm8974-tsens']
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c265000: compatible:0: 'qcom,sc7180-tsens' is not one of
-['qcom,msm8976-tsens', 'qcom,qcs404-tsens']
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c265000: compatible:0: 'qcom,sc7180-tsens' is not one of
-['qcom,msm8996-tsens', 'qcom,msm8998-tsens', 'qcom,sdm845-tsens']
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c265000: compatible:1: 'qcom,tsens-v0_1' was expected
-builds/arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml:
-thermal-sensor@c265000: compatible:1: 'qcom,tsens-v1' was expected
 
 Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
 ---
- Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-index eef13b9446a8..13e294328932 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-@@ -39,6 +39,7 @@ properties:
-               - qcom,msm8996-tsens
-               - qcom,msm8998-tsens
-               - qcom,sdm845-tsens
-+              - qcom,sc7180-tsens
-           - const: qcom,tsens-v2
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 9f31064f2374..1748ea3f4b4f 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -860,7 +860,7 @@
+ 		};
  
-   reg:
+ 		tsens: thermal-sensor@4a9000 {
+-			compatible = "qcom,msm8916-tsens";
++			compatible = "qcom,msm8916-tsens", "qcom,tsens-v0_1";
+ 			reg = <0x4a9000 0x1000>, /* TM */
+ 			      <0x4a8000 0x1000>; /* SROT */
+ 			nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
 -- 
 2.20.1
 
