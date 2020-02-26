@@ -2,86 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC74816F3BE
-	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 00:46:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9048C16F422
+	for <lists+devicetree@lfdr.de>; Wed, 26 Feb 2020 01:16:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729656AbgBYXqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 25 Feb 2020 18:46:54 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:34992 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729631AbgBYXqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 18:46:53 -0500
-Received: by mail-wm1-f68.google.com with SMTP id m3so1108381wmi.0
-        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 15:46:52 -0800 (PST)
+        id S1729170AbgBZAP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 25 Feb 2020 19:15:58 -0500
+Received: from mail-vk1-f169.google.com ([209.85.221.169]:40152 "EHLO
+        mail-vk1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729277AbgBZAPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 25 Feb 2020 19:15:55 -0500
+Received: by mail-vk1-f169.google.com with SMTP id c129so289738vkh.7
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 16:15:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=TYlyvESdtJkkzEIVJoYhQjClltnzu2fIaM1HVjBTbAU=;
-        b=Krc9sIsewtpswOvKmk7/S+COuYzreBWD7Ca8jY17fZ3k6AjVVACajXiS4CMmO1Nwtj
-         v8D7QrhulrHl9PWsix3qtVdoUc2Z8N6LW9X0B7qS0YEKS5IP19BbEUnU++EaiUjj6wci
-         KiRACC46tsHkWepzwmCV9H+GZZHdDtj4UyIxnM/IRi47C99hdartYCGwy3BZ0xASNVP+
-         MDXYP48thmVn9W5WTj36Vv0peDrX/4uGae7VRvlPqThnWBRRgrTXWvdiSL88lAULo4Dx
-         h6br15BkZNibYmn5UzAy/nL1OWM3dcCqrOunkGIbZP4T1dlmHaldJ/e+1HE3qalfG4tK
-         03wQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oTRomC2W+BSThGwAQZ4mFHuy58uAWVt5delRT81IvjU=;
+        b=MyRXyQ29K/5rD2ii3vJTRTLOQGj7HhOiybWmpSn7wQARePsB21oMCNPqUfbw9IaLkk
+         fEjTnM0c2DDcQCOnKybAVQGg6IvEpPJl+yg2p7SHDkweG+05yI8+cKr/gCSIP1gB7R1F
+         2uI0P2Q2CK/LKaq2R3M3UpOFhAR122qdsb7KQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=TYlyvESdtJkkzEIVJoYhQjClltnzu2fIaM1HVjBTbAU=;
-        b=TpaJpsUGeL9I7tHG3jXbgJ//HUslQgm1ixPtCvWP5HFKpR5MaKKq6t8T/pCDt008vB
-         hM6WBTvwpfDJA67Z2/O8EjReMR0KOJWPiM37Vr5TJyh+b6gfDD37za5ZicesuiswMWri
-         9Ng0NIRnImhMEuMW306K1ZXi04epDd71cWD78JTj647pasbsEj7V7jbtpEWHuVcMT3dK
-         2wRjgO0NLCTIyHL6kKxMAk6TSvMnNn4v1nkCuXre23OlHj1pXq5PqeTTi0WFlBGClM/+
-         ItYC0G0MMDwHtegQHPsgeTV5SZWgxGm6WjSalO30jSB86tZBkzrXRyn62i7SSm72A+Xv
-         YYWQ==
-X-Gm-Message-State: APjAAAXMGFzrwJQ6o/BLrJYY2E1wLRvgRJvrpeMgeul1wSwklbqLALIl
-        Nwp3ysWVDetNxzXwnf5Kf5jC8g==
-X-Google-Smtp-Source: APXvYqwY6Dl9BUk+IfJpxezAcmeZBSNghy55b16qrsor7bN8A4eNGfhfbLFlczmxqOt85MjNWpJtWg==
-X-Received: by 2002:a1c:7ec5:: with SMTP id z188mr1582353wmc.52.1582674412106;
-        Tue, 25 Feb 2020 15:46:52 -0800 (PST)
-Received: from linaro.org ([2a00:23c5:6815:3901:186c:5f6c:221d:5ce])
-        by smtp.gmail.com with ESMTPSA id t133sm356278wmf.31.2020.02.25.15.46.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Feb 2020 15:46:51 -0800 (PST)
-From:   Mike Leach <mike.leach@linaro.org>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        coresight@lists.linaro.org, linux-doc@vger.kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, mathieu.poirier@linaro.org,
-        suzuki.poulose@arm.com, robh+dt@kernel.org, maxime@cerno.tech,
-        liviu.dudau@arm.com, sudeep.holla@arm.com,
-        lorenzo.pieralisi@arm.com, agross@kernel.org, corbet@lwn.net,
-        Mike Leach <mike.leach@linaro.org>
-Subject: [PATCH v10 15/15] Update MAINTAINERS to add reviewer for CoreSight
-Date:   Tue, 25 Feb 2020 23:46:11 +0000
-Message-Id: <20200225234611.11067-16-mike.leach@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200225234611.11067-1-mike.leach@linaro.org>
-References: <20200225234611.11067-1-mike.leach@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oTRomC2W+BSThGwAQZ4mFHuy58uAWVt5delRT81IvjU=;
+        b=onM/BDnElKYN89HpSRRyW4+sO+s6pFcILrVi0NbGn98N3QrPIpwrKqAHce+OKOFE4H
+         sxPq8zVP9oheUacg+/SqNoG1P2+1+dYjm/TZnOKWRn/A2tLeCfgPFmRMYe75jGhNXhj5
+         G/9N0aZ1cIZjU/zLLVDM4MixZhp2ijNImA9cUZEOHKhFfNpN+56XD4B9Y23QKW7nMHT6
+         te2XAGfSyOVYEf1dQDyUYOzmllBQIBXGoHFYnVuh68PpjUtws2Fcg4ilyehcZvlqgfQW
+         m+ZlyLZet1gcUGbe9wXoHKw/WTJCTlREQQZE5xViIPZ3w6ZUjmLJqGR2JVJu0XM5HsmB
+         vKIw==
+X-Gm-Message-State: APjAAAVHIlsblQ0m3jXVDCNjMIZsEe+WTjiC5rZ5aGPaA9evPwFVKMAU
+        dppol/iGXNWdQaPMjJPwsBgSnjDaiEA=
+X-Google-Smtp-Source: APXvYqxxlXQ034G+/pNgnlezUG40m7TTtiRMFEA/fgDPN7JuBRVOM9qgcMeX+SZKM2lu+y1VBE+YjA==
+X-Received: by 2002:a1f:ac57:: with SMTP id v84mr1654005vke.90.1582676152615;
+        Tue, 25 Feb 2020 16:15:52 -0800 (PST)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id b12sm105776vsh.5.2020.02.25.16.15.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2020 16:15:51 -0800 (PST)
+Received: by mail-vs1-f47.google.com with SMTP id m4so653316vsa.12
+        for <devicetree@vger.kernel.org>; Tue, 25 Feb 2020 16:15:50 -0800 (PST)
+X-Received: by 2002:a67:f541:: with SMTP id z1mr1739800vsn.70.1582676150352;
+ Tue, 25 Feb 2020 16:15:50 -0800 (PST)
+MIME-Version: 1.0
+References: <20200221053802.70716-1-evanbenn@chromium.org> <20200221163717.v2.1.I02ebc5b8743b1a71e0e15f68ea77e506d4e6f840@changeid>
+ <CAL_JsqL94vtBEmV2gNWx-D==sLiRXjxBBFZS8fw1cR6=KjS7XQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqL94vtBEmV2gNWx-D==sLiRXjxBBFZS8fw1cR6=KjS7XQ@mail.gmail.com>
+From:   Evan Benn <evanbenn@chromium.org>
+Date:   Wed, 26 Feb 2020 11:15:24 +1100
+X-Gmail-Original-Message-ID: <CAKz_xw2ETZ5eyNfdWU5cF6Qy23E1NqhpFHoLT_CzUDHWTCbw4Q@mail.gmail.com>
+Message-ID: <CAKz_xw2ETZ5eyNfdWU5cF6Qy23E1NqhpFHoLT_CzUDHWTCbw4Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: Add mt8173,smc-wdt watchdog
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Julius Werner <jwerner@chromium.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added myself as a designated reviewer for the CoreSight infrastructure
-at the request of Mathieu Poirier.
+Thanks Rob
 
-Signed-off-by: Mike Leach <mike.leach@linaro.org>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+> This should be a child of some Mediatek firmware node. I assume
+> watchdog is not the *only* function.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 80e908129509..a2ef2633ddea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1676,6 +1676,7 @@ F:	arch/arm/mach-ep93xx/micro9.c
- ARM/CORESIGHT FRAMEWORK AND DRIVERS
- M:	Mathieu Poirier <mathieu.poirier@linaro.org>
- R:	Suzuki K Poulose <suzuki.poulose@arm.com>
-+R:	Mike Leach <mike.leach@linaro.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	drivers/hwtracing/coresight/*
--- 
-2.17.1
+I am not quite sure what you mean, do you intend this:
 
+ firmware {
+   watchdog {
+     ...
+   }
+}
+
+I do not have a deep understanding of devicetree yet, can you point me
+to anything that will help me understand
+the consequences of that change?
+
+Thanks
+
+Evan
