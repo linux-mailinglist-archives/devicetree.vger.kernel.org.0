@@ -2,94 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8BF21722CA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 17:06:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10B101722FB
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 17:16:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729809AbgB0QFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 11:05:32 -0500
-Received: from mout.gmx.net ([212.227.15.19]:60517 "EHLO mout.gmx.net"
+        id S1729232AbgB0QQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 11:16:02 -0500
+Received: from hermes.aosc.io ([199.195.250.187]:55146 "EHLO hermes.aosc.io"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729134AbgB0QFc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Feb 2020 11:05:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1582819527;
-        bh=eWtVTwa1th7imei13HiGdPvoztRW0QEQEO0StELpaQk=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=d+HtWXCNUAi3CZGJK9aNSrgaENvpX7uPKj9Af+PmU5hZ/rAkkCW3M584V56PE47nC
-         xz+6+iD8zMU1MN3UUDIQSq6ZNQXV2iiaeAMPK9BIG1gGLF8JBhNLf861rixZrpBIxL
-         UFfVjvX7LQXfgoSu3oz4pwcbSUo66LTQgeKpuu4c=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.194.148]) by mail.gmx.com (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MF3DW-1jDvFn09Ky-00FUlX; Thu, 27
- Feb 2020 17:05:27 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     devicetree@vger.kernel.org
-Cc:     =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Lee Jones <lee.jones@linaro.org>,
+        id S1729258AbgB0QQC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Feb 2020 11:16:02 -0500
+Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
+        by hermes.aosc.io (Postfix) with ESMTPSA id 1074B4B2DD;
+        Thu, 27 Feb 2020 16:08:30 +0000 (UTC)
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mfd: tps65910: Improve grammar
-Date:   Thu, 27 Feb 2020 17:05:21 +0100
-Message-Id: <20200227160522.17582-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.20.1
+        Bastien Nocera <hadess@hadess.net>,
+        Ondrej Jirman <megous@megous.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH v2 0/3] Add support for Goodix GT917S touch controller
+Date:   Fri, 28 Feb 2020 00:07:59 +0800
+Message-Id: <20200227160802.7043-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:zPc9krwbnc26FIFGxqw464VWx4CGeOTSxHzZVRxdjjCbFkGxwf1
- LuMRkl/p9EEACIl8yy5z/DhEvEoGJpWeGWhDYEdDJ7AdNiru2BpCLPy4gdunbcTVL8LnTIr
- k3X1mdqaEYyjUeyd8byhw4O70W1vVMb193X3V6+jkca67sPbRbF2wDGDH/0yQ6BKmgirxC6
- 4vBJ/ZWaLwqoET+vbKXyg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:9EOg5/1GM1Q=:mQOiaxLiwsvUT53LiglLrt
- qthwv7B6MKJLBegv4s6JBK0KxBy+BDC0Q4xTgs4pFQ7rCct3MVFTt0FJWShtaMTkTFvMNLunG
- 3sgK6fKN7h6qBP6NJixnKl5Di6GTFVV5M07UZhlwJTIzw/wiHkoDXDBVDDWE7Ee7Ukb69PXI2
- P8Oc7ltQNtv1+NkDiy58RSnxR/2xR1LBr+udyTPYFDuyIWeNqSzw0mA9Jqqw5et1aYkQe6U8l
- THqXxIL7Jtq2Vbk6zHfu5c3EE6mvDEAJXiCmATgSKdwun8v6x4GWD/oXAGvW+QWwfhB8gBXwb
- DyQnhuLSYGlmnry+RfOU558ZSL78yKwrNHGJMHZD0IjEHkfoz1CAR8brnYhuVCHUQl3Hb3Epq
- CdVbqm2YskMsUuJoBlE2iriI5Tvj4S8fizmqM7g+Dg7enkLKTTrtU6nnINYLGy6OCYmiCez0n
- fAxXWBC8+ToBk4knznHSY4MiNCinLeMmPM/A25W+dME9ruhtpgjNBXXyYJYlviik/5cEYIcbY
- XHDOm0G14sqO1aTe7bFFaQwhI4hORj/6WKI0OovsT2mV/9+s2Ex63Y1jfIHG9qAxlmfIhknEf
- MnGX9dojPcjQoK/jap8Q2h3v5+LPKgkUuhmeUk/95hlZiY5zBaEP0Sm6METjHstaGxCiJ3exY
- kCJY4r/JfL6yTk+mTZzdQU7QO3WaIyVRYy3SPhqpu5ReOgRisfgSuzkCCdqnHVUSf7+hEz/aF
- iHN+iaabTh0+o/b3mgdrlvLruwFWQ5UDgZ+sCzFVo/R6/5wr8LZwK08gaghEUeKOGAiY3nJsf
- KJ2NvrBAm4LQmltd1mX9oHzmNjQPNdVT7DZJPIie2yE3ySk6sgvLIjNuz4BOBeyaXZE36SeQi
- 6MM4a7H9u48QSgU1nF1Z6l2Zt/7pjuYdflO6CrqCXm6Pvh+AaMRSRGlTJNJAPNheDg3gVTVOQ
- SHjAixUo0ppHw7mrb2+al5mxtTvbDVUHyIp8QIsLwLu0VIgvzJ/eOxxj1JEGSS30T4dnTHiDo
- TSs3PL2Yow57dNyHUzwvnyNf1SNhAcs3dnHISR/ICIkkaA2cV1AX5xmJg/vBJXOxXIewwh/RI
- T8DAOaZWcP/FwsvtZk0VKAYPIo9lnduK9E/LVQq8pMMK6fSk506u3Ey2cEEyQl3doaKbSUv3q
- MrkTXFG3uCKv11f09Sf6vCx5BTGB+Nun7RR0dbJQtsf6uJ0C0Oz0joRJuv7N6aWJBeizMMD55
- uefSV7U0sFOQgyV4V
+Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aosc.io; s=dkim;
+        t=1582819721;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=FpRj0r9YXZ520UOqR7tl+VuCJUkCeKC7tvRB0u7eAwI=;
+        b=KvjohEZ1c4KgUwjgW1MUuLW66Wbg+BMWwEXG7FCHrhtM+IqbBIotsPCuEtEyfSbCkE2Mfs
+        4rY25BOhxEf5g//KkUSpixfjR7WKwBxig16gqcRh7l8aifYUys5WZYcehuoxpBqJxYAgFz
+        tpI/C8uUgz9u/C9aa+8oW8p/kyq1f1Y=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
- Documentation/devicetree/bindings/mfd/tps65910.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This patchset introduces support for Goodix GT917S touch controller.
 
-diff --git a/Documentation/devicetree/bindings/mfd/tps65910.txt b/Document=
-ation/devicetree/bindings/mfd/tps65910.txt
-index 4f62143afd24..a5ced46bbde9 100644
-=2D-- a/Documentation/devicetree/bindings/mfd/tps65910.txt
-+++ b/Documentation/devicetree/bindings/mfd/tps65910.txt
-@@ -26,8 +26,8 @@ Required properties:
-             ldo6, ldo7, ldo8
+The major difference with other touch controllers from Goodix is that
+the ID string is no longer number-only (it contains a 'S'), so an
+additional patch is introduced for migrating the ID to a string.
 
- - xxx-supply: Input voltage supply regulator.
--  These entries are require if regulators are enabled for a device. Missi=
-ng of these
--  properties can cause the regulator registration fails.
-+  These entries are required if regulators are enabled for a device. Miss=
-ing these
-+  properties can cause the regulator registration to fail.
-   If some of input supply is powered through battery or always-on supply =
-then
-   also it is require to have these parameters with proper node handle of =
-always
-   on power supply.
-=2D-
-2.20.1
+Icenowy Zheng (3):
+  dt-bindings: input: touchscreen: add compatible string for Goodix
+    GT917S
+  Input: goodix - use string-based chip ID
+  Input: goodix - Add support for Goodix GT917S
+
+ .../bindings/input/touchscreen/goodix.yaml    |  1 +
+ drivers/input/touchscreen/goodix.c            | 63 +++++++++++--------
+ 2 files changed, 38 insertions(+), 26 deletions(-)
+
+-- 
+2.24.1
 
