@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9571171579
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 11:58:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F76817157D
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 11:58:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728963AbgB0K5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 05:57:19 -0500
-Received: from mail27.static.mailgun.info ([104.130.122.27]:52864 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728938AbgB0K5S (ORCPT
+        id S1728781AbgB0K5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 05:57:33 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:17149 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728874AbgB0K5c (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Feb 2020 05:57:18 -0500
+        Thu, 27 Feb 2020 05:57:32 -0500
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1582801038; h=Content-Transfer-Encoding: MIME-Version:
+ s=smtp; t=1582801052; h=Content-Transfer-Encoding: MIME-Version:
  References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=bWiblcEWScCJYEfbQMEzjMSpqvKdPVVjBFxBNYRuRKc=; b=bo0s+pg5U9ZTlrww+9YdAI0oCA2Uu2hU4mPuSdS8s/4XHe3oX1BbFcf0+AcGLGJ+zubfJ3P2
- TDiLvwq60CIb/guCh0pVbU7xjj80cB/qHTlvqtMmj6aOwS9SuDjJLwvjllVy8HLRghkI4hGZ
- eIE3IYScTe6UhRf2DfGdFXeQmhU=
-X-Mailgun-Sending-Ip: 104.130.122.27
+ Sender; bh=sjA8xjgdSuzT+3bcqBAE9RgoMUeLbDLPxtAnZ/QtR2E=; b=avbii/hsjJD9K4oM2kSh/EWpO0ok1nIVkt1jXn20ZjmfohabMSmr3skdnK9ZWc3N6kIFrtA+
+ PGf3opw7DR5ZmDmLDREqK37fjxCPzhbyz9f4s+Lr6SeGElF9pHlovoUv8HtmeY8xKktZFm17
+ 5DCL0p4wXq2inlmBkgSdkP0pbRU=
+X-Mailgun-Sending-Ip: 104.130.122.26
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e57a086.7fee9b1a3d50-smtp-out-n01;
- Thu, 27 Feb 2020 10:57:10 -0000 (UTC)
+ by mxa.mailgun.org with ESMTP id 5e57a08d.7f8aa3e3c880-smtp-out-n02;
+ Thu, 27 Feb 2020 10:57:17 -0000 (UTC)
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E9DC3C447A9; Thu, 27 Feb 2020 10:57:09 +0000 (UTC)
+        id BAF37C43383; Thu, 27 Feb 2020 10:57:14 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4C8F0C4479D;
-        Thu, 27 Feb 2020 10:57:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4C8F0C4479D
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CC45AC447A0;
+        Thu, 27 Feb 2020 10:57:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CC45AC447A0
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
 From:   Sibi Sankar <sibis@codeaurora.org>
@@ -46,9 +46,9 @@ Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
         linux-arm-msm@vger.kernel.org, mark.rutland@arm.com,
         saravanak@google.com, viresh.kumar@linaro.org,
         okukatla@codeaurora.org, Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH v5 5/7] interconnect: qcom: Add OSM L3 support on SC7180
-Date:   Thu, 27 Feb 2020 16:26:29 +0530
-Message-Id: <20200227105632.15041-6-sibis@codeaurora.org>
+Subject: [PATCH v5 6/7] arm64: dts: qcom: sdm845: Add OSM L3 interconnect provider
+Date:   Thu, 27 Feb 2020 16:26:30 +0530
+Message-Id: <20200227105632.15041-7-sibis@codeaurora.org>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200227105632.15041-1-sibis@codeaurora.org>
 References: <20200227105632.15041-1-sibis@codeaurora.org>
@@ -59,67 +59,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Operating State Manager (OSM) L3 interconnect provider support on
-SC7180 SoCs.
+Add Operation State Manager (OSM) L3 interconnect provider on SDM845 SoCs.
 
 Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 ---
- drivers/interconnect/qcom/osm-l3.c | 15 +++++++++++++++
- drivers/interconnect/qcom/sc7180.h |  2 ++
- 2 files changed, 17 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
-index bbf8133195972..a03c6d6833dfc 100644
---- a/drivers/interconnect/qcom/osm-l3.c
-+++ b/drivers/interconnect/qcom/osm-l3.c
-@@ -14,6 +14,7 @@
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index ae7d6617d8b87..8105532f6fbde 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/clock/qcom,lpass-sdm845.h>
+ #include <dt-bindings/clock/qcom,rpmh.h>
+ #include <dt-bindings/clock/qcom,videocc-sdm845.h>
++#include <dt-bindings/interconnect/qcom,osm-l3.h>
+ #include <dt-bindings/interconnect/qcom,sdm845.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/phy/phy-qcom-qusb2.h>
+@@ -3323,6 +3324,16 @@ frame@17d10000 {
+ 			};
+ 		};
  
- #include <dt-bindings/interconnect/qcom,osm-l3.h>
- 
-+#include "sc7180.h"
- #include "sdm845.h"
- 
- #define LUT_MAX_ENTRIES			40U
-@@ -82,6 +83,19 @@ const static struct qcom_icc_desc sdm845_icc_osm_l3 = {
- 	.num_nodes = ARRAY_SIZE(sdm845_osm_l3_nodes),
- };
- 
-+DEFINE_QNODE(sc7180_osm_apps_l3, SC7180_MASTER_OSM_L3_APPS, 16, SC7180_SLAVE_OSM_L3);
-+DEFINE_QNODE(sc7180_osm_l3, SC7180_SLAVE_OSM_L3, 16);
++		osm_l3: interconnect@17d41000 {
++			compatible = "qcom,sdm845-osm-l3";
++			reg = <0 0x17d41000 0 0x1400>;
 +
-+static struct qcom_icc_node *sc7180_osm_l3_nodes[] = {
-+	[MASTER_OSM_L3_APPS] = &sc7180_osm_apps_l3,
-+	[SLAVE_OSM_L3] = &sc7180_osm_l3,
-+};
++			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
++			clock-names = "xo", "alternate";
 +
-+const static struct qcom_icc_desc sc7180_icc_osm_l3 = {
-+	.nodes = sc7180_osm_l3_nodes,
-+	.num_nodes = ARRAY_SIZE(sc7180_osm_l3_nodes),
-+};
++			#interconnect-cells = <1>;
++		};
 +
- static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- {
- 	struct qcom_osm_l3_icc_provider *qp;
-@@ -242,6 +256,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id osm_l3_of_match[] = {
-+	{ .compatible = "qcom,sc7180-osm-l3", .data = &sc7180_icc_osm_l3 },
- 	{ .compatible = "qcom,sdm845-osm-l3", .data = &sdm845_icc_osm_l3 },
- 	{ }
- };
-diff --git a/drivers/interconnect/qcom/sc7180.h b/drivers/interconnect/qcom/sc7180.h
-index c2d8388bb8809..c6212a10c2f61 100644
---- a/drivers/interconnect/qcom/sc7180.h
-+++ b/drivers/interconnect/qcom/sc7180.h
-@@ -145,5 +145,7 @@
- #define SC7180_SLAVE_SERVICE_SNOC			134
- #define SC7180_SLAVE_QDSS_STM				135
- #define SC7180_SLAVE_TCU				136
-+#define SC7180_MASTER_OSM_L3_APPS			137
-+#define SC7180_SLAVE_OSM_L3				138
- 
- #endif
+ 		cpufreq_hw: cpufreq@17d43000 {
+ 			compatible = "qcom,cpufreq-hw";
+ 			reg = <0 0x17d43000 0 0x1400>, <0 0x17d45800 0 0x1400>;
 -- 
 The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
 a Linux Foundation Collaborative Project
