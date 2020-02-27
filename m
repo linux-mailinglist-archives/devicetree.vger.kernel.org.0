@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E3D2170DFE
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 02:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02521170E1B
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 02:59:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728145AbgB0BrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 26 Feb 2020 20:47:18 -0500
-Received: from conssluserg-01.nifty.com ([210.131.2.80]:59202 "EHLO
-        conssluserg-01.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728091AbgB0BrS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 20:47:18 -0500
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41]) (authenticated)
-        by conssluserg-01.nifty.com with ESMTP id 01R1kxMJ021932;
-        Thu, 27 Feb 2020 10:47:00 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com 01R1kxMJ021932
+        id S1728277AbgB0B67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 26 Feb 2020 20:58:59 -0500
+Received: from conssluserg-04.nifty.com ([210.131.2.83]:49499 "EHLO
+        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728178AbgB0B66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 26 Feb 2020 20:58:58 -0500
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50]) (authenticated)
+        by conssluserg-04.nifty.com with ESMTP id 01R1wrhO007970;
+        Thu, 27 Feb 2020 10:58:54 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com 01R1wrhO007970
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1582768020;
-        bh=gka4nv6hoOzbwfb7j4YlBZPR1X9FHcvBUbW+Bllno6o=;
+        s=dec2015msa; t=1582768734;
+        bh=f0RtcMm91pUvRhf0tWvY0RBgrv1rYufzVOjyf6MfCfg=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Rng4mTvuC3n3GOagnxVc5mUyTu39YpuSpd23P+VVp4+Hk20cofBKVJFKUOOQv5Y3G
-         K+qS0GK60XrSZNlmEARCRT5qTrKZgDAuo5ngBom4Ob88b13IBA4xoxKoAWDMQCR9v8
-         yxtTRzXTz8IE3qN0WdrSZi2xSiSeJMtIcxlB5vpqpxAdBic9qLZItkcLes/fIyC7vL
-         C8G+HU5MMiUbpuELUlSJWUJFkfQoTWKM+Al5yzcwuzvjY4MM4z/vPN1CQBEEqwJwau
-         GOwGdkcxAVSEWr9l1crmT/z6GFNg/l2zS9f+iYA0theiV5LbHgXrQQXHKCmzEXuJnS
-         xKMugWpiyRAPg==
-X-Nifty-SrcIP: [209.85.217.41]
-Received: by mail-vs1-f41.google.com with SMTP id p14so802503vsq.6;
-        Wed, 26 Feb 2020 17:47:00 -0800 (PST)
-X-Gm-Message-State: APjAAAX0RHM/+CsF3Mi4SSJYejY13j/sLrkTfRY9vGEfrHHpkcbsjBr9
-        pQZmyZITs0+3b4DPYY7NtTdpLsvJ6bTAQDNgsWU=
-X-Google-Smtp-Source: APXvYqz2gMdIqZp6jmEWo6V6bYnkSsv9Pt66yn+koMjv2AHfNxu7UVya7JTzAMd1ZsC9wZAXV3G/f2BuvBQMLkd3Qw4=
-X-Received: by 2002:a05:6102:3102:: with SMTP id e2mr1167903vsh.179.1582768019168;
- Wed, 26 Feb 2020 17:46:59 -0800 (PST)
+        b=fotHPoKlYAO5kpyEqqKLQOXS4F/trfYkFriNsEWjC86UpYW6cQasCHv2DFLLr1D0J
+         H7orBEvT3m+1md0mVNi8XrLewttMhYJ0XAV7schvaPn4q0//2tvN3lF/jzee8DsVJp
+         H3dvA8ewfQDfOm1iKOzIjECi2kuBadKwrrZ/iBcYx/5j4yDxBpQDRWdqHBNjnc8M+Z
+         dir83QBiVumV71W01EbLyqnTiAnaDLZ09EOmNYQbrYv6IKpDgO1tXQgVe4V5fecItU
+         RXehyFhUWWVHMYjmUzUduwaa2PVppj4rF3ld9qZZZZgrdPCXU7kwsnbN1onAvDvJyS
+         9wamCJyToPgqA==
+X-Nifty-SrcIP: [209.85.217.50]
+Received: by mail-vs1-f50.google.com with SMTP id n27so841634vsa.0;
+        Wed, 26 Feb 2020 17:58:54 -0800 (PST)
+X-Gm-Message-State: APjAAAWMlOrgox3Pwt1leB+LY97Y8u2BE474V94Vvmqr34dLT42XJueG
+        tNhI0N6hfBL0inFhDS0fEvj3Mx2lDC64hjIR6nU=
+X-Google-Smtp-Source: APXvYqxS/NpYKxdzB2PqcLVxTMrbA3ernXND+XDm0KOzE5cfpSGY5b+4SUxf9m2c26wWKmdvddCFLKtYmXd2gSO7fhk=
+X-Received: by 2002:a05:6102:3102:: with SMTP id e2mr1183258vsh.179.1582768733281;
+ Wed, 26 Feb 2020 17:58:53 -0800 (PST)
 MIME-Version: 1.0
-References: <20200222110435.18772-1-yamada.masahiro@socionext.com> <20200226221325.GA19817@bogus>
-In-Reply-To: <20200226221325.GA19817@bogus>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Thu, 27 Feb 2020 10:46:23 +0900
-X-Gmail-Original-Message-ID: <CAK7LNATQGQu8bWR5ybcfdWckZ_TsXKBqi3kxtO4=9=WDm4BMuQ@mail.gmail.com>
-Message-ID: <CAK7LNATQGQu8bWR5ybcfdWckZ_TsXKBqi3kxtO4=9=WDm4BMuQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert UniPhier
- AIDET to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
+References: <20200222141927.3868-1-yamada.masahiro@socionext.com>
+In-Reply-To: <20200222141927.3868-1-yamada.masahiro@socionext.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Thu, 27 Feb 2020 10:58:17 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQmzYzK_A4iF6b-LxTT-o5Ut2=TyBeRQPSfCdj7FHhgBQ@mail.gmail.com>
+Message-ID: <CAK7LNAQmzYzK_A4iF6b-LxTT-o5Ut2=TyBeRQPSfCdj7FHhgBQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: Convert Denali NAND controller to json-schema
+To:     Rob Herring <robh+dt@kernel.org>, DTML <devicetree@vger.kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -58,24 +56,61 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Rob,
 
-On Thu, Feb 27, 2020 at 7:13 AM Rob Herring <robh@kernel.org> wrote:
 
-<snip>
+This was applied, but I just noticed one stupid mistake.
 
+
+
+On Sat, Feb 22, 2020 at 11:20 PM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
 >
-> It all looks fine, so I'll drop the questions and apply.
+> Convert the Denali NAND controller binding to DT schema format.
 >
-> Rob
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> ---
+>
+>  .../devicetree/bindings/mtd/denali,nand.yaml  | 149 ++++++++++++++++++
+>  .../devicetree/bindings/mtd/denali-nand.txt   |  61 -------
+>  2 files changed, 149 insertions(+), 61 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/denali,nand.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/denali-nand.txt
+>
+> diff --git a/Documentation/devicetree/bindings/mtd/denali,nand.yaml b/Documentation/devicetree/bindings/mtd/denali,nand.yaml
+> new file mode 100644
+> index 000000000000..b41b7e4bfe78
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/denali,nand.yaml
+> @@ -0,0 +1,149 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/denali,nand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Denali NAND controller
+> +
+> +maintainers:
+> +  - Masahiro Yamada <yamada.masahiro@socionext.com>
+> +
+> +properties:
+> +  compatible:
+> +    description: version 2.91, 3.1, 3.1.1, respectively
 
-Thanks for your answer!
 
-Yes, please drop the questions.
+Please delete this description.
 
-I just want to put them below '---' marker.
-(You can see some questions in my patches)
+This is a copy-paste mistake, which
+came from my other patch
+"dt-bindings: mmc: Convert UniPhier SD controller to json-schema"
 
-I use a tool that automates this, but I made a mistake
-in scripting for this one.
+
+
+
+> +    enum:
+> +      - altr,socfpga-denali-nand
+> +      - socionext,uniphier-denali-nand-v5a
+> +      - socionext,uniphier-denali-nand-v5b
+> +
 
 
 
