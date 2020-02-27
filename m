@@ -2,164 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC38C171EE2
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 15:31:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAC1A1720B1
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 15:44:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388049AbgB0Oa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 09:30:57 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:60006 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731625AbgB0Oa4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Feb 2020 09:30:56 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1582813855; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=31Jyd0ydGwDjWftSsYoT2QGP7wSU/YQyP0VpNOmwFCQ=; b=ZNuChyRIVE4hcrZxwqmXoUnZFq4ky/0RNviTiCMHKDNFbOby/nQvdwjqXyblFwLYEbTRvSrh
- uyzsHISZFmpCWxSpcL7qupz4ea0BBrZnquPzc16wmPlHendBLpPD21dbg0MdJJlEEvBwyY7i
- vJWi7/qMenNwvK76gO/UHNjDDy4=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e57d292.7fb093b93e30-smtp-out-n03;
- Thu, 27 Feb 2020 14:30:42 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3CA76C4479D; Thu, 27 Feb 2020 14:30:41 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.206.25.140] (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        id S1730817AbgB0Ooi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 09:44:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53266 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730802AbgB0Ooh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Feb 2020 09:44:37 -0500
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: vbadigan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 35321C433A2;
-        Thu, 27 Feb 2020 14:30:34 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 35321C433A2
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=vbadigan@codeaurora.org
-Subject: Re: [PATCH V4] mmc: sdhci-msm: Update system suspend/resume callbacks
- of sdhci-msm platform driver
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, mka@chromium.org
-Cc:     asutoshd@codeaurora.org, swboyd@chromium.org,
-        stummala@codeaurora.org, sayalil@codeaurora.org,
-        cang@codeaurora.org, rampraka@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-References: <1582181100-29914-1-git-send-email-sbhanu@codeaurora.org>
-From:   Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-Message-ID: <d6c10b49-a12c-d17e-1ff9-90f12e98f624@codeaurora.org>
-Date:   Thu, 27 Feb 2020 20:00:32 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        by mail.kernel.org (Postfix) with ESMTPSA id 73ECD24699;
+        Thu, 27 Feb 2020 14:44:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1582814676;
+        bh=mvq7N1igLw7UjhW1AMRRMOdKAT+CXrmcj/HKzuI4XsM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oAmqEnyB6SuIRPZRGXE9vxc3k2lIeDNFueCvEk0PdSrEvUWRP0uirX3R99g8P7uQa
+         i/DYIdQ7fznjx8Ch29afbbjEPz9F/bborGbhDKxTWeDjvWJ9yjULt8PuTB0XTBvkYM
+         iaUgfZyTNTDkgvuu/Z1pLptq6fVGj2mwKUuojqaY=
+Received: by mail-qk1-f171.google.com with SMTP id e16so3324520qkl.6;
+        Thu, 27 Feb 2020 06:44:36 -0800 (PST)
+X-Gm-Message-State: APjAAAUUbzZsGfSA2m3RW8JzeHcFexedYH1o5TMRpsg7sU7t8pgIh5ev
+        2C2WdEdDjFb4JRpHKCtBGKQqZtMJnC8mRa9pgQ==
+X-Google-Smtp-Source: APXvYqyY/FhutGJvucWc7ejVRBFSVeez5Yc0iP8BZeLMcHqPqR7EsY5664LyS1HcjV7Xoy8VBy9CBzBssUSEmWXcVjg=
+X-Received: by 2002:ae9:f205:: with SMTP id m5mr5913674qkg.152.1582814675567;
+ Thu, 27 Feb 2020 06:44:35 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1582181100-29914-1-git-send-email-sbhanu@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20200226180901.89940-1-andre.przywara@arm.com>
+ <20200226180901.89940-13-andre.przywara@arm.com> <20200226215732.GA32486@bogus>
+ <557906ef-28e8-bdf0-5ec9-ab859935f752@arm.com>
+In-Reply-To: <557906ef-28e8-bdf0-5ec9-ab859935f752@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 27 Feb 2020 08:44:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLw2eru3k+=LB9Q_MGHTapRy59JgPZTixywzj-Zs_xudg@mail.gmail.com>
+Message-ID: <CAL_JsqLw2eru3k+=LB9Q_MGHTapRy59JgPZTixywzj-Zs_xudg@mail.gmail.com>
+Subject: Re: [PATCH 12/13] dt-bindings: arm: Add Calxeda system registers
+ json-schema binding
+To:     =?UTF-8?Q?Andr=C3=A9_Przywara?= <andre.przywara@arm.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Robert Richter <rric@kernel.org>,
+        soc@kernel.org, Jon Loeliger <jdl@jdl.com>,
+        Mark Langsdorf <mlangsdo@redhat.com>,
+        Eric Auger <eric.auger@redhat.com>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sajida,
-
-On 2/20/2020 12:15 PM, Shaik Sajida Bhanu wrote:
-
-> The existing suspend/resume callbacks of sdhci-msm driver are just
-> gating/un-gating the clocks. During suspend cycle more can be done
-> like disabling controller, disabling card detection, enabling wake-up events.
+On Wed, Feb 26, 2020 at 6:12 PM Andr=C3=A9 Przywara <andre.przywara@arm.com=
+> wrote:
 >
-> So updating the system pm callbacks for performing these extra
-> actions besides controlling the clocks.
+> On 26/02/2020 21:57, Rob Herring wrote:
 >
-> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
-> Changes since V3:
->      Invoking sdhci & cqhci resume if sdhci_host_suspend fails.
->      Removed condition check before invoking cqhci_resume since its a dummy function.
+> Hi Rob,
 >
-> Changes since V2:
->      Removed disabling/enabling pwr-irq from system pm ops.
+> thanks for giving it a try!
 >
-> Changes since V1:
->      Invoking pm_runtime_force_suspend/resume instead of
->      sdhci_msm_runtime_suepend/resume.
-> ---
->   drivers/mmc/host/sdhci-msm.c | 47 ++++++++++++++++++++++++++++++++++++++++++--
->   1 file changed, 45 insertions(+), 2 deletions(-)
+> > On Wed, 26 Feb 2020 18:09:00 +0000, Andre Przywara wrote:
+> >> The Calxeda system registers are a collection of MMIO register
+> >> controlling several more general aspects of the SoC.
+> >> Beside for some power management tasks this node is also somewhat
+> >> abused as the container for the clock nodes.
+> >>
+> >> Add a binding in DT schema format using json-schema.
+> >>
+> >> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> >> ---
+> >>  .../bindings/arm/calxeda/hb-sregs.yaml        | 47 ++++++++++++++++++=
++
+> >>  1 file changed, 47 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/arm/calxeda/hb-s=
+regs.yaml
+> >>
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > warning: no schema found in file: Documentation/devicetree/bindings/arm=
+/calxeda/hb-sregs.yaml
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/calxeda/hb-sregs.yaml: ignoring, error in schema: properties: clocks
+> > Documentation/devicetree/bindings/display/simple-framebuffer.example.dt=
+s:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen nod=
+e must be at root node
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ar=
+m/calxeda/hb-sregs.yaml: properties:clocks: {'type': 'object'} is not valid=
+ under any of the given schemas (Possible causes of the failure):
+> >       /builds/robherring/linux-dt-review/Documentation/devicetree/bindi=
+ngs/arm/calxeda/hb-sregs.yaml: properties:clocks: 'maxItems' is a required =
+property
+> >
+> > Documentation/devicetree/bindings/Makefile:12: recipe for target 'Docum=
+entation/devicetree/bindings/arm/calxeda/hb-sregs.example.dts' failed
+> > make[1]: *** [Documentation/devicetree/bindings/arm/calxeda/hb-sregs.ex=
+ample.dts] Error 1
+> > Makefile:1263: recipe for target 'dt_binding_check' failed
+> > make: *** [dt_binding_check] Error 2
+> >
+> > See https://patchwork.ozlabs.org/patch/1245261
+> > Please check and re-submit.
 >
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index 3955fa5d..3559b50 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -2159,9 +2159,52 @@ static __maybe_unused int sdhci_msm_runtime_resume(struct device *dev)
->   	return 0;
->   }
->   
-> +static int sdhci_msm_suspend(struct device *dev)
-> +{
-> +	struct sdhci_host *host = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	if (host->mmc->caps2 & MMC_CAP2_CQE) {
-> +		ret = cqhci_suspend(host->mmc);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = sdhci_suspend_host(host);
-> +	if (ret)
-> +		goto resume_cqhci;
-> +
-> +	ret = pm_runtime_force_suspend(dev);
-> +	if (!ret)
-> +		return ret;
-> +
-> +	sdhci_resume_host(host);
-> +
-> +resume_cqhci:
-> +	cqhci_resume(host->mmc);
-> +	return ret;
-> +}
-> +
-> +static int sdhci_msm_resume(struct device *dev)
-> +{
-> +	struct sdhci_host *host = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = pm_runtime_force_resume(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = sdhci_resume_host(host);
+> Ah, right, I forgot that I actually fixed dt-schema:
+>
+> It seems like we can cope with "clocks" being just a node name in
+> schema/clock/clock.yaml [1], but not in meta-schemas/clocks.yaml [2].
+>
+> I added a similar anyOf ... to the meta-schemas entry, which seems to
+> fix it for me.
+>
+> Can you confirm that this is a bug in dt-schema and this is the proper
+> fix or am I doing something wrong (I have only a smattering in
+> dt-schema/json)?
 
-I'm observing an issue with this change.
+Yeah, that's right. Though ideally we'd avoid names that are used as
+both properties and nodes, but this one is kind of widely used.
 
-After this step, i find interrupt enable register is zero (even though 
-it's getting set in sdhci_resume_host()) and
+Can you submit a GH pull req with the fix (use the devicetree-org one,
+not my tree).
 
-resulting in request timeout for very first command in resume path.
-
-Until its root caused, please hold back this change.
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = cqhci_resume(host->mmc);
-> +	return ret;
-> +}
-> +
->   static const struct dev_pm_ops sdhci_msm_pm_ops = {
-> -	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
-> -				pm_runtime_force_resume)
-> +	SET_SYSTEM_SLEEP_PM_OPS(sdhci_msm_suspend,
-> +				sdhci_msm_resume)
->   	SET_RUNTIME_PM_OPS(sdhci_msm_runtime_suspend,
->   			   sdhci_msm_runtime_resume,
->   			   NULL)
+Rob
