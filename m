@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFED8172A7C
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 22:53:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 375C5172A9A
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 22:59:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729959AbgB0VxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 16:53:15 -0500
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:34547 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729661AbgB0VxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Feb 2020 16:53:14 -0500
-Received: by mail-lj1-f193.google.com with SMTP id x7so999059ljc.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:53:12 -0800 (PST)
+        id S1729817AbgB0V7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 16:59:05 -0500
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:34255 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729776AbgB0V7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Feb 2020 16:59:05 -0500
+Received: by mail-ed1-f66.google.com with SMTP id dm3so920214edb.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:59:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=OBxG5p3NtRm8vJZ9SrWGbyvBMMrZfbcd6sEkh872Wpk=;
-        b=J2HlgJvotRvArCBanF+nmCfWdRF8pDW66BdmQms7zfNgyS7lRauYT3bDS5OboDi2DM
-         ifdOo7gJ8d+ZZyQcHW2Fg38xWkUDpHzNNzVJKJHCx5P3h/fPWvAmbJsxP/jGHk9JHs8h
-         efR20upDTYOd5dbP0XxRZK/5y/3u0AYyvc+eQ=
+        bh=akb/fqWb9RAKIbbLYDDh8qkuoGYS5G+iOCImBrzoF9o=;
+        b=TMG5VflR3I+CGPW+mSXF7fJBlkIgbvu1pHHgkcCLliyNx/65WX4EateAFJ+aYYIZTw
+         c3laEpZS9R7qXtce7smYE4n1H0nZi18snVj03jIXMRsHgoFOyMPcwQBWb+g9rcCNCD28
+         PdCGEoz3ivKvIuWNhKqTW1465oIKHlXJl+83w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=OBxG5p3NtRm8vJZ9SrWGbyvBMMrZfbcd6sEkh872Wpk=;
-        b=cUHS9ERaylFvPgvzKeu3FF58skJILYannsdFf5ZWwFM9I2mj9rfdvKfCjtyz+rfKPJ
-         4P8cGpvDspvjB6LaugAem4lktX+eD4D9E4Mx98Dhfhj+F7zKpL+OcvfaOe3oqWFiqWDu
-         A8T4JSVxVMicAQy7X3XRgpL7s54kW2jNXx6beo+SbqUKpFUYJw6tqJp3mJrMoXmFwEuh
-         2OvBexd3BdbmPti4EWLlTSItdE+/hj0GuwfBPQWZLkJliZ+YkUnmQeOz/umtBQlAuvZy
-         HtXBTjOxy4z4Gvr0Lj18LF3Qp5vvAwculdStusOSNtB0NIRITgnELA0w8uuOXPuuRcyh
-         WBlg==
-X-Gm-Message-State: ANhLgQ3Amr2NQ/bReZ9ptVePNDlxYlcC4Pxp+9F+omrVUTkyZEP6aAl+
-        L5Hy2Y3XsGIqrCqc3K1ToaoZXw85Tqc=
-X-Google-Smtp-Source: ADFU+vvZZhAU/HnfU5fKIns6/dEKunm2YGgT7yfzFaGQSc33c5gb9NnBq6nHvdncS1JdeRMF5GfhCQ==
-X-Received: by 2002:a2e:9809:: with SMTP id a9mr716474ljj.196.1582840391647;
-        Thu, 27 Feb 2020 13:53:11 -0800 (PST)
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com. [209.85.167.52])
-        by smtp.gmail.com with ESMTPSA id a8sm4054956ljb.38.2020.02.27.13.53.10
+        bh=akb/fqWb9RAKIbbLYDDh8qkuoGYS5G+iOCImBrzoF9o=;
+        b=f+Au/ajIvybIX3DM0d1uUN208n0nG3/qNFHCBEhT2k3AbLWzc3OW9oAK9H329LA+dZ
+         b99p+hmDhm8ONDIo1M7WKuJa2FdfBWKhRnJVbPXYhUh58TvlbOLKn5E2ZowmBYEX+2IT
+         dpyG8J7i90grKt1XeRdRyAcUxpE6nWGLHhogerYvC+Uvl6sjR/0j/Wey3xOkQGDWMxaK
+         I4ddWh3akmt+8PrZxLma3Sf4ZkLTOLWuGyhFaoo3RsYP3ROMG8ylLcttHdJukgPt8/LH
+         hfdiF+tonmh0Z48CSTnkwJ/00vLa6Gbz3pPDU7xz0FS77bMljX352JhwQSYIsHU6vXoK
+         s6HQ==
+X-Gm-Message-State: APjAAAWhlzsqVUpJZwj+WOwsEJEzqAH8dwm8jYdg6oUpgjvWwTluP6Lc
+        mqEa8L1D3ftf65/OzZM1DJsivaRxeMM=
+X-Google-Smtp-Source: APXvYqzTdHOOtG8/+dJs86xtr2SApQ2xtUMqDPZ+Nu5mskKNKbWaKIK35sccxs7j5SehjLxXIl/EpQ==
+X-Received: by 2002:a17:906:af84:: with SMTP id mj4mr1046479ejb.341.1582840742890;
+        Thu, 27 Feb 2020 13:59:02 -0800 (PST)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id x12sm331861eje.52.2020.02.27.13.59.02
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Feb 2020 13:53:10 -0800 (PST)
-Received: by mail-lf1-f52.google.com with SMTP id b15so565640lfc.4
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:53:10 -0800 (PST)
-X-Received: by 2002:ac2:5226:: with SMTP id i6mr725638lfl.99.1582840389628;
- Thu, 27 Feb 2020 13:53:09 -0800 (PST)
+        Thu, 27 Feb 2020 13:59:02 -0800 (PST)
+Received: by mail-wr1-f49.google.com with SMTP id e8so677421wrm.5
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:59:02 -0800 (PST)
+X-Received: by 2002:a05:651c:1a2:: with SMTP id c2mr734150ljn.79.1582840398185;
+ Thu, 27 Feb 2020 13:53:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20200209183411.17195-1-sibis@codeaurora.org> <20200209183411.17195-5-sibis@codeaurora.org>
-In-Reply-To: <20200209183411.17195-5-sibis@codeaurora.org>
+References: <20200209183411.17195-1-sibis@codeaurora.org> <20200209183411.17195-6-sibis@codeaurora.org>
+In-Reply-To: <20200209183411.17195-6-sibis@codeaurora.org>
 From:   Evan Green <evgreen@chromium.org>
-Date:   Thu, 27 Feb 2020 13:52:33 -0800
-X-Gmail-Original-Message-ID: <CAE=gft5OOQVKe9ow2ApbEAjmgqRc05hHVxUi4os+4-gvpMh4Yg@mail.gmail.com>
-Message-ID: <CAE=gft5OOQVKe9ow2ApbEAjmgqRc05hHVxUi4os+4-gvpMh4Yg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] interconnect: qcom: Consolidate interconnect RPMh support
+Date:   Thu, 27 Feb 2020 13:52:41 -0800
+X-Gmail-Original-Message-ID: <CAE=gft755hYH7ue=fv2jvofejoWHZaguji6D-M1qHup-3SJTwQ@mail.gmail.com>
+Message-ID: <CAE=gft755hYH7ue=fv2jvofejoWHZaguji6D-M1qHup-3SJTwQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] interconnect: qcom: sdm845: Split qnodes into
+ their respective NoCs
 To:     Sibi Sankar <sibis@codeaurora.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Georgi Djakov <georgi.djakov@linaro.org>,
@@ -74,21 +75,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 9, 2020 at 10:34 AM Sibi Sankar <sibis@codeaurora.org> wrote:
+On Sun, Feb 9, 2020 at 10:35 AM Sibi Sankar <sibis@codeaurora.org> wrote:
 >
 > From: David Dai <daidavid1@codeaurora.org>
 >
-> Add bcm voter driver and add support for RPMh specific interconnect
-> providers which implements the set and aggregate functionalities that
-> translates bandwidth requests into RPMh messages. These modules provide
-> a common set of functionalities for all Qualcomm RPMh based interconnect
-> providers and should help reduce code duplication when adding new
-> providers.
+> In order to better represent the hardware and its different Network-On-Chip
+> devices, split the sdm845 provider driver into NoC specific providers.
+> Remove duplicate functionality already provided by the icc rpmh and
+> bcm voter drivers to calculate and commit bandwidth requests to hardware.
 >
 > Signed-off-by: David Dai <daidavid1@codeaurora.org>
 > Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
 > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-
-Assuming Georgi's comments get addressed:
 
 Reviewed-by: Evan Green <evgreen@chromium.org>
