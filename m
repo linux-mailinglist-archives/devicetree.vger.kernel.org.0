@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 375C5172A9A
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 22:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF81C172A82
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 22:53:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729817AbgB0V7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 16:59:05 -0500
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:34255 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729776AbgB0V7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Feb 2020 16:59:05 -0500
-Received: by mail-ed1-f66.google.com with SMTP id dm3so920214edb.1
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:59:03 -0800 (PST)
+        id S1730149AbgB0Vxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 16:53:34 -0500
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:38848 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729947AbgB0Vxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Feb 2020 16:53:34 -0500
+Received: by mail-lf1-f67.google.com with SMTP id r14so559427lfm.5
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:53:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=akb/fqWb9RAKIbbLYDDh8qkuoGYS5G+iOCImBrzoF9o=;
-        b=TMG5VflR3I+CGPW+mSXF7fJBlkIgbvu1pHHgkcCLliyNx/65WX4EateAFJ+aYYIZTw
-         c3laEpZS9R7qXtce7smYE4n1H0nZi18snVj03jIXMRsHgoFOyMPcwQBWb+g9rcCNCD28
-         PdCGEoz3ivKvIuWNhKqTW1465oIKHlXJl+83w=
+        bh=TciHlSTKGVGSwBjPpE6GdszVZvGGFdsKopsqP1eqA44=;
+        b=R9wmRG8Zsj0hupJPPywP6/bpn+fXxWpBBjyuLdxnZKe76Pvx+79KpCZfPuJ6m9zgIB
+         83dRXWqAbdH8mdUA2m5R6w1L5Jt/Nectudrnnm3VTIY8OxyPthplqvxqfFcG5SmgXxwL
+         hEhb8GB0mIoGzRzN/dD6W9G//QmE5GgVN2PmE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=akb/fqWb9RAKIbbLYDDh8qkuoGYS5G+iOCImBrzoF9o=;
-        b=f+Au/ajIvybIX3DM0d1uUN208n0nG3/qNFHCBEhT2k3AbLWzc3OW9oAK9H329LA+dZ
-         b99p+hmDhm8ONDIo1M7WKuJa2FdfBWKhRnJVbPXYhUh58TvlbOLKn5E2ZowmBYEX+2IT
-         dpyG8J7i90grKt1XeRdRyAcUxpE6nWGLHhogerYvC+Uvl6sjR/0j/Wey3xOkQGDWMxaK
-         I4ddWh3akmt+8PrZxLma3Sf4ZkLTOLWuGyhFaoo3RsYP3ROMG8ylLcttHdJukgPt8/LH
-         hfdiF+tonmh0Z48CSTnkwJ/00vLa6Gbz3pPDU7xz0FS77bMljX352JhwQSYIsHU6vXoK
-         s6HQ==
-X-Gm-Message-State: APjAAAWhlzsqVUpJZwj+WOwsEJEzqAH8dwm8jYdg6oUpgjvWwTluP6Lc
-        mqEa8L1D3ftf65/OzZM1DJsivaRxeMM=
-X-Google-Smtp-Source: APXvYqzTdHOOtG8/+dJs86xtr2SApQ2xtUMqDPZ+Nu5mskKNKbWaKIK35sccxs7j5SehjLxXIl/EpQ==
-X-Received: by 2002:a17:906:af84:: with SMTP id mj4mr1046479ejb.341.1582840742890;
-        Thu, 27 Feb 2020 13:59:02 -0800 (PST)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id x12sm331861eje.52.2020.02.27.13.59.02
+        bh=TciHlSTKGVGSwBjPpE6GdszVZvGGFdsKopsqP1eqA44=;
+        b=qqETGhAkxXSZL1PzWIDvKixL3dJgMh0SstLrMsEk3TNmNu6TwsE9RSw6c79Vb94Bvj
+         kDkFQxDmADHCuHVqWWloAtYhGSm3v3tc71E2w3RoBvDbPTOpDnCKhFauXsqXCP822yp2
+         9y7URCsnwsHsu/xX4LwaKXz7J7mv5BGZK53qxcZgutrwRxDb5EGjCIbJYGOzI43X8QCF
+         CSYUiy5PitXqjXY6NvRhcGyyDWRWSrhn5XLXKDe1i5KW7tNE0g8Yjg1LryH8OZPQ3/kW
+         z0pLFUtKrsmLNE2mJLFarCdDfxyFr0O9odCsq1F93oaT5rPtQ3Ixph6ms7gL8cL22WaN
+         uhNw==
+X-Gm-Message-State: ANhLgQ0UbaGQ1a6W5IDO55DFN3+mcDEvY0TXPmfXNoi5Fo4dkUFJtal+
+        GaptiQFsh0nJ4ZyR2KXS/PqFiHBvHI0=
+X-Google-Smtp-Source: ADFU+vuNjvhh9N2isCMLWkjP4iJ1okJ0pU/urR08yKqZC4uRJsMlNUibSwbg4cTqWgGYdvRTc5NeQQ==
+X-Received: by 2002:a19:6445:: with SMTP id b5mr743566lfj.187.1582840412290;
+        Thu, 27 Feb 2020 13:53:32 -0800 (PST)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com. [209.85.208.169])
+        by smtp.gmail.com with ESMTPSA id s10sm4417795ljp.35.2020.02.27.13.53.31
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Feb 2020 13:59:02 -0800 (PST)
-Received: by mail-wr1-f49.google.com with SMTP id e8so677421wrm.5
-        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:59:02 -0800 (PST)
-X-Received: by 2002:a05:651c:1a2:: with SMTP id c2mr734150ljn.79.1582840398185;
- Thu, 27 Feb 2020 13:53:18 -0800 (PST)
+        Thu, 27 Feb 2020 13:53:31 -0800 (PST)
+Received: by mail-lj1-f169.google.com with SMTP id q8so932011ljj.11
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 13:53:31 -0800 (PST)
+X-Received: by 2002:a2e:8702:: with SMTP id m2mr734336lji.278.1582840410701;
+ Thu, 27 Feb 2020 13:53:30 -0800 (PST)
 MIME-Version: 1.0
-References: <20200209183411.17195-1-sibis@codeaurora.org> <20200209183411.17195-6-sibis@codeaurora.org>
-In-Reply-To: <20200209183411.17195-6-sibis@codeaurora.org>
+References: <20200209183411.17195-1-sibis@codeaurora.org> <20200209183411.17195-7-sibis@codeaurora.org>
+In-Reply-To: <20200209183411.17195-7-sibis@codeaurora.org>
 From:   Evan Green <evgreen@chromium.org>
-Date:   Thu, 27 Feb 2020 13:52:41 -0800
-X-Gmail-Original-Message-ID: <CAE=gft755hYH7ue=fv2jvofejoWHZaguji6D-M1qHup-3SJTwQ@mail.gmail.com>
-Message-ID: <CAE=gft755hYH7ue=fv2jvofejoWHZaguji6D-M1qHup-3SJTwQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] interconnect: qcom: sdm845: Split qnodes into
- their respective NoCs
+Date:   Thu, 27 Feb 2020 13:52:54 -0800
+X-Gmail-Original-Message-ID: <CAE=gft5YrX9idSOgam5JR3m_R8OZ0ZG6KKe-w6GmtmxY83OPnQ@mail.gmail.com>
+Message-ID: <CAE=gft5YrX9idSOgam5JR3m_R8OZ0ZG6KKe-w6GmtmxY83OPnQ@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] arm64: dts: sdm845: Redefine interconnect provider
+ DT nodes
 To:     Sibi Sankar <sibis@codeaurora.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Georgi Djakov <georgi.djakov@linaro.org>,
@@ -79,10 +79,9 @@ On Sun, Feb 9, 2020 at 10:35 AM Sibi Sankar <sibis@codeaurora.org> wrote:
 >
 > From: David Dai <daidavid1@codeaurora.org>
 >
-> In order to better represent the hardware and its different Network-On-Chip
-> devices, split the sdm845 provider driver into NoC specific providers.
-> Remove duplicate functionality already provided by the icc rpmh and
-> bcm voter drivers to calculate and commit bandwidth requests to hardware.
+> Add the DT nodes for each of the Network-On-Chip interconnect
+> buses found on SDM845 based platform and redefine the rsc_hlos
+> child node as a bcm-voter device to better represent the hardware.
 >
 > Signed-off-by: David Dai <daidavid1@codeaurora.org>
 > Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
