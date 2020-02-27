@@ -2,143 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C14F171273
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 09:24:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1CEB1712EA
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 09:47:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728659AbgB0IYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 03:24:44 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:60276 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728542AbgB0IYn (ORCPT
+        id S1728488AbgB0Ir3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 03:47:29 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:48967 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728856AbgB0Ir3 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Feb 2020 03:24:43 -0500
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01R8F3lx003402;
-        Thu, 27 Feb 2020 03:24:42 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2ydtrx2e68-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 27 Feb 2020 03:24:41 -0500
-Received: from SCSQMBX10.ad.analog.com (scsqmbx10.ad.analog.com [10.77.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 01R8Oe0p034766
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Thu, 27 Feb 2020 03:24:40 -0500
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQMBX10.ad.analog.com (10.77.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Thu, 27 Feb 2020 00:24:39 -0800
-Received: from zeus.spd.analog.com (10.64.82.11) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Thu, 27 Feb 2020 00:24:39 -0800
-Received: from saturn.ad.analog.com ([10.48.65.109])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 01R8OPtv013107;
-        Thu, 27 Feb 2020 03:24:36 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <jic23@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v3 8/8] dt-bindings: iio: adc: add bindings doc for AD9467 ADC
-Date:   Thu, 27 Feb 2020 10:27:19 +0200
-Message-ID: <20200227082719.6343-9-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200227082719.6343-1-alexandru.ardelean@analog.com>
-References: <20200227082719.6343-1-alexandru.ardelean@analog.com>
+        Thu, 27 Feb 2020 03:47:29 -0500
+Received: from [109.168.11.45] (port=43056 helo=[192.168.101.73])
+        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1j7EGN-009anX-4W; Thu, 27 Feb 2020 09:11:20 +0100
+Subject: Re: [PATCH v2] of: overlay: log the error cause on resolver failure
+To:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+References: <20200225164540.4520-1-luca@lucaceresoli.net>
+ <f9565679-5892-bcf0-f751-bfcac87670a8@gmail.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <40fdf0f2-85a4-9f84-6994-a59b7b56cec4@lucaceresoli.net>
+Date:   Thu, 27 Feb 2020 09:11:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-02-27_02:2020-02-26,2020-02-27 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- malwarescore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 phishscore=0 spamscore=0 adultscore=0 mlxlogscore=999
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2002270066
+In-Reply-To: <f9565679-5892-bcf0-f751-bfcac87670a8@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds the binding doc for the AD9467 ADC.
+Hi Frank,
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/adc/adi,ad9467.yaml          | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+On 26/02/20 04:53, Frank Rowand wrote:
+> On 2/25/20 10:45 AM, Luca Ceresoli wrote:
+>> For some of its error paths, of_resolve_phandles() only logs a very generic
+>> error which does not help much in finding the origin of the problem:
+>>
+>>   OF: resolver: overlay phandle fixup failed: -22
+>>
+>> Add error messages for all the error paths that don't have one. Now a
+>> specific message is always emitted, thus also remove the generic catch-all
+>> message emitted before returning.
+>>
+>> For example, in case a DT overlay has a fixup node that is not present in
+>> the base DT __symbols__, this error is now logged:
+>>
+>>   OF: resolver: node gpio9 not found in base DT, fixup failed
+>>
+>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+>> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+>> ---
+>>
+>> I don't know in detail the meaning of the adjust_local_phandle_references()
+>> and update_usages_of_a_phandle_reference() error paths, thus I have put
+>> pretty generic messages. Any suggestion on better wording would be welcome.
+> 
+> If you have not read the code to understand what the meaning of
+> the errors are, you should not be suggesting changes to the error
+> messages.
+> 
+> Only one of the issues detected as errors can possibly be something
+> other than an error either in the resolver.c code or the dtc
+> compiler -- a missing symbol in the live devicetree.  This may
+> be because of failing to compile the base devicetree without
+> symbols, depending on a symbol from another overlay where the
+> other overlay has not been applied, or depending on a symbol
+> from another overlay where the other overlay is applied but
+> the overlay was not compiled with symbols.  (Not meant to be
+> an exhaustive list, but it might be.)  Thus the missing
+> symbol problem might be fixable without a fix to kernel
+> code.  The error message philosophy for overlay related
+> errors is to minimize error messages that help diagnose
+> the precise cause of a kernel code bug, with the intent
+> of keeping the code more compact and readable.  When a
+> bug occurs, debugging messages can be added for the
+> debug session.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-new file mode 100644
-index 000000000000..c4f57fa6aad1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad9467.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD9467 High-Speed ADC
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-+
-+description: |
-+  The AD9467 is a 16-bit, monolithic, IF sampling analog-to-digital
-+  converter (ADC).
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/AD9467.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad9467
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: adc-clk
-+
-+  powerdown-gpios:
-+    description:
-+      Pin that controls the powerdown mode of the device.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      Reset pin for the device.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+          compatible = "adi,ad9467";
-+          reg = <0>;
-+          clocks = <&adc_clk>;
-+          clock-names = "adc-clk";
-+        };
-+    };
-+...
+Got it, sorry about that.
+
+> Following this philosophy, only the message in the second
+> patch chunk is ok.
+
+Then I think you can apply the v1 patch which only contains the message
+about the problem I experienced, and which was caused by an incorrect DTO:
+
+https://patchwork.ozlabs.org/patch/1243987/
+
+Just ignore the note saying the patch is not for mainline, it's wrong.
+
 -- 
-2.20.1
-
+Luca
