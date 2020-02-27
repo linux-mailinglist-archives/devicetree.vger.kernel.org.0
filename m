@@ -2,112 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1CEB1712EA
-	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 09:47:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 521961712A2
+	for <lists+devicetree@lfdr.de>; Thu, 27 Feb 2020 09:38:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728488AbgB0Ir3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 03:47:29 -0500
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:48967 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728856AbgB0Ir3 (ORCPT
+        id S1728539AbgB0Ii6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 03:38:58 -0500
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:32090 "EHLO
+        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728440AbgB0Ii6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Feb 2020 03:47:29 -0500
-Received: from [109.168.11.45] (port=43056 helo=[192.168.101.73])
-        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1j7EGN-009anX-4W; Thu, 27 Feb 2020 09:11:20 +0100
-Subject: Re: [PATCH v2] of: overlay: log the error cause on resolver failure
-To:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-References: <20200225164540.4520-1-luca@lucaceresoli.net>
- <f9565679-5892-bcf0-f751-bfcac87670a8@gmail.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <40fdf0f2-85a4-9f84-6994-a59b7b56cec4@lucaceresoli.net>
-Date:   Thu, 27 Feb 2020 09:11:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-MIME-Version: 1.0
-In-Reply-To: <f9565679-5892-bcf0-f751-bfcac87670a8@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+        Thu, 27 Feb 2020 03:38:58 -0500
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 27 Feb 2020 14:08:53 +0530
+Received: from mkrishn-linux.qualcomm.com ([10.204.66.35])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 27 Feb 2020 14:08:33 +0530
+Received: by mkrishn-linux.qualcomm.com (Postfix, from userid 438394)
+        id 44BD02210; Thu, 27 Feb 2020 14:08:32 +0530 (IST)
+From:   Krishna Manikandan <mkrishn@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Krishna Manikandan <mkrishn@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        kalyan_t@codeaurora.org, nganji@codeaurora.org
+Subject: [v2 1/2] drm/msm/dpu: add DP support for sc7180 target
+Date:   Thu, 27 Feb 2020 14:08:30 +0530
+Message-Id: <1582792711-26935-1-git-send-email-mkrishn@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
+Add the required changes to support Display Port
+for sc7180 target.
 
-On 26/02/20 04:53, Frank Rowand wrote:
-> On 2/25/20 10:45 AM, Luca Ceresoli wrote:
->> For some of its error paths, of_resolve_phandles() only logs a very generic
->> error which does not help much in finding the origin of the problem:
->>
->>   OF: resolver: overlay phandle fixup failed: -22
->>
->> Add error messages for all the error paths that don't have one. Now a
->> specific message is always emitted, thus also remove the generic catch-all
->> message emitted before returning.
->>
->> For example, in case a DT overlay has a fixup node that is not present in
->> the base DT __symbols__, this error is now logged:
->>
->>   OF: resolver: node gpio9 not found in base DT, fixup failed
->>
->> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
->> ---
->>
->> I don't know in detail the meaning of the adjust_local_phandle_references()
->> and update_usages_of_a_phandle_reference() error paths, thus I have put
->> pretty generic messages. Any suggestion on better wording would be welcome.
-> 
-> If you have not read the code to understand what the meaning of
-> the errors are, you should not be suggesting changes to the error
-> messages.
-> 
-> Only one of the issues detected as errors can possibly be something
-> other than an error either in the resolver.c code or the dtc
-> compiler -- a missing symbol in the live devicetree.  This may
-> be because of failing to compile the base devicetree without
-> symbols, depending on a symbol from another overlay where the
-> other overlay has not been applied, or depending on a symbol
-> from another overlay where the other overlay is applied but
-> the overlay was not compiled with symbols.  (Not meant to be
-> an exhaustive list, but it might be.)  Thus the missing
-> symbol problem might be fixable without a fix to kernel
-> code.  The error message philosophy for overlay related
-> errors is to minimize error messages that help diagnose
-> the precise cause of a kernel code bug, with the intent
-> of keeping the code more compact and readable.  When a
-> bug occurs, debugging messages can be added for the
-> debug session.
+Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
 
-Got it, sorry about that.
+Changes in v2:
+	- Change in commit message
 
-> Following this philosophy, only the message in the second
-> patch chunk is ok.
+This patch has dependency on the below series
+https://patchwork.kernel.org/patch/11269169/
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c    |  6 ++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c |  3 ++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  4 ++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c    | 12 ++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.c     |  4 ++++
+ 5 files changed, 28 insertions(+), 1 deletion(-)
 
-Then I think you can apply the v1 patch which only contains the message
-about the problem I experienced, and which was caused by an incorrect DTO:
-
-https://patchwork.ozlabs.org/patch/1243987/
-
-Just ignore the note saying the patch is not for mainline, it's wrong.
-
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+index f8ac3bf..136e4d0 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+@@ -1109,6 +1109,12 @@ static void _dpu_encoder_virt_enable_helper(struct drm_encoder *drm_enc)
+ 	}
+ 
+ 	if (dpu_enc->cur_master->hw_mdptop &&
++		(dpu_enc->disp_info.intf_type == DRM_MODE_ENCODER_TMDS) &&
++			dpu_enc->cur_master->hw_mdptop->ops.intf_audio_select)
++		dpu_enc->cur_master->hw_mdptop->ops.intf_audio_select(
++			dpu_enc->cur_master->hw_mdptop);
++
++	if (dpu_enc->cur_master->hw_mdptop &&
+ 			dpu_enc->cur_master->hw_mdptop->ops.reset_ubwc)
+ 		dpu_enc->cur_master->hw_mdptop->ops.reset_ubwc(
+ 				dpu_enc->cur_master->hw_mdptop,
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index c567917..60f350f 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -109,8 +109,9 @@
+ 	{
+ 	.name = "top_0", .id = MDP_TOP,
+ 	.base = 0x0, .len = 0x494,
+-	.features = 0,
++	.features = BIT(DPU_MDP_DP_PHY_SEL),
+ 	.highest_bank_bit = 0x3,
++	.dp_phy_intf_sel = 0x41,
+ 	.clk_ctrls[DPU_CLK_CTRL_VIG0] = {
+ 		.reg_off = 0x2AC, .bit_off = 0},
+ 	.clk_ctrls[DPU_CLK_CTRL_DMA0] = {
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+index 09df7d8..fbcf14b 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+@@ -77,6 +77,7 @@ enum {
+  * @DPU_MDP_UBWC_1_0,      This chipsets supports Universal Bandwidth
+  *                         compression initial revision
+  * @DPU_MDP_UBWC_1_5,      Universal Bandwidth compression version 1.5
++ * @DPU_MDP_DP_PHY_SEL     DP PHY interface select for controller
+  * @DPU_MDP_MAX            Maximum value
+ 
+  */
+@@ -86,6 +87,7 @@ enum {
+ 	DPU_MDP_BWC,
+ 	DPU_MDP_UBWC_1_0,
+ 	DPU_MDP_UBWC_1_5,
++	DPU_MDP_DP_PHY_SEL,
+ 	DPU_MDP_MAX
+ };
+ 
+@@ -421,6 +423,7 @@ struct dpu_clk_ctrl_reg {
+  * @highest_bank_bit:  UBWC parameter
+  * @ubwc_static:       ubwc static configuration
+  * @ubwc_swizzle:      ubwc default swizzle setting
++ * @dp_phy_intf_sel:   dp phy interface select for controller
+  * @clk_ctrls          clock control register definition
+  */
+ struct dpu_mdp_cfg {
+@@ -428,6 +431,7 @@ struct dpu_mdp_cfg {
+ 	u32 highest_bank_bit;
+ 	u32 ubwc_static;
+ 	u32 ubwc_swizzle;
++	u32 dp_phy_intf_sel;
+ 	struct dpu_clk_ctrl_reg clk_ctrls[DPU_CLK_CTRL_MAX];
+ };
+ 
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+index efe9a57..ae96ede 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_intf.c
+@@ -144,10 +144,22 @@ static void dpu_hw_intf_setup_timing_engine(struct dpu_hw_intf *ctx,
+ 	hsync_ctl = (hsync_period << 16) | p->hsync_pulse_width;
+ 	display_hctl = (hsync_end_x << 16) | hsync_start_x;
+ 
++	if (ctx->cap->type == INTF_DP) {
++		active_h_start = hsync_start_x;
++		active_h_end = active_h_start + p->xres - 1;
++		active_v_start = display_v_start;
++		active_v_end = active_v_start + (p->yres * hsync_period) - 1;
++		active_hctl = (active_h_end << 16) | active_h_start;
++		display_hctl = active_hctl;
++	}
++
+ 	den_polarity = 0;
+ 	if (ctx->cap->type == INTF_HDMI) {
+ 		hsync_polarity = p->yres >= 720 ? 0 : 1;
+ 		vsync_polarity = p->yres >= 720 ? 0 : 1;
++	} else if (ctx->cap->type == INTF_DP) {
++		hsync_polarity = p->hsync_polarity;
++		vsync_polarity = p->vsync_polarity;
+ 	} else {
+ 		hsync_polarity = 0;
+ 		vsync_polarity = 0;
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.c
+index f9af52a..9591d42 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_top.c
+@@ -41,6 +41,7 @@
+ #define MDP_WD_TIMER_4_CTL                0x440
+ #define MDP_WD_TIMER_4_CTL2               0x444
+ #define MDP_WD_TIMER_4_LOAD_VALUE         0x448
++#define DP_PHY_INTF_SEL                   0x460
+ 
+ #define MDP_TICK_COUNT                    16
+ #define XO_CLK_RATE                       19200
+@@ -275,6 +276,9 @@ static void dpu_hw_intf_audio_select(struct dpu_hw_mdp *mdp)
+ 	c = &mdp->hw;
+ 
+ 	DPU_REG_WRITE(c, HDMI_DP_CORE_SELECT, 0x1);
++
++	if (mdp->caps->features & BIT(DPU_MDP_DP_PHY_SEL))
++		DPU_REG_WRITE(c, DP_PHY_INTF_SEL, mdp->caps->dp_phy_intf_sel);
+ }
+ 
+ static void _setup_mdp_ops(struct dpu_hw_mdp_ops *ops,
 -- 
-Luca
+1.9.1
+
