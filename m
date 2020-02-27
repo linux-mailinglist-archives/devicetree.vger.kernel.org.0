@@ -2,118 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 849BD172DB1
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 01:50:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D49172E0E
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 02:14:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730191AbgB1Auq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 19:50:46 -0500
-Received: from helcar.hmeau.com ([216.24.177.18]:55664 "EHLO fornost.hmeau.com"
+        id S1730509AbgB1BOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 20:14:33 -0500
+Received: from mga06.intel.com ([134.134.136.31]:46744 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729984AbgB1Auq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Feb 2020 19:50:46 -0500
-Received: from gwarestrin.me.apana.org.au ([192.168.0.7] helo=gwarestrin.arnor.me.apana.org.au)
-        by fornost.hmeau.com with smtp (Exim 4.89 #2 (Debian))
-        id 1j7TrO-0000Lx-78; Fri, 28 Feb 2020 11:50:35 +1100
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Fri, 28 Feb 2020 11:50:34 +1100
-Date:   Fri, 28 Feb 2020 11:50:34 +1100
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Kalyani Akula <kalyani.akula@xilinx.com>
-Cc:     davem@davemloft.net, monstr@seznam.cz,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kalyani Akula <kalyania@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        git-dev@xilinx.com,
-        Mohan Marutirao Dhanawade <mohan.dhanawade@xilinx.com>,
-        Sarat Chand Savitala <saratcha@xilinx.com>,
-        Harsh Jain <harshj@xilinx.com>,
-        Michal Simek <michals@xilinx.com>
-Subject: Re: [PATCH V7 0/4] Add Xilinx's ZynqMP AES-GCM driver support
-Message-ID: <20200228005033.GA9506@gondor.apana.org.au>
-References: <1581935204-25673-1-git-send-email-kalyani.akula@xilinx.com>
+        id S1730445AbgB1BOd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Feb 2020 20:14:33 -0500
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Feb 2020 17:14:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; 
+   d="scan'208";a="317979084"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+  by orsmga001.jf.intel.com with ESMTP; 27 Feb 2020 17:14:28 -0800
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+        (envelope-from <lkp@intel.com>)
+        id 1j7UEW-0002UF-2F; Fri, 28 Feb 2020 09:14:28 +0800
+Date:   Fri, 28 Feb 2020 01:40:03 +0800
+From:   kbuild test robot <lkp@intel.com>
+To:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
+Cc:     kbuild-all@lists.01.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] clk: qcom: Add ipq6018 apss clock controller
+Message-ID: <202002280157.XsbiYL94%lkp@intel.com>
+References: <1582797318-26288-3-git-send-email-sivaprak@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1581935204-25673-1-git-send-email-kalyani.akula@xilinx.com>
+In-Reply-To: <1582797318-26288-3-git-send-email-sivaprak@codeaurora.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 17, 2020 at 03:56:40PM +0530, Kalyani Akula wrote:
-> This patch set adds support for
-> - dt-binding docs for Xilinx ZynqMP AES driver
-> - Adds device tree node for ZynqMP AES driver
-> - Adds communication layer support for aes in zynqmp.c
-> - Adds Xilinx ZynqMP driver for AES Algorithm
-> 
-> NOTE: This patchset is based on Michal's branch
-> https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/log/?h=arm/drivers
-> because of possible merge conflict for 1/4 patch with below commit
-> commit 461011b1e1ab ("drivers: firmware: xilinx: Add support for feature check")
-> 
-> V7 Changes:
-> - Rebased this patchset on Cryptodev-2.6 tree and fixed compilation
->  issue seen. The issue is seen due to the below
->  commit af5034e8e4a5("crypto: remove propagation of CRYPTO_TFM_RES_* flags")
-> 
-> V6 Changes:
-> - Updated SPDX-License-Identifier in xlnx,zynqmp-aes.yaml.
-> 
-> V5 Changes :
-> - Moved arm64: zynqmp: Add Xilinx AES node from 2/4 to 4/4.
-> - Moved crypto: Add Xilinx AES driver patch from 4/4 to 3/4.
-> - Moved dt-bindings patch from 1/4 to 2/4
-> - Moved firmware: xilinx: Add ZynqMP aes API for AES patch from 3/4 to 1/4
-> - Converted dt-bindings from .txt to .yaml format.
-> - Corrected typo in the subject.
-> - Updated zynqmp-aes node to correct location.
-> - Replaced ARCH_ZYNQMP with ZYNQMP_FIRMWARE in Kconfig
-> - Removed extra new lines and added wherever necessary. 
-> - Updated Signed-off-by sequence.
-> - Ran checkpatch for all patches in the series.
-> 
-> V4 Changes :
-> - Addressed review comments.
-> 
-> V3 Changes :
-> - Added software fallback in cases where Hardware doesn't have
->   the capability to handle the request.
-> - Removed use of global variable for storing the driver data.
-> - Enabled CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y and executed all
->   the kernel selftests. Also covered tests with tcrypt module.
-> 
-> V2 Changes :
-> - Converted RFC PATCH to PATCH
-> - Removed ALG_SET_KEY_TYPE that was added to support keytype
->   attribute. Taken using setkey interface.
-> - Removed deprecated BLKCIPHER in Kconfig
-> - Erased Key/IV from the buffer.
-> - Renamed zynqmp-aes driver to zynqmp-aes-gcm.
-> - Addressed few other review comments
-> 
-> 
-> Kalyani Akula (4):
->   firmware: xilinx: Add ZynqMP aes API for AES functionality
->   dt-bindings: crypto: Add bindings for ZynqMP AES-GCM driver
->   crypto: Add Xilinx AES driver
->   arm64: zynqmp: Add Xilinx AES node.
-> 
->  .../bindings/crypto/xlnx,zynqmp-aes.yaml           |  37 ++
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |   4 +
->  drivers/crypto/Kconfig                             |  12 +
->  drivers/crypto/Makefile                            |   1 +
->  drivers/crypto/xilinx/Makefile                     |   2 +
->  drivers/crypto/xilinx/zynqmp-aes-gcm.c             | 457 +++++++++++++++++++++
->  drivers/firmware/xilinx/zynqmp.c                   |  25 ++
->  include/linux/firmware/xlnx-zynqmp.h               |   2 +
->  8 files changed, 540 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/xlnx,zynqmp-aes.yaml
->  create mode 100644 drivers/crypto/xilinx/Makefile
->  create mode 100644 drivers/crypto/xilinx/zynqmp-aes-gcm.c
+Hi Sivaprakash,
 
-Patches 1-3 applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on clk/clk-next]
+[also build test WARNING on v5.6-rc3 next-20200227]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
+
+url:    https://github.com/0day-ci/linux/commits/Sivaprakash-Murugesan/Add-APSS-clock-controller-support-for-IPQ6018/20200227-185847
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.1-173-ge0787745-dirty
+        make ARCH=x86_64 allmodconfig
+        make C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__'
+
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
+
+
+sparse warnings: (new ones prefixed by >>)
+
+>> drivers/clk/qcom/apss-ipq6018.c:39:10: sparse: sparse: symbol 'apss_pll_offsets' was not declared. Should it be static?
+
+Please review and possibly fold the followup patch.
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
