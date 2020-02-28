@@ -2,129 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 107DC172EE6
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 03:54:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC135172F0F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 04:02:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730445AbgB1CyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 21:54:15 -0500
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:41666 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726943AbgB1CyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 27 Feb 2020 21:54:14 -0500
-Received: by mail-qt1-f195.google.com with SMTP id l21so1013145qtr.8;
-        Thu, 27 Feb 2020 18:54:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=22hz3EXYq0SzN1Wu2fonmhGKwST6HFX0P3UPEDmpwXo=;
-        b=TBD1vGhuloKu8RtFPWQxFgHHziYiJYOdde1353qzy2LmcoeF0TiDjDX1vZWq4i+I1G
-         PxOGEuwdm3jskEG8pUt/6K0JSYZJ0j+CUnc9p9tBIyyk6ljb/P7YZkENFlOKudEIAHIz
-         lYZu3V4cVEiJhkcItpRev2T8F2Xv+xbwvQMzSApqjce7q0xJzmAlfnCRx7iznMqtFpMw
-         D9hPjaUJnzrxXvBACyVYK5QgZxg449iJK2ULaQ3hg4IfAgfp2YuQsaC0pP09+/AMME+N
-         e7XkK8nJFvXHADovHj3sQyLpUp4qgFKouUF/Xr15HR9gMjka5EcBntqIZbCRQm7aoS9P
-         Mm+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=22hz3EXYq0SzN1Wu2fonmhGKwST6HFX0P3UPEDmpwXo=;
-        b=DgQl2P/yX/tamwH2Mjm/3dxMArx2aAV/QCXI1dgjXEMfg/vp+CrM2nWYcp2t0Vhdzp
-         K+6eF9VAchaF9Leub1ImGrGMNwdo6SjqF6TAxesYoYgT8IMWZr2SnlJzqKn84a/2tRE5
-         4xS5RJKKkWCyB9gXSy8BXNK1HFvAp7jXdSPad76j2KxxwBIaUH0geu0YKyhEvT8H5InD
-         TY7U5ZSC1itwWw5F2pOMi/j4BqWbMYBq0awODF9hJxEZ5jDLfi86CSKaz9TNuElN2LIK
-         deEiPun7oKDPW75FcV6WM0i8CF407VmKBjVf2q4BprXYSoa4j3XfteeBUr1zdCJJyHR8
-         iS/A==
-X-Gm-Message-State: APjAAAWom6DIhIXuD3zbAP02xCHmJBVRgCW0NwSvRRiqJzfRKgD1TGs9
-        fC1fLHleS4/MfPuRGgExEKWC4/8S92cAvBbKv2HXjR3B
-X-Google-Smtp-Source: APXvYqx40ohLVeMfivRLcPCJq0RBwQ9BYmvFVQpKE5DzCFxMCXj1+DIF7ZrkDxeYve2lklZXhdcB7wpqqqroi1Qjtfk=
-X-Received: by 2002:ac8:7b45:: with SMTP id m5mr2482318qtu.360.1582858453803;
- Thu, 27 Feb 2020 18:54:13 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1582770784.git.shengjiu.wang@nxp.com> <ffd5ff2fd0e8ad03a97f6a640630cff767d73fa7.1582770784.git.shengjiu.wang@nxp.com>
- <20200227034121.GA20540@Asurada-Nvidia.nvidia.com> <CAA+D8AMzqpC35_CR2dCG6a_h4FzvZ6orXkPSYh_1o1d8hv+BMg@mail.gmail.com>
- <20200227174540.GA17040@Asurada-Nvidia.nvidia.com>
-In-Reply-To: <20200227174540.GA17040@Asurada-Nvidia.nvidia.com>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Fri, 28 Feb 2020 10:54:02 +0800
-Message-ID: <CAA+D8AM6t79cPoNmt-8HbGwTSM9bfXSW8g76HtkCF7eauL_Xmw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] ASoC: fsl_asrc: Change asrc_width to asrc_format
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+        id S1730658AbgB1DCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 22:02:00 -0500
+Received: from mga02.intel.com ([134.134.136.20]:38100 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730445AbgB1DCA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Feb 2020 22:02:00 -0500
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Feb 2020 19:01:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; 
+   d="scan'208";a="261722452"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga004.fm.intel.com with ESMTP; 27 Feb 2020 19:01:57 -0800
+Received: from [10.226.38.23] (unknown [10.226.38.23])
+        by linux.intel.com (Postfix) with ESMTP id 6A8B958052E;
+        Thu, 27 Feb 2020 19:01:50 -0800 (PST)
+Subject: Re: [PATCH v11 1/2] dt-bindings: spi: Add schema for Cadence QSPI
+ Controller driver
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>, Vignesh R <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, simon.k.r.goldschmidt@gmail.com,
+        Dinh Nguyen <dinguyen@kernel.org>, tien.fong.chee@intel.com,
+        =?UTF-8?Q?Marek_Va=c5=a1ut?= <marex@denx.de>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Timur Tabi <timur@kernel.org>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org, Takashi Iwai <tiwai@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Boris BREZILLON <boris.brezillon@free-electrons.com>,
+        Cyrille Pitchen <cyrille.pitchen@atmel.com>,
+        david.oberhollenzer@sigma-star.at,
+        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
+        tudor.ambarus@gmail.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com
+References: <20200227062708.21544-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200227062708.21544-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <CAL_JsqJno0gmUnGnsWFYdHY_3CHNijtksAmRhuEudimip0aK4w@mail.gmail.com>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <10e65e28-197f-b094-5901-917b07f09adf@linux.intel.com>
+Date:   Fri, 28 Feb 2020 11:01:48 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqJno0gmUnGnsWFYdHY_3CHNijtksAmRhuEudimip0aK4w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Hi Rob,
 
-On Fri, Feb 28, 2020 at 1:45 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+      Thank you so much for the review comments...
+
+On 28/2/2020 1:07 AM, Rob Herring wrote:
+> On Thu, Feb 27, 2020 at 12:27 AM Ramuthevar,Vadivel MuruganX
+> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
+>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>
+>> Add dt-bindings documentation for Cadence-QSPI controller to support
+>> spi based flash memories.
+> You need to run 'make dt_binding_check' because this doesn't pass.
+Sure,  run and fix it.
+>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> ---
+>>   .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 ----------
+>>   .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 142 +++++++++++++++++++++
+>>   2 files changed, 142 insertions(+), 67 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+>>   create mode 100644 Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
 >
-> On Thu, Feb 27, 2020 at 01:10:19PM +0800, Shengjiu Wang wrote:
-> > On Thu, Feb 27, 2020 at 11:43 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
-> > >
-> > > On Thu, Feb 27, 2020 at 10:41:55AM +0800, Shengjiu Wang wrote:
-> > > > asrc_format is more inteligent variable, which is align
-> > > > with the alsa definition snd_pcm_format_t.
-> > > >
-> > > > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > > > ---
-> > > >  sound/soc/fsl/fsl_asrc.c     | 23 +++++++++++------------
-> > > >  sound/soc/fsl/fsl_asrc.h     |  4 ++--
-> > > >  sound/soc/fsl/fsl_asrc_dma.c |  2 +-
-> > > >  3 files changed, 14 insertions(+), 15 deletions(-)
-> > > >
-> > > > diff --git a/sound/soc/fsl/fsl_asrc.c b/sound/soc/fsl/fsl_asrc.c
-> > > > index 0dcebc24c312..2b6a1643573c 100644
-> > > > --- a/sound/soc/fsl/fsl_asrc.c
-> > > > +++ b/sound/soc/fsl/fsl_asrc.c
-> > >
-> > > > @@ -600,11 +599,6 @@ static int fsl_asrc_dai_hw_params(struct snd_pcm_substream *substream,
-> > > >
-> > > >       pair->config = &config;
-> > > >
-> > > > -     if (asrc_priv->asrc_width == 16)
-> > > > -             format = SNDRV_PCM_FORMAT_S16_LE;
-> > > > -     else
-> > > > -             format = SNDRV_PCM_FORMAT_S24_LE;
-> > >
-> > > It feels better to me that we have format settings in hw_params().
-> > >
-> > > Why not let fsl_easrc align with this? Any reason that I'm missing?
-> >
-> > because the asrc_width is not formal,  in the future we can direct
+>> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+>> new file mode 100644
+>> index 000000000000..3ad2850c412e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+>> @@ -0,0 +1,142 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/spi/cdns,qspi-nor.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Cadence QSPI Flash Controller support
+>> +
+>> +maintainers:
+>> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> +
+>> +allOf:
+>> +  - $ref: "spi-controller.yaml#"
+>> +
+>> +description: |
+>> +  Binding Documentation for Cadence QSPI controller,This controller is
+>> +  present in the Intel LGM, Altera SoCFPGA and TI SoCs and this driver
+>> +  has been tested On Intel's LGM SoC.
+>> +
+>> +  - compatible : should be one of the following:
+>> +        Generic default - "cdns,qspi-nor".
+>> +        For TI 66AK2G SoC - "ti,k2g-qspi", "cdns,qspi-nor".
+>> +        For TI AM654 SoC  - "ti,am654-ospi", "cdns,qspi-nor".
+>> +        For Intel LGM SoC - "intel,lgm-qspi", "cdns,qspi-nor".
+> The schema below says all this, so drop this part.
 >
-> Hmm..that's our DT binding. And I don't feel it is a problem
-> to be ASoC irrelative.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +        - enum:
+>> +           - ti,k2g-qspi
+>> +        - const: cdns,qspi-nor
+>> +
+>> +      - items:
+>> +        - enum:
+>> +           - ti,am654-ospi
+>> +        - const: cdns,qspi-nor
+>> +
+>> +      - items:
+>> +        - enum:
+>> +           - intel,lgm-qspi
+>> +        - const: cdns,qspi-nor
+> These 3 items can be 1 entry (combine the enums).
+Noted, will fix it.
 >
-> > input the format from the dts. format involve the info about width.
+>> +
+>> +      - items:
+>> +        - const: cdns,qspi-nor
+>> +
+>> +  reg:
+>> +    maxItems: 2
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  cdns,fifo-depth:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      128 or 256 bytes size of the data FIFO in words.
+> Sounds like constraints. Make them a schema.
+Sure, will make as schema.
+>> +
+>> +  cdns,fifo-width:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      4 byte bus width of the data FIFO in bytes.
+> That's not very clear. It should be schema constraints anyways:
 >
-> Is there such any formal ASoC binding? I don't see those PCM
-> formats under include/dt-bindings/ folder. How are we going
-> to involve those formats in DT?
+> enum: [ 4, 8, 12, 16, ...??? ]
+>
+> or:
+>
+> multipleOf: 4
+> minimum: 4
+> maximum: ?
+Noted,  will fix it.
+>> +
+>> +  cdns,trigger-address:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      32-bit indirect AHB trigger address.
+>> +
+>> +  cdns,rclk-en:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> Wrong type if this is a 'flag' aka boolean.
+Yes , you are correct.
+>> +    description: |
+>> +      Flag to indicate that QSPI return clock is used to latch the read data
+>> +      rather than the QSPI clock. Make sure that QSPI return clock is populated
+>> +      on the board before using this property.
+>> +
+>> +# subnode's properties
+>> +patternProperties:
+>> +  "^.*@[0-9a-fA-F]+$":
+>> +    type: object
+>> +    description:
+>> +      flash device uses the subnodes below defined properties.
+>> +
+>> +  cdns,read-delay:
+>> +    description:
+>> +      Delay in 4 microseconds, read capture logic, in clock cycles.
+> Huh? Is it in time or clocks?
+>
+> No unit suffix here, so this needs a type ref. That's what 'make
+> dt_binding_check' fails on.
+it's clock cycles to adjustable delay,  read data delay between the 
+Flash Device data outputs and the controller data inputs
+>> +
+>> +  cdns,tshsl-ns:
+>> +    description: |
+>> +      Delay in 50 nanoseconds, for the length that the master mode chip select
+>> +      outputs are de-asserted between transactions.
+> multipleOf: 50
+>
+> And so on for the rest.
 
-There is no formal binding of this case.
+Okay , Noted.
 
-I think it is not good to convert width to format, because, for example
-width = 24,  there is two option, we can select format S24_LE,  or
-format S24_3LE,  width is ambiguous for selecting.
-
-In EASRC, it support other two 24bit format U24_LE, U24_3LE .
-
-if we use the format in DT, then it is clear for usage in driver.
-
-
-best regards
-wang shengjiu
+Regards
+Vadivel
+>> +
+>> +  cdns,tsd2d-ns:
+>> +    description: |
+>> +      Delay in 50 nanoseconds, between one chip select being de-activated
+>> +      and the activation of another.
+>> +
+>> +  cdns,tchsh-ns:
+>> +    description: |
+>> +      Delay in 4 nanoseconds, between last bit of current transaction and
+>> +      deasserting the device chip select (qspi_n_ss_out).
+>> +
+>> +  cdns,tslch-ns:
+>> +    description: |
+>> +      Delay in 4 nanoseconds, between setting qspi_n_ss_out low and
+>> +      first bit transfer.
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - cdns,fifo-depth
+>> +  - cdns,fifo-width
+>> +  - cdns,trigger-address
+>> +
+>> +examples:
+>> +  - |
+>> +    qspi: spi@ff705000 {
+>> +          compatible = "cdns,qspi-nor";
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +          reg = <0xff705000 0x1000>,
+>> +                <0xffa00000 0x1000>;
+>> +          interrupts = <0 151 4>;
+>> +          clocks = <&qspi_clk>;
+>> +          cdns,fifo-depth = <128>;
+>> +          cdns,fifo-width = <4>;
+>> +          cdns,trigger-address = <0x00000000>;
+>> +
+>> +          flash0: n25q00@0 {
+>> +              compatible = "jedec,spi-nor";
+>> +              reg = <0x0>;
+>> +              cdns,read-delay = <4>;
+>> +              cdns,tshsl-ns = <50>;
+>> +              cdns,tsd2d-ns = <50>;
+>> +              cdns,tchsh-ns = <4>;
+>> +              cdns,tslch-ns = <4>;
+>> +          };
+>> +    };
+>> +
+>> --
+>> 2.11.0
+>>
