@@ -2,104 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FBF417303B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 06:22:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9AA617307B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 06:34:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725468AbgB1FWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 00:22:50 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:4369 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725794AbgB1FWt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 00:22:49 -0500
-X-UUID: 7992e77d8a314341972fcad71c0e8d02-20200228
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=5cFcI6oejfKgvdPigAG7lz/WkjQ0ZoTObgew3f2ti/4=;
-        b=OibC/kNLmJADxfO+OC3xFgDxQ9MEV87pexgsFFSwGCPEefpRNpI7TRiY5Lt4/dbV3v/8tHmLDKeV6cV3OZAqN2A8NUM6Rv9ykEpjLBzn5ZSOaK4JHs4lqTcky0ACpmq4W5mL4Wu/9hnXCLhCy0TTmKxsa0s3oy+xLXv5Nj6hNnA=;
-X-UUID: 7992e77d8a314341972fcad71c0e8d02-20200228
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1474536278; Fri, 28 Feb 2020 13:21:44 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N2.mediatek.inc
- (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 28 Feb
- 2020 13:22:18 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
- MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1395.4 via Frontend Transport; Fri, 28 Feb 2020 13:22:07 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
-        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v10 5/5] drm/mediatek: set dpi pin mode to gpio low to avoid leakage current
-Date:   Fri, 28 Feb 2020 13:21:28 +0800
-Message-ID: <20200228052128.82136-6-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200228052128.82136-1-jitao.shi@mediatek.com>
-References: <20200228052128.82136-1-jitao.shi@mediatek.com>
+        id S1726388AbgB1Fe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 00:34:26 -0500
+Received: from mail-pj1-f68.google.com ([209.85.216.68]:36803 "EHLO
+        mail-pj1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725827AbgB1Fe0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 00:34:26 -0500
+Received: by mail-pj1-f68.google.com with SMTP id gv17so821274pjb.1
+        for <devicetree@vger.kernel.org>; Thu, 27 Feb 2020 21:34:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ABqkN8aqbIHHq6CJCYzSzg/UYqF9PzEXTXmM8ircYdE=;
+        b=iXGNUb/uZGGZqE9qRVAQdGFZFVitoGfbTVoTeXp/0CB2r/Z0qwh/bwxklZ8Q7cYuYu
+         2RvKwC+gehTtiwjrX9jbCYozOL3ChBhd1Kk3XsFae6+/t1mv1cuKZaxn0SHr35igPDM0
+         iD5x2VXAOPlIZRmR7UOjDeRw2xcQ08RE5Yxos0yuMbCP3QTNw13nVM5uGGN6Xfd1lah3
+         0/zD5Ld7dZHKAMnYLF1TTkaiei2a+VS3yzeHB5RQBu+io9m5rPvEqKUk1XoMAhTvvpvG
+         skvYMD5yyrwEzGpvtm9J/S1H/8xBe7TmBoTUK4kDL95kYI2r0OhDV676MwAPh+B+ptvn
+         Svbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ABqkN8aqbIHHq6CJCYzSzg/UYqF9PzEXTXmM8ircYdE=;
+        b=LOxgMYiE9cvv0ku6wfQNcL8UEyJQ/kp8rLbpP3dMHk/nS+qVjBWfwu+nUczOOcBDSL
+         xRWpDmFKjwohczE8R8vIpnpCem3phI6FrQrqOeusWftuz4NA4EjweopMeY9bWFcb5Akd
+         SsCKn9XhggjvqhTybRF5GhZA8wiAEpuT1sru06eQENuhyz4G4wlqmfyyuIM776QFVa1S
+         u5/VQKuQcOs0T7JSDDwzT0SfnAUEFNRfcymAp6I6FCZg5Vr8YSIYbF+APO31MIZ80B7Z
+         1Wb2pfSdHNtzdYQDD5r1T/hADWGvqwb5riLbDt8cM0y/M8DsZZl8nreOGq58Q47AiiHw
+         xt2A==
+X-Gm-Message-State: APjAAAX9elWZXcTnByRWrw4bjgwdIgf4oeFrd3lLKfUmCQCUOoDiCI5F
+        29GBEeowe/C1v3hymBvlSeXHLQ==
+X-Google-Smtp-Source: APXvYqwCds92WSgOcATJjPe5GOxHNR3RIEXkjbscjsxcH0l7rplY2Ca6nLAzVaRD/jXZ+Ny7BqZg2w==
+X-Received: by 2002:a17:902:61:: with SMTP id 88mr2408012pla.17.1582868064152;
+        Thu, 27 Feb 2020 21:34:24 -0800 (PST)
+Received: from yoga (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id q13sm8659550pgh.30.2020.02.27.21.34.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2020 21:34:23 -0800 (PST)
+Date:   Thu, 27 Feb 2020 21:34:20 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        agross@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        tsoni@codeaurora.org, vnkgutta@codeaurora.org
+Subject: Re: [PATCH v4 1/3] soc: qcom: Introduce Protection Domain Restart
+ helpers
+Message-ID: <20200228053420.GC210720@yoga>
+References: <20200226170001.24234-1-sibis@codeaurora.org>
+ <20200226170001.24234-2-sibis@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: F98AB8D0A87863EFA2C70BBE779F1DEAF0C572D9FECD78516D03F7B0CB365BA02000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200226170001.24234-2-sibis@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Q29uZmlnIGRwaSBwaW5zIG1vZGUgdG8gb3V0cHV0IGFuZCBwdWxsIGxvdyB3aGVuIGRwaSBpcyBk
-aXNhYmxlZC4NCkFvdmlkIGxlYWthZ2UgY3VycmVudCBmcm9tIHNvbWUgZHBpIHBpbnMgKEhzeW5j
-IFZzeW5jIERFIC4uLiApLg0KDQpTaWduZWQtb2ZmLWJ5OiBKaXRhbyBTaGkgPGppdGFvLnNoaUBt
-ZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jIHwg
-MzEgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDMxIGlu
-c2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtf
-ZHBpLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jDQppbmRleCBkYjMyNzJm
-N2E0YzQuLjAxMzNhZDhmNmE3ZCAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
-ay9tdGtfZHBpLmMNCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBpLmMNCkBA
-IC0xMCw3ICsxMCw5IEBADQogI2luY2x1ZGUgPGxpbnV4L2tlcm5lbC5oPg0KICNpbmNsdWRlIDxs
-aW51eC9vZi5oPg0KICNpbmNsdWRlIDxsaW51eC9vZl9kZXZpY2UuaD4NCisjaW5jbHVkZSA8bGlu
-dXgvb2ZfZ3Bpby5oPg0KICNpbmNsdWRlIDxsaW51eC9vZl9ncmFwaC5oPg0KKyNpbmNsdWRlIDxs
-aW51eC9waW5jdHJsL2NvbnN1bWVyLmg+DQogI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2Rldmlj
-ZS5oPg0KICNpbmNsdWRlIDxsaW51eC90eXBlcy5oPg0KIA0KQEAgLTc0LDYgKzc2LDkgQEAgc3Ry
-dWN0IG10a19kcGkgew0KIAllbnVtIG10a19kcGlfb3V0X3ljX21hcCB5Y19tYXA7DQogCWVudW0g
-bXRrX2RwaV9vdXRfYml0X251bSBiaXRfbnVtOw0KIAllbnVtIG10a19kcGlfb3V0X2NoYW5uZWxf
-c3dhcCBjaGFubmVsX3N3YXA7DQorCXN0cnVjdCBwaW5jdHJsICpwaW5jdHJsOw0KKwlzdHJ1Y3Qg
-cGluY3RybF9zdGF0ZSAqcGluc19ncGlvOw0KKwlzdHJ1Y3QgcGluY3RybF9zdGF0ZSAqcGluc19k
-cGk7DQogCWludCByZWZjb3VudDsNCiAJdTMyIHBjbGtfc2FtcGxlOw0KIH07DQpAQCAtMzg3LDYg
-KzM5Miw5IEBAIHN0YXRpYyB2b2lkIG10a19kcGlfcG93ZXJfb2ZmKHN0cnVjdCBtdGtfZHBpICpk
-cGkpDQogCWlmICgtLWRwaS0+cmVmY291bnQgIT0gMCkNCiAJCXJldHVybjsNCiANCisJaWYgKGRw
-aS0+cGluY3RybCAmJiBkcGktPnBpbnNfZ3BpbykNCisJCXBpbmN0cmxfc2VsZWN0X3N0YXRlKGRw
-aS0+cGluY3RybCwgZHBpLT5waW5zX2dwaW8pOw0KKw0KIAltdGtfZHBpX2Rpc2FibGUoZHBpKTsN
-CiAJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGRwaS0+cGl4ZWxfY2xrKTsNCiAJY2xrX2Rpc2FibGVf
-dW5wcmVwYXJlKGRwaS0+ZW5naW5lX2Nsayk7DQpAQCAtNDExLDYgKzQxOSw5IEBAIHN0YXRpYyBp
-bnQgbXRrX2RwaV9wb3dlcl9vbihzdHJ1Y3QgbXRrX2RwaSAqZHBpKQ0KIAkJZ290byBlcnJfcGl4
-ZWw7DQogCX0NCiANCisJaWYgKGRwaS0+cGluY3RybCAmJiBkcGktPnBpbnNfZHBpKQ0KKwkJcGlu
-Y3RybF9zZWxlY3Rfc3RhdGUoZHBpLT5waW5jdHJsLCBkcGktPnBpbnNfZHBpKTsNCisNCiAJbXRr
-X2RwaV9lbmFibGUoZHBpKTsNCiAJcmV0dXJuIDA7DQogDQpAQCAtNzE5LDYgKzczMCwyNiBAQCBz
-dGF0aWMgaW50IG10a19kcGlfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCiAJ
-b2ZfcHJvcGVydHlfcmVhZF91MzJfaW5kZXgoZGV2LT5vZl9ub2RlLCAicGNsay1zYW1wbGUiLCAx
-LA0KIAkJCQkgICAmZHBpLT5wY2xrX3NhbXBsZSk7DQogDQorCWRwaS0+cGluY3RybCA9IGRldm1f
-cGluY3RybF9nZXQoJnBkZXYtPmRldik7DQorCWlmIChJU19FUlIoZHBpLT5waW5jdHJsKSkgew0K
-KwkJZHBpLT5waW5jdHJsID0gTlVMTDsNCisJCWRldl9kYmcoJnBkZXYtPmRldiwgIkNhbm5vdCBm
-aW5kIHBpbmN0cmwhXG4iKTsNCisJfQ0KKwlpZiAoZHBpLT5waW5jdHJsKSB7DQorCQlkcGktPnBp
-bnNfZ3BpbyA9IHBpbmN0cmxfbG9va3VwX3N0YXRlKGRwaS0+cGluY3RybCwgImlkbGUiKTsNCisJ
-CWlmIChJU19FUlIoZHBpLT5waW5zX2dwaW8pKSB7DQorCQkJZHBpLT5waW5zX2dwaW8gPSBOVUxM
-Ow0KKwkJCWRldl9kYmcoJnBkZXYtPmRldiwgIkNhbm5vdCBmaW5kIHBpbmN0cmwgaWRsZSFcbiIp
-Ow0KKwkJfQ0KKwkJaWYgKGRwaS0+cGluc19ncGlvKQ0KKwkJCXBpbmN0cmxfc2VsZWN0X3N0YXRl
-KGRwaS0+cGluY3RybCwgZHBpLT5waW5zX2dwaW8pOw0KKw0KKwkJZHBpLT5waW5zX2RwaSA9IHBp
-bmN0cmxfbG9va3VwX3N0YXRlKGRwaS0+cGluY3RybCwgImFjdGl2ZSIpOw0KKwkJaWYgKElTX0VS
-UihkcGktPnBpbnNfZHBpKSkgew0KKwkJCWRwaS0+cGluc19kcGkgPSBOVUxMOw0KKwkJCWRldl9k
-YmcoJnBkZXYtPmRldiwgIkNhbm5vdCBmaW5kIHBpbmN0cmwgYWN0aXZlIVxuIik7DQorCQl9DQor
-CX0NCiAJbWVtID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNlKHBkZXYsIElPUkVTT1VSQ0VfTUVNLCAw
-KTsNCiAJZHBpLT5yZWdzID0gZGV2bV9pb3JlbWFwX3Jlc291cmNlKGRldiwgbWVtKTsNCiAJaWYg
-KElTX0VSUihkcGktPnJlZ3MpKSB7DQotLSANCjIuMjEuMA0K
+On Wed 26 Feb 08:59 PST 2020, Sibi Sankar wrote:
+> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+[..]
+> +config QCOM_PDR_HELPERS
+> +	tristate
+> +	depends on ARCH_QCOM || COMPILE_TEST
 
+As discussed on one of you other patches, please omit the depends on for
+Kconfig entries that are not user selectable. Presumably anyone
+selecting this option will have ARCH_QCOM met already.
+
+> +	select QCOM_QMI_HELPERS
+[..]
+> diff --git a/drivers/soc/qcom/pdr_interface.c b/drivers/soc/qcom/pdr_interface.c
+[..]
+> +static void pdr_locator_work(struct work_struct *work)
+> +{
+> +	struct pdr_handle *pdr = container_of(work, struct pdr_handle,
+> +					      locator_work);
+> +	struct pdr_service *pds;
+> +	int ret = 0;
+> +
+> +	/* Bail out early if the SERVREG LOCATOR QMI service is not up */
+> +	mutex_lock(&pdr->lock);
+> +	if (!pdr->locator_init_complete) {
+> +		mutex_unlock(&pdr->lock);
+> +		pr_debug("PDR: SERVICE LOCATOR service not available\n");
+> +		return;
+> +	}
+> +	mutex_unlock(&pdr->lock);
+> +
+> +	mutex_lock(&pdr->list_lock);
+> +	list_for_each_entry(pds, &pdr->lookups, node) {
+> +		if (!pds->need_locator_lookup)
+> +			continue;
+> +
+> +		pds->need_locator_lookup = false;
+> +		mutex_unlock(&pdr->list_lock);
+> +
+> +		ret = pdr_locate_service(pdr, pds);
+> +		if (ret < 0)
+> +			goto exit;
+> +
+> +		/* Initialize notifier QMI handle */
+> +		mutex_lock(&pdr->lock);
+> +		if (!pdr->notifier_init_complete) {
+> +			ret = qmi_handle_init(&pdr->notifier_hdl,
+> +					      SERVREG_STATE_UPDATED_IND_MAX_LEN,
+> +					      &pdr_notifier_ops,
+> +					      qmi_indication_handler);
+> +			if (ret < 0) {
+> +				mutex_unlock(&pdr->lock);
+> +				goto exit;
+> +			}
+> +			pdr->notifier_init_complete = true;
+> +		}
+> +		mutex_unlock(&pdr->lock);
+> +
+> +		ret = qmi_add_lookup(&pdr->notifier_hdl, pds->service, 1,
+> +				     pds->instance);
+> +		if (ret < 0)
+> +			goto exit;
+> +
+> +		return;
+
+If the caller calls pdr_add_lookup() multiple times in quick succession
+wouldn't it be possile to get the worker scheduled with multiple entries
+in &pdr->lookups with need_locator_lookup set?
+
+If so I think it makes sense to break the content of this loop, and the
+error handling under exit out into a separate function.
+
+And even if this would not be the case, breaking this out in a separate
+function would allow you to change the loop to:
+
+	list_for_each_entry() {
+		if (pdr->need_locator_lookup) {
+			do_the_lookup();
+			break;
+		}
+	}
+
+Which I think is easier to reason about than the loop with a return at
+the end.
+
+> +	}
+> +	mutex_unlock(&pdr->list_lock);
+> +exit:
+> +	if (ret < 0) {
+> +		/* Notify lookup failed */
+> +		mutex_lock(&pdr->list_lock);
+> +		list_del(&pds->node);
+> +		mutex_unlock(&pdr->list_lock);
+> +
+> +		if (ret == -ENXIO)
+> +			pds->state = SERVREG_LOCATOR_UNKNOWN_SERVICE;
+> +		else
+> +			pds->state = SERVREG_LOCATOR_ERR;
+> +
+> +		pr_err("PDR: service lookup for %s failed: %d\n",
+> +		       pds->service_name, ret);
+> +
+> +		mutex_lock(&pdr->status_lock);
+> +		pdr->status(pds->state, pds->service_path, pdr->priv);
+> +		mutex_unlock(&pdr->status_lock);
+> +		kfree(pds);
+> +	}
+> +}
+[..]
+> +struct pdr_handle *pdr_handle_alloc(void (*status)(int state,
+> +						   char *service_path,
+> +						   void *priv), void *priv)
+> +{
+> +	struct pdr_handle *pdr;
+> +	int ret;
+> +
+> +	if (!status)
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	pdr = kzalloc(sizeof(*pdr), GFP_KERNEL);
+> +	if (!pdr)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	pdr->status = *status;
+
+Please omit the * here.
+
+Regards,
+Bjorn
