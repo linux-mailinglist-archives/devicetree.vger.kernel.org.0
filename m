@@ -2,67 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7776E172E05
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 02:14:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 123D0172DC9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 02:02:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730343AbgB1BOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 27 Feb 2020 20:14:24 -0500
-Received: from mga03.intel.com ([134.134.136.65]:17550 "EHLO mga03.intel.com"
+        id S1730155AbgB1BCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 27 Feb 2020 20:02:14 -0500
+Received: from hermes.aosc.io ([199.195.250.187]:45202 "EHLO hermes.aosc.io"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729984AbgB1BOX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 27 Feb 2020 20:14:23 -0500
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Feb 2020 17:14:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; 
-   d="scan'208";a="385350063"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
-  by orsmga004.jf.intel.com with ESMTP; 27 Feb 2020 17:14:20 -0800
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
-        (envelope-from <lkp@intel.com>)
-        id 1j7UEN-0001kq-No; Fri, 28 Feb 2020 09:14:19 +0800
-Date:   Fri, 28 Feb 2020 01:40:04 +0800
-From:   kbuild test robot <lkp@intel.com>
-To:     Sivaprakash Murugesan <sivaprak@codeaurora.org>
-Cc:     kbuild-all@lists.01.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH] clk: qcom: apss_pll_offsets[] can be static
-Message-ID: <20200227174004.GA29216@f6f0d943a460>
-References: <1582797318-26288-3-git-send-email-sivaprak@codeaurora.org>
+        id S1730148AbgB1BCN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 27 Feb 2020 20:02:13 -0500
+Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
+        by hermes.aosc.io (Postfix) with ESMTPSA id 07DFF4B3D1;
+        Fri, 28 Feb 2020 01:02:06 +0000 (UTC)
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ondrej Jirman <megous@megous.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH v3 0/3] Add support for Goodix GT917S touch controller
+Date:   Fri, 28 Feb 2020 09:01:43 +0800
+Message-Id: <20200228010146.12215-1-icenowy@aosc.io>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1582797318-26288-3-git-send-email-sivaprak@codeaurora.org>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aosc.io; s=dkim;
+        t=1582851732;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=p9FhNZqspr0hdbk4QbswXREOY7YXlfg+mUTuttYfbMs=;
+        b=g1qaJ/e3KawJoHr6MztDcgrDvJCc7OkOcfTROk0o2hUxW2g5Zem1hW73owSk4mpDphTfD5
+        zNO96F7qIFXzzqvvyARj0qu/sAxholyQ2XVyT+YbeMRyH8fFkHXpIo+KDI76rHDlnEb5uQ
+        GWU32zts/ToVaUVEtIUVATyG27LAEag=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset introduces support for Goodix GT917S touch controller.
 
-Fixes: bfce07143090 ("clk: qcom: Add ipq6018 apss clock controller")
-Signed-off-by: kbuild test robot <lkp@intel.com>
----
- apss-ipq6018.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The major difference with other touch controllers from Goodix is that
+the ID string is no longer number-only (it contains a 'S'), so an
+additional patch is introduced for migrating the ID to a string.
 
-diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
-index 04b8962dbc8e0..663f0949ab109 100644
---- a/drivers/clk/qcom/apss-ipq6018.c
-+++ b/drivers/clk/qcom/apss-ipq6018.c
-@@ -36,7 +36,7 @@ enum {
- 	P_APSS_PLL
- };
- 
--const u8 apss_pll_offsets[] = {
-+static const u8 apss_pll_offsets[] = {
- 	[PLL_OFF_L_VAL] = 0x08,
- 	[PLL_OFF_ALPHA_VAL] = 0x10,
- 	[PLL_OFF_USER_CTL] = 0x18,
+Icenowy Zheng (3):
+  dt-bindings: input: touchscreen: add compatible string for Goodix
+    GT917S
+  Input: goodix - use string-based chip ID
+  Input: goodix - Add support for Goodix GT917S
+
+ .../bindings/input/touchscreen/goodix.yaml    |  1 +
+ drivers/input/touchscreen/goodix.c            | 71 +++++++++++--------
+ 2 files changed, 43 insertions(+), 29 deletions(-)
+
+-- 
+2.24.1
+
