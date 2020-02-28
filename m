@@ -2,64 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1A317353B
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 11:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA651735A8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 11:54:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726536AbgB1K0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 05:26:09 -0500
-Received: from foss.arm.com ([217.140.110.172]:36148 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726440AbgB1K0J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 05:26:09 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0806D4B2;
-        Fri, 28 Feb 2020 02:26:08 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1FBBF3F73B;
-        Fri, 28 Feb 2020 02:26:04 -0800 (PST)
-Date:   Fri, 28 Feb 2020 10:25:56 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Will Deacon <will@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        soc@kernel.org, Robert Richter <rrichter@marvell.com>,
-        Jon Loeliger <jdl@jdl.com>, Alexander Graf <graf@amazon.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Mark Langsdorf <mlangsdo@redhat.com>,
-        Alex Williamson <alex.williamson@redhat.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Cornelia Huck <cohuck@redhat.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eric Auger <eric.auger@redhat.com>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        James Morse <james.morse@arm.com>,
-        Jens Axboe <axboe@kernel.dk>, Joerg Roedel <joro@8bytes.org>,
-        kvm@vger.kernel.org, linux-clk <linux-clk@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [RFC PATCH 06/11] iommu: arm-smmu: Remove Calxeda secure mode
- quirk
-Message-ID: <20200228102556.1dde016e@donnerap.cambridge.arm.com>
-In-Reply-To: <20200228100446.GA2395@willie-the-truck>
-References: <20200218171321.30990-1-robh@kernel.org>
-        <20200218171321.30990-7-robh@kernel.org>
-        <20200218172000.GF1133@willie-the-truck>
-        <CAL_JsqJn1kG6gah+4318NQfJ4PaS3x3woWEUh08+OTfOcD+1MQ@mail.gmail.com>
-        <20200228100446.GA2395@willie-the-truck>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        id S1726614AbgB1KyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 05:54:00 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:50020 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726063AbgB1KyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 05:54:00 -0500
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 15DF9293656;
+        Fri, 28 Feb 2020 10:53:58 +0000 (GMT)
+Date:   Fri, 28 Feb 2020 11:53:55 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Richard Weinberger <richard@nod.at>,
+        Sekhar Nori <nsekhar@ti.com>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>, linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 06/11] mtd: spi-nor: add support for DTR protocol
+Message-ID: <20200228115355.5033798f@collabora.com>
+In-Reply-To: <20200228093658.zc3uifqg4zruokq3@ti.com>
+References: <20200226093703.19765-1-p.yadav@ti.com>
+        <20200226093703.19765-7-p.yadav@ti.com>
+        <20200227175841.51435e3f@collabora.com>
+        <20200228093658.zc3uifqg4zruokq3@ti.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
@@ -68,46 +45,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Feb 2020 10:04:47 +0000
-Will Deacon <will@kernel.org> wrote:
+On Fri, 28 Feb 2020 15:06:58 +0530
+Pratyush Yadav <p.yadav@ti.com> wrote:
 
-Hi,
-
-> On Tue, Feb 25, 2020 at 04:01:54PM -0600, Rob Herring wrote:
-> > On Tue, Feb 18, 2020 at 11:20 AM Will Deacon <will@kernel.org> wrote:  
-> > >
-> > > On Tue, Feb 18, 2020 at 11:13:16AM -0600, Rob Herring wrote:  
-> > > > Cc: Will Deacon <will@kernel.org>
-> > > > Cc: Robin Murphy <robin.murphy@arm.com>
-> > > > Cc: Joerg Roedel <joro@8bytes.org>
-> > > > Cc: iommu@lists.linux-foundation.org
-> > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > > ---
-> > > > Do not apply yet.  
-> > >
-> > > Pleeeeease? ;)
-> > >  
-> > > >  drivers/iommu/arm-smmu-impl.c | 43 -----------------------------------
-> > > >  1 file changed, 43 deletions(-)  
-> > >
-> > > Yes, I'm happy to get rid of this. Sadly, I don't think we can remove
-> > > anything from 'struct arm_smmu_impl' because most implementations fall
-> > > just short of perfect.
-> > >
-> > > Anyway, let me know when I can push the button and I'll queue this in
-> > > the arm-smmu tree.  
-> > 
-> > Seems we're leaving the platform support for now, but I think we never
-> > actually enabled SMMU support. It's not in the dts either in mainline
-> > nor the version I have which should be close to what shipped in
-> > firmware. So as long as Andre agrees, this one is good to apply.  
+> Hi Boris,
 > 
-> Andre? Can I queue this one for 5.7, please?
+> On 27/02/20 05:58PM, Boris Brezillon wrote:
+> > On Wed, 26 Feb 2020 15:06:58 +0530
+> > Pratyush Yadav <p.yadav@ti.com> wrote:
+> >   
+> > > Double Transfer Rate (DTR) is SPI protocol in which data is transferred
+> > > on each clock edge as opposed to on each clock cycle. Make
+> > > framework-level changes to allow supporting flashes in DTR mode.
+> > > 
+> > > Right now, mixed DTR modes are not supported. So, for example a mode
+> > > like 4S-4D-4D will not work. All phases need to be either DTR or STR.  
+> > 
+> > Didn't go deep into the patch but at first glance you don't seem to
+> > extend the framework to support stateful modes as I tried to do here
+> > [1]. That's really something we should address before considering
+> > supporting xD-xD-xD modes, unless the SPI-NOR only supports one
+> > stateful mode. If we don't do that first, we might face all sort of
+> > unpleasant issues:
+> > 
+> > * kexec not working correctly because the previous kernel left the NOR
+> >   in an unknown state
+> > * suspend/resume not working properly
+> > * linux not booting properly because the bootloader left the device in
+> >   its non-default mode
+> > * ...  
+> 
+> Correct. I am working on a follow-up series that takes care of these 
+> problems. The series will allow spi-nor to detect what mode the flash is 
+> in and then run the SFPD procedure in that mode (or maybe switch to 
+> single SPI mode and then go about its business as usual? I haven't 
+> figured out all the details yet).
+> 
+> So for the context of this series, assume we are handed the flash in 
+> single SPI mode.
+>  
+> > [1]https://patchwork.kernel.org/cover/10638055/  
+> 
+> BTW, I took a quick look at this series but I don't see any code that 
+> tries to detect which mode the flash is in (which is the troublesome 
+> part [0]). So, for example, if the bootloader leaves the flash in 
+> 8D-8D-8D mode, how would your series handle that situation?
 
-I was wondering how much of a pain it is to keep it in? AFAICS there are other users of the "impl" indirection. If those goes away, I would be happy to let Calxeda go.
-But Eric had the magic DT nodes to get the SMMU working, and I used that before, with updating the DT either on flash or dynamically via U-Boot.
+Oh, it's definitely not taking care of that, it was just paving the
+road for spi-nor state tracking. You'd need to extend it to support
+8D-8D-8D to 1-1-1 transitions at boot time (if that's even possible).
 
-So I don't know exactly *how* desperate you are with removing this, or if there are other reasons than "negative diffstat", but if possible I would like to keep it in.
+> 
+> [0] There are multiple problems to take care of when trying to detect 
+>     which mode a flash is in. We can try reading SFDP in each mode and 
+>     whichever mode gives us the correct "SFDP" signature is the mode the 
+>     flash is in. But the problem is that even in xSPI standard Read SFDP 
+>     command is optional in 8D-8D-8D mode, let alone non-xSPI flashes.
+>     Another problem is that the address bytes and dummy cycles for Read 
+>     SFDP are not the same for every flash. The xSPI standard says 
+>     address bytes can be 3/4 and dummy cycles can be 8/20. So, for 
+>     example, Cypress s28hs/s28ht family and Micron Xccela (mt35x) family 
+>     use 4 address bytes, but the Adesto ATXP032/ATXP032R flashes use 3 
+>     address bytes.
 
-Cheers,
-Andre.
+I'd rather go with something simpler and more widely supported than SFDP
+reads. Don't we have a simple command that's supported by all flashes
+and returns well known data. Isn't there an EXIT sequence that allows
+NORs to return to a single SPI state?
+
+> 
+>     Say that a flash supports Read SFDP in 8D-8D-8D mode and we try all 
+>     the combinations to find out which mode the flash is in, we now have 
+>     the problem of actually identifying the flash. Unfortunately, the 
+>     Read ID command is not uniform across flash vendors. The Micron 
+>     Xccela flashes use 8 dummy cycles and no address bytes for Read ID. 
+>     The Cypress s28hs/t family uses configurable dummy cycles 
+>     (defaulting to 3) and needs 4 dummy address bytes all of which are 
+>     0.
+
+Yep, that's what I complained about when I tried to support the
+Macronix flash. They didn't plan for a reliable RETURN-TO-SINGLE-SPI
+sequence which would not conflict with any other existing SPI commands,
+and that's a real problem.
+
+> 
+>     If we can't find out which flash it is, we can't run its fixup 
+>     hooks, and might end up running it with incorrect settings. And all 
+>     this is assuming a flash even has SFDP and has it available in all 
+>     modes.
+
+Absolutely.
+
+> 
+>     So, the only solution I can now think of is having the flash name in 
+>     its compatible string in the device tree. This way we can skip all 
+>     the Read ID ugliness and can have flash-specific hooks to make it 
+>     easier to detect the mode it is in (though I wonder if it is even 
+>     possible to detect the mode in a flash that doesn't have SFDP in 
+>     8D-8D-8D).
+
+Hm, I'd really like to avoid that if possible.
+
+> 
+>     Thoughts? Is there a better way to solve this problem that I didn't 
+>     think of?
+> 
+
+Nope, except maybe mandate that the bootloader always put the NOR in
+single SPI mode before booting Linux (and Linux should do the same,
+which is what my series was trying to address IIRC).
