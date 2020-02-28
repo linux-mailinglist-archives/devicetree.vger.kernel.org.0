@@ -2,109 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92A3A1737A5
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 13:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8858D17382B
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 14:19:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726151AbgB1Mwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 07:52:32 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:32820 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725876AbgB1Mwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 07:52:31 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01SChAOm021775;
-        Fri, 28 Feb 2020 13:52:15 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=yrQgPlGNcsd3SNy+rWiVt1Cll54CgcO3EV2Kn8KU8q0=;
- b=JWlbeBkvOvlSWTdVqbrG+BguMFrQ8qPYDcbU0P4dRMxrE6PjBTOK2eAv2+qZv1fQvlBC
- akmq8WkiOAVHzmoOnwe3Gbz9DmDCaCVPiXho1SrbTGSeV6KpVZqgcWwVISPEqr27zDtc
- dKMSDvKUNiOFeguSgFwD9qQkfLi1U/c2L7PShRwVVNH8D7KO69PXbhi2ZNROQO+KPByd
- xtvmf5XHD8PIoZZU5BYt6Y0DkAwwXD5xOukX4eGClDAL83qBLBU18KR1vjhoWHv6rYp5
- aveyWH0Z7tVKHGFZTAzIMHVr0EiLJe66nyTcCpNOjMY65rqZLQa617hB0Mv/XnaKv9Yg JA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2yepvtbyg7-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 28 Feb 2020 13:52:15 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CB88C10003A;
-        Fri, 28 Feb 2020 13:52:10 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BDDD72BAEDD;
-        Fri, 28 Feb 2020 13:52:10 +0100 (CET)
-Received: from localhost (10.75.127.46) by SFHDAG3NODE3.st.com (10.75.127.9)
- with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 28 Feb 2020 13:52:10
- +0100
-From:   Benjamin Gaignard <benjamin.gaignard@st.com>
-To:     <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: [PATCH] ARM: dts: stm32: Rename stmfx node names
-Date:   Fri, 28 Feb 2020 13:52:05 +0100
-Message-ID: <20200228125205.8126-2-benjamin.gaignard@st.com>
-X-Mailer: git-send-email 2.15.0
-In-Reply-To: <20200228125205.8126-1-benjamin.gaignard@st.com>
-References: <20200228125205.8126-1-benjamin.gaignard@st.com>
+        id S1725892AbgB1NTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 08:19:42 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51562 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725876AbgB1NTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 08:19:42 -0500
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B0434296B9F;
+        Fri, 28 Feb 2020 13:19:40 +0000 (GMT)
+Date:   Fri, 28 Feb 2020 14:18:14 +0100
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>, Sekhar Nori <nsekhar@ti.com>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 06/11] mtd: spi-nor: add support for DTR protocol
+Message-ID: <20200228141814.633c7195@collabora.com>
+In-Reply-To: <20200228120750.hstohetdnqja2g2p@ti.com>
+References: <20200226093703.19765-1-p.yadav@ti.com>
+        <20200226093703.19765-7-p.yadav@ti.com>
+        <20200227175841.51435e3f@collabora.com>
+        <20200228093658.zc3uifqg4zruokq3@ti.com>
+        <20200228115355.5033798f@collabora.com>
+        <20200228120750.hstohetdnqja2g2p@ti.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG3NODE1.st.com (10.75.127.7) To SFHDAG3NODE3.st.com
- (10.75.127.9)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-02-28_04:2020-02-26,2020-02-28 signatures=0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename stmfx node names according to yaml description.
+On Fri, 28 Feb 2020 17:37:50 +0530
+Pratyush Yadav <p.yadav@ti.com> wrote:
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
----
- arch/arm/boot/dts/stm32746g-eval.dts  | 2 +-
- arch/arm/boot/dts/stm32mp157c-ev1.dts | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ 
+> > Isn't there an EXIT sequence that allows NORs to return to a single 
+> > SPI state?  
+> 
+> Yes there is, but it comes with a lot of strings attached. There is a 
+> hardware reset pin on some flashes that puts the flash in Power-on-Reset 
+> (POR) mode. But that pin is not mandatory. It also might not be 
+> connected on a given board.
+> 
+> The other option is a "Soft Reset" (also optional), which puts the flash 
+> in POR mode after it is given the soft reset command. But to send the 
+> command you need to know the mode the device is in. On top of that, the 
+> Soft Reset opcode differs between flashes. According to the xSPI spec, 
+> some flashes can have the opcode as 0xF0 and some others can have it as 
+> a two command sequence of 0x66 and 0x99.
+> 
+> And the cherry on top is the fact that these reset operations return to 
+> a state based on the value of the non-volatile bits. So, if the 
+> non-volatile configuration is 8D-8D-8D mode, then all these resets 
+> achieve nothing.
 
-diff --git a/arch/arm/boot/dts/stm32746g-eval.dts b/arch/arm/boot/dts/stm32746g-eval.dts
-index fcc804e3c158..4ea3f98dd275 100644
---- a/arch/arm/boot/dts/stm32746g-eval.dts
-+++ b/arch/arm/boot/dts/stm32746g-eval.dts
-@@ -165,7 +165,7 @@
- 		interrupts = <8 IRQ_TYPE_EDGE_RISING>;
- 		interrupt-parent = <&gpioi>;
- 
--		stmfx_pinctrl: stmfx-pin-controller {
-+		stmfx_pinctrl: pinctrl {
- 			compatible = "st,stmfx-0300-pinctrl";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-index 228e35e16884..3f4668a43afe 100644
---- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-@@ -210,7 +210,7 @@
- 		interrupt-parent = <&gpioi>;
- 		vdd-supply = <&v3v3>;
- 
--		stmfx_pinctrl: stmfx-pin-controller {
-+		stmfx_pinctrl: pinctrl {
- 			compatible = "st,stmfx-0300-pinctrl";
- 			gpio-controller;
- 			#gpio-cells = <2>;
-@@ -218,7 +218,7 @@
- 			#interrupt-cells = <2>;
- 			gpio-ranges = <&stmfx_pinctrl 0 0 24>;
- 
--			joystick_pins: joystick {
-+			joystick_pins: joystick-pins {
- 				pins = "gpio0", "gpio1", "gpio2", "gpio3", "gpio4";
- 				bias-pull-down;
- 			};
--- 
-2.15.0
+Looks like flash vendors don't learn from their mistakes, they keep
+adding more features without really thinking about backward
+compatibility :-(.
 
+> >   
+> > > 
+> > >     So, the only solution I can now think of is having the flash name in 
+> > >     its compatible string in the device tree. This way we can skip all 
+> > >     the Read ID ugliness and can have flash-specific hooks to make it 
+> > >     easier to detect the mode it is in (though I wonder if it is even 
+> > >     possible to detect the mode in a flash that doesn't have SFDP in 
+> > >     8D-8D-8D).  
+> > 
+> > Hm, I'd really like to avoid that if possible.  
+> 
+> Unfortunately, I don't really see a better alternative. Just so I 
+> understand this better, why do you think it is something worth avoiding?
+
+There are 2 main reasons:
+
+1/ board manufacturers usually source their flashes from different
+vendors so they're not tied to one of them. That means you can't really
+make the compatible too specific or you'd have to deal with DT variants
+(one variant per-flash).
+
+2/ I feel like once we start accepting specific compats, people will
+try to abuse it and decide that they need one for their flash too,
+before even trying to see if there's not a different way to detect the
+flash.
