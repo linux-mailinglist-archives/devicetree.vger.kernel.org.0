@@ -2,181 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D23E5173CC7
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 17:24:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BBDB173CD9
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 17:27:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725900AbgB1QYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 11:24:05 -0500
-Received: from mga17.intel.com ([192.55.52.151]:12638 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725730AbgB1QYE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 11:24:04 -0500
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 28 Feb 2020 08:24:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; 
-   d="scan'208";a="350947379"
-Received: from kuha.fi.intel.com ([10.237.72.53])
-  by fmsmga001.fm.intel.com with SMTP; 28 Feb 2020 08:24:01 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 28 Feb 2020 18:24:00 +0200
-Date:   Fri, 28 Feb 2020 18:24:00 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Prashant Malani <pmalani@chromium.org>,
-        linux-kernel@vger.kernel.org, enric.balletbo@collabora.com,
-        bleung@chromium.org, devicetree@vger.kernel.org,
-        Guenter Roeck <groeck@chromium.org>,
+        id S1726277AbgB1Q0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 11:26:48 -0500
+Received: from outils.crapouillou.net ([89.234.176.41]:40010 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725730AbgB1Q0s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 11:26:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1582907205; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=xOb0AVoiiFlckuvxHpEhBL9Wrp4HKGY5UhYo5YdakL0=;
+        b=L+RAqN9ACsoeWx1jzHdHE2acUYpgMnq8YMOrZaHk4eeqRdlvNqW9Ns96f0NkFiP6lG/Qu0
+        5GZTb5K6gIvKRr1+aq4pAawcE+gxgqZxtb/6G5OCl9f7YhANfLqbVe297FNUmrzFJ48Byo
+        0W9OlUBhOUDdxmv8hJ33Sv1BaXngaCc=
+Date:   Fri, 28 Feb 2020 13:26:20 -0300
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v8 0/7] MIPS: CI20: Add efuse driver for Ingenic JZ4780
+ and attach to DM9000 for stable MAC addresses
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     PrasannaKumar Muralidharan <prasannatsmkumar@gmail.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Mathieu Malaterre <malat@debian.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: Add cros-ec Type C port driver
-Message-ID: <20200228162400.GA27904@kuha.fi.intel.com>
-References: <20200220003102.204480-1-pmalani@chromium.org>
- <20200220003102.204480-2-pmalani@chromium.org>
- <158279287307.177367.4599344664477592900@swboyd.mtv.corp.google.com>
- <20200227163825.GB18240@kuha.fi.intel.com>
- <158284127336.4688.623067902277673206@swboyd.mtv.corp.google.com>
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Andi Kleen <ak@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org,
+        kernel@pyra-handheld.com
+Message-Id: <1582907181.3.7@crapouillou.net>
+In-Reply-To: <cover.1582905653.git.hns@goldelico.com>
+References: <cover.1582905653.git.hns@goldelico.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <158284127336.4688.623067902277673206@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Hi Nikolaus,
 
-On Thu, Feb 27, 2020 at 02:07:53PM -0800, Stephen Boyd wrote:
-> Quoting Heikki Krogerus (2020-02-27 08:38:25)
-> > Hi Stephen,
-> > 
-> > On Thu, Feb 27, 2020 at 12:41:13AM -0800, Stephen Boyd wrote:
-> > > > +examples:
-> > > > +  - |+
-> > > > +    cros_ec: ec@0 {
-> > > > +      compatible = "google,cros-ec-spi";
-> > > > +
-> > > > +      typec {
-> > > > +        compatible = "google,cros-ec-typec";
-> > > > +
-> > > > +        usb_con: connector {
-> > > > +          compatible = "usb-c-connector";
-> > > > +          port-number = <0>;
-> > > > +          power-role = "dual";
-> > > > +          data-role = "dual";
-> > > > +          try-power-role = "source";
-> > > > +        };
-> > > 
-> > > I thought that perhaps this would be done with the OF graph APIs instead
-> > > of being a child of the ec node. I don't see how the usb connector is
-> > > anything besides a child of the top-level root node because it's
-> > > typically on the board. We put board level components at the root.
-> > 
-> > No.
-> > 
-> > The above follows the usb-connector bindings, so it is correct:
-> > Documentation/devicetree/bindings/connector/usb-connector.txt
-> > 
-> > So the connector is always a child of the "CC controller" with the USB
-> > Type-C connectors, which in this case is the EC (from operating systems
-> > perspective). The "CC controller" controls connectors, and it doesn't
-> > actually do anything else. So placing the connectors under the
-> > "connector controller" is also logically correct.
-> 
-> Ah ok I see. The graph binding is for describing the data path, not the
-> control path. Makes sense. 
-> 
-> > 
-> > > Yes, the connector is intimately involved with the EC here, but I would
-> > > think that we would have an OF graph connection from the USB controller
-> > > on the SoC to the USB connector, traversing through anything that may be
-> > > in that path, such as a USB hub. Maybe the connector node itself can
-> > > point to the EC type-c controller with some property like
-> > 
-> > I think your idea here is that there should be only a single node for
-> > each connector that is then linked with every component that it is
-> > physically connected to (right?), but please note that that is not
-> > enough. Every component attached to the connector must have its own
-> > child node that represents the "port" that is physically connected to
-> > the USB Type-C connector.
-> > 
-> > So for example, the USB controller nodes have child nodes for every
-> > USB2 port as well as for every USB3 port. Similarly, the GPU
-> > controllers have child node for every DisplayPort, etc. And I believe
-> > that is already how it has been done in DT (and also in ACPI).
-> 
-> It looks like perhaps you're conflating ports in USB spec with the OF
-> graph port? I want there to be one node per type-c connector that I can
-> physically see on the device. Is that not sufficient?
+For the whole series:
 
-It is. We don't need more than one node that represents the physical
-connector (and we should not have more than one node for that). And
-actually, I was not mixing the OF graph ports and USB ports... I
-think I should be talking about PHY instead of "port". That is
-probable more clear.
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
 
-My point is that every PHY that is connected to a Type-C connector
-must still be represented with its own node in devicetree and ACPI. So
-there still needs to be a node for the USB2 PHY, USB3 PHY, DisplayPort
-PHY, etc., on top of the connector node. I got the picture that you
-are proposing that we don't need those PHY nodes anymore since we have
-the connector nodes, but maybe I misunderstood?
+Cheers,
+-Paul
 
-> Are there any examples of the type-c connector in DT? I see some
-> NXP/Freescale boards and one Renesas board so far. Maybe there are other
-> discussions I can read up on?
-> 
-> > 
-> > Those "port" nodes then just need to be linked with the "connector"
-> > node. I think for that the idea was to use OF graph, but I'm really
-> > sceptical about that. The problem is that with the USB Type-C
-> > connectors we have to be able to identify the connections, i.e. which
-> > endpoint is the USB2 port, which is the DisplayPort and so on, and OF
-> > graph does not give any means to do that on its own. We will have to
-> > rely on separate device properties in order to do the identification.
-> > Currently it is not documented anywhere which property should be used
-> > for that.
-> 
-> I hope that this patch series can document this.
 
-Well, we do need that to be documented, but do we really need to block
-this series because of that? This driver does not depend on OF graph
-yet.
+Le ven., f=E9vr. 28, 2020 at 17:00, H. Nikolaus Schaller=20
+<hns@goldelico.com> a =E9crit :
+> * fix a compiler warning/error (reported by Paul Cercueil=20
+> <paul@crapouillou.net>)
+> * remove clock-names from properties (suggested by Paul Cercueil=20
+> <paul@crapouillou.net>)
+>=20
+> PATCH V7 2020-02-28 14:58:30:
+> * use devm_add_action_or_reset to unprepare clock in case of error=20
+> (suggested by Paul Cercueil <paul@crapouillou.net>)
+> * use already existing constants to check for overflow of rd_adj and=20
+> rd_strobe
+> * remove clock-names from bindings example and DTS (suggested by Paul=20
+> Cercueil <paul@crapouillou.net>)
+> * addition for nemc driver to handle this correctly (contributed by=20
+> Paul Cercueil <paul@crapouillou.net>)
+> * make efuse a child node of nemc to avoid problems with overlapping
+>   reg address ranges (suggested by Paul Cercueil=20
+> <paul@crapouillou.net>)
+>=20
+> PATCH V6 2020-02-26 12:16:07:
+> * add dependency on CONFIG_OF and select REGMAP_MMIO (suggested by=20
+> Paul Cercueil <paul@crapouillou.net>)
+> * add clk_prepare_enable() (suggested by Paul Cercueil=20
+> <paul@crapouillou.net>)
+> * inline jz4780_efuse_read_32bytes() since it is only used once
+> * remove read optimization for full block (suggested by Paul Cercueil=20
+> <paul@crapouillou.net>)
+> * simplify calculations for rd_adj and rd_strobe (suggested by Paul=20
+> Cercueil <paul@crapouillou.net>)
+> * do calculations for rd_adj and rd_strobe in local variables
+> * fix overflow check (did allow for 5 bit values although register is=20
+> 4 bit wide)
+> * fixes for yaml (sugested by Andreas Kemnade <andreas@kemnade.info>)
+>=20
+> PATCH V5 2020-02-22 11:25:35:
+> * no longer RFC but PATCH
+> * add yaml bindings (by Andreas Kemnade <andreas@kemnade.info>)
+> * fixes to yaml (suggested by Rob Herring <robh@kernel.org>)
+>=20
+> RFC V4 2020-02-17 17:55:35:
+> * removed read_only for nvmem config because there is no write method
+> * Kconfig: replaced depends MACH_JZ4780 with MACH_INGENIC
+> * run through checkpatch and fixed issues
+> * made use of devm_nvram_register() and get rid of=20
+> jz4780_efuse_remove()
+>   (suggested by Srinivas Kandagatla <srinivas.kandagatla@linaro.org>)
+> * squashed previous patch 1/9 and 2/9 into single (regmap based)=20
+> driver
+>=20
+> RFC V3 2020-02-16 20:20:59:
+>=20
+> This series is based on and a follow up for
+>=20
+> https://lore.kernel.org/patchwork/cover/868157/
+>=20
+> ("[v2,0/2] Add efuse driver for Ingenic JZ4780 SoC")
+>=20
+> Original authors were
+> PrasannaKumar Muralidharan <prasannatsmkumar@gmail.com>
+> Mathieu Malaterre <malat@debian.org>
+>=20
+> and there are additions / code improvements by
+> H. Nikolaus Schaller <hns@goldelico.com>
+> Paul Cercueil <paul@crapouillou.net>
+>=20
+> This setup works, if the dm9000 driver is compiled
+> as a module.
+>=20
+> Therefore it is all RFC level. It is also not completely
+> checkpatched.
+>=20
+>=20
+> H. Nikolaus Schaller (1):
+>   MIPS: DTS: CI20: make DM9000 Ethernet controller use NVMEM to find=20
+> the
+>     default MAC address
+>=20
+> Paul Cercueil (1):
+>   memory: jz4780_nemc: Only request IO memory the driver will use
+>=20
+> PrasannaKumar Muralidharan (5):
+>   nvmem: add driver for JZ4780 efuse
+>   Bindings: nvmem: add bindings for JZ4780 efuse
+>   Documentation: ABI: nvmem: add documentation for JZ4780 efuse ABI
+>   nvmem: MAINTAINERS: add maintainer for JZ4780 efuse driver
+>   MIPS: DTS: JZ4780: define node for JZ4780 efuse
+>=20
+>  .../ABI/testing/sysfs-driver-jz4780-efuse     |  16 ++
+>  .../bindings/nvmem/ingenic,jz4780-efuse.yaml  |  45 ++++
+>  MAINTAINERS                                   |   5 +
+>  arch/mips/boot/dts/ingenic/ci20.dts           |   3 +
+>  arch/mips/boot/dts/ingenic/jz4780.dtsi        |  19 +-
+>  drivers/memory/jz4780-nemc.c                  |  15 +-
+>  drivers/nvmem/Kconfig                         |  12 +
+>  drivers/nvmem/Makefile                        |   2 +
+>  drivers/nvmem/jz4780-efuse.c                  | 239=20
+> ++++++++++++++++++
+>  9 files changed, 353 insertions(+), 3 deletions(-)
+>  create mode 100644=20
+> Documentation/ABI/testing/sysfs-driver-jz4780-efuse
+>  create mode 100644=20
+> Documentation/devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml
+>  create mode 100644 drivers/nvmem/jz4780-efuse.c
+>=20
+> --
+> 2.23.0
+>=20
 
-> Why can't that work by having multiple OF graph ports for USB2 port,
-> DisplayPort, USB3 port, etc? The data path goes to the connector and
-> we can attach more information to each port node to describe what
-> type of endpoint is there like a DisplayPort capable type-c
-> connector for example.
+=
 
-The PHY nodes we must still always have. So the OF graph will always
-describe the connection between the PHY and the connector, and the
-connection between the PHY and the controller must be described
-separately.
-
-> > For ACPI we are going to propose that with every type of connection,
-> > there should be a device property that returns a reference to the
-> > appropriate port. That way there are no problems identifying the
-> > connections. All we need to do is to define the property names for
-> > every type of connection. "usb2-port" for the USB2 or high speed port,
-> > "usb3-port" for USB3, etc.
-> > 
-> 
-> That sounds like something we should figure out now for DT firmwares
-> too. For this particular binding, I don't know if we need to do anything
-> besides figure out how to represent multiple connectors underneath the
-> EC node. The other properties seem fairly generic and so I'd expect this
-> series to migrate
-> Documentation/devicetree/bindings/connector/usb-connector.txt to YAML
-> and refine the binding with anything necessary, like a 'reg' property to
-> allow multiple ports to exist underneath the "CC controller".
-
-OK.
-
-thanks,
-
--- 
-heikki
