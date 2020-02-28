@@ -2,67 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E091738F8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 14:53:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B235F173928
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 15:01:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727040AbgB1Nvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 08:51:52 -0500
-Received: from foss.arm.com ([217.140.110.172]:38642 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725892AbgB1Nvv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 08:51:51 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 449EE31B;
-        Fri, 28 Feb 2020 05:51:51 -0800 (PST)
-Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.197.25])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 663073F7B4;
-        Fri, 28 Feb 2020 05:51:49 -0800 (PST)
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     soc@kernel.org, Olof Johansson <olof@lixom.net>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Robert Richter <rric@kernel.org>, Jon Loeliger <jdl@jdl.com>,
-        Mark Langsdorf <mlangsdo@redhat.com>,
-        Eric Auger <eric.auger@redhat.com>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>
-Subject: [PATCH v3 5/5] MAINTAINERS: Update Calxeda Highbank maintainership
-Date:   Fri, 28 Feb 2020 13:51:06 +0000
-Message-Id: <20200228135106.220620-6-andre.przywara@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200228135106.220620-1-andre.przywara@arm.com>
-References: <20200228135106.220620-1-andre.przywara@arm.com>
+        id S1726738AbgB1N6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 08:58:11 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:45200 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725892AbgB1N6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Feb 2020 08:58:11 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01SDvEF7018288;
+        Fri, 28 Feb 2020 14:58:06 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=sQGS3ajcizRpXz7eztz3fMHKRX1ok8Cx3ATqa3t8sXI=;
+ b=vpujZh9hfVYYlWUBbS8oSxHfGRCy2GfcEAt1BI1uN7+mFa93ncdXlB9wBNfU9WqOrhAc
+ 3xb+TXjcfeGfZziVC3lYIkK/Imxyie+wAQbXtPytjuiMV+rl39zDIwrUk4jgLyS9t83v
+ Bhl+PeR5nEUfigrpurqzT/vlrJzhlVZ5ggs3pApho4zq89TubdjI45yd/h6mcpJ331Wr
+ S9xBi+1gB6lmAKqFE0ds8V/UrOuKxmwwDy0tYuNR32hSx0gvn1m5QAXu1Uu7cnnw4y6J
+ 7rN5kD/Pet5zHniRymn/m1hXE8KI1affqqgNXXhu9JMvGoxjJimcrATiPe00CcjHIoa4 eA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2yepvtc9xe-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Feb 2020 14:58:06 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 251F9100034;
+        Fri, 28 Feb 2020 14:58:00 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E9BC32BEC4A;
+        Fri, 28 Feb 2020 14:57:59 +0100 (CET)
+Received: from localhost (10.75.127.46) by SFHDAG6NODE1.st.com (10.75.127.16)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 28 Feb 2020 14:57:59
+ +0100
+From:   Yannick Fertre <yannick.fertre@st.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] dt-bindings: touchscreen: goodix: support of gt9147
+Date:   Fri, 28 Feb 2020 14:57:51 +0100
+Message-ID: <1582898271-21073-1-git-send-email-yannick.fertre@st.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG6NODE1.st.com
+ (10.75.127.16)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-28_04:2020-02-28,2020-02-28 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob sees little point in maintaining the Calxeda architecture (early ARM
-32-bit server) anymore.
-Since I have a machine sitting under my desk, change the maintainership
-to not lose support for that platform.
+Add support for it by adding compatible.
+The chip data on GT9147 is similar to GT912, like
+- config data register has 0x8047 address
+- config data register max len is 240
+- config data checksum has 8-bit
 
-Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Yannick Fertre <yannick.fertre@st.com>
 ---
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 05f566eba2a6..fc1a11f10736 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1605,7 +1605,7 @@ F:	Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
- F:	Documentation/devicetree/bindings/pinctrl/bitmain,bm1880-pinctrl.txt
- 
- ARM/CALXEDA HIGHBANK ARCHITECTURE
--M:	Rob Herring <robh@kernel.org>
-+M:	Andre Przywara <andre.przywara@arm.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	arch/arm/mach-highbank/
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+index d7c3262..9f65d67 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+@@ -21,6 +21,7 @@ properties:
+       - goodix,gt911
+       - goodix,gt9110
+       - goodix,gt912
++      - goodix,gt9147
+       - goodix,gt927
+       - goodix,gt9271
+       - goodix,gt928
 -- 
-2.17.1
+2.7.4
 
