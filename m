@@ -2,120 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65862173792
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 13:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 054621737A8
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 13:52:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726733AbgB1MuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 07:50:17 -0500
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36633 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725884AbgB1MuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 07:50:16 -0500
-Received: by mail-wm1-f67.google.com with SMTP id g83so867369wme.1;
-        Fri, 28 Feb 2020 04:50:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=7SOOFR5A8cRXpbsPD4NmdfCkYNnaGr0VzqHcY4iP4Ns=;
-        b=hRPTW2ULNhZjOA7emZQEEesi0PP78D2LjuQEDDCKuOSmhH2h3dXr/i2KP0Eh5ZDEQY
-         Sl8/xquqjPHT2muExLEDXse/D/C+AgxqOUQjBLddCYYebubu6P0yxK2KUCoxir6gVHlt
-         a9chrqRrjWXfXXbAKNMM0JZleYqutB3bgwhdSx/4msoeVSXCjvdn8j7lgq8tlFcJBGNj
-         zt8hAewJ71Rprux8EA3g0UshuptOIRaucJsW6wAX/ypcH8Q99Jb8vdhwZj/HLpCH6IbN
-         j+BXJQeoMzI17eqjjAG64da++fJXdaXh3MWCVKsQM2khOkO/Oym4aoYRNDtwh3syYwAG
-         WxLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=7SOOFR5A8cRXpbsPD4NmdfCkYNnaGr0VzqHcY4iP4Ns=;
-        b=BYJKJNzoqT3/djcTn8WpHkVa93X3ixW7xVY+8naDxfrrY7kB2Yzp8EfWeTxMIrUl1j
-         GsHsgvldW50Ni8g/IcSPo+nc+PfySPNQxHCcmI1vpRdxHQ9RuAFbIy1ZOojuE1VRdThL
-         Qr3aj2ZUve8GRUNTUY7mWUAfkjcAK8Gdl/x34FMmdqAsWQ5beQCS8XpmNHIyNYeNAiq3
-         r8aViRuGj/CiTIAM2UoFcBqt4y7bl0aOaU55oBS+Wih7y4Eeoim7DmLD3uqkmOviTWIe
-         BF0pRH9JzdHR7ssbu8MUZ2zKnkvvuvSlZZhloYz00PcjXa3VeZfytSMZ7oTysxYGrPix
-         pyPg==
-X-Gm-Message-State: APjAAAX04zZkPt8wfeSXAkGfsH8FUDLDbvGHloJ9CLsCBgGwWO6nF+tH
-        omagrgBs4UGpPVhXGVoRg1s=
-X-Google-Smtp-Source: APXvYqyh7/fg3k/2U7H+2hUIEb3j1cDGCqO8ryTnH0ZUxrE0DmK4Gl1qwlanUJWAfh9jNCS7V8A/dA==
-X-Received: by 2002:a05:600c:251:: with SMTP id 17mr4687252wmj.59.1582894214215;
-        Fri, 28 Feb 2020 04:50:14 -0800 (PST)
-Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id c9sm12549852wrq.44.2020.02.28.04.50.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 28 Feb 2020 04:50:13 -0800 (PST)
-Subject: Re: [PATCH 1/4] dt-bindings: arm: fix Rockchip Kylin board bindings
-To:     Robin Murphy <robin.murphy@arm.com>, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <20200228061436.13506-1-jbx6244@gmail.com>
- <73b41bd1-01e9-6af8-afc8-b1a96614d026@arm.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <5d47cf5f-9ac4-cff4-340b-a2518a508738@gmail.com>
-Date:   Fri, 28 Feb 2020 13:50:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        id S1725876AbgB1Mwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 07:52:34 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:32822 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725884AbgB1Mwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Feb 2020 07:52:32 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01SChAOl021775;
+        Fri, 28 Feb 2020 13:52:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=pdyoSinecCTRleqbm1e/zsaS5ECX7SBiHqeQex88KWk=;
+ b=u2+4KFVmc6kw/xisTp9I63CnA7GOzSz9USqQiwaD8nrbuf2mLz2Sc7X09MYRIcwFKxy6
+ rhQy5mH329Y4FS/O1+zXmS5MIsg7C8g8YZWf0yddqU6IxbvHrdq/uZGGwqVMo8ah44NU
+ ZWwVH9bNyFuPbJCXtS1pqDhlANfGCIy0x9ZgxiTra4NM4/yIYj3O/jJg4DCFyfzlZDTB
+ ZOQJXx/w+xjSIOnJfS6GfoDsXmO0ZyHHzoHL46vgqIrJUKEdIY7/fT+KXxyKN2yqtPW+
+ c73gN2ceofJmVrGDF7F5r5tdiD6oze5ZtVDHfzF1JTIwS95T2IkLJdQjSVyuF5UHT6mV 7g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2yepvtbyg6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Feb 2020 13:52:14 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 46C02100039;
+        Fri, 28 Feb 2020 13:52:10 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node3.st.com [10.75.127.9])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 386D42BAEDD;
+        Fri, 28 Feb 2020 13:52:10 +0100 (CET)
+Received: from localhost (10.75.127.46) by SFHDAG3NODE3.st.com (10.75.127.9)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 28 Feb 2020 13:52:09
+ +0100
+From:   Benjamin Gaignard <benjamin.gaignard@st.com>
+To:     <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>,
+        <robh+dt@kernel.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: [PATCH] ARM: dts: stm32: Do clean up in stmpic nodes
+Date:   Fri, 28 Feb 2020 13:52:04 +0100
+Message-ID: <20200228125205.8126-1-benjamin.gaignard@st.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-In-Reply-To: <73b41bd1-01e9-6af8-afc8-b1a96614d026@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG3NODE3.st.com
+ (10.75.127.9)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-28_04:2020-02-26,2020-02-28 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/28/20 1:35 PM, Robin Murphy wrote:
-> On 28/02/2020 6:14 am, Johan Jonker wrote:
->> A test with the command below gives this error:
->>
->> arch/arm/boot/dts/rk3036-kylin.dt.yaml: /: compatible:
->> ['rockchip,rk3036-kylin', 'rockchip,rk3036']
->> is not valid under any of the given schemas
->>
->> Fix this error by changing 'rockchip,kylin-rk3036' to
->> 'rockchip,rk3036-kylin' in rockchip.yaml.
-> 
+Remove unused properties from stpmic node.
+The issues have been detected by running dtbs_check.
 
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
+---
+ arch/arm/boot/dts/stm32mp157a-avenger96.dts | 8 --------
+ arch/arm/boot/dts/stm32mp157c-ed1.dts       | 3 ---
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi      | 3 ---
+ 3 files changed, 14 deletions(-)
 
-> Although I can guess, it might be worth a note to explain why it's the
-> binding rather than the DTS that gets changed here.
-
-Hi Robin,
-
-My guess is that given a look at the other boards the processor name
-comes first and then the board name, so I changed it in rockchip.yaml.
-But maybe Heiko can better explain what the naming consensus in the past
-was.
-
-Kind regards,
-
-Johan
-
-> 
-> Robin.
-> 
->> make ARCH=arm dtbs_check
->> DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/rockchip.yaml
->>
->> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
->> ---
->>   Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
->> b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> index 874b0eaa2..203158038 100644
->> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> @@ -443,7 +443,7 @@ properties:
->>           - description: Rockchip Kylin
->>           items:
->> -          - const: rockchip,kylin-rk3036
->> +          - const: rockchip,rk3036-kylin
->>             - const: rockchip,rk3036
->>           - description: Rockchip PX3 Evaluation board
->>
+diff --git a/arch/arm/boot/dts/stm32mp157a-avenger96.dts b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
+index cbfa4075907e..1583be1966eb 100644
+--- a/arch/arm/boot/dts/stm32mp157a-avenger96.dts
++++ b/arch/arm/boot/dts/stm32mp157a-avenger96.dts
+@@ -135,10 +135,6 @@
+ 		#interrupt-cells = <2>;
+ 		status = "okay";
+ 
+-		st,main-control-register = <0x04>;
+-		st,vin-control-register = <0xc0>;
+-		st,usb-control-register = <0x30>;
+-
+ 		regulators {
+ 			compatible = "st,stpmic1-regulators";
+ 
+@@ -173,7 +169,6 @@
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-always-on;
+-				st,mask_reset;
+ 				regulator-initial-mode = <0>;
+ 				regulator-over-current-protection;
+ 			};
+@@ -213,8 +208,6 @@
+ 
+ 			vdd_usb: ldo4 {
+ 				regulator-name = "vdd_usb";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+ 				interrupts = <IT_CURLIM_LDO4 0>;
+ 				interrupt-parent = <&pmic>;
+ 			};
+@@ -240,7 +233,6 @@
+ 			vref_ddr: vref_ddr {
+ 				regulator-name = "vref_ddr";
+ 				regulator-always-on;
+-				regulator-over-current-protection;
+ 			};
+ 
+ 			bst_out: boost {
+diff --git a/arch/arm/boot/dts/stm32mp157c-ed1.dts b/arch/arm/boot/dts/stm32mp157c-ed1.dts
+index 1fc43251d697..0c304a024e51 100644
+--- a/arch/arm/boot/dts/stm32mp157c-ed1.dts
++++ b/arch/arm/boot/dts/stm32mp157c-ed1.dts
+@@ -218,8 +218,6 @@
+ 
+ 			vdd_usb: ldo4 {
+ 				regulator-name = "vdd_usb";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+ 				interrupts = <IT_CURLIM_LDO4 0>;
+ 			};
+ 
+@@ -241,7 +239,6 @@
+ 			vref_ddr: vref_ddr {
+ 				regulator-name = "vref_ddr";
+ 				regulator-always-on;
+-				regulator-over-current-protection;
+ 			};
+ 
+ 			bst_out: boost {
+diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+index f6672e87aef3..e50ae7faa0ec 100644
+--- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
++++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+@@ -304,8 +304,6 @@
+ 
+ 			vdd_usb: ldo4 {
+ 				regulator-name = "vdd_usb";
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+ 				interrupts = <IT_CURLIM_LDO4 0>;
+ 			};
+ 
+@@ -328,7 +326,6 @@
+ 			vref_ddr: vref_ddr {
+ 				regulator-name = "vref_ddr";
+ 				regulator-always-on;
+-				regulator-over-current-protection;
+ 			};
+ 
+ 			 bst_out: boost {
+-- 
+2.15.0
 
