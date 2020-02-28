@@ -2,112 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D92417361E
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 12:36:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8345C17364C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 12:46:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725805AbgB1Lgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 06:36:38 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59022 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725827AbgB1Lgi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 06:36:38 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01SBa53j013584;
-        Fri, 28 Feb 2020 05:36:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1582889765;
-        bh=rLm5NTE1CYjmZGMxs2YV7x1c9JuFq3mregL37grduCo=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=wnesvm0wVu+YeZ8jTJAO9WrXhn894VT4/u5rRrMX9BPzZcnr7a/OQLigUuunWkn6/
-         5SU0DVsrO9RSc5SbJ+ipZ87f8rf5C30jGJLV5pdzOIQCK+mAs+Yx0hEmyshMPxoBOa
-         JSea5U5NQC9FApxu7lO7DJ/c8Kl1jILUwbFpQ714=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01SBa5i1115846;
-        Fri, 28 Feb 2020 05:36:05 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 28
- Feb 2020 05:36:05 -0600
-Received: from localhost.localdomain (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Fri, 28 Feb 2020 05:36:05 -0600
-Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 01SBa0vP019981;
-        Fri, 28 Feb 2020 05:36:00 -0600
-Subject: Re: [PATCH v4 08/11] PCI: layerscape: Modify the MSIX to the doorbell
- mode
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <shawnguo@kernel.org>,
-        <leoyang.li@nxp.com>, <lorenzo.pieralisi@arm.com>,
-        <minghuan.Lian@nxp.com>, <mingkai.hu@nxp.com>, <roy.zang@nxp.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
-        <andrew.murray@arm.com>, <linux-pci@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linuxppc-dev@lists.ozlabs.org>
-References: <20190924021849.3185-1-xiaowei.bao@nxp.com>
- <20190924021849.3185-9-xiaowei.bao@nxp.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <55752e77-1094-4cbf-2822-e10b875b4dd9@ti.com>
-Date:   Fri, 28 Feb 2020 17:10:32 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1725769AbgB1LqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 06:46:08 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:39989 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725536AbgB1LqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 06:46:08 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 077EF23EC2;
+        Fri, 28 Feb 2020 12:46:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1582890365;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=gSy0XB2/CLQYbsHikr4Odo8LY3KqR1/kjbGBzsGZ6ic=;
+        b=Kd02hTbELCQ1B3UuerkL4Fc7b2vovsKQPdSO+4+x6U6aQrJ160U9Cwu+LP/T0ECtCy7M8Z
+        efZDHvUU6S+hoLWqWkcaZxzDQu+dawGFfW0f7VuUOXoAYP8G6jIdloAu7B8slL0xdRyvXF
+        8Eje0iN6yqyS0otRzEpRo7ob+v+7o3M=
 MIME-Version: 1.0
-In-Reply-To: <20190924021849.3185-9-xiaowei.bao@nxp.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Date:   Fri, 28 Feb 2020 12:46:01 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Li Yang <leoyang.li@nxp.com>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-kernel@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>, Jiri Slaby <jslaby@suse.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>
+Subject: Re: [PATCH v2 3/9] tty: serial: fsl_lpuart: handle EPROBE_DEFER for
+ DMA
+In-Reply-To: <CAL_JsqKMNFFG5H4gPQwRdcTpfHynqZWo2A2db-oL7EmvTNqNkQ@mail.gmail.com>
+References: <20200221174754.5295-1-michael@walle.cc>
+ <20200221174754.5295-4-michael@walle.cc>
+ <CAL_JsqL8QGKARtRAfjCMyk4Pp7EWhFMV8JQpveHoJ2OyH5kBPA@mail.gmail.com>
+ <CADRPPNR1n1sviJnhq_zuUFJcMYqsVKy0O7NOF1pxF_4VH+dasg@mail.gmail.com>
+ <CAL_JsqKMNFFG5H4gPQwRdcTpfHynqZWo2A2db-oL7EmvTNqNkQ@mail.gmail.com>
+Message-ID: <639a1df72fbeda77436b282a99f17995@walle.cc>
+X-Sender: michael@walle.cc
+User-Agent: Roundcube Webmail/1.3.10
+X-Spamd-Bar: +
+X-Spam-Level: *
+X-Rspamd-Server: web
+X-Spam-Status: No, score=1.40
+X-Spam-Score: 1.40
+X-Rspamd-Queue-Id: 077EF23EC2
+X-Spamd-Result: default: False [1.40 / 15.00];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DKIM_SIGNED(0.00)[];
+         RCPT_COUNT_TWELVE(0.00)[12];
+         RCVD_COUNT_ZERO(0.00)[0];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         MID_RHS_MATCH_FROM(0.00)[];
+         SUSPICIOUS_RECIPS(1.50)[]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xiaowei,
+Hi Rob, Hi Leo,
 
-On 24/09/19 7:48 am, Xiaowei Bao wrote:
-> dw_pcie_ep_raise_msix_irq was never called in the exisitng driver
-> before, because the ls1046a platform don't support the MSIX feature
-> and msix_capable was always set to false.
-> Now that add the ls1088a platform with MSIX support, but the existing
-> dw_pcie_ep_raise_msix_irq doesn't work, so use the doorbell method to
-> support the MSIX feature.
+Am 2020-02-28 00:03, schrieb Rob Herring:
+> On Thu, Feb 27, 2020 at 4:49 PM Li Yang <leoyang.li@nxp.com> wrote:
+>> 
+>> On Thu, Feb 27, 2020 at 4:35 PM Rob Herring <robh+dt@kernel.org> 
+>> wrote:
+>> >
+>> > On Fri, Feb 21, 2020 at 11:48 AM Michael Walle <michael@walle.cc> wrote:
+>> > >
+>> > > The DMA channel might not be available at the first probe time. This is
+>> > > esp. the case if the DMA controller has an IOMMU mapping.
+>> > >
+>> > > Use the new dma_request_chan() API and handle EPROBE_DEFER errors. Also
+>> > > reorder the code a bit, so that we don't prepare the whole UART just to
+>> > > determine that the DMA channel is not ready yet and we have to undo all
+>> > > the stuff. Try to map the DMA channels earlier.
+>> >
+>> > Changing this means you never probe successfully if you boot a kernel
+>> > with the DMA driver disabled (or it's IOMMU disabled). Some other
+>> > drivers request DMA in open() and can work either way.
 
+Oh, I see.
 
-It does work after [1]. So the commit message might not be exactly true.
+>> We got this exact issue previously with another driver.  When the
 
-[1] -> https://lore.kernel.org/r/20200225081703.8857-1-kishon@ti.com
+What driver is it? I've been working on the i2c-mxs.c driver which has
+the same problem. Ie. its not working with DMA when the IOMMU is 
+enabled.
+Now that I've learned that dma_request_chan() will return EPROBE_DEFER
+if the actual DMA driver is not available, I don't think there is any
+trick like this there. There is no function which would be called late
+except you'd do something like on the first master_xfer() try to request
+the DMA channels. But I don't think that would be the way to go.
 
-Thanks
-Kishon
+-michael
 
+>> required DMA driver is disabled, the DMA framework cannot figure out
+>> this situation and keeps returning EPROBE_DEFER.  I'm wondering if we
+>> should update the DMA framework to use your deferred probe timeout
+>> mechanism.  Is it still only used for debug purpose?
 > 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> Reviewed-by: Andrew Murray <andrew.murray@arm.com>
-> ---
-> v2: 
->  - No change
-> v3:
->  - Modify the commit message make it clearly.
-> v4: 
->  - No change
-> 
->  drivers/pci/controller/dwc/pci-layerscape-ep.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> index 1e07287..5f0cb99 100644
-> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> @@ -79,7 +79,8 @@ static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
->  	case PCI_EPC_IRQ_MSI:
->  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
->  	case PCI_EPC_IRQ_MSIX:
-> -		return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
-> +		return dw_pcie_ep_raise_msix_irq_doorbell(ep, func_no,
-> +							  interrupt_num);
->  	default:
->  		dev_err(pci->dev, "UNKNOWN IRQ type\n");
->  		return -EINVAL;
-> 
+> It's undergoing some rework ATM to not just be for debug. However,
+> it's not really going to help you if you care about the console
+> because waiting for the timeout will be too late to register the
+> console.
+
