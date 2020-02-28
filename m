@@ -2,241 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3157F173CD3
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 17:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77B0B173D64
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 17:47:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726063AbgB1Q0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 11:26:43 -0500
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2480 "EHLO huawei.com"
+        id S1725877AbgB1QrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 11:47:13 -0500
+Received: from mail-vi1eur05on2110.outbound.protection.outlook.com ([40.107.21.110]:17543
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725730AbgB1Q0n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 11:26:43 -0500
-Received: from lhreml704-cah.china.huawei.com (unknown [172.18.7.106])
-        by Forcepoint Email with ESMTP id 0714367CCA21321329BA;
-        Fri, 28 Feb 2020 16:26:41 +0000 (GMT)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- lhreml704-cah.china.huawei.com (10.201.108.45) with Microsoft SMTP Server
- (TLS) id 14.3.408.0; Fri, 28 Feb 2020 16:26:40 +0000
-Received: from localhost (10.202.226.57) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 28 Feb
- 2020 16:26:40 +0000
-Date:   Fri, 28 Feb 2020 16:26:37 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-CC:     <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        id S1725876AbgB1QrN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Feb 2020 11:47:13 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XTzs+g8Ml1L6Og4BVkRPVd8BOIK+7GnuuafGiNQbFl1My9Ecr4ffwCgYdUh//WrpZRsppmSNesoS+AVSUY74ie5gn6Bb9oQvnPludefijr3Wi4iM7+AulbXdvEWRB8nGUhC+TeSJHGw+PjH3x6HPWaIcOjCPHdIcdIqXyb84j9jZSpMUJ+7A45vdeGqb1ZuJcoMAUBH9nhnHyMYj0ok5xoF3m85sRxHghiX8qM0+Js9Bbn4e6UCWgdEXcDUW04XEyHRzE94s7ORLTIGZo5u4dboVfm2yfY7cdZrYS72ZK/2WL+lMtJ62IZGbFTlCQiDWZNECLbrBPu0h+n88+lmtGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/MfsaqkH9gzzdOj+YGCbM7pec43MM2AYADIGlscU1HM=;
+ b=M+trkFeIUdspsV1tplvT1qtHsOBDKoeYKQ8QCMPts52fAqjx/uIbUG5x0RYSJ5PbWoD+PWjQXMNFEos9yQDC+x36r1cBv3icCS4zg7YjvLhk32nQ7QG7DlB/juuCU/rl8hfS0BsUMYMkVL75pF0CJPYW3n74dgm5ZLvxr1cFgNw9eWlfi7dvpSEfQ/kg4xUwudSednM0HA0pROW7hoFoa3vKANjMmrnic9HtwV7HNq+VOZwtwPNkcMKsQhMBZIJ0xqd/fEWrcSn6lWfoAr3hViR9vNJPzJUOJVdrIRifm1zkbQq9ABbRrxSKIn4i7UzF4n8dXdGZM/1spOfFoEMSzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/MfsaqkH9gzzdOj+YGCbM7pec43MM2AYADIGlscU1HM=;
+ b=UiDf5sgzYJGoarz6gJ8B0KA8oBYHGYbXBqMQezj921+iWoQ6choqqlYj4FI8Wn2HBhdiBIG8OS1sFZpcxU4u3e+s7aqKUG+cSnjRYHGo4uKLE5r3osAphHfwr0uo/dAxf2fk2xjhJswZTcC7ttslQ/XH9gORox4rkraBYrrpIvM=
+Received: from VI1PR05MB6845.eurprd05.prod.outlook.com (10.186.163.80) by
+ VI1PR05MB5566.eurprd05.prod.outlook.com (20.177.203.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2750.22; Fri, 28 Feb 2020 16:47:06 +0000
+Received: from VI1PR05MB6845.eurprd05.prod.outlook.com
+ ([fe80::c13:1d07:fa02:6eeb]) by VI1PR05MB6845.eurprd05.prod.outlook.com
+ ([fe80::c13:1d07:fa02:6eeb%7]) with mapi id 15.20.2772.018; Fri, 28 Feb 2020
+ 16:47:06 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-pci@vger.kernel.org>, <linux-mm@kvack.org>,
-        <joro@8bytes.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <robin.murphy@arm.com>, <kevin.tian@intel.com>,
-        <baolu.lu@linux.intel.com>, <jacob.jun.pan@linux.intel.com>,
-        <christian.koenig@amd.com>, <yi.l.liu@intel.com>,
-        <zhangfei.gao@linaro.org>,
-        Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Subject: Re: [PATCH v4 02/26] iommu/sva: Manage process address spaces
-Message-ID: <20200228162637.00007f4c@Huawei.com>
-In-Reply-To: <20200228144304.GC2156@myrica>
-References: <20200224182401.353359-1-jean-philippe@linaro.org>
-        <20200224182401.353359-3-jean-philippe@linaro.org>
-        <20200226123506.000076fb@Huawei.com>
-        <20200228144304.GC2156@myrica>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        "igor.opaniuk@gmail.com" <igor.opaniuk@gmail.com>
+CC:     Max Krummenacher <max.krummenacher@toradex.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Igor Opanyuk <igor.opanyuk@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        Stefan Agner <stefan.agner@toradex.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/5] arm: dts: imx6: toradex: use
+ SPDX-License-Identifier
+Thread-Topic: [PATCH v1 1/5] arm: dts: imx6: toradex: use
+ SPDX-License-Identifier
+Thread-Index: AQHV6zhrpxWYloCtVUak45/He4E7U6gw1vmA
+Date:   Fri, 28 Feb 2020 16:47:06 +0000
+Message-ID: <45f8acad8a095ad6761630330df64c975f3644e0.camel@toradex.com>
+References: <1582565548-20627-1-git-send-email-igor.opaniuk@gmail.com>
+In-Reply-To: <1582565548-20627-1-git-send-email-igor.opaniuk@gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=marcel.ziswiler@toradex.com; 
+x-originating-ip: [81.221.74.212]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1c87c767-1912-423d-052d-08d7bc6dd875
+x-ms-traffictypediagnostic: VI1PR05MB5566:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR05MB5566242FA29945AA75613E80FBE80@VI1PR05MB5566.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0327618309
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(346002)(39850400004)(366004)(136003)(376002)(189003)(199004)(5660300002)(2906002)(8936002)(44832011)(110136005)(6512007)(71200400001)(316002)(6486002)(81156014)(81166006)(2616005)(7416002)(36756003)(8676002)(54906003)(86362001)(66556008)(6506007)(4326008)(66476007)(66446008)(66946007)(26005)(91956017)(64756008)(76116006)(478600001)(186003);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR05MB5566;H:VI1PR05MB6845.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: z+VoiOd1tHlhk+VpfQfLZ16VWyv2xyGUvhMu85U7D6NpsO2VTZv7/n60r/wqyv4FrN285adHQphdozS7NkCkIVtgH8ckFe+eVKRWH/aN771BBWqQ53L//f78Y7MVOp5PtXVoJgZpB36/44z7RjkURk+tGRHXP6ObsLqlKhKZR0OudXg1BedUdMKn5kZl7a9SaGgEMV4ubrMDPpY/DrnPZ4U0AbLjQicEk8cklIE3DCrDynaPkSOYL4JwMKmRZdZywQxv9w0EKaKtmqWpfKAZx5iMaSf6SUgTjIGsTKJ6K5fJohuw/ak7h6m0qLex5uClYx7gGwt6BvVegiFl94uMPr0QrsLFJUKvcSOgtCyBPBHsQij9gAlFYvOd/hBSM+Ook5ZBAcy9TV1qMhn3AsyE2cjhVuC/nIefcqyCfDDhvj/074Jv8s4HzTGF0ExIs50U
+x-ms-exchange-antispam-messagedata: Hwe++QkO4fKzTCCVjJIq7kHxgc49q8uo/FISuetWULdflC9duJfMF0bvZ77C0MBC8Dr1561+nhM6mIq27qddkbPB1E2NMwu8YsKDmMO24E1Lvyw6B8nHrDG9OaM5h5Bg8WiTeL+89SCgBDg0O8IRUw==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <724FC9E0EC854E4883967566C2DC1E8C@eurprd05.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.57]
-X-ClientProxiedBy: lhreml727-chm.china.huawei.com (10.201.108.78) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c87c767-1912-423d-052d-08d7bc6dd875
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2020 16:47:06.3835
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fP5xapcEP/sXx+jYbVDmTzdhVCdRcv1NbRJR3thkXXBV//1b5pM2kw33Of+i3lenRGKKK6fOAY3C2+KAl3EBSzbXnQSRBNRFjTz1hvfh3/0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB5566
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 28 Feb 2020 15:43:04 +0100
-Jean-Philippe Brucker <jean-philippe@linaro.org> wrote:
-
-> On Wed, Feb 26, 2020 at 12:35:06PM +0000, Jonathan Cameron wrote:
-> > > + * A single Process Address Space ID (PASID) is allocated for each mm. In the
-> > > + * example, devices use PASID 1 to read/write into address space X and PASID 2
-> > > + * to read/write into address space Y. Calling iommu_sva_get_pasid() on bond 1
-> > > + * returns 1, and calling it on bonds 2-4 returns 2.
-> > > + *
-> > > + * Hardware tables describing this configuration in the IOMMU would typically
-> > > + * look like this:
-> > > + *
-> > > + *                                PASID tables
-> > > + *                                 of domain A
-> > > + *                              .->+--------+
-> > > + *                             / 0 |        |-------> io_pgtable
-> > > + *                            /    +--------+
-> > > + *            Device tables  /   1 |        |-------> pgd X
-> > > + *              +--------+  /      +--------+
-> > > + *      00:00.0 |      A |-'     2 |        |--.
-> > > + *              +--------+         +--------+   \
-> > > + *              :        :       3 |        |    \
-> > > + *              +--------+         +--------+     --> pgd Y
-> > > + *      00:01.0 |      B |--.                    /
-> > > + *              +--------+   \                  |
-> > > + *      00:01.1 |      B |----+   PASID tables  |
-> > > + *              +--------+     \   of domain B  |
-> > > + *                              '->+--------+   |
-> > > + *                               0 |        |-- | --> io_pgtable
-> > > + *                                 +--------+   |
-> > > + *                               1 |        |   |
-> > > + *                                 +--------+   |
-> > > + *                               2 |        |---'
-> > > + *                                 +--------+
-> > > + *                               3 |        |
-> > > + *                                 +--------+
-> > > + *
-> > > + * With this model, a single call binds all devices in a given domain to an
-> > > + * address space. Other devices in the domain will get the same bond implicitly.
-> > > + * However, users must issue one bind() for each device, because IOMMUs may
-> > > + * implement SVA differently. Furthermore, mandating one bind() per device
-> > > + * allows the driver to perform sanity-checks on device capabilities.  
-> >   
-> > > + *
-> > > + * In some IOMMUs, one entry of the PASID table (typically the first one) can
-> > > + * hold non-PASID translations. In this case PASID 0 is reserved and the first
-> > > + * entry points to the io_pgtable pointer. In other IOMMUs the io_pgtable
-> > > + * pointer is held in the device table and PASID 0 is available to the
-> > > + * allocator.  
-> > 
-> > Is it worth hammering home in here that we can only do this because the PASID space
-> > is global (with exception of PASID 0)?  It's a convenient simplification but not
-> > necessarily a hardware restriction so perhaps we should remind people somewhere in here?  
-> 
-> I could add this four paragraphs up:
-> 
-> "A single Process Address Space ID (PASID) is allocated for each mm. It is
-> a choice made for the Linux SVA implementation, not a hardware
-> restriction."
-
-Perfect.
-
-> 
-> > > + */
-> > > +
-> > > +struct io_mm {
-> > > +	struct list_head		devices;
-> > > +	struct mm_struct		*mm;
-> > > +	struct mmu_notifier		notifier;
-> > > +
-> > > +	/* Late initialization */
-> > > +	const struct io_mm_ops		*ops;
-> > > +	void				*ctx;
-> > > +	int				pasid;
-> > > +};
-> > > +
-> > > +#define to_io_mm(mmu_notifier)	container_of(mmu_notifier, struct io_mm, notifier)
-> > > +#define to_iommu_bond(handle)	container_of(handle, struct iommu_bond, sva)  
-> > 
-> > Code ordering wise, do we want this after the definition of iommu_bond?
-> > 
-> > For both of these it's a bit non obvious what they come 'from'.
-> > I wouldn't naturally assume to_io_mm gets me from notifier to the io_mm
-> > for example.  Not sure it matters though if these are only used in a few
-> > places.  
-> 
-> Right, I can rename the first one to mn_to_io_mm(). The second one I think
-> might be good enough.
-
-Agreed. The second one does feel more natural.
-
-> 
-> 
-> > > +static struct iommu_sva *
-> > > +io_mm_attach(struct device *dev, struct io_mm *io_mm, void *drvdata)
-> > > +{
-> > > +	int ret = 0;  
-> > 
-> > I'm fairly sure this is set in all paths below.  Now, of course the
-> > compiler might not think that in which case fair enough :)
-> >   
-> > > +	bool attach_domain = true;
-> > > +	struct iommu_bond *bond, *tmp;
-> > > +	struct iommu_domain *domain, *other;
-> > > +	struct iommu_sva_param *param = dev->iommu_param->sva_param;
-> > > +
-> > > +	domain = iommu_get_domain_for_dev(dev);
-> > > +
-> > > +	bond = kzalloc(sizeof(*bond), GFP_KERNEL);
-> > > +	if (!bond)
-> > > +		return ERR_PTR(-ENOMEM);
-> > > +
-> > > +	bond->sva.dev	= dev;
-> > > +	bond->drvdata	= drvdata;
-> > > +	refcount_set(&bond->refs, 1);
-> > > +	RCU_INIT_POINTER(bond->io_mm, io_mm);
-> > > +
-> > > +	mutex_lock(&iommu_sva_lock);
-> > > +	/* Is it already bound to the device or domain? */
-> > > +	list_for_each_entry(tmp, &io_mm->devices, mm_head) {
-> > > +		if (tmp->sva.dev != dev) {
-> > > +			other = iommu_get_domain_for_dev(tmp->sva.dev);
-> > > +			if (domain == other)
-> > > +				attach_domain = false;
-> > > +
-> > > +			continue;
-> > > +		}
-> > > +
-> > > +		if (WARN_ON(tmp->drvdata != drvdata)) {
-> > > +			ret = -EINVAL;
-> > > +			goto err_free;
-> > > +		}
-> > > +
-> > > +		/*
-> > > +		 * Hold a single io_mm reference per bond. Note that we can't
-> > > +		 * return an error after this, otherwise the caller would drop
-> > > +		 * an additional reference to the io_mm.
-> > > +		 */
-> > > +		refcount_inc(&tmp->refs);
-> > > +		io_mm_put(io_mm);
-> > > +		kfree(bond);  
-> > 
-> > Free outside the lock would be ever so slightly more logical given we allocated
-> > before taking the lock.
-> >   
-> > > +		mutex_unlock(&iommu_sva_lock);
-> > > +		return &tmp->sva;
-> > > +	}
-> > > +
-> > > +	list_add_rcu(&bond->mm_head, &io_mm->devices);
-> > > +	param->nr_bonds++;
-> > > +	mutex_unlock(&iommu_sva_lock);
-> > > +
-> > > +	ret = io_mm->ops->attach(bond->sva.dev, io_mm->pasid, io_mm->ctx,
-> > > +				 attach_domain);
-> > > +	if (ret)
-> > > +		goto err_remove;
-> > > +
-> > > +	return &bond->sva;
-> > > +
-> > > +err_remove:
-> > > +	/*
-> > > +	 * At this point concurrent threads may have started to access the
-> > > +	 * io_mm->devices list in order to invalidate address ranges, which
-> > > +	 * requires to free the bond via kfree_rcu()
-> > > +	 */
-> > > +	mutex_lock(&iommu_sva_lock);
-> > > +	param->nr_bonds--;
-> > > +	list_del_rcu(&bond->mm_head);
-> > > +
-> > > +err_free:
-> > > +	mutex_unlock(&iommu_sva_lock);
-> > > +	kfree_rcu(bond, rcu_head);  
-> > 
-> > I don't suppose it matters really but we don't need the rcu free if
-> > we follow the err_free goto.  Perhaps we are cleaner in this case
-> > to not use a unified exit path but do that case inline?  
-> 
-> Agreed, though I moved the kzalloc() later as suggested by Jacob, I think
-> it looks a little better and simplifies the error paths
-> 
-> Thanks,
-> Jean
-Jonathan
-
+SGkgSWdvcg0KDQpPbiBNb24sIDIwMjAtMDItMjQgYXQgMTk6MzIgKzAyMDAsIElnb3IgT3Bhbml1
+ayB3cm90ZToNCj4gRnJvbTogSWdvciBPcGFuaXVrIDxpZ29yLm9wYW5pdWtAdG9yYWRleC5jb20+
+DQo+IA0KPiAxLiBSZXBsYWNlIGJvaWxlciBwbGF0ZSBsaWNlbnNlcyB0ZXh0cyB3aXRoIHRoZSBT
+UERYIGxpY2Vuc2UNCj4gaWRlbnRpZmllcnMgaW4gVG9yYWRleCBpTVg2LWJhc2VkIFNvTSBkZXZp
+Y2UgdHJlZXMuDQo+IDIuIEFzIFgxMSBpcyBpZGVudGljYWwgdG8gdGhlIE1JVCBMaWNlbnNlLCBi
+dXQgd2l0aCBhbiBleHRyYSBzZW50ZW5jZQ0KPiB0aGF0IHByb2hpYml0cyB1c2luZyB0aGUgY29w
+eXJpZ2h0IGhvbGRlcnMnIG5hbWVzIGZvciBhZHZlcnRpc2luZyBvcg0KPiBwcm9tb3Rpb25hbCBw
+dXJwb3NlcyB3aXRob3V0IHdyaXR0ZW4gcGVybWlzc2lvbiwgdXNlIE1JVCBsaWNlbnNlDQo+IGlu
+c3RlYWQNCj4gb2YgWDExICgncy9YMTEvTUlUL2cnKS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEln
+b3IgT3Bhbml1ayA8aWdvci5vcGFuaXVrQHRvcmFkZXguY29tPg0KPiAtLS0NCj4gDQo+ICBhcmNo
+L2FybS9ib290L2R0cy9pbXg2ZGwtY29saWJyaS1ldmFsLXYzLmR0cyAgfCA0MCArKy0tLS0tLS0t
+LS0tLS0tLQ0KPiAtLS0tLS0tLS0tDQo+ICBhcmNoL2FybS9ib290L2R0cy9pbXg2cS1hcGFsaXMt
+ZXZhbC5kdHMgICAgICAgfCA0MCArKy0tLS0tLS0tLS0tLS0tLQ0KPiAtLS0tLS0tLS0tDQo+ICBh
+cmNoL2FybS9ib290L2R0cy9pbXg2cS1hcGFsaXMtaXhvcmEtdjEuMS5kdHMgfCA0MCArKy0tLS0t
+LS0tLS0tLS0tLQ0KPiAtLS0tLS0tLS0tDQo+ICBhcmNoL2FybS9ib290L2R0cy9pbXg2cS1hcGFs
+aXMtaXhvcmEuZHRzICAgICAgfCA0MCArKy0tLS0tLS0tLS0tLS0tLQ0KPiAtLS0tLS0tLS0tDQo+
+ICBhcmNoL2FybS9ib290L2R0cy9pbXg2cWRsLWFwYWxpcy5kdHNpICAgICAgICAgfCA0MCArKy0t
+LS0tLS0tLS0tLS0tLQ0KPiAtLS0tLS0tLS0tDQo+ICBhcmNoL2FybS9ib290L2R0cy9pbXg2cWRs
+LWNvbGlicmkuZHRzaSAgICAgICAgfCA0MCArKy0tLS0tLS0tLS0tLS0tLQ0KPiAtLS0tLS0tLS0t
+DQo+ICA2IGZpbGVzIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDIyOCBkZWxldGlvbnMoLSkN
+Cj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9pbXg2ZGwtY29saWJyaS1ldmFs
+LXYzLmR0cw0KPiBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDZkbC1jb2xpYnJpLWV2YWwtdjMuZHRz
+DQo+IGluZGV4IGNkMDc1NjIuLmFhZDQ3YjkgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3Qv
+ZHRzL2lteDZkbC1jb2xpYnJpLWV2YWwtdjMuZHRzDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRz
+L2lteDZkbC1jb2xpYnJpLWV2YWwtdjMuZHRzDQo+IEBAIC0xLDQ0ICsxLDggQEANCj4gKy8vIFNQ
+RFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wIE9SIE1JVA0KDQpUeXBpY2FsbHksIG5vd2Fk
+YXlzIEdQTC0yLjArIE9SIE1JVCBpcyB1c2VkLiBUaGUgbW9yZSByZXN0cmljdGl2ZSBHUEwNCmlz
+IG5vdCBhbiBpc3N1ZSBkdWUgdG8gYmVpbmcgZHVhbCBsaWNlbnNlZC4NCg0KPiAgLyoNCj4gLSAq
+IENvcHlyaWdodCAyMDE0LTIwMTYgVG9yYWRleCBBRw0KPiArICogQ29weXJpZ2h0IDIwMTQtMjAy
+MCBUb3JhZGV4IEFHDQoNCkFjY29yZGluZyB0byBvdXIgbGVnYWwgd2UgbWF5IHNpbXBseSBkcm9w
+IHRoaXMgQUcgcG9zdGZpeCBhcyBpdCBkb2VzDQpub3QgcmVhbGx5IHNlcnZlIGFueSBwdXJwb3Nl
+IGhlcmUuDQoNCkRpdG8gaW4gYWxsIHRoZSBvdGhlciBmaWxlcy4NCg0KVGhhbmtzIQ0KDQpDaGVl
+cnMNCg0KTWFyY2VsDQo=
