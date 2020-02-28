@@ -2,116 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA60173297
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 09:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 595701732F5
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 09:33:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725928AbgB1IQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 03:16:26 -0500
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:34991 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726287AbgB1IQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 03:16:26 -0500
-X-UUID: 0d424f0724a84460a3c9eb8dcaccc17a-20200228
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=ZURVBJvcNy7+s3YjJr/hwpBv6N9yfElSzaYb2eZ+VsU=;
-        b=Tj8fjfxqK6xefdVl38PW4a0nNb12+pEhxrLQO0X/GDCrYF62RjBMz7h/cOHtQObObPAl4tjl70tMNlIXp3PFoAS+ONbBvDlSBEzkOJRBxUxmrBANJ98uBBJmSaoR8cG9Epa9jODcs9/YJ03Yi/mY90hRcOxn623j62JCsYAbKZA=;
-X-UUID: 0d424f0724a84460a3c9eb8dcaccc17a-20200228
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 952329502; Fri, 28 Feb 2020 16:15:50 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N1.mediatek.inc
- (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 28 Feb
- 2020 16:14:28 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
- MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1395.4 via Frontend Transport; Fri, 28 Feb 2020 16:16:06 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
-        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v11 6/6] drm/mediatek: set dpi pin mode to gpio low to avoid leakage current
-Date:   Fri, 28 Feb 2020 16:14:41 +0800
-Message-ID: <20200228081441.88179-7-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200228081441.88179-1-jitao.shi@mediatek.com>
-References: <20200228081441.88179-1-jitao.shi@mediatek.com>
+        id S1725876AbgB1Idd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 03:33:33 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38984 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725877AbgB1Idd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 03:33:33 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01S8XUB5098184;
+        Fri, 28 Feb 2020 02:33:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1582878810;
+        bh=HmBxRyTFJzTAD0JYDtKbf6MwsAI7h9d982ren23//Yc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=vTmICa3NDZWOTuY3yUkisvV51AViT+rU8Ks05WWdD3olcO21t7BrLM0ZFDm9/+GJe
+         Tosr9jWFfQUL5uCltrt8JYfd3EwOwC6UlBUL8aiwMUJLTrxgPXeOH9C9YUCyJrJEVz
+         lSYTV1nkIxsdnvvvxYF6r9ZjrAiVBpl/TD9eipOw=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01S8XU9x107785;
+        Fri, 28 Feb 2020 02:33:30 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 28
+ Feb 2020 02:33:30 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 28 Feb 2020 02:33:30 -0600
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01S8XStq118562;
+        Fri, 28 Feb 2020 02:33:29 -0600
+Subject: Re: [PATCH v2 3/5] ARM: dts: AM33xx-l4: Update PRUSS interconnect
+ target-module node
+To:     Suman Anna <s-anna@ti.com>, Tony Lindgren <tony@atomide.com>
+CC:     Tero Kristo <t-kristo@ti.com>, <linux-omap@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20200227222837.7329-1-s-anna@ti.com>
+ <20200227222837.7329-4-s-anna@ti.com>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <73ed421b-6786-8f4c-86b1-db4d9cb26bb8@ti.com>
+Date:   Fri, 28 Feb 2020 10:33:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 4B695817580141192BDE9DB1EA1283C630CF297A489B08CFEF63122DE1C7CFB32000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200227222837.7329-4-s-anna@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Q29uZmlnIGRwaSBwaW5zIG1vZGUgdG8gb3V0cHV0IGFuZCBwdWxsIGxvdyB3aGVuIGRwaSBpcyBk
-aXNhYmxlZC4NCkFvdmlkIGxlYWthZ2UgY3VycmVudCBmcm9tIHNvbWUgZHBpIHBpbnMgKEhzeW5j
-IFZzeW5jIERFIC4uLiApLg0KDQpTaWduZWQtb2ZmLWJ5OiBKaXRhbyBTaGkgPGppdGFvLnNoaUBt
-ZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jIHwg
-NDQgKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tDQogMSBmaWxlIGNoYW5nZWQsIDQyIGlu
-c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbWVkaWF0ZWsvbXRrX2RwaS5jIGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcGku
-Yw0KaW5kZXggZGIzMjcyZjdhNGM0Li5mZWNlODY2MWQ4YjYgMTAwNjQ0DQotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jDQorKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0
-ZWsvbXRrX2RwaS5jDQpAQCAtMTAsNyArMTAsOSBAQA0KICNpbmNsdWRlIDxsaW51eC9rZXJuZWwu
-aD4NCiAjaW5jbHVkZSA8bGludXgvb2YuaD4NCiAjaW5jbHVkZSA8bGludXgvb2ZfZGV2aWNlLmg+
-DQorI2luY2x1ZGUgPGxpbnV4L29mX2dwaW8uaD4NCiAjaW5jbHVkZSA8bGludXgvb2ZfZ3JhcGgu
-aD4NCisjaW5jbHVkZSA8bGludXgvcGluY3RybC9jb25zdW1lci5oPg0KICNpbmNsdWRlIDxsaW51
-eC9wbGF0Zm9ybV9kZXZpY2UuaD4NCiAjaW5jbHVkZSA8bGludXgvdHlwZXMuaD4NCiANCkBAIC03
-NCw2ICs3Niw5IEBAIHN0cnVjdCBtdGtfZHBpIHsNCiAJZW51bSBtdGtfZHBpX291dF95Y19tYXAg
-eWNfbWFwOw0KIAllbnVtIG10a19kcGlfb3V0X2JpdF9udW0gYml0X251bTsNCiAJZW51bSBtdGtf
-ZHBpX291dF9jaGFubmVsX3N3YXAgY2hhbm5lbF9zd2FwOw0KKwlzdHJ1Y3QgcGluY3RybCAqcGlu
-Y3RybDsNCisJc3RydWN0IHBpbmN0cmxfc3RhdGUgKnBpbnNfZ3BpbzsNCisJc3RydWN0IHBpbmN0
-cmxfc3RhdGUgKnBpbnNfZHBpOw0KIAlpbnQgcmVmY291bnQ7DQogCXUzMiBwY2xrX3NhbXBsZTsN
-CiB9Ow0KQEAgLTM4Nyw2ICszOTIsOSBAQCBzdGF0aWMgdm9pZCBtdGtfZHBpX3Bvd2VyX29mZihz
-dHJ1Y3QgbXRrX2RwaSAqZHBpKQ0KIAlpZiAoLS1kcGktPnJlZmNvdW50ICE9IDApDQogCQlyZXR1
-cm47DQogDQorCWlmIChkcGktPnBpbmN0cmwgJiYgZHBpLT5waW5zX2dwaW8pDQorCQlwaW5jdHJs
-X3NlbGVjdF9zdGF0ZShkcGktPnBpbmN0cmwsIGRwaS0+cGluc19ncGlvKTsNCisNCiAJbXRrX2Rw
-aV9kaXNhYmxlKGRwaSk7DQogCWNsa19kaXNhYmxlX3VucHJlcGFyZShkcGktPnBpeGVsX2Nsayk7
-DQogCWNsa19kaXNhYmxlX3VucHJlcGFyZShkcGktPmVuZ2luZV9jbGspOw0KQEAgLTQxMSw2ICs0
-MTksOSBAQCBzdGF0aWMgaW50IG10a19kcGlfcG93ZXJfb24oc3RydWN0IG10a19kcGkgKmRwaSkN
-CiAJCWdvdG8gZXJyX3BpeGVsOw0KIAl9DQogDQorCWlmIChkcGktPnBpbmN0cmwgJiYgZHBpLT5w
-aW5zX2RwaSkNCisJCXBpbmN0cmxfc2VsZWN0X3N0YXRlKGRwaS0+cGluY3RybCwgZHBpLT5waW5z
-X2RwaSk7DQorDQogCW10a19kcGlfZW5hYmxlKGRwaSk7DQogCXJldHVybiAwOw0KIA0KQEAgLTcw
-NSw2ICs3MTYsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG10a19kcGlfY29uZiBtdDgxODNfY29u
-ZiA9IHsNCiBzdGF0aWMgaW50IG10a19kcGlfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAq
-cGRldikNCiB7DQogCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7DQorCXN0cnVjdCBk
-ZXZpY2Vfbm9kZSAqZXA7DQogCXN0cnVjdCBtdGtfZHBpICpkcGk7DQogCXN0cnVjdCByZXNvdXJj
-ZSAqbWVtOw0KIAlpbnQgY29tcF9pZDsNCkBAIC03MTYsOSArNzI4LDM3IEBAIHN0YXRpYyBpbnQg
-bXRrX2RwaV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KIA0KIAlkcGktPmRl
-diA9IGRldjsNCiAJZHBpLT5jb25mID0gKHN0cnVjdCBtdGtfZHBpX2NvbmYgKilvZl9kZXZpY2Vf
-Z2V0X21hdGNoX2RhdGEoZGV2KTsNCi0Jb2ZfcHJvcGVydHlfcmVhZF91MzJfaW5kZXgoZGV2LT5v
-Zl9ub2RlLCAicGNsay1zYW1wbGUiLCAxLA0KLQkJCQkgICAmZHBpLT5wY2xrX3NhbXBsZSk7DQog
-DQorCWVwID0gb2ZfZ3JhcGhfZ2V0X2VuZHBvaW50X2J5X3JlZ3MoZGV2LT5vZl9ub2RlLCAwLCAw
-KTsNCisJaWYgKCFlcCkgew0KKwkJZGV2X2VycihkZXYsICJGYWlsZWQgZ2V0IHRoZSBlbmRwb2lu
-dCBwb3J0XG4iKTsNCisJCXJldHVybiAtRUlOVkFMOw0KKwl9DQorDQorCS8qIEdldCB0aGUgc2Ft
-cGxpbmcgZWRnZSBmcm9tIHRoZSBlbmRwb2ludC4gKi8NCisJb2ZfcHJvcGVydHlfcmVhZF91MzIo
-ZXAsICJwY2xrLXNhbXBsZSIsICZkcGktPnBjbGtfc2FtcGxlKTsNCisJb2Zfbm9kZV9wdXQoZXAp
-Ow0KKw0KKwlkcGktPnBpbmN0cmwgPSBkZXZtX3BpbmN0cmxfZ2V0KCZwZGV2LT5kZXYpOw0KKwlp
-ZiAoSVNfRVJSKGRwaS0+cGluY3RybCkpIHsNCisJCWRwaS0+cGluY3RybCA9IE5VTEw7DQorCQlk
-ZXZfZGJnKCZwZGV2LT5kZXYsICJDYW5ub3QgZmluZCBwaW5jdHJsIVxuIik7DQorCX0NCisJaWYg
-KGRwaS0+cGluY3RybCkgew0KKwkJZHBpLT5waW5zX2dwaW8gPSBwaW5jdHJsX2xvb2t1cF9zdGF0
-ZShkcGktPnBpbmN0cmwsICJpZGxlIik7DQorCQlpZiAoSVNfRVJSKGRwaS0+cGluc19ncGlvKSkg
-ew0KKwkJCWRwaS0+cGluc19ncGlvID0gTlVMTDsNCisJCQlkZXZfZGJnKCZwZGV2LT5kZXYsICJD
-YW5ub3QgZmluZCBwaW5jdHJsIGlkbGUhXG4iKTsNCisJCX0NCisJCWlmIChkcGktPnBpbnNfZ3Bp
-bykNCisJCQlwaW5jdHJsX3NlbGVjdF9zdGF0ZShkcGktPnBpbmN0cmwsIGRwaS0+cGluc19ncGlv
-KTsNCisNCisJCWRwaS0+cGluc19kcGkgPSBwaW5jdHJsX2xvb2t1cF9zdGF0ZShkcGktPnBpbmN0
-cmwsICJhY3RpdmUiKTsNCisJCWlmIChJU19FUlIoZHBpLT5waW5zX2RwaSkpIHsNCisJCQlkcGkt
-PnBpbnNfZHBpID0gTlVMTDsNCisJCQlkZXZfZGJnKCZwZGV2LT5kZXYsICJDYW5ub3QgZmluZCBw
-aW5jdHJsIGFjdGl2ZSFcbiIpOw0KKwkJfQ0KKwl9DQogCW1lbSA9IHBsYXRmb3JtX2dldF9yZXNv
-dXJjZShwZGV2LCBJT1JFU09VUkNFX01FTSwgMCk7DQogCWRwaS0+cmVncyA9IGRldm1faW9yZW1h
-cF9yZXNvdXJjZShkZXYsIG1lbSk7DQogCWlmIChJU19FUlIoZHBpLT5yZWdzKSkgew0KLS0gDQoy
-LjIxLjANCg==
 
+
+On 28/02/2020 00:28, Suman Anna wrote:
+> The PRU-ICSS present on some AM33xx SoCs has a very unique SYSC
+> register. The IP also uses a hard-reset line, and requires this
+> PRCM reset to be deasserted to be able to access any registers.
+> Update the existing PRUSS interconnect target-module with all
+> the required properties.
+> 
+> The PRUSS device itself shall be added as a child node to this
+> interconnect node in the future. PRU-ICSS is not supported on
+> AM3351/AM3352/AM3354 SoCs though in the AM33xx family, so the
+> target module node should be disabled in derivative board files
+> that use any of these SoCs.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+
+Reviewed-by: Roger Quadros <rogerq@ti.com>
+
+> ---
+> v2: Revise patch description, no code changes
+> 
+>   arch/arm/boot/dts/am33xx-l4.dtsi | 21 ++++++++++++++++++---
+>   1 file changed, 18 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
+> index 4e2986f0c604..5ed7f3c58c0f 100644
+> --- a/arch/arm/boot/dts/am33xx-l4.dtsi
+> +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
+> @@ -759,12 +759,27 @@
+>   			ranges = <0x0 0x200000 0x80000>;
+>   		};
+>   
+> -		target-module@300000 {			/* 0x4a300000, ap 9 04.0 */
+> -			compatible = "ti,sysc";
+> -			status = "disabled";
+> +		pruss_tm: target-module@300000 {	/* 0x4a300000, ap 9 04.0 */
+> +			compatible = "ti,sysc-pruss", "ti,sysc";
+> +			reg = <0x326000 0x4>,
+> +			      <0x326004 0x4>;
+> +			reg-names = "rev", "sysc";
+> +			ti,sysc-mask = <(SYSC_PRUSS_STANDBY_INIT |
+> +					 SYSC_PRUSS_SUB_MWAIT)>;
+> +			ti,sysc-midle = <SYSC_IDLE_FORCE>,
+> +					<SYSC_IDLE_NO>,
+> +					<SYSC_IDLE_SMART>;
+> +			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+> +					<SYSC_IDLE_NO>,
+> +					<SYSC_IDLE_SMART>;
+> +			clocks = <&pruss_ocp_clkctrl AM3_PRUSS_OCP_PRUSS_CLKCTRL 0>;
+> +			clock-names = "fck";
+> +			resets = <&prm_per 1>;
+> +			reset-names = "rstctrl";
+>   			#address-cells = <1>;
+>   			#size-cells = <1>;
+>   			ranges = <0x0 0x300000 0x80000>;
+> +			status = "disabled";
+>   		};
+>   	};
+>   };
+> 
+
+-- 
+cheers,
+-roger
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
