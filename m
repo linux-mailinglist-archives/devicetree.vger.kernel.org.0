@@ -2,234 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A61173EF8
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 19:01:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9CC3173F16
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 19:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726063AbgB1SBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 13:01:18 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39919 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbgB1SBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 13:01:18 -0500
-Received: by mail-ot1-f68.google.com with SMTP id x97so3394767ota.6;
-        Fri, 28 Feb 2020 10:01:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6pAsECt7PiBK62q88D+kfvQxUuJNH4AnYnLku6Y2cN8=;
-        b=YNIJWFRH6PD6YH6SLwtDVe2BqkZ8ClZKE2ZrfPAHu3fXTLct8n7boO8SrhcJhRsr4/
-         CV/WSU4jqXgbPVZLlkmg66qJDjU19MTlG9aiq5YbDKrgpsw5ZyrR58QGch0luPDQhbCF
-         Zx1Ck+c/1B0EVfJtO3uuG5r7q60vzeOcFsmIU1E5qB5OHvusA2wZ07BJ/uG0Sxth4P2P
-         TlTX6S6eqQEVQDNapnQjpRdkMku8W4M6Ui3PnloVPx1atZntCZFHio6Pk/PXBb9VDz1p
-         VnO7gpGHFa8ozr7WO2sd1j3cth6J+dOV+72N578DygCHSLsalmZ5c2wYygobKwg9Q+OJ
-         vhDw==
-X-Gm-Message-State: APjAAAW7zLgC7C1nbGIviJ7+K4iWZMHF0bEdDFvyioNqGcPj+jf3DNok
-        lACQtmqhb4O4qMi5QKU15Q==
-X-Google-Smtp-Source: APXvYqyc028jTANUn0xgkw/a9kxcmZKUdVZYKQUcXfDjL8GahTISwR9AkN8XD+xx3EePlmjq7gsFvg==
-X-Received: by 2002:a9d:518b:: with SMTP id y11mr4099645otg.349.1582912877111;
-        Fri, 28 Feb 2020 10:01:17 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m185sm3318360oia.26.2020.02.28.10.01.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Feb 2020 10:01:16 -0800 (PST)
-Received: (nullmailer pid 21022 invoked by uid 1000);
-        Fri, 28 Feb 2020 18:01:15 -0000
-Date:   Fri, 28 Feb 2020 12:01:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH 5/9] ASoC: meson: convert axg fifo to schema
-Message-ID: <20200228180115.GA14079@bogus>
-References: <20200224145821.262873-1-jbrunet@baylibre.com>
- <20200224145821.262873-6-jbrunet@baylibre.com>
+        id S1727096AbgB1SDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 13:03:12 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:9181 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727050AbgB1SDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 13:03:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1582912984;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=VQR/AR51ZqPMdswJK+tBk7F8NHNJi8NvdVEENw3L72s=;
+        b=k/MuodBJO9+NIRCPAcvXlWKiGCSWy06fAtTiKKSn2koYP2TZcPwtE8sdMGm32wwiAi
+        2Dh5qeeRhZBlo5Gm/hzqPIV0m1m8c3OJg3j9AF4dxMXb0vFQKtos1OL8IaGG2+nnqkfd
+        fHOSXpkYa4zkRqVKc2KLLw0tjVYX0EZhpTwrd0I+5lD3ymXUvXv44sKe+Xmo4Vz6XDlS
+        PjatYG1mIWD6Om9rAawtZret5Zwek91AKPvyvRspsl6TQHZsBlOWJBRuhEvCqRRz+raM
+        I3SRSSThkRbqwQZJBRKlyB8sbALSKc3yL+fvKUXobIIJkO2wMqMFe1qCoBGltRl0UWDS
+        sJ4A==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXH6G1+ULkA="
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+        by smtp.strato.de (RZmta 46.2.0 DYNA|AUTH)
+        with ESMTPSA id y0a02cw1SI2r2JH
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Fri, 28 Feb 2020 19:02:53 +0100 (CET)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     Paul Boddie <paul@boddie.org.uk>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Andi Kleen <ak@linux.intel.com>,
+        Kees Cook <keescook@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "Eric W. Biederman" <ebiederm@xmission.com>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        kernel@pyra-handheld.com
+Subject: [PATCH v4 0/5] MIPS: Fixes and improvements for CI20 board (JZ4780)
+Date:   Fri, 28 Feb 2020 19:02:48 +0100
+Message-Id: <cover.1582912972.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200224145821.262873-6-jbrunet@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 24, 2020 at 03:58:17PM +0100, Jerome Brunet wrote:
-> Convert the DT binding documentation for the Amlogic axg audio FIFOs to
-> schema.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  .../bindings/sound/amlogic,axg-fifo.txt       |  34 ------
->  .../bindings/sound/amlogic,axg-fifo.yaml      | 111 ++++++++++++++++++
->  2 files changed, 111 insertions(+), 34 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-> deleted file mode 100644
-> index fa4545ed81ca..000000000000
-> --- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-> +++ /dev/null
-> @@ -1,34 +0,0 @@
-> -* Amlogic Audio FIFO controllers
-> -
-> -Required properties:
-> -- compatible: 'amlogic,axg-toddr' or
-> -	      'amlogic,axg-toddr' or
-> -	      'amlogic,g12a-frddr' or
-> -	      'amlogic,g12a-toddr' or
-> -	      'amlogic,sm1-frddr' or
-> -	      'amlogic,sm1-toddr'
-> -- reg: physical base address of the controller and length of memory
-> -       mapped region.
-> -- interrupts: interrupt specifier for the fifo.
-> -- clocks: phandle to the fifo peripheral clock provided by the audio
-> -	  clock controller.
-> -- resets: list of reset phandle, one for each entry reset-names.
-> -- reset-names: should contain the following:
-> -  * "arb" : memory ARB line (required)
-> -  * "rst" : dedicated device reset line (optional)
-> -- #sound-dai-cells: must be 0.
-> -- amlogic,fifo-depth: The size of the controller's fifo in bytes. This
-> -  		      is useful for determining certain configuration such
-> -		      as the flush threshold of the fifo
-> -
-> -Example of FRDDR A on the A113 SoC:
-> -
-> -frddr_a: audio-controller@1c0 {
-> -	compatible = "amlogic,axg-frddr";
-> -	reg = <0x0 0x1c0 0x0 0x1c>;
-> -	#sound-dai-cells = <0>;
-> -	interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
-> -	clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
-> -	resets = <&arb AXG_ARB_FRDDR_A>;
-> -	fifo-depth = <512>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
-> new file mode 100644
-> index 000000000000..d9fe4f624784
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/amlogic,axg-fifo.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic AXG Audio FIFO controllers
-> +
-> +maintainers:
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^audio-controller@.*"
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +        - const:
-> +            amlogic,axg-toddr
-> +      - items:
-> +        - const:
-> +            amlogic,axg-frddr
-> +      - items:
-> +        - enum:
-> +          - amlogic,g12a-toddr
-> +          - amlogic,sm1-toddr
-> +        - const:
-> +            amlogic,axg-toddr
-> +      - items:
-> +        - enum:
-> +          - amlogic,g12a-frddr
-> +          - amlogic,sm1-frddr
-> +        - const:
-> +            amlogic,axg-frddr
-> +
-> +  clocks:
-> +    items:
-> +      - description: Peripheral clock
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    minItems: 1
-> +    items:
-> +      - description: Memory ARB line
-> +      - description: Dedicated device reset line
-> +
-> +  reset-names:
-> +    minItems: 1
-> +    items:
-> +      - const: arb
-> +      - const: rst
-> +
-> +  amlogic,fifo-depth:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Size of the controller's fifo in bytes
+* use KEY_F13 for SW1 button to avoid conflict with Enter of an USB keyboard (suggested by Paul Cercueil <paul@crapouillou.net>)
+* tidy up all new #includes to be at beginning of file and alphabetically sorted (suggested by Paul Cercueil <paul@crapouillou.net>)
+* add new #include to DTS only when needed (suggested by Paul Cercueil <paul@crapouillou.net>)
 
-Aren't there some constraints on possible values? I'm sure it's more 
-than 0 and less than 2^32.
+PATCH V3 2020-02-16 21:21:07:
+* dropped "drm: ingenic-drm: add MODULE_DEVICE_TABLE" because it will be resubmitted
+  with a HDMI driver solution
+* added Cc: stable@vger.kernel.org where appropriate (suggested by Paul Cercueil <paul@crapouillou.net>)
+* squashed all other DTS and CONFIG changes into single patches (suggested by Paul Cercueil <paul@crapouillou.net>)
 
-> +
-> +required:
-> +  - "#sound-dai-cells"
-> +  - compatible
-> +  - interrupts
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - amlogic,fifo-depth
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - amlogic,g12a-toddr
-> +          - amlogic,sm1-toddr
-> +          - amlogic,g12a-frddr
-> +          - amlogic,sm1-frddr
-> +then:
-> +  properties:
-> +    resets:
-> +      minItems: 2
-> +    reset-names:
-> +      minItems: 2
-> +  required:
-> +    - reset-names
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/axg-audio-clkc.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
-> +    #include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
-> +
-> +    frddr_a: audio-controller@1c0 {
-> +        compatible = "amlogic,g12a-frddr", "amlogic,axg-frddr";
-> +        reg = <0x0 0x1c0 0x0 0x1c>;
-> +        #sound-dai-cells = <0>;
-> +        interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
-> +        clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
-> +        resets = <&arb AXG_ARB_FRDDR_A>, <&clkc_audio AUD_RESET_FRDDR_A>;
-> +        reset-names = "arb", "rst";
-> +        amlogic,fifo-depth = <512>;
-> +    };
-> +
-> -- 
-> 2.24.1
-> 
+PATCH V2 2020-02-14 17:10:33:
+* dropped "net: davicom: dm9000: allow to pass MAC address through mac_addr module parameter"
+  from this series because it goes through the netdev tree
+  (suggested by Andrew Lunn <andrew@lunn.ch>)
+* added a "fixes:" for "MIPS: DTS: CI20: fix PMU definitions for ACT8600"
+  and "MIPS: DTS: CI20: fix interrupt for pcf8563 RTC"
+  (suggested by Andreas Kemnade <andreas@kemnade.info>)
+* "i2c: jz4780: silence log flood on txabrt" dropped because it is
+  replaced by a new version in v5.6 by Wolfram Sang <wsa@the-dreams.de>
+
+PATCH V1 2020-02-11 22:41:43:
+This patch set provides several improvements for the CI20 board:
+
+* suppress warnings from i2c if device is not responding
+* make ingenic-drm found through DT
+* allow davicom dm9000 ethernet controller to use MAC address provided by U-Boot
+* fix #include in jz4780.dtsi
+* configure for loadable kernel modules
+* add DTS for IR sensor and SW1 button
+* configure so that LEDs, IR sensor, SW1 button have drivers
+* fix DTS for ACT8600 PMU and configure driver
+* fix interrupt of nxp,pcf8563
+
+There is another patch set in our queue to add HDMI support on top of this work.
+
+Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+
+
+Alex Smith (1):
+  MIPS: DTS: CI20: add DT node for IR sensor
+
+H. Nikolaus Schaller (4):
+  MIPS: DTS: CI20: fix PMU definitions for ACT8600
+  MIPS: DTS: CI20: fix interrupt for pcf8563 RTC
+  MIPS: DTS: CI20: multiple DTS improvements
+  MIPS: CI20: defconfig: multiple improvements
+
+ arch/mips/boot/dts/ingenic/ci20.dts | 71 ++++++++++++++++++++++-------
+ arch/mips/configs/ci20_defconfig    | 21 +++++++++
+ 2 files changed, 76 insertions(+), 16 deletions(-)
+
+-- 
+2.23.0
+
