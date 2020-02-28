@@ -2,187 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F37173456
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 10:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A72AA173462
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 10:43:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbgB1Jl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 04:41:59 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:54182 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726400AbgB1Jl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 04:41:59 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01S9fhu5008401;
-        Fri, 28 Feb 2020 03:41:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1582882904;
-        bh=8orCeNVUYKEqvaE5+0ekeRoeQdHfMuNLd4upouXDyDs=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=E6gd4vSRRVlBj9qVdEpyLi3/qGtGaM5U1ji7hbKWXeyBRJxF7TRk+NPWDt7xzNtpN
-         mdcnrLe7cvshhXHmSSM/X6ziHs7kP6cHFs2mjsStRVkuPyrpAqVEGiNfkOGIhmLai1
-         oiqx6XQAWLH520YXgglyxZ/YcUZApTtmRuCV4Noc=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01S9fhlG127045
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 28 Feb 2020 03:41:43 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 28
- Feb 2020 03:41:43 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Fri, 28 Feb 2020 03:41:43 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01S9fgZB102283;
-        Fri, 28 Feb 2020 03:41:43 -0600
-Date:   Fri, 28 Feb 2020 15:11:42 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-CC:     Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, Sekhar Nori <nsekhar@ti.com>,
-        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>
-Subject: Re: [PATCH v2 04/11] spi: spi-mem: allow specifying a command's
- extension
-Message-ID: <20200228094142.436fjee5fb7w6pd2@ti.com>
-References: <20200226093703.19765-1-p.yadav@ti.com>
- <20200226093703.19765-5-p.yadav@ti.com>
- <20200227174406.66bf6f84@collabora.com>
+        id S1726980AbgB1Jnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 04:43:46 -0500
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:54904 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726894AbgB1Jno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Feb 2020 04:43:44 -0500
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01S9dgH5024994;
+        Fri, 28 Feb 2020 01:43:31 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=proofpoint;
+ bh=fei+1EkzRukgHoU2oL8ccEl20bRBoqJ5tKPYO57SdLc=;
+ b=GSoa1RXl8xmVl5efJRf514d5O1zXUw8NfW0Cy/bTgAGEZrGDPmpeTLCHFG2ssCPjWF6x
+ 301nzNSwIGHzgY/7EkBeUtyOth8KeC947BL9CnFzsJd4y46Ra9XJE8M8RMcoOKhHCZn6
+ Mq13qQZDN0yk1BOmYr78igBJW/YnFBaUZWAyG9MLF8uhoE6H4Sm/6tslNiTQp5hrxDJx
+ KIMylFtDACN5Wi5VsHio0HIXB6RZowf0VX/E214dtQaRJyCaZ9dy5OXSYVuXSReBUTvQ
+ Opmljj5lZGXC27eW8yevFuoTvRC/jOAplr7AEN4Q5kJTg52dzDcgm4i8dOT3Q4HU77bl EQ== 
+Received: from nam04-bn3-obe.outbound.protection.outlook.com (mail-bn3nam04lp2052.outbound.protection.outlook.com [104.47.46.52])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 2yepvct0rd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 28 Feb 2020 01:43:31 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JlBtUIUqcnz0GwPOqLkEZx+uSJIT/4ET9uC2XnbULaw/aD90xu6hwfJoikzuVU5vk1Q0w1gEIAqwLaeX+8Kyldj/h82G5ZkXdpMcdKMBgniZcAD6eS1yBPOP4D1P+PxkhJqSH4BpKXLdT8dXAyWYOruK4bQM8RVpTmAn/bfKK+sbMj/nxL1aAtynn6pDgGUtsU3nTb719gA8UfkQ5/9GWSBIXLXH1p/jBtX9+L3VAjwbRZFs58s542OWWHSf2+jXZpUAh8f/GInblCi1kZsxEmIP7qNcf3cIcQ92Iuc+BKCjpawD6eeM9T5YEYSkIVOG9wczv+5B7LRJ+zBhOKRZZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fei+1EkzRukgHoU2oL8ccEl20bRBoqJ5tKPYO57SdLc=;
+ b=H3GjkaKnA5VTEoubCGIaJa8NQ+nQYV0ZUQ04rTCJp0RHVzoG72cQILv0Tu82xVf2KEevkwBafU9wVa4Y7KK0kntT9vB8OSpTQLa1ArfCHSHPxnmDnPojKJxD6SF3YvPMzyZb1zn1Au4YPN6pdognG65KPr7AVZ9voCUTQOVve3TlcddSnFoVe+/Hi7BY99NNLysmZwML82YbG42VYJL93lS7qtShKKG3x24TgARn6tGJ5jv2b+Xm7C+HBAiJBJ7yK/acmYz6xE5nxkOHxZWMf9Rp4aKE4uY77XJS74IW57kk3xuEEaMnLtrN+30MVRYm2j/keL/yb/yekdLiUhYFFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 158.140.1.28) smtp.rcpttodomain=kernel.org smtp.mailfrom=cadence.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=cadence.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fei+1EkzRukgHoU2oL8ccEl20bRBoqJ5tKPYO57SdLc=;
+ b=XGeUOs5ZB1hkjCkkY4eVgbvfC9tzA/BJIhKE+xZ8mR1CjtJT3HGu7Tik/nyCDvNZJ3JZaOGyR0xBrUArvXJSIc0vCsE87a+YfRw0S8N8AaF21XSVhDJfQzOzmCyI8vIPkSJJKda1iHLR/CJVAErBhSa2n893PhoBFUjf8E7O9os=
+Received: from MWHPR14CA0071.namprd14.prod.outlook.com (2603:10b6:300:81::33)
+ by CY4PR0701MB3636.namprd07.prod.outlook.com (2603:10b6:910:93::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.14; Fri, 28 Feb
+ 2020 09:43:29 +0000
+Received: from MW2NAM12FT044.eop-nam12.prod.protection.outlook.com
+ (2603:10b6:300:81:cafe::f3) by MWHPR14CA0071.outlook.office365.com
+ (2603:10b6:300:81::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15 via Frontend
+ Transport; Fri, 28 Feb 2020 09:43:29 +0000
+Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
+ 158.140.1.28 as permitted sender) receiver=protection.outlook.com;
+ client-ip=158.140.1.28; helo=sjmaillnx1.cadence.com;
+Received: from sjmaillnx1.cadence.com (158.140.1.28) by
+ MW2NAM12FT044.mail.protection.outlook.com (10.13.180.247) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2793.5 via Frontend Transport; Fri, 28 Feb 2020 09:43:28 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by sjmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id 01S9hPFH026489
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Fri, 28 Feb 2020 01:43:27 -0800
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3; Fri, 28 Feb 2020 10:43:24 +0100
+Received: from vleu-orange.cadence.com (10.160.88.83) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3 via Frontend Transport; Fri, 28 Feb 2020 10:43:24 +0100
+Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
+        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 01S9hODU013664;
+        Fri, 28 Feb 2020 10:43:24 +0100
+Received: (from dkangude@localhost)
+        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 01S9hORA013663;
+        Fri, 28 Feb 2020 10:43:24 +0100
+From:   Dhananjay Kangude <dkangude@cadence.com>
+To:     <linux-edac@vger.kernel.org>
+CC:     <bp@alien8.de>, <mchehab@kernel.org>, <tony.luck@intel.com>,
+        <james.morse@arm.com>, <linux-kernel@vger.kernel.org>,
+        <mparab@cadence.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Dhananjay Kangude <dkangude@cadence.com>
+Subject: [PATCH v1 0/2] Add EDAC support for Cadence ddr controller
+Date:   Fri, 28 Feb 2020 10:43:20 +0100
+Message-ID: <20200228094322.13617-1-dkangude@cadence.com>
+X-Mailer: git-send-email 2.15.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200227174406.66bf6f84@collabora.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:158.140.1.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(136003)(346002)(396003)(376002)(199004)(189003)(36092001)(336012)(2616005)(426003)(86362001)(4326008)(107886003)(5660300002)(186003)(26005)(70586007)(70206006)(2906002)(1076003)(356004)(6666004)(42186006)(316002)(54906003)(6916009)(478600001)(36756003)(8676002)(8936002)(7636002)(26826003)(246002);DIR:OUT;SFP:1101;SCL:1;SRVR:CY4PR0701MB3636;H:sjmaillnx1.cadence.com;FPR:;SPF:Pass;LANG:en;PTR:corp.Cadence.COM;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7b58717a-53c2-43d8-f55d-08d7bc32aa39
+X-MS-TrafficTypeDiagnostic: CY4PR0701MB3636:
+X-Microsoft-Antispam-PRVS: <CY4PR0701MB3636B96C90C3BEB2C619D920CDE80@CY4PR0701MB3636.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:586;
+X-Forefront-PRVS: 0327618309
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4o5+1mylJfvpYVqo6W1VkP21sg7AYJUwJOuuGR1ASATn73fJu8V5t8YW0kVJqWV8aqzLoPtCnVMFdEckX6s3CTF48KDbvI9od2Ioxpz97si8iX+ZmNGhbOJb5caGdKruwv5Ag4XH0+r/s+sinanTcwuymqg7yHpI4uJnmDMeBUSf+YRYJu1pKIuEUSnsbdyBfHioG6qYwW1mtUgK7+x63V8HtuaO5SSgENmByBRQFbSO9pNA637bWZCo9viF3QSmgA42uMba6yrh4DVIgAbQmFGDk2Ze26c+z8QPyZT6WgAmMHZ8mkzSLzLvULtWrG4LhQl54bFfedX1wKca6UYmZQ4IAvqMGGNg9UFzr3VaVa9sfyBQRhS+d3PrTOSigZoRzI1V/M69yZvecN08qGsjZvFSXw0G/zdbPgpqvj/S785kwDmCxpqyIe2tLu09rzHUN9zZjphirlc+mKbAwwypH8V28r4IqufWiBGtrFri5VQG6kHtGgLQBzL7FqKHiJ+J
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2020 09:43:28.5876
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b58717a-53c2-43d8-f55d-08d7bc32aa39
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.28];Helo=[sjmaillnx1.cadence.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR0701MB3636
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-28_02:2020-02-26,2020-02-28 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
+ lowpriorityscore=0 malwarescore=0 phishscore=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 mlxlogscore=517
+ clxscore=1015 adultscore=0 suspectscore=1 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2002280081
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/20 05:44PM, Boris Brezillon wrote:
-> On Wed, 26 Feb 2020 15:06:56 +0530
-> Pratyush Yadav <p.yadav@ti.com> wrote:
-> 
-> > In xSPI mode, flashes expect 2-byte opcodes. The second byte is called
-> > the "command extension". There can be 3 types of extensions in xSPI:
-> > repeat, invert, and hex. When the extension type is "repeat", the same
-> > opcode is sent twice. When it is "invert", the second byte is the
-> > inverse of the opcode. When it is "hex" an additional opcode byte based
-> > is sent with the command whose value can be anything.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > ---
-> >  drivers/spi/spi-mem.c       | 23 +++++++++++++++++++++++
-> >  include/linux/spi/spi-mem.h | 24 ++++++++++++++++++++++++
-> >  2 files changed, 47 insertions(+)
-> > 
-> > diff --git a/drivers/spi/spi-mem.c b/drivers/spi/spi-mem.c
-> > index cb13e0878b95..3838ddc9aeec 100644
-> > --- a/drivers/spi/spi-mem.c
-> > +++ b/drivers/spi/spi-mem.c
-> > @@ -462,6 +462,29 @@ int spi_mem_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
-> >  }
-> >  EXPORT_SYMBOL_GPL(spi_mem_adjust_op_size);
-> >  
-> > +int spi_mem_get_cmd_ext(const struct spi_mem_op *op, u8 *ext)
-> > +{
-> > +	switch (op->cmd.ext_type) {
-> > +	case SPI_MEM_EXT_INVERT:
-> > +		*ext = ~op->cmd.opcode;
-> > +		break;
-> > +
-> > +	case SPI_MEM_EXT_REPEAT:
-> > +		*ext = op->cmd.opcode;
-> > +		break;
-> > +
-> > +	case SPI_MEM_EXT_HEX:
-> > +		*ext = op->cmd.ext;
-> > +		break;
-> > +
-> > +	default:
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL_GPL(spi_mem_get_cmd_ext);
-> > +
-> >  static ssize_t spi_mem_no_dirmap_read(struct spi_mem_dirmap_desc *desc,
-> >  				      u64 offs, size_t len, void *buf)
-> >  {
-> > diff --git a/include/linux/spi/spi-mem.h b/include/linux/spi/spi-mem.h
-> > index 4669082b4e3b..06ccab17e4d0 100644
-> > --- a/include/linux/spi/spi-mem.h
-> > +++ b/include/linux/spi/spi-mem.h
-> > @@ -67,11 +67,31 @@ enum spi_mem_data_dir {
-> >  	SPI_MEM_DATA_OUT,
-> >  };
-> >  
-> > +/**
-> > + * enum spi_mem_cmd_ext - describes the command opcode extension in DTR mode
-> > + * @SPI_MEM_EXT_NONE: no extension. This is the default, and is used in Legacy
-> > + *		      SPI mode
-> > + * @SPI_MEM_EXT_REPEAT: the extension is same as the opcode
-> > + * @SPI_MEM_EXT_INVERT: the extension is the bitwise inverse of the opcode
-> > + * @SPI_MEM_EXT_HEX: the extension is any hex value. The command and opcode
-> > + *		     combine to form a 16-bit opcode.
-> > + */
-> > +enum spi_mem_cmd_ext {
-> > +	SPI_MEM_EXT_NONE = 0,
-> > +	SPI_MEM_EXT_REPEAT,
-> > +	SPI_MEM_EXT_INVERT,
-> > +	SPI_MEM_EXT_HEX,
-> > +};
-> > +
-> >  /**
-> >   * struct spi_mem_op - describes a SPI memory operation
-> >   * @cmd.buswidth: number of IO lines used to transmit the command
-> >   * @cmd.opcode: operation opcode
-> >   * @cmd.is_dtr: whether the command opcode should be sent in DTR mode or not
-> > + * @cmd.ext_type: type of the command opcode extension in DTR mode
-> > + * @cmd.ext: value of the command opcode extension in DTR mode. It is
-> > + *	     only set when 'ext_type' is 'SPI_MEM_EXT_HEX'. In all other
-> > + *	     cases, the extension can be directly derived from the opcode.
-> >   * @addr.nbytes: number of address bytes to send. Can be zero if the operation
-> >   *		 does not need to send an address
-> >   * @addr.buswidth: number of IO lines used to transmit the address cycles
-> > @@ -97,6 +117,8 @@ struct spi_mem_op {
-> >  		u8 buswidth;
-> >  		u8 opcode;
-> >  		bool is_dtr;
-> > +		enum spi_mem_cmd_ext ext_type;
-> > +		u8 ext;
-> 
-> Could we instead make opcode an u16 (or u8[2]) and pass the number of
-> bytes, as done for the other addr? Mode can be extracted from the
-> opcode/nbytes values if really needed, and the caller would be
-> responsible for filling those fields properly (which shouldn't be too
-> hard)
+These patches add new edac driver for Cadence ddr memory controller.
+Cadence controller detects single(CE) and double(UE) bit errors during
+memory operations(RMW). DDR controller raised the interrupt on detection
+of the ecc error event and fill the data into registers. Driver handle
+the interrupt event and notify edac subsystem about ecc errors.
 
-Ok. Will do.
- 
-> >  	} cmd;
-> >  
-> >  	struct {
-> > @@ -361,6 +383,8 @@ int spi_mem_driver_register_with_owner(struct spi_mem_driver *drv,
-> >  
-> >  void spi_mem_driver_unregister(struct spi_mem_driver *drv);
-> >  
-> > +int spi_mem_get_cmd_ext(const struct spi_mem_op *op, u8 *ext);
-> > +
-> >  #define spi_mem_driver_register(__drv)                                  \
-> >  	spi_mem_driver_register_with_owner(__drv, THIS_MODULE)
-> >  
-> 
+Changes since v1:
+=================
+- Made predefined arrays as static
+ Fixes: 201447a5db9b ("EDAC/Cadence:Add EDAC driver for cadence memory controller")
+- Replace macro 'EDAC_DIMM_PTR' with newly introduce function
+- Removed unused variable root
 
+Dhananjay Kangude (2):
+  EDAC/Cadence:Add EDAC driver for cadence memory controller
+  dt-bindings: edac: Add cadence ddr mc support
+
+ .../devicetree/bindings/edac/cdns,ddr-edac.yaml    |  59 ++
+ drivers/edac/Kconfig                               |   7 +
+ drivers/edac/Makefile                              |   1 +
+ drivers/edac/cadence_edac.c                        | 615 +++++++++++++++++++++
+ 4 files changed, 682 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/edac/cdns,ddr-edac.yaml
+ create mode 100644 drivers/edac/cadence_edac.c
+
+
+base-commit: ffa9a9758be2793d11b0c51bc2845f7dd200e261
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments India
+2.15.0
+
