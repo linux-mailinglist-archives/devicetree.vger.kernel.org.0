@@ -2,80 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8D6173B0F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 16:11:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD198173B18
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 16:13:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726944AbgB1PKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 10:10:50 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:35034 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726874AbgB1PKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 10:10:50 -0500
-Received: by mail-oi1-f193.google.com with SMTP id b18so3174029oie.2;
-        Fri, 28 Feb 2020 07:10:49 -0800 (PST)
+        id S1727031AbgB1PNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 10:13:20 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:42042 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726720AbgB1PNU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 10:13:20 -0500
+Received: by mail-ot1-f67.google.com with SMTP id 66so2840277otd.9;
+        Fri, 28 Feb 2020 07:13:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=t0G3mflzMLYfHT/AnRWKVaX1lcvqOhj/G6xuPMWJ9SY=;
-        b=I0kO/nEhwgXNjI/WtwGuUpOVPQ6nODVEh3Pp0cRuslLF/p1rctUIzv3uuS2vrhc2GS
-         TqaJmxndsQNAfNgW5jYFQMxQ3dj/eNdULAmx303TRfJU4AV9Ny6moR6YeVhc0iN4U3BU
-         0jXDuNsgSi3vVWPj4mmvP0xfKITN1xJeC7np1fGbRJtUEtCd2mcOC1K5d7Ea/h84vKOH
-         v1Zfx3qFSmHp3AmhycqRFZ83w65EsTM0MQ/7jpLFQwUGIfKYm2PnoQFfHCoNGAZlAV2N
-         om5Ozv7DQmVf+6WUDwjp1nRs7cZVSiwvxnknKEdByQRGJzdhFY/El3hmuwQ7ar+KX8tn
-         9Rdg==
-X-Gm-Message-State: APjAAAUEeHWgyb5BXY1V4H8KjfZyE5KV2WP+gSbA0XkmxSSPLYyIeiz/
-        gsr3PSVWCFYR/MIjp6sHxQ==
-X-Google-Smtp-Source: APXvYqxtcZ6ZNm10DIZf0YYzfzgPghegW6SU51q8Yb4V2+TcrwQt6aZ/TOLwt19IL07IumO1NVtEqA==
-X-Received: by 2002:a05:6808:4d3:: with SMTP id a19mr3271213oie.119.1582902649140;
-        Fri, 28 Feb 2020 07:10:49 -0800 (PST)
+        bh=zWo4qKuY/7ed4cYkYmCoOxOnA9Dj1w1J7SKejk3R5Z8=;
+        b=f8a2ptHfbp7rG9/fdH0kYvy1uAUYE9EKzsVx6gsNhiHbbU5Wrtr6ZJrEFQsN3RFzKw
+         8XCEPUdA9TGH0g2aDc0HusgYSuvfZt3kfUbrteFlxn2GwXf6MkNlo3K34cPlHV3CrOVn
+         Vnjm+SsXs743JLPk/3N4WDP9Q2K+XzP1cyZ0s+Rvna4RYHmaLPUBHgn/CFJ+27PPuCne
+         6P/UqdNFrlK0dH4rsZZ2J43mKaTf900ve/qeGPJVOx97NsbqqyU84DyJAvC5SLMxjgNm
+         rlBZXQkGWzMCgopsfr+fjZg4jD2aXCSefCTHY0ZJo0J5mgSEPyfZGfDM4dvLNmUZkLGo
+         qfMQ==
+X-Gm-Message-State: APjAAAV8vn7RCWZfh4L/Tt6f2HvB/QHhXuFRBvba/wsEXK47L5gI027O
+        nRqDoRWC+rZv8hO5H0EXkA==
+X-Google-Smtp-Source: APXvYqyIDBoCrTlnHsHo2ZWFLHbyIgEN0Y3a+LU5KpD+GDt608oltIOTk0QNBmppbKHbi9r4/mPT0A==
+X-Received: by 2002:a9d:6e02:: with SMTP id e2mr3884732otr.194.1582902799599;
+        Fri, 28 Feb 2020 07:13:19 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z3sm2010618oia.46.2020.02.28.07.10.47
+        by smtp.gmail.com with ESMTPSA id l207sm3264961oih.25.2020.02.28.07.13.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 28 Feb 2020 07:10:48 -0800 (PST)
-Received: (nullmailer pid 347 invoked by uid 1000);
-        Fri, 28 Feb 2020 15:10:47 -0000
-Date:   Fri, 28 Feb 2020 09:10:47 -0600
+        Fri, 28 Feb 2020 07:13:18 -0800 (PST)
+Received: (nullmailer pid 4200 invoked by uid 1000);
+        Fri, 28 Feb 2020 15:13:17 -0000
+Date:   Fri, 28 Feb 2020 09:13:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        asutoshd@codeaurora.org, stummala@codeaurora.org,
-        sayalil@codeaurora.org, cang@codeaurora.org,
-        rampraka@codeaurora.org, dianders@google.com,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH V3] dt-bindings: mmc: sdhci-msm: Add CQE reg map
-Message-ID: <20200228151047.GA32759@bogus>
-References: <1581434955-11087-1-git-send-email-vbadigan@codeaurora.org>
- <1582545470-11530-1-git-send-email-vbadigan@codeaurora.org>
+To:     peng.fan@nxp.com
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de,
+        jassisinghbrar@gmail.com, leonard.crestez@nxp.com,
+        o.rempel@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, m.felsch@pengutronix.de, hongxing.zhu@nxp.com,
+        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: mailbox: imx-mu: add fsl,scu property
+Message-ID: <20200228151317.GA404@bogus>
+References: <1582546474-21721-1-git-send-email-peng.fan@nxp.com>
+ <1582546474-21721-2-git-send-email-peng.fan@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1582545470-11530-1-git-send-email-vbadigan@codeaurora.org>
+In-Reply-To: <1582546474-21721-2-git-send-email-peng.fan@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Feb 2020 17:27:50 +0530, Veerabhadrarao Badiganti wrote:
-> CQE feature has been enabled on sdhci-msm. Add CQE reg map
-> and reg names that need to be supplied for supporting CQE feature.
+On Mon, Feb 24, 2020 at 08:14:32PM +0800, peng.fan@nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+> Add fsl,scu property, this needs to be enabled for SCU channel type.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> Changes since V2:
-> 	- Dropped _mem suffix to reg names.
+>  Documentation/devicetree/bindings/mailbox/fsl,mu.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Changes since V1:
-> 	- Updated description for more clarity & Fixed typos.
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.txt b/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
+> index 9c43357c5924..5b502bcf7122 100644
+> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
+> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
+> @@ -45,6 +45,7 @@ Optional properties:
+>  -------------------
+>  - clocks :	phandle to the input clock.
+>  - fsl,mu-side-b : Should be set for side B MU.
+> +- fsl,scu: Support i.MX8/8X SCU channel type
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+What's the type for this?
+
+Perhaps update the example.
+
+>  
+>  Examples:
+>  --------
+> -- 
+> 2.16.4
+> 
