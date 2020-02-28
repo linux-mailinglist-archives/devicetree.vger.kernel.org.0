@@ -2,34 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAFE3173746
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 13:35:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0911B17375F
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 13:43:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725796AbgB1Mfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 07:35:38 -0500
-Received: from foss.arm.com ([217.140.110.172]:37584 "EHLO foss.arm.com"
+        id S1726094AbgB1Mm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 07:42:59 -0500
+Received: from foss.arm.com ([217.140.110.172]:37676 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725730AbgB1Mfi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 07:35:38 -0500
+        id S1725730AbgB1Mm6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Feb 2020 07:42:58 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E87D4B2;
-        Fri, 28 Feb 2020 04:35:38 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 66E794B2;
+        Fri, 28 Feb 2020 04:42:58 -0800 (PST)
 Received: from [10.1.196.37] (e121345-lin.cambridge.arm.com [10.1.196.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B36883F7B4;
-        Fri, 28 Feb 2020 04:35:36 -0800 (PST)
-Subject: Re: [PATCH 1/4] dt-bindings: arm: fix Rockchip Kylin board bindings
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 229663F7B4;
+        Fri, 28 Feb 2020 04:42:57 -0800 (PST)
+Subject: Re: [PATCH 3/4] dt-bindings: arm: fix Rockchip rk3399-evb bindings
 To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
 Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
 References: <20200228061436.13506-1-jbx6244@gmail.com>
+ <20200228061436.13506-3-jbx6244@gmail.com>
 From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <73b41bd1-01e9-6af8-afc8-b1a96614d026@arm.com>
-Date:   Fri, 28 Feb 2020 12:35:34 +0000
+Message-ID: <78b8b53f-2e2a-3804-41fb-bb2610947ca2@arm.com>
+Date:   Fri, 28 Feb 2020 12:42:55 +0000
 User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200228061436.13506-1-jbx6244@gmail.com>
+In-Reply-To: <20200228061436.13506-3-jbx6244@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
@@ -41,37 +42,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 28/02/2020 6:14 am, Johan Jonker wrote:
 > A test with the command below gives this error:
 > 
-> arch/arm/boot/dts/rk3036-kylin.dt.yaml: /: compatible:
-> ['rockchip,rk3036-kylin', 'rockchip,rk3036']
+> arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: /: compatible:
+> ['rockchip,rk3399-evb', 'rockchip,rk3399', 'google,rk3399evb-rev2']
 > is not valid under any of the given schemas
 > 
-> Fix this error by changing 'rockchip,kylin-rk3036' to
-> 'rockchip,rk3036-kylin' in rockchip.yaml.
-
-Although I can guess, it might be worth a note to explain why it's the 
-binding rather than the DTS that gets changed here.
-
-Robin.
-
-> make ARCH=arm dtbs_check
+> Fix this error by adding 'google,rk3399evb-rev2' to the compatible
+> property in rockchip.yaml
+> 
+> make ARCH=arm64 dtbs_check
 > DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/rockchip.yaml
 > 
 > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
->   Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
+>   1 file changed, 1 insertion(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 874b0eaa2..203158038 100644
+> index d303790f5..6c6e8273e 100644
 > --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
 > +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -443,7 +443,7 @@ properties:
->   
->         - description: Rockchip Kylin
+> @@ -509,6 +509,7 @@ properties:
 >           items:
-> -          - const: rockchip,kylin-rk3036
-> +          - const: rockchip,rk3036-kylin
->             - const: rockchip,rk3036
+>             - const: rockchip,rk3399-evb
+>             - const: rockchip,rk3399
+> +          - const: google,rk3399evb-rev2
+
+This looks wrong - the board can't reasonably be a *more* general match 
+than the SoC. If this is supposed to represent a specific variant of the 
+basic EVB design then it should come before "rockchip,rk3399-evb" (and 
+possibly be optional if other variants also exist).
+
+Robin.
+
 >   
->         - description: Rockchip PX3 Evaluation board
+>         - description: Rockchip RK3399 Sapphire standalone
+>           items:
 > 
