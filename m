@@ -2,35 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0911B17375F
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 13:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E02173788
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 13:48:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726094AbgB1Mm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 07:42:59 -0500
-Received: from foss.arm.com ([217.140.110.172]:37676 "EHLO foss.arm.com"
+        id S1725886AbgB1Msx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 07:48:53 -0500
+Received: from foss.arm.com ([217.140.110.172]:37770 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725730AbgB1Mm6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 07:42:58 -0500
+        id S1725876AbgB1Msx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 28 Feb 2020 07:48:53 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 66E794B2;
-        Fri, 28 Feb 2020 04:42:58 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 12BE34B2;
+        Fri, 28 Feb 2020 04:48:53 -0800 (PST)
 Received: from [10.1.196.37] (e121345-lin.cambridge.arm.com [10.1.196.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 229663F7B4;
-        Fri, 28 Feb 2020 04:42:57 -0800 (PST)
-Subject: Re: [PATCH 3/4] dt-bindings: arm: fix Rockchip rk3399-evb bindings
-To:     Johan Jonker <jbx6244@gmail.com>, heiko@sntech.de
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <20200228061436.13506-1-jbx6244@gmail.com>
- <20200228061436.13506-3-jbx6244@gmail.com>
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D82A33F7B4;
+        Fri, 28 Feb 2020 04:48:51 -0800 (PST)
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Describe RK3328 GPIO_MUTE
+ users
 From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <78b8b53f-2e2a-3804-41fb-bb2610947ca2@arm.com>
-Date:   Fri, 28 Feb 2020 12:42:55 +0000
+To:     heiko@sntech.de
+Cc:     lgirdwood@gmail.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        pgwipeout@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+References: <cover.1581376744.git.robin.murphy@arm.com>
+ <53637c0359ad9473dc1391a8428ba21017ec467e.1581376744.git.robin.murphy@arm.com>
+Message-ID: <59fe8a7d-22ab-6098-5266-4fdf4bf41adb@arm.com>
+Date:   Fri, 28 Feb 2020 12:48:50 +0000
 User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200228061436.13506-3-jbx6244@gmail.com>
+In-Reply-To: <53637c0359ad9473dc1391a8428ba21017ec467e.1581376744.git.robin.murphy@arm.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
@@ -39,42 +41,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2020 6:14 am, Johan Jonker wrote:
-> A test with the command below gives this error:
-> 
-> arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: /: compatible:
-> ['rockchip,rk3399-evb', 'rockchip,rk3399', 'google,rk3399evb-rev2']
-> is not valid under any of the given schemas
-> 
-> Fix this error by adding 'google,rk3399evb-rev2' to the compatible
-> property in rockchip.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/rockchip.yaml
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->   Documentation/devicetree/bindings/arm/rockchip.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index d303790f5..6c6e8273e 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -509,6 +509,7 @@ properties:
->           items:
->             - const: rockchip,rk3399-evb
->             - const: rockchip,rk3399
-> +          - const: google,rk3399evb-rev2
+Hi Heiko,
 
-This looks wrong - the board can't reasonably be a *more* general match 
-than the SoC. If this is supposed to represent a specific variant of the 
-basic EVB design then it should come before "rockchip,rk3399-evb" (and 
-possibly be optional if other variants also exist).
+On 18/02/2020 9:32 pm, Robin Murphy wrote:
+> Add explicit properties to describe existing boards' GPIO_MUTE usage
+> for the analog codec.
 
+Are you happy to pick this up now that the driver patches are queued?
+
+Thanks,
 Robin.
 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> ---
+> 
+> v2: no change
+> 
+>   arch/arm64/boot/dts/rockchip/rk3328-a1.dts     | 1 +
+>   arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 1 +
+>   2 files changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> index 16f1656d5203..797e90a3ac92 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> @@ -60,6 +60,7 @@
+>   };
 >   
->         - description: Rockchip RK3399 Sapphire standalone
->           items:
+>   &codec {
+> +	mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
+>   	status = "okay";
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+> index 62936b432f9a..bf3e546f5266 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+> @@ -104,6 +104,7 @@
+>   };
+>   
+>   &codec {
+> +	mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
+>   	status = "okay";
+>   
+>   	port@0 {
 > 
