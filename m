@@ -2,122 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 945FA173A71
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 15:56:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78602173A78
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 15:57:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726788AbgB1O4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 09:56:33 -0500
-Received: from mail.manjaro.org ([176.9.38.148]:47146 "EHLO mail.manjaro.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726562AbgB1O4d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 28 Feb 2020 09:56:33 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by mail.manjaro.org (Postfix) with ESMTP id D085F3941E12;
-        Fri, 28 Feb 2020 15:56:31 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at manjaro.org
-Received: from mail.manjaro.org ([127.0.0.1])
-        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 1dWdwfYRA7sh; Fri, 28 Feb 2020 15:56:29 +0100 (CET)
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add initial support for
- Pinebook Pro
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        Alexis Ballier <aballier@gentoo.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Nick Xie <nick@khadas.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        anarsoul@gmail.com, enric.balletbo@collabora.com
-References: <20200227180630.166982-1-t.schramm@manjaro.org>
- <20200227180630.166982-3-t.schramm@manjaro.org> <12370413.gKdrHkWbHd@diego>
-From:   Tobias Schramm <t.schramm@manjaro.org>
-Message-ID: <37190f26-48aa-dcad-d4b1-8a534ba1360e@manjaro.org>
-Date:   Fri, 28 Feb 2020 15:57:10 +0100
+        id S1726980AbgB1O5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 09:57:21 -0500
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:39825 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726562AbgB1O5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 09:57:21 -0500
+Received: by mail-qt1-f193.google.com with SMTP id p34so2192767qtb.6
+        for <devicetree@vger.kernel.org>; Fri, 28 Feb 2020 06:57:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=aXNQ0NABVZ/Zc8fXXYZpSz3dqh4Ns6QlhvK6/kwYM2k=;
+        b=fx3F0RVJpvuGR0vU2fusOG/NqXxNQdLCppTq9XL99VJF79clWgcp5+agQ8Bkdn764W
+         /6H4SP43zfEgHKiNsbn3EkZXEI5eftR/AZNv5GJYTZnxTXZRyq9aw7ICgIKMn8l0jnUx
+         9LorGB67BgZ2aphSqsGjJO2u/nt3IEPqyy6blQp30BdEWnEUxTjjCoo7zwPmwtZJlkI3
+         e+qGqpZDRkSLznZ8x2vUdH6CsaxJ2HRW27+fCzEtPp5EqdbjknklIN9PHhf1PYIBAg+F
+         PuUEX6g64YI1DZfAu0ym87ZYgi2PkqOOc/+5zxlIRaH10PX0tdO8PBQJ2rqvbzBeuTgk
+         IVvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=aXNQ0NABVZ/Zc8fXXYZpSz3dqh4Ns6QlhvK6/kwYM2k=;
+        b=BjGG5/im3ovAY+oeawQuZSpxbGPUSDBwcQRW2NaJgjACFEEgCzS67C3NsmyOTxScwT
+         P5CkREUVD2PEbB8otPmBD72LOJovQq0JFf8NMoTZNP5qwxBqs9hRlzcGrhuNkVGxzt/W
+         q+l+OizicdxZXh7xqrQTjYMArvrBVJ/EJJr87fevkeSGT0uHJmQdUoiJLM96DWubk7pO
+         hjXWesse9Lz/YisWymOabaeZaQshhwyeXPbXpZzmY35kF+W6HZ9QQ3RrtUnixF3L57Vu
+         Looz9YwP/FUwQ8lOKoCeeHJ3CvVxKi5BoZICCmVrsGe8bOGgpkf+pWNxhK5JO1D++aFk
+         Gjag==
+X-Gm-Message-State: APjAAAVaczLScb5PxPIHZlReKKYniHlHAw3Ej0BynqSvqI0ly7Y+zQR7
+        TpnZl59wQ7cXCtrA9mxS7T7y5Q==
+X-Google-Smtp-Source: APXvYqxZGwk4KQ+YAY4GsyBgYKpbiHklk+KncMw+8qgpUr+ys9QfMTdjm4TizVQ6yPrtfGJb79x/jw==
+X-Received: by 2002:ac8:2939:: with SMTP id y54mr4410279qty.109.1582901840269;
+        Fri, 28 Feb 2020 06:57:20 -0800 (PST)
+Received: from ziepe.ca (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.57.212])
+        by smtp.gmail.com with ESMTPSA id f7sm5133445qtj.92.2020.02.28.06.57.19
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 28 Feb 2020 06:57:19 -0800 (PST)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+        (envelope-from <jgg@ziepe.ca>)
+        id 1j7h4p-00034R-0q; Fri, 28 Feb 2020 10:57:19 -0400
+Date:   Fri, 28 Feb 2020 10:57:19 -0400
+From:   Jason Gunthorpe <jgg@ziepe.ca>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     Jacob Pan <jacob.jun.pan@linux.intel.com>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-mm@kvack.org, joro@8bytes.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, catalin.marinas@arm.com, will@kernel.org,
+        robin.murphy@arm.com, kevin.tian@intel.com,
+        baolu.lu@linux.intel.com, Jonathan.Cameron@huawei.com,
+        christian.koenig@amd.com, yi.l.liu@intel.com,
+        zhangfei.gao@linaro.org,
+        Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Subject: Re: [PATCH v4 02/26] iommu/sva: Manage process address spaces
+Message-ID: <20200228145718.GR31668@ziepe.ca>
+References: <20200224182401.353359-1-jean-philippe@linaro.org>
+ <20200224182401.353359-3-jean-philippe@linaro.org>
+ <20200226111320.3b6e6d3d@jacob-builder>
+ <20200228144007.GB2156@myrica>
 MIME-Version: 1.0
-In-Reply-To: <12370413.gKdrHkWbHd@diego>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US-large
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200228144007.GB2156@myrica>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+On Fri, Feb 28, 2020 at 03:40:07PM +0100, Jean-Philippe Brucker wrote:
+> > > Device
+> > > + * 00:00.0 accesses address spaces X and Y, each corresponding to an
+> > > mm_struct.
+> > > + * Devices 00:01.* only access address space Y. In addition each
+> > > + * IOMMU_DOMAIN_DMA domain has a private address space, io_pgtable,
+> > > that is
+> > > + * managed with iommu_map()/iommu_unmap(), and isn't shared with the
+> > > CPU MMU.
+> > So this would allow IOVA and SVA co-exist in the same address space?
+> 
+> Hmm, not in the same address space, but they can co-exist in a device. In
+> fact the endpoint I'm testing (hisi zip accelerator) already needs normal
+> DMA alongside SVA for queue management. This one is integrated on an
+> Arm-based platform so shouldn't be a concern for VT-d at the moment, but
+> I suspect we might see more of this kind of device with mixed DMA.
 
-thanks for the review. I'll implement the changes and send a v2.
+Probably the most interesting usecases for PASID definately require
+this, so this is more than a "suspect we might see"
 
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pwrled_gpio &slpled_gpio>;
->> +
->> +		green-led {
->> +			color = <LED_COLOR_ID_GREEN>;
->> +			default-state = "off";
->> +			function = LED_FUNCTION_POWER;
->> +			gpios = <&gpio0 RK_PB3 GPIO_ACTIVE_HIGH>;
->> +			label = "green:disk-activity";
->> +			linux,default-trigger = "mmc2";
-> hmm, LED_FUNCTION_POWER but trigger for mmc2 ?
-> So if there is no activity on the LED it looks to be off?
+We want to see the privileged kernel control the general behavior of
+the PCI function and delegate only some DMAs to PASIDs associated with
+the user mm_struct. The device is always trusted the label its DMA
+properly.
 
-I see why this is looking weird. It does not make a whole lot of sense
-at the moment and I'll change that for v2. 
+These programming models are already being used for years now with the
+opencapi implementation.
 
-However I have a patch in the making that adds "-inverted" variants for
-all triggers so the power LED can be turned of briefly to indicate mmc
-activity.
-
-Not sure wether people will like it or not but I'll try it as a RFC.
-
->> +	 * of wakeup sources without disabling the whole key
-> Also can you explain the problem a bit? If there is a deficit in the input
-> subsystem regarding wakeup events, dt is normally not the place to work
-> around things [we're supposed to be OS independent]
-
-The issue is that some users wanted to be able to control the wakeup
-functionality of the keys separately via sysfs. That does not seem to be
-possible when combining both keys into one gpio-keys node. A more
-detailed explanation of the issue can be found at [1].
-
->> +&i2c0 {
->> +	clock-frequency = <400000>;
->> +	i2c-scl-rising-time-ns = <168>;
->> +	i2c-scl-falling-time-ns = <4>;
->> +	status = "okay";
->> +
->> +	rk808: pmic@1b {
->> +		compatible = "rockchip,rk808";
->> +		reg = <0x1b>;
->> +		#clock-cells = <1>;
->> +		clock-output-names = "xin32k", "rk808-clkout2";
->> +		interrupt-parent = <&gpio3>;
->> +		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pmic_int_l_gpio>;
->> +		rockchip,system-power-controller;
->> +		wakeup-source;
->> +
->> +		vddio-supply = <&vcc_3v0>;
-> where does this come from? Aka it's not specified in the dt-binding
-> (though the example falsely uses it) and also not referenced in the driver.
-
-This does likely come from the BSP dts. Seems I missed it while checking
-bindings.
-
-
-Thanks again for the review,
-
-Tobias
-
-
-[1] https://gitlab.manjaro.org/tsys/linux-pinebook-pro/issues/5
-
+Jason
