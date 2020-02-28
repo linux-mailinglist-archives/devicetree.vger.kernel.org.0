@@ -2,111 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58FAA173A47
-	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 15:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A1A7173A5C
+	for <lists+devicetree@lfdr.de>; Fri, 28 Feb 2020 15:53:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727152AbgB1Ou3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 28 Feb 2020 09:50:29 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:62274 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726905AbgB1Ou2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 09:50:28 -0500
-X-UUID: 82bc67a19d344b1d90a1b70cde1a4245-20200228
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=3ueQZiL6nqQ1TnauprptHOqb48LlnkrdGjJXo+9vhGU=;
-        b=OyD/T0rHPJluiKZmsYCpVCfNxrZEWj6P/RAkBv8mn6qz7q5iMYYxubn44OcoPPMCDzZNm5Wq2FkazYipVl2yW486eDt1G3KflhAvJiGq6Q3aY2oM/5OUO1TqlVVgKyeRvmJKldZlFv7gdUnI+r/3dW2d1ysSMsNs5uMUVDC2heM=;
-X-UUID: 82bc67a19d344b1d90a1b70cde1a4245-20200228
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 658126459; Fri, 28 Feb 2020 22:50:26 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 28 Feb 2020 22:49:21 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 28 Feb 2020 22:50:11 +0800
-Message-ID: <1582901419.14824.5.camel@mtksdaap41>
-Subject: Re: [PATCH v3 08/13] soc: mediatek: cmdq: add read_s function
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        "Ming-Fan Chen" <ming-fan.chen@mediatek.com>
-Date:   Fri, 28 Feb 2020 22:50:19 +0800
-In-Reply-To: <1582897461-15105-10-git-send-email-dennis-yc.hsieh@mediatek.com>
-References: <1582897461-15105-1-git-send-email-dennis-yc.hsieh@mediatek.com>
-         <1582897461-15105-10-git-send-email-dennis-yc.hsieh@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727053AbgB1Ow3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 28 Feb 2020 09:52:29 -0500
+Received: from outils.crapouillou.net ([89.234.176.41]:55076 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726788AbgB1Ow2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 28 Feb 2020 09:52:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1582901546; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=c4Hpe5bJONH/FNTVGB+t29zh0HkFZmJeasNEqS8Vfj8=;
+        b=WfJ+Pvpx2y2KhO9bZiFPgod3uTc1OKPAVLSOxLatyiysiWhlrezwc7/XRj5Q/vD1YQxeiW
+        IB3syypfuEwpPisEVQOfZvz+jK1l5QVBZQxKwvLDB3t8RA9uR4b0IUWKI0YCfjYXSe4mgT
+        xHRbv52PO/NQLEFhhkPRtwP3GD9Kygw=
+Date:   Fri, 28 Feb 2020 11:52:03 -0300
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v7 3/7] Bindings: nvmem: add bindings for JZ4780 efuse
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     PrasannaKumar Muralidharan <prasannatsmkumar@gmail.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Mathieu Malaterre <malat@debian.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Andi Kleen <ak@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org,
+        kernel@pyra-handheld.com
+Message-Id: <1582901523.3.6@crapouillou.net>
+In-Reply-To: <9B96463B-CEDE-46EF-87C4-395EB919C78F@goldelico.com>
+References: <cover.1582898302.git.hns@goldelico.com>
+        <ebd523e39aac31b087affcfa984738204fa8b542.1582898302.git.hns@goldelico.com>
+        <1582900837.3.3@crapouillou.net>
+        <9B96463B-CEDE-46EF-87C4-395EB919C78F@goldelico.com>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIERlbm5pczoNCg0KT24gRnJpLCAyMDIwLTAyLTI4IGF0IDIxOjQ0ICswODAwLCBEZW5uaXMg
-WUMgSHNpZWggd3JvdGU6DQo+IEFkZCByZWFkX3MgZnVuY3Rpb24gaW4gY21kcSBoZWxwZXIgZnVu
-Y3Rpb25zIHdoaWNoIHN1cHBvcnQgcmVhZCB2YWx1ZSBmcm9tDQo+IHJlZ2lzdGVyIG9yIGRtYSBw
-aHlzaWNhbCBhZGRyZXNzIGludG8gZ2NlIGludGVybmFsIHJlZ2lzdGVyLg0KPiANCg0KUmV2aWV3
-ZWQtYnk6IENLIEh1IDxjay5odUBtZWRpYXRlay5jb20+DQoNCj4gU2lnbmVkLW9mZi1ieTogRGVu
-bmlzIFlDIEhzaWVoIDxkZW5uaXMteWMuaHNpZWhAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gIGRy
-aXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jICAgfCAxNSArKysrKysrKysrKysr
-KysNCj4gIGluY2x1ZGUvbGludXgvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmggfCAgMSArDQo+
-ICBpbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9tdGstY21kcS5oICAgIHwgMTMgKysrKysrKysr
-KysrKw0KPiAgMyBmaWxlcyBjaGFuZ2VkLCAyOSBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVyLmMgYi9kcml2ZXJzL3Nv
-Yy9tZWRpYXRlay9tdGstY21kcS1oZWxwZXIuYw0KPiBpbmRleCA2OGI0MmM5MzVmZTYuLjQyOGY5
-OTI4OGNhNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVs
-cGVyLmMNCj4gKysrIGIvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVyLmMNCj4g
-QEAgLTIyNiw2ICsyMjYsMjEgQEAgaW50IGNtZHFfcGt0X3dyaXRlX21hc2soc3RydWN0IGNtZHFf
-cGt0ICpwa3QsIHU4IHN1YnN5cywNCj4gIH0NCj4gIEVYUE9SVF9TWU1CT0woY21kcV9wa3Rfd3Jp
-dGVfbWFzayk7DQo+ICANCj4gK2ludCBjbWRxX3BrdF9yZWFkX3Moc3RydWN0IGNtZHFfcGt0ICpw
-a3QsIHUxNiBoaWdoX2FkZHJfcmVnX2lkeCwgdTE2IGFkZHJfbG93LA0KPiArCQkgICAgdTE2IHJl
-Z19pZHgpDQo+ICt7DQo+ICsJc3RydWN0IGNtZHFfaW5zdHJ1Y3Rpb24gaW5zdCA9IHsgezB9IH07
-DQo+ICsNCj4gKwlpbnN0Lm9wID0gQ01EUV9DT0RFX1JFQURfUzsNCj4gKwlpbnN0LmRzdF90ID0g
-Q01EUV9SRUdfVFlQRTsNCj4gKwlpbnN0LnNvcCA9IGhpZ2hfYWRkcl9yZWdfaWR4Ow0KPiArCWlu
-c3QucmVnX2RzdCA9IHJlZ19pZHg7DQo+ICsJaW5zdC5zcmNfcmVnID0gYWRkcl9sb3c7DQo+ICsN
-Cj4gKwlyZXR1cm4gY21kcV9wa3RfYXBwZW5kX2NvbW1hbmQocGt0LCBpbnN0KTsNCj4gK30NCj4g
-K0VYUE9SVF9TWU1CT0woY21kcV9wa3RfcmVhZF9zKTsNCj4gKw0KPiAgaW50IGNtZHFfcGt0X3dy
-aXRlX3Moc3RydWN0IGNtZHFfcGt0ICpwa3QsIHUxNiBoaWdoX2FkZHJfcmVnX2lkeCwNCj4gIAkJ
-ICAgICB1MTYgYWRkcl9sb3csIHUxNiBzcmNfcmVnX2lkeCwgdTMyIG1hc2spDQo+ICB7DQo+IGRp
-ZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L21haWxib3gvbXRrLWNtZHEtbWFpbGJveC5oIGIvaW5j
-bHVkZS9saW51eC9tYWlsYm94L210ay1jbWRxLW1haWxib3guaA0KPiBpbmRleCA4ZWY4N2UxYmQw
-M2IuLjNmNmJjMGRmZDVkYSAxMDA2NDQNCj4gLS0tIGEvaW5jbHVkZS9saW51eC9tYWlsYm94L210
-ay1jbWRxLW1haWxib3guaA0KPiArKysgYi9pbmNsdWRlL2xpbnV4L21haWxib3gvbXRrLWNtZHEt
-bWFpbGJveC5oDQo+IEBAIC01OSw2ICs1OSw3IEBAIGVudW0gY21kcV9jb2RlIHsNCj4gIAlDTURR
-X0NPREVfSlVNUCA9IDB4MTAsDQo+ICAJQ01EUV9DT0RFX1dGRSA9IDB4MjAsDQo+ICAJQ01EUV9D
-T0RFX0VPQyA9IDB4NDAsDQo+ICsJQ01EUV9DT0RFX1JFQURfUyA9IDB4ODAsDQo+ICAJQ01EUV9D
-T0RFX1dSSVRFX1MgPSAweDkwLA0KPiAgCUNNRFFfQ09ERV9XUklURV9TX01BU0sgPSAweDkxLA0K
-PiAgCUNNRFFfQ09ERV9MT0dJQyA9IDB4YTAsDQo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4
-L3NvYy9tZWRpYXRlay9tdGstY21kcS5oIGIvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRr
-LWNtZHEuaA0KPiBpbmRleCBjNzJkODI2ZDg5MzQuLjAxYjQxODRhZjMxMCAxMDA2NDQNCj4gLS0t
-IGEvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaA0KPiArKysgYi9pbmNsdWRl
-L2xpbnV4L3NvYy9tZWRpYXRlay9tdGstY21kcS5oDQo+IEBAIC0xMDQsNiArMTA0LDE5IEBAIGlu
-dCBjbWRxX3BrdF93cml0ZShzdHJ1Y3QgY21kcV9wa3QgKnBrdCwgdTggc3Vic3lzLCB1MTYgb2Zm
-c2V0LCB1MzIgdmFsdWUpOw0KPiAgaW50IGNtZHFfcGt0X3dyaXRlX21hc2soc3RydWN0IGNtZHFf
-cGt0ICpwa3QsIHU4IHN1YnN5cywNCj4gIAkJCXUxNiBvZmZzZXQsIHUzMiB2YWx1ZSwgdTMyIG1h
-c2spOw0KPiAgDQo+ICsvKg0KPiArICogY21kcV9wa3RfcmVhZF9zKCkgLSBhcHBlbmQgcmVhZF9z
-IGNvbW1hbmQgdG8gdGhlIENNRFEgcGFja2V0DQo+ICsgKiBAcGt0Ogl0aGUgQ01EUSBwYWNrZXQN
-Cj4gKyAqIEBoaWdoX2FkZHJfcmVnX2lkeDoJaW50ZXJuYWwgcmVnaXNnZXIgSUQgd2hpY2ggY29u
-dGFpbnMgaGlnaCBhZGRyZXNzIG9mIHBhDQo+ICsgKiBAYWRkcl9sb3c6CWxvdyBhZGRyZXNzIG9m
-IHBhDQo+ICsgKiBAYWRkcjoJdGhlIHBoeXNpY2FsIGFkZHJlc3Mgb2YgcmVnaXN0ZXIgb3IgZG1h
-IHRvIHJlYWQNCj4gKyAqIEByZWdfaWR4Ogl0aGUgQ01EUSBpbnRlcm5hbCByZWdpc3RlciBJRCB0
-byBjYWNoZSByZWFkIGRhdGENCj4gKyAqDQo+ICsgKiBSZXR1cm46IDAgZm9yIHN1Y2Nlc3M7IGVs
-c2UgdGhlIGVycm9yIGNvZGUgaXMgcmV0dXJuZWQNCj4gKyAqLw0KPiAraW50IGNtZHFfcGt0X3Jl
-YWRfcyhzdHJ1Y3QgY21kcV9wa3QgKnBrdCwgdTE2IGhpZ2hfYWRkcl9yZWdfaWR4LCB1MTYgYWRk
-cl9sb3csDQo+ICsJCSAgICB1MTYgcmVnX2lkeCk7DQo+ICsNCj4gIC8qKg0KPiAgICogY21kcV9w
-a3Rfd3JpdGVfcygpIC0gYXBwZW5kIHdyaXRlX3MgY29tbWFuZCB0byB0aGUgQ01EUSBwYWNrZXQN
-Cj4gICAqIEBwa3Q6CXRoZSBDTURRIHBhY2tldA0KDQo=
+
+
+Le ven., f=E9vr. 28, 2020 at 15:47, H. Nikolaus Schaller=20
+<hns@goldelico.com> a =E9crit :
+>=20
+>>  Am 28.02.2020 um 15:40 schrieb Paul Cercueil <paul@crapouillou.net>:
+>>=20
+>>  Hi Nikolaus,
+>>=20
+>>=20
+>>  Le ven., f=E9vr. 28, 2020 at 14:58, H. Nikolaus Schaller=20
+>> <hns@goldelico.com> a =E9crit :
+>>>  From: PrasannaKumar Muralidharan <prasannatsmkumar@gmail.com>
+>>>  This patch brings support for the JZ4780 efuse. Currently it only=20
+>>> exposes
+>>>  a read only access to the entire 8K bits efuse memory.
+>>>  Tested-by: Mathieu Malaterre <malat@debian.org>
+>>>  Signed-off-by: PrasannaKumar Muralidharan=20
+>>> <prasannatsmkumar@gmail.com>
+>>>  Signed-off-by: Mathieu Malaterre <malat@debian.org>
+>>>  Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>>>  [converted to yaml]
+>>>  Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>>>  ---
+>>>  .../bindings/nvmem/ingenic,jz4780-efuse.yaml  | 49=20
+>>> +++++++++++++++++++
+>>>  1 file changed, 49 insertions(+)
+>>>  create mode 100644=20
+>>> Documentation/devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml
+>>>  diff --git=20
+>>> a/Documentation/devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml=20
+>>> b/Documentation/devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml
+>>>  new file mode 100644
+>>>  index 000000000000..ce6690c50a34
+>>>  --- /dev/null
+>>>  +++=20
+>>> b/Documentation/devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml
+>>>  @@ -0,0 +1,49 @@
+>>>  +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>  +%YAML 1.2
+>>>  +---
+>>>  +$id:=20
+>>> http://devicetree.org/schemas/nvmem/ingenic,jz4780-efuse.yaml#
+>>>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>  +
+>>>  +title: Ingenic JZ EFUSE driver bindings
+>>>  +
+>>>  +maintainers:
+>>>  +  - PrasannaKumar Muralidharan <prasannatsmkumar@gmail.com>
+>>>  +
+>>>  +allOf:
+>>>  +  - $ref: "nvmem.yaml#"
+>>>  +
+>>>  +properties:
+>>>  +  compatible:
+>>>  +    enum:
+>>>  +      - ingenic,jz4780-efuse
+>>>  +
+>>>  +  reg:
+>>>  +    maxItems: 1
+>>>  +
+>>>  +  clocks:
+>>>  +    # Handle for the ahb for the efuse.
+>>>  +    maxItems: 1
+>>>  +
+>>>  +  clock-names:
+>>>  +    items:
+>>>  +      - const: ahb2
+>>=20
+>>  You still have clock-names here. You can remove it completely.
+>=20
+> I have just removed them from required: and the examples: because
+> I think they are optional. Or are they forbidden?
+
+The driver does not get its clock by name, it just takes the first one.=20
+So having 'clock-names' in the binding is just not needed.
+
+-Paul
+
+>>=20
+>>>  +
+>>>  +required:
+>>>  +  - compatible
+>>>  +  - reg
+>>>  +  - clocks
+>>>  +
+>>>  +unevaluatedProperties: false
+>>>  +
+>>>  +examples:
+>>>  +  - |
+>>>  +    #include <dt-bindings/clock/jz4780-cgu.h>
+>>>  +
+>>>  +    efuse@134100d0 {
+>>>  +        compatible =3D "ingenic,jz4780-efuse";
+>>>  +        reg =3D <0x134100d0 0x2c>;
+>>>  +
+>>>  +        clocks =3D <&cgu JZ4780_CLK_AHB2>;
+>>>  +    };
+>>>  +
+>>>  +...
+>>>  --
+>>>  2.23.0
+>=20
+> BR,
+> Nikolaus
+>=20
+
+=
 
