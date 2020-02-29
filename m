@@ -2,137 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B36C417483B
-	for <lists+devicetree@lfdr.de>; Sat, 29 Feb 2020 18:01:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A410817487C
+	for <lists+devicetree@lfdr.de>; Sat, 29 Feb 2020 18:48:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727196AbgB2RBW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Feb 2020 12:01:22 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:57985 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727176AbgB2RBW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Feb 2020 12:01:22 -0500
-Received: from localhost (lfbn-ren-1-591-115.w81-53.abo.wanadoo.fr [81.53.169.115])
-        (Authenticated sender: repk@triplefau.lt)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 47DB6200004;
-        Sat, 29 Feb 2020 17:01:17 +0000 (UTC)
-Date:   Sat, 29 Feb 2020 18:10:12 +0100
-From:   Remi Pommarel <repk@triplefau.lt>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Yue Wang <yue.wang@amlogic.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        id S1727220AbgB2Rs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Feb 2020 12:48:58 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:37356 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727177AbgB2Rs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Feb 2020 12:48:58 -0500
+Received: by mail-wr1-f67.google.com with SMTP id l5so7290374wrx.4
+        for <devicetree@vger.kernel.org>; Sat, 29 Feb 2020 09:48:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=ZayidFagez4Iqa0WdVqRCWWZUtND8cC6eqziUqJZJmc=;
+        b=OjKh2HhHMq2rTYWzUbngs+vFkLG8b+mFteGPKRXj2T8+FCtDHOA9t7CIjqNkjDZdeZ
+         J07gdZyMgyYsznuhl2xtq/NVdZ+MyiJYAhmSRgna9zX3H3BvHPGBWZ8wXfYycucO0Rfj
+         jcpZWPfDNgA90xVKnKhXSZYmyQE/3K3WUFYEEXgxYxnIZ0HlOvnPryPXYGDgCZxNP0Nh
+         tczhsu1tS3+nqYUYdVsFO3Oxnrcol4gZHAD2WnVQeqd9KPCkNehArtGUPigj3vF2lP42
+         S3w5Ljjrs8HQARR/kpkYS4DwmnV5/9GTV12D9PpvthiFxPp0Z0gPfzfStH5gbS7iSOe7
+         5GMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=ZayidFagez4Iqa0WdVqRCWWZUtND8cC6eqziUqJZJmc=;
+        b=MBB4vgOANL0zJT8/0J0ze4FG4+K2Vt+mVd2w9NsOqt39/ABzd4M9JFB6Nof+c0DShM
+         PUC3WeRVAYLQG+KND9OBJZ9zNYwDm4aPm5V3sUdJoeOSn4lYjoe6k3+TI5wXFATtDScb
+         yuQccxvgowYsudnR0eNNjkPzD/+nl9S+u4TJ/9z2FLdLOiYSDPUc5d3dbFyjpyXLEa9a
+         bE6LVXKdwoUvZz4NL47Ryd7j8vdgAdRLTYaOoWWzZ/y9wnasOHu1HC/Sl1+zTD+SssfP
+         Qn5GKzI+C3Npknwi+man1k62rY1QX6YObiMzU5fIfU37suYNdkdfmqDfX4Aau4ab7zwB
+         jeTg==
+X-Gm-Message-State: APjAAAWegXr4AmDBZ32xX16y4fyQ72GoXB4up7gioCNN5dXvTXaBDoxj
+        sgg16+H4TgY5xjIgahORgd8NzA==
+X-Google-Smtp-Source: APXvYqzwdRDHCo+JK9WoMEpBpcMTaJ8faVAZvaZz5Q4T5r9MrCA1hC6MCXi/+N36SnaRFlbwkEMtXw==
+X-Received: by 2002:adf:ed84:: with SMTP id c4mr11380334wro.24.1582998536137;
+        Sat, 29 Feb 2020 09:48:56 -0800 (PST)
+Received: from localhost (229.3.136.88.rev.sfr.net. [88.136.3.229])
+        by smtp.gmail.com with ESMTPSA id r19sm2154532wmh.26.2020.02.29.09.48.55
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 29 Feb 2020 09:48:55 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v6 0/7] PCI: amlogic: Make PCIe working reliably on AXG
- platforms
-Message-ID: <20200229171012.GN2248@voidbox>
-References: <20200123232943.10229-1-repk@triplefau.lt>
- <20200224141549.GB15614@e121166-lin.cambridge.arm.com>
- <7h8sklbcmo.fsf@baylibre.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Art Nikpal <email2tema@gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: fix gxm-khadas-vim2 wifi
+In-Reply-To: <1582212790-11402-1-git-send-email-christianshewitt@gmail.com>
+References: <1582212790-11402-1-git-send-email-christianshewitt@gmail.com>
+Date:   Sat, 29 Feb 2020 18:48:54 +0100
+Message-ID: <7htv399tdl.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7h8sklbcmo.fsf@baylibre.com>
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Christian Hewitt <christianshewitt@gmail.com> writes:
 
-On Sat, Feb 29, 2020 at 05:07:43PM +0100, Kevin Hilman wrote:
-> Lorenzo Pieralisi <lorenzo.pieralisi@arm.com> writes:
-> 
-> > On Fri, Jan 24, 2020 at 12:29:36AM +0100, Remi Pommarel wrote:
-> >> PCIe device probing failures have been seen on AXG platforms and were
-> >> due to unreliable clock signal output. Setting HHI_MIPI_CNTL0[26] bit
-> >> in MIPI's PHY registers solved the problem. This bit controls band gap
-> >> reference.
-> >> 
-> >> As discussed here [1] one of these shared MIPI/PCIE analog PHY register
-> >> bits was implemented in the clock driver as CLKID_MIPI_ENABLE. This adds
-> >> a PHY driver to control this bit instead, as well as setting the band
-> >> gap one in order to get reliable PCIE communication.
-> >> 
-> >> While at it add another PHY driver to control PCIE only PHY registers,
-> >> making AXG code more similar to G12A platform thus allowing to remove
-> >> some specific platform handling in pci-meson driver.
-> >> 
-> >> Please note that CLKID_MIPI_ENABLE removable will be done in a different
-> >> serie.
-> >> 
-> >> Changes since v5:
-> >>  - Add additionalProperties in device tree binding documentation
-> >>  - Make analog PHY required
-> >> 
-> >> Changes since v4:
-> >>  - Rename the shared MIPI/PCIe PHY to analog
-> >>  - Chain the MIPI/PCIe PHY to the PCIe one
-> >> 
-> >> Changes since v3:
-> >>  - Go back to the shared MIPI/PCIe phy driver solution from v2
-> >>  - Remove syscon usage
-> >>  - Add all dt-bindings documentation
-> >> 
-> >> Changes since v2:
-> >>  - Remove shared MIPI/PCIE device driver and use syscon to access register
-> >>    in PCIE only driver instead
-> >>  - Include devicetree documentation
-> >> 
-> >> Changes sinve v1:
-> >>  - Move HHI_MIPI_CNTL0 bit control in its own PHY driver
-> >>  - Add a PHY driver for PCIE_PHY registers
-> >>  - Modify pci-meson.c to make use of both PHYs and remove specific
-> >>    handling for AXG and G12A
-> >> 
-> >> [1] https://lkml.org/lkml/2019/12/16/119
-> >> 
-> >> Remi Pommarel (7):
-> >>   dt-bindings: Add AXG PCIE PHY bindings
-> >>   dt-bindings: Add AXG shared MIPI/PCIE analog PHY bindings
-> >>   dt-bindings: PCI: meson: Update PCIE bindings documentation
-> >>   arm64: dts: meson-axg: Add PCIE PHY nodes
-> >>   phy: amlogic: Add Amlogic AXG MIPI/PCIE analog PHY Driver
-> >>   phy: amlogic: Add Amlogic AXG PCIE PHY Driver
-> >>   PCI: amlogic: Use AXG PCIE
-> >> 
-> >>  .../bindings/pci/amlogic,meson-pcie.txt       |  22 +-
-> >>  .../amlogic,meson-axg-mipi-pcie-analog.yaml   |  35 ++++
-> >>  .../bindings/phy/amlogic,meson-axg-pcie.yaml  |  52 +++++
-> >>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  16 ++
-> >>  drivers/pci/controller/dwc/pci-meson.c        | 116 ++---------
-> >>  drivers/phy/amlogic/Kconfig                   |  22 ++
-> >>  drivers/phy/amlogic/Makefile                  |  12 +-
-> >>  .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 188 +++++++++++++++++
-> >>  drivers/phy/amlogic/phy-meson-axg-pcie.c      | 192 ++++++++++++++++++
-> >>  9 files changed, 543 insertions(+), 112 deletions(-)
-> >>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
-> >>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
-> >>  create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-> >>  create mode 100644 drivers/phy/amlogic/phy-meson-axg-pcie.c
-> >
-> > Hi Remi,
-> >
-> > I am ready to pull this series in, do you want me to ? Or you prefer
-> > it to go via a different tree upstream ?
-> 
-> To avoid conflicts, I'll take the DT patch (PATCH 4/7) through my
-> amlogic tree, but feel free to take the rest.
+> Fixes: adc52bf7ef16 ("arm64: dts: meson: fix mmc v2 chips max frequencies")
 
-Hi Lorenzo, Kevin,
+nit: Fixes tag should go at the end with the other trailers (see "git
+interpret-trailers ")
 
-The only issue I see here is that PATCH 6/7 does not have any
-Reviewed-by/Acked-by, but if that is ok with you that will be nice to
-have this upstream, thanks.
+I'll fix thet up when applying.
 
-Sorry for the mail delivery error you could have received, silly me
-forgot to renew the domain name.
+> before
+>
+> [6.418252] brcmfmac: F1 signature read @0x18000000=0x17224356
+> [6.435663] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4356-sdio for chip BCM4356/2
+> [6.551259] brcmfmac: brcmf_sdiod_ramrw: membytes transfer failed
+> [6.551275] brcmfmac: brcmf_sdio_verifymemory: error -84 on reading 2048 membytes at 0x00184000
+> [6.551352] brcmfmac: brcmf_sdio_download_firmware: dongle image file download failed
+>
+> after
+>
+> [6.657165] brcmfmac: F1 signature read @0x18000000=0x17224356
+> [6.660807] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4356-sdio for chip BCM4356/2
+> [6.918643] brcmfmac: brcmf_fw_alloc_request: using brcm/brcmfmac4356-sdio for chip BCM4356/2
+> [6.918734] brcmfmac: brcmf_c_process_clm_blob: no clm_blob available (err=-2), device may have limited channels available
+> [6.922724] brcmfmac: brcmf_c_preinit_dcmds: Firmware: BCM4356/2 wl0: Jun 16 2015 14:25:06 version 7.35.184.r1 (TOB) (r559293) FWID 01-b22ae69c
+>
+> Suggested-by: Art Nikpal <email2tema@gmail.com>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 
-Thanks
+Queued as a fix for v5.6,
 
-Remi
+Thanks,
+
+Kevin
