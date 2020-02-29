@@ -2,86 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CA181747D1
-	for <lists+devicetree@lfdr.de>; Sat, 29 Feb 2020 16:59:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC88174804
+	for <lists+devicetree@lfdr.de>; Sat, 29 Feb 2020 17:30:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727226AbgB2P7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Feb 2020 10:59:34 -0500
-Received: from asavdk4.altibox.net ([109.247.116.15]:54536 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727220AbgB2P7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Feb 2020 10:59:34 -0500
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 7330F804CE;
-        Sat, 29 Feb 2020 16:59:29 +0100 (CET)
-Date:   Sat, 29 Feb 2020 16:59:27 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     dri-devel@lists.freedesktop.org, thierry.reding@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        mark.rutland@arm.com, christoph.muellner@theobroma-systems.com,
-        robin.murphy@arm.com, linux-rockchip@lists.infradead.org,
-        francescolavra.fl@gmail.com,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: Add vendor prefix for Elida
-Message-ID: <20200229155927.GA10195@ravnborg.org>
-References: <20200229151506.750242-1-heiko@sntech.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200229151506.750242-1-heiko@sntech.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=NXpJzYs8AAAA:8
-        a=7gkXJVJtAAAA:8 a=VwQbUJbxAAAA:8 a=f_A56fBUF81MkGDvIQsA:9
-        a=CjuIK1q_8ugA:10 a=cwV61pgf2j4Cq8VD9hE_:22 a=E9Po1WZjFZOl8hwRPBS3:22
-        a=AjGcO6oz07-iQ99wixmX:22 a=pHzHmUro8NiASowvMSCR:22
-        a=Ew2E2A-JSTLzCXPT_086:22
+        id S1727242AbgB2QaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Feb 2020 11:30:05 -0500
+Received: from ms9.eaxlabs.cz ([147.135.177.209]:33612 "EHLO ms9.eaxlabs.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727119AbgB2QaF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Feb 2020 11:30:05 -0500
+X-Greylist: delayed 1456 seconds by postgrey-1.27 at vger.kernel.org; Sat, 29 Feb 2020 11:30:04 EST
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=eaxlabs.cz; s=mail;
+        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From; bh=0sL7frbHX+9iov4VRw0n07dyNagmVgH6U/A+xu41NOk=;
+        b=U7FACzCGC/KpiyvYGzuV/ssi7fk91JfFx3sPnZIDuDGZDcVFCc5/dLoE37026ZTSmjgiwKDe1kC7W1Mw7wn1lkqRmS4lynTk0j80KGn67sWnqOgYfSiHTbnBbxunDOAwu4LipcXyTZf1a1qmFClCUKIDkVj2Tjrnilv4aiwc+zg=;
+Received: from [82.99.129.6] (helo=localhost.localdomain)
+        by ms9.eaxlabs.cz with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.84_2)
+        (envelope-from <devik@eaxlabs.cz>)
+        id 1j84ca-000150-MZ; Sat, 29 Feb 2020 17:05:46 +0100
+From:   Martin Devera <devik@eaxlabs.cz>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        linux-serial@vger.kernel.org (open list:SERIAL DRIVERS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32
+        ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
+Cc:     Martin Devera <devik@eaxlabs.cz>
+Subject: [PATCH 2/2] dt-bindings: serial: Add st,swap to stm32-usart
+Date:   Sat, 29 Feb 2020 17:05:07 +0100
+Message-Id: <20200229160507.31309-2-devik@eaxlabs.cz>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20200229160507.31309-1-devik@eaxlabs.cz>
+References: <20200229160507.31309-1-devik@eaxlabs.cz>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 29, 2020 at 04:15:04PM +0100, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-> 
-> Shenzen Elida Technology Co. Ltd. is a Chinese TFT manufacturer.
-> 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-> Acked-by: Sam Ravnborg <sam@ravnborg.org>
-> ---
-> Hi Rob,
-> 
-> as can be seen on [0], Sam expects you to apply the vendor prefix
-> to the main dt-tree.
-Or just an ack - then we take it via drm-misc-next.
+Add new st,swap property to allow for RX & TX pin swapping.
 
-	Sam
-> 
-> Thanks
-> Heiko
-> 
-> [0] http://lore.kernel.org/r/20200229125725.GC5447@ravnborg.org
-> 
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 9e67944bec9c..38d3149d3adc 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -285,6 +285,8 @@ patternProperties:
->      description: Elan Microelectronic Corp.
->    "^elgin,.*":
->      description: Elgin S/A.
-> +  "^elida,.*":
-> +    description: Shenzhen Elida Technology Co., Ltd.
->    "^embest,.*":
->      description: Shenzhen Embest Technology Co., Ltd.
->    "^emlid,.*":
-> -- 
-> 2.24.1
+Signed-off-by: Martin Devera <devik@eaxlabs.cz>
+---
+ Documentation/devicetree/bindings/serial/st,stm32-usart.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/serial/st,stm32-usart.txt b/Documentation/devicetree/bindings/serial/st,stm32-usart.txt
+index 08b499045a38..cbfa1f9f4b17 100644
+--- a/Documentation/devicetree/bindings/serial/st,stm32-usart.txt
++++ b/Documentation/devicetree/bindings/serial/st,stm32-usart.txt
+@@ -24,6 +24,7 @@ Optional properties:
+ - pinctrl-n: Phandle(s) pointing to pin configuration nodes.
+   For Pinctrl properties see ../pinctrl/pinctrl-bindings.txt
+ - st,hw-flow-ctrl: bool flag to enable hardware flow control.
++- st,swap: bool flag to swap RX and TX pins.
+ - rs485-rts-delay, rs485-rx-during-tx, rs485-rts-active-low,
+   linux,rs485-enabled-at-boot-time: see rs485.txt.
+ - dmas: phandle(s) to DMA controller node(s). Refer to stm32-dma.txt
+-- 
+2.11.0
+
