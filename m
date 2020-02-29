@@ -2,141 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 954921748FF
-	for <lists+devicetree@lfdr.de>; Sat, 29 Feb 2020 20:46:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EAFE17491C
+	for <lists+devicetree@lfdr.de>; Sat, 29 Feb 2020 21:14:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727252AbgB2TqR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Feb 2020 14:46:17 -0500
-Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.100]:29580 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727254AbgB2TqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Feb 2020 14:46:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1583005560;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=F7Q7dzKizkE8VkIH23/riTwDlFWCGM9XLFl0TNbD9Eo=;
-        b=HyQLBYONSpKazKT0nG4Zrvx2MYRUW66AjpzXy/rHbxEIpQ38agh7e0iWK70PejP2uS
-        /Twl85GzXe0pZpkLQUd6AGbBIajRSeFrdh6PeC2TImrogz0SXmipezNbbA6kJEgZt9JI
-        AgPIaW7zfg1R6UhIaelKFqf7PAx3dHHYfix5w576sn1xXssZOFnEIUbnsD8fQr1CBDf+
-        4oCJFAtARQ8spZNjmmzFvFeNPNMb1Vo4vae34YkJ/kMD6AHw5kNbfFxs7RQKiLGowoRC
-        if/uCl0ypxe40cNhY5DCW3KHyaPrraKuC02wgIcCWdorkJIlBaha5akGNdFGKn+b89/5
-        6IDg==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXH6HGqvi2w="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 46.2.0 DYNA|AUTH)
-        with ESMTPSA id y0a02cw1TJjq6m6
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Sat, 29 Feb 2020 20:45:52 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Boddie <paul@boddie.org.uk>,
-        Paul Cercueil <paul@crapouillou.net>,
+        id S1727247AbgB2UOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Feb 2020 15:14:55 -0500
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:40557 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727206AbgB2UOz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 29 Feb 2020 15:14:55 -0500
+Received: by mail-qk1-f195.google.com with SMTP id m2so6439304qka.7
+        for <devicetree@vger.kernel.org>; Sat, 29 Feb 2020 12:14:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=massaru-org.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=uIPKlVGsJhNNHi8p9/fEX9N67i5rB91sCnJJI1pWp9c=;
+        b=GhwOcOiulOFV4Cr8+jF40BU+cXp+164hlsmhfCo6UcBEUaOcWd7hvcd52rceMl1ZuS
+         0OL2qyC/SgcRHjVyht9Yu0nHIPy51jaAIEKNMbBXn5mDbn/V0LrSZJLBMxJVAPVN1w8R
+         6jq7YJgzhd1ZibHXhFd613HQabG/9JABs+bmZmrxvkfaxVfxbCZH6HoRJDkFivVZebTW
+         nnxDV9WaKQB/xAOF9uJqUO79FVtb/nAMqKTifRLaVk5gJmFXa1WAxfizABU/59RWwUKe
+         O8f6RWgwA1rvF9allhwJhhRiqDqSwYiCRZ3SC+3i0UCMS36tKtuZLeqpsobqE702wzQc
+         3PLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=uIPKlVGsJhNNHi8p9/fEX9N67i5rB91sCnJJI1pWp9c=;
+        b=fRX7xX/uzOfEfqLAM9MS1mh2FtAeymTlyY6X9Hj5DSue+1ISgZeaW4fshsKrjHxP34
+         1ekXTHIMPMfUBtUzWe+yCkbGN7KeukN8jG3Kqz/21K60FU6mivUVozpv/JZg3x4GTgZB
+         ppdr/i1RRQD//u0H6/hoLLeUdRd17xywUvPLZKOrH6ucTc0XvKP9NZc0AWgJ/ipE3s5D
+         CPB0ykTgOcU4rIIc05cb64ILnGe/CpSHsz4iw7hsgNE+iC54HJy8ZguQrTLRr0MBacXc
+         SLoL5B1mq9po+38+bfd+V8y6iK0ALaonY1P4gD0HPNTNN+hsyiqsNK/O/ga+HVhWA/Gs
+         6RBQ==
+X-Gm-Message-State: ANhLgQ2kl5rKxO/UC7OcpipAuD7x90eHwgNWRZh/SP5+oSIRCIGA5epm
+        5fAWh8XHnX2UQPRrsOZ8cW8RQw==
+X-Google-Smtp-Source: ADFU+vuGtuRAhAbHNNImS6M/w8fACa5jQQX+t1JVIfR+V0j+FrQjiOha6TUU5l0BnBVJE4/5DLiARw==
+X-Received: by 2002:a05:620a:a0d:: with SMTP id i13mr2639940qka.333.1583007293819;
+        Sat, 29 Feb 2020 12:14:53 -0800 (PST)
+Received: from bbking.lan ([2804:14c:4a5:36c::cd2])
+        by smtp.gmail.com with ESMTPSA id i4sm7516740qkf.111.2020.02.29.12.14.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 29 Feb 2020 12:14:52 -0800 (PST)
+Message-ID: <1988d5fa72d50485d953948f6148602824ee9548.camel@massaru.org>
+Subject: Re: [PATCH] arm64: dts: freescale: add gpio-fan/thermal support for
+ Google i.MX 8MQ Phanbell
+From:   Vitor Massaru Iha <vitor@massaru.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Andi Kleen <ak@linux.intel.com>,
-        Kees Cook <keescook@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "Eric W. Biederman" <ebiederm@xmission.com>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com
-Subject: [PATCH v5 5/5] MIPS: CI20: defconfig: multiple improvements
-Date:   Sat, 29 Feb 2020 20:45:48 +0100
-Message-Id: <f6e5ba77a45ba55b52e4780c27927c4f9bf6f426.1583005548.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <cover.1583005548.git.hns@goldelico.com>
-References: <cover.1583005548.git.hns@goldelico.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Marco Franchi <marco.franchi@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        lkcamp@lists.libreplanetbr.org
+Date:   Sat, 29 Feb 2020 17:14:49 -0300
+In-Reply-To: <CAOMZO5Ddg2VhXkrWTn6xAX0N8fDLCNFmccE+xrcvKeRmmRmotQ@mail.gmail.com>
+References: <20200229104347.11126-1-vitor@massaru.org>
+         <CAOMZO5Ddg2VhXkrWTn6xAX0N8fDLCNFmccE+xrcvKeRmmRmotQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-a) configure for supporting modules
+Hi Fabio,
 
-Not all drivers need to be compiled into the kernel.
-Support building and loading of kernel modules.
+On Sat, 2020-02-29 at 10:07 -0300, Fabio Estevam wrote:
+> > +       fan: gpio_fan {
+> 
+> Underscores are not recommended in property names. Please use
+> "gpio-fan" instead.
 
-b) compile leds-gpio driver into the kernel and configure for LED triggers
+Sure. I'll fix it.
 
-DTS has been augmented to add some gpio-leds. We need the leds-gpio driver
-and enable the triggers.
+> > +               compatible = "gpio-fan";
+> > +               gpio-fan,speed-map = <0 0 8600 1>;
+> > +               gpios = <&gpio3 5 GPIO_ACTIVE_HIGH>;
+> 
+> Please add an entry for the pinctrl description of this GPIO.
+> It worked because GPIO is the default functionality of the pin after
+> POR, but we should better not rely on it (bootloaders may change it)
+> and explicitly it in the device tree.
 
-c) configure CONFIG_REGULATOR_ACT8865 for PMU
+Thanks. I'll do that.
 
-The PMU on the CI20 board is an ACT8600 using the ACT8865 driver.
-Since it is not compiled, the PMU and the CI20 board is running in
-power-on reset state of the PMU.
+> > +
+> > +&tmu {
+> 
+> Please keep the nodes in alphabetical order.
+> 
+> 
+> > +       throttle-cfgs {
+> > +               throttle_devfreq: devfreq {
+> > +                       throttle,max_state = <2>;
+> 
+> I don't see this property documented anywhere. Should it be removed?
 
-d) compile gpio-ir driver
+Yes, I'll remove it.
 
-The CI20 board has a gpio based IR receiver.
-
-e) configure for CONFIG_KEYBOARD_GPIO=m
-
-The SW1 button is hooked up to send input events.
-
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
----
- arch/mips/configs/ci20_defconfig | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/arch/mips/configs/ci20_defconfig b/arch/mips/configs/ci20_defconfig
-index be41df2a81fb..0db0088bbc1c 100644
---- a/arch/mips/configs/ci20_defconfig
-+++ b/arch/mips/configs/ci20_defconfig
-@@ -1,4 +1,5 @@
- # CONFIG_LOCALVERSION_AUTO is not set
-+CONFIG_MODULES=y
- CONFIG_KERNEL_XZ=y
- CONFIG_SYSVIPC=y
- CONFIG_POSIX_MQUEUE=y
-@@ -88,12 +89,14 @@ CONFIG_I2C_JZ4780=y
- CONFIG_SPI=y
- CONFIG_SPI_GPIO=y
- CONFIG_GPIO_SYSFS=y
-+CONFIG_KEYBOARD_GPIO=m
- # CONFIG_HWMON is not set
- CONFIG_WATCHDOG=y
- CONFIG_JZ4740_WDT=y
- CONFIG_REGULATOR=y
- CONFIG_REGULATOR_DEBUG=y
- CONFIG_REGULATOR_FIXED_VOLTAGE=y
-+CONFIG_REGULATOR_ACT8865=y
- # CONFIG_VGA_CONSOLE is not set
- # CONFIG_HID is not set
- # CONFIG_USB_SUPPORT is not set
-@@ -166,3 +169,21 @@ CONFIG_STACKTRACE=y
- # CONFIG_FTRACE is not set
- CONFIG_CMDLINE_BOOL=y
- CONFIG_CMDLINE="earlycon console=ttyS4,115200 clk_ignore_unused"
-+CONFIG_LEDS_CLASS=y
-+CONFIG_LEDS_GPIO=y
-+CONFIG_LEDS_TRIGGERS=y
-+CONFIG_LEDS_TRIGGER_MTD=y
-+CONFIG_LEDS_TRIGGER_TIMER=y
-+CONFIG_LEDS_TRIGGER_ONESHOT=y
-+CONFIG_LEDS_TRIGGER_ONESHOT=y
-+CONFIG_LEDS_TRIGGER_HEARTBEAT=y
-+CONFIG_LEDS_TRIGGER_BACKLIGHT=m
-+CONFIG_LEDS_TRIGGER_CPU=y
-+CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
-+CONFIG_LEDS_TRIGGER_TRANSIENT=y
-+CONFIG_LEDS_TRIGGER_CAMERA=m
-+CONFIG_LIRC=y
-+CONFIG_MEDIA_SUPPORT=m
-+CONFIG_RC_DEVICES=y
-+CONFIG_IR_GPIO_CIR=m
-+CONFIG_IR_GPIO_TX=m
--- 
-2.23.0
+BR,
+Vitor
 
