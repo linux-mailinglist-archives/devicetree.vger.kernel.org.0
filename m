@@ -2,88 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8261C174A88
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2020 01:42:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B5F174A94
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2020 01:48:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727175AbgCAAmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 29 Feb 2020 19:42:40 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:56122 "EHLO gloria.sntech.de"
+        id S1727305AbgCAAs2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 29 Feb 2020 19:48:28 -0500
+Received: from bilbo.ozlabs.org ([203.11.71.1]:56275 "EHLO ozlabs.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727170AbgCAAmk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 29 Feb 2020 19:42:40 -0500
-Received: from p508fcd9d.dip0.t-ipconnect.de ([80.143.205.157] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1j8CgT-00052P-9b; Sun, 01 Mar 2020 01:42:17 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Tobias Schramm <t.schramm@manjaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        Alexis Ballier <aballier@gentoo.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Nick Xie <nick@khadas.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: Add doc for pine64 Pinebook Pro
-Date:   Sun, 01 Mar 2020 01:42:16 +0100
-Message-ID: <2852313.2ZqhBMtFLq@phil>
-In-Reply-To: <20200229144817.355678-2-t.schramm@manjaro.org>
-References: <20200229144817.355678-1-t.schramm@manjaro.org> <20200229144817.355678-2-t.schramm@manjaro.org>
+        id S1726786AbgCAAs2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 29 Feb 2020 19:48:28 -0500
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 48VPlW5nYLz9sPk;
+        Sun,  1 Mar 2020 11:48:23 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+        s=201702; t=1583023705;
+        bh=4nRI6rwZRJmJBCSa2D7NMwK+7ECxFcV3Jplu7f2M8vI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bQndGde94p9FyOTmTOsKt5AnSDdUQoxCwxy7l9+8ZpBXs+oyYGsT/USUpwwCYFUeB
+         OAs2OK8w6ainF6Hb1E0AJ3CtUFbC/Gb0BjAl8V8sCSxedVthQ/5mF0cXHyhWH3URuy
+         548JnLhcYrDjKtEwM62cZV7xhRlwqKtlLRSnogfOpYniYaEqqhZXM/iY1dM+4u/X/N
+         6kc5DIlzx4Xg9x6Gdes2FktrED8OwRU/yMDa6+PP8t50g89z4T4PxnCkpVeVv3S4db
+         oEtYHaxZc1SvKAmmMUypMuz3UqBveSsmjCegll5CS64Xsw+gfj6rEWt1n7xZ+786FC
+         OU6eoFzkoU47Q==
+Date:   Sun, 1 Mar 2020 11:47:50 +1100
+From:   Stephen Rothwell <sfr@canb.auug.org.au>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Carlo Caione <carlo@caione.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        "Neil Armstrong" <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        "Jian Hu" <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>
+Subject: Re: [PATCH] soc: amlogic: fix compile failure with
+ MESON_SECURE_PM_DOMAINS & !MESON_SM
+Message-ID: <20200301114750.7d270124@canb.auug.org.au>
+In-Reply-To: <7hzhd19vuj.fsf@baylibre.com>
+References: <1581955933-69832-1-git-send-email-jianxin.pan@amlogic.com>
+        <20200218080743.07e58c6e@canb.auug.org.au>
+        <20200218092229.0448d266@canb.auug.org.au>
+        <20200224101654.530f1837@canb.auug.org.au>
+        <7hzhd19vuj.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; boundary="Sig_/Kf1.E4dLddnNTqvZx6GlV0A";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, 29. Februar 2020, 15:48:16 CET schrieb Tobias Schramm:
-> This commit adds a compatible for the Pinebook Pro.
-> 
-> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
+--Sig_/Kf1.E4dLddnNTqvZx6GlV0A
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-The old patch from Emmanuel already got an
+Hi Kevin,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Sat, 29 Feb 2020 17:55:32 +0100 Kevin Hilman <khilman@baylibre.com> wrot=
+e:
+>
+> I've fixed up the trailer whitespace an queued this up now, so should
+> show up in linux next shortly.
 
-and as this is the same binding, this should just be kept :-)
+Thanks.
 
-[Mainly for me to remember as well]
+--=20
+Cheers,
+Stephen Rothwell
 
-Heiko
+--Sig_/Kf1.E4dLddnNTqvZx6GlV0A
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 874b0eaa2a75..482a0cbfb18a 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -402,6 +402,11 @@ properties:
->            - const: phytec,rk3288-phycore-som
->            - const: rockchip,rk3288
->  
-> +      - description: Pine64 Pinebook Pro
-> +        items:
-> +          - const: pine64,pinebook-pro
-> +          - const: rockchip,rk3399
-> +
->        - description: Pine64 Rock64
->          items:
->            - const: pine64,rock64
-> 
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl5bBjYACgkQAVBC80lX
+0Gw+KAgAhjy4Z4V15rVXk29DVizB7BmoTp0AHlbwyBOXdg1fqDDAgpSapQv/aaTF
+t/kpWrI8HPqJIV33mTw9Y4ihIwM3w3hurf1Z3fal9lem4IITW6hlcuXG8jm1I0Zh
+rMlvimE+P9nv7UYTDqgQx0+v7nw3Y0kxJTkkoRbtPMOBeX/mq3oEMqHmvyTRzjjf
++uqsMBh50kotDakasWPX47i7cULdhXg3BUd/lPYg7n1wJ179GLOl0F83CLmbeCtK
+D5PxpxIZmQEvgFModR81zi8NPz46WCa1WeSQ0edqS2AYBe8p6FWYyEeBCmU2b2ER
+xjSTCdXBgNDI8gD67V0Tx7Qs1++sjA==
+=V59f
+-----END PGP SIGNATURE-----
 
-
-
+--Sig_/Kf1.E4dLddnNTqvZx6GlV0A--
