@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5085A174C3F
-	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2020 09:22:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBBF7174C5D
+	for <lists+devicetree@lfdr.de>; Sun,  1 Mar 2020 10:03:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726094AbgCAIWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Mar 2020 03:22:49 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:40670 "EHLO
+        id S1726204AbgCAJDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Mar 2020 04:03:02 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44063 "EHLO
         mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725768AbgCAIWt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Mar 2020 03:22:49 -0500
-Received: by mail-wr1-f67.google.com with SMTP id r17so8552713wrj.7
-        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2020 00:22:47 -0800 (PST)
+        with ESMTP id S1725747AbgCAJDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Mar 2020 04:03:02 -0500
+Received: by mail-wr1-f67.google.com with SMTP id n7so718056wrt.11
+        for <devicetree@vger.kernel.org>; Sun, 01 Mar 2020 01:03:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Rhjand2YknMLmemJsLK6xYIuofe/WH69hdIs95tE7og=;
-        b=zddbp+J++rZwrpo+H+AyR9Ihy25JRJLkdNM7KLZJC4Xf31DhZX2IWwbEaRz3t717ZZ
-         3chVGaGBpkXja5nZ8juGi5nEYaP8ZhkpS+hopu9/HFLWJMEoKhiNSCa2pONuZt5L/P5+
-         IlxC1PjaPKs7KoyiqZ+6gVSZwcgizTr0LGvU7G5Pms1LdBSmSctEgQC6k+GmvH/C9a+F
-         3zR/NTOTZ9aw+XkwprT4hSiScZM0mA2tobUoyg2Yhu1oiyXRDIWhD4tBojmPOxz1+Xkn
-         5xtuO1fo+KyYwkbkz6ILoyiZfKJpR8dQF1LSMY5adb2V3bugGsLhNqzj2QhfdkItZlqf
-         M3CA==
+        bh=slGxF9qjBPq+owUSM5HA+cWARavYP/l9u8125Kfep3Q=;
+        b=ysXG6e0H6OQFTHDPORu3KqmtZFiQlM47kqdFx1B5YIYLXT2JjdB3lFv5ZvWuoc5Uf2
+         2ExWooxYZxvazVD7HS0V/wsSLraVjM4T7MzY+X9H66arzNt5PF+6ekFF4NM/coFnhNnF
+         CY6A4onQ8ripK7vv/LaV32Ev8sq/wZ/zMC5nbJOixLWMpH7F9ez0JyXdaLdB8bVtlfGY
+         NB6yZlk3YykB8hgqRBM+BBI7zSIOASFF8cKkEE1sp0YGouJeRrqIJpQCpUk8hIj3/ZJZ
+         u4Qw0RHCF5e1fG8jwW0izXtWOXYuiNTeIxEg7CKuPPIyM72JiYxDqViQOBpFcRI0tcro
+         W9pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=Rhjand2YknMLmemJsLK6xYIuofe/WH69hdIs95tE7og=;
-        b=f9TeNZeM5e0RHYEdl4c582XKNr+bukS9HJAcLxtvDXqdvQAhue/SpbGdpc5Us+8mWr
-         s3KC5hHveDd7k8aza4XgibYDIeE9rEovq8C0JKWQnrM0QXbMy6s9PG9PVgWzf89HL0fc
-         hjtXa63+DIzYu+r2aaG8wOsAuawiYPCGv7Y4PMysBnKILMhwy9ys9ahVpH2XkqyjzqQO
-         7/myqa9xbdfxmWUcUmkLl0MYUzyK3fvPny8v04Ky9De3YYWic09aIhzTNBNNgRREXE25
-         Vgqw0JrP/3xX0VESzk4wiXPl19tXEQRRY9PNulS/mhDHQa9wKxzSFx+eO4jtRe0TaFlW
-         xk5g==
-X-Gm-Message-State: APjAAAXvmLdXRVXMhWwQqNbdW+TgO0mHUn2EMCeEvIIwIM2+xW21s2Gq
-        lg1z0xjK3RwsyHgwQ3uuC19cLw==
-X-Google-Smtp-Source: APXvYqyUKYrDfkP8SapfosHosObqhu4S9l3tlp5WDttcI7fx9no2uGT+xFuKji1X9Em7Iqmlcws77A==
-X-Received: by 2002:adf:fc08:: with SMTP id i8mr15683653wrr.104.1583050966940;
-        Sun, 01 Mar 2020 00:22:46 -0800 (PST)
+        bh=slGxF9qjBPq+owUSM5HA+cWARavYP/l9u8125Kfep3Q=;
+        b=gTZ38/d/rnjSmcqM14Lwkc/aYxenNScbvc0oSCeQZ/y9pTbu3fwsOsy9RZN54weHr1
+         66gTATAVYr86xNZq+nyGNHROunSwnRXhizEUT9UiLayxlLtoAzTq/mo+VcXAJlijeO4l
+         cH0+WFlnxxwYOUi4RSeMydpJ41eZe2F71YiB73XfMKhkAPDSfWtq1OHkfjfIe3nni7c/
+         vaKNx0rVamF5OPxNcQ7ZBVkElIMG0amix/4m1+B6X60mU0z1t5Y/qiFKaZTwm3UBEFP4
+         lngK2aV1prMLKV1fhik3CVA81uEfxIYmb06JkrcOg7W+VlMMlyaAnFpNi6nLrtRTfrjF
+         4glg==
+X-Gm-Message-State: APjAAAXnThEYFzYWD3TWa66hwXs/lmvCovY76+jR+hGW6gjiQjgkI3nX
+        u5545JebQc1Ewcl0N9i5jYTLDg==
+X-Google-Smtp-Source: APXvYqwtqzLgXYZckgw7NwmNvCx/NUB+nLWIm0ENVHSQDAr8KR8jLjFUPo6/biQfCdmVDAcJqc+snQ==
+X-Received: by 2002:adf:a304:: with SMTP id c4mr14879111wrb.186.1583053379973;
+        Sun, 01 Mar 2020 01:02:59 -0800 (PST)
 Received: from ?IPv6:2a01:e34:ed2f:f020:41d5:595f:62f:a254? ([2a01:e34:ed2f:f020:41d5:595f:62f:a254])
-        by smtp.googlemail.com with ESMTPSA id z19sm9252278wmi.43.2020.03.01.00.22.42
+        by smtp.googlemail.com with ESMTPSA id i8sm15585002wrq.10.2020.03.01.01.02.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 01 Mar 2020 00:22:46 -0800 (PST)
+        Sun, 01 Mar 2020 01:02:59 -0800 (PST)
 Subject: Re: [PATCH] arm64: dts: rockchip: Add txpbl node for RK3399/RK3328
 To:     Carlos de Paula <me@carlosedp.com>
 Cc:     papadakospan@gmail.com, jose.abreu@synopsys.com,
@@ -117,8 +117,8 @@ Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
  i6D9VoMMi6ICko/CXUZ77OgLtMsy3JtzTRbn/wRySOY2AsMgg0Sw6yJ0wfrVk6XAMoLGjaVt
  X4iPTvwocEhjvrO4eXCicRBocsIB2qZaIj3mlhk2u4AkSpkKm9cN0KWYFUxlENF4/NKWMK+g
  fGfsCsS3cXXiZpufZFGr+GoHwiELqfLEAQ9AhlrHGCKcgVgTOI6NHg==
-Message-ID: <6f0447c7-0d84-fd63-61e3-b470c1b49172@linaro.org>
-Date:   Sun, 1 Mar 2020 09:22:41 +0100
+Message-ID: <92930c13-3538-32a7-b016-4150bcbc0e56@linaro.org>
+Date:   Sun, 1 Mar 2020 10:02:57 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
@@ -143,9 +143,15 @@ On 18/02/2020 23:10, Carlos de Paula wrote:
 > This patch sets snps,txpbl to 0x4 which is a safe number tested ok for
 > the most popular MTU value of 1500.
 
-I don't know what this option says, why not specify a mtu in the DT?
+What about using something like:
 
-The hardware limitation will be more clear, no?
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/marvell-armada-370-neta.txt#n16
+
+or
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml#n37
+
+?
 
 > For reference, see https://lkml.org/lkml/2019/4/1/1382.
 > 
