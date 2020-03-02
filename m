@@ -2,101 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B29175EE3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 16:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 274D9175F2B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 17:06:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727092AbgCBP5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 10:57:41 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:27137 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727030AbgCBP5l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 10:57:41 -0500
-Received: from [10.18.91.152] (10.18.91.152) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 2 Mar
- 2020 23:58:09 +0800
-Subject: Re: [PATCH RESEND] dt-bindings: power: Fix dt_binding_check error
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        <linux-amlogic@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <1582856099-105484-1-git-send-email-jianxin.pan@amlogic.com>
- <7h5zfpbbn8.fsf@baylibre.com>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <caea291f-0059-ee84-6d75-ddcb1b393952@amlogic.com>
-Date:   Mon, 2 Mar 2020 23:58:08 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1726661AbgCBQGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Mar 2020 11:06:33 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:35836 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726451AbgCBQGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 11:06:33 -0500
+Received: by mail-oi1-f193.google.com with SMTP id b18so10827433oie.2;
+        Mon, 02 Mar 2020 08:06:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oCQ00dGXGbkpTntEBszN/cZPJvdcqZI+tE1FzP8Z8RQ=;
+        b=II7i2Eo7k1U54Nr4oxK8izk9M3W9Km+cyzw0L4UzvyQhC+rvBbqg4SKDStK6kB1DR4
+         ar14uJJvYwSKmLoQ3C/Esp+F/ARy4CucddMSuHFsbGdnNXgmx+DAYgV0nc9Dl179pbmE
+         brq2gYA+DtAlwQaVPQiJpRK9iEzmgm9iX57IgxYPTcTwGK9gWwYAwlH84U9hFqBFitgu
+         JItiLhAB7FKXLdRapG7Tx3guPoBLXmM9CnV72shNql12GgfFUX86oOppYjqAkhYt7Y+c
+         692usl7i2phjgmYkdF5bOB922Gu0ugWOqz1/K8pwlR9RIdouTfWlpwx5z/r13HsOmesG
+         aexg==
+X-Gm-Message-State: ANhLgQ14VV74OmgaSxTcp5V0CnH5GnBDfZ/o2wz5szzuGOlanxji6jVc
+        XudBcNZuTu10p+HUAp9g91i6dNMkyRIVceTXlf4=
+X-Google-Smtp-Source: ADFU+vtZXz8SdSye/nw2ap/8pa8hJSZRa2xsrVK0nFccLQ9abSV85WjQel7krZaM1uARTj33atQw5Vpq2PqAvGuFoIQ=
+X-Received: by 2002:aca:b4c3:: with SMTP id d186mr119333oif.131.1583165192444;
+ Mon, 02 Mar 2020 08:06:32 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <7h5zfpbbn8.fsf@baylibre.com>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.91.152]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+References: <20200228084027.10797-1-luca@lucaceresoli.net>
+In-Reply-To: <20200228084027.10797-1-luca@lucaceresoli.net>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 2 Mar 2020 17:06:21 +0100
+Message-ID: <CAMuHMdXNiZLmkLyuyvPCzdE9BdFoMDzKuGgAzRuPkv8jd2F4zg@mail.gmail.com>
+Subject: Re: [PATCH v3] of: overlay: log the error cause on resolver failure
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Feb 28, 2020 at 9:40 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
+> When a DT overlay has a node label that is not present in the live
+> devicetree symbols table, this error is printed:
+>
+>   OF: resolver: overlay phandle fixup failed: -22
+>   create_overlay: Failed to create overlay (err=-22)
+>
+> which does not help much in finding the node label that caused the problem
+> and fix the overlay source.
+>
+> Add an error message with the name of the node label that caused the
+> error. The new output is:
+>
+>   OF: resolver: node label 'gpio9' not found in live devicetree symbols table
+>   OF: resolver: overlay phandle fixup failed: -22
+>   create_overlay: Failed to create overlay (err=-22)
+>
+> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
 
-Hi Kevin,
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Gr{oetje,eeting}s,
 
-On 2020/3/1 0:28, Kevin Hilman wrote:
-> Hi Jianxin,
-> 
-> Jianxin Pan <jianxin.pan@amlogic.com> writes:
-> 
->> Missing ';' in the end of secure-monitor example node.
->>
->> Fixes: f50b4108ede1 ("dt-bindings: power: add Amlogic secure power domains bindings")
-> 
-> Thanks for the fix, but where did this commit ID come from?  I think
-> this is the right upstream commit:
-> 
-> Fixes: 165b5fb294e8 ("dt-bindings: power: add Amlogic secure power domains bindings")
-> 
-> Also, when you resend, can you cc soc@kernel.org.  The soc maintainers
-> are who queue my amlogic tree.  I will ack and they can submit to Linus
-> for v5.7 so Stephen doesn't have to carry his local linux-next fix
-> anymore.
-> 
-> Thanks,
-The commit id is not correct, it from my local branch.
-I corrected it and added soc maintainers to the cc list.
-Thanks for your time. 
-> 
-> Kevin
-> 
->> Reported-by: Rob Herring <robh+dt@kernel.org>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->> ---
->>  Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->> index af32209..bc4e037 100644
->> --- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->> @@ -36,5 +36,5 @@ examples:
->>              compatible = "amlogic,meson-a1-pwrc";
->>              #power-domain-cells = <1>;
->>          };
->> -    }
->> +    };
->>  
->> -- 
->> 2.7.4
-> 
-> .
-> 
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
