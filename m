@@ -2,40 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A4F175874
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 11:34:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8959B17587D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 11:35:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727452AbgCBKeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 05:34:31 -0500
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:59109 "EHLO
+        id S1727595AbgCBKfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Mar 2020 05:35:30 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:43469 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727095AbgCBKeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 05:34:31 -0500
+        with ESMTP id S1727210AbgCBKfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 05:35:30 -0500
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <a.fatoum@pengutronix.de>)
-        id 1j8iP7-0005zu-RZ; Mon, 02 Mar 2020 11:34:29 +0100
+        id 1j8iQ3-0006CW-My; Mon, 02 Mar 2020 11:35:27 +0100
 Subject: Re: [PATCH 2/3] ARM: dts: stm32: add STM32MP1-based Linux Automation
  MC-1 board
 To:     Alexandre Torgue <alexandre.torgue@st.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
         linux-stm32@st-md-mailman.stormreply.com,
         mcoquelin.stm32@gmail.com, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
-Cc:     kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org
 References: <20200226143826.1146-1-a.fatoum@pengutronix.de>
  <20200226143826.1146-2-a.fatoum@pengutronix.de>
  <244a4502-03e0-836c-2ce2-7fa6cef3c188@st.com>
+ <fbba971d7501c774ce0081f22dcff4ef74002a4d.camel@pengutronix.de>
+ <e227de9a-7440-7e1f-2928-5648cbbe44c1@st.com>
 From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <f5f1b526-efc6-5ff9-d443-b30fd6a4579e@pengutronix.de>
-Date:   Mon, 2 Mar 2020 11:34:28 +0100
+Message-ID: <a9a7c18b-c8a2-f566-b8a0-198551f60827@pengutronix.de>
+Date:   Mon, 2 Mar 2020 11:35:27 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.5.0
 MIME-Version: 1.0
-In-Reply-To: <244a4502-03e0-836c-2ce2-7fa6cef3c188@st.com>
+In-Reply-To: <e227de9a-7440-7e1f-2928-5648cbbe44c1@st.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
 X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
@@ -45,22 +48,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi,
 
-On 3/2/20 11:06 AM, Alexandre Torgue wrote:
->> +&ethernet0 {
+On 3/2/20 11:29 AM, Alexandre Torgue wrote:
+> On 3/2/20 11:18 AM, Lucas Stach wrote:
+>> On Mo, 2020-03-02 at 11:06 +0100, Alexandre Torgue wrote:
+>>>> +
+>>>> +&gpu {
+>>>> +    status = "okay";
+>>>> +};
+>>
+>> This question is more to the ST guys than this specific DT: Why is the
+>> GPU marked as disabled in the SoC dtsi file? This device is always
+>> present on the SoC and AFAICS there are no board level dependencies, so
+>> there is no reason to have it disabled by default, right? Removing the
+>> status property from the dtsi would remove the need for this override
+>> on the board DT.
 > 
-> you could follow alphabetic ordering (I find it easier to read, but just my opinion).
-
->> +&pinctrl {
+> You are right. With new stm32 device tree diversity, it makes no longer sens to disable GPU node in stm32mp157 dtsi file. Indeed, we use now dedicated files for each SoC (stm32mp151 / stm32mp153 /stm32mp157).
 > 
-> Pin groups are currently defined in stm32mp15-pinctrl.dtsi. You could move this part.
+> Ahmad, can you add this modification in your series please ?
 
->> +&m4_rproc {
-> 
-> you could follow alphabetic ordering.
-
-Will do.
+Will preprend it to v2.
 
 Cheers,
 Ahmad
