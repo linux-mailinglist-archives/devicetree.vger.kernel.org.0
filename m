@@ -2,81 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62016175C11
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 14:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B64EC175C3A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 14:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbgCBNtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 08:49:25 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:33679 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726300AbgCBNtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 08:49:25 -0500
-Received: by mail-wm1-f68.google.com with SMTP id a25so2597359wmm.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2020 05:49:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=pDQHChPAvHbaHiAh1rx2hc7lXXqfrv2AqyVIgjj3sL4=;
-        b=UH5EmQ8xNHA0Plu/McRn1qzyUYWuxXbSKQ2Os9L0yoktOYu7tCx3sdJI7YWZDxYoHd
-         +YL3OEUKvM/W7hKB41X+4FFEjSxBJAVk5gdh5ny/LUcvZAIIrr1B3WQhGeUbo8nhyhjJ
-         YErz9cLbumJ9EU8Q1wTQxX1Bo4aRM5DcDqFGnmdskcTtTl60EykI71bjpWhvL433KI6k
-         1zp5xmHgz0vxdOb2LAhL2niLWDwbVPa+UYR0WaVrxCd+4X1KV0gISqCbaTXsch8ZTvpP
-         2pSH5mZIJxey3CFXFP6hifTlnIokOwzOBrOrJD7jVSHNogev7ThF6WI4H0vnNCqvkDfL
-         J1iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=pDQHChPAvHbaHiAh1rx2hc7lXXqfrv2AqyVIgjj3sL4=;
-        b=dqKk4yvFrFSEX4YstNnMpTyxG/FyGViSegrY0PUcd6kUYmXfFnRGUCVGDLNlnr7jT0
-         7fHIwRmafW2StVjFgT9TwTUK7VAlcIbAR6rv1Omk9Er4eZ9i1PqsZuKsKpJ/Si1N5c5j
-         d3cTGF59JEJvha40izG6omvYMWtqkd0VhOZH6WTqBZoDa0ul4JDeE3qtGhhcyvasHzD9
-         xw4oq2tKed/WJUAwtKrU8F9M6tumzCpY4C8t4G9mGxPJWhVxUAuzXMvSODxxZAEwpspw
-         9BIa3gh+BVCpWIzJdlF03rcRXr0XWjrt6u3LWaGIhs1KzIAlzKNeCUjObsZUUSIChaEY
-         clfA==
-X-Gm-Message-State: ANhLgQ3jrnPORuRkF3nxC7vfQ4oZ/ySx/EJ6dXeEJy1ImfgmQbYWdxeT
-        u4n2+h86nCyVWsi+zBeG4X9K1g==
-X-Google-Smtp-Source: ADFU+vvG6MBPGRkXYyxVAEaRWeNUehBlIcQSHO6fOGOEKIiRp511b6KjpX5fIWmrSFxV9Fue65UAYA==
-X-Received: by 2002:a1c:2d88:: with SMTP id t130mr7393177wmt.68.1583156963877;
-        Mon, 02 Mar 2020 05:49:23 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id h10sm16163783wml.18.2020.03.02.05.49.23
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 02 Mar 2020 05:49:23 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson-g12b: fix N2/VIM3 audio card model names
-In-Reply-To: <1583135051-95529-1-git-send-email-christianshewitt@gmail.com>
-References: <1583135051-95529-1-git-send-email-christianshewitt@gmail.com>
-Date:   Mon, 02 Mar 2020 14:49:22 +0100
-Message-ID: <7h8skisw7x.fsf@baylibre.com>
+        id S1727306AbgCBNwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Mar 2020 08:52:24 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55030 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726890AbgCBNwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 08:52:22 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 022DqLw2020144;
+        Mon, 2 Mar 2020 07:52:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1583157141;
+        bh=OniR4A38TlbDu0vyPO11NY3qXmfOa8ulyGuImR5VXtA=;
+        h=From:To:CC:Subject:Date;
+        b=RSD4snGVhzz43neG1Xf7P/dEGpStursTYKqif5GbaGWnFud6iAgXvRrgRPPT96lnd
+         LjBbF4kqekPBdF6hg6JpzV8Hk6MNfjB8tE5Q41gdOH9c9xz+f91+EOm8/3ik9W1kw3
+         MGlZpViTAqJBDjsT9+LHsMC6sY8MafAOO4+AMcJ4=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 022DqLUL014751
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 2 Mar 2020 07:52:21 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 2 Mar
+ 2020 07:52:21 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Mon, 2 Mar 2020 07:52:20 -0600
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 022DqKgB014616;
+        Mon, 2 Mar 2020 07:52:20 -0600
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Benoit Parrot <bparrot@ti.com>, stable <stable@vger.kernel.org>
+Subject: [Patch 1/1] media: ti-vpe: cal: fix disable_irqs to only the intended target
+Date:   Mon, 2 Mar 2020 07:56:52 -0600
+Message-ID: <20200302135652.9365-1-bparrot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
+disable_irqs() was mistakenly disabling all interrupts when called.
+This cause all port stream to stop even if only stopping one of them.
 
-> This is largely cosmetic, but Odroid N2 and Khadas VIM3 are G12B devices so
-> correct the card model names to reflect this.
->
-> Fixes: aa7d5873bf6e ("arm64: dts: meson-g12b-odroid-n2: add sound card")
-> Fixes: c6d29c66e582 ("arm64: dts: meson-g12b-khadas-vim3: add initial device-tree")
+Cc: stable <stable@vger.kernel.org>
+Signed-off-by: Benoit Parrot <bparrot@ti.com>
+---
+ drivers/media/platform/ti-vpe/cal.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-nit: no blank lines between Fixes tags and others (cf
+diff --git a/drivers/media/platform/ti-vpe/cal.c b/drivers/media/platform/ti-vpe/cal.c
+index 6e009e479be3..6d4cbb8782ed 100644
+--- a/drivers/media/platform/ti-vpe/cal.c
++++ b/drivers/media/platform/ti-vpe/cal.c
+@@ -722,16 +722,16 @@ static void enable_irqs(struct cal_ctx *ctx)
+ 
+ static void disable_irqs(struct cal_ctx *ctx)
+ {
++	u32 val;
++
+ 	/* Disable IRQ_WDMA_END 0/1 */
+-	reg_write_field(ctx->dev,
+-			CAL_HL_IRQENABLE_CLR(2),
+-			CAL_HL_IRQ_CLEAR,
+-			CAL_HL_IRQ_MASK(ctx->csi2_port));
++	val = 0;
++	set_field(&val, CAL_HL_IRQ_CLEAR, CAL_HL_IRQ_MASK(ctx->csi2_port));
++	reg_write(ctx->dev, CAL_HL_IRQENABLE_CLR(2), val);
+ 	/* Disable IRQ_WDMA_START 0/1 */
+-	reg_write_field(ctx->dev,
+-			CAL_HL_IRQENABLE_CLR(3),
+-			CAL_HL_IRQ_CLEAR,
+-			CAL_HL_IRQ_MASK(ctx->csi2_port));
++	val = 0;
++	set_field(&val, CAL_HL_IRQ_CLEAR, CAL_HL_IRQ_MASK(ctx->csi2_port));
++	reg_write(ctx->dev, CAL_HL_IRQENABLE_CLR(3), val);
+ 	/* Todo: Add VC_IRQ and CSI2_COMPLEXIO_IRQ handling */
+ 	reg_write(ctx->dev, CAL_CSI2_VC_IRQENABLE(1), 0);
+ }
+-- 
+2.17.1
 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-
-Queued for v5.7,
-
-Thanks for the cleanup,
-
-Kevin
