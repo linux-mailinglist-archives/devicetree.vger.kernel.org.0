@@ -2,87 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AB00175EF6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 16:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B29175EE3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 16:57:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727401AbgCBP6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 10:58:24 -0500
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:41491 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727304AbgCBP6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 10:58:24 -0500
-X-Originating-IP: 90.89.41.158
-Received: from localhost.localdomain (lfbn-tou-1-1473-158.w90-89.abo.wanadoo.fr [90.89.41.158])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 175FB1BF217;
-        Mon,  2 Mar 2020 15:58:21 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        <linux-rockchip@lists.infradead.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Describe PX30 GPU
-Date:   Mon,  2 Mar 2020 16:58:08 +0100
-Message-Id: <20200302155808.11273-2-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200302155808.11273-1-miquel.raynal@bootlin.com>
-References: <20200302155808.11273-1-miquel.raynal@bootlin.com>
+        id S1727092AbgCBP5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Mar 2020 10:57:41 -0500
+Received: from mail-sh.amlogic.com ([58.32.228.43]:27137 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727030AbgCBP5l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 10:57:41 -0500
+Received: from [10.18.91.152] (10.18.91.152) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 2 Mar
+ 2020 23:58:09 +0800
+Subject: Re: [PATCH RESEND] dt-bindings: power: Fix dt_binding_check error
+To:     Kevin Hilman <khilman@baylibre.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        <linux-amlogic@lists.infradead.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <1582856099-105484-1-git-send-email-jianxin.pan@amlogic.com>
+ <7h5zfpbbn8.fsf@baylibre.com>
+From:   Jianxin Pan <jianxin.pan@amlogic.com>
+Message-ID: <caea291f-0059-ee84-6d75-ddcb1b393952@amlogic.com>
+Date:   Mon, 2 Mar 2020 23:58:08 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <7h5zfpbbn8.fsf@baylibre.com>
+Content-Type: text/plain; charset="windows-1252"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.18.91.152]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PX30 SoCs feature an ARM Bifrost GPU.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
+Hi Kevin,
 
-Hello, this change is just adding basic GPU support, more work is
-needed on the devfreq/opp side to be sure everything works and is
-properly described. Hence, this proposal aims at describing the HW
-block only, not its hability to change voltages/frequencies.
 
-Thanks,
-Miquèl
-
- arch/arm64/boot/dts/rockchip/px30.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index f99988b08244..7780e532d31b 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -997,6 +997,19 @@
- 		status = "disabled";
- 	};
- 
-+	gpu: gpu@ff400000 {
-+		compatible = "rockchip,px30-mali", "arm,mali-bifrost";
-+		reg = <0x0 0xff400000 0x0 0x4000>;
-+		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "gpu", "mmu", "job";
-+		clocks = <&cru SCLK_GPU>;
-+		clock-names = "clk_mali";
-+		power-domains = <&power PX30_PD_GPU>;
-+		status = "disabled";
-+	};
-+
- 	vopb: vop@ff460000 {
- 		compatible = "rockchip,px30-vop-big";
- 		reg = <0x0 0xff460000 0x0 0xefc>;
--- 
-2.20.1
+On 2020/3/1 0:28, Kevin Hilman wrote:
+> Hi Jianxin,
+> 
+> Jianxin Pan <jianxin.pan@amlogic.com> writes:
+> 
+>> Missing ';' in the end of secure-monitor example node.
+>>
+>> Fixes: f50b4108ede1 ("dt-bindings: power: add Amlogic secure power domains bindings")
+> 
+> Thanks for the fix, but where did this commit ID come from?  I think
+> this is the right upstream commit:
+> 
+> Fixes: 165b5fb294e8 ("dt-bindings: power: add Amlogic secure power domains bindings")
+> 
+> Also, when you resend, can you cc soc@kernel.org.  The soc maintainers
+> are who queue my amlogic tree.  I will ack and they can submit to Linus
+> for v5.7 so Stephen doesn't have to carry his local linux-next fix
+> anymore.
+> 
+> Thanks,
+The commit id is not correct, it from my local branch.
+I corrected it and added soc maintainers to the cc list.
+Thanks for your time. 
+> 
+> Kevin
+> 
+>> Reported-by: Rob Herring <robh+dt@kernel.org>
+>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>> ---
+>>  Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+>> index af32209..bc4e037 100644
+>> --- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+>> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+>> @@ -36,5 +36,5 @@ examples:
+>>              compatible = "amlogic,meson-a1-pwrc";
+>>              #power-domain-cells = <1>;
+>>          };
+>> -    }
+>> +    };
+>>  
+>> -- 
+>> 2.7.4
+> 
+> .
+> 
 
