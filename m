@@ -2,114 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C13E1175853
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 11:29:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7A4F175874
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 11:34:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727363AbgCBK3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 05:29:43 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:49754 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726654AbgCBK3n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 05:29:43 -0500
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 022ANQDP005577;
-        Mon, 2 Mar 2020 11:29:31 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=zkytL5nVEwPnsSSru/KymaDUr/ha+HwULMX9F6zIoyc=;
- b=exSa+YIJRpOznMWRg+X11gkj5wmZyPmRg08IYzfFup7xEtPRjr6hWuETdT4oWSeRj3gy
- wg3QhBQp7WTFiMxpDmBLYzfUI0Z4kea/DHRf82bFxgz48iJsg368pvRH6M0FBQQJNvm2
- 0YtY1DCoULu5mT1lJ0lgrxwVHyC9zPpFuF/GYQlx5zjVBJ/TepQqiOoRZEw0lYD/5ZxJ
- /1s50RY+qf7NVfQdXBcYlsg6gkidy+IpOg0GatzRrm3hdSfJPdQ+5+F/QNciTNbLBRYc
- d/EGAvKYG+5A3T82naPax11ZVINz1N2f98HRIsLxjAIZH2hM78fSz8U2ZnViQc3sIiEi XQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2yffqpjscd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 02 Mar 2020 11:29:31 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7C81410002A;
-        Mon,  2 Mar 2020 11:29:30 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 610342B881B;
-        Mon,  2 Mar 2020 11:29:30 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 2 Mar
- 2020 11:29:29 +0100
+        id S1727452AbgCBKeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Mar 2020 05:34:31 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:59109 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727095AbgCBKeb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 05:34:31 -0500
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1j8iP7-0005zu-RZ; Mon, 02 Mar 2020 11:34:29 +0100
 Subject: Re: [PATCH 2/3] ARM: dts: stm32: add STM32MP1-based Linux Automation
  MC-1 board
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <mcoquelin.stm32@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To:     Alexandre Torgue <alexandre.torgue@st.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        mcoquelin.stm32@gmail.com, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kernel@pengutronix.de>,
-        <linux-kernel@vger.kernel.org>
+Cc:     kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20200226143826.1146-1-a.fatoum@pengutronix.de>
  <20200226143826.1146-2-a.fatoum@pengutronix.de>
  <244a4502-03e0-836c-2ce2-7fa6cef3c188@st.com>
- <fbba971d7501c774ce0081f22dcff4ef74002a4d.camel@pengutronix.de>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <e227de9a-7440-7e1f-2928-5648cbbe44c1@st.com>
-Date:   Mon, 2 Mar 2020 11:29:28 +0100
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <f5f1b526-efc6-5ff9-d443-b30fd6a4579e@pengutronix.de>
+Date:   Mon, 2 Mar 2020 11:34:28 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-In-Reply-To: <fbba971d7501c774ce0081f22dcff4ef74002a4d.camel@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <244a4502-03e0-836c-2ce2-7fa6cef3c188@st.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG4NODE3.st.com (10.75.127.12) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-03-02_03:2020-02-28,2020-03-02 signatures=0
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas
+Hello,
 
-On 3/2/20 11:18 AM, Lucas Stach wrote:
-> On Mo, 2020-03-02 at 11:06 +0100, Alexandre Torgue wrote:
->> Hi Ahmad
->>
->> Thanks for adding a new STM32 board. Some minor comments.
->>
->> On 2/26/20 3:38 PM, Ahmad Fatoum wrote:
->>> The Linux Automation MC-1 is a SBC built around the Octavo Systems
->>> OSD32MP15x SiP. The SiP features up to 1 GB DDR3 RAM, EEPROM and
->>> a PMIC. The board has eMMC and a SD slot for storage and GbE
->>> for both connectivity and power.
->>>
->>> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de
->>> ---
-> [...]
->>> +
->>> +&gpu {
->>> +	status = "okay";
->>> +};
+On 3/2/20 11:06 AM, Alexandre Torgue wrote:
+>> +&ethernet0 {
 > 
-> This question is more to the ST guys than this specific DT: Why is the
-> GPU marked as disabled in the SoC dtsi file? This device is always
-> present on the SoC and AFAICS there are no board level dependencies, so
-> there is no reason to have it disabled by default, right? Removing the
-> status property from the dtsi would remove the need for this override
-> on the board DT.
+> you could follow alphabetic ordering (I find it easier to read, but just my opinion).
 
-You are right. With new stm32 device tree diversity, it makes no longer 
-sens to disable GPU node in stm32mp157 dtsi file. Indeed, we use now 
-dedicated files for each SoC (stm32mp151 / stm32mp153 /stm32mp157).
-
-Ahmad, can you add this modification in your series please ?
-
-regards
-Alex
-
-
+>> +&pinctrl {
 > 
-> Regards,
-> Lucas
+> Pin groups are currently defined in stm32mp15-pinctrl.dtsi. You could move this part.
+
+>> +&m4_rproc {
 > 
+> you could follow alphabetic ordering.
+
+Will do.
+
+Cheers,
+Ahmad
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
