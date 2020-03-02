@@ -2,97 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD49017570D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 10:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB2C8175722
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 10:31:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727451AbgCBJ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 04:28:13 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:39367 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727228AbgCBJ2L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 04:28:11 -0500
-Received: by mail-wr1-f66.google.com with SMTP id y17so11593626wrn.6;
-        Mon, 02 Mar 2020 01:28:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=JT9LGJ3nprOFd57YdHFTo6kmk4rD0oOGffgTW8cRvZI=;
-        b=GjhnHUAs17IpwhpIp4EZFaFCjGdIMvqXOl3gcf0RMYe3UkTvWSpAM2NPK9wbb7+qzg
-         +ru36XkESaCNdY3Po6JQvG2rFJssKOi1GQYirmXNjKqntHvOAdLzqoqsMPJVASt2mY0L
-         Gk3yHOlg6JZXifIic6opV9dIFOimFgGi/YT1tW4+UxB9DgRrUIE/9SH4KAp2tGfR/HXO
-         MfFXTMG2DFuLXzDQn6kFdf1GUcM6EpEkbRJZnvuj8/6SC1uSr6w2TDs2b1gl6JeHaw6i
-         v2wowbsg+sPT5wAmlWnpwbxKEaG0kDPJgNszXWP0roOi9K+H95ibCVtCeqWjO8LGHLc5
-         D2HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=JT9LGJ3nprOFd57YdHFTo6kmk4rD0oOGffgTW8cRvZI=;
-        b=MvOEK6PZltNpJQmKgFym7zs/TGyToK11xefnivCuUuqwFAOsDx34nPSjtWj/ChnGYn
-         IeugxqT3Eg5dgUQlLDW0EzN22Dq+NQxz8ZgVf3dGgW9CrkC2L0gwNq1ZB5LOLiksMXoO
-         Y7AGWYb5WGdU02FcTDzzoFfLeFcl2NckfWC1toOmbJX6qSRw2skUFf566w0Dwk/zNtFz
-         0wn6FVM11cTPDz+O6AYwpnCqh3rrvAz4VdWErZD302Azd924/DHju7mzNqbWKFf+3sHr
-         ShFHKveMSanWrcnjXcl3AgD1StVfci9rs2W0QtVTpzwp3mc6hw0hD6Wj9k65CERwI6X3
-         4jxA==
-X-Gm-Message-State: APjAAAWv3JZ2YO2nfMpQ6GPzEogyW1TGMtSM+V+tf8GY0bfYvgelzZoS
-        MI96W+iwGwGz807O56s+wgs=
-X-Google-Smtp-Source: APXvYqzL+2Y04yOkKtalVlUtycPgO8/i1gUbA2dSLsaEONtKnP6nRDz3qDuKl9EaY2YE+bZHdqN2KA==
-X-Received: by 2002:adf:dd05:: with SMTP id a5mr21467583wrm.108.1583141289113;
-        Mon, 02 Mar 2020 01:28:09 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id m3sm6409586wrx.9.2020.03.02.01.28.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 Mar 2020 01:28:08 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: fix compatible property for rk3399-evb
-Date:   Mon,  2 Mar 2020 10:27:59 +0100
-Message-Id: <20200302092759.3291-3-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200302092759.3291-1-jbx6244@gmail.com>
-References: <20200302092759.3291-1-jbx6244@gmail.com>
+        id S1727176AbgCBJba convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Mar 2020 04:31:30 -0500
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:41163 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726382AbgCBJba (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 04:31:30 -0500
+X-Originating-IP: 90.89.41.158
+Received: from xps13 (lfbn-tou-1-1473-158.w90-89.abo.wanadoo.fr [90.89.41.158])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 80483FF803;
+        Mon,  2 Mar 2020 09:31:03 +0000 (UTC)
+Date:   Mon, 2 Mar 2020 10:31:03 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        heiko@sntech.de, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 0/3] Add Rockchip NFC drivers for RK3308 and others
+Message-ID: <20200302103103.1eb7df94@xps13>
+In-Reply-To: <1582884076-27615-1-git-send-email-yifeng.zhao@rock-chips.com>
+References: <1582884076-27615-1-git-send-email-yifeng.zhao@rock-chips.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below gives this error:
+Hi Yifeng,
 
-arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml: /: compatible:
-['rockchip,rk3399-evb', 'rockchip,rk3399', 'google,rk3399evb-rev2']
-is not valid under any of the given schemas
+Yifeng Zhao <yifeng.zhao@rock-chips.com> wrote on Fri, 28 Feb 2020
+18:01:13 +0800:
 
-'google,rk3399evb-rev2' was a no longer used variant for Google.
-The binding only mentions 'rockchip,rk3399-evb', 'rockchip,rk3399',
-so fix this error by removing 'google,rk3399evb-rev2' from
-the compatible property in rk3399-evb.dts and change it into
-generic rk3399-evb support only.
+> Rockchp's NFC(Nand Flash Controller) has three versions: V6, V8 and V9.
+> This series patch can support all  three versions.
+> 
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/rockchip.yaml
+Your series has been badly created, strangely I received twice patch 1
+with two different contents, patch 2 arrived way later than patch 1 and
+3 and the commit title of the bindings patch is wrong, it should
+besomething like:
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-evb.dts | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+	dt-bindings: mtd: Describe Rockchip RK3xxx NAND flash controller
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb.dts b/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
-index 77008dca4..d1afd1e1d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-evb.dts
-@@ -9,8 +9,7 @@
- 
- / {
- 	model = "Rockchip RK3399 Evaluation Board";
--	compatible = "rockchip,rk3399-evb", "rockchip,rk3399",
--		     "google,rk3399evb-rev2";
-+	compatible = "rockchip,rk3399-evb", "rockchip,rk3399";
- 
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--- 
-2.11.0
+Can you please resend this series in a v2?
 
+Thanks,
+Miquèl
