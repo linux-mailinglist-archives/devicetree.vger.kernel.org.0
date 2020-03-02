@@ -2,121 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED876176567
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 21:55:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 880A9176545
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 21:48:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726752AbgCBUzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 15:55:25 -0500
-Received: from mxa1.seznam.cz ([77.75.78.90]:42117 "EHLO mxa1.seznam.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726579AbgCBUzY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Mar 2020 15:55:24 -0500
-Received: from email.seznam.cz
-        by email-smtpc11b.ko.seznam.cz (email-smtpc11b.ko.seznam.cz [10.53.14.75])
-        id 2b9617137098437a2a3fdb4d;
-        Mon, 02 Mar 2020 21:55:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1583182514; bh=PrVyWKz+cStZKFUbfG88xeiAHpw+y5USeILJtHAAfcU=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=NA++ZvB7/6OZBV1Cnxjlju81CR0v1UVWTJjLbPPZqXXugCLxpek+lEiueRwZcYT/R
-         xlv7qgvf7WNpvlGXhjkOWyqPmecLzkt6Y7zn6EGC4rxBXswA+etykz+JWcWwERl1qY
-         BEMH/f4V+1zC17eMS7SAoJJCVSgf6emiE9oXSlNo=
-Received: from localhost.localdomain (212.69.128.228 [212.69.128.228])
-        by email-relay4.ko.seznam.cz (Seznam SMTPD 1.3.108) with ESMTP;
-        Mon, 02 Mar 2020 21:55:11 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH v3 2/2][PATCH RESEND] dt-bindings: input/touchscreen: add bindings for zinitix
-Date:   Mon,  2 Mar 2020 21:12:16 +0100
-Message-Id: <20200302201216.12410-2-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200302201216.12410-1-michael.srba@seznam.cz>
-References: <20200302201216.12410-1-michael.srba@seznam.cz>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726890AbgCBUsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Mar 2020 15:48:04 -0500
+Received: from mail27.static.mailgun.info ([104.130.122.27]:17721 "EHLO
+        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726700AbgCBUsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 15:48:04 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1583182083; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=O+9e9Rw4vOt5ge1vzMdXqb5oDjeStYlgakftUbm5IH4=; b=udcRkwfK8sSpimfGlS3ao5i2L/VSsfI0+QU8gomm+JBn2hdH/wuqRdXqzfcZr390TSxcu0+f
+ XsXQRr9ha3KchQKKcRWkTqtLBeobaUuRwFYt9cZ9n7ISRVf8rLYRnldtBZ8p4VA+AcCJdr8B
+ knsCtwPHCgjHoCZHFINjkYAIpyk=
+X-Mailgun-Sending-Ip: 104.130.122.27
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e5d70f9.7fb601d03e68-smtp-out-n01;
+ Mon, 02 Mar 2020 20:47:53 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 629EBC4479C; Mon,  2 Mar 2020 20:47:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jcrouse)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4B845C43383;
+        Mon,  2 Mar 2020 20:47:51 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4B845C43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=jcrouse@codeaurora.org
+From:   Jordan Crouse <jcrouse@codeaurora.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     smasetty@codeaurora.org, John Stultz <john.stultz@linaro.org>,
+        Sean Paul <sean@poorly.run>, devicetree@vger.kernel.org,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+        freedreno@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
+Subject: [PATCH v4 0/2] msm/gpu/a6xx: use the DMA-API for GMU memory allocations
+Date:   Mon,  2 Mar 2020 13:47:45 -0700
+Message-Id: <1583182067-16530-1-git-send-email-jcrouse@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+When CONFIG_INIT_ON_ALLOC_DEFAULT_ON the GMU memory allocator runs afoul of
+cache coherency issues because it is mapped as write-combine without clearing
+the cache after it was zeroed.
 
-This patch adds dts bindings for the zinitix bt541 touchscreen.
+Rather than duplicate the hacky workaround we use in the GEM allocator for the
+same reason it turns out that we don't need to have a bespoke memory allocator
+for the GMU anyway. It uses a flat, global address space and there are only
+two relatively minor allocations anyway. In short, this is essentially what the
+DMA API was created for so replace a bunch of memory management code with two
+calls to allocate and free DMA memory and we're fine.
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- changes in v2: none
- changes in v3: document zinitix,mode property
+In a previous version of this series I added the dma-ranges property to the
+device tree file for the GMU and updated the bindings to YAML. Rob correctly
+pointed out that we didn't need dma-ranges any more but I'm still pushing the
+YAML conversion because it is good and we'll eventually need it anyway so why
+not.
 
+v4: Use dma_alloc_wc() wrappers per Michael Ruhl.
 
- .../bindings/input/touchscreen/zinitix.txt    | 40 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
+v3: Fix YAML description per RobH and remove dma-ranges and replace it with the
+correct DMA mask in the GMU device. Convert the iova type to a dma_attr_t to
+make it 32 bit friendly.
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt b/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
-new file mode 100644
-index 000000000000..446efb9f5f55
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
-@@ -0,0 +1,40 @@
-+Device tree bindings for Zinitx BT541 touchscreen controller
-+
-+Required properties:
-+
-+ - compatible		: Should be "zinitix,bt541"
-+ - reg			: I2C address of the chip. Should be 0x20
-+ - interrupts		: Interrupt to which the chip is connected
-+
-+Optional properties:
-+
-+ - vdd-supply		: Analog power supply regulator on VCCA pin
-+ - vddo-supply		: Digital power supply regulator on VDD pin
-+ - zinitix,mode		: Mode of reporting touch points. Some modes may not work
-+			  with a particular ts firmware for unknown reasons. Available
-+			  modes are 1 and 2. Mode 2 is the default and preferred.
-+
-+The touchscreen-* properties are documented in touchscreen.txt in this
-+directory.
-+
-+Example:
-+
-+	i2c@00000000 {
-+		/* ... */
-+
-+		bt541@20 {
-+			compatible = "zinitix,bt541";
-+			reg = <0x20>;
-+			interrupt-parent = <&msmgpio>;
-+			interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&tsp_default>;
-+			vdd-supply = <&reg_vdd_tsp>;
-+			vddo-supply = <&pm8916_l6>;
-+			touchscreen-size-x = <540>;
-+			touchscreen-size-y = <960>;
-+			zinitix,mode = <2>;
-+		};
-+
-+		/* ... */
-+	};
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 967e78c5ec0a..1b0b5e23267d 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1066,6 +1066,8 @@ patternProperties:
-     description: Shenzhen Zidoo Technology Co., Ltd.
-   "^zii,.*":
-     description: Zodiac Inflight Innovations
-+  "^zinitix,.*":
-+    description: Zinitix Co., Ltd
-   "^zte,.*":
-     description: ZTE Corp.
-   "^zyxel,.*":
+v2: Fix the example bindings for dma-ranges - the third item is the size
+Pass false to of_dma_configure so that it fails probe if the DMA region is not
+set up.
+
+Jordan Crouse (2):
+  dt-bindings: display: msm: Convert GMU bindings to YAML
+  drm/msm/a6xx: Use the DMA API for GMU memory objects
+
+ .../devicetree/bindings/display/msm/gmu.txt        | 116 -------------------
+ .../devicetree/bindings/display/msm/gmu.yaml       | 123 +++++++++++++++++++++
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c              | 113 ++-----------------
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.h              |   6 +-
+ 4 files changed, 135 insertions(+), 223 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/msm/gmu.txt
+ create mode 100644 Documentation/devicetree/bindings/display/msm/gmu.yaml
+
 -- 
-2.24.0
+2.7.4
