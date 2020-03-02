@@ -2,75 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E39DE17655D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 21:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B06BC17658E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Mar 2020 22:05:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726232AbgCBUwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Mar 2020 15:52:35 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42230 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725911AbgCBUwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 15:52:34 -0500
-Received: by mail-ot1-f65.google.com with SMTP id 66so691941otd.9;
-        Mon, 02 Mar 2020 12:52:34 -0800 (PST)
+        id S1726871AbgCBVFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Mar 2020 16:05:04 -0500
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:40714 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726695AbgCBVFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Mar 2020 16:05:04 -0500
+Received: by mail-qt1-f193.google.com with SMTP id o10so1140464qtr.7
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2020 13:05:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=massaru-org.20150623.gappssmtp.com; s=20150623;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=HyjvmbGUrx1qLv3PKRB9uNAzBi2Wn73ynuYg2iJm3yM=;
+        b=lywlX1xn0iicr0AEnMandLgLCAYqANxv1jUL4T33zxP2CJ+wI6JiEe/8K9SST/9c8M
+         ztFDm5+63fwsxl3MhDnB3zVb5FMj2FvNZ6xanxyQcN1OvZjA43Xoczh/sw/GaD+R/PEu
+         RNaFPxEZLANVmGSHgkPN7Tp9R/iwKiuRoQ9EjUObou1k1mMYF4bnsdM/KFyql1/7TgDN
+         GKvyoLgRNfZZ8T/nCYtZRDS5/p3Hw2hi8RyD2l6blcY92VvLoDNF4/FdwmsWm6GngnZl
+         +MuNnx969w6D2T6AjZ7lA2T9TMyW+IrQbASMwIwJqCCjz6kA4B6pR0fqRHQXVlB4+vz3
+         A8FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8Mbj926lcMMww9ZNMv7XcrAqImfQQxGz/1hr+H7/z0k=;
-        b=SALkbDmCO4oHDdV8909meb+aI/DR1q76h+u93aaSgCMqdniHsTvmRHSH3pbNvvIoPs
-         82c69vs4g0NcHa36ujwG4GC/3KMktJDR0DnPk3LXq07Qits5udJ2eMkph+REXEecqb7R
-         /FyxXGudoDoG5ChohA4XZ68VvJyv0GEumOHCMd1y26fpJc+kmu5Sq4jCTba6zHVZP2Cg
-         4OfyFiM5BgwKdRIHUmvoMyIovmltboZvxqnRRcne3FNCJs8/oaSsdawPiQHEhw3d3y7z
-         959Q9f4OjpwKkdh9FwTaloM6382WTaKD7WTdhjaPRTv1q2uBVlOhT01+PtKpU8DVDJf4
-         xLZA==
-X-Gm-Message-State: ANhLgQ1emJCmR8VtHnQfc9Svu+zrOLrKUx8Sq7J2kj1xJkJQ293JaRYj
-        XgljySMGgnmDXW4ABlbuFQ==
-X-Google-Smtp-Source: ADFU+vsU4BwI+ZhtAeYrEEnEWFuq7vUTpJHGBZvXyUJlXUt3DWxeVgdXESU0lhisXPI0WR6u21nvWw==
-X-Received: by 2002:a05:6830:11c7:: with SMTP id v7mr769049otq.41.1583182354070;
-        Mon, 02 Mar 2020 12:52:34 -0800 (PST)
-Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p141sm934283oic.7.2020.03.02.12.52.32
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=HyjvmbGUrx1qLv3PKRB9uNAzBi2Wn73ynuYg2iJm3yM=;
+        b=AE7fejjVOd5swOsKxa6/KM1qfibcWpCEsPwJB/PnuduDQ8cATcTCg15vKAMc4Xu4Ay
+         FronhErLrrKmbo8SvfEmqVpQT02kdq0isSqhp8KEnbutvmBq8wDADqhUpY5eNjq1fCQw
+         +NcQeVHhuJQifiGmY6wlEAJDA0zPQ9TB7xjPdIUIEqnhzXGrNPQS/4vSCOiAAriSQ5/a
+         hBZDJkXGdnfXaYjdO7BgowMfZIMJb0AaNP8sSMpLKhCdBy0kUd0apm7fl8BNNiQduuoi
+         jJsRCbElthWp0W/09SGyaVE99SilCaODUUgKjZZfl9S493J/8OT1bkz5kCZJS30yerOc
+         weqA==
+X-Gm-Message-State: ANhLgQ3nAorviaKVQYuSM9IZXld7A8lKb1JRh9uEIC+Gd71AsTJ/sdbB
+        TiiQKB7U9BBKgVLZK0sZLkaD0A==
+X-Google-Smtp-Source: ADFU+vsG/0ugIV8NVdOJYhHGWfIV5vdY+NlRDT6/PuFMdZx8ckT+DF5VWnyjWgokve0J6y6T/mD/hA==
+X-Received: by 2002:ac8:42cd:: with SMTP id g13mr1569714qtm.168.1583183101720;
+        Mon, 02 Mar 2020 13:05:01 -0800 (PST)
+Received: from bbking.lan ([2804:14c:4a5:36c::cd2])
+        by smtp.gmail.com with ESMTPSA id z194sm10860555qkb.28.2020.03.02.13.04.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2020 12:52:33 -0800 (PST)
-Received: (nullmailer pid 9793 invoked by uid 1000);
-        Mon, 02 Mar 2020 20:52:32 -0000
-Date:   Mon, 2 Mar 2020 14:52:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        masahiroy@kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Mon, 02 Mar 2020 13:05:01 -0800 (PST)
+Message-ID: <334242262a770f99a441f15eeba1bc55081eba40.camel@massaru.org>
+Subject: Re: [PATCH v2] arm64: dts: freescale: add gpio-fan/thermal support
+ for Google i.MX 8MQ Phanbell
+From:   Vitor Massaru Iha <vitor@massaru.org>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: clock: Convert UniPhier clock to json-schema
-Message-ID: <20200302205232.GA9730@bogus>
-References: <20200225010328.5638-1-yamada.masahiro@socionext.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Marco Franchi <marco.franchi@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        lkcamp@lists.libreplanetbr.org
+Date:   Mon, 02 Mar 2020 18:04:57 -0300
+In-Reply-To: <CAOMZO5DQ=sg9Qf7N4N9S-5DpS4EQFG1w6ZqK0nS9P3M0ghSzDg@mail.gmail.com>
+References: <20200302001150.27952-1-vitor@massaru.org>
+         <CAOMZO5DQ=sg9Qf7N4N9S-5DpS4EQFG1w6ZqK0nS9P3M0ghSzDg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200225010328.5638-1-yamada.masahiro@socionext.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Feb 2020 10:03:28 +0900, Masahiro Yamada wrote:
-> Convert the UniPhier clock controller binding to DT schema format.
-> 
-> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-> ---
-> 
->  .../clock/socionext,uniphier-clock.yaml       |  94 +++++++++++++
->  .../bindings/clock/uniphier-clock.txt         | 132 ------------------
->  2 files changed, 94 insertions(+), 132 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
->  delete mode 100644 Documentation/devicetree/bindings/clock/uniphier-clock.txt
-> 
+Hi Fabio,
 
-Applied, thanks.
+Thanks for your review.
 
-Rob
+On Mon, 2020-03-02 at 14:03 -0300, Fabio Estevam wrote:
+> Hi Vitor,
+> 
+> Forgot to say in the previous revision, but the typical Subject
+> pattern is:
+> 
+> arm64: dts: imx8mq-phanbell: Add gpio-fan/thermal support
+> 
+> On Sun, Mar 1, 2020 at 9:11 PM Vitor Massaru Iha <vitor@massaru.org>
+> wrote:
+> 
+> >  &A53_0 {
+> > @@ -373,4 +383,58 @@
+> >                         MX8MQ_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B 0xc6
+> >                 >;
+> >         };
+> > +
+> > +       pinctrl_gpio_fan: gpiofanp {
+> 
+> Please keep the pinctrl entries in alphabetical order.
+> 
+> > +               fsl,pins = <
+> > +                       MX8MQ_IOMUXC_NAND_CLE_GPIO3_IO5 0x01
+> 
+> This pad comes as 0x16 after POR, so please add it as:
+> 
+> MX8MQ_IOMUXC_NAND_CLE_GPIO3_IO5 0x16
+> 
+> > +&cpu_thermal {
+> 
+> Please put it prior to the &i2c1 node in order to keep the
+> alphabetical order.
+> 
+> With these changes you can add:
+> 
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+
+I'll send the PATCH v3.
+
+BR,
+Vitor 
+
