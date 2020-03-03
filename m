@@ -2,172 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7C2A177DCD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 18:46:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B14B917827C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 20:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730489AbgCCRnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 12:43:37 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:46731 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730578AbgCCRn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 12:43:27 -0500
-Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 02B1023EA8;
-        Tue,  3 Mar 2020 18:43:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1583257404;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=bZm6ZfNU9396+MJXOBRUscy8hxQ1AdgyZ3RSnP5KrZU=;
-        b=JCQRnvQ0RfsASdqbjilVtJFwBdG52LcArELQ5fRw6X6RI35xaH5MOfCLY04NM464eEflCl
-        RJUHJO0PKErB3whrtEKIVbLDTLN6dUOXB4BlXPEU215VZOm8a2KhPK4iKi0gXH4EyGX/Lz
-        /5MFvkVDye0iyd+U/JfhtkG4ROVv5pQ=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Jiri Slaby <jslaby@suse.com>, Peng Fan <peng.fan@nxp.com>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>,
-        Yuan Yao <yao.yuan@nxp.com>, Michael Walle <michael@walle.cc>
-Subject: [PATCH v3 9/9] arm64: dts: ls1028a: add missing LPUART nodes
-Date:   Tue,  3 Mar 2020 18:43:06 +0100
-Message-Id: <20200303174306.6015-10-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200303174306.6015-1-michael@walle.cc>
-References: <20200303174306.6015-1-michael@walle.cc>
+        id S2387658AbgCCSLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 13:11:10 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:5860 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732578AbgCCSLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 13:11:00 -0500
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5e5e9d5f0001>; Tue, 03 Mar 2020 10:09:35 -0800
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 03 Mar 2020 10:10:59 -0800
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 03 Mar 2020 10:10:59 -0800
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 3 Mar
+ 2020 18:10:59 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Tue, 3 Mar 2020 18:10:59 +0000
+Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5e5e9daf0000>; Tue, 03 Mar 2020 10:10:58 -0800
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <andrew.murray@arm.com>
+CC:     <kishon@ti.com>, <gustavo.pimentel@synopsys.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V5 0/5] Add support for PCIe endpoint mode in Tegra194
+Date:   Tue, 3 Mar 2020 23:40:47 +0530
+Message-ID: <20200303181052.16134-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: ++++++
-X-Spam-Level: ******
-X-Rspamd-Server: web
-X-Spam-Status: Yes, score=6.40
-X-Spam-Score: 6.40
-X-Rspamd-Queue-Id: 02B1023EA8
-X-Spamd-Result: default: False [6.40 / 15.00];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         NEURAL_SPAM(0.00)[0.479];
-         DKIM_SIGNED(0.00)[];
-         DBL_PROHIBIT(0.00)[0.34.163.48:email,0.34.124.32:email,0.34.241.80:email,0.34.202.64:email];
-         RCPT_COUNT_TWELVE(0.00)[14];
-         MID_CONTAINS_FROM(1.00)[];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:31334, ipnet:2a02:810c:8000::/33, country:DE];
-         SUSPICIOUS_RECIPS(1.50)[]
-X-Spam: Yes
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1583258975; bh=5Fi5EdkTRLJSkgJn2+bJTvH1pwqa1HK8kIxRNGDAs7U=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=HlJ1JHUG6LFN1V+IpdBcRhoueciZF5g8eBpo/lAXJ3yTbaIKSvjSGNDFe61KL53ig
+         l+E18TCd35Af6hlGeWtlaX/qkC7jixISIa/NwPkoqYspC1H33u8wRMrztl16T4vRUI
+         tVwe9oeajeFSAid4oxspLzKpsEq+VnWYCI5/dnnvKnK8PxXAe+G0dmH1ZkxOYZehvK
+         x/AUHL0SH7y4PLhGOZHgDf8nZpBp4YbWruLIemIyXHTSEI+wRm8MMnVVhEkzH2yX+Y
+         vL1hjuEcgQTghOp9KKRsXA2Klw/Etaptf+gzG0P6QnbnvPz8SuZqbqLDxQ+l6nSVTc
+         FNlInQo8OLbgg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LS1028A has six LPUART controllers. Add the nodes.
+Tegra194 has three (C0, C4 & C5) dual mode PCIe controllers that can operate
+either in root port mode or in end point mode but only in one mode at a time.
+Platform P2972-0000 supports enabling endpoint mode for C5 controller. This
+patch series adds support for PCIe endpoint mode in both the driver as well as
+in DT.
+This patch series depends on the changes made for Synopsys DesignWare endpoint
+mode subsystem that are recently accepted.
+@ https://patchwork.kernel.org/project/linux-pci/list/?series=202211
+which in turn depends on the patch made by Kishon
+@ https://patchwork.kernel.org/patch/10975123/
+which is also under review.
 
-This was tested on a custom board.
+V5:
+* Rebased patch-2 on top of Lorenzo's pci/endpoint branch
+* Removed unwanted header files inclusion in patch-5
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
+V4:
+* Started using threaded irqs instead of kthreads
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 0843cfbe7ae1..df51e81ebe84 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -333,6 +333,79 @@
- 			status = "disabled";
- 		};
- 
-+
-+		lpuart0: serial@2260000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2260000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 32>,
-+			       <&edma0 1 33>;
-+			status = "disabled";
-+		};
-+
-+		lpuart1: serial@2270000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2270000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 30>,
-+			       <&edma0 1 31>;
-+			status = "disabled";
-+		};
-+
-+		lpuart2: serial@2280000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2280000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 28>,
-+			       <&edma0 1 29>;
-+			status = "disabled";
-+		};
-+
-+		lpuart3: serial@2290000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2290000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 26>,
-+			       <&edma0 1 27>;
-+			status = "disabled";
-+		};
-+
-+		lpuart4: serial@22a0000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x22a0000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 24>,
-+			       <&edma0 1 25>;
-+			status = "disabled";
-+		};
-+
-+		lpuart5: serial@22b0000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x22b0000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 22>,
-+			       <&edma0 1 23>;
-+			status = "disabled";
-+		};
-+
- 		edma0: dma-controller@22c0000 {
- 			#dma-cells = <2>;
- 			compatible = "fsl,ls1028a-edma", "fsl,vf610-edma";
+V3:
+* Re-ordered patches in the series to make the driver change as the last patch
+* Took care of Thierry's review comments
+
+V2:
+* Addressed Thierry & Bjorn's review comments
+* Added EP mode specific binding documentation to already existing binding documentation file
+* Removed patch that enables GPIO controller nodes explicitly as they are enabled already
+
+Vidya Sagar (5):
+  soc/tegra: bpmp: Update ABI header
+  dt-bindings: PCI: tegra: Add DT support for PCIe EP nodes in Tegra194
+  arm64: tegra: Add PCIe endpoint controllers nodes for Tegra194
+  arm64: tegra: Add support for PCIe endpoint mode in P2972-0000
+    platform
+  PCI: tegra: Add support for PCIe endpoint mode in Tegra194
+
+ .../bindings/pci/nvidia,tegra194-pcie.txt     | 125 +++-
+ .../boot/dts/nvidia/tegra194-p2972-0000.dts   |  18 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  99 +++
+ drivers/pci/controller/dwc/Kconfig            |  30 +-
+ drivers/pci/controller/dwc/pcie-tegra194.c    | 679 +++++++++++++++++-
+ include/soc/tegra/bpmp-abi.h                  |  10 +-
+ 6 files changed, 916 insertions(+), 45 deletions(-)
+
 -- 
-2.20.1
+2.17.1
 
