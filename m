@@ -2,191 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE1C1177796
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 14:45:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F85A1777A7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 14:46:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727688AbgCCNn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 08:43:56 -0500
-Received: from michel.telenet-ops.be ([195.130.137.88]:37120 "EHLO
-        michel.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727507AbgCCNn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 08:43:56 -0500
-Received: from ramsan ([84.195.182.253])
-        by michel.telenet-ops.be with bizsmtp
-        id 9pjt2200z5USYZQ06pjtH2; Tue, 03 Mar 2020 14:43:54 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j97px-0001GY-RS; Tue, 03 Mar 2020 14:43:53 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1j97px-0005oC-QY; Tue, 03 Mar 2020 14:43:53 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 2/2] dt-bindings: serial: Convert slave-device bindings to json-schema
-Date:   Tue,  3 Mar 2020 14:43:51 +0100
-Message-Id: <20200303134351.22270-3-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200303134351.22270-1-geert+renesas@glider.be>
-References: <20200303134351.22270-1-geert+renesas@glider.be>
+        id S1727835AbgCCNqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 08:46:32 -0500
+Received: from conssluserg-01.nifty.com ([210.131.2.80]:38270 "EHLO
+        conssluserg-01.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727167AbgCCNqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 08:46:32 -0500
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41]) (authenticated)
+        by conssluserg-01.nifty.com with ESMTP id 023DkNuj001527;
+        Tue, 3 Mar 2020 22:46:24 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com 023DkNuj001527
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1583243184;
+        bh=I0dB0E0Ppgz9TfglvmGFKRBJvWtxB1020ETEw+zES8k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=r8faXJ+BlS6Qk+t3Ed1/ouhSRxGoBFaiF3DCRJ25taCMU7nJDnr+svsg8p3eaXn2r
+         g9BYXlTOmA5MbqSfx+e4QRvyFdJQwqyaVx3+h/2O4V4ZhgE0uRpdd0xQq8iqgr5Dn/
+         moY4CpHlo+ip6adRt843TeyP2hQU+psGsVqQLeMiov/uEweC4zIDD+SfU1Yo+CTK3W
+         LUHPuOKsZE25mE+t/IkFyBA+dQDZdrz6VB1JBbSC5Q89dSDl6Cgikzf09kYKLQGp+H
+         6ZgiwtdWDmdQaAU/Z/qcGoo4dmQeQ2VRYlGEiWFJV7qX4M9LNVCzK3eg42X74ppr8W
+         7g9nY8pNNlmUw==
+X-Nifty-SrcIP: [209.85.217.41]
+Received: by mail-vs1-f41.google.com with SMTP id w142so2352836vsw.9;
+        Tue, 03 Mar 2020 05:46:24 -0800 (PST)
+X-Gm-Message-State: ANhLgQ0xII2jz37IHuddeWaFM0hKABhW8mm+Oz4AyHMpqGAsRH769vMz
+        XSTMcEzRYvvG3vDNS3XNSdvuWVT380W+vpHclik=
+X-Google-Smtp-Source: ADFU+vsjmSig+hI85BfC9o+2I1Nt3rsoH9lkQysVJ+WWf8bKa68CI2DD2CprMOpxEX7H5tqzk/VJC2tBrHCTfTlcbI0=
+X-Received: by 2002:a67:bc0c:: with SMTP id t12mr2269458vsn.215.1583243183172;
+ Tue, 03 Mar 2020 05:46:23 -0800 (PST)
+MIME-Version: 1.0
+References: <20200229003731.2728-1-robh@kernel.org> <CAK7LNAQUbfVvYYSuMNnB2OyNbuYZkzY0gsKRybe-0P9GuYZN2w@mail.gmail.com>
+ <CAL_JsqLqZYZXGg8-FnoV8EFKSK8moQjEWe93+FazEbh9GTxQpw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLqZYZXGg8-FnoV8EFKSK8moQjEWe93+FazEbh9GTxQpw@mail.gmail.com>
+From:   Masahiro Yamada <masahiroy@kernel.org>
+Date:   Tue, 3 Mar 2020 22:45:47 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATr5TX+CnxHhoa5qcNes6mTp9h0TJ_5=0fGzzq3M8FKxg@mail.gmail.com>
+Message-ID: <CAK7LNATr5TX+CnxHhoa5qcNes6mTp9h0TJ_5=0fGzzq3M8FKxg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] kbuild: Always validate DT binding examples
+To:     Rob Herring <robh@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the serial slave-device Device Tree binding documentation to
-json-schema, and incorporate it into the generic serial bindings.
+On Tue, Mar 3, 2020 at 1:06 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Feb 28, 2020 at 10:25 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Sat, Feb 29, 2020 at 9:37 AM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > Most folks only run dt_binding_check on the single schema they care about
+> > > by setting DT_SCHEMA_FILES. That means example is only checked against
+> > > that one schema which is not always sufficient.
+> > >
+> > > Let's address this by splitting processed-schema.yaml into 2 files: one
+> > > that's always all schemas for the examples and one that's just the schema
+> > > in DT_SCHEMA_FILES for dtbs.
+> > >
+> > > Cc: Michal Marek <michal.lkml@markovi.net>
+> > > Cc: linux-kbuild@vger.kernel.org
+> > > Co-developed-by: Masahiro Yamada <masahiroy@kernel.org>
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > Masahiro, given you pretty much re-wrote this, I added you as
+> > > Co-developed-by.
+> >
+> >
+> >
+> > I can apply both to my kbuild tree.
+>
+> Please apply to your tree.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../devicetree/bindings/serial/serial.yaml    | 53 +++++++++++++++++++
- .../bindings/serial/slave-device.txt          | 45 ----------------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 54 insertions(+), 46 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/slave-device.txt
 
-diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
-index d408335319f00215..7381966449b62deb 100644
---- a/Documentation/devicetree/bindings/serial/serial.yaml
-+++ b/Documentation/devicetree/bindings/serial/serial.yaml
-@@ -7,6 +7,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- title: Serial Interface Generic DT Bindings
- 
- maintainers:
-+  - Rob Herring <robh@kernel.org>
-   - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- 
- description:
-@@ -59,6 +60,45 @@ properties:
-       "rts-gpios" above, unless support is provided to switch between modes
-       dynamically.
- 
-+patternProperties:
-+  "^(bluetooth|ethernet|gnss|nfc|wifi)$":
-+    type: object
-+
-+    description:
-+      Serial attached devices shall be a child node of the host UART device the
-+      slave device is attached to. It is expected that the attached device is
-+      the only child node of the UART device. The slave device node name shall
-+      reflect the generic type of device for the node.
-+
-+    properties:
-+      compatible:
-+        description:
-+          Compatible of the device connnected to the serial port.
-+
-+      max-speed:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          The maximum baud rate the device operates at. This should only be
-+          present if the maximum is less than the slave device can support. For
-+          example, a particular board has some signal quality issue or the host
-+          processor can't support higher baud rates.
-+
-+      current-speed:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          The current baud rate the device operates at. This should only be
-+          present in case a driver has no chance to know the baud rate of the
-+          slave device.
-+          Examples:
-+            * device supports auto-baud
-+            * the rate is setup by a bootloader and there is no way to reset
-+              the device
-+            * device baud rate is configured by its firmware but there is no
-+              way to request the actual settings
-+
-+    required:
-+      - compatible
-+
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-@@ -93,3 +133,16 @@ examples:
-             power-domains = <&pd_a3sp>;
-             uart-has-rtscts;
-     };
-+
-+  - |
-+    serial@1234 {
-+            compatible = "ns16550a";
-+            reg = <0x1234 0x20>;
-+            interrupts = <1>;
-+
-+            bluetooth {
-+                    compatible = "brcm,bcm43341-bt";
-+                    interrupt-parent = <&gpio>;
-+                    interrupts = <10>;
-+            };
-+    };
-diff --git a/Documentation/devicetree/bindings/serial/slave-device.txt b/Documentation/devicetree/bindings/serial/slave-device.txt
-deleted file mode 100644
-index 40110e0196209fde..0000000000000000
---- a/Documentation/devicetree/bindings/serial/slave-device.txt
-+++ /dev/null
-@@ -1,45 +0,0 @@
--Serial Slave Device DT binding
--
--This documents the binding structure and common properties for serial
--attached devices. Common examples include Bluetooth, WiFi, NFC and GPS
--devices.
--
--Serial attached devices shall be a child node of the host UART device the
--slave device is attached to. It is expected that the attached device is
--the only child node of the UART device. The slave device node name shall
--reflect the generic type of device for the node.
--
--Required Properties:
--
--- compatible 	: A string reflecting the vendor and specific device the node
--		  represents.
--
--Optional Properties:
--
--- max-speed	: The maximum baud rate the device operates at. This should
--		  only be present if the maximum is less than the slave device
--		  can support. For example, a particular board has some signal
--		  quality issue or the host processor can't support higher
--		  baud rates.
--- current-speed	: The current baud rate the device operates at. This should
--		  only be present in case a driver has no chance to know
--		  the baud rate of the slave device.
--		  Examples:
--		    * device supports auto-baud
--		    * the rate is setup by a bootloader and there is no
--		      way to reset the device
--		    * device baud rate is configured by its firmware but
--		      there is no way to request the actual settings
--
--Example:
--
--serial@1234 {
--	compatible = "ns16550a";
--	interrupts = <1>;
--
--	bluetooth {
--		compatible = "brcm,bcm43341-bt";
--		interrupt-parent = <&gpio>;
--		interrupts = <10>;
--	};
--};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 59c14ee9a917a794..5f5d074c7b3927a5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15034,7 +15034,7 @@ SERIAL DEVICE BUS
- M:	Rob Herring <robh@kernel.org>
- L:	linux-serial@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/serial/slave-device.txt
-+F:	Documentation/devicetree/bindings/serial/serial.yaml
- F:	drivers/tty/serdev/
- F:	include/linux/serdev.h
- 
+Done.
+Thanks.
+
+
 -- 
-2.17.1
-
+Best Regards
+Masahiro Yamada
