@@ -2,123 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 90901176F2F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 07:16:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B86E176F50
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 07:24:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727458AbgCCGQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 01:16:06 -0500
-Received: from mail-eopbgr80052.outbound.protection.outlook.com ([40.107.8.52]:57762
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727426AbgCCGQG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Mar 2020 01:16:06 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hwd8hbTs6+x1c0JHE2bAAcweuQd2A1jsM6O0Q+WeGspavKf7vBOxIOSqKqjT4Rodo51BBrQo41R8toWWNKzLt+Wy/YR/cOfOG0eiqiQg7VZzgLtcdQAisTbXM5Z2DuOYcM4KbNuCQnK4sYxIpkdYd+27YUER/F3WDCtG5V8QGkn7UZNADllUsVmGc1H8qsCKLi5pJ9Q0Ivs2gXzvbEuxgsyB0P7+UrXk5QsKEAXom34z5Ij4hdru2vTEp6p34iVW0Pz+HHQtI9tR3uDUOSgxXRdQJlEdvOCdYJpMzm1vz6zZTyuUhjnKGdOqWOLaWLYzUSHd5Pg7Jzk3R6gbotoTaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AQJH8eVrJTmgv9yhZbRpk0PKjGnyD0myRVUaM1wn4og=;
- b=BM5QnQ+S18Bhjq0ZVQZfDUBEDHkaOZc8ecIEllmxIVBQ0f3wzWQpsORtg9bPeIQPVxXwa8AYsvun1M7LWTHovFoqNrZbkec/VvMU3GduY15bP2Q4uWTiFuhhsRiZ3U4zBBmnIz9MYQ80m1gcJ9gXz481SMBdatMu6hXjXXBugETpDlxIKHb1WfMhb9aJP8datGUpg0WXoe+6D0Fqe4SGEKjuANsKTiFC9RU3YytBiDZ/2oY6/hnEnV4LVERXIM9W70hkY5FoXVhL+0oYcZbmMUgZIhaFdNKRGp3d0HjOQPPC6sKokWbDyNgdPQMVu4hageV1s9HanSsVBxNR8lOm6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AQJH8eVrJTmgv9yhZbRpk0PKjGnyD0myRVUaM1wn4og=;
- b=D44FedmNw0KjmFpM0DTADyfGhV2lNnZQIJaKtX7EF7E7yunxotliUa34sOyp66jntOtnpdId8LoLZUbvLBNcGrudSjBwMHPE00mQCCXUQ5sRoCiZKapX+FnMO+KbGHs4VH1sr2cYwql7AR48684wK8ARu0xh0Qf3MsYP84HrkXI=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB6881.eurprd04.prod.outlook.com (52.132.215.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2772.15; Tue, 3 Mar 2020 06:16:03 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::91e2:17:b3f4:d422]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::91e2:17:b3f4:d422%3]) with mapi id 15.20.2772.019; Tue, 3 Mar 2020
- 06:16:03 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 0/3] Convert i.MX6Q cpufreq to use nvmem API
-Thread-Topic: [PATCH 0/3] Convert i.MX6Q cpufreq to use nvmem API
-Thread-Index: AQHV8QJkDs1b7gEXw0mPCPayRF0Q4Kg2W/SAgAABb8A=
-Date:   Tue, 3 Mar 2020 06:16:03 +0000
-Message-ID: <AM0PR04MB4481FDAD041F6476FFFC0F6788E40@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <1583201690-16068-1-git-send-email-peng.fan@nxp.com>
- <20200303054547.4wpnzmgnuo7jd2qa@vireshk-i7>
-In-Reply-To: <20200303054547.4wpnzmgnuo7jd2qa@vireshk-i7>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [119.31.174.68]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 1aa7a1c6-2be4-4963-9232-08d7bf3a59fd
-x-ms-traffictypediagnostic: AM0PR04MB6881:|AM0PR04MB6881:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB68810DBBF10F0CBD7848960B88E40@AM0PR04MB6881.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 03319F6FEF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(366004)(346002)(376002)(136003)(39860400002)(189003)(199004)(7416002)(54906003)(86362001)(4326008)(316002)(33656002)(53546011)(8676002)(6506007)(71200400001)(81156014)(7696005)(81166006)(8936002)(6916009)(66476007)(5660300002)(52536014)(66946007)(64756008)(9686003)(66446008)(66556008)(55016002)(44832011)(2906002)(4744005)(76116006)(478600001)(186003)(26005);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6881;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kq9u7fWzbqJEWzfXOWhF1/ABQhfy3l4vnwsBdZ+UfYSR8n5RscehzaisJBg7BcwK8a4SwD1SpUL1t/iboBmg8YdoQynFMHoxTge6KaG5eBQ8bybs4CHh0xuY0GcJTviJtLIMh1UMFN3nSorrw2y7tkhKTwVbq5yC1wTz3ae84ZpoI5I2MjAtf1goK96ln2TLL3K1rfgRWtd/yc7LwNG+XVQXdAEkqFlqzUc9BxRrSsQ9IG55o6YRj6paCkmwXrZ4QU1vi5xyTM9NzMgkg7j9YREr7QSEfqc0xF0J8nWxOVsP0w01suBopVxaT+KaonhtJYt029In3F0+FZNYDERM82KWcwP8JBPGs9ushncMSqqdqULqycbxD4+UwxK9B2ZPL5PDu0LQXbkgEmWgkrEyL2OxL87mdo6pg+AV1gdM4fW7x4GJiKNn1fxT55ThRQ7D
-x-ms-exchange-antispam-messagedata: NJmObuxTmiL5veKVUIGku0zG+hJ9r+hk5h3j1pdHR2u8h9OlnYHtSyFcPbM+2PQW2TTVrDWwq2iIOz/D6pYyOOPLDw9UXLcZurUrg1FPd7jZOSjGEn+uSt8iobjE4ADtjos2lknTIvygtLiRUimUdw==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1aa7a1c6-2be4-4963-9232-08d7bf3a59fd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2020 06:16:03.3943
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rSLbgHuPHeijrHC80RaA146NQmNPPz3gJ6Wq0nW/aFswp3fCu0ALUBHJLRldxAHWbjvt/u8CvfHGzy3OPLdRKw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6881
+        id S1726846AbgCCGXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 01:23:49 -0500
+Received: from mail-pj1-f68.google.com ([209.85.216.68]:55459 "EHLO
+        mail-pj1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725765AbgCCGXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 01:23:49 -0500
+Received: by mail-pj1-f68.google.com with SMTP id a18so876895pjs.5;
+        Mon, 02 Mar 2020 22:23:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=6UPltCTph8JATwkMOr1U3Yp5FDDP+y4EAKaRm5ThBwE=;
+        b=Kc6n75EjJhEh37Mawk55/f0mK1B/wLSfInD/iqmAB9GjGvp7CcQnF4DXEkCoxp55Ig
+         KrLPGwAArvdTmZFYkk5iVpqzRLPpS96ZfzN1rSIqHWXCm2y0oNRUzUQJOr5oGEypb3UG
+         40jhd6lOd5DEopyFqpQvqkUDCYkvqAW5NuXkzHMDh7DUsZSNrmxIO0U8AFigqmr95pe6
+         je8schRmyv8m0fMmf+MclOWJN/Z8DQWTqK+pmtjfX+bYABPd4pIp4A5pXghYZQko9lBv
+         54WZidUTxOvI/mGKRMYrTLUt+/tMFWQDQD1O5KCFRxGy586WB9e1v+RDNyfqDZuT9X9X
+         EXDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=6UPltCTph8JATwkMOr1U3Yp5FDDP+y4EAKaRm5ThBwE=;
+        b=B3JQpEw6CWK03mdgIIScTgYGa9zNdZSJVoIRpC5VDT3JX8FlH/HeXG4TxPIddWwckN
+         bT0jFlAtUBU2DvNS4rGhEdJL9AEKtBDxuOw2v6ixzT04ucycPAkZI0CWF6Ih+BU5YJQu
+         P69Ldwf+th6hkDEnWT02NWueZaSuyVFQLCkcY3Ivt/cXCsuw5dRStwzYiVtcILkXlfrg
+         vLpnyLx0ooH5h7Q856kNskJ+1dW2FDhMRPxn0NKY4X+wZtXBqR9sU0Cn8EzQcOeFuGJV
+         xo5PQs0X5Q/4NCPnLYWECDhN6P6AM3+4VorJDiRDkmj0T7XJ7VU7hNpIhNwMsbzInxlu
+         z4vA==
+X-Gm-Message-State: ANhLgQ3F3mieBVyXAyV13AwHuaBW/PdD5zHFUigaBdHqfIxO7MsVzMSC
+        KQf2OFtQut22i7IYCAYUTa8=
+X-Google-Smtp-Source: ADFU+vuvnRBHKecc4wMxbN//ecC5JbcdApulYoDZF/PxrhdgfqOSTO1/rFV2BRvLmaCdLXOUQIXFFQ==
+X-Received: by 2002:a17:902:b611:: with SMTP id b17mr2783485pls.23.1583216626144;
+        Mon, 02 Mar 2020 22:23:46 -0800 (PST)
+Received: from taoren-ubuntu-R90MNF91.thefacebook.com (c-24-4-25-55.hsd1.ca.comcast.net. [24.4.25.55])
+        by smtp.gmail.com with ESMTPSA id k5sm7453526pfp.66.2020.03.02.22.23.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Mar 2020 22:23:45 -0800 (PST)
+From:   rentao.bupt@gmail.com
+To:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Colin Ian King <colin.king@canonical.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        taoren@fb.com
+Cc:     Tao Ren <rentao.bupt@gmail.com>
+Subject: [PATCH v7 0/7] aspeed-g6: enable usb support
+Date:   Mon,  2 Mar 2020 22:23:29 -0800
+Message-Id: <20200303062336.7361-1-rentao.bupt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+From: Tao Ren <rentao.bupt@gmail.com>
 
-> Subject: Re: [PATCH 0/3] Convert i.MX6Q cpufreq to use nvmem API
->=20
-> On 03-03-20, 10:14, peng.fan@nxp.com wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > Use nvmem API is better compared with direclty accessing OCOTP register=
-s.
-> > nvmem could handle OCOTP clk, defer probe.
-> >
-> > Patch 1/3 is dts changes to add nvmem related properties Patch 2/3 is
-> > a bug fix Patch 3/3 is convert to nvmem API
->=20
-> Should I apply patch 2 and 3 ? And you can take 1/3 via ARM Soc tree as t=
-his
-> shouldn't break anything.
+The patch series aims at enabling USB Host and Gadget support on AST2600
+platforms.
 
-Please take patch 2 and 3. Without patch 1, it just use legacy method,
-not break things.
+Patch #1 includes vhub's usb descriptors in struct "ast_vhub": all usb
+descriptor changes will go to the per-vhub instance instead of touching
+the global default descriptors.
 
-Thanks,
-Peng.
+Patch #2 replaces hardcoded vhub port/endpoint number with device tree
+properties, so that it's more convenient to add support for ast2600-vhub
+which provides more downstream ports and endpoints.
 
->=20
-> --
-> viresh
+Patch #3 enables ast2600 support in aspeed-vhub usb gadget driver.
+
+Patch #4 adds USB devices and according pin groups in aspeed-g6 dtsi.
+
+Patch #5 and #6 add vhub port/endpoint properties into aspeed-g4 and
+aspeed-g5 dtsi.
+
+Patch #7 adds device tree binding document for aspeed usb-vhub driver.
+
+Tao Ren (7):
+  usb: gadget: aspeed: support per-vhub usb descriptors
+  usb: gadget: aspeed: read vhub properties from device tree
+  usb: gadget: aspeed: add ast2600 vhub support
+  ARM: dts: aspeed-g6: add usb functions
+  ARM: dts: aspeed-g5: add vhub port and endpoint properties
+  ARM: dts: aspeed-g4: add vhub port and endpoint properties
+  dt-bindings: usb: add documentation for aspeed usb-vhub
+
+ .../bindings/usb/aspeed,usb-vhub.yaml         | 77 +++++++++++++++++++
+ arch/arm/boot/dts/aspeed-g4.dtsi              |  2 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |  2 +
+ arch/arm/boot/dts/aspeed-g6-pinctrl.dtsi      | 25 ++++++
+ arch/arm/boot/dts/aspeed-g6.dtsi              | 45 +++++++++++
+ drivers/usb/gadget/udc/aspeed-vhub/Kconfig    |  4 +-
+ drivers/usb/gadget/udc/aspeed-vhub/core.c     | 71 ++++++++++-------
+ drivers/usb/gadget/udc/aspeed-vhub/dev.c      | 30 ++++++--
+ drivers/usb/gadget/udc/aspeed-vhub/epn.c      |  4 +-
+ drivers/usb/gadget/udc/aspeed-vhub/hub.c      | 58 +++++++++-----
+ drivers/usb/gadget/udc/aspeed-vhub/vhub.h     | 43 +++++++----
+ 11 files changed, 290 insertions(+), 71 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/aspeed,usb-vhub.yaml
+
+-- 
+2.17.1
+
