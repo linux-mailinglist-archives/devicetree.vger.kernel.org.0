@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 313EC1785B1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 23:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D55C91785B8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 23:37:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727199AbgCCWgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 17:36:16 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:35314 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726766AbgCCWgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 17:36:16 -0500
-Received: by mail-ot1-f68.google.com with SMTP id v10so84910otp.2;
-        Tue, 03 Mar 2020 14:36:14 -0800 (PST)
+        id S1726766AbgCCWho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 17:37:44 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33201 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726747AbgCCWho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 17:37:44 -0500
+Received: by mail-oi1-f194.google.com with SMTP id q81so89586oig.0;
+        Tue, 03 Mar 2020 14:37:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jswyzVaGX0gLXelQ0bE73MWedKjiFHl8054jCn5Ou6o=;
-        b=OCJWzqIO2UjTqD+7sezgPGbKAaloKce1lHTIAhr/jnqtCp4sWSxS3EveMaA7WFySPp
-         CGZFwpLjR9Ae7v/VDo248QFuFpnAuA+LyR2gwwgBivK20SqcYqeAeDwTfL7P2alg+Dyk
-         Cne05YeMdPSR15l9iufIhD/ytgWp0jZ/C9kiGGOOra37NK7N77/LxMvEUDXXAQvFJoQf
-         FW4nP4Nm9B0ENtclLQbKd97MGHM1D6mQlTv+L9kvDbBKdptWh7jVVzN4uYh0LDpHJk61
-         5Mv52j7mvoQy/+AVYqayzDYbC5iAgeLivzCfaPeV7agOrq1R4ivKXvvKWpc01IYh6LxK
-         GqHg==
-X-Gm-Message-State: ANhLgQ3wLdEHE4cn2gQbOqygiv4RAeCTC4lqVx8SbOort8iKPWjkBCv4
-        aOIkDWrOJBFYJZC5ejDl8Q==
-X-Google-Smtp-Source: ADFU+vvw+qDN1aLQe0w8OZRSpXaMjd0hvD0koKaHo/6g+ONvJLL7zXTQv/zYDr0EfWdXK7af7goXNQ==
-X-Received: by 2002:a9d:3b09:: with SMTP id z9mr86170otb.195.1583274973853;
-        Tue, 03 Mar 2020 14:36:13 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=QRrz4U/hUD8JdGIzknzghXTEGOx2fMtenx9l1J/HTgk=;
+        b=AvR7qW2gb+3ouHZnJxV7vTm5g8LbtgC4ykcc9Z9cHdDeduIMysimsNM15oPIqTHJZ9
+         pVg/B7MjYBI9SaNoDTfQ85xsA53uu8H68Its//EHvPbgMmL90CLMwNamzvZoljMHl8by
+         WTFtdGR7oOx+kncePY/FVtsahGP3EzsGWr3UK2x9v9MxE4DGX7tVkWIlHFFqaCV3FfeF
+         Fhup5HnAdMBEfJ1IzyGNv1ndO6gvJ6OaKIU4iKFEBNh9uJPrrcbIOVxBnoyH4FbR+t61
+         Yce/tP7mcGKj83ANGSYMllIFnmgiyvGq9WckmOKGhs9Fuv3bRRNAdHdfY+puBYRBA0EF
+         WYXw==
+X-Gm-Message-State: ANhLgQ3GZKbp6S+2Blp4PA6VzJpWF8Nq8RcoZZDGO9wjTH+3UZPFLccI
+        UDuUW99U2CBppqmp3HUu5w==
+X-Google-Smtp-Source: ADFU+vuYN3P6DEkf554SWGL2CX0kcuu1YRq1rNKiSQx57b/A4yfIQEDeAocfsyA5LEN4mASP5C2rBw==
+X-Received: by 2002:a05:6808:658:: with SMTP id z24mr565050oih.91.1583275063485;
+        Tue, 03 Mar 2020 14:37:43 -0800 (PST)
 Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z3sm7043723oia.46.2020.03.03.14.36.12
+        by smtp.gmail.com with ESMTPSA id e17sm8358412otq.58.2020.03.03.14.37.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2020 14:36:13 -0800 (PST)
-Received: (nullmailer pid 15769 invoked by uid 1000);
-        Tue, 03 Mar 2020 22:36:12 -0000
-Date:   Tue, 3 Mar 2020 16:36:12 -0600
+        Tue, 03 Mar 2020 14:37:42 -0800 (PST)
+Received: (nullmailer pid 18796 invoked by uid 1000);
+        Tue, 03 Mar 2020 22:37:41 -0000
+Date:   Tue, 3 Mar 2020 16:37:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: arm: Convert UniPhier System Cache to
- json-schema
-Message-ID: <20200303223612.GA15666@bogus>
-References: <20200227123648.12785-1-yamada.masahiro@socionext.com>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     devicetree@vger.kernel.org,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: zii,rave-sp: Fix a typo ("onborad")
+Message-ID: <20200303223741.GA18714@bogus>
+References: <20200227155500.13594-1-j.neuschaefer@gmx.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200227123648.12785-1-yamada.masahiro@socionext.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200227155500.13594-1-j.neuschaefer@gmx.net>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Feb 2020 21:36:48 +0900, Masahiro Yamada wrote:
-> Convert the UniPhier System Cache binding to DT schema format.
-> This is a full-custom outer cache (L2 and L3) used on UniPhier
-> ARM 32-bit SoCs.
+On Thu, 27 Feb 2020 16:55:00 +0100, =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= wrote:
 > 
-> While I was here, I added the interrupts property. This is not
-> used in Linux, but the hardware has interrupt lines at least.
-> 
-> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 > ---
-> 
->  .../bindings/arm/socionext/cache-uniphier.txt |  60 -----------
->  .../socionext,uniphier-system-cache.yaml      | 102 ++++++++++++++++++
->  2 files changed, 102 insertions(+), 60 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/socionext/cache-uniphier.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml
+>  Documentation/devicetree/bindings/mfd/zii,rave-sp.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Applied, thanks.
