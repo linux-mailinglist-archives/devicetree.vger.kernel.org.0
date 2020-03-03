@@ -2,188 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93A62178574
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 23:16:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 313EC1785B1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 23:36:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727827AbgCCWPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 17:15:54 -0500
-Received: from muru.com ([72.249.23.125]:58728 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727769AbgCCWPx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Mar 2020 17:15:53 -0500
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 5447880EE;
-        Tue,  3 Mar 2020 22:16:38 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org, Peter Ujfalusi <peter.ujfalusi@ti.com>
-Subject: [PATCH 14/14] ARM: OMAP2+: Drop legacy platform data for dra7 edma
-Date:   Tue,  3 Mar 2020 14:15:28 -0800
-Message-Id: <20200303221528.49099-15-tony@atomide.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200303221528.49099-1-tony@atomide.com>
-References: <20200303221528.49099-1-tony@atomide.com>
+        id S1727199AbgCCWgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 17:36:16 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35314 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726766AbgCCWgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 17:36:16 -0500
+Received: by mail-ot1-f68.google.com with SMTP id v10so84910otp.2;
+        Tue, 03 Mar 2020 14:36:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jswyzVaGX0gLXelQ0bE73MWedKjiFHl8054jCn5Ou6o=;
+        b=OCJWzqIO2UjTqD+7sezgPGbKAaloKce1lHTIAhr/jnqtCp4sWSxS3EveMaA7WFySPp
+         CGZFwpLjR9Ae7v/VDo248QFuFpnAuA+LyR2gwwgBivK20SqcYqeAeDwTfL7P2alg+Dyk
+         Cne05YeMdPSR15l9iufIhD/ytgWp0jZ/C9kiGGOOra37NK7N77/LxMvEUDXXAQvFJoQf
+         FW4nP4Nm9B0ENtclLQbKd97MGHM1D6mQlTv+L9kvDbBKdptWh7jVVzN4uYh0LDpHJk61
+         5Mv52j7mvoQy/+AVYqayzDYbC5iAgeLivzCfaPeV7agOrq1R4ivKXvvKWpc01IYh6LxK
+         GqHg==
+X-Gm-Message-State: ANhLgQ3wLdEHE4cn2gQbOqygiv4RAeCTC4lqVx8SbOort8iKPWjkBCv4
+        aOIkDWrOJBFYJZC5ejDl8Q==
+X-Google-Smtp-Source: ADFU+vvw+qDN1aLQe0w8OZRSpXaMjd0hvD0koKaHo/6g+ONvJLL7zXTQv/zYDr0EfWdXK7af7goXNQ==
+X-Received: by 2002:a9d:3b09:: with SMTP id z9mr86170otb.195.1583274973853;
+        Tue, 03 Mar 2020 14:36:13 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z3sm7043723oia.46.2020.03.03.14.36.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2020 14:36:13 -0800 (PST)
+Received: (nullmailer pid 15769 invoked by uid 1000);
+        Tue, 03 Mar 2020 22:36:12 -0000
+Date:   Tue, 3 Mar 2020 16:36:12 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Masahiro Yamada <yamada.masahiro@socionext.com>
+Cc:     devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: arm: Convert UniPhier System Cache to
+ json-schema
+Message-ID: <20200303223612.GA15666@bogus>
+References: <20200227123648.12785-1-yamada.masahiro@socionext.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200227123648.12785-1-yamada.masahiro@socionext.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can now probe devices with ti-sysc interconnect driver and dts
-data. Let's drop the related platform data and custom ti,hwmods
-dts property.
+On Thu, 27 Feb 2020 21:36:48 +0900, Masahiro Yamada wrote:
+> Convert the UniPhier System Cache binding to DT schema format.
+> This is a full-custom outer cache (L2 and L3) used on UniPhier
+> ARM 32-bit SoCs.
+> 
+> While I was here, I added the interrupts property. This is not
+> used in Linux, but the hardware has interrupt lines at least.
+> 
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> ---
+> 
+>  .../bindings/arm/socionext/cache-uniphier.txt |  60 -----------
+>  .../socionext,uniphier-system-cache.yaml      | 102 ++++++++++++++++++
+>  2 files changed, 102 insertions(+), 60 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/socionext/cache-uniphier.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/socionext/socionext,uniphier-system-cache.yaml
+> 
 
-As we're just dropping data, and the early platform data init
-is based on the custom ti,hwmods property, we want to drop both
-the platform data and ti,hwmods property in a single patch.
+Applied, thanks.
 
-Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- arch/arm/boot/dts/dra7.dtsi               |  3 -
- arch/arm/mach-omap2/omap_hwmod_7xx_data.c | 88 -----------------------
- 2 files changed, 91 deletions(-)
-
-diff --git a/arch/arm/boot/dts/dra7.dtsi b/arch/arm/boot/dts/dra7.dtsi
---- a/arch/arm/boot/dts/dra7.dtsi
-+++ b/arch/arm/boot/dts/dra7.dtsi
-@@ -333,7 +333,6 @@ dra7_iodelay_core: padconf@4844a000 {
- 
- 		target-module@43300000 {
- 			compatible = "ti,sysc-omap4", "ti,sysc";
--			ti,hwmods = "tpcc";
- 			reg = <0x43300000 0x4>;
- 			reg-names = "rev";
- 			clocks = <&l3main1_clkctrl DRA7_L3MAIN1_TPCC_CLKCTRL 0>;
-@@ -367,7 +366,6 @@ edma: dma@0 {
- 
- 		target-module@43400000 {
- 			compatible = "ti,sysc-omap4", "ti,sysc";
--			ti,hwmods = "tptc0";
- 			reg = <0x43400000 0x4>;
- 			reg-names = "rev";
- 			clocks = <&l3main1_clkctrl DRA7_L3MAIN1_TPTC0_CLKCTRL 0>;
-@@ -386,7 +384,6 @@ edma_tptc0: dma@0 {
- 
- 		target-module@43500000 {
- 			compatible = "ti,sysc-omap4", "ti,sysc";
--			ti,hwmods = "tptc1";
- 			reg = <0x43500000 0x4>;
- 			reg-names = "rev";
- 			clocks = <&l3main1_clkctrl DRA7_L3MAIN1_TPTC1_CLKCTRL 0>;
-diff --git a/arch/arm/mach-omap2/omap_hwmod_7xx_data.c b/arch/arm/mach-omap2/omap_hwmod_7xx_data.c
---- a/arch/arm/mach-omap2/omap_hwmod_7xx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_7xx_data.c
-@@ -276,67 +276,6 @@ static struct omap_hwmod dra7xx_ctrl_module_wkup_hwmod = {
- 	},
- };
- 
--/*
-- * 'tpcc' class
-- *
-- */
--static struct omap_hwmod_class dra7xx_tpcc_hwmod_class = {
--	.name		= "tpcc",
--};
--
--static struct omap_hwmod dra7xx_tpcc_hwmod = {
--	.name		= "tpcc",
--	.class		= &dra7xx_tpcc_hwmod_class,
--	.clkdm_name	= "l3main1_clkdm",
--	.main_clk	= "l3_iclk_div",
--	.prcm		= {
--		.omap4	= {
--			.clkctrl_offs = DRA7XX_CM_L3MAIN1_TPCC_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3MAIN1_TPCC_CONTEXT_OFFSET,
--		},
--	},
--};
--
--/*
-- * 'tptc' class
-- *
-- */
--static struct omap_hwmod_class dra7xx_tptc_hwmod_class = {
--	.name		= "tptc",
--};
--
--/* tptc0 */
--static struct omap_hwmod dra7xx_tptc0_hwmod = {
--	.name		= "tptc0",
--	.class		= &dra7xx_tptc_hwmod_class,
--	.clkdm_name	= "l3main1_clkdm",
--	.flags		= HWMOD_SWSUP_SIDLE | HWMOD_SWSUP_MSTANDBY,
--	.main_clk	= "l3_iclk_div",
--	.prcm		= {
--		.omap4	= {
--			.clkctrl_offs = DRA7XX_CM_L3MAIN1_TPTC1_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3MAIN1_TPTC1_CONTEXT_OFFSET,
--			.modulemode   = MODULEMODE_HWCTRL,
--		},
--	},
--};
--
--/* tptc1 */
--static struct omap_hwmod dra7xx_tptc1_hwmod = {
--	.name		= "tptc1",
--	.class		= &dra7xx_tptc_hwmod_class,
--	.clkdm_name	= "l3main1_clkdm",
--	.flags		= HWMOD_SWSUP_SIDLE | HWMOD_SWSUP_MSTANDBY,
--	.main_clk	= "l3_iclk_div",
--	.prcm		= {
--		.omap4	= {
--			.clkctrl_offs = DRA7XX_CM_L3MAIN1_TPTC2_CLKCTRL_OFFSET,
--			.context_offs = DRA7XX_RM_L3MAIN1_TPTC2_CONTEXT_OFFSET,
--			.modulemode   = MODULEMODE_HWCTRL,
--		},
--	},
--};
--
- /*
-  * 'gpmc' class
-  *
-@@ -941,30 +880,6 @@ static struct omap_hwmod_ocp_if dra7xx_l4_wkup__ctrl_module_wkup = {
- 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
- };
- 
--/* l3_main_1 -> tpcc */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_1__tpcc = {
--	.master		= &dra7xx_l3_main_1_hwmod,
--	.slave		= &dra7xx_tpcc_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU,
--};
--
--/* l3_main_1 -> tptc0 */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_1__tptc0 = {
--	.master		= &dra7xx_l3_main_1_hwmod,
--	.slave		= &dra7xx_tptc0_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU,
--};
--
--/* l3_main_1 -> tptc1 */
--static struct omap_hwmod_ocp_if dra7xx_l3_main_1__tptc1 = {
--	.master		= &dra7xx_l3_main_1_hwmod,
--	.slave		= &dra7xx_tptc1_hwmod,
--	.clk		= "l3_iclk_div",
--	.user		= OCP_USER_MPU,
--};
--
- /* l3_main_1 -> gpmc */
- static struct omap_hwmod_ocp_if dra7xx_l3_main_1__gpmc = {
- 	.master		= &dra7xx_l3_main_1_hwmod,
-@@ -1149,9 +1064,6 @@ static struct omap_hwmod_ocp_if *dra7xx_hwmod_ocp_ifs[] __initdata = {
- 	&dra7xx_l3_main_1__bb2d,
- 	&dra7xx_l4_wkup__counter_32k,
- 	&dra7xx_l4_wkup__ctrl_module_wkup,
--	&dra7xx_l3_main_1__tpcc,
--	&dra7xx_l3_main_1__tptc0,
--	&dra7xx_l3_main_1__tptc1,
- 	&dra7xx_l3_main_1__gpmc,
- 	&dra7xx_l4_cfg__mpu,
- 	&dra7xx_l3_main_1__pciess1,
--- 
-2.25.1
+Rob
