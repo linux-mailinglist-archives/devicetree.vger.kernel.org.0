@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E95691779FE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 16:08:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80094177A19
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 16:10:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729612AbgCCPIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 10:08:06 -0500
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:38820 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729512AbgCCPIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 10:08:06 -0500
-Received: by mail-lf1-f65.google.com with SMTP id x22so2000104lff.5
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2020 07:08:04 -0800 (PST)
+        id S1728041AbgCCPKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 10:10:09 -0500
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:36143 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729512AbgCCPII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 10:08:08 -0500
+Received: by mail-lf1-f68.google.com with SMTP id s1so3065296lfd.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2020 07:08:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/NDACQevUaDc6JLaPGhMJ8UIpdipROa3WbiIGkpAEKo=;
-        b=T4WeVLCjzQGfNUrES9Hy941MNj53A0yQWbbAPWTiPENyy1q1vpfzLRYqgm7ZJZQABy
-         n+t9IXXQ7k6vZ+zUAh62pucstlgWBz/uF9VNQM44sUO7whZqXxMo85IQZT81qliVMizQ
-         EzNMzQgacBQyzjLqjyxeGcTKGbWRyVSM7ZLqcsXGXlBSyPiUROa/VZQjo/Z8dLIHLlCq
-         WeRU8WycVDsUECgE480sgW58hWtWUSyIG4TRTLVzh1WYazOzYYyichLNmT2WsEdetIuF
-         j6weAufoJjq/B4ZsvsvymH2zVRnn4ENR5tsItmkzrxFQe0CmrvtMRL4IdtqwsOvwbKPP
-         B+vw==
+        bh=qu4L8psLtSRHjye4pOVUdt2rrul0W+hLv//Rfvk00vc=;
+        b=HEcMEkLePpCimF/wMPTy6RBLp8JWPVNYRK/KypW9Sck6/wveKYdTxCa+/MyCnUfXBW
+         ah2N9pSfaLtd3Bw9+2lHnhxHfLARz7jZbSSTW7KSnO2utGxuxVn6402arMsh3xYDkoPD
+         XM+K30b1kvZ2odWMm4C4iajwsfHp4mEoPRUIXxh/AGWPbbpdUA+2dZ+CzxloN2dpDqo7
+         rzWp8CnMnXm1qSFt13BEPeVMl1UHOu/hbG8q5L+kPHYmtyWVdqhsxawWiYMdEOx6Dmh7
+         xwnHceszl2o7zAgiyFTJsf3qjXL3qT66sJ+6oHrOYXGRq7SRzxa/I7tpR4knhVWXafv2
+         O5Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/NDACQevUaDc6JLaPGhMJ8UIpdipROa3WbiIGkpAEKo=;
-        b=pJGUMV6kB0SX4fjbng86UORrU8Nojt5KlDKLnKCy7IiJrW7dbicQdChvKfIkZYm2DJ
-         EEcQCbdXqpCBYVa7VxrVuZwKHu71JHh9GC0GTwPE/xH2Xs/RKlS1KyZRefMCO0zqHEe7
-         cRIAdx59pem+P+vf/DE5hUEpIfkaqHEiH4N8/R8nNBv3rHaoOfwxxmpi++bo4zK0Epho
-         MFFfEBnY7VMgeMy3KW7CZwzgNw9u8GG4+bUme1R9XJlyzg810LeZU21A2DX3yswROjdo
-         xs0O32E3bvQuzlxBeCJEm0106BMYajqrg+w75l8YJWRNJXLHuMlshoYBlqHVyYIvF9VI
-         8+7A==
-X-Gm-Message-State: ANhLgQ3PXhlvr23jsWahdK7gFbT0Nyj9AIXFinOiw2ZiRryQ6T+Fv1P5
-        guoz5M9sc4ob/YgW6Xe9hsrjSQ==
-X-Google-Smtp-Source: ADFU+vuGkkQiguth40cp1bw44U/CLR3j6mkPP+xXUr5/Vlp3zdPzogFaLS0srx11FKpgV5fWvZTJhg==
-X-Received: by 2002:ac2:59c7:: with SMTP id x7mr2953144lfn.148.1583248083583;
-        Tue, 03 Mar 2020 07:08:03 -0800 (PST)
+        bh=qu4L8psLtSRHjye4pOVUdt2rrul0W+hLv//Rfvk00vc=;
+        b=YvgefSucUX7XlrTegApjukqwhHmv0DH2627jrbywwMbdxd9oEXPkZfBf+8OKMO9iQW
+         eY8lklSaf08tRmfF/YdVH7s54SQWTekwRXZ9fAtVJrvffDb5VxKMNxXS7Qo56X+jrklt
+         /c3Wy9A/8P9zFGNClTDBET9neqHvGgUDcZGdeZoY37esfrsNL0/x/EU1JQnirai796fd
+         GgQGc54PjZYAAILvc12f+7ye47s/3GYto1AR83SdZQ0SF3Ii6ZDynGvRHQpWPpUBlTgb
+         xfD/V84oRzjt3YAkjvwkPut5EcI3I/6JSLSNFU061yoW6PpKR2FPKancKW6KFza6fsmR
+         jEkw==
+X-Gm-Message-State: ANhLgQ3YSeowN/0+z8lRg9eH8fRJxORZara1fZ0OPLxG43nCxv+9P7Nn
+        gGmdbmRq6BSYoTsG15Npm5Fi7A==
+X-Google-Smtp-Source: ADFU+vuOY7tLHeptjMrYBw0cHHhnzrTWWdK/Vlk+y170lgD8Gex04FZPWMeMr83K9o8b8EHO3e5u1w==
+X-Received: by 2002:a19:6144:: with SMTP id m4mr3018922lfk.192.1583248085004;
+        Tue, 03 Mar 2020 07:08:05 -0800 (PST)
 Received: from localhost.localdomain (h-158-174-22-210.NA.cust.bahnhof.se. [158.174.22.210])
-        by smtp.gmail.com with ESMTPSA id n189sm12143135lfa.14.2020.03.03.07.08.02
+        by smtp.gmail.com with ESMTPSA id n189sm12143135lfa.14.2020.03.03.07.08.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2020 07:08:02 -0800 (PST)
+        Tue, 03 Mar 2020 07:08:04 -0800 (PST)
 From:   Ulf Hansson <ulf.hansson@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Sudeep Holla <sudeep.holla@arm.com>,
@@ -57,9 +57,9 @@ Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
         Benjamin Gaignard <benjamin.gaignard@st.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
         linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: [PATCH 5/7] dt-bindings: arm: Fixup the DT bindings for hierarchical PSCI states
-Date:   Tue,  3 Mar 2020 16:07:47 +0100
-Message-Id: <20200303150749.30566-6-ulf.hansson@linaro.org>
+Subject: [PATCH 6/7] arm64: dts: msm8916: Conform to the domain-idle-state DT binding
+Date:   Tue,  3 Mar 2020 16:07:48 +0100
+Message-Id: <20200303150749.30566-7-ulf.hansson@linaro.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200303150749.30566-1-ulf.hansson@linaro.org>
 References: <20200303150749.30566-1-ulf.hansson@linaro.org>
@@ -70,98 +70,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The hierarchical topology with power-domain should be described through
-child nodes, rather than as currently described in the PSCI root node. Fix
-this by adding a patternProperties with a corresponding reference to the
-power-domain DT binding.
-
-Additionally, update the example to conform to the new pattern, but also to
-the adjusted domain-idle-state DT binding.
-
 Fixes: a3f048b5424e ("dt: psci: Update DT bindings to support hierarchical PSCI states")
 Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
 ---
- .../devicetree/bindings/arm/psci.yaml         | 33 +++++++++----------
- 1 file changed, 15 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
-index 0bc3c43a525a..cae668b61265 100644
---- a/Documentation/devicetree/bindings/arm/psci.yaml
-+++ b/Documentation/devicetree/bindings/arm/psci.yaml
-@@ -102,11 +102,15 @@ properties:
-       [1] Kernel documentation - ARM idle states bindings
-         Documentation/devicetree/bindings/arm/idle-states.yaml
- 
--  "#power-domain-cells":
--    description:
--      The number of cells in a PM domain specifier as per binding in [3].
--      Must be 0 as to represent a single PM domain.
-+required:
-+  - compatible
-+  - method
- 
-+patternProperties:
-+  "^(power-controller|power-domain)([@-].*)?$":
-+    $ref: "../power/power-domain.yaml#"
-+    type: object
-+    description: |
-       ARM systems can have multiple cores, sometimes in an hierarchical
-       arrangement. This often, but not always, maps directly to the processor
-       power topology of the system. Individual nodes in a topology have their
-@@ -122,19 +126,9 @@ properties:
-       helps to implement support for OSI mode and OS implementations may choose
-       to mandate it.
- 
--      [3] Documentation/devicetree/bindings/power/power_domain.txt
-+      [3] Documentation/devicetree/bindings/power/power-domain.yaml
-       [4] Documentation/devicetree/bindings/power/domain-idle-state.yaml
- 
--  power-domains:
--    $ref: '/schemas/types.yaml#/definitions/phandle-array'
--    description:
--      List of phandles and PM domain specifiers, as defined by bindings of the
--      PM domain provider.
--
--required:
--  - compatible
--  - method
--
- allOf:
-   - if:
-       properties:
-@@ -224,6 +218,9 @@ examples:
-           exit-latency-us = <10>;
-           min-residency-us = <100>;
-         };
-+      };
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 9f31064f2374..8f3f19e66cd8 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -165,6 +165,9 @@
+ 				min-residency-us = <2000>;
+ 				local-timer-stop;
+ 			};
++		};
 +
-+      domain-idle-states {
++		domain-idle-states {
  
-         CLUSTER_RET: cluster-retention {
-           compatible = "domain-idle-state";
-@@ -247,19 +244,19 @@ examples:
-       compatible = "arm,psci-1.0";
-       method = "smc";
- 
--      CPU_PD0: cpu-pd0 {
-+      CPU_PD0: power-domain-cpu0 {
-         #power-domain-cells = <0>;
-         domain-idle-states = <&CPU_PWRDN>;
-         power-domains = <&CLUSTER_PD>;
-       };
- 
--      CPU_PD1: cpu-pd1 {
-+      CPU_PD1: power-domain-cpu1 {
-         #power-domain-cells = <0>;
-         domain-idle-states =  <&CPU_PWRDN>;
-         power-domains = <&CLUSTER_PD>;
-       };
- 
--      CLUSTER_PD: cluster-pd {
-+      CLUSTER_PD: power-domain-cluster {
-         #power-domain-cells = <0>;
-         domain-idle-states = <&CLUSTER_RET>, <&CLUSTER_PWRDN>;
-       };
+ 			CLUSTER_RET: cluster-retention {
+ 				compatible = "domain-idle-state";
 -- 
 2.20.1
 
