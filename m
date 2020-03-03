@@ -2,89 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DAB517736A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 11:03:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B94E177378
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 11:07:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728363AbgCCKCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 05:02:39 -0500
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:38680 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728242AbgCCKCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 05:02:38 -0500
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 023A1IvJ019843;
-        Tue, 3 Mar 2020 12:01:18 +0200
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 20D19603B0; Tue,  3 Mar 2020 12:01:18 +0200 (IST)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        mark.rutland@arm.com, joel@jms.id.au, avifishman70@gmail.com,
-        tali.perry1@gmail.com, yuenn@google.com, benjaminfair@google.com
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2 3/3] watchdog: npcm: remove whitespaces
-Date:   Tue,  3 Mar 2020 12:01:14 +0200
-Message-Id: <20200303100114.87786-4-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200303100114.87786-1-tmaimon77@gmail.com>
-References: <20200303100114.87786-1-tmaimon77@gmail.com>
+        id S1727820AbgCCKHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 05:07:11 -0500
+Received: from mga03.intel.com ([134.134.136.65]:55125 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726661AbgCCKHL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Mar 2020 05:07:11 -0500
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Mar 2020 02:07:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,510,1574150400"; 
+   d="scan'208";a="233707070"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga008.fm.intel.com with ESMTP; 03 Mar 2020 02:07:07 -0800
+Received: from andy by smile with local (Exim 4.93)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1j94SE-006W95-2d; Tue, 03 Mar 2020 12:07:10 +0200
+Date:   Tue, 3 Mar 2020 12:07:10 +0200
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kishon@ti.com, robh@kernel.org, cheol.yong.kim@intel.com,
+        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com,
+        yixin.zhu@intel.com
+Subject: Re: [PATCH v4 3/3] phy: intel: Add driver support for ComboPhy
+Message-ID: <20200303100710.GK1224808@smile.fi.intel.com>
+References: <cover.1583127977.git.eswara.kota@linux.intel.com>
+ <4e55050985ef0ab567415625f5d14ab1c9b33994.1583127977.git.eswara.kota@linux.intel.com>
+ <20200302111901.GT1224808@smile.fi.intel.com>
+ <b0f7742d-7d61-9743-4047-c5352dd7495d@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b0f7742d-7d61-9743-4047-c5352dd7495d@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/watchdog/npcm_wdt.c | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+On Tue, Mar 03, 2020 at 04:41:17PM +0800, Dilip Kota wrote:
+> On 3/2/2020 7:19 PM, Andy Shevchenko wrote:
+> > On Mon, Mar 02, 2020 at 04:43:25PM +0800, Dilip Kota wrote:
+> > > ComboPhy subsystem provides PHYs for various
+> > > controllers like PCIe, SATA and EMAC.
+> > Thanks for an update, my (few minor) comments below.
 
-diff --git a/drivers/watchdog/npcm_wdt.c b/drivers/watchdog/npcm_wdt.c
-index 84a728af6664..bd38bf1ee6a1 100644
---- a/drivers/watchdog/npcm_wdt.c
-+++ b/drivers/watchdog/npcm_wdt.c
-@@ -123,30 +123,29 @@ static int npcm_wdt_stop(struct watchdog_device *wdd)
- 	return 0;
- }
- 
--
- static int npcm_wdt_set_timeout(struct watchdog_device *wdd,
- 				unsigned int timeout)
- {
- 	if (timeout < 2)
- 		wdd->timeout = 1;
- 	else if (timeout < 3)
--	      wdd->timeout = 2;
-+		wdd->timeout = 2;
- 	else if (timeout < 6)
--	      wdd->timeout = 5;
-+		wdd->timeout = 5;
- 	else if (timeout < 11)
--	      wdd->timeout = 10;
-+		wdd->timeout = 10;
- 	else if (timeout < 22)
--	      wdd->timeout = 21;
-+		wdd->timeout = 21;
- 	else if (timeout < 44)
--	      wdd->timeout = 43;
-+		wdd->timeout = 43;
- 	else if (timeout < 87)
--	      wdd->timeout = 86;
-+		wdd->timeout = 86;
- 	else if (timeout < 173)
--	      wdd->timeout = 172;
-+		wdd->timeout = 172;
- 	else if (timeout < 688)
--	      wdd->timeout = 687;
-+		wdd->timeout = 687;
- 	else
--	      wdd->timeout = 2750;
-+		wdd->timeout = 2750;
- 
- 	if (watchdog_active(wdd))
- 		npcm_wdt_start(wdd);
+...
+
+> > > +enum intel_phy_mode {
+> > > +	PHY_PCIE_MODE = 0,
+> > > +	PHY_XPCS_MODE,
+> > > +	PHY_SATA_MODE
+> >  From here it's not visible that above is the only possible values.
+> > Maybe in the future you will have another mode.
+> > So, I suggest to leave comma here...
+> There won't be no further modes,...
+
+Again, this is not obvious from the naming scheme in use.
+And how do you know the future?
+
+> i can still add the comma at all the places pointed.
+
+Just use a common sense.
+
+> > > +};
+> > > +enum intel_combo_mode {
+> > > +	PCIE0_PCIE1_MODE = 0,
+> > > +	PCIE_DL_MODE,
+> > > +	RXAUI_MODE,
+> > > +	XPCS0_XPCS1_MODE,
+> > > +	SATA0_SATA1_MODE
+> > ...and here...
+> > 
+> > > +};
+> > > +
+> > > +enum aggregated_mode {
+> > > +	PHY_SL_MODE,
+> > > +	PHY_DL_MODE
+> > ...and here.
+> > 
+> > > +};
+
 -- 
-2.22.0
+With Best Regards,
+Andy Shevchenko
+
 
