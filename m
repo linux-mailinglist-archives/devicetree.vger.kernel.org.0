@@ -2,96 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C79177B6C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 17:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6742E177B9E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2020 17:11:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729753AbgCCQBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Mar 2020 11:01:07 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:56898 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730197AbgCCQBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 11:01:03 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 023G110K087011;
-        Tue, 3 Mar 2020 10:01:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1583251261;
-        bh=kMGzEG3llNgQuXMud+pl3UcHifoB2y/ZMOSZK0Quy3A=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=oGAEoToAiFkyZqc9hJqPrWskitemoDFntb6OHwV4d93i6/+EiiyNNFMMsHH6GmTYs
-         KmI+Wunoslp9I4+cxYcPReqI0wu/2feH/q197LNsthIPIeC63TaI/lQ3/Unt2kbFpr
-         DbVAUti+oLQbJsbGC9Rj3U7gycRuNdkjszCHsS18=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 023G119P112162
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 3 Mar 2020 10:01:01 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 3 Mar
- 2020 10:01:00 -0600
-Received: from localhost.localdomain (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Tue, 3 Mar 2020 10:01:01 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 023G10jb030402;
-        Tue, 3 Mar 2020 10:01:00 -0600
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-To:     Murali Karicheri <m-karicheri2@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        "David S . Miller" <davem@davemloft.net>
-CC:     Sekhar Nori <nsekhar@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        netdev <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [for-next PATCH v2 5/5] arm64: dts: ti: k3-j721e-mcu: add scm node and phy-gmii-sel nodes
-Date:   Tue, 3 Mar 2020 18:00:29 +0200
-Message-ID: <20200303160029.345-6-grygorii.strashko@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200303160029.345-1-grygorii.strashko@ti.com>
-References: <20200303160029.345-1-grygorii.strashko@ti.com>
+        id S1729680AbgCCQL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Mar 2020 11:11:27 -0500
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34625 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729384AbgCCQL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Mar 2020 11:11:27 -0500
+Received: by mail-wr1-f66.google.com with SMTP id z15so5110852wrl.1;
+        Tue, 03 Mar 2020 08:11:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=+SzpTWQT3Ru6kg4f8Uj442Z+FLl17Fjj2BOSrwBP2tA=;
+        b=JvMOlYXWMq0Xw1p+AMSLlLQea6qJWe/imSAwECDX0rMvjouX6tXhiTzi6l9PrEOKZH
+         mdkAi2TI7TwqRHeOSAeN4q9w+Mfvk/US67aBFw14KS0w9HiygV3cRD7xJ9z5VRS3PXBr
+         1jaA30b2hzUR0OE/6lXyX2IVnqwBLNuda+OJC4XozRGsax9OtpUhBPfs8c9xgxYWsIqA
+         VuTKw5sjUPmNkpaU06pgtELNoVNP1YKm/LPYmN5gz9+5lVtFmcvVqJxFf5crA986u4HC
+         RRz7ZOhDNXYl+enXW+x20gh545dfWhHil10Ywy6BIlDvrtAIwOqafQWOWpl3U18e7JhH
+         mXOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+SzpTWQT3Ru6kg4f8Uj442Z+FLl17Fjj2BOSrwBP2tA=;
+        b=HFOvzmfMPAd44Y/EP9xF5KFdE4WA+USwNtRHyiKzDfODsEds1EdgXDUvXol3Oye5Wu
+         CqZnBHwlyLkWmrgemRW8E+JfBpT9hNpaKITHRqOb376DXcoPIDaEv3yQl7mPSziXhlrt
+         cf6jFTQARLQyGIESqNYNqVetT0Q5piJZkFi4jmuKCh7MfXrbvVhO6+mMKTrNzJvu5xXV
+         ZhdkXn1Vcr3rFdyP+d0fhNsHclrrG0rDS8rdtRi4b6ZuXP7Jy64PshDHhkkDMMuKjJUj
+         PsNCSEpcP4OnFeRphIlkK1Gyx256uEyiiRKmXJzVQrB3dxudqsMJfejxROg7Qn2bhRUx
+         5ORQ==
+X-Gm-Message-State: ANhLgQ2mYYUxOsQNK5No6A8/+TjgZUCvB0t99Pqd93b+IwPVdk9bseZn
+        uM+kUBZ5ZNnr9UGJYYA1ijDwBLcb
+X-Google-Smtp-Source: ADFU+vsxfAPm/x+IV3Wuxbup+iavPIjBhYZz58QDdng5ipw9V1mPOt2TMllv6EsxNgKf3ODQBhebjg==
+X-Received: by 2002:a5d:5743:: with SMTP id q3mr6227104wrw.135.1583251884664;
+        Tue, 03 Mar 2020 08:11:24 -0800 (PST)
+Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id s5sm32669295wru.39.2020.03.03.08.11.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Mar 2020 08:11:23 -0800 (PST)
+Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add initial support for
+ Pinebook Pro
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     Tobias Schramm <t.schramm@manjaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Andy Yan <andy.yan@rock-chips.com>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        Alexis Ballier <aballier@gentoo.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Nick Xie <nick@khadas.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Vasily Khoruzhick <anarsoul@gmail.com>
+References: <20200229144817.355678-1-t.schramm@manjaro.org>
+ <20200229144817.355678-3-t.schramm@manjaro.org>
+ <bcc2c8d4-a2cd-58c1-89af-e42439f8f344@gmail.com>
+Message-ID: <850e60b0-c260-c184-839f-93b064388e32@gmail.com>
+Date:   Tue, 3 Mar 2020 17:11:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <bcc2c8d4-a2cd-58c1-89af-e42439f8f344@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT node for MCU System Control module DT node and DT node for the TI
-J721E SoC phy-gmii-sel PHY required for Ethernet ports mode selection.
+Hi,
 
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Add more reg = <..>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-index 16c874bfd49a..6f961d5f077a 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi
-@@ -34,6 +34,20 @@
- 		};
- 	};
- 
-+	mcu_conf: syscon@40f00000 {
-+		compatible = "syscon", "simple-mfd";
-+		reg = <0x0 0x40f00000 0x0 0x20000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0x0 0x0 0x40f00000 0x20000>;
-+
-+		phy_gmii_sel: phy@4040 {
-+			compatible = "ti,am654-phy-gmii-sel";
-+			reg = <0x4040 0x4>;
-+			#phy-cells = <1>;
-+		};
-+	};
-+
- 	wkup_pmx0: pinmux@4301c000 {
- 		compatible = "pinctrl-single";
- 		/* Proxy 0 addressing */
--- 
-2.17.1
+On 3/3/20 4:37 PM, Johan Jonker wrote:
+> Hi Tobias,
+> 
+> Some minor style issues.
+> This dts file contains a partition node.
+> Question for the maintainers (Heiko?):
+> Should that partition be included or not?
+
+[..]
+
+>> +&i2c4 {
+>> +	i2c-scl-falling-time-ns = <20>;
+>> +	i2c-scl-rising-time-ns = <600>;
+>> +	status = "okay";
+>> +
+>> +	fusb0: fusb30x@22 {
+>> +		compatible = "fcs,fusb302";
+>> +		reg = <0x22>;
+>> +		fcs,int_n = <&gpio1 RK_PA2 GPIO_ACTIVE_HIGH>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&fusb0_int_gpio>;
+> 
+>> +		status = "okay";
+> 
+> Remove or else status below.
+> New nodes are already okay I think.
+> If insure check compiled flat dts output to see if it is still there.
+> 
+>> +		vbus-supply = <&vbus_typec>;
+>> +
+>> +		connector {
+>> +			compatible = "usb-c-connector";
+>> +			label = "USB-C";
+>> +			op-sink-microwatt = <1000000>;
+>> +			power-role = "dual";
+>> +			sink-pdos =
+>> +				<PDO_FIXED(5000, 2500, PDO_FIXED_USB_COMM)>;
+>> +			source-pdos =
+>> +				<PDO_FIXED(5000, 1400, PDO_FIXED_USB_COMM)>;
+>> +			try-power-role = "sink";
+>> +
+>> +			ports {
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +
+>> +				port@0 {
+
+reg = <0>;
+
+>> +					usbc_hs: endpoint {
+>> +						remote-endpoint =
+>> +							<&u2phy0_typec_hs>;
+>> +					};
+>> +				};
+>> +
+>> +				port@1 {
+
+reg = <1>;
+
+>> +					usbc_ss: endpoint {
+>> +						remote-endpoint =
+>> +							<&tcphy0_typec_ss>;
+>> +					};
+>> +				};
+>> +
+>> +				port@2 {
+
+reg = <2>;
+
+>> +					usbc_dp: endpoint {
+>> +						remote-endpoint =
+>> +							<&tcphy0_typec_dp>;
+>> +					};
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +};
 
