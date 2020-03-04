@@ -2,142 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F110179168
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 14:34:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6FC51791BC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 14:52:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388174AbgCDNek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 08:34:40 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:31174 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388151AbgCDNej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 08:34:39 -0500
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 024DU8LX007558;
-        Wed, 4 Mar 2020 08:34:38 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2ygm52b8jr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Mar 2020 08:34:38 -0500
-Received: from ASHBMBX9.ad.analog.com (ashbmbx9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 024DYbna020749
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Wed, 4 Mar 2020 08:34:37 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Wed, 4 Mar 2020
- 08:34:36 -0500
-Received: from zeus.spd.analog.com (10.64.82.11) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Wed, 4 Mar 2020 08:34:36 -0500
-Received: from saturn.ad.analog.com ([10.48.65.112])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 024DYMm2004071;
-        Wed, 4 Mar 2020 08:34:34 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v5 8/8] dt-bindings: iio: adc: add bindings doc for AD9467 ADC
-Date:   Wed, 4 Mar 2020 15:37:23 +0200
-Message-ID: <20200304133723.1263-9-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200304133723.1263-1-alexandru.ardelean@analog.com>
-References: <20200304133723.1263-1-alexandru.ardelean@analog.com>
+        id S1729481AbgCDNwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 08:52:04 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:36983 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729175AbgCDNwD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 08:52:03 -0500
+Received: by mail-oi1-f196.google.com with SMTP id q65so2135143oif.4;
+        Wed, 04 Mar 2020 05:52:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6WwbWu0xTni9Cp99Kx5Gs/VRlduitGbpAQTNywzTd4s=;
+        b=Xzv4TVwljLqgAQi7isqtAI/wr8VPjHoP+wJODwN/t40n9X9M5ey0NnD6k80LKg/j7/
+         VzQQ/Qg+QP2TYBYcAHJkZZyuoPqk8TswW38oWNGfCi20wKRNuJIPA+qPZRcWXp9kzBxX
+         t57FqhwUrV/ULUSBkm46K6eEO2A71eGvhc5Bkj5PaHQxh8o783nQjL6phbW+HYRECceV
+         4mwjZ3WkiUnSeUHw3rUpb5Js118e0JuIYKMDcJV12EqZj6/5HIQ/N26OzyMHi4D2yQkt
+         7HYkQ1REYdS9mfvGMnHxCekR+wlmF/D2qMJlzEaTQu5mof2V1R4/006tR/KytH+m44NC
+         TqHg==
+X-Gm-Message-State: ANhLgQ3lhGAJ8iWPZ25IVzUGvhhFJ6VLGZX0UC7mrLxTF+qUc236zMPI
+        ONMKhdhMKRsfmTmXKHtUcBkVoOOP9ZfhImVDdso=
+X-Google-Smtp-Source: ADFU+vuTICXrcscX5k1nu41UFQdDCfobCA8QCTKMnQP1AKsGszL/joQ2G36x47lknRco7zcosgL9uwZN9Jp0l6krX7Q=
+X-Received: by 2002:aca:ac4c:: with SMTP id v73mr1851535oie.102.1583329923004;
+ Wed, 04 Mar 2020 05:52:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-03-04_05:2020-03-04,2020-03-04 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=999 mlxscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0
- impostorscore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2003040104
+References: <1583304137-28482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1583304137-28482-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1583304137-28482-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 4 Mar 2020 14:51:51 +0100
+Message-ID: <CAMuHMdU5H_xt=DNtPbrA38=wi=-4884Pe5CB=7wcHB4V5HzshQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: clock: renesas: rcar-usb2-clock-sel:
+ Add power-domains and resets properties
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds the binding doc for the AD9467 ADC.
+Hi Shimoda-san,
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/adc/adi,ad9467.yaml          | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+On Wed, Mar 4, 2020 at 7:42 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> This patch adds missing required properties of power-domains and resets.
+> Fortunately, no one has this device node for now, so that we don't
+> need to think of backward compatibility.
+>
+> Fixes: 311accb64570 ("clk: renesas: rcar-usb2-clock-sel: Add R-Car USB 2.0 clock selector PHY")
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-new file mode 100644
-index 000000000000..c4f57fa6aad1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad9467.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD9467 High-Speed ADC
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-+
-+description: |
-+  The AD9467 is a 16-bit, monolithic, IF sampling analog-to-digital
-+  converter (ADC).
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/AD9467.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad9467
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: adc-clk
-+
-+  powerdown-gpios:
-+    description:
-+      Pin that controls the powerdown mode of the device.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      Reset pin for the device.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+          compatible = "adi,ad9467";
-+          reg = <0>;
-+          clocks = <&adc_clk>;
-+          clock-names = "adc-clk";
-+        };
-+    };
-+...
--- 
-2.20.1
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+> --- a/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.txt
+> +++ b/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.txt
+> @@ -43,6 +43,12 @@ Required properties:
+>   - The USB_EXTAL clock pin must be "usb_extal"
+>   - The USB_XTAL clock pin must be "usb_xtal"
+>  - #clock-cells: Must be 0
+> +- power-domains: A phandle and symbolic PM domain specifier.
+> +                 See power/renesas,rcar-sysc.txt.
+
+power/renesas,rcar-sysc.yaml (I'll fix that while applying)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
