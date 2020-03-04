@@ -2,295 +2,443 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17EF7179983
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 21:09:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A8B8179A9C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 22:03:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727528AbgCDUJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 15:09:53 -0500
-Received: from mail26.static.mailgun.info ([104.130.122.26]:21666 "EHLO
-        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728278AbgCDUJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 15:09:53 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1583352592; h=Content-Transfer-Encoding: MIME-Version:
- References: In-Reply-To: Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=/RCgoyhHvf5S+/RouyAbpWlCuHMv+v5tq6A3J7daPyw=; b=G9pkHkvwyTxuoL0uxB5FtO+bZv7ja/+TIev/0rOlrtufEi1n8AVmYq2O9fffovisEjxyKoX2
- N9QM9Gd6XyVSe0+PuuhL/A67BX3FQlJdTqZivwMOL35HSIF/5MqYGnv6McVlbRClOms3TfhC
- MMXY9avrq83rPKUGJ8nQg59W0s0=
-X-Mailgun-Sending-Ip: 104.130.122.26
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e600b07.7ffa0b0d23e8-smtp-out-n02;
- Wed, 04 Mar 2020 20:09:43 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 59104C447A0; Wed,  4 Mar 2020 20:09:42 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 07CE1C4479D;
-        Wed,  4 Mar 2020 20:09:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 07CE1C4479D
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     bjorn.andersson@linaro.org, srinivas.kandagatla@linaro.org
-Cc:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        tsoni@codeaurora.org, vnkgutta@codeaurora.org,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH v6 3/3] soc: qcom: apr: Add avs/audio tracking functionality
-Date:   Thu,  5 Mar 2020 01:39:11 +0530
-Message-Id: <20200304200911.15415-4-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200304200911.15415-1-sibis@codeaurora.org>
-References: <20200304200911.15415-1-sibis@codeaurora.org>
+        id S2388355AbgCDVDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 16:03:02 -0500
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:36513 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728512AbgCDVDC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 16:03:02 -0500
+Received: by mail-vs1-f65.google.com with SMTP id n6so2149739vsc.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2020 13:03:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hSWbLAptYGm4youMYgWgnMN5qqb706efy6UOGCdWvcQ=;
+        b=K49C+fYSdfa4qTb8U+6tb88/iuugs66Yo2DVdIczMqBe6W4j84aoX5JMToOwvzKmf3
+         utiGUUMiOdaBT/cDU6m0uhr5feLj9DrW+eni9RNCkSIU/m00M/eP8rmFlHctEFH0RUJ3
+         RlaVxwnX0o804N47nONMX28oVdZVBsksp4rg2IEJnotoobcrBNB69JWNxWrI3GO4QY9t
+         PSyBiFAHvL+K1fYKQh8KxkII20W/8mOMjfYWPphz6o/XiAA2O50v7aRGX7P9xa2gBRWJ
+         rU5FNOfZe55zyfYL8Wpr7+7BJiCeqcQEvd2tqqkV40C6nPMyGYEPDVE6ipMH8djlYDEM
+         78GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hSWbLAptYGm4youMYgWgnMN5qqb706efy6UOGCdWvcQ=;
+        b=rZ/Sz/cp0zdBZhOokgLc6+oc3uX3wQlevuO0J/j6KA+AghFE8zeCVa883l3mARb/xZ
+         F03naIjKYCF0rBm7lLPyS9vstCdIms3Zqt+ry9x1HWinfM49rpmjVlbxEW6qTmSQVhzH
+         Bfa4JU2xkkuRm4FRz+UPtDajGBaUEA9rXGtBO26W9uoRwLJ6XXFtSuHsoAhVumM4uDY9
+         LwyqV3tK+2atidcUlyZJaxUGo4uryD3gpw9U7Kkedi17c4zriw4n5kHID1zgiN4gl20u
+         OqdXaHb6cR0EM4AC641kRg93DrNWiLRfFj9aT1T4jtWw5vhzm2DYkrNF1kA8L/0Dyqzp
+         rwpw==
+X-Gm-Message-State: ANhLgQ1NwPRz+N0jOOYJBKnUdUIVZ637a89DhDhWzHtGm205cZVUS28E
+        DUVsjKUDalFNQFgb+4DIjIDAt+/jtrxERfIJrrGJmqF6
+X-Google-Smtp-Source: ADFU+vvuIaCJ9RoJIG1WciLy4L7eJyoFJkFSRigHOLZeFlCU/g+PxtzylpEHh1UjrV15fqmxiNhhq3ZwJB6/YQhziJc=
+X-Received: by 2002:a67:e99a:: with SMTP id b26mr2947573vso.27.1583355779012;
+ Wed, 04 Mar 2020 13:02:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1582528977.git.amit.kucheria@linaro.org>
+ <59d24f8ec98e29d119c5cbdb2abe6d4644cc51cf.1582528977.git.amit.kucheria@linaro.org>
+ <CAL_Jsq+wBF-VGmaaDk6EYzE=4g7Yq=w15WLL=mLjiR5FmxdWkQ@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+wBF-VGmaaDk6EYzE=4g7Yq=w15WLL=mLjiR5FmxdWkQ@mail.gmail.com>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Thu, 5 Mar 2020 02:32:47 +0530
+Message-ID: <CAHLCerMB2Nde-Gre+2pyNcd3AW2kDPSgo8KqON4V5vMUXZN1kw@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 3/3] dt-bindings: thermal: Add yaml bindings for
+ thermal zones
+To:     Rob Herring <robh@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use PDR helper functions to track the protection domains that the apr
-services are dependent upon on SDM845 SoC, specifically the "avs/audio"
-service running on ADSP Q6.
+On Tue, Feb 25, 2020 at 3:24 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Feb 24, 2020 at 1:26 AM Amit Kucheria <amit.kucheria@linaro.org> wrote:
+> >
+> > As part of moving the thermal bindings to YAML, split it up into 3
+> > bindings: thermal sensors, cooling devices and thermal zones.
+> >
+> > The thermal-zone binding is a software abstraction to capture the
+> > properties of each zone - how often they should be checked, the
+> > temperature thresholds (trips) at which mitigation actions need to be
+> > taken and the level of mitigation needed at those thresholds.
+> >
+> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> > ---
+> >  .../bindings/thermal/thermal-zones.yaml       | 302 ++++++++++++++++++
+> >  1 file changed, 302 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> > new file mode 100644
+> > index 000000000000..bc1ce8e41324
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> > @@ -0,0 +1,302 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>
+> Why MIT instead of BSD-2-Clause? And do you have rights to add that?
+> Any text you copied over from the .txt file was only GPL2. Relicensing
+> would be nice if you can get permission from the authors.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
+Changed back to GPL2. I will send out a separate email to get
+permission for relicensing the bindings.
 
-V6:
- * No change
+> > +# Copyright 2020 Linaro Ltd.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/base.yaml#
+> > +
+> > +title: Thermal zone binding
+> > +
+> > +maintainers:
+> > +  - Amit Kucheria <amitk@kernel.org>
+> > +
+> > +description: |
+> > +  Thermal management is achieved in devicetree by describing the sensor hardware
+> > +  and the software abstraction of cooling devices and thermal zones required to
+> > +  take appropriate action to mitigate thermal overloads.
+> > +
+> > +  The following node types are used to completely describe a thermal management
+> > +  system in devicetree:
+> > +   - thermal-sensor: device that measures temperature, has SoC-specific bindings
+> > +   - cooling-device: device used to dissipate heat either passively or artively
+>
+> typo
 
-V5:
- * Picked up Bjorn's R-b
+Fixed.
 
- drivers/soc/qcom/Kconfig     |   1 +
- drivers/soc/qcom/apr.c       | 123 ++++++++++++++++++++++++++++++++---
- include/linux/soc/qcom/apr.h |   1 +
- 3 files changed, 116 insertions(+), 9 deletions(-)
+>
+> > +   - thermal-zones: a container of the following node types used to describe all
+> > +     thermal data for the platform
+> > +
+> > +  This binding describes the thermal-zones.
+> > +
+> > +  The polling-delay properties of a thermal-zone are bound to the maximum dT/dt
+> > +  (temperature derivative over time) in two situations for a thermal zone:
+> > +    1. when passive cooling is activated (polling-delay-passive)
+> > +    2. when the zone just needs to be monitored (polling-delay) or when
+> > +       active cooling is activated.
+> > +
+> > +  The maximum dT/dt is highly bound to hardware power consumption and
+> > +  dissipation capability. The delays should be chosen to account for said
+> > +  max dT/dt, such that a device does not cross several trip boundaries
+> > +  unexpectedly between polls. Choosing the right polling delays shall avoid
+> > +  having the device in temperature ranges that may damage the silicon structures
+> > +  and reduce silicon lifetime.
+> > +
+> > +properties:
+> > +  thermal-zones:
+> > +    type: object
+> > +    description:
+> > +      A /thermal-zones node is required in order to use the thermal framework to
+> > +      manage input from the various thermal zones in the system in order to
+> > +      mitigate thermal overload conditions. It does not represent a real device
+> > +      in the system, but acts as a container to link thermal sensor devices,
+> > +      platform-data regarding temperature thresholds and the mitigation actions
+> > +      to take when the temperature crosses those thresholds.
+> > +
+> > +    properties:
+> > +      $nodename:
+> > +        pattern: "^[a-zA-Z][a-zA-Z0-9,\\-]{1,12}-thermal$"
+> > +        type: object
+> > +        description:
+> > +          Each thermal zone node contains information about how frequently it
+> > +          must be checked, the sensor responsible for reporting temperature for
+> > +          this zone, one sub-node containing the various trip points for this
+> > +          zone and one sub-node containing all the zone cooling-maps.
+> > +
+> > +        properties:
+> > +          polling-delay:
+> > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > +            minimum: 0
+> > +            description:
+> > +              The maximum number of milliseconds to wait between polls when
+> > +              checking this thermal zone. Setting this to 0 disables the polling
+> > +              timers setup by the thermal framework and assumes that the thermal
+> > +              sensors in this zone support interrupts.
+> > +
+> > +          polling-delay-passive:
+> > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > +            minimum: 0
+> > +            description:
+> > +              The maximum number of milliseconds to wait between polls when
+> > +              checking this thermal zone while doing passive cooling. Setting
+> > +              this to 0 disables the polling timers setup by the thermal
+> > +              framework and assumes that the thermal sensors in this zone
+> > +              support interrupts.
+> > +
+> > +          thermal-sensors:
+> > +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +            description:
+> > +              A list of thermal sensor phandles and sensor specifiers used to
+> > +              monitor this thermal zone.
+> > +
+> > +          trips:
+> > +            type: object
+> > +            description:
+> > +              This node describes a set of points in the temperature domain at
+> > +              which the thermal framework needs to takes action. The actions to
+> > +              be taken are defined in another node called cooling-maps.
+> > +
+> > +            patternProperties:
+> > +              "^[a-zA-Z][a-zA-Z0-9,+\\._]{0,63}$":
+> > +                type: object
+> > +
+> > +                properties:
+> > +                  temperature:
+> > +                    $ref: /schemas/types.yaml#/definitions/int32
+> > +                    description:
+> > +                      An integer expressing the trip temperature in millicelsius.
+>
+> Wouldn't 200000 mC be a reasonable max? And -273000 mC min.
 
-diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
-index 945609005cedd..e2c364d86a838 100644
---- a/drivers/soc/qcom/Kconfig
-+++ b/drivers/soc/qcom/Kconfig
-@@ -201,6 +201,7 @@ config QCOM_APR
- 	tristate "Qualcomm APR Bus (Asynchronous Packet Router)"
- 	depends on ARCH_QCOM || COMPILE_TEST
- 	depends on RPMSG
-+	select QCOM_PDR_HELPERS
- 	help
- 	  Enable APR IPC protocol support between
- 	  application processor and QDSP6. APR is
-diff --git a/drivers/soc/qcom/apr.c b/drivers/soc/qcom/apr.c
-index 4fcc32420c474..1f35b097c6356 100644
---- a/drivers/soc/qcom/apr.c
-+++ b/drivers/soc/qcom/apr.c
-@@ -11,6 +11,7 @@
- #include <linux/workqueue.h>
- #include <linux/of_device.h>
- #include <linux/soc/qcom/apr.h>
-+#include <linux/soc/qcom/pdr.h>
- #include <linux/rpmsg.h>
- #include <linux/of.h>
- 
-@@ -21,6 +22,7 @@ struct apr {
- 	spinlock_t rx_lock;
- 	struct idr svcs_idr;
- 	int dest_domain_id;
-+	struct pdr_handle *pdr;
- 	struct workqueue_struct *rxwq;
- 	struct work_struct rx_work;
- 	struct list_head rx_list;
-@@ -289,6 +291,9 @@ static int apr_add_device(struct device *dev, struct device_node *np,
- 		  id->svc_id + 1, GFP_ATOMIC);
- 	spin_unlock(&apr->svcs_lock);
- 
-+	of_property_read_string_index(np, "qcom,protection-domain",
-+				      1, &adev->service_path);
-+
- 	dev_info(dev, "Adding APR dev: %s\n", dev_name(&adev->dev));
- 
- 	ret = device_register(&adev->dev);
-@@ -300,14 +305,75 @@ static int apr_add_device(struct device *dev, struct device_node *np,
- 	return ret;
- }
- 
--static void of_register_apr_devices(struct device *dev)
-+static int of_apr_add_pd_lookups(struct device *dev)
-+{
-+	const char *service_name, *service_path;
-+	struct apr *apr = dev_get_drvdata(dev);
-+	struct device_node *node;
-+	struct pdr_service *pds;
-+	int ret;
-+
-+	for_each_child_of_node(dev->of_node, node) {
-+		ret = of_property_read_string_index(node, "qcom,protection-domain",
-+						    0, &service_name);
-+		if (ret < 0)
-+			continue;
-+
-+		ret = of_property_read_string_index(node, "qcom,protection-domain",
-+						    1, &service_path);
-+		if (ret < 0) {
-+			dev_err(dev, "pdr service path missing: %d\n", ret);
-+			return ret;
-+		}
-+
-+		pds = pdr_add_lookup(apr->pdr, service_name, service_path);
-+		if (IS_ERR(pds) && PTR_ERR(pds) != -EALREADY) {
-+			dev_err(dev, "pdr add lookup failed: %d\n", ret);
-+			return PTR_ERR(pds);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static void of_register_apr_devices(struct device *dev, const char *svc_path)
- {
- 	struct apr *apr = dev_get_drvdata(dev);
- 	struct device_node *node;
-+	const char *service_path;
-+	int ret;
- 
- 	for_each_child_of_node(dev->of_node, node) {
- 		struct apr_device_id id = { {0} };
- 
-+		/*
-+		 * This function is called with svc_path NULL during
-+		 * apr_probe(), in which case we register any apr devices
-+		 * without a qcom,protection-domain specified.
-+		 *
-+		 * Then as the protection domains becomes available
-+		 * (if applicable) this function is again called, but with
-+		 * svc_path representing the service becoming available. In
-+		 * this case we register any apr devices with a matching
-+		 * qcom,protection-domain.
-+		 */
-+
-+		ret = of_property_read_string_index(node, "qcom,protection-domain",
-+						    1, &service_path);
-+		if (svc_path) {
-+			/* skip APR services that are PD independent */
-+			if (ret)
-+				continue;
-+
-+			/* skip APR services whose PD paths don't match */
-+			if (strcmp(service_path, svc_path))
-+				continue;
-+		} else {
-+			/* skip APR services whose PD lookups are registered */
-+			if (ret == 0)
-+				continue;
-+		}
-+
- 		if (of_property_read_u32(node, "reg", &id.svc_id))
- 			continue;
- 
-@@ -318,6 +384,34 @@ static void of_register_apr_devices(struct device *dev)
- 	}
- }
- 
-+static int apr_remove_device(struct device *dev, void *svc_path)
-+{
-+	struct apr_device *adev = to_apr_device(dev);
-+
-+	if (svc_path && adev->service_path) {
-+		if (!strcmp(adev->service_path, (char *)svc_path))
-+			device_unregister(&adev->dev);
-+	} else {
-+		device_unregister(&adev->dev);
-+	}
-+
-+	return 0;
-+}
-+
-+static void apr_pd_status(int state, char *svc_path, void *priv)
-+{
-+	struct apr *apr = (struct apr *)priv;
-+
-+	switch (state) {
-+	case SERVREG_SERVICE_STATE_UP:
-+		of_register_apr_devices(apr->dev, svc_path);
-+		break;
-+	case SERVREG_SERVICE_STATE_DOWN:
-+		device_for_each_child(apr->dev, svc_path, apr_remove_device);
-+		break;
-+	}
-+}
-+
- static int apr_probe(struct rpmsg_device *rpdev)
- {
- 	struct device *dev = &rpdev->dev;
-@@ -343,28 +437,39 @@ static int apr_probe(struct rpmsg_device *rpdev)
- 		return -ENOMEM;
- 	}
- 	INIT_WORK(&apr->rx_work, apr_rxwq);
-+
-+	apr->pdr = pdr_handle_alloc(apr_pd_status, apr);
-+	if (IS_ERR(apr->pdr)) {
-+		dev_err(dev, "Failed to init PDR handle\n");
-+		ret = PTR_ERR(apr->pdr);
-+		goto destroy_wq;
-+	}
-+
- 	INIT_LIST_HEAD(&apr->rx_list);
- 	spin_lock_init(&apr->rx_lock);
- 	spin_lock_init(&apr->svcs_lock);
- 	idr_init(&apr->svcs_idr);
--	of_register_apr_devices(dev);
--
--	return 0;
--}
- 
--static int apr_remove_device(struct device *dev, void *null)
--{
--	struct apr_device *adev = to_apr_device(dev);
-+	ret = of_apr_add_pd_lookups(dev);
-+	if (ret)
-+		goto handle_release;
- 
--	device_unregister(&adev->dev);
-+	of_register_apr_devices(dev, NULL);
- 
- 	return 0;
-+
-+handle_release:
-+	pdr_handle_release(apr->pdr);
-+destroy_wq:
-+	destroy_workqueue(apr->rxwq);
-+	return ret;
- }
- 
- static void apr_remove(struct rpmsg_device *rpdev)
- {
- 	struct apr *apr = dev_get_drvdata(&rpdev->dev);
- 
-+	pdr_handle_release(apr->pdr);
- 	device_for_each_child(&rpdev->dev, NULL, apr_remove_device);
- 	flush_workqueue(apr->rxwq);
- 	destroy_workqueue(apr->rxwq);
-diff --git a/include/linux/soc/qcom/apr.h b/include/linux/soc/qcom/apr.h
-index c5d52e2cb275f..7f0bc3cf4d610 100644
---- a/include/linux/soc/qcom/apr.h
-+++ b/include/linux/soc/qcom/apr.h
-@@ -85,6 +85,7 @@ struct apr_device {
- 	uint16_t	domain_id;
- 	uint32_t	version;
- 	char name[APR_NAME_SIZE];
-+	const char *service_path;
- 	spinlock_t	lock;
- 	struct list_head node;
- };
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+It would indeed. :-)
+
+> > +
+> > +                  hysteresis:
+> > +                    $ref: /schemas/types.yaml#/definitions/uint32
+> > +                    description:
+> > +                      An unsigned integer expressing the hysteresis delta with
+> > +                      respect to the trip temperature property above, also in
+> > +                      millicelsius.
+> > +
+> > +                  type:
+> > +                    oneOf:
+> > +                      - items:
+> > +                        - enum:
+>
+> Drop oneOf and items. Just enum is enough.
+
+Fixed.
+
+>
+> > +                            - active
+> > +                            - passive
+> > +                            - hot
+> > +                            - critical
+> > +                    description: |
+> > +                      There are four valid trip types,
+> > +                       - active   - enable active cooling e.g. fans
+> > +                       - passive  - enable passive cooling e.g. throttling cpu
+> > +                       - hot      - send notification to driver if .notify
+> > +                                    callback registered
+> > +                       - critical - send notification to driver if .notify
+> > +                                    callback registered and trigger a shutdown
+>
+> Perhaps make these comments on each enum entry.
+
+I've moved the one-line descriptions to comments before each enum
+entry. However, I ended up adding more detailed descriptions in the
+description sections because I felt these are not well-defined in
+documentation. Let me know what you think.
+
+> > +
+> > +                required:
+> > +                  - temperature
+> > +                  - hysteresis
+> > +                  - type
+>
+> 'additionalProperties: false'? Or can the node have other properties?
+
+Added.
+
+> > +
+> > +          cooling-maps:
+> > +            type: object
+> > +            description:
+> > +              This node describes the action to be taken when a thermal zone
+> > +              crosses one of the temperature thresholds described in the trips
+> > +              node. The action takes the form of a mapping relation between a
+> > +              trip and the target cooling device state.
+> > +
+> > +            patternProperties:
+> > +              "^map[0-9][-a-zA-Z0-9]*$":
+> > +                type: object
+> > +
+> > +                properties:
+> > +                  trip:
+> > +                    $ref: /schemas/types.yaml#/definitions/phandle
+> > +                    description:
+> > +                      A phandle of a trip point node within this thermal zone.
+> > +
+> > +                  cooling-device:
+> > +                    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +                    description:
+> > +                      A list of cooling device phandles along with the minimum
+> > +                      and maximum cooling state specifiers for each cooling
+> > +                      device. Using the THERMAL_NO_LIMIT (-1UL) constant in the
+> > +                      cooling-device phandle limit specifier lets the framework
+> > +                      use the minimum and maximum cooling state for that cooling
+> > +                      device automatically.
+> > +
+> > +                  contribution:
+> > +                    $ref: /schemas/types.yaml#/definitions/uint32
+> > +                    minimum: 0
+> > +                    maximum: 100
+> > +                    description:
+> > +                      The contribution of the cooling devices at the trip
+> > +                      temperature, both referenced in this map, to this thermal
+> > +                      zone as a percentage.
+> > +
+> > +                required:
+> > +                  - trip
+> > +                  - cooling-device
+>
+> 'additionalProperties: false'?
+
+Added
+
+Thanks for the review.
+
+
+>
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/thermal/thermal.h>
+> > +
+> > +    // Example 1: SDM845 TSENS
+> > +    soc: soc@0 {
+> > +            #address-cells = <2>;
+> > +            #size-cells = <2>;
+> > +
+> > +            /* ... */
+> > +
+> > +            tsens0: thermal-sensor@c263000 {
+> > +                    compatible = "qcom,sdm845-tsens", "qcom,tsens-v2";
+> > +                    reg = <0 0x0c263000 0 0x1ff>, /* TM */
+> > +                          <0 0x0c222000 0 0x1ff>; /* SROT */
+> > +                    #qcom,sensors = <13>;
+> > +                    interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>;
+> > +                    interrupt-names = "uplow";
+> > +                    #thermal-sensor-cells = <1>;
+> > +            };
+> > +
+> > +            tsens1: thermal-sensor@c265000 {
+> > +                    compatible = "qcom,sdm845-tsens", "qcom,tsens-v2";
+> > +                    reg = <0 0x0c265000 0 0x1ff>, /* TM */
+> > +                          <0 0x0c223000 0 0x1ff>; /* SROT */
+> > +                    #qcom,sensors = <8>;
+> > +                    interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>;
+> > +                    interrupt-names = "uplow";
+> > +                    #thermal-sensor-cells = <1>;
+> > +            };
+> > +    };
+> > +
+> > +    /* ... */
+> > +
+> > +    thermal-zones {
+> > +            cpu0-thermal {
+> > +                    polling-delay-passive = <250>;
+> > +                    polling-delay = <1000>;
+> > +
+> > +                    thermal-sensors = <&tsens0 1>;
+> > +
+> > +                    trips {
+> > +                            cpu0_alert0: trip-point0 {
+> > +                                    temperature = <90000>;
+> > +                                    hysteresis = <2000>;
+> > +                                    type = "passive";
+> > +                            };
+> > +
+> > +                            cpu0_alert1: trip-point1 {
+> > +                                    temperature = <95000>;
+> > +                                    hysteresis = <2000>;
+> > +                                    type = "passive";
+> > +                            };
+> > +
+> > +                            cpu0_crit: cpu_crit {
+> > +                                    temperature = <110000>;
+> > +                                    hysteresis = <1000>;
+> > +                                    type = "critical";
+> > +                            };
+> > +                    };
+> > +
+> > +                    cooling-maps {
+> > +                            map0 {
+> > +                                    trip = <&cpu0_alert0>;
+> > +                                    cooling-device = <&CPU0 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>,
+> > +                                                     <&CPU1 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>,
+> > +                                                     <&CPU2 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>,
+> > +                                                     <&CPU3 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>;
+> > +                            };
+> > +
+> > +                            map1 {
+> > +                                    trip = <&cpu0_alert1>;
+> > +                                    cooling-device = <&CPU0 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>,
+> > +                                                     <&CPU1 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>,
+> > +                                                     <&CPU2 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>,
+> > +                                                     <&CPU3 THERMAL_NO_LIMIT
+> > +                                                            THERMAL_NO_LIMIT>;
+> > +                            };
+> > +                    };
+> > +            };
+> > +
+> > +            /* ... */
+> > +
+> > +            cluster0-thermal {
+> > +                    polling-delay-passive = <250>;
+> > +                    polling-delay = <1000>;
+> > +
+> > +                    thermal-sensors = <&tsens0 5>;
+> > +
+> > +                    trips {
+> > +                            cluster0_alert0: trip-point0 {
+> > +                                    temperature = <90000>;
+> > +                                    hysteresis = <2000>;
+> > +                                    type = "hot";
+> > +                            };
+> > +                            cluster0_crit: cluster0_crit {
+> > +                                    temperature = <110000>;
+> > +                                    hysteresis = <2000>;
+> > +                                    type = "critical";
+> > +                            };
+> > +                    };
+> > +            };
+> > +
+> > +            /* ... */
+> > +
+> > +            gpu-thermal-top {
+> > +                    polling-delay-passive = <250>;
+> > +                    polling-delay = <1000>;
+> > +
+> > +                    thermal-sensors = <&tsens0 11>;
+> > +
+> > +                    trips {
+> > +                            gpu1_alert0: trip-point0 {
+> > +                                    temperature = <90000>;
+> > +                                    hysteresis = <2000>;
+> > +                                    type = "hot";
+> > +                            };
+> > +                    };
+> > +            };
+> > +    };
+> > +...
+> > --
+> > 2.20.1
+> >
