@@ -2,81 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FA6179570
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 17:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48D02179592
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 17:44:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729749AbgCDQfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 11:35:32 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:43444 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726263AbgCDQfc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 11:35:32 -0500
-Received: from [10.18.90.110] (10.18.90.110) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Thu, 5 Mar 2020
- 00:36:00 +0800
-Subject: Re: [PATCH v2] dt-bindings: power: Fix dt_binding_check error
-To:     Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh@kernel.org>
-CC:     <linux-amlogic@lists.infradead.org>, SoC Team <soc@kernel.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        <devicetree@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <1583164448-83438-1-git-send-email-jianxin.pan@amlogic.com>
- <20200302201554.GA22028@bogus> <7h5zflrfp3.fsf@baylibre.com>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <b1fc2451-7eec-aa03-3d4d-3a7ae186105c@amlogic.com>
-Date:   Thu, 5 Mar 2020 00:35:59 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S2388063AbgCDQoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 11:44:24 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:44515 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726650AbgCDQoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 11:44:24 -0500
+Received: by mail-ot1-f67.google.com with SMTP id v22so2629529otq.11;
+        Wed, 04 Mar 2020 08:44:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Xb+WTf9GeDLciLGuzbzOFdnxs2bgaxMAq58iwewkmSE=;
+        b=Xx29nz8+FCROu86dxEE5FtksgKCb8RkJGQCzJQ03cgKOBzFVrpUz74/FQ80x3F71CG
+         /cMr3B2AN6du10BCoRV3CZrrQTSToXGWMcnw2DuY7nASGIiRwA9gEJqqhqFs9Vty+RQD
+         qxY6jlM7Vm9OQHwGQxzlYK34Nk9JBCd5FKywWSlhnCtJ9acKPIRuxKQVOrXt9y6xTFeb
+         tQOyZjs+B9DMKvxzPzw+EM2y5clyQzE3+vDfwZlBSmeZAdyQzntQ1QTuHxCFJ1m5GY5p
+         jIi1XvZoo22PlwNvuL1kG3W3yaNKacjbYzghdfknBqccL8DieH5pmwAcblw1WUtpcefg
+         aNxA==
+X-Gm-Message-State: ANhLgQ1l6GUkrTjnsx5jUVFBzmFzXI8pZ5JSfjasljLHvVSyROYcKFhP
+        +ASTHKrYDCOQlVnL4mrBaHNyA9c=
+X-Google-Smtp-Source: ADFU+vuiT7+LIdq6B0NAZpXtbUdD2n1oG/8PxkA2cyOy3nnwJtiJJ8AQrkFJJ2jsopkDmkVnwxRlIg==
+X-Received: by 2002:a9d:3f8:: with SMTP id f111mr3146428otf.204.1583340263091;
+        Wed, 04 Mar 2020 08:44:23 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n25sm9021954oic.6.2020.03.04.08.44.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2020 08:44:22 -0800 (PST)
+Received: (nullmailer pid 1900 invoked by uid 1000);
+        Wed, 04 Mar 2020 16:44:21 -0000
+Date:   Wed, 4 Mar 2020 10:44:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Artur Rojek <contact@artur-rojek.eu>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Heiko Stuebner <heiko@sntech.de>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] dt-bindings: input: Add docs for ADC driven
+ joystick.
+Message-ID: <20200304164421.GA22591@bogus>
+References: <20200301150920.55993-1-contact@artur-rojek.eu>
+ <20200301150920.55993-4-contact@artur-rojek.eu>
 MIME-Version: 1.0
-In-Reply-To: <7h5zflrfp3.fsf@baylibre.com>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.90.110]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200301150920.55993-4-contact@artur-rojek.eu>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/3/3 16:43, Kevin Hilman wrote:
-> Rob Herring <robh@kernel.org> writes:
+On Sun, Mar 01, 2020 at 04:09:19PM +0100, Artur Rojek wrote:
+> Add documentation for the adc-joystick driver, used to provide support
+> for joysticks connected over ADC.
 > 
->> On Mon, 2 Mar 2020 23:54:08 +0800, Jianxin Pan wrote:
->>> Missing ';' in the end of secure-monitor example node.
->>>
->>> Fixes: 165b5fb294e8 ("dt-bindings: power: add Amlogic secure power domains bindings")
->>> Reported-by: Rob Herring <robh+dt@kernel.org>
->>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->>> ---
->>>  Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>
->> Please add Acked-by/Reviewed-by tags when posting new versions. However,
->> there's no need to repost patches *only* to add the tags. The upstream
->> maintainer will do that for acks received on the version they apply.
->>
->> If a tag was not added on purpose, please state why and what changed.
+> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+> Tested-by: Paul Cercueil <paul@crapouillou.net>
+> ---
 > 
-> I've (re)added these tags:
+>  Changes:
 > 
->   Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->   Acked-by: Rob Herring <robh@kernel.org>
+>  v2: - Add `reg` property to axis subnode in order to enumerate the axes,
+>      - rename `linux,abs-code` property to `linux,code`,
+>      - drop `linux,` prefix from the remaining properties of axis subnode
 > 
-> when applying this time.
+>  v3: no change
 > 
-> Jianxin, please collect the tags in the future and add when you send
-> follow-up versions.
-OK, I will do it next time, thanks for your time.
+>  .../bindings/input/adc-joystick.yaml          | 117 ++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/adc-joystick.yaml
 > 
-> Thanks,
-> 
-> Kevin
-> 
-> .
-> 
+> diff --git a/Documentation/devicetree/bindings/input/adc-joystick.yaml b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> new file mode 100644
+> index 000000000000..91fc87dcbddb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/adc-joystick.yaml
+> @@ -0,0 +1,117 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019-2020 Artur Rojek
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/bindings/input/adc-joystick.yaml#"
 
+Drop 'bindings'.
+
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: ADC attached joystick
+> +
+> +maintainers:
+> +  - Artur Rojek <contact@artur-rojek.eu>
+> +
+> +description: |
+> +  Bindings for joystick devices connected to ADC controllers supporting
+> +  the Industrial I/O subsystem.
+> +
+> +properties:
+> +  compatible:
+> +    const: adc-joystick
+> +
+> +  io-channels:
+> +    description: |
+> +      List of phandle and IIO specifier pairs.
+> +      Each pair defines one ADC channel to which a joystick axis is connected.
+> +      See Documentation/devicetree/bindings/iio/iio-bindings.txt for details.
+
+How many?
+
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - io-channels
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  "^axis@([0-9])$":
+
+Up to 10 axis?
+
+> +    type: object
+> +    description: |
+> +      Represents a joystick axis bound to the given ADC channel.
+> +      For each entry in the io-channels list, one axis subnode with a matching
+> +      reg property must be specified.
+> +
+> +    properties:
+> +      reg:
+> +        items:
+> +          description: Index of an io-channels list entry bound to this axis.
+
+reg:
+  enum: [ 0, 1 ]
+
+Or use minimum/maximum
+
+> +
+> +      linux,code:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: EV_ABS specific event code generated by the axis.
+> +
+> +      abs-range:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+
+Needs to be under an 'allOf'.
+
+> +        items:
+> +          - description: minimum value
+> +          - description: maximum value
+> +        description: |
+> +          Minimum and maximum values produced by the axis.
+> +          For an ABS_X axis this will be the left-most and right-most
+> +          inclination of the joystick. If min > max, it is left to userspace to
+> +          treat the axis as inverted.
+> +          This property is interpreted as two signed 32 bit values.
+> +
+> +      abs-fuzz:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          Amount of noise in the input value.
+> +          Omitting this property indicates the axis is precise.
+> +
+> +      abs-flat:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          Axial "deadzone", or area around the center position, where the axis
+> +          is considered to be at rest.
+> +          Omitting this property indicates the axis always returns to exactly
+> +          the center position.
+> +
+> +    required:
+> +      - reg
+> +      - linux,code
+> +      - abs-range
+> +
+> +    additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/iio/adc/ingenic,adc.h>
+> +    #include <dt-bindings/input/input.h>
+> +
+> +    joystick: adc-joystick {
+> +      compatible = "adc-joystick";
+> +      io-channels = <&adc INGENIC_ADC_TOUCH_XP>,
+> +                    <&adc INGENIC_ADC_TOUCH_YP>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      axis@0 {
+> +              reg = <0>;
+> +              linux,code = <ABS_X>;
+> +              abs-range = <3300 0>;
+> +              abs-fuzz = <4>;
+> +              abs-flat = <200>;
+> +      };
+> +      axis@1 {
+> +              reg = <1>;
+> +              linux,code = <ABS_Y>;
+> +              abs-range = <0 3300>;
+> +              abs-fuzz = <4>;
+> +              abs-flat = <200>;
+> +      };
+> +    };
+> -- 
+> 2.25.1
+> 
