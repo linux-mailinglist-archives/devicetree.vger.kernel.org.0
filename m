@@ -2,81 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC50817977F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 19:06:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDF3C1797C4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 19:23:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725795AbgCDSGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 13:06:51 -0500
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:47065 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728926AbgCDSGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 13:06:51 -0500
-Received: by mail-qk1-f193.google.com with SMTP id u124so2534891qkh.13
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2020 10:06:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=72qCgtbemVTUpvzrdd2T6FECaArR3GQue5QrhrOMv0E=;
-        b=KDBSpDNa9Es0nQpNIwumZthW7kpLi4w3BH+k0zvOhHdZ+pEVCfGVVjDeko455HQLBM
-         XK9vSZiIrrJQGk38FPYDdoGrYSwk9kS8Lu5UsbMwTbOXeAGQPmkg7uWTq74h6DSJVtoJ
-         FmdIkgBq9oHGWSlpYaKOuIHO0JXYWvrtcJ2PcFRhYGNtXW+e9CFYX8pcgXciT58G553T
-         HaF9PRGXiaqq9XBxzgDgOQlyvH8+za48pkHOBM0cfAeqBQS+ug/bdmSW/4LVmzsTP7l7
-         /MXv/if+H90E75VKctDIyzRFXjg0WwAfMksJ0ehejFrU4L6j0oFlcadLWG/xR/qg8S8F
-         hohw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=72qCgtbemVTUpvzrdd2T6FECaArR3GQue5QrhrOMv0E=;
-        b=M2Tzg5uj6X4sEdfOuysgkbL1hzRwxPhdMgmCelkO1UgRdoim7845LD2PE5DhkLyTst
-         4/9+9H8+/F4NXaQ/MSim3mqXiGirBA02rOB/MWIrr7n007Lz2xZOqbUw1fO1FQTlGd5F
-         gQWyFmE9w3PANV7imb6xAWl/M0Ou+XP6LW9CfId4nwfUj8fT7Xek0lC0VJ9EVmPxrLkI
-         b7LiF+OHTPB9P2mkuFOts0ZYLL3oBJq0SZHPkMaaxvOXXPHp57upwXi45EVBumYN+wD+
-         U6RuwGq1/We1g1yrbnPKElvNelqyuqznp1BAxddOlmWpU+ipsnXjr2kqd6AMblazhAQg
-         6QzA==
-X-Gm-Message-State: ANhLgQ3NHXRHHJ22ZmNpo63EYvlV0yK9I3BxIuDxO/3cbBwp2ak3idp0
-        aevWuo77DDYod9DV+F34W3GdyELfIcLIt4KoRq8=
-X-Google-Smtp-Source: ADFU+vta1SNChMmcelkhZ271jRf69B4icMVWHwivqfJsVaIBIPn8mxWekISqqVVcxq9evndtaQUrFbsKBQjavfqB1Nw=
-X-Received: by 2002:ae9:f010:: with SMTP id l16mr4091606qkg.364.1583345209157;
- Wed, 04 Mar 2020 10:06:49 -0800 (PST)
+        id S1727137AbgCDSXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 13:23:51 -0500
+Received: from mail.manjaro.org ([176.9.38.148]:59550 "EHLO mail.manjaro.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726561AbgCDSXv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Mar 2020 13:23:51 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by mail.manjaro.org (Postfix) with ESMTP id 4D0B73702361;
+        Wed,  4 Mar 2020 19:23:50 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at manjaro.org
+Received: from mail.manjaro.org ([127.0.0.1])
+        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id jKsZACVbmvna; Wed,  4 Mar 2020 19:23:47 +0100 (CET)
+Subject: Re: [PATCH v3 2/2] arm64: dts: rockchip: Add initial support for
+ Pinebook Pro
+To:     Johan Jonker <jbx6244@gmail.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Andy Yan <andy.yan@rock-chips.com>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        Alexis Ballier <aballier@gentoo.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Nick Xie <nick@khadas.com>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Vasily Khoruzhick <anarsoul@gmail.com>
+References: <20200229144817.355678-1-t.schramm@manjaro.org>
+ <20200229144817.355678-3-t.schramm@manjaro.org>
+ <bcc2c8d4-a2cd-58c1-89af-e42439f8f344@gmail.com>
+From:   Tobias Schramm <t.schramm@manjaro.org>
+Message-ID: <46a66389-c709-2c16-dd9a-f7fd6371a768@manjaro.org>
+Date:   Wed, 4 Mar 2020 19:24:41 +0100
 MIME-Version: 1.0
-Received: by 2002:ac8:4908:0:0:0:0:0 with HTTP; Wed, 4 Mar 2020 10:06:47 -0800 (PST)
-Reply-To: muali00111@gmail.com
-From:   MUSSA ALI <mussaali0111@gmail.com>
-Date:   Wed, 4 Mar 2020 10:06:47 -0800
-Message-ID: <CADNHkThXkru-LHGg0cjfP=Oc7k=PBYmW-JJShd17vbH6Xgs_dQ@mail.gmail.com>
-Subject: Urgent Reply
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <bcc2c8d4-a2cd-58c1-89af-e42439f8f344@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US-large
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear  friend,
+Hi Johan,
 
-I know this means of communication may not be morally right to you as
-a person but I also have had a great thought about it and I have come
-to this conclusion which I am about to share with you.
+thanks for the additional feedback. I'll send a v4 with your fixes included.
 
-INTRODUCTION: I am a banker   and in one way or the other was hoping
-you will cooperate with me as a partner in a project of transferring
-an abandoned fund of a late customer of the bank worth of $18,000,000
-(Eighteen Million Dollars US).
+>> +		partitions {
+>> +			compatible = "fixed-partitions";
+>> +			#address-cells = <1>;
+>> +			#size-cells = <1>;
+>> +
+>> +			loader@8000 {
+>> +				label = "loader";
+>> +				reg = <0x0 0x3F8000>;
+>> +			};
+>> +
+>> +			env@3f8000 {
+>> +				label = "env";
+>> +				reg = <0x3F8000 0x8000>;
+>> +			};
+>> +
+>> +			vendor@7c0000 {
+>> +				label = "vendor";
+>> +				reg = <0x7C0000 0x40000>;
+>> +			};
+>> +		};
+> 
+> Partitions are normaly up to the user and should not be included to dts
+> files,
+> else could you explain why we need this exception?
+> 
+Right. I don't see any reason why we would need to keep it either. I'll
+remove it.
 
-This will be disbursed or shared between the both of us in these
-percentages, 60% for me and 40% for you. Contact me immediately if
-that is alright for you so that we can enter in agreement before we
-start processing for the transfer of the funds. If you are satisfied
-with this proposal, please provide the below details for the Mutual
-Confidential Agreement:
-
-1. Full Name and Address
-2. Occupation and Country of Origin
-3. Telephone Number
-
-I wait for your response so that we can commence on this project as
-soon as possible.
-
-Regards,
-Mr. Mussa  Ali
+Tobias
