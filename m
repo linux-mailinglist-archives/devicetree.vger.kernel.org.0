@@ -2,112 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 798CD17938E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 16:35:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEEDC179377
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 16:35:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388174AbgCDPfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 10:35:23 -0500
-Received: from mail-vs1-f66.google.com ([209.85.217.66]:35375 "EHLO
-        mail-vs1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388204AbgCDPfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 10:35:21 -0500
-Received: by mail-vs1-f66.google.com with SMTP id u26so1417214vsg.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2020 07:35:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=00Rmwnfg0e8r9SY74u4uZcoPfhjgx61DXTReZJdbiIk=;
-        b=nCiMaYREzujENq6r9s3oF6FobXuqD+FjnzxchAvr0xEXY3BDosEUmf0+KT3MiYXaJE
-         u6FRN2vn3Gag82PCLB6dOe/67ac8j6AYYwYH/FJHy6IX/AxlXrWSPtmLfjHuIAR4s0dv
-         fGGG7ByifG5zUY+D0jTOjIhUOVQO+vp8wk6GBYytGWwtLUTZ4pY9f8/2gbkZLks8cG7d
-         AmPheQioOaLxCiKBCB9Y0U79GQXzhXDKLz6y8RMUSEbmwDNWLZzVBOHFve/MsqFc4ZX9
-         jAQPleE++XM4XCrTKuEN5jE/ipg/CDvvhpI4y2TgGv3PweP86DhQS9/JUyYiCleXy5nP
-         saYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=00Rmwnfg0e8r9SY74u4uZcoPfhjgx61DXTReZJdbiIk=;
-        b=fUoa9N5rlfoxGVaxFOO6CDEH/K/JU4BePHTKas/mHNrMPWItNSj6ihgNw3EY+KPzh3
-         7LBidbrtRhIURPKmi8QCac+dbjFqazqGNvS6cilqWwIay+2R+/kqNK57msCmtva1vEz4
-         Tm9M6UZ3RP7FUBCByeQjrNEBeOx6g7f37gNZqh5Br8o517oDHER2Tgm+IwBNWY2lzeHU
-         9Uci2LUs2qCQTXyB7ua7T7l7yzOwPQo20BW1bt8LA/OZfjQhKHS9U2zg2v+fC1CC3pZ0
-         G1/arE4kFGLCDlH1kQaCKqcARMDWaX36oomZi1gQisuGmsDbPxQJhx0rmTgH41dK0/Ti
-         0MZw==
-X-Gm-Message-State: ANhLgQ0OguhNJO3sKuMobsei+T+GDT7O2nrhzojxp4Te51KF0gRpbGvS
-        T+lG+zpzDNIBkNZALcNZPP02GJWeRRlvznbvkQXauQ==
-X-Google-Smtp-Source: ADFU+vs9hDVln8eSdHw8W62ASMunkWacXNAeeWvHb8JN1bWM8m+X51t4UiXom4UigR9Y6SsrcdqmR8ZMgpiqOySQX6s=
-X-Received: by 2002:a67:f4cf:: with SMTP id s15mr2024818vsn.165.1583336119283;
- Wed, 04 Mar 2020 07:35:19 -0800 (PST)
+        id S1729386AbgCDPfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 10:35:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36738 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726752AbgCDPfC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Mar 2020 10:35:02 -0500
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9D0FC24658;
+        Wed,  4 Mar 2020 15:35:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583336101;
+        bh=mGvRr//+DglMPcp75TxeFCBhxIqq00jQR1JrOSa+h4Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=zya9ztGN4pWxB5+fYDdBdITZt8ZGTMnZo+22Td1X1Qkl1YcPxTJtwgEW7yB24Haq+
+         wOH9dOkcSiPsrw87U0Tk8Wk2Tq3s+Wr3sYw90Yz9lQphYvnfFAvOkzS7qqj5f5ZT+m
+         FgPMwPgBQq+rB5PPkPD5iSOjBJvxIg2zoi+0ijLg=
+Received: by mail-qv1-f53.google.com with SMTP id r8so947916qvs.12;
+        Wed, 04 Mar 2020 07:35:01 -0800 (PST)
+X-Gm-Message-State: ANhLgQ0BAIu9rA2czjgJrViQMEE1HUlxKfarrGVvmgn4EUsQIYtCnhVA
+        SUQikMt8hx06fUi2mSq29uMoHB+7SI7pVtdf6w==
+X-Google-Smtp-Source: ADFU+vteyB29cYQ7Q1UB74Gv0vdvXOHZ+jzrw1aE7WliF9I8s/sqI/IDAw2TT3/P6koVZqmBoPO96WROOJctXEQuW7o=
+X-Received: by 2002:a0c:fecb:: with SMTP id z11mr2571272qvs.85.1583336100783;
+ Wed, 04 Mar 2020 07:35:00 -0800 (PST)
 MIME-Version: 1.0
-References: <1581434955-11087-1-git-send-email-vbadigan@codeaurora.org> <1582545470-11530-1-git-send-email-vbadigan@codeaurora.org>
-In-Reply-To: <1582545470-11530-1-git-send-email-vbadigan@codeaurora.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 Mar 2020 16:34:43 +0100
-Message-ID: <CAPDyKFok8p+yuokLBZX3RF5U6SQYMKKeDf=co1-WzotBQzprQg@mail.gmail.com>
-Subject: Re: [PATCH V3] dt-bindings: mmc: sdhci-msm: Add CQE reg map
-To:     Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Sahitya Tummala <stummala@codeaurora.org>,
-        Sayali Lokhande <sayalil@codeaurora.org>, cang@codeaurora.org,
-        Ram Prakash Gupta <rampraka@codeaurora.org>,
-        Doug Anderson <dianders@google.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <20200304032038.14424-1-masahiroy@kernel.org> <20200304032038.14424-2-masahiroy@kernel.org>
+In-Reply-To: <20200304032038.14424-2-masahiroy@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 4 Mar 2020 09:34:49 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ3q4txoV6wE-Vk5X9oo0roVbBYpwMuPEngDiEv1XXinQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ3q4txoV6wE-Vk5X9oo0roVbBYpwMuPEngDiEv1XXinQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] kbuild: avoid concurrency issue in parallel building
+ dtbs and dtbs_check
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Feb 2020 at 12:58, Veerabhadrarao Badiganti
-<vbadigan@codeaurora.org> wrote:
+On Tue, Mar 3, 2020 at 9:20 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
 >
-> CQE feature has been enabled on sdhci-msm. Add CQE reg map
-> and reg names that need to be supplied for supporting CQE feature.
+> 'make dtbs_check' checks the shecma in addition to building *.dtb files,
+
+typo
+
+> in other words, 'make dtbs_check' is a super-set of 'make dtbs'.
+> So, you do not have to do 'make dtbs dtbs_check', but I want to keep
+> the build system robust in any use.
 >
-> Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
+> Currently, 'dtbs' and 'dtbs_check' are independent of each other.
+> In parallel building, two threads descend into arch/*/boot/dts/,
+> one for dtbs and the other for dtbs_check, then end up with building
+> the same DTB simultaneously.
+>
+> This commit fixes the concurrency issue. Otherwise, I see build errors
+> like follows:
+>
+> $ make ARCH=arm64 defconfig
+> $ make -j16 ARCH=arm64 DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/psci.yaml dtbs dtbs_check
+>   <snip>
+>   DTC     arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dtb
+>   DTC     arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtb
+>   DTC     arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dtb
+>   DTC     arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dtb
+>   DTC     arch/arm64/boot/dts/freescale/imx8mn-evk.dtb
+>   DTC     arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dtb
+>   DTC     arch/arm64/boot/dts/zte/zx296718-pcbox.dtb
+>   DTC     arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dt.yaml
+>   DTC     arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dtb
+>   DTC     arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dtb
+>   DTC     arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dtb
+>   DTC     arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-inx.dtb
+>   DTC     arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dtb
+>   CHECK   arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dt.yaml
+> fixdep: error opening file: arch/arm64/boot/dts/allwinner/.sun50i-h6-orangepi-lite2.dtb.d: No such file or directory
+> make[2]: *** [scripts/Makefile.lib:296: arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dtb] Error 2
+> make[2]: *** Deleting file 'arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-lite2.dtb'
+> make[2]: *** Waiting for unfinished jobs....
+>   DTC     arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet-kd.dtb
+>   DTC     arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dtb
+>   DTC     arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dtb
+>   DTC     arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dtb
+> fixdep: parse error; no targets found
+> make[2]: *** [scripts/Makefile.lib:296: arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dtb] Error 1
+> make[2]: *** Deleting file 'arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-one-plus.dtb'
+> make[1]: *** [scripts/Makefile.build:505: arch/arm64/boot/dts/allwinner] Error 2
+> make[1]: *** Waiting for unfinished jobs....
+>   DTC     arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dtb
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > ---
-> Changes since V2:
->         - Dropped _mem suffix to reg names.
 >
-> Changes since V1:
->         - Updated description for more clarity & Fixed typos.
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> index 7ee639b..5445931 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> @@ -26,7 +26,13 @@ Required properties:
->
->  - reg: Base address and length of the register in the following order:
->         - Host controller register map (required)
-> -       - SD Core register map (required for msm-v4 and below)
-> +       - SD Core register map (required for controllers earlier than msm-v5)
-> +       - CQE register map (Optional, CQE support is present on SDHC instance meant
-> +                           for eMMC and version v4.2 and above)
-> +- reg-names: When CQE register map is supplied, below reg-names are required
-> +       - "hc" for Host controller register map
-> +       - "core" for SD core register map
-> +       - "cqhci" for CQE register map
->  - interrupts: Should contain an interrupt-specifiers for the interrupts:
->         - Host controller interrupt (required)
->  - pinctrl-names: Should contain only one value - "default".
-> --
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc., is a member of Code Aurora Forum, a Linux Foundation Collaborative Project
+>  Makefile | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+
+Reviewed-by: Rob Herring <robh@kernel.org>
