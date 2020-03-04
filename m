@@ -2,68 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 426D8179564
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 17:34:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 840F2179571
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 17:35:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729898AbgCDQeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 11:34:20 -0500
-Received: from mail-sh.amlogic.com ([58.32.228.43]:42431 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726764AbgCDQeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 11:34:20 -0500
-Received: from [10.18.90.110] (10.18.90.110) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Thu, 5 Mar 2020
- 00:34:48 +0800
-Subject: Re: [PATCH v2] dt-bindings: power: Fix dt_binding_check error
-To:     Rob Herring <robh@kernel.org>
-CC:     Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>, SoC Team <soc@kernel.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        <devicetree@vger.kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <1583164448-83438-1-git-send-email-jianxin.pan@amlogic.com>
- <20200302201554.GA22028@bogus>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <4fb6a6c2-5df3-9cff-eb00-a6d00963426d@amlogic.com>
-Date:   Thu, 5 Mar 2020 00:34:47 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+        id S1729870AbgCDQfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 11:35:40 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:43588 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726263AbgCDQfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 11:35:40 -0500
+Received: by mail-ot1-f68.google.com with SMTP id j5so2605452otn.10
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2020 08:35:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=h1Gvo7Uhl99kC+f2DHRk2dtpXA+8wwG3dDT0Nr8Q1sw=;
+        b=iQuwPEf0l7gdOZ2ILADDA1tMQjNoC5zFjxZkadUxhEDFYXIGHAqKknSrpvqbZjKUvJ
+         JJj0hNb1La0R+RKZWFlrlfKeteCKmHYT/Rcxt1z00isJ3U/JDtn4xD/y2UbXytGUT+3l
+         T6uNjRamx4IOoOqZe4R9qJDUBgHWy5kEQm/DJihrZDs0KfNQYmkjk5Db1EaYkCzTqNUp
+         BOpWE/4Lr2v1gfZslzOoOtVxWcGdtPjRlgbySzetrvnrCjVKgH/fwQ6K6Nma4vfV4jNg
+         gk3OSsf3WunK9jsiBDhE647a57z08eQLXEQ30sOmfl1nsG9CG9VXPoVF7/eHdDC4HZIP
+         WCEA==
+X-Gm-Message-State: ANhLgQ2oxYH1Zui4bRqLAr8j8zR4cRCbr6rEqqJl9pb6o4FMuEOqit6r
+        XDJEyhQpIlouIf7GqL/7kA==
+X-Google-Smtp-Source: ADFU+vvs0zKwSe7pdBbmhxfAEsM04vKmv9ZOGaPA/anuEGyMrANs8OpulogLb0VTYVxwyF6vIThI4w==
+X-Received: by 2002:a9d:aa7:: with SMTP id 36mr3152106otq.52.1583339739892;
+        Wed, 04 Mar 2020 08:35:39 -0800 (PST)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p24sm4959687oth.21.2020.03.04.08.35.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2020 08:35:39 -0800 (PST)
+Received: (nullmailer pid 22504 invoked by uid 1000);
+        Wed, 04 Mar 2020 16:35:38 -0000
+Date:   Wed, 4 Mar 2020 10:35:38 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     dri-devel@lists.freedesktop.org, thierry.reding@gmail.com,
+        sam@ravnborg.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, christoph.muellner@theobroma-systems.com,
+        robin.murphy@arm.com, linux-rockchip@lists.infradead.org,
+        heiko@sntech.de, francescolavra.fl@gmail.com,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: display: panel: Add binding document
+ for Elida KD35T133
+Message-ID: <20200304163538.GA22445@bogus>
+References: <20200229151506.750242-1-heiko@sntech.de>
+ <20200229151506.750242-2-heiko@sntech.de>
 MIME-Version: 1.0
-In-Reply-To: <20200302201554.GA22028@bogus>
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.90.110]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200229151506.750242-2-heiko@sntech.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 2020/3/3 4:15, Rob Herring wrote:
-> On Mon, 2 Mar 2020 23:54:08 +0800, Jianxin Pan wrote:
->> Missing ';' in the end of secure-monitor example node.
->>
->> Fixes: 165b5fb294e8 ("dt-bindings: power: add Amlogic secure power domains bindings")
->> Reported-by: Rob Herring <robh+dt@kernel.org>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
+On Sat, 29 Feb 2020 16:15:05 +0100, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
 > 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
+> The KD35T133 is a 3.5" 320x480 DSI display used in the RK3326-based
+> Odroid Go Advance handheld device.
 > 
-Sorry to forget the tag, Kevin has added it for me, and I will keep it in mind next time.
-> If a tag was not added on purpose, please state why and what changed.
-> 
-> .
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> ---
+>  .../display/panel/elida,kd35t133.yaml         | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/elida,kd35t133.yaml
 > 
 
+Reviewed-by: Rob Herring <robh@kernel.org>
