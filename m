@@ -2,88 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57EC1178C53
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 09:10:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D031178C62
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 09:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728907AbgCDIK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 03:10:29 -0500
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:10637 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726957AbgCDIK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 03:10:28 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02487pWQ004028;
-        Wed, 4 Mar 2020 09:10:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=n8QvI0PPy92ZGlxWhkH/DeXcDD5fh4/qSAfLtW2Sw08=;
- b=I56EG6/WTGws/FvGYwTs8CaH+fCOT1m0dnxRcg1Aa/nACFmejccWTQUV9K/NtpWuE+oG
- 0mYjN1A3jdkh+KVST/lkp8re+MOCyj7PiQ/MuryJGKkPrVz5VeG7762ecP915r+R759D
- RAEPgVpId6Rj+g0+Zy3lz1184m/h0Jwrl1vrJT5VkQamj98YdYn+7Z59DwCP0CyQesVG
- KdOt3dU6pstO8neTDBucgPj4maX5/ZCDMM/EiAimrQDQ0+u6cS3/RsEfXRxvRsFHpVcu
- TVNRo1teZ/nRAN/p3MKLNt5FmH47qRH5KdoqP8231U+V1XtS4sGhu+6E5An0pr+QRv01 Sw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2yfea6yeag-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Mar 2020 09:10:09 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5CA7110003B;
-        Wed,  4 Mar 2020 09:10:08 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag6node1.st.com [10.75.127.16])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 509BE21FE85;
-        Wed,  4 Mar 2020 09:10:08 +0100 (CET)
-Received: from localhost (10.75.127.45) by SFHDAG6NODE1.st.com (10.75.127.16)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 4 Mar 2020 09:10:07
- +0100
-From:   Yann Gautier <yann.gautier@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
+        id S1728569AbgCDIL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 03:11:56 -0500
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:35999 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725271AbgCDIL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 03:11:56 -0500
+Received: by mail-ed1-f68.google.com with SMTP id a13so1232502edh.3;
+        Wed, 04 Mar 2020 00:11:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bc4qmKJt/lAzS0lpfRM9DbEOWoXovtwmwwXu2IbTRzo=;
+        b=EBDKff7ewYDJhiOVL0TmnEeb4mXPS2AysuCb0B1N48Cxf7gLjRGXSA1F4/2UCeIs5E
+         Br69ShUoqQOA+5wnC886trhrO7f1sD6TkWli3WvWPjH0dw5iHH2IdzUlNS6IubDluIbO
+         ylBEa2APcbmlqMnrJ5fW+hLE6OzNNifUEufsEF6huVMXg6+iumdVzjGGHtmH+CdITOr3
+         7lMpr9xuzAgCiBgisD7EipXmAB/C210qQ9Nt4sAWPG+ldKEICaXWZHmCxaFLRd51/7fb
+         4Yuz0NrGrLtRFf0UaI2hjuwL1Inwxue9Zxc72SGBwMhSMc+W9FdQJ85tnPlZdIhmsdQU
+         siJA==
+X-Gm-Message-State: ANhLgQ3mYWhwRcvTak0FSM2IdnuWYGl0DjrbsgPxT3gEmTNjxkslhX+H
+        FAMqwvRDHepezOZWEjpH6wI=
+X-Google-Smtp-Source: ADFU+vvW40T8j5meoZiNaJ/0F7CHytNOStLYgpJxQMZhhi7lUyOEErJ4auD/xDioBTEYC65TyLQkfQ==
+X-Received: by 2002:a17:906:8254:: with SMTP id f20mr1508858ejx.43.1583309514196;
+        Wed, 04 Mar 2020 00:11:54 -0800 (PST)
+Received: from pi3 ([194.230.155.125])
+        by smtp.googlemail.com with ESMTPSA id a10sm1467746edt.50.2020.03.04.00.11.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2020 00:11:53 -0800 (PST)
+Date:   Wed, 4 Mar 2020 09:11:51 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Yann Gautier <yann.gautier@st.com>
-Subject: [PATCH 3/3] ARM: dts: stm32: use correct vqmmc regu for eMMC on stm32mp1 ED1/EV1 boards
-Date:   Wed, 4 Mar 2020 09:09:56 +0100
-Message-ID: <20200304080956.7699-4-yann.gautier@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200304080956.7699-1-yann.gautier@st.com>
-References: <20200304080956.7699-1-yann.gautier@st.com>
+        Felipe Balbi <balbi@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCHv2 0/3] Add support for suspend clk for Exynos5422 SoC
+Message-ID: <20200304081151.GA17560@pi3>
+References: <20200301212019.2248-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG6NODE1.st.com
- (10.75.127.16)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-03-04_01:2020-03-03,2020-03-04 signatures=0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200301212019.2248-1-linux.amoon@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On those boards, as stated in schematics files, the regulator used for IOs
-is VDD. It was wrongly set to v3v3.
+On Sun, Mar 01, 2020 at 09:20:15PM +0000, Anand Moon wrote:
+> Seried build and tested on linux next-20200228.
+> 
+> This patch series tries to enable suspend clk using
+> exynos dwc3 driver, for this I have added new
+> compatible string "samsung,exynos5420-dwusb3"
+> so that we could add new suspend clk in addition
+> to the core clk. exynos dwc3 driver will help
+> enable/disable these clk.
 
-Signed-off-by: Yann Gautier <yann.gautier@st.com>
----
- arch/arm/boot/dts/stm32mp157c-ed1.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That's not entirely correct. You enable there SCLK which is a "special
+clock", not a "suspend clock". You use word "suspend: in multiple places
+in commits making an impression that it is about some suspend clock...
+no, there is no suspend clock.
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-ed1.dts b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-index 6f8d23a7d4a6..ae6f80f9794e 100644
---- a/arch/arm/boot/dts/stm32mp157c-ed1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ed1.dts
-@@ -335,7 +335,7 @@
- 	st,neg-edge;
- 	bus-width = <8>;
- 	vmmc-supply = <&v3v3>;
--	vqmmc-supply = <&v3v3>;
-+	vqmmc-supply = <&vdd>;
- 	mmc-ddr-3_3v;
- 	status = "okay";
- };
--- 
-2.17.1
+There is however a clock which driver calls suspend_clk (but it is just
+some name) and it is being enabled for entire lifetime of device (so
+also during suspend). AFAIU, this is not needed for Exynos5422 but I am
+not sure. So please convince me...
 
+However I have still the same questions:
+1. What problem are you trying to solve here?
+2. Why this is needed?
+3. What is fixed with this patch?
+
+Best regards,
+Krzysztof
+
+> 
+> This series PatchV2.
+> --Added the clk names for exynos5420 compatible.
+> --Added missing support for Exyno5410 SoC suspend clock.
+> --Update the commit message to support suspend clk usages.
+> 
+> ---
+> Long time ago I tried to add suspend clk for dwc3 phy
+> which was wrong appoch, see below.
+> 
+> [0] https://lore.kernel.org/patchwork/patch/837635/
+> [1] https://lore.kernel.org/patchwork/patch/837636/
+> 
+> Previous changes V3 (It was send with wrong Patch version)
+> [2] https://patchwork.kernel.org/cover/11373043/
+> 
+> -Anand
+> 
+> Anand Moon (3):
+>   devicetree: bindings: exynos: Add new compatible for Exynos5420 dwc3
+>     clocks support
+>   ARM: dts: exynos: Add missing usbdrd3 suspend clk
+>   usb: dwc3: exynos: Add support for Exynos5422 suspend clk
+> 
+>  Documentation/devicetree/bindings/usb/exynos-usb.txt | 5 ++++-
+>  arch/arm/boot/dts/exynos5410.dtsi                    | 8 ++++----
+>  arch/arm/boot/dts/exynos5420.dtsi                    | 8 ++++----
+>  arch/arm/boot/dts/exynos54xx.dtsi                    | 4 ++--
+>  drivers/usb/dwc3/dwc3-exynos.c                       | 9 +++++++++
+>  5 files changed, 23 insertions(+), 11 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
