@@ -2,111 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A9F1790A6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 13:50:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE991790BA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 14:00:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388072AbgCDMuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 07:50:54 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:33463 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387776AbgCDMux (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 07:50:53 -0500
-Received: by mail-oi1-f193.google.com with SMTP id q81so1975981oig.0;
-        Wed, 04 Mar 2020 04:50:53 -0800 (PST)
+        id S2388097AbgCDNAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 08:00:10 -0500
+Received: from mail-qv1-f67.google.com ([209.85.219.67]:44016 "EHLO
+        mail-qv1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388060AbgCDNAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 08:00:09 -0500
+Received: by mail-qv1-f67.google.com with SMTP id eb12so706877qvb.10
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2020 05:00:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Beu3qvFTUH06Rlm0/R7E/eA87SF87SDv5KPlGbUEFUY=;
+        b=SjfdFlS3wO55dVhIbilav3RQtVBWgW91Cnb/+8n7jkIY3LxEaXZNW4wSRZ1w0P+Y2Z
+         m2wcVG3v4ccrUcE2gOaZ9eeheXa1jOFC15/2rUmkBSsjvSz5A70/65MZ8+07ABoV8gmL
+         lUJOwfGxVQgX8ZwatFqrgLAj0QQ4QVNzVsKWc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=p7FRqJyhTEmACxJGCDQAplfiTQ67K8Njaui3NWndKCk=;
-        b=AXhO9OlY0lVdID/ecpqIIVtrBJfdkmicPE/BTRJuf0v7qQX2m0V4pXMlTNiRDL+NNK
-         LXHAv2aOfA9rum/wy9l7C/XhiMkIvnmruFIJTOfx9lJijPjU9TtVIr3VN+Bru3lunpDR
-         zTvbV7lV41JoMu1KDDoAjqjmjBWCoq35yfjuOeEgTsL+E2+pKZqRlSSxY89nNOrOJFGP
-         foS4i8ggUDa2Uyh205kKeWGgt/peVO/UAOxE2PsVT6zS9PG3t40TnO+JDkEmD99I9FGb
-         A3Ujst9m8loyNR7LN73Pueniwn+3Z55BdvlX9Rw2SXVJkSzPmELW3j46VA05BmSG8s84
-         0SGA==
-X-Gm-Message-State: ANhLgQ1qi75F/o3QoB9MrkZUF/qHg/i4OtnBiNIsBnsvMGTA9CpPJ+Do
-        oHOPU2vXnMj0GImMu9XI/fJ41YWEdhCUJtQEoy+Zv+kX
-X-Google-Smtp-Source: ADFU+vtS15MEGVq3XbpQbW8c0fcWWTHigWSJb+9KT3nHpA8xJ67V9+ALPr8+cGI2pKL0qKyotbflbp2ioN9nMIjOtNo=
-X-Received: by 2002:aca:ed04:: with SMTP id l4mr1648104oih.54.1583326253059;
- Wed, 04 Mar 2020 04:50:53 -0800 (PST)
+        bh=Beu3qvFTUH06Rlm0/R7E/eA87SF87SDv5KPlGbUEFUY=;
+        b=rJmnJ1bsKf744Q0OMfsN9Qfq6kOjMwy2VnJ86CkpSo0KWtMRKmnjvrxS8Eo6yyHX0k
+         JPMSRKh64bN5Ae+bRzD17HECmr7hGPc/qbGIC4Uh6GK5PnU8N3qI4sNoUzvoG+3pDoeJ
+         thGo9cJfjBcm1u52oRwtUXVoPIq+u/zj8koDcDVt/Qg2UnED8vBvUrsPIZJrrEmEQ+z1
+         UxQqj0tkQVZ4+SBTq19rQgCfgy0Jn0zHrzzS4uqHFdnjcJOmaQ8kG495D+In1vSh+ow6
+         lJ+fAbrPOTPzSGe4me2E0qlu7NXAt4R0uBHPhZThep89olH1cOXDEjREvFi7u/lPBSRj
+         XPbw==
+X-Gm-Message-State: ANhLgQ1xn4tLTO/8vrVqS0S20OwlKyVFpE6yl46HujxWsl+rfdPcMQPz
+        7Lkj4+pV4WChrCq9dbpB9mLJF/jCCtyraxx1XMSqaA==
+X-Google-Smtp-Source: ADFU+vvAPd9eUBLgxOcz8KO1mdbkjC+PQUvSPfxQ3LEaj+3mlGdcvGhxsv7PsukxnD5IbwUM3xFfAimQpPOT+wKAGoo=
+X-Received: by 2002:a05:6214:1750:: with SMTP id dc16mr1985308qvb.47.1583326806377;
+ Wed, 04 Mar 2020 05:00:06 -0800 (PST)
 MIME-Version: 1.0
-References: <20200303094522.23180-1-geert+renesas@glider.be>
- <20200303094522.23180-2-geert+renesas@glider.be> <CAL_JsqL+9Tcqm_bsorRwqvWZyJXAZmJhXb=EmJ+nZ44kCFp6Kg@mail.gmail.com>
-In-Reply-To: <CAL_JsqL+9Tcqm_bsorRwqvWZyJXAZmJhXb=EmJ+nZ44kCFp6Kg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 4 Mar 2020 13:50:41 +0100
-Message-ID: <CAMuHMdUBTVZGNtdc0dhUz5d+P2_Fr89MvBCz8=9oQK1EOi7s2w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] spi: dt-bindings: spi-controller: Fix
- #address-cells for slave mode
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
+References: <1580730044-30501-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1580730044-30501-5-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1580748607.31376.3.camel@mtksdaap41> <1581911502.20099.13.camel@mhfsdcap03>
+In-Reply-To: <1581911502.20099.13.camel@mhfsdcap03>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Wed, 4 Mar 2020 20:59:55 +0800
+Message-ID: <CANMq1KDTHcFV8Gue1PuOWkWXL20z_-j58u8JpwbBm_wUvLeqSg@mail.gmail.com>
+Subject: Re: [PATCH v8 4/5] rtc: mt6397: Add support for the MediaTek MT6358 RTC
+To:     Ran Bi <ran.bi@mediatek.com>
+Cc:     Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Josef Friedl <josef.friedl@speed.at>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Richard Fontana <rfontana@redhat.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        linux-rtc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
-On Tue, Mar 3, 2020 at 10:05 PM Rob Herring <robh+dt@kernel.org> wrote:
-> On Tue, Mar 3, 2020 at 3:45 AM Geert Uytterhoeven
-> <geert+renesas@glider.be> wrote:
-> > Currently, the DT bindings for an SPI controller specify that
-> > "#address-cells" must be fixed to one.  However, that applies to an SPI
-> > controller in master mode only.  When running in SPI slave mode,
-> > "#address-cells" should be zero.
-> >
-> > Fix this making the value of "#address-cells" dependent on the presence
-> > of "spi-slave".
-> >
-> > Fixes: 0a1b929356830257 ("spi: Add YAML schemas for the generic SPI options")
-> > Reported-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > v2:
-> >   - Use "enum: [0, 1]" instead of min/max limit,
-> >   - use "- spi-slave" instead of "[ spi-slave ]".
-> >
-> > As of dtc commit 403cc79f06a135ae ("checks: Update SPI bus check for
-> > 'spi-slave'") and Linux commit c2e7075ca8303631 ("scripts/dtc: Update to
-> > upstream version v1.4.7-57-gf267e674d145"), dtc knows about SPI slave.
-> >
-> > However, when using "#address-cells = <0>" with W=1:
-> >
-> >     Warning (avoid_unnecessary_addr_size): /soc/spi@e6e10000: unnecessary #address-cells/#size-cells without "ranges" or child "reg" property
+On Mon, Feb 17, 2020 at 11:52 AM Ran Bi <ran.bi@mediatek.com> wrote:
 >
-> What was the point in having #address-cells in the first place for
-> slaves?
+> On Tue, 2020-02-04 at 00:50 +0800, Yingjoe Chen wrote:
+> > > diff --git a/include/linux/mfd/mt6397/rtc.h b/include/linux/mfd/mt6397/rtc.h
+> > > index f84b916..fffe34a 100644
+> > > --- a/include/linux/mfd/mt6397/rtc.h
+> > > +++ b/include/linux/mfd/mt6397/rtc.h
+> > > @@ -18,7 +18,8 @@
+> > >  #define RTC_BBPU_CBUSY         BIT(6)
+> > >  #define RTC_BBPU_KEY            (0x43 << 8)
+> > >
+> > > -#define RTC_WRTGR              0x003c
+> > > +#define RTC_WRTGR_MT6358       0x3a
+> > > +#define RTC_WRTGR_MT6397       0x3c
+> > >
+> > >  #define RTC_IRQ_STA            0x0002
+> > >  #define RTC_IRQ_STA_AL         BIT(0)
+> > > @@ -57,6 +58,10 @@
+> > >  #define MTK_RTC_POLL_DELAY_US  10
+> > >  #define MTK_RTC_POLL_TIMEOUT   (jiffies_to_usecs(HZ))
+> > >
+> > > +struct mtk_rtc_data {
+> > > +   u32                     wrtgr;
+> > > +};
+> > > +
+> > >  struct mt6397_rtc {
+> > >     struct device           *dev;
+> > >     struct rtc_device       *rtc_dev;
+> > > @@ -66,6 +71,15 @@ struct mt6397_rtc {
+> > >     struct regmap           *regmap;
+> > >     int                     irq;
+> > >     u32                     addr_base;
+> > > +   const struct mtk_rtc_data *data;
+> > > +};
+> > > +
+> > > +static const struct mtk_rtc_data mt6358_rtc_data = {
+> > > +   .wrtgr = RTC_WRTGR_MT6358,
+> > > +};
+> > > +
+> > > +static const struct mtk_rtc_data mt6397_rtc_data = {
+> > > +   .wrtgr = RTC_WRTGR_MT6397,
+> > >  };
+> >
+> > Hi,
+> >
+> > Putting these in header file doesn't looks right to me.
+> > Who need this? can you move them back to rtc-mt6397.c?
+> > Joe.C
+> >
+>
+> This could also effect kernel/drivers/power/reset/mt6323-poweroff.c
+> which using same region of RTC registers.
+> There are 2 ways of modification:
+> 1. kernel/drivers/rtc/rtc-mt6397.c implement do_pwroff function and
+> export to mt6323-poweroff.c
+> 2. Just modify mt6323-poweroff.c file to compatible this patch. I mean
+> using RTC_WRTGR_MT6397 to replace RTC_WRTGR. Or modify mt6323-poweroff.c
+> like rtc-mt6397.c
 
-I don't know, commit a8830cb19cfea04e ("spi: Document DT bindings for
-SPI controllers in slave mode") doesn't require any #address-cells for
-slave mode.
+Oh, I see, so basically both rtc-mt6397.c and mt6323-poweroff.c need
+to know at what offset RTC_WRTGR actually is. Correct?
 
-Perhaps because node_addr_cells() in dtc defaults to 2?
-Or because of_bus_n_addr_cells() walks up the parent chain and thus
-defaults to the first found parent value?
+Is there any plan to have mt6323-poweroff.c support any of the other
+PMICs (not just MT6323?)?
 
-> Seems like we should make it mutually exclusive with 'spi-slave'.
+a. If not, I'd just add:
+#define RTC_WRTGR_MT6323 RTC_WRTGR_MT6397
+in rtc.h, for added clarity, use that in mt6323-poweroff.c
+(s/RTC_WRTGR/RTC_WRTGR_MT6323/), and be done with it.
 
-Sounds like a good idea. How to express that in yaml?
+Actually, even if there's a plan, you can go ahead with this simpler
+solution for now, and fix later when the issue comes up.
 
-Thanks!
+b. If you ever want to support multiple PMICs with mt6323-poweroff.c,
+you'd need that offset for 2 different sub-devices under the same mfd,
+so the matching logic belongs in the main mfd device, not in
+rtc/poweroff driver.
 
-Gr{oetje,eeting}s,
+So I'd move the matching logic in drivers/mfd/mt6397-core.c, and add
+rtc_wrtgr offset (or a full _data structure) to `struct mt6397_chip`,
+or, probably better, add a IORESOURCE_REG to the matching resources to
+specify the offset (that's what drivers/mfd/88pm860x-core.c seems to
+be doing, for example).
 
-                        Geert
+And then mt6323-poweroff.c should probably be renamed to mt6397-poweroff.c.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+(actually, looking at this, I'm even questioning if mt6323-poweroff.c
+should even exist, and if you should just fold it into rtc-mt6397.c?
+Since they use the same registers?)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Hope this makes sense?
+
+Best,
