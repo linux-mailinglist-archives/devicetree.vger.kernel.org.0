@@ -2,118 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DEFB8178AC1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 07:42:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BF36178AC5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 07:42:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725797AbgCDGmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 01:42:21 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:37535 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725773AbgCDGmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 01:42:20 -0500
-X-IronPort-AV: E=Sophos;i="5.70,513,1574089200"; 
-   d="scan'208";a="40717179"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 04 Mar 2020 15:42:18 +0900
-Received: from localhost.localdomain (unknown [10.166.252.89])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8B0B541CBB7A;
-        Wed,  4 Mar 2020 15:42:18 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     geert+renesas@glider.be, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v4 4/4] clk: renesas: rcar-usb2-clock-sel: Add reset_control
-Date:   Wed,  4 Mar 2020 15:42:17 +0900
-Message-Id: <1583304137-28482-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1583304137-28482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-References: <1583304137-28482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+        id S1726233AbgCDGmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 01:42:32 -0500
+Received: from bilbo.ozlabs.org ([203.11.71.1]:56611 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725892AbgCDGmc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Mar 2020 01:42:32 -0500
+Received: by ozlabs.org (Postfix, from userid 1007)
+        id 48XPSj5HhVz9sR4; Wed,  4 Mar 2020 17:42:29 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+        d=gibson.dropbear.id.au; s=201602; t=1583304149;
+        bh=5Tn+MXqcA8IMQp7yDG4OfRBIOmBQXGXZ2xvSoQSavU0=;
+        h=Date:From:To:Subject:From;
+        b=nFbn1CViPj1Pm/BbLOShPY3TPKSSpr4it4rhWfrMHlRRW1zhbD/qkB/pIGbilDFtU
+         eagNpKZeNESH4WpL+ZjwkBsS6Y0GZIzHXUDjtlkbTVOJQyF+AGGon1BzQwBeGoQ3aS
+         CwtIOSb2vntFJDo6Z8SMaDuJsrCxhxTIJySOdaMk=
+Date:   Wed, 4 Mar 2020 17:42:20 +1100
+From:   David Gibson <david@gibson.dropbear.id.au>
+To:     devicetree@vger.kernel.org, devicetree-compiler@vger.kernel.org
+Subject: DTC 1.6.0
+Message-ID: <20200304064220.GD593957@umbus.fritz.box>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Km1U/tdNT/EmXiR1"
+Content-Disposition: inline
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This hardware needs to deassert resets of both host and peripheral.
-So, this patch adds reset control.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/clk/renesas/Kconfig               |  1 +
- drivers/clk/renesas/rcar-usb2-clock-sel.c | 15 ++++++++++++++-
- 2 files changed, 15 insertions(+), 1 deletion(-)
+--Km1U/tdNT/EmXiR1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/clk/renesas/Kconfig b/drivers/clk/renesas/Kconfig
-index 879d96e..ac2dd92 100644
---- a/drivers/clk/renesas/Kconfig
-+++ b/drivers/clk/renesas/Kconfig
-@@ -161,6 +161,7 @@ config CLK_RCAR_GEN3_CPG
- config CLK_RCAR_USB2_CLOCK_SEL
- 	bool "Renesas R-Car USB2 clock selector support"
- 	depends on ARCH_RENESAS || COMPILE_TEST
-+	select RESET_CONTROLLER
- 	help
- 	  This is a driver for R-Car USB2 clock selector
- 
-diff --git a/drivers/clk/renesas/rcar-usb2-clock-sel.c b/drivers/clk/renesas/rcar-usb2-clock-sel.c
-index d5f47ab..d4c0298 100644
---- a/drivers/clk/renesas/rcar-usb2-clock-sel.c
-+++ b/drivers/clk/renesas/rcar-usb2-clock-sel.c
-@@ -19,6 +19,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm.h>
- #include <linux/pm_runtime.h>
-+#include <linux/reset.h>
- #include <linux/slab.h>
- 
- #define USB20_CLKSET0		0x00
-@@ -35,6 +36,7 @@ struct usb2_clock_sel_priv {
- 	void __iomem *base;
- 	struct clk_hw hw;
- 	struct clk_bulk_data clks[ARRAY_SIZE(rcar_usb2_clocks)];
-+	struct reset_control *rsts;
- 	bool extal;
- 	bool xtal;
- };
-@@ -62,10 +64,16 @@ static int usb2_clock_sel_enable(struct clk_hw *hw)
- 	struct usb2_clock_sel_priv *priv = to_priv(hw);
- 	int ret;
- 
--	ret = clk_bulk_prepare_enable(ARRAY_SIZE(priv->clks), priv->clks);
-+	ret = reset_control_deassert(priv->rsts);
- 	if (ret)
- 		return ret;
- 
-+	ret = clk_bulk_prepare_enable(ARRAY_SIZE(priv->clks), priv->clks);
-+	if (ret) {
-+		reset_control_assert(priv->rsts);
-+		return ret;
-+	}
-+
- 	usb2_clock_sel_enable_extal_only(priv);
- 
- 	return 0;
-@@ -78,6 +86,7 @@ static void usb2_clock_sel_disable(struct clk_hw *hw)
- 	usb2_clock_sel_disable_extal_only(priv);
- 
- 	clk_bulk_disable_unprepare(ARRAY_SIZE(priv->clks), priv->clks);
-+	reset_control_assert(priv->rsts);
- }
- 
- /*
-@@ -151,6 +160,10 @@ static int rcar_usb2_clock_sel_probe(struct platform_device *pdev)
- 	if (ret < 0)
- 		return ret;
- 
-+	priv->rsts = devm_reset_control_array_get(dev, true, false);
-+	if (IS_ERR(priv->rsts))
-+		return PTR_ERR(priv->rsts);
-+
- 	pm_runtime_enable(dev);
- 	pm_runtime_get_sync(dev);
- 
--- 
-2.7.4
+I've just tagged and packaged v1.6.0 of the device tree compiler.
 
+Git tree available at the usual place:
+   git://git.kernel.org/pub/scm/utils/dtc/dtc.git
+And tarballs available at:
+   https://kernel.org/pub/software/utils/dtc/
+
+DTC 1.6.0
+
+Changes since v1.5.1. include:
+ * Some provision for out of tree builds (useful with meson)
+ * Some fixes for win32 builds
+ * Some improvements for FreeBSD builds:
+   * Work with byacc as well as bison
+   * Fix some compilation failures with clang
+   * Default to cc instead of gcc
+   * Add FreeBSD testing via Cirrus CI
+ * Add non-x86 testing on Travis
+ * Add options to allow builds of libfdt which sacrifice safety on bad
+   inputs for reduced size and improved speed.  This is important for
+   some embedded cases.
+ * Allow testsuite to be executed on an already-installed dtc/libfdt,
+   rather than just the one built in the source tree
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAl5fSlEACgkQbDjKyiDZ
+s5LXoQ//bKkaXf/OpF7nMfCb1/vRKtR5FiL6D90bBnP3k1ROZNDfiCyNT3JMLaa4
+QVVhY1tXOe4z15x+aJmE4ft8ak0y88JQEk+NWc+9MIUN4bBYTdxoQBBGdxW+atNz
+ycldlwMxAD5im9jRvHnXKFnxKZDr7i/w5qn1YJ2iVFjdeJtx4FFUDKUkE56Jjged
+MmPdkXvQ0MMAtEri2QT8O6R5eiAyko6jE0QYSrCLSIaFyt6V48GvevQnW1B3nQ+u
+fy59TTSGduNVjXwZfoobGmRegZrN/4F6zHhyfbQYITkeVdBVn6SS5zYk1fAVvc4a
+SV/IgzFsBCNG0tiNLlxnZn13OiFUf7toJ6Nd0C+ivo1UhzyUQ2g1EQrMXySwYaTD
+lWA5hK7xNWob9q6EDbRpXg8Xbw4YppC/mtJ2YakDFezgAKprVfuNgTuk18szTuqH
+XgDpyQHEaMfCtY8kwgOF7kB5dDfEn8kjy8xbV6+mHa7y2pK40ZDML45FYTjt94hT
+S768b2oZQZ3H/NFQc7k3SMmUJCGfAsTPqr3fJOp/Eoa7i2CLRROoiJKwUqfGqKmo
+HEv36PDyVPeoooUyKqTeyqxo6vkzhwV2sjxXuflG96pgF6pFQzD73eplc5agNszF
+Sh2rWToVPO7AAooQv+uROUwD2oQOenMPZa7Fxs1gjYHOjTHk6RI=3D
+=3DgOZC
+-----END PGP SIGNATURE-----
+
+--=20
+David Gibson			| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you.  NOT _the_ _other_
+				| _way_ _around_!
+http://www.ozlabs.org/~dgibson
+
+--Km1U/tdNT/EmXiR1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEdfRlhq5hpmzETofcbDjKyiDZs5IFAl5fTcsACgkQbDjKyiDZ
+s5IfDxAA0PpDqXH51AAmT85MFyC+olGEIWyzm6B/+0AfEyvazCeeIHlxxSQlgLKd
+Zbe+XieaSKyRcMZMHfVTqBS2AAcM+dhC0ih1NiGV5KCrnN8uIPZyNAEHsuToTvYe
+zthvHjI7v+1vK3YTRI2YIlBPTo4Y8mRigQ+e9ePkG1lvo7JGzD+0Fpres1usTMkj
+BChwwbUiiVZoPiI9Joej5LrQZUCFhEoLHpdTT4c/f0FC11rcgc+2f3bPEJtMjkbQ
+nr6VTlWhh9wdjSG40JQlV7iMVFIZ+heUJA2B7BhXAzy8/GL33f+u9oaEkg2Df3OA
+TI/tldfy7eGVgPkA1/DCH97Eq/xFeIcieUqrDT2zWgQR6CFMiUIOuxzBqX3OApcS
+pWgKBcLTdezE3ONvlIf7pFjNMVRlVJkPXpfn67FCe8oNgzBcxfqhlVkMjzAPI6EU
+Aj6ohWLln2rgOWM5+GoZAL587roElMjPlnjsRj7OG1zm7MUVHYU9VkF5e+AftAFT
+vM1wqJi9Imaf7cnA6AZDES9hYeEtXMNp9+PsdHNz1dCD2fB+E6TTzQpR6vMplM1Z
+2NNihIUdcw6UQQmHvh6+/L9i8+oxwhQhfLoOP1V9N5VW5vj9EuWOem2HFyTKTDHH
+iJJ2qvNT8gUVRWmR/7og8PbOLkUGjvrsj6SE33YSIsn9UcNyG5s=
+=r10Q
+-----END PGP SIGNATURE-----
+
+--Km1U/tdNT/EmXiR1--
