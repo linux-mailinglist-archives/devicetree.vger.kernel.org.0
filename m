@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E60179AF2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 22:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16CE3179AF4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 22:30:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388281AbgCDVaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 16:30:08 -0500
-Received: from mail.manjaro.org ([176.9.38.148]:47918 "EHLO mail.manjaro.org"
+        id S2388419AbgCDVaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 16:30:09 -0500
+Received: from mail.manjaro.org ([176.9.38.148]:47968 "EHLO mail.manjaro.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388237AbgCDVaI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Mar 2020 16:30:08 -0500
+        id S2388237AbgCDVaJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Mar 2020 16:30:09 -0500
 Received: from localhost (localhost [127.0.0.1])
-        by mail.manjaro.org (Postfix) with ESMTP id 84C4237019F4;
-        Wed,  4 Mar 2020 22:30:06 +0100 (CET)
+        by mail.manjaro.org (Postfix) with ESMTP id CA3C73701EA3;
+        Wed,  4 Mar 2020 22:30:07 +0100 (CET)
 X-Virus-Scanned: Debian amavisd-new at manjaro.org
 Received: from mail.manjaro.org ([127.0.0.1])
         by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 3W5thPF20-qO; Wed,  4 Mar 2020 22:29:59 +0100 (CET)
+        with ESMTP id GD5JVFRiPpK4; Wed,  4 Mar 2020 22:30:06 +0100 (CET)
 From:   Tobias Schramm <t.schramm@manjaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
