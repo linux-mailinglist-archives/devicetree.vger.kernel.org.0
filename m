@@ -2,125 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BABCE1790CC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 14:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0E6F1790EA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 14:09:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729386AbgCDNFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 08:05:31 -0500
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:45106 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729175AbgCDNFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 08:05:31 -0500
-Received: by mail-vs1-f68.google.com with SMTP id m4so1046051vsa.12
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2020 05:05:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y6V/ThFMEUQVv4pGKZWOlNFwrQHTHd/Cjm8+feJdCcI=;
-        b=Kz3ZoEtsx/w9PtpTfMWI8BfIvHJpdI9eqfduNdgSwzkFoNOvf5mynamxJMQ38s1scq
-         UG5FlR10x0pBG5V1AFPAdPmP0MOEpxBmXzWx7P7RmWNYCu4XmNn6TTtWxhX7VSYioDlK
-         wEcFWuz1KtLJRddXeMmM++EC+8fDJOiJlgk+zDB8nWuDmYPwY4OX5/qowiZ948/V+kxU
-         9IUoYDeOARIZkvwXc5m99BVtXs8ZzFhifpP2vb1byNKWfJ9JZBThXmMUnc6lTfQjIsKu
-         167dPumst3rTtZBc9uDOXmDzBFJItYEmLl1hwTjdK/BEIWqYTDx9KTbELZK9I7NV8XN+
-         RenA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y6V/ThFMEUQVv4pGKZWOlNFwrQHTHd/Cjm8+feJdCcI=;
-        b=nn8sDv+bwjB2FLnzrfAUjgAgeLYWbGGgnM4oUZ2znXpzR/kZww9kH0oYNmuiLd/m6I
-         vyQDvv+zES5SafaCCSUz65IiTCOdHkbObgMZ8o7Fj+eXEyaPzjWD0tUdiol2UUgDWABV
-         dn75MyU5ukc6BwJaYF7TYZTBscPdJ223PgUNCLi/qBQMx/ecLMW5cEqzP9UuW30kB9LV
-         EMMRcWLaSICz3C7HtIZthuhBYgLbdOV3HvnzOfJW3t/EgnrR3kv4YVsFFh9rY+QUQmYV
-         qLK9AhgdAK8xu1rzfFuLh5cAbPQpuLIXUN9Hr3DzBYQigAZYYi98vzDN/paGZvuEWRzB
-         dUKw==
-X-Gm-Message-State: ANhLgQ3GjUnfWcKmj5nvRvMR4OyDEZ+bemZQj5oHn5Q3+KoeLDtttUPI
-        f6SNxPCzmUzALBKyZC4ZCd7yTQg947TLGqFrNYhLqA==
-X-Google-Smtp-Source: ADFU+vutcotJyTUK5tPrXTH7n8AgfiQgisISlV0zrVV7kZWnuc9rR3DZfocZpWM1AQk8GeUV02RcRhWp4SBgvRUJOTA=
-X-Received: by 2002:a67:800e:: with SMTP id b14mr1606080vsd.191.1583327129997;
- Wed, 04 Mar 2020 05:05:29 -0800 (PST)
-MIME-Version: 1.0
-References: <1581922564-24914-1-git-send-email-chun-hung.wu@mediatek.com> <1581922564-24914-2-git-send-email-chun-hung.wu@mediatek.com>
-In-Reply-To: <1581922564-24914-2-git-send-email-chun-hung.wu@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 4 Mar 2020 14:04:53 +0100
-Message-ID: <CAPDyKFpyah+oA-GtXNmdkrhwnGN_syU1JqRHn-9gk=HK0fV8EQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] mmc: core: expose MMC_CAP2_CQE* to dt
-To:     Chun-Hung Wu <chun-hung.wu@mediatek.com>
-Cc:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Pan Bian <bianpan2016@163.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Allison Randal <allison@lohutok.net>,
-        Mathieu Malaterre <malat@debian.org>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Kuohong Wang <kuohong.wang@mediatek.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>, wsd_upstream@mediatek.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S2387776AbgCDNJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 08:09:17 -0500
+Received: from mail26.static.mailgun.info ([104.130.122.26]:60628 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726440AbgCDNJR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 08:09:17 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1583327356; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=/9KMV4bz9yQQBdDYMd242fhFL2hzub31ZngWvFmtQFc=; b=rRQN1wucB9D01WyM9zW7DuAh31eTaH6zdV9YCmSOVmCKwwLk3y7483LGz7WpVwG363bE3owC
+ IRVvAtUE7ollA0jyOz/flWxYRsdEWPsRWm+Y722IposH96kL2Dp9A2Z9AwteZSG2vc3R2xR0
+ KK3byaMDl1pGJ51jsrsRuOJAA8w=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e5fa87b.7f7aaec8ec70-smtp-out-n02;
+ Wed, 04 Mar 2020 13:09:15 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 469DBC447A2; Wed,  4 Mar 2020 13:09:15 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from kgunda-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kgunda)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0F2E8C43383;
+        Wed,  4 Mar 2020 13:09:09 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0F2E8C43383
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=kgunda@codeaurora.org
+From:   Kiran Gunda <kgunda@codeaurora.org>
+To:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, Kiran Gunda <kgunda@codeaurora.org>
+Subject: [PATCH V2 0/2] Add support for WLED5
+Date:   Wed,  4 Mar 2020 18:38:53 +0530
+Message-Id: <1583327335-26899-1-git-send-email-kgunda@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 17 Feb 2020 at 07:56, Chun-Hung Wu <chun-hung.wu@mediatek.com> wrote:
->
-> Expose MMC_CAP2_CQE and MMC_CAP2_CQE_DCMD
-> to host->caps2 if
-> 1. "supports-cqe" is defined in dt and
-> 2. "disable-cqe-dcmd" is not defined in dt.
+Currently, WLED driver supports only WLED4 peripherals that is present
+on pmi8998 and pm660L. This patch series  converts the existing WLED4
+bindings from .txt to .yaml format and adds the support for WLED5 peripheral
+that is present on PM8150L.
 
-Both of these DT properties are defined as common mmc DT properties,
-so the above isn't really correct. Please clarify this.
+PM8150L WLED supports the following.
+    - Two modulators and each sink can use any of the modulator
+    - Multiple CABC selection options
+    - Multiple brightness width selection (12 bits to 15 bits)
 
-Moreover, I suggest to update commit message header into "mmc: core:
-Extend mmc_of_parse() to parse CQE bindings", as I think it better
-describes the change.
+Changes from V1:
+	- Rebased on top of the below commit.
+	  backlight: qcom-wled: Fix unsigned comparison to zero
 
->
-> Signed-off-by: Chun-Hung Wu <chun-hung.wu@mediatek.com>
-> ---
->  drivers/mmc/core/host.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-> index 105b7a7..efb0dbe 100644
-> --- a/drivers/mmc/core/host.c
-> +++ b/drivers/mmc/core/host.c
-> @@ -319,6 +319,14 @@ int mmc_of_parse(struct mmc_host *host)
->                 host->caps2 |= MMC_CAP2_NO_SD;
->         if (device_property_read_bool(dev, "no-mmc"))
->                 host->caps2 |= MMC_CAP2_NO_MMC;
-> +       if (device_property_read_bool(dev, "supports-cqe"))
-> +               host->caps2 |= MMC_CAP2_CQE;
-> +
-> +       /* Must be after "supports-cqe" check */
-> +       if (!device_property_read_bool(dev, "disable-cqe-dcmd")) {
-> +               if (host->caps2 & MMC_CAP2_CQE)
+Kiran Gunda (2):
+  backlight: qcom-wled: convert the wled bindings to .yaml format
+  backlight: qcom-wled: Add support for WLED5 peripheral in PM8150L
 
-Does it really doesn't matter if we set this cap, even if MMC_CAP2_CQE
-isn't set? You can probably skip the check above.
+ .../bindings/leds/backlight/qcom-wled.txt          | 154 -------
+ .../bindings/leds/backlight/qcom-wled.yaml         | 223 ++++++++++
+ drivers/video/backlight/qcom-wled.c                | 459 ++++++++++++++++++---
+ 3 files changed, 634 insertions(+), 202 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
 
-> +                       host->caps2 |= MMC_CAP2_CQE_DCMD;
-> +       }
->
->         /* Must be after "non-removable" check */
->         if (device_property_read_u32(dev, "fixed-emmc-driver-type", &drv_type) == 0) {
-> --
-> 1.9.1
-
-Kind regards
-Uffe
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+ a Linux Foundation Collaborative Project
