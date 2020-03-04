@@ -2,81 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16CE3179AF4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 22:30:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47758179B38
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 22:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388419AbgCDVaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 16:30:09 -0500
-Received: from mail.manjaro.org ([176.9.38.148]:47968 "EHLO mail.manjaro.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388237AbgCDVaJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Mar 2020 16:30:09 -0500
+        id S1728955AbgCDVrF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 16:47:05 -0500
+Received: from mail.police.gov.ua ([91.227.69.84]:51218 "EHLO
+        mail.police.gov.ua" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726440AbgCDVrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 16:47:05 -0500
+X-Greylist: delayed 3529 seconds by postgrey-1.27 at vger.kernel.org; Wed, 04 Mar 2020 16:47:04 EST
 Received: from localhost (localhost [127.0.0.1])
-        by mail.manjaro.org (Postfix) with ESMTP id CA3C73701EA3;
-        Wed,  4 Mar 2020 22:30:07 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at manjaro.org
-Received: from mail.manjaro.org ([127.0.0.1])
-        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id GD5JVFRiPpK4; Wed,  4 Mar 2020 22:30:06 +0100 (CET)
-From:   Tobias Schramm <t.schramm@manjaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        Alexis Ballier <aballier@gentoo.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Nick Xie <nick@khadas.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Tobias Schramm <t.schramm@manjaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Emmanuel Vadot <manu@freebsd.org>
-Subject: [PATCH v4 0/2] Add support for the pine64 Pinebook Pro
-Date:   Wed,  4 Mar 2020 22:29:16 +0100
-Message-Id: <20200304212918.689936-1-t.schramm@manjaro.org>
+        by mail.police.gov.ua (Postfix) with ESMTP id 49C8220667E;
+        Wed,  4 Mar 2020 22:45:32 +0200 (EET)
+Received: from mail.police.gov.ua ([127.0.0.1])
+        by localhost (mail.police.gov.ua [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id PGBjKa-ovw0W; Wed,  4 Mar 2020 22:45:32 +0200 (EET)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.police.gov.ua (Postfix) with ESMTP id DECB12066BD;
+        Wed,  4 Mar 2020 22:45:31 +0200 (EET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.police.gov.ua DECB12066BD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=police.gov.ua;
+        s=1E8CAC48-C9E3-11E8-A516-E74BFA64F937; t=1583354732;
+        bh=yvy3hGVaQ9Yd2nXLul7+tIuVSXN+JavhznuMAA+D4YQ=;
+        h=MIME-Version:To:From:Date:Message-Id;
+        b=PEU5GzJE3SfsXsu6bO18CH+yla9wJZ7AnvU789pKtF39e/Rq2kj+UEwnsdl26pgBz
+         wdKSS9IUAUXXnKzUXYLNRcf4e18sARsKm4OnXtSoAbKPlwW7XF71l9J1rnktRel4xG
+         ByW02fOf0lPHoyZfjkeKaDt0gKp1SikX1Th7gf9nHAkhlPQHPL3hg/42za6jjD4WAQ
+         EUu2Kduv+sFI4VLgAZWATClR5XIg4eh+cDpC5SeqEPRegCGt23bVektewGIF1Ob6Ng
+         a4wQ8430aIGDuEna9wVdNn77WpaB5qGxHV7vcKEge3KwV2I9njOlMNdtb48YZKWl3F
+         /QcpYvCK5HWoQ==
+X-Virus-Scanned: amavisd-new at police.gov.ua
+Received: from mail.police.gov.ua ([127.0.0.1])
+        by localhost (mail.police.gov.ua [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 7ZaxgXtIDeYx; Wed,  4 Mar 2020 22:45:31 +0200 (EET)
+Received: from [100.120.66.224] (unknown [77.234.40.132])
+        by mail.police.gov.ua (Postfix) with ESMTPSA id 425E520668C;
+        Wed,  4 Mar 2020 22:45:24 +0200 (EET)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: Spende!
+To:     Recipients <kozachok@police.gov.ua>
+From:   "Mr. Franco" <kozachok@police.gov.ua>
+Date:   Wed, 04 Mar 2020 12:45:15 -0800
+Reply-To: mfrancofoundationfunding@gmail.com
+Message-Id: <20200304204525.425E520668C@mail.police.gov.ua>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset adds an initial dts and compatible string for the rk3399
-based Pinebook Pro 14" laptop.
+Hallo Ihr Lieben, ich habe eine Wohlt=E4tigkeitsspende f=FCr Sie. Ich warte=
+ auf Ihre schnelle Antwort, um Einzelheiten zu erfahren und meine Spende ei=
+nzufordern
+ =
 
-This is version 4 of the original patchset with more fixes proposed
-by Johan. Additionally the dt-bindings doc patch has been replaced by
-one from Emmanuel since that patch has already been reviewed by Rob.
+Mit freundlichen Gr=FC=DFen
+ =
 
-Contrary to the Rockchip BSP dts proposed mid January this dts has a
-power tree reflecting the actual schematic of the device and features
-full display, audio and WiFi/Bluetooth support.
-
-Changelog:
- v2: Incorporate review by Heiko
- v3: Add fixes suggested by Johan
- v4: More fixes by Johan, set data-role on typec connector,
-     use compatible doc patch by Emmanuel
-
-Emmanuel Vadot (1):
-  dt-bindings: Add doc for Pine64 Pinebook Pro
-
-Tobias Schramm (1):
-  arm64: dts: rockchip: Add initial support for Pinebook Pro
-
- .../devicetree/bindings/arm/rockchip.yaml     |    5 +
- arch/arm64/boot/dts/rockchip/Makefile         |    1 +
- .../boot/dts/rockchip/rk3399-pinebook-pro.dts | 1096 +++++++++++++++++
- 3 files changed, 1102 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-
--- 
-2.24.1
-
+Manuel Franco
