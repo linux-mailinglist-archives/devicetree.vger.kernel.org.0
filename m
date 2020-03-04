@@ -2,309 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44E031790B2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 13:59:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B48BA1790BE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 14:01:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387776AbgCDM7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 07:59:35 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:49461 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729175AbgCDM7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 07:59:35 -0500
-Received: from localhost (unknown [82.66.179.123])
-        (Authenticated sender: repk@triplefau.lt)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id AE2A1200007;
-        Wed,  4 Mar 2020 12:59:22 +0000 (UTC)
-Date:   Wed, 4 Mar 2020 14:08:11 +0100
-From:   Remi Pommarel <repk@triplefau.lt>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Yue Wang <yue.wang@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v6 6/7] phy: amlogic: Add Amlogic AXG PCIE PHY Driver
-Message-ID: <20200304130811.GP2248@voidbox>
-References: <20200123232943.10229-1-repk@triplefau.lt>
- <20200123232943.10229-7-repk@triplefau.lt>
- <14627e42-4894-6674-4911-3205ea8f5e55@ti.com>
+        id S1729256AbgCDNBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 08:01:46 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:40547 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729175AbgCDNBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 08:01:46 -0500
+Received: by mail-ot1-f67.google.com with SMTP id x19so1886147otp.7;
+        Wed, 04 Mar 2020 05:01:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=opM8Fy++1GyzDxf+EPvf/wCqRO4m4i5PhEYBUHthtOc=;
+        b=qMIHC9SBj3BlqcAS5KgiznPD16M9p5WxOiNy4VeLO13vJCIVFXBr6m/GrwrLi+q949
+         KhojqiXeDxYsjVvjqOAsWjP8YDLoHqC5k/47EkoQSLx6iqPFN/3/03Mjs5GZ/c4+orxr
+         IIchzrz7EkOmzHGk2LwMvtIlE0Sa6r1FDLHCbEJDCfYgUMpSz+8WSJE3Bf1d+qqWV6tj
+         y/b3Jmt9+9lAdlqRRP75O37FM3FUpKhvibPtpgm/wSxBWQGG6tw7fGN78Tg7tZ7vJmQS
+         M99dL19cdvMyIJnTPHl2qYfUKiGk+TrFNQl7giRo16PHimoHh2eP8zOdqX7hUe6A59TG
+         ilEg==
+X-Gm-Message-State: ANhLgQ34Jqu5/WzG0d1pUedwvH4EbLckvMLq+tjqUlP0f0MxmSzj+V3/
+        Qlw1/mCLU2CxB74M/us+ZDIirwAFH940pnA+GDQ=
+X-Google-Smtp-Source: ADFU+vsU78gBsz9h37aXui1CkbXyoggabSJPcX+7H2jLG4oKFbmh2MhIgJsb02nVhmQvV8gDrE04gu8SZZFHKiU3/u8=
+X-Received: by 2002:a9d:dc1:: with SMTP id 59mr2229894ots.250.1583326905599;
+ Wed, 04 Mar 2020 05:01:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <14627e42-4894-6674-4911-3205ea8f5e55@ti.com>
+References: <1580808174-11289-1-git-send-email-marian-cristian.rotariu.rb@bp.renesas.com>
+ <CAMuHMdVmsDVJRWp2uzVs0BKp-CjAcc6PS-1wBPT8J+UZr1O7CA@mail.gmail.com> <OSAPR01MB502876C5213B528A95A5B912AEE50@OSAPR01MB5028.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSAPR01MB502876C5213B528A95A5B912AEE50@OSAPR01MB5028.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 4 Mar 2020 14:01:34 +0100
+Message-ID: <CAMuHMdWarWksbXsAaGpG7wunGdNb7DA=EL2NPE4gNrS+P7zufg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: iwg22d-sodimm: Enable touchscreen
+To:     Marian-Cristian Rotariu 
+        <marian-cristian.rotariu.rb@bp.renesas.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 04, 2020 at 04:31:24PM +0530, Kishon Vijay Abraham I wrote:
-> 
-> 
-> On 24/01/20 4:59 am, Remi Pommarel wrote:
-> > This adds support for the PCI PHY found in the Amlogic AXG SoC Family.
-> > This will allow to mutualize code in pci-meson.c between AXG and G12A
-> > SoC.
-> > 
-> > This PHY also uses and chains an analog PHY, which on AXG platform
-> > is needed to have reliable PCIe communication.
-> 
-> Is the analog PHY an independent block and can be used with other PHYs?
+Hi Marian,
 
-It is documented as a separate block yes, but I think it is unlikely
-that it will be used with other PHYs than the PCIe or the MIPI one of
-the AXG SoC.
+On Wed, Mar 4, 2020 at 1:38 PM Marian-Cristian Rotariu
+<marian-cristian.rotariu.rb@bp.renesas.com> wrote:
+> > > --- a/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
+> > > +++ b/arch/arm/boot/dts/r8a7745-iwg22d-sodimm.dts
+> > > @@ -128,6 +128,47 @@
+> > >         status = "okay";
+> > >         clock-frequency = <400000>;
+> > >
+> > > +       stmpe811@44 {
+> > > +               compatible = "st,stmpe811";
+> >
+> > According to the DT bindings, this must be "st,stmpe-ts", but the example
+> > also uses "st,stmpe811"?
+>
+> The device is a MFD and the bindings doc is here:
+> Documentation/devicetree/bindings/mfd/stmpe.txt
 
-Thanks,
-Remi
+Thanks, I hadn't considered that file when looking for "st,stmpe811",
+due to the regex used in the document.
 
-> 
-> For the patch itself
-> Acked-by: Kishon Vijay Abraham I <kishon@ti.com>
-> 
-> Thanks
-> Kishon
-> > 
-> > Signed-off-by: Remi Pommarel <repk@triplefau.lt>
-> > ---
-> >  drivers/phy/amlogic/Kconfig              |  11 ++
-> >  drivers/phy/amlogic/Makefile             |   1 +
-> >  drivers/phy/amlogic/phy-meson-axg-pcie.c | 192 +++++++++++++++++++++++
-> >  3 files changed, 204 insertions(+)
-> >  create mode 100644 drivers/phy/amlogic/phy-meson-axg-pcie.c
-> > 
-> > diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-> > index 8c9cf2403591..71801e30d601 100644
-> > --- a/drivers/phy/amlogic/Kconfig
-> > +++ b/drivers/phy/amlogic/Kconfig
-> > @@ -60,6 +60,17 @@ config PHY_MESON_G12A_USB3_PCIE
-> >  	  in Meson G12A SoCs.
-> >  	  If unsure, say N.
-> >  
-> > +config PHY_MESON_AXG_PCIE
-> > +	tristate "Meson AXG PCIE PHY driver"
-> > +	default ARCH_MESON
-> > +	depends on OF && (ARCH_MESON || COMPILE_TEST)
-> > +	select GENERIC_PHY
-> > +	select REGMAP_MMIO
-> > +	help
-> > +	  Enable this to support the Meson MIPI + PCIE PHY found
-> > +	  in Meson AXG SoCs.
-> > +	  If unsure, say N.
-> > +
-> >  config PHY_MESON_AXG_MIPI_PCIE_ANALOG
-> >  	tristate "Meson AXG MIPI + PCIE analog PHY driver"
-> >  	default ARCH_MESON
-> > diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-> > index 0aecf92d796a..e2baa133f7af 100644
-> > --- a/drivers/phy/amlogic/Makefile
-> > +++ b/drivers/phy/amlogic/Makefile
-> > @@ -4,4 +4,5 @@ obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
-> >  obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
-> >  obj-$(CONFIG_PHY_MESON_GXL_USB3)		+= phy-meson-gxl-usb3.o
-> >  obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)		+= phy-meson-g12a-usb3-pcie.o
-> > +obj-$(CONFIG_PHY_MESON_AXG_PCIE)		+= phy-meson-axg-pcie.o
-> >  obj-$(CONFIG_PHY_MESON_AXG_MIPI_PCIE_ANALOG)	+= phy-meson-axg-mipi-pcie-analog.o
-> > diff --git a/drivers/phy/amlogic/phy-meson-axg-pcie.c b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> > new file mode 100644
-> > index 000000000000..377ed0dcd0d9
-> > --- /dev/null
-> > +++ b/drivers/phy/amlogic/phy-meson-axg-pcie.c
-> > @@ -0,0 +1,192 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Amlogic AXG PCIE PHY driver
-> > + *
-> > + * Copyright (C) 2020 Remi Pommarel <repk@triplefau.lt>
-> > + */
-> > +#include <linux/module.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/reset.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/bitfield.h>
-> > +#include <dt-bindings/phy/phy.h>
-> > +
-> > +#define MESON_PCIE_REG0 0x00
-> > +#define		MESON_PCIE_COMMON_CLK	BIT(4)
-> > +#define		MESON_PCIE_PORT_SEL	GENMASK(3, 2)
-> > +#define		MESON_PCIE_CLK		BIT(1)
-> > +#define		MESON_PCIE_POWERDOWN	BIT(0)
-> > +
-> > +#define MESON_PCIE_TWO_X1		FIELD_PREP(MESON_PCIE_PORT_SEL, 0x3)
-> > +#define MESON_PCIE_COMMON_REF_CLK	FIELD_PREP(MESON_PCIE_COMMON_CLK, 0x1)
-> > +#define MESON_PCIE_PHY_INIT		(MESON_PCIE_TWO_X1 |		\
-> > +					 MESON_PCIE_COMMON_REF_CLK)
-> > +#define MESON_PCIE_RESET_DELAY		500
-> > +
-> > +struct phy_axg_pcie_priv {
-> > +	struct phy *phy;
-> > +	struct phy *analog;
-> > +	struct regmap *regmap;
-> > +	struct reset_control *reset;
-> > +};
-> > +
-> > +static const struct regmap_config phy_axg_pcie_regmap_conf = {
-> > +	.reg_bits = 8,
-> > +	.val_bits = 32,
-> > +	.reg_stride = 4,
-> > +	.max_register = MESON_PCIE_REG0,
-> > +};
-> > +
-> > +static int phy_axg_pcie_power_on(struct phy *phy)
-> > +{
-> > +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
-> > +	int ret;
-> > +
-> > +	ret = phy_power_on(priv->analog);
-> > +	if (ret != 0)
-> > +		return ret;
-> > +
-> > +	regmap_update_bits(priv->regmap, MESON_PCIE_REG0,
-> > +			   MESON_PCIE_POWERDOWN, 0);
-> > +	return 0;
-> > +}
-> > +
-> > +static int phy_axg_pcie_power_off(struct phy *phy)
-> > +{
-> > +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
-> > +	int ret;
-> > +
-> > +	ret = phy_power_off(priv->analog);
-> > +	if (ret != 0)
-> > +		return ret;
-> > +
-> > +	regmap_update_bits(priv->regmap, MESON_PCIE_REG0,
-> > +			   MESON_PCIE_POWERDOWN, 1);
-> > +	return 0;
-> > +}
-> > +
-> > +static int phy_axg_pcie_init(struct phy *phy)
-> > +{
-> > +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
-> > +	int ret;
-> > +
-> > +	ret = phy_init(priv->analog);
-> > +	if (ret != 0)
-> > +		return ret;
-> > +
-> > +	regmap_write(priv->regmap, MESON_PCIE_REG0, MESON_PCIE_PHY_INIT);
-> > +	return reset_control_reset(priv->reset);
-> > +}
-> > +
-> > +static int phy_axg_pcie_exit(struct phy *phy)
-> > +{
-> > +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
-> > +	int ret;
-> > +
-> > +	ret = phy_exit(priv->analog);
-> > +	if (ret != 0)
-> > +		return ret;
-> > +
-> > +	return reset_control_reset(priv->reset);
-> > +}
-> > +
-> > +static int phy_axg_pcie_reset(struct phy *phy)
-> > +{
-> > +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
-> > +	int ret = 0;
-> > +
-> > +	ret = phy_reset(priv->analog);
-> > +	if (ret != 0)
-> > +		goto out;
-> > +
-> > +	ret = reset_control_assert(priv->reset);
-> > +	if (ret != 0)
-> > +		goto out;
-> > +	udelay(MESON_PCIE_RESET_DELAY);
-> > +
-> > +	ret = reset_control_deassert(priv->reset);
-> > +	if (ret != 0)
-> > +		goto out;
-> > +	udelay(MESON_PCIE_RESET_DELAY);
-> > +
-> > +out:
-> > +	return ret;
-> > +}
-> > +
-> > +static const struct phy_ops phy_axg_pcie_ops = {
-> > +	.init = phy_axg_pcie_init,
-> > +	.exit = phy_axg_pcie_exit,
-> > +	.power_on = phy_axg_pcie_power_on,
-> > +	.power_off = phy_axg_pcie_power_off,
-> > +	.reset = phy_axg_pcie_reset,
-> > +	.owner = THIS_MODULE,
-> > +};
-> > +
-> > +static int phy_axg_pcie_probe(struct platform_device *pdev)
-> > +{
-> > +	struct phy_provider *pphy;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct phy_axg_pcie_priv *priv;
-> > +	struct device_node *np = dev->of_node;
-> > +	struct resource *res;
-> > +	void __iomem *base;
-> > +	int ret;
-> > +
-> > +	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	priv->phy = devm_phy_create(dev, np, &phy_axg_pcie_ops);
-> > +	if (IS_ERR(priv->phy)) {
-> > +		ret = PTR_ERR(priv->phy);
-> > +		if (ret != -EPROBE_DEFER)
-> > +			dev_err(dev, "failed to create PHY\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +	base = devm_ioremap_resource(dev, res);
-> > +	if (IS_ERR(base))
-> > +		return PTR_ERR(base);
-> > +
-> > +	priv->regmap = devm_regmap_init_mmio(dev, base,
-> > +					     &phy_axg_pcie_regmap_conf);
-> > +	if (IS_ERR(priv->regmap))
-> > +		return PTR_ERR(priv->regmap);
-> > +
-> > +	priv->reset = devm_reset_control_array_get(dev, false, false);
-> > +	if (IS_ERR(priv->reset))
-> > +		return PTR_ERR(priv->reset);
-> > +
-> > +	priv->analog = devm_phy_get(dev, "analog");
-> > +	if (IS_ERR(priv->analog))
-> > +		return PTR_ERR(priv->analog);
-> > +
-> > +	phy_set_drvdata(priv->phy, priv);
-> > +	dev_set_drvdata(dev, priv);
-> > +	pphy = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> > +
-> > +	return PTR_ERR_OR_ZERO(pphy);
-> > +}
-> > +
-> > +static const struct of_device_id phy_axg_pcie_of_match[] = {
-> > +	{
-> > +		.compatible = "amlogic,axg-pcie-phy",
-> > +	},
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, phy_axg_pcie_of_match);
-> > +
-> > +static struct platform_driver phy_axg_pcie_driver = {
-> > +	.probe = phy_axg_pcie_probe,
-> > +	.driver = {
-> > +		.name = "phy-axg-pcie",
-> > +		.of_match_table = phy_axg_pcie_of_match,
-> > +	},
-> > +};
-> > +module_platform_driver(phy_axg_pcie_driver);
-> > +
-> > +MODULE_AUTHOR("Remi Pommarel <repk@triplefau.lt>");
-> > +MODULE_DESCRIPTION("Amlogic AXG PCIE PHY driver");
-> > +MODULE_LICENSE("GPL v2");
-> > 
+> You need to add its specific function as a child node of the mfd dt node. In our
+> case it is a touchscreen:
+> Documentation/devicetree/bindings/input/touchscreen/stmpe.txt
+
+OK.
+
+> > > +               reg = <0x44>;
+> > > +               interrupt-parent = <&gpio4>;
+> > > +               interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> >
+> > This should be "<4 IRQ_TYPE_LEVEL_LOW>", to refer to GP4_4.
+>
+> Indeed, I will fix it in v2.
+>
+> >
+> > > +               irq-gpio = <&gpio4 4 IRQ_TYPE_LEVEL_LOW>;
+> >
+> > "irq-gpio" is not documented in the DT bindings.
+>
+> See "Documentation/devicetree/bindings/mfd/stmpe.txt"
+
+I believe you cannot use the same GPIO as an interrupt and as a GPIO at
+the same time.  Don't you get a -EBUSY somewhere?
+Perhaps it worked due to the typo above?
+
+As both interrupts and irq-gpio are documented to be optional
+properties, probably they are mutually exclusive, and you can drop
+irq-gpio?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
