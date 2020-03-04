@@ -2,142 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DDBA17928A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 15:41:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2A781792A5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2020 15:44:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388119AbgCDOlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 09:41:20 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:63990 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388109AbgCDOlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 09:41:19 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 024EWR1h024084;
-        Wed, 4 Mar 2020 09:41:18 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 2yfnrapsu9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Mar 2020 09:41:17 -0500
-Received: from SCSQMBX10.ad.analog.com (scsqmbx10.ad.analog.com [10.77.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 024EfGrR041647
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Wed, 4 Mar 2020 09:41:16 -0500
-Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Wed, 4 Mar 2020
- 06:41:15 -0800
-Received: from zeus.spd.analog.com (10.64.82.11) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Wed, 4 Mar 2020 06:41:14 -0800
-Received: from saturn.ad.analog.com ([10.48.65.112])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 024Eew6o008599;
-        Wed, 4 Mar 2020 09:41:11 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v6 8/8] dt-bindings: iio: adc: add bindings doc for AD9467 ADC
-Date:   Wed, 4 Mar 2020 16:44:01 +0200
-Message-ID: <20200304144401.17794-9-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200304144401.17794-1-alexandru.ardelean@analog.com>
-References: <20200304144401.17794-1-alexandru.ardelean@analog.com>
+        id S1726650AbgCDOo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 09:44:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46356 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726561AbgCDOo0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Mar 2020 09:44:26 -0500
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2DAD820838;
+        Wed,  4 Mar 2020 14:44:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583333065;
+        bh=uKiNLVFgpNoNxtlTI4l7WNRrAcGQ8h1y7f4ZG2yWftA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nJckBJpbRQtZMzZeaJd5QmQZ7oiEodMkvUBWz5Os6ddrqiyM0x8BnbY7S0N3WzduP
+         q77RTBF4uRaIN9OMHIhBr7Ahj2qLXBFvQheDd/6aPDH9XK2qNkbXnNUVDOlhZ72Kzi
+         E8BPm5mrA196q2PwdPFJj74Pn2fZ++abTITczgd0=
+Received: by mail-qk1-f177.google.com with SMTP id e11so1793208qkg.9;
+        Wed, 04 Mar 2020 06:44:25 -0800 (PST)
+X-Gm-Message-State: ANhLgQ28EiWT2G11Nx3j7eu11fqsurav8ATCrtz+rP64TISSEU2MrrKC
+        4+f8MxlfDjwnKo+7OP6X3oolevXZlEkKj8+4GQ==
+X-Google-Smtp-Source: ADFU+vu33UNp7iWZzTLTq5f0V0ldGIAyWHjMkXzB7UHEeMuowhUTqDVhlImIbXJ1QIz+xFMC6YKU9hGXrvWoCZ9XfpE=
+X-Received: by 2002:a37:2cc6:: with SMTP id s189mr1679888qkh.223.1583333064226;
+ Wed, 04 Mar 2020 06:44:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-03-04_05:2020-03-04,2020-03-04 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 impostorscore=0
- malwarescore=0 clxscore=1015 spamscore=0 phishscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2003040110
+References: <20200303134351.22270-1-geert+renesas@glider.be> <20200303134351.22270-3-geert+renesas@glider.be>
+In-Reply-To: <20200303134351.22270-3-geert+renesas@glider.be>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 4 Mar 2020 08:44:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJKpK-6Ud_MY6LqS5L0iq3ewBjdc+mJ15ig9jmYN6FuHA@mail.gmail.com>
+Message-ID: <CAL_JsqJKpK-6Ud_MY6LqS5L0iq3ewBjdc+mJ15ig9jmYN6FuHA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: serial: Convert slave-device bindings to json-schema
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds the binding doc for the AD9467 ADC.
+On Tue, Mar 3, 2020 at 7:43 AM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> Convert the serial slave-device Device Tree binding documentation to
+> json-schema, and incorporate it into the generic serial bindings.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../devicetree/bindings/serial/serial.yaml    | 53 +++++++++++++++++++
+>  .../bindings/serial/slave-device.txt          | 45 ----------------
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 54 insertions(+), 46 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/serial/slave-device.txt
+>
+> diff --git a/Documentation/devicetree/bindings/serial/serial.yaml b/Documentation/devicetree/bindings/serial/serial.yaml
+> index d408335319f00215..7381966449b62deb 100644
+> --- a/Documentation/devicetree/bindings/serial/serial.yaml
+> +++ b/Documentation/devicetree/bindings/serial/serial.yaml
+> @@ -7,6 +7,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>  title: Serial Interface Generic DT Bindings
+>
+>  maintainers:
+> +  - Rob Herring <robh@kernel.org>
+>    - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>
+>  description:
+> @@ -59,6 +60,45 @@ properties:
+>        "rts-gpios" above, unless support is provided to switch between modes
+>        dynamically.
+>
+> +patternProperties:
+> +  "^(bluetooth|ethernet|gnss|nfc|wifi)$":
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/adc/adi,ad9467.yaml          | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
+A bit fragile, but okay. There's also some serial attached board
+control micro-controllers. See the Zodiac i.MX board "rave-sp" node.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-new file mode 100644
-index 000000000000..c4f57fa6aad1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad9467.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD9467 High-Speed ADC
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+  - Alexandru Ardelean <alexandru.ardelean@analog.com>
-+
-+description: |
-+  The AD9467 is a 16-bit, monolithic, IF sampling analog-to-digital
-+  converter (ADC).
-+
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/AD9467.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad9467
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: adc-clk
-+
-+  powerdown-gpios:
-+    description:
-+      Pin that controls the powerdown mode of the device.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description:
-+      Reset pin for the device.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+          compatible = "adi,ad9467";
-+          reg = <0>;
-+          clocks = <&adc_clk>;
-+          clock-names = "adc-clk";
-+        };
-+    };
-+...
--- 
-2.20.1
+The only other way I've come up to handle this is:
 
+".*":
+  if:
+    type: object
+  then:
+    ...
+
+> +    type: object
+> +
+> +    description:
+> +      Serial attached devices shall be a child node of the host UART device the
+> +      slave device is attached to. It is expected that the attached device is
+> +      the only child node of the UART device. The slave device node name shall
+> +      reflect the generic type of device for the node.
+> +
+> +    properties:
+> +      compatible:
+> +        description:
+> +          Compatible of the device connnected to the serial port.
+
+typo
+
+> +
+> +      max-speed:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The maximum baud rate the device operates at. This should only be
+> +          present if the maximum is less than the slave device can support. For
+> +          example, a particular board has some signal quality issue or the host
+> +          processor can't support higher baud rates.
+> +
+> +      current-speed:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          The current baud rate the device operates at. This should only be
+> +          present in case a driver has no chance to know the baud rate of the
+> +          slave device.
+> +          Examples:
+> +            * device supports auto-baud
+> +            * the rate is setup by a bootloader and there is no way to reset
+> +              the device
+> +            * device baud rate is configured by its firmware but there is no
+> +              way to request the actual settings
+> +
+> +    required:
+> +      - compatible
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> @@ -93,3 +133,16 @@ examples:
+>              power-domains = <&pd_a3sp>;
+>              uart-has-rtscts;
+>      };
+> +
+> +  - |
+> +    serial@1234 {
+> +            compatible = "ns16550a";
+> +            reg = <0x1234 0x20>;
+> +            interrupts = <1>;
+> +
+> +            bluetooth {
+> +                    compatible = "brcm,bcm43341-bt";
+> +                    interrupt-parent = <&gpio>;
+> +                    interrupts = <10>;
+> +            };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/serial/slave-device.txt b/Documentation/devicetree/bindings/serial/slave-device.txt
+> deleted file mode 100644
+> index 40110e0196209fde..0000000000000000
+> --- a/Documentation/devicetree/bindings/serial/slave-device.txt
+> +++ /dev/null
+> @@ -1,45 +0,0 @@
+> -Serial Slave Device DT binding
+> -
+> -This documents the binding structure and common properties for serial
+> -attached devices. Common examples include Bluetooth, WiFi, NFC and GPS
+> -devices.
+> -
+> -Serial attached devices shall be a child node of the host UART device the
+> -slave device is attached to. It is expected that the attached device is
+> -the only child node of the UART device. The slave device node name shall
+> -reflect the generic type of device for the node.
+> -
+> -Required Properties:
+> -
+> -- compatible   : A string reflecting the vendor and specific device the node
+> -                 represents.
+> -
+> -Optional Properties:
+> -
+> -- max-speed    : The maximum baud rate the device operates at. This should
+> -                 only be present if the maximum is less than the slave device
+> -                 can support. For example, a particular board has some signal
+> -                 quality issue or the host processor can't support higher
+> -                 baud rates.
+> -- current-speed        : The current baud rate the device operates at. This should
+> -                 only be present in case a driver has no chance to know
+> -                 the baud rate of the slave device.
+> -                 Examples:
+> -                   * device supports auto-baud
+> -                   * the rate is setup by a bootloader and there is no
+> -                     way to reset the device
+> -                   * device baud rate is configured by its firmware but
+> -                     there is no way to request the actual settings
+> -
+> -Example:
+> -
+> -serial@1234 {
+> -       compatible = "ns16550a";
+> -       interrupts = <1>;
+> -
+> -       bluetooth {
+> -               compatible = "brcm,bcm43341-bt";
+> -               interrupt-parent = <&gpio>;
+> -               interrupts = <10>;
+> -       };
+> -};
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 59c14ee9a917a794..5f5d074c7b3927a5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15034,7 +15034,7 @@ SERIAL DEVICE BUS
+>  M:     Rob Herring <robh@kernel.org>
+>  L:     linux-serial@vger.kernel.org
+>  S:     Maintained
+> -F:     Documentation/devicetree/bindings/serial/slave-device.txt
+> +F:     Documentation/devicetree/bindings/serial/serial.yaml
+>  F:     drivers/tty/serdev/
+>  F:     include/linux/serdev.h
+>
+> --
+> 2.17.1
+>
