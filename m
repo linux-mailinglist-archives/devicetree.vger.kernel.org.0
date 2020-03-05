@@ -2,208 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 512CE179CA9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2020 01:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A77EB179CF5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2020 01:49:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388565AbgCEALh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 19:11:37 -0500
-Received: from mail27.static.mailgun.info ([104.130.122.27]:60099 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388554AbgCEALh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 19:11:37 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1583367097; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=60GY4LcYmcTFYPq9bYJ8yYXyuMgUxQzHcHWRRrqPOew=; b=LHdRYry4euqZq0XUzqOQjll0U7JOWGtWe5EKSCbzZ67IR/j0t1Sp3F/cRdqBK7IbmU9/QacL
- oAUaPZoweHHq8wr2EsjLnroKUMv8iiwD5FqG1nkRyFgB3SQYyj7eIz6UguUY+x/Y38zLhpGq
- FRqZloNbtE+rL5wLhvDXwdMaOHk=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e6043b6.7f59f7527dc0-smtp-out-n02;
- Thu, 05 Mar 2020 00:11:34 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0EC00C447AA; Thu,  5 Mar 2020 00:11:33 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from displaysanity13-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: varar)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0DBEEC4479F;
-        Thu,  5 Mar 2020 00:11:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0DBEEC4479F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=varar@codeaurora.org
-From:   Vara Reddy <varar@codeaurora.org>
-To:     freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, seanpaul@chromium.org
-Cc:     Jeykumar Sankaran <jsanka@codeaurora.org>, robdclark@gmail.com,
-        abhinavk@codeaurora.org, nganji@codeaurora.org,
-        hoegsberg@google.com, aravindh@codeaurora.org,
-        chandanu@codeaurora.org, dri-devel@lists.freedesktop.org,
-        Vara Reddy <varar@codeaurora.org>
-Subject: [DPU PATCH v4 5/5] drm/msm/dpu: add display port support in DPU
-Date:   Wed,  4 Mar 2020 16:10:28 -0800
-Message-Id: <1583367028-19979-6-git-send-email-varar@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1583367028-19979-1-git-send-email-varar@codeaurora.org>
-References: <1583367028-19979-1-git-send-email-varar@codeaurora.org>
+        id S1725807AbgCEAtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Mar 2020 19:49:13 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:36531 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725797AbgCEAtM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 19:49:12 -0500
+X-UUID: 6a35557ffad6498e860e9d885c29fc43-20200305
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Dt+NjDKJnvFkl8R5AeUjlcgnglhu+f9HBOgNSX0bmEE=;
+        b=Xwj1loR4Nq+7Sw402bvRcCWVaxghwi193wHlRv+MIMIqTepRD0jaBRlF5spKuX1dfN/9eybs2Zq1+/B4xrizQ6FY0O+OqjuwxoBPWbgk3EMfUjbqM6NwzD1MNP/FICR1hPoVYC3lWMFV5jWpTsupB8G/AUN03rZz6F2+wxLuV70=;
+X-UUID: 6a35557ffad6498e860e9d885c29fc43-20200305
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <dennis-yc.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1851158184; Thu, 05 Mar 2020 08:49:04 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 5 Mar 2020 08:47:54 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 5 Mar 2020 08:48:18 +0800
+Message-ID: <1583369342.28558.0.camel@mtkswgap22>
+Subject: Re: [PATCH v4 11/13] soc: mediatek: cmdq: add jump function
+From:   Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        HS Liao <hs.liao@mediatek.com>
+Date:   Thu, 5 Mar 2020 08:49:02 +0800
+In-Reply-To: <1583290652.1062.2.camel@mtksdaap41>
+References: <1583233125-7827-1-git-send-email-dennis-yc.hsieh@mediatek.com>
+         <1583233125-7827-12-git-send-email-dennis-yc.hsieh@mediatek.com>
+         <1583290652.1062.2.camel@mtksdaap41>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jeykumar Sankaran <jsanka@codeaurora.org>
+SGkgQ0ssDQoNClRoYW5rcyBmb3IgeW91ciBjb21tZW50Lg0KDQpPbiBXZWQsIDIwMjAtMDMtMDQg
+YXQgMTA6NTcgKzA4MDAsIENLIEh1IHdyb3RlOg0KPiBIaSwgRGVubmlzOg0KPiANCj4gT24gVHVl
+LCAyMDIwLTAzLTAzIGF0IDE4OjU4ICswODAwLCBEZW5uaXMgWUMgSHNpZWggd3JvdGU6DQo+ID4g
+QWRkIGp1bXAgZnVuY3Rpb24gc28gdGhhdCBjbGllbnQgY2FuIGp1bXAgdG8gYW55IGFkZHJlc3Mg
+d2hpY2gNCj4gPiBjb250YWlucyBpbnN0cnVjdGlvbi4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBEZW5uaXMgWUMgSHNpZWggPGRlbm5pcy15Yy5oc2llaEBtZWRpYXRlay5jb20+DQo+ID4gLS0t
+DQo+ID4gIGRyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jIHwgMTIgKysrKysr
+KysrKysrDQo+ID4gIGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmggIHwgMTEg
+KysrKysrKysrKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspDQo+ID4g
+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5j
+IGIvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVyLmMNCj4gPiBpbmRleCA1OWJj
+MTE2NGI0MTEuLmYyN2M2NzAzNDg4MCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3NvYy9tZWRp
+YXRlay9tdGstY21kcS1oZWxwZXIuYw0KPiA+ICsrKyBiL2RyaXZlcnMvc29jL21lZGlhdGVrL210
+ay1jbWRxLWhlbHBlci5jDQo+ID4gQEAgLTM3Miw2ICszNzIsMTggQEAgaW50IGNtZHFfcGt0X2Fz
+c2lnbihzdHJ1Y3QgY21kcV9wa3QgKnBrdCwgdTE2IHJlZ19pZHgsIHUzMiB2YWx1ZSkNCj4gPiAg
+fQ0KPiA+ICBFWFBPUlRfU1lNQk9MKGNtZHFfcGt0X2Fzc2lnbik7DQo+ID4gIA0KPiA+ICtpbnQg
+Y21kcV9wa3RfanVtcChzdHJ1Y3QgY21kcV9wa3QgKnBrdCwgZG1hX2FkZHJfdCBhZGRyKQ0KPiA+
+ICt7DQo+ID4gKwlzdHJ1Y3QgY21kcV9pbnN0cnVjdGlvbiBpbnN0ID0geyB7MH0gfTsNCj4gPiAr
+DQo+ID4gKwlpbnN0Lm9wID0gQ01EUV9DT0RFX0pVTVA7DQo+ID4gKwlpbnN0Lm9mZnNldCA9IDE7
+DQo+IA0KPiBTeW1ib2xpemUgdGhlIHZhbHVlICcxJy4NCg0KbWlzcyBpbiB2NCwgd2lsbCBhZGQg
+aW4gbmV4dCB2ZXJzaW9uLCB0aGFua3MuDQoNCg0KUmVnYXJkcywNCkRlbm5pcw0KDQoNCj4gDQo+
+IFJlZ2FyZHMsDQo+IENLDQo+IA0KPiA+ICsJaW5zdC52YWx1ZSA9IGFkZHIgPj4NCj4gPiArCQlj
+bWRxX21ib3hfc2hpZnQoKChzdHJ1Y3QgY21kcV9jbGllbnQgKilwa3QtPmNsKS0+Y2hhbik7DQo+
+ID4gKwlyZXR1cm4gY21kcV9wa3RfYXBwZW5kX2NvbW1hbmQocGt0LCBpbnN0KTsNCj4gPiArfQ0K
+PiA+ICtFWFBPUlRfU1lNQk9MKGNtZHFfcGt0X2p1bXApOw0KPiA+ICsNCj4gPiAgaW50IGNtZHFf
+cGt0X2ZpbmFsaXplKHN0cnVjdCBjbWRxX3BrdCAqcGt0KQ0KPiA+ICB7DQo+ID4gIAlzdHJ1Y3Qg
+Y21kcV9pbnN0cnVjdGlvbiBpbnN0ID0geyB7MH0gfTsNCj4gPiBkaWZmIC0tZ2l0IGEvaW5jbHVk
+ZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaCBiL2luY2x1ZGUvbGludXgvc29jL21lZGlh
+dGVrL210ay1jbWRxLmgNCj4gPiBpbmRleCA5OWU3NzE1NWY5NjcuLjFhNmM1NmYzYmVjMSAxMDA2
+NDQNCj4gPiAtLS0gYS9pbmNsdWRlL2xpbnV4L3NvYy9tZWRpYXRlay9tdGstY21kcS5oDQo+ID4g
+KysrIGIvaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaA0KPiA+IEBAIC0yMTMs
+NiArMjEzLDE3IEBAIGludCBjbWRxX3BrdF9wb2xsX21hc2soc3RydWN0IGNtZHFfcGt0ICpwa3Qs
+IHU4IHN1YnN5cywNCj4gPiAgICovDQo+ID4gIGludCBjbWRxX3BrdF9hc3NpZ24oc3RydWN0IGNt
+ZHFfcGt0ICpwa3QsIHUxNiByZWdfaWR4LCB1MzIgdmFsdWUpOw0KPiA+ICANCj4gPiArLyoqDQo+
+ID4gKyAqIGNtZHFfcGt0X2p1bXAoKSAtIEFwcGVuZCBqdW1wIGNvbW1hbmQgdG8gdGhlIENNRFEg
+cGFja2V0LCBhc2sgR0NFDQo+ID4gKyAqCQkgICAgIHRvIGV4ZWN1dGUgYW4gaW5zdHJ1Y3Rpb24g
+dGhhdCBjaGFuZ2UgY3VycmVudCB0aHJlYWQgUEMgdG8NCj4gPiArICoJCSAgICAgYSBwaHlzaWNh
+bCBhZGRyZXNzIHdoaWNoIHNob3VsZCBjb250YWlucyBtb3JlIGluc3RydWN0aW9uLg0KPiA+ICsg
+KiBAcGt0OiAgICAgICAgdGhlIENNRFEgcGFja2V0DQo+ID4gKyAqIEBhZGRyOiAgICAgICBwaHlz
+aWNhbCBhZGRyZXNzIG9mIHRhcmdldCBpbnN0cnVjdGlvbiBidWZmZXINCj4gPiArICoNCj4gPiAr
+ICogUmV0dXJuOiAwIGZvciBzdWNjZXNzOyBlbHNlIHRoZSBlcnJvciBjb2RlIGlzIHJldHVybmVk
+DQo+ID4gKyAqLw0KPiA+ICtpbnQgY21kcV9wa3RfanVtcChzdHJ1Y3QgY21kcV9wa3QgKnBrdCwg
+ZG1hX2FkZHJfdCBhZGRyKTsNCj4gPiArDQo+ID4gIC8qKg0KPiA+ICAgKiBjbWRxX3BrdF9maW5h
+bGl6ZSgpIC0gQXBwZW5kIEVPQyBhbmQganVtcCBjb21tYW5kIHRvIHBrdC4NCj4gPiAgICogQHBr
+dDoJdGhlIENNRFEgcGFja2V0DQo+IA0KPiANCg0K
 
-Add display port support in DPU by creating hooks
-for DP encoder enumeration and encoder mode
-initialization.
-
-This change is based on the Snapdragon Display port
-driver changes[1].
-
-changes in v2:
-	- rebase on [2] (Sean Paul)
-	- remove unwanted error checks and
-	  switch cases (Jordan Crouse)
-
-[1] https://lwn.net/Articles/768265/
-[2] https://lkml.org/lkml/2018/11/17/87
-
-changes in V3:
--- Moved this change as part of the DP driver changes.
--- Addressed compilation issues on the latest code base.
-
-Signed-off-by: Jeykumar Sankaran <jsanka@codeaurora.org>
-Signed-off-by: Chandan Uddaraju <chandanu@codeaurora.org>
-Signed-off-by: Vara Reddy <varar@codeaurora.org>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  8 ++--
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     | 65 ++++++++++++++++++++++++-----
- 2 files changed, 58 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-index b063243..7c95f72 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
-@@ -2025,7 +2025,7 @@ static int dpu_encoder_setup_display(struct dpu_encoder_virt *dpu_enc,
- {
- 	int ret = 0;
- 	int i = 0;
--	enum dpu_intf_type intf_type;
-+	enum dpu_intf_type intf_type = INTF_NONE;
- 	struct dpu_enc_phys_init_params phys_params;
- 
- 	if (!dpu_enc) {
-@@ -2047,9 +2047,9 @@ static int dpu_encoder_setup_display(struct dpu_encoder_virt *dpu_enc,
- 	case DRM_MODE_ENCODER_DSI:
- 		intf_type = INTF_DSI;
- 		break;
--	default:
--		DPU_ERROR_ENC(dpu_enc, "unsupported display interface type\n");
--		return -EINVAL;
-+	case DRM_MODE_ENCODER_TMDS:
-+		intf_type = INTF_DP;
-+		break;
- 	}
- 
- 	WARN_ON(disp_info->num_of_h_tiles < 1);
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-index cb08faf..4568706 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-@@ -421,6 +421,33 @@ static int _dpu_kms_initialize_dsi(struct drm_device *dev,
- 	return rc;
- }
- 
-+static int _dpu_kms_initialize_displayport(struct drm_device *dev,
-+					    struct msm_drm_private *priv,
-+					    struct dpu_kms *dpu_kms)
-+{
-+	struct drm_encoder *encoder = NULL;
-+	int rc = 0;
-+
-+	if (!priv->dp)
-+		return rc;
-+
-+	encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_TMDS);
-+	if (IS_ERR(encoder)) {
-+		DPU_ERROR("encoder init failed for dsi display\n");
-+		return PTR_ERR(encoder);
-+	}
-+
-+	rc = msm_dp_modeset_init(priv->dp, dev, encoder);
-+	if (rc) {
-+		DPU_ERROR("modeset_init failed for DP, rc = %d\n", rc);
-+		drm_encoder_cleanup(encoder);
-+		return rc;
-+	}
-+
-+	priv->encoders[priv->num_encoders++] = encoder;
-+	return rc;
-+}
-+
- /**
-  * _dpu_kms_setup_displays - create encoders, bridges and connectors
-  *                           for underlying displays
-@@ -433,12 +460,21 @@ static int _dpu_kms_setup_displays(struct drm_device *dev,
- 				    struct msm_drm_private *priv,
- 				    struct dpu_kms *dpu_kms)
- {
--	/**
--	 * Extend this function to initialize other
--	 * types of displays
--	 */
-+	int rc = 0;
-+
-+	rc = _dpu_kms_initialize_dsi(dev, priv, dpu_kms);
-+	if (rc) {
-+		DPU_ERROR("initialize_dsi failed, rc = %d\n", rc);
-+		return rc;
-+	}
- 
--	return _dpu_kms_initialize_dsi(dev, priv, dpu_kms);
-+	rc = _dpu_kms_initialize_displayport(dev, priv, dpu_kms);
-+	if (rc) {
-+		DPU_ERROR("initialize_DP failed, rc = %d\n", rc);
-+		return rc;
-+	}
-+
-+	return rc;
- }
- 
- static void _dpu_kms_drm_obj_destroy(struct dpu_kms *dpu_kms)
-@@ -626,13 +662,20 @@ static void _dpu_kms_set_encoder_mode(struct msm_kms *kms,
- 	info.capabilities = cmd_mode ? MSM_DISPLAY_CAP_CMD_MODE :
- 			MSM_DISPLAY_CAP_VID_MODE;
- 
--	/* TODO: No support for DSI swap */
--	for (i = 0; i < ARRAY_SIZE(priv->dsi); i++) {
--		if (priv->dsi[i]) {
--			info.h_tile_instance[info.num_of_h_tiles] = i;
--			info.num_of_h_tiles++;
-+	switch (info.intf_type) {
-+	case DRM_MODE_ENCODER_DSI:
-+		/* TODO: No support for DSI swap */
-+		for (i = 0; i < ARRAY_SIZE(priv->dsi); i++) {
-+			if (priv->dsi[i]) {
-+				info.h_tile_instance[info.num_of_h_tiles] = i;
-+				info.num_of_h_tiles++;
-+			}
- 		}
--	}
-+		break;
-+	case DRM_MODE_ENCODER_TMDS:
-+		info.num_of_h_tiles = 1;
-+		break;
-+	};
- 
- 	rc = dpu_encoder_setup(encoder->dev, encoder, &info);
- 	if (rc)
--- 
-$(echo -e 'The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project')
