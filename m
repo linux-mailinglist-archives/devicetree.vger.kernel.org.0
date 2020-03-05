@@ -2,137 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDCB117A352
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2020 11:44:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD17E17A37D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2020 11:55:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726049AbgCEKoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Mar 2020 05:44:30 -0500
-Received: from mx2.suse.de ([195.135.220.15]:45842 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725912AbgCEKo3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Mar 2020 05:44:29 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id BEF25B239;
-        Thu,  5 Mar 2020 10:44:26 +0000 (UTC)
-Message-ID: <f2ec22160ac86aec8d252ade7d6eb8789777cc42.camel@suse.de>
-Subject: Re: [PATCH] ARM: dts: bcm283x: Use firmware PM driver for V3D
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Eric Anholt <eric@anholt.net>
-Cc:     devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        wahrenst@gmx.net
-Date:   Thu, 05 Mar 2020 11:44:23 +0100
-In-Reply-To: <d3d40174-9c08-f42f-e088-08e23c2dc029@i2se.com>
-References: <20200303173217.3987-1-nsaenzjulienne@suse.de>
-         <736f0c59-352b-03b2-f77f-bfc22171b3fb@i2se.com>
-         <03fcb1e2bc7f3ff389b6dfbf3964e159a93ae835.camel@suse.de>
-         <d3d40174-9c08-f42f-e088-08e23c2dc029@i2se.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-1e/ycMxHHlpwCahVXF7n"
-User-Agent: Evolution 3.34.4 
+        id S1726170AbgCEKze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Mar 2020 05:55:34 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49278 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725946AbgCEKze (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Mar 2020 05:55:34 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 025AtT2Z010220;
+        Thu, 5 Mar 2020 04:55:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1583405729;
+        bh=UMh1opH6tmYxUIx/AyWNlJuD6bLG+NyY4/gGWFJ85Nk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=FsxuKIay7I+ZBVLkyPl3LpD5Y6p6SDnF7fgG7qfZn9e/Qs3/UODQ+ema+spkam3Dm
+         oC4R744c+dIqSRHYZnxu5jf01hUAn0nfY6BHAbjA6S5zx166YKmyg2ooK905vnVZDD
+         j0PrP1WJl3Du/jaaMLEghlYQ0SpRkTBwFXWdVH04=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 025AtTDL030404
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 Mar 2020 04:55:29 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Thu, 5 Mar
+ 2020 04:55:29 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Thu, 5 Mar 2020 04:55:29 -0600
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 025AtQuu006736;
+        Thu, 5 Mar 2020 04:55:27 -0600
+Subject: Re: [for-next PATCH v2 0/5] phy: ti: gmii-sel: add support for
+ am654x/j721e soc
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        David Miller <davem@davemloft.net>
+CC:     <m-karicheri2@ti.com>, <t-kristo@ti.com>, <nsekhar@ti.com>,
+        <robh+dt@kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20200303160029.345-1-grygorii.strashko@ti.com>
+ <20200304.143951.1102411401290807167.davem@davemloft.net>
+ <71a6fea9-65c1-3a3c-a35b-9432208b3ee5@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <7c5395a6-56cb-1d2a-0243-99a6b0fed2a7@ti.com>
+Date:   Thu, 5 Mar 2020 12:55:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
+In-Reply-To: <71a6fea9-65c1-3a3c-a35b-9432208b3ee5@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---=-1e/ycMxHHlpwCahVXF7n
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Stefan,
+On 05/03/2020 07:17, Kishon Vijay Abraham I wrote:
+> Hi,
+> 
+> On 05/03/20 4:09 am, David Miller wrote:
+>> From: Grygorii Strashko <grygorii.strashko@ti.com>
+>> Date: Tue, 3 Mar 2020 18:00:24 +0200
+>>
+>>> Hi Kishon,
+>>>
+>>> This series adds support for TI K3 AM654x/J721E SoCs in TI phy-gmii-sel PHY
+>>> driver, which is required for future adding networking support.
+>>>
+>>> depends on:
+>>>   [PATCH 0/2] phy: ti: gmii-sel: two fixes
+>>>   https://lkml.org/lkml/2020/2/14/2510
+>>>
+>>> Changes in v2:
+>>>   - fixed comments
+>>>
+>>> v1: https://lkml.org/lkml/2020/2/22/100
+>>
+>> This is mostly DT updates and not much networking code changes, will some other
+>> tree take this?
+> 
+> I can take the phy related changes. Grygorii, can you split the dt
+> patches into a separate series?
 
-On Tue, 2020-03-03 at 20:24 +0100, Stefan Wahren wrote:
-> > > > Note: I tested this on RPi3b, RPi3a+ and RPi2b.
-> > > as i already wrote this prevent X to start on current Raspbian on my
-> > > Raspberry Pi 3A+ (multi_v7_defconfig, no u-boot). We must be careful =
-here.
-> > >=20
-> > > I will take a look at the debug UART. Maybe there are more helpful
-> > > information.
-> > It seems we're seeing different things, I tested this on raspbian
-> > (multi_v7_defconfig) and on arm64. I'll try again from scratch tomorrow=
-.
->=20
-> My modifications to the Raspbian image (from 13.2.2020) are little:
->=20
-> - specify devicetree to config.txt
-> - change console to ttyS1 and remove "silent" in cmdline.txt
-> - rename all original kernel7*.img
-> - copy dtb and kernel7.img to boot partition
-> - copy kernel modules to root partition
+sure. Could pls, pick up 1-3 and I'll resend 4-5.
+Or you want me re-send once again?
 
-Would you mind retesting with the latest linux-next? I validated an image b=
-ased
-on 5.6.0-rc4-next-20200305-00001-g285a7a64cd56 and a fresh raspbian downloa=
-d on
-RPi3a+ without X issues.
-
-> The debug UART works fine, maybe the dmesg gives us a hint:
-
-[...]
-
-> [    8.451520] vc4_hdmi 3f902000.hdmi: vc4-hdmi-hifi <-> 3f902000.hdmi
-> mapping ok
-> [    8.451541] vc4_hdmi 3f902000.hdmi: ASoC: no DMI vendor name!
-> [    8.465617] vc4-drm soc:gpu: bound 3f902000.hdmi (ops vc4_hdmi_ops
-> [vc4])
-> [    8.466033] vc4-drm soc:gpu: bound 3f806000.vec (ops vc4_vec_ops [vc4]=
-)
-> [    8.466159] vc4-drm soc:gpu: bound 3f004000.txp (ops vc4_txp_ops [vc4]=
-)
-> [    8.466292] vc4-drm soc:gpu: bound 3f400000.hvs (ops vc4_hvs_ops [vc4]=
-)
-> [    8.466649] vc4-drm soc:gpu: bound 3f206000.pixelvalve (ops
-> vc4_crtc_ops [vc4])
-> [    8.466889] vc4-drm soc:gpu: bound 3f207000.pixelvalve (ops
-> vc4_crtc_ops [vc4])
-> [    8.467154] vc4-drm soc:gpu: bound 3f807000.pixelvalve (ops
-> vc4_crtc_ops [vc4])
-> [    8.467262] vc4-drm soc:gpu: bound 3fc00000.v3d (ops vc4_v3d_ops [vc4]=
-)
-> [    8.467272] checking generic (1e330000 8ca000) vs hw (0 ffffffff)
-> [    8.467278] fb0: switching to vc4drmfb from simple
-> [    8.473639] Console: switching to colour dummy device 80x30
-> [    8.473714] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013)=
-.
-> [    8.473718] [drm] Driver supports precise vblank timestamp query.
-> [    8.476777] [drm] Initialized vc4 0.0.0 20140616 for soc:gpu on minor =
-0
-> [    8.534359] Console: switching to colour frame buffer device 90x30
-> [    8.550245] vc4-drm soc:gpu: fb0: vc4drmfb frame buffer device
-
-I get the exact same results as you here.
-
-Regards,
-Nicolas
-
-
---=-1e/ycMxHHlpwCahVXF7n
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl5g2AcACgkQlfZmHno8
-x/4IlQgApYGk9IyBIGZXZU7cjQ4U0IGcYwkZZIy8r4vLrNLOKHCg8uEZpLk8Kvim
-wux9hWhjqbuYV1Q7/MEgioV+IUv4mkKOZxZodXy8/cf8Zq8mPV3FgY6hX2IlVXdt
-CkSlN4cth5Kq35oQm+W6NNWAdOQTabix30MRbfZ4sL8JAoL12DBdt1DQpMkEN2az
-zsxwZDV5LBe655F75XcBBCnWnrSQWeAZySsBtwsJidSqfepsdiVSAlYonoD+4tiW
-a05qYn+C51jrnxQqMtkfuFxfz8q5Kjd+zS8Mb9lhAqtS7mVPM1XMlJd401+fYdq4
-RMUXbtQ0juTl/b7yJowqjUiacvGwWg==
-=Rxs/
------END PGP SIGNATURE-----
-
---=-1e/ycMxHHlpwCahVXF7n--
-
+-- 
+Best regards,
+grygorii
