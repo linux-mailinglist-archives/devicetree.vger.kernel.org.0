@@ -2,344 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93046179EBB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2020 05:51:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45DA2179EF9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2020 06:14:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725861AbgCEEvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Mar 2020 23:51:48 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:43476 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725852AbgCEEvr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Mar 2020 23:51:47 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0254pTD8119086;
-        Wed, 4 Mar 2020 22:51:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1583383889;
-        bh=YWxU9N3oS/F+fWkAAyJPMZXRGvDp4HaQTUtmye33uIo=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=YWICIf1hIItt+93A00J/GummAW0EjoL0G/z3OCIy6sXsCnt7BD+5+191YT//aunS5
-         xqgfaZphkzq+lqnSFb3bQwoYfWcafReIJSU8X2U1pUXmX/l24pIbxa2TSObG31qZnW
-         uo28j2AnhlMx3a9IPTdoEPMJld35Flu6y647pAjE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0254pT5f088116
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 4 Mar 2020 22:51:29 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 4 Mar
- 2020 22:51:28 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 4 Mar 2020 22:51:28 -0600
-Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0254pO4u032047;
-        Wed, 4 Mar 2020 22:51:25 -0600
-Subject: Re: [PATCH v6 6/7] phy: amlogic: Add Amlogic AXG PCIE PHY Driver
-To:     Remi Pommarel <repk@triplefau.lt>
-CC:     Yue Wang <yue.wang@amlogic.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>
-References: <20200123232943.10229-1-repk@triplefau.lt>
- <20200123232943.10229-7-repk@triplefau.lt>
- <14627e42-4894-6674-4911-3205ea8f5e55@ti.com> <20200304130811.GP2248@voidbox>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <a6f8ac2f-f49a-f53e-1b44-fc446c3d7964@ti.com>
-Date:   Thu, 5 Mar 2020 10:26:00 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1725858AbgCEFO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Mar 2020 00:14:28 -0500
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:39481 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725830AbgCEFO2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Mar 2020 00:14:28 -0500
+Received: by mail-qk1-f196.google.com with SMTP id e16so4125082qkl.6
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2020 21:14:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rTn3aZiOBdvpLaF9in60GflGuo7nuzt/CIGjImwtiUM=;
+        b=NrFhDK9B12p+3RdamIUYum/ORdm0XLJgoFeESAo99664Tf9pb1E6TcqGodgrLcM5BU
+         6YUyipKpSxuCMqCS5XxgM87hpGBtG6kcUPm3Zq2El6LJ+BtsgCxRXTFOKSp/G+nfZOOI
+         T1OpoH0qKLaMjQXRWCU3Yc3tRnguEKVaKs5oI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rTn3aZiOBdvpLaF9in60GflGuo7nuzt/CIGjImwtiUM=;
+        b=LoIoeSYdpLu8bsL5znD9KppYbeLfuYLjM63zL34TENS2quY4dr27bBLxz8jvwvj2Pe
+         FOcUfyVtROm+rC2U5utkOqaRtpnZyMKHGgEpI6zAG7DUA3epNBdOa7nJpbE36fzUZTQS
+         zRAnwtMvWY0744vtn0pbCoUTXF3xnR8grB/eXDm8091vEYHaXJSv56/B1cXPm8D/Qbbh
+         zHXc5LQaJ+0M39v1NpWpcao6ejumpev/kS1qPWhz9Y8fpX03/mkAKWGNrFElG0xZvvis
+         D3t4oAzsS24bo2fkXJZjxgoGGH/Pr1ICtUCHF50f3fHUCmlb8n56mFZHsHqaxzwhUN/H
+         5oLA==
+X-Gm-Message-State: ANhLgQ0ofVJ2qqbGl4TqGdti9GvfULsbeGJpADTNsM1XDXbyAWx37ltW
+        C67VhyS58VQoEk2Q95B0pyZktc/lf9Svn2F3dMFoqvKRv64=
+X-Google-Smtp-Source: ADFU+vsjlqRt25RAnjpqBwwBqr94htBKQelMZzFwJ5kzWW9Pubmn0eresOonSxZoZDexvuo0WFSMiY0iBLfQk0M8fiw=
+X-Received: by 2002:a37:c47:: with SMTP id 68mr996909qkm.144.1583385266606;
+ Wed, 04 Mar 2020 21:14:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20200304130811.GP2248@voidbox>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1567503456-24725-1-git-send-email-yong.wu@mediatek.com> <1567503456-24725-4-git-send-email-yong.wu@mediatek.com>
+In-Reply-To: <1567503456-24725-4-git-send-email-yong.wu@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Thu, 5 Mar 2020 13:14:14 +0800
+Message-ID: <CANMq1KAOHFF43708ktvhEU6EYZv_s7Wp+kUwFD7h0bwVrQpyqw@mail.gmail.com>
+Subject: Re: [PATCH v3 03/14] iommu/mediatek: Add device_link between the
+ consumer and the larb devices
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Will Deacon <will.deacon@arm.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        cui.zhang@mediatek.com, chao.hao@mediatek.com,
+        ming-fan.chen@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Sep 3, 2019 at 5:38 PM Yong Wu <yong.wu@mediatek.com> wrote:
+>
+> MediaTek IOMMU don't have its power-domain. all the consumer connect
+> with smi-larb, then connect with smi-common.
+>
+>         M4U
+>          |
+>     smi-common
+>          |
+>   -------------
+>   |         |    ...
+>   |         |
+> larb1     larb2
+>   |         |
+> vdec       venc
+>
+> When the consumer works, it should enable the smi-larb's power which
+> also need enable the smi-common's power firstly.
+>
+> Thus, First of all, use the device link connect the consumer and the
+> smi-larbs. then add device link between the smi-larb and smi-common.
+>
+> This patch adds device_link between the consumer and the larbs.
+>
+> When device_link_add, I add the flag DL_FLAG_STATELESS to avoid calling
+> pm_runtime_xx to keep the original status of clocks. It can avoid two
+> issues:
+> 1) Display HW show fastlogo abnormally reported in [1]. At the beggining,
+> all the clocks are enabled before entering kernel, but the clocks for
+> display HW(always in larb0) will be gated after clk_enable and clk_disable
+> called from device_link_add(->pm_runtime_resume) and rpm_idle. The clock
+> operation happened before display driver probe. At that time, the display
+> HW will be abnormal.
+>
+> 2) A deadlock issue reported in [2]. Use DL_FLAG_STATELESS to skip
+> pm_runtime_xx to avoid the deadlock.
+>
+> Corresponding, DL_FLAG_AUTOREMOVE_CONSUMER can't be added, then
+> device_link_removed should be added explicitly.
+>
+> [1] http://lists.infradead.org/pipermail/linux-mediatek/2019-July/
+> 021500.html
+> [2] https://lore.kernel.org/patchwork/patch/1086569/
+>
+> Suggested-by: Tomasz Figa <tfiga@chromium.org>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/iommu/mtk_iommu.c    | 17 +++++++++++++++++
+>  drivers/iommu/mtk_iommu_v1.c | 18 +++++++++++++++++-
+>  2 files changed, 34 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index b138b94..2511b3c 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -450,6 +450,9 @@ static int mtk_iommu_add_device(struct device *dev)
+>         struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+>         struct mtk_iommu_data *data;
+>         struct iommu_group *group;
+> +       struct device_link *link;
+> +       struct device *larbdev;
+> +       unsigned int larbid;
+>
+>         if (!fwspec || fwspec->ops != &mtk_iommu_ops)
+>                 return -ENODEV; /* Not a iommu client device */
+> @@ -461,6 +464,14 @@ static int mtk_iommu_add_device(struct device *dev)
+>         if (IS_ERR(group))
+>                 return PTR_ERR(group);
+>
+> +       /* Link the consumer device with the smi-larb device(supplier) */
+> +       larbid = MTK_M4U_TO_LARB(fwspec->ids[0]);
 
-On 04/03/20 6:38 pm, Remi Pommarel wrote:
-> On Wed, Mar 04, 2020 at 04:31:24PM +0530, Kishon Vijay Abraham I wrote:
->>
->>
->> On 24/01/20 4:59 am, Remi Pommarel wrote:
->>> This adds support for the PCI PHY found in the Amlogic AXG SoC Family.
->>> This will allow to mutualize code in pci-meson.c between AXG and G12A
->>> SoC.
->>>
->>> This PHY also uses and chains an analog PHY, which on AXG platform
->>> is needed to have reliable PCIe communication.
->>
->> Is the analog PHY an independent block and can be used with other PHYs?
-> 
-> It is documented as a separate block yes, but I think it is unlikely
-> that it will be used with other PHYs than the PCIe or the MIPI one of
-> the AXG SoC.
+I'll mirror the comment I made on gerrit
+(https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/1361013):
+Maybe I'm missing something here, but for example, on MT8173,
+vcodec_enc: vcodec@18002000 needs to use both larb3 and larb5, isn't
+the code below just adding a link for larb3?
 
-Shouldn't we then have a single PHY driver instead of chaining PHYs?
+Do we need to iterate over all fwspecs->ids to figure out which larbs
+we need to add links to each of them?
 
-Thanks
-Kishon
-
-> 
-> Thanks,
-> Remi
-> 
->>
->> For the patch itself
->> Acked-by: Kishon Vijay Abraham I <kishon@ti.com>
->>
->> Thanks
->> Kishon
->>>
->>> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
->>> ---
->>>  drivers/phy/amlogic/Kconfig              |  11 ++
->>>  drivers/phy/amlogic/Makefile             |   1 +
->>>  drivers/phy/amlogic/phy-meson-axg-pcie.c | 192 +++++++++++++++++++++++
->>>  3 files changed, 204 insertions(+)
->>>  create mode 100644 drivers/phy/amlogic/phy-meson-axg-pcie.c
->>>
->>> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
->>> index 8c9cf2403591..71801e30d601 100644
->>> --- a/drivers/phy/amlogic/Kconfig
->>> +++ b/drivers/phy/amlogic/Kconfig
->>> @@ -60,6 +60,17 @@ config PHY_MESON_G12A_USB3_PCIE
->>>  	  in Meson G12A SoCs.
->>>  	  If unsure, say N.
->>>  
->>> +config PHY_MESON_AXG_PCIE
->>> +	tristate "Meson AXG PCIE PHY driver"
->>> +	default ARCH_MESON
->>> +	depends on OF && (ARCH_MESON || COMPILE_TEST)
->>> +	select GENERIC_PHY
->>> +	select REGMAP_MMIO
->>> +	help
->>> +	  Enable this to support the Meson MIPI + PCIE PHY found
->>> +	  in Meson AXG SoCs.
->>> +	  If unsure, say N.
->>> +
->>>  config PHY_MESON_AXG_MIPI_PCIE_ANALOG
->>>  	tristate "Meson AXG MIPI + PCIE analog PHY driver"
->>>  	default ARCH_MESON
->>> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
->>> index 0aecf92d796a..e2baa133f7af 100644
->>> --- a/drivers/phy/amlogic/Makefile
->>> +++ b/drivers/phy/amlogic/Makefile
->>> @@ -4,4 +4,5 @@ obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
->>>  obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
->>>  obj-$(CONFIG_PHY_MESON_GXL_USB3)		+= phy-meson-gxl-usb3.o
->>>  obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)		+= phy-meson-g12a-usb3-pcie.o
->>> +obj-$(CONFIG_PHY_MESON_AXG_PCIE)		+= phy-meson-axg-pcie.o
->>>  obj-$(CONFIG_PHY_MESON_AXG_MIPI_PCIE_ANALOG)	+= phy-meson-axg-mipi-pcie-analog.o
->>> diff --git a/drivers/phy/amlogic/phy-meson-axg-pcie.c b/drivers/phy/amlogic/phy-meson-axg-pcie.c
->>> new file mode 100644
->>> index 000000000000..377ed0dcd0d9
->>> --- /dev/null
->>> +++ b/drivers/phy/amlogic/phy-meson-axg-pcie.c
->>> @@ -0,0 +1,192 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Amlogic AXG PCIE PHY driver
->>> + *
->>> + * Copyright (C) 2020 Remi Pommarel <repk@triplefau.lt>
->>> + */
->>> +#include <linux/module.h>
->>> +#include <linux/phy/phy.h>
->>> +#include <linux/regmap.h>
->>> +#include <linux/reset.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/bitfield.h>
->>> +#include <dt-bindings/phy/phy.h>
->>> +
->>> +#define MESON_PCIE_REG0 0x00
->>> +#define		MESON_PCIE_COMMON_CLK	BIT(4)
->>> +#define		MESON_PCIE_PORT_SEL	GENMASK(3, 2)
->>> +#define		MESON_PCIE_CLK		BIT(1)
->>> +#define		MESON_PCIE_POWERDOWN	BIT(0)
->>> +
->>> +#define MESON_PCIE_TWO_X1		FIELD_PREP(MESON_PCIE_PORT_SEL, 0x3)
->>> +#define MESON_PCIE_COMMON_REF_CLK	FIELD_PREP(MESON_PCIE_COMMON_CLK, 0x1)
->>> +#define MESON_PCIE_PHY_INIT		(MESON_PCIE_TWO_X1 |		\
->>> +					 MESON_PCIE_COMMON_REF_CLK)
->>> +#define MESON_PCIE_RESET_DELAY		500
->>> +
->>> +struct phy_axg_pcie_priv {
->>> +	struct phy *phy;
->>> +	struct phy *analog;
->>> +	struct regmap *regmap;
->>> +	struct reset_control *reset;
->>> +};
->>> +
->>> +static const struct regmap_config phy_axg_pcie_regmap_conf = {
->>> +	.reg_bits = 8,
->>> +	.val_bits = 32,
->>> +	.reg_stride = 4,
->>> +	.max_register = MESON_PCIE_REG0,
->>> +};
->>> +
->>> +static int phy_axg_pcie_power_on(struct phy *phy)
->>> +{
->>> +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
->>> +	int ret;
->>> +
->>> +	ret = phy_power_on(priv->analog);
->>> +	if (ret != 0)
->>> +		return ret;
->>> +
->>> +	regmap_update_bits(priv->regmap, MESON_PCIE_REG0,
->>> +			   MESON_PCIE_POWERDOWN, 0);
->>> +	return 0;
->>> +}
->>> +
->>> +static int phy_axg_pcie_power_off(struct phy *phy)
->>> +{
->>> +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
->>> +	int ret;
->>> +
->>> +	ret = phy_power_off(priv->analog);
->>> +	if (ret != 0)
->>> +		return ret;
->>> +
->>> +	regmap_update_bits(priv->regmap, MESON_PCIE_REG0,
->>> +			   MESON_PCIE_POWERDOWN, 1);
->>> +	return 0;
->>> +}
->>> +
->>> +static int phy_axg_pcie_init(struct phy *phy)
->>> +{
->>> +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
->>> +	int ret;
->>> +
->>> +	ret = phy_init(priv->analog);
->>> +	if (ret != 0)
->>> +		return ret;
->>> +
->>> +	regmap_write(priv->regmap, MESON_PCIE_REG0, MESON_PCIE_PHY_INIT);
->>> +	return reset_control_reset(priv->reset);
->>> +}
->>> +
->>> +static int phy_axg_pcie_exit(struct phy *phy)
->>> +{
->>> +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
->>> +	int ret;
->>> +
->>> +	ret = phy_exit(priv->analog);
->>> +	if (ret != 0)
->>> +		return ret;
->>> +
->>> +	return reset_control_reset(priv->reset);
->>> +}
->>> +
->>> +static int phy_axg_pcie_reset(struct phy *phy)
->>> +{
->>> +	struct phy_axg_pcie_priv *priv = phy_get_drvdata(phy);
->>> +	int ret = 0;
->>> +
->>> +	ret = phy_reset(priv->analog);
->>> +	if (ret != 0)
->>> +		goto out;
->>> +
->>> +	ret = reset_control_assert(priv->reset);
->>> +	if (ret != 0)
->>> +		goto out;
->>> +	udelay(MESON_PCIE_RESET_DELAY);
->>> +
->>> +	ret = reset_control_deassert(priv->reset);
->>> +	if (ret != 0)
->>> +		goto out;
->>> +	udelay(MESON_PCIE_RESET_DELAY);
->>> +
->>> +out:
->>> +	return ret;
->>> +}
->>> +
->>> +static const struct phy_ops phy_axg_pcie_ops = {
->>> +	.init = phy_axg_pcie_init,
->>> +	.exit = phy_axg_pcie_exit,
->>> +	.power_on = phy_axg_pcie_power_on,
->>> +	.power_off = phy_axg_pcie_power_off,
->>> +	.reset = phy_axg_pcie_reset,
->>> +	.owner = THIS_MODULE,
->>> +};
->>> +
->>> +static int phy_axg_pcie_probe(struct platform_device *pdev)
->>> +{
->>> +	struct phy_provider *pphy;
->>> +	struct device *dev = &pdev->dev;
->>> +	struct phy_axg_pcie_priv *priv;
->>> +	struct device_node *np = dev->of_node;
->>> +	struct resource *res;
->>> +	void __iomem *base;
->>> +	int ret;
->>> +
->>> +	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
->>> +	if (!priv)
->>> +		return -ENOMEM;
->>> +
->>> +	priv->phy = devm_phy_create(dev, np, &phy_axg_pcie_ops);
->>> +	if (IS_ERR(priv->phy)) {
->>> +		ret = PTR_ERR(priv->phy);
->>> +		if (ret != -EPROBE_DEFER)
->>> +			dev_err(dev, "failed to create PHY\n");
->>> +		return ret;
->>> +	}
->>> +
->>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +	base = devm_ioremap_resource(dev, res);
->>> +	if (IS_ERR(base))
->>> +		return PTR_ERR(base);
->>> +
->>> +	priv->regmap = devm_regmap_init_mmio(dev, base,
->>> +					     &phy_axg_pcie_regmap_conf);
->>> +	if (IS_ERR(priv->regmap))
->>> +		return PTR_ERR(priv->regmap);
->>> +
->>> +	priv->reset = devm_reset_control_array_get(dev, false, false);
->>> +	if (IS_ERR(priv->reset))
->>> +		return PTR_ERR(priv->reset);
->>> +
->>> +	priv->analog = devm_phy_get(dev, "analog");
->>> +	if (IS_ERR(priv->analog))
->>> +		return PTR_ERR(priv->analog);
->>> +
->>> +	phy_set_drvdata(priv->phy, priv);
->>> +	dev_set_drvdata(dev, priv);
->>> +	pphy = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
->>> +
->>> +	return PTR_ERR_OR_ZERO(pphy);
->>> +}
->>> +
->>> +static const struct of_device_id phy_axg_pcie_of_match[] = {
->>> +	{
->>> +		.compatible = "amlogic,axg-pcie-phy",
->>> +	},
->>> +	{ },
->>> +};
->>> +MODULE_DEVICE_TABLE(of, phy_axg_pcie_of_match);
->>> +
->>> +static struct platform_driver phy_axg_pcie_driver = {
->>> +	.probe = phy_axg_pcie_probe,
->>> +	.driver = {
->>> +		.name = "phy-axg-pcie",
->>> +		.of_match_table = phy_axg_pcie_of_match,
->>> +	},
->>> +};
->>> +module_platform_driver(phy_axg_pcie_driver);
->>> +
->>> +MODULE_AUTHOR("Remi Pommarel <repk@triplefau.lt>");
->>> +MODULE_DESCRIPTION("Amlogic AXG PCIE PHY driver");
->>> +MODULE_LICENSE("GPL v2");
->>>
+> +       larbdev = data->larb_imu[larbid].dev;
+> +       link = device_link_add(dev, larbdev,
+> +                              DL_FLAG_PM_RUNTIME | DL_FLAG_STATELESS);
+> +       if (!link)
+> +               dev_err(dev, "Unable to link %s\n", dev_name(larbdev));
+> +
+>         iommu_group_put(group);
+>         return 0;
+>  }
+> @@ -469,6 +480,8 @@ static void mtk_iommu_remove_device(struct device *dev)
+>  {
+>         struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+>         struct mtk_iommu_data *data;
+> +       struct device *larbdev;
+> +       unsigned int larbid;
+>
+>         if (!fwspec || fwspec->ops != &mtk_iommu_ops)
+>                 return;
+> @@ -476,6 +489,10 @@ static void mtk_iommu_remove_device(struct device *dev)
+>         data = fwspec->iommu_priv;
+>         iommu_device_unlink(&data->iommu, dev);
+>
+> +       larbid = MTK_M4U_TO_LARB(fwspec->ids[0]);
+> +       larbdev = data->larb_imu[larbid].dev;
+> +       device_link_remove(dev, larbdev);
+> +
+>         iommu_group_remove_device(dev);
+>         iommu_fwspec_free(dev);
+>  }
+> diff --git a/drivers/iommu/mtk_iommu_v1.c b/drivers/iommu/mtk_iommu_v1.c
+> index 2034d72..a7f22a2 100644
+> --- a/drivers/iommu/mtk_iommu_v1.c
+> +++ b/drivers/iommu/mtk_iommu_v1.c
+> @@ -423,7 +423,9 @@ static int mtk_iommu_add_device(struct device *dev)
+>         struct of_phandle_iterator it;
+>         struct mtk_iommu_data *data;
+>         struct iommu_group *group;
+> -       int err;
+> +       struct device_link *link;
+> +       struct device *larbdev;
+> +       int err, larbid;
+>
+>         of_for_each_phandle(&it, err, dev->of_node, "iommus",
+>                         "#iommu-cells", 0) {
+> @@ -466,6 +468,14 @@ static int mtk_iommu_add_device(struct device *dev)
+>                 return err;
+>         }
+>
+> +       /* Link the consumer device with the smi-larb device(supplier) */
+> +       larbid = mt2701_m4u_to_larb(fwspec->ids[0]);
+> +       larbdev = data->larb_imu[larbid].dev;
+> +       link = device_link_add(dev, larbdev,
+> +                              DL_FLAG_PM_RUNTIME | DL_FLAG_STATELESS);
+> +       if (!link)
+> +               dev_err(dev, "Unable to link %s\n", dev_name(larbdev));
+> +
+>         return iommu_device_link(&data->iommu, dev);
+>  }
+>
+> @@ -473,6 +483,8 @@ static void mtk_iommu_remove_device(struct device *dev)
+>  {
+>         struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
+>         struct mtk_iommu_data *data;
+> +       struct device *larbdev;
+> +       unsigned int larbid;
+>
+>         if (!fwspec || fwspec->ops != &mtk_iommu_ops)
+>                 return;
+> @@ -480,6 +492,10 @@ static void mtk_iommu_remove_device(struct device *dev)
+>         data = fwspec->iommu_priv;
+>         iommu_device_unlink(&data->iommu, dev);
+>
+> +       larbid = mt2701_m4u_to_larb(fwspec->ids[0]);
+> +       larbdev = data->larb_imu[larbid].dev;
+> +       device_link_remove(dev, larbdev);
+> +
+>         iommu_group_remove_device(dev);
+>         iommu_fwspec_free(dev);
+>  }
+> --
+> 1.9.1
+>
