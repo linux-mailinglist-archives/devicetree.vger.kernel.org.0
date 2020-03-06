@@ -2,147 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DD1017BFF0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 15:11:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A5017BFF9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 15:12:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726702AbgCFOLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 09:11:32 -0500
-Received: from mga07.intel.com ([134.134.136.100]:48098 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726108AbgCFOLc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Mar 2020 09:11:32 -0500
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Mar 2020 06:11:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,522,1574150400"; 
-   d="scan'208";a="233342860"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga007.fm.intel.com with ESMTP; 06 Mar 2020 06:11:27 -0800
-Received: from andy by smile with local (Exim 4.93)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1jADhI-007NV5-Tm; Fri, 06 Mar 2020 16:11:28 +0200
-Date:   Fri, 6 Mar 2020 16:11:28 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sergey Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Maxim Kaurkin <Maxim.Kaurkin@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Ekaterina Skachko <Ekaterina.Skachko@baikalelectronics.ru>,
-        Vadim Vlasov <V.Vlasov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S1726974AbgCFOM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 09:12:28 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:38996 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726307AbgCFOM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 09:12:28 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 7EB0C28ED15
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Collabora Kernel ML <kernel@collabora.com>,
+        Andrzej Hajda <a.hajda@samsung.com>, megous@megous.com,
+        anarsoul@gmail.com, Neil Armstrong <narmstrong@baylibre.com>,
+        matthias.bgg@gmail.com, drinkcat@chromium.org, hsinyi@chromium.org,
+        icenowy@aosc.io, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/5] dmaengine: dw: Take Baikal-T1 SoC DW DMAC
- peculiarities into account
-Message-ID: <20200306141128.GJ1748204@smile.fi.intel.com>
-References: <20200306131048.ADBE18030797@mail.baikalelectronics.ru>
- <20200306132912.GA1748204@smile.fi.intel.com>
- <20200306133756.0F74C8030793@mail.baikalelectronics.ru>
- <20200306134829.342F4803087C@mail.baikalelectronics.ru>
+        Lee Jones <lee.jones@linaro.org>
+Subject: [PATCH v3 1/4] dt-bindings: Add binding for the Analogix ANX7688 chip
+Date:   Fri,  6 Mar 2020 15:12:13 +0100
+Message-Id: <20200306141217.423914-1-enric.balletbo@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200306134829.342F4803087C@mail.baikalelectronics.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 06, 2020 at 04:47:20PM +0300, Sergey Semin wrote:
-> On Fri, Mar 06, 2020 at 03:30:35PM +0200, Andy Shevchenko wrote:
-> > On Fri, Mar 06, 2020 at 03:29:12PM +0200, Andy Shevchenko wrote:
-> > > On Fri, Mar 06, 2020 at 04:10:29PM +0300, Sergey.Semin@baikalelectronics.ru wrote:
-> > > > From: Serge Semin <fancer.lancer@gmail.com>
-> > > > 
-> > > > Baikal-T1 SoC has an DW DMAC on-board to provide a Mem-to-Mem, low-speed
-> > > > peripherals Dev-to-Mem and Mem-to-Dev functionality. Mostly it's compatible
-> > > > with currently implemented in the kernel DW DMAC driver, but there are some
-> > > > peculiarities which must be taken into account in order to have the device
-> > > > fully supported.
-> > > > 
-> > > > First of all traditionally we replaced the legacy plain text-based dt-binding
-> > > > file with yaml-based one. Secondly Baikal-T1 DW DMA Controller provides eight
-> > > > channels, which alas have different max burst length configuration.
-> > > > In particular first two channels may burst up to 128 bits (16 bytes) at a time
-> > > > while the rest of them just up to 32 bits. We must make sure that the DMA
-> > > > subsystem doesn't set values exceeding these limitations otherwise the
-> > > > controller will hang up. In third currently we discovered the problem in using
-> > > > the DW APB SPI driver together with DW DMAC. The problem happens if there is no
-> > > > natively implemented multi-block LLP transfers support and the SPI-transfer
-> > > > length exceeds the max lock size. In this case due to asynchronous handling of
-> > > > Tx- and Rx- SPI transfers interrupt we might end up with Dw APB SSI Rx FIFO
-> > > > overflow. So if DW APB SSI (or any other DMAC service consumer) intends to use
-> > > > the DMAC to asynchronously execute the transfers we'd have to at least warn
-> > > > the user of the possible errors.
-> > > > 
-> > > > Finally there is a bug in the algorithm of the nollp flag detection.
-> > > > In particular even if DW DMAC parameters state the multi-block transfers
-> > > > support there is still HC_LLP (hardcode LLP) flag, which if set makes expected
-> > > > by the driver true multi-block LLP functionality unusable. This happens cause'
-> > > > if HC_LLP flag is set the LLP registers will be hardcoded to zero so the
-> > > > contiguous multi-block transfers will be only supported. We must take the
-> > > > flag into account when detecting the LLP support otherwise the driver just
-> > > > won't work correctly.
-> > > > 
-> > > > This patchset is rebased and tested on the mainline Linux kernel 5.6-rc4:
-> > > > commit 98d54f81e36b ("Linux 5.6-rc4").
-> > > 
-> > > Thank you for your series!
-> > > 
-> > > I'll definitely review it, but it will take time. So, I think due to late
-> > > submission this is material at least for v5.8.
-> > 
-> 
-> Hello Andy,
-> Thanks for the quick response. Looking forward to get the patches
-> reviewed and move on with the next patchset I'll send after this. It concerns
-> DW APB SSI driver, which uses the changes introduced by this one.
+The ANX7688 chip is a Type-C Port Controller, HDMI to DP converter and
+USB-C mux between USB 3.0 lanes and the DP output.
 
-> So the
-> sooner we finished with this patchset the better.
+For our use case a big part of the chip, like power supplies, control
+gpios and the usb-c part is managed by an Embedded Controller, hence,
+this is its simplest form of the binding. We'd prefer introduce these
+properties for someone with a different use case so they can test
+on their hardware.
 
-Everybody will win, but review will take as long as it take. And for sure it
-will miss v5.7 release cycle. Because too many patch sets sent at once
-followed by schedule, we almost at v5.6-rc5.
+Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+---
 
-> Although I understand
-> that it may take some time. I've just sent over 12 patchset, which have a lot
-> of fixups and new drivers.)
-> 
-> > One thing that I can tell immediately is the broken email thread in this series.
-> > Whenever you do a series, use `git format-patch --cover-letter --thread ...`,
-> > so, it will link the mail properly.
-> > 
-> 
-> I've got thread=true in my gitconfig file, so each email should have
-> the proper reference and in-reply-to to the cover-letter (I see it from
-> the log). The problem popped up from a different place. For some reason the
-> automatic CC/To list extraction command didn't do the job right, so we ended
-> up with lacking of mailing lists in Cc's in this patchset. The command look like
-> this:
-> 
-> git send-email --cc-cmd "scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nom" \
->                    --to-cmd "scripts/get_maintainer.pl --separator , --nokeywords --nogit --nogit-fallback --norolestats --nol" \
->                    --from "Serge Semin <Sergey.Semin at baikalelectronics.ru>" \
->                    --smtp-server-option="-abaikal" --cover-letter -5
+Changes in v3:
+- Add binding for ANX7688 multi-function device.
 
-I'm talking about one which makes your Message-Id/Reference headers broken
-between cover letter and the rest of the series. It might be because of missed
-patches in the chain.
+Changes in v2: None
 
+ .../bindings/mfd/analogix,anx7688.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/analogix,anx7688.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/analogix,anx7688.yaml b/Documentation/devicetree/bindings/mfd/analogix,anx7688.yaml
+new file mode 100644
+index 000000000000..bb95a4e87188
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/analogix,anx7688.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/analogix,anx7688.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analogix ANX7688 HDMI to USB Type-C Bridge (Port Controller with MUX)
++
++maintainers:
++  - Nicolas Boichat <drinkcat@chromium.org>
++  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
++
++description: |
++  ANX7688 converts HDMI 2.0 to DisplayPort 1.3 Ultra-HDi (4096x2160p60)
++  including an intelligent crosspoint switch to support USB Type-C (USB-C).
++  The integrated crosspoint switch supports USB 3.1 data transfer along with
++  the DisplayPort Alternate Mode signaling over USB Type-C. Additionally,
++  an on-chip microcontroller (OCM) is available to manage the signal switching,
++  Channel Configuration (CC) detection, USB Power Delivery (USB-PD), Vendor
++  Defined Message (VDM) protocol support and other functions as defined in the
++  USB TypeC and USB Power Delivery specifications.
++
++  As a result, a multi-function device is exposed as parent of the video
++  bridge, TCPC and MUX blocks.
++
++properties:
++  compatible:
++    const: analogix,anx7688
++
++  reg:
++    maxItems: 1
++    description: I2C address of the device
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        anx7688: anx7688@2c {
++            compatible = "analogix,anx7688";
++            reg = <0x2c>;
++        };
++    };
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.25.1
 
