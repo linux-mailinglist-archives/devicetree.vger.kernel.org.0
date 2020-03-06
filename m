@@ -2,116 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9273B17B754
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 08:24:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4569A17B764
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 08:28:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726299AbgCFHYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 02:24:02 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:36549 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726212AbgCFHYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 02:24:01 -0500
-Received: by mail-wr1-f67.google.com with SMTP id s17so163796wrs.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2020 23:23:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=OjSejv2JJ2JWA4MOD2Ua80DTgBsI2ciXKHuKLp62nNQ=;
-        b=MQzuHt74wlVMFLtLf+XKCyFtFiP0OZACrpNL3iDuYk1PsjH7ivfylf6GMedDSpHrA+
-         +rpZXuO/hvi3sao+44yncL5iFWuV/UQzdOU/G/70eilMHfLTv6lV7YayhU3lk9R91tvQ
-         y/jiEZLUI8XuQCSjDX/ypPrWOeYnmU7plRJodOGIr4kCvhvZ6gRolmWNg4aIy66i7NBr
-         IUj/++l6OOlyHGlaRoH74YT6fWJGJY+suLeH8SAqt7xNzQ6xFcAHKBHQ0I/Bb9wcXuXz
-         DZu0FNVzvh9o+7OJ22MnsEgXWX4Cz3r5dWrF1t8ucKlTJuf1J4NGD3RAjM/t6YAwtP/N
-         JJsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=OjSejv2JJ2JWA4MOD2Ua80DTgBsI2ciXKHuKLp62nNQ=;
-        b=GvPRnH29Rum7bb4w86u6PPBEYzHX8cRLlfvsUT8il9DxT5oFGSl4uCSexroyO7BHMM
-         ABGsORLBHJ6wfu0WfhynYSdZLlYRDSxIc4cByw/TeEkAbIvtkgSanW3pwGxh5sA6sTwZ
-         48tY8Sk3jJNYNPOQhVKeWCLX/nrB5g3s0FFVt3B8WrdWMtiDzB57oW4K4KZMmvanXDNP
-         9sTcChEijXvrS9cCdKg00T+Q1bKk8zPw5RZwS3dDoZOGqnzGMJrlumw3EwTHcvADEP8c
-         0e9A7qP8/QR8DjFfvKRO8nI069tb76T+NQcOex2VqWuU+g6WHEuNVGpBuBBVEI7op6et
-         vPhw==
-X-Gm-Message-State: ANhLgQ2kipFrSfTpfjfYjBfje/xOi+uVU2OgUUgSTLCyUOzSWVwjQgR+
-        wPFmYcqFPJAY7nPIPbiT08ZxrQ==
-X-Google-Smtp-Source: ADFU+vufcMPJhoz525ReiJIke606YTgQB9zlW2QHLNkqzTMEKlmjaYtQF2XY4me1raSEbZfX/h8K+Q==
-X-Received: by 2002:adf:ef92:: with SMTP id d18mr2408404wro.193.1583479438509;
-        Thu, 05 Mar 2020 23:23:58 -0800 (PST)
-Received: from dell ([2.31.163.122])
-        by smtp.gmail.com with ESMTPSA id v16sm30547928wrp.84.2020.03.05.23.23.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2020 23:23:58 -0800 (PST)
-Date:   Fri, 6 Mar 2020 07:24:38 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Ikjoon Jang <ikjn@chromium.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Nicolas Boitchat <drinkcat@chromium.org>,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH v6] dt-bindings: mfd: Convert ChromeOS EC bindings to
- json-schema
-Message-ID: <20200306072438.GH3332@dell>
-References: <20200305075302.200959-1-ikjn@chromium.org>
- <199d9fc9-5eba-c135-14a5-e78000859f47@collabora.com>
+        id S1725905AbgCFH2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 02:28:18 -0500
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:38385 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725869AbgCFH2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 02:28:18 -0500
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jA7Ov-0007jV-SA; Fri, 06 Mar 2020 08:28:05 +0100
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1jA7Ov-0003pl-7B; Fri, 06 Mar 2020 08:28:05 +0100
+Date:   Fri, 6 Mar 2020 08:28:05 +0100
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Sandipan Patra <spatra@nvidia.com>
+Cc:     treding@nvidia.com, robh+dt@kernel.org, jonathanh@nvidia.com,
+        bbasu@nvidia.com, ldewangan@nvidia.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] pwm: tegra: Add support for Tegra194
+Message-ID: <20200306072805.qraegjo7xmebelu5@pengutronix.de>
+References: <1583407653-30059-1-git-send-email-spatra@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <199d9fc9-5eba-c135-14a5-e78000859f47@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1583407653-30059-1-git-send-email-spatra@nvidia.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Mar 2020, Enric Balletbo i Serra wrote:
+On Thu, Mar 05, 2020 at 04:57:33PM +0530, Sandipan Patra wrote:
+> Tegra194 has multiple PWM controllers with each having only one output.
+> 
+> Also the maxmimum frequency is higher than earlier SoCs.
+> 
+> Add support for Tegra194 and specify the number of PWM outputs and
+> maximum supported frequency using device tree match data.
+> 
+> Signed-off-by: Sandipan Patra <spatra@nvidia.com>
 
-> Hi Ikjoon,
-> 
-> On 5/3/20 8:53, Ikjoon Jang wrote:
-> > Convert the ChromeOS EC bindings to json-schema.
-> > 
-> > Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-> > ---
-> > v6: adjust property dependencies, drop duplicated definitions,
-> >     and set additionalProperties
-> > v5: unset additionalProperties
-> > v4: text reflows, add type references, and fix examples
-> > v3: node name changed in rpmsg example
-> > v2: cleanup description, fix typos, remove LPC, and add RPMSG example
-> > ---
-> >  .../devicetree/bindings/mfd/cros-ec.txt       |  76 -----------
-> >  .../devicetree/bindings/mfd/cros-ec.yaml      | 125 ++++++++++++++++++
-> 
-> According to the feedback I received on other patches from Rob, the name of the
-> file should include the vendor, in that case should be google,cros-ec.yaml
-> 
-> I already argued in previous version why I think this should go in
-> bindings/chrome instead of mfd, these bindings correspond to the platform/chrome
-> device not the mfd cros ec device (cros-ec-dev) in MFD, anyway, I don't want to
-> be touchy, but, as is, should go through the Lee Jones tree not our
-> chrome-platform tree. So if Lee is fine with it I'm fine too.
+Looks good to me,
 
-Actually these have been reviewed and taken by Rob of late.
+Acked-by: Uwe Kleine-K�nig <u.kleine-koenig@pengutronix.de>
 
-> Just another minor change (see below) and looks good to me.
-> 
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Thanks
+Uwe
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Pengutronix e.K.                           | Uwe Kleine-K�nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
