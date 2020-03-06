@@ -2,72 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D1F17BAD6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 11:55:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0047617BB05
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 11:59:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726245AbgCFKzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 05:55:10 -0500
-Received: from baptiste.telenet-ops.be ([195.130.132.51]:49724 "EHLO
-        baptiste.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726212AbgCFKzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 05:55:10 -0500
-Received: from ramsan ([84.195.182.253])
-        by baptiste.telenet-ops.be with bizsmtp
-        id Ayv72200g5USYZQ01yv7nw; Fri, 06 Mar 2020 11:55:08 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jAAdH-000479-Qz; Fri, 06 Mar 2020 11:55:07 +0100
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1jAAdH-0006KG-Oh; Fri, 06 Mar 2020 11:55:07 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 2/2] thermal: rcar_gen3_thermal: Add r8a77961 support
-Date:   Fri,  6 Mar 2020 11:55:03 +0100
-Message-Id: <20200306105503.24267-3-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200306105503.24267-1-geert+renesas@glider.be>
-References: <20200306105503.24267-1-geert+renesas@glider.be>
+        id S1726185AbgCFK7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 05:59:03 -0500
+Received: from mout.gmx.net ([212.227.17.22]:33151 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726190AbgCFK7C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Mar 2020 05:59:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1583492337;
+        bh=kuyvtVf1FO6LxH5diXT7XM0zj9zhQlps+gmZqb1gbrU=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=RxnahfruR9TaTAw3hDrZVCKsoV9p8qDnQR/foPPk817OrF0gMoFgeZaHTQGFn4zMB
+         /yUkkWmX/W3xGz63IfjPxPqpespnVflyL0AkMlFLwSJYs+bSCcZDflHS/bo3s8TjS6
+         LZKaCqr5e7maaHO126pYRwQKsyOEYnYxoz72tHsg=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.214.201]) by mail.gmx.com (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mt79F-1jURXE17BB-00tR7j; Fri, 06
+ Mar 2020 11:58:57 +0100
+Date:   Fri, 6 Mar 2020 11:58:56 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: cros-ec: Fix indentation in the example
+Message-ID: <20200306105856.GC2376@latitude>
+References: <20200305223631.27550-1-j.neuschaefer@gmx.net>
+ <32848672-85ab-5ed2-731c-bfd4dfa62760@collabora.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cmJC7u66zC7hs+87"
+Content-Disposition: inline
+In-Reply-To: <32848672-85ab-5ed2-731c-bfd4dfa62760@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:l//dY32oPOvq4IGyJ0ElGcieLs6OXSQ/K01CiZeQTDxAkxrH6tl
+ jMq+m7gufeBLjddkRrhNEZU3Jur695WDaEbiR99/Q4/xUfBxjiOJ9CdbJGS3Ude6xWgcLTS
+ t7MqMWg1AMR2bVHRVA42g6+0RCNKGzq3n8K2whaTCZrFzw0l8pL08LhKy5uNK9hxvuv4nCh
+ JN8sjdyKD7tdbVWR2NF6Q==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:nfhchYzS+Ug=:ztBB6afWMeKU0ebrRI2/9M
+ upVcaI6A0E6dYcfjY40fWwYAUhRyLpEqlb/BZUaX1f/fP3gjBjj6BrcWJiZo+lElA7AvJPFmv
+ CSMul3ooKercjhOz7F5XBJE9nLLrw8k2cQuConaslxhfe6Rw2kDrqHUk0qQEM5iD3M+2zWypS
+ J1vQj+mSgxpDH0SSI/A+0/Uokgjf85W5Iv4FZX1CHGG42FUB0omOH+/Dy2hol6ftl+4QfvVbD
+ 210tPiBUOI11y9g2HvT/jWWWfuQWOxZe0Qt7TWZxsAV5+x6iAxXNyXZnXPUX4hdY8mYZ4wtVZ
+ zgBETyX0x5uSyfARZIxIwGb8m0fhLvvcHGllDaKhrT7rPQDgEGUoh0xJe0dzT5UnVIs+hYSsO
+ OmT9MasttE+XWW3zJO33/Ab8OHsa6AXhQei+MdqSjGmiqkNgB1cq+DmuQSjosaZdsw1DCpXfv
+ wvRhOdBLS7K2zJ3Ut+jryv39Tb71Gq5jlEKkX4XQp7YgnW9pB9ySqUDaqgZVtF3KwHuyw1hhB
+ 10zTI8NI+8iIq6JiN0fEny46a4O7Rm7ZJQT/+tBb725JGUTyVpLkL3aGT3+68sHG6CPqQ6ikJ
+ n/FYoHiqpw5w7vnbc0sSeSbTvqUyfSNqcv/LgH43FSJwCUmNNnaRTLmYZgTaH7rUWJp0L5gmE
+ 5ohtw9YrIx31oR53UQJfJ9zJLIv5n3AvhM3BcO0yqODQyUfmOyANhXSLEJyjO4brL+iwNZ+Sk
+ tGL3LwbRn+naDmvcre4m8ZuPgKjr610D/Nzucv01xFvnP+MEAqsqyFEgfizSQrdQNJP5ZfVJj
+ 66WKh1NVX59lLk4jlV/5AliviK0KH2IFDsID5OKmN1tuIkelAfZQEqcoeShpCGJVMZ+6l1pXD
+ KhDwjagxNuh9vm+Q5zczQFM73/peMQsXeapDAaleHxU4MxYBYGkmnfepz/ASk5ymNvANpli2k
+ pghVA6GANc0AovLgTSdTRmyH1NzDs2572fSsft2rAjrmLG4zGUSYJF//9pYy8FS9UZkDLeTTV
+ FkFoMH/DszGOSXsHnemz+FOpo8VtZyY+VRfIH8OHrTV0DO4CoQnAWiQhl71sTmXVvqZwK77ji
+ NneCYDhR41/8R95DG4ogB23QrdZ062GfPxpUsEm0Dn+ha8QEWnsY6vksKpHpPW89VaB8ZcKUC
+ oH17p9RLrSy82IWyihIzn+yOvJTRhoy320h6JHxIGKy/flgIjXKQnk4GHo3adG87KmTMixDzU
+ 66E9wu8h9ebTaeEdM
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Thermal Sensor/Chip Internal Voltage Monitor in the
-R-Car M3-W+ (R8A77961) SoC.
 
-According to the R-Car Gen3 Hardware Manual Errata for Revision 2.00 of
-Jan 31, 2020, the thermal parameters for R-Car M3-W+ are the same as for
-R-Car M3-W.
+--cmJC7u66zC7hs+87
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/thermal/rcar_gen3_thermal.c | 4 ++++
- 1 file changed, 4 insertions(+)
+On Fri, Mar 06, 2020 at 10:07:31AM +0100, Enric Balletbo i Serra wrote:
+> Hi Jonathan,
+>=20
+> On 5/3/20 23:36, Jonathan Neusch=C3=A4fer wrote:
+> > Properties get one more level of indentation than the node they are in.
+> >=20
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/cros-ec.txt | 6 +++---
+>=20
+> Thanks for sending the patch but the binding is in process to be converte=
+d to
+> json-schema right now [1], and this change will not be needed.
 
-diff --git a/drivers/thermal/rcar_gen3_thermal.c b/drivers/thermal/rcar_gen3_thermal.c
-index 72877bdc072daaed..a6b0c31f1509c45c 100644
---- a/drivers/thermal/rcar_gen3_thermal.c
-+++ b/drivers/thermal/rcar_gen3_thermal.c
-@@ -324,6 +324,10 @@ static const struct of_device_id rcar_gen3_thermal_dt_ids[] = {
- 		.compatible = "renesas,r8a7796-thermal",
- 		.data = &rcar_gen3_ths_tj_1_m3_w,
- 	},
-+	{
-+		.compatible = "renesas,r8a77961-thermal",
-+		.data = &rcar_gen3_ths_tj_1_m3_w,
-+	},
- 	{
- 		.compatible = "renesas,r8a77965-thermal",
- 		.data = &rcar_gen3_ths_tj_1,
--- 
-2.17.1
+Alright!
 
+
+Jonathan
+
+--cmJC7u66zC7hs+87
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl5iLPAACgkQCDBEmo7z
+X9up7A//dlfuIqCNhvRSO76nhi7XPY2dbDiukYmO3bWzTeSoFjp1+qE7fJd9ox7m
+jrh6sl90RCP7TbfGSq8eOJ4e7MIQpF14XmBCns+pqrewGH3cDm41wyTlnYyXXeh0
+Jyg+k+h+0qtSgWtC0S/Y4eqzv7d5pORXNc4i48KeOmlNoyUHX/YnTM89oBuJ13R6
+B/RoXC0lAl39fuvT+x6cKoNfCeB5p82+//bIEGnZcOW8Tu6yc+OdOTtPv4JgSKhi
+D79Ti4bqzaD7KxNpGbFHFeWn7VV4fKDB7eKG+pYMAWh3TN0UB4Y5oSZN7NSG3Vz/
+ZCOHYpSzIVc/q9QDvhDXAg9XLKt8kL/lHtLd9cyJCWdNiCjvuYjwkk9TkUgd3YyU
+Fgo4RmH8fiPM0+sZKG4NOK/BUNNslM0RuLmsHRaLewIx9wgzGM7NFJPJxmP5qdN0
+qks5Qtt7JLUtzgStXl9tEPByxs/JUhn5zVq9MJz9V/ceWUZAYEEwb0vAhKWgFA+m
+IFfclflG+UCckKNxEWuiX/yww/uOfSlBGO8JpyiPWu2Vb5Etnu/J6r9psvkTqWC2
+/zKS5L3aXLW5gw+WUmprtPDrkqwP4QWG9OcBfkRBB/cVOrPq7tU/yKVq2qZ5XlHf
+gbGmTwqENNNio6gv2OpwyCXnangWXjqSbdGPNapM5ny4Fl2fgdk=
+=1HWf
+-----END PGP SIGNATURE-----
+
+--cmJC7u66zC7hs+87--
