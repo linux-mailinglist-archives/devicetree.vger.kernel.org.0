@@ -2,121 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6BB417C0F1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 15:52:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB5817C14C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 16:10:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726894AbgCFOws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 09:52:48 -0500
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:45775 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726182AbgCFOws (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 09:52:48 -0500
-Received: by mail-qk1-f196.google.com with SMTP id z12so2480042qkg.12
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2020 06:52:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=+GR87JEz7bnHSu9Y+6bwTYgFaQr/zFIG/NuG9Kdwt4s=;
-        b=aihyF2t/7s9DwcSYHNvpWHnT3C1bxl/IZjNLEoNgOyzpHGq2CUT5SBQgARQYZcC3G6
-         3QQcrLEwVInFxDWyTBXRLmXxACdXjYVIqAViex2/tQdPqzBlGGoQch5dkM9CiRhOY7Yr
-         yUUf7KhbVdR7MKAD56vslHiz5RAfoDjMkqmQ4qTCQQ6gYW3ezJVfIhj1mUTLOa6MObXQ
-         NNFpk5xfcDcsqIhcLIaVcUtJ5aS7/SVw3PB4wRfYRl19e3Sdp1bfYlUxjk95UosNuxLf
-         bfLFXQreuG1sjxtV/SfKboz2+FupAmFWP79r+I3j96a8IihKr6R1cSfkp7pDo/v0x+v/
-         8FdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=+GR87JEz7bnHSu9Y+6bwTYgFaQr/zFIG/NuG9Kdwt4s=;
-        b=WL9MpFmzd4Eb/PNuIhwOa1KP6hM4tBtrZMFNN7/jVgIrQgt3dtEWhwrg1/XVyzq45U
-         Tu9q9KGYmgps9LhGvyc0904fUvxGP6/S5dGqXim4IA9/eyOmZ2oG4oGV0lDpQrahdicv
-         81wCpPlWFk3789bjr3gb/f7MchmT1QWdwMcL0CF4f+AroZocXgbR+Ojhako7lUIRmvPU
-         Dnf2Q5OYMF9IPNza2iqoQ4nXeN95jB5Vl2qR7K9HKcJ9xJ3ZGBcRbYL48TJWXO/beNEI
-         8R8No+fhrlA28ynq6pJPuLO6jJ6Z0EAYBwAfqOPIb3p0eDgLlTa1F92cO6boGGUSbSX2
-         d3bA==
-X-Gm-Message-State: ANhLgQ1VSU4Qaz/6a8ladg1D3wJU0dcqFZ7LIWMGT8w1Vwyl+mR1jROy
-        z64Cg95NCRJwaHB+fhdb7RL9IQ==
-X-Google-Smtp-Source: ADFU+vt8B7E7ypc6uA8DcBdUQZ7yTuum2anrkiUB7D/EpPFaARsWnBpjWIkRxETgE9O5KR7vdHN99g==
-X-Received: by 2002:a05:620a:1427:: with SMTP id k7mr3113149qkj.377.1583506366542;
-        Fri, 06 Mar 2020 06:52:46 -0800 (PST)
-Received: from ziepe.ca (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.57.212])
-        by smtp.gmail.com with ESMTPSA id n59sm8640178qtd.77.2020.03.06.06.52.46
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 06 Mar 2020 06:52:46 -0800 (PST)
-Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
-        (envelope-from <jgg@ziepe.ca>)
-        id 1jAELF-00041P-Jc; Fri, 06 Mar 2020 10:52:45 -0400
-Date:   Fri, 6 Mar 2020 10:52:45 -0400
-From:   Jason Gunthorpe <jgg@ziepe.ca>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     mark.rutland@arm.com, linux-pci@vger.kernel.org,
-        linux-mm@kvack.org, will@kernel.org,
-        Dimitri Sivanich <sivanich@sgi.com>, catalin.marinas@arm.com,
-        zhangfei.gao@linaro.org, devicetree@vger.kernel.org,
-        kevin.tian@intel.com, Arnd Bergmann <arnd@arndb.de>,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        iommu@lists.linux-foundation.org,
-        Andrew Morton <akpm@linux-foundation.org>,
-        robin.murphy@arm.com, christian.koenig@amd.com
-Subject: Re: [PATCH v4 01/26] mm/mmu_notifiers: pass private data down to
- alloc_notifier()
-Message-ID: <20200306145245.GK31668@ziepe.ca>
-References: <20200224190056.GT31668@ziepe.ca>
- <20200225092439.GB375953@myrica>
- <20200225140814.GW31668@ziepe.ca>
- <20200228143935.GA2156@myrica>
- <20200228144844.GQ31668@ziepe.ca>
- <20200228150427.GF2156@myrica>
- <20200228151339.GS31668@ziepe.ca>
- <20200306095614.GA50020@myrica>
- <20200306130919.GJ31668@ziepe.ca>
- <20200306143556.GA99609@myrica>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200306143556.GA99609@myrica>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726957AbgCFPKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 10:10:25 -0500
+Received: from mailout3.samsung.com ([203.254.224.33]:63801 "EHLO
+        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726898AbgCFPKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 10:10:25 -0500
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20200306151022epoutp036d99647d0d0e3cb20d4bd44a47ff8ffb~5v5xM22HA2900429004epoutp03d
+        for <devicetree@vger.kernel.org>; Fri,  6 Mar 2020 15:10:22 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20200306151022epoutp036d99647d0d0e3cb20d4bd44a47ff8ffb~5v5xM22HA2900429004epoutp03d
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1583507422;
+        bh=uZZ7YMGvTZRCBfymZO5uf3+qMA26KxVB4cbQ7MD8XTg=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=AS4v03cVWcDphXY14tyErq6uvPBGCMMp2CK6d2AiaboboDrf9mrC+OKooIh7BCbJR
+         Ju5XuUufSKL8iJ5gZwtxMjoE8yXhS90MaHtBB+i1ae7LI61oWSB3R+N2KGkHG53XwG
+         Ct1hXU2rMRKre6093xB9MsyyG19DCg9ghaSSHFXY=
+Received: from epsmges5p1new.samsung.com (unknown [182.195.42.73]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20200306151020epcas5p1cdeebb64c416abba4b23f683038e8ccd~5v5wDi3aw1616316163epcas5p1f;
+        Fri,  6 Mar 2020 15:10:20 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        FF.C5.19726.CD7626E5; Sat,  7 Mar 2020 00:10:20 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+        20200306151019epcas5p11f5fcf849ece9a808396d9aa3a65410d~5v5vBr7Rx2723827238epcas5p1F;
+        Fri,  6 Mar 2020 15:10:19 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20200306151019epsmtrp109305974815c97b2cb5e26fe1ba7341c~5v5vA9Qx60147001470epsmtrp1i;
+        Fri,  6 Mar 2020 15:10:19 +0000 (GMT)
+X-AuditID: b6c32a49-7c1ff70000014d0e-cf-5e6267dcd801
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1E.22.10238.BD7626E5; Sat,  7 Mar 2020 00:10:19 +0900 (KST)
+Received: from Jaguar.sa.corp.samsungelectronics.net (unknown
+        [107.108.73.139]) by epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200306151018epsmtip1e24f5bd6ebac6381e4c212d4e39d5cf1~5v5tkT_EC0257102571epsmtip1D;
+        Fri,  6 Mar 2020 15:10:17 +0000 (GMT)
+From:   Alim Akhtar <alim.akhtar@samsung.com>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-scsi@vger.kernel.org
+Cc:     krzk@kernel.org, avri.altman@wdc.com, martin.petersen@oracle.com,
+        kwmad.kim@samsung.com, stanley.chu@mediatek.com,
+        cang@codeaurora.org, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: [PATCH 0/5] exynos-ufs: Add support for UFS HCI
+Date:   Fri,  6 Mar 2020 20:35:24 +0530
+Message-Id: <20200306150529.3370-1-alim.akhtar@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRmVeSWpSXmKPExsWy7bCmhu6d9KQ4g1OHdCwezNvGZvHy51U2
+        i0/rl7FazD9yjtXi/PkN7BY3txxlsei+voPNYvnxf0wWrXuPsFss3XqT0YHL43JfL5PHplWd
+        bB4tJ/ezeHx8eovFo2/LKkaPz5vkPNoPdDMFsEdx2aSk5mSWpRbp2yVwZTxb9oSxYKJQxYUP
+        F5gaGJ/zdjFyckgImEgs6F3A2MXIxSEksJtR4uu1n8wgCSGBT4wSUx5DJb4xSiyY8ooRpmPj
+        hKPMEIm9jBIf19xjg+hoYZL4/UsVxGYT0Ja4O30LE4gtIhAgcen9QTaQBmaBrYwSrdeWsIMk
+        hAUsJH7PeMcCYrMIqEpcaD4CNohXwFpiXvdlFoht8hKrNxxghrDXsEm8P2ECYbtIrHzUBHWR
+        sMSr41vYIWwpiZf9bUA2B5CdLdGzyxgiXCOxdN4xqJH2EgeuzGEBKWEW0JRYv0sfJMwswCfR
+        +/sJE0Qnr0RHmxBEtapE87urUJ3SEhO7u1khbA+Jo6+/QcMqVmLlnBOMExhlZiEMXcDIuIpR
+        MrWgODc9tdi0wDAvtVyvODG3uDQvXS85P3cTIzgZaHnuYJx1zucQowAHoxIPr4N1UpwQa2JZ
+        cWXuIUYJDmYlEV5h0/g4Id6UxMqq1KL8+KLSnNTiQ4zSHCxK4ryTWK/GCAmkJ5akZqemFqQW
+        wWSZODilGhhXSN30KmdyjVnYUuPJsdBHJnbS8Rg/d+08z+3WP0QDfi1+v3XHWrMTMkF9Yddr
+        DCfmzOWRb5+vfdnG4AbX1TXHZzofkVk/f375xodr5ne3nmifwtXPJanRuF3sUOUrxQc19+7k
+        /FFmeX0m1YkxP3nTv4N1Cr9FeRM6WJ1SpEK2TDxu+9PuwHYlluKMREMt5qLiRAA++41xAgMA
+        AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGLMWRmVeSWpSXmKPExsWy7bCSnO7t9KQ4g2WLVS0ezNvGZvHy51U2
+        i0/rl7FazD9yjtXi/PkN7BY3txxlsei+voPNYvnxf0wWrXuPsFss3XqT0YHL43JfL5PHplWd
+        bB4tJ/ezeHx8eovFo2/LKkaPz5vkPNoPdDMFsEdx2aSk5mSWpRbp2yVwZTxb9oSxYKJQxYUP
+        F5gaGJ/zdjFyckgImEhsnHCUuYuRi0NIYDejRN+UX0wQCWmJ6xsnsEPYwhIr/z1nhyhqYpK4
+        t/4VC0iCTUBb4u70LWANIgJBEvfWrGUFKWIW2MsosfnoMVaQhLCAhcTvGe/AGlgEVCUuNB9h
+        A7F5Bawl5nVfZoHYIC+xesMB5gmMPAsYGVYxSqYWFOem5xYbFhjmpZbrFSfmFpfmpesl5+du
+        YgSHnpbmDsbLS+IPMQpwMCrx8M6wTYoTYk0sK67MPcQowcGsJMIrbBofJ8SbklhZlVqUH19U
+        mpNafIhRmoNFSZz3ad6xSCGB9MSS1OzU1ILUIpgsEwenVAOjulWA3fR1+2WYteL3SN3jjz3y
+        qyRsptuV+uVHc0PX37g45ecqtdvuGvGCeXusRO2u5/kqVcn+r5KcslLekDMuw4eFMYbTOPTq
+        rTO9HFV7Z589a/GtcqL09/ZtFd6TPv+O7WGvtbmyxCtSkn/5ZRGh6omm55bslj/ZEjk1Uapa
+        UCYgyvpiV7sSS3FGoqEWc1FxIgAusmt4OQIAAA==
+X-CMS-MailID: 20200306151019epcas5p11f5fcf849ece9a808396d9aa3a65410d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+X-CMS-RootMailID: 20200306151019epcas5p11f5fcf849ece9a808396d9aa3a65410d
+References: <CGME20200306151019epcas5p11f5fcf849ece9a808396d9aa3a65410d@epcas5p1.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 06, 2020 at 03:35:56PM +0100, Jean-Philippe Brucker wrote:
-> On Fri, Mar 06, 2020 at 09:09:19AM -0400, Jason Gunthorpe wrote:
-> > On Fri, Mar 06, 2020 at 10:56:14AM +0100, Jean-Philippe Brucker wrote:
-> > > I tried to keep it simple like that: normally mmu_notifier_get() is called
-> > > in bind(), and mmu_notifier_put() is called in unbind(). 
-> > > 
-> > > Multiple device drivers may call bind() with the same mm. Each bind()
-> > > calls mmu_notifier_get(), obtains the same io_mm, and returns a new bond
-> > > (a device<->mm link). Each bond is freed by calling unbind(), which calls
-> > > mmu_notifier_put().
-> > > 
-> > > That's the most common case. Now if the process is killed and the mm
-> > > disappears, we do need to avoid use-after-free caused by DMA of the
-> > > mappings and the page tables. 
-> > 
-> > This is why release must do invalidate all - but it doesn't need to do
-> > any more - as no SPTE can be established without a mmget() - and
-> > mmget() is no longer possible past release.
-> 
-> In our case we don't have SPTEs, the whole pgd is shared between MMU and
-> IOMMU (isolated using PASID tables).
+This patch-set introduces UFS (Universal Flash Storage) host controller support
+for Samsung family SoC. Mostly, it consists of UFS PHY and host specific driver.
 
-Okay, but this just means that 'invalidate all' also requires
-switching the PASID to use some pgd that is permanently 'all fail'.
+patch 1/5: define devicetree bindings for UFS PHY
+patch 2/5: Adds UFS PHY driver
+patch 3/5: define devicetree bindings for UFS HCI 
+patch 4/5: Adds Samsung UFS HCI driver
+patch 5/5: Enabled UFS on exynos7 platform
 
-> At this point no one told the device to stop working on this queue,
-> it may still be doing DMA on this address space.
+Note: This series is based on Linux-5.6-rc2 
+      In past there was couple of attempt to upstream this driver, but
+      it didn't went upstream for some or other reason.
 
-Sure, but there are lots of cases where a defective user space can
-cause pages under active DMA to disappear, like munmap for
-instance. Process exit is really no different, the PASID should take
-errors and the device & driver should do whatever error flow it has.
+Alim Akhtar (5):
+  dt-bindings: phy: Document Samsung UFS PHY bindings
+  phy: samsung-ufs: add UFS PHY driver for samsung SoC
+  Documentation: devicetree: ufs: Add DT bindings for exynos UFS host
+    controller
+  scsi: ufs-exynos: add UFS host support for Exynos SoCs
+  arm64: dts: Add node for ufs exynos7
 
-Involving a complex driver flow in the exit_mmap path seems like
-dangerous complexity to me.
+ .../bindings/phy/samsung,ufs-phy.yaml         |   60 +
+ .../devicetree/bindings/ufs/ufs-exynos.txt    |  104 ++
+ .../boot/dts/exynos/exynos7-espresso.dts      |   16 +
+ arch/arm64/boot/dts/exynos/exynos7.dtsi       |   56 +-
+ drivers/phy/samsung/Kconfig                   |    9 +
+ drivers/phy/samsung/Makefile                  |    1 +
+ drivers/phy/samsung/phy-exynos7-ufs.h         |   85 +
+ drivers/phy/samsung/phy-samsung-ufs.c         |  311 ++++
+ drivers/phy/samsung/phy-samsung-ufs.h         |  100 ++
+ drivers/scsi/ufs/Kconfig                      |   12 +
+ drivers/scsi/ufs/Makefile                     |    1 +
+ drivers/scsi/ufs/ufs-exynos.c                 | 1399 +++++++++++++++++
+ drivers/scsi/ufs/ufs-exynos.h                 |  268 ++++
+ drivers/scsi/ufs/unipro.h                     |   41 +
+ include/linux/phy/phy-samsung-ufs.h           |   70 +
+ 15 files changed, 2531 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/ufs/ufs-exynos.txt
+ create mode 100644 drivers/phy/samsung/phy-exynos7-ufs.h
+ create mode 100644 drivers/phy/samsung/phy-samsung-ufs.c
+ create mode 100644 drivers/phy/samsung/phy-samsung-ufs.h
+ create mode 100644 drivers/scsi/ufs/ufs-exynos.c
+ create mode 100644 drivers/scsi/ufs/ufs-exynos.h
+ create mode 100644 include/linux/phy/phy-samsung-ufs.h
 
-Jason
+-- 
+2.17.1
+
