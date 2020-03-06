@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 801DB17BA7A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 11:39:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A911117BAAA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 11:43:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726129AbgCFKjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 05:39:31 -0500
-Received: from mx2.suse.de ([195.135.220.15]:44310 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727123AbgCFKjb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Mar 2020 05:39:31 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id E9EE2ADE8;
-        Fri,  6 Mar 2020 10:39:29 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        f.fainelli@gmail.com, phil@raspberrypi.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 10/10] ARM: dts: bcm2711: Add vmmc regulator in emmc2
-Date:   Fri,  6 Mar 2020 11:38:55 +0100
-Message-Id: <20200306103857.23962-11-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200306103857.23962-1-nsaenzjulienne@suse.de>
-References: <20200306103857.23962-1-nsaenzjulienne@suse.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726635AbgCFKlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 05:41:35 -0500
+Received: from mail-qt1-f195.google.com ([209.85.160.195]:43087 "EHLO
+        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726565AbgCFKlf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 05:41:35 -0500
+Received: by mail-qt1-f195.google.com with SMTP id v22so1330196qtp.10;
+        Fri, 06 Mar 2020 02:41:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=al7age2oTXgYTympMQW4jKiNWfRyppUJjWuKVFSzTq4=;
+        b=Pmq4K6KDvmWg+QImisnIgA7B7RmumCDCRG1Xkl53KFpEcY+WMWtEh6qtXRWE89kD8/
+         ablkdKssUXeOAw8KzuISRSoznT0nsDNPDsLJbAd+B89tQXU4CPT0nu/wacgsNiy3Akd/
+         wObt8muPZYIaPjFpZlh6ILWyiB2ueb07kRcxCTQSFuM7vXzlu0p8RWFbfPFE4j1RwgXO
+         vTDpN0GhxFl39+h/8HFJr1sgpjk+8bdS1aYTI7a4icPjgzjWmOU/E05T7+h0FuPPr0+F
+         fAQD1xEnyBoMLWMAoZBI3XK4nkWE4axsjGsEJ7KsUjYuE1C2+HZiG9qq407qRGkn1qyf
+         xPnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=al7age2oTXgYTympMQW4jKiNWfRyppUJjWuKVFSzTq4=;
+        b=GaPVML/K50+BqtaCFuvD2fsHYOODgvAGYNmfICzaQxrTNUYc6vWZnHeCxzhraQYQV8
+         9yWNX9gwd09+VRa1SRE6mebTOylLi7jAGVmVjzUCLvMPclD7SfC2jWJ/SqG4KAZf1t0s
+         BTK0+xQHdOxVDMFMRo0bxC4rvBmybwZO/W2CqhZm81Q+dDyl6otAHZIg0usFpth+BIGb
+         fBzWl0u80yF9Oiet01BmF5Hc37UFcTKE+f2pf8qIM4nsx7oAAn7qbVYVvDx6Z5UJ83sO
+         73m9woy7xdiTG/atyZfHJdwsE6W7dODOqa5Cw0ahlJlXuVfmaXz8sb+Zzsgb9P3nZGuR
+         iQRQ==
+X-Gm-Message-State: ANhLgQ0s51YXsVEK+3ZYNxV6yHm8SoCKGMvcMI7kH23EATBt7UalJD30
+        Qnb7SscaYHV84sBnQxfe2Mo=
+X-Google-Smtp-Source: ADFU+vuSKVKDhCno4+Mq0uvE1KVuExpu4oA+/WFezYFdXs9rfgVJNmqSirh5K9SNW5BgkOeQFHON2A==
+X-Received: by 2002:ac8:4659:: with SMTP id f25mr2248175qto.273.1583491293109;
+        Fri, 06 Mar 2020 02:41:33 -0800 (PST)
+Received: from L-E5450.nxp.com ([177.221.114.206])
+        by smtp.gmail.com with ESMTPSA id u5sm17096932qkf.32.2020.03.06.02.41.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Mar 2020 02:41:32 -0800 (PST)
+From:   Alifer Moraes <alifer.wsdm@gmail.com>
+To:     robh+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        marco.franchi@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Alifer Moraes <alifer.wsdm@gmail.com>
+Subject: [PATCH] arm64: dts: imx8mq-phanbell: Fix Ethernet PHY post-reset duration
+Date:   Fri,  6 Mar 2020 07:42:19 -0300
+Message-Id: <20200306104219.6434-1-alifer.wsdm@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SD card power can be controlled trough a pin routed into the board's
-external GPIO expander. Turn that into a regulator and provide it to
-emmc2.
+i.MX8MQ Phanbell board uses Realtek RTL8211FD as Ethernet PHY.
+Its datasheet states that the proper post reset duration should be at least 50 ms.
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Fixes: f34d4bfab354 ("arm64: dts: imx8mq-phanbell: Add support for ethernet")
+Signed-off-by: Alifer Moraes <alifer.wsdm@gmail.com>
 ---
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-index e26ea9006378..8e98e917f9f4 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-@@ -56,6 +56,16 @@ sd_io_1v8_reg: sd_io_1v8_reg {
- 			  3300000 0x0>;
- 		status = "okay";
- 	};
-+
-+	sd_vcc_reg: sd_vcc_reg {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc-sd";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		gpio = <&expgpio 6 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &firmware {
-@@ -174,6 +184,7 @@ brcmf: wifi@1 {
- /* EMMC2 is used to drive the SD card */
- &emmc2 {
- 	vqmmc-supply = <&sd_io_1v8_reg>;
-+	vmmc-supply = <&sd_vcc_reg>;
- 	broken-cd;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
+index 16ed13c44a47..06e248b95ada 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
+@@ -207,7 +207,7 @@
+ 	phy-mode = "rgmii-id";
+ 	phy-reset-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
+ 	phy-reset-duration = <10>;
+-	phy-reset-post-delay = <30>;
++	phy-reset-post-delay = <50>;
+ 	phy-handle = <&ethphy0>;
+ 	fsl,magic-packet;
  	status = "okay";
- };
 -- 
-2.25.1
+2.17.1
 
