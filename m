@@ -2,184 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A811B17BDAE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 14:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA32E17BD8E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 14:04:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727067AbgCFNHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 08:07:37 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:36368 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726875AbgCFNHh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 08:07:37 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 194288030794;
-        Fri,  6 Mar 2020 13:07:34 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id pPKreXhWPNMw; Fri,  6 Mar 2020 16:07:33 +0300 (MSK)
-From:   <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Burton <paulburton@kernel.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        <soc@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/6] dt-bindings: Add Baikal-T1 L2-cache Control Block dts bindings file
-Date:   Fri, 6 Mar 2020 16:07:18 +0300
-In-Reply-To: <20200306130721.10347-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200306130721.10347-1-Sergey.Semin@baikalelectronics.ru>
+        id S1727241AbgCFNEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 08:04:07 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54088 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726054AbgCFNEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 08:04:06 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 026D45a2076542;
+        Fri, 6 Mar 2020 07:04:05 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1583499846;
+        bh=YGPGIjMx8NpAqoWqRIFkR0DHWMSpJffHZWteABIBptA=;
+        h=From:To:CC:Subject:Date;
+        b=zDRTKQ6V1wuFj+2ihF5TjttoKFCukldb45qddFXQctpFOblg/vCf6CWpf9yqOtWI8
+         h/Bbd1VDq9byySPBVzCLdSWx9sJ+Fnki177o9d0WBnwJmniyv0tp1KdOGqszUSVAJO
+         gn3pSCF0RTtToHGx1jbCjlTBQDaxH/w6HgDNbWfA=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 026D454T105721
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 6 Mar 2020 07:04:05 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Fri, 6 Mar
+ 2020 07:04:05 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Fri, 6 Mar 2020 07:04:05 -0600
+Received: from uda0869644b.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 026D45Ne066327;
+        Fri, 6 Mar 2020 07:04:05 -0600
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Benoit Parrot <bparrot@ti.com>, <stable@vger.kernel.org>
+Subject: [Patch v2] media: ti-vpe: cal: fix a kernel oops when unloading module
+Date:   Fri, 6 Mar 2020 07:08:39 -0600
+Message-ID: <20200306130839.1209-1-bparrot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
-Message-Id: <20200306130734.194288030794@mail.baikalelectronics.ru>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+After the switch to use v4l2_async_notifier_add_subdev() and
+v4l2_async_notifier_cleanup(), unloading the ti_cal module would casue a
+kernel oops.
 
-There is a single register provided by the SoC system controller,
-which can be used to tune the L2-cache up. It only provides a way
-to change the L2-RAM access latencies. So aside from the MMIO region
-with that setting and "be,bt1-l2-ctl" compatible string the device
-node can be optionally equipped with the properties of Tag/Data/WS
-latencies.
+This was root cause to the fact that v4l2_async_notifier_cleanup() tries
+to kfree the asd pointer passed into v4l2_async_notifier_add_subdev().
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Signed-off-by: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Paul Burton <paulburton@kernel.org>
-Cc: Ralf Baechle <ralf@linux-mips.org>
-Cc: Arnd Bergmann <arnd@arndb.de>
-Cc: Olof Johansson <olof@lixom.net>
-Cc: soc@kernel.org
+In our case the asd reference was from a statically allocated struct.
+So in effect v4l2_async_notifier_cleanup() was trying to free a pointer
+that was not kalloc.
+
+So here we switch to using a kzalloc struct instead of a static one.
+To acheive this we re-order some of the calls to prevent asd allocation
+from leaking.
+
+Fixes: d079f94c9046 ("media: platform: Switch to v4l2_async_notifier_add_subdev")
+
+Cc: stable@vger.kernel.org
+Signed-off-by: Benoit Parrot <bparrot@ti.com>
 ---
- .../bindings/soc/baikal-t1/be,bt1-l2-ctl.yaml | 108 ++++++++++++++++++
- 1 file changed, 108 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/baikal-t1/be,bt1-l2-ctl.yaml
+Changes since v1:
+- fix asd allocation leak
 
-diff --git a/Documentation/devicetree/bindings/soc/baikal-t1/be,bt1-l2-ctl.yaml b/Documentation/devicetree/bindings/soc/baikal-t1/be,bt1-l2-ctl.yaml
-new file mode 100644
-index 000000000000..8769b3fa517c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/baikal-t1/be,bt1-l2-ctl.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-+#
-+# Baikal-T1 L2-cache Control Block Device Tree Bindings.
-+#
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/baikal-t1/be,bt1-l2-ctl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+ drivers/media/platform/ti-vpe/cal.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/media/platform/ti-vpe/cal.c b/drivers/media/platform/ti-vpe/cal.c
+index 6d4cbb8782ed..6c8f3702eac0 100644
+--- a/drivers/media/platform/ti-vpe/cal.c
++++ b/drivers/media/platform/ti-vpe/cal.c
+@@ -372,8 +372,6 @@ struct cal_ctx {
+ 	struct v4l2_subdev	*sensor;
+ 	struct v4l2_fwnode_endpoint	endpoint;
+ 
+-	struct v4l2_async_subdev asd;
+-
+ 	struct v4l2_fh		fh;
+ 	struct cal_dev		*dev;
+ 	struct cc_data		*cc;
+@@ -2032,7 +2030,6 @@ static int of_cal_create_instance(struct cal_ctx *ctx, int inst)
+ 
+ 	parent = pdev->dev.of_node;
+ 
+-	asd = &ctx->asd;
+ 	endpoint = &ctx->endpoint;
+ 
+ 	ep_node = NULL;
+@@ -2079,8 +2076,6 @@ static int of_cal_create_instance(struct cal_ctx *ctx, int inst)
+ 		ctx_dbg(3, ctx, "can't get remote parent\n");
+ 		goto cleanup_exit;
+ 	}
+-	asd->match_type = V4L2_ASYNC_MATCH_FWNODE;
+-	asd->match.fwnode = of_fwnode_handle(sensor_node);
+ 
+ 	v4l2_fwnode_endpoint_parse(of_fwnode_handle(ep_node), endpoint);
+ 
+@@ -2110,9 +2105,17 @@ static int of_cal_create_instance(struct cal_ctx *ctx, int inst)
+ 
+ 	v4l2_async_notifier_init(&ctx->notifier);
+ 
++	asd = kzalloc(sizeof(*asd), GFP_KERNEL);
++	if (!asd)
++		goto cleanup_exit;
 +
-+title: Baikal-T1 L2-cache Control Block
++	asd->match_type = V4L2_ASYNC_MATCH_FWNODE;
++	asd->match.fwnode = of_fwnode_handle(sensor_node);
 +
-+maintainers:
-+  - Serge Semin <fancer.lancer@gmail.com>
-+
-+description: |
-+  Baikal-T1 exposes a few settings to tune the MIPS P5600 CM2 L2-cache
-+  performance up. In particular it's possible to change the Tag, Data and
-+  Way-select RAM access latencies. This bindings file describes the system
-+  controller block, which provides an interface to set the tuning up.
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: syscon
-+    then:
-+      $ref: ../../mfd/syscon.yaml#
-+    else:
-+      properties:
-+        reg-io-width: false
-+
-+        little-endian: false
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: P5600 CM2 L2-cache RAM external configuration block.
-+        const: be,bt1-l2-ctl
-+      - description: P5600 CM2 L2-cache RAM system controller block.
-+        items:
-+          - const: be,bt1-l2-ctl
-+          - const: syscon
-+
-+  reg:
-+    description: MMIO register with MIPS P5600 CM2 L2-cache RAM settings.
-+    maxItems: 1
-+
-+  be,l2-ws-latency:
-+    description: Cycles of latency for Way-select RAM accesses.
-+    default: 0
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - minimum: 0
-+        maximum: 3
-+
-+  be,l2-tag-latency:
-+    description: Cycles of latency for Tag RAM accesses.
-+    default: 0
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - minimum: 0
-+        maximum: 3
-+
-+  be,l2-data-latency:
-+    description: Cycles of latency for Data RAM accesses.
-+    default: 1
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - minimum: 0
-+        maximum: 3
-+
-+  reg-io-width:
-+    const: 4
-+
-+  little-endian: true
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    l2_ctl1: l2@1F04D028 {
-+      compatible = "be,bt1-l2-ctl";
-+      reg = <0x1F04D028 0x004>;
-+
-+      be,l2-ws-latency = <0>;
-+      be,l2-tag-latency = <0>;
-+      be,l2-data-latency = <1>;
-+    };
-+  - |
-+    l2_ctl2: l2@1F04D028 {
-+      compatible = "be,bt1-l2-ctl", "syscon";
-+      reg = <0x1F04D028 0x004>;
-+
-+      be,l2-ws-latency = <0>;
-+      be,l2-tag-latency = <0>;
-+      be,l2-data-latency = <1>;
-+
-+      little-endian;
-+      reg-io-width = <4>;
-+    };
-+...
+ 	ret = v4l2_async_notifier_add_subdev(&ctx->notifier, asd);
+ 	if (ret) {
+ 		ctx_err(ctx, "Error adding asd\n");
++		kfree(asd);
+ 		goto cleanup_exit;
+ 	}
+ 
 -- 
-2.25.1
+2.17.1
 
