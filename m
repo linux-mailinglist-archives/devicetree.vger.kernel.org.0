@@ -2,136 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C387917C45C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 18:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D77317C4A7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 18:42:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726368AbgCFR3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 12:29:44 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:25622 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726237AbgCFR3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 12:29:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1583515781;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=F7Q7dzKizkE8VkIH23/riTwDlFWCGM9XLFl0TNbD9Eo=;
-        b=DYq1VZ10FQOymgNarr/J4s02+7mP0sHY23mRhrWlvm/tFAMnOb2YOhVh4bBsde+ZZ6
-        sI56AtmCM1IpZEKF8Oz7fDOMDFWl9gaD2QrfBCamCwDipiwHmelvYbuJgcjm2Y+IN/Ba
-        bCXv9DfeFAEI3lt/tAIrIma4Ik+VWBMrxi6XuiBurPNjKUS8rZuVMpyY2MEloRz9Q3B6
-        Yvm2kMbO9TFLRILnwrUj55NtccN3fej23n7iLKaOaglue8imodUR3cNv0+WTzL2msa7m
-        JHygOKSZs4cn2K0vq3mU63ZIogFqFNAYc1VkLNyh762grElSD4Cic35iKId4zyumb/Tj
-        lEBQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXH6GQjzrz4="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 46.2.0 DYNA|AUTH)
-        with ESMTPSA id y0a02cw26HTYZte
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Fri, 6 Mar 2020 18:29:34 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org
-Subject: [PATCH v6 3/3] MIPS: CI20: defconfig: multiple improvements
-Date:   Fri,  6 Mar 2020 18:29:32 +0100
-Message-Id: <3423a1167a36aac94dc5b38830d319af694c6422.1583515771.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <cover.1583515771.git.hns@goldelico.com>
-References: <cover.1583515771.git.hns@goldelico.com>
+        id S1726194AbgCFRmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 12:42:43 -0500
+Received: from mail-qk1-f193.google.com ([209.85.222.193]:45024 "EHLO
+        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726178AbgCFRmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 12:42:43 -0500
+Received: by mail-qk1-f193.google.com with SMTP id f198so3043155qke.11
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2020 09:42:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=PxT02ryeWyx7p1SBqN6kTMwWdglwMPqc7wMiUtKckm8=;
+        b=fceAxzqKtPxKpBdyBHvIYC/k/jeNtyEFzrsgn7TJvkxLs22sR9WiBM6453QdPTwvJ2
+         93UYmt1Orc9z4jHue6YWkq4c44RthUiPb/T9rH7qfZN2eZY2Xq3DFtWCpEtWlaAber1f
+         HTsaHpVQnQu0i950k23k9hzTJEjKD+BN7/Y/tDId6MCXM2Jq/oAfQ5infM5paw03g9Vz
+         fDBMIkB8bceHTgGX1/Vpyp9g9uOcrHu05i9iMph/9UxfrLbjUIDtwqwEFe+QO0y6kUt5
+         zKGrPWs4/zh+Z5lFrLMK9wdgK1uWKJWRJ5Z5s7FtAiUywEXkXWhLK89r07oF90jjf8ZV
+         UsTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=PxT02ryeWyx7p1SBqN6kTMwWdglwMPqc7wMiUtKckm8=;
+        b=Vp3N4GJrBg74mx/VpQ41jI9DdDwRKGnhq6fDFpN2xJH0R+S4oBXHSEa1ZPXY2s7gbM
+         FDtkfOujEmJCvnPXwyzbhcsgluMtombUc8u93Qwl1VyBwFBX1X/iIxxnQRFped1DVmqJ
+         62wj5Ye/3xB85rxrlkh5XjwOlAutS45H0ZXNgz2pqBMluXBf7hWmzrzRJuc0J6atLiFR
+         /nP7xaJtow84tj7AELMVPQSTBNNFQTNFCSZ8OpoUSWTbPHZoSmwqOXlTT4Zw5hUHwTTh
+         OUjsmkOOUR47p1XZXtSWPaIZ5JDbpkLrKeyN0EyidpcNG3V+cVsJWe5TwGdtZRv2OEHP
+         bl5A==
+X-Gm-Message-State: ANhLgQ2eqIiSf2vbXL4NLYAHROpSrZMoffTGUZB/Wgirvb4RQbPsqaBS
+        LoQfFJoj65dVB7AKVEtHEXYpaA==
+X-Google-Smtp-Source: ADFU+vsWbhZAJApLkHJjK1rpJphwwDR2QESHx2duAJgFhBpEHJLxHbOgXJEEbadil5uHQfcoM+kVpg==
+X-Received: by 2002:a37:a44a:: with SMTP id n71mr2362594qke.210.1583516560952;
+        Fri, 06 Mar 2020 09:42:40 -0800 (PST)
+Received: from ziepe.ca (hlfxns017vw-142-68-57-212.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.57.212])
+        by smtp.gmail.com with ESMTPSA id g15sm14342523qtq.71.2020.03.06.09.42.40
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 06 Mar 2020 09:42:40 -0800 (PST)
+Received: from jgg by mlx.ziepe.ca with local (Exim 4.90_1)
+        (envelope-from <jgg@ziepe.ca>)
+        id 1jAGzf-00060f-N3; Fri, 06 Mar 2020 13:42:39 -0400
+Date:   Fri, 6 Mar 2020 13:42:39 -0400
+From:   Jason Gunthorpe <jgg@ziepe.ca>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     mark.rutland@arm.com, linux-pci@vger.kernel.org,
+        linux-mm@kvack.org, will@kernel.org,
+        Dimitri Sivanich <sivanich@sgi.com>, catalin.marinas@arm.com,
+        zhangfei.gao@linaro.org, devicetree@vger.kernel.org,
+        kevin.tian@intel.com, Arnd Bergmann <arnd@arndb.de>,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        iommu@lists.linux-foundation.org,
+        Andrew Morton <akpm@linux-foundation.org>,
+        robin.murphy@arm.com, christian.koenig@amd.com
+Subject: Re: [PATCH v4 01/26] mm/mmu_notifiers: pass private data down to
+ alloc_notifier()
+Message-ID: <20200306174239.GM31668@ziepe.ca>
+References: <20200225140814.GW31668@ziepe.ca>
+ <20200228143935.GA2156@myrica>
+ <20200228144844.GQ31668@ziepe.ca>
+ <20200228150427.GF2156@myrica>
+ <20200228151339.GS31668@ziepe.ca>
+ <20200306095614.GA50020@myrica>
+ <20200306130919.GJ31668@ziepe.ca>
+ <20200306143556.GA99609@myrica>
+ <20200306145245.GK31668@ziepe.ca>
+ <20200306161519.GB99609@myrica>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200306161519.GB99609@myrica>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-a) configure for supporting modules
+On Fri, Mar 06, 2020 at 05:15:19PM +0100, Jean-Philippe Brucker wrote:
+> On Fri, Mar 06, 2020 at 10:52:45AM -0400, Jason Gunthorpe wrote:
+> > On Fri, Mar 06, 2020 at 03:35:56PM +0100, Jean-Philippe Brucker wrote:
+> > > On Fri, Mar 06, 2020 at 09:09:19AM -0400, Jason Gunthorpe wrote:
+> > > > On Fri, Mar 06, 2020 at 10:56:14AM +0100, Jean-Philippe Brucker wrote:
+> > > > > I tried to keep it simple like that: normally mmu_notifier_get() is called
+> > > > > in bind(), and mmu_notifier_put() is called in unbind(). 
+> > > > > 
+> > > > > Multiple device drivers may call bind() with the same mm. Each bind()
+> > > > > calls mmu_notifier_get(), obtains the same io_mm, and returns a new bond
+> > > > > (a device<->mm link). Each bond is freed by calling unbind(), which calls
+> > > > > mmu_notifier_put().
+> > > > > 
+> > > > > That's the most common case. Now if the process is killed and the mm
+> > > > > disappears, we do need to avoid use-after-free caused by DMA of the
+> > > > > mappings and the page tables. 
+> > > > 
+> > > > This is why release must do invalidate all - but it doesn't need to do
+> > > > any more - as no SPTE can be established without a mmget() - and
+> > > > mmget() is no longer possible past release.
+> > > 
+> > > In our case we don't have SPTEs, the whole pgd is shared between MMU and
+> > > IOMMU (isolated using PASID tables).
+> > 
+> > Okay, but this just means that 'invalidate all' also requires
+> > switching the PASID to use some pgd that is permanently 'all fail'.
+> > 
+> > > At this point no one told the device to stop working on this queue,
+> > > it may still be doing DMA on this address space.
+> > 
+> > Sure, but there are lots of cases where a defective user space can
+> > cause pages under active DMA to disappear, like munmap for
+> > instance. Process exit is really no different, the PASID should take
+> > errors and the device & driver should do whatever error flow it has.
+> 
+> We do have the possibility to shut things down in order, so to me this
+> feels like a band-aid. 
 
-Not all drivers need to be compiled into the kernel.
-Support building and loading of kernel modules.
+->release() is called by exit_mmap which is called by mmput. There are
+over a 100 callsites to mmput() and I'm not totally sure what the
+rules are for release(). We've run into problems before with things
+like this.
 
-b) compile leds-gpio driver into the kernel and configure for LED triggers
+IMHO, due to this, it is best for release to be simple and have
+conservative requirements on context like all the other notifier
+callbacks. It is is not a good place to put complex HW fencing driver
+code.
 
-DTS has been augmented to add some gpio-leds. We need the leds-gpio driver
-and enable the triggers.
+In particular that link you referenced is suggesting the driver tear
+down could take minutes - IMHO it is not OK to block mmput() for
+minutes.
 
-c) configure CONFIG_REGULATOR_ACT8865 for PMU
+> The idea has come up before though [1], and I'm not strongly opposed
+> to this model, but I'm still not convinced it's necessary. It does
+> add more complexity to IOMMU drivers, to avoid printing out the
+> errors that we wouldn't otherwise see, whereas device drivers need
+> in any case to implement the logic that forces stop DMA.
 
-The PMU on the CI20 board is an ACT8600 using the ACT8865 driver.
-Since it is not compiled, the PMU and the CI20 board is running in
-power-on reset state of the PMU.
+Errors should not be printed to the kernel log for PASID cases
+anyhow. PASID will be used by unpriv user, and unpriv user should not
+be able to trigger kernel prints at will, eg by doing dma to nmap VA
+or whatever. 
 
-d) compile gpio-ir driver
+Process exit is just another case of this, and should not be treated
+specially.
 
-The CI20 board has a gpio based IR receiver.
-
-e) configure for CONFIG_KEYBOARD_GPIO=m
-
-The SW1 button is hooked up to send input events.
-
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-Reviewed-by: Paul Cercueil <paul@crapouillou.net>
----
- arch/mips/configs/ci20_defconfig | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/arch/mips/configs/ci20_defconfig b/arch/mips/configs/ci20_defconfig
-index be41df2a81fb..0db0088bbc1c 100644
---- a/arch/mips/configs/ci20_defconfig
-+++ b/arch/mips/configs/ci20_defconfig
-@@ -1,4 +1,5 @@
- # CONFIG_LOCALVERSION_AUTO is not set
-+CONFIG_MODULES=y
- CONFIG_KERNEL_XZ=y
- CONFIG_SYSVIPC=y
- CONFIG_POSIX_MQUEUE=y
-@@ -88,12 +89,14 @@ CONFIG_I2C_JZ4780=y
- CONFIG_SPI=y
- CONFIG_SPI_GPIO=y
- CONFIG_GPIO_SYSFS=y
-+CONFIG_KEYBOARD_GPIO=m
- # CONFIG_HWMON is not set
- CONFIG_WATCHDOG=y
- CONFIG_JZ4740_WDT=y
- CONFIG_REGULATOR=y
- CONFIG_REGULATOR_DEBUG=y
- CONFIG_REGULATOR_FIXED_VOLTAGE=y
-+CONFIG_REGULATOR_ACT8865=y
- # CONFIG_VGA_CONSOLE is not set
- # CONFIG_HID is not set
- # CONFIG_USB_SUPPORT is not set
-@@ -166,3 +169,21 @@ CONFIG_STACKTRACE=y
- # CONFIG_FTRACE is not set
- CONFIG_CMDLINE_BOOL=y
- CONFIG_CMDLINE="earlycon console=ttyS4,115200 clk_ignore_unused"
-+CONFIG_LEDS_CLASS=y
-+CONFIG_LEDS_GPIO=y
-+CONFIG_LEDS_TRIGGERS=y
-+CONFIG_LEDS_TRIGGER_MTD=y
-+CONFIG_LEDS_TRIGGER_TIMER=y
-+CONFIG_LEDS_TRIGGER_ONESHOT=y
-+CONFIG_LEDS_TRIGGER_ONESHOT=y
-+CONFIG_LEDS_TRIGGER_HEARTBEAT=y
-+CONFIG_LEDS_TRIGGER_BACKLIGHT=m
-+CONFIG_LEDS_TRIGGER_CPU=y
-+CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
-+CONFIG_LEDS_TRIGGER_TRANSIENT=y
-+CONFIG_LEDS_TRIGGER_CAMERA=m
-+CONFIG_LIRC=y
-+CONFIG_MEDIA_SUPPORT=m
-+CONFIG_RC_DEVICES=y
-+CONFIG_IR_GPIO_CIR=m
-+CONFIG_IR_GPIO_TX=m
--- 
-2.23.0
-
+Jason
