@@ -2,84 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E4C717BAC5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 11:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D372A17BACF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 11:55:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726251AbgCFKw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 05:52:26 -0500
-Received: from mx2.suse.de ([195.135.220.15]:55560 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726069AbgCFKw0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Mar 2020 05:52:26 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id F3F1DAF21;
-        Fri,  6 Mar 2020 10:52:23 +0000 (UTC)
-Message-ID: <48c3673241b500077f6bbc6502cc9808110697ca.camel@suse.de>
-Subject: Re: [PATCH 00/10] Raspberry Pi vmmc regulator support
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org
-Cc:     ulf.hansson@linaro.org, f.fainelli@gmail.com,
-        adrian.hunter@intel.com, linux-kernel@vger.kernel.org
-Date:   Fri, 06 Mar 2020 11:52:21 +0100
-In-Reply-To: <b33aadf7-d481-10db-c290-6e53b696b2d4@raspberrypi.com>
-References: <20200306103857.23962-1-nsaenzjulienne@suse.de>
-         <b33aadf7-d481-10db-c290-6e53b696b2d4@raspberrypi.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-9UhjfUc8RYzzqakH6eEx"
-User-Agent: Evolution 3.34.4 
-MIME-Version: 1.0
+        id S1726231AbgCFKzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 05:55:08 -0500
+Received: from baptiste.telenet-ops.be ([195.130.132.51]:49594 "EHLO
+        baptiste.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbgCFKzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 05:55:08 -0500
+Received: from ramsan ([84.195.182.253])
+        by baptiste.telenet-ops.be with bizsmtp
+        id Ayv52200j5USYZQ01yv6n2; Fri, 06 Mar 2020 11:55:06 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jAAdF-000473-TJ; Fri, 06 Mar 2020 11:55:05 +0100
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1jAAdF-0006KA-QN; Fri, 06 Mar 2020 11:55:05 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amit.kucheria@verdurent.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/2] thermal: Add support for Renesas R-Car M3-W+
+Date:   Fri,  6 Mar 2020 11:55:01 +0100
+Message-Id: <20200306105503.24267-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+	Hi,
 
---=-9UhjfUc8RYzzqakH6eEx
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+This patch series adds support for the Thermal Sensor/Chip Internal
+Voltage Monitor in the R-Car M3-W+ (R8A77961) SoC.
 
-On Fri, 2020-03-06 at 10:46 +0000, Phil Elwell wrote:
-> Hi Nicolas,
->=20
-> On 06/03/2020 10:38, Nicolas Saenz Julienne wrote:
-> > The series snowballed into adding a new quirk, as I reliased
-> > sdhci-iproc's behaviour is not that uncommon.
-> >=20
-> > Based on Phil Elwell's work in the downstream Raspberry Pi kernel.
->=20
-> There are a few typos in the commit messages ("reliased" -> "realised",
-> "trough" -> "through"), but otherwise:
+It has been tested on a Salvator-XS development board with R-Car M3-W+.
 
-Noted, I'll do an typo sweep for v2.
+Geert Uytterhoeven (2):
+  dt-bindings: thermal: rcar-gen3-thermal: Add r8a77961 support
+  thermal: rcar_gen3_thermal: Add r8a77961 support
 
-> Reviewed-by: Phil Elwell <phil@raspberrypi.com>
+ .../devicetree/bindings/thermal/rcar-gen3-thermal.txt         | 1 +
+ drivers/thermal/rcar_gen3_thermal.c                           | 4 ++++
+ 2 files changed, 5 insertions(+)
 
-Thanks!
+-- 
+2.17.1
 
-Regards,
-Nicolas
+Gr{oetje,eeting}s,
 
+						Geert
 
---=-9UhjfUc8RYzzqakH6eEx
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl5iK2UACgkQlfZmHno8
-x/4M7gf9EZ0Cv5CEcpHtF6lShxtR/jvIMxJIC1qU2ejjg9BOn/1cwcRQPzFs0VHI
-186bNu4WSIUcv6cJHfJV5zW1lFliXoC4O6ecM0PHvvdDjcVWaoEihNPNpJFJVoEU
-hYPo1VWm0+yHZLuo5sBcCcvVvDQ/gjFcw5btIwbVSxXKlOIwpzowL2piUR28u0wB
-bkXtHzGC7rnPhWDG8MKfiiU5hEX9rZNSVUOv4yTFPk/uDtHYBOFzp5svA0OuNfs+
-Xo/4xoIkoILs/GeZ7qftmSq7VzoUa0qiFSDvtrtH09AjzeUXuSQmV17z/ninTZSQ
-Iv+4C7i6MfH6ePKd09WnGqyjQSq7yg==
-=g6za
------END PGP SIGNATURE-----
-
---=-9UhjfUc8RYzzqakH6eEx--
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
