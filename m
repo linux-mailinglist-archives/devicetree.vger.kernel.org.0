@@ -2,150 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F20D17BFF6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 15:12:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C189017BFFF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 15:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727085AbgCFOMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Mar 2020 09:12:31 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39044 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726307AbgCFOMa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Mar 2020 09:12:30 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id D7F48296C97
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Collabora Kernel ML <kernel@collabora.com>,
-        Andrzej Hajda <a.hajda@samsung.com>, megous@megous.com,
-        anarsoul@gmail.com, Neil Armstrong <narmstrong@baylibre.com>,
-        matthias.bgg@gmail.com, drinkcat@chromium.org, hsinyi@chromium.org,
-        icenowy@aosc.io, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH v3 3/4] dt-bindings: Add ANX7688 HDMI to DP bridge binding
-Date:   Fri,  6 Mar 2020 15:12:15 +0100
-Message-Id: <20200306141217.423914-3-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200306141217.423914-1-enric.balletbo@collabora.com>
-References: <20200306141217.423914-1-enric.balletbo@collabora.com>
+        id S1726798AbgCFONW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Mar 2020 09:13:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40644 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726738AbgCFONW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Mar 2020 09:13:22 -0500
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B7646206CC;
+        Fri,  6 Mar 2020 14:13:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583504001;
+        bh=8HMSv45RmcowcvUV+/JVwCs/5SkwykqDSsq0zxlngI4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=kwDxgZlOXDyDbl3r6rSK08+Sd8k5f1bwGh0lcEG94uqfILJBo3jo/PxP9wbPgyaCP
+         NLB9f8j7t4VXm6EFEEZ/lxmd9wKxWoqUFcJjYga6NBEsm38Ive2pM8k+5BfuWtqO+e
+         maiHZptvwMIIrk8aVL4xXnB5i4SADPrfQ3o5caMs=
+Received: by mail-qt1-f179.google.com with SMTP id e20so1786453qto.5;
+        Fri, 06 Mar 2020 06:13:21 -0800 (PST)
+X-Gm-Message-State: ANhLgQ1+c3GpTrdLjKiDk1xk+B/fl/rs0CjXaPTk8HHGDVriOPPLvILP
+        n1zR7mYpqHUbEGc+CJ3EcsQmoYGe0wQHkauqcA==
+X-Google-Smtp-Source: ADFU+vtV93a6Fp58Tncd6cIdfe2+CpsQ5PI8x6hov3jHYzgAVFu8JmXylmr7k0+5bR+Gvm/UG+tSzfOnnksdk3kV1RI=
+X-Received: by 2002:aed:3461:: with SMTP id w88mr3133057qtd.143.1583504000926;
+ Fri, 06 Mar 2020 06:13:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200207052627.130118-1-drinkcat@chromium.org>
+ <20200207052627.130118-2-drinkcat@chromium.org> <20200225171613.GA7063@bogus>
+ <CANMq1KAVX4o5yC7c_88Wq_O=F+MaSN_V4uNcs1nzS3wBS6A5AA@mail.gmail.com> <1583462055.4947.6.camel@mtksdaap41>
+In-Reply-To: <1583462055.4947.6.camel@mtksdaap41>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 6 Mar 2020 08:13:08 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLoUnxfrJh0WCs0jgro1KHAjWaYMsaKkKfAKA2KJ252_g@mail.gmail.com>
+Message-ID: <CAL_JsqLoUnxfrJh0WCs0jgro1KHAjWaYMsaKkKfAKA2KJ252_g@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] dt-bindings: gpu: mali-bifrost: Add Mediatek MT8183
+To:     Nick Fan <nick.fan@mediatek.com>
+Cc:     Nicolas Boichat <drinkcat@chromium.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        Steven Price <steven.price@arm.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nicolas Boichat <drinkcat@chromium.org>
+On Thu, Mar 5, 2020 at 8:34 PM Nick Fan <nick.fan@mediatek.com> wrote:
+>
+> Sorry for my late reply.
+> I have checked internally.
+> The MT8183_POWER_DOMAIN_MFG_2D is just a legacy name, not really 2D
+> domain.
+>
+> If the naming too confusing, we can change this name to
+> MT8183_POWER_DOMAIN_MFG_CORE2 for consistency.
 
-Add documentation for DT properties supported by the ANX7688 HDMI-DP
-converter.
+Can you clarify what's in each domain? Are there actually 3 shader
+cores (IIRC, that should be discoverable)?
 
-Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
-
-Changes in v3:
-- Adapt the bridge bindings for the multi-function device.
-
-Changes in v2:
-- Improve a bit the descriptions using the info from the datasheet.
-- Convert binding to yaml.
-- Use dual licensing.
-
- .../bridge/analogix,anx7688-bridge.yaml       | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/analogix,anx7688-bridge.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7688-bridge.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7688-bridge.yaml
-new file mode 100644
-index 000000000000..c56da3f39dd8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7688-bridge.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/analogix,anx7688-bridge.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analogix ANX7688 HDMI to DisplayPort Bridge
-+
-+maintainers:
-+  - Nicolas Boichat <drinkcat@chromium.org>
-+  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-+
-+description: |
-+  The ANX7688 bridge describes the HDMI 2.0 to DisplayPort 1.3 bridge block
-+  included in the ANX7688 chip controller. These are meant to be used for
-+  controlling display-related signals.
-+
-+  The node of this device should be under an analogix,anx7866 node. Please refer
-+  to Documentation/devicetree/bindings/mfd/analogix,anx7688.yaml for the ANX7688
-+  core bindings.
-+
-+properties:
-+  compatible:
-+    const: analogix,anx7688-bridge
-+
-+  ports:
-+    type: object
-+
-+    properties:
-+      port@0:
-+        type: object
-+        description: |
-+          Video port for HDMI input
-+
-+      port@1:
-+        type: object
-+        description: |
-+          Video port for DP output
-+
-+    required:
-+      - port@0
-+
-+required:
-+  - compatible
-+  - ports
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        anx7688: anx7688@2c {
-+            compatible = "analogix,anx7688";
-+            reg = <0x2c>;
-+
-+            bridge {
-+                compatible = "analogix,anx7688-bridge";
-+
-+                ports {
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+
-+                    port@0 {
-+                        reg = <0>;
-+                        anx7688_in: endpoint {
-+                            remote-endpoint = <&hdmi0_out>;
-+                        };
-+                    };
-+
-+                    port@1 {
-+                        reg = <1>;
-+                        anx7688_out: endpoint {
-+                            remote-endpoint = <&typec0_connector>;
-+                       };
-+                    };
-+                };
-+            };
-+        };
-+    };
--- 
-2.25.1
-
+Rob
