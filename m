@@ -2,156 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0AE17B58F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 05:31:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4833117B5C4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2020 05:37:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727060AbgCFE3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Mar 2020 23:29:16 -0500
-Received: from mail-yw1-f53.google.com ([209.85.161.53]:45921 "EHLO
-        mail-yw1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727425AbgCFE3K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Mar 2020 23:29:10 -0500
-Received: by mail-yw1-f53.google.com with SMTP id d206so1049812ywa.12
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2020 20:29:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+OwhcmpR7pb9yvMAW/3zddjXHmCNfQqId9+2KCqrSJ0=;
-        b=sjVEnqNbTnwO2ySAIcfwaHGIihm2d0ARvf/F6V07mD/Axnj9d9GnoXRS2V9mVxm3W2
-         0TS3QpjPCK04d5r1+L/HC5wdj96wA3MIS/6VlekW8qXxENUuLtNEZ+b8IevwkjspC6un
-         HOvuEZ5CW96Ob3kx8r7mxGlbq7+x6Zv8ATZTA8PZRmo/fy/qEBkXLRjAyH3mVPPdnYBC
-         52N667VdKut1mbrQyKWkxvtTprXMBsL/RCHD/LukuF28fDlbIkI5cGpA/Y2xWipqc+sq
-         ZMmyBdtuZHQpXUWYZa9y86Wb+97peQc8sMc4k9kCbrNXX4jLYmICKhd0ynCdcRQmWbcw
-         29Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+OwhcmpR7pb9yvMAW/3zddjXHmCNfQqId9+2KCqrSJ0=;
-        b=kwe9Pand+UEcgK2hnG2x+Ce0dNGwZJ34zvwSMgahEZ7h3HYsAXC5yk8TYVDD7jjrDw
-         xgmmwQiAt0KemaDvtgKv4aDZZvJ5nWN5YCue0Z4oqxmFdghwZqlAbAn+ueL6DF0WRjki
-         TDvDbsJFT7N1GRfncv6TpljNfkq9inE8J5CZmNrf4YBOSlhVd7aUiWKwiVkCLdZaServ
-         mFg2Ezl2pj+w9uH3xxLNPd7Ny772f0hveCfd4FlQFSfqkrCoQI0TIKy7e6bgpHUpewoD
-         nT0euKWYkHuz4SP/IJfqo6k0jqGj5BgDgf52UmB6bqT+kVcS3dVpO+JtH1v9ET+ZoacN
-         INLA==
-X-Gm-Message-State: ANhLgQ1rgHMPzmAjl/wWkOw+/YN5ofbYkUODSuBYP0GAps4oN1CDn78y
-        gTyKgBgFFRxb0ZRRuaHS7qrwhw==
-X-Google-Smtp-Source: ADFU+vuavLb0hi1Kt/CtoekqDopx5Ou6PhT5pbkRZYLJyLf4bvqSt3M6Cw7E2PZn2Fxgjq2Y837RIg==
-X-Received: by 2002:a0d:d952:: with SMTP id b79mr2289846ywe.226.1583468949477;
-        Thu, 05 Mar 2020 20:29:09 -0800 (PST)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id x2sm12581836ywa.32.2020.03.05.20.29.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2020 20:29:09 -0800 (PST)
-From:   Alex Elder <elder@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     David Miller <davem@davemloft.net>, Arnd Bergmann <arnd@arndb.de>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Dan Williams <dcbw@redhat.com>,
-        Evan Green <evgreen@google.com>,
-        Eric Caruso <ejcaruso@google.com>,
-        Susheel Yadav Yadagiri <syadagir@codeaurora.org>,
-        Chaitanya Pratapa <cpratapa@codeaurora.org>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        id S1726251AbgCFEhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Mar 2020 23:37:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726243AbgCFEhj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Mar 2020 23:37:39 -0500
+Received: from localhost (unknown [122.178.250.113])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BCAB02072D;
+        Fri,  6 Mar 2020 04:37:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583469458;
+        bh=mxdW1VGI6eXUPnu0t6lHUTLnV9a3rWwkVHnbuxAjglI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZDplQ8u01XZ4eduBCy2TVZfZt5//UWdDbEfHpbXhbOiBg5Qc3rJ/qxs4N8oY2HPNG
+         96D1nmZj3t+aZvQozvhI0I5xTEp2tZZeveezGi53eJ4Bntwmj62p/330QJRcqCa6V8
+         GJY7PcExHTTvP+cnbPJXfdHz/4wjEeQXauYEeEn4=
+Date:   Fri, 6 Mar 2020 10:07:32 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Siddharth Gupta <sidgup@codeaurora.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 17/17] arm64: dts: sdm845: add IPA information
-Date:   Thu,  5 Mar 2020 22:28:31 -0600
-Message-Id: <20200306042831.17827-18-elder@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200306042831.17827-1-elder@linaro.org>
-References: <20200306042831.17827-1-elder@linaro.org>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: msm8996: Define parent clocks
+ for gcc
+Message-ID: <20200306043732.GB4148@vkoul-mobl>
+References: <20200106080546.3192125-1-bjorn.andersson@linaro.org>
+ <20200106080546.3192125-3-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200106080546.3192125-3-bjorn.andersson@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add IPA-related nodes and definitions to "sdm845.dtsi".
+On 06-01-20, 00:05, Bjorn Andersson wrote:
+> The CLKREF clocks in GCC are parented by RPM_SMD_LN_BB_CLK, through the
+> CXO2 pad. Wire this up so that this is properly enabled when need by the
+> various PHYs.
 
-Signed-off-by: Alex Elder <elder@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 51 ++++++++++++++++++++++++++++
- 1 file changed, 51 insertions(+)
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index d42302b8889b..58fd1c611849 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -675,6 +675,17 @@
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 		};
-+
-+		ipa_smp2p_out: ipa-ap-to-modem {
-+			qcom,entry-name = "ipa";
-+			#qcom,smem-state-cells = <1>;
-+		};
-+
-+		ipa_smp2p_in: ipa-modem-to-ap {
-+			qcom,entry-name = "ipa";
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
- 	};
- 
- 	smp2p-slpi {
-@@ -1435,6 +1446,46 @@
- 			};
- 		};
- 
-+		ipa@1e40000 {
-+			compatible = "qcom,sdm845-ipa";
-+
-+			modem-init;
-+			modem-remoteproc = <&mss_pil>;
-+
-+			reg = <0 0x1e40000 0 0x7000>,
-+			      <0 0x1e47000 0 0x2000>,
-+			      <0 0x1e04000 0 0x2c000>;
-+			reg-names = "ipa-reg",
-+				    "ipa-shared",
-+				    "gsi";
-+
-+			interrupts-extended =
-+					<&intc 0 311 IRQ_TYPE_EDGE_RISING>,
-+					<&intc 0 432 IRQ_TYPE_LEVEL_HIGH>,
-+					<&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+					<&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ipa",
-+					  "gsi",
-+					  "ipa-clock-query",
-+					  "ipa-setup-ready";
-+
-+			clocks = <&rpmhcc RPMH_IPA_CLK>;
-+			clock-names = "core";
-+
-+			interconnects =
-+				<&rsc_hlos MASTER_IPA &rsc_hlos SLAVE_EBI1>,
-+				<&rsc_hlos MASTER_IPA &rsc_hlos SLAVE_IMEM>,
-+				<&rsc_hlos MASTER_APPSS_PROC &rsc_hlos SLAVE_IPA_CFG>;
-+			interconnect-names = "memory",
-+					     "imem",
-+					     "config";
-+
-+			qcom,smem-states = <&ipa_smp2p_out 0>,
-+					   <&ipa_smp2p_out 1>;
-+			qcom,smem-state-names = "ipa-clock-enabled-valid",
-+						"ipa-clock-enabled";
-+		};
-+
- 		tcsr_mutex_regs: syscon@1f40000 {
- 			compatible = "syscon";
- 			reg = <0 0x01f40000 0 0x40000>;
 -- 
-2.20.1
-
+~Vinod
