@@ -2,102 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 802DC17DA79
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 09:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DFC417DB47
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 09:40:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725956AbgCIIQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 04:16:11 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:38396 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725796AbgCIIQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 04:16:11 -0400
-Received: by mail-wm1-f67.google.com with SMTP id n2so2071654wmc.3;
-        Mon, 09 Mar 2020 01:16:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=21vOxRxDjKqcfrgbiaoQAsuWSgoqLHAftWopA3ShZhI=;
-        b=oIEHJnHDukzw19P80JbWF7J3wp/aDWOpD/frO9t4Av3oqEH1wlFFAKDwbw7ZxK5hdt
-         ovZKGRwTYKxENfkzlsCflHhjRJ4uX/8hyJ23ArR/BuaB8zyE6Cf75hA4tG8vbaPg4F7N
-         al6blJrPk47C5cwgWlf0P1Z161QWjiy8iJNQJsFUYPwA0O1iGNPleIa2v6YiWjF8aBN8
-         RhxEJz5dnfzgjMNqzmqAa4P3iIAo8yhtt2aukcdDJeYAxHFGO5G1RvJCGbCPfnI+4Jf8
-         V+GY5ch26FATDwdb3BTivgWx+EFi2pylYXY9MD5vSng24iNw1EsUbZVLd0SgBsVW9njh
-         DEIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=21vOxRxDjKqcfrgbiaoQAsuWSgoqLHAftWopA3ShZhI=;
-        b=pAaW79Z7f2uVn2kt24QBKVtipy590hbd0jJPlGaZIne8XibZQORwhEmlw2Ql8nqUKz
-         Q6E44vwmtvhwFyVkjwK/bGPNh06qVbe/ZqMjM9/eAjWmDzY7enRrF3A3AlN0H3ZCl/1L
-         9e18i8D3IecgKDGqv3TDKMTbV6OfOlwTaoiRyt+5MO5R0nmZhEacuqvk+DHmABgbNBSQ
-         y+0GwA299bc1DthUgmXorGlvMBC7cpTcKU9P90yj33P5eGdiTudy2KIq+vG3kh7BJKWS
-         oPBc/djz2aRaATAOxMNNPFqvaHZbGSRs5g5Gh9oI1CFhkPEqxgnJkQkHQyH+CR8MVzRp
-         xVnw==
-X-Gm-Message-State: ANhLgQ28s0AVFne6Okq4V5p0qgzJ+yPeoQWVjve/bNhB66aAiyssynCr
-        /NMaWKl0Zhq23DzsqtsPsCA=
-X-Google-Smtp-Source: ADFU+vt3Yqf7ZPutJlxBROOJKc49aGfr7tYraWP+grvURFzG5aqwAEF03ai0VObc3auLb7YasfTsDg==
-X-Received: by 2002:a7b:c770:: with SMTP id x16mr4736819wmk.159.1583741769115;
-        Mon, 09 Mar 2020 01:16:09 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id q2sm1097096wrv.65.2020.03.09.01.16.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Mar 2020 01:16:08 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: remove rockchip,grf from vop nodes for px30
-Date:   Mon,  9 Mar 2020 09:16:00 +0100
-Message-Id: <20200309081600.3887-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S1726071AbgCIIkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 04:40:51 -0400
+Received: from v6.sk ([167.172.42.174]:34350 "EHLO v6.sk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726549AbgCIIkv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Mar 2020 04:40:51 -0400
+Received: from localhost (v6.sk [IPv6:::1])
+        by v6.sk (Postfix) with ESMTP id D353260EEC;
+        Mon,  9 Mar 2020 08:32:20 +0000 (UTC)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH v2 0/3] Add support for Chrontel CH7033 VGA/DVI Encoder
+Date:   Sat,  7 Mar 2020 20:07:57 +0100
+Message-Id: <20200307190800.142658-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.24.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-An experimental test with the command below without
-additional properties in 'rockchip-vop.yaml' gives this error:
+Hi,
 
-arch/arm64/boot/dts/rockchip/px30-evb.dt.yaml: vop@ff470000:
-'power-domains', 'rockchip,grf'
-do not match any of the regexes: 'pinctrl-[0-9]+'
-arch/arm64/boot/dts/rockchip/px30-evb.dt.yaml: vop@ff460000:
-'power-domains', 'rockchip,grf'
-do not match any of the regexes: 'pinctrl-[0-9]+'
+chained to this message is a driver for CH7033 along with device tree
+binding docs. I'm hoping that it could perhaps make it into 5.7. Please
+take a look.
 
-'rockchip,grf' is not used by the Rockchip VOP driver,
-so remove it from 'vop' nodes in 'px30.dtsi'.
+Previous submission [1] contained the exact same patches as this one,
+but at that time they relied on Laurent's omapdrm/bridge/devel branch tha=
+t
+has been merged since.
 
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/
-rockchip/rockchip-vop.yaml
+[1] https://lore.kernel.org/lkml/20200221162743.14141-1-lkundrak@v3.sk/
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/px30.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+Tested to work well on MMP3-based Dell Wyse 3020. There's no datasheet or
+programming manual available.
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 215515ccb..1bbed660f 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -1030,7 +1030,6 @@
- 		reset-names = "axi", "ahb", "dclk";
- 		iommus = <&vopb_mmu>;
- 		power-domains = <&power PX30_PD_VO>;
--		rockchip,grf = <&grf>;
- 		status = "disabled";
- 
- 		vopb_out: port {
-@@ -1072,7 +1071,6 @@
- 		reset-names = "axi", "ahb", "dclk";
- 		iommus = <&vopl_mmu>;
- 		power-domains = <&power PX30_PD_VO>;
--		rockchip,grf = <&grf>;
- 		status = "disabled";
- 
- 		vopl_out: port {
--- 
-2.11.0
+Thanks,
+Lubo
+
+
 
