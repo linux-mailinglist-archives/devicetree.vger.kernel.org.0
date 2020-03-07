@@ -2,45 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B5BE17CDF3
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 13:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1A7917CE27
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 13:34:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726154AbgCGMDP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 7 Mar 2020 07:03:15 -0500
-Received: from mail.07d01.mspz7.gob.ec ([181.211.144.12]:41378 "EHLO
-        mail.07d01.mspz7.gob.ec" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726017AbgCGMDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Mar 2020 07:03:15 -0500
-X-Greylist: delayed 9936 seconds by postgrey-1.27 at vger.kernel.org; Sat, 07 Mar 2020 07:03:13 EST
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by mail.07d01.mspz7.gob.ec (Postfix) with ESMTP id E9353AC8DB1;
-        Sat,  7 Mar 2020 03:35:45 -0500 (ECT)
-Received: from mail.07d01.mspz7.gob.ec ([127.0.0.1])
-        by localhost (mail.07d01.mspz7.gob.ec [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id GW72oNZD7NmQ; Sat,  7 Mar 2020 03:35:45 -0500 (ECT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by mail.07d01.mspz7.gob.ec (Postfix) with ESMTP id D28CAAC88CA;
-        Sat,  7 Mar 2020 03:33:28 -0500 (ECT)
-X-Virus-Scanned: amavisd-new at 07d01.mspz7.gob.ec
-Received: from mail.07d01.mspz7.gob.ec ([127.0.0.1])
-        by localhost (mail.07d01.mspz7.gob.ec [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id uqOIaq-Y29Nq; Sat,  7 Mar 2020 03:33:28 -0500 (ECT)
-Received: from [192.168.101.216] (unknown [102.39.150.184])
-        by mail.07d01.mspz7.gob.ec (Postfix) with ESMTPSA id 71130AC8890;
-        Sat,  7 Mar 2020 03:26:32 -0500 (ECT)
-Content-Type: text/plain; charset="iso-8859-1"
+        id S1726281AbgCGMeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Mar 2020 07:34:18 -0500
+Received: from mx2.suse.de ([195.135.220.15]:38562 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726105AbgCGMeR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Mar 2020 07:34:17 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id 7E2AFADD7;
+        Sat,  7 Mar 2020 12:34:13 +0000 (UTC)
+Subject: Re: [PATCH v2 1/3] dt-bindings: Add vendor prefix for Caninos Loucos
+To:     Matheus Castello <matheus@castello.eng.br>
+Cc:     manivannan.sadhasivam@linaro.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200229104358.GB19610@mani>
+ <20200307002453.350430-1-matheus@castello.eng.br>
+ <20200307002453.350430-2-matheus@castello.eng.br>
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <62e115af-9d8c-572a-a400-91bdef9d9292@suse.de>
+Date:   Sat, 7 Mar 2020 13:34:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: Spende an dich?
-To:     Recipients <andres.calle@07d01.mspz7.gob.ec>
-From:   "Mr. Franco" <andres.calle@07d01.mspz7.gob.ec>
-Date:   Sat, 07 Mar 2020 00:26:23 -0800
-Reply-To: mfrancofoundationfunding@gmail.com
-Message-Id: <20200307082634.71130AC8890@mail.07d01.mspz7.gob.ec>
+In-Reply-To: <20200307002453.350430-2-matheus@castello.eng.br>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hallo, mein Name ist Manuel Franco, Gewinner des 786 Millionen Dollar teuren Power Ball Jackpots im April 2019. Ich spende 4.600.000 Dollar f¸r wohlt‰tige Zwecke, um Ihnen und den armen Kindern in Ihrer Gemeinde zu helfen. Senden Sie mir eine E-Mail an: Manuelfrancco@hotmail.com, um weitere Informationen zum Erhalt meiner Spende zu erhalten
+Hi Matheus,
+
+Am 07.03.20 um 01:24 schrieb Matheus Castello:
+> The Caninos Loucos Program develops Single Board Computers with an open
+> structure. The Program wants to form a community of developers to use
+> the IoT technology and disseminate the learning of embedded systems in
+
+I would suggest "IoT technologies" without "the".
+
+> Brazil.
+> 
+> The boards are designed and manufactured by LSI-TEC NPO.
+> 
+> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
+> ---
+>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 9e67944bec9c..3e974dd563cf 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -167,6 +167,8 @@ patternProperties:
+>       description: Calxeda
+>     "^capella,.*":
+>       description: Capella Microsystems, Inc
+> +  "^caninos,.*":
+> +    description: Caninos Loucos LSI-TEC NPO
+
+Alphabetical order: n goes before p.
+
+I'm confused by the description... Either this Caninos Loucos is an 
+independent vendor and gets its own prefix, or it's LSI-Tec and uses 
+something like lsi-tec,caninosloucos-foo. Please clarify commit message 
+and/or description line, at least by inserting something like "program 
+by", "brand by" or the like rather than just concatenating names. Maybe 
+compare UDOO by SECO. Is caninos,foo unique enough or should it be 
+caninosloucos,foo? (crazy canines?)
+
+Note that I usually attempt to CC the organizations I'm assigning a 
+vendor prefix for. Do you represent them or coordinated with them?
+
+Regards,
+Andreas
+
+>     "^cascoda,.*":
+>       description: Cascoda, Ltd.
+>     "^catalyst,.*":
+
+-- 
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N√ºrnberg, Germany
+GF: Felix Imend√∂rffer
+HRB 36809 (AG N√ºrnberg)
