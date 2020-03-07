@@ -2,103 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4FE417CF3B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 17:06:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 123D217CFBE
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 20:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726116AbgCGQGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Mar 2020 11:06:06 -0500
-Received: from mail-wr1-f41.google.com ([209.85.221.41]:38305 "EHLO
-        mail-wr1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726073AbgCGQGF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Mar 2020 11:06:05 -0500
-Received: by mail-wr1-f41.google.com with SMTP id t11so5878430wrw.5;
-        Sat, 07 Mar 2020 08:06:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=iAetEvZraiflUEUc7nvvm8pl55tWCvaIeillv2HHKY4=;
-        b=RY4MKxaSmII1woTtclCslMgTGxlofSmYGl3WFzVaIKcUYL1o5RIExjEpCmugp4szQA
-         pnSfn6kQwEjA920C4NsfvqYiGQpOeXPVoot14HAWuRIIgHEjyA5f3/vkg+EYGbwD+DI5
-         f6ha9Pk8t6NbYSoWJD+Y/9rgfM6ZOdxABsDu6mdEk/wO89+pBZUuL6dCdHCaX3z11lVx
-         KNUgvmHmXlbCpOLFpnaN+oK3Ppyjt0Q8YbF9qP1YAOfzMFIlEFr9Ms38QRNxPwdzAkgx
-         OE9xcgVoZ+WSzP9c0LDrpQbFUHgoUzCDx6Syr2EdVHdhtMjO+3hcziTkuITm3mF+B9gy
-         1LXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=iAetEvZraiflUEUc7nvvm8pl55tWCvaIeillv2HHKY4=;
-        b=I6axj7wXBiRLuBrI9MfVNiNCb9+Z5kRRroFafG4/i7WydmVShVGcdI5FWdkOfdfZPo
-         EwvCSGOGGlaWfE+BVywwn/5YVY86VsR6MNsBAVzA87IsUdEl/tzWdKIlINBnr7G4PrpM
-         kPRKYk7e5dTXWpwn/7CIumog0l1JTF68TaX5htOSsDwhxLfZbKGxqEoLFhdkTDvh4stC
-         +1lo+XGayrcnZrDx4AmkLbTmJOiWFXO5eS6pHW2naJv1+Mn+U31BLd98UwOCV27Lh5kq
-         TlKDgB/0Vae4p+a62EOTo+vxp0lT9LvHt9IsYY8+ahs9QPPxiNxfDy4W1b6pr+DB0JYr
-         VnFw==
-X-Gm-Message-State: ANhLgQ2wbnLmjjRsPXptQe3sz3hojgGH3gPbzbS4vFpiaPLhWDXv/wng
-        uff2DK5YQqjZz253WUVzYHQ=
-X-Google-Smtp-Source: ADFU+vsORIHVIXY/NGjz0qd0dQ3z+z+LGwdJWHv2GehbGa7/k9ONo/m7C/JJ4CkIdkadrGxj6NNxwQ==
-X-Received: by 2002:a5d:550f:: with SMTP id b15mr10220750wrv.19.1583597163324;
-        Sat, 07 Mar 2020 08:06:03 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id k126sm17555105wme.4.2020.03.07.08.06.02
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 07 Mar 2020 08:06:02 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     ulf.hansson@linaro.org
-Cc:     heiko@sntech.de, robh+dt@kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: mmc: synopsys-dw-mshc: fix clock-freq-min-max in example
-Date:   Sat,  7 Mar 2020 17:05:56 +0100
-Message-Id: <20200307160556.16226-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S1726296AbgCGTIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Mar 2020 14:08:09 -0500
+Received: from [167.172.186.51] ([167.172.186.51]:41910 "EHLO shell.v3.sk"
+        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726109AbgCGTII (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Mar 2020 14:08:08 -0500
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 60641E00D1;
+        Sat,  7 Mar 2020 19:08:24 +0000 (UTC)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id hO3c3OLp_9pF; Sat,  7 Mar 2020 19:08:23 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 29AA2E00D3;
+        Sat,  7 Mar 2020 19:08:23 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id dbpamSfDxU63; Sat,  7 Mar 2020 19:08:22 +0000 (UTC)
+Received: from furthur.lan (unknown [109.183.109.54])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 4641CDFEC0;
+        Sat,  7 Mar 2020 19:08:22 +0000 (UTC)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH v2 0/3] Add support for Chrontel CH7033 VGA/DVI Encoder
+Date:   Sat,  7 Mar 2020 20:07:57 +0100
+Message-Id: <20200307190800.142658-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.24.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below does not detect all errors
-in combination with 'additionalProperties: false' and
-allOf:
-  - $ref: "synopsys-dw-mshc-common.yaml#"
-allOf:
-  - $ref: "mmc-controller.yaml#"
+Hi,
 
-'additionalProperties' applies to all properties that are not
-accounted-for by 'properties' or 'patternProperties' in
-the immediate schema.
+chained to this message is a driver for CH7033 along with device tree
+binding docs. I'm hoping that it could perhaps make it into 5.7. Please
+take a look.
 
-First when we combine synopsys-dw-mshc.yaml,
-synopsys-dw-mshc-common.yaml and mmc-controller.yaml it gives
-this error:
+Previous submission [1] contained the exact same patches as this one,
+but at that time they relied on Laurent's omapdrm/bridge/devel branch tha=
+t
+has been merged since.
 
-Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.example.dt.yaml:
-mmc@12200000: 'clock-freq-min-max' does not match any of the regexes:
-'^.*@[0-9]+$', '^clk-phase-(legacy|sd-hs|mmc-(hs|hs[24]00|ddr52)|
-uhs-(sdr(12|25|50|104)|ddr50))$', 'pinctrl-[0-9]+'
+[1] https://lore.kernel.org/lkml/20200221162743.14141-1-lkundrak@v3.sk/
 
-'clock-freq-min-max' is deprecated, so replace it by 'max-frequency'.
+Tested to work well on MMP3-based Dell Wyse 3020. There's no datasheet or
+programming manual available.
 
-make ARCH=arm dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
+Thanks,
+Lubo
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-index 05f9f36dc..dd2c1b147 100644
---- a/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/synopsys-dw-mshc.yaml
-@@ -62,7 +62,7 @@ examples:
-       cap-mmc-highspeed;
-       cap-sd-highspeed;
-       card-detect-delay = <200>;
--      clock-freq-min-max = <400000 200000000>;
-+      max-frequency = <200000000>;
-       clock-frequency = <400000000>;
-       data-addr = <0x200>;
-       fifo-depth = <0x80>;
--- 
-2.11.0
 
