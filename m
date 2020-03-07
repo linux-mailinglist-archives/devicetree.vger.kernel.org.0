@@ -2,173 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA2F17CD20
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 10:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F33917CD3C
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 10:26:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbgCGJN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Mar 2020 04:13:27 -0500
-Received: from ssl.serverraum.org ([176.9.125.105]:48439 "EHLO
+        id S1726193AbgCGJZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Mar 2020 04:25:59 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:57673 "EHLO
         ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726104AbgCGJNZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Mar 2020 04:13:25 -0500
-Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S1726043AbgCGJZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Mar 2020 04:25:58 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 9B74C23EB7;
-        Sat,  7 Mar 2020 10:13:22 +0100 (CET)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 11FCA23EB4;
+        Sat,  7 Mar 2020 10:25:56 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1583572402;
+        t=1583573156;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=g1ACtH0H0GvtIkqKJiDBMWfJEJqdKgxNsfjSR0V/lTo=;
-        b=K6I2vz+ZcSSftmWfv2wd5BmSMENd3h5vWrQD045cBx3g1SWSSL3r5QywII6GYy9qvfzWXb
-        IYuAh6IFsVFRkw4BLqHNHkmqoHDN7nrBi5M4yin+vHSaovARmMi4iZFVmvMsXJUoiCxZxh
-        3BiWPM2qCGT0fPCIKoiPQV3o6AuXfqQ=
+        bh=k5ZQ+jGPB/XqVL4rRP9EmsAWoBDvpiXvAb7VKbopIoM=;
+        b=ZOqzzySJsyMFJdD2BnnD0p1c2FIDVyA1rZSwjwFlgyKyIuYiUXq8hJPZ3bhvzq4vFWspVW
+        xdNVvVSKbL/plsWkSUo9TlTb+xhQKzVP8uf9VP/sbxpkJxs3RuFK+lseR6BEufLKutSHH8
+        pjfkdV4Qoxlopt0pYskNih+n9Q8oj2w=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Sat, 07 Mar 2020 10:25:55 +0100
 From:   Michael Walle <michael@walle.cc>
-To:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Peng Ma <peng.ma@nxp.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v2 2/2] arm64: dts: ls1028a: add missing LPUART nodes
-Date:   Sat,  7 Mar 2020 10:13:02 +0100
-Message-Id: <20200307091302.14881-2-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200307091302.14881-1-michael@walle.cc>
-References: <20200307091302.14881-1-michael@walle.cc>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: ++++++
-X-Spam-Level: ******
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>
+Subject: Re: [EXT] [PATCH 2/2] arm64: dts: ls1028a: add "fsl,vf610-edma"
+ compatible
+In-Reply-To: <VI1PR04MB44312A940BC5BFC7F13A5706EDE00@VI1PR04MB4431.eurprd04.prod.outlook.com>
+References: <20200306205403.29881-1-michael@walle.cc>
+ <20200306205403.29881-2-michael@walle.cc>
+ <VI1PR04MB44312A940BC5BFC7F13A5706EDE00@VI1PR04MB4431.eurprd04.prod.outlook.com>
+Message-ID: <e0be23f7d1307621151594dd66d2b8fd@walle.cc>
+X-Sender: michael@walle.cc
+User-Agent: Roundcube Webmail/1.3.10
+X-Spamd-Bar: +
+X-Spam-Level: *
 X-Rspamd-Server: web
-X-Spam-Status: Yes, score=6.40
-X-Spam-Score: 6.40
-X-Rspamd-Queue-Id: 9B74C23EB7
-X-Spamd-Result: default: False [6.40 / 15.00];
+X-Spam-Status: No, score=1.40
+X-Spam-Score: 1.40
+X-Rspamd-Queue-Id: 11FCA23EB4
+X-Spamd-Result: default: False [1.40 / 15.00];
          FROM_HAS_DN(0.00)[];
          TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
          TO_MATCH_ENVRCPT_ALL(0.00)[];
          TAGGED_RCPT(0.00)[dt];
          MIME_GOOD(-0.10)[text/plain];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         NEURAL_SPAM(0.00)[0.520];
          DKIM_SIGNED(0.00)[];
-         DBL_PROHIBIT(0.00)[0.34.241.80:email,0.34.202.64:email,0.34.124.32:email,0.34.163.48:email];
          RCPT_COUNT_SEVEN(0.00)[10];
-         MID_CONTAINS_FROM(1.00)[];
+         NEURAL_HAM(-0.00)[-0.462];
          RCVD_COUNT_ZERO(0.00)[0];
          FROM_EQ_ENVFROM(0.00)[];
          MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:31334, ipnet:2a02:810c:8000::/33, country:DE];
+         MID_RHS_MATCH_FROM(0.00)[];
          SUSPICIOUS_RECIPS(1.50)[]
-X-Spam: Yes
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LS1028A has six LPUART controllers. Add the nodes.
+Hi Peng,
 
-This was tested on a custom board.
+Am 2020-03-07 03:09, schrieb Peng Ma:
+>> -----Original Message-----
+>> From: Michael Walle <michael@walle.cc>
+>> Sent: 2020年3月7日 4:54
+>> To: dmaengine@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+>> Cc: Vinod Koul <vkoul@kernel.org>; Rob Herring <robh+dt@kernel.org>; 
+>> Mark
+>> Rutland <mark.rutland@arm.com>; Shawn Guo <shawnguo@kernel.org>; Leo 
+>> Li
+>> <leoyang.li@nxp.com>; Peng Ma <peng.ma@nxp.com>; Michael Walle
+>> <michael@walle.cc>
+>> Subject: [EXT] [PATCH 2/2] arm64: dts: ls1028a: add "fsl,vf610-edma"
+>> compatible
+>> 
+>> Caution: EXT Email
+>> 
+>> The bootloader does the IOMMU fixup and dynamically adds the "iommus"
+>> property to devices according to its compatible string. In case of the 
+>> eDMA
+>> controller this property is missing. Add it. After that the IOMMU will 
+>> work with
+>> the eDMA core.
+>> 
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>> arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> index b152fa90cf5c..aa467bff2209 100644
+>> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> @@ -447,7 +447,7 @@
+>> 
+>>                edma0: dma-controller@22c0000 {
+>>                        #dma-cells = <2>;
+>> -                       compatible = "fsl,ls1028a-edma";
+>> +                       compatible = "fsl,ls1028a-edma",
+>> + "fsl,vf610-edma";
+> Hi Michael,
+> 
+> You should change it on bootloader instead of kernel, Some Reg of
+> LS1028a is different
+> from others, So we used compatible "fsl,ls1028a-edm" to distinguish "
+> fsl,vf610-edma".
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-changes since v1:
- - none
+Yes this might be the right thing to do. So since it is NXPs bootloader
+feel free to fix that ;) Looking at the u-boot code right now, I don't
+even know it that is the right fix at all. The fixup code in u-boot is
+SoC independent (its in fsl_icid.h and is enabled with CONFIG_LSCH3, ie
+your chassis version). For example, the sdhc fixup will scan the nodes
+for "compatible = fsl,esdhc", which is also the secondary compatible
+for the "ls1028a-esdhc" compatible.
 
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
+And here is another reason to have it this way: we need backwards
+compatibility, the are already boards out there whose bootloader will
+fix-up the "old" node. Thus I don't see any other possibilty.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 41c9633293fb..b152fa90cf5c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -372,6 +372,79 @@
- 			status = "disabled";
- 		};
- 
-+
-+		lpuart0: serial@2260000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2260000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 32>,
-+			       <&edma0 1 33>;
-+			status = "disabled";
-+		};
-+
-+		lpuart1: serial@2270000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2270000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 30>,
-+			       <&edma0 1 31>;
-+			status = "disabled";
-+		};
-+
-+		lpuart2: serial@2280000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2280000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 28>,
-+			       <&edma0 1 29>;
-+			status = "disabled";
-+		};
-+
-+		lpuart3: serial@2290000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x2290000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 26>,
-+			       <&edma0 1 27>;
-+			status = "disabled";
-+		};
-+
-+		lpuart4: serial@22a0000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x22a0000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 24>,
-+			       <&edma0 1 25>;
-+			status = "disabled";
-+		};
-+
-+		lpuart5: serial@22b0000 {
-+			compatible = "fsl,ls1028a-lpuart";
-+			reg = <0x0 0x22b0000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clockgen 4 1>;
-+			clock-names = "ipg";
-+			dma-names = "rx","tx";
-+			dmas = <&edma0 1 22>,
-+			       <&edma0 1 23>;
-+			status = "disabled";
-+		};
-+
- 		edma0: dma-controller@22c0000 {
- 			#dma-cells = <2>;
- 			compatible = "fsl,ls1028a-edma";
--- 
-2.20.1
+-michael
 
+> 
+> Thanks,
+> Peng
+>>                        reg = <0x0 0x22c0000 0x0 0x10000>,
+>>                              <0x0 0x22d0000 0x0 0x10000>,
+>>                              <0x0 0x22e0000 0x0 0x10000>;
+>> --
+>> 2.20.1
