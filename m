@@ -2,120 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 99D8217CE80
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 14:49:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2090F17CEAA
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 15:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726295AbgCGNtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Mar 2020 08:49:01 -0500
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:39597 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726266AbgCGNsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Mar 2020 08:48:55 -0500
-Received: by mail-wr1-f65.google.com with SMTP id r15so563717wrx.6;
-        Sat, 07 Mar 2020 05:48:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=r8vU221Fl1wRDhepKyfW4xhkJN/Ivc1A7S2pOvLbFIU=;
-        b=NfYmzcoZPQlWO8KkyWMuaJlZPYo19zE/UOr4wWnKj0CXCeV5mI3VM14xv/GTDDfC+Q
-         aJ/I4k7kR2K3vFGUM17z8EpkkPdUESTEw4ap/uAmbuBrcmzcmPTxty/QVlNCPONcwRuB
-         VR3tL7aNU0JN7wHU0BjO7tk3165sP1n+4WkSaQEVnGI2rqi4PZkLK/X/rqpoESXw+C0y
-         iw51B9JbCFDuVX+lyFlUkJuBWsE6IUjCxBj5mlHzKLV85FVaB22hphOHsSl8IqPxsICM
-         JhM69/IXjbk7QAiwYopnQoBndYH12Ro1nhGPwlqVEM5P8EakCx2eDcAmJvYdcMDN9SBH
-         uUew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=r8vU221Fl1wRDhepKyfW4xhkJN/Ivc1A7S2pOvLbFIU=;
-        b=B0Fu7D1fE7uhKzxnjap5cw8D4S77EHbQkNwhAObdflkaICzZ6T3EvU7S8XXYBRBqSX
-         pcZdjzldVLP/4ZpSzvy6nXj+ofCRKSG66jiPVP+fwvJG0JtWEs7hlf6Nn2cVVdAhxH50
-         wzwwREaDJuFAWlIZZ5QWXv2MJRnNljgZ/KWq3jqLWazWauSs1juYw+JYFz4DXYABhKq0
-         4b8m0fAJmQS+s0VeXQcpOgzvJNPHC6TTCo/nkpuRKsuMyz/YkWyAGPhCOFBVVFxD7A8Y
-         qUjfn5S+vF8vONjHXXqWvlef0n7V22kw0pAlmWVP60bPpjjBsabu4crLPepwrImrFWjW
-         JDWw==
-X-Gm-Message-State: ANhLgQ254LWp4tEn+Sw5OEkOMmAmx2r+J5r3oI5jKQ6/B54WcUgkclZW
-        9kDNqpr+PIv+m8w+wqXVi0Y=
-X-Google-Smtp-Source: ADFU+vuqgLoogFvxDf8zmOIagX/6EgMcrmjZMR1lY83duVqibjH1wJOvkB2FC4KR1mQPDt79vOxiRw==
-X-Received: by 2002:a5d:5702:: with SMTP id a2mr3848479wrv.17.1583588932141;
-        Sat, 07 Mar 2020 05:48:52 -0800 (PST)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id 9sm11767265wmx.32.2020.03.07.05.48.51
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 07 Mar 2020 05:48:51 -0800 (PST)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 5/5] arm64: dts: rockchip: replace clock-freq-min-max by max-frequency
-Date:   Sat,  7 Mar 2020 14:48:41 +0100
-Message-Id: <20200307134841.13803-5-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200307134841.13803-1-jbx6244@gmail.com>
-References: <20200307134841.13803-1-jbx6244@gmail.com>
+        id S1726174AbgCGOZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Mar 2020 09:25:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59132 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726154AbgCGOZ0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Mar 2020 09:25:26 -0500
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D82EF206D5;
+        Sat,  7 Mar 2020 14:25:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583591126;
+        bh=O+87n042lk3PkORkXovI5bSszMbNt147sH09kFHUQZc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=I5+9DXhZkr8Q/Qh/JRatBSfcgpqDpdE4nT5OlH06Vu6sWh3alDs6JOsejOOMgFlAM
+         uy4Tb+I4ZuSOS9ZlSMGzAbQ53WDPIQmiHLEsCb6R0wDRE5miJ+Fzy1DPdLrkJE8dP8
+         Iz6SGy11IzGMSfQwCS9N+ZVLiNw0DNWRd9Mv1dng=
+Date:   Sat, 7 Mar 2020 14:25:21 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>
+Subject: Re: [PATCH v8 1/8] include: fpga: adi-axi-common.h: fixup
+ whitespace tab -> space
+Message-ID: <20200307142521.3efbe4a4@archlinux>
+In-Reply-To: <20200306110100.22092-2-alexandru.ardelean@analog.com>
+References: <20200306110100.22092-1-alexandru.ardelean@analog.com>
+        <20200306110100.22092-2-alexandru.ardelean@analog.com>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A test with the command below does not detect all errors
-in combination with 'additionalProperties: false' and
-allOf:
-  - $ref: "synopsys-dw-mshc-common.yaml#"
-allOf:
-  - $ref: "mmc-controller.yaml#"
+On Fri, 6 Mar 2020 13:00:53 +0200
+Alexandru Ardelean <alexandru.ardelean@analog.com> wrote:
 
-'additionalProperties' applies to all properties that are not
-accounted-for by 'properties' or 'patternProperties' in
-the immediate schema.
+> The initial version use a tab between '#define' & 'ADI_AXI_REG_VERSION'.
+> This changes it to space. The change is purely cosmetic.
+> 
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+Whilst this is trivial it still needs an ack from relevant maintainer
+for that directory. Moritz I think...
 
-First when we combine rockchip-dw-mshc.yaml,
-synopsys-dw-mshc-common.yaml and mmc-controller.yaml it gives
-for example this error:
+Jonathan
 
-arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dt.yaml: mmc@fe320000:
-'clock-freq-min-max' does not match any of the regexes:
-'^.*@[0-9]+$', '^clk-phase-(legacy|sd-hs|mmc-(hs|hs[24]00|ddr52)|
-uhs-(sdr(12|25|50|104)|ddr50))$', 'pinctrl-[0-9]+'
-
-'clock-freq-min-max' is deprecated, so replace it by 'max-frequency'.
-
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi   | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-index d69a613fb..f2ffee639 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts
-@@ -555,7 +555,7 @@
- 
- &sdmmc {
- 	clock-frequency = <150000000>;
--	clock-freq-min-max = <200000 150000000>;
-+	max-frequency = <150000000>;
- 	bus-width = <4>;
- 	cap-mmc-highspeed;
- 	cap-sd-highspeed;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-index b69f0f2cb..ba7c75c9f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi
-@@ -542,7 +542,7 @@
- 	cap-mmc-highspeed;
- 	cap-sd-highspeed;
- 	clock-frequency = <100000000>;
--	clock-freq-min-max = <100000 100000000>;
-+	max-frequency = <100000000>;
- 	cd-gpios = <&gpio0 7 GPIO_ACTIVE_LOW>;
- 	disable-wp;
- 	sd-uhs-sdr104;
--- 
-2.11.0
+> ---
+>  include/linux/fpga/adi-axi-common.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/include/linux/fpga/adi-axi-common.h b/include/linux/fpga/adi-axi-common.h
+> index 7fc95d5c95bb..ebd4e07ae3d8 100644
+> --- a/include/linux/fpga/adi-axi-common.h
+> +++ b/include/linux/fpga/adi-axi-common.h
+> @@ -11,7 +11,7 @@
+>  #ifndef ADI_AXI_COMMON_H_
+>  #define ADI_AXI_COMMON_H_
+>  
+> -#define	ADI_AXI_REG_VERSION			0x0000
+> +#define ADI_AXI_REG_VERSION			0x0000
+>  
+>  #define ADI_AXI_PCORE_VER(major, minor, patch)	\
+>  	(((major) << 16) | ((minor) << 8) | (patch))
 
