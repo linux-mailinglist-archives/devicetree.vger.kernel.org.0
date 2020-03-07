@@ -2,54 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB7717CD11
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 09:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C205717CD29
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2020 10:14:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726199AbgCGIzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Mar 2020 03:55:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44582 "EHLO mail.kernel.org"
+        id S1726368AbgCGJOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Mar 2020 04:14:02 -0500
+Received: from elvis.franken.de ([193.175.24.41]:54703 "EHLO elvis.franken.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726086AbgCGIzr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 7 Mar 2020 03:55:47 -0500
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 639FC2070A;
-        Sat,  7 Mar 2020 08:55:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1583571347;
-        bh=1u8UwniH8fZ2bwB27hJE5oeh1VxEwwuy2nb1KunbV3A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZAp2SksvWHujtLHO2DVTUH8NkpDeI26/Svk9pw3HtPXPJd4bqKAOIid0Tfn+G12Cz
-         S9dwpUyDg43FHf0FM6GFDEFIZ8C+8QT7B1cxp6/NE0Tv+Hx+dY21dYnoR8XMqPA449
-         yhek0zo/WQYI2xu6AwXh6RxoO8C/LzROYrvRwVmU=
-Date:   Sat, 7 Mar 2020 09:55:43 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        id S1726339AbgCGJOC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Mar 2020 04:14:02 -0500
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1jAVWw-0000pd-00; Sat, 07 Mar 2020 10:13:58 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id 5A923C0FA0; Sat,  7 Mar 2020 10:06:17 +0100 (CET)
+Date:   Sat, 7 Mar 2020 10:06:17 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Paul Cercueil <paul@crapouillou.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: serial: lpuart: add ls1028a
- compatibility
-Message-ID: <20200307085543.GA3878741@kroah.com>
-References: <20200306205703.30634-1-michael@walle.cc>
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH v6] MIPS: DTS: CI20: fix PMU definitions for ACT8600
+Message-ID: <20200307090617.GA4570@alpha.franken.de>
+References: <cccce8a3866e54859d04b3f67c7414c3efb1eedd.1583515678.git.hns@goldelico.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200306205703.30634-1-michael@walle.cc>
+In-Reply-To: <cccce8a3866e54859d04b3f67c7414c3efb1eedd.1583515678.git.hns@goldelico.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 06, 2020 at 09:57:02PM +0100, Michael Walle wrote:
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, Mar 06, 2020 at 06:27:58PM +0100, H. Nikolaus Schaller wrote:
+> There is a ACT8600 on the CI20 board and the bindings of the
+> ACT8865 driver have changed without updating the CI20 device
+> tree. Therefore the PMU can not be probed successfully and
+> is running in power-on reset state.
+> 
+> Fix DT to match the latest act8865-regulator bindings.
+> 
+> Fixes: 73f2b940474d ("MIPS: CI20: DTS: Add I2C nodes")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Reviewed-by: Paul Cercueil <paul@crapouillou.net>
 > ---
->  .../devicetree/bindings/serial/fsl-lpuart.txt          | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
+>  arch/mips/boot/dts/ingenic/ci20.dts | 39 ++++++++++++++++++-----------
+>  1 file changed, 24 insertions(+), 15 deletions(-)
 
-I can't take a patch without any changelog text, sorry.
+applied to mips-fixes.
+
+Thomas.
+
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
