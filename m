@@ -2,111 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D44217D4B0
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2020 17:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E7AA17D4CA
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2020 17:33:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726297AbgCHQ13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Mar 2020 12:27:29 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:41931 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726270AbgCHQ13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Mar 2020 12:27:29 -0400
-Received: by mail-lj1-f194.google.com with SMTP id o10so671286ljc.8
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2020 09:27:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=AgbZPWzyECAbkrihwQ1V8G57nxvx4bfh3QjN09MX4mo=;
-        b=CxJtmWvGW5GMhmcbRj1vIsbYCyoCD/ElANMvE4JV93La5RSPJePznKPb6yXWxMCs7K
-         6oPu2Vhi2M34P7RE16gagWFr0JJnZ9De2RNopc0I7Hu5HAtk200/XMxiXfKJeoIcCuvF
-         moznl//TQHl716hsco1JdhqiWtDRdtnZENpUs63CMCH1I6vhjRqe5sIVpMKr6gbFiGPl
-         y1leHHRDT+Y6z5W0KPmrbQK8FVfyZAAmxB2ZYwfudcK+JC1RRFsxlj+ZcjSDz7PJ+W3b
-         KyCKSQyED8uoWTpzXzqTD4s+LEREmkcPNAnf/uOoOLJIZPtmneRzVXTc/Ei/xwbiR61C
-         s+9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=AgbZPWzyECAbkrihwQ1V8G57nxvx4bfh3QjN09MX4mo=;
-        b=SoCJdymO77QvBXl10bIcNTQk5t35mYquG6Zv56C9bILIpokp8tiW0Dgg41T6aK+1rZ
-         AqdEobw39tO/kqb22//6WkuGb48sRnDwaeP5bxa17gXbiLqh18vF6tEAfIlqOc81a+sR
-         fvmWPhCA+qCUehuTq6y1Xhe5W/FCT+WsG4DS2qr31edWiTRNnseiG/r74PwbPNyjHkVY
-         WcW/xmEW/oHzUy14OzfJfxkD7x73JCeOFU87kH5x9QXw81aphbPwOlqKRAQFpNvnn7d+
-         klIoz8o1irJbuTLkMVi+zPqM4wOq45h8bXjAiMjQGF/MkWWdVYilz0aN3zQIIgywnwmQ
-         bqqA==
-X-Gm-Message-State: ANhLgQ2mJ3gI7lb35aYICgjedqYGF0bGdd/YgawYIE6Rx3prh4WiobmO
-        bdQWhqMV6U2rgy4ix4WKN94/Cw==
-X-Google-Smtp-Source: ADFU+vs6GeXsR2Zjj1pVsfKvGQrdo/jEqEgzExz1YOhG1fanLSSMkOS2n6KjRkfdZpcWTkdiW8bEaQ==
-X-Received: by 2002:a2e:a584:: with SMTP id m4mr7733555ljp.46.1583684847185;
-        Sun, 08 Mar 2020 09:27:27 -0700 (PDT)
-Received: from localhost (h-200-138.A463.priv.bahnhof.se. [176.10.200.138])
-        by smtp.gmail.com with ESMTPSA id c20sm13177024lfb.60.2020.03.08.09.27.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Mar 2020 09:27:26 -0700 (PDT)
-Date:   Sun, 8 Mar 2020 17:27:26 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/2] thermal: rcar_gen3_thermal: Add r8a77961 support
-Message-ID: <20200308162726.GC2975348@oden.dyn.berto.se>
-References: <20200306105503.24267-1-geert+renesas@glider.be>
- <20200306105503.24267-3-geert+renesas@glider.be>
+        id S1726399AbgCHQcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Mar 2020 12:32:48 -0400
+Received: from mx2.suse.de ([195.135.220.15]:44824 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726289AbgCHQcs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Mar 2020 12:32:48 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx2.suse.de (Postfix) with ESMTP id 61ED5AD77;
+        Sun,  8 Mar 2020 16:32:45 +0000 (UTC)
+From:   =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     =?UTF-8?q?Wells=20Lu=20=E5=91=82=E8=8A=B3=E9=A8=B0?= 
+        <wells.lu@sunplus.com>, Dvorkin Dmitry <dvorkin@tibbo.com>,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-serial@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>
+Subject: [RFC 00/11] ARM: Initial Sunplus Plus1 SP7021 and BPI-F2S support
+Date:   Sun,  8 Mar 2020 17:32:18 +0100
+Message-Id: <20200308163230.4002-1-afaerber@suse.de>
+X-Mailer: git-send-email 2.16.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200306105503.24267-3-geert+renesas@glider.be>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hello,
 
-Thanks for your patch.
+This patch series adds initial drivers and Device Trees for Sunplus Plus1
+series (codename Pentagram) SP7021 SoC and Banana Pi BPI-F2S SBC.
 
-On 2020-03-06 11:55:03 +0100, Geert Uytterhoeven wrote:
-> Add support for the Thermal Sensor/Chip Internal Voltage Monitor in the
-> R-Car M3-W+ (R8A77961) SoC.
-> 
-> According to the R-Car Gen3 Hardware Manual Errata for Revision 2.00 of
-> Jan 31, 2020, the thermal parameters for R-Car M3-W+ are the same as for
-> R-Car M3-W.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+First, minimal Kconfig, DT and earlycon driver are prepared to get serial
+output at all. Next, interrupt controller and full serial driver are added
+that allow to boot into an initrd with interactive serial console.
 
-Reviewed-by: Niklas S�derlund <niklas.soderlund+renesas@ragnatech.se>
+Device Tree files added are for the CPU-Chip (aka A-Chip) with quad Cortex-A7,
+but the file split prepares for also adding the Peripheral-Chip (B-Chip) with
+ARM9 later. However, for now this is not reflected in the .dts filename; this
+corresponds to the vf610- vs. vf610m4- naming scheme, whereas an alternative
+would be to use sp7021-cchip- vs. -pchip- prefix (as sp7021-cpu- looks weird).
+It is assumed we can reuse the same SoC and board bindings for CA7 and ARM9
+and only differ for IP blocks where needed.
 
-> ---
->  drivers/thermal/rcar_gen3_thermal.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/thermal/rcar_gen3_thermal.c b/drivers/thermal/rcar_gen3_thermal.c
-> index 72877bdc072daaed..a6b0c31f1509c45c 100644
-> --- a/drivers/thermal/rcar_gen3_thermal.c
-> +++ b/drivers/thermal/rcar_gen3_thermal.c
-> @@ -324,6 +324,10 @@ static const struct of_device_id rcar_gen3_thermal_dt_ids[] = {
->  		.compatible = "renesas,r8a7796-thermal",
->  		.data = &rcar_gen3_ths_tj_1_m3_w,
->  	},
-> +	{
-> +		.compatible = "renesas,r8a77961-thermal",
-> +		.data = &rcar_gen3_ths_tj_1_m3_w,
-> +	},
->  	{
->  		.compatible = "renesas,r8a77965-thermal",
->  		.data = &rcar_gen3_ths_tj_1,
-> -- 
-> 2.17.1
-> 
+My inquiry to Sunplus about their GIC (anticipating complaints from Marc)
+remained unanswered, so I've added the two extra regions and irq myself,
+without being able to test KVM due to BSP U-Boot not booting in HYP mode.
+According to Sunplus the mode can be changed in U-Boot (but where/how?).
+
+Similarly, the architectural timer is not properly initialized in BSP U-Boot,
+so that I currently have a mach- hack in my tree below. Unlike RTD1195,
+we do have U-Boot sources (v2019.04 based), so should be able to fix this
+in the bootloader rather than in the kernel, thus not included as patch here.
+
+Based on SoC online manual [1] and downstream BPI-F2S BSP tree [2] as well as
+my previous Actions serial and Realtek irqchip drivers and DTs.
+
+More details at:
+https://en.opensuse.org/HCL:BananaPi_F2S
+
+Latest experimental patches at:
+https://github.com/afaerber/linux/commits/f2s-next
+
+Have a lot of fun!
+
+Cheers,
+Andreas
+
+[1] https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/pages/470450252/SP7021+Technical+Manual
+[2] https://github.com/BPI-SINOVOIP/BPI-F2S-bsp
+
+Cc: devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: linux-serial@vger.kernel.org
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Jason Cooper <jason@lakedaemon.net>
+Cc: Marc Zyngier <maz@kernel.org>
+Cc: Wells Lu 呂芳騰 <wells.lu@sunplus.com>
+Cc: Dvorkin Dmitry <dvorkin@tibbo.com>
+
+Andreas Färber (11):
+  dt-bindings: vendor-prefixes: Add Sunplus
+  dt-bindings: arm: Add Sunplus SP7021 and Banana Pi BPI-F2S
+  ARM: Prepare Sunplus Plus1 SoC family
+  dt-bindings: interrupt-controller: Add Sunplus SP7021 mux
+  dt-bindings: serial: Add Sunplus SP7021 UART
+  tty: serial: Add Sunplus Plus1 UART earlycon
+  ARM: dts: Add Sunplus Plus1 SP7021 and Banana Pi F2S
+  tty: serial: sunplus: Implement full UART driver
+  irqchip: Add Sunplus SP7021 interrupt (mux) controller
+  ARM: dts: sp7021-cpu: Add interrupt controller node
+  ARM: dts: sp7021-cpu: Add dummy UART0 clock and interrupt
+
+ Documentation/devicetree/bindings/arm/sunplus.yaml |  22 +
+ .../sunplus,pentagram-intc.yaml                    |  50 ++
+ .../bindings/serial/sunplus,pentagram-uart.yaml    |  24 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm/Kconfig                                   |   2 +
+ arch/arm/Makefile                                  |   1 +
+ arch/arm/boot/dts/Makefile                         |   2 +
+ arch/arm/boot/dts/pentagram-sp7021-bpi-f2s.dts     |  29 +
+ arch/arm/boot/dts/pentagram-sp7021-cpu.dtsi        |  93 +++
+ arch/arm/boot/dts/pentagram-sp7021.dtsi            |  61 ++
+ arch/arm/mach-sunplus/Kconfig                      |  10 +
+ drivers/irqchip/Makefile                           |   1 +
+ drivers/irqchip/irq-sp7021.c                       | 285 ++++++++
+ drivers/tty/serial/Kconfig                         |  19 +
+ drivers/tty/serial/Makefile                        |   1 +
+ drivers/tty/serial/sunplus-uart.c                  | 770 +++++++++++++++++++++
+ include/uapi/linux/serial_core.h                   |   3 +
+ 17 files changed, 1375 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunplus.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sunplus,pentagram-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/serial/sunplus,pentagram-uart.yaml
+ create mode 100644 arch/arm/boot/dts/pentagram-sp7021-bpi-f2s.dts
+ create mode 100644 arch/arm/boot/dts/pentagram-sp7021-cpu.dtsi
+ create mode 100644 arch/arm/boot/dts/pentagram-sp7021.dtsi
+ create mode 100644 arch/arm/mach-sunplus/Kconfig
+ create mode 100644 drivers/irqchip/irq-sp7021.c
+ create mode 100644 drivers/tty/serial/sunplus-uart.c
 
 -- 
-Regards,
-Niklas S�derlund
+2.16.4
+
