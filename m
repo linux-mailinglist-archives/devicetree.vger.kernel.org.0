@@ -2,146 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB53717D224
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2020 08:06:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAE8417D35C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2020 11:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725992AbgCHHFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Mar 2020 03:05:09 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:49856 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725854AbgCHHFI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Mar 2020 03:05:08 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8E5091A13CA;
-        Sun,  8 Mar 2020 08:05:06 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 736BE1A1393;
-        Sun,  8 Mar 2020 08:05:00 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DC1AC402A5;
-        Sun,  8 Mar 2020 15:04:52 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH] arm64: dts: imx8mn: Add CPU thermal zone support
-Date:   Sun,  8 Mar 2020 14:58:41 +0800
-Message-Id: <1583650721-7912-1-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726439AbgCHKxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Mar 2020 06:53:11 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:47671 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726336AbgCHKxL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Mar 2020 06:53:11 -0400
+X-UUID: 8810286e56194621b429b9cdd83716b5-20200308
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=GxTjmEm049B3GShhfkpoy+9dkylx+QGAxLN83d+jIDk=;
+        b=kTymQ+L9EBf+fY2ch0yxLzKdQtoeYDu5kBBT0wFPqIT9y/uxN1MzaAGpUtl0/hbMPOSIENZm9NCk5Is0HSvYCSPW1ZYsriKiSOuxIdssgU2CEX2n5TH+wLWQ14VRWKpzQBryAtLfsSSkRTi8k872iWKTHjj/Jhh1woX3S93n5ew=;
+X-UUID: 8810286e56194621b429b9cdd83716b5-20200308
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <dennis-yc.hsieh@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1927958431; Sun, 08 Mar 2020 18:52:59 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Sun, 8 Mar 2020 18:51:55 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sun, 8 Mar 2020 18:52:58 +0800
+From:   Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        Bibby Hsieh <bibby.hsieh@mediatek.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        HS Liao <hs.liao@mediatek.com>
+Subject: [PATCH v5 00/13] support gce on mt6779 platform 
+Date:   Sun, 8 Mar 2020 18:52:42 +0800
+Message-ID: <1583664775-19382-1-git-send-email-dennis-yc.hsieh@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8MN shares same thermal sensor with i.MX8MM, add thermal zone
-support for i.MX8MN.
-
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 44 +++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index f277572..88eeb52 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- #include "imx8mn-pinfunc.h"
- 
-@@ -67,6 +68,7 @@
- 			nvmem-cells = <&cpu_speed_grade>;
- 			nvmem-cell-names = "speed_grade";
- 			cpu-idle-states = <&cpu_pd_wait>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_1: cpu@1 {
-@@ -79,6 +81,7 @@
- 			next-level-cache = <&A53_L2>;
- 			operating-points-v2 = <&a53_opp_table>;
- 			cpu-idle-states = <&cpu_pd_wait>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_2: cpu@2 {
-@@ -91,6 +94,7 @@
- 			next-level-cache = <&A53_L2>;
- 			operating-points-v2 = <&a53_opp_table>;
- 			cpu-idle-states = <&cpu_pd_wait>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_3: cpu@3 {
-@@ -103,6 +107,7 @@
- 			next-level-cache = <&A53_L2>;
- 			operating-points-v2 = <&a53_opp_table>;
- 			cpu-idle-states = <&cpu_pd_wait>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		A53_L2: l2-cache0 {
-@@ -186,6 +191,38 @@
- 		method = "smc";
- 	};
- 
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <2000>;
-+			thermal-sensors = <&tmu>;
-+			trips {
-+				cpu_alert0: trip0 {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu_crit0: trip1 {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_alert0>;
-+					cooling-device =
-+						<&A53_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A53_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A53_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+						<&A53_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_LOW)>,
-@@ -274,6 +311,13 @@
- 				gpio-ranges = <&iomuxc 0 119 30>;
- 			};
- 
-+			tmu: tmu@30260000 {
-+				compatible = "fsl,imx8mn-tmu", "fsl,imx8mm-tmu";
-+				reg = <0x30260000 0x10000>;
-+				clocks = <&clk IMX8MN_CLK_TMU_ROOT>;
-+				#thermal-sensor-cells = <0>;
-+			};
-+
- 			wdog1: watchdog@30280000 {
- 				compatible = "fsl,imx8mn-wdt", "fsl,imx21-wdt";
- 				reg = <0x30280000 0x10000>;
--- 
-2.7.4
+VGhpcyBwYXRjaCBzdXBwb3J0IGdjZSBvbiBtdDY3NzkgcGxhdGZvcm0uDQoNCkNoYW5nZSBzaW5j
+ZSB2NDoNCi0gZG8gbm90IGNsZWFyIGRpc3AgZXZlbnQgYWdhaW4gaW4gZHJtIGRyaXZlcg0KLSBz
+eW1ib2xpemUgdmFsdWUgMSB0byBqdW1wIHJlbGF0aXZlDQoNCkNoYW5nZSBzaW5jZSB2MzoNCi0g
+cmVmaW5lIGNvZGUgZm9yIGxvY2FsIHZhcmlhYmxlIHVzYWdlDQotIHVzZSBjbWRxIGVycm9yIGNv
+ZGUgdG8gY29uc2lzdGVudCB3aXRoIGN1cnJlbnQgZGVzaWduDQotIHJldHVybiBlcnJvciBkaXJl
+Y3RseSBhZnRlciBzZW5kIGlmIGVycm9yIGNvZGUgcmV0dXJuDQotIGFsc28gbW9kaWZ5IGRybSBk
+cml2ZXIgd2hpY2ggdXNlcyBjbWRxX3BrdF93ZmUgYXBpDQotIGFkZCBmaW5hbGl6ZSBpbiBkcm0g
+ZHJpdmVyDQoNClsuLi4gc25pcCAuLi5dDQoNCg0KDQpEZW5uaXMgWUMgSHNpZWggKDEzKToNCiAg
+ZHQtYmluZGluZzogZ2NlOiBhZGQgZ2NlIGhlYWRlciBmaWxlIGZvciBtdDY3NzkNCiAgbWFpbGJv
+eDogY21kcTogdmFyaWFibGl6ZSBhZGRyZXNzIHNoaWZ0IGluIHBsYXRmb3JtDQogIG1haWxib3g6
+IGNtZHE6IHN1cHBvcnQgbXQ2Nzc5IGdjZSBwbGF0Zm9ybSBkZWZpbml0aW9uDQogIG1haWxib3g6
+IG1lZGlhdGVrOiBjbWRxOiBjbGVhciB0YXNrIGluIGNoYW5uZWwgYmVmb3JlIHNodXRkb3duDQog
+IHNvYzogbWVkaWF0ZWs6IGNtZHE6IHJldHVybiBzZW5kIG1zZyBlcnJvciBjb2RlDQogIHNvYzog
+bWVkaWF0ZWs6IGNtZHE6IGFkZCBhc3NpZ24gZnVuY3Rpb24NCiAgc29jOiBtZWRpYXRlazogY21k
+cTogYWRkIHdyaXRlX3MgZnVuY3Rpb24NCiAgc29jOiBtZWRpYXRlazogY21kcTogYWRkIHJlYWRf
+cyBmdW5jdGlvbg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBhZGQgd3JpdGVfcyB2YWx1ZSBmdW5j
+dGlvbg0KICBzb2M6IG1lZGlhdGVrOiBjbWRxOiBleHBvcnQgZmluYWxpemUgZnVuY3Rpb24NCiAg
+c29jOiBtZWRpYXRlazogY21kcTogYWRkIGp1bXAgZnVuY3Rpb24NCiAgc29jOiBtZWRpYXRlazog
+Y21kcTogYWRkIGNsZWFyIG9wdGlvbiBpbiBjbWRxX3BrdF93ZmUgYXBpDQogIHNvYzogbWVkaWF0
+ZWs6IGNtZHE6IGFkZCBzZXQgZXZlbnQgZnVuY3Rpb24NCg0KIC4uLi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL21haWxib3gvbXRrLWdjZS50eHQgICB8ICAgOCArLQ0KIGRyaXZlcnMvZ3B1L2RybS9tZWRp
+YXRlay9tdGtfZHJtX2NydGMuYyAgICAgICB8ICAgMyArLQ0KIGRyaXZlcnMvbWFpbGJveC9tdGst
+Y21kcS1tYWlsYm94LmMgICAgICAgICAgICB8IDEwMSArKysrKystLQ0KIGRyaXZlcnMvc29jL21l
+ZGlhdGVrL210ay1jbWRxLWhlbHBlci5jICAgICAgICB8IDE0NCArKysrKysrKysrKy0NCiBpbmNs
+dWRlL2R0LWJpbmRpbmdzL2djZS9tdDY3NzktZ2NlLmggICAgICAgICAgfCAyMjIgKysrKysrKysr
+KysrKysrKysrDQogaW5jbHVkZS9saW51eC9tYWlsYm94L210ay1jbWRxLW1haWxib3guaCAgICAg
+IHwgIDEwICstDQogaW5jbHVkZS9saW51eC9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEuaCAgICAgICAg
+IHwgIDk0ICsrKysrKystDQogNyBmaWxlcyBjaGFuZ2VkLCA1NDkgaW5zZXJ0aW9ucygrKSwgMzMg
+ZGVsZXRpb25zKC0pDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHQtYmluZGluZ3MvZ2Nl
+L210Njc3OS1nY2UuaA0KDQotLSANCjIuMTguMA==
 
