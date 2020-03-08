@@ -2,104 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E20617D362
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2020 11:53:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 566CE17D3A2
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2020 12:50:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726292AbgCHKxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Mar 2020 06:53:43 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:60581 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726267AbgCHKxK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Mar 2020 06:53:10 -0400
-X-UUID: defcc032b5f74bea9f0436bf6a0341b4-20200308
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=w8iD1qX9gbep8MCS/om0Izrl053bUY6aJGA54o65/5o=;
-        b=DkYVx05xdoiGoYd3QcpdkBh/xmAjX/J+MQdBdflTccQYfbFWY7eHUb8oGQv2UtcgLey9lyn8Y2R221D4HsYNg8l14AIHolumhvtBC2MY4abbZ6eWLEBert5/ysuouBO6zD5sR9F8X44NKZ3UArVPhK5Ijsi1zGafi6sAS1IJ5JQ=;
-X-UUID: defcc032b5f74bea9f0436bf6a0341b4-20200308
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
-        (envelope-from <dennis-yc.hsieh@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1830550628; Sun, 08 Mar 2020 18:53:01 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Sun, 8 Mar 2020 18:51:57 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sun, 8 Mar 2020 18:53:00 +0800
-From:   Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        Bibby Hsieh <bibby.hsieh@mediatek.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        HS Liao <hs.liao@mediatek.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>
-Subject: [PATCH v5 13/13] soc: mediatek: cmdq: add set event function
-Date:   Sun, 8 Mar 2020 18:52:55 +0800
-Message-ID: <1583664775-19382-14-git-send-email-dennis-yc.hsieh@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1583664775-19382-1-git-send-email-dennis-yc.hsieh@mediatek.com>
-References: <1583664775-19382-1-git-send-email-dennis-yc.hsieh@mediatek.com>
+        id S1726397AbgCHLuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Mar 2020 07:50:32 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:44208 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726259AbgCHLuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Mar 2020 07:50:32 -0400
+Received: by mail-lj1-f195.google.com with SMTP id a10so6965095ljp.11
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2020 04:50:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AshgBR+MNWPZr69cg7ExJ3jWOPxd+MrMBUeiIC3Ic2I=;
+        b=PK6an+PvHILt1iKzlYwWRFsPanyhDLYN54MTzbZqqzI8kZs15kYFb+wvgb0Okxo/7T
+         29onyL5aRWiMBZGwyfyVyCiBKZ0dBI3yFedFkCG3qwLF5veRJx8QUq5Wd6dkNZ+bC4VU
+         zxQG2Q5XwkXMLCdci8EGX7x2vej3aZrR2frQCuMJH1W4lyNC0ZivWev6yJXSe0rs/D8/
+         CgFpAOi1yaE/ncdi+zlO7XHqpkKhCR/uWq3NMM1PamYDaHGDL9QpK+7aFhprq6I++HHc
+         eC1AyoEF4Am79O4f59F8LuXQbc9IAy5VHVxNjy95NSkZgBgUxudATkpVjpBtR3LFmQxK
+         MzVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=AshgBR+MNWPZr69cg7ExJ3jWOPxd+MrMBUeiIC3Ic2I=;
+        b=o9AkzI5fmBZp/EUN73ah3cnNU9wNzg2f+Piekwl4sfY9kKNN8I3Lm7HGyi5iue5SuU
+         LD4/utO7gRrC83Z44VD5dJrv1p8ZJEwCGPi6m2OPiaiuiwqdcHCn/uXW99NZk/G42YfD
+         d8/qNB2Aqe7eaStJuinCzgljNVa2vYhoEAgdFhHUjtETwzxRFgR20MtglzNDfKqsiUAG
+         NETU1wg0onad+nuZmJGgKHs7PZWl6QtV789q1wHr/2SaSx2J8NKT/CCQcplWGj1RxkWi
+         muiU6/ZhC5IRd7mlwo0geeJvHzIskl6WC/doEbjB38sET/1XONv60Nsxff1zrYUIdXmZ
+         GgOQ==
+X-Gm-Message-State: ANhLgQ2wZ1RY9DlAIssKM02+kbqnSaoGdTXdJgK13qwDU88XyeBk+e40
+        V2uoyEU5oy2Br4SBza51p4m7kzzi
+X-Google-Smtp-Source: ADFU+vtqO/9fQA8QV3nrZp9fnmzE88QnN1xvqj1h89hr+K/XaXgxAjp3YEzdVwWAbaOfHMsTHYuKCw==
+X-Received: by 2002:a2e:9243:: with SMTP id v3mr6780274ljg.159.1583668228335;
+        Sun, 08 Mar 2020 04:50:28 -0700 (PDT)
+Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
+        by smtp.gmail.com with ESMTPSA id u5sm8557572ljl.75.2020.03.08.04.50.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Mar 2020 04:50:27 -0700 (PDT)
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v1 0/1]: dt-bindings: display: fix panel warnings
+Date:   Sun,  8 Mar 2020 12:50:16 +0100
+Message-Id: <20200308115017.18563-1-sam@ravnborg.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkIHNldCBldmVudCBmdW5jdGlvbiBpbiBjbWRxIGhlbHBlciBmdW5jdGlvbnMgdG8gc2V0IHNw
-ZWNpZmljIGV2ZW50Lg0KDQpTaWduZWQtb2ZmLWJ5OiBEZW5uaXMgWUMgSHNpZWggPGRlbm5pcy15
-Yy5oc2llaEBtZWRpYXRlay5jb20+DQpSZXZpZXdlZC1ieTogQ0sgSHUgPGNrLmh1QG1lZGlhdGVr
-LmNvbT4NCi0tLQ0KIGRyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jICAgfCAx
-NSArKysrKysrKysrKysrKysNCiBpbmNsdWRlL2xpbnV4L21haWxib3gvbXRrLWNtZHEtbWFpbGJv
-eC5oIHwgIDEgKw0KIGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmggICAgfCAg
-OSArKysrKysrKysNCiAzIGZpbGVzIGNoYW5nZWQsIDI1IGluc2VydGlvbnMoKykNCg0KZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jIGIvZHJpdmVycy9z
-b2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVyLmMNCmluZGV4IGVjNTYzN2Q0MzI1NC4uMzI5NGM5
-Mjg1OTk0IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLWNtZHEtaGVscGVy
-LmMNCisrKyBiL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1jbWRxLWhlbHBlci5jDQpAQCAtMzI3
-LDYgKzMyNywyMSBAQCBpbnQgY21kcV9wa3RfY2xlYXJfZXZlbnQoc3RydWN0IGNtZHFfcGt0ICpw
-a3QsIHUxNiBldmVudCkNCiB9DQogRVhQT1JUX1NZTUJPTChjbWRxX3BrdF9jbGVhcl9ldmVudCk7
-DQogDQoraW50IGNtZHFfcGt0X3NldF9ldmVudChzdHJ1Y3QgY21kcV9wa3QgKnBrdCwgdTE2IGV2
-ZW50KQ0KK3sNCisJc3RydWN0IGNtZHFfaW5zdHJ1Y3Rpb24gaW5zdCA9IHsgezB9IH07DQorDQor
-CWlmIChldmVudCA+PSBDTURRX01BWF9FVkVOVCkNCisJCXJldHVybiAtRUlOVkFMOw0KKw0KKwlp
-bnN0Lm9wID0gQ01EUV9DT0RFX1dGRTsNCisJaW5zdC52YWx1ZSA9IENNRFFfV0ZFX1VQREFURSB8
-IENNRFFfV0ZFX1VQREFURV9WQUxVRTsNCisJaW5zdC5ldmVudCA9IGV2ZW50Ow0KKw0KKwlyZXR1
-cm4gY21kcV9wa3RfYXBwZW5kX2NvbW1hbmQocGt0LCBpbnN0KTsNCit9DQorRVhQT1JUX1NZTUJP
-TChjbWRxX3BrdF9zZXRfZXZlbnQpOw0KKw0KIGludCBjbWRxX3BrdF9wb2xsKHN0cnVjdCBjbWRx
-X3BrdCAqcGt0LCB1OCBzdWJzeXMsDQogCQkgIHUxNiBvZmZzZXQsIHUzMiB2YWx1ZSkNCiB7DQpk
-aWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9tYWlsYm94L210ay1jbWRxLW1haWxib3guaCBiL2lu
-Y2x1ZGUvbGludXgvbWFpbGJveC9tdGstY21kcS1tYWlsYm94LmgNCmluZGV4IDQyZDJhMzBlNmE3
-MC4uYmEyZDgxMTE4M2E5IDEwMDY0NA0KLS0tIGEvaW5jbHVkZS9saW51eC9tYWlsYm94L210ay1j
-bWRxLW1haWxib3guaA0KKysrIGIvaW5jbHVkZS9saW51eC9tYWlsYm94L210ay1jbWRxLW1haWxi
-b3guaA0KQEAgLTE3LDYgKzE3LDcgQEANCiAjZGVmaW5lIENNRFFfSlVNUF9QQVNTCQkJQ01EUV9J
-TlNUX1NJWkUNCiANCiAjZGVmaW5lIENNRFFfV0ZFX1VQREFURQkJCUJJVCgzMSkNCisjZGVmaW5l
-IENNRFFfV0ZFX1VQREFURV9WQUxVRQkJQklUKDE2KQ0KICNkZWZpbmUgQ01EUV9XRkVfV0FJVAkJ
-CUJJVCgxNSkNCiAjZGVmaW5lIENNRFFfV0ZFX1dBSVRfVkFMVUUJCTB4MQ0KIA0KZGlmZiAtLWdp
-dCBhL2luY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmggYi9pbmNsdWRlL2xpbnV4
-L3NvYy9tZWRpYXRlay9tdGstY21kcS5oDQppbmRleCBkNjM3NDk0NDA2OTcuLmNhNzAyOTZhZTEy
-MCAxMDA2NDQNCi0tLSBhL2luY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmgNCisr
-KyBiL2luY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL210ay1jbWRxLmgNCkBAIC0xNjgsNiArMTY4
-LDE1IEBAIGludCBjbWRxX3BrdF93ZmUoc3RydWN0IGNtZHFfcGt0ICpwa3QsIHUxNiBldmVudCwg
-Ym9vbCBjbGVhcik7DQogICovDQogaW50IGNtZHFfcGt0X2NsZWFyX2V2ZW50KHN0cnVjdCBjbWRx
-X3BrdCAqcGt0LCB1MTYgZXZlbnQpOw0KIA0KKy8qKg0KKyAqIGNtZHFfcGt0X3NldF9ldmVudCgp
-IC0gYXBwZW5kIHNldCBldmVudCBjb21tYW5kIHRvIHRoZSBDTURRIHBhY2tldA0KKyAqIEBwa3Q6
-CXRoZSBDTURRIHBhY2tldA0KKyAqIEBldmVudDoJdGhlIGRlc2lyZWQgZXZlbnQgdG8gYmUgc2V0
-DQorICoNCisgKiBSZXR1cm46IDAgZm9yIHN1Y2Nlc3M7IGVsc2UgdGhlIGVycm9yIGNvZGUgaXMg
-cmV0dXJuZWQNCisgKi8NCitpbnQgY21kcV9wa3Rfc2V0X2V2ZW50KHN0cnVjdCBjbWRxX3BrdCAq
-cGt0LCB1MTYgZXZlbnQpOw0KKw0KIC8qKg0KICAqIGNtZHFfcGt0X3BvbGwoKSAtIEFwcGVuZCBw
-b2xsaW5nIGNvbW1hbmQgdG8gdGhlIENNRFEgcGFja2V0LCBhc2sgR0NFIHRvDQogICoJCSAgICAg
-ZXhlY3V0ZSBhbiBpbnN0cnVjdGlvbiB0aGF0IHdhaXQgZm9yIGEgc3BlY2lmaWVkDQotLSANCjIu
-MTguMA0K
+While experiemnting with latest kbuild changes for DT Schema
+support there was a couple a new warnings - in may use-case where
+I only check one binding file.
+
+Fix the warnings in display/panel/
+There are plenty more to go after in other directories, which I
+have left for others to have fun with.
+
+Patch is on top of drm-misc-next, where it will be applied once acked/reviewed.
+
+	Sam
+
+Sam Ravnborg (1):
+      dt-bindings: display: fix panel warnings
+
+ Documentation/devicetree/bindings/display/panel/elida,kd35t133.yaml   | 2 +-
+ .../devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml       | 2 +-
+ Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml  | 4 ++--
+ .../devicetree/bindings/display/panel/orisetech,otm8009a.yaml         | 2 +-
+ Documentation/devicetree/bindings/display/panel/panel-dpi.yaml        | 2 +-
+ Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml | 2 +-
+ Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml  | 2 +-
+ .../devicetree/bindings/display/panel/xinpeng,xpp055c272.yaml         | 2 +-
+ 8 files changed, 9 insertions(+), 9 deletions(-)
+
 
