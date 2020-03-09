@@ -2,105 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D68FC17EAD7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 22:09:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C2A317EAE9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 22:12:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727077AbgCIVIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 17:08:54 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:46611 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727030AbgCIVIx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 17:08:53 -0400
-Received: by mail-wr1-f66.google.com with SMTP id n15so13014312wrw.13;
-        Mon, 09 Mar 2020 14:08:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=kAEXGIBTihs2aEXLy+/u0H3T9UnyJrJyBGNNvIDBqSQ=;
-        b=TWCaCqSPmiFJmxJN3aCnLwv2ssaFFm8FOa/wqZJCht7oJDCzhqWxWQvZMp+qr/Rait
-         dNI9vOe3IBXvfj9BbQnNrXiFwacEQB6Jr94SD7J8TABorbw9SlGzwCm/u2qEm7PCn+SV
-         hBfbwPfyNKANya8pIjT4oHQwV6zLNgRAcYdEOXxhqHsYoCVrtqDA7OvN4vgVyiFgj11o
-         nmDgdETMu6lU0pPbWSjP2XsXZhLR4bWHm+HTfEK7pg5yobgJ60pxu6BmfqiNB48T7/HU
-         WxJ8Fh3+szMQwrChXAfUwnH+XVZ0rglHvMIlgypPpn6KgqEuAnKCLedhqpntKQliZB6t
-         l3CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=kAEXGIBTihs2aEXLy+/u0H3T9UnyJrJyBGNNvIDBqSQ=;
-        b=KJSUv4mQ6KbTPlwF6w0hwcCrcJ6py//iztGo8G0ZM0OsJEN4r3QipoTE8gqg+sYwqG
-         xpQeISBzr3IlOPOQuAhrUTYk+sRMSrz2LZdTWM6A1X4n38hCqmZwENyTmLG9wtNLl17J
-         YkY5HiI6mHR3fDx8f5FpvpMnT5disEK4XCVjjeNCNCRK+b7XbpFs74eIRmswJeY719+X
-         7Gi6J7VLwS6CGi/4dq+n8Lm/5HLO/r41Y8ujHT94762SOaAmyhGoxeILhWlz4hEAtf3G
-         zyRGxux/dlhV8HX/9K1n+fh1Ou3LSzX9xRJq0lWCwe+ROLhfPuYAIf0S9/f9k2f3jpii
-         fn0A==
-X-Gm-Message-State: ANhLgQ1F3LGCbSjEsajtLiDjjj57odWpfgUEXulI0eUcdm5sUyvrXnaB
-        fg2X4rtssL0UwvR1Q89n0hw=
-X-Google-Smtp-Source: ADFU+vs65US5DrN5du6jklN9RnuRrgYN46Sddnjqilsx4BlpkM4+fIUcFKk+y5w0p/LeO6uK722rZQ==
-X-Received: by 2002:a5d:5090:: with SMTP id a16mr20484540wrt.191.1583788131502;
-        Mon, 09 Mar 2020 14:08:51 -0700 (PDT)
-Received: from localhost.localdomain ([79.115.60.40])
-        by smtp.gmail.com with ESMTPSA id j205sm1016275wma.42.2020.03.09.14.08.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2020 14:08:51 -0700 (PDT)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     broonie@kernel.org
-Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, eha@deif.com, angelo@sysam.it,
-        andrew.smirnov@gmail.com, gustavo@embeddedor.com, weic@nvidia.com,
-        mhosny@nvidia.com, michael@walle.cc, peng.ma@nxp.com
-Subject: [PATCH v2 6/6] arm64: dts: ls1028a-rdb: Add a spidev node for the mikroBUS
-Date:   Mon,  9 Mar 2020 23:07:55 +0200
-Message-Id: <20200309210755.6759-7-olteanv@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200309210755.6759-1-olteanv@gmail.com>
-References: <20200309210755.6759-1-olteanv@gmail.com>
+        id S1726333AbgCIVMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 17:12:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34504 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726118AbgCIVMu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Mar 2020 17:12:50 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 14F442146E;
+        Mon,  9 Mar 2020 21:12:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583788370;
+        bh=Y0kKsp4ZEnxt99dXihUsJMZ1guyBaJ+F1Weo+/PYGs4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=eXK8cNmTVPNbMfKh1qidZ8533eaE3KDpSjdbGaYWWzBy4J+Pb6z9aV9HLtXAGYDfW
+         zWoimguT592f2yFQ5JzeBA1p/Ajuscu8Sm4TzNK6Xckm8l17MeWzVd3M2mzjOei7cq
+         bEfy/NqQ0126Uw366gzm+AiB/+mpU0G+1qbrzJu0=
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200303145920.GA32328@bogus>
+References: <robh@kernel.org> <20200226214812.390-1-ansuelsmth@gmail.com> <20200303145920.GA32328@bogus>
+Subject: Re: [PATCH v2] clk: qcom: clk-rpm: add missing rpm clk for ipq806x
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Ansuel Smith <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>
+Date:   Mon, 09 Mar 2020 14:12:49 -0700
+Message-ID: <158378836931.66766.851774184706134250@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
+Quoting Rob Herring (2020-03-03 06:59:20)
+> On Wed, 26 Feb 2020 22:48:12 +0100, Ansuel Smith wrote:
+> > Add missing definition of rpm clk for ipq806x soc
+> >=20
+> > Signed-off-by: John Crispin <john@phrozen.org>
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > Acked-by: John Crispin <john@phrozen.org>
+> > ---
+> >  .../devicetree/bindings/clock/qcom,rpmcc.txt  |  1 +
+> >  drivers/clk/qcom/clk-rpm.c                    | 35 +++++++++++++++++++
+> >  include/dt-bindings/clock/qcom,rpmcc.h        |  4 +++
+> >  3 files changed, 40 insertions(+)
+> >=20
+>=20
+> Acked-by: Rob Herring <robh@kernel.org>
 
-For debugging, it is useful to have access to the DSPI controller
-signals. On the reference design board, these are exported to either the
-mikroBUS1 or mikroBUS2 connector (according to the CPLD register
-BRDCFG3[SPI3]).
-
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-Changes in v2:
-Change compatible string for spidev node.
-
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index bb7ba3bcbe56..13555ed52b89 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -83,6 +83,20 @@
- 	};
- };
- 
-+&dspi2 {
-+	bus-num = <2>;
-+	status = "okay";
-+
-+	/* mikroBUS1 */
-+	spidev@0 {
-+		compatible = "rohm,dh2228fv";
-+		spi-max-frequency = <20000000>;
-+		fsl,spi-cs-sck-delay = <100>;
-+		fsl,spi-sck-cs-delay = <100>;
-+		reg = <0>;
-+	};
-+};
-+
- &esdhc {
- 	sd-uhs-sdr104;
- 	sd-uhs-sdr50;
--- 
-2.17.1
-
+Ansuel, can you send this again and address it To: somebody like me? My
+MUA fails at getting emails when they're addressed to nobody.
