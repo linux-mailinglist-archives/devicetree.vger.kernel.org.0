@@ -2,212 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EF0017E6C0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 19:20:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F029C17E6FC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 19:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727549AbgCISTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 14:19:47 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:57703 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727533AbgCISTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 14:19:20 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727455AbgCISXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 14:23:30 -0400
+Received: from mail26.static.mailgun.info ([104.130.122.26]:41291 "EHLO
+        mail26.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727451AbgCISXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 14:23:30 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1583778210; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=GX+dz/is320lqcSRtGzhyX1xm5hzo2sSwZB3Hj6u3VU=; b=B7oTd5vBxOGoKsO1Gr3OATmCQcMl/RMEEFVXfZMSJBmQiAWQlwMYdVwMmWqMqDY+ZY1CC/4I
+ zqxXR3LboinYewSTMMiC4OzghI0LgPxPyPooRGXbaGKjJGqEtyC2FxZaSw1BQRZUJoXLYXO2
+ dh452JV8e/ndVbOdZEJuXOv8yRs=
+X-Mailgun-Sending-Ip: 104.130.122.26
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
+ by mxa.mailgun.org with ESMTP id 5e66899a.7f0011d1f880-smtp-out-n02;
+ Mon, 09 Mar 2020 18:23:22 -0000 (UTC)
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B4937C44799; Mon,  9 Mar 2020 18:23:21 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id B0FD623EDA;
-        Mon,  9 Mar 2020 19:19:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1583777957;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=G2w6tuRog//c5RJrBIV3CvcBIQfC/GRMRCcWy6DXPrU=;
-        b=oxC+SQ6iB8SGjZJd9ssYmn3wa9uWQUaOSyR3hR2y2JuS0Ctc32JnRJ2wT6qf6VGzZ72+0W
-        kD1F8qzHygvUO/I7H8fvtBzvBHm7iDkaUzI7Ryg27XXVbhLfc3/8b86EBppedAQLFByM/y
-        x3gTfL3I0MuHCT4pfjps9H2RmeT8VEc=
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A1FBEC433D2;
+        Mon,  9 Mar 2020 18:23:17 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A1FBEC433D2
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org, robh+dt@kernel.org, joro@8bytes.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-remoteproc@vger.kernel.org, ohad@wizery.com,
+        agross@kernel.org, Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH 0/3] Request direct mapping for modem firmware subdevice
+Date:   Mon,  9 Mar 2020 23:52:52 +0530
+Message-Id: <20200309182255.20142-1-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 09 Mar 2020 19:19:17 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Esben Haabendal <eha@deif.com>,
-        angelo@sysam.it, andrew.smirnov@gmail.com,
-        "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
-        Wei Chen <weic@nvidia.com>, Mohamed Hosny <mhosny@nvidia.com>,
-        peng.ma@nxp.com
-Subject: Re: [PATCH 2/6] spi: spi-fsl-dspi: Fix little endian access to PUSHR
- CMD and TXDATA
-In-Reply-To: <CA+h21hp4vC1c00rCgZo_hwQz3cE4dLBHjcgTHvf-+fS9a9VfxQ@mail.gmail.com>
-References: <20200309145624.10026-1-olteanv@gmail.com>
- <20200309145624.10026-3-olteanv@gmail.com>
- <d8e39e402328b962cdbc25316a27eac8@walle.cc>
- <CA+h21hp4vC1c00rCgZo_hwQz3cE4dLBHjcgTHvf-+fS9a9VfxQ@mail.gmail.com>
-Message-ID: <a709dc91aac9124ed37ac1e7fcb7e105@walle.cc>
-X-Sender: michael@walle.cc
-User-Agent: Roundcube Webmail/1.3.10
-X-Spamd-Bar: +
-X-Spam-Level: *
-X-Rspamd-Server: web
-X-Spam-Status: No, score=1.40
-X-Spam-Score: 1.40
-X-Rspamd-Queue-Id: B0FD623EDA
-X-Spamd-Result: default: False [1.40 / 15.00];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DKIM_SIGNED(0.00)[];
-         RCPT_COUNT_TWELVE(0.00)[15];
-         NEURAL_HAM(-0.00)[-0.538];
-         FREEMAIL_TO(0.00)[gmail.com];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,arm.com,deif.com,sysam.it,gmail.com,embeddedor.com,nvidia.com,nxp.com];
-         MID_RHS_MATCH_FROM(0.00)[];
-         SUSPICIOUS_RECIPS(1.50)[]
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2020-03-09 19:07, schrieb Vladimir Oltean:
-> Hi Michael,
-> 
-> On Mon, 9 Mar 2020 at 19:59, Michael Walle <michael@walle.cc> wrote:
->> 
->> Am 2020-03-09 15:56, schrieb Vladimir Oltean:
->> > From: Vladimir Oltean <vladimir.oltean@nxp.com>
->> >
->> > In XSPI mode, the 32-bit PUSHR register can be written to separately:
->> > the higher 16 bits are for commands and the lower 16 bits are for data.
->> >
->> > This has nicely been hacked around, by defining a second regmap with a
->> > width of 16 bits, and effectively splitting a 32-bit register into 2
->> > 16-bit ones, from the perspective of this regmap_pushr.
->> >
->> > The problem is the assumption about the controller's endianness. If the
->> > controller is little endian (such as anything post-LS1046A), then the
->> > first 2 bytes, in the order imposed by memory layout, will actually
->> > hold
->> > the TXDATA, and the last 2 bytes will hold the CMD.
->> >
->> > So take the controller's endianness into account when performing split
->> > writes to PUSHR. The obvious and simple solution would have been to
->> > call
->> > regmap_get_val_endian(), but that is an internal regmap function and we
->> > don't want to change regmap just for this. Therefore, we define the
->> > offsets per-instantiation, in the devtype_data structure. This means
->> > that we have to know from the driver which controllers are big- and
->> > which are little-endian (which is fine, we do, but it makes the device
->> > tree binding itself a little redundant except for regmap_config).
->> >
->> > This patch does not apply cleanly to stable trees, and a punctual fix
->> > to
->> > the commit cannot be provided given this constraint of lack of access
->> > to
->> > regmap_get_val_endian(). The per-SoC devtype_data structures (and
->> > therefore the premises to fix this bug) have been introduced only a few
->> > commits ago, in commit d35054010b57 ("spi: spi-fsl-dspi: Use specific
->> > compatible strings for all SoC instantiations")
->> >
->> > Fixes: 58ba07ec79e6 ("spi: spi-fsl-dspi: Add support for XSPI mode
->> > registers")
->> > Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
->> > ---
->> >  drivers/spi/spi-fsl-dspi.c | 28 ++++++++++++++++++++++------
->> >  1 file changed, 22 insertions(+), 6 deletions(-)
->> >
->> > diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
->> > index 0ce26c1cbf62..a8e56abe20ac 100644
->> > --- a/drivers/spi/spi-fsl-dspi.c
->> > +++ b/drivers/spi/spi-fsl-dspi.c
->> > @@ -103,10 +103,6 @@
->> >  #define SPI_FRAME_BITS(bits)         SPI_CTAR_FMSZ((bits) - 1)
->> >  #define SPI_FRAME_EBITS(bits)                SPI_CTARE_FMSZE(((bits) - 1) >> 4)
->> >
->> > -/* Register offsets for regmap_pushr */
->> > -#define PUSHR_CMD                    0x0
->> > -#define PUSHR_TX                     0x2
->> > -
->> >  #define DMA_COMPLETION_TIMEOUT               msecs_to_jiffies(3000)
->> >
->> >  struct chip_data {
->> > @@ -124,6 +120,12 @@ struct fsl_dspi_devtype_data {
->> >       u8                      max_clock_factor;
->> >       int                     fifo_size;
->> >       int                     dma_bufsize;
->> > +     /*
->> > +      * Offsets for CMD and TXDATA within SPI_PUSHR when accessed
->> > +      * individually (in XSPI mode)
->> > +      */
->> > +     int                     pushr_cmd;
->> > +     int                     pushr_tx;
->> >  };
->> 
->> Shouldn't this just read the "little-endian" property of the
->> device tree node?
-> 
-> This is exactly what the driver did prior to this commit from 2014:
-> https://patchwork.kernel.org/patch/4732711/
-> Since then, "little-endian" and "big-endian" became generic regmap 
-> properties.
-> 
->> Like it worked before with regmap, which takes
->> the little-endian/big-endian property into account.
->> 
-> 
-> So XSPI mode allows you, among other things, to send 32 bits words at a 
-> time.
-> In my opinion this was tested only the big-endian DSPI controllers
-> (LS1021A, LS1043A etc).
-> On the little-endian controllers (LS2, LX2, LS1028A) I suspect this
-> was actually never tested.
-> The reason why we see it now is because we're "accelerating" even
-> 8-bit words to 32-bit.
-> So it is incorrect to say "like it worked before": it never worked 
-> before.
+The Q6 modem sub-system has direct access to DDR through memnoc and
+an indirect access routed through a SMMU which MSS CE (crypto engine
+sub-component of MSS) uses during out of reset sequence. Request direct
+mapping for the modem-firmware subdevice since smmu is not expected
+to provide access control/translation for these SIDs (sandboxing of the
+modem is achieved through XPUs engaged using SMC calls).
 
-I just meant how the endianess is figured out ;) Like by using the
-endianess property in the device tree. Not by also taking the compatible
-string into account.
+Sibi Sankar (3):
+  iommu: Export "iommu_request_dm_for_dev"
+  dt-bindings: remoteproc: qcom: Add modem-firmware bindings
+  remoteproc: qcom_q6v5_mss: Request direct mapping for firmware
+    subdevice
 
+ .../bindings/remoteproc/qcom,q6v5.txt         |  4 ++
+ drivers/iommu/iommu.c                         |  1 +
+ drivers/remoteproc/qcom_q6v5_mss.c            | 68 +++++++++++++++++++
+ 3 files changed, 73 insertions(+)
 
->> If I understand this correctly, this solution would mix the methods
->> how the IP endianess is determined. Eg. regmap_xx uses the
->> little-endian property and this driver then also uses the compatible
->> string to also distinguish between the endianess.
->> 
-> 
-> Yup. Otherwise we effectively have to duplicate the logic from the
-> internal regmap_get_val_endian function. I found no other way to
-> figure out what endianness the regmap_config has. Suggestions welcome.
-
-If there is no way in determining that, you could just use the
-of_property_read_bool(). there is also of_device_is_big_endian()
-although I don't know if this is consistent with how the regmap uses it.
-Eg. is it big-endian or little-endian if there is no property at all?
-
-I mean something like:
-
-if (little_endian)
-     regmap_write(regmap, PUSHR_CMD_LE, cmd)
-else
-     regmap_write(regmap, PUSHR_CMD_BE, cmd)
-
-Eg. if one would add another SoC to the DSPI driver, you would also need
-to specify the cmd/tx offset. But actually its already known because it
-just depend on the endianess which is already specified in the device 
-tree.
-
--michael
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
