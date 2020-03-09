@@ -2,509 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4CD417DCD7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 11:00:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3D4117DD1A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 11:15:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726415AbgCIKAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 06:00:02 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:35093 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726071AbgCIKAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 06:00:02 -0400
-Received: by mail-io1-f68.google.com with SMTP id h8so8514396iob.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2020 03:00:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=XYsp5YfT9GHQXn9e9Uo27I/6IbA8wOJ+MyIiypQnqBg=;
-        b=ykt2W3nYoRuWrtAqOa+Jsr1xjyONntaqQ876szsFgg3yWgfwa9XzXjUfH4F/gZVOBg
-         Y9xx8CFdkMRq7xUeBvduDNkuPFoYCglGOfhrApb5BAdr9kBgyCwIqK9Z84coYwaM/Adu
-         k9QLcYz62w2GtU1xDOZj1x+ELpMqDnZVm3dqgzFHFec2LLjNezgEyIZcAV3bU0E6rLHI
-         RJ6rxJr98//K83vCDNZ2VRBF8gze0k7o7Ae+SZDqK4pz0CrE7JMVKISOi/cLdxLcOCND
-         bE/65iiH3L6juRm+qDW85/MHQTiwS9ktu8u8535W0pjnP61bY7tl4PVcMqC8QZL/s3a8
-         0OkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XYsp5YfT9GHQXn9e9Uo27I/6IbA8wOJ+MyIiypQnqBg=;
-        b=JBWKfFrGs4uMRw1jv3y3S+nXX0xwHlNLHd0T4ZiZoxYH0xKh/lM7zUe2HaXxV4PHZ5
-         easXTxpx3qkqp0Q47F9uHGojDgxsLSVMtwh86luchmQnNy6DhYb+Q/x9l9aqYg3HpQpj
-         FHMOqZP81GVHJ5WM1DWCnJYt9Ov0gW5PZ3xZefMkN9r7lw+NKRUKG1+WKL0TeORXhwRt
-         IudebFroYEQKEOw4dEZHSeArGyeOZjyfv9Sy/VwZZR9q4QUVBpX6BCUmbEdlh2ky78rb
-         I+y6CEaQcOpfB5+hPBIJ4j6zL8FIhi1i6AqdjYvV0+VZ6mkLt1+o4ZCT4SMEVI3tHnl5
-         pgXA==
-X-Gm-Message-State: ANhLgQ2Oi3Vow8NMqvs4OS4G6bzuoehQ9AqcnqMttk+VL32/SM7zN7Xh
-        Zsl8JCCerZncP0gOEpT/Nxfop12t4jC2+W74NAAETQ==
-X-Google-Smtp-Source: ADFU+vv/Q5BFWC4z6ovabVtmzjjAwANH9fR51mgOt+AmYdVu7DeLah+kQkB3dEeMKXvxBunc5jReHmubRgb5xmImDZI=
-X-Received: by 2002:a02:ac90:: with SMTP id x16mr3235208jan.12.1583748001402;
- Mon, 09 Mar 2020 03:00:01 -0700 (PDT)
+        id S1726609AbgCIKOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 06:14:48 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:35543 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726528AbgCIKOq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 06:14:46 -0400
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jBFQj-0003mK-6T; Mon, 09 Mar 2020 11:14:37 +0100
+Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1jBFQg-0001lc-KL; Mon, 09 Mar 2020 11:14:34 +0100
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org
+Subject: [PATCH v12 00/19] TVP5150 Features and Fixes
+Date:   Mon,  9 Mar 2020 11:14:09 +0100
+Message-Id: <20200309101428.15267-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <1583502010-16210-1-git-send-email-nbelin@baylibre.com>
- <1583502010-16210-4-git-send-email-nbelin@baylibre.com> <f599f5f7-4023-10c0-a582-4dce2a601b95@gmail.com>
-In-Reply-To: <f599f5f7-4023-10c0-a582-4dce2a601b95@gmail.com>
-From:   Nicolas Belin <nbelin@baylibre.com>
-Date:   Mon, 9 Mar 2020 10:59:50 +0100
-Message-ID: <CAJZgTGH4g79ohvGi0RbD3LS7p422Q44h4_7sTWFwjiqS4U+zvA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] drivers: leds: add support for apa102c leds
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        devicetree@vger.kernel.org, baylibre-upstreaming@groups.io
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacek,
+Hi all,
 
-Le ven. 6 mars 2020 =C3=A0 21:20, Jacek Anaszewski
-<jacek.anaszewski@gmail.com> a =C3=A9crit :
->
-> Hi Nicolas,
->
-> On 3/6/20 2:40 PM, Nicolas Belin wrote:
-> > Initilial commit in order to support the apa102c RGB leds. The
-> > RGB and global brightness management is done by creating 4 leds
-> > from the Led Framework per apa102c led.
-> >
-> > Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
-> > ---
-> >  drivers/leds/Kconfig        |  11 ++
-> >  drivers/leds/Makefile       |   1 +
-> >  drivers/leds/leds-apa102c.c | 306 ++++++++++++++++++++++++++++++++++++=
-++++++++
-> >  3 files changed, 318 insertions(+)
-> >  create mode 100644 drivers/leds/leds-apa102c.c
-> >
-> > diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> > index d82f1dea3711..28fa6c4f65cc 100644
-> > --- a/drivers/leds/Kconfig
-> > +++ b/drivers/leds/Kconfig
-> > @@ -69,6 +69,17 @@ config LEDS_AN30259A
-> >         To compile this driver as a module, choose M here: the module
-> >         will be called leds-an30259a.
-> >
-> > +config LEDS_APA102C
-> > +     tristate "LED Support for Shiji APA102C"
-> > +     depends on SPI
-> > +     depends on LEDS_CLASS
-> > +     help
-> > +       This option enables support for the APA102C RGB LEDs
-> > +       from Shiji Lighting.
-> > +
-> > +       To compile this driver as a module, choose M here: the module
-> > +       will be called leds-apa102c.
-> > +
-> >  config LEDS_APU
-> >       tristate "Front panel LED support for PC Engines APU/APU2/APU3 bo=
-ards"
-> >       depends on LEDS_CLASS
-> > diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> > index d7e1107753fb..28dfe82900c5 100644
-> > --- a/drivers/leds/Makefile
-> > +++ b/drivers/leds/Makefile
-> > @@ -88,6 +88,7 @@ obj-$(CONFIG_LEDS_LM36274)          +=3D leds-lm36274=
-.o
-> >  obj-$(CONFIG_LEDS_TPS6105X)          +=3D leds-tps6105x.o
-> >
-> >  # LED SPI Drivers
-> > +obj-$(CONFIG_LEDS_APA102C)           +=3D leds-apa102c.o
-> >  obj-$(CONFIG_LEDS_CR0014114)         +=3D leds-cr0014114.o
-> >  obj-$(CONFIG_LEDS_DAC124S085)                +=3D leds-dac124s085.o
-> >  obj-$(CONFIG_LEDS_EL15203000)                +=3D leds-el15203000.o
-> > diff --git a/drivers/leds/leds-apa102c.c b/drivers/leds/leds-apa102c.c
-> > new file mode 100644
-> > index 000000000000..0043e7a6235b
-> > --- /dev/null
-> > +++ b/drivers/leds/leds-apa102c.c
-> > @@ -0,0 +1,306 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +#include <linux/leds.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/spi/spi.h>
-> > +#include <uapi/linux/uleds.h>
-> > +#include "leds.h"
-> > +
-> > +/*
-> > + * Copyright (C) 2020 BayLibre, SAS
-> > + * Author: Nicolas Belin <nbelin@baylibre.com>
-> > + */
-> > +
-> > +/*
-> > + *  APA102C SPI protocol description:
-> > + *  +------+----------------------------------------+------+
-> > + *  |START |               DATA FIELD:              | END  |
-> > + *  |FRAME |               N LED FRAMES             |FRAME |
-> > + *  +------+------+------+------+------+-----+------+------+
-> > + *  | 0*32 | LED1 | LED2 | LED3 | LED4 | --- | LEDN | 1*32 |
-> > + *  +------+------+------+------+------+-----+------+------+
-> > + *
-> > + *  +-----------------------------------+
-> > + *  |START FRAME 32bits                 |
-> > + *  +--------+--------+--------+--------+
-> > + *  |00000000|00000000|00000000|00000000|
-> > + *  +--------+--------+--------+--------+
-> > + *
-> > + *  +------------------------------------+
-> > + *  |LED  FRAME 32bits                   |
-> > + *  +---+-----+--------+--------+--------+
-> > + *  |111|LUMA |  BLUE  | GREEN  |  RED   |
-> > + *  +---+-----+--------+--------+--------+
-> > + *  |3b |5bits| 8bits  | 8bits  | 8bits  |
-> > + *  +---+-----+--------+--------+--------+
-> > + *  |MSB   LSB|MSB  LSB|MSB  LSB|MSB  LSB|
-> > + *  +---+-----+--------+--------+--------+
-> > + *
-> > + *  +-----------------------------------+
-> > + *  |END FRAME 32bits                   |
-> > + *  +--------+--------+--------+--------+
-> > + *  |11111111|11111111|11111111|11111111|
-> > + *  +--------+--------+--------+--------+
-> > + */
-> > +
-> > +/* apa102c default settings */
-> > +#define GLOBAL_MAX_BRIGHTNESS        GENMASK(4, 0)
-> > +#define RGB_MAX_BRIGHTNESS   GENMASK(7, 0)
-> > +#define START_BYTE           0
-> > +#define END_BYTE             GENMASK(7, 0)
-> > +#define LED_FRAME_HEADER     GENMASK(7, 5)
-> > +
-> > +struct apa102c_led {
-> > +     struct apa102c          *priv;
-> > +     char                    name[LED_MAX_NAME_SIZE];
->
-> This is not needed, LED core takes care of parsing LED name.
->
-> > +     int                     color_id;
-> > +     struct led_classdev     cdev;
-> > +};
-> > +
-> > +struct apa102c_rgbled {
-> > +     /* the 4 components of the apa102c rgb led:
-> > +      * global brightness, blue, green and red in that order
-> > +      */
-> > +     struct apa102c_led      component[4];
-> > +};
-> > +
-> > +struct apa102c {
-> > +     size_t                  led_count;
-> > +     struct device           *dev;
-> > +     struct mutex            lock;
-> > +     struct spi_device       *spi;
-> > +     u8                      *spi_buf;
-> > +     struct apa102c_rgbled   rgb_leds[];
-> > +};
-> > +
-> > +static int apa102c_sync(struct apa102c *priv)
-> > +{
-> > +     int     ret;
-> > +     size_t  i;
-> > +     struct apa102c_rgbled *leds =3D priv->rgb_leds;
-> > +     u8      *buf =3D priv->spi_buf;
-> > +
-> > +     /* creating the data that will be sent to all the leds at once */
-> > +     for (i =3D 0; i < 4; i++)
-> > +             *buf++ =3D START_BYTE;
-> > +
-> > +     /* looping on each RGB led component, getting the global brightne=
-ss
-> > +      * then B, G and R values
-> > +      */
-> > +     for (i =3D 0; i < priv->led_count; i++) {
-> > +             *buf++ =3D LED_FRAME_HEADER |
-> > +                      leds[i].component[0].cdev.brightness;
-> > +             *buf++ =3D leds[i].component[1].cdev.brightness;
-> > +             *buf++ =3D leds[i].component[2].cdev.brightness;
-> > +             *buf++ =3D leds[i].component[3].cdev.brightness;
-> > +     }
->
-> The problem is that in the monochrome LED approach (i.e. the only
-> available one) you have to alter the state of only one LED - that
-> on behalf of which the call is made.
->
-> And anyway, you're doing here much too much, taking into account
-> that this function is called from brightness_set op.
->
-> Isn't it possible to update only one LED ?
+here is the new and _hopefully_ last version :) This version contains
+the discussion results with Sakari and some minor fixes from the v11.
 
-No, it is not possible. When one LED is updated and as all the leds
-are cascaded, the values for all the leds have to be sent using spi.
-However, what I can do is not updating the full buffer and simply the
-part that corresponds to the modified LED.
+Each patch has a dedicate log, so I avoid the details here and give only
+an overview.
 
->
-> > +
-> > +     for (i =3D 0; i < 4; i++)
-> > +             *buf++ =3D END_BYTE;
-> > +
-> > +     ret =3D spi_write(priv->spi, priv->spi_buf,
-> > +                     (priv->led_count + 2) * sizeof(u32));
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int apa102c_brightness_set(struct led_classdev *cdev,
-> > +                        enum led_brightness brightness)
-> > +{
-> > +     int                     ret;
-> > +     struct apa102c_led      *led =3D container_of(cdev,
-> > +                                                 struct apa102c_led,
-> > +                                                 cdev);
-> > +
-> > +     mutex_lock(&led->priv->lock);
-> > +     /* updating the brightness then synching all the leds */
-> > +     cdev->brightness =3D brightness;
->
-> LED core handles that. Please drop this assignment.
+Patch 1-2:
+Those where previously one patch.
 
-OK
+Patch 3-6:
+Prepare and implement the common v4l2-fwnode parsing code. I changed the
+code from a single parse_and_add_links/free to parse/add_links/free. I
+did the split to allow adding multiple links from different devices to a
+_maybe_ coming global connector device. 
 
->
-> > +     ret =3D apa102c_sync(led->priv);
-> > +     mutex_unlock(&led->priv->lock);
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int apa102c_probe_dt(struct apa102c *priv)
-> > +{
-> > +     int                     ret =3D 0;
-> > +     u32                     i;
-> > +     struct apa102c_rgbled   *rgb_led;
-> > +     struct apa102c_led      *led;
-> > +     struct fwnode_handle    *child;
-> > +     const char              *rgb_led_name;
-> > +     const char              *led_component_name;
-> > +
-> > +     /* each node corresponds to an rgb led */
-> > +     device_for_each_child_node(priv->dev, child) {
-> > +
-> > +             ret =3D fwnode_property_read_u32(child, "reg", &i);
-> > +             if (ret) {
-> > +                     dev_err(priv->dev, "coudld not read reg %d\n", re=
-t);
-> > +                     goto child_out;
-> > +             }
-> > +
-> > +             if (i >=3D priv->led_count) {
-> > +                     ret =3D -EINVAL;
-> > +                     dev_err(priv->dev, "reg value too big\n");
-> > +                     goto child_out;
-> > +             }
-> > +
-> > +             rgb_led =3D &priv->rgb_leds[i];
-> > +             /* checking if this led config is already used by checkin=
-g if
-> > +              * the priv member of the global_brightness led as alread=
-y
-> > +              * been set
-> > +              */
-> > +             if (rgb_led->component[0].priv) {
-> > +                     ret =3D -EINVAL;
-> > +                     dev_err(priv->dev, "using the same reg value twic=
-e\n");
-> > +                     goto child_out;
-> > +             }
-> > +
-> > +             ret =3D fwnode_property_read_string(child, "label",
-> > +                                               &rgb_led_name);
-> > +             if (ret) {
-> > +                     ret =3D -EINVAL;
-> > +                     dev_err(priv->dev, "missing rgb led name\n");
-> > +                     goto child_out;
-> > +             }
-> > +
-> > +             /* setting a color_id value for each of the 4 components =
-of the
-> > +              * apa102c RGB led. The first component is the global bri=
-ghtness
-> > +              * of the led and thus has no color. The order of the col=
-ors
-> > +              * after the global brightness is then blue, green and re=
-d
-> > +              * in that order. It corresponds to the order in which th=
-e
-> > +              * values are sent using spi
-> > +              */
-> > +             rgb_led->component[0].color_id =3D -1; //no color
-> > +             rgb_led->component[1].color_id =3D LED_COLOR_ID_BLUE;
-> > +             rgb_led->component[2].color_id =3D LED_COLOR_ID_GREEN;
-> > +             rgb_led->component[3].color_id =3D LED_COLOR_ID_RED;
->
-> Each LED has to have separate DT node. We haven't had so far use case
-> with global brightness but I think it would be OK to add
-> LED_COLOR_ID_LUMA for that. But please hold on with making any changes
-> until Pavel will express his opinion on that.
+Patch 8:
+I converted the parsing code to the new v4l2-fwnode-connector parsing
+behaviour and fixed a two bugs during remove()
 
-It would be nice to have LED_COLOR_ID_LUMA. However, I don't feel like
-it is really a color. I'll wait for Pavel's opinion.
+Patch 13:
+This one is new due to the switch from the s_power() to the pm_runtime
+as Sakari suggested.
 
->
-> > +
-> > +             /* now looping on each component and registering a corres=
-ponding
-> > +              * led
-> > +              */
-> > +             for (i =3D 0; i < 4; i++) {
-> > +                     led =3D &rgb_led->component[i];
-> > +                     if (led->color_id =3D=3D -1) {
-> > +                             /* the global brightness has no defined n=
-ame
-> > +                              * so setting it to "brightness". It also=
- has
-> > +                              * a different MAX_BRIGHTNESS value.
-> > +                              * If a trigger is present, setting it on=
- this
-> > +                              * component
-> > +                              */
-> > +                             led->cdev.max_brightness =3D
-> > +                                     GLOBAL_MAX_BRIGHTNESS;
-> > +                             led_component_name =3D "brightness";
-> > +                             fwnode_property_read_string(child,
-> > +                                     "linux,default-trigger",
-> > +                                     &led->cdev.default_trigger);
-> > +                     } else {
-> > +                             /* using the color name defined by the fr=
-amework
-> > +                              * for the B, G and R components
-> > +                              */
-> > +                             led->cdev.max_brightness =3D RGB_MAX_BRIG=
-HTNESS;
-> > +                             led_component_name =3D led_colors[led->co=
-lor_id];
-> > +                     }
-> > +
-> > +                     /* the rest is common to all the components */
-> > +                     led->priv =3D priv;
-> > +                     led->cdev.brightness_set_blocking =3D
-> > +                             apa102c_brightness_set;
-> > +                     /* creating our own led name to differentiate the=
- 4
-> > +                      * components
-> > +                      */
-> > +                     snprintf(led->name, sizeof(led->name),
-> > +                              "%s_%s", rgb_led_name, led_component_nam=
-e);
-> > +                     led->cdev.name =3D led->name;
-> > +
->
-> LED core can do the above for you, if only you provide it with LED
-> fwnode.
+Patch 14:
+Also a new patch.
 
-I was doing that to have a led_name formatted as "label_color". I am
-going to check for LED functions that could work for me and come back
-to you if find other functions that are not present.
+Patch 15:
+New patch..
 
->
-> > +                     ret =3D devm_led_classdev_register_ext(priv->dev,
-> > +                                                          &led->cdev,
-> > +                                                          NULL);
->
-> There is no point in using *ext API and not passing led_init_data to it.
-> Please pass struct led_init_data in the third argument, with initialized
-> only its fwnode property.
->
-> > +                     if (ret) {
-> > +                             dev_err(priv->dev, "led register err: %d\=
-n",
-> > +                                     ret);
-> > +                             goto child_out;
-> > +                     }
-> > +             }
-> > +     }
-> > +
-> > +child_out:
-> > +     return ret;
-> > +}
-> > +
-> > +static int apa102c_probe(struct spi_device *spi)
-> > +{
-> > +     struct apa102c  *priv;
-> > +     size_t          led_count;
-> > +     int             ret;
-> > +
-> > +     led_count =3D device_get_child_node_count(&spi->dev);
-> > +     if (!led_count) {
-> > +             dev_err(&spi->dev, "No LEDs defined in device tree!");
-> > +             return -ENODEV;
-> > +     }
-> > +
-> > +     priv =3D devm_kzalloc(&spi->dev,
-> > +                         struct_size(priv, rgb_leds, led_count),
-> > +                         GFP_KERNEL);
-> > +     if (!priv)
-> > +             return -ENOMEM;
-> > +
-> > +     priv->spi_buf =3D devm_kzalloc(&spi->dev,
-> > +                                  (led_count + 2) * sizeof(u32),
-> > +                                   GFP_KERNEL);
-> > +     if (!priv->spi_buf)
-> > +             return -ENOMEM;
-> > +
-> > +     mutex_init(&priv->lock);
-> > +     priv->led_count =3D led_count;
-> > +     priv->dev       =3D &spi->dev;
-> > +     priv->spi       =3D spi;
-> > +
-> > +     ret =3D apa102c_probe_dt(priv);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     /* Set the LEDs with default values at start */
-> > +     apa102c_sync(priv);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     spi_set_drvdata(spi, priv);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int apa102c_remove(struct spi_device *spi)
-> > +{
-> > +     struct apa102c *priv =3D spi_get_drvdata(spi);
-> > +
-> > +     mutex_destroy(&priv->lock);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct of_device_id apa102c_dt_ids[] =3D {
-> > +     { .compatible =3D "shiji,apa102c", },
-> > +     {},
-> > +};
-> > +
-> > +MODULE_DEVICE_TABLE(of, apa102c_dt_ids);
-> > +
-> > +static struct spi_driver apa102c_driver =3D {
-> > +     .probe          =3D apa102c_probe,
-> > +     .remove         =3D apa102c_remove,
-> > +     .driver =3D {
-> > +             .name           =3D KBUILD_MODNAME,
-> > +             .of_match_table =3D apa102c_dt_ids,
-> > +     },
-> > +};
-> > +
-> > +module_spi_driver(apa102c_driver);
-> > +
-> > +MODULE_AUTHOR("Nicolas Belin <nbelin@baylibre.com>");
-> > +MODULE_DESCRIPTION("apa102c LED driver");
-> > +MODULE_LICENSE("GPL v2");
-> > +MODULE_ALIAS("spi:apa102c");
-> >
->
-> --
-> Best regards,
-> Jacek Anaszewski
-
-Thanks,
+I've tested the series on a custom imx6-based board which uses the chip
+directly (no-usb). I would appreciate if someone with a usb device can
+test this too.
 
 Regards,
+  Marco
 
-Nicolas
+Javier Martinez Canillas (1):
+  partial revert of "[media] tvp5150: add HW input connectors support"
+
+Marco Felsch (17):
+  dt-bindings: connector: analog: add sdtv standards property
+  dt-bindings: display: add sdtv-standards defines
+  media: v4l: link dt-bindings and uapi
+  media: v4l2-fwnode: add endpoint id field to v4l2_fwnode_link
+  media: v4l2-fwnode: add v4l2_fwnode_connector
+  media: v4l2-fwnode: add initial connector parsing support
+  media: tvp5150: add input source selection of_graph support
+  media: dt-bindings: tvp5150: Add input port connectors DT bindings
+  media: tvp5150: fix set_selection rectangle handling
+  media: tvp5150: add FORMAT_TRY support for get/set selection handlers
+  media: tvp5150: move irq en-/disable into runtime-pm ops
+  media: tvp5150: add v4l2-event support
+  media: tvp5150: add subdev open/close callbacks
+  media: dt-bindings: tvp5150: cleanup bindings stlye
+  media: dt-bindings: tvp5150: add optional sdtv standards documentation
+  media: tvp5150: add support to limit sdtv standards
+  media: tvp5150: make debug output more readable
+
+Michael Tretter (1):
+  media: tvp5150: initialize subdev before parsing device tree
+
+ .../display/connector/analog-tv-connector.txt |   6 +
+ .../devicetree/bindings/media/i2c/tvp5150.txt | 146 +++-
+ drivers/media/i2c/tvp5150.c                   | 802 ++++++++++++++----
+ drivers/media/v4l2-core/v4l2-fwnode.c         | 166 ++++
+ include/dt-bindings/display/sdtv-standards.h  |  76 ++
+ include/dt-bindings/media/tvp5150.h           |   2 -
+ include/media/v4l2-fwnode.h                   | 143 ++++
+ include/uapi/linux/videodev2.h                |   4 +
+ 8 files changed, 1146 insertions(+), 199 deletions(-)
+ create mode 100644 include/dt-bindings/display/sdtv-standards.h
+
+-- 
+2.20.1
+
