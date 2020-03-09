@@ -2,68 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6796F17EB10
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 22:20:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F002A17EB21
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 22:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726168AbgCIVUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 17:20:41 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:40291 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726118AbgCIVUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 17:20:41 -0400
-X-Originating-IP: 86.202.105.35
-Received: from localhost (lfbn-lyo-1-9-35.w86-202.abo.wanadoo.fr [86.202.105.35])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 4ED35E0006;
-        Mon,  9 Mar 2020 21:20:38 +0000 (UTC)
-Date:   Mon, 9 Mar 2020 22:20:38 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-Cc:     linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        ludovic.desroches@microchip.com, nicolas.ferre@microchip.com,
-        robh+dt@kernel.org, peda@axentia.se, linux@armlinux.org.uk,
-        wsa@the-dreams.de, Kamel Bouhara <kamel.bouhara@bootlin.com>
-Subject: Re: [PATCH v4 4/4] ARM: at91/dt: sama5d2: add i2c gpio pinctrl
-Message-ID: <20200309212038.GK3563@piout.net>
-References: <20200225155012.22764-1-codrin.ciubotariu@microchip.com>
- <20200225155012.22764-4-codrin.ciubotariu@microchip.com>
+        id S1726536AbgCIVXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 17:23:51 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:43874 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726118AbgCIVXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 17:23:51 -0400
+Received: by mail-ot1-f68.google.com with SMTP id a6so3223313otb.10;
+        Mon, 09 Mar 2020 14:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=60mtLRBTUGDAGEj9S+E+BacY2yBoes/RyfYQD2sha5w=;
+        b=uNpqJ4H5j7CHmuE/rB7F61LMk0uUS39z4LbdTUguTFFIO6LT4Z3RjkDmMMeYpdJMd4
+         kDETIuUwWnOOHvM3AV5d2iwDizGvqCsKSC1GiZuga5vJmL0JGp2K7bhg+wTuCNKKap4C
+         xk+yfeYnfHRnNaXX/tL1LGfMvI+tGcRcgMgI7HVZs7ILHSrs3xg0iYdYtm2Gt5cPDd06
+         txhcFOOWUXb0OlRqrmFWPD5zLZ4AUpXfo9A8bJOqb0X7Ny4FeIcjxeYHvLU1b03tJ9ai
+         ezMqRXnTjHPToungkje0TMOsYDWl9CE5kVY/utn9sJEA+tB5dajOW3Y605MotvK38q74
+         ji2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=60mtLRBTUGDAGEj9S+E+BacY2yBoes/RyfYQD2sha5w=;
+        b=q/XYsjxJvPMyAZGpt5J5SVMG3E85KSGM/B0b1fHv2KF8WM6Goi1Qr19Qzfdb9A+d1H
+         WpQngr+K7cTkHluVLAmNUSsTAt5hPWpNSnqvW6qHXwAh+xRfojqJbMW+d4H7FMi+iBF6
+         oaU0yDZw1aqsWeCh7rEgP5HJiSwBqlABgTrnyIDzZKnYs6qIL4zy3e1SosHXQssMOkiR
+         0ojoXiIe5dKvzKAv2DmXD1eL+ogH3vgETWXTJOIKE0ws86gxT9F7/OcaMe+11Vz5gZkR
+         BXOmxcJ/3n9pp8nAjx9VbPJgykg5M5JIXHLhhQxzWiVermwc6/edlTrFi2TQPyjQ2qJv
+         ZYPg==
+X-Gm-Message-State: ANhLgQ3zLbUD5zZ10CgYG3AT1otAZZ35EOGHpGPW+6qzbBo39pztPqdV
+        Uc+7MY3gMFj28KWS4pMPTQlmdztshxOHwaz5DQ0=
+X-Google-Smtp-Source: ADFU+vsnq8F5RsqgkD+u2jIs+ixTXB5m/pE4+STbQz3EG0F3FtB21RUH829nSz2B+EjxGxc4zpuwK5RVKPeHRfqY318=
+X-Received: by 2002:a9d:64cd:: with SMTP id n13mr14626799otl.274.1583789030439;
+ Mon, 09 Mar 2020 14:23:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200225155012.22764-4-codrin.ciubotariu@microchip.com>
+References: <20200306152031.14212-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200309203242.GA14486@bogus>
+In-Reply-To: <20200309203242.GA14486@bogus>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 9 Mar 2020 21:23:24 +0000
+Message-ID: <CA+V-a8uAhrkRPUaQOOAUgeKFnwH7zZOF-raQiYvtc9edUeHJ7g@mail.gmail.com>
+Subject: Re: [RESEND PATCH v7] dt-bindings: display: Add idk-2121wr binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        dri-devel@lists.freedesktop.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/02/2020 17:50:12+0200, Codrin Ciubotariu wrote:
-> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> 
-> Add the i2c gpio pinctrls to support the i2c bus recovery
-> 
-> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> [codrin.ciubotariu@microchip.com: removed gpio pull-ups]
-> Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-> Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
-> ---
-> 
-> Changes in v4:
->  - added Acked-by tag from Ludovic;
-> 
-> Changes in v3:
->  - removed gpio pull-ups;
-> 
-> Changes in v2:
->  - new patch;
-> 
->  arch/arm/boot/dts/at91-sama5d2_ptc_ek.dts   | 33 +++++++++++++++++++--
->  arch/arm/boot/dts/at91-sama5d2_xplained.dts | 33 +++++++++++++++++++--
->  2 files changed, 60 insertions(+), 6 deletions(-)
-> 
-Applied, thanks.
+Hi Rob,
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On Mon, Mar 9, 2020 at 8:32 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri,  6 Mar 2020 15:20:31 +0000, Lad Prabhakar wrote:
+> > From: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> >
+> > Add binding for the idk-2121wr LVDS panel from Advantech.
+> >
+> > Some panel-specific documentation can be found here:
+> > https://buy.advantech.eu/Displays/Embedded-LCD-Kits-High-Brightness/model-IDK-2121WR-K2FHA2E.htm
+> >
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > Apologies for flooding in I missed to add the ML email-ids for the earlier
+> > version so resending it.
+> >
+> > Hi All,
+> >
+> > This patch is part of series [1] ("Add dual-LVDS panel support to EK874),
+> > all the patches have been accepted from it except this one. I have fixed
+> > Rob's comments in this version of the patch.
+> >
+> > [1] https://patchwork.kernel.org/cover/11297589/
+> >
+> > v6->7
+> >  * Added reference to lvds.yaml
+> >  * Changed maintainer to myself
+> >  * Switched to dual license
+> >  * Dropped required properties except for ports as rest are already listed
+> >    in lvds.panel
+> >  * Dropped Reviewed-by tag of Laurent, due to the changes made it might not
+> >    be valid.
+> >
+> > v5->v6:
+> >  * No change
+> >
+> > v4->v5:
+> > * No change
+> >
+> > v3->v4:
+> > * Absorbed patch "dt-bindings: display: Add bindings for LVDS
+> >   bus-timings"
+> > * Big restructuring after Rob's and Laurent's comments
+> >
+> > v2->v3:
+> > * New patch
+> >
+> >  .../display/panel/advantech,idk-2121wr.yaml        | 120 +++++++++++++++++++++
+> >  1 file changed, 120 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.yaml
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.example.dt.yaml: panel-lvds: 'port' is a required property
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.example.dt.yaml: panel-lvds: 'port' is a required property
+>
+This panel is a dual channel LVDS, as a result the root port is called as
+ports instead of port and the child node port@0 and port@1 are used for
+even and odd pixels, hence binding has required property as ports instead
+of port.
+
+Cheers,
+--Prabhakar
+
+> See https://patchwork.ozlabs.org/patch/1250384
+> Please check and re-submit.
