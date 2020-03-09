@@ -2,149 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6E417E6F3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 19:24:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B57A17E725
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 19:31:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbgCISXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 14:23:08 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:34903 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726284AbgCISXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 14:23:07 -0400
-Received: by mail-pf1-f194.google.com with SMTP id u68so4484713pfb.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2020 11:23:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=82dH+sJ15Ldshryiq0HsH5AclffhvcMdjvdymma/EAM=;
-        b=oLl6S0gM4gLxCh+cd88ogRCnh4JBCz5iq0tCYjiarP4lY6rV8yz1pfTfPhF0WfK/qJ
-         gFz0VA+eLUw2SNrcIed9mr2QCj06ekq9xCZPVRUYrxt3lh+6R1CSLWJJ59YRdwiaapIN
-         PWwtibFjepZgVXEjR138LljiCrB1T18zef8XA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=82dH+sJ15Ldshryiq0HsH5AclffhvcMdjvdymma/EAM=;
-        b=nZF+dru7qU4aOd7ipWhlxCJ2zUzkJZd+luRQNvqwxQj8W6r61SvKcaWfyLyA569ZLU
-         vAPgHzrWVeOhcbPHv+D0pjPzvvIXsJhqOR9puwf5USgzxLk0XS+Ls9yNZ7F8+dYZdQ1t
-         dEXGZQfuZMFdm5QmL47PyyZEbD1gT53LFf3KpkJekSv8D5XJ1RLhlstbj+I1rPYoD47g
-         Zmvwb8e4JNtzsQg9ClI0HAuak91IYMJapJ/0xIPwROYlwTqoFUiQws8/esdA956UTWAa
-         9P2P5fmLZfTHOVjUIGJRCZ9v9HXhUxhCtaf2JTNnyQDAm66VuMC+jphL+doXrWw7KWtw
-         F9kg==
-X-Gm-Message-State: ANhLgQ2UIWRxzFmVPBD238lUu8GDVkG0Coj1sGlJihYJpa3eIUUvjas8
-        Hsq0XOrRewfkSEIw7kvN6f/aLA==
-X-Google-Smtp-Source: ADFU+vt76X0Uszasj2fbq6k4WAAfFHzB09o/cHllk3EBigMBTQ2q7C01Ws3zAVvmNKzgaOqyMhCq/g==
-X-Received: by 2002:a63:7f1d:: with SMTP id a29mr17893011pgd.123.1583778186633;
-        Mon, 09 Mar 2020 11:23:06 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id q30sm244145pjh.5.2020.03.09.11.23.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2020 11:23:06 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S1727446AbgCISbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 14:31:07 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:53591 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727440AbgCISbH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 14:31:07 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 950EF23EDA;
+        Mon,  9 Mar 2020 19:31:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1583778663;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=QTIEtymJN3mVQ54qJYN3byp7OoTvsUhQ9JrnqEUValI=;
+        b=PNNr+LHBYW1ZjkiokZWQsE/7TysuCbOqXiWrlcsL/mWuhO952dMYkfliZ6C0+IdzPV2Gab
+        IU85F6BCB3j6/mAvgWXAROBo6EO5h4MWY1zl3nE7+WdlyoLZogZ1dg9rHSHTtOQyr15Ibt
+        Kgbc80Xj+2EuB/+YlSUWuxXMJAcRLuc=
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1583752457-21159-2-git-send-email-mkshah@codeaurora.org>
-References: <1583752457-21159-1-git-send-email-mkshah@codeaurora.org> <1583752457-21159-2-git-send-email-mkshah@codeaurora.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: Introduce SoC sleep stats bindings
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        agross@kernel.org, dianders@chromium.org, rnayak@codeaurora.org,
-        ilina@codeaurora.org, lsrao@codeaurora.org,
-        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
-        devicetree@vger.kernel.org, Maulik Shah <mkshah@codeaurora.org>
-To:     Maulik Shah <mkshah@codeaurora.org>, bjorn.andersson@linaro.org,
-        evgreen@chromium.org, mka@chromium.org
-Date:   Mon, 09 Mar 2020 11:23:05 -0700
-Message-ID: <158377818530.66766.4481786840843320343@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 09 Mar 2020 19:31:03 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Esben Haabendal <eha@deif.com>,
+        angelo@sysam.it, andrew.smirnov@gmail.com,
+        "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
+        Wei Chen <weic@nvidia.com>, Mohamed Hosny <mhosny@nvidia.com>,
+        peng.ma@nxp.com
+Subject: Re: [PATCH 0/6] NXP DSPI bugfixes and support for LS1028A
+In-Reply-To: <CA+h21hrSezjwKJDCd1wN8qk5koWfPmwT0Mx+sR7fHxo1sCGcjw@mail.gmail.com>
+References: <20200309145624.10026-1-olteanv@gmail.com>
+ <f530a0740f34b2cf26a8055d4eae2527@walle.cc>
+ <CA+h21hrSezjwKJDCd1wN8qk5koWfPmwT0Mx+sR7fHxo1sCGcjw@mail.gmail.com>
+Message-ID: <6da04c9a17fa9e6259a462cb52312930@walle.cc>
+X-Sender: michael@walle.cc
+User-Agent: Roundcube Webmail/1.3.10
+X-Spamd-Bar: +
+X-Spam-Level: *
+X-Rspamd-Server: web
+X-Spam-Status: No, score=1.40
+X-Spam-Score: 1.40
+X-Rspamd-Queue-Id: 950EF23EDA
+X-Spamd-Result: default: False [1.40 / 15.00];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         FREEMAIL_ENVRCPT(0.00)[gmail.com];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DKIM_SIGNED(0.00)[];
+         RCPT_COUNT_TWELVE(0.00)[15];
+         NEURAL_HAM(-0.00)[-0.536];
+         FREEMAIL_TO(0.00)[gmail.com];
+         RCVD_COUNT_ZERO(0.00)[0];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,arm.com,deif.com,sysam.it,gmail.com,embeddedor.com,nvidia.com,nxp.com];
+         MID_RHS_MATCH_FROM(0.00)[];
+         SUSPICIOUS_RECIPS(1.50)[]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Maulik Shah (2020-03-09 04:14:14)
-> From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
->=20
-> Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
-> SoC sleep stats driver. The driver is used for displaying SoC sleep
-> statistic maintained by Always On Processor or Resource Power Manager.
->=20
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
-> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  .../bindings/soc/qcom/soc-sleep-stats.yaml         | 46 ++++++++++++++++=
-++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-=
-stats.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.y=
-aml b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
-> new file mode 100644
-> index 00000000..7c29c61
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/soc-sleep-stats.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. (QTI) SoC sleep stats bindings
-> +
-> +maintainers:
-> +  - Maulik Shah <mkshah@codeaurora.org>
-> +  - Lina Iyer <ilina@codeaurora.org>
-> +
-> +description:
-> +  Always On Processor/Resource Power Manager maintains statistics of the=
- SoC
-> +  sleep modes involving powering down of the rails and oscillator clock.
-> +
-> +  Statistics includes SoC sleep mode type, number of times low power mod=
-e were
-> +  entered, time of last entry, time of last exit and accumulated sleep d=
-uration.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,rpmh-sleep-stats
-> +      - qcom,rpm-sleep-stats
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  # Example of rpmh sleep stats
-> +  - |
-> +    rpmh_sleep_stats@c3f0000 {
-> +      compatible =3D "qcom,rpmh-sleep-stats";
-> +      reg =3D <0 0xc3f0000 0 0x400>;
-> +    };
-> +  # Example of rpm sleep stats
-> +  - |
-> +    rpm_sleep_stats@4690000 {
+Am 2020-03-09 19:14, schrieb Vladimir Oltean:
+> On Mon, 9 Mar 2020 at 20:03, Michael Walle <michael@walle.cc> wrote:
+>> Am 2020-03-09 15:56, schrieb Vladimir Oltean:
+>> > From: Vladimir Oltean <vladimir.oltean@nxp.com>
+>> >
+>> > This series addresses a few issues that were missed during the previous
+>> > series "[PATCH 00/12] TCFQ to XSPI migration for NXP DSPI driver", on
+>> > SoCs other than LS1021A and LS1043A. DMA mode has been completely
+>> > broken
+>> > by that series, and XSPI mode never worked on little-endian
+>> > controllers.
+>> >
+>> > Then it introduces support for the LS1028A chip, whose compatible has
+>> > recently been documented here:
+>> >
+>> > https://lore.kernel.org/linux-devicetree/20200218171418.18297-1-michael@walle.cc/
+>> 
+>> If it is not compatible with the LS1021A the second compatible string
+>> should be removed. Depending on the other remark about the endianess,
+>> it might still be compatible, though.
+>> 
+> 
+> Please feel free to remove it. I wasn't actually planning to add it in
+> the first place, but now it that it's there it doesn't really bother
+> anybody either.
 
-Node names don't have underscores. It really feels like we should be able
-to get away with not having this device node at all. Why can't we have
-the rpm message ram be a node that covers the entire range and then have
-that either create a platform device for debugfs stats or just have it
-register the stat information from whatever driver attaches to that
-node?
+But it won't work if the endianess depends on the compatible string ;)
 
-Carving this up into multiple nodes and making compatible strings
-doesn't seem very useful here because we're essentially making device
-nodes in DT for logical software components that exist in the rpm
-message ram.
+>> 
+>> > The device tree for the LS1028A SoC is extended with DMA channels
+>> > definition, such that even though the default operating mode is XSPI,
+>> > one can simply change DSPI_XSPI_MODE to DSPI_DMA_MODE in the
+>> > devtype_data structure of the driver and use that instead.
+>> 
+>> wouldn't it make more sense, to use DMA is the dma node is present
+>> in the device tree? otherwise use XSPI mode? I don't think it is
+>> really handy to change the mode inside the driver.
+>> 
+> 
+> Let's keep it simple. The driver should configure the hardware in the
+> most efficient and least buggy mode available. Right now that is XSPI.
+> The hardware description (aka the device tree) is a separate topic. If
+> there ever arises any situation where there are corner cases with XSPI
+> mode, it's good to have a fallback in the form of DMA mode, and not
+> have to worry about yet another problem (which is that there are 2
+> sets of device tree blobs in deployment).
+
+Point taken. But this is not how other drivers behave, which uses the
+DMA if its given in the device node.
+
+Btw. do other SoCs perform better with DMA?
+
+-michael
+
+> TL;DR: These DMA channels don't really bother anybody but you never
+> know when they might come in handy.
+> 
+>> -michael
+>> 
+>> >
+>> > For testing, benchmarking and debugging, the mikroBUS connector on the
+>> > LS1028A-RDB is made available via spidev.
+>> >
+>> > Vladimir Oltean (6):
+>> >   spi: spi-fsl-dspi: Don't access reserved fields in SPI_MCR
+>> >   spi: spi-fsl-dspi: Fix little endian access to PUSHR CMD and TXDATA
+>> >   spi: spi-fsl-dspi: Fix oper_word_size of zero for DMA mode
+>> >   spi: spi-fsl-dspi: Add support for LS1028A
+>> >   arm64: dts: ls1028a: Specify the DMA channels for the DSPI
+>> > controllers
+>> >   arm64: dts: ls1028a-rdb: Add a spidev node for the mikroBUS
+>> >
+>> >  .../boot/dts/freescale/fsl-ls1028a-rdb.dts    | 14 +++++
+>> >  .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  6 +++
+>> >  drivers/spi/spi-fsl-dspi.c                    | 54 +++++++++++++++----
+>> >  3 files changed, 64 insertions(+), 10 deletions(-)
+> 
+> Thanks,
+> -Vladimir
