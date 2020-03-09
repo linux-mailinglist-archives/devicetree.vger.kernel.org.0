@@ -2,419 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3E8517D8D5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 06:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4560317D928
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 07:00:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726165AbgCIFXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 01:23:25 -0400
-Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:14083 "EHLO
-        alexa-out-blr-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725796AbgCIFXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 01:23:25 -0400
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by alexa-out-blr-02.qualcomm.com with ESMTP/TLS/AES256-SHA; 09 Mar 2020 10:53:20 +0530
-Received: from harigovi-linux.qualcomm.com ([10.204.66.157])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 09 Mar 2020 10:53:08 +0530
-Received: by harigovi-linux.qualcomm.com (Postfix, from userid 2332695)
-        id 680FD26D1; Mon,  9 Mar 2020 10:53:07 +0530 (IST)
-From:   Harigovindan P <harigovi@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Harigovindan P <harigovi@codeaurora.org>, robdclark@gmail.com,
-        seanpaul@chromium.org, sean@poorly.run
-Subject: [PATCH v5 2/2] drm/panel: add support for rm69299 visionox panel driver
-Date:   Mon,  9 Mar 2020 10:53:04 +0530
-Message-Id: <20200309052304.23427-3-harigovi@codeaurora.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200309052304.23427-1-harigovi@codeaurora.org>
-References: <20200309052304.23427-1-harigovi@codeaurora.org>
+        id S1726450AbgCIGAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 02:00:16 -0400
+Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:34054
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725796AbgCIGAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 02:00:16 -0400
+X-Greylist: delayed 1202 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Mar 2020 02:00:15 EDT
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 172.17.10.65
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(3652:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Mon, 09 Mar 2020 13:42:04 +0800 (CST)
+Received: from sphcmbx01.sunplus.com.tw (unverified [172.17.9.202]) by SPHSML21.sunplus.com.tw
+ (Mail System 5.5.1) with ESMTP id <Tddcbe78fe4ac110a41e00@SPHSML21.sunplus.com.tw>;
+ Mon, 9 Mar 2020 13:32:02 +0800
+Received: from sphcmbx01.sunplus.com.tw (172.17.9.202) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1365.1; Mon, 9 Mar 2020 13:32:01 +0800
+Received: from sphcmbx01.sunplus.com.tw ([fe80::e5fd:30e9:f438:74dc]) by
+ sphcmbx01.sunplus.com.tw ([fe80::e5fd:30e9:f438:74dc%14]) with mapi id
+ 15.00.1365.000; Mon, 9 Mar 2020 13:32:01 +0800
+From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+To:     =?utf-8?B?QW5kcmVhcyBGw6RyYmVy?= <afaerber@suse.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Dvorkin Dmitry <dvorkin@tibbo.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Jason Cooper" <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        =?utf-8?B?5byg5p2w?= <j.zhang@sunmedia.com.cn>,
+        =?utf-8?B?6KaD5YGl?= <qinjian@sunmedia.com.cn>
+Subject: RE: [RFC 00/11] ARM: Initial Sunplus Plus1 SP7021 and BPI-F2S support
+Thread-Topic: [RFC 00/11] ARM: Initial Sunplus Plus1 SP7021 and BPI-F2S
+ support
+Thread-Index: AQHV9Wc+iZ48JNOZtUa/UcV/cxjZDKg/u/EQ
+Date:   Mon, 9 Mar 2020 05:32:00 +0000
+Message-ID: <c2239e7cb2de43c28ee9195314f56383@sphcmbx01.sunplus.com.tw>
+References: <20200308163230.4002-1-afaerber@suse.de>
+In-Reply-To: <20200308163230.4002-1-afaerber@suse.de>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Visionox panel driver.
-
-Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
----
-
-Changes in v2:
-	- Dropping redundant space in Kconfig(Sam Ravnborg).
-	- Changing structure for include files(Sam Ravnborg).
-	- Removing backlight related code and functions(Sam Ravnborg).
-	- Removing repeated printing of error message(Sam Ravnborg).
-	- Adding drm_connector as an argument for get_modes function.
-Changes in v3:
-	- Adding arguments for drm_panel_init to support against mainline.
-Changes in v4:
-	- Removing error messages from regulator_set_load.
-	- Removing dev struct entry.
-	- Removing checks.
-	- Dropping empty comment lines.
-Changes in v5:
-	- Removing unused struct member variables.
-	- Removing blank lines.
-	- Fixed indentation.
-	- Invoking dsi_detach and panel_remove while early exiting from probe.
-
- drivers/gpu/drm/panel/Kconfig                 |   8 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-visionox-rm69299.c    | 315 ++++++++++++++++++
- 3 files changed, 324 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-visionox-rm69299.c
-
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index ae44ac2ec106..7b696f304a99 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -389,6 +389,14 @@ config DRM_PANEL_TRULY_NT35597_WQXGA
- 	  Say Y here if you want to enable support for Truly NT35597 WQXGA Dual DSI
- 	  Video Mode panel
- 
-+config DRM_PANEL_VISIONOX_RM69299
-+	tristate "Visionox RM69299"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	help
-+	  Say Y here if you want to enable support for Visionox
-+	  RM69299  DSI Video Mode panel.
-+
- config DRM_PANEL_XINPENG_XPP055C272
- 	tristate "Xinpeng XPP055C272 panel driver"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 7c4d3c581fd4..9f11d067a6b2 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -41,4 +41,5 @@ obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) += panel-tpo-td028ttec1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += panel-tpo-tpg110.o
- obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
-+obj-$(CONFIG_DRM_PANEL_VISIONOX_RM69299) += panel-visionox-rm69299.o
- obj-$(CONFIG_DRM_PANEL_XINPENG_XPP055C272) += panel-xinpeng-xpp055c272.o
-diff --git a/drivers/gpu/drm/panel/panel-visionox-rm69299.c b/drivers/gpu/drm/panel/panel-visionox-rm69299.c
-new file mode 100644
-index 000000000000..2bd3af46d933
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-visionox-rm69299.c
-@@ -0,0 +1,315 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_print.h>
-+
-+struct rm69299_config {
-+	unsigned long width_mm;
-+	unsigned long height_mm;
-+	const struct drm_display_mode *dm;
-+};
-+
-+struct visionox_rm69299 {
-+	struct drm_panel panel;
-+	struct regulator_bulk_data supplies[2];
-+	struct gpio_desc *reset_gpio;
-+	struct mipi_dsi_device *dsi;
-+	const struct rm69299_config *config;
-+	bool prepared;
-+	bool enabled;
-+};
-+
-+static inline struct visionox_rm69299 *panel_to_ctx(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct visionox_rm69299, panel);
-+}
-+
-+static int visionox_35597_power_on(struct visionox_rm69299 *ctx)
-+{
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Reset sequence of visionox panel requires the panel to be
-+	 * out of reset for 10ms, followed by being held in reset
-+	 * for 10ms and then out again
-+	 */
-+	gpiod_set_value(ctx->reset_gpio, 1);
-+	usleep_range(10000, 20000);
-+	gpiod_set_value(ctx->reset_gpio, 0);
-+	usleep_range(10000, 20000);
-+	gpiod_set_value(ctx->reset_gpio, 1);
-+	usleep_range(10000, 20000);
-+
-+	return 0;
-+}
-+
-+static int visionox_rm69299_power_off(struct visionox_rm69299 *ctx)
-+{
-+	gpiod_set_value(ctx->reset_gpio, 0);
-+
-+	return regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+}
-+
-+static int visionox_rm69299_unprepare(struct drm_panel *panel)
-+{
-+	struct visionox_rm69299 *ctx = panel_to_ctx(panel);
-+	int ret;
-+
-+	ctx->dsi->mode_flags = 0;
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_SET_DISPLAY_OFF, NULL, 0);
-+	if (ret < 0)
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"set_display_off cmd failed ret = %d\n", ret);
-+
-+	/* 120ms delay required here as per DCS spec */
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_ENTER_SLEEP_MODE, NULL, 0);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"enter_sleep cmd failed ret = %d\n", ret);
-+	}
-+
-+	ret = visionox_rm69299_power_off(ctx);
-+
-+	ctx->prepared = false;
-+	return ret;
-+}
-+
-+static int visionox_rm69299_prepare(struct drm_panel *panel)
-+{
-+	struct visionox_rm69299 *ctx = panel_to_ctx(panel);
-+	int ret;
-+	const struct rm69299_config *config;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	ret = visionox_35597_power_on(ctx);
-+	if (ret < 0)
-+		return ret;
-+
-+	ctx->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	config = ctx->config;
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0xfe, 0x00 }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 0 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0xc2, 0x08 }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 1 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0x35, 0x00 }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 2 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0x51, 0xff }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 3 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_EXIT_SLEEP_MODE, NULL, 0);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"exit_sleep_mode cmd failed ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	/* Per DSI spec wait 120ms after sending exit sleep DCS command */
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_SET_DISPLAY_ON, NULL, 0);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"set_display_on cmd failed ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	/* Per DSI spec wait 120ms after sending set_display_on DCS command */
-+	msleep(120);
-+
-+	ctx->prepared = true;
-+
-+	return 0;
-+
-+power_off:
-+	return ret;
-+}
-+
-+static int visionox_rm69299_get_modes(struct drm_panel *panel,
-+				       struct drm_connector *connector)
-+{
-+	struct visionox_rm69299 *ctx = panel_to_ctx(panel);
-+	struct drm_display_mode *mode;
-+	const struct rm69299_config *config = ctx->config;
-+
-+	mode = drm_mode_create(connector->dev);
-+	if (!mode) {
-+		DRM_DEV_ERROR(ctx->dev,
-+			"failed to create a new display mode\n");
-+		return 0;
-+	}
-+
-+	connector->display_info.width_mm = config->width_mm;
-+	connector->display_info.height_mm = config->height_mm;
-+	drm_mode_copy(mode, config->dm);
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs visionox_rm69299_drm_funcs = {
-+	.unprepare = visionox_rm69299_unprepare,
-+	.prepare = visionox_rm69299_prepare,
-+	.get_modes = visionox_rm69299_get_modes,
-+};
-+
-+static const struct drm_display_mode visionox_rm69299_1080x2248_60hz = {
-+	.name = "1080x2248",
-+	.clock = 158695,
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 26,
-+	.hsync_end = 1080 + 26 + 2,
-+	.htotal = 1080 + 26 + 2 + 36,
-+	.vdisplay = 2248,
-+	.vsync_start = 2248 + 56,
-+	.vsync_end = 2248 + 56 + 4,
-+	.vtotal = 2248 + 56 + 4 + 4,
-+	.vrefresh = 60,
-+	.flags = 0,
-+};
-+
-+static const struct rm69299_config rm69299_dir = {
-+	.width_mm = 74,
-+	.height_mm = 131,
-+	.dm = &visionox_rm69299_1080x2248_60hz,
-+};
-+
-+static int visionox_rm69299_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct visionox_rm69299 *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	ctx->supplies[0].supply = "vdda";
-+	ctx->supplies[1].supply = "vdd3p3";
-+
-+	ret = devm_regulator_bulk_get(ctx->panel.dev, ARRAY_SIZE(ctx->supplies),
-+								ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	ctx->reset_gpio = devm_gpiod_get(ctx->panel.dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(ctx->reset_gpio)) {
-+		DRM_DEV_ERROR(dev, "cannot get reset gpio %ld\n",
-+			PTR_ERR(ctx->reset_gpio));
-+		return PTR_ERR(ctx->reset_gpio);
-+	}
-+
-+	drm_panel_init(&ctx->panel, dev, &visionox_rm69299_drm_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+	ctx->panel.dev = dev;
-+	ctx->panel.funcs = &visionox_rm69299_drm_funcs;
-+	drm_panel_add(&ctx->panel);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_LPM |
-+		MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(dev, "dsi attach failed ret = %d\n", ret);
-+		goto err_dsi_attach;
-+	}
-+
-+	ret = regulator_set_load(ctx->supplies[0].consumer, 32000);
-+	if (ret) {
-+		mipi_dsi_detach(dsi);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	ret = regulator_set_load(ctx->supplies[1].consumer, 13200);
-+	if (ret) {
-+		mipi_dsi_detach(dsi);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+
-+err_dsi_attach:
-+	drm_panel_remove(&ctx->panel);
-+	return ret;
-+}
-+
-+static int visionox_rm69299_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct visionox_rm69299 *ctx = mipi_dsi_get_drvdata(dsi);
-+
-+	mipi_dsi_detach(ctx->dsi);
-+	mipi_dsi_device_unregister(ctx->dsi);
-+
-+	drm_panel_remove(&ctx->panel);
-+	return 0;
-+}
-+
-+static const struct of_device_id visionox_rm69299_of_match[] = {
-+	{
-+		.compatible = "visionox,rm69299-1080p-display",
-+		.data = &rm69299_dir,
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, visionox_rm69299_of_match);
-+
-+static struct mipi_dsi_driver visionox_rm69299_driver = {
-+	.driver = {
-+		.name = "panel-visionox-rm69299",
-+		.of_match_table = visionox_rm69299_of_match,
-+	},
-+	.probe = visionox_rm69299_probe,
-+	.remove = visionox_rm69299_remove,
-+};
-+module_mipi_dsi_driver(visionox_rm69299_driver);
-+
-+MODULE_DESCRIPTION("VISIONOX RM69299 DSI Panel Driver");
-+MODULE_LICENSE("GPL v2");
-+
--- 
-2.25.1
-
+QWRkZWQgSmllIFpoYW5nIGFuZCBKaWFuIFFpbiBpbiB0byBjYyBsaXN0Lg0KDQpKaWUgWmhhbmcg
+aXMgc29mdHdhcmUgbGVhZGVyIG9mIFN1bnBsdXMgUGx1cyAxIChTUDcwMjEpIHBsYXRmb3JtLg0K
+DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBBbmRyZWFzIEbDpHJiZXIgPGFm
+YWVyYmVyQHN1c2UuZGU+IA0KU2VudDogTW9uZGF5LCBNYXJjaCAwOSwgMjAyMCAxMjozMiBBTQ0K
+VG86IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KQ2M6IFdlbGxzIEx1IOWR
+guiKs+mosCA8d2VsbHMubHVAc3VucGx1cy5jb20+OyBEdm9ya2luIERtaXRyeSA8ZHZvcmtpbkB0
+aWJiby5jb20+OyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBBbmRyZWFzIEbDpHJiZXIg
+PGFmYWVyYmVyQHN1c2UuZGU+OyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgUm9iIEhlcnJp
+bmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4
+Zm91bmRhdGlvbi5vcmc+OyBsaW51eC1zZXJpYWxAdmdlci5rZXJuZWwub3JnOyBUaG9tYXMgR2xl
+aXhuZXIgPHRnbHhAbGludXRyb25peC5kZT47IEphc29uIENvb3BlciA8amFzb25AbGFrZWRhZW1v
+bi5uZXQ+OyBNYXJjIFp5bmdpZXIgPG1hekBrZXJuZWwub3JnPg0KU3ViamVjdDogW1JGQyAwMC8x
+MV0gQVJNOiBJbml0aWFsIFN1bnBsdXMgUGx1czEgU1A3MDIxIGFuZCBCUEktRjJTIHN1cHBvcnQN
+Cg0KSGVsbG8sDQoNClRoaXMgcGF0Y2ggc2VyaWVzIGFkZHMgaW5pdGlhbCBkcml2ZXJzIGFuZCBE
+ZXZpY2UgVHJlZXMgZm9yIFN1bnBsdXMgUGx1czEgc2VyaWVzIChjb2RlbmFtZSBQZW50YWdyYW0p
+IFNQNzAyMSBTb0MgYW5kIEJhbmFuYSBQaSBCUEktRjJTIFNCQy4NCg0KRmlyc3QsIG1pbmltYWwg
+S2NvbmZpZywgRFQgYW5kIGVhcmx5Y29uIGRyaXZlciBhcmUgcHJlcGFyZWQgdG8gZ2V0IHNlcmlh
+bCBvdXRwdXQgYXQgYWxsLiBOZXh0LCBpbnRlcnJ1cHQgY29udHJvbGxlciBhbmQgZnVsbCBzZXJp
+YWwgZHJpdmVyIGFyZSBhZGRlZCB0aGF0IGFsbG93IHRvIGJvb3QgaW50byBhbiBpbml0cmQgd2l0
+aCBpbnRlcmFjdGl2ZSBzZXJpYWwgY29uc29sZS4NCg0KRGV2aWNlIFRyZWUgZmlsZXMgYWRkZWQg
+YXJlIGZvciB0aGUgQ1BVLUNoaXAgKGFrYSBBLUNoaXApIHdpdGggcXVhZCBDb3J0ZXgtQTcsIGJ1
+dCB0aGUgZmlsZSBzcGxpdCBwcmVwYXJlcyBmb3IgYWxzbyBhZGRpbmcgdGhlIFBlcmlwaGVyYWwt
+Q2hpcCAoQi1DaGlwKSB3aXRoDQpBUk05IGxhdGVyLiBIb3dldmVyLCBmb3Igbm93IHRoaXMgaXMg
+bm90IHJlZmxlY3RlZCBpbiB0aGUgLmR0cyBmaWxlbmFtZTsgdGhpcyBjb3JyZXNwb25kcyB0byB0
+aGUgdmY2MTAtIHZzLiB2ZjYxMG00LSBuYW1pbmcgc2NoZW1lLCB3aGVyZWFzIGFuIGFsdGVybmF0
+aXZlIHdvdWxkIGJlIHRvIHVzZSBzcDcwMjEtY2NoaXAtIHZzLiAtcGNoaXAtIHByZWZpeCAoYXMg
+c3A3MDIxLWNwdS0gbG9va3Mgd2VpcmQpLg0KSXQgaXMgYXNzdW1lZCB3ZSBjYW4gcmV1c2UgdGhl
+IHNhbWUgU29DIGFuZCBib2FyZCBiaW5kaW5ncyBmb3IgQ0E3IGFuZCBBUk05IGFuZCBvbmx5IGRp
+ZmZlciBmb3IgSVAgYmxvY2tzIHdoZXJlIG5lZWRlZC4NCg0KTXkgaW5xdWlyeSB0byBTdW5wbHVz
+IGFib3V0IHRoZWlyIEdJQyAoYW50aWNpcGF0aW5nIGNvbXBsYWludHMgZnJvbSBNYXJjKSByZW1h
+aW5lZCB1bmFuc3dlcmVkLCBzbyBJJ3ZlIGFkZGVkIHRoZSB0d28gZXh0cmEgcmVnaW9ucyBhbmQg
+aXJxIG15c2VsZiwgd2l0aG91dCBiZWluZyBhYmxlIHRvIHRlc3QgS1ZNIGR1ZSB0byBCU1AgVS1C
+b290IG5vdCBib290aW5nIGluIEhZUCBtb2RlLg0KQWNjb3JkaW5nIHRvIFN1bnBsdXMgdGhlIG1v
+ZGUgY2FuIGJlIGNoYW5nZWQgaW4gVS1Cb290IChidXQgd2hlcmUvaG93PykuDQoNClNpbWlsYXJs
+eSwgdGhlIGFyY2hpdGVjdHVyYWwgdGltZXIgaXMgbm90IHByb3Blcmx5IGluaXRpYWxpemVkIGlu
+IEJTUCBVLUJvb3QsIHNvIHRoYXQgSSBjdXJyZW50bHkgaGF2ZSBhIG1hY2gtIGhhY2sgaW4gbXkg
+dHJlZSBiZWxvdy4gVW5saWtlIFJURDExOTUsIHdlIGRvIGhhdmUgVS1Cb290IHNvdXJjZXMgKHYy
+MDE5LjA0IGJhc2VkKSwgc28gc2hvdWxkIGJlIGFibGUgdG8gZml4IHRoaXMgaW4gdGhlIGJvb3Rs
+b2FkZXIgcmF0aGVyIHRoYW4gaW4gdGhlIGtlcm5lbCwgdGh1cyBub3QgaW5jbHVkZWQgYXMgcGF0
+Y2ggaGVyZS4NCg0KQmFzZWQgb24gU29DIG9ubGluZSBtYW51YWwgWzFdIGFuZCBkb3duc3RyZWFt
+IEJQSS1GMlMgQlNQIHRyZWUgWzJdIGFzIHdlbGwgYXMgbXkgcHJldmlvdXMgQWN0aW9ucyBzZXJp
+YWwgYW5kIFJlYWx0ZWsgaXJxY2hpcCBkcml2ZXJzIGFuZCBEVHMuDQoNCk1vcmUgZGV0YWlscyBh
+dDoNCmh0dHBzOi8vZW4ub3BlbnN1c2Uub3JnL0hDTDpCYW5hbmFQaV9GMlMNCg0KTGF0ZXN0IGV4
+cGVyaW1lbnRhbCBwYXRjaGVzIGF0Og0KaHR0cHM6Ly9naXRodWIuY29tL2FmYWVyYmVyL2xpbnV4
+L2NvbW1pdHMvZjJzLW5leHQNCg0KSGF2ZSBhIGxvdCBvZiBmdW4hDQoNCkNoZWVycywNCkFuZHJl
+YXMNCg0KWzFdIGh0dHBzOi8vc3VucGx1cy10aWJiby5hdGxhc3NpYW4ubmV0L3dpa2kvc3BhY2Vz
+L2RvYy9wYWdlcy80NzA0NTAyNTIvU1A3MDIxK1RlY2huaWNhbCtNYW51YWwNClsyXSBodHRwczov
+L2dpdGh1Yi5jb20vQlBJLVNJTk9WT0lQL0JQSS1GMlMtYnNwDQoNCkNjOiBkZXZpY2V0cmVlQHZn
+ZXIua2VybmVsLm9yZw0KQ2M6IFJvYiBIZXJyaW5nIDxyb2JoK2R0QGtlcm5lbC5vcmc+DQpDYzog
+R3JlZyBLcm9haC1IYXJ0bWFuIDxncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZz4NCkNjOiBsaW51
+eC1zZXJpYWxAdmdlci5rZXJuZWwub3JnDQpDYzogVGhvbWFzIEdsZWl4bmVyIDx0Z2x4QGxpbnV0
+cm9uaXguZGU+DQpDYzogSmFzb24gQ29vcGVyIDxqYXNvbkBsYWtlZGFlbW9uLm5ldD4NCkNjOiBN
+YXJjIFp5bmdpZXIgPG1hekBrZXJuZWwub3JnPg0KQ2M6IFdlbGxzIEx1IOWRguiKs+mosCA8d2Vs
+bHMubHVAc3VucGx1cy5jb20+DQpDYzogRHZvcmtpbiBEbWl0cnkgPGR2b3JraW5AdGliYm8uY29t
+Pg0KDQpBbmRyZWFzIEbDpHJiZXIgKDExKToNCiAgZHQtYmluZGluZ3M6IHZlbmRvci1wcmVmaXhl
+czogQWRkIFN1bnBsdXMNCiAgZHQtYmluZGluZ3M6IGFybTogQWRkIFN1bnBsdXMgU1A3MDIxIGFu
+ZCBCYW5hbmEgUGkgQlBJLUYyUw0KICBBUk06IFByZXBhcmUgU3VucGx1cyBQbHVzMSBTb0MgZmFt
+aWx5DQogIGR0LWJpbmRpbmdzOiBpbnRlcnJ1cHQtY29udHJvbGxlcjogQWRkIFN1bnBsdXMgU1A3
+MDIxIG11eA0KICBkdC1iaW5kaW5nczogc2VyaWFsOiBBZGQgU3VucGx1cyBTUDcwMjEgVUFSVA0K
+ICB0dHk6IHNlcmlhbDogQWRkIFN1bnBsdXMgUGx1czEgVUFSVCBlYXJseWNvbg0KICBBUk06IGR0
+czogQWRkIFN1bnBsdXMgUGx1czEgU1A3MDIxIGFuZCBCYW5hbmEgUGkgRjJTDQogIHR0eTogc2Vy
+aWFsOiBzdW5wbHVzOiBJbXBsZW1lbnQgZnVsbCBVQVJUIGRyaXZlcg0KICBpcnFjaGlwOiBBZGQg
+U3VucGx1cyBTUDcwMjEgaW50ZXJydXB0IChtdXgpIGNvbnRyb2xsZXINCiAgQVJNOiBkdHM6IHNw
+NzAyMS1jcHU6IEFkZCBpbnRlcnJ1cHQgY29udHJvbGxlciBub2RlDQogIEFSTTogZHRzOiBzcDcw
+MjEtY3B1OiBBZGQgZHVtbXkgVUFSVDAgY2xvY2sgYW5kIGludGVycnVwdA0KDQogRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9zdW5wbHVzLnlhbWwgfCAgMjIgKw0KIC4uLi9z
+dW5wbHVzLHBlbnRhZ3JhbS1pbnRjLnlhbWwgICAgICAgICAgICAgICAgICAgIHwgIDUwICsrDQog
+Li4uL2JpbmRpbmdzL3NlcmlhbC9zdW5wbHVzLHBlbnRhZ3JhbS11YXJ0LnlhbWwgICAgfCAgMjQg
+Kw0KIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3ZlbmRvci1wcmVmaXhlcy55YW1sICAgICAgIHwg
+ICAyICsNCiBhcmNoL2FybS9LY29uZmlnICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICB8ICAgMiArDQogYXJjaC9hcm0vTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgfCAgIDEgKw0KIGFyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlICAgICAgICAgICAgICAg
+ICAgICAgICAgIHwgICAyICsNCiBhcmNoL2FybS9ib290L2R0cy9wZW50YWdyYW0tc3A3MDIxLWJw
+aS1mMnMuZHRzICAgICB8ICAyOSArDQogYXJjaC9hcm0vYm9vdC9kdHMvcGVudGFncmFtLXNwNzAy
+MS1jcHUuZHRzaSAgICAgICAgfCAgOTMgKysrDQogYXJjaC9hcm0vYm9vdC9kdHMvcGVudGFncmFt
+LXNwNzAyMS5kdHNpICAgICAgICAgICAgfCAgNjEgKysNCiBhcmNoL2FybS9tYWNoLXN1bnBsdXMv
+S2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICB8ICAxMCArDQogZHJpdmVycy9pcnFjaGlwL01h
+a2VmaWxlICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDEgKw0KIGRyaXZlcnMvaXJxY2hp
+cC9pcnEtc3A3MDIxLmMgICAgICAgICAgICAgICAgICAgICAgIHwgMjg1ICsrKysrKysrDQogZHJp
+dmVycy90dHkvc2VyaWFsL0tjb25maWcgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMTkgKw0K
+IGRyaXZlcnMvdHR5L3NlcmlhbC9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAgICAgIHwgICAx
+ICsNCiBkcml2ZXJzL3R0eS9zZXJpYWwvc3VucGx1cy11YXJ0LmMgICAgICAgICAgICAgICAgICB8
+IDc3MCArKysrKysrKysrKysrKysrKysrKysNCiBpbmNsdWRlL3VhcGkvbGludXgvc2VyaWFsX2Nv
+cmUuaCAgICAgICAgICAgICAgICAgICB8ICAgMyArDQogMTcgZmlsZXMgY2hhbmdlZCwgMTM3NSBp
+bnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9hcm0vc3VucGx1cy55YW1sDQogY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9zdW5wbHVzLHBl
+bnRhZ3JhbS1pbnRjLnlhbWwNCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3NlcmlhbC9zdW5wbHVzLHBlbnRhZ3JhbS11YXJ0LnlhbWwNCiBjcmVh
+dGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0vYm9vdC9kdHMvcGVudGFncmFtLXNwNzAyMS1icGktZjJz
+LmR0cw0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybS9ib290L2R0cy9wZW50YWdyYW0tc3A3
+MDIxLWNwdS5kdHNpDQogY3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL3BlbnRh
+Z3JhbS1zcDcwMjEuZHRzaQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybS9tYWNoLXN1bnBs
+dXMvS2NvbmZpZyAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvaXJxY2hpcC9pcnEtc3A3MDIx
+LmMgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3R0eS9zZXJpYWwvc3VucGx1cy11YXJ0LmMN
+Cg0KLS0NCjIuMTYuNA0KDQo=
