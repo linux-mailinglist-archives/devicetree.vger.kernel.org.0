@@ -2,129 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A55817E65A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 19:05:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F8217E664
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 19:07:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727359AbgCISFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 14:05:12 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:43435 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726353AbgCISFM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 14:05:12 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id A755823EDA;
-        Mon,  9 Mar 2020 19:05:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1583777109;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7YTstUEAHOImHVubDPl/PQ3nYvKS6CDicl+KJS2YJ6Y=;
-        b=EXbeZFXASRSaA835mHDnjE2AfBIpT2EYd4khZ1LQfA8ZnK7kEsPKkPpwAmMYyKO7UByG/X
-        A410+PBrCP4qvhLHFcPMTfVWwxaD1FqBRHUWzay2+inMDYc+QqjdjT0CTdHTTZqqGfsqlf
-        Hm6SOmKPKrsJfDlWPSTi6jMt51kFSPM=
+        id S1727366AbgCISHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 14:07:02 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:41532 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726269AbgCISHB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 14:07:01 -0400
+Received: by mail-ot1-f66.google.com with SMTP id s15so2264493otq.8;
+        Mon, 09 Mar 2020 11:07:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+8twmAkYC8gLumwmIlw3+TNjk4YZIpc4Yf4Svt7khAE=;
+        b=hxesS+HJMdaYe7v+UFydhi9C5U/FqzuaAy9qlXBA2GSEkMunxcXVolep1eD4r6yIdU
+         08r6nIU4cjh1Vg5fwUNl583j9qZO3+W/+hRj7FCUXFgOncW7LsMLqPNrCp4+SMW/KcpK
+         buVbkXi2YChKqDhoAiBhXmOMa8LthzdAdrie4BMcHYg/fCNkHi2BBqa0cq5m5hhlkar7
+         DrSuAjWL00jnhjE90N4Kkd2mfR3U1lEwVm/SaTtIG+eXf3VCMDaphi/5lFTfPZPCox+L
+         sEZeqLy4wO9ZKqXUXJ0b6yfSuLAn5D2D4EDMJl8Shba/DxR3g1cht/csV6oKYMwb2dpn
+         DgQw==
+X-Gm-Message-State: ANhLgQ11Wl+ZDz/4yX8B/slT/vnmidmj3yxbSVgkLhcYxiMjEaF9a5Rm
+        B3pLtRk+5KOvG2iNU0zgTw==
+X-Google-Smtp-Source: ADFU+vs3IQ3wz+qJ/67vqIo0mD/X0qf+y/Hptx7ec/9FGLi0njnEexI24zE2V0heF26J/Ax0sA1e+g==
+X-Received: by 2002:a9d:5f7:: with SMTP id 110mr8301002otd.73.1583777220691;
+        Mon, 09 Mar 2020 11:07:00 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t193sm3355321oif.34.2020.03.09.11.06.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Mar 2020 11:06:59 -0700 (PDT)
+Received: (nullmailer pid 18575 invoked by uid 1000);
+        Mon, 09 Mar 2020 18:06:58 -0000
+Date:   Mon, 9 Mar 2020 13:06:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krishna Manikandan <mkrishn@codeaurora.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        kalyan_t@codeaurora.org, nganji@codeaurora.org
+Subject: Re: [v1] dt-bindings: msm: disp: add yaml schemas for DPU and DSI
+ bindings
+Message-ID: <20200309180658.GA15631@bogus>
+References: <1583494560-25336-1-git-send-email-mkrishn@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 09 Mar 2020 19:05:09 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     broonie@kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, eha@deif.com, angelo@sysam.it,
-        andrew.smirnov@gmail.com, gustavo@embeddedor.com, weic@nvidia.com,
-        mhosny@nvidia.com, peng.ma@nxp.com
-Subject: Re: [PATCH 1/6] spi: spi-fsl-dspi: Don't access reserved fields in
- SPI_MCR
-In-Reply-To: <20200309145624.10026-2-olteanv@gmail.com>
-References: <20200309145624.10026-1-olteanv@gmail.com>
- <20200309145624.10026-2-olteanv@gmail.com>
-Message-ID: <c35b3c34123b43b26204a2cf360e7ec1@walle.cc>
-X-Sender: michael@walle.cc
-User-Agent: Roundcube Webmail/1.3.10
-X-Spamd-Bar: +
-X-Spam-Level: *
-X-Rspamd-Server: web
-X-Spam-Status: No, score=1.40
-X-Spam-Score: 1.40
-X-Rspamd-Queue-Id: A755823EDA
-X-Spamd-Result: default: False [1.40 / 15.00];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DKIM_SIGNED(0.00)[];
-         RCPT_COUNT_TWELVE(0.00)[15];
-         NEURAL_HAM(-0.00)[-0.374];
-         FREEMAIL_TO(0.00)[gmail.com];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,arm.com,deif.com,sysam.it,gmail.com,embeddedor.com,nvidia.com,nxp.com];
-         MID_RHS_MATCH_FROM(0.00)[];
-         SUSPICIOUS_RECIPS(1.50)[]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1583494560-25336-1-git-send-email-mkrishn@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2020-03-09 15:56, schrieb Vladimir Oltean:
-> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+On Fri,  6 Mar 2020 17:06:00 +0530, Krishna Manikandan wrote:
+> MSM Mobile Display Subsytem(MDSS) encapsulates sub-blocks
+> like DPU display controller, DSI etc. Add YAML schema
+> for the device tree bindings for the same.
 > 
-> The SPI_MCR_PCSIS macro assumes that the controller has a number of 
-> chip
-> select signals equal to 6. That is not always the case, but actually is
-> described through the driver-specific " signals equal to 6. That is not
-> always the case, but actually is described through the driver-specific
-> "spi-num-chipselects" device tree binding.
-
-Repeated sentence? Was this your intention?
-
--michael
-
-> LS1028A for example only has
-> 4 chip selects.
-> 
-> Don't write to the upper bits of the PCSIS field, which are reserved in
-> the reference manual.
-> 
-> Fixes: 349ad66c0ab0 ("spi:Add Freescale DSPI driver for Vybrid VF610 
-> platform")
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
 > ---
->  drivers/spi/spi-fsl-dspi.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+>  .../bindings/display/msm/dpu-sc7180.yaml           | 269 +++++++++++++++
+>  .../bindings/display/msm/dpu-sdm845.yaml           | 265 +++++++++++++++
+>  .../bindings/display/msm/dsi-sc7180.yaml           | 369 +++++++++++++++++++++
+>  .../bindings/display/msm/dsi-sdm845.yaml           | 369 +++++++++++++++++++++
+>  4 files changed, 1272 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sc7180.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-sc7180.yaml
+>  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-sdm845.yaml
 > 
-> diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
-> index 0683a3fbd48c..0ce26c1cbf62 100644
-> --- a/drivers/spi/spi-fsl-dspi.c
-> +++ b/drivers/spi/spi-fsl-dspi.c
-> @@ -22,7 +22,7 @@
-> 
->  #define SPI_MCR				0x00
->  #define SPI_MCR_MASTER			BIT(31)
-> -#define SPI_MCR_PCSIS			(0x3F << 16)
-> +#define SPI_MCR_PCSIS(x)		((x) << 16)
->  #define SPI_MCR_CLR_TXF			BIT(11)
->  #define SPI_MCR_CLR_RXF			BIT(10)
->  #define SPI_MCR_XSPI			BIT(3)
-> @@ -1197,7 +1197,10 @@ static const struct regmap_config
-> dspi_xspi_regmap_config[] = {
-> 
->  static void dspi_init(struct fsl_dspi *dspi)
->  {
-> -	unsigned int mcr = SPI_MCR_PCSIS;
-> +	unsigned int mcr;
-> +
-> +	/* Set idle states for all chip select signals to high */
-> +	mcr = SPI_MCR_PCSIS(GENMASK(dspi->ctlr->num_chipselect - 1, 0));
-> 
->  	if (dspi->devtype_data->trans_mode == DSPI_XSPI_MODE)
->  		mcr |= SPI_MCR_XSPI;
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+Documentation/devicetree/bindings/display/simple-framebuffer.example.dts:21.16-37.11: Warning (chosen_node_is_root): /example-0/chosen: chosen node must be at root node
+Documentation/devicetree/bindings/display/msm/dpu-sc7180.example.dts:17:10: fatal error: dt-bindings/clock/qcom,dispcc-sc7180.h: No such file or directory
+ #include <dt-bindings/clock/qcom,dispcc-sc7180.h>
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+scripts/Makefile.lib:300: recipe for target 'Documentation/devicetree/bindings/display/msm/dpu-sc7180.example.dt.yaml' failed
+make[1]: *** [Documentation/devicetree/bindings/display/msm/dpu-sc7180.example.dt.yaml] Error 1
+Makefile:1263: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
+
+See https://patchwork.ozlabs.org/patch/1250230
+Please check and re-submit.
