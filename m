@@ -2,123 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE69A17E3C6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 16:39:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 938D517E43D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 17:04:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726967AbgCIPjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 11:39:20 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57448 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726776AbgCIPjT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 11:39:19 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 029FdEgD057358;
-        Mon, 9 Mar 2020 10:39:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1583768354;
-        bh=5NMdHScQpOzmekHtb8MLspeqES1SnaeW3nR3WGI9oxk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=WvmVXXNMq+oeJY9LSUEt8Q+Hov1Mf1dNbjoyPKl+9fpve0/zEo+Zv3g+73KSbgdiG
-         AsPRL7vRdPBRwjZ23BvcA1ubznfkJjfUF5+HriEagTz1zOK/BC7VhK+u+SLldIdNmy
-         GjCQcm+WLtCqKO2yWaStw5O+spc8I72uNz+PWndo=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 029FdEZC054556;
-        Mon, 9 Mar 2020 10:39:14 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Mon, 9 Mar
- 2020 10:38:13 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Mon, 9 Mar 2020 10:38:13 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 029FcD4i106953;
-        Mon, 9 Mar 2020 10:38:13 -0500
-Date:   Mon, 9 Mar 2020 10:44:01 -0500
-From:   Bin Liu <b-liu@ti.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>, <od@zcrc.me>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] usb: musb: jz4740: Register USB role switch
-Message-ID: <20200309154401.GB31115@iaqt7>
-Mail-Followup-To: Bin Liu <b-liu@ti.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>, od@zcrc.me,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200224014008.27114-1-paul@crapouillou.net>
- <20200224014008.27114-3-paul@crapouillou.net>
+        id S1726990AbgCIQEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 12:04:23 -0400
+Received: from mail.manjaro.org ([176.9.38.148]:42068 "EHLO mail.manjaro.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726926AbgCIQEW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Mar 2020 12:04:22 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.manjaro.org (Postfix) with ESMTP id 30EC03702399;
+        Mon,  9 Mar 2020 17:04:21 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at manjaro.org
+Received: from mail.manjaro.org ([127.0.0.1])
+        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id n1f4Bhx4d8nd; Mon,  9 Mar 2020 17:04:18 +0100 (CET)
+From:   Tobias Schramm <t.schramm@manjaro.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Tobias Schramm <t.schramm@manjaro.org>
+Subject: [PATCH v2 0/2] Add support for CellWise cw2015 fuel gauge
+Date:   Mon,  9 Mar 2020 17:03:44 +0100
+Message-Id: <20200309160346.2203680-1-t.schramm@manjaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200224014008.27114-3-paul@crapouillou.net>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patchset adds support for the CellWise cw2015 fuel gauge.
 
-On Sun, Feb 23, 2020 at 10:40:06PM -0300, Paul Cercueil wrote:
-> Register a USB role switch, in order to get notified by the connector
-> driver when the USB role changes. The notification is then transmitted
-> to the PHY.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
-> 
-> Notes:
->     v2: No change
-> 
->  drivers/usb/musb/Kconfig  |  1 +
->  drivers/usb/musb/jz4740.c | 46 +++++++++++++++++++++++++++++++++++++++
->  2 files changed, 47 insertions(+)
-> 
-> diff --git a/drivers/usb/musb/Kconfig b/drivers/usb/musb/Kconfig
-> index c4b349e074c1..3268adb7d7cf 100644
-> --- a/drivers/usb/musb/Kconfig
-> +++ b/drivers/usb/musb/Kconfig
-> @@ -113,6 +113,7 @@ config USB_MUSB_JZ4740
->  	depends on MIPS || COMPILE_TEST
->  	depends on USB_MUSB_GADGET
->  	depends on USB=n || USB_OTG_BLACKLIST_HUB
-> +	select USB_ROLE_SWITCH
->  
->  config USB_MUSB_MEDIATEK
->  	tristate "MediaTek platforms"
-> diff --git a/drivers/usb/musb/jz4740.c b/drivers/usb/musb/jz4740.c
-> index aa32b5af0c1f..bbfeb9881788 100644
-> --- a/drivers/usb/musb/jz4740.c
-> +++ b/drivers/usb/musb/jz4740.c
-> @@ -12,13 +12,16 @@
->  #include <linux/module.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
-> +#include <linux/usb/role.h>
->  #include <linux/usb/usb_phy_generic.h>
->  
->  #include "musb_core.h"
->  
->  struct jz4740_glue {
->  	struct platform_device	*pdev;
-> +	struct musb		*musb;
->  	struct clk		*clk;
-> +	struct usb_role_switch	*role_sw;
->  };
->  
->  static irqreturn_t jz4740_musb_interrupt(int irq, void *__hci)
-> @@ -72,11 +75,38 @@ static const struct musb_hdrc_config jz4740_musb_config = {
->  	.fifo_cfg_size	= ARRAY_SIZE(jz4740_musb_fifo_cfg),
->  };
->  
-> +static int jz4740_musb_role_switch_set(struct device *dev, enum usb_role role)
+The CellWise cw2015 fuel gauge is a shuntless, single-cell Li-Ion fuel
+gauge. It is used in the pine64 Pinebook Pro laptop.
 
-The prototype has been changed by bce3052f0c16 ("usb: roles: Provide the
-switch drivers handle to the switch in the API"). Please update.
+This is v2 of a patchset I sent in late 2019. Took me some time to get
+around to prepare a v2 but here it is.
 
-Thanks,
--Bin.
+I've kept the cellwise,bat-config-info property in the device tree. Its
+content describes characteristics of the battery built into a device. The
+exact format is unknown and not publicly documented. It is likely composed
+of some key parameters of the battery (chemistry, voltages,
+design capacity) and parameters for tuning the internal state of charge
+approximation function.
+
+In general I'm not 100 % sure about my json-schema binding for the gauge.
+It is my first time ever writing a json-schema binding and I'm not sure
+whether properties like power-supplies or monitored-battery need to be
+added to a separate, common schema for power supplies or not.
+
+
+Best regards,
+
+Tobias Schramm
+
+Changelog:
+ v2:
+  * Change subject to "Add support for CellWise cw2015 fuel gauge"
+  * Rewrite bindings as json-schema
+  * Use default power-supplies handling
+  * Use regmap for register access
+  * Use standard simple-battery node
+  * Replace printk/pr_* by dev_{dbg,info,warn,err}
+  * Use cancel_delayed_work_sync in remove
+  * General code cleanup
+
+Tobias Schramm (2):
+  dt-bindings: power: supply: cw2015_battery: add device tree binding
+    documentation
+  power: supply: add CellWise cw2015 fuel gauge driver
+
+ .../bindings/power/supply/cw2015_battery.yaml |  84 ++
+ MAINTAINERS                                   |   6 +
+ drivers/power/supply/Kconfig                  |   6 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/cw2015_battery.c         | 891 ++++++++++++++++++
+ 5 files changed, 988 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+ create mode 100644 drivers/power/supply/cw2015_battery.c
+
+-- 
+2.24.1
+
