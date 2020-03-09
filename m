@@ -2,37 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4511017D83C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 04:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79ED017D84D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 04:37:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726402AbgCIDHa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Mar 2020 23:07:30 -0400
-Received: from [61.60.216.169] ([61.60.216.169]:58280 "EHLO oa.philio-tech.com"
-        rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org with ESMTP
-        id S1726352AbgCIDHa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Mar 2020 23:07:30 -0400
-X-Greylist: delayed 40734 seconds by postgrey-1.27 at vger.kernel.org; Sun, 08 Mar 2020 23:07:29 EDT
-Received: from User ([156.96.45.188])
-        (authenticated bits=0)
-        by oa.philio-tech.com (8.13.8/8.13.1) with ESMTP id 028FSSbn004587;
-        Sun, 8 Mar 2020 23:28:30 +0800
-Message-Id: <202003081528.028FSSbn004587@oa.philio-tech.com>
-Reply-To: <francoispiniault@gmail.com>
-From:   "Francois Pinault" <francioispinaul@gmail.com>
-Subject: Re:
-Date:   Sun, 8 Mar 2020 11:38:02 -0400
-MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="Windows-1251"
-Content-Transfer-Encoding: 7bit
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook Express 6.00.2600.0000
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
-To:     unlisted-recipients:; (no To-header on input)
+        id S1726723AbgCIDg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Mar 2020 23:36:59 -0400
+Received: from mga11.intel.com ([192.55.52.93]:5773 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726352AbgCIDg7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Mar 2020 23:36:59 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Mar 2020 20:36:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,531,1574150400"; 
+   d="scan'208";a="414670446"
+Received: from pg-nxl3.altera.com ([10.142.129.93])
+  by orsmga005.jf.intel.com with ESMTP; 08 Mar 2020 20:36:56 -0700
+From:   "Ooi, Joyce" <joyce.ooi@intel.com>
+To:     Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Joyce Ooi <joyce.ooi@intel.com>,
+        Tan Ley Foon <ley.foon.tan@intel.com>,
+        See Chin Liang <chin.liang.see@intel.com>,
+        Chee Hong Ang <chee.hong.ang@intel.com>
+Subject: [PATCH] arm64: dts: increase the QSPI reg address for Stratix10 and Agilex
+Date:   Mon,  9 Mar 2020 11:36:49 +0800
+Message-Id: <20200309033649.15208-1-joyce.ooi@intel.com>
+X-Mailer: git-send-email 2.13.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A donation was made in your favour by Francois Pinault, reply for more details.
+From: Joyce Ooi <joyce.ooi@intel.com>
+
+This patch increases the reg addresses for QSPI boot and QSPI rootfs for
+Stratix10 and Agilex to cater for the increased size of kernel Image.
+
+Signed-off-by: Joyce Ooi <joyce.ooi@intel.com>
+---
+ .../boot/dts/altera/socfpga_stratix10_socdk.dts    |    6 +++---
+ arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts |    6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+index fb11ef0..f6c4a15 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
+@@ -178,12 +178,12 @@
+ 
+ 			qspi_boot: partition@0 {
+ 				label = "Boot and fpga data";
+-				reg = <0x0 0x034B0000>;
++				reg = <0x0 0x03FE0000>;
+ 			};
+ 
+-			qspi_rootfs: partition@4000000 {
++			qspi_rootfs: partition@3FE0000 {
+ 				label = "Root Filesystem - JFFS2";
+-				reg = <0x034B0000 0x0EB50000>;
++				reg = <0x03FE0000 0x0C020000>;
+ 			};
+ 		};
+ 	};
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+index 44d38af..ac6e51b 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+@@ -129,12 +129,12 @@
+ 
+ 			qspi_boot: partition@0 {
+ 				label = "Boot and fpga data";
+-				reg = <0x0 0x034B0000>;
++				reg = <0x0 0x03FE0000>;
+ 			};
+ 
+-			qspi_rootfs: partition@34B0000 {
++			qspi_rootfs: partition@3FE0000 {
+ 				label = "Root Filesystem - JFFS2";
+-				reg = <0x034B0000 0x0EB50000>;
++				reg = <0x03FE0000 0x0C020000>;
+ 			};
+ 		};
+ 	};
+-- 
+1.7.1
+
