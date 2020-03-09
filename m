@@ -2,315 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9862817EA40
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 21:38:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E7DA17EA45
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 21:39:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726968AbgCIUib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 16:38:31 -0400
-Received: from mail.v3.sk ([167.172.186.51]:46422 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726932AbgCIUia (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Mar 2020 16:38:30 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id ED623DEEA2;
-        Mon,  9 Mar 2020 20:38:47 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id QeRkQi-eNeSp; Mon,  9 Mar 2020 20:38:43 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 83C4FE01B5;
-        Mon,  9 Mar 2020 20:38:43 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id AjW6i3vZBvhs; Mon,  9 Mar 2020 20:38:42 +0000 (UTC)
-Received: from furthur.lan (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 876A0DFB05;
-        Mon,  9 Mar 2020 20:38:42 +0000 (UTC)
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lubomir Rintel <lkundrak@v3.sk>
-Subject: [PATCH 4/4] mfd: ene-kb3930: Add driver for ENE KB3930 Embedded Controller
-Date:   Mon,  9 Mar 2020 21:38:18 +0100
-Message-Id: <20200309203818.31266-5-lkundrak@v3.sk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200309203818.31266-1-lkundrak@v3.sk>
-References: <20200309203818.31266-1-lkundrak@v3.sk>
+        id S1726598AbgCIUiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 16:38:50 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:34653 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726571AbgCIUiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 16:38:50 -0400
+Received: by mail-ot1-f67.google.com with SMTP id j16so11019992otl.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2020 13:38:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=movXecPtcFCRJBwb8EpVb7ysHOpf27xnptRbhixi3a4=;
+        b=MHinwM4cyu3wNtB+DcsFcyfjRvluYncJ7JfqoMQHL2Im/pwojPp1tU5mofCCxZhpFO
+         SsfEYOU5QhP/0J8rXaaX4nj94oDYZDHpDB0R8cgEzIhljcDMEBzq5lE0sqoh1g02UaYM
+         sN0gRqdALGYevvhKUm1EqTFdHtGL2GG6EX2Tmgcl5J7rh9KMmCjL9qKUPXm9jNrQYrW8
+         CknsdaKblHNLKjJCexuDgfyDuw1BNriZbNoapiL5QZc6lvKOqD4JWJWsIkapADI7+dAX
+         WziOdrw9OWlQmCWqokWMWZjwUBPiWZ+ElcszDQ9O0d9MVyoikLsTXBMe/dw+ygKU+Apt
+         i4rA==
+X-Gm-Message-State: ANhLgQ3JeWVZNt8pQBSQZ2OTBf1+Rw9d1re/Wm71U4d6EPqlecuwlQtB
+        Dra9cTcPaQqHAtPBHDWTAFWrbnU=
+X-Google-Smtp-Source: ADFU+vvLY1vdTo+msfSic/K+4qibHlH1f0qTdVM2N2SfpTods148lywXntMcEmHDYFrgDcR2ILTnuw==
+X-Received: by 2002:a9d:4001:: with SMTP id m1mr551258ote.57.1583786329894;
+        Mon, 09 Mar 2020 13:38:49 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q1sm3495874oij.18.2020.03.09.13.38.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Mar 2020 13:38:48 -0700 (PDT)
+Received: (nullmailer pid 31750 invoked by uid 1000);
+        Mon, 09 Mar 2020 20:38:47 -0000
+Date:   Mon, 9 Mar 2020 15:38:47 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Charles-Antoine Couret <charles-antoine.couret@mind.be>
+Cc:     alsa-devel@alsa-project.org,
+        Charles-Antoine Couret <charles-antoine.couret@mind.be>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 6/6 V3] ASoC: tas5756m: Add DT binding document
+Message-ID: <20200309203847.GA31358@bogus>
+References: <20200308142509.27765-1-charles-antoine.couret@mind.be>
+ <20200308142509.27765-7-charles-antoine.couret@mind.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200308142509.27765-7-charles-antoine.couret@mind.be>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver provides access to the EC RAM of said embedded controller
-attached to the I2C bus as well as optionally supporting its slightly wei=
-rd
-power-off/restart protocol.
+On Sun,  8 Mar 2020 15:25:09 +0100, Charles-Antoine Couret wrote:
+> Document the bindings for the tas5756m driver.
+> 
+> Signed-off-by: Charles-Antoine Couret <charles-antoine.couret@mind.be>
+> ---
+>  .../devicetree/bindings/sound/tas5756m.yaml   | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/tas5756m.yaml
+> 
 
-A particular implementation of the EC firmware can be identified by a
-model byte. If this driver identifies the Dell Ariel platform, it
-registers the appropriate cells.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
----
- drivers/mfd/Kconfig      |  10 ++
- drivers/mfd/Makefile     |   1 +
- drivers/mfd/ene-kb3930.c | 209 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 220 insertions(+)
- create mode 100644 drivers/mfd/ene-kb3930.c
+Error: Documentation/devicetree/bindings/sound/tas5756m.example.dts:23.37-38 syntax error
+FATAL ERROR: Unable to parse input tree
+scripts/Makefile.lib:311: recipe for target 'Documentation/devicetree/bindings/sound/tas5756m.example.dt.yaml' failed
+make[1]: *** [Documentation/devicetree/bindings/sound/tas5756m.example.dt.yaml] Error 1
+Makefile:1262: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 2b203290e7b9f..d34cf1a026c86 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -398,6 +398,16 @@ config MFD_DLN2
- 	  etc. must be enabled in order to use the functionality of
- 	  the device.
-=20
-+config MFD_ENE_KB3930
-+	tristate "ENE KB3930 Embedded Controller support"
-+	depends on I2C
-+	depends on MACH_MMP3_DT || COMPILE_TEST
-+	select MFD_CORE
-+	help
-+	  This adds support for accessing the registers on ENE KB3930, Embedded
-+	  Controller. Additional drivers such as LEDS_ARIEL must be enabled in
-+	  order to use the functionality of the device.
-+
- config MFD_EXYNOS_LPASS
- 	tristate "Samsung Exynos SoC Low Power Audio Subsystem"
- 	depends on ARCH_EXYNOS || COMPILE_TEST
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index b83f172545e1e..ee9a5260a26cd 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_ARCH_BCM2835)	+=3D bcm2835-pm.o
- obj-$(CONFIG_MFD_BCM590XX)	+=3D bcm590xx.o
- obj-$(CONFIG_MFD_BD9571MWV)	+=3D bd9571mwv.o
- obj-$(CONFIG_MFD_CROS_EC_DEV)	+=3D cros_ec_dev.o
-+obj-$(CONFIG_MFD_ENE_KB3930)	+=3D ene-kb3930.o
- obj-$(CONFIG_MFD_EXYNOS_LPASS)	+=3D exynos-lpass.o
-=20
- obj-$(CONFIG_HTC_PASIC3)	+=3D htc-pasic3.o
-diff --git a/drivers/mfd/ene-kb3930.c b/drivers/mfd/ene-kb3930.c
-new file mode 100644
-index 0000000000000..1123f3a1c816a
---- /dev/null
-+++ b/drivers/mfd/ene-kb3930.c
-@@ -0,0 +1,209 @@
-+// SPDX-License-Identifier: BSD-2-Clause OR GPL-2.0-or-later
-+/*
-+ * ENE KB3930 Embedded Controller Driver
-+ *
-+ * Copyright (C) 2020 Lubomir Rintel
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/i2c.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/delay.h>
-+#include <linux/reboot.h>
-+#include <linux/regmap.h>
-+#include <linux/mfd/core.h>
-+
-+enum {
-+	EC_DATA_IN	=3D 0x00,
-+	EC_RAM_OUT	=3D 0x80,
-+	EC_RAM_IN	=3D 0x81,
-+};
-+
-+enum {
-+	EC_MODEL_ID	=3D 0x30,
-+	EC_VERSION_MAJ	=3D 0x31,
-+	EC_VERSION_MIN	=3D 0x32,
-+};
-+
-+struct kb3930 {
-+	struct i2c_client *client;
-+	struct regmap *ec_ram;
-+	struct gpio_descs *off_gpios;
-+};
-+
-+struct kb3930 *global_kb3930;
-+
-+static void kb3930_off(struct kb3930 *priv, int poweroff)
-+{
-+	gpiod_direction_output(priv->off_gpios->desc[1], poweroff);
-+
-+	while (1) {
-+		mdelay(50);
-+		gpiod_direction_output(priv->off_gpios->desc[0], 0);
-+		mdelay(50);
-+		gpiod_direction_output(priv->off_gpios->desc[0], 1);
-+	}
-+}
-+
-+static int kb3930_restart(struct notifier_block *this,
-+			  unsigned long mode, void *cmd)
-+{
-+	kb3930_off(global_kb3930, 0);
-+	return NOTIFY_DONE;
-+}
-+
-+static void kb3930_power_off(void)
-+{
-+	kb3930_off(global_kb3930, 1);
-+}
-+
-+static struct notifier_block kb3930_restart_nb =3D {
-+	.notifier_call =3D kb3930_restart,
-+	.priority =3D 128,
-+};
-+
-+static const struct mfd_cell ariel_ec_cells[] =3D {
-+	{ .name =3D "dell-wyse-ariel-led", },
-+	{ .name =3D "dell-wyse-ariel-power", },
-+};
-+
-+static int kb3930_ec_ram_reg_write(void *context, unsigned int reg,
-+				   unsigned int val)
-+{
-+	struct kb3930 *priv =3D context;
-+
-+	return i2c_smbus_write_word_data(priv->client, EC_RAM_OUT,
-+					 (val << 8) | reg);
-+}
-+
-+static int kb3930_ec_ram_reg_read(void *context, unsigned int reg,
-+				  unsigned int *val)
-+{
-+	struct kb3930 *priv =3D context;
-+	int ret;
-+
-+	ret =3D i2c_smbus_write_word_data(priv->client, EC_RAM_IN, reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret =3D i2c_smbus_read_word_data(priv->client, EC_DATA_IN);
-+	if (ret < 0)
-+		return ret;
-+
-+	*val =3D ret >> 8;
-+	return 0;
-+}
-+
-+static const struct regmap_config kb3930_ec_ram_regmap_config =3D {
-+	.name =3D "ec_ram",
-+	.reg_bits =3D 8,
-+	.val_bits =3D 8,
-+	.reg_stride =3D 1,
-+	.max_register =3D 0xff,
-+	.reg_write =3D kb3930_ec_ram_reg_write,
-+	.reg_read =3D kb3930_ec_ram_reg_read,
-+	.fast_io =3D false,
-+};
-+
-+static int kb3930_probe(struct i2c_client *client,
-+			const struct i2c_device_id *id)
-+{
-+	struct device *dev =3D &client->dev;
-+	struct device_node *np =3D dev->of_node;
-+	struct kb3930 *priv;
-+	unsigned int model_id;
-+	int ret;
-+
-+	if (global_kb3930)
-+		return -EEXIST;
-+
-+	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	global_kb3930 =3D priv;
-+	priv->client =3D client;
-+	i2c_set_clientdata(client, priv);
-+
-+	priv->ec_ram =3D devm_regmap_init(dev, NULL, priv,
-+					&kb3930_ec_ram_regmap_config);
-+	if (IS_ERR(priv->ec_ram))
-+		return PTR_ERR(priv->ec_ram);
-+
-+	ret =3D regmap_read(priv->ec_ram, EC_MODEL_ID, &model_id);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (model_id =3D=3D 'J') {
-+		ret =3D devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
-+					   ariel_ec_cells,
-+					   ARRAY_SIZE(ariel_ec_cells),
-+					   NULL, 0, NULL);
-+		if (ret < 0)
-+			return ret;
-+	} else {
-+		dev_err(dev, "unknown board model: %02x\n", model_id);
-+		return -ENODEV;
-+	}
-+
-+	if (of_property_read_bool (np, "system-power-controller")) {
-+		priv->off_gpios =3D devm_gpiod_get_array_optional(dev, "off",
-+								GPIOD_IN);
-+	}
-+	if (IS_ERR(priv->off_gpios))
-+		return PTR_ERR(priv->off_gpios);
-+	if (priv->off_gpios->ndescs < 2) {
-+		dev_err(dev, "invalid off-gpios property\n");
-+		return -EINVAL;
-+	}
-+	if (priv->off_gpios) {
-+		register_restart_handler(&kb3930_restart_nb);
-+		if (pm_power_off =3D=3D NULL)
-+			pm_power_off =3D kb3930_power_off;
-+	}
-+
-+	dev_info(dev, "ENE KB3930 Embedded Controller\n");
-+	return 0;
-+}
-+
-+static int kb3930_remove(struct i2c_client *client)
-+{
-+	struct kb3930 *priv =3D i2c_get_clientdata(client);
-+
-+	if (priv->off_gpios) {
-+		if (pm_power_off =3D=3D kb3930_power_off)
-+			pm_power_off =3D NULL;
-+		unregister_restart_handler(&kb3930_restart_nb);
-+	}
-+	global_kb3930 =3D NULL;
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id kb3930_ids[] =3D {
-+	{ "kb3930", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, kb3930_ids);
-+
-+static const struct of_device_id kb3930_dt_ids[] =3D {
-+	{ .compatible =3D "ene,kb3930" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, kb3930_dt_ids);
-+
-+static struct i2c_driver kb3930_driver =3D {
-+	.probe =3D kb3930_probe,
-+	.remove =3D kb3930_remove,
-+	.driver =3D {
-+		.name =3D "ene-kb3930",
-+		.of_match_table =3D of_match_ptr(kb3930_dt_ids),
-+	},
-+	.id_table =3D kb3930_ids,
-+};
-+
-+module_i2c_driver(kb3930_driver);
-+
-+MODULE_AUTHOR("Lubomir Rintel <lkundrak@v3.sk>");
-+MODULE_DESCRIPTION("ENE KB3930 Embedded Controller Driver");
-+MODULE_LICENSE("Dual BSD/GPL");
---=20
-2.25.1
-
+See https://patchwork.ozlabs.org/patch/1251057
+Please check and re-submit.
