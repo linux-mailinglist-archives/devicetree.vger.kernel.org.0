@@ -2,89 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E59AC17D971
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 07:55:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E14217D99A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 08:11:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726389AbgCIGz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 02:55:29 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:40921 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726384AbgCIGz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 02:55:28 -0400
-Received: by mail-wr1-f65.google.com with SMTP id p2so8750253wrw.7;
-        Sun, 08 Mar 2020 23:55:25 -0700 (PDT)
+        id S1726217AbgCIHLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 03:11:17 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:39291 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725962AbgCIHLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 03:11:17 -0400
+Received: by mail-vs1-f67.google.com with SMTP id a19so5346923vsp.6
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2020 00:11:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:cc:references:subject:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=dm/e7fVVkyUEJNRr/yTEUzT0xvOhNYWpgvQvhHUhF68=;
-        b=s3VbLfphTDUMOj5VgEB+bJaxg9XNGT89jpF7/fzn4h2lZjtBN2yMNm+e2Mk1q3vVbz
-         2hu8irwSULuWR6uM43Wv53RBYq6D8D2BBoG3YD6ovjl857cnhxhwjSTQ0PQTELIqogKQ
-         /yyn6SfIz769wKub7xSny0zSlNeUbAq7qpI5RPwFPuVZ4IGqm67Sdov8lAwKUL+koX53
-         5kYAbSbYqLJrm/u2YaUvrq24vjlONNNEgpvHIGRtuzx++/LgRQmjp0JJgmQAqtAdfLkJ
-         YpY1lGAWis9ADEi+SJCUaE0woOUY9hR3uXmr8drGmY4IegRi4kKBxCRU8B6pzqkrVbkY
-         uBmA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nT8kP5pUwnT4nLnCd8ohNGxA8f6jkOWq+CENXf41rN8=;
+        b=jj49n68ZLbr5lau47GKrIFokW76BtswCcAJCGBsgoecDZxBXC7RBhaaxC75E9kEVMK
+         boVSXSOmjfCPd0S6cyfbmLR8l+N+rvfvVEbE4VkjF3R6cpS2o38EBXPECGQ2zh65Noaa
+         BmsUwn+ZIRcDgQEdlYy0HL4rRGcy9/4ILQ2IYGFsi2i+8D3R0+OX68UeqwOZJb9xmjrs
+         pfMUBDKBvspsJye1IA0q5yeeQIGd/qj2IRUAzPO93gPLILGU2SwzpmC9puBi8PrM4oS+
+         4oBRi4nJYI6i3cGG97FLPMY3fom4TkgwGFuoyfHhrxAzzrl96J3YFjWMiNnXANAHm4MU
+         vimQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:subject:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=dm/e7fVVkyUEJNRr/yTEUzT0xvOhNYWpgvQvhHUhF68=;
-        b=flupmVY/WlLFLVinH6cj+X5K7RqVOZGdU1noCvFgA23rs5k4ZQiKrwx3WO60xbuXKJ
-         wa9VCOkSSUH3YGBQAqcWDTZZb/137F/cCBlrZ0Z9LBbkw/ZqY/qcZ95WPxRSN7ISG1o5
-         287HbDYEfpbS9WfB34PXcRVERXuyA6xZxMUnK0mMGk9bJ+Fhd/l6ME09uqNnrBZNGvOA
-         t8MNqXktCUPYQnTIVtnqn7kJcP4AEW2O96JXIOMrIcb61FA9o97HSsbcthvXuawwWRtn
-         k/nmf+YrreANlmh2uMmz+DXjDQmue/8swH8V5xI8ju7XLsxNNXT6OJjMuOF2IHrwC0SP
-         I3qA==
-X-Gm-Message-State: ANhLgQ13NexyJXAnWbq1zqSzfuSffyOw6i2FwioJqwb+SnoFCdTNDUIb
-        HLoBSQv6xeymx8pRC6aV+8I=
-X-Google-Smtp-Source: ADFU+vuCkgUSr5KTXA5g4+RQ2G5B4vEX0HXc+ZOFzelH2n6p5QuIzylG840VCzpvNwVRkr+/89Abxw==
-X-Received: by 2002:adf:80af:: with SMTP id 44mr19311433wrl.241.1583736925115;
-        Sun, 08 Mar 2020 23:55:25 -0700 (PDT)
-Received: from [192.168.2.1] (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id l5sm24320597wml.3.2020.03.08.23.55.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Mar 2020 23:55:24 -0700 (PDT)
-To:     jbx6244@gmail.com
-Cc:     airlied@linux.ie, daniel@ffwll.ch, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, heiko@sntech.de,
-        hjc@rock-chips.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org
-References: <20200306170353.11393-1-jbx6244@gmail.com>
-Subject: Re: [PATCH v1] dt-bindings: display: rockchip: convert rockchip vop
- bindings to yaml
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <590762ab-db79-c8b1-7f0e-b653ed4b1721@gmail.com>
-Date:   Mon, 9 Mar 2020 07:55:22 +0100
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nT8kP5pUwnT4nLnCd8ohNGxA8f6jkOWq+CENXf41rN8=;
+        b=HIt+KhsESPEnqHoFrW8coLXMJW3HvgvHj6PkKT3YKPCotOPI4bbrbJeZ1fPiX/zTBP
+         3Ce4Q2C6bQtxu4j5lCyEps7iSjkfMkpYOV/E3duPOc3ucm65hm9BpQ2IWBITzmZLk2Qv
+         RJopvQ9dOU2sX1hEQYd/eWRJEVBmu/NPUBuWptAEP3MU8WrB2e9vcVsec04VkjGljH/t
+         um2yCJRe84lmL95yUhpQWJ3Ix+1khk8nKPR1VTxDdDbQlATgil3+8H6z3dQ7eOiYlJzZ
+         aemIXo9q1Xv/Vt350raQxCsEN3Ne72tYN6gyhDG09VBOD4k3R9TDMaFY7UV4YXr77uAc
+         6XxQ==
+X-Gm-Message-State: ANhLgQ3jqQtwT/a2RdtCb8azbpue9fhR/rvhmWkcBU/RHEWzXlGEByVX
+        9IG3iyodBKk7BbJFFI++ev/Hx1aYAbF9T5hngt0iXw==
+X-Google-Smtp-Source: ADFU+vvEhKux28Afq7w3NtZUf1yVyALWzvmJdIOTefttBR+Xx/o1VutfGFN9NkAuko1vZs76wUuclul8MlPkP81jstI=
+X-Received: by 2002:a67:2ec6:: with SMTP id u189mr4702645vsu.200.1583737876126;
+ Mon, 09 Mar 2020 00:11:16 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200306170353.11393-1-jbx6244@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200303150749.30566-1-ulf.hansson@linaro.org>
+ <20200303150749.30566-6-ulf.hansson@linaro.org> <20200303170641.GC26191@bogus>
+ <CAPDyKFrzy=88fPgesS0_S45rr4SdWthQRcjwnqJzRcMBKCo4=A@mail.gmail.com>
+ <20200304145313.GA5144@bogus> <CAL_JsqJNKowN-wbzOSCoARTdfayoq37=OT6mOztS=xmJvuFioQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqJNKowN-wbzOSCoARTdfayoq37=OT6mOztS=xmJvuFioQ@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 9 Mar 2020 08:10:40 +0100
+Message-ID: <CAPDyKFp913_yPzTWp-MG5sE2oqBSn_PFuUREiM8jd=8_ryw_tw@mail.gmail.com>
+Subject: Re: [PATCH 5/7] dt-bindings: arm: Fixup the DT bindings for
+ hierarchical PSCI states
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <Lorenzo.Pieralisi@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Lina Iyer <ilina@codeaurora.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 6 Mar 2020 at 19:29, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Mar 4, 2020 at 8:53 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, Mar 03, 2020 at 09:50:08PM +0100, Ulf Hansson wrote:
+> > > On Tue, 3 Mar 2020 at 18:06, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Tue, Mar 03, 2020 at 04:07:47PM +0100, Ulf Hansson wrote:
+> > > > > The hierarchical topology with power-domain should be described through
+> > > > > child nodes, rather than as currently described in the PSCI root node. Fix
+> > > > > this by adding a patternProperties with a corresponding reference to the
+> > > > > power-domain DT binding.
+> > > > >
+> > > > > Additionally, update the example to conform to the new pattern, but also to
+> > > > > the adjusted domain-idle-state DT binding.
+> > > > >
+> > > > > Fixes: a3f048b5424e ("dt: psci: Update DT bindings to support hierarchical PSCI states")
+> > > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > > > > ---
+> > > > >  .../devicetree/bindings/arm/psci.yaml         | 33 +++++++++----------
+> > > > >  1 file changed, 15 insertions(+), 18 deletions(-)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
+> > > > > index 0bc3c43a525a..cae668b61265 100644
+> > > > > --- a/Documentation/devicetree/bindings/arm/psci.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/arm/psci.yaml
+> > > > > @@ -102,11 +102,15 @@ properties:
+> > > > >        [1] Kernel documentation - ARM idle states bindings
+> > > > >          Documentation/devicetree/bindings/arm/idle-states.yaml
+> > > > >
+> > > > > -  "#power-domain-cells":
+> > > > > -    description:
+> > > > > -      The number of cells in a PM domain specifier as per binding in [3].
+> > > > > -      Must be 0 as to represent a single PM domain.
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - method
+> > > >
+> > > > No need to move this.
+> > >
+> > > Okay.
+> > >
+> > > >
+> > > > >
+> > > > > +patternProperties:
+> > > > > +  "^(power-controller|power-domain)([@-].*)?$":
+> > > > > +    $ref: "../power/power-domain.yaml#"
+> > > >
+> > > > This has to be under an 'allOf' or the rest of the properties are
+> > > > ignored.
+> > >
+> > > Sure, I had the feeling that something was missing. Thanks for reviewing!
+> > >
+> > > [...]
+> > >
+> > > Looks like I should a v2 of the series, or do you prefer to apply some
+> > > of the patches before I resend?
+> >
+> > Applied 1-3. I'll wait for v2 of 4 and 5.
+>
+> In order to fix all warnings by rc5, I fixed up and applied patches 4 and 5.
 
-Question for robh:
+Thanks a lot, looks good!
 
-In the old txt situation we add/describe only properties that are used
-by the driver/hardware itself. With yaml it also filters things in a
-node that are used by other drivers like:
-
-assigned-clocks:
-assigned-clock-rates:
-power-domains:
-
-Should we add or not?
-
-Kind regards,
-
-Johan
-
-PS: Will drop 'rockchip,grf' in v2 for px30, not used in vop driver?
+Kind regards
+Uffe
