@@ -2,71 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBED717D8B8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 06:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEDCC17D8BF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2020 06:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725956AbgCIFHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Mar 2020 01:07:54 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:33032 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725796AbgCIFHx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Mar 2020 01:07:53 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id ABE431A0153;
-        Mon,  9 Mar 2020 06:07:51 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C0F671A00E9;
-        Mon,  9 Mar 2020 06:07:47 +0100 (CET)
-Received: from titan.ap.freescale.net (titan.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AA5BB402C1;
-        Mon,  9 Mar 2020 13:07:42 +0800 (SGT)
-From:   andy.tang@nxp.com
-To:     daniel.lezcano@linaro.org, edubezval@gmail.com, rui.zhang@intel.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
-Subject: [PATCH] dt-bindings: thermal: make cooling-maps property optional
-Date:   Mon,  9 Mar 2020 12:54:11 +0800
-Message-Id: <20200309045411.21859-1-andy.tang@nxp.com>
-X-Mailer: git-send-email 2.9.5
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726418AbgCIFJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Mar 2020 01:09:03 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:54236 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725796AbgCIFJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Mar 2020 01:09:03 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 4013B158B8EA5;
+        Sun,  8 Mar 2020 22:09:01 -0700 (PDT)
+Date:   Sun, 08 Mar 2020 22:09:00 -0700 (PDT)
+Message-Id: <20200308.220900.2003952585762736013.davem@davemloft.net>
+To:     elder@linaro.org
+Cc:     arnd@arndb.de, bjorn.andersson@linaro.org, agross@kernel.org,
+        johannes@sipsolutions.net, dcbw@redhat.com, evgreen@google.com,
+        ejcaruso@google.com, syadagir@codeaurora.org,
+        cpratapa@codeaurora.org, subashab@codeaurora.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, ohad@wizery.com,
+        sidgup@codeaurora.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/17] net: introduce Qualcomm IPA driver (UPDATED)
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20200306042831.17827-1-elder@linaro.org>
+References: <20200306042831.17827-1-elder@linaro.org>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Sun, 08 Mar 2020 22:09:02 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yuantian Tang <andy.tang@nxp.com>
+From: Alex Elder <elder@linaro.org>
+Date: Thu,  5 Mar 2020 22:28:14 -0600
 
-Cooling-maps doesn't have to be a required property because there may
-be no cooling device on system, or there are no enough cooling devices for
-each thermal zone in multiple thermal zone cases since cooling devices
-can't be shared.
-So make this property optional to remove such limitations.
+> This series presents the driver for the Qualcomm IP Accelerator (IPA).
 
-For thermal zones with no cooling-maps, there could be critic trips
-that can trigger CPU reset or shutdown. So they still can take actions.
-
-Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
----
- Documentation/devicetree/bindings/thermal/thermal.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/thermal.txt b/Documentation/devicetree/bindings/thermal/thermal.txt
-index ca14ba959e0d..f78bec19ca35 100644
---- a/Documentation/devicetree/bindings/thermal/thermal.txt
-+++ b/Documentation/devicetree/bindings/thermal/thermal.txt
-@@ -142,11 +142,11 @@ Required properties:
- - trips:		A sub-node which is a container of only trip point nodes
-   Type: sub-node	required to describe the thermal zone.
- 
-+Optional property:
- - cooling-maps:		A sub-node which is a container of only cooling device
-   Type: sub-node	map nodes, used to describe the relation between trips
- 			and cooling devices.
- 
--Optional property:
- - coefficients:		An array of integers (one signed cell) containing
-   Type: array		coefficients to compose a linear relation between
-   Elem size: one cell	the sensors listed in the thermal-sensors property.
--- 
-2.17.1
-
+Series applied, thank you.
