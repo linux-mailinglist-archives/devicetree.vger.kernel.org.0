@@ -2,47 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C693417F95D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 13:56:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D4A17FD39
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 14:26:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729390AbgCJM4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Mar 2020 08:56:04 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:36291 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729617AbgCJM4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 08:56:04 -0400
-Received: by mail-wr1-f68.google.com with SMTP id s5so11822830wrg.3;
-        Tue, 10 Mar 2020 05:56:01 -0700 (PDT)
+        id S1728369AbgCJN0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Mar 2020 09:26:42 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:56185 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728863AbgCJMzw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 08:55:52 -0400
+Received: by mail-wm1-f67.google.com with SMTP id 6so1269978wmi.5;
+        Tue, 10 Mar 2020 05:55:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=2LDQl7IwXLsgWdbG7WRtsJmahe9ELOlGpRrYf324SYo=;
-        b=lxNhQrpbCvDIY90uCxn9ackV2e5ym09lQFAFBY/o3J5La4Tr6bltCGO/l/M7GJn1WV
-         aeItkqxWusoI6rOx54r6UQC485PvfypqIBMsNOoW8n5H5WTG0UJpAlqbFCnEVgTYhCur
-         z8fDmilP6rK66SETC+po7FWPDW/GYEHpTKcs2izqvPn6O8lwK8kzez76IoH2f4SbK9/w
-         sm5DayClua4cPshUqiX8c1/umPhaNj4BDT7a+OoPNHA+4K3OJHd/pO9CAo+TunJ4tIm4
-         jEx8X0ne+dbXriVX+KLv98Psb2qUD2fKR0Q83bsz4MFGkl2780r81D8DRKnZxLFnNbU5
-         vW9Q==
+        h=from:to:cc:subject:date:message-id;
+        bh=ddx48D2gr10nMoG1C61HRni/V10Bu89hCsWOfewS3C4=;
+        b=mclrgEFbgjuY+WFqJ+yAnwLTrQAeGXiC0Khzlfy+mgVHM1ed2h7pdu01MundlIfUOz
+         lK1bvpqusxVftNGxvuDX8dIDOXjHVEUAr1+UmxkBK0E7cdjtLT09f9juyEOgCPeTGOHf
+         dri3R4BLs5m2VACYXYbpduXDXQgMT6RyF1IuKHtrf8s07k/VzpcRttYBlxrS7+0m4Cuc
+         0+emoIgUY+Hv9GEup174YOtN+nXnwG0164vMzM8KJi7UraKvZ5FLdiqPQtArsU3I4jbn
+         AFyhQro+tSKtFVMPm2Qb8M+V/t8W6TluhBMQ5bgRH5JUjWtmM3q3erHjcumkmQ7ct7GQ
+         200A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=2LDQl7IwXLsgWdbG7WRtsJmahe9ELOlGpRrYf324SYo=;
-        b=oFEJVge6RdpJMi1UsfO4yehrPn0MAb21xIKCLNaap+IP3x6JkUsM9dNldgq7D23Vdd
-         BQ5w/Zkw6Ncmv9UgEe1WajIga4lum3vDIiXT/vyAdMUEhFoUtx0zbk3HNMJl0QmyEuiS
-         +qgskGMkb0PSulJWRRWp++qd7aOtyCJXl29UNtC7EaRyyZv+WgyjO454+O7NGBHopoYg
-         syL8RNJUCZNDav9jnPMhY8nilLXYgcLUtLE0tXyT88wqgaDzxpVY4kNcyO1I7HxhNsAd
-         vAc8BmuU6yB3uXX+YaN3MKycwV/9XBTUiHPOG/DhZN5402xXayS9wr4l7n1vtk/I9MIw
-         d7KA==
-X-Gm-Message-State: ANhLgQ2ayejHh61bKOEft+GHPi6Vo7mSy4rNWTPhV/jeHD/zCDWdogrH
-        adQ4ABCQQxEfqsmf7kXTWAU=
-X-Google-Smtp-Source: ADFU+vttnPba9hD6mVrnvClOOK8HMD0cDCtk1Jsgf9RHvW5Hvh+3+czQ4K4PfLPn248oQkZAfW2vjw==
-X-Received: by 2002:a5d:4c4a:: with SMTP id n10mr28574797wrt.116.1583844960527;
-        Tue, 10 Mar 2020 05:56:00 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ddx48D2gr10nMoG1C61HRni/V10Bu89hCsWOfewS3C4=;
+        b=kzU7Te13CnI92MbfifeH/92yu0hJ3Zogs3WNPfCwAO14zXHIksyGHc2tt2EXaJwA43
+         zqSJWylBwNl/MmTcyw5ABW7aaB89kNuT0HcDYyRXSH2qPaWBliSOKVGQaqzET4+beNtN
+         fNw7BKbvtmvVmjATbmg1ZdVAp3cFyApWwVlDWbE+J6EtIfHyNHbDZ5m+yW7K44437taa
+         +tmZxgrCQKgcvfUSxEr/3wlx2XRj6RxLb/+0lvZiekc8dnczLkF2q/Jnk2Crfe9SIx66
+         OMjHOKcFphHT3JrdtL24zJAzeGNC2rZmGMoET5SRLHK/LjoiGN4aysvN5dOI+XRTwvLW
+         A1Uw==
+X-Gm-Message-State: ANhLgQ3LYTQ02fT3qGDtxnZfMcqpWvRX6shRTQxnPzhIl3K5JkgGob3W
+        B4RHRNgkTK4txMruxz8gay0=
+X-Google-Smtp-Source: ADFU+vs/PIuMLTxZwNDZV1kMk1rEY1URgp5tFfXnru+tJtrPQsbTGmlA5/Sp7HQfDtoO2oX3XXcdlw==
+X-Received: by 2002:a1c:ac46:: with SMTP id v67mr1970418wme.153.1583844950007;
+        Tue, 10 Mar 2020 05:55:50 -0700 (PDT)
 Received: from localhost.localdomain ([79.115.60.40])
-        by smtp.gmail.com with ESMTPSA id t81sm4018594wmb.15.2020.03.10.05.55.59
+        by smtp.gmail.com with ESMTPSA id t81sm4018594wmb.15.2020.03.10.05.55.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2020 05:56:00 -0700 (PDT)
+        Tue, 10 Mar 2020 05:55:49 -0700 (PDT)
 From:   Vladimir Oltean <olteanv@gmail.com>
 To:     broonie@kernel.org
 Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -50,12 +49,10 @@ Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, eha@deif.com, angelo@sysam.it,
         andrew.smirnov@gmail.com, gustavo@embeddedor.com, weic@nvidia.com,
         mhosny@nvidia.com, michael@walle.cc, peng.ma@nxp.com
-Subject: [PATCH v3 7/7] arm64: dts: ls1028a-rdb: Add a spidev node for the mikroBUS
-Date:   Tue, 10 Mar 2020 14:55:42 +0200
-Message-Id: <20200310125542.5939-8-olteanv@gmail.com>
+Subject: [PATCH v3 0/7] NXP DSPI bugfixes and support for LS1028A
+Date:   Tue, 10 Mar 2020 14:55:35 +0200
+Message-Id: <20200310125542.5939-1-olteanv@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200310125542.5939-1-olteanv@gmail.com>
-References: <20200310125542.5939-1-olteanv@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -63,47 +60,41 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-For debugging, it is useful to have access to the DSPI controller
-signals. On the reference design board, these are exported to either the
-mikroBUS1 or mikroBUS2 connector (according to the CPLD register
-BRDCFG3[SPI3]).
+This series addresses a few issues that were missed during the previous
+series "[PATCH 00/12] TCFQ to XSPI migration for NXP DSPI driver", on
+SoCs other than LS1021A and LS1043A. DMA mode has been completely broken
+by that series, and XSPI mode never worked on little-endian controllers.
 
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-Changes in v3:
-None.
+Then it introduces support for the LS1028A chip, whose compatible has
+recently been documented here:
 
-Changes in v2:
-Change compatible string for spidev node.
+https://lore.kernel.org/linux-devicetree/20200218171418.18297-1-michael@walle.cc/
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+The device tree for the LS1028A SoC is extended with DMA channels
+definition, such that even though the default operating mode is XSPI,
+one can simply change DSPI_XSPI_MODE to DSPI_DMA_MODE in the
+devtype_data structure of the driver and use that instead.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-index bb7ba3bcbe56..13555ed52b89 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
-@@ -83,6 +83,20 @@
- 	};
- };
- 
-+&dspi2 {
-+	bus-num = <2>;
-+	status = "okay";
-+
-+	/* mikroBUS1 */
-+	spidev@0 {
-+		compatible = "rohm,dh2228fv";
-+		spi-max-frequency = <20000000>;
-+		fsl,spi-cs-sck-delay = <100>;
-+		fsl,spi-sck-cs-delay = <100>;
-+		reg = <0>;
-+	};
-+};
-+
- &esdhc {
- 	sd-uhs-sdr104;
- 	sd-uhs-sdr50;
+I don't expect the "fixes" patches to reach very far down the stable
+pipe, since there has been pretty heavy refactoring in this driver.
+
+For testing, benchmarking and debugging, the mikroBUS connector on the
+LS1028A-RDB is made available via spidev.
+
+Vladimir Oltean (7):
+  spi: spi-fsl-dspi: Don't access reserved fields in SPI_MCR
+  spi: spi-fsl-dspi: Avoid use-after-free in interrupt mode
+  spi: spi-fsl-dspi: Fix little endian access to PUSHR CMD and TXDATA
+  spi: spi-fsl-dspi: Fix bits-per-word acceleration in DMA mode
+  spi: spi-fsl-dspi: Add support for LS1028A
+  arm64: dts: ls1028a: Specify the DMA channels for the DSPI controllers
+  arm64: dts: ls1028a-rdb: Add a spidev node for the mikroBUS
+
+ .../boot/dts/freescale/fsl-ls1028a-rdb.dts    |  14 ++
+ .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   6 +
+ drivers/spi/spi-fsl-dspi.c                    | 188 +++++++++++-------
+ 3 files changed, 134 insertions(+), 74 deletions(-)
+
 -- 
 2.17.1
 
