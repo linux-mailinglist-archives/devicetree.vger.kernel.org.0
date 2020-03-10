@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B7E917FD32
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 14:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 134EE17FD25
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 14:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729593AbgCJN0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Mar 2020 09:26:32 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:39708 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729585AbgCJMzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 08:55:55 -0400
-Received: by mail-wm1-f66.google.com with SMTP id f7so1219834wml.4;
-        Tue, 10 Mar 2020 05:55:54 -0700 (PDT)
+        id S1726749AbgCJM4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Mar 2020 08:56:00 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:52110 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729595AbgCJM4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 08:56:00 -0400
+Received: by mail-wm1-f68.google.com with SMTP id a132so1283995wme.1;
+        Tue, 10 Mar 2020 05:55:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Eye51bfkE9/qV/EV2Y4EKj2/U4peXuQX7hjQlFVP8Oc=;
-        b=IzLPpzYROiHhqizrer4yzVs+NhyJRM3OrGMd2nr3JMXkBFlCWpqBEM/NjgC35RRxOe
-         MKvG5Wbcxj7ZA7MHhamgUq5z/5VINRyPSXXqSQ38H0gWHkGmYgxPDXtLF8I4mcKep8dM
-         B6/6Y2/L+GVdt7/FJnfT4dsMGa3JLzuJdP/PN061yQ/CjiwJJ+yvxvrsMaYk2K915GKX
-         KUK0vgDduRS2th2VT1Yy/LDsY01alAYe2+9xh79JsEbbNay9FMKag4OGv/ZIJBNVJcEh
-         Y0/IBVoj4GI5cIWsPJ9zsgxsZhH5GGfiABFpYPsx7LnYiB2+miwt2g7n3tEz6XULc2VX
-         3hyQ==
+        bh=+42PHEu2nzu+7aU3KuglcC8e8R1+npX/kGMj4laVVPo=;
+        b=ievYGuImn8W/Xz5H1brEG0ti8LVpmS9U0yDebUXjEh7ZBc6K8XrJXNucFPjaXzYjAs
+         cnNCgPG/O+8sReBqqWY7v8lZs4PsYiiegeKvwL8H3T7OR5xWm8bqPBla5anQe9azOqjN
+         wCyMwEoMx/Es/1JUIpiikPkA8SXMshl93gR998hyp25C39Pr1EnU8PRmiX6STuMztMb9
+         tXMsTOJAOCM1xIWBXOuX4X1MnrfrLjbrOnscA09ETbjF0fWPZMvCWxDf/sJsm0xqe/I1
+         CzeOI5Vu2T3GC4kiyoEs9uv3lU5LZtZ/TjF4nylr6jcJstWcFKaEw00J5UpbLTr0erql
+         e9pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=Eye51bfkE9/qV/EV2Y4EKj2/U4peXuQX7hjQlFVP8Oc=;
-        b=hOOWBv/eeFHz7+MbA7Ac65xq7Rq9IaTf2DLbFq2NpOZgHwc974PgQHDBHGfe5SpDBb
-         hriQduIj5GOpalZmxzGLWrhPiYprN+YuB9O8oyjyMAd9U7X3p3F7hgok2LDQHcaSzL78
-         FizDiFOEP83qv1z5xXbSA1UqHjdE+doNryj0QPaLhxQZIQDcbBFtjwirsJgrEWPBr0Oe
-         YvQXX/BTgztr0/4Q9AGkJUXkp5wUwyWXLxsrHXdOiNXMpBM0H49HbYjfaDKkJCb8144O
-         gtnM922VDzoErHDmzCit2hiOdAR6BirV2ttnqjTOvLg3HMPjANh3iia5tANfsPFMCK0F
-         ZWbw==
-X-Gm-Message-State: ANhLgQ3pO3Yw5K+G9dmcrqv3hoxTU+KXraNoXU/u50x/rvvBu2BMB8Hy
-        wsKfMOefZnnk3XVVrWQ0H90=
-X-Google-Smtp-Source: ADFU+vvcibH0v44wC4R/rVbSFYvl3jAX8Vjyn9/Mv0Oj0BQz4tQHmJiyGvTC0W+B1mpgdTjTF9Mwbw==
-X-Received: by 2002:a1c:4c16:: with SMTP id z22mr1957163wmf.50.1583844954158;
-        Tue, 10 Mar 2020 05:55:54 -0700 (PDT)
+        bh=+42PHEu2nzu+7aU3KuglcC8e8R1+npX/kGMj4laVVPo=;
+        b=jXl3p95LqX7JKH0CIzIqQi/Z2zIXBr+xJ/6m9eVvsQAAFO5cF4jd5uKJn4nBl32zen
+         etYvAXr3l8ueaNDYXJGo6v5K/KHJNx7v99HvaUehaq99LshkNwKJKWtC/MPgWV93xqbI
+         U+SYdr2Tb8VhN+hcUMCloEvfYV5hZFWnTJtvD0Pn4b2Qz/E4nirOfFWHEssFpKUNwcLM
+         e32TqeAuGuXO9Fe3FQykjI/voYBzL92r4JA/kMKtYpybLcv7k4vuSNEviGU+sMD4pbBq
+         c7xUoqiyA32fa3EmyoGUMo0LopkYVZa9tfp1d4YE4EbR1aS5xEQR3SSzBFbhieTZr8Tg
+         HeSg==
+X-Gm-Message-State: ANhLgQ37PF9C4Joyyiaq/MF3KfZz+tnwT9zEV+wmNPmqaoFK9R1XDg8G
+        HgTmv3rp7zojzcx4d8lmhRU=
+X-Google-Smtp-Source: ADFU+vssI3snvYLDt64fQ12Iv00nSeq9e551GRAKRZ0Pjqb0f/yUw5mTVLEhaeiJiniGO6MErnpaow==
+X-Received: by 2002:a05:600c:2f01:: with SMTP id r1mr2038917wmn.31.1583844957697;
+        Tue, 10 Mar 2020 05:55:57 -0700 (PDT)
 Received: from localhost.localdomain ([79.115.60.40])
-        by smtp.gmail.com with ESMTPSA id t81sm4018594wmb.15.2020.03.10.05.55.52
+        by smtp.gmail.com with ESMTPSA id t81sm4018594wmb.15.2020.03.10.05.55.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2020 05:55:53 -0700 (PDT)
+        Tue, 10 Mar 2020 05:55:57 -0700 (PDT)
 From:   Vladimir Oltean <olteanv@gmail.com>
 To:     broonie@kernel.org
 Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -50,9 +50,9 @@ Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, eha@deif.com, angelo@sysam.it,
         andrew.smirnov@gmail.com, gustavo@embeddedor.com, weic@nvidia.com,
         mhosny@nvidia.com, michael@walle.cc, peng.ma@nxp.com
-Subject: [PATCH v3 3/7] spi: spi-fsl-dspi: Fix little endian access to PUSHR CMD and TXDATA
-Date:   Tue, 10 Mar 2020 14:55:38 +0200
-Message-Id: <20200310125542.5939-4-olteanv@gmail.com>
+Subject: [PATCH v3 5/7] spi: spi-fsl-dspi: Add support for LS1028A
+Date:   Tue, 10 Mar 2020 14:55:40 +0200
+Message-Id: <20200310125542.5939-6-olteanv@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200310125542.5939-1-olteanv@gmail.com>
 References: <20200310125542.5939-1-olteanv@gmail.com>
@@ -63,113 +63,66 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-In XSPI mode, the 32-bit PUSHR register can be written to separately:
-the higher 16 bits are for commands and the lower 16 bits are for data.
+This is similar to the DSPI instantiation on LS1028A, except that:
+ - The A-011218 erratum has been fixed, so DMA works
+ - The endianness is different, which has implications on XSPI mode
 
-This has nicely been hacked around, by defining a second regmap with a
-width of 16 bits, and effectively splitting a 32-bit register into 2
-16-bit ones, from the perspective of this regmap_pushr.
+Some benchmarking with the following command:
 
-The problem is the assumption about the controller's endianness. If the
-controller is little endian (such as anything post-LS1046A), then the
-first 2 bytes, in the order imposed by memory layout, will actually hold
-the TXDATA, and the last 2 bytes will hold the CMD.
+spidev_test --device /dev/spidev2.0 --bpw 8 --size 256 --cpha --iter 10000000 --speed 20000000
 
-So take the controller's endianness into account when performing split
-writes to PUSHR. The obvious and simple solution would have been to call
-regmap_get_val_endian(), but that is an internal regmap function and we
-don't want to change regmap just for this. Therefore, we just re-read
-the "big-endian" device tree property.
+shows that in DMA mode, it can achieve around 2400 kbps, and in XSPI
+mode, the same command goes up to 4700 kbps. This is somewhat to be
+expected, since the DMA buffer size is extremely small at 8 bytes, the
+winner becomes whomever can prepare the buffers for transmission
+quicker, and DMA mode has higher overhead there. So XSPI FIFO mode has
+been chosen as the operating mode for this chip.
 
-Fixes: 58ba07ec79e6 ("spi: spi-fsl-dspi: Add support for XSPI mode registers")
 Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
 Changes in v3:
-None.
+Removed the dma_bufsize variable (obsoleted by 4/7).
 
 Changes in v2:
-Parse "big-endian" device tree bindings instead of taking the decision
-based on compatible SoC.
+Switch to DSPI_XSPI_MODE.
 
- drivers/spi/spi-fsl-dspi.c | 26 ++++++++++++++++++++------
- 1 file changed, 20 insertions(+), 6 deletions(-)
+ drivers/spi/spi-fsl-dspi.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
-index f2ba0731aebe..c59b68592283 100644
+index 8f5d18dc78d5..fd1f04b996f7 100644
 --- a/drivers/spi/spi-fsl-dspi.c
 +++ b/drivers/spi/spi-fsl-dspi.c
-@@ -103,10 +103,6 @@
- #define SPI_FRAME_BITS(bits)		SPI_CTAR_FMSZ((bits) - 1)
- #define SPI_FRAME_EBITS(bits)		SPI_CTARE_FMSZE(((bits) - 1) >> 4)
- 
--/* Register offsets for regmap_pushr */
--#define PUSHR_CMD			0x0
--#define PUSHR_TX			0x2
--
- #define DMA_COMPLETION_TIMEOUT		msecs_to_jiffies(3000)
- 
- struct chip_data {
-@@ -240,6 +236,13 @@ struct fsl_dspi {
- 
- 	int					words_in_flight;
- 
-+	/*
-+	 * Offsets for CMD and TXDATA within SPI_PUSHR when accessed
-+	 * individually (in XSPI mode)
-+	 */
-+	int					pushr_cmd;
-+	int					pushr_tx;
-+
- 	void (*host_to_dev)(struct fsl_dspi *dspi, u32 *txdata);
- 	void (*dev_to_host)(struct fsl_dspi *dspi, u32 rxdata);
- };
-@@ -670,12 +673,12 @@ static void dspi_pushr_cmd_write(struct fsl_dspi *dspi, u16 cmd)
- 	 */
- 	if (dspi->len > dspi->oper_word_size)
- 		cmd |= SPI_PUSHR_CMD_CONT;
--	regmap_write(dspi->regmap_pushr, PUSHR_CMD, cmd);
-+	regmap_write(dspi->regmap_pushr, dspi->pushr_cmd, cmd);
- }
- 
- static void dspi_pushr_txdata_write(struct fsl_dspi *dspi, u16 txdata)
- {
--	regmap_write(dspi->regmap_pushr, PUSHR_TX, txdata);
-+	regmap_write(dspi->regmap_pushr, dspi->pushr_tx, txdata);
- }
- 
- static void dspi_xspi_write(struct fsl_dspi *dspi, int cnt, bool eoq)
-@@ -1269,6 +1272,7 @@ static int dspi_probe(struct platform_device *pdev)
- 	struct fsl_dspi *dspi;
- 	struct resource *res;
- 	void __iomem *base;
-+	bool big_endian;
- 
- 	ctlr = spi_alloc_master(&pdev->dev, sizeof(struct fsl_dspi));
- 	if (!ctlr)
-@@ -1294,6 +1298,7 @@ static int dspi_probe(struct platform_device *pdev)
- 
- 		/* Only Coldfire uses platform data */
- 		dspi->devtype_data = &devtype_data[MCF5441X];
-+		big_endian = true;
- 	} else {
- 
- 		ret = of_property_read_u32(np, "spi-num-chipselects", &cs_num);
-@@ -1315,6 +1320,15 @@ static int dspi_probe(struct platform_device *pdev)
- 			ret = -EFAULT;
- 			goto out_ctlr_put;
- 		}
-+
-+		big_endian = of_device_is_big_endian(np);
-+	}
-+	if (big_endian) {
-+		dspi->pushr_cmd = 0;
-+		dspi->pushr_tx = 2;
-+	} else {
-+		dspi->pushr_cmd = 2;
-+		dspi->pushr_tx = 0;
- 	}
- 
- 	if (dspi->devtype_data->trans_mode == DSPI_XSPI_MODE)
+@@ -124,6 +124,7 @@ struct fsl_dspi_devtype_data {
+ enum {
+ 	LS1021A,
+ 	LS1012A,
++	LS1028A,
+ 	LS1043A,
+ 	LS1046A,
+ 	LS2080A,
+@@ -151,6 +152,11 @@ static const struct fsl_dspi_devtype_data devtype_data[] = {
+ 		.max_clock_factor	= 8,
+ 		.fifo_size		= 16,
+ 	},
++	[LS1028A] = {
++		.trans_mode		= DSPI_XSPI_MODE,
++		.max_clock_factor	= 8,
++		.fifo_size		= 4,
++	},
+ 	[LS1043A] = {
+ 		/* Has A-011218 DMA erratum */
+ 		.trans_mode		= DSPI_XSPI_MODE,
+@@ -1112,6 +1118,9 @@ static const struct of_device_id fsl_dspi_dt_ids[] = {
+ 	}, {
+ 		.compatible = "fsl,ls1012a-dspi",
+ 		.data = &devtype_data[LS1012A],
++	}, {
++		.compatible = "fsl,ls1028a-dspi",
++		.data = &devtype_data[LS1028A],
+ 	}, {
+ 		.compatible = "fsl,ls1043a-dspi",
+ 		.data = &devtype_data[LS1043A],
 -- 
 2.17.1
 
