@@ -2,94 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B7517F27C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 09:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E172917F264
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 09:56:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726389AbgCJI6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Mar 2020 04:58:55 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:54704 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726446AbgCJI6x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Mar 2020 04:58:53 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D3A4D200495;
-        Tue, 10 Mar 2020 09:58:51 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3EB922004DE;
-        Tue, 10 Mar 2020 09:58:45 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 958E8402A5;
-        Tue, 10 Mar 2020 16:58:37 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com, abel.vesa@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 2/2] arm64: dts: imx8qxp-mek: Add PMIC thermal zone support
-Date:   Tue, 10 Mar 2020 16:52:17 +0800
-Message-Id: <1583830337-23889-2-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1583830337-23889-1-git-send-email-Anson.Huang@nxp.com>
-References: <1583830337-23889-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726599AbgCJI4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Mar 2020 04:56:11 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58696 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726389AbgCJI4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 04:56:11 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02A8uAcS100759;
+        Tue, 10 Mar 2020 03:56:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1583830570;
+        bh=nmwVphm5iqbtcL4ZTh/177J0aYFT1Z+EnZLR4E5cQgE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=SZzpt3ZduvJWmJ3J1YLkfFV/yWvUzKiAGitrVN0JtlF1Tw1xqFWpunOffDeTt1gGK
+         HfuSJIMGmAMIacxwBVvCFE7vidViNoFJoJn0U7ddD2DP9hA614RURFsYfp3Zs9wECs
+         RpaCnxDKN7KljmctG3GrqGeIXCJXwcpXtYnJK7Yk=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02A8uANm003830
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 10 Mar 2020 03:56:10 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 10
+ Mar 2020 03:56:10 -0500
+Received: from localhost.localdomain (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 10 Mar 2020 03:56:10 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 02A8u871007532;
+        Tue, 10 Mar 2020 03:56:08 -0500
+Subject: Re: [Patch v2] media: ti-vpe: cal: fix a kernel oops when unloading
+ module
+To:     Benoit Parrot <bparrot@ti.com>, Hans Verkuil <hverkuil@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
+References: <20200306130839.1209-1-bparrot@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <326ff891-baae-47cb-849d-4cd07793236c@ti.com>
+Date:   Tue, 10 Mar 2020 10:56:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+In-Reply-To: <20200306130839.1209-1-bparrot@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8QXP MEK board has PMIC thermal sensor, add support for it.
+On 06/03/2020 15:08, Benoit Parrot wrote:
+> After the switch to use v4l2_async_notifier_add_subdev() and
+> v4l2_async_notifier_cleanup(), unloading the ti_cal module would casue a
+> kernel oops.
+> 
+> This was root cause to the fact that v4l2_async_notifier_cleanup() tries
+> to kfree the asd pointer passed into v4l2_async_notifier_add_subdev().
+> 
+> In our case the asd reference was from a statically allocated struct.
+> So in effect v4l2_async_notifier_cleanup() was trying to free a pointer
+> that was not kalloc.
+> 
+> So here we switch to using a kzalloc struct instead of a static one.
+> To acheive this we re-order some of the calls to prevent asd allocation
+> from leaking.
+> 
+> Fixes: d079f94c9046 ("media: platform: Switch to v4l2_async_notifier_add_subdev")
+> 
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> ---
+> Changes since v1:
+> - fix asd allocation leak
+> 
+>   drivers/media/platform/ti-vpe/cal.c | 13 ++++++++-----
+>   1 file changed, 8 insertions(+), 5 deletions(-)
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 33 +++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-index 2ed7aba..9b105ae 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-@@ -139,6 +139,39 @@
- 	status = "okay";
- };
- 
-+&thermal_zones {
-+	pmic-thermal0 {
-+		polling-delay-passive = <250>;
-+		polling-delay = <2000>;
-+		thermal-sensors = <&tsens IMX_SC_R_PMIC_0>;
-+
-+		trips {
-+			pmic_alert0: trip0 {
-+				temperature = <110000>;
-+				hysteresis = <2000>;
-+				type = "passive";
-+			};
-+
-+			pmic_crit0: trip1 {
-+				temperature = <125000>;
-+				hysteresis = <2000>;
-+				type = "critical";
-+			};
-+		};
-+
-+		cooling-maps {
-+			map0 {
-+				trip = <&pmic_alert0>;
-+				cooling-device =
-+					<&A35_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&A35_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&A35_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+					<&A35_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+			};
-+		};
-+	};
-+};
-+
- &usdhc1 {
- 	assigned-clocks = <&clk IMX_CONN_SDHC0_CLK>;
- 	assigned-clock-rates = <200000000>;
+  Tomi
+
 -- 
-2.7.4
-
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
