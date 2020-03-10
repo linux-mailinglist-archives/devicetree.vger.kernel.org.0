@@ -2,98 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E14180632
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 19:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C778180665
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 19:31:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726582AbgCJSZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Mar 2020 14:25:55 -0400
-Received: from mout.gmx.net ([212.227.17.21]:53105 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726415AbgCJSZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Mar 2020 14:25:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1583864741;
-        bh=bFNqpua+YkzWFVc3UHXXvzS3AdF4ncGup9hQJF7JgsM=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=HRuCOVZZtfp+KcUwATt3A57HJU3nd/6Gt3AGzr8fVOQ26mh/cYH8AvkJDaxla7LrH
-         WTHAoWtV6HOELVnR0phT97MYCOHjJ4dF08SpizBl2jgwiDyCSCsw0LT97S8OzR8//y
-         ZTjtvv+/hCleFNMOElJQ1mYObS/pvkipnTZiGdtA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from zoom ([188.223.33.120]) by mail.gmx.com (mrgmx104
- [212.227.17.174]) with ESMTPSA (Nemesis) id 1MD9XF-1j2h0v3fpx-009C8y; Tue, 10
- Mar 2020 19:25:41 +0100
-Received: by zoom (Postfix, from userid 2000)
-        id 33D2119C87C9; Tue, 10 Mar 2020 18:25:39 +0000 (GMT)
-From:   nick.hudson@gmx.co.uk
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Nick Hudson <nick.hudson@gmx.co.uk>, Nick Hudson <skrll@netbsd.org>
-Subject: [PATCH] ARM: bcm2835-rpi-zero-w: Add missing pinctrl name
-Date:   Tue, 10 Mar 2020 18:25:37 +0000
-Message-Id: <20200310182537.8156-1-nick.hudson@gmx.co.uk>
-X-Mailer: git-send-email 2.17.1
-X-Provags-ID: V03:K1:3/Rt0YeR7CTtZzR1Fqp91cdaAaSx69K/t/4zI3jdBuV2UhzC3n4
- MmdrwDddFGb8jLk2u+lcAMOmgNAeNjmwa/lg/1z7eoVYBNlrndFDsOo/rolirFwofzX0Xs3
- RdIe3l8fONwTn+qW19f4sOCCoWTZzTvJVybor7qfgr3Dcf1ym5LAEQm+f+uXWLvoQ0iJpAG
- k2bQo6mSBNTu2p3vK70Fg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:gG3GKwolD78=:s7UQlNhpF4wArl+OpyY9rX
- YE2f5jIYCHVmzWKuayMb7Q1H5k441i+Z0RmUEJETKfGzl5KrzR6u8boufYIwY2bG/NqhaXJxr
- BoLcoABo1rlpj+sUJoDJ72SIjPNKgEjdPpD7xRuT91Zk4S0yMZMuhe2qPkqkP6c056JNIzKaL
- h7tJWQsK0co+oE55lpBRzz/bVJ9H92+Il1pbzUSpQPu6BaH4d7OxN51G17AZUUQhGFOiDqame
- 1NOqVklyU2bqm1elS6OVzKxlAJz/mp+QTmwkmPB8EQOOv/3D02Tlvjvh6DcxuxDmsmhvgIZOU
- To8eesWE8heEzGOXhM8w2XbFSf2z9vKUJUmn1zWsH/LC05iRVDNi/tlOLVP6BiJusJ1EhmYv9
- 70ICsPqYVo+Glc2OrbvUKrU9pfqLcjkuBNVQgUmtM94K1M1ZEglarxO1zJJLkjyLW83ml+Jew
- 3XW57bDRfct6k0Y2fgfOq+xKtlzCn6uRD4KTjhuurNxdxE8Qxii3BDsmB0VteM/CgxT9NRS/o
- v++5alr6LXvAtA4BjIjZzQb1lJsbfqr3t+AuXjMWMQDyJOWf71tGkRObBixwTBMNCV9rYBZfU
- ilA6pK0oHPNjFn+kM0t95opLSBc0J7Ze5fEFdLDzFtbHOGcMGT3chtHN2CnDFhvhzWfqEZ+3p
- qgZV6uiXviDBPZjqw58lJ++/ht/UNlWitM5zpFoOeW3GFwbu4Vb5WfOFdAdqDf0NOeefqHbJ0
- yrNh/+p4KWBTWTp8DR4MtpG+YkOps5qp0RBlYiWdEkbwaDrVW9FdbOp/4lrftyGNNGiuiblVa
- b9nDznXG+UNDApsO+oWH3g8iQyD88hcQt/XaDn4YupsPTe7A46aAZUPF7f/nP3BWJDTTe5kL0
- YGrcwSHB4Of3mhKmAFWKDr+mGbANqcHGfKhXn58w2RD7WVBvTbb8vBInhiz7knJw1IFTXzBFL
- ZiVxLKkYdXl0M8stLzYqKZeRX73rUIm6VHFpxiNB7rr19FS0UmRf36FXX6FKBL6xd+pykwjG2
- IEP9j8w3px+E2nRzvhV7MWTXJUeWj/8dKMQ16bwR97GcHum2CkZw3yfelfRRCRJcd+43vig70
- dmJkTJwwvTsddA/DTpJLLGXs8PIpsO+2K5HN07diWVo9vLjmaRFXNcMNhGQSfME50BzZL+dIG
- TNTn2xgnr+BApp6+9BhIRHk/MGJIKMKL8EZ8bOWtg/U5hPnqESVru8G7V74L3l+JxgQ6XFoi7
- q2JTZfQneUOsuPraT
-Content-Transfer-Encoding: quoted-printable
+        id S1727517AbgCJSbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Mar 2020 14:31:23 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:45256 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726998AbgCJSbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 14:31:23 -0400
+Received: by mail-ot1-f66.google.com with SMTP id f21so14126283otp.12;
+        Tue, 10 Mar 2020 11:31:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=kE8zJYod7DGw/iirznrwm04icms4ZonrW+m7De0Huos=;
+        b=tSgqnoILJO40vmXhVI6xPFpcIjeTu1NY8MVBWwOp0dkkpGIJOvxcGOq5562QZFwxmo
+         iHTpES6+SthX0zWQ/ZtVgiGk+gfBrmRAQ4TMS/nmgr5WnacdREt3KJ8CeHVVR5r3b+gy
+         vvLAiiPd1bD+2h3s/kcAPfnmjCDEDO28tX+dcdv0XUSb8zqAKw147h2S7Osa3HXlNm9A
+         DZGkNmuLBEiay6H1WkIpffoll1j7NQb2PCcsZFKZI8vKz360HjsGmNI6C0LtMVqLPkJn
+         Gt7Gb9xWujor6y21VtgYTPYqWUlAL5qSG2At9DWA0+y/eBGvFEVVU6VYbuJNlZI14sRM
+         XjQw==
+X-Gm-Message-State: ANhLgQ3eb1sugpOt6TN+1R3xeLOzuqrA+B7SyYTVbUE3+JONbfRhyW57
+        Q9/wihhIrSbURoOOEe5LNg==
+X-Google-Smtp-Source: ADFU+vs6BXU2RhaGOMkzDNdE03Xyflh1TY7gz7r9610og46G77Jwujiyd6QdA37f1IfNWYINzkfbHg==
+X-Received: by 2002:a9d:21b4:: with SMTP id s49mr17315918otb.294.1583865080731;
+        Tue, 10 Mar 2020 11:31:20 -0700 (PDT)
+Received: from rob-hp-laptop (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e206sm4490498oia.24.2020.03.10.11.31.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2020 11:31:19 -0700 (PDT)
+Received: (nullmailer pid 14370 invoked by uid 1000);
+        Tue, 10 Mar 2020 18:31:18 -0000
+Date:   Tue, 10 Mar 2020 13:31:18 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Kiran Gunda <kgunda@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, jingoohan1@gmail.com,
+        lee.jones@linaro.org, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, daniel.thompson@linaro.org,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dan Murphy <dmurphy@ti.com>, linux-arm-msm@vger.kernel.org,
+        Kiran Gunda <kgunda@codeaurora.org>
+Subject: Re: [PATCH V3 1/4] backlight: qcom-wled: convert the wled bindings
+ to .yaml format
+Message-ID: <20200310183118.GA13818@bogus>
+References: <1583760362-26978-1-git-send-email-kgunda@codeaurora.org>
+ <1583760362-26978-2-git-send-email-kgunda@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1583760362-26978-2-git-send-email-kgunda@codeaurora.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hudson <nick.hudson@gmx.co.uk>
+On Mon,  9 Mar 2020 18:55:59 +0530, Kiran Gunda wrote:
+> Convert the qcom-wled bindings from .txt to .yaml format.
+> 
+> Signed-off-by: Kiran Gunda <kgunda@codeaurora.org>
+> ---
+>  .../bindings/leds/backlight/qcom-wled.txt          | 154 -----------------
+>  .../bindings/leds/backlight/qcom-wled.yaml         | 184 +++++++++++++++++++++
+>  2 files changed, 184 insertions(+), 154 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/leds/backlight/qcom-wled.txt
+>  create mode 100644 Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml
+> 
 
-Define the sdhci pinctrl state as "default" so it gets applied
-correctly and to match all other RPis.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Fixes: 2c7c040c73e9 ("ARM: dts: bcm2835: Add Raspberry Pi Zero W")
+Documentation/devicetree/bindings/leds/backlight/qcom-wled.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/leds/backlight/qcom-wled.yaml#
 
-Signed-off-by: Nick Hudson <skrll@netbsd.org>
-=2D--
- arch/arm/boot/dts/bcm2835-rpi-zero-w.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts b/arch/arm/boot/dts/=
-bcm2835-rpi-zero-w.dts
-index b75af21069f9..4c3f606e5b8d 100644
-=2D-- a/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
-+++ b/arch/arm/boot/dts/bcm2835-rpi-zero-w.dts
-@@ -112,6 +112,7 @@
- &sdhci {
- 	#address-cells =3D <1>;
- 	#size-cells =3D <0>;
-+	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&emmc_gpio34 &gpclk2_gpio43>;
- 	bus-width =3D <4>;
- 	mmc-pwrseq =3D <&wifi_pwrseq>;
-=2D-
-2.17.1
-
+See https://patchwork.ozlabs.org/patch/1251567
+Please check and re-submit.
