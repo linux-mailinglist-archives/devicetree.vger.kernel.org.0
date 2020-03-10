@@ -2,177 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BAFC180194
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 16:20:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1FE71801AE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 16:22:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726637AbgCJPUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Mar 2020 11:20:32 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:34030 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726605AbgCJPUc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 11:20:32 -0400
-Received: by mail-wr1-f68.google.com with SMTP id z15so16424549wrl.1;
-        Tue, 10 Mar 2020 08:20:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ii2BrewVS3q4fYdTKcoF5y7GinLZa/uKgQ7LuFVDOiE=;
-        b=mg2P+mWIwefea2Gb4MbVfGYZyYQ/wESleXFBAU4JH6aLt3sl8z0AHjHfh+G3NtU31g
-         KomkkTDwg8i1XsIUw0klCGuKm+WEyRL+zw7v5GoA6yg7LiDR4xcTCd/f2T9wJ+DnwD39
-         6mHkCwo1Rut9S89gI+b3bwe4jUB5NI+f52D6HXft8JDw3Y8W68NYnLYf+m46yDFHIGX8
-         K4PXT7vjnudt0xVlGOfXB7jONl7ObhhavdF3Q+unKhWVDnWCqk4A7lKM1pgkLg6z2viA
-         cUKnlyeiVmBN+0ixLZmksTGwJcGJ+NwLHSbt58y2qgzYFn6nZ/UdID6fOeyfL5j8M5L4
-         Ys1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ii2BrewVS3q4fYdTKcoF5y7GinLZa/uKgQ7LuFVDOiE=;
-        b=g2Dkpci+WwxfQ1igumejYEC/NmgSzopSjoFVLuVeJxPE5Ux1PH5japDgvcDqOd1YtB
-         mJp0tDB7Ah/PZ4rjSo7hmuHSe4//Z9vdaHL18uoai/pd2ujR3o4gx6fH+jzEOiEh9jPX
-         7+vIAVhhaRfvmL5Wr11nhvY5KhaELe3QD+VP60ZG9iHbfGrKrmsNyxgt2r/BdmWi02Sx
-         M6vDr+OgkgmfzpOo+kJIgbW+t2veg5uT6latOG2+3sCFUQbif9i2dU5Vjf8LiwIUuhga
-         wd4wjR+LyJOxZGIMVTURUelIfVz8dmml39CTlOEwyyymRTr68FEJmZNfkOBdy6SKpDFT
-         yvFw==
-X-Gm-Message-State: ANhLgQ0d87z2niezE0gKh2cNyLMzYTwSVG2BtsYN31WVltmrWAXkXRd/
-        6qfLHuxUu89CD8jCRlikFwA=
-X-Google-Smtp-Source: ADFU+vtqTs4uQrDAjryzWDvDnNDQaQ9//VXaPAg8U0G9Hcxghhfz7KMqFy3Tr5AdeGHNKXA3DcuEfw==
-X-Received: by 2002:a5d:6aca:: with SMTP id u10mr26376254wrw.99.1583853628261;
-        Tue, 10 Mar 2020 08:20:28 -0700 (PDT)
-Received: from localhost (pD9E516A9.dip0.t-ipconnect.de. [217.229.22.169])
-        by smtp.gmail.com with ESMTPSA id t18sm4676558wml.17.2020.03.10.08.20.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2020 08:20:27 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
+        id S1727123AbgCJPW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Mar 2020 11:22:28 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:46829 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726389AbgCJPW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 11:22:28 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 5324C23ECA;
+        Tue, 10 Mar 2020 16:22:26 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1583853746;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=RdGYE+O0ALkRkOb+rA9Tz98qgHCKJH6tSFvrz+uxT1o=;
+        b=DeiZr5VHKXR89WablI3UrMJKuQkPOBdGfFkzXtV9tbBQ/NoMoxhedHVvbVfcYEu4jv4AFo
+        g4cA4bYD7TwwaWBH6f49Kl3dLswWVOOiwVrF15Nbwi5mZmag/iYXdrHjIMlgCfyjblInP3
+        qBjFT8LgCcQwpHuCK1BMFJf/45sxsqs=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 10 Mar 2020 16:22:26 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Joseph Lo <josephl@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 8/8] clk: tegra: Remove the old emc_mux clock for Tegra210
-Date:   Tue, 10 Mar 2020 16:20:03 +0100
-Message-Id: <20200310152003.2945170-9-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200310152003.2945170-1-thierry.reding@gmail.com>
-References: <20200310152003.2945170-1-thierry.reding@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        devicetree@vger.kernel.org, Esben Haabendal <eha@deif.com>,
+        angelo@sysam.it, andrew.smirnov@gmail.com,
+        "Gustavo A. R. Silva" <gustavo@embeddedor.com>,
+        Wei Chen <weic@nvidia.com>, Mohamed Hosny <mhosny@nvidia.com>,
+        peng.ma@nxp.com
+Subject: Re: [PATCH v3 0/7] NXP DSPI bugfixes and support for LS1028A
+In-Reply-To: <CA+h21hrYoHVDvsxT1EPWhYprL+zNHfE4MW7k4HxiK7ma4ZWn1g@mail.gmail.com>
+References: <20200310125542.5939-1-olteanv@gmail.com>
+ <615284875b709f602d57e4a4621a83c1@walle.cc>
+ <CA+h21hrYoHVDvsxT1EPWhYprL+zNHfE4MW7k4HxiK7ma4ZWn1g@mail.gmail.com>
+Message-ID: <59b07b7d70603c6b536a7354ed0ea8d8@walle.cc>
+X-Sender: michael@walle.cc
+User-Agent: Roundcube Webmail/1.3.10
+X-Spamd-Bar: +
+X-Spam-Level: *
+X-Rspamd-Server: web
+X-Spam-Status: No, score=1.40
+X-Spam-Score: 1.40
+X-Rspamd-Queue-Id: 5324C23ECA
+X-Spamd-Result: default: False [1.40 / 15.00];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         FREEMAIL_ENVRCPT(0.00)[gmail.com];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DKIM_SIGNED(0.00)[];
+         RCPT_COUNT_TWELVE(0.00)[15];
+         NEURAL_HAM(-0.00)[-0.399];
+         FREEMAIL_TO(0.00)[gmail.com];
+         RCVD_COUNT_ZERO(0.00)[0];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,arm.com,deif.com,sysam.it,gmail.com,embeddedor.com,nvidia.com,nxp.com];
+         MID_RHS_MATCH_FROM(0.00)[];
+         SUSPICIOUS_RECIPS(1.50)[]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Joseph Lo <josephl@nvidia.com>
+Hi Vladimir,
 
-Remove the old emc_mux clock and don't use the common EMC clock
-definition. This will be replaced by a new clock defined in the
-EMC driver.
+Am 2020-03-10 15:56, schrieb Vladimir Oltean:
+>> (2) Also, reading the flash, every second time there is (reproducibly)
+>> an
+>> IO error:
+>> 
+>> # hexdump -C /dev/mtd0
+>> 00000000  68 75 68 75 0a ff ff ff  ff ff ff ff ff ff ff ff
+>> |huhu............|
+>> 00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff
+>> |................|
+>> *
+>> 01000000
+>> # hexdump -C /dev/mtd0
+>> 00000000  68 75 68 75 0a ff ff ff  ff ff ff ff ff ff ff ff
+>> |huhu............|
+>> 00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff
+>> |................|
+>> *
+>> hexdump: /dev/mtd0: Input/output error
+>> 00dc0000
+>> # hexdump -C /dev/mtd0
+>> 00000000  68 75 68 75 0a ff ff ff  ff ff ff ff ff ff ff ff
+>> |huhu............|
+>> 00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff
+>> |................|
+>> *
+>> 01000000
+>> # hexdump -C /dev/mtd0
+>> 00000000  68 75 68 75 0a ff ff ff  ff ff ff ff ff ff ff ff
+>> |huhu............|
+>> 00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff
+>> |................|
+>> *
+>> hexdump: /dev/mtd0: Input/output error
+>> 00e6a000
+>> 
+> 
+> Just to be clear, issue 2 is seen only after you abort another
+> transaction, right?
 
-Signed-off-by: Joseph Lo <josephl@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- drivers/clk/tegra/clk-tegra210.c | 46 ++++++++++++++++++++------------
- 1 file changed, 29 insertions(+), 17 deletions(-)
+No, just normal uninterrupted reading. Just tried it right after
+reboot. Doesn't seem to be every second time though, just random
+which makes me wonder if that is another problem now. Also the
+last successful reading is random.
 
-diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-tegra210.c
-index 0a5be781da60..53a570b1fc29 100644
---- a/drivers/clk/tegra/clk-tegra210.c
-+++ b/drivers/clk/tegra/clk-tegra210.c
-@@ -319,12 +319,6 @@ static unsigned long tegra210_input_freq[] = {
- 	[8] = 12000000,
- };
- 
--static const char *mux_pllmcp_clkm[] = {
--	"pll_m", "pll_c", "pll_p", "clk_m", "pll_m_ud", "pll_mb", "pll_mb",
--	"pll_p",
--};
--#define mux_pllmcp_clkm_idx NULL
--
- #define PLL_ENABLE			(1 << 30)
- 
- #define PLLCX_MISC1_IDDQ		(1 << 27)
-@@ -2336,7 +2330,6 @@ static struct tegra_clk tegra210_clks[tegra_clk_max] __initdata = {
- 	[tegra_clk_i2c2] = { .dt_id = TEGRA210_CLK_I2C2, .present = true },
- 	[tegra_clk_uartc_8] = { .dt_id = TEGRA210_CLK_UARTC, .present = true },
- 	[tegra_clk_mipi_cal] = { .dt_id = TEGRA210_CLK_MIPI_CAL, .present = true },
--	[tegra_clk_emc] = { .dt_id = TEGRA210_CLK_EMC, .present = true },
- 	[tegra_clk_usb2] = { .dt_id = TEGRA210_CLK_USB2, .present = true },
- 	[tegra_clk_bsev] = { .dt_id = TEGRA210_CLK_BSEV, .present = true },
- 	[tegra_clk_uartd_8] = { .dt_id = TEGRA210_CLK_UARTD, .present = true },
-@@ -2987,6 +2980,27 @@ static const char * const sor1_parents[] = {
- 
- static u32 sor1_parents_idx[] = { 0, 2, 5, 6 };
- 
-+static const struct clk_div_table mc_div_table_tegra210[] = {
-+	{ .val = 0, .div = 2 },
-+	{ .val = 1, .div = 4 },
-+	{ .val = 2, .div = 1 },
-+	{ .val = 3, .div = 2 },
-+	{ .val = 0, .div = 0 },
-+};
-+
-+static void tegra210_clk_register_mc(const char *name,
-+				     const char *parent_name)
-+{
-+	struct clk *clk;
-+
-+	clk = clk_register_divider_table(NULL, name, parent_name,
-+					 CLK_IS_CRITICAL,
-+					 clk_base + CLK_SOURCE_EMC,
-+					 15, 2, CLK_DIVIDER_READ_ONLY,
-+					 mc_div_table_tegra210, &emc_lock);
-+	clks[TEGRA210_CLK_MC] = clk;
-+}
-+
- static const char * const sor1_out_parents[] = {
- 	/*
- 	 * Bit 0 of the mux selects sor1_pad_clkout, irrespective of bit 1, so
-@@ -3029,7 +3043,8 @@ static const char * const la_parents[] = {
- static struct tegra_clk_periph tegra210_la =
- 	TEGRA_CLK_PERIPH(29, 7, 9, 0, 8, 1, TEGRA_DIVIDER_ROUND_UP, 76, 0, NULL, 0);
- 
--static __init void tegra210_periph_clk_init(void __iomem *clk_base,
-+static __init void tegra210_periph_clk_init(struct device_node *np,
-+					    void __iomem *clk_base,
- 					    void __iomem *pmc_base)
- {
- 	struct clk *clk;
-@@ -3075,15 +3090,12 @@ static __init void tegra210_periph_clk_init(void __iomem *clk_base,
- 			CLK_SOURCE_LA, 0);
- 	clks[TEGRA210_CLK_LA] = clk;
- 
--	/* emc mux */
--	clk = clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
--			       ARRAY_SIZE(mux_pllmcp_clkm), 0,
--			       clk_base + CLK_SOURCE_EMC,
--			       29, 3, 0, &emc_lock);
-+	/* emc */
-+	clk = tegra210_clk_register_emc(np, clk_base);
-+	clks[TEGRA210_CLK_EMC] = clk;
- 
--	clk = tegra_clk_register_mc("mc", "emc_mux", clk_base + CLK_SOURCE_EMC,
--				    &emc_lock);
--	clks[TEGRA210_CLK_MC] = clk;
-+	/* mc */
-+	tegra210_clk_register_mc("mc", "emc");
- 
- 	/* cml0 */
- 	clk = clk_register_gate(NULL, "cml0", "pll_e", 0, clk_base + PLLE_AUX,
-@@ -3728,7 +3740,7 @@ static void __init tegra210_clock_init(struct device_node *np)
- 
- 	tegra_fixed_clk_init(tegra210_clks);
- 	tegra210_pll_init(clk_base, pmc_base);
--	tegra210_periph_clk_init(clk_base, pmc_base);
-+	tegra210_periph_clk_init(np, clk_base, pmc_base);
- 	tegra_audio_clk_init(clk_base, pmc_base, tegra210_clks,
- 			     tegra210_audio_plls,
- 			     ARRAY_SIZE(tegra210_audio_plls), 24576000);
--- 
-2.24.1
+buildroot login: root
+# hexdump -C /dev/mtd0
+00000000  31 32 33 34 35 ff ff ff  ff ff ff ff ff ff ff ff  
+|12345...........|
+00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  
+|................|
+*
+[   32.359156] random: crng init done
+01000000
+# hexdump -C /dev/mtd0
+00000000  31 32 33 34 35 ff ff ff  ff ff ff ff ff ff ff ff  
+|12345...........|
+00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  
+|................|
+*
+01000000
+# hexdump -C /dev/mtd0
+00000000  31 32 33 34 35 ff ff ff  ff ff ff ff ff ff ff ff  
+|12345...........|
+00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  
+|................|
+*
+hexdump: /dev/mtd0: Input/output error
+00166000
+# hexdump -C /dev/mtd0
+00000000  31 32 33 34 35 ff ff ff  ff ff ff ff ff ff ff ff  
+|12345...........|
+00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  
+|................|
+*
+hexdump: /dev/mtd0: Input/output error
+00c68000
+# hexdump -C /dev/mtd0
+00000000  31 32 33 34 35 ff ff ff  ff ff ff ff ff ff ff ff  
+|12345...........|
+00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  
+|................|
+*
+hexdump: /dev/mtd0: Input/output error
+00243000
+#
 
+-michael
