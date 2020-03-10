@@ -2,95 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AE1F17F472
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 11:10:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 291D517F490
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2020 11:11:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726205AbgCJKKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Mar 2020 06:10:14 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:42373 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726199AbgCJKKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 06:10:14 -0400
-Received: by mail-pg1-f194.google.com with SMTP id h8so6087798pgs.9;
-        Tue, 10 Mar 2020 03:10:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HDXFysJpdV8VuCGjPdLDxQClbolL707s7Oy1HPUOvA0=;
-        b=qxEsvkqOujZodAPp+3ueiAK0DjURCF22GunvMK9QN+KklKRMgATwVgcV9c0hSNEUCz
-         TAQI5Ohj0cXhf/epw5T+HSN+GE95Tk9gtrafCmMXl587W/ZgpXygCTEZ8vK3SmVb0TIF
-         uCehoekTjWV8oLZEDYH8SAa37cT7XZXW/UyahoNZGp6tA8T6lpOy11ils26Zg59WR04z
-         CaSo7Rz+ZjrxbxEp0CTNZ07mZ+HX0zl/t7wP+5ThGovd9CjakbU2IQiOFppgt8P+7p4W
-         0Jn/7ZK4Yom5kVH/GKtFiX3Hx2gWwpA1KdqhDJiL5ONFS4LALreASK682L6CmTe75aHs
-         qIIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HDXFysJpdV8VuCGjPdLDxQClbolL707s7Oy1HPUOvA0=;
-        b=TVoX6Ny+AsYCWzvPijIGOSbJQOY2ATfTh8MtcwnUBoSsauIJwt5KmhmacfG/WotzIA
-         3dcgKmo3x9dzcDdgkQZ6gBQMshqkYQlrwonQ8ShLHu1cnVmbePGFTSB0t2Klm4/8ZON9
-         L+HCtEaeJ5Txq2o1ePztK+RN8IKEge/0FlAFxF+Xmu96wp5ej0X9oU4a+y2CYfXNvGM8
-         2rGzXHZ2PO+ZbNW5e9J6S91fkzPzW2VLZqYk+Iy9ezOrlcgZ9vrr++4iEjdDNvqcLNq5
-         /e64gEJNpa7YdRlUPeyMIiCwgtG0qTi3Z6MpvrHAmPJYnn57JzpiTN1HlwkdtcrgNnJ5
-         jUZQ==
-X-Gm-Message-State: ANhLgQ1lHLMw/jWnQlesdEIDM+QLpoLxNkU6neh59pKJ17IY2l5veB8Q
-        3sjM7KmYEAQzWMRPHpppwT0cEcl3bVGGSWz1SK4=
-X-Google-Smtp-Source: ADFU+vvLJ9Bi1/5PtpdB3XdQzWlug4LKrI66cLqdLbaY0Kfs/y64+i228nQqpbnk8BVnj0qLhHSGLoQoUU2CFCR3CCI=
-X-Received: by 2002:a63:1246:: with SMTP id 6mr19811313pgs.4.1583835013383;
- Tue, 10 Mar 2020 03:10:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200228155958.20657-1-dongchun.zhu@mediatek.com>
- <20200228155958.20657-3-dongchun.zhu@mediatek.com> <20200305120516.GQ5379@paasikivi.fi.intel.com>
-In-Reply-To: <20200305120516.GQ5379@paasikivi.fi.intel.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 10 Mar 2020 12:10:05 +0200
-Message-ID: <CAHp75Vf5km-YitoTUAFkr8LZVq2QMep1rC19ZpR-YRbeXgJOVQ@mail.gmail.com>
-Subject: Re: [V3, 2/2] media: i2c: Add DW9768 VCM driver
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
+        id S1726443AbgCJKKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Mar 2020 06:10:51 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:42711 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726202AbgCJKKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Mar 2020 06:10:50 -0400
+X-UUID: 2b8b9708abb74516897a1aabe91401f2-20200310
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=inUXDgqoY53ORAeqwgaUzS7AlZMxW4h9radzKBlKZis=;
+        b=AB4JyubLn6JVM/6AMaDJMgQW8npj0P5I832Zu5FtwVVbPr2y2EBr5bTHvxsmtPYwfKZsaA3UqYmjiTI0dlrF7OUD5oi4MGLXstMfb0hBF2Nkf24z32JHt6PgXk6Ndhojojp3SWnntRbz1EyfQypVw728M75Mc5ih1rKg2LensTc=;
+X-UUID: 2b8b9708abb74516897a1aabe91401f2-20200310
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 739794820; Tue, 10 Mar 2020 18:10:44 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 10 Mar 2020 18:09:39 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 10 Mar 2020 18:07:58 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <rfontana@redhat.com>,
+        Josef Friedl <josef.friedl@speed.at>,
+        Ran Bi <ran.bi@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        sj.huang@mediatek.com,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, louis.kuo@mediatek.com,
-        shengnan.wang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <srv_heupstream@mediatek.com>
+Subject: [PATCH v9 0/5] Add Support for MediaTek PMIC MT6358
+Date:   Tue, 10 Mar 2020 18:10:35 +0800
+Message-ID: <1583835040-19157-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.6.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 5, 2020 at 2:07 PM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
-> On Fri, Feb 28, 2020 at 11:59:58PM +0800, Dongchun Zhu wrote:
-> > This patch adds a V4L2 sub-device driver for DW9768 lens voice coil,
-> > and provides control to set the desired focus via I2C serial interface.
+VGhpcyBwYXRjaHNldCBpbmNsdWRpbmcgbW9kaWZ5aW5nIHN1c3BlbmQvcmVzdW1lIGJlaGF2aW9y
+IGFkZCBzdXBwb3J0IHRvIE1UNjM1OCBQTUlDLg0KTVQ2MzU4IGlzIHRoZSBwcmltYXJ5IFBNSUMg
+Zm9yIE1UODE4MyBwbGF0Zm9ybS4NCg0KY2hhbmdlcyBzaW5jZSB2ODoNCi0gdXNlIHRoZSBlZmZp
+Y2llbnQgY29tcHV0aW5nIGZ1bmN0aW9uIGluIG1mZCBkcml2ZXIuDQotIHJlbW92ZSB0aGUgdW51
+c2VkIHJlZ3VsYXRvciBwcm9wZXJ0eSBpbiBkdHMuDQotIGZpeCBXUlRHUiByZWdpc3RlciBvZmZz
+ZXQgaW4gbXQ2MzIzLXBvd2Vyb2ZmIGRyaXZlci4NCg0KSHNpbi1Ic2l1bmcgV2FuZyAoNCk6DQog
+IG1mZDogbXQ2Mzk3OiBtb2RpZnkgc3VzcGVuZC9yZXN1bWUgYmVoYXZpb3INCiAgZHQtYmluZGlu
+Z3M6IG1mZDogQWRkIGNvbXBhdGlibGUgZm9yIHRoZSBNZWRpYVRlayBNVDYzNTggUE1JQw0KICBt
+ZmQ6IEFkZCBzdXBwb3J0IGZvciB0aGUgTWVkaWFUZWsgTVQ2MzU4IFBNSUMNCiAgYXJtNjQ6IGR0
+czogbXQ2MzU4OiBhZGQgUE1JQyBNVDYzNTggcmVsYXRlZCBub2Rlcw0KDQpSYW4gQmkgKDEpOg0K
+ICBydGM6IG10NjM5NzogQWRkIHN1cHBvcnQgZm9yIHRoZSBNZWRpYVRlayBNVDYzNTggUlRDDQoN
+CiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL210NjM5Ny50eHQgfCAgMTQg
+Ky0NCiBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210NjM1OC5kdHNpICAgICAgICAgfCAz
+NTggKysrKysrKysrKysrKysrKysrKysrKysNCiBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVr
+L210ODE4My1ldmIuZHRzICAgICAgfCAgIDEgKw0KIGRyaXZlcnMvbWZkL01ha2VmaWxlICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB8ICAgMiArLQ0KIGRyaXZlcnMvbWZkL210NjM1OC1pcnEu
+YyAgICAgICAgICAgICAgICAgICAgICAgICB8IDIzOCArKysrKysrKysrKysrKysNCiBkcml2ZXJz
+L21mZC9tdDYzOTctY29yZS5jICAgICAgICAgICAgICAgICAgICAgICAgfCAgODUgKysrLS0tDQog
+ZHJpdmVycy9tZmQvbXQ2Mzk3LWlycS5jICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDMzICsr
+Kw0KIGRyaXZlcnMvcG93ZXIvcmVzZXQvbXQ2MzIzLXBvd2Vyb2ZmLmMgICAgICAgICAgICB8ICAg
+MiArLQ0KIGRyaXZlcnMvcnRjL3J0Yy1tdDYzOTcuYyAgICAgICAgICAgICAgICAgICAgICAgICB8
+ICAyNCArLQ0KIGluY2x1ZGUvbGludXgvbWZkL210NjM1OC9jb3JlLmggICAgICAgICAgICAgICAg
+ICB8IDE1OCArKysrKysrKysrDQogaW5jbHVkZS9saW51eC9tZmQvbXQ2MzU4L3JlZ2lzdGVycy5o
+ICAgICAgICAgICAgIHwgMjgyICsrKysrKysrKysrKysrKysrKw0KIGluY2x1ZGUvbGludXgvbWZk
+L210NjM5Ny9jb3JlLmggICAgICAgICAgICAgICAgICB8ICAgNSArDQogaW5jbHVkZS9saW51eC9t
+ZmQvbXQ2Mzk3L3J0Yy5oICAgICAgICAgICAgICAgICAgIHwgIDE3ICstDQogMTMgZmlsZXMgY2hh
+bmdlZCwgMTE3MCBpbnNlcnRpb25zKCspLCA0OSBkZWxldGlvbnMoLSkNCiBjcmVhdGUgbW9kZSAx
+MDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTguZHRzaQ0KIGNyZWF0ZSBt
+b2RlIDEwMDY0NCBkcml2ZXJzL21mZC9tdDYzNTgtaXJxLmMNCiBjcmVhdGUgbW9kZSAxMDA2NDQg
+aW5jbHVkZS9saW51eC9tZmQvbXQ2MzU4L2NvcmUuaA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNs
+dWRlL2xpbnV4L21mZC9tdDYzNTgvcmVnaXN0ZXJzLmgNCg0KLS0gDQoyLjYuNA0K
 
-...
-
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -5139,6 +5139,7 @@ M:      Dongchun Zhu <dongchun.zhu@mediatek.com>
-> >  L:   linux-media@vger.kernel.org
-> >  T:   git git://linuxtv.org/media_tree.git
-> >  S:   Maintained
-> > +F:   drivers/media/i2c/dw9768.c
-> >  F:   Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.yaml
-
-This has ordering issues.
-Run parse-maintainers.pl to fix.
-
--- 
-With Best Regards,
-Andy Shevchenko
