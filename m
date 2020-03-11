@@ -2,128 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02D171815B6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 11:23:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 861101815BE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 11:27:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbgCKKXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 06:23:35 -0400
-Received: from web0081.zxcs.nl ([185.104.29.10]:56892 "EHLO web0081.zxcs.nl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726000AbgCKKXe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 06:23:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=pascalroeleven.nl; s=x; h=Message-ID:References:In-Reply-To:Subject:Cc:To:
-        From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Reply-To
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=KUYFXWlpQlmFH24r8Wc5r2V9DxU5tyqeUGSEwgUr8+Q=; b=fVlYSUL8RtKiaLK+JCly783CUT
-        bQDL7isowG8X1gOXi2I85W5/gMHUHIC4FSzD8OW1/o61mz0vWnRudp/zGM5c3t0qzaa7i8ETgfqqf
-        a8KVpjSFwT4VR0KeXhB2LxdDqpCRIe2GiAaceLOEOBIKLgIFfn9EW6JNzqEGo2dGrOdgCB+pfzAit
-        b9pMpMjFeD0QwAipMjZGS5alpouqBRrbGS/0cSEtx3bWL9YL50o+Sr0WDooGTSiQSLWiv3UtAE4Us
-        Nkfae1FhXs5St/J1DAjVMf1MA/eKiVIAtcNOr56M10d7vcZ6VBQDIIc2jadGIvKUBlGU51V+6fQf2
-        3/DMnvhQ==;
-Received: from spamrelay.zxcs.nl ([185.104.28.12]:33546 helo=mail-slave01.zxcs.nl)
-        by web0081.zxcs.nl with esmtp (Exim 4.92.3)
-        (envelope-from <dev@pascalroeleven.nl>)
-        id 1jByWN-000AQ6-8k; Wed, 11 Mar 2020 11:23:27 +0100
+        id S1726097AbgCKK1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 06:27:53 -0400
+Received: from correo.santafe.edu.ar ([200.12.192.40]:47628 "EHLO
+        correo.santafe.edu.ar" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726044AbgCKK1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 06:27:53 -0400
+Received: from correo.santafe.edu.ar (localhost [127.0.0.1])
+        by correo.santafe.edu.ar (Postfix) with ESMTP id 48cp7V0K5LzxKf
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 07:27:50 -0300 (-03)
+Authentication-Results: correo.santafe.edu.ar (amavisd-new);
+        dkim=pass (1024-bit key) reason="pass (just generated, assumed good)"
+        header.d=santafe.edu.ar
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=santafe.edu.ar;
+         h=content-transfer-encoding:organization:message-id:user-agent
+        :reply-to:subject:subject:to:from:from:date:date:content-type
+        :content-type:mime-version; s=dkim; t=1583922469; x=1586514470;
+         bh=tPjUW5NU5C+Ff8vRgGD5FeGEpjRYDqr+uE4kYDI+c+Y=; b=tEnvvMJHSRr8
+        rJKlE/MdM084ktA+mW4n6F7oQfahpbO023nCwBc8bODHd7DZMvDRMzFh+Hqtf//U
+        vo0KaoNG9at9o7SKuDV5D5xzhdNS/28GUFBKLWVNCocWxSIXQrKrk8u0eDtM0qC4
+        3X+d8M6ER3kxSYFFYXY0PAs7P6rX/Gk=
+X-Virus-Scanned: Debian amavisd-new at debian9-asiserver.santafe.gob.ar
+Received: from correo.santafe.edu.ar ([127.0.0.1])
+        by correo.santafe.edu.ar (correo.santafe.edu.ar [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id qf-R6GRAXDVn for <devicetree@vger.kernel.org>;
+        Wed, 11 Mar 2020 07:27:49 -0300 (-03)
+Received: from localhost (localhost [127.0.0.1])
+        by correo.santafe.edu.ar (Postfix) with ESMTPSA id 48cp4B3DFCzwkb;
+        Wed, 11 Mar 2020 07:24:58 -0300 (-03)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8;
  format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Wed, 11 Mar 2020 11:23:27 +0100
-From:   Pascal Roeleven <dev@pascalroeleven.nl>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 1/2] drm/panel: Add Starry KR070PE2T
-In-Reply-To: <20200310185422.GA22095@ravnborg.org>
-References: <20200310102725.14591-1-dev@pascalroeleven.nl>
- <20200310102725.14591-2-dev@pascalroeleven.nl>
- <20200310185422.GA22095@ravnborg.org>
-User-Agent: Roundcube Webmail/1.4.2
-Message-ID: <280a128711458950b55b070dbf6f07a1@pascalroeleven.nl>
-X-Sender: dev@pascalroeleven.nl
+Date:   Wed, 11 Mar 2020 11:24:58 +0100
+From:   Rosario <prim128_rosario@santafe.edu.ar>
+To:     undisclosed-recipients:;
+Subject: AW:
+Reply-To: niklaszennstromcare@gmail.com
+User-Agent: Roundcube Webmail
+Message-ID: <598ee755556fcc6e985713427ae0dbba@santafe.edu.ar>
+X-Sender: prim128_rosario@santafe.edu.ar
+Organization: niklaszennstromcare@gmail.com
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-03-10 19:54, Sam Ravnborg wrote:
-> A few things to improve.
-> 
-> The binding should be a separate patch.
-> subject - shall start with dt-bindings:
-> Shall be sent to deveicetree mailing list.
 
-Hi Sam,
 
-Thank you very much for your review.
-I did consider this. The reason I combined the patches, is that the 
-binding depends on the display so I thought they were related in some 
-way. Didn't know the correct procedure to handle this. I will split them 
-apart in v2.
+--=20
+Sch=C3=B6nen Tag,
 
->> ---
->>  .../display/panel/starry,kr070pe2t.txt        |  7 +++++
->>  drivers/gpu/drm/panel/panel-simple.c          | 26 
->> +++++++++++++++++++
->>  2 files changed, 33 insertions(+)
->>  create mode 100644 
->> Documentation/devicetree/bindings/display/panel/starry,kr070pe2t.txt
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/display/panel/starry,kr070pe2t.txt 
->> b/Documentation/devicetree/bindings/display/panel/starry,kr070pe2t.txt
->> new file mode 100644
->> index 000000000..699ad5eb2
->> --- /dev/null
->> +++ 
->> b/Documentation/devicetree/bindings/display/panel/starry,kr070pe2t.txt
->> @@ -0,0 +1,7 @@
->> +Starry 7" (800x480 pixels) LCD panel
->> +
->> +Required properties:
->> +- compatible: should be "starry,kr070pe2t"
->> +
->> +This binding is compatible with the simple-panel binding, which is 
->> specified
->> +in simple-panel.txt in this directory.
->> diff --git a/drivers/gpu/drm/panel/panel-simple.c 
->> b/drivers/gpu/drm/panel/panel-simple.c
->> index e14c14ac6..027a2612b 100644
->> --- a/drivers/gpu/drm/panel/panel-simple.c
->> +++ b/drivers/gpu/drm/panel/panel-simple.c
->> @@ -2842,6 +2842,29 @@ static const struct panel_desc 
->> shelly_sca07010_bfn_lnn = {
->>  	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
->>  };
->> 
->> +static const struct drm_display_mode starry_kr070pe2t_mode = {
->> +	.clock = 33000,
->> +	.hdisplay = 800,
->> +	.hsync_start = 800 + 209,
->> +	.hsync_end = 800 + 209 + 1,
->> +	.htotal = 800 + 209 + 1 + 45,
->> +	.vdisplay = 480,
->> +	.vsync_start = 480 + 22,
->> +	.vsync_end = 480 + 22 + 1,
->> +	.vtotal = 480 + 22 + 1 + 22,
->> +	.vrefresh = 60,
->> +};
-> 
-> Please adjust so:
-> vrefresh * htotal * vtotal == clock.
-> I cannot say what needs to be adjusted.
-> But we are moving away from specifying vrefresh and want the
-> data to be OK.
+Herr Niklas Zennstr=C3=B6m, ein schwedischer Wirtschaftsmagnat, Investor =
+und=20
+Philanthrop, der weltweit rund =C2=A3208.3 Millionen Pfund an=20
+Menschenrechtsorganisationen / Wohlt=C3=A4tigkeitsorganisationen gespende=
+t=20
+hat, hat sich ebenfalls verpflichtet, den Rest von 25% in diesem Jahr=20
+2020 zu verschenken, und Ihre E-Mail erfolgte nach dem Zufallsprinzip=20
+Das Team von Google Inc. wurde als aktiver Web-Nutzer ausgew=C3=A4hlt, um=
+=20
+eine Spende in H=C3=B6he von $1 Million USD im Rahmen des=20
+Wohlt=C3=A4tigkeitsprojekts Zennstr=C3=B6m Philanthropies zu erhalten. Bi=
+tte=20
+best=C3=A4tigen Sie den Besitz Ihrer E-Mail-Adresse, indem Sie sich per=20
+E-Mail an Niklas Zennstr=C3=B6m wenden: niklaszennstromcare@gmail.com F=C3=
+=BCr den=20
+Anspruch
 
-Just like Ville Syrjälä, I ran the numbers and vrefresh indeed 
-calculates to 59.58.
+Name des Ansprechpartners: Herr Niklas Zennstr=C3=B6m
+-------------------------------------------------------------------
+
+Good day,
+
+Mr. Niklas Zennstr=C3=B6m, a Swedish business tycoon, investor, and=20
+philanthropist who has distributed approximately =C2=A3208.3 million to h=
+uman=20
+rights organizations/charity globally, has also pledged to give away the=20
+rest of 25% this year 2020 and your E-mail =C2=A0was randomly selected by=
+=20
+Google Inc team as an active web user to =C2=A0receive a donation of $1m =
+(One=20
+Million USD) as part of Zennstr=C3=B6m Philanthropies charity project. Do=
+=20
+Kindly Confirm ownership of your E-mail by contacting Niklas Zennstr=C3=B6=
+m=20
+via email: niklaszennstromcare@gmail.com  for claim.
+
+Contact Name: Mr. Niklas Zennstr=C3=B6m
