@@ -2,188 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1758818185F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDD98181889
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:47:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729317AbgCKMoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 08:44:03 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.168]:11926 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729286AbgCKMoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:44:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1583930638;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=szVCPXkRhUgrnj2vMcg5P15yraJcGhHnjrwU78GZvNI=;
-        b=LqJdsVPuJgkzVTwma5TMiHDHLxysyjEfghV9zzPWJ9K9B+qUGV3K/UC9qc8lO6BhUk
-        V0E3v4vTc5tX1Dm7KGtmzK3NeFX9oNj/xKV+Y80dOJY9k5K8mXoGB/rwqHgW2G9DN0On
-        rXdvJI+o6vugcnYHwClHYrQnTlxE1fr2ZaAu3QtHKCHfUSBU4EidwdX1/tqol7bkPvdn
-        zDNGQc/8cmFFvLTrozo6qOsKucQ0Dd+6GFMVIA4T6LKjpFfYOQJO2JKAu7H7intTDbid
-        2gfA/vwl/yvRb3MNnEEcz4CdWYkclE61jcunVj5VLp/b+KvLQphejWekRDDOUNtK+YH1
-        WGJA==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHmMnw43lIA8="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 46.2.0 DYNA|AUTH)
-        with ESMTPSA id y0a02cw2BChlyCN
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-        Wed, 11 Mar 2020 13:43:47 +0100 (CET)
-Subject: Re: [RFC v2 6/8] MIPS: DTS: jz4780: account for Synopsys HDMI driver and LCD controller
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Content-Type: text/plain; charset=iso-8859-1
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <1583177253.3.5@crapouillou.net>
-Date:   Wed, 11 Mar 2020 13:43:46 +0100
-Cc:     Paul Boddie <paul@boddie.org.uk>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andi Kleen <ak@linux.intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mips@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        MIPS Creator CI20 Development 
-        <mips-creator-ci20-dev@googlegroups.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F29E9DCC-29BC-4B88-9288-3E53BF8423C6@goldelico.com>
-References: <cover.1582913973.git.hns@goldelico.com> <04b485165f38744816a0446e95150cafdeb716ee.1582913973.git.hns@goldelico.com> <1583177253.3.5@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3124)
+        id S1729439AbgCKMq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 08:46:56 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:42442 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729402AbgCKMq4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:46:56 -0400
+Received: by mail-wr1-f68.google.com with SMTP id v11so2423219wrm.9
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 05:46:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9aHr7/EWopa+d5MVT7UWPgRiU9Syfo6iTheTFisLSBg=;
+        b=FXsN33JoJealTXC3dRRue6HkzhWSIRjvlNRUP49llb/Tp1/P6LLbWK2WENByBzb932
+         Vi1Fg8Ri+qgxJrwy5zjp/NXrbWtEhuMkRTQj1X4R9I44S53W3vZuVYp8IrCbYVblbQ3t
+         O28JXtBnjgkZqXtJcIVINkr/xuwcmJ4AcO+2ctUVBEJKMuSZEV7wYUoSaD3Zco3ZO7q/
+         ujjg+wfK4m1DiebSFJn9cbZqflg/q7DAWj/98GahfRpw7xqn470ERyL3IPCqRQQaQIB0
+         0zSlrkdrriSBVsPOQ4i+h5gPOwW+U83Jz9SjjpEDyMiKdpx/YTRM4O6K6sHqODrD7YCC
+         shxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9aHr7/EWopa+d5MVT7UWPgRiU9Syfo6iTheTFisLSBg=;
+        b=Alr5O6qDvDZsWV7UG7hLGIAkBBPnstomze6cl/hLFTgpB4kCIKi4zH1PF4kmR9LeHf
+         +cxf3jfzFVM3nvOJFFvpxsLKy0hux7WeOYyPbUDTuO2BzNKsuIpM6+v4R4SmkQ9tbc/9
+         zY2wCsSw4jSfjQcSXVJYUZRLsMMu7IB7MRwvK6uzsV6gSX3hWxTZpwrl00TmLu2lWPgA
+         nIu9fVu6Im1SYUoLjANe6kxDQw+yk6Td/njfBB2XJK9+IZieYgguHMnyty+fqfjdOrM/
+         iKuc/B8jH4Taewx1y219YEicwy7hiFzVc5iqPvB9WcQL05QGwM+9ymAmiTXJQIJdrtIT
+         HPXQ==
+X-Gm-Message-State: ANhLgQ1tm6OGEkcXGIdcC/1q81D81kR6iYP5NaRlQ0UMgYZZGTSjB6s6
+        uPToa0ZzGUuSZRlD/LhyqJ9eew==
+X-Google-Smtp-Source: ADFU+vvLjmlfZFee1kgQb0ezvJQIIb3y7DZjOUpYxqDYvVtYVhI9wjUkV+NDFpgxKBOntX41muaOsw==
+X-Received: by 2002:adf:bb81:: with SMTP id q1mr4344011wrg.110.1583930814354;
+        Wed, 11 Mar 2020 05:46:54 -0700 (PDT)
+Received: from localhost.localdomain ([2001:171b:c9a8:fbc0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id c2sm8380020wma.39.2020.03.11.05.46.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2020 05:46:53 -0700 (PDT)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     bhelgaas@google.com, will@kernel.org, robh+dt@kernel.org,
+        joro@8bytes.org, baolu.lu@linux.intel.com, sudeep.holla@arm.com,
+        linux-doc@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, iommu@lists.linux-foundation.org
+Cc:     lorenzo.pieralisi@arm.com, corbet@lwn.net, mark.rutland@arm.com,
+        liviu.dudau@arm.com, guohanjun@huawei.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, dwmw2@infradead.org,
+        amurray@thegoodpenguin.co.uk, frowand.list@gmail.com,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v2 00/11] PCI/ATS: Device-tree support and other improvements
+Date:   Wed, 11 Mar 2020 13:44:55 +0100
+Message-Id: <20200311124506.208376-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Enable ATS on device-tree based systems, and factor the common ATS
+enablement checks into pci_enable_ats().
 
-> Am 02.03.2020 um 20:27 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi Nikolaus,
->=20
->=20
-> Le ven., f=E9vr. 28, 2020 at 19:19, H. Nikolaus Schaller =
-<hns@goldelico.com> a =E9crit :
->> From: Paul Boddie <paul@boddie.org.uk>
->> A specialisation of the generic Synopsys HDMI driver is employed for =
-JZ4780
->> HDMI support. This requires a new driver, plus device tree and =
-configuration
->> modifications.
->> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
->> arch/mips/boot/dts/ingenic/jz4780.dtsi | 32 =
-++++++++++++++++++++++++++
->> 1 file changed, 32 insertions(+)
->> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi =
-b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->> index f928329b034b..391d4e1efd35 100644
->> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
->> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->> @@ -433,4 +433,36 @@
->> 		status =3D "disabled";
->> 	};
->> +
->> +	hdmi: hdmi@10180000 {
->> +		compatible =3D "ingenic,jz4780-dw-hdmi";
->> +		reg =3D <0x10180000 0x8000>;
->> +		reg-io-width =3D <4>;
->> +
->> +		clocks =3D <&cgu JZ4780_CLK_HDMI>, <&cgu =
-JZ4780_CLK_AHB0>;
->> +		clock-names =3D "isfr" , "iahb";
->> +
->> +		assigned-clocks =3D <&cgu JZ4780_CLK_HDMI>;
->> +		assigned-clock-rates =3D <27000000>;
->=20
-> I *think* this should go to the board file.
->=20
->> +
->> +		interrupt-parent =3D <&intc>;
->> +		interrupts =3D <3>;
->> +
->> +		/* ddc-i2c-bus =3D <&i2c4>; */
->> +
->> +		status =3D "disabled";
->> +	};
->> +
->> +	lcd: lcd@13050000 {
->=20
-> The node name should be 'lcd-controller'.
->=20
->> +		compatible =3D "ingenic,jz4740-lcd";
->=20
-> The JZ4780's LCD controller is much newer than the JZ4740 one, so even =
-if it works with the "ingenic,jz4740-lcd" compatible string, you want it =
-as a fallback.
-> So this should be: compatible =3D "ingenic,jz4780-lcd", =
-"ingenic,jz4740-lcd".
->=20
-> That means the YAML should be updated too.
+Since v1 [1] I added acks and review tags, simplified patch 3 and tried
+to clarify the comment in patch 2.
 
-I have started to look into jz4780 HDMI setup again.
+I'd like acks or comments on the following patches:
+* PCI on patches 2, 3 and 5
+* Arm SMMUv3 on patch 7
+* Intel VT-d on patch 8
+* arm64 DT on patch 10 
 
-Well, there is no driver compatible to "ingenic,jz4780-lcd" so far
-and it is questionalbe if we need a different one.
+Thanks,
+Jean
 
-I think we should rather make the driver also compatible
-than adding a fallback to ingenic,jz4740-lcdto the DTS.
+[1] https://lore.kernel.org/linux-iommu/20200213165049.508908-1-jean-philippe@linaro.org/
 
-The reason why this is better even if both LCDC are almost
-compatible is that the jz4780 allows for much bigger displays
-and therefore should have its own jz_soc_info with 4k x 2k
-as maximum.
+Jean-Philippe Brucker (11):
+  dt-bindings: PCI: generic: Add ats-supported property
+  PCI: Add ats_supported host bridge flag
+  PCI: OF: Check whether the host bridge supports ATS
+  ACPI/IORT: Check ATS capability in root complex node
+  PCI/ATS: Gather checks into pci_ats_supported()
+  iommu/amd: Use pci_ats_supported()
+  iommu/arm-smmu-v3: Use pci_ats_supported()
+  iommu/vt-d: Use pci_ats_supported()
+  ACPI/IORT: Drop ATS fwspec flag
+  arm64: dts: fast models: Enable PCIe ATS for Base RevC FVP
+  Documentation: Generalize the "pci=noats" boot parameter
 
-Next I tried to find out if the LCDC are really compatible.
+ .../admin-guide/kernel-parameters.txt         |  4 +-
+ .../bindings/pci/host-generic-pci.yaml        |  6 +++
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts     |  1 +
+ drivers/acpi/arm64/iort.c                     | 38 +++++++++++++------
+ drivers/acpi/pci_root.c                       |  3 ++
+ drivers/iommu/amd_iommu.c                     | 12 ++----
+ drivers/iommu/arm-smmu-v3.c                   | 18 ++-------
+ drivers/iommu/intel-iommu.c                   |  9 ++---
+ drivers/pci/ats.c                             | 30 ++++++++++++++-
+ drivers/pci/controller/pci-host-common.c      | 11 ++++++
+ drivers/pci/probe.c                           |  8 ++++
+ include/linux/acpi_iort.h                     |  8 ++++
+ include/linux/iommu.h                         |  4 --
+ include/linux/pci-ats.h                       |  3 ++
+ include/linux/pci.h                           |  1 +
+ 15 files changed, 109 insertions(+), 47 deletions(-)
 
-Well the jz4780 has two lcdc instances but they are separated
-by the reg addr. Next, there are unique features (like picture in
-picture with alpha blending) but those are probably disabled
-if not programmed from reset state. This may become a reason
-to separate or augment the driver for the jz4780 but at the
-moment we can ignore that.
-
-There are also subtly different bit definitions and register
-widths (e.g. 24 bit in addition to 16/18 bit modes or more bits
-for the sync position) but it looks as if the ingenic_drm
-driver already handles this.
-
-Then I tried to read back the registers. Strangely they
-are all 0x00000000. So there is no programming of the
-lcd-controller in our DT setup with HDMI at all!
-
-I also checked that ingenic_drm_probe() is called and
-returns successfully 0. It also reports that a /dev/fb
-has been created:
-
-[    7.908830] ingenic-drm 13050000.lcd-controller: fb0: ingenic-drmdrmf =
-frame buffer device
-
-But for example ingenic_drm_encoder_atomic_mode_set() is
-never called which should write some registers of the LCDC.
-
-I only did see some calls to ingenic_drm_encoder_atomic_check().
-
-This of course explains why we have no HDMI signals despite
-proper HPD and a /dev/fb0. Because the LCDC is not being
-programmed.
-
-Any ideas / hints how to check or improve?
-
-BR and thanks,
-Nikolaus
+-- 
+2.25.1
 
