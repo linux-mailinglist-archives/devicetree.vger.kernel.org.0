@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD98181889
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:47:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79320181886
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:47:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729439AbgCKMq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 08:46:56 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:42442 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729402AbgCKMq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:46:56 -0400
-Received: by mail-wr1-f68.google.com with SMTP id v11so2423219wrm.9
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 05:46:55 -0700 (PDT)
+        id S1729458AbgCKMq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 08:46:58 -0400
+Received: from mail-wm1-f43.google.com ([209.85.128.43]:51591 "EHLO
+        mail-wm1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729384AbgCKMq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:46:58 -0400
+Received: by mail-wm1-f43.google.com with SMTP id a132so1946702wme.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 05:46:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9aHr7/EWopa+d5MVT7UWPgRiU9Syfo6iTheTFisLSBg=;
-        b=FXsN33JoJealTXC3dRRue6HkzhWSIRjvlNRUP49llb/Tp1/P6LLbWK2WENByBzb932
-         Vi1Fg8Ri+qgxJrwy5zjp/NXrbWtEhuMkRTQj1X4R9I44S53W3vZuVYp8IrCbYVblbQ3t
-         O28JXtBnjgkZqXtJcIVINkr/xuwcmJ4AcO+2ctUVBEJKMuSZEV7wYUoSaD3Zco3ZO7q/
-         ujjg+wfK4m1DiebSFJn9cbZqflg/q7DAWj/98GahfRpw7xqn470ERyL3IPCqRQQaQIB0
-         0zSlrkdrriSBVsPOQ4i+h5gPOwW+U83Jz9SjjpEDyMiKdpx/YTRM4O6K6sHqODrD7YCC
-         shxw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=3krMYkJ5TguiyRWERa/+CMYLcOJYUhlPd6t/ch8qqgQ=;
+        b=v/Zaf60vUqEkNfZdt1gJK9VC+hb3PZmmanEVWPvFm7vnZBA5ZwW1m4ZykGbhtwPbxS
+         WDb8SaSMRfYNq9MWw8D64WiMIUDABRqX0BpAT4ePCPBmBilmDeqovdmyjQQbeeinzjT3
+         dU7ZYFiTiptVbhWvRNSSwkbXuMm85b7zo3+WewNnxbyUAgpAYg6IacX7b8dZIsVjmoPL
+         ljKaqQwgtRwTqJbizGpaPcYht4A3xsbwTlrPglZUOAUbUiWXn8f1kPSnUL4oTeXCwx5a
+         HVG7oETbPqToLR4mHqQQfeuOcp3PJuFsthzK2H6yoTG+E5ivLt3KD6d/PuIk6kKoxhmV
+         ptdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9aHr7/EWopa+d5MVT7UWPgRiU9Syfo6iTheTFisLSBg=;
-        b=Alr5O6qDvDZsWV7UG7hLGIAkBBPnstomze6cl/hLFTgpB4kCIKi4zH1PF4kmR9LeHf
-         +cxf3jfzFVM3nvOJFFvpxsLKy0hux7WeOYyPbUDTuO2BzNKsuIpM6+v4R4SmkQ9tbc/9
-         zY2wCsSw4jSfjQcSXVJYUZRLsMMu7IB7MRwvK6uzsV6gSX3hWxTZpwrl00TmLu2lWPgA
-         nIu9fVu6Im1SYUoLjANe6kxDQw+yk6Td/njfBB2XJK9+IZieYgguHMnyty+fqfjdOrM/
-         iKuc/B8jH4Taewx1y219YEicwy7hiFzVc5iqPvB9WcQL05QGwM+9ymAmiTXJQIJdrtIT
-         HPXQ==
-X-Gm-Message-State: ANhLgQ1tm6OGEkcXGIdcC/1q81D81kR6iYP5NaRlQ0UMgYZZGTSjB6s6
-        uPToa0ZzGUuSZRlD/LhyqJ9eew==
-X-Google-Smtp-Source: ADFU+vvLjmlfZFee1kgQb0ezvJQIIb3y7DZjOUpYxqDYvVtYVhI9wjUkV+NDFpgxKBOntX41muaOsw==
-X-Received: by 2002:adf:bb81:: with SMTP id q1mr4344011wrg.110.1583930814354;
-        Wed, 11 Mar 2020 05:46:54 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=3krMYkJ5TguiyRWERa/+CMYLcOJYUhlPd6t/ch8qqgQ=;
+        b=fxXjpbwTNpn09uXsc4NlRmGb3rV3Rk/kvbFIijlIoWAg5LkLUWsc5xv8j5tWYNhvXa
+         D5f6IKOtskpHdxKcuWHFxg47E9WCJlAR/E79pUDGAIplOHh+/39tmnQmtF4Q0btzLPw4
+         Q/wzXEWpnkTzSHP9IKb0rSaTfsjFLFtw2IUrTkKzrV74bUQPpgVVtjXMtxTg477MGzky
+         cR8xoIIP+AIOePeXju6UZoEteJ0BlBcco6lbiEmFDVck4uuwDAIVMU1KvCZr3+zRQbXW
+         Klzoj9tdJzX6UoP4rqI13NiDU1m0lmfPDuvmZBNBAC3yUHBztDJTHcHiqUcDwlccX21c
+         360g==
+X-Gm-Message-State: ANhLgQ0+ntX+ew8hA5A9+PYVzy4bM0uib+HAvvXBLh+qqeatHojebIpM
+        8yC+7V9RpOQGxHFBxeOBqNQUJw==
+X-Google-Smtp-Source: ADFU+vt+OuMwfLSUXiB+t1SNAG3tC3rRy29ica+E537TLkfPGDuXQo1KUhGf31RO2GY8IfyREARQ2w==
+X-Received: by 2002:a1c:c3c3:: with SMTP id t186mr3842975wmf.118.1583930815804;
+        Wed, 11 Mar 2020 05:46:55 -0700 (PDT)
 Received: from localhost.localdomain ([2001:171b:c9a8:fbc0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id c2sm8380020wma.39.2020.03.11.05.46.52
+        by smtp.gmail.com with ESMTPSA id c2sm8380020wma.39.2020.03.11.05.46.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2020 05:46:53 -0700 (PDT)
+        Wed, 11 Mar 2020 05:46:55 -0700 (PDT)
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
 To:     bhelgaas@google.com, will@kernel.org, robh+dt@kernel.org,
         joro@8bytes.org, baolu.lu@linux.intel.com, sudeep.holla@arm.com,
@@ -54,11 +54,14 @@ Cc:     lorenzo.pieralisi@arm.com, corbet@lwn.net, mark.rutland@arm.com,
         liviu.dudau@arm.com, guohanjun@huawei.com, rjw@rjwysocki.net,
         lenb@kernel.org, robin.murphy@arm.com, dwmw2@infradead.org,
         amurray@thegoodpenguin.co.uk, frowand.list@gmail.com,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH v2 00/11] PCI/ATS: Device-tree support and other improvements
-Date:   Wed, 11 Mar 2020 13:44:55 +0100
-Message-Id: <20200311124506.208376-1-jean-philippe@linaro.org>
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 01/11] dt-bindings: PCI: generic: Add ats-supported property
+Date:   Wed, 11 Mar 2020 13:44:56 +0100
+Message-Id: <20200311124506.208376-2-jean-philippe@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200311124506.208376-1-jean-philippe@linaro.org>
+References: <20200311124506.208376-1-jean-philippe@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -66,53 +69,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable ATS on device-tree based systems, and factor the common ATS
-enablement checks into pci_enable_ats().
+Add a way for firmware to tell the OS that ATS is supported by the PCI
+root complex. An endpoint with ATS enabled may send Translation Requests
+and Translated Memory Requests, which look just like Normal Memory
+Requests with a non-zero AT field. So a root controller that ignores the
+AT field may simply forward the request to the IOMMU as a Normal Memory
+Request, which could end badly. In any case, the endpoint will be
+unusable.
 
-Since v1 [1] I added acks and review tags, simplified patch 3 and tried
-to clarify the comment in patch 2.
+The ats-supported property allows the OS to only enable ATS in endpoints
+if the root controller can handle ATS requests. Only add the property to
+pcie-host-ecam-generic for the moment. For non-generic root controllers,
+availability of ATS can be inferred from the compatible string.
 
-I'd like acks or comments on the following patches:
-* PCI on patches 2, 3 and 5
-* Arm SMMUv3 on patch 7
-* Intel VT-d on patch 8
-* arm64 DT on patch 10 
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+---
+ Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Thanks,
-Jean
-
-[1] https://lore.kernel.org/linux-iommu/20200213165049.508908-1-jean-philippe@linaro.org/
-
-Jean-Philippe Brucker (11):
-  dt-bindings: PCI: generic: Add ats-supported property
-  PCI: Add ats_supported host bridge flag
-  PCI: OF: Check whether the host bridge supports ATS
-  ACPI/IORT: Check ATS capability in root complex node
-  PCI/ATS: Gather checks into pci_ats_supported()
-  iommu/amd: Use pci_ats_supported()
-  iommu/arm-smmu-v3: Use pci_ats_supported()
-  iommu/vt-d: Use pci_ats_supported()
-  ACPI/IORT: Drop ATS fwspec flag
-  arm64: dts: fast models: Enable PCIe ATS for Base RevC FVP
-  Documentation: Generalize the "pci=noats" boot parameter
-
- .../admin-guide/kernel-parameters.txt         |  4 +-
- .../bindings/pci/host-generic-pci.yaml        |  6 +++
- arch/arm64/boot/dts/arm/fvp-base-revc.dts     |  1 +
- drivers/acpi/arm64/iort.c                     | 38 +++++++++++++------
- drivers/acpi/pci_root.c                       |  3 ++
- drivers/iommu/amd_iommu.c                     | 12 ++----
- drivers/iommu/arm-smmu-v3.c                   | 18 ++-------
- drivers/iommu/intel-iommu.c                   |  9 ++---
- drivers/pci/ats.c                             | 30 ++++++++++++++-
- drivers/pci/controller/pci-host-common.c      | 11 ++++++
- drivers/pci/probe.c                           |  8 ++++
- include/linux/acpi_iort.h                     |  8 ++++
- include/linux/iommu.h                         |  4 --
- include/linux/pci-ats.h                       |  3 ++
- include/linux/pci.h                           |  1 +
- 15 files changed, 109 insertions(+), 47 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+index 47353d0cd394..7d40edd7f1ef 100644
+--- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
++++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
+@@ -107,6 +107,12 @@ properties:
+ 
+   dma-coherent: true
+ 
++  ats-supported:
++    description:
++      Indicates that a PCIe host controller supports ATS, and can handle Memory
++      Requests with Address Type (AT).
++    type: boolean
++
+ required:
+   - compatible
+   - reg
 -- 
 2.25.1
 
