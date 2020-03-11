@@ -2,73 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD0AB1812BF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:17:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 196D91812CA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728255AbgCKIRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 04:17:09 -0400
-Received: from mga02.intel.com ([134.134.136.20]:6826 "EHLO mga02.intel.com"
+        id S1728242AbgCKIUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 04:20:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54420 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728242AbgCKIRJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 04:17:09 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Mar 2020 01:17:08 -0700
-X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; 
-   d="scan'208";a="289313228"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Mar 2020 01:17:05 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 31A822096B; Wed, 11 Mar 2020 10:17:03 +0200 (EET)
-Date:   Wed, 11 Mar 2020 10:17:03 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, linux-media@vger.kernel.org
-Subject: Re: [PATCH v12 06/19] media: v4l2-fwnode: add initial connector
- parsing support
-Message-ID: <20200311081703.GF5379@paasikivi.fi.intel.com>
-References: <20200309101428.15267-1-m.felsch@pengutronix.de>
- <20200309101428.15267-7-m.felsch@pengutronix.de>
+        id S1726097AbgCKIUq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 04:20:46 -0400
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 448342082E;
+        Wed, 11 Mar 2020 08:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583914845;
+        bh=GmJNbFRmVzHqNxMlbiejxZG/ZtZVxK9/BMxk9LgKxjk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=01E/2LMki/OUi3TQ3TRpihzzOHd4Vf2dgE9WX9pv0K+9/tTS88ecvx99Chjul6Hr7
+         hlTRQeClfWJmsW2mQM7RjdXSwDb8BZSxzQD8xt30PTc/Ncj7Rcp3MqpMm2ou4XZftV
+         559aHT5QeU4LXQAoA0+jErbPkGmwdnk3KMTc0zPI=
+Date:   Wed, 11 Mar 2020 16:20:38 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, leoyang.li@nxp.com, laurentiu.tudor@nxp.com,
+        Xiaowei.Bao@nxp.com
+Subject: Re: [PATCHv2] arm64: dts: layerscape: add iommu-map property to pci
+ nodes
+Message-ID: <20200311082037.GZ29269@dragon>
+References: <20200302042027.15589-1-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200309101428.15267-7-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200302042027.15589-1-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+On Mon, Mar 02, 2020 at 12:20:27PM +0800, Zhiqiang Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> Add the iommu-map property to the pci nodes so that the firmware
+> fixes it up with the required values thus enabling iommu for
+> devices connected over pci.
+> 
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 
-On Mon, Mar 09, 2020 at 11:14:15AM +0100, Marco Felsch wrote:
-...
-> +void v4l2_fwnode_connector_free(struct v4l2_fwnode_connector *connector)
-> +{
-> +	struct v4l2_connector_link *link, *tmp;
-> +
-> +	if (IS_ERR_OR_NULL(connector) ||
-> +	    connector->type == V4L2_CONN_UNKNOWN)
-> +		return;
-> +
-> +	list_for_each_entry_safe(link, tmp, &connector->links, head) {
-> +		v4l2_fwnode_put_link(&link->fwnode_link);
-> +		list_del(&link->head);
-> +		kfree(link);
-> +	}
-> +
-> +	kfree(connector->label);
-> +	connector->label = NULL;
-> +	connector = NULL;
-
-No need to set connector NULL here.
-
-> +}
-
--- 
-Sakari Ailus
+Applied, thanks.
