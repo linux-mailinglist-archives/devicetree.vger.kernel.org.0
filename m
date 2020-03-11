@@ -2,173 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 611B8181258
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 08:50:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37D1218127C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:00:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728195AbgCKHtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 03:49:39 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:54605 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728364AbgCKHti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 03:49:38 -0400
-Received: from mwalle01.sab.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S1728377AbgCKH76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 03:59:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50936 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726923AbgCKH76 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 03:59:58 -0400
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id BF7FF23E7E;
-        Wed, 11 Mar 2020 08:49:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1583912975;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=I2MV/iTElRHbbr8/XhNglXhimfvX7WBgLIuSk6HZYZc=;
-        b=S36qdNcfVFKL2hpQU4vGZda4LT6O9K7TSbhFRut3l0omsNF+TK4sd7lAnZXojfCEQr+gvM
-        2oR2AMKWTTMbLX3ImbpgOSdJ4XNRwcECWxna8IU5SBZU4jbiwBQPDqNzTIo35/U6iE4uNT
-        95e+AtArCfCgq2UBSVddlajin7pKgkA=
-From:   Michael Walle <michael@walle.cc>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Li Yang <leoyang.li@nxp.com>, Michael Walle <michael@walle.cc>
-Subject: [PATCH v2 4/4] arm64: dts: ls1028a: sl28: add support for variant 2
-Date:   Wed, 11 Mar 2020 08:49:29 +0100
-Message-Id: <20200311074929.19569-5-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200311074929.19569-1-michael@walle.cc>
-References: <20200311074929.19569-1-michael@walle.cc>
+        by mail.kernel.org (Postfix) with ESMTPSA id B394220873;
+        Wed, 11 Mar 2020 07:59:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1583913597;
+        bh=01KKvpVC8TI7EECmHnPs6+Z8JXYVklG4uQqeeSbTFPM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EJEiS1V+nVRZfPXZ+9M+aONnNVs9hc4PWRH5p31hmWWFYzxOZhxePFOufX7n3Gqgo
+         m+YkY6FnufHVSj2Y18GoEHaMPay6tUgkPnDpq1EyAUM9+yiejiX6TKWiK36N4kfVtu
+         kscH7MGAXTVp6LGEKUG1nKDzW1n9TUIlTsD2CVUk=
+Date:   Wed, 11 Mar 2020 15:59:50 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     robh@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Anson.Huang@nxp.com, devicetree@vger.kernel.org, kernel@puri.sm,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/8] arm64: dts: librem5-devkit: description updates
+Message-ID: <20200311075949.GV29269@dragon>
+References: <20200227131733.4228-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Bar: ++++++
-X-Spam-Level: ******
-X-Rspamd-Server: web
-X-Spam-Status: Yes, score=6.40
-X-Spam-Score: 6.40
-X-Rspamd-Queue-Id: BF7FF23E7E
-X-Spamd-Result: default: False [6.40 / 15.00];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         NEURAL_SPAM(0.00)[0.811];
-         DKIM_SIGNED(0.00)[];
-         DBL_PROHIBIT(0.00)[0.0.0.5:email,0.0.0.4:email];
-         RCPT_COUNT_SEVEN(0.00)[8];
-         MID_CONTAINS_FROM(1.00)[];
-         RCVD_COUNT_ZERO(0.00)[0];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:12941, ipnet:213.135.0.0/19, country:DE];
-         SUSPICIOUS_RECIPS(1.50)[]
-X-Spam: Yes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200227131733.4228-1-martin.kepplinger@puri.sm>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that there is support for the Felix switch this variant can also be
-added. It features two external ports ethernet ports which are connected
-to the internal switch core. No direct connection to any of the enetc's
-is supported.
+On Thu, Feb 27, 2020 at 02:17:25PM +0100, Martin Kepplinger wrote:
+> 
+> Shawn, I included Fabio's feedback despite you've taken the changes already.
+> I don't know how "far out there" they are already, but in case you want to
+> rebase / force-push this again, here is v4: It basically only adds one Fixes
+> tag.
+> 
+> 
+> These are additions to the imx8mq-librem5-devkit devicetree description
+> we are running for quite some time. All users should have them:
+> 
+> revision history
+> ----------------
+> v4: review by Fabio: add Fixes tag and reorder a bit. thanks.
+> v3: review by Shawn: newline / hyphen issues; squashed related ones.
+>     thanks a lot.
+>     https://lore.kernel.org/linux-arm-kernel/20200224062917.4895-1-martin.kepplinger@puri.sm/
+> v2: review by Shawn and Guido: remove a battery description
+>     add SoB tags, coding style fixes, squash and reorder audio
+>     descritions, remove redundant and unneeded changes.
+>     https://lore.kernel.org/linux-arm-kernel/20200218084942.4884-1-martin.kepplinger@puri.sm/
+> v1: https://lore.kernel.org/linux-arm-kernel/20200205143003.28408-1-martin.kepplinger@puri.sm/
+> 
+> 
+> Angus Ainslie (Purism) (7):
+>   arm64: dts: librem5-devkit: add a vbus supply to usb0
+>   arm64: dts: librem5-devkit: add the sgtl5000 i2c audio codec
+>   arm64: dts: librem5-devkit: add the simcom 7100 modem and audio
+>   arm64: dts: librem5-devkit: allow modem to wake the system from
+>     suspend
+>   arm64: dts: librem5-devkit: add the regulators for DVFS
+>   arm64: dts: librem5-devkit: allow the redpine card to be removed
+>   arm64: dts: librem5-devkit: increase the VBUS current in the kernel
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- arch/arm64/boot/dts/freescale/Makefile        |  1 +
- .../fsl-ls1028a-kontron-sl28-var2.dts         | 68 +++++++++++++++++++
- 2 files changed, 69 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index a6d70b73d69b..a39f0a1723e0 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1012a-rdb.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-kbox-a-230-ls.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var2.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var3-ads2.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-kontron-sl28-var4.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds.dtb
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-new file mode 100644
-index 000000000000..0a34ff682027
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-@@ -0,0 +1,68 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Device Tree file for the Kontron SMARC-sAL28 board.
-+ *
-+ * This is for the network variant 2 which has two ethernet ports. These
-+ * ports are connected to the internal switch.
-+ *
-+ * Copyright (C) 2020 Michael Walle <michael@walle.cc>
-+ *
-+ */
-+
-+/dts-v1/;
-+#include "fsl-ls1028a-kontron-sl28.dts"
-+
-+/ {
-+	model = "Kontron SMARC-sAL28 (TSN-on-module)";
-+	compatible = "kontron,sl28-var2", "kontron,sl28", "fsl,ls1028a";
-+};
-+
-+&enetc_mdio_pf3 {
-+	phy0: ethernet-phy@5 {
-+		reg = <0x5>;
-+		eee-broken-1000t;
-+		eee-broken-100tx;
-+	};
-+
-+	phy1: ethernet-phy@4 {
-+		reg = <0x4>;
-+		eee-broken-1000t;
-+		eee-broken-100tx;
-+	};
-+};
-+
-+&enetc_port0 {
-+	status = "disabled";
-+	/*
-+	 * In the base device tree the PHY was registered in the mdio
-+	 * subnode as it is PHY for this port. On this module this PHY
-+	 * is connected to a switch port instead and registered above.
-+	 * Therefore, delete the mdio subnode as well as the phy-handle
-+	 * property here.
-+	 */
-+	/delete-property/ phy-handle;
-+	/delete-node/ mdio;
-+};
-+
-+&enetc_port2 {
-+	status = "okay";
-+};
-+
-+&mscc_felix_port0 {
-+	label = "gbe0";
-+	phy-handle = <&phy0>;
-+	phy-mode = "sgmii";
-+	status = "okay";
-+};
-+
-+&mscc_felix_port1 {
-+	label = "gbe1";
-+	phy-handle = <&phy1>;
-+	phy-mode = "sgmii";
-+	status = "okay";
-+};
-+
-+&mscc_felix_port4 {
-+	ethernet = <&enetc_port2>;
-+	status = "okay";
-+};
--- 
-2.20.1
-
+Replace v3 with this version, thanks.
