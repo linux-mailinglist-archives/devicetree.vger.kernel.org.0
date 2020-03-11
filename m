@@ -2,57 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52516181CAB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 16:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E48FE181CC0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 16:47:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730116AbgCKPo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 11:44:57 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:43629 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729977AbgCKPo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 11:44:56 -0400
-Received: from localhost.localdomain (lfbn-tou-1-1473-158.w90-89.abo.wanadoo.fr [90.89.41.158])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 46CA2200006;
-        Wed, 11 Mar 2020 15:44:46 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Kamal Dasu <kdasu.kdev@gmail.com>, linux-kernel@vger.kernel.org
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Paul Burton <paulburton@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        linux-mips@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
-        linaro-mm-sig@lists.linaro.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mtd@lists.infradead.org, dri-devel@lists.freedesktop.org,
-        James Hogan <jhogan@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Brian Norris <computersforpeace@gmail.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH V4 1/3] dt: bindings: brcmnand: Add support for flash-edu
-Date:   Wed, 11 Mar 2020 16:44:45 +0100
-Message-Id: <20200311154445.25555-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200122213313.35820-2-kdasu.kdev@gmail.com>
-References: 
+        id S1729870AbgCKPrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 11:47:16 -0400
+Received: from foss.arm.com ([217.140.110.172]:51138 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729742AbgCKPrQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 11:47:16 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BDDA431B;
+        Wed, 11 Mar 2020 08:47:15 -0700 (PDT)
+Received: from [10.1.196.37] (e121345-lin.cambridge.arm.com [10.1.196.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B4833F6CF;
+        Wed, 11 Mar 2020 08:47:14 -0700 (PDT)
+Subject: Re: [PATCH] ARM: dts: dra7: Add bus_dma_limit for L3 bus
+To:     Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@ti.com>
+Cc:     Tero Kristo <t-kristo@ti.com>, hch@lst.de, robh+dt@kernel.org,
+        nm@ti.com, nsekhar@ti.com, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20200310115309.31354-1-rogerq@ti.com>
+ <e7df4db7-6fe1-cfa4-841b-ddd395864bb8@ti.com>
+ <20200310154829.GS37466@atomide.com>
+ <d2e217a4-4a45-bc46-4610-84e6c8567d5f@ti.com>
+ <20200311152347.GW37466@atomide.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <e031b768-8fb8-ce62-a644-69925757cbc6@arm.com>
+Date:   Wed, 11 Mar 2020 15:47:12 +0000
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: cdc6aba6719b9d7d85c6d411a43345ee12223268
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200311152347.GW37466@atomide.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2020-01-22 at 21:33:11 UTC, Kamal Dasu wrote:
-> Adding support for EBI DMA unit (EDU).
+On 11/03/2020 3:23 pm, Tony Lindgren wrote:
+> * Roger Quadros <rogerq@ti.com> [200311 07:21]:
+>>
+>>
+>> On 10/03/2020 17:48, Tony Lindgren wrote:
+>>> * Tero Kristo <t-kristo@ti.com> [200310 14:46]:
+>>>> On 10/03/2020 13:53, Roger Quadros wrote:
+>>>>> The L3 interconnect can access only 32-bits of address.
+>>>>> Add the dma-ranges property to reflect this limit.
+>>>>>
+>>>>> This will ensure that no device under L3 is
+>>>>> given > 32-bit address for DMA.
+>>>>>
+>>>>> Issue was observed only with SATA on DRA7-EVM with 4GB RAM
+>>>>> and CONFIG_ARM_LPAE enabled. This is because the controller
+>>>>> can perform 64-bit DMA and was setting the dma_mask to 64-bit.
+>>>>>
+>>>>> Setting the correct bus_dma_limit fixes the issue.
+>>>>
+>>>> This seems kind of messy to modify almost every DT node because of this....
+>>>> Are you sure this is the only way to get it done? No way to modify the sata
+>>>> node only which is impacted somehow?
+>>>>
+>>>> Also, what if you just pass 0xffffffff to the dma-ranges property? That
+>>>> would avoid modifying every node I guess.
+>>>
+>>> Also, I think these interconnects are not limited to 32-bit access.
+>>
+>> But from Table 2-1. L3_MAIN Memory Map
+>>
+>> Start address	0x0000_0000
+>> End address	0xFFFF_FFFF
+>>
+>> So it is 32-bit limit, right?
 > 
-> Signed-off-by: Kamal Dasu <kdasu.kdev@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Hmm so what war Robin saying earlier that DMA access seems to be
+> limited to lower 2GB only though?
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next, thanks.
+That's the lower 2GB *of DRAM*, which occupies the upper 2GB of the L3 
+memory map ;)
 
-Miquel
+Robin.
