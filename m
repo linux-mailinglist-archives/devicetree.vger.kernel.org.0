@@ -2,132 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 020FA181192
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 08:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1096B1811D9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 08:24:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbgCKHQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 03:16:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39490 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726160AbgCKHQV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 03:16:21 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CAF5A208C3;
-        Wed, 11 Mar 2020 07:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1583910981;
-        bh=OQIeb4oj8r6aT9zrf+ckOYy531/qz6nDOVCUb0TQuxU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PEWHmPatR+Metyz2pN2PIn+lc0oPlTzr34YQam5O/lpbq0OXTuRat4ADPVIE6H+p7
-         WEy6/dZbEiUkSX2sud5UK18LvNfmefUqhP97G9i/8xWe79LAHG+uahsKto1NyWUx/c
-         8jVaoqxKmfsFh3F+CZptkLDyC6ncQrvsuEdm2c5w=
-Date:   Wed, 11 Mar 2020 15:16:14 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Li Yang <leoyang.li@nxp.com>
-Subject: Re: [PATCH 1/3] arm64: dts: ls1028a: sl28: fix on-board EEPROMS
-Message-ID: <20200311071613.GL29269@dragon>
-References: <20200225175756.29508-1-michael@walle.cc>
- <20200225175756.29508-2-michael@walle.cc>
+        id S1726923AbgCKHYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 03:24:38 -0400
+Received: from mail-db8eur05on2051.outbound.protection.outlook.com ([40.107.20.51]:7032
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726672AbgCKHYh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 03:24:37 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qc8bA5qTdL+Q7drwZS26vDAW4mKrLD44+JYXtJWG5IBt4ZFRm+MlpcPYJXMbUSQXpYcUrZDtD6EpxVt43kYZ6SJk5lCgC4vZ1Ic7kr+6Yb7EFpCnHD/tIe+YpoK5iNiKL9sJiFOCwqFLqD8Vg4Y9uF+AxCzDMk/ZZjWWZvx+yCRU0v5+viJlb1asaZwUAWzUUYCbvRiFP08r47tFLIZHm9GMg5PadHRO+p5gMtnXOUxkXt67P2e2f2fakSxhFXRvF0e1FrBB/5CxioXq1C70mQU9f0ATlaq6dAD4IqswGo/hsrtoaSewGrqYlfTz8UuSal3M5NqDwNHCBqMLy42hDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pErVYOiAeVLYSHCqYxGjoy6FIB38iX/saKWlCmqnOfo=;
+ b=CATEJQVh/mZ8LCDpw1ssrCr3gdcIb/eF9UAO0RxvrRsKi3MWj4MyzhAhw7tENgTAAFp8xFbR3r50lfFtvdCrlqbI6zLTCLokw6kNa3yAJ+BAB4pDk0sH+Q9O+rJ0+8qyLltPRKxBYRrfiOfFDuCc2kHeLIWD09K6Z9uWfQnQXjtK7TpFsc0LNSQUjRhOCoP45GbhPpiLMZNhmYYjKoRR6eLVkcifDSauxP///zeIobZiudQaXPmkXv+czR9v9bqmzm4GO/daEZzIDp0vFJiFeq5LsIRYk18vm6deGltSTk3Pnh6OB7nUbfTJFoIIJYhJr9FIvYqmSa/b9FSWcYnqug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pErVYOiAeVLYSHCqYxGjoy6FIB38iX/saKWlCmqnOfo=;
+ b=I6jMZ91sPIA+Vox8TZa57oT0p4FMkcBjuwxCcqEBty/8WS3utRKgaKS6yvtBBehyTOnGpXePt81pOnqUn+oBCy1hjkuskIKe7vN4VOcg8ET6J22+PeBZK8Ukyn2s6D3ntZQmtFSSysAyURSLZvve/nxS5mQPX83PQr1ANngtyvA=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB3970.eurprd04.prod.outlook.com (52.134.92.143) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2793.17; Wed, 11 Mar 2020 07:24:32 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::548f:4941:d4eb:4c11]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::548f:4941:d4eb:4c11%6]) with mapi id 15.20.2793.018; Wed, 11 Mar 2020
+ 07:24:32 +0000
+From:   peng.fan@nxp.com
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2] arm64: dts: imx8m: fix aips dts node
+Date:   Wed, 11 Mar 2020 15:17:56 +0800
+Message-Id: <1583911076-31551-1-git-send-email-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2P153CA0014.APCP153.PROD.OUTLOOK.COM (2603:1096::24) To
+ AM0PR04MB4481.eurprd04.prod.outlook.com (2603:10a6:208:70::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200225175756.29508-2-michael@walle.cc>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2P153CA0014.APCP153.PROD.OUTLOOK.COM (2603:1096::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.2835.4 via Frontend Transport; Wed, 11 Mar 2020 07:24:29 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.66]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: afa87db6-8fd5-4885-3064-08d7c58d3e69
+X-MS-TrafficTypeDiagnostic: AM0PR04MB3970:|AM0PR04MB3970:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM0PR04MB397047540CCED5C7BA6A477388FC0@AM0PR04MB3970.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;
+X-Forefront-PRVS: 0339F89554
+X-Forefront-Antispam-Report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(199004)(186003)(16526019)(26005)(52116002)(81166006)(81156014)(6486002)(8676002)(36756003)(8936002)(2906002)(69590400007)(4326008)(9686003)(86362001)(316002)(5660300002)(6506007)(2616005)(956004)(478600001)(66946007)(66556008)(6666004)(6512007)(66476007)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB3970;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
+Received-SPF: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: t7U3kXew7b6HxwxOlPEwlK4QPb0fIo/28fLjhTW+uomvn/rnOfYbjU+L9IPS2F7scUXO8+wcq2Mjd9BlqI4kn5o4zY0M1ywp3JKDNs119+PkgBhn9vJ1/C7hnUF0QQzNpIS7rwZ1mQvcdWtzTHdnQkvYMP+QcLymVInaNVI1MtNhIphD9vGuFwdTUW2TNGPVk6URrgAZLjRw92zdcnVkvZKvdFDpUPzYjcfGmLzO4DGYoC97mmYdMIvjTD4ifz3zfgy7L/7o6QTtTrGrHzqT0qHVE4dL53PS80/LeuusLjYfebOe5Ut8ItqvFgR40ZR63wPGVnSTiaExv7bC7k9LfLOa9doWFCSoavRBfDvzD1Rb7WLVwQcl8sJc6QWjbVcK5c1e6xyfgv217LdT8Egud2tlWJWug3KT6FQKhtPcPeeq6HOQNcFJNrFEnfNnu1d/weOq2KSQBDsldWWzavDewntFQcJmA9LwR5lBCwYfatV1NkpBquti3Or6ZIBXm3DDV+Pst/KsQtlAEtV56xzzrA==
+X-MS-Exchange-AntiSpam-MessageData: Lj/4UU6L3/+c9uE44IQATdkzWxpuF7YWwm23AoxTovtblDYZzY8HWlgk+mjN9Ai5Rqq8WTNiqzCMPc0G0jRssGoGfX7f3yjZmy0anXrbmOM0g31fbr0dGMVEv0aAC+wpvOSt2Sb7WFQrRhoXsRA15A==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: afa87db6-8fd5-4885-3064-08d7c58d3e69
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2020 07:24:32.8203
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ierfewFSNg1JQl/frdd7JmhuOIL/qzmcVhZrhbZYzHnMW4uW7RDmFCbmccTA0NrylCcrKFyYiNB9nHGycAkROw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB3970
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 25, 2020 at 06:57:54PM +0100, Michael Walle wrote:
-> The module itself has another EEPROM at 50h on I2C4. The EEPROM on the
-> carriers is located at 57h on I2C3. Fix that in the device trees.
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+From: Peng Fan <peng.fan@nxp.com>
 
-Doesn't apply to my branch.
+Per binding doc fsl,aips-bus.yaml, compatible and reg is
+required. And for reg, the AIPS configuration space should be
+used, not all the AIPS bus space.
 
-Shawn
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
+---
 
-> ---
->  .../fsl-ls1028a-kontron-kbox-a-230-ls.dts          |  6 +++---
->  .../fsl-ls1028a-kontron-sl28-var3-ads2.dts         | 14 ++++++++------
->  .../dts/freescale/fsl-ls1028a-kontron-sl28.dts     |  6 ++++++
->  3 files changed, 17 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-> index aaf3c04771c3..32f6c80414bc 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dts
-> @@ -18,10 +18,10 @@
->  		     "kontron,sl28", "fsl,ls1028a";
->  };
->  
-> -&i2c4 {
-> -	eeprom@50 {
-> +&i2c3 {
-> +	eeprom@57 {
->  		compatible = "atmel,24c32";
-> -		reg = <0x50>;
-> +		reg = <0x57>;
->  		pagesize = <32>;
->  	};
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-> index 20fd86746f94..ff4a43986290 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dts
-> @@ -80,6 +80,14 @@
->  	};
->  };
->  
-> +&i2c3 {
-> +	eeprom@57 {
-> +		compatible = "atmel,24c64";
-> +		reg = <0x57>;
-> +		pagesize = <32>;
-> +	};
-> +};
-> +
->  &i2c4 {
->  	status = "okay";
->  
-> @@ -92,12 +100,6 @@
->  		assigned-clocks = <&mclk>;
->  		assigned-clock-rates = <1250000>;
->  	};
-> -
-> -	eeprom@50 {
-> -		compatible = "atmel,24c32";
-> -		reg = <0x50>;
-> -		pagesize = <32>;
-> -	};
->  };
->  
->  &sai5 {
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-> index c60a444ad09d..4ba6aae45ef1 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-> @@ -181,6 +181,12 @@
->  
->  &i2c4 {
->  	status = "okay";
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c32";
-> +		reg = <0x50>;
-> +		pagesize = <32>;
-> +	};
->  };
->  
->  &lpuart1 {
-> -- 
-> 2.20.1
-> 
+V2: fsl,aips->fsl,aips-bus
+    ARM64->arm64
+
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 12 ++++++++----
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 16 ++++++++--------
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++------
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 12 ++++++++----
+ 4 files changed, 30 insertions(+), 22 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index b3d0b29d7007..aeeadd40c76c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -227,7 +227,8 @@
+ 		ranges = <0x0 0x0 0x0 0x3e000000>;
+ 
+ 		aips1: bus@30000000 {
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x301f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x30000000 0x30000000 0x400000>;
+@@ -496,7 +497,8 @@
+ 		};
+ 
+ 		aips2: bus@30400000 {
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x305f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x30400000 0x30400000 0x400000>;
+@@ -555,7 +557,8 @@
+ 		};
+ 
+ 		aips3: bus@30800000 {
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x309f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x30800000 0x30800000 0x400000>;
+@@ -800,7 +803,8 @@
+ 		};
+ 
+ 		aips4: bus@32c00000 {
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x32df0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x32c00000 0x32c00000 0x400000>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index f2775724377f..62e4d3606b27 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -203,8 +203,8 @@
+ 		ranges = <0x0 0x0 0x0 0x3e000000>;
+ 
+ 		aips1: bus@30000000 {
+-			compatible = "simple-bus";
+-			reg = <0x30000000 0x400000>;
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x301f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -401,8 +401,8 @@
+ 		};
+ 
+ 		aips2: bus@30400000 {
+-			compatible = "simple-bus";
+-			reg = <0x30400000 0x400000>;
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x305f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -461,8 +461,8 @@
+ 		};
+ 
+ 		aips3: bus@30800000 {
+-			compatible = "simple-bus";
+-			reg = <0x30800000 0x400000>;
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x309f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -707,8 +707,8 @@
+ 		};
+ 
+ 		aips4: bus@32c00000 {
+-			compatible = "simple-bus";
+-			reg = <0x32c00000 0x400000>;
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x32df0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+index 71b0c8f23693..1bd62632af6e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+@@ -144,8 +144,8 @@
+ 		ranges = <0x0 0x0 0x0 0x3e000000>;
+ 
+ 		aips1: bus@30000000 {
+-			compatible = "simple-bus";
+-			reg = <0x30000000 0x400000>;
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x301f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -309,8 +309,8 @@
+ 		};
+ 
+ 		aips2: bus@30400000 {
+-			compatible = "simple-bus";
+-			reg = <0x30400000 0x400000>;
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x305f0000 0x400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+@@ -369,8 +369,8 @@
+ 		};
+ 
+ 		aips3: bus@30800000 {
+-			compatible = "simple-bus";
+-			reg = <0x30800000 0x400000>;
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x309f0000 0x400000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 6a1e83922c71..759bbff42afa 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -290,7 +290,8 @@
+ 		dma-ranges = <0x40000000 0x0 0x40000000 0xc0000000>;
+ 
+ 		bus@30000000 { /* AIPS1 */
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x301f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x30000000 0x30000000 0x400000>;
+@@ -692,7 +693,8 @@
+ 		};
+ 
+ 		bus@30400000 { /* AIPS2 */
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x305f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x30400000 0x30400000 0x400000>;
+@@ -751,7 +753,8 @@
+ 		};
+ 
+ 		bus@30800000 { /* AIPS3 */
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x309f0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x30800000 0x30800000 0x400000>,
+@@ -1023,7 +1026,8 @@
+ 		};
+ 
+ 		bus@32c00000 { /* AIPS4 */
+-			compatible = "simple-bus";
++			compatible = "fsl,aips-bus", "simple-bus";
++			reg = <0x32df0000 0x10000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0x32c00000 0x32c00000 0x400000>;
+-- 
+2.16.4
+
