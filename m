@@ -2,67 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC9821813B8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:55:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5A481813CC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:58:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728263AbgCKIyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 04:54:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38218 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728195AbgCKIyH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 04:54:07 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2825020873;
-        Wed, 11 Mar 2020 08:54:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1583916847;
-        bh=q9pX7RdIeHC12gIE7AwUqz4c8Oq1C8zcrGUI6VQx08k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=j9tEh9CKAQvhblCfQ79VtTz2ZvM7u9zbEuZryIvvvwfaV/cQRcvprPihaPFOiqyQE
-         KiouaIwbxFCoz9RdF9cBGIzKA149ljubVMfa2WzhlC8Z4mxlVdOEF/h5GxAe02urT6
-         JpuyGXmzqN3xI1mKT/9xZspk9pOKGm5kmqLBkFIg=
-Date:   Wed, 11 Mar 2020 16:53:58 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Horia =?utf-8?Q?Geant=C4=83?= <horia.geanta@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Silvano Di Ninno <silvano.dininno@nxp.com>,
-        Aymen Sghaier <aymen.sghaier@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/5] ARM: dts: imx: use generic name for crypto node
-Message-ID: <20200311085357.GG29269@dragon>
-References: <20200305135909.8180-1-horia.geanta@nxp.com>
+        id S1728614AbgCKI6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 04:58:25 -0400
+Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:44269 "EHLO
+        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726160AbgCKI6Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 04:58:25 -0400
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Mar 2020 14:28:23 +0530
+Received: from harigovi-linux.qualcomm.com ([10.204.66.157])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 11 Mar 2020 14:28:09 +0530
+Received: by harigovi-linux.qualcomm.com (Postfix, from userid 2332695)
+        id A86622745; Wed, 11 Mar 2020 14:28:08 +0530 (IST)
+From:   Harigovindan P <harigovi@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Harigovindan P <harigovi@codeaurora.org>, robdclark@gmail.com,
+        seanpaul@chromium.org, sean@poorly.run
+Subject: [PATCH v6 0/2] Add support for rm69299 Visionox panel driver and add devicetree bindings for visionox panel
+Date:   Wed, 11 Mar 2020 14:28:05 +0530
+Message-Id: <20200311085807.21984-1-harigovi@codeaurora.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200305135909.8180-1-horia.geanta@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 05, 2020 at 03:59:04PM +0200, Horia Geantă wrote:
-> This patch set aligns / fixes the naming of the crypto node
-> (and its child nodes) for sahara, dcp and caam crypto engines
-> used in i.MX SoCs.
-> 
-> Horia Geantă (4):
->   dt-bindings: crypto: sahara: use generic node name
->   dt-bindings: crypto: dcp: use generic node name
->   dt-bindings: crypto: caam: use generic node name
->   ARM: dts: imx: align name for crypto node and child nodes
-> 
-> Silvano di Ninno (1):
->   arm64: dts: imx8mn: align name for crypto child nodes
+Adding support for visionox rm69299 panel driver and adding bindings for the same panel.
 
-Applied all, thanks.
+Harigovindan P (2):
+  dt-bindings: display: add visionox rm69299 panel variant
+  drm/panel: add support for rm69299 visionox panel driver
+
+ .../display/panel/visionox,rm69299.yaml       |  77 +++++
+ drivers/gpu/drm/panel/Kconfig                 |   8 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-visionox-rm69299.c    | 295 ++++++++++++++++++
+ 4 files changed, 381 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-visionox-rm69299.c
+
+-- 
+2.25.1
+
