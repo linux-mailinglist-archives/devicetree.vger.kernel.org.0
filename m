@@ -2,114 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C79E1818D9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:55:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE20B1818C2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:51:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729354AbgCKMzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 08:55:43 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:43928 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729320AbgCKMzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:55:42 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02BCtHkD007419;
-        Wed, 11 Mar 2020 07:55:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1583931317;
-        bh=48Zh5AGbANDxkAALhrTBL8IRtDqvahqwmRcvUOxVdiU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=aTpp+PrQ4Oar5nf76xssq6nNaaL6C9ffrxSfPVSyJ+RAzXqqzmAD/cx1bnMP4AAC7
-         lYnP0+PKHn0kDttEDJLAZ0wVVyTZB0Xh6FZASv/2V8jaEaj9gilHyd7bPEwLUccZD1
-         VSM5Fu8bnBZqYWjEPMkgRFU6wn65cYxOB97CuMB8=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02BCtH0a113914
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 11 Mar 2020 07:55:17 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 11
- Mar 2020 07:55:16 -0500
-Received: from localhost.localdomain (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
- Frontend Transport; Wed, 11 Mar 2020 07:55:17 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 02BCtFIT120884;
-        Wed, 11 Mar 2020 07:55:15 -0500
-Subject: Re: [PATCH 2/3] dt-bindings: leds: Add binding for sgm3140
-To:     Luca Weiss <luca@z3ntu.xyz>, <linux-leds@vger.kernel.org>
-CC:     Heiko Stuebner <heiko@sntech.de>, Icenowy Zheng <icenowy@aosc.io>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-References: <20200309203558.305725-1-luca@z3ntu.xyz>
- <20200309203558.305725-3-luca@z3ntu.xyz>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <4f848ab3-0e76-ae63-0771-758b1eaa0660@ti.com>
-Date:   Wed, 11 Mar 2020 07:49:35 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-MIME-Version: 1.0
-In-Reply-To: <20200309203558.305725-3-luca@z3ntu.xyz>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1729310AbgCKMvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 08:51:47 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:32870 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729287AbgCKMvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:51:46 -0400
+Received: by mail-wm1-f66.google.com with SMTP id r7so3109134wmg.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 05:51:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=6mmjs1zoy21HGdXRuhBisBs86sD1UMcUpSzszzdWpvA=;
+        b=b4DElPDmtlbb1xvN5jVD3o8QZeGR+7PKcSdOSRtSbXEFwkPrylJcMqnZvKNSJRh14V
+         6aqZwiXB5y2Av1kqYMGRFyyVSV3hRn51Jy2RF+Aq6a2j0g1Mf/fUv7KjHILYBHyInEdv
+         c5nB8+tBPOpMZgR4su7kn0zyVCJ/DZr2rT7LmbjigMSE74S+SNtoV6NIRDD1zpCuGcMV
+         TIP2Ui1s9OocJKnffxQPNBM+2cwn0nrQMe0Q11kYSdT43tjYvZJOEoOo+Fv0mlbQL4d3
+         aRgfdZLWl/+ZZvGmp+v4pwZpEdLZsof/+5jRrn7XJP6H0cnzRseS16efUHf3bVll7sxL
+         APOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=6mmjs1zoy21HGdXRuhBisBs86sD1UMcUpSzszzdWpvA=;
+        b=a4hBo/ExVcyhsNAsLloOfb7H8asdLwdPruuP75s0/YCJpeXqdWgDCDOgDkcFGug64A
+         vpTy/WMnGB7MIErJ9c/4MbbrlsrMFb6N95yWInrElwtXxLVmIv4f8f8yrXBerX3lgJBv
+         znaYQpuBH6IVFgrdPu+jwvFGNkTHTCSbzIdIQnsJ3oRDtQzJwL/Uw6NmJ7k8x3kf701s
+         lKmsn9QTQhMCXH2tBa8bClCWhng9tMwFPItOAByUP6JfGg2VwBE0b55DbZGJqsvqV5rX
+         Zie/YvnjfVPE/FoJOqG7MAX5pcA/aYlKFQyD90gwzJkhZPVYrDtoOK0jG3pYcrXmOtLl
+         F1OQ==
+X-Gm-Message-State: ANhLgQ3WpYgGUC/VFcauX+fo31UfaO0OaxAVgh2T1X3JlPbOiqaxgSAk
+        FfBM8TgGefOCV0wq/umIkn9fNg==
+X-Google-Smtp-Source: ADFU+vvH+0ONZuHFXRlr54VYaPW++G9wGrbF1sWPr8MKp+jdH72w07T55RveDBX31y81xSMCnFPsBA==
+X-Received: by 2002:a7b:c0c7:: with SMTP id s7mr3536712wmh.187.1583931102518;
+        Wed, 11 Mar 2020 05:51:42 -0700 (PDT)
+Received: from robin.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id o3sm8843538wme.36.2020.03.11.05.51.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2020 05:51:41 -0700 (PDT)
+From:   Phong LE <ple@baylibre.com>
+To:     narmstrong@baylibre.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com, a.hajda@samsung.com
+Cc:     Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@siol.net, sam@ravnborg.org, mripard@kernel.org,
+        heiko.stuebner@theobroma-systems.com, linus.walleij@linaro.org,
+        stephan@gerhold.net, icenowy@aosc.io, broonie@kernel.org,
+        mchehab+samsung@kernel.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
+        andriy.shevchenko@linux.intel.com, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] Add it66121 driver
+Date:   Wed, 11 Mar 2020 13:51:31 +0100
+Message-Id: <20200311125135.30832-1-ple@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Luca
+The IT66121 is a high-performance and low-power single channel HDMI
+transmitter, fully compliant with HDMI 1.3a, HDCP 1.2 and backward
+compatible to DVI 1.0 specifications.
+It supports pixel rates from 25MHz to 165MHz.
 
-On 3/9/20 3:35 PM, Luca Weiss wrote:
-> Add YAML devicetree binding for SGMICRO SGM3140 charge pump used for
-> camera flash LEDs.
->
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-> Changes since RFC:
-> - new patch
->
-> I'm not sure about the completeness of this binding as it doesn't
-> mention the led subnode at all.
-> The only existing led yaml binding is leds/leds-max77650.yaml which
-> mentions the subnode but duplicates properties from documented in
-> leds/common.txt.
->
->   .../bindings/leds/leds-sgm3140.yaml           | 53 +++++++++++++++++++
->   1 file changed, 53 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
->
-> diff --git a/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml b/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
-> new file mode 100644
-> index 000000000000..be9384573d02
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-sgm3140.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SGMICRO SGM3140 500mA Buck/Boost Charge Pump LED Driver
-> +
-> +maintainers:
-> +  - Luca Weiss <luca@z3ntu.xyz>
-> +
-> +description: |
-> +  The SGM3140 is a current-regulated charge pump which can regulate two current
-> +  levels for Flash and Torch modes.
-> +
-> +  It is controlled with two GPIO pins.
-Please define "It".  Not sure what is controlled here.
+This series contains document bindings, add vendor prefix, Kconfig to
+enable or not.
+For now, the driver handles only RGB without color conversion.
+Audio, CEC and HDCP are not implemented yet.
 
+Phong LE (4):
+  dt-bindings: add ITE vendor
+  dt-bindings: display: bridge: add it66121 bindings
+  drm: bridge: add it66121 driver
+  MAINTAINERS: add it66121 HDMI bridge driver entry
 
-Dan
+ .../bindings/display/bridge/ite,it66121.yaml  |  98 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   8 +
+ drivers/gpu/drm/bridge/Kconfig                |   8 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/ite-it66121.c          | 997 ++++++++++++++++++
+ 6 files changed, 1114 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it66121.yaml
+ create mode 100644 drivers/gpu/drm/bridge/ite-it66121.c
+
+-- 
+2.17.1
 
