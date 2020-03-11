@@ -2,96 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE59D181E16
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 17:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64633181E52
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 17:54:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730293AbgCKQj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 12:39:26 -0400
-Received: from mx2.suse.de ([195.135.220.15]:49172 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729673AbgCKQj0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 12:39:26 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx2.suse.de (Postfix) with ESMTP id 8F6EEAD83;
-        Wed, 11 Mar 2020 16:39:23 +0000 (UTC)
-Message-ID: <27b291f807b6b07c41bf836dc5d543c8b710737e.camel@suse.de>
-Subject: Re: [PATCH] ARM: bcm2835-rpi-zero-w: Add missing pinctrl name
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Florian Fainelli <f.fainelli@gmail.com>, nick.hudson@gmx.co.uk
-Cc:     Nick Hudson <skrll@netbsd.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Wed, 11 Mar 2020 17:39:21 +0100
-In-Reply-To: <620c845c-afd1-a4a4-468a-acc24299f492@gmail.com>
-References: <20200310182537.8156-1-nick.hudson@gmx.co.uk>
-         <12f35cc38b87dfe27f0786c931d4434b0fecb3d8.camel@suse.de>
-         <620c845c-afd1-a4a4-468a-acc24299f492@gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-tO8qGKgqcYZ4oHm3H9Yo"
-User-Agent: Evolution 3.34.4 
+        id S1730031AbgCKQxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 12:53:34 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:60560 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730019AbgCKQxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 12:53:33 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 9284D2930CF
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, ck.hu@mediatek.com,
+        p.zabel@pengutronix.de, airlied@linux.ie, mturquette@baylibre.com,
+        sboyd@kernel.org, ulrich.hecht+renesas@gmail.com,
+        laurent.pinchart@ideasonboard.com
+Cc:     Allison Randal <allison@lohutok.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>, wens@csie.org,
+        linux-media@vger.kernel.org, sean.wang@mediatek.com,
+        hsinyi@chromium.org, rdunlap@infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        linux-clk@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Daniel Vetter <daniel@ffwll.ch>,
+        linux-arm-kernel@lists.infradead.org, matthias.bgg@kernel.org,
+        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+        frank-w@public-files.de, devicetree@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        linux-kernel@vger.kernel.org, mtk01761 <wendell.lin@mediatek.com>,
+        Richard Fontana <rfontana@redhat.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Owen Chen <owen.chen@mediatek.com>
+Subject: [PATCH v12 0/5] arm/arm64: mediatek: Fix mt8173 mmsys device probing
+Date:   Wed, 11 Mar 2020 17:53:17 +0100
+Message-Id: <20200311165322.1594233-1-enric.balletbo@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear all,
 
---=-tO8qGKgqcYZ4oHm3H9Yo
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+These patches are intended to solve an old standing issue on some
+Mediatek devices (mt8173, mt2701 and mt2712 are affected by this issue).
 
-On Wed, 2020-03-11 at 09:37 -0700, Florian Fainelli wrote:
-> On 3/11/20 4:28 AM, Nicolas Saenz Julienne wrote:
-> > On Tue, 2020-03-10 at 18:25 +0000, nick.hudson@gmx.co.uk wrote:
-> > > From: Nick Hudson <nick.hudson@gmx.co.uk>
-> > >=20
-> > > Define the sdhci pinctrl state as "default" so it gets applied
-> > > correctly and to match all other RPis.
-> > >=20
-> > > Fixes: 2c7c040c73e9 ("ARM: dts: bcm2835: Add Raspberry Pi Zero W")
-> > >=20
-> > > Signed-off-by: Nick Hudson <skrll@netbsd.org>
-> >=20
-> > I think this one has everything right. As a nitpick, there is no need t=
-o add
-> > a
-> > space between the Fixes tag and the Signed-off-by tag, but it's OK as i=
-s.
-> >=20
-> > Florian, can we channel this as a fix for v5.6 or are we too late?
->=20
-> We can try, let me queue this today.
+Up to now both drivers, clock and drm are probed with the same device tree
+compatible. But only the first driver gets probed, which in effect breaks
+graphics on those devices.
 
-Cool, in that case you can add my:
+The MMSYS (Multimedia subsystem) in Mediatek SoCs has some registers to
+control clock gates (which is used in the clk driver) and some registers
+to set the routing and enable the differnet blocks of the display
+and MDP (Media Data Path) subsystem. On this series the clk driver is
+not a pure clock controller but a system controller that can provide
+access to the shared registers between the different drivers that need
+it (mediatek-drm and mediatek-mdp). Hence the MMSYS clk driver was moved
+to drivers/soc/mediatek and is the entry point (parent) which will trigger
+the probe of the corresponding mediatek-drm driver.
 
-Acked-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+**IMPORTANT** This series only fixes the issue on mt8173 to make it
+simple and as is the only platform I can test. Similar changes should be
+applied for mt2701 and mt2712 to have display working.
 
-Regards,
-Nicolas
+These patches apply on top of linux-next.
 
+For reference, here are the links to the old discussions:
+* v11: https://patchwork.kernel.org/project/linux-mediatek/list/?series=249871
+* v10: https://patchwork.kernel.org/project/linux-mediatek/list/?series=248505
+* v9: https://patchwork.kernel.org/project/linux-clk/list/?series=247591
+* v8: https://patchwork.kernel.org/project/linux-mediatek/list/?series=244891
+* v7: https://patchwork.kernel.org/project/linux-mediatek/list/?series=241217
+* v6: https://patchwork.kernel.org/project/linux-mediatek/list/?series=213219
+* v5: https://patchwork.kernel.org/project/linux-mediatek/list/?series=44063
+* v4:
+  * https://patchwork.kernel.org/patch/10530871/
+  * https://patchwork.kernel.org/patch/10530883/
+  * https://patchwork.kernel.org/patch/10530885/
+  * https://patchwork.kernel.org/patch/10530911/
+  * https://patchwork.kernel.org/patch/10530913/
+* v3:
+  * https://patchwork.kernel.org/patch/10367857/
+  * https://patchwork.kernel.org/patch/10367861/
+  * https://patchwork.kernel.org/patch/10367877/
+  * https://patchwork.kernel.org/patch/10367875/
+  * https://patchwork.kernel.org/patch/10367885/
+  * https://patchwork.kernel.org/patch/10367883/
+  * https://patchwork.kernel.org/patch/10367889/
+  * https://patchwork.kernel.org/patch/10367907/
+  * https://patchwork.kernel.org/patch/10367909/
+  * https://patchwork.kernel.org/patch/10367905/
+* v2: No relevant discussion, see v3
+* v1:
+  * https://patchwork.kernel.org/patch/10016497/
+  * https://patchwork.kernel.org/patch/10016499/
+  * https://patchwork.kernel.org/patch/10016505/
+  * https://patchwork.kernel.org/patch/10016507/
 
---=-tO8qGKgqcYZ4oHm3H9Yo
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+Best regards,
+ Enric
 
------BEGIN PGP SIGNATURE-----
+Changes in v12:
+- Leave the clocks part in drivers/clk (clk-mt8173-mm)
+- Instantiate the clock driver from the mtk-mmsys driver.
+- Add default config option to not break anything.
+- Removed the Reviewed-by CK tag as changed the organization.
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl5pFDkACgkQlfZmHno8
-x/7ZLgf/Y74eTK74Olpi4QBn5o859nxJLEbfvHY7QMCt7KTQtkZb+Np8YQwlb0G1
-GN7zU/ftA0ugqZgz0/PbzvfIaLmYOPvylyg3T5gOKVaPuZsY/94xYIzFCP7LduAw
-3eq8NEf1EQrXDhDcKGzigrXBm6FsDAXJjIN7RiqT1JqofstwznMsebBYas0mk7pN
-83VbCcgNkUMDSIDT2eURsUL+U2FqMFbgX6Ie03w8OlJtx6DsSNXYDzblK290cUtY
-YRJpTqq38S8C9j9DvCPO9TK/t0ez/MbmaCJ/4jQMWfy8EmMqHq2Z+dxt4QYDIm16
-hNh6SUj4r1QqDnMJhwvzKpjZpCJdkA==
-=91Kj
------END PGP SIGNATURE-----
+Changes in v10:
+- Update the binding documentation for the mmsys system controller.
+- Renamed to be generic mtk-mmsys
+- Add driver data support to be able to support diferent SoCs
+- Select CONFIG_MTK_MMSYS (CK)
+- Pass device pointer of mmsys device instead of config regs (CK)
+- Match driver data to get display routing.
 
---=-tO8qGKgqcYZ4oHm3H9Yo--
+Changes in v9:
+- Move mmsys to drivers/soc/mediatek (CK)
+- Introduced a new patch to move routing control into mmsys driver.
+- Removed the patch to use regmap as is not needed anymore.
+- Do not move the display routing from the drm driver (CK)
+
+Changes in v8:
+- Be a builtin_platform_driver like other mediatek mmsys drivers.
+- New patch introduced in this series.
+
+Changes in v7:
+- Free clk_data->clks as well
+- Get rid of private data structure
+
+Enric Balletbo i Serra (3):
+  dt-bindings: mediatek: Update mmsys binding to reflect it is a system
+    controller
+  soc / drm: mediatek: Move routing control to mmsys device
+  soc / drm: mediatek: Fix mediatek-drm device probing
+
+Matthias Brugger (2):
+  drm/mediatek: Omit warning on probe defers
+  clk / soc: mediatek: Move mt8173 MMSYS to platform driver
+
+ .../bindings/arm/mediatek/mediatek,mmsys.txt  |   7 +-
+ drivers/clk/mediatek/Kconfig                  |   7 +
+ drivers/clk/mediatek/Makefile                 |   1 +
+ drivers/clk/mediatek/clk-mt8173-mm.c          | 146 ++++++++
+ drivers/clk/mediatek/clk-mt8173.c             | 104 ------
+ drivers/gpu/drm/mediatek/Kconfig              |   1 +
+ drivers/gpu/drm/mediatek/mtk_disp_color.c     |   5 +-
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |   5 +-
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |   5 +-
+ drivers/gpu/drm/mediatek/mtk_dpi.c            |  12 +-
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c       |  19 +-
+ drivers/gpu/drm/mediatek/mtk_drm_ddp.c        | 259 +-------------
+ drivers/gpu/drm/mediatek/mtk_drm_ddp.h        |   7 -
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  45 +--
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
+ drivers/gpu/drm/mediatek/mtk_dsi.c            |   8 +-
+ drivers/gpu/drm/mediatek/mtk_hdmi.c           |   4 +-
+ drivers/soc/mediatek/Kconfig                  |   8 +
+ drivers/soc/mediatek/Makefile                 |   1 +
+ drivers/soc/mediatek/mtk-mmsys.c              | 335 ++++++++++++++++++
+ include/linux/soc/mediatek/mtk-mmsys.h        |  20 ++
+ 21 files changed, 590 insertions(+), 411 deletions(-)
+ create mode 100644 drivers/clk/mediatek/clk-mt8173-mm.c
+ create mode 100644 drivers/soc/mediatek/mtk-mmsys.c
+ create mode 100644 include/linux/soc/mediatek/mtk-mmsys.h
+
+-- 
+2.25.1
 
