@@ -2,93 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2D8181EE0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 18:14:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2E4181F20
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 18:21:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730331AbgCKROy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 13:14:54 -0400
-Received: from mail27.static.mailgun.info ([104.130.122.27]:21819 "EHLO
-        mail27.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729675AbgCKROx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 13:14:53 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1583946893; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=hwl+XmvG5JG30mi1BrH5GWZRUzawJld2P9BWiACejEE=; b=cWNzb7lSlnZVR57Y1aWUiuu1Z7fwUj9rUp+qePdaD2RJ5oYDLcVhzi+BprVvR1Zf6CXNrdSA
- LXVOh7T5BLb2QJ0qZF93SZySAYC9nGiUCnvq5RdYRlsf/C5o7ECg6ShIBGxmPrJFcZ7XRTjj
- OdT9C7FVFw8Y0k9zC879E+QmWxA=
-X-Mailgun-Sending-Ip: 104.130.122.27
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171])
- by mxa.mailgun.org with ESMTP id 5e691c8c.7f03b675b228-smtp-out-n01;
- Wed, 11 Mar 2020 17:14:52 -0000 (UTC)
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C7923C43636; Wed, 11 Mar 2020 17:14:51 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from vbadigan-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: vbadigan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4FB72C433BA;
-        Wed, 11 Mar 2020 17:14:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4FB72C433BA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=none smtp.mailfrom=vbadigan@codeaurora.org
-From:   Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
-To:     bjorn.andersson@linaro.org, vkoul@kernel.org
-Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
+        id S1730211AbgCKRVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 13:21:01 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:37938 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730349AbgCKRVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 13:21:01 -0400
+Received: by mail-wm1-f65.google.com with SMTP id n2so3034582wmc.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 10:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SRfkpp8M+7DY995ACFm0LV6S5x+iBdswbTCPLyuUHNI=;
+        b=gOSVv67gnHdiMys+M2xzhT5wvai2z320rCOPgcpkhbLpV97jJhkGTuNoAzU4NUZhAo
+         D4palYQ2HwAZ0OS3zCphC/Z0UmVcpqQChJKRV5WtqbpmM2Kk7ou5Arh8pFC1dF14OA91
+         YvbixzwQXk0u70G8Vh3zfpM+OulqR1vgcCxX7taDdz9nUBV0g31sMZ8Zdkh6mRxlcsTs
+         k7ViITXmIF2ThUhrJgslCTsg0VI0hsyFU4EZ42e60p4lK9bRT13xdjNMu02BkpZZYGSu
+         25CT18gafLV+OXQYAtWsVnW1Dg750/te3dKsDP4gIz5GRrHCxF6Gkn1WB+iu3pXgLxlZ
+         kF8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SRfkpp8M+7DY995ACFm0LV6S5x+iBdswbTCPLyuUHNI=;
+        b=DYL9bF4Nq3npeaImZlbQBkq9GzgDiWWtIP3Es37NrsEvzJq+qgZnfiXy8cx/UyvUlL
+         6zfNEKjAT6KFyUbIT4elyMZpZHZ7XfNOt6NBXVH4adVVp1sMJS0xE7e+XFeD/AxJCAqQ
+         bk1KGfWBfiEvjou9l0dk72fmlH60+ToLbCeArmhY4Osn5s6JvyXTDsq51nNB/vL0DhmB
+         DIN5GNq5Pci3X3b2qS7d5SIrNWV8m7IsiQapYhvT3/2drGQmX0akWkAiQSL530tfMzvs
+         CgPUxSp/kD1sd7ujDAtdtZWnPM1XWi1FVoiw7oA2tEhXyBvA1FKkaymYtZyrepfFZI+Y
+         AZhw==
+X-Gm-Message-State: ANhLgQ2K/3Bfv6VUO5tgaJWy4cxlTkVuviTM8iF26FQ1Oh1Vl+6eWQdB
+        AVJr3DJ63KuQ97HgmwMv7mLCOg==
+X-Google-Smtp-Source: ADFU+vtyzrRH95ggJTx87H/Dqq0PyilzrpER8xm/uf21w2cDs3NqJfLQfLdt9s5fY783+V17fSdyig==
+X-Received: by 2002:a1c:a78a:: with SMTP id q132mr4716824wme.107.1583947259380;
+        Wed, 11 Mar 2020 10:20:59 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id d18sm8611115wrq.22.2020.03.11.10.20.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2020 10:20:58 -0700 (PDT)
+Date:   Wed, 11 Mar 2020 17:20:56 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Tobias Schramm <t.schramm@manjaro.org>
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH] arm64: dts: qcom: sc7180: Update reg names for SDHC
-Date:   Wed, 11 Mar 2020 22:44:22 +0530
-Message-Id: <1583946863-24308-2-git-send-email-vbadigan@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1583946863-24308-1-git-send-email-vbadigan@codeaurora.org>
-References: <1583946863-24308-1-git-send-email-vbadigan@codeaurora.org>
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Mark Brown <broonie@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: power: supply: add cw2015_battery
+ bindings
+Message-ID: <20200311172056.wjn3574zrfqxipw6@holly.lan>
+References: <20200311093043.3636807-1-t.schramm@manjaro.org>
+ <20200311093043.3636807-3-t.schramm@manjaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200311093043.3636807-3-t.schramm@manjaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the redundant _mem suffix for SDHC reg names.
+On Wed, Mar 11, 2020 at 10:30:42AM +0100, Tobias Schramm wrote:
+> This patch adds the dts binding schema for the cw2015 fuel gauge.
+> 
+> Signed-off-by: Tobias Schramm <t.schramm@manjaro.org>
+> ---
+>  .../bindings/power/supply/cw2015_battery.yaml | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml b/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+> new file mode 100644
+> index 000000000000..647dbc6e136e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/supply/cw2015_battery.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Battery driver for CW2015 shuntless fule gauge by CellWise.
 
-For SDcard instance, no need supply reg names since hc reg map
-is accessed with index. So remove reg names for SDcard.
+s/fule/fuel/
 
-Signed-off-by: Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 253274d..efca50a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -394,7 +394,7 @@
- 			compatible = "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0 0x7c4000 0 0x1000>,
- 				<0 0x07c5000 0 0x1000>;
--			reg-names = "hc_mem", "cqhci_mem";
-+			reg-names = "hc", "cqhci";
- 
- 			iommus = <&apps_smmu 0x60 0x0>;
- 			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-@@ -1234,7 +1234,6 @@
- 		sdhc_2: sdhci@8804000 {
- 			compatible = "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0 0x08804000 0 0x1000>;
--			reg-names = "hc_mem";
- 
- 			iommus = <&apps_smmu 0x80 0>;
- 			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc., is a member of Code Aurora Forum, a Linux Foundation Collaborative Project
+> +
+> +maintainers:
+> +  - Tobias Schramm <t.schramm@manjaro.org>
+> +
+> +description: |
+> +  The driver can utilize information from a simple-battery linked via a
+> +  phandle in monitored-battery. If specified the driver uses the
+> +  charge-full-design-microamp-hours property of the battery.
+> +
+> +properties:
+> +  compatible:
+> +    const: cellwise,cw2015
+> +
+> +  reg:
+> +    items:
+> +      - description: i2c address
+> +
+> +  cellwise,battery-profile:
+> +    description: |
+> +      This property specifies characteristics of the battery used. The format
+> +      of this binary blob is kept secret by CellWise. The only way to obtain
+> +      it is to mail two batteries to a test facility of CellWise and receive
+> +      back a test report with the binary blob.
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#definitions/uint8-array
+> +    items:
+> +      - minItems: 64
+> +        maxItems: 64
+> +
+> +  cellwise,monitor-interval-ms:
+> +    description:
+> +      Specifies the interval in milliseconds gauge values are polled at
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  power-supplies:
+> +    description:
+> +      Specifies supplies used for charging the battery connected to this gauge
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/phandle-array
+> +      - minItems: 1
+> +        maxItems: 8 # Should be enough
+
+Is it necessary to set a maximum? power_supply.txt is still a text file
+but there is no mention of a maximum there.
+
+
+Daniel.
