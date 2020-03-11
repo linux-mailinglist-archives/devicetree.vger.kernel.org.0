@@ -2,101 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7195181FC2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 18:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D5F18200C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 18:51:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730599AbgCKRnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 13:43:33 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:37678 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730486AbgCKRnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 13:43:33 -0400
-Received: by mail-wm1-f66.google.com with SMTP id a141so3107376wme.2;
-        Wed, 11 Mar 2020 10:43:32 -0700 (PDT)
+        id S1730603AbgCKRv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 13:51:57 -0400
+Received: from mail-pj1-f66.google.com ([209.85.216.66]:37351 "EHLO
+        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730505AbgCKRv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 13:51:57 -0400
+Received: by mail-pj1-f66.google.com with SMTP id ca13so1389359pjb.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 10:51:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=2AsgLfDS4BH//bZzgWykwkfl2H5xfBl7A5I1f5MVUhg=;
-        b=noA+/Z1EG3yGGgsXsC3y4RHI7uOm1qZ3feLx1mroJlFFWwEH4nPGzOdJY2WeYCDqko
-         rfb5yFjjPfD6VFWhKPBS/cGHC6sJ/xh4uKadBsoJE7yhAW8VVNT5OnxXjUxP9NlSZkB6
-         V9UFsnuCu25buJPjoWovmUTCGtLIlxBUE9oZTZX9YAyIRWr6g7FDSwNkP3SALevEnjdy
-         X08kf2GRkmZ/F6jb9RlouPZAlvA44bxzRj0VROfW3N6OUFCUpzxY6hHBcdKWgk7Bguak
-         OoSslOOoA9z0yf3oATpR/5CEB+uk4Z6HQHw0LEJztYZRESj67kK3amEz4RAZ8AiM1EyF
-         sdvg==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=a5g25PDEXPRR99KehOK1iE2Gu80HzFKYuNkkikGwIFI=;
+        b=eNRE/qbm63stiKXIvgwIlV+IxOrzorOkM4iow7B6RZUpJva1559bRWMvw2agkD7Mis
+         2YTH3veSMsgbKxZyscQrguxH0BD1nYGckFuQ/fdaY2NKujUR7G6NuenUZTTOfFuGSGgH
+         Qxht0ueO4ugRgmAZGeX2WtSxnNFHitwKoKXgM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=2AsgLfDS4BH//bZzgWykwkfl2H5xfBl7A5I1f5MVUhg=;
-        b=ETFi3PjwCiOxV4ycLcjhViUddAUoPXi20YWzuY3m7EPhSihpVyz0EqrZ9+D+iUeJmt
-         rmn3oIc6ICwofhgnz8FEWIARBwO8MAX1bmMkFtm1Yq2jVuKLVoa8NclSZvopEVD/904c
-         pDaF7hCtem6Z7tw+hEBRFPADKNyYaAyx8GyMQXrfT6ROwbi7W7zo9G8sakTXdT76P31H
-         ywEPwRoponM2NbPq7SFK7VYAlrTDx6bnWl5Ft0ZzVMGvnlLLhuy6Mza0YC9BsZRqs80Q
-         bpA16+yGtUXmwqNjaMVYuUk/uc1WE8IpjoMfBOPdDr7lLtCOIpzvz8S6N4LFkj69MNMK
-         nVhQ==
-X-Gm-Message-State: ANhLgQ1ufDvDm8d6Q4qwFPNJW7ermzzNbhCp5CX84qnyznEwuQRAAsg4
-        KIy0zQmGxXMp/lxOApicfk0diHBS
-X-Google-Smtp-Source: ADFU+vsGIHuUFLLALx+EZj11W8sJMVfT8mLaq6XyHbUXZwurQL5aYlv5E13r2MsZ4Y6uPYTI1JfqPQ==
-X-Received: by 2002:a1c:ab07:: with SMTP id u7mr4521159wme.23.1583948611726;
-        Wed, 11 Mar 2020 10:43:31 -0700 (PDT)
-Received: from debian.home (ip51ccf9cd.speed.planet.nl. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id d1sm8933166wrw.52.2020.03.11.10.43.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Mar 2020 10:43:31 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     lgirdwood@gmail.com
-Cc:     broonie@kernel.org, heiko@sntech.de, robh+dt@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] dt-bindings: sound: rockchip-i2s: add #sound-dai-cells property
-Date:   Wed, 11 Mar 2020 18:43:22 +0100
-Message-Id: <20200311174322.23813-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200311174322.23813-1-jbx6244@gmail.com>
-References: <20200311174322.23813-1-jbx6244@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=a5g25PDEXPRR99KehOK1iE2Gu80HzFKYuNkkikGwIFI=;
+        b=kWUQGriL62k4aGfAwTo65jkxnHQQlkJEB5AqS3wSu0w6DewK8RxMLVY5YIo6RfKTCl
+         a6GkkjcJyAXd1uSMYW8Su4fwFhmGtPZ12DaoSrUAl8MycaWFLvNcfxhgAxi/HObDnzgh
+         6ZreEv3ptTTakUkWPTx3rR46Frqvbj2JSX/sJvx9iv5tm0yhFRmhaiuCmc4zU9hHssr6
+         Ra8+4UOYgn5XjA5Ang7MibUhZ6DZ1g1WOWArMxCiRf0iILetXnx0gbIp3MUcDgrGXaxN
+         QyuTIN6x12sC4DjHFPsCzSfLbBS2Xp4pmhVzmxyyzt6ce0ks9wkGg71SZBwKW+F81lNO
+         yb6A==
+X-Gm-Message-State: ANhLgQ3fHEbc9sNdxYEiQ1lbpbwzMdJepwfGzX7yjHdUPZVjgb9Mpbkm
+        DWwpqsT5mAGUa/N6AhWbdgfksw==
+X-Google-Smtp-Source: ADFU+vsBi+bUj1VxZCycAe0rgyooLlJtfjkUSx8xr00Nuup+ET1asdfp4FcWsNKm5fSW9KpT0NQn8w==
+X-Received: by 2002:a17:902:bc4c:: with SMTP id t12mr3853587plz.54.1583949115991;
+        Wed, 11 Mar 2020 10:51:55 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:4fff:7a6b:a335:8fde])
+        by smtp.gmail.com with ESMTPSA id d3sm5730078pfq.126.2020.03.11.10.51.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Mar 2020 10:51:54 -0700 (PDT)
+Date:   Wed, 11 Mar 2020 10:51:53 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Sandeep Maheswaram <sanm@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Manu Gautam <mgautam@codeaurora.org>
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: sc7180: Correct qmp phy reset
+ entries
+Message-ID: <20200311175153.GB144492@google.com>
+References: <1583928252-21246-1-git-send-email-sanm@codeaurora.org>
+ <1583928252-21246-5-git-send-email-sanm@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1583928252-21246-5-git-send-email-sanm@codeaurora.org>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-'#sound-dai-cells' is required to properly interpret
-the list of DAI specified in the 'sound-dai' property,
-so add them to 'rockchip-i2s.yaml'
+Hi Sandeep,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- Documentation/devicetree/bindings/sound/rockchip-i2s.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+This patch landed in Bjorn's tree (arm64-for-5.7 branch). In case you have
+to re-spin the series there is no need to include it.
 
-diff --git a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
-index eff06b4b5..7cd0e278e 100644
---- a/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
-+++ b/Documentation/devicetree/bindings/sound/rockchip-i2s.yaml
-@@ -77,6 +77,9 @@ properties:
-       Required property for controllers which support multi channel
-       playback/capture.
- 
-+  "#sound-dai-cells":
-+    const: 0
-+
- required:
-   - compatible
-   - reg
-@@ -85,6 +88,7 @@ required:
-   - clock-names
-   - dmas
-   - dma-names
-+  - "#sound-dai-cells"
- 
- additionalProperties: false
- 
-@@ -103,4 +107,5 @@ examples:
-       dma-names = "tx", "rx";
-       rockchip,capture-channels = <2>;
-       rockchip,playback-channels = <8>;
-+      #sound-dai-cells = <0>;
-     };
--- 
-2.11.0
-
+On Wed, Mar 11, 2020 at 05:34:12PM +0530, Sandeep Maheswaram wrote:
+> The phy reset entries were incorrect.so swapped them.
+> 
+> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 9d112aa..253274d 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -1306,8 +1306,8 @@
+>  				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+>  			clock-names = "aux", "cfg_ahb", "ref", "com_aux";
+>  
+> -			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+> -				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
+> +			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+> +				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
+>  			reset-names = "phy", "common";
+>  
+>  			usb_1_ssphy: phy@88e9200 {
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
