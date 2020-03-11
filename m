@@ -2,96 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EF66418186C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C79E1818D9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:55:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729331AbgCKMqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 08:46:09 -0400
-Received: from mail-wm1-f48.google.com ([209.85.128.48]:36488 "EHLO
-        mail-wm1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729287AbgCKMqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:46:08 -0400
-Received: by mail-wm1-f48.google.com with SMTP id g62so1975193wme.1;
-        Wed, 11 Mar 2020 05:46:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:references:in-reply-to:subject:date:message-id
-         :mime-version:content-transfer-encoding:content-language
-         :thread-index;
-        bh=vX7xay1c272z5yWnR8Vm2AwXwafctOSlGFV/CAr3lyI=;
-        b=cpYVxJokDUEk+/C8NFK/CPVc5LRy+3ROB6BEZMu4V+wxk700micwN7r7SdhA9yluJh
-         a7KDXzoNYNN8xWsWkE2xGen+YUJtH0+ERwlKg5mVWshT5TJvTx63k1u+549yNls9xgT/
-         1/xXodKdej8umcgYWTpcmDw5IY5B9kCLgwe8bhN1LXtaSDGw87SkSfjR+GrkgioMRDGA
-         uNoEU8XQYPPFriqobX+KKIjlYT00KycIhNd1W1a5Z6hPmRbDrqGlWoEukQE9mcDe+jEi
-         CUfC7w9+Ev8k7Uu83l9IjeRQurJY29PCHDoTTz0FZs5tEfrgSLz8we+BX30VRQLjBl4v
-         FX5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
-         :message-id:mime-version:content-transfer-encoding:content-language
-         :thread-index;
-        bh=vX7xay1c272z5yWnR8Vm2AwXwafctOSlGFV/CAr3lyI=;
-        b=RXYfAx55O7wPVvu6I0KMFdNxwxPkMC6PCXGTnrCUrzWM3ZKO9q2G+nmONe8uBjfLjj
-         AB9v7PDLtiGJ9956Om3jLnZyg4RCBlm4cbjeIEhJoZ4pMSZB0fW4zb4PuqNrTGXMRO0t
-         CWA3FQibSLZd8OVIjo33/xn+cfR7D94NJxPmoCoRvE7rlleqZ3jbbZoWoP8ikfcbfiAh
-         SJQSPWgI7+wID3J1pZH81WXacxoRVMO77mBP5I9XIizB2USwqCXUBKp0+yyHoSiLKScZ
-         U3g6RE7k3xI+Qmn093MFUbAw+j548A6kfhUN2AWoM0EDh3Nfy1OXaH5MUecR3APLsqRc
-         hHMA==
-X-Gm-Message-State: ANhLgQ1ljkjlMucyup6ARnzzG+0/y6IkXgZfip3MSr0vK33TeuGxWkCx
-        aVr+vdhlp48pAi9gkQ5bl0vhWOq5hfM=
-X-Google-Smtp-Source: ADFU+vsVDxCVTN+N2Gw1D6GVC46ov+wXcq58elUBcCdzA8VarIJLUeD9zJfJLE7Z/1kCYEaZaD1GOg==
-X-Received: by 2002:a1c:f60d:: with SMTP id w13mr3702859wmc.171.1583930766069;
-        Wed, 11 Mar 2020 05:46:06 -0700 (PDT)
-Received: from AnsuelXPS (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.gmail.com with ESMTPSA id v10sm179900wml.44.2020.03.11.05.46.03
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Mar 2020 05:46:04 -0700 (PDT)
-From:   <ansuelsmth@gmail.com>
-To:     "'Rob Herring'" <robh@kernel.org>
-Cc:     <sboyd@kernel.org>, "'John Crispin'" <john@phrozen.org>,
-        "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
-        "'Michael Turquette'" <mturquette@baylibre.com>,
-        "'Mark Rutland'" <mark.rutland@arm.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <sboyd@kernel.org> <20200310143756.244-1-ansuelsmth@gmail.com> <20200310184109.GA2508@bogus>
-In-Reply-To: <20200310184109.GA2508@bogus>
-Subject: R: [PATCH v2] clk: qcom: clk-rpm: add missing rpm clk for ipq806x
-Date:   Wed, 11 Mar 2020 13:46:02 +0100
-Message-ID: <06a501d5f7a3$06ba72f0$142f58d0$@gmail.com>
+        id S1729354AbgCKMzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 08:55:43 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:43928 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729320AbgCKMzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:55:42 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02BCtHkD007419;
+        Wed, 11 Mar 2020 07:55:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1583931317;
+        bh=48Zh5AGbANDxkAALhrTBL8IRtDqvahqwmRcvUOxVdiU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=aTpp+PrQ4Oar5nf76xssq6nNaaL6C9ffrxSfPVSyJ+RAzXqqzmAD/cx1bnMP4AAC7
+         lYnP0+PKHn0kDttEDJLAZ0wVVyTZB0Xh6FZASv/2V8jaEaj9gilHyd7bPEwLUccZD1
+         VSM5Fu8bnBZqYWjEPMkgRFU6wn65cYxOB97CuMB8=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02BCtH0a113914
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 11 Mar 2020 07:55:17 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 11
+ Mar 2020 07:55:16 -0500
+Received: from localhost.localdomain (10.64.41.19) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 11 Mar 2020 07:55:17 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 02BCtFIT120884;
+        Wed, 11 Mar 2020 07:55:15 -0500
+Subject: Re: [PATCH 2/3] dt-bindings: leds: Add binding for sgm3140
+To:     Luca Weiss <luca@z3ntu.xyz>, <linux-leds@vger.kernel.org>
+CC:     Heiko Stuebner <heiko@sntech.de>, Icenowy Zheng <icenowy@aosc.io>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>
+References: <20200309203558.305725-1-luca@z3ntu.xyz>
+ <20200309203558.305725-3-luca@z3ntu.xyz>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <4f848ab3-0e76-ae63-0771-758b1eaa0660@ti.com>
+Date:   Wed, 11 Mar 2020 07:49:35 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: it
-Thread-Index: AQD2n4NGhC+p0cGdAsYRRjYyx9FyPQH+RYtGAlzKsDSp3y3+UA==
+In-Reply-To: <20200309203558.305725-3-luca@z3ntu.xyz>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Tue, 10 Mar 2020 15:37:56 +0100, Ansuel Smith wrote:
-> > Add missing definition of rpm clk for ipq806x soc
-> >
-> > Signed-off-by: John Crispin <john@phrozen.org>
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > Acked-by: John Crispin <john@phrozen.org>
-> > ---
-> >  .../devicetree/bindings/clock/qcom,rpmcc.txt  |  1 +
-> >  drivers/clk/qcom/clk-rpm.c                    | 35 +++++++++++++++++++
-> >  include/dt-bindings/clock/qcom,rpmcc.h        |  4 +++
-> >  3 files changed, 40 insertions(+)
-> >
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions.
-> However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
+Luca
 
-Sorry it was asked to resend this as there was a bug in the software used to
-apply this. 
+On 3/9/20 3:35 PM, Luca Weiss wrote:
+> Add YAML devicetree binding for SGMICRO SGM3140 charge pump used for
+> camera flash LEDs.
+>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> ---
+> Changes since RFC:
+> - new patch
+>
+> I'm not sure about the completeness of this binding as it doesn't
+> mention the led subnode at all.
+> The only existing led yaml binding is leds/leds-max77650.yaml which
+> mentions the subnode but duplicates properties from documented in
+> leds/common.txt.
+>
+>   .../bindings/leds/leds-sgm3140.yaml           | 53 +++++++++++++++++++
+>   1 file changed, 53 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml b/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
+> new file mode 100644
+> index 000000000000..be9384573d02
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-sgm3140.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SGMICRO SGM3140 500mA Buck/Boost Charge Pump LED Driver
+> +
+> +maintainers:
+> +  - Luca Weiss <luca@z3ntu.xyz>
+> +
+> +description: |
+> +  The SGM3140 is a current-regulated charge pump which can regulate two current
+> +  levels for Flash and Torch modes.
+> +
+> +  It is controlled with two GPIO pins.
+Please define "It".  Not sure what is controlled here.
+
+
+Dan
 
