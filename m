@@ -2,104 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09A671811B4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 08:21:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C751811C5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 08:21:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728383AbgCKHS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 03:18:57 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:5935 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728422AbgCKHS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 03:18:57 -0400
-X-UUID: a78e075567184464a8e90e09701f4585-20200311
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=//egP2daUjOgIwpeeyA91Ud79+Z1pS62TEhIP48EiB4=;
-        b=rklOp7H7FMh1EiFSYMb+wB4WxJK+/4Z05wood8CTO+v2ftkHmwrRqzPz5IFCOoVXroRjHHk9V2i1YxczhoQYIcP6Ug/MuPHDd+fPOTh6mgj6VA0ns6il24FbI1VoMfdpZC1TR8nvRkOFJ3qSmuUNzHivNRxPvhdHB3Tjc8/4Wag=;
-X-UUID: a78e075567184464a8e90e09701f4585-20200311
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <jitao.shi@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 244190126; Wed, 11 Mar 2020 15:18:48 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
- (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 11 Mar
- 2020 15:19:09 +0800
-Received: from mszsdclx1018.gcn.mediatek.inc (10.16.6.18) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1395.4 via Frontend Transport; Wed, 11 Mar 2020 15:18:12 +0800
-From:   Jitao Shi <jitao.shi@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
-        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
-        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
-        Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v13 6/6] drm/mediatek: set dpi pin mode to gpio low to avoid leakage current
-Date:   Wed, 11 Mar 2020 15:18:23 +0800
-Message-ID: <20200311071823.117899-7-jitao.shi@mediatek.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200311071823.117899-1-jitao.shi@mediatek.com>
-References: <20200311071823.117899-1-jitao.shi@mediatek.com>
+        id S1728376AbgCKHUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 03:20:19 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:37048 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728126AbgCKHUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 03:20:19 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02B7K9mJ055887;
+        Wed, 11 Mar 2020 02:20:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1583911209;
+        bh=2XfN97zGDMprK+/GnAZ4QQKqgfCDzQBygFK9oOWO4Gc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=VtmtlSe6aqrvpaNdJhhjseJ/7U8Y5oh48kJrMWOXurK1Lv0A1wdp0BgEphPoiv9SG
+         0ZfsGobVUh3FJVpJ0btaFTen5FK6Vk07JvWXMYaS/9qZ4smboA+TknO/bhTUD7tcE/
+         8hqKniq6So8QQhtqU+pplnvjPCw5tNlGHm56FgIw=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02B7K9BZ016479
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 11 Mar 2020 02:20:09 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Wed, 11
+ Mar 2020 02:20:09 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Wed, 11 Mar 2020 02:20:09 -0500
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02B7K6YX052872;
+        Wed, 11 Mar 2020 02:20:07 -0500
+Subject: Re: [PATCH] ARM: dts: dra7: Add bus_dma_limit for L3 bus
+To:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
+CC:     <hch@lst.de>, <robin.murphy@arm.com>, <robh+dt@kernel.org>,
+        <nm@ti.com>, <nsekhar@ti.com>, <linux-omap@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20200310115309.31354-1-rogerq@ti.com>
+ <e7df4db7-6fe1-cfa4-841b-ddd395864bb8@ti.com>
+ <20200310154829.GS37466@atomide.com>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <d2e217a4-4a45-bc46-4610-84e6c8567d5f@ti.com>
+Date:   Wed, 11 Mar 2020 09:20:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: F6443FB13F5E019EB639DC1C9F2F38ACAD898DE332AEB015D24A81251CC07F532000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200310154829.GS37466@atomide.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Q29uZmlnIGRwaSBwaW5zIG1vZGUgdG8gb3V0cHV0IGFuZCBwdWxsIGxvdyB3aGVuIGRwaSBpcyBk
-aXNhYmxlZC4NCkFvdmlkIGxlYWthZ2UgY3VycmVudCBmcm9tIHNvbWUgZHBpIHBpbnMgKEhzeW5j
-IFZzeW5jIERFIC4uLiApLg0KDQpTaWduZWQtb2ZmLWJ5OiBKaXRhbyBTaGkgPGppdGFvLnNoaUBt
-ZWRpYXRlay5jb20+DQotLS0NCiBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jIHwg
-MzEgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDMxIGlu
-c2VydGlvbnMoKykNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtf
-ZHBpLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RwaS5jDQppbmRleCAyODcxZTY4
-ZTc3NjcuLmI2MzU5ZTk3OTU4OCAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
-ay9tdGtfZHBpLmMNCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHBpLmMNCkBA
-IC0xMCw3ICsxMCw5IEBADQogI2luY2x1ZGUgPGxpbnV4L2tlcm5lbC5oPg0KICNpbmNsdWRlIDxs
-aW51eC9vZi5oPg0KICNpbmNsdWRlIDxsaW51eC9vZl9kZXZpY2UuaD4NCisjaW5jbHVkZSA8bGlu
-dXgvb2ZfZ3Bpby5oPg0KICNpbmNsdWRlIDxsaW51eC9vZl9ncmFwaC5oPg0KKyNpbmNsdWRlIDxs
-aW51eC9waW5jdHJsL2NvbnN1bWVyLmg+DQogI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2Rldmlj
-ZS5oPg0KICNpbmNsdWRlIDxsaW51eC90eXBlcy5oPg0KIA0KQEAgLTc0LDYgKzc2LDkgQEAgc3Ry
-dWN0IG10a19kcGkgew0KIAllbnVtIG10a19kcGlfb3V0X3ljX21hcCB5Y19tYXA7DQogCWVudW0g
-bXRrX2RwaV9vdXRfYml0X251bSBiaXRfbnVtOw0KIAllbnVtIG10a19kcGlfb3V0X2NoYW5uZWxf
-c3dhcCBjaGFubmVsX3N3YXA7DQorCXN0cnVjdCBwaW5jdHJsICpwaW5jdHJsOw0KKwlzdHJ1Y3Qg
-cGluY3RybF9zdGF0ZSAqcGluc19ncGlvOw0KKwlzdHJ1Y3QgcGluY3RybF9zdGF0ZSAqcGluc19k
-cGk7DQogCWludCByZWZjb3VudDsNCiAJdTMyIHBjbGtfc2FtcGxlOw0KIH07DQpAQCAtMzg3LDYg
-KzM5Miw5IEBAIHN0YXRpYyB2b2lkIG10a19kcGlfcG93ZXJfb2ZmKHN0cnVjdCBtdGtfZHBpICpk
-cGkpDQogCWlmICgtLWRwaS0+cmVmY291bnQgIT0gMCkNCiAJCXJldHVybjsNCiANCisJaWYgKGRw
-aS0+cGluY3RybCAmJiBkcGktPnBpbnNfZ3BpbykNCisJCXBpbmN0cmxfc2VsZWN0X3N0YXRlKGRw
-aS0+cGluY3RybCwgZHBpLT5waW5zX2dwaW8pOw0KKw0KIAltdGtfZHBpX2Rpc2FibGUoZHBpKTsN
-CiAJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKGRwaS0+cGl4ZWxfY2xrKTsNCiAJY2xrX2Rpc2FibGVf
-dW5wcmVwYXJlKGRwaS0+ZW5naW5lX2Nsayk7DQpAQCAtNDExLDYgKzQxOSw5IEBAIHN0YXRpYyBp
-bnQgbXRrX2RwaV9wb3dlcl9vbihzdHJ1Y3QgbXRrX2RwaSAqZHBpKQ0KIAkJZ290byBlcnJfcGl4
-ZWw7DQogCX0NCiANCisJaWYgKGRwaS0+cGluY3RybCAmJiBkcGktPnBpbnNfZHBpKQ0KKwkJcGlu
-Y3RybF9zZWxlY3Rfc3RhdGUoZHBpLT5waW5jdHJsLCBkcGktPnBpbnNfZHBpKTsNCisNCiAJbXRr
-X2RwaV9lbmFibGUoZHBpKTsNCiAJcmV0dXJuIDA7DQogDQpAQCAtNzI4LDYgKzczOSwyNiBAQCBz
-dGF0aWMgaW50IG10a19kcGlfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCiAJ
-b2ZfcHJvcGVydHlfcmVhZF91MzIoZXAsICJwY2xrLXNhbXBsZSIsICZkcGktPnBjbGtfc2FtcGxl
-KTsNCiAJb2Zfbm9kZV9wdXQoZXApOw0KIA0KKwlkcGktPnBpbmN0cmwgPSBkZXZtX3BpbmN0cmxf
-Z2V0KCZwZGV2LT5kZXYpOw0KKwlpZiAoSVNfRVJSKGRwaS0+cGluY3RybCkpIHsNCisJCWRwaS0+
-cGluY3RybCA9IE5VTEw7DQorCQlkZXZfZGJnKCZwZGV2LT5kZXYsICJDYW5ub3QgZmluZCBwaW5j
-dHJsIVxuIik7DQorCX0NCisJaWYgKGRwaS0+cGluY3RybCkgew0KKwkJZHBpLT5waW5zX2dwaW8g
-PSBwaW5jdHJsX2xvb2t1cF9zdGF0ZShkcGktPnBpbmN0cmwsICJzbGVlcCIpOw0KKwkJaWYgKElT
-X0VSUihkcGktPnBpbnNfZ3BpbykpIHsNCisJCQlkcGktPnBpbnNfZ3BpbyA9IE5VTEw7DQorCQkJ
-ZGV2X2RiZygmcGRldi0+ZGV2LCAiQ2Fubm90IGZpbmQgcGluY3RybCBpZGxlIVxuIik7DQorCQl9
-DQorCQlpZiAoZHBpLT5waW5zX2dwaW8pDQorCQkJcGluY3RybF9zZWxlY3Rfc3RhdGUoZHBpLT5w
-aW5jdHJsLCBkcGktPnBpbnNfZ3Bpbyk7DQorDQorCQlkcGktPnBpbnNfZHBpID0gcGluY3RybF9s
-b29rdXBfc3RhdGUoZHBpLT5waW5jdHJsLCAiZGVmYXVsdCIpOw0KKwkJaWYgKElTX0VSUihkcGkt
-PnBpbnNfZHBpKSkgew0KKwkJCWRwaS0+cGluc19kcGkgPSBOVUxMOw0KKwkJCWRldl9kYmcoJnBk
-ZXYtPmRldiwgIkNhbm5vdCBmaW5kIHBpbmN0cmwgYWN0aXZlIVxuIik7DQorCQl9DQorCX0NCiAJ
-bWVtID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNlKHBkZXYsIElPUkVTT1VSQ0VfTUVNLCAwKTsNCiAJ
-ZHBpLT5yZWdzID0gZGV2bV9pb3JlbWFwX3Jlc291cmNlKGRldiwgbWVtKTsNCiAJaWYgKElTX0VS
-UihkcGktPnJlZ3MpKSB7DQotLSANCjIuMjEuMA0K
 
+
+On 10/03/2020 17:48, Tony Lindgren wrote:
+> * Tero Kristo <t-kristo@ti.com> [200310 14:46]:
+>> On 10/03/2020 13:53, Roger Quadros wrote:
+>>> The L3 interconnect can access only 32-bits of address.
+>>> Add the dma-ranges property to reflect this limit.
+>>>
+>>> This will ensure that no device under L3 is
+>>> given > 32-bit address for DMA.
+>>>
+>>> Issue was observed only with SATA on DRA7-EVM with 4GB RAM
+>>> and CONFIG_ARM_LPAE enabled. This is because the controller
+>>> can perform 64-bit DMA and was setting the dma_mask to 64-bit.
+>>>
+>>> Setting the correct bus_dma_limit fixes the issue.
+>>
+>> This seems kind of messy to modify almost every DT node because of this....
+>> Are you sure this is the only way to get it done? No way to modify the sata
+>> node only which is impacted somehow?
+>>
+>> Also, what if you just pass 0xffffffff to the dma-ranges property? That
+>> would avoid modifying every node I guess.
+> 
+> Also, I think these interconnects are not limited to 32-bit access.
+
+But from Table 2-1. L3_MAIN Memory Map
+
+Start address	0x0000_0000
+End address	0xFFFF_FFFF
+
+So it is 32-bit limit, right?
+
+> So yeah I too would prefer a top level dma-ranges property assuming
+> that works.
+> 
+> I guess there dma-ranges should not be 0xffffffff though if
+> limited to 2GB :)
+> 
+> Regards,
+> 
+> Tony
+> 
+
+-- 
+cheers,
+-roger
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
