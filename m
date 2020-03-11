@@ -2,191 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F02F3182176
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 20:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80DE41821AF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 20:14:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730960AbgCKTCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 15:02:32 -0400
-Received: from mail-pj1-f66.google.com ([209.85.216.66]:55094 "EHLO
-        mail-pj1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730957AbgCKTCc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 15:02:32 -0400
-Received: by mail-pj1-f66.google.com with SMTP id np16so1412791pjb.4
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 12:02:31 -0700 (PDT)
+        id S1731100AbgCKTOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 15:14:04 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34904 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730925AbgCKTOD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 15:14:03 -0400
+Received: by mail-wr1-f67.google.com with SMTP id d5so3759152wrc.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 12:14:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KxbfSfMud1yoniFNSNDPHjvEdr8IQY+/lA6j8KGqYkE=;
-        b=rFnMjB8O/yaXQWJTv31iPzLHmOkngTSkvsoCyQZDh9v9zGj3e/5juupSZZeBSzcy6X
-         MeM2WQ1rQkbQmBnPdApv3lpAR3r6bgV+dwkiV+4hZnEQX+DmLYbOpcn3Lu2vhSnOm3Yv
-         Bvms2t5ZxOgdFRDWvhlEU65pRwEQQnvVbjfRpGOZ9E4oaL4enK35RIdiopafaF2tX+CY
-         hNAdcSl4kkimfAt8+xN5HKs1D8ae39ZVcO+FFIwZqhS93hFWLSbvEhoAHQX/jhjECYfe
-         x7wHNQmdES0rdYb3vqYbn+GbfaaMv1tHGBb+S/QAcnLo0BkbMfAoMnN8HcSPp69KXM2k
-         n74g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=6TXvp/hgnbBEE+3PAwbtcQCr5QoU1b6s07axWH6/RUg=;
+        b=Ay+QlVEBOL/0e7o+/gvQhcRxio+sMll2rHA1eD7ibml+VDLdgYphOUtH/iQ5bNtYww
+         ClYokrdzFRv06VwEVYaigLIOSN17CKOHTB8AGg3XztYci4bEUYotC2ErvhjPbO7j3Jzx
+         EuaNL5uzTnoPrNSraPlyX/VkhY3EGSC/h6+CupI3+w9orewwJTclni2BGDwGjltQ7Mzt
+         dCBUxvU1HHjxC6cDL3odRauXpTPxc/bxSLCkflmeZA074Lv6HgmyLENMX+5maInPzKRI
+         0P7leVsOl/6ZPMYqO3pAtpLy3I4wopkX6flmHn//a/tHSs6dhAC6sEp/YAIUuavR/lBP
+         Z6dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KxbfSfMud1yoniFNSNDPHjvEdr8IQY+/lA6j8KGqYkE=;
-        b=TaDyntDx3Jc6ywCspyfXkvO+KVgXVetltFxkSsHhfF5aheherlhiD3FBVYidC0DDul
-         lRp+QiD/kA+JBBe1YAXjkSdO6ZfZf5r7oLxj/rD9eXs5fYrerqRUYme1cJVqCSfCcmoe
-         /AvaG/W3MU4ROFHPnNIl5ISKb0dtIB6XnRRxJDxl5kgQ2Rqh1p7kurMBG0BI8aTkpBNI
-         2KzvXPT6ScGmku15ILuLKvYdJ8qHbrfT1exbezeKDXJy2uz3CdousyMxqA1gh3tD0ONJ
-         prk0W/LpW6xC3v4XVw1VBgXu89EqkEL6kskGZDADh/iBGQIHwQny+pon5Cf2SG3xk9q1
-         LPaA==
-X-Gm-Message-State: ANhLgQ21xQla67l5KfXhactjkeU36+tIo4J5lW+2+p9ZvZqef15/mjWK
-        Vs/Mw9iiiVjkCJGP8+/PLMM0hw==
-X-Google-Smtp-Source: ADFU+vsgLQojMXRBdCCbQnephx0OvnBV71tIYUrd48OJ59EPglDf+HLuvIU4CMAcvoCh1tbzjD92xA==
-X-Received: by 2002:a17:90a:1b2c:: with SMTP id q41mr184860pjq.126.1583953350369;
-        Wed, 11 Mar 2020 12:02:30 -0700 (PDT)
-Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id i72sm24039102pgd.88.2020.03.11.12.02.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6TXvp/hgnbBEE+3PAwbtcQCr5QoU1b6s07axWH6/RUg=;
+        b=I7djoOxphmTXjv+Glqv8cmLX0SGc39lxeK5VmYMRauTRlNzmlgY2fAsjsP7f+C0Ie/
+         MEvIQoh+i5TCU51ANuhQLiC2KHLrg1kg+4+7PU2VIzesEGBT3o5FTzn7vixIMbrmEcXL
+         js2capzgitQ0UNsclJlyiQYSc8zvpO2aajTCgit+UuFqkWhBbWA8K/1zUkUWRw+8oNCO
+         WSemrGZ0CdpByefxd8Bj3iVhb5MsEevZpvTmm/EKBo6BHXZCYMFePtEO5oJ7z0obCJG6
+         Vc1GuKrOxFZOhMJ06jqjePXTVFBKwx/Dx1ycCQ19Fq/Qlyz45iPJDs9xbWTaVrrXCD5S
+         ii7g==
+X-Gm-Message-State: ANhLgQ1tZ/4GHeBFozp2Yvflk1up4j+M3Mi9xN7h6kqp6biyUftj0mKm
+        ZvSIHs3aotUOlpJKgrdoIt/njw==
+X-Google-Smtp-Source: ADFU+vsbEv2tuX+E1jYdkMH5f0uMwjyU8P2rDau6VWAyG7B1QlgLDIYBiQajaZazh3TacboViVryFA==
+X-Received: by 2002:adf:f2ca:: with SMTP id d10mr6207510wrp.247.1583954041879;
+        Wed, 11 Mar 2020 12:14:01 -0700 (PDT)
+Received: from localhost.localdomain ([176.61.57.127])
+        by smtp.gmail.com with ESMTPSA id v8sm69443919wrw.2.2020.03.11.12.14.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2020 12:02:29 -0700 (PDT)
-Date:   Wed, 11 Mar 2020 12:02:26 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     David Miller <davem@davemloft.net>, Alex Elder <elder@linaro.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, Andy Gross <agross@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Dan Williams <dcbw@redhat.com>,
-        Evan Green <evgreen@google.com>,
-        Eric Caruso <ejcaruso@google.com>,
-        Susheel Yadav Yadagiri <syadagir@codeaurora.org>,
-        Chaitanya Pratapa <cpratapa@codeaurora.org>,
-        Subash Abhinov Kasiviswanathan <subashab@codeaurora.org>,
+        Wed, 11 Mar 2020 12:14:01 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     kishon@ti.com
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jackp@codeaurora.org,
+        robh@kernel.org, bjorn.andersson@linaro.org,
+        p.zabel@pengutronix.de,
+        Sriharsha Allenki <sallenki@codeaurora.org>,
+        Anu Ramanathan <anur@codeaurora.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Siddharth Gupta <sidgup@codeaurora.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 17/17] arm64: dts: sdm845: add IPA information
-Message-ID: <20200311190226.GY1214176@minitux>
-References: <20200306042831.17827-1-elder@linaro.org>
- <20200306042831.17827-18-elder@linaro.org>
- <ec9776b3-ac79-8f9d-8c4d-012d62dc8f72@nvidia.com>
- <4decbc8a-b0a6-8f10-b439-ade9008a4cff@linaro.org>
+        Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>,
+        devicetree@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH 2/5] dt-bindings: phy: Add Qualcomm Synopsys Hi-Speed USB PHY binding
+Date:   Wed, 11 Mar 2020 19:13:55 +0000
+Message-Id: <20200311191358.8102-3-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200311191358.8102-1-bryan.odonoghue@linaro.org>
+References: <20200311191358.8102-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4decbc8a-b0a6-8f10-b439-ade9008a4cff@linaro.org>
-User-Agent: Mutt/1.12.2 (2019-09-21)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 11 Mar 07:39 PDT 2020, Alex Elder wrote:
+From: Sriharsha Allenki <sallenki@codeaurora.org>
 
-> On 3/11/20 5:49 AM, Jon Hunter wrote:
-> > 
-> > On 06/03/2020 04:28, Alex Elder wrote:
-> >> Add IPA-related nodes and definitions to "sdm845.dtsi".
-> >>
-> >> Signed-off-by: Alex Elder <elder@linaro.org>
-> >> ---
-> >>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 51 ++++++++++++++++++++++++++++
-> >>  1 file changed, 51 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> >> index d42302b8889b..58fd1c611849 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> >> @@ -675,6 +675,17 @@
-> >>  			interrupt-controller;
-> >>  			#interrupt-cells = <2>;
-> >>  		};
-> >> +
-> >> +		ipa_smp2p_out: ipa-ap-to-modem {
-> >> +			qcom,entry-name = "ipa";
-> >> +			#qcom,smem-state-cells = <1>;
-> >> +		};
-> >> +
-> >> +		ipa_smp2p_in: ipa-modem-to-ap {
-> >> +			qcom,entry-name = "ipa";
-> >> +			interrupt-controller;
-> >> +			#interrupt-cells = <2>;
-> >> +		};
-> >>  	};
-> >>  
-> >>  	smp2p-slpi {
-> >> @@ -1435,6 +1446,46 @@
-> >>  			};
-> >>  		};
-> >>  
-> >> +		ipa@1e40000 {
-> >> +			compatible = "qcom,sdm845-ipa";
-> >> +
-> >> +			modem-init;
-> >> +			modem-remoteproc = <&mss_pil>;
-> >> +
-> >> +			reg = <0 0x1e40000 0 0x7000>,
-> >> +			      <0 0x1e47000 0 0x2000>,
-> >> +			      <0 0x1e04000 0 0x2c000>;
-> >> +			reg-names = "ipa-reg",
-> >> +				    "ipa-shared",
-> >> +				    "gsi";
-> >> +
-> >> +			interrupts-extended =
-> >> +					<&intc 0 311 IRQ_TYPE_EDGE_RISING>,
-> >> +					<&intc 0 432 IRQ_TYPE_LEVEL_HIGH>,
-> >> +					<&ipa_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> >> +					<&ipa_smp2p_in 1 IRQ_TYPE_EDGE_RISING>;
-> >> +			interrupt-names = "ipa",
-> >> +					  "gsi",
-> >> +					  "ipa-clock-query",
-> >> +					  "ipa-setup-ready";
-> >> +
-> >> +			clocks = <&rpmhcc RPMH_IPA_CLK>;
-> >> +			clock-names = "core";
-> >> +
-> >> +			interconnects =
-> >> +				<&rsc_hlos MASTER_IPA &rsc_hlos SLAVE_EBI1>,
-> >> +				<&rsc_hlos MASTER_IPA &rsc_hlos SLAVE_IMEM>,
-> >> +				<&rsc_hlos MASTER_APPSS_PROC &rsc_hlos SLAVE_IPA_CFG>;
-> >> +			interconnect-names = "memory",
-> >> +					     "imem",
-> >> +					     "config";
-> >> +
-> >> +			qcom,smem-states = <&ipa_smp2p_out 0>,
-> >> +					   <&ipa_smp2p_out 1>;
-> >> +			qcom,smem-state-names = "ipa-clock-enabled-valid",
-> >> +						"ipa-clock-enabled";
-> >> +		};
-> >> +
-> >>  		tcsr_mutex_regs: syscon@1f40000 {
-> >>  			compatible = "syscon";
-> >>  			reg = <0 0x01f40000 0 0x40000>;
-> >>
-> > 
-> > 
-> > This change is causing the following build error on today's -next ...
-> > 
-> >  DTC     arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dtb
-> >  arch/arm64/boot/dts/qcom/sdm845.dtsi:1710.15-1748.5: ERROR (phandle_references): /soc@0/ipa@1e40000: Reference to non-existent node or label "rsc_hlos"
-> 
-> This problem arises because a commit in the Qualcomm SoC tree affects
-> "arch/arm64/boot/dts/qcom/sdm845.dtsi", changing the interconnect provider
-> node(s) used by IPA:
->   b303f9f0050b arm64: dts: sdm845: Redefine interconnect provider DT nodes
-> 
-> I will send out a patch today that updates the IPA node in "sdm845.dtsi"
-> to correct that.
-> 
-> In the mean time, David, perhaps you should revert this change in net-next:
->   9cc5ae125f0e arm64: dts: sdm845: add IPA information
-> and let me work out fixing "sdm845.dtsi" with Andy and Bjorn in the
-> Qualcomm tree.
-> 
+Adds bindings for Qualcomm's 28 nm USB PHY supporting Low-Speed, Full-Speed
+and Hi-Speed USB connectivity on Qualcomm chipsets.
 
-Reverting this in net-next and applying it in our tree sounds like the
-easiest path forward, and avoids further conflicts down the road.
+[bod: Converted to YAML. Changed name dropping snps, 28nm components]
 
-David, are you onboard with this?
+Signed-off-by: Sriharsha Allenki <sallenki@codeaurora.org>
+Signed-off-by: Anu Ramanathan <anur@codeaurora.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Kishon Vijay Abraham I <kishon@ti.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Jorge Ramirez-Ortiz <jorge.ramirez.ortiz@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../bindings/phy/qcom,usb-hs-28nm.yaml        | 90 +++++++++++++++++++
+ 1 file changed, 90 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
 
-Regards,
-Bjorn
+diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
+new file mode 100644
+index 000000000000..ca6a0836b53c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/qcom,usb-hs-28nm.yaml
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/qcom,usb-hs-28nm.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Synopsys DesignWare Core 28nm High-Speed PHY
++
++maintainers:
++  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
++
++description: |
++  Qualcomm Low-Speed, Full-Speed, Hi-Speed 28nm USB PHY
++
++properties:
++  compatible:
++    enum:
++      - qcom,usb-hs-28nm-femtophy
++
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 0
++
++  clocks:
++    items:
++      - description: rpmcc ref clock
++      - description: PHY AHB clock
++      - description: Rentention clock
++
++  clock-names:
++    items:
++      - const: ref
++      - const: ahb
++      - const: sleep
++
++  resets:
++    items:
++      - description: PHY core reset
++      - description: POR reset
++
++  reset-names:
++    items:
++      - const: phy
++      - const: por
++
++  vdd-supply:
++    description: phandle to the regulator VDD supply node.
++
++  vdda1p8-supply:
++    description: phandle to the regulator 1.8V supply node.
++
++  vdda3p3-supply:
++    description: phandle to the regulator 3.3V supply node.
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - vdd-supply
++  - vdda1p8-supply
++  - vdda3p3-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-qcs404.h>
++    #include <dt-bindings/clock/qcom,rpmcc.h>
++    usb2_phy_prim: phy@7a000 {
++        compatible = "qcom,usb-hs-28nm-femtophy";
++        reg = <0x0007a000 0x200>;
++        #phy-cells = <0>;
++        clocks = <&rpmcc RPM_SMD_LN_BB_CLK>,
++                 <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
++                 <&gcc GCC_USB2A_PHY_SLEEP_CLK>;
++        clock-names = "ref", "ahb", "sleep";
++        resets = <&gcc GCC_USB_HS_PHY_CFG_AHB_BCR>,
++                 <&gcc GCC_USB2A_PHY_BCR>;
++        reset-names = "phy", "por";
++        vdd-supply = <&vreg_l4_1p2>;
++        vdda1p8-supply = <&vreg_l5_1p8>;
++        vdda3p3-supply = <&vreg_l12_3p3>;
++    };
++...
+-- 
+2.25.1
+
