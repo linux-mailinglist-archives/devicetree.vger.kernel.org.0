@@ -2,97 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E5F1818AB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:47:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF66418186C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:46:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729456AbgCKMrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 08:47:12 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:50509 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729504AbgCKMrL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:47:11 -0400
-Received: by mail-wm1-f66.google.com with SMTP id a5so1951315wmb.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 05:47:10 -0700 (PDT)
+        id S1729331AbgCKMqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 08:46:09 -0400
+Received: from mail-wm1-f48.google.com ([209.85.128.48]:36488 "EHLO
+        mail-wm1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729287AbgCKMqI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:46:08 -0400
+Received: by mail-wm1-f48.google.com with SMTP id g62so1975193wme.1;
+        Wed, 11 Mar 2020 05:46:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=d0rLUPpWc9LKXF0i9+CPpLN+OwQQCuUUQ2gfv2HulHQ=;
-        b=IMq0GOglrv9AJ7IWePlqPKh+g5vEP7KPGWHNuTRmuqqvl++Phj5Ie3+A+QfEKkME3h
-         q0vWho6oLDy9c22giASuCH1G1T6he+iSuHY/0OPrxfchkouzillYMOGGlzBA9bwKR7Yg
-         +I0CgBIjKYUYCNZqgojagWqC+afKYcAZQQapMTNAk/850hRMXduZJO1Etpt2EYWQCcUy
-         n3ofi2ltjHGzGZBjILh2yTVAHr185N6iaj4H1T9AvACvPv+DIvL+M85edL84HEByBf8K
-         uVCJ+BkBjMVx15RAWG7GqnxYs9Z1XwTzh1D54MLnPmoo3LAkRQYN2UwFDW+zLVcZypwF
-         ZfOg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:references:in-reply-to:subject:date:message-id
+         :mime-version:content-transfer-encoding:content-language
+         :thread-index;
+        bh=vX7xay1c272z5yWnR8Vm2AwXwafctOSlGFV/CAr3lyI=;
+        b=cpYVxJokDUEk+/C8NFK/CPVc5LRy+3ROB6BEZMu4V+wxk700micwN7r7SdhA9yluJh
+         a7KDXzoNYNN8xWsWkE2xGen+YUJtH0+ERwlKg5mVWshT5TJvTx63k1u+549yNls9xgT/
+         1/xXodKdej8umcgYWTpcmDw5IY5B9kCLgwe8bhN1LXtaSDGw87SkSfjR+GrkgioMRDGA
+         uNoEU8XQYPPFriqobX+KKIjlYT00KycIhNd1W1a5Z6hPmRbDrqGlWoEukQE9mcDe+jEi
+         CUfC7w9+Ev8k7Uu83l9IjeRQurJY29PCHDoTTz0FZs5tEfrgSLz8we+BX30VRQLjBl4v
+         FX5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=d0rLUPpWc9LKXF0i9+CPpLN+OwQQCuUUQ2gfv2HulHQ=;
-        b=t9eNvbzSezi8Az5eQUFRl6CU0I67H4r8MjWMkpad6FqxQ5e+nMmMTvJOcKZzmORwO5
-         2BvzlbxFGR2QM1miW8GiemC4kW8feeGE31vgd44MYh0lAflYzihaR+PcYT1F4FEXgOym
-         SRXRDgjI4Xdz9oNnR6doSyhmsSq8tduU1z4NFN8RaxoWXa7dSlZphAkeA+jBt19S29xt
-         LTvoYKxsxBBzz0AzeQIwHInZfVgx3PKWaDurP5WvvzQM9v5qRxdOW4c0mAHpA1tWG3hl
-         ORIZAZUcklJL8p1GI6NhqnzjlL2oI+fY2jbqqkddnT697zqGXgGI0FcTL+VculmT43tB
-         urGQ==
-X-Gm-Message-State: ANhLgQ0cZleIHqqXkENV5lfTJnk7DisxC7nIzi2cHdvjVzB0X2iFhewy
-        su4UOz2fAHTdaNVouEVa/AhUNQ==
-X-Google-Smtp-Source: ADFU+vtSp3bp4YHfuXWS38IAA5q6tgH8hB5aWJ3nzhD3eOkPVBueydoPmuaFZUj0SnvU9SNNjQlTgg==
-X-Received: by 2002:a7b:c414:: with SMTP id k20mr3678319wmi.119.1583930829492;
-        Wed, 11 Mar 2020 05:47:09 -0700 (PDT)
-Received: from localhost.localdomain ([2001:171b:c9a8:fbc0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id c2sm8380020wma.39.2020.03.11.05.47.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2020 05:47:09 -0700 (PDT)
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     bhelgaas@google.com, will@kernel.org, robh+dt@kernel.org,
-        joro@8bytes.org, baolu.lu@linux.intel.com, sudeep.holla@arm.com,
-        linux-doc@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-acpi@vger.kernel.org, iommu@lists.linux-foundation.org
-Cc:     lorenzo.pieralisi@arm.com, corbet@lwn.net, mark.rutland@arm.com,
-        liviu.dudau@arm.com, guohanjun@huawei.com, rjw@rjwysocki.net,
-        lenb@kernel.org, robin.murphy@arm.com, dwmw2@infradead.org,
-        amurray@thegoodpenguin.co.uk, frowand.list@gmail.com,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH v2 11/11] Documentation: Generalize the "pci=noats" boot parameter
-Date:   Wed, 11 Mar 2020 13:45:06 +0100
-Message-Id: <20200311124506.208376-12-jean-philippe@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200311124506.208376-1-jean-philippe@linaro.org>
-References: <20200311124506.208376-1-jean-philippe@linaro.org>
+        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
+         :message-id:mime-version:content-transfer-encoding:content-language
+         :thread-index;
+        bh=vX7xay1c272z5yWnR8Vm2AwXwafctOSlGFV/CAr3lyI=;
+        b=RXYfAx55O7wPVvu6I0KMFdNxwxPkMC6PCXGTnrCUrzWM3ZKO9q2G+nmONe8uBjfLjj
+         AB9v7PDLtiGJ9956Om3jLnZyg4RCBlm4cbjeIEhJoZ4pMSZB0fW4zb4PuqNrTGXMRO0t
+         CWA3FQibSLZd8OVIjo33/xn+cfR7D94NJxPmoCoRvE7rlleqZ3jbbZoWoP8ikfcbfiAh
+         SJQSPWgI7+wID3J1pZH81WXacxoRVMO77mBP5I9XIizB2USwqCXUBKp0+yyHoSiLKScZ
+         U3g6RE7k3xI+Qmn093MFUbAw+j548A6kfhUN2AWoM0EDh3Nfy1OXaH5MUecR3APLsqRc
+         hHMA==
+X-Gm-Message-State: ANhLgQ1ljkjlMucyup6ARnzzG+0/y6IkXgZfip3MSr0vK33TeuGxWkCx
+        aVr+vdhlp48pAi9gkQ5bl0vhWOq5hfM=
+X-Google-Smtp-Source: ADFU+vsVDxCVTN+N2Gw1D6GVC46ov+wXcq58elUBcCdzA8VarIJLUeD9zJfJLE7Z/1kCYEaZaD1GOg==
+X-Received: by 2002:a1c:f60d:: with SMTP id w13mr3702859wmc.171.1583930766069;
+        Wed, 11 Mar 2020 05:46:06 -0700 (PDT)
+Received: from AnsuelXPS (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
+        by smtp.gmail.com with ESMTPSA id v10sm179900wml.44.2020.03.11.05.46.03
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 11 Mar 2020 05:46:04 -0700 (PDT)
+From:   <ansuelsmth@gmail.com>
+To:     "'Rob Herring'" <robh@kernel.org>
+Cc:     <sboyd@kernel.org>, "'John Crispin'" <john@phrozen.org>,
+        "'Andy Gross'" <agross@kernel.org>,
+        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
+        "'Michael Turquette'" <mturquette@baylibre.com>,
+        "'Mark Rutland'" <mark.rutland@arm.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <sboyd@kernel.org> <20200310143756.244-1-ansuelsmth@gmail.com> <20200310184109.GA2508@bogus>
+In-Reply-To: <20200310184109.GA2508@bogus>
+Subject: R: [PATCH v2] clk: qcom: clk-rpm: add missing rpm clk for ipq806x
+Date:   Wed, 11 Mar 2020 13:46:02 +0100
+Message-ID: <06a501d5f7a3$06ba72f0$142f58d0$@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+        charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: it
+Thread-Index: AQD2n4NGhC+p0cGdAsYRRjYyx9FyPQH+RYtGAlzKsDSp3y3+UA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "pci=noats" kernel parameter disables PCIe ATS globally, and affects
-any ATS-capable IOMMU driver. So rather than adding Arm SMMUv3, which
-recently gained ATS support, to the list of relevant build options,
-simplify the noats description.
+> On Tue, 10 Mar 2020 15:37:56 +0100, Ansuel Smith wrote:
+> > Add missing definition of rpm clk for ipq806x soc
+> >
+> > Signed-off-by: John Crispin <john@phrozen.org>
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > Acked-by: John Crispin <john@phrozen.org>
+> > ---
+> >  .../devicetree/bindings/clock/qcom,rpmcc.txt  |  1 +
+> >  drivers/clk/qcom/clk-rpm.c                    | 35 +++++++++++++++++++
+> >  include/dt-bindings/clock/qcom,rpmcc.h        |  4 +++
+> >  3 files changed, 40 insertions(+)
+> >
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions.
+> However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
 
-Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
----
- Documentation/admin-guide/kernel-parameters.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index c07815d230bc..3e17ddb76731 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -3610,8 +3610,8 @@
- 				on: Turn realloc on
- 		realloc		same as realloc=on
- 		noari		do not use PCIe ARI.
--		noats		[PCIE, Intel-IOMMU, AMD-IOMMU]
--				do not use PCIe ATS (and IOMMU device IOTLB).
-+		noats		[PCIE] Do not use PCIe ATS (and IOMMU device
-+				IOTLB).
- 		pcie_scan_all	Scan all possible PCIe devices.  Otherwise we
- 				only look for one device below a PCIe downstream
- 				port.
--- 
-2.25.1
+Sorry it was asked to resend this as there was a bug in the software used to
+apply this. 
 
