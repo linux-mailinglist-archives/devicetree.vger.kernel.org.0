@@ -2,405 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 716A61813CF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:58:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E783D181314
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:36:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728547AbgCKI63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 04:58:29 -0400
-Received: from alexa-out-blr-01.qualcomm.com ([103.229.18.197]:44269 "EHLO
-        alexa-out-blr-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726160AbgCKI62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 04:58:28 -0400
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by alexa-out-blr-01.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Mar 2020 14:28:23 +0530
-Received: from harigovi-linux.qualcomm.com ([10.204.66.157])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 11 Mar 2020 14:28:10 +0530
-Received: by harigovi-linux.qualcomm.com (Postfix, from userid 2332695)
-        id 185412745; Wed, 11 Mar 2020 14:28:10 +0530 (IST)
-From:   Harigovindan P <harigovi@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Harigovindan P <harigovi@codeaurora.org>, robdclark@gmail.com,
-        seanpaul@chromium.org, sean@poorly.run
-Subject: [PATCH v6 2/2] drm/panel: add support for rm69299 visionox panel driver
-Date:   Wed, 11 Mar 2020 14:28:07 +0530
-Message-Id: <20200311085807.21984-3-harigovi@codeaurora.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200311085807.21984-1-harigovi@codeaurora.org>
-References: <20200311085807.21984-1-harigovi@codeaurora.org>
+        id S1728630AbgCKIfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 04:35:20 -0400
+Received: from mail-eopbgr10069.outbound.protection.outlook.com ([40.107.1.69]:3502
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728596AbgCKIfU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 04:35:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ExO26AV6idq2cRkM+IRbUnFbxWPzaoEEL5dp+XU1n43U1MWWwVI//zJxV4Snw6Tn26cDfhAvEhDBXc7Zx8c5HtOSUgZlCMW+kK+2cKBjaXAEaqgHNmocafr/9HfHNEc3ocLmmV0BOkqyYLCX9Cs72ymNAViakZ87PLRRHaepkRFNEBaQp8+FQil/t5682tI80p8H5UrDeHo5nFBPfU8Bfj/l1WJO5tTUZ9H9dyQhkiVxVLfOpp22piFx4xUVhNa3C3+uQm+sbAibn/lzTAJoGrcMk6V8t1PEAwZaZBA1G6WgReNTz2ud+gwKwUo7EJV4158q+EfeO0HGG02P/It78Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pw4icEYch86s6OwQMtMQ7hmk2R5+lBdfcIpDrfc/eIY=;
+ b=S3M7qoYryHJ049T2jwe5KKLp/FeZdfucKhwEoFYtH1YBuUn4D5t6TPvgB0P9BPaN6380QHPmsiPlT9/RJpWbKb7sUutntxxmnGhY0zdh+mAnsFvHFSwPCd8ZVMsO1e2F2/aZElGL1yCATapq35r3Rkk3PIxL/Gdw16DFYLuVVeG5o7dNjbSE6ccweMxCFZQ5/KMhhXCE/+8Y4U52Q29bEV5OHNLyuxxczMvusef+Fu/+wchzL6RRebjvG+YcYCDjYeXAFKTPLSDvHKKVEbzPZnWxkI1cBB1hhx8WDMYiZXOU3F5CFghzP0Vr7q9wnCs4R1F3O3NYwnMoDP9VUXRlxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pw4icEYch86s6OwQMtMQ7hmk2R5+lBdfcIpDrfc/eIY=;
+ b=FygpH18YKRzZp9sBemiCJe48VEs6x3JDGagc2tNFF1eGEdPED/t1KSjGZB6EM1najh16WmF7mtRZu7jr58z5LwHOjdvkBWYMktVTvGZqRC/iF0ue5VhSbacMaRshoklMC8GsmARi6mO0tIGVRYqEgvqo1p3N1mt1sFW9DV5v2mk=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=yibin.gong@nxp.com; 
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.232.15) by
+ VE1PR04MB6702.eurprd04.prod.outlook.com (20.179.234.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2793.17; Wed, 11 Mar 2020 08:35:14 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::490:6caa:24b:4a31]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::490:6caa:24b:4a31%6]) with mapi id 15.20.2793.018; Wed, 11 Mar 2020
+ 08:35:13 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     s.hauer@pengutronix.de, vkoul@kernel.org, shawnguo@kernel.org,
+        u.kleine-koenig@pengutronix.de, broonie@kernel.org,
+        robh+dt@kernel.org, festevam@gmail.com, dan.j.williams@intel.com,
+        mark.rutland@arm.com, catalin.marinas@arm.com, will.deacon@arm.com,
+        l.stach@pengutronix.de, martin.fuzzey@flowbird.group
+Cc:     kernel@pengutronix.de, linux-spi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v7 00/13] add ecspi ERR009165 for i.mx6/7 soc family
+Date:   Thu, 12 Mar 2020 00:36:23 +0800
+Message-Id: <1583944596-23410-1-git-send-email-yibin.gong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0158.apcprd04.prod.outlook.com (2603:1096:4::20)
+ To VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.66) by SG2PR04CA0158.apcprd04.prod.outlook.com (2603:1096:4::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.2793.15 via Frontend Transport; Wed, 11 Mar 2020 08:35:08 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.66]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: dc0178ad-1b76-435f-514a-08d7c5971e55
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6702:|VE1PR04MB6702:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB6702263D20E70251C7A9316C89FC0@VE1PR04MB6702.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2887;
+X-Forefront-PRVS: 0339F89554
+X-Forefront-Antispam-Report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(346002)(396003)(376002)(39860400002)(136003)(199004)(966005)(956004)(6486002)(2616005)(2906002)(6666004)(7416002)(66476007)(66946007)(8676002)(66556008)(316002)(86362001)(52116002)(478600001)(81166006)(6512007)(26005)(81156014)(6506007)(8936002)(36756003)(5660300002)(16526019)(4326008)(186003)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6702;H:VE1PR04MB6638.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
+Received-SPF: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: f/5a+IgY0gvAOEYICJWwGwYQfw16rWlREDR3F+zi4EFhtqWhWUwc869O+LZP1UJRF6WbMjnjWDSpc6qtzhaWJaJ3+8121H28pBV0ssKr7g65EzWj6Ei6Y1iKE8D5bLwSdCaaUr1LWThDPsqgYlFHNdRH90BusSvF6QGegJ+b2gra3upQ05Z+8wZ51BR9cZllYEXzCgBivuxXfg5IQlvbikZvmB18owMjfL40dmxI0fwg5riy+C4xuemyFZYjOfVVzCjwCvNOsvrR4MWk9zHimI4pAS82ARQADv98YSH0RmVRw2V5ZAdvzhZSYwAn2tNmXxDVGI40HQf9g27gSobvJOV00vQVzIQNik6BbZqwOY3TgIvQ6AVWKSN/YN7FTeyPDt54rXE9K0kqy9u0VmNGpgE417uNxaPlXeEwlnTkwCdjx+BYx3eb20aKJnrwTZ6UOKmoVfbzXe0i3dZbJK8FMtUTOSOjE1FB3xZhqbnI+IwvP3yD0WIPg3gfm7yDiIwlM7sWftjNJ1y4PfrXvTiyfxU5ECinWoUuFRHLl9TvCrrS4XqB5DnGEUTDOwxtReIsZXieK6a8e7wGDpsQ+OFb4Q==
+X-MS-Exchange-AntiSpam-MessageData: gS4BQnuy/cg9KvzPXEt6Uc55SNWyp7ESwwog04WofWE1hLbYyJvu9dnuIU6fR8W6K+u5lGQIm2oZnic1PX0CzEKzOjeJp/7Yes46D/oG0D7ohSvpyU+fzeAiI8fOH96RjS7sKK8S+popCfGdF8b8ow==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc0178ad-1b76-435f-514a-08d7c5971e55
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2020 08:35:13.8054
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lVFGl9uRD2rMf5K2AaCaECo9qfECmwwxIIBjbyLmmIn0LTDTAvG/T2EwCp0qvqCXjTZQIfKeEy9T77gtsnbrAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6702
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Visionox panel driver.
+There is ecspi ERR009165 on i.mx6/7 soc family, which cause FIFO
+transfer to be send twice in DMA mode. Please get more information from:
+https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf. The workaround is adding
+new sdma ram script which works in XCH  mode as PIO inside sdma instead
+of SMC mode, meanwhile, 'TX_THRESHOLD' should be 0. The issue should be
+exist on all legacy i.mx6/7 soc family before i.mx6ul.
+NXP fix this design issue from i.mx6ul, so newer chips including i.mx6ul/
+6ull/6sll do not need this workaroud anymore. All other i.mx6/7/8 chips
+still need this workaroud. This patch set add new 'fsl,imx6ul-ecspi'
+for ecspi driver and 'ecspi_fixed' in sdma driver to choose if need errata
+or not.
+The first two reverted patches should be the same issue, though, it
+seems 'fixed' by changing to other shp script. Hope Sean or Sascha could
+have the chance to test this patch set if could fix their issues.
+Besides, enable sdma support for i.mx8mm/8mq and fix ecspi1 not work
+on i.mx8mm because the event id is zero.
 
-Signed-off-by: Harigovindan P <harigovi@codeaurora.org>
----
+PS:
+   Please get sdma firmware from below linux-firmware and copy it to your
+local rootfs /lib/firmware/imx/sdma.
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/imx/sdma
 
-Changes in v2:
-	- Dropping redundant space in Kconfig(Sam Ravnborg).
-	- Changing structure for include files(Sam Ravnborg).
-	- Removing backlight related code and functions(Sam Ravnborg).
-	- Removing repeated printing of error message(Sam Ravnborg).
-	- Adding drm_connector as an argument for get_modes function.
-Changes in v3:
-	- Adding arguments for drm_panel_init to support against mainline.
-Changes in v4:
-	- Removing error messages from regulator_set_load.
-	- Removing dev struct entry.
-	- Removing checks.
-	- Dropping empty comment lines.
-Changes in v5:
-	- Removing unused struct member variables.
-	- Removing blank lines.
-	- Fixed indentation.
-	- Invoking dsi_detach and panel_remove while early exiting from probe.
-Changes in v6:
-	- Changed "35597" to "rm69299" for power_on function.
-	- Removing rm69299_config since it supports single type of panel for now.
-	- Fixed alignment.
-	- Using goto statements when regulator_set_load fails.
+v2:
+  1.Add commit log for reverted patches.
+  2.Add comment for 'ecspi_fixed' in sdma driver.
+  3.Add 'fsl,imx6sll-ecspi' compatible instead of 'fsl,imx6ul-ecspi'
+    rather than remove.
+v3:
+  1.Confirm with design team make sure ERR009165 fixed on i.mx6ul/i.mx6ull
+    /i.mx6sll, not fixed on i.mx8m/8mm and other i.mx6/7 legacy chips.
+    Correct dts related dts patch in v2.
+  2.Clean eratta information in binding doc and new 'tx_glitch_fixed' flag
+    in spi-imx driver to state ERR009165 fixed or not.
+  3.Enlarge burst size to fifo size for tx since tx_wml set to 0 in the
+    errata workaroud, thus improve performance as possible.
+v4:
+  1.Add Ack tag from Mark and Vinod
+  2.Remove checking 'event_id1' zero as 'event_id0'.
+v5:
+  1.Add the last patch for compatible with the current uart driver which
+    using rom script, so both uart ram script and rom script supported
+    in latest firmware, by default uart rom script used. UART driver
+    will be broken without this patch.
+v6:
+  1.Resend after rebase the latest next branch.
+  2.Remove below No.13~No.15 patches of v5 because they were mergered.
+  	ARM: dts: imx6ul: add dma support on ecspi
+  	ARM: dts: imx6sll: correct sdma compatible
+  	arm64: defconfig: Enable SDMA on i.mx8mq/8mm
+  3.Revert "dmaengine: imx-sdma: fix context cache" since
+    'context_loaded' removed.
+v7:
+  1.Put the last patch 13/13 'Revert "dmaengine: imx-sdma: fix context
+    cache"' to the ahead of 03/13 'Revert "dmaengine: imx-sdma: refine
+    to load context only once" so that no building waring during comes out
+    during bisect.
+  2.Address Sascha's comments, including eliminating any i.mx6sx in this
+    series, adding new 'is_imx6ul_ecspi()' instead imx in imx51 and taking
+    care SMC bit for PIO.
+  3.Add back missing 'Reviewed-by' tag on 08/15(v5):09/13(v7)
+   'spi: imx: add new i.mx6ul compatible name in binding doc'
 
- drivers/gpu/drm/panel/Kconfig                 |   8 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-visionox-rm69299.c    | 295 ++++++++++++++++++
- 3 files changed, 304 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-visionox-rm69299.c
+Robin Gong (13):
+  Revert "ARM: dts: imx6q: Use correct SDMA script for SPI5 core"
+  Revert "ARM: dts: imx6: Use correct SDMA script for SPI cores"
+  Revert "dmaengine: imx-sdma: fix context cache"
+  Revert "dmaengine: imx-sdma: refine to load context only once"
+  dmaengine: imx-sdma: remove dupilicated sdma_load_context
+  dmaengine: imx-sdma: add mcu_2_ecspi script
+  spi: imx: fix ERR009165
+  spi: imx: remove ERR009165 workaround on i.mx6ul
+  spi: imx: add new i.mx6ul compatible name in binding doc
+  dmaengine: imx-sdma: remove ERR009165 on i.mx6ul
+  dma: imx-sdma: add i.mx6ul compatible name
+  dmaengine: imx-sdma: fix ecspi1 rx dma not work on i.mx8mm
+  dmaengine: imx-sdma: add uart rom script
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index ae44ac2ec106..7b696f304a99 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -389,6 +389,14 @@ config DRM_PANEL_TRULY_NT35597_WQXGA
- 	  Say Y here if you want to enable support for Truly NT35597 WQXGA Dual DSI
- 	  Video Mode panel
- 
-+config DRM_PANEL_VISIONOX_RM69299
-+	tristate "Visionox RM69299"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	help
-+	  Say Y here if you want to enable support for Visionox
-+	  RM69299  DSI Video Mode panel.
-+
- config DRM_PANEL_XINPENG_XPP055C272
- 	tristate "Xinpeng XPP055C272 panel driver"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 7c4d3c581fd4..9f11d067a6b2 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -41,4 +41,5 @@ obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) += panel-tpo-td028ttec1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += panel-tpo-tpg110.o
- obj-$(CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA) += panel-truly-nt35597.o
-+obj-$(CONFIG_DRM_PANEL_VISIONOX_RM69299) += panel-visionox-rm69299.o
- obj-$(CONFIG_DRM_PANEL_XINPENG_XPP055C272) += panel-xinpeng-xpp055c272.o
-diff --git a/drivers/gpu/drm/panel/panel-visionox-rm69299.c b/drivers/gpu/drm/panel/panel-visionox-rm69299.c
-new file mode 100644
-index 000000000000..b226723a7543
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-visionox-rm69299.c
-@@ -0,0 +1,295 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/module.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/of_device.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_print.h>
-+
-+struct visionox_rm69299 {
-+	struct drm_panel panel;
-+	struct regulator_bulk_data supplies[2];
-+	struct gpio_desc *reset_gpio;
-+	struct mipi_dsi_device *dsi;
-+	bool prepared;
-+	bool enabled;
-+};
-+
-+static inline struct visionox_rm69299 *panel_to_ctx(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct visionox_rm69299, panel);
-+}
-+
-+static int visionox_rm69299_power_on(struct visionox_rm69299 *ctx)
-+{
-+	int ret;
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Reset sequence of visionox panel requires the panel to be
-+	 * out of reset for 10ms, followed by being held in reset
-+	 * for 10ms and then out again
-+	 */
-+	gpiod_set_value(ctx->reset_gpio, 1);
-+	usleep_range(10000, 20000);
-+	gpiod_set_value(ctx->reset_gpio, 0);
-+	usleep_range(10000, 20000);
-+	gpiod_set_value(ctx->reset_gpio, 1);
-+	usleep_range(10000, 20000);
-+
-+	return 0;
-+}
-+
-+static int visionox_rm69299_power_off(struct visionox_rm69299 *ctx)
-+{
-+	gpiod_set_value(ctx->reset_gpio, 0);
-+
-+	return regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-+}
-+
-+static int visionox_rm69299_unprepare(struct drm_panel *panel)
-+{
-+	struct visionox_rm69299 *ctx = panel_to_ctx(panel);
-+	int ret;
-+
-+	ctx->dsi->mode_flags = 0;
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_SET_DISPLAY_OFF, NULL, 0);
-+	if (ret < 0)
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"set_display_off cmd failed ret = %d\n", ret);
-+
-+	/* 120ms delay required here as per DCS spec */
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_ENTER_SLEEP_MODE, NULL, 0);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"enter_sleep cmd failed ret = %d\n", ret);
-+	}
-+
-+	ret = visionox_rm69299_power_off(ctx);
-+
-+	ctx->prepared = false;
-+	return ret;
-+}
-+
-+static int visionox_rm69299_prepare(struct drm_panel *panel)
-+{
-+	struct visionox_rm69299 *ctx = panel_to_ctx(panel);
-+	int ret;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	ret = visionox_rm69299_power_on(ctx);
-+	if (ret < 0)
-+		return ret;
-+
-+	ctx->dsi->mode_flags |= MIPI_DSI_MODE_LPM;
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0xfe, 0x00 }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 0 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0xc2, 0x08 }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 1 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0x35, 0x00 }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 2 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write_buffer(ctx->dsi, (u8[]){ 0x51, 0xff }, 2);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"cmd set tx 3 failed, ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_EXIT_SLEEP_MODE, NULL, 0);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"exit_sleep_mode cmd failed ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	/* Per DSI spec wait 120ms after sending exit sleep DCS command */
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_write(ctx->dsi, MIPI_DCS_SET_DISPLAY_ON, NULL, 0);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(ctx->panel.dev,
-+			"set_display_on cmd failed ret = %d\n", ret);
-+		goto power_off;
-+	}
-+
-+	/* Per DSI spec wait 120ms after sending set_display_on DCS command */
-+	msleep(120);
-+
-+	ctx->prepared = true;
-+
-+	return 0;
-+
-+power_off:
-+	return ret;
-+}
-+
-+static const struct drm_display_mode visionox_rm69299_1080x2248_60hz = {
-+        .name = "1080x2248",
-+        .clock = 158695,
-+        .hdisplay = 1080,
-+        .hsync_start = 1080 + 26,
-+        .hsync_end = 1080 + 26 + 2,
-+        .htotal = 1080 + 26 + 2 + 36,
-+        .vdisplay = 2248,
-+        .vsync_start = 2248 + 56,
-+        .vsync_end = 2248 + 56 + 4,
-+        .vtotal = 2248 + 56 + 4 + 4,
-+        .vrefresh = 60,
-+        .flags = 0,
-+};
-+
-+static int visionox_rm69299_get_modes(struct drm_panel *panel,
-+				       struct drm_connector *connector)
-+{
-+	struct visionox_rm69299 *ctx = panel_to_ctx(panel);
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_create(connector->dev);
-+	if (!mode) {
-+		DRM_DEV_ERROR(ctx->dev,
-+			"failed to create a new display mode\n");
-+		return 0;
-+	}
-+
-+	connector->display_info.width_mm = 74;
-+	connector->display_info.height_mm = 131;
-+	drm_mode_copy(mode, &visionox_rm69299_1080x2248_60hz);
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs visionox_rm69299_drm_funcs = {
-+	.unprepare = visionox_rm69299_unprepare,
-+	.prepare = visionox_rm69299_prepare,
-+	.get_modes = visionox_rm69299_get_modes,
-+};
-+
-+static int visionox_rm69299_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct visionox_rm69299 *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	ctx->supplies[0].supply = "vdda";
-+	ctx->supplies[1].supply = "vdd3p3";
-+
-+	ret = devm_regulator_bulk_get(ctx->panel.dev, ARRAY_SIZE(ctx->supplies),
-+				      ctx->supplies);
-+	if (ret < 0)
-+		return ret;
-+
-+	ctx->reset_gpio = devm_gpiod_get(ctx->panel.dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(ctx->reset_gpio)) {
-+		DRM_DEV_ERROR(dev, "cannot get reset gpio %ld\n",
-+			PTR_ERR(ctx->reset_gpio));
-+		return PTR_ERR(ctx->reset_gpio);
-+	}
-+
-+	drm_panel_init(&ctx->panel, dev, &visionox_rm69299_drm_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+	ctx->panel.dev = dev;
-+	ctx->panel.funcs = &visionox_rm69299_drm_funcs;
-+	drm_panel_add(&ctx->panel);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_LPM |
-+		MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		DRM_DEV_ERROR(dev, "dsi attach failed ret = %d\n", ret);
-+		goto err_dsi_attach;
-+	}
-+
-+	ret = regulator_set_load(ctx->supplies[0].consumer, 32000);
-+	if (ret) {
-+		mipi_dsi_detach(dsi);
-+		goto err_dsi_attach;
-+	}
-+
-+	ret = regulator_set_load(ctx->supplies[1].consumer, 13200);
-+	if (ret) {
-+		mipi_dsi_detach(dsi);
-+		goto err_dsi_attach;
-+	}
-+
-+	return 0;
-+
-+err_dsi_attach:
-+	drm_panel_remove(&ctx->panel);
-+	return ret;
-+}
-+
-+static int visionox_rm69299_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct visionox_rm69299 *ctx = mipi_dsi_get_drvdata(dsi);
-+
-+	mipi_dsi_detach(ctx->dsi);
-+	mipi_dsi_device_unregister(ctx->dsi);
-+
-+	drm_panel_remove(&ctx->panel);
-+	return 0;
-+}
-+
-+static const struct of_device_id visionox_rm69299_of_match[] = {
-+	{
-+		.compatible = "visionox,rm69299-1080p-display",
-+	},
-+};
-+MODULE_DEVICE_TABLE(of, visionox_rm69299_of_match);
-+
-+static struct mipi_dsi_driver visionox_rm69299_driver = {
-+	.driver = {
-+		.name = "panel-visionox-rm69299",
-+		.of_match_table = visionox_rm69299_of_match,
-+	},
-+	.probe = visionox_rm69299_probe,
-+	.remove = visionox_rm69299_remove,
-+};
-+module_mipi_dsi_driver(visionox_rm69299_driver);
-+
-+MODULE_DESCRIPTION("Visionox RM69299 DSI Panel Driver");
-+MODULE_LICENSE("GPL v2");
-+
+ .../devicetree/bindings/dma/fsl-imx-sdma.txt       |  1 +
+ .../devicetree/bindings/spi/fsl-imx-cspi.txt       |  1 +
+ arch/arm/boot/dts/imx6q.dtsi                       |  2 +-
+ arch/arm/boot/dts/imx6qdl.dtsi                     |  8 +--
+ drivers/dma/imx-sdma.c                             | 67 ++++++++++++++--------
+ drivers/spi/spi-imx.c                              | 61 +++++++++++++++++---
+ include/linux/platform_data/dma-imx-sdma.h         |  8 ++-
+ 7 files changed, 108 insertions(+), 40 deletions(-)
+
 -- 
-2.25.1
+2.7.4
 
