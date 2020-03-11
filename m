@@ -2,164 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 947A118135D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 09:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 160DD18141A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 10:08:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728678AbgCKIge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 04:36:34 -0400
-Received: from mail-vi1eur05on2078.outbound.protection.outlook.com ([40.107.21.78]:6134
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        id S1728643AbgCKJIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 05:08:50 -0400
+Received: from mail-am6eur05on2041.outbound.protection.outlook.com ([40.107.22.41]:16064
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728605AbgCKIgd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 04:36:33 -0400
+        id S1728610AbgCKJIt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 05:08:49 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LS3Nap5szBbOWWDTplPJ6LN2uxI3Hu5MXpDDWrExOYjrXTt865SlV8eF9MAdk66Y2ZlxMcG95Jp4jQ4CMRjm4HrHl3cpTRwPDzLG9oq3vZydoQE2Wm+mezodGK9sVzELOI+tiHaiCDj+Ds230P17Je4FuzA7gJ5NH4Yrvo5WCyi28vPJ81OPsLCEQy7ZI345/1EeBPBlkucBnt2uB2WlkmyUe+Af5kInhUdAd7qTsT4MJzskJzSi9VWlznGCFqhBhwSDl82p+wzgM3H96osql6FwNsRuotqpIec3Nlgg/I3ec5VPHfhb0kWuq4a/XUEXpyHZmURXGxM8P05ujg2Ddw==
+ b=gCUU0qkZFdINLZt8vif/RZNodziwhbz3Y2Qmep/TFU6lz7Cpx52JSKV+ybeAybWaCccixsIwcy3mFeJcV9Zaue/MYYUQnabP6gYAs45HMvH6pv49ZawIFzAzvcR5SmLCQLd7KvvMTtwteIj2usCY3ayrJcm2CDVrjqNGl1a2HLD5k+H+W4ytCx++365nKIw7hKQhP+gOc7pSDVaBhEq8wzLLqte65jhxRwoGH6F1jKzvxgR303HZaEKdkyOnAVFCNtuwXIlnOHuifgbVh8CCIwnrh9fKpuK6jbboIVQ6pShvvzaD9iixykDlvvg3pzENxeVcTtcSjzGdtuRtDpsEgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WEoEhyBGFSr+T0WmOOJnN6+RjSQtavc5N5PmyRlXha4=;
- b=aGYReKMuaFUAz4Br6EqrUadobmZ2LX+yWE0Q3BPwe4PSpezLVAh/FnTCogQey+XNS5kcYFVIJAXHCiXIXpeUNbxz/iZWlzpxYIOJZ2fOBI6e3ZhdkBthUz22DwQ1OqcxNjTSzM/IMxaDRAHGfNKGp+fHCCkbGctsk0CrvYfArjCUfyEb5XZiPTk0djedPDkq9lD69kwJkYeXY9ZsHCckb3GhSTQxSJFWDQqpf+FoQQrLfaHsoZzXjqxGTiZzaKw1syrK+rVX3AcKNvhocaLjj4GvTDD83tLHaUtFOfgV4wFCiiZbVTM1DCFCN5zHx1toVPoyTl5/qzfQtCmWGvepWg==
+ bh=Ixdt3LHc+fLCklQ+sTM2VLiOs+Hr2Ds57nIIbi7NXEw=;
+ b=lsUh4viYlVDnn/v/TBSLcN2sP5w/UIeAt+raI3Ebogg+1QPHcBL/OY0GP0DBv2GoB7fomU6Z5/Hu8c/IB/YrhmB8zUWYJwKhAK3YWlmKtZng1ydd2NCkOc54DpwpI3/15BurCltlStuMyLXQWXuWSAnwZDiL8RtQlyCQYG+JSRgKd9dbj/K3lLpdcho7E6ykm//2tLMhutwXRv8m7t9bkBwa/A5Se7AbOw88CI1f5UjiFKO4AAqnYzKqI/fp8NFMfpYojG3XjRUqmuVzRGhLd012SJiUW75qhBT2g9RgnaeU1ns+/pm0x3P6dGMwZEo0r8uDA0cg27VwwP9icjrZcw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WEoEhyBGFSr+T0WmOOJnN6+RjSQtavc5N5PmyRlXha4=;
- b=TChfvu36NAVavV0pY+KGIhR/cbqldWO4K6kk2o/lU4xy5UNV97vGkbxMfN06OI2tq2jmk9LDYZSjN4Bk98yVw0zvfcd9prXX/Wh8OgGwMv/LGYgRMCAybkxAjICNOBOMxH6ls+LpRgosf/uCfw+UCGl1tS77B3V4ZijUyDADR6w=
+ bh=Ixdt3LHc+fLCklQ+sTM2VLiOs+Hr2Ds57nIIbi7NXEw=;
+ b=cBlTj2pmY9vE82iMuY39velG0a9SKufwPfxIGAvwbEUM/2Ybvq2vonedGFTmrzR0soKco4GmqXVlE2v2dP6HPJCjpuw2m2EbCuJcSOx0RDqHLPRQNxYpyTM9Be/yxSlvVCBhoZH70Xgm1YHEmTpPlW+Fa6UxefXg0sR8hnr4RRc=
 Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=yibin.gong@nxp.com; 
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.232.15) by
- VE1PR04MB6462.eurprd04.prod.outlook.com (20.179.232.205) with Microsoft SMTP
+ smtp.mailfrom=peng.fan@nxp.com; 
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB5427.eurprd04.prod.outlook.com (20.178.114.156) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2793.15; Wed, 11 Mar 2020 08:36:30 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::490:6caa:24b:4a31]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::490:6caa:24b:4a31%6]) with mapi id 15.20.2793.018; Wed, 11 Mar 2020
- 08:36:30 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     s.hauer@pengutronix.de, vkoul@kernel.org, shawnguo@kernel.org,
-        u.kleine-koenig@pengutronix.de, broonie@kernel.org,
-        robh+dt@kernel.org, festevam@gmail.com, dan.j.williams@intel.com,
-        mark.rutland@arm.com, catalin.marinas@arm.com, will.deacon@arm.com,
-        l.stach@pengutronix.de, martin.fuzzey@flowbird.group
-Cc:     kernel@pengutronix.de, linux-spi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v7 13/13] dmaengine: imx-sdma: add uart rom script
-Date:   Thu, 12 Mar 2020 00:36:36 +0800
-Message-Id: <1583944596-23410-14-git-send-email-yibin.gong@nxp.com>
+ 15.20.2793.17; Wed, 11 Mar 2020 09:08:40 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::548f:4941:d4eb:4c11]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::548f:4941:d4eb:4c11%6]) with mapi id 15.20.2793.018; Wed, 11 Mar 2020
+ 09:08:40 +0000
+From:   peng.fan@nxp.com
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Anson.Huang@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2] ARM: dts: imx: add nvmem property for cpu0
+Date:   Wed, 11 Mar 2020 17:02:06 +0800
+Message-Id: <1583917326-5550-1-git-send-email-peng.fan@nxp.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1583944596-23410-1-git-send-email-yibin.gong@nxp.com>
-References: <1583944596-23410-1-git-send-email-yibin.gong@nxp.com>
 Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0158.apcprd04.prod.outlook.com (2603:1096:4::20)
- To VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+X-ClientProxiedBy: SG2PR02CA0090.apcprd02.prod.outlook.com
+ (2603:1096:4:90::30) To AM0PR04MB4481.eurprd04.prod.outlook.com
+ (2603:10a6:208:70::15)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from robin-OptiPlex-790.ap.freescale.net (119.31.174.66) by SG2PR04CA0158.apcprd04.prod.outlook.com (2603:1096:4::20) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.2793.15 via Frontend Transport; Wed, 11 Mar 2020 08:36:25 +0000
+Received: from localhost.localdomain (119.31.174.66) by SG2PR02CA0090.apcprd02.prod.outlook.com (2603:1096:4:90::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.2793.16 via Frontend Transport; Wed, 11 Mar 2020 09:08:37 +0000
 X-Mailer: git-send-email 2.7.4
 X-Originating-IP: [119.31.174.66]
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: bf9208a5-7ba0-4abf-0d88-08d7c5974c1f
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6462:|VE1PR04MB6462:
+X-MS-Office365-Filtering-Correlation-Id: c6c6d6b4-be58-4acb-1838-08d7c59bca61
+X-MS-TrafficTypeDiagnostic: AM0PR04MB5427:|AM0PR04MB5427:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VE1PR04MB646290CBE057361D19880D0389FC0@VE1PR04MB6462.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
+X-Microsoft-Antispam-PRVS: <AM0PR04MB5427E8D658B7004944E1E15C88FC0@AM0PR04MB5427.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:125;
 X-Forefront-PRVS: 0339F89554
-X-Forefront-Antispam-Report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(39860400002)(376002)(346002)(136003)(396003)(199004)(52116002)(7416002)(36756003)(5660300002)(6506007)(8936002)(966005)(478600001)(66556008)(66476007)(66946007)(6666004)(316002)(2906002)(86362001)(2616005)(956004)(6486002)(81166006)(16526019)(186003)(81156014)(8676002)(6512007)(26005)(4326008)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6462;H:VE1PR04MB6638.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
+X-Forefront-Antispam-Report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(136003)(366004)(376002)(346002)(396003)(199004)(9686003)(69590400007)(6666004)(6486002)(4326008)(6512007)(6506007)(36756003)(186003)(478600001)(16526019)(2906002)(5660300002)(316002)(81166006)(956004)(86362001)(26005)(8936002)(66556008)(66946007)(52116002)(2616005)(66476007)(8676002)(81156014);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5427;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
 Received-SPF: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: txh/e2uH6tqtFuTnhC3yrq3IVzhmMW7/rRJI5sGX4iJL0aUs7cv7VO8NcvWCuXiAquNcG4MRd9DCm2BbpAF02xBdr1OrQ/IHKoMq+pVR8CUnVrde6muVqHp+7xz6j3VjK7hdTWCtwLbpovziUBLb3ZV5Tz34+RjbxmJVE6+H0q3mjcuhZVcyjJpUO3B21a+4eHX8/jkR2RLjs9iZd7V8eBkn2/4Hstyytx9Y8ypmQ4OjL/I58wOHwitBWRjJo6CzoY9lxGRJfowZT3YTuXTaV1rDviiKnOCcfHCMBP/0IKwgkQVTkeBRceVwn2AeFtHPzW3xgtZ+3VFIbprnichFYkfitSWlAaR69KUFJndOojryOBsa0WDuSww4wr8mGYUx/5AALkexGgnzwW+a7IwFjuw/K+O/bMkBDkfeX47f4bPAf8TAD1Xj+UeD5xwiCtYqhQWyni2DBy/2XhTi9ktyqr2ReHY6+w7su+9zksLfcdIqlOgaobtCvULHqpIzpcc7h94Jo2oAB0bBbFhNYABgvX5iF5i4xvtJ8Dp56vjUFlwpyeCy8A6fCl5jgXM3xnYmwyU7kkBWZG2PJ/Ky/Hz9BQ==
-X-MS-Exchange-AntiSpam-MessageData: BaLbwh/7TZc7vJX958bxr4Z2mQlzh5ffh+LLv2+Q1Jo2pdYniTyTdROqAYYlhwe4AcIZ40eMw9vWRU4zq7E+AhBLYrRMU+3Vb7lwa7WVy8UJ7TKpY5l+lmP5QxW+Pm4WUIi94bIDppuOR1RmjcEihA==
+X-Microsoft-Antispam-Message-Info: oh53RV2pKeIYTeHzHBBriRGfC/4bGDMYQOnjwcNNG4Sgdpf2o5hnPANqa6mM5NuKmxkNoZhn/GX/iNFQK683s4WhHoDBYq1zyHdCoz/6Mu0JxX+pNYz7SFsYv1X2xp8rxgae2EWc807wMwyoQkZUeFZK28cYyXb/vv7n/EhSHsJNONrOKmXy5rQ77OsAkQJmQF4/iS0BUaRy+zLcyIwCMA3h1k7t7hMjHQlylunIAX/BiQKu83avhpYq7VBsH9J7doU0Ps/PDOqRZcFAk0J61hhXSQYEk3cDvQyH84g/1wdyik34m9+tkrh34A1YvKkeFnbBtEkuG3B7g+k3oUuvO0rrgqrV1WrXsVXMtRwP+SBQ7a1c+AjaYRAJ0JxrKvCpwwSqGEJQsNIJGScQQHDwZb+GMBCkTWKXP4VXY/u93WnAcwWPCqBBb6V9aujFSR8cDeOd0e+fhM7BfkmiHMoeHEDAiH19n29rJu43a78Zwx7VolMpW+5O17Hfxvue9EH7
+X-MS-Exchange-AntiSpam-MessageData: c6LoGzYu49AEUKa9CzDuijeXgrflm+Nl3POqdFhUT0a3FdPaKXfDeLT12EouKVeWl4hr3ri7q7kjgmsyhjz+dI989X2MOhd+OnJqlpmGy40k6Oq4rzhxvgT2zvqj8qo6+Ww5HpZW5mLMGY0mBnAltw==
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf9208a5-7ba0-4abf-0d88-08d7c5974c1f
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2020 08:36:30.5880
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6c6d6b4-be58-4acb-1838-08d7c59bca61
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2020 09:08:40.4536
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eviAbhssZLkjgpGF5l/FMEfAfp4haUdAEH1Yl+9lghiW9+Z/RRt/5SGET7D7tx4VybzZMWYHifwwClKB7Sp9gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6462
+X-MS-Exchange-CrossTenant-UserPrincipalName: TaFqdLy7kKhjHvnp2grRe9ZtWXDOhIGi4UQgbfJT6AIPOu64eLx59MJIdfCLCr3OYRCbtDlX4mycCRyfwAmYIw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5427
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For the compatibility of NXP internal legacy kernel before 4.19 which
-is based on uart ram script and upstreaming kernel based on uart rom
-script, add both uart ram/rom script in latest sdma firmware. By default
-uart rom script used.
-Besides, add two multi-fifo scripts for SAI/PDM on i.mx8m/8mm and add
-back qspi script miss for v4(i.mx7d/8m/8mm family, but v3 is for i.mx6).
+From: Peng Fan <peng.fan@nxp.com>
 
-rom script:
-        uart_2_mcu_addr
-	uartsh_2_mcu_addr /* through spba bus */
-am script:
-	uart_2_mcu_ram_addr
-	uartsh_2_mcu_ram_addr /* through spba bus */
+Add nvmem related property for cpu0, then nvmem API could be used
+to read cpu speed grading to avoid directly read OCOTP registers
+mapped which could not handle defer probe.
 
-Please get latest sdma firmware from the below and put them into the path
-(/lib/firmware/imx/sdma/):
-https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git
-/tree/imx/sdma
-
-Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-Acked-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- drivers/dma/imx-sdma.c                     | 4 ++--
- include/linux/platform_data/dma-imx-sdma.h | 8 ++++++--
- 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/dma/imx-sdma.c b/drivers/dma/imx-sdma.c
-index 9d49aaf..01422e7 100644
---- a/drivers/dma/imx-sdma.c
-+++ b/drivers/dma/imx-sdma.c
-@@ -1718,8 +1718,8 @@ static void sdma_issue_pending(struct dma_chan *chan)
+V2:
+ Drop useless blankline
+
+ arch/arm/boot/dts/imx6dl.dtsi  | 2 ++
+ arch/arm/boot/dts/imx6q.dtsi   | 2 ++
+ arch/arm/boot/dts/imx6qdl.dtsi | 6 ++++++
+ arch/arm/boot/dts/imx6sl.dtsi  | 8 ++++++++
+ arch/arm/boot/dts/imx6sll.dtsi | 6 ++++++
+ arch/arm/boot/dts/imx6sx.dtsi  | 6 ++++++
+ 6 files changed, 30 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6dl.dtsi b/arch/arm/boot/dts/imx6dl.dtsi
+index 4b3a128d9260..055f1d875bac 100644
+--- a/arch/arm/boot/dts/imx6dl.dtsi
++++ b/arch/arm/boot/dts/imx6dl.dtsi
+@@ -44,6 +44,8 @@
+ 			arm-supply = <&reg_arm>;
+ 			pu-supply = <&reg_pu>;
+ 			soc-supply = <&reg_soc>;
++			nvmem-cells = <&cpu_speed_grade>;
++			nvmem-cell-names = "speed_grade";
+ 		};
  
- #define SDMA_SCRIPT_ADDRS_ARRAY_SIZE_V1	34
- #define SDMA_SCRIPT_ADDRS_ARRAY_SIZE_V2	38
--#define SDMA_SCRIPT_ADDRS_ARRAY_SIZE_V3	41
--#define SDMA_SCRIPT_ADDRS_ARRAY_SIZE_V4	42
-+#define SDMA_SCRIPT_ADDRS_ARRAY_SIZE_V3	45
-+#define SDMA_SCRIPT_ADDRS_ARRAY_SIZE_V4	46
+ 		cpu@1 {
+diff --git a/arch/arm/boot/dts/imx6q.dtsi b/arch/arm/boot/dts/imx6q.dtsi
+index 0fad13f9d336..d3ba9d4a1290 100644
+--- a/arch/arm/boot/dts/imx6q.dtsi
++++ b/arch/arm/boot/dts/imx6q.dtsi
+@@ -49,6 +49,8 @@
+ 			arm-supply = <&reg_arm>;
+ 			pu-supply = <&reg_pu>;
+ 			soc-supply = <&reg_soc>;
++			nvmem-cells = <&cpu_speed_grade>;
++			nvmem-cell-names = "speed_grade";
+ 		};
  
- static void sdma_add_scripts(struct sdma_engine *sdma,
- 		const struct sdma_script_start_addrs *addr)
-diff --git a/include/linux/platform_data/dma-imx-sdma.h b/include/linux/platform_data/dma-imx-sdma.h
-index 30e676b..e12d2e8 100644
---- a/include/linux/platform_data/dma-imx-sdma.h
-+++ b/include/linux/platform_data/dma-imx-sdma.h
-@@ -20,12 +20,12 @@ struct sdma_script_start_addrs {
- 	s32 per_2_firi_addr;
- 	s32 mcu_2_firi_addr;
- 	s32 uart_2_per_addr;
--	s32 uart_2_mcu_addr;
-+	s32 uart_2_mcu_ram_addr;
- 	s32 per_2_app_addr;
- 	s32 mcu_2_app_addr;
- 	s32 per_2_per_addr;
- 	s32 uartsh_2_per_addr;
--	s32 uartsh_2_mcu_addr;
-+	s32 uartsh_2_mcu_ram_addr;
- 	s32 per_2_shp_addr;
- 	s32 mcu_2_shp_addr;
- 	s32 ata_2_mcu_addr;
-@@ -52,6 +52,10 @@ struct sdma_script_start_addrs {
- 	s32 zcanfd_2_mcu_addr;
- 	s32 zqspi_2_mcu_addr;
- 	s32 mcu_2_ecspi_addr;
-+	s32 mcu_2_sai_addr;
-+	s32 sai_2_mcu_addr;
-+	s32 uart_2_mcu_addr;
-+	s32 uartsh_2_mcu_addr;
- 	/* End of v3 array */
- 	s32 mcu_2_zqspi_addr;
- 	/* End of v4 array */
+ 		cpu1: cpu@1 {
+diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+index 70fb8b56b1d7..303131200675 100644
+--- a/arch/arm/boot/dts/imx6qdl.dtsi
++++ b/arch/arm/boot/dts/imx6qdl.dtsi
+@@ -1165,6 +1165,12 @@
+ 				compatible = "fsl,imx6q-ocotp", "syscon";
+ 				reg = <0x021bc000 0x4000>;
+ 				clocks = <&clks IMX6QDL_CLK_IIM>;
++				#address-cells = <1>;
++				#size-cells = <1>;
++
++				cpu_speed_grade: speed-grade@10 {
++					reg = <0x10 4>;
++				};
+ 			};
+ 
+ 			tzasc@21d0000 { /* TZASC1 */
+diff --git a/arch/arm/boot/dts/imx6sl.dtsi b/arch/arm/boot/dts/imx6sl.dtsi
+index c8ec46fe8302..ae75fde8877a 100644
+--- a/arch/arm/boot/dts/imx6sl.dtsi
++++ b/arch/arm/boot/dts/imx6sl.dtsi
+@@ -74,6 +74,8 @@
+ 			arm-supply = <&reg_arm>;
+ 			pu-supply = <&reg_pu>;
+ 			soc-supply = <&reg_soc>;
++			nvmem-cells = <&cpu_speed_grade>;
++			nvmem-cell-names = "speed_grade";
+ 		};
+ 	};
+ 
+@@ -953,6 +955,12 @@
+ 				compatible = "fsl,imx6sl-ocotp", "syscon";
+ 				reg = <0x021bc000 0x4000>;
+ 				clocks = <&clks IMX6SL_CLK_OCOTP>;
++				#address-cells = <1>;
++				#size-cells = <1>;
++
++				cpu_speed_grade: speed-grade@10 {
++					reg = <0x10 4>;
++				};
+ 			};
+ 
+ 			audmux: audmux@21d8000 {
+diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
+index 797f850492fe..6b7fb3cec9f6 100644
+--- a/arch/arm/boot/dts/imx6sll.dtsi
++++ b/arch/arm/boot/dts/imx6sll.dtsi
+@@ -72,6 +72,8 @@
+ 				 <&clks IMX6SLL_CLK_PLL1_SYS>;
+ 			clock-names = "arm", "pll2_pfd2_396m", "step",
+ 				      "pll1_sw", "pll1_sys";
++			nvmem-cells = <&cpu_speed_grade>;
++			nvmem-cell-names = "speed_grade";
+ 		};
+ 	};
+ 
+@@ -791,6 +793,10 @@
+ 				reg = <0x021bc000 0x4000>;
+ 				clocks = <&clks IMX6SLL_CLK_OCOTP>;
+ 
++				cpu_speed_grade: speed-grade@10 {
++					reg = <0x10 4>;
++				};
++
+ 				tempmon_calib: calib@38 {
+ 					reg = <0x38 4>;
+ 				};
+diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+index e47d346a3543..63aa19d81b42 100644
+--- a/arch/arm/boot/dts/imx6sx.dtsi
++++ b/arch/arm/boot/dts/imx6sx.dtsi
+@@ -87,6 +87,8 @@
+ 				      "pll1_sw", "pll1_sys";
+ 			arm-supply = <&reg_arm>;
+ 			soc-supply = <&reg_soc>;
++			nvmem-cells = <&cpu_speed_grade>;
++			nvmem-cell-names = "speed_grade";
+ 		};
+ 	};
+ 
+@@ -1058,6 +1060,10 @@
+ 				reg = <0x021bc000 0x4000>;
+ 				clocks = <&clks IMX6SX_CLK_OCOTP>;
+ 
++				cpu_speed_grade: speed-grade@10 {
++					reg = <0x10 4>;
++				};
++
+ 				tempmon_calib: calib@38 {
+ 					reg = <0x38 4>;
+ 				};
 -- 
-2.7.4
+2.16.4
 
