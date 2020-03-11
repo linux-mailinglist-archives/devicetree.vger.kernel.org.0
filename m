@@ -2,162 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABD71180EE3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 05:24:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15EF3180EE5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 05:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725813AbgCKEY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 00:24:27 -0400
-Received: from gateway21.websitewelcome.com ([192.185.45.154]:31685 "EHLO
-        gateway21.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725379AbgCKEY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Mar 2020 00:24:27 -0400
-X-Greylist: delayed 1201 seconds by postgrey-1.27 at vger.kernel.org; Wed, 11 Mar 2020 00:24:26 EDT
-Received: from cm16.websitewelcome.com (cm16.websitewelcome.com [100.42.49.19])
-        by gateway21.websitewelcome.com (Postfix) with ESMTP id 0C762400E096D
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2020 23:04:25 -0500 (CDT)
-Received: from br164.hostgator.com.br ([192.185.176.180])
-        by cmsmtp with SMTP
-        id BsbZjvT0H8vkBBsbZjo4b5; Tue, 10 Mar 2020 23:04:25 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=3mQ8efzp5o0AkNF9bZhfeVXit4yUM1qXe8Qn2DoH+uM=; b=M2w0nZx0+GhH4CQngfIEQ9sxdq
-        dPBJpztWkuF97hxTB23jiqquuyEfWqRtGR/dz6LZfloO8lVT6HRJBDCzlEgubKv2IueRb5FraSCwc
-        MZSd1X4ZFG8dJmaoRIn41Qh5FHZp4U4C1FQfc+zUnKbDr22t5pmLrfnPezI+nnvl5njb5lvQ2KWBm
-        0S/z022YqNNU0omGKoOKzoDJRKsIUFNQKG8p6BFMh9sQFvWrh5rEp549fjZc5EcgtBUv/lyoaTcI+
-        sZPFNjYuVX/3d4DFlVT75XME5sVGqYzR5Sc+yMA+NL5z9oCUri+zjNGywSZkWHU8uRqHuWv/7ptnK
-        PQxQcQoQ==;
-Received: from [191.31.204.9] (port=54190 helo=[192.168.15.3])
-        by br164.hostgator.com.br with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <matheus@castello.eng.br>)
-        id 1jBsbY-001Nn8-Lh; Wed, 11 Mar 2020 01:04:24 -0300
-Subject: Re: [PATCH v2 1/3] dt-bindings: Add vendor prefix for Caninos Loucos
-To:     =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Cc:     manivannan.sadhasivam@linaro.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        edgar.righi@lsitec.org.br, igor.lima@lsitec.org.br
-References: <20200229104358.GB19610@mani>
- <20200307002453.350430-1-matheus@castello.eng.br>
- <20200307002453.350430-2-matheus@castello.eng.br>
- <62e115af-9d8c-572a-a400-91bdef9d9292@suse.de>
-From:   Matheus Castello <matheus@castello.eng.br>
-Message-ID: <143fea2e-3361-445a-a261-1860ffc435eb@castello.eng.br>
-Date:   Wed, 11 Mar 2020 01:04:20 -0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+        id S1725958AbgCKE0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 00:26:12 -0400
+Received: from correo.santafe.edu.ar ([200.12.192.40]:37104 "EHLO
+        correo.santafe.edu.ar" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725834AbgCKE0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 00:26:12 -0400
+Received: from correo.santafe.edu.ar (localhost [127.0.0.1])
+        by correo.santafe.edu.ar (Postfix) with ESMTP id 48cf686XYvz498
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 01:26:08 -0300 (-03)
+Authentication-Results: correo.santafe.edu.ar (amavisd-new);
+        dkim=pass (1024-bit key) reason="pass (just generated, assumed good)"
+        header.d=santafe.edu.ar
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=santafe.edu.ar;
+         h=content-transfer-encoding:organization:message-id:user-agent
+        :reply-to:subject:subject:to:from:from:date:date:content-type
+        :content-type:mime-version; s=dkim; t=1583900768; x=1586492769;
+         bh=xhwwRMuxLcoJloaFBF0V926odHMWiA+vD+xqljZilm8=; b=BpgVYsg7CYra
+        yW9yMJr/VXKHWgncQCacAw6XVuHLUmT9zIrAmijaZJwwlWWk1QGFXDKduCR49mD9
+        B9AxAH+WR/Qe/RQGrbo4pUerWC6MPJPBdae9johd6U1JNu0w0m8qi9iSElzIXRl4
+        w29bcrSedpzwwEiAOibjYIhrcE8jAKY=
+X-Virus-Scanned: Debian amavisd-new at debian9-asiserver.santafe.gob.ar
+Received: from correo.santafe.edu.ar ([127.0.0.1])
+        by correo.santafe.edu.ar (correo.santafe.edu.ar [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id hCncbjIwUBpG for <devicetree@vger.kernel.org>;
+        Wed, 11 Mar 2020 01:26:08 -0300 (-03)
+Received: from localhost (localhost [127.0.0.1])
+        by correo.santafe.edu.ar (Postfix) with ESMTPSA id 48cf2q0MBfz3fK;
+        Wed, 11 Mar 2020 01:23:15 -0300 (-03)
 MIME-Version: 1.0
-In-Reply-To: <62e115af-9d8c-572a-a400-91bdef9d9292@suse.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - castello.eng.br
-X-BWhitelist: no
-X-Source-IP: 191.31.204.9
-X-Source-L: No
-X-Exim-ID: 1jBsbY-001Nn8-Lh
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.15.3]) [191.31.204.9]:54190
-X-Source-Auth: matheus@castello.eng.br
-X-Email-Count: 6
-X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
-X-Local-Domain: yes
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Date:   Wed, 11 Mar 2020 05:23:14 +0100
+From:   Rosario <prim128_rosario@santafe.edu.ar>
+To:     undisclosed-recipients:;
+Subject: AW:
+Reply-To: niklas@zennstromcare.org
+User-Agent: Roundcube Webmail
+Message-ID: <9c85e8d16078be6e1ad4c0dbbe7d39fd@santafe.edu.ar>
+X-Sender: prim128_rosario@santafe.edu.ar
+Organization: niklas@zennstromcare.org
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andreas,
 
-Em 3/7/20 9:34 AM, Andreas Färber escreveu:
-> Hi Matheus,
-> 
-> Am 07.03.20 um 01:24 schrieb Matheus Castello:
->> The Caninos Loucos Program develops Single Board Computers with an open
->> structure. The Program wants to form a community of developers to use
->> the IoT technology and disseminate the learning of embedded systems in
-> 
-> I would suggest "IoT technologies" without "the".
-> 
 
-ack
+--=20
+Sch=C3=B6nen Tag,
 
->> Brazil.
->>
->> The boards are designed and manufactured by LSI-TEC NPO.
->>
->> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
->> ---
->>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml 
->> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> index 9e67944bec9c..3e974dd563cf 100644
->> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->> @@ -167,6 +167,8 @@ patternProperties:
->>       description: Calxeda
->>     "^capella,.*":
->>       description: Capella Microsystems, Inc
->> +  "^caninos,.*":
->> +    description: Caninos Loucos LSI-TEC NPO
-> 
+Herr Niklas Zennstr=C3=B6m, ein schwedischer Wirtschaftsmagnat, Investor =
+und=20
+Philanthrop, der weltweit rund =C2=A3208.3 Millionen Pfund an=20
+Menschenrechtsorganisationen / Wohlt=C3=A4tigkeitsorganisationen gespende=
+t=20
+hat, hat sich ebenfalls verpflichtet, den Rest von 25% in diesem Jahr=20
+2020 zu verschenken, und Ihre E-Mail erfolgte nach dem Zufallsprinzip=20
+Das Team von Google Inc. wurde als aktiver Web-Nutzer ausgew=C3=A4hlt, um=
+=20
+eine Spende in H=C3=B6he von $1 Million USD im Rahmen des=20
+Wohlt=C3=A4tigkeitsprojekts Zennstr=C3=B6m Philanthropies zu erhalten. Bi=
+tte=20
+best=C3=A4tigen Sie den Besitz Ihrer E-Mail-Adresse, indem Sie sich per=20
+E-Mail an Niklas Zennstr=C3=B6m wenden: niklas@zennstromcare.org F=C3=BCr=
+ den=20
+Anspruch
 
-I will change this to "Caninos Loucos Program"
-
-> Alphabetical order: n goes before p.
-> 
-> I'm confused by the description... Either this Caninos Loucos is an 
-> independent vendor and gets its own prefix, or it's LSI-Tec and uses 
-> something like lsi-tec,caninosloucos-foo. Please clarify commit message 
-> and/or description line, at least by inserting something like "program 
-> by", "brand by" or the like rather than just concatenating names. Maybe 
-> compare UDOO by SECO. Is caninos,foo unique enough or should it be 
-> caninosloucos,foo? (crazy canines?)
-> 
-
-Yes "Caninos Loucos" means crazy canines (or mad dog) in Portuguese. 
-This is a initiative that have as co-founder the Jon Maddog Hall, 
-because of Jon we have the "maddog", but in Portuguese, on the name of 
-program.
-
- From their website: https://caninosloucos.org/en/program-en/:
-"It is an initiative of the Technological Integrated Systems Laboratory 
-(LSI-TEC) with the support of Polytechnic School of the University of 
-São Paulo (Poli-USP) and Jon “Maddog” Hall"
-
-So I think we can put this instead "The boards are designed and 
-manufactured by LSI-TEC NPO." on description.
-
-Let me know what you think about this.
-
-> Note that I usually attempt to CC the organizations I'm assigning a 
-> vendor prefix for. Do you represent them or coordinated with them?
->
-
-Thanks for the review and tips. I am adding Edgar Bernardi Righi and 
-Igor Ruschi from Caninos team as CC on this patch series.
-
-Best Regards,
-Matheus Castello
-
-> Regards,
-> Andreas
->
->>     "^cascoda,.*":
->>       description: Cascoda, Ltd.
->>     "^catalyst,.*":
-> 
+Name des Ansprechpartners: Herr Niklas Zennstr=C3=B6m
