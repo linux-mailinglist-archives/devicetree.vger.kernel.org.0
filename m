@@ -2,114 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C54A218181F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1758818185F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 13:44:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729450AbgCKMfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 08:35:17 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:44710 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729444AbgCKMfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:35:15 -0400
-Received: by mail-wr1-f66.google.com with SMTP id l18so2364006wru.11
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 05:35:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=EvyKd0t3+qfQkjBAhdo61NmuHCYlR+DRre07BlO1Nos=;
-        b=G815P8fyDtM6GYZ9Ybl+860JL0ZVbhz07A7HXj9b1iZHsxT3+wZZN/8lnC578RRMZm
-         WyWhGPHK6lDHSsmYQwhUyXl+UQRus6z7S7xaCTWgd0V4UrZmNtegW9TS+XAGWh1YQw+h
-         h01zfsxB5twA0QGcn2TJLckSZAd0Zbd2nRo4uOou5XSgBx98MjDA0Z5Kh58l0VGueHLT
-         zZqGlnbnzNp4BFLktgbQeUJ1hBgsvS7/xg3sYWryzWtUeioKSGI2wErIzNQpy4dxPJCx
-         VFGXRdyjGwr6TyO7Q3yga+pnw+bzGj5Z6vt7wsAZnWhQzva5KaXfp3dG0dvVg9x0KXlZ
-         cpVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=EvyKd0t3+qfQkjBAhdo61NmuHCYlR+DRre07BlO1Nos=;
-        b=pkmztkrHmmeybloAPPOwsbGd5XgYTMPl4YdCX/gZ9Vxb8uqMTPYHNUdko41Rs/Acan
-         2LgsaT0HwHKK6VvKQrWAUImMzQr9Nd04WKShZTIaeFtf83PnwwnMw2Af2ZeCMbT2QiBG
-         wSfev8QEz8hgA352EOzuSwubO56JAdvo65ap/dgA2CqMP1OOZfIp6BjPJwxfKAq4id70
-         +IBFw8bBO/N16K8ylrQhVJ9IsJUl6+EJ85ur9UquQMAo0CCA5Ynd9uS/v63HAU1u2/iM
-         GVuWg7VGP0Ju8DIcHE+7TeYQobeE4a/cxqREAtIvdtKMbvl+rll14s2B1EziHOjbMryD
-         sGBQ==
-X-Gm-Message-State: ANhLgQ3Nxt2IOrbsr+H9rBP9GcAhsdi2ZnEOUvmmrsoJFZK474F42iXW
-        htexijnAFgnAFVyKLO0wsOqfbg==
-X-Google-Smtp-Source: ADFU+vsIKG8BRFaCapFFZcz3md1ZzUxxu8pQAo4ykDwAmnwztoT4NEp3wcwJQhMl3K4PkLdJRE+gzw==
-X-Received: by 2002:adf:afd4:: with SMTP id y20mr4556101wrd.57.1583930114288;
-        Wed, 11 Mar 2020 05:35:14 -0700 (PDT)
-Received: from xps7590.local ([2a02:2450:102f:13b8:9087:3e80:4ebc:ae7b])
-        by smtp.gmail.com with ESMTPSA id m25sm7822732wml.35.2020.03.11.05.35.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2020 05:35:13 -0700 (PDT)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, catalin.marinas@arm.com, will@kernel.org,
-        shawnguo@kernel.org, olof@lixom.net, Anson.Huang@nxp.com,
-        maxime@cerno.tech, leonard.crestez@nxp.com, dinguyen@kernel.org,
-        marcin.juszkiewicz@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Loic Poulain <loic.poulain@linaro.org>
-Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [v1 6/6] arm64: defconfig: Enable QCOM CAMCC, CAMSS and CCI drivers
-Date:   Wed, 11 Mar 2020 13:35:01 +0100
-Message-Id: <20200311123501.18202-7-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200311123501.18202-1-robert.foss@linaro.org>
-References: <20200311123501.18202-1-robert.foss@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729317AbgCKMoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 08:44:03 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.168]:11926 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729286AbgCKMoD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 08:44:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1583930638;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=szVCPXkRhUgrnj2vMcg5P15yraJcGhHnjrwU78GZvNI=;
+        b=LqJdsVPuJgkzVTwma5TMiHDHLxysyjEfghV9zzPWJ9K9B+qUGV3K/UC9qc8lO6BhUk
+        V0E3v4vTc5tX1Dm7KGtmzK3NeFX9oNj/xKV+Y80dOJY9k5K8mXoGB/rwqHgW2G9DN0On
+        rXdvJI+o6vugcnYHwClHYrQnTlxE1fr2ZaAu3QtHKCHfUSBU4EidwdX1/tqol7bkPvdn
+        zDNGQc/8cmFFvLTrozo6qOsKucQ0Dd+6GFMVIA4T6LKjpFfYOQJO2JKAu7H7intTDbid
+        2gfA/vwl/yvRb3MNnEEcz4CdWYkclE61jcunVj5VLp/b+KvLQphejWekRDDOUNtK+YH1
+        WGJA==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHmMnw43lIA8="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 46.2.0 DYNA|AUTH)
+        with ESMTPSA id y0a02cw2BChlyCN
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Wed, 11 Mar 2020 13:43:47 +0100 (CET)
+Subject: Re: [RFC v2 6/8] MIPS: DTS: jz4780: account for Synopsys HDMI driver and LCD controller
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Content-Type: text/plain; charset=iso-8859-1
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <1583177253.3.5@crapouillou.net>
+Date:   Wed, 11 Mar 2020 13:43:46 +0100
+Cc:     Paul Boddie <paul@boddie.org.uk>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andi Kleen <ak@linux.intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mips@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>,
+        MIPS Creator CI20 Development 
+        <mips-creator-ci20-dev@googlegroups.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <F29E9DCC-29BC-4B88-9288-3E53BF8423C6@goldelico.com>
+References: <cover.1582913973.git.hns@goldelico.com> <04b485165f38744816a0446e95150cafdeb716ee.1582913973.git.hns@goldelico.com> <1583177253.3.5@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Build camera clock, isp and controller drivers as modules.
+Hi Paul,
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+> Am 02.03.2020 um 20:27 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+> Hi Nikolaus,
+>=20
+>=20
+> Le ven., f=E9vr. 28, 2020 at 19:19, H. Nikolaus Schaller =
+<hns@goldelico.com> a =E9crit :
+>> From: Paul Boddie <paul@boddie.org.uk>
+>> A specialisation of the generic Synopsys HDMI driver is employed for =
+JZ4780
+>> HDMI support. This requires a new driver, plus device tree and =
+configuration
+>> modifications.
+>> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>> ---
+>> arch/mips/boot/dts/ingenic/jz4780.dtsi | 32 =
+++++++++++++++++++++++++++
+>> 1 file changed, 32 insertions(+)
+>> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi =
+b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+>> index f928329b034b..391d4e1efd35 100644
+>> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+>> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+>> @@ -433,4 +433,36 @@
+>> 		status =3D "disabled";
+>> 	};
+>> +
+>> +	hdmi: hdmi@10180000 {
+>> +		compatible =3D "ingenic,jz4780-dw-hdmi";
+>> +		reg =3D <0x10180000 0x8000>;
+>> +		reg-io-width =3D <4>;
+>> +
+>> +		clocks =3D <&cgu JZ4780_CLK_HDMI>, <&cgu =
+JZ4780_CLK_AHB0>;
+>> +		clock-names =3D "isfr" , "iahb";
+>> +
+>> +		assigned-clocks =3D <&cgu JZ4780_CLK_HDMI>;
+>> +		assigned-clock-rates =3D <27000000>;
+>=20
+> I *think* this should go to the board file.
+>=20
+>> +
+>> +		interrupt-parent =3D <&intc>;
+>> +		interrupts =3D <3>;
+>> +
+>> +		/* ddc-i2c-bus =3D <&i2c4>; */
+>> +
+>> +		status =3D "disabled";
+>> +	};
+>> +
+>> +	lcd: lcd@13050000 {
+>=20
+> The node name should be 'lcd-controller'.
+>=20
+>> +		compatible =3D "ingenic,jz4740-lcd";
+>=20
+> The JZ4780's LCD controller is much newer than the JZ4740 one, so even =
+if it works with the "ingenic,jz4740-lcd" compatible string, you want it =
+as a fallback.
+> So this should be: compatible =3D "ingenic,jz4780-lcd", =
+"ingenic,jz4740-lcd".
+>=20
+> That means the YAML should be updated too.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 4db223dbc549..7cb6989249ab 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -376,6 +376,7 @@ CONFIG_I2C_MESON=y
- CONFIG_I2C_MV64XXX=y
- CONFIG_I2C_OWL=y
- CONFIG_I2C_PXA=y
-+CONFIG_I2C_QCOM_CCI=m
- CONFIG_I2C_QCOM_GENI=m
- CONFIG_I2C_QUP=y
- CONFIG_I2C_RK3X=y
-@@ -530,6 +531,7 @@ CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
- CONFIG_VIDEO_SAMSUNG_EXYNOS_GSC=m
- CONFIG_VIDEO_RENESAS_FCP=m
- CONFIG_VIDEO_RENESAS_VSP1=m
-+CONFIG_VIDEO_QCOM_CAMSS=m
- CONFIG_DRM=m
- CONFIG_DRM_I2C_NXP_TDA998X=m
- CONFIG_DRM_NOUVEAU=m
-@@ -732,6 +734,7 @@ CONFIG_MSM_GCC_8994=y
- CONFIG_MSM_MMCC_8996=y
- CONFIG_MSM_GCC_8998=y
- CONFIG_QCS_GCC_404=y
-+CONFIG_SDM_CAMCC_845=m
- CONFIG_SDM_GCC_845=y
- CONFIG_SM_GCC_8150=y
- CONFIG_QCOM_HFPLL=y
-@@ -762,6 +765,7 @@ CONFIG_QCOM_COMMAND_DB=y
- CONFIG_QCOM_GENI_SE=y
- CONFIG_QCOM_GLINK_SSR=m
- CONFIG_QCOM_RMTFS_MEM=m
-+CONFIG_SDM_CAMCC_845=m
- CONFIG_QCOM_RPMH=y
- CONFIG_QCOM_RPMHPD=y
- CONFIG_QCOM_SMEM=y
--- 
-2.20.1
+I have started to look into jz4780 HDMI setup again.
+
+Well, there is no driver compatible to "ingenic,jz4780-lcd" so far
+and it is questionalbe if we need a different one.
+
+I think we should rather make the driver also compatible
+than adding a fallback to ingenic,jz4740-lcdto the DTS.
+
+The reason why this is better even if both LCDC are almost
+compatible is that the jz4780 allows for much bigger displays
+and therefore should have its own jz_soc_info with 4k x 2k
+as maximum.
+
+Next I tried to find out if the LCDC are really compatible.
+
+Well the jz4780 has two lcdc instances but they are separated
+by the reg addr. Next, there are unique features (like picture in
+picture with alpha blending) but those are probably disabled
+if not programmed from reset state. This may become a reason
+to separate or augment the driver for the jz4780 but at the
+moment we can ignore that.
+
+There are also subtly different bit definitions and register
+widths (e.g. 24 bit in addition to 16/18 bit modes or more bits
+for the sync position) but it looks as if the ingenic_drm
+driver already handles this.
+
+Then I tried to read back the registers. Strangely they
+are all 0x00000000. So there is no programming of the
+lcd-controller in our DT setup with HDMI at all!
+
+I also checked that ingenic_drm_probe() is called and
+returns successfully 0. It also reports that a /dev/fb
+has been created:
+
+[    7.908830] ingenic-drm 13050000.lcd-controller: fb0: ingenic-drmdrmf =
+frame buffer device
+
+But for example ingenic_drm_encoder_atomic_mode_set() is
+never called which should write some registers of the LCDC.
+
+I only did see some calls to ingenic_drm_encoder_atomic_check().
+
+This of course explains why we have no HDMI signals despite
+proper HPD and a /dev/fb0. Because the LCDC is not being
+programmed.
+
+Any ideas / hints how to check or improve?
+
+BR and thanks,
+Nikolaus
 
