@@ -2,101 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A89CF181497
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 10:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 803441814DD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2020 10:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728512AbgCKJTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Mar 2020 05:19:34 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:41867 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726160AbgCKJTd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Mar 2020 05:19:33 -0400
-Received: by mail-ed1-f66.google.com with SMTP id m25so1965220edq.8
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2020 02:19:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lmtKDGUYuG7F5ier3ytBGX7nrV1tLNtpZ8bZTDERCN0=;
-        b=I0HJWZylukZsSxnfiD6bjxOnk/ELuRVRJQStaFLEbwpL/yC+VBBYMDBYNf3AevSXQ4
-         IlB5Hhf+jYMUgcq4r7pMkTIOQAooTu0z2D31glUyPptvSu8vsigQPlHnfRDXlXjA0Zk+
-         h9xBVZ/zCCpxq7EyMQJeLVj/SZF4HHgy5OA/D39ii14rYaPrHUGDR/uOwSDOt7d4WSTq
-         L1iaQTFpDQE2Etl0muIFiG4a/PtcNAmdMYbyN7oatkk1v/mE38L06U4kcZ9ZUNDq88Fc
-         ycYJTmTQ+HmSO2BG21gLnK77IyomBBvaIUrSciNBBM+dd500ySi9707FT2m1fAsiV6eP
-         YQYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lmtKDGUYuG7F5ier3ytBGX7nrV1tLNtpZ8bZTDERCN0=;
-        b=qLs8nvZvCCl+zjDPW/BVLueIeLEGrmMbrRs0Cio6rEA1V/ojtPerzMCZZbjBxPmH0a
-         5iR+po7Va6NPnmik9LoiLV4MHgdV5t+JJQNHrxVemAnS/uTN2l7bZHsTlh+lU8ixJuWr
-         a9hKsOU863Y4Ne3WyxNO0mr60HpENZTA1BBzhd/+BzPcoI7pC3UHPHgab1vb/8X97Xj5
-         SuPzHvFfbuY2C9gTTS3p/8e82pxI66hvgTn+RsCq+Aqk8yAILAuoc2019QYCwOeZJcdx
-         eo2Owbd+EYGC2n6H/AdVn53Z+WTwKiEtBwSNl5uALskE5iDYiB7QAHsmPMmaT/yT2Wim
-         zOCA==
-X-Gm-Message-State: ANhLgQ3+s2yhq3f2i4lSYSjb9tHJhMNGFOukq2BnQTcGMjhzVWgBTFxX
-        B+4Heji/UfZ/AdPyw388U05Qk4DWs+2OZWg7KTahvA==
-X-Google-Smtp-Source: ADFU+vvoTtkBtQdM9NOqONrxxTGORBUCqKuUEtSHcAs+812eNyJUFXzaZ7ClDJjzt3mLQLb/brNX1z8b7Lt8MNIJmFQ=
-X-Received: by 2002:a05:6402:618:: with SMTP id n24mr1906687edv.366.1583918370705;
- Wed, 11 Mar 2020 02:19:30 -0700 (PDT)
+        id S1728444AbgCKJbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Mar 2020 05:31:41 -0400
+Received: from mail.manjaro.org ([176.9.38.148]:38072 "EHLO mail.manjaro.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726934AbgCKJbl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Mar 2020 05:31:41 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.manjaro.org (Postfix) with ESMTP id B7B813702434;
+        Wed, 11 Mar 2020 10:31:39 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at manjaro.org
+Received: from mail.manjaro.org ([127.0.0.1])
+        by localhost (manjaro.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 7nuUTOLPg9mT; Wed, 11 Mar 2020 10:31:37 +0100 (CET)
+From:   Tobias Schramm <t.schramm@manjaro.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Mark Brown <broonie@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Tobias Schramm <t.schramm@manjaro.org>
+Subject: [PATCH v3 0/3] Add support for CellWise cw2015 fuel gauge
+Date:   Wed, 11 Mar 2020 10:30:40 +0100
+Message-Id: <20200311093043.3636807-1-t.schramm@manjaro.org>
 MIME-Version: 1.0
-References: <20200310175452.7503-1-srinivas.kandagatla@linaro.org>
-In-Reply-To: <20200310175452.7503-1-srinivas.kandagatla@linaro.org>
-From:   Loic Poulain <loic.poulain@linaro.org>
-Date:   Wed, 11 Mar 2020 10:22:55 +0100
-Message-ID: <CAMZdPi9446g388LfJPXTi-mt-+EyhkxVTMA4YGs65PX-paVu8w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: msm8916: Add fastrpc node
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Mar 2020 at 18:55, Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
->
-> Add fastrpc device node for adsp with one compute bank.
->
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8916.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> index bef1a66334c3..a7cd8f87df97 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -1157,6 +1157,19 @@
->                                 qcom,remote-pid = <1>;
->
->                                 label = "hexagon";
-> +                               fastrpc {
-> +                                       compatible = "qcom,fastrpc";
-> +                                       qcom,smd-channels = "fastrpcsmd-apps-dsp";
-> +                                       label = "adsp";
-> +
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <0>;
-> +
-> +                                       cb@1{
-> +                                               compatible = "qcom,fastrpc-compute-cb";
-> +                                               reg = <1>;
-> +                                       };
-> +                               };
->                         };
->                 };
->
-> --
-> 2.21.0
->
+This patchset adds support for the CellWise cw2015 fuel gauge.
 
-Tested on dragonboard410c with various HexagonSDK examples
+The CellWise cw2015 fuel gauge is a shuntless, single-cell Li-Ion fuel
+gauge. It is used in the pine64 Pinebook Pro laptop.
 
-Tested-by: Loic Poulain <loic.poulain@linaro.org>
+This is v3 of the patchset. This version incorporates a review by Andy and
+includes a commit documenting the cellwise vendor prefix which I forgot to
+send in v2.
+
+I've kept the cellwise,battery-profile property in the device tree. Its
+content describes characteristics of the battery built into a device. The
+exact format is unknown and not publicly documented. It is likely
+comprised of some key parameters of the battery (chemistry, voltages,
+design capacity) and parameters for tuning the internal state of charge
+approximation function.
+Since v2 CellWise has confirmed to me that the only way to obtain the
+profile blob is to mail them batteries for testing. Thus we will need to
+keep that property.
+
+In general I'm not 100 % sure about my json-schema binding for the gauge.
+It is my first time ever writing a json-schema binding and I'm not sure
+whether properties like power-supplies or monitored-battery need to be
+added to a separate, common schema for power supplies or not.
+
+
+Best Regards,
+
+Tobias Schramm
+
+Changelog:
+ v2:
+  * Change subject to "Add support for CellWise cw2015 fuel gauge"
+  * Rewrite bindings as json-schema
+  * Use default power-supplies handling
+  * Use regmap for register access
+  * Use standard simple-battery node
+  * Replace printk/pr_* by dev_{dbg,info,warn,err}
+  * Use cancel_delayed_work_sync in remove
+  * General code cleanup
+ v3:
+  * Incorporate review by Andy
+  * Add cellwise vendor prefix
+  * Rename cellwise,bat-config-info property to cellwise,battery-profile
+  * Remove most state of charge post-processing
+  * Use fwnode interface
+  * General code cleanup
+  * Lots of code style fixes
+
+Tobias Schramm (3):
+  dt-bindings: Document cellwise vendor-prefix
+  dt-bindings: power: supply: add cw2015_battery bindings
+  power: supply: add CellWise cw2015 fuel gauge driver
+
+ .../bindings/power/supply/cw2015_battery.yaml |  83 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   6 +
+ drivers/power/supply/Kconfig                  |   8 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/cw2015_battery.c         | 785 ++++++++++++++++++
+ 6 files changed, 885 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/cw2015_battery.yaml
+ create mode 100644 drivers/power/supply/cw2015_battery.c
+
+-- 
+2.24.1
+
